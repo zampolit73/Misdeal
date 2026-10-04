@@ -1,22 +1,13 @@
 extends Control
 
-const BONE_PATROL_PATH := "res://resources/encounters/bone_patrol.tres"
-const GRAVEYARD_AMBUSH_PATH := "res://resources/encounters/graveyard_ambush.tres"
-const GALLOWS_VOLLEY_PATH := "res://resources/encounters/gallows_volley.tres"
-const BONE_WARDEN_PATH := "res://resources/encounters/bone_warden.tres"
-
-const BONE_PATROL: EncounterData = preload("res://resources/encounters/bone_patrol.tres")
-const GRAVEYARD_AMBUSH: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
-const GALLOWS_VOLLEY: EncounterData = preload("res://resources/encounters/gallows_volley.tres")
-const BONE_WARDEN: EncounterData = preload("res://resources/encounters/bone_warden.tres")
-
 @onready var wizard_line: Label = $WizardLine
 @onready var stats_label: Label = $Stats
-@onready var bone_patrol_button: Button = $Cards/BonePatrolCard
-@onready var graveyard_button: Button = $Cards/GraveyardCard
-@onready var gallows_button: Button = $Cards/GallowsVolleyCard
-@onready var whispering_well_button: Button = $Cards/WhisperingWellCard
+@onready var offer_a_button: Button = $Cards/BonePatrolCard
+@onready var offer_b_button: Button = $Cards/GraveyardCard
+@onready var hidden_card_a: Button = $Cards/GallowsVolleyCard
+@onready var hidden_card_b: Button = $Cards/WhisperingWellCard
 
+var offer_buttons: Array[Button] = []
 var default_wizard_line := ""
 var selection_locked := false
 
@@ -25,122 +16,151 @@ func _ready() -> void:
 		get_tree().change_scene_to_file("res://scenes/run_end/run_end.tscn")
 		return
 
-	if _is_final_deal():
-		_setup_final_deal()
-	else:
-		_setup_card(bone_patrol_button, BONE_PATROL, BONE_PATROL_PATH)
-		_setup_card(graveyard_button, GRAVEYARD_AMBUSH, GRAVEYARD_AMBUSH_PATH)
-		_setup_card(gallows_button, GALLOWS_VOLLEY, GALLOWS_VOLLEY_PATH)
+	offer_buttons = [offer_a_button, offer_b_button]
+	hidden_card_a.visible = false
+	hidden_card_b.visible = false
 
-	whispering_well_button.pressed.connect(_choose_whispering_well)
-	whispering_well_button.mouse_entered.connect(_preview_whispering_well)
-	whispering_well_button.mouse_exited.connect(_restore_wizard_line)
 	_refresh_table()
 
-func _is_final_deal() -> bool:
-	return RunState.deals_survived == RunState.MAX_DEALS - 1
-
-func _setup_final_deal() -> void:
-	_setup_card(bone_patrol_button, BONE_WARDEN, BONE_WARDEN_PATH)
-	graveyard_button.visible = false
-	gallows_button.visible = false
-	whispering_well_button.visible = not RunState.whispering_well_resolved
-
-func _setup_card(button: Button, encounter: EncounterData, encounter_path: String) -> void:
-	var title_label := button.get_node("Title") as Label
-	var type_label := button.get_node("Type") as Label
-	var description_label := button.get_node("Description") as Label
-	var hint_label := button.get_node("Hint") as Label
-
-	title_label.text = encounter.title
-	type_label.text = "БОЙ"
-	description_label.text = encounter.card_text.replace("\n", " ")
-	hint_label.text = "ВЫБРАТЬ"
-
-	if encounter.encounter_id == "bone_warden":
-		type_label.text = "БОСС"
-		type_label.add_theme_color_override("font_color", Color(1.0, 0.40, 0.24, 1.0))
-		title_label.add_theme_color_override("font_color", Color(1.0, 0.76, 0.48, 1.0))
-		hint_label.text = "ПРИНЯТЬ ВЫЗОВ"
-	button.tooltip_text = ""
-	button.pressed.connect(_choose_encounter.bind(encounter, encounter_path))
-	button.mouse_entered.connect(_preview_encounter.bind(encounter))
-	button.mouse_exited.connect(_restore_wizard_line)
-
 func _refresh_table() -> void:
-	var current_deal := RunState.deals_survived + 1
-	stats_label.text = "РАЗДАЧА %d/%d     ЗОЛОТО %d     ЗДОРОВЬЕ %+d     УРОН %+d" % [
-		current_deal,
-		RunState.MAX_DEALS,
+	stats_label.text = "%s     ЗОЛОТО %d     ЗДОРОВЬЕ %+d     УРОН %+d" % [
+		RunState.get_progress_text(),
 		RunState.gold,
 		int(RunState.party_hp_bonus),
 		int(RunState.party_damage_bonus)
 	]
 
-	if RunState.deals_survived == 0:
-		default_wizard_line = "Волшебник раскладывает судьбы. Выбирай."
-	elif _is_final_deal():
-		default_wizard_line = "Последняя раздача. Теперь за стол садится мой надзиратель."
+	if RunState.is_boss_due():
+		default_wizard_line = "Двенадцать карт позади. Осталась та, которую я берег."
+	elif RunState.has_active_card():
+		default_wizard_line = "Ты уже выбрал карту. Она всё ещё ждёт, пока ты закончишь начатое."
+	elif RunState.cards_resolved < 4:
+		default_wizard_line = "Начнём вежливо. Выбери, чем именно испортить себе вечер."
+	elif RunState.cards_resolved < 8:
+		default_wizard_line = "Теперь ставки становятся интереснее. Выбирай."
 	else:
-		default_wizard_line = "Всё ещё здесь? Какая досада. Тогда ещё одна карта."
+		default_wizard_line = "До надзирателя недалеко. Ошибки становятся дороже."
 
 	wizard_line.text = default_wizard_line
 
-	var well_art := whispering_well_button.get_node("Art") as TextureRect
-	var well_type := whispering_well_button.get_node("Type") as Label
-	var well_description := whispering_well_button.get_node("Description") as Label
-	var well_hint := whispering_well_button.get_node("Hint") as Label
+	var offers := RunState.get_offer_cards()
+	for index in range(offer_buttons.size()):
+		var button := offer_buttons[index]
+		if index >= offers.size():
+			button.visible = false
+			continue
 
-	if RunState.whispering_well_resolved:
-		whispering_well_button.disabled = true
-		whispering_well_button.modulate = Color(0.58, 0.64, 0.64, 0.82)
-		well_art.modulate = Color(0.34, 0.38, 0.40, 0.72)
-		well_type.text = "СОБЫТИЕ ИСЧЕРПАНО"
-		well_description.text = "Колодец больше не отвечает."
-		well_hint.text = ""
-	else:
-		whispering_well_button.disabled = false
-		whispering_well_button.modulate = Color.WHITE
-		well_art.modulate = Color.WHITE
-		well_type.text = "СОБЫТИЕ"
-		well_description.text = "Чёрная вода обещает силу. Цена неизвестна."
-		well_hint.text = "ВЫБРАТЬ"
+		button.visible = true
+		_setup_offer_button(button, offers[index])
 
-func _preview_encounter(encounter: EncounterData) -> void:
+func _setup_offer_button(button: Button, card: RunCardData) -> void:
+	var art := button.get_node("Art") as TextureRect
+	var title_label := button.get_node("Title") as Label
+	var type_label := button.get_node("Type") as Label
+	var description_label := button.get_node("Description") as Label
+	var hint_label := button.get_node("Hint") as Label
+
+	title_label.text = card.title
+	type_label.text = card.type_label
+	description_label.text = card.card_text
+	hint_label.text = _get_hint_text(card)
+	button.tooltip_text = ""
+	button.disabled = false
+	button.modulate = Color.WHITE
+
+	if not card.art_path.is_empty():
+		var texture := load(card.art_path) as Texture2D
+		if texture != null:
+			art.texture = texture
+
+	_apply_card_style(button, card)
+	button.pressed.connect(_choose_card.bind(card))
+	button.mouse_entered.connect(_preview_card.bind(card))
+	button.mouse_exited.connect(_restore_wizard_line)
+
+func _get_hint_text(card: RunCardData) -> String:
+	if RunState.has_active_card():
+		return "ПОВТОРИТЬ"
+	if card.card_id == RunState.BOSS_CARD_ID:
+		return "ПРИНЯТЬ ВЫЗОВ"
+	return "ВЫБРАТЬ"
+
+func _apply_card_style(button: Button, card: RunCardData) -> void:
+	var event_like := card.resolution_type != "combat"
+
+	var normal := StyleBoxFlat.new()
+	normal.bg_color = Color(0.025, 0.050, 0.054, 0.985) if event_like else Color(0.050, 0.026, 0.028, 0.985)
+	normal.border_width_left = 3
+	normal.border_width_top = 3
+	normal.border_width_right = 3
+	normal.border_width_bottom = 3
+	normal.border_color = Color(0.22, 0.58, 0.56, 1.0) if event_like else Color(0.48, 0.21, 0.14, 1.0)
+	normal.shadow_color = Color(0, 0, 0, 0.60)
+	normal.shadow_size = 8
+
+	var hover := normal.duplicate() as StyleBoxFlat
+	hover.border_width_left = 4
+	hover.border_width_top = 4
+	hover.border_width_right = 4
+	hover.border_width_bottom = 4
+	hover.border_color = Color(0.36, 0.90, 0.82, 1.0) if event_like else Color(0.92, 0.45, 0.16, 1.0)
+	hover.shadow_size = 12
+
+	if card.card_id == RunState.BOSS_CARD_ID:
+		normal.border_color = Color(0.72, 0.20, 0.12, 1.0)
+		hover.border_color = Color(1.0, 0.42, 0.18, 1.0)
+
+	button.add_theme_stylebox_override("normal", normal)
+	button.add_theme_stylebox_override("hover", hover)
+	button.add_theme_stylebox_override("pressed", hover)
+
+	var type_label := button.get_node("Type") as Label
+	var title_label := button.get_node("Title") as Label
+	type_label.add_theme_color_override(
+		"font_color",
+		Color(0.34, 0.84, 0.76, 1.0) if event_like else Color(0.93, 0.55, 0.32, 1.0)
+	)
+	title_label.add_theme_color_override(
+		"font_color",
+		Color(0.68, 0.92, 0.86, 1.0) if event_like else Color(0.95, 0.83, 0.65, 1.0)
+	)
+
+	if card.card_id == RunState.BOSS_CARD_ID:
+		type_label.add_theme_color_override("font_color", Color(1.0, 0.40, 0.24, 1.0))
+		title_label.add_theme_color_override("font_color", Color(1.0, 0.76, 0.48, 1.0))
+
+func _preview_card(card: RunCardData) -> void:
 	if selection_locked:
 		return
-	wizard_line.text = encounter.wizard_line
-
-func _preview_whispering_well() -> void:
-	if selection_locked or RunState.whispering_well_resolved:
-		return
-	wizard_line.text = "Вода шепчет о силе. Разумеется, о цене она молчит."
+	wizard_line.text = card.wizard_line
 
 func _restore_wizard_line() -> void:
 	if selection_locked:
 		return
 	wizard_line.text = default_wizard_line
 
-func _choose_encounter(encounter: EncounterData, encounter_path: String) -> void:
-	selection_locked = true
-	_disable_cards()
-	RunState.select_encounter(encounter_path)
-	wizard_line.text = encounter.wizard_line
-	await get_tree().create_timer(0.3).timeout
-	get_tree().change_scene_to_file("res://scenes/battle/battle.tscn")
+func _choose_card(card: RunCardData) -> void:
+	if selection_locked:
+		return
 
-func _choose_whispering_well() -> void:
-	if RunState.whispering_well_resolved:
+	if not RunState.choose_card(card.card_id):
 		return
 
 	selection_locked = true
-	_disable_cards()
-	wizard_line.text = "О, вот это уже интереснее. Загляни поглубже."
-	await get_tree().create_timer(0.3).timeout
-	get_tree().change_scene_to_file("res://scenes/event/whispering_well.tscn")
+	_disable_offer_buttons()
+	wizard_line.text = card.wizard_line
+	await get_tree().create_timer(0.25).timeout
 
-func _disable_cards() -> void:
-	bone_patrol_button.disabled = true
-	graveyard_button.disabled = true
-	gallows_button.disabled = true
-	whispering_well_button.disabled = true
+	match card.resolution_type:
+		"combat":
+			get_tree().change_scene_to_file("res://scenes/battle/battle.tscn")
+		"event", "prototype":
+			get_tree().change_scene_to_file(card.target_path)
+		_:
+			push_warning("Unknown run card resolution type: %s" % card.resolution_type)
+			selection_locked = false
+			_refresh_table()
+
+func _disable_offer_buttons() -> void:
+	for button in offer_buttons:
+		button.disabled = true
