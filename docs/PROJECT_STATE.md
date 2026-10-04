@@ -46,7 +46,9 @@ The first Bone Warden boss encounter, including its 50% HP enrage, was confirmed
 
 The longer Act 1 structure is now confirmed working locally: 12 resolved pre-boss cards followed by the Bone Warden as card 13.
 
-The first real post-structure content batch is implemented in GitHub and pending local verification: **ПЕПЕЛЬНЫЙ ПРИВАЛ**, **ЛАВКА МОГИЛЬЩИКА** and **КУЗНИЦА ПРОКЛЯТИЙ** now have real choices instead of the generic prototype resolver.
+The first real post-structure content batch is implemented: **ПЕПЕЛЬНЫЙ ПРИВАЛ**, **ЛАВКА МОГИЛЬЩИКА** and **КУЗНИЦА ПРОКЛЯТИЙ** have real choices instead of the generic prototype resolver.
+
+The first new combat-content batch is also implemented in GitHub and pending local verification: **МОГИЛЬНЫЙ ЗВОН**, **КОСТЯНАЯ ДАВКА** and **СТРАЖ СКЛЕПА** are now real combat cards.
 
 ## Player-facing language
 
@@ -97,7 +99,10 @@ Currently fully implemented card mechanics:
 - **ШЕПЧУЩИЙ КОЛОДЕЦ** — the existing three-choice risk/reward event;
 - **ПЕПЕЛЬНЫЙ ПРИВАЛ** — choose +15 party HP, +15 gold, +1 party damage, or leave;
 - **ЛАВКА МОГИЛЬЩИКА** — spend gold on +20 party HP, +3 party damage, or a random unowned artifact;
-- **КУЗНИЦА ПРОКЛЯТИЙ** — choose one of three hero-specific artifacts, or refuse.
+- **КУЗНИЦА ПРОКЛЯТИЙ** — choose one of three hero-specific artifacts, or refuse;
+- **МОГИЛЬНЫЙ ЗВОН** — two Skeletons protect a Grave Bellkeeper support enemy;
+- **КОСТЯНАЯ ДАВКА** — five weak Bone Thralls pressure the party through numbers and reward splash damage;
+- **СТРАЖ СКЛЕПА** — elite Crypt Guard with melee splash plus two Bone Thralls; victory uses a guaranteed-artifact reward flow.
 
 The remaining new card definitions already participate in the real Act 1 deck/tier/rejection flow, but temporarily resolve through `scenes/event/prototype_card.tscn` until their individual mechanics are implemented.
 
@@ -171,7 +176,10 @@ Implemented combat behavior:
 - death shrink/fade feedback;
 - victory and defeat detection;
 - boss units can use data-driven visual scale and a one-time enrage threshold;
-- Bone Warden enlarges its silhouette, keeps a visible boss name/HP treatment, and at 50% HP increases damage, attack speed and movement speed with a visible **ЯРОСТЬ!** cue.
+- Bone Warden enlarges its silhouette, keeps a visible boss name/HP treatment, and at 50% HP increases damage, attack speed and movement speed with a visible **ЯРОСТЬ!** cue;
+- Grave Bellkeeper is the first support enemy: every 4.5 seconds it heals damaged allied undead within 210 px for 18 HP and shows a visible **ЗВОН!** cue;
+- Bone Thrall is a smaller, faster, low-HP swarm enemy;
+- Crypt Guard is a slower elite melee enemy with a larger silhouette, visible name and 35% splash damage around its primary target.
 
 Hero stats receive persistent run bonuses from `RunState`.
 
@@ -224,6 +232,9 @@ Reusable combat stats are stored in `UnitData` Resources:
 - `resources/units/skeleton.tres`
 - `resources/units/bone_archer.tres`
 - `resources/units/bone_warden.tres`
+- `resources/units/grave_bellkeeper.tres`
+- `resources/units/bone_thrall.tres`
+- `resources/units/crypt_guard.tres`
 
 Runtime combat state remains on `BattleUnit`.
 
@@ -276,7 +287,10 @@ Current encounter files:
 - `resources/encounters/bone_patrol.tres`
 - `resources/encounters/graveyard_ambush.tres`
 - `resources/encounters/gallows_volley.tres`
-- `resources/encounters/bone_warden.tres` — final-deal boss encounter.
+- `resources/encounters/bone_warden.tres` — final-deal boss encounter;
+- `resources/encounters/grave_bell.tres`;
+- `resources/encounters/bone_crush.tres`;
+- `resources/encounters/crypt_guard.tres` — elite encounter with guaranteed artifact reward.
 
 ### Run-card data
 
@@ -344,18 +358,18 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the first real build/economy content batch:
+Locally verify the new combat-content batch, plus any artifact/economy behavior not yet explicitly checked:
 
-- **ПЕПЕЛЬНЫЙ ПРИВАЛ** should offer three real bonuses plus refusal and advance the card after a choice;
-- **ЛАВКА МОГИЛЬЩИКА** should disable purchases the player cannot afford, subtract the correct gold, and apply the purchased bonus;
-- the 45-gold shop relic should grant one random artifact the player does not already own;
-- **КУЗНИЦА ПРОКЛЯТИЙ** should present the three artifacts, disable already-owned ones, and persist the chosen artifact;
-- the artifact list on the event screen and run-end summary should update;
-- in the next battle, **ЩИТ МЕРТВЕЦА** should visibly increase Knight durability while slowing him;
-- **СЛЕПОЙ КОЛЧАН** should make Ranger fire faster and kite from a larger minimum distance;
-- **РАСКОЛОТЫЙ ФОКУС** should make Mage splash noticeably broader/stronger while reducing the primary hit.
+- **МОГИЛЬНЫЙ ЗВОН** should launch a real battle with two Skeletons and a visible **Могильный звонарь**;
+- when allied undead are damaged and within range, the Bellkeeper should periodically show **ЗВОН!** and produce green healing numbers;
+- killing the Bellkeeper should immediately remove that support pressure;
+- **КОСТЯНАЯ ДАВКА** should spawn five smaller/faster Bone Thralls and make Mage splash meaningfully useful;
+- **СТРАЖ СКЛЕПА** should show the **ЭЛИТА** header, a larger named Crypt Guard, and punish clustered heroes with splash damage;
+- winning **СТРАЖ СКЛЕПА** should replace the normal reward choice with a guaranteed unowned artifact selection;
+- if all three current artifacts are already owned, the elite reward should fall back to +50 gold;
+- losing any of these fights should still preserve the active card for **ПОВТОРИТЬ**.
 
-If this batch is accepted, implement the first missing combat-content batch next: **МОГИЛЬНЫЙ ЗВОН**, **КОСТЯНАЯ ДАВКА** and **СТРАЖ СКЛЕПА**, including at least one new enemy behavior instead of only rearranging existing Skeletons.
+If this batch reads well, the next content pass should convert several remaining event placeholders into real risk/reward cards rather than adding more combat infrastructure.
 
 ## Local workflow
 
