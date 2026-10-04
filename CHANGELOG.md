@@ -33,6 +33,13 @@
 
 ### Added
 
+- Real **МОГИЛЬНЫЙ ЗВОН** combat encounter with the first support enemy, **Могильный звонарь**.
+- Grave Bellkeeper periodic ally-heal pulse with **ЗВОН!** feedback and green healing numbers.
+- **Костяной раб** swarm enemy and real five-enemy **КОСТЯНАЯ ДАВКА** encounter.
+- **Страж склепа** elite enemy with larger presentation, visible name and melee splash damage.
+- Real **СТРАЖ СКЛЕПА** elite encounter with two Bone Thralls.
+- Elite reward override: Crypt Guard victory guarantees an unowned artifact choice, or +50 gold if the artifact pool is exhausted.
+- Encounter-specific preparation/status framing for Grave Bell, Bone Crush and Crypt Guard.
 - Data-driven `ArtifactData` and persistent per-run artifact ownership.
 - First three hero-specific artifacts: **ЩИТ МЕРТВЕЦА**, **СЛЕПОЙ КОЛЧАН**, **РАСКОЛОТЫЙ ФОКУС**.
 - Artifact combat modifiers for HP, damage, attack interval, range, splash and movement.
