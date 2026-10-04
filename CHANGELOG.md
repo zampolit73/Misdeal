@@ -22,6 +22,7 @@
 
 ### Fixed
 
+- Fixed Godot 4.7.2 parser failure in the new boss-arena chain/brazier drawing by replacing Variant-inferred loop values with typed Vector2 arrays and explicit local types.
 - Clamp final hero max HP to 20 and damage to 1 so stacked late-run sacrifices cannot create invalid combat units.
 - Split the battle result overlay into a large victory/defeat title and a separate compact wizard-reaction subtitle so post-battle text no longer overlaps the panel and units.
 - Removed floating default tooltips from wizard-table combat cards so hover text no longer covers card illustrations.
