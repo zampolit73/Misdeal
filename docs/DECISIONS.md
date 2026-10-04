@@ -117,3 +117,26 @@ All player-facing Misdeal content should be written in Russian:
 - unit display names.
 
 Technical identifiers remain English, including file paths, node names, class names, resource IDs and code symbols.
+
+
+## D011 — Combat encounters use EncounterData Resources
+
+Date: 2026-10-04  
+Status: accepted
+
+Combat-card content is stored in `EncounterData` Resources rather than hard-coded encounter branches in `battle.gd`.
+
+For the vertical slice an encounter defines its player-facing card text, wizard line, enemy UnitData references, enemy names and spawn positions.
+
+The battle scene remains generic and loads whichever encounter path was selected at the table.
+
+## D012 — Vertical-slice run length is three victories
+
+Date: 2026-10-04  
+Status: accepted for prototype
+
+The first finite Misdeal run ends after three rewarded victories.
+
+This is a vertical-slice pacing value, not a commitment for the final game's run length.
+
+Defeat currently returns the player to the table without advancing the victory count; this is also prototype behavior and may change with later run-design work.
