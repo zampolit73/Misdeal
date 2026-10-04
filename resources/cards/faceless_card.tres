@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "faceless_card"
 title = "КАРТА БЕЗ ЛИЦА"
-card_text = "На карте нет рисунка. Только ощущение, что она смотрит в ответ."
+card_text = "Карта скрывает исход до последнего. Можно рискнуть, купить уверенность или сжечь её."
 wizard_line = "Не люблю спойлеры. Особенно смертельные."
 type_label = "СОБЫТИЕ"
 tier = 2
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
 art_path = "res://assets/pixel/table/cards/whispering_well.png"
-prototype_result_text = "Будущий скрытый high-risk/high-reward эффект."
+prototype_result_text = ""
