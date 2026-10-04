@@ -24,8 +24,12 @@ signal placement_rejected(unit: BattleUnit)
 @export var body_radius: float = 22.0
 @export var separation_padding: float = 10.0
 @export var separation_strength: float = 120.0
-@export var is_boss: bool = false
 @export var visual_scale: float = 1.0
+@export var show_enemy_name: bool = false
+@export var support_heal_interval: float = 0.0
+@export var support_heal_radius: float = 0.0
+@export var support_heal_amount: float = 0.0
+@export var is_boss: bool = false
 @export var enrage_threshold: float = 0.0
 @export var enrage_damage_multiplier: float = 1.0
 @export var enrage_attack_interval_multiplier: float = 1.0
@@ -37,7 +41,9 @@ var combat_started := false
 var alive := true
 var target: BattleUnit
 var attack_cooldown := 0.0
+var support_cooldown := 0.0
 var enraged := false
+var base_art_modulate := Color.WHITE
 
 var placement_enabled := false
 var placement_bounds := Rect2()
@@ -72,8 +78,12 @@ func configure(data: UnitData, unit_team: int, spawn_position: Vector2, name_ove
 	body_radius = data.body_radius
 	separation_padding = data.separation_padding
 	separation_strength = data.separation_strength
-	is_boss = data.is_boss
 	visual_scale = data.visual_scale
+	show_enemy_name = data.show_enemy_name
+	support_heal_interval = data.support_heal_interval
+	support_heal_radius = data.support_heal_radius
+	support_heal_amount = data.support_heal_amount
+	is_boss = data.is_boss
 	enrage_threshold = data.enrage_threshold
 	enrage_damage_multiplier = data.enrage_damage_multiplier
 	enrage_attack_interval_multiplier = data.enrage_attack_interval_multiplier
@@ -83,9 +93,10 @@ func _ready() -> void:
 	hp = max_hp
 	add_to_group("combat_units")
 	name_label.text = display_name
-	name_label.visible = team == 0 or is_boss
+	name_label.visible = team == 0 or is_boss or show_enemy_name
 	art_sprite.texture = _get_art_texture()
 	art_sprite.scale = Vector2.ONE * (1.35 * visual_scale)
+	_apply_role_presentation()
 	_apply_health_bar_style()
 	_apply_boss_layout()
 	health_bar.max_value = max_hp
@@ -104,8 +115,31 @@ func _get_art_texture() -> Texture2D:
 			return SKELETON_ART
 		"bone_archer":
 			return BONE_ARCHER_ART
+		"grave_bellkeeper", "bone_thrall", "crypt_guard":
+			return SKELETON_ART
 		_:
 			return null
+
+func _apply_role_presentation() -> void:
+	match visual_role:
+		"grave_bellkeeper":
+			base_art_modulate = Color(0.62, 0.86, 0.72, 1.0)
+			health_bar.offset_left = -30.0
+			health_bar.offset_right = 30.0
+			name_label.add_theme_color_override("font_color", Color(0.62, 0.90, 0.74, 1.0))
+		"bone_thrall":
+			base_art_modulate = Color(0.72, 0.70, 0.64, 1.0)
+		"crypt_guard":
+			base_art_modulate = Color(0.82, 0.62, 0.40, 1.0)
+			health_bar.offset_left = -36.0
+			health_bar.offset_right = 36.0
+			name_label.offset_left = -72.0
+			name_label.offset_right = 72.0
+			name_label.add_theme_color_override("font_color", Color(0.94, 0.72, 0.46, 1.0))
+		_:
+			base_art_modulate = Color.WHITE
+
+	art_sprite.modulate = base_art_modulate
 
 func _apply_boss_layout() -> void:
 	if not is_boss:
@@ -157,9 +191,11 @@ func disable_placement() -> void:
 func start_combat() -> void:
 	disable_placement()
 	combat_started = true
-	if team != 0 and not is_boss:
+	if team != 0 and not is_boss and not show_enemy_name:
 		name_label.visible = false
 	attack_cooldown = randf_range(0.0, 0.25)
+	if support_heal_interval > 0.0:
+		support_cooldown = support_heal_interval * 0.65
 
 func _input(event: InputEvent) -> void:
 	if not placement_enabled or combat_started or not alive or team != 0:
@@ -224,6 +260,8 @@ func _process(delta: float) -> void:
 	if not combat_started or not alive:
 		return
 
+	_process_support(delta)
+
 	if not _is_valid_target(target):
 		target = _find_nearest_enemy()
 
@@ -255,6 +293,70 @@ func _process(delta: float) -> void:
 	_clamp_to_combat_bounds()
 	z_index = int(position.y)
 	queue_redraw()
+
+func _process_support(delta: float) -> void:
+	if support_heal_interval <= 0.0 or support_heal_amount <= 0.0:
+		return
+
+	support_cooldown -= delta
+	if support_cooldown > 0.0:
+		return
+
+	support_cooldown = support_heal_interval
+	var healed_any := false
+
+	for node in get_tree().get_nodes_in_group("combat_units"):
+		if not node is BattleUnit:
+			continue
+
+		var unit := node as BattleUnit
+		if unit == self or not unit.alive or unit.team != team:
+			continue
+		if unit.hp >= unit.max_hp:
+			continue
+		if global_position.distance_to(unit.global_position) > support_heal_radius:
+			continue
+
+		unit.heal(support_heal_amount)
+		healed_any = true
+
+	if healed_any:
+		_show_status_text("ЗВОН!", Color(0.52, 1.0, 0.68, 1.0))
+
+func heal(amount: float) -> void:
+	if not alive or amount <= 0.0:
+		return
+
+	var previous_hp := hp
+	hp = minf(max_hp, hp + amount)
+	var healed := hp - previous_hp
+	if healed <= 0.0:
+		return
+
+	health_bar.value = hp
+	_show_heal_number(healed)
+	queue_redraw()
+
+func _show_heal_number(amount: float) -> void:
+	if get_parent() == null:
+		return
+
+	var heal_label := Label.new()
+	heal_label.text = "+%d" % int(round(amount))
+	heal_label.position = position + Vector2(-24.0, -60.0)
+	heal_label.size = Vector2(48.0, 22.0)
+	heal_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	heal_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	heal_label.z_index = 2000
+	heal_label.add_theme_font_size_override("font_size", 14)
+	heal_label.add_theme_color_override("font_color", Color(0.52, 1.0, 0.68, 1.0))
+	get_parent().add_child(heal_label)
+
+	var float_tween := heal_label.create_tween()
+	float_tween.set_parallel(true)
+	float_tween.tween_property(heal_label, "position", heal_label.position + Vector2(0.0, -28.0), 0.42)
+	float_tween.tween_property(heal_label, "modulate:a", 0.0, 0.42)
+	float_tween.chain().tween_callback(heal_label.queue_free)
 
 func _can_move_in_direction(direction: Vector2, delta: float) -> bool:
 	if combat_bounds.size == Vector2.ZERO:
@@ -430,7 +532,7 @@ func _play_hit_feedback() -> void:
 	hit_pulse_tween = create_tween()
 	hit_pulse_tween.set_parallel(true)
 	hit_pulse_tween.tween_property(self, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	hit_pulse_tween.tween_property(art_sprite, "modulate", Color.WHITE, 0.14)
+	hit_pulse_tween.tween_property(art_sprite, "modulate", base_art_modulate, 0.14)
 
 func _show_damage_number(amount: float) -> void:
 	if get_parent() == null:
@@ -484,6 +586,10 @@ func _draw() -> void:
 	if is_boss:
 		var boss_color := Color(1.0, 0.28, 0.12, 0.95) if enraged else Color(0.95, 0.62, 0.18, 0.88)
 		draw_arc(Vector2.ZERO, ring_radius + 6.0, 0.0, TAU, 40, boss_color, 2.5)
+	elif support_heal_interval > 0.0:
+		draw_arc(Vector2.ZERO, ring_radius + 5.0, 0.0, TAU, 36, Color(0.34, 0.90, 0.62, 0.82), 2.0)
+	elif visual_role == "crypt_guard":
+		draw_arc(Vector2.ZERO, ring_radius + 5.0, 0.0, TAU, 36, Color(0.92, 0.58, 0.20, 0.82), 2.0)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 	if placement_enabled and team == 0 and alive:
