@@ -15,7 +15,8 @@ Confirmed locally by the user:
 - data-driven `UnitData`;
 - Bone Archer keep-distance behavior;
 - hard combat-arena bounds;
-- first `table -> battle -> reward -> table` loop.
+- first `table -> battle -> reward -> table` loop;
+- cleaned-up victory/defeat result overlay.
 
 The three-card encounter selection and three-victory finite run are implemented and confirmed working locally.
 
@@ -40,6 +41,8 @@ The final composition/readability polish pass has been locally verified and acce
 - the four cards are slightly smaller, lower and more evenly spaced so the wizard remains visible;
 - obsolete procedural skull/goblet/hourglass/books/candle overlays were removed;
 - the lower runner/sigil treatment was simplified and subdued.
+
+The first boss encounter is implemented in GitHub and pending local verification. The third/final deal now becomes a mandatory boss fight against **КОСТЯНОЙ НАДЗИРАТЕЛЬ**; an unresolved Whispering Well may still be used before accepting the boss fight.
 
 ## Player-facing language
 
@@ -68,12 +71,18 @@ Pressing **ВОЙТИ В ИГРУ** resets the prototype run and opens the wizar
 
 `scenes/table/table.tscn`
 
-Each deal presents three playable combat cards plus one one-time event card:
+Deals 1 and 2 present three playable combat cards plus one one-time event card:
 
 - **КОСТЯНОЙ ДОЗОР** — three melee Skeleton units;
 - **ЗАСАДА НА КЛАДБИЩЕ** — two Skeleton units plus one Bone Archer;
 - **ЗАЛП С ВИСЕЛИЦЫ** — one Skeleton plus two Bone Archers;
 - **ШЕПЧУЩИЙ КОЛОДЕЦ** — a non-combat risk/reward event, available once per run.
+
+Deal 3 is the boss deal:
+
+- **КОСТЯНОЙ НАДЗИРАТЕЛЬ** replaces the normal combat-card choices and is required to finish the run;
+- if Whispering Well has not yet been resolved, it remains available beside the boss card before the player accepts the fight;
+- if Whispering Well is already resolved, the boss card is presented alone.
 
 The table displays:
 
@@ -97,7 +106,7 @@ Runtime table assets derived from that concept:
 - `assets/pixel/table/cards/gallows_volley.png`;
 - `assets/pixel/table/cards/whispering_well.png`.
 
-The lower tabletop, ritual runner, sigil, candles and props remain procedural so the layout can stay responsive to live UI.
+The lower tabletop, ritual runner and sigil remain procedural so the layout can stay responsive to live UI. Earlier procedural side props and candles were removed after local visual review because they conflicted with the authored backdrop.
 
 The four encounter/event cards are still real Godot `Button` controls with live titles/descriptions/states. The approved art is used inside those interactive cards instead of baking run state into a static screenshot.
 
@@ -143,7 +152,9 @@ Implemented combat behavior:
 - HP bars;
 - hit flash, impact pulse and floating damage numbers;
 - death shrink/fade feedback;
-- victory and defeat detection.
+- victory and defeat detection;
+- boss units can use data-driven visual scale and a one-time enrage threshold;
+- Bone Warden enlarges its silhouette, keeps a visible boss name/HP treatment, and at 50% HP increases damage, attack speed and movement speed with a visible **ЯРОСТЬ!** cue.
 
 Hero stats receive persistent run bonuses from `RunState`.
 
@@ -194,6 +205,7 @@ Reusable combat stats are stored in `UnitData` Resources:
 - `resources/units/mage.tres`
 - `resources/units/skeleton.tres`
 - `resources/units/bone_archer.tres`
+- `resources/units/bone_warden.tres`
 
 Runtime combat state remains on `BattleUnit`.
 
@@ -246,6 +258,7 @@ Current encounter files:
 - `resources/encounters/bone_patrol.tres`
 - `resources/encounters/graveyard_ambush.tres`
 - `resources/encounters/gallows_volley.tres`
+- `resources/encounters/bone_warden.tres` — final-deal boss encounter.
 
 ### Run state
 
@@ -276,11 +289,17 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Immediate next milestone
 
-Build the first boss encounter and use it to strengthen both gameplay identity and the wizard's role as host/antagonist.
+Locally verify and tune the first boss encounter:
 
-Before starting boss work, the battle result overlay received one cleanup pass after local verification exposed oversized result commentary. Victory/defeat now use a large result title plus a separate compact wizard-reaction subtitle instead of rendering both lines at the same large font size.
+- after two rewarded victories, the table should switch to the **КОСТЯНОЙ НАДЗИРАТЕЛЬ** boss deal;
+- the two normal extra combat cards should be hidden on the final deal;
+- an unresolved Whispering Well should still be available before the boss, while a resolved well should be hidden;
+- the boss should spawn larger than normal Skeletons with a visible name and wider HP bar;
+- at roughly 50% HP, **ЯРОСТЬ!** should appear once and the boss should become noticeably faster and more dangerous;
+- boss victory should still flow through reward -> run end as the third rewarded victory;
+- defeat should return to the same final-deal boss state.
 
-The accepted wizard table should not receive further polish unless a new functional/readability issue appears.
+The current boss reuses the Skeleton pixel sprite at a larger scale as a gameplay-first placeholder. Once the fight reads and balances well locally, give the Bone Warden its own authored pixel sprite/card art instead of expanding the boss framework prematurely.
 
 ## Local workflow
 
