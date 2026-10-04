@@ -100,3 +100,20 @@ For the first vertical slice it stores only the state required to prove the loop
 Do not turn it into a large global game manager. Move domain-specific data into dedicated Resources/systems when the vertical slice requires it.
 
 Current reward values and defeat behavior are prototype tuning, not permanent game-design commitments.
+
+
+## D010 — Player-facing language is Russian
+
+Date: 2026-10-04  
+Status: accepted
+
+All player-facing Misdeal content should be written in Russian:
+
+- menus and buttons;
+- card names and descriptions;
+- wizard dialogue;
+- combat status text;
+- reward names and descriptions;
+- unit display names.
+
+Technical identifiers remain English, including file paths, node names, class names, resource IDs and code symbols.
