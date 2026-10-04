@@ -63,7 +63,7 @@ Target loop:
 - [x] Expand the prototype run into a 12-card Act 1 plus boss.
 - [x] Two-card offers with rejected cards removed from the current run.
 - [x] Data-driven 24-card structural pool split into early/mid/late tiers.
-- [ ] Replace prototype card resolvers with real mechanics for the full Act 1 pool (19/24 pre-boss cards now bespoke).
+- [x] Replace prototype card resolvers with real mechanics for the full 24-card Act 1 pre-boss pool.
 - [x] First real recovery card: Ash Rest.
 - [x] First functional shop: Gravedigger Shop.
 - [x] First artifact-choice card: Curse Forge with three hero-specific artifacts.
@@ -79,6 +79,11 @@ Target loop:
 - [x] Source-locked Broken Crown party-wide artifact card.
 - [x] Last Camp pre-boss preparation event.
 - [x] Ossuary Gate mixed-archetype late combat encounter.
+- [x] Rattling Bridge early traversal event.
+- [x] Lost Purse greed event.
+- [x] Candle Seller early micro-shop event.
+- [x] Bone Tax forced payment event.
+- [x] Death Wager late elite combat with enhanced reward.
 
 ## Phase 4 — Vertical slice polish
 
