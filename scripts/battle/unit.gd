@@ -97,7 +97,8 @@ func _ready() -> void:
 	name_label.text = display_name
 	name_label.visible = team == 0 or is_boss or show_enemy_name
 	art_sprite.texture = _get_art_texture()
-	art_sprite.scale = Vector2.ONE * (1.35 * visual_scale)
+	var sprite_scale: float = 1.35 if is_boss else 1.55
+	art_sprite.scale = Vector2.ONE * (sprite_scale * visual_scale)
 	_apply_role_presentation()
 	_apply_health_bar_style()
 	_apply_boss_layout()
@@ -152,14 +153,14 @@ func _apply_boss_layout() -> void:
 	if not is_boss:
 		return
 
-	health_bar.offset_left = -64.0
-	health_bar.offset_top = -78.0
-	health_bar.offset_right = 64.0
-	health_bar.offset_bottom = -66.0
-	name_label.offset_left = -104.0
-	name_label.offset_top = 48.0
-	name_label.offset_right = 104.0
-	name_label.offset_bottom = 74.0
+	health_bar.offset_left = -72.0
+	health_bar.offset_top = -106.0
+	health_bar.offset_right = 72.0
+	health_bar.offset_bottom = -94.0
+	name_label.offset_left = -112.0
+	name_label.offset_top = 64.0
+	name_label.offset_right = 112.0
+	name_label.offset_bottom = 90.0
 	name_label.add_theme_font_size_override("font_size", 16)
 	name_label.add_theme_color_override("font_color", Color(0.96, 0.72, 0.42, 1.0))
 
@@ -470,7 +471,7 @@ func _play_attack_feedback(primary_target: BattleUnit) -> void:
 	if attack_tween != null and attack_tween.is_valid():
 		attack_tween.kill()
 
-	var base_position := Vector2(0.0, -8.0)
+	var base_position := Vector2(0.0, -12.0)
 	var direction := global_position.direction_to(primary_target.global_position)
 	art_sprite.position = base_position + direction * 5.0
 
@@ -586,9 +587,9 @@ func _die() -> void:
 func _draw() -> void:
 	var team_color := Color(0.20, 0.58, 1.0, 0.95) if team == 0 else Color(0.95, 0.20, 0.16, 0.95)
 	var target_color := Color(0.78, 0.90, 1.0, 0.7) if team == 0 else Color(1.0, 0.58, 0.44, 0.7)
-	var ring_radius := maxf(19.0, body_radius * 0.9)
+	var ring_radius := maxf(22.0, body_radius * 1.05)
 
-	draw_set_transform(Vector2(0.0, 15.0), 0.0, Vector2(1.0, 0.34))
+	draw_set_transform(Vector2(0.0, 21.0), 0.0, Vector2(1.0, 0.34))
 	draw_circle(Vector2.ZERO, ring_radius + 1.0, Color(0.0, 0.0, 0.0, 0.45))
 	draw_arc(Vector2.ZERO, ring_radius, 0.0, TAU, 36, team_color, 2.5)
 	if is_boss:
@@ -605,7 +606,7 @@ func _draw() -> void:
 
 	if placement_enabled and team == 0 and alive:
 		var placement_color := Color(0.58, 0.85, 1.0, 1.0) if dragging else Color(0.42, 0.72, 0.95, 0.72)
-		draw_arc(Vector2(0.0, 15.0), 25.0, 0.0, TAU, 32, placement_color, 2.0)
+		draw_arc(Vector2(0.0, 21.0), 30.0, 0.0, TAU, 36, placement_color, 2.0)
 
 	if alive and target != null and is_instance_valid(target) and target.alive:
 		var local_target := to_local(target.global_position)
