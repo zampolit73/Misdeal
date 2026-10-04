@@ -86,7 +86,8 @@ func _get_hint_text(card: RunCardData) -> String:
 	return "ВЫБРАТЬ"
 
 func _apply_card_style(button: Button, card: RunCardData) -> void:
-	var event_like := card.resolution_type != "combat"
+	var combat_like := card.type_label == "БОЙ" or card.type_label == "ЭЛИТА" or card.type_label == "БОСС"
+	var event_like := not combat_like
 
 	var normal := StyleBoxFlat.new()
 	normal.bg_color = Color(0.025, 0.050, 0.054, 0.985) if event_like else Color(0.050, 0.026, 0.028, 0.985)
