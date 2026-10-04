@@ -6,7 +6,7 @@
 script = ExtResource("1_encounter")
 encounter_id = "graveyard_ambush"
 title = "ЗАСАДА НА КЛАДБИЩЕ"
-card_text = "Два скелета прикрывают костяного лучника."
+card_text = "Два скелета прикрывают\nкостяного лучника."
 wizard_line = "Ах, кладбище. Моя маленькая слабость."
 enemy_unit_paths = PackedStringArray("res://resources/units/skeleton.tres", "res://resources/units/skeleton.tres", "res://resources/units/bone_archer.tres")
 enemy_names = PackedStringArray("Скелет A", "Скелет B", "Костяной лучник")
