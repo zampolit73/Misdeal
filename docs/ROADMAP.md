@@ -26,8 +26,8 @@ Goal: make preparation meaningfully affect battle outcome.
 - [x] Prevent illegal placement outside the deployment zone and overlapping hero drops.
 - [x] Improve combat-time unit spacing/readability with separation steering.
 - [x] Move unit definitions toward data-driven Resources.
-- [ ] Add at least one distinct enemy behavior.
-- [ ] Add at least one simple unit ability or combat modifier.
+- [x] Add at least one distinct enemy behavior: Bone Archer keeps distance.
+- [x] Add at least one simple unit ability or combat modifier: Mage splash damage.
 - [x] Improve combat feedback enough to read hits and deaths.
 
 ## Phase 2 — First complete game loop
