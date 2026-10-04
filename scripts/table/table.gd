@@ -4,9 +4,9 @@ const BONE_PATROL_PATH := "res://resources/encounters/bone_patrol.tres"
 const GRAVEYARD_AMBUSH_PATH := "res://resources/encounters/graveyard_ambush.tres"
 const GALLOWS_VOLLEY_PATH := "res://resources/encounters/gallows_volley.tres"
 
-const BONE_PATROL: EncounterData = preload(BONE_PATROL_PATH)
-const GRAVEYARD_AMBUSH: EncounterData = preload(GRAVEYARD_AMBUSH_PATH)
-const GALLOWS_VOLLEY: EncounterData = preload(GALLOWS_VOLLEY_PATH)
+const BONE_PATROL: EncounterData = preload("res://resources/encounters/bone_patrol.tres")
+const GRAVEYARD_AMBUSH: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
+const GALLOWS_VOLLEY: EncounterData = preload("res://resources/encounters/gallows_volley.tres")
 
 @onready var wizard_line: Label = $WizardLine
 @onready var stats_label: Label = $Stats
