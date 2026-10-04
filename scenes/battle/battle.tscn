@@ -203,24 +203,41 @@ text = "ПРОДОЛЖИТЬ"
 [node name="ResultBackdrop" type="Panel" parent="."]
 mouse_filter = 2
 visible = false
-offset_left = 385.0
-offset_top = 245.0
-offset_right = 895.0
-offset_bottom = 385.0
+offset_left = 390.0
+offset_top = 248.0
+offset_right = 890.0
+offset_bottom = 374.0
 theme_override_styles/panel = SubResource("ResultPanel")
 
 [node name="Result" type="Label" parent="."]
 mouse_filter = 2
 visible = false
-offset_left = 400.0
-offset_top = 260.0
-offset_right = 880.0
-offset_bottom = 370.0
+offset_left = 410.0
+offset_top = 262.0
+offset_right = 870.0
+offset_bottom = 310.0
 theme_override_colors/font_color = Color(0.93, 0.80, 0.58, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 30
 text = "ПОБЕДА"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ResultSubtitle" type="Label" parent="."]
+mouse_filter = 2
+visible = false
+offset_left = 420.0
+offset_top = 316.0
+offset_right = 860.0
+offset_bottom = 351.0
+theme_override_colors/font_color = Color(0.76, 0.68, 0.63, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 16
+text = "Волшебник выглядит слегка раздражённым."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
