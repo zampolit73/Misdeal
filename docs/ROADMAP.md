@@ -4,7 +4,7 @@ This roadmap is intentionally focused on reaching a playable vertical slice quic
 
 ## Phase 0 — Combat proof of concept
 
-Status: mostly complete
+Status: complete
 
 - [x] Godot project boots.
 - [x] Main screen transitions into battle.
@@ -15,16 +15,16 @@ Status: mostly complete
 - [x] HP and death.
 - [x] Victory / defeat detection.
 - [x] Restart encounter.
-- [ ] Pre-battle player unit placement.
+- [x] Pre-battle player unit placement.
 
 ## Phase 1 — Tactical autobattler slice
 
 Goal: make preparation meaningfully affect battle outcome.
 
-- [ ] Player can reposition party before combat.
-- [ ] Clear preparation phase and combat phase.
-- [ ] Prevent illegal placement.
-- [ ] Improve unit spacing/readability.
+- [x] Player can reposition party before combat.
+- [x] Clear preparation phase and combat phase.
+- [x] Prevent illegal placement outside the deployment zone and overlapping hero drops.
+- [ ] Improve combat-time unit spacing/readability.
 - [ ] Move unit definitions toward data-driven Resources.
 - [ ] Add at least one distinct enemy behavior.
 - [ ] Add at least one simple unit ability or combat modifier.
