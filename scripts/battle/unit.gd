@@ -1,11 +1,11 @@
 class_name BattleUnit
 extends Node2D
 
-const KNIGHT_ART: Texture2D = preload("res://assets/art/units/knight.webp")
-const RANGER_ART: Texture2D = preload("res://assets/art/units/ranger.webp")
-const MAGE_ART: Texture2D = preload("res://assets/art/units/mage.webp")
-const SKELETON_ART: Texture2D = preload("res://assets/art/units/skeleton.webp")
-const BONE_ARCHER_ART: Texture2D = preload("res://assets/art/units/bone_archer.webp")
+const KNIGHT_ART: Texture2D = preload("res://assets/pixel/units/knight.png")
+const RANGER_ART: Texture2D = preload("res://assets/pixel/units/ranger.png")
+const MAGE_ART: Texture2D = preload("res://assets/pixel/units/mage.png")
+const SKELETON_ART: Texture2D = preload("res://assets/pixel/units/skeleton.png")
+const BONE_ARCHER_ART: Texture2D = preload("res://assets/pixel/units/bone_archer.png")
 
 signal died(unit: BattleUnit)
 signal placement_rejected(unit: BattleUnit)
@@ -69,7 +69,9 @@ func _ready() -> void:
 	hp = max_hp
 	add_to_group("combat_units")
 	name_label.text = display_name
+	name_label.visible = team == 0
 	art_sprite.texture = _get_art_texture()
+	_apply_health_bar_style()
 	health_bar.max_value = max_hp
 	health_bar.value = hp
 	queue_redraw()
@@ -88,6 +90,21 @@ func _get_art_texture() -> Texture2D:
 			return BONE_ARCHER_ART
 		_:
 			return null
+
+func _apply_health_bar_style() -> void:
+	var background := StyleBoxFlat.new()
+	background.bg_color = Color(0.025, 0.022, 0.03, 0.95)
+	background.border_width_left = 1
+	background.border_width_top = 1
+	background.border_width_right = 1
+	background.border_width_bottom = 1
+	background.border_color = Color(0.13, 0.12, 0.15, 1.0)
+
+	var fill := StyleBoxFlat.new()
+	fill.bg_color = Color(0.25, 0.72, 0.36, 1.0) if team == 0 else Color(0.82, 0.19, 0.17, 1.0)
+
+	health_bar.add_theme_stylebox_override("background", background)
+	health_bar.add_theme_stylebox_override("fill", fill)
 
 func set_combat_bounds(bounds: Rect2) -> void:
 	combat_bounds = bounds
@@ -109,6 +126,8 @@ func disable_placement() -> void:
 func start_combat() -> void:
 	disable_placement()
 	combat_started = true
+	if team != 0:
+		name_label.visible = false
 	attack_cooldown = randf_range(0.0, 0.25)
 
 func _input(event: InputEvent) -> void:
@@ -339,12 +358,12 @@ func _show_damage_number(amount: float) -> void:
 
 	var damage_label := Label.new()
 	damage_label.text = "-%d" % int(round(amount))
-	damage_label.position = position + Vector2(-28.0, -70.0)
-	damage_label.size = Vector2(56.0, 28.0)
+	damage_label.position = position + Vector2(-24.0, -60.0)
+	damage_label.size = Vector2(48.0, 22.0)
 	damage_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	damage_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	damage_label.z_index = 2000
-	damage_label.add_theme_font_size_override("font_size", 18)
+	damage_label.add_theme_font_size_override("font_size", 14)
 	damage_label.add_theme_color_override("font_color", Color(1.0, 0.78, 0.58, 1.0))
 	get_parent().add_child(damage_label)
 
@@ -375,36 +394,22 @@ func _die() -> void:
 	died.emit(self)
 
 func _draw() -> void:
-	var team_color := Color(0.22, 0.58, 0.95, 1.0) if team == 0 else Color(0.78, 0.20, 0.18, 1.0)
-	var outline_color := Color(0.78, 0.90, 1.0, 1.0) if team == 0 else Color(1.0, 0.55, 0.42, 1.0)
-	var figure_color := Color(0.72, 0.78, 0.86, 1.0) if team == 0 else Color(0.82, 0.78, 0.67, 1.0)
+	var team_color := Color(0.20, 0.58, 1.0, 0.95) if team == 0 else Color(0.95, 0.20, 0.16, 0.95)
+	var target_color := Color(0.78, 0.90, 1.0, 0.7) if team == 0 else Color(1.0, 0.58, 0.44, 0.7)
 
-	if visual_role == "mage":
-		figure_color = Color(0.68, 0.48, 0.94, 1.0)
-	elif visual_role == "ranger":
-		figure_color = Color(0.34, 0.68, 0.48, 1.0)
-	elif visual_role == "knight":
-		figure_color = Color(0.60, 0.70, 0.82, 1.0)
-
-	if hit_flash_time > 0.0:
-		figure_color = figure_color.lerp(Color.WHITE, 0.86)
-		outline_color = Color.WHITE
-
-	draw_circle(Vector2(0.0, 6.0), body_radius + 3.0, Color(0.015, 0.012, 0.02, 0.72))
-	draw_circle(Vector2.ZERO, body_radius + 1.0, Color(0.055, 0.05, 0.065, 1.0))
-	draw_arc(Vector2.ZERO, body_radius + 1.0, 0.0, TAU, 36, team_color, 4.0)
-
-	if art_sprite.texture == null:
-		_draw_miniature(figure_color, outline_color)
+	draw_set_transform(Vector2(0.0, 15.0), 0.0, Vector2(1.0, 0.34))
+	draw_circle(Vector2.ZERO, 19.0, Color(0.0, 0.0, 0.0, 0.45))
+	draw_arc(Vector2.ZERO, 18.0, 0.0, TAU, 32, team_color, 2.5)
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 	if placement_enabled and team == 0 and alive:
-		var placement_color := Color(0.72, 0.92, 1.0, 1.0) if dragging else Color(0.42, 0.72, 0.90, 0.70)
-		draw_arc(Vector2.ZERO, body_radius + 9.0, 0.0, TAU, 36, placement_color, 2.0)
+		var placement_color := Color(0.58, 0.85, 1.0, 1.0) if dragging else Color(0.42, 0.72, 0.95, 0.72)
+		draw_arc(Vector2(0.0, 15.0), 25.0, 0.0, TAU, 32, placement_color, 2.0)
 
 	if alive and target != null and is_instance_valid(target) and target.alive:
 		var local_target := to_local(target.global_position)
 		var direction := local_target.normalized()
-		draw_line(direction * (body_radius + 1.0), direction * (body_radius + 10.0), outline_color, 3.0)
+		draw_line(direction * 22.0, direction * 29.0, target_color, 2.0)
 
 func _draw_miniature(figure_color: Color, outline_color: Color) -> void:
 	match visual_role:
