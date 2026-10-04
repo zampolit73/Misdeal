@@ -5,6 +5,7 @@ const KNIGHT_DATA: UnitData = preload("res://resources/units/knight.tres")
 const RANGER_DATA: UnitData = preload("res://resources/units/ranger.tres")
 const MAGE_DATA: UnitData = preload("res://resources/units/mage.tres")
 const SKELETON_DATA: UnitData = preload("res://resources/units/skeleton.tres")
+const BONE_ARCHER_DATA: UnitData = preload("res://resources/units/bone_archer.tres")
 
 const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 70), Vector2(525, 340))
 
@@ -33,7 +34,7 @@ func _spawn_test_encounter() -> void:
 
 	_spawn_unit(SKELETON_DATA, 1, Vector2(980, 145), "Skeleton A")
 	_spawn_unit(SKELETON_DATA, 1, Vector2(1020, 245), "Skeleton B")
-	_spawn_unit(SKELETON_DATA, 1, Vector2(980, 345), "Skeleton C")
+	_spawn_unit(BONE_ARCHER_DATA, 1, Vector2(1040, 345))
 
 func _spawn_unit(
 	data: UnitData,
