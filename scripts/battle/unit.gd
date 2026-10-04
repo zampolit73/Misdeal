@@ -6,6 +6,7 @@ signal placement_rejected(unit: BattleUnit)
 
 @export var team: int = 0
 @export var display_name: String = "Unit"
+@export var visual_role: String = "unit"
 @export var max_hp: float = 100.0
 @export var damage: float = 12.0
 @export var attack_interval: float = 0.8
@@ -44,6 +45,7 @@ func configure(data: UnitData, unit_team: int, spawn_position: Vector2, name_ove
 	team = unit_team
 	position = spawn_position
 	display_name = data.unit_name if name_override.is_empty() else name_override
+	visual_role = data.visual_role
 	max_hp = data.max_hp
 	damage = data.damage
 	attack_interval = data.attack_interval
@@ -347,21 +349,113 @@ func _die() -> void:
 	died.emit(self)
 
 func _draw() -> void:
-	var body_color := Color(0.20, 0.56, 0.95, 1.0) if team == 0 else Color(0.78, 0.72, 0.64, 1.0)
-	var outline_color := Color(0.80, 0.90, 1.0, 1.0) if team == 0 else Color(0.95, 0.35, 0.30, 1.0)
+	var team_color := Color(0.22, 0.58, 0.95, 1.0) if team == 0 else Color(0.78, 0.20, 0.18, 1.0)
+	var outline_color := Color(0.78, 0.90, 1.0, 1.0) if team == 0 else Color(1.0, 0.55, 0.42, 1.0)
+	var figure_color := Color(0.72, 0.78, 0.86, 1.0) if team == 0 else Color(0.82, 0.78, 0.67, 1.0)
+
+	if visual_role == "mage":
+		figure_color = Color(0.68, 0.48, 0.94, 1.0)
+	elif visual_role == "ranger":
+		figure_color = Color(0.34, 0.68, 0.48, 1.0)
+	elif visual_role == "knight":
+		figure_color = Color(0.60, 0.70, 0.82, 1.0)
 
 	if hit_flash_time > 0.0:
-		body_color = body_color.lerp(Color.WHITE, 0.82)
+		figure_color = figure_color.lerp(Color.WHITE, 0.86)
 		outline_color = Color.WHITE
 
-	draw_circle(Vector2.ZERO, body_radius, body_color)
-	draw_arc(Vector2.ZERO, body_radius, 0.0, TAU, 32, outline_color, 3.0)
+	draw_circle(Vector2(0.0, 6.0), body_radius + 3.0, Color(0.015, 0.012, 0.02, 0.72))
+	draw_circle(Vector2.ZERO, body_radius + 1.0, Color(0.055, 0.05, 0.065, 1.0))
+	draw_arc(Vector2.ZERO, body_radius + 1.0, 0.0, TAU, 36, team_color, 4.0)
+
+	_draw_miniature(figure_color, outline_color)
 
 	if placement_enabled and team == 0 and alive:
 		var placement_color := Color(0.72, 0.92, 1.0, 1.0) if dragging else Color(0.42, 0.72, 0.90, 0.70)
-		draw_arc(Vector2.ZERO, body_radius + 8.0, 0.0, TAU, 32, placement_color, 2.0)
+		draw_arc(Vector2.ZERO, body_radius + 9.0, 0.0, TAU, 36, placement_color, 2.0)
 
 	if alive and target != null and is_instance_valid(target) and target.alive:
 		var local_target := to_local(target.global_position)
 		var direction := local_target.normalized()
-		draw_line(direction * body_radius, direction * (body_radius + 9.0), outline_color, 3.0)
+		draw_line(direction * (body_radius + 1.0), direction * (body_radius + 10.0), outline_color, 3.0)
+
+func _draw_miniature(figure_color: Color, outline_color: Color) -> void:
+	match visual_role:
+		"knight":
+			_draw_knight(figure_color, outline_color)
+		"ranger":
+			_draw_ranger(figure_color, outline_color)
+		"mage":
+			_draw_mage(figure_color, outline_color)
+		"skeleton":
+			_draw_skeleton(figure_color, outline_color, false)
+		"bone_archer":
+			_draw_skeleton(figure_color, outline_color, true)
+		_:
+			draw_circle(Vector2.ZERO, body_radius * 0.62, figure_color)
+			draw_arc(Vector2.ZERO, body_radius * 0.62, 0.0, TAU, 24, outline_color, 2.0)
+
+func _draw_knight(figure_color: Color, outline_color: Color) -> void:
+	draw_circle(Vector2(0.0, -9.0), 7.0, figure_color)
+	draw_rect(Rect2(-8.0, -3.0, 16.0, 19.0), figure_color)
+	draw_arc(Vector2(0.0, -9.0), 7.0, 0.0, TAU, 18, outline_color, 2.0)
+
+	var shield := PackedVector2Array([
+		Vector2(-16.0, -3.0),
+		Vector2(-7.0, -6.0),
+		Vector2(-7.0, 10.0),
+		Vector2(-12.0, 16.0),
+		Vector2(-17.0, 9.0)
+	])
+	draw_colored_polygon(shield, Color(0.26, 0.42, 0.62, 1.0))
+	draw_polyline(PackedVector2Array([shield[0], shield[1], shield[2], shield[3], shield[4], shield[0]]), outline_color, 1.5)
+
+	draw_line(Vector2(10.0, -8.0), Vector2(17.0, 13.0), outline_color, 2.0)
+	draw_line(Vector2(7.0, -2.0), Vector2(14.0, -4.0), outline_color, 2.0)
+
+func _draw_ranger(figure_color: Color, outline_color: Color) -> void:
+	var hood := PackedVector2Array([
+		Vector2(0.0, -17.0),
+		Vector2(-11.0, -3.0),
+		Vector2(11.0, -3.0)
+	])
+	draw_colored_polygon(hood, figure_color)
+	draw_polyline(PackedVector2Array([hood[0], hood[1], hood[2], hood[0]]), outline_color, 1.5)
+	draw_circle(Vector2(0.0, -5.0), 5.0, Color(0.09, 0.10, 0.09, 1.0))
+	draw_rect(Rect2(-6.0, 1.0, 12.0, 15.0), figure_color)
+
+	draw_arc(Vector2(10.0, 2.0), 12.0, -PI * 0.45, PI * 0.45, 18, outline_color, 2.0)
+	draw_line(Vector2(10.0, -9.0), Vector2(10.0, 13.0), outline_color, 1.2)
+	draw_line(Vector2(5.0, 2.0), Vector2(19.0, 2.0), outline_color, 1.4)
+
+func _draw_mage(figure_color: Color, outline_color: Color) -> void:
+	var robe := PackedVector2Array([
+		Vector2(0.0, -13.0),
+		Vector2(-12.0, 15.0),
+		Vector2(12.0, 15.0)
+	])
+	draw_colored_polygon(robe, figure_color)
+	draw_polyline(PackedVector2Array([robe[0], robe[1], robe[2], robe[0]]), outline_color, 1.5)
+	draw_circle(Vector2(0.0, -12.0), 6.0, Color(0.16, 0.08, 0.22, 1.0))
+
+	draw_line(Vector2(13.0, -15.0), Vector2(13.0, 16.0), outline_color, 2.0)
+	draw_circle(Vector2(13.0, -18.0), 4.0, Color(0.75, 0.42, 1.0, 1.0))
+	draw_arc(Vector2(13.0, -18.0), 7.0, 0.0, TAU, 18, Color(0.55, 0.28, 0.9, 0.45), 2.0)
+
+func _draw_skeleton(figure_color: Color, outline_color: Color, with_bow: bool) -> void:
+	var bone := figure_color
+	draw_circle(Vector2(0.0, -10.0), 7.0, bone)
+	draw_circle(Vector2(-2.5, -11.0), 1.5, Color(0.08, 0.06, 0.05, 1.0))
+	draw_circle(Vector2(2.5, -11.0), 1.5, Color(0.08, 0.06, 0.05, 1.0))
+	draw_line(Vector2(0.0, -3.0), Vector2(0.0, 13.0), bone, 3.0)
+	draw_line(Vector2(-8.0, 1.0), Vector2(8.0, 1.0), bone, 2.0)
+	draw_line(Vector2(-7.0, 5.0), Vector2(7.0, 5.0), bone, 2.0)
+	draw_line(Vector2(-6.0, 9.0), Vector2(6.0, 9.0), bone, 2.0)
+	draw_line(Vector2(0.0, 13.0), Vector2(-7.0, 18.0), bone, 2.0)
+	draw_line(Vector2(0.0, 13.0), Vector2(7.0, 18.0), bone, 2.0)
+	draw_arc(Vector2(0.0, -10.0), 7.0, 0.0, TAU, 18, outline_color, 1.4)
+
+	if with_bow:
+		draw_arc(Vector2(11.0, 3.0), 12.0, -PI * 0.55, PI * 0.55, 18, outline_color, 2.0)
+		draw_line(Vector2(11.0, -7.0), Vector2(11.0, 13.0), outline_color, 1.2)
+		draw_line(Vector2(5.0, 3.0), Vector2(20.0, 3.0), outline_color, 1.4)
