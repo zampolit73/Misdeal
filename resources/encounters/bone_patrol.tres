@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+encounter_id = "bone_patrol"
+title = "КОСТЯНОЙ ДОЗОР"
+card_text = "Три скелета идут плотным строем. Никаких хитростей — только кости и железо."
+wizard_line = "Просто солдаты. Иногда простые вещи убивают надёжнее всего."
+enemy_unit_paths = PackedStringArray("res://resources/units/skeleton.tres", "res://resources/units/skeleton.tres", "res://resources/units/skeleton.tres")
+enemy_names = PackedStringArray("Дозорный A", "Дозорный B", "Дозорный C")
+enemy_positions = PackedVector2Array(940, 145, 1020, 245, 940, 345)
