@@ -44,7 +44,7 @@ The final composition/readability polish pass has been locally verified and acce
 
 The original Bone Warden boss encounter, including its 50% HP enrage, was confirmed working locally. After full Act 1 playtesting the user reported that the boss was too easy and visually insufficiently distinct from ordinary combat.
 
-A Bone Warden gameplay + visual rework is now implemented in GitHub and pending local verification.
+A Bone Warden gameplay + visual rework is now implemented in GitHub and pending local verification. The first local pull exposed a Godot 4.7.2 type-inference parser error in the new procedural boss-arena chains; that parser issue has been fixed in GitHub and requires a fresh pull before verification.
 
 The longer Act 1 structure is now confirmed working locally: 12 resolved pre-boss cards followed by the Bone Warden as card 13.
 
