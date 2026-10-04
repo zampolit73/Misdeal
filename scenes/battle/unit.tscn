@@ -7,28 +7,28 @@ script = ExtResource("1_unit")
 
 [node name="ArtSprite" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -8)
-scale = Vector2(1.35, 1.35)
+position = Vector2(0, -12)
+scale = Vector2(1.85, 1.85)
 z_index = 1
 
 [node name="NameLabel" type="Label" parent="."]
-offset_left = -58.0
-offset_top = 27.0
-offset_right = 58.0
-offset_bottom = 45.0
-theme_override_colors/font_color = Color(0.86, 0.84, 0.80, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 13
+offset_left = -72.0
+offset_top = 39.0
+offset_right = 72.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(0.92, 0.89, 0.84, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.94)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 14
 text = "Unit"
 horizontal_alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -22.0
-offset_top = -47.0
-offset_right = 22.0
-offset_bottom = -40.0
+offset_left = -30.0
+offset_top = -62.0
+offset_right = 30.0
+offset_bottom = -53.0
 mouse_filter = 2
 show_percentage = false
 value = 100.0
