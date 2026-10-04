@@ -36,7 +36,7 @@ func _ready() -> void:
 	continue_button.disabled = true
 	encounter = _load_selected_encounter()
 	title_label.text = "MISDEAL — %s" % encounter.title
-	deal_label.text = "РАЗДАЧА %d/%d" % [RunState.deals_survived + 1, RunState.MAX_DEALS]
+	deal_label.text = RunState.get_progress_text()
 	enemy_label.text = "БОСС" if _is_boss_encounter() else "НЕЖИТЬ"
 	result_backdrop.visible = false
 	_spawn_encounter()
@@ -94,7 +94,7 @@ func _spawn_unit(
 
 func _begin_preparation_phase() -> void:
 	if _is_boss_encounter():
-		status_label.text = "ПОСЛЕДНЯЯ РАЗДАЧА — надзиратель впадает в ярость на половине здоровья."
+		status_label.text = "БОСС — надзиратель впадает в ярость на половине здоровья."
 	else:
 		status_label.text = "ПОДГОТОВКА — расставьте героев и нажмите «БОЙ»."
 	placement_hint.visible = true
@@ -154,7 +154,7 @@ func _finish_battle(player_won: bool) -> void:
 			result_subtitle.text = "Волшебник впервые перестаёт улыбаться."
 		else:
 			result_subtitle.text = "Волшебник выглядит слегка раздражённым."
-		status_label.text = "Вы пережили раздачу."
+		status_label.text = "Карта пережита. Пока что."
 		continue_button.text = "ЗАБРАТЬ НАГРАДУ"
 	else:
 		result_label.text = "ПОРАЖЕНИЕ"
