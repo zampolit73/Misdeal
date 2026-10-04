@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Pixel battle presentation pass confirmed visually acceptable locally.
 - First pixel-art combat readability pass confirmed locally: larger sprites, ground rings and compact HP presentation read clearly.
 - Whispering Well event choices and one-time-per-run lockout confirmed working locally.
 - Three-card encounter selection, three-victory finite run, run-end summary and new-run reset confirmed working locally.
@@ -25,6 +26,12 @@
 
 ### Added
 
+- Cross-screen pixel-art UI pass for the main menu, wizard table, Whispering Well, reward screen and run-end screen.
+- Procedural pixel wizard table with masonry, cursed wood, ritual sigil, candles and deck.
+- Pixel wizard portrait used as the active table host visual.
+- Pixel Whispering Well backdrop with stonework, glowing water and teal-lit choices.
+- Pixel reward altar presentation with three visually distinct reward cards.
+- Pixel run-end ritual summary screen and pixel main-menu title composition.
 - Atmospheric pixel battle presentation pass with masonry ruins, banners, torches, bones, rubble, blood stains and stronger ritual markings.
 - Framed pixel HUD chrome for encounter/status/command areas.
 - Dynamic `РАЗДАЧА X/3` battle indicator.
