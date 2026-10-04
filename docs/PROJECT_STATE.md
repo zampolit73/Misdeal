@@ -295,8 +295,9 @@ Combat presentation now uses the approved second gothic mockup as an authored st
 - combat sprites remain substantially larger so silhouettes read like characters rather than small board icons;
 - thin blue/red team rings, HP bars, names, drag placement, combat movement and targeting remain live Godot elements;
 - the cathedral/crypt architecture, throne/altar, pillars, banners, chains, braziers, skull piles, ritual floor, outer frame and command-panel art are baked into the authored backdrop;
-- the authored backdrop is reconstructed at runtime from five base64 WebP chunks under `assets/pixel/battle/authored_backdrop/` by `scripts/battle/authored_backdrop.gd`;
+- the authored backdrop is the direct texture asset `assets/pixel/battle/battle_backdrop.webp`, authored at 640×360 and displayed at exact 2× nearest-neighbor scale for the 1280×720 prototype;
 - `scripts/battle/battle_visual.gd` no longer draws the general arena and now only adds lightweight dynamic boss-phase overlays;
+- the obsolete procedural `scripts/battle/battle_hud_visual.gd` renderer was removed;
 - encounter title/status, card progress, faction labels, buttons and result text remain native Godot controls layered over the art;
 - **БОЙ** and **ПЕРЕИГРАТЬ** now sit directly over the painted command frames from the backdrop instead of drawing a second competing UI frame.
 
@@ -400,17 +401,18 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the authored battle backdrop now committed to `main`:
+Locally verify the production authored battle backdrop against the user's second reference:
 
-- the battle screen should visually match the user's second reference: throne/altar, dense candles, side braziers, banners, chains, skull piles, detailed floor and a warm central ritual sigil;
-- there should no longer be a visibly procedural wall/floor/grid competing with the art;
-- title/status/card progress/faction labels must align with the empty painted frames in the backdrop;
-- **БОЙ** and **ПЕРЕИГРАТЬ** should align with the painted bottom command slots;
-- live heroes/enemies, HP bars, names, rings and drag placement must remain functional on top of the authored background;
-- Bone Warden must still add its dynamic boss overlay and Phase II effects without replacing the authored arena;
-- victory/defeat/retry/reward flow must remain unchanged.
+- the ordinary battle should immediately read like the rich candlelit crypt/throne scene from the second screenshot, not the flat procedural first screenshot;
+- no second procedural wall/floor/HUD layer should appear over the backdrop;
+- encounter title, preparation text, card progress, faction labels and command buttons should sit cleanly inside the blank painted frames;
+- **БОЙ** and **ПЕРЕИГРАТЬ** should align with the authored bottom command frames;
+- live heroes/enemies, HP bars, names and blue/red team rings must remain readable against the painted arena;
+- initial hero staging should match the reference more closely: Knight/Mage farther inward, Ranger slightly farther left;
+- drag placement, combat bounds, movement, victory/defeat and retry behavior must remain unchanged;
+- Bone Warden should keep its Phase II overlays on top of the same authored battle art.
 
-If the backdrop composition is accepted, treat this as the production battle layout for the vertical slice and limit follow-up visual work to sprite polish, alignment and effects rather than rebuilding the arena again.
+If the backdrop now matches the second screenshot but the units still look too simple, the next pass should be sprite-only rather than another arena rewrite.
 
 ## Local workflow
 
