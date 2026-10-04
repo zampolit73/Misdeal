@@ -29,7 +29,17 @@ The second battle presentation pass is implemented and confirmed visually accept
 
 The same pixel-art visual language is now applied across the main menu, Whispering Well event, reward screen and run-end screen.
 
-The wizard table has since been rebuilt again around an approved authored pixel-art concept. The implementation is in GitHub and pending local verification.
+The wizard table has since been rebuilt again around an approved authored pixel-art concept.
+
+A final composition/readability polish pass is now implemented in GitHub and pending local verification:
+
+- encounter hover no longer uses floating tooltips over card art;
+- hovering a combat card now swaps the upper wizard-commentary line to that encounter's wizard reaction;
+- the Whispering Well has its own hover commentary;
+- the HUD and commentary strip are more compact;
+- the four cards are slightly smaller, lower and more evenly spaced so the wizard remains visible;
+- obsolete procedural skull/goblet/hourglass/books/candle overlays were removed;
+- the lower runner/sigil treatment was simplified and subdued.
 
 ## Player-facing language
 
@@ -266,17 +276,18 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Immediate next milestone
 
-Locally verify the rebuilt wizard table:
+Locally verify the final wizard-table polish pass:
 
-- the authored wizard/room backdrop renders cleanly at 1280×720;
-- the Misdeal logo and dynamic run HUD remain readable;
-- all four illustrated cards are clickable;
-- combat-card titles/descriptions still come from `EncounterData`;
-- Whispering Well correctly switches to its exhausted/dimmed state after use;
-- hover borders and event/combat card color treatments read clearly;
+- no floating tooltip text appears over the card illustrations;
+- hovering each combat card changes only the upper wizard-commentary strip and restores the default line on exit;
+- the Whispering Well hover commentary behaves the same way while the unresolved card remains clickable;
+- the compact HUD remains readable at 1280×720;
+- the slightly smaller/lower card row leaves more of the wizard visible without hurting card readability;
+- the old procedural side props/candles are gone;
+- Whispering Well still switches to its exhausted/dimmed state after use;
 - selecting a combat/event card still transitions to the correct scene.
 
-After table verification, reuse the approved/generated pixel-art references selectively for richer authored assets rather than embedding whole mockup screenshots with baked UI.
+If this pass is visually accepted locally, stop iterating on the table for now and move to the next gameplay milestone: the first boss encounter plus stronger wizard/gameplay identity.
 
 ## Local workflow
 
