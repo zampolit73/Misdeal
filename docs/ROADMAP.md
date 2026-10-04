@@ -59,7 +59,7 @@ Target loop:
 - [ ] More party archetypes.
 - [ ] Equipment or artifacts that alter autobattle behavior.
 - [x] First risk/reward event card: Whispering Well.
-- [ ] First boss encounter.
+- [x] First boss encounter: Bone Warden final deal with an enrage phase.
 
 ## Phase 4 — Vertical slice polish
 
