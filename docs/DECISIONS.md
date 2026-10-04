@@ -140,3 +140,26 @@ The first finite Misdeal run ends after three rewarded victories.
 This is a vertical-slice pacing value, not a commitment for the final game's run length.
 
 Defeat currently returns the player to the table without advancing the victory count; this is also prototype behavior and may change with later run-design work.
+
+
+## D013 — Non-combat events can modify the current run
+
+Date: 2026-10-04  
+Status: accepted for prototype
+
+The table can contain non-combat event cards alongside combat encounters.
+
+The first event, Whispering Well, is one-time-per-run and demonstrates self-authored risk: the player may trade party health for damage, spend gold for health, or refuse the offer.
+
+Non-combat events do not currently count toward the three victories required to finish the vertical-slice run.
+
+## D014 — Visual development starts with a stylized blockout after the core loop
+
+Date: 2026-10-04  
+Status: accepted
+
+With the finite vertical-slice loop working, visual development can begin during Phase 3.
+
+Start with a coherent stylized blockout for the cursed table, cards, wizard presence and combat miniatures. Use lightweight prototype visuals to establish composition and mood before committing to final production assets.
+
+Final art polish remains a later Phase 4 task.
