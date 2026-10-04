@@ -20,6 +20,7 @@
 
 ### Fixed
 
+- Clamp final hero max HP to 20 and damage to 1 so stacked late-run sacrifices cannot create invalid combat units.
 - Split the battle result overlay into a large victory/defeat title and a separate compact wizard-reaction subtitle so post-battle text no longer overlaps the panel and units.
 - Removed floating default tooltips from wizard-table combat cards so hover text no longer covers card illustrations.
 - Replaced hover tooltips with wizard commentary in the dedicated upper strip and protected selection commentary from mouse-exit resets.
@@ -33,6 +34,13 @@
 
 ### Added
 
+- Real late **КАРТА БЕЗ ЛИЦА** event with hidden random outcome, paid safe outcome and guaranteed low-risk burn choice.
+- Real **КРОВАВАЯ КНИГА** event converting gold/HP/damage into late-run power or artifacts.
+- Special source-locked **СЛОМАННАЯ КОРОНА** artifact: party-wide +22% damage for -10 max HP per hero.
+- `ArtifactData.general_pool` and party-wide `target_role = "*"` support for named special relics.
+- Real **ПОСЛЕДНИЙ ПРИВАЛ** preparation event with HP, damage or gold options.
+- Real **ВРАТА ОССУАРИЯ** late combat combining Crypt Guard, Grave Bellkeeper, Bone Archer and Bone Thrall.
+- Ossuary Gate-specific preparation and victory framing.
 - Real **ЧЁРНЫЙ АЛТАРЬ** event with two HP-for-damage sacrifices, a gold-for-HP option and refusal.
 - Real **ЗАКОВАННЫЙ ПЛЕННИК** event with rescue, forced-chain and loot branches.
 - Real **КОСТИ ДОЛЖНИКА** event with a 50/50 high-stakes gamble plus two deterministic alternatives.
