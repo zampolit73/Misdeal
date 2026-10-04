@@ -12,7 +12,9 @@ Pre-battle drag placement is implemented and confirmed working locally.
 
 Combat-time unit separation is implemented and confirmed working locally.
 
-Hit/death feedback has now been implemented in GitHub and is pending local verification.
+Hit/death feedback is implemented and confirmed working locally.
+
+Unit combat stats are now data-driven through `UnitData` Resources. This refactor is pending local verification.
 
 ## Engine
 
@@ -36,7 +38,7 @@ Pressing **ENTER THE GAME** transitions to:
 
 ### Test autobattle
 
-The current encounter is hard-coded in `scripts/battle/battle.gd`.
+The current encounter composition and spawn positions are defined in `scripts/battle/battle.gd`, while unit combat stats are stored in reusable `UnitData` Resources.
 
 Player party:
 
@@ -84,7 +86,16 @@ Core unit logic lives in:
 
 The prototype intentionally uses a minimal architecture.
 
-Unit stats and the test encounter are currently hard-coded in `battle.gd`. This is acceptable for the first combat proof of concept, but content should move toward Godot Resources as the vertical slice grows.
+Unit definitions are data-driven through `scripts/data/unit_data.gd` and `.tres` files under `resources/units/`.
+
+Current unit resources:
+
+- `resources/units/knight.tres`
+- `resources/units/ranger.tres`
+- `resources/units/mage.tres`
+- `resources/units/skeleton.tres`
+
+`battle.gd` still defines the temporary test encounter composition and spawn positions.
 
 Current relevant files:
 
@@ -95,11 +106,12 @@ Current relevant files:
 - `scenes/battle/unit.tscn`
 - `scripts/battle/battle.gd`
 - `scripts/battle/unit.gd`
+- `scripts/data/unit_data.gd`
+- `resources/units/*.tres`
 
 ## Not implemented yet
 - attack animations and projectiles;
 - abilities and status effects;
-- data-driven `UnitData` resources;
 - encounter resources;
 - card/table gameplay;
 - evil wizard presentation;
@@ -112,9 +124,9 @@ Current relevant files:
 
 ## Immediate next milestone
 
-Locally verify hit flashes, floating damage numbers and death feedback.
+Locally verify that the `UnitData` refactor preserves the existing battle behavior.
 
-After combat readability is confirmed, move unit definitions toward data-driven Resources and then start connecting the battle prototype to the first minimal card/table → combat → reward → table loop.
+Then add one distinct enemy behavior and one simple unit ability/combat modifier before moving into the first minimal card/table → combat → reward → table loop.
 
 The long-term target remains:
 
