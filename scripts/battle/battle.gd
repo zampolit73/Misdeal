@@ -6,8 +6,8 @@ const RANGER_DATA: UnitData = preload("res://resources/units/ranger.tres")
 const MAGE_DATA: UnitData = preload("res://resources/units/mage.tres")
 const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
 
-const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1200, 465))
-const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 70), Vector2(525, 340))
+const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1240, 465))
+const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 82), Vector2(545, 326))
 
 @onready var title_label: Label = $Title
 @onready var deal_label: Label = $DealLabel
