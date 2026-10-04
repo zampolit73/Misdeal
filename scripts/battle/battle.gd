@@ -39,6 +39,8 @@ func _ready() -> void:
 	deal_label.text = RunState.get_progress_text()
 	if _is_boss_encounter():
 		enemy_label.text = "БОСС"
+	elif _is_death_wager_encounter():
+		enemy_label.text = "СТАВКА"
 	elif _is_elite_encounter():
 		enemy_label.text = "ЭЛИТА"
 	else:
@@ -52,6 +54,9 @@ func _is_boss_encounter() -> bool:
 
 func _is_elite_encounter() -> bool:
 	return encounter != null and encounter.encounter_id == "crypt_guard"
+
+func _is_death_wager_encounter() -> bool:
+	return encounter != null and encounter.encounter_id == "death_wager"
 
 func _load_selected_encounter() -> EncounterData:
 	if not RunState.selected_encounter_path.is_empty():
@@ -119,6 +124,8 @@ func _apply_artifacts_to_unit(unit: BattleUnit) -> void:
 func _begin_preparation_phase() -> void:
 	if _is_boss_encounter():
 		status_label.text = "БОСС — надзиратель впадает в ярость на половине здоровья."
+	elif _is_death_wager_encounter():
+		status_label.text = "СТАВКА НА СМЕРТЬ — пять врагов и усиленная награда. Лучников лучше не оставлять без внимания."
 	elif _is_elite_encounter():
 		status_label.text = "ЭЛИТА — страж бьёт по площади. Не собирайте героев в одну точку."
 	elif encounter.encounter_id == "grave_bell":
@@ -188,6 +195,8 @@ func _finish_battle(player_won: bool) -> void:
 		result_label.text = "ПОБЕДА"
 		if _is_boss_encounter():
 			result_subtitle.text = "Волшебник впервые перестаёт улыбаться."
+		elif _is_death_wager_encounter():
+			result_subtitle.text = "Похоже, волшебник только что проиграл собственную ставку."
 		elif _is_elite_encounter():
 			result_subtitle.text = "Склеп открыт. Внутри осталось кое-что ценное."
 		elif encounter.encounter_id == "grave_bell":
