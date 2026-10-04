@@ -12,7 +12,9 @@ func _ready() -> void:
 	reward_buttons = [blood_coin_button, iron_ward_button, tempered_steel_button]
 
 	var active_card := RunState.get_active_card()
-	if active_card != null and active_card.card_id == "crypt_guard":
+	if active_card != null and active_card.card_id == "death_wager":
+		_setup_death_wager_reward()
+	elif active_card != null and active_card.card_id == "crypt_guard":
 		_setup_elite_reward()
 	else:
 		_setup_normal_reward()
@@ -33,6 +35,20 @@ func _setup_normal_reward() -> void:
 	blood_coin_button.pressed.connect(_choose_normal_reward.bind("blood_coin"))
 	iron_ward_button.pressed.connect(_choose_normal_reward.bind("iron_ward"))
 	tempered_steel_button.pressed.connect(_choose_normal_reward.bind("tempered_steel"))
+
+func _setup_death_wager_reward() -> void:
+	title_label.text = "ВЫИГРЫШ СТАВКИ"
+	summary_label.text = "Волшебник хмурится. Ставка сыграла — выбирайте усиленную награду."
+	if RunState.wizard_debt_active:
+		summary_label.text += " Долг волшебнику остаётся до следующей обычной награды."
+
+	blood_coin_button.text = "ЗОЛОТОЙ КУШ\n\n+75 золота\n\nРедкий случай: выигрыш действительно ваш."
+	iron_ward_button.text = "ПЛОТЬ ПОБЕДИТЕЛЯ\n\n+50 здоровья\nкаждому герою"
+	tempered_steel_button.text = "СМЕРТЕЛЬНАЯ ЗАТОЧКА\n\n+8 урона\nкаждому герою"
+
+	blood_coin_button.pressed.connect(_choose_death_wager_reward.bind("gold"))
+	iron_ward_button.pressed.connect(_choose_death_wager_reward.bind("hp"))
+	tempered_steel_button.pressed.connect(_choose_death_wager_reward.bind("damage"))
 
 func _setup_elite_reward() -> void:
 	title_label.text = "ТРОФЕЙ СТРАЖА"
@@ -62,6 +78,21 @@ func _setup_elite_reward() -> void:
 
 		button.text = "%s\n\n%s" % [artifact.title, artifact.description]
 		button.pressed.connect(_choose_artifact_reward.bind(artifact_id))
+
+func _choose_death_wager_reward(choice: String) -> void:
+	_disable_reward_buttons()
+
+	match choice:
+		"gold":
+			RunState.gold += 75
+		"hp":
+			RunState.party_hp_bonus += 50.0
+		"damage":
+			RunState.party_damage_bonus += 8.0
+		_:
+			return
+
+	await _finish_reward("Ставка оплачена полностью. Волшебник явно жалеет, что предложил её.")
 
 func _choose_normal_reward(reward_id: String) -> void:
 	_disable_reward_buttons()
