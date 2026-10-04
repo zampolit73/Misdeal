@@ -52,7 +52,9 @@ The first new combat-content batch is also implemented in GitHub and pending loc
 
 A second real event batch is implemented in GitHub and pending local verification: **ЧЁРНЫЙ АЛТАРЬ**, **ЗАКОВАННЫЙ ПЛЕННИК**, **КОСТИ ДОЛЖНИКА** and **ДЕСЯТИНА ВОЛШЕБНИКА** no longer use the prototype resolver.
 
-The late-game escalation batch is implemented and locally confirmed working: **КАРТА БЕЗ ЛИЦА**, **КРОВАВАЯ КНИГА**, **СЛОМАННАЯ КОРОНА**, **ПОСЛЕДНИЙ ПРИВАЛ** and **ВРАТА ОССУАРИЯ** are real cards. Seven of eight late-tier cards now have bespoke mechanics; only **СТАВКА НА СМЕРТЬ** remains a late-tier prototype.
+The late-game escalation batch is implemented and locally confirmed working: **КАРТА БЕЗ ЛИЦА**, **КРОВАВАЯ КНИГА**, **СЛОМАННАЯ КОРОНА**, **ПОСЛЕДНИЙ ПРИВАЛ** and **ВРАТА ОССУАРИЯ** are real cards.
+
+The final five-card content batch is now implemented in GitHub and pending local verification: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА** and **СТАВКА НА СМЕРТЬ** all have bespoke mechanics. The full 24-card pre-boss Act 1 pool is now content-complete with no active prototype-card routes.
 
 ## Player-facing language
 
@@ -115,11 +117,14 @@ Currently fully implemented card mechanics:
 - **КРОВАВАЯ КНИГА** — convert gold into damage, HP into a random general-pool artifact, or damage into HP;
 - **СЛОМАННАЯ КОРОНА** — source-locked special artifact choice: all heroes deal +22% damage but lose 10 max HP, with gold/stat alternatives;
 - **ПОСЛЕДНИЙ ПРИВАЛ** — late preparation choice between +30 party HP, +3 party damage or +25 gold;
-- **ВРАТА ОССУАРИЯ** — heavy late combat combining Crypt Guard, Grave Bellkeeper, Bone Archer and Bone Thrall.
+- **ВРАТА ОССУАРИЯ** — heavy late combat combining Crypt Guard, Grave Bellkeeper, Bone Archer and Bone Thrall;
+- **ГРЕМУЧИЙ МОСТ** — early traversal risk with a 50/50 sprint, a small guaranteed gold/HP trade, or a safe crossing;
+- **КОШЕЛЬ МЕРТВЕЦА** — deterministic greed ladder: more gold costs progressively more party HP;
+- **ТОРГОВЕЦ СВЕЧАМИ** — cheap early micro-shop for HP or damage, plus a theft option trading HP for gold;
+- **КОСТЯНАЯ ПОШЛИНА** — forced mid-run payment choice: gold, HP, or a harsher HP-for-damage confrontation;
+- **СТАВКА НА СМЕРТЬ** — late five-enemy elite combat against Crypt Guard, two Bone Archers and two Bone Thralls, followed by an enhanced reward choice.
 
-19 of the 24 pre-boss cards now have bespoke mechanics. The remaining prototype cards are **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА** and **СТАВКА НА СМЕРТЬ**.
-
-The remaining new card definitions already participate in the real Act 1 deck/tier/rejection flow, but temporarily resolve through `scenes/event/prototype_card.tscn` until their individual mechanics are implemented.
+All 24 pre-boss cards now have bespoke mechanics. `scenes/event/prototype_card.tscn` remains only as unused legacy prototype infrastructure and is no longer referenced by the active Act 1 card pool.
 
 The table displays:
 
@@ -214,7 +219,9 @@ Victory normally offers one of three persistent rewards:
 - **ЖЕЛЕЗНЫЙ ОБЕРЕГ**: +20 HP to every hero;
 - **ЗАКАЛЁННАЯ СТАЛЬ**: +3 damage to every hero.
 
-If **ДОЛГ ВОЛШЕБНИКУ** is active, enemy damage is +25% in combat and the next normal reward is doubled to +50 gold / +40 HP / +6 damage. Taking that normal reward clears the debt. The special Crypt Guard artifact reward does not clear or double the debt reward; the debt persists to the next normal reward.
+If **ДОЛГ ВОЛШЕБНИКУ** is active, enemy damage is +25% in combat and the next normal reward is doubled to +50 gold / +40 HP / +6 damage. Taking that normal reward clears the debt. Special rewards do not consume the debt: both the Crypt Guard artifact reward and Death Wager enhanced reward leave it active for the next normal reward.
+
+Winning **СТАВКА НА СМЕРТЬ** offers a bespoke enhanced numeric reward: +75 gold, +50 party HP, or +8 party damage.
 
 Choosing a reward applies the reward and completes the active combat card.
 
@@ -308,7 +315,8 @@ Current encounter files:
 - `resources/encounters/grave_bell.tres`;
 - `resources/encounters/bone_crush.tres`;
 - `resources/encounters/crypt_guard.tres` — elite encounter with guaranteed artifact reward;
-- `resources/encounters/ossuary_gate.tres` — late mixed-archetype combat before the boss.
+- `resources/encounters/ossuary_gate.tres` — late mixed-archetype combat before the boss;
+- `resources/encounters/death_wager.tres` — late five-enemy elite wager encounter.
 
 ### Run-card data
 
@@ -344,7 +352,7 @@ Current artifacts:
 
 Artifacts are applied to hero runtime stats when combat units spawn. The run-end summary now lists acquired artifacts.
 
-The shared `scenes/event/act_choice.tscn` scene currently handles Ash Rest, Gravedigger Shop, Curse Forge, Black Altar, Chained Prisoner, Debtor Bones and Wizard Tithe without introducing a general event-effect framework.
+The shared `scenes/event/act_choice.tscn` scene handles the implemented choice-driven events, including Ash Rest, Gravedigger Shop, Curse Forge, Black Altar, Chained Prisoner, Debtor Bones, Wizard Tithe, Faceless Card, Blood Ledger, Broken Crown, Last Camp, Rattling Bridge, Lost Purse, Candle Seller and Bone Tax. It still intentionally avoids a generalized event-effect framework.
 
 ### Run state
 
@@ -369,8 +377,8 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Not implemented yet
 
-- individual mechanics for most of the newly defined Act 1 cards;
-- broader shop inventory/economy beyond the first Gravedigger Shop implementation;
+- Act 1 balance/readability pass across the now-complete 24-card pre-boss pool;
+- broader shop inventory/economy beyond the current Candle Seller and Gravedigger Shop implementations;
 - more artifacts beyond the first three;
 - attack projectiles/animations;
 - broader ability/status-effect system;
@@ -381,17 +389,18 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Finish the five remaining prototype cards so the full 24-card pre-boss Act 1 pool has bespoke mechanics:
+Locally verify the final five-card batch:
 
-- **ГРЕМУЧИЙ МОСТ** — early risk/reward traversal event;
-- **КОШЕЛЬ МЕРТВЕЦА** — early greed/trap event;
-- **ТОРГОВЕЦ СВЕЧАМИ** — early small-economy utility card distinct from Gravedigger Shop;
-- **КОСТЯНАЯ ПОШЛИНА** — mid-run pay-or-fight/suffer decision;
-- **СТАВКА НА СМЕРТЬ** — late elite/high-risk card worthy of the final tier.
+- **ГРЕМУЧИЙ МОСТ** should force one of three crossing approaches; the sprint must produce a real 50/50 result;
+- **КОШЕЛЬ МЕРТВЕЦА** should apply the exact gold/HP greed trade selected;
+- **ТОРГОВЕЦ СВЕЧАМИ** should disable unaffordable purchases and correctly apply the theft branch;
+- **КОСТЯНАЯ ПОШЛИНА** should force payment by gold, blood or the harsher HP-for-damage option;
+- **СТАВКА НА СМЕРТЬ** should launch the five-enemy late encounter, preserve retry behavior after defeat, and show the **СТАВКА** battle header;
+- Death Wager victory should offer exactly +75 gold / +50 HP / +8 damage instead of the normal reward screen;
+- if wizard debt is active during Death Wager, the special wager reward must leave that debt active;
+- no Act 1 card should route to the generic prototype-card resolver.
 
-Do not add a new generalized event framework for this pass. Reuse the existing Act 1 choice scene and current combat/reward hooks unless a card genuinely requires one small new run condition or encounter.
-
-After all 24 cards are bespoke, stop adding content temporarily and run a full Act 1 balance/readability pass before expanding the card pool further.
+Once this batch is verified, treat Act 1 as **content-complete for the vertical slice**. Do not add more cards immediately. Run a full balance/readability pass across card frequency, economy, permanent stat growth, artifact strength, combat difficulty, late-game escalation and Bone Warden difficulty.
 
 ## Local workflow
 
