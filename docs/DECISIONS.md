@@ -231,3 +231,20 @@ Because twelve two-card choices consume twenty-four unique cards when rejected a
 Only the already-existing encounters and Whispering Well are fully implemented mechanically in the first structural pass. The remaining new card definitions use a generic prototype resolver so the complete 12-card pacing, tier transitions, rejection behavior and boss handoff can be tested before building every card mechanic.
 
 The Bone Warden remains the thirteenth/final card and completes the run only after its post-combat reward is taken.
+
+## D019 — First artifacts are hero-specific run modifiers
+
+Date: 2026-10-04  
+Status: accepted for prototype
+
+Artifacts are persistent for the current run and are represented by lightweight `ArtifactData` Resources rather than a full equipment/inventory system.
+
+The first artifact set deliberately changes hero behavior or tactical role instead of providing only generic party stats:
+
+- **ЩИТ МЕРТВЕЦА** makes the Knight tougher but slower;
+- **СЛЕПОЙ КОЛЧАН** makes the Ranger attack faster while increasing the distance he tries to keep;
+- **РАСКОЛОТЫЙ ФОКУС** trades Mage primary-hit damage for stronger, wider splash.
+
+Artifacts are applied when heroes spawn into battle. For the current vertical slice there are no slots, rarity framework, equip/unequip screen or permanent unlock system. Those should only be introduced when the playable Act 1 proves they are needed.
+
+The first functional shop may sell a random unowned artifact, while Curse Forge offers direct choice among the three current artifacts.
