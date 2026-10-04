@@ -163,3 +163,21 @@ With the finite vertical-slice loop working, visual development can begin during
 Start with a coherent stylized blockout for the cursed table, cards, wizard presence and combat miniatures. Use lightweight prototype visuals to establish composition and mood before committing to final production assets.
 
 Final art polish remains a later Phase 4 task.
+
+
+## D015 — Misdeal uses dark-fantasy pixel art
+
+Date: 2026-10-04  
+Status: accepted
+
+The player-facing visual direction is dark-fantasy pixel art.
+
+Combat readability is the first constraint:
+
+- units should be recognizable by silhouette rather than by labels;
+- unit sprites are the primary visual element;
+- team color appears as a restrained ground marker instead of a thick portrait circle;
+- HP and names should remain compact;
+- nearest-neighbor texture presentation is preferred for pixel assets.
+
+The earlier realistic/painted combat miniatures were judged too small and visually muddy when shown at tactical scale. Painted concept assets may remain as reference material, but new in-game visuals should converge on the pixel-art language.
