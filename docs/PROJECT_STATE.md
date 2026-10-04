@@ -25,7 +25,9 @@ The earlier painted-art integration was locally judged too hard to read in comba
 
 The first pixel-art combat readability redesign is implemented and confirmed working locally.
 
-A second battle presentation pass is now implemented in GitHub and pending local verification.
+The second battle presentation pass is implemented and confirmed visually acceptable locally.
+
+The same pixel-art visual language is now applied across the main menu, wizard table, Whispering Well event, reward screen and run-end screen. This cross-screen visual pass is implemented in GitHub and pending local verification.
 
 ## Player-facing language
 
@@ -70,13 +72,15 @@ The table displays:
 
 Selecting a combat card stores its encounter in `RunState` and launches battle.
 
-The table keeps the styled dark-fantasy card UI but now uses authored art assets:
+The wizard table now uses the active pixel-art direction rather than the earlier painted-art composition:
 
-- `assets/art/table_background.webp` — painted cursed-table background with the evil wizard;
-- `assets/art/wizard_portrait.webp` — wizard portrait used by the table UI;
-- `assets/art/card_back.webp` — authored cursed card-back design.
+- procedural pixel masonry and a cursed wooden tabletop;
+- ritual sigil, candles and a pixel card deck;
+- square pixel card frames with separate combat/event treatments;
+- procedural pixel wizard portrait with glowing eyes/orb;
+- framed header/stats/hint panels matching the battle HUD language.
 
-The procedural table/wizard blockout scripts remain in the repository as fallback/reference material but are no longer the primary table visuals.
+The earlier painted assets under `assets/art/` remain in the repository as historical/reference material but are no longer active in the table or combat presentation.
 
 ### 3. Whispering Well event
 
@@ -249,16 +253,16 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Immediate next milestone
 
-Locally verify the battle presentation pass:
+Locally verify the cross-screen pixel-art pass:
 
-- the arena background reads as a ruined dark-fantasy location without obscuring units;
-- torches, banners, bones and ritual markings feel atmospheric rather than noisy;
-- top/bottom HUD frames line up correctly at 1280×720;
-- `РАЗДАЧА X/3` shows the correct run step;
-- the result panel appears correctly after battle;
-- attack lunge, hit feedback, placement, movement and arena bounds still behave correctly.
+- main menu, wizard table, Whispering Well, rewards and run-end all render without layout issues at 1280×720;
+- table cards remain readable and clickable;
+- the procedural wizard portrait fits its frame;
+- Whispering Well choices still enable/disable correctly;
+- reward selection and new-run flow still work unchanged;
+- all screens feel visually related to the battle presentation.
 
-If this presentation level feels right, apply the same pixel-art language to the wizard table, cards, Whispering Well and reward/run-end screens.
+After verification, the next polish step should focus on motion/audio and selective sprite/UI refinement rather than another visual-language reset.
 
 ## Local workflow
 
