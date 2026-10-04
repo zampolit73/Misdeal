@@ -44,7 +44,9 @@ The final composition/readability polish pass has been locally verified and acce
 
 The first Bone Warden boss encounter, including its 50% HP enrage, was confirmed working locally.
 
-The next run-structure pass is now implemented in GitHub and pending local verification: Act 1 contains 12 resolved pre-boss cards followed by the Bone Warden as card 13.
+The longer Act 1 structure is now confirmed working locally: 12 resolved pre-boss cards followed by the Bone Warden as card 13.
+
+The first real post-structure content batch is implemented in GitHub and pending local verification: **ПЕПЕЛЬНЫЙ ПРИВАЛ**, **ЛАВКА МОГИЛЬЩИКА** and **КУЗНИЦА ПРОКЛЯТИЙ** now have real choices instead of the generic prototype resolver.
 
 ## Player-facing language
 
@@ -92,7 +94,10 @@ Currently fully implemented card mechanics:
 - **КОСТЯНОЙ ДОЗОР** — three melee Skeleton units;
 - **ЗАСАДА НА КЛАДБИЩЕ** — two Skeleton units plus one Bone Archer;
 - **ЗАЛП С ВИСЕЛИЦЫ** — one Skeleton plus two Bone Archers;
-- **ШЕПЧУЩИЙ КОЛОДЕЦ** — the existing three-choice risk/reward event.
+- **ШЕПЧУЩИЙ КОЛОДЕЦ** — the existing three-choice risk/reward event;
+- **ПЕПЕЛЬНЫЙ ПРИВАЛ** — choose +15 party HP, +15 gold, +1 party damage, or leave;
+- **ЛАВКА МОГИЛЬЩИКА** — spend gold on +20 party HP, +3 party damage, or a random unowned artifact;
+- **КУЗНИЦА ПРОКЛЯТИЙ** — choose one of three hero-specific artifacts, or refuse.
 
 The remaining new card definitions already participate in the real Act 1 deck/tier/rejection flow, but temporarily resolve through `scenes/event/prototype_card.tscn` until their individual mechanics are implemented.
 
@@ -290,6 +295,22 @@ Act cards are data-driven Resources containing:
 
 Act 1 card resources live under `resources/cards/`.
 
+### Artifacts
+
+`scripts/data/artifact_data.gd`
+
+The first artifact layer is data-driven and persists for the current run through `RunState.artifact_ids`.
+
+Current artifacts:
+
+- **ЩИТ МЕРТВЕЦА** — Knight +40 HP, -15% move speed;
+- **СЛЕПОЙ КОЛЧАН** — Ranger attacks 22% faster but gains +55 minimum range;
+- **РАСКОЛОТЫЙ ФОКУС** — Mage deals 15% less primary damage but gains +55 splash radius and +0.25 splash multiplier.
+
+Artifacts are applied to hero runtime stats when combat units spawn. The run-end summary now lists acquired artifacts.
+
+The shared `scenes/event/act_choice.tscn` scene currently handles Ash Rest, Gravedigger Shop and Curse Forge without introducing a general event-effect framework.
+
 ### Run state
 
 `scripts/core/run_state.gd`
@@ -312,8 +333,8 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 ## Not implemented yet
 
 - individual mechanics for most of the newly defined Act 1 cards;
-- broader gold economy / functional shop;
-- equipment/artifacts;
+- broader shop inventory/economy beyond the first Gravedigger Shop implementation;
+- more artifacts beyond the first three;
 - attack projectiles/animations;
 - broader ability/status-effect system;
 - richer evil wizard presentation;
@@ -323,19 +344,18 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the new Act 1 run structure:
+Locally verify the first real build/economy content batch:
 
-- a fresh run should show two card offers and **КАРТА 1/12**;
-- choosing one offer should permanently reject the other for that run;
-- cards 1-4 should draw only from the early pool, cards 5-8 from mid, and cards 9-12 from late;
-- the three existing combat encounters should still launch real battles and advance only after a reward is taken;
-- Whispering Well should still resolve normally and now advance one Act 1 card;
-- prototype cards should open the generic prototype resolver and advance cleanly back to the table;
-- losing a combat should return to the same selected card as **ПОВТОРИТЬ**;
-- after card 12, the table should show only **КОСТЯНОЙ НАДЗИРАТЕЛЬ**;
-- boss victory -> reward -> run end should still work.
+- **ПЕПЕЛЬНЫЙ ПРИВАЛ** should offer three real bonuses plus refusal and advance the card after a choice;
+- **ЛАВКА МОГИЛЬЩИКА** should disable purchases the player cannot afford, subtract the correct gold, and apply the purchased bonus;
+- the 45-gold shop relic should grant one random artifact the player does not already own;
+- **КУЗНИЦА ПРОКЛЯТИЙ** should present the three artifacts, disable already-owned ones, and persist the chosen artifact;
+- the artifact list on the event screen and run-end summary should update;
+- in the next battle, **ЩИТ МЕРТВЕЦА** should visibly increase Knight durability while slowing him;
+- **СЛЕПОЙ КОЛЧАН** should make Ranger fire faster and kite from a larger minimum distance;
+- **РАСКОЛОТЫЙ ФОКУС** should make Mage splash noticeably broader/stronger while reducing the primary hit.
 
-After this structure is accepted, stop adding run-framework code and replace prototype cards with real mechanics in small batches, starting with recovery/shop/artifact cards and the missing combat archetypes.
+If this batch is accepted, implement the first missing combat-content batch next: **МОГИЛЬНЫЙ ЗВОН**, **КОСТЯНАЯ ДАВКА** and **СТРАЖ СКЛЕПА**, including at least one new enemy behavior instead of only rearranging existing Skeletons.
 
 ## Local workflow
 
