@@ -8,3 +8,9 @@ extends Resource
 @export var enemy_unit_paths: PackedStringArray = PackedStringArray()
 @export var enemy_names: PackedStringArray = PackedStringArray()
 @export var enemy_positions: PackedVector2Array = PackedVector2Array()
+
+
+@export_group("Reinforcements")
+@export var reinforcement_unit_paths: PackedStringArray = PackedStringArray()
+@export var reinforcement_names: PackedStringArray = PackedStringArray()
+@export var reinforcement_positions: PackedVector2Array = PackedVector2Array()
