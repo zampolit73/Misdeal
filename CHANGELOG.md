@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Whispering Well event choices and one-time-per-run lockout confirmed working locally.
 - Three-card encounter selection, three-victory finite run, run-end summary and new-run reset confirmed working locally.
 - First `table -> battle -> reward -> table` loop confirmed working locally.
 - Bone Archer arena-bound retreat fix confirmed working locally.
@@ -21,6 +22,10 @@
 
 ### Added
 
+- First procedural visual blockout for the cursed table with wood grain, ritual markings and candle accents.
+- Styled combat/event card frames with hover depth and distinct event-card treatment.
+- Expanded wizard portrait blockout with stronger silhouette, crown details and pulsing orb.
+- Data-driven unit visual roles and distinct prototype miniatures for Knight, Ranger, Mage, Skeleton and Bone Archer.
 - First non-combat event card: **ШЕПЧУЩИЙ КОЛОДЕЦ**.
 - One-time run event state and three event choices: risk/reward stat trade, gold spend, or refusal.
 - First meaningful gold spend: 25 gold for a party HP bonus at the Whispering Well.
