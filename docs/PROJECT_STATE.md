@@ -44,7 +44,9 @@ The final composition/readability polish pass has been locally verified and acce
 
 The original Bone Warden boss encounter, including its 50% HP enrage, was confirmed working locally. After full Act 1 playtesting the user reported that the boss was too easy and visually insufficiently distinct from ordinary combat.
 
-A Bone Warden gameplay + visual rework is now implemented in GitHub and pending local verification. The first local pull exposed a Godot 4.7.2 type-inference parser error in the new procedural boss-arena chains; that parser issue has been fixed in GitHub and requires a fresh pull before verification.
+A Bone Warden gameplay + visual rework is implemented in GitHub and pending local verification. The first local pull exposed a Godot 4.7.2 type-inference parser error in the new procedural boss-arena chains; that parser issue was fixed.
+
+After comparing the live battle screenshot against the approved richer pixel mockup, the whole battle presentation was rebuilt again. This new battle-visual pass is pending local verification.
 
 The longer Act 1 structure is now confirmed working locally: 12 resolved pre-boss cards followed by the Bone Warden as card 13.
 
@@ -144,6 +146,12 @@ Selecting a card stores it as the active run card. Combat cards also select thei
 The wizard table now uses a hybrid authored-art + live-UI composition based on the approved concept stored at:
 
 - `assets/concepts/approved_table_direction.png`
+
+The battle screen now follows its own approved pixel-art direction stored at:
+
+- `assets/concepts/approved_battle_direction.jpg`
+
+The battle remains live Godot UI/combat rather than a baked screenshot; the reference is used for composition, density, scale and palette.
 
 Runtime table assets derived from that concept:
 
@@ -272,7 +280,7 @@ Reusable combat stats are stored in `UnitData` Resources:
 
 Runtime combat state remains on `BattleUnit`.
 
-`UnitData.visual_role` now selects 48×48 pixel-art combat sprites:
+`UnitData.visual_role` now selects the core 64×64 pixel-art combat sprites:
 
 - `assets/pixel/units/knight.png`
 - `assets/pixel/units/ranger.png`
@@ -281,25 +289,30 @@ Runtime combat state remains on `BattleUnit`.
 - `assets/pixel/units/bone_archer.png`
 - `assets/pixel/units/bone_warden.png` — dedicated final-boss sprite
 
-Combat presentation now prioritizes the sprite silhouette:
+Combat presentation now prioritizes the sprite silhouette and the approved gothic battle mockup:
 
-- unit art is significantly larger;
-- thick portrait circles were removed;
-- thin team rings sit under the unit's feet;
-- HP bars are compact pixel-style bars above the sprite;
-- hero names remain small;
-- enemy instance suffixes such as A/B/C were removed and enemy labels are hidden during combat;
-- the arena uses a restrained pixel-stone renderer instead of a flat empty field.
+- Knight, Ranger, Mage, Skeleton and Bone Archer were replaced with a new 64×64 transparent pixel sprite set;
+- combat sprites are rendered substantially larger so silhouettes read like characters rather than small board icons;
+- thin blue/red team rings remain under the feet;
+- HP bars are wider and higher above the larger art;
+- names sit lower under the characters;
+- the arena is a dense cathedral/crypt scene with masonry, barred recess, pillars, banners, hanging chains, braziers, skulls, bones, rubble, blood and a large ritual circle;
+- player/enemy halves receive restrained cool-blue / warm-red atmosphere washes;
+- the HUD uses heavier dark panels, ornamental corners, side faction plates and a red primary **БОЙ** button;
+- live gameplay labels/buttons remain native Godot controls.
 
-The second presentation pass adds:
+The current presentation pass adds:
 
-- a masonry back wall, ruined pillars and dark-fantasy banners;
-- animated pixel torchlight;
-- skulls, bones, rubble and blood stains around the arena edges;
-- a stronger central ritual sigil and vignette treatment;
-- framed pixel HUD chrome around the encounter header and command area;
-- a real `РАЗДАЧА X/3` indicator driven by `RunState`;
-- a framed victory/defeat result panel;
+- an approved-reference-driven cathedral crypt composition;
+- larger 64×64 combat sprites and revised HP/name layout;
+- animated braziers and candle accents;
+- skulls, bones, rubble, blood and cracked floor detail around the arena;
+- a larger central ritual sigil and stronger vignette treatment;
+- heavy framed HUD chrome around encounter/status/progress/commands;
+- dedicated **ВАШ ОТРЯД** and **НЕЖИТЬ/БОСС** side plates;
+- dynamic `КАРТА X/12` / boss progress from `RunState`;
+- red primary combat-button styling;
+- framed victory/defeat result panel;
 - a short sprite lunge on every attack for extra combat motion.
 
 The older painted unit assets under `assets/art/units/` remain in the repository for reference but are no longer used by combat.
@@ -402,19 +415,18 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the Bone Warden gameplay + visual rework:
+Locally verify the rebuilt battle presentation against `assets/concepts/approved_battle_direction.jpg`:
 
-- the final card must use the new dedicated Bone Warden illustration instead of Bone Patrol art;
-- the boss must use its own crowned/armored pixel sprite, visibly larger and more distinctive than normal Skeletons;
-- the final arena must show a dedicated red ritual/gate/chain treatment that does not appear in ordinary encounters;
-- Bone Warden melee attacks should cleave nearby heroes, making tightly clustered placement dangerous;
-- at 50% HP the fight should visibly enter **Phase II**, show the phase cue, intensify the arena ritual and summon one Bone Archer plus one Bone Thrall;
-- newly summoned units must immediately join the running combat;
-- the phase transition must occur only once;
-- victory/defeat/retry/reward/run-end flow must remain intact;
-- most importantly, the boss should no longer feel easier than the late Act 1 elite encounters.
+- ordinary battles should read as a dense gothic cathedral/crypt instead of a sparse flat grid;
+- the top encounter/status panel, progress panel, side faction plates and bottom command bar should match the reference hierarchy;
+- **БОЙ** should be the dominant red primary action while **ПЕРЕИГРАТЬ** stays subdued;
+- Knight, Ranger, Mage, Skeleton and Bone Archer should use the new 64×64 sprite set and read clearly at the new scale;
+- HP bars, names and team rings must not collide with the larger sprites;
+- hero dragging and all combat bounds must still work across the wider 1240 px arena;
+- enemies must remain readable against the red half of the arena and heroes against the blue half;
+- Bone Warden should preserve its unique boss sprite, boss phase mechanics and stronger boss arena treatment on top of the new general battle presentation.
 
-If the reworked fight is still too easy, tune the boss/add composition before adding any new systems. If difficulty is good but the visual still feels off, do a second art-only pass rather than changing combat again.
+If the composition now matches the desired direction but any individual sprite feels too crude, do a sprite-only art pass without reverting the new battle layout.
 
 ## Local workflow
 
