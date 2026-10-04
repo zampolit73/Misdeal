@@ -41,6 +41,7 @@ var drag_origin := Vector2.ZERO
 
 var hit_flash_time := 0.0
 var hit_pulse_tween: Tween
+var attack_tween: Tween
 var death_tween: Tween
 
 @onready var art_sprite: Sprite2D = $ArtSprite
@@ -307,6 +308,7 @@ func _attack_target() -> void:
 	attack_cooldown = attack_interval
 	var primary_target := target
 	var impact_position := primary_target.global_position
+	_play_attack_feedback(primary_target)
 	primary_target.take_damage(damage)
 
 	if splash_radius <= 0.0 or splash_damage_multiplier <= 0.0:
@@ -324,6 +326,17 @@ func _attack_target() -> void:
 
 		if unit.global_position.distance_to(impact_position) <= splash_radius:
 			unit.take_damage(splash_damage)
+
+func _play_attack_feedback(primary_target: BattleUnit) -> void:
+	if attack_tween != null and attack_tween.is_valid():
+		attack_tween.kill()
+
+	var base_position := Vector2(0.0, -8.0)
+	var direction := global_position.direction_to(primary_target.global_position)
+	art_sprite.position = base_position + direction * 5.0
+
+	attack_tween = create_tween()
+	attack_tween.tween_property(art_sprite, "position", base_position, 0.11).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func take_damage(amount: float) -> void:
 	if not alive:
