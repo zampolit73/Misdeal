@@ -24,7 +24,7 @@ Goal: make preparation meaningfully affect battle outcome.
 - [x] Player can reposition party before combat.
 - [x] Clear preparation phase and combat phase.
 - [x] Prevent illegal placement outside the deployment zone and overlapping hero drops.
-- [ ] Improve combat-time unit spacing/readability.
+- [x] Improve combat-time unit spacing/readability with separation steering.
 - [ ] Move unit definitions toward data-driven Resources.
 - [ ] Add at least one distinct enemy behavior.
 - [ ] Add at least one simple unit ability or combat modifier.
