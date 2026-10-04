@@ -1,6 +1,31 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/main_visual.gd" id="2_visual"]
+
+[sub_resource type="StyleBoxFlat" id="Frame"]
+bg_color = Color(0.024, 0.019, 0.030, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.42, 0.22, 0.24, 1)
+
+[sub_resource type="StyleBoxFlat" id="StartNormal"]
+bg_color = Color(0.065, 0.040, 0.050, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.46, 0.25, 0.20, 1)
+
+[sub_resource type="StyleBoxFlat" id="StartHover"]
+bg_color = Color(0.11, 0.055, 0.055, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.82, 0.46, 0.22, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -12,13 +37,32 @@ grow_vertical = 2
 script = ExtResource("1_main")
 
 [node name="Background" type="ColorRect" parent="."]
+mouse_filter = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.055, 0.045, 0.065, 1)
+color = Color(0.018, 0.014, 0.024, 1)
+
+[node name="Visual" type="Control" parent="."]
+mouse_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_visual")
+
+[node name="Frame" type="Panel" parent="."]
+mouse_filter = 2
+offset_left = 355.0
+offset_top = 150.0
+offset_right = 925.0
+offset_bottom = 565.0
+theme_override_styles/panel = SubResource("Frame")
 
 [node name="Center" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -29,36 +73,48 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="VBoxContainer" parent="Center"]
-custom_minimum_size = Vector2(520, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_constants/separation = 18
 
 [node name="Title" type="Label" parent="Center/Panel"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme_override_colors/font_color = Color(0.94, 0.78, 0.56, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.95)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 58
 text = "MISDEAL"
 horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="Center/Panel"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.73, 0.66, 0.68, 1)
+theme_override_font_sizes/font_size = 18
 text = "Проклятый карточный рогалик с компактным автобоем"
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Status" type="Label" parent="Center/Panel"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.62, 0.58, 0.57, 1)
+theme_override_font_sizes/font_size = 16
 text = "Стол ждёт."
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="Center/Panel"]
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.94, 0.82, 0.62, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StartNormal")
+theme_override_styles/hover = SubResource("StartHover")
+theme_override_styles/pressed = SubResource("StartHover")
 text = "ВОЙТИ В ИГРУ"
 
 [node name="Hint" type="Label" parent="Center/Panel"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.50, 0.47, 0.48, 1)
+theme_override_font_sizes/font_size = 14
 text = "Карты решают путь. Подготовка решает бой."
 horizontal_alignment = 1
