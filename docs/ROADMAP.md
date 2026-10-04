@@ -70,6 +70,10 @@ Target loop:
 - [x] First support enemy behavior: Grave Bellkeeper healing pulse.
 - [x] First swarm encounter: Bone Crush with five Bone Thralls.
 - [x] First elite encounter: Crypt Guard with guaranteed artifact reward.
+- [x] Real Black Altar risk/reward event.
+- [x] Real Chained Prisoner choice event.
+- [x] Real Debtor Bones gamble event.
+- [x] Wizard Tithe temporary-debt event with harder combat and doubled normal reward.
 
 ## Phase 4 — Vertical slice polish
 
