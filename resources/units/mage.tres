@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_unit_data")
 unit_name = "Маг"
+visual_role = "mage"
 max_hp = 80.0
 damage = 24.0
 attack_interval = 1.25
