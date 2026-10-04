@@ -28,7 +28,7 @@ Goal: make preparation meaningfully affect battle outcome.
 - [ ] Move unit definitions toward data-driven Resources.
 - [ ] Add at least one distinct enemy behavior.
 - [ ] Add at least one simple unit ability or combat modifier.
-- [ ] Improve combat feedback enough to read hits and deaths.
+- [x] Improve combat feedback enough to read hits and deaths.
 
 ## Phase 2 — First complete game loop
 
