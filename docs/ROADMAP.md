@@ -34,7 +34,7 @@ Goal: make preparation meaningfully affect battle outcome.
 
 ## Phase 2 — First complete game loop
 
-Status: implementation complete, pending local verification
+Status: complete
 
 Goal: prove the Misdeal concept outside the battle sandbox.
 
