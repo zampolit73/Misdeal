@@ -9,6 +9,7 @@ var party_hp_bonus: float = 0.0
 var party_damage_bonus: float = 0.0
 var last_battle_won := false
 var selected_encounter_path: String = DEFAULT_ENCOUNTER_PATH
+var whispering_well_resolved := false
 
 func reset_run() -> void:
 	gold = 0
@@ -17,12 +18,16 @@ func reset_run() -> void:
 	party_damage_bonus = 0.0
 	last_battle_won = false
 	selected_encounter_path = DEFAULT_ENCOUNTER_PATH
+	whispering_well_resolved = false
 
 func select_encounter(encounter_path: String) -> void:
 	selected_encounter_path = encounter_path
 
 func is_run_complete() -> bool:
 	return deals_survived >= MAX_DEALS
+
+func resolve_whispering_well() -> void:
+	whispering_well_resolved = true
 
 func apply_reward(reward_id: String) -> void:
 	match reward_id:
