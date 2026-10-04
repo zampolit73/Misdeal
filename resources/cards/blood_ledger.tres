@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "blood_ledger"
 title = "КРОВАВАЯ КНИГА"
-card_text = "Каждая страница уже подписана чьим-то именем."
+card_text = "Книга принимает золото, кровь или силу — и всегда пишет цену мелким почерком."
 wizard_line = "Проверь, нет ли твоего. Я мог ошибиться в правописании."
 type_label = "СОБЫТИЕ"
 tier = 2
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
 art_path = "res://assets/pixel/table/cards/whispering_well.png"
-prototype_result_text = "Позднее событие с ценой, зависящей от накопленных ресурсов."
+prototype_result_text = ""
