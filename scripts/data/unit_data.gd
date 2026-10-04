@@ -2,6 +2,7 @@ class_name UnitData
 extends Resource
 
 @export var unit_name: String = "Unit"
+@export var visual_role: String = "unit"
 @export var max_hp: float = 100.0
 @export var damage: float = 10.0
 @export var attack_interval: float = 1.0
