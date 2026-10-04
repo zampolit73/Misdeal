@@ -37,6 +37,11 @@
 
 ### Changed
 
+- Replaced the procedural battle wall/floor/HUD rendering with an authored full-screen gothic battle backdrop based on the user's second approved reference.
+- General battle architecture, throne, candles, banners, chains, skull piles, ritual floor and UI frames are now painted into the backdrop; live units, HP, labels and buttons remain native Godot layers.
+- Added runtime WebP reconstruction through `scripts/battle/authored_backdrop.gd` from five repository text chunks under `assets/pixel/battle/authored_backdrop/`.
+- Reduced `battle_visual.gd` to lightweight dynamic boss overlays so ordinary combat no longer gets a second procedural arena drawn over the authored art.
+- Re-aligned title/status/progress/faction labels and bottom command buttons to the painted frames in the authored backdrop.
 - Rebuilt the live battle composition around the approved gothic pixel reference: denser crypt architecture, larger ritual floor, faction lighting split, heavy HUD framing and stronger command hierarchy.
 - Replaced the core Knight, Ranger, Mage, Skeleton and Bone Archer textures with a new transparent 64×64 pixel set and increased live sprite scale/HP/name spacing.
 - Expanded the live arena from 1200 to 1240 px and adjusted the hero deployment bounds to match the new composition.
