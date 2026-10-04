@@ -1,7 +1,96 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/table.gd" id="1_table"]
 [ext_resource type="Script" path="res://scripts/table/wizard_portrait.gd" id="2_wizard"]
+[ext_resource type="Script" path="res://scripts/table/table_visual.gd" id="3_table_visual"]
+
+[sub_resource type="StyleBoxFlat" id="CardNormal"]
+bg_color = Color(0.105, 0.075, 0.065, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.48, 0.31, 0.18, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 9
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="CardHover"]
+bg_color = Color(0.16, 0.095, 0.075, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.78, 0.53, 0.25, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.25, 0.08, 0.02, 0.55)
+shadow_size = 12
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="EventNormal"]
+bg_color = Color(0.055, 0.095, 0.105, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.20, 0.48, 0.48, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 9
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="EventHover"]
+bg_color = Color(0.07, 0.15, 0.16, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.38, 0.78, 0.72, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.02, 0.20, 0.19, 0.50)
+shadow_size = 12
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="EventDisabled"]
+bg_color = Color(0.045, 0.055, 0.06, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.18, 0.24, 0.25, 0.65)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
 
 [node name="Table" type="Control"]
 layout_mode = 3
@@ -20,15 +109,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.035, 0.025, 0.04, 1)
+color = Color(0.018, 0.014, 0.024, 1)
 
-[node name="TableSurface" type="ColorRect" parent="."]
+[node name="TableSurface" type="Control" parent="."]
 mouse_filter = 2
 offset_left = 55.0
 offset_top = 165.0
 offset_right = 1225.0
 offset_bottom = 630.0
-color = Color(0.12, 0.07, 0.075, 1)
+script = ExtResource("3_table_visual")
 
 [node name="Title" type="Label" parent="."]
 mouse_filter = 2
@@ -36,6 +125,7 @@ offset_left = 55.0
 offset_top = 28.0
 offset_right = 500.0
 offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.88, 0.74, 0.54, 1)
 theme_override_font_sizes/font_size = 34
 text = "СТОЛ ВОЛШЕБНИКА"
 
@@ -45,6 +135,7 @@ offset_left = 55.0
 offset_top = 82.0
 offset_right = 900.0
 offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.82, 0.72, 0.78, 1)
 theme_override_font_sizes/font_size = 20
 text = "Волшебник барабанит пальцами по столу. Выбирай."
 
@@ -54,6 +145,7 @@ offset_left = 55.0
 offset_top = 122.0
 offset_right = 900.0
 offset_bottom = 150.0
+theme_override_colors/font_color = Color(0.64, 0.61, 0.57, 1)
 theme_override_font_sizes/font_size = 16
 text = "Раздача: 1/3    Золото: 0    Здоровье: +0    Урон: +0"
 
@@ -63,7 +155,7 @@ offset_left = 940.0
 offset_top = 18.0
 offset_right = 1215.0
 offset_bottom = 152.0
-color = Color(0.07, 0.035, 0.085, 1)
+color = Color(0.055, 0.022, 0.07, 1)
 
 [node name="WizardPortrait" type="Control" parent="."]
 mouse_filter = 2
@@ -84,25 +176,47 @@ alignment = 1
 [node name="BonePatrolCard" type="Button" parent="Cards"]
 custom_minimum_size = Vector2(255, 320)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.80, 0.68, 1)
+theme_override_colors/font_hover_color = Color(1, 0.91, 0.69, 1)
 theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("CardNormal")
+theme_override_styles/hover = SubResource("CardHover")
+theme_override_styles/pressed = SubResource("CardHover")
 text = "КОСТЯНОЙ ДОЗОР"
 
 [node name="GraveyardCard" type="Button" parent="Cards"]
 custom_minimum_size = Vector2(255, 320)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.80, 0.68, 1)
+theme_override_colors/font_hover_color = Color(1, 0.91, 0.69, 1)
 theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("CardNormal")
+theme_override_styles/hover = SubResource("CardHover")
+theme_override_styles/pressed = SubResource("CardHover")
 text = "ЗАСАДА НА КЛАДБИЩЕ"
 
 [node name="GallowsVolleyCard" type="Button" parent="Cards"]
 custom_minimum_size = Vector2(255, 320)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.80, 0.68, 1)
+theme_override_colors/font_hover_color = Color(1, 0.91, 0.69, 1)
 theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("CardNormal")
+theme_override_styles/hover = SubResource("CardHover")
+theme_override_styles/pressed = SubResource("CardHover")
 text = "ЗАЛП С ВИСЕЛИЦЫ"
 
 [node name="WhisperingWellCard" type="Button" parent="Cards"]
 custom_minimum_size = Vector2(255, 320)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.88, 0.84, 1)
+theme_override_colors/font_hover_color = Color(0.78, 1, 0.94, 1)
+theme_override_colors/font_disabled_color = Color(0.42, 0.48, 0.48, 1)
 theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("EventNormal")
+theme_override_styles/hover = SubResource("EventHover")
+theme_override_styles/pressed = SubResource("EventHover")
+theme_override_styles/disabled = SubResource("EventDisabled")
 text = "ШЕПЧУЩИЙ КОЛОДЕЦ"
 
 [node name="Hint" type="Label" parent="."]
@@ -111,6 +225,7 @@ offset_left = 55.0
 offset_top = 650.0
 offset_right = 1225.0
 offset_bottom = 685.0
+theme_override_colors/font_color = Color(0.56, 0.52, 0.48, 1)
 theme_override_font_sizes/font_size = 16
 text = "Три победы завершают забег. События могут изменить его ход."
 horizontal_alignment = 1
