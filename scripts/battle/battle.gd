@@ -85,12 +85,24 @@ func _spawn_unit(
 	if team == 0:
 		unit.max_hp += RunState.party_hp_bonus
 		unit.damage += RunState.party_damage_bonus
+		_apply_artifacts_to_unit(unit)
 
 	unit.set_combat_bounds(COMBAT_BOUNDS)
 	unit.died.connect(_on_unit_died)
 	unit.placement_rejected.connect(_on_placement_rejected)
 	units_layer.add_child(unit)
 	units.append(unit)
+
+func _apply_artifacts_to_unit(unit: BattleUnit) -> void:
+	for artifact in RunState.get_artifacts_for_role(unit.visual_role):
+		unit.max_hp += artifact.hp_bonus
+		unit.damage *= artifact.damage_multiplier
+		unit.attack_interval = maxf(0.2, unit.attack_interval * artifact.attack_interval_multiplier)
+		unit.attack_range += artifact.attack_range_bonus
+		unit.minimum_range += artifact.minimum_range_bonus
+		unit.splash_radius += artifact.splash_radius_bonus
+		unit.splash_damage_multiplier += artifact.splash_damage_bonus
+		unit.move_speed *= artifact.move_speed_multiplier
 
 func _begin_preparation_phase() -> void:
 	if _is_boss_encounter():
