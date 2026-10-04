@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1_unit_data"]
+
+[resource]
+script = ExtResource("1_unit_data")
+unit_name = "Костяной раб"
+visual_role = "bone_thrall"
+max_hp = 55.0
+damage = 8.0
+attack_interval = 0.9
+attack_range = 50.0
+move_speed = 92.0
+body_radius = 18.0
+separation_padding = 7.0
+separation_strength = 105.0
+visual_scale = 0.85
