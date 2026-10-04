@@ -11,6 +11,7 @@ const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 70), Vector2(525, 340))
 
 @onready var title_label: Label = $Title
 @onready var deal_label: Label = $DealLabel
+@onready var enemy_label: Label = $EnemyLabel
 @onready var units_layer: Node2D = $UnitsLayer
 @onready var status_label: Label = $Status
 @onready var fight_button: Button = $FightButton
@@ -36,9 +37,13 @@ func _ready() -> void:
 	encounter = _load_selected_encounter()
 	title_label.text = "MISDEAL — %s" % encounter.title
 	deal_label.text = "РАЗДАЧА %d/%d" % [RunState.deals_survived + 1, RunState.MAX_DEALS]
+	enemy_label.text = "БОСС" if _is_boss_encounter() else "НЕЖИТЬ"
 	result_backdrop.visible = false
 	_spawn_encounter()
 	_begin_preparation_phase()
+
+func _is_boss_encounter() -> bool:
+	return encounter != null and encounter.encounter_id == "bone_warden"
 
 func _load_selected_encounter() -> EncounterData:
 	if not RunState.selected_encounter_path.is_empty():
@@ -88,7 +93,10 @@ func _spawn_unit(
 	units.append(unit)
 
 func _begin_preparation_phase() -> void:
-	status_label.text = "ПОДГОТОВКА — расставьте героев и нажмите «БОЙ»."
+	if _is_boss_encounter():
+		status_label.text = "ПОСЛЕДНЯЯ РАЗДАЧА — надзиратель впадает в ярость на половине здоровья."
+	else:
+		status_label.text = "ПОДГОТОВКА — расставьте героев и нажмите «БОЙ»."
 	placement_hint.visible = true
 
 	for unit in units:
@@ -142,7 +150,10 @@ func _finish_battle(player_won: bool) -> void:
 
 	if player_won:
 		result_label.text = "ПОБЕДА"
-		result_subtitle.text = "Волшебник выглядит слегка раздражённым."
+		if _is_boss_encounter():
+			result_subtitle.text = "Волшебник впервые перестаёт улыбаться."
+		else:
+			result_subtitle.text = "Волшебник выглядит слегка раздражённым."
 		status_label.text = "Вы пережили раздачу."
 		continue_button.text = "ЗАБРАТЬ НАГРАДУ"
 	else:
