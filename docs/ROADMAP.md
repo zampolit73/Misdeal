@@ -34,16 +34,18 @@ Goal: make preparation meaningfully affect battle outcome.
 
 ## Phase 2 — First complete game loop
 
+Status: implementation complete, pending local verification
+
 Goal: prove the Misdeal concept outside the battle sandbox.
 
 - [x] Create cursed table scene.
-- [x] Present a small table spread with one playable card and two face-down placeholders.
-- [x] Choose the Graveyard Ambush encounter card.
+- [x] Present three playable combat cards.
+- [x] Choose among multiple encounter cards.
 - [x] Launch combat from a card encounter.
 - [x] Resolve victory/defeat back into persistent prototype run state.
 - [x] Present a three-option reward choice.
 - [x] Return to the table with reward effects persisted.
-- [ ] Add multiple playable cards and complete a short finite sequence ending in a run result.
+- [x] Add multiple playable cards and complete a three-victory sequence ending in a run result.
 
 Target loop:
 
