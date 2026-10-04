@@ -18,7 +18,7 @@ Confirmed locally by the user:
 - first `table -> battle -> reward -> table` loop;
 - cleaned-up victory/defeat result overlay.
 
-The three-card encounter selection and three-victory finite run are implemented and confirmed working locally.
+The original three-victory finite run was implemented and confirmed working locally, then deliberately replaced by the longer Act 1 structure described below.
 
 Phase 3 identity work is underway. The first non-combat event card and one-time event flow are confirmed working locally.
 
@@ -42,7 +42,9 @@ The final composition/readability polish pass has been locally verified and acce
 - obsolete procedural skull/goblet/hourglass/books/candle overlays were removed;
 - the lower runner/sigil treatment was simplified and subdued.
 
-The first boss encounter is implemented in GitHub and pending local verification. The third/final deal now becomes a mandatory boss fight against **КОСТЯНОЙ НАДЗИРАТЕЛЬ**; an unresolved Whispering Well may still be used before accepting the boss fight.
+The first Bone Warden boss encounter, including its 50% HP enrage, was confirmed working locally.
+
+The next run-structure pass is now implemented in GitHub and pending local verification: Act 1 contains 12 resolved pre-boss cards followed by the Bone Warden as card 13.
 
 ## Player-facing language
 
@@ -71,27 +73,37 @@ Pressing **ВОЙТИ В ИГРУ** resets the prototype run and opens the wizar
 
 `scenes/table/table.tscn`
 
-Deals 1 and 2 present three playable combat cards plus one one-time event card:
+Act 1 now uses a two-card offer flow:
+
+- the player resolves 12 pre-boss cards;
+- before each card, the wizard offers two cards from the current difficulty tier;
+- choosing one card removes the rejected alternative from that run;
+- cards do not repeat inside the run;
+- after cards 1-4 the pool moves from early to mid tier;
+- after cards 5-8 it moves from mid to late tier;
+- after card 12 the only remaining progression card is **КОСТЯНОЙ НАДЗИРАТЕЛЬ**.
+
+A selected combat card remains active after defeat. Returning to the table shows that same card as **ПОВТОРИТЬ**, rather than generating a fresh offer.
+
+The structural Act 1 pool contains 24 unique pre-boss card definitions: 8 early, 8 mid and 8 late. This is intentionally large enough for twelve two-card offers where the rejected alternative leaves the run.
+
+Currently fully implemented card mechanics:
 
 - **КОСТЯНОЙ ДОЗОР** — three melee Skeleton units;
 - **ЗАСАДА НА КЛАДБИЩЕ** — two Skeleton units plus one Bone Archer;
 - **ЗАЛП С ВИСЕЛИЦЫ** — one Skeleton plus two Bone Archers;
-- **ШЕПЧУЩИЙ КОЛОДЕЦ** — a non-combat risk/reward event, available once per run.
+- **ШЕПЧУЩИЙ КОЛОДЕЦ** — the existing three-choice risk/reward event.
 
-Deal 3 is the boss deal:
-
-- **КОСТЯНОЙ НАДЗИРАТЕЛЬ** replaces the normal combat-card choices and is required to finish the run;
-- if Whispering Well has not yet been resolved, it remains available beside the boss card before the player accepts the fight;
-- if Whispering Well is already resolved, the boss card is presented alone.
+The remaining new card definitions already participate in the real Act 1 deck/tier/rejection flow, but temporarily resolve through `scenes/event/prototype_card.tscn` until their individual mechanics are implemented.
 
 The table displays:
 
-- current deal out of 3;
+- current card progress out of 12, or **БОСС**;
 - gold;
 - party HP bonus;
 - party damage bonus.
 
-Selecting a combat card stores its encounter in `RunState` and launches battle.
+Selecting a card stores it as the active run card. Combat cards also select their `EncounterData`; event/prototype cards route to their configured scene.
 
 The wizard table now uses a hybrid authored-art + live-UI composition based on the approved concept stored at:
 
@@ -108,9 +120,9 @@ Runtime table assets derived from that concept:
 
 The lower tabletop, ritual runner and sigil remain procedural so the layout can stay responsive to live UI. Earlier procedural side props and candles were removed after local visual review because they conflicted with the authored backdrop.
 
-The four encounter/event cards are still real Godot `Button` controls with live titles/descriptions/states. The approved art is used inside those interactive cards instead of baking run state into a static screenshot.
+The table still uses real Godot `Button` controls. Two existing card slots are now populated dynamically from `RunCardData`, including title, type, description, wizard hover line and art path.
 
-The top HUD remains dynamic and shows the actual deal count, gold, party HP modifier and damage modifier.
+The top HUD remains dynamic and shows actual Act 1 card progress, gold, party HP modifier and damage modifier.
 
 The earlier painted assets under `assets/art/` remain in the repository as historical/reference material.
 
@@ -124,7 +136,7 @@ The first non-combat event offers three choices:
 - spend 25 gold: +25 party HP;
 - walk away with no stat change.
 
-The event is resolved only once per run and does not advance the three-victory run counter.
+The event remains one-time because its card leaves the run after being offered. Resolving it now completes the current Act 1 card and advances card progress.
 
 ### 4. Combat
 
@@ -174,19 +186,20 @@ Victory offers one of three persistent rewards:
 - **ЖЕЛЕЗНЫЙ ОБЕРЕГ**: +20 HP to every hero;
 - **ЗАКАЛЁННАЯ СТАЛЬ**: +3 damage to every hero.
 
-Choosing a reward increments `deals_survived`.
+Choosing a reward applies the reward and completes the active combat card.
 
-After victories 1 and 2, the player returns to the table.
+Normal combat victories return to the table and advance Act 1 card progress.
 
-After victory 3, the player goes to the run-end screen.
+After defeating Bone Warden and taking its reward, `boss_defeated` becomes true and the player goes to the run-end screen.
 
 ### 6. Run end
 
 `scenes/run_end/run_end.tscn`
 
-After three successful deals, the run ends and displays:
+After 12 resolved pre-boss cards plus the Bone Warden, the run ends and displays:
 
-- deals survived;
+- pre-boss cards completed;
+- combat victories;
 - gold;
 - accumulated HP bonus;
 - accumulated damage bonus.
@@ -260,6 +273,23 @@ Current encounter files:
 - `resources/encounters/gallows_volley.tres`
 - `resources/encounters/bone_warden.tres` — final-deal boss encounter.
 
+### Run-card data
+
+`scripts/data/run_card_data.gd`
+
+Act cards are data-driven Resources containing:
+
+- card id;
+- Russian title/description/wizard line;
+- display type;
+- early/mid/late tier;
+- resolution type;
+- target encounter/event scene;
+- art path;
+- temporary prototype-result text.
+
+Act 1 card resources live under `resources/cards/`.
+
 ### Run state
 
 `scripts/core/run_state.gd`
@@ -267,19 +297,23 @@ Current encounter files:
 The current prototype run state stores:
 
 - gold;
-- deals survived;
+- combat victories in `deals_survived` for backward compatibility;
+- resolved pre-boss card count;
+- remaining, offered, rejected and resolved card ids;
+- active selected card id;
 - global party HP bonus;
 - global party damage bonus;
 - last battle result;
-- selected encounter path.
+- selected encounter path;
+- boss completion state.
 
-The current vertical-slice run ends after 3 rewarded victories.
+Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Not implemented yet
 
-- additional non-combat event cards;
-- broader gold economy / shop;
-- equipment;
+- individual mechanics for most of the newly defined Act 1 cards;
+- broader gold economy / functional shop;
+- equipment/artifacts;
 - attack projectiles/animations;
 - broader ability/status-effect system;
 - richer evil wizard presentation;
@@ -289,17 +323,19 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Immediate next milestone
 
-Locally verify and tune the first boss encounter:
+Locally verify the new Act 1 run structure:
 
-- after two rewarded victories, the table should switch to the **КОСТЯНОЙ НАДЗИРАТЕЛЬ** boss deal;
-- the two normal extra combat cards should be hidden on the final deal;
-- an unresolved Whispering Well should still be available before the boss, while a resolved well should be hidden;
-- the boss should spawn larger than normal Skeletons with a visible name and wider HP bar;
-- at roughly 50% HP, **ЯРОСТЬ!** should appear once and the boss should become noticeably faster and more dangerous;
-- boss victory should still flow through reward -> run end as the third rewarded victory;
-- defeat should return to the same final-deal boss state.
+- a fresh run should show two card offers and **КАРТА 1/12**;
+- choosing one offer should permanently reject the other for that run;
+- cards 1-4 should draw only from the early pool, cards 5-8 from mid, and cards 9-12 from late;
+- the three existing combat encounters should still launch real battles and advance only after a reward is taken;
+- Whispering Well should still resolve normally and now advance one Act 1 card;
+- prototype cards should open the generic prototype resolver and advance cleanly back to the table;
+- losing a combat should return to the same selected card as **ПОВТОРИТЬ**;
+- after card 12, the table should show only **КОСТЯНОЙ НАДЗИРАТЕЛЬ**;
+- boss victory -> reward -> run end should still work.
 
-The current boss reuses the Skeleton pixel sprite at a larger scale as a gameplay-first placeholder. Once the fight reads and balances well locally, give the Bone Warden its own authored pixel sprite/card art instead of expanding the boss framework prematurely.
+After this structure is accepted, stop adding run-framework code and replace prototype cards with real mechanics in small batches, starting with recovery/shop/artifact cards and the missing combat archetypes.
 
 ## Local workflow
 
