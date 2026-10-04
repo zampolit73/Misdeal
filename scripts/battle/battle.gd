@@ -1,12 +1,14 @@
 extends Control
 
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
+const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 70), Vector2(525, 340))
 
 @onready var units_layer: Node2D = $UnitsLayer
 @onready var status_label: Label = $Status
 @onready var fight_button: Button = $FightButton
 @onready var restart_button: Button = $RestartButton
 @onready var result_label: Label = $Result
+@onready var placement_hint: Label = $PlacementHint
 
 var units: Array[BattleUnit] = []
 var combat_started := false
@@ -17,6 +19,7 @@ func _ready() -> void:
 	restart_button.pressed.connect(_on_restart_pressed)
 	restart_button.disabled = true
 	_spawn_test_encounter()
+	_begin_preparation_phase()
 
 func _spawn_test_encounter() -> void:
 	_spawn_unit("Knight", 0, Vector2(220, 145), 150.0, 18.0, 0.90, 56.0, 84.0)
@@ -47,8 +50,20 @@ func _spawn_unit(
 	unit.move_speed = speed
 	unit.position = spawn_position
 	unit.died.connect(_on_unit_died)
+	unit.placement_rejected.connect(_on_placement_rejected)
 	units_layer.add_child(unit)
 	units.append(unit)
+
+func _begin_preparation_phase() -> void:
+	status_label.text = "PREPARATION — drag your heroes, then press FIGHT."
+	placement_hint.visible = true
+
+	for unit in units:
+		if unit.team == 0:
+			unit.enable_placement(PLAYER_PLACEMENT_BOUNDS)
+
+func _on_placement_rejected(unit: BattleUnit) -> void:
+	status_label.text = "%s cannot be placed on top of another hero." % unit.display_name
 
 func _on_fight_pressed() -> void:
 	if combat_started or battle_finished:
@@ -58,6 +73,7 @@ func _on_fight_pressed() -> void:
 	fight_button.disabled = true
 	fight_button.text = "FIGHTING..."
 	status_label.text = "The wager is sealed. No turning back."
+	placement_hint.visible = false
 
 	for unit in units:
 		if unit.alive:
@@ -88,6 +104,7 @@ func _finish_battle(player_won: bool) -> void:
 
 	for unit in units:
 		unit.combat_started = false
+		unit.disable_placement()
 
 	if player_won:
 		result_label.text = "VICTORY\nThe wizard looks mildly annoyed."
