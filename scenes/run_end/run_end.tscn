@@ -78,7 +78,7 @@ offset_right = 1120.0
 offset_bottom = 158.0
 theme_override_colors/font_color = Color(0.74, 0.66, 0.70, 1)
 theme_override_font_sizes/font_size = 18
-text = "Три раздачи. И ты всё ещё дышишь. Не привыкай."
+text = "Двенадцать карт и мой надзиратель. Пожалуй, ты заслужил ещё одну партию."
 horizontal_alignment = 1
 
 [node name="SummaryPanel" type="Panel" parent="."]
