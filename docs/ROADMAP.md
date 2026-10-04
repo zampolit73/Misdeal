@@ -95,6 +95,8 @@ Only after the loop is fun:
 - [x] Integrate first authored table, wizard, card-back and unit miniature assets.
 - [x] First pixel-art combat readability redesign with larger silhouettes, ground rings and compact HP UI.
 - [x] Pixel battle presentation pass with atmospheric arena decor, HUD chrome and attack motion.
+- [x] Recompose live battle UI/arena toward the approved gothic pixel mockup.
+- [x] Replace the core Knight/Ranger/Mage/Skeleton/Bone Archer set with 64×64 pixel sprites and scale the live unit presentation accordingly.
 - [x] Convert main menu, table/cards/wizard, event, reward and run-end UI to the same pixel-art language.
 - [x] Rebuild the wizard table around an approved authored pixel concept while keeping live Godot HUD/cards.
 - [ ] Coherent visual language for table/cards/miniatures;
