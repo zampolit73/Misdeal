@@ -57,6 +57,14 @@ func _configure_card() -> void:
 			_configure_broken_crown()
 		"last_camp":
 			_configure_last_camp()
+		"rattling_bridge":
+			_configure_rattling_bridge()
+		"lost_purse":
+			_configure_lost_purse()
+		"candle_seller":
+			_configure_candle_seller()
+		"bone_tax":
+			_configure_bone_tax()
 		_:
 			push_warning("Unsupported act choice card: %s" % active_card.card_id)
 			leave_button.text = "ВЕРНУТЬСЯ К СТОЛУ"
@@ -194,6 +202,49 @@ func _configure_last_camp() -> void:
 	choice_a.pressed.connect(_resolve_last_camp.bind("fortify"))
 	choice_b.pressed.connect(_resolve_last_camp.bind("sharpen"))
 	choice_c.pressed.connect(_resolve_last_camp.bind("supplies"))
+
+func _configure_rattling_bridge() -> void:
+	choice_a.text = "ПЕРЕБЕЖАТЬ\n\n50%: +25 золота\n50%: -20 здоровья"
+	choice_b.text = "СОБРАТЬ МОНЕТЫ С ПЕРИЛ\n\n+15 золота\n-5 здоровья"
+	choice_c.text = "ИДТИ МЕДЛЕННО\n\nБез награды и без риска"
+	leave_button.visible = false
+
+	choice_a.pressed.connect(_resolve_rattling_bridge.bind("rush"))
+	choice_b.pressed.connect(_resolve_rattling_bridge.bind("scavenge"))
+	choice_c.pressed.connect(_resolve_rattling_bridge.bind("careful"))
+
+func _configure_lost_purse() -> void:
+	choice_a.text = "ВЗЯТЬ ВЕРХНИЕ МОНЕТЫ\n\n+15 золота"
+	choice_b.text = "ЗАПУСТИТЬ РУКУ ГЛУБЖЕ\n\n+35 золота\n-10 здоровья"
+	choice_c.text = "ВЫРВАТЬ КОШЕЛЬ ЦЕЛИКОМ\n\n+55 золота\n-25 здоровья"
+	leave_button.text = "ОСТАВИТЬ МЕРТВЕЦУ"
+
+	choice_a.pressed.connect(_resolve_lost_purse.bind("safe"))
+	choice_b.pressed.connect(_resolve_lost_purse.bind("greedy"))
+	choice_c.pressed.connect(_resolve_lost_purse.bind("all_in"))
+
+func _configure_candle_seller() -> void:
+	choice_a.text = "БЕЛАЯ СВЕЧА — 10\n\n+10 здоровья отряду"
+	choice_b.text = "КРАСНАЯ СВЕЧА — 15\n\n+1 урона отряду"
+	choice_c.text = "УКРАСТЬ ЯЩИК\n\n+20 золота\n-10 здоровья"
+	choice_a.disabled = RunState.gold < 10
+	choice_b.disabled = RunState.gold < 15
+	leave_button.text = "НИЧЕГО НЕ ПОКУПАТЬ"
+
+	choice_a.pressed.connect(_resolve_candle_seller.bind("white"))
+	choice_b.pressed.connect(_resolve_candle_seller.bind("red"))
+	choice_c.pressed.connect(_resolve_candle_seller.bind("steal"))
+
+func _configure_bone_tax() -> void:
+	choice_a.text = "ЗАПЛАТИТЬ 25 ЗОЛОТА\n\nПройти без последствий"
+	choice_b.text = "ЗАПЛАТИТЬ КРОВЬЮ\n\n-15 здоровья отряду"
+	choice_c.text = "ПРОРВАТЬСЯ СИЛОЙ\n\n-25 здоровья\n+2 урона отряду"
+	choice_a.disabled = RunState.gold < 25
+	leave_button.visible = false
+
+	choice_a.pressed.connect(_resolve_bone_tax.bind("gold"))
+	choice_b.pressed.connect(_resolve_bone_tax.bind("blood"))
+	choice_c.pressed.connect(_resolve_bone_tax.bind("force"))
 
 func _resolve_ash_rest(choice: String) -> void:
 	if resolved:
@@ -412,6 +463,82 @@ func _resolve_last_camp(choice: String) -> void:
 			RunState.gold += 25
 			_finish("В забытых сумках нашлось 25 золота.")
 
+func _resolve_rattling_bridge(choice: String) -> void:
+	if resolved:
+		return
+
+	match choice:
+		"rush":
+			if randf() < 0.5:
+				RunState.gold += 25
+				_finish("Мост выдерживает. Между костями нашлось 25 золота.")
+			else:
+				RunState.party_hp_bonus -= 20.0
+				_finish("Мост кусается за ноги. Здоровье отряда -20.")
+		"scavenge":
+			RunState.gold += 15
+			RunState.party_hp_bonus -= 5.0
+			_finish("Переход занимает вечность. Получено 15 золота, здоровье -5.")
+		"careful":
+			_finish("Вы переходите мост медленно и скучно. Даже волшебник зевает.")
+
+func _resolve_lost_purse(choice: String) -> void:
+	if resolved:
+		return
+
+	match choice:
+		"safe":
+			RunState.gold += 15
+			_finish("Вы берёте только то, что лежит сверху. Получено 15 золота.")
+		"greedy":
+			RunState.gold += 35
+			RunState.party_hp_bonus -= 10.0
+			_finish("Мёртвые пальцы сжимаются. +35 золота, здоровье -10.")
+		"all_in":
+			RunState.gold += 55
+			RunState.party_hp_bonus -= 25.0
+			_finish("Кошель ваш. Кусок руки тоже. +55 золота, здоровье -25.")
+
+func _resolve_candle_seller(choice: String) -> void:
+	if resolved:
+		return
+
+	match choice:
+		"white":
+			if RunState.gold < 10:
+				return
+			RunState.gold -= 10
+			RunState.party_hp_bonus += 10.0
+			_finish("Белая свеча горит ровно. Здоровье отряда +10.")
+		"red":
+			if RunState.gold < 15:
+				return
+			RunState.gold -= 15
+			RunState.party_damage_bonus += 1.0
+			_finish("Красный воск капает на оружие. Урон отряда +1.")
+		"steal":
+			RunState.gold += 20
+			RunState.party_hp_bonus -= 10.0
+			_finish("Торговец оказывается не настолько слеп. +20 золота, здоровье -10.")
+
+func _resolve_bone_tax(choice: String) -> void:
+	if resolved:
+		return
+
+	match choice:
+		"gold":
+			if RunState.gold < 25:
+				return
+			RunState.gold -= 25
+			_finish("Пошлина уплачена. Страж даже не притворяется благодарным.")
+		"blood":
+			RunState.party_hp_bonus -= 15.0
+			_finish("Страж принимает кровь вместо монет. Здоровье отряда -15.")
+		"force":
+			RunState.party_hp_bonus -= 25.0
+			RunState.party_damage_bonus += 2.0
+			_finish("Пошлина превращается в драку. Здоровье -25, урон отряда +2.")
+
 func _resolve_leave() -> void:
 	if resolved:
 		return
@@ -437,6 +564,10 @@ func _resolve_leave() -> void:
 			_finish("Корона остаётся без хозяина. Возможно, это самый разумный исход.")
 		"last_camp":
 			_finish("Вы не задерживаетесь. До надзирателя остаётся совсем немного.")
+		"lost_purse":
+			_finish("Вы оставляете кошель мертвецу. Волшебник разочарован вашей сдержанностью.")
+		"candle_seller":
+			_finish("Свечи остаются у торговца. Темнота — у вас.")
 		_:
 			_finish("Вы возвращаетесь к столу.")
 
