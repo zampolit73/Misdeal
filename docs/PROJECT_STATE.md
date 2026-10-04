@@ -23,7 +23,9 @@ Phase 3 identity work is underway. The first non-combat event card and one-time 
 
 The earlier painted-art integration was locally judged too hard to read in combat. The user chose a dark-fantasy pixel-art direction.
 
-A first pixel-art combat readability redesign is now implemented in GitHub and pending local verification.
+The first pixel-art combat readability redesign is implemented and confirmed working locally.
+
+A second battle presentation pass is now implemented in GitHub and pending local verification.
 
 ## Player-facing language
 
@@ -186,6 +188,17 @@ Combat presentation now prioritizes the sprite silhouette:
 - enemy instance suffixes such as A/B/C were removed and enemy labels are hidden during combat;
 - the arena uses a restrained pixel-stone renderer instead of a flat empty field.
 
+The second presentation pass adds:
+
+- a masonry back wall, ruined pillars and dark-fantasy banners;
+- animated pixel torchlight;
+- skulls, bones, rubble and blood stains around the arena edges;
+- a stronger central ritual sigil and vignette treatment;
+- framed pixel HUD chrome around the encounter header and command area;
+- a real `РАЗДАЧА X/3` indicator driven by `RunState`;
+- a framed victory/defeat result panel;
+- a short sprite lunge on every attack for extra combat motion.
+
 The older painted unit assets under `assets/art/units/` remain in the repository for reference but are no longer used by combat.
 
 ### Encounter data
@@ -236,16 +249,16 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Immediate next milestone
 
-Locally verify the pixel-art combat readability pass:
+Locally verify the battle presentation pass:
 
-- Knight, Ranger, Mage, Skeleton and Bone Archer are recognizable without relying on labels;
-- sprites are large enough at 1280×720;
-- team rings read as ground markers rather than portrait circles;
-- HP bars are readable but no longer dominate the unit;
-- enemy duplicates do not clutter the battlefield with A/B/C labels;
-- placement, movement, hit/death feedback and arena bounds still work unchanged.
+- the arena background reads as a ruined dark-fantasy location without obscuring units;
+- torches, banners, bones and ritual markings feel atmospheric rather than noisy;
+- top/bottom HUD frames line up correctly at 1280×720;
+- `РАЗДАЧА X/3` shows the correct run step;
+- the result panel appears correctly after battle;
+- attack lunge, hit feedback, placement, movement and arena bounds still behave correctly.
 
-After verification, continue the same pixel-art language across the wizard table, cards, event scene and remaining UI.
+If this presentation level feels right, apply the same pixel-art language to the wizard table, cards, Whispering Well and reward/run-end screens.
 
 ## Local workflow
 
