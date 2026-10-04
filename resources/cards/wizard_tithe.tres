@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "wizard_tithe"
 title = "ДЕСЯТИНА ВОЛШЕБНИКА"
-card_text = "Хозяин стола протягивает ладонь и молча ждёт."
+card_text = "Заплатить золотом, кровью или отказаться и принять долг волшебнику."
 wizard_line = "Не заставляй меня повторять просьбу. Это портит настроение."
 type_label = "ОСОБОЕ"
 tier = 2
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
 art_path = "res://assets/pixel/table/cards/gallows_volley.png"
-prototype_result_text = "Позже: заплатить золотом или получить проклятие с усиленной наградой."
+prototype_result_text = ""
