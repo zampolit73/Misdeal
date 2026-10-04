@@ -203,3 +203,16 @@ The active table uses extracted authored layers/illustrations from that concept 
 - card selection and scene transitions.
 
 Use the same approach for previous generated battle/table concepts: extract reusable art pieces when useful, but do not embed screenshots whose UI or gameplay state would become stale.
+
+## D017 — Final vertical-slice deal is the first boss fight
+
+Date: 2026-10-04  
+Status: accepted for prototype
+
+The third and final combat deal of the current three-victory vertical slice is a mandatory boss encounter against **Костяной надзиратель**.
+
+Normal combat-card choices are replaced on the final deal so the run has a clear climax. If the one-time Whispering Well event has not yet been resolved, it may still be used before accepting the boss fight.
+
+The first boss deliberately uses a small extension of `UnitData` rather than a general ability framework: optional boss scale plus a one-time HP-threshold enrage modifier. This is enough to test boss pacing and readability without introducing a broad status/ability system before the vertical slice needs one.
+
+The boss currently reuses the Skeleton pixel sprite at a larger scale as a temporary gameplay placeholder. A unique authored boss sprite/card illustration should follow only after the fight is locally validated.
