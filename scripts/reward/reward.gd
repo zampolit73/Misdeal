@@ -15,6 +15,7 @@ func _ready() -> void:
 func _choose_reward(reward_id: String) -> void:
 	_disable_reward_buttons()
 	RunState.apply_reward(reward_id)
+	RunState.complete_active_card()
 	summary_label.text = "Взято. У каждого дара за этим столом есть цена."
 	await get_tree().create_timer(0.35).timeout
 
