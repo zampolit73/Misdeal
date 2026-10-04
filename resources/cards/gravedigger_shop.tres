@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "gravedigger_shop"
+title = "ЛАВКА МОГИЛЬЩИКА"
+card_text = "Лопаты, обереги и вещи, которые лучше не нюхать."
+wizard_line = "Покупай. Деньги всё равно не переживут тебя."
+type_label = "ЛАВКА"
+tier = 1
+resolution_type = "prototype"
+target_path = "res://scenes/event/prototype_card.tscn"
+art_path = "res://assets/pixel/table/cards/gallows_volley.png"
+prototype_result_text = "Это будущий магазин лечения, стат-бонусов и артефактов."
