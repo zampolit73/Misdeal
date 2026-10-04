@@ -369,3 +369,24 @@ The visual priorities are:
 - character-scale combat sprites rather than tiny tactical icons.
 
 The core Knight/Ranger/Mage/Skeleton/Bone Archer assets are now transparent 64×64 pixel sprites. Bone Warden keeps its separate authored boss sprite. Do not return to the small-icon combat scale unless local readability testing proves the larger scale blocks tactical information.
+
+## D027 — The production battle layout uses an authored backdrop with live gameplay layers
+
+Date: 2026-10-05  
+Status: accepted for vertical-slice production layout
+
+Local comparison showed that the procedural recreation of the approved battle mockup still looked like the earlier flat prototype rather than the richer second reference.
+
+The general battle arena is therefore no longer drawn procedurally. A full-screen authored gothic battle backdrop now provides:
+
+- cathedral/throne architecture;
+- banners, chains, braziers and candles;
+- skull/bone edge dressing;
+- detailed stone floor and ritual sigil;
+- top HUD frames, side faction plates and bottom command frames.
+
+Gameplay stays live on top: units, HP bars, names, team rings, drag placement, movement, attacks, encounter text, buttons, result overlays and boss phase logic are still native Godot nodes/scripts.
+
+For the current browser-side repository workflow, the WebP backdrop is stored as five base64 text chunks under `assets/pixel/battle/authored_backdrop/` and decoded once by `scripts/battle/authored_backdrop.gd`. This packaging detail must not leak into gameplay logic.
+
+`scripts/battle/battle_visual.gd` is now restricted to dynamic overlays such as Bone Warden phase effects. Do not rebuild the ordinary arena procedurally unless the authored backdrop is deliberately replaced by another approved art asset.
