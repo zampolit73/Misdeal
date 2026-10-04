@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Combat-time unit separation confirmed working locally.
 - Pre-battle hero dragging confirmed working locally.
 
 ### Fixed
@@ -13,6 +14,9 @@
 
 ### Added
 
+- Hit flash and impact scale pulse when units take damage.
+- Floating damage numbers.
+- Short shrink/fade feedback on unit death.
 - Combat-time separation steering so living units no longer stack into a single point.
 - Pre-battle preparation phase.
 - Drag-and-drop repositioning for player heroes.
