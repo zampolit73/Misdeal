@@ -1,92 +1,99 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/table.gd" id="1_table"]
-[ext_resource type="Script" path="res://scripts/table/table_visual.gd" id="2_table_visual"]
-[ext_resource type="Script" path="res://scripts/table/wizard_portrait.gd" id="3_wizard"]
+[ext_resource type="Script" path="res://scripts/table/table_visual.gd" id="2_visual"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/table_wizard_layer.png" id="3_wizard"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/misdeal_logo.png" id="4_logo"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/cards/bone_patrol.png" id="5_bone"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/cards/graveyard_ambush.png" id="6_grave"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/cards/gallows_volley.png" id="7_gallows"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/cards/whispering_well.png" id="8_well"]
 
-[sub_resource type="StyleBoxFlat" id="TopPanel"]
-bg_color = Color(0.028, 0.021, 0.032, 0.96)
+[sub_resource type="StyleBoxFlat" id="HudPanel"]
+bg_color = Color(0.025, 0.018, 0.026, 0.95)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.34, 0.22, 0.22, 1)
+border_color = Color(0.48, 0.26, 0.20, 1)
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 6
 
-[sub_resource type="StyleBoxFlat" id="WizardPanel"]
-bg_color = Color(0.045, 0.022, 0.052, 0.98)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.46, 0.20, 0.36, 1)
-
-[sub_resource type="StyleBoxFlat" id="CardNormal"]
-bg_color = Color(0.075, 0.045, 0.044, 0.98)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.44, 0.25, 0.17, 1)
-shadow_color = Color(0, 0, 0, 0.52)
-shadow_size = 7
-content_margin_left = 12.0
-content_margin_top = 14.0
-content_margin_right = 12.0
-content_margin_bottom = 14.0
-
-[sub_resource type="StyleBoxFlat" id="CardHover"]
-bg_color = Color(0.115, 0.062, 0.050, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.78, 0.48, 0.22, 1)
-shadow_color = Color(0.35, 0.10, 0.04, 0.55)
-shadow_size = 10
-content_margin_left = 12.0
-content_margin_top = 14.0
-content_margin_right = 12.0
-content_margin_bottom = 14.0
-
-[sub_resource type="StyleBoxFlat" id="EventNormal"]
-bg_color = Color(0.035, 0.075, 0.078, 0.98)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.20, 0.48, 0.46, 1)
-shadow_color = Color(0, 0, 0, 0.52)
-shadow_size = 7
-content_margin_left = 12.0
-content_margin_top = 14.0
-content_margin_right = 12.0
-content_margin_bottom = 14.0
-
-[sub_resource type="StyleBoxFlat" id="EventHover"]
-bg_color = Color(0.045, 0.115, 0.112, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.35, 0.75, 0.68, 1)
-shadow_color = Color(0.02, 0.20, 0.18, 0.50)
-shadow_size = 10
-content_margin_left = 12.0
-content_margin_top = 14.0
-content_margin_right = 12.0
-content_margin_bottom = 14.0
-
-[sub_resource type="StyleBoxFlat" id="EventDisabled"]
-bg_color = Color(0.032, 0.038, 0.042, 0.90)
+[sub_resource type="StyleBoxFlat" id="LinePanel"]
+bg_color = Color(0.022, 0.016, 0.024, 0.90)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.15, 0.22, 0.22, 0.70)
-content_margin_left = 12.0
-content_margin_top = 14.0
-content_margin_right = 12.0
-content_margin_bottom = 14.0
+border_color = Color(0.27, 0.15, 0.18, 0.9)
+
+[sub_resource type="StyleBoxFlat" id="CardNormal"]
+bg_color = Color(0.050, 0.026, 0.028, 0.985)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.48, 0.21, 0.14, 1)
+shadow_color = Color(0, 0, 0, 0.60)
+shadow_size = 8
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="CardHover"]
+bg_color = Color(0.075, 0.033, 0.028, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.92, 0.45, 0.16, 1)
+shadow_color = Color(0.48, 0.12, 0.03, 0.62)
+shadow_size = 12
+content_margin_left = 9.0
+content_margin_top = 9.0
+content_margin_right = 9.0
+content_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxFlat" id="EventNormal"]
+bg_color = Color(0.025, 0.050, 0.054, 0.985)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.22, 0.58, 0.56, 1)
+shadow_color = Color(0, 0, 0, 0.60)
+shadow_size = 8
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="EventHover"]
+bg_color = Color(0.030, 0.075, 0.078, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.36, 0.90, 0.82, 1)
+shadow_color = Color(0.04, 0.36, 0.32, 0.48)
+shadow_size = 12
+content_margin_left = 9.0
+content_margin_top = 9.0
+content_margin_right = 9.0
+content_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxFlat" id="EventDisabled"]
+bg_color = Color(0.018, 0.026, 0.028, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.13, 0.22, 0.22, 0.72)
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 
 [node name="Table" type="Control"]
 layout_mode = 3
@@ -105,7 +112,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.018, 0.014, 0.024, 1)
+color = Color(0.012, 0.008, 0.016, 1)
 
 [node name="TableVisual" type="Control" parent="."]
 mouse_filter = 2
@@ -115,134 +122,352 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_table_visual")
+script = ExtResource("2_visual")
 
-[node name="HeaderPanel" type="Panel" parent="."]
+[node name="WizardBackdrop" type="TextureRect" parent="."]
 mouse_filter = 2
-offset_left = 34.0
+offset_right = 1280.0
+offset_bottom = 398.0
+texture_filter = 1
+texture = ExtResource("3_wizard")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="TopShade" type="ColorRect" parent="."]
+mouse_filter = 2
+offset_right = 1280.0
+offset_bottom = 235.0
+color = Color(0.01, 0.008, 0.014, 0.17)
+
+[node name="Logo" type="TextureRect" parent="."]
+mouse_filter = 2
+offset_left = 28.0
 offset_top = 18.0
-offset_right = 915.0
-offset_bottom = 154.0
-theme_override_styles/panel = SubResource("TopPanel")
+offset_right = 268.0
+offset_bottom = 127.0
+texture_filter = 1
+texture = ExtResource("4_logo")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Title" type="Label" parent="."]
+[node name="HudPanel" type="Panel" parent="."]
 mouse_filter = 2
-offset_left = 55.0
-offset_top = 34.0
-offset_right = 560.0
-offset_bottom = 70.0
-theme_override_colors/font_color = Color(0.92, 0.80, 0.62, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 28
-text = "СТОЛ ВОЛШЕБНИКА"
-
-[node name="WizardLine" type="Label" parent="."]
-mouse_filter = 2
-offset_left = 55.0
-offset_top = 78.0
-offset_right = 890.0
-offset_bottom = 108.0
-theme_override_colors/font_color = Color(0.78, 0.68, 0.72, 1)
-theme_override_font_sizes/font_size = 17
-text = "Волшебник барабанит пальцами по столу. Выбирай."
+offset_left = 300.0
+offset_top = 24.0
+offset_right = 1115.0
+offset_bottom = 92.0
+theme_override_styles/panel = SubResource("HudPanel")
 
 [node name="Stats" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 55.0
-offset_top = 116.0
-offset_right = 890.0
-offset_bottom = 144.0
-theme_override_colors/font_color = Color(0.62, 0.59, 0.56, 1)
+offset_left = 325.0
+offset_top = 43.0
+offset_right = 1090.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.93, 0.82, 0.66, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 16
+text = "РАЗДАЧА 1/3     ЗОЛОТО 0     ЗДОРОВЬЕ +0     УРОН +0"
+horizontal_alignment = 1
+
+[node name="WizardLinePanel" type="Panel" parent="."]
+mouse_filter = 2
+offset_left = 315.0
+offset_top = 102.0
+offset_right = 1100.0
+offset_bottom = 146.0
+theme_override_styles/panel = SubResource("LinePanel")
+
+[node name="WizardLine" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 336.0
+offset_top = 113.0
+offset_right = 1078.0
+offset_bottom = 137.0
+theme_override_colors/font_color = Color(0.79, 0.68, 0.70, 1)
 theme_override_font_sizes/font_size = 15
-text = "Раздача: 1/3    Золото: 0    Здоровье: +0    Урон: +0"
-
-[node name="WizardFrame" type="Panel" parent="."]
-mouse_filter = 2
-offset_left = 940.0
-offset_top = 18.0
-offset_right = 1218.0
-offset_bottom = 154.0
-theme_override_styles/panel = SubResource("WizardPanel")
-
-[node name="WizardPortrait" type="Control" parent="."]
-mouse_filter = 2
-offset_left = 952.0
-offset_top = 24.0
-offset_right = 1206.0
-offset_bottom = 150.0
-script = ExtResource("3_wizard")
+text = "Волшебник раскладывает судьбы. Выбирай."
+horizontal_alignment = 1
 
 [node name="Cards" type="HBoxContainer" parent="."]
-offset_left = 92.0
-offset_top = 214.0
-offset_right = 1188.0
-offset_bottom = 552.0
-theme_override_constants/separation = 18
+offset_left = 104.0
+offset_top = 314.0
+offset_right = 1176.0
+offset_bottom = 648.0
+theme_override_constants/separation = 16
 alignment = 1
 
 [node name="BonePatrolCard" type="Button" parent="Cards"]
-custom_minimum_size = Vector2(255, 320)
+clip_contents = true
+custom_minimum_size = Vector2(256, 330)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.88, 0.80, 0.68, 1)
-theme_override_colors/font_hover_color = Color(1, 0.91, 0.69, 1)
-theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("CardNormal")
 theme_override_styles/hover = SubResource("CardHover")
 theme_override_styles/pressed = SubResource("CardHover")
+
+[node name="Art" type="TextureRect" parent="Cards/BonePatrolCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 244.0
+offset_bottom = 156.0
+texture_filter = 1
+texture = ExtResource("5_bone")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="Cards/BonePatrolCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 164.0
+offset_right = 244.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(0.95, 0.83, 0.65, 1)
+theme_override_font_sizes/font_size = 17
 text = "КОСТЯНОЙ ДОЗОР"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Type" type="Label" parent="Cards/BonePatrolCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 210.0
+offset_right = 244.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(0.93, 0.55, 0.32, 1)
+theme_override_font_sizes/font_size = 13
+text = "БОЙ"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Cards/BonePatrolCard"]
+mouse_filter = 2
+offset_left = 16.0
+offset_top = 238.0
+offset_right = 240.0
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(0.80, 0.74, 0.67, 1)
+theme_override_font_sizes/font_size = 13
+text = "Три скелета идут плотным строем."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Hint" type="Label" parent="Cards/BonePatrolCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 300.0
+offset_right = 244.0
+offset_bottom = 322.0
+theme_override_colors/font_color = Color(0.93, 0.62, 0.34, 1)
+theme_override_font_sizes/font_size = 12
+text = "ВЫБРАТЬ"
+horizontal_alignment = 1
 
 [node name="GraveyardCard" type="Button" parent="Cards"]
-custom_minimum_size = Vector2(255, 320)
+clip_contents = true
+custom_minimum_size = Vector2(256, 330)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.88, 0.80, 0.68, 1)
-theme_override_colors/font_hover_color = Color(1, 0.91, 0.69, 1)
-theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("CardNormal")
 theme_override_styles/hover = SubResource("CardHover")
 theme_override_styles/pressed = SubResource("CardHover")
+
+[node name="Art" type="TextureRect" parent="Cards/GraveyardCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 244.0
+offset_bottom = 156.0
+texture_filter = 1
+texture = ExtResource("6_grave")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="Cards/GraveyardCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 164.0
+offset_right = 244.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(0.95, 0.83, 0.65, 1)
+theme_override_font_sizes/font_size = 17
 text = "ЗАСАДА НА КЛАДБИЩЕ"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Type" type="Label" parent="Cards/GraveyardCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 210.0
+offset_right = 244.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(0.93, 0.55, 0.32, 1)
+theme_override_font_sizes/font_size = 13
+text = "БОЙ"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Cards/GraveyardCard"]
+mouse_filter = 2
+offset_left = 16.0
+offset_top = 238.0
+offset_right = 240.0
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(0.80, 0.74, 0.67, 1)
+theme_override_font_sizes/font_size = 13
+text = "Два скелета прикрывают костяного лучника."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Hint" type="Label" parent="Cards/GraveyardCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 300.0
+offset_right = 244.0
+offset_bottom = 322.0
+theme_override_colors/font_color = Color(0.93, 0.62, 0.34, 1)
+theme_override_font_sizes/font_size = 12
+text = "ВЫБРАТЬ"
+horizontal_alignment = 1
 
 [node name="GallowsVolleyCard" type="Button" parent="Cards"]
-custom_minimum_size = Vector2(255, 320)
+clip_contents = true
+custom_minimum_size = Vector2(256, 330)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.88, 0.80, 0.68, 1)
-theme_override_colors/font_hover_color = Color(1, 0.91, 0.69, 1)
-theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("CardNormal")
 theme_override_styles/hover = SubResource("CardHover")
 theme_override_styles/pressed = SubResource("CardHover")
+
+[node name="Art" type="TextureRect" parent="Cards/GallowsVolleyCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 244.0
+offset_bottom = 156.0
+texture_filter = 1
+texture = ExtResource("7_gallows")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="Cards/GallowsVolleyCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 164.0
+offset_right = 244.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(0.95, 0.83, 0.65, 1)
+theme_override_font_sizes/font_size = 17
 text = "ЗАЛП С ВИСЕЛИЦЫ"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Type" type="Label" parent="Cards/GallowsVolleyCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 210.0
+offset_right = 244.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(0.93, 0.55, 0.32, 1)
+theme_override_font_sizes/font_size = 13
+text = "БОЙ"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Cards/GallowsVolleyCard"]
+mouse_filter = 2
+offset_left = 16.0
+offset_top = 238.0
+offset_right = 240.0
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(0.80, 0.74, 0.67, 1)
+theme_override_font_sizes/font_size = 13
+text = "Два костяных лучника прячутся за одним скелетом."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Hint" type="Label" parent="Cards/GallowsVolleyCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 300.0
+offset_right = 244.0
+offset_bottom = 322.0
+theme_override_colors/font_color = Color(0.93, 0.62, 0.34, 1)
+theme_override_font_sizes/font_size = 12
+text = "ВЫБРАТЬ"
+horizontal_alignment = 1
 
 [node name="WhisperingWellCard" type="Button" parent="Cards"]
-custom_minimum_size = Vector2(255, 320)
+clip_contents = true
+custom_minimum_size = Vector2(256, 330)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.64, 0.88, 0.84, 1)
-theme_override_colors/font_hover_color = Color(0.78, 1, 0.94, 1)
-theme_override_colors/font_disabled_color = Color(0.40, 0.47, 0.46, 1)
-theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("EventNormal")
 theme_override_styles/hover = SubResource("EventHover")
 theme_override_styles/pressed = SubResource("EventHover")
 theme_override_styles/disabled = SubResource("EventDisabled")
+
+[node name="Art" type="TextureRect" parent="Cards/WhisperingWellCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 244.0
+offset_bottom = 156.0
+texture_filter = 1
+texture = ExtResource("8_well")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="Cards/WhisperingWellCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 164.0
+offset_right = 244.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(0.68, 0.92, 0.86, 1)
+theme_override_colors/font_disabled_color = Color(0.38, 0.46, 0.45, 1)
+theme_override_font_sizes/font_size = 17
 text = "ШЕПЧУЩИЙ КОЛОДЕЦ"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="HintPanel" type="Panel" parent="."]
+[node name="Type" type="Label" parent="Cards/WhisperingWellCard"]
 mouse_filter = 2
-offset_left = 250.0
-offset_top = 620.0
-offset_right = 1030.0
-offset_bottom = 690.0
-theme_override_styles/panel = SubResource("TopPanel")
+offset_left = 12.0
+offset_top = 210.0
+offset_right = 244.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(0.34, 0.84, 0.76, 1)
+theme_override_colors/font_disabled_color = Color(0.34, 0.42, 0.41, 1)
+theme_override_font_sizes/font_size = 13
+text = "СОБЫТИЕ"
+horizontal_alignment = 1
 
-[node name="Hint" type="Label" parent="."]
+[node name="Description" type="Label" parent="Cards/WhisperingWellCard"]
 mouse_filter = 2
-offset_left = 275.0
-offset_top = 640.0
-offset_right = 1005.0
-offset_bottom = 672.0
-theme_override_colors/font_color = Color(0.61, 0.57, 0.53, 1)
-theme_override_font_sizes/font_size = 15
-text = "Три победы завершают забег. События могут изменить его ход."
+offset_left = 16.0
+offset_top = 238.0
+offset_right = 240.0
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(0.70, 0.82, 0.79, 1)
+theme_override_colors/font_disabled_color = Color(0.34, 0.40, 0.40, 1)
+theme_override_font_sizes/font_size = 13
+text = "Чёрная вода обещает силу. Цена неизвестна."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Hint" type="Label" parent="Cards/WhisperingWellCard"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 300.0
+offset_right = 244.0
+offset_bottom = 322.0
+theme_override_colors/font_color = Color(0.38, 0.90, 0.82, 1)
+theme_override_colors/font_disabled_color = Color(0.30, 0.36, 0.36, 1)
+theme_override_font_sizes/font_size = 12
+text = "ВЫБРАТЬ"
 horizontal_alignment = 1
