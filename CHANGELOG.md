@@ -15,6 +15,8 @@
 
 ### Fixed
 
+- Reworked combat readability after local feedback that painted miniatures were unreadable at tactical scale.
+- Removed A/B/C suffixes from duplicate enemy display names.
 - Added hard combat-arena bounds so retreating units and their pursuers cannot leave the battlefield.
 - Bone Archer now fights when cornered instead of endlessly retreating into the arena boundary.
 - Fixed pre-battle dragging being blocked by fullscreen Control UI layers.
@@ -22,6 +24,10 @@
 
 ### Added
 
+- First dark-fantasy pixel-art combat sprite set for Knight, Ranger, Mage, Skeleton and Bone Archer.
+- Pixel-stone battle arena renderer with restrained ritual markings.
+- Ground-level team rings, compact team-colored HP bars and larger nearest-neighbor unit sprites.
+- Pixel-styled battle buttons and reduced combat text clutter.
 - First authored dark-fantasy art asset pack under `assets/art/`.
 - Painted cursed-table background and authored evil-wizard portrait integrated into the table scene.
 - Authored cursed card-back art added to the table composition.
