@@ -73,9 +73,9 @@ func _load_selected_encounter() -> EncounterData:
 	return DEFAULT_ENCOUNTER
 
 func _spawn_encounter() -> void:
-	_spawn_unit(KNIGHT_DATA, 0, Vector2(220, 145))
-	_spawn_unit(RANGER_DATA, 0, Vector2(180, 245))
-	_spawn_unit(MAGE_DATA, 0, Vector2(220, 345))
+	_spawn_unit(KNIGHT_DATA, 0, Vector2(280, 140))
+	_spawn_unit(RANGER_DATA, 0, Vector2(210, 245))
+	_spawn_unit(MAGE_DATA, 0, Vector2(280, 355))
 
 	var enemy_count: int = mini(encounter.enemy_unit_paths.size(), encounter.enemy_positions.size())
 
