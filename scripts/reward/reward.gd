@@ -42,9 +42,9 @@ func _setup_death_wager_reward() -> void:
 	if RunState.wizard_debt_active:
 		summary_label.text += " Долг волшебнику остаётся до следующей обычной награды."
 
-	blood_coin_button.text = "ЗОЛОТОЙ КУШ\n\n+75 золота\n\nРедкий случай: выигрыш действительно ваш."
-	iron_ward_button.text = "ПЛОТЬ ПОБЕДИТЕЛЯ\n\n+50 здоровья\nкаждому герою"
-	tempered_steel_button.text = "СМЕРТЕЛЬНАЯ ЗАТОЧКА\n\n+8 урона\nкаждому герою"
+	blood_coin_button.text = "ЗОЛОТОЙ КУШ\n\n+60 золота\n\nРедкий случай: выигрыш действительно ваш."
+	iron_ward_button.text = "ПЛОТЬ ПОБЕДИТЕЛЯ\n\n+35 здоровья\nкаждому герою"
+	tempered_steel_button.text = "СМЕРТЕЛЬНАЯ ЗАТОЧКА\n\n+5 урона\nкаждому герою"
 
 	blood_coin_button.pressed.connect(_choose_death_wager_reward.bind("gold"))
 	iron_ward_button.pressed.connect(_choose_death_wager_reward.bind("hp"))
@@ -84,11 +84,11 @@ func _choose_death_wager_reward(choice: String) -> void:
 
 	match choice:
 		"gold":
-			RunState.gold += 75
+			RunState.gold += 60
 		"hp":
-			RunState.party_hp_bonus += 50.0
+			RunState.party_hp_bonus += 35.0
 		"damage":
-			RunState.party_damage_bonus += 8.0
+			RunState.party_damage_bonus += 5.0
 		_:
 			return
 
