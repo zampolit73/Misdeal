@@ -19,7 +19,7 @@ Confirmed locally by the user:
 
 The three-card encounter selection and three-victory finite run are implemented and confirmed working locally.
 
-Phase 3 identity work has started in GitHub and is pending local verification: the wizard now has a visible animated table portrait, and the first non-combat event card is implemented.
+Phase 3 identity work is underway. The first non-combat event card and one-time event flow are confirmed working locally. A first visual blockout for the table, cards, wizard and combat miniatures is implemented in GitHub and pending local verification.
 
 ## Player-facing language
 
@@ -64,7 +64,7 @@ The table displays:
 
 Selecting a combat card stores its encounter in `RunState` and launches battle.
 
-The table also contains a simple animated wizard portrait placeholder with glowing eyes, beginning the first visual identity pass.
+The table now has a cursed wood visual blockout with ritual markings and candle accents. Combat cards use framed dark-fantasy card styling, the event card uses a distinct teal treatment, and the wizard portrait has an expanded hooded silhouette, crown accents, glowing eyes and a pulsing orb.
 
 ### 3. Whispering Well event
 
@@ -158,6 +158,8 @@ Reusable combat stats are stored in `UnitData` Resources:
 
 Runtime combat state remains on `BattleUnit`.
 
+`UnitData.visual_role` now drives lightweight prototype miniature silhouettes so Knight, Ranger, Mage, Skeleton and Bone Archer are visually distinct during combat.
+
 ### Encounter data
 
 `scripts/data/encounter_data.gd`
@@ -206,9 +208,14 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Immediate next milestone
 
-Locally verify the new **ШЕПЧУЩИЙ КОЛОДЕЦ** event, including the 25-gold branch and the one-time-per-run lockout.
+Locally verify the first visual blockout:
 
-Then begin the first dedicated visual-art pass for the vertical slice: cursed table background, card frames/backs, a stronger wizard portrait and clearer miniature silhouettes. Final production art remains deferred until the visual language is proven.
+- cursed wood table and ritual markings render correctly;
+- combat and event cards are visually distinct and readable;
+- the wizard portrait renders without clipping;
+- Knight, Ranger, Mage, Skeleton and Bone Archer silhouettes are visibly different in combat.
+
+After that, iterate on the visual language and begin replacing procedural blockout elements with authored art assets where they add the most identity.
 
 ## Local workflow
 
