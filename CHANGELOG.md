@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Verified
+
+- Pre-battle hero dragging confirmed working locally.
+
 ### Fixed
 
 - Fixed pre-battle dragging being blocked by fullscreen Control UI layers.
@@ -9,6 +13,7 @@
 
 ### Added
 
+- Combat-time separation steering so living units no longer stack into a single point.
 - Pre-battle preparation phase.
 - Drag-and-drop repositioning for player heroes.
 - Deployment-zone bounds.
