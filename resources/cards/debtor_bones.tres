@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "debtor_bones"
+title = "КОСТИ ДОЛЖНИКА"
+card_text = "Чужие кости звенят монетами при каждом шаге."
+wizard_line = "Долги переживают должников. Удобная система."
+type_label = "СОБЫТИЕ"
+tier = 0
+resolution_type = "prototype"
+target_path = "res://scenes/event/prototype_card.tscn"
+art_path = "res://assets/pixel/table/cards/bone_patrol.png"
+prototype_result_text = "Риск золота и проклятия будет добавлен следующим контентным проходом."
