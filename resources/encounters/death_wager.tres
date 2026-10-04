@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+encounter_id = "death_wager"
+title = "СТАВКА НА СМЕРТЬ"
+card_text = "Страж склепа держит центр, два лучника расстреливают с флангов, а костяные рабы мешают добраться до них."
+wizard_line = "Ставка прекрасна, когда проигрывает кто-то другой."
+enemy_unit_paths = PackedStringArray("res://resources/units/crypt_guard.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_thrall.tres", "res://resources/units/bone_thrall.tres")
+enemy_names = PackedStringArray("Страж ставки", "Костяной лучник", "Костяной лучник", "Костяной раб", "Костяной раб")
+enemy_positions = PackedVector2Array(930, 245, 1040, 135, 1040, 355, 845, 165, 845, 325)
