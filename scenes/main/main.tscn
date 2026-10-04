@@ -42,23 +42,23 @@ horizontal_alignment = 1
 [node name="Subtitle" type="Label" parent="Center/Panel"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "A cursed card roguelike with a compact autobattler"
+text = "Проклятый карточный рогалик с компактным автобоем"
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Status" type="Label" parent="Center/Panel"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "The table is waiting."
+text = "Стол ждёт."
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="Center/Panel"]
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "ENTER THE GAME"
+text = "ВОЙТИ В ИГРУ"
 
 [node name="Hint" type="Label" parent="Center/Panel"]
 layout_mode = 2
-text = "Cards decide the journey.  Preparation decides the fight."
+text = "Карты решают путь. Подготовка решает бой."
 horizontal_alignment = 1
