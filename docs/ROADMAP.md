@@ -60,6 +60,8 @@ Target loop:
 - [x] First artifacts that alter hero autobattle behavior.
 - [x] First risk/reward event card: Whispering Well.
 - [x] First boss encounter: Bone Warden with an enrage phase.
+- [x] Bone Warden two-phase gameplay rework with cleave and phase-two reinforcements.
+- [x] Dedicated Bone Warden combat sprite, boss-card art and boss-arena treatment.
 - [x] Expand the prototype run into a 12-card Act 1 plus boss.
 - [x] Two-card offers with rejected cards removed from the current run.
 - [x] Data-driven 24-card structural pool split into early/mid/late tiers.
