@@ -55,7 +55,7 @@ func start_combat() -> void:
 	combat_started = true
 	attack_cooldown = randf_range(0.0, 0.25)
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if not placement_enabled or combat_started or not alive or team != 0:
 		return
 
