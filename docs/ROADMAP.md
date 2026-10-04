@@ -65,7 +65,8 @@ Target loop:
 
 Only after the loop is fun:
 
-- [ ] coherent visual language for table/cards/miniatures;
+- [x] First procedural visual blockout for table, cards, wizard and unit silhouettes.
+- [ ] Coherent visual language for table/cards/miniatures;
 - [ ] animations and impact feedback;
 - [ ] sound and music;
 - [ ] onboarding;
