@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1_unit_data"]
+
+[resource]
+script = ExtResource("1_unit_data")
+unit_name = "Костяной надзиратель"
+visual_role = "skeleton"
+max_hp = 420.0
+damage = 20.0
+attack_interval = 1.15
+attack_range = 62.0
+move_speed = 56.0
+body_radius = 34.0
+separation_padding = 14.0
+separation_strength = 155.0
+is_boss = true
+visual_scale = 1.65
+enrage_threshold = 0.5
+enrage_damage_multiplier = 1.35
+enrage_attack_interval_multiplier = 0.72
+enrage_move_speed_multiplier = 1.2
