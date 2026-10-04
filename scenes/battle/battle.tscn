@@ -60,7 +60,7 @@ offset_top = 24.0
 offset_right = 350.0
 offset_bottom = 70.0
 theme_override_font_sizes/font_size = 34
-text = "MISDEAL — FIRST BLOOD"
+text = "MISDEAL — ПЕРВАЯ КРОВЬ"
 
 [node name="Status" type="Label" parent="."]
 mouse_filter = 2
@@ -69,7 +69,7 @@ offset_top = 76.0
 offset_right = 850.0
 offset_bottom = 106.0
 theme_override_font_sizes/font_size = 18
-text = "Inspect the board, then press FIGHT."
+text = "Осмотрите поле, затем нажмите «БОЙ»."
 
 [node name="PartyLabel" type="Label" parent="."]
 mouse_filter = 2
@@ -78,7 +78,7 @@ offset_top = 138.0
 offset_right = 250.0
 offset_bottom = 168.0
 theme_override_font_sizes/font_size = 18
-text = "YOUR PARTY"
+text = "ВАШ ОТРЯД"
 
 [node name="EnemyLabel" type="Label" parent="."]
 mouse_filter = 2
@@ -87,7 +87,7 @@ offset_top = 138.0
 offset_right = 1210.0
 offset_bottom = 168.0
 theme_override_font_sizes/font_size = 18
-text = "SKELETONS"
+text = "НЕЖИТЬ"
 horizontal_alignment = 2
 
 [node name="PlacementHint" type="Label" parent="."]
@@ -98,7 +98,7 @@ offset_right = 420.0
 offset_bottom = 570.0
 theme_override_colors/font_color = Color(0.55, 0.78, 0.95, 1)
 theme_override_font_sizes/font_size = 16
-text = "DRAG HEROES TO REPOSITION"
+text = "ПЕРЕТАСКИВАЙТЕ ГЕРОЕВ ДЛЯ РАССТАНОВКИ"
 
 [node name="UnitsLayer" type="Node2D" parent="."]
 position = Vector2(40, 120)
@@ -109,7 +109,7 @@ offset_top = 625.0
 offset_right = 625.0
 offset_bottom = 680.0
 theme_override_font_sizes/font_size = 22
-text = "FIGHT"
+text = "БОЙ"
 
 [node name="RestartButton" type="Button" parent="."]
 offset_left = 655.0
@@ -117,7 +117,7 @@ offset_top = 625.0
 offset_right = 850.0
 offset_bottom = 680.0
 theme_override_font_sizes/font_size = 22
-text = "RESTART"
+text = "ПЕРЕИГРАТЬ"
 
 [node name="ContinueButton" type="Button" parent="."]
 visible = false
@@ -126,7 +126,7 @@ offset_top = 625.0
 offset_right = 1100.0
 offset_bottom = 680.0
 theme_override_font_sizes/font_size = 20
-text = "CONTINUE"
+text = "ПРОДОЛЖИТЬ"
 
 [node name="Result" type="Label" parent="."]
 mouse_filter = 2
@@ -136,6 +136,6 @@ offset_top = 260.0
 offset_right = 880.0
 offset_bottom = 370.0
 theme_override_font_sizes/font_size = 34
-text = "VICTORY"
+text = "ПОБЕДА"
 horizontal_alignment = 1
 vertical_alignment = 1
