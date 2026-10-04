@@ -14,7 +14,9 @@ Combat-time unit separation is implemented and confirmed working locally.
 
 Hit/death feedback is implemented and confirmed working locally.
 
-Unit combat stats are now data-driven through `UnitData` Resources. This refactor is pending local verification.
+Unit combat stats are data-driven through `UnitData` Resources and the refactor is confirmed working locally.
+
+A first distinct enemy behavior and a first hero combat modifier are now implemented in GitHub and pending local verification.
 
 ## Engine
 
@@ -50,7 +52,7 @@ Enemy party:
 
 - Skeleton A
 - Skeleton B
-- Skeleton C
+- Bone Archer
 
 Before combat, the player can drag Knight, Ranger and Mage within the blue deployment zone.
 
@@ -68,7 +70,9 @@ Implemented combat behavior:
 - units automatically find the nearest living enemy;
 - melee and ranged units use different attack ranges;
 - units move toward targets when out of range;
+- ranged units can define a minimum range and retreat when enemies get too close;
 - units attack automatically on individual cooldowns;
+- Mage attacks deal 50% splash damage to nearby secondary enemies;
 - nearby living units apply separation steering so they do not occupy the same point;
 - taking damage produces a brief hit flash, scale pulse and floating damage number;
 - death produces a short shrink/fade animation;
@@ -94,6 +98,7 @@ Current unit resources:
 - `resources/units/ranger.tres`
 - `resources/units/mage.tres`
 - `resources/units/skeleton.tres`
+- `resources/units/bone_archer.tres`
 
 `battle.gd` still defines the temporary test encounter composition and spawn positions.
 
@@ -111,7 +116,7 @@ Current relevant files:
 
 ## Not implemented yet
 - attack animations and projectiles;
-- abilities and status effects;
+- broader ability/status-effect system;
 - encounter resources;
 - card/table gameplay;
 - evil wizard presentation;
@@ -124,9 +129,9 @@ Current relevant files:
 
 ## Immediate next milestone
 
-Locally verify that the `UnitData` refactor preserves the existing battle behavior.
+Locally verify that Bone Archer retreats at close range and that Mage splash damage can hit clustered enemies.
 
-Then add one distinct enemy behavior and one simple unit ability/combat modifier before moving into the first minimal card/table → combat → reward → table loop.
+If both read clearly in play, Phase 1 has enough combat variety for the first vertical slice and development should move into the minimal card/table → combat → reward → table loop.
 
 The long-term target remains:
 
