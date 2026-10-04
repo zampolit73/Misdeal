@@ -66,6 +66,7 @@ Target loop:
 Only after the loop is fun:
 
 - [x] First procedural visual blockout for table, cards, wizard and unit silhouettes.
+- [x] Integrate first authored table, wizard, card-back and unit miniature assets.
 - [ ] Coherent visual language for table/cards/miniatures;
 - [ ] animations and impact feedback;
 - [ ] sound and music;
