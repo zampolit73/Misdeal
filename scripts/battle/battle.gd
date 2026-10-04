@@ -94,6 +94,8 @@ func _spawn_unit(
 		unit.max_hp += RunState.party_hp_bonus
 		unit.damage += RunState.party_damage_bonus
 		_apply_artifacts_to_unit(unit)
+	else:
+		unit.damage *= RunState.get_enemy_damage_multiplier()
 
 	unit.set_combat_bounds(COMBAT_BOUNDS)
 	unit.died.connect(_on_unit_died)
@@ -123,6 +125,10 @@ func _begin_preparation_phase() -> void:
 		status_label.text = "КОСТЯНАЯ ДАВКА — пять слабых врагов. Маг особенно полезен против толпы."
 	else:
 		status_label.text = "ПОДГОТОВКА — расставьте героев и нажмите «БОЙ»."
+
+	if RunState.wizard_debt_active:
+		status_label.text += "  ДОЛГ ВОЛШЕБНИКУ: враги наносят +25% урона."
+
 	placement_hint.visible = true
 
 	for unit in units:
