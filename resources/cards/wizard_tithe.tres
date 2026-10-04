@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "wizard_tithe"
+title = "ДЕСЯТИНА ВОЛШЕБНИКА"
+card_text = "Хозяин стола протягивает ладонь и молча ждёт."
+wizard_line = "Не заставляй меня повторять просьбу. Это портит настроение."
+type_label = "ОСОБОЕ"
+tier = 2
+resolution_type = "prototype"
+target_path = "res://scenes/event/prototype_card.tscn"
+art_path = "res://assets/pixel/table/cards/gallows_volley.png"
+prototype_result_text = "Позже: заплатить золотом или получить проклятие с усиленной наградой."
