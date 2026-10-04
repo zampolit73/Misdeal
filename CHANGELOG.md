@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Late-game Act 1 escalation confirmed locally: Faceless Card, Blood Ledger, Broken Crown, Last Camp and Ossuary Gate.
 - 12-card Act 1 offer/rejection/tier flow and boss handoff confirmed working locally.
 - Bone Warden boss encounter and enrage behavior confirmed working locally.
 - Final wizard-table composition/readability polish confirmed locally and accepted.
