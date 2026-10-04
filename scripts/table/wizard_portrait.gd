@@ -1,65 +1,64 @@
 extends Control
 
-var pulse_time := 0.0
+var pulse := 0.0
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	queue_redraw()
 
 func _process(delta: float) -> void:
-	pulse_time += delta
-	queue_redraw()
+	pulse += delta
+	if fmod(pulse, 0.08) < delta:
+		queue_redraw()
 
 func _draw() -> void:
-	var center := size * Vector2(0.5, 0.52)
-	var hood_color := Color(0.13, 0.045, 0.17, 1.0)
-	var hood_shadow := Color(0.055, 0.018, 0.075, 1.0)
-	var inner_color := Color(0.012, 0.009, 0.018, 1.0)
-	var trim_color := Color(0.48, 0.18, 0.45, 1.0)
-	var metal_color := Color(0.62, 0.48, 0.30, 1.0)
-	var glow := 0.78 + sin(pulse_time * 2.2) * 0.18
-	var eye_color := Color(1.0, 0.22, 0.12, glow)
+	var hood := Color(0.18, 0.055, 0.20, 1.0)
+	var hood_dark := Color(0.065, 0.020, 0.080, 1.0)
+	var outline := Color(0.48, 0.20, 0.42, 1.0)
+	var skin_shadow := Color(0.035, 0.020, 0.040, 1.0)
+	var gold := Color(0.62, 0.42, 0.20, 1.0)
+	var glow := 0.78 + sin(pulse * 2.4) * 0.18
+	var eye := Color(1.0, 0.22, 0.10, glow)
 
-	var shoulder_y := size.y - 6.0
+	var cx := size.x * 0.5
+	var bottom := size.y - 5.0
+
 	var shoulders := PackedVector2Array([
-		Vector2(15.0, shoulder_y),
-		Vector2(55.0, center.y + 24.0),
-		Vector2(center.x, center.y + 15.0),
-		Vector2(size.x - 55.0, center.y + 24.0),
-		Vector2(size.x - 15.0, shoulder_y)
+		Vector2(18, bottom),
+		Vector2(54, 84),
+		Vector2(cx - 34, 68),
+		Vector2(cx + 34, 68),
+		Vector2(size.x - 54, 84),
+		Vector2(size.x - 18, bottom)
 	])
-	draw_colored_polygon(shoulders, hood_shadow)
+	draw_colored_polygon(shoulders, hood_dark)
 
-	var hood_points := PackedVector2Array([
-		Vector2(center.x, 3.0),
-		Vector2(size.x - 30.0, size.y - 5.0),
-		Vector2(30.0, size.y - 5.0)
+	var hood_poly := PackedVector2Array([
+		Vector2(cx, 5),
+		Vector2(size.x - 38, 104),
+		Vector2(cx + 30, 88),
+		Vector2(cx, 96),
+		Vector2(cx - 30, 88),
+		Vector2(38, 104)
 	])
-	draw_colored_polygon(hood_points, hood_color)
+	draw_colored_polygon(hood_poly, hood)
 	draw_polyline(PackedVector2Array([
-		hood_points[0],
-		hood_points[1],
-		hood_points[2],
-		hood_points[0]
-	]), trim_color, 3.0)
+		hood_poly[0], hood_poly[1], hood_poly[2], hood_poly[3], hood_poly[4], hood_poly[5], hood_poly[0]
+	]), outline, 3.0)
 
-	draw_circle(center + Vector2(0.0, 12.0), 45.0, inner_color)
-	draw_arc(center + Vector2(0.0, 12.0), 45.0, PI * 1.12, PI * 1.88, 28, trim_color, 2.0)
+	draw_rect(Rect2(cx - 33, 39, 66, 47), skin_shadow)
+	draw_rect(Rect2(cx - 22, 49, 14, 5), Color(0.20, 0.035, 0.04, 0.45))
+	draw_rect(Rect2(cx + 8, 49, 14, 5), Color(0.20, 0.035, 0.04, 0.45))
+	draw_rect(Rect2(cx - 18, 50, 7, 4), eye)
+	draw_rect(Rect2(cx + 11, 50, 7, 4), eye)
+	draw_rect(Rect2(cx - 12, 72, 24, 2), Color(0.38, 0.13, 0.16, 0.8))
 
-	draw_circle(center + Vector2(-17.0, 6.0), 7.5, Color(0.45, 0.05, 0.04, 0.18))
-	draw_circle(center + Vector2(17.0, 6.0), 7.5, Color(0.45, 0.05, 0.04, 0.18))
-	draw_circle(center + Vector2(-17.0, 6.0), 4.0, eye_color)
-	draw_circle(center + Vector2(17.0, 6.0), 4.0, eye_color)
+	draw_rect(Rect2(cx - 23, 15, 46, 4), gold)
+	draw_rect(Rect2(cx - 20, 7, 4, 12), gold)
+	draw_rect(Rect2(cx - 2, 3, 4, 16), gold)
+	draw_rect(Rect2(cx + 16, 7, 4, 12), gold)
 
-	draw_line(center + Vector2(-14.0, 29.0), center + Vector2(14.0, 29.0), Color(0.36, 0.16, 0.18, 0.7), 2.0)
-
-	var crown_y := 8.0
-	draw_line(Vector2(center.x - 22.0, crown_y + 10.0), Vector2(center.x + 22.0, crown_y + 10.0), metal_color, 2.0)
-	draw_line(Vector2(center.x - 18.0, crown_y + 10.0), Vector2(center.x - 12.0, crown_y), metal_color, 2.0)
-	draw_line(Vector2(center.x, crown_y + 10.0), Vector2(center.x, crown_y - 3.0), metal_color, 2.0)
-	draw_line(Vector2(center.x + 18.0, crown_y + 10.0), Vector2(center.x + 12.0, crown_y), metal_color, 2.0)
-
-	var orb_center := Vector2(size.x - 24.0, size.y - 23.0)
-	draw_circle(orb_center, 11.0, Color(0.18, 0.03, 0.23, 0.9))
-	draw_arc(orb_center, 14.0, 0.0, TAU, 20, Color(0.55, 0.18, 0.65, glow * 0.65), 2.0)
-	draw_circle(orb_center, 4.0, Color(0.9, 0.25, 0.55, glow))
+	var orb := Vector2(size.x - 25, size.y - 22)
+	draw_rect(Rect2(orb - Vector2(8, 8), Vector2(16, 16)), Color(0.15, 0.035, 0.20, 1.0))
+	draw_rect(Rect2(orb - Vector2(4, 4), Vector2(8, 8)), Color(0.86, 0.18, 0.52, glow))
+	draw_rect(Rect2(orb - Vector2(11, 11), Vector2(22, 22)), Color(0.52, 0.20, 0.62, glow * 0.55), false, 2.0)
