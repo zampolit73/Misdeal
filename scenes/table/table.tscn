@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/table.gd" id="1_table"]
-[ext_resource type="Script" path="res://scripts/table/wizard_portrait.gd" id="2_wizard"]
-[ext_resource type="Script" path="res://scripts/table/table_visual.gd" id="3_table_visual"]
+[ext_resource type="Texture2D" path="res://assets/art/table_background.webp" id="2_table_art"]
+[ext_resource type="Texture2D" path="res://assets/art/wizard_portrait.webp" id="3_wizard_art"]
+[ext_resource type="Texture2D" path="res://assets/art/card_back.webp" id="4_card_back"]
 
 [sub_resource type="StyleBoxFlat" id="CardNormal"]
 bg_color = Color(0.105, 0.075, 0.065, 0.98)
@@ -111,13 +112,27 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.018, 0.014, 0.024, 1)
 
-[node name="TableSurface" type="Control" parent="."]
+[node name="ArtBackground" type="TextureRect" parent="."]
 mouse_filter = 2
-offset_left = 55.0
-offset_top = 165.0
-offset_right = 1225.0
-offset_bottom = 630.0
-script = ExtResource("3_table_visual")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_table_art")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="UiShade" type="ColorRect" parent="."]
+mouse_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.015, 0.01, 0.02, 0.22)
 
 [node name="Title" type="Label" parent="."]
 mouse_filter = 2
@@ -157,13 +172,27 @@ offset_right = 1215.0
 offset_bottom = 152.0
 color = Color(0.055, 0.022, 0.07, 1)
 
-[node name="WizardPortrait" type="Control" parent="."]
+[node name="WizardPortrait" type="TextureRect" parent="."]
 mouse_filter = 2
 offset_left = 952.0
 offset_top = 22.0
 offset_right = 1203.0
 offset_bottom = 145.0
-script = ExtResource("2_wizard")
+texture = ExtResource("3_wizard_art")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DeckBack" type="TextureRect" parent="."]
+mouse_filter = 2
+offset_left = 10.0
+offset_top = 330.0
+offset_right = 85.0
+offset_bottom = 445.0
+rotation = -0.07
+texture = ExtResource("4_card_back")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.82, 0.78, 0.75, 0.92)
 
 [node name="Cards" type="HBoxContainer" parent="."]
 offset_left = 92.0
