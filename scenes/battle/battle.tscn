@@ -1,56 +1,18 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/battle/battle.gd" id="1_battle"]
 [ext_resource type="Script" path="res://scripts/battle/battle_visual.gd" id="2_arena"]
-[ext_resource type="Script" path="res://scripts/battle/battle_hud_visual.gd" id="3_hud"]
+[ext_resource type="Script" path="res://scripts/battle/authored_backdrop.gd" id="3_backdrop"]
 
-[sub_resource type="StyleBoxFlat" id="ButtonNormal"]
-bg_color = Color(0.030, 0.026, 0.035, 0.98)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.24, 0.18, 0.22, 1)
-shadow_color = Color(0, 0, 0, 0.55)
-shadow_size = 5
+[sub_resource type="StyleBoxEmpty" id="ButtonEmpty"]
 
 [sub_resource type="StyleBoxFlat" id="ButtonHover"]
-bg_color = Color(0.070, 0.040, 0.048, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.55, 0.28, 0.22, 1)
-shadow_color = Color(0, 0, 0, 0.65)
-shadow_size = 7
-
-[sub_resource type="StyleBoxFlat" id="ButtonDisabled"]
-bg_color = Color(0.020, 0.018, 0.025, 0.88)
+bg_color = Color(0.22, 0.045, 0.045, 0.36)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.12, 0.10, 0.13, 0.85)
-
-[sub_resource type="StyleBoxFlat" id="FightNormal"]
-bg_color = Color(0.24, 0.035, 0.040, 0.98)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.65, 0.20, 0.15, 1)
-shadow_color = Color(0, 0, 0, 0.72)
-shadow_size = 7
-
-[sub_resource type="StyleBoxFlat" id="FightHover"]
-bg_color = Color(0.36, 0.055, 0.050, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.92, 0.40, 0.20, 1)
-shadow_color = Color(0, 0, 0, 0.78)
-shadow_size = 9
+border_color = Color(0.72, 0.28, 0.20, 0.70)
 
 [sub_resource type="StyleBoxFlat" id="ResultPanel"]
 bg_color = Color(0.018, 0.014, 0.022, 0.975)
@@ -79,9 +41,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.012, 0.010, 0.018, 1)
+color = Color(0.008, 0.006, 0.012, 1)
 
-[node name="HudChrome" type="Control" parent="."]
+[node name="Backdrop" type="TextureRect" parent="."]
+texture_filter = 1
 mouse_filter = 2
 layout_mode = 1
 anchors_preset = 15
@@ -89,7 +52,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_hud")
+expand_mode = 1
+stretch_mode = 0
+script = ExtResource("3_backdrop")
 
 [node name="Arena" type="Control" parent="."]
 mouse_filter = 2
@@ -99,51 +64,27 @@ offset_right = 1260.0
 offset_bottom = 615.0
 script = ExtResource("2_arena")
 
-[node name="PlayerZone" type="ColorRect" parent="."]
-mouse_filter = 2
-offset_left = 20.0
-offset_top = 150.0
-offset_right = 640.0
-offset_bottom = 615.0
-color = Color(0.025, 0.11, 0.20, 0.07)
-
-[node name="EnemyZone" type="ColorRect" parent="."]
-mouse_filter = 2
-offset_left = 640.0
-offset_top = 150.0
-offset_right = 1260.0
-offset_bottom = 615.0
-color = Color(0.20, 0.025, 0.025, 0.07)
-
-[node name="Divider" type="ColorRect" parent="."]
-mouse_filter = 2
-offset_left = 639.0
-offset_top = 264.0
-offset_right = 641.0
-offset_bottom = 610.0
-color = Color(0.52, 0.10, 0.12, 0.34)
-
 [node name="Title" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 34.0
-offset_top = 25.0
-offset_right = 910.0
-offset_bottom = 62.0
+offset_left = 48.0
+offset_top = 21.0
+offset_right = 1004.0
+offset_bottom = 54.0
 theme_override_colors/font_color = Color(0.96, 0.84, 0.68, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.96)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 26
 text = "MISDEAL — КОСТЯНОЙ ДОЗОР"
 
 [node name="Status" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 34.0
-offset_top = 70.0
-offset_right = 910.0
-offset_bottom = 102.0
-theme_override_colors/font_color = Color(0.72, 0.66, 0.62, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.82)
+offset_left = 48.0
+offset_top = 58.0
+offset_right = 1004.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.73, 0.65, 0.58, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.88)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 16
@@ -151,10 +92,10 @@ text = "ПОДГОТОВКА — расставьте героев и нажми
 
 [node name="DealLabel" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 1020.0
-offset_top = 43.0
+offset_left = 1035.0
+offset_top = 35.0
 offset_right = 1250.0
-offset_bottom = 76.0
+offset_bottom = 70.0
 theme_override_colors/font_color = Color(0.94, 0.79, 0.58, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
 theme_override_constants/shadow_offset_x = 1
@@ -162,94 +103,99 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 18
 text = "КАРТА 1/12"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PartyLabel" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 34.0
-offset_top = 154.0
-offset_right = 206.0
-offset_bottom = 181.0
-theme_override_colors/font_color = Color(0.92, 0.91, 0.88, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+offset_left = 22.0
+offset_top = 124.0
+offset_right = 177.0
+offset_bottom = 153.0
+theme_override_colors/font_color = Color(0.94, 0.90, 0.82, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.95)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 16
 text = "ВАШ ОТРЯД"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="EnemyLabel" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 1073.0
-offset_top = 154.0
-offset_right = 1245.0
-offset_bottom = 181.0
-theme_override_colors/font_color = Color(0.92, 0.91, 0.88, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+offset_left = 1101.0
+offset_top = 124.0
+offset_right = 1256.0
+offset_bottom = 153.0
+theme_override_colors/font_color = Color(0.94, 0.90, 0.82, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.95)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 16
 text = "НЕЖИТЬ"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlacementHint" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 42.0
-offset_top = 572.0
-offset_right = 500.0
-offset_bottom = 602.0
-theme_override_colors/font_color = Color(0.48, 0.76, 0.98, 1)
+offset_left = 35.0
+offset_top = 575.0
+offset_right = 490.0
+offset_bottom = 601.0
+theme_override_colors/font_color = Color(0.55, 0.78, 0.96, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.94)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 14
 text = "ПЕРЕТАСКИВАЙТЕ ГЕРОЕВ ДЛЯ РАССТАНОВКИ"
 
 [node name="UnitsLayer" type="Node2D" parent="."]
 position = Vector2(20, 150)
 
 [node name="FightButton" type="Button" parent="."]
-offset_left = 410.0
-offset_top = 640.0
-offset_right = 635.0
-offset_bottom = 697.0
+offset_left = 386.0
+offset_top = 624.0
+offset_right = 637.0
+offset_bottom = 686.0
 theme_override_colors/font_color = Color(1, 0.88, 0.68, 1)
-theme_override_colors/font_hover_color = Color(1, 0.94, 0.80, 1)
+theme_override_colors/font_hover_color = Color(1, 0.95, 0.82, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.95, 0.82, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.95)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 23
-theme_override_styles/normal = SubResource("FightNormal")
-theme_override_styles/hover = SubResource("FightHover")
-theme_override_styles/pressed = SubResource("FightHover")
-theme_override_styles/disabled = SubResource("ButtonDisabled")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("ButtonEmpty")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonHover")
+theme_override_styles/disabled = SubResource("ButtonEmpty")
 text = "БОЙ"
 
 [node name="RestartButton" type="Button" parent="."]
-offset_left = 660.0
-offset_top = 640.0
-offset_right = 885.0
-offset_bottom = 697.0
+offset_left = 663.0
+offset_top = 624.0
+offset_right = 895.0
+offset_bottom = 686.0
 theme_override_colors/font_color = Color(0.72, 0.68, 0.66, 1)
-theme_override_colors/font_disabled_color = Color(0.33, 0.31, 0.33, 1)
+theme_override_colors/font_hover_color = Color(0.84, 0.77, 0.70, 1)
+theme_override_colors/font_disabled_color = Color(0.38, 0.34, 0.35, 1)
 theme_override_font_sizes/font_size = 21
-theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/normal = SubResource("ButtonEmpty")
 theme_override_styles/hover = SubResource("ButtonHover")
 theme_override_styles/pressed = SubResource("ButtonHover")
-theme_override_styles/disabled = SubResource("ButtonDisabled")
+theme_override_styles/disabled = SubResource("ButtonEmpty")
 text = "ПЕРЕИГРАТЬ"
 
 [node name="ContinueButton" type="Button" parent="."]
 visible = false
-offset_left = 910.0
-offset_top = 640.0
-offset_right = 1150.0
-offset_bottom = 697.0
+offset_left = 916.0
+offset_top = 624.0
+offset_right = 1160.0
+offset_bottom = 686.0
 theme_override_colors/font_color = Color(1, 0.86, 0.66, 1)
 theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("FightNormal")
-theme_override_styles/hover = SubResource("FightHover")
-theme_override_styles/pressed = SubResource("FightHover")
-theme_override_styles/disabled = SubResource("ButtonDisabled")
+theme_override_styles/normal = SubResource("ButtonEmpty")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonHover")
+theme_override_styles/disabled = SubResource("ButtonEmpty")
 text = "ПРОДОЛЖИТЬ"
 
 [node name="ResultBackdrop" type="Panel" parent="."]
