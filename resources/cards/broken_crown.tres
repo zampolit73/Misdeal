@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "broken_crown"
 title = "СЛОМАННАЯ КОРОНА"
-card_text = "Корона всё ещё требует преклониться, хотя её король давно сгнил."
+card_text = "Сломанная корона обещает власть всей партии, но отнимает часть выносливости."
 wizard_line = "Власть редко замечает собственную смерть."
 type_label = "АРТЕФАКТ"
 tier = 2
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
 art_path = "res://assets/pixel/table/cards/gallows_volley.png"
-prototype_result_text = "Будущая поздняя карта сильного артефакта с недостатком."
+prototype_result_text = ""
