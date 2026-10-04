@@ -37,8 +37,8 @@ func _spawn_test_encounter() -> void:
 	_spawn_unit(RANGER_DATA, 0, Vector2(180, 245))
 	_spawn_unit(MAGE_DATA, 0, Vector2(220, 345))
 
-	_spawn_unit(SKELETON_DATA, 1, Vector2(980, 145), "Skeleton A")
-	_spawn_unit(SKELETON_DATA, 1, Vector2(1020, 245), "Skeleton B")
+	_spawn_unit(SKELETON_DATA, 1, Vector2(980, 145), "Скелет A")
+	_spawn_unit(SKELETON_DATA, 1, Vector2(1020, 245), "Скелет B")
 	_spawn_unit(BONE_ARCHER_DATA, 1, Vector2(1040, 345))
 
 func _spawn_unit(
@@ -61,7 +61,7 @@ func _spawn_unit(
 	units.append(unit)
 
 func _begin_preparation_phase() -> void:
-	status_label.text = "PREPARATION — drag your heroes, then press FIGHT."
+	status_label.text = "ПОДГОТОВКА — расставьте героев и нажмите «БОЙ»."
 	placement_hint.visible = true
 
 	for unit in units:
@@ -69,7 +69,7 @@ func _begin_preparation_phase() -> void:
 			unit.enable_placement(PLAYER_PLACEMENT_BOUNDS)
 
 func _on_placement_rejected(unit: BattleUnit) -> void:
-	status_label.text = "%s cannot be placed on top of another hero." % unit.display_name
+	status_label.text = "%s нельзя поставить поверх другого героя." % unit.display_name
 
 func _on_fight_pressed() -> void:
 	if combat_started or battle_finished:
@@ -77,8 +77,8 @@ func _on_fight_pressed() -> void:
 
 	combat_started = true
 	fight_button.disabled = true
-	fight_button.text = "FIGHTING..."
-	status_label.text = "The wager is sealed. No turning back."
+	fight_button.text = "БОЙ..."
+	status_label.text = "Ставка сделана. Назад пути нет."
 	placement_hint.visible = false
 
 	for unit in units:
@@ -114,19 +114,19 @@ func _finish_battle(player_won: bool) -> void:
 		unit.disable_placement()
 
 	if player_won:
-		result_label.text = "VICTORY\nThe wizard looks mildly annoyed."
-		status_label.text = "You survived the first deal."
-		continue_button.text = "CLAIM REWARD"
+		result_label.text = "ПОБЕДА\nВолшебник выглядит слегка раздражённым."
+		status_label.text = "Вы пережили первую раздачу."
+		continue_button.text = "ЗАБРАТЬ НАГРАДУ"
 	else:
-		result_label.text = "DEFEAT\nThe wizard smiles."
-		status_label.text = "The table claims another party."
-		continue_button.text = "RETURN TO TABLE"
+		result_label.text = "ПОРАЖЕНИЕ\nВолшебник улыбается."
+		status_label.text = "Стол забирает ещё один отряд."
+		continue_button.text = "ВЕРНУТЬСЯ К СТОЛУ"
 
 	result_label.visible = true
 	restart_button.disabled = false
 	continue_button.visible = true
 	continue_button.disabled = false
-	fight_button.text = "BATTLE OVER"
+	fight_button.text = "БОЙ ОКОНЧЕН"
 
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
