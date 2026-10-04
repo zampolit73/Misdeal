@@ -21,7 +21,9 @@ The three-card encounter selection and three-victory finite run are implemented 
 
 Phase 3 identity work is underway. The first non-combat event card and one-time event flow are confirmed working locally.
 
-The first authored-art integration is implemented in GitHub and pending local verification: the wizard table now uses a painted dark-fantasy background, the UI has authored wizard/card-back art, and battle units use cropped authored miniature textures.
+The earlier painted-art integration was locally judged too hard to read in combat. The user chose a dark-fantasy pixel-art direction.
+
+A first pixel-art combat readability redesign is now implemented in GitHub and pending local verification.
 
 ## Player-facing language
 
@@ -166,15 +168,25 @@ Reusable combat stats are stored in `UnitData` Resources:
 
 Runtime combat state remains on `BattleUnit`.
 
-`UnitData.visual_role` selects authored combat miniature textures:
+`UnitData.visual_role` now selects 48×48 pixel-art combat sprites:
 
-- `assets/art/units/knight.webp`
-- `assets/art/units/ranger.webp`
-- `assets/art/units/mage.webp`
-- `assets/art/units/skeleton.webp`
-- `assets/art/units/bone_archer.webp`
+- `assets/pixel/units/knight.png`
+- `assets/pixel/units/ranger.png`
+- `assets/pixel/units/mage.png`
+- `assets/pixel/units/skeleton.png`
+- `assets/pixel/units/bone_archer.png`
 
-The procedural miniature drawing remains as a fallback if a texture is unavailable. Team-colored bases, health bars, placement rings and combat feedback remain procedural for gameplay readability.
+Combat presentation now prioritizes the sprite silhouette:
+
+- unit art is significantly larger;
+- thick portrait circles were removed;
+- thin team rings sit under the unit's feet;
+- HP bars are compact pixel-style bars above the sprite;
+- hero names remain small;
+- enemy instance suffixes such as A/B/C were removed and enemy labels are hidden during combat;
+- the arena uses a restrained pixel-stone renderer instead of a flat empty field.
+
+The older painted unit assets under `assets/art/units/` remain in the repository for reference but are no longer used by combat.
 
 ### Encounter data
 
@@ -224,15 +236,16 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Immediate next milestone
 
-Locally verify the first authored-art integration:
+Locally verify the pixel-art combat readability pass:
 
-- the painted table background imports and renders correctly;
-- the wizard portrait and decorative card back appear correctly;
-- card text remains readable over the new background;
-- Knight, Ranger, Mage, Skeleton and Bone Archer textures render at a useful size;
-- drag placement, hit feedback, death feedback and combat still work unchanged.
+- Knight, Ranger, Mage, Skeleton and Bone Archer are recognizable without relying on labels;
+- sprites are large enough at 1280×720;
+- team rings read as ground markers rather than portrait circles;
+- HP bars are readable but no longer dominate the unit;
+- enemy duplicates do not clutter the battlefield with A/B/C labels;
+- placement, movement, hit/death feedback and arena bounds still work unchanged.
 
-After verification, tune composition/scale/readability and then expand authored art into encounter-card faces, event scenes and the battle arena.
+After verification, continue the same pixel-art language across the wizard table, cards, event scene and remaining UI.
 
 ## Local workflow
 
