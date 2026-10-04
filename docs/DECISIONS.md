@@ -349,3 +349,23 @@ Bone Warden now has:
 - a visible phase transition cue and stronger boss aura/HP presentation.
 
 The boss should remain readable rather than mechanically overloaded. Do not add a general boss-ability framework yet. If tuning is needed, adjust the current boss stats, cleave, reinforcement composition and enrage values first.
+
+## D026 — Battle composition follows an approved authored pixel reference
+
+Date: 2026-10-05  
+Status: accepted for vertical-slice visual direction
+
+The earlier live combat renderer was mechanically readable but visually too sparse compared with the approved Misdeal pixel-art direction. The battle screen therefore uses `assets/concepts/approved_battle_direction.jpg` as its composition and density reference.
+
+The reference is **not** baked directly into gameplay. Combat remains native Godot UI + procedural/live arena rendering so units, HP, placement, movement, boss phases and encounter text remain dynamic.
+
+The visual priorities are:
+
+- dense gothic cathedral/crypt framing rather than an empty tile board;
+- a large central ritual mark and readable blue/red territorial temperature split;
+- heavy dark UI frames with restrained red-bronze ornament;
+- faction plates integrated into the arena edge;
+- a clearly dominant red **БОЙ** action;
+- character-scale combat sprites rather than tiny tactical icons.
+
+The core Knight/Ranger/Mage/Skeleton/Bone Archer assets are now transparent 64×64 pixel sprites. Bone Warden keeps its separate authored boss sprite. Do not return to the small-icon combat scale unless local readability testing proves the larger scale blocks tactical information.
