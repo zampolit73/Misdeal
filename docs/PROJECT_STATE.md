@@ -4,21 +4,19 @@ Last updated: 2026-10-04
 
 ## Current status
 
-Misdeal is in the first playable prototype stage.
+Misdeal now has a playable combat slice and the first end-to-end card-loop scaffold.
 
-The base autobattle plus restart flow have been run locally by the user and are confirmed working.
+Confirmed locally by the user:
 
-Pre-battle drag placement is implemented and confirmed working locally.
+- base autobattle and restart;
+- pre-battle hero placement;
+- combat-time unit separation;
+- hit/death feedback;
+- data-driven `UnitData`;
+- Bone Archer keep-distance behavior;
+- hard combat-arena bounds.
 
-Combat-time unit separation is implemented and confirmed working locally.
-
-Hit/death feedback is implemented and confirmed working locally.
-
-Unit combat stats are data-driven through `UnitData` Resources and the refactor is confirmed working locally.
-
-Mage splash damage is implemented and pending local verification.
-
-Bone Archer keep-distance behavior is implemented. Local testing exposed that combat movement had no arena bounds; hard combat bounds are now added for all units and the fix is pending local verification.
+The first `table -> battle -> reward -> table` loop is implemented in GitHub and is pending local verification.
 
 ## Engine
 
@@ -27,22 +25,37 @@ Bone Archer keep-distance behavior is implemented. Local testing exposed that co
 - Main scene: `res://scenes/main/main.tscn`
 - Rendering method: GL Compatibility
 - Prototype resolution: 1280×720
+- `RunState` is registered as an autoload singleton.
 
-## Implemented flow
+## Current playable flow
 
-### Main screen
+### 1. Main screen
 
 `scenes/main/main.tscn`
 
-The project boots into a simple Misdeal title screen.
+Pressing **ENTER THE GAME** resets prototype run state and opens the wizard's table.
 
-Pressing **ENTER THE GAME** transitions to:
+### 2. Wizard table
 
-`res://scenes/battle/battle.tscn`
+`scenes/table/table.tscn`
 
-### Test autobattle
+The table currently shows three card slots:
 
-The current encounter composition and spawn positions are defined in `scripts/battle/battle.gd`, while unit combat stats are stored in reusable `UnitData` Resources.
+- one playable encounter: **Graveyard Ambush**;
+- two face-down placeholder cards for future encounters.
+
+The table displays current run values:
+
+- deals survived;
+- gold;
+- party HP bonus;
+- party damage bonus.
+
+Choosing **Graveyard Ambush** launches the combat scene.
+
+### 3. Combat
+
+`scenes/battle/battle.tscn`
 
 Player party:
 
@@ -56,90 +69,102 @@ Enemy party:
 - Skeleton B
 - Bone Archer
 
-Before combat, the player can drag Knight, Ranger and Mage within the blue deployment zone.
-
-Placement rules currently implemented:
-
-- only player units are draggable;
-- units are clamped to the allowed deployment area;
-- heroes cannot be dropped on top of another hero;
-- placement is disabled when combat begins.
-
-Pressing **FIGHT** starts combat.
+Before combat, the player can drag the three heroes within the deployment zone.
 
 Implemented combat behavior:
 
-- units automatically find the nearest living enemy;
-- melee and ranged units use different attack ranges;
-- units move toward targets when out of range;
-- ranged units can define a minimum range and retreat when enemies get too close;
+- automatic nearest-enemy targeting;
+- automatic movement and attacks;
+- melee and ranged attack ranges;
+- Bone Archer keeps distance and retreats when enemies get too close;
 - all combat movement is clamped to the visible arena;
-- a ranged unit that reaches the arena edge stops trying to retreat through the boundary and continues attacking;
-- units attack automatically on individual cooldowns;
 - Mage attacks deal 50% splash damage to nearby secondary enemies;
-- nearby living units apply separation steering so they do not occupy the same point;
-- taking damage produces a brief hit flash, scale pulse and floating damage number;
-- death produces a short shrink/fade animation;
-- units have HP and visible health bars;
-- dead units become inactive and visually faded;
-- battle detects victory and defeat;
-- result text is displayed;
-- **RESTART** reloads the encounter.
+- separation steering prevents units from stacking into one point;
+- HP bars;
+- hit flash, impact pulse and floating damage numbers;
+- death shrink/fade feedback;
+- victory and defeat detection.
 
-Core unit logic lives in:
+Hero stats receive persistent run bonuses from `RunState`.
 
-`scripts/battle/unit.gd`
+After victory, **CLAIM REWARD** opens the reward scene.
+
+After defeat, **RETURN TO TABLE** goes back to the table without a reward.
+
+**RESTART** remains available as a prototype/testing convenience.
+
+### 4. Reward
+
+`scenes/reward/reward.tscn`
+
+Victory offers one of three persistent rewards:
+
+- **Blood Coin**: +25 gold;
+- **Iron Ward**: +20 HP to every hero;
+- **Tempered Steel**: +3 damage to every hero.
+
+Choosing a reward increments `deals_survived` and returns to the wizard's table.
+
+The next battle uses the accumulated party bonuses.
 
 ## Current architecture
 
-The prototype intentionally uses a minimal architecture.
+### Unit data
 
-Unit definitions are data-driven through `scripts/data/unit_data.gd` and `.tres` files under `resources/units/`.
+Reusable combat stats are stored in `UnitData` Resources:
 
-Current unit resources:
-
+- `scripts/data/unit_data.gd`
 - `resources/units/knight.tres`
 - `resources/units/ranger.tres`
 - `resources/units/mage.tres`
 - `resources/units/skeleton.tres`
 - `resources/units/bone_archer.tres`
 
-`battle.gd` still defines the temporary test encounter composition and spawn positions.
+Runtime combat state remains on `BattleUnit`.
 
-Current relevant files:
+### Run state
 
-- `project.godot`
-- `scenes/main/main.tscn`
-- `scripts/main.gd`
-- `scenes/battle/battle.tscn`
-- `scenes/battle/unit.tscn`
-- `scripts/battle/battle.gd`
-- `scripts/battle/unit.gd`
-- `scripts/data/unit_data.gd`
-- `resources/units/*.tres`
+`scripts/core/run_state.gd`
+
+The current prototype run state stores:
+
+- gold;
+- deals survived;
+- global party HP bonus;
+- global party damage bonus;
+- last battle result.
+
+This is intentionally minimal and exists to prove persistence across scenes.
+
+### Encounter data
+
+The current Graveyard Ambush composition and spawn positions are still hard-coded in `scripts/battle/battle.gd`.
+
+Encounter Resources are not implemented yet.
 
 ## Not implemented yet
-- attack animations and projectiles;
+
+- multiple playable table cards;
+- encounter Resources;
+- attack projectiles/animations;
 - broader ability/status-effect system;
-- encounter resources;
-- card/table gameplay;
-- evil wizard presentation;
-- rewards;
+- meaningful gold spending;
 - equipment;
-- run state;
+- richer evil wizard presentation;
+- finite run structure / run-end screen;
 - deck building;
 - meta progression;
 - save/load.
 
 ## Immediate next milestone
 
-Locally verify that Bone Archer retreats at close range without leaving the arena or dragging the rest of the fight off-screen, and that Mage splash damage can hit clustered enemies.
+Locally verify the complete first loop:
 
-If both read clearly in play, Phase 1 has enough combat variety for the first vertical slice and development should move into the minimal card/table → combat → reward → table loop.
+`main -> table -> Graveyard Ambush -> battle -> reward -> table`
 
-The long-term target remains:
+Confirm that **Iron Ward** and **Tempered Steel** affect the next battle and that the table counters persist.
 
-`table -> card -> combat -> reward -> table`
+Once this works, Phase 2 should continue with multiple playable card encounters and a short finite run rather than further expanding the combat sandbox.
 
 ## Local workflow
 
