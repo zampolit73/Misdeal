@@ -17,7 +17,7 @@ Confirmed locally by the user:
 - hard combat-arena bounds;
 - first `table -> battle -> reward -> table` loop.
 
-The new three-card encounter selection and three-victory finite run are implemented in GitHub and pending local verification.
+The three-card encounter selection and three-victory finite run are implemented and confirmed working locally.
 
 ## Player-facing language
 
@@ -189,13 +189,9 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Immediate next milestone
 
-Locally verify the new finite run:
+Phase 2 is locally verified.
 
-`main -> table -> choose among 3 cards -> battle -> reward -> repeat -> run end after 3 victories`
-
-Confirm that all three card choices spawn different enemy compositions, rewards persist between deals, and **НОВЫЙ ЗАБЕГ** resets the counters and bonuses.
-
-After verification, continue into Phase 3 identity work rather than expanding the combat sandbox further.
+Continue into Phase 3 identity work: strengthen the evil wizard as the host/antagonist and add the first non-combat card/event so the table starts feeling like an adventure rather than only a battle selector.
 
 ## Local workflow
 
