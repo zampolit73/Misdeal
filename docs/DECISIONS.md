@@ -248,3 +248,19 @@ The first artifact set deliberately changes hero behavior or tactical role inste
 Artifacts are applied when heroes spawn into battle. For the current vertical slice there are no slots, rarity framework, equip/unequip screen or permanent unlock system. Those should only be introduced when the playable Act 1 proves they are needed.
 
 The first functional shop may sell a random unowned artifact, while Curse Forge offers direct choice among the three current artifacts.
+
+## D020 — New enemy behaviors stay lightweight and data-driven
+
+Date: 2026-10-04  
+Status: accepted for prototype
+
+The first new Act 1 enemy behavior after Bone Archer is **Grave Bellkeeper** support healing.
+
+`UnitData` now supports an optional heal interval, radius and amount. A unit with these values periodically heals damaged living allies in range and presents a visible support cue. This is intentionally a narrow mechanic, not the start of a general ability/status framework.
+
+The same combat batch introduces:
+
+- **Bone Thrall** as a low-HP swarm body intended to make area damage and positioning matter;
+- **Crypt Guard** as an elite melee enemy that reuses the existing splash system to punish tightly clustered heroes.
+
+Elite combat cards may override the normal post-battle reward flow when the encounter itself promises a specific reward. **Crypt Guard** currently guarantees a choice of one unowned artifact, falling back to gold only when the current artifact pool is exhausted.
