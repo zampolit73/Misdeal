@@ -31,6 +31,12 @@
 
 ### Added
 
+- First boss encounter: **КОСТЯНОЙ НАДЗИРАТЕЛЬ** on the third/final deal.
+- Final deal now replaces normal combat-card choices with the boss while still allowing an unresolved Whispering Well before the fight.
+- Lightweight boss tuning fields in `UnitData`: boss flag, visual scale and one-time HP-threshold enrage modifiers.
+- Bone Warden boss presentation with larger sprite scale, visible boss name, wider HP bar, double ground ring and **ЯРОСТЬ!** feedback at 50% HP.
+- Boss enrage increases damage, attack speed and movement speed without introducing a general ability framework.
+- Boss-specific battle framing: **БОСС** enemy header, preparation warning and a unique wizard reaction after victory.
 - Final wizard-table composition pass: compact HUD/commentary strip, slightly smaller and lower card row, wider breathing room around the wizard, and a subdued lower runner/sigil.
 - Encounter-specific wizard reactions on card hover, including a dedicated Whispering Well teaser.
 - Approved wizard-table concept archived at `assets/concepts/approved_table_direction.png`.
