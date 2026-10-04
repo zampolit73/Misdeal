@@ -19,6 +19,8 @@ Status: complete
 
 ## Phase 1 — Tactical autobattler slice
 
+Status: complete
+
 Goal: make preparation meaningfully affect battle outcome.
 
 - [x] Player can reposition party before combat.
@@ -34,14 +36,14 @@ Goal: make preparation meaningfully affect battle outcome.
 
 Goal: prove the Misdeal concept outside the battle sandbox.
 
-- [ ] Create cursed table scene.
-- [ ] Present a small set of cards.
-- [ ] Reveal/choose an encounter card.
-- [ ] Launch combat from a card encounter.
-- [ ] Resolve victory/defeat back into run state.
-- [ ] Present one reward choice.
-- [ ] Return to the table.
-- [ ] Complete a short sequence ending in a run result.
+- [x] Create cursed table scene.
+- [x] Present a small table spread with one playable card and two face-down placeholders.
+- [x] Choose the Graveyard Ambush encounter card.
+- [x] Launch combat from a card encounter.
+- [x] Resolve victory/defeat back into persistent prototype run state.
+- [x] Present a three-option reward choice.
+- [x] Return to the table with reward effects persisted.
+- [ ] Add multiple playable cards and complete a short finite sequence ending in a run result.
 
 Target loop:
 
