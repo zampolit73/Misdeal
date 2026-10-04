@@ -1,6 +1,11 @@
 extends Control
 
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
+const KNIGHT_DATA: UnitData = preload("res://resources/units/knight.tres")
+const RANGER_DATA: UnitData = preload("res://resources/units/ranger.tres")
+const MAGE_DATA: UnitData = preload("res://resources/units/mage.tres")
+const SKELETON_DATA: UnitData = preload("res://resources/units/skeleton.tres")
+
 const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 70), Vector2(525, 340))
 
 @onready var units_layer: Node2D = $UnitsLayer
@@ -22,33 +27,22 @@ func _ready() -> void:
 	_begin_preparation_phase()
 
 func _spawn_test_encounter() -> void:
-	_spawn_unit("Knight", 0, Vector2(220, 145), 150.0, 18.0, 0.90, 56.0, 84.0)
-	_spawn_unit("Ranger", 0, Vector2(180, 245), 90.0, 14.0, 0.72, 185.0, 72.0)
-	_spawn_unit("Mage", 0, Vector2(220, 345), 80.0, 24.0, 1.25, 155.0, 66.0)
+	_spawn_unit(KNIGHT_DATA, 0, Vector2(220, 145))
+	_spawn_unit(RANGER_DATA, 0, Vector2(180, 245))
+	_spawn_unit(MAGE_DATA, 0, Vector2(220, 345))
 
-	_spawn_unit("Skeleton A", 1, Vector2(980, 145), 105.0, 13.0, 0.95, 54.0, 78.0)
-	_spawn_unit("Skeleton B", 1, Vector2(1020, 245), 105.0, 13.0, 0.95, 54.0, 78.0)
-	_spawn_unit("Skeleton C", 1, Vector2(980, 345), 105.0, 13.0, 0.95, 54.0, 78.0)
+	_spawn_unit(SKELETON_DATA, 1, Vector2(980, 145), "Skeleton A")
+	_spawn_unit(SKELETON_DATA, 1, Vector2(1020, 245), "Skeleton B")
+	_spawn_unit(SKELETON_DATA, 1, Vector2(980, 345), "Skeleton C")
 
 func _spawn_unit(
-	unit_name: String,
+	data: UnitData,
 	team: int,
 	spawn_position: Vector2,
-	hp: float,
-	unit_damage: float,
-	interval: float,
-	unit_range: float,
-	speed: float
+	name_override: String = ""
 ) -> void:
 	var unit := UNIT_SCENE.instantiate() as BattleUnit
-	unit.display_name = unit_name
-	unit.team = team
-	unit.max_hp = hp
-	unit.damage = unit_damage
-	unit.attack_interval = interval
-	unit.attack_range = unit_range
-	unit.move_speed = speed
-	unit.position = spawn_position
+	unit.configure(data, team, spawn_position, name_override)
 	unit.died.connect(_on_unit_died)
 	unit.placement_rejected.connect(_on_placement_rejected)
 	units_layer.add_child(unit)
