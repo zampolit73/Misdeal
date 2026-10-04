@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "crypt_guard"
 title = "СТРАЖ СКЛЕПА"
-card_text = "Тяжёлый страж не двигается, пока не почувствует живую кровь."
+card_text = "Тяжёлый страж бьёт по площади. За победу — гарантированный артефакт."
 wizard_line = "Вот теперь можно проверить, чему ты научился."
 type_label = "ЭЛИТА"
 tier = 2
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "combat"
+target_path = "res://resources/encounters/crypt_guard.tres"
 art_path = "res://assets/pixel/table/cards/bone_patrol.png"
-prototype_result_text = "Здесь появится элитный бой с гарантированным артефактом."
+prototype_result_text = ""
