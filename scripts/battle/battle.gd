@@ -37,13 +37,21 @@ func _ready() -> void:
 	encounter = _load_selected_encounter()
 	title_label.text = "MISDEAL — %s" % encounter.title
 	deal_label.text = RunState.get_progress_text()
-	enemy_label.text = "БОСС" if _is_boss_encounter() else "НЕЖИТЬ"
+	if _is_boss_encounter():
+		enemy_label.text = "БОСС"
+	elif _is_elite_encounter():
+		enemy_label.text = "ЭЛИТА"
+	else:
+		enemy_label.text = "НЕЖИТЬ"
 	result_backdrop.visible = false
 	_spawn_encounter()
 	_begin_preparation_phase()
 
 func _is_boss_encounter() -> bool:
 	return encounter != null and encounter.encounter_id == "bone_warden"
+
+func _is_elite_encounter() -> bool:
+	return encounter != null and encounter.encounter_id == "crypt_guard"
 
 func _load_selected_encounter() -> EncounterData:
 	if not RunState.selected_encounter_path.is_empty():
@@ -107,6 +115,12 @@ func _apply_artifacts_to_unit(unit: BattleUnit) -> void:
 func _begin_preparation_phase() -> void:
 	if _is_boss_encounter():
 		status_label.text = "БОСС — надзиратель впадает в ярость на половине здоровья."
+	elif _is_elite_encounter():
+		status_label.text = "ЭЛИТА — страж бьёт по площади. Не собирайте героев в одну точку."
+	elif encounter.encounter_id == "grave_bell":
+		status_label.text = "МОГИЛЬНЫЙ ЗВОН — звонарь периодически лечит ближайшую нежить."
+	elif encounter.encounter_id == "bone_crush":
+		status_label.text = "КОСТЯНАЯ ДАВКА — пять слабых врагов. Маг особенно полезен против толпы."
 	else:
 		status_label.text = "ПОДГОТОВКА — расставьте героев и нажмите «БОЙ»."
 	placement_hint.visible = true
@@ -164,6 +178,10 @@ func _finish_battle(player_won: bool) -> void:
 		result_label.text = "ПОБЕДА"
 		if _is_boss_encounter():
 			result_subtitle.text = "Волшебник впервые перестаёт улыбаться."
+		elif _is_elite_encounter():
+			result_subtitle.text = "Склеп открыт. Внутри осталось кое-что ценное."
+		elif encounter.encounter_id == "grave_bell":
+			result_subtitle.text = "Колокол наконец замолчал."
 		else:
 			result_subtitle.text = "Волшебник выглядит слегка раздражённым."
 		status_label.text = "Карта пережита. Пока что."
