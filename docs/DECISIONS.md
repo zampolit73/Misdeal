@@ -331,3 +331,21 @@ After the mandatory combat, remaining cards return to normal tier selection, so 
 This is pacing control, not a new route/map system. Keep the two-card wizard-table structure intact for the vertical slice.
 
 The same first balance pass retunes Bone Warden for twelve-card builds (580 HP, 22 base damage, faster cadence/movement and stronger enrage) and reduces Death Wager's special reward to +60 gold / +35 HP / +5 damage.
+
+## D025 — Bone Warden final fight is a two-phase encounter, not a stat wall
+
+Date: 2026-10-05  
+Status: accepted for vertical-slice boss rework
+
+Full Act 1 playtesting showed that a larger Skeleton with stronger numbers and a 50% enrage was not enough: twelve cards of permanent growth made the original final fight too easy, and the reused Skeleton presentation made the finale visually read like another ordinary combat.
+
+Bone Warden now has:
+
+- a dedicated `bone_warden` visual role, authored pixel sprite and boss-card illustration;
+- a wider melee cleave that punishes clustered hero placement;
+- a real Phase II at 50% HP;
+- one Bone Archer and one Bone Thrall summoned when Phase II begins;
+- a dedicated final-arena treatment with stronger red ritual geometry, gate bars, chains and braziers;
+- a visible phase transition cue and stronger boss aura/HP presentation.
+
+The boss should remain readable rather than mechanically overloaded. Do not add a general boss-ability framework yet. If tuning is needed, adjust the current boss stats, cleave, reinforcement composition and enrage values first.
