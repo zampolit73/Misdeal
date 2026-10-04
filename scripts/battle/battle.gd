@@ -10,11 +10,13 @@ const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1200, 465))
 const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 70), Vector2(525, 340))
 
 @onready var title_label: Label = $Title
+@onready var deal_label: Label = $DealLabel
 @onready var units_layer: Node2D = $UnitsLayer
 @onready var status_label: Label = $Status
 @onready var fight_button: Button = $FightButton
 @onready var restart_button: Button = $RestartButton
 @onready var continue_button: Button = $ContinueButton
+@onready var result_backdrop: Panel = $ResultBackdrop
 @onready var result_label: Label = $Result
 @onready var placement_hint: Label = $PlacementHint
 
@@ -32,6 +34,8 @@ func _ready() -> void:
 	continue_button.disabled = true
 	encounter = _load_selected_encounter()
 	title_label.text = "MISDEAL — %s" % encounter.title
+	deal_label.text = "РАЗДАЧА %d/%d" % [RunState.deals_survived + 1, RunState.MAX_DEALS]
+	result_backdrop.visible = false
 	_spawn_encounter()
 	_begin_preparation_phase()
 
@@ -144,6 +148,7 @@ func _finish_battle(player_won: bool) -> void:
 		status_label.text = "Стол забирает ещё один отряд."
 		continue_button.text = "ВЕРНУТЬСЯ К СТОЛУ"
 
+	result_backdrop.visible = true
 	result_label.visible = true
 	restart_button.disabled = false
 	continue_button.visible = true
