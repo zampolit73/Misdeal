@@ -24,6 +24,12 @@ signal placement_rejected(unit: BattleUnit)
 @export var body_radius: float = 22.0
 @export var separation_padding: float = 10.0
 @export var separation_strength: float = 120.0
+@export var is_boss: bool = false
+@export var visual_scale: float = 1.0
+@export var enrage_threshold: float = 0.0
+@export var enrage_damage_multiplier: float = 1.0
+@export var enrage_attack_interval_multiplier: float = 1.0
+@export var enrage_move_speed_multiplier: float = 1.0
 
 var unit_data: UnitData
 var hp: float
@@ -31,6 +37,7 @@ var combat_started := false
 var alive := true
 var target: BattleUnit
 var attack_cooldown := 0.0
+var enraged := false
 
 var placement_enabled := false
 var placement_bounds := Rect2()
@@ -65,14 +72,22 @@ func configure(data: UnitData, unit_team: int, spawn_position: Vector2, name_ove
 	body_radius = data.body_radius
 	separation_padding = data.separation_padding
 	separation_strength = data.separation_strength
+	is_boss = data.is_boss
+	visual_scale = data.visual_scale
+	enrage_threshold = data.enrage_threshold
+	enrage_damage_multiplier = data.enrage_damage_multiplier
+	enrage_attack_interval_multiplier = data.enrage_attack_interval_multiplier
+	enrage_move_speed_multiplier = data.enrage_move_speed_multiplier
 
 func _ready() -> void:
 	hp = max_hp
 	add_to_group("combat_units")
 	name_label.text = display_name
-	name_label.visible = team == 0
+	name_label.visible = team == 0 or is_boss
 	art_sprite.texture = _get_art_texture()
+	art_sprite.scale = Vector2.ONE * (1.35 * visual_scale)
 	_apply_health_bar_style()
+	_apply_boss_layout()
 	health_bar.max_value = max_hp
 	health_bar.value = hp
 	queue_redraw()
@@ -91,6 +106,21 @@ func _get_art_texture() -> Texture2D:
 			return BONE_ARCHER_ART
 		_:
 			return null
+
+func _apply_boss_layout() -> void:
+	if not is_boss:
+		return
+
+	health_bar.offset_left = -42.0
+	health_bar.offset_top = -66.0
+	health_bar.offset_right = 42.0
+	health_bar.offset_bottom = -57.0
+	name_label.offset_left = -82.0
+	name_label.offset_top = 42.0
+	name_label.offset_right = 82.0
+	name_label.offset_bottom = 64.0
+	name_label.add_theme_font_size_override("font_size", 14)
+	name_label.add_theme_color_override("font_color", Color(0.96, 0.72, 0.42, 1.0))
 
 func _apply_health_bar_style() -> void:
 	var background := StyleBoxFlat.new()
@@ -127,7 +157,7 @@ func disable_placement() -> void:
 func start_combat() -> void:
 	disable_placement()
 	combat_started = true
-	if team != 0:
+	if team != 0 and not is_boss:
 		name_label.visible = false
 	attack_cooldown = randf_range(0.0, 0.25)
 
@@ -347,10 +377,47 @@ func take_damage(amount: float) -> void:
 
 	hp = maxf(0.0, hp - amount)
 	health_bar.value = hp
+
+	if is_boss and not enraged and enrage_threshold > 0.0 and hp > 0.0:
+		if hp / max_hp <= enrage_threshold:
+			_trigger_enrage()
+
 	queue_redraw()
 
 	if hp <= 0.0:
 		_die()
+
+func _trigger_enrage() -> void:
+	enraged = true
+	damage *= enrage_damage_multiplier
+	attack_interval = maxf(0.2, attack_interval * enrage_attack_interval_multiplier)
+	move_speed *= enrage_move_speed_multiplier
+	_show_status_text("ЯРОСТЬ!", Color(1.0, 0.42, 0.20, 1.0))
+	queue_redraw()
+
+func _show_status_text(message: String, color: Color) -> void:
+	if get_parent() == null:
+		return
+
+	var label := Label.new()
+	label.text = message
+	label.position = position + Vector2(-54.0, -92.0)
+	label.size = Vector2(108.0, 28.0)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.z_index = 2100
+	label.add_theme_font_size_override("font_size", 18)
+	label.add_theme_color_override("font_color", color)
+	label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.9))
+	label.add_theme_constant_override("shadow_offset_x", 1)
+	label.add_theme_constant_override("shadow_offset_y", 1)
+	get_parent().add_child(label)
+
+	var tween := label.create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(label, "position", label.position + Vector2(0.0, -26.0), 0.55)
+	tween.tween_property(label, "modulate:a", 0.0, 0.55)
+	tween.chain().tween_callback(label.queue_free)
 
 func _play_hit_feedback() -> void:
 	hit_flash_time = 0.12
@@ -409,10 +476,14 @@ func _die() -> void:
 func _draw() -> void:
 	var team_color := Color(0.20, 0.58, 1.0, 0.95) if team == 0 else Color(0.95, 0.20, 0.16, 0.95)
 	var target_color := Color(0.78, 0.90, 1.0, 0.7) if team == 0 else Color(1.0, 0.58, 0.44, 0.7)
+	var ring_radius := maxf(19.0, body_radius * 0.9)
 
 	draw_set_transform(Vector2(0.0, 15.0), 0.0, Vector2(1.0, 0.34))
-	draw_circle(Vector2.ZERO, 19.0, Color(0.0, 0.0, 0.0, 0.45))
-	draw_arc(Vector2.ZERO, 18.0, 0.0, TAU, 32, team_color, 2.5)
+	draw_circle(Vector2.ZERO, ring_radius + 1.0, Color(0.0, 0.0, 0.0, 0.45))
+	draw_arc(Vector2.ZERO, ring_radius, 0.0, TAU, 36, team_color, 2.5)
+	if is_boss:
+		var boss_color := Color(1.0, 0.28, 0.12, 0.95) if enraged else Color(0.95, 0.62, 0.18, 0.88)
+		draw_arc(Vector2.ZERO, ring_radius + 6.0, 0.0, TAU, 40, boss_color, 2.5)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 	if placement_enabled and team == 0 and alive:
