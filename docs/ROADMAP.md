@@ -57,13 +57,16 @@ Target loop:
 - [x] Wizard reactions and short commentary.
 - [x] Multiple encounter types: combat cards plus a non-combat event.
 - [ ] More party archetypes.
-- [ ] Equipment or artifacts that alter autobattle behavior.
+- [x] First artifacts that alter hero autobattle behavior.
 - [x] First risk/reward event card: Whispering Well.
 - [x] First boss encounter: Bone Warden with an enrage phase.
 - [x] Expand the prototype run into a 12-card Act 1 plus boss.
 - [x] Two-card offers with rejected cards removed from the current run.
 - [x] Data-driven 24-card structural pool split into early/mid/late tiers.
 - [ ] Replace prototype card resolvers with real mechanics for the full Act 1 pool.
+- [x] First real recovery card: Ash Rest.
+- [x] First functional shop: Gravedigger Shop.
+- [x] First artifact-choice card: Curse Forge with three hero-specific artifacts.
 
 ## Phase 4 — Vertical slice polish
 
