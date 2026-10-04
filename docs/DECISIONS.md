@@ -313,6 +313,21 @@ Do not immediately add more cards. The next development gate is a full-run balan
 - elite and late-combat difficulty;
 - whether Bone Warden remains a meaningful final test after twelve cards.
 
-**СТАВКА НА СМЕРТЬ** is the current late high-risk/high-reward endpoint before the boss: it uses a five-enemy encounter and a bespoke +75 gold / +50 HP / +8 damage reward choice. Like the Crypt Guard artifact reward, this special reward does not consume **ДОЛГ ВОЛШЕБНИКУ**; only a normal reward clears that condition.
+**СТАВКА НА СМЕРТЬ** is the current late high-risk/high-reward endpoint before the boss: it uses a five-enemy encounter and a bespoke +60 gold / +35 HP / +5 damage reward choice after the first balance pass. Like the Crypt Guard artifact reward, this special reward does not consume **ДОЛГ ВОЛШЕБНИКУ**; only a normal reward clears that condition.
 
 Content expansion should resume only after the current Act 1 proves its pacing and economy in repeated local runs.
+
+## D024 — Each Act 1 tier guarantees one selected combat
+
+Date: 2026-10-04  
+Status: accepted for first balance pass
+
+Pure two-card random pairing allowed a four-card tier to contain no selected combat at all, which weakened the tactical-autobattler pillar even though the average number of fights was acceptable.
+
+Each early/mid/late tier now chooses a random mandatory combat slot among its first three card positions. Before that slot, combat cards are held out of offers. At the mandatory slot, two combat cards are offered, guaranteeing that one combat is selected while preserving player choice and the rule that the rejected card leaves the run.
+
+After the mandatory combat, remaining cards return to normal tier selection, so mid and late tiers can still produce an additional optional combat.
+
+This is pacing control, not a new route/map system. Keep the two-card wizard-table structure intact for the vertical slice.
+
+The same first balance pass retunes Bone Warden for twelve-card builds (580 HP, 22 base damage, faster cadence/movement and stronger enrage) and reduces Death Wager's special reward to +60 gold / +35 HP / +5 damage.
