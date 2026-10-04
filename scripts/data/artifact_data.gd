@@ -5,6 +5,7 @@ extends Resource
 @export var title: String = ""
 @export_multiline var description: String = ""
 @export var target_role: String = ""
+@export var general_pool: bool = true
 @export var hp_bonus: float = 0.0
 @export var damage_multiplier: float = 1.0
 @export var attack_interval_multiplier: float = 1.0
