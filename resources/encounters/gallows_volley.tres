@@ -6,7 +6,7 @@
 script = ExtResource("1_encounter")
 encounter_id = "gallows_volley"
 title = "ЗАЛП С ВИСЕЛИЦЫ"
-card_text = "Два костяных лучника прячутся за одиноким скелетом."
+card_text = "Два костяных лучника\nпрячутся за одним скелетом."
 wizard_line = "Беги к ним быстрее. Стрелы ведь наверняка подождут."
 enemy_unit_paths = PackedStringArray("res://resources/units/skeleton.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_archer.tres")
 enemy_names = PackedStringArray("Костяной страж", "Лучник A", "Лучник B")
