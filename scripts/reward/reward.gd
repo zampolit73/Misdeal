@@ -18,8 +18,17 @@ func _ready() -> void:
 		_setup_normal_reward()
 
 func _setup_normal_reward() -> void:
-	title_label.text = "ВЫБЕРИТЕ НАГРАДУ"
-	summary_label.text = "Мертвецы затихли. Волшебник предлагает ровно одну милость."
+	var multiplier := RunState.get_reward_multiplier()
+
+	if multiplier > 1:
+		title_label.text = "ДВОЙНАЯ НАГРАДА"
+		summary_label.text = "Долг погашен. Волшебник нехотя удваивает обычную награду."
+		blood_coin_button.text = "КРОВАВАЯ МОНЕТА\n\n+50 золота\n\nДолг делает щедрость особенно подозрительной."
+		iron_ward_button.text = "ЖЕЛЕЗНЫЙ ОБЕРЕГ\n\n+40 здоровья\nкаждому герою\n\nСегодня металл весит вдвое больше."
+		tempered_steel_button.text = "ЗАКАЛЁННАЯ СТАЛЬ\n\n+6 урона\nкаждому герою\n\nВолшебник держит слово. Это тревожнее обмана."
+	else:
+		title_label.text = "ВЫБЕРИТЕ НАГРАДУ"
+		summary_label.text = "Мертвецы затихли. Волшебник предлагает ровно одну милость."
 
 	blood_coin_button.pressed.connect(_choose_normal_reward.bind("blood_coin"))
 	iron_ward_button.pressed.connect(_choose_normal_reward.bind("iron_ward"))
@@ -28,6 +37,8 @@ func _setup_normal_reward() -> void:
 func _setup_elite_reward() -> void:
 	title_label.text = "ТРОФЕЙ СТРАЖА"
 	summary_label.text = "Склеп открыт. Волшебник нехотя позволяет забрать одну реликвию."
+	if RunState.wizard_debt_active:
+		summary_label.text += " Долг остаётся до следующей обычной награды."
 
 	var available := RunState.get_available_artifact_ids()
 	if available.is_empty():
@@ -54,8 +65,10 @@ func _setup_elite_reward() -> void:
 
 func _choose_normal_reward(reward_id: String) -> void:
 	_disable_reward_buttons()
+	var doubled := RunState.get_reward_multiplier() > 1
 	RunState.apply_reward(reward_id)
-	await _finish_reward("Взято. У каждого дара за этим столом есть цена.")
+	var message := "Долг погашен. Награда удвоена." if doubled else "Взято. У каждого дара за этим столом есть цена."
+	await _finish_reward(message)
 
 func _choose_artifact_reward(artifact_id: String) -> void:
 	_disable_reward_buttons()
