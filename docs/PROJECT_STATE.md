@@ -50,7 +50,9 @@ The first real post-structure content batch is implemented: **ПЕПЕЛЬНЫЙ
 
 The first new combat-content batch is also implemented in GitHub and pending local verification: **МОГИЛЬНЫЙ ЗВОН**, **КОСТЯНАЯ ДАВКА** and **СТРАЖ СКЛЕПА** are real combat cards.
 
-A second real event batch is now implemented in GitHub and pending local verification: **ЧЁРНЫЙ АЛТАРЬ**, **ЗАКОВАННЫЙ ПЛЕННИК**, **КОСТИ ДОЛЖНИКА** and **ДЕСЯТИНА ВОЛШЕБНИКА** no longer use the prototype resolver.
+A second real event batch is implemented in GitHub and pending local verification: **ЧЁРНЫЙ АЛТАРЬ**, **ЗАКОВАННЫЙ ПЛЕННИК**, **КОСТИ ДОЛЖНИКА** and **ДЕСЯТИНА ВОЛШЕБНИКА** no longer use the prototype resolver.
+
+The late-game escalation batch is now implemented in GitHub and pending local verification: **КАРТА БЕЗ ЛИЦА**, **КРОВАВАЯ КНИГА**, **СЛОМАННАЯ КОРОНА**, **ПОСЛЕДНИЙ ПРИВАЛ** and **ВРАТА ОССУАРИЯ** are real cards. Seven of eight late-tier cards now have bespoke mechanics; only **СТАВКА НА СМЕРТЬ** remains a late-tier prototype.
 
 ## Player-facing language
 
@@ -108,7 +110,14 @@ Currently fully implemented card mechanics:
 - **ЧЁРНЫЙ АЛТАРЬ** — trade party HP for permanent damage, spend gold for HP, or refuse;
 - **ЗАКОВАННЫЙ ПЛЕННИК** — spend gold for a mixed HP/damage benefit, force the chains for a harsher stat trade, loot the prisoner, or leave;
 - **КОСТИ ДОЛЖНИКА** — a true 50/50 gold gamble alongside safer deterministic choices;
-- **ДЕСЯТИНА ВОЛШЕБНИКА** — pay gold, pay party HP, or refuse and take a temporary wizard debt.
+- **ДЕСЯТИНА ВОЛШЕБНИКА** — pay gold, pay party HP, or refuse and take a temporary wizard debt;
+- **КАРТА БЕЗ ЛИЦА** — choose a fully hidden random result, pay for a safe strong result, burn it for a small guaranteed bonus, or leave;
+- **КРОВАВАЯ КНИГА** — convert gold into damage, HP into a random general-pool artifact, or damage into HP;
+- **СЛОМАННАЯ КОРОНА** — source-locked special artifact choice: all heroes deal +22% damage but lose 10 max HP, with gold/stat alternatives;
+- **ПОСЛЕДНИЙ ПРИВАЛ** — late preparation choice between +30 party HP, +3 party damage or +25 gold;
+- **ВРАТА ОССУАРИЯ** — heavy late combat combining Crypt Guard, Grave Bellkeeper, Bone Archer and Bone Thrall.
+
+19 of the 24 pre-boss cards now have bespoke mechanics. The remaining prototype cards are **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА** and **СТАВКА НА СМЕРТЬ**.
 
 The remaining new card definitions already participate in the real Act 1 deck/tier/rejection flow, but temporarily resolve through `scenes/event/prototype_card.tscn` until their individual mechanics are implemented.
 
@@ -187,7 +196,7 @@ Implemented combat behavior:
 - Bone Thrall is a smaller, faster, low-HP swarm enemy;
 - Crypt Guard is a slower elite melee enemy with a larger silhouette, visible name and 35% splash damage around its primary target.
 
-Hero stats receive persistent run bonuses from `RunState`.
+Hero stats receive persistent run bonuses from `RunState`. Final spawned hero max HP is clamped to at least 20 and damage to at least 1 so stacking late-run sacrifices cannot create invalid combat units.
 
 After victory, **ЗАБРАТЬ НАГРАДУ** opens the reward scene.
 
@@ -298,7 +307,8 @@ Current encounter files:
 - `resources/encounters/bone_warden.tres` — final-deal boss encounter;
 - `resources/encounters/grave_bell.tres`;
 - `resources/encounters/bone_crush.tres`;
-- `resources/encounters/crypt_guard.tres` — elite encounter with guaranteed artifact reward.
+- `resources/encounters/crypt_guard.tres` — elite encounter with guaranteed artifact reward;
+- `resources/encounters/ossuary_gate.tres` — late mixed-archetype combat before the boss.
 
 ### Run-card data
 
@@ -327,7 +337,10 @@ Current artifacts:
 
 - **ЩИТ МЕРТВЕЦА** — Knight +40 HP, -15% move speed;
 - **СЛЕПОЙ КОЛЧАН** — Ranger attacks 22% faster but gains +55 minimum range;
-- **РАСКОЛОТЫЙ ФОКУС** — Mage deals 15% less primary damage but gains +55 splash radius and +0.25 splash multiplier.
+- **РАСКОЛОТЫЙ ФОКУС** — Mage deals 15% less primary damage but gains +55 splash radius and +0.25 splash multiplier;
+- **СЛОМАННАЯ КОРОНА** — special party-wide artifact: all heroes +22% damage and -10 max HP.
+
+`ArtifactData.general_pool` separates normal shop/elite/random artifacts from source-locked special artifacts. **СЛОМАННАЯ КОРОНА** has `general_pool = false`, so it can only be acquired from its named card. Party-wide artifacts use `target_role = "*"`.
 
 Artifacts are applied to hero runtime stats when combat units spawn. The run-end summary now lists acquired artifacts.
 
@@ -368,19 +381,18 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the real event batch and the still-pending new combat batch:
+Locally verify the late-game escalation together with the still-pending combat/event batches:
 
-- **ЧЁРНЫЙ АЛТАРЬ** should apply the exact HP/damage/gold trade selected and then advance the run;
-- **ЗАКОВАННЫЙ ПЛЕННИК** should disable the 25-gold rescue when unaffordable and apply each branch correctly;
-- **КОСТИ ДОЛЖНИКА** should provide a real 50/50 gamble on the first option while the other choices remain deterministic;
-- refusing **ДЕСЯТИНА ВОЛШЕБНИКА** should display **ДОЛГ ВОЛШЕБНИКУ** on the table;
-- while debt is active, every enemy in the next combat should deal 25% more damage and the preparation text should warn about it;
-- an elite Crypt Guard reward should leave the debt active;
-- the next normal reward should visibly become +50 gold / +40 HP / +6 damage and should clear the debt when chosen;
-- paying the tithe in gold or HP should not create debt;
-- **МОГИЛЬНЫЙ ЗВОН**, **КОСТЯНАЯ ДАВКА** and **СТРАЖ СКЛЕПА** should still satisfy the combat checks from the previous milestone.
+- **КАРТА БЕЗ ЛИЦА** should keep the first result genuinely hidden until selected; its safe paid and burn options should apply deterministic bonuses;
+- **КРОВАВАЯ КНИГА** should disable the 40-gold branch when unaffordable and give only general-pool artifacts for the blood branch;
+- **СЛОМАННАЯ КОРОНА** should never appear from the shop, Crypt Guard reward or other random artifact sources; wearing it should appear in the artifact list and affect all three heroes in the next battle;
+- after wearing the crown, all heroes should deal roughly 22% more damage while having 10 less max HP;
+- **ПОСЛЕДНИЙ ПРИВАЛ** should correctly apply one of its three final-preparation bonuses;
+- **ВРАТА ОССУАРИЯ** should launch a real four-enemy late encounter with Crypt Guard, Bellkeeper, Bone Archer and Bone Thrall, and retain active-card retry behavior after defeat;
+- stacked negative HP choices must not create heroes below 20 max HP;
+- previously added wizard-debt, Grave Bellkeeper, Bone Crush and Crypt Guard flows should remain stable.
 
-If this pass is stable, continue replacing the remaining prototype cards. Prioritize the late-game placeholders so cards 9-12 feel like a real escalation before Bone Warden.
+After this is stable, finish the five remaining prototype cards rather than adding another framework: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА** and **СТАВКА НА СМЕРТЬ**. Then Act 1 will have bespoke mechanics for the full 24-card pre-boss pool.
 
 ## Local workflow
 
