@@ -21,6 +21,10 @@
 
 ### Added
 
+- First non-combat event card: **ШЕПЧУЩИЙ КОЛОДЕЦ**.
+- One-time run event state and three event choices: risk/reward stat trade, gold spend, or refusal.
+- First meaningful gold spend: 25 gold for a party HP bonus at the Whispering Well.
+- Animated placeholder wizard portrait with pulsing eyes on the table.
 - Data-driven `EncounterData` Resource type.
 - Three playable combat cards: Bone Patrol, Graveyard Ambush and Gallows Volley.
 - Selected encounters now drive enemy composition and spawn positions in the generic battle scene.
