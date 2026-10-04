@@ -31,7 +31,7 @@ The same pixel-art visual language is now applied across the main menu, Whisperi
 
 The wizard table has since been rebuilt again around an approved authored pixel-art concept.
 
-A final composition/readability polish pass is now implemented in GitHub and pending local verification:
+The final composition/readability polish pass has been locally verified and accepted:
 
 - encounter hover no longer uses floating tooltips over card art;
 - hovering a combat card now swaps the upper wizard-commentary line to that encounter's wizard reaction;
@@ -276,18 +276,11 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Immediate next milestone
 
-Locally verify the final wizard-table polish pass:
+Build the first boss encounter and use it to strengthen both gameplay identity and the wizard's role as host/antagonist.
 
-- no floating tooltip text appears over the card illustrations;
-- hovering each combat card changes only the upper wizard-commentary strip and restores the default line on exit;
-- the Whispering Well hover commentary behaves the same way while the unresolved card remains clickable;
-- the compact HUD remains readable at 1280×720;
-- the slightly smaller/lower card row leaves more of the wizard visible without hurting card readability;
-- the old procedural side props/candles are gone;
-- Whispering Well still switches to its exhausted/dimmed state after use;
-- selecting a combat/event card still transitions to the correct scene.
+Before starting boss work, the battle result overlay received one cleanup pass after local verification exposed oversized result commentary. Victory/defeat now use a large result title plus a separate compact wizard-reaction subtitle instead of rendering both lines at the same large font size.
 
-If this pass is visually accepted locally, stop iterating on the table for now and move to the next gameplay milestone: the first boss encounter plus stronger wizard/gameplay identity.
+The accepted wizard table should not receive further polish unless a new functional/readability issue appears.
 
 ## Local workflow
 
