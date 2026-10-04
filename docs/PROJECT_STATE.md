@@ -46,7 +46,7 @@ The original Bone Warden boss encounter, including its 50% HP enrage, was confir
 
 A Bone Warden gameplay + visual rework is implemented in GitHub and pending local verification. The first local pull exposed a Godot 4.7.2 type-inference parser error in the new procedural boss-arena chains; that parser issue was fixed.
 
-After comparing the live battle screenshot against the approved richer pixel mockup, the procedural battle renderer was replaced by an authored full-screen battle backdrop matching the second approved reference much more closely. This authored-backdrop pass is now in GitHub and pending local verification.
+After comparing the live battle screenshot against the approved richer pixel mockup, the procedural battle renderer was replaced by an authored full-screen battle backdrop matching the second approved reference much more closely. The first local pull exposed two wiring faults: a truncated 8.7 KB WebP and a negative z-index that placed the backdrop behind the black fallback. Both faults are now fixed in GitHub; the scene uses the validated chunk-based 1280×720 authored backdrop loader and is pending local verification.
 
 The longer Act 1 structure is now confirmed working locally: 12 resolved pre-boss cards followed by the Bone Warden as card 13.
 
@@ -295,7 +295,7 @@ Combat presentation now uses the approved second gothic mockup as an authored st
 - combat sprites remain substantially larger so silhouettes read like characters rather than small board icons;
 - thin blue/red team rings, HP bars, names, drag placement, combat movement and targeting remain live Godot elements;
 - the cathedral/crypt architecture, throne/altar, pillars, banners, chains, braziers, skull piles, ritual floor, outer frame and command-panel art are baked into the authored backdrop;
-- the authored backdrop is the direct texture asset `assets/pixel/battle/battle_backdrop.webp`, authored at 640×360 and displayed at exact 2× nearest-neighbor scale for the 1280×720 prototype;
+- the authored backdrop is reconstructed at runtime by `scripts/battle/authored_backdrop.gd` from five validated base64 WebP chunks under `assets/pixel/battle/authored_backdrop/`; the decoded image is 1280×720 and uses nearest-neighbor presentation;
 - `scripts/battle/battle_visual.gd` no longer draws the general arena and now only adds lightweight dynamic boss-phase overlays;
 - the obsolete procedural `scripts/battle/battle_hud_visual.gd` renderer was removed;
 - encounter title/status, card progress, faction labels, buttons and result text remain native Godot controls layered over the art;
