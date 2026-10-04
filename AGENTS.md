@@ -102,9 +102,13 @@ After a substantial implementation:
 
 ## Art direction
 
-Dark fantasy, cursed tabletop, theatrical evil wizard, tactile cards and miniatures.
+Dark-fantasy pixel art, cursed tabletop, theatrical evil wizard, tactile cards and readable tactical miniatures.
 
-The prototype may use simple shapes and text. Gameplay clarity comes first.
+Combat readability comes before detail: units must be recognizable by silhouette, team color is secondary, and UI should not overpower sprites.
+
+Use nearest-neighbor presentation for pixel assets. Avoid mixing realistic painted unit portraits into the combat field.
+
+The prototype may still use simple shapes and text where needed, but new player-facing art should move toward one coherent pixel-art language.
 
 ## Current priority
 
