@@ -6,8 +6,10 @@ const RANGER_ART: Texture2D = preload("res://assets/pixel/units/ranger.png")
 const MAGE_ART: Texture2D = preload("res://assets/pixel/units/mage.png")
 const SKELETON_ART: Texture2D = preload("res://assets/pixel/units/skeleton.png")
 const BONE_ARCHER_ART: Texture2D = preload("res://assets/pixel/units/bone_archer.png")
+const BONE_WARDEN_ART: Texture2D = preload("res://assets/pixel/units/bone_warden.png")
 
 signal died(unit: BattleUnit)
+signal boss_enraged(unit: BattleUnit)
 signal placement_rejected(unit: BattleUnit)
 
 @export var team: int = 0
@@ -115,6 +117,8 @@ func _get_art_texture() -> Texture2D:
 			return SKELETON_ART
 		"bone_archer":
 			return BONE_ARCHER_ART
+		"bone_warden":
+			return BONE_WARDEN_ART
 		"grave_bellkeeper", "bone_thrall", "crypt_guard":
 			return SKELETON_ART
 		_:
@@ -136,6 +140,9 @@ func _apply_role_presentation() -> void:
 			name_label.offset_left = -72.0
 			name_label.offset_right = 72.0
 			name_label.add_theme_color_override("font_color", Color(0.94, 0.72, 0.46, 1.0))
+		"bone_warden":
+			base_art_modulate = Color.WHITE
+			name_label.add_theme_color_override("font_color", Color(1.0, 0.72, 0.38, 1.0))
 		_:
 			base_art_modulate = Color.WHITE
 
@@ -145,15 +152,15 @@ func _apply_boss_layout() -> void:
 	if not is_boss:
 		return
 
-	health_bar.offset_left = -42.0
-	health_bar.offset_top = -66.0
-	health_bar.offset_right = 42.0
-	health_bar.offset_bottom = -57.0
-	name_label.offset_left = -82.0
-	name_label.offset_top = 42.0
-	name_label.offset_right = 82.0
-	name_label.offset_bottom = 64.0
-	name_label.add_theme_font_size_override("font_size", 14)
+	health_bar.offset_left = -64.0
+	health_bar.offset_top = -78.0
+	health_bar.offset_right = 64.0
+	health_bar.offset_bottom = -66.0
+	name_label.offset_left = -104.0
+	name_label.offset_top = 48.0
+	name_label.offset_right = 104.0
+	name_label.offset_bottom = 74.0
+	name_label.add_theme_font_size_override("font_size", 16)
 	name_label.add_theme_color_override("font_color", Color(0.96, 0.72, 0.42, 1.0))
 
 func _apply_health_bar_style() -> void:
@@ -495,6 +502,7 @@ func _trigger_enrage() -> void:
 	attack_interval = maxf(0.2, attack_interval * enrage_attack_interval_multiplier)
 	move_speed *= enrage_move_speed_multiplier
 	_show_status_text("ЯРОСТЬ!", Color(1.0, 0.42, 0.20, 1.0))
+	boss_enraged.emit(self)
 	queue_redraw()
 
 func _show_status_text(message: String, color: Color) -> void:
@@ -584,8 +592,11 @@ func _draw() -> void:
 	draw_circle(Vector2.ZERO, ring_radius + 1.0, Color(0.0, 0.0, 0.0, 0.45))
 	draw_arc(Vector2.ZERO, ring_radius, 0.0, TAU, 36, team_color, 2.5)
 	if is_boss:
-		var boss_color := Color(1.0, 0.28, 0.12, 0.95) if enraged else Color(0.95, 0.62, 0.18, 0.88)
-		draw_arc(Vector2.ZERO, ring_radius + 6.0, 0.0, TAU, 40, boss_color, 2.5)
+		var pulse := 0.5 + 0.5 * sin(float(Time.get_ticks_msec()) / 120.0)
+		var boss_color := Color(1.0, 0.20 + pulse * 0.08, 0.10, 0.98) if enraged else Color(0.95, 0.58 + pulse * 0.08, 0.16, 0.92)
+		draw_circle(Vector2.ZERO, ring_radius + 11.0, Color(boss_color.r, boss_color.g, boss_color.b, 0.06 + pulse * 0.05))
+		draw_arc(Vector2.ZERO, ring_radius + 6.0, 0.0, TAU, 40, boss_color, 3.0)
+		draw_arc(Vector2.ZERO, ring_radius + 12.0, 0.0, TAU, 40, Color(boss_color.r, boss_color.g, boss_color.b, 0.34), 1.5)
 	elif support_heal_interval > 0.0:
 		draw_arc(Vector2.ZERO, ring_radius + 5.0, 0.0, TAU, 36, Color(0.34, 0.90, 0.62, 0.82), 2.0)
 	elif visual_role == "crypt_guard":
