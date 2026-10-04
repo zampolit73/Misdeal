@@ -33,6 +33,13 @@
 
 ### Added
 
+- Real **ЧЁРНЫЙ АЛТАРЬ** event with two HP-for-damage sacrifices, a gold-for-HP option and refusal.
+- Real **ЗАКОВАННЫЙ ПЛЕННИК** event with rescue, forced-chain and loot branches.
+- Real **КОСТИ ДОЛЖНИКА** event with a 50/50 high-stakes gamble plus two deterministic alternatives.
+- Real **ДЕСЯТИНА ВОЛШЕБНИКА** event with gold payment, HP payment or refusal.
+- Temporary **ДОЛГ ВОЛШЕБНИКУ** run condition: +25% enemy damage until the next normal reward.
+- Doubled normal reward while wizard debt is active: +50 gold / +40 HP / +6 damage, clearing the debt when taken.
+- Wizard-debt HUD and battle-preparation warnings.
 - Real **МОГИЛЬНЫЙ ЗВОН** combat encounter with the first support enemy, **Могильный звонарь**.
 - Grave Bellkeeper periodic ally-heal pulse with **ЗВОН!** feedback and green healing numbers.
 - **Костяной раб** swarm enemy and real five-enemy **КОСТЯНАЯ ДАВКА** encounter.
