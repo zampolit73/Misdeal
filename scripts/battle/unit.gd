@@ -10,6 +10,9 @@ signal placement_rejected(unit: BattleUnit)
 @export var damage: float = 12.0
 @export var attack_interval: float = 0.8
 @export var attack_range: float = 54.0
+@export var minimum_range: float = 0.0
+@export var splash_radius: float = 0.0
+@export var splash_damage_multiplier: float = 0.0
 @export var move_speed: float = 90.0
 @export var body_radius: float = 22.0
 @export var separation_padding: float = 10.0
@@ -44,6 +47,9 @@ func configure(data: UnitData, unit_team: int, spawn_position: Vector2, name_ove
 	damage = data.damage
 	attack_interval = data.attack_interval
 	attack_range = data.attack_range
+	minimum_range = data.minimum_range
+	splash_radius = data.splash_radius
+	splash_damage_multiplier = data.splash_damage_multiplier
 	move_speed = data.move_speed
 	body_radius = data.body_radius
 	separation_padding = data.separation_padding
@@ -146,9 +152,13 @@ func _process(delta: float) -> void:
 
 	if target != null:
 		var distance := global_position.distance_to(target.global_position)
-		var desired_range := attack_range + target.body_radius
+		var desired_max_range := attack_range + target.body_radius
+		var desired_min_range := minimum_range + target.body_radius
 
-		if distance > desired_range:
+		if minimum_range > 0.0 and distance < desired_min_range:
+			var retreat_direction := target.global_position.direction_to(global_position)
+			velocity += retreat_direction * move_speed
+		elif distance > desired_max_range:
 			var direction := global_position.direction_to(target.global_position)
 			velocity += direction * move_speed
 		else:
@@ -215,7 +225,25 @@ func _attack_target() -> void:
 		return
 
 	attack_cooldown = attack_interval
-	target.take_damage(damage)
+	var primary_target := target
+	var impact_position := primary_target.global_position
+	primary_target.take_damage(damage)
+
+	if splash_radius <= 0.0 or splash_damage_multiplier <= 0.0:
+		return
+
+	var splash_damage := damage * splash_damage_multiplier
+
+	for node in get_tree().get_nodes_in_group("combat_units"):
+		if not node is BattleUnit:
+			continue
+
+		var unit := node as BattleUnit
+		if unit == primary_target or not unit.alive or unit.team == team:
+			continue
+
+		if unit.global_position.distance_to(impact_position) <= splash_radius:
+			unit.take_damage(splash_damage)
 
 func take_damage(amount: float) -> void:
 	if not alive:
