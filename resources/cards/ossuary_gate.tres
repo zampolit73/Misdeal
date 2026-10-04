@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "ossuary_gate"
 title = "ВРАТА ОССУАРИЯ"
-card_text = "За воротами слишком тихо даже для кладбища."
+card_text = "Страж, звонарь, лучник и костяной раб держат последний проход к надзирателю."
 wizard_line = "Тишина — это просто враги, которые умеют ждать."
 type_label = "БОЙ"
 tier = 2
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "combat"
+target_path = "res://resources/encounters/ossuary_gate.tres"
 art_path = "res://assets/pixel/table/cards/graveyard_ambush.png"
-prototype_result_text = "Здесь появится поздний тяжёлый боевой состав."
+prototype_result_text = ""
