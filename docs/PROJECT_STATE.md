@@ -8,7 +8,9 @@ Misdeal is in the first playable prototype stage.
 
 The base autobattle plus restart flow have been run locally by the user and are confirmed working.
 
-Pre-battle drag placement is implemented in GitHub. The first input implementation was blocked by Control UI layers; input handling has been corrected and is pending local verification.
+Pre-battle drag placement is implemented and confirmed working locally.
+
+Combat-time unit separation has now been implemented in GitHub and is pending local verification.
 
 ## Engine
 
@@ -63,6 +65,7 @@ Implemented combat behavior:
 - melee and ranged units use different attack ranges;
 - units move toward targets when out of range;
 - units attack automatically on individual cooldowns;
+- nearby living units apply separation steering so they do not occupy the same point;
 - units have HP and visible health bars;
 - dead units become inactive and visually faded;
 - battle detects victory and defeat;
@@ -90,8 +93,6 @@ Current relevant files:
 - `scripts/battle/unit.gd`
 
 ## Not implemented yet
-
-- combat-time unit collision/separation;
 - attack animations and projectiles;
 - abilities and status effects;
 - data-driven `UnitData` resources;
@@ -107,9 +108,9 @@ Current relevant files:
 
 ## Immediate next milestone
 
-Locally verify the new drag-and-drop preparation phase.
+Locally verify combat-time unit separation and whether formations remain readable during a fight.
 
-Then improve combat readability enough that positioning is worth evaluating in play, before connecting the combat prototype to the first minimal card/table → combat → reward → table loop.
+Then improve hit/death feedback enough to judge the battle at a glance before moving into the first minimal card/table → combat → reward → table loop.
 
 The long-term target remains:
 
