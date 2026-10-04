@@ -8,7 +8,7 @@ Misdeal is in the first playable prototype stage.
 
 The base autobattle plus restart flow have been run locally by the user and are confirmed working.
 
-Pre-battle drag placement has now been implemented in GitHub and is pending local verification.
+Pre-battle drag placement is implemented in GitHub. The first input implementation was blocked by Control UI layers; input handling has been corrected and is pending local verification.
 
 ## Engine
 
