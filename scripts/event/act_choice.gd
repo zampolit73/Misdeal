@@ -49,6 +49,14 @@ func _configure_card() -> void:
 			_configure_debtor_bones()
 		"wizard_tithe":
 			_configure_wizard_tithe()
+		"faceless_card":
+			_configure_faceless_card()
+		"blood_ledger":
+			_configure_blood_ledger()
+		"broken_crown":
+			_configure_broken_crown()
+		"last_camp":
+			_configure_last_camp()
 		_:
 			push_warning("Unsupported act choice card: %s" % active_card.card_id)
 			leave_button.text = "ВЕРНУТЬСЯ К СТОЛУ"
@@ -138,6 +146,54 @@ func _configure_wizard_tithe() -> void:
 	choice_a.pressed.connect(_resolve_wizard_tithe.bind("gold"))
 	choice_b.pressed.connect(_resolve_wizard_tithe.bind("blood"))
 	choice_c.pressed.connect(_resolve_wizard_tithe.bind("refuse"))
+
+func _configure_faceless_card() -> void:
+	choice_a.text = "ПЕРЕВЕРНУТЬ КАРТУ\n\nИсход неизвестен"
+	choice_b.text = "ПОДКУПИТЬ СУДЬБУ — 30\n\n+20 здоровья\n+2 урона отряду"
+	choice_c.text = "СЖЕЧЬ КАРТУ\n\nГарантированно +1 урона"
+	choice_b.disabled = RunState.gold < 30
+	leave_button.text = "НЕ ТРОГАТЬ КАРТУ"
+
+	choice_a.pressed.connect(_resolve_faceless_card.bind("reveal"))
+	choice_b.pressed.connect(_resolve_faceless_card.bind("bribe"))
+	choice_c.pressed.connect(_resolve_faceless_card.bind("burn"))
+
+func _configure_blood_ledger() -> void:
+	choice_a.text = "ПОДПИСАТЬ ЗОЛОТОМ — 40\n\n+4 урона отряду"
+	choice_a.disabled = RunState.gold < 40
+
+	if RunState.get_available_artifact_ids().is_empty():
+		choice_b.text = "ПОДПИСАТЬ КРОВЬЮ\n\n-25 здоровья\n+3 урона отряду"
+	else:
+		choice_b.text = "ПОДПИСАТЬ КРОВЬЮ\n\n-25 здоровья\nСлучайный артефакт"
+
+	choice_c.text = "ВЫЧЕРКНУТЬ ИМЯ\n\n+25 здоровья\n-2 урона отряду"
+	leave_button.text = "ЗАКРЫТЬ КНИГУ"
+
+	choice_a.pressed.connect(_resolve_blood_ledger.bind("gold"))
+	choice_b.pressed.connect(_resolve_blood_ledger.bind("blood"))
+	choice_c.pressed.connect(_resolve_blood_ledger.bind("erase"))
+
+func _configure_broken_crown() -> void:
+	choice_a.text = "НАДЕТЬ КОРОНУ\n\n+22% урона всей партии\n-10 здоровья каждому герою"
+	choice_a.disabled = RunState.has_artifact("broken_crown")
+	choice_b.text = "РАЗЛОМАТЬ КОРОНУ\n\n+40 золота"
+	choice_c.text = "ПЕРЕПЛАВИТЬ ОСКОЛКИ\n\n+20 здоровья\n+1 урона отряду"
+	leave_button.text = "ОСТАВИТЬ КОРОНУ"
+
+	choice_a.pressed.connect(_resolve_broken_crown.bind("wear"))
+	choice_b.pressed.connect(_resolve_broken_crown.bind("break"))
+	choice_c.pressed.connect(_resolve_broken_crown.bind("melt"))
+
+func _configure_last_camp() -> void:
+	choice_a.text = "УКРЕПИТЬ ЛАГЕРЬ\n\n+30 здоровья каждому герою"
+	choice_b.text = "ЗАТОЧИТЬ ОРУЖИЕ\n\n+3 урона отряду"
+	choice_c.text = "СОБРАТЬ ПРИПАСЫ\n\n+25 золота"
+	leave_button.text = "ИДТИ ДАЛЬШЕ СРАЗУ"
+
+	choice_a.pressed.connect(_resolve_last_camp.bind("fortify"))
+	choice_b.pressed.connect(_resolve_last_camp.bind("sharpen"))
+	choice_c.pressed.connect(_resolve_last_camp.bind("supplies"))
 
 func _resolve_ash_rest(choice: String) -> void:
 	if resolved:
@@ -270,6 +326,92 @@ func _resolve_wizard_tithe(choice: String) -> void:
 			RunState.activate_wizard_debt()
 			_finish("Волшебник улыбается. До следующей обычной награды враги наносят +25% урона, зато награда будет удвоена.")
 
+func _resolve_faceless_card(choice: String) -> void:
+	if resolved:
+		return
+
+	match choice:
+		"reveal":
+			var outcome := randi_range(0, 2)
+			match outcome:
+				0:
+					RunState.gold += 60
+					_finish("На карте проступает золотая маска. Получено 60 золота.")
+				1:
+					RunState.party_damage_bonus += 4.0
+					_finish("На карте появляется ваше лицо — чуть более жестокое. Урон отряда +4.")
+				_:
+					RunState.party_hp_bonus -= 25.0
+					RunState.party_damage_bonus -= 2.0
+					_finish("На карте оказывается лицо мертвеца. Здоровье -25, урон отряда -2.")
+		"bribe":
+			if RunState.gold < 30:
+				return
+			RunState.gold -= 30
+			RunState.party_hp_bonus += 20.0
+			RunState.party_damage_bonus += 2.0
+			_finish("Монеты исчезают под картой. Здоровье +20, урон +2.")
+		"burn":
+			RunState.party_damage_bonus += 1.0
+			_finish("Карта горит без дыма. Пепел остаётся на оружии: урон +1.")
+
+func _resolve_blood_ledger(choice: String) -> void:
+	if resolved:
+		return
+
+	match choice:
+		"gold":
+			if RunState.gold < 40:
+				return
+			RunState.gold -= 40
+			RunState.party_damage_bonus += 4.0
+			_finish("Книга принимает сорок монет и переписывает исход. Урон отряда +4.")
+		"blood":
+			RunState.party_hp_bonus -= 25.0
+			var artifact_id := RunState.add_random_available_artifact()
+			if artifact_id.is_empty():
+				RunState.party_damage_bonus += 3.0
+				_finish("Кровь впитывается в пустые страницы. Артефактов не осталось: здоровье -25, урон +3.")
+			else:
+				var artifact := RunState.get_artifact(artifact_id)
+				_finish("Книга забирает кровь и выдаёт реликвию: %s. Здоровье -25." % artifact.title)
+		"erase":
+			RunState.party_hp_bonus += 25.0
+			RunState.party_damage_bonus -= 2.0
+			_finish("Ваше имя исчезает со страницы. Здоровье +25, урон отряда -2.")
+
+func _resolve_broken_crown(choice: String) -> void:
+	if resolved:
+		return
+
+	match choice:
+		"wear":
+			if not RunState.add_artifact("broken_crown"):
+				return
+			_finish("Корона садится слишком плотно. Получен артефакт: СЛОМАННАЯ КОРОНА.")
+		"break":
+			RunState.gold += 40
+			_finish("Корона раскалывается окончательно. В оправе спрятано 40 золота.")
+		"melt":
+			RunState.party_hp_bonus += 20.0
+			RunState.party_damage_bonus += 1.0
+			_finish("Металл идёт на доспехи и клинки. Здоровье +20, урон +1.")
+
+func _resolve_last_camp(choice: String) -> void:
+	if resolved:
+		return
+
+	match choice:
+		"fortify":
+			RunState.party_hp_bonus += 30.0
+			_finish("Последний лагерь становится крепостью на одну ночь. Здоровье отряда +30.")
+		"sharpen":
+			RunState.party_damage_bonus += 3.0
+			_finish("К утру лезвия становятся тоньше терпения волшебника. Урон отряда +3.")
+		"supplies":
+			RunState.gold += 25
+			_finish("В забытых сумках нашлось 25 золота.")
+
 func _resolve_leave() -> void:
 	if resolved:
 		return
@@ -287,6 +429,14 @@ func _resolve_leave() -> void:
 			_finish("Цепи звенят за спиной. Волшебник ничего не комментирует — и это хуже.")
 		"debtor_bones":
 			_finish("Вы оставляете чужой долг лежать в пыли.")
+		"faceless_card":
+			_finish("Карта остаётся лежать лицом вниз. Волшебник явно считает это скучным.")
+		"blood_ledger":
+			_finish("Книга закрывается сама. Вашего имени внутри пока нет.")
+		"broken_crown":
+			_finish("Корона остаётся без хозяина. Возможно, это самый разумный исход.")
+		"last_camp":
+			_finish("Вы не задерживаетесь. До надзирателя остаётся совсем немного.")
 		_:
 			_finish("Вы возвращаетесь к столу.")
 
