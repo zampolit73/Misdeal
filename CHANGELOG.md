@@ -20,6 +20,11 @@
 
 ### Added
 
+- Data-driven `EncounterData` Resource type.
+- Three playable combat cards: Bone Patrol, Graveyard Ambush and Gallows Volley.
+- Selected encounters now drive enemy composition and spawn positions in the generic battle scene.
+- Three-victory finite run structure.
+- Run-end summary scene with a new-run action.
 - Russian player-facing text across the main menu, wizard table, battle, rewards and unit display names.
 - First wizard-table scene with a playable Graveyard Ambush card and two face-down placeholders.
 - Persistent prototype `RunState` autoload.
