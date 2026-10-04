@@ -36,7 +36,7 @@ offset_top = 28.0
 offset_right = 500.0
 offset_bottom = 74.0
 theme_override_font_sizes/font_size = 34
-text = "THE WIZARD'S TABLE"
+text = "СТОЛ ВОЛШЕБНИКА"
 
 [node name="WizardLine" type="Label" parent="."]
 mouse_filter = 2
@@ -45,7 +45,7 @@ offset_top = 82.0
 offset_right = 1210.0
 offset_bottom = 118.0
 theme_override_font_sizes/font_size = 20
-text = "The wizard drums his fingers on the table.  Choose."
+text = "Волшебник барабанит пальцами по столу. Выбирай."
 
 [node name="Stats" type="Label" parent="."]
 mouse_filter = 2
@@ -54,7 +54,7 @@ offset_top = 120.0
 offset_right = 1210.0
 offset_bottom = 148.0
 theme_override_font_sizes/font_size = 16
-text = "Deals survived: 0    Gold: 0    Party HP: +0    Party damage: +0"
+text = "Пережито раздач: 0    Золото: 0    Здоровье отряда: +0    Урон отряда: +0"
 
 [node name="Cards" type="HBoxContainer" parent="."]
 offset_left = 135.0
@@ -68,32 +68,32 @@ alignment = 1
 custom_minimum_size = Vector2(285, 330)
 layout_mode = 2
 theme_override_font_sizes/font_size = 21
-text = "FACE-DOWN CARD
+text = "ЗАКРЫТАЯ КАРТА
 
-The wizard has not dealt
-this fate yet."
+Волшебник ещё не раздал
+эту судьбу."
 
 [node name="GraveyardCard" type="Button" parent="Cards"]
 custom_minimum_size = Vector2(285, 330)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "GRAVEYARD AMBUSH
+text = "ЗАСАДА НА КЛАДБИЩЕ
 
-Combat
+Бой
 
-Three restless dead
-wait beyond the veil.
+Трое беспокойных мертвецов
+ждут за завесой.
 
-CLICK TO CHOOSE"
+НАЖМИТЕ, ЧТОБЫ ВЫБРАТЬ"
 
 [node name="LockedCardRight" type="Button" parent="Cards"]
 custom_minimum_size = Vector2(285, 330)
 layout_mode = 2
 theme_override_font_sizes/font_size = 21
-text = "FACE-DOWN CARD
+text = "ЗАКРЫТАЯ КАРТА
 
-Something scratches
-beneath the table."
+Что-то скребётся
+под столом."
 
 [node name="Hint" type="Label" parent="."]
 mouse_filter = 2
@@ -102,5 +102,5 @@ offset_top = 650.0
 offset_right = 1210.0
 offset_bottom = 685.0
 theme_override_font_sizes/font_size = 16
-text = "For this first slice, only one fate is playable.  Survive it and choose a reward."
+text = "Пока доступна только одна судьба. Переживите её и выберите награду."
 horizontal_alignment = 1
