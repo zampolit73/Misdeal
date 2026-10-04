@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1_unit_data"]
+
+[resource]
+script = ExtResource("1_unit_data")
+unit_name = "Могильный звонарь"
+visual_role = "grave_bellkeeper"
+max_hp = 140.0
+damage = 8.0
+attack_interval = 1.4
+attack_range = 175.0
+minimum_range = 105.0
+move_speed = 60.0
+body_radius = 23.0
+separation_padding = 11.0
+separation_strength = 125.0
+visual_scale = 1.2
+show_enemy_name = true
+support_heal_interval = 4.5
+support_heal_radius = 210.0
+support_heal_amount = 18.0
