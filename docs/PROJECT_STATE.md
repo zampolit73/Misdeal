@@ -48,7 +48,9 @@ The longer Act 1 structure is now confirmed working locally: 12 resolved pre-bos
 
 The first real post-structure content batch is implemented: **ПЕПЕЛЬНЫЙ ПРИВАЛ**, **ЛАВКА МОГИЛЬЩИКА** and **КУЗНИЦА ПРОКЛЯТИЙ** have real choices instead of the generic prototype resolver.
 
-The first new combat-content batch is also implemented in GitHub and pending local verification: **МОГИЛЬНЫЙ ЗВОН**, **КОСТЯНАЯ ДАВКА** and **СТРАЖ СКЛЕПА** are now real combat cards.
+The first new combat-content batch is also implemented in GitHub and pending local verification: **МОГИЛЬНЫЙ ЗВОН**, **КОСТЯНАЯ ДАВКА** and **СТРАЖ СКЛЕПА** are real combat cards.
+
+A second real event batch is now implemented in GitHub and pending local verification: **ЧЁРНЫЙ АЛТАРЬ**, **ЗАКОВАННЫЙ ПЛЕННИК**, **КОСТИ ДОЛЖНИКА** and **ДЕСЯТИНА ВОЛШЕБНИКА** no longer use the prototype resolver.
 
 ## Player-facing language
 
@@ -102,7 +104,11 @@ Currently fully implemented card mechanics:
 - **КУЗНИЦА ПРОКЛЯТИЙ** — choose one of three hero-specific artifacts, or refuse;
 - **МОГИЛЬНЫЙ ЗВОН** — two Skeletons protect a Grave Bellkeeper support enemy;
 - **КОСТЯНАЯ ДАВКА** — five weak Bone Thralls pressure the party through numbers and reward splash damage;
-- **СТРАЖ СКЛЕПА** — elite Crypt Guard with melee splash plus two Bone Thralls; victory uses a guaranteed-artifact reward flow.
+- **СТРАЖ СКЛЕПА** — elite Crypt Guard with melee splash plus two Bone Thralls; victory uses a guaranteed-artifact reward flow;
+- **ЧЁРНЫЙ АЛТАРЬ** — trade party HP for permanent damage, spend gold for HP, or refuse;
+- **ЗАКОВАННЫЙ ПЛЕННИК** — spend gold for a mixed HP/damage benefit, force the chains for a harsher stat trade, loot the prisoner, or leave;
+- **КОСТИ ДОЛЖНИКА** — a true 50/50 gold gamble alongside safer deterministic choices;
+- **ДЕСЯТИНА ВОЛШЕБНИКА** — pay gold, pay party HP, or refuse and take a temporary wizard debt.
 
 The remaining new card definitions already participate in the real Act 1 deck/tier/rejection flow, but temporarily resolve through `scenes/event/prototype_card.tscn` until their individual mechanics are implemented.
 
@@ -132,7 +138,7 @@ The lower tabletop, ritual runner and sigil remain procedural so the layout can 
 
 The table still uses real Godot `Button` controls. Two existing card slots are now populated dynamically from `RunCardData`, including title, type, description, wizard hover line and art path.
 
-The top HUD remains dynamic and shows actual Act 1 card progress, gold, party HP modifier and damage modifier.
+The top HUD remains dynamic and shows actual Act 1 card progress, gold, party HP modifier and damage modifier. If wizard debt is active, **ДОЛГ ВОЛШЕБНИКУ** is also shown in the HUD.
 
 The earlier painted assets under `assets/art/` remain in the repository as historical/reference material.
 
@@ -193,11 +199,13 @@ After defeat, **ВЕРНУТЬСЯ К СТОЛУ** returns to the same run witho
 
 `scenes/reward/reward.tscn`
 
-Victory offers one of three persistent rewards:
+Victory normally offers one of three persistent rewards:
 
 - **КРОВАВАЯ МОНЕТА**: +25 gold;
 - **ЖЕЛЕЗНЫЙ ОБЕРЕГ**: +20 HP to every hero;
 - **ЗАКАЛЁННАЯ СТАЛЬ**: +3 damage to every hero.
+
+If **ДОЛГ ВОЛШЕБНИКУ** is active, enemy damage is +25% in combat and the next normal reward is doubled to +50 gold / +40 HP / +6 damage. Taking that normal reward clears the debt. The special Crypt Guard artifact reward does not clear or double the debt reward; the debt persists to the next normal reward.
 
 Choosing a reward applies the reward and completes the active combat card.
 
@@ -323,7 +331,7 @@ Current artifacts:
 
 Artifacts are applied to hero runtime stats when combat units spawn. The run-end summary now lists acquired artifacts.
 
-The shared `scenes/event/act_choice.tscn` scene currently handles Ash Rest, Gravedigger Shop and Curse Forge without introducing a general event-effect framework.
+The shared `scenes/event/act_choice.tscn` scene currently handles Ash Rest, Gravedigger Shop, Curse Forge, Black Altar, Chained Prisoner, Debtor Bones and Wizard Tithe without introducing a general event-effect framework.
 
 ### Run state
 
@@ -340,7 +348,9 @@ The current prototype run state stores:
 - global party damage bonus;
 - last battle result;
 - selected encounter path;
-- boss completion state.
+- boss completion state;
+- persistent artifact ids;
+- temporary `wizard_debt_active` state.
 
 Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
@@ -358,18 +368,19 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the new combat-content batch, plus any artifact/economy behavior not yet explicitly checked:
+Locally verify the real event batch and the still-pending new combat batch:
 
-- **МОГИЛЬНЫЙ ЗВОН** should launch a real battle with two Skeletons and a visible **Могильный звонарь**;
-- when allied undead are damaged and within range, the Bellkeeper should periodically show **ЗВОН!** and produce green healing numbers;
-- killing the Bellkeeper should immediately remove that support pressure;
-- **КОСТЯНАЯ ДАВКА** should spawn five smaller/faster Bone Thralls and make Mage splash meaningfully useful;
-- **СТРАЖ СКЛЕПА** should show the **ЭЛИТА** header, a larger named Crypt Guard, and punish clustered heroes with splash damage;
-- winning **СТРАЖ СКЛЕПА** should replace the normal reward choice with a guaranteed unowned artifact selection;
-- if all three current artifacts are already owned, the elite reward should fall back to +50 gold;
-- losing any of these fights should still preserve the active card for **ПОВТОРИТЬ**.
+- **ЧЁРНЫЙ АЛТАРЬ** should apply the exact HP/damage/gold trade selected and then advance the run;
+- **ЗАКОВАННЫЙ ПЛЕННИК** should disable the 25-gold rescue when unaffordable and apply each branch correctly;
+- **КОСТИ ДОЛЖНИКА** should provide a real 50/50 gamble on the first option while the other choices remain deterministic;
+- refusing **ДЕСЯТИНА ВОЛШЕБНИКА** should display **ДОЛГ ВОЛШЕБНИКУ** on the table;
+- while debt is active, every enemy in the next combat should deal 25% more damage and the preparation text should warn about it;
+- an elite Crypt Guard reward should leave the debt active;
+- the next normal reward should visibly become +50 gold / +40 HP / +6 damage and should clear the debt when chosen;
+- paying the tithe in gold or HP should not create debt;
+- **МОГИЛЬНЫЙ ЗВОН**, **КОСТЯНАЯ ДАВКА** and **СТРАЖ СКЛЕПА** should still satisfy the combat checks from the previous milestone.
 
-If this batch reads well, the next content pass should convert several remaining event placeholders into real risk/reward cards rather than adding more combat infrastructure.
+If this pass is stable, continue replacing the remaining prototype cards. Prioritize the late-game placeholders so cards 9-12 feel like a real escalation before Bone Warden.
 
 ## Local workflow
 
