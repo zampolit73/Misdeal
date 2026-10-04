@@ -8,7 +8,8 @@ const DEFAULT_ENCOUNTER_PATH := "res://resources/encounters/graveyard_ambush.tre
 const ARTIFACT_PATHS := {
 	"dead_mans_shield": "res://resources/artifacts/dead_mans_shield.tres",
 	"blind_quiver": "res://resources/artifacts/blind_quiver.tres",
-	"cracked_focus": "res://resources/artifacts/cracked_focus.tres"
+	"cracked_focus": "res://resources/artifacts/cracked_focus.tres",
+	"broken_crown": "res://resources/artifacts/broken_crown.tres"
 }
 
 const CARD_PATHS := {
@@ -140,7 +141,11 @@ func get_available_artifact_ids() -> Array[String]:
 	var available: Array[String] = []
 	for artifact_id in ARTIFACT_PATHS.keys():
 		var id := String(artifact_id)
-		if not has_artifact(id):
+		if has_artifact(id):
+			continue
+
+		var artifact := get_artifact(id)
+		if artifact != null and artifact.general_pool:
 			available.append(id)
 	return available
 
@@ -158,7 +163,7 @@ func get_artifacts_for_role(role: String) -> Array[ArtifactData]:
 	var result: Array[ArtifactData] = []
 	for artifact_id in artifact_ids:
 		var artifact := get_artifact(artifact_id)
-		if artifact != null and artifact.target_role == role:
+		if artifact != null and (artifact.target_role == role or artifact.target_role == "*"):
 			result.append(artifact)
 	return result
 
