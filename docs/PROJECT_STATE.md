@@ -19,7 +19,9 @@ Confirmed locally by the user:
 
 The three-card encounter selection and three-victory finite run are implemented and confirmed working locally.
 
-Phase 3 identity work is underway. The first non-combat event card and one-time event flow are confirmed working locally. A first visual blockout for the table, cards, wizard and combat miniatures is implemented in GitHub and pending local verification.
+Phase 3 identity work is underway. The first non-combat event card and one-time event flow are confirmed working locally.
+
+The first authored-art integration is implemented in GitHub and pending local verification: the wizard table now uses a painted dark-fantasy background, the UI has authored wizard/card-back art, and battle units use cropped authored miniature textures.
 
 ## Player-facing language
 
@@ -64,7 +66,13 @@ The table displays:
 
 Selecting a combat card stores its encounter in `RunState` and launches battle.
 
-The table now has a cursed wood visual blockout with ritual markings and candle accents. Combat cards use framed dark-fantasy card styling, the event card uses a distinct teal treatment, and the wizard portrait has an expanded hooded silhouette, crown accents, glowing eyes and a pulsing orb.
+The table keeps the styled dark-fantasy card UI but now uses authored art assets:
+
+- `assets/art/table_background.webp` — painted cursed-table background with the evil wizard;
+- `assets/art/wizard_portrait.webp` — wizard portrait used by the table UI;
+- `assets/art/card_back.webp` — authored cursed card-back design.
+
+The procedural table/wizard blockout scripts remain in the repository as fallback/reference material but are no longer the primary table visuals.
 
 ### 3. Whispering Well event
 
@@ -158,7 +166,15 @@ Reusable combat stats are stored in `UnitData` Resources:
 
 Runtime combat state remains on `BattleUnit`.
 
-`UnitData.visual_role` now drives lightweight prototype miniature silhouettes so Knight, Ranger, Mage, Skeleton and Bone Archer are visually distinct during combat.
+`UnitData.visual_role` selects authored combat miniature textures:
+
+- `assets/art/units/knight.webp`
+- `assets/art/units/ranger.webp`
+- `assets/art/units/mage.webp`
+- `assets/art/units/skeleton.webp`
+- `assets/art/units/bone_archer.webp`
+
+The procedural miniature drawing remains as a fallback if a texture is unavailable. Team-colored bases, health bars, placement rings and combat feedback remain procedural for gameplay readability.
 
 ### Encounter data
 
@@ -208,14 +224,15 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Immediate next milestone
 
-Locally verify the first visual blockout:
+Locally verify the first authored-art integration:
 
-- cursed wood table and ritual markings render correctly;
-- combat and event cards are visually distinct and readable;
-- the wizard portrait renders without clipping;
-- Knight, Ranger, Mage, Skeleton and Bone Archer silhouettes are visibly different in combat.
+- the painted table background imports and renders correctly;
+- the wizard portrait and decorative card back appear correctly;
+- card text remains readable over the new background;
+- Knight, Ranger, Mage, Skeleton and Bone Archer textures render at a useful size;
+- drag placement, hit feedback, death feedback and combat still work unchanged.
 
-After that, iterate on the visual language and begin replacing procedural blockout elements with authored art assets where they add the most identity.
+After verification, tune composition/scale/readability and then expand authored art into encounter-card faces, event scenes and the battle arena.
 
 ## Local workflow
 
