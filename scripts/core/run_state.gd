@@ -76,6 +76,10 @@ var rejected_card_ids: Array[String] = []
 var resolved_card_ids: Array[String] = []
 var active_card_id: String = ""
 
+func _ready() -> void:
+	if remaining_card_ids.is_empty() and resolved_card_ids.is_empty() and active_card_id.is_empty():
+		reset_run()
+
 func reset_run() -> void:
 	gold = 0
 	deals_survived = 0
