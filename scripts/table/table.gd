@@ -3,10 +3,12 @@ extends Control
 const BONE_PATROL_PATH := "res://resources/encounters/bone_patrol.tres"
 const GRAVEYARD_AMBUSH_PATH := "res://resources/encounters/graveyard_ambush.tres"
 const GALLOWS_VOLLEY_PATH := "res://resources/encounters/gallows_volley.tres"
+const BONE_WARDEN_PATH := "res://resources/encounters/bone_warden.tres"
 
 const BONE_PATROL: EncounterData = preload("res://resources/encounters/bone_patrol.tres")
 const GRAVEYARD_AMBUSH: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
 const GALLOWS_VOLLEY: EncounterData = preload("res://resources/encounters/gallows_volley.tres")
+const BONE_WARDEN: EncounterData = preload("res://resources/encounters/bone_warden.tres")
 
 @onready var wizard_line: Label = $WizardLine
 @onready var stats_label: Label = $Stats
@@ -23,13 +25,26 @@ func _ready() -> void:
 		get_tree().change_scene_to_file("res://scenes/run_end/run_end.tscn")
 		return
 
-	_setup_card(bone_patrol_button, BONE_PATROL, BONE_PATROL_PATH)
-	_setup_card(graveyard_button, GRAVEYARD_AMBUSH, GRAVEYARD_AMBUSH_PATH)
-	_setup_card(gallows_button, GALLOWS_VOLLEY, GALLOWS_VOLLEY_PATH)
+	if _is_final_deal():
+		_setup_final_deal()
+	else:
+		_setup_card(bone_patrol_button, BONE_PATROL, BONE_PATROL_PATH)
+		_setup_card(graveyard_button, GRAVEYARD_AMBUSH, GRAVEYARD_AMBUSH_PATH)
+		_setup_card(gallows_button, GALLOWS_VOLLEY, GALLOWS_VOLLEY_PATH)
+
 	whispering_well_button.pressed.connect(_choose_whispering_well)
 	whispering_well_button.mouse_entered.connect(_preview_whispering_well)
 	whispering_well_button.mouse_exited.connect(_restore_wizard_line)
 	_refresh_table()
+
+func _is_final_deal() -> bool:
+	return RunState.deals_survived == RunState.MAX_DEALS - 1
+
+func _setup_final_deal() -> void:
+	_setup_card(bone_patrol_button, BONE_WARDEN, BONE_WARDEN_PATH)
+	graveyard_button.visible = false
+	gallows_button.visible = false
+	whispering_well_button.visible = not RunState.whispering_well_resolved
 
 func _setup_card(button: Button, encounter: EncounterData, encounter_path: String) -> void:
 	var title_label := button.get_node("Title") as Label
@@ -41,6 +56,12 @@ func _setup_card(button: Button, encounter: EncounterData, encounter_path: Strin
 	type_label.text = "БОЙ"
 	description_label.text = encounter.card_text.replace("\n", " ")
 	hint_label.text = "ВЫБРАТЬ"
+
+	if encounter.encounter_id == "bone_warden":
+		type_label.text = "БОСС"
+		type_label.add_theme_color_override("font_color", Color(1.0, 0.40, 0.24, 1.0))
+		title_label.add_theme_color_override("font_color", Color(1.0, 0.76, 0.48, 1.0))
+		hint_label.text = "ПРИНЯТЬ ВЫЗОВ"
 	button.tooltip_text = ""
 	button.pressed.connect(_choose_encounter.bind(encounter, encounter_path))
 	button.mouse_entered.connect(_preview_encounter.bind(encounter))
@@ -58,8 +79,8 @@ func _refresh_table() -> void:
 
 	if RunState.deals_survived == 0:
 		default_wizard_line = "Волшебник раскладывает судьбы. Выбирай."
-	elif RunState.deals_survived == RunState.MAX_DEALS - 1:
-		default_wizard_line = "Последняя раздача. Постарайся умереть поинтереснее."
+	elif _is_final_deal():
+		default_wizard_line = "Последняя раздача. Теперь за стол садится мой надзиратель."
 	else:
 		default_wizard_line = "Всё ещё здесь? Какая досада. Тогда ещё одна карта."
 
