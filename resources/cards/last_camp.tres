@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "last_camp"
+title = "ПОСЛЕДНИЙ ПРИВАЛ"
+card_text = "Костёр горит слишком ровно. До надзирателя осталось недалеко."
+wizard_line = "Последний отдых особенно хорош тем, что он последний."
+type_label = "ПРИВАЛ"
+tier = 2
+resolution_type = "prototype"
+target_path = "res://scenes/event/prototype_card.tscn"
+art_path = "res://assets/pixel/table/cards/whispering_well.png"
+prototype_result_text = "Предбоссовое восстановление или отказ ради бонуса будет добавлено позже."
