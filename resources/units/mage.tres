@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_unit_data")
-unit_name = "Mage"
+unit_name = "Маг"
 max_hp = 80.0
 damage = 24.0
 attack_interval = 1.25
