@@ -54,7 +54,9 @@ A second real event batch is implemented in GitHub and pending local verificatio
 
 The late-game escalation batch is implemented and locally confirmed working: **КАРТА БЕЗ ЛИЦА**, **КРОВАВАЯ КНИГА**, **СЛОМАННАЯ КОРОНА**, **ПОСЛЕДНИЙ ПРИВАЛ** and **ВРАТА ОССУАРИЯ** are real cards.
 
-The final five-card content batch is now implemented in GitHub and pending local verification: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА** and **СТАВКА НА СМЕРТЬ** all have bespoke mechanics. The full 24-card pre-boss Act 1 pool is now content-complete with no active prototype-card routes.
+The final five-card content batch is locally confirmed working: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА** and **СТАВКА НА СМЕРТЬ** all have bespoke mechanics. The full 24-card pre-boss Act 1 pool is content-complete with no active prototype-card routes.
+
+The first Act 1 balance/readability pass is implemented in GitHub and pending local verification. It focuses on combat pacing, Death Wager reward inflation and final-boss difficulty rather than broad retuning of every event.
 
 ## Player-facing language
 
@@ -91,6 +93,8 @@ Act 1 now uses a two-card offer flow:
 - cards do not repeat inside the run;
 - after cards 1-4 the pool moves from early to mid tier;
 - after cards 5-8 it moves from mid to late tier;
+- each 4-card tier now guarantees one combat selection: at run start each tier randomly chooses one of its first three slots as the mandatory combat slot, non-combat offers are protected before it, and that slot offers two combat cards;
+- later slots in mid/late can still surface the tier's remaining combat card, so a run can contain more than the guaranteed minimum;
 - after card 12 the only remaining progression card is **КОСТЯНОЙ НАДЗИРАТЕЛЬ**.
 
 A selected combat card remains active after defeat. Returning to the table shows that same card as **ПОВТОРИТЬ**, rather than generating a fresh offer.
@@ -221,7 +225,7 @@ Victory normally offers one of three persistent rewards:
 
 If **ДОЛГ ВОЛШЕБНИКУ** is active, enemy damage is +25% in combat and the next normal reward is doubled to +50 gold / +40 HP / +6 damage. Taking that normal reward clears the debt. Special rewards do not consume the debt: both the Crypt Guard artifact reward and Death Wager enhanced reward leave it active for the next normal reward.
 
-Winning **СТАВКА НА СМЕРТЬ** offers a bespoke enhanced numeric reward: +75 gold, +50 party HP, or +8 party damage.
+Winning **СТАВКА НА СМЕРТЬ** offers a bespoke enhanced numeric reward: +60 gold, +35 party HP, or +5 party damage. These values were reduced in the first balance pass so one late elite reward does not overwhelm the boss check.
 
 Choosing a reward applies the reward and completes the active combat card.
 
@@ -371,13 +375,14 @@ The current prototype run state stores:
 - selected encounter path;
 - boss completion state;
 - persistent artifact ids;
-- temporary `wizard_debt_active` state.
+- temporary `wizard_debt_active` state;
+- randomized per-tier mandatory-combat slot indices in `forced_combat_slots`.
 
 Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Not implemented yet
 
-- Act 1 balance/readability pass across the now-complete 24-card pre-boss pool;
+- second Act 1 balance pass after local full-run feedback on the first tuning pass;
 - broader shop inventory/economy beyond the current Candle Seller and Gravedigger Shop implementations;
 - more artifacts beyond the first three;
 - attack projectiles/animations;
@@ -389,18 +394,16 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the final five-card batch:
+Locally verify the first Act 1 balance/readability pass with a complete run:
 
-- **ГРЕМУЧИЙ МОСТ** should force one of three crossing approaches; the sprint must produce a real 50/50 result;
-- **КОШЕЛЬ МЕРТВЕЦА** should apply the exact gold/HP greed trade selected;
-- **ТОРГОВЕЦ СВЕЧАМИ** should disable unaffordable purchases and correctly apply the theft branch;
-- **КОСТЯНАЯ ПОШЛИНА** should force payment by gold, blood or the harsher HP-for-damage option;
-- **СТАВКА НА СМЕРТЬ** should launch the five-enemy late encounter, preserve retry behavior after defeat, and show the **СТАВКА** battle header;
-- Death Wager victory should offer exactly +75 gold / +50 HP / +8 damage instead of the normal reward screen;
-- if wizard debt is active during Death Wager, the special wager reward must leave that debt active;
-- no Act 1 card should route to the generic prototype-card resolver.
+- each early/mid/late 4-card block should contain at least one selected combat card; the mandatory combat slot should vary between runs and should occur within the first three cards of that tier;
+- card rejection and no-repeat behavior must remain unchanged;
+- **СТАВКА НА СМЕРТЬ** should now offer +60 gold / +35 HP / +5 damage after victory, while still leaving wizard debt untouched;
+- Bone Warden should now have 580 HP, 22 base damage, a slightly faster attack cadence/movement, and a stronger 50% HP enrage;
+- the boss should feel materially harder than its original three-victory-slice version but still beatable by a coherent 12-card build;
+- note whether gold usually ends the run unused, whether HP or damage choices dominate, and roughly how many combats occur before the boss.
 
-Once this batch is verified, treat Act 1 as **content-complete for the vertical slice**. Do not add more cards immediately. Run a full balance/readability pass across card frequency, economy, permanent stat growth, artifact strength, combat difficulty, late-game escalation and Bone Warden difficulty.
+Do not change every event number after a single run. Use the next local full-run result to decide the second balance pass, especially economy and permanent-stat growth.
 
 ## Local workflow
 
