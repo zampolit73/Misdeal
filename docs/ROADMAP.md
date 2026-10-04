@@ -69,7 +69,7 @@ Only after the loop is fun:
 - [x] Integrate first authored table, wizard, card-back and unit miniature assets.
 - [x] First pixel-art combat readability redesign with larger silhouettes, ground rings and compact HP UI.
 - [x] Pixel battle presentation pass with atmospheric arena decor, HUD chrome and attack motion.
-- [ ] Convert table/cards/wizard/event UI to the same pixel-art language.
+- [x] Convert main menu, table/cards/wizard, event, reward and run-end UI to the same pixel-art language.
 - [ ] Coherent visual language for table/cards/miniatures;
 - [ ] animations and impact feedback;
 - [ ] sound and music;
