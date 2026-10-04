@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "chained_prisoner"
 title = "ЗАКОВАННЫЙ ПЛЕННИК"
-card_text = "Кто-то живой всё ещё дышит под грудой цепей."
+card_text = "Пленника можно освободить, вырвать цепи силой или обобрать."
 wizard_line = "Спасать незнакомцев — дорогая привычка."
 type_label = "СОБЫТИЕ"
 tier = 1
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
 art_path = "res://assets/pixel/table/cards/graveyard_ambush.png"
-prototype_result_text = "Выбор освобождения пленника и награды будет добавлен позже."
+prototype_result_text = ""
