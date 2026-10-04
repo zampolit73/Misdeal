@@ -42,7 +42,9 @@ The final composition/readability polish pass has been locally verified and acce
 - obsolete procedural skull/goblet/hourglass/books/candle overlays were removed;
 - the lower runner/sigil treatment was simplified and subdued.
 
-The first Bone Warden boss encounter, including its 50% HP enrage, was confirmed working locally.
+The original Bone Warden boss encounter, including its 50% HP enrage, was confirmed working locally. After full Act 1 playtesting the user reported that the boss was too easy and visually insufficiently distinct from ordinary combat.
+
+A Bone Warden gameplay + visual rework is now implemented in GitHub and pending local verification.
 
 The longer Act 1 structure is now confirmed working locally: 12 resolved pre-boss cards followed by the Bone Warden as card 13.
 
@@ -150,7 +152,8 @@ Runtime table assets derived from that concept:
 - `assets/pixel/table/cards/bone_patrol.png`;
 - `assets/pixel/table/cards/graveyard_ambush.png`;
 - `assets/pixel/table/cards/gallows_volley.png`;
-- `assets/pixel/table/cards/whispering_well.png`.
+- `assets/pixel/table/cards/whispering_well.png`;
+- `assets/pixel/table/cards/bone_warden.png` — dedicated final-boss card art.
 
 The lower tabletop, ritual runner and sigil remain procedural so the layout can stay responsive to live UI. Earlier procedural side props and candles were removed after local visual review because they conflicted with the authored backdrop.
 
@@ -200,7 +203,10 @@ Implemented combat behavior:
 - death shrink/fade feedback;
 - victory and defeat detection;
 - boss units can use data-driven visual scale and a one-time enrage threshold;
-- Bone Warden enlarges its silhouette, keeps a visible boss name/HP treatment, and at 50% HP increases damage, attack speed and movement speed with a visible **ЯРОСТЬ!** cue;
+- Bone Warden now uses its own `bone_warden` visual role and authored 64×64 pixel sprite instead of an enlarged normal Skeleton;
+- Bone Warden has 580 HP, 22 base damage, a 60%-damage melee cleave in a 92 px radius, and a larger boss HP/name treatment;
+- at 50% HP Bone Warden still enrages, increasing damage, attack speed and movement speed, but now also triggers **Phase II** and summons one Bone Archer plus one Bone Thrall;
+- the phase transition changes the boss label to **БОСС • ЯРОСТЬ**, shows a centered **ФАЗА II — ПРИЗЫВ** cue and switches the arena into its stronger phase-two ritual state;
 - Grave Bellkeeper is the first support enemy: every 4.5 seconds it heals damaged allied undead within 210 px for 18 HP and shows a visible **ЗВОН!** cue;
 - Bone Thrall is a smaller, faster, low-HP swarm enemy;
 - Crypt Guard is a slower elite melee enemy with a larger silhouette, visible name and 35% splash damage around its primary target.
@@ -273,6 +279,7 @@ Runtime combat state remains on `BattleUnit`.
 - `assets/pixel/units/mage.png`
 - `assets/pixel/units/skeleton.png`
 - `assets/pixel/units/bone_archer.png`
+- `assets/pixel/units/bone_warden.png` — dedicated final-boss sprite
 
 Combat presentation now prioritizes the sprite silhouette:
 
@@ -308,7 +315,8 @@ Encounter Resources currently define:
 - wizard line;
 - enemy UnitData paths;
 - enemy display names;
-- enemy spawn positions.
+- enemy spawn positions;
+- optional phase/reinforcement unit paths, names and spawn positions.
 
 Current encounter files:
 
@@ -394,16 +402,19 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the first Act 1 balance/readability pass with a complete run:
+Locally verify the Bone Warden gameplay + visual rework:
 
-- each early/mid/late 4-card block should contain at least one selected combat card; the mandatory combat slot should vary between runs and should occur within the first three cards of that tier;
-- card rejection and no-repeat behavior must remain unchanged;
-- **СТАВКА НА СМЕРТЬ** should now offer +60 gold / +35 HP / +5 damage after victory, while still leaving wizard debt untouched;
-- Bone Warden should now have 580 HP, 22 base damage, a slightly faster attack cadence/movement, and a stronger 50% HP enrage;
-- the boss should feel materially harder than its original three-victory-slice version but still beatable by a coherent 12-card build;
-- note whether gold usually ends the run unused, whether HP or damage choices dominate, and roughly how many combats occur before the boss.
+- the final card must use the new dedicated Bone Warden illustration instead of Bone Patrol art;
+- the boss must use its own crowned/armored pixel sprite, visibly larger and more distinctive than normal Skeletons;
+- the final arena must show a dedicated red ritual/gate/chain treatment that does not appear in ordinary encounters;
+- Bone Warden melee attacks should cleave nearby heroes, making tightly clustered placement dangerous;
+- at 50% HP the fight should visibly enter **Phase II**, show the phase cue, intensify the arena ritual and summon one Bone Archer plus one Bone Thrall;
+- newly summoned units must immediately join the running combat;
+- the phase transition must occur only once;
+- victory/defeat/retry/reward/run-end flow must remain intact;
+- most importantly, the boss should no longer feel easier than the late Act 1 elite encounters.
 
-Do not change every event number after a single run. Use the next local full-run result to decide the second balance pass, especially economy and permanent-stat growth.
+If the reworked fight is still too easy, tune the boss/add composition before adding any new systems. If difficulty is good but the visual still feels off, do a second art-only pass rather than changing combat again.
 
 ## Local workflow
 
