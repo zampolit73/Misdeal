@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Final five-card Act 1 content batch confirmed locally: Rattling Bridge, Lost Purse, Candle Seller, Bone Tax and Death Wager.
 - Late-game Act 1 escalation confirmed locally: Faceless Card, Blood Ledger, Broken Crown, Last Camp and Ossuary Gate.
 - 12-card Act 1 offer/rejection/tier flow and boss handoff confirmed working locally.
 - Bone Warden boss encounter and enrage behavior confirmed working locally.
@@ -32,6 +33,13 @@
 - Bone Archer now fights when cornered instead of endlessly retreating into the arena boundary.
 - Fixed pre-battle dragging being blocked by fullscreen Control UI layers.
 - BattleUnit placement input now uses the main input phase, while decorative battle UI ignores mouse events.
+
+### Changed
+
+- Act 1 now guarantees at least one selected combat in each early/mid/late four-card tier while preserving two-card choice and rejection.
+- The mandatory combat slot is randomized among the first three positions of each tier so combat pacing is controlled without becoming fully predictable.
+- Death Wager enhanced reward reduced from +75 gold / +50 HP / +8 damage to +60 gold / +35 HP / +5 damage.
+- Bone Warden retuned for twelve-card builds: 580 HP, 22 damage, faster base cadence/movement and a stronger enrage phase.
 
 ### Added
 
