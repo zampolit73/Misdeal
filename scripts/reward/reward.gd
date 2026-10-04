@@ -17,7 +17,11 @@ func _choose_reward(reward_id: String) -> void:
 	RunState.apply_reward(reward_id)
 	summary_label.text = "Взято. У каждого дара за этим столом есть цена."
 	await get_tree().create_timer(0.35).timeout
-	get_tree().change_scene_to_file("res://scenes/table/table.tscn")
+
+	if RunState.is_run_complete():
+		get_tree().change_scene_to_file("res://scenes/run_end/run_end.tscn")
+	else:
+		get_tree().change_scene_to_file("res://scenes/table/table.tscn")
 
 func _disable_reward_buttons() -> void:
 	blood_coin_button.disabled = true
