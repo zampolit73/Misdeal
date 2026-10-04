@@ -1,0 +1,118 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/event/prototype_card.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="PanelStyle"]
+bg_color = Color(0.025, 0.018, 0.028, 0.97)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.48, 0.25, 0.20, 1)
+
+[sub_resource type="StyleBoxFlat" id="ButtonStyle"]
+bg_color = Color(0.075, 0.045, 0.050, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.62, 0.34, 0.24, 1)
+
+[node name="PrototypeCard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+mouse_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.014, 0.010, 0.018, 1)
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 270.0
+offset_top = 95.0
+offset_right = 1010.0
+offset_bottom = 625.0
+theme_override_styles/panel = SubResource("PanelStyle")
+
+[node name="Title" type="Label" parent="Panel"]
+mouse_filter = 2
+offset_left = 38.0
+offset_top = 34.0
+offset_right = 702.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0.94, 0.80, 0.58, 1)
+theme_override_font_sizes/font_size = 30
+text = "КАРТА"
+horizontal_alignment = 1
+
+[node name="Type" type="Label" parent="Panel"]
+mouse_filter = 2
+offset_left = 38.0
+offset_top = 92.0
+offset_right = 702.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(0.78, 0.48, 0.30, 1)
+theme_override_font_sizes/font_size = 15
+text = "СОБЫТИЕ"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Panel"]
+mouse_filter = 2
+offset_left = 70.0
+offset_top = 150.0
+offset_right = 670.0
+offset_bottom = 220.0
+theme_override_colors/font_color = Color(0.82, 0.76, 0.69, 1)
+theme_override_font_sizes/font_size = 19
+text = "Описание карты."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="WizardLine" type="Label" parent="Panel"]
+mouse_filter = 2
+offset_left = 70.0
+offset_top = 250.0
+offset_right = 670.0
+offset_bottom = 315.0
+theme_override_colors/font_color = Color(0.70, 0.60, 0.66, 1)
+theme_override_font_sizes/font_size = 17
+text = "Реплика волшебника."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Result" type="Label" parent="Panel"]
+mouse_filter = 2
+offset_left = 70.0
+offset_top = 345.0
+offset_right = 670.0
+offset_bottom = 405.0
+theme_override_colors/font_color = Color(0.62, 0.58, 0.55, 1)
+theme_override_font_sizes/font_size = 15
+text = "Механика этой карты появится в следующем проходе."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ContinueButton" type="Button" parent="Panel"]
+offset_left = 235.0
+offset_top = 440.0
+offset_right = 505.0
+offset_bottom = 495.0
+theme_override_colors/font_color = Color(0.94, 0.82, 0.64, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonStyle")
+theme_override_styles/pressed = SubResource("ButtonStyle")
+text = "ПРОДОЛЖИТЬ"
