@@ -27,7 +27,9 @@ The first pixel-art combat readability redesign is implemented and confirmed wor
 
 The second battle presentation pass is implemented and confirmed visually acceptable locally.
 
-The same pixel-art visual language is now applied across the main menu, wizard table, Whispering Well event, reward screen and run-end screen. This cross-screen visual pass is implemented in GitHub and pending local verification.
+The same pixel-art visual language is now applied across the main menu, Whispering Well event, reward screen and run-end screen.
+
+The wizard table has since been rebuilt again around an approved authored pixel-art concept. The implementation is in GitHub and pending local verification.
 
 ## Player-facing language
 
@@ -72,15 +74,26 @@ The table displays:
 
 Selecting a combat card stores its encounter in `RunState` and launches battle.
 
-The wizard table now uses the active pixel-art direction rather than the earlier painted-art composition:
+The wizard table now uses a hybrid authored-art + live-UI composition based on the approved concept stored at:
 
-- procedural pixel masonry and a cursed wooden tabletop;
-- ritual sigil, candles and a pixel card deck;
-- square pixel card frames with separate combat/event treatments;
-- procedural pixel wizard portrait with glowing eyes/orb;
-- framed header/stats/hint panels matching the battle HUD language.
+- `assets/concepts/approved_table_direction.png`
 
-The earlier painted assets under `assets/art/` remain in the repository as historical/reference material but are no longer active in the table or combat presentation.
+Runtime table assets derived from that concept:
+
+- `assets/pixel/table/table_wizard_layer.png` — wizard/room backdrop;
+- `assets/pixel/table/misdeal_logo.png` — title logo;
+- `assets/pixel/table/cards/bone_patrol.png`;
+- `assets/pixel/table/cards/graveyard_ambush.png`;
+- `assets/pixel/table/cards/gallows_volley.png`;
+- `assets/pixel/table/cards/whispering_well.png`.
+
+The lower tabletop, ritual runner, sigil, candles and props remain procedural so the layout can stay responsive to live UI.
+
+The four encounter/event cards are still real Godot `Button` controls with live titles/descriptions/states. The approved art is used inside those interactive cards instead of baking run state into a static screenshot.
+
+The top HUD remains dynamic and shows the actual deal count, gold, party HP modifier and damage modifier.
+
+The earlier painted assets under `assets/art/` remain in the repository as historical/reference material.
 
 ### 3. Whispering Well event
 
@@ -253,16 +266,17 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Immediate next milestone
 
-Locally verify the cross-screen pixel-art pass:
+Locally verify the rebuilt wizard table:
 
-- main menu, wizard table, Whispering Well, rewards and run-end all render without layout issues at 1280×720;
-- table cards remain readable and clickable;
-- the procedural wizard portrait fits its frame;
-- Whispering Well choices still enable/disable correctly;
-- reward selection and new-run flow still work unchanged;
-- all screens feel visually related to the battle presentation.
+- the authored wizard/room backdrop renders cleanly at 1280×720;
+- the Misdeal logo and dynamic run HUD remain readable;
+- all four illustrated cards are clickable;
+- combat-card titles/descriptions still come from `EncounterData`;
+- Whispering Well correctly switches to its exhausted/dimmed state after use;
+- hover borders and event/combat card color treatments read clearly;
+- selecting a combat/event card still transitions to the correct scene.
 
-After verification, the next polish step should focus on motion/audio and selective sprite/UI refinement rather than another visual-language reset.
+After table verification, reuse the approved/generated pixel-art references selectively for richer authored assets rather than embedding whole mockup screenshots with baked UI.
 
 ## Local workflow
 
