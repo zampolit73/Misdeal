@@ -22,6 +22,9 @@
 
 ### Fixed
 
+- Fixed the authored battle backdrop being invisible: the direct WebP committed to GitHub was truncated to 8.7 KB and the backdrop node also sat behind the fullscreen black fallback via `z_index = -100`.
+- Battle now reconstructs the validated 1280×720 authored WebP from five repository chunks through `authored_backdrop.gd`, and the backdrop is drawn above the black fallback.
+- Removed the broken truncated `assets/pixel/battle/battle_backdrop.webp` file.
 - Fixed Godot 4.7.2 parser failure in the new boss-arena chain/brazier drawing by replacing Variant-inferred loop values with typed Vector2 arrays and explicit local types.
 - Clamp final hero max HP to 20 and damage to 1 so stacked late-run sacrifices cannot create invalid combat units.
 - Split the battle result overlay into a large victory/defeat title and a separate compact wizard-reaction subtitle so post-battle text no longer overlaps the panel and units.
@@ -39,7 +42,7 @@
 
 - Replaced the procedural battle wall/floor/HUD rendering with an authored full-screen gothic battle backdrop based on the user's second approved reference.
 - General battle architecture, throne, candles, banners, chains, skull piles, ritual floor and UI frames are now painted into the backdrop; live units, HP, labels and buttons remain native Godot layers.
-- Added direct `assets/pixel/battle/battle_backdrop.webp` authored battle texture, displayed at exact 2× nearest-neighbor scale.
+- Added the authored battle backdrop as five validated base64 WebP chunks under `assets/pixel/battle/authored_backdrop/`, decoded at runtime by `scripts/battle/authored_backdrop.gd`.
 - Reduced `battle_visual.gd` to lightweight dynamic boss overlays so ordinary combat no longer gets a second procedural arena drawn over the authored art.
 - Removed the obsolete procedural `battle_hud_visual.gd` renderer so the painted HUD chrome is not doubled.
 - Re-aligned title/status/progress/faction labels and bottom command buttons to the painted frames in the authored backdrop.
