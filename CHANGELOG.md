@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Three-card encounter selection, three-victory finite run, run-end summary and new-run reset confirmed working locally.
 - First `table -> battle -> reward -> table` loop confirmed working locally.
 - Bone Archer arena-bound retreat fix confirmed working locally.
 - Data-driven `UnitData` refactor confirmed working locally.
