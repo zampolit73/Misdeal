@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "bone_crush"
 title = "КОСТЯНАЯ ДАВКА"
-card_text = "Слишком много костей для слишком узкого прохода."
+card_text = "Пять хрупких костяных рабов давят числом. Толпа особенно не любит взрывы."
 wizard_line = "Иногда количество — тоже изящество."
 type_label = "БОЙ"
 tier = 1
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "combat"
+target_path = "res://resources/encounters/bone_crush.tres"
 art_path = "res://assets/pixel/table/cards/bone_patrol.png"
-prototype_result_text = "Здесь появится бой против многочисленной слабой нежити."
+prototype_result_text = ""
