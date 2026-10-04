@@ -70,6 +70,7 @@ Only after the loop is fun:
 - [x] First pixel-art combat readability redesign with larger silhouettes, ground rings and compact HP UI.
 - [x] Pixel battle presentation pass with atmospheric arena decor, HUD chrome and attack motion.
 - [x] Convert main menu, table/cards/wizard, event, reward and run-end UI to the same pixel-art language.
+- [x] Rebuild the wizard table around an approved authored pixel concept while keeping live Godot HUD/cards.
 - [ ] Coherent visual language for table/cards/miniatures;
 - [ ] animations and impact feedback;
 - [ ] sound and music;
