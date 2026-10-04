@@ -84,6 +84,7 @@ var rejected_card_ids: Array[String] = []
 var resolved_card_ids: Array[String] = []
 var active_card_id: String = ""
 var artifact_ids: Array[String] = []
+var forced_combat_slots: Array[int] = []
 
 func _ready() -> void:
 	if remaining_card_ids.is_empty() and resolved_card_ids.is_empty() and active_card_id.is_empty():
@@ -102,6 +103,7 @@ func reset_run() -> void:
 	boss_defeated = false
 	active_card_id = ""
 	artifact_ids.clear()
+	forced_combat_slots.clear()
 	remaining_card_ids.clear()
 	current_offer_ids.clear()
 	rejected_card_ids.clear()
@@ -109,6 +111,9 @@ func reset_run() -> void:
 
 	for card_id in ACT1_CARD_IDS:
 		remaining_card_ids.append(card_id)
+
+	for _tier in range(3):
+		forced_combat_slots.append(randi_range(0, 2))
 
 func get_artifact(artifact_id: String) -> ArtifactData:
 	var path: String = ARTIFACT_PATHS.get(artifact_id, "")
@@ -233,12 +238,30 @@ func _ensure_current_offers() -> void:
 		return
 
 	var tier := mini(int(cards_resolved / 4), 2)
-	var candidates: Array[String] = []
+	var slot_in_tier := cards_resolved % 4
+	var tier_candidates: Array[String] = []
 
 	for card_id in remaining_card_ids:
 		var card := get_card(card_id)
 		if card != null and card.tier == tier:
-			candidates.append(card_id)
+			tier_candidates.append(card_id)
+
+	var candidates: Array[String] = []
+	var forced_slot := forced_combat_slots[tier] if tier < forced_combat_slots.size() else 0
+
+	if slot_in_tier < forced_slot:
+		for card_id in tier_candidates:
+			if not _is_combat_card_id(card_id):
+				candidates.append(card_id)
+	elif slot_in_tier == forced_slot:
+		for card_id in tier_candidates:
+			if _is_combat_card_id(card_id):
+				candidates.append(card_id)
+	else:
+		candidates = tier_candidates.duplicate()
+
+	if candidates.size() < 2:
+		candidates = tier_candidates.duplicate()
 
 	if candidates.size() < 2:
 		candidates.clear()
@@ -249,6 +272,10 @@ func _ensure_current_offers() -> void:
 	var offer_count := mini(2, candidates.size())
 	for index in range(offer_count):
 		current_offer_ids.append(candidates[index])
+
+func _is_combat_card_id(card_id: String) -> bool:
+	var card := get_card(card_id)
+	return card != null and card.resolution_type == "combat"
 
 func choose_card(card_id: String) -> bool:
 	if active_card_id == card_id:
