@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Hit/death combat feedback confirmed working locally.
 - Combat-time unit separation confirmed working locally.
 - Pre-battle hero dragging confirmed working locally.
 
@@ -14,6 +15,9 @@
 
 ### Added
 
+- Data-driven `UnitData` Resource type.
+- Separate Knight, Ranger, Mage and Skeleton `.tres` unit definitions.
+- Battle spawning now reads unit stats from Resources instead of hard-coded stat arguments.
 - Hit flash and impact scale pulse when units take damage.
 - Floating damage numbers.
 - Short shrink/fade feedback on unit death.
