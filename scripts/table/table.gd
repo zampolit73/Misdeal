@@ -63,12 +63,14 @@ func _refresh_table() -> void:
 
 	if RunState.whispering_well_resolved:
 		whispering_well_button.disabled = true
+		whispering_well_button.modulate = Color(0.58, 0.64, 0.64, 0.82)
 		well_art.modulate = Color(0.34, 0.38, 0.40, 0.72)
 		well_type.text = "СОБЫТИЕ ИСЧЕРПАНО"
 		well_description.text = "Колодец больше не отвечает."
 		well_hint.text = ""
 	else:
 		whispering_well_button.disabled = false
+		whispering_well_button.modulate = Color.WHITE
 		well_art.modulate = Color.WHITE
 		well_type.text = "СОБЫТИЕ"
 		well_description.text = "Чёрная вода обещает силу. Цена неизвестна."
