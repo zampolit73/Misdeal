@@ -387,6 +387,6 @@ The general battle arena is therefore no longer drawn procedurally. A full-scree
 
 Gameplay stays live on top: units, HP bars, names, team rings, drag placement, movement, attacks, encounter text, buttons, result overlays and boss phase logic are still native Godot nodes/scripts.
 
-For the current browser-side repository workflow, the WebP backdrop is stored as five base64 text chunks under `assets/pixel/battle/authored_backdrop/` and decoded once by `scripts/battle/authored_backdrop.gd`. This packaging detail must not leak into gameplay logic.
+The production backdrop is stored directly as `assets/pixel/battle/battle_backdrop.webp`. It is authored at 640×360 and shown at exact 2× nearest-neighbor scale in the 1280×720 prototype, keeping the pixel treatment crisp while avoiding runtime reconstruction logic.
 
 `scripts/battle/battle_visual.gd` is now restricted to dynamic overlays such as Bone Warden phase effects. Do not rebuild the ordinary arena procedurally unless the authored backdrop is deliberately replaced by another approved art asset.
