@@ -23,12 +23,15 @@ func _ready() -> void:
 	_refresh_table()
 
 func _refresh_table() -> void:
+	var condition_text := RunState.get_run_condition_text()
 	stats_label.text = "%s     ЗОЛОТО %d     ЗДОРОВЬЕ %+d     УРОН %+d" % [
 		RunState.get_progress_text(),
 		RunState.gold,
 		int(RunState.party_hp_bonus),
 		int(RunState.party_damage_bonus)
 	]
+	if not condition_text.is_empty():
+		stats_label.text += "     %s" % condition_text
 
 	if RunState.is_boss_due():
 		default_wizard_line = "Двенадцать карт позади. Осталась та, которую я берег."
@@ -36,6 +39,8 @@ func _refresh_table() -> void:
 		default_wizard_line = "Ты уже выбрал карту. Она всё ещё ждёт, пока ты закончишь начатое."
 	elif RunState.cards_resolved < 4:
 		default_wizard_line = "Начнём вежливо. Выбери, чем именно испортить себе вечер."
+	elif RunState.wizard_debt_active:
+		default_wizard_line = "Я помню твой долг. Следующий бой тоже будет помнить."
 	elif RunState.cards_resolved < 8:
 		default_wizard_line = "Теперь ставки становятся интереснее. Выбирай."
 	else:
