@@ -22,6 +22,11 @@
 
 ### Added
 
+- First authored dark-fantasy art asset pack under `assets/art/`.
+- Painted cursed-table background and authored evil-wizard portrait integrated into the table scene.
+- Authored cursed card-back art added to the table composition.
+- Authored Knight, Ranger, Mage, Skeleton and Bone Archer miniature textures integrated into combat.
+- Procedural unit silhouettes retained as fallback visuals while gameplay rings/HP/feedback stay readable.
 - First procedural visual blockout for the cursed table with wood grain, ritual markings and candle accents.
 - Styled combat/event card frames with hover depth and distinct event-card treatment.
 - Expanded wizard portrait blockout with stronger silhouette, crown details and pulsing orb.
