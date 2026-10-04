@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "candle_seller"
 title = "ТОРГОВЕЦ СВЕЧАМИ"
-card_text = "Слепой торговец предлагает свет по цене, которую не называет."
+card_text = "Слепой торговец продаёт дешёвые свечи с небольшими, но полезными благословениями."
 wizard_line = "Он торгует светом. Я — тем, что за ним прячется."
 type_label = "ТОРГОВЕЦ"
 tier = 0
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
 art_path = "res://assets/pixel/table/cards/whispering_well.png"
-prototype_result_text = "Это будущая ранняя торговая карта."
+prototype_result_text = ""
