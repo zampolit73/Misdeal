@@ -27,15 +27,21 @@ func _ready() -> void:
 	_refresh_table()
 
 func _setup_card(button: Button, encounter: EncounterData, encounter_path: String) -> void:
-	button.text = "%s\n\nБОЙ\n\n%s\n\nНАЖМИТЕ, ЧТОБЫ ВЫБРАТЬ" % [
-		encounter.title,
-		encounter.card_text
-	]
+	var title_label := button.get_node("Title") as Label
+	var type_label := button.get_node("Type") as Label
+	var description_label := button.get_node("Description") as Label
+	var hint_label := button.get_node("Hint") as Label
+
+	title_label.text = encounter.title
+	type_label.text = "БОЙ"
+	description_label.text = encounter.card_text.replace("\n", " ")
+	hint_label.text = "ВЫБРАТЬ"
+	button.tooltip_text = encounter.card_text.replace("\n", " ")
 	button.pressed.connect(_choose_encounter.bind(encounter, encounter_path))
 
 func _refresh_table() -> void:
 	var current_deal := RunState.deals_survived + 1
-	stats_label.text = "Раздача: %d/%d    Золото: %d    Здоровье: %+d    Урон: %+d" % [
+	stats_label.text = "РАЗДАЧА %d/%d     ЗОЛОТО %d     ЗДОРОВЬЕ %+d     УРОН %+d" % [
 		current_deal,
 		RunState.MAX_DEALS,
 		RunState.gold,
@@ -44,17 +50,29 @@ func _refresh_table() -> void:
 	]
 
 	if RunState.deals_survived == 0:
-		wizard_line.text = "Волшебник барабанит пальцами по столу. Выбирай."
+		wizard_line.text = "Волшебник раскладывает судьбы. Выбирай."
 	elif RunState.deals_survived == RunState.MAX_DEALS - 1:
 		wizard_line.text = "Последняя раздача. Постарайся умереть поинтереснее."
 	else:
 		wizard_line.text = "Всё ещё здесь? Какая досада. Тогда ещё одна карта."
 
+	var well_art := whispering_well_button.get_node("Art") as TextureRect
+	var well_type := whispering_well_button.get_node("Type") as Label
+	var well_description := whispering_well_button.get_node("Description") as Label
+	var well_hint := whispering_well_button.get_node("Hint") as Label
+
 	if RunState.whispering_well_resolved:
 		whispering_well_button.disabled = true
-		whispering_well_button.text = "ШЕПЧУЩИЙ КОЛОДЕЦ\n\nСОБЫТИЕ ИСЧЕРПАНО\n\nКолодец больше\nне отвечает."
+		well_art.modulate = Color(0.34, 0.38, 0.40, 0.72)
+		well_type.text = "СОБЫТИЕ ИСЧЕРПАНО"
+		well_description.text = "Колодец больше не отвечает."
+		well_hint.text = ""
 	else:
-		whispering_well_button.text = "ШЕПЧУЩИЙ КОЛОДЕЦ\n\nСОБЫТИЕ\n\nЧёрная вода обещает силу.\nЦена неизвестна.\n\nНАЖМИТЕ, ЧТОБЫ ВЫБРАТЬ"
+		whispering_well_button.disabled = false
+		well_art.modulate = Color.WHITE
+		well_type.text = "СОБЫТИЕ"
+		well_description.text = "Чёрная вода обещает силу. Цена неизвестна."
+		well_hint.text = "ВЫБРАТЬ"
 
 func _choose_encounter(encounter: EncounterData, encounter_path: String) -> void:
 	_disable_cards()
