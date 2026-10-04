@@ -49,7 +49,7 @@ autowrap_mode = 2
 [node name="Status" type="Label" parent="Center/Panel"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "Prototype booted successfully."
+text = "The table is waiting."
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="Center/Panel"]
@@ -60,5 +60,5 @@ text = "ENTER THE GAME"
 
 [node name="Hint" type="Label" parent="Center/Panel"]
 layout_mode = 2
-text = "Next milestone: 3 heroes vs 3 skeletons."
+text = "Cards decide the journey.  Preparation decides the fight."
 horizontal_alignment = 1
