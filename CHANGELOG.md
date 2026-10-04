@@ -37,6 +37,10 @@
 
 ### Changed
 
+- Rebuilt the live battle composition around the approved gothic pixel reference: denser crypt architecture, larger ritual floor, faction lighting split, heavy HUD framing and stronger command hierarchy.
+- Replaced the core Knight, Ranger, Mage, Skeleton and Bone Archer textures with a new transparent 64×64 pixel set and increased live sprite scale/HP/name spacing.
+- Expanded the live arena from 1200 to 1240 px and adjusted the hero deployment bounds to match the new composition.
+- Restyled **БОЙ** as the dominant red primary action while keeping **ПЕРЕИГРАТЬ** visually secondary.
 - Act 1 now guarantees at least one selected combat in each early/mid/late four-card tier while preserving two-card choice and rejection.
 - The mandatory combat slot is randomized among the first three positions of each tier so combat pacing is controlled without becoming fully predictable.
 - Death Wager enhanced reward reduced from +75 gold / +50 HP / +8 damage to +60 gold / +35 HP / +5 damage.
@@ -58,7 +62,7 @@
 - Real **ТОРГОВЕЦ СВЕЧАМИ** early micro-shop with cheap HP/damage purchases and a theft option.
 - Real **КОСТЯНАЯ ПОШЛИНА** forced payment event with gold, HP and HP-for-damage branches.
 - Real **СТАВКА НА СМЕРТЬ** late five-enemy elite encounter.
-- Death Wager enhanced reward screen: +75 gold / +50 HP / +8 damage.
+- Death Wager enhanced reward screen (later retuned to +60 gold / +35 HP / +5 damage).
 - Death Wager-specific **СТАВКА** battle framing and wizard reaction.
 - Real late **КАРТА БЕЗ ЛИЦА** event with hidden random outcome, paid safe outcome and guaranteed low-risk burn choice.
 - Real **КРОВАВАЯ КНИГА** event converting gold/HP/damage into late-run power or artifacts.
@@ -102,6 +106,7 @@
 - Final wizard-table composition pass: compact HUD/commentary strip, slightly smaller and lower card row, wider breathing room around the wizard, and a subdued lower runner/sigil.
 - Encounter-specific wizard reactions on card hover, including a dedicated Whispering Well teaser.
 - Approved wizard-table concept archived at `assets/concepts/approved_table_direction.png`.
+- Approved battle composition reference archived at `assets/concepts/approved_battle_direction.jpg`.
 - Rebuilt wizard table using authored concept slices plus live Godot UI.
 - Authored pixel wizard/room backdrop, Misdeal logo and four encounter/event card illustrations under `assets/pixel/table/`.
 - Illustrated interactive cards now keep encounter text and state data-driven instead of baking gameplay values into the background.
@@ -117,7 +122,7 @@
 - Dynamic Act 1 card-progress indicator in table and battle HUD.
 - Framed victory/defeat result panel.
 - Short attack-lunge motion for combat sprites.
-- First dark-fantasy pixel-art combat sprite set for Knight, Ranger, Mage, Skeleton and Bone Archer.
+- First dark-fantasy pixel-art combat sprite set for Knight, Ranger, Mage, Skeleton and Bone Archer (superseded by the new 64×64 set in the approved battle-visual rebuild).
 - Pixel-stone battle arena renderer with restrained ritual markings.
 - Ground-level team rings, compact team-colored HP bars and larger nearest-neighbor unit sprites.
 - Pixel-styled battle buttons and reduced combat text clutter.
