@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Fixed
+
+- Fixed pre-battle dragging being blocked by fullscreen Control UI layers.
+- BattleUnit placement input now uses the main input phase, while decorative battle UI ignores mouse events.
+
 ### Added
 
 - Pre-battle preparation phase.
