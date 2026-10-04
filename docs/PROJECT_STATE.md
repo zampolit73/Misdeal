@@ -6,7 +6,9 @@ Last updated: 2026-10-04
 
 Misdeal is in the first playable prototype stage.
 
-The current build has been run locally by the user and the first autobattle plus restart flow are confirmed working.
+The base autobattle plus restart flow have been run locally by the user and are confirmed working.
+
+Pre-battle drag placement has now been implemented in GitHub and is pending local verification.
 
 ## Engine
 
@@ -44,6 +46,15 @@ Enemy party:
 - Skeleton B
 - Skeleton C
 
+Before combat, the player can drag Knight, Ranger and Mage within the blue deployment zone.
+
+Placement rules currently implemented:
+
+- only player units are draggable;
+- units are clamped to the allowed deployment area;
+- heroes cannot be dropped on top of another hero;
+- placement is disabled when combat begins.
+
 Pressing **FIGHT** starts combat.
 
 Implemented combat behavior:
@@ -80,8 +91,7 @@ Current relevant files:
 
 ## Not implemented yet
 
-- pre-battle unit placement;
-- unit collision/separation;
+- combat-time unit collision/separation;
 - attack animations and projectiles;
 - abilities and status effects;
 - data-driven `UnitData` resources;
@@ -97,9 +107,13 @@ Current relevant files:
 
 ## Immediate next milestone
 
-Add meaningful pre-battle tactical preparation, beginning with player unit placement before **FIGHT**.
+Locally verify the new drag-and-drop preparation phase.
 
-After that, connect the combat prototype to the first minimal card/table → combat → reward → table loop.
+Then improve combat readability enough that positioning is worth evaluating in play, before connecting the combat prototype to the first minimal card/table → combat → reward → table loop.
+
+The long-term target remains:
+
+`table -> card -> combat -> reward -> table`
 
 ## Local workflow
 
