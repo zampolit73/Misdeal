@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "graveyard_ambush"
+title = "ЗАСАДА НА КЛАДБИЩЕ"
+card_text = "Два скелета прикрывают костяного лучника."
+wizard_line = "Ах, кладбище. Моя маленькая слабость."
+type_label = "БОЙ"
+tier = 0
+resolution_type = "combat"
+target_path = "res://resources/encounters/graveyard_ambush.tres"
+art_path = "res://assets/pixel/table/cards/graveyard_ambush.png"
+prototype_result_text = ""
