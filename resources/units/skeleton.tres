@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_unit_data")
-unit_name = "Skeleton"
+unit_name = "Скелет"
 max_hp = 105.0
 damage = 13.0
 attack_interval = 0.95
