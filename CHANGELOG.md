@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Bone Archer arena-bound retreat fix confirmed working locally.
 - Data-driven `UnitData` refactor confirmed working locally.
 - Hit/death combat feedback confirmed working locally.
 - Combat-time unit separation confirmed working locally.
@@ -18,6 +19,12 @@
 
 ### Added
 
+- First wizard-table scene with a playable Graveyard Ambush card and two face-down placeholders.
+- Persistent prototype `RunState` autoload.
+- Post-victory reward scene with Blood Coin, Iron Ward and Tempered Steel choices.
+- Persistent party-wide HP and damage reward bonuses applied to later battles.
+- Post-battle flow from victory to rewards and back to the table.
+- Defeat return path to the table.
 - Bone Archer enemy with ranged keep-distance behavior.
 - Mage splash damage that hits nearby secondary enemies.
 - Data-driven `UnitData` Resource type.
