@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Final wizard-table composition/readability polish confirmed locally and accepted.
 - Pixel battle presentation pass confirmed visually acceptable locally.
 - First pixel-art combat readability pass confirmed locally: larger sprites, ground rings and compact HP presentation read clearly.
 - Whispering Well event choices and one-time-per-run lockout confirmed working locally.
@@ -17,6 +18,7 @@
 
 ### Fixed
 
+- Split the battle result overlay into a large victory/defeat title and a separate compact wizard-reaction subtitle so post-battle text no longer overlaps the panel and units.
 - Removed floating default tooltips from wizard-table combat cards so hover text no longer covers card illustrations.
 - Replaced hover tooltips with wizard commentary in the dedicated upper strip and protected selection commentary from mouse-exit resets.
 - Removed obsolete procedural table-side props and candles that conflicted with the authored pixel backdrop.
