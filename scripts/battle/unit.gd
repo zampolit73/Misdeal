@@ -1,6 +1,12 @@
 class_name BattleUnit
 extends Node2D
 
+const KNIGHT_ART: Texture2D = preload("res://assets/art/units/knight.webp")
+const RANGER_ART: Texture2D = preload("res://assets/art/units/ranger.webp")
+const MAGE_ART: Texture2D = preload("res://assets/art/units/mage.webp")
+const SKELETON_ART: Texture2D = preload("res://assets/art/units/skeleton.webp")
+const BONE_ARCHER_ART: Texture2D = preload("res://assets/art/units/bone_archer.webp")
+
 signal died(unit: BattleUnit)
 signal placement_rejected(unit: BattleUnit)
 
@@ -37,6 +43,7 @@ var hit_flash_time := 0.0
 var hit_pulse_tween: Tween
 var death_tween: Tween
 
+@onready var art_sprite: Sprite2D = $ArtSprite
 @onready var name_label: Label = $NameLabel
 @onready var health_bar: ProgressBar = $HealthBar
 
@@ -62,9 +69,25 @@ func _ready() -> void:
 	hp = max_hp
 	add_to_group("combat_units")
 	name_label.text = display_name
+	art_sprite.texture = _get_art_texture()
 	health_bar.max_value = max_hp
 	health_bar.value = hp
 	queue_redraw()
+
+func _get_art_texture() -> Texture2D:
+	match visual_role:
+		"knight":
+			return KNIGHT_ART
+		"ranger":
+			return RANGER_ART
+		"mage":
+			return MAGE_ART
+		"skeleton":
+			return SKELETON_ART
+		"bone_archer":
+			return BONE_ARCHER_ART
+		_:
+			return null
 
 func set_combat_bounds(bounds: Rect2) -> void:
 	combat_bounds = bounds
@@ -304,8 +327,11 @@ func _play_hit_feedback() -> void:
 		hit_pulse_tween.kill()
 
 	scale = Vector2(1.12, 1.12)
+	art_sprite.modulate = Color(1.0, 0.62, 0.52, 1.0)
 	hit_pulse_tween = create_tween()
+	hit_pulse_tween.set_parallel(true)
 	hit_pulse_tween.tween_property(self, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	hit_pulse_tween.tween_property(art_sprite, "modulate", Color.WHITE, 0.14)
 
 func _show_damage_number(amount: float) -> void:
 	if get_parent() == null:
@@ -368,7 +394,8 @@ func _draw() -> void:
 	draw_circle(Vector2.ZERO, body_radius + 1.0, Color(0.055, 0.05, 0.065, 1.0))
 	draw_arc(Vector2.ZERO, body_radius + 1.0, 0.0, TAU, 36, team_color, 4.0)
 
-	_draw_miniature(figure_color, outline_color)
+	if art_sprite.texture == null:
+		_draw_miniature(figure_color, outline_color)
 
 	if placement_enabled and team == 0 and alive:
 		var placement_color := Color(0.72, 0.92, 1.0, 1.0) if dragging else Color(0.42, 0.72, 0.90, 0.70)
