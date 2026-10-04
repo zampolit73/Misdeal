@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_unit_data")
 unit_name = "Рыцарь"
+visual_role = "knight"
 max_hp = 150.0
 damage = 18.0
 attack_interval = 0.9
