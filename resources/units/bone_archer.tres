@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_unit_data")
 unit_name = "Костяной лучник"
+visual_role = "bone_archer"
 max_hp = 75.0
 damage = 11.0
 attack_interval = 1.1
