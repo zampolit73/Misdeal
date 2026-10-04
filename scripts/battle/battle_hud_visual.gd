@@ -5,45 +5,71 @@ func _ready() -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	var panel := Color(0.028, 0.023, 0.032, 0.98)
-	var panel_inner := Color(0.055, 0.043, 0.055, 0.96)
-	var border := Color(0.30, 0.22, 0.24, 1.0)
-	var border_light := Color(0.48, 0.30, 0.27, 0.88)
-	var corner := Color(0.56, 0.31, 0.23, 0.70)
+	var panel: Color = Color(0.018, 0.014, 0.022, 0.985)
+	var inner: Color = Color(0.038, 0.027, 0.034, 0.985)
+	var border: Color = Color(0.33, 0.18, 0.18, 1.0)
+	var highlight: Color = Color(0.58, 0.31, 0.22, 0.92)
+	var ornament: Color = Color(0.55, 0.23, 0.17, 0.80)
 
-	_draw_panel(Rect2(20.0, 14.0, 820.0, 96.0), panel, panel_inner, border, border_light)
-	_draw_panel(Rect2(1015.0, 22.0, 230.0, 62.0), panel, panel_inner, border, border_light)
-	_draw_panel(Rect2(20.0, 605.0, 1225.0, 100.0), panel, panel_inner, border, border_light)
+	_draw_panel(Rect2(8.0, 8.0, 920.0, 118.0), panel, inner, border, highlight)
+	_draw_panel(Rect2(1000.0, 18.0, 270.0, 82.0), panel, inner, border, highlight)
+	_draw_panel(Rect2(8.0, 622.0, 1264.0, 90.0), panel, inner, border, highlight)
+	_draw_side_plate(Rect2(18.0, 143.0, 205.0, 48.0), Color(0.10, 0.16, 0.24, 0.98), Color(0.23, 0.52, 0.82, 0.88))
+	_draw_side_plate(Rect2(1057.0, 143.0, 205.0, 48.0), Color(0.23, 0.055, 0.055, 0.98), Color(0.82, 0.22, 0.16, 0.90))
 
-	_draw_corner_marks(Rect2(20.0, 14.0, 820.0, 96.0), corner)
-	_draw_corner_marks(Rect2(1015.0, 22.0, 230.0, 62.0), corner)
-	_draw_corner_marks(Rect2(20.0, 605.0, 1225.0, 100.0), corner)
+	_draw_corner_marks(Rect2(8.0, 8.0, 920.0, 118.0), ornament)
+	_draw_corner_marks(Rect2(1000.0, 18.0, 270.0, 82.0), ornament)
+	_draw_corner_marks(Rect2(8.0, 622.0, 1264.0, 90.0), ornament)
 
-	draw_line(Vector2(375.0, 621.0), Vector2(375.0, 690.0), Color(0.20, 0.15, 0.18, 0.8), 2.0)
-	draw_line(Vector2(875.0, 621.0), Vector2(875.0, 690.0), Color(0.20, 0.15, 0.18, 0.8), 2.0)
+	_draw_skull(Vector2(36, 655), 12.0)
+	_draw_skull(Vector2(1244, 655), 12.0)
+	_draw_candles(Vector2(78, 684))
+	_draw_candles(Vector2(1200, 684))
 
-func _draw_panel(rect: Rect2, panel: Color, inner: Color, border: Color, border_light: Color) -> void:
-	draw_rect(rect, panel)
-	draw_rect(rect, border, false, 3.0)
-	var inner_rect := rect.grow(-5.0)
-	draw_rect(inner_rect, inner)
-	draw_rect(inner_rect, border_light, false, 1.0)
+	draw_line(Vector2(392.0, 637.0), Vector2(392.0, 700.0), Color(0.25, 0.12, 0.14, 0.85), 2.0)
+	draw_line(Vector2(888.0, 637.0), Vector2(888.0, 700.0), Color(0.25, 0.12, 0.14, 0.85), 2.0)
+
+func _draw_panel(rect: Rect2, panel: Color, inner: Color, border: Color, highlight: Color) -> void:
+	draw_rect(rect, Color(0, 0, 0, 0.72))
+	draw_rect(rect, border, false, 4.0)
+	var inner_rect: Rect2 = rect.grow(-6.0)
+	draw_rect(inner_rect, panel)
+	draw_rect(inner_rect, highlight, false, 1.0)
+	var core: Rect2 = inner_rect.grow(-4.0)
+	draw_rect(core, inner)
+	draw_rect(core, Color(0.16, 0.085, 0.095, 0.9), false, 1.0)
+
+func _draw_side_plate(rect: Rect2, fill: Color, edge: Color) -> void:
+	draw_rect(rect, Color(0.012, 0.010, 0.016, 0.97))
+	draw_rect(rect, edge.darkened(0.25), false, 3.0)
+	var inner_rect: Rect2 = rect.grow(-5.0)
+	draw_rect(inner_rect, fill)
+	draw_rect(inner_rect, edge, false, 1.0)
+	_draw_corner_marks(rect, edge)
 
 func _draw_corner_marks(rect: Rect2, color: Color) -> void:
-	var len := 12.0
-	for corner in [
-		rect.position + Vector2(6.0, 6.0),
-		Vector2(rect.end.x - 6.0, rect.position.y + 6.0),
-		Vector2(rect.position.x + 6.0, rect.end.y - 6.0),
-		rect.end - Vector2(6.0, 6.0)
-	]:
-		draw_rect(Rect2(corner - Vector2(2.0, 2.0), Vector2(4.0, 4.0)), color)
+	var mark: float = 13.0
+	draw_line(rect.position + Vector2(7, 7), rect.position + Vector2(7 + mark, 7), color, 2.0)
+	draw_line(rect.position + Vector2(7, 7), rect.position + Vector2(7, 7 + mark), color, 2.0)
+	draw_line(Vector2(rect.end.x - 7, rect.position.y + 7), Vector2(rect.end.x - 7 - mark, rect.position.y + 7), color, 2.0)
+	draw_line(Vector2(rect.end.x - 7, rect.position.y + 7), Vector2(rect.end.x - 7, rect.position.y + 7 + mark), color, 2.0)
+	draw_line(Vector2(rect.position.x + 7, rect.end.y - 7), Vector2(rect.position.x + 7 + mark, rect.end.y - 7), color, 2.0)
+	draw_line(Vector2(rect.position.x + 7, rect.end.y - 7), Vector2(rect.position.x + 7, rect.end.y - 7 - mark), color, 2.0)
+	draw_line(rect.end - Vector2(7, 7), rect.end - Vector2(7 + mark, 7), color, 2.0)
+	draw_line(rect.end - Vector2(7, 7), rect.end - Vector2(7, 7 + mark), color, 2.0)
 
-	draw_line(rect.position + Vector2(8, 8), rect.position + Vector2(8 + len, 8), color, 2.0)
-	draw_line(rect.position + Vector2(8, 8), rect.position + Vector2(8, 8 + len), color, 2.0)
-	draw_line(Vector2(rect.end.x - 8, rect.position.y + 8), Vector2(rect.end.x - 8 - len, rect.position.y + 8), color, 2.0)
-	draw_line(Vector2(rect.end.x - 8, rect.position.y + 8), Vector2(rect.end.x - 8, rect.position.y + 8 + len), color, 2.0)
-	draw_line(Vector2(rect.position.x + 8, rect.end.y - 8), Vector2(rect.position.x + 8 + len, rect.end.y - 8), color, 2.0)
-	draw_line(Vector2(rect.position.x + 8, rect.end.y - 8), Vector2(rect.position.x + 8, rect.end.y - 8 - len), color, 2.0)
-	draw_line(rect.end - Vector2(8, 8), rect.end - Vector2(8 + len, 8), color, 2.0)
-	draw_line(rect.end - Vector2(8, 8), rect.end - Vector2(8, 8 + len), color, 2.0)
+func _draw_skull(pos: Vector2, radius: float) -> void:
+	var bone: Color = Color(0.48, 0.40, 0.34, 0.88)
+	draw_circle(pos, radius, bone)
+	draw_rect(Rect2(pos.x - radius * 0.55, pos.y + radius * 0.45, radius * 1.1, radius * 0.65), bone.darkened(0.12))
+	draw_circle(pos + Vector2(-4, -2), 2.3, Color(0.025, 0.020, 0.024, 1.0))
+	draw_circle(pos + Vector2(4, -2), 2.3, Color(0.025, 0.020, 0.024, 1.0))
+
+func _draw_candles(origin: Vector2) -> void:
+	var candle_xs: Array[float] = [-12.0, 0.0, 11.0]
+	for index in range(candle_xs.size()):
+		var x: float = origin.x + candle_xs[index]
+		var height: float = 16.0 + float(index % 2) * 8.0
+		draw_rect(Rect2(x - 3.0, origin.y - height, 6.0, height), Color(0.78, 0.58, 0.37, 1.0))
+		draw_circle(Vector2(x, origin.y - height - 6.0), 8.0, Color(1.0, 0.18, 0.04, 0.08))
+		draw_rect(Rect2(x - 2.0, origin.y - height - 10.0, 4.0, 8.0), Color(1.0, 0.55, 0.12, 0.96))
