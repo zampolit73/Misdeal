@@ -19,6 +19,8 @@ Confirmed locally by the user:
 
 The three-card encounter selection and three-victory finite run are implemented and confirmed working locally.
 
+Phase 3 identity work has started in GitHub and is pending local verification: the wizard now has a visible animated table portrait, and the first non-combat event card is implemented.
+
 ## Player-facing language
 
 All player-facing UI text, card text, reward text, wizard lines and unit display names are Russian.
@@ -46,11 +48,12 @@ Pressing **ВОЙТИ В ИГРУ** resets the prototype run and opens the wizar
 
 `scenes/table/table.tscn`
 
-Each deal presents three playable combat cards:
+Each deal presents three playable combat cards plus one one-time event card:
 
 - **КОСТЯНОЙ ДОЗОР** — three melee Skeleton units;
 - **ЗАСАДА НА КЛАДБИЩЕ** — two Skeleton units plus one Bone Archer;
-- **ЗАЛП С ВИСЕЛИЦЫ** — one Skeleton plus two Bone Archers.
+- **ЗАЛП С ВИСЕЛИЦЫ** — one Skeleton plus two Bone Archers;
+- **ШЕПЧУЩИЙ КОЛОДЕЦ** — a non-combat risk/reward event, available once per run.
 
 The table displays:
 
@@ -59,9 +62,23 @@ The table displays:
 - party HP bonus;
 - party damage bonus.
 
-Selecting a card stores its encounter in `RunState` and launches battle.
+Selecting a combat card stores its encounter in `RunState` and launches battle.
 
-### 3. Combat
+The table also contains a simple animated wizard portrait placeholder with glowing eyes, beginning the first visual identity pass.
+
+### 3. Whispering Well event
+
+`scenes/event/whispering_well.tscn`
+
+The first non-combat event offers three choices:
+
+- accept the well's gift: +4 party damage and -15 party HP;
+- spend 25 gold: +25 party HP;
+- walk away with no stat change.
+
+The event is resolved only once per run and does not advance the three-victory run counter.
+
+### 4. Combat
 
 `scenes/battle/battle.tscn`
 
@@ -97,7 +114,7 @@ After defeat, **ВЕРНУТЬСЯ К СТОЛУ** returns to the same run witho
 
 **ПЕРЕИГРАТЬ** remains available as a prototype/testing convenience.
 
-### 4. Reward
+### 5. Reward
 
 `scenes/reward/reward.tscn`
 
@@ -113,7 +130,7 @@ After victories 1 and 2, the player returns to the table.
 
 After victory 3, the player goes to the run-end screen.
 
-### 5. Run end
+### 6. Run end
 
 `scenes/run_end/run_end.tscn`
 
@@ -177,8 +194,8 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Not implemented yet
 
-- non-combat event cards;
-- meaningful gold spending;
+- additional non-combat event cards;
+- broader gold economy / shop;
 - equipment;
 - attack projectiles/animations;
 - broader ability/status-effect system;
@@ -189,9 +206,9 @@ The current vertical-slice run ends after 3 rewarded victories.
 
 ## Immediate next milestone
 
-Phase 2 is locally verified.
+Locally verify the new **ШЕПЧУЩИЙ КОЛОДЕЦ** event, including the 25-gold branch and the one-time-per-run lockout.
 
-Continue into Phase 3 identity work: strengthen the evil wizard as the host/antagonist and add the first non-combat card/event so the table starts feeling like an adventure rather than only a battle selector.
+Then begin the first dedicated visual-art pass for the vertical slice: cursed table background, card frames/backs, a stronger wizard portrait and clearer miniature silhouettes. Final production art remains deferred until the visual language is proven.
 
 ## Local workflow
 
