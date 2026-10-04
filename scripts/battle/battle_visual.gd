@@ -131,13 +131,22 @@ func _draw_boss_arena() -> void:
 	for y in [22.0, 50.0]:
 		draw_line(Vector2(770.0, y), Vector2(1055.0, y), gate_edge, 3.0)
 
-	for chain_start in [Vector2(730.0, 6.0), Vector2(1090.0, 8.0)]:
-		for i in range(6):
-			var p := chain_start + Vector2(float(i) * (10.0 if chain_start.x < 800.0 else -10.0), float(i) * 10.0)
+	var chain_starts: Array[Vector2] = [
+		Vector2(730.0, 6.0),
+		Vector2(1090.0, 8.0)
+	]
+	for chain_start: Vector2 in chain_starts:
+		var chain_step_x: float = 10.0 if chain_start.x < 800.0 else -10.0
+		for i: int in range(6):
+			var p: Vector2 = chain_start + Vector2(float(i) * chain_step_x, float(i) * 10.0)
 			draw_arc(p, 5.0, 0.0, TAU, 12, Color(0.36, 0.27, 0.24, 0.8), 2.0)
 
-	for pos in [Vector2(720.0, 62.0), Vector2(1110.0, 62.0)]:
-		var flame_scale := 1.0 + sin(pulse * 10.0 + pos.x) * 0.12
+	var boss_braziers: Array[Vector2] = [
+		Vector2(720.0, 62.0),
+		Vector2(1110.0, 62.0)
+	]
+	for pos: Vector2 in boss_braziers:
+		var flame_scale: float = 1.0 + sin(pulse * 10.0 + pos.x) * 0.12
 		draw_rect(Rect2(pos.x - 8.0, pos.y - 8.0, 16.0, 12.0), Color(0.20, 0.10, 0.07, 1.0))
 		draw_circle(pos + Vector2(0.0, -18.0), 18.0 * flame_scale, Color(0.95, 0.10, 0.035, 0.10))
 		draw_rect(Rect2(pos.x - 5.0, pos.y - 30.0, 10.0, 18.0 * flame_scale), Color(0.92, 0.18, 0.05, 0.92))
