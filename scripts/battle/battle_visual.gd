@@ -1,6 +1,16 @@
 extends Control
 
 var pulse := 0.0
+var boss_mode := false
+var boss_phase_two := false
+
+func set_boss_mode(enabled: bool) -> void:
+	boss_mode = enabled
+	queue_redraw()
+
+func set_boss_phase_two(enabled: bool) -> void:
+	boss_phase_two = enabled
+	queue_redraw()
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -25,6 +35,8 @@ func _draw() -> void:
 	_draw_back_wall(wall_dark, wall_mid)
 	_draw_floor(tile_a, tile_b, grout)
 	_draw_center_sigil(rune)
+	if boss_mode:
+		_draw_boss_arena()
 	_draw_banners()
 	_draw_torches()
 	_draw_debris()
@@ -84,6 +96,56 @@ func _draw_center_sigil(rune: Color) -> void:
 		center + Vector2(0.0, -10.0)
 	])
 	draw_polyline(diamond, rune.lightened(0.08), 2.0)
+
+func _draw_boss_arena() -> void:
+	var intensity := 0.5 + 0.5 * sin(pulse * 4.0)
+	var enemy_wash := Color(0.18, 0.015, 0.025, 0.10 + intensity * 0.035)
+	draw_rect(Rect2(size.x * 0.52, 74.0, size.x * 0.48, size.y - 74.0), enemy_wash)
+
+	var center := Vector2(size.x * 0.76, 270.0)
+	var rune_color := Color(0.82, 0.13, 0.08, 0.38 + intensity * 0.12)
+	if boss_phase_two:
+		rune_color = Color(1.0, 0.20, 0.08, 0.58 + intensity * 0.16)
+
+	draw_arc(center, 112.0, 0.0, TAU, 48, rune_color, 3.0)
+	draw_arc(center, 86.0, 0.0, TAU, 40, Color(rune_color.r, rune_color.g, rune_color.b, rune_color.a * 0.72), 2.0)
+	for angle in range(0, 360, 45):
+		var rad := deg_to_rad(float(angle))
+		var direction := Vector2(cos(rad), sin(rad))
+		draw_line(center + direction * 58.0, center + direction * 108.0, rune_color, 2.0)
+
+	var gate_color := Color(0.095, 0.07, 0.075, 1.0)
+	var gate_edge := Color(0.31, 0.16, 0.12, 0.95)
+	draw_rect(Rect2(770.0, 5.0, 285.0, 67.0), Color(0.018, 0.014, 0.021, 0.92))
+	for x in range(790, 1045, 32):
+		draw_rect(Rect2(float(x), 10.0, 7.0, 62.0), gate_color)
+		draw_polygon(
+			PackedVector2Array([
+				Vector2(float(x) - 4.0, 12.0),
+				Vector2(float(x) + 3.5, 1.0),
+				Vector2(float(x) + 11.0, 12.0)
+			]),
+			PackedColorArray([gate_edge, gate_edge, gate_edge])
+		)
+
+	for y in [22.0, 50.0]:
+		draw_line(Vector2(770.0, y), Vector2(1055.0, y), gate_edge, 3.0)
+
+	for chain_start in [Vector2(730.0, 6.0), Vector2(1090.0, 8.0)]:
+		for i in range(6):
+			var p := chain_start + Vector2(float(i) * (10.0 if chain_start.x < 800.0 else -10.0), float(i) * 10.0)
+			draw_arc(p, 5.0, 0.0, TAU, 12, Color(0.36, 0.27, 0.24, 0.8), 2.0)
+
+	for pos in [Vector2(720.0, 62.0), Vector2(1110.0, 62.0)]:
+		var flame_scale := 1.0 + sin(pulse * 10.0 + pos.x) * 0.12
+		draw_rect(Rect2(pos.x - 8.0, pos.y - 8.0, 16.0, 12.0), Color(0.20, 0.10, 0.07, 1.0))
+		draw_circle(pos + Vector2(0.0, -18.0), 18.0 * flame_scale, Color(0.95, 0.10, 0.035, 0.10))
+		draw_rect(Rect2(pos.x - 5.0, pos.y - 30.0, 10.0, 18.0 * flame_scale), Color(0.92, 0.18, 0.05, 0.92))
+		draw_rect(Rect2(pos.x - 2.0, pos.y - 26.0, 4.0, 12.0 * flame_scale), Color(1.0, 0.62, 0.18, 1.0))
+
+	if boss_phase_two:
+		draw_circle(center, 118.0, Color(0.65, 0.03, 0.02, 0.035 + intensity * 0.03))
+		draw_line(Vector2(center.x - 150.0, center.y), Vector2(center.x + 150.0, center.y), Color(0.92, 0.13, 0.07, 0.24), 2.0)
 
 func _draw_banners() -> void:
 	for entry in [
