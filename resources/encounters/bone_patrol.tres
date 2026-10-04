@@ -6,7 +6,7 @@
 script = ExtResource("1_encounter")
 encounter_id = "bone_patrol"
 title = "КОСТЯНОЙ ДОЗОР"
-card_text = "Три скелета идут плотным строем. Никаких хитростей — только кости и железо."
+card_text = "Три скелета идут плотным строем.\nТолько кости и железо."
 wizard_line = "Просто солдаты. Иногда простые вещи убивают надёжнее всего."
 enemy_unit_paths = PackedStringArray("res://resources/units/skeleton.tres", "res://resources/units/skeleton.tres", "res://resources/units/skeleton.tres")
 enemy_names = PackedStringArray("Дозорный A", "Дозорный B", "Дозорный C")
