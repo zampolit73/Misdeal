@@ -17,6 +17,9 @@
 
 ### Fixed
 
+- Removed floating default tooltips from wizard-table combat cards so hover text no longer covers card illustrations.
+- Replaced hover tooltips with wizard commentary in the dedicated upper strip and protected selection commentary from mouse-exit resets.
+- Removed obsolete procedural table-side props and candles that conflicted with the authored pixel backdrop.
 - Reworked combat readability after local feedback that painted miniatures were unreadable at tactical scale.
 - Removed A/B/C suffixes from duplicate enemy display names.
 - Added hard combat-arena bounds so retreating units and their pursuers cannot leave the battlefield.
@@ -26,6 +29,8 @@
 
 ### Added
 
+- Final wizard-table composition pass: compact HUD/commentary strip, slightly smaller and lower card row, wider breathing room around the wizard, and a subdued lower runner/sigil.
+- Encounter-specific wizard reactions on card hover, including a dedicated Whispering Well teaser.
 - Approved wizard-table concept archived at `assets/concepts/approved_table_direction.png`.
 - Rebuilt wizard table using authored concept slices plus live Godot UI.
 - Authored pixel wizard/room backdrop, Misdeal logo and four encounter/event card illustrations under `assets/pixel/table/`.
