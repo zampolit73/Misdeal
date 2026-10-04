@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Bone Warden boss encounter and enrage behavior confirmed working locally.
 - Final wizard-table composition/readability polish confirmed locally and accepted.
 - Pixel battle presentation pass confirmed visually acceptable locally.
 - First pixel-art combat readability pass confirmed locally: larger sprites, ground rings and compact HP presentation read clearly.
@@ -31,8 +32,12 @@
 
 ### Added
 
-- First boss encounter: **КОСТЯНОЙ НАДЗИРАТЕЛЬ** on the third/final deal.
-- Final deal now replaces normal combat-card choices with the boss while still allowing an unresolved Whispering Well before the fight.
+- Act 1 run structure expanded to 12 resolved pre-boss cards followed by **КОСТЯНОЙ НАДЗИРАТЕЛЬ** as the final boss card.
+- Two-card wizard offers: choosing one permanently rejects the other card for that run.
+- Data-driven `RunCardData` and a 24-card structural Act 1 pool: 8 early, 8 mid and 8 late cards.
+- Generic prototype-card resolver so unimplemented card concepts can participate in real run pacing before bespoke mechanics are built.
+- Active combat cards persist after defeat, so returning to the table offers the same fight as **ПОВТОРИТЬ**.
+- First boss encounter: **КОСТЯНОЙ НАДЗИРАТЕЛЬ**, now reached after the 12-card Act 1 path.
 - Lightweight boss tuning fields in `UnitData`: boss flag, visual scale and one-time HP-threshold enrage modifiers.
 - Bone Warden boss presentation with larger sprite scale, visible boss name, wider HP bar, double ground ring and **ЯРОСТЬ!** feedback at 50% HP.
 - Boss enrage increases damage, attack speed and movement speed without introducing a general ability framework.
@@ -52,7 +57,7 @@
 - Pixel run-end ritual summary screen and pixel main-menu title composition.
 - Atmospheric pixel battle presentation pass with masonry ruins, banners, torches, bones, rubble, blood stains and stronger ritual markings.
 - Framed pixel HUD chrome for encounter/status/command areas.
-- Dynamic `РАЗДАЧА X/3` battle indicator.
+- Dynamic Act 1 card-progress indicator in table and battle HUD.
 - Framed victory/defeat result panel.
 - Short attack-lunge motion for combat sprites.
 - First dark-fantasy pixel-art combat sprite set for Knight, Ranger, Mage, Skeleton and Bone Archer.
