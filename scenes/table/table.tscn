@@ -54,46 +54,33 @@ offset_top = 120.0
 offset_right = 1210.0
 offset_bottom = 148.0
 theme_override_font_sizes/font_size = 16
-text = "Пережито раздач: 0    Золото: 0    Здоровье отряда: +0    Урон отряда: +0"
+text = "Раздача: 1/3    Золото: 0    Здоровье отряда: +0    Урон отряда: +0"
 
 [node name="Cards" type="HBoxContainer" parent="."]
-offset_left = 135.0
+offset_left = 105.0
 offset_top = 205.0
-offset_right = 1145.0
+offset_right = 1175.0
 offset_bottom = 555.0
-theme_override_constants/separation = 38
+theme_override_constants/separation = 28
 alignment = 1
 
-[node name="LockedCardLeft" type="Button" parent="Cards"]
-custom_minimum_size = Vector2(285, 330)
+[node name="BonePatrolCard" type="Button" parent="Cards"]
+custom_minimum_size = Vector2(320, 330)
 layout_mode = 2
-theme_override_font_sizes/font_size = 21
-text = "ЗАКРЫТАЯ КАРТА
-
-Волшебник ещё не раздал
-эту судьбу."
+theme_override_font_sizes/font_size = 18
+text = "КОСТЯНОЙ ДОЗОР"
 
 [node name="GraveyardCard" type="Button" parent="Cards"]
-custom_minimum_size = Vector2(285, 330)
+custom_minimum_size = Vector2(320, 330)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "ЗАСАДА НА КЛАДБИЩЕ
+theme_override_font_sizes/font_size = 18
+text = "ЗАСАДА НА КЛАДБИЩЕ"
 
-Бой
-
-Трое беспокойных мертвецов
-ждут за завесой.
-
-НАЖМИТЕ, ЧТОБЫ ВЫБРАТЬ"
-
-[node name="LockedCardRight" type="Button" parent="Cards"]
-custom_minimum_size = Vector2(285, 330)
+[node name="GallowsVolleyCard" type="Button" parent="Cards"]
+custom_minimum_size = Vector2(320, 330)
 layout_mode = 2
-theme_override_font_sizes/font_size = 21
-text = "ЗАКРЫТАЯ КАРТА
-
-Что-то скребётся
-под столом."
+theme_override_font_sizes/font_size = 18
+text = "ЗАЛП С ВИСЕЛИЦЫ"
 
 [node name="Hint" type="Label" parent="."]
 mouse_filter = 2
@@ -102,5 +89,5 @@ offset_top = 650.0
 offset_right = 1210.0
 offset_bottom = 685.0
 theme_override_font_sizes/font_size = 16
-text = "Пока доступна только одна судьба. Переживите её и выберите награду."
+text = "Выберите одну из трёх судеб. После трёх побед забег завершится."
 horizontal_alignment = 1
