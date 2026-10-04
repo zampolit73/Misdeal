@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "ash_rest"
+title = "ПЕПЕЛЬНЫЙ ПРИВАЛ"
+card_text = "Тёплый пепел хранит следы тех, кто не дошёл дальше."
+wizard_line = "Отдыхай. Я никуда не тороплюсь. Пока что."
+type_label = "ПРИВАЛ"
+tier = 0
+resolution_type = "prototype"
+target_path = "res://scenes/event/prototype_card.tscn"
+art_path = "res://assets/pixel/table/cards/whispering_well.png"
+prototype_result_text = "Привал пока работает как структурная карта без отдельной механики."
