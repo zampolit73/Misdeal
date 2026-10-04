@@ -12,6 +12,8 @@ signal placement_rejected(unit: BattleUnit)
 @export var attack_range: float = 54.0
 @export var move_speed: float = 90.0
 @export var body_radius: float = 22.0
+@export var separation_padding: float = 10.0
+@export var separation_strength: float = 120.0
 
 var hp: float
 var combat_started := false
@@ -117,21 +119,50 @@ func _process(delta: float) -> void:
 	if not _is_valid_target(target):
 		target = _find_nearest_enemy()
 
-	if target == null:
-		return
+	var velocity := _get_separation_velocity()
 
-	var distance := global_position.distance_to(target.global_position)
-	var desired_range := attack_range + target.body_radius
+	if target != null:
+		var distance := global_position.distance_to(target.global_position)
+		var desired_range := attack_range + target.body_radius
 
-	if distance > desired_range:
-		var direction := global_position.direction_to(target.global_position)
-		position += direction * move_speed * delta
-	else:
-		attack_cooldown -= delta
-		if attack_cooldown <= 0.0:
-			_attack_target()
+		if distance > desired_range:
+			var direction := global_position.direction_to(target.global_position)
+			velocity += direction * move_speed
+		else:
+			attack_cooldown -= delta
+			if attack_cooldown <= 0.0:
+				_attack_target()
 
+	position += velocity.limit_length(move_speed * 1.35) * delta
 	z_index = int(position.y)
+	queue_redraw()
+
+func _get_separation_velocity() -> Vector2:
+	var separation := Vector2.ZERO
+
+	for node in get_tree().get_nodes_in_group("combat_units"):
+		if not node is BattleUnit:
+			continue
+
+		var unit := node as BattleUnit
+		if unit == self or not unit.alive:
+			continue
+
+		var offset := position - unit.position
+		var distance := offset.length()
+		var minimum_distance := body_radius + unit.body_radius + separation_padding
+
+		if distance >= minimum_distance:
+			continue
+
+		if distance < 0.001:
+			offset = Vector2.LEFT if get_instance_id() < unit.get_instance_id() else Vector2.RIGHT
+			distance = 0.001
+
+		var overlap_ratio := (minimum_distance - distance) / minimum_distance
+		separation += offset.normalized() * separation_strength * overlap_ratio
+
+	return separation
 
 func _is_valid_target(candidate: BattleUnit) -> bool:
 	return candidate != null and is_instance_valid(candidate) and candidate.alive and candidate.team != team
