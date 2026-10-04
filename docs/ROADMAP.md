@@ -25,7 +25,7 @@ Goal: make preparation meaningfully affect battle outcome.
 - [x] Clear preparation phase and combat phase.
 - [x] Prevent illegal placement outside the deployment zone and overlapping hero drops.
 - [x] Improve combat-time unit spacing/readability with separation steering.
-- [ ] Move unit definitions toward data-driven Resources.
+- [x] Move unit definitions toward data-driven Resources.
 - [ ] Add at least one distinct enemy behavior.
 - [ ] Add at least one simple unit ability or combat modifier.
 - [x] Improve combat feedback enough to read hits and deaths.
