@@ -35,6 +35,14 @@
 
 ### Added
 
+- Completed the full 24-card pre-boss Act 1 pool with bespoke mechanics; active cards no longer use the generic prototype resolver.
+- Real **ГРЕМУЧИЙ МОСТ** early traversal event with risky, mixed-cost and safe crossing choices.
+- Real **КОШЕЛЬ МЕРТВЕЦА** greed event with escalating gold-for-HP trades.
+- Real **ТОРГОВЕЦ СВЕЧАМИ** early micro-shop with cheap HP/damage purchases and a theft option.
+- Real **КОСТЯНАЯ ПОШЛИНА** forced payment event with gold, HP and HP-for-damage branches.
+- Real **СТАВКА НА СМЕРТЬ** late five-enemy elite encounter.
+- Death Wager enhanced reward screen: +75 gold / +50 HP / +8 damage.
+- Death Wager-specific **СТАВКА** battle framing and wizard reaction.
 - Real late **КАРТА БЕЗ ЛИЦА** event with hidden random outcome, paid safe outcome and guaranteed low-risk burn choice.
 - Real **КРОВАВАЯ КНИГА** event converting gold/HP/damage into late-run power or artifacts.
 - Special source-locked **СЛОМАННАЯ КОРОНА** artifact: party-wide +22% damage for -10 max HP per hero.
