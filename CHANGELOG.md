@@ -4,6 +4,7 @@
 
 ### Verified
 
+- First `table -> battle -> reward -> table` loop confirmed working locally.
 - Bone Archer arena-bound retreat fix confirmed working locally.
 - Data-driven `UnitData` refactor confirmed working locally.
 - Hit/death combat feedback confirmed working locally.
@@ -19,6 +20,7 @@
 
 ### Added
 
+- Russian player-facing text across the main menu, wizard table, battle, rewards and unit display names.
 - First wizard-table scene with a playable Graveyard Ambush card and two face-down placeholders.
 - Persistent prototype `RunState` autoload.
 - Post-victory reward scene with Blood Coin, Iron Ward and Tempered Steel choices.
