@@ -16,7 +16,13 @@ Confirmed locally by the user:
 - Bone Archer keep-distance behavior;
 - hard combat-arena bounds.
 
-The first `table -> battle -> reward -> table` loop is implemented in GitHub and is pending local verification.
+The first `table -> battle -> reward -> table` loop is implemented and confirmed working locally.
+
+## Player-facing language
+
+All player-facing UI text, card text, reward text, wizard lines and unit display names are Russian.
+
+Technical identifiers, file names, node names, class names and code remain English.
 
 ## Engine
 
@@ -158,13 +164,7 @@ Encounter Resources are not implemented yet.
 
 ## Immediate next milestone
 
-Locally verify the complete first loop:
-
-`main -> table -> Graveyard Ambush -> battle -> reward -> table`
-
-Confirm that **Iron Ward** and **Tempered Steel** affect the next battle and that the table counters persist.
-
-Once this works, Phase 2 should continue with multiple playable card encounters and a short finite run rather than further expanding the combat sandbox.
+Continue Phase 2 with multiple playable card encounters and a short finite run rather than further expanding the combat sandbox.
 
 ## Local workflow
 
