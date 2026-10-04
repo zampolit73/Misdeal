@@ -27,6 +27,7 @@ var attack_cooldown := 0.0
 
 var placement_enabled := false
 var placement_bounds := Rect2()
+var combat_bounds := Rect2()
 var dragging := false
 var drag_offset := Vector2.ZERO
 var drag_origin := Vector2.ZERO
@@ -62,6 +63,9 @@ func _ready() -> void:
 	health_bar.max_value = max_hp
 	health_bar.value = hp
 	queue_redraw()
+
+func set_combat_bounds(bounds: Rect2) -> void:
+	combat_bounds = bounds
 
 func enable_placement(bounds: Rect2) -> void:
 	if team != 0:
@@ -157,7 +161,13 @@ func _process(delta: float) -> void:
 
 		if minimum_range > 0.0 and distance < desired_min_range:
 			var retreat_direction := target.global_position.direction_to(global_position)
-			velocity += retreat_direction * move_speed
+
+			if _can_move_in_direction(retreat_direction, delta):
+				velocity += retreat_direction * move_speed
+			else:
+				attack_cooldown -= delta
+				if attack_cooldown <= 0.0:
+					_attack_target()
 		elif distance > desired_max_range:
 			var direction := global_position.direction_to(target.global_position)
 			velocity += direction * move_speed
@@ -167,8 +177,34 @@ func _process(delta: float) -> void:
 				_attack_target()
 
 	position += velocity.limit_length(move_speed * 1.35) * delta
+	_clamp_to_combat_bounds()
 	z_index = int(position.y)
 	queue_redraw()
+
+func _can_move_in_direction(direction: Vector2, delta: float) -> bool:
+	if combat_bounds.size == Vector2.ZERO:
+		return true
+
+	var step := direction.normalized() * move_speed * delta
+	var candidate := position + step
+	var clamped_candidate := _clamped_combat_position(candidate)
+
+	return candidate.distance_to(clamped_candidate) < 0.5
+
+func _clamp_to_combat_bounds() -> void:
+	if combat_bounds.size == Vector2.ZERO:
+		return
+
+	position = _clamped_combat_position(position)
+
+func _clamped_combat_position(candidate: Vector2) -> Vector2:
+	var min_position := combat_bounds.position + Vector2(body_radius, body_radius)
+	var max_position := combat_bounds.position + combat_bounds.size - Vector2(body_radius, body_radius)
+
+	return Vector2(
+		clampf(candidate.x, min_position.x, max_position.x),
+		clampf(candidate.y, min_position.y, max_position.y)
+	)
 
 func _get_separation_velocity() -> Vector2:
 	var separation := Vector2.ZERO
