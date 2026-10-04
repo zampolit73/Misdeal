@@ -13,6 +13,7 @@ const GALLOWS_VOLLEY: EncounterData = preload("res://resources/encounters/gallow
 @onready var bone_patrol_button: Button = $Cards/BonePatrolCard
 @onready var graveyard_button: Button = $Cards/GraveyardCard
 @onready var gallows_button: Button = $Cards/GallowsVolleyCard
+@onready var whispering_well_button: Button = $Cards/WhisperingWellCard
 
 func _ready() -> void:
 	if RunState.is_run_complete():
@@ -22,6 +23,7 @@ func _ready() -> void:
 	_setup_card(bone_patrol_button, BONE_PATROL, BONE_PATROL_PATH)
 	_setup_card(graveyard_button, GRAVEYARD_AMBUSH, GRAVEYARD_AMBUSH_PATH)
 	_setup_card(gallows_button, GALLOWS_VOLLEY, GALLOWS_VOLLEY_PATH)
+	whispering_well_button.pressed.connect(_choose_whispering_well)
 	_refresh_table()
 
 func _setup_card(button: Button, encounter: EncounterData, encounter_path: String) -> void:
@@ -33,7 +35,7 @@ func _setup_card(button: Button, encounter: EncounterData, encounter_path: Strin
 
 func _refresh_table() -> void:
 	var current_deal := RunState.deals_survived + 1
-	stats_label.text = "Раздача: %d/%d    Золото: %d    Здоровье отряда: +%d    Урон отряда: +%d" % [
+	stats_label.text = "Раздача: %d/%d    Золото: %d    Здоровье: %+d    Урон: %+d" % [
 		current_deal,
 		RunState.MAX_DEALS,
 		RunState.gold,
@@ -48,6 +50,12 @@ func _refresh_table() -> void:
 	else:
 		wizard_line.text = "Всё ещё здесь? Какая досада. Тогда ещё одна карта."
 
+	if RunState.whispering_well_resolved:
+		whispering_well_button.disabled = true
+		whispering_well_button.text = "ШЕПЧУЩИЙ КОЛОДЕЦ\n\nСОБЫТИЕ ИСЧЕРПАНО\n\nКолодец больше\nне отвечает."
+	else:
+		whispering_well_button.text = "ШЕПЧУЩИЙ КОЛОДЕЦ\n\nСОБЫТИЕ\n\nЧёрная вода обещает силу.\nЦена неизвестна.\n\nНАЖМИТЕ, ЧТОБЫ ВЫБРАТЬ"
+
 func _choose_encounter(encounter: EncounterData, encounter_path: String) -> void:
 	_disable_cards()
 	RunState.select_encounter(encounter_path)
@@ -55,7 +63,17 @@ func _choose_encounter(encounter: EncounterData, encounter_path: String) -> void
 	await get_tree().create_timer(0.3).timeout
 	get_tree().change_scene_to_file("res://scenes/battle/battle.tscn")
 
+func _choose_whispering_well() -> void:
+	if RunState.whispering_well_resolved:
+		return
+
+	_disable_cards()
+	wizard_line.text = "О, вот это уже интереснее. Загляни поглубже."
+	await get_tree().create_timer(0.3).timeout
+	get_tree().change_scene_to_file("res://scenes/event/whispering_well.tscn")
+
 func _disable_cards() -> void:
 	bone_patrol_button.disabled = true
 	graveyard_button.disabled = true
 	gallows_button.disabled = true
+	whispering_well_button.disabled = true
