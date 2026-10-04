@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+encounter_id = "bone_warden"
+title = "КОСТЯНОЙ НАДЗИРАТЕЛЬ"
+card_text = "Страж последней раздачи.\nНа половине здоровья впадает в ярость."
+wizard_line = "Достаточно разминки. Познакомься с тем, кто обычно убирает со стола проигравших."
+enemy_unit_paths = PackedStringArray("res://resources/units/bone_warden.tres", "res://resources/units/skeleton.tres", "res://resources/units/skeleton.tres")
+enemy_names = PackedStringArray("Костяной надзиратель", "Костяной страж", "Костяной страж")
+enemy_positions = PackedVector2Array(990, 245, 895, 145, 895, 345)
