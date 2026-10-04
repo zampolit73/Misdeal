@@ -140,14 +140,16 @@ func get_offer_cards() -> Array[RunCardData]:
 
 func _ensure_current_offers() -> void:
 	if not active_card_id.is_empty():
-		current_offer_ids = [active_card_id]
+		current_offer_ids.clear()
+		current_offer_ids.append(active_card_id)
 		return
 
 	if not current_offer_ids.is_empty():
 		return
 
 	if is_boss_due():
-		current_offer_ids = [BOSS_CARD_ID]
+		current_offer_ids.clear()
+		current_offer_ids.append(BOSS_CARD_ID)
 		return
 
 	var tier := mini(int(cards_resolved / 4), 2)
@@ -159,7 +161,9 @@ func _ensure_current_offers() -> void:
 			candidates.append(card_id)
 
 	if candidates.size() < 2:
-		candidates = remaining_card_ids.duplicate()
+		candidates.clear()
+		for card_id in remaining_card_ids:
+			candidates.append(card_id)
 
 	candidates.shuffle()
 	var offer_count := mini(2, candidates.size())
