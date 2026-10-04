@@ -7,6 +7,7 @@ const MAGE_DATA: UnitData = preload("res://resources/units/mage.tres")
 const SKELETON_DATA: UnitData = preload("res://resources/units/skeleton.tres")
 const BONE_ARCHER_DATA: UnitData = preload("res://resources/units/bone_archer.tres")
 
+const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1200, 465))
 const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 70), Vector2(525, 340))
 
 @onready var units_layer: Node2D = $UnitsLayer
@@ -44,6 +45,7 @@ func _spawn_unit(
 ) -> void:
 	var unit := UNIT_SCENE.instantiate() as BattleUnit
 	unit.configure(data, team, spawn_position, name_override)
+	unit.set_combat_bounds(COMBAT_BOUNDS)
 	unit.died.connect(_on_unit_died)
 	unit.placement_rejected.connect(_on_placement_rejected)
 	units_layer.add_child(unit)
