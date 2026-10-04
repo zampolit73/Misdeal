@@ -6,13 +6,14 @@ extends Control
 
 func _ready() -> void:
 	new_run_button.pressed.connect(_on_new_run_pressed)
-	summary_label.text = "Пройдено карт: %d/%d\nПобед в боях: %d\nЗолото: %d\nБонус здоровья отряда: %+d\nБонус урона отряда: %+d" % [
+	summary_label.text = "Пройдено карт: %d/%d\nПобед в боях: %d\nЗолото: %d\nБонус здоровья отряда: %+d\nБонус урона отряда: %+d\nАртефакты: %s" % [
 		RunState.cards_resolved,
 		RunState.ACT_CARD_TARGET,
 		RunState.deals_survived,
 		RunState.gold,
 		int(RunState.party_hp_bonus),
-		int(RunState.party_damage_bonus)
+		int(RunState.party_damage_bonus),
+		RunState.get_artifact_titles_text()
 	]
 	wizard_line.text = "Двенадцать карт и мой надзиратель. Пожалуй, ты заслужил ещё одну партию."
 
