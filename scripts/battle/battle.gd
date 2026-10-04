@@ -18,6 +18,7 @@ const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 70), Vector2(525, 340))
 @onready var continue_button: Button = $ContinueButton
 @onready var result_backdrop: Panel = $ResultBackdrop
 @onready var result_label: Label = $Result
+@onready var result_subtitle: Label = $ResultSubtitle
 @onready var placement_hint: Label = $PlacementHint
 
 var encounter: EncounterData
@@ -140,16 +141,19 @@ func _finish_battle(player_won: bool) -> void:
 		unit.disable_placement()
 
 	if player_won:
-		result_label.text = "ПОБЕДА\nВолшебник выглядит слегка раздражённым."
+		result_label.text = "ПОБЕДА"
+		result_subtitle.text = "Волшебник выглядит слегка раздражённым."
 		status_label.text = "Вы пережили раздачу."
 		continue_button.text = "ЗАБРАТЬ НАГРАДУ"
 	else:
-		result_label.text = "ПОРАЖЕНИЕ\nВолшебник улыбается."
+		result_label.text = "ПОРАЖЕНИЕ"
+		result_subtitle.text = "Волшебник улыбается."
 		status_label.text = "Стол забирает ещё один отряд."
 		continue_button.text = "ВЕРНУТЬСЯ К СТОЛУ"
 
 	result_backdrop.visible = true
 	result_label.visible = true
+	result_subtitle.visible = true
 	restart_button.disabled = false
 	continue_button.visible = true
 	continue_button.disabled = false
