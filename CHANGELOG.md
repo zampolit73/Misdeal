@@ -40,9 +40,17 @@
 - The mandatory combat slot is randomized among the first three positions of each tier so combat pacing is controlled without becoming fully predictable.
 - Death Wager enhanced reward reduced from +75 gold / +50 HP / +8 damage to +60 gold / +35 HP / +5 damage.
 - Bone Warden retuned for twelve-card builds: 580 HP, 22 damage, faster base cadence/movement and a stronger enrage phase.
+- Bone Warden final fight upgraded from a single stat/enrage check into a two-phase boss encounter; this new version is pending local verification.
 
 ### Added
 
+- Dedicated 64×64 **Bone Warden** combat sprite instead of reusing the normal Skeleton sprite.
+- Dedicated **Bone Warden** final-card illustration.
+- Dedicated final-boss arena treatment with red ritual geometry, barred gate, chains and stronger braziers.
+- Bone Warden melee cleave: 60% splash damage in a 92 px radius.
+- Bone Warden Phase II at 50% HP with a visible transition cue and one Bone Archer + one Bone Thrall reinforcement wave.
+- EncounterData optional reinforcement paths/names/positions for small phase-based encounter additions.
+- Larger Bone Warden name/HP presentation and pulsing multi-ring boss aura.
 - Completed the full 24-card pre-boss Act 1 pool with bespoke mechanics; active cards no longer use the generic prototype resolver.
 - Real **ГРЕМУЧИЙ МОСТ** early traversal event with risky, mixed-cost and safe crossing choices.
 - Real **КОШЕЛЬ МЕРТВЕЦА** greed event with escalating gold-for-HP trades.
