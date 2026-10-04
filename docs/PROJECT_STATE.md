@@ -10,7 +10,9 @@ The base autobattle plus restart flow have been run locally by the user and are 
 
 Pre-battle drag placement is implemented and confirmed working locally.
 
-Combat-time unit separation has now been implemented in GitHub and is pending local verification.
+Combat-time unit separation is implemented and confirmed working locally.
+
+Hit/death feedback has now been implemented in GitHub and is pending local verification.
 
 ## Engine
 
@@ -66,6 +68,8 @@ Implemented combat behavior:
 - units move toward targets when out of range;
 - units attack automatically on individual cooldowns;
 - nearby living units apply separation steering so they do not occupy the same point;
+- taking damage produces a brief hit flash, scale pulse and floating damage number;
+- death produces a short shrink/fade animation;
 - units have HP and visible health bars;
 - dead units become inactive and visually faded;
 - battle detects victory and defeat;
@@ -108,9 +112,9 @@ Current relevant files:
 
 ## Immediate next milestone
 
-Locally verify combat-time unit separation and whether formations remain readable during a fight.
+Locally verify hit flashes, floating damage numbers and death feedback.
 
-Then improve hit/death feedback enough to judge the battle at a glance before moving into the first minimal card/table → combat → reward → table loop.
+After combat readability is confirmed, move unit definitions toward data-driven Resources and then start connecting the battle prototype to the first minimal card/table → combat → reward → table loop.
 
 The long-term target remains:
 
