@@ -16,7 +16,9 @@ Hit/death feedback is implemented and confirmed working locally.
 
 Unit combat stats are data-driven through `UnitData` Resources and the refactor is confirmed working locally.
 
-A first distinct enemy behavior and a first hero combat modifier are now implemented in GitHub and pending local verification.
+Mage splash damage is implemented and pending local verification.
+
+Bone Archer keep-distance behavior is implemented. Local testing exposed that combat movement had no arena bounds; hard combat bounds are now added for all units and the fix is pending local verification.
 
 ## Engine
 
@@ -71,6 +73,8 @@ Implemented combat behavior:
 - melee and ranged units use different attack ranges;
 - units move toward targets when out of range;
 - ranged units can define a minimum range and retreat when enemies get too close;
+- all combat movement is clamped to the visible arena;
+- a ranged unit that reaches the arena edge stops trying to retreat through the boundary and continues attacking;
 - units attack automatically on individual cooldowns;
 - Mage attacks deal 50% splash damage to nearby secondary enemies;
 - nearby living units apply separation steering so they do not occupy the same point;
@@ -129,7 +133,7 @@ Current relevant files:
 
 ## Immediate next milestone
 
-Locally verify that Bone Archer retreats at close range and that Mage splash damage can hit clustered enemies.
+Locally verify that Bone Archer retreats at close range without leaving the arena or dragging the rest of the fight off-screen, and that Mage splash damage can hit clustered enemies.
 
 If both read clearly in play, Phase 1 has enough combat variety for the first vertical slice and development should move into the minimal card/table → combat → reward → table loop.
 
