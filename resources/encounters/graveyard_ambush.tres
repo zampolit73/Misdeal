@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+encounter_id = "graveyard_ambush"
+title = "ЗАСАДА НА КЛАДБИЩЕ"
+card_text = "Два скелета прикрывают костяного лучника."
+wizard_line = "Ах, кладбище. Моя маленькая слабость."
+enemy_unit_paths = PackedStringArray("res://resources/units/skeleton.tres", "res://resources/units/skeleton.tres", "res://resources/units/bone_archer.tres")
+enemy_names = PackedStringArray("Скелет A", "Скелет B", "Костяной лучник")
+enemy_positions = PackedVector2Array(980, 145, 1020, 245, 1040, 345)
