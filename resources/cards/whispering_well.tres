@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "whispering_well"
+title = "ШЕПЧУЩИЙ КОЛОДЕЦ"
+card_text = "Чёрная вода обещает силу. Цена неизвестна."
+wizard_line = "Вода шепчет о силе. Разумеется, о цене она молчит."
+type_label = "СОБЫТИЕ"
+tier = 0
+resolution_type = "event"
+target_path = "res://scenes/event/whispering_well.tscn"
+art_path = "res://assets/pixel/table/cards/whispering_well.png"
+prototype_result_text = ""
