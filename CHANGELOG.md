@@ -4,6 +4,7 @@
 
 ### Verified
 
+- 12-card Act 1 offer/rejection/tier flow and boss handoff confirmed working locally.
 - Bone Warden boss encounter and enrage behavior confirmed working locally.
 - Final wizard-table composition/readability polish confirmed locally and accepted.
 - Pixel battle presentation pass confirmed visually acceptable locally.
@@ -32,6 +33,14 @@
 
 ### Added
 
+- Data-driven `ArtifactData` and persistent per-run artifact ownership.
+- First three hero-specific artifacts: **ЩИТ МЕРТВЕЦА**, **СЛЕПОЙ КОЛЧАН**, **РАСКОЛОТЫЙ ФОКУС**.
+- Artifact combat modifiers for HP, damage, attack interval, range, splash and movement.
+- Real **ПЕПЕЛЬНЫЙ ПРИВАЛ** choices: party HP, gold, party damage or refusal.
+- Functional **ЛАВКА МОГИЛЬЩИКА** with gold-gated HP, damage and random-artifact purchases.
+- Real **КУЗНИЦА ПРОКЛЯТИЙ** artifact choice with already-owned artifacts disabled.
+- Shared Act 1 choice-event scene showing current gold and acquired artifacts.
+- Run-end artifact summary.
 - Act 1 run structure expanded to 12 resolved pre-boss cards followed by **КОСТЯНОЙ НАДЗИРАТЕЛЬ** as the final boss card.
 - Two-card wizard offers: choosing one permanently rejects the other card for that run.
 - Data-driven `RunCardData` and a 24-card structural Act 1 pool: 8 early, 8 mid and 8 late cards.
