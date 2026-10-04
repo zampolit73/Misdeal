@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "bone_tax"
+title = "КОСТЯНАЯ ПОШЛИНА"
+card_text = "Страж требует плату за право пройти дальше."
+wizard_line = "Правила просты: плати или развлекай меня."
+type_label = "ОСОБОЕ"
+tier = 1
+resolution_type = "prototype"
+target_path = "res://scenes/event/prototype_card.tscn"
+art_path = "res://assets/pixel/table/cards/bone_patrol.png"
+prototype_result_text = "Плата золотом или опасная альтернатива будет реализована позже."
