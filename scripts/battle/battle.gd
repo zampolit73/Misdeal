@@ -14,6 +14,7 @@ const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 70), Vector2(525, 340))
 @onready var status_label: Label = $Status
 @onready var fight_button: Button = $FightButton
 @onready var restart_button: Button = $RestartButton
+@onready var continue_button: Button = $ContinueButton
 @onready var result_label: Label = $Result
 @onready var placement_hint: Label = $PlacementHint
 
@@ -24,7 +25,10 @@ var battle_finished := false
 func _ready() -> void:
 	fight_button.pressed.connect(_on_fight_pressed)
 	restart_button.pressed.connect(_on_restart_pressed)
+	continue_button.pressed.connect(_on_continue_pressed)
 	restart_button.disabled = true
+	continue_button.visible = false
+	continue_button.disabled = true
 	_spawn_test_encounter()
 	_begin_preparation_phase()
 
@@ -45,6 +49,11 @@ func _spawn_unit(
 ) -> void:
 	var unit := UNIT_SCENE.instantiate() as BattleUnit
 	unit.configure(data, team, spawn_position, name_override)
+
+	if team == 0:
+		unit.max_hp += RunState.party_hp_bonus
+		unit.damage += RunState.party_damage_bonus
+
 	unit.set_combat_bounds(COMBAT_BOUNDS)
 	unit.died.connect(_on_unit_died)
 	unit.placement_rejected.connect(_on_placement_rejected)
@@ -98,6 +107,7 @@ func _on_unit_died(_unit: BattleUnit) -> void:
 
 func _finish_battle(player_won: bool) -> void:
 	battle_finished = true
+	RunState.last_battle_won = player_won
 
 	for unit in units:
 		unit.combat_started = false
@@ -106,13 +116,25 @@ func _finish_battle(player_won: bool) -> void:
 	if player_won:
 		result_label.text = "VICTORY\nThe wizard looks mildly annoyed."
 		status_label.text = "You survived the first deal."
+		continue_button.text = "CLAIM REWARD"
 	else:
 		result_label.text = "DEFEAT\nThe wizard smiles."
 		status_label.text = "The table claims another party."
+		continue_button.text = "RETURN TO TABLE"
 
 	result_label.visible = true
 	restart_button.disabled = false
+	continue_button.visible = true
+	continue_button.disabled = false
 	fight_button.text = "BATTLE OVER"
 
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
+
+func _on_continue_pressed() -> void:
+	continue_button.disabled = true
+
+	if RunState.last_battle_won:
+		get_tree().change_scene_to_file("res://scenes/reward/reward.tscn")
+	else:
+		get_tree().change_scene_to_file("res://scenes/table/table.tscn")
