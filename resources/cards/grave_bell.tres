@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "grave_bell"
 title = "МОГИЛЬНЫЙ ЗВОН"
-card_text = "Колокол зовёт тех, кто уже однажды лёг в землю."
+card_text = "Могильный звонарь лечит ближайшую нежить. Заставь колокол замолчать."
 wizard_line = "Звон всегда собирает публику."
 type_label = "БОЙ"
 tier = 1
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "combat"
+target_path = "res://resources/encounters/grave_bell.tres"
 art_path = "res://assets/pixel/table/cards/graveyard_ambush.png"
-prototype_result_text = "Здесь появится Grave Bellkeeper и бой с усилением нежити."
+prototype_result_text = ""
