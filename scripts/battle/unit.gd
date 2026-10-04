@@ -64,7 +64,7 @@ func _find_nearest_enemy() -> BattleUnit:
 	var nearest_distance := INF
 
 	for node in get_tree().get_nodes_in_group("combat_units"):
-		if node is not BattleUnit:
+		if not node is BattleUnit:
 			continue
 
 		var unit := node as BattleUnit
