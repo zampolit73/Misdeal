@@ -27,6 +27,10 @@ var dragging := false
 var drag_offset := Vector2.ZERO
 var drag_origin := Vector2.ZERO
 
+var hit_flash_time := 0.0
+var hit_pulse_tween: Tween
+var death_tween: Tween
+
 @onready var name_label: Label = $NameLabel
 @onready var health_bar: ProgressBar = $HealthBar
 
@@ -113,6 +117,10 @@ func _overlaps_friendly_unit() -> bool:
 	return false
 
 func _process(delta: float) -> void:
+	if hit_flash_time > 0.0:
+		hit_flash_time = maxf(0.0, hit_flash_time - delta)
+		queue_redraw()
+
 	if not combat_started or not alive:
 		return
 
@@ -198,12 +206,46 @@ func take_damage(amount: float) -> void:
 	if not alive:
 		return
 
+	_show_damage_number(amount)
+	_play_hit_feedback()
+
 	hp = maxf(0.0, hp - amount)
 	health_bar.value = hp
 	queue_redraw()
 
 	if hp <= 0.0:
 		_die()
+
+func _play_hit_feedback() -> void:
+	hit_flash_time = 0.12
+
+	if hit_pulse_tween != null and hit_pulse_tween.is_valid():
+		hit_pulse_tween.kill()
+
+	scale = Vector2(1.12, 1.12)
+	hit_pulse_tween = create_tween()
+	hit_pulse_tween.tween_property(self, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+func _show_damage_number(amount: float) -> void:
+	if get_parent() == null:
+		return
+
+	var damage_label := Label.new()
+	damage_label.text = "-%d" % int(round(amount))
+	damage_label.position = position + Vector2(-28.0, -70.0)
+	damage_label.size = Vector2(56.0, 28.0)
+	damage_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	damage_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	damage_label.z_index = 2000
+	damage_label.add_theme_font_size_override("font_size", 18)
+	damage_label.add_theme_color_override("font_color", Color(1.0, 0.78, 0.58, 1.0))
+	get_parent().add_child(damage_label)
+
+	var float_tween := damage_label.create_tween()
+	float_tween.set_parallel(true)
+	float_tween.tween_property(damage_label, "position", damage_label.position + Vector2(0.0, -30.0), 0.42)
+	float_tween.tween_property(damage_label, "modulate:a", 0.0, 0.42)
+	float_tween.chain().tween_callback(damage_label.queue_free)
 
 func _die() -> void:
 	alive = false
@@ -213,13 +255,25 @@ func _die() -> void:
 	target = null
 	health_bar.value = 0.0
 	name_label.text = "%s  ✝" % display_name
-	modulate.a = 0.35
+
+	if hit_pulse_tween != null and hit_pulse_tween.is_valid():
+		hit_pulse_tween.kill()
+
+	death_tween = create_tween()
+	death_tween.set_parallel(true)
+	death_tween.tween_property(self, "scale", Vector2(0.72, 0.72), 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	death_tween.tween_property(self, "modulate:a", 0.22, 0.22)
+
 	queue_redraw()
 	died.emit(self)
 
 func _draw() -> void:
 	var body_color := Color(0.20, 0.56, 0.95, 1.0) if team == 0 else Color(0.78, 0.72, 0.64, 1.0)
 	var outline_color := Color(0.80, 0.90, 1.0, 1.0) if team == 0 else Color(0.95, 0.35, 0.30, 1.0)
+
+	if hit_flash_time > 0.0:
+		body_color = body_color.lerp(Color.WHITE, 0.82)
+		outline_color = Color.WHITE
 
 	draw_circle(Vector2.ZERO, body_radius, body_color)
 	draw_arc(Vector2.ZERO, body_radius, 0.0, TAU, 32, outline_color, 3.0)
