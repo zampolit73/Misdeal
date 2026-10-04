@@ -152,56 +152,56 @@ stretch_mode = 5
 
 [node name="HudPanel" type="Panel" parent="."]
 mouse_filter = 2
-offset_left = 300.0
-offset_top = 24.0
-offset_right = 1115.0
-offset_bottom = 92.0
+offset_left = 328.0
+offset_top = 26.0
+offset_right = 1096.0
+offset_bottom = 80.0
 theme_override_styles/panel = SubResource("HudPanel")
 
 [node name="Stats" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 325.0
-offset_top = 43.0
-offset_right = 1090.0
-offset_bottom = 74.0
+offset_left = 344.0
+offset_top = 40.0
+offset_right = 1080.0
+offset_bottom = 67.0
 theme_override_colors/font_color = Color(0.93, 0.82, 0.66, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 15
 text = "РАЗДАЧА 1/3     ЗОЛОТО 0     ЗДОРОВЬЕ +0     УРОН +0"
 horizontal_alignment = 1
 
 [node name="WizardLinePanel" type="Panel" parent="."]
 mouse_filter = 2
-offset_left = 315.0
-offset_top = 102.0
-offset_right = 1100.0
-offset_bottom = 146.0
+offset_left = 330.0
+offset_top = 92.0
+offset_right = 1094.0
+offset_bottom = 132.0
 theme_override_styles/panel = SubResource("LinePanel")
 
 [node name="WizardLine" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 336.0
-offset_top = 113.0
-offset_right = 1078.0
-offset_bottom = 137.0
+offset_left = 344.0
+offset_top = 101.0
+offset_right = 1080.0
+offset_bottom = 124.0
 theme_override_colors/font_color = Color(0.79, 0.68, 0.70, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 14
 text = "Волшебник раскладывает судьбы. Выбирай."
 horizontal_alignment = 1
 
 [node name="Cards" type="HBoxContainer" parent="."]
-offset_left = 104.0
-offset_top = 314.0
-offset_right = 1176.0
-offset_bottom = 648.0
-theme_override_constants/separation = 16
+offset_left = 134.0
+offset_top = 332.0
+offset_right = 1146.0
+offset_bottom = 650.0
+theme_override_constants/separation = 17
 alignment = 1
 
 [node name="BonePatrolCard" type="Button" parent="Cards"]
 clip_contents = true
-custom_minimum_size = Vector2(256, 330)
+custom_minimum_size = Vector2(240, 314)
 layout_mode = 2
 theme_override_styles/normal = SubResource("CardNormal")
 theme_override_styles/hover = SubResource("CardHover")
@@ -209,10 +209,10 @@ theme_override_styles/pressed = SubResource("CardHover")
 
 [node name="Art" type="TextureRect" parent="Cards/BonePatrolCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 244.0
-offset_bottom = 156.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 230.0
+offset_bottom = 146.0
 texture_filter = 1
 texture = ExtResource("5_bone")
 expand_mode = 1
@@ -220,12 +220,12 @@ stretch_mode = 6
 
 [node name="Title" type="Label" parent="Cards/BonePatrolCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 164.0
-offset_right = 244.0
-offset_bottom = 205.0
+offset_left = 10.0
+offset_top = 154.0
+offset_right = 230.0
+offset_bottom = 194.0
 theme_override_colors/font_color = Color(0.95, 0.83, 0.65, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 16
 text = "КОСТЯНОЙ ДОЗОР"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -233,23 +233,23 @@ autowrap_mode = 2
 
 [node name="Type" type="Label" parent="Cards/BonePatrolCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 210.0
-offset_right = 244.0
-offset_bottom = 232.0
+offset_left = 10.0
+offset_top = 198.0
+offset_right = 230.0
+offset_bottom = 218.0
 theme_override_colors/font_color = Color(0.93, 0.55, 0.32, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 12
 text = "БОЙ"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Cards/BonePatrolCard"]
 mouse_filter = 2
-offset_left = 16.0
-offset_top = 238.0
-offset_right = 240.0
-offset_bottom = 292.0
+offset_left = 14.0
+offset_top = 224.0
+offset_right = 226.0
+offset_bottom = 274.0
 theme_override_colors/font_color = Color(0.80, 0.74, 0.67, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 12
 text = "Три скелета идут плотным строем."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -257,18 +257,18 @@ autowrap_mode = 2
 
 [node name="Hint" type="Label" parent="Cards/BonePatrolCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 300.0
-offset_right = 244.0
-offset_bottom = 322.0
+offset_left = 10.0
+offset_top = 282.0
+offset_right = 230.0
+offset_bottom = 304.0
 theme_override_colors/font_color = Color(0.93, 0.62, 0.34, 1)
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 11
 text = "ВЫБРАТЬ"
 horizontal_alignment = 1
 
 [node name="GraveyardCard" type="Button" parent="Cards"]
 clip_contents = true
-custom_minimum_size = Vector2(256, 330)
+custom_minimum_size = Vector2(240, 314)
 layout_mode = 2
 theme_override_styles/normal = SubResource("CardNormal")
 theme_override_styles/hover = SubResource("CardHover")
@@ -276,10 +276,10 @@ theme_override_styles/pressed = SubResource("CardHover")
 
 [node name="Art" type="TextureRect" parent="Cards/GraveyardCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 244.0
-offset_bottom = 156.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 230.0
+offset_bottom = 146.0
 texture_filter = 1
 texture = ExtResource("6_grave")
 expand_mode = 1
@@ -287,12 +287,12 @@ stretch_mode = 6
 
 [node name="Title" type="Label" parent="Cards/GraveyardCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 164.0
-offset_right = 244.0
-offset_bottom = 205.0
+offset_left = 10.0
+offset_top = 154.0
+offset_right = 230.0
+offset_bottom = 194.0
 theme_override_colors/font_color = Color(0.95, 0.83, 0.65, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 16
 text = "ЗАСАДА НА КЛАДБИЩЕ"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -300,23 +300,23 @@ autowrap_mode = 2
 
 [node name="Type" type="Label" parent="Cards/GraveyardCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 210.0
-offset_right = 244.0
-offset_bottom = 232.0
+offset_left = 10.0
+offset_top = 198.0
+offset_right = 230.0
+offset_bottom = 218.0
 theme_override_colors/font_color = Color(0.93, 0.55, 0.32, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 12
 text = "БОЙ"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Cards/GraveyardCard"]
 mouse_filter = 2
-offset_left = 16.0
-offset_top = 238.0
-offset_right = 240.0
-offset_bottom = 292.0
+offset_left = 14.0
+offset_top = 224.0
+offset_right = 226.0
+offset_bottom = 274.0
 theme_override_colors/font_color = Color(0.80, 0.74, 0.67, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 12
 text = "Два скелета прикрывают костяного лучника."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -324,18 +324,18 @@ autowrap_mode = 2
 
 [node name="Hint" type="Label" parent="Cards/GraveyardCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 300.0
-offset_right = 244.0
-offset_bottom = 322.0
+offset_left = 10.0
+offset_top = 282.0
+offset_right = 230.0
+offset_bottom = 304.0
 theme_override_colors/font_color = Color(0.93, 0.62, 0.34, 1)
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 11
 text = "ВЫБРАТЬ"
 horizontal_alignment = 1
 
 [node name="GallowsVolleyCard" type="Button" parent="Cards"]
 clip_contents = true
-custom_minimum_size = Vector2(256, 330)
+custom_minimum_size = Vector2(240, 314)
 layout_mode = 2
 theme_override_styles/normal = SubResource("CardNormal")
 theme_override_styles/hover = SubResource("CardHover")
@@ -343,10 +343,10 @@ theme_override_styles/pressed = SubResource("CardHover")
 
 [node name="Art" type="TextureRect" parent="Cards/GallowsVolleyCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 244.0
-offset_bottom = 156.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 230.0
+offset_bottom = 146.0
 texture_filter = 1
 texture = ExtResource("7_gallows")
 expand_mode = 1
@@ -354,12 +354,12 @@ stretch_mode = 6
 
 [node name="Title" type="Label" parent="Cards/GallowsVolleyCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 164.0
-offset_right = 244.0
-offset_bottom = 205.0
+offset_left = 10.0
+offset_top = 154.0
+offset_right = 230.0
+offset_bottom = 194.0
 theme_override_colors/font_color = Color(0.95, 0.83, 0.65, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 16
 text = "ЗАЛП С ВИСЕЛИЦЫ"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -367,23 +367,23 @@ autowrap_mode = 2
 
 [node name="Type" type="Label" parent="Cards/GallowsVolleyCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 210.0
-offset_right = 244.0
-offset_bottom = 232.0
+offset_left = 10.0
+offset_top = 198.0
+offset_right = 230.0
+offset_bottom = 218.0
 theme_override_colors/font_color = Color(0.93, 0.55, 0.32, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 12
 text = "БОЙ"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Cards/GallowsVolleyCard"]
 mouse_filter = 2
-offset_left = 16.0
-offset_top = 238.0
-offset_right = 240.0
-offset_bottom = 292.0
+offset_left = 14.0
+offset_top = 224.0
+offset_right = 226.0
+offset_bottom = 274.0
 theme_override_colors/font_color = Color(0.80, 0.74, 0.67, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 12
 text = "Два костяных лучника прячутся за одним скелетом."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -391,18 +391,18 @@ autowrap_mode = 2
 
 [node name="Hint" type="Label" parent="Cards/GallowsVolleyCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 300.0
-offset_right = 244.0
-offset_bottom = 322.0
+offset_left = 10.0
+offset_top = 282.0
+offset_right = 230.0
+offset_bottom = 304.0
 theme_override_colors/font_color = Color(0.93, 0.62, 0.34, 1)
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 11
 text = "ВЫБРАТЬ"
 horizontal_alignment = 1
 
 [node name="WhisperingWellCard" type="Button" parent="Cards"]
 clip_contents = true
-custom_minimum_size = Vector2(256, 330)
+custom_minimum_size = Vector2(240, 314)
 layout_mode = 2
 theme_override_styles/normal = SubResource("EventNormal")
 theme_override_styles/hover = SubResource("EventHover")
@@ -411,10 +411,10 @@ theme_override_styles/disabled = SubResource("EventDisabled")
 
 [node name="Art" type="TextureRect" parent="Cards/WhisperingWellCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 244.0
-offset_bottom = 156.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 230.0
+offset_bottom = 146.0
 texture_filter = 1
 texture = ExtResource("8_well")
 expand_mode = 1
@@ -422,13 +422,13 @@ stretch_mode = 6
 
 [node name="Title" type="Label" parent="Cards/WhisperingWellCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 164.0
-offset_right = 244.0
-offset_bottom = 205.0
+offset_left = 10.0
+offset_top = 154.0
+offset_right = 230.0
+offset_bottom = 194.0
 theme_override_colors/font_color = Color(0.68, 0.92, 0.86, 1)
 theme_override_colors/font_disabled_color = Color(0.38, 0.46, 0.45, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 16
 text = "ШЕПЧУЩИЙ КОЛОДЕЦ"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -436,25 +436,25 @@ autowrap_mode = 2
 
 [node name="Type" type="Label" parent="Cards/WhisperingWellCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 210.0
-offset_right = 244.0
-offset_bottom = 232.0
+offset_left = 10.0
+offset_top = 198.0
+offset_right = 230.0
+offset_bottom = 218.0
 theme_override_colors/font_color = Color(0.34, 0.84, 0.76, 1)
 theme_override_colors/font_disabled_color = Color(0.34, 0.42, 0.41, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 12
 text = "СОБЫТИЕ"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Cards/WhisperingWellCard"]
 mouse_filter = 2
-offset_left = 16.0
-offset_top = 238.0
-offset_right = 240.0
-offset_bottom = 292.0
+offset_left = 14.0
+offset_top = 224.0
+offset_right = 226.0
+offset_bottom = 274.0
 theme_override_colors/font_color = Color(0.70, 0.82, 0.79, 1)
 theme_override_colors/font_disabled_color = Color(0.34, 0.40, 0.40, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 12
 text = "Чёрная вода обещает силу. Цена неизвестна."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -462,12 +462,12 @@ autowrap_mode = 2
 
 [node name="Hint" type="Label" parent="Cards/WhisperingWellCard"]
 mouse_filter = 2
-offset_left = 12.0
-offset_top = 300.0
-offset_right = 244.0
-offset_bottom = 322.0
+offset_left = 10.0
+offset_top = 282.0
+offset_right = 230.0
+offset_bottom = 304.0
 theme_override_colors/font_color = Color(0.38, 0.90, 0.82, 1)
 theme_override_colors/font_disabled_color = Color(0.30, 0.36, 0.36, 1)
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 11
 text = "ВЫБРАТЬ"
 horizontal_alignment = 1
