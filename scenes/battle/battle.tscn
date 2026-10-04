@@ -81,6 +81,15 @@ theme_override_font_sizes/font_size = 18
 text = "SKELETONS"
 horizontal_alignment = 2
 
+[node name="PlacementHint" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 540.0
+offset_right = 420.0
+offset_bottom = 570.0
+theme_override_colors/font_color = Color(0.55, 0.78, 0.95, 1)
+theme_override_font_sizes/font_size = 16
+text = "DRAG HEROES TO REPOSITION"
+
 [node name="UnitsLayer" type="Node2D" parent="."]
 position = Vector2(40, 120)
 
