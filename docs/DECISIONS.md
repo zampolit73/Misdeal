@@ -181,3 +181,25 @@ Combat readability is the first constraint:
 - nearest-neighbor texture presentation is preferred for pixel assets.
 
 The earlier realistic/painted combat miniatures were judged too small and visually muddy when shown at tactical scale. Painted concept assets may remain as reference material, but new in-game visuals should converge on the pixel-art language.
+
+
+## D016 — Approved pixel concepts may be sliced into live game assets
+
+Date: 2026-10-04  
+Status: accepted
+
+Approved generated pixel-art concepts can be used as source material for production-facing prototype assets.
+
+For the wizard table, keep run-dependent information and interaction in native Godot UI rather than using a full static mockup with baked values.
+
+The approved table concept is archived at `assets/concepts/approved_table_direction.png`.
+
+The active table uses extracted authored layers/illustrations from that concept plus live Godot controls for:
+
+- deal/gold/party modifier HUD;
+- wizard commentary;
+- encounter titles/descriptions;
+- card hover/disabled states;
+- card selection and scene transitions.
+
+Use the same approach for previous generated battle/table concepts: extract reusable art pieces when useful, but do not embed screenshots whose UI or gameplay state would become stale.
