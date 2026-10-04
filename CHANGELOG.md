@@ -26,6 +26,11 @@
 
 ### Added
 
+- Approved wizard-table concept archived at `assets/concepts/approved_table_direction.png`.
+- Rebuilt wizard table using authored concept slices plus live Godot UI.
+- Authored pixel wizard/room backdrop, Misdeal logo and four encounter/event card illustrations under `assets/pixel/table/`.
+- Illustrated interactive cards now keep encounter text and state data-driven instead of baking gameplay values into the background.
+- Dynamic table HUD remains live for deal count, gold, HP modifier and damage modifier.
 - Cross-screen pixel-art UI pass for the main menu, wizard table, Whispering Well, reward screen and run-end screen.
 - Procedural pixel wizard table with masonry, cursed wood, ritual sigil, candles and deck.
 - Pixel wizard portrait used as the active table host visual.
