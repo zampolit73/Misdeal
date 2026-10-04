@@ -52,7 +52,7 @@ The first new combat-content batch is also implemented in GitHub and pending loc
 
 A second real event batch is implemented in GitHub and pending local verification: **ЧЁРНЫЙ АЛТАРЬ**, **ЗАКОВАННЫЙ ПЛЕННИК**, **КОСТИ ДОЛЖНИКА** and **ДЕСЯТИНА ВОЛШЕБНИКА** no longer use the prototype resolver.
 
-The late-game escalation batch is now implemented in GitHub and pending local verification: **КАРТА БЕЗ ЛИЦА**, **КРОВАВАЯ КНИГА**, **СЛОМАННАЯ КОРОНА**, **ПОСЛЕДНИЙ ПРИВАЛ** and **ВРАТА ОССУАРИЯ** are real cards. Seven of eight late-tier cards now have bespoke mechanics; only **СТАВКА НА СМЕРТЬ** remains a late-tier prototype.
+The late-game escalation batch is implemented and locally confirmed working: **КАРТА БЕЗ ЛИЦА**, **КРОВАВАЯ КНИГА**, **СЛОМАННАЯ КОРОНА**, **ПОСЛЕДНИЙ ПРИВАЛ** and **ВРАТА ОССУАРИЯ** are real cards. Seven of eight late-tier cards now have bespoke mechanics; only **СТАВКА НА СМЕРТЬ** remains a late-tier prototype.
 
 ## Player-facing language
 
@@ -381,18 +381,17 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the late-game escalation together with the still-pending combat/event batches:
+Finish the five remaining prototype cards so the full 24-card pre-boss Act 1 pool has bespoke mechanics:
 
-- **КАРТА БЕЗ ЛИЦА** should keep the first result genuinely hidden until selected; its safe paid and burn options should apply deterministic bonuses;
-- **КРОВАВАЯ КНИГА** should disable the 40-gold branch when unaffordable and give only general-pool artifacts for the blood branch;
-- **СЛОМАННАЯ КОРОНА** should never appear from the shop, Crypt Guard reward or other random artifact sources; wearing it should appear in the artifact list and affect all three heroes in the next battle;
-- after wearing the crown, all heroes should deal roughly 22% more damage while having 10 less max HP;
-- **ПОСЛЕДНИЙ ПРИВАЛ** should correctly apply one of its three final-preparation bonuses;
-- **ВРАТА ОССУАРИЯ** should launch a real four-enemy late encounter with Crypt Guard, Bellkeeper, Bone Archer and Bone Thrall, and retain active-card retry behavior after defeat;
-- stacked negative HP choices must not create heroes below 20 max HP;
-- previously added wizard-debt, Grave Bellkeeper, Bone Crush and Crypt Guard flows should remain stable.
+- **ГРЕМУЧИЙ МОСТ** — early risk/reward traversal event;
+- **КОШЕЛЬ МЕРТВЕЦА** — early greed/trap event;
+- **ТОРГОВЕЦ СВЕЧАМИ** — early small-economy utility card distinct from Gravedigger Shop;
+- **КОСТЯНАЯ ПОШЛИНА** — mid-run pay-or-fight/suffer decision;
+- **СТАВКА НА СМЕРТЬ** — late elite/high-risk card worthy of the final tier.
 
-After this is stable, finish the five remaining prototype cards rather than adding another framework: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА** and **СТАВКА НА СМЕРТЬ**. Then Act 1 will have bespoke mechanics for the full 24-card pre-boss pool.
+Do not add a new generalized event framework for this pass. Reuse the existing Act 1 choice scene and current combat/reward hooks unless a card genuinely requires one small new run condition or encounter.
+
+After all 24 cards are bespoke, stop adding content temporarily and run a full Act 1 balance/readability pass before expanding the card pool further.
 
 ## Local workflow
 
