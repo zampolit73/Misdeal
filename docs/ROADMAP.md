@@ -53,12 +53,12 @@ Target loop:
 
 ## Phase 3 — Build identity
 
-- [ ] Evil wizard host/antagonist presentation.
-- [ ] Wizard reactions and short commentary.
-- [ ] Multiple encounter types.
+- [x] Add first visible wizard host/antagonist presence at the table.
+- [x] Wizard reactions and short commentary.
+- [x] Multiple encounter types: combat cards plus a non-combat event.
 - [ ] More party archetypes.
 - [ ] Equipment or artifacts that alter autobattle behavior.
-- [ ] Curses and risk/reward cards.
+- [x] First risk/reward event card: Whispering Well.
 - [ ] First boss encounter.
 
 ## Phase 4 — Vertical slice polish
