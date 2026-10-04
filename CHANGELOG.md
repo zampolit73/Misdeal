@@ -11,6 +11,8 @@
 
 ### Fixed
 
+- Added hard combat-arena bounds so retreating units and their pursuers cannot leave the battlefield.
+- Bone Archer now fights when cornered instead of endlessly retreating into the arena boundary.
 - Fixed pre-battle dragging being blocked by fullscreen Control UI layers.
 - BattleUnit placement input now uses the main input phase, while decorative battle UI ignores mouse events.
 
