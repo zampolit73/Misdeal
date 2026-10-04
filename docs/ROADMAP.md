@@ -67,6 +67,9 @@ Target loop:
 - [x] First real recovery card: Ash Rest.
 - [x] First functional shop: Gravedigger Shop.
 - [x] First artifact-choice card: Curse Forge with three hero-specific artifacts.
+- [x] First support enemy behavior: Grave Bellkeeper healing pulse.
+- [x] First swarm encounter: Bone Crush with five Bone Thralls.
+- [x] First elite encounter: Crypt Guard with guaranteed artifact reward.
 
 ## Phase 4 — Vertical slice polish
 
