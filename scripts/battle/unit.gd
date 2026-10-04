@@ -15,6 +15,7 @@ signal placement_rejected(unit: BattleUnit)
 @export var separation_padding: float = 10.0
 @export var separation_strength: float = 120.0
 
+var unit_data: UnitData
 var hp: float
 var combat_started := false
 var alive := true
@@ -33,6 +34,20 @@ var death_tween: Tween
 
 @onready var name_label: Label = $NameLabel
 @onready var health_bar: ProgressBar = $HealthBar
+
+func configure(data: UnitData, unit_team: int, spawn_position: Vector2, name_override: String = "") -> void:
+	unit_data = data
+	team = unit_team
+	position = spawn_position
+	display_name = data.unit_name if name_override.is_empty() else name_override
+	max_hp = data.max_hp
+	damage = data.damage
+	attack_interval = data.attack_interval
+	attack_range = data.attack_range
+	move_speed = data.move_speed
+	body_radius = data.body_radius
+	separation_padding = data.separation_padding
+	separation_strength = data.separation_strength
 
 func _ready() -> void:
 	hp = max_hp
