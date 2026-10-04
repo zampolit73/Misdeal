@@ -74,6 +74,8 @@ The user runs Godot locally and pulls changes through Git.
 When the user explicitly asks to implement or fix something:
 
 - inspect the current GitHub code first;
+- when connected GitHub tools are available in the session, use them directly;
+- do not claim GitHub write access is unavailable without first checking the connected repository/tool state;
 - make the changes directly in the repository when possible;
 - do not make the user manually copy code that can be committed;
 - use meaningful commit messages;
