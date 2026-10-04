@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "broken_crown"
+title = "СЛОМАННАЯ КОРОНА"
+card_text = "Корона всё ещё требует преклониться, хотя её король давно сгнил."
+wizard_line = "Власть редко замечает собственную смерть."
+type_label = "АРТЕФАКТ"
+tier = 2
+resolution_type = "prototype"
+target_path = "res://scenes/event/prototype_card.tscn"
+art_path = "res://assets/pixel/table/cards/gallows_volley.png"
+prototype_result_text = "Будущая поздняя карта сильного артефакта с недостатком."
