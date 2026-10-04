@@ -94,6 +94,8 @@ func _spawn_unit(
 		unit.max_hp += RunState.party_hp_bonus
 		unit.damage += RunState.party_damage_bonus
 		_apply_artifacts_to_unit(unit)
+		unit.max_hp = maxf(20.0, unit.max_hp)
+		unit.damage = maxf(1.0, unit.damage)
 	else:
 		unit.damage *= RunState.get_enemy_damage_multiplier()
 
@@ -123,6 +125,8 @@ func _begin_preparation_phase() -> void:
 		status_label.text = "МОГИЛЬНЫЙ ЗВОН — звонарь периодически лечит ближайшую нежить."
 	elif encounter.encounter_id == "bone_crush":
 		status_label.text = "КОСТЯНАЯ ДАВКА — пять слабых врагов. Маг особенно полезен против толпы."
+	elif encounter.encounter_id == "ossuary_gate":
+		status_label.text = "ВРАТА ОССУАРИЯ — страж держит фронт, звонарь лечит, лучник давит с тыла."
 	else:
 		status_label.text = "ПОДГОТОВКА — расставьте героев и нажмите «БОЙ»."
 
@@ -188,6 +192,8 @@ func _finish_battle(player_won: bool) -> void:
 			result_subtitle.text = "Склеп открыт. Внутри осталось кое-что ценное."
 		elif encounter.encounter_id == "grave_bell":
 			result_subtitle.text = "Колокол наконец замолчал."
+		elif encounter.encounter_id == "ossuary_gate":
+			result_subtitle.text = "Последние врата перед надзирателем открыты."
 		else:
 			result_subtitle.text = "Волшебник выглядит слегка раздражённым."
 		status_label.text = "Карта пережита. Пока что."
