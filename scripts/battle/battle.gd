@@ -12,6 +12,7 @@ const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 70), Vector2(525, 340))
 @onready var title_label: Label = $Title
 @onready var deal_label: Label = $DealLabel
 @onready var enemy_label: Label = $EnemyLabel
+@onready var arena_visual: Control = $Arena
 @onready var units_layer: Node2D = $UnitsLayer
 @onready var status_label: Label = $Status
 @onready var fight_button: Button = $FightButton
@@ -26,6 +27,7 @@ var encounter: EncounterData
 var units: Array[BattleUnit] = []
 var combat_started := false
 var battle_finished := false
+var boss_reinforcements_spawned := false
 
 func _ready() -> void:
 	fight_button.pressed.connect(_on_fight_pressed)
@@ -35,10 +37,13 @@ func _ready() -> void:
 	continue_button.visible = false
 	continue_button.disabled = true
 	encounter = _load_selected_encounter()
+	if arena_visual.has_method("set_boss_mode"):
+		arena_visual.call("set_boss_mode", _is_boss_encounter())
 	title_label.text = "MISDEAL — %s" % encounter.title
 	deal_label.text = RunState.get_progress_text()
 	if _is_boss_encounter():
-		enemy_label.text = "БОСС"
+		enemy_label.text = "БОСС • ФАЗА I"
+		title_label.add_theme_color_override("font_color", Color(1.0, 0.72, 0.42, 1.0))
 	elif _is_death_wager_encounter():
 		enemy_label.text = "СТАВКА"
 	elif _is_elite_encounter():
@@ -107,8 +112,13 @@ func _spawn_unit(
 	unit.set_combat_bounds(COMBAT_BOUNDS)
 	unit.died.connect(_on_unit_died)
 	unit.placement_rejected.connect(_on_placement_rejected)
+	if unit.is_boss:
+		unit.boss_enraged.connect(_on_boss_enraged)
 	units_layer.add_child(unit)
 	units.append(unit)
+
+	if combat_started:
+		unit.start_combat()
 
 func _apply_artifacts_to_unit(unit: BattleUnit) -> void:
 	for artifact in RunState.get_artifacts_for_role(unit.visual_role):
@@ -123,7 +133,7 @@ func _apply_artifacts_to_unit(unit: BattleUnit) -> void:
 
 func _begin_preparation_phase() -> void:
 	if _is_boss_encounter():
-		status_label.text = "БОСС — надзиратель впадает в ярость на половине здоровья."
+		status_label.text = "БОСС — надзиратель бьёт по площади. На половине здоровья начнётся вторая фаза."
 	elif _is_death_wager_encounter():
 		status_label.text = "СТАВКА НА СМЕРТЬ — пять врагов и усиленная награда. Лучников лучше не оставлять без внимания."
 	elif _is_elite_encounter():
@@ -145,6 +155,52 @@ func _begin_preparation_phase() -> void:
 	for unit in units:
 		if unit.team == 0:
 			unit.enable_placement(PLAYER_PLACEMENT_BOUNDS)
+
+func _on_boss_enraged(_unit: BattleUnit) -> void:
+	if not _is_boss_encounter() or boss_reinforcements_spawned:
+		return
+
+	boss_reinforcements_spawned = true
+	enemy_label.text = "БОСС • ЯРОСТЬ"
+	status_label.text = "ФАЗА II — надзиратель зовёт подкрепление!"
+	if arena_visual.has_method("set_boss_phase_two"):
+		arena_visual.call("set_boss_phase_two", true)
+
+	_show_boss_phase_flash()
+
+	var count := mini(encounter.reinforcement_unit_paths.size(), encounter.reinforcement_positions.size())
+	for index in range(count):
+		var reinforcement_data := load(encounter.reinforcement_unit_paths[index]) as UnitData
+		if reinforcement_data == null:
+			continue
+
+		var reinforcement_name := reinforcement_data.unit_name
+		if index < encounter.reinforcement_names.size() and not encounter.reinforcement_names[index].is_empty():
+			reinforcement_name = encounter.reinforcement_names[index]
+
+		_spawn_unit(reinforcement_data, 1, encounter.reinforcement_positions[index], reinforcement_name)
+
+func _show_boss_phase_flash() -> void:
+	var phase_label := Label.new()
+	phase_label.text = "ФАЗА II — ПРИЗЫВ"
+	phase_label.position = Vector2(390.0, 195.0)
+	phase_label.size = Vector2(500.0, 52.0)
+	phase_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	phase_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	phase_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	phase_label.z_index = 3000
+	phase_label.add_theme_font_size_override("font_size", 28)
+	phase_label.add_theme_color_override("font_color", Color(1.0, 0.56, 0.28, 1.0))
+	phase_label.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 0.95))
+	phase_label.add_theme_constant_override("shadow_offset_x", 2)
+	phase_label.add_theme_constant_override("shadow_offset_y", 2)
+	add_child(phase_label)
+
+	var tween := phase_label.create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(phase_label, "position", phase_label.position + Vector2(0.0, -18.0), 0.9)
+	tween.tween_property(phase_label, "modulate:a", 0.0, 0.9)
+	tween.chain().tween_callback(phase_label.queue_free)
 
 func _on_placement_rejected(unit: BattleUnit) -> void:
 	status_label.text = "%s нельзя поставить поверх другого героя." % unit.display_name
