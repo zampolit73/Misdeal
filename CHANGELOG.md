@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Data-driven `UnitData` refactor confirmed working locally.
 - Hit/death combat feedback confirmed working locally.
 - Combat-time unit separation confirmed working locally.
 - Pre-battle hero dragging confirmed working locally.
@@ -15,6 +16,8 @@
 
 ### Added
 
+- Bone Archer enemy with ranged keep-distance behavior.
+- Mage splash damage that hits nearby secondary enemies.
 - Data-driven `UnitData` Resource type.
 - Separate Knight, Ranger, Mage and Skeleton `.tres` unit definitions.
 - Battle spawning now reads unit stats from Resources instead of hard-coded stat arguments.
