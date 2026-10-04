@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "death_wager"
 title = "СТАВКА НА СМЕРТЬ"
-card_text = "Волшебник предлагает удвоить награду. Условия написаны мелко."
+card_text = "Поздняя элитная ставка: тяжёлый бой против пяти врагов в обмен на усиленную награду."
 wizard_line = "Ставка прекрасна, когда проигрывает кто-то другой."
 type_label = "ЭЛИТА"
 tier = 2
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "combat"
+target_path = "res://resources/encounters/death_wager.tres"
 art_path = "res://assets/pixel/table/cards/bone_patrol.png"
-prototype_result_text = "Будущая поздняя рискованная элитная карта."
+prototype_result_text = ""
