@@ -1,0 +1,111 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/event/whispering_well.gd" id="1_event"]
+
+[node name="WhisperingWell" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_event")
+
+[node name="Background" type="ColorRect" parent="."]
+mouse_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.025, 0.035, 0.045, 1)
+
+[node name="Title" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 100.0
+offset_top = 48.0
+offset_right = 1180.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 38
+text = "ШЕПЧУЩИЙ КОЛОДЕЦ"
+horizontal_alignment = 1
+
+[node name="WizardLine" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 130.0
+offset_top = 118.0
+offset_right = 1150.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 20
+text = "«Он всегда что-нибудь даёт. Вопрос лишь в том, что заберёт взамен.»"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 230.0
+offset_top = 190.0
+offset_right = 1050.0
+offset_bottom = 275.0
+theme_override_font_sizes/font_size = 19
+text = "Из чёрной воды доносится шёпот. На поверхности нет твоего отражения.\nКолодец предлагает силу — и ждёт ответа."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="GoldLabel" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 500.0
+offset_top = 285.0
+offset_right = 780.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 18
+text = "Золото: 0"
+horizontal_alignment = 1
+
+[node name="Choices" type="HBoxContainer" parent="."]
+offset_left = 120.0
+offset_top = 345.0
+offset_right = 1160.0
+offset_bottom = 520.0
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="AcceptGift" type="Button" parent="Choices"]
+custom_minimum_size = Vector2(310, 160)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "ПРИНЯТЬ ДАР
+
++4 урона
+-15 здоровья"
+
+[node name="PayCoin" type="Button" parent="Choices"]
+custom_minimum_size = Vector2(310, 160)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "БРОСИТЬ 25 ЗОЛОТА
+
++25 здоровья
+отряду"
+
+[node name="Leave" type="Button" parent="Choices"]
+custom_minimum_size = Vector2(310, 160)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "ОТОЙТИ
+
+Ничего
+не брать"
+
+[node name="Result" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 150.0
+offset_top = 560.0
+offset_right = 1130.0
+offset_bottom = 635.0
+theme_override_font_sizes/font_size = 18
+text = "Выберите ответ."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
