@@ -82,7 +82,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_filter = 1
-z_index = -100
 script = ExtResource("3_backdrop")
 
 [node name="Arena" type="Control" parent="."]
