@@ -264,3 +264,21 @@ The same combat batch introduces:
 - **Crypt Guard** as an elite melee enemy that reuses the existing splash system to punish tightly clustered heroes.
 
 Elite combat cards may override the normal post-battle reward flow when the encounter itself promises a specific reward. **Crypt Guard** currently guarantees a choice of one unowned artifact, falling back to gold only when the current artifact pool is exhausted.
+
+## D021 — Wizard debt is the first temporary run condition
+
+Date: 2026-10-04  
+Status: accepted for prototype
+
+**ДЕСЯТИНА ВОЛШЕБНИКА** introduces the first temporary run condition instead of another permanent stat change.
+
+If the player refuses the tithe:
+
+- **ДОЛГ ВОЛШЕБНИКУ** remains visible on the table;
+- enemy damage is multiplied by 1.25 in subsequent combat;
+- the next normal post-combat reward is doubled;
+- choosing that doubled normal reward clears the debt.
+
+The Crypt Guard's special artifact reward is intentionally not treated as a normal numeric reward, so it neither doubles nor clears the debt. This avoids inventing duplicate-artifact semantics for the prototype.
+
+Keep temporary run conditions explicit and few. Do not build a generalized curse/status framework until multiple real cards need shared lifetime/stacking rules.
