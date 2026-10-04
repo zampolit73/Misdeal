@@ -14,10 +14,16 @@ extends Resource
 @export var body_radius: float = 22.0
 @export var separation_padding: float = 10.0
 @export var separation_strength: float = 120.0
+@export var visual_scale: float = 1.0
+@export var show_enemy_name: bool = false
+
+@export_group("Support")
+@export var support_heal_interval: float = 0.0
+@export var support_heal_radius: float = 0.0
+@export var support_heal_amount: float = 0.0
 
 @export_group("Boss")
 @export var is_boss: bool = false
-@export var visual_scale: float = 1.0
 @export_range(0.0, 1.0, 0.05) var enrage_threshold: float = 0.0
 @export var enrage_damage_multiplier: float = 1.0
 @export var enrage_attack_interval_multiplier: float = 1.0
