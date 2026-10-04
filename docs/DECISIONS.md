@@ -282,3 +282,16 @@ If the player refuses the tithe:
 The Crypt Guard's special artifact reward is intentionally not treated as a normal numeric reward, so it neither doubles nor clears the debt. This avoids inventing duplicate-artifact semantics for the prototype.
 
 Keep temporary run conditions explicit and few. Do not build a generalized curse/status framework until multiple real cards need shared lifetime/stacking rules.
+
+## D022 — Special artifacts can be source-locked and party-wide
+
+Date: 2026-10-04  
+Status: accepted for prototype
+
+The late **СЛОМАННАЯ КОРОНА** card introduces the first source-locked special artifact.
+
+`ArtifactData.general_pool` marks whether an artifact is eligible for generic random/shop/elite reward sources. Normal artifacts default to `true`; **СЛОМАННАЯ КОРОНА** uses `false` so its named event remains the only acquisition source.
+
+`target_role = "*"` means an artifact applies to every hero. This allows a small number of party-wide build-defining relics without creating a separate global-artifact system.
+
+Do not add rarity, slots or a generalized loot-table framework yet. Keep named special artifacts source-locked until more content demonstrates a real need for broader item-generation rules.
