@@ -4,7 +4,7 @@ Last updated: 2026-10-04
 
 ## Current status
 
-Misdeal now has a playable combat slice and the first end-to-end card-loop scaffold.
+Misdeal has a working tactical autobattle slice and a first finite run structure.
 
 Confirmed locally by the user:
 
@@ -14,9 +14,10 @@ Confirmed locally by the user:
 - hit/death feedback;
 - data-driven `UnitData`;
 - Bone Archer keep-distance behavior;
-- hard combat-arena bounds.
+- hard combat-arena bounds;
+- first `table -> battle -> reward -> table` loop.
 
-The first `table -> battle -> reward -> table` loop is implemented and confirmed working locally.
+The new three-card encounter selection and three-victory finite run are implemented in GitHub and pending local verification.
 
 ## Player-facing language
 
@@ -39,25 +40,26 @@ Technical identifiers, file names, node names, class names and code remain Engli
 
 `scenes/main/main.tscn`
 
-Pressing **ENTER THE GAME** resets prototype run state and opens the wizard's table.
+Pressing **ВОЙТИ В ИГРУ** resets the prototype run and opens the wizard's table.
 
 ### 2. Wizard table
 
 `scenes/table/table.tscn`
 
-The table currently shows three card slots:
+Each deal presents three playable combat cards:
 
-- one playable encounter: **Graveyard Ambush**;
-- two face-down placeholder cards for future encounters.
+- **КОСТЯНОЙ ДОЗОР** — three melee Skeleton units;
+- **ЗАСАДА НА КЛАДБИЩЕ** — two Skeleton units plus one Bone Archer;
+- **ЗАЛП С ВИСЕЛИЦЫ** — one Skeleton plus two Bone Archers.
 
-The table displays current run values:
+The table displays:
 
-- deals survived;
+- current deal out of 3;
 - gold;
 - party HP bonus;
 - party damage bonus.
 
-Choosing **Graveyard Ambush** launches the combat scene.
+Selecting a card stores its encounter in `RunState` and launches battle.
 
 ### 3. Combat
 
@@ -65,15 +67,11 @@ Choosing **Graveyard Ambush** launches the combat scene.
 
 Player party:
 
-- Knight
-- Ranger
-- Mage
+- Рыцарь;
+- Следопыт;
+- Маг.
 
-Enemy party:
-
-- Skeleton A
-- Skeleton B
-- Bone Archer
+Enemy composition and spawn positions come from the selected `EncounterData` Resource.
 
 Before combat, the player can drag the three heroes within the deployment zone.
 
@@ -93,11 +91,11 @@ Implemented combat behavior:
 
 Hero stats receive persistent run bonuses from `RunState`.
 
-After victory, **CLAIM REWARD** opens the reward scene.
+After victory, **ЗАБРАТЬ НАГРАДУ** opens the reward scene.
 
-After defeat, **RETURN TO TABLE** goes back to the table without a reward.
+After defeat, **ВЕРНУТЬСЯ К СТОЛУ** returns to the same run without increasing the victory count.
 
-**RESTART** remains available as a prototype/testing convenience.
+**ПЕРЕИГРАТЬ** remains available as a prototype/testing convenience.
 
 ### 4. Reward
 
@@ -105,13 +103,28 @@ After defeat, **RETURN TO TABLE** goes back to the table without a reward.
 
 Victory offers one of three persistent rewards:
 
-- **Blood Coin**: +25 gold;
-- **Iron Ward**: +20 HP to every hero;
-- **Tempered Steel**: +3 damage to every hero.
+- **КРОВАВАЯ МОНЕТА**: +25 gold;
+- **ЖЕЛЕЗНЫЙ ОБЕРЕГ**: +20 HP to every hero;
+- **ЗАКАЛЁННАЯ СТАЛЬ**: +3 damage to every hero.
 
-Choosing a reward increments `deals_survived` and returns to the wizard's table.
+Choosing a reward increments `deals_survived`.
 
-The next battle uses the accumulated party bonuses.
+After victories 1 and 2, the player returns to the table.
+
+After victory 3, the player goes to the run-end screen.
+
+### 5. Run end
+
+`scenes/run_end/run_end.tscn`
+
+After three successful deals, the run ends and displays:
+
+- deals survived;
+- gold;
+- accumulated HP bonus;
+- accumulated damage bonus.
+
+**НОВЫЙ ЗАБЕГ** resets `RunState` and returns to the wizard's table.
 
 ## Current architecture
 
@@ -128,6 +141,25 @@ Reusable combat stats are stored in `UnitData` Resources:
 
 Runtime combat state remains on `BattleUnit`.
 
+### Encounter data
+
+`scripts/data/encounter_data.gd`
+
+Encounter Resources currently define:
+
+- encounter id;
+- Russian title and card text;
+- wizard line;
+- enemy UnitData paths;
+- enemy display names;
+- enemy spawn positions.
+
+Current encounter files:
+
+- `resources/encounters/bone_patrol.tres`
+- `resources/encounters/graveyard_ambush.tres`
+- `resources/encounters/gallows_volley.tres`
+
 ### Run state
 
 `scripts/core/run_state.gd`
@@ -138,33 +170,32 @@ The current prototype run state stores:
 - deals survived;
 - global party HP bonus;
 - global party damage bonus;
-- last battle result.
+- last battle result;
+- selected encounter path.
 
-This is intentionally minimal and exists to prove persistence across scenes.
-
-### Encounter data
-
-The current Graveyard Ambush composition and spawn positions are still hard-coded in `scripts/battle/battle.gd`.
-
-Encounter Resources are not implemented yet.
+The current vertical-slice run ends after 3 rewarded victories.
 
 ## Not implemented yet
 
-- multiple playable table cards;
-- encounter Resources;
-- attack projectiles/animations;
-- broader ability/status-effect system;
+- non-combat event cards;
 - meaningful gold spending;
 - equipment;
+- attack projectiles/animations;
+- broader ability/status-effect system;
 - richer evil wizard presentation;
-- finite run structure / run-end screen;
-- deck building;
+- deck building / card unlocks;
 - meta progression;
 - save/load.
 
 ## Immediate next milestone
 
-Continue Phase 2 with multiple playable card encounters and a short finite run rather than further expanding the combat sandbox.
+Locally verify the new finite run:
+
+`main -> table -> choose among 3 cards -> battle -> reward -> repeat -> run end after 3 victories`
+
+Confirm that all three card choices spawn different enemy compositions, rewards persist between deals, and **НОВЫЙ ЗАБЕГ** resets the counters and bonuses.
+
+After verification, continue into Phase 3 identity work rather than expanding the combat sandbox further.
 
 ## Local workflow
 
