@@ -46,7 +46,7 @@ The original Bone Warden boss encounter, including its 50% HP enrage, was confir
 
 A Bone Warden gameplay + visual rework is implemented in GitHub and pending local verification. The first local pull exposed a Godot 4.7.2 type-inference parser error in the new procedural boss-arena chains; that parser issue was fixed.
 
-After comparing the live battle screenshot against the approved richer pixel mockup, the whole battle presentation was rebuilt again. This new battle-visual pass is pending local verification.
+After comparing the live battle screenshot against the approved richer pixel mockup, the procedural battle renderer was replaced by an authored full-screen battle backdrop matching the second approved reference much more closely. This authored-backdrop pass is now in GitHub and pending local verification.
 
 The longer Act 1 structure is now confirmed working locally: 12 resolved pre-boss cards followed by the Bone Warden as card 13.
 
@@ -289,31 +289,16 @@ Runtime combat state remains on `BattleUnit`.
 - `assets/pixel/units/bone_archer.png`
 - `assets/pixel/units/bone_warden.png` — dedicated final-boss sprite
 
-Combat presentation now prioritizes the sprite silhouette and the approved gothic battle mockup:
+Combat presentation now uses the approved second gothic mockup as an authored static backdrop while keeping all gameplay layers live:
 
-- Knight, Ranger, Mage, Skeleton and Bone Archer were replaced with a new 64×64 transparent pixel sprite set;
-- combat sprites are rendered substantially larger so silhouettes read like characters rather than small board icons;
-- thin blue/red team rings remain under the feet;
-- HP bars are wider and higher above the larger art;
-- names sit lower under the characters;
-- the arena is a dense cathedral/crypt scene with masonry, barred recess, pillars, banners, hanging chains, braziers, skulls, bones, rubble, blood and a large ritual circle;
-- player/enemy halves receive restrained cool-blue / warm-red atmosphere washes;
-- the HUD uses heavier dark panels, ornamental corners, side faction plates and a red primary **БОЙ** button;
-- live gameplay labels/buttons remain native Godot controls.
-
-The current presentation pass adds:
-
-- an approved-reference-driven cathedral crypt composition;
-- larger 64×64 combat sprites and revised HP/name layout;
-- animated braziers and candle accents;
-- skulls, bones, rubble, blood and cracked floor detail around the arena;
-- a larger central ritual sigil and stronger vignette treatment;
-- heavy framed HUD chrome around encounter/status/progress/commands;
-- dedicated **ВАШ ОТРЯД** and **НЕЖИТЬ/БОСС** side plates;
-- dynamic `КАРТА X/12` / boss progress from `RunState`;
-- red primary combat-button styling;
-- framed victory/defeat result panel;
-- a short sprite lunge on every attack for extra combat motion.
+- Knight, Ranger, Mage, Skeleton and Bone Archer use the 64×64 transparent pixel sprite set;
+- combat sprites remain substantially larger so silhouettes read like characters rather than small board icons;
+- thin blue/red team rings, HP bars, names, drag placement, combat movement and targeting remain live Godot elements;
+- the cathedral/crypt architecture, throne/altar, pillars, banners, chains, braziers, skull piles, ritual floor, outer frame and command-panel art are baked into the authored backdrop;
+- the authored backdrop is reconstructed at runtime from five base64 WebP chunks under `assets/pixel/battle/authored_backdrop/` by `scripts/battle/authored_backdrop.gd`;
+- `scripts/battle/battle_visual.gd` no longer draws the general arena and now only adds lightweight dynamic boss-phase overlays;
+- encounter title/status, card progress, faction labels, buttons and result text remain native Godot controls layered over the art;
+- **БОЙ** and **ПЕРЕИГРАТЬ** now sit directly over the painted command frames from the backdrop instead of drawing a second competing UI frame.
 
 The older painted unit assets under `assets/art/units/` remain in the repository for reference but are no longer used by combat.
 
@@ -415,18 +400,17 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the rebuilt battle presentation against `assets/concepts/approved_battle_direction.jpg`:
+Locally verify the authored battle backdrop now committed to `main`:
 
-- ordinary battles should read as a dense gothic cathedral/crypt instead of a sparse flat grid;
-- the top encounter/status panel, progress panel, side faction plates and bottom command bar should match the reference hierarchy;
-- **БОЙ** should be the dominant red primary action while **ПЕРЕИГРАТЬ** stays subdued;
-- Knight, Ranger, Mage, Skeleton and Bone Archer should use the new 64×64 sprite set and read clearly at the new scale;
-- HP bars, names and team rings must not collide with the larger sprites;
-- hero dragging and all combat bounds must still work across the wider 1240 px arena;
-- enemies must remain readable against the red half of the arena and heroes against the blue half;
-- Bone Warden should preserve its unique boss sprite, boss phase mechanics and stronger boss arena treatment on top of the new general battle presentation.
+- the battle screen should visually match the user's second reference: throne/altar, dense candles, side braziers, banners, chains, skull piles, detailed floor and a warm central ritual sigil;
+- there should no longer be a visibly procedural wall/floor/grid competing with the art;
+- title/status/card progress/faction labels must align with the empty painted frames in the backdrop;
+- **БОЙ** and **ПЕРЕИГРАТЬ** should align with the painted bottom command slots;
+- live heroes/enemies, HP bars, names, rings and drag placement must remain functional on top of the authored background;
+- Bone Warden must still add its dynamic boss overlay and Phase II effects without replacing the authored arena;
+- victory/defeat/retry/reward flow must remain unchanged.
 
-If the composition now matches the desired direction but any individual sprite feels too crude, do a sprite-only art pass without reverting the new battle layout.
+If the backdrop composition is accepted, treat this as the production battle layout for the vertical slice and limit follow-up visual work to sprite polish, alignment and effects rather than rebuilding the arena again.
 
 ## Local workflow
 
