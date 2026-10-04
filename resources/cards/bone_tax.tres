@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "bone_tax"
 title = "КОСТЯНАЯ ПОШЛИНА"
-card_text = "Страж требует плату за право пройти дальше."
+card_text = "Страж требует плату: золото, кровь или короткую и очень неприятную драку."
 wizard_line = "Правила просты: плати или развлекай меня."
 type_label = "ОСОБОЕ"
 tier = 1
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
 art_path = "res://assets/pixel/table/cards/bone_patrol.png"
-prototype_result_text = "Плата золотом или опасная альтернатива будет реализована позже."
+prototype_result_text = ""
