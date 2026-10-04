@@ -295,3 +295,24 @@ The late **СЛОМАННАЯ КОРОНА** card introduces the first source-lo
 `target_role = "*"` means an artifact applies to every hero. This allows a small number of party-wide build-defining relics without creating a separate global-artifact system.
 
 Do not add rarity, slots or a generalized loot-table framework yet. Keep named special artifacts source-locked until more content demonstrates a real need for broader item-generation rules.
+
+## D023 — Freeze Act 1 card expansion after the 24-card pool is bespoke
+
+Date: 2026-10-04  
+Status: accepted for vertical-slice development
+
+The 24 pre-boss Act 1 cards now all have bespoke gameplay behavior. The active pool no longer routes through the generic prototype-card resolver.
+
+Do not immediately add more cards. The next development gate is a full-run balance/readability pass covering:
+
+- early/mid/late pacing;
+- frequency of combat versus event cards;
+- gold income and meaningful spend opportunities;
+- permanent HP/damage growth;
+- artifact power;
+- elite and late-combat difficulty;
+- whether Bone Warden remains a meaningful final test after twelve cards.
+
+**СТАВКА НА СМЕРТЬ** is the current late high-risk/high-reward endpoint before the boss: it uses a five-enemy encounter and a bespoke +75 gold / +50 HP / +8 damage reward choice. Like the Crypt Guard artifact reward, this special reward does not consume **ДОЛГ ВОЛШЕБНИКУ**; only a normal reward clears that condition.
+
+Content expansion should resume only after the current Act 1 proves its pacing and economy in repeated local runs.
