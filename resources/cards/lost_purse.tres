@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "lost_purse"
 title = "КОШЕЛЬ МЕРТВЕЦА"
-card_text = "На ремне висит кошель. Хозяину он уже не нужен."
+card_text = "Кошель мертвеца набит монетами. Чем глубже лезешь, тем крепче сжимается мёртвая рука."
 wizard_line = "Конечно бери. Что вообще может пойти не так?"
 type_label = "СОБЫТИЕ"
 tier = 0
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
 art_path = "res://assets/pixel/table/cards/gallows_volley.png"
-prototype_result_text = "Награда и возможная цена этой карты будут реализованы позже."
+prototype_result_text = ""
