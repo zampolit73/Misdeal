@@ -99,7 +99,8 @@ Only after the loop is fun:
 - [ ] animations and impact feedback;
 - [ ] sound and music;
 - [ ] onboarding;
-- [ ] balance pass;
+- [x] initial Act 1 combat-pacing / boss / Death Wager balance pass;
+- [ ] follow-up balance pass after repeated local full-run feedback;
 - [ ] basic settings;
 - [ ] save/run persistence if needed for the slice.
 
