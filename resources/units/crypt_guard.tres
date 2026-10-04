@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1_unit_data"]
+
+[resource]
+script = ExtResource("1_unit_data")
+unit_name = "Страж склепа"
+visual_role = "crypt_guard"
+max_hp = 320.0
+damage = 25.0
+attack_interval = 1.25
+attack_range = 64.0
+splash_radius = 72.0
+splash_damage_multiplier = 0.35
+move_speed = 52.0
+body_radius = 30.0
+separation_padding = 14.0
+separation_strength = 145.0
+visual_scale = 1.45
+show_enemy_name = true
