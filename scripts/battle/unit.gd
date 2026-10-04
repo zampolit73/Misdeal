@@ -2,6 +2,7 @@ class_name BattleUnit
 extends Node2D
 
 signal died(unit: BattleUnit)
+signal placement_rejected(unit: BattleUnit)
 
 @export var team: int = 0
 @export var display_name: String = "Unit"
@@ -18,6 +19,12 @@ var alive := true
 var target: BattleUnit
 var attack_cooldown := 0.0
 
+var placement_enabled := false
+var placement_bounds := Rect2()
+var dragging := false
+var drag_offset := Vector2.ZERO
+var drag_origin := Vector2.ZERO
+
 @onready var name_label: Label = $NameLabel
 @onready var health_bar: ProgressBar = $HealthBar
 
@@ -29,9 +36,79 @@ func _ready() -> void:
 	health_bar.value = hp
 	queue_redraw()
 
+func enable_placement(bounds: Rect2) -> void:
+	if team != 0:
+		return
+
+	placement_bounds = bounds
+	placement_enabled = true
+	queue_redraw()
+
+func disable_placement() -> void:
+	placement_enabled = false
+	dragging = false
+	z_index = int(position.y)
+	queue_redraw()
+
 func start_combat() -> void:
+	disable_placement()
 	combat_started = true
 	attack_cooldown = randf_range(0.0, 0.25)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not placement_enabled or combat_started or not alive or team != 0:
+		return
+
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			if global_position.distance_to(get_global_mouse_position()) <= body_radius + 10.0:
+				dragging = true
+				drag_origin = position
+				drag_offset = position - _mouse_position_in_parent()
+				z_index = 1000
+				queue_redraw()
+				get_viewport().set_input_as_handled()
+		elif dragging:
+			dragging = false
+
+			if _overlaps_friendly_unit():
+				position = drag_origin
+				placement_rejected.emit(self)
+
+			z_index = int(position.y)
+			queue_redraw()
+			get_viewport().set_input_as_handled()
+
+	if event is InputEventMouseMotion and dragging:
+		var desired_position := _mouse_position_in_parent() + drag_offset
+		var min_position := placement_bounds.position + Vector2(body_radius, body_radius)
+		var max_position := placement_bounds.position + placement_bounds.size - Vector2(body_radius, body_radius)
+
+		position = Vector2(
+			clampf(desired_position.x, min_position.x, max_position.x),
+			clampf(desired_position.y, min_position.y, max_position.y)
+		)
+
+		queue_redraw()
+		get_viewport().set_input_as_handled()
+
+func _mouse_position_in_parent() -> Vector2:
+	return get_parent().to_local(get_global_mouse_position())
+
+func _overlaps_friendly_unit() -> bool:
+	for node in get_tree().get_nodes_in_group("combat_units"):
+		if not node is BattleUnit:
+			continue
+
+		var unit := node as BattleUnit
+		if unit == self or not unit.alive or unit.team != team:
+			continue
+
+		var minimum_distance := body_radius + unit.body_radius + 10.0
+		if position.distance_to(unit.position) < minimum_distance:
+			return true
+
+	return false
 
 func _process(delta: float) -> void:
 	if not combat_started or not alive:
@@ -100,6 +177,8 @@ func take_damage(amount: float) -> void:
 func _die() -> void:
 	alive = false
 	combat_started = false
+	placement_enabled = false
+	dragging = false
 	target = null
 	health_bar.value = 0.0
 	name_label.text = "%s  ✝" % display_name
@@ -113,6 +192,10 @@ func _draw() -> void:
 
 	draw_circle(Vector2.ZERO, body_radius, body_color)
 	draw_arc(Vector2.ZERO, body_radius, 0.0, TAU, 32, outline_color, 3.0)
+
+	if placement_enabled and team == 0 and alive:
+		var placement_color := Color(0.72, 0.92, 1.0, 1.0) if dragging else Color(0.42, 0.72, 0.90, 0.70)
+		draw_arc(Vector2.ZERO, body_radius + 8.0, 0.0, TAU, 32, placement_color, 2.0)
 
 	if alive and target != null and is_instance_valid(target) and target.alive:
 		var local_target := to_local(target.global_position)
