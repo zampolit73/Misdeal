@@ -10,12 +10,12 @@ func _ready() -> void:
 	iron_ward_button.pressed.connect(_choose_reward.bind("iron_ward"))
 	tempered_steel_button.pressed.connect(_choose_reward.bind("tempered_steel"))
 
-	summary_label.text = "The dead are quiet.  The wizard offers exactly one kindness."
+	summary_label.text = "Мертвецы затихли. Волшебник предлагает ровно одну милость."
 
 func _choose_reward(reward_id: String) -> void:
 	_disable_reward_buttons()
 	RunState.apply_reward(reward_id)
-	summary_label.text = "Taken.  Every gift at this table has a price."
+	summary_label.text = "Взято. У каждого дара за этим столом есть цена."
 	await get_tree().create_timer(0.35).timeout
 	get_tree().change_scene_to_file("res://scenes/table/table.tscn")
 
