@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "bone_warden"
 title = "КОСТЯНОЙ НАДЗИРАТЕЛЬ"
-card_text = "Финал первого акта. На половине здоровья надзиратель впадает в ярость."
+card_text = "Финал первого акта. Надзиратель бьёт по площади, а на половине здоровья зовёт подкрепление."
 wizard_line = "Двенадцать карт. Пора выяснить, заслуживаешь ли ты тринадцатую."
 type_label = "БОСС"
 tier = 2
 resolution_type = "combat"
 target_path = "res://resources/encounters/bone_warden.tres"
-art_path = "res://assets/pixel/table/cards/bone_patrol.png"
+art_path = "res://assets/pixel/table/cards/bone_warden.png"
 prototype_result_text = ""
