@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_unit_data")
 unit_name = "Следопыт"
+visual_role = "ranger"
 max_hp = 90.0
 damage = 14.0
 attack_interval = 0.72
