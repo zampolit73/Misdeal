@@ -5,6 +5,12 @@ const MAX_DEALS: int = ACT_CARD_TARGET
 const BOSS_CARD_ID := "bone_warden"
 const DEFAULT_ENCOUNTER_PATH := "res://resources/encounters/graveyard_ambush.tres"
 
+const ARTIFACT_PATHS := {
+	"dead_mans_shield": "res://resources/artifacts/dead_mans_shield.tres",
+	"blind_quiver": "res://resources/artifacts/blind_quiver.tres",
+	"cracked_focus": "res://resources/artifacts/cracked_focus.tres"
+}
+
 const CARD_PATHS := {
 	"bone_patrol": "res://resources/cards/bone_patrol.tres",
 	"graveyard_ambush": "res://resources/cards/graveyard_ambush.tres",
@@ -75,6 +81,7 @@ var current_offer_ids: Array[String] = []
 var rejected_card_ids: Array[String] = []
 var resolved_card_ids: Array[String] = []
 var active_card_id: String = ""
+var artifact_ids: Array[String] = []
 
 func _ready() -> void:
 	if remaining_card_ids.is_empty() and resolved_card_ids.is_empty() and active_card_id.is_empty():
@@ -91,6 +98,7 @@ func reset_run() -> void:
 	whispering_well_resolved = false
 	boss_defeated = false
 	active_card_id = ""
+	artifact_ids.clear()
 	remaining_card_ids.clear()
 	current_offer_ids.clear()
 	rejected_card_ids.clear()
@@ -98,6 +106,71 @@ func reset_run() -> void:
 
 	for card_id in ACT1_CARD_IDS:
 		remaining_card_ids.append(card_id)
+
+func get_artifact(artifact_id: String) -> ArtifactData:
+	var path: String = ARTIFACT_PATHS.get(artifact_id, "")
+	if path.is_empty():
+		push_warning("Unknown artifact id: %s" % artifact_id)
+		return null
+
+	var loaded := load(path)
+	if loaded is ArtifactData:
+		return loaded as ArtifactData
+
+	push_warning("Could not load ArtifactData: %s" % path)
+	return null
+
+func has_artifact(artifact_id: String) -> bool:
+	return artifact_ids.has(artifact_id)
+
+func add_artifact(artifact_id: String) -> bool:
+	if has_artifact(artifact_id):
+		return false
+
+	var artifact := get_artifact(artifact_id)
+	if artifact == null:
+		return false
+
+	artifact_ids.append(artifact_id)
+	return true
+
+func get_available_artifact_ids() -> Array[String]:
+	var available: Array[String] = []
+	for artifact_id in ARTIFACT_PATHS.keys():
+		var id := String(artifact_id)
+		if not has_artifact(id):
+			available.append(id)
+	return available
+
+func add_random_available_artifact() -> String:
+	var available := get_available_artifact_ids()
+	if available.is_empty():
+		return ""
+
+	available.shuffle()
+	var artifact_id := available[0]
+	add_artifact(artifact_id)
+	return artifact_id
+
+func get_artifacts_for_role(role: String) -> Array[ArtifactData]:
+	var result: Array[ArtifactData] = []
+	for artifact_id in artifact_ids:
+		var artifact := get_artifact(artifact_id)
+		if artifact != null and artifact.target_role == role:
+			result.append(artifact)
+	return result
+
+func get_artifact_titles_text() -> String:
+	if artifact_ids.is_empty():
+		return "нет"
+
+	var titles: Array[String] = []
+	for artifact_id in artifact_ids:
+		var artifact := get_artifact(artifact_id)
+		if artifact != null:
+			titles.append(artifact.title)
+
+	return ", ".join(titles)
 
 func get_card(card_id: String) -> RunCardData:
 	var path: String = CARD_PATHS.get(card_id, "")
