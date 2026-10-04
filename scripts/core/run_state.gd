@@ -74,6 +74,7 @@ var party_damage_bonus: float = 0.0
 var last_battle_won := false
 var selected_encounter_path: String = DEFAULT_ENCOUNTER_PATH
 var whispering_well_resolved := false
+var wizard_debt_active := false
 var boss_defeated := false
 
 var remaining_card_ids: Array[String] = []
@@ -96,6 +97,7 @@ func reset_run() -> void:
 	last_battle_won = false
 	selected_encounter_path = DEFAULT_ENCOUNTER_PATH
 	whispering_well_resolved = false
+	wizard_debt_active = false
 	boss_defeated = false
 	active_card_id = ""
 	artifact_ids.clear()
@@ -301,13 +303,31 @@ func is_run_complete() -> bool:
 func resolve_whispering_well() -> void:
 	whispering_well_resolved = true
 
+func activate_wizard_debt() -> void:
+	wizard_debt_active = true
+
+func get_enemy_damage_multiplier() -> float:
+	return 1.25 if wizard_debt_active else 1.0
+
+func get_reward_multiplier() -> int:
+	return 2 if wizard_debt_active else 1
+
+func get_run_condition_text() -> String:
+	return "ДОЛГ ВОЛШЕБНИКУ" if wizard_debt_active else ""
+
 func apply_reward(reward_id: String) -> void:
+	var multiplier := get_reward_multiplier()
+
 	match reward_id:
 		"blood_coin":
-			gold += 25
+			gold += 25 * multiplier
 		"iron_ward":
-			party_hp_bonus += 20.0
+			party_hp_bonus += 20.0 * multiplier
 		"tempered_steel":
-			party_damage_bonus += 3.0
+			party_damage_bonus += 3.0 * multiplier
 		_:
 			push_warning("Unknown reward id: %s" % reward_id)
+			return
+
+	if wizard_debt_active:
+		wizard_debt_active = false
