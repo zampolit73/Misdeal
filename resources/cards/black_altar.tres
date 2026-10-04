@@ -6,11 +6,11 @@
 script = ExtResource("1_card")
 card_id = "black_altar"
 title = "ЧЁРНЫЙ АЛТАРЬ"
-card_text = "На камне ещё тёплая кровь. Алтарь готов торговаться."
+card_text = "Алтарь меняет здоровье на силу — или принимает золото вместо крови."
 wizard_line = "Наконец-то место с понятными правилами: боль в обмен на силу."
 type_label = "СОБЫТИЕ"
 tier = 1
-resolution_type = "prototype"
-target_path = "res://scenes/event/prototype_card.tscn"
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
 art_path = "res://assets/pixel/table/cards/whispering_well.png"
-prototype_result_text = "Позже здесь будет обмен здоровья на постоянный бонус забега."
+prototype_result_text = ""
