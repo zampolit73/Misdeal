@@ -63,7 +63,7 @@ Target loop:
 - [x] Expand the prototype run into a 12-card Act 1 plus boss.
 - [x] Two-card offers with rejected cards removed from the current run.
 - [x] Data-driven 24-card structural pool split into early/mid/late tiers.
-- [ ] Replace prototype card resolvers with real mechanics for the full Act 1 pool.
+- [ ] Replace prototype card resolvers with real mechanics for the full Act 1 pool (19/24 pre-boss cards now bespoke).
 - [x] First real recovery card: Ash Rest.
 - [x] First functional shop: Gravedigger Shop.
 - [x] First artifact-choice card: Curse Forge with three hero-specific artifacts.
@@ -74,6 +74,11 @@ Target loop:
 - [x] Real Chained Prisoner choice event.
 - [x] Real Debtor Bones gamble event.
 - [x] Wizard Tithe temporary-debt event with harder combat and doubled normal reward.
+- [x] Late Faceless Card hidden-outcome event.
+- [x] Late Blood Ledger resource-conversion event.
+- [x] Source-locked Broken Crown party-wide artifact card.
+- [x] Last Camp pre-boss preparation event.
+- [x] Ossuary Gate mixed-archetype late combat encounter.
 
 ## Phase 4 — Vertical slice polish
 
