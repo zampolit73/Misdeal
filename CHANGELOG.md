@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+### Added
+
+- Pre-battle preparation phase.
+- Drag-and-drop repositioning for player heroes.
+- Deployment-zone bounds.
+- Rejection of overlapping hero placement.
+- Placement guidance in the battle UI.
+- Placement automatically locks when **FIGHT** is pressed.
+
 ### Project workflow
 
 - Added persistent project-state documentation for continuity across ChatGPT Project chats.
