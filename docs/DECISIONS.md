@@ -86,3 +86,17 @@ Reusable combat stats for heroes and enemies are stored in `UnitData` `.tres` re
 Battle scenes and encounter logic should reference these resources rather than duplicating unit stat blocks in GDScript.
 
 Runtime state such as team, current HP, target and position remains on the instantiated `BattleUnit`.
+
+
+## D009 — Minimal autoload RunState for vertical-slice scene flow
+
+Date: 2026-10-04  
+Status: accepted
+
+Use a small `RunState` autoload to carry prototype run values between the table, battle and reward scenes.
+
+For the first vertical slice it stores only the state required to prove the loop: gold, deals survived, party-wide HP/damage bonuses and the last battle result.
+
+Do not turn it into a large global game manager. Move domain-specific data into dedicated Resources/systems when the vertical slice requires it.
+
+Current reward values and defeat behavior are prototype tuning, not permanent game-design commitments.
