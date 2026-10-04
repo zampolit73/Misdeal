@@ -74,3 +74,15 @@ The assistant should make implementation changes directly through the connected 
 The user pulls those commits to the local Godot project and validates behavior in the editor/runtime.
 
 Do not require manual code copying when the repository can be updated directly.
+
+
+## D008 — Unit definitions use Godot Resources
+
+Date: 2026-10-04  
+Status: accepted
+
+Reusable combat stats for heroes and enemies are stored in `UnitData` `.tres` resources.
+
+Battle scenes and encounter logic should reference these resources rather than duplicating unit stat blocks in GDScript.
+
+Runtime state such as team, current HP, target and position remains on the instantiated `BattleUnit`.
