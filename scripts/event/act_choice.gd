@@ -71,27 +71,28 @@ func _configure_card() -> void:
 			_set_choices_visible(false)
 
 func _configure_ash_rest() -> void:
-	choice_a.text = "ОТДОХНУТЬ\n\n+15 здоровья каждому герою"
-	choice_b.text = "РАЗГРЕСТИ ПЕПЕЛ\n\nНайти 15 золота"
-	choice_c.text = "РАЗЖЕЧЬ УГЛИ\n\n+1 урона всему отряду"
+	_set_role_upgrade_button(choice_a, "knight", "ПОДЛАТАТЬ ДОСПЕХ")
+	_set_role_upgrade_button(choice_b, "ranger", "ПРОВЕРИТЬ ТЕТИВУ")
+	_set_role_upgrade_button(choice_c, "mage", "РАЗДУТЬ УГЛИ")
 	leave_button.text = "НЕ ЗАДЕРЖИВАТЬСЯ"
-	choice_a.pressed.connect(_resolve_ash_rest.bind("rest"))
-	choice_b.pressed.connect(_resolve_ash_rest.bind("gold"))
-	choice_c.pressed.connect(_resolve_ash_rest.bind("damage"))
+
+	choice_a.pressed.connect(_resolve_ash_rest.bind("knight"))
+	choice_b.pressed.connect(_resolve_ash_rest.bind("ranger"))
+	choice_c.pressed.connect(_resolve_ash_rest.bind("mage"))
 
 func _configure_shop() -> void:
-	choice_a.text = "ЖЕЛЕЗНЫЕ ПЛАСТИНЫ — 25\n\n+20 здоровья каждому герою"
-	choice_b.text = "ТОЧИЛЬНЫЙ КАМЕНЬ — 35\n\n+3 урона всему отряду"
-	choice_c.text = "ЗАПЕЧАТАННАЯ РЕЛИКВИЯ — 45\n\nСлучайный артефакт"
+	_set_role_upgrade_button(choice_a, "knight", "МОГИЛЬНЫЙ УРОК — 35")
+	_set_role_upgrade_button(choice_b, "ranger", "ОХОТНИЧЬЯ СХЕМА — 35")
+	_set_role_upgrade_button(choice_c, "mage", "ЗАПРЕТНАЯ ЗАПИСКА — 35")
 	leave_button.text = "НИЧЕГО НЕ ПОКУПАТЬ"
 
-	choice_a.disabled = RunState.gold < 25
-	choice_b.disabled = RunState.gold < 35
-	choice_c.disabled = RunState.gold < 45 or RunState.get_available_artifact_ids().is_empty()
+	choice_a.disabled = choice_a.disabled or RunState.gold < 35
+	choice_b.disabled = choice_b.disabled or RunState.gold < 35
+	choice_c.disabled = choice_c.disabled or RunState.gold < 35
 
-	choice_a.pressed.connect(_resolve_shop.bind("hp"))
-	choice_b.pressed.connect(_resolve_shop.bind("damage"))
-	choice_c.pressed.connect(_resolve_shop.bind("artifact"))
+	choice_a.pressed.connect(_resolve_shop.bind("knight"))
+	choice_b.pressed.connect(_resolve_shop.bind("ranger"))
+	choice_c.pressed.connect(_resolve_shop.bind("mage"))
 
 func _configure_curse_forge() -> void:
 	var artifact_ids := ["dead_mans_shield", "blind_quiver", "cracked_focus"]
@@ -113,25 +114,29 @@ func _configure_curse_forge() -> void:
 	leave_button.text = "ОТКАЗАТЬСЯ ОТ КОВКИ"
 
 func _configure_black_altar() -> void:
-	choice_a.text = "КАПЛЯ КРОВИ\n\n-15 здоровья отряду\n+2 урона"
-	choice_b.text = "ПОЛНАЯ ЧАША\n\n-30 здоровья отряду\n+4 урона"
-	choice_c.text = "ОТКУПИТЬСЯ — 25\n\n+15 здоровья отряду"
-	choice_c.disabled = RunState.gold < 25
+	_set_role_upgrade_button(choice_a, "knight", "КРОВЬ РЫЦАРЯ", "-20 здоровья отряду")
+	_set_role_upgrade_button(choice_b, "ranger", "КРОВЬ СЛЕДОПЫТА", "-15 здоровья отряду")
+	_set_role_upgrade_button(choice_c, "mage", "КРОВЬ МАГА", "-20 здоровья отряду")
 	leave_button.text = "НЕ КАСАТЬСЯ АЛТАРЯ"
 
-	choice_a.pressed.connect(_resolve_black_altar.bind("small_blood"))
-	choice_b.pressed.connect(_resolve_black_altar.bind("deep_blood"))
-	choice_c.pressed.connect(_resolve_black_altar.bind("coin"))
+	choice_a.pressed.connect(_resolve_black_altar.bind("knight"))
+	choice_b.pressed.connect(_resolve_black_altar.bind("ranger"))
+	choice_c.pressed.connect(_resolve_black_altar.bind("mage"))
 
 func _configure_chained_prisoner() -> void:
-	choice_a.text = "ОСВОБОДИТЬ — 25\n\n+15 здоровья\n+1 урона отряду"
-	choice_b.text = "СОРВАТЬ ЦЕПИ\n\n-10 здоровья\n+2 урона отряду"
-	choice_c.text = "ОБЫСКАТЬ ПЛЕННИКА\n\n+25 золота\n-10 здоровья"
-	choice_a.disabled = RunState.gold < 25
+	_set_least_developed_upgrade_button(choice_a, "ОСВОБОДИТЬ — 25", "Пленник обучит самого отстающего героя.")
+	choice_a.disabled = choice_a.disabled or RunState.gold < 25
+
+	if RunState.get_available_artifact_ids().is_empty():
+		choice_b.text = "СОРВАТЬ ЦЕПИ\n\n-15 здоровья отряду\n+35 золота — реликвий больше нет"
+	else:
+		choice_b.text = "СОРВАТЬ ЦЕПИ\n\n-15 здоровья отряду\nСлучайная реликвия"
+
+	choice_c.text = "ОБЫСКАТЬ ПЛЕННИКА\n\n+25 золота\n-10 здоровья отряду"
 	leave_button.text = "ОСТАВИТЬ В ЦЕПЯХ"
 
-	choice_a.pressed.connect(_resolve_chained_prisoner.bind("free"))
-	choice_b.pressed.connect(_resolve_chained_prisoner.bind("break"))
+	choice_a.pressed.connect(_resolve_chained_prisoner.bind("mentor"))
+	choice_b.pressed.connect(_resolve_chained_prisoner.bind("chains"))
 	choice_c.pressed.connect(_resolve_chained_prisoner.bind("loot"))
 
 func _configure_debtor_bones() -> void:
@@ -156,10 +161,16 @@ func _configure_wizard_tithe() -> void:
 	choice_c.pressed.connect(_resolve_wizard_tithe.bind("refuse"))
 
 func _configure_faceless_card() -> void:
-	choice_a.text = "ПЕРЕВЕРНУТЬ КАРТУ\n\nИсход неизвестен"
-	choice_b.text = "ПОДКУПИТЬ СУДЬБУ — 30\n\n+20 здоровья\n+2 урона отряду"
-	choice_c.text = "СЖЕЧЬ КАРТУ\n\nГарантированно +1 урона"
-	choice_b.disabled = RunState.gold < 30
+	choice_a.text = "ПЕРЕВЕРНУТЬ КАРТУ\n\nИсход неизвестен:\nзолото, реликвия или развитие"
+
+	_set_least_developed_upgrade_button(choice_b, "ПОДКУПИТЬ СУДЬБУ — 30", "Гарантированное развитие самого отстающего героя.")
+	choice_b.disabled = choice_b.disabled or RunState.gold < 30
+
+	if RunState.wizard_debt_active:
+		choice_c.text = "СЖЕЧЬ КАРТУ\n\nСнять ДОЛГ ВОЛШЕБНИКУ"
+	else:
+		choice_c.text = "СЖЕЧЬ КАРТУ\n\n+20 золота"
+
 	leave_button.text = "НЕ ТРОГАТЬ КАРТУ"
 
 	choice_a.pressed.connect(_resolve_faceless_card.bind("reveal"))
@@ -167,15 +178,22 @@ func _configure_faceless_card() -> void:
 	choice_c.pressed.connect(_resolve_faceless_card.bind("burn"))
 
 func _configure_blood_ledger() -> void:
-	choice_a.text = "ПОДПИСАТЬ ЗОЛОТОМ — 40\n\n+4 урона отряду"
-	choice_a.disabled = RunState.gold < 40
+	_set_least_developed_upgrade_button(choice_a, "ПОДПИСАТЬ ЗОЛОТОМ — 40", "Книга усилит самого отстающего героя.")
+	choice_a.disabled = choice_a.disabled or RunState.gold < 40
 
 	if RunState.get_available_artifact_ids().is_empty():
-		choice_b.text = "ПОДПИСАТЬ КРОВЬЮ\n\n-25 здоровья\n+3 урона отряду"
+		_set_least_developed_upgrade_button(choice_b, "ПОДПИСАТЬ КРОВЬЮ", "-25 здоровья. Реликвий больше нет — книга предложит развитие.")
 	else:
-		choice_b.text = "ПОДПИСАТЬ КРОВЬЮ\n\n-25 здоровья\nСлучайный артефакт"
+		choice_b.text = "ПОДПИСАТЬ КРОВЬЮ\n\n-25 здоровья отряду\nСлучайная реликвия"
 
-	choice_c.text = "ВЫЧЕРКНУТЬ ИМЯ\n\n+25 здоровья\n-2 урона отряду"
+	var last_upgrade_id := RunState.get_last_hero_upgrade_id()
+	if last_upgrade_id.is_empty():
+		choice_c.text = "ВЫЧЕРКНУТЬ ИМЯ\n\nНечего стирать"
+		choice_c.disabled = true
+	else:
+		var last_upgrade := RunState.get_hero_upgrade(last_upgrade_id)
+		choice_c.text = "ВЫЧЕРКНУТЬ: %s\n\nПотерять последнее развитие\n+70 золота" % last_upgrade.title
+
 	leave_button.text = "ЗАКРЫТЬ КНИГУ"
 
 	choice_a.pressed.connect(_resolve_blood_ledger.bind("gold"))
@@ -186,7 +204,7 @@ func _configure_broken_crown() -> void:
 	choice_a.text = "НАДЕТЬ КОРОНУ\n\n+22% урона всей партии\n-10 здоровья каждому герою"
 	choice_a.disabled = RunState.has_artifact("broken_crown")
 	choice_b.text = "РАЗЛОМАТЬ КОРОНУ\n\n+40 золота"
-	choice_c.text = "ПЕРЕПЛАВИТЬ ОСКОЛКИ\n\n+20 здоровья\n+1 урона отряду"
+	_set_least_developed_upgrade_button(choice_c, "ПЕРЕПЛАВИТЬ ОСКОЛКИ", "Осколки станут развитием самого отстающего героя.")
 	leave_button.text = "ОСТАВИТЬ КОРОНУ"
 
 	choice_a.pressed.connect(_resolve_broken_crown.bind("wear"))
@@ -194,14 +212,14 @@ func _configure_broken_crown() -> void:
 	choice_c.pressed.connect(_resolve_broken_crown.bind("melt"))
 
 func _configure_last_camp() -> void:
-	choice_a.text = "УКРЕПИТЬ ЛАГЕРЬ\n\n+30 здоровья каждому герою"
-	choice_b.text = "ЗАТОЧИТЬ ОРУЖИЕ\n\n+3 урона отряду"
-	choice_c.text = "СОБРАТЬ ПРИПАСЫ\n\n+25 золота"
+	_set_role_upgrade_button(choice_a, "knight", "ГОТОВИТЬ РЫЦАРЯ")
+	_set_role_upgrade_button(choice_b, "ranger", "ГОТОВИТЬ СЛЕДОПЫТА")
+	_set_role_upgrade_button(choice_c, "mage", "ГОТОВИТЬ МАГА")
 	leave_button.text = "ИДТИ ДАЛЬШЕ СРАЗУ"
 
-	choice_a.pressed.connect(_resolve_last_camp.bind("fortify"))
-	choice_b.pressed.connect(_resolve_last_camp.bind("sharpen"))
-	choice_c.pressed.connect(_resolve_last_camp.bind("supplies"))
+	choice_a.pressed.connect(_resolve_last_camp.bind("knight"))
+	choice_b.pressed.connect(_resolve_last_camp.bind("ranger"))
+	choice_c.pressed.connect(_resolve_last_camp.bind("mage"))
 
 func _configure_rattling_bridge() -> void:
 	choice_a.text = "ПЕРЕБЕЖАТЬ\n\n50%: +25 золота\n50%: -20 здоровья"
@@ -224,69 +242,103 @@ func _configure_lost_purse() -> void:
 	choice_c.pressed.connect(_resolve_lost_purse.bind("all_in"))
 
 func _configure_candle_seller() -> void:
-	choice_a.text = "БЕЛАЯ СВЕЧА — 10\n\n+10 здоровья отряду"
-	choice_b.text = "КРАСНАЯ СВЕЧА — 15\n\n+1 урона отряду"
-	choice_c.text = "УКРАСТЬ ЯЩИК\n\n+20 золота\n-10 здоровья"
-	choice_a.disabled = RunState.gold < 10
-	choice_b.disabled = RunState.gold < 15
+	_set_role_upgrade_button(choice_a, "knight", "СИНЯЯ СВЕЧА — 25")
+	_set_role_upgrade_button(choice_b, "ranger", "ЗЕЛЁНАЯ СВЕЧА — 25")
+	_set_role_upgrade_button(choice_c, "mage", "ФИОЛЕТОВАЯ СВЕЧА — 25")
+	choice_a.disabled = choice_a.disabled or RunState.gold < 25
+	choice_b.disabled = choice_b.disabled or RunState.gold < 25
+	choice_c.disabled = choice_c.disabled or RunState.gold < 25
 	leave_button.text = "НИЧЕГО НЕ ПОКУПАТЬ"
 
-	choice_a.pressed.connect(_resolve_candle_seller.bind("white"))
-	choice_b.pressed.connect(_resolve_candle_seller.bind("red"))
-	choice_c.pressed.connect(_resolve_candle_seller.bind("steal"))
+	choice_a.pressed.connect(_resolve_candle_seller.bind("knight"))
+	choice_b.pressed.connect(_resolve_candle_seller.bind("ranger"))
+	choice_c.pressed.connect(_resolve_candle_seller.bind("mage"))
 
 func _configure_bone_tax() -> void:
 	choice_a.text = "ЗАПЛАТИТЬ 25 ЗОЛОТА\n\nПройти без последствий"
-	choice_b.text = "ЗАПЛАТИТЬ КРОВЬЮ\n\n-15 здоровья отряду"
-	choice_c.text = "ПРОРВАТЬСЯ СИЛОЙ\n\n-25 здоровья\n+2 урона отряду"
 	choice_a.disabled = RunState.gold < 25
+	choice_b.text = "ЗАПЛАТИТЬ КРОВЬЮ\n\n-15 здоровья отряду"
+	_set_least_developed_upgrade_button(choice_c, "ПРОРВАТЬСЯ СИЛОЙ", "-25 здоровья, но драка закалит самого отстающего героя.")
 	leave_button.visible = false
 
 	choice_a.pressed.connect(_resolve_bone_tax.bind("gold"))
 	choice_b.pressed.connect(_resolve_bone_tax.bind("blood"))
 	choice_c.pressed.connect(_resolve_bone_tax.bind("force"))
 
-func _resolve_ash_rest(choice: String) -> void:
+func _get_role_label(role: String) -> String:
+	match role:
+		"knight":
+			return "РЫЦАРЬ"
+		"ranger":
+			return "СЛЕДОПЫТ"
+		"mage":
+			return "МАГ"
+		_:
+			return "ГЕРОЙ"
+
+func _set_role_upgrade_button(button: Button, role: String, heading: String, extra_text: String = "") -> void:
+	var upgrade_id := RunState.get_next_available_hero_upgrade_id(role)
+	if upgrade_id.is_empty():
+		button.text = "%s\n\n%s: все пути развития уже освоены" % [heading, _get_role_label(role)]
+		button.disabled = true
+		return
+
+	var upgrade := RunState.get_hero_upgrade(upgrade_id)
+	var tail := ""
+	if not extra_text.is_empty():
+		tail = "\n\n%s" % extra_text
+
+	button.text = "%s\n\n%s — %s\n%s%s" % [
+		heading,
+		_get_role_label(role),
+		upgrade.title,
+		upgrade.description,
+		tail
+	]
+
+func _set_least_developed_upgrade_button(button: Button, heading: String, extra_text: String = "") -> void:
+	var role := RunState.get_least_developed_available_role()
+	if role.is_empty():
+		button.text = "%s\n\nВсе известные пути развития уже освоены" % heading
+		button.disabled = true
+		return
+
+	_set_role_upgrade_button(button, role, heading, extra_text)
+
+func _grant_role_upgrade(role: String) -> String:
+	return RunState.add_next_available_hero_upgrade(role)
+
+func _grant_least_developed_upgrade() -> String:
+	return RunState.add_upgrade_to_least_developed_role()
+
+func _format_upgrade_gain(upgrade_id: String) -> String:
+	if upgrade_id.is_empty():
+		return "Новых путей развития не осталось."
+
+	var upgrade := RunState.get_hero_upgrade(upgrade_id)
+	if upgrade == null:
+		return "Развитие изменилось."
+	return "%s получает развитие: %s." % [_get_role_label(upgrade.target_role), upgrade.title]
+
+func _resolve_ash_rest(role: String) -> void:
 	if resolved:
 		return
 
-	match choice:
-		"rest":
-			RunState.party_hp_bonus += 15.0
-			_finish("Тепло въедается в кости. Здоровье каждого героя +15.")
-		"gold":
-			RunState.gold += 15
-			_finish("В пепле нашлись чужие монеты. Получено 15 золота.")
-		"damage":
-			RunState.party_damage_bonus += 1.0
-			_finish("Вы уносите с собой жар углей. Урон отряда +1.")
+	var upgrade_id := _grant_role_upgrade(role)
+	if upgrade_id.is_empty():
+		return
+	_finish("У костра рождается новый приём. %s" % _format_upgrade_gain(upgrade_id))
 
-func _resolve_shop(choice: String) -> void:
-	if resolved:
+func _resolve_shop(role: String) -> void:
+	if resolved or RunState.gold < 35:
 		return
 
-	match choice:
-		"hp":
-			if RunState.gold < 25:
-				return
-			RunState.gold -= 25
-			RunState.party_hp_bonus += 20.0
-			_finish("Могильщик забирает монеты. Здоровье каждого героя +20.")
-		"damage":
-			if RunState.gold < 35:
-				return
-			RunState.gold -= 35
-			RunState.party_damage_bonus += 3.0
-			_finish("Лезвия становятся острее. Урон отряда +3.")
-		"artifact":
-			if RunState.gold < 45:
-				return
-			var artifact_id := RunState.add_random_available_artifact()
-			if artifact_id.is_empty():
-				return
-			RunState.gold -= 45
-			var artifact := RunState.get_artifact(artifact_id)
-			_finish("Печать ломается. Получен артефакт: %s." % artifact.title)
+	var upgrade_id := _grant_role_upgrade(role)
+	if upgrade_id.is_empty():
+		return
+
+	RunState.gold -= 35
+	_finish("Могильщик берёт монеты и передаёт чужой секрет. %s" % _format_upgrade_gain(upgrade_id))
 
 func _resolve_forge(artifact_id: String) -> void:
 	if resolved or RunState.has_artifact(artifact_id):
@@ -298,42 +350,40 @@ func _resolve_forge(artifact_id: String) -> void:
 	var artifact := RunState.get_artifact(artifact_id)
 	_finish("Кузница принимает выбор. Получен артефакт: %s." % artifact.title)
 
-func _resolve_black_altar(choice: String) -> void:
+func _resolve_black_altar(role: String) -> void:
 	if resolved:
 		return
 
-	match choice:
-		"small_blood":
-			RunState.party_hp_bonus -= 15.0
-			RunState.party_damage_bonus += 2.0
-			_finish("Алтарь принимает кровь. Здоровье отряда -15, урон +2.")
-		"deep_blood":
-			RunState.party_hp_bonus -= 30.0
-			RunState.party_damage_bonus += 4.0
-			_finish("Камень пьёт жадно. Здоровье отряда -30, урон +4.")
-		"coin":
-			if RunState.gold < 25:
-				return
-			RunState.gold -= 25
-			RunState.party_hp_bonus += 15.0
-			_finish("Золото чернеет и плавится. Здоровье отряда +15.")
+	var hp_cost := -15.0 if role == "ranger" else -20.0
+	var upgrade_id := _grant_role_upgrade(role)
+	if upgrade_id.is_empty():
+		return
+
+	RunState.party_hp_bonus += hp_cost
+	_finish("Алтарь принимает кровь. Здоровье отряда %d. %s" % [int(hp_cost), _format_upgrade_gain(upgrade_id)])
 
 func _resolve_chained_prisoner(choice: String) -> void:
 	if resolved:
 		return
 
 	match choice:
-		"free":
+		"mentor":
 			if RunState.gold < 25:
 				return
+			var upgrade_id := _grant_least_developed_upgrade()
+			if upgrade_id.is_empty():
+				return
 			RunState.gold -= 25
-			RunState.party_hp_bonus += 15.0
-			RunState.party_damage_bonus += 1.0
-			_finish("Пленник уходит, оставив полезные советы. Здоровье +15, урон +1.")
-		"break":
-			RunState.party_hp_bonus -= 10.0
-			RunState.party_damage_bonus += 2.0
-			_finish("Цепи поддаются не сразу. Здоровье -10, урон отряда +2.")
+			_finish("Пленник покупает свободу знанием. %s" % _format_upgrade_gain(upgrade_id))
+		"chains":
+			RunState.party_hp_bonus -= 15.0
+			var artifact_id := RunState.add_random_available_artifact()
+			if artifact_id.is_empty():
+				RunState.gold += 35
+				_finish("Цепи ломаются, но тайник пуст. Здоровье -15, получено 35 золота.")
+			else:
+				var artifact := RunState.get_artifact(artifact_id)
+				_finish("За цепями спрятана реликвия: %s. Здоровье отряда -15." % artifact.title)
 		"loot":
 			RunState.gold += 25
 			RunState.party_hp_bonus -= 10.0
@@ -389,22 +439,35 @@ func _resolve_faceless_card(choice: String) -> void:
 					RunState.gold += 60
 					_finish("На карте проступает золотая маска. Получено 60 золота.")
 				1:
-					RunState.party_damage_bonus += 4.0
-					_finish("На карте появляется ваше лицо — чуть более жестокое. Урон отряда +4.")
+					var artifact_id := RunState.add_random_available_artifact()
+					if artifact_id.is_empty():
+						RunState.gold += 35
+						_finish("Лицо на карте пусто. Реликвий не осталось: получено 35 золота.")
+					else:
+						var artifact := RunState.get_artifact(artifact_id)
+						_finish("На карте проступает реликвия: %s." % artifact.title)
 				_:
-					RunState.party_hp_bonus -= 25.0
-					RunState.party_damage_bonus -= 2.0
-					_finish("На карте оказывается лицо мертвеца. Здоровье -25, урон отряда -2.")
+					var upgrade_id := _grant_least_developed_upgrade()
+					if upgrade_id.is_empty():
+						RunState.gold += 35
+						_finish("Карта не находит, что ещё изменить. Получено 35 золота.")
+					else:
+						_finish("Карта показывает возможное будущее. %s" % _format_upgrade_gain(upgrade_id))
 		"bribe":
 			if RunState.gold < 30:
 				return
+			var upgrade_id := _grant_least_developed_upgrade()
+			if upgrade_id.is_empty():
+				return
 			RunState.gold -= 30
-			RunState.party_hp_bonus += 20.0
-			RunState.party_damage_bonus += 2.0
-			_finish("Монеты исчезают под картой. Здоровье +20, урон +2.")
+			_finish("Монеты исчезают под картой. %s" % _format_upgrade_gain(upgrade_id))
 		"burn":
-			RunState.party_damage_bonus += 1.0
-			_finish("Карта горит без дыма. Пепел остаётся на оружии: урон +1.")
+			if RunState.wizard_debt_active:
+				RunState.clear_wizard_debt()
+				_finish("Карта вспыхивает чёрным пламенем. ДОЛГ ВОЛШЕБНИКУ исчезает вместе с ней.")
+			else:
+				RunState.gold += 20
+				_finish("Карта горит без дыма. В пепле остаётся 20 золота.")
 
 func _resolve_blood_ledger(choice: String) -> void:
 	if resolved:
@@ -414,22 +477,31 @@ func _resolve_blood_ledger(choice: String) -> void:
 		"gold":
 			if RunState.gold < 40:
 				return
+			var upgrade_id := _grant_least_developed_upgrade()
+			if upgrade_id.is_empty():
+				return
 			RunState.gold -= 40
-			RunState.party_damage_bonus += 4.0
-			_finish("Книга принимает сорок монет и переписывает исход. Урон отряда +4.")
+			_finish("Книга принимает сорок монет и вписывает новый исход. %s" % _format_upgrade_gain(upgrade_id))
 		"blood":
 			RunState.party_hp_bonus -= 25.0
 			var artifact_id := RunState.add_random_available_artifact()
 			if artifact_id.is_empty():
-				RunState.party_damage_bonus += 3.0
-				_finish("Кровь впитывается в пустые страницы. Артефактов не осталось: здоровье -25, урон +3.")
+				var upgrade_id := _grant_least_developed_upgrade()
+				if upgrade_id.is_empty():
+					RunState.gold += 40
+					_finish("Книга забирает кровь, но страниц больше нет. Здоровье -25, получено 40 золота.")
+				else:
+					_finish("Книга забирает кровь и переписывает героя. Здоровье -25. %s" % _format_upgrade_gain(upgrade_id))
 			else:
 				var artifact := RunState.get_artifact(artifact_id)
 				_finish("Книга забирает кровь и выдаёт реликвию: %s. Здоровье -25." % artifact.title)
 		"erase":
-			RunState.party_hp_bonus += 25.0
-			RunState.party_damage_bonus -= 2.0
-			_finish("Ваше имя исчезает со страницы. Здоровье +25, урон отряда -2.")
+			var removed_id := RunState.remove_last_hero_upgrade()
+			if removed_id.is_empty():
+				return
+			var removed := RunState.get_hero_upgrade(removed_id)
+			RunState.gold += 70
+			_finish("Строка исчезает из книги. Потеряно развитие %s. Получено 70 золота." % removed.title)
 
 func _resolve_broken_crown(choice: String) -> void:
 	if resolved:
@@ -444,24 +516,22 @@ func _resolve_broken_crown(choice: String) -> void:
 			RunState.gold += 40
 			_finish("Корона раскалывается окончательно. В оправе спрятано 40 золота.")
 		"melt":
-			RunState.party_hp_bonus += 20.0
-			RunState.party_damage_bonus += 1.0
-			_finish("Металл идёт на доспехи и клинки. Здоровье +20, урон +1.")
+			var upgrade_id := _grant_least_developed_upgrade()
+			if upgrade_id.is_empty():
+				RunState.gold += 30
+				_finish("Осколки уже не могут улучшить отряд. Получено 30 золота.")
+			else:
+				_finish("Осколки переплавлены в новый приём. %s" % _format_upgrade_gain(upgrade_id))
 
-func _resolve_last_camp(choice: String) -> void:
+func _resolve_last_camp(role: String) -> void:
 	if resolved:
 		return
 
-	match choice:
-		"fortify":
-			RunState.party_hp_bonus += 30.0
-			_finish("Последний лагерь становится крепостью на одну ночь. Здоровье отряда +30.")
-		"sharpen":
-			RunState.party_damage_bonus += 3.0
-			_finish("К утру лезвия становятся тоньше терпения волшебника. Урон отряда +3.")
-		"supplies":
-			RunState.gold += 25
-			_finish("В забытых сумках нашлось 25 золота.")
+	var upgrade_id := _grant_role_upgrade(role)
+	if upgrade_id.is_empty():
+		return
+
+	_finish("Последняя ночь перед надзирателем не проходит зря. %s" % _format_upgrade_gain(upgrade_id))
 
 func _resolve_rattling_bridge(choice: String) -> void:
 	if resolved:
@@ -499,27 +569,16 @@ func _resolve_lost_purse(choice: String) -> void:
 			RunState.party_hp_bonus -= 25.0
 			_finish("Кошель ваш. Кусок руки тоже. +55 золота, здоровье -25.")
 
-func _resolve_candle_seller(choice: String) -> void:
-	if resolved:
+func _resolve_candle_seller(role: String) -> void:
+	if resolved or RunState.gold < 25:
 		return
 
-	match choice:
-		"white":
-			if RunState.gold < 10:
-				return
-			RunState.gold -= 10
-			RunState.party_hp_bonus += 10.0
-			_finish("Белая свеча горит ровно. Здоровье отряда +10.")
-		"red":
-			if RunState.gold < 15:
-				return
-			RunState.gold -= 15
-			RunState.party_damage_bonus += 1.0
-			_finish("Красный воск капает на оружие. Урон отряда +1.")
-		"steal":
-			RunState.gold += 20
-			RunState.party_hp_bonus -= 10.0
-			_finish("Торговец оказывается не настолько слеп. +20 золота, здоровье -10.")
+	var upgrade_id := _grant_role_upgrade(role)
+	if upgrade_id.is_empty():
+		return
+
+	RunState.gold -= 25
+	_finish("Свеча сгорает за секунду, оставляя знание вместо воска. %s" % _format_upgrade_gain(upgrade_id))
 
 func _resolve_bone_tax(choice: String) -> void:
 	if resolved:
@@ -535,9 +594,11 @@ func _resolve_bone_tax(choice: String) -> void:
 			RunState.party_hp_bonus -= 15.0
 			_finish("Страж принимает кровь вместо монет. Здоровье отряда -15.")
 		"force":
+			var upgrade_id := _grant_least_developed_upgrade()
+			if upgrade_id.is_empty():
+				return
 			RunState.party_hp_bonus -= 25.0
-			RunState.party_damage_bonus += 2.0
-			_finish("Пошлина превращается в драку. Здоровье -25, урон отряда +2.")
+			_finish("Пошлина превращается в драку. Здоровье -25. %s" % _format_upgrade_gain(upgrade_id))
 
 func _resolve_leave() -> void:
 	if resolved:
@@ -593,7 +654,10 @@ func _set_choices_visible(value: bool) -> void:
 
 func _refresh_run_labels() -> void:
 	gold_label.text = "ЗОЛОТО: %d" % RunState.gold
-	artifacts_label.text = "АРТЕФАКТЫ: %s" % RunState.get_artifact_titles_text()
+	artifacts_label.text = "РАЗВИТИЕ: %d   |   РЕЛИКВИИ: %s" % [
+		RunState.hero_upgrade_ids.size(),
+		RunState.get_artifact_titles_text()
+	]
 	var condition_text := RunState.get_run_condition_text()
 	if not condition_text.is_empty():
 		artifacts_label.text += "   |   %s" % condition_text
