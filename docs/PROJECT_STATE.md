@@ -323,7 +323,11 @@ Before combat, the player can drag every currently recruited hero within the dep
 
 Implemented combat behavior:
 
-- automatic nearest-enemy targeting;
+- three pre-battle tactical orders: **НАТИСК**, **ОХОТА**, **СТРОЙ**;
+- **НАТИСК** preserves nearest-enemy focus and gives heroes +15% movement speed for faster engagement;
+- **ОХОТА** continuously prioritizes support enemies first, then ranged enemies, then the nearest remaining target;
+- **СТРОЙ** continuously focuses the enemy closest to the currently most vulnerable living ally, causing the party to collapse onto immediate threats instead of scattering;
+- orders can be changed freely during preparation and lock when **БОЙ** is pressed;
 - automatic movement and attacks;
 - melee and ranged attack ranges;
 - Bone Archer keeps distance and retreats when enemies get too close;
@@ -343,7 +347,7 @@ Implemented combat behavior:
 - Bone Thrall is a smaller, faster, low-HP swarm enemy;
 - Crypt Guard is a slower elite melee enemy with a larger silhouette, visible name and 35% splash damage around its primary target.
 
-Hero stats receive persistent run bonuses from `RunState`. After upgrades and relics, incomplete parties receive visible fixed compensation: solo +50% HP/+35% damage, duo +20% HP/+15% damage, trio none. Final spawned max HP is clamped to at least 20 and damage to at least 1. Enemy/boss stats do not dynamically scale to party size.
+Hero stats receive persistent run bonuses from `RunState`. After upgrades and relics, incomplete parties receive visible fixed compensation: solo x2.0 HP, x1.8 damage, x0.80 attack interval and x1.10 movement speed; duo +20% HP/+15% damage; trio none. Final spawned max HP is clamped to at least 20 and damage to at least 1. Tactical-order movement is applied at runtime after these build/party modifiers. Enemy/boss stats do not dynamically scale to party size.
 
 After victory, **ЗАБРАТЬ НАГРАДУ** opens the reward scene.
 
@@ -604,7 +608,8 @@ Locally verify the new hard-roguelike party flow end to end:
 - long wizard-table card descriptions must remain inside their clipped description area and never touch **ВЫБРАТЬ**;
 - victory/defeat result panels and bottom actions must remain above all unit sprites, HP bars, names and floating combat text;
 - run-end summary must list final party and companion fates;
-- Bone Warden must remain a fixed benchmark and be tested solo, duo and trio before changing boss stats again.
+- Bone Warden must remain a fixed benchmark and be tested solo, duo and trio before changing boss stats again;
+- verify all three tactical orders in normal, elite and Bone Warden combat: **НАТИСК** should visibly engage faster, **ОХОТА** should retarget to Bellkeeper/Archers including spawned reinforcements, and **СТРОЙ** should react to the ally currently under the most pressure.
 
 Do not add more companion classes until this three-role recruitment loop is locally validated.
 

@@ -615,3 +615,21 @@ Only the interaction remains native: a transparent/focusable `StartButton` is al
 For repository reliability, the approved 640×360 WebP is reconstructed at runtime from five base64 text chunks under `assets/pixel/main/approved_splash/` and rendered with nearest filtering.
 
 Do not replace this screen with the wizard-table gameplay composition without explicit new visual approval.
+
+
+## D037 — Combat gets one tactical order before the autobattle, not mid-fight micromanagement
+
+Date: 2026-10-06  
+Status: accepted for vertical-slice combat depth
+
+The preparation phase now includes one party-wide tactical order selected before pressing **БОЙ**.
+
+The three current orders deliberately reuse existing movement/targeting behavior rather than introducing an ability framework:
+
+- **НАТИСК** — heroes keep nearest-enemy targeting and gain +15% movement speed so the party commits faster;
+- **ОХОТА** — heroes dynamically prioritize support enemies, then ranged enemies, then the nearest remaining enemy;
+- **СТРОЙ** — heroes dynamically focus the enemy closest to the most vulnerable living ally, creating a protective focus without direct unit control.
+
+The selected order applies only to the current battle and locks when combat starts. It is not stored in `RunState` and is not a run-progression reward.
+
+This keeps Misdeal's combat identity intact: the player makes a meaningful preparation decision, then watches the autobattle resolve. Do not add real-time per-unit commands, ability hotbars or continuous retargeting controls unless playtesting shows the compact preparation-first model is insufficient.

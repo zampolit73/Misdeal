@@ -2,6 +2,11 @@ class_name BattleUnit
 extends Node2D
 
 const UNIT_TILE_SIZE: float = 96.0
+const TACTICAL_ORDER_ASSAULT := "assault"
+const TACTICAL_ORDER_HUNT := "hunt"
+const TACTICAL_ORDER_FORMATION := "formation"
+const ASSAULT_MOVE_MULTIPLIER := 1.15
+
 const UNIT_SHEET_PARTS: Array[String] = [
 	"res://assets/pixel/units/combat_units_v3/part_00.txt",
 	"res://assets/pixel/units/combat_units_v3/part_01.txt",
@@ -53,6 +58,8 @@ var attack_cooldown := 0.0
 var support_cooldown := 0.0
 var enraged := false
 var base_art_modulate := Color.WHITE
+var tactical_order := TACTICAL_ORDER_ASSAULT
+var target_refresh_cooldown := 0.0
 
 var placement_enabled := false
 var placement_bounds := Rect2()
@@ -98,6 +105,16 @@ func configure(data: UnitData, unit_team: int, spawn_position: Vector2, name_ove
 	enrage_damage_multiplier = data.enrage_damage_multiplier
 	enrage_attack_interval_multiplier = data.enrage_attack_interval_multiplier
 	enrage_move_speed_multiplier = data.enrage_move_speed_multiplier
+
+func set_tactical_order(order_id: String) -> void:
+	match order_id:
+		TACTICAL_ORDER_ASSAULT, TACTICAL_ORDER_HUNT, TACTICAL_ORDER_FORMATION:
+			tactical_order = order_id
+		_:
+			tactical_order = TACTICAL_ORDER_ASSAULT
+
+	target = null
+	target_refresh_cooldown = 0.0
 
 func _ready() -> void:
 	hp = max_hp
@@ -259,6 +276,7 @@ func start_combat() -> void:
 	if team != 0 and not is_boss and not show_enemy_name:
 		name_label.visible = false
 	attack_cooldown = randf_range(0.0, 0.25)
+	target_refresh_cooldown = 0.0
 	if support_heal_interval > 0.0:
 		support_cooldown = support_heal_interval * 0.65
 
@@ -327,9 +345,16 @@ func _process(delta: float) -> void:
 
 	_process_support(delta)
 
-	if not _is_valid_target(target):
-		target = _find_nearest_enemy()
+	target_refresh_cooldown = maxf(0.0, target_refresh_cooldown - delta)
+	var should_refresh_target := not _is_valid_target(target)
+	if team == 0 and tactical_order != TACTICAL_ORDER_ASSAULT and target_refresh_cooldown <= 0.0:
+		should_refresh_target = true
 
+	if should_refresh_target:
+		target = _find_preferred_enemy()
+		target_refresh_cooldown = 0.35
+
+	var movement_speed := _get_current_move_speed()
 	var velocity := _get_separation_velocity()
 
 	if target != null:
@@ -341,20 +366,20 @@ func _process(delta: float) -> void:
 			var retreat_direction := target.global_position.direction_to(global_position)
 
 			if _can_move_in_direction(retreat_direction, delta):
-				velocity += retreat_direction * move_speed
+				velocity += retreat_direction * movement_speed
 			else:
 				attack_cooldown -= delta
 				if attack_cooldown <= 0.0:
 					_attack_target()
 		elif distance > desired_max_range:
 			var direction := global_position.direction_to(target.global_position)
-			velocity += direction * move_speed
+			velocity += direction * movement_speed
 		else:
 			attack_cooldown -= delta
 			if attack_cooldown <= 0.0:
 				_attack_target()
 
-	position += velocity.limit_length(move_speed * 1.35) * delta
+	position += velocity.limit_length(movement_speed * 1.35) * delta
 	_clamp_to_combat_bounds()
 	z_index = int(position.y)
 	queue_redraw()
@@ -427,7 +452,7 @@ func _can_move_in_direction(direction: Vector2, delta: float) -> bool:
 	if combat_bounds.size == Vector2.ZERO:
 		return true
 
-	var step := direction.normalized() * move_speed * delta
+	var step := direction.normalized() * _get_current_move_speed() * delta
 	var candidate := position + step
 	var clamped_candidate := _clamped_combat_position(candidate)
 
@@ -478,6 +503,18 @@ func _get_separation_velocity() -> Vector2:
 func _is_valid_target(candidate: BattleUnit) -> bool:
 	return candidate != null and is_instance_valid(candidate) and candidate.alive and candidate.team != team
 
+func _find_preferred_enemy() -> BattleUnit:
+	if team != 0:
+		return _find_nearest_enemy()
+
+	match tactical_order:
+		TACTICAL_ORDER_HUNT:
+			return _find_hunt_enemy()
+		TACTICAL_ORDER_FORMATION:
+			return _find_formation_enemy()
+		_:
+			return _find_nearest_enemy()
+
 func _find_nearest_enemy() -> BattleUnit:
 	var nearest: BattleUnit = null
 	var nearest_distance := INF
@@ -490,12 +527,91 @@ func _find_nearest_enemy() -> BattleUnit:
 		if not unit.alive or unit.team == team:
 			continue
 
-		var distance := global_position.distance_squared_to(unit.global_position)
+		var distance: float = global_position.distance_squared_to(unit.global_position)
 		if distance < nearest_distance:
 			nearest_distance = distance
 			nearest = unit
 
 	return nearest
+
+func _find_hunt_enemy() -> BattleUnit:
+	var best_target: BattleUnit = null
+	var best_rank: int = 999
+	var best_distance := INF
+
+	for node in get_tree().get_nodes_in_group("combat_units"):
+		if not node is BattleUnit:
+			continue
+
+		var unit := node as BattleUnit
+		if not unit.alive or unit.team == team:
+			continue
+
+		var rank: int = 2
+		if unit.support_heal_interval > 0.0:
+			rank = 0
+		elif unit.minimum_range > 0.0:
+			rank = 1
+
+		var distance: float = global_position.distance_squared_to(unit.global_position)
+		if rank < best_rank or (rank == best_rank and distance < best_distance):
+			best_rank = rank
+			best_distance = distance
+			best_target = unit
+
+	return best_target
+
+func _find_formation_enemy() -> BattleUnit:
+	var protected_ally := _find_most_vulnerable_friendly()
+	if protected_ally == null:
+		return _find_nearest_enemy()
+
+	var nearest_threat: BattleUnit = null
+	var nearest_distance := INF
+
+	for node in get_tree().get_nodes_in_group("combat_units"):
+		if not node is BattleUnit:
+			continue
+
+		var unit := node as BattleUnit
+		if not unit.alive or unit.team == team:
+			continue
+
+		var distance: float = protected_ally.global_position.distance_squared_to(unit.global_position)
+		if distance < nearest_distance:
+			nearest_distance = distance
+			nearest_threat = unit
+
+	return nearest_threat
+
+func _find_most_vulnerable_friendly() -> BattleUnit:
+	var weakest: BattleUnit = null
+	var weakest_ratio := INF
+	var weakest_max_hp := INF
+
+	for node in get_tree().get_nodes_in_group("combat_units"):
+		if not node is BattleUnit:
+			continue
+
+		var unit := node as BattleUnit
+		if not unit.alive or unit.team != team:
+			continue
+
+		var hp_ratio: float = unit.hp / maxf(1.0, unit.max_hp)
+		if hp_ratio < weakest_ratio - 0.001:
+			weakest = unit
+			weakest_ratio = hp_ratio
+			weakest_max_hp = unit.max_hp
+		elif absf(hp_ratio - weakest_ratio) <= 0.001 and unit.max_hp < weakest_max_hp:
+			weakest = unit
+			weakest_max_hp = unit.max_hp
+
+	return weakest
+
+func _get_current_move_speed() -> float:
+	if team == 0 and tactical_order == TACTICAL_ORDER_ASSAULT:
+		return move_speed * ASSAULT_MOVE_MULTIPLIER
+	return move_speed
 
 func _attack_target() -> void:
 	if not _is_valid_target(target):

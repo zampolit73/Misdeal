@@ -16,6 +16,7 @@ Status: complete
 - [x] Victory / defeat detection.
 - [x] Restart encounter.
 - [x] Pre-battle player unit placement.
+- [x] Three pre-battle tactical orders that change hero target selection/engagement behavior without adding mid-fight micromanagement.
 
 ## Phase 1 — Tactical autobattler slice
 

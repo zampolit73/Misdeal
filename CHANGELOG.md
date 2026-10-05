@@ -107,6 +107,12 @@
 
 ### Added
 
+- Three pre-battle tactical orders: **НАТИСК**, **ОХОТА**, **СТРОЙ**.
+- **НАТИСК** adds +15% hero movement while keeping nearest-target behavior.
+- **ОХОТА** dynamically prioritizes support and ranged enemies, including reinforcements that appear after combat has started.
+- **СТРОЙ** dynamically focuses threats nearest the most vulnerable living ally.
+- Tactical orders can be switched during deployment and lock when **БОЙ** starts.
+
 - Per-run **КЕМ ТЫ БЫЛ, КОГДА ВСЁ НАЧАЛОСЬ?** class-selection scene after the story prologue.
 - Runs now start with exactly one protagonist: Knight, Ranger or Mage.
 - Persistent per-run companion fate states: **НЕ РАЗЫГРАНА / В ОТРЯДЕ / ПОТЕРЯН**.

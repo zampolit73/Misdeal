@@ -179,6 +179,89 @@ text = "ПЕРЕТАСКИВАЙТЕ ГЕРОЕВ ДЛЯ РАССТАНОВКИ"
 [node name="UnitsLayer" type="Node2D" parent="."]
 position = Vector2(20, 150)
 
+[node name="OrderLabel" type="Label" parent="."]
+z_index = 5100
+mouse_filter = 2
+offset_left = 40.0
+offset_top = 604.0
+offset_right = 348.0
+offset_bottom = 624.0
+theme_override_colors/font_color = Color(0.72, 0.66, 0.61, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.94)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "ТАКТИЧЕСКИЙ ПРИКАЗ"
+horizontal_alignment = 1
+
+[node name="AssaultOrderButton" type="Button" parent="."]
+z_index = 5100
+offset_left = 38.0
+offset_top = 628.0
+offset_right = 136.0
+offset_bottom = 672.0
+toggle_mode = true
+theme_override_colors/font_color = Color(0.95, 0.80, 0.62, 1)
+theme_override_colors/font_hover_color = Color(1, 0.92, 0.76, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.92, 0.76, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonHover")
+theme_override_styles/disabled = SubResource("ButtonDisabled")
+text = "НАТИСК"
+
+[node name="HuntOrderButton" type="Button" parent="."]
+z_index = 5100
+offset_left = 140.0
+offset_top = 628.0
+offset_right = 238.0
+offset_bottom = 672.0
+toggle_mode = true
+theme_override_colors/font_color = Color(0.95, 0.80, 0.62, 1)
+theme_override_colors/font_hover_color = Color(1, 0.92, 0.76, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.92, 0.76, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonHover")
+theme_override_styles/disabled = SubResource("ButtonDisabled")
+text = "ОХОТА"
+
+[node name="FormationOrderButton" type="Button" parent="."]
+z_index = 5100
+offset_left = 242.0
+offset_top = 628.0
+offset_right = 340.0
+offset_bottom = 672.0
+toggle_mode = true
+theme_override_colors/font_color = Color(0.95, 0.80, 0.62, 1)
+theme_override_colors/font_hover_color = Color(1, 0.92, 0.76, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.92, 0.76, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonHover")
+theme_override_styles/disabled = SubResource("ButtonDisabled")
+text = "СТРОЙ"
+
+[node name="OrderDescription" type="Label" parent="."]
+z_index = 5100
+mouse_filter = 2
+offset_left = 38.0
+offset_top = 676.0
+offset_right = 350.0
+offset_bottom = 716.0
+theme_override_colors/font_color = Color(0.72, 0.66, 0.61, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.94)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 10
+text = "НАТИСК — ближайшая цель, +15% скорость движения."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="FightButton" type="Button" parent="."]
 z_index = 5100
 offset_left = 382.0

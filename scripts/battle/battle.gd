@@ -6,6 +6,10 @@ const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/gra
 const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1240, 465))
 const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 82), Vector2(545, 326))
 
+const TACTICAL_ORDER_ASSAULT := "assault"
+const TACTICAL_ORDER_HUNT := "hunt"
+const TACTICAL_ORDER_FORMATION := "formation"
+
 @onready var title_label: Label = $Title
 @onready var deal_label: Label = $DealLabel
 @onready var enemy_label: Label = $EnemyLabel
@@ -19,12 +23,17 @@ const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 82), Vector2(545, 326))
 @onready var result_label: Label = $Result
 @onready var result_subtitle: Label = $ResultSubtitle
 @onready var placement_hint: Label = $PlacementHint
+@onready var assault_order_button: Button = $AssaultOrderButton
+@onready var hunt_order_button: Button = $HuntOrderButton
+@onready var formation_order_button: Button = $FormationOrderButton
+@onready var order_description_label: Label = $OrderDescription
 
 var encounter: EncounterData
 var units: Array[BattleUnit] = []
 var combat_started := false
 var battle_finished := false
 var boss_reinforcements_spawned := false
+var tactical_order := TACTICAL_ORDER_ASSAULT
 
 func _ready() -> void:
 	if not RunState.has_chosen_protagonist():
@@ -34,6 +43,12 @@ func _ready() -> void:
 	fight_button.pressed.connect(_on_fight_pressed)
 	restart_button.pressed.connect(_on_restart_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)
+	assault_order_button.pressed.connect(_on_assault_order_pressed)
+	hunt_order_button.pressed.connect(_on_hunt_order_pressed)
+	formation_order_button.pressed.connect(_on_formation_order_pressed)
+	assault_order_button.tooltip_text = "Ближайшая цель и +15% скорость движения."
+	hunt_order_button.tooltip_text = "Сначала поддержка и дальние враги."
+	formation_order_button.tooltip_text = "Фокус угрозы рядом с самым уязвимым союзником."
 	restart_button.disabled = true
 	continue_button.visible = false
 	continue_button.disabled = true
@@ -139,6 +154,9 @@ func _spawn_unit(
 	else:
 		unit.damage *= RunState.get_enemy_damage_multiplier()
 
+	if team == 0:
+		unit.set_tactical_order(tactical_order)
+
 	unit.set_combat_bounds(COMBAT_BOUNDS)
 	unit.died.connect(_on_unit_died)
 	unit.placement_rejected.connect(_on_placement_rejected)
@@ -201,6 +219,49 @@ func _begin_preparation_phase() -> void:
 		if unit.team == 0:
 			unit.enable_placement(PLAYER_PLACEMENT_BOUNDS)
 
+	_select_tactical_order(tactical_order, false)
+
+func _on_assault_order_pressed() -> void:
+	_select_tactical_order(TACTICAL_ORDER_ASSAULT)
+
+func _on_hunt_order_pressed() -> void:
+	_select_tactical_order(TACTICAL_ORDER_HUNT)
+
+func _on_formation_order_pressed() -> void:
+	_select_tactical_order(TACTICAL_ORDER_FORMATION)
+
+func _select_tactical_order(order_id: String, announce: bool = true) -> void:
+	if combat_started or battle_finished:
+		return
+
+	tactical_order = order_id
+	assault_order_button.button_pressed = tactical_order == TACTICAL_ORDER_ASSAULT
+	hunt_order_button.button_pressed = tactical_order == TACTICAL_ORDER_HUNT
+	formation_order_button.button_pressed = tactical_order == TACTICAL_ORDER_FORMATION
+	order_description_label.text = _get_tactical_order_description(tactical_order)
+
+	for unit in units:
+		if unit.team == 0:
+			unit.set_tactical_order(tactical_order)
+
+	if announce:
+		order_description_label.modulate = Color(1.0, 0.88, 0.66, 1.0)
+
+func _get_tactical_order_description(order_id: String) -> String:
+	match order_id:
+		TACTICAL_ORDER_HUNT:
+			return "ОХОТА — сначала поддержка и дальние враги."
+		TACTICAL_ORDER_FORMATION:
+			return "СТРОЙ — фокус угрозы рядом с самым уязвимым союзником."
+		_:
+			return "НАТИСК — ближайшая цель, +15% скорость движения."
+
+func _lock_tactical_orders() -> void:
+	assault_order_button.disabled = true
+	hunt_order_button.disabled = true
+	formation_order_button.disabled = true
+	order_description_label.text = "ПРИКАЗ ЗАКРЕПЛЁН: %s" % _get_tactical_order_description(tactical_order)
+
 func _on_boss_enraged(_unit: BattleUnit) -> void:
 	if not _is_boss_encounter() or boss_reinforcements_spawned:
 		return
@@ -259,6 +320,7 @@ func _on_fight_pressed() -> void:
 	fight_button.text = "БОЙ..."
 	status_label.text = "Ставка сделана. Назад пути нет."
 	placement_hint.visible = false
+	_lock_tactical_orders()
 
 	for unit in units:
 		if unit.alive:
