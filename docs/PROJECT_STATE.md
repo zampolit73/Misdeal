@@ -30,6 +30,8 @@ The second battle presentation pass is implemented and confirmed visually accept
 
 The same pixel-art visual language is now applied across the main menu, Whispering Well event, reward screen and run-end screen.
 
+The main menu was rebuilt again after local feedback that the old centered prototype panel looked disconnected from the rest of the game. It now reuses the production wizard/table art and real MISDEAL logo, removes the procedural candles/eyes/card mockup as the visual focus, and presents a single **СЕСТЬ ЗА СТОЛ** action directly on the cursed tabletop.
+
 A skippable five-frame pixel-art story prologue is now implemented in GitHub and pending local verification. It establishes the old pact, the aged protagonist and the Wizard's offer to replay a life whose corrections will rewrite the fates of everyone the protagonist once saved.
 
 The wizard table has since been rebuilt again around an approved authored pixel-art concept.
@@ -111,7 +113,15 @@ Technical identifiers, file names, node names, class names and code remain Engli
 
 `scenes/main/main.tscn`
 
-Pressing **ВОЙТИ В ИГРУ** resets the run and opens the story intro instead of jumping directly to the table.
+The main menu now uses the same production wizard/table composition as the playable table rather than a separate prototype-style centered panel.
+
+- authored Wizard backdrop;
+- production MISDEAL logo;
+- cursed tabletop/runner from the table visual language;
+- atmospheric Wizard line instead of generic product-description copy;
+- one primary action: **СЕСТЬ ЗА СТОЛ**.
+
+Pressing it resets the run and opens the story intro.
 
 ### 2. Story intro
 
