@@ -61,7 +61,7 @@ Target loop:
 - [x] First hero build-progression layer: nine role-specific upgrades with one guaranteed major choice per Act 1 tier.
 - [x] Replace ordinary post-combat HP/damage reward choices with tier upgrades plus simple gold loot.
 - [x] Rework Death Wager reward into gold / artifact / extra hero-upgrade choices.
-- [ ] Rework remaining event-card raw stat trades around hero upgrades and build identity.
+- [x] Rework positive event-card stat rewards around hero upgrades, relics and build identity; retain raw stats mainly as costs/penalties.
 - [x] First risk/reward event card: Whispering Well.
 - [x] First boss encounter: Bone Warden with an enrage phase.
 - [x] Bone Warden two-phase gameplay rework with cleave and phase-two reinforcements.
