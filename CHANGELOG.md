@@ -45,6 +45,8 @@
 
 ### Changed
 
+- Wizard table now exposes the current party build without leaving or regenerating the active card offer.
+- Effective hero-stat calculation is centralized in `RunState.get_effective_hero_stats()` for the status UI and mirrors battle modifier order/clamps.
 - Main-menu **ВОЙТИ В ИГРУ** now resets the run and opens the story intro before the wizard table; consecutive new runs from the run-end screen still go straight to the table.
 - Capped optional hero development from events and Death Wager at 3 upgrades per run; the three guaranteed tier upgrades remain separate.
 - Blood Ledger now restores an optional-upgrade slot when it erases an upgrade that came from the optional pool.
@@ -87,6 +89,12 @@
 
 ### Added
 
+- **ДОСЬЕ ОТРЯДА** modal on the wizard table, opened by **ОТРЯД [TAB]** or Tab.
+- Knight / Ranger / Mage status tabs with portraits from the production combat atlas.
+- Derived effective-stat view for HP, damage, attacks/second, range, movement, DPS, minimum range and splash when relevant.
+- Base-stat comparison coloring so run changes are immediately visible.
+- Per-hero lists of acquired upgrades and currently applicable relics, including party-wide relics.
+- Dynamic presentation-only build names such as **ЖЕЛЕЗНАЯ СТЕНА**, **СНАЙПЕР**, **ЗАЛПОВИК**, **ПИРОМАНТ** and **СТЕКЛЯННАЯ ПУШКА**.
 - Five-frame skippable dark-fantasy pixel-art comic prologue between the main menu and the first wizard-table deal.
 - Intro narrative establishes the aged protagonist, the old pact with the Wizard and the offer to replay a life whose corrected choices rewrite the fates of everyone previously saved.
 - Intro controls: click/Space/Enter to advance, painted top-right **ПРОПУСТИТЬ** button and Esc to skip, with short fades between frames.
