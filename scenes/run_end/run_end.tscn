@@ -83,20 +83,20 @@ horizontal_alignment = 1
 
 [node name="SummaryPanel" type="Panel" parent="."]
 mouse_filter = 2
-offset_left = 350.0
-offset_top = 255.0
-offset_right = 930.0
-offset_bottom = 455.0
+offset_left = 330.0
+offset_top = 235.0
+offset_right = 950.0
+offset_bottom = 500.0
 theme_override_styles/panel = SubResource("SummaryPanel")
 
 [node name="Summary" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 385.0
-offset_top = 280.0
-offset_right = 895.0
-offset_bottom = 430.0
+offset_left = 365.0
+offset_top = 255.0
+offset_right = 915.0
+offset_bottom = 480.0
 theme_override_colors/font_color = Color(0.82, 0.76, 0.70, 1)
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 18
 text = "Итоги забега"
 horizontal_alignment = 1
 vertical_alignment = 1
