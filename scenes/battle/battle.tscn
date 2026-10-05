@@ -212,6 +212,7 @@ theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "ПЕРЕИГРАТЬ"
 
 [node name="ContinueButton" type="Button" parent="."]
+z_index = 5100
 visible = false
 offset_left = 382.0
 offset_top = 624.0
@@ -226,6 +227,7 @@ theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "ПРОДОЛЖИТЬ"
 
 [node name="ResultBackdrop" type="Panel" parent="."]
+z_index = 5000
 mouse_filter = 2
 visible = false
 offset_left = 370.0
@@ -235,6 +237,7 @@ offset_bottom = 405.0
 theme_override_styles/panel = SubResource("ResultPanel")
 
 [node name="Result" type="Label" parent="."]
+z_index = 5001
 mouse_filter = 2
 visible = false
 offset_left = 392.0
@@ -251,12 +254,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResultSubtitle" type="Label" parent="."]
+z_index = 5001
 mouse_filter = 2
 visible = false
-offset_left = 400.0
-offset_top = 340.0
-offset_right = 880.0
-offset_bottom = 385.0
+offset_left = 405.0
+offset_top = 346.0
+offset_right = 875.0
+offset_bottom = 392.0
 theme_override_colors/font_color = Color(0.78, 0.69, 0.63, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.88)
 theme_override_constants/shadow_offset_x = 1
