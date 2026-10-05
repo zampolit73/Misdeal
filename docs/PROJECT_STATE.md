@@ -30,7 +30,7 @@ The second battle presentation pass is implemented and confirmed visually accept
 
 The same pixel-art visual language is now applied across the main menu, Whispering Well event, reward screen and run-end screen.
 
-The main menu was rebuilt again after local feedback that the old centered prototype panel looked disconnected from the rest of the game. It now reuses the production wizard/table art and real MISDEAL logo, removes the procedural candles/eyes/card mockup as the visual focus, and presents a single **СЕСТЬ ЗА СТОЛ** action directly on the cursed tabletop.
+The first two main-menu rebuilds were rejected in local visual review. A dedicated dark-fantasy pixel-art splash was then generated, explicitly selected by the user, and is now the approved production start screen. It shows the Wizard looming over a five-card cursed table, the large MISDEAL title, the line **«Проклятая партия уже разложена.»** and a painted **ВОЙТИ В ИГРУ** button. Runtime reconstructs a 640×360 WebP from five base64 chunks and nearest-scales it to the 1280×720 project viewport; only a transparent native Godot button hotspot remains live over the painted CTA.
 
 A skippable five-frame pixel-art story prologue is now implemented in GitHub and pending local verification. It establishes the old pact, the aged protagonist and the Wizard's offer to replay a life whose corrections will rewrite the fates of everyone the protagonist once saved.
 
@@ -111,17 +111,29 @@ Technical identifiers, file names, node names, class names and code remain Engli
 
 ### 1. Main screen
 
-`scenes/main/main.tscn`
+`scenes/main/main.tscn`  
+`scripts/main/approved_main_backdrop.gd`
 
-The main menu now uses the same production wizard/table composition as the playable table rather than a separate prototype-style centered panel.
+The production main menu is now a dedicated, user-approved authored pixel-art splash rather than a live recomposition of the wizard-table scene.
 
-- authored Wizard backdrop;
-- production MISDEAL logo;
-- cursed tabletop/runner from the table visual language;
-- atmospheric Wizard line instead of generic product-description copy;
-- one primary action: **СЕСТЬ ЗА СТОЛ**.
+Visual content baked into the approved splash:
 
-Pressing it resets the run and opens the story intro.
+- the Wizard looming behind the cursed table;
+- large MISDEAL title;
+- **«Проклятая партия уже разложена.»**;
+- five cards across the table;
+- player hands in the foreground;
+- candles, skulls, moonlit gothic architecture and an hourglass;
+- painted **ВОЙТИ В ИГРУ** CTA.
+
+Runtime art is reconstructed from:
+
+- `assets/pixel/main/approved_splash/part_00.txt`;
+- `part_01.txt` … `part_04.txt`.
+
+The source image is stored at 640×360 WebP inside those chunks and rendered with nearest filtering to the 1280×720 viewport. A transparent native Godot `StartButton` sits over the painted CTA so hover/focus/click remain interactive without duplicating the artwork. Pressing it resets the run and opens the story intro.
+
+The previous `main_visual.gd` / reused table-art menu composition is no longer active.
 
 ### 2. Story intro
 
@@ -568,6 +580,10 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 - save/load.
 
 ## Immediate next milestone
+
+- approved main-menu splash must decode cleanly, fill the 1280×720 viewport and show no duplicated live title/tagline layers;
+- painted **ВОЙТИ В ИГРУ** area must remain clickable/focusable through the transparent Godot hotspot and route to the comic intro;
+
 
 Locally verify the new hard-roguelike party flow end to end:
 
