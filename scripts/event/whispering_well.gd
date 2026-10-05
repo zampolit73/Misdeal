@@ -14,21 +14,24 @@ func _ready() -> void:
 	_refresh_choice_text()
 
 func _refresh_choice_text() -> void:
-	gold_label.text = "Золото: %d   |   Развитие: %d   |   Реликвии: %d" % [
+	gold_label.text = "Золото: %d   |   Развитие: %d   |   Доп.: %s   |   Реликвии: %d" % [
 		RunState.gold,
 		RunState.hero_upgrade_ids.size(),
+		RunState.get_extra_upgrade_progress_text(),
 		RunState.artifact_ids.size()
 	]
 
-	var gift_role := "mage"
-	if RunState.get_next_available_hero_upgrade_id(gift_role).is_empty():
-		gift_role = RunState.get_least_developed_available_role()
+	var gift_role := ""
+	if RunState.can_claim_extra_hero_upgrade():
+		gift_role = "mage"
+		if RunState.get_next_extra_hero_upgrade_id(gift_role).is_empty():
+			gift_role = RunState.get_least_developed_extra_role()
 
 	if gift_role.is_empty():
 		accept_button.text = "ПРИНЯТЬ ДАР\n\nКолодцу больше нечего изменить"
 		accept_button.disabled = true
 	else:
-		var upgrade_id := RunState.get_next_available_hero_upgrade_id(gift_role)
+		var upgrade_id := RunState.get_next_extra_hero_upgrade_id(gift_role)
 		var upgrade := RunState.get_hero_upgrade(upgrade_id)
 		accept_button.text = "ПРИНЯТЬ ДАР\n\n-15 здоровья отряду\n%s: %s" % [
 			_get_role_label(gift_role),
@@ -36,13 +39,13 @@ func _refresh_choice_text() -> void:
 		]
 
 	var has_artifact := not RunState.get_available_artifact_ids().is_empty()
-	var fallback_role := RunState.get_least_developed_available_role()
+	var fallback_role := RunState.get_least_developed_extra_role()
 	pay_button.disabled = RunState.gold < 25 or (not has_artifact and fallback_role.is_empty())
 
 	if has_artifact:
 		pay_button.text = "БРОСИТЬ 25 ЗОЛОТА\n\nКолодец отдаст случайную реликвию"
 	elif not fallback_role.is_empty():
-		var fallback_id := RunState.get_next_available_hero_upgrade_id(fallback_role)
+		var fallback_id := RunState.get_next_extra_hero_upgrade_id(fallback_role)
 		var fallback_upgrade := RunState.get_hero_upgrade(fallback_id)
 		pay_button.text = "БРОСИТЬ 25 ЗОЛОТА\n\nРеликвий не осталось\n%s: %s" % [
 			_get_role_label(fallback_role),
@@ -55,13 +58,15 @@ func _on_accept_gift() -> void:
 	if accept_button.disabled:
 		return
 
-	var role := "mage"
-	if RunState.get_next_available_hero_upgrade_id(role).is_empty():
-		role = RunState.get_least_developed_available_role()
+	var role := ""
+	if RunState.can_claim_extra_hero_upgrade():
+		role = "mage"
+		if RunState.get_next_extra_hero_upgrade_id(role).is_empty():
+			role = RunState.get_least_developed_extra_role()
 	if role.is_empty():
 		return
 
-	var upgrade_id := RunState.add_next_available_hero_upgrade(role)
+	var upgrade_id := RunState.add_next_extra_hero_upgrade(role)
 	if upgrade_id.is_empty():
 		return
 
@@ -86,7 +91,7 @@ func _on_pay_coin() -> void:
 
 	var artifact_id := RunState.add_random_available_artifact()
 	if artifact_id.is_empty():
-		var upgrade_id := RunState.add_upgrade_to_least_developed_role()
+		var upgrade_id := RunState.add_extra_upgrade_to_least_developed_role()
 		if upgrade_id.is_empty():
 			RunState.gold += 25
 			result_label.text = "Монета возвращается на край колодца. Ему больше нечего предложить."
