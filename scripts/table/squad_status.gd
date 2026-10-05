@@ -30,6 +30,9 @@ var current_role := "knight"
 var unit_sheet_texture: Texture2D
 
 func _ready() -> void:
+	if RunState.has_chosen_protagonist():
+		current_role = RunState.protagonist_role
+
 	knight_button.pressed.connect(_select_role.bind("knight"))
 	ranger_button.pressed.connect(_select_role.bind("ranger"))
 	mage_button.pressed.connect(_select_role.bind("mage"))
