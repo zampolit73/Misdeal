@@ -13,6 +13,11 @@ const ARTIFACT_PATHS := {
 }
 
 const HERO_ROLES: Array[String] = ["knight", "ranger", "mage"]
+const HERO_UNIT_PATHS := {
+	"knight": "res://resources/units/knight.tres",
+	"ranger": "res://resources/units/ranger.tres",
+	"mage": "res://resources/units/mage.tres"
+}
 const MAX_EXTRA_HERO_UPGRADES: int = 3
 const HERO_UPGRADE_PATHS := {
 	"knight_iron_oath": "res://resources/upgrades/knight_iron_oath.tres",
@@ -242,6 +247,90 @@ func get_hero_upgrades_for_role(role: String) -> Array[HeroUpgradeData]:
 		if upgrade != null and upgrade.target_role == role:
 			result.append(upgrade)
 	return result
+
+func get_hero_unit_data(role: String) -> UnitData:
+	var path: String = HERO_UNIT_PATHS.get(role, "")
+	if path.is_empty():
+		push_warning("Unknown hero role: %s" % role)
+		return null
+
+	var loaded := load(path)
+	if loaded is UnitData:
+		return loaded as UnitData
+
+	push_warning("Could not load hero UnitData: %s" % path)
+	return null
+
+func get_effective_hero_stats(role: String) -> Dictionary:
+	var data := get_hero_unit_data(role)
+	if data == null:
+		return {}
+
+	var base_hp := data.max_hp
+	var base_damage := data.damage
+	var base_attack_interval := data.attack_interval
+	var base_attack_range := data.attack_range
+	var base_minimum_range := data.minimum_range
+	var base_splash_radius := data.splash_radius
+	var base_splash_damage := data.splash_damage_multiplier
+	var base_move_speed := data.move_speed
+
+	var hp := base_hp + party_hp_bonus
+	var damage := base_damage + party_damage_bonus
+	var attack_interval := base_attack_interval
+	var attack_range := base_attack_range
+	var minimum_range := base_minimum_range
+	var splash_radius := base_splash_radius
+	var splash_damage := base_splash_damage
+	var move_speed := base_move_speed
+
+	for upgrade in get_hero_upgrades_for_role(role):
+		hp += upgrade.hp_bonus
+		damage *= upgrade.damage_multiplier
+		attack_interval = maxf(0.2, attack_interval * upgrade.attack_interval_multiplier)
+		attack_range += upgrade.attack_range_bonus
+		minimum_range += upgrade.minimum_range_bonus
+		splash_radius += upgrade.splash_radius_bonus
+		splash_damage += upgrade.splash_damage_bonus
+		move_speed *= upgrade.move_speed_multiplier
+
+	for artifact in get_artifacts_for_role(role):
+		hp += artifact.hp_bonus
+		damage *= artifact.damage_multiplier
+		attack_interval = maxf(0.2, attack_interval * artifact.attack_interval_multiplier)
+		attack_range += artifact.attack_range_bonus
+		minimum_range += artifact.minimum_range_bonus
+		splash_radius += artifact.splash_radius_bonus
+		splash_damage += artifact.splash_damage_bonus
+		move_speed *= artifact.move_speed_multiplier
+
+	hp = maxf(20.0, hp)
+	damage = maxf(1.0, damage)
+
+	return {
+		"unit_name": data.unit_name,
+		"role": role,
+		"base_hp": base_hp,
+		"hp": hp,
+		"base_damage": base_damage,
+		"damage": damage,
+		"base_attack_interval": base_attack_interval,
+		"attack_interval": attack_interval,
+		"base_attack_rate": 1.0 / maxf(0.01, base_attack_interval),
+		"attack_rate": 1.0 / maxf(0.01, attack_interval),
+		"base_attack_range": base_attack_range,
+		"attack_range": attack_range,
+		"base_minimum_range": base_minimum_range,
+		"minimum_range": minimum_range,
+		"base_splash_radius": base_splash_radius,
+		"splash_radius": splash_radius,
+		"base_splash_damage": base_splash_damage,
+		"splash_damage": splash_damage,
+		"base_move_speed": base_move_speed,
+		"move_speed": move_speed,
+		"base_dps": base_damage / maxf(0.01, base_attack_interval),
+		"dps": damage / maxf(0.01, attack_interval)
+	}
 
 func get_available_hero_upgrade_ids_for_role(role: String) -> Array[String]:
 	var available: Array[String] = []
