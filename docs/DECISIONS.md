@@ -494,3 +494,26 @@ Bone Warden is retuned around this target without adaptive/rubber-band scaling:
 - existing melee cleave and phase-II Bone Archer + Bone Thrall reinforcements remain unchanged.
 
 Do not scale boss stats dynamically from the player's exact upgrade count. The point of a build is to become meaningfully stronger; the boss should be a fixed benchmark.
+
+## D032 — Misdeal begins as an offer to replay an already-lived life
+
+Date: 2026-10-05  
+Status: accepted narrative premise for the vertical slice
+
+The protagonist is not a young adventurer entering a cursed game for the first time. They are old, looking back on a long life shaped by an old pact with the Wizard.
+
+The Wizard returns and offers to replay the decisive moments of that life. The temptation is not merely to save the protagonist; it is to correct old mistakes and the fates of people the protagonist once saved.
+
+The central narrative rule is that **changing a past choice rewrites everything that followed from it**. Saving one person differently may erase another relationship, sacrifice, victory or life that existed only because of the original history.
+
+This makes the card-driven run a literal replay of fate rather than a disconnected sequence of encounters. The Wizard knows more about the consequences than the protagonist and treats the replay as both a bargain and entertainment.
+
+The opening presents this premise in a five-frame authored pixel-art comic:
+
+1. the aged protagonist reflects on a long life;
+2. the Wizard returns because of the old pact;
+3. he reveals the fates of people touched by the protagonist's choices;
+4. he warns that every corrected card rewrites what came after;
+5. he lays out the cursed deck and begins the deal.
+
+The intro must remain short and skippable. It appears when entering the game from the main menu; consecutive new runs from the run-end screen continue directly to the table to avoid repeated narrative friction.
