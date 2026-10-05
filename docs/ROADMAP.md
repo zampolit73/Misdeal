@@ -57,6 +57,10 @@ Target loop:
 - [x] Wizard reactions and short commentary.
 - [x] Multiple encounter types: combat cards plus a non-combat event.
 - [ ] More party archetypes.
+- [x] Per-run protagonist class choice with solo start.
+- [x] Hard-roguelike companion recruitment/loss through existing Act 1 cards.
+- [x] Variable solo/duo/trio combat composition with visible incomplete-party compensation.
+- [x] Restrict upgrade/relic offers to heroes actually recruited in the current run.
 - [x] First artifacts that alter hero autobattle behavior.
 - [x] First hero build-progression layer: nine role-specific upgrades with one guaranteed major choice per Act 1 tier.
 - [x] Replace ordinary post-combat HP/damage reward choices with tier upgrades plus simple gold loot.
@@ -114,7 +118,7 @@ Only after the loop is fun:
 - [ ] onboarding;
 - [ ] local UI verification/polish for the new squad-status modal;
 - [x] initial Act 1 combat-pacing / boss / Death Wager balance pass;
-- [ ] follow-up balance pass after local feedback on the 3+3 upgrade economy and 700-HP Bone Warden;
+- [ ] follow-up balance pass after local solo/duo/trio recruitment runs against the fixed 700-HP Bone Warden;
 - [ ] basic settings;
 - [ ] save/run persistence if needed for the slice.
 
