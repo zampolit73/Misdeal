@@ -63,6 +63,7 @@ Target loop:
 - [x] Rework Death Wager reward into gold / artifact / extra hero-upgrade choices.
 - [x] Rework positive event-card stat rewards around hero upgrades, relics and build identity; retain raw stats mainly as costs/penalties.
 - [x] First progression-economy balance pass: cap optional hero upgrades at 3 per run and retune Bone Warden for 4–6-upgrade builds.
+- [x] Squad-status/build-inspection modal with effective stats, upgrades, relics and dynamic specialization names.
 - [x] First risk/reward event card: Whispering Well.
 - [x] First boss encounter: Bone Warden with an enrage phase.
 - [x] Bone Warden two-phase gameplay rework with cleave and phase-two reinforcements.
@@ -111,6 +112,7 @@ Only after the loop is fun:
 - [ ] sound and music;
 - [x] Skippable five-frame pixel-art comic prologue establishing the old pact and replayed-life premise;
 - [ ] onboarding;
+- [ ] local UI verification/polish for the new squad-status modal;
 - [x] initial Act 1 combat-pacing / boss / Death Wager balance pass;
 - [ ] follow-up balance pass after local feedback on the 3+3 upgrade economy and 700-HP Bone Warden;
 - [ ] basic settings;
