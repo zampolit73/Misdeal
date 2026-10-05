@@ -91,7 +91,7 @@ func _refresh_hero() -> void:
 	if stats.is_empty():
 		return
 
-	hero_name.text = String(stats.get("unit_name", _get_role_label(current_role)))
+	hero_name.text = str(stats.get("unit_name", _get_role_label(current_role)))
 	specialization.text = _get_specialization(current_role)
 	specialization.add_theme_color_override("font_color", _get_role_color(current_role))
 	portrait.texture = _get_role_texture(current_role)
@@ -172,7 +172,7 @@ func _stat_line(
 func _format_number(value: float, decimals: int) -> String:
 	match decimals:
 		0:
-			return str(roundi(value))
+			return str(int(round(value)))
 		1:
 			return "%.1f" % value
 		_:
