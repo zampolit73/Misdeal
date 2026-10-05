@@ -332,7 +332,14 @@ func is_major_upgrade_due_for_active_card() -> bool:
 		return false
 	if card.tier < 0 or card.tier > 2:
 		return false
-	return not claimed_upgrade_tiers.has(card.tier)
+	if claimed_upgrade_tiers.has(card.tier):
+		return false
+
+	for role in HERO_ROLES:
+		if not get_next_available_hero_upgrade_id(role).is_empty():
+			return true
+
+	return false
 
 func get_major_upgrade_offer_ids() -> Array[String]:
 	if not is_major_upgrade_due_for_active_card():
