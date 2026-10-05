@@ -255,7 +255,7 @@ func get_party_move_speed_multiplier() -> float:
 func get_party_strength_text() -> String:
 	match get_party_size():
 		1:
-			return "СИЛА ОДИНОЧКИ: +100% HP, +80% урона, +25% атак/сек, +10% скорость"
+			return "ОДИНОЧКА: HP x2 • УРОН x1.8 • АТАКИ x1.25 • СКОРОСТЬ x1.10"
 		2:
 			return "МАЛЫЙ ОТРЯД: +20% HP, +15% урона"
 		_:
