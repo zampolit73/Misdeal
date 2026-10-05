@@ -50,7 +50,9 @@ After comparing the live battle screenshot against the approved richer pixel moc
 
 The full combat-unit sprite art pass is now locally confirmed working. All nine currently used combat roles have dedicated high-detail dark-fantasy pixel sprites in one 96×96 atlas; special enemies no longer reuse tinted Skeleton art. The final v3 atlas is stored as ten base64 PNG chunks under `assets/pixel/units/combat_units_v3/` and decoded by `BattleUnit`. The obsolete v2 preload/fallback was removed after it caused a Godot parser/import failure.
 
-A first real **hero build progression** layer is now implemented in GitHub and pending local verification. Ordinary post-combat +HP/+damage choices are no longer the main progression path.
+A first real **hero build progression** layer is implemented in GitHub and pending full-run local verification. Ordinary post-combat +HP/+damage choices are no longer the main progression path.
+
+A follow-up **build-aware event pass** is also implemented in GitHub and pending local verification. Positive permanent event rewards now primarily use hero development, artifacts or gold; raw global HP/damage changes remain mainly as costs, penalties or legacy named artifact effects.
 
 The longer Act 1 structure is now confirmed working locally: 12 resolved pre-boss cards followed by the Bone Warden as card 13.
 
@@ -114,27 +116,27 @@ Currently fully implemented card mechanics:
 - **КОСТЯНОЙ ДОЗОР** — three melee Skeleton units;
 - **ЗАСАДА НА КЛАДБИЩЕ** — two Skeleton units plus one Bone Archer;
 - **ЗАЛП С ВИСЕЛИЦЫ** — one Skeleton plus two Bone Archers;
-- **ШЕПЧУЩИЙ КОЛОДЕЦ** — the existing three-choice risk/reward event;
-- **ПЕПЕЛЬНЫЙ ПРИВАЛ** — choose +15 party HP, +15 gold, +1 party damage, or leave;
-- **ЛАВКА МОГИЛЬЩИКА** — spend gold on +20 party HP, +3 party damage, or a random unowned artifact;
+- **ШЕПЧУЩИЙ КОЛОДЕЦ** — risk blood for hero development, pay 25 gold for a relic/build fallback, or walk away;
+- **ПЕПЕЛЬНЫЙ ПРИВАЛ** — freely prepare one specific hero by taking that role's next available upgrade, or leave;
+- **ЛАВКА МОГИЛЬЩИКА** — buy the next available Knight/Ranger/Mage development for 35 gold;
 - **КУЗНИЦА ПРОКЛЯТИЙ** — choose one of three hero-specific artifacts, or refuse;
 - **МОГИЛЬНЫЙ ЗВОН** — two Skeletons protect a Grave Bellkeeper support enemy;
 - **КОСТЯНАЯ ДАВКА** — five weak Bone Thralls pressure the party through numbers and reward splash damage;
 - **СТРАЖ СКЛЕПА** — elite Crypt Guard with melee splash plus two Bone Thralls; victory uses a guaranteed-artifact reward flow;
-- **ЧЁРНЫЙ АЛТАРЬ** — trade party HP for permanent damage, spend gold for HP, or refuse;
-- **ЗАКОВАННЫЙ ПЛЕННИК** — spend gold for a mixed HP/damage benefit, force the chains for a harsher stat trade, loot the prisoner, or leave;
-- **КОСТИ ДОЛЖНИКА** — a true 50/50 gold gamble alongside safer deterministic choices;
+- **ЧЁРНЫЙ АЛТАРЬ** — sacrifice party HP to unlock the next Knight/Ranger/Mage upgrade, or refuse;
+- **ЗАКОВАННЫЙ ПЛЕННИК** — pay to train the least-developed hero, trade blood for a relic, loot the prisoner, or leave;
+- **КОСТИ ДОЛЖНИКА** — a true 50/50 gold gamble alongside safer deterministic choices; failure still uses raw stat penalties as a curse;
 - **ДЕСЯТИНА ВОЛШЕБНИКА** — pay gold, pay party HP, or refuse and take a temporary wizard debt;
-- **КАРТА БЕЗ ЛИЦА** — choose a fully hidden random result, pay for a safe strong result, burn it for a small guaranteed bonus, or leave;
-- **КРОВАВАЯ КНИГА** — convert gold into damage, HP into a random general-pool artifact, or damage into HP;
-- **СЛОМАННАЯ КОРОНА** — source-locked special artifact choice: all heroes deal +22% damage but lose 10 max HP, with gold/stat alternatives;
-- **ПОСЛЕДНИЙ ПРИВАЛ** — late preparation choice between +30 party HP, +3 party damage or +25 gold;
+- **КАРТА БЕЗ ЛИЦА** — hidden outcome now yields gold, a relic or hero development; bribing guarantees development and burning can clear wizard debt;
+- **КРОВАВАЯ КНИГА** — buy development with gold, trade blood for a relic/build fallback, or erase the latest hero upgrade for 70 gold;
+- **СЛОМАННАЯ КОРОНА** — source-locked party-wide artifact, 40-gold break option, or melt the crown into development for the least-developed hero;
+- **ПОСЛЕДНИЙ ПРИВАЛ** — late pre-boss choice to develop Knight, Ranger or Mage directly;
 - **ВРАТА ОССУАРИЯ** — heavy late combat combining Crypt Guard, Grave Bellkeeper, Bone Archer and Bone Thrall;
 - **ГРЕМУЧИЙ МОСТ** — early traversal risk with a 50/50 sprint, a small guaranteed gold/HP trade, or a safe crossing;
 - **КОШЕЛЬ МЕРТВЕЦА** — deterministic greed ladder: more gold costs progressively more party HP;
-- **ТОРГОВЕЦ СВЕЧАМИ** — cheap early micro-shop for HP or damage, plus a theft option trading HP for gold;
-- **КОСТЯНАЯ ПОШЛИНА** — forced mid-run payment choice: gold, HP, or a harsher HP-for-damage confrontation;
-- **СТАВКА НА СМЕРТЬ** — late five-enemy elite combat against Crypt Guard, two Bone Archers and two Bone Thralls, followed by an enhanced reward choice.
+- **ТОРГОВЕЦ СВЕЧАМИ** — early build shop: buy the next Knight/Ranger/Mage development for 25 gold;
+- **КОСТЯНАЯ ПОШЛИНА** — forced mid-run payment choice: gold, blood, or a harsher confrontation that costs HP but develops the least-developed hero;
+- **СТАВКА НА СМЕРТЬ** — late five-enemy elite combat against Crypt Guard, two Bone Archers and two Bone Thralls, followed by +60 gold / relic / extra hero-upgrade reward choice.
 
 All 24 pre-boss cards now have bespoke mechanics. `scenes/event/prototype_card.tscn` remains only as unused legacy prototype infrastructure and is no longer referenced by the active Act 1 card pool.
 
@@ -142,8 +144,9 @@ The table displays:
 
 - current card progress out of 12, or **БОСС**;
 - gold;
-- party HP bonus;
-- party damage bonus.
+- current hero-development count;
+- current relic count;
+- **ДОЛГ ВОЛШЕБНИКУ** when active.
 
 Selecting a card stores it as the active run card. Combat cards also select their `EncounterData`; event/prototype cards route to their configured scene.
 
@@ -171,7 +174,7 @@ The lower tabletop, ritual runner and sigil remain procedural so the layout can 
 
 The table still uses real Godot `Button` controls. Two existing card slots are now populated dynamically from `RunCardData`, including title, type, description, wizard hover line and art path.
 
-The top HUD remains dynamic and shows actual Act 1 card progress, gold, party HP modifier and damage modifier. If wizard debt is active, **ДОЛГ ВОЛШЕБНИКУ** is also shown in the HUD.
+The top HUD remains dynamic and now emphasizes Act 1 progress, gold, **РАЗВИТИЕ** count and **РЕЛИКВИИ** count. If wizard debt is active, **ДОЛГ ВОЛШЕБНИКУ** is also shown.
 
 The earlier painted assets under `assets/art/` remain in the repository as historical/reference material.
 
@@ -179,13 +182,13 @@ The earlier painted assets under `assets/art/` remain in the repository as histo
 
 `scenes/event/whispering_well.tscn`
 
-The first non-combat event offers three choices:
+The dedicated event now participates in build progression:
 
-- accept the well's gift: +4 party damage and -15 party HP;
-- spend 25 gold: +25 party HP;
-- walk away with no stat change.
+- accept the well's gift: lose 15 party HP and gain the Mage's next available upgrade; if Mage is exhausted, it targets the least-developed hero instead;
+- spend 25 gold: gain a random unowned general-pool relic, falling back to least-developed hero progression if the relic pool is exhausted;
+- walk away.
 
-The event remains one-time because its card leaves the run after being offered. Resolving it now completes the current Act 1 card and advances card progress.
+The event remains one-time because its card leaves the run after being offered. Resolving it completes the current Act 1 card and advances card progress.
 
 ### 4. Combat
 
@@ -394,7 +397,7 @@ Special combat rewards remain intact after the tier upgrade:
 
 The wizard-table HUD now emphasizes **РАЗВИТИЕ** and **РЕЛИКВИИ** instead of treating global HP/damage counters as the primary build identity.
 
-The shared `scenes/event/act_choice.tscn` scene handles the implemented choice-driven events, including Ash Rest, Gravedigger Shop, Curse Forge, Black Altar, Chained Prisoner, Debtor Bones, Wizard Tithe, Faceless Card, Blood Ledger, Broken Crown, Last Camp, Rattling Bridge, Lost Purse, Candle Seller and Bone Tax. It still intentionally avoids a generalized event-effect framework.
+The shared `scenes/event/act_choice.tscn` scene handles the implemented choice-driven events. Its progression-facing cards now query the live hero build and show the actual next upgrade name on the choice button when relevant. The scene still intentionally avoids a generalized event-effect framework.
 
 ### Run state
 
@@ -423,8 +426,7 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Not implemented yet
 
-- rewrite the remaining event-card raw stat trades around the new hero-upgrade/build language after the progression layer is locally validated;
-- second Act 1 balance pass after local full-run feedback on the progression pass;
+- second Act 1 balance pass after local full-run feedback on the progression + build-aware event pass;
 - broader shop inventory/economy beyond the current Candle Seller and Gravedigger Shop implementations;
 - more artifacts beyond the first three;
 - attack projectiles/animations;
@@ -436,21 +438,20 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the first hero build-progression pass through at least one full Act 1 run:
+Locally verify the combined hero-progression + build-aware event pass through a full Act 1 run:
 
-- the first combat victory in each early/mid/late tier must show **РАЗВИТИЕ ОТРЯДА** before the ordinary/special combat reward;
-- each major-upgrade screen should offer one currently unowned Knight, Ranger and Mage upgrade when available;
-- choosing the same hero in all three tiers must be possible and produce a visibly specialized build;
-- selected upgrades must persist into later battles and affect the correct runtime stats/behavior;
-- normal combat rewards must no longer offer permanent +HP/+damage choices and should resolve to ordinary gold loot;
-- wizard debt should double that normal gold loot and clear only when the loot is taken;
-- Crypt Guard must still give its artifact reward after a tier major upgrade;
-- Death Wager must offer +60 gold, a concrete available artifact, or an additional hero-upgrade choice;
-- table HUD should show current **РАЗВИТИЕ** count and **РЕЛИКВИИ** count;
-- run-end summary should list the acquired hero upgrades;
-- hero-upgrade/artifact stacking must not create invalid HP, attack interval or invisible units.
+- first combat victory in each early/mid/late tier should still produce a major **РАЗВИТИЕ ОТРЯДА** choice when at least one upgrade remains;
+- if events have already exhausted all nine hero upgrades, later tier reward screens must skip the empty major-upgrade step instead of soft-locking;
+- **ПЕПЕЛЬНЫЙ ПРИВАЛ**, **ЛАВКА МОГИЛЬЩИКА**, **ЧЁРНЫЙ АЛТАРЬ**, **ПОСЛЕДНИЙ ПРИВАЛ** and **ТОРГОВЕЦ СВЕЧАМИ** should display the actual next upgrade title for the affected hero;
+- **ЗАКОВАННЫЙ ПЛЕННИК**, **КАРТА БЕЗ ЛИЦА**, **СЛОМАННАЯ КОРОНА** and **КОСТЯНАЯ ПОШЛИНА** should correctly target the least-developed hero where specified;
+- **КРОВАВАЯ КНИГА** must be able to erase the latest acquired hero upgrade for +70 gold without corrupting tier progression;
+- **ШЕПЧУЩИЙ КОЛОДЕЦ** should grant hero development/relics rather than old party-wide positive stats;
+- event HUD should show compact **РАЗВИТИЕ / РЕЛИКВИИ** counts and choice text should wrap cleanly;
+- raw global HP/damage mutations in these events should now be penalties/costs only, not the main positive progression;
+- artifacts + hero upgrades + event progression must stack without invalid HP/attack interval values;
+- Bone Warden difficulty should be judged again after a full build-aware run because the power curve is now less predictable.
 
-After this flow is confirmed, rewrite the most placeholder-like event-card stat trades so events bend or complement the hero build instead of mainly adding raw party HP/damage.
+After local verification, the next work item is a dedicated balance pass on upgrade frequency/costs and Bone Warden tuning before adding another progression system.
 
 ## Local workflow
 
