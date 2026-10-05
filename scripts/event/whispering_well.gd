@@ -1,5 +1,7 @@
 extends Control
 
+@onready var wizard_line: Label = $WizardLine
+@onready var description_label: Label = $Description
 @onready var gold_label: Label = $GoldLabel
 @onready var result_label: Label = $Result
 @onready var accept_button: Button = $Choices/AcceptGift
@@ -11,6 +13,9 @@ func _ready() -> void:
 	pay_button.pressed.connect(_on_pay_coin)
 	leave_button.pressed.connect(_on_leave)
 
+	if RunState.can_recruit_companion("mage"):
+		wizard_line.text = "«Ты слышишь его голос? В прошлый раз ты полез за ним.»"
+		description_label.text = "Из чёрной воды зовёт молодой маг. Это не призрак — это момент, который вы однажды изменили."
 	_refresh_choice_text()
 
 func _refresh_choice_text() -> void:
