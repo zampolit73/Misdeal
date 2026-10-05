@@ -427,7 +427,7 @@ The first upgrade set contains nine unique run-persistent upgrades:
 
 Upgrades use a small data-driven `HeroUpgradeData` Resource with the same narrow runtime-stat vocabulary already proven by artifacts. They are not a skill tree, XP system, equipment-slot system or meta-progression layer.
 
-Normal extra combat victories now give simple gold loot rather than more permanent party-wide HP/damage choices. Existing named event cards may still modify the legacy party HP/damage counters until those events receive a dedicated follow-up rewrite.
+Normal extra combat victories now give simple gold loot rather than more permanent party-wide HP/damage choices. The follow-up event pass removes positive party-wide HP/damage as the default event reward too; the legacy counters remain available mainly for explicit costs, curses and a few named artifact effects.
 
 Special combat rewards remain distinct:
 
@@ -437,4 +437,31 @@ Special combat rewards remain distinct:
 
 Artifacts remain a second build layer that can reinforce or distort hero upgrades. Do not merge artifacts and hero upgrades into one generic loot system yet.
 
-The next progression task after local validation is to rewrite the most placeholder-like event-card raw stat trades so events interact with build identity instead of mostly increasing global numbers.
+The next progression task after local validation is balance: measure how often extra upgrades appear, how often a hero reaches all three upgrades, and whether Bone Warden remains a meaningful build check.
+
+## D030 — Positive event progression should manipulate the build, while raw stats are mainly prices and curses
+
+Date: 2026-10-05  
+Status: accepted for vertical-slice progression pass
+
+After D029, ordinary combat rewards had build identity but many event cards still granted generic permanent party HP/damage. That made events feel like an older placeholder progression system layered on top of the new hero upgrades.
+
+The first event-progression rewrite follows this rule:
+
+- **positive permanent progression** should primarily grant or trade for hero upgrades, relics or gold;
+- **raw party HP/damage changes** may remain when they are a cost, curse, punishment, or a deliberately named artifact effect;
+- event buttons should show the concrete next hero-upgrade title when the outcome is deterministic;
+- events may grant extra upgrades beyond the three tier milestones, but the nine-upgrade pool remains finite;
+- if events exhaust the upgrade pool, later major tier rewards must skip cleanly rather than showing an empty selection.
+
+Build-aware event examples now include:
+
+- Ash Rest and Last Camp directly prepare one chosen hero;
+- Gravedigger Shop and Candle Seller sell role-specific development;
+- Black Altar trades blood for role-specific development;
+- Chained Prisoner, Broken Crown and Bone Tax can strengthen the least-developed hero;
+- Faceless Card mixes gold, relic and development outcomes;
+- Blood Ledger can buy development, trade blood for a relic, or erase the latest hero upgrade for gold;
+- Whispering Well now trades blood/gold for development or relics rather than positive global stat buffs.
+
+This is intentionally implemented through small helpers on the existing nine-upgrade pool. Do not add a separate XP tree, perk currency or generalized event-effect DSL for the vertical slice.
