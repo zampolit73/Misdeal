@@ -123,9 +123,9 @@ autowrap_mode = 2
 
 [node name="GoldLabel" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 510.0
+offset_left = 220.0
 offset_top = 292.0
-offset_right = 770.0
+offset_right = 1060.0
 offset_bottom = 322.0
 theme_override_colors/font_color = Color(0.92, 0.76, 0.38, 1)
 theme_override_font_sizes/font_size = 17
@@ -145,11 +145,12 @@ custom_minimum_size = Vector2(310, 150)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.72, 0.92, 0.85, 1)
 theme_override_colors/font_disabled_color = Color(0.40, 0.47, 0.46, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("ChoiceNormal")
 theme_override_styles/hover = SubResource("ChoiceHover")
 theme_override_styles/pressed = SubResource("ChoiceHover")
 theme_override_styles/disabled = SubResource("ChoiceDisabled")
+autowrap_mode = 2
 text = "ПРИНЯТЬ ДАР
 
 +4 урона
@@ -160,11 +161,12 @@ custom_minimum_size = Vector2(310, 150)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.92, 0.80, 0.52, 1)
 theme_override_colors/font_disabled_color = Color(0.40, 0.47, 0.46, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("ChoiceNormal")
 theme_override_styles/hover = SubResource("ChoiceHover")
 theme_override_styles/pressed = SubResource("ChoiceHover")
 theme_override_styles/disabled = SubResource("ChoiceDisabled")
+autowrap_mode = 2
 text = "БРОСИТЬ 25 ЗОЛОТА
 
 +25 здоровья
@@ -175,11 +177,12 @@ custom_minimum_size = Vector2(310, 150)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.72, 0.76, 0.76, 1)
 theme_override_colors/font_disabled_color = Color(0.40, 0.47, 0.46, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("ChoiceNormal")
 theme_override_styles/hover = SubResource("ChoiceHover")
 theme_override_styles/pressed = SubResource("ChoiceHover")
 theme_override_styles/disabled = SubResource("ChoiceDisabled")
+autowrap_mode = 2
 text = "ОТОЙТИ
 
 Ничего
