@@ -132,6 +132,8 @@ func _spawn_unit(
 		_apply_artifacts_to_unit(unit)
 		unit.max_hp *= RunState.get_party_hp_multiplier()
 		unit.damage *= RunState.get_party_damage_multiplier()
+		unit.attack_interval = maxf(0.2, unit.attack_interval * RunState.get_party_attack_interval_multiplier())
+		unit.move_speed *= RunState.get_party_move_speed_multiplier()
 		unit.max_hp = maxf(20.0, unit.max_hp)
 		unit.damage = maxf(1.0, unit.damage)
 	else:
