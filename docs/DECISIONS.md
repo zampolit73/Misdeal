@@ -598,3 +598,20 @@ Duo remains +20% HP / +15% damage and trio remains unmodified for now.
 This supersedes the numeric solo values recorded in D034, but not D034's structural rule: runs may still reach the boss solo, duo or trio and Bone Warden remains a fixed benchmark.
 
 Reasoning: losing two bodies removes far more than two pools of HP. It also removes simultaneous attacks, aggro splitting, role coverage and time-to-contact advantages. Solo compensation therefore has to restore part of that action economy, not just inflate one health bar.
+
+## D036 — Main menu uses the approved authored splash with only a live CTA hotspot
+
+Date: 2026-10-05  
+Status: accepted visual-production decision
+
+The earlier centered prototype menu and the subsequent attempt to recompose the playable wizard-table art as a title screen were both rejected in local visual review.
+
+The approved production main menu is the dedicated authored dark-fantasy pixel-art composition selected by the user: the Wizard behind a five-card cursed table, large MISDEAL title, **«Проклятая партия уже разложена.»**, player hands in the foreground and a painted **ВОЙТИ В ИГРУ** control.
+
+The splash itself is intentionally baked as one coherent illustration. Godot should not place separate live logo, tagline, wizard, cards or decorative frames on top of it, because that recreates the visual duplication that caused the rejected menu versions.
+
+Only the interaction remains native: a transparent/focusable `StartButton` is aligned over the painted CTA and routes into the comic intro.
+
+For repository reliability, the approved 640×360 WebP is reconstructed at runtime from five base64 text chunks under `assets/pixel/main/approved_splash/` and rendered with nearest filtering.
+
+Do not replace this screen with the wizard-table gameplay composition without explicit new visual approval.
