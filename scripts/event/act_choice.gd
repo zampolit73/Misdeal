@@ -654,9 +654,9 @@ func _set_choices_visible(value: bool) -> void:
 
 func _refresh_run_labels() -> void:
 	gold_label.text = "ЗОЛОТО: %d" % RunState.gold
-	artifacts_label.text = "РАЗВИТИЕ: %d   |   РЕЛИКВИИ: %s" % [
+	artifacts_label.text = "РАЗВИТИЕ: %d   |   РЕЛИКВИИ: %d" % [
 		RunState.hero_upgrade_ids.size(),
-		RunState.get_artifact_titles_text()
+		RunState.artifact_ids.size()
 	]
 	var condition_text := RunState.get_run_condition_text()
 	if not condition_text.is_empty():
