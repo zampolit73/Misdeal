@@ -220,7 +220,7 @@ func _resolve_death_wager_option(option_id: String) -> void:
 				_enable_reward_buttons()
 				return
 
-			var artifact_id := option_id.trim_prefix("artifact:")
+			var artifact_id := option_id.substr("artifact:".length())
 			if not RunState.add_artifact(artifact_id):
 				_enable_reward_buttons()
 				return
