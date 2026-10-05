@@ -45,6 +45,7 @@
 
 ### Changed
 
+- Main-menu **ВОЙТИ В ИГРУ** now resets the run and opens the story intro before the wizard table; consecutive new runs from the run-end screen still go straight to the table.
 - Capped optional hero development from events and Death Wager at 3 upgrades per run; the three guaranteed tier upgrades remain separate.
 - Blood Ledger now restores an optional-upgrade slot when it erases an upgrade that came from the optional pool.
 - Event HUD exposes the optional progression counter as **ДОП. X/3** and build-upgrade event choices disable cleanly at the cap.
@@ -86,6 +87,10 @@
 
 ### Added
 
+- Five-frame skippable dark-fantasy pixel-art comic prologue between the main menu and the first wizard-table deal.
+- Intro narrative establishes the aged protagonist, the old pact with the Wizard and the offer to replay a life whose corrected choices rewrite the fates of everyone previously saved.
+- Intro controls: click/Space/Enter to advance, painted top-right **ПРОПУСТИТЬ** button and Esc to skip, with short fades between frames.
+- Five production 1280×720 WebP intro frames under `assets/pixel/intro/`.
 - Data-driven `HeroUpgradeData` run-progression layer.
 - Nine unique hero upgrades: three each for Knight, Ranger and Mage.
 - Stable per-tier major-upgrade offers stored in RunState so each early/mid/late tier guarantees one build-defining choice after its first combat victory.
