@@ -1,12 +1,8 @@
 class_name BattleUnit
 extends Node2D
 
-const KNIGHT_ART: Texture2D = preload("res://assets/pixel/units/knight.png")
-const RANGER_ART: Texture2D = preload("res://assets/pixel/units/ranger.png")
-const MAGE_ART: Texture2D = preload("res://assets/pixel/units/mage.png")
-const SKELETON_ART: Texture2D = preload("res://assets/pixel/units/skeleton.png")
-const BONE_ARCHER_ART: Texture2D = preload("res://assets/pixel/units/bone_archer.png")
-const BONE_WARDEN_ART: Texture2D = preload("res://assets/pixel/units/bone_warden.png")
+const UNIT_SHEET: Texture2D = preload("res://assets/pixel/units/combat_units_v2.png")
+const UNIT_TILE_SIZE := 96.0
 
 signal died(unit: BattleUnit)
 signal boss_enraged(unit: BattleUnit)
@@ -97,7 +93,7 @@ func _ready() -> void:
 	name_label.text = display_name
 	name_label.visible = team == 0 or is_boss or show_enemy_name
 	art_sprite.texture = _get_art_texture()
-	var sprite_scale: float = 1.35 if is_boss else 1.55
+	var sprite_scale: float = 1.10 if is_boss else 1.08
 	art_sprite.scale = Vector2.ONE * (sprite_scale * visual_scale)
 	_apply_role_presentation()
 	_apply_health_bar_style()
@@ -107,35 +103,48 @@ func _ready() -> void:
 	queue_redraw()
 
 func _get_art_texture() -> Texture2D:
+	var tile := Vector2i(-1, -1)
 	match visual_role:
 		"knight":
-			return KNIGHT_ART
+			tile = Vector2i(0, 0)
 		"ranger":
-			return RANGER_ART
+			tile = Vector2i(1, 0)
 		"mage":
-			return MAGE_ART
+			tile = Vector2i(2, 0)
 		"skeleton":
-			return SKELETON_ART
+			tile = Vector2i(0, 1)
 		"bone_archer":
-			return BONE_ARCHER_ART
+			tile = Vector2i(1, 1)
+		"grave_bellkeeper":
+			tile = Vector2i(2, 1)
+		"bone_thrall":
+			tile = Vector2i(0, 2)
+		"crypt_guard":
+			tile = Vector2i(1, 2)
 		"bone_warden":
-			return BONE_WARDEN_ART
-		"grave_bellkeeper", "bone_thrall", "crypt_guard":
-			return SKELETON_ART
+			tile = Vector2i(2, 2)
 		_:
 			return null
+
+	var atlas := AtlasTexture.new()
+	atlas.atlas = UNIT_SHEET
+	atlas.region = Rect2(
+		Vector2(float(tile.x) * UNIT_TILE_SIZE, float(tile.y) * UNIT_TILE_SIZE),
+		Vector2(UNIT_TILE_SIZE, UNIT_TILE_SIZE)
+	)
+	return atlas
 
 func _apply_role_presentation() -> void:
 	match visual_role:
 		"grave_bellkeeper":
-			base_art_modulate = Color(0.62, 0.86, 0.72, 1.0)
+			base_art_modulate = Color.WHITE
 			health_bar.offset_left = -30.0
 			health_bar.offset_right = 30.0
 			name_label.add_theme_color_override("font_color", Color(0.62, 0.90, 0.74, 1.0))
 		"bone_thrall":
-			base_art_modulate = Color(0.72, 0.70, 0.64, 1.0)
+			base_art_modulate = Color.WHITE
 		"crypt_guard":
-			base_art_modulate = Color(0.82, 0.62, 0.40, 1.0)
+			base_art_modulate = Color.WHITE
 			health_bar.offset_left = -36.0
 			health_bar.offset_right = 36.0
 			name_label.offset_left = -72.0
@@ -154,13 +163,13 @@ func _apply_boss_layout() -> void:
 		return
 
 	health_bar.offset_left = -72.0
-	health_bar.offset_top = -106.0
+	health_bar.offset_top = -88.0
 	health_bar.offset_right = 72.0
-	health_bar.offset_bottom = -94.0
+	health_bar.offset_bottom = -77.0
 	name_label.offset_left = -112.0
-	name_label.offset_top = 64.0
+	name_label.offset_top = 58.0
 	name_label.offset_right = 112.0
-	name_label.offset_bottom = 90.0
+	name_label.offset_bottom = 84.0
 	name_label.add_theme_font_size_override("font_size", 16)
 	name_label.add_theme_color_override("font_color", Color(0.96, 0.72, 0.42, 1.0))
 
