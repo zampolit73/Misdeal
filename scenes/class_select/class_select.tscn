@@ -112,18 +112,64 @@ theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("Card")
 theme_override_styles/hover = SubResource("KnightHover")
 theme_override_styles/pressed = SubResource("KnightHover")
-text = "\n\n\n\n\n\n\n\nРЫЦАРЬ\n\n150 HP   •   18 УРОН\nБлижний бой\n\nСтоять там, где остальные отступают."
-autowrap_mode = 2
+text = ""
 
 [node name="Portrait" type="TextureRect" parent="Frame/Cards/Knight"]
 mouse_filter = 2
-offset_left = 68.0
-offset_top = 24.0
-offset_right = 269.0
-offset_bottom = 225.0
+offset_left = 64.0
+offset_top = 18.0
+offset_right = 273.0
+offset_bottom = 194.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ClassTitle" type="Label" parent="Frame/Cards/Knight"]
+mouse_filter = 2
+offset_left = 18.0
+offset_top = 204.0
+offset_right = 319.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(0.72, 0.84, 0.98, 1)
+theme_override_font_sizes/font_size = 18
+text = "РЫЦАРЬ"
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="Frame/Cards/Knight"]
+mouse_filter = 2
+offset_left = 18.0
+offset_top = 238.0
+offset_right = 319.0
+offset_bottom = 262.0
+theme_override_colors/font_color = Color(0.88, 0.82, 0.75, 1)
+theme_override_font_sizes/font_size = 14
+text = "150 HP   •   18 УРОН"
+horizontal_alignment = 1
+
+[node name="Role" type="Label" parent="Frame/Cards/Knight"]
+mouse_filter = 2
+offset_left = 18.0
+offset_top = 268.0
+offset_right = 319.0
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(0.72, 0.84, 0.98, 1)
+theme_override_font_sizes/font_size = 13
+text = "БЛИЖНИЙ БОЙ"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Frame/Cards/Knight"]
+mouse_filter = 2
+offset_left = 24.0
+offset_top = 306.0
+offset_right = 313.0
+offset_bottom = 364.0
+theme_override_colors/font_color = Color(0.72, 0.84, 0.98, 1)
+theme_override_font_sizes/font_size = 14
+text = "Стоять там, где остальные отступают."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
 
 [node name="Ranger" type="Button" parent="Frame/Cards"]
 custom_minimum_size = Vector2(337, 382)
@@ -134,18 +180,64 @@ theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("Card")
 theme_override_styles/hover = SubResource("RangerHover")
 theme_override_styles/pressed = SubResource("RangerHover")
-text = "\n\n\n\n\n\n\n\nСЛЕДОПЫТ\n\n90 HP   •   14 УРОН\nДальний бой\n\nВыживать там, где дороги уже нет."
-autowrap_mode = 2
+text = ""
 
 [node name="Portrait" type="TextureRect" parent="Frame/Cards/Ranger"]
 mouse_filter = 2
-offset_left = 68.0
-offset_top = 24.0
-offset_right = 269.0
-offset_bottom = 225.0
+offset_left = 64.0
+offset_top = 18.0
+offset_right = 273.0
+offset_bottom = 194.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ClassTitle" type="Label" parent="Frame/Cards/Ranger"]
+mouse_filter = 2
+offset_left = 18.0
+offset_top = 204.0
+offset_right = 319.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(0.66, 0.90, 0.58, 1)
+theme_override_font_sizes/font_size = 18
+text = "СЛЕДОПЫТ"
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="Frame/Cards/Ranger"]
+mouse_filter = 2
+offset_left = 18.0
+offset_top = 238.0
+offset_right = 319.0
+offset_bottom = 262.0
+theme_override_colors/font_color = Color(0.88, 0.82, 0.75, 1)
+theme_override_font_sizes/font_size = 14
+text = "90 HP   •   14 УРОН"
+horizontal_alignment = 1
+
+[node name="Role" type="Label" parent="Frame/Cards/Ranger"]
+mouse_filter = 2
+offset_left = 18.0
+offset_top = 268.0
+offset_right = 319.0
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(0.66, 0.90, 0.58, 1)
+theme_override_font_sizes/font_size = 13
+text = "ДАЛЬНИЙ БОЙ"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Frame/Cards/Ranger"]
+mouse_filter = 2
+offset_left = 24.0
+offset_top = 306.0
+offset_right = 313.0
+offset_bottom = 364.0
+theme_override_colors/font_color = Color(0.66, 0.90, 0.58, 1)
+theme_override_font_sizes/font_size = 14
+text = "Выживать там, где дороги уже нет."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
 
 [node name="Mage" type="Button" parent="Frame/Cards"]
 custom_minimum_size = Vector2(337, 382)
@@ -156,18 +248,64 @@ theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("Card")
 theme_override_styles/hover = SubResource("MageHover")
 theme_override_styles/pressed = SubResource("MageHover")
-text = "\n\n\n\n\n\n\n\nМАГ\n\n80 HP   •   24 УРОН\nВзрывной урон\n\nЗнать то, что следовало оставить забытым."
-autowrap_mode = 2
+text = ""
 
 [node name="Portrait" type="TextureRect" parent="Frame/Cards/Mage"]
 mouse_filter = 2
-offset_left = 68.0
-offset_top = 24.0
-offset_right = 269.0
-offset_bottom = 225.0
+offset_left = 64.0
+offset_top = 18.0
+offset_right = 273.0
+offset_bottom = 194.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ClassTitle" type="Label" parent="Frame/Cards/Mage"]
+mouse_filter = 2
+offset_left = 18.0
+offset_top = 204.0
+offset_right = 319.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(0.86, 0.66, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "МАГ"
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="Frame/Cards/Mage"]
+mouse_filter = 2
+offset_left = 18.0
+offset_top = 238.0
+offset_right = 319.0
+offset_bottom = 262.0
+theme_override_colors/font_color = Color(0.88, 0.82, 0.75, 1)
+theme_override_font_sizes/font_size = 14
+text = "80 HP   •   24 УРОН"
+horizontal_alignment = 1
+
+[node name="Role" type="Label" parent="Frame/Cards/Mage"]
+mouse_filter = 2
+offset_left = 18.0
+offset_top = 268.0
+offset_right = 319.0
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(0.86, 0.66, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "ВЗРЫВНОЙ УРОН"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Frame/Cards/Mage"]
+mouse_filter = 2
+offset_left = 24.0
+offset_top = 306.0
+offset_right = 313.0
+offset_bottom = 364.0
+theme_override_colors/font_color = Color(0.86, 0.66, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Знать то, что следовало оставить забытым."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
 
 [node name="Rule" type="Label" parent="Frame"]
 offset_left = 120.0
