@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Complete nine-role combat sprite atlas confirmed locally after the v2 fallback preload fix.
 - Authored gothic battle backdrop confirmed locally after backdrop import/z-order fixes.
 - Final five-card Act 1 content batch confirmed locally: Rattling Bridge, Lost Purse, Candle Seller, Bone Tax and Death Wager.
 - Late-game Act 1 escalation confirmed locally: Faceless Card, Blood Ledger, Broken Crown, Last Camp and Ossuary Gate.
@@ -44,6 +45,11 @@
 
 ### Changed
 
+- Replaced ordinary post-combat gold / party HP / party damage choices with a build-progression flow: one guaranteed major hero upgrade per Act 1 tier, followed by normal or special loot.
+- Normal non-special combat loot is now gold-only; permanent party HP/damage is no longer the default combat progression reward.
+- Death Wager reward changed from raw +HP/+damage options to +60 gold / a visible available artifact / one additional hero-upgrade choice.
+- Wizard-table HUD now emphasizes hero progression count and relic count instead of global HP/damage counters.
+- Reward cards now use Knight/Ranger/Mage visual accents and wrapped text for build choices.
 - Replaced all current combat-unit rendering with the final v3 unified 3×3 high-detail 96×96 pixel atlas covering Knight, Ranger, Mage, Skeleton, Bone Archer, Grave Bellkeeper, Bone Thrall, Crypt Guard and Bone Warden.
 - Production v3 unit art is reconstructed from ten repository PNG-base64 chunks under `assets/pixel/units/combat_units_v3/`; `BattleUnit` validates the decoded 288×288 atlas before use.
 - Grave Bellkeeper, Bone Thrall and Crypt Guard now have unique authored sprites instead of tinted Skeleton fallback art.
@@ -66,6 +72,12 @@
 
 ### Added
 
+- Data-driven `HeroUpgradeData` run-progression layer.
+- Nine unique hero upgrades: three each for Knight, Ranger and Mage.
+- Stable per-tier major-upgrade offers stored in RunState so each early/mid/late tier guarantees one build-defining choice after its first combat victory.
+- Optional bonus-upgrade reward flow used by Death Wager.
+- Hero upgrades apply to runtime HP, damage, attack cadence, range, minimum range, splash and movement before artifacts.
+- Run-end summary now lists acquired hero upgrades.
 - Dedicated **Bone Warden** combat art instead of reusing the normal Skeleton sprite.
 - Dedicated **Bone Warden** final-card illustration.
 - Dedicated final-boss arena treatment with red ritual geometry, barred gate, chains and stronger braziers.
