@@ -103,6 +103,7 @@ func _spawn_unit(
 	if team == 0:
 		unit.max_hp += RunState.party_hp_bonus
 		unit.damage += RunState.party_damage_bonus
+		_apply_hero_upgrades_to_unit(unit)
 		_apply_artifacts_to_unit(unit)
 		unit.max_hp = maxf(20.0, unit.max_hp)
 		unit.damage = maxf(1.0, unit.damage)
@@ -119,6 +120,17 @@ func _spawn_unit(
 
 	if combat_started:
 		unit.start_combat()
+
+func _apply_hero_upgrades_to_unit(unit: BattleUnit) -> void:
+	for upgrade in RunState.get_hero_upgrades_for_role(unit.visual_role):
+		unit.max_hp += upgrade.hp_bonus
+		unit.damage *= upgrade.damage_multiplier
+		unit.attack_interval = maxf(0.2, unit.attack_interval * upgrade.attack_interval_multiplier)
+		unit.attack_range += upgrade.attack_range_bonus
+		unit.minimum_range += upgrade.minimum_range_bonus
+		unit.splash_radius += upgrade.splash_radius_bonus
+		unit.splash_damage_multiplier += upgrade.splash_damage_bonus
+		unit.move_speed *= upgrade.move_speed_multiplier
 
 func _apply_artifacts_to_unit(unit: BattleUnit) -> void:
 	for artifact in RunState.get_artifacts_for_role(unit.visual_role):
