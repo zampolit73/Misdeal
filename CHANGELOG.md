@@ -41,7 +41,8 @@
 
 ### Changed
 
-- Replaced all current combat-unit rendering with a unified 3×3 high-detail 96×96 pixel atlas covering Knight, Ranger, Mage, Skeleton, Bone Archer, Grave Bellkeeper, Bone Thrall, Crypt Guard and Bone Warden.
+- Replaced all current combat-unit rendering with the final v3 unified 3×3 high-detail 96×96 pixel atlas covering Knight, Ranger, Mage, Skeleton, Bone Archer, Grave Bellkeeper, Bone Thrall, Crypt Guard and Bone Warden.
+- Production v3 unit art is reconstructed from ten repository PNG-base64 chunks under `assets/pixel/units/combat_units_v3/`; `BattleUnit` validates the decoded 288×288 atlas and falls back to the previous v2 sheet if loading fails.
 - Grave Bellkeeper, Bone Thrall and Crypt Guard now have unique authored sprites instead of tinted Skeleton fallback art.
 - Retuned unit sprite scale and HP/name offsets for the new detailed atlas: Thrall smaller, support near standard size, Crypt Guard elite-sized, Bone Warden boss-sized.
 - Replaced the procedural battle wall/floor/HUD rendering with an authored full-screen gothic battle backdrop based on the user's second approved reference.
