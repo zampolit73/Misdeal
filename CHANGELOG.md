@@ -23,6 +23,9 @@
 
 ### Fixed
 
+- Removed the obsolete compile-time `preload()` of `combat_units_v2.png` that prevented `unit.gd` from parsing in Godot 4.7.2. The validated v3 atlas is now the only production unit-art source.
+- Removed the obsolete/broken `assets/pixel/units/combat_units_v2.png` fallback asset.
+
 - Fixed the authored battle backdrop being invisible: the direct WebP committed to GitHub was truncated to 8.7 KB and the backdrop node also sat behind the fullscreen black fallback via `z_index = -100`.
 - Battle now reconstructs the validated 1280×720 authored WebP from five repository chunks through `authored_backdrop.gd`, and the backdrop is drawn above the black fallback.
 - Removed the broken truncated `assets/pixel/battle/battle_backdrop.webp` file.
@@ -42,7 +45,7 @@
 ### Changed
 
 - Replaced all current combat-unit rendering with the final v3 unified 3×3 high-detail 96×96 pixel atlas covering Knight, Ranger, Mage, Skeleton, Bone Archer, Grave Bellkeeper, Bone Thrall, Crypt Guard and Bone Warden.
-- Production v3 unit art is reconstructed from ten repository PNG-base64 chunks under `assets/pixel/units/combat_units_v3/`; `BattleUnit` validates the decoded 288×288 atlas and falls back to the previous v2 sheet if loading fails.
+- Production v3 unit art is reconstructed from ten repository PNG-base64 chunks under `assets/pixel/units/combat_units_v3/`; `BattleUnit` validates the decoded 288×288 atlas before use.
 - Grave Bellkeeper, Bone Thrall and Crypt Guard now have unique authored sprites instead of tinted Skeleton fallback art.
 - Retuned unit sprite scale and HP/name offsets for the new detailed atlas: Thrall smaller, support near standard size, Crypt Guard elite-sized, Bone Warden boss-sized.
 - Replaced the procedural battle wall/floor/HUD rendering with an authored full-screen gothic battle backdrop based on the user's second approved reference.
