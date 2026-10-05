@@ -136,10 +136,11 @@ custom_minimum_size = Vector2(310, 165)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.90, 0.80, 0.68, 1)
 theme_override_colors/font_disabled_color = Color(0.40, 0.38, 0.38, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("ChoiceNormal")
 theme_override_styles/hover = SubResource("ChoiceHover")
 theme_override_styles/pressed = SubResource("ChoiceHover")
+autowrap_mode = 2
 text = "ВЫБОР A"
 
 [node name="ChoiceB" type="Button" parent="Panel/Choices"]
@@ -147,10 +148,11 @@ custom_minimum_size = Vector2(310, 165)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.90, 0.80, 0.68, 1)
 theme_override_colors/font_disabled_color = Color(0.40, 0.38, 0.38, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("ChoiceNormal")
 theme_override_styles/hover = SubResource("ChoiceHover")
 theme_override_styles/pressed = SubResource("ChoiceHover")
+autowrap_mode = 2
 text = "ВЫБОР B"
 
 [node name="ChoiceC" type="Button" parent="Panel/Choices"]
@@ -158,10 +160,11 @@ custom_minimum_size = Vector2(310, 165)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.90, 0.80, 0.68, 1)
 theme_override_colors/font_disabled_color = Color(0.40, 0.38, 0.38, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("ChoiceNormal")
 theme_override_styles/hover = SubResource("ChoiceHover")
 theme_override_styles/pressed = SubResource("ChoiceHover")
+autowrap_mode = 2
 text = "ВЫБОР C"
 
 [node name="Result" type="Label" parent="Panel"]
