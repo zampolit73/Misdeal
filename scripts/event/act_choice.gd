@@ -277,7 +277,12 @@ func _get_role_label(role: String) -> String:
 			return "ГЕРОЙ"
 
 func _set_role_upgrade_button(button: Button, role: String, heading: String, extra_text: String = "") -> void:
-	var upgrade_id := RunState.get_next_available_hero_upgrade_id(role)
+	if not RunState.can_claim_extra_hero_upgrade():
+		button.text = "%s\n\nПРЕДЕЛ ДОП. РАЗВИТИЯ %s" % [heading, RunState.get_extra_upgrade_progress_text()]
+		button.disabled = true
+		return
+
+	var upgrade_id := RunState.get_next_extra_hero_upgrade_id(role)
 	if upgrade_id.is_empty():
 		button.text = "%s\n\n%s: все пути развития уже освоены" % [heading, _get_role_label(role)]
 		button.disabled = true
@@ -297,7 +302,12 @@ func _set_role_upgrade_button(button: Button, role: String, heading: String, ext
 	]
 
 func _set_least_developed_upgrade_button(button: Button, heading: String, extra_text: String = "") -> void:
-	var role := RunState.get_least_developed_available_role()
+	if not RunState.can_claim_extra_hero_upgrade():
+		button.text = "%s\n\nПРЕДЕЛ ДОП. РАЗВИТИЯ %s" % [heading, RunState.get_extra_upgrade_progress_text()]
+		button.disabled = true
+		return
+
+	var role := RunState.get_least_developed_extra_role()
 	if role.is_empty():
 		button.text = "%s\n\nВсе известные пути развития уже освоены" % heading
 		button.disabled = true
@@ -306,10 +316,10 @@ func _set_least_developed_upgrade_button(button: Button, heading: String, extra_
 	_set_role_upgrade_button(button, role, heading, extra_text)
 
 func _grant_role_upgrade(role: String) -> String:
-	return RunState.add_next_available_hero_upgrade(role)
+	return RunState.add_next_extra_hero_upgrade(role)
 
 func _grant_least_developed_upgrade() -> String:
-	return RunState.add_upgrade_to_least_developed_role()
+	return RunState.add_extra_upgrade_to_least_developed_role()
 
 func _format_upgrade_gain(upgrade_id: String) -> String:
 	if upgrade_id.is_empty():
@@ -654,8 +664,9 @@ func _set_choices_visible(value: bool) -> void:
 
 func _refresh_run_labels() -> void:
 	gold_label.text = "ЗОЛОТО: %d" % RunState.gold
-	artifacts_label.text = "РАЗВИТИЕ: %d   |   РЕЛИКВИИ: %d" % [
+	artifacts_label.text = "РАЗВИТИЕ: %d   |   ДОП.: %s   |   РЕЛИКВИИ: %d" % [
 		RunState.hero_upgrade_ids.size(),
+		RunState.get_extra_upgrade_progress_text(),
 		RunState.artifact_ids.size()
 	]
 	var condition_text := RunState.get_run_condition_text()
