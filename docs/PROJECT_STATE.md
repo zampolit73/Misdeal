@@ -175,7 +175,8 @@ The table displays:
 - gold;
 - current hero-development count;
 - current relic count;
-- **ДОЛГ ВОЛШЕБНИКУ** when active.
+- **ДОЛГ ВОЛШЕБНИКУ** when active;
+- an **ОТРЯД [TAB]** control that opens the squad-status modal over the current deal.
 
 Selecting a card stores it as the active run card. Combat cards also select their `EncounterData`; event/prototype cards route to their configured scene.
 
@@ -204,6 +205,26 @@ The lower tabletop, ritual runner and sigil remain procedural so the layout can 
 The table still uses real Godot `Button` controls. Two existing card slots are now populated dynamically from `RunCardData`, including title, type, description, wizard hover line and art path.
 
 The top HUD remains dynamic and now emphasizes Act 1 progress, gold, **РАЗВИТИЕ** count and **РЕЛИКВИИ** count. If wizard debt is active, **ДОЛГ ВОЛШЕБНИКУ** is also shown.
+
+### Squad status
+
+`scenes/table/squad_status.tscn`  
+`scripts/table/squad_status.gd`
+
+The table now has a read-only **ДОСЬЕ ОТРЯДА** modal for inspecting the current run build.
+
+- Tab or **ОТРЯД [TAB]** opens/closes it without changing the current card offer;
+- Esc closes it;
+- 1 / 2 / 3 switches between Knight, Ranger and Mage;
+- portraits are sliced from the same production 3×3 combat-unit atlas used in battle;
+- each hero shows final HP, damage, attacks/second, range, move speed and damage/second;
+- Ranger/minimum-range and Knight/Mage splash stats appear only when relevant;
+- changed values are compared against the hero's base `UnitData` value;
+- the right side lists the hero's acquired upgrades and every relic currently affecting that hero, including party-wide relics;
+- the footer shows legacy party HP/damage effects, optional-upgrade progress and wizard debt;
+- the hero subtitle becomes a lightweight dynamic build name such as **ЖЕЛЕЗНАЯ СТЕНА**, **СНАЙПЕР**, **ЗАЛПОВИК**, **ПИРОМАНТ** or **СТЕКЛЯННАЯ ПУШКА**.
+
+`RunState.get_effective_hero_stats()` mirrors the same modifier order used by battle spawning: global party bonuses -> hero upgrades -> artifacts -> minimum HP/damage clamps. The status UI does not store a second copy of character stats.
 
 The earlier painted assets under `assets/art/` remain in the repository as historical/reference material.
 
@@ -428,6 +449,8 @@ Special combat rewards remain intact after the tier upgrade:
 
 The wizard-table HUD now emphasizes **РАЗВИТИЕ** and **РЕЛИКВИИ** instead of treating global HP/damage counters as the primary build identity.
 
+A read-only **ДОСЬЕ ОТРЯДА** modal is now implemented on the wizard table and pending local verification. It opens from the new **ОТРЯД [TAB]** button or the Tab key without regenerating the current card offer.
+
 The shared `scenes/event/act_choice.tscn` scene handles the implemented choice-driven events. Its progression-facing cards now query the live hero build and show the actual next upgrade name on the choice button when relevant. The scene still intentionally avoids a generalized event-effect framework.
 
 ### Run state
@@ -448,6 +471,7 @@ The current prototype run state stores:
 - boss completion state;
 - persistent artifact ids;
 - persistent hero-upgrade ids;
+- derived effective hero-stat inspection for the squad-status UI;
 - claimed major-upgrade tier indices;
 - stable pending major/bonus upgrade offers;
 - temporary `wizard_debt_active` state;
@@ -469,21 +493,22 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the first **progression-economy balance pass** through one or two full Act 1 runs:
+Locally verify the new **ДОСЬЕ ОТРЯДА** modal together with the current progression-economy pass:
 
-- each early/mid/late tier must still grant one guaranteed major upgrade when upgrades remain;
-- event/Death Wager upgrades must stop after **3 optional upgrades total**;
-- the event HUD should show the optional counter as **ДОП. X/3**;
-- after the optional cap is reached, deterministic event-upgrade buttons should disable cleanly instead of consuming resources;
-- Whispering Well should still allow its relic option after the optional upgrade cap is reached;
-- Death Wager should replace its extra-upgrade branch with **+45 gold** at the cap;
-- Blood Ledger erasing an optional upgrade should reopen one optional slot;
-- a normal strong build should arrive at Bone Warden with roughly **4–6 hero upgrades**, not all nine;
-- Bone Warden should now use **700 HP / 24 damage / 1.0 s attack interval**, with stronger 50% enrage, while keeping the same cleave and two phase-II reinforcements;
-- judge the boss as **too easy / fair / too hard** with both a focused build and a more distributed build;
-- check that the stronger boss still leaves pre-battle placement and target order relevant rather than becoming a pure stat wall.
+- **ОТРЯД [TAB]** should open over the current wizard-table deal without changing or regenerating offered cards;
+- Tab should toggle the modal reliably and Esc should close it;
+- 1 / 2 / 3 and the three hero buttons should switch Knight / Ranger / Mage;
+- each portrait must use the same production sprite as combat;
+- at run start, displayed final stats should match the base hero resources;
+- after hero upgrades, relics and party-wide event modifiers, displayed final stats should match the unit values seen when the next battle starts;
+- attacks/second and damage/second must update when attack interval or damage changes;
+- minimum-range and splash rows should appear only when relevant;
+- upgrade and relic lists should show only effects that actually apply to the selected hero;
+- dynamic specialization names should change with recognizable builds but must remain presentation-only;
+- long upgrade/relic descriptions should remain readable at 1280×720 without overlapping the footer;
+- the modal must block clicks on the card offer underneath.
 
-Do not add another progression currency/system until this power curve is locally validated.
+Continue the planned full-run balance check after this UI is locally confirmed.
 
 ## Local workflow
 
