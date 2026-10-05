@@ -16,5 +16,5 @@ move_speed = 52.0
 body_radius = 30.0
 separation_padding = 14.0
 separation_strength = 145.0
-visual_scale = 1.45
+visual_scale = 1.2
 show_enemy_name = true
