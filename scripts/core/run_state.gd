@@ -265,6 +265,67 @@ func get_hero_upgrade_titles_text() -> String:
 
 	return ", ".join(titles)
 
+func get_role_upgrade_count(role: String) -> int:
+	var count := 0
+	for upgrade_id in hero_upgrade_ids:
+		var upgrade := get_hero_upgrade(upgrade_id)
+		if upgrade != null and upgrade.target_role == role:
+			count += 1
+	return count
+
+func get_next_available_hero_upgrade_id(role: String) -> String:
+	var available := get_available_hero_upgrade_ids_for_role(role)
+	if available.is_empty():
+		return ""
+
+	available.sort()
+	return available[0]
+
+func add_next_available_hero_upgrade(role: String) -> String:
+	var upgrade_id := get_next_available_hero_upgrade_id(role)
+	if upgrade_id.is_empty():
+		return ""
+	if not add_hero_upgrade(upgrade_id):
+		return ""
+	return upgrade_id
+
+func get_least_developed_available_role() -> String:
+	var best_role := ""
+	var best_count := 999
+
+	for role in HERO_ROLES:
+		if get_next_available_hero_upgrade_id(role).is_empty():
+			continue
+
+		var count := get_role_upgrade_count(role)
+		if count < best_count:
+			best_count = count
+			best_role = role
+
+	return best_role
+
+func add_upgrade_to_least_developed_role() -> String:
+	var role := get_least_developed_available_role()
+	if role.is_empty():
+		return ""
+	return add_next_available_hero_upgrade(role)
+
+func get_last_hero_upgrade_id() -> String:
+	if hero_upgrade_ids.is_empty():
+		return ""
+	return hero_upgrade_ids[hero_upgrade_ids.size() - 1]
+
+func remove_last_hero_upgrade() -> String:
+	var upgrade_id := get_last_hero_upgrade_id()
+	if upgrade_id.is_empty():
+		return ""
+
+	hero_upgrade_ids.remove_at(hero_upgrade_ids.size() - 1)
+	return upgrade_id
+
+func clear_wizard_debt() -> void:
+	wizard_debt_active = false
+
 func is_major_upgrade_due_for_active_card() -> bool:
 	var card := get_active_card()
 	if card == null or card.resolution_type != "combat" or card.card_id == BOSS_CARD_ID:
