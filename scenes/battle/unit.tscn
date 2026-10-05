@@ -8,14 +8,14 @@ script = ExtResource("1_unit")
 [node name="ArtSprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -12)
-scale = Vector2(1.85, 1.85)
+scale = Vector2(1, 1)
 z_index = 1
 
 [node name="NameLabel" type="Label" parent="."]
 offset_left = -72.0
-offset_top = 39.0
+offset_top = 42.0
 offset_right = 72.0
-offset_bottom = 61.0
+offset_bottom = 64.0
 theme_override_colors/font_color = Color(0.92, 0.89, 0.84, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.94)
 theme_override_constants/shadow_offset_x = 2
@@ -25,10 +25,10 @@ text = "Unit"
 horizontal_alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -30.0
-offset_top = -62.0
-offset_right = 30.0
-offset_bottom = -53.0
+offset_left = -34.0
+offset_top = -72.0
+offset_right = 34.0
+offset_bottom = -63.0
 mouse_filter = 2
 show_percentage = false
 value = 100.0
