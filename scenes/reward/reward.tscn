@@ -12,52 +12,52 @@ border_width_bottom = 3
 border_color = Color(0.34, 0.22, 0.24, 1)
 
 [sub_resource type="StyleBoxFlat" id="BloodNormal"]
-bg_color = Color(0.090, 0.040, 0.040, 0.98)
+bg_color = Color(0.040, 0.060, 0.095, 0.98)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.62, 0.18, 0.12, 1)
+border_color = Color(0.30, 0.52, 0.78, 1)
 
 [sub_resource type="StyleBoxFlat" id="BloodHover"]
-bg_color = Color(0.14, 0.055, 0.045, 1)
+bg_color = Color(0.055, 0.085, 0.13, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.95, 0.36, 0.16, 1)
+border_color = Color(0.55, 0.78, 1.0, 1)
 
 [sub_resource type="StyleBoxFlat" id="IronNormal"]
-bg_color = Color(0.055, 0.065, 0.072, 0.98)
+bg_color = Color(0.045, 0.075, 0.050, 0.98)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.42, 0.52, 0.58, 1)
+border_color = Color(0.38, 0.66, 0.38, 1)
 
 [sub_resource type="StyleBoxFlat" id="IronHover"]
-bg_color = Color(0.075, 0.090, 0.10, 1)
+bg_color = Color(0.060, 0.105, 0.065, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.68, 0.82, 0.86, 1)
+border_color = Color(0.62, 0.90, 0.56, 1)
 
 [sub_resource type="StyleBoxFlat" id="SteelNormal"]
-bg_color = Color(0.075, 0.055, 0.035, 0.98)
+bg_color = Color(0.070, 0.045, 0.090, 0.98)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.58, 0.40, 0.16, 1)
+border_color = Color(0.62, 0.40, 0.82, 1)
 
 [sub_resource type="StyleBoxFlat" id="SteelHover"]
-bg_color = Color(0.115, 0.078, 0.040, 1)
+bg_color = Color(0.105, 0.060, 0.135, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.92, 0.66, 0.22, 1)
+border_color = Color(0.84, 0.60, 1.0, 1)
 
 [node name="Reward" type="Control"]
 layout_mode = 3
@@ -133,10 +133,11 @@ alignment = 1
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 0.74, 0.58, 1)
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("BloodNormal")
 theme_override_styles/hover = SubResource("BloodHover")
 theme_override_styles/pressed = SubResource("BloodHover")
+autowrap_mode = 2
 text = "КРОВАВАЯ МОНЕТА
 
 +25 золота
@@ -148,10 +149,11 @@ text = "КРОВАВАЯ МОНЕТА
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78, 0.86, 0.88, 1)
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("IronNormal")
 theme_override_styles/hover = SubResource("IronHover")
 theme_override_styles/pressed = SubResource("IronHover")
+autowrap_mode = 2
 text = "ЖЕЛЕЗНЫЙ ОБЕРЕГ
 
 +20 здоровья
@@ -164,10 +166,11 @@ text = "ЖЕЛЕЗНЫЙ ОБЕРЕГ
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 0.80, 0.54, 1)
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("SteelNormal")
 theme_override_styles/hover = SubResource("SteelHover")
 theme_override_styles/pressed = SubResource("SteelHover")
+autowrap_mode = 2
 text = "ЗАКАЛЁННАЯ СТАЛЬ
 
 +3 урона
