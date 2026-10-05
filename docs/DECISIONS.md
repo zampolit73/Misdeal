@@ -517,3 +517,29 @@ The opening presents this premise in a five-frame authored pixel-art comic:
 5. he lays out the cursed deck and begins the deal.
 
 The intro must remain short and skippable. It appears when entering the game from the main menu; consecutive new runs from the run-end screen continue directly to the table to avoid repeated narrative friction.
+
+## D033 — Squad status is a derived read-only build view, not a second character-state system
+
+Date: 2026-10-05  
+Status: accepted for vertical-slice UI
+
+The hero-upgrade and artifact systems now change enough combat parameters that players need a place to understand the build they have created.
+
+The wizard table therefore exposes a **ДОСЬЕ ОТРЯДА** modal with one hero selected at a time.
+
+The modal shows:
+
+- the production combat portrait;
+- final combat HP, damage, attacks/second, range, movement and derived DPS;
+- minimum range and splash only when relevant;
+- base-value comparison for changed stats;
+- acquired hero upgrades;
+- relics affecting the selected hero, including party-wide relics;
+- legacy party-wide stat modifiers and optional-upgrade progress;
+- a presentation-only specialization name derived from recognizable upgrade/relic combinations.
+
+The UI must not maintain its own mutable character stats. `RunState.get_effective_hero_stats(role)` derives the displayed values from the same `UnitData`, global party modifiers, hero upgrades and artifacts used by combat, in the same order and with the same minimum HP/damage clamps.
+
+The modal lives over the wizard table and must not regenerate offers or advance the run. Tab toggles it; Esc closes it.
+
+Do not introduce equipment slots, level numbers, attribute points or a second character-sheet progression model just to support this screen.
