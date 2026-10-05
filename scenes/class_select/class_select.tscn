@@ -113,7 +113,6 @@ theme_override_styles/normal = SubResource("Card")
 theme_override_styles/hover = SubResource("KnightHover")
 theme_override_styles/pressed = SubResource("KnightHover")
 text = "\n\n\n\n\n\n\n\nРЫЦАРЬ\n\n150 HP   •   18 УРОН\nБлижний бой\n\nСтоять там, где остальные отступают."
-vertical_alignment = 2
 autowrap_mode = 2
 
 [node name="Portrait" type="TextureRect" parent="Frame/Cards/Knight"]
@@ -136,7 +135,6 @@ theme_override_styles/normal = SubResource("Card")
 theme_override_styles/hover = SubResource("RangerHover")
 theme_override_styles/pressed = SubResource("RangerHover")
 text = "\n\n\n\n\n\n\n\nСЛЕДОПЫТ\n\n90 HP   •   14 УРОН\nДальний бой\n\nВыживать там, где дороги уже нет."
-vertical_alignment = 2
 autowrap_mode = 2
 
 [node name="Portrait" type="TextureRect" parent="Frame/Cards/Ranger"]
@@ -159,7 +157,6 @@ theme_override_styles/normal = SubResource("Card")
 theme_override_styles/hover = SubResource("MageHover")
 theme_override_styles/pressed = SubResource("MageHover")
 text = "\n\n\n\n\n\n\n\nМАГ\n\n80 HP   •   24 УРОН\nВзрывной урон\n\nЗнать то, что следовало оставить забытым."
-vertical_alignment = 2
 autowrap_mode = 2
 
 [node name="Portrait" type="TextureRect" parent="Frame/Cards/Mage"]
