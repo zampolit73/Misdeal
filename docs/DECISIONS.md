@@ -313,7 +313,7 @@ Do not immediately add more cards. The next development gate is a full-run balan
 - elite and late-combat difficulty;
 - whether Bone Warden remains a meaningful final test after twelve cards.
 
-**СТАВКА НА СМЕРТЬ** is the current late high-risk/high-reward endpoint before the boss: it uses a five-enemy encounter and a bespoke +60 gold / +35 HP / +5 damage reward choice after the first balance pass. Like the Crypt Guard artifact reward, this special reward does not consume **ДОЛГ ВОЛШЕБНИКУ**; only a normal reward clears that condition.
+**СТАВКА НА СМЕРТЬ** was initially tuned to a bespoke +60 gold / +35 HP / +5 damage reward choice. This reward design is superseded by D029; the encounter itself and its high-risk/high-reward role remain unchanged. Like the Crypt Guard artifact reward, this special reward does not consume **ДОЛГ ВОЛШЕБНИКУ**; only a normal reward clears that condition.
 
 Content expansion should resume only after the current Act 1 proves its pacing and economy in repeated local runs.
 
@@ -330,7 +330,7 @@ After the mandatory combat, remaining cards return to normal tier selection, so 
 
 This is pacing control, not a new route/map system. Keep the two-card wizard-table structure intact for the vertical slice.
 
-The same first balance pass retunes Bone Warden for twelve-card builds (580 HP, 22 base damage, faster cadence/movement and stronger enrage) and reduces Death Wager's special reward to +60 gold / +35 HP / +5 damage.
+The same first balance pass retunes Bone Warden for twelve-card builds (580 HP, 22 base damage, faster cadence/movement and stronger enrage). Its temporary Death Wager numeric-reward tuning was later superseded by D029.
 
 ## D025 — Bone Warden final fight is a two-phase encounter, not a stat wall
 
@@ -398,14 +398,43 @@ Status: accepted for vertical-slice visual direction
 
 The authored battle backdrop is now locally accepted, and the remaining visual mismatch was the simplified unit art.
 
-All nine combat roles currently used by the slice now come from one transparent 3×3 sprite atlas with 96×96 cells. The production v3 atlas is stored as ten base64 PNG chunks under `assets/pixel/units/combat_units_v3/` and decoded by `BattleUnit`; `assets/pixel/units/combat_units_v2.png` remains only as a fail-safe fallback:
+All nine combat roles currently used by the slice now come from one transparent 3×3 sprite atlas with 96×96 cells. The production v3 atlas is stored as ten base64 PNG chunks under `assets/pixel/units/combat_units_v3/` and decoded by `BattleUnit`. The obsolete v2 fallback was removed after it caused a Godot import/preload failure:
 
 - Knight / Ranger / Mage;
 - Skeleton / Bone Archer / Grave Bellkeeper;
 - Bone Thrall / Crypt Guard / Bone Warden.
 
-`BattleUnit` maps `UnitData.visual_role` directly to an atlas cell through `AtlasTexture`. The decoded v3 texture is validated as 288×288 before use; missing/corrupt v3 data falls back to the previous v2 atlas instead of producing invisible units. This keeps the roster visually coherent without putting art-loading failures into combat logic.
+`BattleUnit` maps `UnitData.visual_role` directly to an atlas cell through `AtlasTexture`. The decoded v3 texture is validated as 288×288 before use; missing/corrupt v3 data now fails visibly with a presentation error instead of relying on a stale fallback asset. This keeps the roster visually coherent without putting art-loading failures into combat logic.
 
 Presentation scale is role-driven rather than baked into source image size: Bone Thrall remains intentionally small, Crypt Guard larger, and Bone Warden largest. The source art stays transparent and uses nearest-neighbor filtering.
 
 Do not create a generalized sprite-animation framework yet. The next visual step, if needed, should be per-role idle/attack/death animation only after this static roster is confirmed readable in the live authored arena.
+
+## D029 — Act 1 build progression comes from hero-defining upgrades, not repeated party stat rewards
+
+Date: 2026-10-05  
+Status: accepted for vertical-slice progression pass
+
+Repeated post-combat choices of gold / party HP / party damage made runs numerically stronger without giving them a distinct build identity.
+
+Act 1 now guarantees one **major hero-upgrade choice per early/mid/late tier**. The first combat victory in each tier presents one available upgrade for each hero role. The player may spread the three choices across the party or repeatedly specialize one hero.
+
+The first upgrade set contains nine unique run-persistent upgrades:
+
+- Knight: **ЖЕЛЕЗНАЯ КЛЯТВА**, **ПАЛАЧ**, **РАЗМАШИСТЫЙ УДАР**;
+- Ranger: **ДАЛЬНИЙ ВЫСТРЕЛ**, **ГРАД СТРЕЛ**, **ЗВЕРИНАЯ ТРОПА**;
+- Mage: **ПОЖАР**, **СТЕКЛЯННОЕ СЕРДЦЕ**, **ПЕРЕГРУЗКА**.
+
+Upgrades use a small data-driven `HeroUpgradeData` Resource with the same narrow runtime-stat vocabulary already proven by artifacts. They are not a skill tree, XP system, equipment-slot system or meta-progression layer.
+
+Normal extra combat victories now give simple gold loot rather than more permanent party-wide HP/damage choices. Existing named event cards may still modify the legacy party HP/damage counters until those events receive a dedicated follow-up rewrite.
+
+Special combat rewards remain distinct:
+
+- Crypt Guard still grants an artifact choice;
+- Death Wager now grants a choice between +60 gold, a shown available artifact, or one additional hero-upgrade choice;
+- wizard debt doubles and clears only on normal gold loot, not on major upgrades or special rewards.
+
+Artifacts remain a second build layer that can reinforce or distort hero upgrades. Do not merge artifacts and hero upgrades into one generic loot system yet.
+
+The next progression task after local validation is to rewrite the most placeholder-like event-card raw stat trades so events interact with build identity instead of mostly increasing global numbers.
