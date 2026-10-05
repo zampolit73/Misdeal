@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HeroUpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/hero_upgrade_data.gd" id="1_upgrade"]
+
+[resource]
+script = ExtResource("1_upgrade")
+upgrade_id = "mage_overload"
+title = "ПЕРЕГРУЗКА"
+description = "Маг колдует на 35% быстрее, но каждый удар слабее на 12%, а сам Маг двигается на 15% медленнее."
+target_role = "mage"
+damage_multiplier = 0.88
+attack_interval_multiplier = 0.65
+move_speed_multiplier = 0.85
