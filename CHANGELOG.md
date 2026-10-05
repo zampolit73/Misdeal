@@ -45,6 +45,15 @@
 
 ### Changed
 
+- Reworked progression-facing event cards so positive permanent rewards primarily grant hero development, relics or gold instead of generic party-wide HP/damage.
+- Ash Rest and Last Camp now let the player develop a chosen hero directly.
+- Gravedigger Shop and Candle Seller now sell the next concrete Knight/Ranger/Mage upgrade.
+- Black Altar now trades party HP for a concrete role-specific hero upgrade.
+- Chained Prisoner, Broken Crown and Bone Tax now include least-developed-hero progression paths.
+- Faceless Card now rolls between gold, relic and hero-development outcomes; burning it can clear wizard debt.
+- Blood Ledger now buys development, trades blood for relic/build progression, or erases the latest acquired hero upgrade for +70 gold.
+- Whispering Well now trades blood/gold for hero development or relics instead of positive global stat buffs.
+- Event HUD now shows compact development/relic counts and build-choice buttons wrap longer upgrade descriptions.
 - Replaced ordinary post-combat gold / party HP / party damage choices with a build-progression flow: one guaranteed major hero upgrade per Act 1 tier, followed by normal or special loot.
 - Normal non-special combat loot is now gold-only; permanent party HP/damage is no longer the default combat progression reward.
 - Death Wager reward changed from raw +HP/+damage options to +60 gold / a visible available artifact / one additional hero-upgrade choice.
@@ -88,24 +97,24 @@
 - Completed the full 24-card pre-boss Act 1 pool with bespoke mechanics; active cards no longer use the generic prototype resolver.
 - Real **ГРЕМУЧИЙ МОСТ** early traversal event with risky, mixed-cost and safe crossing choices.
 - Real **КОШЕЛЬ МЕРТВЕЦА** greed event with escalating gold-for-HP trades.
-- Real **ТОРГОВЕЦ СВЕЧАМИ** early micro-shop with cheap HP/damage purchases and a theft option.
-- Real **КОСТЯНАЯ ПОШЛИНА** forced payment event with gold, HP and HP-for-damage branches.
+- Real **ТОРГОВЕЦ СВЕЧАМИ** early build shop selling role-specific hero development.
+- Real **КОСТЯНАЯ ПОШЛИНА** forced payment event with gold, blood or HP-for-least-developed-hero progression.
 - Real **СТАВКА НА СМЕРТЬ** late five-enemy elite encounter.
-- Death Wager enhanced reward screen (later retuned to +60 gold / +35 HP / +5 damage).
+- Death Wager enhanced reward screen (now +60 gold / visible relic / extra hero-upgrade choice).
 - Death Wager-specific **СТАВКА** battle framing and wizard reaction.
 - Real late **КАРТА БЕЗ ЛИЦА** event with hidden random outcome, paid safe outcome and guaranteed low-risk burn choice.
-- Real **КРОВАВАЯ КНИГА** event converting gold/HP/damage into late-run power or artifacts.
+- Real **КРОВАВАЯ КНИГА** build-manipulation event: buy development, trade blood for relic/progression, or sell the latest upgrade for gold.
 - Special source-locked **СЛОМАННАЯ КОРОНА** artifact: party-wide +22% damage for -10 max HP per hero.
 - `ArtifactData.general_pool` and party-wide `target_role = "*"` support for named special relics.
-- Real **ПОСЛЕДНИЙ ПРИВАЛ** preparation event with HP, damage or gold options.
+- Real **ПОСЛЕДНИЙ ПРИВАЛ** preparation event choosing a final Knight/Ranger/Mage development.
 - Real **ВРАТА ОССУАРИЯ** late combat combining Crypt Guard, Grave Bellkeeper, Bone Archer and Bone Thrall.
 - Ossuary Gate-specific preparation and victory framing.
-- Real **ЧЁРНЫЙ АЛТАРЬ** event with two HP-for-damage sacrifices, a gold-for-HP option and refusal.
-- Real **ЗАКОВАННЫЙ ПЛЕННИК** event with rescue, forced-chain and loot branches.
+- Real **ЧЁРНЫЙ АЛТАРЬ** event trading party HP for concrete Knight/Ranger/Mage development.
+- Real **ЗАКОВАННЫЙ ПЛЕННИК** event with paid least-developed-hero training, blood-for-relic chain breaking, loot and refusal branches.
 - Real **КОСТИ ДОЛЖНИКА** event with a 50/50 high-stakes gamble plus two deterministic alternatives.
 - Real **ДЕСЯТИНА ВОЛШЕБНИКА** event with gold payment, HP payment or refusal.
 - Temporary **ДОЛГ ВОЛШЕБНИКУ** run condition: +25% enemy damage until the next normal reward.
-- Doubled normal reward while wizard debt is active: +50 gold / +40 HP / +6 damage, clearing the debt when taken.
+- Wizard debt doubles the next normal gold loot to +50 gold and clears when that loot is taken.
 - Wizard-debt HUD and battle-preparation warnings.
 - Real **МОГИЛЬНЫЙ ЗВОН** combat encounter with the first support enemy, **Могильный звонарь**.
 - Grave Bellkeeper periodic ally-heal pulse with **ЗВОН!** feedback and green healing numbers.
@@ -117,8 +126,8 @@
 - Data-driven `ArtifactData` and persistent per-run artifact ownership.
 - First three hero-specific artifacts: **ЩИТ МЕРТВЕЦА**, **СЛЕПОЙ КОЛЧАН**, **РАСКОЛОТЫЙ ФОКУС**.
 - Artifact combat modifiers for HP, damage, attack interval, range, splash and movement.
-- Real **ПЕПЕЛЬНЫЙ ПРИВАЛ** choices: party HP, gold, party damage or refusal.
-- Functional **ЛАВКА МОГИЛЬЩИКА** with gold-gated HP, damage and random-artifact purchases.
+- Real **ПЕПЕЛЬНЫЙ ПРИВАЛ** choices: directly develop Knight, Ranger or Mage, or refuse.
+- Functional **ЛАВКА МОГИЛЬЩИКА** selling the next role-specific hero development for gold.
 - Real **КУЗНИЦА ПРОКЛЯТИЙ** artifact choice with already-owned artifacts disabled.
 - Shared Act 1 choice-event scene showing current gold and acquired artifacts.
 - Run-end artifact summary.
@@ -165,8 +174,8 @@
 - Expanded wizard portrait blockout with stronger silhouette, crown details and pulsing orb.
 - Data-driven unit visual roles and distinct prototype miniatures for Knight, Ranger, Mage, Skeleton and Bone Archer.
 - First non-combat event card: **ШЕПЧУЩИЙ КОЛОДЕЦ**.
-- One-time run event state and three event choices: risk/reward stat trade, gold spend, or refusal.
-- First meaningful gold spend: 25 gold for a party HP bonus at the Whispering Well.
+- One-time Whispering Well state and three choices: blood-for-development, gold-for-relic/build fallback, or refusal.
+- Whispering Well gold spend now buys a relic/build fallback rather than raw party HP.
 - Animated placeholder wizard portrait with pulsing eyes on the table.
 - Data-driven `EncounterData` Resource type.
 - Three playable combat cards: Bone Patrol, Graveyard Ambush and Gallows Volley.
