@@ -1,31 +1,39 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
-[ext_resource type="Script" path="res://scripts/main_visual.gd" id="2_visual"]
-
-[sub_resource type="StyleBoxFlat" id="Frame"]
-bg_color = Color(0.024, 0.019, 0.030, 0.95)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.42, 0.22, 0.24, 1)
+[ext_resource type="Script" path="res://scripts/table/table_visual.gd" id="2_visual"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/table_wizard_layer.png" id="3_wizard"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/misdeal_logo.png" id="4_logo"]
 
 [sub_resource type="StyleBoxFlat" id="StartNormal"]
-bg_color = Color(0.065, 0.040, 0.050, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.46, 0.25, 0.20, 1)
+bg_color = Color(0.12, 0.025, 0.028, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.58, 0.19, 0.13, 1)
+shadow_color = Color(0, 0, 0, 0.78)
+shadow_size = 10
+content_margin_left = 24.0
+content_margin_right = 24.0
 
 [sub_resource type="StyleBoxFlat" id="StartHover"]
-bg_color = Color(0.11, 0.055, 0.055, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.82, 0.46, 0.22, 1)
+bg_color = Color(0.22, 0.045, 0.036, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.96, 0.48, 0.20, 1)
+shadow_color = Color(0.52, 0.10, 0.04, 0.72)
+shadow_size = 16
+content_margin_left = 24.0
+content_margin_right = 24.0
+
+[sub_resource type="StyleBoxFlat" id="Strip"]
+bg_color = Color(0.018, 0.012, 0.020, 0.84)
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.30, 0.12, 0.12, 0.72)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -35,16 +43,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_main")
-
-[node name="Background" type="ColorRect" parent="."]
-mouse_filter = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.018, 0.014, 0.024, 1)
 
 [node name="Visual" type="Control" parent="."]
 mouse_filter = 2
@@ -56,65 +54,110 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_visual")
 
-[node name="Frame" type="Panel" parent="."]
+[node name="WizardBackdrop" type="TextureRect" parent="."]
 mouse_filter = 2
-offset_left = 355.0
-offset_top = 150.0
-offset_right = 925.0
-offset_bottom = 565.0
-theme_override_styles/panel = SubResource("Frame")
+offset_right = 1280.0
+offset_bottom = 420.0
+texture_filter = 1
+texture = ExtResource("3_wizard")
+expand_mode = 1
+stretch_mode = 0
 
-[node name="Center" type="CenterContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TopShade" type="ColorRect" parent="."]
+mouse_filter = 2
+offset_right = 1280.0
+offset_bottom = 420.0
+color = Color(0.005, 0.003, 0.008, 0.20)
 
-[node name="Panel" type="VBoxContainer" parent="Center"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-theme_override_constants/separation = 18
+[node name="Logo" type="TextureRect" parent="."]
+mouse_filter = 2
+offset_left = 390.0
+offset_top = 32.0
+offset_right = 890.0
+offset_bottom = 218.0
+texture_filter = 1
+texture = ExtResource("4_logo")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Title" type="Label" parent="Center/Panel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.94, 0.78, 0.56, 1)
+[node name="Tagline" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 300.0
+offset_top = 218.0
+offset_right = 980.0
+offset_bottom = 252.0
+theme_override_colors/font_color = Color(0.86, 0.72, 0.64, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.95)
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_font_sizes/font_size = 58
-text = "MISDEAL"
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 19
+text = "ПЕРЕИГРАЙ ЖИЗНЬ. ПЕРЕПИШИ ЧУЖИЕ СУДЬБЫ."
 horizontal_alignment = 1
 
-[node name="Subtitle" type="Label" parent="Center/Panel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.73, 0.66, 0.68, 1)
-theme_override_font_sizes/font_size = 18
-text = "Проклятый карточный рогалик с компактным автобоем"
-horizontal_alignment = 1
-autowrap_mode = 2
+[node name="QuoteStrip" type="Panel" parent="."]
+mouse_filter = 2
+offset_left = 272.0
+offset_top = 278.0
+offset_right = 1008.0
+offset_bottom = 326.0
+theme_override_styles/panel = SubResource("Strip")
 
-[node name="Status" type="Label" parent="Center/Panel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.62, 0.58, 0.57, 1)
-theme_override_font_sizes/font_size = 16
-text = "Стол ждёт."
+[node name="WizardQuote" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 300.0
+offset_top = 289.0
+offset_right = 980.0
+offset_bottom = 316.0
+theme_override_colors/font_color = Color(0.73, 0.62, 0.62, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.88)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 15
+text = "— Стол помнит то, что ты предпочёл забыть."
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="Center/Panel"]
-custom_minimum_size = Vector2(0, 58)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.94, 0.82, 0.62, 1)
-theme_override_font_sizes/font_size = 20
+[node name="Prompt" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 400.0
+offset_top = 490.0
+offset_right = 880.0
+offset_bottom = 522.0
+theme_override_colors/font_color = Color(0.68, 0.56, 0.52, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 14
+text = "Проклятая партия уже разложена."
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 430.0
+offset_top = 548.0
+offset_right = 850.0
+offset_bottom = 616.0
+theme_override_colors/font_color = Color(1, 0.86, 0.66, 1)
+theme_override_colors/font_hover_color = Color(1, 0.96, 0.84, 1)
+theme_override_colors/font_disabled_color = Color(0.46, 0.38, 0.36, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.95)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StartNormal")
 theme_override_styles/hover = SubResource("StartHover")
 theme_override_styles/pressed = SubResource("StartHover")
-text = "ВОЙТИ В ИГРУ"
+theme_override_styles/disabled = SubResource("StartNormal")
+text = "СЕСТЬ ЗА СТОЛ"
 
-[node name="Hint" type="Label" parent="Center/Panel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.50, 0.47, 0.48, 1)
-theme_override_font_sizes/font_size = 14
-text = "Карты решают путь. Подготовка решает бой."
+[node name="Status" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 330.0
+offset_top = 638.0
+offset_right = 950.0
+offset_bottom = 668.0
+theme_override_colors/font_color = Color(0.58, 0.50, 0.49, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.90)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 13
+text = "Карты решают путь. Ты решаешь, кого оставить в нём."
 horizontal_alignment = 1
