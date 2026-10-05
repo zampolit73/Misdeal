@@ -578,3 +578,23 @@ This compensation is applied after upgrades/relics and is shown in battle prepar
 Upgrade offers and general-pool hero-specific relics only target roles currently in the party. A solo major reward may offer multiple paths for the same protagonist.
 
 The protagonist cannot be lost during the current vertical slice. Recruited companions also remain in the party once joined; injury/permadeath systems are explicitly deferred.
+
+## D035 — Solo compensation must address action economy, not only raw HP/damage
+
+Date: 2026-10-05  
+Status: accepted balance rule for current vertical slice
+
+Local testing of D034 showed that +50% HP / +35% damage was insufficient: a solo protagonist could reach an early mandatory three-enemy encounter before finding any companion, and the fight was close to mathematically unwinnable for some classes.
+
+The encounter itself is not weakened and enemies do not scale from party size. Instead, the solo hero receives a stronger explicit compensation package after upgrades and relics:
+
+- max HP x2.0;
+- damage x1.8;
+- attack interval x0.80 (+25% attacks per second);
+- movement speed x1.10.
+
+Duo remains +20% HP / +15% damage and trio remains unmodified for now.
+
+This supersedes the numeric solo values recorded in D034, but not D034's structural rule: runs may still reach the boss solo, duo or trio and Bone Warden remains a fixed benchmark.
+
+Reasoning: losing two bodies removes far more than two pools of HP. It also removes simultaneous attacks, aggro splitting, role coverage and time-to-contact advantages. Solo compensation therefore has to restore part of that action economy, not just inflate one health bar.
