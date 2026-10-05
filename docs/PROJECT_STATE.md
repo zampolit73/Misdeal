@@ -219,7 +219,7 @@ Implemented combat behavior:
 - victory and defeat detection;
 - boss units can use data-driven visual scale and a one-time enrage threshold;
 - Bone Warden uses its own dedicated high-detail `bone_warden` atlas sprite instead of an enlarged normal Skeleton;
-- Bone Warden has 580 HP, 22 base damage, a 60%-damage melee cleave in a 92 px radius, and a larger boss HP/name treatment;
+- Bone Warden has 700 HP, 24 base damage, a 60%-damage melee cleave in a 92 px radius, and a larger boss HP/name treatment;
 - at 50% HP Bone Warden still enrages, increasing damage, attack speed and movement speed, but now also triggers **Phase II** and summons one Bone Archer plus one Bone Thrall;
 - the phase transition changes the boss label to **БОСС • ЯРОСТЬ**, shows a centered **ФАЗА II — ПРИЗЫВ** cue and switches the arena into its stronger phase-two ritual state;
 - Grave Bellkeeper is the first support enemy: every 4.5 seconds it heals damaged allied undead within 210 px for 18 HP and shows a visible **ЗВОН!** cue;
@@ -238,21 +238,21 @@ After defeat, **ВЕРНУТЬСЯ К СТОЛУ** returns to the same run witho
 
 `scenes/reward/reward.tscn`
 
-Victory normally offers one of three persistent rewards:
+The first combat victory in each early/mid/late tier opens **РАЗВИТИЕ ОТРЯДА** when at least one hero upgrade remains. The player chooses one offered Knight/Ranger/Mage upgrade; this guaranteed tier choice does **not** consume the optional-upgrade cap.
 
-- **КРОВАВАЯ МОНЕТА**: +25 gold;
-- **ЖЕЛЕЗНЫЙ ОБЕРЕГ**: +20 HP to every hero;
-- **ЗАКАЛЁННАЯ СТАЛЬ**: +3 damage to every hero.
+After that:
 
-If **ДОЛГ ВОЛШЕБНИКУ** is active, enemy damage is +25% in combat and the next normal reward is doubled to +50 gold / +40 HP / +6 damage. Taking that normal reward clears the debt. Special rewards do not consume the debt: both the Crypt Guard artifact reward and Death Wager enhanced reward leave it active for the next normal reward.
+- ordinary combat loot is **+25 gold**;
+- if **ДОЛГ ВОЛШЕБНИКУ** is active, that normal gold loot becomes **+50 gold** and clears the debt;
+- Crypt Guard keeps its unowned-artifact reward;
+- Death Wager offers **+60 gold / a shown available relic / one extra hero-upgrade choice**;
+- if the run has already used all 3 optional hero-upgrade slots, Death Wager's extra-upgrade option becomes **+45 gold** instead of opening an empty selection.
 
-Winning **СТАВКА НА СМЕРТЬ** offers a bespoke enhanced numeric reward: +60 gold, +35 party HP, or +5 party damage. These values were reduced in the first balance pass so one late elite reward does not overwhelm the boss check.
-
-Choosing a reward applies the reward and completes the active combat card.
+Choosing the final reward completes the active combat card.
 
 Normal combat victories return to the table and advance Act 1 card progress.
 
-After defeating Bone Warden and taking its reward, `boss_defeated` becomes true and the player goes to the run-end screen.
+After defeating Bone Warden and resolving its reward flow, `boss_defeated` becomes true and the player goes to the run-end screen.
 
 ### 6. Run end
 
@@ -386,6 +386,8 @@ Act 1 now has nine unique persistent hero upgrades, three for each party member:
 
 Each early/mid/late tier guarantees one major hero-upgrade choice after the first combat victory in that tier. The reward screen offers one available upgrade for Knight, Ranger and Mage, so the player can spread growth across the party or specialize the same hero in all three tiers.
 
+Optional event/Death Wager development is now capped at **3 extra upgrades per run**. These extra slots are tracked separately from the three guaranteed tier upgrades, so a normal strong run should reach roughly 4–6 total upgrades instead of exhausting all nine. If Blood Ledger erases an upgrade that came from an extra slot, that extra slot becomes available again.
+
 Hero upgrades persist for the current run in `RunState.hero_upgrade_ids` and are applied when player units spawn, before artifacts. They can modify HP, damage, attack cadence, range, minimum range, splash and move speed.
 
 Special combat rewards remain intact after the tier upgrade:
@@ -426,7 +428,7 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Not implemented yet
 
-- second Act 1 balance pass after local full-run feedback on the progression + build-aware event pass;
+- follow-up Act 1 balance pass after local full-run feedback on the capped progression economy and retuned boss;
 - broader shop inventory/economy beyond the current Candle Seller and Gravedigger Shop implementations;
 - more artifacts beyond the first three;
 - attack projectiles/animations;
@@ -438,20 +440,21 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the combined hero-progression + build-aware event pass through a full Act 1 run:
+Locally verify the first **progression-economy balance pass** through one or two full Act 1 runs:
 
-- first combat victory in each early/mid/late tier should still produce a major **РАЗВИТИЕ ОТРЯДА** choice when at least one upgrade remains;
-- if events have already exhausted all nine hero upgrades, later tier reward screens must skip the empty major-upgrade step instead of soft-locking;
-- **ПЕПЕЛЬНЫЙ ПРИВАЛ**, **ЛАВКА МОГИЛЬЩИКА**, **ЧЁРНЫЙ АЛТАРЬ**, **ПОСЛЕДНИЙ ПРИВАЛ** and **ТОРГОВЕЦ СВЕЧАМИ** should display the actual next upgrade title for the affected hero;
-- **ЗАКОВАННЫЙ ПЛЕННИК**, **КАРТА БЕЗ ЛИЦА**, **СЛОМАННАЯ КОРОНА** and **КОСТЯНАЯ ПОШЛИНА** should correctly target the least-developed hero where specified;
-- **КРОВАВАЯ КНИГА** must be able to erase the latest acquired hero upgrade for +70 gold without corrupting tier progression;
-- **ШЕПЧУЩИЙ КОЛОДЕЦ** should grant hero development/relics rather than old party-wide positive stats;
-- event HUD should show compact **РАЗВИТИЕ / РЕЛИКВИИ** counts and choice text should wrap cleanly;
-- raw global HP/damage mutations in these events should now be penalties/costs only, not the main positive progression;
-- artifacts + hero upgrades + event progression must stack without invalid HP/attack interval values;
-- Bone Warden difficulty should be judged again after a full build-aware run because the power curve is now less predictable.
+- each early/mid/late tier must still grant one guaranteed major upgrade when upgrades remain;
+- event/Death Wager upgrades must stop after **3 optional upgrades total**;
+- the event HUD should show the optional counter as **ДОП. X/3**;
+- after the optional cap is reached, deterministic event-upgrade buttons should disable cleanly instead of consuming resources;
+- Whispering Well should still allow its relic option after the optional upgrade cap is reached;
+- Death Wager should replace its extra-upgrade branch with **+45 gold** at the cap;
+- Blood Ledger erasing an optional upgrade should reopen one optional slot;
+- a normal strong build should arrive at Bone Warden with roughly **4–6 hero upgrades**, not all nine;
+- Bone Warden should now use **700 HP / 24 damage / 1.0 s attack interval**, with stronger 50% enrage, while keeping the same cleave and two phase-II reinforcements;
+- judge the boss as **too easy / fair / too hard** with both a focused build and a more distributed build;
+- check that the stronger boss still leaves pre-battle placement and target order relevant rather than becoming a pure stat wall.
 
-After local verification, the next work item is a dedicated balance pass on upgrade frequency/costs and Bone Warden tuning before adding another progression system.
+Do not add another progression currency/system until this power curve is locally validated.
 
 ## Local workflow
 
