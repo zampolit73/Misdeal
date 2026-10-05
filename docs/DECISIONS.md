@@ -398,13 +398,13 @@ Status: accepted for vertical-slice visual direction
 
 The authored battle backdrop is now locally accepted, and the remaining visual mismatch was the simplified unit art.
 
-All nine combat roles currently used by the slice now come from one transparent 3×3 sprite atlas at `assets/pixel/units/combat_units_v2.png`, with 96×96 cells:
+All nine combat roles currently used by the slice now come from one transparent 3×3 sprite atlas with 96×96 cells. The production v3 atlas is stored as ten base64 PNG chunks under `assets/pixel/units/combat_units_v3/` and decoded by `BattleUnit`; `assets/pixel/units/combat_units_v2.png` remains only as a fail-safe fallback:
 
 - Knight / Ranger / Mage;
 - Skeleton / Bone Archer / Grave Bellkeeper;
 - Bone Thrall / Crypt Guard / Bone Warden.
 
-`BattleUnit` maps `UnitData.visual_role` directly to an atlas cell through `AtlasTexture`. This keeps the roster visually coherent and avoids maintaining role-specific tint/fallback rules.
+`BattleUnit` maps `UnitData.visual_role` directly to an atlas cell through `AtlasTexture`. The decoded v3 texture is validated as 288×288 before use; missing/corrupt v3 data falls back to the previous v2 atlas instead of producing invisible units. This keeps the roster visually coherent without putting art-loading failures into combat logic.
 
 Presentation scale is role-driven rather than baked into source image size: Bone Thrall remains intentionally small, Crypt Guard larger, and Bone Warden largest. The source art stays transparent and uses nearest-neighbor filtering.
 
