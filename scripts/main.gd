@@ -11,4 +11,4 @@ func _on_start_button_pressed() -> void:
 	status_label.text = "Волшебник освобождает для вас место за столом..."
 	start_button.disabled = true
 	await get_tree().create_timer(0.35).timeout
-	get_tree().change_scene_to_file("res://scenes/table/table.tscn")
+	get_tree().change_scene_to_file("res://scenes/intro/intro.tscn")
