@@ -1,0 +1,277 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/table/squad_status.gd" id="1_status"]
+
+[sub_resource type="StyleBoxFlat" id="FrameStyle"]
+bg_color = Color(0.020, 0.015, 0.026, 0.985)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.48, 0.24, 0.19, 1)
+shadow_color = Color(0, 0, 0, 0.82)
+shadow_size = 18
+
+[sub_resource type="StyleBoxFlat" id="SectionStyle"]
+bg_color = Color(0.032, 0.025, 0.038, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.23, 0.18, 0.22, 1)
+
+[sub_resource type="StyleBoxFlat" id="TabNormal"]
+bg_color = Color(0.040, 0.030, 0.046, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.24, 0.19, 0.23, 1)
+content_margin_left = 12.0
+content_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="TabHover"]
+bg_color = Color(0.075, 0.044, 0.050, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.66, 0.34, 0.22, 1)
+content_margin_left = 11.0
+content_margin_right = 11.0
+
+[sub_resource type="StyleBoxFlat" id="CloseNormal"]
+bg_color = Color(0.060, 0.032, 0.038, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.40, 0.20, 0.20, 1)
+
+[sub_resource type="StyleBoxFlat" id="CloseHover"]
+bg_color = Color(0.16, 0.050, 0.046, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.88, 0.38, 0.22, 1)
+
+[node name="SquadStatus" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_status")
+
+[node name="Dim" type="ColorRect" parent="."]
+mouse_filter = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78)
+
+[node name="Frame" type="Panel" parent="."]
+offset_left = 58.0
+offset_top = 38.0
+offset_right = 1222.0
+offset_bottom = 682.0
+theme_override_styles/panel = SubResource("FrameStyle")
+
+[node name="Title" type="Label" parent="Frame"]
+offset_left = 28.0
+offset_top = 18.0
+offset_right = 800.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.96, 0.82, 0.62, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 28
+text = "ДОСЬЕ ОТРЯДА"
+
+[node name="Hint" type="Label" parent="Frame"]
+offset_left = 30.0
+offset_top = 58.0
+offset_right = 850.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0.48, 0.44, 0.45, 1)
+theme_override_font_sizes/font_size = 13
+text = "1 / 2 / 3 — выбрать героя     TAB — закрыть"
+
+[node name="CloseButton" type="Button" parent="Frame"]
+offset_left = 1060.0
+offset_top = 18.0
+offset_right = 1126.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0.92, 0.72, 0.64, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("CloseNormal")
+theme_override_styles/hover = SubResource("CloseHover")
+theme_override_styles/pressed = SubResource("CloseHover")
+text = "X"
+
+[node name="KnightButton" type="Button" parent="Frame"]
+offset_left = 28.0
+offset_top = 112.0
+offset_right = 246.0
+offset_bottom = 174.0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("TabNormal")
+theme_override_styles/hover = SubResource("TabHover")
+theme_override_styles/pressed = SubResource("TabHover")
+text = "◆ РЫЦАРЬ   0/3"
+
+[node name="RangerButton" type="Button" parent="Frame"]
+offset_left = 28.0
+offset_top = 186.0
+offset_right = 246.0
+offset_bottom = 248.0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("TabNormal")
+theme_override_styles/hover = SubResource("TabHover")
+theme_override_styles/pressed = SubResource("TabHover")
+text = "СЛЕДОПЫТ   0/3"
+
+[node name="MageButton" type="Button" parent="Frame"]
+offset_left = 28.0
+offset_top = 260.0
+offset_right = 246.0
+offset_bottom = 322.0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("TabNormal")
+theme_override_styles/hover = SubResource("TabHover")
+theme_override_styles/pressed = SubResource("TabHover")
+text = "МАГ   0/3"
+
+[node name="PortraitFrame" type="Panel" parent="Frame"]
+offset_left = 278.0
+offset_top = 112.0
+offset_right = 548.0
+offset_bottom = 334.0
+theme_override_styles/panel = SubResource("SectionStyle")
+
+[node name="Portrait" type="TextureRect" parent="Frame/PortraitFrame"]
+offset_left = 32.0
+offset_top = 10.0
+offset_right = 238.0
+offset_bottom = 216.0
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HeroName" type="Label" parent="Frame"]
+offset_left = 570.0
+offset_top = 116.0
+offset_right = 762.0
+offset_bottom = 154.0
+theme_override_colors/font_color = Color(0.96, 0.88, 0.76, 1)
+theme_override_font_sizes/font_size = 25
+text = "Рыцарь"
+
+[node name="Specialization" type="Label" parent="Frame"]
+offset_left = 570.0
+offset_top = 158.0
+offset_right = 762.0
+offset_bottom = 190.0
+theme_override_font_sizes/font_size = 16
+text = "ПЕРЕДНЯЯ ЛИНИЯ"
+
+[node name="StatsTitle" type="Label" parent="Frame"]
+offset_left = 570.0
+offset_top = 210.0
+offset_right = 762.0
+offset_bottom = 236.0
+theme_override_colors/font_color = Color(0.78, 0.67, 0.57, 1)
+theme_override_font_sizes/font_size = 14
+text = "ИТОГОВЫЕ ХАРАКТЕРИСТИКИ"
+
+[node name="Stats" type="RichTextLabel" parent="Frame"]
+offset_left = 568.0
+offset_top = 242.0
+offset_right = 770.0
+offset_bottom = 512.0
+bbcode_enabled = true
+fit_content = false
+scroll_active = false
+theme_override_colors/default_color = Color(0.84, 0.78, 0.72, 1)
+theme_override_font_sizes/normal_font_size = 14
+text = ""
+
+[node name="BuildPanel" type="Panel" parent="Frame"]
+offset_left = 790.0
+offset_top = 112.0
+offset_right = 1128.0
+offset_bottom = 382.0
+theme_override_styles/panel = SubResource("SectionStyle")
+
+[node name="BuildTitle" type="Label" parent="Frame/BuildPanel"]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 320.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0.90, 0.77, 0.59, 1)
+theme_override_font_sizes/font_size = 15
+text = "РАЗВИТИЕ"
+
+[node name="BuildList" type="RichTextLabel" parent="Frame"]
+offset_left = 806.0
+offset_top = 160.0
+offset_right = 1112.0
+offset_bottom = 368.0
+bbcode_enabled = true
+fit_content = false
+scroll_active = true
+theme_override_colors/default_color = Color(0.80, 0.74, 0.68, 1)
+theme_override_font_sizes/normal_font_size = 13
+text = ""
+
+[node name="RelicsPanel" type="Panel" parent="Frame"]
+offset_left = 790.0
+offset_top = 398.0
+offset_right = 1128.0
+offset_bottom = 558.0
+theme_override_styles/panel = SubResource("SectionStyle")
+
+[node name="RelicsTitle" type="Label" parent="Frame/RelicsPanel"]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 320.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0.90, 0.77, 0.59, 1)
+theme_override_font_sizes/font_size = 15
+text = "РЕЛИКВИИ"
+
+[node name="RelicsList" type="RichTextLabel" parent="Frame"]
+offset_left = 806.0
+offset_top = 446.0
+offset_right = 1112.0
+offset_bottom = 544.0
+bbcode_enabled = true
+fit_content = false
+scroll_active = true
+theme_override_colors/default_color = Color(0.80, 0.74, 0.68, 1)
+theme_override_font_sizes/normal_font_size = 13
+text = ""
+
+[node name="CommonPanel" type="Panel" parent="Frame"]
+offset_left = 28.0
+offset_top = 574.0
+offset_right = 1128.0
+offset_bottom = 618.0
+theme_override_styles/panel = SubResource("SectionStyle")
+
+[node name="Common" type="Label" parent="Frame/CommonPanel"]
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 1084.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.66, 0.60, 0.58, 1)
+theme_override_font_sizes/font_size = 13
+text = "ОБЩИЕ ЭФФЕКТЫ"
+horizontal_alignment = 1
