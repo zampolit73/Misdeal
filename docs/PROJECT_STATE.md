@@ -30,7 +30,7 @@ The second battle presentation pass is implemented and confirmed visually accept
 
 The same pixel-art visual language is now applied across the main menu, Whispering Well event, reward screen and run-end screen.
 
-The first two main-menu rebuilds were rejected in local visual review. A dedicated dark-fantasy pixel-art splash was then generated, explicitly selected by the user, and is now the approved production start screen. It shows the Wizard looming over a five-card cursed table, the large MISDEAL title, the line **«Проклятая партия уже разложена.»** and a painted **ВОЙТИ В ИГРУ** button. Runtime reconstructs a 640×360 WebP from five base64 chunks and nearest-scales it to the 1280×720 project viewport; only a transparent native Godot button hotspot remains live over the painted CTA.
+The first two main-menu rebuilds were rejected in local visual review. A dedicated dark-fantasy pixel-art splash was then generated, explicitly selected by the user, and is now the approved production start screen. It shows the Wizard looming over a five-card cursed table, the large MISDEAL title, the line **«Проклятая партия уже разложена.»** and a painted **ВОЙТИ В ИГРУ** button. Runtime reconstructs the approved 1280×720 WebP from three repository-safe base64 chunks and renders it at native project resolution with linear filtering; the corrected Wizard card hand now has five fingers, and only a transparent native Godot button hotspot remains live over the painted CTA.
 
 A skippable five-frame pixel-art story prologue is now implemented in GitHub and pending local verification. It establishes the old pact, the aged protagonist and the Wizard's offer to replay a life whose corrections will rewrite the fates of everyone the protagonist once saved.
 
@@ -128,10 +128,11 @@ Visual content baked into the approved splash:
 
 Runtime art is reconstructed from:
 
-- `assets/pixel/main/approved_splash/part_00.txt`;
-- `part_01.txt` … `part_04.txt`.
+- `assets/pixel/main/approved_splash_hd/part_00.txt`;
+- `part_01.txt`;
+- `part_02.txt`.
 
-The source image is stored at 640×360 WebP inside those chunks and rendered with nearest filtering to the 1280×720 viewport. A transparent native Godot `StartButton` sits over the painted CTA so hover/focus/click remain interactive without duplicating the artwork. Pressing it resets the run and opens the story intro.
+The source image is a native 1280×720 WebP encoded across those chunks and rendered with linear filtering. A transparent native Godot `StartButton` sits over the painted CTA so hover/focus/click remain interactive without duplicating the artwork. Pressing it resets the run and opens the story intro.
 
 The previous `main_visual.gd` / reused table-art menu composition is no longer active.
 

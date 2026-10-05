@@ -1,16 +1,14 @@
 extends TextureRect
 
 const PART_PATHS: Array[String] = [
-	"res://assets/pixel/main/approved_splash/part_00.txt",
-	"res://assets/pixel/main/approved_splash/part_01.txt",
-	"res://assets/pixel/main/approved_splash/part_02.txt",
-	"res://assets/pixel/main/approved_splash/part_03.txt",
-	"res://assets/pixel/main/approved_splash/part_04.txt",
+	"res://assets/pixel/main/approved_splash_hd/part_00.txt",
+	"res://assets/pixel/main/approved_splash_hd/part_01.txt",
+	"res://assets/pixel/main/approved_splash_hd/part_02.txt",
 ]
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	_load_approved_splash()
 
 func _load_approved_splash() -> void:
@@ -32,9 +30,9 @@ func _load_approved_splash() -> void:
 		push_error("Could not decode approved main-menu splash WebP: %s" % error_string(error))
 		return
 
-	if image.get_width() != 640 or image.get_height() != 360:
+	if image.get_width() != 1280 or image.get_height() != 720:
 		push_warning(
-			"Approved main-menu splash decoded at %dx%d, expected 640x360."
+			"Approved main-menu splash decoded at %dx%d, expected 1280x720."
 			% [image.get_width(), image.get_height()]
 		)
 
