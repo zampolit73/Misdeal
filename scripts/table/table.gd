@@ -24,12 +24,11 @@ func _ready() -> void:
 
 func _refresh_table() -> void:
 	var condition_text := RunState.get_run_condition_text()
-	stats_label.text = "%s     ЗОЛОТО %d     РАЗВИТИЕ %d     ЗДОРОВЬЕ %+d     УРОН %+d" % [
+	stats_label.text = "%s     ЗОЛОТО %d     РАЗВИТИЕ %d     РЕЛИКВИИ %d" % [
 		RunState.get_progress_text(),
 		RunState.gold,
 		RunState.hero_upgrade_ids.size(),
-		int(RunState.party_hp_bonus),
-		int(RunState.party_damage_bonus)
+		RunState.artifact_ids.size()
 	]
 	if not condition_text.is_empty():
 		stats_label.text += "     %s" % condition_text
