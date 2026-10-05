@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="HeroUpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/hero_upgrade_data.gd" id="1_upgrade"]
+
+[resource]
+script = ExtResource("1_upgrade")
+upgrade_id = "mage_glass_heart"
+title = "СТЕКЛЯННОЕ СЕРДЦЕ"
+description = "Маг теряет 35 максимального здоровья, но наносит на 65% больше урона."
+target_role = "mage"
+hp_bonus = -35.0
+damage_multiplier = 1.65
