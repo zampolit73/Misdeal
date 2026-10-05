@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Authored gothic battle backdrop confirmed locally after backdrop import/z-order fixes.
 - Final five-card Act 1 content batch confirmed locally: Rattling Bridge, Lost Purse, Candle Seller, Bone Tax and Death Wager.
 - Late-game Act 1 escalation confirmed locally: Faceless Card, Blood Ledger, Broken Crown, Last Camp and Ossuary Gate.
 - 12-card Act 1 offer/rejection/tier flow and boss handoff confirmed working locally.
@@ -40,6 +41,9 @@
 
 ### Changed
 
+- Replaced all current combat-unit rendering with a unified 3×3 high-detail 96×96 pixel atlas covering Knight, Ranger, Mage, Skeleton, Bone Archer, Grave Bellkeeper, Bone Thrall, Crypt Guard and Bone Warden.
+- Grave Bellkeeper, Bone Thrall and Crypt Guard now have unique authored sprites instead of tinted Skeleton fallback art.
+- Retuned unit sprite scale and HP/name offsets for the new detailed atlas: Thrall smaller, support near standard size, Crypt Guard elite-sized, Bone Warden boss-sized.
 - Replaced the procedural battle wall/floor/HUD rendering with an authored full-screen gothic battle backdrop based on the user's second approved reference.
 - General battle architecture, throne, candles, banners, chains, skull piles, ritual floor and UI frames are now painted into the backdrop; live units, HP, labels and buttons remain native Godot layers.
 - Added the authored battle backdrop as five validated base64 WebP chunks under `assets/pixel/battle/authored_backdrop/`, decoded at runtime by `scripts/battle/authored_backdrop.gd`.
@@ -58,7 +62,7 @@
 
 ### Added
 
-- Dedicated 64×64 **Bone Warden** combat sprite instead of reusing the normal Skeleton sprite.
+- Dedicated **Bone Warden** combat art instead of reusing the normal Skeleton sprite.
 - Dedicated **Bone Warden** final-card illustration.
 - Dedicated final-boss arena treatment with red ritual geometry, barred gate, chains and stronger braziers.
 - Bone Warden melee cleave: 60% splash damage in a 92 px radius.
