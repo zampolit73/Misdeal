@@ -12,6 +12,19 @@ const ARTIFACT_PATHS := {
 	"broken_crown": "res://resources/artifacts/broken_crown.tres"
 }
 
+const HERO_ROLES: Array[String] = ["knight", "ranger", "mage"]
+const HERO_UPGRADE_PATHS := {
+	"knight_iron_oath": "res://resources/upgrades/knight_iron_oath.tres",
+	"knight_executioner": "res://resources/upgrades/knight_executioner.tres",
+	"knight_cleaver": "res://resources/upgrades/knight_cleaver.tres",
+	"ranger_longshot": "res://resources/upgrades/ranger_longshot.tres",
+	"ranger_arrowstorm": "res://resources/upgrades/ranger_arrowstorm.tres",
+	"ranger_beast_trail": "res://resources/upgrades/ranger_beast_trail.tres",
+	"mage_wildfire": "res://resources/upgrades/mage_wildfire.tres",
+	"mage_glass_heart": "res://resources/upgrades/mage_glass_heart.tres",
+	"mage_overload": "res://resources/upgrades/mage_overload.tres"
+}
+
 const CARD_PATHS := {
 	"bone_patrol": "res://resources/cards/bone_patrol.tres",
 	"graveyard_ambush": "res://resources/cards/graveyard_ambush.tres",
@@ -84,6 +97,10 @@ var rejected_card_ids: Array[String] = []
 var resolved_card_ids: Array[String] = []
 var active_card_id: String = ""
 var artifact_ids: Array[String] = []
+var hero_upgrade_ids: Array[String] = []
+var claimed_upgrade_tiers: Array[int] = []
+var current_major_upgrade_offer_ids: Array[String] = []
+var current_bonus_upgrade_offer_ids: Array[String] = []
 var forced_combat_slots: Array[int] = []
 
 func _ready() -> void:
@@ -103,6 +120,10 @@ func reset_run() -> void:
 	boss_defeated = false
 	active_card_id = ""
 	artifact_ids.clear()
+	hero_upgrade_ids.clear()
+	claimed_upgrade_tiers.clear()
+	current_major_upgrade_offer_ids.clear()
+	current_bonus_upgrade_offer_ids.clear()
 	forced_combat_slots.clear()
 	remaining_card_ids.clear()
 	current_offer_ids.clear()
@@ -183,6 +204,144 @@ func get_artifact_titles_text() -> String:
 			titles.append(artifact.title)
 
 	return ", ".join(titles)
+
+func get_hero_upgrade(upgrade_id: String) -> HeroUpgradeData:
+	var path: String = HERO_UPGRADE_PATHS.get(upgrade_id, "")
+	if path.is_empty():
+		push_warning("Unknown hero upgrade id: %s" % upgrade_id)
+		return null
+
+	var loaded := load(path)
+	if loaded is HeroUpgradeData:
+		return loaded as HeroUpgradeData
+
+	push_warning("Could not load HeroUpgradeData: %s" % path)
+	return null
+
+func has_hero_upgrade(upgrade_id: String) -> bool:
+	return hero_upgrade_ids.has(upgrade_id)
+
+func add_hero_upgrade(upgrade_id: String) -> bool:
+	if has_hero_upgrade(upgrade_id):
+		return false
+
+	var upgrade := get_hero_upgrade(upgrade_id)
+	if upgrade == null:
+		return false
+
+	hero_upgrade_ids.append(upgrade_id)
+	return true
+
+func get_hero_upgrades_for_role(role: String) -> Array[HeroUpgradeData]:
+	var result: Array[HeroUpgradeData] = []
+	for upgrade_id in hero_upgrade_ids:
+		var upgrade := get_hero_upgrade(upgrade_id)
+		if upgrade != null and upgrade.target_role == role:
+			result.append(upgrade)
+	return result
+
+func get_available_hero_upgrade_ids_for_role(role: String) -> Array[String]:
+	var available: Array[String] = []
+	for upgrade_id_value in HERO_UPGRADE_PATHS.keys():
+		var upgrade_id := String(upgrade_id_value)
+		if has_hero_upgrade(upgrade_id):
+			continue
+
+		var upgrade := get_hero_upgrade(upgrade_id)
+		if upgrade != null and upgrade.target_role == role:
+			available.append(upgrade_id)
+
+	return available
+
+func get_hero_upgrade_titles_text() -> String:
+	if hero_upgrade_ids.is_empty():
+		return "нет"
+
+	var titles: Array[String] = []
+	for upgrade_id in hero_upgrade_ids:
+		var upgrade := get_hero_upgrade(upgrade_id)
+		if upgrade != null:
+			titles.append(upgrade.title)
+
+	return ", ".join(titles)
+
+func is_major_upgrade_due_for_active_card() -> bool:
+	var card := get_active_card()
+	if card == null or card.resolution_type != "combat" or card.card_id == BOSS_CARD_ID:
+		return false
+	if card.tier < 0 or card.tier > 2:
+		return false
+	return not claimed_upgrade_tiers.has(card.tier)
+
+func get_major_upgrade_offer_ids() -> Array[String]:
+	if not is_major_upgrade_due_for_active_card():
+		current_major_upgrade_offer_ids.clear()
+		return []
+
+	if not current_major_upgrade_offer_ids.is_empty():
+		return current_major_upgrade_offer_ids.duplicate()
+
+	for role in HERO_ROLES:
+		var available := get_available_hero_upgrade_ids_for_role(role)
+		if available.is_empty():
+			continue
+		available.shuffle()
+		current_major_upgrade_offer_ids.append(available[0])
+
+	return current_major_upgrade_offer_ids.duplicate()
+
+func claim_major_upgrade(upgrade_id: String) -> bool:
+	if not is_major_upgrade_due_for_active_card():
+		return false
+
+	var offer := get_major_upgrade_offer_ids()
+	if not offer.has(upgrade_id):
+		return false
+	if not add_hero_upgrade(upgrade_id):
+		return false
+
+	var card := get_active_card()
+	if card != null and not claimed_upgrade_tiers.has(card.tier):
+		claimed_upgrade_tiers.append(card.tier)
+
+	current_major_upgrade_offer_ids.clear()
+	current_bonus_upgrade_offer_ids.clear()
+	return true
+
+func get_bonus_upgrade_offer_ids() -> Array[String]:
+	if not current_bonus_upgrade_offer_ids.is_empty():
+		return current_bonus_upgrade_offer_ids.duplicate()
+
+	for role in HERO_ROLES:
+		var available := get_available_hero_upgrade_ids_for_role(role)
+		if available.is_empty():
+			continue
+		available.shuffle()
+		current_bonus_upgrade_offer_ids.append(available[0])
+
+	if current_bonus_upgrade_offer_ids.size() < 3:
+		var all_available: Array[String] = []
+		for upgrade_id_value in HERO_UPGRADE_PATHS.keys():
+			var upgrade_id := String(upgrade_id_value)
+			if has_hero_upgrade(upgrade_id) or current_bonus_upgrade_offer_ids.has(upgrade_id):
+				continue
+			all_available.append(upgrade_id)
+		all_available.shuffle()
+		for upgrade_id in all_available:
+			if current_bonus_upgrade_offer_ids.size() >= 3:
+				break
+			current_bonus_upgrade_offer_ids.append(upgrade_id)
+
+	return current_bonus_upgrade_offer_ids.duplicate()
+
+func claim_bonus_upgrade(upgrade_id: String) -> bool:
+	var offer := get_bonus_upgrade_offer_ids()
+	if not offer.has(upgrade_id):
+		return false
+	if not add_hero_upgrade(upgrade_id):
+		return false
+	current_bonus_upgrade_offer_ids.clear()
+	return true
 
 func get_card(card_id: String) -> RunCardData:
 	var path: String = CARD_PATHS.get(card_id, "")
