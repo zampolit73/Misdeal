@@ -1,13 +1,17 @@
 extends Control
 
+const SQUAD_STATUS_SCENE := preload("res://scenes/table/squad_status.tscn")
+
 @onready var wizard_line: Label = $WizardLine
 @onready var stats_label: Label = $Stats
 @onready var offer_a_button: Button = $Cards/BonePatrolCard
 @onready var offer_b_button: Button = $Cards/GraveyardCard
 @onready var hidden_card_a: Button = $Cards/GallowsVolleyCard
 @onready var hidden_card_b: Button = $Cards/WhisperingWellCard
+@onready var squad_button: Button = $SquadButton
 
 var offer_buttons: Array[Button] = []
+var squad_status: Control
 var default_wizard_line := ""
 var selection_locked := false
 
@@ -19,8 +23,23 @@ func _ready() -> void:
 	offer_buttons = [offer_a_button, offer_b_button]
 	hidden_card_a.visible = false
 	hidden_card_b.visible = false
+	squad_button.pressed.connect(_toggle_squad_status)
 
 	_refresh_table()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB:
+		get_viewport().set_input_as_handled()
+		_toggle_squad_status()
+
+func _toggle_squad_status() -> void:
+	if is_instance_valid(squad_status):
+		squad_status.queue_free()
+		squad_status = null
+		return
+
+	squad_status = SQUAD_STATUS_SCENE.instantiate() as Control
+	add_child(squad_status)
 
 func _refresh_table() -> void:
 	var condition_text := RunState.get_run_condition_text()
