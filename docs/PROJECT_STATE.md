@@ -106,7 +106,7 @@ Narrative premise:
 - the Wizard is returning because of an old pact rather than meeting the player for the first time;
 - he offers the impossible: replay the key decisions of that life;
 - changing one saved life can erase or rewrite another life that existed because of the original choice;
-- the final frame reveals the cursed cards and leads directly into the first deal.
+- the final frame reveals the cursed cards and leads into protagonist-class selection before the first deal.
 
 Runtime intro art lives under `assets/pixel/intro/frame_01.webp` … `frame_05.webp`, authored at 1280×720 in the same dark-fantasy pixel language as the battle/table presentation.
 
@@ -115,12 +115,24 @@ Controls:
 - left click, **Space** or **Enter** advances;
 - the painted **ПРОПУСТИТЬ** area in the top-right is backed by a real Godot button;
 - **Esc** also skips;
-- the final frame advances directly to `scenes/table/table.tscn`;
+- the final frame advances to `scenes/class_select/class_select.tscn`;
 - short black fades separate frames.
 
-Starting another run from the run-end screen still goes directly to the table, so the prologue does not have to be replayed between consecutive runs.
+Starting another run from the run-end screen skips the prologue but still opens class selection, because protagonist class is a per-run decision.
 
-### 3. Wizard table
+### 3. Protagonist class selection
+
+`scenes/class_select/class_select.tscn`
+
+Each run now begins with one protagonist rather than a guaranteed trio.
+
+- choose **РЫЦАРЬ**, **СЛЕДОПЫТ** or **МАГ**;
+- the chosen role becomes `RunState.protagonist_role` and the only initial member of `party_roles`;
+- the other two roles begin with fate **НЕ РАЗЫГРАНА**;
+- the scene uses the same production combat atlas as battle/status UI;
+- consecutive new runs skip the story comic but return here before the table.
+
+### 4. Wizard table
 
 `scenes/table/table.tscn`
 
@@ -173,6 +185,7 @@ The table displays:
 
 - current card progress out of 12, or **БОСС**;
 - gold;
+- current party size out of 3;
 - current hero-development count;
 - current relic count;
 - **ДОЛГ ВОЛШЕБНИКУ** when active;
@@ -213,6 +226,14 @@ The top HUD remains dynamic and now emphasizes Act 1 progress, gold, **РАЗВ�
 
 The table now has a read-only **ДОСЬЕ ОТРЯДА** modal for inspecting the current run build.
 
+The dossier also represents companion fate. Heroes outside the current party remain selectable as faded entries:
+
+- **СУДЬБА НЕ РАЗЫГРАНА** — recruitment is still possible if a relevant card is actually played;
+- **ПОТЕРЯН** — the player personally reached a recruitment scene and chose not to save that companion;
+- joined companions immediately switch to normal stat/build presentation.
+
+It opens on the currently chosen protagonist.
+
 - Tab or **ОТРЯД [TAB]** opens/closes it without changing the current card offer;
 - Esc closes it;
 - 1 / 2 / 3 switches between Knight, Ranger and Mage;
@@ -224,7 +245,7 @@ The table now has a read-only **ДОСЬЕ ОТРЯДА** modal for inspecting t
 - the footer shows legacy party HP/damage effects, optional-upgrade progress and wizard debt;
 - the hero subtitle becomes a lightweight dynamic build name such as **ЖЕЛЕЗНАЯ СТЕНА**, **СНАЙПЕР**, **ЗАЛПОВИК**, **ПИРОМАНТ** or **СТЕКЛЯННАЯ ПУШКА**.
 
-`RunState.get_effective_hero_stats()` mirrors the same modifier order used by battle spawning: global party bonuses -> hero upgrades -> artifacts -> minimum HP/damage clamps. The status UI does not store a second copy of character stats.
+`RunState.get_effective_hero_stats()` mirrors battle spawning: global party bonuses -> hero upgrades -> artifacts -> solo/duo compensation -> minimum HP/damage clamps. The status UI does not store a second copy of character stats.
 
 The earlier painted assets under `assets/art/` remain in the repository as historical/reference material.
 
@@ -232,11 +253,15 @@ The earlier painted assets under `assets/art/` remain in the repository as histo
 
 `scenes/event/whispering_well.tscn`
 
-The dedicated event now participates in build progression:
+The dedicated event now has two modes.
 
-- accept the well's gift: lose 15 party HP and gain the Mage's next available upgrade; if Mage is exhausted, it targets the least-developed hero instead;
-- spend 25 gold: gain a random unowned general-pool relic, falling back to least-developed hero progression if the relic pool is exhausted;
-- walk away.
+If Mage is still an unresolved companion fate:
+
+- pay blood (-20 party HP) and recruit Mage;
+- pay 25 gold and recruit Mage safely;
+- walk away and mark Mage **ПОТЕРЯН** for this run.
+
+If Mage is already the protagonist/joined/lost, the card falls back to its build/relic event behavior.
 
 The event remains one-time because its card leaves the run after being offered. Resolving it completes the current Act 1 card and advances card progress.
 
@@ -244,15 +269,15 @@ The event remains one-time because its card leaves the run after being offered. 
 
 `scenes/battle/battle.tscn`
 
-Player party:
+Player party is now variable:
 
-- Рыцарь;
-- Следопыт;
-- Маг.
+- the run always starts with exactly one chosen protagonist;
+- recruited companions are added permanently for the rest of that run;
+- combat can therefore be solo, duo or trio.
 
-Enemy composition and spawn positions come from the selected `EncounterData` Resource.
+Enemy composition and spawn positions still come from the selected `EncounterData` Resource.
 
-Before combat, the player can drag the three heroes within the deployment zone.
+Before combat, the player can drag every currently recruited hero within the deployment zone.
 
 Implemented combat behavior:
 
@@ -276,7 +301,7 @@ Implemented combat behavior:
 - Bone Thrall is a smaller, faster, low-HP swarm enemy;
 - Crypt Guard is a slower elite melee enemy with a larger silhouette, visible name and 35% splash damage around its primary target.
 
-Hero stats receive persistent run bonuses from `RunState`. Final spawned hero max HP is clamped to at least 20 and damage to at least 1 so stacking late-run sacrifices cannot create invalid combat units.
+Hero stats receive persistent run bonuses from `RunState`. After upgrades and relics, incomplete parties receive visible fixed compensation: solo +50% HP/+35% damage, duo +20% HP/+15% damage, trio none. Final spawned max HP is clamped to at least 20 and damage to at least 1. Enemy/boss stats do not dynamically scale to party size.
 
 After victory, **ЗАБРАТЬ НАГРАДУ** opens the reward scene.
 
@@ -453,6 +478,25 @@ A read-only **ДОСЬЕ ОТРЯДА** modal is now implemented on the wizard t
 
 The shared `scenes/event/act_choice.tscn` scene handles the implemented choice-driven events. Its progression-facing cards now query the live hero build and show the actual next upgrade name on the choice button when relevant. The scene still intentionally avoids a generalized event-effect framework.
 
+### Hard-roguelike party composition and companion fates
+
+The two non-protagonist heroes are no longer guaranteed party members.
+
+Recruitment routes:
+
+- **Knight** — primary: **ЗАКОВАННЫЙ ПЛЕННИК**; fallback: **ПОСЛЕДНИЙ ПРИВАЛ**;
+- **Ranger** — primary: **ГРЕМУЧИЙ МОСТ**; fallback: **ПЕПЕЛЬНЫЙ ПРИВАЛ**;
+- **Mage** — primary: **ШЕПЧУЩИЙ КОЛОДЕЦ**; fallback: **ЧЁРНЫЙ АЛТАРЬ**.
+
+Important fate rule:
+
+- if a recruitment card is merely not offered or is rejected at the two-card table choice, that companion remains **НЕ РАЗЫГРАНА** and can still appear through the fallback route;
+- if the player actually enters a recruitment scene and chooses a branch that abandons the companion, that role becomes **ПОТЕРЯН** and cannot be recruited later in the run.
+
+Upgrade and general-pool artifact offers only target heroes currently in the party. A solo major reward can show all three remaining upgrade paths for that one hero; duo/trio offers are built only from recruited roles.
+
+Solo compensation is +50% HP/+35% damage. Duo compensation is +20% HP/+15% damage. This keeps incomplete-party routes playable without adaptive enemy scaling.
+
 ### Run state
 
 `scripts/core/run_state.gd`
@@ -470,6 +514,9 @@ The current prototype run state stores:
 - selected encounter path;
 - boss completion state;
 - persistent artifact ids;
+- per-run protagonist role;
+- current `party_roles`;
+- companion fate state + fate notes for all three hero roles;
 - persistent hero-upgrade ids;
 - derived effective hero-stat inspection for the squad-status UI;
 - claimed major-upgrade tier indices;
@@ -493,22 +540,24 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the new **ДОСЬЕ ОТРЯДА** modal together with the current progression-economy pass:
+Locally verify the new hard-roguelike party flow end to end:
 
-- **ОТРЯД [TAB]** should open over the current wizard-table deal without changing or regenerating offered cards;
-- Tab should toggle the modal reliably and Esc should close it;
-- 1 / 2 / 3 and the three hero buttons should switch Knight / Ranger / Mage;
-- each portrait must use the same production sprite as combat;
-- at run start, displayed final stats should match the base hero resources;
-- after hero upgrades, relics and party-wide event modifiers, displayed final stats should match the unit values seen when the next battle starts;
-- attacks/second and damage/second must update when attack interval or damage changes;
-- minimum-range and splash rows should appear only when relevant;
-- upgrade and relic lists should show only effects that actually apply to the selected hero;
-- dynamic specialization names should change with recognizable builds but must remain presentation-only;
-- long upgrade/relic descriptions should remain readable at 1280×720 without overlapping the footer;
-- the modal must block clicks on the card offer underneath.
+- main menu -> story intro -> class selection -> table;
+- after choosing a class, battle must spawn only that protagonist;
+- solo battle/status must show +50% HP and +35% damage compensation;
+- recruiting one companion must immediately switch future battles to duo and compensation to +20% HP/+15% damage;
+- recruiting both must produce a normal trio with no compensation;
+- major/bonus upgrade offers and general-pool relics must only target heroes currently in the party;
+- **Knight** recruitment: Chained Prisoner or, if still unresolved, Last Camp;
+- **Ranger** recruitment: Rattling Bridge or, if still unresolved, Ash Rest;
+- **Mage** recruitment: Whispering Well or, if still unresolved, Black Altar;
+- rejecting a recruitment card at the table must leave fate unresolved;
+- entering a recruitment event and deliberately abandoning the companion must mark them **ПОТЕРЯН** and block the fallback recruitment later;
+- **ДОСЬЕ ОТРЯДА** must show unresolved/lost companions as faded fate entries and open on the protagonist;
+- run-end summary must list final party and companion fates;
+- Bone Warden must remain a fixed benchmark and be tested solo, duo and trio before changing boss stats again.
 
-Continue the planned full-run balance check after this UI is locally confirmed.
+Do not add more companion classes until this three-role recruitment loop is locally validated.
 
 ## Local workflow
 
