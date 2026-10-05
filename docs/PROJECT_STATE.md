@@ -30,6 +30,8 @@ The second battle presentation pass is implemented and confirmed visually accept
 
 The same pixel-art visual language is now applied across the main menu, Whispering Well event, reward screen and run-end screen.
 
+A skippable five-frame pixel-art story prologue is now implemented in GitHub and pending local verification. It establishes the old pact, the aged protagonist and the Wizard's offer to replay a life whose corrections will rewrite the fates of everyone the protagonist once saved.
+
 The wizard table has since been rebuilt again around an approved authored pixel-art concept.
 
 The final composition/readability polish pass has been locally verified and accepted:
@@ -79,6 +81,7 @@ Technical identifiers, file names, node names, class names and code remain Engli
 - Godot 4.7.x
 - GDScript
 - Main scene: `res://scenes/main/main.tscn`
+- First-run story scene: `res://scenes/intro/intro.tscn`
 - Rendering method: GL Compatibility
 - Prototype resolution: 1280×720
 - `RunState` is registered as an autoload singleton.
@@ -89,9 +92,35 @@ Technical identifiers, file names, node names, class names and code remain Engli
 
 `scenes/main/main.tscn`
 
-Pressing **ВОЙТИ В ИГРУ** resets the prototype run and opens the wizard's table.
+Pressing **ВОЙТИ В ИГРУ** resets the run and opens the story intro instead of jumping directly to the table.
 
-### 2. Wizard table
+### 2. Story intro
+
+`scenes/intro/intro.tscn`
+
+The game now opens with a five-frame authored pixel-art comic prologue before the first wizard-table deal.
+
+Narrative premise:
+
+- the player character is old and looking back on a long life of rescues, losses and consequences;
+- the Wizard is returning because of an old pact rather than meeting the player for the first time;
+- he offers the impossible: replay the key decisions of that life;
+- changing one saved life can erase or rewrite another life that existed because of the original choice;
+- the final frame reveals the cursed cards and leads directly into the first deal.
+
+Runtime intro art lives under `assets/pixel/intro/frame_01.webp` … `frame_05.webp`, authored at 1280×720 in the same dark-fantasy pixel language as the battle/table presentation.
+
+Controls:
+
+- left click, **Space** or **Enter** advances;
+- the painted **ПРОПУСТИТЬ** area in the top-right is backed by a real Godot button;
+- **Esc** also skips;
+- the final frame advances directly to `scenes/table/table.tscn`;
+- short black fades separate frames.
+
+Starting another run from the run-end screen still goes directly to the table, so the prologue does not have to be replayed between consecutive runs.
+
+### 3. Wizard table
 
 `scenes/table/table.tscn`
 
@@ -178,7 +207,7 @@ The top HUD remains dynamic and now emphasizes Act 1 progress, gold, **РАЗВ�
 
 The earlier painted assets under `assets/art/` remain in the repository as historical/reference material.
 
-### 3. Whispering Well event
+### 4. Whispering Well event
 
 `scenes/event/whispering_well.tscn`
 
@@ -190,7 +219,7 @@ The dedicated event now participates in build progression:
 
 The event remains one-time because its card leaves the run after being offered. Resolving it completes the current Act 1 card and advances card progress.
 
-### 4. Combat
+### 5. Combat
 
 `scenes/battle/battle.tscn`
 
@@ -234,7 +263,7 @@ After defeat, **ВЕРНУТЬСЯ К СТОЛУ** returns to the same run witho
 
 **ПЕРЕИГРАТЬ** remains available as a prototype/testing convenience.
 
-### 5. Reward
+### 6. Reward
 
 `scenes/reward/reward.tscn`
 
@@ -254,7 +283,7 @@ Normal combat victories return to the table and advance Act 1 card progress.
 
 After defeating Bone Warden and resolving its reward flow, `boss_defeated` becomes true and the player goes to the run-end screen.
 
-### 6. Run end
+### 7. Run end
 
 `scenes/run_end/run_end.tscn`
 
