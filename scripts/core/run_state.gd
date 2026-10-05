@@ -18,6 +18,11 @@ const HERO_UNIT_PATHS := {
 	"ranger": "res://resources/units/ranger.tres",
 	"mage": "res://resources/units/mage.tres"
 }
+const FATE_UNKNOWN := "unknown"
+const FATE_PROTAGONIST := "protagonist"
+const FATE_JOINED := "joined"
+const FATE_LOST := "lost"
+
 const MAX_EXTRA_HERO_UPGRADES: int = 3
 const HERO_UPGRADE_PATHS := {
 	"knight_iron_oath": "res://resources/upgrades/knight_iron_oath.tres",
@@ -103,6 +108,10 @@ var rejected_card_ids: Array[String] = []
 var resolved_card_ids: Array[String] = []
 var active_card_id: String = ""
 var artifact_ids: Array[String] = []
+var protagonist_role: String = ""
+var party_roles: Array[String] = []
+var hero_fates: Dictionary = {}
+var hero_fate_notes: Dictionary = {}
 var hero_upgrade_ids: Array[String] = []
 var extra_hero_upgrade_ids: Array[String] = []
 var claimed_upgrade_tiers: Array[int] = []
@@ -127,6 +136,13 @@ func reset_run() -> void:
 	boss_defeated = false
 	active_card_id = ""
 	artifact_ids.clear()
+	protagonist_role = ""
+	party_roles.clear()
+	hero_fates.clear()
+	hero_fate_notes.clear()
+	for role in HERO_ROLES:
+		hero_fates[role] = FATE_UNKNOWN
+		hero_fate_notes[role] = "Судьба ещё не разыграна."
 	hero_upgrade_ids.clear()
 	extra_hero_upgrade_ids.clear()
 	claimed_upgrade_tiers.clear()
@@ -143,6 +159,108 @@ func reset_run() -> void:
 
 	for _tier in range(3):
 		forced_combat_slots.append(randi_range(0, 2))
+
+func choose_protagonist(role: String) -> bool:
+	if not HERO_ROLES.has(role):
+		push_warning("Unknown protagonist role: %s" % role)
+		return false
+
+	protagonist_role = role
+	party_roles.clear()
+	party_roles.append(role)
+
+	for hero_role in HERO_ROLES:
+		hero_fates[hero_role] = FATE_UNKNOWN
+		hero_fate_notes[hero_role] = "Судьба ещё не разыграна."
+
+	hero_fates[role] = FATE_PROTAGONIST
+	hero_fate_notes[role] = "Это вы. С этой версии прошлого начинается партия."
+	current_major_upgrade_offer_ids.clear()
+	current_bonus_upgrade_offer_ids.clear()
+	return true
+
+func has_chosen_protagonist() -> bool:
+	return not protagonist_role.is_empty() and party_roles.has(protagonist_role)
+
+func is_role_in_party(role: String) -> bool:
+	return party_roles.has(role)
+
+func get_party_size() -> int:
+	return party_roles.size()
+
+func get_companion_fate(role: String) -> String:
+	return String(hero_fates.get(role, FATE_UNKNOWN))
+
+func get_companion_fate_note(role: String) -> String:
+	return String(hero_fate_notes.get(role, "Судьба ещё не разыграна."))
+
+func can_recruit_companion(role: String) -> bool:
+	if role == protagonist_role:
+		return false
+	return not is_role_in_party(role) and get_companion_fate(role) == FATE_UNKNOWN
+
+func recruit_companion(role: String, note: String) -> bool:
+	if not can_recruit_companion(role):
+		return false
+
+	party_roles.append(role)
+	hero_fates[role] = FATE_JOINED
+	hero_fate_notes[role] = note
+	current_major_upgrade_offer_ids.clear()
+	current_bonus_upgrade_offer_ids.clear()
+	return true
+
+func lose_companion(role: String, note: String) -> bool:
+	if not can_recruit_companion(role):
+		return false
+
+	hero_fates[role] = FATE_LOST
+	hero_fate_notes[role] = note
+	current_major_upgrade_offer_ids.clear()
+	current_bonus_upgrade_offer_ids.clear()
+	return true
+
+func get_party_hp_multiplier() -> float:
+	match get_party_size():
+		1:
+			return 1.50
+		2:
+			return 1.20
+		_:
+			return 1.0
+
+func get_party_damage_multiplier() -> float:
+	match get_party_size():
+		1:
+			return 1.35
+		2:
+			return 1.15
+		_:
+			return 1.0
+
+func get_party_strength_text() -> String:
+	match get_party_size():
+		1:
+			return "СИЛА ОДИНОЧКИ: +50% HP, +35% урона"
+		2:
+			return "МАЛЫЙ ОТРЯД: +20% HP, +15% урона"
+		_:
+			return ""
+
+func get_party_roles_text() -> String:
+	if party_roles.is_empty():
+		return "нет"
+
+	var names: Array[String] = []
+	for role in party_roles:
+		match role:
+			"knight":
+				names.append("Рыцарь")
+			"ranger":
+				names.append("Следопыт")
+			"mage":
+				names.append("Маг")
+	return ", ".join(names)
 
 func get_artifact(artifact_id: String) -> ArtifactData:
 	var path: String = ARTIFACT_PATHS.get(artifact_id, "")
@@ -179,8 +297,11 @@ func get_available_artifact_ids() -> Array[String]:
 			continue
 
 		var artifact := get_artifact(id)
-		if artifact != null and artifact.general_pool:
-			available.append(id)
+		if artifact == null or not artifact.general_pool:
+			continue
+		if artifact.target_role != "*" and not is_role_in_party(artifact.target_role):
+			continue
+		available.append(id)
 	return available
 
 func add_random_available_artifact() -> String:
@@ -262,6 +383,9 @@ func get_hero_unit_data(role: String) -> UnitData:
 	return null
 
 func get_effective_hero_stats(role: String) -> Dictionary:
+	if not is_role_in_party(role):
+		return {}
+
 	var data := get_hero_unit_data(role)
 	if data == null:
 		return {}
@@ -304,6 +428,8 @@ func get_effective_hero_stats(role: String) -> Dictionary:
 		splash_damage += artifact.splash_damage_bonus
 		move_speed *= artifact.move_speed_multiplier
 
+	hp *= get_party_hp_multiplier()
+	damage *= get_party_damage_multiplier()
 	hp = maxf(20.0, hp)
 	damage = maxf(1.0, damage)
 
@@ -334,6 +460,8 @@ func get_effective_hero_stats(role: String) -> Dictionary:
 
 func get_available_hero_upgrade_ids_for_role(role: String) -> Array[String]:
 	var available: Array[String] = []
+	if not is_role_in_party(role):
+		return available
 	for upgrade_id_value in HERO_UPGRADE_PATHS.keys():
 		var upgrade_id := String(upgrade_id_value)
 		if has_hero_upgrade(upgrade_id):
@@ -401,7 +529,7 @@ func get_least_developed_extra_role() -> String:
 	var best_role := ""
 	var best_count := 999
 
-	for role in HERO_ROLES:
+	for role in party_roles:
 		if get_next_available_hero_upgrade_id(role).is_empty():
 			continue
 
@@ -446,11 +574,43 @@ func is_major_upgrade_due_for_active_card() -> bool:
 	if claimed_upgrade_tiers.has(card.tier):
 		return false
 
-	for role in HERO_ROLES:
+	for role in party_roles:
 		if not get_next_available_hero_upgrade_id(role).is_empty():
 			return true
 
 	return false
+
+func _build_party_upgrade_offer() -> Array[String]:
+	var result: Array[String] = []
+	if party_roles.is_empty():
+		return result
+
+	if party_roles.size() == 1:
+		var solo_available := get_available_hero_upgrade_ids_for_role(party_roles[0])
+		solo_available.shuffle()
+		for upgrade_id in solo_available:
+			if result.size() >= 3:
+				break
+			result.append(upgrade_id)
+		return result
+
+	var leftovers: Array[String] = []
+	for role in party_roles:
+		var available := get_available_hero_upgrade_ids_for_role(role)
+		if available.is_empty():
+			continue
+		available.shuffle()
+		result.append(available[0])
+		for index in range(1, available.size()):
+			leftovers.append(available[index])
+
+	leftovers.shuffle()
+	for upgrade_id in leftovers:
+		if result.size() >= 3:
+			break
+		result.append(upgrade_id)
+
+	return result
 
 func get_major_upgrade_offer_ids() -> Array[String]:
 	if not is_major_upgrade_due_for_active_card():
@@ -460,13 +620,7 @@ func get_major_upgrade_offer_ids() -> Array[String]:
 	if not current_major_upgrade_offer_ids.is_empty():
 		return current_major_upgrade_offer_ids.duplicate()
 
-	for role in HERO_ROLES:
-		var available := get_available_hero_upgrade_ids_for_role(role)
-		if available.is_empty():
-			continue
-		available.shuffle()
-		current_major_upgrade_offer_ids.append(available[0])
-
+	current_major_upgrade_offer_ids = _build_party_upgrade_offer()
 	return current_major_upgrade_offer_ids.duplicate()
 
 func claim_major_upgrade(upgrade_id: String) -> bool:
@@ -495,26 +649,7 @@ func get_bonus_upgrade_offer_ids() -> Array[String]:
 	if not current_bonus_upgrade_offer_ids.is_empty():
 		return current_bonus_upgrade_offer_ids.duplicate()
 
-	for role in HERO_ROLES:
-		var available := get_available_hero_upgrade_ids_for_role(role)
-		if available.is_empty():
-			continue
-		available.shuffle()
-		current_bonus_upgrade_offer_ids.append(available[0])
-
-	if current_bonus_upgrade_offer_ids.size() < 3:
-		var all_available: Array[String] = []
-		for upgrade_id_value in HERO_UPGRADE_PATHS.keys():
-			var upgrade_id := String(upgrade_id_value)
-			if has_hero_upgrade(upgrade_id) or current_bonus_upgrade_offer_ids.has(upgrade_id):
-				continue
-			all_available.append(upgrade_id)
-		all_available.shuffle()
-		for upgrade_id in all_available:
-			if current_bonus_upgrade_offer_ids.size() >= 3:
-				break
-			current_bonus_upgrade_offer_ids.append(upgrade_id)
-
+	current_bonus_upgrade_offer_ids = _build_party_upgrade_offer()
 	return current_bonus_upgrade_offer_ids.duplicate()
 
 func claim_bonus_upgrade(upgrade_id: String) -> bool:
