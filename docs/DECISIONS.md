@@ -543,3 +543,38 @@ The UI must not maintain its own mutable character stats. `RunState.get_effectiv
 The modal lives over the wizard table and must not regenerate offers or advance the run. Tab toggles it; Esc closes it.
 
 Do not introduce equipment slots, level numbers, attribute points or a second character-sheet progression model just to support this screen.
+
+## D034 — A run starts solo; companions are replayed fates, not guaranteed party slots
+
+Date: 2026-10-05  
+Status: accepted core-gameplay decision
+
+The previous structure always spawned Knight, Ranger and Mage. That contradicted the replayed-life premise because the player never learned who these people were or why they were present.
+
+Each run now begins after the prologue with the Wizard asking:
+
+**«Кем ты был, когда всё началось?»**
+
+The player chooses Knight, Ranger or Mage as the protagonist. Only that hero begins in the party.
+
+The other two are people from the protagonist's previous life. They can be encountered through existing cards:
+
+- Knight: **ЗАКОВАННЫЙ ПЛЕННИК**, fallback **ПОСЛЕДНИЙ ПРИВАЛ**;
+- Ranger: **ГРЕМУЧИЙ МОСТ**, fallback **ПЕПЕЛЬНЫЙ ПРИВАЛ**;
+- Mage: **ШЕПЧУЩИЙ КОЛОДЕЦ**, fallback **ЧЁРНЫЙ АЛТАРЬ**.
+
+A card that is never played does not resolve the companion's fate. If the player reaches the actual recruitment scene and chooses to abandon that person, the role becomes **ПОТЕРЯН** for the rest of the run.
+
+Runs may reach Bone Warden solo, duo or trio.
+
+Incomplete parties receive explicit fixed compensation:
+
+- solo: +50% max HP and +35% damage for the remaining hero;
+- duo: +20% max HP and +15% damage for both heroes;
+- trio: no compensation.
+
+This compensation is applied after upgrades/relics and is shown in battle preparation and the squad dossier. Enemy and boss stats remain fixed; do not rubber-band scale encounters from party size.
+
+Upgrade offers and general-pool hero-specific relics only target roles currently in the party. A solo major reward may offer multiple paths for the same protagonist.
+
+The protagonist cannot be lost during the current vertical slice. Recruited companions also remain in the party once joined; injury/permadeath systems are explicitly deferred.
