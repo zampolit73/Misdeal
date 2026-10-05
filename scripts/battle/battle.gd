@@ -1,9 +1,6 @@
 extends Control
 
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
-const KNIGHT_DATA: UnitData = preload("res://resources/units/knight.tres")
-const RANGER_DATA: UnitData = preload("res://resources/units/ranger.tres")
-const MAGE_DATA: UnitData = preload("res://resources/units/mage.tres")
 const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
 
 const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1240, 465))
@@ -73,9 +70,16 @@ func _load_selected_encounter() -> EncounterData:
 	return DEFAULT_ENCOUNTER
 
 func _spawn_encounter() -> void:
-	_spawn_unit(KNIGHT_DATA, 0, Vector2(280, 140))
-	_spawn_unit(RANGER_DATA, 0, Vector2(210, 245))
-	_spawn_unit(MAGE_DATA, 0, Vector2(280, 355))
+	var party_positions := _get_party_spawn_positions()
+	for index in range(RunState.party_roles.size()):
+		var role := RunState.party_roles[index]
+		var hero_data := RunState.get_hero_unit_data(role)
+		if hero_data == null:
+			push_warning("Could not load party UnitData for role: %s" % role)
+			continue
+
+		var spawn_position := party_positions[min(index, party_positions.size() - 1)]
+		_spawn_unit(hero_data, 0, spawn_position)
 
 	var enemy_count: int = mini(encounter.enemy_unit_paths.size(), encounter.enemy_positions.size())
 
@@ -91,6 +95,22 @@ func _spawn_encounter() -> void:
 
 		_spawn_unit(enemy_data, 1, encounter.enemy_positions[index], enemy_name)
 
+func _get_party_spawn_positions() -> Array[Vector2]:
+	match RunState.get_party_size():
+		1:
+			return [Vector2(270, 245)]
+		2:
+			return [
+				Vector2(235, 180),
+				Vector2(235, 315)
+			]
+		_:
+			return [
+				Vector2(280, 140),
+				Vector2(210, 245),
+				Vector2(280, 355)
+			]
+
 func _spawn_unit(
 	data: UnitData,
 	team: int,
@@ -105,6 +125,8 @@ func _spawn_unit(
 		unit.damage += RunState.party_damage_bonus
 		_apply_hero_upgrades_to_unit(unit)
 		_apply_artifacts_to_unit(unit)
+		unit.max_hp *= RunState.get_party_hp_multiplier()
+		unit.damage *= RunState.get_party_damage_multiplier()
 		unit.max_hp = maxf(20.0, unit.max_hp)
 		unit.damage = maxf(1.0, unit.damage)
 	else:
@@ -161,6 +183,10 @@ func _begin_preparation_phase() -> void:
 
 	if RunState.wizard_debt_active:
 		status_label.text += "  ДОЛГ ВОЛШЕБНИКУ: враги наносят +25% урона."
+
+	var party_strength := RunState.get_party_strength_text()
+	if not party_strength.is_empty():
+		status_label.text += "  %s." % party_strength
 
 	placement_hint.visible = true
 
