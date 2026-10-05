@@ -315,6 +315,7 @@ func _finish_battle(player_won: bool) -> void:
 	result_backdrop.visible = true
 	result_label.visible = true
 	result_subtitle.visible = true
+	fight_button.visible = false
 	restart_button.disabled = false
 	continue_button.visible = true
 	continue_button.disabled = false
