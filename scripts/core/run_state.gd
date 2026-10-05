@@ -13,6 +13,7 @@ const ARTIFACT_PATHS := {
 }
 
 const HERO_ROLES: Array[String] = ["knight", "ranger", "mage"]
+const MAX_EXTRA_HERO_UPGRADES: int = 3
 const HERO_UPGRADE_PATHS := {
 	"knight_iron_oath": "res://resources/upgrades/knight_iron_oath.tres",
 	"knight_executioner": "res://resources/upgrades/knight_executioner.tres",
@@ -98,6 +99,7 @@ var resolved_card_ids: Array[String] = []
 var active_card_id: String = ""
 var artifact_ids: Array[String] = []
 var hero_upgrade_ids: Array[String] = []
+var extra_hero_upgrade_ids: Array[String] = []
 var claimed_upgrade_tiers: Array[int] = []
 var current_major_upgrade_offer_ids: Array[String] = []
 var current_bonus_upgrade_offer_ids: Array[String] = []
@@ -121,6 +123,7 @@ func reset_run() -> void:
 	active_card_id = ""
 	artifact_ids.clear()
 	hero_upgrade_ids.clear()
+	extra_hero_upgrade_ids.clear()
 	claimed_upgrade_tiers.clear()
 	current_major_upgrade_offer_ids.clear()
 	current_bonus_upgrade_offer_ids.clear()
@@ -281,15 +284,31 @@ func get_next_available_hero_upgrade_id(role: String) -> String:
 	available.sort()
 	return available[0]
 
-func add_next_available_hero_upgrade(role: String) -> String:
-	var upgrade_id := get_next_available_hero_upgrade_id(role)
+func can_claim_extra_hero_upgrade() -> bool:
+	return extra_hero_upgrade_ids.size() < MAX_EXTRA_HERO_UPGRADES
+
+func get_extra_upgrade_progress_text() -> String:
+	return "%d/%d" % [extra_hero_upgrade_ids.size(), MAX_EXTRA_HERO_UPGRADES]
+
+func get_next_extra_hero_upgrade_id(role: String) -> String:
+	if not can_claim_extra_hero_upgrade():
+		return ""
+	return get_next_available_hero_upgrade_id(role)
+
+func add_next_extra_hero_upgrade(role: String) -> String:
+	var upgrade_id := get_next_extra_hero_upgrade_id(role)
 	if upgrade_id.is_empty():
 		return ""
 	if not add_hero_upgrade(upgrade_id):
 		return ""
+
+	extra_hero_upgrade_ids.append(upgrade_id)
 	return upgrade_id
 
-func get_least_developed_available_role() -> String:
+func get_least_developed_extra_role() -> String:
+	if not can_claim_extra_hero_upgrade():
+		return ""
+
 	var best_role := ""
 	var best_count := 999
 
@@ -304,11 +323,11 @@ func get_least_developed_available_role() -> String:
 
 	return best_role
 
-func add_upgrade_to_least_developed_role() -> String:
-	var role := get_least_developed_available_role()
+func add_extra_upgrade_to_least_developed_role() -> String:
+	var role := get_least_developed_extra_role()
 	if role.is_empty():
 		return ""
-	return add_next_available_hero_upgrade(role)
+	return add_next_extra_hero_upgrade(role)
 
 func get_last_hero_upgrade_id() -> String:
 	if hero_upgrade_ids.is_empty():
@@ -321,6 +340,9 @@ func remove_last_hero_upgrade() -> String:
 		return ""
 
 	hero_upgrade_ids.remove_at(hero_upgrade_ids.size() - 1)
+	var extra_index := extra_hero_upgrade_ids.find(upgrade_id)
+	if extra_index >= 0:
+		extra_hero_upgrade_ids.remove_at(extra_index)
 	return upgrade_id
 
 func clear_wizard_debt() -> void:
@@ -377,6 +399,10 @@ func claim_major_upgrade(upgrade_id: String) -> bool:
 	return true
 
 func get_bonus_upgrade_offer_ids() -> Array[String]:
+	if not can_claim_extra_hero_upgrade():
+		current_bonus_upgrade_offer_ids.clear()
+		return []
+
 	if not current_bonus_upgrade_offer_ids.is_empty():
 		return current_bonus_upgrade_offer_ids.duplicate()
 
@@ -403,11 +429,16 @@ func get_bonus_upgrade_offer_ids() -> Array[String]:
 	return current_bonus_upgrade_offer_ids.duplicate()
 
 func claim_bonus_upgrade(upgrade_id: String) -> bool:
+	if not can_claim_extra_hero_upgrade():
+		return false
+
 	var offer := get_bonus_upgrade_offer_ids()
 	if not offer.has(upgrade_id):
 		return false
 	if not add_hero_upgrade(upgrade_id):
 		return false
+
+	extra_hero_upgrade_ids.append(upgrade_id)
 	current_bonus_upgrade_offer_ids.clear()
 	return true
 
