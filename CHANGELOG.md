@@ -45,6 +45,11 @@
 
 ### Changed
 
+- Capped optional hero development from events and Death Wager at 3 upgrades per run; the three guaranteed tier upgrades remain separate.
+- Blood Ledger now restores an optional-upgrade slot when it erases an upgrade that came from the optional pool.
+- Event HUD exposes the optional progression counter as **ДОП. X/3** and build-upgrade event choices disable cleanly at the cap.
+- Death Wager converts its extra-upgrade branch to +45 gold when optional development is already 3/3.
+- Retuned Bone Warden for the capped 4–6-upgrade target curve: 700 HP, 24 damage, 1.0 s cadence, 60 move speed and stronger phase-II enrage multipliers.
 - Reworked progression-facing event cards so positive permanent rewards primarily grant hero development, relics or gold instead of generic party-wide HP/damage.
 - Ash Rest and Last Camp now let the player develop a chosen hero directly.
 - Gravedigger Shop and Candle Seller now sell the next concrete Knight/Ranger/Mage upgrade.
@@ -76,7 +81,7 @@
 - Act 1 now guarantees at least one selected combat in each early/mid/late four-card tier while preserving two-card choice and rejection.
 - The mandatory combat slot is randomized among the first three positions of each tier so combat pacing is controlled without becoming fully predictable.
 - Death Wager enhanced reward reduced from +75 gold / +50 HP / +8 damage to +60 gold / +35 HP / +5 damage.
-- Bone Warden retuned for twelve-card builds: 580 HP, 22 damage, faster base cadence/movement and a stronger enrage phase.
+- Bone Warden first twelve-card retune to 580 HP / 22 damage was superseded by the 3+3 progression-economy balance pass: 700 HP / 24 damage with stronger enrage.
 - Bone Warden final fight upgraded from a single stat/enrage check into a two-phase boss encounter; this new version is pending local verification.
 
 ### Added
