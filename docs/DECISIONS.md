@@ -368,7 +368,7 @@ The visual priorities are:
 - a clearly dominant red **БОЙ** action;
 - character-scale combat sprites rather than tiny tactical icons.
 
-The core Knight/Ranger/Mage/Skeleton/Bone Archer assets are now transparent 64×64 pixel sprites. Bone Warden keeps its separate authored boss sprite. Do not return to the small-icon combat scale unless local readability testing proves the larger scale blocks tactical information.
+Combat units should use detailed character-scale pixel sprites rather than small tactical icons. Do not return to the small-icon combat scale unless local readability testing proves the larger scale blocks tactical information.
 
 ## D027 — The production battle layout uses an authored backdrop with live gameplay layers
 
@@ -390,3 +390,22 @@ Gameplay stays live on top: units, HP bars, names, team rings, drag placement, m
 The production backdrop is stored as five base64 text chunks under `assets/pixel/battle/authored_backdrop/` and reconstructed once by `scripts/battle/authored_backdrop.gd`. The validated decoded WebP is 1280×720. This packaging is deliberately isolated to the presentation layer and must not leak into gameplay logic.
 
 `scripts/battle/battle_visual.gd` is now restricted to dynamic overlays such as Bone Warden phase effects. Do not rebuild the ordinary arena procedurally unless the authored backdrop is deliberately replaced by another approved art asset.
+
+## D028 — Current combat roles share one authored 96×96 sprite atlas
+
+Date: 2026-10-05  
+Status: accepted for vertical-slice visual direction
+
+The authored battle backdrop is now locally accepted, and the remaining visual mismatch was the simplified unit art.
+
+All nine combat roles currently used by the slice now come from one transparent 3×3 sprite atlas at `assets/pixel/units/combat_units_v2.png`, with 96×96 cells:
+
+- Knight / Ranger / Mage;
+- Skeleton / Bone Archer / Grave Bellkeeper;
+- Bone Thrall / Crypt Guard / Bone Warden.
+
+`BattleUnit` maps `UnitData.visual_role` directly to an atlas cell through `AtlasTexture`. This keeps the roster visually coherent and avoids maintaining role-specific tint/fallback rules.
+
+Presentation scale is role-driven rather than baked into source image size: Bone Thrall remains intentionally small, Crypt Guard larger, and Bone Warden largest. The source art stays transparent and uses nearest-neighbor filtering.
+
+Do not create a generalized sprite-animation framework yet. The next visual step, if needed, should be per-role idle/attack/death animation only after this static roster is confirmed readable in the live authored arena.
