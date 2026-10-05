@@ -43,9 +43,10 @@ func _toggle_squad_status() -> void:
 
 func _refresh_table() -> void:
 	var condition_text := RunState.get_run_condition_text()
-	stats_label.text = "%s     ЗОЛОТО %d     РАЗВИТИЕ %d     РЕЛИКВИИ %d" % [
+	stats_label.text = "%s     ЗОЛОТО %d     ОТРЯД %d/3     РАЗВИТИЕ %d     РЕЛИКВИИ %d" % [
 		RunState.get_progress_text(),
 		RunState.gold,
+		RunState.get_party_size(),
 		RunState.hero_upgrade_ids.size(),
 		RunState.artifact_ids.size()
 	]
