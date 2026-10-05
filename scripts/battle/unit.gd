@@ -167,7 +167,7 @@ func _get_unit_sheet_texture() -> Texture2D:
 		return null
 
 	var image := Image.new()
-	var error: Error = image.load_png_from_buffer(bytes)
+	var error := image.load_png_from_buffer(bytes)
 	if error != OK:
 		push_error("Production combat unit atlas PNG decode failed: %s" % error_string(error))
 		return null
