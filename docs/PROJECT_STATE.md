@@ -48,7 +48,9 @@ A Bone Warden gameplay + visual rework is implemented in GitHub and pending loca
 
 After comparing the live battle screenshot against the approved richer pixel mockup, the procedural battle renderer was replaced by an authored full-screen battle backdrop matching the second approved reference much more closely. The first local pull exposed two wiring faults: a truncated 8.7 KB WebP and a negative z-index that placed the backdrop behind the black fallback. Both faults were fixed, and the user has now confirmed the authored battle backdrop looks correct locally.
 
-A full combat-unit sprite art pass is implemented in GitHub and pending local verification. All nine currently used combat roles have dedicated high-detail dark-fantasy pixel sprites in one 96×96 atlas; special enemies no longer reuse tinted Skeleton art. The final v3 atlas is stored as ten base64 PNG chunks under `assets/pixel/units/combat_units_v3/` and decoded by `BattleUnit`. The obsolete v2 preload/fallback was removed after it caused a Godot parser/import failure.
+The full combat-unit sprite art pass is now locally confirmed working. All nine currently used combat roles have dedicated high-detail dark-fantasy pixel sprites in one 96×96 atlas; special enemies no longer reuse tinted Skeleton art. The final v3 atlas is stored as ten base64 PNG chunks under `assets/pixel/units/combat_units_v3/` and decoded by `BattleUnit`. The obsolete v2 preload/fallback was removed after it caused a Godot parser/import failure.
+
+A first real **hero build progression** layer is now implemented in GitHub and pending local verification. Ordinary post-combat +HP/+damage choices are no longer the main progression path.
 
 The longer Act 1 structure is now confirmed working locally: 12 resolved pre-boss cards followed by the Bone Warden as card 13.
 
@@ -369,6 +371,29 @@ Current artifacts:
 
 Artifacts are applied to hero runtime stats when combat units spawn. The run-end summary now lists acquired artifacts.
 
+### Hero upgrades
+
+`scripts/data/hero_upgrade_data.gd`
+
+Act 1 now has nine unique persistent hero upgrades, three for each party member:
+
+- Knight: **ЖЕЛЕЗНАЯ КЛЯТВА**, **ПАЛАЧ**, **РАЗМАШИСТЫЙ УДАР**;
+- Ranger: **ДАЛЬНИЙ ВЫСТРЕЛ**, **ГРАД СТРЕЛ**, **ЗВЕРИНАЯ ТРОПА**;
+- Mage: **ПОЖАР**, **СТЕКЛЯННОЕ СЕРДЦЕ**, **ПЕРЕГРУЗКА**.
+
+Each early/mid/late tier guarantees one major hero-upgrade choice after the first combat victory in that tier. The reward screen offers one available upgrade for Knight, Ranger and Mage, so the player can spread growth across the party or specialize the same hero in all three tiers.
+
+Hero upgrades persist for the current run in `RunState.hero_upgrade_ids` and are applied when player units spawn, before artifacts. They can modify HP, damage, attack cadence, range, minimum range, splash and move speed.
+
+Special combat rewards remain intact after the tier upgrade:
+
+- Crypt Guard still grants an artifact reward;
+- Death Wager now offers **+60 gold / a shown unowned artifact / one extra hero-upgrade choice**;
+- normal combat loot is now gold-only instead of another permanent party-wide HP/damage choice;
+- wizard debt still doubles the next normal gold loot and is not consumed by major upgrades or special rewards.
+
+The wizard-table HUD now emphasizes **РАЗВИТИЕ** and **РЕЛИКВИИ** instead of treating global HP/damage counters as the primary build identity.
+
 The shared `scenes/event/act_choice.tscn` scene handles the implemented choice-driven events, including Ash Rest, Gravedigger Shop, Curse Forge, Black Altar, Chained Prisoner, Debtor Bones, Wizard Tithe, Faceless Card, Blood Ledger, Broken Crown, Last Camp, Rattling Bridge, Lost Purse, Candle Seller and Bone Tax. It still intentionally avoids a generalized event-effect framework.
 
 ### Run state
@@ -388,6 +413,9 @@ The current prototype run state stores:
 - selected encounter path;
 - boss completion state;
 - persistent artifact ids;
+- persistent hero-upgrade ids;
+- claimed major-upgrade tier indices;
+- stable pending major/bonus upgrade offers;
 - temporary `wizard_debt_active` state;
 - randomized per-tier mandatory-combat slot indices in `forced_combat_slots`.
 
@@ -395,7 +423,8 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Not implemented yet
 
-- second Act 1 balance pass after local full-run feedback on the first tuning pass;
+- rewrite the remaining event-card raw stat trades around the new hero-upgrade/build language after the progression layer is locally validated;
+- second Act 1 balance pass after local full-run feedback on the progression pass;
 - broader shop inventory/economy beyond the current Candle Seller and Gravedigger Shop implementations;
 - more artifacts beyond the first three;
 - attack projectiles/animations;
@@ -407,19 +436,21 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the complete combat-unit sprite pass on the authored battle backdrop:
+Locally verify the first hero build-progression pass through at least one full Act 1 run:
 
-- Knight, Ranger and Mage should match the richer dark-fantasy pixel reference and remain immediately distinguishable by silhouette/color;
-- Skeleton and Bone Archer should use their new red-cloth undead designs rather than the earlier tiny simplified sprites;
-- Grave Bellkeeper must visibly read as a robed bell-bearing support priest;
-- Bone Thrall must remain clearly smaller/weaker than a normal Skeleton despite sharing the same art language;
-- Crypt Guard must read as a heavier armored elite without covering nearby units or UI;
-- Bone Warden must remain the largest and most threatening silhouette, with boss HP/name/phase effects still aligned around the new art;
-- HP bars, names, team rings, drag placement, hit feedback and death effects must not collide with the larger/detail-rich sprites;
-- all nine roles must keep nearest-neighbor pixel presentation with no smoothing;
-- authored battle backdrop, combat movement, boss Phase II and existing encounter mechanics must remain unchanged.
+- the first combat victory in each early/mid/late tier must show **РАЗВИТИЕ ОТРЯДА** before the ordinary/special combat reward;
+- each major-upgrade screen should offer one currently unowned Knight, Ranger and Mage upgrade when available;
+- choosing the same hero in all three tiers must be possible and produce a visibly specialized build;
+- selected upgrades must persist into later battles and affect the correct runtime stats/behavior;
+- normal combat rewards must no longer offer permanent +HP/+damage choices and should resolve to ordinary gold loot;
+- wizard debt should double that normal gold loot and clear only when the loot is taken;
+- Crypt Guard must still give its artifact reward after a tier major upgrade;
+- Death Wager must offer +60 gold, a concrete available artifact, or an additional hero-upgrade choice;
+- table HUD should show current **РАЗВИТИЕ** count and **РЕЛИКВИИ** count;
+- run-end summary should list the acquired hero upgrades;
+- hero-upgrade/artifact stacking must not create invalid HP, attack interval or invisible units.
 
-If individual scale/offsets need adjustment after the local screenshot, tune presentation only; do not redraw the arena or change combat rules.
+After this flow is confirmed, rewrite the most placeholder-like event-card stat trades so events bend or complement the hero build instead of mainly adding raw party HP/damage.
 
 ## Local workflow
 
