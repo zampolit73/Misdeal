@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HeroUpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/hero_upgrade_data.gd" id="1_upgrade"]
+
+[resource]
+script = ExtResource("1_upgrade")
+upgrade_id = "knight_cleaver"
+title = "РАЗМАШИСТЫЙ УДАР"
+description = "Удары Рыцаря задевают врагов рядом с целью на 45% урона, но атаки становятся на 12% медленнее."
+target_role = "knight"
+attack_interval_multiplier = 1.12
+splash_radius_bonus = 72.0
+splash_damage_bonus = 0.45
