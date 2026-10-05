@@ -45,6 +45,12 @@
 
 ### Changed
 
+- Combat now spawns only the current recruited party instead of always spawning Knight/Ranger/Mage.
+- Major/bonus hero-upgrade offers are generated only from current party roles; solo runs can see multiple upgrade paths for the protagonist.
+- General-pool hero-specific relics are filtered to current party roles, and Curse Forge disables relics for absent heroes.
+- Squad dossier now shows unresolved/lost companions as faded fate entries and opens on the protagonist.
+- Prologue now leads to class selection; **НОВЫЙ ЗАБЕГ** skips the comic but still requires a new protagonist choice.
+- Existing event cards dynamically switch into recruitment scenes when the corresponding companion fate is still unresolved.
 - Wizard table now exposes the current party build without leaving or regenerating the active card offer.
 - Effective hero-stat calculation is centralized in `RunState.get_effective_hero_stats()` for the status UI and mirrors battle modifier order/clamps.
 - Main-menu **ВОЙТИ В ИГРУ** now resets the run and opens the story intro before the wizard table; consecutive new runs from the run-end screen still go straight to the table.
@@ -89,6 +95,14 @@
 
 ### Added
 
+- Per-run **КЕМ ТЫ БЫЛ, КОГДА ВСЁ НАЧАЛОСЬ?** class-selection scene after the story prologue.
+- Runs now start with exactly one protagonist: Knight, Ranger or Mage.
+- Persistent per-run companion fate states: **НЕ РАЗЫГРАНА / В ОТРЯДЕ / ПОТЕРЯН**.
+- Knight recruitment through **ЗАКОВАННЫЙ ПЛЕННИК**, with **ПОСЛЕДНИЙ ПРИВАЛ** as fallback if fate remains unresolved.
+- Ranger recruitment through **ГРЕМУЧИЙ МОСТ**, with **ПЕПЕЛЬНЫЙ ПРИВАЛ** as fallback.
+- Mage recruitment through **ШЕПЧУЩИЙ КОЛОДЕЦ**, with **ЧЁРНЫЙ АЛТАРЬ** as fallback.
+- Solo/duo compensation: solo +50% HP/+35% damage, duo +20% HP/+15% damage.
+- Run-end party/fate summary.
 - **ДОСЬЕ ОТРЯДА** modal on the wizard table, opened by **ОТРЯД [TAB]** or Tab.
 - Knight / Ranger / Mage status tabs with portraits from the production combat atlas.
 - Derived effective-stat view for HP, damage, attacks/second, range, movement, DPS, minimum range and splash when relevant.
