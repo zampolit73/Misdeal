@@ -14,12 +14,21 @@ func _ready() -> void:
 	_refresh_choice_text()
 
 func _refresh_choice_text() -> void:
-	gold_label.text = "Золото: %d   |   Развитие: %d   |   Доп.: %s   |   Реликвии: %d" % [
+	gold_label.text = "Золото: %d   |   Отряд: %d/3   |   Развитие: %d   |   Доп.: %s   |   Реликвии: %d" % [
 		RunState.gold,
+		RunState.get_party_size(),
 		RunState.hero_upgrade_ids.size(),
 		RunState.get_extra_upgrade_progress_text(),
 		RunState.artifact_ids.size()
 	]
+
+	if RunState.can_recruit_companion("mage"):
+		accept_button.text = "ВЫТАЩИТЬ ЕГО КРОВЬЮ\n\n-20 здоровья отряду\nМАГ ПРИСОЕДИНИТСЯ"
+		accept_button.disabled = false
+		pay_button.text = "БРОСИТЬ 25 ЗОЛОТА\n\nВыкупить его у колодца\nМАГ ПРИСОЕДИНИТСЯ"
+		pay_button.disabled = RunState.gold < 25
+		leave_button.text = "ОТОЙТИ\n\nМАГ БУДЕТ ПОТЕРЯН"
+		return
 
 	var gift_role := ""
 	if RunState.can_claim_extra_hero_upgrade():
@@ -54,8 +63,20 @@ func _refresh_choice_text() -> void:
 	else:
 		pay_button.text = "БРОСИТЬ 25 ЗОЛОТА\n\nКолодец молчит"
 
+	leave_button.text = "ОТОЙТИ ОТ КОЛОДЦА"
+
 func _on_accept_gift() -> void:
 	if accept_button.disabled:
+		return
+
+	if RunState.can_recruit_companion("mage"):
+		_disable_choices()
+		RunState.party_hp_bonus -= 20.0
+		RunState.recruit_companion("mage", "Вы вытащили его из Шепчущего колодца собственной кровью.")
+		RunState.resolve_whispering_well()
+		result_label.text = "Вода становится чёрной. Молодой маг хватается за край и выбирается наружу.\nТеперь он идёт с вами."
+		await get_tree().create_timer(0.8).timeout
+		_return_to_table()
 		return
 
 	var role := ""
@@ -86,6 +107,16 @@ func _on_pay_coin() -> void:
 	if pay_button.disabled or RunState.gold < 25:
 		return
 
+	if RunState.can_recruit_companion("mage"):
+		_disable_choices()
+		RunState.gold -= 25
+		RunState.recruit_companion("mage", "Вы выкупили его у Шепчущего колодца за двадцать пять монет.")
+		RunState.resolve_whispering_well()
+		result_label.text = "Монеты исчезают без всплеска. Колодец отпускает молодого мага.\nТеперь он идёт с вами."
+		await get_tree().create_timer(0.8).timeout
+		_return_to_table()
+		return
+
 	_disable_choices()
 	RunState.gold -= 25
 
@@ -111,6 +142,8 @@ func _on_pay_coin() -> void:
 
 func _on_leave() -> void:
 	_disable_choices()
+	if RunState.can_recruit_companion("mage"):
+		RunState.lose_companion("mage", "Вы услышали его голос в колодце и всё равно отошли.")
 	RunState.resolve_whispering_well()
 	result_label.text = "Ты отходишь от края. Волшебник тихо смеётся."
 	await get_tree().create_timer(0.65).timeout
