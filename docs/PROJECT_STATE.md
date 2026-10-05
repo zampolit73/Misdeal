@@ -70,6 +70,19 @@ The final five-card content batch is locally confirmed working: **ГРЕМУЧИ
 
 The first Act 1 balance/readability pass is implemented in GitHub and pending local verification. It focuses on combat pacing, Death Wager reward inflation and final-boss difficulty rather than broad retuning of every event.
 
+Local hard-roguelike testing then exposed that the original solo compensation (+50% HP / +35% damage) was not enough to survive the first mandatory combat encounters. This was a real action-economy problem rather than a placement-only issue.
+
+A solo rebalance is now implemented in GitHub and pending local verification:
+
+- solo max HP multiplier: x2.0;
+- solo damage multiplier: x1.8;
+- solo attack interval multiplier: x0.80, equivalent to +25% attacks/second;
+- solo move-speed multiplier: x1.10;
+- duo remains +20% HP / +15% damage;
+- trio remains unmodified;
+- early enemy resources and encounter compositions were deliberately left unchanged;
+- Bone Warden remains a fixed benchmark and still does not scale dynamically to party size.
+
 A follow-up UI-overlap polish pass was implemented after local screenshots exposed three readability faults:
 
 - protagonist class cards no longer use multiline `Button.text` underneath the portrait; portrait, class name, stats, role and description now occupy separate fixed regions;
@@ -501,7 +514,7 @@ Important fate rule:
 
 Upgrade and general-pool artifact offers only target heroes currently in the party. A solo major reward can show all three remaining upgrade paths for that one hero; duo/trio offers are built only from recruited roles.
 
-Solo compensation is +50% HP/+35% damage. Duo compensation is +20% HP/+15% damage. This keeps incomplete-party routes playable without adaptive enemy scaling.
+Solo compensation is now x2.0 HP, x1.8 damage, x0.80 attack interval (+25% attacks/second) and x1.10 move speed after local testing showed the first version was nearly unplayable. Duo compensation remains +20% HP/+15% damage. This keeps incomplete-party routes playable without adaptive enemy scaling.
 
 ### Run state
 
@@ -550,7 +563,7 @@ Locally verify the new hard-roguelike party flow end to end:
 
 - main menu -> story intro -> class selection -> table;
 - after choosing a class, battle must spawn only that protagonist;
-- solo battle/status must show +50% HP and +35% damage compensation;
+- solo battle/status must show x2 HP, x1.8 damage, x1.25 attacks/second and x1.10 movement compensation;
 - recruiting one companion must immediately switch future battles to duo and compensation to +20% HP/+15% damage;
 - recruiting both must produce a normal trio with no compensation;
 - major/bonus upgrade offers and general-pool relics must only target heroes currently in the party;
