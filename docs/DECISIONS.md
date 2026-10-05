@@ -465,3 +465,32 @@ Build-aware event examples now include:
 - Whispering Well now trades blood/gold for development or relics rather than positive global stat buffs.
 
 This is intentionally implemented through small helpers on the existing nine-upgrade pool. Do not add a separate XP tree, perk currency or generalized event-effect DSL for the vertical slice.
+
+## D031 — Act 1 targets three guaranteed plus at most three optional hero upgrades
+
+Date: 2026-10-05  
+Status: accepted for vertical-slice balance pass
+
+The first build-aware event pass made hero development much more interesting, but it also made it possible for a lucky/event-heavy route to consume most or all of the nine-upgrade pool before Bone Warden.
+
+For the current 12-card Act 1, the target power curve is:
+
+- **3 guaranteed major upgrades** — one from the first combat victory in each early/mid/late tier;
+- **at most 3 optional upgrades** from events and Death Wager;
+- therefore a normal strong boss build should contain roughly **4–6 total hero upgrades**, with unused upgrades preserving replay variation.
+
+Optional upgrades are tracked separately in `RunState.extra_hero_upgrade_ids`. Blood Ledger may erase the latest upgrade; if that erased upgrade came from the optional pool, its optional slot is restored.
+
+This cap is a run-structure balance rule, not a permanent progression-system contract. Revisit it only after repeated local runs show that 4–6 upgrades are too weak or too deterministic.
+
+Bone Warden is retuned around this target without adaptive/rubber-band scaling:
+
+- 700 HP;
+- 24 base damage;
+- 1.0 s base attack interval;
+- 60 move speed;
+- 50% enrage remains;
+- enrage uses 1.45× damage, 0.68× attack interval and 1.30× movement;
+- existing melee cleave and phase-II Bone Archer + Bone Thrall reinforcements remain unchanged.
+
+Do not scale boss stats dynamically from the player's exact upgrade count. The point of a build is to become meaningfully stronger; the boss should be a fixed benchmark.
