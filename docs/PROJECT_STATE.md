@@ -46,7 +46,9 @@ The original Bone Warden boss encounter, including its 50% HP enrage, was confir
 
 A Bone Warden gameplay + visual rework is implemented in GitHub and pending local verification. The first local pull exposed a Godot 4.7.2 type-inference parser error in the new procedural boss-arena chains; that parser issue was fixed.
 
-After comparing the live battle screenshot against the approved richer pixel mockup, the procedural battle renderer was replaced by an authored full-screen battle backdrop matching the second approved reference much more closely. The first local pull exposed two wiring faults: a truncated 8.7 KB WebP and a negative z-index that placed the backdrop behind the black fallback. Both faults are now fixed in GitHub; the scene uses the validated chunk-based 1280×720 authored backdrop loader and is pending local verification.
+After comparing the live battle screenshot against the approved richer pixel mockup, the procedural battle renderer was replaced by an authored full-screen battle backdrop matching the second approved reference much more closely. The first local pull exposed two wiring faults: a truncated 8.7 KB WebP and a negative z-index that placed the backdrop behind the black fallback. Both faults were fixed, and the user has now confirmed the authored battle backdrop looks correct locally.
+
+A full combat-unit sprite art pass is now implemented in GitHub and pending local verification. All nine currently used combat roles have dedicated high-detail dark-fantasy pixel sprites in one 96×96 atlas; special enemies no longer reuse tinted Skeleton art.
 
 The longer Act 1 structure is now confirmed working locally: 12 resolved pre-boss cards followed by the Bone Warden as card 13.
 
@@ -211,7 +213,7 @@ Implemented combat behavior:
 - death shrink/fade feedback;
 - victory and defeat detection;
 - boss units can use data-driven visual scale and a one-time enrage threshold;
-- Bone Warden now uses its own `bone_warden` visual role and authored 64×64 pixel sprite instead of an enlarged normal Skeleton;
+- Bone Warden uses its own dedicated high-detail `bone_warden` atlas sprite instead of an enlarged normal Skeleton;
 - Bone Warden has 580 HP, 22 base damage, a 60%-damage melee cleave in a 92 px radius, and a larger boss HP/name treatment;
 - at 50% HP Bone Warden still enrages, increasing damage, attack speed and movement speed, but now also triggers **Phase II** and summons one Bone Archer plus one Bone Thrall;
 - the phase transition changes the boss label to **БОСС • ЯРОСТЬ**, shows a centered **ФАЗА II — ПРИЗЫВ** cue and switches the arena into its stronger phase-two ritual state;
@@ -280,18 +282,21 @@ Reusable combat stats are stored in `UnitData` Resources:
 
 Runtime combat state remains on `BattleUnit`.
 
-`UnitData.visual_role` now selects the core 64×64 pixel-art combat sprites:
+`UnitData.visual_role` now selects dedicated 96×96 regions from the unified combat atlas:
 
-- `assets/pixel/units/knight.png`
-- `assets/pixel/units/ranger.png`
-- `assets/pixel/units/mage.png`
-- `assets/pixel/units/skeleton.png`
-- `assets/pixel/units/bone_archer.png`
-- `assets/pixel/units/bone_warden.png` — dedicated final-boss sprite
+- `assets/pixel/units/combat_units_v2.png`
+
+Atlas layout:
+
+- row 1: Knight, Ranger, Mage;
+- row 2: Skeleton, Bone Archer, Grave Bellkeeper;
+- row 3: Bone Thrall, Crypt Guard, Bone Warden.
+
+All nine roles use authored transparent pixel art. Grave Bellkeeper, Bone Thrall and Crypt Guard no longer reuse tinted Skeleton art. The older per-unit PNG files remain in the repository as historical/reference assets but are no longer loaded by combat.
 
 Combat presentation now uses the approved second gothic mockup as an authored static backdrop while keeping all gameplay layers live:
 
-- Knight, Ranger, Mage, Skeleton and Bone Archer use the 64×64 transparent pixel sprite set;
+- all current combat roles use the new unified high-detail transparent pixel atlas;
 - combat sprites remain substantially larger so silhouettes read like characters rather than small board icons;
 - thin blue/red team rings, HP bars, names, drag placement, combat movement and targeting remain live Godot elements;
 - the cathedral/crypt architecture, throne/altar, pillars, banners, chains, braziers, skull piles, ritual floor, outer frame and command-panel art are baked into the authored backdrop;
@@ -401,18 +406,19 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 
 ## Immediate next milestone
 
-Locally verify the production authored battle backdrop against the user's second reference:
+Locally verify the complete combat-unit sprite pass on the authored battle backdrop:
 
-- the ordinary battle should immediately read like the rich candlelit crypt/throne scene from the second screenshot, not the flat procedural first screenshot;
-- no second procedural wall/floor/HUD layer should appear over the backdrop;
-- encounter title, preparation text, card progress, faction labels and command buttons should sit cleanly inside the blank painted frames;
-- **БОЙ** and **ПЕРЕИГРАТЬ** should align with the authored bottom command frames;
-- live heroes/enemies, HP bars, names and blue/red team rings must remain readable against the painted arena;
-- initial hero staging should match the reference more closely: Knight/Mage farther inward, Ranger slightly farther left;
-- drag placement, combat bounds, movement, victory/defeat and retry behavior must remain unchanged;
-- Bone Warden should keep its Phase II overlays on top of the same authored battle art.
+- Knight, Ranger and Mage should match the richer dark-fantasy pixel reference and remain immediately distinguishable by silhouette/color;
+- Skeleton and Bone Archer should use their new red-cloth undead designs rather than the earlier tiny simplified sprites;
+- Grave Bellkeeper must visibly read as a robed bell-bearing support priest;
+- Bone Thrall must remain clearly smaller/weaker than a normal Skeleton despite sharing the same art language;
+- Crypt Guard must read as a heavier armored elite without covering nearby units or UI;
+- Bone Warden must remain the largest and most threatening silhouette, with boss HP/name/phase effects still aligned around the new art;
+- HP bars, names, team rings, drag placement, hit feedback and death effects must not collide with the larger/detail-rich sprites;
+- all nine roles must keep nearest-neighbor pixel presentation with no smoothing;
+- authored battle backdrop, combat movement, boss Phase II and existing encounter mechanics must remain unchanged.
 
-If the backdrop now matches the second screenshot but the units still look too simple, the next pass should be sprite-only rather than another arena rewrite.
+If individual scale/offsets need adjustment after the local screenshot, tune presentation only; do not redraw the arena or change combat rules.
 
 ## Local workflow
 
