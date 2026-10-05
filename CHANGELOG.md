@@ -45,6 +45,8 @@
 
 ### Changed
 
+- Replaced the rejected live/table-art main-menu composition with the user-approved dedicated main-menu pixel splash: Wizard, five-card table, MISDEAL title and painted **ВОЙТИ В ИГРУ** CTA.
+- Main-menu art is reconstructed from five base64 WebP chunks under `assets/pixel/main/approved_splash/`; only a transparent native Godot hotspot is layered over the painted CTA.
 - Rebuilt the main menu around the production Wizard/table art and real MISDEAL logo instead of the old centered prototype panel.
 - Replaced the generic **ВОЙТИ В ИГРУ** presentation with a single in-world **СЕСТЬ ЗА СТОЛ** action on the cursed tabletop.
 - Removed the old procedural candles/eyes/card mockup from the active main-menu composition.
