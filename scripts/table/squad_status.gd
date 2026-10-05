@@ -72,21 +72,51 @@ func _refresh_role_buttons() -> void:
 		var button := buttons[role] as Button
 		var selected := role == current_role
 		var marker := "◆ " if selected else ""
-		button.text = "%s%s   %d/3" % [
-			marker,
-			_get_role_label(role),
-			RunState.get_role_upgrade_count(role)
-		]
-		button.add_theme_color_override(
-			"font_color",
-			_get_role_color(role) if selected else Color(0.74, 0.69, 0.66, 1.0)
-		)
+
+		if RunState.is_role_in_party(role):
+			button.text = "%s%s   %d/3" % [
+				marker,
+				_get_role_label(role),
+				RunState.get_role_upgrade_count(role)
+			]
+			button.add_theme_color_override(
+				"font_color",
+				_get_role_color(role) if selected else Color(0.74, 0.69, 0.66, 1.0)
+			)
+		else:
+			var fate := RunState.get_companion_fate(role)
+			var fate_text := "ПОТЕРЯН" if fate == RunState.FATE_LOST else "НЕ РАЗЫГРАНА"
+			button.text = "%s%s   %s" % [marker, _get_role_label(role), fate_text]
+			button.add_theme_color_override(
+				"font_color",
+				Color(0.72, 0.34, 0.32, 1.0) if fate == RunState.FATE_LOST else Color(0.45, 0.42, 0.44, 1.0)
+			)
+
 		button.add_theme_color_override(
 			"font_hover_color",
 			_get_role_color(role).lightened(0.12)
 		)
 
 func _refresh_hero() -> void:
+	hero_name.text = _get_role_label(current_role).capitalize()
+	portrait.texture = _get_role_texture(current_role)
+	common_label.text = _build_common_text()
+
+	if not RunState.is_role_in_party(current_role):
+		var fate := RunState.get_companion_fate(current_role)
+		var is_lost := fate == RunState.FATE_LOST
+		specialization.text = "ПОТЕРЯН" if is_lost else "СУДЬБА НЕ РАЗЫГРАНА"
+		specialization.add_theme_color_override(
+			"font_color",
+			Color(0.78, 0.34, 0.30, 1.0) if is_lost else Color(0.48, 0.45, 0.48, 1.0)
+		)
+		portrait.modulate = Color(0.48, 0.38, 0.40, 0.45) if is_lost else Color(0.52, 0.52, 0.58, 0.38)
+		stats_label.text = "[color=#8f8583]%s[/color]" % RunState.get_companion_fate_note(current_role)
+		build_label.text = "[color=#756b68]Этот путь развития недоступен, пока герой не вошёл в отряд.[/color]"
+		relics_label.text = "[color=#756b68]Реликвии не назначаются героям вне отряда.[/color]"
+		return
+
+	portrait.modulate = Color.WHITE
 	var stats := RunState.get_effective_hero_stats(current_role)
 	if stats.is_empty():
 		return
@@ -94,12 +124,9 @@ func _refresh_hero() -> void:
 	hero_name.text = str(stats.get("unit_name", _get_role_label(current_role)))
 	specialization.text = _get_specialization(current_role)
 	specialization.add_theme_color_override("font_color", _get_role_color(current_role))
-	portrait.texture = _get_role_texture(current_role)
-
 	stats_label.text = _build_stats_text(stats, current_role)
 	build_label.text = _build_upgrades_text(current_role)
 	relics_label.text = _build_relics_text(current_role)
-	common_label.text = _build_common_text()
 
 func _build_stats_text(stats: Dictionary, role: String) -> String:
 	var lines: Array[String] = []
@@ -211,10 +238,14 @@ func _build_relics_text(role: String) -> String:
 
 func _build_common_text() -> String:
 	var debt := "   •   ДОЛГ ВОЛШЕБНИКУ" if RunState.wizard_debt_active else ""
-	return "ОБЩИЕ ЭФФЕКТЫ     HP %+d     УРОН %+d     ДОП. РАЗВИТИЕ %s%s" % [
+	var strength := RunState.get_party_strength_text()
+	var strength_suffix := "   •   %s" % strength if not strength.is_empty() else ""
+	return "ОТРЯД %d/3     HP %+d     УРОН %+d     ДОП. %s%s%s" % [
+		RunState.get_party_size(),
 		int(RunState.party_hp_bonus),
 		int(RunState.party_damage_bonus),
 		RunState.get_extra_upgrade_progress_text(),
+		strength_suffix,
 		debt
 	]
 
