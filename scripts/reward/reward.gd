@@ -34,8 +34,16 @@ func _setup_major_upgrade_reward() -> void:
 		tier_number = active_card.tier + 1
 
 	title_label.text = "РАЗВИТИЕ ОТРЯДА"
-	summary_label.text = "Первая победа этого этапа меняет одного героя. Выберите направление билда."
-	hint_label.text = "Этап %d/3. Можно снова усиливать того же героя и собирать специализацию." % tier_number
+	match RunState.get_party_size():
+		1:
+			summary_label.text = "Вы пока один. Выберите, какой версией себя станете дальше."
+			hint_label.text = "Этап %d/3. Все доступные пути принадлежат вашему герою." % tier_number
+		2:
+			summary_label.text = "Двое пережили этот этап. Выберите, чью судьбу переписать сильнее."
+			hint_label.text = "Этап %d/3. Награда предлагает только тех, кто уже в отряде." % tier_number
+		_:
+			summary_label.text = "Первая победа этого этапа меняет одного героя. Выберите направление билда."
+			hint_label.text = "Этап %d/3. Можно снова усиливать того же героя и собирать специализацию." % tier_number
 
 	var offers := RunState.get_major_upgrade_offer_ids()
 	_setup_upgrade_buttons(offers)
