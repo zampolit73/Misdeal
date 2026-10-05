@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="HeroUpgradeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/hero_upgrade_data.gd" id="1_upgrade"]
+
+[resource]
+script = ExtResource("1_upgrade")
+upgrade_id = "ranger_longshot"
+title = "ДАЛЬНИЙ ВЫСТРЕЛ"
+description = "Следопыт наносит на 30% больше урона и держит большую дистанцию, но стреляет на 18% медленнее."
+target_role = "ranger"
+damage_multiplier = 1.30
+attack_interval_multiplier = 1.18
+attack_range_bonus = 80.0
+minimum_range_bonus = 55.0
