@@ -1,9 +1,8 @@
 class_name BattleUnit
 extends Node2D
 
-const FALLBACK_UNIT_SHEET: Texture2D = preload("res://assets/pixel/units/combat_units_v2.png")
-const UNIT_TILE_SIZE := 96.0
-const UNIT_SHEET_PARTS := [
+const UNIT_TILE_SIZE: float = 96.0
+const UNIT_SHEET_PARTS: Array[String] = [
 	"res://assets/pixel/units/combat_units_v3/part_00.txt",
 	"res://assets/pixel/units/combat_units_v3/part_01.txt",
 	"res://assets/pixel/units/combat_units_v3/part_02.txt",
@@ -139,8 +138,12 @@ func _get_art_texture() -> Texture2D:
 		_:
 			return null
 
+	var sheet: Texture2D = _get_unit_sheet_texture()
+	if sheet == null:
+		return null
+
 	var atlas := AtlasTexture.new()
-	atlas.atlas = _get_unit_sheet_texture()
+	atlas.atlas = sheet
 	atlas.region = Rect2(
 		Vector2(float(tile.x) * UNIT_TILE_SIZE, float(tile.y) * UNIT_TILE_SIZE),
 		Vector2(UNIT_TILE_SIZE, UNIT_TILE_SIZE)
@@ -151,35 +154,30 @@ func _get_unit_sheet_texture() -> Texture2D:
 	if unit_sheet_texture != null:
 		return unit_sheet_texture
 
-	var encoded := ""
-	for part_value in UNIT_SHEET_PARTS:
-		var part_path: String = String(part_value)
+	var encoded: String = ""
+	for part_path in UNIT_SHEET_PARTS:
 		if not FileAccess.file_exists(part_path):
-			push_warning("Missing combat unit atlas part: %s. Falling back to v2 atlas." % part_path)
-			unit_sheet_texture = FALLBACK_UNIT_SHEET
-			return unit_sheet_texture
+			push_error("Missing production combat unit atlas part: %s" % part_path)
+			return null
 		encoded += FileAccess.get_file_as_string(part_path).strip_edges()
 
 	var bytes: PackedByteArray = Marshalls.base64_to_raw(encoded)
 	if bytes.is_empty():
-		push_warning("Combat unit atlas base64 decode failed. Falling back to v2 atlas.")
-		unit_sheet_texture = FALLBACK_UNIT_SHEET
-		return unit_sheet_texture
+		push_error("Production combat unit atlas base64 decode failed.")
+		return null
 
 	var image := Image.new()
-	var error := image.load_png_from_buffer(bytes)
+	var error: Error = image.load_png_from_buffer(bytes)
 	if error != OK:
-		push_warning("Combat unit atlas PNG decode failed: %s. Falling back to v2 atlas." % error_string(error))
-		unit_sheet_texture = FALLBACK_UNIT_SHEET
-		return unit_sheet_texture
+		push_error("Production combat unit atlas PNG decode failed: %s" % error_string(error))
+		return null
 
 	if image.get_width() != 288 or image.get_height() != 288:
-		push_warning(
-			"Combat unit atlas decoded at %dx%d, expected 288x288. Falling back to v2 atlas."
+		push_error(
+			"Production combat unit atlas decoded at %dx%d, expected 288x288."
 			% [image.get_width(), image.get_height()]
 		)
-		unit_sheet_texture = FALLBACK_UNIT_SHEET
-		return unit_sheet_texture
+		return null
 
 	unit_sheet_texture = ImageTexture.create_from_image(image)
 	return unit_sheet_texture
