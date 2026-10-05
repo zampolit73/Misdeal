@@ -45,6 +45,10 @@
 
 ### Changed
 
+- Rebuilt protagonist class cards with dedicated portrait/title/stat/role/description regions instead of multiline button text under the sprite.
+- Expanded and clipped wizard-table card description regions and moved **ВЫБРАТЬ / ПОВТОРИТЬ / ПРИНЯТЬ ВЫЗОВ** into a separated bottom strip.
+- Raised battle result panels and command buttons above unit Y-sorting/floating combat feedback.
+- Hide the finished **БОЙ** button when the post-battle continue action appears, removing duplicate overlapping button text.
 - Combat now spawns only the current recruited party instead of always spawning Knight/Ranger/Mage.
 - Major/bonus hero-upgrade offers are generated only from current party roles; solo runs can see multiple upgrade paths for the protagonist.
 - General-pool hero-specific relics are filtered to current party roles, and Curse Forge disables relics for absent heroes.
