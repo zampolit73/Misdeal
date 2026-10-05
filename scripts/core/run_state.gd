@@ -223,7 +223,7 @@ func lose_companion(role: String, note: String) -> bool:
 func get_party_hp_multiplier() -> float:
 	match get_party_size():
 		1:
-			return 1.50
+			return 2.0
 		2:
 			return 1.20
 		_:
@@ -232,16 +232,30 @@ func get_party_hp_multiplier() -> float:
 func get_party_damage_multiplier() -> float:
 	match get_party_size():
 		1:
-			return 1.35
+			return 1.80
 		2:
 			return 1.15
+		_:
+			return 1.0
+
+func get_party_attack_interval_multiplier() -> float:
+	match get_party_size():
+		1:
+			return 0.80
+		_:
+			return 1.0
+
+func get_party_move_speed_multiplier() -> float:
+	match get_party_size():
+		1:
+			return 1.10
 		_:
 			return 1.0
 
 func get_party_strength_text() -> String:
 	match get_party_size():
 		1:
-			return "СИЛА ОДИНОЧКИ: +50% HP, +35% урона"
+			return "СИЛА ОДИНОЧКИ: +100% HP, +80% урона, +25% атак/сек, +10% скорость"
 		2:
 			return "МАЛЫЙ ОТРЯД: +20% HP, +15% урона"
 		_:
@@ -430,6 +444,8 @@ func get_effective_hero_stats(role: String) -> Dictionary:
 
 	hp *= get_party_hp_multiplier()
 	damage *= get_party_damage_multiplier()
+	attack_interval = maxf(0.2, attack_interval * get_party_attack_interval_multiplier())
+	move_speed *= get_party_move_speed_multiplier()
 	hp = maxf(20.0, hp)
 	damage = maxf(1.0, damage)
 
