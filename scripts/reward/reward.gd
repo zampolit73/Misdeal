@@ -130,8 +130,12 @@ func _setup_death_wager_reward() -> void:
 		option_ids[1] = "artifact:%s" % artifact_id
 		iron_ward_button.text = "РЕЛИКВИЯ СТАВКИ\n\n%s\n\n%s" % [artifact.title, artifact.description]
 
-	option_ids[2] = "bonus_upgrade"
-	tempered_steel_button.text = "УДВОИТЬ СТАВКУ\n\nПолучить ещё один выбор развития героя.\n\nСила вместо денег."
+	if RunState.can_claim_extra_hero_upgrade():
+		option_ids[2] = "bonus_upgrade"
+		tempered_steel_button.text = "УДВОИТЬ СТАВКУ\n\nПолучить ещё один выбор развития героя.\n\nДоп. развитие: %s" % RunState.get_extra_upgrade_progress_text()
+	else:
+		option_ids[2] = "extra_cap_gold"
+		tempered_steel_button.text = "ПРЕДЕЛ ДОСТИГНУТ\n\nДоп. развитие %s\n\n+45 золота вместо усиления" % RunState.get_extra_upgrade_progress_text()
 
 func _setup_elite_reward() -> void:
 	reward_mode = "elite_artifact"
@@ -215,6 +219,9 @@ func _resolve_death_wager_option(option_id: String) -> void:
 		"bonus_upgrade":
 			await get_tree().create_timer(0.18).timeout
 			_setup_bonus_upgrade_reward()
+		"extra_cap_gold":
+			RunState.gold += 45
+			await _finish_reward("Новых поблажек не будет. Волшебник бросает 45 золота вместо ещё одного изменения.")
 		_:
 			if not option_id.begins_with("artifact:"):
 				_enable_reward_buttons()
