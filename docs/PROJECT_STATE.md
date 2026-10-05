@@ -70,6 +70,12 @@ The final five-card content batch is locally confirmed working: **ГРЕМУЧИ
 
 The first Act 1 balance/readability pass is implemented in GitHub and pending local verification. It focuses on combat pacing, Death Wager reward inflation and final-boss difficulty rather than broad retuning of every event.
 
+A follow-up UI-overlap polish pass was implemented after local screenshots exposed three readability faults:
+
+- protagonist class cards no longer use multiline `Button.text` underneath the portrait; portrait, class name, stats, role and description now occupy separate fixed regions;
+- wizard-table offer cards have a taller clipped description region and a dedicated bottom hint/action region, preventing long event copy from colliding with **ВЫБРАТЬ**;
+- battle result UI and command buttons now render above combat-unit Y-sorting, and the finished **БОЙ** button is hidden when **ЗАБРАТЬ НАГРАДУ / ВЕРНУТЬСЯ К СТОЛУ** appears, removing duplicated bottom text.
+
 ## Player-facing language
 
 All player-facing UI text, card text, reward text, wizard lines and unit display names are Russian.
@@ -554,6 +560,9 @@ Locally verify the new hard-roguelike party flow end to end:
 - rejecting a recruitment card at the table must leave fate unresolved;
 - entering a recruitment event and deliberately abandoning the companion must mark them **ПОТЕРЯН** and block the fallback recruitment later;
 - **ДОСЬЕ ОТРЯДА** must show unresolved/lost companions as faded fate entries and open on the protagonist;
+- class-selection cards must keep portraits and all text in separate non-overlapping regions at 1280×720;
+- long wizard-table card descriptions must remain inside their clipped description area and never touch **ВЫБРАТЬ**;
+- victory/defeat result panels and bottom actions must remain above all unit sprites, HP bars, names and floating combat text;
 - run-end summary must list final party and companion fates;
 - Bone Warden must remain a fixed benchmark and be tested solo, duo and trio before changing boss stats again.
 
