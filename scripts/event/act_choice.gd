@@ -71,6 +71,18 @@ func _configure_card() -> void:
 			_set_choices_visible(false)
 
 func _configure_ash_rest() -> void:
+	if RunState.can_recruit_companion("ranger"):
+		description_label.text = "У пепла сидит молодой следопыт. В прошлой жизни вы разделили с ним огонь."
+		wizard_line.text = "— В прошлый раз ты позвал его к костру. Повторишь?"
+		choice_a.text = "ПОЗВАТЬ К ОГНЮ\n\n-10 здоровья отряду\nСЛЕДОПЫТ ПРИСОЕДИНИТСЯ"
+		choice_b.text = "ЗАБРАТЬ ПРИПАСЫ\n\n+20 золота\nСЛЕДОПЫТ БУДЕТ ПОТЕРЯН"
+		choice_c.text = "УЙТИ ДО РАССВЕТА\n\nБез награды\nСЛЕДОПЫТ БУДЕТ ПОТЕРЯН"
+		leave_button.visible = false
+		choice_a.pressed.connect(_resolve_ash_rest.bind("recruit"))
+		choice_b.pressed.connect(_resolve_ash_rest.bind("loot"))
+		choice_c.pressed.connect(_resolve_ash_rest.bind("abandon"))
+		return
+
 	_set_role_upgrade_button(choice_a, "knight", "ПОДЛАТАТЬ ДОСПЕХ")
 	_set_role_upgrade_button(choice_b, "ranger", "ПРОВЕРИТЬ ТЕТИВУ")
 	_set_role_upgrade_button(choice_c, "mage", "РАЗДУТЬ УГЛИ")
@@ -108,15 +120,31 @@ func _configure_curse_forge() -> void:
 			continue
 
 		button.text = "%s\n\n%s" % [artifact.title, artifact.description]
-		button.disabled = RunState.has_artifact(artifact_id)
+		var role_missing := artifact.target_role != "*" and not RunState.is_role_in_party(artifact.target_role)
+		if role_missing:
+			button.text += "\n\nГЕРОЙ НЕ В ОТРЯДЕ"
+		button.disabled = RunState.has_artifact(artifact_id) or role_missing
 		button.pressed.connect(_resolve_forge.bind(artifact_id))
 
 	leave_button.text = "ОТКАЗАТЬСЯ ОТ КОВКИ"
 
 func _configure_black_altar() -> void:
-	_set_role_upgrade_button(choice_a, "knight", "КРОВЬ РЫЦАРЯ", "-20 здоровья отряду")
-	_set_role_upgrade_button(choice_b, "ranger", "КРОВЬ СЛЕДОПЫТА", "-15 здоровья отряду")
-	_set_role_upgrade_button(choice_c, "mage", "КРОВЬ МАГА", "-20 здоровья отряду")
+	if RunState.can_recruit_companion("mage"):
+		description_label.text = "В центре ритуала лежит молодой маг. Вы уже видели эту ночь — и однажды вытащили его живым."
+		wizard_line.text = "— Знание всегда требовало платы. Даже когда платил кто-то другой."
+		choice_a.text = "ОТДАТЬ КРОВЬ\n\n-25 здоровья отряду\nМАГ ПРИСОЕДИНИТСЯ"
+		choice_b.text = "ПОДКУПИТЬ РИТУАЛ — 35\n\nМАГ ПРИСОЕДИНИТСЯ"
+		choice_b.disabled = RunState.gold < 35
+		choice_c.text = "ЗАБРАТЬ ПОДНОШЕНИЕ\n\n+40 золота\nМАГ БУДЕТ ПОТЕРЯН"
+		leave_button.visible = false
+		choice_a.pressed.connect(_resolve_black_altar.bind("recruit_blood"))
+		choice_b.pressed.connect(_resolve_black_altar.bind("recruit_gold"))
+		choice_c.pressed.connect(_resolve_black_altar.bind("abandon_loot"))
+		return
+
+	_set_role_upgrade_button(choice_a, "knight", "КРОВЬ РЫЦАРЯ", "-20 здоровья отряда")
+	_set_role_upgrade_button(choice_b, "ranger", "КРОВЬ СЛЕДОПЫТА", "-15 здоровья отряда")
+	_set_role_upgrade_button(choice_c, "mage", "КРОВЬ МАГА", "-20 здоровья отряда")
 	leave_button.text = "НЕ КАСАТЬСЯ АЛТАРЯ"
 
 	choice_a.pressed.connect(_resolve_black_altar.bind("knight"))
@@ -124,6 +152,18 @@ func _configure_black_altar() -> void:
 	choice_c.pressed.connect(_resolve_black_altar.bind("mage"))
 
 func _configure_chained_prisoner() -> void:
+	if RunState.can_recruit_companion("knight"):
+		description_label.text = "В цепях сидит рыцарь, которого вы однажды отказались оставить умирать."
+		wizard_line.text = "— Его ты тоже называл спасённым. Цепи, кажется, помнят иначе."
+		choice_a.text = "РАЗБИТЬ ЦЕПИ\n\n-15 здоровья отряду\nРЫЦАРЬ ПРИСОЕДИНИТСЯ"
+		choice_b.text = "ОБЫСКАТЬ ПЛЕННИКА\n\n+25 золота\nРЫЦАРЬ БУДЕТ ПОТЕРЯН"
+		choice_c.text = "ОСТАВИТЬ В ЦЕПЯХ\n\nБез награды\nРЫЦАРЬ БУДЕТ ПОТЕРЯН"
+		leave_button.visible = false
+		choice_a.pressed.connect(_resolve_chained_prisoner.bind("recruit"))
+		choice_b.pressed.connect(_resolve_chained_prisoner.bind("loot_recruitment"))
+		choice_c.pressed.connect(_resolve_chained_prisoner.bind("abandon"))
+		return
+
 	_set_least_developed_upgrade_button(choice_a, "ОСВОБОДИТЬ — 25", "Пленник обучит самого отстающего героя.")
 	choice_a.disabled = choice_a.disabled or RunState.gold < 25
 
@@ -132,7 +172,7 @@ func _configure_chained_prisoner() -> void:
 	else:
 		choice_b.text = "СОРВАТЬ ЦЕПИ\n\n-15 здоровья отряду\nСлучайная реликвия"
 
-	choice_c.text = "ОБЫСКАТЬ ПЛЕННИКА\n\n+25 золота\n-10 здоровья отряду"
+	choice_c.text = "ОБЫСКАТЬ ПЛЕННИКА\n\n+25 золота\n-10 здоровья отряда"
 	leave_button.text = "ОСТАВИТЬ В ЦЕПЯХ"
 
 	choice_a.pressed.connect(_resolve_chained_prisoner.bind("mentor"))
@@ -212,6 +252,19 @@ func _configure_broken_crown() -> void:
 	choice_c.pressed.connect(_resolve_broken_crown.bind("melt"))
 
 func _configure_last_camp() -> void:
+	if RunState.can_recruit_companion("knight"):
+		description_label.text = "У последнего костра лежит раненый рыцарь. Это поздняя версия встречи, которую судьба почти вычеркнула."
+		wizard_line.text = "— Всё ещё хочешь тащить чужую жизнь до самого конца?"
+		choice_a.text = "ПОДНЯТЬ ЕГО\n\n-20 здоровья отряду\nРЫЦАРЬ ПРИСОЕДИНИТСЯ"
+		choice_b.text = "ОПЛАТИТЬ ЛЕКАРЯ — 35\n\nРЫЦАРЬ ПРИСОЕДИНИТСЯ"
+		choice_b.disabled = RunState.gold < 35
+		choice_c.text = "ЗАБРАТЬ СНАРЯЖЕНИЕ\n\n+40 золота\nРЫЦАРЬ БУДЕТ ПОТЕРЯН"
+		leave_button.visible = false
+		choice_a.pressed.connect(_resolve_last_camp.bind("recruit_blood"))
+		choice_b.pressed.connect(_resolve_last_camp.bind("recruit_gold"))
+		choice_c.pressed.connect(_resolve_last_camp.bind("abandon_loot"))
+		return
+
 	_set_role_upgrade_button(choice_a, "knight", "ГОТОВИТЬ РЫЦАРЯ")
 	_set_role_upgrade_button(choice_b, "ranger", "ГОТОВИТЬ СЛЕДОПЫТА")
 	_set_role_upgrade_button(choice_c, "mage", "ГОТОВИТЬ МАГА")
@@ -222,6 +275,18 @@ func _configure_last_camp() -> void:
 	choice_c.pressed.connect(_resolve_last_camp.bind("mage"))
 
 func _configure_rattling_bridge() -> void:
+	if RunState.can_recruit_companion("ranger"):
+		description_label.text = "На другом конце моста зажат молодой следопыт. Вы помните, что однажды вернулись за ним."
+		wizard_line.text = "— Давай проверим, насколько дорого теперь стоит твоя память."
+		choice_a.text = "ВЕРНУТЬСЯ ЗА НИМ\n\n-10 здоровья отряду\nСЛЕДОПЫТ ПРИСОЕДИНИТСЯ"
+		choice_b.text = "ЗАБРАТЬ ЕГО СУМКУ\n\n+20 золота\nСЛЕДОПЫТ БУДЕТ ПОТЕРЯН"
+		choice_c.text = "ПЕРЕЙТИ ОДНОМУ\n\nБез риска\nСЛЕДОПЫТ БУДЕТ ПОТЕРЯН"
+		leave_button.visible = false
+		choice_a.pressed.connect(_resolve_rattling_bridge.bind("recruit"))
+		choice_b.pressed.connect(_resolve_rattling_bridge.bind("loot_recruitment"))
+		choice_c.pressed.connect(_resolve_rattling_bridge.bind("abandon"))
+		return
+
 	choice_a.text = "ПЕРЕБЕЖАТЬ\n\n50%: +25 золота\n50%: -20 здоровья"
 	choice_b.text = "СОБРАТЬ МОНЕТЫ С ПЕРИЛ\n\n+15 золота\n-5 здоровья"
 	choice_c.text = "ИДТИ МЕДЛЕННО\n\nБез награды и без риска"
@@ -277,6 +342,11 @@ func _get_role_label(role: String) -> String:
 			return "ГЕРОЙ"
 
 func _set_role_upgrade_button(button: Button, role: String, heading: String, extra_text: String = "") -> void:
+	if not RunState.is_role_in_party(role):
+		button.text = "%s\n\n%s НЕ В ОТРЯДЕ" % [heading, _get_role_label(role)]
+		button.disabled = true
+		return
+
 	if not RunState.can_claim_extra_hero_upgrade():
 		button.text = "%s\n\nПРЕДЕЛ ДОП. РАЗВИТИЯ %s" % [heading, RunState.get_extra_upgrade_progress_text()]
 		button.disabled = true
@@ -330,11 +400,26 @@ func _format_upgrade_gain(upgrade_id: String) -> String:
 		return "Развитие изменилось."
 	return "%s получает развитие: %s." % [_get_role_label(upgrade.target_role), upgrade.title]
 
-func _resolve_ash_rest(role: String) -> void:
+func _resolve_ash_rest(choice: String) -> void:
 	if resolved:
 		return
 
-	var upgrade_id := _grant_role_upgrade(role)
+	if RunState.can_recruit_companion("ranger"):
+		match choice:
+			"recruit":
+				RunState.party_hp_bonus -= 10.0
+				RunState.recruit_companion("ranger", "Вы снова разделили с ним огонь у пепельного привала.")
+				_finish("Следопыт поднимается от костра. Теперь эта версия дороги принадлежит вам обоим.")
+			"loot":
+				RunState.gold += 20
+				RunState.lose_companion("ranger", "Вы забрали припасы и оставили его у остывающего костра.")
+				_finish("Получено 20 золота. Следопыт остаётся в прошлом.")
+			"abandon":
+				RunState.lose_companion("ranger", "Вы ушли до рассвета, не позвав его за собой.")
+				_finish("Вы уходите до рассвета. Эта судьба закрывается.")
+		return
+
+	var upgrade_id := _grant_role_upgrade(choice)
 	if upgrade_id.is_empty():
 		return
 	_finish("У костра рождается новый приём. %s" % _format_upgrade_gain(upgrade_id))
@@ -360,12 +445,30 @@ func _resolve_forge(artifact_id: String) -> void:
 	var artifact := RunState.get_artifact(artifact_id)
 	_finish("Кузница принимает выбор. Получен артефакт: %s." % artifact.title)
 
-func _resolve_black_altar(role: String) -> void:
+func _resolve_black_altar(choice: String) -> void:
 	if resolved:
 		return
 
-	var hp_cost := -15.0 if role == "ranger" else -20.0
-	var upgrade_id := _grant_role_upgrade(role)
+	if RunState.can_recruit_companion("mage"):
+		match choice:
+			"recruit_blood":
+				RunState.party_hp_bonus -= 25.0
+				RunState.recruit_companion("mage", "Вы разорвали ритуал собственной кровью и снова вывели его из круга.")
+				_finish("Круг гаснет. Маг открывает глаза и встаёт рядом с вами.")
+			"recruit_gold":
+				if RunState.gold < 35:
+					return
+				RunState.gold -= 35
+				RunState.recruit_companion("mage", "Вы заплатили алтарю и выкупили его из ритуала.")
+				_finish("Монеты чернеют на камне. Маг освобождён.")
+			"abandon_loot":
+				RunState.gold += 40
+				RunState.lose_companion("mage", "Вы забрали подношение и позволили ритуалу завершиться.")
+				_finish("Получено 40 золота. Ритуал заканчивается без вашего вмешательства.")
+		return
+
+	var hp_cost := -15.0 if choice == "ranger" else -20.0
+	var upgrade_id := _grant_role_upgrade(choice)
 	if upgrade_id.is_empty():
 		return
 
@@ -374,6 +477,21 @@ func _resolve_black_altar(role: String) -> void:
 
 func _resolve_chained_prisoner(choice: String) -> void:
 	if resolved:
+		return
+
+	if RunState.can_recruit_companion("knight"):
+		match choice:
+			"recruit":
+				RunState.party_hp_bonus -= 15.0
+				RunState.recruit_companion("knight", "Вы снова разбили его цепи и приняли его в отряд.")
+				_finish("Цепи падают на камень. Рыцарь встаёт рядом с вами.")
+			"loot_recruitment":
+				RunState.gold += 25
+				RunState.lose_companion("knight", "Вы обыскали пленника и оставили его в цепях.")
+				_finish("Получено 25 золота. Звон цепей остаётся за спиной.")
+			"abandon":
+				RunState.lose_companion("knight", "Вы оставили его в цепях.")
+				_finish("Вы уходите. В этой версии прошлого цепи не разорваны.")
 		return
 
 	match choice:
@@ -533,11 +651,29 @@ func _resolve_broken_crown(choice: String) -> void:
 			else:
 				_finish("Осколки переплавлены в новый приём. %s" % _format_upgrade_gain(upgrade_id))
 
-func _resolve_last_camp(role: String) -> void:
+func _resolve_last_camp(choice: String) -> void:
 	if resolved:
 		return
 
-	var upgrade_id := _grant_role_upgrade(role)
+	if RunState.can_recruit_companion("knight"):
+		match choice:
+			"recruit_blood":
+				RunState.party_hp_bonus -= 20.0
+				RunState.recruit_companion("knight", "Вы подняли раненого рыцаря у последнего привала.")
+				_finish("Вы помогаете ему встать. До надзирателя теперь идёте вместе.")
+			"recruit_gold":
+				if RunState.gold < 35:
+					return
+				RunState.gold -= 35
+				RunState.recruit_companion("knight", "Вы оплатили лечение и вернули рыцаря в эту версию пути.")
+				_finish("Лекарь забирает монеты. Рыцарь снова может держать меч.")
+			"abandon_loot":
+				RunState.gold += 40
+				RunState.lose_companion("knight", "Вы забрали его снаряжение у последнего костра.")
+				_finish("Получено 40 золота. Рыцарь остаётся у последнего костра.")
+		return
+
+	var upgrade_id := _grant_role_upgrade(choice)
 	if upgrade_id.is_empty():
 		return
 
@@ -545,6 +681,21 @@ func _resolve_last_camp(role: String) -> void:
 
 func _resolve_rattling_bridge(choice: String) -> void:
 	if resolved:
+		return
+
+	if RunState.can_recruit_companion("ranger"):
+		match choice:
+			"recruit":
+				RunState.party_hp_bonus -= 10.0
+				RunState.recruit_companion("ranger", "Вы вернулись за ним на гремучем мосту.")
+				_finish("Мост едва держится, но вы переходите его вдвоём. Следопыт присоединяется.")
+			"loot_recruitment":
+				RunState.gold += 20
+				RunState.lose_companion("ranger", "Вы забрали его сумку и перешли мост без него.")
+				_finish("Получено 20 золота. На другой стороне остаётся человек, за которым вы не вернулись.")
+			"abandon":
+				RunState.lose_companion("ranger", "Вы перешли мост и не вернулись за ним.")
+				_finish("Вы переходите один. Волшебник запоминает этот выбор.")
 		return
 
 	match choice:
@@ -664,7 +815,8 @@ func _set_choices_visible(value: bool) -> void:
 
 func _refresh_run_labels() -> void:
 	gold_label.text = "ЗОЛОТО: %d" % RunState.gold
-	artifacts_label.text = "РАЗВИТИЕ: %d   |   ДОП.: %s   |   РЕЛИКВИИ: %d" % [
+	artifacts_label.text = "ОТРЯД: %d/3   |   РАЗВИТИЕ: %d   |   ДОП.: %s   |   РЕЛИКВИИ: %d" % [
+		RunState.get_party_size(),
 		RunState.hero_upgrade_ids.size(),
 		RunState.get_extra_upgrade_progress_text(),
 		RunState.artifact_ids.size()
