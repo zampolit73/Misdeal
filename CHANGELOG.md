@@ -45,6 +45,8 @@
 
 ### Changed
 
+- Rebalanced **СИЛА ОДИНОЧКИ** after local playtest feedback that early three-enemy encounters were nearly impossible: solo now gets x2 HP, x1.8 damage, x1.25 attacks/second and x1.10 movement speed.
+- Kept early enemy stats/encounter compositions and Bone Warden fixed rather than introducing party-size enemy scaling.
 - Rebuilt protagonist class cards with dedicated portrait/title/stat/role/description regions instead of multiline button text under the sprite.
 - Expanded and clipped wizard-table card description regions and moved **ВЫБРАТЬ / ПОВТОРИТЬ / ПРИНЯТЬ ВЫЗОВ** into a separated bottom strip.
 - Raised battle result panels and command buttons above unit Y-sorting/floating combat feedback.
