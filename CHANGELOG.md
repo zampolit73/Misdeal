@@ -45,6 +45,9 @@
 
 ### Changed
 
+- Rebuilt the main menu around the production Wizard/table art and real MISDEAL logo instead of the old centered prototype panel.
+- Replaced the generic **ВОЙТИ В ИГРУ** presentation with a single in-world **СЕСТЬ ЗА СТОЛ** action on the cursed tabletop.
+- Removed the old procedural candles/eyes/card mockup from the active main-menu composition.
 - Rebalanced **СИЛА ОДИНОЧКИ** after local playtest feedback that early three-enemy encounters were nearly impossible: solo now gets x2 HP, x1.8 damage, x1.25 attacks/second and x1.10 movement speed.
 - Kept early enemy stats/encounter compositions and Bone Warden fixed rather than introducing party-size enemy scaling.
 - Rebuilt protagonist class cards with dedicated portrait/title/stat/role/description regions instead of multiline button text under the sprite.
