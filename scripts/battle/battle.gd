@@ -27,6 +27,10 @@ var battle_finished := false
 var boss_reinforcements_spawned := false
 
 func _ready() -> void:
+	if not RunState.has_chosen_protagonist():
+		get_tree().change_scene_to_file("res://scenes/class_select/class_select.tscn")
+		return
+
 	fight_button.pressed.connect(_on_fight_pressed)
 	restart_button.pressed.connect(_on_restart_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)
@@ -78,7 +82,8 @@ func _spawn_encounter() -> void:
 			push_warning("Could not load party UnitData for role: %s" % role)
 			continue
 
-		var spawn_position := party_positions[min(index, party_positions.size() - 1)]
+		var position_index: int = mini(index, party_positions.size() - 1)
+		var spawn_position: Vector2 = party_positions[position_index]
 		_spawn_unit(hero_data, 0, spawn_position)
 
 	var enemy_count: int = mini(encounter.enemy_unit_paths.size(), encounter.enemy_positions.size())
