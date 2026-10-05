@@ -109,6 +109,7 @@ Only after the loop is fun:
 - [ ] Coherent visual language for table/cards/miniatures;
 - [ ] animations and impact feedback;
 - [ ] sound and music;
+- [x] Skippable five-frame pixel-art comic prologue establishing the old pact and replayed-life premise;
 - [ ] onboarding;
 - [x] initial Act 1 combat-pacing / boss / Death Wager balance pass;
 - [ ] follow-up balance pass after local feedback on the 3+3 upgrade economy and 700-HP Bone Warden;
