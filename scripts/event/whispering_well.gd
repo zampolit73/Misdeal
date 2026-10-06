@@ -1,7 +1,5 @@
 extends Control
 
-const THEMATIC_CARD_ART := preload("res://scripts/ui/thematic_card_art.gd")
-
 @onready var wizard_line: Label = $WizardLine
 @onready var description_label: Label = $Description
 @onready var gold_label: Label = $GoldLabel
@@ -24,7 +22,6 @@ func _ready() -> void:
 		wizard_line.text = "«Ты слышишь его голос? В прошлый раз ты полез за ним.»"
 		description_label.text = "Из чёрной воды зовёт молодой маг. Это не призрак — это момент, который вы однажды изменили."
 	_refresh_choice_text()
-	_apply_choice_art()
 	_animate_screen_in()
 
 func _refresh_choice_text() -> void:
@@ -78,35 +75,6 @@ func _refresh_choice_text() -> void:
 		pay_button.text = "БРОСИТЬ 25 ЗОЛОТА\n\nКолодец молчит"
 
 	leave_button.text = "ОТОЙТИ ОТ КОЛОДЦА"
-
-func _apply_choice_art() -> void:
-	var buttons: Array[Button] = [accept_button, pay_button, leave_button]
-	for index in range(buttons.size()):
-		var button := buttons[index]
-		var background := button.get_node_or_null("ThematicBackground") as TextureRect
-		if background == null:
-			background = TextureRect.new()
-			background.name = "ThematicBackground"
-			background.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			background.show_behind_parent = true
-			button.add_child(background)
-			background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-			background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-			background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-			background.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		background.texture = THEMATIC_CARD_ART.get_choice_texture("whispering_well", index)
-		background.modulate = Color(0.90, 0.96, 0.94, 0.76)
-		button.clip_contents = true
-		button.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.96))
-		button.add_theme_constant_override("shadow_offset_x", 1)
-		button.add_theme_constant_override("shadow_offset_y", 2)
-		for style_name in ["normal", "hover", "pressed", "disabled"]:
-			var source := button.get_theme_stylebox(style_name) as StyleBoxFlat
-			if source == null:
-				continue
-			var styled := source.duplicate() as StyleBoxFlat
-			styled.bg_color.a = 0.58 if style_name == "normal" else 0.50
-			button.add_theme_stylebox_override(style_name, styled)
 
 func _animate_screen_in() -> void:
 	header_panel.pivot_offset = header_panel.size * 0.5

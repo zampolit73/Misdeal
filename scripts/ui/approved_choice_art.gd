@@ -29,8 +29,10 @@ static func get_upgrade_texture(upgrade_id: String) -> Texture2D:
 			return get_cell(0, 0)
 		"mage_glass_heart":
 			return get_cell(1, 0)
-		"knight_executioner":
+		"knight_executioner", "knight_cleaver":
 			return get_cell(2, 0)
+		"mage_overload", "mage_wildfire":
+			return get_cell(1, 0)
 		_:
 			return null
 

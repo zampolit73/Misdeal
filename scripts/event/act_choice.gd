@@ -2,7 +2,6 @@ extends Control
 
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 const APPROVED_EVENT_DECOR := preload("res://scripts/ui/approved_event_decor.gd")
-const THEMATIC_CARD_ART := preload("res://scripts/ui/thematic_card_art.gd")
 
 @onready var title_label: Label = $Panel/Title
 @onready var type_label: Label = $Panel/Type
@@ -44,38 +43,11 @@ func _ready() -> void:
 	wizard_line.text = active_card.wizard_line
 	_refresh_run_labels()
 	_configure_card()
-	_apply_thematic_choice_art()
 	_apply_approved_choice_art()
 	_apply_event_theme()
 	_apply_event_layout()
 	_connect_choice_feedback()
 	_animate_screen_in()
-
-func _apply_thematic_choice_art() -> void:
-	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
-	for index in range(buttons.size()):
-		var button := buttons[index]
-		if not button.visible:
-			continue
-
-		var background := button.get_node_or_null("ThematicBackground") as TextureRect
-		if background == null:
-			background = TextureRect.new()
-			background.name = "ThematicBackground"
-			background.mouse_filter = Control.MOUSE_FILTER_IGNORE
-			background.show_behind_parent = true
-			button.add_child(background)
-			background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-			background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-			background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-			background.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-
-		background.texture = THEMATIC_CARD_ART.get_choice_texture(active_card.card_id, index)
-		background.modulate = Color(0.92, 0.92, 0.92, 0.78)
-		button.clip_contents = true
-		button.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.96))
-		button.add_theme_constant_override("shadow_offset_x", 1)
-		button.add_theme_constant_override("shadow_offset_y", 2)
 
 func _apply_approved_choice_art() -> void:
 	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
@@ -211,7 +183,7 @@ func _apply_event_theme() -> void:
 				0.018 + accent.r * 0.040,
 				0.014 + accent.g * 0.028,
 				0.018 + accent.b * 0.030,
-				0.58
+				0.98
 			)
 			button.add_theme_stylebox_override("normal", normal)
 
@@ -219,7 +191,6 @@ func _apply_event_theme() -> void:
 		if hover_source != null:
 			var hover: StyleBoxFlat = hover_source.duplicate() as StyleBoxFlat
 			hover.border_color = accent.lightened(0.22)
-			hover.bg_color.a = 0.50
 			hover.shadow_color = Color(accent.r, accent.g, accent.b, 0.34)
 			button.add_theme_stylebox_override("hover", hover)
 			button.add_theme_stylebox_override("pressed", hover)

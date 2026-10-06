@@ -1,7 +1,6 @@
 extends Control
 
 const SQUAD_STATUS_SCENE := preload("res://scenes/table/squad_status.tscn")
-const THEMATIC_CARD_ART := preload("res://scripts/ui/thematic_card_art.gd")
 
 const LEFT_CARD_POSITION := Vector2(382.0, 332.0)
 const RIGHT_CARD_POSITION := Vector2(658.0, 332.0)
@@ -150,8 +149,7 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	button.disabled = false
 	button.modulate = Color.WHITE
 
-	art.texture = THEMATIC_CARD_ART.get_run_card_texture(card.card_id, card.type_label)
-	if art.texture == null and not card.art_path.is_empty():
+	if not card.art_path.is_empty():
 		var texture := load(card.art_path) as Texture2D
 		if texture != null:
 			art.texture = texture
