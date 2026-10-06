@@ -115,6 +115,7 @@ Only after the loop is fun:
 - [x] Complete high-detail sprite pass for all nine current combat roles: heroes, base undead, support, swarm, elite and boss.
 - [x] Convert main menu, table/cards/wizard, event, reward and run-end UI to the same pixel-art language.
 - [x] Rebuild the wizard table around an approved authored pixel concept while keeping live Godot HUD/cards.
+- [x] Physical card-table staging pass: deck/discard zones, fate spread, dealt-card motion, fan/hover lift and choose/discard animation.
 - [ ] Coherent visual language for table/cards/miniatures;
 - [x] First lightweight combat animation/impact pass: idle motion, role-aware attack motion/tracers, hit kick and death fall/fade.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.

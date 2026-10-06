@@ -110,6 +110,8 @@
 
 ### Added
 
+- Reworked the wizard table into a physical card spread: visible deck/discard piles, live counts, a 12-card fate track with XIII boss marker, staggered dealing, fan rotation, hover lift and choose/discard motion.
+- Added lightweight procedural table-card audio for dealing, selection, discard and Wizard substitution; single-card retry/boss offers now use one centered slot.
 - Added Wizard Memory v1: the Wizard now remembers eight behavior families across the run and can reference wagers, companion fates, debt-clearing, battle defeats/retries and greed-heavy gold choices at the table.
 - Added role-aware and repeat-aware contextual Wizard lines while keeping memory narrative-only; it does not alter stats, card odds, encounter selection or rewards.
 - Added the first voluntary Wizard wager modal at the cursed table: accept +25% enemy damage on the next combat for x2 next ordinary loot, or refuse with no mechanical penalty.

@@ -728,3 +728,26 @@ Table dialogue priority is:
 This keeps the Wizard feeling observant without making the rules opaque. Repeated behavior may use different lines, and companion memories may reference the specific role.
 
 Do not turn this into a large branching-dialogue graph yet. Future hero-story chains may reuse the same lightweight event/count state, but gameplay consequences must remain explicit and separately modeled.
+
+
+## D042 — The cursed table should read as a physical deal, not a menu
+
+Date: 2026-10-06  
+Status: accepted for vertical-slice presentation
+
+The wizard table is the core stage of Misdeal. The live two-card choice therefore needs to feel physically dealt onto a cursed tabletop rather than presented as two flat UI panels.
+
+The production table now uses lightweight staging around the existing card buttons:
+
+- a visible deck pile at the left and discard pile at the right;
+- a 12-card Act 1 fate track with a separate XIII boss marker;
+- two offer cards resting in a shallow fan with small opposing rotations;
+- staggered deal-from-deck animation when a new offer appears;
+- hover lift/straightening;
+- selected card pulled toward the center while the rejected card moves to discard;
+- single-card retry and boss states use one centered slot;
+- Wizard substitution is timed after the deal so it reads as a deliberate physical intervention.
+
+This is presentation-only. Card choice, rejection, tiers and encounter rules remain unchanged.
+
+Do not introduce freeform card dragging, physics simulation, a 3D tabletop or long shuffle animations for the vertical slice. The table should feel tactile while keeping selection fast and readable.

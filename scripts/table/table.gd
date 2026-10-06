@@ -2,6 +2,14 @@ extends Control
 
 const SQUAD_STATUS_SCENE := preload("res://scenes/table/squad_status.tscn")
 
+const LEFT_CARD_POSITION := Vector2(382.0, 332.0)
+const RIGHT_CARD_POSITION := Vector2(658.0, 332.0)
+const SINGLE_CARD_POSITION := Vector2(520.0, 332.0)
+const DEAL_SOURCE_POSITION := Vector2(61.0, 309.0)
+const DISCARD_TARGET_POSITION := Vector2(972.0, 313.0)
+const LEFT_CARD_ROTATION := -0.045
+const RIGHT_CARD_ROTATION := 0.045
+
 @onready var wizard_line: Label = $WizardLine
 @onready var stats_label: Label = $Stats
 @onready var offer_a_button: Button = $Cards/BonePatrolCard
@@ -9,6 +17,11 @@ const SQUAD_STATUS_SCENE := preload("res://scenes/table/squad_status.tscn")
 @onready var hidden_card_a: Button = $Cards/GallowsVolleyCard
 @onready var hidden_card_b: Button = $Cards/WhisperingWellCard
 @onready var squad_button: Button = $SquadButton
+@onready var table_spread_visual: Control = $TableSpreadVisual
+@onready var table_audio: Node = $TableAudio
+@onready var deck_count_label: Label = $DeckCount
+@onready var discard_count_label: Label = $DiscardCount
+@onready var spread_progress_label: Label = $SpreadProgress
 @onready var wager_root: Control = $WagerOverlay/Root
 @onready var wager_panel: Panel = $WagerOverlay/Root/WagerPanel
 @onready var wager_accept_button: Button = $WagerOverlay/Root/WagerPanel/AcceptButton
@@ -18,6 +31,11 @@ var offer_buttons: Array[Button] = []
 var squad_status: Control
 var default_wizard_line := ""
 var selection_locked := false
+var deal_in_progress := false
+var dealt_offer_signature := ""
+var card_rest_positions: Dictionary = {}
+var card_rest_rotations: Dictionary = {}
+var card_motion_tweens: Dictionary = {}
 
 func _ready() -> void:
 	if RunState.is_run_complete():
@@ -28,7 +46,7 @@ func _ready() -> void:
 	for button in offer_buttons:
 		button.pressed.connect(_on_offer_button_pressed.bind(button))
 		button.mouse_entered.connect(_on_offer_button_mouse_entered.bind(button))
-		button.mouse_exited.connect(_on_offer_button_mouse_exited)
+		button.mouse_exited.connect(_on_offer_button_mouse_exited.bind(button))
 
 	hidden_card_a.visible = false
 	hidden_card_b.visible = false
@@ -37,6 +55,7 @@ func _ready() -> void:
 	wager_accept_button.pressed.connect(_accept_wizard_wager)
 	wager_refuse_button.pressed.connect(_refuse_wizard_wager)
 
+	_configure_card_pivots()
 	_refresh_table()
 
 func _input(event: InputEvent) -> void:
@@ -94,6 +113,10 @@ func _refresh_table(show_memory: bool = true) -> void:
 		button.visible = true
 		_setup_offer_button(button, offers[index])
 
+	_layout_offer_cards(offers.size())
+	_update_spread_ui()
+	_animate_deal_if_needed(offers)
+
 	if RunState.has_pending_wizard_meddling():
 		selection_locked = true
 		_disable_offer_buttons()
@@ -145,12 +168,171 @@ func _on_offer_button_pressed(button: Button) -> void:
 		_choose_card(card)
 
 func _on_offer_button_mouse_entered(button: Button) -> void:
+	if selection_locked or deal_in_progress:
+		return
+
 	var card := _get_button_card(button)
 	if card != null:
+		_animate_card_hover(button, true)
 		_preview_card(card)
 
-func _on_offer_button_mouse_exited() -> void:
+func _on_offer_button_mouse_exited(button: Button) -> void:
+	if not selection_locked and not deal_in_progress:
+		_animate_card_hover(button, false)
 	_restore_wizard_line()
+
+func _configure_card_pivots() -> void:
+	for button in offer_buttons:
+		button.pivot_offset = Vector2(120.0, 173.0)
+
+func _layout_offer_cards(offer_count: int) -> void:
+	for index in range(offer_buttons.size()):
+		var button := offer_buttons[index]
+		if not button.visible:
+			continue
+
+		var rest_position := SINGLE_CARD_POSITION
+		var rest_rotation := 0.0
+		if offer_count > 1:
+			if index == 0:
+				rest_position = LEFT_CARD_POSITION
+				rest_rotation = LEFT_CARD_ROTATION
+			else:
+				rest_position = RIGHT_CARD_POSITION
+				rest_rotation = RIGHT_CARD_ROTATION
+
+		card_rest_positions[button.name] = rest_position
+		card_rest_rotations[button.name] = rest_rotation
+		if not deal_in_progress:
+			button.position = rest_position
+			button.rotation = rest_rotation
+			button.scale = Vector2.ONE
+			button.modulate = Color.WHITE
+			button.z_index = 2
+
+func _update_spread_ui() -> void:
+	var deck_count := RunState.remaining_card_ids.size()
+	if not RunState.has_active_card():
+		deck_count = maxi(0, deck_count - RunState.current_offer_ids.size())
+
+	var discard_count := RunState.resolved_card_ids.size() + RunState.rejected_card_ids.size()
+	deck_count_label.text = "КОЛОДА  %02d" % deck_count
+	discard_count_label.text = "СБРОС  %02d" % discard_count
+	if RunState.is_boss_due():
+		spread_progress_label.text = "РАСКЛАД ЗАКРЫТ  •  XIII"
+	else:
+		spread_progress_label.text = "РАСКЛАД СУДЬБЫ  •  %02d/%02d" % [
+			RunState.cards_resolved,
+			RunState.ACT_CARD_TARGET
+		]
+
+	if table_spread_visual != null and table_spread_visual.has_method("refresh"):
+		table_spread_visual.call("refresh")
+
+func _animate_deal_if_needed(offers: Array[RunCardData]) -> void:
+	var signature := ""
+	for card in offers:
+		signature += "%s|" % card.card_id
+
+	if signature == dealt_offer_signature:
+		return
+
+	dealt_offer_signature = signature
+	if RunState.has_active_card():
+		deal_in_progress = false
+		for button in offer_buttons:
+			if button.visible:
+				_restore_card_pose_immediate(button)
+		return
+
+	deal_in_progress = true
+	_disable_offer_buttons()
+	call_deferred("_play_deal_sounds", offers.size())
+
+	var visible_index := 0
+	for button in offer_buttons:
+		if not button.visible:
+			continue
+
+		var rest_position: Vector2 = card_rest_positions.get(button.name, button.position)
+		var rest_rotation := float(card_rest_rotations.get(button.name, 0.0))
+		var delay := float(visible_index) * 0.13
+		visible_index += 1
+
+		_kill_card_motion(button)
+		button.position = DEAL_SOURCE_POSITION
+		button.rotation = -0.15 + float(visible_index) * 0.018
+		button.scale = Vector2(0.08, 0.68)
+		button.modulate = Color(0.54, 0.38, 0.36, 0.22)
+		button.z_index = 6
+
+		var tween := button.create_tween()
+		card_motion_tweens[button.name] = tween
+		tween.set_parallel(true)
+		tween.tween_property(button, "position", rest_position, 0.34).set_delay(delay).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "rotation", rest_rotation, 0.34).set_delay(delay).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "scale", Vector2.ONE, 0.30).set_delay(delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "modulate", Color.WHITE, 0.26).set_delay(delay)
+
+	call_deferred("_finish_deal_animation", 0.50 + maxf(0.0, float(visible_index - 1) * 0.13))
+
+func _play_deal_sounds(card_count: int) -> void:
+	for index in range(card_count):
+		if index > 0:
+			await get_tree().create_timer(0.13).timeout
+		_play_table_audio("deal")
+
+func _finish_deal_animation(duration: float) -> void:
+	await get_tree().create_timer(duration).timeout
+	deal_in_progress = false
+	for button in offer_buttons:
+		if button.visible:
+			_restore_card_pose_immediate(button)
+	if not selection_locked:
+		_enable_offer_buttons()
+
+func _animate_card_hover(button: Button, raised: bool) -> void:
+	if not card_rest_positions.has(button.name):
+		return
+
+	_kill_card_motion(button)
+	var rest_position: Vector2 = card_rest_positions[button.name]
+	var rest_rotation := float(card_rest_rotations.get(button.name, 0.0))
+	var tween := button.create_tween()
+	card_motion_tweens[button.name] = tween
+	tween.set_parallel(true)
+
+	if raised:
+		button.z_index = 20
+		tween.tween_property(button, "position", rest_position + Vector2(0.0, -18.0), 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "rotation", rest_rotation * 0.30, 0.12)
+		tween.tween_property(button, "scale", Vector2(1.04, 1.04), 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	else:
+		button.z_index = 2
+		tween.tween_property(button, "position", rest_position, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "rotation", rest_rotation, 0.12)
+		tween.tween_property(button, "scale", Vector2.ONE, 0.12)
+
+func _restore_card_pose_immediate(button: Button) -> void:
+	_kill_card_motion(button)
+	if card_rest_positions.has(button.name):
+		button.position = card_rest_positions[button.name]
+		button.rotation = float(card_rest_rotations.get(button.name, 0.0))
+	button.scale = Vector2.ONE
+	button.modulate = Color.WHITE
+	button.z_index = 2
+
+func _kill_card_motion(button: Button) -> void:
+	var tween_value = card_motion_tweens.get(button.name)
+	if tween_value is Tween:
+		var tween := tween_value as Tween
+		if tween.is_valid():
+			tween.kill()
+	card_motion_tweens.erase(button.name)
+
+func _play_table_audio(event_name: String) -> void:
+	if table_audio != null and table_audio.has_method("play_event"):
+		table_audio.call("play_event", event_name)
 
 func _get_hint_text(card: RunCardData) -> String:
 	if RunState.has_active_card():
@@ -215,6 +397,9 @@ func _restore_wizard_line() -> void:
 	wizard_line.text = default_wizard_line
 
 func _show_wizard_wager() -> void:
+	if deal_in_progress:
+		await get_tree().create_timer(0.70).timeout
+
 	if not RunState.has_pending_wizard_wager():
 		selection_locked = false
 		_enable_offer_buttons()
@@ -256,7 +441,7 @@ func _play_pending_wizard_meddling() -> void:
 		_enable_offer_buttons()
 		return
 
-	await get_tree().create_timer(0.55).timeout
+	await get_tree().create_timer(0.72).timeout
 	if not RunState.has_pending_wizard_meddling():
 		selection_locked = false
 		_enable_offer_buttons()
@@ -269,8 +454,10 @@ func _play_pending_wizard_meddling() -> void:
 		return
 
 	var button := offer_buttons[offer_index]
+	_restore_card_pose_immediate(button)
 	button.pivot_offset = button.size * 0.5
 	wizard_line.text = "Нет. Эту карту я передумал отдавать."
+	_play_table_audio("meddle")
 
 	var close_tween := button.create_tween()
 	close_tween.set_parallel(true)
@@ -317,16 +504,17 @@ func _play_pending_wizard_meddling() -> void:
 	_enable_offer_buttons()
 
 func _choose_card(card: RunCardData) -> void:
-	if selection_locked:
+	if selection_locked or deal_in_progress:
 		return
 
 	if not RunState.choose_card(card.card_id):
 		return
 
+	_update_spread_ui()
 	selection_locked = true
 	_disable_offer_buttons()
 	wizard_line.text = card.wizard_line
-	await get_tree().create_timer(0.25).timeout
+	await _animate_card_choice(card.card_id)
 
 	match card.resolution_type:
 		"combat":
@@ -338,11 +526,48 @@ func _choose_card(card: RunCardData) -> void:
 			selection_locked = false
 			_refresh_table()
 
+func _animate_card_choice(chosen_card_id: String) -> void:
+	_play_table_audio("select")
+	var has_rejected := false
+
+	for button in offer_buttons:
+		if not button.visible:
+			continue
+
+		_kill_card_motion(button)
+		var button_card_id := String(button.get_meta("card_id", ""))
+		var tween := button.create_tween()
+		card_motion_tweens[button.name] = tween
+		tween.set_parallel(true)
+
+		if button_card_id == chosen_card_id:
+			button.z_index = 30
+			tween.tween_property(button, "position", SINGLE_CARD_POSITION + Vector2(0.0, -28.0), 0.30).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			tween.tween_property(button, "rotation", 0.0, 0.26)
+			tween.tween_property(button, "scale", Vector2(1.07, 1.07), 0.28).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		else:
+			has_rejected = true
+			button.z_index = 8
+			tween.tween_property(button, "position", DISCARD_TARGET_POSITION, 0.30).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+			tween.tween_property(button, "rotation", 0.13, 0.30)
+			tween.tween_property(button, "scale", Vector2(0.42, 0.42), 0.30)
+			tween.tween_property(button, "modulate", Color(0.48, 0.34, 0.32, 0.15), 0.28)
+
+	if has_rejected:
+		await get_tree().create_timer(0.08).timeout
+		_play_table_audio("discard")
+		await get_tree().create_timer(0.26).timeout
+	else:
+		await get_tree().create_timer(0.32).timeout
+
 func _disable_offer_buttons() -> void:
 	for button in offer_buttons:
 		button.disabled = true
 
 func _enable_offer_buttons() -> void:
+	if deal_in_progress or selection_locked:
+		return
+
 	for button in offer_buttons:
 		if button.visible:
 			button.disabled = false

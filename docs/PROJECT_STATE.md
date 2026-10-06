@@ -133,6 +133,18 @@ A first **Wizard Memory v1** layer is now implemented in GitHub and pending loca
 - current hooks cover companion fate resolution, voluntary wagers, Faceless Card debt-clearing, battle defeat/retry, Lost Purse greed, Broken Crown greed and Death Wager gold selection;
 - the system intentionally stores compact event/count state instead of a dialogue graph so future hero-story chains can reuse it without creating a second narrative-state architecture.
 
+A **physical card-table staging pass** is now implemented in GitHub and pending local visual verification:
+
+- the two-card offer is no longer presented as a flat HBox menu; live cards sit in a loose fan with slight opposing rotations;
+- a visible deck pile and discard pile frame the central offer, with live counts derived from `RunState`;
+- a 12-card fate track plus a separate XIII boss marker makes the Act 1 layout read as an unfolding spread rather than a sequence of menus;
+- each new offer is visibly dealt from the deck with a short staggered slide/flip-in motion and procedural card-slap audio;
+- hover lifts and straightens a card without changing selection rules;
+- selecting a card pulls it toward the center while the rejected card physically flies into the discard pile before scene transition;
+- Wizard card substitution now waits for the deal animation and uses the same physical staging, so his interference reads as taking a card back and replacing it;
+- single-card retry/boss states collapse to one central table slot instead of preserving a fake two-choice layout;
+- the pass adds no card physics, drag-to-play interaction or 3D table system; it is presentation-only and keeps the existing two-choice run rules intact.
+
 ## Player-facing language
 
 All player-facing UI text, card text, reward text, wizard lines and unit display names are Russian.

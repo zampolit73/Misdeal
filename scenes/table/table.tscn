@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/table.gd" id="1_table"]
 [ext_resource type="Script" path="res://scripts/table/table_visual.gd" id="2_visual"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" path="res://assets/pixel/table/cards/graveyard_ambush.png" id="6_grave"]
 [ext_resource type="Texture2D" path="res://assets/pixel/table/cards/gallows_volley.png" id="7_gallows"]
 [ext_resource type="Texture2D" path="res://assets/pixel/table/cards/whispering_well.png" id="8_well"]
+[ext_resource type="Script" path="res://scripts/table/table_spread_visual.gd" id="9_spread"]
+[ext_resource type="Script" path="res://scripts/table/table_audio.gd" id="10_audio"]
 
 [sub_resource type="StyleBoxFlat" id="HudPanel"]
 bg_color = Color(0.025, 0.018, 0.026, 0.95)
@@ -230,18 +232,78 @@ theme_override_font_sizes/font_size = 14
 text = "Волшебник раскладывает судьбы. Выбирай."
 horizontal_alignment = 1
 
-[node name="Cards" type="HBoxContainer" parent="."]
-offset_left = 134.0
-offset_top = 318.0
-offset_right = 1146.0
-offset_bottom = 674.0
-theme_override_constants/separation = 17
-alignment = 1
+[node name="TableSpreadVisual" type="Control" parent="."]
+mouse_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_spread")
+
+[node name="TableAudio" type="Node" parent="."]
+script = ExtResource("10_audio")
+
+[node name="SpreadProgress" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 438.0
+offset_top = 252.0
+offset_right = 842.0
+offset_bottom = 276.0
+theme_override_colors/font_color = Color(0.68, 0.48, 0.38, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "РАСКЛАД СУДЬБЫ  •  00/12"
+horizontal_alignment = 1
+
+[node name="DeckCount" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 102.0
+offset_top = 573.0
+offset_right = 260.0
+offset_bottom = 596.0
+theme_override_colors/font_color = Color(0.67, 0.48, 0.39, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
+text = "КОЛОДА  00"
+horizontal_alignment = 1
+
+[node name="DiscardCount" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 1012.0
+offset_top = 573.0
+offset_right = 1172.0
+offset_bottom = 596.0
+theme_override_colors/font_color = Color(0.67, 0.48, 0.39, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
+text = "СБРОС  00"
+horizontal_alignment = 1
+
+[node name="Cards" type="Control" parent="."]
+mouse_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BonePatrolCard" type="Button" parent="Cards"]
 clip_contents = true
 custom_minimum_size = Vector2(240, 346)
-layout_mode = 2
+offset_left = 382.0
+offset_top = 332.0
+offset_right = 622.0
+offset_bottom = 678.0
+rotation = -0.045
 theme_override_styles/normal = SubResource("CardNormal")
 theme_override_styles/hover = SubResource("CardHover")
 theme_override_styles/pressed = SubResource("CardHover")
@@ -309,7 +371,11 @@ horizontal_alignment = 1
 [node name="GraveyardCard" type="Button" parent="Cards"]
 clip_contents = true
 custom_minimum_size = Vector2(240, 346)
-layout_mode = 2
+offset_left = 658.0
+offset_top = 332.0
+offset_right = 898.0
+offset_bottom = 678.0
+rotation = 0.045
 theme_override_styles/normal = SubResource("CardNormal")
 theme_override_styles/hover = SubResource("CardHover")
 theme_override_styles/pressed = SubResource("CardHover")
@@ -378,7 +444,10 @@ horizontal_alignment = 1
 visible = false
 clip_contents = true
 custom_minimum_size = Vector2(240, 346)
-layout_mode = 2
+offset_left = 382.0
+offset_top = 332.0
+offset_right = 622.0
+offset_bottom = 678.0
 theme_override_styles/normal = SubResource("CardNormal")
 theme_override_styles/hover = SubResource("CardHover")
 theme_override_styles/pressed = SubResource("CardHover")
@@ -447,7 +516,10 @@ horizontal_alignment = 1
 visible = false
 clip_contents = true
 custom_minimum_size = Vector2(240, 346)
-layout_mode = 2
+offset_left = 658.0
+offset_top = 332.0
+offset_right = 898.0
+offset_bottom = 678.0
 theme_override_styles/normal = SubResource("EventNormal")
 theme_override_styles/hover = SubResource("EventHover")
 theme_override_styles/pressed = SubResource("EventHover")
