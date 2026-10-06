@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/event/act_choice.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/pixel/table/table_wizard_layer.png" id="2_wizard"]
 [ext_resource type="Texture2D" path="res://assets/pixel/table/misdeal_logo.png" id="3_logo"]
 [ext_resource type="Script" path="res://scripts/ui/cursed_choice_visual.gd" id="4_visual"]
 [ext_resource type="Texture2D" path="res://assets/art/table_background.webp" id="5_table"]
@@ -134,7 +133,7 @@ offset_bottom = 102.0
 texture_filter = 1
 texture = ExtResource("3_logo")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = 110.0
