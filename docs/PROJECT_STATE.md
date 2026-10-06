@@ -166,6 +166,18 @@ A follow-up **table hierarchy polish pass** is now implemented in GitHub and pen
 - the fate track moves to the top edge of the table, becomes lower-contrast, and the text is reduced from **РАСКЛАД СУДЬБЫ • 02/12** to the compact **02/12** counter;
 - live cards, deck/discard piles and all physical deal/hover/selection animations remain unchanged.
 
+A first **multi-arena battle pass** is now implemented in GitHub and pending local visual verification:
+
+- `EncounterData` now carries a data-driven `arena_id`;
+- Act 1 combat encounters are distributed across four arena families instead of sharing one presentation:
+  - **crypt** — warm underground stone, arches and braziers;
+  - **graveyard** — cold moonlit tint, tombstones, dead trees and low fog;
+  - **ossuary** — bone arches, bone piles and warmer sepulchral light;
+  - **warden** — a dedicated Bone Warden lair built on the ossuary family with chains, a sealed gate and the existing phase rune treatment;
+- arena dressing is rendered below units inside the existing live `Arena` layer, so combat readability, placement bounds and unit logic are unchanged;
+- the same authored base battle backdrop is intentionally reused for vertical-slice cohesion, while family-specific lighting/silhouettes/foreground structures make encounters read as different locations;
+- current mapping: Bone Patrol/Crypt Guard -> crypt; Graveyard Ambush/Gallows Volley/Grave Bell -> graveyard; Bone Crush/Ossuary Gate/Death Wager -> ossuary; Bone Warden -> warden.
+
 ## Player-facing language
 
 All player-facing UI text, card text, reward text, wizard lines and unit display names are Russian.

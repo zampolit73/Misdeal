@@ -8,6 +8,7 @@ encounter_id = "bone_patrol"
 title = "КОСТЯНОЙ ДОЗОР"
 card_text = "Три скелета идут плотным строем.\nТолько кости и железо."
 wizard_line = "Просто солдаты. Иногда простые вещи убивают надёжнее всего."
+arena_id = "crypt"
 enemy_unit_paths = PackedStringArray("res://resources/units/skeleton.tres", "res://resources/units/skeleton.tres", "res://resources/units/skeleton.tres")
 enemy_names = PackedStringArray("Скелет", "Скелет", "Скелет")
 enemy_positions = PackedVector2Array(940, 145, 1020, 245, 940, 345)

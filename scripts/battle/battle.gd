@@ -56,6 +56,8 @@ func _ready() -> void:
 	continue_button.visible = false
 	continue_button.disabled = true
 	encounter = _load_selected_encounter()
+	if arena_visual.has_method("set_arena_id"):
+		arena_visual.call("set_arena_id", encounter.arena_id)
 	if arena_visual.has_method("set_boss_mode"):
 		arena_visual.call("set_boss_mode", _is_boss_encounter())
 	title_label.text = "MISDEAL — %s" % encounter.title

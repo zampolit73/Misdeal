@@ -796,3 +796,24 @@ Visual hierarchy is now explicit:
 3. minimal supporting HUD and table-state indicators.
 
 Future table polish should prefer authored pixel assets or quiet native UI. Do not add prominent procedural character anatomy or decorative wireframe-style overlays without a visual mockup and explicit approval first.
+
+
+## D045 — Act 1 uses reusable arena families, selected by encounter data
+
+Date: 2026-10-06  
+Status: accepted for vertical-slice battle variety
+
+Repeated use of one battle arena made distinct cards feel like the same encounter. Act 1 now assigns each combat encounter an explicit `arena_id` through `EncounterData`.
+
+The vertical slice uses four reusable presentation families:
+
+- `crypt` — underground stone, arches and braziers;
+- `graveyard` — cold moonlight, tombstones, dead trees and fog;
+- `ossuary` — bone arches/piles with warmer sepulchral lighting;
+- `warden` — Bone Warden lair with chains, sealed gate and phase-rune treatment.
+
+The family layer is presentation-only and draws underneath live units. It does not change combat bounds, navigation, spawn positions, stats or encounter rules.
+
+For the vertical slice, all families reuse the validated authored 1280×720 battle backdrop as a common art foundation and add restrained family-specific staging. This is deliberate: visual variety without multiplying fragile binary backdrop assets before local evaluation.
+
+Do not create one bespoke arena implementation per card. New combat encounters should normally select an existing arena family; add a new family only when it represents a materially different location/identity.

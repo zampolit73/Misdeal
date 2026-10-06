@@ -8,6 +8,7 @@ encounter_id = "bone_warden"
 title = "КОСТЯНОЙ НАДЗИРАТЕЛЬ"
 card_text = "Страж последней раздачи.\nБьёт по площади, а в ярости зовёт подкрепление."
 wizard_line = "Достаточно разминки. Познакомься с тем, кто обычно убирает со стола проигравших."
+arena_id = "warden"
 enemy_unit_paths = PackedStringArray("res://resources/units/bone_warden.tres", "res://resources/units/skeleton.tres", "res://resources/units/skeleton.tres")
 enemy_names = PackedStringArray("Костяной надзиратель", "Костяной страж", "Костяной страж")
 enemy_positions = PackedVector2Array(990, 245, 895, 145, 895, 345)

@@ -8,6 +8,7 @@ encounter_id = "grave_bell"
 title = "МОГИЛЬНЫЙ ЗВОН"
 card_text = "Могильный звонарь лечит ближайшую нежить.\nЗаставь колокол замолчать."
 wizard_line = "Звон всегда собирает публику. Особенно мёртвую."
+arena_id = "graveyard"
 enemy_unit_paths = PackedStringArray("res://resources/units/skeleton.tres", "res://resources/units/skeleton.tres", "res://resources/units/grave_bellkeeper.tres")
 enemy_names = PackedStringArray("Скелет", "Скелет", "Могильный звонарь")
 enemy_positions = PackedVector2Array(890, 150, 890, 340, 1040, 245)

@@ -8,6 +8,7 @@ encounter_id = "gallows_volley"
 title = "ЗАЛП С ВИСЕЛИЦЫ"
 card_text = "Два костяных лучника\nпрячутся за одним скелетом."
 wizard_line = "Беги к ним быстрее. Стрелы ведь наверняка подождут."
+arena_id = "graveyard"
 enemy_unit_paths = PackedStringArray("res://resources/units/skeleton.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_archer.tres")
 enemy_names = PackedStringArray("Скелет", "Костяной лучник", "Костяной лучник")
 enemy_positions = PackedVector2Array(900, 245, 1040, 155, 1040, 335)

@@ -109,6 +109,7 @@ Only after the loop is fun:
 - [x] Integrate first authored table, wizard, card-back and unit miniature assets.
 - [x] First pixel-art combat readability redesign with larger silhouettes, ground rings and compact HP UI.
 - [x] Pixel battle presentation pass with atmospheric arena decor, HUD chrome and attack motion.
+- [x] Multi-arena Act 1 pass with data-driven crypt, graveyard, ossuary and Bone Warden lair families.
 - [x] Recompose live battle UI/arena toward the approved gothic pixel mockup.
 - [x] Replace the procedural battle arena with the authored second-reference backdrop while keeping combat/UI layers live.
 - [x] Replace the core Knight/Ranger/Mage/Skeleton/Bone Archer set with pixel sprites and scale the live unit presentation accordingly.

@@ -8,6 +8,7 @@ encounter_id = "ossuary_gate"
 title = "ВРАТА ОССУАРИЯ"
 card_text = "Страж держит проход, звонарь поддерживает нежить, а лучник наказывает за медлительность."
 wizard_line = "Тишина за воротами — это просто враги, которые умеют ждать."
+arena_id = "ossuary"
 enemy_unit_paths = PackedStringArray("res://resources/units/crypt_guard.tres", "res://resources/units/grave_bellkeeper.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_thrall.tres")
 enemy_names = PackedStringArray("Страж оссуария", "Могильный звонарь", "Костяной лучник", "Костяной раб")
 enemy_positions = PackedVector2Array(875, 245, 1035, 345, 1050, 145, 900, 355)

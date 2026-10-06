@@ -115,6 +115,8 @@
 
 ### Added
 
+- Added data-driven battle arena families via `EncounterData.arena_id`: crypt, graveyard, ossuary and a dedicated Bone Warden lair.
+- Distributed all current Act 1 combat encounters across the new arena families, adding distinct lighting, silhouettes, fog/stone/bone dressing and boss-lair chains/gate while preserving the existing combat layer and authored base backdrop.
 - Added a richer cursed-table dressing pass: denser wood/runner detail, inlaid deck/discard zones, ritual marks, coins, wax seal and warmer light pools.
 - Added stylized five-finger Wizard dealer hands below the live-card layer; they react to deals and visibly reach/glow during card substitution without intercepting input.
 - Reworked the wizard table into a physical card spread: visible deck/discard piles, live counts, a 12-card fate track with XIII boss marker, staggered dealing, fan rotation, hover lift and choose/discard motion.
