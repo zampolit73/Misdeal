@@ -19,10 +19,12 @@ const TACTICAL_ORDER_FORMATION := "formation"
 @onready var fight_button: Button = $FightButton
 @onready var restart_button: Button = $RestartButton
 @onready var continue_button: Button = $ContinueButton
-@onready var result_backdrop: Panel = $ResultBackdrop
-@onready var result_label: Label = $Result
-@onready var result_subtitle: Label = $ResultSubtitle
+@onready var result_scrim: ColorRect = $ResultOverlay/ResultScrim
+@onready var result_backdrop: Panel = $ResultOverlay/ResultBackdrop
+@onready var result_label: Label = $ResultOverlay/Result
+@onready var result_subtitle: Label = $ResultOverlay/ResultSubtitle
 @onready var placement_hint: Label = $PlacementHint
+@onready var order_label: Label = $OrderLabel
 @onready var assault_order_button: Button = $AssaultOrderButton
 @onready var hunt_order_button: Button = $HuntOrderButton
 @onready var formation_order_button: Button = $FormationOrderButton
@@ -66,6 +68,7 @@ func _ready() -> void:
 		enemy_label.text = "ЭЛИТА"
 	else:
 		enemy_label.text = "НЕЖИТЬ"
+	result_scrim.visible = false
 	result_backdrop.visible = false
 	_spawn_encounter()
 	_begin_preparation_phase()
@@ -354,6 +357,13 @@ func _finish_battle(player_won: bool) -> void:
 		unit.combat_started = false
 		unit.disable_placement()
 
+	placement_hint.visible = false
+	order_label.visible = false
+	assault_order_button.visible = false
+	hunt_order_button.visible = false
+	formation_order_button.visible = false
+	order_description_label.visible = false
+
 	if player_won:
 		result_label.text = "ПОБЕДА"
 		if _is_boss_encounter():
@@ -376,6 +386,7 @@ func _finish_battle(player_won: bool) -> void:
 		status_label.text = "Стол забирает ещё один отряд."
 		continue_button.text = "ВЕРНУТЬСЯ К СТОЛУ"
 
+	result_scrim.visible = true
 	result_backdrop.visible = true
 	result_label.visible = true
 	result_subtitle.visible = true

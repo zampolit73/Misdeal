@@ -24,6 +24,7 @@
 
 ### Fixed
 
+- Moved the victory/defeat result UI into a dedicated high-layer `CanvasLayer` with a dim scrim so combat-unit sprites, names and HP bars can no longer render over the result panel; the modal is also positioned higher and tactical-order controls hide on battle end.
 - Corrected the Wizard's card-hand anatomy on the production main-menu splash to five fingers.
 - Removed the obsolete compile-time `preload()` of `combat_units_v2.png` that prevented `unit.gd` from parsing in Godot 4.7.2. The validated v3 atlas is now the only production unit-art source.
 - Removed the obsolete/broken `assets/pixel/units/combat_units_v2.png` fallback asset.

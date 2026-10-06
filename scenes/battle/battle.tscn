@@ -311,24 +311,37 @@ theme_override_styles/pressed = SubResource("FightHover")
 theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "ПРОДОЛЖИТЬ"
 
-[node name="ResultBackdrop" type="Panel" parent="."]
-z_index = 5000
+[node name="ResultOverlay" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="ResultScrim" type="ColorRect" parent="ResultOverlay"]
+visible = false
+mouse_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.42)
+
+[node name="ResultBackdrop" type="Panel" parent="ResultOverlay"]
+z_index = 1
 mouse_filter = 2
 visible = false
-offset_left = 370.0
-offset_top = 270.0
-offset_right = 910.0
-offset_bottom = 405.0
+offset_left = 350.0
+offset_top = 220.0
+offset_right = 930.0
+offset_bottom = 380.0
 theme_override_styles/panel = SubResource("ResultPanel")
 
-[node name="Result" type="Label" parent="."]
-z_index = 5001
+[node name="Result" type="Label" parent="ResultOverlay"]
+z_index = 2
 mouse_filter = 2
 visible = false
-offset_left = 392.0
-offset_top = 282.0
-offset_right = 888.0
-offset_bottom = 330.0
+offset_left = 390.0
+offset_top = 236.0
+offset_right = 890.0
+offset_bottom = 292.0
 theme_override_colors/font_color = Color(1, 0.80, 0.50, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.95)
 theme_override_constants/shadow_offset_x = 2
@@ -338,14 +351,14 @@ text = "ПОБЕДА"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResultSubtitle" type="Label" parent="."]
-z_index = 5001
+[node name="ResultSubtitle" type="Label" parent="ResultOverlay"]
+z_index = 2
 mouse_filter = 2
 visible = false
-offset_left = 405.0
-offset_top = 346.0
-offset_right = 875.0
-offset_bottom = 392.0
+offset_left = 390.0
+offset_top = 310.0
+offset_right = 890.0
+offset_bottom = 354.0
 theme_override_colors/font_color = Color(0.78, 0.69, 0.63, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.88)
 theme_override_constants/shadow_offset_x = 1
