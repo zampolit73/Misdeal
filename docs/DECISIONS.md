@@ -833,3 +833,25 @@ Act 1 therefore uses four authored pixel-art backdrops selected by `EncounterDat
 The backdrops share the same combat-floor composition so unit positions and tactical readability remain stable, but each location has a clearly different silhouette, palette and environmental identity.
 
 Arena textures are presented at the 1280×720 battle resolution rather than doubled from 640×360. After the first direct binary replacement attempt produced truncated repository blobs, the preserved 1672×941 authored source renders were rebuilt into high-quality native 1280×720 WebP assets and committed through a repository-safe staged base64 path. `authored_backdrop.gd` deliberately continues to decode those WebPs from raw bytes at runtime with `Image.load_webp_from_buffer()`, avoiding compile-time importer/preload fragility. Linear filtering is used only for fractional window scaling; native 1280×720 presentation performs no normal-path upscale. Procedural `battle_visual.gd` drawing remains reserved for genuinely dynamic effects such as the Bone Warden phase rune, not for painting static environments over another background.
+
+
+## D047 — Combat polish may deepen feedback, but must not become a second combat-control system
+
+Date: 2026-10-06  
+Status: accepted for vertical-slice combat polish
+
+After the authored multi-arena pass, the remaining battle-quality gap was presentation rather than missing tactical rules. The second combat-polish pass therefore improves how the existing autobattle reads and feels without changing its decision model.
+
+Accepted presentation additions:
+
+- arena-aware ambient tint, contact shadow and low-alpha team rim for miniature integration;
+- short simulation hit-stop, directional visual kick and lightweight impact sparks;
+- different death treatment for undead and heroes;
+- one coherent preparation HUD with clearer tactical-order selection;
+- short Wizard commentary reactions during battle;
+- lightweight dynamic atmosphere over authored arena art;
+- a brief fight-start title transition before units begin moving.
+
+These effects must remain non-authoritative. Visual knockback does not move combat positions, hit-stop does not change cooldown values, arena atmosphere does not alter visibility/range, and Wizard commentary does not secretly modify stats or targeting.
+
+Do not add per-unit ability buttons, mid-fight command spam, manual dodge controls or other real-time micro under the banner of combat polish. If more tactical depth is needed, preserve the preparation-first model established by D037.

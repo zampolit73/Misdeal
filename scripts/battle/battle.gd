@@ -16,6 +16,12 @@ const TACTICAL_ORDER_FORMATION := "formation"
 @onready var battle_backdrop: TextureRect = $BattleBackdrop
 @onready var arena_visual: Control = $Arena
 @onready var combat_audio: Node = $CombatAudio
+@onready var bottom_hud_panel: Panel = $BottomHudPanel
+@onready var wizard_commentary_panel: Panel = $WizardCommentaryPanel
+@onready var wizard_commentary_label: Label = $WizardCommentary
+@onready var intro_scrim: ColorRect = $BattleIntroOverlay/IntroScrim
+@onready var intro_title: Label = $BattleIntroOverlay/IntroTitle
+@onready var intro_encounter: Label = $BattleIntroOverlay/IntroEncounter
 @onready var units_layer: Node2D = $UnitsLayer
 @onready var status_label: Label = $Status
 @onready var fight_button: Button = $FightButton
@@ -38,6 +44,7 @@ var combat_started := false
 var battle_finished := false
 var boss_reinforcements_spawned := false
 var tactical_order := TACTICAL_ORDER_ASSAULT
+var wizard_critical_line_shown := false
 
 func _ready() -> void:
 	if not RunState.has_chosen_protagonist():
@@ -59,6 +66,8 @@ func _ready() -> void:
 	encounter = _load_selected_encounter()
 	if battle_backdrop.has_method("set_arena_id"):
 		battle_backdrop.call("set_arena_id", encounter.arena_id)
+	if arena_visual.has_method("set_arena_id"):
+		arena_visual.call("set_arena_id", encounter.arena_id)
 	if arena_visual.has_method("set_boss_mode"):
 		arena_visual.call("set_boss_mode", _is_boss_encounter())
 	title_label.text = "MISDEAL — %s" % encounter.title
@@ -74,6 +83,12 @@ func _ready() -> void:
 		enemy_label.text = "НЕЖИТЬ"
 	result_scrim.visible = false
 	result_backdrop.visible = false
+	restart_button.visible = false
+	wizard_commentary_panel.visible = false
+	wizard_commentary_label.visible = false
+	intro_scrim.visible = false
+	intro_title.visible = false
+	intro_encounter.visible = false
 	_spawn_encounter()
 	_begin_preparation_phase()
 
@@ -146,6 +161,7 @@ func _spawn_unit(
 ) -> void:
 	var unit := UNIT_SCENE.instantiate() as BattleUnit
 	unit.configure(data, team, spawn_position, name_override)
+	unit.set_arena_presentation(encounter.arena_id)
 
 	if team == 0:
 		unit.max_hp += RunState.party_hp_bonus
@@ -166,6 +182,7 @@ func _spawn_unit(
 
 	unit.set_combat_bounds(COMBAT_BOUNDS)
 	unit.died.connect(_on_unit_died)
+	unit.health_critical.connect(_on_unit_health_critical)
 	unit.placement_rejected.connect(_on_placement_rejected)
 	if unit.is_boss:
 		unit.boss_enraged.connect(_on_boss_enraged)
@@ -277,6 +294,7 @@ func _on_boss_enraged(_unit: BattleUnit) -> void:
 	boss_reinforcements_spawned = true
 	enemy_label.text = "БОСС • ЯРОСТЬ"
 	status_label.text = "ФАЗА II — надзиратель зовёт подкрепление!"
+	_show_wizard_line("Вот теперь надзиратель вспомнил, зачем я его держу.", true)
 	if arena_visual.has_method("set_boss_phase_two"):
 		arena_visual.call("set_boss_phase_two", true)
 
@@ -325,17 +343,110 @@ func _on_fight_pressed() -> void:
 
 	combat_started = true
 	fight_button.disabled = true
-	fight_button.text = "БОЙ..."
-	status_label.text = "Ставка сделана. Назад пути нет."
 	placement_hint.visible = false
 	_lock_tactical_orders()
+	_hide_preparation_hud()
+
+	await _play_combat_intro()
+	if battle_finished:
+		return
+
+	status_label.text = "Ставка сделана. Назад пути нет."
+	_show_wizard_line(_get_combat_start_wizard_line())
 	_play_battle_audio("start")
 
 	for unit in units:
 		if unit.alive:
 			unit.start_combat()
 
-func _on_unit_died(_unit: BattleUnit) -> void:
+func _hide_preparation_hud() -> void:
+	bottom_hud_panel.visible = false
+	order_label.visible = false
+	assault_order_button.visible = false
+	hunt_order_button.visible = false
+	formation_order_button.visible = false
+	order_description_label.visible = false
+	fight_button.visible = false
+	restart_button.visible = false
+
+func _play_combat_intro() -> void:
+	intro_scrim.visible = true
+	intro_title.visible = true
+	intro_encounter.visible = true
+	intro_title.text = "СХВАТКА"
+	intro_encounter.text = encounter.title
+	intro_scrim.modulate.a = 0.0
+	intro_title.modulate.a = 0.0
+	intro_encounter.modulate.a = 0.0
+	intro_title.scale = Vector2(0.92, 0.92)
+	intro_title.pivot_offset = intro_title.size * 0.5
+
+	var appear := create_tween()
+	appear.set_parallel(true)
+	appear.tween_property(intro_scrim, "modulate:a", 1.0, 0.16)
+	appear.tween_property(intro_title, "modulate:a", 1.0, 0.16)
+	appear.tween_property(intro_encounter, "modulate:a", 1.0, 0.22)
+	appear.tween_property(intro_title, "scale", Vector2.ONE, 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	await appear.finished
+
+	await get_tree().create_timer(0.36).timeout
+
+	var disappear := create_tween()
+	disappear.set_parallel(true)
+	disappear.tween_property(intro_scrim, "modulate:a", 0.0, 0.20)
+	disappear.tween_property(intro_title, "modulate:a", 0.0, 0.20)
+	disappear.tween_property(intro_encounter, "modulate:a", 0.0, 0.18)
+	await disappear.finished
+
+	intro_scrim.visible = false
+	intro_title.visible = false
+	intro_encounter.visible = false
+
+func _get_combat_start_wizard_line() -> String:
+	match encounter.encounter_id:
+		"graveyard_ambush":
+			return "Кладбище любит тех, кто приходит неподготовленным."
+		"gallows_volley":
+			return "Бегите к лучникам. Они это обожают."
+		"grave_bell":
+			return "Послушаем, по кому сегодня звонит колокол."
+		"bone_crush":
+			return "Толпа костей. Почти нечестно. Почти."
+		"crypt_guard":
+			return "Стражу велено не пропускать живых. Удобное правило."
+		"ossuary_gate":
+			return "За этими вратами я уже почти слышу ваши кости."
+		"death_wager":
+			return "Вы сами выбрали ставку. Не разочаруйте меня слишком быстро."
+		"bone_warden":
+			return "Надзиратель редко оставляет мне что-нибудь после себя."
+		_:
+			return "Ну же. Покажите мне, зачем я вас вернул."
+
+func _show_wizard_line(message: String, urgent: bool = false) -> void:
+	if message.is_empty():
+		return
+
+	wizard_commentary_panel.visible = true
+	wizard_commentary_label.visible = true
+	wizard_commentary_label.text = "ВОЛШЕБНИК: %s" % message
+	wizard_commentary_label.modulate = Color(1.0, 0.72, 0.52, 1.0) if urgent else Color(0.84, 0.68, 0.62, 1.0)
+	wizard_commentary_panel.modulate.a = 0.0
+	wizard_commentary_label.modulate.a = 0.0
+
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(wizard_commentary_panel, "modulate:a", 1.0, 0.16)
+	tween.tween_property(wizard_commentary_label, "modulate:a", 1.0, 0.16)
+
+func _on_unit_health_critical(unit: BattleUnit) -> void:
+	if battle_finished or wizard_critical_line_shown or unit.team != 0:
+		return
+
+	wizard_critical_line_shown = true
+	_show_wizard_line("%s уже слышит, как стол считает последнюю карту." % unit.display_name, true)
+
+func _on_unit_died(dead_unit: BattleUnit) -> void:
 	if battle_finished:
 		return
 
@@ -354,6 +465,8 @@ func _on_unit_died(_unit: BattleUnit) -> void:
 		_finish_battle(true)
 	elif heroes_alive == 0:
 		_finish_battle(false)
+	elif dead_unit.team == 0:
+		_show_wizard_line("Один уже понял правила. Остальные — следом.", true)
 
 func _finish_battle(player_won: bool) -> void:
 	battle_finished = true
@@ -369,6 +482,9 @@ func _finish_battle(player_won: bool) -> void:
 	hunt_order_button.visible = false
 	formation_order_button.visible = false
 	order_description_label.visible = false
+	bottom_hud_panel.visible = false
+	wizard_commentary_panel.visible = false
+	wizard_commentary_label.visible = false
 
 	if player_won:
 		_play_battle_audio("victory")
@@ -400,6 +516,7 @@ func _finish_battle(player_won: bool) -> void:
 	result_label.visible = true
 	result_subtitle.visible = true
 	fight_button.visible = false
+	restart_button.visible = true
 	restart_button.disabled = false
 	continue_button.visible = true
 	continue_button.disabled = false

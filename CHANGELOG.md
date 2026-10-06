@@ -60,6 +60,8 @@
 
 ### Changed
 
+- Rebuilt the battle preparation controls into one darker gothic bottom HUD with clearer pressed tactical-order states, a larger central fight button and restart hidden until results.
+- Combat-polish v2 remains presentation-only: movement positions, targeting rules, tactical orders, stats and encounter compositions are unchanged.
 - Rebuilt all four authored battle arenas from the preserved 1672×941 source renders into high-quality native 1280×720 WebP assets, removing the visible softness caused by 640×360 source upscaling. Runtime WebP byte decoding remains in place for importer robustness.
 - Replaced the visually weak procedural arena-family overlays with four dedicated authored pixel-art battle backdrops: crypt, moonlit graveyard, ossuary and Bone Warden lair. `EncounterData.arena_id` now selects the actual backdrop texture.
 - Reduced `battle_visual.gd` back to dynamic boss effects only, removing static procedural environment drawing that competed with authored art.
@@ -125,6 +127,7 @@
 
 ### Added
 
+- Added combat presentation v2: arena-aware unit tint/rim/contact shadows, short hit-stop, impact sparks, undead bone-fragment deaths, Wizard combat commentary, dynamic arena atmosphere and a cinematic `СХВАТКА` start transition.
 - Added data-driven battle arena families via `EncounterData.arena_id`: crypt, graveyard, ossuary and a dedicated Bone Warden lair.
 - Distributed all current Act 1 combat encounters across the new arena families, adding distinct lighting, silhouettes, fog/stone/bone dressing and boss-lair chains/gate while preserving the existing combat layer and authored base backdrop.
 - Added a richer cursed-table dressing pass: denser wood/runner detail, inlaid deck/discard zones, ritual marks, coins, wax seal and warmer light pools.

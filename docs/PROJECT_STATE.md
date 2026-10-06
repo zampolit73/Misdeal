@@ -103,6 +103,18 @@ The first combat-feel / audio pass is implemented in GitHub and has been confirm
 - the SFX system uses a small polyphonic voice pool and short cooldowns so swarm fights do not become an audio wall;
 - no external audio asset pack or generalized animation framework was added; authored sound/music can replace the placeholders later without changing combat rules.
 
+
+A **large combat presentation pass (v2)** is now implemented in GitHub and pending local verification. It deliberately keeps combat rules/AI unchanged while polishing the live battle layer:
+
+- every unit now gets an arena-aware ambient tint, a low-alpha team rim silhouette and a softer two-stage contact shadow so miniatures sit inside the authored background instead of reading as pasted sprites;
+- successful attacks add short combat-simulation hit-stop, directional sprite kick and three-ray impact sparks without changing actual navigation positions;
+- undead deaths now burst into lightweight bone fragments before the existing fade/drop, while heroes use a slower fall so ally defeat reads differently from enemy cleanup;
+- the lower preparation HUD is rebuilt as one coherent dark gothic panel with stronger pressed-state order buttons, a larger central **БОЙ** control and the unused restart control hidden until battle end;
+- a dedicated Wizard commentary strip now reacts to combat start, the first critically wounded hero, a surviving hero death and Bone Warden phase II;
+- dynamic arena atmosphere now sits over the authored backdrops but under units: graveyard fog/crow drift, crypt fire glow, ossuary dust/haze and Warden red haze/embers; Bone Warden runes remain intact;
+- pressing **БОЙ** now removes the preparation controls, shows a short **СХВАТКА / encounter title** transition, then starts the autobattle and Wizard commentary;
+- these changes are presentation-only: tactical orders, target selection, damage values, attack intervals, combat bounds, placement and encounter compositions are unchanged.
+
 A first **active Wizard interference** pass is now implemented in GitHub and pending local verification:
 
 - the Wizard now secretly schedules two meddling moments per Act 1 run: one during the mid tier and one during the late tier;

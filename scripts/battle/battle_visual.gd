@@ -1,8 +1,23 @@
 extends Control
 
+const ARENA_CRYPT := "crypt"
+const ARENA_GRAVEYARD := "graveyard"
+const ARENA_OSSUARY := "ossuary"
+const ARENA_WARDEN := "warden"
+
 var pulse: float = 0.0
+var redraw_cooldown: float = 0.0
 var boss_mode: bool = false
 var boss_phase_two: bool = false
+var arena_id: String = ARENA_CRYPT
+
+func set_arena_id(value: String) -> void:
+	match value:
+		ARENA_GRAVEYARD, ARENA_OSSUARY, ARENA_WARDEN:
+			arena_id = value
+		_:
+			arena_id = ARENA_CRYPT
+	queue_redraw()
 
 func set_boss_mode(enabled: bool) -> void:
 	boss_mode = enabled
@@ -18,12 +33,66 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	pulse += delta
-	if boss_mode and fmod(pulse, 0.08) < delta:
+	redraw_cooldown -= delta
+	if redraw_cooldown <= 0.0:
+		redraw_cooldown = 0.05
 		queue_redraw()
 
 func _draw() -> void:
+	match arena_id:
+		ARENA_GRAVEYARD:
+			_draw_graveyard_atmosphere()
+		ARENA_OSSUARY:
+			_draw_ossuary_atmosphere()
+		ARENA_WARDEN:
+			_draw_warden_atmosphere()
+		_:
+			_draw_crypt_atmosphere()
+
 	if boss_mode:
 		_draw_boss_runes()
+
+func _draw_crypt_atmosphere() -> void:
+	var flicker := 0.5 + 0.5 * sin(pulse * 8.0)
+	var glow := Color(1.0, 0.34, 0.08, 0.022 + flicker * 0.018)
+	for point in [Vector2(90.0, 72.0), Vector2(332.0, 64.0), Vector2(904.0, 66.0), Vector2(1146.0, 76.0)]:
+		draw_circle(point, 58.0 + flicker * 8.0, glow)
+		draw_circle(point, 22.0 + flicker * 4.0, Color(1.0, 0.54, 0.16, 0.030 + flicker * 0.024))
+
+func _draw_graveyard_atmosphere() -> void:
+	var drift := fmod(pulse * 18.0, 220.0)
+	var fog_color := Color(0.48, 0.62, 0.76, 0.035)
+	for index in range(4):
+		var x := -120.0 + drift + float(index) * 330.0
+		var y := 268.0 + float(index % 2) * 72.0
+		draw_circle(Vector2(x, y), 112.0, fog_color)
+		draw_circle(Vector2(x + 94.0, y + 14.0), 78.0, Color(fog_color.r, fog_color.g, fog_color.b, fog_color.a * 0.72))
+
+	var crow_x := fmod(pulse * 38.0, size.x + 120.0) - 60.0
+	var crow_y := 42.0 + sin(pulse * 2.4) * 10.0
+	draw_line(Vector2(crow_x - 8.0, crow_y + 3.0), Vector2(crow_x, crow_y), Color(0.02, 0.025, 0.04, 0.72), 2.0)
+	draw_line(Vector2(crow_x, crow_y), Vector2(crow_x + 8.0, crow_y + 3.0), Color(0.02, 0.025, 0.04, 0.72), 2.0)
+
+func _draw_ossuary_atmosphere() -> void:
+	for index in range(16):
+		var seed := float(index) * 73.0
+		var x := fmod(seed * 7.0 + pulse * (5.0 + float(index % 4)), maxf(1.0, size.x))
+		var y := fmod(seed * 3.0 + pulse * (12.0 + float(index % 5)), maxf(1.0, size.y))
+		var alpha := 0.045 + float(index % 3) * 0.012
+		draw_circle(Vector2(x, y), 1.2 + float(index % 2), Color(0.88, 0.76, 0.52, alpha))
+
+	var breathe := 0.5 + 0.5 * sin(pulse * 2.0)
+	draw_rect(Rect2(0.0, size.y - 110.0, size.x, 110.0), Color(0.30, 0.12, 0.035, 0.014 + breathe * 0.010))
+
+func _draw_warden_atmosphere() -> void:
+	var intensity := 0.5 + 0.5 * sin(pulse * 3.3)
+	draw_rect(Rect2(Vector2.ZERO, size), Color(0.28, 0.0, 0.01, 0.018 + intensity * 0.012))
+
+	for index in range(12):
+		var seed := float(index) * 91.0
+		var x := fmod(seed * 5.0 + pulse * (8.0 + float(index % 3)), maxf(1.0, size.x))
+		var y := size.y - fmod(seed * 2.0 + pulse * (22.0 + float(index % 4) * 3.0), size.y + 40.0)
+		draw_circle(Vector2(x, y), 1.5 + float(index % 2), Color(1.0, 0.20, 0.06, 0.10 + intensity * 0.04))
 
 func _draw_boss_runes() -> void:
 	var intensity: float = 0.5 + 0.5 * sin(pulse * 4.0)

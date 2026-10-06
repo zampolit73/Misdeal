@@ -125,6 +125,7 @@ Only after the loop is fun:
 - [x] Table hierarchy polish: dim baked background cards, compact the top HUD/commentary and move the fate counter to the table edge.
 - [ ] Coherent visual language for table/cards/miniatures;
 - [x] First lightweight combat animation/impact pass: idle motion, role-aware attack motion/tracers, hit kick and death fall/fade.
+- [x] Combat presentation v2 pass: arena-integrated unit lighting/rims/shadows, hit-stop/sparks, distinct death treatment, gothic tactical HUD, Wizard battle commentary, dynamic arena atmosphere and cinematic fight start.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.
 - [x] Skippable five-frame pixel-art comic prologue establishing the old pact and replayed-life premise;

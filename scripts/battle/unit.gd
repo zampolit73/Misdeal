@@ -22,6 +22,7 @@ const UNIT_SHEET_PARTS: Array[String] = [
 ]
 
 signal died(unit: BattleUnit)
+signal health_critical(unit: BattleUnit)
 signal boss_enraged(unit: BattleUnit)
 signal placement_rejected(unit: BattleUnit)
 
@@ -78,7 +79,12 @@ var base_sprite_scale := Vector2.ONE
 var idle_phase := 0.0
 var attack_animating := false
 var hit_kick_offset := Vector2.ZERO
+var hit_stop_time := 0.0
+var critical_announced := false
+var arena_id := "crypt"
+var arena_tint := Color.WHITE
 
+@onready var rim_sprite: Sprite2D = $RimSprite
 @onready var art_sprite: Sprite2D = $ArtSprite
 @onready var name_label: Label = $NameLabel
 @onready var health_bar: ProgressBar = $HealthBar
@@ -111,6 +117,21 @@ func configure(data: UnitData, unit_team: int, spawn_position: Vector2, name_ove
 	enrage_attack_interval_multiplier = data.enrage_attack_interval_multiplier
 	enrage_move_speed_multiplier = data.enrage_move_speed_multiplier
 
+func set_arena_presentation(value: String) -> void:
+	arena_id = value
+	match arena_id:
+		"graveyard":
+			arena_tint = Color(0.82, 0.90, 1.0, 1.0)
+		"ossuary":
+			arena_tint = Color(1.0, 0.91, 0.76, 1.0)
+		"warden":
+			arena_tint = Color(1.0, 0.80, 0.72, 1.0)
+		_:
+			arena_tint = Color(1.0, 0.94, 0.86, 1.0)
+
+	if is_node_ready():
+		_apply_arena_presentation()
+
 func set_tactical_order(order_id: String) -> void:
 	match order_id:
 		TACTICAL_ORDER_ASSAULT, TACTICAL_ORDER_HUNT, TACTICAL_ORDER_FORMATION:
@@ -127,11 +148,13 @@ func _ready() -> void:
 	name_label.text = display_name
 	name_label.visible = team == 0 or is_boss or show_enemy_name
 	art_sprite.texture = _get_art_texture()
+	rim_sprite.texture = art_sprite.texture
 	var sprite_scale: float = 1.10 if is_boss else 1.08
 	art_sprite.scale = Vector2.ONE * (sprite_scale * visual_scale)
 	base_sprite_scale = art_sprite.scale
 	idle_phase = fmod(float(get_instance_id()) * 0.731, TAU)
 	_apply_role_presentation()
+	_apply_arena_presentation()
 	_apply_health_bar_style()
 	_apply_boss_layout()
 	health_bar.max_value = max_hp
@@ -229,6 +252,26 @@ func _apply_role_presentation() -> void:
 			base_art_modulate = Color.WHITE
 
 	art_sprite.modulate = base_art_modulate
+
+func _apply_arena_presentation() -> void:
+	base_art_modulate = Color(
+		base_art_modulate.r * arena_tint.r,
+		base_art_modulate.g * arena_tint.g,
+		base_art_modulate.b * arena_tint.b,
+		1.0
+	)
+	art_sprite.modulate = base_art_modulate
+
+	var rim_color := Color(0.34, 0.66, 1.0, 0.24) if team == 0 else Color(1.0, 0.34, 0.20, 0.22)
+	if is_boss:
+		rim_color = Color(1.0, 0.42, 0.16, 0.34)
+	rim_sprite.modulate = Color(
+		rim_color.r * arena_tint.r,
+		rim_color.g * arena_tint.g,
+		rim_color.b * arena_tint.b,
+		rim_color.a
+	)
+	_sync_rim_visual()
 
 func _apply_boss_layout() -> void:
 	if not is_boss:
@@ -344,10 +387,15 @@ func _overlaps_friendly_unit() -> bool:
 
 func _process(delta: float) -> void:
 	_update_idle_visual(delta)
+	_sync_rim_visual()
 
 	if hit_flash_time > 0.0:
 		hit_flash_time = maxf(0.0, hit_flash_time - delta)
 		queue_redraw()
+
+	if hit_stop_time > 0.0:
+		hit_stop_time = maxf(0.0, hit_stop_time - delta)
+		return
 
 	if not combat_started or not alive:
 		return
@@ -618,6 +666,11 @@ func _find_most_vulnerable_friendly() -> BattleUnit:
 
 	return weakest
 
+func apply_hit_stop(duration: float) -> void:
+	if not combat_started or not alive:
+		return
+	hit_stop_time = maxf(hit_stop_time, duration)
+
 func _get_current_move_speed() -> float:
 	if team == 0 and tactical_order == TACTICAL_ORDER_ASSAULT:
 		return move_speed * ASSAULT_MOVE_MULTIPLIER
@@ -639,6 +692,15 @@ func _update_idle_visual(delta: float) -> void:
 		base_sprite_scale.y * breathe
 	)
 
+func _sync_rim_visual() -> void:
+	if rim_sprite == null or art_sprite == null:
+		return
+
+	rim_sprite.position = art_sprite.position + Vector2(0.0, 1.0)
+	rim_sprite.rotation = art_sprite.rotation
+	rim_sprite.scale = art_sprite.scale * 1.045
+	rim_sprite.visible = art_sprite.visible
+
 func _attack_target() -> void:
 	if not _is_valid_target(target):
 		target = null
@@ -649,7 +711,8 @@ func _attack_target() -> void:
 	var impact_position := primary_target.global_position
 	_play_attack_feedback(primary_target)
 	_play_combat_audio("attack")
-	primary_target.take_damage(damage, visual_role)
+	_apply_combat_hit_stop()
+	primary_target.take_damage(damage, visual_role, global_position)
 
 	if splash_radius <= 0.0 or splash_damage_multiplier <= 0.0:
 		return
@@ -665,7 +728,16 @@ func _attack_target() -> void:
 			continue
 
 		if unit.global_position.distance_to(impact_position) <= splash_radius:
-			unit.take_damage(splash_damage, visual_role)
+			unit.take_damage(splash_damage, visual_role, global_position)
+
+func _apply_combat_hit_stop() -> void:
+	var duration := 0.045
+	match _get_attack_style():
+		"ranged":
+			duration = 0.026
+		"magic":
+			duration = 0.034
+	get_tree().call_group("combat_units", "apply_hit_stop", duration)
 
 func _play_attack_feedback(primary_target: BattleUnit) -> void:
 	if attack_tween != null and attack_tween.is_valid():
@@ -731,16 +803,21 @@ func _spawn_attack_trace(primary_target: BattleUnit, color: Color, width: float)
 	trace_tween.tween_property(trace, "modulate:a", 0.0, 0.14)
 	trace_tween.tween_callback(trace.queue_free)
 
-func take_damage(amount: float, _source_role: String = "") -> void:
+func take_damage(amount: float, source_role: String = "", source_position: Vector2 = Vector2.ZERO) -> void:
 	if not alive:
 		return
 
 	_show_damage_number(amount)
-	_play_hit_feedback()
+	_play_hit_feedback(source_position)
+	_spawn_impact_sparks(source_role, source_position)
 	_play_combat_audio("hit")
 
 	hp = maxf(0.0, hp - amount)
 	health_bar.value = hp
+
+	if team == 0 and not critical_announced and hp > 0.0 and hp / maxf(1.0, max_hp) <= 0.25:
+		critical_announced = true
+		health_critical.emit(self)
 
 	if is_boss and not enraged and enrage_threshold > 0.0 and hp > 0.0:
 		if hp / max_hp <= enrage_threshold:
@@ -785,21 +862,56 @@ func _show_status_text(message: String, color: Color) -> void:
 	tween.tween_property(label, "modulate:a", 0.0, 0.55)
 	tween.chain().tween_callback(label.queue_free)
 
-func _play_hit_feedback() -> void:
+func _play_hit_feedback(source_position: Vector2 = Vector2.ZERO) -> void:
 	hit_flash_time = 0.12
 
 	if hit_pulse_tween != null and hit_pulse_tween.is_valid():
 		hit_pulse_tween.kill()
 
-	var kick_x := -3.0 if int(get_instance_id()) % 2 == 0 else 3.0
+	var kick_direction := Vector2(-1.0 if int(get_instance_id()) % 2 == 0 else 1.0, -0.18)
+	if source_position != Vector2.ZERO:
+		kick_direction = source_position.direction_to(global_position)
 	scale = Vector2(1.12, 1.12)
-	hit_kick_offset = Vector2(kick_x, -1.0)
+	hit_kick_offset = kick_direction.normalized() * 5.0 + Vector2(0.0, -1.0)
 	art_sprite.modulate = Color(1.0, 0.62, 0.52, 1.0)
 	hit_pulse_tween = create_tween()
 	hit_pulse_tween.set_parallel(true)
 	hit_pulse_tween.tween_property(self, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	hit_pulse_tween.tween_property(art_sprite, "modulate", base_art_modulate, 0.14)
 	hit_pulse_tween.tween_property(self, "hit_kick_offset", Vector2.ZERO, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+func _spawn_impact_sparks(source_role: String, source_position: Vector2) -> void:
+	if get_parent() == null:
+		return
+
+	var impact_position := position + Vector2(0.0, -18.0)
+	var direction := Vector2.RIGHT
+	if source_position != Vector2.ZERO:
+		direction = source_position.direction_to(global_position)
+	if direction.length_squared() < 0.01:
+		direction = Vector2.RIGHT
+
+	var spark_color := Color(1.0, 0.70, 0.34, 0.92)
+	if source_role == "mage" or source_role == "grave_bellkeeper":
+		spark_color = Color(0.74, 0.48, 1.0, 0.96)
+	elif source_role == "ranger" or source_role == "bone_archer":
+		spark_color = Color(1.0, 0.86, 0.52, 0.94)
+
+	for index in range(3):
+		var spark := Line2D.new()
+		spark.width = 1.8
+		spark.default_color = spark_color
+		var angle := -0.48 + float(index) * 0.48
+		var ray := direction.rotated(angle) * (10.0 + float(index) * 3.0)
+		spark.points = PackedVector2Array([impact_position, impact_position + ray])
+		spark.z_index = 2050
+		get_parent().add_child(spark)
+
+		var tween := spark.create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(spark, "position", direction * (4.0 + float(index) * 2.0), 0.16)
+		tween.tween_property(spark, "modulate:a", 0.0, 0.16)
+		tween.chain().tween_callback(spark.queue_free)
 
 func _show_damage_number(amount: float) -> void:
 	if get_parent() == null:
@@ -832,6 +944,8 @@ func _die() -> void:
 	health_bar.visible = false
 	name_label.visible = false
 	_play_combat_audio("death")
+	if team == 1:
+		_spawn_death_fragments()
 
 	if hit_pulse_tween != null and hit_pulse_tween.is_valid():
 		hit_pulse_tween.kill()
@@ -841,15 +955,41 @@ func _die() -> void:
 	hit_kick_offset = Vector2.ZERO
 
 	var death_tilt := -0.22 if int(get_instance_id()) % 2 == 0 else 0.22
+	var death_duration := 0.26 if team == 1 else 0.42
+	var death_scale := Vector2(0.58, 0.58) if team == 1 else Vector2(0.76, 0.76)
 	death_tween = create_tween()
 	death_tween.set_parallel(true)
-	death_tween.tween_property(self, "scale", Vector2(0.76, 0.76), 0.30).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	death_tween.tween_property(self, "modulate:a", 0.16, 0.30)
-	death_tween.tween_property(art_sprite, "rotation", death_tilt, 0.30)
-	death_tween.tween_property(art_sprite, "position", ART_BASE_POSITION + Vector2(0.0, 10.0), 0.30)
+	death_tween.tween_property(self, "scale", death_scale, death_duration).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	death_tween.tween_property(self, "modulate:a", 0.10 if team == 1 else 0.16, death_duration)
+	death_tween.tween_property(art_sprite, "rotation", death_tilt, death_duration)
+	death_tween.tween_property(art_sprite, "position", ART_BASE_POSITION + Vector2(0.0, 12.0), death_duration)
 
 	queue_redraw()
 	died.emit(self)
+
+func _spawn_death_fragments() -> void:
+	if get_parent() == null:
+		return
+
+	var fragment_count := 8 if is_boss else 5
+	for index in range(fragment_count):
+		var fragment := Line2D.new()
+		fragment.width = 2.6 if is_boss else 2.0
+		fragment.default_color = Color(0.82, 0.72, 0.56, 0.90)
+		fragment.points = PackedVector2Array([Vector2(-4.0, 0.0), Vector2(4.0, 0.0)])
+		fragment.position = position + Vector2(0.0, -10.0)
+		fragment.rotation = float(index) * 0.73
+		fragment.z_index = 2040
+		get_parent().add_child(fragment)
+
+		var direction := Vector2.from_angle(-2.55 + float(index) * 0.72)
+		var distance := 24.0 + float(index % 3) * 8.0
+		var tween := fragment.create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(fragment, "position", fragment.position + direction * distance + Vector2(0.0, 12.0), 0.34)
+		tween.tween_property(fragment, "rotation", fragment.rotation + 1.6, 0.34)
+		tween.tween_property(fragment, "modulate:a", 0.0, 0.34)
+		tween.chain().tween_callback(fragment.queue_free)
 
 func _play_combat_audio(event_name: String) -> void:
 	if get_tree() == null:
@@ -861,9 +1001,10 @@ func _draw() -> void:
 	var target_color := Color(0.78, 0.90, 1.0, 0.7) if team == 0 else Color(1.0, 0.58, 0.44, 0.7)
 	var ring_radius := maxf(22.0, body_radius * 1.05)
 
-	draw_set_transform(Vector2(0.0, 21.0), 0.0, Vector2(1.0, 0.34))
-	draw_circle(Vector2.ZERO, ring_radius + 1.0, Color(0.0, 0.0, 0.0, 0.45))
-	draw_arc(Vector2.ZERO, ring_radius, 0.0, TAU, 36, team_color, 2.5)
+	draw_set_transform(Vector2(0.0, 22.0), 0.0, Vector2(1.0, 0.30))
+	draw_circle(Vector2.ZERO, ring_radius + 7.0, Color(0.0, 0.0, 0.0, 0.16))
+	draw_circle(Vector2.ZERO, ring_radius + 1.0, Color(0.0, 0.0, 0.0, 0.38))
+	draw_arc(Vector2.ZERO, ring_radius, 0.0, TAU, 36, Color(team_color.r, team_color.g, team_color.b, 0.78), 2.2)
 	if is_boss:
 		var pulse := 0.5 + 0.5 * sin(float(Time.get_ticks_msec()) / 120.0)
 		var boss_color := Color(1.0, 0.20 + pulse * 0.08, 0.10, 0.98) if enraged else Color(0.95, 0.58 + pulse * 0.08, 0.16, 0.92)
