@@ -28,6 +28,7 @@
 
 ### Fixed
 
+- Fixed Godot 4.7.2 parser failure in `act_choice.gd` from Variant-returning theme-style lookups by giving the duplicated `StyleBoxFlat` values explicit types.
 - Replaced the temporary low-resolution arena rollback with repository-safe native-HD blobs for crypt, graveyard, ossuary and Warden; the earlier binary-truncation path is no longer used.
 - Removed compile-time WebP `preload()` calls from the arena backdrop selector after Godot 4.7.2 still rejected the arena textures during script parsing on a clean pull. Arena WebPs are now read as raw bytes and decoded at runtime with `Image.load_webp_from_buffer()`, matching the already-validated main-menu splash loading path and preventing importer failures from crashing startup.
 - Fixed the arena startup crash after the HD-quality pass: the crypt/graveyard/ossuary WebP blobs in GitHub were truncated to ~15 KB and could not be imported by Godot. Restored the last validated authored arena blobs and now Lanczos-resample/cache every arena family to 1280×720 at runtime with linear filtering.

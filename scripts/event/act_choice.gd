@@ -88,9 +88,9 @@ func _apply_event_theme() -> void:
 	screen_visual.set("variant", _get_event_visual_variant())
 
 	for button in [choice_a, choice_b, choice_c]:
-		var normal_source := button.get_theme_stylebox("normal")
-		if normal_source is StyleBoxFlat:
-			var normal := normal_source.duplicate() as StyleBoxFlat
+		var normal_source: StyleBoxFlat = button.get_theme_stylebox("normal") as StyleBoxFlat
+		if normal_source != null:
+			var normal: StyleBoxFlat = normal_source.duplicate() as StyleBoxFlat
 			normal.border_color = Color(accent.r, accent.g, accent.b, 0.72)
 			normal.bg_color = Color(
 				0.018 + accent.r * 0.040,
@@ -100,9 +100,9 @@ func _apply_event_theme() -> void:
 			)
 			button.add_theme_stylebox_override("normal", normal)
 
-		var hover_source := button.get_theme_stylebox("hover")
-		if hover_source is StyleBoxFlat:
-			var hover := hover_source.duplicate() as StyleBoxFlat
+		var hover_source: StyleBoxFlat = button.get_theme_stylebox("hover") as StyleBoxFlat
+		if hover_source != null:
+			var hover: StyleBoxFlat = hover_source.duplicate() as StyleBoxFlat
 			hover.border_color = accent.lightened(0.22)
 			hover.shadow_color = Color(accent.r, accent.g, accent.b, 0.34)
 			button.add_theme_stylebox_override("hover", hover)
