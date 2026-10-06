@@ -112,6 +112,7 @@ A **choice / event / reward presentation pass** is now implemented in GitHub and
 - the generic Act 1 event-choice scene now covers all current event cards with one ornate layout, larger decision cards, explicit disabled states, animated hover feedback and card-specific accent/atmosphere families (forge, chains, altar, bridge fog, candle glow and bone dressing);
 - **Whispering Well** keeps its teal identity but now shares the logo/HUD hierarchy, framed header and large card-like choices used elsewhere;
 - reward / hero-development screens now sit over the authored Wizard backdrop with a compact run HUD, stronger header frame, richer role-colored reward cards and hover feedback;
+- the hero-development state now gets a dedicated second-pass layout with Knight/Ranger/Mage portraits from the production combat atlas, explicit three-step progress diamonds, separated path/effect copy and compact tradeoff summaries for faster reading;
 - prototype/fallback event cards use the same ritual shell instead of the old isolated black panel;
 - the table's **СТАВКА ВОЛШЕБНИКА** modal is larger, darker and more ceremonial, with stronger accept/refuse hierarchy and heavier dimming behind it;
 - these are presentation-only changes: event costs, rewards, recruitment outcomes, upgrade logic, Wizard wager rules and scene transitions are unchanged.

@@ -1,9 +1,25 @@
 extends Control
 
+const UNIT_TILE_SIZE: float = 96.0
+const UNIT_SHEET_PARTS: Array[String] = [
+	"res://assets/pixel/units/combat_units_v3/part_00.txt",
+	"res://assets/pixel/units/combat_units_v3/part_01.txt",
+	"res://assets/pixel/units/combat_units_v3/part_02.txt",
+	"res://assets/pixel/units/combat_units_v3/part_03.txt",
+	"res://assets/pixel/units/combat_units_v3/part_04.txt",
+	"res://assets/pixel/units/combat_units_v3/part_05.txt",
+	"res://assets/pixel/units/combat_units_v3/part_06.txt",
+	"res://assets/pixel/units/combat_units_v3/part_07.txt",
+	"res://assets/pixel/units/combat_units_v3/part_08.txt",
+	"res://assets/pixel/units/combat_units_v3/part_09.txt",
+]
+
 @onready var title_label: Label = $Title
 @onready var summary_label: Label = $Summary
 @onready var hint_label: Label = $Hint
 @onready var run_stats_label: Label = $RunStats
+@onready var progress_marks_label: Label = $ProgressMarks
+@onready var hover_summary_label: Label = $HoverSummary
 @onready var blood_coin_button: Button = $Rewards/BloodCoin
 @onready var iron_ward_button: Button = $Rewards/IronWard
 @onready var tempered_steel_button: Button = $Rewards/TemperedSteel
@@ -11,9 +27,20 @@ extends Control
 var reward_buttons: Array[Button] = []
 var option_ids: Array[String] = ["", "", ""]
 var reward_mode := ""
+var unit_sheet_texture: Texture2D
+var upgrade_portraits: Array[TextureRect] = []
+var upgrade_role_labels: Array[Label] = []
+var upgrade_title_labels: Array[Label] = []
+var upgrade_description_labels: Array[Label] = []
+var upgrade_quick_labels: Array[Label] = []
 
 func _ready() -> void:
 	reward_buttons = [blood_coin_button, iron_ward_button, tempered_steel_button]
+	upgrade_portraits = [$Rewards/BloodCoin/Portrait, $Rewards/IronWard/Portrait, $Rewards/TemperedSteel/Portrait]
+	upgrade_role_labels = [$Rewards/BloodCoin/Role, $Rewards/IronWard/Role, $Rewards/TemperedSteel/Role]
+	upgrade_title_labels = [$Rewards/BloodCoin/UpgradeTitle, $Rewards/IronWard/UpgradeTitle, $Rewards/TemperedSteel/UpgradeTitle]
+	upgrade_description_labels = [$Rewards/BloodCoin/UpgradeDescription, $Rewards/IronWard/UpgradeDescription, $Rewards/TemperedSteel/UpgradeDescription]
+	upgrade_quick_labels = [$Rewards/BloodCoin/QuickEffect, $Rewards/IronWard/QuickEffect, $Rewards/TemperedSteel/QuickEffect]
 	for index in range(reward_buttons.size()):
 		reward_buttons[index].pressed.connect(_on_reward_button_pressed.bind(index))
 		reward_buttons[index].mouse_entered.connect(_on_reward_hover.bind(reward_buttons[index], true))
@@ -50,12 +77,14 @@ func _setup_major_upgrade_reward() -> void:
 			summary_label.text = "Первая победа этого этапа меняет одного героя. Выберите направление билда."
 			hint_label.text = "Этап %d/3. Можно снова усиливать того же героя и собирать специализацию." % tier_number
 
+	_set_progress_marks(tier_number)
 	var offers := RunState.get_major_upgrade_offer_ids()
 	_setup_upgrade_buttons(offers)
 
 func _setup_bonus_upgrade_reward() -> void:
 	reward_mode = "bonus_upgrade"
 	_reset_buttons()
+	progress_marks_label.visible = false
 	title_label.text = "ЕЩЁ ОДНА СТАВКА"
 	summary_label.text = "Вместо золота вы выторговали ещё одно изменение отряда."
 	hint_label.text = "Это дополнительное улучшение не заменяет развитие этапа."
@@ -82,15 +111,13 @@ func _setup_upgrade_buttons(offers: Array[String]) -> void:
 			continue
 
 		option_ids[index] = upgrade_id
-		button.text = "%s\n\n%s\n\n%s" % [
-			_get_role_label(upgrade.target_role),
-			upgrade.title,
-			upgrade.description
-		]
+		_set_upgrade_card(index, upgrade_id, upgrade)
 		button.add_theme_color_override("font_color", _get_role_color(upgrade.target_role))
 		button.add_theme_color_override("font_hover_color", _get_role_color(upgrade.target_role).lightened(0.16))
 
 func _setup_card_reward() -> void:
+	progress_marks_label.visible = false
+	hover_summary_label.visible = false
 	var active_card := RunState.get_active_card()
 	if active_card != null and active_card.card_id == "death_wager":
 		_setup_death_wager_reward()
@@ -263,6 +290,106 @@ func _resolve_elite_option(option_id: String) -> void:
 	var artifact := RunState.get_artifact(option_id)
 	await _finish_reward("Трофей ваш: %s." % artifact.title)
 
+func _set_progress_marks(tier_number: int) -> void:
+	var marks: Array[String] = []
+	for index in range(3):
+		marks.append("◆" if index < tier_number else "◇")
+	progress_marks_label.text = "   ".join(marks)
+	progress_marks_label.visible = true
+
+func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData) -> void:
+	var button := reward_buttons[index]
+	button.text = ""
+	var quick_effect := _get_upgrade_quick_effect(upgrade_id)
+	button.set_meta("quick_effect", quick_effect)
+	_set_upgrade_nodes_visible(index, true)
+	upgrade_portraits[index].texture = _get_role_texture(upgrade.target_role)
+	upgrade_role_labels[index].text = _get_role_label(upgrade.target_role)
+	upgrade_role_labels[index].add_theme_color_override("font_color", _get_role_color(upgrade.target_role))
+	upgrade_title_labels[index].text = upgrade.title
+	upgrade_title_labels[index].add_theme_color_override("font_color", _get_role_color(upgrade.target_role).lightened(0.12))
+	upgrade_description_labels[index].text = upgrade.description
+	upgrade_quick_labels[index].text = quick_effect
+
+func _set_upgrade_nodes_visible(index: int, visible: bool) -> void:
+	upgrade_portraits[index].visible = visible
+	upgrade_role_labels[index].visible = visible
+	upgrade_title_labels[index].visible = visible
+	upgrade_description_labels[index].visible = visible
+	upgrade_quick_labels[index].visible = visible
+
+func _get_upgrade_quick_effect(upgrade_id: String) -> String:
+	match upgrade_id:
+		"knight_iron_oath":
+			return "+65 HP  •  −15% СКОРОСТЬ АТАКИ"
+		"knight_executioner":
+			return "+45% УРОН  •  −30 HP"
+		"knight_cleaver":
+			return "45% СПЛЭШ  •  −12% СКОРОСТЬ АТАКИ"
+		"ranger_longshot":
+			return "+30% УРОН  •  +ДАЛЬНОСТЬ  •  −18% ТЕМП"
+		"ranger_arrowstorm":
+			return "+38% ТЕМП  •  −22% УРОН СТРЕЛЫ"
+		"ranger_beast_trail":
+			return "+35% ДВИЖЕНИЕ  •  +10% ТЕМП  •  −15 HP"
+		"mage_glass_heart":
+			return "+65% УРОН  •  −35 HP"
+		"mage_overload":
+			return "+35% ТЕМП  •  −12% УРОН  •  −15% ДВИЖЕНИЕ"
+		"mage_wildfire":
+			return "+ШИРОКИЙ ВЗРЫВ  •  +ПОБОЧНЫЙ УРОН  •  −18% ОСНОВНОЙ"
+		_:
+			return "ПЕРЕПИСЫВАЕТ БИЛД ГЕРОЯ"
+
+func _get_role_texture(role: String) -> Texture2D:
+	var tile := Vector2i(-1, -1)
+	match role:
+		"knight":
+			tile = Vector2i(0, 0)
+		"ranger":
+			tile = Vector2i(1, 0)
+		"mage":
+			tile = Vector2i(2, 0)
+		_:
+			return null
+
+	var sheet := _get_unit_sheet_texture()
+	if sheet == null:
+		return null
+
+	var atlas := AtlasTexture.new()
+	atlas.atlas = sheet
+	atlas.region = Rect2(
+		Vector2(float(tile.x) * UNIT_TILE_SIZE, float(tile.y) * UNIT_TILE_SIZE),
+		Vector2(UNIT_TILE_SIZE, UNIT_TILE_SIZE)
+	)
+	return atlas
+
+func _get_unit_sheet_texture() -> Texture2D:
+	if unit_sheet_texture != null:
+		return unit_sheet_texture
+
+	var encoded := ""
+	for part_path in UNIT_SHEET_PARTS:
+		if not FileAccess.file_exists(part_path):
+			push_error("Missing combat atlas part on reward screen: %s" % part_path)
+			return null
+		encoded += FileAccess.get_file_as_string(part_path).strip_edges()
+
+	var bytes := Marshalls.base64_to_raw(encoded)
+	if bytes.is_empty():
+		push_error("Reward screen could not decode combat atlas base64.")
+		return null
+
+	var image := Image.new()
+	var error := image.load_png_from_buffer(bytes)
+	if error != OK:
+		push_error("Reward screen could not decode combat atlas PNG: %s" % error_string(error))
+		return null
+
+	unit_sheet_texture = ImageTexture.create_from_image(image)
+	return unit_sheet_texture
+
 func _get_role_label(role: String) -> String:
 	match role:
 		"knight":
@@ -302,13 +429,23 @@ func _on_reward_hover(button: Button, hovered: bool) -> void:
 	var tween := button.create_tween()
 	tween.tween_property(button, "scale", Vector2(1.025, 1.025) if hovered else Vector2.ONE, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
+	if reward_mode == "major_upgrade" or reward_mode == "bonus_upgrade":
+		var summary := str(button.get_meta("quick_effect", ""))
+		hover_summary_label.text = summary
+		hover_summary_label.visible = hovered and not summary.is_empty()
+
 func _reset_buttons() -> void:
 	option_ids = ["", "", ""]
-	for button in reward_buttons:
+	hover_summary_label.visible = false
+	for index in range(reward_buttons.size()):
+		var button := reward_buttons[index]
 		button.visible = true
 		button.disabled = false
+		button.scale = Vector2.ONE
+		button.remove_meta("quick_effect")
 		button.remove_theme_color_override("font_color")
 		button.remove_theme_color_override("font_hover_color")
+		_set_upgrade_nodes_visible(index, false)
 
 func _enable_reward_buttons() -> void:
 	for button in reward_buttons:

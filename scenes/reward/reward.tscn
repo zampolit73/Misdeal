@@ -106,7 +106,7 @@ modulate = Color(0.76, 0.62, 0.64, 0.74)
 mouse_filter = 2
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0.008, 0.004, 0.010, 0.50)
+color = Color(0.006, 0.003, 0.009, 0.64)
 
 [node name="Visual" type="Control" parent="."]
 mouse_filter = 2
@@ -184,16 +184,31 @@ theme_override_font_sizes/font_size = 16
 text = "Мертвецы затихли. Волшебник предлагает ровно одну милость."
 horizontal_alignment = 1
 
+[node name="ProgressMarks" type="Label" parent="."]
+visible = false
+mouse_filter = 2
+offset_left = 460.0
+offset_top = 206.0
+offset_right = 820.0
+offset_bottom = 234.0
+theme_override_colors/font_color = Color(0.92, 0.52, 0.28, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.94)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "◆  ◇  ◇"
+horizontal_alignment = 1
+
 [node name="Rewards" type="HBoxContainer" parent="."]
 offset_left = 120.0
-offset_top = 248.0
+offset_top = 246.0
 offset_right = 1160.0
-offset_bottom = 575.0
+offset_bottom = 548.0
 theme_override_constants/separation = 34
 alignment = 1
 
 [node name="BloodCoin" type="Button" parent="Rewards"]
-custom_minimum_size = Vector2(304, 304)
+custom_minimum_size = Vector2(292, 286)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 0.74, 0.58, 1)
 theme_override_font_sizes/font_size = 16
@@ -208,8 +223,72 @@ text = "КРОВАВАЯ МОНЕТА
 Тёплая монета, которая
 не должна быть тёплой."
 
+[node name="Portrait" type="TextureRect" parent="Rewards/BloodCoin"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 96.0
+offset_top = 14.0
+offset_right = 196.0
+offset_bottom = 106.0
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Role" type="Label" parent="Rewards/BloodCoin"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 18.0
+offset_top = 108.0
+offset_right = 274.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 13
+text = "РЫЦАРЬ"
+horizontal_alignment = 1
+
+[node name="UpgradeTitle" type="Label" parent="Rewards/BloodCoin"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 134.0
+offset_right = 278.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 16
+text = "ПУТЬ"
+horizontal_alignment = 1
+
+[node name="UpgradeDescription" type="Label" parent="Rewards/BloodCoin"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 18.0
+offset_top = 164.0
+offset_right = 274.0
+offset_bottom = 236.0
+theme_override_colors/font_color = Color(0.78, 0.76, 0.74, 1)
+theme_override_font_sizes/font_size = 13
+text = "Описание."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="QuickEffect" type="Label" parent="Rewards/BloodCoin"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 244.0
+offset_right = 278.0
+offset_bottom = 274.0
+theme_override_colors/font_color = Color(0.96, 0.62, 0.34, 1)
+theme_override_font_sizes/font_size = 12
+text = "+ ЭФФЕКТ  •  − ЦЕНА"
+horizontal_alignment = 1
+
 [node name="IronWard" type="Button" parent="Rewards"]
-custom_minimum_size = Vector2(304, 304)
+custom_minimum_size = Vector2(292, 286)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78, 0.86, 0.88, 1)
 theme_override_font_sizes/font_size = 16
@@ -225,8 +304,72 @@ text = "ЖЕЛЕЗНЫЙ ОБЕРЕГ
 Металл помнит
 каждый удар."
 
+[node name="Portrait" type="TextureRect" parent="Rewards/IronWard"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 96.0
+offset_top = 14.0
+offset_right = 196.0
+offset_bottom = 106.0
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Role" type="Label" parent="Rewards/IronWard"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 18.0
+offset_top = 108.0
+offset_right = 274.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 13
+text = "РЫЦАРЬ"
+horizontal_alignment = 1
+
+[node name="UpgradeTitle" type="Label" parent="Rewards/IronWard"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 134.0
+offset_right = 278.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 16
+text = "ПУТЬ"
+horizontal_alignment = 1
+
+[node name="UpgradeDescription" type="Label" parent="Rewards/IronWard"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 18.0
+offset_top = 164.0
+offset_right = 274.0
+offset_bottom = 236.0
+theme_override_colors/font_color = Color(0.78, 0.76, 0.74, 1)
+theme_override_font_sizes/font_size = 13
+text = "Описание."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="QuickEffect" type="Label" parent="Rewards/IronWard"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 244.0
+offset_right = 278.0
+offset_bottom = 274.0
+theme_override_colors/font_color = Color(0.96, 0.62, 0.34, 1)
+theme_override_font_sizes/font_size = 12
+text = "+ ЭФФЕКТ  •  − ЦЕНА"
+horizontal_alignment = 1
+
 [node name="TemperedSteel" type="Button" parent="Rewards"]
-custom_minimum_size = Vector2(304, 304)
+custom_minimum_size = Vector2(292, 286)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 0.80, 0.54, 1)
 theme_override_font_sizes/font_size = 16
@@ -242,12 +385,91 @@ text = "ЗАКАЛЁННАЯ СТАЛЬ
 Более острый ответ
 на нечестную игру."
 
+[node name="Portrait" type="TextureRect" parent="Rewards/TemperedSteel"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 96.0
+offset_top = 14.0
+offset_right = 196.0
+offset_bottom = 106.0
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Role" type="Label" parent="Rewards/TemperedSteel"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 18.0
+offset_top = 108.0
+offset_right = 274.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 13
+text = "РЫЦАРЬ"
+horizontal_alignment = 1
+
+[node name="UpgradeTitle" type="Label" parent="Rewards/TemperedSteel"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 134.0
+offset_right = 278.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 16
+text = "ПУТЬ"
+horizontal_alignment = 1
+
+[node name="UpgradeDescription" type="Label" parent="Rewards/TemperedSteel"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 18.0
+offset_top = 164.0
+offset_right = 274.0
+offset_bottom = 236.0
+theme_override_colors/font_color = Color(0.78, 0.76, 0.74, 1)
+theme_override_font_sizes/font_size = 13
+text = "Описание."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="QuickEffect" type="Label" parent="Rewards/TemperedSteel"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 14.0
+offset_top = 244.0
+offset_right = 278.0
+offset_bottom = 274.0
+theme_override_colors/font_color = Color(0.96, 0.62, 0.34, 1)
+theme_override_font_sizes/font_size = 12
+text = "+ ЭФФЕКТ  •  − ЦЕНА"
+horizontal_alignment = 1
+
+[node name="HoverSummary" type="Label" parent="."]
+visible = false
+mouse_filter = 2
+offset_left = 230.0
+offset_top = 566.0
+offset_right = 1050.0
+offset_bottom = 598.0
+theme_override_colors/font_color = Color(0.96, 0.66, 0.38, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.94)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 14
+text = "+65 HP  •  −15% СКОРОСТЬ АТАКИ"
+horizontal_alignment = 1
+
 [node name="Hint" type="Label" parent="."]
 mouse_filter = 2
 offset_left = 230.0
-offset_top = 620.0
+offset_top = 612.0
 offset_right = 1050.0
-offset_bottom = 652.0
+offset_bottom = 644.0
 theme_override_colors/font_color = Color(0.61, 0.57, 0.54, 1)
 theme_override_font_sizes/font_size = 15
 text = "Выбранная награда сохранится после возвращения к столу."
