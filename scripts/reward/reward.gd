@@ -1,18 +1,6 @@
 extends Control
 
-const UNIT_TILE_SIZE: float = 96.0
-const UNIT_SHEET_PARTS: Array[String] = [
-	"res://assets/pixel/units/combat_units_v3/part_00.txt",
-	"res://assets/pixel/units/combat_units_v3/part_01.txt",
-	"res://assets/pixel/units/combat_units_v3/part_02.txt",
-	"res://assets/pixel/units/combat_units_v3/part_03.txt",
-	"res://assets/pixel/units/combat_units_v3/part_04.txt",
-	"res://assets/pixel/units/combat_units_v3/part_05.txt",
-	"res://assets/pixel/units/combat_units_v3/part_06.txt",
-	"res://assets/pixel/units/combat_units_v3/part_07.txt",
-	"res://assets/pixel/units/combat_units_v3/part_08.txt",
-	"res://assets/pixel/units/combat_units_v3/part_09.txt",
-]
+const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 
 @onready var title_label: Label = $Title
 @onready var summary_label: Label = $Summary
@@ -27,7 +15,6 @@ const UNIT_SHEET_PARTS: Array[String] = [
 var reward_buttons: Array[Button] = []
 var option_ids: Array[String] = ["", "", ""]
 var reward_mode := ""
-var unit_sheet_texture: Texture2D
 var upgrade_portraits: Array[TextureRect] = []
 var upgrade_role_labels: Array[Label] = []
 var upgrade_title_labels: Array[Label] = []
@@ -303,7 +290,10 @@ func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData)
 	var quick_effect := _get_upgrade_quick_effect(upgrade_id)
 	button.set_meta("quick_effect", quick_effect)
 	_set_upgrade_nodes_visible(index, true)
-	upgrade_portraits[index].texture = _get_role_texture(upgrade.target_role)
+	var approved_art: Texture2D = APPROVED_CHOICE_ART.get_upgrade_texture(upgrade_id)
+	upgrade_portraits[index].texture = approved_art
+	upgrade_portraits[index].visible = approved_art != null
+	_apply_upgrade_text_layout(index, approved_art != null)
 	upgrade_role_labels[index].text = _get_role_label(upgrade.target_role)
 	upgrade_role_labels[index].add_theme_color_override("font_color", _get_role_color(upgrade.target_role))
 	upgrade_title_labels[index].text = upgrade.title
@@ -341,54 +331,17 @@ func _get_upgrade_quick_effect(upgrade_id: String) -> String:
 		_:
 			return "ПЕРЕПИСЫВАЕТ БИЛД ГЕРОЯ"
 
-func _get_role_texture(role: String) -> Texture2D:
-	var tile := Vector2i(-1, -1)
-	match role:
-		"knight":
-			tile = Vector2i(0, 0)
-		"ranger":
-			tile = Vector2i(1, 0)
-		"mage":
-			tile = Vector2i(2, 0)
-		_:
-			return null
-
-	var sheet := _get_unit_sheet_texture()
-	if sheet == null:
-		return null
-
-	var atlas := AtlasTexture.new()
-	atlas.atlas = sheet
-	atlas.region = Rect2(
-		Vector2(float(tile.x) * UNIT_TILE_SIZE, float(tile.y) * UNIT_TILE_SIZE),
-		Vector2(UNIT_TILE_SIZE, UNIT_TILE_SIZE)
-	)
-	return atlas
-
-func _get_unit_sheet_texture() -> Texture2D:
-	if unit_sheet_texture != null:
-		return unit_sheet_texture
-
-	var encoded := ""
-	for part_path in UNIT_SHEET_PARTS:
-		if not FileAccess.file_exists(part_path):
-			push_error("Missing combat atlas part on reward screen: %s" % part_path)
-			return null
-		encoded += FileAccess.get_file_as_string(part_path).strip_edges()
-
-	var bytes := Marshalls.base64_to_raw(encoded)
-	if bytes.is_empty():
-		push_error("Reward screen could not decode combat atlas base64.")
-		return null
-
-	var image := Image.new()
-	var error := image.load_png_from_buffer(bytes)
-	if error != OK:
-		push_error("Reward screen could not decode combat atlas PNG: %s" % error_string(error))
-		return null
-
-	unit_sheet_texture = ImageTexture.create_from_image(image)
-	return unit_sheet_texture
+func _apply_upgrade_text_layout(index: int, has_approved_art: bool) -> void:
+	if has_approved_art:
+		upgrade_role_labels[index].position.y = 108.0
+		upgrade_title_labels[index].position.y = 134.0
+		upgrade_description_labels[index].position.y = 164.0
+		upgrade_quick_labels[index].position.y = 244.0
+	else:
+		upgrade_role_labels[index].position.y = 42.0
+		upgrade_title_labels[index].position.y = 72.0
+		upgrade_description_labels[index].position.y = 108.0
+		upgrade_quick_labels[index].position.y = 226.0
 
 func _get_role_label(role: String) -> String:
 	match role:

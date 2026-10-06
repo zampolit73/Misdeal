@@ -1,5 +1,7 @@
 extends Control
 
+const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
+
 @onready var title_label: Label = $Panel/Title
 @onready var type_label: Label = $Panel/Type
 @onready var description_label: Label = $Panel/Description
@@ -14,6 +16,9 @@ extends Control
 @onready var continue_button: Button = $Panel/ContinueButton
 @onready var panel: Panel = $Panel
 @onready var screen_visual: Control = $Visual
+@onready var choice_art_a: TextureRect = $Panel/Choices/ChoiceA/ChoiceArt
+@onready var choice_art_b: TextureRect = $Panel/Choices/ChoiceB/ChoiceArt
+@onready var choice_art_c: TextureRect = $Panel/Choices/ChoiceC/ChoiceArt
 
 var active_card: RunCardData
 var resolved := false
@@ -34,9 +39,50 @@ func _ready() -> void:
 	wizard_line.text = active_card.wizard_line
 	_refresh_run_labels()
 	_configure_card()
+	_apply_approved_choice_art()
 	_apply_event_theme()
 	_connect_choice_feedback()
 	_animate_screen_in()
+
+func _apply_approved_choice_art() -> void:
+	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
+	var arts: Array[TextureRect] = [choice_art_a, choice_art_b, choice_art_c]
+	var cells: Array[Vector2i] = []
+
+	match active_card.card_id:
+		"curse_forge":
+			cells = [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)]
+		"chained_prisoner":
+			if RunState.can_recruit_companion("knight"):
+				cells = [Vector2i(1, 2), Vector2i(2, 2), Vector2i(-1, -1)]
+			else:
+				cells = [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)]
+		_:
+			for art in arts:
+				art.visible = false
+			return
+
+	for index in range(buttons.size()):
+		var art := arts[index]
+		var cell := cells[index]
+		if cell.x < 0 or not buttons[index].visible:
+			art.visible = false
+			continue
+		art.texture = APPROVED_CHOICE_ART.get_cell(cell.x, cell.y)
+		art.visible = art.texture != null
+		art.modulate = Color(0.42, 0.42, 0.42, 0.72) if buttons[index].disabled else Color.WHITE
+		_apply_choice_art_margins(buttons[index])
+
+func _apply_choice_art_margins(button: Button) -> void:
+	for style_name in ["normal", "hover", "pressed", "disabled"]:
+		var source: StyleBoxFlat = button.get_theme_stylebox(style_name) as StyleBoxFlat
+		if source == null:
+			continue
+		var styled: StyleBoxFlat = source.duplicate() as StyleBoxFlat
+		styled.content_margin_top = 98.0
+		styled.content_margin_bottom = 8.0
+		button.add_theme_stylebox_override(style_name, styled)
+	button.add_theme_font_size_override("font_size", 12)
 
 func _get_event_accent() -> Color:
 	match active_card.card_id:

@@ -28,6 +28,7 @@
 
 ### Fixed
 
+- Replaced the incorrect combat-unit portraits on non-combat UI with the exact accepted screen-art crops. Hero development now uses the approved Iron Oath / Glass Heart / Executioner illustrations, and matching approved art is wired into Curse Forge and Chained Prisoner choices. Ranger paths deliberately remain text-led until matching art is approved rather than reusing unrelated battle sprites.
 - Fixed Godot 4.7.2 parser failure in `act_choice.gd` from Variant-returning theme-style lookups by giving the duplicated `StyleBoxFlat` values explicit types.
 - Replaced the temporary low-resolution arena rollback with repository-safe native-HD blobs for crypt, graveyard, ossuary and Warden; the earlier binary-truncation path is no longer used.
 - Removed compile-time WebP `preload()` calls from the arena backdrop selector after Godot 4.7.2 still rejected the arena textures during script parsing on a clean pull. Arena WebPs are now read as raw bytes and decoded at runtime with `Image.load_webp_from_buffer()`, matching the already-validated main-menu splash loading path and preventing importer failures from crashing startup.

@@ -242,6 +242,18 @@ theme_override_styles/disabled = SubResource("ChoiceDisabled")
 autowrap_mode = 2
 text = "ВЫБОР A"
 
+[node name="ChoiceArt" type="TextureRect" parent="Panel/Choices/ChoiceA"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 36.0
+offset_top = 8.0
+offset_right = 286.0
+offset_bottom = 94.0
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 5
+
 [node name="ChoiceB" type="Button" parent="Panel/Choices"]
 custom_minimum_size = Vector2(322, 204)
 layout_mode = 2
@@ -256,6 +268,18 @@ theme_override_styles/disabled = SubResource("ChoiceDisabled")
 autowrap_mode = 2
 text = "ВЫБОР B"
 
+[node name="ChoiceArt" type="TextureRect" parent="Panel/Choices/ChoiceB"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 36.0
+offset_top = 8.0
+offset_right = 286.0
+offset_bottom = 94.0
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 5
+
 [node name="ChoiceC" type="Button" parent="Panel/Choices"]
 custom_minimum_size = Vector2(322, 204)
 layout_mode = 2
@@ -269,6 +293,18 @@ theme_override_styles/pressed = SubResource("ChoiceHover")
 theme_override_styles/disabled = SubResource("ChoiceDisabled")
 autowrap_mode = 2
 text = "ВЫБОР C"
+
+[node name="ChoiceArt" type="TextureRect" parent="Panel/Choices/ChoiceC"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 36.0
+offset_top = 8.0
+offset_right = 286.0
+offset_bottom = 94.0
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Result" type="Label" parent="Panel"]
 visible = false

@@ -878,3 +878,20 @@ Individual events keep identity through accent color and restrained atmosphere (
 This pass is strictly presentational. Costs, rewards, recruitment, hero-development logic, wager terms and event resolution remain data/state driven and unchanged.
 
 Do not solve future visual inconsistency by creating one unique UI implementation per event. Prefer the shared choice shell and add only lightweight visual variants unless the event genuinely needs a different interaction.
+
+
+## D049 — Accepted screen illustrations are canonical; combat sprites are not UI-art fallbacks
+
+Date: 2026-10-06  
+Status: accepted after local visual review
+
+The first hero-development polish pass incorrectly filled the new illustration slots with portraits cropped from the production combat-unit atlas. Local review rejected that substitution because approved screen mockups already established a different authored illustration language for development and event cards.
+
+For non-combat choice screens:
+
+- use the illustrations from explicitly accepted screen mockups when an approved illustration exists;
+- store those approved illustrations in a small runtime-decoded UI atlas so the source art remains stable and repository-safe;
+- do not substitute combat-unit sprites, battle portraits or unrelated encounter art merely to avoid an empty illustration slot;
+- if a future path has no approved illustration yet, keep the presentation text-led until matching art is authored or explicitly approved.
+
+This decision affects presentation only. Upgrade stats, event branches, costs, rewards and recruitment logic remain unchanged.

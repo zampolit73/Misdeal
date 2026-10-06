@@ -127,6 +127,7 @@ Only after the loop is fun:
 - [x] First lightweight combat animation/impact pass: idle motion, role-aware attack motion/tracers, hit kick and death fall/fade.
 - [x] Combat presentation v2 pass: arena-integrated unit lighting/rims/shadows, hit-stop/sparks, distinct death treatment, gothic tactical HUD, Wizard battle commentary, dynamic arena atmosphere and cinematic fight start.
 - [x] Unify protagonist select, all Act 1 event choices, reward/upgrade screens, fallback event cards and Wizard wager modal under the approved dark-gothic ritual UI language.
+- [x] Replace temporary combat-sprite UI fallbacks with the accepted authored choice/development art for approved Development, Curse Forge and Chained Prisoner cards.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.
 - [x] Skippable five-frame pixel-art comic prologue establishing the old pact and replayed-life premise;
