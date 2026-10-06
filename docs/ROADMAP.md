@@ -111,8 +111,8 @@ Only after the loop is fun:
 - [x] Pixel battle presentation pass with atmospheric arena decor, HUD chrome and attack motion.
 - [x] Multi-arena Act 1 pass with data-driven crypt, graveyard, ossuary and Bone Warden lair families.
 - [x] Replace weak procedural arena overlays with four authored pixel-art battle backdrops selected by `arena_id`.
-- [x] Remove nearest-neighbor 2× arena presentation by caching 1280×720 Lanczos runtime textures from validated authored sources.
-- [ ] Package true native 1280×720 authored assets for crypt/graveyard/ossuary/warden without binary truncation.
+- [x] Remove nearest-neighbor 2× arena presentation.
+- [x] Package true native 1280×720 authored assets for crypt/graveyard/ossuary/warden through a repository-safe binary staging path.
 - [x] Recompose live battle UI/arena toward the approved gothic pixel mockup.
 - [x] Replace the procedural battle arena with the authored second-reference backdrop while keeping combat/UI layers live.
 - [x] Replace the core Knight/Ranger/Mage/Skeleton/Bone Archer set with pixel sprites and scale the live unit presentation accordingly.
