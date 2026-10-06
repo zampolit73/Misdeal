@@ -134,6 +134,10 @@ var wizard_wager_pending := false
 var wizard_wagers_accepted := 0
 var wizard_wagers_declined := 0
 
+var wizard_memory_counts: Dictionary = {}
+var wizard_memory_pending_event := ""
+var wizard_memory_pending_detail := ""
+
 func _ready() -> void:
 	if remaining_card_ids.is_empty() and resolved_card_ids.is_empty() and active_card_id.is_empty():
 		reset_run()
@@ -175,6 +179,9 @@ func reset_run() -> void:
 	wizard_wager_pending = false
 	wizard_wagers_accepted = 0
 	wizard_wagers_declined = 0
+	wizard_memory_counts.clear()
+	wizard_memory_pending_event = ""
+	wizard_memory_pending_detail = ""
 	remaining_card_ids.clear()
 	current_offer_ids.clear()
 	rejected_card_ids.clear()
@@ -237,6 +244,7 @@ func recruit_companion(role: String, note: String) -> bool:
 	hero_fate_notes[role] = note
 	current_major_upgrade_offer_ids.clear()
 	current_bonus_upgrade_offer_ids.clear()
+	record_wizard_memory("companion_recruited", role)
 	return true
 
 func lose_companion(role: String, note: String) -> bool:
@@ -247,6 +255,7 @@ func lose_companion(role: String, note: String) -> bool:
 	hero_fate_notes[role] = note
 	current_major_upgrade_offer_ids.clear()
 	current_bonus_upgrade_offer_ids.clear()
+	record_wizard_memory("companion_lost", role)
 	return true
 
 func get_party_hp_multiplier() -> float:
@@ -608,6 +617,8 @@ func remove_last_hero_upgrade() -> String:
 	return upgrade_id
 
 func clear_wizard_debt() -> void:
+	if wizard_debt_active:
+		record_wizard_memory("debt_cleared")
 	wizard_debt_active = false
 
 func is_major_upgrade_due_for_active_card() -> bool:
@@ -857,6 +868,7 @@ func accept_pending_wizard_wager() -> bool:
 
 	activate_wizard_debt()
 	wizard_wagers_accepted += 1
+	record_wizard_memory("wager_accept")
 	_consume_pending_wizard_wager()
 	return true
 
@@ -865,6 +877,7 @@ func decline_pending_wizard_wager() -> bool:
 		return false
 
 	wizard_wagers_declined += 1
+	record_wizard_memory("wager_decline")
 	_consume_pending_wizard_wager()
 	return true
 
@@ -968,6 +981,8 @@ func _is_combat_card_id(card_id: String) -> bool:
 
 func choose_card(card_id: String) -> bool:
 	if active_card_id == card_id:
+		if not last_battle_won:
+			record_wizard_memory("battle_retry", card_id)
 		return true
 
 	if not active_card_id.is_empty():
@@ -1040,6 +1055,104 @@ func get_wizard_wager_history_text() -> String:
 	if wizard_wagers_accepted == 0 and wizard_wagers_declined == 0:
 		return "ставок ещё не было"
 	return "принято %d • отклонено %d" % [wizard_wagers_accepted, wizard_wagers_declined]
+
+func record_wizard_memory(event_id: String, detail: String = "") -> void:
+	if event_id.is_empty():
+		return
+
+	var count := int(wizard_memory_counts.get(event_id, 0)) + 1
+	wizard_memory_counts[event_id] = count
+	wizard_memory_pending_event = event_id
+	wizard_memory_pending_detail = detail
+
+func get_wizard_memory_count(event_id: String) -> int:
+	return int(wizard_memory_counts.get(event_id, 0))
+
+func consume_wizard_memory_line() -> String:
+	if wizard_memory_pending_event.is_empty():
+		return ""
+
+	var event_id := wizard_memory_pending_event
+	var detail := wizard_memory_pending_detail
+	wizard_memory_pending_event = ""
+	wizard_memory_pending_detail = ""
+	return _build_wizard_memory_line(event_id, detail)
+
+func _build_wizard_memory_line(event_id: String, detail: String) -> String:
+	var count := get_wizard_memory_count(event_id)
+
+	match event_id:
+		"wager_accept":
+			if count > 1:
+				return "Снова согласился на мою ставку. Начинаю думать, что боль тебе нравится."
+			return "Ты принял мою ставку. Запомню эту тягу к плохим решениям."
+		"wager_decline":
+			if count > 1:
+				return "Опять отказался. Осторожность уже становится твоей любимой картой."
+			return "Ты отказался от моей ставки. Какая неожиданная привязанность к собственной шкуре."
+		"companion_recruited":
+			return _get_recruited_memory_line(detail, count)
+		"companion_lost":
+			return _get_lost_memory_line(detail, count)
+		"debt_cleared":
+			if count > 1:
+				return "Ты снова нашёл лазейку из моего долга. Они имеют привычку заканчиваться."
+			return "Сжёг мой долг вместе с картой? Хорошо. Я запомнил."
+		"battle_defeat":
+			if count > 2:
+				return "Ещё одно поражение. Странно, что упрямство до сих пор держится лучше твоего отряда."
+			if count > 1:
+				return "Ты уже знаешь этот вкус поражения. И всё равно возвращаешься."
+			return "Я видел, как ты проиграл. Не переживай — стол тоже видел."
+		"battle_retry":
+			if count > 1:
+				return "Опять за ту же карту? Упрямство — почти стратегия."
+			return "Вернулся к той же карте после поражения. Вот это я уважаю. Почти."
+		"greed":
+			if count > 1:
+				return "Снова золото. Некоторые привычки переживают даже переписанную жизнь."
+			return "Ты выбрал золото, когда мог выбрать силу. Очень человечески."
+		_:
+			return ""
+
+func _get_recruited_memory_line(role: String, count: int) -> String:
+	var role_name := _get_memory_role_name(role)
+	if count > 1:
+		return "Снова кого-то тащишь за собой. На этот раз — %s." % role_name
+	match role:
+		"knight":
+			return "Рыцаря ты всё-таки поднял. Посмотрим, не пожалеешь ли о спасённой жизни."
+		"ranger":
+			return "Следопыт снова идёт рядом. В прошлой жизни это тоже казалось хорошей идеей."
+		"mage":
+			return "Маг спасён. Любопытно, чью судьбу пришлось сдвинуть ради его."
+		_:
+			return "%s присоединился. Я запомню, кого ты решил спасти." % role_name
+
+func _get_lost_memory_line(role: String, count: int) -> String:
+	var role_name := _get_memory_role_name(role)
+	if count > 1:
+		return "Ещё одна жизнь оставлена за столом. Сегодня это %s." % role_name
+	match role:
+		"knight":
+			return "Рыцаря ты оставил позади. Не волнуйся, я напомню об этом позже."
+		"ranger":
+			return "Следопыт потерян. Быстро же ты научился переписывать чужую жизнь."
+		"mage":
+			return "Мага ты не спас. Знание, видимо, оказалось недостаточно ценным."
+		_:
+			return "%s потерян. Такие решения я особенно хорошо запоминаю." % role_name
+
+func _get_memory_role_name(role: String) -> String:
+	match role:
+		"knight":
+			return "Рыцарь"
+		"ranger":
+			return "Следопыт"
+		"mage":
+			return "Маг"
+		_:
+			return "спутник"
 
 func apply_reward(reward_id: String) -> void:
 	var multiplier := get_reward_multiplier()

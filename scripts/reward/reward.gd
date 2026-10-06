@@ -220,6 +220,7 @@ func _resolve_death_wager_option(option_id: String) -> void:
 	match option_id:
 		"gold":
 			RunState.gold += 60
+			RunState.record_wizard_memory("greed", "death_wager")
 			await _finish_reward("Ставка оплачена золотом. Волшебник явно жалеет, что предложил её.")
 		"fallback_gold":
 			RunState.gold += 50

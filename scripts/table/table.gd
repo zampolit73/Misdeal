@@ -56,7 +56,7 @@ func _toggle_squad_status() -> void:
 	squad_status = SQUAD_STATUS_SCENE.instantiate() as Control
 	add_child(squad_status)
 
-func _refresh_table() -> void:
+func _refresh_table(show_memory: bool = true) -> void:
 	selection_locked = false
 	var condition_text := RunState.get_run_condition_text()
 	stats_label.text = "%s     ЗОЛОТО %d     ОТРЯД %d/3     РАЗВИТИЕ %d     РЕЛИКВИИ %d" % [
@@ -104,6 +104,11 @@ func _refresh_table() -> void:
 		_disable_offer_buttons()
 		wizard_line.text = "Прежде чем выбирать... сыграем поинтереснее?"
 		call_deferred("_show_wizard_wager")
+	elif show_memory and not RunState.is_boss_due():
+		var memory_line := RunState.consume_wizard_memory_line()
+		if not memory_line.is_empty():
+			default_wizard_line = memory_line
+			wizard_line.text = default_wizard_line
 
 func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	var art := button.get_node("Art") as TextureRect
@@ -231,7 +236,7 @@ func _accept_wizard_wager() -> void:
 
 	wager_root.visible = false
 	selection_locked = false
-	_refresh_table()
+	_refresh_table(false)
 	default_wizard_line = "Вот и договорились. Следующий бой станет больнее. Следующая обычная добыча — вдвое слаще."
 	wizard_line.text = default_wizard_line
 
@@ -241,7 +246,7 @@ func _refuse_wizard_wager() -> void:
 
 	wager_root.visible = false
 	selection_locked = false
-	_refresh_table()
+	_refresh_table(false)
 	default_wizard_line = "Какая осторожность. Почти разочаровывает."
 	wizard_line.text = default_wizard_line
 

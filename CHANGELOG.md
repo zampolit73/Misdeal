@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Voluntary Wizard wager flow confirmed locally: wager modal, debt state and doubled ordinary loot are working acceptably.
 - First combat-feel and prototype-SFX pass confirmed locally: attack motion, hit/death response and runtime combat cues are working acceptably.
 - Complete nine-role combat sprite atlas confirmed locally after the v2 fallback preload fix.
 - Authored gothic battle backdrop confirmed locally after backdrop import/z-order fixes.
@@ -109,6 +110,8 @@
 
 ### Added
 
+- Added Wizard Memory v1: the Wizard now remembers eight behavior families across the run and can reference wagers, companion fates, debt-clearing, battle defeats/retries and greed-heavy gold choices at the table.
+- Added role-aware and repeat-aware contextual Wizard lines while keeping memory narrative-only; it does not alter stats, card odds, encounter selection or rewards.
 - Added the first voluntary Wizard wager modal at the cursed table: accept +25% enemy damage on the next combat for x2 next ordinary loot, or refuse with no mechanical penalty.
 - Scheduled up to two wager opportunities per Act 1 run, suppressed while a Wizard debt is already active; accepted/refused counts are retained for future Wizard-memory dialogue.
 - Added the Wizard's first active table cheat: two rare visible card substitutions per Act 1 run, one in the mid tier and one in the late tier.

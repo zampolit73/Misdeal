@@ -642,6 +642,7 @@ func _resolve_broken_crown(choice: String) -> void:
 			_finish("Корона садится слишком плотно. Получен артефакт: СЛОМАННАЯ КОРОНА.")
 		"break":
 			RunState.gold += 40
+			RunState.record_wizard_memory("greed", "broken_crown")
 			_finish("Корона раскалывается окончательно. В оправе спрятано 40 золота.")
 		"melt":
 			var upgrade_id := _grant_least_developed_upgrade()
@@ -724,10 +725,12 @@ func _resolve_lost_purse(choice: String) -> void:
 		"greedy":
 			RunState.gold += 35
 			RunState.party_hp_bonus -= 10.0
+			RunState.record_wizard_memory("greed", "lost_purse")
 			_finish("Мёртвые пальцы сжимаются. +35 золота, здоровье -10.")
 		"all_in":
 			RunState.gold += 55
 			RunState.party_hp_bonus -= 25.0
+			RunState.record_wizard_memory("greed", "lost_purse")
 			_finish("Кошель ваш. Кусок руки тоже. +55 золота, здоровье -25.")
 
 func _resolve_candle_seller(role: String) -> void:

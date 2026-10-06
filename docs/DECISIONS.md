@@ -696,3 +696,35 @@ Accepting reuses the existing `wizard_debt_active` mechanic rather than creating
 Refusing the wager has no mechanical punishment. The Wizard may mock the refusal, but the player must be able to distinguish an unfair personality from unreadable rules.
 
 Scheduled wager prompts are suppressed while a debt is already active and never stack. Accepted/refused counts are retained in `RunState` so later Wizard-memory dialogue can react to the player's appetite for risk.
+
+
+## D041 — Wizard Memory v1 is narrative state, not hidden gameplay state
+
+Date: 2026-10-06  
+Status: accepted for vertical-slice antagonist identity
+
+The Wizard now remembers selected player behaviors across the current run and can reference them later at the table.
+
+Version 1 tracks eight event families:
+
+- wager accepted;
+- wager refused;
+- companion recruited;
+- companion abandoned/lost;
+- Wizard debt cleared through a special escape;
+- battle defeat;
+- retrying the same active battle;
+- greed-heavy gold choices.
+
+The memory system stores compact event counts plus one pending remembered event/detail. It does not modify encounter selection, combat stats, reward values, card odds or hidden difficulty.
+
+Table dialogue priority is:
+
+1. mandatory table states and boss presentation;
+2. active Wizard meddling / wager modals;
+3. one pending memory reaction;
+4. generic progress commentary.
+
+This keeps the Wizard feeling observant without making the rules opaque. Repeated behavior may use different lines, and companion memories may reference the specific role.
+
+Do not turn this into a large branching-dialogue graph yet. Future hero-story chains may reuse the same lightweight event/count state, but gameplay consequences must remain explicit and separately modeled.

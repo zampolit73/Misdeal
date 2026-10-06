@@ -112,7 +112,7 @@ A first **active Wizard interference** pass is now implemented in GitHub and pen
 - active/retry cards and the Bone Warden boss offer are never meddled with;
 - this is intentionally theatrical offer manipulation, not hidden stat cheating or a new generalized curse system.
 
-A first **voluntary Wizard wager** layer is now implemented in GitHub and pending local verification:
+The first **voluntary Wizard wager** layer is implemented and has been confirmed locally:
 
 - the Wizard schedules up to two wager offers in Act 1: an early offer around cards 3-4 and another after card 7;
 - the wager appears as a blocking table modal before the player chooses the next card;
@@ -120,7 +120,18 @@ A first **voluntary Wizard wager** layer is now implemented in GitHub and pendin
 - refusing has no mechanical punishment; the Wizard only comments on the refusal;
 - an existing debt suppresses scheduled wager prompts so debt states never stack;
 - the existing Wizard Tithe refusal still uses the same debt mechanic, and Faceless Card can still clear it;
-- accepted/refused wager counts are stored in `RunState` for later Wizard-memory/reaction work.
+- accepted/refused wager counts are stored in `RunState`.
+
+A first **Wizard Memory v1** layer is now implemented in GitHub and pending local verification:
+
+- `RunState` records eight player-behavior memories: accepting a wager, refusing a wager, recruiting a companion, abandoning a companion, clearing Wizard debt through a special escape, losing a battle, retrying the same battle and choosing greed-heavy gold outcomes;
+- memory is narrative-only: it does not alter stats, card odds, combat rules, rewards or hidden difficulty;
+- the table consumes one pending contextual memory line when no higher-priority Wizard interaction is active;
+- priority is explicit: boss/table-critical states and active meddling/wager modals take precedence, then remembered behavior, then generic progress commentary;
+- companion memories are role-aware for Knight, Ranger and Mage;
+- repeated behavior gets different follow-up lines, so repeated wager acceptance/refusal, defeat and greed do not always repeat the same text;
+- current hooks cover companion fate resolution, voluntary wagers, Faceless Card debt-clearing, battle defeat/retry, Lost Purse greed, Broken Crown greed and Death Wager gold selection;
+- the system intentionally stores compact event/count state instead of a dialogue graph so future hero-story chains can reuse it without creating a second narrative-state architecture.
 
 ## Player-facing language
 

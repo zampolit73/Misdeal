@@ -58,6 +58,7 @@ Target loop:
 - [x] Wizard reactions and short commentary.
 - [x] First active Wizard interference: two rare visible card substitutions per Act 1 run, one mid and one late.
 - [x] First voluntary Wizard wager: accept +25% enemy damage on the next combat in exchange for x2 next ordinary loot, or refuse without mechanical punishment.
+- [x] Wizard Memory v1: narrative-only memory of wagers, companion fates, debt-clearing, defeats/retries and greed-heavy choices with contextual table reactions.
 - [x] Multiple encounter types: combat cards plus a non-combat event.
 - [ ] More party archetypes.
 - [x] Per-run protagonist class choice with solo start.

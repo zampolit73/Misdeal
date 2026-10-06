@@ -385,6 +385,7 @@ func _finish_battle(player_won: bool) -> void:
 		status_label.text = "Карта пережита. Пока что."
 		continue_button.text = "ЗАБРАТЬ НАГРАДУ"
 	else:
+		RunState.record_wizard_memory("battle_defeat", encounter.encounter_id)
 		_play_battle_audio("defeat")
 		result_label.text = "ПОРАЖЕНИЕ"
 		result_subtitle.text = "Волшебник улыбается."
