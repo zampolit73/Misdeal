@@ -7,11 +7,11 @@ const ARENA_WARDEN := "warden"
 
 const BACKDROP_SIZE := Vector2i(1280, 720)
 
-const SOURCE_TEXTURES := {
-	ARENA_CRYPT: preload("res://assets/pixel/battle/arenas/crypt.webp"),
-	ARENA_GRAVEYARD: preload("res://assets/pixel/battle/arenas/graveyard.webp"),
-	ARENA_OSSUARY: preload("res://assets/pixel/battle/arenas/ossuary.webp"),
-	ARENA_WARDEN: preload("res://assets/pixel/battle/arenas/warden.webp"),
+const ARENA_PATHS := {
+	ARENA_CRYPT: "res://assets/pixel/battle/arenas/crypt.webp",
+	ARENA_GRAVEYARD: "res://assets/pixel/battle/arenas/graveyard.webp",
+	ARENA_OSSUARY: "res://assets/pixel/battle/arenas/ossuary.webp",
+	ARENA_WARDEN: "res://assets/pixel/battle/arenas/warden.webp",
 }
 
 var arena_id := ARENA_CRYPT
@@ -35,15 +35,22 @@ func _get_runtime_texture(value: String) -> Texture2D:
 	if runtime_textures.has(value):
 		return runtime_textures[value] as Texture2D
 
-	var source := SOURCE_TEXTURES.get(value, SOURCE_TEXTURES[ARENA_CRYPT]) as Texture2D
-	if source == null:
-		push_error("Missing authored arena source for '%s'." % value)
+	var path := str(ARENA_PATHS.get(value, ARENA_PATHS[ARENA_CRYPT]))
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		push_error("Could not open authored arena WebP: %s" % path)
 		return null
 
-	var image := source.get_image()
-	if image == null or image.is_empty():
-		push_error("Failed to read authored arena source for '%s'." % value)
-		return source
+	var bytes := file.get_buffer(file.get_length())
+	if bytes.is_empty():
+		push_error("Authored arena WebP is empty: %s" % path)
+		return null
+
+	var image := Image.new()
+	var error := image.load_webp_from_buffer(bytes)
+	if error != OK:
+		push_error("Could not decode authored arena WebP '%s': %s" % [path, error_string(error)])
+		return null
 
 	if image.get_width() != BACKDROP_SIZE.x or image.get_height() != BACKDROP_SIZE.y:
 		image.resize(BACKDROP_SIZE.x, BACKDROP_SIZE.y, Image.INTERPOLATE_LANCZOS)

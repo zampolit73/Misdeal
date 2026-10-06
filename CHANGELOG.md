@@ -28,6 +28,7 @@
 
 ### Fixed
 
+- Removed compile-time WebP `preload()` calls from the arena backdrop selector after Godot 4.7.2 still rejected the arena textures during script parsing on a clean pull. Arena WebPs are now read as raw bytes and decoded at runtime with `Image.load_webp_from_buffer()`, matching the already-validated main-menu splash loading path and preventing importer failures from crashing startup.
 - Fixed the arena startup crash after the HD-quality pass: the crypt/graveyard/ossuary WebP blobs in GitHub were truncated to ~15 KB and could not be imported by Godot. Restored the last validated authored arena blobs and now Lanczos-resample/cache every arena family to 1280×720 at runtime with linear filtering.
 - Fixed the HD arena parser regression: `authored_backdrop.gd` and related notes had been serialized with literal escape sequences instead of physical line breaks, causing Godot 4.7.2 to parse the whole script as one invalid line.
 - Removed nearest-neighbor 2× arena presentation; validated authored sources are now resampled once with Lanczos to cached 1280×720 runtime textures and shown with linear filtering.
