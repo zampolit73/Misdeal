@@ -26,7 +26,10 @@
 - Combat-time unit separation confirmed working locally.
 - Pre-battle hero dragging confirmed working locally.
 
-### Fixed\n\n- Fixed the visible arena-quality regression caused by presenting 640×360 authored backdrops at 1280×720 with nearest-neighbor scaling: crypt, graveyard and ossuary now use native 1280×720 textures, backdrop filtering is linear, and the current Warden source is Lanczos-resampled once to a cached 1280×720 runtime texture.
+### Fixed
+
+- Fixed the HD arena parser regression: `authored_backdrop.gd` and related notes had been serialized with literal escape sequences instead of physical line breaks, causing Godot 4.7.2 to parse the whole script as one invalid line.
+- Fixed the visible arena-quality regression caused by presenting 640×360 authored backdrops at 1280×720 with nearest-neighbor scaling: crypt, graveyard and ossuary now use native 1280×720 textures, backdrop filtering is linear, and the current Warden source is Lanczos-resampled once to a cached 1280×720 runtime texture.
 
 - Fixed Godot 4.7.2 parser failure in the multi-arena visual layer: renamed the local ellipse helper so it no longer overrides the built-in CanvasItem `draw_ellipse(...)` method with an incompatible signature.
 - Reverted the rejected wizard-table dressing layer after local visual review: removed the procedural dealer hands, oversized side inlays, dense orange frames/runes and extra tabletop props that clashed with the authored pixel background.

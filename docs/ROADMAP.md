@@ -110,7 +110,9 @@ Only after the loop is fun:
 - [x] First pixel-art combat readability redesign with larger silhouettes, ground rings and compact HP UI.
 - [x] Pixel battle presentation pass with atmospheric arena decor, HUD chrome and attack motion.
 - [x] Multi-arena Act 1 pass with data-driven crypt, graveyard, ossuary and Bone Warden lair families.
-- [x] Replace weak procedural arena overlays with four authored pixel-art battle backdrops selected by `arena_id`.\n- [x] Upgrade crypt/graveyard/ossuary battle backdrops to native 1280×720 and remove nearest-neighbor 2× presentation.\n- [ ] Replace the temporary runtime-upscaled Warden source with a direct native 1280×720 authored asset.
+- [x] Replace weak procedural arena overlays with four authored pixel-art battle backdrops selected by `arena_id`.
+- [x] Upgrade crypt/graveyard/ossuary battle backdrops to native 1280×720 and remove nearest-neighbor 2× presentation.
+- [ ] Replace the temporary runtime-upscaled Warden source with a direct native 1280×720 authored asset.
 - [x] Recompose live battle UI/arena toward the approved gothic pixel mockup.
 - [x] Replace the procedural battle arena with the authored second-reference backdrop while keeping combat/UI layers live.
 - [x] Replace the core Knight/Ranger/Mage/Skeleton/Bone Archer set with pixel sprites and scale the live unit presentation accordingly.
