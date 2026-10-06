@@ -909,3 +909,21 @@ For **РАЗВИТИЕ ОТРЯДА**, this means the dominant illustrated path 
 For **КУЗНИЦА ПРОКЛЯТИЙ**, **ЗАКОВАННЫЙ ПЛЕННИК** and **СТАВКА ВОЛШЕБНИКА**, use their approved character/environment art and match the reference placement of header, choices and primary/secondary actions while keeping gameplay data live and data-driven.
 
 Do not bake changing run values or option text into screenshot backgrounds. Approved screenshots guide composition and authored art selection; live Godot controls remain authoritative for dynamic text, disabled states and input.
+
+
+## D051 — Missing card art uses deterministic thematic pixel illustrations; approved authored art still wins
+
+Date: 2026-10-07  
+Status: accepted
+
+The Act 1 content pool outgrew the first five table-card illustrations. Reusing those five images on unrelated cards made the table misleading, while leaving event/reward cards as flat black panels made otherwise finished screens look incomplete.
+
+For the vertical slice, missing non-combat/card UI illustrations may therefore be generated deterministically at runtime as small low-resolution pixel-art textures keyed by the actual card, upgrade or reward id. The generator is presentation-only, cached, and does not contain changing gameplay values or authoritative text.
+
+Priority remains:
+
+1. explicitly approved authored/mockup art;
+2. dedicated authored production art;
+3. deterministic thematic generated art for an otherwise missing state.
+
+Do not replace accepted **Iron Oath**, **Glass Heart**, **Executioner**, Curse Forge or Chained Prisoner reference art with generated substitutes. The generated layer exists to eliminate unrelated asset reuse and blank cards until bespoke production art is authored.

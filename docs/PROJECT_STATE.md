@@ -1,6 +1,6 @@
 # Misdeal — Project State
 
-Last updated: 2026-10-06
+Last updated: 2026-10-07
 
 ## Current status
 
@@ -29,6 +29,8 @@ The first pixel-art combat readability redesign is implemented and confirmed wor
 The second battle presentation pass is implemented and confirmed visually acceptable locally.
 
 The same pixel-art visual language is now applied across the main menu, Whispering Well event, reward screen and run-end screen.
+
+A comprehensive **card-art coverage pass** is now in `main` and pending local verification. The audit found that the 25 active run cards were visually represented by only five table-card illustrations, so many unrelated cards reused the same picture; most shared Act 1 choice cards also had no illustration layer, and six of the nine hero-development paths fell back to repeated role portraits. Missing states now receive deterministic low-resolution thematic pixel art keyed by card/upgrade/reward identity, while explicitly approved authored illustrations remain canonical. This covers non-dedicated wizard-table cards, all shared `act_choice` options, Whispering Well options, all nine development paths, ordinary loot, Death Wager and elite rewards. Mechanics and live text remain unchanged.
 
 The first two main-menu rebuilds were rejected in local visual review. A dedicated dark-fantasy pixel-art splash was then generated, explicitly selected by the user, and is now the approved production start screen. It shows the Wizard looming over a five-card cursed table, the large MISDEAL title, the line **«Проклятая партия уже разложена.»** and a painted **ВОЙТИ В ИГРУ** button. Runtime reconstructs the approved 1280×720 WebP from three repository-safe base64 chunks and renders it at native project resolution with linear filtering; the corrected Wizard card hand now has five fingers, and only a transparent native Godot button hotspot remains live over the painted CTA.
 
@@ -709,6 +711,13 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 - approved main-menu splash must decode cleanly, fill the 1280×720 viewport and show no duplicated live title/tagline layers;
 - painted **ВОЙТИ В ИГРУ** area must remain clickable/focusable through the transparent Godot hotspot and route to the comic intro;
 
+
+Locally verify the new art-coverage pass first:
+
+- **ГРЕМУЧИЙ МОСТ** and the other shared Act 1 events must show readable illustrated choice-card backgrounds instead of flat black cards;
+- **РАЗВИТИЕ ОТРЯДА** must show distinct art for all Ranger/Knight/Mage paths; accepted **ЖЕЛЕЗНАЯ КЛЯТВА**, **СТЕКЛЯННОЕ СЕРДЦЕ** and **ПАЛАЧ** art must remain unchanged;
+- non-dedicated table cards such as **КОСТЯНАЯ ДАВКА**, **СТРАЖ СКЛЕПА**, **КРОВАВАЯ КНИГА** and **ГРЕМУЧИЙ МОСТ** must no longer reuse unrelated five-card placeholder art;
+- Whispering Well, ordinary loot, Death Wager and elite reward cards must have visible thematic backgrounds without hurting text readability.
 
 Locally verify the new hard-roguelike party flow end to end:
 

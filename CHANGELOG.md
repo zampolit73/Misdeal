@@ -28,7 +28,8 @@
 
 ### Fixed
 
-- Replaced the incorrect combat-unit portraits on non-combat UI with the exact accepted screen-art crops. Hero development now uses the approved Iron Oath / Glass Heart / Executioner illustrations, and matching approved art is wired into Curse Forge and Chained Prisoner choices. Ranger paths deliberately remain text-led until matching art is approved rather than reusing unrelated battle sprites.
+- Filled the remaining card-art holes across the active vertical slice: non-dedicated table cards now get card-specific thematic pixel art; shared Act 1 event choices and Whispering Well options have illustrated backgrounds; all nine hero-development paths have distinct art; ordinary loot, Death Wager and elite rewards have full-card thematic backgrounds.
+- Replaced the incorrect combat-unit portraits on non-combat UI with the exact accepted screen-art crops. Hero development still preserves the approved Iron Oath / Glass Heart / Executioner illustrations, and matching approved art remains wired into Curse Forge and Chained Prisoner choices; missing paths now use dedicated thematic illustrations instead of unrelated role/combat fallbacks.
 - Fixed Godot 4.7.2 parser failure in `act_choice.gd` from Variant-returning theme-style lookups by giving the duplicated `StyleBoxFlat` values explicit types.
 - Replaced the temporary low-resolution arena rollback with repository-safe native-HD blobs for crypt, graveyard, ossuary and Warden; the earlier binary-truncation path is no longer used.
 - Removed compile-time WebP `preload()` calls from the arena backdrop selector after Godot 4.7.2 still rejected the arena textures during script parsing on a clean pull. Arena WebPs are now read as raw bytes and decoded at runtime with `Image.load_webp_from_buffer()`, matching the already-validated main-menu splash loading path and preventing importer failures from crashing startup.
@@ -64,7 +65,7 @@
 
 - Reworked the four user-approved reference screens against the actual screenshots: hero development now removes the invented diamond/quick-stat chrome and uses taller illustrated cards with in-card choose bars; Curse Forge and Chained Prisoner now use dedicated absolute compositions around their approved character art; the Wizard wager is enlarged and reveals more of the cursed table behind it.
 - Re-aligned **РАЗВИТИЕ ОТРЯДА**, **КУЗНИЦА ПРОКЛЯТИЙ**, **ЗАКОВАННЫЙ ПЛЕННИК** and **СТАВКА ВОЛШЕБНИКА** to the approved mockup compositions: taller illustrated cards, dominant art windows, in-card choose bars, stronger header framing and a larger ritual wager modal.
-- Hero-development cards now use approved art when available and a role-specific art fallback only for upgrade paths that do not yet have a dedicated approved illustration; combat-atlas sprites are not used on this screen.
+- Hero-development cards now use approved art when available and a unique upgrade-specific thematic illustration for paths without dedicated approved art; combat-atlas sprites and repeated role portraits are not used as normal fallbacks on this screen.
 - Polished **РАЗВИТИЕ ОТРЯДА** beyond the shared shell: upgrade cards now show live hero portraits, separate role/path/description regions, concise tradeoff summaries, three-step fate markers, stronger backdrop suppression and tighter card proportions.
 - Reworked reward/development screens around the authored Wizard backdrop with a compact run HUD, stronger role-card presentation and hover feedback; reworked the Wizard wager into a larger ceremonial modal with clearer accept/refuse hierarchy.
 - Restyled protagonist selection and fallback event screens to match the same approved Misdeal table language instead of isolated flat-black prototype panels.
