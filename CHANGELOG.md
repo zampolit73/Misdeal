@@ -54,6 +54,8 @@
 
 ### Changed
 
+- Replaced the visually weak procedural arena-family overlays with four dedicated authored pixel-art battle backdrops: crypt, moonlit graveyard, ossuary and Bone Warden lair. `EncounterData.arena_id` now selects the actual backdrop texture.
+- Reduced `battle_visual.gd` back to dynamic boss effects only, removing static procedural environment drawing that competed with authored art.
 - Refined wizard-table hierarchy after screenshot review: added a subtle lower-table veil over the baked background-card row, compacted/lightened the stats and Wizard-commentary chrome, quieted the squad button and moved the fate progress to a tiny table-edge counter/marker row.
 - Replaced the rejected live/table-art main-menu composition with the user-approved dedicated main-menu pixel splash: Wizard, five-card table, MISDEAL title and painted **ВОЙТИ В ИГРУ** CTA.
 - Upgraded the production main-menu splash from the 640×360 fallback to a native 1280×720 WebP reconstructed from three repository-safe chunks and rendered with linear filtering; only a transparent native Godot hotspot is layered over the painted CTA.

@@ -817,3 +817,19 @@ The family layer is presentation-only and draws underneath live units. It does n
 For the vertical slice, all families reuse the validated authored 1280×720 battle backdrop as a common art foundation and add restrained family-specific staging. This is deliberate: visual variety without multiplying fragile binary backdrop assets before local evaluation.
 
 Do not create one bespoke arena implementation per card. New combat encounters should normally select an existing arena family; add a new family only when it represents a materially different location/identity.
+
+
+## D046 — Arena identity comes from authored backdrops; procedural drawing is limited to dynamic effects
+
+Date: 2026-10-06  
+Status: accepted after local screenshot review
+
+The D045 data-driven `arena_id` architecture is retained, but its first procedural visual implementation is superseded.
+
+Local screenshots showed that small procedural silhouettes, fog, bone piles and tint overlays did not materially change the location because the shared authored throne-room image remained visually dominant. Continuing to add procedural decoration would repeat the table-art mistake documented in D043/D044.
+
+Act 1 therefore uses four authored pixel-art backdrops selected by `EncounterData.arena_id`: crypt, graveyard, ossuary and warden.
+
+The backdrops share the same combat-floor composition so unit positions and tactical readability remain stable, but each location has a clearly different silhouette, palette and environmental identity.
+
+Production textures are stored as compact 640×360 WebP assets and displayed at 2× nearest scale in the 1280×720 battle scene. Procedural `battle_visual.gd` drawing is now reserved for genuinely dynamic effects such as the Bone Warden phase rune, not for painting static environments over another background.

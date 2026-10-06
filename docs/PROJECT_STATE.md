@@ -179,6 +179,15 @@ A first **multi-arena battle pass** is now implemented in GitHub and pending loc
 - current mapping: Bone Patrol/Crypt Guard -> crypt; Graveyard Ambush/Gallows Volley/Grave Bell -> graveyard; Bone Crush/Ossuary Gate/Death Wager -> ossuary; Bone Warden -> warden.
 - the initial Godot 4.7.2 parser conflict with the built-in `CanvasItem.draw_ellipse()` name was fixed by renaming the local arena ellipse helper; multi-arena visuals remain pending local verification.
 
+- local screenshot review showed the procedural family dressing was still visually dominated by the shared throne-room backdrop, so that visual implementation has been superseded by four authored arena backdrops;
+- **crypt** now uses a dedicated warm candlelit crypt with arches, sarcophagi and a clear central combat floor;
+- **graveyard** uses a separate moonlit exterior cemetery with tombstones, dead trees, iron fencing and cold fog;
+- **ossuary** uses a skull-and-bone cathedral with bone columns, red cloth and candlelight;
+- **warden** uses a dedicated red-lit cursed throne/lair with chains and a stronger boss silhouette;
+- authored arena textures are stored as compact 640×360 WebP assets and scaled 2× with nearest filtering into the existing 1280×720 battle scene;
+- `arena_id` remains the source of truth for backdrop selection; encounter mappings and combat rules are unchanged;
+- static procedural arena drawing has been removed; `battle_visual.gd` is now reserved for the dynamic Bone Warden rune/phase effect only.
+
 ## Player-facing language
 
 All player-facing UI text, card text, reward text, wizard lines and unit display names are Russian.

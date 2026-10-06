@@ -13,6 +13,7 @@ const TACTICAL_ORDER_FORMATION := "formation"
 @onready var title_label: Label = $Title
 @onready var deal_label: Label = $DealLabel
 @onready var enemy_label: Label = $EnemyLabel
+@onready var battle_backdrop: TextureRect = $BattleBackdrop
 @onready var arena_visual: Control = $Arena
 @onready var combat_audio: Node = $CombatAudio
 @onready var units_layer: Node2D = $UnitsLayer
@@ -56,8 +57,8 @@ func _ready() -> void:
 	continue_button.visible = false
 	continue_button.disabled = true
 	encounter = _load_selected_encounter()
-	if arena_visual.has_method("set_arena_id"):
-		arena_visual.call("set_arena_id", encounter.arena_id)
+	if battle_backdrop.has_method("set_arena_id"):
+		battle_backdrop.call("set_arena_id", encounter.arena_id)
 	if arena_visual.has_method("set_boss_mode"):
 		arena_visual.call("set_boss_mode", _is_boss_encounter())
 	title_label.text = "MISDEAL — %s" % encounter.title
