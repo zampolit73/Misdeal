@@ -71,7 +71,7 @@ func _setup_major_upgrade_reward() -> void:
 			summary_label.text = "Первая победа этого этапа меняет одного героя. Выберите направление билда."
 			hint_label.text = "Этап %d/3. Можно снова усиливать того же героя и собирать специализацию." % tier_number
 
-	_set_progress_marks(tier_number)
+	progress_marks_label.visible = false
 	var offers := RunState.get_major_upgrade_offer_ids()
 	_setup_upgrade_buttons(offers)
 
@@ -294,15 +294,13 @@ func _set_progress_marks(tier_number: int) -> void:
 func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData) -> void:
 	var button := reward_buttons[index]
 	button.text = ""
-	var quick_effect := _get_upgrade_quick_effect(upgrade_id)
-	button.set_meta("quick_effect", quick_effect)
 	_set_upgrade_nodes_visible(index, true)
 	var approved_art: Texture2D = APPROVED_CHOICE_ART.get_upgrade_texture(upgrade_id)
 	var has_dedicated_art := approved_art != null
 	if approved_art == null:
 		approved_art = ROLE_FALLBACK_ART.get(upgrade.target_role) as Texture2D
 	upgrade_portraits[index].texture = approved_art
-	upgrade_portraits[index].stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED if has_dedicated_art else TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	upgrade_portraits[index].stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	upgrade_portraits[index].visible = approved_art != null
 	upgrade_choose_bars[index].visible = true
 	_apply_upgrade_text_layout(index, approved_art != null)
@@ -311,14 +309,14 @@ func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData)
 	upgrade_title_labels[index].text = upgrade.title
 	upgrade_title_labels[index].add_theme_color_override("font_color", _get_role_color(upgrade.target_role).lightened(0.12))
 	upgrade_description_labels[index].text = upgrade.description
-	upgrade_quick_labels[index].text = quick_effect
+	upgrade_quick_labels[index].visible = false
 
 func _set_upgrade_nodes_visible(index: int, visible: bool) -> void:
 	upgrade_portraits[index].visible = visible
 	upgrade_role_labels[index].visible = visible
 	upgrade_title_labels[index].visible = visible
 	upgrade_description_labels[index].visible = visible
-	upgrade_quick_labels[index].visible = visible
+	upgrade_quick_labels[index].visible = false
 	upgrade_choose_bars[index].visible = visible
 
 func _get_upgrade_quick_effect(upgrade_id: String) -> String:
@@ -345,16 +343,9 @@ func _get_upgrade_quick_effect(upgrade_id: String) -> String:
 			return "ПЕРЕПИСЫВАЕТ БИЛД ГЕРОЯ"
 
 func _apply_upgrade_text_layout(index: int, has_approved_art: bool) -> void:
-	if has_approved_art:
-		upgrade_role_labels[index].position.y = 178.0
-		upgrade_title_labels[index].position.y = 204.0
-		upgrade_description_labels[index].position.y = 240.0
-		upgrade_quick_labels[index].position.y = 312.0
-	else:
-		upgrade_role_labels[index].position.y = 72.0
-		upgrade_title_labels[index].position.y = 104.0
-		upgrade_description_labels[index].position.y = 146.0
-		upgrade_quick_labels[index].position.y = 300.0
+	upgrade_role_labels[index].position.y = 196.0
+	upgrade_title_labels[index].position.y = 224.0
+	upgrade_description_labels[index].position.y = 260.0
 
 func _get_role_label(role: String) -> String:
 	match role:

@@ -895,3 +895,17 @@ For non-combat choice screens:
 - if a future path has no approved illustration yet, keep the presentation text-led until matching art is authored or explicitly approved.
 
 This decision affects presentation only. Upgrade stats, event branches, costs, rewards and recruitment logic remain unchanged.
+
+
+## D050 — Approved screen mockups are layout references, not loose mood boards
+
+Date: 2026-10-07  
+Status: accepted after screenshot correction
+
+When the user provides an approved full-screen mockup for a Misdeal UI state, implementation should preserve the mockup's composition and hierarchy rather than adding new informational chrome that merely fits the general theme.
+
+For **РАЗВИТИЕ ОТРЯДА**, this means the dominant illustrated path cards, in-card choose bars and bottom stage sentence are canonical; the extra progress-diamond rail and duplicate quick-stat strip added in an intermediate implementation are not.
+
+For **КУЗНИЦА ПРОКЛЯТИЙ**, **ЗАКОВАННЫЙ ПЛЕННИК** and **СТАВКА ВОЛШЕБНИКА**, use their approved character/environment art and match the reference placement of header, choices and primary/secondary actions while keeping gameplay data live and data-driven.
+
+Do not bake changing run values or option text into screenshot backgrounds. Approved screenshots guide composition and authored art selection; live Godot controls remain authoritative for dynamic text, disabled states and input.

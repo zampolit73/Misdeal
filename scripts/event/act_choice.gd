@@ -19,6 +19,7 @@ const APPROVED_EVENT_DECOR := preload("res://scripts/ui/approved_event_decor.gd"
 @onready var screen_visual: Control = $Visual
 @onready var backdrop: TextureRect = $WizardBackdrop
 @onready var event_decor: TextureRect = $EventDecor
+@onready var feature_header: Panel = $FeatureHeader
 @onready var choice_art_a: TextureRect = $Panel/Choices/ChoiceA/ChoiceArt
 @onready var choice_art_b: TextureRect = $Panel/Choices/ChoiceB/ChoiceArt
 @onready var choice_art_c: TextureRect = $Panel/Choices/ChoiceC/ChoiceArt
@@ -57,10 +58,7 @@ func _apply_approved_choice_art() -> void:
 		"curse_forge":
 			cells = [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)]
 		"chained_prisoner":
-			if RunState.can_recruit_companion("knight"):
-				cells = [Vector2i(1, 2), Vector2i(2, 2), Vector2i(-1, -1)]
-			else:
-				cells = [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)]
+			cells = [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)]
 		_:
 			for art in arts:
 				art.visible = false
@@ -92,27 +90,38 @@ func _apply_event_layout() -> void:
 	event_decor.visible = false
 	event_decor.texture = null
 	event_decor.modulate = Color.WHITE
+	feature_header.visible = false
+	_restore_generic_panel_shell()
 
 	match active_card.card_id:
 		"curse_forge":
-			backdrop.modulate = Color(0.56, 0.32, 0.28, 0.56)
+			_apply_feature_panel_shell()
+			backdrop.modulate = Color(0.44, 0.24, 0.20, 0.48)
 			event_decor.texture = APPROVED_EVENT_DECOR.get_forge_texture()
 			event_decor.visible = event_decor.texture != null
-			event_decor.position = Vector2(0.0, 88.0)
-			event_decor.size = Vector2(515.0, 360.0)
-			event_decor.modulate = Color(1.0, 0.92, 0.84, 0.98)
-			panel.position = Vector2(330.0, 92.0)
-			panel.size = Vector2(830.0, 596.0)
+			event_decor.position = Vector2(0.0, 64.0)
+			event_decor.size = Vector2(500.0, 430.0)
+			event_decor.modulate = Color(1.0, 0.92, 0.82, 1.0)
+			panel.position = Vector2.ZERO
+			panel.size = Vector2(1280.0, 720.0)
+			feature_header.visible = true
+			feature_header.position = Vector2(350.0, 84.0)
+			feature_header.size = Vector2(800.0, 220.0)
+			_apply_forge_reference_layout()
 		"chained_prisoner":
-			backdrop.modulate = Color(0.42, 0.34, 0.34, 0.50)
+			_apply_feature_panel_shell()
+			backdrop.modulate = Color(0.34, 0.28, 0.28, 0.42)
 			event_decor.texture = APPROVED_EVENT_DECOR.get_prisoner_texture()
 			event_decor.visible = event_decor.texture != null
-			event_decor.position = Vector2(22.0, 24.0)
-			event_decor.size = Vector2(600.0, 344.0)
-			event_decor.modulate = Color(0.94, 0.90, 0.86, 0.98)
-			panel.position = Vector2(110.0, 245.0)
-			panel.size = Vector2(1060.0, 445.0)
-			_apply_prisoner_compact_layout()
+			event_decor.position = Vector2(0.0, 18.0)
+			event_decor.size = Vector2(640.0, 360.0)
+			event_decor.modulate = Color(0.96, 0.91, 0.84, 1.0)
+			panel.position = Vector2.ZERO
+			panel.size = Vector2(1280.0, 720.0)
+			feature_header.visible = true
+			feature_header.position = Vector2(180.0, 250.0)
+			feature_header.size = Vector2(920.0, 252.0)
+			_apply_prisoner_reference_layout()
 		_:
 			backdrop.modulate = Color(0.82, 0.68, 0.66, 0.88)
 
@@ -186,17 +195,83 @@ func _apply_event_theme() -> void:
 			button.add_theme_stylebox_override("hover", hover)
 			button.add_theme_stylebox_override("pressed", hover)
 
-func _apply_prisoner_compact_layout() -> void:
-	title_label.position.y = 18.0
-	type_label.position.y = 58.0
-	description_label.position.y = 88.0
-	wizard_line.position.y = 136.0
-	gold_label.position.y = 184.0
-	artifacts_label.position.y = 184.0
-	$Panel/Choices.position.y = 220.0
-	result_label.position.y = 366.0
-	leave_button.position.y = 388.0
-	continue_button.position.y = 388.0
+func _restore_generic_panel_shell() -> void:
+	var style := panel.get_theme_stylebox("panel") as StyleBoxFlat
+	if style != null:
+		var restored := style.duplicate() as StyleBoxFlat
+		restored.bg_color = Color(0.024, 0.012, 0.018, 0.92)
+		restored.border_color = Color(0.62, 0.29, 0.18, 0.95)
+		panel.add_theme_stylebox_override("panel", restored)
+
+func _apply_feature_panel_shell() -> void:
+	var style := panel.get_theme_stylebox("panel") as StyleBoxFlat
+	if style != null:
+		var transparent := style.duplicate() as StyleBoxFlat
+		transparent.bg_color = Color(0, 0, 0, 0)
+		transparent.border_color = Color(0, 0, 0, 0)
+		transparent.shadow_color = Color(0, 0, 0, 0)
+		panel.add_theme_stylebox_override("panel", transparent)
+
+func _apply_forge_reference_layout() -> void:
+	title_label.position = Vector2(390.0, 108.0)
+	title_label.size = Vector2(720.0, 46.0)
+	type_label.position = Vector2(390.0, 160.0)
+	type_label.size = Vector2(720.0, 24.0)
+	description_label.position = Vector2(420.0, 194.0)
+	description_label.size = Vector2(660.0, 46.0)
+	wizard_line.position = Vector2(420.0, 244.0)
+	wizard_line.size = Vector2(660.0, 36.0)
+	gold_label.position = Vector2(172.0, 332.0)
+	artifacts_label.position = Vector2(700.0, 332.0)
+	var choices := $Panel/Choices as HBoxContainer
+	choices.position = Vector2(178.0, 382.0)
+	choices.size = Vector2(924.0, 224.0)
+	for button in [choice_a, choice_b, choice_c]:
+		button.custom_minimum_size = Vector2(288.0, 220.0)
+		_resize_choice_art(button, 112.0)
+	result_label.position = Vector2(260.0, 612.0)
+	leave_button.position = Vector2(520.0, 642.0)
+	leave_button.size = Vector2(240.0, 52.0)
+	continue_button.position = Vector2(520.0, 642.0)
+	continue_button.size = Vector2(240.0, 52.0)
+
+func _apply_prisoner_reference_layout() -> void:
+	title_label.position = Vector2(250.0, 270.0)
+	title_label.size = Vector2(780.0, 44.0)
+	type_label.position = Vector2(250.0, 316.0)
+	type_label.size = Vector2(780.0, 22.0)
+	description_label.position = Vector2(300.0, 346.0)
+	description_label.size = Vector2(680.0, 42.0)
+	wizard_line.position = Vector2(300.0, 390.0)
+	wizard_line.size = Vector2(680.0, 34.0)
+	gold_label.position = Vector2(210.0, 430.0)
+	artifacts_label.position = Vector2(690.0, 430.0)
+	var choices := $Panel/Choices as HBoxContainer
+	choices.position = Vector2(192.0, 462.0)
+	choices.size = Vector2(896.0, 172.0)
+	for button in [choice_a, choice_b, choice_c]:
+		button.custom_minimum_size = Vector2(285.0, 168.0)
+		_resize_choice_art(button, 70.0)
+	result_label.position = Vector2(260.0, 638.0)
+	leave_button.position = Vector2(520.0, 662.0)
+	leave_button.size = Vector2(240.0, 44.0)
+	continue_button.position = Vector2(520.0, 662.0)
+	continue_button.size = Vector2(240.0, 44.0)
+
+func _resize_choice_art(button: Button, art_height: float) -> void:
+	var art := button.get_node("ChoiceArt") as TextureRect
+	if art == null:
+		return
+	art.position = Vector2(10.0, 8.0)
+	art.size = Vector2(button.custom_minimum_size.x - 20.0, art_height)
+	for style_name in ["normal", "hover", "pressed", "disabled"]:
+		var source := button.get_theme_stylebox(style_name) as StyleBoxFlat
+		if source == null:
+			continue
+		var styled := source.duplicate() as StyleBoxFlat
+		styled.content_margin_top = art_height + 18.0
+		styled.content_margin_bottom = 8.0
+		button.add_theme_stylebox_override(style_name, styled)
 
 func _connect_choice_feedback() -> void:
 	for button in [choice_a, choice_b, choice_c]:

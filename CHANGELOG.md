@@ -62,6 +62,7 @@
 
 ### Changed
 
+- Reworked the four user-approved reference screens against the actual screenshots: hero development now removes the invented diamond/quick-stat chrome and uses taller illustrated cards with in-card choose bars; Curse Forge and Chained Prisoner now use dedicated absolute compositions around their approved character art; the Wizard wager is enlarged and reveals more of the cursed table behind it.
 - Re-aligned **РАЗВИТИЕ ОТРЯДА**, **КУЗНИЦА ПРОКЛЯТИЙ**, **ЗАКОВАННЫЙ ПЛЕННИК** and **СТАВКА ВОЛШЕБНИКА** to the approved mockup compositions: taller illustrated cards, dominant art windows, in-card choose bars, stronger header framing and a larger ritual wager modal.
 - Hero-development cards now use approved art when available and a role-specific art fallback only for upgrade paths that do not yet have a dedicated approved illustration; combat-atlas sprites are not used on this screen.
 - Polished **РАЗВИТИЕ ОТРЯДА** beyond the shared shell: upgrade cards now show live hero portraits, separate role/path/description regions, concise tradeoff summaries, three-step fate markers, stronger backdrop suppression and tighter card proportions.
