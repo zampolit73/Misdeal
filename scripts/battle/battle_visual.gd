@@ -208,7 +208,7 @@ func _draw_bone_arch(origin: Vector2, scale_value: float) -> void:
 func _draw_bone_pile(center: Vector2, scale_value: float) -> void:
 	var bone := Color(0.64, 0.52, 0.34, 0.18)
 	var shadow := Color(0.025, 0.018, 0.017, 0.34)
-	draw_ellipse(center + Vector2(0.0, 18.0), Vector2(72.0, 22.0) * scale_value, shadow)
+	_draw_ellipse_shape(center + Vector2(0.0, 18.0), Vector2(72.0, 22.0) * scale_value, shadow)
 	for index in range(7):
 		var angle := -0.8 + float(index) * 0.27
 		var start := center + Vector2(-46.0 + float(index) * 14.0, 4.0 + float(index % 2) * 8.0) * scale_value
@@ -216,7 +216,7 @@ func _draw_bone_pile(center: Vector2, scale_value: float) -> void:
 		draw_line(start, start + direction * 42.0 * scale_value, bone, 4.0 * scale_value)
 		draw_circle(start, 3.0 * scale_value, bone)
 
-func draw_ellipse(center: Vector2, radii: Vector2, color: Color) -> void:
+func _draw_ellipse_shape(center: Vector2, radii: Vector2, color: Color) -> void:
 	var points := PackedVector2Array()
 	for index in range(24):
 		var angle := TAU * float(index) / 24.0

@@ -28,6 +28,7 @@
 
 ### Fixed
 
+- Fixed Godot 4.7.2 parser failure in the multi-arena visual layer: renamed the local ellipse helper so it no longer overrides the built-in CanvasItem `draw_ellipse(...)` method with an incompatible signature.
 - Reverted the rejected wizard-table dressing layer after local visual review: removed the procedural dealer hands, oversized side inlays, dense orange frames/runes and extra tabletop props that clashed with the authored pixel background.
 - Rebalanced the table presentation around the live cards: small deck/discard stacks and a low-contrast fate track remain, while deal/hover/choose/discard/substitution animations are preserved.
 - Moved the victory/defeat result UI into a dedicated high-layer `CanvasLayer` with a dim scrim so combat-unit sprites, names and HP bars can no longer render over the result panel; the modal is also positioned higher and tactical-order controls hide on battle end.
