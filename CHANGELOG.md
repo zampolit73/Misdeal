@@ -134,6 +134,7 @@
 
 ### Added
 
+- Added runtime-decoded approved event character decor for **Curse Forge** and **Chained Prisoner**, bringing the blacksmith and prisoner/environment silhouettes from the approved mockups into the live dynamic event screens without baking gameplay text or values into the background.
 - Added a unified dark-gothic ritual presentation layer for non-combat choices: protagonist select, all generic Act 1 event cards, Whispering Well, reward/hero-development screens, prototype/fallback events and the Wizard wager modal now share the same visual hierarchy, framed choices and restrained motion.
 - Added event-specific atmosphere variants to the generic event shell (forge sparks, chains, altar rings, bridge fog, candle glow and bone dressing) without changing event mechanics.
 - Added combat presentation v2: arena-aware unit tint/rim/contact shadows, short hit-stop, impact sparks, undead bone-fragment deaths, Wizard combat commentary, dynamic arena atmosphere and a cinematic `СХВАТКА` start transition.

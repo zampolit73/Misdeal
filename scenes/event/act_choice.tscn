@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" path="res://assets/art/table_background.webp" id="5_table"]
 
 [sub_resource type="StyleBoxFlat" id="PanelStyle"]
-bg_color = Color(0.024, 0.012, 0.018, 0.95)
+bg_color = Color(0.024, 0.012, 0.018, 0.92)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -113,6 +113,18 @@ mouse_filter = 2
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.006, 0.003, 0.008, 0.54)
+
+[node name="EventDecor" type="TextureRect" parent="."]
+visible = false
+mouse_filter = 2
+offset_left = 0.0
+offset_top = 92.0
+offset_right = 520.0
+offset_bottom = 460.0
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 6
+modulate = Color(1, 1, 1, 0.92)
 
 [node name="Visual" type="Control" parent="."]
 mouse_filter = 2

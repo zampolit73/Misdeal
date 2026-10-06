@@ -746,3 +746,5 @@ The user keeps a local clone and normally updates with:
 - Hero development, Curse Forge, Chained Prisoner and Wizard Wager were re-aligned to their approved visual mockups with taller illustrated cards and stronger ceremonial framing.
 
 - Curse Forge and Chained Prisoner now use the same tall illustrated choice-card proportions as their approved mockups, with approved atlas art occupying the upper half of each choice; the Wizard Wager modal is enlarged and gains a central ritual sigil/divider treatment.
+
+- the approved Forge and Chained Prisoner references now also contribute dedicated character/environment decor (blacksmith / chained prisoner) through a runtime-decoded WebP atlas stored as raw .bin, so these two event scenes no longer read as the generic Wizard table with different text;

@@ -298,9 +298,11 @@ func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData)
 	button.set_meta("quick_effect", quick_effect)
 	_set_upgrade_nodes_visible(index, true)
 	var approved_art: Texture2D = APPROVED_CHOICE_ART.get_upgrade_texture(upgrade_id)
+	var has_dedicated_art := approved_art != null
 	if approved_art == null:
 		approved_art = ROLE_FALLBACK_ART.get(upgrade.target_role) as Texture2D
 	upgrade_portraits[index].texture = approved_art
+	upgrade_portraits[index].stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED if has_dedicated_art else TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	upgrade_portraits[index].visible = approved_art != null
 	upgrade_choose_bars[index].visible = true
 	_apply_upgrade_text_layout(index, approved_art != null)

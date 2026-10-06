@@ -1,6 +1,7 @@
 extends Control
 
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
+const APPROVED_EVENT_DECOR := preload("res://scripts/ui/approved_event_decor.gd")
 
 @onready var title_label: Label = $Panel/Title
 @onready var type_label: Label = $Panel/Type
@@ -17,6 +18,7 @@ const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 @onready var panel: Panel = $Panel
 @onready var screen_visual: Control = $Visual
 @onready var backdrop: TextureRect = $WizardBackdrop
+@onready var event_decor: TextureRect = $EventDecor
 @onready var choice_art_a: TextureRect = $Panel/Choices/ChoiceA/ChoiceArt
 @onready var choice_art_b: TextureRect = $Panel/Choices/ChoiceB/ChoiceArt
 @onready var choice_art_c: TextureRect = $Panel/Choices/ChoiceC/ChoiceArt
@@ -87,15 +89,30 @@ func _apply_choice_art_margins(button: Button) -> void:
 	button.add_theme_font_size_override("font_size", 13)
 
 func _apply_event_layout() -> void:
+	event_decor.visible = false
+	event_decor.texture = null
+	event_decor.modulate = Color.WHITE
+
 	match active_card.card_id:
 		"curse_forge":
-			backdrop.modulate = Color(1.0, 0.58, 0.38, 0.96)
-			panel.position = Vector2(150.0, 74.0)
-			panel.size = Vector2(980.0, 620.0)
+			backdrop.modulate = Color(0.56, 0.32, 0.28, 0.56)
+			event_decor.texture = APPROVED_EVENT_DECOR.get_forge_texture()
+			event_decor.visible = event_decor.texture != null
+			event_decor.position = Vector2(0.0, 88.0)
+			event_decor.size = Vector2(515.0, 360.0)
+			event_decor.modulate = Color(1.0, 0.92, 0.84, 0.98)
+			panel.position = Vector2(330.0, 92.0)
+			panel.size = Vector2(830.0, 596.0)
 		"chained_prisoner":
-			backdrop.modulate = Color(0.72, 0.48, 0.44, 0.92)
-			panel.position = Vector2(110.0, 82.0)
-			panel.size = Vector2(1060.0, 612.0)
+			backdrop.modulate = Color(0.42, 0.34, 0.34, 0.50)
+			event_decor.texture = APPROVED_EVENT_DECOR.get_prisoner_texture()
+			event_decor.visible = event_decor.texture != null
+			event_decor.position = Vector2(22.0, 24.0)
+			event_decor.size = Vector2(600.0, 344.0)
+			event_decor.modulate = Color(0.94, 0.90, 0.86, 0.98)
+			panel.position = Vector2(110.0, 245.0)
+			panel.size = Vector2(1060.0, 445.0)
+			_apply_prisoner_compact_layout()
 		_:
 			backdrop.modulate = Color(0.82, 0.68, 0.66, 0.88)
 
@@ -168,6 +185,18 @@ func _apply_event_theme() -> void:
 			hover.shadow_color = Color(accent.r, accent.g, accent.b, 0.34)
 			button.add_theme_stylebox_override("hover", hover)
 			button.add_theme_stylebox_override("pressed", hover)
+
+func _apply_prisoner_compact_layout() -> void:
+	title_label.position.y = 18.0
+	type_label.position.y = 58.0
+	description_label.position.y = 88.0
+	wizard_line.position.y = 136.0
+	gold_label.position.y = 184.0
+	artifacts_label.position.y = 184.0
+	$Panel/Choices.position.y = 220.0
+	result_label.position.y = 366.0
+	leave_button.position.y = 388.0
+	continue_button.position.y = 388.0
 
 func _connect_choice_feedback() -> void:
 	for button in [choice_a, choice_b, choice_c]:
