@@ -7,19 +7,25 @@ extends Control
 @onready var accept_button: Button = $Choices/AcceptGift
 @onready var pay_button: Button = $Choices/PayCoin
 @onready var leave_button: Button = $Choices/Leave
+@onready var header_panel: Panel = $HeaderPanel
+@onready var choices: HBoxContainer = $Choices
 
 func _ready() -> void:
 	accept_button.pressed.connect(_on_accept_gift)
 	pay_button.pressed.connect(_on_pay_coin)
 	leave_button.pressed.connect(_on_leave)
+	for button in [accept_button, pay_button, leave_button]:
+		button.mouse_entered.connect(_on_choice_hover.bind(button, true))
+		button.mouse_exited.connect(_on_choice_hover.bind(button, false))
 
 	if RunState.can_recruit_companion("mage"):
 		wizard_line.text = "«Ты слышишь его голос? В прошлый раз ты полез за ним.»"
 		description_label.text = "Из чёрной воды зовёт молодой маг. Это не призрак — это момент, который вы однажды изменили."
 	_refresh_choice_text()
+	_animate_screen_in()
 
 func _refresh_choice_text() -> void:
-	gold_label.text = "Золото: %d   |   Отряд: %d/3   |   Развитие: %d   |   Доп.: %s   |   Реликвии: %d" % [
+	gold_label.text = "ЗОЛОТО %d   |   ОТРЯД %d/3   |   РАЗВИТИЕ %d   |   ДОП. %s   |   РЕЛИКВИИ %d" % [
 		RunState.gold,
 		RunState.get_party_size(),
 		RunState.hero_upgrade_ids.size(),
@@ -69,6 +75,25 @@ func _refresh_choice_text() -> void:
 		pay_button.text = "БРОСИТЬ 25 ЗОЛОТА\n\nКолодец молчит"
 
 	leave_button.text = "ОТОЙТИ ОТ КОЛОДЦА"
+
+func _animate_screen_in() -> void:
+	header_panel.pivot_offset = header_panel.size * 0.5
+	header_panel.scale = Vector2(0.985, 0.985)
+	header_panel.modulate.a = 0.0
+	choices.modulate.a = 0.0
+
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(header_panel, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(header_panel, "modulate:a", 1.0, 0.16)
+	tween.tween_property(choices, "modulate:a", 1.0, 0.24).set_delay(0.05)
+
+func _on_choice_hover(button: Button, hovered: bool) -> void:
+	if button.disabled:
+		return
+	button.pivot_offset = button.size * 0.5
+	var tween := button.create_tween()
+	tween.tween_property(button, "scale", Vector2(1.025, 1.025) if hovered else Vector2.ONE, 0.11).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 func _on_accept_gift() -> void:
 	if accept_button.disabled:

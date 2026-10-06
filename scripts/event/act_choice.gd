@@ -12,6 +12,8 @@ extends Control
 @onready var leave_button: Button = $Panel/LeaveButton
 @onready var result_label: Label = $Panel/Result
 @onready var continue_button: Button = $Panel/ContinueButton
+@onready var panel: Panel = $Panel
+@onready var screen_visual: Control = $Visual
 
 var active_card: RunCardData
 var resolved := false
@@ -32,6 +34,100 @@ func _ready() -> void:
 	wizard_line.text = active_card.wizard_line
 	_refresh_run_labels()
 	_configure_card()
+	_apply_event_theme()
+	_connect_choice_feedback()
+	_animate_screen_in()
+
+func _get_event_accent() -> Color:
+	match active_card.card_id:
+		"curse_forge", "gravedigger_shop", "candle_seller":
+			return Color(0.94, 0.38, 0.12, 1.0)
+		"chained_prisoner", "bone_tax", "blood_ledger":
+			return Color(0.82, 0.20, 0.16, 1.0)
+		"black_altar", "faceless_card":
+			return Color(0.66, 0.30, 0.82, 1.0)
+		"ash_rest", "last_camp":
+			return Color(0.52, 0.62, 0.28, 1.0)
+		"rattling_bridge":
+			return Color(0.34, 0.58, 0.72, 1.0)
+		"broken_crown":
+			return Color(0.84, 0.56, 0.18, 1.0)
+		_:
+			return Color(0.82, 0.32, 0.16, 1.0)
+
+func _get_event_visual_variant() -> String:
+	match active_card.card_id:
+		"curse_forge":
+			return "forge"
+		"chained_prisoner", "bone_tax":
+			return "chains"
+		"black_altar", "faceless_card", "blood_ledger":
+			return "altar"
+		"rattling_bridge":
+			return "bridge"
+		"gravedigger_shop", "candle_seller", "ash_rest", "last_camp":
+			return "candles"
+		"debtor_bones", "lost_purse", "broken_crown":
+			return "bones"
+		_:
+			return "generic"
+
+func _apply_event_theme() -> void:
+	var accent := _get_event_accent()
+	type_label.add_theme_color_override("font_color", accent.lightened(0.12))
+	title_label.add_theme_color_override("font_color", Color(0.96, 0.82, 0.62, 1.0))
+	wizard_line.add_theme_color_override("font_color", Color(
+		0.62 + accent.r * 0.18,
+		0.54 + accent.g * 0.12,
+		0.60 + accent.b * 0.12,
+		1.0
+	))
+
+	screen_visual.set("accent", accent)
+	screen_visual.set("secondary", accent.darkened(0.62))
+	screen_visual.set("variant", _get_event_visual_variant())
+
+	for button in [choice_a, choice_b, choice_c]:
+		var normal_source := button.get_theme_stylebox("normal")
+		if normal_source is StyleBoxFlat:
+			var normal := normal_source.duplicate() as StyleBoxFlat
+			normal.border_color = Color(accent.r, accent.g, accent.b, 0.72)
+			normal.bg_color = Color(
+				0.018 + accent.r * 0.040,
+				0.014 + accent.g * 0.028,
+				0.018 + accent.b * 0.030,
+				0.98
+			)
+			button.add_theme_stylebox_override("normal", normal)
+
+		var hover_source := button.get_theme_stylebox("hover")
+		if hover_source is StyleBoxFlat:
+			var hover := hover_source.duplicate() as StyleBoxFlat
+			hover.border_color = accent.lightened(0.22)
+			hover.shadow_color = Color(accent.r, accent.g, accent.b, 0.34)
+			button.add_theme_stylebox_override("hover", hover)
+			button.add_theme_stylebox_override("pressed", hover)
+
+func _connect_choice_feedback() -> void:
+	for button in [choice_a, choice_b, choice_c]:
+		button.mouse_entered.connect(_on_choice_hover.bind(button, true))
+		button.mouse_exited.connect(_on_choice_hover.bind(button, false))
+
+func _on_choice_hover(button: Button, hovered: bool) -> void:
+	if button.disabled or not button.visible or resolved:
+		return
+	button.pivot_offset = button.size * 0.5
+	var tween := button.create_tween()
+	tween.tween_property(button, "scale", Vector2(1.025, 1.025) if hovered else Vector2.ONE, 0.11).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+func _animate_screen_in() -> void:
+	panel.pivot_offset = panel.size * 0.5
+	panel.scale = Vector2(0.985, 0.985)
+	panel.modulate.a = 0.0
+	var tween := panel.create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(panel, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(panel, "modulate:a", 1.0, 0.16)
 
 func _configure_card() -> void:
 	match active_card.card_id:
@@ -802,8 +898,15 @@ func _finish(message: String) -> void:
 	RunState.complete_active_card()
 	result_label.text = message
 	result_label.visible = true
+	result_label.modulate.a = 0.0
 	continue_button.visible = true
+	continue_button.modulate.a = 0.0
 	_refresh_run_labels()
+
+	var reveal := create_tween()
+	reveal.set_parallel(true)
+	reveal.tween_property(result_label, "modulate:a", 1.0, 0.18)
+	reveal.tween_property(continue_button, "modulate:a", 1.0, 0.22)
 
 func _disable_choices() -> void:
 	choice_a.disabled = true

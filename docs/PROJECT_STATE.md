@@ -104,6 +104,18 @@ The first combat-feel / audio pass is implemented in GitHub and has been confirm
 - no external audio asset pack or generalized animation framework was added; authored sound/music can replace the placeholders later without changing combat rules.
 
 
+
+
+A **choice / event / reward presentation pass** is now implemented in GitHub and pending local verification. It unifies the non-combat decision screens with the approved dark-gothic table language without changing event logic:
+
+- protagonist selection now uses the authored Wizard/table backdrop, Misdeal logo, ritual frame, subtle ambient effects and hover/entrance motion instead of a flat black frame;
+- the generic Act 1 event-choice scene now covers all current event cards with one ornate layout, larger decision cards, explicit disabled states, animated hover feedback and card-specific accent/atmosphere families (forge, chains, altar, bridge fog, candle glow and bone dressing);
+- **Whispering Well** keeps its teal identity but now shares the logo/HUD hierarchy, framed header and large card-like choices used elsewhere;
+- reward / hero-development screens now sit over the authored Wizard backdrop with a compact run HUD, stronger header frame, richer role-colored reward cards and hover feedback;
+- prototype/fallback event cards use the same ritual shell instead of the old isolated black panel;
+- the table's **СТАВКА ВОЛШЕБНИКА** modal is larger, darker and more ceremonial, with stronger accept/refuse hierarchy and heavier dimming behind it;
+- these are presentation-only changes: event costs, rewards, recruitment outcomes, upgrade logic, Wizard wager rules and scene transitions are unchanged.
+
 A **large combat presentation pass (v2)** is now implemented in GitHub and pending local verification. It deliberately keeps combat rules/AI unchanged while polishing the live battle layer:
 
 - every unit now gets an arena-aware ambient tint, a low-alpha team rim silhouette and a softer two-stage contact shadow so miniatures sit inside the authored background instead of reading as pasted sprites;

@@ -1,32 +1,83 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/event/act_choice.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/table_wizard_layer.png" id="2_wizard"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/misdeal_logo.png" id="3_logo"]
+[ext_resource type="Script" path="res://scripts/ui/cursed_choice_visual.gd" id="4_visual"]
 
 [sub_resource type="StyleBoxFlat" id="PanelStyle"]
-bg_color = Color(0.023, 0.017, 0.027, 0.97)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.43, 0.23, 0.20, 1)
-shadow_color = Color(0, 0, 0, 0.65)
-shadow_size = 10
-
-[sub_resource type="StyleBoxFlat" id="ChoiceNormal"]
-bg_color = Color(0.055, 0.035, 0.042, 0.98)
+bg_color = Color(0.024, 0.012, 0.018, 0.95)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.40, 0.24, 0.20, 1)
+border_color = Color(0.62, 0.29, 0.18, 0.95)
+shadow_color = Color(0, 0, 0, 0.78)
+shadow_size = 14
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="ChoiceNormal"]
+bg_color = Color(0.035, 0.020, 0.024, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.24, 0.18, 0.92)
+shadow_color = Color(0, 0, 0, 0.62)
+shadow_size = 8
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
 
 [sub_resource type="StyleBoxFlat" id="ChoiceHover"]
-bg_color = Color(0.085, 0.048, 0.046, 1)
+bg_color = Color(0.080, 0.034, 0.026, 0.99)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.82, 0.46, 0.22, 1)
+border_color = Color(0.95, 0.44, 0.18, 1)
+shadow_color = Color(0.52, 0.12, 0.03, 0.48)
+shadow_size = 12
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="ChoiceDisabled"]
+bg_color = Color(0.018, 0.016, 0.019, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.20, 0.18, 0.19, 0.70)
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxFlat" id="ExitNormal"]
+bg_color = Color(0.018, 0.026, 0.032, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.34, 0.48, 0.54, 0.86)
+shadow_color = Color(0, 0, 0, 0.56)
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="ExitHover"]
+bg_color = Color(0.026, 0.050, 0.060, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.56, 0.76, 0.82, 1)
+shadow_color = Color(0.04, 0.26, 0.32, 0.42)
+shadow_size = 9
 
 [node name="ActChoice" type="Control"]
 layout_mode = 3
@@ -45,45 +96,88 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.012, 0.009, 0.016, 1)
+color = Color(0.010, 0.006, 0.012, 1)
+
+[node name="WizardBackdrop" type="TextureRect" parent="."]
+mouse_filter = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+texture_filter = 1
+texture = ExtResource("2_wizard")
+expand_mode = 1
+stretch_mode = 6
+modulate = Color(0.68, 0.50, 0.52, 0.60)
+
+[node name="BackdropShade" type="ColorRect" parent="."]
+mouse_filter = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.006, 0.003, 0.008, 0.46)
+
+[node name="Visual" type="Control" parent="."]
+mouse_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_visual")
+
+[node name="Logo" type="TextureRect" parent="."]
+mouse_filter = 2
+offset_left = 22.0
+offset_top = 12.0
+offset_right = 238.0
+offset_bottom = 102.0
+texture_filter = 1
+texture = ExtResource("3_logo")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 105.0
-offset_top = 42.0
-offset_right = 1175.0
-offset_bottom = 678.0
+offset_left = 90.0
+offset_top = 70.0
+offset_right = 1190.0
+offset_bottom = 686.0
 theme_override_styles/panel = SubResource("PanelStyle")
 
 [node name="Title" type="Label" parent="Panel"]
 mouse_filter = 2
-offset_left = 45.0
-offset_top = 28.0
-offset_right = 1025.0
-offset_bottom = 72.0
-theme_override_colors/font_color = Color(0.94, 0.81, 0.61, 1)
-theme_override_font_sizes/font_size = 30
+offset_left = 48.0
+offset_top = 24.0
+offset_right = 1052.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0.96, 0.81, 0.60, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.94)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 31
 text = "СОБЫТИЕ"
 horizontal_alignment = 1
 
 [node name="Type" type="Label" parent="Panel"]
 mouse_filter = 2
-offset_left = 45.0
-offset_top = 77.0
-offset_right = 1025.0
-offset_bottom = 102.0
-theme_override_colors/font_color = Color(0.72, 0.49, 0.34, 1)
+offset_left = 48.0
+offset_top = 70.0
+offset_right = 1052.0
+offset_bottom = 94.0
+theme_override_colors/font_color = Color(0.84, 0.45, 0.24, 1)
 theme_override_font_sizes/font_size = 14
 text = "СОБЫТИЕ"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Panel"]
 mouse_filter = 2
-offset_left = 120.0
-offset_top = 120.0
+offset_left = 150.0
+offset_top = 108.0
 offset_right = 950.0
-offset_bottom = 165.0
-theme_override_colors/font_color = Color(0.80, 0.74, 0.68, 1)
-theme_override_font_sizes/font_size = 18
+offset_bottom = 154.0
+theme_override_colors/font_color = Color(0.84, 0.78, 0.70, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.88)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 17
 text = "Описание."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -91,12 +185,15 @@ autowrap_mode = 2
 
 [node name="WizardLine" type="Label" parent="Panel"]
 mouse_filter = 2
-offset_left = 120.0
-offset_top = 172.0
+offset_left = 150.0
+offset_top = 160.0
 offset_right = 950.0
-offset_bottom = 215.0
-theme_override_colors/font_color = Color(0.68, 0.60, 0.66, 1)
-theme_override_font_sizes/font_size = 16
+offset_bottom = 202.0
+theme_override_colors/font_color = Color(0.72, 0.60, 0.68, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.86)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 15
 text = "Реплика волшебника."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -104,103 +201,111 @@ autowrap_mode = 2
 
 [node name="Gold" type="Label" parent="Panel"]
 mouse_filter = 2
-offset_left = 55.0
-offset_top = 225.0
+offset_left = 54.0
+offset_top = 218.0
 offset_right = 300.0
-offset_bottom = 252.0
-theme_override_colors/font_color = Color(0.90, 0.72, 0.40, 1)
-theme_override_font_sizes/font_size = 15
+offset_bottom = 244.0
+theme_override_colors/font_color = Color(1.0, 0.72, 0.30, 1)
+theme_override_font_sizes/font_size = 14
 text = "ЗОЛОТО: 0"
 
 [node name="Artifacts" type="Label" parent="Panel"]
 mouse_filter = 2
-offset_left = 315.0
-offset_top = 225.0
-offset_right = 1015.0
-offset_bottom = 252.0
-theme_override_colors/font_color = Color(0.66, 0.74, 0.78, 1)
-theme_override_font_sizes/font_size = 14
-text = "АРТЕФАКТЫ: нет"
+offset_left = 312.0
+offset_top = 218.0
+offset_right = 1046.0
+offset_bottom = 244.0
+theme_override_colors/font_color = Color(0.68, 0.76, 0.82, 1)
+theme_override_font_sizes/font_size = 13
+text = "ОТРЯД: 1/3 | РАЗВИТИЕ: 0 | ДОП.: 0/3 | РЕЛИКВИИ: 0"
 horizontal_alignment = 2
 
 [node name="Choices" type="HBoxContainer" parent="Panel"]
-offset_left = 45.0
-offset_top = 275.0
-offset_right = 1025.0
-offset_bottom = 445.0
+offset_left = 42.0
+offset_top = 266.0
+offset_right = 1058.0
+offset_bottom = 476.0
 theme_override_constants/separation = 20
 alignment = 1
 
 [node name="ChoiceA" type="Button" parent="Panel/Choices"]
-custom_minimum_size = Vector2(310, 165)
+custom_minimum_size = Vector2(322, 204)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.90, 0.80, 0.68, 1)
-theme_override_colors/font_disabled_color = Color(0.40, 0.38, 0.38, 1)
+theme_override_colors/font_color = Color(0.94, 0.82, 0.68, 1)
+theme_override_colors/font_hover_color = Color(1, 0.91, 0.76, 1)
+theme_override_colors/font_disabled_color = Color(0.42, 0.40, 0.41, 1)
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("ChoiceNormal")
 theme_override_styles/hover = SubResource("ChoiceHover")
 theme_override_styles/pressed = SubResource("ChoiceHover")
+theme_override_styles/disabled = SubResource("ChoiceDisabled")
 autowrap_mode = 2
 text = "ВЫБОР A"
 
 [node name="ChoiceB" type="Button" parent="Panel/Choices"]
-custom_minimum_size = Vector2(310, 165)
+custom_minimum_size = Vector2(322, 204)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.90, 0.80, 0.68, 1)
-theme_override_colors/font_disabled_color = Color(0.40, 0.38, 0.38, 1)
+theme_override_colors/font_color = Color(0.94, 0.82, 0.68, 1)
+theme_override_colors/font_hover_color = Color(1, 0.91, 0.76, 1)
+theme_override_colors/font_disabled_color = Color(0.42, 0.40, 0.41, 1)
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("ChoiceNormal")
 theme_override_styles/hover = SubResource("ChoiceHover")
 theme_override_styles/pressed = SubResource("ChoiceHover")
+theme_override_styles/disabled = SubResource("ChoiceDisabled")
 autowrap_mode = 2
 text = "ВЫБОР B"
 
 [node name="ChoiceC" type="Button" parent="Panel/Choices"]
-custom_minimum_size = Vector2(310, 165)
+custom_minimum_size = Vector2(322, 204)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.90, 0.80, 0.68, 1)
-theme_override_colors/font_disabled_color = Color(0.40, 0.38, 0.38, 1)
+theme_override_colors/font_color = Color(0.94, 0.82, 0.68, 1)
+theme_override_colors/font_hover_color = Color(1, 0.91, 0.76, 1)
+theme_override_colors/font_disabled_color = Color(0.42, 0.40, 0.41, 1)
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("ChoiceNormal")
 theme_override_styles/hover = SubResource("ChoiceHover")
 theme_override_styles/pressed = SubResource("ChoiceHover")
+theme_override_styles/disabled = SubResource("ChoiceDisabled")
 autowrap_mode = 2
 text = "ВЫБОР C"
 
 [node name="Result" type="Label" parent="Panel"]
 visible = false
 mouse_filter = 2
-offset_left = 125.0
-offset_top = 472.0
-offset_right = 945.0
-offset_bottom = 515.0
-theme_override_colors/font_color = Color(0.90, 0.72, 0.50, 1)
-theme_override_font_sizes/font_size = 16
+offset_left = 138.0
+offset_top = 494.0
+offset_right = 962.0
+offset_bottom = 536.0
+theme_override_colors/font_color = Color(0.96, 0.72, 0.42, 1)
+theme_override_font_sizes/font_size = 15
 text = "Результат."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="LeaveButton" type="Button" parent="Panel"]
-offset_left = 285.0
-offset_top = 535.0
-offset_right = 505.0
-offset_bottom = 585.0
-theme_override_colors/font_color = Color(0.72, 0.68, 0.66, 1)
-theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("ChoiceNormal")
-theme_override_styles/hover = SubResource("ChoiceHover")
-theme_override_styles/pressed = SubResource("ChoiceHover")
+offset_left = 324.0
+offset_top = 550.0
+offset_right = 524.0
+offset_bottom = 598.0
+theme_override_colors/font_color = Color(0.72, 0.78, 0.82, 1)
+theme_override_colors/font_hover_color = Color(0.92, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("ExitNormal")
+theme_override_styles/hover = SubResource("ExitHover")
+theme_override_styles/pressed = SubResource("ExitHover")
 text = "УЙТИ"
 
 [node name="ContinueButton" type="Button" parent="Panel"]
 visible = false
-offset_left = 565.0
-offset_top = 535.0
-offset_right = 785.0
-offset_bottom = 585.0
-theme_override_colors/font_color = Color(0.94, 0.82, 0.62, 1)
-theme_override_font_sizes/font_size = 16
+offset_left = 576.0
+offset_top = 550.0
+offset_right = 776.0
+offset_bottom = 598.0
+theme_override_colors/font_color = Color(0.96, 0.82, 0.62, 1)
+theme_override_colors/font_hover_color = Color(1, 0.94, 0.80, 1)
+theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("ChoiceNormal")
 theme_override_styles/hover = SubResource("ChoiceHover")
 theme_override_styles/pressed = SubResource("ChoiceHover")

@@ -21,6 +21,7 @@ const UNIT_SHEET_PARTS: Array[String] = [
 @onready var ranger_portrait: TextureRect = $Frame/Cards/Ranger/Portrait
 @onready var mage_portrait: TextureRect = $Frame/Cards/Mage/Portrait
 @onready var status_label: Label = $Frame/Status
+@onready var frame: Panel = $Frame
 
 var unit_sheet_texture: Texture2D
 var choosing := false
@@ -33,6 +34,28 @@ func _ready() -> void:
 	knight_portrait.texture = _get_role_texture("knight")
 	ranger_portrait.texture = _get_role_texture("ranger")
 	mage_portrait.texture = _get_role_texture("mage")
+
+	for button in [knight_button, ranger_button, mage_button]:
+		button.mouse_entered.connect(_on_card_hover.bind(button, true))
+		button.mouse_exited.connect(_on_card_hover.bind(button, false))
+
+	_animate_screen_in()
+
+func _animate_screen_in() -> void:
+	frame.pivot_offset = frame.size * 0.5
+	frame.scale = Vector2(0.985, 0.985)
+	frame.modulate.a = 0.0
+	var tween := frame.create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(frame, "scale", Vector2.ONE, 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(frame, "modulate:a", 1.0, 0.16)
+
+func _on_card_hover(button: Button, hovered: bool) -> void:
+	if button.disabled or choosing:
+		return
+	button.pivot_offset = button.size * 0.5
+	var tween := button.create_tween()
+	tween.tween_property(button, "scale", Vector2(1.022, 1.022) if hovered else Vector2.ONE, 0.11).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 func _choose(role: String) -> void:
 	if choosing:

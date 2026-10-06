@@ -1,24 +1,33 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scripts/class_select/class_select.gd" id="1_class"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/table_wizard_layer.png" id="2_wizard"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/misdeal_logo.png" id="3_logo"]
+[ext_resource type="Script" path="res://scripts/ui/cursed_choice_visual.gd" id="4_visual"]
 
 [sub_resource type="StyleBoxFlat" id="Frame"]
-bg_color = Color(0.015, 0.011, 0.020, 0.985)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.47, 0.22, 0.16, 1)
-shadow_color = Color(0, 0, 0, 0.85)
+bg_color = Color(0.022, 0.012, 0.019, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.66, 0.30, 0.18, 0.96)
+shadow_color = Color(0, 0, 0, 0.86)
 shadow_size = 18
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="Card"]
-bg_color = Color(0.032, 0.026, 0.040, 0.98)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.23, 0.18, 0.23, 1)
+bg_color = Color(0.022, 0.018, 0.026, 0.985)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.36, 0.22, 0.24, 0.90)
+shadow_color = Color(0, 0, 0, 0.62)
+shadow_size = 9
 content_margin_left = 16.0
 content_margin_right = 16.0
 content_margin_top = 16.0
@@ -66,11 +75,51 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.008, 0.006, 0.012, 1)
 
+[node name="WizardBackdrop" type="TextureRect" parent="."]
+mouse_filter = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+texture_filter = 1
+texture = ExtResource("2_wizard")
+expand_mode = 1
+stretch_mode = 6
+modulate = Color(0.68, 0.50, 0.52, 0.60)
+
+[node name="BackdropShade" type="ColorRect" parent="."]
+mouse_filter = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.006, 0.003, 0.008, 0.46)
+
+[node name="Visual" type="Control" parent="."]
+mouse_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_visual")
+accent = Color(0.78, 0.31, 0.16, 1)
+secondary = Color(0.18, 0.05, 0.08, 1)
+variant = "candles"
+
+[node name="Logo" type="TextureRect" parent="."]
+mouse_filter = 2
+offset_left = 22.0
+offset_top = 14.0
+offset_right = 238.0
+offset_bottom = 104.0
+texture_filter = 1
+texture = ExtResource("3_logo")
+expand_mode = 1
+stretch_mode = 5
+
 [node name="Frame" type="Panel" parent="."]
-offset_left = 60.0
-offset_top = 46.0
-offset_right = 1220.0
-offset_bottom = 674.0
+offset_left = 70.0
+offset_top = 62.0
+offset_right = 1210.0
+offset_bottom = 684.0
 theme_override_styles/panel = SubResource("Frame")
 
 [node name="Title" type="Label" parent="Frame"]
@@ -82,7 +131,7 @@ theme_override_colors/font_color = Color(0.96, 0.82, 0.64, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.95)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 31
 text = "КЕМ ТЫ БЫЛ, КОГДА ВСЁ НАЧАЛОСЬ?"
 horizontal_alignment = 1
 

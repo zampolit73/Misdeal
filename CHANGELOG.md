@@ -60,6 +60,8 @@
 
 ### Changed
 
+- Reworked reward/development screens around the authored Wizard backdrop with a compact run HUD, stronger role-card presentation and hover feedback; reworked the Wizard wager into a larger ceremonial modal with clearer accept/refuse hierarchy.
+- Restyled protagonist selection and fallback event screens to match the same approved Misdeal table language instead of isolated flat-black prototype panels.
 - Rebuilt the battle preparation controls into one darker gothic bottom HUD with clearer pressed tactical-order states, a larger central fight button and restart hidden until results.
 - Combat-polish v2 remains presentation-only: movement positions, targeting rules, tactical orders, stats and encounter compositions are unchanged.
 - Rebuilt all four authored battle arenas from the preserved 1672×941 source renders into high-quality native 1280×720 WebP assets, removing the visible softness caused by 640×360 source upscaling. Runtime WebP byte decoding remains in place for importer robustness.
@@ -127,6 +129,8 @@
 
 ### Added
 
+- Added a unified dark-gothic ritual presentation layer for non-combat choices: protagonist select, all generic Act 1 event cards, Whispering Well, reward/hero-development screens, prototype/fallback events and the Wizard wager modal now share the same visual hierarchy, framed choices and restrained motion.
+- Added event-specific atmosphere variants to the generic event shell (forge sparks, chains, altar rings, bridge fog, candle glow and bone dressing) without changing event mechanics.
 - Added combat presentation v2: arena-aware unit tint/rim/contact shadows, short hit-stop, impact sparks, undead bone-fragment deaths, Wizard combat commentary, dynamic arena atmosphere and a cinematic `СХВАТКА` start transition.
 - Added data-driven battle arena families via `EncounterData.arena_id`: crypt, graveyard, ossuary and a dedicated Bone Warden lair.
 - Distributed all current Act 1 combat encounters across the new arena families, adding distinct lighting, silhouettes, fog/stone/bone dressing and boss-lair chains/gate while preserving the existing combat layer and authored base backdrop.

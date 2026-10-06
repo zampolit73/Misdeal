@@ -3,6 +3,7 @@ extends Control
 @onready var title_label: Label = $Title
 @onready var summary_label: Label = $Summary
 @onready var hint_label: Label = $Hint
+@onready var run_stats_label: Label = $RunStats
 @onready var blood_coin_button: Button = $Rewards/BloodCoin
 @onready var iron_ward_button: Button = $Rewards/IronWard
 @onready var tempered_steel_button: Button = $Rewards/TemperedSteel
@@ -15,10 +16,14 @@ func _ready() -> void:
 	reward_buttons = [blood_coin_button, iron_ward_button, tempered_steel_button]
 	for index in range(reward_buttons.size()):
 		reward_buttons[index].pressed.connect(_on_reward_button_pressed.bind(index))
+		reward_buttons[index].mouse_entered.connect(_on_reward_hover.bind(reward_buttons[index], true))
+		reward_buttons[index].mouse_exited.connect(_on_reward_hover.bind(reward_buttons[index], false))
 
+	_refresh_run_stats()
 	_setup_initial_reward()
 
 func _setup_initial_reward() -> void:
+	_refresh_run_stats()
 	if RunState.is_major_upgrade_due_for_active_card():
 		_setup_major_upgrade_reward()
 	else:
@@ -195,6 +200,7 @@ func _on_reward_button_pressed(index: int) -> void:
 
 			var upgrade := RunState.get_hero_upgrade(option_id)
 			summary_label.text = "Выбрано: %s." % upgrade.title
+			_refresh_run_stats()
 			await get_tree().create_timer(0.22).timeout
 			_setup_card_reward()
 
@@ -279,6 +285,23 @@ func _get_role_color(role: String) -> Color:
 		_:
 			return Color(0.94, 0.82, 0.62, 1.0)
 
+func _refresh_run_stats() -> void:
+	run_stats_label.text = "%s   |   ЗОЛОТО %d   |   ОТРЯД %d/3   |   РАЗВИТИЕ %d   |   РЕЛИКВИИ %d" % [
+		RunState.get_progress_text(),
+		RunState.gold,
+		RunState.get_party_size(),
+		RunState.hero_upgrade_ids.size(),
+		RunState.artifact_ids.size()
+	]
+
+func _on_reward_hover(button: Button, hovered: bool) -> void:
+	if button.disabled or not button.visible:
+		return
+
+	button.pivot_offset = button.size * 0.5
+	var tween := button.create_tween()
+	tween.tween_property(button, "scale", Vector2(1.025, 1.025) if hovered else Vector2.ONE, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
 func _reset_buttons() -> void:
 	option_ids = ["", "", ""]
 	for button in reward_buttons:
@@ -297,6 +320,7 @@ func _disable_reward_buttons() -> void:
 		button.disabled = true
 
 func _finish_reward(message: String) -> void:
+	_refresh_run_stats()
 	RunState.complete_active_card()
 	summary_label.text = message
 	await get_tree().create_timer(0.35).timeout

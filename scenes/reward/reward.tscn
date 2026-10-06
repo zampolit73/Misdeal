@@ -1,23 +1,37 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://scripts/reward/reward.gd" id="1_reward"]
 [ext_resource type="Script" path="res://scripts/reward/reward_visual.gd" id="2_visual"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/table_wizard_layer.png" id="3_wizard"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/misdeal_logo.png" id="4_logo"]
+
+[sub_resource type="StyleBoxFlat" id="HudPanel"]
+bg_color = Color(0.014, 0.010, 0.016, 0.82)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.46, 0.25, 0.20, 0.62)
+shadow_color = Color(0, 0, 0, 0.42)
+shadow_size = 4
 
 [sub_resource type="StyleBoxFlat" id="HeaderPanel"]
-bg_color = Color(0.026, 0.021, 0.030, 0.95)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.34, 0.22, 0.24, 1)
+bg_color = Color(0.028, 0.014, 0.020, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.62, 0.29, 0.18, 0.92)
+shadow_color = Color(0, 0, 0, 0.72)
+shadow_size = 12
 
 [sub_resource type="StyleBoxFlat" id="BloodNormal"]
-bg_color = Color(0.040, 0.060, 0.095, 0.98)
+bg_color = Color(0.020, 0.030, 0.046, 0.97)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.30, 0.52, 0.78, 1)
+border_color = Color(0.30, 0.52, 0.78, 0.90)
 
 [sub_resource type="StyleBoxFlat" id="BloodHover"]
 bg_color = Color(0.055, 0.085, 0.13, 1)
@@ -28,12 +42,12 @@ border_width_bottom = 3
 border_color = Color(0.55, 0.78, 1.0, 1)
 
 [sub_resource type="StyleBoxFlat" id="IronNormal"]
-bg_color = Color(0.045, 0.075, 0.050, 0.98)
+bg_color = Color(0.022, 0.040, 0.026, 0.97)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.38, 0.66, 0.38, 1)
+border_color = Color(0.38, 0.66, 0.38, 0.90)
 
 [sub_resource type="StyleBoxFlat" id="IronHover"]
 bg_color = Color(0.060, 0.105, 0.065, 1)
@@ -44,12 +58,12 @@ border_width_bottom = 3
 border_color = Color(0.62, 0.90, 0.56, 1)
 
 [sub_resource type="StyleBoxFlat" id="SteelNormal"]
-bg_color = Color(0.070, 0.045, 0.090, 0.98)
+bg_color = Color(0.040, 0.022, 0.050, 0.97)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.62, 0.40, 0.82, 1)
+border_color = Color(0.62, 0.40, 0.82, 0.90)
 
 [sub_resource type="StyleBoxFlat" id="SteelHover"]
 bg_color = Color(0.105, 0.060, 0.135, 1)
@@ -78,6 +92,22 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.020, 0.016, 0.024, 1)
 
+[node name="WizardBackdrop" type="TextureRect" parent="."]
+mouse_filter = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+texture_filter = 1
+texture = ExtResource("3_wizard")
+expand_mode = 1
+stretch_mode = 6
+modulate = Color(0.76, 0.62, 0.64, 0.74)
+
+[node name="BackdropShade" type="ColorRect" parent="."]
+mouse_filter = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.008, 0.004, 0.010, 0.50)
+
 [node name="Visual" type="Control" parent="."]
 mouse_filter = 2
 layout_mode = 1
@@ -88,52 +118,85 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_visual")
 
+[node name="Logo" type="TextureRect" parent="."]
+mouse_filter = 2
+offset_left = 26.0
+offset_top = 16.0
+offset_right = 250.0
+offset_bottom = 112.0
+texture_filter = 1
+texture = ExtResource("4_logo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HudPanel" type="Panel" parent="."]
+mouse_filter = 2
+offset_left = 332.0
+offset_top = 20.0
+offset_right = 1240.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("HudPanel")
+
+[node name="RunStats" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 350.0
+offset_top = 30.0
+offset_right = 1222.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0.88, 0.78, 0.66, 0.94)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 13
+text = "КАРТА 0/12   ЗОЛОТО 0   ОТРЯД 1/3   РАЗВИТИЕ 0   РЕЛИКВИИ 0"
+horizontal_alignment = 1
+
 [node name="HeaderPanel" type="Panel" parent="."]
 mouse_filter = 2
-offset_left = 155.0
-offset_top = 30.0
-offset_right = 1125.0
-offset_bottom = 165.0
+offset_left = 190.0
+offset_top = 86.0
+offset_right = 1090.0
+offset_bottom = 204.0
 theme_override_styles/panel = SubResource("HeaderPanel")
 
 [node name="Title" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 185.0
-offset_top = 50.0
-offset_right = 1095.0
-offset_bottom = 92.0
+offset_left = 220.0
+offset_top = 106.0
+offset_right = 1060.0
+offset_bottom = 150.0
 theme_override_colors/font_color = Color(0.93, 0.80, 0.58, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 34
 text = "ВЫБЕРИТЕ НАГРАДУ"
 horizontal_alignment = 1
 
 [node name="Summary" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 185.0
-offset_top = 105.0
-offset_right = 1095.0
-offset_bottom = 140.0
+offset_left = 245.0
+offset_top = 158.0
+offset_right = 1035.0
+offset_bottom = 190.0
 theme_override_colors/font_color = Color(0.72, 0.68, 0.66, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 16
 text = "Мертвецы затихли. Волшебник предлагает ровно одну милость."
 horizontal_alignment = 1
 
 [node name="Rewards" type="HBoxContainer" parent="."]
-offset_left = 125.0
-offset_top = 205.0
-offset_right = 1155.0
-offset_bottom = 535.0
+offset_left = 120.0
+offset_top = 248.0
+offset_right = 1160.0
+offset_bottom = 575.0
 theme_override_constants/separation = 34
 alignment = 1
 
 [node name="BloodCoin" type="Button" parent="Rewards"]
-custom_minimum_size = Vector2(300, 300)
+custom_minimum_size = Vector2(304, 304)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 0.74, 0.58, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("BloodNormal")
 theme_override_styles/hover = SubResource("BloodHover")
 theme_override_styles/pressed = SubResource("BloodHover")
@@ -146,10 +209,10 @@ text = "КРОВАВАЯ МОНЕТА
 не должна быть тёплой."
 
 [node name="IronWard" type="Button" parent="Rewards"]
-custom_minimum_size = Vector2(300, 300)
+custom_minimum_size = Vector2(304, 304)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78, 0.86, 0.88, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("IronNormal")
 theme_override_styles/hover = SubResource("IronHover")
 theme_override_styles/pressed = SubResource("IronHover")
@@ -163,10 +226,10 @@ text = "ЖЕЛЕЗНЫЙ ОБЕРЕГ
 каждый удар."
 
 [node name="TemperedSteel" type="Button" parent="Rewards"]
-custom_minimum_size = Vector2(300, 300)
+custom_minimum_size = Vector2(304, 304)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.94, 0.80, 0.54, 1)
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("SteelNormal")
 theme_override_styles/hover = SubResource("SteelHover")
 theme_override_styles/pressed = SubResource("SteelHover")
@@ -181,10 +244,10 @@ text = "ЗАКАЛЁННАЯ СТАЛЬ
 
 [node name="Hint" type="Label" parent="."]
 mouse_filter = 2
-offset_left = 200.0
-offset_top = 602.0
-offset_right = 1080.0
-offset_bottom = 635.0
+offset_left = 230.0
+offset_top = 620.0
+offset_right = 1050.0
+offset_bottom = 652.0
 theme_override_colors/font_color = Color(0.61, 0.57, 0.54, 1)
 theme_override_font_sizes/font_size = 15
 text = "Выбранная награда сохранится после возвращения к столу."

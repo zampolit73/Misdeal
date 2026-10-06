@@ -855,3 +855,26 @@ Accepted presentation additions:
 These effects must remain non-authoritative. Visual knockback does not move combat positions, hit-stop does not change cooldown values, arena atmosphere does not alter visibility/range, and Wizard commentary does not secretly modify stats or targeting.
 
 Do not add per-unit ability buttons, mid-fight command spam, manual dodge controls or other real-time micro under the banner of combat polish. If more tactical depth is needed, preserve the preparation-first model established by D037.
+
+
+## D048 — Non-combat choice screens share one ritual UI language; event identity comes from accents, not bespoke mechanics
+
+Date: 2026-10-06  
+Status: accepted after visual mockup approval
+
+Local review showed that reward, event, forge/prisoner choices and the Wizard wager still looked like separate prototype screens even though the table and battle presentation had converged.
+
+For the vertical slice, protagonist selection, reward/development, generic Act 1 events, Whispering Well, prototype/fallback events and the Wizard wager therefore share one presentation grammar:
+
+- authored Wizard/table or event-specific dark backdrop;
+- Misdeal logo / compact run-information hierarchy where appropriate;
+- dark near-black panels with restrained copper/orange ritual framing;
+- large card-like choices with explicit hover and disabled states;
+- a single dominant title, smaller type/kicker line and quieter Wizard commentary;
+- subtle entrance/hover motion rather than large UI transitions.
+
+Individual events keep identity through accent color and restrained atmosphere (forge sparks, chains, altar rings, bridge fog, candles, bones, Whispering Well teal), not through a different interaction model or a bespoke scene architecture for each card.
+
+This pass is strictly presentational. Costs, rewards, recruitment, hero-development logic, wager terms and event resolution remain data/state driven and unchanged.
+
+Do not solve future visual inconsistency by creating one unique UI implementation per event. Prefer the shared choice shell and add only lightweight visual variants unless the event genuinely needs a different interaction.
