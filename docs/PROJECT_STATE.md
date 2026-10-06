@@ -145,14 +145,17 @@ The **physical card-table staging pass** is implemented and has been confirmed l
 - single-card retry/boss states collapse to one central table slot instead of preserving a fake two-choice layout;
 - the pass adds no card physics, drag-to-play interaction or 3D table system; it is presentation-only and keeps the existing two-choice run rules intact.
 
-A richer **table-art dressing pass** is now implemented in GitHub and pending local visual verification:
+A richer procedural **table-art dressing experiment** was implemented and immediately rejected in local visual review because it overlaid the authored Wizard/table art with a second, incompatible visual language. The gray procedural dealer hands, large inlaid zones, dense orange geometry and extra props made the table feel like a debug/HUD layer rather than a dark-fantasy card scene.
 
-- the tabletop has denser wood grain, knots, edge beveling, brass studs, stitched runner detail and stronger inlaid deck/discard zones;
-- the central sigil is layered with extra rune marks and a faint glow so the spread feels anchored to a cursed ritual surface;
-- small props now break up empty tabletop space: coins, a wax seal and warmer light pools around the dealer side;
-- two stylized five-finger Wizard hands/sleeves now physically occupy the dealer side of the table without blocking the live cards;
-- the dealer hands react to new deals and to Wizard card substitution, with the relevant hand reaching toward the affected side and briefly gaining a red meddling glow;
-- the new hands are presentation-only and deliberately sit below the live card layer, so they cannot steal input or obscure card text.
+That experiment has been superseded by a **clean table-art pass**, now implemented in GitHub and pending local visual verification:
+
+- the procedural dealer hands are removed entirely; the authored Wizard art remains the only visible character/hand treatment;
+- large side inlays, heavy orange frames, extra coins/wax props, stitched borders and dense rune geometry are removed;
+- the central cloth/sigil is reduced to a very faint grounding treatment rather than a second UI frame;
+- deck and discard remain as small physical card stacks with understated labels, preserving the useful "real table" read without side panels;
+- the 12-card progress spread remains, but is reduced to tiny low-contrast diamond marks plus a restrained boss marker;
+- all successful physical behavior from the previous pass remains: deal-from-deck motion, card fan, hover lift, choose/discard animation, Wizard substitution timing and centered single-card states;
+- the guiding rule is now **authored background first, live cards second, supporting table UI last**.
 
 ## Player-facing language
 

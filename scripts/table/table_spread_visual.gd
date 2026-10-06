@@ -1,8 +1,8 @@
 extends Control
 
-const CARD_BACK_FILL := Color(0.055, 0.020, 0.026, 0.96)
-const CARD_BACK_BORDER := Color(0.54, 0.20, 0.13, 0.92)
-const CARD_BACK_INNER := Color(0.28, 0.085, 0.075, 0.82)
+const CARD_BACK_FILL := Color(0.052, 0.020, 0.026, 0.94)
+const CARD_BACK_BORDER := Color(0.48, 0.18, 0.12, 0.72)
+const CARD_BACK_INNER := Color(0.25, 0.075, 0.065, 0.56)
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -12,60 +12,55 @@ func refresh() -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	_draw_offer_slots()
 	_draw_deck()
 	_draw_discard()
 	_draw_progress_spread()
-
-func _draw_offer_slots() -> void:
-	if RunState.has_active_card() or RunState.is_boss_due():
-		_draw_slot(Rect2(520.0, 332.0, 240.0, 346.0), 0.0)
-		return
-
-	_draw_slot(Rect2(382.0, 332.0, 240.0, 346.0), -0.045)
-	_draw_slot(Rect2(658.0, 332.0, 240.0, 346.0), 0.045)
-
-func _draw_slot(rect: Rect2, rotation: float) -> void:
-	var center := rect.position + rect.size * 0.5
-	draw_set_transform(center, rotation, Vector2.ONE)
-	var local_rect := Rect2(-rect.size * 0.5, rect.size)
-	draw_rect(local_rect, Color(0.012, 0.006, 0.010, 0.34))
-	draw_rect(local_rect.grow(-5.0), Color(0.42, 0.13, 0.10, 0.20), false, 2.0)
-	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 func _draw_deck() -> void:
 	var remaining := RunState.remaining_card_ids.size()
 	if not RunState.has_active_card():
 		remaining = maxi(0, remaining - RunState.current_offer_ids.size())
 
-	var base_rect := Rect2(128.0, 405.0, 106.0, 154.0)
+	var base_rect := Rect2(166.0, 430.0, 76.0, 110.0)
 	if remaining <= 0:
-		draw_rect(base_rect, Color(0.22, 0.08, 0.07, 0.24), false, 2.0)
+		_draw_empty_card_place(base_rect)
 		return
 
-	var layers := mini(5, remaining)
+	var layers := mini(4, remaining)
 	for layer in range(layers):
-		var offset := Vector2(float(layer) * -2.5, float(layer) * -3.0)
-		_draw_card_back(Rect2(base_rect.position + offset, base_rect.size), -0.018 + float(layer) * 0.006, 0.72 + float(layer) * 0.055)
+		var offset := Vector2(float(layer) * -2.0, float(layer) * -2.5)
+		_draw_card_back(
+			Rect2(base_rect.position + offset, base_rect.size),
+			deg_to_rad(-2.0 + float(layer) * 0.8),
+			0.72 + float(layer) * 0.07
+		)
 
 func _draw_discard() -> void:
 	var discarded := RunState.resolved_card_ids.size() + RunState.rejected_card_ids.size()
-	var center := Vector2(1092.0, 486.0)
+	var base_rect := Rect2(1038.0, 430.0, 76.0, 110.0)
 
 	if discarded <= 0:
-		draw_arc(center, 72.0, 0.0, TAU, 32, Color(0.32, 0.10, 0.09, 0.28), 2.0)
+		_draw_empty_card_place(base_rect)
 		return
 
 	var visible_cards := mini(4, discarded)
 	for index in range(visible_cards):
-		var angle := deg_to_rad(-10.0 + float(index) * 6.0)
-		var offset := Vector2(-18.0 + float(index) * 10.0, float(index) * -2.0)
-		_draw_card_back(Rect2(center + offset - Vector2(46.0, 67.0), Vector2(92.0, 134.0)), angle, 0.64 + float(index) * 0.08)
+		var offset := Vector2(float(index) * 3.5, float(index) * -2.0)
+		_draw_card_back(
+			Rect2(base_rect.position + offset, base_rect.size),
+			deg_to_rad(-5.0 + float(index) * 3.0),
+			0.58 + float(index) * 0.10
+		)
+
+func _draw_empty_card_place(rect: Rect2) -> void:
+	draw_rect(rect, Color(0.30, 0.11, 0.09, 0.12), false, 1.0)
+	draw_rect(rect.grow(-6.0), Color(0.30, 0.11, 0.09, 0.07), false, 1.0)
 
 func _draw_card_back(rect: Rect2, rotation: float, alpha: float) -> void:
 	var center := rect.position + rect.size * 0.5
 	draw_set_transform(center, rotation, Vector2.ONE)
 	var local_rect := Rect2(-rect.size * 0.5, rect.size)
+
 	var fill := CARD_BACK_FILL
 	fill.a *= alpha
 	var border := CARD_BACK_BORDER
@@ -73,12 +68,12 @@ func _draw_card_back(rect: Rect2, rotation: float, alpha: float) -> void:
 	var inner := CARD_BACK_INNER
 	inner.a *= alpha
 
-	draw_rect(local_rect, Color(0, 0, 0, 0.28 * alpha))
-	draw_rect(local_rect.grow(-2.0), fill)
-	draw_rect(local_rect.grow(-4.0), border, false, 2.0)
-	draw_rect(local_rect.grow(-10.0), inner, false, 2.0)
+	draw_rect(Rect2(local_rect.position + Vector2(3.0, 4.0), local_rect.size), Color(0, 0, 0, 0.22 * alpha))
+	draw_rect(local_rect, fill)
+	draw_rect(local_rect.grow(-3.0), border, false, 1.5)
+	draw_rect(local_rect.grow(-9.0), inner, false, 1.0)
 
-	var half := Vector2(17.0, 25.0)
+	var half := Vector2(11.0, 16.0)
 	var diamond := PackedVector2Array([
 		Vector2(0.0, -half.y),
 		Vector2(half.x, 0.0),
@@ -86,56 +81,52 @@ func _draw_card_back(rect: Rect2, rotation: float, alpha: float) -> void:
 		Vector2(-half.x, 0.0),
 		Vector2(0.0, -half.y)
 	])
-	draw_polyline(diamond, border.lightened(0.12), 2.0)
-	draw_circle(Vector2.ZERO, 4.0, border.lightened(0.18))
+	draw_polyline(diamond, border.lightened(0.10), 1.5)
+	draw_circle(Vector2.ZERO, 2.5, border.lightened(0.12))
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 func _draw_progress_spread() -> void:
 	var resolved := RunState.cards_resolved
-	var start := Vector2(397.0, 281.0)
-	var card_size := Vector2(23.0, 30.0)
-	var gap := 8.0
-
-	draw_line(Vector2(385.0, 317.0), Vector2(895.0, 317.0), Color(0.44, 0.14, 0.11, 0.24), 2.0)
+	var start_x := 488.0
+	var y := 301.0
+	var spacing := 24.0
 
 	for index in range(RunState.ACT_CARD_TARGET):
-		var x := start.x + float(index) * (card_size.x + gap)
-		var rect := Rect2(Vector2(x, start.y), card_size)
+		var center := Vector2(start_x + float(index) * spacing, y)
 		var is_done := index < resolved
 		var is_current := index == resolved and not RunState.is_boss_due()
 
-		var fill := Color(0.035, 0.018, 0.024, 0.78)
-		var border := Color(0.28, 0.12, 0.12, 0.58)
+		var fill := Color(0.20, 0.08, 0.08, 0.30)
+		var border := Color(0.46, 0.18, 0.13, 0.30)
 		if is_done:
-			fill = Color(0.29, 0.15, 0.07, 0.92)
-			border = Color(0.78, 0.48, 0.20, 0.94)
+			fill = Color(0.54, 0.30, 0.11, 0.72)
+			border = Color(0.82, 0.52, 0.23, 0.74)
 		elif is_current:
-			fill = Color(0.20, 0.045, 0.035, 0.96)
-			border = Color(0.94, 0.34, 0.16, 1.0)
+			fill = Color(0.56, 0.12, 0.08, 0.76)
+			border = Color(0.96, 0.38, 0.17, 0.82)
 
-		draw_rect(rect, fill)
-		draw_rect(rect, border, false, 2.0)
+		var diamond := PackedVector2Array([
+			center + Vector2(0.0, -5.0),
+			center + Vector2(4.0, 0.0),
+			center + Vector2(0.0, 5.0),
+			center + Vector2(-4.0, 0.0),
+			center + Vector2(0.0, -5.0)
+		])
+		draw_colored_polygon(diamond, fill)
+		draw_polyline(diamond, border, 1.0)
 
-		if is_done:
-			draw_line(rect.position + Vector2(6.0, 15.0), rect.position + Vector2(10.0, 20.0), Color(1.0, 0.78, 0.42, 0.95), 2.0)
-			draw_line(rect.position + Vector2(10.0, 20.0), rect.position + Vector2(18.0, 9.0), Color(1.0, 0.78, 0.42, 0.95), 2.0)
-
-	var boss_rect := Rect2(Vector2(790.0, 276.0), Vector2(34.0, 40.0))
+	var boss_center := Vector2(start_x + float(RunState.ACT_CARD_TARGET) * spacing + 11.0, y)
 	var boss_active := RunState.is_boss_due() or RunState.active_card_id == RunState.BOSS_CARD_ID
-	var boss_fill := Color(0.08, 0.018, 0.020, 0.88)
-	var boss_border := Color(0.55, 0.12, 0.09, 0.82)
+	var boss_color := Color(0.54, 0.12, 0.08, 0.34)
 	if boss_active:
-		boss_fill = Color(0.23, 0.035, 0.025, 0.98)
-		boss_border = Color(1.0, 0.32, 0.12, 1.0)
+		boss_color = Color(1.0, 0.30, 0.12, 0.86)
 
-	draw_rect(boss_rect, boss_fill)
-	draw_rect(boss_rect, boss_border, false, 2.0)
-	var boss_center := boss_rect.position + boss_rect.size * 0.5
-	var boss_diamond := PackedVector2Array([
-		boss_center + Vector2(0.0, -10.0),
-		boss_center + Vector2(8.0, 0.0),
-		boss_center + Vector2(0.0, 10.0),
-		boss_center + Vector2(-8.0, 0.0),
-		boss_center + Vector2(0.0, -10.0)
+	draw_arc(boss_center, 7.0, 0.0, TAU, 16, boss_color, 1.5)
+	var boss_mark := PackedVector2Array([
+		boss_center + Vector2(0.0, -4.0),
+		boss_center + Vector2(3.0, 0.0),
+		boss_center + Vector2(0.0, 4.0),
+		boss_center + Vector2(-3.0, 0.0),
+		boss_center + Vector2(0.0, -4.0)
 	])
-	draw_polyline(boss_diamond, boss_border.lightened(0.16), 2.0)
+	draw_polyline(boss_mark, boss_color, 1.0)

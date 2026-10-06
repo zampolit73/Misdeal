@@ -756,7 +756,7 @@ Do not introduce freeform card dragging, physics simulation, a 3D tabletop or lo
 ## D043 — Dealer presence should be visible on the table without becoming a control layer
 
 Date: 2026-10-06  
-Status: accepted for vertical-slice presentation
+Status: rejected after local visual review; superseded by D044
 
 After the physical-deal pass was locally accepted, the table needed stronger visual evidence that the Wizard is actually dealing the cursed spread rather than merely appearing behind a UI.
 
@@ -771,3 +771,28 @@ The production table now adds a lightweight dealer-presence layer:
 These elements are presentation-only. They must not become draggable hand controls, collision objects or a second interaction model.
 
 The current hands are intentionally stylized Godot-drawn production dressing for the vertical slice. If later replaced with authored pixel art, preserve the same spatial role and input hierarchy rather than rebuilding the table flow.
+
+
+## D044 — Wizard-table polish must preserve the authored art instead of drawing a second visual language over it
+
+Date: 2026-10-06  
+Status: accepted for vertical-slice presentation
+
+Local review of the D043 implementation showed that procedural dealer hands, large inlaid side zones, dense orange geometry and extra tabletop props made the production table substantially worse. The existing authored Wizard/table image already provides the character, atmosphere and material language; procedural dressing should not compete with it.
+
+The table therefore returns to a restrained composition:
+
+- remove the procedural Wizard hands entirely;
+- remove large deck/discard frames, heavy runner borders, dense rune geometry and decorative props;
+- keep only subtle wood/cloth grounding beneath the live cards;
+- keep small physical deck/discard stacks and understated counts;
+- keep a low-contrast 12-card progress track and boss marker;
+- retain the successful physical interaction layer from D042: deal animation, shallow fan, hover lift, choose/discard motion, Wizard substitution timing and centered single-card states.
+
+Visual hierarchy is now explicit:
+
+1. authored Wizard/table background;
+2. live encounter cards;
+3. minimal supporting HUD and table-state indicators.
+
+Future table polish should prefer authored pixel assets or quiet native UI. Do not add prominent procedural character anatomy or decorative wireframe-style overlays without a visual mockup and explicit approval first.

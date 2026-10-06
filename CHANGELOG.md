@@ -27,6 +27,8 @@
 
 ### Fixed
 
+- Reverted the rejected wizard-table dressing layer after local visual review: removed the procedural dealer hands, oversized side inlays, dense orange frames/runes and extra tabletop props that clashed with the authored pixel background.
+- Rebalanced the table presentation around the live cards: small deck/discard stacks and a low-contrast fate track remain, while deal/hover/choose/discard/substitution animations are preserved.
 - Moved the victory/defeat result UI into a dedicated high-layer `CanvasLayer` with a dim scrim so combat-unit sprites, names and HP bars can no longer render over the result panel; the modal is also positioned higher and tactical-order controls hide on battle end.
 - Corrected the Wizard's card-hand anatomy on the production main-menu splash to five fingers.
 - Removed the obsolete compile-time `preload()` of `combat_units_v2.png` that prevented `unit.gd` from parsing in Godot 4.7.2. The validated v3 atlas is now the only production unit-art source.
