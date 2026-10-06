@@ -751,3 +751,23 @@ The production table now uses lightweight staging around the existing card butto
 This is presentation-only. Card choice, rejection, tiers and encounter rules remain unchanged.
 
 Do not introduce freeform card dragging, physics simulation, a 3D tabletop or long shuffle animations for the vertical slice. The table should feel tactile while keeping selection fast and readable.
+
+
+## D043 — Dealer presence should be visible on the table without becoming a control layer
+
+Date: 2026-10-06  
+Status: accepted for vertical-slice presentation
+
+After the physical-deal pass was locally accepted, the table needed stronger visual evidence that the Wizard is actually dealing the cursed spread rather than merely appearing behind a UI.
+
+The production table now adds a lightweight dealer-presence layer:
+
+- stylized Wizard sleeves and two clearly five-fingered hands occupy the dealer side of the tabletop;
+- hands sit below live cards and ignore mouse input;
+- the deck-side hand reacts to new deals;
+- the hand nearest a substituted card reaches inward during Wizard meddling and receives a short red occult glow;
+- the surrounding table gains more wood/material detail, inlaid deck/discard zones, props and ritual marks.
+
+These elements are presentation-only. They must not become draggable hand controls, collision objects or a second interaction model.
+
+The current hands are intentionally stylized Godot-drawn production dressing for the vertical slice. If later replaced with authored pixel art, preserve the same spatial role and input hierarchy rather than rebuilding the table flow.

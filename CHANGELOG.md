@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Physical wizard-table staging pass confirmed locally: deal animation, fan/hover behavior, discard motion and spread layout are working acceptably.
 - Voluntary Wizard wager flow confirmed locally: wager modal, debt state and doubled ordinary loot are working acceptably.
 - First combat-feel and prototype-SFX pass confirmed locally: attack motion, hit/death response and runtime combat cues are working acceptably.
 - Complete nine-role combat sprite atlas confirmed locally after the v2 fallback preload fix.
@@ -110,6 +111,8 @@
 
 ### Added
 
+- Added a richer cursed-table dressing pass: denser wood/runner detail, inlaid deck/discard zones, ritual marks, coins, wax seal and warmer light pools.
+- Added stylized five-finger Wizard dealer hands below the live-card layer; they react to deals and visibly reach/glow during card substitution without intercepting input.
 - Reworked the wizard table into a physical card spread: visible deck/discard piles, live counts, a 12-card fate track with XIII boss marker, staggered dealing, fan rotation, hover lift and choose/discard motion.
 - Added lightweight procedural table-card audio for dealing, selection, discard and Wizard substitution; single-card retry/boss offers now use one centered slot.
 - Added Wizard Memory v1: the Wizard now remembers eight behavior families across the run and can reference wagers, companion fates, debt-clearing, battle defeats/retries and greed-heavy gold choices at the table.

@@ -18,6 +18,7 @@ const RIGHT_CARD_ROTATION := 0.045
 @onready var hidden_card_b: Button = $Cards/WhisperingWellCard
 @onready var squad_button: Button = $SquadButton
 @onready var table_spread_visual: Control = $TableSpreadVisual
+@onready var dealer_presence: Control = $DealerPresence
 @onready var table_audio: Node = $TableAudio
 @onready var deck_count_label: Label = $DeckCount
 @onready var discard_count_label: Label = $DiscardCount
@@ -238,6 +239,8 @@ func _animate_deal_if_needed(offers: Array[RunCardData]) -> void:
 		return
 
 	dealt_offer_signature = signature
+	if dealer_presence != null and dealer_presence.has_method("play_deal"):
+		dealer_presence.call("play_deal")
 	if RunState.has_active_card():
 		deal_in_progress = false
 		for button in offer_buttons:
@@ -457,6 +460,8 @@ func _play_pending_wizard_meddling() -> void:
 	_restore_card_pose_immediate(button)
 	button.pivot_offset = button.size * 0.5
 	wizard_line.text = "Нет. Эту карту я передумал отдавать."
+	if dealer_presence != null and dealer_presence.has_method("play_meddle"):
+		dealer_presence.call("play_meddle", offer_index)
 	_play_table_audio("meddle")
 
 	var close_tween := button.create_tween()

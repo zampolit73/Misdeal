@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=21 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/table.gd" id="1_table"]
 [ext_resource type="Script" path="res://scripts/table/table_visual.gd" id="2_visual"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" path="res://assets/pixel/table/cards/whispering_well.png" id="8_well"]
 [ext_resource type="Script" path="res://scripts/table/table_spread_visual.gd" id="9_spread"]
 [ext_resource type="Script" path="res://scripts/table/table_audio.gd" id="10_audio"]
+[ext_resource type="Script" path="res://scripts/table/table_dealer_presence.gd" id="11_dealer"]
 
 [sub_resource type="StyleBoxFlat" id="HudPanel"]
 bg_color = Color(0.025, 0.018, 0.026, 0.95)
@@ -241,6 +242,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_spread")
+
+[node name="DealerPresence" type="Control" parent="."]
+z_index = 1
+mouse_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_dealer")
 
 [node name="TableAudio" type="Node" parent="."]
 script = ExtResource("10_audio")

@@ -116,6 +116,7 @@ Only after the loop is fun:
 - [x] Convert main menu, table/cards/wizard, event, reward and run-end UI to the same pixel-art language.
 - [x] Rebuild the wizard table around an approved authored pixel concept while keeping live Godot HUD/cards.
 - [x] Physical card-table staging pass: deck/discard zones, fate spread, dealt-card motion, fan/hover lift and choose/discard animation.
+- [x] Rich table-art dressing pass: inlaid deck/discard zones, denser tabletop props/material detail and reactive Wizard dealer hands.
 - [ ] Coherent visual language for table/cards/miniatures;
 - [x] First lightweight combat animation/impact pass: idle motion, role-aware attack motion/tracers, hit kick and death fall/fade.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
