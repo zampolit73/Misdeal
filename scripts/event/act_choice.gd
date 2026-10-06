@@ -16,6 +16,7 @@ const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 @onready var continue_button: Button = $Panel/ContinueButton
 @onready var panel: Panel = $Panel
 @onready var screen_visual: Control = $Visual
+@onready var backdrop: TextureRect = $WizardBackdrop
 @onready var choice_art_a: TextureRect = $Panel/Choices/ChoiceA/ChoiceArt
 @onready var choice_art_b: TextureRect = $Panel/Choices/ChoiceB/ChoiceArt
 @onready var choice_art_c: TextureRect = $Panel/Choices/ChoiceC/ChoiceArt
@@ -41,6 +42,7 @@ func _ready() -> void:
 	_configure_card()
 	_apply_approved_choice_art()
 	_apply_event_theme()
+	_apply_event_layout()
 	_connect_choice_feedback()
 	_animate_screen_in()
 
@@ -79,10 +81,23 @@ func _apply_choice_art_margins(button: Button) -> void:
 		if source == null:
 			continue
 		var styled: StyleBoxFlat = source.duplicate() as StyleBoxFlat
-		styled.content_margin_top = 98.0
-		styled.content_margin_bottom = 8.0
+		styled.content_margin_top = 136.0
+		styled.content_margin_bottom = 10.0
 		button.add_theme_stylebox_override(style_name, styled)
-	button.add_theme_font_size_override("font_size", 12)
+	button.add_theme_font_size_override("font_size", 13)
+
+func _apply_event_layout() -> void:
+	match active_card.card_id:
+		"curse_forge":
+			backdrop.modulate = Color(1.0, 0.58, 0.38, 0.96)
+			panel.position = Vector2(150.0, 74.0)
+			panel.size = Vector2(980.0, 620.0)
+		"chained_prisoner":
+			backdrop.modulate = Color(0.72, 0.48, 0.44, 0.92)
+			panel.position = Vector2(110.0, 82.0)
+			panel.size = Vector2(1060.0, 612.0)
+		_:
+			backdrop.modulate = Color(0.82, 0.68, 0.66, 0.88)
 
 func _get_event_accent() -> Color:
 	match active_card.card_id:

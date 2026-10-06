@@ -1,6 +1,11 @@
 extends Control
 
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
+const ROLE_FALLBACK_ART := {
+	"knight": preload("res://assets/art/units/knight.webp"),
+	"ranger": preload("res://assets/art/units/ranger.webp"),
+	"mage": preload("res://assets/art/units/mage.webp"),
+}
 
 @onready var title_label: Label = $Title
 @onready var summary_label: Label = $Summary
@@ -20,6 +25,7 @@ var upgrade_role_labels: Array[Label] = []
 var upgrade_title_labels: Array[Label] = []
 var upgrade_description_labels: Array[Label] = []
 var upgrade_quick_labels: Array[Label] = []
+var upgrade_choose_bars: Array[Panel] = []
 
 func _ready() -> void:
 	reward_buttons = [blood_coin_button, iron_ward_button, tempered_steel_button]
@@ -28,6 +34,7 @@ func _ready() -> void:
 	upgrade_title_labels = [$Rewards/BloodCoin/UpgradeTitle, $Rewards/IronWard/UpgradeTitle, $Rewards/TemperedSteel/UpgradeTitle]
 	upgrade_description_labels = [$Rewards/BloodCoin/UpgradeDescription, $Rewards/IronWard/UpgradeDescription, $Rewards/TemperedSteel/UpgradeDescription]
 	upgrade_quick_labels = [$Rewards/BloodCoin/QuickEffect, $Rewards/IronWard/QuickEffect, $Rewards/TemperedSteel/QuickEffect]
+	upgrade_choose_bars = [$Rewards/BloodCoin/ChooseBar, $Rewards/IronWard/ChooseBar, $Rewards/TemperedSteel/ChooseBar]
 	for index in range(reward_buttons.size()):
 		reward_buttons[index].pressed.connect(_on_reward_button_pressed.bind(index))
 		reward_buttons[index].mouse_entered.connect(_on_reward_hover.bind(reward_buttons[index], true))
@@ -291,8 +298,11 @@ func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData)
 	button.set_meta("quick_effect", quick_effect)
 	_set_upgrade_nodes_visible(index, true)
 	var approved_art: Texture2D = APPROVED_CHOICE_ART.get_upgrade_texture(upgrade_id)
+	if approved_art == null:
+		approved_art = ROLE_FALLBACK_ART.get(upgrade.target_role) as Texture2D
 	upgrade_portraits[index].texture = approved_art
 	upgrade_portraits[index].visible = approved_art != null
+	upgrade_choose_bars[index].visible = true
 	_apply_upgrade_text_layout(index, approved_art != null)
 	upgrade_role_labels[index].text = _get_role_label(upgrade.target_role)
 	upgrade_role_labels[index].add_theme_color_override("font_color", _get_role_color(upgrade.target_role))
@@ -307,6 +317,7 @@ func _set_upgrade_nodes_visible(index: int, visible: bool) -> void:
 	upgrade_title_labels[index].visible = visible
 	upgrade_description_labels[index].visible = visible
 	upgrade_quick_labels[index].visible = visible
+	upgrade_choose_bars[index].visible = visible
 
 func _get_upgrade_quick_effect(upgrade_id: String) -> String:
 	match upgrade_id:
@@ -333,15 +344,15 @@ func _get_upgrade_quick_effect(upgrade_id: String) -> String:
 
 func _apply_upgrade_text_layout(index: int, has_approved_art: bool) -> void:
 	if has_approved_art:
-		upgrade_role_labels[index].position.y = 108.0
-		upgrade_title_labels[index].position.y = 134.0
-		upgrade_description_labels[index].position.y = 164.0
-		upgrade_quick_labels[index].position.y = 244.0
+		upgrade_role_labels[index].position.y = 178.0
+		upgrade_title_labels[index].position.y = 204.0
+		upgrade_description_labels[index].position.y = 240.0
+		upgrade_quick_labels[index].position.y = 312.0
 	else:
-		upgrade_role_labels[index].position.y = 42.0
-		upgrade_title_labels[index].position.y = 72.0
-		upgrade_description_labels[index].position.y = 108.0
-		upgrade_quick_labels[index].position.y = 226.0
+		upgrade_role_labels[index].position.y = 72.0
+		upgrade_title_labels[index].position.y = 104.0
+		upgrade_description_labels[index].position.y = 146.0
+		upgrade_quick_labels[index].position.y = 300.0
 
 func _get_role_label(role: String) -> String:
 	match role:
@@ -382,10 +393,7 @@ func _on_reward_hover(button: Button, hovered: bool) -> void:
 	var tween := button.create_tween()
 	tween.tween_property(button, "scale", Vector2(1.025, 1.025) if hovered else Vector2.ONE, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
-	if reward_mode == "major_upgrade" or reward_mode == "bonus_upgrade":
-		var summary := str(button.get_meta("quick_effect", ""))
-		hover_summary_label.text = summary
-		hover_summary_label.visible = hovered and not summary.is_empty()
+	hover_summary_label.visible = false
 
 func _reset_buttons() -> void:
 	option_ids = ["", "", ""]

@@ -62,6 +62,8 @@
 
 ### Changed
 
+- Re-aligned **РАЗВИТИЕ ОТРЯДА**, **КУЗНИЦА ПРОКЛЯТИЙ**, **ЗАКОВАННЫЙ ПЛЕННИК** and **СТАВКА ВОЛШЕБНИКА** to the approved mockup compositions: taller illustrated cards, dominant art windows, in-card choose bars, stronger header framing and a larger ritual wager modal.
+- Hero-development cards now use approved art when available and a role-specific art fallback only for upgrade paths that do not yet have a dedicated approved illustration; combat-atlas sprites are not used on this screen.
 - Polished **РАЗВИТИЕ ОТРЯДА** beyond the shared shell: upgrade cards now show live hero portraits, separate role/path/description regions, concise tradeoff summaries, three-step fate markers, stronger backdrop suppression and tighter card proportions.
 - Reworked reward/development screens around the authored Wizard backdrop with a compact run HUD, stronger role-card presentation and hover feedback; reworked the Wizard wager into a larger ceremonial modal with clearer accept/refuse hierarchy.
 - Restyled protagonist selection and fallback event screens to match the same approved Misdeal table language instead of isolated flat-black prototype panels.

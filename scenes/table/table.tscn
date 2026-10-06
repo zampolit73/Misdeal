@@ -635,32 +635,54 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.76)
 
 [node name="WagerPanel" type="Panel" parent="WagerOverlay/Root"]
-offset_left = 290.0
-offset_top = 172.0
-offset_right = 990.0
-offset_bottom = 548.0
+offset_left = 270.0
+offset_top = 188.0
+offset_right = 1010.0
+offset_bottom = 574.0
 theme_override_styles/panel = SubResource("WagerPanel")
+
+[node name="Sigil" type="Label" parent="WagerOverlay/Root/WagerPanel"]
+mouse_filter = 2
+offset_left = 335.0
+offset_top = -20.0
+offset_right = 405.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(1, 0.42, 0.18, 1)
+theme_override_font_sizes/font_size = 28
+text = "◆"
+horizontal_alignment = 1
+
+[node name="Divider" type="Label" parent="WagerOverlay/Root/WagerPanel"]
+mouse_filter = 2
+offset_left = 180.0
+offset_top = 74.0
+offset_right = 560.0
+offset_bottom = 94.0
+theme_override_colors/font_color = Color(0.84, 0.30, 0.14, 0.86)
+theme_override_font_sizes/font_size = 14
+text = "────────  ◆  ────────"
+horizontal_alignment = 1
 
 [node name="Title" type="Label" parent="WagerOverlay/Root/WagerPanel"]
 mouse_filter = 2
-offset_left = 44.0
-offset_top = 30.0
-offset_right = 656.0
-offset_bottom = 76.0
+offset_left = 54.0
+offset_top = 34.0
+offset_right = 686.0
+offset_bottom = 82.0
 theme_override_colors/font_color = Color(1, 0.66, 0.38, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 31
 text = "СТАВКА ВОЛШЕБНИКА"
 horizontal_alignment = 1
 
 [node name="Quote" type="Label" parent="WagerOverlay/Root/WagerPanel"]
 mouse_filter = 2
-offset_left = 70.0
-offset_top = 94.0
-offset_right = 630.0
-offset_bottom = 152.0
+offset_left = 82.0
+offset_top = 102.0
+offset_right = 658.0
+offset_bottom = 164.0
 theme_override_colors/font_color = Color(0.82, 0.70, 0.72, 1)
 theme_override_font_sizes/font_size = 15
 text = "«Я удвою следующую обычную добычу.\nТы лишь позволишь мне сделать следующий бой... честнее.»"
@@ -669,10 +691,10 @@ vertical_alignment = 1
 
 [node name="Terms" type="Label" parent="WagerOverlay/Root/WagerPanel"]
 mouse_filter = 2
-offset_left = 76.0
-offset_top = 178.0
-offset_right = 624.0
-offset_bottom = 240.0
+offset_left = 86.0
+offset_top = 194.0
+offset_right = 654.0
+offset_bottom = 258.0
 theme_override_colors/font_color = Color(0.93, 0.82, 0.67, 1)
 theme_override_font_sizes/font_size = 17
 text = "СЛЕДУЮЩИЙ БОЙ: враги наносят +25% урона\nСЛЕДУЮЩАЯ ОБЫЧНАЯ ДОБЫЧА: x2"
@@ -680,10 +702,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AcceptButton" type="Button" parent="WagerOverlay/Root/WagerPanel"]
-offset_left = 78.0
-offset_top = 282.0
-offset_right = 330.0
-offset_bottom = 340.0
+offset_left = 84.0
+offset_top = 294.0
+offset_right = 350.0
+offset_bottom = 354.0
 theme_override_colors/font_color = Color(1, 0.78, 0.56, 1)
 theme_override_colors/font_hover_color = Color(1, 0.92, 0.78, 1)
 theme_override_font_sizes/font_size = 15
@@ -693,10 +715,10 @@ theme_override_styles/pressed = SubResource("CardHover")
 text = "ПРИНЯТЬ СТАВКУ"
 
 [node name="RefuseButton" type="Button" parent="WagerOverlay/Root/WagerPanel"]
-offset_left = 370.0
-offset_top = 282.0
-offset_right = 622.0
-offset_bottom = 340.0
+offset_left = 390.0
+offset_top = 294.0
+offset_right = 656.0
+offset_bottom = 354.0
 theme_override_colors/font_color = Color(0.72, 0.78, 0.80, 1)
 theme_override_colors/font_hover_color = Color(0.90, 0.94, 0.96, 1)
 theme_override_font_sizes/font_size = 15

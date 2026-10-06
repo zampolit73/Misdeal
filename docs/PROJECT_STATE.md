@@ -742,3 +742,7 @@ The user keeps a local clone and normally updates with:
 `git pull`
 
 `UPDATE_MISDEAL.bat` is also present as a one-click pull helper.
+
+- Hero development, Curse Forge, Chained Prisoner and Wizard Wager were re-aligned to their approved visual mockups with taller illustrated cards and stronger ceremonial framing.
+
+- Curse Forge and Chained Prisoner now use the same tall illustrated choice-card proportions as their approved mockups, with approved atlas art occupying the upper half of each choice; the Wizard Wager modal is enlarged and gains a central ritual sigil/divider treatment.
