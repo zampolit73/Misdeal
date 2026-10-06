@@ -93,7 +93,7 @@ A follow-up UI-overlap polish pass was implemented after local screenshots expos
 - the result panel was moved upward and given more vertical breathing room, while tactical-order controls are hidden once combat ends;
 - the finished **БОЙ** button is hidden when **ЗАБРАТЬ НАГРАДУ / ВЕРНУТЬСЯ К СТОЛУ** appears, removing duplicated bottom text.
 
-A first combat-feel / audio pass is now implemented in GitHub and pending local verification:
+The first combat-feel / audio pass is implemented in GitHub and has been confirmed locally:
 
 - all living units have a subtle sprite-only idle/breathing motion without moving their actual combat position;
 - melee attacks use a stronger forward lunge, ranged attacks use recoil plus a brief tracer, and Mage/Bellkeeper attacks use a colored magical tracer/pulse;
@@ -111,6 +111,16 @@ A first **active Wizard interference** pass is now implemented in GitHub and pen
 - the swapped-away card is not consumed and can still appear later, while the replacement becomes part of the real current offer;
 - active/retry cards and the Bone Warden boss offer are never meddled with;
 - this is intentionally theatrical offer manipulation, not hidden stat cheating or a new generalized curse system.
+
+A first **voluntary Wizard wager** layer is now implemented in GitHub and pending local verification:
+
+- the Wizard schedules up to two wager offers in Act 1: an early offer around cards 3-4 and another after card 7;
+- the wager appears as a blocking table modal before the player chooses the next card;
+- accepting activates the existing **ДОЛГ ВОЛШЕБНИКУ** state: the next combat deals +25% enemy damage and the next ordinary loot reward is doubled;
+- refusing has no mechanical punishment; the Wizard only comments on the refusal;
+- an existing debt suppresses scheduled wager prompts so debt states never stack;
+- the existing Wizard Tithe refusal still uses the same debt mechanic, and Faceless Card can still clear it;
+- accepted/refused wager counts are stored in `RunState` for later Wizard-memory/reaction work.
 
 ## Player-facing language
 

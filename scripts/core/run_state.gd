@@ -5,6 +5,7 @@ const MAX_DEALS: int = ACT_CARD_TARGET
 const BOSS_CARD_ID := "bone_warden"
 const DEFAULT_ENCOUNTER_PATH := "res://resources/encounters/graveyard_ambush.tres"
 const WIZARD_MEDDLING_PER_RUN := 2
+const WIZARD_WAGERS_PER_RUN := 2
 
 const ARTIFACT_PATHS := {
 	"dead_mans_shield": "res://resources/artifacts/dead_mans_shield.tres",
@@ -127,6 +128,12 @@ var wizard_meddling_offer_index := -1
 var wizard_meddling_original_id := ""
 var wizard_meddling_replacement_id := ""
 
+var wizard_wager_slots: Array[int] = []
+var wizard_wager_consumed_slots: Array[int] = []
+var wizard_wager_pending := false
+var wizard_wagers_accepted := 0
+var wizard_wagers_declined := 0
+
 func _ready() -> void:
 	if remaining_card_ids.is_empty() and resolved_card_ids.is_empty() and active_card_id.is_empty():
 		reset_run()
@@ -163,6 +170,11 @@ func reset_run() -> void:
 	wizard_meddling_offer_index = -1
 	wizard_meddling_original_id = ""
 	wizard_meddling_replacement_id = ""
+	wizard_wager_slots.clear()
+	wizard_wager_consumed_slots.clear()
+	wizard_wager_pending = false
+	wizard_wagers_accepted = 0
+	wizard_wagers_declined = 0
 	remaining_card_ids.clear()
 	current_offer_ids.clear()
 	rejected_card_ids.clear()
@@ -175,6 +187,7 @@ func reset_run() -> void:
 		forced_combat_slots.append(randi_range(0, 2))
 
 	_schedule_wizard_meddling()
+	_schedule_wizard_wagers()
 
 func choose_protagonist(role: String) -> bool:
 	if not HERO_ROLES.has(role):
@@ -740,6 +753,16 @@ func _schedule_wizard_meddling() -> void:
 	if WIZARD_MEDDLING_PER_RUN > 1:
 		wizard_meddling_slots.append(late_slot)
 
+func _schedule_wizard_wagers() -> void:
+	wizard_wager_slots.clear()
+
+	if WIZARD_WAGERS_PER_RUN <= 0:
+		return
+
+	wizard_wager_slots.append(2 + randi_range(0, 1))
+	if WIZARD_WAGERS_PER_RUN > 1:
+		wizard_wager_slots.append(7)
+
 func get_offer_cards() -> Array[RunCardData]:
 	_ensure_current_offers()
 
@@ -758,6 +781,7 @@ func _ensure_current_offers() -> void:
 
 	if not current_offer_ids.is_empty():
 		_prepare_wizard_meddling_if_due()
+		_prepare_wizard_wager_if_due()
 		return
 
 	if is_boss_due():
@@ -802,6 +826,52 @@ func _ensure_current_offers() -> void:
 		current_offer_ids.append(candidates[index])
 
 	_prepare_wizard_meddling_if_due()
+	_prepare_wizard_wager_if_due()
+
+func _prepare_wizard_wager_if_due() -> void:
+	if wizard_wager_pending:
+		return
+	if not active_card_id.is_empty() or is_boss_due():
+		return
+	if current_offer_ids.size() < 2:
+		return
+	if not wizard_wager_slots.has(cards_resolved):
+		return
+	if wizard_wager_consumed_slots.has(cards_resolved):
+		return
+	if wizard_meddling_pending:
+		return
+
+	if wizard_debt_active:
+		wizard_wager_consumed_slots.append(cards_resolved)
+		return
+
+	wizard_wager_pending = true
+
+func has_pending_wizard_wager() -> bool:
+	return wizard_wager_pending and not wizard_debt_active
+
+func accept_pending_wizard_wager() -> bool:
+	if not has_pending_wizard_wager():
+		return false
+
+	activate_wizard_debt()
+	wizard_wagers_accepted += 1
+	_consume_pending_wizard_wager()
+	return true
+
+func decline_pending_wizard_wager() -> bool:
+	if not wizard_wager_pending:
+		return false
+
+	wizard_wagers_declined += 1
+	_consume_pending_wizard_wager()
+	return true
+
+func _consume_pending_wizard_wager() -> void:
+	if not wizard_wager_consumed_slots.has(cards_resolved):
+		wizard_wager_consumed_slots.append(cards_resolved)
+	wizard_wager_pending = false
 
 func _prepare_wizard_meddling_if_due() -> void:
 	if wizard_meddling_pending:
@@ -965,6 +1035,11 @@ func get_reward_multiplier() -> int:
 
 func get_run_condition_text() -> String:
 	return "ДОЛГ ВОЛШЕБНИКУ" if wizard_debt_active else ""
+
+func get_wizard_wager_history_text() -> String:
+	if wizard_wagers_accepted == 0 and wizard_wagers_declined == 0:
+		return "ставок ещё не было"
+	return "принято %d • отклонено %d" % [wizard_wagers_accepted, wizard_wagers_declined]
 
 func apply_reward(reward_id: String) -> void:
 	var multiplier := get_reward_multiplier()

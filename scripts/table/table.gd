@@ -9,6 +9,10 @@ const SQUAD_STATUS_SCENE := preload("res://scenes/table/squad_status.tscn")
 @onready var hidden_card_a: Button = $Cards/GallowsVolleyCard
 @onready var hidden_card_b: Button = $Cards/WhisperingWellCard
 @onready var squad_button: Button = $SquadButton
+@onready var wager_root: Control = $WagerOverlay/Root
+@onready var wager_panel: Panel = $WagerOverlay/Root/WagerPanel
+@onready var wager_accept_button: Button = $WagerOverlay/Root/WagerPanel/AcceptButton
+@onready var wager_refuse_button: Button = $WagerOverlay/Root/WagerPanel/RefuseButton
 
 var offer_buttons: Array[Button] = []
 var squad_status: Control
@@ -28,11 +32,17 @@ func _ready() -> void:
 
 	hidden_card_a.visible = false
 	hidden_card_b.visible = false
+	wager_root.visible = false
 	squad_button.pressed.connect(_toggle_squad_status)
+	wager_accept_button.pressed.connect(_accept_wizard_wager)
+	wager_refuse_button.pressed.connect(_refuse_wizard_wager)
 
 	_refresh_table()
 
 func _input(event: InputEvent) -> void:
+	if selection_locked:
+		return
+
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB:
 		get_viewport().set_input_as_handled()
 		_toggle_squad_status()
@@ -89,6 +99,11 @@ func _refresh_table() -> void:
 		_disable_offer_buttons()
 		wizard_line.text = "Подожди. Я ещё не закончил сдавать."
 		call_deferred("_play_pending_wizard_meddling")
+	elif RunState.has_pending_wizard_wager():
+		selection_locked = true
+		_disable_offer_buttons()
+		wizard_line.text = "Прежде чем выбирать... сыграем поинтереснее?"
+		call_deferred("_show_wizard_wager")
 
 func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	var art := button.get_node("Art") as TextureRect
@@ -192,6 +207,42 @@ func _preview_card(card: RunCardData) -> void:
 func _restore_wizard_line() -> void:
 	if selection_locked:
 		return
+	wizard_line.text = default_wizard_line
+
+func _show_wizard_wager() -> void:
+	if not RunState.has_pending_wizard_wager():
+		selection_locked = false
+		_enable_offer_buttons()
+		return
+
+	wager_root.visible = true
+	wager_panel.pivot_offset = wager_panel.size * 0.5
+	wager_panel.scale = Vector2(0.92, 0.92)
+	wager_panel.modulate = Color(1.0, 0.80, 0.72, 0.0)
+
+	var tween := wager_panel.create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(wager_panel, "scale", Vector2.ONE, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(wager_panel, "modulate", Color.WHITE, 0.16)
+
+func _accept_wizard_wager() -> void:
+	if not RunState.accept_pending_wizard_wager():
+		return
+
+	wager_root.visible = false
+	selection_locked = false
+	_refresh_table()
+	default_wizard_line = "Вот и договорились. Следующий бой станет больнее. Следующая обычная добыча — вдвое слаще."
+	wizard_line.text = default_wizard_line
+
+func _refuse_wizard_wager() -> void:
+	if not RunState.decline_pending_wizard_wager():
+		return
+
+	wager_root.visible = false
+	selection_locked = false
+	_refresh_table()
+	default_wizard_line = "Какая осторожность. Почти разочаровывает."
 	wizard_line.text = default_wizard_line
 
 func _play_pending_wizard_meddling() -> void:

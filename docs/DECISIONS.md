@@ -677,3 +677,22 @@ Rules:
 - only two substitutions happen in a normal Act 1 run so the trick remains memorable rather than routine.
 
 This is deliberately a theatrical, legible cheat. Do not make the Wizard silently alter combat stats or secretly invalidate player choices. Future wagers/curses can add opt-in risk, but the host should feel unfair in personality without making the rules unreadable.
+
+
+## D040 — Wizard wagers are explicit opt-in risk, not hidden punishment
+
+Date: 2026-10-06  
+Status: accepted for vertical-slice antagonist identity
+
+The Wizard now has a second active interaction besides unilateral card substitution: a voluntary wager.
+
+Up to two wager prompts are scheduled per Act 1 run. A wager pauses the table before card selection and clearly states both terms:
+
+- next combat: enemies deal +25% damage;
+- next ordinary loot reward: x2.
+
+Accepting reuses the existing `wizard_debt_active` mechanic rather than creating a second combat modifier. The debt persists through events and special rewards until ordinary loot pays it out, matching the existing Wizard Tithe debt behavior. Faceless Card can still clear the debt.
+
+Refusing the wager has no mechanical punishment. The Wizard may mock the refusal, but the player must be able to distinguish an unfair personality from unreadable rules.
+
+Scheduled wager prompts are suppressed while a debt is already active and never stack. Accepted/refused counts are retained in `RunState` so later Wizard-memory dialogue can react to the player's appetite for risk.

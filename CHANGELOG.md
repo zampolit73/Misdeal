@@ -4,6 +4,7 @@
 
 ### Verified
 
+- First combat-feel and prototype-SFX pass confirmed locally: attack motion, hit/death response and runtime combat cues are working acceptably.
 - Complete nine-role combat sprite atlas confirmed locally after the v2 fallback preload fix.
 - Authored gothic battle backdrop confirmed locally after backdrop import/z-order fixes.
 - Final five-card Act 1 content batch confirmed locally: Rattling Bridge, Lost Purse, Candle Seller, Bone Tax and Death Wager.
@@ -108,6 +109,8 @@
 
 ### Added
 
+- Added the first voluntary Wizard wager modal at the cursed table: accept +25% enemy damage on the next combat for x2 next ordinary loot, or refuse with no mechanical penalty.
+- Scheduled up to two wager opportunities per Act 1 run, suppressed while a Wizard debt is already active; accepted/refused counts are retained for future Wizard-memory dialogue.
 - Added the Wizard's first active table cheat: two rare visible card substitutions per Act 1 run, one in the mid tier and one in the late tier.
 - A meddling offer briefly locks, the targeted card flips edge-on, and the Wizard replaces it with another same-tier card from the same resolution family; the removed card remains eligible to appear later.
 - Added a first combat-feel pass: subtle idle/breathing, role-aware melee/ranged/magic attack motion, ranged/magic tracers, stronger hit response and a falling/fading death presentation.
