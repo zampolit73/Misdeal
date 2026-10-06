@@ -103,6 +103,15 @@ A first combat-feel / audio pass is now implemented in GitHub and pending local 
 - the SFX system uses a small polyphonic voice pool and short cooldowns so swarm fights do not become an audio wall;
 - no external audio asset pack or generalized animation framework was added; authored sound/music can replace the placeholders later without changing combat rules.
 
+A first **active Wizard interference** pass is now implemented in GitHub and pending local verification:
+
+- the Wizard now secretly schedules two meddling moments per Act 1 run: one during the mid tier and one during the late tier;
+- when one triggers, the current two-card offer is shown first, selection locks briefly, and the Wizard visibly flips one card edge-on and replaces it;
+- replacement stays inside the same tier and the same resolution family (combat replaces combat, event replaces event), preserving the run's mandatory-combat pacing while still allowing a normal combat to become an elite combat or one event to become a harsher event;
+- the swapped-away card is not consumed and can still appear later, while the replacement becomes part of the real current offer;
+- active/retry cards and the Bone Warden boss offer are never meddled with;
+- this is intentionally theatrical offer manipulation, not hidden stat cheating or a new generalized curse system.
+
 ## Player-facing language
 
 All player-facing UI text, card text, reward text, wizard lines and unit display names are Russian.

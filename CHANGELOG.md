@@ -108,6 +108,8 @@
 
 ### Added
 
+- Added the Wizard's first active table cheat: two rare visible card substitutions per Act 1 run, one in the mid tier and one in the late tier.
+- A meddling offer briefly locks, the targeted card flips edge-on, and the Wizard replaces it with another same-tier card from the same resolution family; the removed card remains eligible to appear later.
 - Added a first combat-feel pass: subtle idle/breathing, role-aware melee/ranged/magic attack motion, ranged/magic tracers, stronger hit response and a falling/fading death presentation.
 - Added lightweight runtime-generated combat SFX for melee, ranged and magic attacks, impacts, deaths, Bellkeeper healing, Bone Warden phase change, tactical-order selection, combat start and victory/defeat stingers.
 - Three pre-battle tactical orders: **НАТИСК**, **ОХОТА**, **СТРОЙ**.

@@ -4,6 +4,7 @@ const ACT_CARD_TARGET: int = 12
 const MAX_DEALS: int = ACT_CARD_TARGET
 const BOSS_CARD_ID := "bone_warden"
 const DEFAULT_ENCOUNTER_PATH := "res://resources/encounters/graveyard_ambush.tres"
+const WIZARD_MEDDLING_PER_RUN := 2
 
 const ARTIFACT_PATHS := {
 	"dead_mans_shield": "res://resources/artifacts/dead_mans_shield.tres",
@@ -119,6 +120,13 @@ var current_major_upgrade_offer_ids: Array[String] = []
 var current_bonus_upgrade_offer_ids: Array[String] = []
 var forced_combat_slots: Array[int] = []
 
+var wizard_meddling_slots: Array[int] = []
+var wizard_meddling_consumed_slots: Array[int] = []
+var wizard_meddling_pending := false
+var wizard_meddling_offer_index := -1
+var wizard_meddling_original_id := ""
+var wizard_meddling_replacement_id := ""
+
 func _ready() -> void:
 	if remaining_card_ids.is_empty() and resolved_card_ids.is_empty() and active_card_id.is_empty():
 		reset_run()
@@ -149,6 +157,12 @@ func reset_run() -> void:
 	current_major_upgrade_offer_ids.clear()
 	current_bonus_upgrade_offer_ids.clear()
 	forced_combat_slots.clear()
+	wizard_meddling_slots.clear()
+	wizard_meddling_consumed_slots.clear()
+	wizard_meddling_pending = false
+	wizard_meddling_offer_index = -1
+	wizard_meddling_original_id = ""
+	wizard_meddling_replacement_id = ""
 	remaining_card_ids.clear()
 	current_offer_ids.clear()
 	rejected_card_ids.clear()
@@ -159,6 +173,8 @@ func reset_run() -> void:
 
 	for _tier in range(3):
 		forced_combat_slots.append(randi_range(0, 2))
+
+	_schedule_wizard_meddling()
 
 func choose_protagonist(role: String) -> bool:
 	if not HERO_ROLES.has(role):
@@ -711,6 +727,19 @@ func get_progress_text() -> String:
 		return "БОСС"
 	return "КАРТА %d/%d" % [mini(cards_resolved + 1, ACT_CARD_TARGET), ACT_CARD_TARGET]
 
+func _schedule_wizard_meddling() -> void:
+	wizard_meddling_slots.clear()
+
+	if WIZARD_MEDDLING_PER_RUN <= 0:
+		return
+
+	var mid_slot := 4 + randi_range(0, 2)
+	var late_slot := 8 + randi_range(0, 2)
+	wizard_meddling_slots.append(mid_slot)
+
+	if WIZARD_MEDDLING_PER_RUN > 1:
+		wizard_meddling_slots.append(late_slot)
+
 func get_offer_cards() -> Array[RunCardData]:
 	_ensure_current_offers()
 
@@ -728,6 +757,7 @@ func _ensure_current_offers() -> void:
 		return
 
 	if not current_offer_ids.is_empty():
+		_prepare_wizard_meddling_if_due()
 		return
 
 	if is_boss_due():
@@ -770,6 +800,97 @@ func _ensure_current_offers() -> void:
 	var offer_count := mini(2, candidates.size())
 	for index in range(offer_count):
 		current_offer_ids.append(candidates[index])
+
+	_prepare_wizard_meddling_if_due()
+
+func _prepare_wizard_meddling_if_due() -> void:
+	if wizard_meddling_pending:
+		return
+	if not active_card_id.is_empty() or is_boss_due():
+		return
+	if current_offer_ids.size() < 2:
+		return
+	if not wizard_meddling_slots.has(cards_resolved):
+		return
+	if wizard_meddling_consumed_slots.has(cards_resolved):
+		return
+
+	var offer_indices: Array[int] = [0, 1]
+	offer_indices.shuffle()
+
+	for offer_index in offer_indices:
+		var original_id := current_offer_ids[offer_index]
+		var original_card := get_card(original_id)
+		if original_card == null:
+			continue
+
+		var replacements: Array[String] = []
+		for candidate_id in remaining_card_ids:
+			if current_offer_ids.has(candidate_id):
+				continue
+
+			var candidate_card := get_card(candidate_id)
+			if candidate_card == null:
+				continue
+			if candidate_card.tier != original_card.tier:
+				continue
+			if candidate_card.resolution_type != original_card.resolution_type:
+				continue
+
+			replacements.append(candidate_id)
+
+		if replacements.is_empty():
+			continue
+
+		replacements.shuffle()
+		wizard_meddling_pending = true
+		wizard_meddling_offer_index = offer_index
+		wizard_meddling_original_id = original_id
+		wizard_meddling_replacement_id = replacements[0]
+		return
+
+	wizard_meddling_consumed_slots.append(cards_resolved)
+
+func has_pending_wizard_meddling() -> bool:
+	return (
+		wizard_meddling_pending
+		and wizard_meddling_offer_index >= 0
+		and wizard_meddling_offer_index < current_offer_ids.size()
+		and not wizard_meddling_replacement_id.is_empty()
+	)
+
+func get_pending_wizard_meddling_index() -> int:
+	return wizard_meddling_offer_index if has_pending_wizard_meddling() else -1
+
+func apply_pending_wizard_meddling() -> Dictionary:
+	if not has_pending_wizard_meddling():
+		return {}
+
+	var offer_index := wizard_meddling_offer_index
+	if current_offer_ids[offer_index] != wizard_meddling_original_id:
+		_clear_pending_wizard_meddling()
+		return {}
+
+	var old_card_id := wizard_meddling_original_id
+	var new_card_id := wizard_meddling_replacement_id
+	current_offer_ids[offer_index] = new_card_id
+
+	if not wizard_meddling_consumed_slots.has(cards_resolved):
+		wizard_meddling_consumed_slots.append(cards_resolved)
+
+	_clear_pending_wizard_meddling()
+
+	return {
+		"offer_index": offer_index,
+		"old_card_id": old_card_id,
+		"new_card_id": new_card_id
+	}
+
+func _clear_pending_wizard_meddling() -> void:
+	wizard_meddling_pending = false
+	wizard_meddling_offer_index = -1
+	wizard_meddling_original_id = ""
+	wizard_meddling_replacement_id = ""
 
 func _is_combat_card_id(card_id: String) -> bool:
 	var card := get_card(card_id)

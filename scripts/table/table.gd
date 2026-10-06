@@ -21,6 +21,11 @@ func _ready() -> void:
 		return
 
 	offer_buttons = [offer_a_button, offer_b_button]
+	for button in offer_buttons:
+		button.pressed.connect(_on_offer_button_pressed.bind(button))
+		button.mouse_entered.connect(_on_offer_button_mouse_entered.bind(button))
+		button.mouse_exited.connect(_on_offer_button_mouse_exited)
+
 	hidden_card_a.visible = false
 	hidden_card_b.visible = false
 	squad_button.pressed.connect(_toggle_squad_status)
@@ -42,6 +47,7 @@ func _toggle_squad_status() -> void:
 	add_child(squad_status)
 
 func _refresh_table() -> void:
+	selection_locked = false
 	var condition_text := RunState.get_run_condition_text()
 	stats_label.text = "%s     ЗОЛОТО %d     ОТРЯД %d/3     РАЗВИТИЕ %d     РЕЛИКВИИ %d" % [
 		RunState.get_progress_text(),
@@ -78,6 +84,12 @@ func _refresh_table() -> void:
 		button.visible = true
 		_setup_offer_button(button, offers[index])
 
+	if RunState.has_pending_wizard_meddling():
+		selection_locked = true
+		_disable_offer_buttons()
+		wizard_line.text = "Подожди. Я ещё не закончил сдавать."
+		call_deferred("_play_pending_wizard_meddling")
+
 func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	var art := button.get_node("Art") as TextureRect
 	var title_label := button.get_node("Title") as Label
@@ -85,6 +97,7 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	var description_label := button.get_node("Description") as Label
 	var hint_label := button.get_node("Hint") as Label
 
+	button.set_meta("card_id", card.card_id)
 	title_label.text = card.title
 	type_label.text = card.type_label
 	description_label.text = card.card_text
@@ -99,9 +112,25 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 			art.texture = texture
 
 	_apply_card_style(button, card)
-	button.pressed.connect(_choose_card.bind(card))
-	button.mouse_entered.connect(_preview_card.bind(card))
-	button.mouse_exited.connect(_restore_wizard_line)
+
+func _get_button_card(button: Button) -> RunCardData:
+	var card_id := String(button.get_meta("card_id", ""))
+	if card_id.is_empty():
+		return null
+	return RunState.get_card(card_id)
+
+func _on_offer_button_pressed(button: Button) -> void:
+	var card := _get_button_card(button)
+	if card != null:
+		_choose_card(card)
+
+func _on_offer_button_mouse_entered(button: Button) -> void:
+	var card := _get_button_card(button)
+	if card != null:
+		_preview_card(card)
+
+func _on_offer_button_mouse_exited() -> void:
+	_restore_wizard_line()
 
 func _get_hint_text(card: RunCardData) -> String:
 	if RunState.has_active_card():
@@ -165,6 +194,72 @@ func _restore_wizard_line() -> void:
 		return
 	wizard_line.text = default_wizard_line
 
+func _play_pending_wizard_meddling() -> void:
+	if not RunState.has_pending_wizard_meddling():
+		selection_locked = false
+		_enable_offer_buttons()
+		return
+
+	await get_tree().create_timer(0.55).timeout
+	if not RunState.has_pending_wizard_meddling():
+		selection_locked = false
+		_enable_offer_buttons()
+		return
+
+	var offer_index := RunState.get_pending_wizard_meddling_index()
+	if offer_index < 0 or offer_index >= offer_buttons.size():
+		selection_locked = false
+		_enable_offer_buttons()
+		return
+
+	var button := offer_buttons[offer_index]
+	button.pivot_offset = button.size * 0.5
+	wizard_line.text = "Нет. Эту карту я передумал отдавать."
+
+	var close_tween := button.create_tween()
+	close_tween.set_parallel(true)
+	close_tween.tween_property(button, "scale", Vector2(0.06, 1.0), 0.16).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	close_tween.tween_property(button, "modulate", Color(0.52, 0.16, 0.14, 1.0), 0.16)
+	await close_tween.finished
+
+	var result := RunState.apply_pending_wizard_meddling()
+	if result.is_empty():
+		button.scale = Vector2.ONE
+		button.modulate = Color.WHITE
+		selection_locked = false
+		_enable_offer_buttons()
+		_restore_wizard_line()
+		return
+
+	var old_card := RunState.get_card(String(result.get("old_card_id", "")))
+	var new_card := RunState.get_card(String(result.get("new_card_id", "")))
+	if new_card == null:
+		button.scale = Vector2.ONE
+		button.modulate = Color.WHITE
+		selection_locked = false
+		_enable_offer_buttons()
+		_refresh_table()
+		return
+
+	_setup_offer_button(button, new_card)
+	var hint_label := button.get_node("Hint") as Label
+	hint_label.text = "ПОДМЕНЕНО"
+
+	button.scale = Vector2(0.06, 1.0)
+	button.modulate = Color(1.0, 0.50, 0.34, 1.0)
+	var open_tween := button.create_tween()
+	open_tween.set_parallel(true)
+	open_tween.tween_property(button, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	open_tween.tween_property(button, "modulate", Color.WHITE, 0.20)
+	await open_tween.finished
+
+	hint_label.text = _get_hint_text(new_card)
+	var old_title := old_card.title if old_card != null else "та карта"
+	default_wizard_line = "«%s»? Нет. Сегодня ты получишь «%s». Так интереснее." % [old_title, new_card.title]
+	wizard_line.text = default_wizard_line
+	selection_locked = false
+	_enable_offer_buttons()
+
 func _choose_card(card: RunCardData) -> void:
 	if selection_locked:
 		return
@@ -190,3 +285,8 @@ func _choose_card(card: RunCardData) -> void:
 func _disable_offer_buttons() -> void:
 	for button in offer_buttons:
 		button.disabled = true
+
+func _enable_offer_buttons() -> void:
+	for button in offer_buttons:
+		if button.visible:
+			button.disabled = false

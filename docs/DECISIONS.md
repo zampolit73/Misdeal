@@ -654,3 +654,26 @@ Combat motion remains presentation-only:
 Prototype SFX are synthesized at runtime into deterministic 16-bit PCM streams and played through a small voice pool. They cover melee/ranged/magic attacks, hit, death, heal, Bone Warden phase change, tactical-order selection, combat start and result stingers.
 
 These sounds are explicitly placeholders for feel/readability testing. Authored SFX and music may replace them later without changing combat rules or `UnitData`. Do not build a generalized animation graph, audio middleware layer or per-role frame library until the current combat-feel pass has been locally evaluated.
+
+
+## D039 — The Wizard's first active cheat is visible card substitution
+
+Date: 2026-10-06  
+Status: accepted for vertical-slice antagonist identity
+
+The Wizard should sometimes change the game state himself rather than only comment on player decisions.
+
+Act 1 now schedules two visible interference moments per run: one in the mid tier and one in the late tier. When one triggers, the normal two-card offer appears first, input locks briefly, and the Wizard flips one offered card edge-on and substitutes another card.
+
+Rules:
+
+- the replacement is from the same Act 1 tier;
+- it preserves the same resolution family: combat replaces combat, event replaces event;
+- this keeps guaranteed-combat pacing intact;
+- a normal combat may still become an elite combat because both are combat-resolution cards;
+- the card removed by the Wizard is returned to the future pool rather than treated as rejected;
+- the replacement becomes a real offer and follows normal choose/reject consumption rules;
+- retrying an already-active combat and the Bone Warden boss offer are never modified;
+- only two substitutions happen in a normal Act 1 run so the trick remains memorable rather than routine.
+
+This is deliberately a theatrical, legible cheat. Do not make the Wizard silently alter combat stats or secretly invalidate player choices. Future wagers/curses can add opt-in risk, but the host should feel unfair in personality without making the rules unreadable.

@@ -56,6 +56,7 @@ Target loop:
 
 - [x] Add first visible wizard host/antagonist presence at the table.
 - [x] Wizard reactions and short commentary.
+- [x] First active Wizard interference: two rare visible card substitutions per Act 1 run, one mid and one late.
 - [x] Multiple encounter types: combat cards plus a non-combat event.
 - [ ] More party archetypes.
 - [x] Per-run protagonist class choice with solo start.
