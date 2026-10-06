@@ -633,3 +633,24 @@ The three current orders deliberately reuse existing movement/targeting behavior
 The selected order applies only to the current battle and locks when combat starts. It is not stored in `RunState` and is not a run-progression reward.
 
 This keeps Misdeal's combat identity intact: the player makes a meaningful preparation decision, then watches the autobattle resolve. Do not add real-time per-unit commands, ability hotbars or continuous retargeting controls unless playtesting shows the compact preparation-first model is insufficient.
+
+
+## D038 — First combat-feel pass stays lightweight, role-aware and replaceable
+
+Date: 2026-10-06  
+Status: accepted for vertical-slice polish
+
+The static nine-role combat atlas is locally readable, so the next presentation pass adds motion and sound without introducing a sprite-animation state machine or a production audio pipeline.
+
+Combat motion remains presentation-only:
+
+- living units get subtle sprite-only idle/breathing;
+- melee attacks lunge forward;
+- Ranger/Bone Archer attacks recoil and draw a short tracer;
+- Mage/Grave Bellkeeper attacks pulse and draw a colored magical tracer;
+- hit feedback uses sprite kick/flash without changing the unit's actual combat position;
+- death removes unit UI immediately and tilts/drops/fades the miniature.
+
+Prototype SFX are synthesized at runtime into deterministic 16-bit PCM streams and played through a small voice pool. They cover melee/ranged/magic attacks, hit, death, heal, Bone Warden phase change, tactical-order selection, combat start and result stingers.
+
+These sounds are explicitly placeholders for feel/readability testing. Authored SFX and music may replace them later without changing combat rules or `UnitData`. Do not build a generalized animation graph, audio middleware layer or per-role frame library until the current combat-feel pass has been locally evaluated.

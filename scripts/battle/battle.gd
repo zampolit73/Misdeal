@@ -14,6 +14,7 @@ const TACTICAL_ORDER_FORMATION := "formation"
 @onready var deal_label: Label = $DealLabel
 @onready var enemy_label: Label = $EnemyLabel
 @onready var arena_visual: Control = $Arena
+@onready var combat_audio: Node = $CombatAudio
 @onready var units_layer: Node2D = $UnitsLayer
 @onready var status_label: Label = $Status
 @onready var fight_button: Button = $FightButton
@@ -249,6 +250,7 @@ func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 
 	if announce:
 		order_description_label.modulate = Color(1.0, 0.88, 0.66, 1.0)
+		_play_battle_audio("order")
 
 func _get_tactical_order_description(order_id: String) -> String:
 	match order_id:
@@ -324,6 +326,7 @@ func _on_fight_pressed() -> void:
 	status_label.text = "Ставка сделана. Назад пути нет."
 	placement_hint.visible = false
 	_lock_tactical_orders()
+	_play_battle_audio("start")
 
 	for unit in units:
 		if unit.alive:
@@ -365,6 +368,7 @@ func _finish_battle(player_won: bool) -> void:
 	order_description_label.visible = false
 
 	if player_won:
+		_play_battle_audio("victory")
 		result_label.text = "ПОБЕДА"
 		if _is_boss_encounter():
 			result_subtitle.text = "Волшебник впервые перестаёт улыбаться."
@@ -381,6 +385,7 @@ func _finish_battle(player_won: bool) -> void:
 		status_label.text = "Карта пережита. Пока что."
 		continue_button.text = "ЗАБРАТЬ НАГРАДУ"
 	else:
+		_play_battle_audio("defeat")
 		result_label.text = "ПОРАЖЕНИЕ"
 		result_subtitle.text = "Волшебник улыбается."
 		status_label.text = "Стол забирает ещё один отряд."
@@ -395,6 +400,10 @@ func _finish_battle(player_won: bool) -> void:
 	continue_button.visible = true
 	continue_button.disabled = false
 	fight_button.text = "БОЙ ОКОНЧЕН"
+
+func _play_battle_audio(event_name: String) -> void:
+	if combat_audio != null and combat_audio.has_method("play_event"):
+		combat_audio.call("play_event", event_name)
 
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()

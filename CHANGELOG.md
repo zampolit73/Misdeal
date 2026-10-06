@@ -108,6 +108,8 @@
 
 ### Added
 
+- Added a first combat-feel pass: subtle idle/breathing, role-aware melee/ranged/magic attack motion, ranged/magic tracers, stronger hit response and a falling/fading death presentation.
+- Added lightweight runtime-generated combat SFX for melee, ranged and magic attacks, impacts, deaths, Bellkeeper healing, Bone Warden phase change, tactical-order selection, combat start and victory/defeat stingers.
 - Three pre-battle tactical orders: **НАТИСК**, **ОХОТА**, **СТРОЙ**.
 - **НАТИСК** adds +15% hero movement while keeping nearest-target behavior.
 - **ОХОТА** dynamically prioritizes support and ranged enemies, including reinforcements that appear after combat has started.

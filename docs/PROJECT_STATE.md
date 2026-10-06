@@ -1,6 +1,6 @@
 # Misdeal — Project State
 
-Last updated: 2026-10-05
+Last updated: 2026-10-06
 
 ## Current status
 
@@ -92,6 +92,16 @@ A follow-up UI-overlap polish pass was implemented after local screenshots expos
 - battle result UI now lives in a dedicated high-layer `CanvasLayer` with a dim fullscreen scrim, so unit sprites/HP bars cannot render over the victory/defeat modal;
 - the result panel was moved upward and given more vertical breathing room, while tactical-order controls are hidden once combat ends;
 - the finished **БОЙ** button is hidden when **ЗАБРАТЬ НАГРАДУ / ВЕРНУТЬСЯ К СТОЛУ** appears, removing duplicated bottom text.
+
+A first combat-feel / audio pass is now implemented in GitHub and pending local verification:
+
+- all living units have a subtle sprite-only idle/breathing motion without moving their actual combat position;
+- melee attacks use a stronger forward lunge, ranged attacks use recoil plus a brief tracer, and Mage/Bellkeeper attacks use a colored magical tracer/pulse;
+- hit feedback keeps the existing flash/pulse and adds a tiny sprite kick without changing navigation position;
+- death hides combat UI immediately, tilts/drops the miniature and fades it as a corpse silhouette;
+- battle SFX are generated at runtime as lightweight deterministic 16-bit PCM placeholders: melee, bow, magic, hit, death, heal, boss phase, tactical-order click, combat start and victory/defeat stingers;
+- the SFX system uses a small polyphonic voice pool and short cooldowns so swarm fights do not become an audio wall;
+- no external audio asset pack or generalized animation framework was added; authored sound/music can replace the placeholders later without changing combat rules.
 
 ## Player-facing language
 

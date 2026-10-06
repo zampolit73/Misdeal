@@ -113,8 +113,9 @@ Only after the loop is fun:
 - [x] Convert main menu, table/cards/wizard, event, reward and run-end UI to the same pixel-art language.
 - [x] Rebuild the wizard table around an approved authored pixel concept while keeping live Godot HUD/cards.
 - [ ] Coherent visual language for table/cards/miniatures;
-- [ ] animations and impact feedback;
-- [ ] sound and music;
+- [x] First lightweight combat animation/impact pass: idle motion, role-aware attack motion/tracers, hit kick and death fall/fade.
+- [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
+- [ ] Authored sound replacement and battle/table music.
 - [x] Skippable five-frame pixel-art comic prologue establishing the old pact and replayed-life premise;
 - [ ] onboarding;
 - [ ] local UI verification/polish for the new squad-status modal;

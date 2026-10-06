@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/battle/battle.gd" id="1_battle"]
 [ext_resource type="Script" path="res://scripts/battle/battle_visual.gd" id="2_arena"]
 [ext_resource type="Script" path="res://scripts/battle/authored_backdrop.gd" id="3_backdrop"]
+[ext_resource type="Script" path="res://scripts/battle/combat_audio.gd" id="4_audio"]
 
 [sub_resource type="StyleBoxFlat" id="ButtonNormal"]
 bg_color = Color(0, 0, 0, 0)
@@ -178,6 +179,9 @@ text = "ПЕРЕТАСКИВАЙТЕ ГЕРОЕВ ДЛЯ РАССТАНОВКИ"
 
 [node name="UnitsLayer" type="Node2D" parent="."]
 position = Vector2(20, 150)
+
+[node name="CombatAudio" type="Node" parent="."]
+script = ExtResource("4_audio")
 
 [node name="OrderLabel" type="Label" parent="."]
 z_index = 5100

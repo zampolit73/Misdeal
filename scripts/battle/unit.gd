@@ -6,6 +6,7 @@ const TACTICAL_ORDER_ASSAULT := "assault"
 const TACTICAL_ORDER_HUNT := "hunt"
 const TACTICAL_ORDER_FORMATION := "formation"
 const ASSAULT_MOVE_MULTIPLIER := 1.15
+const ART_BASE_POSITION := Vector2(0.0, -12.0)
 
 const UNIT_SHEET_PARTS: Array[String] = [
 	"res://assets/pixel/units/combat_units_v3/part_00.txt",
@@ -73,6 +74,10 @@ var hit_pulse_tween: Tween
 var attack_tween: Tween
 var death_tween: Tween
 var unit_sheet_texture: Texture2D
+var base_sprite_scale := Vector2.ONE
+var idle_phase := 0.0
+var attack_animating := false
+var hit_kick_offset := Vector2.ZERO
 
 @onready var art_sprite: Sprite2D = $ArtSprite
 @onready var name_label: Label = $NameLabel
@@ -124,6 +129,8 @@ func _ready() -> void:
 	art_sprite.texture = _get_art_texture()
 	var sprite_scale: float = 1.10 if is_boss else 1.08
 	art_sprite.scale = Vector2.ONE * (sprite_scale * visual_scale)
+	base_sprite_scale = art_sprite.scale
+	idle_phase = fmod(float(get_instance_id()) * 0.731, TAU)
 	_apply_role_presentation()
 	_apply_health_bar_style()
 	_apply_boss_layout()
@@ -336,6 +343,8 @@ func _overlaps_friendly_unit() -> bool:
 	return false
 
 func _process(delta: float) -> void:
+	_update_idle_visual(delta)
+
 	if hit_flash_time > 0.0:
 		hit_flash_time = maxf(0.0, hit_flash_time - delta)
 		queue_redraw()
@@ -412,6 +421,7 @@ func _process_support(delta: float) -> void:
 
 	if healed_any:
 		_show_status_text("ЗВОН!", Color(0.52, 1.0, 0.68, 1.0))
+		_play_combat_audio("heal")
 
 func heal(amount: float) -> void:
 	if not alive or amount <= 0.0:
@@ -613,6 +623,22 @@ func _get_current_move_speed() -> float:
 		return move_speed * ASSAULT_MOVE_MULTIPLIER
 	return move_speed
 
+func _update_idle_visual(delta: float) -> void:
+	if not alive or attack_animating:
+		return
+
+	var idle_speed := 2.7 if combat_started else 1.65
+	var bob_amount := 1.35 if combat_started else 0.8
+	idle_phase = fmod(idle_phase + delta * idle_speed, TAU)
+
+	var bob := sin(idle_phase) * bob_amount
+	var breathe := 1.0 + sin(idle_phase * 0.72) * 0.012
+	art_sprite.position = ART_BASE_POSITION + Vector2(0.0, bob) + hit_kick_offset
+	art_sprite.scale = Vector2(
+		base_sprite_scale.x * (2.0 - breathe),
+		base_sprite_scale.y * breathe
+	)
+
 func _attack_target() -> void:
 	if not _is_valid_target(target):
 		target = null
@@ -622,7 +648,8 @@ func _attack_target() -> void:
 	var primary_target := target
 	var impact_position := primary_target.global_position
 	_play_attack_feedback(primary_target)
-	primary_target.take_damage(damage)
+	_play_combat_audio("attack")
+	primary_target.take_damage(damage, visual_role)
 
 	if splash_radius <= 0.0 or splash_damage_multiplier <= 0.0:
 		return
@@ -638,25 +665,79 @@ func _attack_target() -> void:
 			continue
 
 		if unit.global_position.distance_to(impact_position) <= splash_radius:
-			unit.take_damage(splash_damage)
+			unit.take_damage(splash_damage, visual_role)
 
 func _play_attack_feedback(primary_target: BattleUnit) -> void:
 	if attack_tween != null and attack_tween.is_valid():
 		attack_tween.kill()
 
-	var base_position := Vector2(0.0, -12.0)
+	attack_animating = true
 	var direction := global_position.direction_to(primary_target.global_position)
-	art_sprite.position = base_position + direction * 5.0
+	var style := _get_attack_style()
+
+	match style:
+		"ranged":
+			art_sprite.position = ART_BASE_POSITION - direction * 5.0
+			art_sprite.rotation = -direction.x * 0.055
+			art_sprite.scale = Vector2(base_sprite_scale.x * 0.96, base_sprite_scale.y * 1.04)
+			_spawn_attack_trace(primary_target, Color(1.0, 0.76, 0.38, 0.92), 1.6)
+		"magic":
+			art_sprite.position = ART_BASE_POSITION - direction * 2.0
+			art_sprite.rotation = direction.x * 0.035
+			art_sprite.scale = base_sprite_scale * 1.12
+			art_sprite.modulate = Color(0.90, 0.72, 1.0, 1.0) if visual_role == "mage" else Color(0.60, 1.0, 0.72, 1.0)
+			var trace_color := Color(0.72, 0.44, 1.0, 0.95) if visual_role == "mage" else Color(0.50, 1.0, 0.70, 0.92)
+			_spawn_attack_trace(primary_target, trace_color, 3.0)
+		_:
+			art_sprite.position = ART_BASE_POSITION + direction * 9.0
+			art_sprite.rotation = direction.x * 0.08
+			art_sprite.scale = Vector2(base_sprite_scale.x * 1.06, base_sprite_scale.y * 0.96)
 
 	attack_tween = create_tween()
-	attack_tween.tween_property(art_sprite, "position", base_position, 0.11).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	attack_tween.set_parallel(true)
+	attack_tween.tween_property(art_sprite, "position", ART_BASE_POSITION, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	attack_tween.tween_property(art_sprite, "rotation", 0.0, 0.14)
+	attack_tween.tween_property(art_sprite, "scale", base_sprite_scale, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	attack_tween.tween_property(art_sprite, "modulate", base_art_modulate, 0.14)
+	attack_tween.chain().tween_callback(_finish_attack_feedback)
 
-func take_damage(amount: float) -> void:
+func _finish_attack_feedback() -> void:
+	attack_animating = false
+
+func _get_attack_style() -> String:
+	match visual_role:
+		"ranger", "bone_archer":
+			return "ranged"
+		"mage", "grave_bellkeeper":
+			return "magic"
+		_:
+			return "melee"
+
+func _spawn_attack_trace(primary_target: BattleUnit, color: Color, width: float) -> void:
+	if get_parent() == null or not is_instance_valid(primary_target):
+		return
+
+	var trace := Line2D.new()
+	trace.width = width
+	trace.default_color = color
+	trace.points = PackedVector2Array([
+		position + Vector2(0.0, -18.0),
+		primary_target.position + Vector2(0.0, -18.0),
+	])
+	trace.z_index = 1900
+	get_parent().add_child(trace)
+
+	var trace_tween := trace.create_tween()
+	trace_tween.tween_property(trace, "modulate:a", 0.0, 0.14)
+	trace_tween.tween_callback(trace.queue_free)
+
+func take_damage(amount: float, _source_role: String = "") -> void:
 	if not alive:
 		return
 
 	_show_damage_number(amount)
 	_play_hit_feedback()
+	_play_combat_audio("hit")
 
 	hp = maxf(0.0, hp - amount)
 	health_bar.value = hp
@@ -676,6 +757,7 @@ func _trigger_enrage() -> void:
 	attack_interval = maxf(0.2, attack_interval * enrage_attack_interval_multiplier)
 	move_speed *= enrage_move_speed_multiplier
 	_show_status_text("ЯРОСТЬ!", Color(1.0, 0.42, 0.20, 1.0))
+	_play_combat_audio("boss")
 	boss_enraged.emit(self)
 	queue_redraw()
 
@@ -709,12 +791,15 @@ func _play_hit_feedback() -> void:
 	if hit_pulse_tween != null and hit_pulse_tween.is_valid():
 		hit_pulse_tween.kill()
 
+	var kick_x := -3.0 if int(get_instance_id()) % 2 == 0 else 3.0
 	scale = Vector2(1.12, 1.12)
+	hit_kick_offset = Vector2(kick_x, -1.0)
 	art_sprite.modulate = Color(1.0, 0.62, 0.52, 1.0)
 	hit_pulse_tween = create_tween()
 	hit_pulse_tween.set_parallel(true)
 	hit_pulse_tween.tween_property(self, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	hit_pulse_tween.tween_property(art_sprite, "modulate", base_art_modulate, 0.14)
+	hit_pulse_tween.tween_property(self, "hit_kick_offset", Vector2.ZERO, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func _show_damage_number(amount: float) -> void:
 	if get_parent() == null:
@@ -744,18 +829,32 @@ func _die() -> void:
 	dragging = false
 	target = null
 	health_bar.value = 0.0
-	name_label.text = "%s  ✝" % display_name
+	health_bar.visible = false
+	name_label.visible = false
+	_play_combat_audio("death")
 
 	if hit_pulse_tween != null and hit_pulse_tween.is_valid():
 		hit_pulse_tween.kill()
+	if attack_tween != null and attack_tween.is_valid():
+		attack_tween.kill()
+	attack_animating = false
+	hit_kick_offset = Vector2.ZERO
 
+	var death_tilt := -0.22 if int(get_instance_id()) % 2 == 0 else 0.22
 	death_tween = create_tween()
 	death_tween.set_parallel(true)
-	death_tween.tween_property(self, "scale", Vector2(0.72, 0.72), 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	death_tween.tween_property(self, "modulate:a", 0.22, 0.22)
+	death_tween.tween_property(self, "scale", Vector2(0.76, 0.76), 0.30).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	death_tween.tween_property(self, "modulate:a", 0.16, 0.30)
+	death_tween.tween_property(art_sprite, "rotation", death_tilt, 0.30)
+	death_tween.tween_property(art_sprite, "position", ART_BASE_POSITION + Vector2(0.0, 10.0), 0.30)
 
 	queue_redraw()
 	died.emit(self)
+
+func _play_combat_audio(event_name: String) -> void:
+	if get_tree() == null:
+		return
+	get_tree().call_group("combat_audio", "play_event", event_name, visual_role)
 
 func _draw() -> void:
 	var team_color := Color(0.20, 0.58, 1.0, 0.95) if team == 0 else Color(0.95, 0.20, 0.16, 0.95)
