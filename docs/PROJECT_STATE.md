@@ -179,9 +179,10 @@ A first **multi-arena battle pass** is now implemented in GitHub and pending loc
 - current mapping: Bone Patrol/Crypt Guard -> crypt; Graveyard Ambush/Gallows Volley/Grave Bell -> graveyard; Bone Crush/Ossuary Gate/Death Wager -> ossuary; Bone Warden -> warden.
 - the initial Godot 4.7.2 parser conflict with the built-in `CanvasItem.draw_ellipse()` name was fixed by renaming the local arena ellipse helper; multi-arena visuals remain pending local verification.
 - follow-up screenshot review exposed visible softness from presenting 640×360 authored arena art at the 1280×720 battle viewport;
-- **crypt**, **graveyard** and **ossuary** now ship as native 1280×720 WebP textures;
-- the current **warden** source remains the older 640×360 authored asset, but battle presentation now builds a cached 1280×720 Lanczos-resampled texture once instead of nearest-neighbor 2× scaling;
-- authored battle backdrops now use linear texture filtering so fractional window scaling does not add extra pixel stepping;
+- the first direct-HD binary replacement attempt was invalid: GitHub ended up with truncated ~15 KB WebP blobs, which Godot 4.7.2 could not import or preload;
+- production has therefore been rolled back to the last validated authored WebP sources for all four arena families;
+- `authored_backdrop.gd` now builds and caches a 1280×720 Lanczos-resampled runtime texture for **crypt**, **graveyard**, **ossuary** and **warden**, with linear filtering for fractional window scaling;
+- this restores a working build immediately and avoids nearest-neighbor 2× presentation, but it does **not** add source detail; true native 1280×720 arena assets remain a follow-up packaging task;
 - combat geometry, unit positions, `arena_id` mappings and boss effects are unchanged.
 
 - local screenshot review showed the procedural family dressing was still visually dominated by the shared throne-room backdrop, so that visual implementation has been superseded by four authored arena backdrops;
@@ -192,7 +193,7 @@ A first **multi-arena battle pass** is now implemented in GitHub and pending loc
 - authored arena textures are stored as compact 640×360 WebP assets and scaled 2× with nearest filtering into the existing 1280×720 battle scene;
 - `arena_id` remains the source of truth for backdrop selection; encounter mappings and combat rules are unchanged;
 - static procedural arena drawing has been removed; `battle_visual.gd` is now reserved for the dynamic Bone Warden rune/phase effect only.
-- fixed the HD arena hotfix serialization regression: `authored_backdrop.gd` now contains real GDScript line breaks/tabs again and loads normally in Godot 4.7.2.
+- fixed the HD arena script serialization regression; a subsequent import failure exposed truncated binary arena blobs, which are now rolled back to validated assets.
 
 ## Player-facing language
 
