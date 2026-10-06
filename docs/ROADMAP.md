@@ -118,6 +118,7 @@ Only after the loop is fun:
 - [x] Physical card-table staging pass: deck/discard zones, fate spread, dealt-card motion, fan/hover lift and choose/discard animation.
 - [x] Rich procedural table-art dressing experiment rejected in local visual review and superseded.
 - [x] Clean wizard-table art pass: remove procedural hands/heavy frames, retain physical deal motion with restrained deck/discard/progress dressing.
+- [x] Table hierarchy polish: dim baked background cards, compact the top HUD/commentary and move the fate counter to the table edge.
 - [ ] Coherent visual language for table/cards/miniatures;
 - [x] First lightweight combat animation/impact pass: idle motion, role-aware attack motion/tracers, hit kick and death fall/fade.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.

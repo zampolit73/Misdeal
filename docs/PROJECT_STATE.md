@@ -147,7 +147,7 @@ The **physical card-table staging pass** is implemented and has been confirmed l
 
 A richer procedural **table-art dressing experiment** was implemented and immediately rejected in local visual review because it overlaid the authored Wizard/table art with a second, incompatible visual language. The gray procedural dealer hands, large inlaid zones, dense orange geometry and extra props made the table feel like a debug/HUD layer rather than a dark-fantasy card scene.
 
-That experiment has been superseded by a **clean table-art pass**, now implemented in GitHub and pending local visual verification:
+That experiment has been superseded by a **clean table-art pass**, implemented and confirmed locally:
 
 - the procedural dealer hands are removed entirely; the authored Wizard art remains the only visible character/hand treatment;
 - large side inlays, heavy orange frames, extra coins/wax props, stitched borders and dense rune geometry are removed;
@@ -156,6 +156,15 @@ That experiment has been superseded by a **clean table-art pass**, now implement
 - the 12-card progress spread remains, but is reduced to tiny low-contrast diamond marks plus a restrained boss marker;
 - all successful physical behavior from the previous pass remains: deal-from-deck motion, card fan, hover lift, choose/discard animation, Wizard substitution timing and centered single-card states;
 - the guiding rule is now **authored background first, live cards second, supporting table UI last**.
+
+A follow-up **table hierarchy polish pass** is now implemented in GitHub and pending local verification after screenshot review:
+
+- the painted background-card row is pushed back with a quiet lower-table veil so it reads as authored scenery rather than a second interactive card layer;
+- the top stats HUD is shorter, lighter and less opaque;
+- the Wizard commentary strip is also reduced in height/opacity so more of the authored character art stays visible;
+- the squad button is reduced to the same quieter chrome instead of reading as a separate heavy panel;
+- the fate track moves to the top edge of the table, becomes lower-contrast, and the text is reduced from **РАСКЛАД СУДЬБЫ • 02/12** to the compact **02/12** counter;
+- live cards, deck/discard piles and all physical deal/hover/selection animations remain unchanged.
 
 ## Player-facing language
 

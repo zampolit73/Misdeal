@@ -219,9 +219,9 @@ func _update_spread_ui() -> void:
 	deck_count_label.text = "КОЛОДА  %02d" % deck_count
 	discard_count_label.text = "СБРОС  %02d" % discard_count
 	if RunState.is_boss_due():
-		spread_progress_label.text = "РАСКЛАД ЗАКРЫТ  •  XIII"
+		spread_progress_label.text = "XIII"
 	else:
-		spread_progress_label.text = "РАСКЛАД СУДЬБЫ  •  %02d/%02d" % [
+		spread_progress_label.text = "%02d/%02d" % [
 			RunState.cards_resolved,
 			RunState.ACT_CARD_TARGET
 		]

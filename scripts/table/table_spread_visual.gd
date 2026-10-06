@@ -87,23 +87,23 @@ func _draw_card_back(rect: Rect2, rotation: float, alpha: float) -> void:
 
 func _draw_progress_spread() -> void:
 	var resolved := RunState.cards_resolved
-	var start_x := 488.0
-	var y := 301.0
-	var spacing := 24.0
+	var start_x := 500.0
+	var y := 262.0
+	var spacing := 22.0
 
 	for index in range(RunState.ACT_CARD_TARGET):
 		var center := Vector2(start_x + float(index) * spacing, y)
 		var is_done := index < resolved
 		var is_current := index == resolved and not RunState.is_boss_due()
 
-		var fill := Color(0.20, 0.08, 0.08, 0.30)
-		var border := Color(0.46, 0.18, 0.13, 0.30)
+		var fill := Color(0.18, 0.07, 0.07, 0.20)
+		var border := Color(0.42, 0.16, 0.12, 0.22)
 		if is_done:
-			fill = Color(0.54, 0.30, 0.11, 0.72)
-			border = Color(0.82, 0.52, 0.23, 0.74)
+			fill = Color(0.50, 0.27, 0.10, 0.54)
+			border = Color(0.74, 0.45, 0.20, 0.58)
 		elif is_current:
-			fill = Color(0.56, 0.12, 0.08, 0.76)
-			border = Color(0.96, 0.38, 0.17, 0.82)
+			fill = Color(0.54, 0.11, 0.07, 0.58)
+			border = Color(0.88, 0.32, 0.15, 0.66)
 
 		var diamond := PackedVector2Array([
 			center + Vector2(0.0, -5.0),
@@ -117,9 +117,9 @@ func _draw_progress_spread() -> void:
 
 	var boss_center := Vector2(start_x + float(RunState.ACT_CARD_TARGET) * spacing + 11.0, y)
 	var boss_active := RunState.is_boss_due() or RunState.active_card_id == RunState.BOSS_CARD_ID
-	var boss_color := Color(0.54, 0.12, 0.08, 0.34)
+	var boss_color := Color(0.50, 0.11, 0.07, 0.24)
 	if boss_active:
-		boss_color = Color(1.0, 0.30, 0.12, 0.86)
+		boss_color = Color(0.94, 0.28, 0.11, 0.72)
 
 	draw_arc(boss_center, 7.0, 0.0, TAU, 16, boss_color, 1.5)
 	var boss_mark := PackedVector2Array([

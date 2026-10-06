@@ -4,6 +4,7 @@
 
 ### Verified
 
+- Clean wizard-table art pass confirmed locally after screenshot review: removing the procedural hands/heavy frames restored the authored Wizard art and live cards as the main visual focus.
 - Physical wizard-table staging pass confirmed locally: deal animation, fan/hover behavior, discard motion and spread layout are working acceptably.
 - Voluntary Wizard wager flow confirmed locally: wager modal, debt state and doubled ordinary loot are working acceptably.
 - First combat-feel and prototype-SFX pass confirmed locally: attack motion, hit/death response and runtime combat cues are working acceptably.
@@ -52,6 +53,7 @@
 
 ### Changed
 
+- Refined wizard-table hierarchy after screenshot review: added a subtle lower-table veil over the baked background-card row, compacted/lightened the stats and Wizard-commentary chrome, quieted the squad button and moved the fate progress to a tiny table-edge counter/marker row.
 - Replaced the rejected live/table-art main-menu composition with the user-approved dedicated main-menu pixel splash: Wizard, five-card table, MISDEAL title and painted **ВОЙТИ В ИГРУ** CTA.
 - Upgraded the production main-menu splash from the 640×360 fallback to a native 1280×720 WebP reconstructed from three repository-safe chunks and rendered with linear filtering; only a transparent native Godot hotspot is layered over the painted CTA.
 - Rebuilt the main menu around the production Wizard/table art and real MISDEAL logo instead of the old centered prototype panel.
