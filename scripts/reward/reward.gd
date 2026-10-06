@@ -1,6 +1,7 @@
 extends Control
 
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
+const THEMATIC_CARD_ART := preload("res://scripts/ui/thematic_card_art.gd")
 const ROLE_FALLBACK_ART := {
 	"knight": preload("res://assets/art/units/knight.webp"),
 	"ranger": preload("res://assets/art/units/ranger.webp"),
@@ -137,6 +138,7 @@ func _setup_normal_loot() -> void:
 	option_ids[0] = "blood_coin"
 	blood_coin_button.text = "ЗАБРАТЬ ТРОФЕИ\n\n+%d золота\n\nБез вечных +HP и +урона. Только ресурс для следующих решений." % amount
 	blood_coin_button.add_theme_color_override("font_color", Color(0.96, 0.78, 0.52, 1.0))
+	_apply_reward_background(0, "blood_coin")
 	iron_ward_button.visible = false
 	tempered_steel_button.visible = false
 
@@ -171,6 +173,10 @@ func _setup_death_wager_reward() -> void:
 		option_ids[2] = "extra_cap_gold"
 		tempered_steel_button.text = "ПРЕДЕЛ ДОСТИГНУТ\n\nДоп. развитие %s\n\n+45 золота вместо усиления" % RunState.get_extra_upgrade_progress_text()
 
+	for index in range(reward_buttons.size()):
+		if reward_buttons[index].visible and not option_ids[index].is_empty():
+			_apply_reward_background(index, _reward_art_key(option_ids[index]))
+
 func _setup_elite_reward() -> void:
 	reward_mode = "elite_artifact"
 	_reset_buttons()
@@ -185,6 +191,7 @@ func _setup_elite_reward() -> void:
 	if available.is_empty():
 		option_ids[0] = "elite_gold"
 		blood_coin_button.text = "ОПУСТЕВШИЙ ТАЙНИК\n\n+50 золота\n\nВсе известные артефакты уже у вас."
+		_apply_reward_background(0, "elite_gold")
 		iron_ward_button.visible = false
 		tempered_steel_button.visible = false
 		return
@@ -203,6 +210,7 @@ func _setup_elite_reward() -> void:
 
 		option_ids[index] = artifact_id
 		button.text = "%s\n\n%s" % [artifact.title, artifact.description]
+		_apply_reward_background(index, artifact_id)
 
 func _on_reward_button_pressed(index: int) -> void:
 	if index < 0 or index >= reward_buttons.size():
@@ -298,7 +306,10 @@ func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData)
 	var approved_art: Texture2D = APPROVED_CHOICE_ART.get_upgrade_texture(upgrade_id)
 	var has_dedicated_art := approved_art != null
 	if approved_art == null:
+		approved_art = THEMATIC_CARD_ART.get_upgrade_texture(upgrade_id, upgrade.target_role)
+	if approved_art == null:
 		approved_art = ROLE_FALLBACK_ART.get(upgrade.target_role) as Texture2D
+	_apply_reward_background(index, upgrade_id, upgrade.target_role)
 	upgrade_portraits[index].texture = approved_art
 	upgrade_portraits[index].stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	upgrade_portraits[index].visible = approved_art != null
@@ -310,6 +321,39 @@ func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData)
 	upgrade_title_labels[index].add_theme_color_override("font_color", _get_role_color(upgrade.target_role).lightened(0.12))
 	upgrade_description_labels[index].text = upgrade.description
 	upgrade_quick_labels[index].visible = false
+
+func _reward_art_key(option_id: String) -> String:
+	if option_id.begins_with("artifact:"):
+		return option_id.substr("artifact:".length())
+	return option_id
+
+func _apply_reward_background(index: int, key: String, role: String = "") -> void:
+	var button := reward_buttons[index]
+	var background := button.get_node_or_null("ThematicBackground") as TextureRect
+	if background == null:
+		background = TextureRect.new()
+		background.name = "ThematicBackground"
+		background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		background.show_behind_parent = true
+		button.add_child(background)
+		background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		background.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+
+	background.texture = THEMATIC_CARD_ART.get_reward_background(key, role)
+	background.modulate = Color(0.92, 0.92, 0.92, 0.72)
+	button.clip_contents = true
+	button.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.96))
+	button.add_theme_constant_override("shadow_offset_x", 1)
+	button.add_theme_constant_override("shadow_offset_y", 2)
+	for style_name in ["normal", "hover", "pressed", "disabled"]:
+		var source := button.get_theme_stylebox(style_name) as StyleBoxFlat
+		if source == null:
+			continue
+		var styled := source.duplicate() as StyleBoxFlat
+		styled.bg_color.a = 0.60 if style_name == "normal" else 0.52
+		button.add_theme_stylebox_override(style_name, styled)
 
 func _set_upgrade_nodes_visible(index: int, visible: bool) -> void:
 	upgrade_portraits[index].visible = visible
