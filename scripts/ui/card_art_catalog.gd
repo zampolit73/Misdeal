@@ -1,25 +1,14 @@
 extends RefCounted
 
-const RUN_CELL_SIZE := Vector2i(88, 54)
-const RUN_SHEET_SIZE := Vector2i(440, 270)
+const RUN_CELL_SIZE := Vector2i(224, 137)
+const RUN_SHEET_SIZE := Vector2i(1120, 685)
 const RUN_COLUMNS := 5
-const UI_CELL_SIZE := Vector2i(80, 48)
-const UI_SHEET_SIZE := Vector2i(400, 144)
+const UI_CELL_SIZE := Vector2i(304, 194)
+const UI_SHEET_SIZE := Vector2i(1520, 582)
 const UI_COLUMNS := 5
 
-const RUN_PART_PATHS: Array[String] = [
-	"res://assets/pixel/ui/approved_card_art/run/part_00.txt",
-	"res://assets/pixel/ui/approved_card_art/run/part_01.txt",
-	"res://assets/pixel/ui/approved_card_art/run/part_02.txt",
-	"res://assets/pixel/ui/approved_card_art/run/part_03.txt",
-	"res://assets/pixel/ui/approved_card_art/run/part_04.txt",
-	"res://assets/pixel/ui/approved_card_art/run/part_05.txt",
-]
-
-const UI_PART_PATHS: Array[String] = [
-	"res://assets/pixel/ui/approved_card_art/ui/part_00.txt",
-	"res://assets/pixel/ui/approved_card_art/ui/part_01.txt",
-]
+const RUN_ATLAS_PATH := "res://assets/pixel/ui/approved_card_art/run_hd.bin"
+const UI_ATLAS_PATH := "res://assets/pixel/ui/approved_card_art/ui_hd.bin"
 
 const RUN_INDEX := {
 	"bone_patrol": 0,
@@ -99,23 +88,20 @@ static func get_reward_texture(reward_key: String) -> Texture2D:
 
 static func _get_run_sheet() -> Texture2D:
 	if run_sheet_texture == null:
-		run_sheet_texture = _decode_sheet(RUN_PART_PATHS, RUN_SHEET_SIZE, "run-card")
+		run_sheet_texture = _decode_sheet(RUN_ATLAS_PATH, RUN_SHEET_SIZE, "run-card")
 	return run_sheet_texture
 
 static func _get_ui_sheet() -> Texture2D:
 	if ui_sheet_texture == null:
-		ui_sheet_texture = _decode_sheet(UI_PART_PATHS, UI_SHEET_SIZE, "development/reward")
+		ui_sheet_texture = _decode_sheet(UI_ATLAS_PATH, UI_SHEET_SIZE, "development/reward")
 	return ui_sheet_texture
 
-static func _decode_sheet(part_paths: Array[String], expected_size: Vector2i, label: String) -> Texture2D:
-	var encoded := ""
-	for part_path in part_paths:
-		if not FileAccess.file_exists(part_path):
-			push_error("Missing approved %s art atlas part: %s" % [label, part_path])
-			return null
-		encoded += FileAccess.get_file_as_string(part_path).strip_edges()
+static func _decode_sheet(atlas_path: String, expected_size: Vector2i, label: String) -> Texture2D:
+	if not FileAccess.file_exists(atlas_path):
+		push_error("Missing approved %s art atlas: %s" % [label, atlas_path])
+		return null
 
-	var bytes := Marshalls.base64_to_raw(encoded)
+	var bytes := FileAccess.get_file_as_bytes(atlas_path)
 	if bytes.is_empty():
 		push_error("Approved %s art atlas decoded to an empty buffer." % label)
 		return null
