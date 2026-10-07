@@ -5,6 +5,7 @@ const APPROVED_EVENT_DECOR := preload("res://scripts/ui/approved_event_decor.gd"
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
 const EVENT_POLISH_ART := preload("res://scripts/ui/event_polish_art.gd")
+const APPROVED_EVENT_CHOICE_ART := preload("res://scripts/ui/approved_event_choice_art.gd")
 
 @onready var title_label: Label = $Panel/Title
 @onready var type_label: Label = $Panel/Type
@@ -31,6 +32,12 @@ const EVENT_POLISH_ART := preload("res://scripts/ui/event_polish_art.gd")
 @onready var choice_art_a: TextureRect = $Panel/Choices/ChoiceA/ChoiceArt
 @onready var choice_art_b: TextureRect = $Panel/Choices/ChoiceB/ChoiceArt
 @onready var choice_art_c: TextureRect = $Panel/Choices/ChoiceC/ChoiceArt
+@onready var choice_badge_a: Label = $Panel/Choices/ChoiceA/ChoiceBadge
+@onready var choice_badge_b: Label = $Panel/Choices/ChoiceB/ChoiceBadge
+@onready var choice_badge_c: Label = $Panel/Choices/ChoiceC/ChoiceBadge
+@onready var choice_divider_a: ColorRect = $Panel/Choices/ChoiceA/ChoiceDivider
+@onready var choice_divider_b: ColorRect = $Panel/Choices/ChoiceB/ChoiceDivider
+@onready var choice_divider_c: ColorRect = $Panel/Choices/ChoiceC/ChoiceDivider
 
 var active_card: RunCardData
 var resolved := false
@@ -93,9 +100,21 @@ func _apply_approved_choice_art() -> void:
 			_apply_choice_art_margins(button)
 		return
 
+	if active_card.card_id == "chained_prisoner":
+		for index in range(buttons.size()):
+			var art: TextureRect = arts[index]
+			var button: Button = buttons[index]
+			if not button.visible:
+				art.visible = false
+				continue
+			art.texture = APPROVED_EVENT_CHOICE_ART.get_chained_prisoner_texture(index)
+			art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			art.visible = art.texture != null
+			art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
+			_apply_choice_art_margins(button)
+		return
+
 	match active_card.card_id:
-		"chained_prisoner":
-			cells = [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)]
 		_:
 			var event_art := CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
 			for index in range(buttons.size()):
@@ -333,6 +352,8 @@ func _get_choice_semantic_accent(button: Button, index: int) -> Color:
 			return Color(0.66, 0.38, 0.84, 1.0)
 
 	match active_card.card_id:
+		"chained_prisoner":
+			return [Color(0.30, 0.60, 0.92, 1.0), Color(0.90, 0.18, 0.16, 1.0), Color(0.96, 0.52, 0.16, 1.0)][index]
 		"lost_purse":
 			return [Color(0.38, 0.64, 0.58, 1.0), Color(0.80, 0.56, 0.20, 1.0), Color(0.88, 0.28, 0.18, 1.0)][index]
 		"debtor_bones":
@@ -347,10 +368,14 @@ func _get_choice_semantic_accent(button: Button, index: int) -> Color:
 
 func _apply_choice_semantic_styles() -> void:
 	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
+	var badges: Array[Label] = [choice_badge_a, choice_badge_b, choice_badge_c]
+	var dividers: Array[ColorRect] = [choice_divider_a, choice_divider_b, choice_divider_c]
 	var style_names: Array[String] = ["normal", "hover", "pressed", "disabled"]
 	for index in range(buttons.size()):
 		var button: Button = buttons[index]
 		var accent: Color = _get_choice_semantic_accent(button, index)
+		badges[index].add_theme_color_override("font_color", accent.lightened(0.18))
+		dividers[index].color = Color(accent.r, accent.g, accent.b, 0.70 if not button.disabled else 0.30)
 
 		for style_name in style_names:
 			var source: StyleBoxFlat = button.get_theme_stylebox(style_name) as StyleBoxFlat
@@ -359,7 +384,9 @@ func _apply_choice_semantic_styles() -> void:
 			var styled: StyleBoxFlat = source.duplicate() as StyleBoxFlat
 			var is_disabled: bool = style_name == "disabled"
 			var is_active: bool = style_name == "hover" or style_name == "pressed"
-			styled.border_color = Color(accent.r, accent.g, accent.b, 0.30 if is_disabled else (1.0 if is_active else 0.78))
+			styled.border_color = Color(accent.r, accent.g, accent.b, 0.28 if is_disabled else (1.0 if is_active else 0.82))
+			styled.shadow_color = Color(accent.r * 0.34, accent.g * 0.24, accent.b * 0.20, 0.30 if is_active else 0.18)
+			styled.shadow_size = 11 if is_active else 7
 			if not is_disabled:
 				styled.bg_color = Color(
 					0.016 + accent.r * (0.075 if is_active else 0.040),
@@ -410,29 +437,31 @@ func _apply_forge_reference_layout() -> void:
 	continue_button.size = Vector2(260.0, 48.0)
 
 func _apply_prisoner_reference_layout() -> void:
-	title_label.position = Vector2(250.0, 194.0)
+	feature_header.position = Vector2(166.0, 132.0)
+	feature_header.size = Vector2(948.0, 218.0)
+	title_label.position = Vector2(250.0, 154.0)
 	title_label.size = Vector2(780.0, 42.0)
-	type_label.position = Vector2(250.0, 238.0)
+	type_label.position = Vector2(250.0, 198.0)
 	type_label.size = Vector2(780.0, 22.0)
-	description_label.position = Vector2(300.0, 268.0)
-	description_label.size = Vector2(680.0, 42.0)
-	wizard_line.position = Vector2(300.0, 312.0)
-	wizard_line.size = Vector2(680.0, 34.0)
-	gold_label.position = Vector2(210.0, 354.0)
-	artifacts_label.position = Vector2(690.0, 354.0)
+	description_label.position = Vector2(300.0, 230.0)
+	description_label.size = Vector2(680.0, 44.0)
+	wizard_line.position = Vector2(300.0, 278.0)
+	wizard_line.size = Vector2(680.0, 32.0)
+	gold_label.position = Vector2(210.0, 322.0)
+	artifacts_label.position = Vector2(690.0, 322.0)
 	var choices := $Panel/Choices as HBoxContainer
-	choices.position = Vector2(192.0, 388.0)
-	choices.size = Vector2(896.0, 238.0)
+	choices.position = Vector2(192.0, 354.0)
+	choices.size = Vector2(896.0, 268.0)
 	for button in [choice_a, choice_b, choice_c]:
-		button.custom_minimum_size = Vector2(285.0, 230.0)
+		button.custom_minimum_size = Vector2(285.0, 258.0)
 		button.add_theme_font_size_override("font_size", 13)
-		_resize_choice_art(button, 82.0)
-	result_label.position = Vector2(260.0, 624.0)
-	result_label.size = Vector2(760.0, 28.0)
-	leave_button.position = Vector2(520.0, 660.0)
-	leave_button.size = Vector2(240.0, 40.0)
-	continue_button.position = Vector2(520.0, 660.0)
-	continue_button.size = Vector2(240.0, 40.0)
+		_resize_choice_art(button, 114.0)
+	result_label.position = Vector2(260.0, 620.0)
+	result_label.size = Vector2(760.0, 26.0)
+	leave_button.position = Vector2(520.0, 650.0)
+	leave_button.size = Vector2(240.0, 42.0)
+	continue_button.position = Vector2(520.0, 650.0)
+	continue_button.size = Vector2(240.0, 42.0)
 
 func _resize_choice_art(button: Button, art_height: float) -> void:
 	var art := button.get_node("ChoiceArt") as TextureRect

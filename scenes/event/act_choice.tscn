@@ -351,6 +351,31 @@ texture_filter = 1
 expand_mode = 1
 stretch_mode = 6
 
+[node name="ChoiceDivider" type="ColorRect" parent="Panel/Choices/ChoiceA"]
+mouse_filter = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 132.0
+offset_right = 292.0
+offset_bottom = 133.0
+color = Color(0.45, 0.66, 0.92, 0.64)
+
+[node name="ChoiceBadge" type="Label" parent="Panel/Choices/ChoiceA"]
+mouse_filter = 2
+layout_mode = 0
+offset_left = 126.0
+offset_top = 116.0
+offset_right = 188.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0.45, 0.66, 0.92, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "◆"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ChoiceB" type="Button" parent="Panel/Choices"]
 custom_minimum_size = Vector2(314, 270)
 layout_mode = 2
@@ -377,6 +402,31 @@ texture_filter = 1
 expand_mode = 1
 stretch_mode = 6
 
+[node name="ChoiceDivider" type="ColorRect" parent="Panel/Choices/ChoiceB"]
+mouse_filter = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 132.0
+offset_right = 292.0
+offset_bottom = 133.0
+color = Color(0.90, 0.34, 0.24, 0.64)
+
+[node name="ChoiceBadge" type="Label" parent="Panel/Choices/ChoiceB"]
+mouse_filter = 2
+layout_mode = 0
+offset_left = 126.0
+offset_top = 116.0
+offset_right = 188.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0.90, 0.34, 0.24, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "◆"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ChoiceC" type="Button" parent="Panel/Choices"]
 custom_minimum_size = Vector2(314, 270)
 layout_mode = 2
@@ -402,6 +452,31 @@ offset_bottom = 126.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 6
+
+[node name="ChoiceDivider" type="ColorRect" parent="Panel/Choices/ChoiceC"]
+mouse_filter = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 132.0
+offset_right = 292.0
+offset_bottom = 133.0
+color = Color(0.92, 0.62, 0.24, 0.64)
+
+[node name="ChoiceBadge" type="Label" parent="Panel/Choices/ChoiceC"]
+mouse_filter = 2
+layout_mode = 0
+offset_left = 126.0
+offset_top = 116.0
+offset_right = 188.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0.92, 0.62, 0.24, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "◆"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Result" type="Label" parent="Panel"]
 visible = false

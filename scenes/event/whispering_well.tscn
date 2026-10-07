@@ -95,12 +95,14 @@ content_margin_right = 14.0
 content_margin_bottom = 14.0
 
 [sub_resource type="StyleBoxFlat" id="ChoiceDisabled"]
-bg_color = Color(0.018, 0.024, 0.026, 0.94)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.16, 0.24, 0.24, 0.70)
+bg_color = Color(0.020, 0.016, 0.018, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.46, 0.16, 0.14, 0.78)
+shadow_color = Color(0, 0, 0, 0.56)
+shadow_size = 7
 
 [node name="WhisperingWell" type="Control"]
 layout_mode = 3
@@ -219,14 +221,14 @@ autowrap_mode = 2
 
 [node name="Choices" type="HBoxContainer" parent="."]
 offset_left = 116.0
-offset_top = 334.0
+offset_top = 326.0
 offset_right = 1164.0
-offset_bottom = 558.0
+offset_bottom = 580.0
 theme_override_constants/separation = 24
 alignment = 1
 
 [node name="AcceptGift" type="Button" parent="Choices"]
-custom_minimum_size = Vector2(330, 214)
+custom_minimum_size = Vector2(330, 248)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78, 0.96, 0.88, 1)
 theme_override_colors/font_hover_color = Color(0.94, 1, 0.98, 1)
@@ -246,13 +248,55 @@ layout_mode = 0
 offset_left = 12.0
 offset_top = 10.0
 offset_right = 318.0
-offset_bottom = 82.0
+offset_bottom = 128.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 6
 
+[node name="ChoiceDivider" type="ColorRect" parent="Choices/AcceptGift"]
+mouse_filter = 2
+layout_mode = 0
+offset_left = 20.0
+offset_top = 134.0
+offset_right = 310.0
+offset_bottom = 135.0
+color = Color(0.35, 0.92, 0.78, 0.72)
+
+[node name="ChoiceBadge" type="Label" parent="Choices/AcceptGift"]
+mouse_filter = 2
+layout_mode = 0
+offset_left = 134.0
+offset_top = 118.0
+offset_right = 196.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(0.35, 0.92, 0.78, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "◆"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Warning" type="Label" parent="Choices/AcceptGift"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 24.0
+offset_top = 218.0
+offset_right = 306.0
+offset_bottom = 242.0
+theme_override_colors/font_color = Color(0.96, 0.38, 0.30, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
+text = "НЕДОСТУПНО"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PayCoin" type="Button" parent="Choices"]
-custom_minimum_size = Vector2(330, 214)
+custom_minimum_size = Vector2(330, 248)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 0.82, 0.56, 1)
 theme_override_colors/font_hover_color = Color(1, 0.94, 0.76, 1)
@@ -272,13 +316,55 @@ layout_mode = 0
 offset_left = 12.0
 offset_top = 10.0
 offset_right = 318.0
-offset_bottom = 82.0
+offset_bottom = 128.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 6
 
+[node name="ChoiceDivider" type="ColorRect" parent="Choices/PayCoin"]
+mouse_filter = 2
+layout_mode = 0
+offset_left = 20.0
+offset_top = 134.0
+offset_right = 310.0
+offset_bottom = 135.0
+color = Color(0.92, 0.58, 0.24, 0.72)
+
+[node name="ChoiceBadge" type="Label" parent="Choices/PayCoin"]
+mouse_filter = 2
+layout_mode = 0
+offset_left = 134.0
+offset_top = 118.0
+offset_right = 196.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(0.92, 0.58, 0.24, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "◆"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Warning" type="Label" parent="Choices/PayCoin"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 24.0
+offset_top = 218.0
+offset_right = 306.0
+offset_bottom = 242.0
+theme_override_colors/font_color = Color(0.96, 0.38, 0.30, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
+text = "НЕДОСТУПНО"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Leave" type="Button" parent="Choices"]
-custom_minimum_size = Vector2(330, 214)
+custom_minimum_size = Vector2(330, 248)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.72, 0.80, 0.84, 1)
 theme_override_colors/font_hover_color = Color(0.92, 0.96, 1, 1)
@@ -298,25 +384,67 @@ layout_mode = 0
 offset_left = 12.0
 offset_top = 10.0
 offset_right = 318.0
-offset_bottom = 82.0
+offset_bottom = 128.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 6
 
+[node name="ChoiceDivider" type="ColorRect" parent="Choices/Leave"]
+mouse_filter = 2
+layout_mode = 0
+offset_left = 20.0
+offset_top = 134.0
+offset_right = 310.0
+offset_bottom = 135.0
+color = Color(0.48, 0.68, 0.84, 0.72)
+
+[node name="ChoiceBadge" type="Label" parent="Choices/Leave"]
+mouse_filter = 2
+layout_mode = 0
+offset_left = 134.0
+offset_top = 118.0
+offset_right = 196.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(0.48, 0.68, 0.84, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "◆"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Warning" type="Label" parent="Choices/Leave"]
+visible = false
+mouse_filter = 2
+layout_mode = 0
+offset_left = 24.0
+offset_top = 218.0
+offset_right = 306.0
+offset_bottom = 242.0
+theme_override_colors/font_color = Color(0.76, 0.80, 0.84, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
+text = "НЕДОСТУПНО"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ResultPanel" type="Panel" parent="."]
 mouse_filter = 2
 offset_left = 220.0
-offset_top = 574.0
+offset_top = 592.0
 offset_right = 1060.0
-offset_bottom = 674.0
+offset_bottom = 692.0
 theme_override_styles/panel = SubResource("Panel")
 
 [node name="Result" type="Label" parent="."]
 mouse_filter = 2
 offset_left = 246.0
-offset_top = 586.0
+offset_top = 604.0
 offset_right = 1034.0
-offset_bottom = 662.0
+offset_bottom = 680.0
 theme_override_colors/font_color = Color(0.76, 0.86, 0.82, 1)
 theme_override_font_sizes/font_size = 15
 text = "Выберите ответ."
