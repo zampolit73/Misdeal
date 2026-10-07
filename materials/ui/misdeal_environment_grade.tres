@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://shaders/misdeal_art_grade.gdshader" id="1_grade"]
+
+[resource]
+shader = ExtResource("1_grade")
+shader_parameter/pixel_block = 2.0
+shader_parameter/grade_strength = 0.78
+shader_parameter/saturation = 0.68
+shader_parameter/contrast = 1.10
+shader_parameter/poster_steps = 9.0

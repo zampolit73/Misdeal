@@ -2,6 +2,8 @@ extends Control
 
 const SQUAD_STATUS_SCENE := preload("res://scenes/table/squad_status.tscn")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
+const ENVIRONMENT_ART_GRADE := preload("res://materials/ui/misdeal_environment_grade.tres")
+const CARD_ART_GRADE := preload("res://materials/ui/misdeal_card_grade.tres")
 
 const LEFT_CARD_POSITION := Vector2(382.0, 332.0)
 const RIGHT_CARD_POSITION := Vector2(658.0, 332.0)
@@ -13,6 +15,7 @@ const RIGHT_CARD_ROTATION := 0.045
 
 @onready var wizard_line: Label = $WizardLine
 @onready var stats_label: Label = $Stats
+@onready var wizard_backdrop: TextureRect = $WizardBackdrop
 @onready var cards_root: Control = $Cards
 @onready var offer_a_button: Button = $Cards/BonePatrolCard
 @onready var offer_b_button: Button = $Cards/GraveyardCard
@@ -63,6 +66,9 @@ func _ready() -> void:
 	hidden_card_a.visible = false
 	hidden_card_b.visible = false
 	wager_root.visible = false
+	wizard_backdrop.material = ENVIRONMENT_ART_GRADE
+	wager_risk_art.material = CARD_ART_GRADE
+	wager_reward_art.material = CARD_ART_GRADE
 	wager_risk_art.texture = CARD_ART_CATALOG.get_run_card_texture("death_wager")
 	wager_reward_art.texture = CARD_ART_CATALOG.get_reward_texture("gold_windfall")
 	wager_risk_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -206,6 +212,7 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 
 	art.texture = CARD_ART_CATALOG.get_run_card_texture(card.card_id)
 	art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	art.material = CARD_ART_GRADE
 	if art.texture == null and not card.art_path.is_empty():
 		var texture := load(card.art_path) as Texture2D
 		if texture != null:

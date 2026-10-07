@@ -2,6 +2,7 @@ extends Control
 
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const APPROVED_EVENT_CHOICE_ART := preload("res://scripts/ui/approved_event_choice_art.gd")
+const CARD_ART_GRADE := preload("res://materials/ui/misdeal_card_grade.tres")
 
 @onready var wizard_line: Label = $WizardLine
 @onready var description_label: Label = $Description
@@ -129,6 +130,7 @@ func _apply_choice_art() -> void:
 	leave_art.texture = leave_texture
 	for art in [accept_art, pay_art, leave_art]:
 		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		art.material = CARD_ART_GRADE
 		art.visible = art.texture != null
 
 	var choice_buttons: Array[Button] = [accept_button, pay_button, leave_button]

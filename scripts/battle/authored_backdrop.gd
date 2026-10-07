@@ -4,6 +4,7 @@ const ARENA_CRYPT := "crypt"
 const ARENA_GRAVEYARD := "graveyard"
 const ARENA_OSSUARY := "ossuary"
 const ARENA_WARDEN := "warden"
+const ENVIRONMENT_ART_GRADE := preload("res://materials/ui/misdeal_environment_grade.tres")
 
 const BACKDROP_SIZE := Vector2i(1280, 720)
 
@@ -19,7 +20,8 @@ var runtime_textures: Dictionary = {}
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	material = ENVIRONMENT_ART_GRADE
 	set_arena_id(arena_id)
 
 func set_arena_id(value: String) -> void:
@@ -53,7 +55,7 @@ func _get_runtime_texture(value: String) -> Texture2D:
 		return null
 
 	if image.get_width() != BACKDROP_SIZE.x or image.get_height() != BACKDROP_SIZE.y:
-		image.resize(BACKDROP_SIZE.x, BACKDROP_SIZE.y, Image.INTERPOLATE_LANCZOS)
+		image.resize(BACKDROP_SIZE.x, BACKDROP_SIZE.y, Image.INTERPOLATE_NEAREST)
 
 	var rendered := ImageTexture.create_from_image(image)
 	runtime_textures[value] = rendered
