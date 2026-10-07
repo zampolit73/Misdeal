@@ -185,3 +185,9 @@ Do not prioritize these before the vertical slice works:
 - [x] Add shared environment/card art-grade materials.
 - [x] Apply the first pass to Wizard table, battle backdrops and Whispering Well.
 - [ ] Review fresh screenshots for the first production art-direction pass and identify illustrations that still need true redraw.
+
+## True art replacements
+
+- [x] Replace the reused Ossuary art in **КОСТЯНАЯ ДАВКА** with the approved dedicated arena.
+- [x] Replace blue deployment rectangles with subdued floor/chalk presentation and add authored two-band markings to Bone Crush.
+- [ ] Locally verify the approved Bone Crush arena replacement at 1280×720 before using it as the template for the remaining arena redraws.

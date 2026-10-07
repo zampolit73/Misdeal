@@ -78,3 +78,7 @@ Rework an asset if several of these are true:
 - silhouettes are unclear without lighting effects;
 - it reads as generic dark fantasy rather than a specific Misdeal location;
 - it only becomes pixel art after downsampling a painterly image.
+
+## First true replacement
+
+**КОСТЯНАЯ ДАВКА** is the first arena source replaced under this direction rather than merely graded. It should be used as the first runtime reference for desired background detail density: large floor masses, simple construction, restrained light sources and physical placement marks that belong to the arena.

@@ -1243,3 +1243,16 @@ Status: accepted
 Misdeal's production target is authored low-resolution dark-fantasy pixel art. Existing generated illustrations may be used as composition reference/source material, but final player-facing art must follow `docs/ART_DIRECTION.md`: limited recurring palette roles, readable silhouettes, restrained motivated lighting, negative space, meaningful repeated symbols and nearest-neighbor presentation.
 
 A shared grading material may reduce smoothness and unify palette, but it does not excuse malformed hands, impossible architecture, meaningless ornament or unclear composition. Those assets require redraw/replacement. The first reference surfaces are the Wizard table, battle arenas and Whispering Well; do not propagate the treatment blindly before local review.
+
+## D073 — Bone Crush is the first true source-art replacement
+
+Date: 2026-10-08  
+Status: accepted
+
+The approved **КОСТЯНАЯ ДАВКА** concept is the first arena that replaces its source composition rather than relying on the shared corrective art-grade shader.
+
+The arena gets a dedicated backdrop with simpler architecture, fewer light sources, large quiet floor areas and much lower decorative density. Because the source is already targeted at the production language, the heavy environment correction grade is not applied to this arena.
+
+Its two legal deployment bands are communicated as physical chalk/etched floor markings. Generic blue debug-looking deployment rectangles are no longer part of the intended production presentation.
+
+Use the local 1280×720 result as the reference before replacing the remaining arena sources.
