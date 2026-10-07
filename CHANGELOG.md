@@ -81,6 +81,7 @@
 
 ### Fixed
 
+- Combat-condition timers now start only after the cinematic fight intro, so **КОСТЯНАЯ ДАВКА** does not lose objective time during presentation and **ЖЕРТВА** no longer drains HP before units actually enter combat. The Gallows Volley no-critical condition also fails correctly if a hero dies before emitting the 25% critical-health cue.
 - Applied rescue-scar max-HP penalties to live combat spawning as well as dossier stat calculation, so named scars now have the same real protagonist HP cost in the autobattle that the UI reports.
 - Fixed Act 1 event-window footer overflow at 1280×720: generic choice cards are slightly shorter with the leave/continue row pulled fully on-screen, and Chained Prisoner now reserves a dedicated bottom action row instead of overlapping its center card.
 - Fixed Squad Dossier layering so live table offer cards are hidden while the dossier is open and cannot render over hero stats; also enlarged the hero portrait and rebalanced stats/development/relic columns.
