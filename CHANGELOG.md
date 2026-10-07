@@ -4,6 +4,8 @@
 
 ### Added
 
+- Added **ПОСЛЕДНЯЯ СДЕЛКА**, a one-use Wizard rescue offer on the first combat defeat of a run. The player may pay the explicitly shown owned relic to replay the same fight; if no relic exists, the price is **КЛЕЙМО ПОСЛЕДНЕЙ СДЕЛКИ** for -15 protagonist max HP.
+- Added real failed-run state and defeat presentation. Refusing the Last Deal, or losing again after it has already been used, now ends the run and opens a loss-version run summary instead of returning to the table for a free retry.
 - Added the cursed tactical order **ЖЕРТВА** as a one-battle option after accepting a voluntary Wizard wager: +40% party damage, +20% attack speed and 2% max-HP self-drain per living hero per second. The option is consumed when the next combat begins and does not return on retry.
 - Added restrained Wizard table tells: smoother dealing after an acceptance-heavy wager history, sharper dealing after refusal-heavy history, a brief pre-swap card twitch before Wizard meddling, and memory-linked dim/pulse reactions for companion loss and rescue scars.
 - Added cross-card event consequences for the vertical slice: Lost Purse now changes Gravedigger Shop pricing, Debtor Bones changes Wizard Tithe pricing, and prior Blood Ledger use adds a gold bonus to the Broken Crown melt route.
@@ -17,6 +19,8 @@
 
 ### Changed
 
+- Free combat retry after defeat has been removed. Retry is now possible only through the one-use Last Deal, and its payment persists for the remainder of the run.
+- Squad Dossier and run-end summary now surface the Last Deal's permanent HP brand/payment state when relevant.
 - The table HUD now exposes **ЖЕРТВА ГОТОВА** after an accepted Wizard wager, and the Wizard's acceptance line explicitly tells the player that the extra order will appear in the next combat.
 - Blood-rescue event text now names the scar and its protagonist max-HP cost directly on the choice card instead of presenting the sacrifice as an anonymous party HP penalty; gold rescue routes still avoid the scar where available.
 - Whispering Well and Chained Prisoner now match the approved choice-card mockups more closely: larger art bands, divider medallions, stronger semantic border colors and explicit disabled-state messaging; Chained Prisoner uses the accepted blue/red/amber rescue-risk-greed split.

@@ -141,6 +141,8 @@ Only after the loop is fun:
 - [x] Expand Wizard Memory for rescue scars, long solo runs and deliberate abandonment of both companions.
 - [x] Add the one-battle cursed tactical order **ЖЕРТВА** as an optional follow-up to an accepted Wizard wager.
 - [x] Add restrained Wizard table tells: wager-history deal cadence, pre-meddling card twitch and memory-linked card/commentary pulses.
+- [x] Replace free combat retry with the one-use **ПОСЛЕДНЯЯ СДЕЛКА**: sacrifice an owned relic or take a -15 max-HP brand to retry the same fight; refusal or a later defeat ends the run.
+- [ ] Locally verify the Last Deal branches: relic payment, no-relic brand payment, refusal, second defeat, boss defeat and run-end summary.
 - [ ] Run fresh solo / duo / trio balance passes with rescue scars, event echoes and **ЖЕРТВА**, then retune only the concrete outliers.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.

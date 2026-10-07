@@ -1070,3 +1070,24 @@ The first tells are:
 - rescue-scar memory gives the commentary line a brief warm-red pulse.
 
 These tells may reveal mood or foreshadow an intervention, but must not change offer probabilities, card contents or combat values by themselves.
+
+
+## D062 — Defeat is terminal unless the one-use Last Deal is accepted
+
+Date: 2026-10-07  
+Status: accepted for vertical-slice defeat redesign
+
+Combat defeat is no longer a free return-to-table retry. The active encounter remains the same only when the player accepts the Wizard's one-use **ПОСЛЕДНЯЯ СДЕЛКА**.
+
+Rules:
+
+- the first defeat in a run offers the Last Deal;
+- the deal can be accepted at most once per run;
+- if the player owns one or more relics, one owned relic is chosen as the explicit price before the player commits; accepting permanently removes that relic;
+- if the player owns no relics, the price is **КЛЕЙМО ПОСЛЕДНЕЙ СДЕЛКИ**, a persistent -15 protagonist max-HP penalty for the rest of the run;
+- accepting reloads the same combat encounter immediately;
+- refusing ends the run;
+- any later defeat after the Last Deal has been used ends the run without another rescue offer;
+- the cursed **ЖЕРТВА** tactical-order opportunity is not restored by a Last Deal retry if it was already consumed by the failed attempt.
+
+The purpose is to make defeat carry actual roguelike stakes while preserving one dramatic Wizard-mediated recovery. Do not add additional lives, revive currencies or repeatable paid retries before this rule is balance-tested.
