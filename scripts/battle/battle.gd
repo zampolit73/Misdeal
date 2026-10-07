@@ -35,6 +35,9 @@ const SACRIFICE_HP_DRAIN_PER_SECOND := 0.02
 @onready var result_backdrop: Panel = $ResultOverlay/ResultBackdrop
 @onready var result_label: Label = $ResultOverlay/Result
 @onready var result_subtitle: Label = $ResultOverlay/ResultSubtitle
+@onready var last_deal_price_label: Label = $ResultOverlay/LastDealPrice
+@onready var last_deal_accept_button: Button = $ResultOverlay/LastDealAccept
+@onready var last_deal_refuse_button: Button = $ResultOverlay/LastDealRefuse
 @onready var placement_hint: Label = $PlacementHint
 @onready var order_label: Label = $OrderLabel
 @onready var assault_order_button: Button = $AssaultOrderButton
@@ -60,6 +63,8 @@ func _ready() -> void:
 	fight_button.pressed.connect(_on_fight_pressed)
 	restart_button.pressed.connect(_on_restart_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)
+	last_deal_accept_button.pressed.connect(_on_last_deal_accept_pressed)
+	last_deal_refuse_button.pressed.connect(_on_last_deal_refuse_pressed)
 	assault_order_button.pressed.connect(_on_assault_order_pressed)
 	hunt_order_button.pressed.connect(_on_hunt_order_pressed)
 	formation_order_button.pressed.connect(_on_formation_order_pressed)
@@ -93,6 +98,9 @@ func _ready() -> void:
 		enemy_label.text = "НЕЖИТЬ"
 	result_scrim.visible = false
 	result_backdrop.visible = false
+	last_deal_price_label.visible = false
+	last_deal_accept_button.visible = false
+	last_deal_refuse_button.visible = false
 	restart_button.visible = false
 	wizard_commentary_panel.visible = false
 	wizard_commentary_label.visible = false
@@ -183,7 +191,7 @@ func _spawn_unit(
 		unit.attack_interval = maxf(0.2, unit.attack_interval * RunState.get_party_attack_interval_multiplier())
 		unit.move_speed *= RunState.get_party_move_speed_multiplier()
 		if unit.visual_role == RunState.protagonist_role:
-			unit.max_hp -= RunState.get_total_rescue_scar_hp_penalty()
+			unit.max_hp -= RunState.get_total_protagonist_hp_penalty()
 		unit.max_hp = maxf(20.0, unit.max_hp)
 		unit.damage = maxf(1.0, unit.damage)
 		unit.set_meta("order_base_damage", unit.damage)
@@ -548,6 +556,55 @@ func _on_unit_died(dead_unit: BattleUnit) -> void:
 	elif dead_unit.team == 0:
 		_show_wizard_line("Один уже понял правила. Остальные — следом.", true)
 
+
+func _show_last_deal_offer() -> void:
+	result_label.text = "ПОСЛЕДНЯЯ СДЕЛКА"
+	result_subtitle.text = "«Не спеши умирать. У меня ещё есть к тебе предложение.»"
+	last_deal_price_label.text = RunState.get_last_deal_price_text()
+	last_deal_price_label.visible = true
+	last_deal_accept_button.visible = true
+	last_deal_accept_button.disabled = false
+	last_deal_refuse_button.visible = true
+	last_deal_refuse_button.disabled = false
+	restart_button.visible = false
+	continue_button.visible = false
+	status_label.text = "Один раз за забег Волшебник может продать тебе право повторить этот бой."
+
+func _show_final_defeat() -> void:
+	result_label.text = "ПОРАЖЕНИЕ"
+	result_subtitle.text = "«Я уже продал тебе одну смерть. Второй не будет.»"
+	last_deal_price_label.text = "ПОСЛЕДНЯЯ СДЕЛКА УЖЕ ИСПОЛЬЗОВАНА"
+	last_deal_price_label.visible = true
+	last_deal_accept_button.visible = false
+	last_deal_refuse_button.text = "ЗАВЕРШИТЬ ЗАБЕГ"
+	last_deal_refuse_button.position = Vector2(512.0, 404.0)
+	last_deal_refuse_button.size = Vector2(256.0, 52.0)
+	last_deal_refuse_button.visible = true
+	last_deal_refuse_button.disabled = false
+	restart_button.visible = false
+	continue_button.visible = false
+	status_label.text = "Эта версия партии закончилась."
+
+func _on_last_deal_accept_pressed() -> void:
+	last_deal_accept_button.disabled = true
+	last_deal_refuse_button.disabled = true
+	if not RunState.accept_last_deal():
+		last_deal_accept_button.disabled = false
+		last_deal_refuse_button.disabled = false
+		return
+	get_tree().reload_current_scene()
+
+func _on_last_deal_refuse_pressed() -> void:
+	last_deal_accept_button.disabled = true
+	last_deal_refuse_button.disabled = true
+	var reason := "Вы приняли поражение в бою «%s»." % encounter.title
+	if RunState.last_deal_pending:
+		RunState.refuse_last_deal(reason)
+	else:
+		RunState.end_run_in_defeat(reason)
+	get_tree().change_scene_to_file("res://scenes/run_end/run_end.tscn")
+
+
 func _finish_battle(player_won: bool) -> void:
 	battle_finished = true
 	RunState.last_battle_won = player_won
@@ -566,6 +623,11 @@ func _finish_battle(player_won: bool) -> void:
 	bottom_hud_panel.visible = false
 	wizard_commentary_panel.visible = false
 	wizard_commentary_label.visible = false
+	restart_button.visible = false
+	continue_button.visible = false
+	last_deal_price_label.visible = false
+	last_deal_accept_button.visible = false
+	last_deal_refuse_button.visible = false
 
 	if player_won:
 		_play_battle_audio("victory")
@@ -584,36 +646,42 @@ func _finish_battle(player_won: bool) -> void:
 			result_subtitle.text = "Волшебник выглядит слегка раздражённым."
 		status_label.text = "Карта пережита. Пока что."
 		continue_button.text = "ЗАБРАТЬ НАГРАДУ"
+		continue_button.visible = true
+		continue_button.disabled = false
 	else:
 		RunState.record_wizard_memory("battle_defeat", encounter.encounter_id)
 		_play_battle_audio("defeat")
-		result_label.text = "ПОРАЖЕНИЕ"
-		result_subtitle.text = "Волшебник улыбается."
-		status_label.text = "Стол забирает ещё один отряд."
-		continue_button.text = "ВЕРНУТЬСЯ К СТОЛУ"
+		if RunState.begin_last_deal():
+			_show_last_deal_offer()
+		else:
+			_show_final_defeat()
 
 	result_scrim.visible = true
 	result_backdrop.visible = true
 	result_label.visible = true
 	result_subtitle.visible = true
 	fight_button.visible = false
-	restart_button.visible = true
-	restart_button.disabled = false
-	continue_button.visible = true
-	continue_button.disabled = false
 	fight_button.text = "БОЙ ОКОНЧЕН"
 
 func _play_battle_audio(event_name: String) -> void:
 	if combat_audio != null and combat_audio.has_method("play_event"):
 		combat_audio.call("play_event", event_name)
 
+
 func _on_restart_pressed() -> void:
+	# Free combat retries are intentionally disabled. Kept only as a legacy signal target.
+	if battle_finished and not RunState.last_battle_won:
+		return
 	get_tree().reload_current_scene()
+
 
 func _on_continue_pressed() -> void:
 	continue_button.disabled = true
 
 	if RunState.last_battle_won:
 		get_tree().change_scene_to_file("res://scenes/reward/reward.tscn")
-	else:
-		get_tree().change_scene_to_file("res://scenes/table/table.tscn")
+		return
+
+	RunState.end_run_in_defeat("Вы проиграли бой «%s»." % encounter.title)
+	get_tree().change_scene_to_file("res://scenes/run_end/run_end.tscn")
+

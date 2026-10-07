@@ -209,6 +209,7 @@ func _format_number(value: float, decimals: int) -> String:
 			return "%.2f" % value
 
 
+
 func _build_upgrades_text(role: String) -> String:
 	var upgrades := RunState.get_hero_upgrades_for_role(role)
 	var chunks: Array[String] = []
@@ -229,6 +230,9 @@ func _build_upgrades_text(role: String) -> String:
 				scar_description,
 				hp_penalty
 			])
+
+		if RunState.last_deal_hp_penalty > 0.0:
+			chunks.append("[color=#ff8a61][b]КЛЕЙМО ПОСЛЕДНЕЙ СДЕЛКИ[/b][/color]\n[color=#b99a90]Волшебник вернул вас в проигранный бой. [color=#ff8a61]-%d макс. HP[/color][/color]" % int(RunState.last_deal_hp_penalty))
 
 	if chunks.is_empty():
 		return "[color=#756b68]Пока без личного развития.[/color]"
@@ -252,13 +256,17 @@ func _build_relics_text(role: String) -> String:
 	return "\n\n".join(chunks)
 
 
+
 func _build_common_text() -> String:
 	var debt := "   •   ДОЛГ ВОЛШЕБНИКУ" if RunState.wizard_debt_active else ""
 	var strength := RunState.get_party_strength_text()
 	var strength_suffix := "   •   %s" % strength if not strength.is_empty() else ""
 	var scars_suffix := ""
-	if not RunState.rescue_scar_roles.is_empty():
-		scars_suffix = "   •   ШРАМЫ %d" % RunState.rescue_scar_roles.size()
+	var scar_count: int = RunState.rescue_scar_roles.size()
+	if RunState.last_deal_hp_penalty > 0.0:
+		scar_count += 1
+	if scar_count > 0:
+		scars_suffix = "   •   ШРАМЫ %d" % scar_count
 	return "ОТРЯД %d/3     HP %+d     УРОН %+d     ДОП. %s%s%s%s" % [
 		RunState.get_party_size(),
 		int(RunState.party_hp_bonus),

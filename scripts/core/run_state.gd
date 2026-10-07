@@ -121,6 +121,14 @@ var selected_encounter_path: String = DEFAULT_ENCOUNTER_PATH
 var whispering_well_resolved := false
 var wizard_debt_active := false
 var boss_defeated := false
+var run_failed := false
+var run_end_reason := ""
+
+var last_deal_used := false
+var last_deal_pending := false
+var last_deal_offer_artifact_id := ""
+var last_deal_payment_text := ""
+var last_deal_hp_penalty: float = 0.0
 
 var remaining_card_ids: Array[String] = []
 var current_offer_ids: Array[String] = []
@@ -174,6 +182,13 @@ func reset_run() -> void:
 	whispering_well_resolved = false
 	wizard_debt_active = false
 	boss_defeated = false
+	run_failed = false
+	run_end_reason = ""
+	last_deal_used = false
+	last_deal_pending = false
+	last_deal_offer_artifact_id = ""
+	last_deal_payment_text = ""
+	last_deal_hp_penalty = 0.0
 	active_card_id = ""
 	artifact_ids.clear()
 	protagonist_role = ""
@@ -327,6 +342,9 @@ func get_total_rescue_scar_hp_penalty() -> float:
 		total += get_rescue_scar_hp_penalty(rescued_role)
 	return total
 
+func get_total_protagonist_hp_penalty() -> float:
+	return get_total_rescue_scar_hp_penalty() + last_deal_hp_penalty
+
 func get_rescue_scar_entries() -> Array[Dictionary]:
 	var entries: Array[Dictionary] = []
 	for rescued_role in rescue_scar_roles:
@@ -455,6 +473,13 @@ func add_artifact(artifact_id: String) -> bool:
 		return false
 
 	artifact_ids.append(artifact_id)
+	return true
+
+func remove_artifact(artifact_id: String) -> bool:
+	var index: int = artifact_ids.find(artifact_id)
+	if index < 0:
+		return false
+	artifact_ids.remove_at(index)
 	return true
 
 func get_available_artifact_ids() -> Array[String]:
@@ -601,7 +626,7 @@ func get_effective_hero_stats(role: String) -> Dictionary:
 	attack_interval = maxf(0.2, attack_interval * get_party_attack_interval_multiplier())
 	move_speed *= get_party_move_speed_multiplier()
 	if role == protagonist_role:
-		hp -= get_total_rescue_scar_hp_penalty()
+		hp -= get_total_protagonist_hp_penalty()
 	hp = maxf(20.0, hp)
 	damage = maxf(1.0, damage)
 
@@ -1165,8 +1190,63 @@ func complete_active_card() -> void:
 func select_encounter(encounter_path: String) -> void:
 	selected_encounter_path = encounter_path
 
+
 func is_run_complete() -> bool:
-	return boss_defeated
+	return boss_defeated or run_failed
+
+
+func can_offer_last_deal() -> bool:
+	return not last_deal_used and not last_deal_pending and not run_failed
+
+func begin_last_deal() -> bool:
+	if not can_offer_last_deal():
+		return false
+
+	last_deal_pending = true
+	last_deal_offer_artifact_id = ""
+	if not artifact_ids.is_empty():
+		var index: int = randi_range(0, artifact_ids.size() - 1)
+		last_deal_offer_artifact_id = artifact_ids[index]
+	return true
+
+func get_last_deal_price_text() -> String:
+	if not last_deal_offer_artifact_id.is_empty():
+		var artifact := get_artifact(last_deal_offer_artifact_id)
+		if artifact != null:
+			return "ЦЕНА: %s\nВолшебник заберёт реликвию навсегда." % artifact.title
+		return "ЦЕНА: ОДНА РЕЛИКВИЯ"
+	return "ЦЕНА: КЛЕЙМО СДЕЛКИ\n-15 макс. HP протагониста до конца забега."
+
+func accept_last_deal() -> bool:
+	if not last_deal_pending or last_deal_used:
+		return false
+
+	if not last_deal_offer_artifact_id.is_empty():
+		var artifact := get_artifact(last_deal_offer_artifact_id)
+		var artifact_title := artifact.title if artifact != null else "реликвия"
+		if not remove_artifact(last_deal_offer_artifact_id):
+			return false
+		last_deal_payment_text = "Отдана реликвия: %s" % artifact_title
+	else:
+		last_deal_hp_penalty += 15.0
+		last_deal_payment_text = "Клеймо сделки: -15 макс. HP"
+	
+	last_deal_used = true
+	last_deal_pending = false
+	last_deal_offer_artifact_id = ""
+	record_wizard_memory("last_deal_accept")
+	return true
+
+func end_run_in_defeat(reason: String) -> void:
+	last_deal_pending = false
+	last_deal_offer_artifact_id = ""
+	run_failed = true
+	run_end_reason = reason
+	record_wizard_memory("run_defeat", active_card_id)
+
+func refuse_last_deal(reason: String) -> void:
+	record_wizard_memory("last_deal_refuse", active_card_id)
+	end_run_in_defeat(reason)
 
 func resolve_whispering_well() -> void:
 	whispering_well_resolved = true
@@ -1270,6 +1350,12 @@ func _build_wizard_memory_line(event_id: String, detail: String) -> String:
 			if count > 1:
 				return "Снова «Жертва». Мне нравится, как быстро плохая идея становится привычкой."
 			return "Ты выбрал «Жертву». Наконец-то приказ, который понимает цену победы."
+		"last_deal_accept":
+			return "Ты уже умер за этим столом один раз. Не заставляй меня продавать тебе вторую смерть — её не будет."
+		"last_deal_refuse":
+			return "Вот и всё. Даже упрямство иногда заканчивается раньше партии."
+		"run_defeat":
+			return "Стол закрылся. Эта версия жизни закончилась здесь."
 		_:
 			return ""
 

@@ -92,9 +92,9 @@ theme_override_styles/panel = SubResource("SummaryPanel")
 [node name="Summary" type="Label" parent="."]
 mouse_filter = 2
 offset_left = 365.0
-offset_top = 255.0
+offset_top = 248.0
 offset_right = 915.0
-offset_bottom = 480.0
+offset_bottom = 490.0
 theme_override_colors/font_color = Color(0.82, 0.76, 0.70, 1)
 theme_override_font_sizes/font_size = 18
 text = "Итоги забега"
