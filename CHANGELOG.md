@@ -19,6 +19,9 @@
 
 ### Changed
 
+- Battle preparation HUD now separates encounter threat/tactical guidance from persistent run conditions. Solo/duo compensation, Wizard debt, **ЖЕРТВА** availability and used Last Deal state render in a compact right-side block instead of extending the main status line into the card counter.
+- Shortened and sharpened preparation cues for Bone Warden, Death Wager, Crypt Guard, Grave Bell, Bone Crush, Ossuary Gate and Gallows Volley so the player sees the actual tactical problem before combat.
+- Synced `docs/CONCEPT.md` with the implemented solo compensation: HP ×2, damage ×1.8, attack cadence ×1.25 and movement ×1.10.
 - Free combat retry after defeat has been removed. Retry is now possible only through the one-use Last Deal, and its payment persists for the remainder of the run.
 - Squad Dossier and run-end summary now surface the Last Deal's permanent HP brand/payment state when relevant.
 - The table HUD now exposes **ЖЕРТВА ГОТОВА** after an accepted Wizard wager, and the Wizard's acceptance line explicitly tells the player that the extra order will appear in the next combat.
@@ -38,6 +41,7 @@
 
 ### Verified
 
+- Static post-Last-Deal balance audit keeps the current solo/duo/trio compensation and fixed encounter benchmarks unchanged pending fresh full-run evidence; no speculative blanket enemy nerf/buff was introduced.
 - Clean wizard-table art pass confirmed locally after screenshot review: removing the procedural hands/heavy frames restored the authored Wizard art and live cards as the main visual focus.
 - Physical wizard-table staging pass confirmed locally: deal animation, fan/hover behavior, discard motion and spread layout are working acceptably.
 - Voluntary Wizard wager flow confirmed locally: wager modal, debt state and doubled ordinary loot are working acceptably.
