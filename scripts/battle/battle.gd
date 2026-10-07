@@ -60,6 +60,7 @@ const BONE_CRUSH_TIME_LIMIT := 16.0
 var encounter: EncounterData
 var units: Array[BattleUnit] = []
 var combat_started := false
+var combat_live := false
 var battle_finished := false
 var boss_reinforcements_spawned := false
 var tactical_order := TACTICAL_ORDER_ASSAULT
@@ -638,11 +639,13 @@ func _on_placement_rejected(unit: BattleUnit) -> void:
 
 
 
+
 func _on_fight_pressed() -> void:
 	if combat_started or battle_finished:
 		return
 
 	combat_started = true
+	combat_live = false
 	combat_elapsed = 0.0
 	fight_button.disabled = true
 	placement_hint.visible = false
@@ -679,7 +682,7 @@ func _on_fight_pressed() -> void:
 	for unit in units:
 		if unit.alive:
 			unit.start_combat()
-
+	combat_live = true
 
 func _hide_preparation_hud() -> void:
 	bottom_hud_panel.visible = false
@@ -781,8 +784,9 @@ func _on_unit_health_critical(unit: BattleUnit) -> void:
 	wizard_critical_line_shown = true
 	_show_wizard_line("%s уже слышит, как стол считает последнюю карту." % unit.display_name, true)
 
+
 func _process(delta: float) -> void:
-	if not combat_started or battle_finished:
+	if not combat_started or not combat_live or battle_finished:
 		return
 
 	combat_elapsed += delta
@@ -815,6 +819,8 @@ func _on_unit_died(dead_unit: BattleUnit) -> void:
 			side_objective_label.text = "УСЛОВИЕ ВЫПОЛНЕНО\nЗвонарь пал первым • награда после победы"
 		else:
 			_fail_side_objective("УСЛОВИЕ ПРОВАЛЕНО • первым пал не звонарь")
+	elif dead_unit.team == 0 and side_objective_id == "no_critical" and not side_objective_failed:
+		_fail_side_objective("УСЛОВИЕ ПРОВАЛЕНО • герой погиб")
 
 	var heroes_alive := 0
 	var enemies_alive := 0
@@ -884,6 +890,7 @@ func _on_last_deal_refuse_pressed() -> void:
 
 func _finish_battle(player_won: bool) -> void:
 	battle_finished = true
+	combat_live = false
 	RunState.last_battle_won = player_won
 
 	for unit in units:
