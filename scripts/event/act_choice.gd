@@ -240,17 +240,17 @@ func _apply_generic_reference_layout() -> void:
 	artifacts_label.position = Vector2(324.0, 246.0)
 	artifacts_label.size = Vector2(674.0, 22.0)
 	var choices := $Panel/Choices as HBoxContainer
-	choices.position = Vector2(38.0, 286.0)
-	choices.size = Vector2(984.0, 264.0)
+	choices.position = Vector2(38.0, 278.0)
+	choices.size = Vector2(984.0, 246.0)
 	for button in [choice_a, choice_b, choice_c]:
-		button.custom_minimum_size = Vector2(314.0, 258.0)
-		_resize_choice_art(button, 112.0)
-	result_label.position = Vector2(138.0, 552.0)
-	result_label.size = Vector2(824.0, 42.0)
-	leave_button.position = Vector2(324.0, 604.0)
-	leave_button.size = Vector2(200.0, 46.0)
-	continue_button.position = Vector2(576.0, 604.0)
-	continue_button.size = Vector2(200.0, 46.0)
+		button.custom_minimum_size = Vector2(314.0, 240.0)
+		_resize_choice_art(button, 104.0)
+	result_label.position = Vector2(138.0, 518.0)
+	result_label.size = Vector2(824.0, 34.0)
+	leave_button.position = Vector2(324.0, 558.0)
+	leave_button.size = Vector2(200.0, 42.0)
+	continue_button.position = Vector2(576.0, 558.0)
+	continue_button.size = Vector2(200.0, 42.0)
 
 func _get_event_accent() -> Color:
 	match active_card.card_id:
@@ -410,27 +410,29 @@ func _apply_forge_reference_layout() -> void:
 	continue_button.size = Vector2(260.0, 48.0)
 
 func _apply_prisoner_reference_layout() -> void:
-	title_label.position = Vector2(250.0, 270.0)
-	title_label.size = Vector2(780.0, 44.0)
-	type_label.position = Vector2(250.0, 316.0)
+	title_label.position = Vector2(250.0, 194.0)
+	title_label.size = Vector2(780.0, 42.0)
+	type_label.position = Vector2(250.0, 238.0)
 	type_label.size = Vector2(780.0, 22.0)
-	description_label.position = Vector2(300.0, 346.0)
+	description_label.position = Vector2(300.0, 268.0)
 	description_label.size = Vector2(680.0, 42.0)
-	wizard_line.position = Vector2(300.0, 390.0)
+	wizard_line.position = Vector2(300.0, 312.0)
 	wizard_line.size = Vector2(680.0, 34.0)
-	gold_label.position = Vector2(210.0, 430.0)
-	artifacts_label.position = Vector2(690.0, 430.0)
+	gold_label.position = Vector2(210.0, 354.0)
+	artifacts_label.position = Vector2(690.0, 354.0)
 	var choices := $Panel/Choices as HBoxContainer
-	choices.position = Vector2(192.0, 462.0)
-	choices.size = Vector2(896.0, 172.0)
+	choices.position = Vector2(192.0, 388.0)
+	choices.size = Vector2(896.0, 238.0)
 	for button in [choice_a, choice_b, choice_c]:
-		button.custom_minimum_size = Vector2(285.0, 168.0)
-		_resize_choice_art(button, 70.0)
-	result_label.position = Vector2(260.0, 638.0)
-	leave_button.position = Vector2(520.0, 662.0)
-	leave_button.size = Vector2(240.0, 44.0)
-	continue_button.position = Vector2(520.0, 662.0)
-	continue_button.size = Vector2(240.0, 44.0)
+		button.custom_minimum_size = Vector2(285.0, 230.0)
+		button.add_theme_font_size_override("font_size", 13)
+		_resize_choice_art(button, 82.0)
+	result_label.position = Vector2(260.0, 624.0)
+	result_label.size = Vector2(760.0, 28.0)
+	leave_button.position = Vector2(520.0, 660.0)
+	leave_button.size = Vector2(240.0, 40.0)
+	continue_button.position = Vector2(520.0, 660.0)
+	continue_button.size = Vector2(240.0, 40.0)
 
 func _resize_choice_art(button: Button, art_height: float) -> void:
 	var art := button.get_node("ChoiceArt") as TextureRect

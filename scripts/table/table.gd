@@ -13,6 +13,7 @@ const RIGHT_CARD_ROTATION := 0.045
 
 @onready var wizard_line: Label = $WizardLine
 @onready var stats_label: Label = $Stats
+@onready var cards_root: Control = $Cards
 @onready var offer_a_button: Button = $Cards/BonePatrolCard
 @onready var offer_b_button: Button = $Cards/GraveyardCard
 @onready var hidden_card_a: Button = $Cards/GallowsVolleyCard
@@ -78,11 +79,17 @@ func _input(event: InputEvent) -> void:
 func _toggle_squad_status() -> void:
 	if is_instance_valid(squad_status):
 		squad_status.queue_free()
-		squad_status = null
 		return
 
 	squad_status = SQUAD_STATUS_SCENE.instantiate() as Control
+	squad_status.z_index = 100
+	squad_status.tree_exited.connect(_on_squad_status_closed)
+	cards_root.visible = false
 	add_child(squad_status)
+
+func _on_squad_status_closed() -> void:
+	cards_root.visible = true
+	squad_status = null
 
 func _refresh_table(show_memory: bool = true) -> void:
 	selection_locked = false
