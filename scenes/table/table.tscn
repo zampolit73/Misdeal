@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3]
+[gd_scene load_steps=24 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/table.gd" id="1_table"]
 [ext_resource type="Script" path="res://scripts/table/table_visual.gd" id="2_visual"]
@@ -98,13 +98,13 @@ content_margin_right = 10.0
 content_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id="WagerPanel"]
-bg_color = Color(0.028, 0.010, 0.016, 0.992)
+bg_color = Color(0.026, 0.008, 0.014, 0.992)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.86, 0.34, 0.16, 1)
-shadow_color = Color(0, 0, 0, 0.88)
+border_color = Color(0.94, 0.36, 0.14, 1)
+shadow_color = Color(0, 0, 0, 0.90)
 shadow_size = 22
 corner_radius_top_left = 3
 corner_radius_top_right = 3
@@ -112,14 +112,24 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="WagerAccept"]
-bg_color = Color(0.20, 0.045, 0.025, 0.99)
+bg_color = Color(0.24, 0.050, 0.024, 0.995)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(1.0, 0.42, 0.16, 1)
-shadow_color = Color(0.42, 0.06, 0.02, 0.46)
-shadow_size = 8
+border_color = Color(1.0, 0.46, 0.16, 1)
+shadow_color = Color(0.50, 0.07, 0.02, 0.62)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="WagerAcceptHover"]
+bg_color = Color(0.34, 0.070, 0.026, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1.0, 0.68, 0.28, 1)
+shadow_color = Color(0.72, 0.10, 0.02, 0.72)
+shadow_size = 17
 
 [sub_resource type="StyleBoxFlat" id="WagerRefuse"]
 bg_color = Color(0.026, 0.040, 0.048, 0.98)
@@ -132,24 +142,24 @@ shadow_color = Color(0, 0, 0, 0.52)
 shadow_size = 7
 
 [sub_resource type="StyleBoxFlat" id="WagerRiskPanel"]
-bg_color = Color(0.080, 0.020, 0.018, 0.92)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.72, 0.24, 0.12, 0.92)
-shadow_color = Color(0.28, 0.03, 0.01, 0.40)
-shadow_size = 7
+bg_color = Color(0.095, 0.018, 0.016, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.88, 0.25, 0.10, 0.96)
+shadow_color = Color(0.38, 0.035, 0.01, 0.52)
+shadow_size = 9
 
 [sub_resource type="StyleBoxFlat" id="WagerRewardPanel"]
-bg_color = Color(0.055, 0.040, 0.018, 0.92)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.72, 0.52, 0.18, 0.92)
-shadow_color = Color(0.22, 0.13, 0.02, 0.42)
-shadow_size = 7
+bg_color = Color(0.070, 0.048, 0.014, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.88, 0.62, 0.16, 0.96)
+shadow_color = Color(0.30, 0.17, 0.015, 0.50)
+shadow_size = 9
 
 [node name="Table" type="Control"]
 layout_mode = 3
@@ -655,30 +665,33 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.82)
 
 [node name="WagerPanel" type="Panel" parent="WagerOverlay/Root"]
-offset_left = 210.0
-offset_top = 122.0
-offset_right = 1070.0
-offset_bottom = 598.0
+offset_left = 218.0
+offset_top = 142.0
+offset_right = 1062.0
+offset_bottom = 574.0
 theme_override_styles/panel = SubResource("WagerPanel")
 
 [node name="Sigil" type="Label" parent="WagerOverlay/Root/WagerPanel"]
 mouse_filter = 2
-offset_left = 395.0
+offset_left = 387.0
 offset_top = -20.0
-offset_right = 465.0
+offset_right = 457.0
 offset_bottom = 28.0
-theme_override_colors/font_color = Color(1, 0.42, 0.18, 1)
+theme_override_colors/font_color = Color(1, 0.45, 0.16, 1)
+theme_override_colors/font_shadow_color = Color(0.34, 0.04, 0.01, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 28
 text = "◆"
 horizontal_alignment = 1
 
 [node name="Title" type="Label" parent="WagerOverlay/Root/WagerPanel"]
 mouse_filter = 2
-offset_left = 70.0
-offset_top = 36.0
-offset_right = 790.0
-offset_bottom = 82.0
-theme_override_colors/font_color = Color(1, 0.68, 0.40, 1)
+offset_left = 62.0
+offset_top = 27.0
+offset_right = 782.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(1, 0.69, 0.40, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.92)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
@@ -688,150 +701,182 @@ horizontal_alignment = 1
 
 [node name="Divider" type="Label" parent="WagerOverlay/Root/WagerPanel"]
 mouse_filter = 2
-offset_left = 230.0
-offset_top = 80.0
-offset_right = 630.0
-offset_bottom = 100.0
-theme_override_colors/font_color = Color(0.88, 0.32, 0.14, 0.86)
+offset_left = 222.0
+offset_top = 69.0
+offset_right = 622.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0.96, 0.34, 0.13, 0.90)
 theme_override_font_sizes/font_size = 14
 text = "────────  ◆  ────────"
 horizontal_alignment = 1
 
 [node name="Quote" type="Label" parent="WagerOverlay/Root/WagerPanel"]
 mouse_filter = 2
-offset_left = 100.0
-offset_top = 104.0
-offset_right = 760.0
-offset_bottom = 170.0
+offset_left = 86.0
+offset_top = 88.0
+offset_right = 758.0
+offset_bottom = 140.0
 theme_override_colors/font_color = Color(0.84, 0.72, 0.72, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.88)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 15
 text = "«Я удвою следующую обычную добычу.\nТы лишь позволишь мне сделать следующий бой... честнее.»"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ContractLine" type="ColorRect" parent="WagerOverlay/Root/WagerPanel"]
+mouse_filter = 2
+offset_left = 394.0
+offset_top = 226.0
+offset_right = 450.0
+offset_bottom = 228.0
+color = Color(0.82, 0.34, 0.10, 0.76)
+
+[node name="ContractSigil" type="Label" parent="WagerOverlay/Root/WagerPanel"]
+mouse_filter = 2
+offset_left = 402.0
+offset_top = 205.0
+offset_right = 442.0
+offset_bottom = 249.0
+theme_override_colors/font_color = Color(1.0, 0.50, 0.18, 1)
+theme_override_colors/font_shadow_color = Color(0.40, 0.04, 0.01, 0.92)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 22
+text = "◆"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="RiskPanel" type="Panel" parent="WagerOverlay/Root/WagerPanel"]
-offset_left = 70.0
-offset_top = 188.0
-offset_right = 412.0
-offset_bottom = 320.0
+offset_left = 54.0
+offset_top = 154.0
+offset_right = 394.0
+offset_bottom = 300.0
 theme_override_styles/panel = SubResource("WagerRiskPanel")
 
 [node name="RiskArt" type="TextureRect" parent="WagerOverlay/Root/WagerPanel/RiskPanel"]
 mouse_filter = 2
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 132.0
-offset_bottom = 122.0
+offset_right = 158.0
+offset_bottom = 136.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 6
-modulate = Color(1, 0.78, 0.68, 0.86)
+modulate = Color(1, 0.78, 0.68, 0.96)
 
 [node name="Kicker" type="Label" parent="WagerOverlay/Root/WagerPanel/RiskPanel"]
 mouse_filter = 2
-offset_left = 146.0
+offset_left = 168.0
 offset_top = 14.0
-offset_right = 322.0
+offset_right = 324.0
 offset_bottom = 36.0
-theme_override_colors/font_color = Color(0.92, 0.42, 0.24, 1)
+theme_override_colors/font_color = Color(1.0, 0.38, 0.18, 1)
 theme_override_font_sizes/font_size = 12
 text = "ЦЕНА"
 horizontal_alignment = 1
 
 [node name="Title" type="Label" parent="WagerOverlay/Root/WagerPanel/RiskPanel"]
 mouse_filter = 2
-offset_left = 142.0
-offset_top = 42.0
-offset_right = 326.0
-offset_bottom = 66.0
-theme_override_colors/font_color = Color(0.95, 0.82, 0.70, 1)
+offset_left = 164.0
+offset_top = 44.0
+offset_right = 328.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.96, 0.82, 0.70, 1)
 theme_override_font_sizes/font_size = 14
 text = "СЛЕДУЮЩИЙ БОЙ"
 horizontal_alignment = 1
 
 [node name="Value" type="Label" parent="WagerOverlay/Root/WagerPanel/RiskPanel"]
 mouse_filter = 2
-offset_left = 142.0
-offset_top = 70.0
-offset_right = 326.0
-offset_bottom = 116.0
-theme_override_colors/font_color = Color(1.0, 0.42, 0.24, 1)
-theme_override_font_sizes/font_size = 16
+offset_left = 162.0
+offset_top = 72.0
+offset_right = 330.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(1.0, 0.36, 0.18, 1)
+theme_override_colors/font_shadow_color = Color(0.30, 0.02, 0.01, 0.86)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 17
 text = "ВРАГИ НАНОСЯТ\n+25% УРОНА"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RewardPanel" type="Panel" parent="WagerOverlay/Root/WagerPanel"]
-offset_left = 448.0
-offset_top = 188.0
+offset_left = 450.0
+offset_top = 154.0
 offset_right = 790.0
-offset_bottom = 320.0
+offset_bottom = 300.0
 theme_override_styles/panel = SubResource("WagerRewardPanel")
 
 [node name="RewardArt" type="TextureRect" parent="WagerOverlay/Root/WagerPanel/RewardPanel"]
 mouse_filter = 2
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 132.0
-offset_bottom = 122.0
+offset_right = 158.0
+offset_bottom = 136.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 6
-modulate = Color(1, 0.90, 0.66, 0.90)
+modulate = Color(1, 0.92, 0.66, 0.98)
 
 [node name="Kicker" type="Label" parent="WagerOverlay/Root/WagerPanel/RewardPanel"]
 mouse_filter = 2
-offset_left = 146.0
+offset_left = 168.0
 offset_top = 14.0
-offset_right = 322.0
+offset_right = 324.0
 offset_bottom = 36.0
-theme_override_colors/font_color = Color(0.88, 0.66, 0.28, 1)
+theme_override_colors/font_color = Color(1.0, 0.72, 0.22, 1)
 theme_override_font_sizes/font_size = 12
 text = "НАГРАДА"
 horizontal_alignment = 1
 
 [node name="Title" type="Label" parent="WagerOverlay/Root/WagerPanel/RewardPanel"]
 mouse_filter = 2
-offset_left = 142.0
-offset_top = 42.0
-offset_right = 326.0
-offset_bottom = 66.0
-theme_override_colors/font_color = Color(0.96, 0.84, 0.66, 1)
+offset_left = 164.0
+offset_top = 44.0
+offset_right = 328.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.98, 0.86, 0.68, 1)
 theme_override_font_sizes/font_size = 14
 text = "ОБЫЧНАЯ ДОБЫЧА"
 horizontal_alignment = 1
 
 [node name="Value" type="Label" parent="WagerOverlay/Root/WagerPanel/RewardPanel"]
 mouse_filter = 2
-offset_left = 142.0
+offset_left = 162.0
 offset_top = 72.0
-offset_right = 326.0
-offset_bottom = 116.0
-theme_override_colors/font_color = Color(1.0, 0.76, 0.34, 1)
-theme_override_font_sizes/font_size = 24
+offset_right = 330.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(1.0, 0.78, 0.26, 1)
+theme_override_colors/font_shadow_color = Color(0.26, 0.12, 0.01, 0.88)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 28
 text = "x2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AcceptButton" type="Button" parent="WagerOverlay/Root/WagerPanel"]
-offset_left = 70.0
-offset_top = 352.0
-offset_right = 412.0
-offset_bottom = 424.0
-theme_override_colors/font_color = Color(1, 0.80, 0.58, 1)
-theme_override_colors/font_hover_color = Color(1, 0.94, 0.80, 1)
+offset_left = 54.0
+offset_top = 326.0
+offset_right = 394.0
+offset_bottom = 394.0
+theme_override_colors/font_color = Color(1, 0.82, 0.60, 1)
+theme_override_colors/font_hover_color = Color(1, 0.96, 0.82, 1)
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("WagerAccept")
-theme_override_styles/hover = SubResource("CardHover")
-theme_override_styles/pressed = SubResource("CardHover")
+theme_override_styles/hover = SubResource("WagerAcceptHover")
+theme_override_styles/pressed = SubResource("WagerAcceptHover")
 text = "ПРИНЯТЬ СТАВКУ"
 
 [node name="RefuseButton" type="Button" parent="WagerOverlay/Root/WagerPanel"]
-offset_left = 448.0
-offset_top = 352.0
+offset_left = 450.0
+offset_top = 326.0
 offset_right = 790.0
-offset_bottom = 424.0
-theme_override_colors/font_color = Color(0.74, 0.80, 0.82, 1)
+offset_bottom = 394.0
+theme_override_colors/font_color = Color(0.72, 0.80, 0.82, 1)
 theme_override_colors/font_hover_color = Color(0.92, 0.96, 0.98, 1)
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("WagerRefuse")
