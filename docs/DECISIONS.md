@@ -1186,3 +1186,51 @@ Current precedence and outcomes:
 - **ЛЮБИМЕЦ СТАВОК** — at least two Wizard-authored risks were accepted across voluntary wagers and marked cards; the special resolution grants extra hero development, or +35 gold if development is exhausted.
 
 The special branch reuses the existing fourth/leave action rather than adding another modal or a generalized morality subsystem. If multiple profiles are true, deliberate companion loss takes precedence, then multiple rescue scars, then repeated risk-taking.
+
+
+## D069 — Selected combats may carry visible optional Wizard conditions
+
+Date: 2026-10-07  
+Status: accepted for Act 1 combat-depth pass
+
+A small subset of combat cards may include one optional, fully visible condition from the Wizard. The condition never blocks victory and never replaces normal combat rewards; satisfying it grants a small **+15 gold** bonus only after the fight is actually won.
+
+Current conditions:
+
+- **МОГИЛЬНЫЙ ЗВОН** — the Grave Bellkeeper must be the first enemy to die;
+- **ЗАЛП С ВИСЕЛИЦЫ** — no player hero may fall to 25% HP or lower;
+- **КОСТЯНАЯ ДАВКА** — win within 16 seconds.
+
+Conditions are authored per encounter rather than generated randomly. Their purpose is to make placement, tactical orders and current builds matter beyond binary survival without turning combat into an objective checklist.
+
+## D070 — Two refusals can unlock one-battle Defiance
+
+Date: 2026-10-07  
+Status: accepted for Wizard-resistance path
+
+Explicitly refusing Wizard-authored risk should have a mechanical identity rather than being purely the absence of a wager. Refusing a voluntary Wizard wager or declining a visibly marked card contributes one refusal. After two such refusals, the next combat exposes the temporary tactical order **НЕПОВИНОВЕНИЕ**.
+
+For that combat, **НЕПОВИНОВЕНИЕ** gives all player heroes:
+
+- -20% incoming enemy damage;
+- -15% outgoing damage.
+
+The option is consumed when the next combat begins whether selected or not, matching the timing rule used by **ЖЕРТВА**. Refusals are counted across the run; accepting a different Wizard offer does not erase prior refusals. If both temporary orders happen to be ready at once, both may be shown, but only one tactical order can be selected for the fight.
+
+This creates a defensive resistance counterpart to the aggressive cooperation path of **ЖЕРТВА** without adding a permanent fourth baseline order.
+
+## D071 — Bone Warden Phase II reflects the run but base boss stats stay fixed
+
+Date: 2026-10-07  
+Status: accepted for Act 1 finale personalization
+
+Bone Warden remains a fixed benchmark in base HP, damage, attack cadence and Phase II threshold. The run-history response is limited to the already-existing reinforcement moment at 50% HP.
+
+Phase II reinforcement plans:
+
+- **БЕЗ СВИДЕТЕЛЕЙ** — two Bone Thralls;
+- **ИСПИСАН ШРАМАМИ** — one Grave Bellkeeper, able to heal the boss;
+- **ЛЮБИМЕЦ СТАВОК** — two Bone Archers;
+- no aggregate profile — the existing Bone Archer + Bone Thrall pair.
+
+The active verdict is shown to the player in the boss preparation/Phase II presentation. This is authored consequence, not hidden adaptive difficulty: the boss's core benchmark does not scale to party size or player power.

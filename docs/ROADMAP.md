@@ -153,6 +153,10 @@ Only after the loop is fun:
 - [x] Add compact combat-threat tags directly to Wizard-table card type lines (`РОЙ`, `ЛЕЧЕНИЕ`, `AOE`, ranged threat, phases).
 - [x] Add a late **КАРТА БЕЗ ЛИЦА** reckoning that reads whole-run behavior instead of only a single earlier card.
 - [ ] Locally verify the new deployment regions with solo/duo/trio parties and confirm the threat tags / Faceless reckoning fit cleanly at 1280×720.
+- [x] Add three visible optional combat conditions with small gold rewards: Bellkeeper-first, stay-above-25%-HP and timed Bone Crush clear.
+- [x] Add one-battle **НЕПОВИНОВЕНИЕ** after two explicit refusals of Wizard wagers/marks: -20% incoming damage, -15% own damage.
+- [x] Personalize Bone Warden Phase II reinforcements from the Act 1 reckoning profile while keeping the boss's base benchmark stats fixed.
+- [ ] Locally verify side-condition success/failure/reward flow, Defiance unlock/consumption, Last Deal retry interaction and all four Bone Warden Phase II reinforcement plans.
 - [ ] Run fresh solo / duo / trio balance passes with rescue scars, event echoes and **ЖЕРТВА**, then retune only the concrete outliers.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.

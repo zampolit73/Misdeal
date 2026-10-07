@@ -4,6 +4,9 @@
 
 ### Added
 
+- Added optional Wizard combat conditions worth +15 gold on victory: kill the Grave Bellkeeper first in **МОГИЛЬНЫЙ ЗВОН**, keep every hero above 25% HP in **ЗАЛП С ВИСЕЛИЦЫ**, and clear **КОСТЯНАЯ ДАВКА** within 16 seconds. A live objective panel shows success/failure state during combat.
+- Added the temporary tactical order **НЕПОВИНОВЕНИЕ** after two explicit refusals of Wizard wagers/marked cards. It gives -20% incoming damage and -15% outgoing damage for one combat, and is consumed when that combat begins.
+- Added personalized Bone Warden Phase II reinforcement plans driven by the Act 1 reckoning profile: two Thralls for **БЕЗ СВИДЕТЕЛЕЙ**, a Grave Bellkeeper for **ИСПИСАН ШРАМАМИ**, two Archers for **ЛЮБИМЕЦ СТАВОК**, or the existing Archer + Thrall pair for an untyped run.
 - Added encounter-specific deployment geometry for **ЗАЛП С ВИСЕЛИЦЫ**, **КОСТЯНАЯ ДАВКА**, **ВРАТА ОССУАРИЯ** and **КОСТЯНОЙ НАДЗИРАТЕЛЬ**. Player-unit dragging now supports multiple disconnected legal regions and the live arena shows subtle deployment-zone panels before combat.
 - Added compact threat tags to combat cards on the Wizard table, including ranged pressure, healing support, swarm, AOE and boss-phase cues.
 - Added whole-run **КАРТА БЕЗ ЛИЦА** reckoning branches for deliberate companion loss, multiple rescue scars and repeated accepted Wizard risks.
@@ -25,6 +28,8 @@
 
 ### Changed
 
+- Bone Warden keeps its fixed 700-HP benchmark and existing core combat stats; only the Phase II reinforcement composition now reacts to run history, with the verdict shown before the player commits to the fight.
+- Wizard-refusal history now has a direct tactical payoff through **НЕПОВИНОВЕНИЕ**, complementing the wager-acceptance path that grants **ЖЕРТВА**.
 - Faceless Card's existing fourth action now becomes a contextual late-run resolution when the player's history qualifies: **БЕЗ СВИДЕТЕЛЕЙ**, **ИСПИСАН ШРАМАМИ** or **ЛЮБИМЕЦ СТАВОК**. This uses explicit run facts rather than a hidden morality meter.
 - Special deployment encounters now start heroes inside their authored legal regions and explain the placement rule in the preparation HUD.
 - Wizard-mark danger is surfaced in both the table condition strip and battle condition block, stacks visibly with Wizard debt, persists through Last Deal retry and clears only after a combat victory.
