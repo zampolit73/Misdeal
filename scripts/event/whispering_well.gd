@@ -109,6 +109,18 @@ func _apply_choice_art() -> void:
 	for art in [accept_art, pay_art, leave_art]:
 		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		art.visible = art.texture != null
+
+	for button in [accept_button, pay_button, leave_button]:
+		for style_name in ["normal", "hover", "pressed", "disabled"]:
+			var source := button.get_theme_stylebox(style_name) as StyleBoxFlat
+			if source == null:
+				continue
+			var styled := source.duplicate() as StyleBoxFlat
+			styled.content_margin_top = 88.0
+			styled.content_margin_bottom = 10.0
+			button.add_theme_stylebox_override(style_name, styled)
+		button.add_theme_font_size_override("font_size", 13)
+
 	leave_art.modulate = Color(0.62, 0.70, 0.72, 0.74)
 
 func _animate_screen_in() -> void:
