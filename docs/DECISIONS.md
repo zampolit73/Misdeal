@@ -939,3 +939,17 @@ For generic choice-driven events, the upper illustration band of each visible op
 `Curse Forge` and `Chained Prisoner` keep their dedicated per-option approved illustrations because those screens already have more specific authored choice art.
 
 Live button text, costs, disabled states, reward logic and companion-fate mechanics remain authoritative Godot controls.
+
+
+## D053 — Canonical card art must be stored near its display resolution
+
+Date: 2026-10-07  
+Status: accepted after local quality rejection
+
+The first D051 integration preserved the correct illustrations but packed them at only 88×54 px for table cards and 80×48 px for development/reward cards. Godot then enlarged those thumbnail cells across much larger UI art windows, making the approved art visibly soft and blocky.
+
+Canonical player-facing card art must not be pre-shrunk to thumbnail resolution merely to reduce repository size. The current vertical slice therefore stores the same approved illustrations at 224×137 px per table-card cell and 304×194 px per development/reward cell.
+
+The atlases are WebP-compressed but committed as raw `.bin` byte blobs and decoded with `Image.load_webp_from_buffer()`. This keeps repository/import behavior predictable while retaining enough source detail for the actual card windows.
+
+Do not solve future repository-size concerns by aggressively downsampling approved art below its normal display size.
