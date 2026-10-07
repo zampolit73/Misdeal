@@ -189,7 +189,7 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 
 	button.set_meta("card_id", card.card_id)
 	title_label.text = card.title
-	type_label.text = card.type_label
+	type_label.text = _get_card_type_line(card)
 	description_label.text = card.card_text
 	hint_label.text = _get_hint_text(card)
 	button.tooltip_text = ""
@@ -456,6 +456,29 @@ func _kill_card_motion(button: Button) -> void:
 func _play_table_audio(event_name: String) -> void:
 	if table_audio != null and table_audio.has_method("play_event"):
 		table_audio.call("play_event", event_name)
+
+func _get_card_type_line(card: RunCardData) -> String:
+	match card.card_id:
+		"bone_patrol":
+			return "БОЙ • ФРОНТ"
+		"graveyard_ambush":
+			return "БОЙ • ДАЛЬНИЙ"
+		"gallows_volley":
+			return "БОЙ • 2 ЛУЧНИКА"
+		"grave_bell":
+			return "БОЙ • ЛЕЧЕНИЕ"
+		"bone_crush":
+			return "БОЙ • РОЙ"
+		"crypt_guard":
+			return "ЭЛИТА • AOE"
+		"ossuary_gate":
+			return "БОЙ • ЛЕЧЕНИЕ"
+		"death_wager":
+			return "СТАВКА • AOE + ДАЛЬНИЙ"
+		"bone_warden":
+			return "БОСС • AOE • ФАЗЫ"
+		_:
+			return card.type_label
 
 func _get_hint_text(card: RunCardData) -> String:
 	if RunState.has_active_card():

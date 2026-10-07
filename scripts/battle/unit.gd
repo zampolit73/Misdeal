@@ -66,6 +66,7 @@ var target_refresh_cooldown := 0.0
 
 var placement_enabled := false
 var placement_bounds := Rect2()
+var placement_regions: Array[Rect2] = []
 var combat_bounds := Rect2()
 var dragging := false
 var drag_offset := Vector2.ZERO
@@ -307,13 +308,40 @@ func _apply_health_bar_style() -> void:
 func set_combat_bounds(bounds: Rect2) -> void:
 	combat_bounds = bounds
 
+
 func enable_placement(bounds: Rect2) -> void:
+	var regions: Array[Rect2] = [bounds]
+	enable_placement_regions(regions)
+
+func enable_placement_regions(regions: Array[Rect2]) -> void:
 	if team != 0:
 		return
 
-	placement_bounds = bounds
+	placement_regions = regions.duplicate()
+	if placement_regions.is_empty():
+		placement_regions.append(Rect2(Vector2.ZERO, Vector2(1.0, 1.0)))
+	placement_bounds = placement_regions[0]
 	placement_enabled = true
 	queue_redraw()
+
+func _clamp_to_placement_regions(desired_position: Vector2) -> Vector2:
+	if placement_regions.is_empty():
+		return desired_position
+
+	var best_position: Vector2 = desired_position
+	var best_distance: float = INF
+	for region in placement_regions:
+		var min_position: Vector2 = region.position + Vector2(body_radius, body_radius)
+		var max_position: Vector2 = region.position + region.size - Vector2(body_radius, body_radius)
+		var candidate := Vector2(
+			clampf(desired_position.x, min_position.x, max_position.x),
+			clampf(desired_position.y, min_position.y, max_position.y)
+		)
+		var distance: float = desired_position.distance_squared_to(candidate)
+		if distance < best_distance:
+			best_distance = distance
+			best_position = candidate
+	return best_position
 
 func disable_placement() -> void:
 	placement_enabled = false
@@ -357,13 +385,7 @@ func _input(event: InputEvent) -> void:
 
 	if event is InputEventMouseMotion and dragging:
 		var desired_position := _mouse_position_in_parent() + drag_offset
-		var min_position := placement_bounds.position + Vector2(body_radius, body_radius)
-		var max_position := placement_bounds.position + placement_bounds.size - Vector2(body_radius, body_radius)
-
-		position = Vector2(
-			clampf(desired_position.x, min_position.x, max_position.x),
-			clampf(desired_position.y, min_position.y, max_position.y)
-		)
+		position = _clamp_to_placement_regions(desired_position)
 
 		queue_redraw()
 		get_viewport().set_input_as_handled()

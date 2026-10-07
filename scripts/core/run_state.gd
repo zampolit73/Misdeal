@@ -333,6 +333,27 @@ func get_lost_companion_count() -> int:
 func is_deliberate_loner() -> bool:
 	return get_party_size() == 1 and get_lost_companion_count() >= 2
 
+func get_act1_reckoning_profile() -> String:
+	if is_deliberate_loner():
+		return "witnessless"
+	if rescue_scar_roles.size() >= 2:
+		return "scarred"
+	var accepted_risks: int = wizard_wagers_accepted + get_wizard_memory_count("wizard_mark_accept")
+	if accepted_risks >= 2:
+		return "riskbound"
+	return ""
+
+func get_act1_reckoning_label() -> String:
+	match get_act1_reckoning_profile():
+		"witnessless":
+			return "БЕЗ СВИДЕТЕЛЕЙ"
+		"scarred":
+			return "ИСПИСАН ШРАМАМИ"
+		"riskbound":
+			return "ЛЮБИМЕЦ СТАВОК"
+		_:
+			return ""
+
 func add_rescue_scar(rescued_role: String) -> bool:
 	if not RESCUE_SCAR_DATA.has(rescued_role):
 		return false

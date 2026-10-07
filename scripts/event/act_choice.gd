@@ -688,6 +688,7 @@ func _configure_wizard_tithe() -> void:
 	choice_c.pressed.connect(_resolve_wizard_tithe.bind("refuse"))
 
 
+
 func _configure_faceless_card() -> void:
 	choice_a.text = "ПЕРЕВЕРНУТЬ КАРТУ\n\nИсход неизвестен:\nзолото, реликвия или развитие"
 
@@ -697,20 +698,30 @@ func _configure_faceless_card() -> void:
 	_set_least_developed_upgrade_button(choice_b, fate_title, fate_description)
 	choice_b.disabled = choice_b.disabled or RunState.gold < fate_price
 
-	if RunState.has_rescue_scar("ranger"):
-		wizard_line.text = "— Дорога оставила на тебе метку. Похоже, карта её тоже видит."
-
 	if RunState.wizard_debt_active:
 		choice_c.text = "СЖЕЧЬ КАРТУ\n\nСнять ДОЛГ ВОЛШЕБНИКУ"
 	else:
 		choice_c.text = "СЖЕЧЬ КАРТУ\n\n+20 золота"
 
-	leave_button.text = "НЕ ТРОГАТЬ КАРТУ"
+	var reckoning_profile: String = RunState.get_act1_reckoning_profile()
+	match reckoning_profile:
+		"witnessless":
+			leave_button.text = "ПОКАЗАТЬ ПУСТЫЕ МЕСТА\n\nБЕЗ СВИДЕТЕЛЕЙ • +50 золота"
+			wizard_line.text = "— Карта считает не только тех, кто дошёл сюда. Она считает и тех, кого рядом больше нет."
+		"scarred":
+			leave_button.text = "ПОКАЗАТЬ ШРАМЫ\n\nИСПИСАН ШРАМАМИ • реликвия"
+			wizard_line.text = "— У карты нет лица. Зато у тебя достаточно отметин за двоих."
+		"riskbound":
+			leave_button.text = "ПОКАЗАТЬ ПОДПИСИ\n\nЛЮБИМЕЦ СТАВОК • развитие"
+			wizard_line.text = "— Столько моих условий на одной судьбе. Даже карта впечатлена."
+		_:
+			leave_button.text = "НЕ ТРОГАТЬ КАРТУ"
+			if RunState.has_rescue_scar("ranger"):
+				wizard_line.text = "— Дорога оставила на тебе метку. Похоже, карта её тоже видит."
 
 	choice_a.pressed.connect(_resolve_faceless_card.bind("reveal"))
 	choice_b.pressed.connect(_resolve_faceless_card.bind("bribe"))
 	choice_c.pressed.connect(_resolve_faceless_card.bind("burn"))
-
 
 func _configure_blood_ledger() -> void:
 	_set_least_developed_upgrade_button(choice_a, "ПОДПИСАТЬ ЗОЛОТОМ — 40", "Книга усилит самого отстающего героя.")
@@ -1314,6 +1325,7 @@ func _resolve_bone_tax(choice: String) -> void:
 			RunState.party_hp_bonus -= 25.0
 			_finish("Пошлина превращается в драку. Здоровье -25. %s" % _format_upgrade_gain(upgrade_id))
 
+
 func _resolve_leave() -> void:
 	if resolved:
 		return
@@ -1332,7 +1344,31 @@ func _resolve_leave() -> void:
 		"debtor_bones":
 			_finish("Вы оставляете чужой долг лежать в пыли.")
 		"faceless_card":
-			_finish("Карта остаётся лежать лицом вниз. Волшебник явно считает это скучным.")
+			var reckoning_profile: String = RunState.get_act1_reckoning_profile()
+			match reckoning_profile:
+				"witnessless":
+					RunState.gold += 50
+					RunState.set_event_outcome("faceless_card", "witnessless")
+					_finish("На пустом лице проступают два отсутствующих силуэта. Карта платит за тишину: +50 золота.")
+				"scarred":
+					RunState.set_event_outcome("faceless_card", "scarred")
+					var artifact_id: String = RunState.add_random_available_artifact()
+					if artifact_id.is_empty():
+						RunState.gold += 35
+						_finish("Карта читает ваши шрамы, но свободных реликвий не осталось. Получено 35 золота.")
+					else:
+						var artifact := RunState.get_artifact(artifact_id)
+						_finish("Шрамы складываются в знакомый знак. Карта выдаёт реликвию: %s." % artifact.title)
+				"riskbound":
+					RunState.set_event_outcome("faceless_card", "riskbound")
+					var upgrade_id: String = _grant_least_developed_upgrade()
+					if upgrade_id.is_empty():
+						RunState.gold += 35
+						_finish("Карта видит слишком много принятых условий, но развивать больше нечего. Получено 35 золота.")
+					else:
+						_finish("Карта узнаёт почерк Волшебника на вашей судьбе. %s" % _format_upgrade_gain(upgrade_id))
+				_:
+					_finish("Карта остаётся лежать лицом вниз. Волшебник явно считает это скучным.")
 		"blood_ledger":
 			_finish("Книга закрывается сама. Вашего имени внутри пока нет.")
 		"broken_crown":

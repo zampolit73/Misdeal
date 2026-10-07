@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://scripts/battle/battle.gd" id="1_battle"]
 [ext_resource type="Script" path="res://scripts/battle/battle_visual.gd" id="2_arena"]
@@ -64,6 +64,18 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.95, 0.47, 0.24, 0.82)
+
+[sub_resource type="StyleBoxFlat" id="DeploymentZoneStyle"]
+bg_color = Color(0.08, 0.20, 0.28, 0.10)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.34, 0.66, 0.86, 0.38)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="BottomHudPanel"]
 bg_color = Color(0.010, 0.008, 0.012, 0.88)
@@ -260,6 +272,25 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 13
 text = "ПЕРЕТАСКИВАЙТЕ ГЕРОЕВ ДЛЯ РАССТАНОВКИ"
+
+[node name="DeploymentZoneA" type="Panel" parent="."]
+z_index = 2
+mouse_filter = 2
+offset_left = 55.0
+offset_top = 232.0
+offset_right = 600.0
+offset_bottom = 558.0
+theme_override_styles/panel = SubResource("DeploymentZoneStyle")
+
+[node name="DeploymentZoneB" type="Panel" parent="."]
+z_index = 2
+visible = false
+mouse_filter = 2
+offset_left = 345.0
+offset_top = 232.0
+offset_right = 560.0
+offset_bottom = 558.0
+theme_override_styles/panel = SubResource("DeploymentZoneStyle")
 
 [node name="UnitsLayer" type="Node2D" parent="."]
 position = Vector2(20, 150)

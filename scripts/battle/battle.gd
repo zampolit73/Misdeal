@@ -40,6 +40,8 @@ const SACRIFICE_HP_DRAIN_PER_SECOND := 0.02
 @onready var last_deal_accept_button: Button = $ResultOverlay/LastDealAccept
 @onready var last_deal_refuse_button: Button = $ResultOverlay/LastDealRefuse
 @onready var placement_hint: Label = $PlacementHint
+@onready var deployment_zone_a: Panel = $DeploymentZoneA
+@onready var deployment_zone_b: Panel = $DeploymentZoneB
 @onready var order_label: Label = $OrderLabel
 @onready var assault_order_button: Button = $AssaultOrderButton
 @onready var hunt_order_button: Button = $HuntOrderButton
@@ -156,21 +158,93 @@ func _spawn_encounter() -> void:
 
 		_spawn_unit(enemy_data, 1, encounter.enemy_positions[index], enemy_name)
 
+
 func _get_party_spawn_positions() -> Array[Vector2]:
-	match RunState.get_party_size():
-		1:
-			return [Vector2(270, 245)]
-		2:
-			return [
-				Vector2(235, 180),
-				Vector2(235, 315)
-			]
+	match encounter.encounter_id:
+		"gallows_volley":
+			match RunState.get_party_size():
+				1:
+					return [Vector2(220, 245)]
+				2:
+					return [Vector2(220, 120), Vector2(220, 355)]
+				_:
+					return [Vector2(220, 105), Vector2(220, 245), Vector2(220, 375)]
+		"bone_crush":
+			match RunState.get_party_size():
+				1:
+					return [Vector2(240, 140)]
+				2:
+					return [Vector2(210, 140), Vector2(210, 330)]
+				_:
+					return [Vector2(170, 135), Vector2(170, 325), Vector2(390, 325)]
+		"ossuary_gate":
+			match RunState.get_party_size():
+				1:
+					return [Vector2(145, 245)]
+				2:
+					return [Vector2(145, 160), Vector2(425, 325)]
+				_:
+					return [Vector2(145, 150), Vector2(145, 335), Vector2(425, 245)]
+		"bone_warden":
+			match RunState.get_party_size():
+				1:
+					return [Vector2(250, 245)]
+				2:
+					return [Vector2(220, 175), Vector2(220, 315)]
+				_:
+					return [Vector2(205, 165), Vector2(310, 245), Vector2(205, 325)]
 		_:
+			match RunState.get_party_size():
+				1:
+					return [Vector2(270, 245)]
+				2:
+					return [Vector2(235, 180), Vector2(235, 315)]
+				_:
+					return [Vector2(280, 140), Vector2(210, 245), Vector2(280, 355)]
+
+func _get_placement_regions() -> Array[Rect2]:
+	match encounter.encounter_id:
+		"gallows_volley":
+			return [Rect2(Vector2(35, 48), Vector2(430, 372))]
+		"bone_crush":
 			return [
-				Vector2(280, 140),
-				Vector2(210, 245),
-				Vector2(280, 355)
+				Rect2(Vector2(35, 70), Vector2(480, 145)),
+				Rect2(Vector2(35, 250), Vector2(480, 145))
 			]
+		"ossuary_gate":
+			return [
+				Rect2(Vector2(35, 82), Vector2(215, 326)),
+				Rect2(Vector2(325, 82), Vector2(215, 326))
+			]
+		"bone_warden":
+			return [Rect2(Vector2(65, 105), Vector2(440, 280))]
+		_:
+			return [PLAYER_PLACEMENT_BOUNDS]
+
+func _configure_deployment_zones(regions: Array[Rect2]) -> void:
+	var panels: Array[Panel] = [deployment_zone_a, deployment_zone_b]
+	for index in range(panels.size()):
+		var panel: Panel = panels[index]
+		if index >= regions.size():
+			panel.visible = false
+			continue
+		var region: Rect2 = regions[index]
+		panel.position = units_layer.position + region.position
+		panel.size = region.size
+		panel.visible = true
+
+func _get_placement_hint_text() -> String:
+	match encounter.encounter_id:
+		"gallows_volley":
+			return "РАССТАНОВКА: ГЛУБОКАЯ ЛИНИЯ — разнесите героев по вертикали"
+		"bone_crush":
+			return "РАССТАНОВКА: ДВЕ ПОЛОСЫ — решите, как разделить отряд"
+		"ossuary_gate":
+			return "РАССТАНОВКА: ДВА КАРМАНА — центр закрыт"
+		"bone_warden":
+			return "РАССТАНОВКА: ТЕСНЫЙ КРУГ — не подарите боссу удобный AOE"
+		_:
+			return "ПЕРЕТАСКИВАЙТЕ ГЕРОЕВ ДЛЯ РАССТАНОВКИ"
 
 func _spawn_unit(
 	data: UnitData,
@@ -238,6 +312,7 @@ func _apply_artifacts_to_unit(unit: BattleUnit) -> void:
 		unit.move_speed *= artifact.move_speed_multiplier
 
 
+
 func _begin_preparation_phase() -> void:
 	if _is_boss_encounter():
 		status_label.text = "НАДЗИРАТЕЛЬ — удары по площади. На 50% HP: ярость и подкрепление."
@@ -248,21 +323,24 @@ func _begin_preparation_phase() -> void:
 	elif encounter.encounter_id == "grave_bell":
 		status_label.text = "МОГИЛЬНЫЙ ЗВОН — звонарь лечит нежить. «ОХОТА» помогает быстрее добраться до поддержки."
 	elif encounter.encounter_id == "bone_crush":
-		status_label.text = "КОСТЯНАЯ ДАВКА — 5 хрупких целей. Урон по площади особенно эффективен."
+		status_label.text = "КОСТЯНАЯ ДАВКА — РАЗДЕЛЁННАЯ РАССТАНОВКА. Две полосы, пять хрупких целей."
 	elif encounter.encounter_id == "ossuary_gate":
-		status_label.text = "ВРАТА ОССУАРИЯ — страж впереди, звонарь лечит, лучник давит с тыла."
+		status_label.text = "ВРАТА ОССУАРИЯ — ДВА КАРМАНА РАССТАНОВКИ. Страж впереди, звонарь лечит."
 	elif encounter.encounter_id == "gallows_volley":
-		status_label.text = "ЗАЛП С ВИСЕЛИЦЫ — два лучника за фронтлайном. «ОХОТА» повышает их приоритет."
+		status_label.text = "ЗАЛП С ВИСЕЛИЦЫ — ГЛУБОКАЯ ЛИНИЯ. Разведите героев по высоте против двух лучников."
 	else:
 		status_label.text = "ПОДГОТОВКА — расставьте героев, выберите приказ и запускайте бой."
 
+	var placement_regions: Array[Rect2] = _get_placement_regions()
+	_configure_deployment_zones(placement_regions)
 	run_condition_label.text = _build_battle_condition_text()
 	run_condition_label.visible = not run_condition_label.text.is_empty()
+	placement_hint.text = _get_placement_hint_text()
 	placement_hint.visible = true
 
 	for unit in units:
 		if unit.team == 0:
-			unit.enable_placement(PLAYER_PLACEMENT_BOUNDS)
+			unit.enable_placement_regions(placement_regions)
 
 	_select_tactical_order(tactical_order, false)
 
@@ -457,9 +535,13 @@ func _on_fight_pressed() -> void:
 			unit.start_combat()
 
 
+
 func _hide_preparation_hud() -> void:
 	bottom_hud_panel.visible = false
 	run_condition_label.visible = false
+	placement_hint.visible = false
+	deployment_zone_a.visible = false
+	deployment_zone_b.visible = false
 	order_label.visible = false
 	assault_order_button.visible = false
 	hunt_order_button.visible = false
@@ -636,6 +718,8 @@ func _finish_battle(player_won: bool) -> void:
 		unit.disable_placement()
 
 	placement_hint.visible = false
+	deployment_zone_a.visible = false
+	deployment_zone_b.visible = false
 	order_label.visible = false
 	assault_order_button.visible = false
 	hunt_order_button.visible = false
