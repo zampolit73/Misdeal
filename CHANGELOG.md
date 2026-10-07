@@ -48,6 +48,8 @@
 
 ### Fixed
 
+- Fixed Act 1 event-window footer overflow at 1280×720: generic choice cards are slightly shorter with the leave/continue row pulled fully on-screen, and Chained Prisoner now reserves a dedicated bottom action row instead of overlapping its center card.
+- Fixed Squad Dossier layering so live table offer cards are hidden while the dossier is open and cannot render over hero stats; also enlarged the hero portrait and rebalanced stats/development/relic columns.
 - Fixed the Godot 4.7.2 parser-inference failure in the event-window semantic style pass by explicitly typing style-name arrays, styleboxes and hover/disabled booleans in `act_choice.gd` and `whispering_well.gd`.
 - Replaced the first card-art atlas pass that crushed approved illustrations to 88×54 px (table) and 80×48 px (development/reward). The same approved images are now stored at 224×137 and 304×194 per cell respectively, with WebP bytes decoded directly from repository-safe `.bin` blobs instead of enlarging thumbnail art.
 - Replaced the incorrect combat-unit portraits on non-combat UI with the exact accepted screen-art crops. Hero development now uses the approved Iron Oath / Glass Heart / Executioner illustrations, and matching approved art is wired into Curse Forge and Chained Prisoner choices. Ranger paths deliberately remain text-led until matching art is approved rather than reusing unrelated battle sprites.
