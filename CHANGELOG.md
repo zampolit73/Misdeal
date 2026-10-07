@@ -4,6 +4,7 @@
 
 ### Added
 
+- Saved a dedicated visual-pass checkpoint (`docs/VISUAL_PASS_CHECKPOINT.md`) so a fresh chat can continue the anti-AI production-art pass from GitHub without reconstructing the conversation.
 - Added the dedicated approved Bone Crush arena as split base64 WebP source parts and runtime decoding support for authored arena assets stored this way.
 - Added `docs/ART_DIRECTION.md` and a shared production art-grade shader/material pair for the new authored low-resolution visual target.
 - Added optional Wizard combat conditions worth +15 gold on victory: kill the Grave Bellkeeper first in **МОГИЛЬНЫЙ ЗВОН**, keep every hero above 25% HP in **ЗАЛП С ВИСЕЛИЦЫ**, and clear **КОСТЯНАЯ ДАВКА** within 16 seconds. A live objective panel shows success/failure state during combat.
@@ -30,6 +31,7 @@
 
 ### Changed
 
+- Local screenshot review established Bone Crush as the first true redraw benchmark, kept the shared grade as a consistency layer, and moved future deployment visuals toward in-world floor markings instead of blue debug-style panels.
 - **КОСТЯНАЯ ДАВКА** now uses its own lower-detail gothic arena instead of reusing Ossuary. Deployment-zone presentation is now subdued warm floor marking rather than blue debug-style rectangles, with additional authored two-band chalk marks for this encounter.
 - Wizard-table backdrop/card art, authored battle backdrops and Whispering Well choice art now share the first production-grade treatment. Battle backdrops use nearest filtering/resampling; Whispering Well's procedural glow/detail treatment is more restrained.
 - Bone Warden keeps its fixed 700-HP benchmark and existing core combat stats; only the Phase II reinforcement composition now reacts to run history, with the verdict shown before the player commits to the fight.

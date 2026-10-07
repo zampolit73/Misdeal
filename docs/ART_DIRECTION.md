@@ -82,3 +82,35 @@ Rework an asset if several of these are true:
 ## First true replacement
 
 **КОСТЯНАЯ ДАВКА** is the first arena source replaced under this direction rather than merely graded. It should be used as the first runtime reference for desired background detail density: large floor masses, simple construction, restrained light sources and physical placement marks that belong to the arena.
+
+## Local review findings — 2026-10-08
+
+The first shared grade improved consistency but did not solve source-image composition. Use these findings when judging the next assets:
+
+- A shader can unify palette, but cannot fix equal-frequency detail, impossible geometry or decorative clutter.
+- Avoid the “gothic cathedral made of candles and bones” default. Fewer props and clearer construction are preferred even when the result is less spectacular.
+- **Gallows Volley** is currently closer to the target than the ossuary-style arenas because it contains larger calm value masses.
+- Preserve enough midtones that small wager/card art remains legible.
+- Deployment affordances should look physically painted, scratched or inlaid into the floor, not like debug rectangles.
+
+### Bone Crush production blueprint
+
+Treat the approved in-chat redraw as the benchmark composition:
+
+- 1280×720 runtime backdrop, but with detail density closer to a 640×360 authored source.
+- One central rear focal point: throne/statue/warden silhouette on a short stair.
+- Two dark stone side structures framing a large empty central combat floor.
+- Two restrained vertical rust-red banners.
+- Four to six motivated flame sources total, not dozens.
+- Bones/rubble only along edges and wall bases; keep the playable floor mostly quiet.
+- Central ritual circle is simple, readable and geometrically consistent.
+- Two legal deployment bands are represented by worn stone inlays / scratched ritual lines; gameplay still owns the actual collision rectangles.
+- No heroes, enemies, HP bars, tactical buttons, labels or other live UI baked into the backdrop.
+
+### Card-art direction after arenas
+
+For cards, prefer one readable subject over a miniature landscape:
+
+- **ГРЕМУЧИЙ МОСТ**: bridge silhouette, abyss and moon / cold sky; remove incidental clutter.
+- **КОШЕЛЬ МЕРТВЕЦА**: large purse + skeletal hand/bones + a few coins; avoid a whole graveyard scene just to communicate “purse”.
+- Other event/combat cards should follow the same object-first test: the subject must still read at table-card size without zooming.

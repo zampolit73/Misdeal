@@ -60,7 +60,7 @@ A new **Act 1 fate/table-depth** pass is now in `main` and pending local verific
 
 A follow-up **Act 1 tactical/readability consequence** pass is also now in `main` and pending local verification. Four combat encounters now change the legal pre-battle deployment geometry instead of sharing one universal rectangle: Gallows Volley uses a deep vertical line, Bone Crush splits the player into two horizontal bands, Ossuary Gate provides two separated deployment pockets with the center closed, and Bone Warden compresses the party into a tighter starting zone. The legal regions are shown as subtle live panels and drag-clamping supports multiple disconnected regions. Combat cards on the Wizard table now surface compact threat tags such as `РОЙ`, `ЛЕЧЕНИЕ`, `AOE`, `2 ЛУЧНИКА` and `ФАЗЫ`, so the two-card decision can be made with current party/build context instead of art/title alone. Finally, **КАРТА БЕЗ ЛИЦА** can now perform a late-act reckoning on the whole run: deliberately losing both companions, carrying at least two rescue scars, or repeatedly accepting Wizard-authored risks unlocks a distinct fourth resolution through the existing leave action. The three profiles are **БЕЗ СВИДЕТЕЛЕЙ**, **ИСПИСАН ШРАМАМИ** and **ЛЮБИМЕЦ СТАВОК**; each gives a different concrete payoff without adding a hidden morality meter.
 
-A new **combat temptation / resistance / boss-verdict** pass is now in `main` and pending local verification. Three encounters can carry visible optional combat conditions from the Wizard for +15 gold on victory: **Могильный звон** asks the player to kill the Bellkeeper first, **Залп с виселицы** asks that no hero fall below 25% HP, and **Костяная давка** asks for a clear within 16 seconds. These conditions are shown in a compact live panel during preparation/combat and fail visibly when the requirement is broken. Refusing two visible Wizard-authored offers across wager refusals and marked-card refusals now unlocks the one-battle tactical order **НЕПОВИНОВЕНИЕ**: the party deals 15% less damage but takes 20% less incoming damage. Like `ЖЕРТВА`, the option is consumed when the next combat begins whether selected or not. Finally, Bone Warden Phase II now reads the same aggregate Act 1 reckoning used by Faceless Card without changing the boss's base 700 HP or baseline damage: **БЕЗ СВИДЕТЕЛЕЙ** summons two Bone Thralls, **ИСПИСАН ШРАМАМИ** summons a Grave Bellkeeper who can heal the boss, **ЛЮБИМЕЦ СТАВОК** summons two Bone Archers, and an untyped run keeps the existing Archer + Thrall reinforcement pair. The verdict is surfaced before and during the boss fight rather than hidden.
+A new **combat temptation / resistance / boss-verdict** pass is now in `main` and has been locally confirmed working by the user. Three encounters can carry visible optional combat conditions from the Wizard for +15 gold on victory: **Могильный звон** asks the player to kill the Bellkeeper first, **Залп с виселицы** asks that no hero fall below 25% HP, and **Костяная давка** asks for a clear within 16 seconds. These conditions are shown in a compact live panel during preparation/combat and fail visibly when the requirement is broken. Refusing two visible Wizard-authored offers across wager refusals and marked-card refusals now unlocks the one-battle tactical order **НЕПОВИНОВЕНИЕ**: the party deals 15% less damage but takes 20% less incoming damage. Like `ЖЕРТВА`, the option is consumed when the next combat begins whether selected or not. Finally, Bone Warden Phase II now reads the same aggregate Act 1 reckoning used by Faceless Card without changing the boss's base 700 HP or baseline damage: **БЕЗ СВИДЕТЕЛЕЙ** summons two Bone Thralls, **ИСПИСАН ШРАМАМИ** summons a Grave Bellkeeper who can heal the boss, **ЛЮБИМЕЦ СТАВОК** summons two Bone Archers, and an untyped run keeps the existing Archer + Thrall reinforcement pair. The verdict is surfaced before and during the boss fight rather than hidden.
 
 The first two main-menu rebuilds were rejected in local visual review. A dedicated dark-fantasy pixel-art splash was then generated, explicitly selected by the user, and is now the approved production start screen. It shows the Wizard looming over a five-card cursed table, the large MISDEAL title, the line **«Проклятая партия уже разложена.»** and a painted **ВОЙТИ В ИГРУ** button. Runtime reconstructs the approved 1280×720 WebP from three repository-safe base64 chunks and renders it at native project resolution with linear filtering; the corrected Wizard card hand now has five fingers, and only a transparent native Godot button hotspot remains live over the painted CTA.
 
@@ -798,3 +798,31 @@ A first production art-direction consistency pass is now in `main` and pending l
 ## Approved Bone Crush arena redraw
 
 The first true source-art replacement from the production art-direction pass is now in `main` and pending local screenshot verification. **КОСТЯНАЯ ДАВКА** no longer reuses the dense Ossuary backdrop. It has a dedicated lower-detail gothic hall derived from the approved concept: fewer lights, simpler readable architecture and larger quiet floor masses. The source is stored as split base64 WebP parts, matching the existing combat-unit atlas pattern, and is intentionally exempt from the corrective environment grade because it was authored directly toward the new target. Placement zones also moved away from blue debug rectangles toward faint warm floor/chalk markings.
+
+## Visual checkpoint — 2026-10-08
+
+The user locally reviewed the first production art-grade pass on the Wizard table and several battle arenas and confirmed the game still works. The screenshots made the remaining visual problem clearer: grading alone cannot remove the strongest generated-art tells.
+
+Observed problems from the local screenshots:
+
+- **Bone Crush / ossuary-style arenas are still the strongest offender**: too many candles, bone ornaments and cathedral details competing at the same visual frequency. They read as a fantasy wallpaper rather than an authored game arena.
+- **Gallows Volley is a better direction reference** because it has large readable masses (sky/moon, architecture, floor) and more negative space.
+- The Wizard table is more coherent after grading, but some **card illustrations still read as tiny generic fantasy landscapes** instead of one clear object/subject.
+- The current environment grade can crush dark card/wager images too far toward black; future tuning should preserve more midtone information.
+- The translucent blue deployment rectangles read as **debug UI**, not part of the world.
+- UI hierarchy is functional, but the clean modern panels and the very ornate source art still feel like two different visual languages.
+
+The user approved moving to a real redraw/replacement pass rather than trying to solve this with stronger shaders.
+
+The first redraw target is **КОСТЯНАЯ ДАВКА**. The approved direction shown in-chat uses:
+- simpler, physically readable crypt architecture;
+- roughly one third of the current candle count;
+- large dark wall/floor masses and deliberate negative space;
+- two red hanging banners and a single central throne/statue focal point;
+- a broad readable combat floor with one central ritual circle;
+- deployment lanes represented as worn/etched floor markings rather than blue panels;
+- no baked heroes, enemies, health bars, labels or gameplay text in the background.
+
+Important: the newly drawn Bone Crush direction is **concept/reference only and is not yet wired into runtime**. The next implementation should add a dedicated Bone Crush arena id/asset rather than replacing the shared Ossuary backdrop used by other encounters.
+
+After Bone Crush is proven locally, the same redraw language should be propagated selectively to the worst remaining arenas and then to object-first card art.

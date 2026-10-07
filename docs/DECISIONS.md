@@ -1256,3 +1256,18 @@ The arena gets a dedicated backdrop with simpler architecture, fewer light sourc
 Its two legal deployment bands are communicated as physical chalk/etched floor markings. Generic blue debug-looking deployment rectangles are no longer part of the intended production presentation.
 
 Use the local 1280×720 result as the reference before replacing the remaining arena sources.
+
+## D073 — Second art pass replaces high-AI-smell source art instead of increasing the grade
+
+Date: 2026-10-08  
+Status: accepted after local screenshot review
+
+The first production grade remains useful as a final consistency layer, but it must not be strengthened to hide problematic source art. The next visual pass will redraw/replace the worst offenders.
+
+**КОСТЯНАЯ ДАВКА** is the first benchmark redraw because the current ossuary/cathedral background has the highest density of repeated candles, bones and ornamental structures. The new direction favors simpler readable architecture, large negative-space masses, fewer motivated lights and a broad quiet combat floor.
+
+Deployment zones should move from translucent blue UI rectangles toward world-space floor marks (scratches, inlays, faded ritual geometry) while the actual legal placement geometry remains data-driven and unchanged.
+
+The Bone Crush replacement should receive a dedicated arena id rather than overwriting the shared Ossuary backdrop. This keeps the pass authored per encounter and prevents an art experiment from unintentionally changing other fights.
+
+After one arena is locally approved, object-first card redraws may follow. **ГРЕМУЧИЙ МОСТ** and **КОШЕЛЬ МЕРТВЕЦА** are the first candidates.

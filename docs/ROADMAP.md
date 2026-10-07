@@ -156,7 +156,7 @@ Only after the loop is fun:
 - [x] Add three visible optional combat conditions with small gold rewards: Bellkeeper-first, stay-above-25%-HP and timed Bone Crush clear.
 - [x] Add one-battle **НЕПОВИНОВЕНИЕ** after two explicit refusals of Wizard wagers/marks: -20% incoming damage, -15% own damage.
 - [x] Personalize Bone Warden Phase II reinforcements from the Act 1 reckoning profile while keeping the boss's base benchmark stats fixed.
-- [ ] Locally verify side-condition success/failure/reward flow, Defiance unlock/consumption, Last Deal retry interaction and all four Bone Warden Phase II reinforcement plans.
+- [x] Locally verify the combat-condition / Defiance / personalized Bone Warden package at normal play level; user reported the package working. Keep edge-case retry/profile checks in the later full-run balance pass.
 - [ ] Run fresh solo / duo / trio balance passes with rescue scars, event echoes and **ЖЕРТВА**, then retune only the concrete outliers.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.
@@ -191,3 +191,13 @@ Do not prioritize these before the vertical slice works:
 - [x] Replace the reused Ossuary art in **КОСТЯНАЯ ДАВКА** with the approved dedicated arena.
 - [x] Replace blue deployment rectangles with subdued floor/chalk presentation and add authored two-band markings to Bone Crush.
 - [ ] Locally verify the approved Bone Crush arena replacement at 1280×720 before using it as the template for the remaining arena redraws.
+
+### Second production-art pass
+
+- [x] Review local screenshots after the first art-grade pass and identify the strongest remaining generated-art tells.
+- [x] Establish **КОСТЯНАЯ ДАВКА** as the first true redraw benchmark and approve a simpler low-detail crypt direction in chat.
+- [ ] Add a dedicated `bone_crush` arena id and production backdrop so the redraw does not alter other Ossuary encounters.
+- [ ] Replace blue deployment-zone panels with subtle in-world floor markings based on the same legal placement rectangles.
+- [ ] Retune environment/card grade shadows so wager/card images keep readable midtones instead of collapsing into black.
+- [ ] Review the Bone Crush redraw locally at 1280×720 before propagating the style.
+- [ ] Rework the highest-priority card illustrations in **object-first** style; first candidates are **ГРЕМУЧИЙ МОСТ** and **КОШЕЛЬ МЕРТВЕЦА**.
