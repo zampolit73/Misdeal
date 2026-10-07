@@ -4,6 +4,7 @@
 
 ### Added
 
+- Added `docs/ART_DIRECTION.md` and a shared production art-grade shader/material pair for the new authored low-resolution visual target.
 - Added optional Wizard combat conditions worth +15 gold on victory: kill the Grave Bellkeeper first in **МОГИЛЬНЫЙ ЗВОН**, keep every hero above 25% HP in **ЗАЛП С ВИСЕЛИЦЫ**, and clear **КОСТЯНАЯ ДАВКА** within 16 seconds. A live objective panel shows success/failure state during combat.
 - Added the temporary tactical order **НЕПОВИНОВЕНИЕ** after two explicit refusals of Wizard wagers/marked cards. It gives -20% incoming damage and -15% outgoing damage for one combat, and is consumed when that combat begins.
 - Added personalized Bone Warden Phase II reinforcement plans driven by the Act 1 reckoning profile: two Thralls for **БЕЗ СВИДЕТЕЛЕЙ**, a Grave Bellkeeper for **ИСПИСАН ШРАМАМИ**, two Archers for **ЛЮБИМЕЦ СТАВОК**, or the existing Archer + Thrall pair for an untyped run.
@@ -28,6 +29,7 @@
 
 ### Changed
 
+- Wizard-table backdrop/card art, authored battle backdrops and Whispering Well choice art now share the first production-grade treatment. Battle backdrops use nearest filtering/resampling; Whispering Well's procedural glow/detail treatment is more restrained.
 - Bone Warden keeps its fixed 700-HP benchmark and existing core combat stats; only the Phase II reinforcement composition now reacts to run history, with the verdict shown before the player commits to the fight.
 - Wizard-refusal history now has a direct tactical payoff through **НЕПОВИНОВЕНИЕ**, complementing the wager-acceptance path that grants **ЖЕРТВА**.
 - Faceless Card's existing fourth action now becomes a contextual late-run resolution when the player's history qualifies: **БЕЗ СВИДЕТЕЛЕЙ**, **ИСПИСАН ШРАМАМИ** or **ЛЮБИМЕЦ СТАВОК**. This uses explicit run facts rather than a hidden morality meter.

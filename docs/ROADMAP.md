@@ -178,3 +178,10 @@ Do not prioritize these before the vertical slice works:
 - procedural architecture for every possible future system;
 - complex faction/synergy systems comparable to large auto-chess games;
 - final production art.
+
+## Art-direction follow-up
+
+- [x] Define production visual rules in `docs/ART_DIRECTION.md`.
+- [x] Add shared environment/card art-grade materials.
+- [x] Apply the first pass to Wizard table, battle backdrops and Whispering Well.
+- [ ] Review fresh screenshots for the first production art-direction pass and identify illustrations that still need true redraw.

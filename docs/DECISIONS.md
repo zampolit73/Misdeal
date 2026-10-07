@@ -1234,3 +1234,12 @@ Phase II reinforcement plans:
 - no aggregate profile — the existing Bone Archer + Bone Thrall pair.
 
 The active verdict is shown to the player in the boss preparation/Phase II presentation. This is authored consequence, not hidden adaptive difficulty: the boss's core benchmark does not scale to party size or player power.
+
+## D072 — Generated illustrations are source material, not automatically final production art
+
+Date: 2026-10-07  
+Status: accepted
+
+Misdeal's production target is authored low-resolution dark-fantasy pixel art. Existing generated illustrations may be used as composition reference/source material, but final player-facing art must follow `docs/ART_DIRECTION.md`: limited recurring palette roles, readable silhouettes, restrained motivated lighting, negative space, meaningful repeated symbols and nearest-neighbor presentation.
+
+A shared grading material may reduce smoothness and unify palette, but it does not excuse malformed hands, impossible architecture, meaningless ornament or unclear composition. Those assets require redraw/replacement. The first reference surfaces are the Wizard table, battle arenas and Whispering Well; do not propagate the treatment blindly before local review.
