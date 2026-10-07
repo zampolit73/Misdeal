@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+### Added
+
+- Integrated the user-approved full pixel-art card set: unique illustrations for all 25 active Act 1 table cards, all nine hero-development paths, and six reward states.
+- Added repository-safe runtime-decoded WebP atlases for table-card art and development/reward art under `assets/pixel/ui/approved_card_art/`.
+
+### Changed
+
+- Wizard-table offers now resolve art by `card_id`, so Rattling Bridge, Lost Purse, Blood Ledger, Crypt Guard, Bone Crush, Bone Warden and every other active card show their own approved scene instead of sharing the old five-image pool.
+- Hero development now uses nine distinct approved illustrations; Ranger and alternate Knight/Mage paths no longer fall back to repeated role portraits.
+- Ordinary loot, Death Wager and elite rewards now use the approved Blood Coin, Gold Windfall, Relic Wager, Bonus Upgrade, Empty Cache and Elite Relic art while keeping reward text live.
+
 ### Verified
 
 - Clean wizard-table art pass confirmed locally after screenshot review: removing the procedural hands/heavy frames restored the authored Wizard art and live cards as the main visual focus.

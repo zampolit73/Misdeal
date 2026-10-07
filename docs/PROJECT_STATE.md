@@ -1,6 +1,6 @@
 # Misdeal — Project State
 
-Last updated: 2026-10-06
+Last updated: 2026-10-07
 
 ## Current status
 
@@ -29,6 +29,8 @@ The first pixel-art combat readability redesign is implemented and confirmed wor
 The second battle presentation pass is implemented and confirmed visually acceptable locally.
 
 The same pixel-art visual language is now applied across the main menu, Whispering Well event, reward screen and run-end screen.
+
+The user-approved full **card-art set** is now integrated in GitHub and pending local verification. All 25 active Act 1 table cards, including Bone Warden, use their own authored pixel-art illustration from the approved generation pass instead of reusing the old five-image pool. All nine hero-development paths now have distinct approved art, and the six generated reward-state illustrations are wired into ordinary loot, Death Wager and elite-reward cards. The images are packed into two runtime-decoded WebP atlases stored as repository-safe base64 text chunks; changing gameplay values and card text remain live Godot UI.
 
 The first two main-menu rebuilds were rejected in local visual review. A dedicated dark-fantasy pixel-art splash was then generated, explicitly selected by the user, and is now the approved production start screen. It shows the Wizard looming over a five-card cursed table, the large MISDEAL title, the line **«Проклятая партия уже разложена.»** and a painted **ВОЙТИ В ИГРУ** button. Runtime reconstructs the approved 1280×720 WebP from three repository-safe base64 chunks and renders it at native project resolution with linear filtering; the corrected Wizard card hand now has five fingers, and only a transparent native Godot button hotspot remains live over the painted CTA.
 
@@ -709,6 +711,14 @@ Act 1 ends after 12 resolved pre-boss cards plus Bone Warden.
 - approved main-menu splash must decode cleanly, fill the 1280×720 viewport and show no duplicated live title/tagline layers;
 - painted **ВОЙТИ В ИГРУ** area must remain clickable/focusable through the transparent Godot hotspot and route to the comic intro;
 
+
+Locally verify the full card-art integration first:
+
+- every table card in the 24-card Act 1 pool plus **Bone Warden** must show its own matching approved illustration;
+- **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **КРОВАВАЯ КНИГА**, **СТРАЖ СКЛЕПА**, **КОСТЯНАЯ ДАВКА** and the other formerly repeated cards must no longer reuse unrelated art;
+- all nine **РАЗВИТИЕ ОТРЯДА** paths must have distinct illustrations, especially Ranger paths that previously fell back to repeated role art;
+- ordinary loot, Death Wager and elite rewards must show the approved Blood Coin / Gold Windfall / Relic Wager / Bonus Upgrade / Empty Cache / Elite Relic art without text overlap;
+- card art should remain crisp under nearest filtering and no procedural icon placeholders should appear.
 
 Locally verify the new hard-roguelike party flow end to end:
 

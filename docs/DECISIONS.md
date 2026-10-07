@@ -909,3 +909,19 @@ For **РАЗВИТИЕ ОТРЯДА**, this means the dominant illustrated path 
 For **КУЗНИЦА ПРОКЛЯТИЙ**, **ЗАКОВАННЫЙ ПЛЕННИК** and **СТАВКА ВОЛШЕБНИКА**, use their approved character/environment art and match the reference placement of header, choices and primary/secondary actions while keeping gameplay data live and data-driven.
 
 Do not bake changing run values or option text into screenshot backgrounds. Approved screenshots guide composition and authored art selection; live Godot controls remain authoritative for dynamic text, disabled states and input.
+
+
+## D051 — The approved full card-art set is canonical
+
+Date: 2026-10-07  
+Status: accepted after user art review
+
+The dedicated pixel-art sheets generated and approved in the 2026-10-07 card-art pass are the canonical visual source for the active vertical-slice card set:
+
+- 24 Act 1 pre-boss cards plus Bone Warden;
+- all nine Knight/Ranger/Mage hero-development paths;
+- Blood Coin, Relic Wager, Bonus Upgrade, Empty Cache, Gold Windfall and Elite Relic reward states.
+
+The production UI must use these exact illustrations rather than procedural icon blobs, unrelated card reuse or combat-sprite placeholders. Runtime fallback art may remain only as a technical failure-safe.
+
+For repository robustness, the approved images are packed into small WebP atlases, split into base64 text chunks and decoded at runtime. Live titles, descriptions, costs, disabled states and run values remain Godot controls and are not baked into the art.

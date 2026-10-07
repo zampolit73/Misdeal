@@ -1,6 +1,7 @@
 extends Control
 
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
+const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const ROLE_FALLBACK_ART := {
 	"knight": preload("res://assets/art/units/knight.webp"),
 	"ranger": preload("res://assets/art/units/ranger.webp"),
@@ -135,8 +136,14 @@ func _setup_normal_loot() -> void:
 		summary_label.text = "Волшебник удваивает обычную добычу. На этот раз он держит слово."
 
 	option_ids[0] = "blood_coin"
-	blood_coin_button.text = "ЗАБРАТЬ ТРОФЕИ\n\n+%d золота\n\nБез вечных +HP и +урона. Только ресурс для следующих решений." % amount
-	blood_coin_button.add_theme_color_override("font_color", Color(0.96, 0.78, 0.52, 1.0))
+	var loot_art_key := "gold_windfall" if multiplier > 1 else "blood_coin"
+	_set_reward_card(
+		0,
+		loot_art_key,
+		"ДОБЫЧА",
+		"ЗАБРАТЬ ТРОФЕИ",
+		"+%d золота\nБез вечных +HP и +урона. Только ресурс для следующих решений." % amount
+	)
 	iron_ward_button.visible = false
 	tempered_steel_button.visible = false
 
@@ -151,25 +158,37 @@ func _setup_death_wager_reward() -> void:
 		summary_label.text += " Долг остаётся до следующей обычной добычи."
 
 	option_ids[0] = "gold"
-	blood_coin_button.text = "ЗОЛОТОЙ КУШ\n\n+60 золота\n\nСамый безопасный способ забрать выигрыш."
+	_set_reward_card(0, "gold_windfall", "ВЫИГРЫШ", "ЗОЛОТОЙ КУШ", "+60 золота\nСамый безопасный способ забрать выигрыш.")
 
 	var artifacts := RunState.get_available_artifact_ids()
 	artifacts.shuffle()
 	if artifacts.is_empty():
 		option_ids[1] = "fallback_gold"
-		iron_ward_button.text = "ПУСТОЙ ТАЙНИК\n\n+50 золота\n\nВсе известные реликвии уже у вас."
+		_set_reward_card(1, "empty_cache", "СТАВКА", "ПУСТОЙ ТАЙНИК", "+50 золота\nВсе известные реликвии уже у вас.")
 	else:
 		var artifact_id := artifacts[0]
 		var artifact := RunState.get_artifact(artifact_id)
 		option_ids[1] = "artifact:%s" % artifact_id
-		iron_ward_button.text = "РЕЛИКВИЯ СТАВКИ\n\n%s\n\n%s" % [artifact.title, artifact.description]
+		_set_reward_card(1, "relic_wager", "РЕЛИКВИЯ СТАВКИ", artifact.title, artifact.description)
 
 	if RunState.can_claim_extra_hero_upgrade():
 		option_ids[2] = "bonus_upgrade"
-		tempered_steel_button.text = "УДВОИТЬ СТАВКУ\n\nПолучить ещё один выбор развития героя.\n\nДоп. развитие: %s" % RunState.get_extra_upgrade_progress_text()
+		_set_reward_card(
+			2,
+			"bonus_upgrade",
+			"СТАВКА",
+			"УДВОИТЬ СТАВКУ",
+			"Получить ещё один выбор развития героя.\nДоп. развитие: %s" % RunState.get_extra_upgrade_progress_text()
+		)
 	else:
 		option_ids[2] = "extra_cap_gold"
-		tempered_steel_button.text = "ПРЕДЕЛ ДОСТИГНУТ\n\nДоп. развитие %s\n\n+45 золота вместо усиления" % RunState.get_extra_upgrade_progress_text()
+		_set_reward_card(
+			2,
+			"gold_windfall",
+			"ПРЕДЕЛ ДОСТИГНУТ",
+			"ЗАБРАТЬ ЗОЛОТО",
+			"Доп. развитие %s\n+45 золота вместо усиления" % RunState.get_extra_upgrade_progress_text()
+		)
 
 func _setup_elite_reward() -> void:
 	reward_mode = "elite_artifact"
@@ -184,7 +203,7 @@ func _setup_elite_reward() -> void:
 	var available := RunState.get_available_artifact_ids()
 	if available.is_empty():
 		option_ids[0] = "elite_gold"
-		blood_coin_button.text = "ОПУСТЕВШИЙ ТАЙНИК\n\n+50 золота\n\nВсе известные артефакты уже у вас."
+		_set_reward_card(0, "empty_cache", "ТРОФЕЙ СТРАЖА", "ОПУСТЕВШИЙ ТАЙНИК", "+50 золота\nВсе известные артефакты уже у вас.")
 		iron_ward_button.visible = false
 		tempered_steel_button.visible = false
 		return
@@ -202,7 +221,7 @@ func _setup_elite_reward() -> void:
 			continue
 
 		option_ids[index] = artifact_id
-		button.text = "%s\n\n%s" % [artifact.title, artifact.description]
+		_set_reward_card(index, "elite_relic", "ЭЛИТНАЯ РЕЛИКВИЯ", artifact.title, artifact.description)
 
 func _on_reward_button_pressed(index: int) -> void:
 	if index < 0 or index >= reward_buttons.size():
@@ -295,11 +314,13 @@ func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData)
 	var button := reward_buttons[index]
 	button.text = ""
 	_set_upgrade_nodes_visible(index, true)
-	var approved_art: Texture2D = APPROVED_CHOICE_ART.get_upgrade_texture(upgrade_id)
-	var has_dedicated_art := approved_art != null
+	var approved_art: Texture2D = CARD_ART_CATALOG.get_upgrade_texture(upgrade_id)
+	if approved_art == null:
+		approved_art = APPROVED_CHOICE_ART.get_upgrade_texture(upgrade_id)
 	if approved_art == null:
 		approved_art = ROLE_FALLBACK_ART.get(upgrade.target_role) as Texture2D
 	upgrade_portraits[index].texture = approved_art
+	upgrade_portraits[index].texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	upgrade_portraits[index].stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	upgrade_portraits[index].visible = approved_art != null
 	upgrade_choose_bars[index].visible = true
@@ -310,6 +331,27 @@ func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData)
 	upgrade_title_labels[index].add_theme_color_override("font_color", _get_role_color(upgrade.target_role).lightened(0.12))
 	upgrade_description_labels[index].text = upgrade.description
 	upgrade_quick_labels[index].visible = false
+
+func _set_reward_card(index: int, art_key: String, kicker: String, title: String, description: String) -> void:
+	var button := reward_buttons[index]
+	button.text = ""
+	_set_upgrade_nodes_visible(index, true)
+
+	var texture := CARD_ART_CATALOG.get_reward_texture(art_key)
+	upgrade_portraits[index].texture = texture
+	upgrade_portraits[index].texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	upgrade_portraits[index].stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	upgrade_portraits[index].visible = texture != null
+
+	var accent := Color(0.96, 0.72, 0.42, 1.0)
+	upgrade_role_labels[index].text = kicker
+	upgrade_role_labels[index].add_theme_color_override("font_color", accent.darkened(0.08))
+	upgrade_title_labels[index].text = title
+	upgrade_title_labels[index].add_theme_color_override("font_color", accent)
+	upgrade_description_labels[index].text = description
+	upgrade_description_labels[index].add_theme_color_override("font_color", Color(0.82, 0.78, 0.73, 1.0))
+	upgrade_quick_labels[index].visible = false
+	upgrade_choose_bars[index].visible = true
 
 func _set_upgrade_nodes_visible(index: int, visible: bool) -> void:
 	upgrade_portraits[index].visible = visible
