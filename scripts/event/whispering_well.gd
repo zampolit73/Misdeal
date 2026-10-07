@@ -172,8 +172,8 @@ func _on_accept_gift() -> void:
 
 	if RunState.can_recruit_companion("mage"):
 		_disable_choices()
-		RunState.add_rescue_scar("mage")
 		RunState.recruit_companion("mage", "Вы вытащили его из Шепчущего колодца собственной кровью. Шёпот остался под вашей кожей.")
+		RunState.add_rescue_scar("mage")
 		RunState.resolve_whispering_well()
 		result_label.text = "Вода становится чёрной. Молодой маг выбирается наружу.\nШЁПОТ ПОД КОЖЕЙ: -12 макс. HP протагониста."
 		await get_tree().create_timer(0.8).timeout

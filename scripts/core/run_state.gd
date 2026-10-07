@@ -32,13 +32,13 @@ const RESCUE_SCAR_DATA := {
 		"hp_penalty": 10.0
 	},
 	"ranger": {
-		"title": "ШРАМ МОСТА",
-		"description": "Вы вернулись за Следопытом. Гремучий мост забрал свою цену.",
+		"title": "ШРАМ ДОРОГИ",
+		"description": "Вы вернулись за Следопытом. Дорога всё равно взяла свою цену.",
 		"hp_penalty": 8.0
 	},
 	"mage": {
 		"title": "ШЁПОТ ПОД КОЖЕЙ",
-		"description": "Колодец отпустил Мага, но часть его шёпота осталась в вашей крови.",
+		"description": "Вы вытащили Мага из обречённого ритуала, и чужой шёпот остался в вашей крови.",
 		"hp_penalty": 12.0
 	}
 }
@@ -1139,7 +1139,7 @@ func complete_active_card() -> void:
 		boss_defeated = true
 	else:
 		cards_resolved += 1
-		if cards_resolved == 6 and get_party_size() == 1 and not is_deliberate_loner() and wizard_memory_pending_event.is_empty():
+		if cards_resolved >= 6 and get_wizard_memory_count("solo_endurance") == 0 and get_party_size() == 1 and not is_deliberate_loner() and wizard_memory_pending_event.is_empty():
 			record_wizard_memory("solo_endurance")
 
 	if card.resolution_type == "combat":
@@ -1237,7 +1237,7 @@ func _build_wizard_memory_line(event_id: String, detail: String) -> String:
 				"knight":
 					return "Ты разорвал его цепи. Забавно, что след от них теперь носишь ты."
 				"ranger":
-					return "Ты вернулся за Следопытом. Мост всё-таки взял с тебя плату."
+					return "Ты вернулся за Следопытом. Дорога всё-таки взяла с тебя плату."
 				"mage":
 					return "Маг выбрался из колодца. Шёпот, кажется, выбрался вместе с ним."
 				_:

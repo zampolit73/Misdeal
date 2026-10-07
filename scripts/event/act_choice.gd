@@ -541,7 +541,7 @@ func _configure_ash_rest() -> void:
 	if RunState.can_recruit_companion("ranger"):
 		description_label.text = "У пепла сидит молодой следопыт. В прошлой жизни вы разделили с ним огонь."
 		wizard_line.text = "— В прошлый раз ты позвал его к костру. Повторишь?"
-		choice_a.text = "ПОЗВАТЬ К ОГНЮ\n\nШРАМ МОСТА • -8 макс. HP\nСЛЕДОПЫТ ПРИСОЕДИНИТСЯ"
+		choice_a.text = "ПОЗВАТЬ К ОГНЮ\n\nШРАМ ДОРОГИ • -8 макс. HP\nСЛЕДОПЫТ ПРИСОЕДИНИТСЯ"
 		choice_b.text = "ЗАБРАТЬ ПРИПАСЫ\n\n+20 золота\nСЛЕДОПЫТ БУДЕТ ПОТЕРЯН"
 		choice_c.text = "УЙТИ ДО РАССВЕТА\n\nБез награды\nСЛЕДОПЫТ БУДЕТ ПОТЕРЯН"
 		leave_button.visible = false
@@ -771,7 +771,7 @@ func _configure_rattling_bridge() -> void:
 	if RunState.can_recruit_companion("ranger"):
 		description_label.text = "На другом конце моста зажат молодой следопыт. Вы помните, что однажды вернулись за ним."
 		wizard_line.text = "— Давай проверим, насколько дорого теперь стоит твоя память."
-		choice_a.text = "ВЕРНУТЬСЯ ЗА НИМ\n\nШРАМ МОСТА • -8 макс. HP\nСЛЕДОПЫТ ПРИСОЕДИНИТСЯ"
+		choice_a.text = "ВЕРНУТЬСЯ ЗА НИМ\n\nШРАМ ДОРОГИ • -8 макс. HP\nСЛЕДОПЫТ ПРИСОЕДИНИТСЯ"
 		choice_b.text = "ЗАБРАТЬ ЕГО СУМКУ\n\n+20 золота\nСЛЕДОПЫТ БУДЕТ ПОТЕРЯН"
 		choice_c.text = "ПЕРЕЙТИ ОДНОМУ\n\nБез риска\nСЛЕДОПЫТ БУДЕТ ПОТЕРЯН"
 		leave_button.visible = false
@@ -907,9 +907,9 @@ func _resolve_ash_rest(choice: String) -> void:
 	if RunState.can_recruit_companion("ranger"):
 		match choice:
 			"recruit":
+				RunState.recruit_companion("ranger", "Вы снова разделили с ним огонь у пепельного привала. Дорога оставила на вас Шрам дороги.")
 				RunState.add_rescue_scar("ranger")
-				RunState.recruit_companion("ranger", "Вы снова разделили с ним огонь у пепельного привала. Дорога оставила на вас Шрам моста.")
-				_finish("Следопыт поднимается от костра. Теперь эта версия дороги принадлежит вам обоим. ШРАМ МОСТА: -8 макс. HP.")
+				_finish("Следопыт поднимается от костра. Теперь эта версия дороги принадлежит вам обоим. ШРАМ ДОРОГИ: -8 макс. HP.")
 			"loot":
 				RunState.gold += 20
 				RunState.lose_companion("ranger", "Вы забрали припасы и оставили его у остывающего костра.")
@@ -955,8 +955,8 @@ func _resolve_black_altar(choice: String) -> void:
 	if RunState.can_recruit_companion("mage"):
 		match choice:
 			"recruit_blood":
-				RunState.add_rescue_scar("mage")
 				RunState.recruit_companion("mage", "Вы разорвали ритуал собственной кровью и снова вывели его из круга. Шёпот ритуала остался под вашей кожей.")
+				RunState.add_rescue_scar("mage")
 				_finish("Круг гаснет. Маг открывает глаза и встаёт рядом с вами. ШЁПОТ ПОД КОЖЕЙ: -12 макс. HP.")
 			"recruit_gold":
 				if RunState.gold < 35:
@@ -985,8 +985,8 @@ func _resolve_chained_prisoner(choice: String) -> void:
 	if RunState.can_recruit_companion("knight"):
 		match choice:
 			"recruit":
-				RunState.add_rescue_scar("knight")
 				RunState.recruit_companion("knight", "Вы снова разбили его цепи и приняли его в отряд. На протагонисте остался Шрам цепей.")
+				RunState.add_rescue_scar("knight")
 				_finish("Цепи падают на камень. Рыцарь встаёт рядом с вами. ШРАМ ЦЕПЕЙ: -10 макс. HP.")
 			"loot_recruitment":
 				RunState.gold += 25
@@ -1180,8 +1180,8 @@ func _resolve_last_camp(choice: String) -> void:
 	if RunState.can_recruit_companion("knight"):
 		match choice:
 			"recruit_blood":
-				RunState.add_rescue_scar("knight")
 				RunState.recruit_companion("knight", "Вы подняли раненого рыцаря у последнего привала. Старые цепи снова оставили след на вас.")
+				RunState.add_rescue_scar("knight")
 				_finish("Вы помогаете ему встать. До надзирателя теперь идёте вместе. ШРАМ ЦЕПЕЙ: -10 макс. HP.")
 			"recruit_gold":
 				if RunState.gold < 35:
@@ -1208,9 +1208,9 @@ func _resolve_rattling_bridge(choice: String) -> void:
 	if RunState.can_recruit_companion("ranger"):
 		match choice:
 			"recruit":
+				RunState.recruit_companion("ranger", "Вы вернулись за ним на гремучем мосту. Падение оставило на протагонисте Шрам дороги.")
 				RunState.add_rescue_scar("ranger")
-				RunState.recruit_companion("ranger", "Вы вернулись за ним на гремучем мосту. Падение оставило на протагонисте Шрам моста.")
-				_finish("Мост едва держится, но вы переходите его вдвоём. Следопыт присоединяется. ШРАМ МОСТА: -8 макс. HP.")
+				_finish("Мост едва держится, но вы переходите его вдвоём. Следопыт присоединяется. ШРАМ ДОРОГИ: -8 макс. HP.")
 			"loot_recruitment":
 				RunState.gold += 20
 				RunState.lose_companion("ranger", "Вы забрали его сумку и перешли мост без него.")
