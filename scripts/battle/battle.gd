@@ -9,6 +9,10 @@ const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 82), Vector2(545, 326))
 const TACTICAL_ORDER_ASSAULT := "assault"
 const TACTICAL_ORDER_HUNT := "hunt"
 const TACTICAL_ORDER_FORMATION := "formation"
+const TACTICAL_ORDER_SACRIFICE := "sacrifice"
+const SACRIFICE_DAMAGE_MULTIPLIER := 1.40
+const SACRIFICE_ATTACK_SPEED_MULTIPLIER := 1.20
+const SACRIFICE_HP_DRAIN_PER_SECOND := 0.02
 
 @onready var title_label: Label = $Title
 @onready var deal_label: Label = $DealLabel
@@ -36,6 +40,7 @@ const TACTICAL_ORDER_FORMATION := "formation"
 @onready var assault_order_button: Button = $AssaultOrderButton
 @onready var hunt_order_button: Button = $HuntOrderButton
 @onready var formation_order_button: Button = $FormationOrderButton
+@onready var sacrifice_order_button: Button = $SacrificeOrderButton
 @onready var order_description_label: Label = $OrderDescription
 
 var encounter: EncounterData
@@ -45,6 +50,7 @@ var battle_finished := false
 var boss_reinforcements_spawned := false
 var tactical_order := TACTICAL_ORDER_ASSAULT
 var wizard_critical_line_shown := false
+var sacrifice_order_unlocked := false
 
 func _ready() -> void:
 	if not RunState.has_chosen_protagonist():
@@ -57,9 +63,13 @@ func _ready() -> void:
 	assault_order_button.pressed.connect(_on_assault_order_pressed)
 	hunt_order_button.pressed.connect(_on_hunt_order_pressed)
 	formation_order_button.pressed.connect(_on_formation_order_pressed)
+	sacrifice_order_button.pressed.connect(_on_sacrifice_order_pressed)
 	assault_order_button.tooltip_text = "Ближайшая цель и +15% скорость движения."
 	hunt_order_button.tooltip_text = "Сначала поддержка и дальние враги."
 	formation_order_button.tooltip_text = "Фокус угрозы рядом с самым уязвимым союзником."
+	sacrifice_order_button.tooltip_text = "+40% урона, +20% скорость атак, но герои теряют 2% макс. HP каждую секунду."
+	sacrifice_order_unlocked = RunState.has_sacrifice_order_for_next_battle()
+	_configure_tactical_order_buttons()
 	restart_button.disabled = true
 	continue_button.visible = false
 	continue_button.disabled = true
@@ -172,8 +182,12 @@ func _spawn_unit(
 		unit.damage *= RunState.get_party_damage_multiplier()
 		unit.attack_interval = maxf(0.2, unit.attack_interval * RunState.get_party_attack_interval_multiplier())
 		unit.move_speed *= RunState.get_party_move_speed_multiplier()
+		if unit.visual_role == RunState.protagonist_role:
+			unit.max_hp -= RunState.get_total_rescue_scar_hp_penalty()
 		unit.max_hp = maxf(20.0, unit.max_hp)
 		unit.damage = maxf(1.0, unit.damage)
+		unit.set_meta("order_base_damage", unit.damage)
+		unit.set_meta("order_base_attack_interval", unit.attack_interval)
 	else:
 		unit.damage *= RunState.get_enemy_damage_multiplier()
 
@@ -254,23 +268,34 @@ func _on_hunt_order_pressed() -> void:
 func _on_formation_order_pressed() -> void:
 	_select_tactical_order(TACTICAL_ORDER_FORMATION)
 
+func _on_sacrifice_order_pressed() -> void:
+	if not sacrifice_order_unlocked:
+		return
+	_select_tactical_order(TACTICAL_ORDER_SACRIFICE)
+
+
 func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 	if combat_started or battle_finished:
+		return
+	if order_id == TACTICAL_ORDER_SACRIFICE and not sacrifice_order_unlocked:
 		return
 
 	tactical_order = order_id
 	assault_order_button.button_pressed = tactical_order == TACTICAL_ORDER_ASSAULT
 	hunt_order_button.button_pressed = tactical_order == TACTICAL_ORDER_HUNT
 	formation_order_button.button_pressed = tactical_order == TACTICAL_ORDER_FORMATION
+	sacrifice_order_button.button_pressed = tactical_order == TACTICAL_ORDER_SACRIFICE
 	order_description_label.text = _get_tactical_order_description(tactical_order)
+	_apply_tactical_order_stats()
 
 	for unit in units:
 		if unit.team == 0:
 			unit.set_tactical_order(tactical_order)
 
 	if announce:
-		order_description_label.modulate = Color(1.0, 0.88, 0.66, 1.0)
+		order_description_label.modulate = Color(1.0, 0.50, 0.32, 1.0) if tactical_order == TACTICAL_ORDER_SACRIFICE else Color(1.0, 0.88, 0.66, 1.0)
 		_play_battle_audio("order")
+
 
 func _get_tactical_order_description(order_id: String) -> String:
 	match order_id:
@@ -278,13 +303,46 @@ func _get_tactical_order_description(order_id: String) -> String:
 			return "ОХОТА — сначала поддержка и дальние враги."
 		TACTICAL_ORDER_FORMATION:
 			return "СТРОЙ — фокус угрозы рядом с самым уязвимым союзником."
+		TACTICAL_ORDER_SACRIFICE:
+			return "ЖЕРТВА — +40% урона, +20% скорость атак, -2% макс. HP/сек."
 		_:
 			return "НАТИСК — ближайшая цель, +15% скорость движения."
+
+func _configure_tactical_order_buttons() -> void:
+	sacrifice_order_button.visible = sacrifice_order_unlocked
+	if not sacrifice_order_unlocked:
+		return
+
+	var buttons: Array[Button] = [
+		assault_order_button,
+		hunt_order_button,
+		formation_order_button,
+		sacrifice_order_button
+	]
+	for index in range(buttons.size()):
+		var button: Button = buttons[index]
+		button.position = Vector2(46.0 + float(index) * 78.0, 626.0)
+		button.size = Vector2(72.0, 42.0)
+		button.add_theme_font_size_override("font_size", 11)
+
+func _apply_tactical_order_stats() -> void:
+	for unit in units:
+		if unit.team != 0:
+			continue
+		var base_damage: float = float(unit.get_meta("order_base_damage", unit.damage))
+		var base_interval: float = float(unit.get_meta("order_base_attack_interval", unit.attack_interval))
+		unit.damage = base_damage
+		unit.attack_interval = base_interval
+		if tactical_order == TACTICAL_ORDER_SACRIFICE:
+			unit.damage = maxf(1.0, base_damage * SACRIFICE_DAMAGE_MULTIPLIER)
+			unit.attack_interval = maxf(0.2, base_interval / SACRIFICE_ATTACK_SPEED_MULTIPLIER)
+
 
 func _lock_tactical_orders() -> void:
 	assault_order_button.disabled = true
 	hunt_order_button.disabled = true
 	formation_order_button.disabled = true
+	sacrifice_order_button.disabled = true
 	order_description_label.text = "ПРИКАЗ ЗАКРЕПЛЁН: %s" % _get_tactical_order_description(tactical_order)
 
 func _on_boss_enraged(_unit: BattleUnit) -> void:
@@ -337,6 +395,7 @@ func _show_boss_phase_flash() -> void:
 func _on_placement_rejected(unit: BattleUnit) -> void:
 	status_label.text = "%s нельзя поставить поверх другого героя." % unit.display_name
 
+
 func _on_fight_pressed() -> void:
 	if combat_started or battle_finished:
 		return
@@ -347,12 +406,22 @@ func _on_fight_pressed() -> void:
 	_lock_tactical_orders()
 	_hide_preparation_hud()
 
+	if sacrifice_order_unlocked:
+		RunState.consume_sacrifice_order_for_battle()
+		sacrifice_order_unlocked = false
+	if tactical_order == TACTICAL_ORDER_SACRIFICE:
+		RunState.record_wizard_memory("sacrifice_order")
+
 	await _play_combat_intro()
 	if battle_finished:
 		return
 
-	status_label.text = "Ставка сделана. Назад пути нет."
-	_show_wizard_line(_get_combat_start_wizard_line())
+	if tactical_order == TACTICAL_ORDER_SACRIFICE:
+		status_label.text = "ЖЕРТВА — сила растёт, жизнь уходит каждую секунду."
+		_show_wizard_line("Вот так. Сгорите быстрее, чем они успеют вас убить.", true)
+	else:
+		status_label.text = "Ставка сделана. Назад пути нет."
+		_show_wizard_line(_get_combat_start_wizard_line())
 	_play_battle_audio("start")
 
 	for unit in units:
@@ -365,6 +434,7 @@ func _hide_preparation_hud() -> void:
 	assault_order_button.visible = false
 	hunt_order_button.visible = false
 	formation_order_button.visible = false
+	sacrifice_order_button.visible = false
 	order_description_label.visible = false
 	fight_button.visible = false
 	restart_button.visible = false
@@ -446,6 +516,16 @@ func _on_unit_health_critical(unit: BattleUnit) -> void:
 	wizard_critical_line_shown = true
 	_show_wizard_line("%s уже слышит, как стол считает последнюю карту." % unit.display_name, true)
 
+func _process(delta: float) -> void:
+	if not combat_started or battle_finished or tactical_order != TACTICAL_ORDER_SACRIFICE:
+		return
+
+	for unit in units:
+		if battle_finished:
+			return
+		if unit.team == 0 and unit.alive:
+			unit.take_attrition_damage(unit.max_hp * SACRIFICE_HP_DRAIN_PER_SECOND * delta)
+
 func _on_unit_died(dead_unit: BattleUnit) -> void:
 	if battle_finished:
 		return
@@ -481,6 +561,7 @@ func _finish_battle(player_won: bool) -> void:
 	assault_order_button.visible = false
 	hunt_order_button.visible = false
 	formation_order_button.visible = false
+	sacrifice_order_button.visible = false
 	order_description_label.visible = false
 	bottom_hud_panel.visible = false
 	wizard_commentary_panel.visible = false

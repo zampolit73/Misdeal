@@ -324,6 +324,27 @@ theme_override_styles/pressed = SubResource("ButtonPressed")
 theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "СТРОЙ"
 
+[node name="SacrificeOrderButton" type="Button" parent="."]
+z_index = 5100
+visible = false
+offset_left = 280.0
+offset_top = 626.0
+offset_right = 352.0
+offset_bottom = 668.0
+toggle_mode = true
+theme_override_colors/font_color = Color(1, 0.42, 0.30, 1)
+theme_override_colors/font_hover_color = Color(1, 0.68, 0.42, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.76, 0.48, 1)
+theme_override_colors/font_shadow_color = Color(0.24, 0.02, 0.01, 0.95)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonPressed")
+theme_override_styles/disabled = SubResource("ButtonDisabled")
+text = "ЖЕРТВА"
+
 [node name="OrderDescription" type="Label" parent="."]
 z_index = 5100
 mouse_filter = 2

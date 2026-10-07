@@ -144,10 +144,32 @@ func _refresh_table(show_memory: bool = true) -> void:
 		wizard_line.text = "Прежде чем выбирать... сыграем поинтереснее?"
 		call_deferred("_show_wizard_wager")
 	elif show_memory and not RunState.is_boss_due():
+		var memory_event: String = RunState.wizard_memory_pending_event
 		var memory_line := RunState.consume_wizard_memory_line()
 		if not memory_line.is_empty():
 			default_wizard_line = memory_line
 			wizard_line.text = default_wizard_line
+			call_deferred("_play_wizard_memory_tell", memory_event)
+
+func _play_wizard_memory_tell(event_id: String) -> void:
+	if event_id.is_empty() or not is_inside_tree():
+		return
+
+	if event_id == "deliberate_loner" or event_id == "companion_lost":
+		var card_tween := cards_root.create_tween()
+		card_tween.tween_property(cards_root, "modulate", Color(0.54, 0.42, 0.46, 0.72), 0.16)
+		card_tween.tween_interval(0.18)
+		card_tween.tween_property(cards_root, "modulate", Color.WHITE, 0.34)
+
+		var line_tween := wizard_line.create_tween()
+		line_tween.tween_property(wizard_line, "modulate", Color(1.0, 0.42, 0.30, 1.0), 0.14)
+		line_tween.tween_interval(0.16)
+		line_tween.tween_property(wizard_line, "modulate", Color.WHITE, 0.30)
+	elif event_id == "rescue_scar":
+		var line_tween := wizard_line.create_tween()
+		line_tween.tween_property(wizard_line, "modulate", Color(1.0, 0.58, 0.38, 1.0), 0.14)
+		line_tween.tween_interval(0.12)
+		line_tween.tween_property(wizard_line, "modulate", Color.WHITE, 0.26)
 
 func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	var art := button.get_node("Art") as TextureRect
@@ -247,6 +269,7 @@ func _update_spread_ui() -> void:
 	if table_spread_visual != null and table_spread_visual.has_method("refresh"):
 		table_spread_visual.call("refresh")
 
+
 func _animate_deal_if_needed(offers: Array[RunCardData]) -> void:
 	var signature := ""
 	for card in offers:
@@ -267,6 +290,12 @@ func _animate_deal_if_needed(offers: Array[RunCardData]) -> void:
 	_disable_offer_buttons()
 	call_deferred("_play_deal_sounds", offers.size())
 
+	var deal_mode := "neutral"
+	if RunState.wizard_wagers_accepted > RunState.wizard_wagers_declined:
+		deal_mode = "pleased"
+	elif RunState.wizard_wagers_declined > RunState.wizard_wagers_accepted:
+		deal_mode = "irritated"
+
 	var visible_index := 0
 	for button in offer_buttons:
 		if not button.visible:
@@ -274,25 +303,42 @@ func _animate_deal_if_needed(offers: Array[RunCardData]) -> void:
 
 		var rest_position: Vector2 = card_rest_positions.get(button.name, button.position)
 		var rest_rotation := float(card_rest_rotations.get(button.name, 0.0))
-		var delay := float(visible_index) * 0.13
+		var delay := float(visible_index) * (0.16 if deal_mode == "pleased" else (0.09 if deal_mode == "irritated" else 0.13))
 		visible_index += 1
+
+		var duration := 0.34
+		var start_rotation := -0.15 + float(visible_index) * 0.018
+		var start_scale := Vector2(0.08, 0.68)
+		var start_modulate := Color(0.54, 0.38, 0.36, 0.22)
+		if deal_mode == "pleased":
+			duration = 0.40
+			start_rotation = -0.08 + float(visible_index) * 0.012
+			start_scale = Vector2(0.12, 0.72)
+			start_modulate = Color(0.70, 0.52, 0.46, 0.30)
+		elif deal_mode == "irritated":
+			duration = 0.25
+			start_rotation = (-0.24 if visible_index % 2 == 1 else 0.24)
+			start_scale = Vector2(0.06, 0.88)
+			start_modulate = Color(0.62, 0.22, 0.18, 0.34)
 
 		_kill_card_motion(button)
 		button.position = DEAL_SOURCE_POSITION
-		button.rotation = -0.15 + float(visible_index) * 0.018
-		button.scale = Vector2(0.08, 0.68)
-		button.modulate = Color(0.54, 0.38, 0.36, 0.22)
+		button.rotation = start_rotation
+		button.scale = start_scale
+		button.modulate = start_modulate
 		button.z_index = 6
 
 		var tween := button.create_tween()
 		card_motion_tweens[button.name] = tween
 		tween.set_parallel(true)
-		tween.tween_property(button, "position", rest_position, 0.34).set_delay(delay).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		tween.tween_property(button, "rotation", rest_rotation, 0.34).set_delay(delay).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		tween.tween_property(button, "scale", Vector2.ONE, 0.30).set_delay(delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		tween.tween_property(button, "modulate", Color.WHITE, 0.26).set_delay(delay)
+		tween.tween_property(button, "position", rest_position, duration).set_delay(delay).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "rotation", rest_rotation, duration).set_delay(delay).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "scale", Vector2.ONE, duration - 0.04).set_delay(delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "modulate", Color.WHITE, duration - 0.08).set_delay(delay)
 
-	call_deferred("_finish_deal_animation", 0.50 + maxf(0.0, float(visible_index - 1) * 0.13))
+	var total_delay := 0.56 if deal_mode == "pleased" else (0.38 if deal_mode == "irritated" else 0.50)
+	total_delay += maxf(0.0, float(visible_index - 1) * (0.16 if deal_mode == "pleased" else (0.09 if deal_mode == "irritated" else 0.13)))
+	call_deferred("_finish_deal_animation", total_delay)
 
 func _play_deal_sounds(card_count: int) -> void:
 	for index in range(card_count):
@@ -460,13 +506,14 @@ func _refuse_wizard_wager() -> void:
 	default_wizard_line = "Какая осторожность. Почти разочаровывает."
 	wizard_line.text = default_wizard_line
 
+
 func _play_pending_wizard_meddling() -> void:
 	if not RunState.has_pending_wizard_meddling():
 		selection_locked = false
 		_enable_offer_buttons()
 		return
 
-	await get_tree().create_timer(0.72).timeout
+	await get_tree().create_timer(0.46).timeout
 	if not RunState.has_pending_wizard_meddling():
 		selection_locked = false
 		_enable_offer_buttons()
@@ -481,6 +528,25 @@ func _play_pending_wizard_meddling() -> void:
 	var button := offer_buttons[offer_index]
 	_restore_card_pose_immediate(button)
 	button.pivot_offset = button.size * 0.5
+
+	var rest_position: Vector2 = card_rest_positions.get(button.name, button.position)
+	var rest_rotation := float(card_rest_rotations.get(button.name, button.rotation))
+	var tell_rotation := rest_rotation + (-0.035 if offer_index == 0 else 0.035)
+	var tell_tween := button.create_tween()
+	tell_tween.set_parallel(true)
+	tell_tween.tween_property(button, "position", rest_position + Vector2(0.0, -5.0), 0.10).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tell_tween.tween_property(button, "rotation", tell_rotation, 0.10)
+	tell_tween.tween_property(button, "scale", Vector2(1.015, 1.015), 0.10)
+	await tell_tween.finished
+
+	var settle_tween := button.create_tween()
+	settle_tween.set_parallel(true)
+	settle_tween.tween_property(button, "position", rest_position, 0.10)
+	settle_tween.tween_property(button, "rotation", rest_rotation, 0.10)
+	settle_tween.tween_property(button, "scale", Vector2.ONE, 0.10)
+	await settle_tween.finished
+	await get_tree().create_timer(0.08).timeout
+
 	wizard_line.text = "Нет. Эту карту я передумал отдавать."
 	_play_table_audio("meddle")
 

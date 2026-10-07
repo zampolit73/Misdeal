@@ -5,6 +5,7 @@ const UNIT_TILE_SIZE: float = 96.0
 const TACTICAL_ORDER_ASSAULT := "assault"
 const TACTICAL_ORDER_HUNT := "hunt"
 const TACTICAL_ORDER_FORMATION := "formation"
+const TACTICAL_ORDER_SACRIFICE := "sacrifice"
 const ASSAULT_MOVE_MULTIPLIER := 1.15
 const ART_BASE_POSITION := Vector2(0.0, -12.0)
 
@@ -134,7 +135,7 @@ func set_arena_presentation(value: String) -> void:
 
 func set_tactical_order(order_id: String) -> void:
 	match order_id:
-		TACTICAL_ORDER_ASSAULT, TACTICAL_ORDER_HUNT, TACTICAL_ORDER_FORMATION:
+		TACTICAL_ORDER_ASSAULT, TACTICAL_ORDER_HUNT, TACTICAL_ORDER_FORMATION, TACTICAL_ORDER_SACRIFICE:
 			tactical_order = order_id
 		_:
 			tactical_order = TACTICAL_ORDER_ASSAULT
@@ -802,6 +803,22 @@ func _spawn_attack_trace(primary_target: BattleUnit, color: Color, width: float)
 	var trace_tween := trace.create_tween()
 	trace_tween.tween_property(trace, "modulate:a", 0.0, 0.14)
 	trace_tween.tween_callback(trace.queue_free)
+
+func take_attrition_damage(amount: float) -> void:
+	if not alive or amount <= 0.0:
+		return
+
+	hp = maxf(0.0, hp - amount)
+	health_bar.value = hp
+
+	if team == 0 and not critical_announced and hp > 0.0 and hp / maxf(1.0, max_hp) <= 0.25:
+		critical_announced = true
+		health_critical.emit(self)
+
+	queue_redraw()
+
+	if hp <= 0.0:
+		_die()
 
 func take_damage(amount: float, source_role: String = "", source_position: Vector2 = Vector2.ZERO) -> void:
 	if not alive:

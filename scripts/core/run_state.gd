@@ -153,6 +153,7 @@ var wizard_wager_consumed_slots: Array[int] = []
 var wizard_wager_pending := false
 var wizard_wagers_accepted := 0
 var wizard_wagers_declined := 0
+var sacrifice_order_ready := false
 
 var wizard_memory_counts: Dictionary = {}
 var wizard_memory_pending_event := ""
@@ -201,6 +202,7 @@ func reset_run() -> void:
 	wizard_wager_pending = false
 	wizard_wagers_accepted = 0
 	wizard_wagers_declined = 0
+	sacrifice_order_ready = false
 	wizard_memory_counts.clear()
 	wizard_memory_pending_event = ""
 	wizard_memory_pending_detail = ""
@@ -978,14 +980,25 @@ func _prepare_wizard_wager_if_due() -> void:
 func has_pending_wizard_wager() -> bool:
 	return wizard_wager_pending and not wizard_debt_active
 
+
 func accept_pending_wizard_wager() -> bool:
 	if not has_pending_wizard_wager():
 		return false
 
 	activate_wizard_debt()
+	sacrifice_order_ready = true
 	wizard_wagers_accepted += 1
 	record_wizard_memory("wager_accept")
 	_consume_pending_wizard_wager()
+	return true
+
+func has_sacrifice_order_for_next_battle() -> bool:
+	return sacrifice_order_ready
+
+func consume_sacrifice_order_for_battle() -> bool:
+	if not sacrifice_order_ready:
+		return false
+	sacrifice_order_ready = false
 	return true
 
 func decline_pending_wizard_wager() -> bool:
@@ -1248,6 +1261,10 @@ func _build_wizard_memory_line(event_id: String, detail: String) -> String:
 			return "Теперь понимаю. Ты не исправляешь прошлое — ты убираешь из него свидетелей."
 		"solo_endurance":
 			return "Шесть карт, а рядом всё ещё пусто. Не одиночество, конечно. Стратегия."
+		"sacrifice_order":
+			if count > 1:
+				return "Снова «Жертва». Мне нравится, как быстро плохая идея становится привычкой."
+			return "Ты выбрал «Жертву». Наконец-то приказ, который понимает цену победы."
 		_:
 			return ""
 
