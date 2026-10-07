@@ -4,6 +4,7 @@ const ARENA_CRYPT := "crypt"
 const ARENA_GRAVEYARD := "graveyard"
 const ARENA_OSSUARY := "ossuary"
 const ARENA_WARDEN := "warden"
+const ARENA_BONE_CRUSH := "bone_crush"
 
 var pulse: float = 0.0
 var redraw_cooldown: float = 0.0
@@ -13,7 +14,7 @@ var arena_id: String = ARENA_CRYPT
 
 func set_arena_id(value: String) -> void:
 	match value:
-		ARENA_GRAVEYARD, ARENA_OSSUARY, ARENA_WARDEN:
+		ARENA_GRAVEYARD, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH:
 			arena_id = value
 		_:
 			arena_id = ARENA_CRYPT
@@ -46,6 +47,8 @@ func _draw() -> void:
 			_draw_ossuary_atmosphere()
 		ARENA_WARDEN:
 			_draw_warden_atmosphere()
+		ARENA_BONE_CRUSH:
+			_draw_bone_crush_atmosphere()
 		_:
 			_draw_crypt_atmosphere()
 
@@ -83,6 +86,26 @@ func _draw_ossuary_atmosphere() -> void:
 
 	var breathe := 0.5 + 0.5 * sin(pulse * 2.0)
 	draw_rect(Rect2(0.0, size.y - 110.0, size.x, 110.0), Color(0.30, 0.12, 0.035, 0.014 + breathe * 0.010))
+
+func _draw_bone_crush_atmosphere() -> void:
+	var breathe := 0.5 + 0.5 * sin(pulse * 1.7)
+	draw_rect(Rect2(Vector2.ZERO, size), Color(0.015, 0.020, 0.028, 0.018 + breathe * 0.006))
+
+	var chalk := Color(0.64, 0.57, 0.45, 0.24)
+	var chalk_faint := Color(0.64, 0.57, 0.45, 0.11)
+	var top_band := Rect2(35.0, 70.0, 480.0, 145.0)
+	var bottom_band := Rect2(35.0, 250.0, 480.0, 145.0)
+
+	for band in [top_band, bottom_band]:
+		draw_line(band.position, Vector2(band.end.x, band.position.y), chalk_faint, 1.0)
+		draw_line(Vector2(band.position.x, band.end.y), band.end, chalk_faint, 1.0)
+
+		for marker_index in range(3):
+			var x := band.position.x + 90.0 + float(marker_index) * 135.0
+			var y := band.position.y + band.size.y * 0.5
+			draw_line(Vector2(x - 12.0, y), Vector2(x + 12.0, y), chalk, 2.0)
+			draw_line(Vector2(x, y - 12.0), Vector2(x, y + 12.0), chalk, 2.0)
+			draw_line(Vector2(x - 7.0, y - 7.0), Vector2(x + 7.0, y + 7.0), chalk_faint, 1.0)
 
 func _draw_warden_atmosphere() -> void:
 	var intensity := 0.5 + 0.5 * sin(pulse * 3.3)
