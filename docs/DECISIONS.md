@@ -925,3 +925,17 @@ The dedicated pixel-art sheets generated and approved in the 2026-10-07 card-art
 The production UI must use these exact illustrations rather than procedural icon blobs, unrelated card reuse or combat-sprite placeholders. Runtime fallback art may remain only as a technical failure-safe.
 
 For repository robustness, the approved images are packed into small WebP atlases, split into base64 text chunks and decoded at runtime. Live titles, descriptions, costs, disabled states and run values remain Godot controls and are not baked into the art.
+
+
+## D052 — Generic event choices inherit the active card illustration
+
+Date: 2026-10-07  
+Status: accepted for the approved full-card art pass
+
+The shared Act 1 choice scene must not fall back to flat black choice cards when the active event already has approved card art.
+
+For generic choice-driven events, the upper illustration band of each visible option therefore reuses the active run card's canonical illustration from `card_art_catalog.gd`. This is a presentation reuse of the exact approved art, not procedural generation and not a new gameplay state.
+
+`Curse Forge` and `Chained Prisoner` keep their dedicated per-option approved illustrations because those screens already have more specific authored choice art.
+
+Live button text, costs, disabled states, reward logic and companion-fate mechanics remain authoritative Godot controls.

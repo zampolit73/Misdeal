@@ -129,6 +129,7 @@ Only after the loop is fun:
 - [x] Unify protagonist select, all Act 1 event choices, reward/upgrade screens, fallback event cards and Wizard wager modal under the approved dark-gothic ritual UI language.
 - [x] Replace temporary combat-sprite UI fallbacks with the accepted authored choice/development art for approved Development, Curse Forge and Chained Prisoner cards.
 - [x] Integrate the approved full pixel-art set for all 25 active Act 1 table cards, all nine hero-development paths and six reward-state cards.
+- [x] Fill the remaining generic Act 1 event choice-card art slots from the active card illustration while preserving dedicated Forge/Prisoner choice art.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.
 - [x] Skippable five-frame pixel-art comic prologue establishing the old pact and replayed-life premise;

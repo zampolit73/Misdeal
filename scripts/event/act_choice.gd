@@ -2,6 +2,7 @@ extends Control
 
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 const APPROVED_EVENT_DECOR := preload("res://scripts/ui/approved_event_decor.gd")
+const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 
 @onready var title_label: Label = $Panel/Title
 @onready var type_label: Label = $Panel/Type
@@ -60,8 +61,18 @@ func _apply_approved_choice_art() -> void:
 		"chained_prisoner":
 			cells = [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)]
 		_:
-			for art in arts:
-				art.visible = false
+			var event_art := CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
+			for index in range(buttons.size()):
+				var art := arts[index]
+				var button := buttons[index]
+				if not button.visible or event_art == null:
+					art.visible = false
+					continue
+				art.texture = event_art
+				art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+				art.visible = true
+				art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
+				_apply_choice_art_margins(button)
 			return
 
 	for index in range(buttons.size()):
@@ -71,6 +82,7 @@ func _apply_approved_choice_art() -> void:
 			art.visible = false
 			continue
 		art.texture = APPROVED_CHOICE_ART.get_cell(cell.x, cell.y)
+		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		art.visible = art.texture != null
 		art.modulate = Color(0.42, 0.42, 0.42, 0.72) if buttons[index].disabled else Color.WHITE
 		_apply_choice_art_margins(buttons[index])

@@ -12,6 +12,7 @@
 - Wizard-table offers now resolve art by `card_id`, so Rattling Bridge, Lost Purse, Blood Ledger, Crypt Guard, Bone Crush, Bone Warden and every other active card show their own approved scene instead of sharing the old five-image pool.
 - Hero development now uses nine distinct approved illustrations; Ranger and alternate Knight/Mage paths no longer fall back to repeated role portraits.
 - Ordinary loot, Death Wager and elite rewards now use the approved Blood Coin, Gold Windfall, Relic Wager, Bonus Upgrade, Empty Cache and Elite Relic art while keeping reward text live.
+- Generic Act 1 event choices now show the active event's approved illustration in their upper art band instead of leaving Rattling Bridge and similar choice cards as flat black placeholders; Curse Forge and Chained Prisoner retain their dedicated option art.
 
 ### Verified
 
