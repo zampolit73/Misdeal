@@ -46,6 +46,7 @@
 
 ### Fixed
 
+- Fixed the Godot 4.7.2 parser-inference failure in the event-window semantic style pass by explicitly typing style-name arrays, styleboxes and hover/disabled booleans in `act_choice.gd` and `whispering_well.gd`.
 - Replaced the first card-art atlas pass that crushed approved illustrations to 88×54 px (table) and 80×48 px (development/reward). The same approved images are now stored at 224×137 and 304×194 per cell respectively, with WebP bytes decoded directly from repository-safe `.bin` blobs instead of enlarging thumbnail art.
 - Replaced the incorrect combat-unit portraits on non-combat UI with the exact accepted screen-art crops. Hero development now uses the approved Iron Oath / Glass Heart / Executioner illustrations, and matching approved art is wired into Curse Forge and Chained Prisoner choices. Ranger paths deliberately remain text-led until matching art is approved rather than reusing unrelated battle sprites.
 - Fixed Godot 4.7.2 parser failure in `act_choice.gd` from Variant-returning theme-style lookups by giving the duplicated `StyleBoxFlat` values explicit types.

@@ -149,7 +149,8 @@ func _get_upgrade_choice_art(button: Button) -> Texture2D:
 	return null
 
 func _apply_choice_art_margins(button: Button) -> void:
-	for style_name in ["normal", "hover", "pressed", "disabled"]:
+	var style_names: Array[String] = ["normal", "hover", "pressed", "disabled"]
+	for style_name in style_names:
 		var source: StyleBoxFlat = button.get_theme_stylebox(style_name) as StyleBoxFlat
 		if source == null:
 			continue
@@ -346,23 +347,24 @@ func _get_choice_semantic_accent(button: Button, index: int) -> Color:
 
 func _apply_choice_semantic_styles() -> void:
 	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
+	var style_names: Array[String] = ["normal", "hover", "pressed", "disabled"]
 	for index in range(buttons.size()):
-		var button := buttons[index]
-		var accent := _get_choice_semantic_accent(button, index)
+		var button: Button = buttons[index]
+		var accent: Color = _get_choice_semantic_accent(button, index)
 
-		for style_name in ["normal", "hover", "pressed", "disabled"]:
-			var source := button.get_theme_stylebox(style_name) as StyleBoxFlat
+		for style_name in style_names:
+			var source: StyleBoxFlat = button.get_theme_stylebox(style_name) as StyleBoxFlat
 			if source == null:
 				continue
-			var styled := source.duplicate() as StyleBoxFlat
-			var disabled := style_name == "disabled"
-			var active := style_name == "hover" or style_name == "pressed"
-			styled.border_color = Color(accent.r, accent.g, accent.b, 0.30 if disabled else (1.0 if active else 0.78))
-			if not disabled:
+			var styled: StyleBoxFlat = source.duplicate() as StyleBoxFlat
+			var is_disabled: bool = style_name == "disabled"
+			var is_active: bool = style_name == "hover" or style_name == "pressed"
+			styled.border_color = Color(accent.r, accent.g, accent.b, 0.30 if is_disabled else (1.0 if is_active else 0.78))
+			if not is_disabled:
 				styled.bg_color = Color(
-					0.016 + accent.r * (0.075 if active else 0.040),
-					0.012 + accent.g * (0.055 if active else 0.028),
-					0.016 + accent.b * (0.060 if active else 0.030),
+					0.016 + accent.r * (0.075 if is_active else 0.040),
+					0.012 + accent.g * (0.055 if is_active else 0.028),
+					0.016 + accent.b * (0.060 if is_active else 0.030),
 					0.99
 				)
 			button.add_theme_stylebox_override(style_name, styled)

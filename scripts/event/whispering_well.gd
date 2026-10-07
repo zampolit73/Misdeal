@@ -110,12 +110,14 @@ func _apply_choice_art() -> void:
 		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		art.visible = art.texture != null
 
-	for button in [accept_button, pay_button, leave_button]:
-		for style_name in ["normal", "hover", "pressed", "disabled"]:
-			var source := button.get_theme_stylebox(style_name) as StyleBoxFlat
+	var choice_buttons: Array[Button] = [accept_button, pay_button, leave_button]
+	var style_names: Array[String] = ["normal", "hover", "pressed", "disabled"]
+	for button in choice_buttons:
+		for style_name in style_names:
+			var source: StyleBoxFlat = button.get_theme_stylebox(style_name) as StyleBoxFlat
 			if source == null:
 				continue
-			var styled := source.duplicate() as StyleBoxFlat
+			var styled: StyleBoxFlat = source.duplicate() as StyleBoxFlat
 			styled.content_margin_top = 88.0
 			styled.content_margin_bottom = 10.0
 			button.add_theme_stylebox_override(style_name, styled)
