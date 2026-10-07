@@ -145,6 +145,10 @@ Only after the loop is fun:
 - [ ] Locally verify the Last Deal branches: relic payment, no-relic brand payment, refusal, second defeat, boss defeat and run-end summary.
 - [x] Run a static post-Last-Deal balance audit of baseline solo / duo / trio output and preserve the current fixed benchmark numbers rather than making speculative global retunes.
 - [x] Split battle preparation HUD into concise encounter-threat text plus a separate run-condition block so party compensation/debt no longer collide with the card counter at 1280×720.
+- [x] Turn the three rescue scars into situational Act 1 keys: Chains → Bone Tax, Road → Faceless Card, Whisper → Blood Ledger.
+- [x] Add one-use **УДЕРЖАТЬ** fate control to the two-card table offer, returning the reserved card after two resolved cards.
+- [x] Add two visible **ПЕЧАТЬ ВОЛШЕБНИКА** offers per run: +20 gold for accepting the marked card, with +15% enemy damage until the next combat victory.
+- [ ] Locally verify fate hold return timing across tier boundaries, marked-card combat/event branches, mark + debt stacking and all three scar-key event variants.
 - [ ] Run fresh solo / duo / trio balance passes with rescue scars, event echoes and **ЖЕРТВА**, then retune only the concrete outliers.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.

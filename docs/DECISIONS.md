@@ -1091,3 +1091,55 @@ Rules:
 - the cursed **ЖЕРТВА** tactical-order opportunity is not restored by a Last Deal retry if it was already consumed by the failed attempt.
 
 The purpose is to make defeat carry actual roguelike stakes while preserving one dramatic Wizard-mediated recovery. Do not add additional lives, revive currencies or repeatable paid retries before this rule is balance-tested.
+
+
+## D063 — Rescue scars may unlock later advantages without erasing their original cost
+
+Date: 2026-10-07  
+Status: accepted for Act 1 consequence-depth pass
+
+Named rescue scars are persistent costs first, but they may also act as recognizable keys in later Act 1 events. The advantage must be situational rather than a general stat refund, so saving a companion still carries a meaningful price.
+
+Current scar-key links:
+
+- **ШРАМ ЦЕПЕЙ**: at **КОСТЯНАЯ ПОШЛИНА**, the blood-payment branch becomes free passage because the guard recognizes the mark;
+- **ШРАМ ДОРОГИ**: at **КАРТА БЕЗ ЛИЦА**, the deterministic development route costs 15 gold instead of 30;
+- **ШЁПОТ ПОД КОЖЕЙ**: at **КРОВАВАЯ КНИГА**, the blood-signing route costs 10 party HP instead of 25.
+
+Do not make every later card react to every scar. Scar-key moments should stay rare enough to feel like consequences returning, not a parallel perk tree.
+
+## D064 — Act 1 allows one held fate card
+
+Date: 2026-10-07  
+Status: accepted for table-strategy pass
+
+Once per Act 1, while a normal two-card offer is on the table, the player may use **УДЕРЖАТЬ** on one card. The held card cannot be chosen in that offer; the player must take the other card now.
+
+Rules:
+
+- one hold use per run;
+- the held card is not counted as rejected;
+- it leaves the normal deck flow and returns as a guaranteed offer after two more resolved cards;
+- when it returns, rejecting it is permanent like any normal offer;
+- holding is disabled after 10 pre-boss cards have already been resolved so the reserved card cannot be stranded behind the Bone Warden handoff;
+- boss and already-active cards cannot be held.
+
+This mechanic is intentionally not a general deckbuilding hand. It is a single dramatic way to postpone fate.
+
+## D065 — Wizard-marked cards are visible self-authored risk
+
+Date: 2026-10-07  
+Status: accepted for table-risk pass
+
+Act 1 schedules up to two visible **ПЕЧАТЬ ВОЛШЕБНИКА** offers. One of the two current cards is visibly marked before the player chooses.
+
+Choosing the marked card:
+
+- immediately grants +20 gold;
+- activates +15% enemy damage until the next combat is won;
+- applies to the marked card itself if that card is a combat encounter;
+- persists through a Last Deal retry of that combat.
+
+Choosing the unmarked card has no mechanical punishment. Holding the marked card counts as refusing the mark; the card may return later, but without that mark.
+
+A second mark is not offered while mark danger is already active. Wizard mark danger stacks additively with the existing +25% Wizard debt because both conditions are explicitly shown to the player.

@@ -4,6 +4,9 @@
 
 ### Added
 
+- Added one-use **УДЕРЖАТЬ** control to normal two-card Act 1 offers. The reserved card is protected from rejection, cannot be chosen immediately and returns as a guaranteed offer after two resolved cards.
+- Added visible **ПЕЧАТЬ ВОЛШЕБНИКА** cards twice per run. Taking the marked card grants +20 gold and activates +15% enemy damage until the next combat victory; taking the other card has no mechanical penalty.
+- Added situational scar-key payoffs: **ШРАМ ЦЕПЕЙ** can bypass Bone Tax's blood price, **ШРАМ ДОРОГИ** halves the Faceless Card deterministic-development price, and **ШЁПОТ ПОД КОЖЕЙ** reduces Blood Ledger's blood cost from 25 to 10 HP.
 - Added **ПОСЛЕДНЯЯ СДЕЛКА**, a one-use Wizard rescue offer on the first combat defeat of a run. The player may pay the explicitly shown owned relic to replay the same fight; if no relic exists, the price is **КЛЕЙМО ПОСЛЕДНЕЙ СДЕЛКИ** for -15 protagonist max HP.
 - Added real failed-run state and defeat presentation. Refusing the Last Deal, or losing again after it has already been used, now ends the run and opens a loss-version run summary instead of returning to the table for a free retry.
 - Added the cursed tactical order **ЖЕРТВА** as a one-battle option after accepting a voluntary Wizard wager: +40% party damage, +20% attack speed and 2% max-HP self-drain per living hero per second. The option is consumed when the next combat begins and does not return on retry.
@@ -19,6 +22,8 @@
 
 ### Changed
 
+- Wizard-mark danger is surfaced in both the table condition strip and battle condition block, stacks visibly with Wizard debt, persists through Last Deal retry and clears only after a combat victory.
+- Held cards use a dedicated table tab and blue card-state treatment; marked cards use a visible Wizard seal, ember border and explicit `+20 gold / enemies +15%` hint.
 - Battle preparation HUD now separates encounter threat/tactical guidance from persistent run conditions. Solo/duo compensation, Wizard debt, **ЖЕРТВА** availability and used Last Deal state render in a compact right-side block instead of extending the main status line into the card counter.
 - Shortened and sharpened preparation cues for Bone Warden, Death Wager, Crypt Guard, Grave Bell, Bone Crush, Ossuary Gate and Gallows Volley so the player sees the actual tactical problem before combat.
 - Synced `docs/CONCEPT.md` with the implemented solo compensation: HP ×2, damage ×1.8, attack cadence ×1.25 and movement ×1.10.
