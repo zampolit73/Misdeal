@@ -1211,7 +1211,7 @@ func begin_last_deal() -> bool:
 
 func get_last_deal_price_text() -> String:
 	if not last_deal_offer_artifact_id.is_empty():
-		var artifact := get_artifact(last_deal_offer_artifact_id)
+		var artifact: ArtifactData = get_artifact(last_deal_offer_artifact_id)
 		if artifact != null:
 			return "ЦЕНА: %s\nВолшебник заберёт реликвию навсегда." % artifact.title
 		return "ЦЕНА: ОДНА РЕЛИКВИЯ"
@@ -1222,8 +1222,8 @@ func accept_last_deal() -> bool:
 		return false
 
 	if not last_deal_offer_artifact_id.is_empty():
-		var artifact := get_artifact(last_deal_offer_artifact_id)
-		var artifact_title := artifact.title if artifact != null else "реликвия"
+		var artifact: ArtifactData = get_artifact(last_deal_offer_artifact_id)
+		var artifact_title: String = artifact.title if artifact != null else "реликвия"
 		if not remove_artifact(last_deal_offer_artifact_id):
 			return false
 		last_deal_payment_text = "Отдана реликвия: %s" % artifact_title
