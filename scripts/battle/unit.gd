@@ -6,6 +6,7 @@ const TACTICAL_ORDER_ASSAULT := "assault"
 const TACTICAL_ORDER_HUNT := "hunt"
 const TACTICAL_ORDER_FORMATION := "formation"
 const TACTICAL_ORDER_SACRIFICE := "sacrifice"
+const TACTICAL_ORDER_DEFIANCE := "defiance"
 const ASSAULT_MOVE_MULTIPLIER := 1.15
 const ART_BASE_POSITION := Vector2(0.0, -12.0)
 
@@ -63,6 +64,7 @@ var enraged := false
 var base_art_modulate := Color.WHITE
 var tactical_order := TACTICAL_ORDER_ASSAULT
 var target_refresh_cooldown := 0.0
+var damage_taken_multiplier := 1.0
 
 var placement_enabled := false
 var placement_bounds := Rect2()
@@ -136,7 +138,7 @@ func set_arena_presentation(value: String) -> void:
 
 func set_tactical_order(order_id: String) -> void:
 	match order_id:
-		TACTICAL_ORDER_ASSAULT, TACTICAL_ORDER_HUNT, TACTICAL_ORDER_FORMATION, TACTICAL_ORDER_SACRIFICE:
+		TACTICAL_ORDER_ASSAULT, TACTICAL_ORDER_HUNT, TACTICAL_ORDER_FORMATION, TACTICAL_ORDER_SACRIFICE, TACTICAL_ORDER_DEFIANCE:
 			tactical_order = order_id
 		_:
 			tactical_order = TACTICAL_ORDER_ASSAULT
@@ -842,16 +844,18 @@ func take_attrition_damage(amount: float) -> void:
 	if hp <= 0.0:
 		_die()
 
+
 func take_damage(amount: float, source_role: String = "", source_position: Vector2 = Vector2.ZERO) -> void:
 	if not alive:
 		return
 
-	_show_damage_number(amount)
+	var applied_amount := maxf(0.0, amount * damage_taken_multiplier)
+	_show_damage_number(applied_amount)
 	_play_hit_feedback(source_position)
 	_spawn_impact_sparks(source_role, source_position)
 	_play_combat_audio("hit")
 
-	hp = maxf(0.0, hp - amount)
+	hp = maxf(0.0, hp - applied_amount)
 	health_bar.value = hp
 
 	if team == 0 and not critical_announced and hp > 0.0 and hp / maxf(1.0, max_hp) <= 0.25:

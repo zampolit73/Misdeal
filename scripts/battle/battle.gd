@@ -10,9 +10,14 @@ const TACTICAL_ORDER_ASSAULT := "assault"
 const TACTICAL_ORDER_HUNT := "hunt"
 const TACTICAL_ORDER_FORMATION := "formation"
 const TACTICAL_ORDER_SACRIFICE := "sacrifice"
+const TACTICAL_ORDER_DEFIANCE := "defiance"
 const SACRIFICE_DAMAGE_MULTIPLIER := 1.40
 const SACRIFICE_ATTACK_SPEED_MULTIPLIER := 1.20
 const SACRIFICE_HP_DRAIN_PER_SECOND := 0.02
+const DEFIANCE_DAMAGE_MULTIPLIER := 0.85
+const DEFIANCE_INCOMING_DAMAGE_MULTIPLIER := 0.80
+const SIDE_OBJECTIVE_GOLD := 15
+const BONE_CRUSH_TIME_LIMIT := 16.0
 
 @onready var title_label: Label = $Title
 @onready var deal_label: Label = $DealLabel
@@ -40,6 +45,8 @@ const SACRIFICE_HP_DRAIN_PER_SECOND := 0.02
 @onready var last_deal_accept_button: Button = $ResultOverlay/LastDealAccept
 @onready var last_deal_refuse_button: Button = $ResultOverlay/LastDealRefuse
 @onready var placement_hint: Label = $PlacementHint
+@onready var side_objective_panel: Panel = $SideObjectivePanel
+@onready var side_objective_label: Label = $SideObjectivePanel/ObjectiveLabel
 @onready var deployment_zone_a: Panel = $DeploymentZoneA
 @onready var deployment_zone_b: Panel = $DeploymentZoneB
 @onready var order_label: Label = $OrderLabel
@@ -47,6 +54,7 @@ const SACRIFICE_HP_DRAIN_PER_SECOND := 0.02
 @onready var hunt_order_button: Button = $HuntOrderButton
 @onready var formation_order_button: Button = $FormationOrderButton
 @onready var sacrifice_order_button: Button = $SacrificeOrderButton
+@onready var defiance_order_button: Button = $DefianceOrderButton
 @onready var order_description_label: Label = $OrderDescription
 
 var encounter: EncounterData
@@ -57,6 +65,11 @@ var boss_reinforcements_spawned := false
 var tactical_order := TACTICAL_ORDER_ASSAULT
 var wizard_critical_line_shown := false
 var sacrifice_order_unlocked := false
+var defiance_order_unlocked := false
+var side_objective_id := ""
+var side_objective_failed := false
+var first_enemy_death_seen := false
+var combat_elapsed := 0.0
 
 func _ready() -> void:
 	if not RunState.has_chosen_protagonist():
@@ -72,11 +85,14 @@ func _ready() -> void:
 	hunt_order_button.pressed.connect(_on_hunt_order_pressed)
 	formation_order_button.pressed.connect(_on_formation_order_pressed)
 	sacrifice_order_button.pressed.connect(_on_sacrifice_order_pressed)
+	defiance_order_button.pressed.connect(_on_defiance_order_pressed)
 	assault_order_button.tooltip_text = "Ближайшая цель и +15% скорость движения."
 	hunt_order_button.tooltip_text = "Сначала поддержка и дальние враги."
 	formation_order_button.tooltip_text = "Фокус угрозы рядом с самым уязвимым союзником."
 	sacrifice_order_button.tooltip_text = "+40% урона, +20% скорость атак, но герои теряют 2% макс. HP каждую секунду."
+	defiance_order_button.tooltip_text = "-20% входящего урона, но -15% собственного урона."
 	sacrifice_order_unlocked = RunState.has_sacrifice_order_for_next_battle()
+	defiance_order_unlocked = RunState.has_defiance_order_for_next_battle()
 	_configure_tactical_order_buttons()
 	restart_button.disabled = true
 	continue_button.visible = false
@@ -110,6 +126,7 @@ func _ready() -> void:
 	intro_scrim.visible = false
 	intro_title.visible = false
 	intro_encounter.visible = false
+	_configure_side_objective()
 	_spawn_encounter()
 	_begin_preparation_phase()
 
@@ -313,9 +330,52 @@ func _apply_artifacts_to_unit(unit: BattleUnit) -> void:
 
 
 
+func _configure_side_objective() -> void:
+	side_objective_id = ""
+	side_objective_failed = false
+	first_enemy_death_seen = false
+	combat_elapsed = 0.0
+	side_objective_panel.visible = false
+
+	match encounter.encounter_id:
+		"grave_bell":
+			side_objective_id = "bell_first"
+			side_objective_label.text = "УСЛОВИЕ ВОЛШЕБНИКА\nЗвонарь должен пасть первым • +%d золота" % SIDE_OBJECTIVE_GOLD
+		"gallows_volley":
+			side_objective_id = "no_critical"
+			side_objective_label.text = "УСЛОВИЕ ВОЛШЕБНИКА\nНикто не ниже 25%% HP • +%d золота" % SIDE_OBJECTIVE_GOLD
+		"bone_crush":
+			side_objective_id = "fast_crush"
+			side_objective_label.text = "УСЛОВИЕ ВОЛШЕБНИКА\nПобедить за %.0f сек • +%d золота" % [BONE_CRUSH_TIME_LIMIT, SIDE_OBJECTIVE_GOLD]
+
+	side_objective_panel.visible = not side_objective_id.is_empty()
+
+func _fail_side_objective(message: String) -> void:
+	if side_objective_failed:
+		return
+	side_objective_failed = true
+	side_objective_label.text = message
+	side_objective_label.add_theme_color_override("font_color", Color(0.82, 0.38, 0.30, 1.0))
+
+func _claim_side_objective_reward() -> String:
+	if side_objective_id.is_empty() or side_objective_failed:
+		return ""
+
+	if side_objective_id == "bell_first" and not first_enemy_death_seen:
+		return ""
+	if side_objective_id == "fast_crush" and combat_elapsed > BONE_CRUSH_TIME_LIMIT:
+		return ""
+
+	RunState.gold += SIDE_OBJECTIVE_GOLD
+	return "УСЛОВИЕ ВОЛШЕБНИКА выполнено: +%d золота." % SIDE_OBJECTIVE_GOLD
+
+
 func _begin_preparation_phase() -> void:
 	if _is_boss_encounter():
 		status_label.text = "НАДЗИРАТЕЛЬ — удары по площади. На 50% HP: ярость и подкрепление."
+		var verdict := RunState.get_act1_reckoning_label()
+		if not verdict.is_empty():
+			status_label.text += " ПРИГОВОР: %s." % verdict
 	elif _is_death_wager_encounter():
 		status_label.text = "СТАВКА НА СМЕРТЬ — 5 врагов. Страж держит центр; лучники — главная угроза."
 	elif _is_elite_encounter():
@@ -337,6 +397,7 @@ func _begin_preparation_phase() -> void:
 	run_condition_label.visible = not run_condition_label.text.is_empty()
 	placement_hint.text = _get_placement_hint_text()
 	placement_hint.visible = true
+	side_objective_panel.visible = not side_objective_id.is_empty()
 
 	for unit in units:
 		if unit.team == 0:
@@ -359,10 +420,18 @@ func _on_sacrifice_order_pressed() -> void:
 	_select_tactical_order(TACTICAL_ORDER_SACRIFICE)
 
 
+
+func _on_defiance_order_pressed() -> void:
+	if not defiance_order_unlocked:
+		return
+	_select_tactical_order(TACTICAL_ORDER_DEFIANCE)
+
 func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 	if combat_started or battle_finished:
 		return
 	if order_id == TACTICAL_ORDER_SACRIFICE and not sacrifice_order_unlocked:
+		return
+	if order_id == TACTICAL_ORDER_DEFIANCE and not defiance_order_unlocked:
 		return
 
 	tactical_order = order_id
@@ -370,6 +439,7 @@ func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 	hunt_order_button.button_pressed = tactical_order == TACTICAL_ORDER_HUNT
 	formation_order_button.button_pressed = tactical_order == TACTICAL_ORDER_FORMATION
 	sacrifice_order_button.button_pressed = tactical_order == TACTICAL_ORDER_SACRIFICE
+	defiance_order_button.button_pressed = tactical_order == TACTICAL_ORDER_DEFIANCE
 	order_description_label.text = _get_tactical_order_description(tactical_order)
 	_apply_tactical_order_stats()
 
@@ -378,9 +448,13 @@ func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 			unit.set_tactical_order(tactical_order)
 
 	if announce:
-		order_description_label.modulate = Color(1.0, 0.50, 0.32, 1.0) if tactical_order == TACTICAL_ORDER_SACRIFICE else Color(1.0, 0.88, 0.66, 1.0)
+		if tactical_order == TACTICAL_ORDER_SACRIFICE:
+			order_description_label.modulate = Color(1.0, 0.50, 0.32, 1.0)
+		elif tactical_order == TACTICAL_ORDER_DEFIANCE:
+			order_description_label.modulate = Color(0.48, 0.78, 1.0, 1.0)
+		else:
+			order_description_label.modulate = Color(1.0, 0.88, 0.66, 1.0)
 		_play_battle_audio("order")
-
 
 func _get_tactical_order_description(order_id: String) -> String:
 	match order_id:
@@ -390,25 +464,35 @@ func _get_tactical_order_description(order_id: String) -> String:
 			return "СТРОЙ — фокус угрозы рядом с самым уязвимым союзником."
 		TACTICAL_ORDER_SACRIFICE:
 			return "ЖЕРТВА — +40% урона, +20% скорость атак, -2% макс. HP/сек."
+		TACTICAL_ORDER_DEFIANCE:
+			return "НЕПОВИНОВЕНИЕ — -20% входящего урона, но -15% собственного."
 		_:
 			return "НАТИСК — ближайшая цель, +15% скорость движения."
 
 func _configure_tactical_order_buttons() -> void:
 	sacrifice_order_button.visible = sacrifice_order_unlocked
-	if not sacrifice_order_unlocked:
-		return
+	defiance_order_button.visible = defiance_order_unlocked
 
 	var buttons: Array[Button] = [
 		assault_order_button,
 		hunt_order_button,
-		formation_order_button,
-		sacrifice_order_button
+		formation_order_button
 	]
+	if sacrifice_order_unlocked:
+		buttons.append(sacrifice_order_button)
+	if defiance_order_unlocked:
+		buttons.append(defiance_order_button)
+
+	if buttons.size() <= 3:
+		return
+
+	var spacing := 78.0 if buttons.size() == 4 else 76.0
 	for index in range(buttons.size()):
 		var button: Button = buttons[index]
-		button.position = Vector2(46.0 + float(index) * 78.0, 626.0)
+		button.position = Vector2(46.0 + float(index) * spacing, 626.0)
 		button.size = Vector2(72.0, 42.0)
-		button.add_theme_font_size_override("font_size", 11)
+		button.add_theme_font_size_override("font_size", 10 if buttons.size() == 5 else 11)
+
 
 func _apply_tactical_order_stats() -> void:
 	for unit in units:
@@ -418,10 +502,13 @@ func _apply_tactical_order_stats() -> void:
 		var base_interval: float = float(unit.get_meta("order_base_attack_interval", unit.attack_interval))
 		unit.damage = base_damage
 		unit.attack_interval = base_interval
+		unit.damage_taken_multiplier = 1.0
 		if tactical_order == TACTICAL_ORDER_SACRIFICE:
 			unit.damage = maxf(1.0, base_damage * SACRIFICE_DAMAGE_MULTIPLIER)
 			unit.attack_interval = maxf(0.2, base_interval / SACRIFICE_ATTACK_SPEED_MULTIPLIER)
-
+		elif tactical_order == TACTICAL_ORDER_DEFIANCE:
+			unit.damage = maxf(1.0, base_damage * DEFIANCE_DAMAGE_MULTIPLIER)
+			unit.damage_taken_multiplier = DEFIANCE_INCOMING_DAMAGE_MULTIPLIER
 
 func _build_battle_condition_text() -> String:
 	var lines: Array[String] = []
@@ -439,7 +526,9 @@ func _build_battle_condition_text() -> String:
 		lines.append("ПЕЧАТЬ • ВРАГИ +15%")
 	if sacrifice_order_unlocked:
 		lines.append("ЖЕРТВА ДОСТУПНА")
-	elif RunState.last_deal_used:
+	if defiance_order_unlocked:
+		lines.append("НЕПОВИНОВЕНИЕ ДОСТУПНО")
+	if RunState.last_deal_used and not sacrifice_order_unlocked and not defiance_order_unlocked:
 		lines.append("ПОСЛЕДНЯЯ СДЕЛКА • ИСПОЛЬЗОВАНА")
 
 	return "\n".join(lines)
@@ -451,30 +540,74 @@ func _lock_tactical_orders() -> void:
 	sacrifice_order_button.disabled = true
 	order_description_label.text = "ПРИКАЗ ЗАКРЕПЛЁН: %s" % _get_tactical_order_description(tactical_order)
 
+func _get_boss_phase_two_reinforcements() -> Array[Dictionary]:
+	match RunState.get_act1_reckoning_profile():
+		"witnessless":
+			return [
+				{"path": "res://resources/units/bone_thrall.tres", "name": "Безымянный раб", "position": Vector2(1070, 125)},
+				{"path": "res://resources/units/bone_thrall.tres", "name": "Безымянный раб", "position": Vector2(1040, 385)}
+			]
+		"scarred":
+			return [
+				{"path": "res://resources/units/grave_bellkeeper.tres", "name": "Могильный исповедник", "position": Vector2(1050, 245)}
+			]
+		"riskbound":
+			return [
+				{"path": "res://resources/units/bone_archer.tres", "name": "Сборщик ставки", "position": Vector2(1070, 125)},
+				{"path": "res://resources/units/bone_archer.tres", "name": "Сборщик ставки", "position": Vector2(1040, 385)}
+			]
+		_:
+			var default_plan: Array[Dictionary] = []
+			var count := mini(encounter.reinforcement_unit_paths.size(), encounter.reinforcement_positions.size())
+			for index in range(count):
+				var unit_name := ""
+				if index < encounter.reinforcement_names.size():
+					unit_name = encounter.reinforcement_names[index]
+				default_plan.append({
+					"path": encounter.reinforcement_unit_paths[index],
+					"name": unit_name,
+					"position": encounter.reinforcement_positions[index]
+				})
+			return default_plan
+
+func _get_boss_phase_two_wizard_line() -> String:
+	match RunState.get_act1_reckoning_profile():
+		"witnessless":
+			return "Без свидетелей пришёл — без свидетелей и останешься. Надзиратель, выпусти рабов."
+		"scarred":
+			return "Столько шрамов. Посмотрим, сумеет ли колокол удержать моего надзирателя на ногах."
+		"riskbound":
+			return "Любишь ставки? Тогда вот тебе две стрелы, которые тоже любят проценты."
+		_:
+			return "Вот теперь надзиратель вспомнил, зачем я его держу."
+
+
 func _on_boss_enraged(_unit: BattleUnit) -> void:
 	if not _is_boss_encounter() or boss_reinforcements_spawned:
 		return
 
 	boss_reinforcements_spawned = true
 	enemy_label.text = "БОСС • ЯРОСТЬ"
+	var verdict := RunState.get_act1_reckoning_label()
 	status_label.text = "ФАЗА II — надзиратель зовёт подкрепление!"
-	_show_wizard_line("Вот теперь надзиратель вспомнил, зачем я его держу.", true)
+	if not verdict.is_empty():
+		status_label.text += " ПРИГОВОР: %s." % verdict
+	_show_wizard_line(_get_boss_phase_two_wizard_line(), true)
 	if arena_visual.has_method("set_boss_phase_two"):
 		arena_visual.call("set_boss_phase_two", true)
 
 	_show_boss_phase_flash()
 
-	var count := mini(encounter.reinforcement_unit_paths.size(), encounter.reinforcement_positions.size())
-	for index in range(count):
-		var reinforcement_data := load(encounter.reinforcement_unit_paths[index]) as UnitData
+	var plan: Array[Dictionary] = _get_boss_phase_two_reinforcements()
+	for entry in plan:
+		var reinforcement_data := load(String(entry.get("path", ""))) as UnitData
 		if reinforcement_data == null:
 			continue
-
-		var reinforcement_name := reinforcement_data.unit_name
-		if index < encounter.reinforcement_names.size() and not encounter.reinforcement_names[index].is_empty():
-			reinforcement_name = encounter.reinforcement_names[index]
-
-		_spawn_unit(reinforcement_data, 1, encounter.reinforcement_positions[index], reinforcement_name)
+		var reinforcement_name: String = String(entry.get("name", reinforcement_data.unit_name))
+		if reinforcement_name.is_empty():
+			reinforcement_name = reinforcement_data.unit_name
+		var reinforcement_position: Vector2 = entry.get("position", Vector2(1040, 245))
+		_spawn_unit(reinforcement_data, 1, reinforcement_position, reinforcement_name)
 
 func _show_boss_phase_flash() -> void:
 	var phase_label := Label.new()
@@ -502,21 +635,29 @@ func _on_placement_rejected(unit: BattleUnit) -> void:
 	status_label.text = "%s нельзя поставить поверх другого героя." % unit.display_name
 
 
+
 func _on_fight_pressed() -> void:
 	if combat_started or battle_finished:
 		return
 
 	combat_started = true
+	combat_elapsed = 0.0
 	fight_button.disabled = true
 	placement_hint.visible = false
 	_lock_tactical_orders()
 	_hide_preparation_hud()
+	side_objective_panel.visible = not side_objective_id.is_empty()
 
 	if sacrifice_order_unlocked:
 		RunState.consume_sacrifice_order_for_battle()
 		sacrifice_order_unlocked = false
+	if defiance_order_unlocked:
+		RunState.consume_defiance_order_for_battle()
+		defiance_order_unlocked = false
 	if tactical_order == TACTICAL_ORDER_SACRIFICE:
 		RunState.record_wizard_memory("sacrifice_order")
+	elif tactical_order == TACTICAL_ORDER_DEFIANCE:
+		RunState.record_wizard_memory("defiance_order")
 
 	await _play_combat_intro()
 	if battle_finished:
@@ -525,6 +666,9 @@ func _on_fight_pressed() -> void:
 	if tactical_order == TACTICAL_ORDER_SACRIFICE:
 		status_label.text = "ЖЕРТВА — сила растёт, жизнь уходит каждую секунду."
 		_show_wizard_line("Вот так. Сгорите быстрее, чем они успеют вас убить.", true)
+	elif tactical_order == TACTICAL_ORDER_DEFIANCE:
+		status_label.text = "НЕПОВИНОВЕНИЕ — вы держите удар, но отвечаете слабее."
+		_show_wizard_line("Сопротивляйся. Мне даже любопытно, сколько это продлится.", true)
 	else:
 		status_label.text = "Ставка сделана. Назад пути нет."
 		_show_wizard_line(_get_combat_start_wizard_line())
@@ -533,7 +677,6 @@ func _on_fight_pressed() -> void:
 	for unit in units:
 		if unit.alive:
 			unit.start_combat()
-
 
 
 func _hide_preparation_hud() -> void:
@@ -547,6 +690,7 @@ func _hide_preparation_hud() -> void:
 	hunt_order_button.visible = false
 	formation_order_button.visible = false
 	sacrifice_order_button.visible = false
+	defiance_order_button.visible = false
 	order_description_label.visible = false
 	fight_button.visible = false
 	restart_button.visible = false
@@ -621,15 +765,35 @@ func _show_wizard_line(message: String, urgent: bool = false) -> void:
 	tween.tween_property(wizard_commentary_panel, "modulate:a", 1.0, 0.16)
 	tween.tween_property(wizard_commentary_label, "modulate:a", 1.0, 0.16)
 
+
 func _on_unit_health_critical(unit: BattleUnit) -> void:
-	if battle_finished or wizard_critical_line_shown or unit.team != 0:
+	if battle_finished or unit.team != 0:
+		return
+
+	if side_objective_id == "no_critical" and not side_objective_failed:
+		_fail_side_objective("УСЛОВИЕ ПРОВАЛЕНО • герой опустился ниже 25% HP")
+
+	if wizard_critical_line_shown:
 		return
 
 	wizard_critical_line_shown = true
 	_show_wizard_line("%s уже слышит, как стол считает последнюю карту." % unit.display_name, true)
 
 func _process(delta: float) -> void:
-	if not combat_started or battle_finished or tactical_order != TACTICAL_ORDER_SACRIFICE:
+	if not combat_started or battle_finished:
+		return
+
+	combat_elapsed += delta
+	if side_objective_id == "fast_crush" and not side_objective_failed:
+		if combat_elapsed > BONE_CRUSH_TIME_LIMIT:
+			_fail_side_objective("УСЛОВИЕ ПРОВАЛЕНО • время вышло")
+		else:
+			side_objective_label.text = "УСЛОВИЕ ВОЛШЕБНИКА\nПобедить за %.1f сек • +%d золота" % [
+				maxf(0.0, BONE_CRUSH_TIME_LIMIT - combat_elapsed),
+				SIDE_OBJECTIVE_GOLD
+			]
+
+	if tactical_order != TACTICAL_ORDER_SACRIFICE:
 		return
 
 	for unit in units:
@@ -638,9 +802,17 @@ func _process(delta: float) -> void:
 		if unit.team == 0 and unit.alive:
 			unit.take_attrition_damage(unit.max_hp * SACRIFICE_HP_DRAIN_PER_SECOND * delta)
 
+
 func _on_unit_died(dead_unit: BattleUnit) -> void:
 	if battle_finished:
 		return
+
+	if dead_unit.team == 1 and side_objective_id == "bell_first" and not first_enemy_death_seen:
+		first_enemy_death_seen = true
+		if dead_unit.visual_role == "grave_bellkeeper":
+			side_objective_label.text = "УСЛОВИЕ ВЫПОЛНЕНО\nЗвонарь пал первым • награда после победы"
+		else:
+			_fail_side_objective("УСЛОВИЕ ПРОВАЛЕНО • первым пал не звонарь")
 
 	var heroes_alive := 0
 	var enemies_alive := 0
@@ -659,7 +831,6 @@ func _on_unit_died(dead_unit: BattleUnit) -> void:
 		_finish_battle(false)
 	elif dead_unit.team == 0:
 		_show_wizard_line("Один уже понял правила. Остальные — следом.", true)
-
 
 func _show_last_deal_offer() -> void:
 	result_label.text = "ПОСЛЕДНЯЯ СДЕЛКА"
@@ -725,6 +896,8 @@ func _finish_battle(player_won: bool) -> void:
 	hunt_order_button.visible = false
 	formation_order_button.visible = false
 	sacrifice_order_button.visible = false
+	defiance_order_button.visible = false
+	side_objective_panel.visible = false
 	order_description_label.visible = false
 	bottom_hud_panel.visible = false
 	wizard_commentary_panel.visible = false
@@ -736,6 +909,7 @@ func _finish_battle(player_won: bool) -> void:
 	last_deal_refuse_button.visible = false
 
 	if player_won:
+		var side_objective_reward_text := _claim_side_objective_reward()
 		_play_battle_audio("victory")
 		result_label.text = "ПОБЕДА"
 		if _is_boss_encounter():
@@ -750,6 +924,8 @@ func _finish_battle(player_won: bool) -> void:
 			result_subtitle.text = "Последние врата перед надзирателем открыты."
 		else:
 			result_subtitle.text = "Волшебник выглядит слегка раздражённым."
+		if not side_objective_reward_text.is_empty():
+			result_subtitle.text += "\n%s" % side_objective_reward_text
 		status_label.text = "Карта пережита. Пока что."
 		continue_button.text = "ЗАБРАТЬ НАГРАДУ"
 		continue_button.visible = true

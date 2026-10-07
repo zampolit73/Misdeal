@@ -292,6 +292,32 @@ offset_right = 560.0
 offset_bottom = 558.0
 theme_override_styles/panel = SubResource("DeploymentZoneStyle")
 
+[node name="SideObjectivePanel" type="Panel" parent="."]
+z_index = 5092
+visible = false
+mouse_filter = 2
+offset_left = 862.0
+offset_top = 594.0
+offset_right = 1236.0
+offset_bottom = 706.0
+theme_override_styles/panel = SubResource("WizardPanel")
+
+[node name="ObjectiveLabel" type="Label" parent="SideObjectivePanel"]
+mouse_filter = 2
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 362.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(0.86, 0.72, 0.52, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.95)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "УСЛОВИЕ ВОЛШЕБНИКА"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="UnitsLayer" type="Node2D" parent="."]
 position = Vector2(20, 150)
 
@@ -393,6 +419,27 @@ theme_override_styles/hover = SubResource("ButtonHover")
 theme_override_styles/pressed = SubResource("ButtonPressed")
 theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "ЖЕРТВА"
+
+[node name="DefianceOrderButton" type="Button" parent="."]
+z_index = 5100
+visible = false
+offset_left = 356.0
+offset_top = 626.0
+offset_right = 428.0
+offset_bottom = 668.0
+toggle_mode = true
+theme_override_colors/font_color = Color(0.48, 0.78, 1.0, 1)
+theme_override_colors/font_hover_color = Color(0.72, 0.90, 1.0, 1)
+theme_override_colors/font_pressed_color = Color(0.82, 0.94, 1.0, 1)
+theme_override_colors/font_shadow_color = Color(0.01, 0.05, 0.16, 0.95)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("ButtonNormal")
+theme_override_styles/hover = SubResource("ButtonHover")
+theme_override_styles/pressed = SubResource("ButtonPressed")
+theme_override_styles/disabled = SubResource("ButtonDisabled")
+text = "НЕПОВИН."
 
 [node name="OrderDescription" type="Label" parent="."]
 z_index = 5100
