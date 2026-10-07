@@ -16,6 +16,7 @@ const SACRIFICE_HP_DRAIN_PER_SECOND := 0.02
 
 @onready var title_label: Label = $Title
 @onready var deal_label: Label = $DealLabel
+@onready var run_condition_label: Label = $RunConditionLabel
 @onready var enemy_label: Label = $EnemyLabel
 @onready var battle_backdrop: TextureRect = $BattleBackdrop
 @onready var arena_visual: Control = $Arena
@@ -236,29 +237,27 @@ func _apply_artifacts_to_unit(unit: BattleUnit) -> void:
 		unit.splash_damage_multiplier += artifact.splash_damage_bonus
 		unit.move_speed *= artifact.move_speed_multiplier
 
+
 func _begin_preparation_phase() -> void:
 	if _is_boss_encounter():
-		status_label.text = "БОСС — надзиратель бьёт по площади. На половине здоровья начнётся вторая фаза."
+		status_label.text = "НАДЗИРАТЕЛЬ — удары по площади. На 50% HP: ярость и подкрепление."
 	elif _is_death_wager_encounter():
-		status_label.text = "СТАВКА НА СМЕРТЬ — пять врагов и усиленная награда. Лучников лучше не оставлять без внимания."
+		status_label.text = "СТАВКА НА СМЕРТЬ — 5 врагов. Страж держит центр; лучники — главная угроза."
 	elif _is_elite_encounter():
-		status_label.text = "ЭЛИТА — страж бьёт по площади. Не собирайте героев в одну точку."
+		status_label.text = "ЭЛИТА — страж бьёт по площади. Разведите героев и не стойте плотной группой."
 	elif encounter.encounter_id == "grave_bell":
-		status_label.text = "МОГИЛЬНЫЙ ЗВОН — звонарь периодически лечит ближайшую нежить."
+		status_label.text = "МОГИЛЬНЫЙ ЗВОН — звонарь лечит нежить. «ОХОТА» помогает быстрее добраться до поддержки."
 	elif encounter.encounter_id == "bone_crush":
-		status_label.text = "КОСТЯНАЯ ДАВКА — пять слабых врагов. Маг особенно полезен против толпы."
+		status_label.text = "КОСТЯНАЯ ДАВКА — 5 хрупких целей. Урон по площади особенно эффективен."
 	elif encounter.encounter_id == "ossuary_gate":
-		status_label.text = "ВРАТА ОССУАРИЯ — страж держит фронт, звонарь лечит, лучник давит с тыла."
+		status_label.text = "ВРАТА ОССУАРИЯ — страж впереди, звонарь лечит, лучник давит с тыла."
+	elif encounter.encounter_id == "gallows_volley":
+		status_label.text = "ЗАЛП С ВИСЕЛИЦЫ — два лучника за фронтлайном. «ОХОТА» повышает их приоритет."
 	else:
-		status_label.text = "ПОДГОТОВКА — расставьте героев и нажмите «БОЙ»."
+		status_label.text = "ПОДГОТОВКА — расставьте героев, выберите приказ и запускайте бой."
 
-	if RunState.wizard_debt_active:
-		status_label.text += "  ДОЛГ ВОЛШЕБНИКУ: враги наносят +25% урона."
-
-	var party_strength := RunState.get_party_strength_text()
-	if not party_strength.is_empty():
-		status_label.text += "  %s." % party_strength
-
+	run_condition_label.text = _build_battle_condition_text()
+	run_condition_label.visible = not run_condition_label.text.is_empty()
 	placement_hint.visible = true
 
 	for unit in units:
@@ -345,6 +344,25 @@ func _apply_tactical_order_stats() -> void:
 			unit.damage = maxf(1.0, base_damage * SACRIFICE_DAMAGE_MULTIPLIER)
 			unit.attack_interval = maxf(0.2, base_interval / SACRIFICE_ATTACK_SPEED_MULTIPLIER)
 
+
+func _build_battle_condition_text() -> String:
+	var lines: Array[String] = []
+	match RunState.get_party_size():
+		1:
+			lines.append("СОЛО • HP ×2 • УРОН ×1.8 • АТАКИ ×1.25")
+		2:
+			lines.append("ДУО • HP +20% • УРОН +15%")
+		_:
+			lines.append("ОТРЯД 3/3")
+
+	if RunState.wizard_debt_active:
+		lines.append("ДОЛГ • ВРАГИ +25%")
+	if sacrifice_order_unlocked:
+		lines.append("ЖЕРТВА ДОСТУПНА")
+	elif RunState.last_deal_used:
+		lines.append("ПОСЛЕДНЯЯ СДЕЛКА • ИСПОЛЬЗОВАНА")
+
+	return "\n".join(lines)
 
 func _lock_tactical_orders() -> void:
 	assault_order_button.disabled = true
@@ -436,8 +454,10 @@ func _on_fight_pressed() -> void:
 		if unit.alive:
 			unit.start_combat()
 
+
 func _hide_preparation_hud() -> void:
 	bottom_hud_panel.visible = false
+	run_condition_label.visible = false
 	order_label.visible = false
 	assault_order_button.visible = false
 	hunt_order_button.visible = false
