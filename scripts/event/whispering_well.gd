@@ -1,5 +1,7 @@
 extends Control
 
+const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
+
 @onready var wizard_line: Label = $WizardLine
 @onready var description_label: Label = $Description
 @onready var gold_label: Label = $GoldLabel
@@ -7,6 +9,9 @@ extends Control
 @onready var accept_button: Button = $Choices/AcceptGift
 @onready var pay_button: Button = $Choices/PayCoin
 @onready var leave_button: Button = $Choices/Leave
+@onready var accept_art: TextureRect = $Choices/AcceptGift/ChoiceArt
+@onready var pay_art: TextureRect = $Choices/PayCoin/ChoiceArt
+@onready var leave_art: TextureRect = $Choices/Leave/ChoiceArt
 @onready var header_panel: Panel = $HeaderPanel
 @onready var choices: HBoxContainer = $Choices
 
@@ -22,6 +27,7 @@ func _ready() -> void:
 		wizard_line.text = "«Ты слышишь его голос? В прошлый раз ты полез за ним.»"
 		description_label.text = "Из чёрной воды зовёт молодой маг. Это не призрак — это момент, который вы однажды изменили."
 	_refresh_choice_text()
+	_apply_choice_art()
 	_animate_screen_in()
 
 func _refresh_choice_text() -> void:
@@ -75,6 +81,35 @@ func _refresh_choice_text() -> void:
 		pay_button.text = "БРОСИТЬ 25 ЗОЛОТА\n\nКолодец молчит"
 
 	leave_button.text = "ОТОЙТИ ОТ КОЛОДЦА"
+
+func _apply_choice_art() -> void:
+	var well_art := CARD_ART_CATALOG.get_run_card_texture("whispering_well")
+	var accept_texture: Texture2D = well_art
+	var pay_texture: Texture2D = CARD_ART_CATALOG.get_reward_texture("relic_wager")
+
+	if not RunState.can_recruit_companion("mage"):
+		var gift_role := "mage"
+		if not RunState.can_claim_extra_hero_upgrade() or RunState.get_next_extra_hero_upgrade_id(gift_role).is_empty():
+			gift_role = RunState.get_least_developed_extra_role()
+		if not gift_role.is_empty():
+			var gift_upgrade_id := RunState.get_next_extra_hero_upgrade_id(gift_role)
+			if not gift_upgrade_id.is_empty():
+				accept_texture = CARD_ART_CATALOG.get_upgrade_texture(gift_upgrade_id)
+
+		if RunState.get_available_artifact_ids().is_empty():
+			var fallback_role := RunState.get_least_developed_extra_role()
+			if not fallback_role.is_empty():
+				var fallback_id := RunState.get_next_extra_hero_upgrade_id(fallback_role)
+				if not fallback_id.is_empty():
+					pay_texture = CARD_ART_CATALOG.get_upgrade_texture(fallback_id)
+
+	accept_art.texture = accept_texture
+	pay_art.texture = pay_texture
+	leave_art.texture = well_art
+	for art in [accept_art, pay_art, leave_art]:
+		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		art.visible = art.texture != null
+	leave_art.modulate = Color(0.62, 0.70, 0.72, 0.74)
 
 func _animate_screen_in() -> void:
 	header_panel.pivot_offset = header_panel.size * 0.5

@@ -24,6 +24,10 @@ const EVENT_POLISH_ART := preload("res://scripts/ui/event_polish_art.gd")
 @onready var feature_scene_art: TextureRect = $FeatureSceneArt
 @onready var event_decor: TextureRect = $EventDecor
 @onready var feature_header: Panel = $FeatureHeader
+@onready var event_art_frame: Panel = $Panel/EventArtFrame
+@onready var event_hero_art: TextureRect = $Panel/EventHeroArt
+@onready var gold_chip: Panel = $Panel/GoldChip
+@onready var state_chip: Panel = $Panel/StateChip
 @onready var choice_art_a: TextureRect = $Panel/Choices/ChoiceA/ChoiceArt
 @onready var choice_art_b: TextureRect = $Panel/Choices/ChoiceB/ChoiceArt
 @onready var choice_art_c: TextureRect = $Panel/Choices/ChoiceC/ChoiceArt
@@ -50,6 +54,7 @@ func _ready() -> void:
 	_apply_approved_choice_art()
 	_apply_event_theme()
 	_apply_event_layout()
+	_apply_choice_semantic_styles()
 	_connect_choice_feedback()
 	_animate_screen_in()
 
@@ -96,10 +101,18 @@ func _apply_approved_choice_art() -> void:
 			for index in range(buttons.size()):
 				var art := arts[index]
 				var button := buttons[index]
-				if not button.visible or event_art == null:
+				if not button.visible:
 					art.visible = false
 					continue
-				art.texture = event_art
+
+				var choice_texture := _get_upgrade_choice_art(button)
+				if choice_texture == null:
+					choice_texture = event_art
+				if choice_texture == null:
+					art.visible = false
+					continue
+
+				art.texture = choice_texture
 				art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 				art.visible = true
 				art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
@@ -117,6 +130,23 @@ func _apply_approved_choice_art() -> void:
 		art.visible = art.texture != null
 		art.modulate = Color(0.42, 0.42, 0.42, 0.72) if buttons[index].disabled else Color.WHITE
 		_apply_choice_art_margins(buttons[index])
+
+func _get_upgrade_choice_art(button: Button) -> Texture2D:
+	var upgrade_id := String(button.get_meta("choice_upgrade_id", ""))
+	if not upgrade_id.is_empty():
+		var upgrade_art := CARD_ART_CATALOG.get_upgrade_texture(upgrade_id)
+		if upgrade_art != null:
+			return upgrade_art
+
+	var role := String(button.get_meta("choice_role", ""))
+	match role:
+		"knight":
+			return CARD_ART_CATALOG.get_upgrade_texture("knight_executioner")
+		"ranger":
+			return CARD_ART_CATALOG.get_upgrade_texture("ranger_arrowstorm")
+		"mage":
+			return CARD_ART_CATALOG.get_upgrade_texture("mage_glass_heart")
+	return null
 
 func _apply_choice_art_margins(button: Button) -> void:
 	for style_name in ["normal", "hover", "pressed", "disabled"]:
@@ -137,6 +167,11 @@ func _apply_event_layout() -> void:
 	event_decor.texture = null
 	event_decor.modulate = Color.WHITE
 	feature_header.visible = false
+	event_art_frame.visible = false
+	event_hero_art.visible = false
+	event_hero_art.texture = null
+	gold_chip.visible = false
+	state_chip.visible = false
 	_restore_generic_panel_shell()
 
 	match active_card.card_id:
@@ -175,6 +210,46 @@ func _apply_event_layout() -> void:
 			_apply_prisoner_reference_layout()
 		_:
 			backdrop.modulate = Color(0.82, 0.68, 0.66, 0.88)
+			event_hero_art.texture = CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
+			event_hero_art.visible = event_hero_art.texture != null
+			event_art_frame.visible = event_hero_art.visible
+			gold_chip.visible = true
+			state_chip.visible = true
+			_apply_generic_reference_layout()
+
+func _apply_generic_reference_layout() -> void:
+	title_label.position = Vector2(48.0, 20.0)
+	title_label.size = Vector2(964.0, 44.0)
+	type_label.position = Vector2(48.0, 66.0)
+	type_label.size = Vector2(964.0, 22.0)
+	event_art_frame.position = Vector2(48.0, 104.0)
+	event_art_frame.size = Vector2(286.0, 126.0)
+	event_hero_art.position = Vector2(56.0, 112.0)
+	event_hero_art.size = Vector2(270.0, 110.0)
+	description_label.position = Vector2(356.0, 106.0)
+	description_label.size = Vector2(654.0, 54.0)
+	wizard_line.position = Vector2(356.0, 164.0)
+	wizard_line.size = Vector2(654.0, 58.0)
+	gold_chip.position = Vector2(48.0, 240.0)
+	gold_chip.size = Vector2(246.0, 32.0)
+	state_chip.position = Vector2(310.0, 240.0)
+	state_chip.size = Vector2(702.0, 32.0)
+	gold_label.position = Vector2(62.0, 246.0)
+	gold_label.size = Vector2(218.0, 22.0)
+	artifacts_label.position = Vector2(324.0, 246.0)
+	artifacts_label.size = Vector2(674.0, 22.0)
+	var choices := $Panel/Choices as HBoxContainer
+	choices.position = Vector2(38.0, 286.0)
+	choices.size = Vector2(984.0, 264.0)
+	for button in [choice_a, choice_b, choice_c]:
+		button.custom_minimum_size = Vector2(314.0, 258.0)
+		_resize_choice_art(button, 112.0)
+	result_label.position = Vector2(138.0, 552.0)
+	result_label.size = Vector2(824.0, 42.0)
+	leave_button.position = Vector2(324.0, 604.0)
+	leave_button.size = Vector2(200.0, 46.0)
+	continue_button.position = Vector2(576.0, 604.0)
+	continue_button.size = Vector2(200.0, 46.0)
 
 func _get_event_accent() -> Color:
 	match active_card.card_id:
@@ -245,6 +320,52 @@ func _apply_event_theme() -> void:
 			hover.shadow_color = Color(accent.r, accent.g, accent.b, 0.34)
 			button.add_theme_stylebox_override("hover", hover)
 			button.add_theme_stylebox_override("pressed", hover)
+
+func _get_choice_semantic_accent(button: Button, index: int) -> Color:
+	var role := String(button.get_meta("choice_role", ""))
+	match role:
+		"knight":
+			return Color(0.36, 0.58, 0.86, 1.0)
+		"ranger":
+			return Color(0.40, 0.72, 0.38, 1.0)
+		"mage":
+			return Color(0.66, 0.38, 0.84, 1.0)
+
+	match active_card.card_id:
+		"lost_purse":
+			return [Color(0.38, 0.64, 0.58, 1.0), Color(0.80, 0.56, 0.20, 1.0), Color(0.88, 0.28, 0.18, 1.0)][index]
+		"debtor_bones":
+			return [Color(0.88, 0.28, 0.18, 1.0), Color(0.38, 0.64, 0.58, 1.0), Color(0.78, 0.52, 0.20, 1.0)][index]
+		"rattling_bridge":
+			return [Color(0.84, 0.30, 0.18, 1.0), Color(0.78, 0.56, 0.22, 1.0), Color(0.36, 0.62, 0.70, 1.0)][index]
+		"wizard_tithe":
+			return [Color(0.78, 0.56, 0.22, 1.0), Color(0.82, 0.30, 0.20, 1.0), Color(0.58, 0.36, 0.72, 1.0)][index]
+		"bone_tax":
+			return [Color(0.78, 0.56, 0.22, 1.0), Color(0.82, 0.30, 0.20, 1.0), Color(0.72, 0.38, 0.24, 1.0)][index]
+	return _get_event_accent()
+
+func _apply_choice_semantic_styles() -> void:
+	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
+	for index in range(buttons.size()):
+		var button := buttons[index]
+		var accent := _get_choice_semantic_accent(button, index)
+
+		for style_name in ["normal", "hover", "pressed", "disabled"]:
+			var source := button.get_theme_stylebox(style_name) as StyleBoxFlat
+			if source == null:
+				continue
+			var styled := source.duplicate() as StyleBoxFlat
+			var disabled := style_name == "disabled"
+			var active := style_name == "hover" or style_name == "pressed"
+			styled.border_color = Color(accent.r, accent.g, accent.b, 0.30 if disabled else (1.0 if active else 0.78))
+			if not disabled:
+				styled.bg_color = Color(
+					0.016 + accent.r * (0.075 if active else 0.040),
+					0.012 + accent.g * (0.055 if active else 0.028),
+					0.016 + accent.b * (0.060 if active else 0.030),
+					0.99
+				)
+			button.add_theme_stylebox_override(style_name, styled)
 
 func _restore_generic_panel_shell() -> void:
 	var style := panel.get_theme_stylebox("panel") as StyleBoxFlat
@@ -654,6 +775,12 @@ func _get_role_label(role: String) -> String:
 			return "ГЕРОЙ"
 
 func _set_role_upgrade_button(button: Button, role: String, heading: String, extra_text: String = "") -> void:
+	button.set_meta("choice_role", role)
+	button.remove_meta("choice_upgrade_id")
+	var preview_upgrade_id := RunState.get_next_extra_hero_upgrade_id(role)
+	if not preview_upgrade_id.is_empty():
+		button.set_meta("choice_upgrade_id", preview_upgrade_id)
+
 	if not RunState.is_role_in_party(role):
 		button.text = "%s\n\n%s НЕ В ОТРЯДЕ" % [heading, _get_role_label(role)]
 		button.disabled = true

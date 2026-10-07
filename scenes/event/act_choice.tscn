@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://scripts/event/act_choice.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/pixel/table/misdeal_logo.png" id="3_logo"]
@@ -88,6 +88,24 @@ border_width_bottom = 2
 border_color = Color(0.56, 0.76, 0.82, 1)
 shadow_color = Color(0.04, 0.26, 0.32, 0.42)
 shadow_size = 9
+
+[sub_resource type="StyleBoxFlat" id="EventArtFrame"]
+bg_color = Color(0.010, 0.008, 0.012, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.54, 0.30, 0.20, 0.82)
+shadow_color = Color(0, 0, 0, 0.58)
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="ContextChip"]
+bg_color = Color(0.012, 0.010, 0.014, 0.88)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.36, 0.24, 0.22, 0.72)
 
 [node name="ActChoice" type="Control"]
 layout_mode = 3
@@ -208,6 +226,26 @@ theme_override_font_sizes/font_size = 14
 text = "СОБЫТИЕ"
 horizontal_alignment = 1
 
+[node name="EventArtFrame" type="Panel" parent="Panel"]
+visible = false
+mouse_filter = 2
+offset_left = 48.0
+offset_top = 104.0
+offset_right = 334.0
+offset_bottom = 230.0
+theme_override_styles/panel = SubResource("EventArtFrame")
+
+[node name="EventHeroArt" type="TextureRect" parent="Panel"]
+visible = false
+mouse_filter = 2
+offset_left = 56.0
+offset_top = 112.0
+offset_right = 326.0
+offset_bottom = 222.0
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 6
+
 [node name="Description" type="Label" parent="Panel"]
 mouse_filter = 2
 offset_left = 150.0
@@ -239,6 +277,24 @@ text = "Реплика волшебника."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="GoldChip" type="Panel" parent="Panel"]
+visible = false
+mouse_filter = 2
+offset_left = 48.0
+offset_top = 240.0
+offset_right = 294.0
+offset_bottom = 272.0
+theme_override_styles/panel = SubResource("ContextChip")
+
+[node name="StateChip" type="Panel" parent="Panel"]
+visible = false
+mouse_filter = 2
+offset_left = 310.0
+offset_top = 240.0
+offset_right = 1012.0
+offset_bottom = 272.0
+theme_override_styles/panel = SubResource("ContextChip")
 
 [node name="Gold" type="Label" parent="Panel"]
 mouse_filter = 2
