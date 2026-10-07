@@ -135,6 +135,7 @@ Only after the loop is fun:
 - [x] Tighten Wizard Wager after local review: larger term art, stronger risk/reward separation, contract sigil and dedicated accept-button glow.
 - [x] Fix shared event/footer overflow and Squad Dossier layering after local screenshot review; rebalance dossier portrait/stats/build columns.
 - [x] Polish the shared Act 1 event-window hierarchy: framed context art, compact state chips, semantic risk/role accents and upgrade-specific choice illustrations; bring Whispering Well into the same card hierarchy.
+- [x] Integrate the approved Whispering Well / Chained Prisoner card mockups: exact choice-art crops, taller art bands, semantic accents, medallion dividers and explicit disabled-state ribbons.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.
 - [x] Skippable five-frame pixel-art comic prologue establishing the old pact and replayed-life premise;

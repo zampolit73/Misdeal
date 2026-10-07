@@ -979,3 +979,19 @@ When an event choice grants the next development for a specific role, the choice
 Risk-oriented choices may use restrained semantic border accents to differentiate safe, costly and dangerous options, but color is supportive only; text remains authoritative.
 
 Whispering Well follows the same rule with choice-specific well/development/relic art. No gameplay values, prices or outcomes are baked into images.
+
+
+## D056 — Approved event-choice mockups define the card hierarchy
+
+Date: 2026-10-07  
+Status: accepted after user approval of the Whispering Well / Chained Prisoner mockups
+
+The approved full-screen mockups for **Whispering Well** and **Chained Prisoner** establish a stronger choice-card hierarchy than the earlier generic event cards:
+
+- the illustration occupies a substantial upper band and must remain the visual anchor;
+- the card border color communicates the decision family (e.g. rescue / danger / greed) but text remains authoritative;
+- a small divider/medallion separates illustration and live choice text;
+- disabled branches should communicate the reason explicitly (for example **НЕДОСТАТОЧНО ЗОЛОТА**) instead of relying on dimming alone;
+- card art may be cropped directly from an approved mockup, but changing costs, rewards, role names, run values and disabled state must remain live Godot UI.
+
+The exact approved Whispering Well and Chained Prisoner illustration crops are stored in one runtime-decoded WebP atlas at 384×160 per card. This replaces the older lower-detail choice art for those two screens without changing their event mechanics.

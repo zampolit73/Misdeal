@@ -4,6 +4,7 @@
 
 ### Added
 
+- Added a dedicated approved event-choice atlas cropped from the accepted Whispering Well and Chained Prisoner mockups, preserving their exact well/treasure/book/chain/coin-hand imagery at 384×160 per card.
 - Added a dedicated object-centric artifact-art atlas for Dead Man's Shield, Blind Quiver, Cracked Focus and Broken Crown, reused by Curse Forge and artifact reward screens.
 - Added a high-resolution Curse Forge scene layer behind the live event UI while keeping artifact text, disabled states and choices dynamic.
 - Integrated the user-approved full pixel-art card set: unique illustrations for all 25 active Act 1 table cards, all nine hero-development paths, and six reward states.
@@ -11,6 +12,8 @@
 
 ### Changed
 
+- Whispering Well and Chained Prisoner now match the approved choice-card mockups more closely: larger art bands, divider medallions, stronger semantic border colors and explicit disabled-state messaging; Chained Prisoner uses the accepted blue/red/amber rescue-risk-greed split.
+- Shared Act 1 choice cards gain the same lightweight divider/medallion language so event options read more like intentional cards without baking live gameplay text into art.
 - Final Wizard Wager refinement: softer outer frame, longer contract connector, brighter reward art, larger/higher `x2` and tighter action spacing after local screenshot review.
 - Wizard Wager was tightened again after local visual review: the modal is shorter, both term illustrations are larger, risk/reward color separation is stronger, a central contract sigil links the two terms and the accept action now has a dedicated ember-glow hover style.
 - Reworked the shared Act 1 event window hierarchy: generic events now show framed context art in the header, run-state chips replace loose floating labels, role-development choices show the actual offered upgrade art, and risk-oriented choices gain restrained semantic accents. This removes repeated merchant/event imagery from Candle Seller, Gravedigger Shop and similar screens without changing mechanics.
