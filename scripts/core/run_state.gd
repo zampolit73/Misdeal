@@ -1181,7 +1181,12 @@ func get_reward_multiplier() -> int:
 	return 2 if wizard_debt_active else 1
 
 func get_run_condition_text() -> String:
-	return "ДОЛГ ВОЛШЕБНИКУ" if wizard_debt_active else ""
+	var conditions: Array[String] = []
+	if wizard_debt_active:
+		conditions.append("ДОЛГ ВОЛШЕБНИКУ")
+	if sacrifice_order_ready:
+		conditions.append("ЖЕРТВА ГОТОВА")
+	return " • ".join(conditions)
 
 func get_wizard_wager_history_text() -> String:
 	if wizard_wagers_accepted == 0 and wizard_wagers_declined == 0:

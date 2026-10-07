@@ -17,6 +17,7 @@
 
 ### Changed
 
+- The table HUD now exposes **ЖЕРТВА ГОТОВА** after an accepted Wizard wager, and the Wizard's acceptance line explicitly tells the player that the extra order will appear in the next combat.
 - Blood-rescue event text now names the scar and its protagonist max-HP cost directly on the choice card instead of presenting the sacrifice as an anonymous party HP penalty; gold rescue routes still avoid the scar where available.
 - Whispering Well and Chained Prisoner now match the approved choice-card mockups more closely: larger art bands, divider medallions, stronger semantic border colors and explicit disabled-state messaging; Chained Prisoner uses the accepted blue/red/amber rescue-risk-greed split.
 - Shared Act 1 choice cards gain the same lightweight divider/medallion language so event options read more like intentional cards without baking live gameplay text into art.

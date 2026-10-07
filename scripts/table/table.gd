@@ -493,7 +493,7 @@ func _accept_wizard_wager() -> void:
 	wager_root.visible = false
 	selection_locked = false
 	_refresh_table(false)
-	default_wizard_line = "Вот и договорились. Следующий бой станет больнее. Следующая обычная добыча — вдвое слаще."
+	default_wizard_line = "Вот и договорились. Следующий бой станет больнее, добыча — вдвое слаще. И я дам тебе ещё один приказ: «ЖЕРТВА»."
 	wizard_line.text = default_wizard_line
 
 func _refuse_wizard_wager() -> void:
