@@ -11,6 +11,7 @@
 
 ### Changed
 
+- Wizard Wager was tightened again after local visual review: the modal is shorter, both term illustrations are larger, risk/reward color separation is stronger, a central contract sigil links the two terms and the accept action now has a dedicated ember-glow hover style.
 - Reworked the shared Act 1 event window hierarchy: generic events now show framed context art in the header, run-state chips replace loose floating labels, role-development choices show the actual offered upgrade art, and risk-oriented choices gain restrained semantic accents. This removes repeated merchant/event imagery from Candle Seller, Gravedigger Shop and similar screens without changing mechanics.
 - Whispering Well choice cards now have illustrated upper bands using the relevant well, development or relic imagery, with text pushed below the art instead of competing for the same space.
 - Reworked **СТАВКА ВОЛШЕБНИКА** into a more ceremonial two-term decision panel: the next-fight penalty and doubled-loot reward now have separate illustrated frames and clearer accept/refuse hierarchy.
