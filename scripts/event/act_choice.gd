@@ -3,6 +3,8 @@ extends Control
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 const APPROVED_EVENT_DECOR := preload("res://scripts/ui/approved_event_decor.gd")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
+const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
+const EVENT_POLISH_ART := preload("res://scripts/ui/event_polish_art.gd")
 
 @onready var title_label: Label = $Panel/Title
 @onready var type_label: Label = $Panel/Type
@@ -19,6 +21,7 @@ const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 @onready var panel: Panel = $Panel
 @onready var screen_visual: Control = $Visual
 @onready var backdrop: TextureRect = $WizardBackdrop
+@onready var feature_scene_art: TextureRect = $FeatureSceneArt
 @onready var event_decor: TextureRect = $EventDecor
 @onready var feature_header: Panel = $FeatureHeader
 @onready var choice_art_a: TextureRect = $Panel/Choices/ChoiceA/ChoiceArt
@@ -55,9 +58,37 @@ func _apply_approved_choice_art() -> void:
 	var arts: Array[TextureRect] = [choice_art_a, choice_art_b, choice_art_c]
 	var cells: Array[Vector2i] = []
 
+	if active_card.card_id == "curse_forge":
+		var artifact_ids := ["dead_mans_shield", "blind_quiver", "cracked_focus"]
+		for index in range(buttons.size()):
+			var art := arts[index]
+			var button := buttons[index]
+			if not button.visible:
+				art.visible = false
+				continue
+			art.texture = ARTIFACT_ART_CATALOG.get_texture(artifact_ids[index])
+			art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			art.visible = art.texture != null
+			art.modulate = Color(0.30, 0.32, 0.34, 0.72) if button.disabled else Color.WHITE
+			_apply_choice_art_margins(button)
+		return
+
+	if active_card.card_id == "broken_crown":
+		var crown_art := ARTIFACT_ART_CATALOG.get_texture("broken_crown")
+		for index in range(buttons.size()):
+			var art := arts[index]
+			var button := buttons[index]
+			if not button.visible or crown_art == null:
+				art.visible = false
+				continue
+			art.texture = crown_art
+			art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			art.visible = true
+			art.modulate = Color(0.34, 0.34, 0.34, 0.74) if button.disabled else Color.WHITE
+			_apply_choice_art_margins(button)
+		return
+
 	match active_card.card_id:
-		"curse_forge":
-			cells = [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)]
 		"chained_prisoner":
 			cells = [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)]
 		_:
@@ -99,6 +130,9 @@ func _apply_choice_art_margins(button: Button) -> void:
 	button.add_theme_font_size_override("font_size", 13)
 
 func _apply_event_layout() -> void:
+	feature_scene_art.visible = false
+	feature_scene_art.texture = null
+	feature_scene_art.modulate = Color.WHITE
 	event_decor.visible = false
 	event_decor.texture = null
 	event_decor.modulate = Color.WHITE
@@ -108,17 +142,22 @@ func _apply_event_layout() -> void:
 	match active_card.card_id:
 		"curse_forge":
 			_apply_feature_panel_shell()
-			backdrop.modulate = Color(0.44, 0.24, 0.20, 0.48)
+			backdrop.modulate = Color(0.42, 0.20, 0.17, 0.42)
+			feature_scene_art.texture = EVENT_POLISH_ART.get_forge_scene_texture()
+			feature_scene_art.visible = feature_scene_art.texture != null
+			feature_scene_art.position = Vector2(0.0, 250.0)
+			feature_scene_art.size = Vector2(1280.0, 360.0)
+			feature_scene_art.modulate = Color(1.0, 0.76, 0.60, 0.48)
 			event_decor.texture = APPROVED_EVENT_DECOR.get_forge_texture()
 			event_decor.visible = event_decor.texture != null
-			event_decor.position = Vector2(0.0, 64.0)
-			event_decor.size = Vector2(500.0, 430.0)
-			event_decor.modulate = Color(1.0, 0.92, 0.82, 1.0)
+			event_decor.position = Vector2(18.0, 108.0)
+			event_decor.size = Vector2(390.0, 320.0)
+			event_decor.modulate = Color(1.0, 0.90, 0.78, 0.96)
 			panel.position = Vector2.ZERO
 			panel.size = Vector2(1280.0, 720.0)
 			feature_header.visible = true
-			feature_header.position = Vector2(350.0, 84.0)
-			feature_header.size = Vector2(800.0, 220.0)
+			feature_header.position = Vector2(320.0, 70.0)
+			feature_header.size = Vector2(880.0, 188.0)
 			_apply_forge_reference_layout()
 		"chained_prisoner":
 			_apply_feature_panel_shell()
@@ -225,27 +264,27 @@ func _apply_feature_panel_shell() -> void:
 		panel.add_theme_stylebox_override("panel", transparent)
 
 func _apply_forge_reference_layout() -> void:
-	title_label.position = Vector2(390.0, 108.0)
-	title_label.size = Vector2(720.0, 46.0)
-	type_label.position = Vector2(390.0, 160.0)
-	type_label.size = Vector2(720.0, 24.0)
-	description_label.position = Vector2(420.0, 194.0)
-	description_label.size = Vector2(660.0, 46.0)
-	wizard_line.position = Vector2(420.0, 244.0)
-	wizard_line.size = Vector2(660.0, 36.0)
-	gold_label.position = Vector2(172.0, 332.0)
-	artifacts_label.position = Vector2(700.0, 332.0)
+	title_label.position = Vector2(370.0, 88.0)
+	title_label.size = Vector2(760.0, 44.0)
+	type_label.position = Vector2(370.0, 136.0)
+	type_label.size = Vector2(760.0, 22.0)
+	description_label.position = Vector2(410.0, 168.0)
+	description_label.size = Vector2(680.0, 40.0)
+	wizard_line.position = Vector2(410.0, 210.0)
+	wizard_line.size = Vector2(680.0, 34.0)
+	gold_label.position = Vector2(166.0, 296.0)
+	artifacts_label.position = Vector2(684.0, 296.0)
 	var choices := $Panel/Choices as HBoxContainer
-	choices.position = Vector2(178.0, 382.0)
-	choices.size = Vector2(924.0, 224.0)
+	choices.position = Vector2(168.0, 336.0)
+	choices.size = Vector2(944.0, 258.0)
 	for button in [choice_a, choice_b, choice_c]:
-		button.custom_minimum_size = Vector2(288.0, 220.0)
-		_resize_choice_art(button, 112.0)
-	result_label.position = Vector2(260.0, 612.0)
-	leave_button.position = Vector2(520.0, 642.0)
-	leave_button.size = Vector2(240.0, 52.0)
-	continue_button.position = Vector2(520.0, 642.0)
-	continue_button.size = Vector2(240.0, 52.0)
+		button.custom_minimum_size = Vector2(296.0, 252.0)
+		_resize_choice_art(button, 126.0)
+	result_label.position = Vector2(250.0, 598.0)
+	leave_button.position = Vector2(510.0, 636.0)
+	leave_button.size = Vector2(260.0, 48.0)
+	continue_button.position = Vector2(510.0, 636.0)
+	continue_button.size = Vector2(260.0, 48.0)
 
 func _apply_prisoner_reference_layout() -> void:
 	title_label.position = Vector2(250.0, 270.0)

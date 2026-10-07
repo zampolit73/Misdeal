@@ -2,6 +2,7 @@ extends Control
 
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
+const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
 const ROLE_FALLBACK_ART := {
 	"knight": preload("res://assets/art/units/knight.webp"),
 	"ranger": preload("res://assets/art/units/ranger.webp"),
@@ -169,7 +170,7 @@ func _setup_death_wager_reward() -> void:
 		var artifact_id := artifacts[0]
 		var artifact := RunState.get_artifact(artifact_id)
 		option_ids[1] = "artifact:%s" % artifact_id
-		_set_reward_card(1, "relic_wager", "РЕЛИКВИЯ СТАВКИ", artifact.title, artifact.description)
+		_set_reward_card(1, artifact_id, "РЕЛИКВИЯ СТАВКИ", artifact.title, artifact.description)
 
 	if RunState.can_claim_extra_hero_upgrade():
 		option_ids[2] = "bonus_upgrade"
@@ -221,7 +222,7 @@ func _setup_elite_reward() -> void:
 			continue
 
 		option_ids[index] = artifact_id
-		_set_reward_card(index, "elite_relic", "ЭЛИТНАЯ РЕЛИКВИЯ", artifact.title, artifact.description)
+		_set_reward_card(index, artifact_id, "ЭЛИТНАЯ РЕЛИКВИЯ", artifact.title, artifact.description)
 
 func _on_reward_button_pressed(index: int) -> void:
 	if index < 0 or index >= reward_buttons.size():
@@ -337,7 +338,9 @@ func _set_reward_card(index: int, art_key: String, kicker: String, title: String
 	button.text = ""
 	_set_upgrade_nodes_visible(index, true)
 
-	var texture := CARD_ART_CATALOG.get_reward_texture(art_key)
+	var texture := ARTIFACT_ART_CATALOG.get_texture(art_key)
+	if texture == null:
+		texture = CARD_ART_CATALOG.get_reward_texture(art_key)
 	upgrade_portraits[index].texture = texture
 	upgrade_portraits[index].texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	upgrade_portraits[index].stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED

@@ -25,6 +25,10 @@ const RIGHT_CARD_ROTATION := 0.045
 @onready var spread_progress_label: Label = $SpreadProgress
 @onready var wager_root: Control = $WagerOverlay/Root
 @onready var wager_panel: Panel = $WagerOverlay/Root/WagerPanel
+@onready var wager_risk_panel: Panel = $WagerOverlay/Root/WagerPanel/RiskPanel
+@onready var wager_reward_panel: Panel = $WagerOverlay/Root/WagerPanel/RewardPanel
+@onready var wager_risk_art: TextureRect = $WagerOverlay/Root/WagerPanel/RiskPanel/RiskArt
+@onready var wager_reward_art: TextureRect = $WagerOverlay/Root/WagerPanel/RewardPanel/RewardArt
 @onready var wager_accept_button: Button = $WagerOverlay/Root/WagerPanel/AcceptButton
 @onready var wager_refuse_button: Button = $WagerOverlay/Root/WagerPanel/RefuseButton
 
@@ -52,6 +56,10 @@ func _ready() -> void:
 	hidden_card_a.visible = false
 	hidden_card_b.visible = false
 	wager_root.visible = false
+	wager_risk_art.texture = CARD_ART_CATALOG.get_run_card_texture("death_wager")
+	wager_reward_art.texture = CARD_ART_CATALOG.get_reward_texture("gold_windfall")
+	wager_risk_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	wager_reward_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	squad_button.pressed.connect(_toggle_squad_status)
 	wager_accept_button.pressed.connect(_accept_wizard_wager)
 	wager_refuse_button.pressed.connect(_refuse_wizard_wager)
@@ -410,13 +418,20 @@ func _show_wizard_wager() -> void:
 
 	wager_root.visible = true
 	wager_panel.pivot_offset = wager_panel.size * 0.5
-	wager_panel.scale = Vector2(0.92, 0.92)
+	wager_panel.scale = Vector2(0.95, 0.95)
 	wager_panel.modulate = Color(1.0, 0.80, 0.72, 0.0)
+	wager_risk_panel.modulate.a = 0.0
+	wager_reward_panel.modulate.a = 0.0
 
 	var tween := wager_panel.create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(wager_panel, "scale", Vector2.ONE, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(wager_panel, "modulate", Color.WHITE, 0.16)
+
+	var detail_tween := wager_panel.create_tween()
+	detail_tween.set_parallel(true)
+	detail_tween.tween_property(wager_risk_panel, "modulate:a", 1.0, 0.14).set_delay(0.07)
+	detail_tween.tween_property(wager_reward_panel, "modulate:a", 1.0, 0.14).set_delay(0.11)
 
 func _accept_wizard_wager() -> void:
 	if not RunState.accept_pending_wizard_wager():
