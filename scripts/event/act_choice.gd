@@ -536,11 +536,12 @@ func _configure_card() -> void:
 			leave_button.text = "ВЕРНУТЬСЯ К СТОЛУ"
 			_set_choices_visible(false)
 
+
 func _configure_ash_rest() -> void:
 	if RunState.can_recruit_companion("ranger"):
 		description_label.text = "У пепла сидит молодой следопыт. В прошлой жизни вы разделили с ним огонь."
 		wizard_line.text = "— В прошлый раз ты позвал его к костру. Повторишь?"
-		choice_a.text = "ПОЗВАТЬ К ОГНЮ\n\n-10 здоровья отряду\nСЛЕДОПЫТ ПРИСОЕДИНИТСЯ"
+		choice_a.text = "ПОЗВАТЬ К ОГНЮ\n\nШРАМ МОСТА • -8 макс. HP\nСЛЕДОПЫТ ПРИСОЕДИНИТСЯ"
 		choice_b.text = "ЗАБРАТЬ ПРИПАСЫ\n\n+20 золота\nСЛЕДОПЫТ БУДЕТ ПОТЕРЯН"
 		choice_c.text = "УЙТИ ДО РАССВЕТА\n\nБез награды\nСЛЕДОПЫТ БУДЕТ ПОТЕРЯН"
 		leave_button.visible = false
@@ -559,14 +560,23 @@ func _configure_ash_rest() -> void:
 	choice_c.pressed.connect(_resolve_ash_rest.bind("mage"))
 
 func _configure_shop() -> void:
-	_set_role_upgrade_button(choice_a, "knight", "МОГИЛЬНЫЙ УРОК — 35")
-	_set_role_upgrade_button(choice_b, "ranger", "ОХОТНИЧЬЯ СХЕМА — 35")
-	_set_role_upgrade_button(choice_c, "mage", "ЗАПРЕТНАЯ ЗАПИСКА — 35")
+	var price: int = RunState.get_gravedigger_shop_price()
+	var purse_outcome: String = RunState.get_event_outcome("lost_purse")
+	if purse_outcome == "untouched" or purse_outcome == "safe":
+		description_label.text = "Могильщик замечает, как осторожно вы обращались с мёртвыми монетами. Сегодня секреты стоят дешевле."
+		wizard_line.text = "— Надо же. Репутация добралась до тебя раньше."
+	elif purse_outcome == "greedy" or purse_outcome == "all_in":
+		description_label.text = "Могильщик узнаёт монеты из кошеля своего недавнего клиента. Торговаться он больше не хочет."
+		wizard_line.text = "— Какая тесная маленькая жизнь. Даже украденные деньги умеют возвращаться."
+
+	_set_role_upgrade_button(choice_a, "knight", "МОГИЛЬНЫЙ УРОК — %d" % price)
+	_set_role_upgrade_button(choice_b, "ranger", "ОХОТНИЧЬЯ СХЕМА — %d" % price)
+	_set_role_upgrade_button(choice_c, "mage", "ЗАПРЕТНАЯ ЗАПИСКА — %d" % price)
 	leave_button.text = "НИЧЕГО НЕ ПОКУПАТЬ"
 
-	choice_a.disabled = choice_a.disabled or RunState.gold < 35
-	choice_b.disabled = choice_b.disabled or RunState.gold < 35
-	choice_c.disabled = choice_c.disabled or RunState.gold < 35
+	choice_a.disabled = choice_a.disabled or RunState.gold < price
+	choice_b.disabled = choice_b.disabled or RunState.gold < price
+	choice_c.disabled = choice_c.disabled or RunState.gold < price
 
 	choice_a.pressed.connect(_resolve_shop.bind("knight"))
 	choice_b.pressed.connect(_resolve_shop.bind("ranger"))
@@ -594,11 +604,12 @@ func _configure_curse_forge() -> void:
 
 	leave_button.text = "ОТКАЗАТЬСЯ ОТ КОВКИ"
 
+
 func _configure_black_altar() -> void:
 	if RunState.can_recruit_companion("mage"):
 		description_label.text = "В центре ритуала лежит молодой маг. Вы уже видели эту ночь — и однажды вытащили его живым."
 		wizard_line.text = "— Знание всегда требовало платы. Даже когда платил кто-то другой."
-		choice_a.text = "ОТДАТЬ КРОВЬ\n\n-25 здоровья отряду\nМАГ ПРИСОЕДИНИТСЯ"
+		choice_a.text = "ОТДАТЬ КРОВЬ\n\nШЁПОТ ПОД КОЖЕЙ • -12 макс. HP\nМАГ ПРИСОЕДИНИТСЯ"
 		choice_b.text = "ПОДКУПИТЬ РИТУАЛ — 35\n\nМАГ ПРИСОЕДИНИТСЯ"
 		choice_b.disabled = RunState.gold < 35
 		choice_c.text = "ЗАБРАТЬ ПОДНОШЕНИЕ\n\n+40 золота\nМАГ БУДЕТ ПОТЕРЯН"
@@ -621,7 +632,7 @@ func _configure_chained_prisoner() -> void:
 	if RunState.can_recruit_companion("knight"):
 		description_label.text = "В цепях сидит рыцарь, которого вы однажды отказались оставить умирать."
 		wizard_line.text = "— Его ты тоже называл спасённым. Цепи, кажется, помнят иначе."
-		choice_a.text = "РАЗБИТЬ ЦЕПИ\n\n-15 здоровья отряду\nРЫЦАРЬ ПРИСОЕДИНИТСЯ"
+		choice_a.text = "РАЗБИТЬ ЦЕПИ\n\nШРАМ ЦЕПЕЙ • -10 макс. HP\nРЫЦАРЬ ПРИСОЕДИНИТСЯ"
 		choice_b.text = "ОБЫСКАТЬ ПЛЕННИКА\n\n+25 золота\nРЫЦАРЬ БУДЕТ ПОТЕРЯН"
 		choice_c.text = "ОСТАВИТЬ В ЦЕПЯХ\n\nБез награды\nРЫЦАРЬ БУДЕТ ПОТЕРЯН"
 		leave_button.visible = false
@@ -655,11 +666,21 @@ func _configure_debtor_bones() -> void:
 	choice_b.pressed.connect(_resolve_debtor_bones.bind("safe"))
 	choice_c.pressed.connect(_resolve_debtor_bones.bind("break"))
 
+
 func _configure_wizard_tithe() -> void:
-	choice_a.text = "ЗАПЛАТИТЬ 30 ЗОЛОТА\n\nДолг закрыт сразу"
+	var gold_price: int = RunState.get_wizard_tithe_gold_price()
+	var bones_outcome: String = RunState.get_event_outcome("debtor_bones")
+	if bones_outcome == "safe":
+		description_label.text = "Волшебник перебирает монеты и вспоминает, как осторожно вы обошлись с чужим долгом."
+		wizard_line.text = "— Редкая аккуратность. Сегодня я даже сделаю скидку."
+	elif bones_outcome == "gamble" or bones_outcome == "break":
+		description_label.text = "На ладони Волшебника перекатываются те же метки долга, что были на костях должника."
+		wizard_line.text = "— Долги разговаривают друг с другом. Твой уже успел похвастаться."
+
+	choice_a.text = "ЗАПЛАТИТЬ %d ЗОЛОТА\n\nДолг закрыт сразу" % gold_price
 	choice_b.text = "ЗАПЛАТИТЬ КРОВЬЮ\n\n-20 здоровья отряду"
 	choice_c.text = "ОТКАЗАТЬ\n\nВраги +25% урона\nСледующая обычная награда x2"
-	choice_a.disabled = RunState.gold < 30
+	choice_a.disabled = RunState.gold < gold_price
 	leave_button.visible = false
 
 	choice_a.pressed.connect(_resolve_wizard_tithe.bind("gold"))
@@ -706,22 +727,28 @@ func _configure_blood_ledger() -> void:
 	choice_b.pressed.connect(_resolve_blood_ledger.bind("blood"))
 	choice_c.pressed.connect(_resolve_blood_ledger.bind("erase"))
 
+
 func _configure_broken_crown() -> void:
 	choice_a.text = "НАДЕТЬ КОРОНУ\n\n+22% урона всей партии\n-10 здоровья каждому герою"
 	choice_a.disabled = RunState.has_artifact("broken_crown")
 	choice_b.text = "РАЗЛОМАТЬ КОРОНУ\n\n+40 золота"
-	_set_least_developed_upgrade_button(choice_c, "ПЕРЕПЛАВИТЬ ОСКОЛКИ", "Осколки станут развитием самого отстающего героя.")
+	if RunState.has_blood_ledger_knowledge():
+		wizard_line.text = "— Книга уже показывала тебе, как переписывать вещи. Посмотрим, научился ли ты."
+		_set_least_developed_upgrade_button(choice_c, "ПЕРЕПЛАВИТЬ ПО ЗАПИСЯМ", "Развитие слабейшему герою и +15 золота.")
+	else:
+		_set_least_developed_upgrade_button(choice_c, "ПЕРЕПЛАВИТЬ ОСКОЛКИ", "Осколки станут развитием самого отстающего героя.")
 	leave_button.text = "ОСТАВИТЬ КОРОНУ"
 
 	choice_a.pressed.connect(_resolve_broken_crown.bind("wear"))
 	choice_b.pressed.connect(_resolve_broken_crown.bind("break"))
 	choice_c.pressed.connect(_resolve_broken_crown.bind("melt"))
 
+
 func _configure_last_camp() -> void:
 	if RunState.can_recruit_companion("knight"):
 		description_label.text = "У последнего костра лежит раненый рыцарь. Это поздняя версия встречи, которую судьба почти вычеркнула."
 		wizard_line.text = "— Всё ещё хочешь тащить чужую жизнь до самого конца?"
-		choice_a.text = "ПОДНЯТЬ ЕГО\n\n-20 здоровья отряду\nРЫЦАРЬ ПРИСОЕДИНИТСЯ"
+		choice_a.text = "ПОДНЯТЬ ЕГО\n\nШРАМ ЦЕПЕЙ • -10 макс. HP\nРЫЦАРЬ ПРИСОЕДИНИТСЯ"
 		choice_b.text = "ОПЛАТИТЬ ЛЕКАРЯ — 35\n\nРЫЦАРЬ ПРИСОЕДИНИТСЯ"
 		choice_b.disabled = RunState.gold < 35
 		choice_c.text = "ЗАБРАТЬ СНАРЯЖЕНИЕ\n\n+40 золота\nРЫЦАРЬ БУДЕТ ПОТЕРЯН"
@@ -744,7 +771,7 @@ func _configure_rattling_bridge() -> void:
 	if RunState.can_recruit_companion("ranger"):
 		description_label.text = "На другом конце моста зажат молодой следопыт. Вы помните, что однажды вернулись за ним."
 		wizard_line.text = "— Давай проверим, насколько дорого теперь стоит твоя память."
-		choice_a.text = "ВЕРНУТЬСЯ ЗА НИМ\n\n-10 здоровья отряду\nСЛЕДОПЫТ ПРИСОЕДИНИТСЯ"
+		choice_a.text = "ВЕРНУТЬСЯ ЗА НИМ\n\nШРАМ МОСТА • -8 макс. HP\nСЛЕДОПЫТ ПРИСОЕДИНИТСЯ"
 		choice_b.text = "ЗАБРАТЬ ЕГО СУМКУ\n\n+20 золота\nСЛЕДОПЫТ БУДЕТ ПОТЕРЯН"
 		choice_c.text = "ПЕРЕЙТИ ОДНОМУ\n\nБез риска\nСЛЕДОПЫТ БУДЕТ ПОТЕРЯН"
 		leave_button.visible = false
@@ -872,6 +899,7 @@ func _format_upgrade_gain(upgrade_id: String) -> String:
 		return "Развитие изменилось."
 	return "%s получает развитие: %s." % [_get_role_label(upgrade.target_role), upgrade.title]
 
+
 func _resolve_ash_rest(choice: String) -> void:
 	if resolved:
 		return
@@ -879,9 +907,9 @@ func _resolve_ash_rest(choice: String) -> void:
 	if RunState.can_recruit_companion("ranger"):
 		match choice:
 			"recruit":
-				RunState.party_hp_bonus -= 10.0
-				RunState.recruit_companion("ranger", "Вы снова разделили с ним огонь у пепельного привала.")
-				_finish("Следопыт поднимается от костра. Теперь эта версия дороги принадлежит вам обоим.")
+				RunState.add_rescue_scar("ranger")
+				RunState.recruit_companion("ranger", "Вы снова разделили с ним огонь у пепельного привала. Дорога оставила на вас Шрам моста.")
+				_finish("Следопыт поднимается от костра. Теперь эта версия дороги принадлежит вам обоим. ШРАМ МОСТА: -8 макс. HP.")
 			"loot":
 				RunState.gold += 20
 				RunState.lose_companion("ranger", "Вы забрали припасы и оставили его у остывающего костра.")
@@ -897,15 +925,17 @@ func _resolve_ash_rest(choice: String) -> void:
 	_finish("У костра рождается новый приём. %s" % _format_upgrade_gain(upgrade_id))
 
 func _resolve_shop(role: String) -> void:
-	if resolved or RunState.gold < 35:
+	var price: int = RunState.get_gravedigger_shop_price()
+	if resolved or RunState.gold < price:
 		return
 
 	var upgrade_id := _grant_role_upgrade(role)
 	if upgrade_id.is_empty():
 		return
 
-	RunState.gold -= 35
-	_finish("Могильщик берёт монеты и передаёт чужой секрет. %s" % _format_upgrade_gain(upgrade_id))
+	RunState.gold -= price
+	RunState.set_event_outcome("gravedigger_shop", "bought")
+	_finish("Могильщик берёт %d монет и передаёт чужой секрет. %s" % [price, _format_upgrade_gain(upgrade_id)])
 
 func _resolve_forge(artifact_id: String) -> void:
 	if resolved or RunState.has_artifact(artifact_id):
@@ -917,6 +947,7 @@ func _resolve_forge(artifact_id: String) -> void:
 	var artifact := RunState.get_artifact(artifact_id)
 	_finish("Кузница принимает выбор. Получен артефакт: %s." % artifact.title)
 
+
 func _resolve_black_altar(choice: String) -> void:
 	if resolved:
 		return
@@ -924,9 +955,9 @@ func _resolve_black_altar(choice: String) -> void:
 	if RunState.can_recruit_companion("mage"):
 		match choice:
 			"recruit_blood":
-				RunState.party_hp_bonus -= 25.0
-				RunState.recruit_companion("mage", "Вы разорвали ритуал собственной кровью и снова вывели его из круга.")
-				_finish("Круг гаснет. Маг открывает глаза и встаёт рядом с вами.")
+				RunState.add_rescue_scar("mage")
+				RunState.recruit_companion("mage", "Вы разорвали ритуал собственной кровью и снова вывели его из круга. Шёпот ритуала остался под вашей кожей.")
+				_finish("Круг гаснет. Маг открывает глаза и встаёт рядом с вами. ШЁПОТ ПОД КОЖЕЙ: -12 макс. HP.")
 			"recruit_gold":
 				if RunState.gold < 35:
 					return
@@ -954,9 +985,9 @@ func _resolve_chained_prisoner(choice: String) -> void:
 	if RunState.can_recruit_companion("knight"):
 		match choice:
 			"recruit":
-				RunState.party_hp_bonus -= 15.0
-				RunState.recruit_companion("knight", "Вы снова разбили его цепи и приняли его в отряд.")
-				_finish("Цепи падают на камень. Рыцарь встаёт рядом с вами.")
+				RunState.add_rescue_scar("knight")
+				RunState.recruit_companion("knight", "Вы снова разбили его цепи и приняли его в отряд. На протагонисте остался Шрам цепей.")
+				_finish("Цепи падают на камень. Рыцарь встаёт рядом с вами. ШРАМ ЦЕПЕЙ: -10 макс. HP.")
 			"loot_recruitment":
 				RunState.gold += 25
 				RunState.lose_companion("knight", "Вы обыскали пленника и оставили его в цепях.")
@@ -995,6 +1026,7 @@ func _resolve_debtor_bones(choice: String) -> void:
 
 	match choice:
 		"gamble":
+			RunState.set_event_outcome("debtor_bones", "gamble")
 			if randf() < 0.5:
 				RunState.gold += 45
 				_finish("Кости падают удачно. Получено 45 золота.")
@@ -1004,10 +1036,12 @@ func _resolve_debtor_bones(choice: String) -> void:
 				_finish("Кости помнят старого должника. Здоровье -15, урон отряда -1.")
 		"safe":
 			RunState.gold += 15
+			RunState.set_event_outcome("debtor_bones", "safe")
 			_finish("Вы берёте только мелочь. Получено 15 золота.")
 		"break":
 			RunState.gold += 25
 			RunState.party_hp_bonus -= 10.0
+			RunState.set_event_outcome("debtor_bones", "break")
 			_finish("Кости трескаются вместе с обещаниями. +25 золота, здоровье -10.")
 
 func _resolve_wizard_tithe(choice: String) -> void:
@@ -1016,15 +1050,19 @@ func _resolve_wizard_tithe(choice: String) -> void:
 
 	match choice:
 		"gold":
-			if RunState.gold < 30:
+			var gold_price: int = RunState.get_wizard_tithe_gold_price()
+			if RunState.gold < gold_price:
 				return
-			RunState.gold -= 30
-			_finish("Волшебник пересчитывает монеты и кивает. На этот раз вы квиты.")
+			RunState.gold -= gold_price
+			RunState.set_event_outcome("wizard_tithe", "gold")
+			_finish("Волшебник пересчитывает %d монет и кивает. На этот раз вы квиты." % gold_price)
 		"blood":
 			RunState.party_hp_bonus -= 20.0
+			RunState.set_event_outcome("wizard_tithe", "blood")
 			_finish("Кровь исчезает с ладони хозяина стола. Здоровье отряда -20.")
 		"refuse":
 			RunState.activate_wizard_debt()
+			RunState.set_event_outcome("wizard_tithe", "refuse")
 			_finish("Волшебник улыбается. До следующей обычной награды враги наносят +25% урона, зато награда будет удвоена.")
 
 func _resolve_faceless_card(choice: String) -> void:
@@ -1069,6 +1107,7 @@ func _resolve_faceless_card(choice: String) -> void:
 				RunState.gold += 20
 				_finish("Карта горит без дыма. В пепле остаётся 20 золота.")
 
+
 func _resolve_blood_ledger(choice: String) -> void:
 	if resolved:
 		return
@@ -1081,9 +1120,11 @@ func _resolve_blood_ledger(choice: String) -> void:
 			if upgrade_id.is_empty():
 				return
 			RunState.gold -= 40
+			RunState.set_event_outcome("blood_ledger", "gold")
 			_finish("Книга принимает сорок монет и вписывает новый исход. %s" % _format_upgrade_gain(upgrade_id))
 		"blood":
 			RunState.party_hp_bonus -= 25.0
+			RunState.set_event_outcome("blood_ledger", "blood")
 			var artifact_id := RunState.add_random_available_artifact()
 			if artifact_id.is_empty():
 				var upgrade_id := _grant_least_developed_upgrade()
@@ -1101,6 +1142,7 @@ func _resolve_blood_ledger(choice: String) -> void:
 				return
 			var removed := RunState.get_hero_upgrade(removed_id)
 			RunState.gold += 70
+			RunState.set_event_outcome("blood_ledger", "erase")
 			_finish("Строка исчезает из книги. Потеряно развитие %s. Получено 70 золота." % removed.title)
 
 func _resolve_broken_crown(choice: String) -> void:
@@ -1111,18 +1153,25 @@ func _resolve_broken_crown(choice: String) -> void:
 		"wear":
 			if not RunState.add_artifact("broken_crown"):
 				return
+			RunState.set_event_outcome("broken_crown", "wear")
 			_finish("Корона садится слишком плотно. Получен артефакт: СЛОМАННАЯ КОРОНА.")
 		"break":
 			RunState.gold += 40
+			RunState.set_event_outcome("broken_crown", "break")
 			RunState.record_wizard_memory("greed", "broken_crown")
 			_finish("Корона раскалывается окончательно. В оправе спрятано 40 золота.")
 		"melt":
+			var ledger_bonus: int = 15 if RunState.has_blood_ledger_knowledge() else 0
 			var upgrade_id := _grant_least_developed_upgrade()
+			RunState.set_event_outcome("broken_crown", "melt")
 			if upgrade_id.is_empty():
-				RunState.gold += 30
-				_finish("Осколки уже не могут улучшить отряд. Получено 30 золота.")
+				RunState.gold += 30 + ledger_bonus
+				_finish("Осколки уже не могут улучшить отряд. Получено %d золота." % (30 + ledger_bonus))
 			else:
-				_finish("Осколки переплавлены в новый приём. %s" % _format_upgrade_gain(upgrade_id))
+				RunState.gold += ledger_bonus
+				var bonus_text: String = " И ещё %d золота по записям Кровавой книги." % ledger_bonus if ledger_bonus > 0 else ""
+				_finish("Осколки переплавлены в новый приём. %s%s" % [_format_upgrade_gain(upgrade_id), bonus_text])
+
 
 func _resolve_last_camp(choice: String) -> void:
 	if resolved:
@@ -1131,9 +1180,9 @@ func _resolve_last_camp(choice: String) -> void:
 	if RunState.can_recruit_companion("knight"):
 		match choice:
 			"recruit_blood":
-				RunState.party_hp_bonus -= 20.0
-				RunState.recruit_companion("knight", "Вы подняли раненого рыцаря у последнего привала.")
-				_finish("Вы помогаете ему встать. До надзирателя теперь идёте вместе.")
+				RunState.add_rescue_scar("knight")
+				RunState.recruit_companion("knight", "Вы подняли раненого рыцаря у последнего привала. Старые цепи снова оставили след на вас.")
+				_finish("Вы помогаете ему встать. До надзирателя теперь идёте вместе. ШРАМ ЦЕПЕЙ: -10 макс. HP.")
 			"recruit_gold":
 				if RunState.gold < 35:
 					return
@@ -1159,9 +1208,9 @@ func _resolve_rattling_bridge(choice: String) -> void:
 	if RunState.can_recruit_companion("ranger"):
 		match choice:
 			"recruit":
-				RunState.party_hp_bonus -= 10.0
-				RunState.recruit_companion("ranger", "Вы вернулись за ним на гремучем мосту.")
-				_finish("Мост едва держится, но вы переходите его вдвоём. Следопыт присоединяется.")
+				RunState.add_rescue_scar("ranger")
+				RunState.recruit_companion("ranger", "Вы вернулись за ним на гремучем мосту. Падение оставило на протагонисте Шрам моста.")
+				_finish("Мост едва держится, но вы переходите его вдвоём. Следопыт присоединяется. ШРАМ МОСТА: -8 макс. HP.")
 			"loot_recruitment":
 				RunState.gold += 20
 				RunState.lose_companion("ranger", "Вы забрали его сумку и перешли мост без него.")
@@ -1193,15 +1242,18 @@ func _resolve_lost_purse(choice: String) -> void:
 	match choice:
 		"safe":
 			RunState.gold += 15
+			RunState.set_event_outcome("lost_purse", "safe")
 			_finish("Вы берёте только то, что лежит сверху. Получено 15 золота.")
 		"greedy":
 			RunState.gold += 35
 			RunState.party_hp_bonus -= 10.0
+			RunState.set_event_outcome("lost_purse", "greedy")
 			RunState.record_wizard_memory("greed", "lost_purse")
 			_finish("Мёртвые пальцы сжимаются. +35 золота, здоровье -10.")
 		"all_in":
 			RunState.gold += 55
 			RunState.party_hp_bonus -= 25.0
+			RunState.set_event_outcome("lost_purse", "all_in")
 			RunState.record_wizard_memory("greed", "lost_purse")
 			_finish("Кошель ваш. Кусок руки тоже. +55 золота, здоровье -25.")
 
@@ -1262,6 +1314,7 @@ func _resolve_leave() -> void:
 		"last_camp":
 			_finish("Вы не задерживаетесь. До надзирателя остаётся совсем немного.")
 		"lost_purse":
+			RunState.set_event_outcome("lost_purse", "untouched")
 			_finish("Вы оставляете кошель мертвецу. Волшебник разочарован вашей сдержанностью.")
 		"candle_seller":
 			_finish("Свечи остаются у торговца. Темнота — у вас.")

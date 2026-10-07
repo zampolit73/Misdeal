@@ -47,7 +47,7 @@ func _refresh_choice_text() -> void:
 	]
 
 	if RunState.can_recruit_companion("mage"):
-		accept_button.text = "ВЫТАЩИТЬ ЕГО КРОВЬЮ\n\n-20 здоровья отряду\nМАГ ПРИСОЕДИНИТСЯ"
+		accept_button.text = "ВЫТАЩИТЬ ЕГО КРОВЬЮ\n\nШЁПОТ ПОД КОЖЕЙ • -12 макс. HP\nМАГ ПРИСОЕДИНИТСЯ"
 		accept_button.disabled = false
 		pay_button.text = "БРОСИТЬ 25 ЗОЛОТА\n\nВыкупить его у колодца\nМАГ ПРИСОЕДИНИТСЯ"
 		pay_button.disabled = RunState.gold < 25
@@ -165,16 +165,17 @@ func _on_choice_hover(button: Button, hovered: bool) -> void:
 	var tween := button.create_tween()
 	tween.tween_property(button, "scale", Vector2(1.025, 1.025) if hovered else Vector2.ONE, 0.11).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
+
 func _on_accept_gift() -> void:
 	if accept_button.disabled:
 		return
 
 	if RunState.can_recruit_companion("mage"):
 		_disable_choices()
-		RunState.party_hp_bonus -= 20.0
-		RunState.recruit_companion("mage", "Вы вытащили его из Шепчущего колодца собственной кровью.")
+		RunState.add_rescue_scar("mage")
+		RunState.recruit_companion("mage", "Вы вытащили его из Шепчущего колодца собственной кровью. Шёпот остался под вашей кожей.")
 		RunState.resolve_whispering_well()
-		result_label.text = "Вода становится чёрной. Молодой маг хватается за край и выбирается наружу.\nТеперь он идёт с вами."
+		result_label.text = "Вода становится чёрной. Молодой маг выбирается наружу.\nШЁПОТ ПОД КОЖЕЙ: -12 макс. HP протагониста."
 		await get_tree().create_timer(0.8).timeout
 		_return_to_table()
 		return

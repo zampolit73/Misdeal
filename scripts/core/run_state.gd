@@ -25,6 +25,24 @@ const FATE_PROTAGONIST := "protagonist"
 const FATE_JOINED := "joined"
 const FATE_LOST := "lost"
 
+const RESCUE_SCAR_DATA := {
+	"knight": {
+		"title": "ШРАМ ЦЕПЕЙ",
+		"description": "Вы разорвали чужие цепи и оставили их след на себе.",
+		"hp_penalty": 10.0
+	},
+	"ranger": {
+		"title": "ШРАМ МОСТА",
+		"description": "Вы вернулись за Следопытом. Гремучий мост забрал свою цену.",
+		"hp_penalty": 8.0
+	},
+	"mage": {
+		"title": "ШЁПОТ ПОД КОЖЕЙ",
+		"description": "Колодец отпустил Мага, но часть его шёпота осталась в вашей крови.",
+		"hp_penalty": 12.0
+	}
+}
+
 const MAX_EXTRA_HERO_UPGRADES: int = 3
 const HERO_UPGRADE_PATHS := {
 	"knight_iron_oath": "res://resources/upgrades/knight_iron_oath.tres",
@@ -114,6 +132,8 @@ var protagonist_role: String = ""
 var party_roles: Array[String] = []
 var hero_fates: Dictionary = {}
 var hero_fate_notes: Dictionary = {}
+var rescue_scar_roles: Array[String] = []
+var event_outcomes: Dictionary = {}
 var hero_upgrade_ids: Array[String] = []
 var extra_hero_upgrade_ids: Array[String] = []
 var claimed_upgrade_tiers: Array[int] = []
@@ -159,6 +179,8 @@ func reset_run() -> void:
 	party_roles.clear()
 	hero_fates.clear()
 	hero_fate_notes.clear()
+	rescue_scar_roles.clear()
+	event_outcomes.clear()
 	for role in HERO_ROLES:
 		hero_fates[role] = FATE_UNKNOWN
 		hero_fate_notes[role] = "Судьба ещё не разыграна."
@@ -247,6 +269,7 @@ func recruit_companion(role: String, note: String) -> bool:
 	record_wizard_memory("companion_recruited", role)
 	return true
 
+
 func lose_companion(role: String, note: String) -> bool:
 	if not can_recruit_companion(role):
 		return false
@@ -256,7 +279,98 @@ func lose_companion(role: String, note: String) -> bool:
 	current_major_upgrade_offer_ids.clear()
 	current_bonus_upgrade_offer_ids.clear()
 	record_wizard_memory("companion_lost", role)
+	if is_deliberate_loner():
+		record_wizard_memory("deliberate_loner", role)
 	return true
+
+func get_lost_companion_count() -> int:
+	var lost_count: int = 0
+	for role in HERO_ROLES:
+		if role == protagonist_role:
+			continue
+		if get_companion_fate(role) == FATE_LOST:
+			lost_count += 1
+	return lost_count
+
+func is_deliberate_loner() -> bool:
+	return get_party_size() == 1 and get_lost_companion_count() >= 2
+
+func add_rescue_scar(rescued_role: String) -> bool:
+	if not RESCUE_SCAR_DATA.has(rescued_role):
+		return false
+	if rescue_scar_roles.has(rescued_role):
+		return false
+	rescue_scar_roles.append(rescued_role)
+	record_wizard_memory("rescue_scar", rescued_role)
+	return true
+
+func has_rescue_scar(rescued_role: String) -> bool:
+	return rescue_scar_roles.has(rescued_role)
+
+func get_rescue_scar_title(rescued_role: String) -> String:
+	var data: Dictionary = RESCUE_SCAR_DATA.get(rescued_role, {})
+	return String(data.get("title", ""))
+
+func get_rescue_scar_description(rescued_role: String) -> String:
+	var data: Dictionary = RESCUE_SCAR_DATA.get(rescued_role, {})
+	return String(data.get("description", ""))
+
+func get_rescue_scar_hp_penalty(rescued_role: String) -> float:
+	var data: Dictionary = RESCUE_SCAR_DATA.get(rescued_role, {})
+	return float(data.get("hp_penalty", 0.0))
+
+func get_total_rescue_scar_hp_penalty() -> float:
+	var total: float = 0.0
+	for rescued_role in rescue_scar_roles:
+		total += get_rescue_scar_hp_penalty(rescued_role)
+	return total
+
+func get_rescue_scar_entries() -> Array[Dictionary]:
+	var entries: Array[Dictionary] = []
+	for rescued_role in rescue_scar_roles:
+		var role_data: Dictionary = RESCUE_SCAR_DATA.get(rescued_role, {})
+		if role_data.is_empty():
+			continue
+		entries.append({
+			"rescued_role": rescued_role,
+			"title": String(role_data.get("title", "")),
+			"description": String(role_data.get("description", "")),
+			"hp_penalty": float(role_data.get("hp_penalty", 0.0))
+		})
+	return entries
+
+func set_event_outcome(card_id: String, outcome: String) -> void:
+	if card_id.is_empty():
+		return
+	event_outcomes[card_id] = outcome
+
+func get_event_outcome(card_id: String) -> String:
+	return String(event_outcomes.get(card_id, ""))
+
+func has_event_outcome(card_id: String) -> bool:
+	return event_outcomes.has(card_id)
+
+func get_gravedigger_shop_price() -> int:
+	match get_event_outcome("lost_purse"):
+		"untouched", "safe":
+			return 30
+		"greedy", "all_in":
+			return 45
+		_:
+			return 35
+
+func get_wizard_tithe_gold_price() -> int:
+	match get_event_outcome("debtor_bones"):
+		"safe":
+			return 25
+		"gamble", "break":
+			return 40
+		_:
+			return 30
+
+func has_blood_ledger_knowledge() -> bool:
+	var outcome: String = get_event_outcome("blood_ledger")
+	return not outcome.is_empty() and outcome != "closed"
 
 func get_party_hp_multiplier() -> float:
 	match get_party_size():
@@ -484,6 +598,8 @@ func get_effective_hero_stats(role: String) -> Dictionary:
 	damage *= get_party_damage_multiplier()
 	attack_interval = maxf(0.2, attack_interval * get_party_attack_interval_multiplier())
 	move_speed *= get_party_move_speed_multiplier()
+	if role == protagonist_role:
+		hp -= get_total_rescue_scar_hp_penalty()
 	hp = maxf(20.0, hp)
 	damage = maxf(1.0, damage)
 
@@ -1010,6 +1126,7 @@ func choose_card(card_id: String) -> bool:
 
 	return true
 
+
 func complete_active_card() -> void:
 	var card := get_active_card()
 	if card == null:
@@ -1022,6 +1139,8 @@ func complete_active_card() -> void:
 		boss_defeated = true
 	else:
 		cards_resolved += 1
+		if cards_resolved == 6 and get_party_size() == 1 and not is_deliberate_loner() and wizard_memory_pending_event.is_empty():
+			record_wizard_memory("solo_endurance")
 
 	if card.resolution_type == "combat":
 		deals_survived += 1
@@ -1078,6 +1197,7 @@ func consume_wizard_memory_line() -> String:
 	wizard_memory_pending_detail = ""
 	return _build_wizard_memory_line(event_id, detail)
 
+
 func _build_wizard_memory_line(event_id: String, detail: String) -> String:
 	var count := get_wizard_memory_count(event_id)
 
@@ -1112,6 +1232,22 @@ func _build_wizard_memory_line(event_id: String, detail: String) -> String:
 			if count > 1:
 				return "Снова золото. Некоторые привычки переживают даже переписанную жизнь."
 			return "Ты выбрал золото, когда мог выбрать силу. Очень человечески."
+		"rescue_scar":
+			match detail:
+				"knight":
+					return "Ты разорвал его цепи. Забавно, что след от них теперь носишь ты."
+				"ranger":
+					return "Ты вернулся за Следопытом. Мост всё-таки взял с тебя плату."
+				"mage":
+					return "Маг выбрался из колодца. Шёпот, кажется, выбрался вместе с ним."
+				_:
+					return "Ты спас чужую жизнь и оставил цену на собственной коже."
+		"deliberate_loner":
+			if count > 1:
+				return "По-прежнему один. Последовательность — редкая форма жестокости."
+			return "Теперь понимаю. Ты не исправляешь прошлое — ты убираешь из него свидетелей."
+		"solo_endurance":
+			return "Шесть карт, а рядом всё ещё пусто. Не одиночество, конечно. Стратегия."
 		_:
 			return ""
 
