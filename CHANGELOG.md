@@ -4,6 +4,9 @@
 
 ### Added
 
+- Added encounter-specific deployment geometry for **ЗАЛП С ВИСЕЛИЦЫ**, **КОСТЯНАЯ ДАВКА**, **ВРАТА ОССУАРИЯ** and **КОСТЯНОЙ НАДЗИРАТЕЛЬ**. Player-unit dragging now supports multiple disconnected legal regions and the live arena shows subtle deployment-zone panels before combat.
+- Added compact threat tags to combat cards on the Wizard table, including ranged pressure, healing support, swarm, AOE and boss-phase cues.
+- Added whole-run **КАРТА БЕЗ ЛИЦА** reckoning branches for deliberate companion loss, multiple rescue scars and repeated accepted Wizard risks.
 - Added one-use **УДЕРЖАТЬ** control to normal two-card Act 1 offers. The reserved card is protected from rejection, cannot be chosen immediately and returns as a guaranteed offer after two resolved cards.
 - Added visible **ПЕЧАТЬ ВОЛШЕБНИКА** cards twice per run. Taking the marked card grants +20 gold and activates +15% enemy damage until the next combat victory; taking the other card has no mechanical penalty.
 - Added situational scar-key payoffs: **ШРАМ ЦЕПЕЙ** can bypass Bone Tax's blood price, **ШРАМ ДОРОГИ** halves the Faceless Card deterministic-development price, and **ШЁПОТ ПОД КОЖЕЙ** reduces Blood Ledger's blood cost from 25 to 10 HP.
@@ -22,6 +25,8 @@
 
 ### Changed
 
+- Faceless Card's existing fourth action now becomes a contextual late-run resolution when the player's history qualifies: **БЕЗ СВИДЕТЕЛЕЙ**, **ИСПИСАН ШРАМАМИ** or **ЛЮБИМЕЦ СТАВОК**. This uses explicit run facts rather than a hidden morality meter.
+- Special deployment encounters now start heroes inside their authored legal regions and explain the placement rule in the preparation HUD.
 - Wizard-mark danger is surfaced in both the table condition strip and battle condition block, stacks visibly with Wizard debt, persists through Last Deal retry and clears only after a combat victory.
 - Held cards use a dedicated table tab and blue card-state treatment; marked cards use a visible Wizard seal, ember border and explicit `+20 gold / enemies +15%` hint.
 - Battle preparation HUD now separates encounter threat/tactical guidance from persistent run conditions. Solo/duo compensation, Wizard debt, **ЖЕРТВА** availability and used Last Deal state render in a compact right-side block instead of extending the main status line into the card counter.

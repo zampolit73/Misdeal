@@ -149,6 +149,10 @@ Only after the loop is fun:
 - [x] Add one-use **УДЕРЖАТЬ** fate control to the two-card table offer, returning the reserved card after two resolved cards.
 - [x] Add two visible **ПЕЧАТЬ ВОЛШЕБНИКА** offers per run: +20 gold for accepting the marked card, with +15% enemy damage until the next combat victory.
 - [ ] Locally verify fate hold return timing across tier boundaries, marked-card combat/event branches, mark + debt stacking and all three scar-key event variants.
+- [x] Add encounter-specific deployment geometry for Gallows Volley, Bone Crush, Ossuary Gate and Bone Warden, including disconnected legal deployment regions.
+- [x] Add compact combat-threat tags directly to Wizard-table card type lines (`РОЙ`, `ЛЕЧЕНИЕ`, `AOE`, ranged threat, phases).
+- [x] Add a late **КАРТА БЕЗ ЛИЦА** reckoning that reads whole-run behavior instead of only a single earlier card.
+- [ ] Locally verify the new deployment regions with solo/duo/trio parties and confirm the threat tags / Faceless reckoning fit cleanly at 1280×720.
 - [ ] Run fresh solo / duo / trio balance passes with rescue scars, event echoes and **ЖЕРТВА**, then retune only the concrete outliers.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.

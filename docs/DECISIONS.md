@@ -1143,3 +1143,46 @@ Choosing the marked card:
 Choosing the unmarked card has no mechanical punishment. Holding the marked card counts as refusing the mark; the card may return later, but without that mark.
 
 A second mark is not offered while mark danger is already active. Wizard mark danger stacks additively with the existing +25% Wizard debt because both conditions are explicitly shown to the player.
+
+
+## D066 — Selected combats can alter legal deployment geometry
+
+Date: 2026-10-07  
+Status: accepted for Act 1 tactical-depth pass
+
+Pre-battle placement should matter differently in a few authored encounters instead of every fight exposing the same rectangle. This remains a preparation mechanic; it does not add mid-fight micromanagement.
+
+Current authored deployment rules:
+
+- **ЗАЛП С ВИСЕЛИЦЫ** — one deep vertical deployment line, encouraging vertical spread against two archers;
+- **КОСТЯНАЯ ДАВКА** — two separated horizontal bands, forcing the party to decide how to split or concentrate;
+- **ВРАТА ОССУАРИЯ** — two separated deployment pockets with the center unavailable;
+- **КОСТЯНОЙ НАДЗИРАТЕЛЬ** — a tighter deployment area that makes boss AOE spacing more deliberate.
+
+Legal deployment regions are shown with restrained live UI panels and the unit drag code supports disconnected rectangles. Other encounters keep the ordinary deployment bounds.
+
+Do not make every combat use a bespoke geometry. The special layouts should identify encounters with a distinct tactical problem.
+
+## D067 — Combat cards expose concise threat tags before commitment
+
+Date: 2026-10-07  
+Status: accepted for table-decision readability
+
+The Wizard-table choice should communicate the important combat problem before the player commits to a card. Combat-card type lines may therefore include one or two concise, authored tags such as **РОЙ**, **ЛЕЧЕНИЕ**, **AOE**, **2 ЛУЧНИКА**, **ДАЛЬНИЙ** or **ФАЗЫ**.
+
+These tags summarize known encounter composition only. They do not reveal hidden outcomes, change stats, or replace the card illustration / description.
+
+## D068 — Faceless Card may judge the whole Act 1 run
+
+Date: 2026-10-07  
+Status: accepted for late-act consequence pass
+
+**КАРТА БЕЗ ЛИЦА** is the first late card allowed to read an aggregate run profile rather than one explicit earlier event. This is not a hidden morality score: the profile is derived from concrete visible facts already created by player choices.
+
+Current precedence and outcomes:
+
+- **БЕЗ СВИДЕТЕЛЕЙ** — both possible companions were deliberately lost; the special resolution grants +50 gold;
+- **ИСПИСАН ШРАМАМИ** — at least two rescue scars are present; the special resolution grants a random available relic, or +35 gold if none remain;
+- **ЛЮБИМЕЦ СТАВОК** — at least two Wizard-authored risks were accepted across voluntary wagers and marked cards; the special resolution grants extra hero development, or +35 gold if development is exhausted.
+
+The special branch reuses the existing fourth/leave action rather than adding another modal or a generalized morality subsystem. If multiple profiles are true, deliberate companion loss takes precedence, then multiple rescue scars, then repeated risk-taking.
