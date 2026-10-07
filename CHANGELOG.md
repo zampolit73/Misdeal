@@ -11,6 +11,8 @@
 
 ### Changed
 
+- Reworked the shared Act 1 event window hierarchy: generic events now show framed context art in the header, run-state chips replace loose floating labels, role-development choices show the actual offered upgrade art, and risk-oriented choices gain restrained semantic accents. This removes repeated merchant/event imagery from Candle Seller, Gravedigger Shop and similar screens without changing mechanics.
+- Whispering Well choice cards now have illustrated upper bands using the relevant well, development or relic imagery, with text pushed below the art instead of competing for the same space.
 - Reworked **СТАВКА ВОЛШЕБНИКА** into a more ceremonial two-term decision panel: the next-fight penalty and doubled-loot reward now have separate illustrated frames and clearer accept/refuse hierarchy.
 - Re-composed **КУЗНИЦА ПРОКЛЯТИЙ** with a tighter header, visible forge environment and larger object-focused relic cards; Death Wager and Crypt Guard relic rewards now show the actual offered artifact instead of generic relic art.
 - Wizard-table offers now resolve art by `card_id`, so Rattling Bridge, Lost Purse, Blood Ledger, Crypt Guard, Bone Crush, Bone Warden and every other active card show their own approved scene instead of sharing the old five-image pool.

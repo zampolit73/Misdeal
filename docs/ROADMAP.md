@@ -132,6 +132,7 @@ Only after the loop is fun:
 - [x] Fill the remaining generic Act 1 event choice-card art slots from the active card illustration while preserving dedicated Forge/Prisoner choice art.
 - [x] Replace the rejected thumbnail-resolution card-art atlases with near-display-resolution approved-art atlases.
 - [x] Polish Wizard wager and Curse Forge presentation, and replace generic relic imagery with object-centric artifact art across forge/reward surfaces.
+- [x] Polish the shared Act 1 event-window hierarchy: framed context art, compact state chips, semantic risk/role accents and upgrade-specific choice illustrations; bring Whispering Well into the same card hierarchy.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.
 - [x] Skippable five-frame pixel-art comic prologue establishing the old pact and replayed-life premise;

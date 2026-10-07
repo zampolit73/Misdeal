@@ -965,3 +965,17 @@ Artifact/relic art should identify the actual object at card scale rather than r
 Special high-stakes decisions may also use richer composition than ordinary event cards when the underlying interaction remains the same. The Wizard wager now separates **price** and **reward** into two illustrated terms, while Curse Forge uses a dedicated forge scene layer plus the object-centric artifact cards.
 
 This is presentation only. Do not bake mutable costs, stats, disabled states or run values into the imagery; live Godot controls remain authoritative.
+
+
+## D055 — Shared event windows use context art and semantic choice art
+
+Date: 2026-10-07  
+Status: accepted for vertical-slice presentation polish
+
+The shared Act 1 event shell should not read as a large black text panel. Generic event windows now reserve a compact framed context-art region for the active card, keep run-state information in small chips, and let the choice cards carry the decision itself.
+
+When an event choice grants the next development for a specific role, the choice card should show that actual upgrade illustration rather than repeating the event illustration. This applies to merchant/preparation events such as Candle Seller, Gravedigger Shop, Ash Rest, Last Camp and Black Altar. Missing-party choices may use a role-specific development fallback while remaining visibly disabled.
+
+Risk-oriented choices may use restrained semantic border accents to differentiate safe, costly and dangerous options, but color is supportive only; text remains authoritative.
+
+Whispering Well follows the same rule with choice-specific well/development/relic art. No gameplay values, prices or outcomes are baked into images.
