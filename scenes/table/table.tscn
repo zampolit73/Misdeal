@@ -421,6 +421,51 @@ theme_override_font_sizes/font_size = 11
 text = "ВЫБРАТЬ"
 horizontal_alignment = 1
 
+[node name="Mark" type="Label" parent="Cards/BonePatrolCard"]
+visible = false
+mouse_filter = 2
+offset_left = 20.0
+offset_top = 18.0
+offset_right = 220.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(1.0, 0.66, 0.18, 1)
+theme_override_colors/font_shadow_color = Color(0.22, 0.02, 0.01, 0.98)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 13
+text = "◆ ПЕЧАТЬ ВОЛШЕБНИКА"
+horizontal_alignment = 1
+
+[node name="HoldAButton" type="Button" parent="Cards"]
+z_index = 12
+visible = false
+offset_left = 440.0
+offset_top = 300.0
+offset_right = 564.0
+offset_bottom = 327.0
+theme_override_colors/font_color = Color(0.68, 0.84, 0.94, 1)
+theme_override_colors/font_hover_color = Color(0.90, 0.95, 1.0, 1)
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("WagerRefuse")
+theme_override_styles/hover = SubResource("EventHover")
+theme_override_styles/pressed = SubResource("EventHover")
+text = "УДЕРЖАТЬ"
+
+[node name="HoldBButton" type="Button" parent="Cards"]
+z_index = 12
+visible = false
+offset_left = 716.0
+offset_top = 300.0
+offset_right = 840.0
+offset_bottom = 327.0
+theme_override_colors/font_color = Color(0.68, 0.84, 0.94, 1)
+theme_override_colors/font_hover_color = Color(0.90, 0.95, 1.0, 1)
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("WagerRefuse")
+theme_override_styles/hover = SubResource("EventHover")
+theme_override_styles/pressed = SubResource("EventHover")
+text = "УДЕРЖАТЬ"
+
 [node name="GraveyardCard" type="Button" parent="Cards"]
 clip_contents = true
 custom_minimum_size = Vector2(240, 346)
@@ -491,6 +536,21 @@ offset_bottom = 336.0
 theme_override_colors/font_color = Color(0.93, 0.62, 0.34, 1)
 theme_override_font_sizes/font_size = 11
 text = "ВЫБРАТЬ"
+horizontal_alignment = 1
+
+[node name="Mark" type="Label" parent="Cards/GraveyardCard"]
+visible = false
+mouse_filter = 2
+offset_left = 20.0
+offset_top = 18.0
+offset_right = 220.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(1.0, 0.66, 0.18, 1)
+theme_override_colors/font_shadow_color = Color(0.22, 0.02, 0.01, 0.98)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 13
+text = "◆ ПЕЧАТЬ ВОЛШЕБНИКА"
 horizontal_alignment = 1
 
 [node name="GallowsVolleyCard" type="Button" parent="Cards"]

@@ -16,6 +16,8 @@ const RIGHT_CARD_ROTATION := 0.045
 @onready var cards_root: Control = $Cards
 @onready var offer_a_button: Button = $Cards/BonePatrolCard
 @onready var offer_b_button: Button = $Cards/GraveyardCard
+@onready var hold_a_button: Button = $Cards/HoldAButton
+@onready var hold_b_button: Button = $Cards/HoldBButton
 @onready var hidden_card_a: Button = $Cards/GallowsVolleyCard
 @onready var hidden_card_b: Button = $Cards/WhisperingWellCard
 @onready var squad_button: Button = $SquadButton
@@ -49,6 +51,10 @@ func _ready() -> void:
 		return
 
 	offer_buttons = [offer_a_button, offer_b_button]
+	hold_a_button.pressed.connect(_on_hold_button_pressed.bind(0))
+	hold_b_button.pressed.connect(_on_hold_button_pressed.bind(1))
+	hold_a_button.tooltip_text = "Один раз за Act 1: придержать эту карту и вернуть её через две раздачи."
+	hold_b_button.tooltip_text = hold_a_button.tooltip_text
 	for button in offer_buttons:
 		button.pressed.connect(_on_offer_button_pressed.bind(button))
 		button.mouse_entered.connect(_on_offer_button_mouse_entered.bind(button))
@@ -130,6 +136,7 @@ func _refresh_table(show_memory: bool = true) -> void:
 		_setup_offer_button(button, offers[index])
 
 	_layout_offer_cards(offers.size())
+	_refresh_hold_buttons(offers)
 	_update_spread_ui()
 	_animate_deal_if_needed(offers)
 
@@ -171,12 +178,14 @@ func _play_wizard_memory_tell(event_id: String) -> void:
 		line_tween.tween_interval(0.12)
 		line_tween.tween_property(wizard_line, "modulate", Color.WHITE, 0.26)
 
+
 func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	var art := button.get_node("Art") as TextureRect
 	var title_label := button.get_node("Title") as Label
 	var type_label := button.get_node("Type") as Label
 	var description_label := button.get_node("Description") as Label
 	var hint_label := button.get_node("Hint") as Label
+	var mark_label := button.get_node("Mark") as Label
 
 	button.set_meta("card_id", card.card_id)
 	title_label.text = card.title
@@ -187,6 +196,14 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	button.disabled = false
 	button.modulate = Color.WHITE
 
+	var marked := RunState.is_wizard_marked_card(card.card_id)
+	mark_label.visible = marked
+	if marked:
+		hint_label.text = "ПЕЧАТЬ • +20 ЗОЛ. • ВРАГИ +15%"
+
+	if RunState.is_card_held(card.card_id):
+		hint_label.text = "УДЕРЖАНО • ВЕРНЁТСЯ ЧЕРЕЗ 2 КАРТЫ"
+
 	art.texture = CARD_ART_CATALOG.get_run_card_texture(card.card_id)
 	art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	if art.texture == null and not card.art_path.is_empty():
@@ -196,16 +213,58 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 
 	_apply_card_style(button, card)
 
+func _refresh_hold_buttons(offers: Array[RunCardData]) -> void:
+	var hold_buttons: Array[Button] = [hold_a_button, hold_b_button]
+	var show_hold := offers.size() == 2 and not RunState.fate_hold_used and not RunState.has_active_card() and RunState.cards_resolved <= 9
+
+	for index in range(hold_buttons.size()):
+		var hold_button: Button = hold_buttons[index]
+		hold_button.visible = show_hold and index < offers.size()
+		hold_button.disabled = not hold_button.visible
+		hold_button.text = "УДЕРЖАТЬ"
+
+	if RunState.has_held_card():
+		for index in range(offers.size()):
+			if RunState.is_card_held(offers[index].card_id):
+				hold_buttons[index].visible = true
+				hold_buttons[index].disabled = true
+				hold_buttons[index].text = "УДЕРЖАНО"
+				for other_index in range(hold_buttons.size()):
+					if other_index != index:
+						hold_buttons[other_index].visible = false
+				break
+
+func _on_hold_button_pressed(offer_index: int) -> void:
+	if selection_locked or deal_in_progress:
+		return
+
+	var offers := RunState.get_offer_cards()
+	if offer_index < 0 or offer_index >= offers.size():
+		return
+
+	var card := offers[offer_index]
+	if not RunState.hold_offer_card(card.card_id):
+		return
+
+	wizard_line.text = "«Хочешь оставить её на потом? Хорошо. Я верну её через две раздачи.»"
+	_setup_offer_button(offer_buttons[offer_index], card)
+	_refresh_hold_buttons(offers)
+
 func _get_button_card(button: Button) -> RunCardData:
 	var card_id := String(button.get_meta("card_id", ""))
 	if card_id.is_empty():
 		return null
 	return RunState.get_card(card_id)
 
+
 func _on_offer_button_pressed(button: Button) -> void:
 	var card := _get_button_card(button)
-	if card != null:
-		_choose_card(card)
+	if card == null:
+		return
+	if RunState.is_card_held(card.card_id):
+		wizard_line.text = "«Нет-нет. Эту карту ты попросил придержать. Выбирай другую.»"
+		return
+	_choose_card(card)
 
 func _on_offer_button_mouse_entered(button: Button) -> void:
 	if selection_locked or deal_in_progress:
@@ -405,6 +464,7 @@ func _get_hint_text(card: RunCardData) -> String:
 		return "ПРИНЯТЬ ВЫЗОВ"
 	return "ВЫБРАТЬ"
 
+
 func _apply_card_style(button: Button, card: RunCardData) -> void:
 	var combat_like := card.type_label == "БОЙ" or card.type_label == "ЭЛИТА" or card.type_label == "БОСС"
 	var event_like := not combat_like
@@ -430,6 +490,16 @@ func _apply_card_style(button: Button, card: RunCardData) -> void:
 	if card.card_id == RunState.BOSS_CARD_ID:
 		normal.border_color = Color(0.72, 0.20, 0.12, 1.0)
 		hover.border_color = Color(1.0, 0.42, 0.18, 1.0)
+	elif RunState.is_wizard_marked_card(card.card_id):
+		normal.border_color = Color(0.92, 0.48, 0.12, 1.0)
+		normal.shadow_color = Color(0.62, 0.13, 0.03, 0.62)
+		normal.shadow_size = 12
+		hover.border_color = Color(1.0, 0.72, 0.22, 1.0)
+		hover.shadow_color = Color(0.82, 0.22, 0.04, 0.72)
+		hover.shadow_size = 16
+	elif RunState.is_card_held(card.card_id):
+		normal.border_color = Color(0.42, 0.68, 0.84, 1.0)
+		hover.border_color = Color(0.62, 0.84, 1.0, 1.0)
 
 	button.add_theme_stylebox_override("normal", normal)
 	button.add_theme_stylebox_override("hover", hover)
@@ -449,6 +519,9 @@ func _apply_card_style(button: Button, card: RunCardData) -> void:
 	if card.card_id == RunState.BOSS_CARD_ID:
 		type_label.add_theme_color_override("font_color", Color(1.0, 0.40, 0.24, 1.0))
 		title_label.add_theme_color_override("font_color", Color(1.0, 0.76, 0.48, 1.0))
+	elif RunState.is_wizard_marked_card(card.card_id):
+		type_label.add_theme_color_override("font_color", Color(1.0, 0.58, 0.18, 1.0))
+		title_label.add_theme_color_override("font_color", Color(1.0, 0.78, 0.42, 1.0))
 
 func _preview_card(card: RunCardData) -> void:
 	if selection_locked:
@@ -594,17 +667,24 @@ func _play_pending_wizard_meddling() -> void:
 	selection_locked = false
 	_enable_offer_buttons()
 
+
 func _choose_card(card: RunCardData) -> void:
 	if selection_locked or deal_in_progress:
 		return
 
+	var was_marked := RunState.is_wizard_marked_card(card.card_id)
 	if not RunState.choose_card(card.card_id):
 		return
 
 	_update_spread_ui()
 	selection_locked = true
 	_disable_offer_buttons()
-	wizard_line.text = card.wizard_line
+	hold_a_button.visible = false
+	hold_b_button.visible = false
+	if was_marked:
+		wizard_line.text = "«Печать принята. +20 золота. А следующий бой получит свои +15% боли.»"
+	else:
+		wizard_line.text = card.wizard_line
 	await _animate_card_choice(card.card_id)
 
 	match card.resolution_type:
@@ -651,9 +731,13 @@ func _animate_card_choice(chosen_card_id: String) -> void:
 	else:
 		await get_tree().create_timer(0.32).timeout
 
+
 func _disable_offer_buttons() -> void:
 	for button in offer_buttons:
 		button.disabled = true
+	hold_a_button.disabled = true
+	hold_b_button.disabled = true
+
 
 func _enable_offer_buttons() -> void:
 	if deal_in_progress or selection_locked:
@@ -662,3 +746,7 @@ func _enable_offer_buttons() -> void:
 	for button in offer_buttons:
 		if button.visible:
 			button.disabled = false
+
+	var offers := RunState.get_offer_cards()
+	_refresh_hold_buttons(offers)
+

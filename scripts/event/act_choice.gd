@@ -687,11 +687,18 @@ func _configure_wizard_tithe() -> void:
 	choice_b.pressed.connect(_resolve_wizard_tithe.bind("blood"))
 	choice_c.pressed.connect(_resolve_wizard_tithe.bind("refuse"))
 
+
 func _configure_faceless_card() -> void:
 	choice_a.text = "ПЕРЕВЕРНУТЬ КАРТУ\n\nИсход неизвестен:\nзолото, реликвия или развитие"
 
-	_set_least_developed_upgrade_button(choice_b, "ПОДКУПИТЬ СУДЬБУ — 30", "Гарантированное развитие самого отстающего героя.")
-	choice_b.disabled = choice_b.disabled or RunState.gold < 30
+	var fate_price := 15 if RunState.has_rescue_scar("ranger") else 30
+	var fate_title := "ИДТИ ПО ШРАМУ — %d" % fate_price if RunState.has_rescue_scar("ranger") else "ПОДКУПИТЬ СУДЬБУ — %d" % fate_price
+	var fate_description := "ШРАМ ДОРОГИ показывает короткий путь к гарантированному развитию." if RunState.has_rescue_scar("ranger") else "Гарантированное развитие самого отстающего героя."
+	_set_least_developed_upgrade_button(choice_b, fate_title, fate_description)
+	choice_b.disabled = choice_b.disabled or RunState.gold < fate_price
+
+	if RunState.has_rescue_scar("ranger"):
+		wizard_line.text = "— Дорога оставила на тебе метку. Похоже, карта её тоже видит."
 
 	if RunState.wizard_debt_active:
 		choice_c.text = "СЖЕЧЬ КАРТУ\n\nСнять ДОЛГ ВОЛШЕБНИКУ"
@@ -704,14 +711,19 @@ func _configure_faceless_card() -> void:
 	choice_b.pressed.connect(_resolve_faceless_card.bind("bribe"))
 	choice_c.pressed.connect(_resolve_faceless_card.bind("burn"))
 
+
 func _configure_blood_ledger() -> void:
 	_set_least_developed_upgrade_button(choice_a, "ПОДПИСАТЬ ЗОЛОТОМ — 40", "Книга усилит самого отстающего героя.")
 	choice_a.disabled = choice_a.disabled or RunState.gold < 40
 
+	var blood_cost := 10 if RunState.has_rescue_scar("mage") else 25
 	if RunState.get_available_artifact_ids().is_empty():
-		_set_least_developed_upgrade_button(choice_b, "ПОДПИСАТЬ КРОВЬЮ", "-25 здоровья. Реликвий больше нет — книга предложит развитие.")
+		_set_least_developed_upgrade_button(choice_b, "ПОДПИСАТЬ КРОВЬЮ", "-%d здоровья. Реликвий больше нет — книга предложит развитие." % blood_cost)
 	else:
-		choice_b.text = "ПОДПИСАТЬ КРОВЬЮ\n\n-25 здоровья отряду\nСлучайная реликвия"
+		choice_b.text = "ПОДПИСАТЬ КРОВЬЮ\n\n-%d здоровья отряду\nСлучайная реликвия" % blood_cost
+
+	if RunState.has_rescue_scar("mage"):
+		wizard_line.text = "— Книга уже слышит ШЁПОТ ПОД КОЖЕЙ. На этот раз крови ей нужно меньше."
 
 	var last_upgrade_id := RunState.get_last_hero_upgrade_id()
 	if last_upgrade_id.is_empty():
@@ -726,7 +738,6 @@ func _configure_blood_ledger() -> void:
 	choice_a.pressed.connect(_resolve_blood_ledger.bind("gold"))
 	choice_b.pressed.connect(_resolve_blood_ledger.bind("blood"))
 	choice_c.pressed.connect(_resolve_blood_ledger.bind("erase"))
-
 
 func _configure_broken_crown() -> void:
 	choice_a.text = "НАДЕТЬ КОРОНУ\n\n+22% урона всей партии\n-10 здоровья каждому герою"
@@ -812,10 +823,15 @@ func _configure_candle_seller() -> void:
 	choice_b.pressed.connect(_resolve_candle_seller.bind("ranger"))
 	choice_c.pressed.connect(_resolve_candle_seller.bind("mage"))
 
+
 func _configure_bone_tax() -> void:
 	choice_a.text = "ЗАПЛАТИТЬ 25 ЗОЛОТА\n\nПройти без последствий"
 	choice_a.disabled = RunState.gold < 25
-	choice_b.text = "ЗАПЛАТИТЬ КРОВЬЮ\n\n-15 здоровья отряду"
+	if RunState.has_rescue_scar("knight"):
+		choice_b.text = "ПОКАЗАТЬ ШРАМ ЦЕПЕЙ\n\nСтраж узнаёт метку\nПройти бесплатно"
+		wizard_line.text = "— Некоторые цепи всё-таки открывают двери."
+	else:
+		choice_b.text = "ЗАПЛАТИТЬ КРОВЬЮ\n\n-15 здоровья отряду"
 	_set_least_developed_upgrade_button(choice_c, "ПРОРВАТЬСЯ СИЛОЙ", "-25 здоровья, но драка закалит самого отстающего героя.")
 	leave_button.visible = false
 
@@ -1065,6 +1081,7 @@ func _resolve_wizard_tithe(choice: String) -> void:
 			RunState.set_event_outcome("wizard_tithe", "refuse")
 			_finish("Волшебник улыбается. До следующей обычной награды враги наносят +25% урона, зато награда будет удвоена.")
 
+
 func _resolve_faceless_card(choice: String) -> void:
 	if resolved:
 		return
@@ -1092,13 +1109,17 @@ func _resolve_faceless_card(choice: String) -> void:
 					else:
 						_finish("Карта показывает возможное будущее. %s" % _format_upgrade_gain(upgrade_id))
 		"bribe":
-			if RunState.gold < 30:
+			var fate_price := 15 if RunState.has_rescue_scar("ranger") else 30
+			if RunState.gold < fate_price:
 				return
 			var upgrade_id := _grant_least_developed_upgrade()
 			if upgrade_id.is_empty():
 				return
-			RunState.gold -= 30
-			_finish("Монеты исчезают под картой. %s" % _format_upgrade_gain(upgrade_id))
+			RunState.gold -= fate_price
+			if RunState.has_rescue_scar("ranger"):
+				_finish("ШРАМ ДОРОГИ проводит между строк. Потрачено %d золота. %s" % [fate_price, _format_upgrade_gain(upgrade_id)])
+			else:
+				_finish("Монеты исчезают под картой. %s" % _format_upgrade_gain(upgrade_id))
 		"burn":
 			if RunState.wizard_debt_active:
 				RunState.clear_wizard_debt()
@@ -1123,19 +1144,20 @@ func _resolve_blood_ledger(choice: String) -> void:
 			RunState.set_event_outcome("blood_ledger", "gold")
 			_finish("Книга принимает сорок монет и вписывает новый исход. %s" % _format_upgrade_gain(upgrade_id))
 		"blood":
-			RunState.party_hp_bonus -= 25.0
+			var blood_cost := 10.0 if RunState.has_rescue_scar("mage") else 25.0
+			RunState.party_hp_bonus -= blood_cost
 			RunState.set_event_outcome("blood_ledger", "blood")
 			var artifact_id := RunState.add_random_available_artifact()
 			if artifact_id.is_empty():
 				var upgrade_id := _grant_least_developed_upgrade()
 				if upgrade_id.is_empty():
 					RunState.gold += 40
-					_finish("Книга забирает кровь, но страниц больше нет. Здоровье -25, получено 40 золота.")
+					_finish("Книга забирает кровь, но страниц больше нет. Здоровье -%d, получено 40 золота." % int(blood_cost))
 				else:
-					_finish("Книга забирает кровь и переписывает героя. Здоровье -25. %s" % _format_upgrade_gain(upgrade_id))
+					_finish("Книга забирает кровь и переписывает героя. Здоровье -%d. %s" % [int(blood_cost), _format_upgrade_gain(upgrade_id)])
 			else:
 				var artifact := RunState.get_artifact(artifact_id)
-				_finish("Книга забирает кровь и выдаёт реликвию: %s. Здоровье -25." % artifact.title)
+				_finish("Книга забирает кровь и выдаёт реликвию: %s. Здоровье -%d." % [artifact.title, int(blood_cost)])
 		"erase":
 			var removed_id := RunState.remove_last_hero_upgrade()
 			if removed_id.is_empty():
@@ -1268,6 +1290,7 @@ func _resolve_candle_seller(role: String) -> void:
 	RunState.gold -= 25
 	_finish("Свеча сгорает за секунду, оставляя знание вместо воска. %s" % _format_upgrade_gain(upgrade_id))
 
+
 func _resolve_bone_tax(choice: String) -> void:
 	if resolved:
 		return
@@ -1279,8 +1302,11 @@ func _resolve_bone_tax(choice: String) -> void:
 			RunState.gold -= 25
 			_finish("Пошлина уплачена. Страж даже не притворяется благодарным.")
 		"blood":
-			RunState.party_hp_bonus -= 15.0
-			_finish("Страж принимает кровь вместо монет. Здоровье отряда -15.")
+			if RunState.has_rescue_scar("knight"):
+				_finish("Страж видит ШРАМ ЦЕПЕЙ и отступает. Сегодня уже было заплачено достаточно.")
+			else:
+				RunState.party_hp_bonus -= 15.0
+				_finish("Страж принимает кровь вместо монет. Здоровье отряда -15.")
 		"force":
 			var upgrade_id := _grant_least_developed_upgrade()
 			if upgrade_id.is_empty():

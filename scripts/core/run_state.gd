@@ -6,6 +6,10 @@ const BOSS_CARD_ID := "bone_warden"
 const DEFAULT_ENCOUNTER_PATH := "res://resources/encounters/graveyard_ambush.tres"
 const WIZARD_MEDDLING_PER_RUN := 2
 const WIZARD_WAGERS_PER_RUN := 2
+const WIZARD_MARKS_PER_RUN := 2
+const FATE_HOLD_DELAY := 2
+const WIZARD_MARK_GOLD_REWARD := 20
+const WIZARD_MARK_ENEMY_DAMAGE_BONUS := 0.15
 
 const ARTIFACT_PATHS := {
 	"dead_mans_shield": "res://resources/artifacts/dead_mans_shield.tres",
@@ -163,6 +167,15 @@ var wizard_wagers_accepted := 0
 var wizard_wagers_declined := 0
 var sacrifice_order_ready := false
 
+var fate_hold_used := false
+var held_card_id := ""
+var held_card_return_at := -1
+
+var wizard_mark_slots: Array[int] = []
+var wizard_mark_consumed_slots: Array[int] = []
+var wizard_mark_card_id := ""
+var wizard_mark_danger_active := false
+
 var wizard_memory_counts: Dictionary = {}
 var wizard_memory_pending_event := ""
 var wizard_memory_pending_detail := ""
@@ -218,6 +231,13 @@ func reset_run() -> void:
 	wizard_wagers_accepted = 0
 	wizard_wagers_declined = 0
 	sacrifice_order_ready = false
+	fate_hold_used = false
+	held_card_id = ""
+	held_card_return_at = -1
+	wizard_mark_slots.clear()
+	wizard_mark_consumed_slots.clear()
+	wizard_mark_card_id = ""
+	wizard_mark_danger_active = false
 	wizard_memory_counts.clear()
 	wizard_memory_pending_event = ""
 	wizard_memory_pending_detail = ""
@@ -234,6 +254,7 @@ func reset_run() -> void:
 
 	_schedule_wizard_meddling()
 	_schedule_wizard_wagers()
+	_schedule_wizard_marks()
 
 func choose_protagonist(role: String) -> bool:
 	if not HERO_ROLES.has(role):
@@ -907,6 +928,33 @@ func _schedule_wizard_meddling() -> void:
 	if WIZARD_MEDDLING_PER_RUN > 1:
 		wizard_meddling_slots.append(late_slot)
 
+func _schedule_wizard_marks() -> void:
+	wizard_mark_slots.clear()
+	if WIZARD_MARKS_PER_RUN <= 0:
+		return
+
+	wizard_mark_slots.append(1 + randi_range(0, 1))
+	if WIZARD_MARKS_PER_RUN > 1:
+		wizard_mark_slots.append(6 + randi_range(0, 2))
+
+func _prepare_wizard_mark_if_due() -> void:
+	if not wizard_mark_card_id.is_empty():
+		return
+	if not active_card_id.is_empty() or is_boss_due():
+		return
+	if current_offer_ids.size() < 2:
+		return
+	if not wizard_mark_slots.has(cards_resolved):
+		return
+	if wizard_mark_consumed_slots.has(cards_resolved):
+		return
+	if wizard_meddling_pending or wizard_wager_pending:
+		return
+
+	var offer_index := randi_range(0, current_offer_ids.size() - 1)
+	wizard_mark_card_id = current_offer_ids[offer_index]
+	wizard_mark_consumed_slots.append(cards_resolved)
+
 func _schedule_wizard_wagers() -> void:
 	wizard_wager_slots.clear()
 
@@ -916,6 +964,46 @@ func _schedule_wizard_wagers() -> void:
 	wizard_wager_slots.append(2 + randi_range(0, 1))
 	if WIZARD_WAGERS_PER_RUN > 1:
 		wizard_wager_slots.append(7)
+
+func can_hold_offer_card(card_id: String) -> bool:
+	if fate_hold_used or not held_card_id.is_empty():
+		return false
+	if not active_card_id.is_empty() or is_boss_due():
+		return false
+	if cards_resolved > 9:
+		return false
+	if current_offer_ids.size() < 2 or not current_offer_ids.has(card_id):
+		return false
+	return card_id != BOSS_CARD_ID
+
+func hold_offer_card(card_id: String) -> bool:
+	if not can_hold_offer_card(card_id):
+		return false
+
+	fate_hold_used = true
+	held_card_id = card_id
+	held_card_return_at = cards_resolved + FATE_HOLD_DELAY
+
+	if wizard_mark_card_id == card_id:
+		record_wizard_memory("wizard_mark_decline", card_id)
+		wizard_mark_card_id = ""
+
+	return true
+
+func is_card_held(card_id: String) -> bool:
+	return not held_card_id.is_empty() and held_card_id == card_id
+
+func has_held_card() -> bool:
+	return not held_card_id.is_empty()
+
+func get_held_card_title() -> String:
+	if held_card_id.is_empty():
+		return ""
+	var card := get_card(held_card_id)
+	return card.title if card != null else ""
+
+func is_wizard_marked_card(card_id: String) -> bool:
+	return not wizard_mark_card_id.is_empty() and wizard_mark_card_id == card_id
 
 func get_offer_cards() -> Array[RunCardData]:
 	_ensure_current_offers()
@@ -927,6 +1015,7 @@ func get_offer_cards() -> Array[RunCardData]:
 			cards.append(card)
 	return cards
 
+
 func _ensure_current_offers() -> void:
 	if not active_card_id.is_empty():
 		current_offer_ids.clear()
@@ -936,6 +1025,7 @@ func _ensure_current_offers() -> void:
 	if not current_offer_ids.is_empty():
 		_prepare_wizard_meddling_if_due()
 		_prepare_wizard_wager_if_due()
+		_prepare_wizard_mark_if_due()
 		return
 
 	if is_boss_due():
@@ -975,12 +1065,27 @@ func _ensure_current_offers() -> void:
 			candidates.append(card_id)
 
 	candidates.shuffle()
-	var offer_count := mini(2, candidates.size())
-	for index in range(offer_count):
-		current_offer_ids.append(candidates[index])
+
+	var returning_held_id := ""
+	if not held_card_id.is_empty() and held_card_return_at >= 0 and cards_resolved >= held_card_return_at:
+		returning_held_id = held_card_id
+		held_card_id = ""
+		held_card_return_at = -1
+		record_wizard_memory("held_card_return", returning_held_id)
+
+	if not returning_held_id.is_empty():
+		current_offer_ids.append(returning_held_id)
+		candidates.erase(returning_held_id)
+		if not candidates.is_empty():
+			current_offer_ids.append(candidates[0])
+	else:
+		var offer_count := mini(2, candidates.size())
+		for index in range(offer_count):
+			current_offer_ids.append(candidates[index])
 
 	_prepare_wizard_meddling_if_due()
 	_prepare_wizard_wager_if_due()
+	_prepare_wizard_mark_if_due()
 
 func _prepare_wizard_wager_if_due() -> void:
 	if wizard_wager_pending:
@@ -1133,6 +1238,7 @@ func _is_combat_card_id(card_id: String) -> bool:
 	var card := get_card(card_id)
 	return card != null and card.resolution_type == "combat"
 
+
 func choose_card(card_id: String) -> bool:
 	if active_card_id == card_id:
 		if not last_battle_won:
@@ -1147,13 +1253,26 @@ func choose_card(card_id: String) -> bool:
 		push_warning("Attempted to choose card outside the current offer: %s" % card_id)
 		return false
 
+	var chose_marked_card := card_id == wizard_mark_card_id
 	for offered_id in current_offer_ids:
 		var remaining_index := remaining_card_ids.find(offered_id)
 		if remaining_index >= 0:
 			remaining_card_ids.remove_at(remaining_index)
 
-		if offered_id != card_id:
+		if offered_id != card_id and offered_id != held_card_id:
 			rejected_card_ids.append(offered_id)
+
+	if card_id == held_card_id:
+		held_card_id = ""
+		held_card_return_at = -1
+
+	if chose_marked_card:
+		gold += WIZARD_MARK_GOLD_REWARD
+		wizard_mark_danger_active = true
+		record_wizard_memory("wizard_mark_accept", card_id)
+	elif not wizard_mark_card_id.is_empty():
+		record_wizard_memory("wizard_mark_decline", wizard_mark_card_id)
+	wizard_mark_card_id = ""
 
 	active_card_id = card_id
 	current_offer_ids.clear()
@@ -1182,6 +1301,7 @@ func complete_active_card() -> void:
 
 	if card.resolution_type == "combat":
 		deals_survived += 1
+		wizard_mark_danger_active = false
 
 	active_card_id = ""
 	current_offer_ids.clear()
@@ -1254,18 +1374,29 @@ func resolve_whispering_well() -> void:
 func activate_wizard_debt() -> void:
 	wizard_debt_active = true
 
+
 func get_enemy_damage_multiplier() -> float:
-	return 1.25 if wizard_debt_active else 1.0
+	var multiplier := 1.0
+	if wizard_debt_active:
+		multiplier += 0.25
+	if wizard_mark_danger_active:
+		multiplier += WIZARD_MARK_ENEMY_DAMAGE_BONUS
+	return multiplier
 
 func get_reward_multiplier() -> int:
 	return 2 if wizard_debt_active else 1
+
 
 func get_run_condition_text() -> String:
 	var conditions: Array[String] = []
 	if wizard_debt_active:
 		conditions.append("ДОЛГ ВОЛШЕБНИКУ")
+	if wizard_mark_danger_active:
+		conditions.append("ПЕЧАТЬ: ВРАГИ +15%")
 	if sacrifice_order_ready:
 		conditions.append("ЖЕРТВА ГОТОВА")
+	if not held_card_id.is_empty():
+		conditions.append("КАРТА УДЕРЖАНА")
 	return " • ".join(conditions)
 
 func get_wizard_wager_history_text() -> String:
@@ -1354,6 +1485,12 @@ func _build_wizard_memory_line(event_id: String, detail: String) -> String:
 			return "Ты уже умер за этим столом один раз. Не заставляй меня продавать тебе вторую смерть — её не будет."
 		"last_deal_refuse":
 			return "Вот и всё. Даже упрямство иногда заканчивается раньше партии."
+		"held_card_return":
+			return "Я придержал её, как ты просил. Не заставляй меня думать, что это было зря."
+		"wizard_mark_accept":
+			return "Ты выбрал карту с моей печатью. Двадцать монет уже твои. Следующий бой тоже теперь немного мой."
+		"wizard_mark_decline":
+			return "Не понравилась моя печать? Какая неожиданная осторожность."
 		"run_defeat":
 			return "Стол закрылся. Эта версия жизни закончилась здесь."
 		_:

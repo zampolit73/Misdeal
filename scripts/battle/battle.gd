@@ -357,6 +357,8 @@ func _build_battle_condition_text() -> String:
 
 	if RunState.wizard_debt_active:
 		lines.append("ДОЛГ • ВРАГИ +25%")
+	if RunState.wizard_mark_danger_active:
+		lines.append("ПЕЧАТЬ • ВРАГИ +15%")
 	if sacrifice_order_unlocked:
 		lines.append("ЖЕРТВА ДОСТУПНА")
 	elif RunState.last_deal_used:
