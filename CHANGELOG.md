@@ -4,11 +4,15 @@
 
 ### Added
 
+- Added a dedicated object-centric artifact-art atlas for Dead Man's Shield, Blind Quiver, Cracked Focus and Broken Crown, reused by Curse Forge and artifact reward screens.
+- Added a high-resolution Curse Forge scene layer behind the live event UI while keeping artifact text, disabled states and choices dynamic.
 - Integrated the user-approved full pixel-art card set: unique illustrations for all 25 active Act 1 table cards, all nine hero-development paths, and six reward states.
 - Added repository-safe runtime-decoded WebP atlases for table-card art and development/reward art under `assets/pixel/ui/approved_card_art/`.
 
 ### Changed
 
+- Reworked **СТАВКА ВОЛШЕБНИКА** into a more ceremonial two-term decision panel: the next-fight penalty and doubled-loot reward now have separate illustrated frames and clearer accept/refuse hierarchy.
+- Re-composed **КУЗНИЦА ПРОКЛЯТИЙ** with a tighter header, visible forge environment and larger object-focused relic cards; Death Wager and Crypt Guard relic rewards now show the actual offered artifact instead of generic relic art.
 - Wizard-table offers now resolve art by `card_id`, so Rattling Bridge, Lost Purse, Blood Ledger, Crypt Guard, Bone Crush, Bone Warden and every other active card show their own approved scene instead of sharing the old five-image pool.
 - Hero development now uses nine distinct approved illustrations; Ranger and alternate Knight/Mage paths no longer fall back to repeated role portraits.
 - Ordinary loot, Death Wager and elite rewards now use the approved Blood Coin, Gold Windfall, Relic Wager, Bonus Upgrade, Empty Cache and Elite Relic art while keeping reward text live.

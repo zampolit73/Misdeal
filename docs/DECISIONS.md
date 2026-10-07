@@ -953,3 +953,15 @@ Canonical player-facing card art must not be pre-shrunk to thumbnail resolution 
 The atlases are WebP-compressed but committed as raw `.bin` byte blobs and decoded with `Image.load_webp_from_buffer()`. This keeps repository/import behavior predictable while retaining enough source detail for the actual card windows.
 
 Do not solve future repository-size concerns by aggressively downsampling approved art below its normal display size.
+
+
+## D054 — Artifact art is object-centric; special decisions show their stakes visually
+
+Date: 2026-10-07  
+Status: accepted for vertical-slice presentation polish
+
+Artifact/relic art should identify the actual object at card scale rather than rely on a generic relic scene or on the surrounding event illustration. The current four artifacts therefore have a dedicated item-centric atlas: Dead Man's Shield, Blind Quiver, Cracked Focus and Broken Crown.
+
+Special high-stakes decisions may also use richer composition than ordinary event cards when the underlying interaction remains the same. The Wizard wager now separates **price** and **reward** into two illustrated terms, while Curse Forge uses a dedicated forge scene layer plus the object-centric artifact cards.
+
+This is presentation only. Do not bake mutable costs, stats, disabled states or run values into the imagery; live Godot controls remain authoritative.
