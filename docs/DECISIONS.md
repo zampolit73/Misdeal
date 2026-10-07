@@ -1035,3 +1035,38 @@ Status: accepted for host-personality pass
 The Wizard should not treat every one-person party as the same story state. A run that remains solo through at least six resolved cards can trigger a `solo_endurance` remark, while explicitly losing both non-protagonist companions triggers the stronger `deliberate_loner` memory.
 
 This is narrative state only; it does not add another solo combat multiplier. The existing solo stat compensation remains the sole baseline solo-balance rule.
+
+
+## D060 — Accepted Wizard wagers unlock one cursed tactical order
+
+Date: 2026-10-07  
+Status: accepted for vertical-slice tactical-depth pass
+
+Accepting a voluntary Wizard wager grants a one-battle tactical option named **ЖЕРТВА**. It is not a permanent fourth baseline order.
+
+For the next combat only, **ЖЕРТВА** gives every player hero:
+
+- +40% damage;
+- +20% attack speed;
+- continuous self-attrition equal to 2% of that hero's max HP per second.
+
+The option is consumed when the next combat starts, even if the player ultimately locks a different tactical order. This keeps it as a temptation attached to the wager rather than a stockpiled resource. A defeat/retry therefore does not restore it.
+
+The order keeps the ordinary nearest-target behavior; its identity is the destructive stat trade, not a fourth targeting AI. Do not add more cursed orders until this one is balance-tested across solo, duo and trio runs.
+
+## D061 — Wizard tells reuse the live table instead of adding visual clutter
+
+Date: 2026-10-07  
+Status: accepted for host-presence polish
+
+Wizard mood/state should be readable through small changes to existing cards and commentary rather than by returning to heavy procedural dressing on the table.
+
+The first tells are:
+
+- accepted-wager history biases deal animation toward a slower, smoother hand;
+- refusal-heavy history makes dealing shorter and sharper;
+- a card briefly twitches before an already-scheduled Wizard meddling replacement;
+- companion-loss / deliberate-loner memory temporarily dims the live card layer;
+- rescue-scar memory gives the commentary line a brief warm-red pulse.
+
+These tells may reveal mood or foreshadow an intervention, but must not change offer probabilities, card contents or combat values by themselves.

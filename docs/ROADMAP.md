@@ -139,6 +139,9 @@ Only after the loop is fun:
 - [x] Add the first cross-card consequence set: Lost Purse → Gravedigger Shop, Debtor Bones → Wizard Tithe, Blood Ledger → Broken Crown.
 - [x] Replace anonymous blood-rescue HP taxes with named protagonist rescue scars and surface them in effective stats / Squad Dossier.
 - [x] Expand Wizard Memory for rescue scars, long solo runs and deliberate abandonment of both companions.
+- [x] Add the one-battle cursed tactical order **ЖЕРТВА** as an optional follow-up to an accepted Wizard wager.
+- [x] Add restrained Wizard table tells: wager-history deal cadence, pre-meddling card twitch and memory-linked card/commentary pulses.
+- [ ] Run fresh solo / duo / trio balance passes with rescue scars, event echoes and **ЖЕРТВА**, then retune only the concrete outliers.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.
 - [x] Skippable five-frame pixel-art comic prologue establishing the old pact and replayed-life premise;

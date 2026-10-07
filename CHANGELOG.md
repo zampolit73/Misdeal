@@ -4,6 +4,8 @@
 
 ### Added
 
+- Added the cursed tactical order **ЖЕРТВА** as a one-battle option after accepting a voluntary Wizard wager: +40% party damage, +20% attack speed and 2% max-HP self-drain per living hero per second. The option is consumed when the next combat begins and does not return on retry.
+- Added restrained Wizard table tells: smoother dealing after an acceptance-heavy wager history, sharper dealing after refusal-heavy history, a brief pre-swap card twitch before Wizard meddling, and memory-linked dim/pulse reactions for companion loss and rescue scars.
 - Added cross-card event consequences for the vertical slice: Lost Purse now changes Gravedigger Shop pricing, Debtor Bones changes Wizard Tithe pricing, and prior Blood Ledger use adds a gold bonus to the Broken Crown melt route.
 - Added persistent named rescue scars on the protagonist: **ШРАМ ЦЕПЕЙ** (-10 max HP), **ШРАМ ДОРОГИ** (-8 max HP), and **ШЁПОТ ПОД КОЖЕЙ** (-12 max HP). Scars are applied by sacrificial companion-rescue routes, affect effective combat stats and appear in Squad Dossier.
 - Added Wizard Memory reactions for rescue scars, staying solo through the middle of Act 1, and deliberately abandoning both possible companions.
@@ -55,6 +57,7 @@
 
 ### Fixed
 
+- Applied rescue-scar max-HP penalties to live combat spawning as well as dossier stat calculation, so named scars now have the same real protagonist HP cost in the autobattle that the UI reports.
 - Fixed Act 1 event-window footer overflow at 1280×720: generic choice cards are slightly shorter with the leave/continue row pulled fully on-screen, and Chained Prisoner now reserves a dedicated bottom action row instead of overlapping its center card.
 - Fixed Squad Dossier layering so live table offer cards are hidden while the dossier is open and cannot render over hero stats; also enlarged the hero portrait and rebalanced stats/development/relic columns.
 - Fixed the Godot 4.7.2 parser-inference failure in the event-window semantic style pass by explicitly typing style-name arrays, styleboxes and hover/disabled booleans in `act_choice.gd` and `whispering_well.gd`.
