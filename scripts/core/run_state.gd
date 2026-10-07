@@ -938,7 +938,7 @@ func _schedule_wizard_marks() -> void:
 		wizard_mark_slots.append(6 + randi_range(0, 2))
 
 func _prepare_wizard_mark_if_due() -> void:
-	if not wizard_mark_card_id.is_empty():
+	if not wizard_mark_card_id.is_empty() or wizard_mark_danger_active:
 		return
 	if not active_card_id.is_empty() or is_boss_due():
 		return
@@ -951,7 +951,7 @@ func _prepare_wizard_mark_if_due() -> void:
 	if wizard_meddling_pending or wizard_wager_pending:
 		return
 
-	var offer_index := randi_range(0, current_offer_ids.size() - 1)
+	var offer_index: int = randi_range(0, current_offer_ids.size() - 1)
 	wizard_mark_card_id = current_offer_ids[offer_index]
 	wizard_mark_consumed_slots.append(cards_resolved)
 
@@ -1066,7 +1066,7 @@ func _ensure_current_offers() -> void:
 
 	candidates.shuffle()
 
-	var returning_held_id := ""
+	var returning_held_id: String = ""
 	if not held_card_id.is_empty() and held_card_return_at >= 0 and cards_resolved >= held_card_return_at:
 		returning_held_id = held_card_id
 		held_card_id = ""
@@ -1253,7 +1253,7 @@ func choose_card(card_id: String) -> bool:
 		push_warning("Attempted to choose card outside the current offer: %s" % card_id)
 		return false
 
-	var chose_marked_card := card_id == wizard_mark_card_id
+	var chose_marked_card: bool = card_id == wizard_mark_card_id
 	for offered_id in current_offer_ids:
 		var remaining_index := remaining_card_ids.find(offered_id)
 		if remaining_index >= 0:

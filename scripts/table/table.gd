@@ -196,7 +196,7 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	button.disabled = false
 	button.modulate = Color.WHITE
 
-	var marked := RunState.is_wizard_marked_card(card.card_id)
+	var marked: bool = RunState.is_wizard_marked_card(card.card_id)
 	mark_label.visible = marked
 	if marked:
 		hint_label.text = "ПЕЧАТЬ • +20 ЗОЛ. • ВРАГИ +15%"
@@ -215,7 +215,7 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 
 func _refresh_hold_buttons(offers: Array[RunCardData]) -> void:
 	var hold_buttons: Array[Button] = [hold_a_button, hold_b_button]
-	var show_hold := offers.size() == 2 and not RunState.fate_hold_used and not RunState.has_active_card() and RunState.cards_resolved <= 9
+	var show_hold: bool = offers.size() == 2 and not RunState.fate_hold_used and not RunState.has_active_card() and RunState.cards_resolved <= 9
 
 	for index in range(hold_buttons.size()):
 		var hold_button: Button = hold_buttons[index]
@@ -672,7 +672,7 @@ func _choose_card(card: RunCardData) -> void:
 	if selection_locked or deal_in_progress:
 		return
 
-	var was_marked := RunState.is_wizard_marked_card(card.card_id)
+	var was_marked: bool = RunState.is_wizard_marked_card(card.card_id)
 	if not RunState.choose_card(card.card_id):
 		return
 

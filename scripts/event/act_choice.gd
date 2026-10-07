@@ -691,9 +691,9 @@ func _configure_wizard_tithe() -> void:
 func _configure_faceless_card() -> void:
 	choice_a.text = "ПЕРЕВЕРНУТЬ КАРТУ\n\nИсход неизвестен:\nзолото, реликвия или развитие"
 
-	var fate_price := 15 if RunState.has_rescue_scar("ranger") else 30
-	var fate_title := "ИДТИ ПО ШРАМУ — %d" % fate_price if RunState.has_rescue_scar("ranger") else "ПОДКУПИТЬ СУДЬБУ — %d" % fate_price
-	var fate_description := "ШРАМ ДОРОГИ показывает короткий путь к гарантированному развитию." if RunState.has_rescue_scar("ranger") else "Гарантированное развитие самого отстающего героя."
+	var fate_price: int = 15 if RunState.has_rescue_scar("ranger") else 30
+	var fate_title: String = "ИДТИ ПО ШРАМУ — %d" % fate_price if RunState.has_rescue_scar("ranger") else "ПОДКУПИТЬ СУДЬБУ — %d" % fate_price
+	var fate_description: String = "ШРАМ ДОРОГИ показывает короткий путь к гарантированному развитию." if RunState.has_rescue_scar("ranger") else "Гарантированное развитие самого отстающего героя."
 	_set_least_developed_upgrade_button(choice_b, fate_title, fate_description)
 	choice_b.disabled = choice_b.disabled or RunState.gold < fate_price
 
@@ -716,7 +716,7 @@ func _configure_blood_ledger() -> void:
 	_set_least_developed_upgrade_button(choice_a, "ПОДПИСАТЬ ЗОЛОТОМ — 40", "Книга усилит самого отстающего героя.")
 	choice_a.disabled = choice_a.disabled or RunState.gold < 40
 
-	var blood_cost := 10 if RunState.has_rescue_scar("mage") else 25
+	var blood_cost: int = 10 if RunState.has_rescue_scar("mage") else 25
 	if RunState.get_available_artifact_ids().is_empty():
 		_set_least_developed_upgrade_button(choice_b, "ПОДПИСАТЬ КРОВЬЮ", "-%d здоровья. Реликвий больше нет — книга предложит развитие." % blood_cost)
 	else:
@@ -1109,7 +1109,7 @@ func _resolve_faceless_card(choice: String) -> void:
 					else:
 						_finish("Карта показывает возможное будущее. %s" % _format_upgrade_gain(upgrade_id))
 		"bribe":
-			var fate_price := 15 if RunState.has_rescue_scar("ranger") else 30
+			var fate_price: int = 15 if RunState.has_rescue_scar("ranger") else 30
 			if RunState.gold < fate_price:
 				return
 			var upgrade_id := _grant_least_developed_upgrade()
@@ -1144,7 +1144,7 @@ func _resolve_blood_ledger(choice: String) -> void:
 			RunState.set_event_outcome("blood_ledger", "gold")
 			_finish("Книга принимает сорок монет и вписывает новый исход. %s" % _format_upgrade_gain(upgrade_id))
 		"blood":
-			var blood_cost := 10.0 if RunState.has_rescue_scar("mage") else 25.0
+			var blood_cost: float = 10.0 if RunState.has_rescue_scar("mage") else 25.0
 			RunState.party_hp_bonus -= blood_cost
 			RunState.set_event_outcome("blood_ledger", "blood")
 			var artifact_id := RunState.add_random_available_artifact()
