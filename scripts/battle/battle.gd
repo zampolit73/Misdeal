@@ -533,11 +533,13 @@ func _build_battle_condition_text() -> String:
 
 	return "\n".join(lines)
 
+
 func _lock_tactical_orders() -> void:
 	assault_order_button.disabled = true
 	hunt_order_button.disabled = true
 	formation_order_button.disabled = true
 	sacrifice_order_button.disabled = true
+	defiance_order_button.disabled = true
 	order_description_label.text = "ПРИКАЗ ЗАКРЕПЛЁН: %s" % _get_tactical_order_description(tactical_order)
 
 func _get_boss_phase_two_reinforcements() -> Array[Dictionary]:

@@ -167,7 +167,7 @@ var wizard_wagers_accepted := 0
 var wizard_wagers_declined := 0
 var sacrifice_order_ready := false
 var defiance_order_ready := false
-var defiance_refusal_streak := 0
+var defiance_refusal_count := 0
 
 var fate_hold_used := false
 var held_card_id := ""
@@ -234,7 +234,7 @@ func reset_run() -> void:
 	wizard_wagers_declined = 0
 	sacrifice_order_ready = false
 	defiance_order_ready = false
-	defiance_refusal_streak = 0
+	defiance_refusal_count = 0
 	fate_hold_used = false
 	held_card_id = ""
 	held_card_return_at = -1
@@ -1144,7 +1144,6 @@ func accept_pending_wizard_wager() -> bool:
 
 	activate_wizard_debt()
 	sacrifice_order_ready = true
-	defiance_refusal_streak = 0
 	wizard_wagers_accepted += 1
 	record_wizard_memory("wager_accept")
 	_consume_pending_wizard_wager()
@@ -1154,11 +1153,11 @@ func _register_defiance_refusal() -> void:
 	if defiance_order_ready:
 		return
 
-	defiance_refusal_streak += 1
-	if defiance_refusal_streak < 2:
+	defiance_refusal_count += 1
+	if defiance_refusal_count < 2:
 		return
 
-	defiance_refusal_streak = 0
+	defiance_refusal_count = 0
 	defiance_order_ready = true
 	record_wizard_memory("defiance_ready")
 
@@ -1320,7 +1319,6 @@ func choose_card(card_id: String) -> bool:
 	if chose_marked_card:
 		gold += WIZARD_MARK_GOLD_REWARD
 		wizard_mark_danger_active = true
-		defiance_refusal_streak = 0
 		record_wizard_memory("wizard_mark_accept", card_id)
 	elif not wizard_mark_card_id.is_empty():
 		record_wizard_memory("wizard_mark_decline", wizard_mark_card_id)
