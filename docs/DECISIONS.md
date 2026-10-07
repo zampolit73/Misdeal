@@ -995,3 +995,43 @@ The approved full-screen mockups for **Whispering Well** and **Chained Prisoner*
 - card art may be cropped directly from an approved mockup, but changing costs, rewards, role names, run values and disabled state must remain live Godot UI.
 
 The exact approved Whispering Well and Chained Prisoner illustration crops are stored in one runtime-decoded WebP atlas at 384×160 per card. This replaces the older lower-detail choice art for those two screens without changing their event mechanics.
+
+
+## D057 — Act 1 choices can echo into later cards
+
+Date: 2026-10-07  
+Status: accepted for vertical-slice consequence pass
+
+Act 1 cards are allowed to store a small explicit outcome in `RunState.event_outcomes`, and later cards may read that outcome to change price, text or reward. These links must be consequences of a choice the player actually made, not penalties for a card the run never offered.
+
+The first three canonical links are:
+
+- **Lost Purse → Gravedigger Shop**: respectful handling lowers the shop price to 30; greedy handling raises it to 45.
+- **Debtor Bones → Wizard Tithe**: cautious handling lowers the gold tithe to 25; gambling or breaking the bones raises it to 40.
+- **Blood Ledger → Broken Crown**: if the ledger was actually used before the crown, the melt route gains +15 gold from knowledge carried forward.
+
+These links should stay sparse and legible. The goal is to make the table feel connected, not to create an opaque dependency web.
+
+## D058 — Blood rescues leave named scars on the protagonist
+
+Date: 2026-10-07  
+Status: accepted for companion-fate pass
+
+Saving a companion through the sacrificial/blood route should leave a persistent named mark instead of only applying an anonymous party-wide HP modifier. The current scars are:
+
+- Knight: **ШРАМ ЦЕПЕЙ**, -10 protagonist max HP;
+- Ranger: **ШРАМ ДОРОГИ**, -8 protagonist max HP;
+- Mage: **ШЁПОТ ПОД КОЖЕЙ**, -12 protagonist max HP.
+
+A scar is keyed by the rescued companion role, can occur at either the primary or reserve rescue event, and can only be acquired once per role. Gold-based rescue routes avoid the scar where such a route exists. Scar penalties are applied after solo/duo party multipliers so the listed value is the actual max-HP loss.
+
+Squad Dossier must show the scars and their descriptions on the protagonist. Wizard Memory may comment on the scar immediately afterward.
+
+## D059 — Wizard Memory distinguishes solitude from deliberate abandonment
+
+Date: 2026-10-07  
+Status: accepted for host-personality pass
+
+The Wizard should not treat every one-person party as the same story state. A run that remains solo through at least six resolved cards can trigger a `solo_endurance` remark, while explicitly losing both non-protagonist companions triggers the stronger `deliberate_loner` memory.
+
+This is narrative state only; it does not add another solo combat multiplier. The existing solo stat compensation remains the sole baseline solo-balance rule.

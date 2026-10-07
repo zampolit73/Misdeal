@@ -136,6 +136,9 @@ Only after the loop is fun:
 - [x] Fix shared event/footer overflow and Squad Dossier layering after local screenshot review; rebalance dossier portrait/stats/build columns.
 - [x] Polish the shared Act 1 event-window hierarchy: framed context art, compact state chips, semantic risk/role accents and upgrade-specific choice illustrations; bring Whispering Well into the same card hierarchy.
 - [x] Integrate the approved Whispering Well / Chained Prisoner card mockups: exact choice-art crops, taller art bands, semantic accents, medallion dividers and explicit disabled-state ribbons.
+- [x] Add the first cross-card consequence set: Lost Purse → Gravedigger Shop, Debtor Bones → Wizard Tithe, Blood Ledger → Broken Crown.
+- [x] Replace anonymous blood-rescue HP taxes with named protagonist rescue scars and surface them in effective stats / Squad Dossier.
+- [x] Expand Wizard Memory for rescue scars, long solo runs and deliberate abandonment of both companions.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.
 - [x] Skippable five-frame pixel-art comic prologue establishing the old pact and replayed-life premise;

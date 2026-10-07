@@ -4,6 +4,9 @@
 
 ### Added
 
+- Added cross-card event consequences for the vertical slice: Lost Purse now changes Gravedigger Shop pricing, Debtor Bones changes Wizard Tithe pricing, and prior Blood Ledger use adds a gold bonus to the Broken Crown melt route.
+- Added persistent named rescue scars on the protagonist: **ШРАМ ЦЕПЕЙ** (-10 max HP), **ШРАМ ДОРОГИ** (-8 max HP), and **ШЁПОТ ПОД КОЖЕЙ** (-12 max HP). Scars are applied by sacrificial companion-rescue routes, affect effective combat stats and appear in Squad Dossier.
+- Added Wizard Memory reactions for rescue scars, staying solo through the middle of Act 1, and deliberately abandoning both possible companions.
 - Added a dedicated approved event-choice atlas cropped from the accepted Whispering Well and Chained Prisoner mockups, preserving their exact well/treasure/book/chain/coin-hand imagery at 384×160 per card.
 - Added a dedicated object-centric artifact-art atlas for Dead Man's Shield, Blind Quiver, Cracked Focus and Broken Crown, reused by Curse Forge and artifact reward screens.
 - Added a high-resolution Curse Forge scene layer behind the live event UI while keeping artifact text, disabled states and choices dynamic.
@@ -12,6 +15,7 @@
 
 ### Changed
 
+- Blood-rescue event text now names the scar and its protagonist max-HP cost directly on the choice card instead of presenting the sacrifice as an anonymous party HP penalty; gold rescue routes still avoid the scar where available.
 - Whispering Well and Chained Prisoner now match the approved choice-card mockups more closely: larger art bands, divider medallions, stronger semantic border colors and explicit disabled-state messaging; Chained Prisoner uses the accepted blue/red/amber rescue-risk-greed split.
 - Shared Act 1 choice cards gain the same lightweight divider/medallion language so event options read more like intentional cards without baking live gameplay text into art.
 - Final Wizard Wager refinement: softer outer frame, longer contract connector, brighter reward art, larger/higher `x2` and tighter action spacing after local screenshot review.
