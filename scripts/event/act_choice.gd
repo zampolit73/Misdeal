@@ -1,5 +1,7 @@
 extends Control
 
+const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 const APPROVED_EVENT_DECOR := preload("res://scripts/ui/approved_event_decor.gd")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
@@ -64,7 +66,7 @@ func _ready() -> void:
 	active_card = RunState.get_active_card()
 	if active_card == null:
 		push_warning("Act choice scene opened without an active run card.")
-		SceneTransition.change_to("res://scenes/table/table.tscn")
+		SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
 		return
 
 	continue_button.pressed.connect(_return_to_table)
@@ -1536,4 +1538,4 @@ func _refresh_run_labels() -> void:
 
 func _return_to_table() -> void:
 	continue_button.disabled = true
-	SceneTransition.change_to("res://scenes/table/table.tscn")
+	SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
