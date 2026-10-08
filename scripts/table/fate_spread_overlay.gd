@@ -1,6 +1,7 @@
 extends Control
 
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
+const BOSS_SEAL_SCRIPT := preload("res://scripts/table/fate_boss_seal_visual.gd")
 
 signal closed
 
@@ -21,6 +22,7 @@ const BOSS_BORDER := Color(0.92, 0.18, 0.10, 1.0)
 @onready var phase_label: Label = $Frame/Phase
 @onready var counts_label: Label = $Frame/Counts
 @onready var spread_area: Control = $Frame/SpreadArea
+@onready var seal_visual: Control = $Frame/SpreadArea/SealVisual
 @onready var close_button: Button = $Frame/Close
 @onready var held_art: TextureRect = $Frame/HeldPanel/Art
 @onready var held_title: Label = $Frame/HeldPanel/CardTitle
@@ -33,6 +35,7 @@ var slot_panels: Array[Panel] = []
 var boss_panel: Panel
 var boss_art: TextureRect
 var boss_title: Label
+var boss_seal_visual: Control
 
 
 func _ready() -> void:
@@ -58,6 +61,8 @@ func refresh() -> void:
 		1 if RunState.has_held_card() else 0
 	]
 
+	if seal_visual != null and seal_visual.has_method("refresh"):
+		seal_visual.call("refresh")
 	_refresh_slots()
 	_refresh_boss()
 	_refresh_held()
@@ -178,6 +183,14 @@ func _build_slots() -> void:
 	boss_title.add_theme_font_size_override("font_size", 10)
 	boss_panel.add_child(boss_title)
 
+	boss_seal_visual = BOSS_SEAL_SCRIPT.new() as Control
+	if boss_seal_visual != null:
+		boss_seal_visual.name = "ChainSeal"
+		boss_seal_visual.position = Vector2.ZERO
+		boss_seal_visual.size = BOSS_SIZE
+		boss_seal_visual.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		boss_panel.add_child(boss_seal_visual)
+
 
 func _refresh_slots() -> void:
 	for index in range(slot_panels.size()):
@@ -221,6 +234,8 @@ func _refresh_slots() -> void:
 func _refresh_boss() -> void:
 	var active: bool = RunState.is_boss_due() or RunState.active_card_id == RunState.BOSS_CARD_ID or RunState.boss_defeated
 	_apply_panel_style(boss_panel, BOSS_BORDER, active)
+	if boss_seal_visual != null and boss_seal_visual.has_method("configure"):
+		boss_seal_visual.call("configure", RunState.cards_resolved, active)
 	boss_title.add_theme_color_override(
 		"font_color",
 		Color(1.0, 0.72, 0.48, 1.0) if active else Color(0.56, 0.42, 0.40, 1.0)
