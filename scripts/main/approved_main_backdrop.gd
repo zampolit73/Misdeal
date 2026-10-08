@@ -1,36 +1,24 @@
 extends TextureRect
 
-const PART_PATHS: Array[String] = [
-	"res://assets/pixel/main/approved_splash_hd/part_00.txt",
-	"res://assets/pixel/main/approved_splash_hd/part_01.txt",
-	"res://assets/pixel/main/approved_splash_hd/part_02.txt",
-	"res://assets/pixel/main/approved_splash_hd/part_03.txt",
-	"res://assets/pixel/main/approved_splash_hd/part_04.txt",
-	"res://assets/pixel/main/approved_splash_hd/part_05.txt",
-	"res://assets/pixel/main/approved_splash_hd/part_06.txt",
-	"res://assets/pixel/main/approved_splash_hd/part_07.txt",
-	"res://assets/pixel/main/approved_splash_hd/part_08.txt",
-	"res://assets/pixel/main/approved_splash_hd/part_09.txt",
-	"res://assets/pixel/main/approved_splash_hd/part_10.txt",
-	"res://assets/pixel/main/approved_splash_hd/part_11.txt",
-]
+const SPLASH_PATH := "res://assets/pixel/main/approved_splash_hd/main_splash.webp"
+const EXPECTED_SIZE := Vector2i(1280, 720)
+
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	_load_approved_splash()
 
-func _load_approved_splash() -> void:
-	var encoded := ""
-	for path in PART_PATHS:
-		if not FileAccess.file_exists(path):
-			push_error("Missing approved main-menu splash chunk: %s" % path)
-			return
-		encoded += FileAccess.get_file_as_string(path).strip_edges()
 
-	var bytes: PackedByteArray = Marshalls.base64_to_raw(encoded)
+func _load_approved_splash() -> void:
+	var file := FileAccess.open(SPLASH_PATH, FileAccess.READ)
+	if file == null:
+		push_error("Missing approved main-menu splash: %s" % SPLASH_PATH)
+		return
+
+	var bytes: PackedByteArray = file.get_buffer(file.get_length())
 	if bytes.is_empty():
-		push_error("Approved main-menu splash decoded to an empty buffer.")
+		push_error("Approved main-menu splash is empty.")
 		return
 
 	var image := Image.new()
@@ -39,10 +27,10 @@ func _load_approved_splash() -> void:
 		push_error("Could not decode approved main-menu splash WebP: %s" % error_string(error))
 		return
 
-	if image.get_width() != 1280 or image.get_height() != 720:
+	if image.get_width() != EXPECTED_SIZE.x or image.get_height() != EXPECTED_SIZE.y:
 		push_warning(
-			"Approved main-menu splash decoded at %dx%d, expected 1280x720."
-			% [image.get_width(), image.get_height()]
+			"Approved main-menu splash decoded at %dx%d, expected %dx%d."
+			% [image.get_width(), image.get_height(), EXPECTED_SIZE.x, EXPECTED_SIZE.y]
 		)
 
 	texture = ImageTexture.create_from_image(image)
