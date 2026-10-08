@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/event/whispering_well.gd" id="1_event"]
 [ext_resource type="Script" path="res://scripts/event/whispering_well_visual.gd" id="2_visual"]
 [ext_resource type="Texture2D" path="res://assets/pixel/table/misdeal_logo.png" id="3_logo"]
-[ext_resource type="Texture2D" path="res://assets/pixel/event/v7/whispering_well.webp" id="4_backdrop"]
+[ext_resource type="Script" path="res://scripts/ui/runtime_webp_texture.gd" id="4_backdrop"]
 
 [sub_resource type="StyleBoxFlat" id="HudPanel"]
 bg_color = Color(0.010, 0.018, 0.022, 0.86)
@@ -126,10 +126,12 @@ color = Color(0.008, 0.014, 0.018, 1)
 
 [node name="BackdropArt" type="TextureRect" parent="."]
 mouse_filter = 2
+script = ExtResource("4_backdrop")
+webp_path = "res://assets/pixel/event/v7/whispering_well.webp"
+expected_size = Vector2i(1280, 720)
 offset_right = 1280.0
 offset_bottom = 720.0
 texture_filter = 1
-texture = ExtResource("4_backdrop")
 expand_mode = 1
 stretch_mode = 6
 modulate = Color(1, 1, 1, 0.86)

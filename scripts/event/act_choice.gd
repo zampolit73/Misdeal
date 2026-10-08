@@ -6,10 +6,10 @@ const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
 const EVENT_POLISH_ART := preload("res://scripts/ui/event_polish_art.gd")
 const APPROVED_EVENT_CHOICE_ART := preload("res://scripts/ui/approved_event_choice_art.gd")
-const EVENT_SCENE_ART := {
-	"curse_forge": preload("res://assets/pixel/event/v7/curse_forge.webp"),
-	"chained_prisoner": preload("res://assets/pixel/event/v7/chained_prisoner.webp"),
-	"black_altar": preload("res://assets/pixel/event/v7/black_altar.webp"),
+const EVENT_SCENE_ART_PATHS := {
+	"curse_forge": "res://assets/pixel/event/v7/curse_forge.webp",
+	"chained_prisoner": "res://assets/pixel/event/v7/chained_prisoner.webp",
+	"black_altar": "res://assets/pixel/event/v7/black_altar.webp",
 }
 
 @onready var title_label: Label = $Panel/Title
@@ -204,7 +204,7 @@ func _apply_event_layout() -> void:
 		"curse_forge":
 			_apply_feature_panel_shell()
 			backdrop.modulate = Color(0.28, 0.20, 0.18, 0.24)
-			feature_scene_art.texture = EVENT_SCENE_ART["curse_forge"]
+			feature_scene_art.call("load_webp_path", String(EVENT_SCENE_ART_PATHS["curse_forge"]), Vector2i(1280, 720))
 			feature_scene_art.visible = true
 			feature_scene_art.position = Vector2.ZERO
 			feature_scene_art.size = Vector2(1280.0, 720.0)
@@ -219,7 +219,7 @@ func _apply_event_layout() -> void:
 		"chained_prisoner":
 			_apply_feature_panel_shell()
 			backdrop.modulate = Color(0.24, 0.22, 0.22, 0.22)
-			feature_scene_art.texture = EVENT_SCENE_ART["chained_prisoner"]
+			feature_scene_art.call("load_webp_path", String(EVENT_SCENE_ART_PATHS["chained_prisoner"]), Vector2i(1280, 720))
 			feature_scene_art.visible = true
 			feature_scene_art.position = Vector2.ZERO
 			feature_scene_art.size = Vector2(1280.0, 720.0)
@@ -233,7 +233,7 @@ func _apply_event_layout() -> void:
 			_apply_prisoner_reference_layout()
 		"black_altar":
 			backdrop.modulate = Color(0.28, 0.18, 0.18, 0.22)
-			feature_scene_art.texture = EVENT_SCENE_ART["black_altar"]
+			feature_scene_art.call("load_webp_path", String(EVENT_SCENE_ART_PATHS["black_altar"]), Vector2i(1280, 720))
 			feature_scene_art.visible = true
 			feature_scene_art.position = Vector2.ZERO
 			feature_scene_art.size = Vector2(1280.0, 720.0)

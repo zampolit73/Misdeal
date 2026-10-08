@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://scripts/event/act_choice.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/pixel/table/misdeal_logo.png" id="3_logo"]
 [ext_resource type="Script" path="res://scripts/ui/cursed_choice_visual.gd" id="4_visual"]
 [ext_resource type="Texture2D" path="res://assets/art/table_background.webp" id="5_table"]
+[ext_resource type="Script" path="res://scripts/ui/runtime_webp_texture.gd" id="6_runtime_webp"]
 
 [sub_resource type="StyleBoxFlat" id="PanelStyle"]
 bg_color = Color(0.024, 0.012, 0.018, 0.92)
@@ -144,6 +145,7 @@ color = Color(0.006, 0.003, 0.008, 0.54)
 
 [node name="FeatureSceneArt" type="TextureRect" parent="."]
 visible = false
+script = ExtResource("6_runtime_webp")
 mouse_filter = 2
 offset_right = 1280.0
 offset_bottom = 360.0

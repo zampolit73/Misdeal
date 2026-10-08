@@ -1,11 +1,5 @@
 extends Control
 
-const ROLE_PORTRAITS := {
-	"knight": preload("res://assets/pixel/class_select/v7/knight.webp"),
-	"ranger": preload("res://assets/pixel/class_select/v7/ranger.webp"),
-	"mage": preload("res://assets/pixel/class_select/v7/mage.webp"),
-}
-
 const UNIT_TILE_SIZE: float = 96.0
 const UNIT_SHEET_PARTS: Array[String] = [
 	"res://assets/pixel/units/combat_units_v3/part_00.txt",
@@ -36,10 +30,6 @@ func _ready() -> void:
 	knight_button.pressed.connect(_choose.bind("knight"))
 	ranger_button.pressed.connect(_choose.bind("ranger"))
 	mage_button.pressed.connect(_choose.bind("mage"))
-
-	knight_portrait.texture = _get_role_texture("knight")
-	ranger_portrait.texture = _get_role_texture("ranger")
-	mage_portrait.texture = _get_role_texture("mage")
 
 	for button in [knight_button, ranger_button, mage_button]:
 		button.mouse_entered.connect(_on_card_hover.bind(button, true))
@@ -77,9 +67,6 @@ func _choose(role: String) -> void:
 	status_label.text = "— Вот так ты это помнишь, — говорит Волшебник."
 	await get_tree().create_timer(0.35).timeout
 	get_tree().change_scene_to_file("res://scenes/table/table.tscn")
-
-func _get_role_texture(role: String) -> Texture2D:
-	return ROLE_PORTRAITS.get(role) as Texture2D
 
 func _get_unit_sheet_texture() -> Texture2D:
 	if unit_sheet_texture != null:
