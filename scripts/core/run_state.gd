@@ -155,6 +155,9 @@ var remaining_card_ids: Array[String] = []
 var current_offer_ids: Array[String] = []
 var rejected_card_ids: Array[String] = []
 var resolved_card_ids: Array[String] = []
+var fate_choice_history: Array[Dictionary] = []
+var active_rejected_card_id := ""
+var fate_spread_last_milestone_shown := 0
 var active_card_id: String = ""
 var artifact_ids: Array[String] = []
 var protagonist_role: String = ""
@@ -266,6 +269,9 @@ func reset_run() -> void:
 	current_offer_ids.clear()
 	rejected_card_ids.clear()
 	resolved_card_ids.clear()
+	fate_choice_history.clear()
+	active_rejected_card_id = ""
+	fate_spread_last_milestone_shown = 0
 
 	for card_id in ACT1_CARD_IDS:
 		remaining_card_ids.append(card_id)
@@ -1343,6 +1349,7 @@ func choose_card(card_id: String) -> bool:
 		push_warning("Attempted to choose card outside the current offer: %s" % card_id)
 		return false
 
+	active_rejected_card_id = ""
 	var chose_marked_card: bool = card_id == wizard_mark_card_id
 	for offered_id in current_offer_ids:
 		var remaining_index := remaining_card_ids.find(offered_id)
@@ -1351,6 +1358,8 @@ func choose_card(card_id: String) -> bool:
 
 		if offered_id != card_id and offered_id != held_card_id:
 			rejected_card_ids.append(offered_id)
+			if active_rejected_card_id.is_empty():
+				active_rejected_card_id = offered_id
 
 	if card_id == held_card_id:
 		held_card_id = ""
@@ -1382,6 +1391,11 @@ func complete_active_card() -> void:
 		return
 
 	resolved_card_ids.append(card.card_id)
+	if card.card_id != BOSS_CARD_ID:
+		fate_choice_history.append({
+			"chosen": card.card_id,
+			"rejected": active_rejected_card_id,
+		})
 
 	if card.card_id == BOSS_CARD_ID:
 		boss_defeated = true
@@ -1395,8 +1409,39 @@ func complete_active_card() -> void:
 		wizard_mark_danger_active = false
 
 	active_card_id = ""
+	active_rejected_card_id = ""
 	current_offer_ids.clear()
 	selected_encounter_path = DEFAULT_ENCOUNTER_PATH
+
+func get_fate_choice_history_entry(index: int) -> Dictionary:
+	if index < 0:
+		return {}
+	if index < fate_choice_history.size():
+		return fate_choice_history[index]
+
+	# Compatibility for runs already in progress when fate-choice history was
+	# introduced. Normal Act 1 pair choices keep rejected/resolved order aligned.
+	if index < resolved_card_ids.size():
+		var rejected_id := ""
+		if index < rejected_card_ids.size():
+			rejected_id = rejected_card_ids[index]
+		return {
+			"chosen": resolved_card_ids[index],
+			"rejected": rejected_id,
+		}
+	return {}
+
+
+func get_fate_milestone_due() -> int:
+	for milestone in [4, 8, 12]:
+		if cards_resolved >= milestone and fate_spread_last_milestone_shown < milestone:
+			return milestone
+	return 0
+
+
+func mark_fate_milestone_shown(milestone: int) -> void:
+	fate_spread_last_milestone_shown = maxi(fate_spread_last_milestone_shown, milestone)
+
 
 func select_encounter(encounter_path: String) -> void:
 	selected_encounter_path = encounter_path
