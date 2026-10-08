@@ -16,6 +16,7 @@ var _busy := false
 func _ready() -> void:
 	layer = 128
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	RenderingServer.set_default_clear_color(VEIL_COLOR)
 
 	_veil = ColorRect.new()
 	_veil.name = "SceneVeil"
