@@ -1,5 +1,7 @@
 extends Control
 
+const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+
 const UNIT_TILE_SIZE: float = 96.0
 const UNIT_SHEET_PARTS: Array[String] = [
 	"res://assets/pixel/units/combat_units_v3/part_00.txt",
@@ -27,6 +29,7 @@ var unit_sheet_texture: Texture2D
 var choosing := false
 
 func _ready() -> void:
+	_apply_ui_kit()
 	knight_button.pressed.connect(_choose.bind("knight"))
 	ranger_button.pressed.connect(_choose.bind("ranger"))
 	mage_button.pressed.connect(_choose.bind("mage"))
@@ -36,6 +39,15 @@ func _ready() -> void:
 		button.mouse_exited.connect(_on_card_hover.bind(button, false))
 
 	_animate_screen_in()
+
+func _apply_ui_kit() -> void:
+	MISDEAL_UI_KIT.apply_panel(frame, MISDEAL_UI_KIT.BRONZE, true)
+	MISDEAL_UI_KIT.apply_title($Frame/Title, MISDEAL_UI_KIT.GOLD)
+	MISDEAL_UI_KIT.apply_subtitle($Frame/WizardLine, MISDEAL_UI_KIT.BRONZE)
+	MISDEAL_UI_KIT.apply_card_button(knight_button, MISDEAL_UI_KIT.KNIGHT)
+	MISDEAL_UI_KIT.apply_card_button(ranger_button, MISDEAL_UI_KIT.RANGER)
+	MISDEAL_UI_KIT.apply_card_button(mage_button, MISDEAL_UI_KIT.MAGE)
+
 
 func _animate_screen_in() -> void:
 	frame.pivot_offset = frame.size * 0.5
