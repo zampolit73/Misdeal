@@ -34,6 +34,15 @@ All 25 active Act 1 cards resolve to current matching/object-specific art before
 
 Battle runtime mapping lives in `scripts/battle/authored_backdrop.gd`.
 
+### Main menu
+
+- Canonical main splash: `assets/pixel/main/approved_splash_hd/main_splash.webp`
+- Runtime scene: `scenes/main/main.tscn`
+- Runtime loader: `scripts/main/approved_main_backdrop.gd`
+- Production size: 1280×720 WebP
+- Accepted direction: restrained dark-gothic Wizard at the cursed table, reduced prop noise, red-black-gold foreground against cool moonlit city, live hotspot/UI kept outside the art.
+- Superseded: the older compressed three-part splash and the intermediate over-rendered/off-model Wizard redraws.
+
 ### Wizard table
 
 - Current authored Wizard/table layer: `assets/pixel/table/visual_pass_v6/table_wizard.webp`
