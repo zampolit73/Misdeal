@@ -123,6 +123,8 @@ Only after the loop is fun:
 - [x] Rich procedural table-art dressing experiment rejected in local visual review and superseded.
 - [x] Clean wizard-table art pass: remove procedural hands/heavy frames, retain physical deal motion with restrained deck/discard/progress dressing.
 - [x] Table hierarchy polish: dim baked background cards, compact the top HUD/commentary and move the fate counter to the table edge.
+- [x] Add a shared runtime gothic UI kit for main menu, Class Select, Wizard table/wager, Squad Dossier, Act 1 events, Whispering Well, Reward, Battle HUD/Last Deal and Run End while preserving live text/state.
+- [ ] Locally verify the shared UI-kit pass at 1280×720 for card text margins, corner chrome, hover/disabled states and modal readability.
 - [ ] Coherent visual language for table/cards/miniatures;
 - [x] First lightweight combat animation/impact pass: idle motion, role-aware attack motion/tracers, hit kick and death fall/fade.
 - [x] Combat presentation v2 pass: arena-integrated unit lighting/rims/shadows, hit-stop/sparks, distinct death treatment, gothic tactical HUD, Wizard battle commentary, dynamic arena atmosphere and cinematic fight start.
