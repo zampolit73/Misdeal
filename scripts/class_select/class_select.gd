@@ -1,5 +1,11 @@
 extends Control
 
+const ROLE_PORTRAITS := {
+	"knight": preload("res://assets/pixel/class_select/v7/knight.webp"),
+	"ranger": preload("res://assets/pixel/class_select/v7/ranger.webp"),
+	"mage": preload("res://assets/pixel/class_select/v7/mage.webp"),
+}
+
 const UNIT_TILE_SIZE: float = 96.0
 const UNIT_SHEET_PARTS: Array[String] = [
 	"res://assets/pixel/units/combat_units_v3/part_00.txt",
@@ -73,28 +79,7 @@ func _choose(role: String) -> void:
 	get_tree().change_scene_to_file("res://scenes/table/table.tscn")
 
 func _get_role_texture(role: String) -> Texture2D:
-	var tile := Vector2i(-1, -1)
-	match role:
-		"knight":
-			tile = Vector2i(0, 0)
-		"ranger":
-			tile = Vector2i(1, 0)
-		"mage":
-			tile = Vector2i(2, 0)
-		_:
-			return null
-
-	var sheet := _get_unit_sheet_texture()
-	if sheet == null:
-		return null
-
-	var atlas := AtlasTexture.new()
-	atlas.atlas = sheet
-	atlas.region = Rect2(
-		Vector2(float(tile.x) * UNIT_TILE_SIZE, float(tile.y) * UNIT_TILE_SIZE),
-		Vector2(UNIT_TILE_SIZE, UNIT_TILE_SIZE)
-	)
-	return atlas
+	return ROLE_PORTRAITS.get(role) as Texture2D
 
 func _get_unit_sheet_texture() -> Texture2D:
 	if unit_sheet_texture != null:

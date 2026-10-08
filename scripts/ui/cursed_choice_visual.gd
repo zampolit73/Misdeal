@@ -27,8 +27,8 @@ func _draw() -> void:
 	_draw_vignette()
 
 func _draw_table_shade() -> void:
-	draw_rect(Rect2(0.0, 0.0, size.x, 120.0), Color(0.01, 0.006, 0.012, 0.36))
-	draw_rect(Rect2(0.0, 420.0, size.x, maxf(0.0, size.y - 420.0)), Color(0.008, 0.005, 0.009, 0.48))
+	draw_rect(Rect2(0.0, 0.0, size.x, 120.0), Color(0.01, 0.006, 0.012, 0.18))
+	draw_rect(Rect2(0.0, 420.0, size.x, maxf(0.0, size.y - 420.0)), Color(0.008, 0.005, 0.009, 0.24))
 	var breathe := 0.5 + 0.5 * sin(pulse * 1.7)
 	draw_circle(Vector2(size.x * 0.5, 360.0), 280.0, Color(secondary.r, secondary.g, secondary.b, 0.025 + breathe * 0.012))
 

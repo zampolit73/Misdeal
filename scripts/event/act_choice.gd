@@ -6,6 +6,11 @@ const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
 const EVENT_POLISH_ART := preload("res://scripts/ui/event_polish_art.gd")
 const APPROVED_EVENT_CHOICE_ART := preload("res://scripts/ui/approved_event_choice_art.gd")
+const EVENT_SCENE_ART := {
+	"curse_forge": preload("res://assets/pixel/event/v7/curse_forge.webp"),
+	"chained_prisoner": preload("res://assets/pixel/event/v7/chained_prisoner.webp"),
+	"black_altar": preload("res://assets/pixel/event/v7/black_altar.webp"),
+}
 
 @onready var title_label: Label = $Panel/Title
 @onready var type_label: Label = $Panel/Type
@@ -183,6 +188,7 @@ func _apply_event_layout() -> void:
 	feature_scene_art.visible = false
 	feature_scene_art.texture = null
 	feature_scene_art.modulate = Color.WHITE
+	screen_visual.modulate = Color.WHITE
 	event_decor.visible = false
 	event_decor.texture = null
 	event_decor.modulate = Color.WHITE
@@ -197,17 +203,13 @@ func _apply_event_layout() -> void:
 	match active_card.card_id:
 		"curse_forge":
 			_apply_feature_panel_shell()
-			backdrop.modulate = Color(0.42, 0.20, 0.17, 0.42)
-			feature_scene_art.texture = EVENT_POLISH_ART.get_forge_scene_texture()
-			feature_scene_art.visible = feature_scene_art.texture != null
-			feature_scene_art.position = Vector2(0.0, 250.0)
-			feature_scene_art.size = Vector2(1280.0, 360.0)
-			feature_scene_art.modulate = Color(1.0, 0.76, 0.60, 0.48)
-			event_decor.texture = APPROVED_EVENT_DECOR.get_forge_texture()
-			event_decor.visible = event_decor.texture != null
-			event_decor.position = Vector2(18.0, 108.0)
-			event_decor.size = Vector2(390.0, 320.0)
-			event_decor.modulate = Color(1.0, 0.90, 0.78, 0.96)
+			backdrop.modulate = Color(0.28, 0.20, 0.18, 0.24)
+			feature_scene_art.texture = EVENT_SCENE_ART["curse_forge"]
+			feature_scene_art.visible = true
+			feature_scene_art.position = Vector2.ZERO
+			feature_scene_art.size = Vector2(1280.0, 720.0)
+			feature_scene_art.modulate = Color(1.0, 0.94, 0.90, 0.82)
+			screen_visual.modulate = Color(1, 1, 1, 0.45)
 			panel.position = Vector2.ZERO
 			panel.size = Vector2(1280.0, 720.0)
 			feature_header.visible = true
@@ -216,18 +218,33 @@ func _apply_event_layout() -> void:
 			_apply_forge_reference_layout()
 		"chained_prisoner":
 			_apply_feature_panel_shell()
-			backdrop.modulate = Color(0.34, 0.28, 0.28, 0.42)
-			event_decor.texture = APPROVED_EVENT_DECOR.get_prisoner_texture()
-			event_decor.visible = event_decor.texture != null
-			event_decor.position = Vector2(0.0, 18.0)
-			event_decor.size = Vector2(640.0, 360.0)
-			event_decor.modulate = Color(0.96, 0.91, 0.84, 1.0)
+			backdrop.modulate = Color(0.24, 0.22, 0.22, 0.22)
+			feature_scene_art.texture = EVENT_SCENE_ART["chained_prisoner"]
+			feature_scene_art.visible = true
+			feature_scene_art.position = Vector2.ZERO
+			feature_scene_art.size = Vector2(1280.0, 720.0)
+			feature_scene_art.modulate = Color(1.0, 0.96, 0.92, 0.80)
+			screen_visual.modulate = Color(1, 1, 1, 0.42)
 			panel.position = Vector2.ZERO
 			panel.size = Vector2(1280.0, 720.0)
 			feature_header.visible = true
 			feature_header.position = Vector2(180.0, 250.0)
 			feature_header.size = Vector2(920.0, 252.0)
 			_apply_prisoner_reference_layout()
+		"black_altar":
+			backdrop.modulate = Color(0.28, 0.18, 0.18, 0.22)
+			feature_scene_art.texture = EVENT_SCENE_ART["black_altar"]
+			feature_scene_art.visible = true
+			feature_scene_art.position = Vector2.ZERO
+			feature_scene_art.size = Vector2(1280.0, 720.0)
+			feature_scene_art.modulate = Color(1.0, 0.92, 0.90, 0.78)
+			screen_visual.modulate = Color(1, 1, 1, 0.45)
+			event_hero_art.texture = CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
+			event_hero_art.visible = event_hero_art.texture != null
+			event_art_frame.visible = event_hero_art.visible
+			gold_chip.visible = true
+			state_chip.visible = true
+			_apply_generic_reference_layout()
 		_:
 			backdrop.modulate = Color(0.82, 0.68, 0.66, 0.88)
 			event_hero_art.texture = CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)

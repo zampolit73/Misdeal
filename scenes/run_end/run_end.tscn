@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/run_end/run_end.gd" id="1_run_end"]
 [ext_resource type="Script" path="res://scripts/run_end/run_end_visual.gd" id="2_visual"]
+[ext_resource type="Texture2D" path="res://assets/pixel/run_end/v7/run_end.webp" id="3_backdrop"]
 
 [sub_resource type="StyleBoxFlat" id="SummaryPanel"]
 bg_color = Color(0.025, 0.020, 0.030, 0.96)
@@ -46,7 +47,24 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.018, 0.014, 0.024, 1)
 
+[node name="BackdropArt" type="TextureRect" parent="."]
+mouse_filter = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+texture_filter = 1
+texture = ExtResource("3_backdrop")
+expand_mode = 1
+stretch_mode = 6
+modulate = Color(1, 1, 1, 0.90)
+
+[node name="BackdropShade" type="ColorRect" parent="."]
+mouse_filter = 2
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.006, 0.003, 0.009, 0.30)
+
 [node name="Visual" type="Control" parent="."]
+visible = false
 mouse_filter = 2
 layout_mode = 1
 anchors_preset = 15
