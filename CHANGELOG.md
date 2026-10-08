@@ -4,6 +4,8 @@
 
 ### Added
 
+- Added a persistent `SceneTransition` autoload veil that survives scene replacement and covers runtime texture setup between screens.
+
 - Added `scripts/ui/misdeal_ui_kit.gd`, a shared runtime gothic/pixel chrome layer with reusable panel, card, action-button, chip, corner-mark and title treatments.
 - Applied the shared UI kit across the main menu, intro, Class Select, Wizard table and wager, Squad Dossier, Act 1 events, Whispering Well, Reward, Battle HUD/Last Deal and Run End.
 
@@ -44,6 +46,9 @@
 - Added repository-safe runtime-decoded WebP atlases for table-card art and development/reward art under `assets/pixel/ui/approved_card_art/`.
 
 ### Changed
+
+- Replaced the compressed low-quality main-menu splash with the approved restrained main-menu redraw, stored as a native 1280×720 runtime WebP.
+- Routed main/intro/class-select/table/event/battle/reward/run-end scene changes and battle reloads through the shared transition veil.
 
 - Rebalanced incomplete-party combat for full Act 1 runs: solo heroes now use HP ×2.2 / damage ×1.9 / attacks ×1.25 / movement ×1.10, while solo enemies use 82% HP and 80% damage; duo enemies use 92% HP and 90% damage alongside the existing duo hero bonus.
 - Wizard Debt and Wizard Mark now multiply on top of party-size enemy pressure, and enemy support healing follows enemy HP scaling.
@@ -128,6 +133,8 @@
 - Pre-battle hero dragging confirmed working locally.
 
 ### Fixed
+
+- Fixed the brief gray viewport flash during scene changes (notably table → battle and event → table) by keeping a persistent dark veil over the viewport until the incoming scene is ready; the renderer clear color now matches the same near-black fallback.
 
 - Fixed the first UI-kit screenshot regressions: the authored main-menu and intro click hotspots are transparent again instead of rendering empty opaque frames.
 - Fixed resolved Act 1 event layout so the old leave action disappears after a choice and long result text gets a dedicated strip above the single `К СТОЛУ` action.
