@@ -10,7 +10,7 @@ var active := false
 
 
 func _ready() -> void:
-	z_index = -20
+	z_index = 1
 	process_mode = Node.PROCESS_MODE_INHERIT
 	visible = false
 
