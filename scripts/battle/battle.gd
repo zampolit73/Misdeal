@@ -1,5 +1,7 @@
 extends Control
 
+const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
@@ -80,7 +82,7 @@ var target_preview: BattleTargetPreview
 
 func _ready() -> void:
 	if not RunState.has_chosen_protagonist():
-		SceneTransition.change_to("res://scenes/class_select/class_select.tscn")
+		SCENE_ROUTER.change_to(self, "res://scenes/class_select/class_select.tscn")
 		return
 
 	_apply_ui_kit()
@@ -953,7 +955,7 @@ func _on_last_deal_accept_pressed() -> void:
 		last_deal_accept_button.disabled = false
 		last_deal_refuse_button.disabled = false
 		return
-	SceneTransition.reload_current()
+	SCENE_ROUTER.reload_current(self)
 
 func _on_last_deal_refuse_pressed() -> void:
 	last_deal_accept_button.disabled = true
@@ -963,7 +965,7 @@ func _on_last_deal_refuse_pressed() -> void:
 		RunState.refuse_last_deal(reason)
 	else:
 		RunState.end_run_in_defeat(reason)
-	SceneTransition.change_to("res://scenes/run_end/run_end.tscn")
+	SCENE_ROUTER.change_to(self, "res://scenes/run_end/run_end.tscn")
 
 
 func _finish_battle(player_won: bool) -> void:
@@ -1043,16 +1045,16 @@ func _on_restart_pressed() -> void:
 	# Free combat retries are intentionally disabled. Kept only as a legacy signal target.
 	if battle_finished and not RunState.last_battle_won:
 		return
-	SceneTransition.reload_current()
+	SCENE_ROUTER.reload_current(self)
 
 
 func _on_continue_pressed() -> void:
 	continue_button.disabled = true
 
 	if RunState.last_battle_won:
-		SceneTransition.change_to("res://scenes/reward/reward.tscn")
+		SCENE_ROUTER.change_to(self, "res://scenes/reward/reward.tscn")
 		return
 
 	RunState.end_run_in_defeat("Вы проиграли бой «%s»." % encounter.title)
-	SceneTransition.change_to("res://scenes/run_end/run_end.tscn")
+	SCENE_ROUTER.change_to(self, "res://scenes/run_end/run_end.tscn")
 
