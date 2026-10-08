@@ -78,7 +78,7 @@ func _choose(role: String) -> void:
 
 	status_label.text = "— Вот так ты это помнишь, — говорит Волшебник."
 	await get_tree().create_timer(0.35).timeout
-	get_tree().change_scene_to_file("res://scenes/table/table.tscn")
+	SceneTransition.change_to("res://scenes/table/table.tscn")
 
 func _get_unit_sheet_texture() -> Texture2D:
 	if unit_sheet_texture != null:
