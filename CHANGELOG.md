@@ -33,6 +33,9 @@
 
 ### Changed
 
+- Wired the first object-first card redraw batch into live table rendering for **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**.
+- Reduced card-art grade strength from 0.58 to 0.30 to preserve authored dark midtones.
+
 - Reduced the shared card-art grade strength so newly authored card illustrations retain readable dark midtones while remaining inside the Misdeal palette.
 
 - Local screenshot review established Bone Crush as the first true redraw benchmark, kept the shared grade as a consistency layer, and moved future deployment visuals toward in-world floor markings instead of blue debug-style panels.

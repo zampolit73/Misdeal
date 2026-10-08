@@ -202,3 +202,11 @@ Do not prioritize these before the vertical slice works:
 - [ ] Review the Bone Crush redraw locally at 1280×720 before propagating the style.
 - [x] Integrate the first object-first card redraw batch: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**.
 - [ ] Continue the same authored low-detail redraw language across the remaining table cards and event illustrations.
+
+
+### Full visual redraw rollout
+
+- [x] First object-first card redraw batch is live: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **ШЕПЧУЩИЙ КОЛОДЕЦ**.
+- [ ] Replace the remaining Act 1 card illustrations in the same authored low-detail language.
+- [ ] Replace the remaining arena sources that still read as generated rather than authored.
+- [ ] Rebuild event/reward surfaces around the same limited Ink / Stone / Bone / Rust / Teal / Gold language while keeping all mutable values live.

@@ -833,3 +833,10 @@ After Bone Crush is proven locally, the same redraw language should be propagate
 The broader production-art replacement pass has moved from arena-only work into table-card art. The first object-first card redraw batch is now wired into runtime for **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**. These three cards bypass their old atlas cells and decode dedicated 224×137 WebP art from repository-safe base64 text assets. The shared card grade is deliberately lighter so authored midtones survive instead of collapsing toward black.
 
 This is the first runtime batch of the user-approved full visual redraw direction. Existing card mechanics, titles, descriptions, prices and event logic remain live Godot UI and are unchanged.
+
+
+## Visual redraw rollout — 2026-10-08
+
+The first object-first table-card batch is live in main. **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ** now use dedicated 224×137 authored WebP overrides instead of their old atlas cells. The card-grade strength was reduced from 0.58 to 0.30 so the new dark pixel art keeps readable midtones.
+
+This is the start of the user-approved broader visual redraw. Mechanics, prices, descriptions and choice state remain live Godot controls.
