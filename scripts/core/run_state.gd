@@ -142,6 +142,9 @@ var boss_defeated := false
 var run_failed := false
 var run_end_reason := ""
 
+# Presentation preference, intentionally not reset between runs in the same app session.
+var battle_target_preview_enabled := false
+
 var last_deal_used := false
 var last_deal_pending := false
 var last_deal_offer_artifact_id := ""
