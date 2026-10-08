@@ -97,3 +97,18 @@ Current corrected direction:
 - Ash Rest, Bone Crush, Broken Crown, Candle Seller, Bone Tax and Death Wager remain on their unique approved 224×137 fallback cells until matching redraws exist;
 - Crypt and Gallows Volley use dedicated native 1280×720 v4 redraws; Graveyard/Ossuary/Warden keep validated HD sources and Bone Crush keeps its dedicated benchmark arena;
 - never upscale a 320×180 arena to the 1280×720 gameplay viewport as the production background.
+
+
+## Battle arena v6 review correction
+
+After local screenshots exposed crushed shadows and a mismatched Bone Crush floor plane, the runtime arena pass was corrected:
+
+- Graveyard uses the latest moonlit bell-mausoleum redraw.
+- Ossuary uses the latest bone-gate crypt redraw.
+- Warden uses the latest red throne / ritual-circle redraw.
+- Bone Crush uses the latest broad-floor dark crypt redraw.
+- The latest Bone Warden character redraw overrides the older boss-card atlas cell.
+- Authored arena art is no longer post-darkened by the legacy environment-grade material.
+- Bone Crush deployment/combat coordinates are constrained to the visible floor.
+
+These are native 1280×720 runtime WebPs (boss card: 448×274), not thumbnail-scale atlas enlargements.

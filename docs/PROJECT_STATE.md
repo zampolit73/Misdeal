@@ -869,3 +869,20 @@ Five cards use a supplementary v5 atlas at the same near-display 224×137 source
 **СЛОМАННАЯ КОРОНА** deliberately uses the already-approved object-centric Broken Crown artifact illustration. This makes the source card and the source-locked relic visually identical instead of inventing an unrelated scene.
 
 All 25 active Act 1 table cards now resolve to current redraw/object-specific art before the legacy approved run atlas fallback. The v5 sheet is split into repository-safe base64 WebP text parts and decoded at runtime; gameplay text, prices and state remain live Godot UI.
+
+
+## Battle arena v6 correction — 2026-10-08
+
+The latest arena redraws from the current review are now the production sources for the scenes that were still visually wrong:
+
+- graveyard: latest moonlit bell-mausoleum arena;
+- ossuary: latest bone-gate crypt arena;
+- warden: latest red throne / ritual-circle arena;
+- bone_crush: latest broad-floor dark crypt arena;
+- Bone Warden table card: latest dedicated Warden character redraw.
+
+All four new battle sources are native 1280×720 WebP assets. Authored arena art is no longer passed through the legacy environment-grade material; that extra grade was the main cause of the crushed-black Grave Bell and Ossuary screenshots.
+
+Bone Crush also uses floor-safe deployment/combat bounds and adjusted spawn lanes so units start and move on the visible floor plane instead of the architectural upper area.
+
+Crypt and Gallows keep the accepted native-HD v4 sources. Gameplay rules are unchanged; this correction is visual/layout only.

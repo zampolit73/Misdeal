@@ -196,7 +196,7 @@ Do not prioritize these before the vertical slice works:
 
 - [x] Review local screenshots after the first art-grade pass and identify the strongest remaining generated-art tells.
 - [x] Establish **КОСТЯНАЯ ДАВКА** as the first true redraw benchmark and approve a simpler low-detail crypt direction in chat.
-- [ ] Add a dedicated `bone_crush` arena id and production backdrop so the redraw does not alter other Ossuary encounters.
+- [x] Add a dedicated `bone_crush` arena id and production backdrop so the redraw does not alter other Ossuary encounters.
 - [ ] Replace blue deployment-zone panels with subtle in-world floor markings based on the same legal placement rectangles.
 - [ ] Retune environment/card grade shadows so wager/card images keep readable midtones instead of collapsing into black.
 - [ ] Review the Bone Crush redraw locally at 1280×720 before propagating the style.
@@ -211,6 +211,7 @@ Do not prioritize these before the vertical slice works:
 - [x] Replace 19 active Act 1 card illustrations with correctly mapped near-display-resolution v4 redraws; preserve unique approved fallback art for the other six.
 - [x] Finish the six remaining card redraws without unrelated substitutions; all 25 active Act 1 table cards now resolve to current redraw/object-specific art.
 - [x] Replace Crypt and Gallows Volley with native 1280×720 v4 arena redraws while retaining validated HD Graveyard/Ossuary/Warden and the dedicated Bone Crush benchmark.
+- [x] Wire the latest native-HD Graveyard/Ossuary/Warden/Bone Crush redraws, remove post-grade darkening and floor-align Bone Crush deployment/combat.
 - [ ] Continue any further arena replacement from native/high-resolution sources only. Thumbnail-scale full-screen arena upscaling is rejected.
 - [ ] Rebuild event/reward surfaces around the same limited Ink / Stone / Bone / Rust / Teal / Gold language while keeping all mutable values live.
 - [x] Locally verify the corrected v4 cards and restored high-resolution arenas at 1280×720 before another broad visual rollout.

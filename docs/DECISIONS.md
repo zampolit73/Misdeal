@@ -1313,3 +1313,17 @@ The accepted 224×137 v4 card redraws remain untouched. The last five scene-base
 The active-card lookup order is exact Broken Crown artifact art where applicable, matching v5 redraw, matching v4 redraw, then the legacy approved atlas only as a decode/failure fallback. No active Act 1 card intentionally depends on unrelated art.
 
 Supplementary art may be stored as split base64 WebP text when that keeps repository transport reliable. Source resolution must stay at near-display size or better.
+
+
+## D077 — Latest authored battle redraws are authoritative and are not post-darkened
+
+Date: 2026-10-08  
+Status: accepted
+
+The latest reviewed redraws in the current visual pass are the authoritative runtime art for Graveyard, Ossuary, Bone Warden and Bone Crush. The latest dedicated Bone Warden character redraw is also authoritative for the boss table card.
+
+These authored images already contain their intended contrast, palette and lighting. Battle backdrops therefore must not receive the legacy environment-grade material on top. That extra pass crushed shadow detail and caused the visibly over-dark Grave Bell and Ossuary screenshots.
+
+Battlefield art must expose a broad, continuous floor plane that matches live unit coordinates. Bone Crush now uses encounter-specific floor-safe combat bounds and deployment bands instead of allowing units to occupy the architectural upper portion of the backdrop.
+
+Crypt and Gallows remain on their accepted v4 native-HD art. No combat mechanics, stats or targeting rules are changed by this decision.
