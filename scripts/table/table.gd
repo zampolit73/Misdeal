@@ -867,4 +867,5 @@ func _enable_offer_buttons() -> void:
 
 	var offers := RunState.get_offer_cards()
 	_refresh_hold_buttons(offers)
+	call_deferred("_maybe_show_fate_milestone")
 
