@@ -52,4 +52,4 @@ func _ready() -> void:
 func _on_new_run_pressed() -> void:
 	new_run_button.disabled = true
 	RunState.reset_run()
-	get_tree().change_scene_to_file("res://scenes/class_select/class_select.tscn")
+	SceneTransition.change_to("res://scenes/class_select/class_select.tscn")
