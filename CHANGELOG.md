@@ -4,6 +4,9 @@
 
 ### Added
 
+- Added `scripts/ui/misdeal_ui_kit.gd`, a shared runtime gothic/pixel chrome layer with reusable panel, card, action-button, chip, corner-mark and title treatments.
+- Applied the shared UI kit across the main menu, intro, Class Select, Wizard table and wager, Squad Dossier, Act 1 events, Whispering Well, Reward, Battle HUD/Last Deal and Run End.
+
 - Added durable project handoff and visual asset registry documents so a fresh Project chat can continue without reconstructing the visual-history transcript.
 - Archived the eight final V9 generated event masters at 1672×941 under `assets/source_archive/visual_pass_v9/` for future crop/re-export work.
 - Added the final V9 generic-event environment batch for Rattling Bridge, Lost Purse, Debtor Bones, Bone Tax, Wizard Tithe, Ash Rest, Last Camp and Broken Crown.
@@ -41,6 +44,8 @@
 - Added repository-safe runtime-decoded WebP atlases for table-card art and development/reward art under `assets/pixel/ui/approved_card_art/`.
 
 ### Changed
+
+- Existing approved event-choice art, artifact art and authored screen backdrops now sit inside one consistent live Godot chrome system instead of each screen relying on unrelated local panel/button styling.
 
 - The eight V9 events now use dedicated native 1280×720 environments in the shared live Act Choice scene while keeping all gameplay text/state/buttons dynamic.
 - Broad Act 1 art replacement is considered complete after V9; further visual changes should be targeted from local screenshot review.
