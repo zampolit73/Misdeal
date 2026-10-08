@@ -44,20 +44,20 @@ func change_to(scene_path: String) -> void:
 	_veil.mouse_filter = Control.MOUSE_FILTER_STOP
 	_sync_veil_rect()
 
-	var packed_scene := await _load_scene(scene_path)
+	var packed_scene: PackedScene = await _load_scene(scene_path)
 	if packed_scene == null:
 		_reset_veil()
 		return
 
 	# Instantiate before the blackout. _ready() does not run until the node is
 	# added to the tree, so this removes another chunk of work from the swap.
-	var next_scene := packed_scene.instantiate()
+	var next_scene: Node = packed_scene.instantiate()
 	if next_scene == null:
 		push_error("Could not instantiate scene: %s" % scene_path)
 		_reset_veil()
 		return
 
-	var fade_out := create_tween()
+	var fade_out: Tween = create_tween()
 	fade_out.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	fade_out.tween_property(_veil, "modulate:a", 1.0, FADE_OUT_TIME)
 	await fade_out.finished
@@ -66,8 +66,8 @@ func change_to(scene_path: String) -> void:
 	# any scene-tree mutation or runtime image decoding can block the main loop.
 	await RenderingServer.frame_post_draw
 
-	var tree := get_tree()
-	var old_scene := tree.current_scene
+	var tree: SceneTree = get_tree()
+	var old_scene: Node = tree.current_scene
 
 	# Add the new scene while the old one still exists. There is never a frame
 	# where the viewport has no scene beneath the persistent autoload layer.
@@ -84,7 +84,7 @@ func change_to(scene_path: String) -> void:
 	await tree.process_frame
 	await RenderingServer.frame_post_draw
 
-	var fade_in := create_tween()
+	var fade_in: Tween = create_tween()
 	fade_in.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	fade_in.tween_property(_veil, "modulate:a", 0.0, FADE_IN_TIME)
 	await fade_in.finished
@@ -93,7 +93,7 @@ func change_to(scene_path: String) -> void:
 
 
 func reload_current() -> void:
-	var current := get_tree().current_scene
+	var current: Node = get_tree().current_scene
 	if current == null:
 		return
 
@@ -108,7 +108,7 @@ func _load_scene(scene_path: String) -> PackedScene:
 	# Threaded loading keeps the outgoing scene on screen instead of freezing on
 	# an empty viewport. Cached scenes may report ERR_BUSY; load_threaded_get()
 	# still resolves them through the existing request/cache.
-	var request_error := ResourceLoader.load_threaded_request(
+	var request_error: Error = ResourceLoader.load_threaded_request(
 		scene_path,
 		"PackedScene",
 		true
@@ -123,7 +123,7 @@ func _load_scene(scene_path: String) -> PackedScene:
 
 	var progress: Array = []
 	while true:
-		var status := ResourceLoader.load_threaded_get_status(scene_path, progress)
+		var status: int = ResourceLoader.load_threaded_get_status(scene_path, progress)
 		match status:
 			ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 				await get_tree().process_frame
