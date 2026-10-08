@@ -2,6 +2,14 @@
 
 Last updated: 2026-10-08
 
+## Fate Spread reference-driven polish — 2026-10-08
+
+A second visual pass now follows the approved Fate Spread reference more closely instead of treating the screen as a plain radial menu. The live spread has a dedicated occult seal layer beneath I–XII, a dim fate-thread connecting the twelve positions, brighter completed path segments, chapter gates after IV/VIII/XII, inward ritual spokes and a central sigil whose blood/ember intensity increases with run progress.
+
+XIII now has its own live chain/seal overlay. Two crossed chains hold the boss card early in the act; one visually breaks away entering the final chapter, and the seal disappears into an awakened mark once the Bone Warden is due. Side holders were shortened to return visual priority to the central ritual composition. Chapter typography also escalates from gold to ember/red as the act advances.
+
+All of this remains procedural/live UI; no progress values or run history are baked into static art.
+
 ## Fate Spread local screenshot correction — 2026-10-08
 
 The first local 1280×720 screenshots confirmed the progression concept but exposed a presentation defect: the live two-card offer and the table access button could render above the inspection view, obscuring the historical ring and XIII. The inspection overlay now uses a valid top CanvasItem z-index, explicitly hides the live deal/progress access while open, restores them on close, and uses smaller historical-card slots with a wider ring so the central boss card reads as the focal point.
