@@ -154,6 +154,8 @@
 
 ### Fixed
 
+- Fixed the approved Fate Spread reference plate being almost invisible behind the outer frame. It now renders inside the frame above the panel background, while stronger live center/header masks prevent baked concept cards/text from competing with real run state.
+
 - Fixed Fate Spread layering/readability after the first local screenshot: live offer cards and the table's `РАСКЛАД СУДЬБЫ` button are hidden while the inspection overlay is open, the overlay uses a valid top z-index, and the twelve historical slots are smaller with more breathing room around XIII.
 
 - Fixed `run_end.gd` declaration order after the resilient scene-router rollout; all navigation scripts now start with their `extends` declaration and contain no direct `SceneTransition` identifier references.
