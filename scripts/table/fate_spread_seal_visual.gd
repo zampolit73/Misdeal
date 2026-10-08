@@ -26,7 +26,7 @@ func refresh() -> void:
 
 func _draw() -> void:
 	var resolved: int = clampi(RunState.cards_resolved, 0, SLOT_COUNT)
-	var chapter: int = mini(3, resolved / 4)
+	var chapter: int = mini(3, int(resolved / 4))
 
 	_draw_outer_thread(resolved)
 	_draw_chapter_marks()
