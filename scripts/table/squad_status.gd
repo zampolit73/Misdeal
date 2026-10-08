@@ -1,5 +1,7 @@
 extends Control
 
+const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+
 const ROLE_PORTRAIT_PATHS := {
 	"knight": "res://assets/pixel/class_select/v7/knight.webp",
 	"ranger": "res://assets/pixel/class_select/v7/ranger.webp",
@@ -21,6 +23,7 @@ const ROLE_PORTRAIT_PATHS := {
 var current_role := "knight"
 
 func _ready() -> void:
+	_apply_ui_kit()
 	if RunState.has_chosen_protagonist():
 		current_role = RunState.protagonist_role
 
@@ -29,6 +32,19 @@ func _ready() -> void:
 	mage_button.pressed.connect(_select_role.bind("mage"))
 	close_button.pressed.connect(_close)
 	_select_role(current_role)
+
+func _apply_ui_kit() -> void:
+	MISDEAL_UI_KIT.apply_panel($Frame, MISDEAL_UI_KIT.BRONZE, true)
+	MISDEAL_UI_KIT.apply_panel($Frame/PortraitFrame, MISDEAL_UI_KIT.BRONZE, false)
+	MISDEAL_UI_KIT.apply_panel($Frame/BuildPanel, MISDEAL_UI_KIT.BRONZE, false)
+	MISDEAL_UI_KIT.apply_panel($Frame/RelicsPanel, MISDEAL_UI_KIT.GOLD, false)
+	MISDEAL_UI_KIT.apply_panel($Frame/CommonPanel, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_UI_KIT.apply_title($Frame/Title, MISDEAL_UI_KIT.GOLD)
+	MISDEAL_UI_KIT.apply_action_button(close_button, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_UI_KIT.apply_action_button(knight_button, MISDEAL_UI_KIT.KNIGHT, false)
+	MISDEAL_UI_KIT.apply_action_button(ranger_button, MISDEAL_UI_KIT.RANGER, false)
+	MISDEAL_UI_KIT.apply_action_button(mage_button, MISDEAL_UI_KIT.MAGE, false)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
