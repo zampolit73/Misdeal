@@ -18,7 +18,8 @@ const TEXT_HOVER := Color(1.0, 0.94, 0.80, 1.0)
 const TEXT_MUTED := Color(0.48, 0.45, 0.45, 1.0)
 
 
-static func apply_panel(panel: Panel, accent: Color = BRONZE, strong: bool = false) -> void:
+static func apply_panel(target, accent: Color = BRONZE, strong: bool = false) -> void:
+	var panel := target as Control
 	if panel == null:
 		return
 	var source: StyleBoxFlat = panel.get_theme_stylebox("panel") as StyleBoxFlat
@@ -38,7 +39,8 @@ static func apply_panel(panel: Panel, accent: Color = BRONZE, strong: bool = fal
 		add_center_sigil(panel, accent)
 
 
-static func apply_chip(panel: Panel, accent: Color = BRONZE) -> void:
+static func apply_chip(target, accent: Color = BRONZE) -> void:
+	var panel := target as Control
 	if panel == null:
 		return
 	var source: StyleBoxFlat = panel.get_theme_stylebox("panel") as StyleBoxFlat
@@ -70,7 +72,8 @@ static func apply_action_button(button: Button, accent: Color = BRONZE, strong: 
 		add_corner_marks(button, accent, 9.0, 2.0)
 
 
-static func apply_title(label: Label, accent: Color = GOLD) -> void:
+static func apply_title(target, accent: Color = GOLD) -> void:
+	var label := target as Control
 	if label == null:
 		return
 	label.add_theme_color_override("font_color", accent.lightened(0.12))
@@ -79,7 +82,8 @@ static func apply_title(label: Label, accent: Color = GOLD) -> void:
 	label.add_theme_constant_override("shadow_offset_y", 2)
 
 
-static func apply_subtitle(label: Label, accent: Color = BRONZE) -> void:
+static func apply_subtitle(target, accent: Color = BRONZE) -> void:
+	var label := target as Control
 	if label == null:
 		return
 	label.add_theme_color_override("font_color", Color(
