@@ -959,3 +959,12 @@ Dedicated native 1280×720 authored environments now exist for:
 These sources use the same runtime WebP decoding path as the v7/v8 event art, so Godot does not depend on import-time Texture2D recognition. All event text, prices, recruit/fate state, artifact state and choice consequences remain live Godot UI.
 
 Together with the v7/v8 packages, all of the high-priority and planned secondary Act 1 non-combat event screens now have dedicated authored environment art. Further visual work should be screenshot-driven polish rather than another broad art-replacement batch.
+
+
+## Continuation checkpoint — 2026-10-08
+
+A durable handoff is now stored in `docs/HANDOFF.md` and the complete current visual mapping/provenance is stored in `docs/VISUAL_ASSET_REGISTRY.md`.
+
+The eight final V9 generated event compositions are additionally archived as larger 1672×941 Q95 WebP masters under `assets/source_archive/visual_pass_v9/`, separate from the 1280×720 runtime exports.
+
+Broad Act 1 art replacement is complete. The next visual step is screenshot-driven correction only; the next product step is full vertical-slice validation through Bone Warden in solo/duo/trio runs.

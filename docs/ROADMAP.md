@@ -246,3 +246,10 @@ Do not prioritize these before the vertical slice works:
 - [x] Integrate the final V9 generic-event environment batch for Rattling Bridge, Lost Purse, Debtor Bones, Bone Tax, Wizard Tithe, Ash Rest, Last Camp and Broken Crown.
 - [x] Keep all V9 event text/state/choices live in the shared Act Choice UI and load the new WebPs through the runtime decoder.
 - [ ] Stop broad art replacement and review fresh local 1280×720 screenshots for targeted polish only.
+
+
+### Project continuity / source preservation
+
+- [x] Save a durable GitHub handoff covering the current gameplay/visual state and exact next step.
+- [x] Add a visual asset registry with runtime paths, version history, rejected approaches and source provenance.
+- [x] Archive the final V9 generated masters at 1672×941 so future chats can recrop/re-export without recovering old chat attachments.

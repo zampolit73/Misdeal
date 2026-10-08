@@ -11,6 +11,8 @@ At the start of a new chat, before proposing architecture or code changes, read:
 3. `docs/PROJECT_STATE.md`
 4. `docs/ROADMAP.md`
 5. `docs/DECISIONS.md`
+6. `docs/HANDOFF.md`
+7. `docs/VISUAL_ASSET_REGISTRY.md`
 
 For implemented code and current project state, prefer GitHub over remembered chat context.
 

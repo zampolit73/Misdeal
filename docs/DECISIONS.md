@@ -1399,3 +1399,19 @@ Rattling Bridge, Lost Purse, Debtor Bones, Bone Tax, Wizard Tithe, Ash Rest, Las
 The environment is allowed to establish place, mood and a clear focal prop, but gameplay labels, prices, outcomes, companion fate state and buttons remain native Godot UI. Broken Crown keeps the same recognizable crown object used by its artifact/card presentation.
 
 All V9 WebPs follow the D080 runtime-decoding rule. After this batch, further art changes should be driven by local screenshots and concrete readability/composition problems rather than another blanket regeneration pass.
+
+
+## D082 — GitHub stores a durable handoff and recoverable visual source registry
+
+Date: 2026-10-08  
+Status: accepted
+
+Project continuity must not depend on the previous ChatGPT transcript.
+
+`docs/HANDOFF.md` is the compact continuation point for a fresh chat, and `docs/VISUAL_ASSET_REGISTRY.md` records the active visual version/path mapping plus rejected visual approaches.
+
+Approved production runtime art remains under `assets/pixel/`. Where a larger generated source is worth preserving for future recropping, it may also be stored under `assets/source_archive/` as a non-runtime master.
+
+The final V9 event sources are archived at their generated 1672×941 composition size as Q95 WebP masters. This keeps them recoverable without adding the much larger raw PNGs to normal runtime asset folders.
+
+New chats should read both handoff/registry files before proposing another visual replacement pass.

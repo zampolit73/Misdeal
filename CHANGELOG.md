@@ -4,6 +4,8 @@
 
 ### Added
 
+- Added durable project handoff and visual asset registry documents so a fresh Project chat can continue without reconstructing the visual-history transcript.
+- Archived the eight final V9 generated event masters at 1672×941 under `assets/source_archive/visual_pass_v9/` for future crop/re-export work.
 - Added the final V9 generic-event environment batch for Rattling Bridge, Lost Purse, Debtor Bones, Bone Tax, Wizard Tithe, Ash Rest, Last Camp and Broken Crown.
 - Added dedicated V8 event environments for Candle Seller, Gravedigger Shop, Blood Ledger and Faceless Card.
 - Added dedicated v7 Class Select portraits for Knight, Ranger and Mage.
