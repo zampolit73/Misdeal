@@ -3,6 +3,7 @@ extends Control
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 
 const SQUAD_STATUS_SCENE := preload("res://scenes/table/squad_status.tscn")
+const FATE_SPREAD_SCENE := preload("res://scenes/table/fate_spread_overlay.tscn")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 
@@ -30,6 +31,7 @@ const RIGHT_CARD_ROTATION := 0.045
 @onready var deck_count_label: Label = $DeckCount
 @onready var discard_count_label: Label = $DiscardCount
 @onready var spread_progress_label: Label = $SpreadProgress
+@onready var fate_spread_button: Button = $FateSpreadButton
 @onready var wager_root: Control = $WagerOverlay/Root
 @onready var wager_panel: Panel = $WagerOverlay/Root/WagerPanel
 @onready var wager_risk_panel: Panel = $WagerOverlay/Root/WagerPanel/RiskPanel
@@ -41,6 +43,7 @@ const RIGHT_CARD_ROTATION := 0.045
 
 var offer_buttons: Array[Button] = []
 var squad_status: Control
+var fate_spread_overlay: Control
 var default_wizard_line := ""
 var selection_locked := false
 var deal_in_progress := false
@@ -76,6 +79,7 @@ func _ready() -> void:
 	wager_risk_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	wager_reward_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	squad_button.pressed.connect(_toggle_squad_status)
+	fate_spread_button.pressed.connect(_toggle_fate_spread)
 	wager_accept_button.pressed.connect(_accept_wizard_wager)
 	wager_refuse_button.pressed.connect(_refuse_wizard_wager)
 
@@ -87,6 +91,7 @@ func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_panel($WizardLinePanel, MISDEAL_UI_KIT.BRONZE, false)
 	MISDEAL_UI_KIT.apply_subtitle(wizard_line, MISDEAL_UI_KIT.BRONZE)
 	MISDEAL_UI_KIT.apply_action_button(squad_button, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_UI_KIT.apply_action_button(fate_spread_button, MISDEAL_UI_KIT.BRONZE, false)
 	MISDEAL_UI_KIT.apply_action_button(hold_a_button, MISDEAL_UI_KIT.STEEL, false)
 	MISDEAL_UI_KIT.apply_action_button(hold_b_button, MISDEAL_UI_KIT.STEEL, false)
 
@@ -104,11 +109,44 @@ func _input(event: InputEvent) -> void:
 	if selection_locked:
 		return
 
-	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB:
-		get_viewport().set_input_as_handled()
-		_toggle_squad_status()
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_R:
+			get_viewport().set_input_as_handled()
+			_toggle_fate_spread()
+		elif event.keycode == KEY_TAB:
+			get_viewport().set_input_as_handled()
+			_toggle_squad_status()
+
+func _toggle_fate_spread() -> void:
+	if is_instance_valid(fate_spread_overlay):
+		if fate_spread_overlay.has_method("close"):
+			fate_spread_overlay.call("close")
+		return
+
+	if selection_locked or deal_in_progress or wager_root.visible:
+		return
+
+	if is_instance_valid(squad_status):
+		squad_status.queue_free()
+		squad_status = null
+		cards_root.visible = true
+
+	fate_spread_overlay = FATE_SPREAD_SCENE.instantiate() as Control
+	if fate_spread_overlay == null:
+		return
+
+	fate_spread_overlay.z_index = 9000
+	fate_spread_overlay.tree_exited.connect(_on_fate_spread_closed)
+	add_child(fate_spread_overlay)
+
+
+func _on_fate_spread_closed() -> void:
+	fate_spread_overlay = null
+
 
 func _toggle_squad_status() -> void:
+	if is_instance_valid(fate_spread_overlay):
+		return
 	if is_instance_valid(squad_status):
 		squad_status.queue_free()
 		return
@@ -344,13 +382,11 @@ func _update_spread_ui() -> void:
 	var discard_count := RunState.resolved_card_ids.size() + RunState.rejected_card_ids.size()
 	deck_count_label.text = "КОЛОДА  %02d" % deck_count
 	discard_count_label.text = "СБРОС  %02d" % discard_count
+	var remaining_to_boss: int = maxi(0, RunState.ACT_CARD_TARGET - RunState.cards_resolved)
 	if RunState.is_boss_due():
-		spread_progress_label.text = "XIII"
+		spread_progress_label.text = "XIII • ПРИГОВОР"
 	else:
-		spread_progress_label.text = "%02d/%02d" % [
-			RunState.cards_resolved,
-			RunState.ACT_CARD_TARGET
-		]
+		spread_progress_label.text = "ДО XIII • %02d" % remaining_to_boss
 
 	if table_spread_visual != null and table_spread_visual.has_method("refresh"):
 		table_spread_visual.call("refresh")
