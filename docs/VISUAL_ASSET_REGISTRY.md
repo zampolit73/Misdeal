@@ -1,3 +1,12 @@
+### Fate Spread
+
+- Approved visual direction: ornate physical occult table with red ritual cloth, candle/brass highlights, gothic edge props and chained XIII as the central focal point.
+- Runtime atmospheric plate: `assets/pixel/table/fate_spread/reference_underlay.webp`
+- Live scene: `scenes/table/fate_spread_overlay.tscn`
+- Live logic: `scripts/table/fate_spread_overlay.gd`
+- Rule: the plate is atmosphere only. I–XII history, XIII state, counters, hold/discard contents and decision memory remain live Godot UI.
+- The runtime plate is intentionally dark/blurred so any run-specific details from the approved concept image cannot compete with or contradict live state.
+
 # Misdeal — Visual Asset Registry
 
 Last updated: 2026-10-08
