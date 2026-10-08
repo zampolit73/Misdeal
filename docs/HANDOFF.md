@@ -94,14 +94,21 @@ Accepted direction:
 - Wizard wagers, debt, marks, holds, memory, rescue scars and Last Deal are implemented systems.
 - Visual passes must not silently alter mechanics, prices, stats, card odds or encounter composition.
 
+## Latest local-fix follow-up
+
+A 2026-10-08 Gallows Volley screenshot showed units, especially retreating ranged roles, climbing into the authored background above the visible floor. The encounter now uses a tighter floor-aligned combat rectangle, matching deployment band and adjusted party start positions. This is a movement-space fix for every unit in Gallows Volley, not an archer-only workaround. It is pending local verification.
+
+The current V9 event environments were also reviewed directly from the repository against `docs/ART_DIRECTION.md`. Several remain visually over-detailed and repeat the same candles / gothic skyline / red-banner language. Do not replace them blindly; prioritize object-first redraws where local event screenshots confirm the mismatch, while keeping live UI/text untouched.
+
 ## Exact next step
 
 Do not begin another broad art-generation pass.
 
 1. User pulls latest `main`.
-2. Locally open/check the eight V9 events at 1280×720.
-3. Fix only concrete defects found in screenshots: excessive darkness, text/art collisions, subject hidden behind UI, art crop, or wrong semantic mapping.
-4. Then switch priority back to full vertical-slice validation from menu → intro → class select → 12-card Act 1 → Bone Warden → run end, including solo/duo/trio balance and tactical-order behavior.
+2. Re-run **ЗАЛП С ВИСЕЛИЦЫ** and verify that retreat/chase/separation keep every unit on the stone floor.
+3. Locally open/check the eight V9 events at 1280×720. The repository review already flags the generic-event batch as denser than the production target; use fresh live screenshots to choose the first object-first redraws instead of doing another blind eight-screen replacement.
+4. Fix only concrete event defects: excessive detail, weak focal subject, darkness, text/art collisions, hidden subject, crop or wrong semantic mapping.
+5. Then switch priority back to full vertical-slice validation from menu → intro → class select → 12-card Act 1 → Bone Warden → run end, including solo/duo/trio balance and tactical-order behavior.
 
 ## Git workflow
 

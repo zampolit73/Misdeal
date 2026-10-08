@@ -120,6 +120,8 @@
 
 ### Fixed
 
+- Constrained **ЗАЛП С ВИСЕЛИЦЫ** to an authored-floor combat rectangle and matching deployment band so retreat, chase and separation cannot push any unit into the background/air above the stone arena; refreshed solo/duo/trio start positions to the same playable plane.
+
 - Fixed Godot 4.7.2 parse failures for newly added v7 WebP art by routing the new screen assets through a cached runtime WebP decoder instead of direct preload/Texture2D resource references.
 - Rejected and removed the low-resolution v3 runtime path that enlarged 112×69 card cells and 320×180 arena cells.
 - Added native 1280×720 v4 battle backdrops for Crypt and a new dedicated Gallows Volley arena; Graveyard/Ossuary/Warden keep their validated HD sources and Bone Crush keeps its dedicated benchmark.
