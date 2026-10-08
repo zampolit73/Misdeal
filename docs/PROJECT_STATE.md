@@ -504,7 +504,7 @@ Implemented combat behavior:
 - Bone Thrall is a smaller, faster, low-HP swarm enemy;
 - Crypt Guard is a slower elite melee enemy with a larger silhouette, visible name and 35% splash damage around its primary target.
 
-Hero stats receive persistent run bonuses from `RunState`. After upgrades and relics, incomplete parties receive visible fixed compensation: solo x2.0 HP, x1.8 damage, x0.80 attack interval and x1.10 movement speed; duo +20% HP/+15% damage; trio none. Final spawned max HP is clamped to at least 20 and damage to at least 1. Tactical-order movement is applied at runtime after these build/party modifiers. Enemy/boss stats do not dynamically scale to party size.
+Hero stats receive persistent run bonuses from `RunState`. After upgrades and relics, incomplete parties receive visible compensation: solo x2.2 HP, x1.9 damage, x0.80 attack interval and x1.10 movement speed; duo +20% HP/+15% damage; trio none. Enemy HP/damage pressure is also party-size-aware (solo 82%/80%, duo 92%/90%, trio 100%/100%) while encounter composition and AI remain authored. Final spawned hero max HP is clamped to at least 20 and damage to at least 1.
 
 After victory, **ЗАБРАТЬ НАГРАДУ** opens the reward scene.
 
@@ -698,7 +698,7 @@ Important fate rule:
 
 Upgrade and general-pool artifact offers only target heroes currently in the party. A solo major reward can show all three remaining upgrade paths for that one hero; duo/trio offers are built only from recruited roles.
 
-Solo compensation is now x2.0 HP, x1.8 damage, x0.80 attack interval (+25% attacks/second) and x1.10 move speed after local testing showed the first version was nearly unplayable. Duo compensation remains +20% HP/+15% damage. This keeps incomplete-party routes playable without adaptive enemy scaling.
+Solo compensation is now x2.2 HP, x1.9 damage, x0.80 attack interval (+25% attacks/second) and x1.10 move speed. Duo compensation remains +20% HP/+15% damage. Enemy pressure now also scales transparently by party size (solo 82% HP/80% damage, duo 92% HP/90% damage), while authored compositions stay fixed.
 
 ### Run state
 
@@ -759,7 +759,7 @@ Locally verify the new hard-roguelike party flow end to end:
 
 - main menu -> story intro -> class selection -> table;
 - after choosing a class, battle must spawn only that protagonist;
-- solo battle/status must show x2 HP, x1.8 damage, x1.25 attacks/second and x1.10 movement compensation;
+- solo battle/status must show x2.2 HP, x1.9 damage, x1.25 attacks/second and x1.10 movement compensation plus the visible enemy-pressure reduction;
 - recruiting one companion must immediately switch future battles to duo and compensation to +20% HP/+15% damage;
 - recruiting both must produce a normal trio with no compensation;
 - major/bonus upgrade offers and general-pool relics must only target heroes currently in the party;
@@ -801,6 +801,25 @@ The user keeps a local clone and normally updates with:
 Fresh 1280×720 local screenshots confirmed the shared chrome direction is working well on the Act Choice and Reward/development screens, but exposed two first-pass regressions. The main-menu and intro controls are authored-image click hotspots and must stay transparent; applying generic action-button chrome produced empty dark rectangles over the art. Those two hotspots now keep their original transparent treatment.
 
 Resolved shared Act Choice screens now hide the obsolete leave button, reserve a dedicated result strip, and present a single centered `К СТОЛУ` action. This specifically fixes Candle Seller result text overlapping the bottom actions after a purchase.
+
+## Act 1 party-size balance pass — 2026-10-08
+
+A first full-run-oriented party-size pressure pass is now in `main` and pending local solo/duo/trio verification.
+
+The previous approach only amplified incomplete-party heroes while every enemy pack retained full trio-authored durability and damage. That left solo Ranger/Mage openings too close to a raw action-economy loss, especially when the first forced combat arrived before a useful event.
+
+Current baseline:
+- **solo hero:** HP ×2.2, damage ×1.9, attack interval ×0.80 (+25% attacks/sec), movement ×1.10;
+- **solo enemies:** HP ×0.82, damage ×0.80;
+- **duo heroes:** HP ×1.20, damage ×1.15;
+- **duo enemies:** HP ×0.92, damage ×0.90;
+- **trio:** authored 100% enemy baseline, no party compensation.
+
+Enemy composition, AI, ranges, attack cadence and boss mechanics are unchanged. Enemy support healing scales with the same enemy-HP factor so Grave Bell-style healing does not become disproportionately strong in incomplete-party runs. Wizard Debt / Wizard Mark danger bonuses multiply on top of the party-size damage baseline rather than bypassing it.
+
+Act 1 opening pacing also changed conservatively: the tier-0 forced-combat slot is now 1 or 2 instead of 0–2, guaranteeing at least one non-combat decision before the first mandatory fight. Mid/late tiers retain the previous 0–2 forced-combat timing.
+
+This supersedes the earlier static-balance assumption that enemies/bosses never scale by party size; the authored encounter compositions and full-trio numbers remain the reference baseline.
 
 ## Shared gothic UI-kit pass — 2026-10-08
 
