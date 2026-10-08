@@ -309,6 +309,10 @@ func _apply_health_bar_style() -> void:
 
 func set_combat_bounds(bounds: Rect2) -> void:
 	combat_bounds = bounds
+	# Spawn data and future movement share the same floor contract.
+	# Clamp immediately so a unit can never spend the preparation/intro phase
+	# outside the authored walkable floor and then appear to "slide in" later.
+	_clamp_to_combat_bounds()
 
 
 func enable_placement(bounds: Rect2) -> void:
