@@ -1509,3 +1509,21 @@ Future slots remain unknown under the current random-offer model. If the game la
 
 The initial spread also divides pacing visually into three four-card chapters — **ПЕРВАЯ РАЗДАЧА**, **СТОЛ ПОМНИТ**, **ПОСЛЕДНЯЯ РАЗДАЧА** — without yet changing mechanical tier rules.
 
+## D089 — Fate Spread is both progress map and run memory
+
+Date: 2026-10-08  
+Status: accepted, implemented pending local verification
+
+The Fate Spread should not behave like a passive 12/12 counter. It is the physical record of the current cursed game.
+
+Each resolved pre-boss card now stores the pair that created it: the chosen card and the alternative rejected at that deal. Hovering a completed slot may reveal that pair, but should not replace the visible chronological card history or introduce a separate journal screen.
+
+The three four-card chapter boundaries are also presentation beats:
+- **IV** — first ritual acknowledgement;
+- **VIII** — second chapter transition and visible weakening of XIII's seal;
+- **XII** — final ritual reveal before XIII/Bone Warden.
+
+These beats trigger once per run when the player returns to an unlocked table state. The spread may auto-open briefly as a chapter punctuation, but normal card choice remains untouched and no additional reward/cost is attached to the milestone.
+
+The inspection screen keeps a restrained physical table surface beneath live cards/seals. Do not replace this with a generic map background or a baked screenshot.
+
