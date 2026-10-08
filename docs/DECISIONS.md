@@ -1415,3 +1415,15 @@ Approved production runtime art remains under `assets/pixel/`. Where a larger ge
 The final V9 event sources are archived at their generated 1672×941 composition size as Q95 WebP masters. This keeps them recoverable without adding the much larger raw PNGs to normal runtime asset folders.
 
 New chats should read both handoff/registry files before proposing another visual replacement pass.
+
+## D083 — Shared live UI chrome replaces screen-by-screen StyleBox drift
+
+Date: 2026-10-08  
+Status: accepted, pending local visual verification
+
+Misdeal keeps mutable gameplay text, prices, state and buttons as native Godot controls, but their presentation should no longer be independently restyled on every screen.
+
+`scripts/ui/misdeal_ui_kit.gd` is the shared runtime chrome layer for the vertical slice. It modifies existing StyleBoxFlat resources in place so scene layout/content margins survive, then adds restrained pixel-gothic corner marks and semantic accent roles (bronze/gold/ember/steel plus hero colors). Existing approved choice illustrations, artifact art and authored backdrops remain the content layer underneath this chrome.
+
+The kit is intentionally lightweight rather than a new theme framework: no baked UI screenshots, no addon dependency and no replacement of live scene logic. Screen-specific semantic styling may still refine the shared base (for example event risk colors, table card types and temporary tactical-order colors), but new screens should start from the shared kit instead of inventing unrelated panel/button treatments.
+
