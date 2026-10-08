@@ -212,6 +212,8 @@ Do not prioritize these before the vertical slice works:
 - [x] Finish the six remaining card redraws without unrelated substitutions; all 25 active Act 1 table cards now resolve to current redraw/object-specific art.
 - [x] Replace Crypt and Gallows Volley with native 1280×720 v4 arena redraws while retaining validated HD Graveyard/Ossuary/Warden and the dedicated Bone Crush benchmark.
 - [x] Wire the latest native-HD Graveyard/Ossuary/Warden/Bone Crush redraws, remove post-grade darkening and floor-align Bone Crush deployment/combat.
+- [x] Align Gallows Volley movement/spawn bounds to the authored stone floor and clamp unit positions immediately when combat bounds are assigned.
+- [ ] Locally verify Gallows Volley retreat/separation with solo, duo and trio so ranged units never appear to move over background architecture.
 - [ ] Continue any further arena replacement from native/high-resolution sources only. Thumbnail-scale full-screen arena upscaling is rejected.
 - [x] Integrate the prepared v6 Wizard/table backdrop without baked live UI and reduce Wizard-wager/table dimming.
 - [x] Rebuild the high-visibility remaining surfaces: Class Select portraits, Reward, Whispering Well, Curse Forge, Chained Prisoner, Black Altar and Run End now use dedicated authored v7 art while mutable values stay live.
