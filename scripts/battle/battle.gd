@@ -313,7 +313,9 @@ func _spawn_unit(
 		unit.set_meta("order_base_damage", unit.damage)
 		unit.set_meta("order_base_attack_interval", unit.attack_interval)
 	else:
+		unit.max_hp *= RunState.get_enemy_hp_multiplier()
 		unit.damage *= RunState.get_enemy_damage_multiplier()
+		unit.support_heal_amount *= RunState.get_enemy_hp_multiplier()
 
 	if team == 0:
 		unit.set_tactical_order(tactical_order)
@@ -548,11 +550,13 @@ func _build_battle_condition_text() -> String:
 	var lines: Array[String] = []
 	match RunState.get_party_size():
 		1:
-			lines.append("СОЛО • HP ×2 • УРОН ×1.8 • АТАКИ ×1.25")
+			lines.append("СОЛО • HP ×2.2 • УРОН ×1.9 • АТАКИ ×1.25")
+			lines.append("ДАВЛЕНИЕ ВРАГОВ • HP -18% • УРОН -20%")
 		2:
 			lines.append("ДУО • HP +20% • УРОН +15%")
+			lines.append("ДАВЛЕНИЕ ВРАГОВ • HP -8% • УРОН -10%")
 		_:
-			lines.append("ОТРЯД 3/3")
+			lines.append("ОТРЯД 3/3 • ПОЛНОЕ ДАВЛЕНИЕ")
 
 	if RunState.wizard_debt_active:
 		lines.append("ДОЛГ • ВРАГИ +25%")
