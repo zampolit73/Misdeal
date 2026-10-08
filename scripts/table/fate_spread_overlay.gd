@@ -30,6 +30,9 @@ const BOSS_BORDER := Color(0.92, 0.18, 0.10, 1.0)
 @onready var discard_art: TextureRect = $Frame/DiscardPanel/Art
 @onready var discard_title: Label = $Frame/DiscardPanel/CardTitle
 @onready var discard_status: Label = $Frame/DiscardPanel/Status
+@onready var detail_panel: Panel = $Frame/DetailPanel
+@onready var detail_title: Label = $Frame/DetailPanel/Title
+@onready var detail_body: Label = $Frame/DetailPanel/Body
 
 var slot_panels: Array[Panel] = []
 var boss_panel: Panel
@@ -96,8 +99,10 @@ func _build_slots() -> void:
 		var panel := Panel.new()
 		panel.name = "FateSlot%02d" % (index + 1)
 		panel.size = SLOT_SIZE
-		panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		panel.mouse_filter = Control.MOUSE_FILTER_STOP
 		panel.pivot_offset = SLOT_SIZE * 0.5
+		panel.mouse_entered.connect(_on_slot_mouse_entered.bind(index))
+		panel.mouse_exited.connect(_on_slot_mouse_exited.bind(index))
 
 		var angle := deg_to_rad(-90.0 + float(index) * 30.0)
 		var center := SLOT_CENTER + Vector2(cos(angle) * SLOT_RADIUS.x, sin(angle) * SLOT_RADIUS.y)
@@ -192,6 +197,83 @@ func _build_slots() -> void:
 		boss_seal_visual.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		boss_panel.add_child(boss_seal_visual)
 
+
+func _on_slot_mouse_entered(index: int) -> void:
+	if index < 0 or index >= slot_panels.size():
+		return
+	if index >= RunState.resolved_card_ids.size():
+		return
+
+	var panel := slot_panels[index]
+	panel.z_index = 30
+	var tween := panel.create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(panel, "scale", Vector2(1.10, 1.10), 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(panel, "modulate", Color(1.08, 1.02, 0.94, 1.0), 0.12)
+
+	_show_history_detail(index)
+
+
+func _on_slot_mouse_exited(index: int) -> void:
+	if index < 0 or index >= slot_panels.size():
+		return
+	var panel := slot_panels[index]
+	panel.z_index = 0
+	var tween := panel.create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(panel, "scale", Vector2.ONE, 0.10)
+	tween.tween_property(panel, "modulate", Color.WHITE, 0.10)
+
+	detail_panel.visible = false
+
+
+func _show_history_detail(index: int) -> void:
+	var entry: Dictionary = RunState.get_fate_choice_history_entry(index)
+	if entry.is_empty():
+		return
+
+	var chosen_id := String(entry.get("chosen", ""))
+	var rejected_id := String(entry.get("rejected", ""))
+	var chosen_card := RunState.get_card(chosen_id)
+	var rejected_card := RunState.get_card(rejected_id) if not rejected_id.is_empty() else null
+	var chosen_title := chosen_card.title if chosen_card != null else chosen_id
+	var rejected_title := rejected_card.title if rejected_card != null else "—"
+
+	detail_title.text = "%s  •  %s" % [_roman(index + 1), chosen_title]
+	detail_body.text = "ВЫБРАНО: %s     |     ОТВЕРГНУТО: %s" % [chosen_title, rejected_title]
+	detail_panel.visible = true
+
+
+func play_milestone(milestone: int) -> void:
+	if milestone != 4 and milestone != 8 and milestone != 12:
+		return
+
+	var flash_color := Color(1.0, 0.48, 0.18, 1.0)
+	if milestone >= 8:
+		flash_color = Color(1.0, 0.28, 0.10, 1.0)
+	if milestone >= 12:
+		flash_color = Color(1.0, 0.16, 0.06, 1.0)
+
+	var original_phase_scale := phase_label.scale
+	phase_label.pivot_offset = phase_label.size * 0.5
+	var phase_tween := phase_label.create_tween()
+	phase_tween.tween_property(phase_label, "modulate", flash_color, 0.10)
+	phase_tween.parallel().tween_property(phase_label, "scale", Vector2(1.08, 1.08), 0.10)
+	phase_tween.tween_property(phase_label, "modulate", Color.WHITE, 0.28)
+	phase_tween.parallel().tween_property(phase_label, "scale", original_phase_scale, 0.28)
+
+	if seal_visual != null:
+		var seal_tween := seal_visual.create_tween()
+		seal_tween.tween_property(seal_visual, "modulate", Color(1.6, 0.72, 0.48, 1.0), 0.08)
+		seal_tween.tween_property(seal_visual, "modulate", Color.WHITE, 0.32)
+
+	if boss_panel != null:
+		var base_position := boss_panel.position
+		var shake := boss_panel.create_tween()
+		shake.tween_property(boss_panel, "position", base_position + Vector2(-5.0, 1.0), 0.045)
+		shake.tween_property(boss_panel, "position", base_position + Vector2(5.0, -1.0), 0.045)
+		shake.tween_property(boss_panel, "position", base_position + Vector2(-3.0, 0.0), 0.045)
+		shake.tween_property(boss_panel, "position", base_position, 0.07)
 
 func _refresh_slots() -> void:
 	for index in range(slot_panels.size()):
