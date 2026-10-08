@@ -21,8 +21,10 @@ const TEXT_MUTED := Color(0.48, 0.45, 0.45, 1.0)
 static func apply_panel(panel: Panel, accent: Color = BRONZE, strong: bool = false) -> void:
 	if panel == null:
 		return
-	var source := panel.get_theme_stylebox("panel") as StyleBoxFlat
-	var style := source.duplicate() as StyleBoxFlat if source != null else StyleBoxFlat.new()
+	var source: StyleBoxFlat = panel.get_theme_stylebox("panel") as StyleBoxFlat
+	var style: StyleBoxFlat = StyleBoxFlat.new()
+	if source != null:
+		style = source.duplicate() as StyleBoxFlat
 	style.bg_color = _panel_fill(accent, 0.94 if strong else 0.88)
 	_set_border(style, 3 if strong else 2)
 	style.border_color = Color(accent.r, accent.g, accent.b, 0.90 if strong else 0.70)
@@ -39,8 +41,10 @@ static func apply_panel(panel: Panel, accent: Color = BRONZE, strong: bool = fal
 static func apply_chip(panel: Panel, accent: Color = BRONZE) -> void:
 	if panel == null:
 		return
-	var source := panel.get_theme_stylebox("panel") as StyleBoxFlat
-	var style := source.duplicate() as StyleBoxFlat if source != null else StyleBoxFlat.new()
+	var source: StyleBoxFlat = panel.get_theme_stylebox("panel") as StyleBoxFlat
+	var style: StyleBoxFlat = StyleBoxFlat.new()
+	if source != null:
+		style = source.duplicate() as StyleBoxFlat
 	style.bg_color = Color(0.010 + accent.r * 0.018, 0.008 + accent.g * 0.012, 0.012 + accent.b * 0.014, 0.90)
 	_set_border(style, 1)
 	style.border_color = Color(accent.r, accent.g, accent.b, 0.62)
@@ -143,19 +147,21 @@ static func add_center_sigil(host: Control, accent: Color) -> void:
 static func _apply_button_styles(button: Button, accent: Color, card: bool, strong: bool) -> void:
 	var names: Array[String] = ["normal", "hover", "pressed", "disabled"]
 	for style_name in names:
-		var source := button.get_theme_stylebox(style_name) as StyleBoxFlat
-		var style := source.duplicate() as StyleBoxFlat if source != null else StyleBoxFlat.new()
-		var active := style_name == "hover" or style_name == "pressed"
-		var disabled := style_name == "disabled"
-		var pressed := style_name == "pressed"
+		var source: StyleBoxFlat = button.get_theme_stylebox(style_name) as StyleBoxFlat
+		var style: StyleBoxFlat = StyleBoxFlat.new()
+		if source != null:
+			style = source.duplicate() as StyleBoxFlat
+		var active: bool = style_name == "hover" or style_name == "pressed"
+		var disabled: bool = style_name == "disabled"
+		var pressed: bool = style_name == "pressed"
 
 		if disabled:
 			style.bg_color = Color(0.016, 0.014, 0.018, 0.92)
 			style.border_color = Color(0.22, 0.20, 0.21, 0.72)
 			style.shadow_color = Color(0.0, 0.0, 0.0, 0.22)
 		else:
-			var energy := 0.070 if active else (0.050 if strong else 0.035)
-			var alpha := 0.99 if card or strong else 0.94
+			var energy: float = 0.070 if active else (0.050 if strong else 0.035)
+			var alpha: float = 0.99 if card or strong else 0.94
 			style.bg_color = Color(
 				0.018 + accent.r * energy,
 				0.012 + accent.g * energy * 0.74,
