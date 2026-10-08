@@ -849,15 +849,12 @@ A runtime integration mistake in the first redraw batch was corrected. The dedic
 The Bone Crush atmosphere script also failed to parse in Godot 4.7 because loop values from an untyped array made x/y inference ambiguous. The band array and marker coordinates are now explicitly typed.
 
 
-## Visual redraw production batch — 2026-10-08
+## Visual redraw quality correction — 2026-10-08
 
-The approved redraw library is integrated as a production runtime batch.
+The broad low-resolution v3 redraw integration was locally rejected after screenshot review and has been removed from runtime. Its 112×69 table-card cells and 320×180 battle-arena cells were too small for their actual display sizes and produced visibly blocky/muddy results when enlarged.
 
-- 20 of the 25 active Act 1 table cards now use the new authored low-resolution atlas: Bone Patrol, Graveyard Ambush, Gallows Volley, Whispering Well, Ash Rest, Gravedigger Shop, Curse Forge, Grave Bell, Black Altar, Chained Prisoner, Wizard Tithe, Bone Crush, Crypt Guard, Faceless Card, Blood Ledger, Last Camp, Ossuary Gate, Rattling Bridge, Lost Purse and Bone Warden.
-- Source cells are intentionally 112×69 and are presented with nearest filtering at live card size.
-- Debtor Bones, Broken Crown, Candle Seller, Bone Tax and Death Wager deliberately remain on the previous approved atlas until standalone redraws exist.
-- Crypt, Graveyard, Ossuary and Warden battle families now use a 2×2 authored redraw atlas with 320×180 source cells and nearest presentation at 1280×720.
-- Bone Crush remains on its dedicated authored benchmark backdrop.
-- Generated full-screen UI boards remain composition/style references rather than baked runtime screenshots. Mutable text, prices, stats and controls stay live Godot UI.
+The corrected v4 card pass keeps the generated redraws at the existing near-display runtime size of 224×137 per table-card cell and maps each source by semantic subject rather than generation order. Nineteen active Act 1 cards now use this correctly mapped v4 atlas: Bone Patrol, Graveyard Ambush, Gallows Volley, Rattling Bridge, Lost Purse, Whispering Well, Ossuary Gate, Grave Bell, Bone Warden, Faceless Card, Black Altar, Blood Ledger, Gravedigger Shop, Last Camp, Debtor Bones, Crypt Guard, Wizard Tithe, Curse Forge and Chained Prisoner.
 
-The v3 atlases are stored as split base64 WebP text parts and decoded at runtime, following the repository-safe loading path already proven by prior authored assets.
+The six cards without a trustworthy matching redraw source — Ash Rest, Bone Crush, Broken Crown, Candle Seller, Bone Tax and Death Wager — deliberately fall back to the already-approved 224×137 full card atlas. This means every one of the 25 active cards still has unique art; no card is allowed to borrow an unrelated generated image just to claim redraw coverage.
+
+Battle arenas have been restored to the last validated native/high-resolution path from before the rejected v3 atlas. Crypt, Graveyard, Ossuary and Warden use their validated authored sources; Bone Crush keeps its dedicated benchmark backdrop. No 320×180 arena atlas is used at runtime.

@@ -10,43 +10,31 @@ const UI_COLUMNS := 5
 const RUN_ATLAS_PATH := "res://assets/pixel/ui/approved_card_art/run_hd.bin"
 const UI_ATLAS_PATH := "res://assets/pixel/ui/approved_card_art/ui_hd.bin"
 
-const REDRAW_CELL_SIZE := Vector2i(112, 69)
-const REDRAW_SHEET_SIZE := Vector2i(560, 276)
-const REDRAW_COLUMNS := 5
-const REDRAW_ATLAS_PARTS: Array[String] = [
-	"res://assets/pixel/ui/visual_pass_v3/cards/part_00.txt",
-	"res://assets/pixel/ui/visual_pass_v3/cards/part_01.txt",
-	"res://assets/pixel/ui/visual_pass_v3/cards/part_02.txt",
-	"res://assets/pixel/ui/visual_pass_v3/cards/part_03.txt",
-]
+const REDRAW_V4_CELL_SIZE := Vector2i(224, 137)
+const REDRAW_V4_SHEET_SIZE := Vector2i(1120, 548)
+const REDRAW_V4_COLUMNS := 5
+const REDRAW_V4_ATLAS_PATH := "res://assets/pixel/ui/visual_pass_v4/cards_hd.bin"
 
-const REDRAW_INDEX := {
+const REDRAW_V4_INDEX := {
 	"bone_patrol": 0,
 	"graveyard_ambush": 1,
 	"gallows_volley": 2,
-	"whispering_well": 3,
-	"ash_rest": 4,
-	"gravedigger_shop": 5,
-	"curse_forge": 6,
+	"rattling_bridge": 3,
+	"lost_purse": 4,
+	"whispering_well": 5,
+	"ossuary_gate": 6,
 	"grave_bell": 7,
-	"black_altar": 8,
-	"chained_prisoner": 9,
-	"wizard_tithe": 10,
-	"bone_crush": 11,
-	"crypt_guard": 12,
-	"faceless_card": 13,
-	"blood_ledger": 14,
-	"last_camp": 15,
-	"ossuary_gate": 16,
-	"rattling_bridge": 17,
-	"lost_purse": 18,
-	"bone_warden": 19,
-}
-
-const RUN_OVERRIDE_PATHS := {
-	"rattling_bridge": "res://assets/pixel/ui/visual_pass_v2/cards/rattling_bridge.txt",
-	"lost_purse": "res://assets/pixel/ui/visual_pass_v2/cards/lost_purse.txt",
-	"whispering_well": "res://assets/pixel/ui/visual_pass_v2/cards/whispering_well.txt",
+	"bone_warden": 8,
+	"faceless_card": 9,
+	"black_altar": 10,
+	"blood_ledger": 11,
+	"gravedigger_shop": 12,
+	"last_camp": 13,
+	"debtor_bones": 14,
+	"crypt_guard": 15,
+	"wizard_tithe": 16,
+	"curse_forge": 17,
+	"chained_prisoner": 18,
 }
 
 const RUN_INDEX := {
@@ -100,18 +88,18 @@ const REWARD_INDEX := {
 
 static var run_sheet_texture: Texture2D
 static var ui_sheet_texture: Texture2D
-static var redraw_sheet_texture: Texture2D
-static var run_override_cache: Dictionary = {}
+static var redraw_v4_sheet_texture: Texture2D
 
 static func get_run_card_texture(card_id: String) -> Texture2D:
-	if REDRAW_INDEX.has(card_id):
-		var redraw_sheet: Texture2D = _get_redraw_sheet()
+	if REDRAW_V4_INDEX.has(card_id):
+		var redraw_sheet: Texture2D = _get_redraw_v4_sheet()
 		if redraw_sheet != null:
-			return _get_cell(redraw_sheet, int(REDRAW_INDEX[card_id]), REDRAW_CELL_SIZE, REDRAW_COLUMNS)
-
-	var override_texture: Texture2D = _get_run_override(card_id)
-	if override_texture != null:
-		return override_texture
+			return _get_cell(
+				redraw_sheet,
+				int(REDRAW_V4_INDEX[card_id]),
+				REDRAW_V4_CELL_SIZE,
+				REDRAW_V4_COLUMNS
+			)
 	if not RUN_INDEX.has(card_id):
 		return null
 	var sheet := _get_run_sheet()
@@ -135,87 +123,14 @@ static func get_reward_texture(reward_key: String) -> Texture2D:
 		return null
 	return _get_cell(sheet, int(REWARD_INDEX[reward_key]), UI_CELL_SIZE, UI_COLUMNS)
 
-static func _get_redraw_sheet() -> Texture2D:
-	if redraw_sheet_texture == null:
-		redraw_sheet_texture = _decode_split_sheet(
-			REDRAW_ATLAS_PARTS,
-			REDRAW_SHEET_SIZE,
-			"visual-redraw card"
+static func _get_redraw_v4_sheet() -> Texture2D:
+	if redraw_v4_sheet_texture == null:
+		redraw_v4_sheet_texture = _decode_sheet(
+			REDRAW_V4_ATLAS_PATH,
+			REDRAW_V4_SHEET_SIZE,
+			"visual-redraw v4"
 		)
-	return redraw_sheet_texture
-
-
-static func _decode_split_sheet(
-	part_paths: Array[String],
-	expected_size: Vector2i,
-	label: String
-) -> Texture2D:
-	var encoded: String = ""
-	for part_path in part_paths:
-		if not FileAccess.file_exists(part_path):
-			push_error("Missing %s atlas part: %s" % [label, part_path])
-			return null
-		encoded += FileAccess.get_file_as_string(part_path).strip_edges()
-
-	var bytes: PackedByteArray = Marshalls.base64_to_raw(encoded)
-	if bytes.is_empty():
-		push_error("%s atlas decoded to an empty buffer." % label)
-		return null
-
-	var image := Image.new()
-	var error: Error = image.load_webp_from_buffer(bytes)
-	if error != OK:
-		push_error("Could not decode %s atlas: %s" % [label, error_string(error)])
-		return null
-
-	if image.get_width() != expected_size.x or image.get_height() != expected_size.y:
-		push_error(
-			"%s atlas has unexpected size %dx%d; expected %dx%d." % [
-				label,
-				image.get_width(),
-				image.get_height(),
-				expected_size.x,
-				expected_size.y,
-			]
-		)
-		return null
-
-	return ImageTexture.create_from_image(image)
-
-
-static func _get_run_override(card_id: String) -> Texture2D:
-	if run_override_cache.has(card_id):
-		return run_override_cache[card_id] as Texture2D
-	if not RUN_OVERRIDE_PATHS.has(card_id):
-		return null
-
-	var part_path: String = String(RUN_OVERRIDE_PATHS[card_id])
-	if not FileAccess.file_exists(part_path):
-		push_error("Missing visual-pass card art: %s" % part_path)
-		return null
-
-	var encoded: String = FileAccess.get_file_as_string(part_path).strip_edges()
-	if encoded.is_empty():
-		push_error("Visual-pass card art is empty: %s" % part_path)
-		return null
-
-	var bytes: PackedByteArray = Marshalls.base64_to_raw(encoded)
-	if bytes.is_empty():
-		push_error("Could not decode visual-pass card art: %s" % card_id)
-		return null
-
-	var image := Image.new()
-	var error: Error = image.load_webp_from_buffer(bytes)
-	if error != OK:
-		push_error("Could not load visual-pass card art '%s': %s" % [card_id, error_string(error)])
-		return null
-
-	if image.get_width() != RUN_CELL_SIZE.x or image.get_height() != RUN_CELL_SIZE.y:
-		image.resize(RUN_CELL_SIZE.x, RUN_CELL_SIZE.y, Image.INTERPOLATE_NEAREST)
-
-	var texture := ImageTexture.create_from_image(image)
-	run_override_cache[card_id] = texture
-	return texture
+	return redraw_v4_sheet_texture
 
 
 static func _get_run_sheet() -> Texture2D:

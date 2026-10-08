@@ -201,14 +201,15 @@ Do not prioritize these before the vertical slice works:
 - [ ] Retune environment/card grade shadows so wager/card images keep readable midtones instead of collapsing into black.
 - [ ] Review the Bone Crush redraw locally at 1280×720 before propagating the style.
 - [x] Integrate the first object-first card redraw batch: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**.
-- [x] Integrate the approved 20-card visual-redraw atlas across the table/event art pipeline.
-- [ ] Redraw the five remaining fallback cards: **КОСТИ ДОЛЖНИКА**, **СЛОМАННАЯ КОРОНА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОДАТЬ**, **СТАВКА СМЕРТИ**.
+- [x] Correct the broad redraw integration after local quality review: 19 semantically matched card redraws now run at 224×137 source resolution with the existing approved 25-card atlas as fallback.
+- [ ] Produce trustworthy standalone redraw sources for the six remaining fallback cards: **ПЕПЕЛЬНЫЙ ПРИВАЛ**, **КОСТЯНАЯ ДАВКА**, **СЛОМАННАЯ КОРОНА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА**, **СТАВКА НА СМЕРТЬ**.
 
 
 ### Full visual redraw rollout
 
 - [x] First object-first card redraw batch is live: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **ШЕПЧУЩИЙ КОЛОДЕЦ**.
-- [x] Integrate the approved 20-card visual-redraw atlas in the same authored low-detail language.
-- [ ] Finish the five active Act 1 cards that still use the previous atlas.
-- [x] Replace the Crypt / Graveyard / Ossuary / Warden arena families with the approved low-resolution redraw atlas; keep Bone Crush on its dedicated benchmark source.
-- [ ] Continue live-UI polish against the approved UI concept boards while keeping mutable values/buttons as Godot controls.
+- [x] Replace 19 active Act 1 card illustrations with correctly mapped near-display-resolution v4 redraws; preserve unique approved fallback art for the other six.
+- [ ] Finish the six remaining card redraws only from matching source art; never substitute unrelated generated images.
+- [ ] Continue arena source replacement from native/high-resolution sources only. Thumbnail-scale full-screen arena upscaling is rejected.
+- [ ] Rebuild event/reward surfaces around the same limited Ink / Stone / Bone / Rust / Teal / Gold language while keeping all mutable values live.
+- [ ] Locally verify the corrected v4 cards and restored high-resolution arenas at 1280×720 before another broad visual rollout.

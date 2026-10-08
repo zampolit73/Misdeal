@@ -85,14 +85,15 @@ Runtime now overrides the old atlas art for:
 The dedicated card sources are 224×137 WebP images reconstructed from repository text assets. Continue replacing the remaining card/event art in reviewed batches rather than regenerating everything blindly.
 
 
-## Production redraw batch integrated
+## Quality correction after broad redraw attempt
 
-The broad approved visual batch is now wired into runtime:
+The first broad v3 rollout was locally rejected. Do not restore its 112×69 card atlas or 320×180 arena atlas.
 
-- 20 active Act 1 cards use the new v3 low-resolution authored atlas.
-- Five cards remain deliberate fallbacks until standalone redraws exist: **КОСТИ ДОЛЖНИКА**, **СЛОМАННАЯ КОРОНА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОДАТЬ**, **СТАВКА СМЕРТИ**.
-- Crypt, Graveyard, Ossuary and Warden arena families use the v3 2×2 redraw atlas.
-- Bone Crush remains the dedicated benchmark arena.
-- Full-screen generated UI boards are reference material, not baked runtime screens; live gameplay text and controls remain native Godot UI.
+Current corrected direction:
 
-The v3 atlases are split base64 WebP text assets decoded at runtime. Card source cells are 112×69; arena source cells are 320×180. Both are intentionally presented with nearest filtering.
+- table-card redraw sources are 224×137 per cell, matching the established near-display card-art pipeline;
+- 19 generated redraws are mapped by actual subject, not by generation order;
+- **КОСТИ ДОЛЖНИКА** now has a matching debtor/contract/coins redraw rather than the old Bone Patrol imagery;
+- Ash Rest, Bone Crush, Broken Crown, Candle Seller, Bone Tax and Death Wager remain on their unique approved 224×137 fallback cells until matching redraws exist;
+- battle arenas use the last validated high-resolution authored sources; Bone Crush keeps its dedicated benchmark arena;
+- never upscale a 320×180 arena to the 1280×720 gameplay viewport as the production background.

@@ -1287,17 +1287,15 @@ New authored images may bypass the corrective card grade when necessary, or use 
 Gameplay rules and mutable UI stay live in Godot while the visual library is replaced.
 
 
-## D075 — Production redraw atlases stay low-resolution and keep UI live
+## D075 — Reject thumbnail-scale redraw atlases and require semantic asset mapping
 
 Date: 2026-10-08  
-Status: accepted
+Status: accepted after local screenshot review
 
-The approved redraw batch is integrated as intentionally low-resolution runtime-decoded WebP atlases rather than as full-screen generated screenshots.
+The broad v3 integration using 112×69 table-card cells and 320×180 full-screen arena cells is rejected. Enlarging those thumbnail-scale sources created visible blockiness and mud that read as compression/downscaling damage rather than intentional pixel art.
 
-Table/event illustrations use 112×69 source cells and nearest-neighbor presentation. The four shared non-Bone-Crush arena families use 320×180 source cells and nearest-neighbor scaling to 1280×720. Bone Crush keeps its dedicated authored source because it is the benchmark encounter, not a generic arena-family replacement.
+For the current table layout, new redraw cards must be stored at the existing 224×137 near-display source size or better. Battle backdrops must use native/high-resolution authored sources appropriate to the 1280×720 viewport; a 320×180 arena source must not be enlarged fourfold as the production background.
 
-The full-screen generated UI boards are visual/composition references. Baked labels, prices, stats, buttons, health values and other mutable state must not become production screenshots. Those elements remain live Godot controls.
+Generated sources are mapped by their actual subject, not by generation order. If no trustworthy source matches a card, that card keeps its already-approved unique atlas art until a real redraw exists. Reusing an unrelated image is worse than retaining a coherent fallback.
 
-Cards without an approved standalone redraw fall back to the previous approved atlas until their source is replaced. This is preferable to assigning unrelated art merely to claim complete coverage.
-
-The atlas bytes are split into repository-safe base64 text parts and decoded with Image.load_webp_from_buffer(), matching the loading strategy already validated elsewhere in the project.
+The corrected v4 pass therefore uses 19 semantically matched 224×137 redraws and falls back to the approved 25-card atlas for Ash Rest, Bone Crush, Broken Crown, Candle Seller, Bone Tax and Death Wager. Arena runtime returns to the last validated high-resolution sources, with Bone Crush retaining its dedicated benchmark backdrop.
