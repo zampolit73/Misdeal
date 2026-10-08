@@ -226,3 +226,9 @@ Do not prioritize these before the vertical slice works:
 - [x] Replace procedural Whispering Well and Run End backgrounds with authored full-screen scenes.
 - [x] Give Curse Forge, Chained Prisoner and Black Altar dedicated full-screen event environments in the shared live-UI event scene.
 - [ ] Review fresh 1280×720 screenshots before replacing any lower-priority art.
+
+
+### Runtime art loading hardening
+
+- [x] Harden v7 WebP loading against Godot import/parser timing by replacing direct new-asset preloads/ext_resources with runtime FileAccess + Image decoding.
+- [ ] Confirm Class Select, Reward, Whispering Well, Curse Forge, Chained Prisoner, Black Altar and Run End all open cleanly after a fresh `git pull` and Godot restart.

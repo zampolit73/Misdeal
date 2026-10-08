@@ -1355,3 +1355,21 @@ Dedicated character portraits may be larger than combat sprites because they ser
 Generated full-screen art is used only as environment/character imagery. Titles, costs, choice labels, run state, buttons, reward values and consequences remain native Godot controls/scripts.
 
 The shared decorative overlay should support authored art, not obscure it. Its table-shade contribution is therefore reduced while semantic glows/marks remain.
+
+
+## D080 — New authored WebP screen art uses runtime decoding
+
+Date: 2026-10-08  
+Status: accepted after Godot 4.7.2 parser failure
+
+New production WebP assets that are delivered through Git must not be referenced directly with GDScript `preload()` or new `Texture2D` scene ext_resources when that can make script/scene parsing depend on editor import timing.
+
+Use the shared `runtime_webp_texture.gd` loader instead:
+
+- open the source via `FileAccess`;
+- decode with `Image.load_webp_from_buffer()`;
+- optionally normalize to the expected display size;
+- cache the resulting `ImageTexture`;
+- keep the node, layout and gameplay state in normal Godot scenes/scripts.
+
+This matches the robust loading approach already used by authored battle backdrops and prevents new art from breaking project parsing after a Git pull.

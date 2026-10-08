@@ -917,3 +917,12 @@ The next authored-art package is now live across the remaining high-visibility l
 The shared cursed-choice overlay was also softened so authored backgrounds keep readable midtones instead of being hidden under another heavy table shade.
 
 All v7 art was exported as production WebP at near-display or full-screen resolution. No generated screen with baked gameplay labels/buttons was used as runtime UI.
+
+
+## V7 WebP loader hotfix — 2026-10-08
+
+Godot 4.7.2 local validation exposed a parser failure when the newly committed v7 WebP files were referenced directly through `preload()` or as `Texture2D` scene resources before the editor had a usable imported resource.
+
+The v7 rollout now follows the already-proven battle-backdrop pattern: `scripts/ui/runtime_webp_texture.gd` reads the source file with `FileAccess`, decodes it with `Image.load_webp_from_buffer()`, caches the resulting `ImageTexture`, and assigns it to the live `TextureRect`.
+
+Direct v7 WebP resource references were removed from Class Select, shared Act Choice, Reward, Whispering Well and Run End. The art itself is unchanged; this is a loading-path fix only.
