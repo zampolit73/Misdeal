@@ -11,4 +11,4 @@ wizard_line = "Иногда количество — тоже изящество
 arena_id = "bone_crush"
 enemy_unit_paths = PackedStringArray("res://resources/units/bone_thrall.tres", "res://resources/units/bone_thrall.tres", "res://resources/units/bone_thrall.tres", "res://resources/units/bone_thrall.tres", "res://resources/units/bone_thrall.tres")
 enemy_names = PackedStringArray("Костяной раб", "Костяной раб", "Костяной раб", "Костяной раб", "Костяной раб")
-enemy_positions = PackedVector2Array(850, 125, 940, 175, 1015, 245, 940, 315, 850, 365)
+enemy_positions = PackedVector2Array(850, 165, 940, 205, 1015, 260, 940, 320, 850, 365)

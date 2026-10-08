@@ -4,6 +4,7 @@ const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
 
 const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1240, 465))
+const BONE_CRUSH_COMBAT_BOUNDS := Rect2(Vector2(0, 105), Vector2(1240, 335))
 const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 82), Vector2(545, 326))
 
 const TACTICAL_ORDER_ASSAULT := "assault"
@@ -190,11 +191,11 @@ func _get_party_spawn_positions() -> Array[Vector2]:
 		"bone_crush":
 			match RunState.get_party_size():
 				1:
-					return [Vector2(240, 140)]
+					return [Vector2(240, 220)]
 				2:
-					return [Vector2(210, 140), Vector2(210, 330)]
+					return [Vector2(210, 165), Vector2(210, 335)]
 				_:
-					return [Vector2(170, 135), Vector2(170, 325), Vector2(390, 325)]
+					return [Vector2(170, 165), Vector2(170, 335), Vector2(390, 335)]
 		"ossuary_gate":
 			match RunState.get_party_size():
 				1:
@@ -226,8 +227,8 @@ func _get_placement_regions() -> Array[Rect2]:
 			return [Rect2(Vector2(35, 48), Vector2(430, 372))]
 		"bone_crush":
 			return [
-				Rect2(Vector2(35, 70), Vector2(480, 145)),
-				Rect2(Vector2(35, 250), Vector2(480, 145))
+				Rect2(Vector2(35, 115), Vector2(480, 130)),
+				Rect2(Vector2(35, 270), Vector2(480, 130))
 			]
 		"ossuary_gate":
 			return [
@@ -295,7 +296,7 @@ func _spawn_unit(
 	if team == 0:
 		unit.set_tactical_order(tactical_order)
 
-	unit.set_combat_bounds(COMBAT_BOUNDS)
+	unit.set_combat_bounds(_get_combat_bounds())
 	unit.died.connect(_on_unit_died)
 	unit.health_critical.connect(_on_unit_health_critical)
 	unit.placement_rejected.connect(_on_placement_rejected)
@@ -306,6 +307,12 @@ func _spawn_unit(
 
 	if combat_started:
 		unit.start_combat()
+
+func _get_combat_bounds() -> Rect2:
+	if encounter != null and encounter.encounter_id == "bone_crush":
+		return BONE_CRUSH_COMBAT_BOUNDS
+	return COMBAT_BOUNDS
+
 
 func _apply_hero_upgrades_to_unit(unit: BattleUnit) -> void:
 	for upgrade in RunState.get_hero_upgrades_for_role(unit.visual_role):

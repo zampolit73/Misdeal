@@ -16,6 +16,8 @@ const REDRAW_V4_CELL_SIZE := Vector2i(224, 137)
 const REDRAW_V4_SHEET_SIZE := Vector2i(1120, 548)
 const REDRAW_V4_COLUMNS := 5
 const REDRAW_V4_ATLAS_PATH := "res://assets/pixel/ui/visual_pass_v4/cards_hd.bin"
+const BONE_WARDEN_CARD_PATH := "res://assets/pixel/ui/visual_pass_v6/bone_warden_card.webp"
+const BONE_WARDEN_CARD_SIZE := Vector2i(448, 274)
 
 const REDRAW_V4_INDEX := {
 	"bone_patrol": 0,
@@ -110,8 +112,14 @@ static var run_sheet_texture: Texture2D
 static var ui_sheet_texture: Texture2D
 static var redraw_v4_sheet_texture: Texture2D
 static var redraw_v5_sheet_texture: Texture2D
+static var bone_warden_card_texture: Texture2D
 
 static func get_run_card_texture(card_id: String) -> Texture2D:
+	if card_id == "bone_warden":
+		var warden_texture: Texture2D = _get_bone_warden_card_texture()
+		if warden_texture != null:
+			return warden_texture
+
 	if card_id == "broken_crown":
 		var crown_texture: Texture2D = ARTIFACT_ART_CATALOG.get_texture("broken_crown")
 		if crown_texture != null:
@@ -158,6 +166,16 @@ static func get_reward_texture(reward_key: String) -> Texture2D:
 	if sheet == null:
 		return null
 	return _get_cell(sheet, int(REWARD_INDEX[reward_key]), UI_CELL_SIZE, UI_COLUMNS)
+
+static func _get_bone_warden_card_texture() -> Texture2D:
+	if bone_warden_card_texture == null:
+		bone_warden_card_texture = _decode_sheet(
+			BONE_WARDEN_CARD_PATH,
+			BONE_WARDEN_CARD_SIZE,
+			"Bone Warden v6 card"
+		)
+	return bone_warden_card_texture
+
 
 static func _get_redraw_v5_sheet() -> Texture2D:
 	if redraw_v5_sheet_texture == null:

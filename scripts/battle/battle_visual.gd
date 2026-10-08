@@ -94,8 +94,8 @@ func _draw_bone_crush_atmosphere() -> void:
 
 	var chalk := Color(0.64, 0.57, 0.45, 0.24)
 	var chalk_faint := Color(0.64, 0.57, 0.45, 0.11)
-	var top_band := Rect2(35.0, 70.0, 480.0, 145.0)
-	var bottom_band := Rect2(35.0, 250.0, 480.0, 145.0)
+	var top_band := Rect2(35.0, 115.0, 480.0, 130.0)
+	var bottom_band := Rect2(35.0, 270.0, 480.0, 130.0)
 
 	var bands: Array[Rect2] = [top_band, bottom_band]
 	for band in bands:
