@@ -281,3 +281,6 @@ Do not prioritize these before the vertical slice works:
 - [ ] Locally verify milestone auto-open timing after card 4/8/12 and hover-memory readability without blocking `R`/Esc close input.
 
 - [x] Integrate the approved ornate Fate Spread reference as a dark atmospheric runtime underlay while keeping all run-state cards/counters live and data-driven.
+
+- [x] Replace the dark full-screen Fate Spread underlay with bright top/left/right edge-art plates while keeping the center fully live.
+- [ ] Locally verify that candles/metal/red cloth read clearly at 1280×720 without reducing card/title readability.
