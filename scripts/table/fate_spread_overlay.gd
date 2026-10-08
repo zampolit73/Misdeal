@@ -96,7 +96,7 @@ func _build_slots() -> void:
 		var angle := deg_to_rad(-90.0 + float(index) * 30.0)
 		var center := SLOT_CENTER + Vector2(cos(angle) * SLOT_RADIUS.x, sin(angle) * SLOT_RADIUS.y)
 		panel.position = center - SLOT_SIZE * 0.5
-		panel.rotation = angle + PI * 0.5
+		panel.rotation = sin(angle) * deg_to_rad(10.0)
 		spread_area.add_child(panel)
 
 		var roman := Label.new()
@@ -228,8 +228,7 @@ func _refresh_boss() -> void:
 	if active:
 		boss_art.texture = CARD_ART_CATALOG.get_run_card_texture(RunState.BOSS_CARD_ID)
 		boss_art.visible = boss_art.texture != null
-		boss_title.text = "КОСТЯНОЙ
-НАДЗИРАТЕЛЬ"
+		boss_title.text = "КОСТЯНОЙ\\nНАДЗИРАТЕЛЬ"
 	else:
 		boss_art.texture = null
 		boss_art.visible = false
