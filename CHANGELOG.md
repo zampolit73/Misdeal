@@ -120,6 +120,8 @@
 
 ### Fixed
 
+- Fixed Gallows Volley units appearing to retreat or spawn over background architecture: combat bounds, party/enemy positions and placement geometry now sit on the authored floor, and battle units clamp to combat bounds as soon as those bounds are assigned.
+
 - Constrained **ЗАЛП С ВИСЕЛИЦЫ** to an authored-floor combat rectangle and matching deployment band so retreat, chase and separation cannot push any unit into the background/air above the stone arena; refreshed solo/duo/trio start positions to the same playable plane.
 
 - Fixed Godot 4.7.2 parse failures for newly added v7 WebP art by routing the new screen assets through a cached runtime WebP decoder instead of direct preload/Texture2D resource references.
