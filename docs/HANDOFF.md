@@ -154,6 +154,10 @@ Enemy composition and boss mechanics are unchanged. Grave Bell/support healing s
 
 This is pending real local verification. Highest-value checks are: solo Ranger and solo Mage first mandatory fight, one duo mid-tier support/ranged fight, one late elite, and Bone Warden in solo/duo/trio. Do not blanket-retune individual enemies before those checks unless a concrete regression appears.
 
+## Latest Fate Spread screenshot fix
+
+The first local Fate Spread screenshots showed the active deal cards and the table `РАСКЛАД СУДЬБЫ` button drawing over the inspection overlay. This is fixed in `main`: opening the spread now hides the live card layer and progress access, the overlay sits at the valid top CanvasItem z-index (4095), and the twelve ring cards were reduced/re-spaced to give XIII clear visual priority. Closing with `R`, `Esc` or the button restores the live deal.
+
 ## Latest Act 1 progression system
 
 The user approved the **РАСКЛАД СУДЬБЫ** concept and it is now implemented in `main` as live UI.
