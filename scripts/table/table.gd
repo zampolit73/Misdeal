@@ -44,6 +44,7 @@ const RIGHT_CARD_ROTATION := 0.045
 var offer_buttons: Array[Button] = []
 var squad_status: Control
 var fate_spread_overlay: Control
+var pending_fate_milestone := 0
 var default_wizard_line := ""
 var selection_locked := false
 var deal_in_progress := false
@@ -145,12 +146,33 @@ func _toggle_fate_spread() -> void:
 	fate_spread_overlay.tree_exited.connect(_on_fate_spread_closed)
 	add_child(fate_spread_overlay)
 
+	if pending_fate_milestone > 0 and fate_spread_overlay.has_method("play_milestone"):
+		var milestone := pending_fate_milestone
+		pending_fate_milestone = 0
+		fate_spread_overlay.call_deferred("play_milestone", milestone)
+
 
 func _on_fate_spread_closed() -> void:
 	fate_spread_overlay = null
 	cards_root.visible = true
 	fate_spread_button.visible = true
 	spread_progress_label.visible = true
+
+
+func _maybe_show_fate_milestone() -> void:
+	if selection_locked or deal_in_progress or wager_root.visible:
+		return
+	if is_instance_valid(fate_spread_overlay) or is_instance_valid(squad_status):
+		return
+
+	var milestone: int = RunState.get_fate_milestone_due()
+	if milestone <= 0:
+		return
+
+	RunState.mark_fate_milestone_shown(milestone)
+	pending_fate_milestone = milestone
+	_play_table_audio("milestone")
+	_toggle_fate_spread()
 
 
 func _toggle_squad_status() -> void:
@@ -485,6 +507,7 @@ func _finish_deal_animation(duration: float) -> void:
 			_restore_card_pose_immediate(button)
 	if not selection_locked:
 		_enable_offer_buttons()
+		call_deferred("_maybe_show_fate_milestone")
 
 func _animate_card_hover(button: Button, raised: bool) -> void:
 	if not card_rest_positions.has(button.name):
