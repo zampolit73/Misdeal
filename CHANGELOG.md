@@ -57,6 +57,8 @@
 
 ### Changed
 
+- Replaced the nearly invisible full-screen Fate Spread reference underlay with dedicated top/left/right authored edge-art plates loaded at runtime, preserving bright candle/brass/red-cloth atmosphere while keeping the center fully data-driven.
+
 - Integrated the approved ornate Fate Spread art direction as a dark blurred runtime underlay beneath the live Godot spread, adding candlelit table props, red ritual cloth and gothic material richness without baking run-specific cards or counters into the image.
 
 - Shortened the Fate Spread side holders, strengthened the central ritual hierarchy and made chapter styling escalate from restrained gold to ember/red in line with the approved reference.
