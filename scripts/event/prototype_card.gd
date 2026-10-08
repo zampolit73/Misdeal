@@ -15,7 +15,7 @@ func _ready() -> void:
 	var card := RunState.get_active_card()
 	if card == null:
 		push_warning("Prototype card scene opened without an active run card.")
-		get_tree().change_scene_to_file("res://scenes/table/table.tscn")
+		SceneTransition.change_to("res://scenes/table/table.tscn")
 		return
 
 	title_label.text = card.title
@@ -54,4 +54,4 @@ func _on_continue_hover(hovered: bool) -> void:
 func _on_continue_pressed() -> void:
 	continue_button.disabled = true
 	RunState.complete_active_card()
-	get_tree().change_scene_to_file("res://scenes/table/table.tscn")
+	SceneTransition.change_to("res://scenes/table/table.tscn")
