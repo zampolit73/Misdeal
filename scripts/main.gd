@@ -11,4 +11,4 @@ func _on_start_button_pressed() -> void:
 	RunState.reset_run()
 	start_button.disabled = true
 	await get_tree().create_timer(0.18).timeout
-	get_tree().change_scene_to_file("res://scenes/intro/intro.tscn")
+	SceneTransition.change_to("res://scenes/intro/intro.tscn")
