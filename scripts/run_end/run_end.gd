@@ -1,12 +1,18 @@
 
 extends Control
 
+const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+
 @onready var title_label: Label = $Title
 @onready var summary_label: Label = $Summary
 @onready var wizard_line: Label = $WizardLine
 @onready var new_run_button: Button = $NewRunButton
 
 func _ready() -> void:
+	MISDEAL_UI_KIT.apply_panel($SummaryPanel, MISDEAL_UI_KIT.BRONZE, true)
+	MISDEAL_UI_KIT.apply_title(title_label, MISDEAL_UI_KIT.GOLD)
+	MISDEAL_UI_KIT.apply_subtitle(wizard_line, MISDEAL_UI_KIT.BRONZE)
+	MISDEAL_UI_KIT.apply_action_button(new_run_button, MISDEAL_UI_KIT.GOLD, true)
 	new_run_button.pressed.connect(_on_new_run_pressed)
 	var fate_lines: Array[String] = []
 	for role in RunState.HERO_ROLES:
