@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" path="res://assets/pixel/table/fate_spread/reference_underlay.webp" id="4_reference_underlay"]
 
 [sub_resource type="StyleBoxFlat" id="OuterPanel"]
-bg_color = Color(0.012, 0.007, 0.012, 0.60)
+bg_color = Color(0.012, 0.007, 0.012, 0.10)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -68,21 +68,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
-color = Color(0.004, 0.002, 0.006, 0.66)
-
-[node name="ReferenceUnderlay" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-modulate = Color(1, 1, 1, 0.58)
-texture_filter = 1
-texture = ExtResource("4_reference_underlay")
-expand_mode = 1
-stretch_mode = 6
+color = Color(0.004, 0.002, 0.006, 0.30)
 
 [node name="Frame" type="Panel" parent="."]
 offset_left = 24.0
@@ -90,6 +76,28 @@ offset_top = 18.0
 offset_right = 1256.0
 offset_bottom = 704.0
 theme_override_styles/panel = SubResource("OuterPanel")
+
+[node name="ReferenceUnderlay" type="TextureRect" parent="Frame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+modulate = Color(1, 0.93, 0.88, 0.82)
+texture_filter = 1
+texture = ExtResource("4_reference_underlay")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="HeaderShade" type="ColorRect" parent="Frame"]
+offset_left = 218.0
+offset_top = 0.0
+offset_right = 1014.0
+offset_bottom = 132.0
+mouse_filter = 2
+color = Color(0.012, 0.006, 0.010, 0.84)
 
 [node name="Title" type="Label" parent="Frame"]
 offset_left = 264.0
@@ -270,7 +278,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-modulate = Color(1, 1, 1, 0.72)
+modulate = Color(1, 1, 1, 0.96)
 script = ExtResource("3_surface")
 
 [node name="SealVisual" type="Control" parent="Frame/SpreadArea"]
