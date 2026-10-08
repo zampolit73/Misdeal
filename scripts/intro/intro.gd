@@ -1,5 +1,7 @@
 extends Control
 
+const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+
 const FRAME_PATHS: Array[String] = [
 	"res://assets/pixel/intro/frame_01.webp",
 	"res://assets/pixel/intro/frame_02.webp",
@@ -17,6 +19,7 @@ var frame_index: int = 0
 var transitioning := false
 
 func _ready() -> void:
+	MISDEAL_UI_KIT.apply_action_button(skip_button, MISDEAL_UI_KIT.STEEL, false)
 	skip_button.pressed.connect(_on_skip_pressed)
 	_show_frame(0)
 
