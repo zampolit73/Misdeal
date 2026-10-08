@@ -77,7 +77,7 @@ var combat_elapsed := 0.0
 
 func _ready() -> void:
 	if not RunState.has_chosen_protagonist():
-		get_tree().change_scene_to_file("res://scenes/class_select/class_select.tscn")
+		SceneTransition.change_to("res://scenes/class_select/class_select.tscn")
 		return
 
 	_apply_ui_kit()
@@ -922,7 +922,7 @@ func _on_last_deal_refuse_pressed() -> void:
 		RunState.refuse_last_deal(reason)
 	else:
 		RunState.end_run_in_defeat(reason)
-	get_tree().change_scene_to_file("res://scenes/run_end/run_end.tscn")
+	SceneTransition.change_to("res://scenes/run_end/run_end.tscn")
 
 
 func _finish_battle(player_won: bool) -> void:
@@ -1007,9 +1007,9 @@ func _on_continue_pressed() -> void:
 	continue_button.disabled = true
 
 	if RunState.last_battle_won:
-		get_tree().change_scene_to_file("res://scenes/reward/reward.tscn")
+		SceneTransition.change_to("res://scenes/reward/reward.tscn")
 		return
 
 	RunState.end_run_in_defeat("Вы проиграли бой «%s»." % encounter.title)
-	get_tree().change_scene_to_file("res://scenes/run_end/run_end.tscn")
+	SceneTransition.change_to("res://scenes/run_end/run_end.tscn")
 
