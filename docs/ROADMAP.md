@@ -279,3 +279,5 @@ Do not prioritize these before the vertical slice works:
 
 - [x] Add physical table texture under the Fate Spread, hoverable chosen/rejected decision memory, and one-shot ritual reveals at IV/VIII/XII.
 - [ ] Locally verify milestone auto-open timing after card 4/8/12 and hover-memory readability without blocking `R`/Esc close input.
+
+- [x] Integrate the approved ornate Fate Spread reference as a dark atmospheric runtime underlay while keeping all run-state cards/counters live and data-driven.
