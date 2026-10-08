@@ -44,17 +44,24 @@ stretch_mode = 0
 script = ExtResource("2_backdrop")
 
 [node name="StartButton" type="Button" parent="."]
-offset_left = 457.0
-offset_top = 568.0
-offset_right = 826.0
-offset_bottom = 645.0
+offset_left = 460.0
+offset_top = 580.0
+offset_right = 820.0
+offset_bottom = 650.0
 focus_mode = 2
 mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.96, 0.82, 0.62, 1)
+theme_override_colors/font_hover_color = Color(1, 0.94, 0.80, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.88, 0.68, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("HotspotNormal")
 theme_override_styles/hover = SubResource("HotspotHover")
 theme_override_styles/pressed = SubResource("HotspotHover")
 theme_override_styles/focus = SubResource("HotspotHover")
-text = ""
+text = "НАЧАТЬ ПАРТИЮ"
 
 [node name="Status" type="Label" parent="."]
 visible = false
