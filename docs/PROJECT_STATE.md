@@ -796,6 +796,12 @@ The user keeps a local clone and normally updates with:
 
 - 2026-10-07 screenshot correction: Curse Forge, Chained Prisoner and the Wizard wager were re-laid out against the approved attached references rather than merely sharing generic event chrome; this is presentation-only and leaves their mechanics unchanged.
 
+## UI-kit screenshot correction — 2026-10-08
+
+Fresh 1280×720 local screenshots confirmed the shared chrome direction is working well on the Act Choice and Reward/development screens, but exposed two first-pass regressions. The main-menu and intro controls are authored-image click hotspots and must stay transparent; applying generic action-button chrome produced empty dark rectangles over the art. Those two hotspots now keep their original transparent treatment.
+
+Resolved shared Act Choice screens now hide the obsolete leave button, reserve a dedicated result strip, and present a single centered `К СТОЛУ` action. This specifically fixes Candle Seller result text overlapping the bottom actions after a purchase.
+
 ## Shared gothic UI-kit pass — 2026-10-08
 
 A first shared runtime **Misdeal UI kit** is now in `main` and pending local screenshot verification. `scripts/ui/misdeal_ui_kit.gd` unifies live Godot panels and buttons without baking mutable text or values into images: square pixel-gothic borders, bronze/gold/ember/steel semantic accents, compact corner marks, stronger ceremonial frames and consistent normal/hover/pressed/disabled button states.
