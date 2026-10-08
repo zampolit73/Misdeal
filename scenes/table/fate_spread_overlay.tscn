@@ -187,17 +187,19 @@ theme_override_styles/panel = SubResource("SidePanel")
 offset_left = 12.0
 offset_top = 12.0
 offset_right = 182.0
-offset_bottom = 40.0
+offset_bottom = 54.0
 theme_override_colors/font_color = Color(0.88, 0.48, 0.34, 1)
-theme_override_font_sizes/font_size = 15
-text = "СБРОС ВОЛШЕБНИКА"
+theme_override_font_sizes/font_size = 14
+text = "СБРОС
+ВОЛШЕБНИКА"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Status" type="Label" parent="Frame/DiscardPanel"]
 offset_left = 12.0
-offset_top = 42.0
+offset_top = 58.0
 offset_right = 182.0
-offset_bottom = 64.0
+offset_bottom = 80.0
 theme_override_colors/font_color = Color(0.68, 0.46, 0.40, 1)
 theme_override_font_sizes/font_size = 11
 text = "0 КАРТ"
@@ -205,9 +207,9 @@ horizontal_alignment = 1
 
 [node name="Art" type="TextureRect" parent="Frame/DiscardPanel"]
 offset_left = 18.0
-offset_top = 86.0
+offset_top = 94.0
 offset_right = 176.0
-offset_bottom = 286.0
+offset_bottom = 294.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 6
