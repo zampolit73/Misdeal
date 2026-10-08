@@ -1487,3 +1487,25 @@ Misdeal's combat agency should come from preparation rather than hidden AI guess
 The arrows update while heroes are dragged and while tactical orders change, then disappear as soon as combat begins. This is a readability/agency improvement, not a new targeting rule: the preview calls the same target-selection logic used by the combat units.
 
 Keep the preview restrained and preparation-only. Do not turn combat into a permanent network of target lines or add a second prediction model that can disagree with live AI.
+
+## D088 — Act 1 progression is a physical Fate Spread, not a node map
+
+Date: 2026-10-08  
+Status: accepted by user, implemented pending local visual verification
+
+Misdeal should not adopt a conventional branching world-map screen for Act 1 progression. The cursed table itself is the journey.
+
+Act 1 is represented as **РАСКЛАД СУДЬБЫ**:
+- twelve chronological positions I–XII correspond to the twelve resolved pre-boss cards;
+- resolved cards remain visible with their real card art, turning the spread into a physical history of the run;
+- XIII is the central sealed Bone Warden card and is revealed when the boss becomes due;
+- rejected cards belong to a separate Wizard discard;
+- the one held card has its own physical holder;
+- the normal dealing screen retains a compact occult ring, while a dedicated inspection overlay exposes the complete history via `R` / `РАСКЛАД СУДЬБЫ`.
+
+The implementation must stay live/data-driven. Do not replace the table with a static screenshot containing baked card names, counters or fake run history.
+
+Future slots remain unknown under the current random-offer model. If the game later exposes future card-type symbols, those hints must be backed by an actual scheduling/foresight mechanic rather than decorative misinformation.
+
+The initial spread also divides pacing visually into three four-card chapters — **ПЕРВАЯ РАЗДАЧА**, **СТОЛ ПОМНИТ**, **ПОСЛЕДНЯЯ РАЗДАЧА** — without yet changing mechanical tier rules.
+
