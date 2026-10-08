@@ -135,13 +135,22 @@ func _toggle_fate_spread() -> void:
 	if fate_spread_overlay == null:
 		return
 
-	fate_spread_overlay.z_index = 9000
+	# The inspection view owns the whole screen. Hide the live deal instead of
+	# letting offer cards/hold controls compete with the historical spread.
+	cards_root.visible = false
+	fate_spread_button.visible = false
+	spread_progress_label.visible = false
+
+	fate_spread_overlay.z_index = 4095
 	fate_spread_overlay.tree_exited.connect(_on_fate_spread_closed)
 	add_child(fate_spread_overlay)
 
 
 func _on_fate_spread_closed() -> void:
 	fate_spread_overlay = null
+	cards_root.visible = true
+	fate_spread_button.visible = true
+	spread_progress_label.visible = true
 
 
 func _toggle_squad_status() -> void:
