@@ -796,6 +796,14 @@ The user keeps a local clone and normally updates with:
 
 - 2026-10-07 screenshot correction: Curse Forge, Chained Prisoner and the Wizard wager were re-laid out against the approved attached references rather than merely sharing generic event chrome; this is presentation-only and leaves their mechanics unchanged.
 
+## Shared gothic UI-kit pass — 2026-10-08
+
+A first shared runtime **Misdeal UI kit** is now in `main` and pending local screenshot verification. `scripts/ui/misdeal_ui_kit.gd` unifies live Godot panels and buttons without baking mutable text or values into images: square pixel-gothic borders, bronze/gold/ember/steel semantic accents, compact corner marks, stronger ceremonial frames and consistent normal/hover/pressed/disabled button states.
+
+The kit is wired into the main menu, intro skip action, Class Select, Wizard table, Wizard wager, Squad Dossier, shared Act 1 event choices, Whispering Well, Reward, Battle HUD / Last Deal and Run End. Existing authored choice art, artifact art, event backdrops and live mechanics are preserved; this pass changes presentation chrome only.
+
+This intentionally answers the earlier visual mismatch where authored environments and approved choice illustrations sat under mostly independent StyleBoxFlat treatments. Further changes should come from fresh 1280×720 screenshots rather than inventing another parallel UI system.
+
 ## Production art-direction consistency pass
 
 A first production art-direction consistency pass is now in `main` and pending local screenshot review. `docs/ART_DIRECTION.md` defines the authored low-resolution target. A shared CanvasItem shader now reduces painterly smoothness and pushes large source art toward a tighter Ink / Stone / Bone palette while preserving restrained Rust / Teal / Gold accents. The first reference surfaces are the Wizard table, authored battle backdrops and Whispering Well. Battle backdrops also use nearest filtering/resampling, and Whispering Well's procedural background has fewer candles and quieter glow. This is a consistency layer; visibly malformed source geometry still requires actual redraw.
