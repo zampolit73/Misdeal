@@ -273,3 +273,6 @@ Do not prioritize these before the vertical slice works:
 
 - [x] Replace abstract Act 1 progress with the live `РАСКЛАД СУДЬБЫ`: twelve historical card slots, sealed XIII boss, held-card area and Wizard rejected-card discard.
 - [ ] Locally verify Fate Spread readability at 1280×720 after 0, 4, 8 and 12 resolved cards, including a held card and a populated rejected discard.
+
+- [x] Bring Fate Spread closer to the approved reference with a live occult seal, fate-thread path, chapter gates, progressive XIII chains and stronger center hierarchy.
+- [ ] Verify the reference-driven Fate Spread at 0/4/8/12 progress and confirm XIII chain break/reveal timing reads clearly at 1280×720.
