@@ -140,6 +140,8 @@
 
 ### Fixed
 
+- Fixed `run_end.gd` declaration order after the resilient scene-router rollout; all navigation scripts now start with their `extends` declaration and contain no direct `SceneTransition` identifier references.
+
 - Fixed Godot compile failures when a locally modified `project.godot` had not registered the new `SceneTransition` autoload: navigation now uses a resilient router that finds the singleton or creates the persistent transition node at runtime.
 
 - Eliminated the actual empty-scene interval behind the intermittent gray transition frame; incoming runtime art/layout now settles while the persistent veil remains opaque.
