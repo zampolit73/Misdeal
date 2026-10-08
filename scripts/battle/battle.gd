@@ -4,7 +4,7 @@ const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
 
 const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1240, 465))
-const GALLOWS_VOLLEY_COMBAT_BOUNDS := Rect2(Vector2(0, 125), Vector2(1240, 315))
+const GALLOWS_VOLLEY_COMBAT_BOUNDS := Rect2(Vector2(0, 185), Vector2(1240, 255))
 const BONE_CRUSH_COMBAT_BOUNDS := Rect2(Vector2(0, 105), Vector2(1240, 335))
 const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 82), Vector2(545, 326))
 
@@ -184,11 +184,11 @@ func _get_party_spawn_positions() -> Array[Vector2]:
 		"gallows_volley":
 			match RunState.get_party_size():
 				1:
-					return [Vector2(220, 260)]
+					return [Vector2(220, 305)]
 				2:
-					return [Vector2(220, 175), Vector2(220, 345)]
+					return [Vector2(220, 245), Vector2(220, 365)]
 				_:
-					return [Vector2(220, 155), Vector2(220, 260), Vector2(220, 365)]
+					return [Vector2(220, 225), Vector2(220, 305), Vector2(220, 385)]
 		"bone_crush":
 			match RunState.get_party_size():
 				1:
@@ -225,7 +225,7 @@ func _get_party_spawn_positions() -> Array[Vector2]:
 func _get_placement_regions() -> Array[Rect2]:
 	match encounter.encounter_id:
 		"gallows_volley":
-			return [Rect2(Vector2(35, 125), Vector2(430, 275))]
+			return [Rect2(Vector2(35, 195), Vector2(430, 205))]
 		"bone_crush":
 			return [
 				Rect2(Vector2(35, 115), Vector2(480, 130)),
