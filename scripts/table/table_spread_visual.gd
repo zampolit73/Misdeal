@@ -36,7 +36,7 @@ func _draw_deck() -> void:
 		)
 
 func _draw_discard() -> void:
-	var discarded := RunState.resolved_card_ids.size() + RunState.rejected_card_ids.size()
+	var discarded := RunState.rejected_card_ids.size()
 	var base_rect := Rect2(1038.0, 430.0, 76.0, 110.0)
 
 	if discarded <= 0:
