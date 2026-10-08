@@ -21,6 +21,13 @@ Dangerous cards can offer stronger rewards. The player should sometimes choose t
 ### 4. The evil wizard is the face of the game
 He is host, antagonist and commentator. He presents rules, mocks mistakes, changes the table and gives the run personality.
 
+### 5. Progress is the Fate Spread, not a world map
+Act progress is represented physically on the cursed table as **РАСКЛАД СУДЬБЫ** rather than a node-map screen.
+
+The twelve pre-boss resolutions occupy positions I–XII around an occult spread, while the Bone Warden is the sealed central card XIII. Resolved cards remain visible as the history of the current run. Rejected cards belong to the Wizard's discard, and the one held card has its own physical place outside the main ring.
+
+The detailed spread may be inspected from the table, while the normal deal view keeps a restrained circular progress trace visible behind the live offer cards. Unknown future slots must remain genuinely unknown unless a later mechanic explicitly grants route information.
+
 ## Prototype combat
 - Small battlefield.
 - Player party can be solo, duo or trio depending on the replayed life.
