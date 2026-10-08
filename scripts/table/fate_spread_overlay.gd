@@ -300,9 +300,10 @@ func _get_phase_text() -> String:
 	return "XIII  •  ПРИГОВОР"
 
 
-func _future_symbol(index: int) -> String:
-	var symbols: Array[String] = ["?", "☠", "¤", "⛓"]
-	return symbols[index % symbols.size()]
+func _future_symbol(_index: int) -> String:
+	# Future card types are not predetermined by the current deck logic.
+	# Keep unrevealed slots genuinely unknown instead of faking route intel.
+	return "?"
 
 
 func _roman(value: int) -> String:
