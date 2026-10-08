@@ -4,6 +4,7 @@
 
 ### Added
 
+- Added the prepared v6 Wizard/table backdrop as a clean 1280×398 runtime WebP with no baked gameplay UI.
 - Added the latest native-HD v6 battle redraws for Graveyard, Ossuary, Bone Warden and Bone Crush, plus the latest dedicated Bone Warden table-card redraw.
 - Completed current-art coverage for all 25 active Act 1 table cards. Added a supplementary 224×137 v5 redraw atlas for **ПЕПЕЛЬНЫЙ ПРИВАЛ**, **КОСТЯНАЯ ДАВКА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА** and **СТАВКА НА СМЕРТЬ**.
 - Added the first object-first card redraw batch for **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**, loaded as dedicated runtime-decoded WebP overrides instead of old atlas cells.
@@ -35,6 +36,9 @@
 
 ### Changed
 
+- Removed the remaining double-darkening from the Wizard table and live table/wager art; authored assets now render without the legacy post-grade.
+- Reduced the Wizard wager scrim from 0.82 to 0.52 alpha and halved the passive table shade layers.
+- Reduced fallback environment/card grade strengths to preserve dark-mid detail on older event/reward surfaces.
 - Replaced the over-dark Graveyard/Ossuary/Warden/Bone Crush presentation with the latest reviewed authored sources. Authored battle backdrops are now shown without the legacy environment-grade material.
 - Bone Crush deployment lanes, initial unit positions and combat bounds are aligned to the visible floor plane so units no longer appear suspended on the architecture.
 - **СЛОМАННАЯ КОРОНА** now uses the exact approved object-centric Broken Crown artifact illustration on its table card.

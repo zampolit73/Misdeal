@@ -1327,3 +1327,17 @@ These authored images already contain their intended contrast, palette and light
 Battlefield art must expose a broad, continuous floor plane that matches live unit coordinates. Bone Crush now uses encounter-specific floor-safe combat bounds and deployment bands instead of allowing units to occupy the architectural upper portion of the backdrop.
 
 Crypt and Gallows remain on their accepted v4 native-HD art. No combat mechanics, stats or targeting rules are changed by this decision.
+
+
+## D078 — Authored table art is not double-graded
+
+Date: 2026-10-08  
+Status: accepted after local screenshot review
+
+The Wizard table and current card redraws already contain their intended low-key lighting. Applying the legacy environment/card grade on top crushes their dark mids and makes the table, card illustrations and Wizard wager read as nearly black.
+
+The authored Wizard backdrop and table/wager card art therefore bypass the shared grade materials. The shared environment/card materials remain available for older surfaces, but their strengths are reduced to 0.30 and 0.14 respectively.
+
+Modal focus should come from framing and a moderate scrim, not from hiding the entire table. The Wizard wager scrim target is 0.52 alpha.
+
+The prepared v6 table/wizard crop is allowed as production art because it contains no baked mutable gameplay text, prices or buttons; those remain native Godot controls.

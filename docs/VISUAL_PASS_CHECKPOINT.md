@@ -112,3 +112,16 @@ After local screenshots exposed crushed shadows and a mismatched Bone Crush floo
 - Bone Crush deployment/combat coordinates are constrained to the visible floor.
 
 These are native 1280×720 runtime WebPs (boss card: 448×274), not thumbnail-scale atlas enlargements.
+
+
+## Table/wager brightness correction
+
+The remaining dark screenshots were traced to the table layer:
+
+- WizardBackdrop was still receiving the old strong environment grade;
+- all live table-card art and both Wizard-wager term images were also being graded;
+- the wager scrim still used 0.82 black alpha.
+
+The authored table/wager art now bypasses those materials, the scrim is 0.52, and passive table shading is halved. A previously prepared v6 Wizard/table illustration is now in runtime as a clean 1280×398 WebP crop with no baked mutable UI.
+
+Shared grade strengths are reduced for any older surfaces that still reference them: environment 0.30, card 0.14.

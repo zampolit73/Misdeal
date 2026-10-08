@@ -198,7 +198,7 @@ Do not prioritize these before the vertical slice works:
 - [x] Establish **КОСТЯНАЯ ДАВКА** as the first true redraw benchmark and approve a simpler low-detail crypt direction in chat.
 - [x] Add a dedicated `bone_crush` arena id and production backdrop so the redraw does not alter other Ossuary encounters.
 - [ ] Replace blue deployment-zone panels with subtle in-world floor markings based on the same legal placement rectangles.
-- [ ] Retune environment/card grade shadows so wager/card images keep readable midtones instead of collapsing into black.
+- [x] Retune environment/card grade shadows and remove post-grade from authored table/wager art so dark-mid detail stays readable.
 - [ ] Review the Bone Crush redraw locally at 1280×720 before propagating the style.
 - [x] Integrate the first object-first card redraw batch: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**.
 - [x] Correct the broad redraw integration after local quality review: 19 semantically matched card redraws now run at 224×137 source resolution with the existing approved 25-card atlas as fallback.
@@ -213,5 +213,6 @@ Do not prioritize these before the vertical slice works:
 - [x] Replace Crypt and Gallows Volley with native 1280×720 v4 arena redraws while retaining validated HD Graveyard/Ossuary/Warden and the dedicated Bone Crush benchmark.
 - [x] Wire the latest native-HD Graveyard/Ossuary/Warden/Bone Crush redraws, remove post-grade darkening and floor-align Bone Crush deployment/combat.
 - [ ] Continue any further arena replacement from native/high-resolution sources only. Thumbnail-scale full-screen arena upscaling is rejected.
-- [ ] Rebuild event/reward surfaces around the same limited Ink / Stone / Bone / Rust / Teal / Gold language while keeping all mutable values live.
+- [x] Integrate the prepared v6 Wizard/table backdrop without baked live UI and reduce Wizard-wager/table dimming.
+- [ ] Rebuild remaining event/reward surfaces around the same limited Ink / Stone / Bone / Rust / Teal / Gold language while keeping all mutable values live.
 - [x] Locally verify the corrected v4 cards and restored high-resolution arenas at 1280×720 before another broad visual rollout.

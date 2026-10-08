@@ -886,3 +886,14 @@ All four new battle sources are native 1280×720 WebP assets. Authored arena art
 Bone Crush also uses floor-safe deployment/combat bounds and adjusted spawn lanes so units start and move on the visible floor plane instead of the architectural upper area.
 
 Crypt and Gallows keep the accepted native-HD v4 sources. Gameplay rules are unchanged; this correction is visual/layout only.
+
+
+## Table/wager midtone correction — 2026-10-08
+
+Local screenshots showed that the remaining crushed-black presentation was on the Wizard table rather than the corrected battle arenas.
+
+The table no longer applies the legacy environment grade to the authored Wizard backdrop, and live card/wager art is no longer post-darkened by the shared card grade. The Wizard wager scrim is reduced from 0.82 to 0.52 alpha and the three passive table shade layers are halved, preserving focus without hiding the table and cards.
+
+A previously prepared Wizard/table illustration is now actually used in runtime as assets/pixel/table/visual_pass_v6/table_wizard.webp. It is a clean 1280×398 crop from the approved table direction with no baked gameplay text or buttons, so all HUD/card state remains live Godot UI.
+
+For any older event/reward surface that still uses the shared grade materials, environment grade strength is reduced from 0.78 to 0.30 and card grade strength from 0.30 to 0.14. This is a safety correction for dark-mid readability, not a palette redesign.
