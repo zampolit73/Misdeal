@@ -3,6 +3,7 @@ extends Control
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
+const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const ROLE_FALLBACK_ART := {
 	"knight": preload("res://assets/art/units/knight.webp"),
 	"ranger": preload("res://assets/art/units/ranger.webp"),
@@ -37,6 +38,7 @@ func _ready() -> void:
 	upgrade_description_labels = [$Rewards/BloodCoin/UpgradeDescription, $Rewards/IronWard/UpgradeDescription, $Rewards/TemperedSteel/UpgradeDescription]
 	upgrade_quick_labels = [$Rewards/BloodCoin/QuickEffect, $Rewards/IronWard/QuickEffect, $Rewards/TemperedSteel/QuickEffect]
 	upgrade_choose_bars = [$Rewards/BloodCoin/ChooseBar, $Rewards/IronWard/ChooseBar, $Rewards/TemperedSteel/ChooseBar]
+	_apply_ui_kit()
 	for index in range(reward_buttons.size()):
 		reward_buttons[index].pressed.connect(_on_reward_button_pressed.bind(index))
 		reward_buttons[index].mouse_entered.connect(_on_reward_hover.bind(reward_buttons[index], true))
@@ -44,6 +46,22 @@ func _ready() -> void:
 
 	_refresh_run_stats()
 	_setup_initial_reward()
+
+func _apply_ui_kit() -> void:
+	MISDEAL_UI_KIT.apply_panel($HudPanel, MISDEAL_UI_KIT.BRONZE, false)
+	MISDEAL_UI_KIT.apply_panel($HeaderPanel, MISDEAL_UI_KIT.BRONZE, true)
+	MISDEAL_UI_KIT.apply_title(title_label, MISDEAL_UI_KIT.GOLD)
+	MISDEAL_UI_KIT.apply_subtitle(summary_label, MISDEAL_UI_KIT.BRONZE)
+
+	var accents: Array[Color] = [
+		MISDEAL_UI_KIT.KNIGHT,
+		MISDEAL_UI_KIT.RANGER,
+		MISDEAL_UI_KIT.MAGE,
+	]
+	for index in range(reward_buttons.size()):
+		MISDEAL_UI_KIT.apply_card_button(reward_buttons[index], accents[index])
+		MISDEAL_UI_KIT.apply_panel(upgrade_choose_bars[index], accents[index], false)
+
 
 func _setup_initial_reward() -> void:
 	_refresh_run_stats()
