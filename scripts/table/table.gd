@@ -2,6 +2,7 @@ extends Control
 
 const SQUAD_STATUS_SCENE := preload("res://scenes/table/squad_status.tscn")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
+const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 
 const LEFT_CARD_POSITION := Vector2(382.0, 332.0)
 const RIGHT_CARD_POSITION := Vector2(658.0, 332.0)
@@ -52,6 +53,7 @@ func _ready() -> void:
 		return
 
 	offer_buttons = [offer_a_button, offer_b_button]
+	_apply_ui_kit()
 	hold_a_button.pressed.connect(_on_hold_button_pressed.bind(0))
 	hold_b_button.pressed.connect(_on_hold_button_pressed.bind(1))
 	hold_a_button.tooltip_text = "Один раз за Act 1: придержать эту карту и вернуть её через две раздачи."
@@ -77,6 +79,24 @@ func _ready() -> void:
 
 	_configure_card_pivots()
 	_refresh_table()
+
+func _apply_ui_kit() -> void:
+	MISDEAL_UI_KIT.apply_panel($HudPanel, MISDEAL_UI_KIT.BRONZE, false)
+	MISDEAL_UI_KIT.apply_panel($WizardLinePanel, MISDEAL_UI_KIT.BRONZE, false)
+	MISDEAL_UI_KIT.apply_subtitle(wizard_line, MISDEAL_UI_KIT.BRONZE)
+	MISDEAL_UI_KIT.apply_action_button(squad_button, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_UI_KIT.apply_action_button(hold_a_button, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_UI_KIT.apply_action_button(hold_b_button, MISDEAL_UI_KIT.STEEL, false)
+
+	for button in offer_buttons:
+		MISDEAL_UI_KIT.apply_card_button(button, MISDEAL_UI_KIT.BRONZE)
+
+	MISDEAL_UI_KIT.apply_panel(wager_panel, MISDEAL_UI_KIT.BRONZE, true)
+	MISDEAL_UI_KIT.apply_panel(wager_risk_panel, MISDEAL_UI_KIT.EMBER, false)
+	MISDEAL_UI_KIT.apply_panel(wager_reward_panel, MISDEAL_UI_KIT.GOLD, false)
+	MISDEAL_UI_KIT.apply_action_button(wager_accept_button, MISDEAL_UI_KIT.EMBER, true)
+	MISDEAL_UI_KIT.apply_action_button(wager_refuse_button, MISDEAL_UI_KIT.STEEL, false)
+
 
 func _input(event: InputEvent) -> void:
 	if selection_locked:
