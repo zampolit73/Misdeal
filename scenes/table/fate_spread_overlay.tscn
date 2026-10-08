@@ -1,0 +1,257 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/table/fate_spread_overlay.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="OuterPanel"]
+bg_color = Color(0.012, 0.007, 0.012, 0.985)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.58, 0.22, 0.14, 0.96)
+shadow_color = Color(0, 0, 0, 0.88)
+shadow_size = 18
+
+[sub_resource type="StyleBoxFlat" id="SidePanel"]
+bg_color = Color(0.022, 0.014, 0.020, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.28, 0.18, 0.88)
+shadow_color = Color(0, 0, 0, 0.62)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="CloseNormal"]
+bg_color = Color(0.025, 0.020, 0.026, 0.94)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.40, 0.28, 0.24, 0.82)
+
+[sub_resource type="StyleBoxFlat" id="CloseHover"]
+bg_color = Color(0.15, 0.035, 0.025, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.82, 0.36, 0.18, 0.96)
+
+[sub_resource type="StyleBoxFlat" id="ClosePressed"]
+bg_color = Color(0.24, 0.045, 0.028, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.52, 0.22, 1)
+
+[node name="FateSpreadOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_script")
+
+[node name="Scrim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+color = Color(0.004, 0.002, 0.006, 0.88)
+
+[node name="Frame" type="Panel" parent="."]
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 1256.0
+offset_bottom = 704.0
+theme_override_styles/panel = SubResource("OuterPanel")
+
+[node name="Title" type="Label" parent="Frame"]
+offset_left = 264.0
+offset_top = 12.0
+offset_right = 968.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0.96, 0.78, 0.54, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.96)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+text = "MISDEAL — РАСКЛАД СУДЬБЫ"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Frame"]
+offset_left = 316.0
+offset_top = 50.0
+offset_right = 916.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.76, 0.65, 0.58, 1)
+theme_override_font_sizes/font_size = 13
+text = "ДО КОСТЯНОГО НАДЗИРАТЕЛЯ: 12 КАРТ"
+horizontal_alignment = 1
+
+[node name="Phase" type="Label" parent="Frame"]
+offset_left = 420.0
+offset_top = 76.0
+offset_right = 812.0
+offset_bottom = 99.0
+theme_override_colors/font_color = Color(0.92, 0.42, 0.24, 1)
+theme_override_font_sizes/font_size = 12
+text = "ПЕРВАЯ РАЗДАЧА"
+horizontal_alignment = 1
+
+[node name="Counts" type="Label" parent="Frame"]
+offset_left = 290.0
+offset_top = 102.0
+offset_right = 942.0
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(0.82, 0.72, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "ПРОЙДЕНО: 0   |   ОТВЕРГНУТО: 0   |   УДЕРЖАНО: 0"
+horizontal_alignment = 1
+
+[node name="HeldPanel" type="Panel" parent="Frame"]
+offset_left = 24.0
+offset_top = 154.0
+offset_right = 218.0
+offset_bottom = 632.0
+theme_override_styles/panel = SubResource("SidePanel")
+
+[node name="Title" type="Label" parent="Frame/HeldPanel"]
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 182.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.62, 0.82, 0.94, 1)
+theme_override_font_sizes/font_size = 15
+text = "УДЕРЖАТЬ"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="Frame/HeldPanel"]
+offset_left = 12.0
+offset_top = 42.0
+offset_right = 182.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.54, 0.66, 0.74, 1)
+theme_override_font_sizes/font_size = 11
+text = "0/1"
+horizontal_alignment = 1
+
+[node name="Art" type="TextureRect" parent="Frame/HeldPanel"]
+offset_left = 18.0
+offset_top = 86.0
+offset_right = 176.0
+offset_bottom = 286.0
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CardTitle" type="Label" parent="Frame/HeldPanel"]
+offset_left = 16.0
+offset_top = 300.0
+offset_right = 178.0
+offset_bottom = 366.0
+theme_override_colors/font_color = Color(0.88, 0.80, 0.68, 1)
+theme_override_font_sizes/font_size = 12
+text = "ПУСТО"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Hint" type="Label" parent="Frame/HeldPanel"]
+offset_left = 14.0
+offset_top = 382.0
+offset_right = 180.0
+offset_bottom = 456.0
+theme_override_colors/font_color = Color(0.52, 0.50, 0.54, 1)
+theme_override_font_sizes/font_size = 10
+text = "Одна карта за акт может быть отложена и вернётся через две раздачи."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="DiscardPanel" type="Panel" parent="Frame"]
+offset_left = 1014.0
+offset_top = 154.0
+offset_right = 1208.0
+offset_bottom = 632.0
+theme_override_styles/panel = SubResource("SidePanel")
+
+[node name="Title" type="Label" parent="Frame/DiscardPanel"]
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 182.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0.88, 0.48, 0.34, 1)
+theme_override_font_sizes/font_size = 15
+text = "СБРОС ВОЛШЕБНИКА"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="Frame/DiscardPanel"]
+offset_left = 12.0
+offset_top = 42.0
+offset_right = 182.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.68, 0.46, 0.40, 1)
+theme_override_font_sizes/font_size = 11
+text = "0 КАРТ"
+horizontal_alignment = 1
+
+[node name="Art" type="TextureRect" parent="Frame/DiscardPanel"]
+offset_left = 18.0
+offset_top = 86.0
+offset_right = 176.0
+offset_bottom = 286.0
+texture_filter = 1
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CardTitle" type="Label" parent="Frame/DiscardPanel"]
+offset_left = 16.0
+offset_top = 300.0
+offset_right = 178.0
+offset_bottom = 366.0
+theme_override_colors/font_color = Color(0.76, 0.64, 0.58, 1)
+theme_override_font_sizes/font_size = 12
+text = "ПУСТО"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Hint" type="Label" parent="Frame/DiscardPanel"]
+offset_left = 14.0
+offset_top = 382.0
+offset_right = 180.0
+offset_bottom = 456.0
+theme_override_colors/font_color = Color(0.52, 0.46, 0.46, 1)
+theme_override_font_sizes/font_size = 10
+text = "Отвергнутые судьбы остаются у Волшебника. Он их помнит."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SpreadArea" type="Control" parent="Frame"]
+offset_left = 226.0
+offset_top = 132.0
+offset_right = 1006.0
+offset_bottom = 652.0
+mouse_filter = 2
+
+[node name="Close" type="Button" parent="Frame"]
+offset_left = 1082.0
+offset_top = 18.0
+offset_right = 1196.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.76, 0.68, 0.64, 1)
+theme_override_colors/font_hover_color = Color(1, 0.86, 0.72, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("CloseNormal")
+theme_override_styles/hover = SubResource("CloseHover")
+theme_override_styles/pressed = SubResource("ClosePressed")
+text = "ЗАКРЫТЬ [R]"
