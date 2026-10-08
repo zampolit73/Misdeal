@@ -902,3 +902,18 @@ For any older event/reward surface that still uses the shared grade materials, e
 ## Reward/event midtone follow-up — 2026-10-08
 
 The brightness correction was propagated one step beyond the Wizard table. The reward screen no longer tints its table backdrop brown/dark and its backdrop shade is reduced from 0.54 to 0.24 alpha. Whispering Well choice illustrations now render authored art directly instead of receiving another card-grade pass. This keeps the already-prepared reward/event art readable while all labels, prices and choices remain live UI.
+
+
+## V7 screen-art rollout — 2026-10-08
+
+The next authored-art package is now live across the remaining high-visibility legacy screens.
+
+- **Class Select** now uses dedicated 640×480 authored portraits for Knight, Ranger and Mage instead of enlarging 96×96 combat sprites. The existing live class stats/descriptions remain native Godot UI.
+- **Reward** now uses a dedicated 1280×720 treasure-altar backdrop instead of the old generic `assets/art/table_background.webp`.
+- **Whispering Well** now uses a dedicated 1280×720 moonlit-well environment and no longer shows the procedural brick/well renderer behind the choice UI.
+- **Curse Forge**, **Chained Prisoner** and **Black Altar** now use dedicated 1280×720 environment art through the shared `act_choice` scene. Their buttons, costs, state and consequences remain live.
+- **Run End** now uses a dedicated 1280×720 Wizard-at-the-table ending illustration and disables the old procedural Wizard silhouette/table drawing.
+
+The shared cursed-choice overlay was also softened so authored backgrounds keep readable midtones instead of being hidden under another heavy table shade.
+
+All v7 art was exported as production WebP at near-display or full-screen resolution. No generated screen with baked gameplay labels/buttons was used as runtime UI.

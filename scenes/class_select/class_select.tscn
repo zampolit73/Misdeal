@@ -113,7 +113,7 @@ offset_bottom = 104.0
 texture_filter = 1
 texture = ExtResource("3_logo")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="Frame" type="Panel" parent="."]
 offset_left = 70.0

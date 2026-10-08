@@ -4,6 +4,8 @@
 
 ### Added
 
+- Added dedicated v7 Class Select portraits for Knight, Ranger and Mage.
+- Added native 1280×720 v7 authored backdrops for Reward, Whispering Well, Curse Forge, Chained Prisoner, Black Altar and Run End.
 - Added the prepared v6 Wizard/table backdrop as a clean 1280×398 runtime WebP with no baked gameplay UI.
 - Added the latest native-HD v6 battle redraws for Graveyard, Ossuary, Bone Warden and Bone Crush, plus the latest dedicated Bone Warden table-card redraw.
 - Completed current-art coverage for all 25 active Act 1 table cards. Added a supplementary 224×137 v5 redraw atlas for **ПЕПЕЛЬНЫЙ ПРИВАЛ**, **КОСТЯНАЯ ДАВКА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА** and **СТАВКА НА СМЕРТЬ**.
@@ -36,6 +38,11 @@
 
 ### Changed
 
+- Class Select no longer enlarges 96×96 combat sprites as portraits.
+- Reward no longer uses the old generic table background.
+- Whispering Well and Run End no longer depend on their procedural environment renderers.
+- Shared Act Choice now shows dedicated environment art for Curse Forge, Chained Prisoner and Black Altar while keeping all event logic/UI live.
+- Reduced the shared cursed-choice table shade so new authored environments keep readable midtones.
 - Brightened the reward backdrop and removed double-grading from Whispering Well choice art so prepared event/reward illustrations keep their midtones.
 - Removed the remaining double-darkening from the Wizard table and live table/wager art; authored assets now render without the legacy post-grade.
 - Reduced the Wizard wager scrim from 0.82 to 0.52 alpha and halved the passive table shade layers.

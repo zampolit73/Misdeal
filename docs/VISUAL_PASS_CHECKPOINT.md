@@ -125,3 +125,18 @@ The remaining dark screenshots were traced to the table layer:
 The authored table/wager art now bypasses those materials, the scrim is 0.52, and passive table shading is halved. A previously prepared v6 Wizard/table illustration is now in runtime as a clean 1280×398 WebP crop with no baked mutable UI.
 
 Shared grade strengths are reduced for any older surfaces that still reference them: environment 0.30, card 0.14.
+
+
+## V7 high-visibility screen rollout
+
+The prepared portrait/environment package is now production runtime art:
+
+- Class Select: dedicated Knight / Ranger / Mage portraits, 640×480 each.
+- Reward: dedicated treasure-altar 1280×720 backdrop.
+- Whispering Well: dedicated moonlit-well 1280×720 backdrop; procedural environment hidden.
+- Curse Forge: dedicated forge 1280×720 backdrop in shared Act Choice.
+- Chained Prisoner: dedicated dungeon/prisoner 1280×720 backdrop in shared Act Choice.
+- Black Altar: dedicated blood-altar 1280×720 backdrop in shared Act Choice.
+- Run End: dedicated Wizard/table 1280×720 ending backdrop; procedural ending art hidden.
+
+No mutable gameplay text or controls are baked into these production assets. Fresh local 1280×720 screenshots are the next visual gate before touching lower-priority event/shop screens.

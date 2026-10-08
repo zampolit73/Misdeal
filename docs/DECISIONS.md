@@ -1341,3 +1341,17 @@ The authored Wizard backdrop and table/wager card art therefore bypass the share
 Modal focus should come from framing and a moderate scrim, not from hiding the entire table. The Wizard wager scrim target is 0.52 alpha.
 
 The prepared v6 table/wizard crop is allowed as production art because it contains no baked mutable gameplay text, prices or buttons; those remain native Godot controls.
+
+
+## D079 — High-visibility screens use dedicated environment/portrait art while gameplay UI stays live
+
+Date: 2026-10-08  
+Status: accepted for the current production-art pass
+
+Class Select, Reward, Whispering Well, Curse Forge, Chained Prisoner, Black Altar and Run End are high-visibility screens and should no longer rely on enlarged combat sprites, generic table backgrounds or procedural environment blockouts when approved dedicated art exists.
+
+Dedicated character portraits may be larger than combat sprites because they serve identity rather than tactical readability. Dedicated event/reward/end backdrops use native 1280×720 authored sources.
+
+Generated full-screen art is used only as environment/character imagery. Titles, costs, choice labels, run state, buttons, reward values and consequences remain native Godot controls/scripts.
+
+The shared decorative overlay should support authored art, not obscure it. Its table-shade contribution is therefore reduced while semantic glows/marks remain.

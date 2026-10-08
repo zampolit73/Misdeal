@@ -214,5 +214,15 @@ Do not prioritize these before the vertical slice works:
 - [x] Wire the latest native-HD Graveyard/Ossuary/Warden/Bone Crush redraws, remove post-grade darkening and floor-align Bone Crush deployment/combat.
 - [ ] Continue any further arena replacement from native/high-resolution sources only. Thumbnail-scale full-screen arena upscaling is rejected.
 - [x] Integrate the prepared v6 Wizard/table backdrop without baked live UI and reduce Wizard-wager/table dimming.
-- [ ] Rebuild remaining event/reward surfaces around the same limited Ink / Stone / Bone / Rust / Teal / Gold language while keeping all mutable values live.
+- [x] Rebuild the high-visibility remaining surfaces: Class Select portraits, Reward, Whispering Well, Curse Forge, Chained Prisoner, Black Altar and Run End now use dedicated authored v7 art while mutable values stay live.
+- [ ] Continue lower-priority event/shop surfaces only where fresh local screenshots still show a meaningful visual mismatch.
 - [x] Locally verify the corrected v4 cards and restored high-resolution arenas at 1280×720 before another broad visual rollout.
+
+
+### V7 screen-art follow-up
+
+- [x] Replace enlarged combat-sprite portraits on Class Select with dedicated Knight / Ranger / Mage portraits.
+- [x] Replace the generic reward background with a dedicated treasure-altar scene.
+- [x] Replace procedural Whispering Well and Run End backgrounds with authored full-screen scenes.
+- [x] Give Curse Forge, Chained Prisoner and Black Altar dedicated full-screen event environments in the shared live-UI event scene.
+- [ ] Review fresh 1280×720 screenshots before replacing any lower-priority art.
