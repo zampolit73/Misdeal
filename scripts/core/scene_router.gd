@@ -9,7 +9,7 @@ const TRANSITION_SCRIPT := preload("res://scripts/core/scene_transition.gd")
 
 
 static func change_to(context: Node, scene_path: String) -> void:
-	var transition := _get_transition(context)
+	var transition: Node = _get_transition(context)
 	if transition == null:
 		push_error("SceneRouter could not create the transition layer.")
 		context.get_tree().change_scene_to_file(scene_path)
@@ -30,8 +30,8 @@ static func _get_transition(context: Node) -> Node:
 	if context == null or context.get_tree() == null:
 		return null
 
-	var root := context.get_tree().root
-	var transition := root.get_node_or_null("SceneTransition")
+	var root: Window = context.get_tree().root
+	var transition: Node = root.get_node_or_null("SceneTransition")
 	if transition != null:
 		return transition
 
@@ -39,7 +39,7 @@ static func _get_transition(context: Node) -> Node:
 	if transition != null:
 		return transition
 
-	transition = TRANSITION_SCRIPT.new()
+	transition = TRANSITION_SCRIPT.new() as Node
 	transition.name = "SceneTransitionRuntime"
 	root.add_child(transition)
 	return transition
