@@ -2,6 +2,12 @@
 
 Last updated: 2026-10-08
 
+## Fate Spread approved-reference integration — 2026-10-08
+
+The user approved the ornate physical-table Fate Spread reference with candles, brass/iron props, red ritual cloth and a stronger carved-gothic tabletop presentation. The game does **not** bake that screenshot's run-specific cards/counters into gameplay. Instead, a darkened/blurred derivative is stored at `assets/pixel/table/fate_spread/reference_underlay.webp` and blended beneath the live Fate Spread UI.
+
+`scenes/table/fate_spread_overlay.tscn` now exposes the underlay through a translucent frame/scrim while the procedural central surface, live I–XII cards, XIII seal, counters, hold/discard state and hover memory remain data-driven. This keeps the approved atmosphere without making the current run visually lie.
+
 ## Fate Spread physical-table + memory pass — 2026-10-08
 
 The Fate Spread now gains the three follow-up layers requested after local screenshot review:
