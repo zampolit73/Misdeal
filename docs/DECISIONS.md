@@ -1527,3 +1527,14 @@ These beats trigger once per run when the player returns to an unlocked table st
 
 The inspection screen keeps a restrained physical table surface beneath live cards/seals. Do not replace this with a generic map background or a baked screenshot.
 
+## D090 — Approved Fate Spread art is atmosphere, not baked run state
+
+Date: 2026-10-08  
+Status: accepted by user, implemented
+
+The ornate Fate Spread reference with candles, gothic metalwork, red ritual cloth and physical table props is the approved visual target for this screen.
+
+Run-specific text, cards, counters and current-path state must not be baked into the runtime illustration. The approved art is therefore used only as a dark atmospheric underlay. Live Godot UI remains authoritative for I–XII history, XIII state, hold/discard contents, chapter text, counts and hover decision memory.
+
+Keep future visual work close to this physical occult-table reference: dense edge props, warm candle/brass highlights, red-black cloth/leather center, and a strong chained XIII focal point. Avoid returning to flat black modal UI or generic map styling.
+
