@@ -821,6 +821,12 @@ Act 1 opening pacing also changed conservatively: the tier-0 forced-combat slot 
 
 This supersedes the earlier static-balance assumption that enemies/bosses never scale by party size; the authored encounter compositions and full-trio numbers remain the reference baseline.
 
+## Target-intent visibility toggle — 2026-10-08
+
+Local review confirmed the new pre-battle target lines are useful but too visually heavy when always enabled. Battle preparation now has a dedicated centered `ЦЕЛИ: ВКЛ/ВЫКЛ` toggle above the `БОЙ` button. Target intents are **off by default**, can be enabled only when the player wants to inspect focus, and still disappear automatically when combat begins.
+
+The preference is stored on the persistent `RunState` autoload but deliberately not reset by `reset_run()`, so the player's choice persists between battles and new runs for the lifetime of the current app session. The underlying preview logic and combat AI are unchanged.
+
 ## Empty-frame transition elimination + target-intent preview — 2026-10-08
 
 Local testing still exposed an intermittent full-gray frame despite the first persistent veil. The transition system no longer delegates the actual swap to `SceneTree.change_scene_to_file()`. `SceneTransition` now starts threaded loading while the outgoing scene remains alive, instantiates the incoming PackedScene before blackout, renders at least one fully opaque transition frame, manually adds the new scene while the old scene still exists, switches `current_scene`, frees the old scene, waits for the new runtime-art/layout frames to render, then reveals the result. The renderer clear color is also forced to the same near-black tone at runtime.
