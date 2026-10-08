@@ -159,6 +159,8 @@ Only after the loop is fun:
 - [x] Add one-battle **НЕПОВИНОВЕНИЕ** after two explicit refusals of Wizard wagers/marks: -20% incoming damage, -15% own damage.
 - [x] Personalize Bone Warden Phase II reinforcements from the Act 1 reckoning profile while keeping the boss's base benchmark stats fixed.
 - [x] Locally verify the combat-condition / Defiance / personalized Bone Warden package at normal play level; user reported the package working. Keep edge-case retry/profile checks in the later full-run balance pass.
+- [x] Implement first full-run party-size pressure pass: stronger solo baseline, transparent enemy HP/damage scaling for solo/duo, proportional support healing, and no forced combat on Act 1 card 1.
+- [ ] Locally verify first forced combat, one mid fight, one late elite and Bone Warden with solo Ranger/Mage, duo and trio; retune only observed outliers.
 - [ ] Run fresh solo / duo / trio balance passes with rescue scars, event echoes and **ЖЕРТВА**, then retune only the concrete outliers.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.
