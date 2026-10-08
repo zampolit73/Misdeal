@@ -821,6 +821,14 @@ Act 1 opening pacing also changed conservatively: the tier-0 forced-combat slot 
 
 This supersedes the earlier static-balance assumption that enemies/bosses never scale by party size; the authored encounter compositions and full-trio numbers remain the reference baseline.
 
+## Empty-frame transition elimination + target-intent preview — 2026-10-08
+
+Local testing still exposed an intermittent full-gray frame despite the first persistent veil. The transition system no longer delegates the actual swap to `SceneTree.change_scene_to_file()`. `SceneTransition` now starts threaded loading while the outgoing scene remains alive, instantiates the incoming PackedScene before blackout, renders at least one fully opaque transition frame, manually adds the new scene while the old scene still exists, switches `current_scene`, frees the old scene, waits for the new runtime-art/layout frames to render, then reveals the result. The renderer clear color is also forced to the same near-black tone at runtime.
+
+This removes the actual empty-scene interval instead of only masking it. All existing call sites continue to use the same `SceneTransition.change_to()` / `reload_current()` API.
+
+Battle preparation also gains a lightweight **target-intent preview**. While placement is active, blue intent arrows show each hero's current first target under the selected tactical order and red intent arrows show each enemy's current first target. The preview updates live while heroes are dragged or the order changes and disappears when combat begins. It reads the existing targeting AI rather than adding a second prediction system, so placement now exposes real tactical information without changing combat rules or stats.
+
 ## Main splash replacement + seamless scene transitions — 2026-10-08
 
 The locally rejected low-quality first splash has been replaced by the user-approved restrained dark-gothic redraw with the Wizard brought back into the current Misdeal visual language. Runtime art is now a native **1280×720 WebP** at `assets/pixel/main/approved_splash_hd/main_splash.webp`, loaded through `FileAccess + Image.load_webp_from_buffer()` in `scripts/main/approved_main_backdrop.gd`. The old three-part compressed splash representation is no longer the runtime source.
