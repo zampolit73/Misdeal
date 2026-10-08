@@ -47,6 +47,7 @@ border_width_bottom = 2
 border_color = Color(1, 0.52, 0.22, 1)
 
 [node name="FateSpreadOverlay" type="Control"]
+z_index = 4095
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -119,7 +120,7 @@ horizontal_alignment = 1
 [node name="HeldPanel" type="Panel" parent="Frame"]
 offset_left = 24.0
 offset_top = 154.0
-offset_right = 218.0
+offset_right = 210.0
 offset_bottom = 632.0
 theme_override_styles/panel = SubResource("SidePanel")
 
@@ -177,7 +178,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="DiscardPanel" type="Panel" parent="Frame"]
-offset_left = 1014.0
+offset_left = 1022.0
 offset_top = 154.0
 offset_right = 1208.0
 offset_bottom = 632.0
@@ -238,9 +239,9 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="SpreadArea" type="Control" parent="Frame"]
-offset_left = 226.0
+offset_left = 218.0
 offset_top = 132.0
-offset_right = 1006.0
+offset_right = 1014.0
 offset_bottom = 652.0
 mouse_filter = 2
 
