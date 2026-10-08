@@ -10,11 +10,11 @@ func _ready() -> void:
 
 func _draw() -> void:
 	var rect := Rect2(18.0, 14.0, size.x - 36.0, size.y - 28.0)
-	draw_rect(rect, Color(0.090, 0.022, 0.026, 0.34))
+	draw_rect(rect, Color(0.090, 0.022, 0.026, 0.82))
 
 	# Worn inner cloth / leather field.
 	var inner := rect.grow(-18.0)
-	draw_rect(inner, Color(0.060, 0.016, 0.021, 0.42))
+	draw_rect(inner, Color(0.060, 0.016, 0.021, 0.88))
 	draw_rect(inner, Color(0.34, 0.085, 0.055, 0.22), false, 1.0)
 
 	# Restrained table grain and scratches; deterministic, not noisy wallpaper.
@@ -33,8 +33,8 @@ func _draw() -> void:
 
 	# Old ritual stains under the live seal.
 	var center := Vector2(390.0, 270.0)
-	draw_circle(center, 184.0, Color(0.40, 0.025, 0.025, 0.055))
-	draw_circle(center, 156.0, Color(0.64, 0.09, 0.055, 0.055), false, 2.0)
+	draw_circle(center, 184.0, Color(0.40, 0.025, 0.025, 0.16))
+	draw_circle(center, 156.0, Color(0.64, 0.09, 0.055, 0.14), false, 2.0)
 
 	# A few long cuts help the surface feel physical without competing with cards.
 	var scratch := Color(0.60, 0.18, 0.10, 0.085)
