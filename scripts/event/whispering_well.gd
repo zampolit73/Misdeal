@@ -282,4 +282,4 @@ func _disable_choices() -> void:
 
 func _return_to_table() -> void:
 	RunState.complete_active_card()
-	get_tree().change_scene_to_file("res://scenes/table/table.tscn")
+	SceneTransition.change_to("res://scenes/table/table.tscn")
