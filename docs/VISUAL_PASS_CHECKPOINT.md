@@ -140,3 +140,21 @@ The prepared portrait/environment package is now production runtime art:
 - Run End: dedicated Wizard/table 1280×720 ending backdrop; procedural ending art hidden.
 
 No mutable gameplay text or controls are baked into these production assets. Fresh local 1280×720 screenshots are the next visual gate before touching lower-priority event/shop screens.
+
+
+## V9 final generic-event environment batch
+
+The final planned broad Act 1 event-environment package is now runtime art:
+
+- Rattling Bridge — dedicated moonlit ravine bridge;
+- Lost Purse — dedicated grave-road corpse/purse scene;
+- Debtor Bones — dedicated dice/debt ritual altar;
+- Bone Tax — dedicated skeletal tithe-gate scene;
+- Wizard Tithe — dedicated moonlit ceremonial altar;
+- Ash Rest — dedicated ruined cemetery camp;
+- Last Camp — dedicated late-run lonely camp;
+- Broken Crown — dedicated ruined crown shrine.
+
+All eight are native 1280×720 WebPs loaded through `runtime_webp_texture.gd`. Their mutable event content remains live Godot UI.
+
+At this point the broad replacement pass should stop. The next art work should come only from fresh 1280×720 local screenshots showing a specific composition, darkness, overlap or readability problem.

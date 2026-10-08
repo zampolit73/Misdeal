@@ -4,6 +4,7 @@
 
 ### Added
 
+- Added the final V9 generic-event environment batch for Rattling Bridge, Lost Purse, Debtor Bones, Bone Tax, Wizard Tithe, Ash Rest, Last Camp and Broken Crown.
 - Added dedicated V8 event environments for Candle Seller, Gravedigger Shop, Blood Ledger and Faceless Card.
 - Added dedicated v7 Class Select portraits for Knight, Ranger and Mage.
 - Added native 1280×720 v7 authored backdrops for Reward, Whispering Well, Curse Forge, Chained Prisoner, Black Altar and Run End.
@@ -39,6 +40,8 @@
 
 ### Changed
 
+- The eight V9 events now use dedicated native 1280×720 environments in the shared live Act Choice scene while keeping all gameplay text/state/buttons dynamic.
+- Broad Act 1 art replacement is considered complete after V9; further visual changes should be targeted from local screenshot review.
 - Squad Dossier now reuses the dedicated Class Select Knight / Ranger / Mage portraits instead of enlarging the combat-unit atlas.
 - The four new V8 event environments are loaded through the runtime WebP decoder while all event UI/state remains live.
 - Class Select no longer enlarges 96×96 combat sprites as portraits.

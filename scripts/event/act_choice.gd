@@ -14,6 +14,14 @@ const EVENT_SCENE_ART_PATHS := {
 	"blood_ledger": "res://assets/pixel/event/v8/blood_ledger.webp",
 	"gravedigger_shop": "res://assets/pixel/event/v8/gravedigger_shop.webp",
 	"candle_seller": "res://assets/pixel/event/v8/candle_seller.webp",
+	"broken_crown": "res://assets/pixel/event/v9/broken_crown.webp",
+	"last_camp": "res://assets/pixel/event/v9/last_camp.webp",
+	"ash_rest": "res://assets/pixel/event/v9/ash_rest.webp",
+	"wizard_tithe": "res://assets/pixel/event/v9/wizard_tithe.webp",
+	"bone_tax": "res://assets/pixel/event/v9/bone_tax.webp",
+	"debtor_bones": "res://assets/pixel/event/v9/debtor_bones.webp",
+	"lost_purse": "res://assets/pixel/event/v9/lost_purse.webp",
+	"rattling_bridge": "res://assets/pixel/event/v9/rattling_bridge.webp",
 }
 
 @onready var title_label: Label = $Panel/Title
@@ -261,6 +269,24 @@ func _apply_event_layout() -> void:
 			feature_scene_art.size = Vector2(1280.0, 720.0)
 			feature_scene_art.modulate = Color(1.0, 0.96, 0.92, 0.84)
 			screen_visual.modulate = Color(1, 1, 1, 0.30)
+			event_hero_art.texture = CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
+			event_hero_art.visible = event_hero_art.texture != null
+			event_art_frame.visible = event_hero_art.visible
+			gold_chip.visible = true
+			state_chip.visible = true
+			_apply_generic_reference_layout()
+		"rattling_bridge", "lost_purse", "debtor_bones", "bone_tax", "wizard_tithe", "ash_rest", "last_camp", "broken_crown":
+			backdrop.modulate = Color(0.22, 0.19, 0.20, 0.16)
+			feature_scene_art.call(
+				"load_webp_path",
+				String(EVENT_SCENE_ART_PATHS[active_card.card_id]),
+				Vector2i(1280, 720)
+			)
+			feature_scene_art.visible = true
+			feature_scene_art.position = Vector2.ZERO
+			feature_scene_art.size = Vector2(1280.0, 720.0)
+			feature_scene_art.modulate = Color(1.0, 0.98, 0.94, 0.88)
+			screen_visual.modulate = Color(1, 1, 1, 0.22)
 			event_hero_art.texture = CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
 			event_hero_art.visible = event_hero_art.texture != null
 			event_art_frame.visible = event_hero_art.visible

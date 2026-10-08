@@ -1385,3 +1385,17 @@ Large non-combat hero presentations should reuse the dedicated Class Select port
 Secondary Act 1 events that have a strong place/ritual identity may receive their own 1280×720 authored environment while continuing to use the shared live Act Choice UI. The first four are Candle Seller, Gravedigger Shop, Blood Ledger and Faceless Card.
 
 These WebPs follow D080 and use runtime decoding instead of direct preload/import-time texture dependencies.
+
+
+## D082 — Broad Act 1 environment replacement stops after V9
+
+Date: 2026-10-08  
+Status: accepted
+
+The V9 batch completes the planned broad environment-art replacement for generic Act 1 non-combat events.
+
+Rattling Bridge, Lost Purse, Debtor Bones, Bone Tax, Wizard Tithe, Ash Rest, Last Camp and Broken Crown now receive dedicated 1280×720 authored environments through the shared live Act Choice UI.
+
+The environment is allowed to establish place, mood and a clear focal prop, but gameplay labels, prices, outcomes, companion fate state and buttons remain native Godot UI. Broken Crown keeps the same recognizable crown object used by its artifact/card presentation.
+
+All V9 WebPs follow the D080 runtime-decoding rule. After this batch, further art changes should be driven by local screenshots and concrete readability/composition problems rather than another blanket regeneration pass.

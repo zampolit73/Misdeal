@@ -939,3 +939,23 @@ The next secondary visual package is now integrated.
 - **Досье отряда / Squad Dossier** no longer enlarges 96×96 combat sprites. It now reuses the accepted 640×480 Knight / Ranger / Mage portraits from Class Select through the same runtime WebP path.
 
 All four event environments are native 1280×720 WebP sources and are loaded through the runtime decoder to avoid Godot import/preload timing failures. Event text, prices, choices and consequences remain live UI.
+
+
+## V9 final generic-event environment pass — 2026-10-08
+
+The last planned batch of generic Act 1 event environments is now integrated into the shared live Act Choice screen.
+
+Dedicated native 1280×720 authored environments now exist for:
+
+- **ГРЕМУЧИЙ МОСТ / Rattling Bridge** — moonlit rope/chain bridge over the cursed ravine;
+- **КОШЕЛЬ МЕРТВЕЦА / Lost Purse** — grave road with corpse, bones and spilled gold;
+- **КОСТИ ДОЛЖНИКА / Debtor Bones** — moonlit ritual dice/debt altar;
+- **КОСТЯНАЯ ПОШЛИНА / Bone Tax** — bone-tithe gate and skeletal scales;
+- **ДЕСЯТИНА ВОЛШЕБНИКА / Wizard Tithe** — ceremonial tithe altar under the full moon;
+- **ПЕПЕЛЬНЫЙ ПРИВАЛ / Ash Rest** — ruined cemetery camp and dying fire;
+- **ПОСЛЕДНИЙ ПРИВАЛ / Last Camp** — lonely late-run camp beneath the gothic city;
+- **СЛОМАННАЯ КОРОНА / Broken Crown** — ruined shrine with the broken crown as the focal object.
+
+These sources use the same runtime WebP decoding path as the v7/v8 event art, so Godot does not depend on import-time Texture2D recognition. All event text, prices, recruit/fate state, artifact state and choice consequences remain live Godot UI.
+
+Together with the v7/v8 packages, all of the high-priority and planned secondary Act 1 non-combat event screens now have dedicated authored environment art. Further visual work should be screenshot-driven polish rather than another broad art-replacement batch.

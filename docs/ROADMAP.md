@@ -239,3 +239,10 @@ Do not prioritize these before the vertical slice works:
 - [x] Reuse the accepted Class Select portraits in Squad Dossier instead of combat-sprite crops.
 - [x] Wire dedicated V8 environments for Candle Seller, Gravedigger Shop, Blood Ledger and Faceless Card.
 - [ ] Continue the remaining lower-priority generic Act 1 event screens after fresh screenshot review.
+
+
+### V9 final generic-event environment pass
+
+- [x] Integrate the final V9 generic-event environment batch for Rattling Bridge, Lost Purse, Debtor Bones, Bone Tax, Wizard Tithe, Ash Rest, Last Camp and Broken Crown.
+- [x] Keep all V9 event text/state/choices live in the shared Act Choice UI and load the new WebPs through the runtime decoder.
+- [ ] Stop broad art replacement and review fresh local 1280×720 screenshots for targeted polish only.
