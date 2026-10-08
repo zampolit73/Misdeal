@@ -36,6 +36,7 @@
 
 ### Changed
 
+- Brightened the reward backdrop and removed double-grading from Whispering Well choice art so prepared event/reward illustrations keep their midtones.
 - Removed the remaining double-darkening from the Wizard table and live table/wager art; authored assets now render without the legacy post-grade.
 - Reduced the Wizard wager scrim from 0.82 to 0.52 alpha and halved the passive table shade layers.
 - Reduced fallback environment/card grade strengths to preserve dark-mid detail on older event/reward surfaces.

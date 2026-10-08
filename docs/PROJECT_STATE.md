@@ -897,3 +897,8 @@ The table no longer applies the legacy environment grade to the authored Wizard 
 A previously prepared Wizard/table illustration is now actually used in runtime as assets/pixel/table/visual_pass_v6/table_wizard.webp. It is a clean 1280×398 crop from the approved table direction with no baked gameplay text or buttons, so all HUD/card state remains live Godot UI.
 
 For any older event/reward surface that still uses the shared grade materials, environment grade strength is reduced from 0.78 to 0.30 and card grade strength from 0.30 to 0.14. This is a safety correction for dark-mid readability, not a palette redesign.
+
+
+## Reward/event midtone follow-up — 2026-10-08
+
+The brightness correction was propagated one step beyond the Wizard table. The reward screen no longer tints its table backdrop brown/dark and its backdrop shade is reduced from 0.54 to 0.24 alpha. Whispering Well choice illustrations now render authored art directly instead of receiving another card-grade pass. This keeps the already-prepared reward/event art readable while all labels, prices and choices remain live UI.
