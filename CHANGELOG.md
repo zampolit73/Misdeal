@@ -49,6 +49,8 @@
 
 ### Changed
 
+- Pre-battle target-intent lines are now opt-in through a `ЦЕЛИ: ВКЛ/ВЫКЛ` toggle above the fight button, default off, with the choice remembered between battles for the current app session.
+
 - Scene transitions now preload the incoming PackedScene while the outgoing scene remains alive, then manually swap scenes under a fully rendered veil instead of calling `change_scene_to_file()` during the blackout.
 
 - Replaced the compressed low-quality main-menu splash with the approved restrained main-menu redraw, stored as a native 1280×720 runtime WebP.
