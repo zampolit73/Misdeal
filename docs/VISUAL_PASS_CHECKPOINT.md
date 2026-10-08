@@ -73,3 +73,13 @@ First candidates after the arena benchmark:
 ## Fresh-chat first action
 
 Read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`, `docs/ART_DIRECTION.md` and this file. Then fetch current `main` before making changes.
+
+
+## First live object-first card batch
+
+Runtime now overrides the old atlas art for:
+- **ГРЕМУЧИЙ МОСТ**;
+- **КОШЕЛЬ МЕРТВЕЦА**;
+- **ШЕПЧУЩИЙ КОЛОДЕЦ**.
+
+The dedicated card sources are 224×137 WebP images reconstructed from repository text assets. Continue replacing the remaining card/event art in reviewed batches rather than regenerating everything blindly.

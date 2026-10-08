@@ -200,4 +200,5 @@ Do not prioritize these before the vertical slice works:
 - [ ] Replace blue deployment-zone panels with subtle in-world floor markings based on the same legal placement rectangles.
 - [ ] Retune environment/card grade shadows so wager/card images keep readable midtones instead of collapsing into black.
 - [ ] Review the Bone Crush redraw locally at 1280×720 before propagating the style.
-- [ ] Rework the highest-priority card illustrations in **object-first** style; first candidates are **ГРЕМУЧИЙ МОСТ** and **КОШЕЛЬ МЕРТВЕЦА**.
+- [x] Integrate the first object-first card redraw batch: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**.
+- [ ] Continue the same authored low-detail redraw language across the remaining table cards and event illustrations.

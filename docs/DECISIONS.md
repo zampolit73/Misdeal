@@ -1271,3 +1271,17 @@ Deployment zones should move from translucent blue UI rectangles toward world-sp
 The Bone Crush replacement should receive a dedicated arena id rather than overwriting the shared Ossuary backdrop. This keeps the pass authored per encounter and prevents an art experiment from unintentionally changing other fights.
 
 After one arena is locally approved, object-first card redraws may follow. **ГРЕМУЧИЙ МОСТ** and **КОШЕЛЬ МЕРТВЕЦА** are the first candidates.
+
+
+## D074 — Full visual redraw proceeds in reviewed batches
+
+Date: 2026-10-08  
+Status: accepted
+
+The user approved the new dark-fantasy low-resolution concept language as the target for the whole player-facing game. The conversion should be broad, but integration remains incremental so each runtime surface can be checked for readability and layout regressions.
+
+The first card batch uses an **object-first** rule: one dominant readable subject, large negative-space masses, restrained motivated light and no baked mutable gameplay text. **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ** are the first runtime replacements.
+
+New authored images may bypass the corrective card grade when necessary, or use a reduced grade strength. The grade is a consistency layer, not a way to crush already-authored art into the old generated look.
+
+Gameplay rules and mutable UI stay live in Godot while the visual library is replaced.

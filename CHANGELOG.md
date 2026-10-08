@@ -4,6 +4,8 @@
 
 ### Added
 
+- Added the first object-first card redraw batch for **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**, loaded as dedicated runtime-decoded WebP overrides instead of old atlas cells.
+
 - Saved a dedicated visual-pass checkpoint (`docs/VISUAL_PASS_CHECKPOINT.md`) so a fresh chat can continue the anti-AI production-art pass from GitHub without reconstructing the conversation.
 - Added the dedicated approved Bone Crush arena as split base64 WebP source parts and runtime decoding support for authored arena assets stored this way.
 - Added `docs/ART_DIRECTION.md` and a shared production art-grade shader/material pair for the new authored low-resolution visual target.
@@ -30,6 +32,8 @@
 - Added repository-safe runtime-decoded WebP atlases for table-card art and development/reward art under `assets/pixel/ui/approved_card_art/`.
 
 ### Changed
+
+- Reduced the shared card-art grade strength so newly authored card illustrations retain readable dark midtones while remaining inside the Misdeal palette.
 
 - Local screenshot review established Bone Crush as the first true redraw benchmark, kept the shared grade as a consistency layer, and moved future deployment visuals toward in-world floor markings instead of blue debug-style panels.
 - **КОСТЯНАЯ ДАВКА** now uses its own lower-detail gothic arena instead of reusing Ossuary. Deployment-zone presentation is now subdued warm floor marking rather than blue debug-style rectangles, with additional authored two-band chalk marks for this encounter.

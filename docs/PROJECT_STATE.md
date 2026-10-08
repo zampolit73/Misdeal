@@ -826,3 +826,10 @@ The first redraw target is **КОСТЯНАЯ ДАВКА**. The approved directi
 Important: the newly drawn Bone Crush direction is **concept/reference only and is not yet wired into runtime**. The next implementation should add a dedicated Bone Crush arena id/asset rather than replacing the shared Ossuary backdrop used by other encounters.
 
 After Bone Crush is proven locally, the same redraw language should be propagated selectively to the worst remaining arenas and then to object-first card art.
+
+
+## Visual redraw pass — first object-first card batch
+
+The broader production-art replacement pass has moved from arena-only work into table-card art. The first object-first card redraw batch is now wired into runtime for **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**. These three cards bypass their old atlas cells and decode dedicated 224×137 WebP art from repository-safe base64 text assets. The shared card grade is deliberately lighter so authored midtones survive instead of collapsing toward black.
+
+This is the first runtime batch of the user-approved full visual redraw direction. Existing card mechanics, titles, descriptions, prices and event logic remain live Godot UI and are unchanged.
