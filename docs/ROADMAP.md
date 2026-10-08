@@ -241,6 +241,7 @@ Do not prioritize these before the vertical slice works:
 - [x] Replace the rejected low-quality main splash with the approved restrained Wizard/table redraw at native 1280×720 runtime resolution.
 - [x] Add a persistent scene-transition veil and route active scene changes/reloads through it so runtime texture setup cannot expose a gray viewport frame.
 - [x] Preload incoming scenes while the outgoing scene remains alive and manually swap them under an already-rendered veil, eliminating the empty SceneTree frame behind the intermittent gray flash.
+- [x] Remove parse-time dependence on the `SceneTransition` autoload identifier so local `project.godot` conflicts cannot break compilation after pull.
 - [ ] Locally stress-test repeated table ↔ event ↔ battle ↔ reward transitions for any remaining OS/editor-level flash.
 - [ ] Locally verify table → battle, event → table, battle → reward and Last Deal reload transitions after a fresh Godot restart.
 
