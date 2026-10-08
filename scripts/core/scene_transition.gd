@@ -61,3 +61,13 @@ func change_to(scene_path: String) -> void:
 	_veil.visible = false
 	_veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_busy = false
+
+
+func reload_current() -> void:
+	var current := get_tree().current_scene
+	if current == null:
+		return
+	var scene_path: String = current.scene_file_path
+	if scene_path.is_empty():
+		return
+	change_to(scene_path)
