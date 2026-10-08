@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/table/fate_spread_overlay.gd" id="1_script"]
 [ext_resource type="Script" path="res://scripts/table/fate_spread_seal_visual.gd" id="2_seal"]
 [ext_resource type="Script" path="res://scripts/table/fate_spread_table_surface.gd" id="3_surface"]
-[ext_resource type="Texture2D" path="res://assets/pixel/table/fate_spread/reference_underlay.webp" id="4_reference_underlay"]
+[ext_resource type="Script" path="res://scripts/ui/runtime_webp_texture.gd" id="4_runtime_webp"]
 
 [sub_resource type="StyleBoxFlat" id="OuterPanel"]
 bg_color = Color(0.012, 0.007, 0.012, 0.10)
@@ -16,7 +16,7 @@ shadow_color = Color(0, 0, 0, 0.88)
 shadow_size = 18
 
 [sub_resource type="StyleBoxFlat" id="SidePanel"]
-bg_color = Color(0.022, 0.014, 0.020, 0.95)
+bg_color = Color(0.022, 0.014, 0.020, 0.88)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -77,19 +77,39 @@ offset_right = 1256.0
 offset_bottom = 704.0
 theme_override_styles/panel = SubResource("OuterPanel")
 
-[node name="ReferenceUnderlay" type="TextureRect" parent="Frame"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TopEdgeArt" type="TextureRect" parent="Frame"]
+offset_right = 1232.0
+offset_bottom = 260.0
 mouse_filter = 2
-modulate = Color(1, 0.93, 0.88, 0.82)
-texture_filter = 1
-texture = ExtResource("4_reference_underlay")
+modulate = Color(1, 1, 1, 0.96)
 expand_mode = 1
 stretch_mode = 6
+script = ExtResource("4_runtime_webp")
+webp_path = "res://assets/pixel/table/fate_spread/edge_top.webp"
+expected_size = Vector2i(1232, 260)
+
+[node name="LeftEdgeArt" type="TextureRect" parent="Frame"]
+offset_right = 235.0
+offset_bottom = 686.0
+mouse_filter = 2
+modulate = Color(1, 0.96, 0.92, 0.94)
+expand_mode = 1
+stretch_mode = 6
+script = ExtResource("4_runtime_webp")
+webp_path = "res://assets/pixel/table/fate_spread/edge_left.webp"
+expected_size = Vector2i(235, 686)
+
+[node name="RightEdgeArt" type="TextureRect" parent="Frame"]
+offset_left = 997.0
+offset_right = 1232.0
+offset_bottom = 686.0
+mouse_filter = 2
+modulate = Color(1, 0.96, 0.92, 0.94)
+expand_mode = 1
+stretch_mode = 6
+script = ExtResource("4_runtime_webp")
+webp_path = "res://assets/pixel/table/fate_spread/edge_right.webp"
+expected_size = Vector2i(235, 686)
 
 [node name="HeaderShade" type="ColorRect" parent="Frame"]
 offset_left = 218.0
