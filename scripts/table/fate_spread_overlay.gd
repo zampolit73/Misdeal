@@ -55,6 +55,7 @@ func refresh() -> void:
 		else "ДО КОСТЯНОГО НАДЗИРАТЕЛЯ: %d %s" % [remaining, _card_word(remaining)]
 	)
 	phase_label.text = _get_phase_text()
+	_apply_phase_style()
 	counts_label.text = "ПРОЙДЕНО: %d   |   ОТВЕРГНУТО: %d   |   УДЕРЖАНО: %d" % [
 		RunState.resolved_card_ids.size(),
 		RunState.rejected_card_ids.size(),
@@ -303,6 +304,20 @@ func _apply_panel_style(panel: Panel, accent: Color, strong: bool) -> void:
 	style.shadow_color = Color(accent.r * 0.34, accent.g * 0.18, accent.b * 0.14, 0.38 if strong else 0.18)
 	style.shadow_size = 10 if strong else 5
 	panel.add_theme_stylebox_override("panel", style)
+
+
+func _apply_phase_style() -> void:
+	var color := Color(0.88, 0.56, 0.28, 1.0)
+	if RunState.cards_resolved >= 8:
+		color = Color(1.0, 0.30, 0.14, 1.0)
+	elif RunState.cards_resolved >= 4:
+		color = Color(0.94, 0.42, 0.20, 1.0)
+	if RunState.is_boss_due() or RunState.cards_resolved >= RunState.ACT_CARD_TARGET:
+		color = Color(1.0, 0.20, 0.08, 1.0)
+	phase_label.add_theme_color_override("font_color", color)
+	phase_label.add_theme_color_override("font_shadow_color", Color(0.22, 0.02, 0.01, 0.90))
+	phase_label.add_theme_constant_override("shadow_offset_x", 1)
+	phase_label.add_theme_constant_override("shadow_offset_y", 1)
 
 
 func _get_phase_text() -> String:
