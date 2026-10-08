@@ -1449,3 +1449,26 @@ The opening pacing also guarantees one non-combat decision before the first forc
 
 This supersedes D035 only where D035 states that enemies never scale by party size. D035's core reasoning — solo must compensate for lost action economy — remains valid.
 
+## D085 — Scene changes are covered by a persistent autoload veil
+
+Date: 2026-10-08  
+Status: accepted, pending local verification
+
+Heavy authored screens decode some WebP art at runtime. A direct `SceneTree.change_scene_to_file()` can therefore expose the viewport clear color for a frame while the outgoing scene is already gone and the incoming screen is still assigning its textures.
+
+Misdeal now routes active scene changes through the `SceneTransition` autoload. Its CanvasLayer lives outside the current scene, fades to the project near-black transition color before replacement, remains visible while the new scene completes its first two frames, then fades out. Battle reloads use the same path. The rendering default clear color matches the veil as a fallback.
+
+Do not fix future transition flashes with per-scene gray/black panels or arbitrary delays. Keep transition ownership centralized in the persistent autoload and only adjust its timing if local evidence requires it.
+
+
+## D086 — The restrained Wizard/table redraw is the canonical main splash
+
+Date: 2026-10-08  
+Status: accepted by user
+
+The previous start screen was rejected locally for visibly poor image quality, and an initial replacement was rejected for an over-rendered / obviously generated look and an off-model Wizard.
+
+The accepted main splash is the calmer dark-gothic Wizard/table composition now stored at `assets/pixel/main/approved_splash_hd/main_splash.webp`. It uses a restrained prop count, a clearer focal hierarchy, the established red-black-gold / moonlit-blue palette, and a Wizard closer to the recurring host identity used elsewhere in Misdeal.
+
+The runtime copy is native 1280×720 WebP and is decoded with FileAccess/Image at runtime rather than referenced through a new imported Texture2D resource. Keep the live start hotspot/UI separate from the illustration.
+
