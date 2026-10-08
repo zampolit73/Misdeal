@@ -2,6 +2,12 @@
 
 Last updated: 2026-10-08
 
+## Fate Spread underlay visibility fix — 2026-10-09
+
+Local screenshots showed that the approved ornate reference plate was technically present but visually crushed by the opaque Frame panel, so the screen still read as a flat black modal. The underlay is now a child of `Frame`, drawn above the frame background but beneath all live UI. The outer frame and global scrim are much lighter, making candle/metal/red-cloth edge props visible.
+
+To prevent baked concept-state from leaking into gameplay, the live central `TableSurface` is now much more opaque and masks the reference plate across the whole ring area, while a dedicated dark header shade suppresses the concept image's baked title/counters. Live side panels likewise cover the concept's side-card state. The goal is: visible physical-table atmosphere at the edges, authoritative live data in the center.
+
 ## Fate Spread approved-reference integration — 2026-10-08
 
 The user approved the ornate physical-table Fate Spread reference with candles, brass/iron props, red ritual cloth and a stronger carved-gothic tabletop presentation. The game does **not** bake that screenshot's run-specific cards/counters into gameplay. Instead, a darkened/blurred derivative is stored at `assets/pixel/table/fate_spread/reference_underlay.webp` and blended beneath the live Fate Spread UI.
