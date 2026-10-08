@@ -1456,7 +1456,7 @@ Status: accepted, pending local verification
 
 Heavy authored screens decode some WebP art at runtime. A direct `SceneTree.change_scene_to_file()` can therefore expose the viewport clear color for a frame while the outgoing scene is already gone and the incoming screen is still assigning its textures.
 
-Misdeal now routes active scene changes through the `SceneTransition` autoload. Its CanvasLayer lives outside the current scene, fades to the project near-black transition color before replacement, remains visible while the new scene completes its first two frames, then fades out. Battle reloads use the same path. The rendering default clear color matches the veil as a fallback.
+Misdeal routes active scene changes through the `SceneTransition` autoload. After local testing showed that a persistent veil alone could still expose an intermittent gray frame, the helper now **preloads the incoming PackedScene while the outgoing scene remains alive**, renders a fully opaque veil frame, manually adds the incoming scene before freeing the outgoing scene, switches `SceneTree.current_scene`, waits for incoming runtime-art/layout frames to render, and only then fades the veil away. Battle reloads use the same path. The rendering default clear color and runtime RenderingServer clear color match the veil as fallbacks.
 
 Do not fix future transition flashes with per-scene gray/black panels or arbitrary delays. Keep transition ownership centralized in the persistent autoload and only adjust its timing if local evidence requires it.
 
@@ -1472,3 +1472,18 @@ The accepted main splash is the calmer dark-gothic Wizard/table composition now 
 
 The runtime copy is native 1280×720 WebP and is decoded with FileAccess/Image at runtime rather than referenced through a new imported Texture2D resource. Keep the live start hotspot/UI separate from the illustration.
 
+
+
+## D087 — Battle preparation exposes first-target intent
+
+Date: 2026-10-08  
+Status: accepted, pending local readability verification
+
+Misdeal's combat agency should come from preparation rather than hidden AI guesswork. During the preparation phase, the game now visualizes the **actual current first-target choice** produced by the existing unit targeting functions:
+
+- blue arrows: each hero's expected first target under the selected tactical order;
+- red arrows: each enemy's expected first target under current placement.
+
+The arrows update while heroes are dragged and while tactical orders change, then disappear as soon as combat begins. This is a readability/agency improvement, not a new targeting rule: the preview calls the same target-selection logic used by the combat units.
+
+Keep the preview restrained and preparation-only. Do not turn combat into a permanent network of target lines or add a second prediction model that can disagree with live AI.
