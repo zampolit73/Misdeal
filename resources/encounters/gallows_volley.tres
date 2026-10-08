@@ -11,4 +11,4 @@ wizard_line = "Беги к ним быстрее. Стрелы ведь наве
 arena_id = "gallows"
 enemy_unit_paths = PackedStringArray("res://resources/units/skeleton.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_archer.tres")
 enemy_names = PackedStringArray("Скелет", "Костяной лучник", "Костяной лучник")
-enemy_positions = PackedVector2Array(900, 245, 1040, 155, 1040, 335)
+enemy_positions = PackedVector2Array(900, 305, 1040, 225, 1040, 385)
