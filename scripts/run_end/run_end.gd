@@ -1,4 +1,6 @@
 
+
+const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 extends Control
 
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
@@ -52,4 +54,4 @@ func _ready() -> void:
 func _on_new_run_pressed() -> void:
 	new_run_button.disabled = true
 	RunState.reset_run()
-	SceneTransition.change_to("res://scenes/class_select/class_select.tscn")
+	SCENE_ROUTER.change_to(self, "res://scenes/class_select/class_select.tscn")
