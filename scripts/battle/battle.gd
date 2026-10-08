@@ -60,6 +60,7 @@ const BONE_CRUSH_TIME_LIMIT := 16.0
 @onready var sacrifice_order_button: Button = $SacrificeOrderButton
 @onready var defiance_order_button: Button = $DefianceOrderButton
 @onready var order_description_label: Label = $OrderDescription
+@onready var target_preview_button: Button = $TargetPreviewButton
 
 var encounter: EncounterData
 var units: Array[BattleUnit] = []
@@ -93,6 +94,7 @@ func _ready() -> void:
 	formation_order_button.pressed.connect(_on_formation_order_pressed)
 	sacrifice_order_button.pressed.connect(_on_sacrifice_order_pressed)
 	defiance_order_button.pressed.connect(_on_defiance_order_pressed)
+	target_preview_button.toggled.connect(_on_target_preview_toggled)
 	assault_order_button.tooltip_text = "Ближайшая цель и +15% скорость движения."
 	hunt_order_button.tooltip_text = "Сначала поддержка и дальние враги."
 	formation_order_button.tooltip_text = "Фокус угрозы рядом с самым уязвимым союзником."
@@ -143,6 +145,27 @@ func _setup_target_preview() -> void:
 	if target_preview == null:
 		return
 	units_layer.add_child(target_preview)
+	_sync_target_preview_button()
+	target_preview.set_active(RunState.battle_target_preview_enabled)
+
+
+func _on_target_preview_toggled(enabled: bool) -> void:
+	RunState.battle_target_preview_enabled = enabled
+	_sync_target_preview_button()
+	if target_preview != null and not combat_started and not battle_finished:
+		target_preview.set_active(enabled)
+
+
+func _sync_target_preview_button() -> void:
+	if target_preview_button == null:
+		return
+	target_preview_button.set_pressed_no_signal(RunState.battle_target_preview_enabled)
+	target_preview_button.text = "ЦЕЛИ: ВКЛ" if RunState.battle_target_preview_enabled else "ЦЕЛИ: ВЫКЛ"
+	target_preview_button.tooltip_text = (
+		"Скрыть линии первых целей."
+		if RunState.battle_target_preview_enabled
+		else "Показать первые цели героев и врагов при текущей расстановке."
+	)
 
 
 func _apply_ui_kit() -> void:
@@ -157,6 +180,7 @@ func _apply_ui_kit() -> void:
 		MISDEAL_UI_KIT.apply_action_button(button, MISDEAL_UI_KIT.BRONZE, false)
 	MISDEAL_UI_KIT.apply_action_button(sacrifice_order_button, MISDEAL_UI_KIT.EMBER, false)
 	MISDEAL_UI_KIT.apply_action_button(defiance_order_button, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_UI_KIT.apply_action_button(target_preview_button, MISDEAL_UI_KIT.STEEL, false)
 	MISDEAL_UI_KIT.apply_action_button(fight_button, MISDEAL_UI_KIT.EMBER, true)
 	MISDEAL_UI_KIT.apply_action_button(restart_button, MISDEAL_UI_KIT.STEEL, false)
 	MISDEAL_UI_KIT.apply_action_button(continue_button, MISDEAL_UI_KIT.GOLD, true)
@@ -450,8 +474,10 @@ func _begin_preparation_phase() -> void:
 			unit.enable_placement_regions(placement_regions)
 
 	_select_tactical_order(tactical_order, false)
+	target_preview_button.visible = true
+	_sync_target_preview_button()
 	if target_preview != null:
-		target_preview.set_active(true)
+		target_preview.set_active(RunState.battle_target_preview_enabled)
 
 func _on_assault_order_pressed() -> void:
 	_select_tactical_order(TACTICAL_ORDER_ASSAULT)
@@ -748,6 +774,7 @@ func _hide_preparation_hud() -> void:
 	sacrifice_order_button.visible = false
 	defiance_order_button.visible = false
 	order_description_label.visible = false
+	target_preview_button.visible = false
 	fight_button.visible = false
 	restart_button.visible = false
 
