@@ -146,6 +146,12 @@ func set_tactical_order(order_id: String) -> void:
 	target = null
 	target_refresh_cooldown = 0.0
 
+
+func get_preview_target() -> BattleUnit:
+	if not alive or combat_started:
+		return null
+	return _find_preferred_enemy()
+
 func _ready() -> void:
 	hp = max_hp
 	add_to_group("combat_units")
