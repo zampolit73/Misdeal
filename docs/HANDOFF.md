@@ -89,7 +89,7 @@ Accepted direction:
 - Companions can be recruited/lost; solo/duo/trio is real run state.
 - Solo compensation: hero HP ×2.2, damage ×1.9, attacks/sec ×1.25, movement ×1.10; enemy HP ×0.82 and damage ×0.80.
 - Duo: +20% HP, +15% damage.
-- Bone Warden remains a fixed benchmark.
+- Bone Warden composition/mechanics remain the benchmark; its enemy HP/damage inherit the same transparent party-size pressure scaling as other encounters.
 - Tactical orders: НАТИСК / ОХОТА / СТРОЙ plus temporary ЖЕРТВА / НЕПОВИНОВЕНИЕ when unlocked.
 - Wizard wagers, debt, marks, holds, memory, rescue scars and Last Deal are implemented systems.
 - Visual passes must not silently alter mechanics, prices, stats, card odds or encounter composition.
@@ -127,10 +127,11 @@ This is pending real local verification. Highest-value checks are: solo Ranger a
 Do not begin another broad art-generation pass.
 
 1. User pulls latest `main`.
-2. Re-run **ЗАЛП С ВИСЕЛИЦЫ** and verify that retreat/chase/separation keep every unit on the stone floor.
-3. Locally open/check the eight V9 events at 1280×720. The repository review already flags the generic-event batch as denser than the production target; use fresh live screenshots to choose the first object-first redraws instead of doing another blind eight-screen replacement.
-4. Fix only concrete event defects: excessive detail, weak focal subject, darkness, text/art collisions, hidden subject, crop or wrong semantic mapping.
-5. Then switch priority back to full vertical-slice validation from menu → intro → class select → 12-card Act 1 → Bone Warden → run end, including solo/duo/trio balance and tactical-order behavior.
+2. Start a fresh **solo Ranger or solo Mage** run and confirm card 1 is non-combat, then play the first mandatory fight without debug intervention.
+3. Continue far enough to verify one mid-tier ranged/support encounter and one late elite; report only concrete difficulty spikes or trivial fights.
+4. Re-run **ЗАЛП С ВИСЕЛИЦЫ** during that pass and verify retreat/chase/separation keep every unit on the stone floor.
+5. When convenient, repeat a shorter duo/trio check and use Bone Warden as the final benchmark. Only then retune individual enemies or boss numbers.
+6. Visual work remains screenshot-driven only: fix concrete event/UI defects instead of starting another blanket art batch.
 
 ## Git workflow
 
