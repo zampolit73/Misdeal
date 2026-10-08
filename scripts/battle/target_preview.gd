@@ -47,5 +47,26 @@ func _draw() -> void:
 		var line_color: Color = PLAYER_LINE if unit.team == 0 else ENEMY_LINE
 		var mark_color: Color = PLAYER_MARK if unit.team == 0 else ENEMY_MARK
 
-		draw_line(from_point, to_point, line_color, 2.0, true)
-		draw_circle(to_point, 6.0, mark_color, false, 2.0, true)
+		_draw_intent_arrow(from_point, to_point, line_color, mark_color)
+
+
+func _draw_intent_arrow(
+	from_point: Vector2,
+	to_point: Vector2,
+	line_color: Color,
+	mark_color: Color
+) -> void:
+	draw_line(from_point, to_point, line_color, 2.0, true)
+
+	var direction: Vector2 = from_point.direction_to(to_point)
+	if direction.length_squared() <= 0.001:
+		return
+
+	var backward: Vector2 = -direction
+	var normal := Vector2(-direction.y, direction.x)
+	var arrow_left: Vector2 = to_point + backward * 13.0 + normal * 6.0
+	var arrow_right: Vector2 = to_point + backward * 13.0 - normal * 6.0
+
+	draw_line(arrow_left, to_point, mark_color, 2.0, true)
+	draw_line(arrow_right, to_point, mark_color, 2.0, true)
+	draw_circle(to_point, 6.0, mark_color, false, 2.0, true)
