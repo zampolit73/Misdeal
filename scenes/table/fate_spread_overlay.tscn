@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/fate_spread_overlay.gd" id="1_script"]
 [ext_resource type="Script" path="res://scripts/table/fate_spread_seal_visual.gd" id="2_seal"]
 [ext_resource type="Script" path="res://scripts/table/fate_spread_table_surface.gd" id="3_surface"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/fate_spread/reference_underlay.webp" id="4_reference_underlay"]
 
 [sub_resource type="StyleBoxFlat" id="OuterPanel"]
-bg_color = Color(0.012, 0.007, 0.012, 0.985)
+bg_color = Color(0.012, 0.007, 0.012, 0.60)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -67,7 +68,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
-color = Color(0.004, 0.002, 0.006, 0.88)
+color = Color(0.004, 0.002, 0.006, 0.66)
+
+[node name="ReferenceUnderlay" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+modulate = Color(1, 1, 1, 0.58)
+texture_filter = 1
+texture = ExtResource("4_reference_underlay")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Frame" type="Panel" parent="."]
 offset_left = 24.0
@@ -255,6 +270,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+modulate = Color(1, 1, 1, 0.72)
 script = ExtResource("3_surface")
 
 [node name="SealVisual" type="Control" parent="Frame/SpreadArea"]
