@@ -19,7 +19,7 @@ const TEXT_MUTED := Color(0.48, 0.45, 0.45, 1.0)
 
 
 static func apply_panel(target, accent: Color = BRONZE, strong: bool = false) -> void:
-	var panel := target as Control
+	var panel: Control = target as Control
 	if panel == null:
 		return
 	var source: StyleBoxFlat = panel.get_theme_stylebox("panel") as StyleBoxFlat
@@ -73,7 +73,7 @@ static func apply_action_button(button: Button, accent: Color = BRONZE, strong: 
 
 
 static func apply_title(target, accent: Color = GOLD) -> void:
-	var label := target as Control
+	var label: Control = target as Control
 	if label == null:
 		return
 	label.add_theme_color_override("font_color", accent.lightened(0.12))
