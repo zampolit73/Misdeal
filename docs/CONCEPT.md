@@ -24,8 +24,8 @@ He is host, antagonist and commentator. He presents rules, mocks mistakes, chang
 ## Prototype combat
 - Small battlefield.
 - Player party can be solo, duo or trio depending on the replayed life.
-- A solo hero currently receives HP ×2, damage ×1.8, attack cadence ×1.25 and movement ×1.10; a duo receives +20% HP and +15% damage. A full trio receives no compensation. These are visible run rules, not hidden enemy scaling.
-- Enemy encounters and bosses remain fixed benchmarks rather than scaling dynamically to party size.
+- A solo hero currently receives HP ×2.2, damage ×1.9, attack cadence ×1.25 and movement ×1.10; a duo receives +20% HP and +15% damage. A full trio receives no hero-side compensation.
+- Encounter composition stays authored and fixed, but enemy pressure scales transparently with party size: solo enemies use 82% HP / 80% damage, duo enemies use 92% HP / 90% damage, trio uses the authored 100% baseline. Wizard Debt and Wizard Mark remain relative danger multipliers on top of that baseline.
 - Units automatically acquire targets, move into range and attack.
 - Clear health bars and readable targeting.
 - Short fights.
