@@ -4,6 +4,8 @@
 
 ### Added
 
+- Added a live occult seal/fate-thread layer to `РАСКЛАД СУДЬБЫ`, including completed-path glow, chapter gates and a progressive XIII chain/seal that weakens as Act 1 advances.
+
 - Added `РАСКЛАД СУДЬБЫ`, a live Act 1 progress view with twelve chronological card slots, a sealed central XIII/Bone Warden card, held-card display and Wizard rejected-card discard; open it from the table with `R` or the new button.
 
 - Added live pre-battle first-target intent arrows: blue for hero focus under the selected tactical order, red for enemy focus under current placement.
@@ -50,6 +52,8 @@
 - Added repository-safe runtime-decoded WebP atlases for table-card art and development/reward art under `assets/pixel/ui/approved_card_art/`.
 
 ### Changed
+
+- Shortened the Fate Spread side holders, strengthened the central ritual hierarchy and made chapter styling escalate from restrained gold to ember/red in line with the approved reference.
 
 - The normal table progress marker is now a circular occult spread rather than a linear diamond strip, and resolved cards are now represented by the Fate Spread while the right-side discard counts rejected cards only.
 
