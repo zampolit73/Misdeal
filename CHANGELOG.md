@@ -4,6 +4,8 @@
 
 ### Added
 
+- Added `РАСКЛАД СУДЬБЫ`, a live Act 1 progress view with twelve chronological card slots, a sealed central XIII/Bone Warden card, held-card display and Wizard rejected-card discard; open it from the table with `R` or the new button.
+
 - Added live pre-battle first-target intent arrows: blue for hero focus under the selected tactical order, red for enemy focus under current placement.
 
 - Added a persistent `SceneTransition` autoload veil that survives scene replacement and covers runtime texture setup between screens.
@@ -48,6 +50,8 @@
 - Added repository-safe runtime-decoded WebP atlases for table-card art and development/reward art under `assets/pixel/ui/approved_card_art/`.
 
 ### Changed
+
+- The normal table progress marker is now a circular occult spread rather than a linear diamond strip, and resolved cards are now represented by the Fate Spread while the right-side discard counts rejected cards only.
 
 - Pre-battle target-intent lines are now opt-in through a `ЦЕЛИ: ВКЛ/ВЫКЛ` toggle above the fight button, default off, with the choice remembered between battles for the current app session.
 
