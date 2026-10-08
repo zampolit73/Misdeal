@@ -228,7 +228,7 @@ func _refresh_boss() -> void:
 	if active:
 		boss_art.texture = CARD_ART_CATALOG.get_run_card_texture(RunState.BOSS_CARD_ID)
 		boss_art.visible = boss_art.texture != null
-		boss_title.text = "КОСТЯНОЙ\\nНАДЗИРАТЕЛЬ"
+		boss_title.text = "КОСТЯНОЙ\nНАДЗИРАТЕЛЬ"
 	else:
 		boss_art.texture = null
 		boss_art.visible = false
