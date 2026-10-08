@@ -125,6 +125,9 @@
 
 ### Fixed
 
+- Fixed the first UI-kit screenshot regressions: the authored main-menu and intro click hotspots are transparent again instead of rendering empty opaque frames.
+- Fixed resolved Act 1 event layout so the old leave action disappears after a choice and long result text gets a dedicated strip above the single `К СТОЛУ` action.
+
 - Fixed Gallows Volley units appearing to retreat or spawn over background architecture: combat bounds, party/enemy positions and placement geometry now sit on the authored floor, and battle units clamp to combat bounds as soon as those bounds are assigned.
 
 - Constrained **ЗАЛП С ВИСЕЛИЦЫ** to an authored-floor combat rectangle and matching deployment band so retreat, chase and separation cannot push any unit into the background/air above the stone arena; refreshed solo/duo/trio start positions to the same playable plane.
