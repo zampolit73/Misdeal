@@ -270,3 +270,6 @@ Do not prioritize these before the vertical slice works:
 - [x] Save a durable GitHub handoff covering the current gameplay/visual state and exact next step.
 - [x] Add a visual asset registry with runtime paths, version history, rejected approaches and source provenance.
 - [x] Archive the final V9 generated masters at 1672×941 so future chats can recrop/re-export without recovering old chat attachments.
+
+- [x] Replace abstract Act 1 progress with the live `РАСКЛАД СУДЬБЫ`: twelve historical card slots, sealed XIII boss, held-card area and Wizard rejected-card discard.
+- [ ] Locally verify Fate Spread readability at 1280×720 after 0, 4, 8 and 12 resolved cards, including a held card and a populated rejected discard.
