@@ -234,10 +234,12 @@ func _show_history_detail(index: int) -> void:
 
 	var chosen_id := String(entry.get("chosen", ""))
 	var rejected_id := String(entry.get("rejected", ""))
-	var chosen_card := RunState.get_card(chosen_id)
-	var rejected_card := RunState.get_card(rejected_id) if not rejected_id.is_empty() else null
-	var chosen_title := chosen_card.title if chosen_card != null else chosen_id
-	var rejected_title := rejected_card.title if rejected_card != null else "—"
+	var chosen_card: RunCardData = RunState.get_card(chosen_id)
+	var rejected_card: RunCardData = null
+	if not rejected_id.is_empty():
+		rejected_card = RunState.get_card(rejected_id)
+	var chosen_title: String = chosen_card.title if chosen_card != null else chosen_id
+	var rejected_title: String = rejected_card.title if rejected_card != null else "—"
 
 	detail_title.text = "%s  •  %s" % [_roman(index + 1), chosen_title]
 	detail_body.text = "ВЫБРАНО: %s     |     ОТВЕРГНУТО: %s" % [chosen_title, rejected_title]
