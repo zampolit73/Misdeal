@@ -2,6 +2,22 @@
 
 Last updated: 2026-10-08
 
+## Fate Spread Act progression — 2026-10-08
+
+The user-approved **РАСКЛАД СУДЬБЫ** progression concept is now implemented as live Godot UI rather than a baked screenshot.
+
+The cursed table now keeps a restrained 12-position occult progress ring behind the active deal, with the central mark reserved for XIII / Bone Warden. A new `РАСКЛАД СУДЬБЫ [R]` action opens a full inspection overlay showing:
+
+- positions I–XII populated in chronological order with the actual resolved card art and titles;
+- the current unresolved position highlighted separately;
+- central XIII sealed until the boss is due, then revealing the Bone Warden art;
+- current act chapter label: **ПЕРВАЯ РАЗДАЧА**, **СТОЛ ПОМНИТ**, **ПОСЛЕДНЯЯ РАЗДАЧА**, then **ПРИГОВОР**;
+- live counts for resolved, rejected and currently held cards;
+- the held-card area using the real held card art/status;
+- the Wizard discard showing the most recently rejected card and rejected-card count.
+
+The table's ordinary right-side discard now counts rejected cards only; resolved cards are represented by the Fate Spread itself. Future slots remain genuine unknowns instead of pretending that future card types are already scheduled. This is currently a progression/readability system only; it does not change offer RNG, Act 1 length or encounter rules.
+
 ## Current status
 
 Misdeal has a working tactical autobattle slice and a first finite run structure.
