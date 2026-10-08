@@ -821,6 +821,14 @@ Act 1 opening pacing also changed conservatively: the tier-0 forced-combat slot 
 
 This supersedes the earlier static-balance assumption that enemies/bosses never scale by party size; the authored encounter compositions and full-trio numbers remain the reference baseline.
 
+## Main splash replacement + seamless scene transitions — 2026-10-08
+
+The locally rejected low-quality first splash has been replaced by the user-approved restrained dark-gothic redraw with the Wizard brought back into the current Misdeal visual language. Runtime art is now a native **1280×720 WebP** at `assets/pixel/main/approved_splash_hd/main_splash.webp`, loaded through `FileAccess + Image.load_webp_from_buffer()` in `scripts/main/approved_main_backdrop.gd`. The old three-part compressed splash representation is no longer the runtime source.
+
+The brief gray viewport flash seen when moving into battle or returning to the table after events is also addressed globally. `SceneTransition` is now a persistent autoload CanvasLayer with a dark veil: it fades over the outgoing scene, survives the actual scene replacement, keeps the viewport covered while the incoming scene finishes runtime-art setup, then fades away. All active scene changes and battle reloads route through this helper. The project default clear color is also set to the same near-black tone as a final safety net.
+
+This pass changes presentation/loading only; card choice, encounter selection and run state are unchanged. Pending local verification after a fresh pull/restart.
+
 ## Shared gothic UI-kit pass — 2026-10-08
 
 A first shared runtime **Misdeal UI kit** is now in `main` and pending local screenshot verification. `scripts/ui/misdeal_ui_kit.gd` unifies live Godot panels and buttons without baking mutable text or values into images: square pixel-gothic borders, bronze/gold/ember/steel semantic accents, compact corner marks, stronger ceremonial frames and consistent normal/hover/pressed/disabled button states.
