@@ -161,6 +161,8 @@ Only after the loop is fun:
 - [x] Locally verify the combat-condition / Defiance / personalized Bone Warden package at normal play level; user reported the package working. Keep edge-case retry/profile checks in the later full-run balance pass.
 - [x] Implement first full-run party-size pressure pass: stronger solo baseline, transparent enemy HP/damage scaling for solo/duo, proportional support healing, and no forced combat on Act 1 card 1.
 - [ ] Locally verify first forced combat, one mid fight, one late elite and Bone Warden with solo Ranger/Mage, duo and trio; retune only observed outliers.
+- [x] Add live first-target intent arrows during battle preparation so hero placement and tactical orders expose their immediate targeting consequences.
+- [ ] Locally verify target-intent readability on 1/2/3-hero parties and the five-enemy Death Wager without excessive visual clutter.
 - [ ] Run fresh solo / duo / trio balance passes with rescue scars, event echoes and **ЖЕРТВА**, then retune only the concrete outliers.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
 - [ ] Authored sound replacement and battle/table music.
@@ -236,6 +238,8 @@ Do not prioritize these before the vertical slice works:
 
 - [x] Replace the rejected low-quality main splash with the approved restrained Wizard/table redraw at native 1280×720 runtime resolution.
 - [x] Add a persistent scene-transition veil and route active scene changes/reloads through it so runtime texture setup cannot expose a gray viewport frame.
+- [x] Preload incoming scenes while the outgoing scene remains alive and manually swap them under an already-rendered veil, eliminating the empty SceneTree frame behind the intermittent gray flash.
+- [ ] Locally stress-test repeated table ↔ event ↔ battle ↔ reward transitions for any remaining OS/editor-level flash.
 - [ ] Locally verify table → battle, event → table, battle → reward and Last Deal reload transitions after a fresh Godot restart.
 
 ### Runtime art loading hardening
