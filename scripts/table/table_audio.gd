@@ -34,6 +34,8 @@ func play_event(event_name: String) -> void:
 			voice.pitch_scale = 0.90
 		"meddle":
 			voice.pitch_scale = 0.78
+		"milestone":
+			voice.pitch_scale = 0.92
 		_:
 			voice.pitch_scale = 1.0
 	voice.play()
@@ -44,6 +46,7 @@ func _build_streams() -> void:
 		"select": _make_stream("select", 0.16),
 		"discard": _make_stream("discard", 0.18),
 		"meddle": _make_stream("meddle", 0.24),
+		"milestone": _make_stream("milestone", 0.52),
 	}
 
 func _make_stream(kind: String, duration: float) -> AudioStreamWAV:
@@ -71,6 +74,10 @@ func _make_stream(kind: String, duration: float) -> AudioStreamWAV:
 			"meddle":
 				var tone := 150.0 - 55.0 * progress
 				value = (sin(TAU * tone * t) * 0.34 + noise * 0.20) * fade
+			"milestone":
+				var low := 82.0 + 20.0 * sin(progress * PI)
+				var bell := sin(TAU * 246.0 * t) * 0.18 + sin(TAU * 369.0 * t) * 0.10
+				value = (sin(TAU * low * t) * 0.30 + bell + noise * 0.08) * fade
 
 		var sample := int(round(clampf(value * 0.82, -1.0, 1.0) * 32767.0))
 		if sample < 0:
@@ -95,5 +102,7 @@ func _seed_for_kind(kind: String) -> int:
 			return 409
 		"meddle":
 			return 503
+		"milestone":
+			return 607
 		_:
 			return 1
