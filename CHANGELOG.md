@@ -45,6 +45,10 @@
 
 ### Changed
 
+- Rebalanced incomplete-party combat for full Act 1 runs: solo heroes now use HP ×2.2 / damage ×1.9 / attacks ×1.25 / movement ×1.10, while solo enemies use 82% HP and 80% damage; duo enemies use 92% HP and 90% damage alongside the existing duo hero bonus.
+- Wizard Debt and Wizard Mark now multiply on top of party-size enemy pressure, and enemy support healing follows enemy HP scaling.
+- Tier 0 can no longer force combat on the very first resolved card; the first mandatory early fight occurs after at least one non-combat decision.
+
 - Existing approved event-choice art, artifact art and authored screen backdrops now sit inside one consistent live Godot chrome system instead of each screen relying on unrelated local panel/button styling.
 
 - The eight V9 events now use dedicated native 1280×720 environments in the shared live Act Choice scene while keeping all gameplay text/state/buttons dynamic.
