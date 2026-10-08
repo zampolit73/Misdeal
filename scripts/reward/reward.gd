@@ -480,6 +480,6 @@ func _finish_reward(message: String) -> void:
 	await get_tree().create_timer(0.35).timeout
 
 	if RunState.is_run_complete():
-		get_tree().change_scene_to_file("res://scenes/run_end/run_end.tscn")
+		SceneTransition.change_to("res://scenes/run_end/run_end.tscn")
 	else:
-		get_tree().change_scene_to_file("res://scenes/table/table.tscn")
+		SceneTransition.change_to("res://scenes/table/table.tscn")
