@@ -162,6 +162,8 @@ Only after the loop is fun:
 - [x] Implement first full-run party-size pressure pass: stronger solo baseline, transparent enemy HP/damage scaling for solo/duo, proportional support healing, and no forced combat on Act 1 card 1.
 - [ ] Locally verify first forced combat, one mid fight, one late elite and Bone Warden with solo Ranger/Mage, duo and trio; retune only observed outliers.
 - [x] Add live first-target intent arrows during battle preparation so hero placement and tactical orders expose their immediate targeting consequences.
+- [x] Put target-intent arrows behind an explicit `ЦЕЛИ: ВКЛ/ВЫКЛ` preparation toggle; default off and remember the preference for the current app session.
+
 - [ ] Locally verify target-intent readability on 1/2/3-hero parties and the five-enemy Death Wager without excessive visual clutter.
 - [ ] Run fresh solo / duo / trio balance passes with rescue scars, event echoes and **ЖЕРТВА**, then retune only the concrete outliers.
 - [x] First procedural combat SFX pass: attack/hit/death/heal/order/start/result cues.
