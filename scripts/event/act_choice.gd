@@ -64,7 +64,7 @@ func _ready() -> void:
 	active_card = RunState.get_active_card()
 	if active_card == null:
 		push_warning("Act choice scene opened without an active run card.")
-		get_tree().change_scene_to_file("res://scenes/table/table.tscn")
+		SceneTransition.change_to("res://scenes/table/table.tscn")
 		return
 
 	continue_button.pressed.connect(_return_to_table)
@@ -1536,4 +1536,4 @@ func _refresh_run_labels() -> void:
 
 func _return_to_table() -> void:
 	continue_button.disabled = true
-	get_tree().change_scene_to_file("res://scenes/table/table.tscn")
+	SceneTransition.change_to("res://scenes/table/table.tscn")
