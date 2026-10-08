@@ -94,7 +94,8 @@
 
 ### Fixed
 
-- Rejected and removed the low-resolution v3 runtime path that enlarged 112×69 card cells and 320×180 arena cells; battle arenas are back on the last validated high-resolution sources.
+- Rejected and removed the low-resolution v3 runtime path that enlarged 112×69 card cells and 320×180 arena cells.
+- Added native 1280×720 v4 battle backdrops for Crypt and a new dedicated Gallows Volley arena; Graveyard/Ossuary/Warden keep their validated HD sources and Bone Crush keeps its dedicated benchmark.
 - Rebuilt the broad redraw card integration as a 224×137 v4 atlas with semantic source mapping for 19 cards, including **КОСТИ ДОЛЖНИКА**. Six cards without matching redraw sources now keep their unique approved 224×137 fallback art instead of receiving unrelated imagery.
 - Removed the generation-order mapping bug that could place arena concepts or unrelated scenes onto the wrong card.
 - Fixed the Bone Crush atmosphere parse error in Godot 4.7 by typing the Rect2 band array and marker coordinates explicitly.

@@ -95,5 +95,5 @@ Current corrected direction:
 - 19 generated redraws are mapped by actual subject, not by generation order;
 - **КОСТИ ДОЛЖНИКА** now has a matching debtor/contract/coins redraw rather than the old Bone Patrol imagery;
 - Ash Rest, Bone Crush, Broken Crown, Candle Seller, Bone Tax and Death Wager remain on their unique approved 224×137 fallback cells until matching redraws exist;
-- battle arenas use the last validated high-resolution authored sources; Bone Crush keeps its dedicated benchmark arena;
+- Crypt and Gallows Volley use dedicated native 1280×720 v4 redraws; Graveyard/Ossuary/Warden keep validated HD sources and Bone Crush keeps its dedicated benchmark arena;
 - never upscale a 320×180 arena to the 1280×720 gameplay viewport as the production background.

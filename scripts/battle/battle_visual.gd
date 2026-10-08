@@ -2,6 +2,7 @@ extends Control
 
 const ARENA_CRYPT := "crypt"
 const ARENA_GRAVEYARD := "graveyard"
+const ARENA_GALLOWS := "gallows"
 const ARENA_OSSUARY := "ossuary"
 const ARENA_WARDEN := "warden"
 const ARENA_BONE_CRUSH := "bone_crush"
@@ -14,7 +15,7 @@ var arena_id: String = ARENA_CRYPT
 
 func set_arena_id(value: String) -> void:
 	match value:
-		ARENA_GRAVEYARD, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH:
+		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH:
 			arena_id = value
 		_:
 			arena_id = ARENA_CRYPT
@@ -41,7 +42,7 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	match arena_id:
-		ARENA_GRAVEYARD:
+		ARENA_GRAVEYARD, ARENA_GALLOWS:
 			_draw_graveyard_atmosphere()
 		ARENA_OSSUARY:
 			_draw_ossuary_atmosphere()

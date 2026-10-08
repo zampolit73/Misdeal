@@ -210,6 +210,7 @@ Do not prioritize these before the vertical slice works:
 - [x] First object-first card redraw batch is live: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **ШЕПЧУЩИЙ КОЛОДЕЦ**.
 - [x] Replace 19 active Act 1 card illustrations with correctly mapped near-display-resolution v4 redraws; preserve unique approved fallback art for the other six.
 - [ ] Finish the six remaining card redraws only from matching source art; never substitute unrelated generated images.
-- [ ] Continue arena source replacement from native/high-resolution sources only. Thumbnail-scale full-screen arena upscaling is rejected.
+- [x] Replace Crypt and Gallows Volley with native 1280×720 v4 arena redraws while retaining validated HD Graveyard/Ossuary/Warden and the dedicated Bone Crush benchmark.
+- [ ] Continue any further arena replacement from native/high-resolution sources only. Thumbnail-scale full-screen arena upscaling is rejected.
 - [ ] Rebuild event/reward surfaces around the same limited Ink / Stone / Bone / Rust / Teal / Gold language while keeping all mutable values live.
 - [ ] Locally verify the corrected v4 cards and restored high-resolution arenas at 1280×720 before another broad visual rollout.

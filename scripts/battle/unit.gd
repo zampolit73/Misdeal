@@ -124,7 +124,7 @@ func configure(data: UnitData, unit_team: int, spawn_position: Vector2, name_ove
 func set_arena_presentation(value: String) -> void:
 	arena_id = value
 	match arena_id:
-		"graveyard":
+		"graveyard", "gallows":
 			arena_tint = Color(0.82, 0.90, 1.0, 1.0)
 		"ossuary":
 			arena_tint = Color(1.0, 0.91, 0.76, 1.0)

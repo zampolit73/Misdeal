@@ -2,6 +2,7 @@ extends TextureRect
 
 const ARENA_CRYPT := "crypt"
 const ARENA_GRAVEYARD := "graveyard"
+const ARENA_GALLOWS := "gallows"
 const ARENA_OSSUARY := "ossuary"
 const ARENA_WARDEN := "warden"
 const ARENA_BONE_CRUSH := "bone_crush"
@@ -10,8 +11,9 @@ const ENVIRONMENT_ART_GRADE := preload("res://materials/ui/misdeal_environment_g
 const BACKDROP_SIZE := Vector2i(1280, 720)
 
 const ARENA_PATHS := {
-	ARENA_CRYPT: "res://assets/pixel/battle/arenas/crypt.webp",
+	ARENA_CRYPT: "res://assets/pixel/battle/arenas/visual_pass_v4/crypt.webp",
 	ARENA_GRAVEYARD: "res://assets/pixel/battle/arenas/graveyard.webp",
+	ARENA_GALLOWS: "res://assets/pixel/battle/arenas/visual_pass_v4/gallows.webp",
 	ARENA_OSSUARY: "res://assets/pixel/battle/arenas/ossuary.webp",
 	ARENA_WARDEN: "res://assets/pixel/battle/arenas/warden.webp",
 }
@@ -38,12 +40,14 @@ func _ready() -> void:
 
 func set_arena_id(value: String) -> void:
 	match value:
-		ARENA_GRAVEYARD, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH:
+		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH:
 			arena_id = value
 		_:
 			arena_id = ARENA_CRYPT
 
-	material = null if arena_id == ARENA_BONE_CRUSH else ENVIRONMENT_ART_GRADE
+	material = ENVIRONMENT_ART_GRADE
+	if arena_id == ARENA_BONE_CRUSH or arena_id == ARENA_CRYPT or arena_id == ARENA_GALLOWS:
+		material = null
 	texture = _get_runtime_texture(arena_id)
 
 func _get_runtime_texture(value: String) -> Texture2D:

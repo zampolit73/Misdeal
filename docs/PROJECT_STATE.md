@@ -857,4 +857,4 @@ The corrected v4 card pass keeps the generated redraws at the existing near-disp
 
 The six cards without a trustworthy matching redraw source — Ash Rest, Bone Crush, Broken Crown, Candle Seller, Bone Tax and Death Wager — deliberately fall back to the already-approved 224×137 full card atlas. This means every one of the 25 active cards still has unique art; no card is allowed to borrow an unrelated generated image just to claim redraw coverage.
 
-Battle arenas have been restored to the last validated native/high-resolution path from before the rejected v3 atlas. Crypt, Graveyard, Ossuary and Warden use their validated authored sources; Bone Crush keeps its dedicated benchmark backdrop. No 320×180 arena atlas is used at runtime.
+Battle arenas no longer use the rejected 320×180 atlas. Crypt now uses a dedicated native 1280×720 v4 redraw, and Gallows Volley has its own native 1280×720 moon/gallows arena instead of sharing Graveyard. Graveyard, Ossuary and Warden keep their validated authored high-resolution sources; Bone Crush keeps its dedicated benchmark backdrop.
