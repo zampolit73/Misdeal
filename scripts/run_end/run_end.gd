@@ -1,7 +1,6 @@
-
+extends Control
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
-extends Control
 
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 
