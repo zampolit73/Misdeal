@@ -1,5 +1,7 @@
 extends Control
 
+const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 
 const UNIT_TILE_SIZE: float = 96.0
@@ -78,7 +80,7 @@ func _choose(role: String) -> void:
 
 	status_label.text = "— Вот так ты это помнишь, — говорит Волшебник."
 	await get_tree().create_timer(0.35).timeout
-	SceneTransition.change_to("res://scenes/table/table.tscn")
+	SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
 
 func _get_unit_sheet_texture() -> Texture2D:
 	if unit_sheet_texture != null:
