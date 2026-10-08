@@ -827,6 +827,14 @@ Local review confirmed the new pre-battle target lines are useful but too visual
 
 The preference is stored on the persistent `RunState` autoload but deliberately not reset by `reset_run()`, so the player's choice persists between battles and new runs for the lifetime of the current app session. The underlying preview logic and combat AI are unchanged.
 
+## SceneTransition autoload resilience hotfix — 2026-10-08
+
+Local Godot 4.7.2 compilation exposed a project-file edge case: a user-local `project.godot` conflict could leave the new `SceneTransition` autoload entry absent even though the transition script and all navigation call sites had already been pulled. Direct references such as `SceneTransition.change_to(...)` then fail at parse time before the project can run.
+
+Scene navigation now goes through `scripts/core/scene_router.gd`. The router uses the registered `/root/SceneTransition` singleton when available, but if the editor/local project file has not registered it yet, it creates the same persistent transition node dynamically under the root and routes navigation through that instance. Active main/intro/class-select/table/event/battle/reward/run-end call sites no longer require the autoload identifier to exist at parse time.
+
+This keeps the seamless-transition system functional while making pulls robust against local `project.godot` divergence. The canonical repository project file still registers `SceneTransition` normally.
+
 ## Empty-frame transition elimination + target-intent preview — 2026-10-08
 
 Local testing still exposed an intermittent full-gray frame despite the first persistent veil. The transition system no longer delegates the actual swap to `SceneTree.change_scene_to_file()`. `SceneTransition` now starts threaded loading while the outgoing scene remains alive, instantiates the incoming PackedScene before blackout, renders at least one fully opaque transition frame, manually adds the new scene while the old scene still exists, switches `current_scene`, frees the old scene, waits for the new runtime-art/layout frames to render, then reveals the result. The renderer clear color is also forced to the same near-black tone at runtime.
