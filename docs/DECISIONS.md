@@ -1427,3 +1427,25 @@ Misdeal keeps mutable gameplay text, prices, state and buttons as native Godot c
 
 The kit is intentionally lightweight rather than a new theme framework: no baked UI screenshots, no addon dependency and no replacement of live scene logic. Screen-specific semantic styling may still refine the shared base (for example event risk colors, table card types and temporary tactical-order colors), but new screens should start from the shared kit instead of inventing unrelated panel/button treatments.
 
+## D084 — Incomplete parties scale encounter pressure, not encounter composition
+
+Date: 2026-10-08  
+Status: accepted, pending local full-run verification
+
+The earlier solo rule restored hero HP/damage/action cadence but kept every enemy at the full trio-authored baseline. Static review and prior local feedback show that this still leaves one-body runs too sensitive to focus fire and to opening combat timing, especially for Ranger and Mage.
+
+Act 1 now preserves authored enemy compositions and mechanics while scaling **pressure** by current party size:
+- solo heroes: HP ×2.2, damage ×1.9, attack interval ×0.80, movement ×1.10;
+- solo enemies: HP ×0.82, damage ×0.80;
+- duo heroes: HP ×1.20, damage ×1.15;
+- duo enemies: HP ×0.92, damage ×0.90;
+- trio: authored 100% baseline.
+
+Support-heal amount follows enemy HP scaling. Wizard Debt and Wizard Mark remain percentage danger modifiers on top of the party-size enemy-damage baseline. Boss phase logic, target AI, enemy count, ranges and attack cadence do not change.
+
+This is preferred over hand-tuning separate solo versions of every encounter: one rule keeps all existing and future Act 1 fights coherent and avoids duplicating encounter Resources.
+
+The opening pacing also guarantees one non-combat decision before the first forced tier-0 fight. This is not a guaranteed recruitment; it simply prevents a fresh one-hero run from being forced into combat before the player has made any table decision.
+
+This supersedes D035 only where D035 states that enemies never scale by party size. D035's core reasoning — solo must compensate for lost action economy — remains valid.
+
