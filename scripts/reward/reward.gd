@@ -1,5 +1,7 @@
 extends Control
 
+const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
@@ -480,6 +482,6 @@ func _finish_reward(message: String) -> void:
 	await get_tree().create_timer(0.35).timeout
 
 	if RunState.is_run_complete():
-		SceneTransition.change_to("res://scenes/run_end/run_end.tscn")
+		SCENE_ROUTER.change_to(self, "res://scenes/run_end/run_end.tscn")
 	else:
-		SceneTransition.change_to("res://scenes/table/table.tscn")
+		SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
