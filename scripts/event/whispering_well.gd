@@ -1,5 +1,7 @@
 extends Control
 
+const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const APPROVED_EVENT_CHOICE_ART := preload("res://scripts/ui/approved_event_choice_art.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
@@ -282,4 +284,4 @@ func _disable_choices() -> void:
 
 func _return_to_table() -> void:
 	RunState.complete_active_card()
-	SceneTransition.change_to("res://scenes/table/table.tscn")
+	SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
