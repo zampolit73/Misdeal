@@ -120,9 +120,9 @@ horizontal_alignment = 1
 
 [node name="HeldPanel" type="Panel" parent="Frame"]
 offset_left = 24.0
-offset_top = 154.0
+offset_top = 184.0
 offset_right = 210.0
-offset_bottom = 632.0
+offset_bottom = 608.0
 theme_override_styles/panel = SubResource("SidePanel")
 
 [node name="Title" type="Label" parent="Frame/HeldPanel"]
@@ -147,18 +147,18 @@ horizontal_alignment = 1
 
 [node name="Art" type="TextureRect" parent="Frame/HeldPanel"]
 offset_left = 18.0
-offset_top = 86.0
+offset_top = 82.0
 offset_right = 176.0
-offset_bottom = 286.0
+offset_bottom = 252.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 6
 
 [node name="CardTitle" type="Label" parent="Frame/HeldPanel"]
 offset_left = 16.0
-offset_top = 300.0
+offset_top = 266.0
 offset_right = 178.0
-offset_bottom = 366.0
+offset_bottom = 326.0
 theme_override_colors/font_color = Color(0.88, 0.80, 0.68, 1)
 theme_override_font_sizes/font_size = 12
 text = "ПУСТО"
@@ -168,9 +168,9 @@ autowrap_mode = 2
 
 [node name="Hint" type="Label" parent="Frame/HeldPanel"]
 offset_left = 14.0
-offset_top = 382.0
+offset_top = 338.0
 offset_right = 180.0
-offset_bottom = 456.0
+offset_bottom = 402.0
 theme_override_colors/font_color = Color(0.52, 0.50, 0.54, 1)
 theme_override_font_sizes/font_size = 10
 text = "Одна карта за акт может быть отложена и вернётся через две раздачи."
@@ -180,9 +180,9 @@ autowrap_mode = 2
 
 [node name="DiscardPanel" type="Panel" parent="Frame"]
 offset_left = 1022.0
-offset_top = 154.0
+offset_top = 184.0
 offset_right = 1208.0
-offset_bottom = 632.0
+offset_bottom = 608.0
 theme_override_styles/panel = SubResource("SidePanel")
 
 [node name="Title" type="Label" parent="Frame/DiscardPanel"]
@@ -208,18 +208,18 @@ horizontal_alignment = 1
 
 [node name="Art" type="TextureRect" parent="Frame/DiscardPanel"]
 offset_left = 18.0
-offset_top = 94.0
+offset_top = 88.0
 offset_right = 176.0
-offset_bottom = 294.0
+offset_bottom = 258.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 6
 
 [node name="CardTitle" type="Label" parent="Frame/DiscardPanel"]
 offset_left = 16.0
-offset_top = 300.0
+offset_top = 270.0
 offset_right = 178.0
-offset_bottom = 366.0
+offset_bottom = 328.0
 theme_override_colors/font_color = Color(0.76, 0.64, 0.58, 1)
 theme_override_font_sizes/font_size = 12
 text = "ПУСТО"
@@ -229,9 +229,9 @@ autowrap_mode = 2
 
 [node name="Hint" type="Label" parent="Frame/DiscardPanel"]
 offset_left = 14.0
-offset_top = 382.0
+offset_top = 340.0
 offset_right = 180.0
-offset_bottom = 456.0
+offset_bottom = 402.0
 theme_override_colors/font_color = Color(0.52, 0.46, 0.46, 1)
 theme_override_font_sizes/font_size = 10
 text = "Отвергнутые судьбы остаются у Волшебника. Он их помнит."
