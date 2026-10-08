@@ -190,8 +190,7 @@ offset_right = 182.0
 offset_bottom = 54.0
 theme_override_colors/font_color = Color(0.88, 0.48, 0.34, 1)
 theme_override_font_sizes/font_size = 14
-text = "СБРОС
-ВОЛШЕБНИКА"
+text = "СБРОС\nВОЛШЕБНИКА"
 horizontal_alignment = 1
 vertical_alignment = 1
 
