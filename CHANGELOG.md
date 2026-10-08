@@ -4,6 +4,10 @@
 
 ### Added
 
+- Added Fate Spread chosen/rejected pair history: hovering a completed slot enlarges it and shows which card was chosen and which alternative was rejected at that deal.
+- Added one-shot IV/VIII/XII Fate Spread ritual beats with automatic reveal, seal/XIII pulse-shake and a dedicated generated table sound.
+- Added a restrained procedural red-black table surface beneath the Fate Spread ring to keep the progression screen physically grounded in the cursed table.
+
 - Added a live occult seal/fate-thread layer to `РАСКЛАД СУДЬБЫ`, including completed-path glow, chapter gates and a progressive XIII chain/seal that weakens as Act 1 advances.
 
 - Added `РАСКЛАД СУДЬБЫ`, a live Act 1 progress view with twelve chronological card slots, a sealed central XIII/Bone Warden card, held-card display and Wizard rejected-card discard; open it from the table with `R` or the new button.
