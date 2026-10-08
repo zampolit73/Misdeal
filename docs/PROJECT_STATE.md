@@ -1,6 +1,18 @@
 # Misdeal — Project State
 
-Last updated: 2026-10-08
+Last updated: 2026-10-09
+
+## Fate Spread edge-art integration — 2026-10-09
+
+The full-screen reference-underlay approach was retired after local review because it had to be darkened so aggressively that the approved physical-table atmosphere disappeared. The approved direction is now implemented as **edge-art plates** instead:
+
+- `assets/pixel/table/fate_spread/edge_top.webp` — candle/brass/gothic top rail;
+- `assets/pixel/table/fate_spread/edge_left.webp` — left ritual props and red cloth;
+- `assets/pixel/table/fate_spread/edge_right.webp` — right skull/candle/brass props.
+
+These plates are loaded through the established `runtime_webp_texture.gd` path, not direct Texture2D imports. They sit behind live UI at near-full brightness while the center remains the authoritative procedural Fate Spread. High-quality source masters are archived under `assets/source_archive/fate_spread_edges/`.
+
+The old `reference_underlay.webp` is no longer a runtime dependency.
 
 ## Fate Spread underlay visibility fix — 2026-10-09
 
