@@ -4,6 +4,9 @@ const PART_PATHS: Array[String] = [
 	"res://assets/pixel/main/approved_splash_hd/part_00.txt",
 	"res://assets/pixel/main/approved_splash_hd/part_01.txt",
 	"res://assets/pixel/main/approved_splash_hd/part_02.txt",
+	"res://assets/pixel/main/approved_splash_hd/part_03.txt",
+	"res://assets/pixel/main/approved_splash_hd/part_04.txt",
+	"res://assets/pixel/main/approved_splash_hd/part_05.txt",
 ]
 
 func _ready() -> void:
