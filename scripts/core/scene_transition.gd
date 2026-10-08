@@ -14,14 +14,14 @@ var _busy := false
 
 
 func _ready() -> void:
-	layer = 10000
+	layer = 128
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	_veil = ColorRect.new()
 	_veil.name = "SceneVeil"
 	_veil.color = VEIL_COLOR
 	_veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_veil.z_index = 10000
+	_veil.z_index = 4095
 	add_child(_veil)
 
 	_sync_veil_rect()
