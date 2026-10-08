@@ -2,6 +2,7 @@ extends Control
 
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
+const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 
 const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1240, 465))
 const GALLOWS_VOLLEY_COMBAT_BOUNDS := Rect2(Vector2(0, 185), Vector2(1240, 255))
@@ -79,6 +80,7 @@ func _ready() -> void:
 		get_tree().change_scene_to_file("res://scenes/class_select/class_select.tscn")
 		return
 
+	_apply_ui_kit()
 	fight_button.pressed.connect(_on_fight_pressed)
 	restart_button.pressed.connect(_on_restart_pressed)
 	continue_button.pressed.connect(_on_continue_pressed)
@@ -132,6 +134,25 @@ func _ready() -> void:
 	_configure_side_objective()
 	_spawn_encounter()
 	_begin_preparation_phase()
+
+func _apply_ui_kit() -> void:
+	MISDEAL_UI_KIT.apply_panel(bottom_hud_panel, MISDEAL_UI_KIT.BRONZE, false)
+	MISDEAL_UI_KIT.apply_panel(wizard_commentary_panel, MISDEAL_UI_KIT.BRONZE, false)
+	MISDEAL_UI_KIT.apply_panel(side_objective_panel, MISDEAL_UI_KIT.GOLD, false)
+	MISDEAL_UI_KIT.apply_panel(result_backdrop, MISDEAL_UI_KIT.BRONZE, true)
+	MISDEAL_UI_KIT.apply_title(title_label, MISDEAL_UI_KIT.GOLD)
+	MISDEAL_UI_KIT.apply_subtitle(wizard_commentary_label, MISDEAL_UI_KIT.BRONZE)
+
+	for button in [assault_order_button, hunt_order_button, formation_order_button]:
+		MISDEAL_UI_KIT.apply_action_button(button, MISDEAL_UI_KIT.BRONZE, false)
+	MISDEAL_UI_KIT.apply_action_button(sacrifice_order_button, MISDEAL_UI_KIT.EMBER, false)
+	MISDEAL_UI_KIT.apply_action_button(defiance_order_button, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_UI_KIT.apply_action_button(fight_button, MISDEAL_UI_KIT.EMBER, true)
+	MISDEAL_UI_KIT.apply_action_button(restart_button, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_UI_KIT.apply_action_button(continue_button, MISDEAL_UI_KIT.GOLD, true)
+	MISDEAL_UI_KIT.apply_action_button(last_deal_accept_button, MISDEAL_UI_KIT.EMBER, true)
+	MISDEAL_UI_KIT.apply_action_button(last_deal_refuse_button, MISDEAL_UI_KIT.STEEL, false)
+
 
 func _is_boss_encounter() -> bool:
 	return encounter != null and encounter.encounter_id == "bone_warden"
