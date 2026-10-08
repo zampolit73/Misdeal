@@ -1467,11 +1467,39 @@ func _resolve_leave() -> void:
 		_:
 			_finish("Вы возвращаетесь к столу.")
 
+func _apply_resolved_layout() -> void:
+	# Generic event screens keep the chosen cards visible as context, but the
+	# resolved message owns its own strip and there is only one way back.
+	leave_button.visible = false
+
+	if active_card.card_id in [
+		"black_altar",
+		"candle_seller",
+		"gravedigger_shop",
+		"blood_ledger",
+		"faceless_card",
+		"rattling_bridge",
+		"lost_purse",
+		"debtor_bones",
+		"bone_tax",
+		"wizard_tithe",
+		"ash_rest",
+		"last_camp",
+		"broken_crown",
+	]:
+		result_label.position = Vector2(58.0, 518.0)
+		result_label.size = Vector2(944.0, 42.0)
+		result_label.add_theme_font_size_override("font_size", 13)
+		continue_button.position = Vector2(430.0, 566.0)
+		continue_button.size = Vector2(200.0, 38.0)
+
+
 func _finish(message: String) -> void:
 	resolved = true
 	_disable_choices()
 	RunState.complete_active_card()
 	result_label.text = message
+	_apply_resolved_layout()
 	result_label.visible = true
 	result_label.modulate.a = 0.0
 	continue_button.visible = true
