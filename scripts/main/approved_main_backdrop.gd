@@ -7,6 +7,12 @@ const PART_PATHS: Array[String] = [
 	"res://assets/pixel/main/approved_splash_hd/part_03.txt",
 	"res://assets/pixel/main/approved_splash_hd/part_04.txt",
 	"res://assets/pixel/main/approved_splash_hd/part_05.txt",
+	"res://assets/pixel/main/approved_splash_hd/part_06.txt",
+	"res://assets/pixel/main/approved_splash_hd/part_07.txt",
+	"res://assets/pixel/main/approved_splash_hd/part_08.txt",
+	"res://assets/pixel/main/approved_splash_hd/part_09.txt",
+	"res://assets/pixel/main/approved_splash_hd/part_10.txt",
+	"res://assets/pixel/main/approved_splash_hd/part_11.txt",
 ]
 
 func _ready() -> void:
