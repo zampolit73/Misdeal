@@ -840,3 +840,10 @@ This is the first runtime batch of the user-approved full visual redraw directio
 The first object-first table-card batch is live in main. **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ** now use dedicated 224×137 authored WebP overrides instead of their old atlas cells. The card-grade strength was reduced from 0.58 to 0.30 so the new dark pixel art keeps readable midtones.
 
 This is the start of the user-approved broader visual redraw. Mechanics, prices, descriptions and choice state remain live Godot controls.
+
+
+## Visual redraw hotfix — 2026-10-08
+
+A runtime integration mistake in the first redraw batch was corrected. The dedicated assets for **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ** existed in the repository but CardArtCatalog still returned the old atlas cells. CardArtCatalog now checks dedicated overrides first and decodes the repository text assets into runtime WebP textures.
+
+The Bone Crush atmosphere script also failed to parse in Godot 4.7 because loop values from an untyped array made x/y inference ambiguous. The band array and marker coordinates are now explicitly typed.

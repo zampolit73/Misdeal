@@ -94,6 +94,9 @@
 
 ### Fixed
 
+- Fixed the Bone Crush atmosphere parse error in Godot 4.7 by typing the Rect2 band array and marker coordinates explicitly.
+- Fixed the first visual-redraw card batch integration: Rattling Bridge, Lost Purse and Whispering Well now actually resolve their dedicated runtime overrides from repository text assets.
+
 - Combat-condition timers now start only after the cinematic fight intro, so **КОСТЯНАЯ ДАВКА** does not lose objective time during presentation and **ЖЕРТВА** no longer drains HP before units actually enter combat. The Gallows Volley no-critical condition also fails correctly if a hero dies before emitting the 25% critical-health cue.
 - Applied rescue-scar max-HP penalties to live combat spawning as well as dossier stat calculation, so named scars now have the same real protagonist HP cost in the autobattle that the UI reports.
 - Fixed Act 1 event-window footer overflow at 1280×720: generic choice cards are slightly shorter with the leave/continue row pulled fully on-screen, and Chained Prisoner now reserves a dedicated bottom action row instead of overlapping its center card.

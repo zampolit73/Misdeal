@@ -10,6 +10,12 @@ const UI_COLUMNS := 5
 const RUN_ATLAS_PATH := "res://assets/pixel/ui/approved_card_art/run_hd.bin"
 const UI_ATLAS_PATH := "res://assets/pixel/ui/approved_card_art/ui_hd.bin"
 
+const RUN_OVERRIDE_PATHS := {
+	"rattling_bridge": "res://assets/pixel/ui/visual_pass_v2/cards/rattling_bridge.txt",
+	"lost_purse": "res://assets/pixel/ui/visual_pass_v2/cards/lost_purse.txt",
+	"whispering_well": "res://assets/pixel/ui/visual_pass_v2/cards/whispering_well.txt",
+}
+
 const RUN_INDEX := {
 	"bone_patrol": 0,
 	"graveyard_ambush": 1,
@@ -61,8 +67,12 @@ const REWARD_INDEX := {
 
 static var run_sheet_texture: Texture2D
 static var ui_sheet_texture: Texture2D
+static var run_override_cache: Dictionary = {}
 
 static func get_run_card_texture(card_id: String) -> Texture2D:
+	var override_texture: Texture2D = _get_run_override(card_id)
+	if override_texture != null:
+		return override_texture
 	if not RUN_INDEX.has(card_id):
 		return null
 	var sheet := _get_run_sheet()
@@ -85,6 +95,41 @@ static func get_reward_texture(reward_key: String) -> Texture2D:
 	if sheet == null:
 		return null
 	return _get_cell(sheet, int(REWARD_INDEX[reward_key]), UI_CELL_SIZE, UI_COLUMNS)
+
+static func _get_run_override(card_id: String) -> Texture2D:
+	if run_override_cache.has(card_id):
+		return run_override_cache[card_id] as Texture2D
+	if not RUN_OVERRIDE_PATHS.has(card_id):
+		return null
+
+	var part_path: String = String(RUN_OVERRIDE_PATHS[card_id])
+	if not FileAccess.file_exists(part_path):
+		push_error("Missing visual-pass card art: %s" % part_path)
+		return null
+
+	var encoded: String = FileAccess.get_file_as_string(part_path).strip_edges()
+	if encoded.is_empty():
+		push_error("Visual-pass card art is empty: %s" % part_path)
+		return null
+
+	var bytes: PackedByteArray = Marshalls.base64_to_raw(encoded)
+	if bytes.is_empty():
+		push_error("Could not decode visual-pass card art: %s" % card_id)
+		return null
+
+	var image := Image.new()
+	var error: Error = image.load_webp_from_buffer(bytes)
+	if error != OK:
+		push_error("Could not load visual-pass card art '%s': %s" % [card_id, error_string(error)])
+		return null
+
+	if image.get_width() != RUN_CELL_SIZE.x or image.get_height() != RUN_CELL_SIZE.y:
+		image.resize(RUN_CELL_SIZE.x, RUN_CELL_SIZE.y, Image.INTERPOLATE_NEAREST)
+
+	var texture := ImageTexture.create_from_image(image)
+	run_override_cache[card_id] = texture
+	return texture
+
 
 static func _get_run_sheet() -> Texture2D:
 	if run_sheet_texture == null:

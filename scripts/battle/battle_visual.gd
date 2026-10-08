@@ -96,13 +96,14 @@ func _draw_bone_crush_atmosphere() -> void:
 	var top_band := Rect2(35.0, 70.0, 480.0, 145.0)
 	var bottom_band := Rect2(35.0, 250.0, 480.0, 145.0)
 
-	for band in [top_band, bottom_band]:
+	var bands: Array[Rect2] = [top_band, bottom_band]
+	for band in bands:
 		draw_line(band.position, Vector2(band.end.x, band.position.y), chalk_faint, 1.0)
 		draw_line(Vector2(band.position.x, band.end.y), band.end, chalk_faint, 1.0)
 
 		for marker_index in range(3):
-			var x := band.position.x + 90.0 + float(marker_index) * 135.0
-			var y := band.position.y + band.size.y * 0.5
+			var x: float = band.position.x + 90.0 + float(marker_index) * 135.0
+			var y: float = band.position.y + band.size.y * 0.5
 			draw_line(Vector2(x - 12.0, y), Vector2(x + 12.0, y), chalk, 2.0)
 			draw_line(Vector2(x, y - 12.0), Vector2(x, y + 12.0), chalk, 2.0)
 			draw_line(Vector2(x - 7.0, y - 7.0), Vector2(x + 7.0, y + 7.0), chalk_faint, 1.0)
