@@ -234,6 +234,10 @@ Do not prioritize these before the vertical slice works:
 - [ ] Review fresh 1280×720 screenshots before replacing any lower-priority art.
 
 
+- [x] Replace the rejected low-quality main splash with the approved restrained Wizard/table redraw at native 1280×720 runtime resolution.
+- [x] Add a persistent scene-transition veil and route active scene changes/reloads through it so runtime texture setup cannot expose a gray viewport frame.
+- [ ] Locally verify table → battle, event → table, battle → reward and Last Deal reload transitions after a fresh Godot restart.
+
 ### Runtime art loading hardening
 
 - [x] Harden v7 WebP loading against Godot import/parser timing by replacing direct new-asset preloads/ext_resources with runtime FileAccess + Image decoding.
