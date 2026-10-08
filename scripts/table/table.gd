@@ -49,7 +49,7 @@ var card_motion_tweens: Dictionary = {}
 
 func _ready() -> void:
 	if RunState.is_run_complete():
-		get_tree().change_scene_to_file("res://scenes/run_end/run_end.tscn")
+		SceneTransition.change_to("res://scenes/run_end/run_end.tscn")
 		return
 
 	offer_buttons = [offer_a_button, offer_b_button]
@@ -737,9 +737,9 @@ func _choose_card(card: RunCardData) -> void:
 
 	match card.resolution_type:
 		"combat":
-			get_tree().change_scene_to_file("res://scenes/battle/battle.tscn")
+			SceneTransition.change_to("res://scenes/battle/battle.tscn")
 		"event", "prototype":
-			get_tree().change_scene_to_file(card.target_path)
+			SceneTransition.change_to(card.target_path)
 		_:
 			push_warning("Unknown run card resolution type: %s" % card.resolution_type)
 			selection_locked = false
