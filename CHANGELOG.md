@@ -4,6 +4,7 @@
 
 ### Added
 
+- Completed current-art coverage for all 25 active Act 1 table cards. Added a supplementary 224×137 v5 redraw atlas for **ПЕПЕЛЬНЫЙ ПРИВАЛ**, **КОСТЯНАЯ ДАВКА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА** and **СТАВКА НА СМЕРТЬ**.
 - Added the first object-first card redraw batch for **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**, loaded as dedicated runtime-decoded WebP overrides instead of old atlas cells.
 
 - Saved a dedicated visual-pass checkpoint (`docs/VISUAL_PASS_CHECKPOINT.md`) so a fresh chat can continue the anti-AI production-art pass from GitHub without reconstructing the conversation.
@@ -33,6 +34,8 @@
 
 ### Changed
 
+- **СЛОМАННАЯ КОРОНА** now uses the exact approved object-centric Broken Crown artifact illustration on its table card.
+- Card-art lookup now prefers the v5 completion batch before the accepted v4 redraw atlas, while retaining the legacy 25-card sheet only as a safety fallback.
 - Wired the first object-first card redraw batch into live table rendering for **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**.
 - Reduced card-art grade strength from 0.58 to 0.30 to preserve authored dark midtones.
 

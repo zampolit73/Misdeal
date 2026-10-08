@@ -1299,3 +1299,17 @@ For the current table layout, new redraw cards must be stored at the existing 22
 Generated sources are mapped by their actual subject, not by generation order. If no trustworthy source matches a card, that card keeps its already-approved unique atlas art until a real redraw exists. Reusing an unrelated image is worse than retaining a coherent fallback.
 
 The corrected v4 pass therefore uses 19 semantically matched 224×137 redraws and falls back to the approved 25-card atlas for Ash Rest, Bone Crush, Broken Crown, Candle Seller, Bone Tax and Death Wager. Arena runtime uses native/high-resolution sources: new 1280×720 v4 redraws for Crypt and Gallows Volley, validated HD sources for Graveyard/Ossuary/Warden, and the dedicated Bone Crush benchmark backdrop.
+
+
+## D076 — Complete card coverage with a supplementary HD batch, not another monolithic atlas
+
+Date: 2026-10-08  
+Status: accepted after local verification of the corrected v4 pass
+
+The accepted 224×137 v4 card redraws remain untouched. The last five scene-based redraws are added as a small v5 atlas at the same 224×137 source size rather than rebuilding or recompressing the accepted v4 sheet.
+
+**СЛОМАННАЯ КОРОНА** is a deliberate exception: its table card uses the exact approved object-centric Broken Crown artifact illustration. The card represents acquiring that source-locked artifact, so sharing the visual strengthens recognition and avoids inventing a weaker unrelated scene.
+
+The active-card lookup order is exact Broken Crown artifact art where applicable, matching v5 redraw, matching v4 redraw, then the legacy approved atlas only as a decode/failure fallback. No active Act 1 card intentionally depends on unrelated art.
+
+Supplementary art may be stored as split base64 WebP text when that keeps repository transport reliable. Source resolution must stay at near-display size or better.

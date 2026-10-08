@@ -858,3 +858,14 @@ The corrected v4 card pass keeps the generated redraws at the existing near-disp
 The six cards without a trustworthy matching redraw source — Ash Rest, Bone Crush, Broken Crown, Candle Seller, Bone Tax and Death Wager — deliberately fall back to the already-approved 224×137 full card atlas. This means every one of the 25 active cards still has unique art; no card is allowed to borrow an unrelated generated image just to claim redraw coverage.
 
 Battle arenas no longer use the rejected 320×180 atlas. Crypt now uses a dedicated native 1280×720 v4 redraw, and Gallows Volley has its own native 1280×720 moon/gallows arena instead of sharing Graveyard. Graveyard, Ossuary and Warden keep their validated authored high-resolution sources; Bone Crush keeps its dedicated benchmark backdrop.
+
+
+## Act 1 card redraw coverage complete — 2026-10-08
+
+The user locally confirmed the corrected v4 quality pass looks acceptable. The last six cards have now been removed from the intentional legacy-art fallback path.
+
+Five cards use a supplementary v5 atlas at the same near-display 224×137 source size as the accepted v4 pass: **ПЕПЕЛЬНЫЙ ПРИВАЛ**, **КОСТЯНАЯ ДАВКА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА** and **СТАВКА НА СМЕРТЬ**.
+
+**СЛОМАННАЯ КОРОНА** deliberately uses the already-approved object-centric Broken Crown artifact illustration. This makes the source card and the source-locked relic visually identical instead of inventing an unrelated scene.
+
+All 25 active Act 1 table cards now resolve to current redraw/object-specific art before the legacy approved run atlas fallback. The v5 sheet is split into repository-safe base64 WebP text parts and decoded at runtime; gameplay text, prices and state remain live Godot UI.

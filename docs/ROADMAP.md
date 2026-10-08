@@ -202,15 +202,15 @@ Do not prioritize these before the vertical slice works:
 - [ ] Review the Bone Crush redraw locally at 1280×720 before propagating the style.
 - [x] Integrate the first object-first card redraw batch: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**.
 - [x] Correct the broad redraw integration after local quality review: 19 semantically matched card redraws now run at 224×137 source resolution with the existing approved 25-card atlas as fallback.
-- [ ] Produce trustworthy standalone redraw sources for the six remaining fallback cards: **ПЕПЕЛЬНЫЙ ПРИВАЛ**, **КОСТЯНАЯ ДАВКА**, **СЛОМАННАЯ КОРОНА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОШЛИНА**, **СТАВКА НА СМЕРТЬ**.
+- [x] Finish the six remaining fallback cards: five matching 224×137 v5 redraws plus the exact object-centric Broken Crown artifact art for **СЛОМАННАЯ КОРОНА**.
 
 
 ### Full visual redraw rollout
 
 - [x] First object-first card redraw batch is live: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **ШЕПЧУЩИЙ КОЛОДЕЦ**.
 - [x] Replace 19 active Act 1 card illustrations with correctly mapped near-display-resolution v4 redraws; preserve unique approved fallback art for the other six.
-- [ ] Finish the six remaining card redraws only from matching source art; never substitute unrelated generated images.
+- [x] Finish the six remaining card redraws without unrelated substitutions; all 25 active Act 1 table cards now resolve to current redraw/object-specific art.
 - [x] Replace Crypt and Gallows Volley with native 1280×720 v4 arena redraws while retaining validated HD Graveyard/Ossuary/Warden and the dedicated Bone Crush benchmark.
 - [ ] Continue any further arena replacement from native/high-resolution sources only. Thumbnail-scale full-screen arena upscaling is rejected.
 - [ ] Rebuild event/reward surfaces around the same limited Ink / Stone / Bone / Rust / Teal / Gold language while keeping all mutable values live.
-- [ ] Locally verify the corrected v4 cards and restored high-resolution arenas at 1280×720 before another broad visual rollout.
+- [x] Locally verify the corrected v4 cards and restored high-resolution arenas at 1280×720 before another broad visual rollout.
