@@ -3,6 +3,7 @@ extends Control
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const TARGET_PREVIEW_SCRIPT := preload("res://scripts/battle/target_preview.gd")
 
 const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1240, 465))
 const GALLOWS_VOLLEY_COMBAT_BOUNDS := Rect2(Vector2(0, 185), Vector2(1240, 255))
@@ -74,6 +75,7 @@ var side_objective_id := ""
 var side_objective_failed := false
 var first_enemy_death_seen := false
 var combat_elapsed := 0.0
+var target_preview: BattleTargetPreview
 
 func _ready() -> void:
 	if not RunState.has_chosen_protagonist():
@@ -133,7 +135,15 @@ func _ready() -> void:
 	intro_encounter.visible = false
 	_configure_side_objective()
 	_spawn_encounter()
+	_setup_target_preview()
 	_begin_preparation_phase()
+
+func _setup_target_preview() -> void:
+	target_preview = TARGET_PREVIEW_SCRIPT.new() as BattleTargetPreview
+	if target_preview == null:
+		return
+	units_layer.add_child(target_preview)
+
 
 func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_panel(bottom_hud_panel, MISDEAL_UI_KIT.BRONZE, false)
@@ -440,6 +450,8 @@ func _begin_preparation_phase() -> void:
 			unit.enable_placement_regions(placement_regions)
 
 	_select_tactical_order(tactical_order, false)
+	if target_preview != null:
+		target_preview.set_active(true)
 
 func _on_assault_order_pressed() -> void:
 	_select_tactical_order(TACTICAL_ORDER_ASSAULT)
@@ -684,6 +696,8 @@ func _on_fight_pressed() -> void:
 	combat_started = true
 	combat_live = false
 	combat_elapsed = 0.0
+	if target_preview != null:
+		target_preview.set_active(false)
 	fight_button.disabled = true
 	placement_hint.visible = false
 	_lock_tactical_orders()
@@ -928,6 +942,8 @@ func _on_last_deal_refuse_pressed() -> void:
 func _finish_battle(player_won: bool) -> void:
 	battle_finished = true
 	combat_live = false
+	if target_preview != null:
+		target_preview.set_active(false)
 	RunState.last_battle_won = player_won
 
 	for unit in units:
