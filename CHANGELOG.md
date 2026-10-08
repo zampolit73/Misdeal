@@ -57,6 +57,8 @@
 
 ### Changed
 
+- Integrated the approved ornate Fate Spread art direction as a dark blurred runtime underlay beneath the live Godot spread, adding candlelit table props, red ritual cloth and gothic material richness without baking run-specific cards or counters into the image.
+
 - Shortened the Fate Spread side holders, strengthened the central ritual hierarchy and made chapter styling escalate from restrained gold to ember/red in line with the approved reference.
 
 - The normal table progress marker is now a circular occult spread rather than a linear diamond strip, and resolved cards are now represented by the Fate Spread while the right-side discard counts rejected cards only.
