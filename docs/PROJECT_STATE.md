@@ -926,3 +926,16 @@ Godot 4.7.2 local validation exposed a parser failure when the newly committed v
 The v7 rollout now follows the already-proven battle-backdrop pattern: `scripts/ui/runtime_webp_texture.gd` reads the source file with `FileAccess`, decodes it with `Image.load_webp_from_buffer()`, caches the resulting `ImageTexture`, and assigns it to the live `TextureRect`.
 
 Direct v7 WebP resource references were removed from Class Select, shared Act Choice, Reward, Whispering Well and Run End. The art itself is unchanged; this is a loading-path fix only.
+
+
+## V8 event-art + dossier pass — 2026-10-08
+
+The next secondary visual package is now integrated.
+
+- **Торговец свечами / Candle Seller** gets a dedicated moonlit candle-market environment.
+- **Лавка могильщика / Gravedigger Shop** gets a dedicated graveyard-market environment.
+- **Кровавая книга / Blood Ledger** gets a dedicated gothic altar / forbidden ledger environment.
+- **Карта без лица / Faceless Card** gets a dedicated ritual chamber with the floating faceless card.
+- **Досье отряда / Squad Dossier** no longer enlarges 96×96 combat sprites. It now reuses the accepted 640×480 Knight / Ranger / Mage portraits from Class Select through the same runtime WebP path.
+
+All four event environments are native 1280×720 WebP sources and are loaded through the runtime decoder to avoid Godot import/preload timing failures. Event text, prices, choices and consequences remain live UI.

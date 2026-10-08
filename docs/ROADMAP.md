@@ -232,3 +232,10 @@ Do not prioritize these before the vertical slice works:
 
 - [x] Harden v7 WebP loading against Godot import/parser timing by replacing direct new-asset preloads/ext_resources with runtime FileAccess + Image decoding.
 - [ ] Confirm Class Select, Reward, Whispering Well, Curse Forge, Chained Prisoner, Black Altar and Run End all open cleanly after a fresh `git pull` and Godot restart.
+
+
+### V8 secondary event-art pass
+
+- [x] Reuse the accepted Class Select portraits in Squad Dossier instead of combat-sprite crops.
+- [x] Wire dedicated V8 environments for Candle Seller, Gravedigger Shop, Blood Ledger and Faceless Card.
+- [ ] Continue the remaining lower-priority generic Act 1 event screens after fresh screenshot review.

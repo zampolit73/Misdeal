@@ -1,18 +1,10 @@
 extends Control
 
-const UNIT_TILE_SIZE: float = 96.0
-const UNIT_SHEET_PARTS: Array[String] = [
-	"res://assets/pixel/units/combat_units_v3/part_00.txt",
-	"res://assets/pixel/units/combat_units_v3/part_01.txt",
-	"res://assets/pixel/units/combat_units_v3/part_02.txt",
-	"res://assets/pixel/units/combat_units_v3/part_03.txt",
-	"res://assets/pixel/units/combat_units_v3/part_04.txt",
-	"res://assets/pixel/units/combat_units_v3/part_05.txt",
-	"res://assets/pixel/units/combat_units_v3/part_06.txt",
-	"res://assets/pixel/units/combat_units_v3/part_07.txt",
-	"res://assets/pixel/units/combat_units_v3/part_08.txt",
-	"res://assets/pixel/units/combat_units_v3/part_09.txt",
-]
+const ROLE_PORTRAIT_PATHS := {
+	"knight": "res://assets/pixel/class_select/v7/knight.webp",
+	"ranger": "res://assets/pixel/class_select/v7/ranger.webp",
+	"mage": "res://assets/pixel/class_select/v7/mage.webp",
+}
 
 @onready var knight_button: Button = $Frame/KnightButton
 @onready var ranger_button: Button = $Frame/RangerButton
@@ -27,7 +19,6 @@ const UNIT_SHEET_PARTS: Array[String] = [
 @onready var common_label: Label = $Frame/CommonPanel/Common
 
 var current_role := "knight"
-var unit_sheet_texture: Texture2D
 
 func _ready() -> void:
 	if RunState.has_chosen_protagonist():
@@ -102,7 +93,9 @@ func _refresh_role_buttons() -> void:
 
 func _refresh_hero() -> void:
 	hero_name.text = _get_role_label(current_role).capitalize()
-	portrait.texture = _get_role_texture(current_role)
+	var portrait_path := String(ROLE_PORTRAIT_PATHS.get(current_role, ""))
+	if not portrait_path.is_empty():
+		portrait.call("load_webp_path", portrait_path, Vector2i(640, 480))
 	common_label.text = _build_common_text()
 
 	if not RunState.is_role_in_party(current_role):
@@ -351,51 +344,3 @@ func _get_role_color_hex(role: String) -> String:
 		_:
 			return "#e6d1b6"
 
-func _get_role_texture(role: String) -> Texture2D:
-	var tile := Vector2i(-1, -1)
-	match role:
-		"knight":
-			tile = Vector2i(0, 0)
-		"ranger":
-			tile = Vector2i(1, 0)
-		"mage":
-			tile = Vector2i(2, 0)
-		_:
-			return null
-
-	var sheet := _get_unit_sheet_texture()
-	if sheet == null:
-		return null
-
-	var atlas := AtlasTexture.new()
-	atlas.atlas = sheet
-	atlas.region = Rect2(
-		Vector2(float(tile.x) * UNIT_TILE_SIZE, float(tile.y) * UNIT_TILE_SIZE),
-		Vector2(UNIT_TILE_SIZE, UNIT_TILE_SIZE)
-	)
-	return atlas
-
-func _get_unit_sheet_texture() -> Texture2D:
-	if unit_sheet_texture != null:
-		return unit_sheet_texture
-
-	var encoded := ""
-	for part_path in UNIT_SHEET_PARTS:
-		if not FileAccess.file_exists(part_path):
-			push_error("Missing combat unit atlas part for squad status: %s" % part_path)
-			return null
-		encoded += FileAccess.get_file_as_string(part_path).strip_edges()
-
-	var bytes := Marshalls.base64_to_raw(encoded)
-	if bytes.is_empty():
-		push_error("Squad status could not decode combat atlas base64.")
-		return null
-
-	var image := Image.new()
-	var error := image.load_png_from_buffer(bytes)
-	if error != OK:
-		push_error("Squad status could not decode combat atlas PNG: %s" % error_string(error))
-		return null
-
-	unit_sheet_texture = ImageTexture.create_from_image(image)
-	return unit_sheet_texture

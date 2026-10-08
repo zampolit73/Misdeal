@@ -1373,3 +1373,15 @@ Use the shared `runtime_webp_texture.gd` loader instead:
 - keep the node, layout and gameplay state in normal Godot scenes/scripts.
 
 This matches the robust loading approach already used by authored battle backdrops and prevents new art from breaking project parsing after a Git pull.
+
+
+## D081 — Shared hero identity art and dedicated secondary event environments
+
+Date: 2026-10-08  
+Status: accepted
+
+Large non-combat hero presentations should reuse the dedicated Class Select portraits rather than scaling combat sprites. Squad Dossier therefore shares the same Knight / Ranger / Mage identity art as Class Select.
+
+Secondary Act 1 events that have a strong place/ritual identity may receive their own 1280×720 authored environment while continuing to use the shared live Act Choice UI. The first four are Candle Seller, Gravedigger Shop, Blood Ledger and Faceless Card.
+
+These WebPs follow D080 and use runtime decoding instead of direct preload/import-time texture dependencies.

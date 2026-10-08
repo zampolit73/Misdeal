@@ -4,6 +4,7 @@
 
 ### Added
 
+- Added dedicated V8 event environments for Candle Seller, Gravedigger Shop, Blood Ledger and Faceless Card.
 - Added dedicated v7 Class Select portraits for Knight, Ranger and Mage.
 - Added native 1280×720 v7 authored backdrops for Reward, Whispering Well, Curse Forge, Chained Prisoner, Black Altar and Run End.
 - Added the prepared v6 Wizard/table backdrop as a clean 1280×398 runtime WebP with no baked gameplay UI.
@@ -38,6 +39,8 @@
 
 ### Changed
 
+- Squad Dossier now reuses the dedicated Class Select Knight / Ranger / Mage portraits instead of enlarging the combat-unit atlas.
+- The four new V8 event environments are loaded through the runtime WebP decoder while all event UI/state remains live.
 - Class Select no longer enlarges 96×96 combat sprites as portraits.
 - Reward no longer uses the old generic table background.
 - Whispering Well and Run End no longer depend on their procedural environment renderers.

@@ -10,6 +10,10 @@ const EVENT_SCENE_ART_PATHS := {
 	"curse_forge": "res://assets/pixel/event/v7/curse_forge.webp",
 	"chained_prisoner": "res://assets/pixel/event/v7/chained_prisoner.webp",
 	"black_altar": "res://assets/pixel/event/v7/black_altar.webp",
+	"faceless_card": "res://assets/pixel/event/v8/faceless_card.webp",
+	"blood_ledger": "res://assets/pixel/event/v8/blood_ledger.webp",
+	"gravedigger_shop": "res://assets/pixel/event/v8/gravedigger_shop.webp",
+	"candle_seller": "res://assets/pixel/event/v8/candle_seller.webp",
 }
 
 @onready var title_label: Label = $Panel/Title
@@ -239,6 +243,24 @@ func _apply_event_layout() -> void:
 			feature_scene_art.size = Vector2(1280.0, 720.0)
 			feature_scene_art.modulate = Color(1.0, 0.92, 0.90, 0.78)
 			screen_visual.modulate = Color(1, 1, 1, 0.45)
+			event_hero_art.texture = CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
+			event_hero_art.visible = event_hero_art.texture != null
+			event_art_frame.visible = event_hero_art.visible
+			gold_chip.visible = true
+			state_chip.visible = true
+			_apply_generic_reference_layout()
+		"candle_seller", "gravedigger_shop", "blood_ledger", "faceless_card":
+			backdrop.modulate = Color(0.24, 0.20, 0.20, 0.18)
+			feature_scene_art.call(
+				"load_webp_path",
+				String(EVENT_SCENE_ART_PATHS[active_card.card_id]),
+				Vector2i(1280, 720)
+			)
+			feature_scene_art.visible = true
+			feature_scene_art.position = Vector2.ZERO
+			feature_scene_art.size = Vector2(1280.0, 720.0)
+			feature_scene_art.modulate = Color(1.0, 0.96, 0.92, 0.84)
+			screen_visual.modulate = Color(1, 1, 1, 0.30)
 			event_hero_art.texture = CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
 			event_hero_art.visible = event_hero_art.texture != null
 			event_art_frame.visible = event_hero_art.visible
