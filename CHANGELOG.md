@@ -140,6 +140,8 @@
 
 ### Fixed
 
+- Fixed Godot compile failures when a locally modified `project.godot` had not registered the new `SceneTransition` autoload: navigation now uses a resilient router that finds the singleton or creates the persistent transition node at runtime.
+
 - Eliminated the actual empty-scene interval behind the intermittent gray transition frame; incoming runtime art/layout now settles while the persistent veil remains opaque.
 
 - Fixed the brief gray viewport flash during scene changes (notably table → battle and event → table) by keeping a persistent dark veil over the viewport until the incoming scene is ready; the renderer clear color now matches the same near-black fallback.
