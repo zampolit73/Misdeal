@@ -94,4 +94,4 @@ func _finish_intro() -> void:
 	var tween := create_tween()
 	tween.tween_property(fade, "modulate:a", 1.0, 0.18)
 	await tween.finished
-	get_tree().change_scene_to_file("res://scenes/class_select/class_select.tscn")
+	SceneTransition.change_to("res://scenes/class_select/class_select.tscn")
