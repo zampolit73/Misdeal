@@ -6,6 +6,7 @@ const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
 const EVENT_POLISH_ART := preload("res://scripts/ui/event_polish_art.gd")
 const APPROVED_EVENT_CHOICE_ART := preload("res://scripts/ui/approved_event_choice_art.gd")
+const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const EVENT_SCENE_ART_PATHS := {
 	"curse_forge": "res://assets/pixel/event/v7/curse_forge.webp",
 	"chained_prisoner": "res://assets/pixel/event/v7/chained_prisoner.webp",
@@ -75,12 +76,30 @@ func _ready() -> void:
 	wizard_line.text = active_card.wizard_line
 	_refresh_run_labels()
 	_configure_card()
+	_apply_ui_kit()
 	_apply_approved_choice_art()
 	_apply_event_theme()
 	_apply_event_layout()
 	_apply_choice_semantic_styles()
 	_connect_choice_feedback()
 	_animate_screen_in()
+
+func _apply_ui_kit() -> void:
+	var accent: Color = _get_event_accent()
+	MISDEAL_UI_KIT.apply_panel(panel, accent, true)
+	MISDEAL_UI_KIT.apply_panel(feature_header, accent, false)
+	MISDEAL_UI_KIT.apply_panel(event_art_frame, accent, false)
+	MISDEAL_UI_KIT.apply_chip(gold_chip, MISDEAL_UI_KIT.GOLD)
+	MISDEAL_UI_KIT.apply_chip(state_chip, accent)
+	MISDEAL_UI_KIT.apply_title(title_label, MISDEAL_UI_KIT.GOLD)
+	MISDEAL_UI_KIT.apply_subtitle(wizard_line, accent)
+
+	for button in [choice_a, choice_b, choice_c]:
+		MISDEAL_UI_KIT.apply_card_button(button, accent)
+
+	MISDEAL_UI_KIT.apply_action_button(leave_button, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_UI_KIT.apply_action_button(continue_button, MISDEAL_UI_KIT.GOLD, true)
+
 
 func _apply_approved_choice_art() -> void:
 	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
