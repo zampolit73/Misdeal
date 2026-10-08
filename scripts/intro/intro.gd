@@ -1,5 +1,7 @@
 extends Control
 
+const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+
 const FRAME_PATHS: Array[String] = [
 	"res://assets/pixel/intro/frame_01.webp",
 	"res://assets/pixel/intro/frame_02.webp",
@@ -94,4 +96,4 @@ func _finish_intro() -> void:
 	var tween := create_tween()
 	tween.tween_property(fade, "modulate:a", 1.0, 0.18)
 	await tween.finished
-	SceneTransition.change_to("res://scenes/class_select/class_select.tscn")
+	SCENE_ROUTER.change_to(self, "res://scenes/class_select/class_select.tscn")
