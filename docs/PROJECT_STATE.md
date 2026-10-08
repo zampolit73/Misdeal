@@ -2,6 +2,16 @@
 
 Last updated: 2026-10-08
 
+## Fate Spread physical-table + memory pass — 2026-10-08
+
+The Fate Spread now gains the three follow-up layers requested after local screenshot review:
+
+1. **Physical table presence.** The central spread area sits over a restrained procedural red-black table surface with worn grain, scratches, ritual staining and a soft vignette. It stays intentionally quiet beneath the existing seal/cards instead of turning the inspection view into another full-screen illustration.
+2. **Run-choice memory.** `RunState` now records the chosen/rejected pair for each resolved pre-boss card. Hovering a completed Fate Spread card enlarges it and opens a compact memory strip showing the chronological slot, chosen card and the alternative rejected at that decision. Existing in-progress runs have a compatibility fallback based on resolved/rejected order.
+3. **Act milestones.** IV, VIII and XII are now one-shot ritual beats. After the table unlocks following those thresholds, the Fate Spread automatically opens once, plays a dedicated low ritual sound and pulses/shakes the central seal/XIII. The shown milestone is persisted in `RunState` so reopening the spread does not replay it.
+
+The existing XIII chain rules remain: two chains early, one chain from VIII onward, awakened/unsealed presentation when the boss becomes due.
+
 ## Fate Spread reference-driven polish — 2026-10-08
 
 A second visual pass now follows the approved Fate Spread reference more closely instead of treating the screen as a plain radial menu. The live spread has a dedicated occult seal layer beneath I–XII, a dim fate-thread connecting the twelve positions, brighter completed path segments, chapter gates after IV/VIII/XII, inward ritual spokes and a central sigil whose blood/ember intensity increases with run progress.
