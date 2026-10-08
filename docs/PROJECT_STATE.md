@@ -2,6 +2,10 @@
 
 Last updated: 2026-10-08
 
+## Fate Spread local screenshot correction — 2026-10-08
+
+The first local 1280×720 screenshots confirmed the progression concept but exposed a presentation defect: the live two-card offer and the table access button could render above the inspection view, obscuring the historical ring and XIII. The inspection overlay now uses a valid top CanvasItem z-index, explicitly hides the live deal/progress access while open, restores them on close, and uses smaller historical-card slots with a wider ring so the central boss card reads as the focal point.
+
 ## Fate Spread Act progression — 2026-10-08
 
 The user-approved **РАСКЛАД СУДЬБЫ** progression concept is now implemented as live Godot UI rather than a baked screenshot.
