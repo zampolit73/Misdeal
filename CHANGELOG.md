@@ -4,6 +4,8 @@
 
 ### Added
 
+- Added live pre-battle first-target intent arrows: blue for hero focus under the selected tactical order, red for enemy focus under current placement.
+
 - Added a persistent `SceneTransition` autoload veil that survives scene replacement and covers runtime texture setup between screens.
 
 - Added `scripts/ui/misdeal_ui_kit.gd`, a shared runtime gothic/pixel chrome layer with reusable panel, card, action-button, chip, corner-mark and title treatments.
@@ -46,6 +48,8 @@
 - Added repository-safe runtime-decoded WebP atlases for table-card art and development/reward art under `assets/pixel/ui/approved_card_art/`.
 
 ### Changed
+
+- Scene transitions now preload the incoming PackedScene while the outgoing scene remains alive, then manually swap scenes under a fully rendered veil instead of calling `change_scene_to_file()` during the blackout.
 
 - Replaced the compressed low-quality main-menu splash with the approved restrained main-menu redraw, stored as a native 1280×720 runtime WebP.
 - Routed main/intro/class-select/table/event/battle/reward/run-end scene changes and battle reloads through the shared transition veil.
@@ -133,6 +137,8 @@
 - Pre-battle hero dragging confirmed working locally.
 
 ### Fixed
+
+- Eliminated the actual empty-scene interval behind the intermittent gray transition frame; incoming runtime art/layout now settles while the persistent veil remains opaque.
 
 - Fixed the brief gray viewport flash during scene changes (notably table → battle and event → table) by keeping a persistent dark veil over the viewport until the incoming scene is ready; the renderer clear color now matches the same near-black fallback.
 
