@@ -2,6 +2,7 @@ extends Control
 
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const APPROVED_EVENT_CHOICE_ART := preload("res://scripts/ui/approved_event_choice_art.gd")
+const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 
 @onready var wizard_line: Label = $WizardLine
 @onready var description_label: Label = $Description
@@ -20,6 +21,7 @@ const APPROVED_EVENT_CHOICE_ART := preload("res://scripts/ui/approved_event_choi
 @onready var choices: HBoxContainer = $Choices
 
 func _ready() -> void:
+	_apply_ui_kit()
 	accept_button.pressed.connect(_on_accept_gift)
 	pay_button.pressed.connect(_on_pay_coin)
 	leave_button.pressed.connect(_on_leave)
@@ -33,6 +35,17 @@ func _ready() -> void:
 	_refresh_choice_text()
 	_apply_choice_art()
 	_animate_screen_in()
+
+func _apply_ui_kit() -> void:
+	MISDEAL_UI_KIT.apply_panel($HudPanel, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_UI_KIT.apply_panel(header_panel, MISDEAL_UI_KIT.BRONZE, true)
+	MISDEAL_UI_KIT.apply_panel($ResultPanel, MISDEAL_UI_KIT.GOLD, false)
+	MISDEAL_UI_KIT.apply_title($Title, MISDEAL_UI_KIT.GOLD)
+	MISDEAL_UI_KIT.apply_subtitle(wizard_line, MISDEAL_UI_KIT.STEEL)
+	MISDEAL_UI_KIT.apply_card_button(accept_button, MISDEAL_UI_KIT.EMBER)
+	MISDEAL_UI_KIT.apply_card_button(pay_button, MISDEAL_UI_KIT.GOLD)
+	MISDEAL_UI_KIT.apply_card_button(leave_button, MISDEAL_UI_KIT.STEEL)
+
 
 func _refresh_choice_text() -> void:
 	accept_warning.visible = false
