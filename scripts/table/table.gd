@@ -1,5 +1,7 @@
 extends Control
 
+const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+
 const SQUAD_STATUS_SCENE := preload("res://scenes/table/squad_status.tscn")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
@@ -49,7 +51,7 @@ var card_motion_tweens: Dictionary = {}
 
 func _ready() -> void:
 	if RunState.is_run_complete():
-		SceneTransition.change_to("res://scenes/run_end/run_end.tscn")
+		SCENE_ROUTER.change_to(self, "res://scenes/run_end/run_end.tscn")
 		return
 
 	offer_buttons = [offer_a_button, offer_b_button]
@@ -737,9 +739,9 @@ func _choose_card(card: RunCardData) -> void:
 
 	match card.resolution_type:
 		"combat":
-			SceneTransition.change_to("res://scenes/battle/battle.tscn")
+			SCENE_ROUTER.change_to(self, "res://scenes/battle/battle.tscn")
 		"event", "prototype":
-			SceneTransition.change_to(card.target_path)
+			SCENE_ROUTER.change_to(self, card.target_path)
 		_:
 			push_warning("Unknown run card resolution type: %s" % card.resolution_type)
 			selection_locked = false
