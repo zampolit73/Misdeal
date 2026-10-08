@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/fate_spread_overlay.gd" id="1_script"]
+[ext_resource type="Script" path="res://scripts/table/fate_spread_seal_visual.gd" id="2_seal"]
 
 [sub_resource type="StyleBoxFlat" id="OuterPanel"]
 bg_color = Color(0.012, 0.007, 0.012, 0.985)
@@ -244,6 +245,16 @@ offset_top = 132.0
 offset_right = 1014.0
 offset_bottom = 652.0
 mouse_filter = 2
+
+[node name="SealVisual" type="Control" parent="Frame/SpreadArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_seal")
 
 [node name="Close" type="Button" parent="Frame"]
 offset_left = 1082.0
