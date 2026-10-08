@@ -912,7 +912,7 @@ func _on_last_deal_accept_pressed() -> void:
 		last_deal_accept_button.disabled = false
 		last_deal_refuse_button.disabled = false
 		return
-	get_tree().reload_current_scene()
+	SceneTransition.reload_current()
 
 func _on_last_deal_refuse_pressed() -> void:
 	last_deal_accept_button.disabled = true
@@ -1000,7 +1000,7 @@ func _on_restart_pressed() -> void:
 	# Free combat retries are intentionally disabled. Kept only as a legacy signal target.
 	if battle_finished and not RunState.last_battle_won:
 		return
-	get_tree().reload_current_scene()
+	SceneTransition.reload_current()
 
 
 func _on_continue_pressed() -> void:
