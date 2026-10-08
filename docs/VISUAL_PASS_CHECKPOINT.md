@@ -83,3 +83,16 @@ Runtime now overrides the old atlas art for:
 - **ШЕПЧУЩИЙ КОЛОДЕЦ**.
 
 The dedicated card sources are 224×137 WebP images reconstructed from repository text assets. Continue replacing the remaining card/event art in reviewed batches rather than regenerating everything blindly.
+
+
+## Production redraw batch integrated
+
+The broad approved visual batch is now wired into runtime:
+
+- 20 active Act 1 cards use the new v3 low-resolution authored atlas.
+- Five cards remain deliberate fallbacks until standalone redraws exist: **КОСТИ ДОЛЖНИКА**, **СЛОМАННАЯ КОРОНА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОДАТЬ**, **СТАВКА СМЕРТИ**.
+- Crypt, Graveyard, Ossuary and Warden arena families use the v3 2×2 redraw atlas.
+- Bone Crush remains the dedicated benchmark arena.
+- Full-screen generated UI boards are reference material, not baked runtime screens; live gameplay text and controls remain native Godot UI.
+
+The v3 atlases are split base64 WebP text assets decoded at runtime. Card source cells are 112×69; arena source cells are 320×180. Both are intentionally presented with nearest filtering.

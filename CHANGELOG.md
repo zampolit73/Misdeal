@@ -4,6 +4,8 @@
 
 ### Added
 
+- Integrated the approved 20-card production redraw atlas for the Wizard table and shared event-art pipeline, with deliberately low-resolution 112×69 cells scaled nearest for a stronger authored pixel look.
+- Integrated a new 2×2 production arena redraw atlas for the Crypt, Graveyard, Ossuary and Warden arena families at 320×180 source resolution; Bone Crush keeps its dedicated benchmark backdrop.
 - Added the first object-first card redraw batch for **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**, loaded as dedicated runtime-decoded WebP overrides instead of old atlas cells.
 
 - Saved a dedicated visual-pass checkpoint (`docs/VISUAL_PASS_CHECKPOINT.md`) so a fresh chat can continue the anti-AI production-art pass from GitHub without reconstructing the conversation.
@@ -33,6 +35,8 @@
 
 ### Changed
 
+- Production-redraw cards and shared arenas now prefer the new split runtime-decoded WebP atlases before falling back to the previous approved art sources. Five cards without a standalone redraw remain on the existing atlas instead of receiving unrelated imagery.
+- Generated full-screen UI concept boards are treated as layout/style references only; live Godot text, prices, state and interaction remain authoritative.
 - Wired the first object-first card redraw batch into live table rendering for **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**.
 - Reduced card-art grade strength from 0.58 to 0.30 to preserve authored dark midtones.
 

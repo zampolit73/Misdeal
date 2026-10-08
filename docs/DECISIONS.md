@@ -1285,3 +1285,19 @@ The first card batch uses an **object-first** rule: one dominant readable subjec
 New authored images may bypass the corrective card grade when necessary, or use a reduced grade strength. The grade is a consistency layer, not a way to crush already-authored art into the old generated look.
 
 Gameplay rules and mutable UI stay live in Godot while the visual library is replaced.
+
+
+## D075 — Production redraw atlases stay low-resolution and keep UI live
+
+Date: 2026-10-08  
+Status: accepted
+
+The approved redraw batch is integrated as intentionally low-resolution runtime-decoded WebP atlases rather than as full-screen generated screenshots.
+
+Table/event illustrations use 112×69 source cells and nearest-neighbor presentation. The four shared non-Bone-Crush arena families use 320×180 source cells and nearest-neighbor scaling to 1280×720. Bone Crush keeps its dedicated authored source because it is the benchmark encounter, not a generic arena-family replacement.
+
+The full-screen generated UI boards are visual/composition references. Baked labels, prices, stats, buttons, health values and other mutable state must not become production screenshots. Those elements remain live Godot controls.
+
+Cards without an approved standalone redraw fall back to the previous approved atlas until their source is replaced. This is preferable to assigning unrelated art merely to claim complete coverage.
+
+The atlas bytes are split into repository-safe base64 text parts and decoded with Image.load_webp_from_buffer(), matching the loading strategy already validated elsewhere in the project.

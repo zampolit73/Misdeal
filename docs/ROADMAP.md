@@ -201,12 +201,14 @@ Do not prioritize these before the vertical slice works:
 - [ ] Retune environment/card grade shadows so wager/card images keep readable midtones instead of collapsing into black.
 - [ ] Review the Bone Crush redraw locally at 1280×720 before propagating the style.
 - [x] Integrate the first object-first card redraw batch: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ**.
-- [ ] Continue the same authored low-detail redraw language across the remaining table cards and event illustrations.
+- [x] Integrate the approved 20-card visual-redraw atlas across the table/event art pipeline.
+- [ ] Redraw the five remaining fallback cards: **КОСТИ ДОЛЖНИКА**, **СЛОМАННАЯ КОРОНА**, **ТОРГОВЕЦ СВЕЧАМИ**, **КОСТЯНАЯ ПОДАТЬ**, **СТАВКА СМЕРТИ**.
 
 
 ### Full visual redraw rollout
 
 - [x] First object-first card redraw batch is live: **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА**, **ШЕПЧУЩИЙ КОЛОДЕЦ**.
-- [ ] Replace the remaining Act 1 card illustrations in the same authored low-detail language.
-- [ ] Replace the remaining arena sources that still read as generated rather than authored.
-- [ ] Rebuild event/reward surfaces around the same limited Ink / Stone / Bone / Rust / Teal / Gold language while keeping all mutable values live.
+- [x] Integrate the approved 20-card visual-redraw atlas in the same authored low-detail language.
+- [ ] Finish the five active Act 1 cards that still use the previous atlas.
+- [x] Replace the Crypt / Graveyard / Ossuary / Warden arena families with the approved low-resolution redraw atlas; keep Bone Crush on its dedicated benchmark source.
+- [ ] Continue live-UI polish against the approved UI concept boards while keeping mutable values/buttons as Godot controls.

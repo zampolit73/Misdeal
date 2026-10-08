@@ -847,3 +847,17 @@ This is the start of the user-approved broader visual redraw. Mechanics, prices,
 A runtime integration mistake in the first redraw batch was corrected. The dedicated assets for **ГРЕМУЧИЙ МОСТ**, **КОШЕЛЬ МЕРТВЕЦА** and **ШЕПЧУЩИЙ КОЛОДЕЦ** existed in the repository but CardArtCatalog still returned the old atlas cells. CardArtCatalog now checks dedicated overrides first and decodes the repository text assets into runtime WebP textures.
 
 The Bone Crush atmosphere script also failed to parse in Godot 4.7 because loop values from an untyped array made x/y inference ambiguous. The band array and marker coordinates are now explicitly typed.
+
+
+## Visual redraw production batch — 2026-10-08
+
+The approved redraw library is integrated as a production runtime batch.
+
+- 20 of the 25 active Act 1 table cards now use the new authored low-resolution atlas: Bone Patrol, Graveyard Ambush, Gallows Volley, Whispering Well, Ash Rest, Gravedigger Shop, Curse Forge, Grave Bell, Black Altar, Chained Prisoner, Wizard Tithe, Bone Crush, Crypt Guard, Faceless Card, Blood Ledger, Last Camp, Ossuary Gate, Rattling Bridge, Lost Purse and Bone Warden.
+- Source cells are intentionally 112×69 and are presented with nearest filtering at live card size.
+- Debtor Bones, Broken Crown, Candle Seller, Bone Tax and Death Wager deliberately remain on the previous approved atlas until standalone redraws exist.
+- Crypt, Graveyard, Ossuary and Warden battle families now use a 2×2 authored redraw atlas with 320×180 source cells and nearest presentation at 1280×720.
+- Bone Crush remains on its dedicated authored benchmark backdrop.
+- Generated full-screen UI boards remain composition/style references rather than baked runtime screenshots. Mutable text, prices, stats and controls stay live Godot UI.
+
+The v3 atlases are stored as split base64 WebP text parts and decoded at runtime, following the repository-safe loading path already proven by prior authored assets.
