@@ -11,6 +11,20 @@ const FATE_HOLD_DELAY := 2
 const WIZARD_MARK_GOLD_REWARD := 20
 const WIZARD_MARK_ENEMY_DAMAGE_BONUS := 0.15
 
+# Party-size pressure compensation. Trio is the encounter-authoring baseline.
+# Solo/duo keep their hero-side bonuses, but enemy durability/damage also step
+# down so the same authored encounter remains viable without per-fight forks.
+const SOLO_PARTY_HP_MULTIPLIER := 2.20
+const SOLO_PARTY_DAMAGE_MULTIPLIER := 1.90
+const SOLO_PARTY_ATTACK_INTERVAL_MULTIPLIER := 0.80
+const SOLO_PARTY_MOVE_SPEED_MULTIPLIER := 1.10
+const DUO_PARTY_HP_MULTIPLIER := 1.20
+const DUO_PARTY_DAMAGE_MULTIPLIER := 1.15
+const SOLO_ENEMY_HP_MULTIPLIER := 0.82
+const SOLO_ENEMY_DAMAGE_MULTIPLIER := 0.80
+const DUO_ENEMY_HP_MULTIPLIER := 0.92
+const DUO_ENEMY_DAMAGE_MULTIPLIER := 0.90
+
 const ARTIFACT_PATHS := {
 	"dead_mans_shield": "res://resources/artifacts/dead_mans_shield.tres",
 	"blind_quiver": "res://resources/artifacts/blind_quiver.tres",
@@ -253,8 +267,13 @@ func reset_run() -> void:
 	for card_id in ACT1_CARD_IDS:
 		remaining_card_ids.append(card_id)
 
-	for _tier in range(3):
-		forced_combat_slots.append(randi_range(0, 2))
+	for tier in range(3):
+		# The opening beat always gives the player one non-combat decision
+		# before Act 1 forces its first fight. Later tiers may open with combat.
+		if tier == 0:
+			forced_combat_slots.append(randi_range(1, 2))
+		else:
+			forced_combat_slots.append(randi_range(0, 2))
 
 	_schedule_wizard_meddling()
 	_schedule_wizard_wagers()
@@ -441,41 +460,59 @@ func has_blood_ledger_knowledge() -> bool:
 func get_party_hp_multiplier() -> float:
 	match get_party_size():
 		1:
-			return 2.0
+			return SOLO_PARTY_HP_MULTIPLIER
 		2:
-			return 1.20
+			return DUO_PARTY_HP_MULTIPLIER
 		_:
 			return 1.0
 
 func get_party_damage_multiplier() -> float:
 	match get_party_size():
 		1:
-			return 1.80
+			return SOLO_PARTY_DAMAGE_MULTIPLIER
 		2:
-			return 1.15
+			return DUO_PARTY_DAMAGE_MULTIPLIER
 		_:
 			return 1.0
 
 func get_party_attack_interval_multiplier() -> float:
 	match get_party_size():
 		1:
-			return 0.80
+			return SOLO_PARTY_ATTACK_INTERVAL_MULTIPLIER
 		_:
 			return 1.0
 
 func get_party_move_speed_multiplier() -> float:
 	match get_party_size():
 		1:
-			return 1.10
+			return SOLO_PARTY_MOVE_SPEED_MULTIPLIER
+		_:
+			return 1.0
+
+func get_enemy_hp_multiplier() -> float:
+	match get_party_size():
+		1:
+			return SOLO_ENEMY_HP_MULTIPLIER
+		2:
+			return DUO_ENEMY_HP_MULTIPLIER
+		_:
+			return 1.0
+
+func get_enemy_base_damage_multiplier() -> float:
+	match get_party_size():
+		1:
+			return SOLO_ENEMY_DAMAGE_MULTIPLIER
+		2:
+			return DUO_ENEMY_DAMAGE_MULTIPLIER
 		_:
 			return 1.0
 
 func get_party_strength_text() -> String:
 	match get_party_size():
 		1:
-			return "ОДИНОЧКА: HP x2 • УРОН x1.8 • АТАКИ x1.25 • СКОРОСТЬ x1.10"
+			return "ОДИНОЧКА: HP x2.2 • УРОН x1.9 • АТАКИ x1.25 • ВРАГИ: -18% HP / -20% УРОН"
 		2:
-			return "МАЛЫЙ ОТРЯД: +20% HP, +15% урона"
+			return "МАЛЫЙ ОТРЯД: +20% HP • +15% УРОН • ВРАГИ: -8% HP / -10% УРОН"
 		_:
 			return ""
 
@@ -1427,12 +1464,12 @@ func activate_wizard_debt() -> void:
 
 
 func get_enemy_damage_multiplier() -> float:
-	var multiplier := 1.0
+	var danger_multiplier := 1.0
 	if wizard_debt_active:
-		multiplier += 0.25
+		danger_multiplier += 0.25
 	if wizard_mark_danger_active:
-		multiplier += WIZARD_MARK_ENEMY_DAMAGE_BONUS
-	return multiplier
+		danger_multiplier += WIZARD_MARK_ENEMY_DAMAGE_BONUS
+	return get_enemy_base_damage_multiplier() * danger_multiplier
 
 func get_reward_multiplier() -> int:
 	return 2 if wizard_debt_active else 1
