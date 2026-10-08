@@ -276,3 +276,6 @@ Do not prioritize these before the vertical slice works:
 
 - [x] Bring Fate Spread closer to the approved reference with a live occult seal, fate-thread path, chapter gates, progressive XIII chains and stronger center hierarchy.
 - [ ] Verify the reference-driven Fate Spread at 0/4/8/12 progress and confirm XIII chain break/reveal timing reads clearly at 1280×720.
+
+- [x] Add physical table texture under the Fate Spread, hoverable chosen/rejected decision memory, and one-shot ritual reveals at IV/VIII/XII.
+- [ ] Locally verify milestone auto-open timing after card 4/8/12 and hover-memory readability without blocking `R`/Esc close input.
