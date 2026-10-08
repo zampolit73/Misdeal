@@ -20,10 +20,10 @@ func _ready() -> void:
 	_veil.name = "SceneVeil"
 	_veil.color = VEIL_COLOR
 	_veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(_veil)
 	_veil.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_veil.modulate.a = 0.0
 	_veil.visible = false
-	add_child(_veil)
 
 
 func change_to(scene_path: String) -> void:
