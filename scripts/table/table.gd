@@ -7,11 +7,11 @@ const FATE_SPREAD_SCENE := preload("res://scenes/table/fate_spread_overlay.tscn"
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 
-const LEFT_CARD_POSITION := Vector2(382.0, 332.0)
-const RIGHT_CARD_POSITION := Vector2(658.0, 332.0)
-const SINGLE_CARD_POSITION := Vector2(520.0, 332.0)
-const DEAL_SOURCE_POSITION := Vector2(61.0, 309.0)
-const DISCARD_TARGET_POSITION := Vector2(972.0, 313.0)
+const LEFT_CARD_POSITION := Vector2(382.0, 350.0)
+const RIGHT_CARD_POSITION := Vector2(658.0, 350.0)
+const SINGLE_CARD_POSITION := Vector2(520.0, 350.0)
+const DEAL_SOURCE_POSITION := Vector2(92.0, 430.0)
+const DISCARD_TARGET_POSITION := Vector2(948.0, 430.0)
 const LEFT_CARD_ROTATION := -0.045
 const RIGHT_CARD_ROTATION := 0.045
 
@@ -156,7 +156,7 @@ func _on_fate_spread_closed() -> void:
 	fate_spread_overlay = null
 	cards_root.visible = true
 	fate_spread_button.visible = true
-	spread_progress_label.visible = true
+	spread_progress_label.visible = false
 
 
 func _maybe_show_fate_milestone() -> void:
@@ -418,6 +418,7 @@ func _update_spread_ui() -> void:
 		spread_progress_label.text = "XIII • ПРИГОВОР"
 	else:
 		spread_progress_label.text = "ДО XIII • %02d" % remaining_to_boss
+	spread_progress_label.visible = false
 
 	if table_spread_visual != null and table_spread_visual.has_method("refresh"):
 		table_spread_visual.call("refresh")
