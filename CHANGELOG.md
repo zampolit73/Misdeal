@@ -57,6 +57,9 @@
 
 ### Changed
 
+- Replaced the Wizard-table baked face-up offer exposure with permanent neutral physical card backs beneath the live offer layer. Two-card deals cover them; single-card/retry states now reveal logical face-down cards instead of old sample events or dark masks.
+- Fate Spread empty Hold now shows the same physical card back with no dark title plate, while the Wizard discard hides completely when empty and uses a card-back-backed live top card aligned to the painted stack when non-empty.
+
 - Replaced the oversized Wizard-table baked-card mask with two narrow cloth-toned cleanup patches that appear only for single-card offers; normal two-card deals no longer sit over a dark oval "hole".
 - Re-seated the Fate Spread Wizard-discard live card by shrinking it, lowering it and matching the painted stack angle more closely.
 
