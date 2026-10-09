@@ -65,6 +65,7 @@ Battle runtime mapping lives in `scripts/battle/authored_backdrop.gd`.
 - The full approved plate is the runtime visual foundation; run-specific cards, counts, Hold state, Wizard text and buttons remain live Godot UI aligned over it.
 - Detailed run progress is not duplicated here; `РАСКЛАД СУДЬБЫ` owns the full I–XIII progression view.
 - Important: authored table art bypasses the old heavy environment/card grade.
+- Local status: exact-art integration is committed; first post-integration screenshot is still pending. Future work should be pixel-level alignment/masking only unless the user changes direction.
 
 ### V7 high-visibility screens
 
