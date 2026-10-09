@@ -4,12 +4,27 @@ const CARD_BACK_FILL := Color(0.052, 0.020, 0.026, 0.94)
 const CARD_BACK_BORDER := Color(0.48, 0.18, 0.12, 0.72)
 const CARD_BACK_INNER := Color(0.25, 0.075, 0.065, 0.56)
 
+var discard_pulse := 0.0:
+	set(value):
+		discard_pulse = value
+		queue_redraw()
+
+var discard_pulse_tween: Tween
+
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	queue_redraw()
 
 func refresh() -> void:
 	queue_redraw()
+
+
+func pulse_discard() -> void:
+	if discard_pulse_tween != null and discard_pulse_tween.is_valid():
+		discard_pulse_tween.kill()
+	discard_pulse = 1.0
+	discard_pulse_tween = create_tween()
+	discard_pulse_tween.tween_property(self, "discard_pulse", 0.0, 0.24).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func _draw() -> void:
 	_draw_deck()
@@ -37,7 +52,7 @@ func _draw_deck() -> void:
 
 func _draw_discard() -> void:
 	var discarded := RunState.rejected_card_ids.size()
-	var base_rect := Rect2(1059.0, 438.0, 84.0, 122.0)
+	var base_rect := Rect2(1059.0, 438.0, 84.0, 122.0).grow(discard_pulse * 3.0)
 
 	if discarded <= 0:
 		_draw_empty_card_place(base_rect)
@@ -49,7 +64,7 @@ func _draw_discard() -> void:
 		_draw_card_back(
 			Rect2(base_rect.position + offset, base_rect.size),
 			deg_to_rad(-5.0 + float(index) * 3.0),
-			0.58 + float(index) * 0.10
+			0.58 + float(index) * 0.10 + discard_pulse * 0.08
 		)
 
 func _draw_empty_card_place(rect: Rect2) -> void:
