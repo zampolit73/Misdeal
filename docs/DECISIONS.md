@@ -1647,7 +1647,7 @@ Status: accepted by user, implemented
 
 The selected five-event mockup is now the visual benchmark for event choice cards. Production uses cropped action-first illustrations from that approved sheet rather than duplicating the large event scene or using schematic vector placeholders.
 
-For card-scale clarity and a less AI-like result, canonical mapped cells are intentionally reduced to 192×80 and displayed with nearest filtering. Large silhouettes, one dominant action and restrained detail are preferred over high-frequency generated ornament.
+The approved sheet established the composition benchmark: large silhouettes, one dominant action and restrained detail are preferred over high-frequency generated ornament. The original 192×80/nearest presentation detail was later superseded by D098, which prefers native 384×160 approved cells whenever available and uses the compact sheet only where necessary.
 
 The approved sheet is mapped only where its imagery remains truthful to live mechanics:
 - Rattling Bridge recruitment;
