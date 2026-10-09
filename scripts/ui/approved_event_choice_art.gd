@@ -91,8 +91,9 @@ static func _get_rattling_bridge_texture() -> Texture2D:
 
 
 static func get_whispering_well_texture(index: int) -> Texture2D:
-	# The legacy approved atlas contains the same Well actions at native 384x160.
-	return _get_legacy_cell(index)
+	# Dedicated Well screen uses the approved sheet path because it is packed as
+	# text parts and has proven more reliable across local/editor runs.
+	return _get_approved_cell(ROW_WHISPERING_WELL, index)
 
 
 static func get_chained_prisoner_recruitment_texture(index: int) -> Texture2D:
