@@ -15,8 +15,10 @@ const APPROVED_SHEET_PARTS: Array[String] = [
 	"res://assets/pixel/event/choice/approved_choice_sheet_v2/part_03.txt",
 	"res://assets/pixel/event/choice/approved_choice_sheet_v2/part_04.txt",
 ]
-const APPROVED_CELL_SIZE := Vector2i(192, 80)
-const APPROVED_SHEET_SIZE := Vector2i(576, 320)
+const APPROVED_SOURCE_CELL_SIZE := Vector2i(192, 80)
+const APPROVED_SOURCE_SHEET_SIZE := Vector2i(576, 320)
+const APPROVED_CELL_SIZE := Vector2i(384, 160)
+const APPROVED_SHEET_SIZE := Vector2i(1152, 640)
 const APPROVED_COLUMNS := 3
 
 const ROW_RATTLING_BRIDGE := 0
