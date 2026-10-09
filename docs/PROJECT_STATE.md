@@ -2,6 +2,16 @@
 
 Last updated: 2026-10-09
 
+## Fate Spread final visual polish — 2026-10-09
+
+The latest screenshot is now very close to the approved reference. Final polish focused only on UI elements that still read too much like HUD:
+
+- the live future replacement card (notably XII) no longer shows a footer/title strip; it renders as a plain dark physical card-back with subdued border, matching the reference's future slots;
+- the run-history hover memory is no longer a wide fixed bar across the bottom of the screen. It is now a compact floating tooltip positioned beside the cursor and clamped to the viewport;
+- empty Hold/Discard card masks were softened from pure black to a dark leather/burgundy tone so the ornate holders read as physical objects rather than empty UI rectangles.
+
+No ring geometry, slot positions or reference composition were changed.
+
 ## Fate Spread screenshot alignment pass — 2026-10-09
 
 The latest local screenshot confirmed that the approved reference composition is now working, with only three alignment/state issues remaining. They were corrected without changing the ring geometry:
