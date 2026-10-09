@@ -287,3 +287,6 @@ Do not prioritize these before the vertical slice works:
 
 - [x] Rebuild `РАСКЛАД СУДЬБЫ` around the user-approved full reference plate, with live cards/masks aligned to its physical holders and ring.
 - [ ] Local 1280×720 check: verify all I–XII live cards fully cover the baked concept cards, Hold/Discard masks hide stale concept state, and title/count masks do not expose duplicate text.
+
+- [x] Rebuild the normal Wizard/card-selection screen around the approved Variant C oval ritual table instead of a rectangular lower UI panel.
+- [ ] Locally verify Variant C at 1280×720: Wizard hands must remain unobscured, both offer cards/hold buttons must sit naturally on the cloth, and deck/discard stacks must align inside the physical side holders.
