@@ -58,6 +58,7 @@
 ### Changed
 
 - Expanded semantic mini-choice art across the remaining high-visibility Act 1 duplicate-thumbnail cases. Lost Purse, Debtor Bones, Wizard Tithe, Blood Ledger, Bone Tax, Ash Rest recruitment and Last Camp recruitment now show action-specific mini-art instead of three copies of the event illustration.
+- Faceless Card now uses occult-card art for the unknown reveal and the actual offered upgrade art for the paid fate route; only the burn option keeps the event illustration until a truthful burn-card mini-art exists.
 - Reused the approved action vocabulary deliberately: coins/payment, greed bag, body search, occult gamble, blood cost, broken chains, rescue and walk-away now act as consistent visual verbs across events. Role-development screens continue to show the actual offered upgrade art, and Curse Forge continues to show the actual relics.
 - Restored native 384×160 sources wherever they already exist: Whispering Well now reads from the original approved 1152×320 choice atlas, Chained Prisoner recruitment mixes the native chain/loot cells with the native bridge leave cell, and Black Altar payment uses the native coin cell. Only Black Altar blood/offering still require the compact approved sheet.
 
