@@ -247,13 +247,14 @@ text = "0 КАРТ"
 horizontal_alignment = 1
 
 [node name="CardLayer" type="Control" parent="Frame/DiscardPanel"]
-offset_left = 6.0
-offset_top = 10.0
-offset_right = 256.0
-offset_bottom = 380.0
+offset_left = 8.0
+offset_top = 22.0
+offset_right = 258.0
+offset_bottom = 392.0
 mouse_filter = 2
 pivot_offset = Vector2(125, 220)
-rotation = 0.075
+rotation = 0.12
+scale = Vector2(0.9, 0.9)
 
 [node name="CardMask" type="ColorRect" parent="Frame/DiscardPanel/CardLayer"]
 offset_left = 45.0
