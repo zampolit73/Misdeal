@@ -1555,3 +1555,18 @@ Run-specific state must remain live:
 
 Do not return to a flat black modal, generic radial-menu composition or separate edge-art collage unless the user explicitly reverses this decision.
 
+## D092 — The normal card-selection screen uses the Variant C oval ritual table
+
+Date: 2026-10-09  
+Status: accepted by user, implemented pending local screenshot verification
+
+The detailed Fate Spread screen is frozen as its own physical progression view. The **normal Wizard/card-selection table** now follows the separately approved Variant C composition.
+
+The key visual rule is that the play surface must read as one large **oval physical ritual table**, not a rectangular lower HUD panel. The Wizard remains the host/focal figure behind the table; two live offer cards occupy the near-center; Hold controls sit immediately above those cards; deck and rejected-card stacks live in physical holders at the left and right edges; one broad red ritual sigil owns the cloth.
+
+Keep the composition restrained. Do not solve the table with dozens of tiny decorative props, repeated runes or ornamental noise. Large deliberate shapes, candlelit red-black-gold hierarchy and tactile card placement are preferred.
+
+Mutable card art/text, counts, Wizard lines, Hold state, deck/discard counts and buttons remain native Godot UI. The approved concept is a composition target, not permission to bake a particular run's values into background art.
+
+Detailed Act progress remains in `РАСКЛАД СУДЬБЫ`; do not duplicate another twelve-node progress map on the normal deal table.
+
