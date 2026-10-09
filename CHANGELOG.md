@@ -57,6 +57,9 @@
 
 ### Changed
 
+- Added a dedicated dark oval cleanup layer beneath live Wizard-table offers so baked sample cards from the approved Variant C plate no longer bleed through when only one live card is shown.
+- Rotated and shifted the Fate Spread Wizard-discard live card layer to sit on the painted discard stack instead of exposing the rectangular cleanup backing.
+
 - Added a durable continuation checkpoint covering the frozen Fate Spread, exact Variant C normal-table integration, canonical asset paths, current visual rules and the immediate local validation plan for the next Project chat.
 
 - Made the user's final cleaned-up Variant C illustration the canonical full-screen Wizard deal table. The physical Wizard/room/oval table/deck/discard composition now comes from the approved 1280×720 plate, while offer cards, Hold state, counts, Wizard text and controls remain live Godot UI aligned over it.
