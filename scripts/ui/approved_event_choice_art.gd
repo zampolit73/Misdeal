@@ -84,16 +84,21 @@ static func _get_approved_sheet_texture() -> Texture2D:
 	if error != OK:
 		push_error("Could not decode approved event-choice sheet: %s" % error_string(error))
 		return null
-	if image.get_width() != APPROVED_SHEET_SIZE.x or image.get_height() != APPROVED_SHEET_SIZE.y:
+	if image.get_width() != APPROVED_SOURCE_SHEET_SIZE.x or image.get_height() != APPROVED_SOURCE_SHEET_SIZE.y:
 		push_error(
 			"Approved event-choice sheet has unexpected size %dx%d; expected %dx%d." % [
 				image.get_width(),
 				image.get_height(),
-				APPROVED_SHEET_SIZE.x,
-				APPROVED_SHEET_SIZE.y,
+				APPROVED_SOURCE_SHEET_SIZE.x,
+				APPROVED_SOURCE_SHEET_SIZE.y,
 			]
 		)
 		return null
+
+	# The approved mockup cells were intentionally stored compactly, but the live
+	# card art is rendered around 300 px wide. Upscale once with a high-quality
+	# reconstruction filter so Godot does not magnify 192x80 cells directly.
+	image.resize(APPROVED_SHEET_SIZE.x, APPROVED_SHEET_SIZE.y, Image.INTERPOLATE_LANCZOS)
 
 	_approved_sheet_texture = ImageTexture.create_from_image(image)
 	return _approved_sheet_texture
