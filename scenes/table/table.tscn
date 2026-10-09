@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/table/table_spread_visual.gd" id="9_spread"]
 [ext_resource type="Script" path="res://scripts/table/table_audio.gd" id="10_audio"]
 [ext_resource type="Script" path="res://scripts/ui/runtime_webp_texture.gd" id="11_runtime_webp"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/card_back_runtime.svg" id="12_back"]
 
 [sub_resource type="StyleBoxFlat" id="HudPanel"]
 bg_color = Color(0.018, 0.013, 0.021, 0.72)
@@ -28,18 +29,6 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.27, 0.15, 0.18, 0.48)
-
-[sub_resource type="StyleBoxFlat" id="OfferCleanupPanel"]
-bg_color = Color(0.072, 0.018, 0.022, 0.90)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.22, 0.055, 0.060, 0.42)
-corner_radius_top_left = 22
-corner_radius_top_right = 22
-corner_radius_bottom_right = 22
-corner_radius_bottom_left = 22
 
 [sub_resource type="StyleBoxFlat" id="CardNormal"]
 bg_color = Color(0.050, 0.026, 0.028, 0.985)
@@ -407,29 +396,33 @@ offset_right = 826.0
 offset_bottom = 360.0
 color = Color(0.025, 0.017, 0.021, 0.92)
 
-[node name="SingleOfferLeftCleanup" type="Panel" parent="."]
-visible = false
+[node name="OfferBackLeft" type="TextureRect" parent="."]
 z_index = 1
 mouse_filter = 2
-offset_left = 394.0
-offset_top = 358.0
-offset_right = 548.0
-offset_bottom = 652.0
-pivot_offset = Vector2(77, 147)
+offset_left = 396.0
+offset_top = 366.0
+offset_right = 626.0
+offset_bottom = 644.0
+pivot_offset = Vector2(115, 139)
 rotation = -0.024
-theme_override_styles/panel = SubResource("OfferCleanupPanel")
+texture_filter = 1
+texture = ExtResource("12_back")
+expand_mode = 1
+stretch_mode = 0
 
-[node name="SingleOfferRightCleanup" type="Panel" parent="."]
-visible = false
+[node name="OfferBackRight" type="TextureRect" parent="."]
 z_index = 1
 mouse_filter = 2
-offset_left = 732.0
-offset_top = 358.0
-offset_right = 886.0
-offset_bottom = 652.0
-pivot_offset = Vector2(77, 147)
+offset_left = 654.0
+offset_top = 366.0
+offset_right = 884.0
+offset_bottom = 644.0
+pivot_offset = Vector2(115, 139)
 rotation = 0.024
-theme_override_styles/panel = SubResource("OfferCleanupPanel")
+texture_filter = 1
+texture = ExtResource("12_back")
+expand_mode = 1
+stretch_mode = 0
 
 [node name="Cards" type="Control" parent="."]
 mouse_filter = 2
