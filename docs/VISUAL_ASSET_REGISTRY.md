@@ -87,19 +87,20 @@ The same portraits are reused by Squad Dossier.
 
 ### Event choice mini-art
 
-- Canonical approved mini-choice sheet: `assets/pixel/event/choice/approved_choice_sheet_v2/`.
-- Runtime decoded size: 576×320; cell size: 192×80; 3 columns × 4 rows.
 - Runtime mapping: `scripts/ui/approved_event_choice_art.gd`, consumed by `scripts/event/act_choice.gd` and `scripts/event/whispering_well.gd`.
-- Row 0 — Rattling Bridge recruitment: rescue / bag / cross alone.
-- Row 1 — Whispering Well: well/whisper / coins / leave.
-- Row 2 — Chained Prisoner recruitment: break chains / loot / leave.
-- Row 3 — Black Altar recruitment: blood sacrifice / coin payment / take offering.
-- The Black Altar payment cell intentionally reuses the approved coin-hand illustration from the well; live label/cost remains 35 gold.
-- Chained Prisoner's post-recruitment choices continue to use the older dedicated atlas because the options differ.
-- Curse Forge continues to use actual artifact art because it already reflects the live option identities.
-- Rattling Bridge canonical choice source: `assets/pixel/event/choice/rattling_bridge_hd/` (1152×160, three native 384×160 cells). It is used for both recruitment and regular bridge states.
+- Visual rule: context art describes the event; mini-art describes the action. One dominant object/gesture/action is preferred over three repeated crops of the event image.
+- Native 384×160 choice cells are preferred whenever an approved source already exists; the compact 192×80 sheet is now a fallback source, not the desired presentation size.
+- Native Rattling Bridge source: `assets/pixel/event/choice/rattling_bridge_hd/` — 1152×160, three 384×160 cells: rescue / bag / walk away. Used for both bridge branches and as generic rescue/bag/leave actions where semantically truthful.
+- Native approved Well/Prisoner atlas: `assets/pixel/ui/approved_event_choice_polish/event_choice_atlas.bin` — 1152×320, six 384×160 cells. Provides whisper, coins, occult-card, broken-chains and body-search actions.
+- Compact approved sheet: `assets/pixel/event/choice/approved_choice_sheet_v2/` — 576×320, 192×80 cells. It remains the source for the approved Black Altar blood-sacrifice and cursed-offering cells; runtime reconstructs it before use.
+- Reusable action vocabulary exposed by `ApprovedEventChoiceArt.get_action_texture()`: `rescue`, `bag`, `leave`, `whisper`, `coins`, `occult_card`, `chains`, `loot_body`, `blood`, `cursed_relic`.
+- Explicit semantic event mappings now include Rattling Bridge, Whispering Well, Chained Prisoner, Black Altar recruitment, Lost Purse, Debtor Bones, Wizard Tithe, Blood Ledger, Bone Tax, Ash Rest recruitment and Last Camp recruitment.
+- Curse Forge continues to use actual artifact art because its three choices are concrete relics.
+- Role-development choices continue to show the actual offered upgrade art.
+- Broken Crown now shows crown / coins / actual offered upgrade (or cursed-relic fallback) instead of three copies of the crown.
 - Superseded runtime path: `assets/pixel/event/choice/black_altar_recruitment.svg`.
-- Direction: context art describes the event; mini-art describes the action. Prefer one dominant object/action, strong silhouette, restrained detail and nearest-filtered low-res cells.
+
+
 ### V8 secondary event screens
 
 | card_id | Runtime art |
