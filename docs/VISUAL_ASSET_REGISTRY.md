@@ -87,10 +87,11 @@ The same portraits are reused by Squad Dossier.
 
 ### Event choice mini-art
 
-- Benchmark semantic choice sheet: `assets/pixel/event/choice/rattling_bridge_choices.svg` (1152×320, six 384×160 cells).
+- Benchmark approved semantic choice atlas: `assets/pixel/event/choice/rattling_bridge_hd/part_00.txt` + `part_01.txt` (runtime-decoded WebP, 1152×160, three 384×160 cells).
 - Runtime mapping: `scripts/ui/approved_event_choice_art.gd` + `scripts/event/act_choice.gd`.
-- Row 0: rescue ranger / take bag / cross alone.
-- Row 1: rush / scavenge / careful crossing.
+- Current approved cells: rescue ranger / take bag / cross alone.
+- The earlier schematic SVG prototype was rejected and removed.
+- The already-resolved Rattling Bridge branch still uses generic fallback art until a second semantic trio is authored.
 - Direction: mini-art depicts the decision, not a duplicate crop of the event context. Prefer one object/action, restrained palette, strong silhouette and low micro-detail.
 
 ### V8 secondary event screens
