@@ -1538,3 +1538,20 @@ Run-specific text, cards, counters and current-path state must not be baked into
 
 Keep future visual work close to this physical occult-table reference: dense edge props, warm candle/brass highlights, red-black cloth/leather center, and a strong chained XIII focal point. Avoid returning to flat black modal UI or generic map styling.
 
+## D091 — Fate Spread follows the final approved reference almost one-for-one
+
+Date: 2026-10-09  
+Status: accepted by user, implemented pending local screenshot verification
+
+The final approved Fate Spread composition is now the authoritative visual target, superseding the intermediate dark-underlay and edge-art-only experiments.
+
+Use the approved full physical table plate as the scene foundation. Match its composition closely: large red-black ritual circle, I–XII physical cards around the ring, chained XIII in the center, ornate Hold holder on the left, Wizard Discard stack on the right, candle/brass/skull/book props at the edges, and the visible player hand in the lower-right.
+
+Run-specific state must remain live:
+- mask and replace the baked header counts/title values;
+- overlay all I–XII slots with live card/back panels aligned to the reference positions;
+- mask and replace only the card/count contents inside Hold and Wizard Discard;
+- preserve live XIII/boss state, hover decision memory and milestone behavior.
+
+Do not return to a flat black modal, generic radial-menu composition or separate edge-art collage unless the user explicitly reverses this decision.
+
