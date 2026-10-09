@@ -1,3 +1,7 @@
+### Act Choice motion regression was rolled back
+
+After Motion Pass 1, the generic Act Choice screen could show raw template placeholders instead of the selected event. The event-motion changes in `scripts/event/act_choice.gd` were rolled back to the known-good semantic-art state. Do not reapply the previous `button_down`/stagger commit patch wholesale. Table and Reward motion from the same pass remain enabled and should be tested independently.
+
 ### Motion language pass 1 is implemented
 
 Table + Events + Rewards now share a more physical motion language.
