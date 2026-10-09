@@ -1,5 +1,50 @@
 ## Latest normal table exact-reference integration
 
+## Current handoff — 2026-10-09 — continue from here
+
+The user asked for the whole working context to be made durable in GitHub before moving to another chat.
+
+### Do not revisit without concrete evidence
+
+**Fate Spread is visually frozen.** The final approved physical-table composition is already in runtime and has gone through multiple local screenshot corrections. Only fix specific leaks/collisions if they appear.
+
+### Latest approved normal table
+
+The user's newest approved reference is the cleaned-up **Variant C** image with:
+- Wizard centered behind the table;
+- broad oval red-black ritual tabletop;
+- relatively restrained edge props (candles/brass/skull, not dense generated clutter);
+- physical deck stack at left and rejected stack at right;
+- two offer cards centered near the player;
+- Hold buttons immediately above each offer;
+- `РАСКЛАД СУДЬБЫ [R]` centered under the Wizard;
+- compact top status line + Wizard commentary.
+
+That exact art is now the canonical runtime foundation at:
+- `assets/pixel/table/approved_variant_c/table_exact.webp`
+- source: `assets/source_archive/table/approved_variant_c/table_exact_master.webp`
+
+Implementation:
+- `scenes/table/table.tscn` uses `runtime_webp_texture.gd` to load the full 1280×720 plate;
+- the old `TableVisual`, `TableSpreadVisual` and separate logo are hidden;
+- live offer cards are ~230×278 and positioned around x=396 / 654, y=366;
+- live Hold controls align to the art around y=334;
+- live deck/discard animation points are near the physical side stacks;
+- live deck/discard text now overlays only the changing numbers rather than redrawing the baked static labels;
+- offer-card frames use a restrained brass/black physical-card treatment;
+- dynamic run state remains authoritative despite the full-screen art.
+
+### Next action in a new chat
+
+First read the required project docs and current GitHub code, then ask for/inspect the **first local screenshot of this exact-art normal table** after the user pulls latest main.
+
+Do not start a new broad visual generation pass. Fix only concrete alignment/masking problems from that screenshot. The likely first corrections, if needed, are tiny holder-number masks, Hold-button alignment, top-HUD width/opacity, and offer-card vertical position.
+
+### Git access
+
+GitHub access is available through the connected tools. Use it directly for implementation and fixes; do not repeatedly ask the user to copy files or claim Git is unavailable before checking the tools.
+
+
 The user approved the final cleaned Variant C normal-table artwork and asked for it almost one-for-one. Runtime now uses `assets/pixel/table/approved_variant_c/table_exact.webp` as the full 1280×720 foundation, loaded through `runtime_webp_texture.gd`. The generated source master is archived at `assets/source_archive/table/approved_variant_c/table_exact_master.webp`.
 
 `table.tscn` no longer relies on the old v6 upper-Wizard crop for the normal screen. The procedural tabletop and compact spread visual are hidden. Live HUD/Wizard text/buttons remain on top; offer cards are resized and aligned to the two card positions in the plate; only numeric deck/discard values are masked/replaced over the physical plaques; Hold text is masked so live Hold state remains authoritative. Deal/discard animation anchors match the physical side stacks.
