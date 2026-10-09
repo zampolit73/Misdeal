@@ -1,5 +1,22 @@
 # Misdeal — Project State
 
+## Semantic event-choice art pass started — 2026-10-09
+
+The user approved replacing duplicated event thumbnails inside choice cards with dedicated mini illustrations that communicate the **decision**, while the large event art continues to communicate the **scene/context**.
+
+First implemented benchmark: **ГРЕМУЧИЙ МОСТ / `rattling_bridge`**.
+
+Current implementation:
+- `assets/pixel/event/choice/rattling_bridge_choices.svg` contains six 384×160 semantic mini illustrations in a 3×2 sheet;
+- recruitment state: rescue the ranger / take the bag / cross alone;
+- non-recruitment state: rush / scavenge coins / careful crossing;
+- `scripts/ui/approved_event_choice_art.gd` exposes those cells as live textures;
+- `scripts/event/act_choice.gd` selects the correct row from live run state instead of falling back to the event card illustration.
+
+Art rule for this pass: one dominant object/action per choice, restrained palette, large readable shapes, low micro-detail, and no duplicate crop of the context image. Mechanics and option text remain unchanged.
+
+Next step after local approval is to roll the same pattern through Whispering Well / Curse Forge / Chained Prisoner / Black Altar, then the remaining generic Act 1 events.
+
 ## Physical card-back foundation pass — 2026-10-09
 
 The user rejected further dark masking and chose a physical-card solution.
