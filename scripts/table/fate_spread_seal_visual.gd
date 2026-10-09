@@ -5,7 +5,7 @@ extends Control
 # laid onto the Wizard's table rather than a generic progress bar.
 
 const CENTER := Vector2(390.0, 270.0)
-const RADIUS := Vector2(286.0, 176.0)
+const RADIUS := Vector2(315.0, 215.0)
 const SLOT_COUNT := 12
 
 const DIM_LINE := Color(0.30, 0.11, 0.10, 0.24)
