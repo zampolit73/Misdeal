@@ -65,7 +65,10 @@ Battle runtime mapping lives in `scripts/battle/authored_backdrop.gd`.
 - The full approved plate is the runtime visual foundation; run-specific cards, counts, Hold state, Wizard text and buttons remain live Godot UI aligned over it.
 - Detailed run progress is not duplicated here; `РАСКЛАД СУДЬБЫ` owns the full I–XIII progression view.
 - Important: authored table art bypasses the old heavy environment/card grade.
-- Local status: the first broad cleanup mask was rejected because it read as a dark hole. Current runtime uses compact single-offer-only cloth patches, and the Fate Spread discard overlay has been re-seated to the painted stack. Local 1280×720 verification of this refinement is pending.
+- Shared neutral card back: `assets/pixel/table/card_back_runtime.svg`.
+- Runtime foundation rule: the two baked sample offer faces in `table_exact.webp` are permanently covered by neutral physical card backs beneath the live offer layer. Do not restore dark cleanup masks.
+- Fate Spread Hold uses the same back when empty; Wizard Discard hides when empty and uses the back as the physical frame under the live top card when populated.
+- Local status: the physical card-back pass is committed; local 1280×720 verification is pending.
 - Visual lock: Fate Spread is frozen; the exact Variant C plate is the canonical normal-table art. Do not return to the procedural oval-table approximation.
 
 ### V7 high-visibility screens
