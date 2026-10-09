@@ -1,3 +1,14 @@
+## Current continuation priority — 2026-10-09
+
+- [x] Freeze the accepted Fate Spread composition.
+- [x] Make the final cleaned-up Variant C art the canonical full-screen normal Wizard table.
+- [x] Preserve its source master and runtime WebP in GitHub.
+- [x] Align live offers, Hold actions, deck/discard counts and deal/discard motion to the physical artwork.
+- [ ] **Next:** local 1280×720 screenshot of the exact-art normal table; fix only concrete alignment/mask/readability defects.
+- [ ] Verify the Wizard wager overlay over the exact-art normal table.
+- [ ] Once accepted, resume full Act 1 vertical-slice validation (solo/duo/trio) through Bone Warden and tune only from concrete playtest failures.
+
+
 # Misdeal — Roadmap
 
 This roadmap is intentionally focused on reaching a playable vertical slice quickly.
