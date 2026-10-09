@@ -1,3 +1,16 @@
+### Semantic event-choice art benchmark
+
+The next visual pass is now defined as: **context art describes the event; mini choice art describes the decision**. Do not keep reusing the same event illustration across all lower choice cards.
+
+The first implementation is `rattling_bridge`:
+- source sheet: `assets/pixel/event/choice/rattling_bridge_choices.svg`;
+- loader/cell mapping: `scripts/ui/approved_event_choice_art.gd`;
+- runtime selection: `scripts/event/act_choice.gd`;
+- row 0 is the ranger-recruitment state (rescue / bag / leave alone);
+- row 1 is the already-resolved state (rush / scavenge / careful).
+
+The art language is intentionally object/action-first and low-detail to reduce AI-like repetition. After local approval, continue the same language across the remaining event choice cards instead of regenerating whole event scenes.
+
 ## Continuation checkpoint — 2026-10-09 — screenshot cleanup committed — continue from here
 
 This is the authoritative handoff for the next Project chat. GitHub is the source of truth for implemented code/state.
