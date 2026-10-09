@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/fate_spread_overlay.gd" id="1_script"]
 [ext_resource type="Script" path="res://scripts/table/fate_spread_seal_visual.gd" id="2_seal"]
 [ext_resource type="Script" path="res://scripts/ui/runtime_webp_texture.gd" id="3_runtime_webp"]
 [ext_resource type="Script" path="res://scripts/table/fate_spread_reference_cleanup.gd" id="4_cleanup"]
+[ext_resource type="Texture2D" path="res://assets/pixel/table/card_back_runtime.svg" id="5_card_back"]
 
 [sub_resource type="StyleBoxFlat" id="OuterPanel"]
 bg_color = Color(0, 0, 0, 0)
@@ -181,13 +182,16 @@ theme_override_font_sizes/font_size = 11
 text = "1/1 СВОБОДНО"
 horizontal_alignment = 1
 
-[node name="CardMask" type="ColorRect" parent="Frame/HeldPanel"]
+[node name="EmptyBack" type="TextureRect" parent="Frame/HeldPanel"]
 offset_left = 54.0
 offset_top = 72.0
 offset_right = 181.0
 offset_bottom = 250.0
 mouse_filter = 2
-color = Color(0.060, 0.030, 0.027, 0.93)
+texture_filter = 1
+texture = ExtResource("5_card_back")
+expand_mode = 1
+stretch_mode = 0
 
 [node name="Art" type="TextureRect" parent="Frame/HeldPanel"]
 offset_left = 58.0
@@ -247,22 +251,25 @@ text = "0 КАРТ"
 horizontal_alignment = 1
 
 [node name="CardLayer" type="Control" parent="Frame/DiscardPanel"]
-offset_left = 8.0
-offset_top = 22.0
-offset_right = 258.0
-offset_bottom = 392.0
+offset_left = -8.0
+offset_top = -34.0
+offset_right = 242.0
+offset_bottom = 336.0
 mouse_filter = 2
 pivot_offset = Vector2(125, 220)
-rotation = 0.12
-scale = Vector2(0.9, 0.9)
+rotation = 0.115
+scale = Vector2(0.95, 0.95)
 
-[node name="CardMask" type="ColorRect" parent="Frame/DiscardPanel/CardLayer"]
+[node name="StackBack" type="TextureRect" parent="Frame/DiscardPanel/CardLayer"]
 offset_left = 45.0
 offset_top = 111.0
 offset_right = 205.0
 offset_bottom = 326.0
 mouse_filter = 2
-color = Color(0.060, 0.030, 0.027, 0.94)
+texture_filter = 1
+texture = ExtResource("5_card_back")
+expand_mode = 1
+stretch_mode = 0
 
 [node name="Art" type="TextureRect" parent="Frame/DiscardPanel/CardLayer"]
 offset_left = 52.0
