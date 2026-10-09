@@ -152,15 +152,14 @@ func _apply_approved_choice_art() -> void:
 			_apply_choice_art_margins(button)
 		return
 
-	if active_card.card_id == "rattling_bridge":
-		var recruitment_state := RunState.can_recruit_companion("ranger")
+	if active_card.card_id == "rattling_bridge" and RunState.can_recruit_companion("ranger"):
 		for index in range(buttons.size()):
 			var art: TextureRect = arts[index]
 			var button: Button = buttons[index]
 			if not button.visible:
 				art.visible = false
 				continue
-			art.texture = APPROVED_EVENT_CHOICE_ART.get_rattling_bridge_texture(index, recruitment_state)
+			art.texture = APPROVED_EVENT_CHOICE_ART.get_rattling_bridge_texture(index)
 			art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 			art.visible = art.texture != null
 			art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
