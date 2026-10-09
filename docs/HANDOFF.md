@@ -1,3 +1,7 @@
+### Rattling Bridge mini-art wiring fix
+
+The already-authored native bridge trio in `assets/pixel/event/choice/rattling_bridge_hd/` is now used for **both** Rattling Bridge states. The regular `rush / scavenge / careful` branch previously fell through to the generic event thumbnail, causing three duplicate bridge images. `act_choice.gd` now routes every `rattling_bridge` choice screen through `ApprovedEventChoiceArt.get_rattling_bridge_texture(index)`, and the loader uses the original 384×160 cells directly for quality.
+
 ### Approved event-choice mini-art sheet is canonical
 
 The user approved the five-event mini-choice mockup as the visual target. Production now uses the cropped action-first illustrations from that sheet rather than duplicating the large event image or using schematic placeholders.
