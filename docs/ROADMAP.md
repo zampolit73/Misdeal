@@ -289,4 +289,5 @@ Do not prioritize these before the vertical slice works:
 - [ ] Local 1280×720 check: verify all I–XII live cards fully cover the baked concept cards, Hold/Discard masks hide stale concept state, and title/count masks do not expose duplicate text.
 
 - [x] Rebuild the normal Wizard/card-selection screen around the approved Variant C oval ritual table instead of a rectangular lower UI panel.
-- [ ] Locally verify Variant C at 1280×720: Wizard hands must remain unobscured, both offer cards/hold buttons must sit naturally on the cloth, and deck/discard stacks must align inside the physical side holders.
+- [x] Integrate the final approved Variant C full-table artwork as the canonical 1280×720 normal-table foundation while keeping live cards/counts/actions authoritative.
+- [ ] Locally verify the exact-reference table at 1280×720: check live card coverage over the baked examples, Hold visibility, deck/discard numeric masks, hover/deal animation alignment and wager overlay readability.
