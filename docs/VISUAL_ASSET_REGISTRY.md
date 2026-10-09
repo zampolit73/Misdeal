@@ -97,7 +97,8 @@ The same portraits are reused by Squad Dossier.
 - The Black Altar payment cell intentionally reuses the approved coin-hand illustration from the well; live label/cost remains 35 gold.
 - Chained Prisoner's post-recruitment choices continue to use the older dedicated atlas because the options differ.
 - Curse Forge continues to use actual artifact art because it already reflects the live option identities.
-- Superseded runtime paths: `assets/pixel/event/choice/rattling_bridge_hd/` and `assets/pixel/event/choice/black_altar_recruitment.svg`.
+- Rattling Bridge canonical choice source: `assets/pixel/event/choice/rattling_bridge_hd/` (1152×160, three native 384×160 cells). It is used for both recruitment and regular bridge states.
+- Superseded runtime path: `assets/pixel/event/choice/black_altar_recruitment.svg`.
 - Direction: context art describes the event; mini-art describes the action. Prefer one dominant object/action, strong silhouette, restrained detail and nearest-filtered low-res cells.
 ### V8 secondary event screens
 
