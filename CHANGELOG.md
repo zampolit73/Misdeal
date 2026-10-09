@@ -57,6 +57,8 @@
 
 ### Changed
 
+- Added a durable continuation checkpoint covering the frozen Fate Spread, exact Variant C normal-table integration, canonical asset paths, current visual rules and the immediate local validation plan for the next Project chat.
+
 - Made the user's final cleaned-up Variant C illustration the canonical full-screen Wizard deal table. The physical Wizard/room/oval table/deck/discard composition now comes from the approved 1280×720 plate, while offer cards, Hold state, counts, Wizard text and controls remain live Godot UI aligned over it.
 
 - Replaced the normal Wizard table's procedural/partial composition with the final approved Variant C full-screen plate. Live offers, Hold controls, HUD, Wizard line, Fate Spread action and deck/discard counts are aligned over the physical art; card sizing/animation anchors were updated and the old compact table-progress visual is suppressed.
