@@ -189,6 +189,7 @@
 
 ### Fixed
 
+- Fixed visibly blocky semantic event choice art: the approved 192×80 source cells are now reconstructed once to 384×160 with Lanczos before slicing, and live choice TextureRects use linear sampling when fitting the art into the ~300 px UI card width. This removes the harsh nearest-neighbor magnification that made the approved illustrations look low-quality in-game.
 - Fixed final Fate Spread reference alignment issues: baked XII sample card no longer leaks, the approved static title is used directly instead of a large black live header, Wizard Discard count sits inside its physical holder, and empty side holders no longer show a floating `ПУСТО` label.
 
 - Fixed baked reference-state leakage in `РАСКЛАД СУДЬБЫ`: old sample cards, Roman numerals, title/count text and XIII label are now masked beneath live state without darkening the physical table; empty Hold/Discard title plates also stay dark until populated.
