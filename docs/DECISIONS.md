@@ -1605,3 +1605,19 @@ Therefore:
 - Avoid dense AI-like prop noise and micro-detail; keep large readable physical forms.
 - After local acceptance of the exact table, development priority returns to vertical-slice validation and balance rather than broad visual replacement.
 
+
+## D095 — Neutral physical card backs replace dark cleanup masks
+
+Date: 2026-10-09  
+Status: accepted by user, implemented pending local screenshot verification
+
+Baked face-up sample cards in the approved Wizard-table plate must never be exposed as fake live state. Dark rectangular/oval cleanup masks were locally rejected because they read as holes in the table.
+
+The canonical runtime solution is physical:
+- a shared neutral black-leather/brass card back lives at `assets/pixel/table/card_back_runtime.svg`;
+- two backs permanently cover the baked offer-card faces beneath the live offer layer;
+- when both live offers are present they cover the backs; single-card/retry states may reveal the backs naturally;
+- an empty Fate Spread Hold slot shows the same back rather than a dark void;
+- Wizard Discard is absent when empty, and when populated its live top card sits on the shared back/frame aligned to the painted stack.
+
+These backs are presentation-only. They do not reveal future card identity or change Hold/discard rules. Do not return to opaque dark cleanup slabs for these card zones.
