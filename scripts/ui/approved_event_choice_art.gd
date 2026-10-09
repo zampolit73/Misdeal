@@ -91,15 +91,58 @@ static func _get_rattling_bridge_texture() -> Texture2D:
 
 
 static func get_whispering_well_texture(index: int) -> Texture2D:
-	return _get_approved_cell(ROW_WHISPERING_WELL, index)
+	# The legacy approved atlas contains the same Well actions at native 384x160.
+	return _get_legacy_cell(index)
 
 
 static func get_chained_prisoner_recruitment_texture(index: int) -> Texture2D:
-	return _get_approved_cell(ROW_CHAINED_PRISONER_RECRUITMENT, index)
+	match index:
+		0:
+			return _get_legacy_cell(4) # broken chains
+		1:
+			return _get_legacy_cell(5) # search / loot
+		2:
+			return get_rattling_bridge_texture(2) # walk away
+		_:
+			return null
 
 
 static func get_black_altar_texture(index: int) -> Texture2D:
-	return _get_approved_cell(ROW_BLACK_ALTAR_RECRUITMENT, index)
+	match index:
+		0:
+			return _get_approved_cell(ROW_BLACK_ALTAR_RECRUITMENT, 0) # blood sacrifice
+		1:
+			return _get_legacy_cell(1) # coins / payment
+		2:
+			return _get_approved_cell(ROW_BLACK_ALTAR_RECRUITMENT, 2) # altar offering
+		_:
+			return null
+
+
+static func get_action_texture(action: String) -> Texture2D:
+	match action:
+		"rescue":
+			return get_rattling_bridge_texture(0)
+		"bag":
+			return get_rattling_bridge_texture(1)
+		"leave":
+			return get_rattling_bridge_texture(2)
+		"whisper":
+			return _get_legacy_cell(0)
+		"coins":
+			return _get_legacy_cell(1)
+		"occult_card":
+			return _get_legacy_cell(3)
+		"chains":
+			return _get_legacy_cell(4)
+		"loot_body":
+			return _get_legacy_cell(5)
+		"blood":
+			return _get_approved_cell(ROW_BLACK_ALTAR_RECRUITMENT, 0)
+		"cursed_relic":
+			return _get_approved_cell(ROW_BLACK_ALTAR_RECRUITMENT, 2)
+		_:
+			return null
 
 
 static func get_chained_prisoner_texture(index: int) -> Texture2D:
