@@ -18,6 +18,8 @@ const ROLE_FALLBACK_ART := {
 @onready var run_stats_label: Label = $RunStats
 @onready var progress_marks_label: Label = $ProgressMarks
 @onready var hover_summary_label: Label = $HoverSummary
+@onready var header_panel: Panel = $HeaderPanel
+@onready var rewards_root: HBoxContainer = $Rewards
 @onready var blood_coin_button: Button = $Rewards/BloodCoin
 @onready var iron_ward_button: Button = $Rewards/IronWard
 @onready var tempered_steel_button: Button = $Rewards/TemperedSteel
@@ -48,6 +50,7 @@ func _ready() -> void:
 
 	_refresh_run_stats()
 	_setup_initial_reward()
+	call_deferred("_animate_reward_screen_in")
 
 func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_panel($HudPanel, MISDEAL_UI_KIT.BRONZE, false)
@@ -251,6 +254,7 @@ func _on_reward_button_pressed(index: int) -> void:
 		return
 
 	_disable_reward_buttons()
+	await _animate_reward_commit(index)
 	var option_id := option_ids[index]
 
 	match reward_mode:
@@ -443,6 +447,71 @@ func _refresh_run_stats() -> void:
 		RunState.artifact_ids.size()
 	]
 
+func _animate_reward_screen_in() -> void:
+	header_panel.pivot_offset = header_panel.size * 0.5
+	header_panel.scale = Vector2(0.985, 0.985)
+	header_panel.modulate.a = 0.0
+
+	var header_tween := header_panel.create_tween()
+	header_tween.set_parallel(true)
+	header_tween.tween_property(header_panel, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	header_tween.tween_property(header_panel, "modulate:a", 1.0, 0.16)
+
+	var visible_index := 0
+	for button in reward_buttons:
+		if not button.visible:
+			continue
+		button.pivot_offset = button.size * 0.5
+		button.scale = Vector2(0.975, 0.975)
+		button.modulate.a = 0.0
+
+		var card_tween := button.create_tween()
+		card_tween.set_parallel(true)
+		var delay := 0.06 + float(visible_index) * 0.06
+		card_tween.tween_property(button, "scale", Vector2.ONE, 0.20).set_delay(delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		card_tween.tween_property(button, "modulate:a", 1.0, 0.16).set_delay(delay)
+		visible_index += 1
+
+
+func _animate_reward_commit(selected_index: int) -> void:
+	if selected_index < 0 or selected_index >= reward_buttons.size():
+		return
+
+	var selected := reward_buttons[selected_index]
+	if not selected.visible:
+		return
+
+	for index in range(reward_buttons.size()):
+		var button := reward_buttons[index]
+		if not button.visible:
+			continue
+		button.pivot_offset = button.size * 0.5
+		var tween := button.create_tween()
+		tween.set_parallel(true)
+		if index == selected_index:
+			button.z_index = 20
+			tween.tween_property(button, "scale", Vector2(1.045, 1.045), 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			tween.tween_property(button, "modulate", Color(1.10, 1.00, 0.88, 1.0), 0.13)
+			var portrait := upgrade_portraits[index]
+			if portrait != null and portrait.visible:
+				var portrait_tween := portrait.create_tween()
+				portrait_tween.tween_property(portrait, "modulate", Color(1.16, 1.06, 0.90, 1.0), 0.08)
+				portrait_tween.tween_property(portrait, "modulate", Color.WHITE, 0.16)
+		else:
+			button.z_index = 0
+			tween.tween_property(button, "scale", Vector2(0.985, 0.985), 0.14)
+			tween.tween_property(button, "modulate", Color(0.42, 0.40, 0.44, 0.58), 0.14)
+
+	var choose_bar := upgrade_choose_bars[selected_index]
+	if choose_bar != null and choose_bar.visible:
+		choose_bar.pivot_offset = choose_bar.size * 0.5
+		var bar_tween := choose_bar.create_tween()
+		bar_tween.tween_property(choose_bar, "scale", Vector2(1.04, 0.94), 0.07).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		bar_tween.tween_property(choose_bar, "scale", Vector2.ONE, 0.10).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+	await get_tree().create_timer(0.18).timeout
+
+
 func _on_reward_hover(button: Button, hovered: bool) -> void:
 	if button.disabled or not button.visible:
 		return
@@ -461,6 +530,8 @@ func _reset_buttons() -> void:
 		button.visible = true
 		button.disabled = false
 		button.scale = Vector2.ONE
+		button.modulate = Color.WHITE
+		button.z_index = 0
 		button.remove_meta("quick_effect")
 		button.remove_theme_color_override("font_color")
 		button.remove_theme_color_override("font_hover_color")
@@ -479,7 +550,7 @@ func _finish_reward(message: String) -> void:
 	_refresh_run_stats()
 	RunState.complete_active_card()
 	summary_label.text = message
-	await get_tree().create_timer(0.35).timeout
+	await get_tree().create_timer(0.22).timeout
 
 	if RunState.is_run_complete():
 		SCENE_ROUTER.change_to(self, "res://scenes/run_end/run_end.tscn")
