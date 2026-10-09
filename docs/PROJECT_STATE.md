@@ -2,6 +2,16 @@
 
 Last updated: 2026-10-09
 
+## Fate Spread screenshot alignment pass — 2026-10-09
+
+The latest local screenshot confirmed that the approved reference composition is now working, with only three alignment/state issues remaining. They were corrected without changing the ring geometry:
+
+- the baked XII sample card (`КУЗНИЦА ПРОКЛЯТИЙ`) is now treated like the baked I–IV samples and always replaced by live state;
+- XII therefore uses the live future/current/resolved card panel instead of incorrectly showing the baked sample;
+- the static approved `MISDEAL — РАСКЛАД СУДЬБЫ` title now comes directly from the reference plate; the large live black header was reduced to a narrow dynamic-data mask covering only subtitle/count/chapter rows;
+- Wizard Discard count was moved down into the physical holder area;
+- empty Hold/Discard states no longer print a separate `ПУСТО` label over the holder.
+
 ## Fate Spread reference-preserving cleanup — 2026-10-09
 
 The next local screenshot showed that the cleanup masks themselves had become the visual problem: oversized black rectangles were covering too much of the approved table art, and the live XIII replacement hid the strongest central card from the reference.
