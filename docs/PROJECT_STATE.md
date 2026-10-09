@@ -7,11 +7,12 @@ The user approved replacing duplicated event thumbnails inside choice cards with
 First implemented benchmark: **ГРЕМУЧИЙ МОСТ / `rattling_bridge`**.
 
 Current implementation:
-- `assets/pixel/event/choice/rattling_bridge_choices.svg` contains six 384×160 semantic mini illustrations in a 3×2 sheet;
-- recruitment state: rescue the ranger / take the bag / cross alone;
-- non-recruitment state: rush / scavenge coins / careful crossing;
-- `scripts/ui/approved_event_choice_art.gd` exposes those cells as live textures;
-- `scripts/event/act_choice.gd` selects the correct row from live run state instead of falling back to the event card illustration.
+- the first schematic SVG prototype was rejected locally and removed;
+- the approved ranger-recruitment trio is stored as a 1152×160 WebP atlas split into `assets/pixel/event/choice/rattling_bridge_hd/part_00.txt` and `part_01.txt`;
+- the three 384×160 cells are: rescue the ranger / take the bag / cross alone;
+- `scripts/ui/approved_event_choice_art.gd` decodes the atlas at runtime;
+- `scripts/event/act_choice.gd` uses these semantic mini illustrations only for the ranger-recruitment branch;
+- the already-resolved bridge branch still falls back to its current generic art until a second approved trio is authored.
 
 Art rule for this pass: one dominant object/action per choice, restrained palette, large readable shapes, low micro-detail, and no duplicate crop of the context image. Mechanics and option text remain unchanged.
 
