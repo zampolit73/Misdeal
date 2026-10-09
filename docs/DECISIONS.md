@@ -1570,3 +1570,23 @@ Mutable card art/text, counts, Wizard lines, Hold state, deck/discard counts and
 
 Detailed Act progress remains in `РАСКЛАД СУДЬБЫ`; do not duplicate another twelve-node progress map on the normal deal table.
 
+## D093 — Final Variant C artwork is the canonical normal table
+
+Date: 2026-10-09  
+Status: accepted by user, implemented pending local screenshot verification
+
+The final cleaned-up Variant C image is now the authoritative visual target for the **normal Wizard/card-selection table**, not merely a loose layout reference.
+
+Use the approved full 16:9 physical-table plate as the runtime foundation:
+- Wizard centered behind a broad oval red-black ritual table;
+- restrained candle/brass/skull props around the edges;
+- physical deck at left and rejected-card stack at right;
+- two live offer cards near the player;
+- Hold controls immediately above them;
+- `РАСКЛАД СУДЬБЫ [R]` centered between Wizard and cards;
+- compact live HUD and Wizard line at the top.
+
+Mutable run state must remain live. Baked example offer cards, counts and Hold text may be covered by aligned live controls/masks, but should not become authoritative data. The static physical composition, logo, Wizard, table, props and holder frames may come directly from the approved plate.
+
+Keep this screen visually restrained. Do not reintroduce the old rectangular lower HUD/table, the duplicate compact progress ring, or dense generated ornamental clutter.
+
