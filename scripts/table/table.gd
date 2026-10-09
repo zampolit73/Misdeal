@@ -339,12 +339,64 @@ func _on_hold_button_pressed(offer_index: int) -> void:
 		return
 
 	var card := offers[offer_index]
+	var card_button := offer_buttons[offer_index]
+	var hold_button := hold_a_button if offer_index == 0 else hold_b_button
+
+	selection_locked = true
+	_disable_offer_buttons()
+	hold_a_button.disabled = true
+	hold_b_button.disabled = true
+	await _animate_card_hold_stamp(card_button, hold_button)
+
 	if not RunState.hold_offer_card(card.card_id):
+		selection_locked = false
+		_restore_card_pose_immediate(card_button)
+		_enable_offer_buttons()
+		_refresh_hold_buttons(offers)
 		return
 
 	wizard_line.text = "«Хочешь оставить её на потом? Хорошо. Я верну её через две раздачи.»"
-	_setup_offer_button(offer_buttons[offer_index], card)
+	_setup_offer_button(card_button, card)
 	_refresh_hold_buttons(offers)
+	await _animate_card_return_from_hold(card_button)
+
+	selection_locked = false
+	_enable_offer_buttons()
+	_refresh_hold_buttons(offers)
+
+
+func _animate_card_hold_stamp(card_button: Button, hold_button: Button) -> void:
+	_kill_card_motion(card_button)
+	card_button.pivot_offset = card_button.size * 0.5
+	hold_button.pivot_offset = hold_button.size * 0.5
+
+	var target_position := hold_button.position + hold_button.size * 0.5 - card_button.size * 0.5
+	var tween := card_button.create_tween()
+	card_motion_tweens[card_button.name] = tween
+	tween.set_parallel(true)
+	tween.tween_property(card_button, "position", target_position, 0.20).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(card_button, "rotation", 0.0, 0.18)
+	tween.tween_property(card_button, "scale", Vector2(0.18, 0.18), 0.20).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.tween_property(card_button, "modulate", Color(0.82, 0.72, 0.62, 0.86), 0.18)
+	await tween.finished
+
+	var stamp := hold_button.create_tween()
+	stamp.tween_property(hold_button, "scale", Vector2(1.08, 0.92), 0.07).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	stamp.tween_property(hold_button, "scale", Vector2.ONE, 0.11).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	await stamp.finished
+
+
+func _animate_card_return_from_hold(card_button: Button) -> void:
+	var rest_position: Vector2 = card_rest_positions.get(card_button.name, card_button.position)
+	var rest_rotation := float(card_rest_rotations.get(card_button.name, 0.0))
+	var tween := card_button.create_tween()
+	card_motion_tweens[card_button.name] = tween
+	tween.set_parallel(true)
+	tween.tween_property(card_button, "position", rest_position, 0.18).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(card_button, "rotation", rest_rotation, 0.18)
+	tween.tween_property(card_button, "scale", Vector2.ONE, 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(card_button, "modulate", Color.WHITE, 0.16)
+	await tween.finished
 
 func _get_button_card(button: Button) -> RunCardData:
 	var card_id := String(button.get_meta("card_id", ""))
@@ -833,9 +885,10 @@ func _animate_card_choice(chosen_card_id: String) -> void:
 
 		if button_card_id == chosen_card_id:
 			button.z_index = 30
-			tween.tween_property(button, "position", SINGLE_CARD_POSITION + Vector2(0.0, -28.0), 0.30).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			tween.tween_property(button, "position", SINGLE_CARD_POSITION + Vector2(0.0, 24.0), 0.30).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 			tween.tween_property(button, "rotation", 0.0, 0.26)
-			tween.tween_property(button, "scale", Vector2(1.07, 1.07), 0.28).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			tween.tween_property(button, "scale", Vector2(1.08, 1.08), 0.28).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			tween.tween_property(button, "modulate", Color(1.08, 0.98, 0.90, 1.0), 0.22)
 		else:
 			has_rejected = true
 			button.z_index = 8
@@ -845,9 +898,15 @@ func _animate_card_choice(chosen_card_id: String) -> void:
 			tween.tween_property(button, "modulate", Color(0.48, 0.34, 0.32, 0.15), 0.28)
 
 	if has_rejected:
-		await get_tree().create_timer(0.08).timeout
+		await get_tree().create_timer(0.22).timeout
 		_play_table_audio("discard")
-		await get_tree().create_timer(0.26).timeout
+		if table_spread_visual != null and table_spread_visual.has_method("pulse_discard"):
+			table_spread_visual.call("pulse_discard")
+		var discard_pulse := discard_count_label.create_tween()
+		discard_count_label.pivot_offset = discard_count_label.size * 0.5
+		discard_pulse.tween_property(discard_count_label, "scale", Vector2(1.16, 1.16), 0.07).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		discard_pulse.tween_property(discard_count_label, "scale", Vector2.ONE, 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		await get_tree().create_timer(0.12).timeout
 	else:
 		await get_tree().create_timer(0.32).timeout
 
