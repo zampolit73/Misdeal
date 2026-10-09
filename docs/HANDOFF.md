@@ -1,3 +1,11 @@
+## Latest normal table exact-reference integration
+
+The user approved the final cleaned Variant C normal-table artwork and asked for it almost one-for-one. Runtime now uses `assets/pixel/table/approved_variant_c/table_exact.webp` as the full 1280×720 foundation, loaded through `runtime_webp_texture.gd`. The generated source master is archived at `assets/source_archive/table/approved_variant_c/table_exact_master.webp`.
+
+`table.tscn` no longer relies on the old v6 upper-Wizard crop for the normal screen. The procedural tabletop and compact spread visual are hidden. Live HUD/Wizard text/buttons remain on top; offer cards are resized and aligned to the two card positions in the plate; only numeric deck/discard values are masked/replaced over the physical plaques; Hold text is masked so live Hold state remains authoritative. Deal/discard animation anchors match the physical side stacks.
+
+Next local screenshot check: confirm there is no visible baked-card leakage around the two offer cards, deck/discard numbers do not double, Hold buttons line up with the art, and wager/memory overlays still read cleanly. Do not redesign the composition unless a concrete local screenshot exposes a mismatch.
+
 # Misdeal — Current Handoff
 
 Last updated: 2026-10-08
