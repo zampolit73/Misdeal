@@ -3,11 +3,12 @@
 The next visual pass is now defined as: **context art describes the event; mini choice art describes the decision**. Do not keep reusing the same event illustration across all lower choice cards.
 
 The first implementation is `rattling_bridge`:
-- source sheet: `assets/pixel/event/choice/rattling_bridge_choices.svg`;
+- the rejected schematic SVG prototype has been removed;
+- approved ranger-recruitment art lives in `assets/pixel/event/choice/rattling_bridge_hd/part_00.txt` + `part_01.txt`;
 - loader/cell mapping: `scripts/ui/approved_event_choice_art.gd`;
 - runtime selection: `scripts/event/act_choice.gd`;
-- row 0 is the ranger-recruitment state (rescue / bag / leave alone);
-- row 1 is the already-resolved state (rush / scavenge / careful).
+- approved trio: rescue / bag / leave alone;
+- the already-resolved branch still uses the generic fallback until its own dedicated trio is approved.
 
 The art language is intentionally object/action-first and low-detail to reduce AI-like repetition. After local approval, continue the same language across the remaining event choice cards instead of regenerating whole event scenes.
 
