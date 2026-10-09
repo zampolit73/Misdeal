@@ -1,12 +1,13 @@
 ### Fate Spread
 
 - Approved visual direction: ornate physical occult table with red ritual cloth, candle/brass highlights, gothic edge props and chained XIII as the central focal point.
-- Runtime edge plates: `assets/pixel/table/fate_spread/edge_top.webp`, `edge_left.webp`, `edge_right.webp`
+- Approved runtime plate: `assets/pixel/table/fate_spread/fate_spread_exact.webp`
 - Live scene: `scenes/table/fate_spread_overlay.tscn`
 - Live logic: `scripts/table/fate_spread_overlay.gd`
-- Archived approved masters: `assets/source_archive/fate_spread_edges/`
+- Approved source master: `assets/source_archive/fate_spread/fate_spread_exact_master.webp`
+- Earlier edge-art masters remain archived under `assets/source_archive/fate_spread_edges/` but are no longer runtime assets.
 - Rule: the plate is atmosphere only. I–XII history, XIII state, counters, hold/discard contents and decision memory remain live Godot UI.
-- Edge plates contain no run-specific cards/counters and are intentionally kept bright enough for physical props to read; the center stays fully live/data-driven.
+- The full plate defines the physical composition. Baked run-specific examples are covered by live masks/cards; `RunState` remains authoritative for cards, counts, Hold/Discard and XIII.
 
 # Misdeal — Visual Asset Registry
 
