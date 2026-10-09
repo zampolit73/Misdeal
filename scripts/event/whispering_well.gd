@@ -30,6 +30,7 @@ func _ready() -> void:
 	for button in [accept_button, pay_button, leave_button]:
 		button.mouse_entered.connect(_on_choice_hover.bind(button, true))
 		button.mouse_exited.connect(_on_choice_hover.bind(button, false))
+		button.button_down.connect(_on_choice_commit_feedback.bind(button))
 
 	if RunState.can_recruit_companion("mage"):
 		wizard_line.text = "«Ты слышишь его голос? В прошлый раз ты полез за ним.»"
@@ -168,11 +169,25 @@ func _animate_screen_in() -> void:
 	header_panel.modulate.a = 0.0
 	choices.modulate.a = 0.0
 
+	for button in [accept_button, pay_button, leave_button]:
+		if not button.visible:
+			continue
+		button.pivot_offset = button.size * 0.5
+		button.scale = Vector2(0.98, 0.98)
+
 	var tween := create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(header_panel, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(header_panel, "modulate:a", 1.0, 0.16)
 	tween.tween_property(choices, "modulate:a", 1.0, 0.24).set_delay(0.05)
+
+	var visible_index := 0
+	for button in [accept_button, pay_button, leave_button]:
+		if not button.visible:
+			continue
+		var card_tween := button.create_tween()
+		card_tween.tween_property(button, "scale", Vector2.ONE, 0.18).set_delay(0.06 + float(visible_index) * 0.055).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		visible_index += 1
 
 func _on_choice_hover(button: Button, hovered: bool) -> void:
 	if button.disabled:
@@ -180,6 +195,37 @@ func _on_choice_hover(button: Button, hovered: bool) -> void:
 	button.pivot_offset = button.size * 0.5
 	var tween := button.create_tween()
 	tween.tween_property(button, "scale", Vector2(1.025, 1.025) if hovered else Vector2.ONE, 0.11).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+
+func _on_choice_commit_feedback(button: Button) -> void:
+	if button.disabled:
+		return
+
+	result_label.modulate.a = 0.0
+	for candidate in [accept_button, pay_button, leave_button]:
+		if not candidate.visible:
+			continue
+		candidate.pivot_offset = candidate.size * 0.5
+		var tween := candidate.create_tween()
+		tween.set_parallel(true)
+		if candidate == button:
+			candidate.z_index = 20
+			tween.tween_property(candidate, "scale", Vector2(1.035, 1.035), 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			tween.tween_property(candidate, "modulate", Color(1.08, 0.98, 0.88, 1.0), 0.11)
+		else:
+			candidate.z_index = 1
+			tween.tween_property(candidate, "scale", Vector2(0.985, 0.985), 0.12)
+			tween.tween_property(candidate, "modulate", Color(0.48, 0.44, 0.46, 0.64), 0.12)
+
+	call_deferred("_reveal_result_after_choice_commit")
+
+
+func _reveal_result_after_choice_commit() -> void:
+	await get_tree().create_timer(0.13).timeout
+	if not is_inside_tree():
+		return
+	var tween := result_label.create_tween()
+	tween.tween_property(result_label, "modulate:a", 1.0, 0.18)
 
 
 func _on_accept_gift() -> void:
