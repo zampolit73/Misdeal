@@ -44,9 +44,9 @@ func _draw() -> void:
 
 
 func _slot_needs_live_cover(index: int) -> bool:
-	# The approved reference intentionally contains example cards in I–IV,
-	# so those four positions always need a live replacement.
-	if index < 4:
+	# The approved reference contains sample cards in I–IV and XII.
+	# Those positions always need a live replacement.
+	if index < 4 or index == 11:
 		return true
 
 	# V–XII are already clean/generic card-backs in the reference. Mask them
