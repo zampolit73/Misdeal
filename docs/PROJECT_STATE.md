@@ -25,6 +25,11 @@ The older Rattling Bridge split atlas and standalone Black Altar SVG are superse
 
 Next true duplicate-thumbnail targets: `lost_purse`, `debtor_bones`, `wizard_tithe`, then the recruitment branches of `ash_rest` and `last_camp`.
 
+### Choice-card quality hotfix
+
+Local feedback immediately after the approved mini-art rollout identified the 192×80 nearest-neighbor presentation as visibly low quality. Runtime handling now reconstructs the approved sheet to 1152×640 (384×160 per cell) with Lanczos once after WebP decode, then uses linear sampling for the live card fit. The composition/semantic mapping is unchanged; only presentation quality changed.
+
+
 ## Semantic event-choice pass — Black Altar added — 2026-10-09
 
 The semantic mini-art rule is now active beyond Rattling Bridge.
