@@ -291,3 +291,14 @@ Do not prioritize these before the vertical slice works:
 - [x] Rebuild the normal Wizard/card-selection screen around the approved Variant C oval ritual table instead of a rectangular lower UI panel.
 - [x] Integrate the final approved Variant C full-table artwork as the canonical 1280×720 normal-table foundation while keeping live cards/counts/actions authoritative.
 - [ ] Locally verify the exact-reference table at 1280×720: check live card coverage over the baked examples, Hold visibility, deck/discard numeric masks, hover/deal animation alignment and wager overlay readability.
+
+## Current visual checkpoint — 2026-10-09
+
+- [x] Freeze the approved Fate Spread composition after local screenshot verification; future changes are bug-fixes only.
+- [x] Make the final cleaned-up Variant C art the canonical full-screen normal-table foundation.
+- [x] Preserve the Variant C source master separately from the 1280×720 runtime WebP.
+- [x] Align live two-card offers, Hold controls, Fate Spread access, deck/discard animation anchors and live counts to the approved full-screen table.
+- [x] Hide the old procedural normal-table renderer / compact progress ring on the canonical table.
+- [ ] **Immediate next check:** local 1280×720 screenshot of the exact-art normal table with two live offers; tune only concrete mask/position/readability defects.
+- [ ] After the table screenshot is accepted, return to vertical-slice validation/balance rather than another broad art pass.
+
