@@ -5,7 +5,7 @@ extends Control
 
 const CLOTH := Color(0.022, 0.010, 0.014, 0.975)
 const CLOTH_EDGE := Color(0.16, 0.045, 0.040, 0.42)
-const SLOT_MASK_SIZE := Vector2(104.0, 148.0)
+const SLOT_MASK_SIZE := Vector2(112.0, 172.0)
 const SLOT_CENTERS := [
 	Vector2(383.0, 51.0),
 	Vector2(506.0, 84.0),
@@ -38,8 +38,8 @@ func _draw() -> void:
 
 	# The reference contains its own XIII label/card. Keep the red ritual glow,
 	# but suppress the baked card/title immediately behind the live boss panel.
-	draw_rect(Rect2(312.0, 146.0, 156.0, 224.0), Color(0.026, 0.010, 0.014, 0.93))
-	draw_rect(Rect2(338.0, 132.0, 104.0, 24.0), Color(0.026, 0.010, 0.014, 0.90))
+	draw_rect(Rect2(304.0, 136.0, 172.0, 242.0), Color(0.026, 0.010, 0.014, 0.94))
+	draw_rect(Rect2(330.0, 120.0, 120.0, 34.0), Color(0.026, 0.010, 0.014, 0.92))
 
 
 func _draw_rotated_mask(center: Vector2, mask_size: Vector2, rotation: float) -> void:
