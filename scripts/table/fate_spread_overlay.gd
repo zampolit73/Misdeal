@@ -335,7 +335,7 @@ func _refresh_slots() -> void:
 			symbol.text = "◆" if state == "current" else _future_symbol(index)
 			title.text = "СЛЕДУЮЩАЯ" if state == "current" else "НЕИЗВЕСТНО"
 
-		var use_reference_future: bool = state == "future" and index >= 4
+		var use_reference_future: bool = state == "future" and index >= 4 and index != 11
 		panel.visible = not use_reference_future
 		if use_reference_future:
 			continue
@@ -397,8 +397,8 @@ func _refresh_held() -> void:
 	else:
 		held_art.texture = null
 		held_art.visible = false
-		held_title.text = "ПУСТО"
-		held_title_plate.color = Color(0.035, 0.022, 0.024, 0.94)
+		held_title.text = ""
+		held_title_plate.color = Color(0.035, 0.022, 0.024, 0.96)
 		held_title.add_theme_color_override("font_color", Color(0.84, 0.72, 0.60, 0.94))
 		held_status.text = "1/1 СВОБОДНО" if not RunState.fate_hold_used else "0/1 ИСПОЛЬЗОВАНО"
 
@@ -409,8 +409,8 @@ func _refresh_discard() -> void:
 	if rejected_count <= 0:
 		discard_art.texture = null
 		discard_art.visible = false
-		discard_title.text = "ПУСТО"
-		discard_title_plate.color = Color(0.035, 0.022, 0.024, 0.94)
+		discard_title.text = ""
+		discard_title_plate.color = Color(0.035, 0.022, 0.024, 0.96)
 		discard_title.add_theme_color_override("font_color", Color(0.84, 0.72, 0.60, 0.94))
 		return
 
