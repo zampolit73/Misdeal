@@ -65,7 +65,7 @@ Battle runtime mapping lives in `scripts/battle/authored_backdrop.gd`.
 - The full approved plate is the runtime visual foundation; run-specific cards, counts, Hold state, Wizard text and buttons remain live Godot UI aligned over it.
 - Detailed run progress is not duplicated here; `РАСКЛАД СУДЬБЫ` owns the full I–XIII progression view.
 - Important: authored table art bypasses the old heavy environment/card grade.
-- Local status: exact-art integration is committed; first post-integration screenshot is still pending. Future work should be pixel-level alignment/masking only unless the user changes direction.
+- Local status: first post-integration screenshot found baked-offer bleed on the normal table and discard-card misalignment in Fate Spread. Both targeted fixes are committed; local 1280×720 verification is pending. Future work should remain pixel-level alignment/masking only unless the user changes direction.
 - Visual lock: Fate Spread is frozen; the exact Variant C plate is the canonical normal-table art. Do not return to the procedural oval-table approximation.
 
 ### V7 high-visibility screens
