@@ -21,6 +21,14 @@ const APPROVED_CELL_SIZE := Vector2i(384, 160)
 const APPROVED_SHEET_SIZE := Vector2i(1152, 640)
 const APPROVED_COLUMNS := 3
 
+const RATTLING_BRIDGE_CELL_SIZE := Vector2i(384, 160)
+const RATTLING_BRIDGE_SHEET_SIZE := Vector2i(1152, 160)
+const RATTLING_BRIDGE_COLUMNS := 3
+const RATTLING_BRIDGE_PARTS: Array[String] = [
+	"res://assets/pixel/event/choice/rattling_bridge_hd/part_00.txt",
+	"res://assets/pixel/event/choice/rattling_bridge_hd/part_01.txt",
+]
+
 const ROW_RATTLING_BRIDGE := 0
 const ROW_WHISPERING_WELL := 1
 const ROW_CHAINED_PRISONER_RECRUITMENT := 2
@@ -28,10 +36,58 @@ const ROW_BLACK_ALTAR_RECRUITMENT := 3
 
 static var _legacy_sheet_texture: Texture2D
 static var _approved_sheet_texture: Texture2D
+static var _rattling_bridge_texture: Texture2D
 
 
 static func get_rattling_bridge_texture(index: int) -> Texture2D:
-	return _get_approved_cell(ROW_RATTLING_BRIDGE, index)
+	if index < 0 or index >= RATTLING_BRIDGE_COLUMNS:
+		return null
+	var sheet := _get_rattling_bridge_texture()
+	if sheet == null:
+		return null
+	var atlas := AtlasTexture.new()
+	atlas.atlas = sheet
+	atlas.region = Rect2(
+		Vector2(float(index * RATTLING_BRIDGE_CELL_SIZE.x), 0.0),
+		Vector2(float(RATTLING_BRIDGE_CELL_SIZE.x), float(RATTLING_BRIDGE_CELL_SIZE.y))
+	)
+	return atlas
+
+
+static func _get_rattling_bridge_texture() -> Texture2D:
+	if _rattling_bridge_texture != null:
+		return _rattling_bridge_texture
+
+	var encoded := ""
+	for part_path: String in RATTLING_BRIDGE_PARTS:
+		if not FileAccess.file_exists(part_path):
+			push_error("Missing Rattling Bridge choice-art part: %s" % part_path)
+			return null
+		encoded += FileAccess.get_file_as_string(part_path).strip_edges()
+
+	var bytes := Marshalls.base64_to_raw(encoded)
+	if bytes.is_empty():
+		push_error("Rattling Bridge choice-art atlas decoded to an empty buffer.")
+		return null
+
+	var image := Image.new()
+	var error := image.load_webp_from_buffer(bytes)
+	if error != OK:
+		push_error("Could not decode Rattling Bridge choice-art atlas: %s" % error_string(error))
+		return null
+	if image.get_width() != RATTLING_BRIDGE_SHEET_SIZE.x or image.get_height() != RATTLING_BRIDGE_SHEET_SIZE.y:
+		push_error(
+			"Rattling Bridge choice-art atlas has unexpected size %dx%d; expected %dx%d." % [
+				image.get_width(),
+				image.get_height(),
+				RATTLING_BRIDGE_SHEET_SIZE.x,
+				RATTLING_BRIDGE_SHEET_SIZE.y,
+			]
+		)
+		return null
+
+	_rattling_bridge_texture = ImageTexture.create_from_image(image)
+	return _rattling_bridge_texture
 
 
 static func get_whispering_well_texture(index: int) -> Texture2D:
