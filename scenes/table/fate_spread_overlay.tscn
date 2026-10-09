@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/fate_spread_overlay.gd" id="1_script"]
 [ext_resource type="Script" path="res://scripts/table/fate_spread_seal_visual.gd" id="2_seal"]
 [ext_resource type="Script" path="res://scripts/ui/runtime_webp_texture.gd" id="3_runtime_webp"]
+[ext_resource type="Script" path="res://scripts/table/fate_spread_reference_cleanup.gd" id="4_cleanup"]
 
 [sub_resource type="StyleBoxFlat" id="OuterPanel"]
 bg_color = Color(0, 0, 0, 0)
@@ -90,12 +91,12 @@ expected_size = Vector2i(1280, 720)
 use_nearest_filter = false
 
 [node name="HeaderMask" type="ColorRect" parent="Frame"]
-offset_left = 382.0
+offset_left = 330.0
 offset_top = 0.0
-offset_right = 922.0
-offset_bottom = 116.0
+offset_right = 978.0
+offset_bottom = 122.0
 mouse_filter = 2
-color = Color(0.010, 0.006, 0.008, 0.88)
+color = Color(0.010, 0.006, 0.008, 0.98)
 
 [node name="Brand" type="Label" parent="Frame"]
 offset_left = 410.0
@@ -299,6 +300,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.030, 0.012, 0.015, 0.10)
+
+[node name="ReferenceCleanup" type="Control" parent="Frame/SpreadArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_cleanup")
 
 [node name="SealVisual" type="Control" parent="Frame/SpreadArea"]
 layout_mode = 1
