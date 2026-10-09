@@ -154,6 +154,16 @@ Enemy composition and boss mechanics are unchanged. Grave Bell/support healing s
 
 This is pending real local verification. Highest-value checks are: solo Ranger and solo Mage first mandatory fight, one duo mid-tier support/ranged fight, one late elite, and Bone Warden in solo/duo/trio. Do not blanket-retune individual enemies before those checks unless a concrete regression appears.
 
+## Latest Fate Spread screenshot alignment pass
+
+Latest local screenshot was already close to target. Do not change the ring geometry. Fixes now in `main`:
+- XII is a baked sample slot in the approved plate just like I–IV, so it is always masked and replaced by live state;
+- static title is taken directly from the approved reference; only dynamic subtitle/count/chapter rows are masked/redrawn;
+- right discard count is positioned inside its physical holder;
+- empty side holders omit the floating `ПУСТО` text.
+
+Next screenshot should be evaluated for tiny per-slot leaks/offsets only.
+
 ## Latest Fate Spread reference-preserving cleanup
 
 The previous screenshot exposed over-masking: future slots had large black rectangles and the live sealed XIII covered the approved central skull/chain card. This has been corrected without moving the composition.
