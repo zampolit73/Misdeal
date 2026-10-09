@@ -1,9 +1,18 @@
 # Misdeal — Project State
 
-## Latest durable checkpoint — 2026-10-09 14:39 +04
+## Latest durable checkpoint — 2026-10-09
 
-The current authoritative continuation notes are in `docs/HANDOFF.md`. Key state: Fate Spread is visually frozen; the final cleaned-up Variant C full-screen plate is now the canonical normal Wizard table; the immediate next task is a local 1280×720 screenshot of that exact-art table and pixel-level cleanup only. After acceptance, return to vertical-slice validation/balance.
+The first local screenshot of the exact Variant C table exposed two concrete composition leaks. Both are now fixed in `main`: the baked sample offer cards are suppressed beneath a restrained oval cleanup layer, and the Fate Spread Wizard-discard live card is rotated/shifted onto the painted discard stack so its rectangular backing no longer peeks out. Fate Spread remains visually frozen apart from bug fixes. Next step is local 1280×720 verification of these two corrections; after acceptance, return to vertical-slice validation/balance.
 
+
+## Screenshot-driven table cleanup — 2026-10-09
+
+The first post-integration local screenshots showed two specific defects without invalidating the approved compositions:
+
+- On the normal Wizard table, a single live offer could expose the two baked sample cards that are part of `table_exact.webp`. `table.tscn` now places a rounded, dark cloth-like cleanup layer beneath live offers so the baked samples no longer read as extra cards.
+- In `РАСКЛАД СУДЬБЫ`, the live top card in the Wizard discard was axis-aligned while the painted physical discard stack is angled. The live discard card/mask/title are now grouped, shifted and rotated together to follow the stack.
+
+No card rules, progression, Hold behavior, discard logic or Fate Spread ring geometry changed.
 
 ## Continuation checkpoint — 2026-10-09 — Fate Spread frozen + exact normal-table Variant C live
 
