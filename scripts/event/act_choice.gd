@@ -61,7 +61,6 @@ const EVENT_SCENE_ART_PATHS := {
 
 var active_card: RunCardData
 var resolved := false
-var choice_commit_started := false
 
 func _ready() -> void:
 	active_card = RunState.get_active_card()
@@ -696,33 +695,6 @@ func _connect_choice_feedback() -> void:
 	for button in [choice_a, choice_b, choice_c]:
 		button.mouse_entered.connect(_on_choice_hover.bind(button, true))
 		button.mouse_exited.connect(_on_choice_hover.bind(button, false))
-		button.button_down.connect(_on_choice_commit_feedback.bind(button))
-
-
-func _on_choice_commit_feedback(button: Button) -> void:
-	if resolved or button.disabled or not button.visible:
-		return
-
-	choice_commit_started = true
-	for candidate in [choice_a, choice_b, choice_c]:
-		if not candidate.visible:
-			continue
-		candidate.pivot_offset = candidate.size * 0.5
-		var tween := candidate.create_tween()
-		tween.set_parallel(true)
-		if candidate == button:
-			candidate.z_index = 20
-			tween.tween_property(candidate, "scale", Vector2(1.035, 1.035), 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-			tween.tween_property(candidate, "modulate", Color(1.08, 0.98, 0.88, 1.0), 0.11)
-			var art := candidate.get_node_or_null("ChoiceArt") as TextureRect
-			if art != null:
-				var art_tween := art.create_tween()
-				art_tween.tween_property(art, "modulate", Color(1.14, 1.02, 0.88, 1.0), 0.08)
-				art_tween.tween_property(art, "modulate", Color.WHITE, 0.18)
-		else:
-			candidate.z_index = 1
-			tween.tween_property(candidate, "scale", Vector2(0.985, 0.985), 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-			tween.tween_property(candidate, "modulate", Color(0.48, 0.44, 0.46, 0.64), 0.12)
 
 func _on_choice_hover(button: Button, hovered: bool) -> void:
 	if button.disabled or not button.visible or resolved:
@@ -735,30 +707,10 @@ func _animate_screen_in() -> void:
 	panel.pivot_offset = panel.size * 0.5
 	panel.scale = Vector2(0.985, 0.985)
 	panel.modulate.a = 0.0
-
-	var choice_buttons: Array[Button] = [choice_a, choice_b, choice_c]
-	for button in choice_buttons:
-		if not button.visible:
-			continue
-		button.pivot_offset = button.size * 0.5
-		button.scale = Vector2(0.98, 0.98)
-		button.modulate.a = 0.0
-
 	var tween := panel.create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(panel, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(panel, "modulate:a", 1.0, 0.16)
-
-	var visible_index := 0
-	for button in choice_buttons:
-		if not button.visible:
-			continue
-		var card_tween := button.create_tween()
-		card_tween.set_parallel(true)
-		var delay := 0.05 + float(visible_index) * 0.055
-		card_tween.tween_property(button, "scale", Vector2.ONE, 0.18).set_delay(delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		card_tween.tween_property(button, "modulate:a", 1.0, 0.14).set_delay(delay)
-		visible_index += 1
 
 func _configure_card() -> void:
 	match active_card.card_id:
@@ -1683,11 +1635,10 @@ func _finish(message: String) -> void:
 	continue_button.modulate.a = 0.0
 	_refresh_run_labels()
 
-	var reveal_delay := 0.14 if choice_commit_started else 0.0
 	var reveal := create_tween()
 	reveal.set_parallel(true)
-	reveal.tween_property(result_label, "modulate:a", 1.0, 0.18).set_delay(reveal_delay)
-	reveal.tween_property(continue_button, "modulate:a", 1.0, 0.22).set_delay(reveal_delay + 0.04)
+	reveal.tween_property(result_label, "modulate:a", 1.0, 0.18)
+	reveal.tween_property(continue_button, "modulate:a", 1.0, 0.22)
 
 func _disable_choices() -> void:
 	choice_a.disabled = true
