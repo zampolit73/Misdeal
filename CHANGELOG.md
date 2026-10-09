@@ -57,6 +57,10 @@
 
 ### Changed
 
+- Integrated the user-approved five-event semantic choice-card mockup as the new production mini-art benchmark. Rattling Bridge recruitment, Whispering Well, Chained Prisoner recruitment and Black Altar recruitment now use dedicated action-first pixel illustrations from the approved sheet instead of repeating the large event scene.
+- The approved mini-art sheet is stored as a runtime-decoded 576×320 WebP split into text parts under `assets/pixel/event/choice/approved_choice_sheet_v2/`; each 192×80 cell is shown with nearest filtering for a cleaner, less AI-like card-scale read.
+- Curse Forge intentionally keeps the actual Dead Man's Shield / Blind Quiver / Cracked Focus artifact illustrations because those images match the current live choices more accurately than the concept-sheet forge placeholders.
+
 - Extended the semantic event-choice pass to **ЧЁРНЫЙ АЛТАРЬ** recruitment: blood sacrifice, ritual payment and stolen offering now use separate mini illustrations instead of repeating the altar event thumbnail.
 - Audited the original five benchmark events: Whispering Well and Chained Prisoner already use dedicated choice imagery, while Curse Forge uses the actual artifact illustrations for its three live choices. The next true duplicate-art gaps are Lost Purse, Debtor Bones, Wizard Tithe and the recruitment branches of Ash Rest / Last Camp.
 
