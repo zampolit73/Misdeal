@@ -1,5 +1,26 @@
 # Misdeal — Project State
 
+## Physical card-back foundation pass — 2026-10-09
+
+The user rejected further dark masking and chose a physical-card solution.
+
+Current `main` now includes `assets/pixel/table/card_back_runtime.svg`, a restrained black-leather/brass neutral card back used as a shared physical placeholder.
+
+Normal Wizard table:
+- the previous temporary cleanup panels are removed;
+- two neutral card backs are permanently seated beneath the live offer positions;
+- normal two-card deals cover them completely;
+- single-card/retry states expose logical face-down cards rather than baked sample event faces or a dark "hole";
+- no offer-selection mechanics changed.
+
+Fate Spread:
+- an empty Hold slot now shows the shared card back and hides the old dark title plate;
+- a non-empty Hold overlays the live card art/title on that physical back;
+- the Wizard discard card layer is hidden when empty;
+- when non-empty, the live top discard uses the same physical back as its frame and is shifted/rotated/scaled to follow the painted stack instead of sitting on a dark rectangular mask.
+
+Pending local 1280×720 verification only. If alignment is close, future changes should be pixel nudges rather than another masking approach.
+
 ## Latest durable checkpoint — 2026-10-09
 
 The first local screenshot of the exact Variant C table exposed two concrete composition leaks. Both are now fixed in `main`: the baked sample offer cards are suppressed beneath a restrained oval cleanup layer, and the Fate Spread Wizard-discard live card is rotated/shifted onto the painted discard stack so its rectangular backing no longer peeks out. Fate Spread remains visually frozen apart from bug fixes. Next step is local 1280×720 verification of these two corrections; after acceptance, return to vertical-slice validation/balance.
