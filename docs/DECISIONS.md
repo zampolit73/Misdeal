@@ -1590,3 +1590,18 @@ Mutable run state must remain live. Baked example offer cards, counts and Hold t
 
 Keep this screen visually restrained. Do not reintroduce the old rectangular lower HUD/table, the duplicate compact progress ring, or dense generated ornamental clutter.
 
+## D094 — Freeze Fate Spread and treat exact Variant C as the canonical normal table
+
+Date: 2026-10-09  
+Status: accepted by user, implemented; normal-table local screenshot verification pending
+
+The user explicitly froze the current Fate Spread after screenshot iteration and separately approved the final cleaned-up Variant C artwork for the normal Wizard/card-selection table almost one-for-one.
+
+Therefore:
+- Fate Spread is considered visually complete except for concrete rendering bugs.
+- The normal table's canonical visual foundation is `assets/pixel/table/approved_variant_c/table_exact.webp`.
+- Dynamic run state remains native/live Godot UI over that plate.
+- Future normal-table work should be alignment/masking/readability polish, not a new art direction.
+- Avoid dense AI-like prop noise and micro-detail; keep large readable physical forms.
+- After local acceptance of the exact table, development priority returns to vertical-slice validation and balance rather than broad visual replacement.
+
