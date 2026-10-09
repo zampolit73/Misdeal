@@ -1,5 +1,41 @@
 # Misdeal — Project State
 
+## Motion polish pass 1 — Table + Events + Rewards — 2026-10-09
+
+The first broad animation pass is live in `main`. The goal is not "more effects"; motion now reinforces the cursed physical table metaphor.
+
+Table:
+- Fate Hold is no longer an instant state toggle. The card moves into the corresponding Hold control, compresses into a short stamp beat, then returns to its deal position carrying the held state.
+- Choosing a deal moves the selected card slightly toward the player and gives it a warm focus beat.
+- Rejected cards travel to the discard side. The logical discard pile/count now refreshes near visual impact rather than before the moving card reaches the pile.
+- The drawn discard stack and count pulse on impact.
+- Existing deal, hover, Wizard meddling and wager animations remain intact.
+
+Generic Act Choice events:
+- visible choice cards enter with a small stagger;
+- on press, the committed mini-card lifts/warms and its art flashes briefly;
+- alternative cards recede and dim;
+- result/continue reveal waits for that short commitment beat.
+- mechanics and event outcomes are unchanged.
+
+Whispering Well:
+- uses the same staged entry and committed-choice language;
+- result text fades in after the selection beat before the existing automatic return timing.
+
+Rewards:
+- header and reward cards enter with a short stagger;
+- selected reward becomes the focal card while alternatives recede;
+- portrait/choose bar receive a small acceptance beat;
+- reward resolution begins after ~0.18 s so a valuable reward no longer feels like an instant UI state change;
+- reset paths restore scale/modulate/z-order before the next reward tier.
+
+Current motion principle: short physical reactions, readable anticipation and object weight. Avoid permanent bobbing, excessive screen shake, particles on every click, or decorative motion that slows repeated runs.
+
+Next motion pass target:
+1. battle anticipation by attack type + better death settling;
+2. Fate Spread ritual reveal/stagger and stronger 4/8/12 milestones;
+3. subtle Wizard ambience/reaction motion layered over the approved static art.
+
 ## Broad semantic choice-art rollout — 2026-10-09
 
 The next large Act 1 choice-card pass is live in `main`.
