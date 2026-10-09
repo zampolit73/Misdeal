@@ -2,6 +2,14 @@
 
 Last updated: 2026-10-09
 
+## Fate Spread baked-state cleanup — 2026-10-09
+
+Local verification of the exact-reference rebuild showed the remaining mismatch clearly: the full approved concept plate still exposed its baked sample cards, Roman numerals and title beneath the live run state. The composition itself was correct, so geometry was kept intact.
+
+A dedicated `fate_spread_reference_cleanup.gd` layer now masks only those baked dynamic regions before the live cards are drawn. The header mask was widened/strengthened, all twelve baked slot/card+numeral regions are covered with reference-matched cloth patches, and the baked XIII card/label area is suppressed beneath the live boss card. The physical table, ritual circle, candles, hand, books, skulls, brass and red cloth remain visible.
+
+Empty Hold/Discard states also no longer show parchment-colored title strips; those plates switch to dark material until a real card exists.
+
 ## Fate Spread exact-reference rebuild — 2026-10-09
 
 The user explicitly chose the final ornate Fate Spread reference as the target **almost one-for-one**, so the intermediate edge-art composition has been superseded.
