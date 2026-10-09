@@ -315,3 +315,13 @@ Do not prioritize these before the vertical slice works:
 - [ ] **Immediate next check:** local 1280×720 screenshot of the exact-art normal table with two live offers; tune only concrete mask/position/readability defects.
 - [ ] After the table screenshot is accepted, return to vertical-slice validation/balance rather than another broad art pass.
 
+
+### Motion polish
+
+- [x] Pass 1: physical table interactions — Hold stamp, chosen-card focus, rejected-card travel and discard impact feedback.
+- [x] Pass 1: staged event choice entry/commit/result feedback for generic Act Choice screens and Whispering Well.
+- [x] Pass 1: staged reward reveal and selected-reward confirmation beat.
+- [ ] Pass 2: battle anticipation by attack archetype, improved death settling and boss-phase weight.
+- [ ] Pass 2: Fate Spread ritual reveal/stagger and milestone emphasis.
+- [ ] Pass 2: restrained Wizard ambience/reactions without skeletal/puppet-style animation of the painted character.
+
