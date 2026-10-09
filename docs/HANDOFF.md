@@ -1,3 +1,24 @@
+### Approved event-choice mini-art sheet is canonical
+
+The user approved the five-event mini-choice mockup as the visual target. Production now uses the cropped action-first illustrations from that sheet rather than duplicating the large event image or using schematic placeholders.
+
+Canonical runtime source:
+- `assets/pixel/event/choice/approved_choice_sheet_v2/part_00.txt`;
+- `part_01a.txt`, `part_01b.txt`, `part_01c.txt`;
+- `part_02.txt`, `part_03.txt`, `part_04.txt`;
+- decoded by `scripts/ui/approved_event_choice_art.gd` into a 576×320 WebP sheet;
+- each cell is 192×80 and intentionally displayed with nearest filtering.
+
+Mapped states:
+- Rattling Bridge recruitment;
+- Whispering Well;
+- Chained Prisoner recruitment;
+- Black Altar recruitment.
+
+Chained Prisoner's post-recruitment branch keeps the older dedicated semantic atlas. Curse Forge keeps the real artifact thumbnails, because its live options are three specific relics and those assets are more truthful than the concept-sheet generic forge actions.
+
+Next visual targets are the remaining true duplicate-event-thumbnail cases: Lost Purse, Debtor Bones, Wizard Tithe, Ash Rest recruitment and Last Camp recruitment.
+
 ### Semantic choice-art continuation
 
 After the approved Rattling Bridge trio, `black_altar` recruitment also received dedicated semantic mini-art. Runtime path:
