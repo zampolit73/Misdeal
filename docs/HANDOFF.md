@@ -1,3 +1,88 @@
+## Continuation checkpoint — 2026-10-09 14:39 +04 — continue from here
+
+This is the authoritative handoff for the next Project chat. GitHub is the source of truth for implemented code/state.
+
+### What is visually locked
+
+**Fate Spread / `РАСКЛАД СУДЬБЫ` is frozen.** The user explicitly accepted the current physical-table composition after several screenshot passes. Do not redesign it unless a concrete bug/leak appears.
+
+Canonical Fate Spread files:
+- `scenes/table/fate_spread_overlay.tscn`
+- `scripts/table/fate_spread_overlay.gd`
+- `scripts/table/fate_spread_reference_cleanup.gd`
+- `assets/pixel/table/fate_spread/fate_spread_exact.webp`
+- `assets/source_archive/fate_spread/fate_spread_exact_master.webp`
+
+Important Fate Spread rules:
+- I–XII/history/counts/Hold/Discard remain live run state.
+- The approved sealed XIII skull/chain card is shown directly until the boss activates.
+- Generic future card backs from the plate may remain visible when they truthfully represent future state.
+- Live masks replace only baked run-specific/sample state.
+- History hover is a compact cursor-adjacent tooltip.
+- Do not move the ring, XIII, side holders or header without a concrete screenshot defect.
+
+### Latest approved normal Wizard table
+
+The user then approved a **cleaned-up Variant C** normal-table composition and explicitly asked to implement it almost exactly like the final art. This supersedes the earlier procedural oval-table approximation.
+
+Canonical normal-table art:
+- runtime: `assets/pixel/table/approved_variant_c/table_exact.webp` (1280×720)
+- source master: `assets/source_archive/table/approved_variant_c/table_exact_master.webp`
+- scene: `scenes/table/table.tscn`
+- logic: `scripts/table/table.gd`
+- loader: `scripts/ui/runtime_webp_texture.gd`
+
+The approved visual language is:
+- Wizard centered behind one broad oval red-black ritual table;
+- restrained candle/brass/skull decoration, not dense AI-like micro-detail;
+- physical deck stack on the left;
+- physical rejected/discard stack on the right;
+- two live offer cards near the player;
+- Hold controls immediately above each live offer;
+- `РАСКЛАД СУДЬБЫ [R]` centered between Wizard and cards;
+- compact top HUD + live Wizard line;
+- warm bronze/gold physical-card framing;
+- no rectangular lower HUD slab and no duplicate compact progress map.
+
+Current implementation:
+- `WizardBackdrop` now runtime-decodes the exact approved full-screen Variant C plate.
+- Old procedural `TableVisual`, compact `TableSpreadVisual`, and separate logo are hidden on the canonical normal table.
+- Live offer cards are smaller/lower and use reduced rotation/hover motion to sit physically on the table.
+- Deal origin is aligned to the left physical deck; discard destination is aligned to the right physical discard holder.
+- Baked Hold text is covered by small live masks; live Hold buttons remain authoritative.
+- Physical holder labels come from the art; only changing deck/discard numeric values are overlaid live.
+- The old v6 Wizard crop remains in repository history/assets but is no longer the canonical table backdrop.
+- No mechanics were intentionally changed by this visual pass.
+
+### Immediate next action
+
+The latest exact-art normal-table integration is committed but still needs the **first local 1280×720 screenshot after this exact plate was wired into runtime**.
+
+After `git pull`, open the normal table with two offers and check only:
+1. live offer cards align with/cover the baked sample-card zones cleanly;
+2. Hold buttons do not double with baked Hold text;
+3. deck/discard live numbers sit naturally on their physical plaques;
+4. top HUD and Wizard line remain readable and do not feel like large black UI slabs;
+5. live cards do not cover the Wizard's hands;
+6. no hidden procedural table/logo/progress elements leak through;
+7. wager overlay is still readable over the new full-screen plate.
+
+If close, do **pixel-level alignment/mask/font fixes only**. Do not regenerate another table concept or return to the procedural oval-table version unless the user explicitly changes direction.
+
+### Broader project state to remember
+
+- Godot 4.7.x + GDScript.
+- GitHub repo: `zampolit73/Misdeal`.
+- Vertical-slice priority remains Act 1 through Bone Warden.
+- All 25 active Act 1 table cards already have unique current art coverage.
+- Dedicated current battle arenas exist for Crypt, Gallows, Graveyard, Ossuary, Warden and Bone Crush.
+- Main menu, Class Select, Reward, Run End and all planned Act 1 event environments already have authored art passes.
+- Solo/duo balance compensation is implemented and still benefits from full-run local validation; do not blanket-retune enemies before concrete test results.
+- Pre-battle target intent lines are opt-in via the `ЦЕЛИ` toggle.
+- Shared scene-transition veil is in place to avoid gray flashes; only revisit if a reproducible transition flash remains.
+- Avoid broad architecture work or another global art replacement pass. The next phase after accepting the exact normal table should return to full vertical-slice validation, balance and concrete screenshot-driven fixes.
+
+
 ## Latest normal table exact-reference integration
 
 ## Current handoff — 2026-10-09 — continue from here
