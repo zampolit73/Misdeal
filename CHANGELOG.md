@@ -57,6 +57,9 @@
 
 ### Changed
 
+- Extended the semantic event-choice pass to **ЧЁРНЫЙ АЛТАРЬ** recruitment: blood sacrifice, ritual payment and stolen offering now use separate mini illustrations instead of repeating the altar event thumbnail.
+- Audited the original five benchmark events: Whispering Well and Chained Prisoner already use dedicated choice imagery, while Curse Forge uses the actual artifact illustrations for its three live choices. The next true duplicate-art gaps are Lost Purse, Debtor Bones, Wizard Tithe and the recruitment branches of Ash Rest / Last Camp.
+
 - Started the semantic event-choice art pass with **ГРЕМУЧИЙ МОСТ**. Its ranger-recruitment choices now use three dedicated painted mini illustrations — rescue / loot-bag / lone-crossing — instead of duplicating the event image.
 - Replaced the rejected schematic SVG prototypes with an approved 1152×160 runtime-decoded WebP atlas stored as split base64 text under `assets/pixel/event/choice/rattling_bridge_hd/`. The already-resolved bridge branch still uses the generic fallback until its own three semantic illustrations are authored.
 
