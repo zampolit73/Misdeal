@@ -151,7 +151,7 @@ func _apply_approved_choice_art() -> void:
 				if recruitment_state
 				else APPROVED_EVENT_CHOICE_ART.get_chained_prisoner_texture(index)
 			)
-			art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 			art.visible = art.texture != null
 			art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
 			_apply_choice_art_margins(button)
@@ -165,7 +165,7 @@ func _apply_approved_choice_art() -> void:
 				art.visible = false
 				continue
 			art.texture = APPROVED_EVENT_CHOICE_ART.get_rattling_bridge_texture(index)
-			art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 			art.visible = art.texture != null
 			art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
 			_apply_choice_art_margins(button)
@@ -179,7 +179,7 @@ func _apply_approved_choice_art() -> void:
 				art.visible = false
 				continue
 			art.texture = APPROVED_EVENT_CHOICE_ART.get_black_altar_texture(index)
-			art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 			art.visible = art.texture != null
 			art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
 			_apply_choice_art_margins(button)
@@ -203,7 +203,7 @@ func _apply_approved_choice_art() -> void:
 					continue
 
 				art.texture = choice_texture
-				art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+				art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 				art.visible = true
 				art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
 				_apply_choice_art_margins(button)
@@ -216,7 +216,7 @@ func _apply_approved_choice_art() -> void:
 			art.visible = false
 			continue
 		art.texture = APPROVED_CHOICE_ART.get_cell(cell.x, cell.y)
-		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 		art.visible = art.texture != null
 		art.modulate = Color(0.42, 0.42, 0.42, 0.72) if buttons[index].disabled else Color.WHITE
 		_apply_choice_art_margins(buttons[index])
