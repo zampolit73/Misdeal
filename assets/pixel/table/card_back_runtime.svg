@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="224" viewBox="0 0 160 224">
+  <defs>
+    <linearGradient id="leather" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#171116"/>
+      <stop offset="0.55" stop-color="#0d0a0d"/>
+      <stop offset="1" stop-color="#080609"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8d6334"/>
+      <stop offset="0.5" stop-color="#d39a52"/>
+      <stop offset="1" stop-color="#5d3a21"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="158" height="222" rx="7" fill="#060507" stroke="#2b1716" stroke-width="2"/>
+  <rect x="6" y="6" width="148" height="212" rx="5" fill="url(#leather)" stroke="url(#brass)" stroke-width="2"/>
+  <rect x="11" y="11" width="138" height="202" rx="3" fill="none" stroke="#4a2a20" stroke-width="1"/>
+  <path d="M18 28H142M18 196H142" stroke="#2c1717" stroke-width="1"/>
+  <g opacity="0.9" fill="none" stroke="#9a6534" stroke-width="2">
+    <circle cx="80" cy="112" r="29"/>
+    <circle cx="80" cy="112" r="13"/>
+    <path d="M80 72L91 101L120 112L91 123L80 152L69 123L40 112L69 101Z"/>
+    <path d="M80 82V142M50 112H110"/>
+  </g>
+  <g fill="#c18645">
+    <circle cx="80" cy="112" r="4"/>
+    <path d="M80 92L85 107L80 104L75 107Z"/>
+    <path d="M100 112L85 117L88 112L85 107Z"/>
+    <path d="M80 132L75 117L80 120L85 117Z"/>
+    <path d="M60 112L75 107L72 112L75 117Z"/>
+  </g>
+  <g stroke="#5b2c26" stroke-width="1" opacity="0.8">
+    <path d="M22 44L34 32M126 32L138 44M22 180L34 192M126 192L138 180"/>
+  </g>
+</svg>
