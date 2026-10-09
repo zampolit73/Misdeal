@@ -1,3 +1,19 @@
+### Motion language pass 1 is implemented
+
+Table + Events + Rewards now share a more physical motion language.
+
+Important runtime points:
+- `scripts/table/table.gd`: Fate Hold has a card-to-hold stamp animation; card selection moves the chosen card toward the player and rejected cards toward discard.
+- `scripts/table/table_spread_visual.gd`: discard stack has an explicit `pulse_discard()` impact reaction.
+- Discard UI state is deliberately refreshed during the rejection travel near impact, not immediately when `RunState.choose_card()` succeeds.
+- `scripts/event/act_choice.gd`: choice cards stage in and `button_down` starts commitment feedback before the resolver's `pressed` callback; result reveal is delayed slightly when that beat exists.
+- `scripts/event/whispering_well.gd`: same committed-choice language on the dedicated Well screen.
+- `scripts/reward/reward.gd`: staged card entrance plus an awaited ~0.18 s selected-reward focal beat; `_reset_buttons()` restores transforms/modulate so multi-stage rewards remain safe.
+
+Do not turn this into floating/pulsing-everything UI. The accepted motion direction is object weight and short physical cause/effect.
+
+Next suggested package is battle anticipation/death motion + Fate Spread ritual motion + restrained Wizard ambience.
+
 ### Broad Act 1 semantic mini-art pass complete for the main duplicate cases
 
 Current runtime no longer relies on three copies of the event thumbnail for the main remaining duplicate-choice screens.
