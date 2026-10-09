@@ -1,3 +1,7 @@
+### Whispering Well choice art is restored
+
+After the motion pass, the dedicated Well screen could render without its three choice images. `scripts/event/whispering_well.gd` is back on the stable pre-motion controller, and `get_whispering_well_texture()` uses the approved split-sheet source. Do not reapply the removed Well commitment-motion patch wholesale.
+
 ### Act Choice motion regression was rolled back
 
 After Motion Pass 1, the generic Act Choice screen could show raw template placeholders instead of the selected event. The event-motion changes in `scripts/event/act_choice.gd` were rolled back to the known-good semantic-art state. Do not reapply the previous `button_down`/stagger commit patch wholesale. Table and Reward motion from the same pass remain enabled and should be tested independently.
