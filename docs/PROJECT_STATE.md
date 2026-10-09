@@ -1,5 +1,10 @@
 # Misdeal — Project State
 
+## Latest durable checkpoint — 2026-10-09 14:39 +04
+
+The current authoritative continuation notes are in `docs/HANDOFF.md`. Key state: Fate Spread is visually frozen; the final cleaned-up Variant C full-screen plate is now the canonical normal Wizard table; the immediate next task is a local 1280×720 screenshot of that exact-art table and pixel-level cleanup only. After acceptance, return to vertical-slice validation/balance.
+
+
 ## Continuation checkpoint — 2026-10-09 — Fate Spread frozen + exact normal-table Variant C live
 
 This is the current visual/gameplay handoff for the next Project chat.
