@@ -57,6 +57,9 @@
 
 ### Changed
 
+- Started the semantic event-choice art pass with **ГРЕМУЧИЙ МОСТ**. Its three decision cards no longer duplicate the bridge event image: recruitment state now uses rescue / loot-bag / lone-crossing mini illustrations, while the already-resolved companion state uses rush / scavenge / careful-crossing variants.
+- Added a restrained six-cell SVG choice-art sheet for Rattling Bridge under `assets/pixel/event/choice/`, using large flat shapes and limited detail to reduce AI-like repetition at card scale.
+
 - Replaced the Wizard-table baked face-up offer exposure with permanent neutral physical card backs beneath the live offer layer. Two-card deals cover them; single-card/retry states now reveal logical face-down cards instead of old sample events or dark masks.
 - Fate Spread empty Hold now shows the same physical card back with no dark title plate, while the Wizard discard hides completely when empty and uses a card-back-backed live top card aligned to the painted stack when non-empty.
 
