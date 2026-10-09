@@ -2,6 +2,22 @@
 
 Last updated: 2026-10-09
 
+## Main table Variant C visual rebuild — 2026-10-09
+
+The user froze the Fate Spread composition and then approved a cleaner **Variant C** target for the normal Wizard/card-selection table: a large oval ritual tabletop, one deliberate central sigil, Wizard centered behind it, two live offer cards near the player, and physical deck/discard holders at the left/right edges. The goal is to eliminate the old rectangular lower-table/UI-panel read without reintroducing dense generated-art prop noise.
+
+The normal table now implements that composition with live Godot layers rather than baking gameplay values into a screenshot:
+
+- `scripts/table/table_visual.gd` now draws a wide physical oval table and red-black ritual cloth over the lower part of the existing authored Wizard scene;
+- the old rectangular lower shade, offer-focus rectangle and top shade are disabled;
+- the duplicated compact progress-ring graphic was removed from the normal table; detailed progress remains owned by `РАСКЛАД СУДЬБЫ`;
+- physical deck/discard stacks are aligned inside new side holders;
+- the two live offer cards and Hold controls moved down onto the ritual cloth, while the Fate Spread button moved to the center above them;
+- deal/discard animation endpoints were moved to the physical left/right holders;
+- the old `SpreadProgress` label remains in the scene only for compatibility but is hidden in Variant C.
+
+The Fate Spread overlay itself is intentionally unchanged by this pass.
+
 ## Fate Spread final visual polish — 2026-10-09
 
 The latest screenshot is now very close to the approved reference. Final polish focused only on UI elements that still read too much like HUD:
