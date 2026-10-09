@@ -1,11 +1,12 @@
 extends Control
 
-# Masks only the run-specific examples baked into the approved concept plate.
-# The physical table, ritual circle and edge props stay visible underneath.
+# Masks only baked sample cards that must be replaced by live run state.
+# Future reference card-backs remain visible wherever they are already generic.
 
-const CLOTH := Color(0.022, 0.010, 0.014, 0.975)
-const CLOTH_EDGE := Color(0.16, 0.045, 0.040, 0.42)
-const SLOT_MASK_SIZE := Vector2(112.0, 172.0)
+const CLOTH := Color(0.022, 0.010, 0.014, 0.965)
+const CLOTH_EDGE := Color(0.16, 0.045, 0.040, 0.34)
+const CARD_MASK_SIZE := Vector2(96.0, 138.0)
+const NUMERAL_MASK_SIZE := Vector2(52.0, 24.0)
 const SLOT_CENTERS := [
 	Vector2(383.0, 51.0),
 	Vector2(506.0, 84.0),
@@ -28,23 +29,42 @@ func _ready() -> void:
 	queue_redraw()
 
 
+func refresh() -> void:
+	queue_redraw()
+
+
 func _draw() -> void:
 	for index in range(SLOT_CENTERS.size()):
-		_draw_rotated_mask(
-			SLOT_CENTERS[index],
-			SLOT_MASK_SIZE,
-			deg_to_rad(float(SLOT_ROTATIONS_DEG[index]))
-		)
-
-	# The reference contains its own XIII label/card. Keep the red ritual glow,
-	# but suppress the baked card/title immediately behind the live boss panel.
-	draw_rect(Rect2(304.0, 136.0, 172.0, 242.0), Color(0.026, 0.010, 0.014, 0.94))
-	draw_rect(Rect2(330.0, 120.0, 120.0, 34.0), Color(0.026, 0.010, 0.014, 0.92))
+		if not _slot_needs_live_cover(index):
+			continue
+		_draw_slot_mask(index)
 
 
-func _draw_rotated_mask(center: Vector2, mask_size: Vector2, rotation: float) -> void:
+func _slot_needs_live_cover(index: int) -> bool:
+	# The approved reference intentionally contains example cards in I–IV,
+	# so those four positions always need a live replacement.
+	if index < 4:
+		return true
+
+	# V–XII are already clean/generic card-backs in the reference. Mask them
+	# only once that position becomes the current step or part of run history.
+	return index <= RunState.cards_resolved
+
+
+func _draw_slot_mask(index: int) -> void:
+	var center: Vector2 = SLOT_CENTERS[index]
+	var rotation := deg_to_rad(float(SLOT_ROTATIONS_DEG[index]))
 	draw_set_transform(center, rotation, Vector2.ONE)
-	var rect := Rect2(-mask_size * 0.5, mask_size)
-	draw_rect(rect, CLOTH)
-	draw_rect(rect.grow(-2.0), CLOTH_EDGE, false, 1.0)
+
+	var card_rect := Rect2(-CARD_MASK_SIZE * 0.5, CARD_MASK_SIZE)
+	draw_rect(card_rect, CLOTH)
+	draw_rect(card_rect.grow(-2.0), CLOTH_EDGE, false, 1.0)
+
+	# Cover only the baked Roman numeral immediately above a replaced card.
+	var numeral_rect := Rect2(
+		Vector2(-NUMERAL_MASK_SIZE.x * 0.5, -CARD_MASK_SIZE.y * 0.5 - 22.0),
+		NUMERAL_MASK_SIZE
+	)
+	draw_rect(numeral_rect, Color(CLOTH.r, CLOTH.g, CLOTH.b, 0.94))
+
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
