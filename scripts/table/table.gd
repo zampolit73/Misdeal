@@ -411,8 +411,8 @@ func _update_spread_ui() -> void:
 		deck_count = maxi(0, deck_count - RunState.current_offer_ids.size())
 
 	var discard_count := RunState.rejected_card_ids.size()
-	deck_count_label.text = "КОЛОДА  %02d" % deck_count
-	discard_count_label.text = "ОТВЕРГНУТО  %02d" % discard_count
+	deck_count_label.text = "%02d" % deck_count
+	discard_count_label.text = "%02d" % discard_count
 	var remaining_to_boss: int = maxi(0, RunState.ACT_CARD_TARGET - RunState.cards_resolved)
 	if RunState.is_boss_due():
 		spread_progress_label.text = "XIII • ПРИГОВОР"
