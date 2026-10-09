@@ -7,13 +7,13 @@ const FATE_SPREAD_SCENE := preload("res://scenes/table/fate_spread_overlay.tscn"
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 
-const LEFT_CARD_POSITION := Vector2(382.0, 350.0)
-const RIGHT_CARD_POSITION := Vector2(658.0, 350.0)
-const SINGLE_CARD_POSITION := Vector2(520.0, 350.0)
-const DEAL_SOURCE_POSITION := Vector2(92.0, 430.0)
-const DISCARD_TARGET_POSITION := Vector2(948.0, 430.0)
-const LEFT_CARD_ROTATION := -0.045
-const RIGHT_CARD_ROTATION := 0.045
+const LEFT_CARD_POSITION := Vector2(396.0, 366.0)
+const RIGHT_CARD_POSITION := Vector2(654.0, 366.0)
+const SINGLE_CARD_POSITION := Vector2(525.0, 366.0)
+const DEAL_SOURCE_POSITION := Vector2(94.0, 408.0)
+const DISCARD_TARGET_POSITION := Vector2(956.0, 408.0)
+const LEFT_CARD_ROTATION := -0.024
+const RIGHT_CARD_ROTATION := 0.024
 
 @onready var wizard_line: Label = $WizardLine
 @onready var stats_label: Label = $Stats
@@ -378,7 +378,7 @@ func _on_offer_button_mouse_exited(button: Button) -> void:
 
 func _configure_card_pivots() -> void:
 	for button in offer_buttons:
-		button.pivot_offset = Vector2(120.0, 173.0)
+		button.pivot_offset = Vector2(115.0, 139.0)
 
 func _layout_offer_cards(offer_count: int) -> void:
 	for index in range(offer_buttons.size()):
@@ -523,9 +523,9 @@ func _animate_card_hover(button: Button, raised: bool) -> void:
 
 	if raised:
 		button.z_index = 20
-		tween.tween_property(button, "position", rest_position + Vector2(0.0, -18.0), 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		tween.tween_property(button, "rotation", rest_rotation * 0.30, 0.12)
-		tween.tween_property(button, "scale", Vector2(1.04, 1.04), 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "position", rest_position + Vector2(0.0, -14.0), 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "rotation", rest_rotation * 0.24, 0.12)
+		tween.tween_property(button, "scale", Vector2(1.03, 1.03), 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	else:
 		button.z_index = 2
 		tween.tween_property(button, "position", rest_position, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
@@ -589,13 +589,13 @@ func _apply_card_style(button: Button, card: RunCardData) -> void:
 	var event_like := not combat_like
 
 	var normal := StyleBoxFlat.new()
-	normal.bg_color = Color(0.025, 0.050, 0.054, 0.985) if event_like else Color(0.050, 0.026, 0.028, 0.985)
+	normal.bg_color = Color(0.032, 0.020, 0.021, 0.992)
 	normal.border_width_left = 3
 	normal.border_width_top = 3
 	normal.border_width_right = 3
 	normal.border_width_bottom = 3
-	normal.border_color = Color(0.22, 0.58, 0.56, 1.0) if event_like else Color(0.48, 0.21, 0.14, 1.0)
-	normal.shadow_color = Color(0, 0, 0, 0.60)
+	normal.border_color = Color(0.66, 0.42, 0.20, 1.0)
+	normal.shadow_color = Color(0, 0, 0, 0.68)
 	normal.shadow_size = 8
 
 	var hover := normal.duplicate() as StyleBoxFlat
@@ -603,7 +603,8 @@ func _apply_card_style(button: Button, card: RunCardData) -> void:
 	hover.border_width_top = 4
 	hover.border_width_right = 4
 	hover.border_width_bottom = 4
-	hover.border_color = Color(0.36, 0.90, 0.82, 1.0) if event_like else Color(0.92, 0.45, 0.16, 1.0)
+	hover.border_color = Color(0.98, 0.62, 0.26, 1.0)
+	hover.shadow_color = Color(0.48, 0.12, 0.03, 0.58)
 	hover.shadow_size = 12
 
 	if card.card_id == RunState.BOSS_CARD_ID:
