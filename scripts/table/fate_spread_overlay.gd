@@ -6,9 +6,23 @@ const BOSS_SEAL_SCRIPT := preload("res://scripts/table/fate_boss_seal_visual.gd"
 signal closed
 
 const SLOT_SIZE := Vector2(88.0, 126.0)
-const SLOT_CENTER := Vector2(390.0, 270.0)
-const SLOT_RADIUS := Vector2(315.0, 215.0)
+const SLOT_CENTER := Vector2(390.0, 260.0)
 const BOSS_SIZE := Vector2(142.0, 194.0)
+const SLOT_CENTERS := [
+	Vector2(383.0, 51.0),
+	Vector2(506.0, 84.0),
+	Vector2(613.0, 146.0),
+	Vector2(690.0, 244.0),
+	Vector2(632.0, 358.0),
+	Vector2(520.0, 430.0),
+	Vector2(390.0, 470.0),
+	Vector2(243.0, 448.0),
+	Vector2(142.0, 352.0),
+	Vector2(90.0, 250.0),
+	Vector2(170.0, 134.0),
+	Vector2(278.0, 82.0),
+]
+const SLOT_ROTATIONS_DEG := [0.0, 7.0, 10.0, 11.0, 9.0, 6.0, 0.0, -7.0, -10.0, -11.0, -9.0, -6.0]
 
 const SLOT_FILL := Color(0.030, 0.020, 0.026, 0.96)
 const SLOT_BORDER := Color(0.34, 0.22, 0.19, 0.78)
@@ -104,10 +118,9 @@ func _build_slots() -> void:
 		panel.mouse_entered.connect(_on_slot_mouse_entered.bind(index))
 		panel.mouse_exited.connect(_on_slot_mouse_exited.bind(index))
 
-		var angle := deg_to_rad(-90.0 + float(index) * 30.0)
-		var center := SLOT_CENTER + Vector2(cos(angle) * SLOT_RADIUS.x, sin(angle) * SLOT_RADIUS.y)
+		var center: Vector2 = SLOT_CENTERS[index]
 		panel.position = center - SLOT_SIZE * 0.5
-		panel.rotation = sin(angle) * deg_to_rad(8.0)
+		panel.rotation = deg_to_rad(float(SLOT_ROTATIONS_DEG[index]))
 		spread_area.add_child(panel)
 
 		var roman := Label.new()
