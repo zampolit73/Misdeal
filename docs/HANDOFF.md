@@ -154,6 +154,23 @@ Enemy composition and boss mechanics are unchanged. Grave Bell/support healing s
 
 This is pending real local verification. Highest-value checks are: solo Ranger and solo Mage first mandatory fight, one duo mid-tier support/ranged fight, one late elite, and Bone Warden in solo/duo/trio. Do not blanket-retune individual enemies before those checks unless a concrete regression appears.
 
+## Latest main-table Variant C rebuild
+
+The Fate Spread itself is now frozen. The user then approved a cleaner Variant C reference for the **normal deal table** and asked to eliminate the square/rectangular-table feel.
+
+Current `main` now uses:
+- the existing authored v6 Wizard backdrop for the upper scene;
+- a live/procedural wide oval physical tabletop and red-black ritual cloth drawn by `scripts/table/table_visual.gd`;
+- one large central ritual sigil instead of a second mini Fate-Spread/progress graphic;
+- physical side holders with live deck/rejected stacks;
+- live offer cards at y≈350 with Hold controls directly above;
+- centered `РАСКЛАД СУДЬБЫ [R]` access above the cards;
+- no old rectangular lower shade / offer-focus rectangle.
+
+The deal and discard animation targets were moved to the physical side holders. The normal-table `SpreadProgress` label is intentionally hidden; detailed Act progress belongs to the Fate Spread overlay.
+
+Next local check is screenshot-driven only: verify at 1280×720 that the oval table overlays the v6 Wizard backdrop cleanly without covering his hands, and that cards/holders look physically seated on the cloth. Fix geometry from that screenshot; do not redesign Fate Spread.
+
 ## Latest Fate Spread final polish
 
 The latest screenshot is close enough that composition is now frozen. Final tweaks in `main`:
