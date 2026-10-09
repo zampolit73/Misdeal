@@ -1678,3 +1678,26 @@ Technical preference:
 - mutable text, costs, disabled states and outcomes remain live Godot UI.
 
 This is a presentation rule only. Reusing semantic action art must not change event mechanics or imply a different reward than the live text.
+
+## D099 — Misdeal motion should sell physical cause-and-effect, not constant UI activity
+
+Date: 2026-10-09  
+Status: accepted implementation rule
+
+Misdeal's animation language should make cards, rewards and the cursed table feel like physical objects with weight. Motion is used to explain state transitions and commitment, not to keep every screen permanently moving.
+
+Accepted rules:
+- use short anticipation / travel / settle beats, usually ~0.07–0.30 s;
+- when possible, synchronize visible state changes with the object motion that caused them (for example, the discard pile changes when the rejected card reaches it, not before);
+- selected choices become the focal object while alternatives recede;
+- valuable rewards get a short confirmation beat before navigation/state replacement;
+- preserve the existing fast roguelike cadence; animation must not become a wait tax.
+
+Avoid:
+- permanent floating/bobbing cards or panels;
+- screen shake for ordinary clicks;
+- particle spam;
+- unrelated decorative motion;
+- hiding core information during long transitions.
+
+Pass 1 applies this rule to Table, generic Events, Whispering Well and Rewards. A later pass should apply the same logic to battle anticipation/death feedback, Fate Spread ritual reveals and restrained Wizard reactions.
