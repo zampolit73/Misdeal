@@ -1,5 +1,9 @@
 # Misdeal — Project State
 
+### Act Choice motion hotfix
+
+The first event-choice animation implementation caused a regression where the generic `act_choice.tscn` template could remain visible with placeholder text instead of the active event. `scripts/event/act_choice.gd` has been restored to the last known-good pre-motion version from the semantic-choice-art pass. Table/Hold/discard and Reward motion remain active. Event-choice motion should be reintroduced later in a smaller, testable patch.
+
 ## Motion polish pass 1 — Table + Events + Rewards — 2026-10-09
 
 The first broad animation pass is live in `main`. The goal is not "more effects"; motion now reinforces the cursed physical table metaphor.
