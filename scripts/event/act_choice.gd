@@ -238,6 +238,21 @@ func _apply_approved_choice_art() -> void:
 		)
 		return
 
+	if active_card.card_id == "faceless_card":
+		var fate_art := _get_upgrade_choice_art(choice_b)
+		if fate_art == null:
+			fate_art = APPROVED_EVENT_CHOICE_ART.get_action_texture("coins")
+		_apply_choice_texture_set(
+			buttons,
+			arts,
+			[
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("occult_card"),
+				fate_art,
+				CARD_ART_CATALOG.get_run_card_texture(active_card.card_id),
+			]
+		)
+		return
+
 	if active_card.card_id == "bone_tax":
 		var force_art := _get_upgrade_choice_art(choice_c)
 		if force_art == null:
