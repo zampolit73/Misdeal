@@ -246,7 +246,16 @@ theme_override_font_sizes/font_size = 11
 text = "0 КАРТ"
 horizontal_alignment = 1
 
-[node name="CardMask" type="ColorRect" parent="Frame/DiscardPanel"]
+[node name="CardLayer" type="Control" parent="Frame/DiscardPanel"]
+offset_left = 6.0
+offset_top = 10.0
+offset_right = 256.0
+offset_bottom = 380.0
+mouse_filter = 2
+pivot_offset = Vector2(125, 220)
+rotation = 0.075
+
+[node name="CardMask" type="ColorRect" parent="Frame/DiscardPanel/CardLayer"]
 offset_left = 45.0
 offset_top = 111.0
 offset_right = 205.0
@@ -254,7 +263,7 @@ offset_bottom = 326.0
 mouse_filter = 2
 color = Color(0.060, 0.030, 0.027, 0.94)
 
-[node name="Art" type="TextureRect" parent="Frame/DiscardPanel"]
+[node name="Art" type="TextureRect" parent="Frame/DiscardPanel/CardLayer"]
 offset_left = 52.0
 offset_top = 118.0
 offset_right = 198.0
@@ -263,7 +272,7 @@ texture_filter = 1
 expand_mode = 1
 stretch_mode = 6
 
-[node name="TitlePlate" type="ColorRect" parent="Frame/DiscardPanel"]
+[node name="TitlePlate" type="ColorRect" parent="Frame/DiscardPanel/CardLayer"]
 offset_left = 45.0
 offset_top = 278.0
 offset_right = 205.0
@@ -271,7 +280,7 @@ offset_bottom = 326.0
 mouse_filter = 2
 color = Color(0.80, 0.70, 0.55, 0.98)
 
-[node name="CardTitle" type="Label" parent="Frame/DiscardPanel"]
+[node name="CardTitle" type="Label" parent="Frame/DiscardPanel/CardLayer"]
 offset_left = 42.0
 offset_top = 282.0
 offset_right = 208.0
