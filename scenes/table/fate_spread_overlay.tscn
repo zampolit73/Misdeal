@@ -91,14 +91,15 @@ expected_size = Vector2i(1280, 720)
 use_nearest_filter = false
 
 [node name="HeaderMask" type="ColorRect" parent="Frame"]
-offset_left = 286.0
-offset_top = 0.0
-offset_right = 1016.0
-offset_bottom = 128.0
+offset_left = 370.0
+offset_top = 45.0
+offset_right = 930.0
+offset_bottom = 122.0
 mouse_filter = 2
-color = Color(0.010, 0.006, 0.008, 1.0)
+color = Color(0.010, 0.006, 0.008, 0.96)
 
 [node name="Brand" type="Label" parent="Frame"]
+visible = false
 offset_left = 410.0
 offset_top = 8.0
 offset_right = 566.0
@@ -112,6 +113,7 @@ text = "MISDEAL"
 horizontal_alignment = 2
 
 [node name="Title" type="Label" parent="Frame"]
+visible = false
 offset_left = 566.0
 offset_top = 8.0
 offset_right = 900.0
@@ -227,18 +229,18 @@ offset_bottom = 515.0
 theme_override_styles/panel = SubResource("SideOverlay")
 
 [node name="StatusMask" type="ColorRect" parent="Frame/DiscardPanel"]
-offset_left = 72.0
-offset_top = 59.0
-offset_right = 178.0
-offset_bottom = 83.0
+offset_left = 74.0
+offset_top = 88.0
+offset_right = 176.0
+offset_bottom = 108.0
 mouse_filter = 2
 color = Color(0.03, 0.018, 0.020, 0.92)
 
 [node name="Status" type="Label" parent="Frame/DiscardPanel"]
-offset_left = 62.0
-offset_top = 60.0
-offset_right = 188.0
-offset_bottom = 82.0
+offset_left = 64.0
+offset_top = 88.0
+offset_right = 186.0
+offset_bottom = 108.0
 theme_override_colors/font_color = Color(0.90, 0.72, 0.56, 1)
 theme_override_font_sizes/font_size = 11
 text = "0 КАРТ"
