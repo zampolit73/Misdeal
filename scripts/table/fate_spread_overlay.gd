@@ -268,8 +268,24 @@ func _show_history_detail(index: int) -> void:
 	var rejected_title: String = rejected_card.title if rejected_card != null else "—"
 
 	detail_title.text = "%s  •  %s" % [_roman(index + 1), chosen_title]
-	detail_body.text = "ВЫБРАНО: %s     |     ОТВЕРГНУТО: %s" % [chosen_title, rejected_title]
+	detail_body.text = "ВЫБРАНО: %s   |   ОТВЕРГНУТО: %s" % [chosen_title, rejected_title]
+	_position_history_detail()
 	detail_panel.visible = true
+
+
+func _position_history_detail() -> void:
+	var mouse := get_viewport().get_mouse_position()
+	var panel_size := detail_panel.size
+	var target := mouse + Vector2(18.0, 18.0)
+
+	if target.x + panel_size.x > 1266.0:
+		target.x = mouse.x - panel_size.x - 18.0
+	if target.y + panel_size.y > 706.0:
+		target.y = mouse.y - panel_size.y - 18.0
+
+	target.x = clampf(target.x, 12.0, 1268.0 - panel_size.x)
+	target.y = clampf(target.y, 118.0, 708.0 - panel_size.y)
+	detail_panel.position = target
 
 
 func play_milestone(milestone: int) -> void:
@@ -347,14 +363,20 @@ func _refresh_slots() -> void:
 			accent = SLOT_CURRENT
 
 		if state == "done":
+			title_plate.visible = true
+			title.visible = true
 			title_plate.color = Color(0.82, 0.73, 0.58, 0.98)
 			title.add_theme_color_override("font_color", Color(0.18, 0.10, 0.07, 1.0))
 		elif state == "current":
+			title_plate.visible = true
+			title.visible = true
 			title_plate.color = Color(0.12, 0.055, 0.045, 0.98)
 			title.add_theme_color_override("font_color", Color(0.92, 0.76, 0.54, 1.0))
 		else:
-			title_plate.color = Color(0.075, 0.060, 0.065, 0.98)
-			title.add_theme_color_override("font_color", Color(0.64, 0.57, 0.54, 0.92))
+			# A live future replacement (currently XII) should read like the
+			# reference's physical card-backs, not like a HUD card.
+			title_plate.visible = false
+			title.visible = false
 
 		_apply_panel_style(panel, accent, state == "current", state)
 
@@ -443,7 +465,7 @@ func _apply_panel_style(panel: Panel, accent: Color, strong: bool, state := "fut
 	elif state == "current":
 		style.bg_color = Color(0.055, 0.018, 0.020, 0.98)
 	else:
-		style.bg_color = Color(0.045, 0.038, 0.042, 0.98)
+		style.bg_color = Color(0.030, 0.026, 0.028, 0.98)
 
 	style.border_width_left = 3 if strong or state == "done" else 2
 	style.border_width_top = 3 if strong or state == "done" else 2
@@ -452,6 +474,8 @@ func _apply_panel_style(panel: Panel, accent: Color, strong: bool, state := "fut
 
 	if state == "done":
 		style.border_color = Color(0.91, 0.68, 0.39, 0.98)
+	elif state == "future":
+		style.border_color = Color(0.28, 0.23, 0.22, 0.92)
 	else:
 		style.border_color = accent
 
