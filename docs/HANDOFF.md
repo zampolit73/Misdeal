@@ -154,6 +154,20 @@ Enemy composition and boss mechanics are unchanged. Grave Bell/support healing s
 
 This is pending real local verification. Highest-value checks are: solo Ranger and solo Mage first mandatory fight, one duo mid-tier support/ranged fight, one late elite, and Bone Warden in solo/duo/trio. Do not blanket-retune individual enemies before those checks unless a concrete regression appears.
 
+## Latest Fate Spread exact-reference rebuild
+
+The user rejected approximation and asked for the Fate Spread almost exactly like the final approved reference. Runtime now uses `assets/pixel/table/fate_spread/fate_spread_exact.webp` as the full 1280×720 physical-table foundation. The live overlay was re-laid to the reference rather than keeping the previous modal geometry.
+
+Important implementation details:
+- live slot positions are explicit per-card coordinates matching the reference perspective, not an even mathematical ellipse;
+- resolved cards use parchment/gold physical-card styling, current/future cards use dark backs;
+- Hold/Discard rely on the artwork's ornate holders while live masks replace the baked sample card/count;
+- the top baked title/stats are masked and redrawn from current `RunState`;
+- runtime WebP loader now supports linear filtering for full-screen authored plates;
+- old runtime edge plates / underlay were removed.
+
+Next local check should focus on leakage: any baked reference card/title/count still visible beside a live replacement must be fixed with position/mask tweaks, not by darkening the whole scene.
+
 ## Latest Fate Spread edge-art pass
 
 The full-screen reference plate is no longer used by the live Fate Spread. It was too constrained by masking/dimming and still read like a dark modal. The approved physical-table look is now supplied by three dedicated edge plates loaded through `runtime_webp_texture.gd`:
