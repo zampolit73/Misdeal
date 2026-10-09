@@ -166,6 +166,20 @@ func _apply_approved_choice_art() -> void:
 			_apply_choice_art_margins(button)
 		return
 
+	if active_card.card_id == "black_altar" and RunState.can_recruit_companion("mage"):
+		for index in range(buttons.size()):
+			var art: TextureRect = arts[index]
+			var button: Button = buttons[index]
+			if not button.visible:
+				art.visible = false
+				continue
+			art.texture = APPROVED_EVENT_CHOICE_ART.get_black_altar_texture(index)
+			art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			art.visible = art.texture != null
+			art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
+			_apply_choice_art_margins(button)
+		return
+
 	match active_card.card_id:
 		_:
 			var event_art := CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
