@@ -92,6 +92,7 @@ The same portraits are reused by Squad Dossier.
 - Current approved cells: rescue ranger / take bag / cross alone.
 - The earlier schematic SVG prototype was rejected and removed.
 - The already-resolved Rattling Bridge branch still uses generic fallback art until a second semantic trio is authored.
+- Black Altar recruitment semantic atlas: `assets/pixel/event/choice/black_altar_recruitment.svg` (1152×160 runtime texture, three 384×160 cells): blood sacrifice / ritual payment / stolen offering.
 - Direction: mini-art depicts the decision, not a duplicate crop of the event context. Prefer one object/action, restrained palette, strong silhouette and low micro-detail.
 
 ### V8 secondary event screens
