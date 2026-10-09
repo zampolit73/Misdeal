@@ -2,12 +2,13 @@ extends TextureRect
 
 @export_file("*.webp") var webp_path := ""
 @export var expected_size := Vector2i.ZERO
+@export var use_nearest_filter := true
 
 static var _texture_cache: Dictionary = {}
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST if use_nearest_filter else CanvasItem.TEXTURE_FILTER_LINEAR
 	if not webp_path.is_empty():
 		load_webp_path(webp_path, expected_size)
 
