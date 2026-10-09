@@ -848,7 +848,6 @@ func _choose_card(card: RunCardData) -> void:
 	if not RunState.choose_card(card.card_id):
 		return
 
-	_update_spread_ui()
 	selection_locked = true
 	_disable_offer_buttons()
 	hold_a_button.visible = false
@@ -899,6 +898,7 @@ func _animate_card_choice(chosen_card_id: String) -> void:
 
 	if has_rejected:
 		await get_tree().create_timer(0.22).timeout
+		_update_spread_ui()
 		_play_table_audio("discard")
 		if table_spread_visual != null and table_spread_visual.has_method("pulse_discard"):
 			table_spread_visual.call("pulse_discard")
@@ -909,6 +909,7 @@ func _animate_card_choice(chosen_card_id: String) -> void:
 		await get_tree().create_timer(0.12).timeout
 	else:
 		await get_tree().create_timer(0.32).timeout
+		_update_spread_ui()
 
 
 func _disable_offer_buttons() -> void:
