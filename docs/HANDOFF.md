@@ -154,6 +154,15 @@ Enemy composition and boss mechanics are unchanged. Grave Bell/support healing s
 
 This is pending real local verification. Highest-value checks are: solo Ranger and solo Mage first mandatory fight, one duo mid-tier support/ranged fight, one late elite, and Bone Warden in solo/duo/trio. Do not blanket-retune individual enemies before those checks unless a concrete regression appears.
 
+## Latest Fate Spread final polish
+
+The latest screenshot is close enough that composition is now frozen. Final tweaks in `main`:
+- future live replacement cards hide the footer/title and use a subdued physical card-back style;
+- hover decision memory is a small cursor-adjacent tooltip clamped to screen bounds instead of a wide bottom strip;
+- empty Hold/Discard card masks use dark leather/burgundy rather than pure black.
+
+Do not move the ring, XIII, side holders or header unless a concrete screenshot exposes a real collision/leak.
+
 ## Latest Fate Spread screenshot alignment pass
 
 Latest local screenshot was already close to target. Do not change the ring geometry. Fixes now in `main`:
