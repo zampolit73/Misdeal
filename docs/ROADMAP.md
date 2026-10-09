@@ -284,3 +284,6 @@ Do not prioritize these before the vertical slice works:
 
 - [x] Replace the dark full-screen Fate Spread underlay with bright top/left/right edge-art plates while keeping the center fully live.
 - [ ] Locally verify that candles/metal/red cloth read clearly at 1280×720 without reducing card/title readability.
+
+- [x] Rebuild `РАСКЛАД СУДЬБЫ` around the user-approved full reference plate, with live cards/masks aligned to its physical holders and ring.
+- [ ] Local 1280×720 check: verify all I–XII live cards fully cover the baked concept cards, Hold/Discard masks hide stale concept state, and title/count masks do not expose duplicate text.
