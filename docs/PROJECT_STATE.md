@@ -2,6 +2,22 @@
 
 Last updated: 2026-10-09
 
+## Fate Spread exact-reference rebuild — 2026-10-09
+
+The user explicitly chose the final ornate Fate Spread reference as the target **almost one-for-one**, so the intermediate edge-art composition has been superseded.
+
+The approved full 16:9 plate is now stored at `assets/pixel/table/fate_spread/fate_spread_exact.webp` and displayed at full 1280×720 behind live UI. A high-quality source master is archived at `assets/source_archive/fate_spread/fate_spread_exact_master.webp`.
+
+The runtime overlay was rebuilt around the reference geometry rather than placing a generic modal on top:
+- the physical table, cloth, candles, skulls, books, brass props, hand and ritual circle come directly from the approved plate;
+- live I–XII card panels now occupy reference-matched positions around the circle and use parchment/dark physical-card styling;
+- XIII is aligned to the reference center and still receives live boss/seal state;
+- the left Hold and right Wizard Discard use the ornate holders already present in the art, while small live masks replace only the run-specific card/count contents;
+- the baked title/stat strip is masked and replaced by live title/subtitle/count/chapter text;
+- hover choice-memory and milestone behavior remain live.
+
+The previous runtime `edge_top.webp`, `edge_left.webp`, `edge_right.webp`, and `reference_underlay.webp` were removed because they are no longer used. Their source concepts remain archived where useful.
+
 ## Fate Spread edge-art integration — 2026-10-09
 
 The full-screen reference-underlay approach was retired after local review because it had to be darkened so aggressively that the approved physical-table atmosphere disappeared. The approved direction is now implemented as **edge-art plates** instead:
