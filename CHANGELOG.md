@@ -57,6 +57,11 @@
 
 ### Changed
 
+- Added the first large motion-polish pass for the vertical slice. Table card choices now feel physical: Fate Hold pulls the selected card into the hold control and stamps it before returning it marked, chosen cards move toward the player, rejected cards travel into the discard area, and the discard pile/count react on impact instead of updating before the card arrives.
+- Event choice screens now stage their mini-cards on entry and visibly commit a choice before revealing the result: the selected card lifts/warms while alternatives recede. Whispering Well uses the same interaction language.
+- Reward screens now stage the header/cards on entry and give the selected reward a short focal beat while the alternatives dim before the reward resolves or the next reward tier appears.
+- Motion remains intentionally restrained and fast: no continuous floating UI, no particle spam, and no gameplay timing/mechanics were changed.
+
 - Expanded semantic mini-choice art across the remaining high-visibility Act 1 duplicate-thumbnail cases. Lost Purse, Debtor Bones, Wizard Tithe, Blood Ledger, Bone Tax, Ash Rest recruitment and Last Camp recruitment now show action-specific mini-art instead of three copies of the event illustration.
 - Faceless Card now uses occult-card art for the unknown reveal and the actual offered upgrade art for the paid fate route; only the burn option keeps the event illustration until a truthful burn-card mini-art exists.
 - Reused the approved action vocabulary deliberately: coins/payment, greed bag, body search, occult gamble, blood cost, broken chains, rescue and walk-away now act as consistent visual verbs across events. Role-development screens continue to show the actual offered upgrade art, and Curse Forge continues to show the actual relics.
