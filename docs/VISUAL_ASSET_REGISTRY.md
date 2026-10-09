@@ -56,12 +56,13 @@ Battle runtime mapping lives in `scripts/battle/authored_backdrop.gd`.
 
 ### Wizard table
 
-- Current authored upper Wizard/environment layer: `assets/pixel/table/visual_pass_v6/table_wizard.webp`
-- Approved normal-table composition: **Variant C** — restrained oval ritual tabletop, Wizard centered behind it, two offer cards near the player, physical deck/discard holders at the sides.
-- Physical tabletop/sigil runtime: `scripts/table/table_visual.gd`
-- Live deck/discard stacks: `scripts/table/table_spread_visual.gd`
+- Canonical runtime plate: `assets/pixel/table/approved_variant_c/table_exact.webp` (1280×720)
+- Approved source master: `assets/source_archive/table/approved_variant_c/table_exact_master.webp` (1672×941)
+- Approved normal-table composition: **final Variant C** — restrained oval ritual tabletop, Wizard centered behind it, two offer cards near the player, physical deck/discard holders at the sides.
+- Superseded normal-table backdrop: `assets/pixel/table/visual_pass_v6/table_wizard.webp` (kept in repository history/assets, no longer referenced by `table.tscn`)
+- Procedural `scripts/table/table_visual.gd` and `scripts/table/table_spread_visual.gd` remain available but are hidden on the canonical normal table.
 - Scene/runtime logic: `scenes/table/table.tscn`, `scripts/table/table.gd`
-- The approved concept is a layout reference; run-specific cards, counts, Hold state, Wizard text and buttons remain live Godot UI.
+- The full approved plate is the runtime visual foundation; run-specific cards, counts, Hold state, Wizard text and buttons remain live Godot UI aligned over it.
 - Detailed run progress is not duplicated here; `РАСКЛАД СУДЬБЫ` owns the full I–XIII progression view.
 - Important: authored table art bypasses the old heavy environment/card grade.
 
