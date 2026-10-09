@@ -106,120 +106,197 @@ func _apply_ui_kit() -> void:
 func _apply_approved_choice_art() -> void:
 	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
 	var arts: Array[TextureRect] = [choice_art_a, choice_art_b, choice_art_c]
-	var cells: Array[Vector2i] = []
 
 	if active_card.card_id == "curse_forge":
 		var artifact_ids := ["dead_mans_shield", "blind_quiver", "cracked_focus"]
-		for index in range(buttons.size()):
-			var art := arts[index]
-			var button := buttons[index]
-			if not button.visible:
-				art.visible = false
-				continue
-			art.texture = ARTIFACT_ART_CATALOG.get_texture(artifact_ids[index])
-			art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-			art.visible = art.texture != null
-			art.modulate = Color(0.30, 0.32, 0.34, 0.72) if button.disabled else Color.WHITE
-			_apply_choice_art_margins(button)
+		var textures: Array = []
+		for artifact_id in artifact_ids:
+			textures.append(ARTIFACT_ART_CATALOG.get_texture(artifact_id))
+		_apply_choice_texture_set(buttons, arts, textures, true)
 		return
 
 	if active_card.card_id == "broken_crown":
-		var crown_art := ARTIFACT_ART_CATALOG.get_texture("broken_crown")
-		for index in range(buttons.size()):
-			var art := arts[index]
-			var button := buttons[index]
-			if not button.visible or crown_art == null:
-				art.visible = false
-				continue
-			art.texture = crown_art
-			art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-			art.visible = true
-			art.modulate = Color(0.34, 0.34, 0.34, 0.74) if button.disabled else Color.WHITE
-			_apply_choice_art_margins(button)
+		var crown_upgrade_art := _get_upgrade_choice_art(choice_c)
+		if crown_upgrade_art == null:
+			crown_upgrade_art = APPROVED_EVENT_CHOICE_ART.get_action_texture("cursed_relic")
+		_apply_choice_texture_set(
+			buttons,
+			arts,
+			[
+				ARTIFACT_ART_CATALOG.get_texture("broken_crown"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("coins"),
+				crown_upgrade_art,
+			]
+		)
 		return
 
 	if active_card.card_id == "chained_prisoner":
 		var recruitment_state := RunState.can_recruit_companion("knight")
+		var textures: Array = []
 		for index in range(buttons.size()):
-			var art: TextureRect = arts[index]
-			var button: Button = buttons[index]
-			if not button.visible:
-				art.visible = false
-				continue
-			art.texture = (
+			textures.append(
 				APPROVED_EVENT_CHOICE_ART.get_chained_prisoner_recruitment_texture(index)
 				if recruitment_state
 				else APPROVED_EVENT_CHOICE_ART.get_chained_prisoner_texture(index)
 			)
-			art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-			art.visible = art.texture != null
-			art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
-			_apply_choice_art_margins(button)
+		_apply_choice_texture_set(buttons, arts, textures)
 		return
 
 	if active_card.card_id == "rattling_bridge":
-		for index in range(buttons.size()):
-			var art: TextureRect = arts[index]
-			var button: Button = buttons[index]
-			if not button.visible:
-				art.visible = false
-				continue
-			art.texture = APPROVED_EVENT_CHOICE_ART.get_rattling_bridge_texture(index)
-			art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-			art.visible = art.texture != null
-			art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
-			_apply_choice_art_margins(button)
+		_apply_choice_texture_set(
+			buttons,
+			arts,
+			[
+				APPROVED_EVENT_CHOICE_ART.get_rattling_bridge_texture(0),
+				APPROVED_EVENT_CHOICE_ART.get_rattling_bridge_texture(1),
+				APPROVED_EVENT_CHOICE_ART.get_rattling_bridge_texture(2),
+			]
+		)
 		return
 
 	if active_card.card_id == "black_altar" and RunState.can_recruit_companion("mage"):
-		for index in range(buttons.size()):
-			var art: TextureRect = arts[index]
-			var button: Button = buttons[index]
-			if not button.visible:
-				art.visible = false
-				continue
-			art.texture = APPROVED_EVENT_CHOICE_ART.get_black_altar_texture(index)
-			art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-			art.visible = art.texture != null
-			art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
-			_apply_choice_art_margins(button)
+		_apply_choice_texture_set(
+			buttons,
+			arts,
+			[
+				APPROVED_EVENT_CHOICE_ART.get_black_altar_texture(0),
+				APPROVED_EVENT_CHOICE_ART.get_black_altar_texture(1),
+				APPROVED_EVENT_CHOICE_ART.get_black_altar_texture(2),
+			]
+		)
 		return
 
-	match active_card.card_id:
-		_:
-			var event_art := CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
-			for index in range(buttons.size()):
-				var art := arts[index]
-				var button := buttons[index]
-				if not button.visible:
-					art.visible = false
-					continue
+	if active_card.card_id == "ash_rest" and RunState.can_recruit_companion("ranger"):
+		_apply_choice_texture_set(
+			buttons,
+			arts,
+			[
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("rescue"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("bag"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("leave"),
+			]
+		)
+		return
 
-				var choice_texture := _get_upgrade_choice_art(button)
-				if choice_texture == null:
-					choice_texture = event_art
-				if choice_texture == null:
-					art.visible = false
-					continue
+	if active_card.card_id == "last_camp" and RunState.can_recruit_companion("knight"):
+		_apply_choice_texture_set(
+			buttons,
+			arts,
+			[
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("chains"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("coins"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("loot_body"),
+			]
+		)
+		return
 
-				art.texture = choice_texture
-				art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-				art.visible = true
-				art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
-				_apply_choice_art_margins(button)
-			return
+	if active_card.card_id == "lost_purse":
+		_apply_choice_texture_set(
+			buttons,
+			arts,
+			[
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("coins"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("bag"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("loot_body"),
+			]
+		)
+		return
 
+	if active_card.card_id == "debtor_bones":
+		_apply_choice_texture_set(
+			buttons,
+			arts,
+			[
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("occult_card"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("coins"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("blood"),
+			]
+		)
+		return
+
+	if active_card.card_id == "wizard_tithe":
+		_apply_choice_texture_set(
+			buttons,
+			arts,
+			[
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("coins"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("blood"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("leave"),
+			]
+		)
+		return
+
+	if active_card.card_id == "blood_ledger":
+		_apply_choice_texture_set(
+			buttons,
+			arts,
+			[
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("coins"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("blood"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("occult_card"),
+			]
+		)
+		return
+
+	if active_card.card_id == "bone_tax":
+		var force_art := _get_upgrade_choice_art(choice_c)
+		if force_art == null:
+			force_art = APPROVED_EVENT_CHOICE_ART.get_action_texture("chains")
+		var payment_art := (
+			APPROVED_EVENT_CHOICE_ART.get_action_texture("chains")
+			if RunState.has_rescue_scar("knight")
+			else APPROVED_EVENT_CHOICE_ART.get_action_texture("blood")
+		)
+		_apply_choice_texture_set(
+			buttons,
+			arts,
+			[
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("coins"),
+				payment_art,
+				force_art,
+			]
+		)
+		return
+
+	# Role-development screens already have semantic upgrade thumbnails. Only
+	# fall back to the event art when a choice has no authored semantic source.
+	var event_art := CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
+	var fallback_textures: Array = []
+	for button in buttons:
+		var choice_texture := _get_upgrade_choice_art(button)
+		if choice_texture == null:
+			choice_texture = event_art
+		fallback_textures.append(choice_texture)
+	_apply_choice_texture_set(buttons, arts, fallback_textures)
+
+
+func _apply_choice_texture_set(
+	buttons: Array[Button],
+	arts: Array[TextureRect],
+	textures: Array,
+	nearest_filter: bool = false
+) -> void:
 	for index in range(buttons.size()):
-		var art := arts[index]
-		var cell := cells[index]
-		if cell.x < 0 or not buttons[index].visible:
+		var art: TextureRect = arts[index]
+		var button: Button = buttons[index]
+		if not button.visible:
 			art.visible = false
 			continue
-		art.texture = APPROVED_CHOICE_ART.get_cell(cell.x, cell.y)
-		art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-		art.visible = art.texture != null
-		art.modulate = Color(0.42, 0.42, 0.42, 0.72) if buttons[index].disabled else Color.WHITE
-		_apply_choice_art_margins(buttons[index])
+
+		var texture: Texture2D = textures[index] as Texture2D if index < textures.size() else null
+		if texture == null:
+			art.visible = false
+			continue
+
+		art.texture = texture
+		art.texture_filter = (
+			CanvasItem.TEXTURE_FILTER_NEAREST
+			if nearest_filter
+			else CanvasItem.TEXTURE_FILTER_LINEAR
+		)
+		art.visible = true
+		art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
+		_apply_choice_art_margins(button)
 
 func _get_upgrade_choice_art(button: Button) -> Texture2D:
 	var upgrade_id := String(button.get_meta("choice_upgrade_id", ""))
