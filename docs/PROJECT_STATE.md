@@ -5,6 +5,18 @@
 The first local screenshot of the exact Variant C table exposed two concrete composition leaks. Both are now fixed in `main`: the baked sample offer cards are suppressed beneath a restrained oval cleanup layer, and the Fate Spread Wizard-discard live card is rotated/shifted onto the painted discard stack so its rectangular backing no longer peeks out. Fate Spread remains visually frozen apart from bug fixes. Next step is local 1280×720 verification of these two corrections; after acceptance, return to vertical-slice validation/balance.
 
 
+## Screenshot cleanup refinement — 2026-10-09
+
+The first masking fix was locally rejected because the single large dark cleanup shape read as a literal hole in the normal table, and the Fate Spread discard card still sat too large/high on its painted stack.
+
+Current `main` now:
+- removes the large `BakedOfferCleanup` panel;
+- uses two narrow red-black cloth-toned cleanup patches only when the table has a single centered live offer, leaving normal two-card deals untouched;
+- keeps those patches beneath the centered live card so only the baked sample-card side slivers are covered;
+- scales the Fate Spread discard live card layer to 90%, lowers it and rotates it to roughly 6.9° so it follows the authored physical stack more closely.
+
+These changes are visual only. Card choice, Hold, discard state and Fate Spread progression are unchanged. Pending local 1280×720 verification.
+
 ## Screenshot-driven table cleanup — 2026-10-09
 
 The first post-integration local screenshots showed two specific defects without invalidating the approved compositions:
