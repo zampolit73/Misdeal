@@ -5,10 +5,10 @@ const BOSS_SEAL_SCRIPT := preload("res://scripts/table/fate_boss_seal_visual.gd"
 
 signal closed
 
-const SLOT_SIZE := Vector2(76.0, 104.0)
+const SLOT_SIZE := Vector2(88.0, 126.0)
 const SLOT_CENTER := Vector2(390.0, 270.0)
-const SLOT_RADIUS := Vector2(286.0, 176.0)
-const BOSS_SIZE := Vector2(118.0, 164.0)
+const SLOT_RADIUS := Vector2(315.0, 215.0)
+const BOSS_SIZE := Vector2(142.0, 194.0)
 
 const SLOT_FILL := Color(0.030, 0.020, 0.026, 0.96)
 const SLOT_BORDER := Color(0.34, 0.22, 0.19, 0.78)
@@ -107,24 +107,24 @@ func _build_slots() -> void:
 		var angle := deg_to_rad(-90.0 + float(index) * 30.0)
 		var center := SLOT_CENTER + Vector2(cos(angle) * SLOT_RADIUS.x, sin(angle) * SLOT_RADIUS.y)
 		panel.position = center - SLOT_SIZE * 0.5
-		panel.rotation = sin(angle) * deg_to_rad(6.0)
+		panel.rotation = sin(angle) * deg_to_rad(8.0)
 		spread_area.add_child(panel)
 
 		var roman := Label.new()
 		roman.name = "Roman"
-		roman.position = Vector2(-4.0, -18.0)
-		roman.size = Vector2(SLOT_SIZE.x + 8.0, 16.0)
+		roman.position = Vector2(-4.0, -20.0)
+		roman.size = Vector2(SLOT_SIZE.x + 8.0, 18.0)
 		roman.text = _roman(index + 1)
 		roman.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		roman.add_theme_font_size_override("font_size", 10)
-		roman.add_theme_color_override("font_color", Color(0.80, 0.60, 0.42, 0.90))
+		roman.add_theme_font_size_override("font_size", 12)
+		roman.add_theme_color_override("font_color", Color(0.92, 0.72, 0.46, 0.96))
 		roman.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		panel.add_child(roman)
 
 		var art := TextureRect.new()
 		art.name = "Art"
-		art.position = Vector2(5.0, 5.0)
-		art.size = Vector2(66.0, 52.0)
+		art.position = Vector2(6.0, 6.0)
+		art.size = Vector2(76.0, 70.0)
 		art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -133,24 +133,32 @@ func _build_slots() -> void:
 
 		var symbol := Label.new()
 		symbol.name = "Symbol"
-		symbol.position = Vector2(5.0, 5.0)
-		symbol.size = Vector2(66.0, 52.0)
+		symbol.position = Vector2(6.0, 6.0)
+		symbol.size = Vector2(76.0, 70.0)
 		symbol.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		symbol.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		symbol.add_theme_font_size_override("font_size", 23)
+		symbol.add_theme_font_size_override("font_size", 28)
 		symbol.add_theme_color_override("font_color", Color(0.46, 0.40, 0.42, 0.72))
 		symbol.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		panel.add_child(symbol)
 
+		var title_plate := ColorRect.new()
+		title_plate.name = "TitlePlate"
+		title_plate.position = Vector2(6.0, 80.0)
+		title_plate.size = Vector2(76.0, 40.0)
+		title_plate.color = Color(0.78, 0.68, 0.52, 0.98)
+		title_plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		panel.add_child(title_plate)
+
 		var title := Label.new()
 		title.name = "CardTitle"
-		title.position = Vector2(5.0, 61.0)
-		title.size = Vector2(66.0, 38.0)
+		title.position = Vector2(8.0, 82.0)
+		title.size = Vector2(72.0, 36.0)
 		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		title.add_theme_font_size_override("font_size", 8)
-		title.add_theme_color_override("font_color", Color(0.86, 0.78, 0.68, 0.94))
+		title.add_theme_font_size_override("font_size", 9)
+		title.add_theme_color_override("font_color", Color(0.20, 0.12, 0.09, 0.98))
 		title.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		panel.add_child(title)
 
@@ -173,16 +181,16 @@ func _build_slots() -> void:
 	boss_panel.add_child(boss_roman)
 
 	boss_art = TextureRect.new()
-	boss_art.position = Vector2(7.0, 7.0)
-	boss_art.size = Vector2(104.0, 88.0)
+	boss_art.position = Vector2(8.0, 8.0)
+	boss_art.size = Vector2(126.0, 112.0)
 	boss_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	boss_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	boss_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	boss_panel.add_child(boss_art)
 
 	boss_title = Label.new()
-	boss_title.position = Vector2(7.0, 102.0)
-	boss_title.size = Vector2(104.0, 52.0)
+	boss_title.position = Vector2(8.0, 128.0)
+	boss_title.size = Vector2(126.0, 54.0)
 	boss_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	boss_title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	boss_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -282,6 +290,7 @@ func _refresh_slots() -> void:
 		var panel := slot_panels[index]
 		var art := panel.get_node("Art") as TextureRect
 		var symbol := panel.get_node("Symbol") as Label
+		var title_plate := panel.get_node("TitlePlate") as ColorRect
 		var title := panel.get_node("CardTitle") as Label
 
 		var card_id := ""
@@ -313,12 +322,23 @@ func _refresh_slots() -> void:
 			accent = SLOT_DONE
 		elif state == "current":
 			accent = SLOT_CURRENT
-		_apply_panel_style(panel, accent, state == "current")
+
+		if state == "done":
+			title_plate.color = Color(0.82, 0.73, 0.58, 0.98)
+			title.add_theme_color_override("font_color", Color(0.18, 0.10, 0.07, 1.0))
+		elif state == "current":
+			title_plate.color = Color(0.12, 0.055, 0.045, 0.98)
+			title.add_theme_color_override("font_color", Color(0.92, 0.76, 0.54, 1.0))
+		else:
+			title_plate.color = Color(0.075, 0.060, 0.065, 0.98)
+			title.add_theme_color_override("font_color", Color(0.64, 0.57, 0.54, 0.92))
+
+		_apply_panel_style(panel, accent, state == "current", state)
 
 
 func _refresh_boss() -> void:
 	var active: bool = RunState.is_boss_due() or RunState.active_card_id == RunState.BOSS_CARD_ID or RunState.boss_defeated
-	_apply_panel_style(boss_panel, BOSS_BORDER, active)
+	_apply_panel_style(boss_panel, BOSS_BORDER, active, "boss")
 	if boss_seal_visual != null and boss_seal_visual.has_method("configure"):
 		boss_seal_visual.call("configure", RunState.cards_resolved, active)
 	boss_title.add_theme_color_override(
@@ -377,16 +397,34 @@ func _animate_in() -> void:
 	tween.tween_property(frame, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 
-func _apply_panel_style(panel: Panel, accent: Color, strong: bool) -> void:
+func _apply_panel_style(panel: Panel, accent: Color, strong: bool, state := "future") -> void:
 	var style := StyleBoxFlat.new()
-	style.bg_color = SLOT_FILL
-	style.border_width_left = 3 if strong else 2
-	style.border_width_top = 3 if strong else 2
-	style.border_width_right = 3 if strong else 2
-	style.border_width_bottom = 3 if strong else 2
-	style.border_color = accent
-	style.shadow_color = Color(accent.r * 0.34, accent.g * 0.18, accent.b * 0.14, 0.38 if strong else 0.18)
-	style.shadow_size = 10 if strong else 5
+
+	if panel == boss_panel:
+		style.bg_color = Color(0.025, 0.012, 0.015, 0.22 if not strong else 0.78)
+	elif state == "done":
+		style.bg_color = Color(0.54, 0.39, 0.24, 0.98)
+	elif state == "current":
+		style.bg_color = Color(0.055, 0.018, 0.020, 0.98)
+	else:
+		style.bg_color = Color(0.045, 0.038, 0.042, 0.98)
+
+	style.border_width_left = 3 if strong or state == "done" else 2
+	style.border_width_top = 3 if strong or state == "done" else 2
+	style.border_width_right = 3 if strong or state == "done" else 2
+	style.border_width_bottom = 3 if strong or state == "done" else 2
+
+	if state == "done":
+		style.border_color = Color(0.91, 0.68, 0.39, 0.98)
+	else:
+		style.border_color = accent
+
+	style.corner_radius_top_left = 2
+	style.corner_radius_top_right = 2
+	style.corner_radius_bottom_left = 2
+	style.corner_radius_bottom_right = 2
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.62)
+	style.shadow_size = 10 if strong else 6
 	panel.add_theme_stylebox_override("panel", style)
 
 
