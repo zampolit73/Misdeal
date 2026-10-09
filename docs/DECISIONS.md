@@ -1658,3 +1658,23 @@ The approved sheet is mapped only where its imagery remains truthful to live mec
 Black Altar remaps the approved coin-hand and altar-offering images to the current 35-gold ritual payment and take-offering choices. Chained Prisoner's later branch keeps its older dedicated semantic art. Curse Forge keeps the actual artifact illustrations because its live choices are specific relics and those images are more mechanically accurate than the generic forge options shown in the concept mockup.
 
 Dynamic labels, costs, disabled states and outcomes remain authoritative Godot UI. Visual consistency must never override mechanical clarity.
+
+## D098 — Reuse semantic action art across events and prefer native-resolution approved cells
+
+Date: 2026-10-09  
+Status: accepted implementation rule
+
+D096/D097 established that event context art and choice art have different jobs. The next production step makes that rule reusable rather than authoring a bespoke three-image atlas for every single event branch.
+
+A small set of already-approved action images may be reused across different events when the **action meaning is the same**: payment, blood cost, rescue, looting, breaking chains, walking away, occult gamble, and so on. This is preferable to repeating the large event thumbnail and also reduces high-frequency generated-art noise.
+
+The mapping must stay truthful to the live choice. Do not reuse an image merely because its colors match.
+
+Technical preference:
+- use existing native 384×160 approved cells whenever available;
+- use the compact 192×80 approved sheet only for actions that have no native approved counterpart;
+- role-development choices show the actual offered upgrade art;
+- concrete relic choices show the actual relic art;
+- mutable text, costs, disabled states and outcomes remain live Godot UI.
+
+This is a presentation rule only. Reusing semantic action art must not change event mechanics or imply a different reward than the live text.
