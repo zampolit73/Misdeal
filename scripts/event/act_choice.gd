@@ -139,13 +139,18 @@ func _apply_approved_choice_art() -> void:
 		return
 
 	if active_card.card_id == "chained_prisoner":
+		var recruitment_state := RunState.can_recruit_companion("knight")
 		for index in range(buttons.size()):
 			var art: TextureRect = arts[index]
 			var button: Button = buttons[index]
 			if not button.visible:
 				art.visible = false
 				continue
-			art.texture = APPROVED_EVENT_CHOICE_ART.get_chained_prisoner_texture(index)
+			art.texture = (
+				APPROVED_EVENT_CHOICE_ART.get_chained_prisoner_recruitment_texture(index)
+				if recruitment_state
+				else APPROVED_EVENT_CHOICE_ART.get_chained_prisoner_texture(index)
+			)
 			art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 			art.visible = art.texture != null
 			art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
