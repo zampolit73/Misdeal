@@ -273,7 +273,9 @@ Do not prioritize these before the vertical slice works:
 
 - [x] Integrate the final V9 generic-event environment batch for Rattling Bridge, Lost Purse, Debtor Bones, Bone Tax, Wizard Tithe, Ash Rest, Last Camp and Broken Crown.
 - [x] Keep all V9 event text/state/choices live in the shared Act Choice UI and load the new WebPs through the runtime decoder.
-- [ ] Stop broad art replacement and review fresh local 1280×720 screenshots for targeted polish only.
+- [x] Replace the main remaining duplicate event-thumbnail choice cards with semantic action art: Lost Purse, Debtor Bones, Wizard Tithe, Blood Ledger, Bone Tax, Ash Rest recruitment and Last Camp recruitment.
+- [x] Prefer native 384×160 approved choice cells and reuse them as truthful action verbs instead of creating another broad generated-art batch.
+- [ ] Review fresh local 1280×720 screenshots for targeted choice-art polish only; do not start another blanket visual redraw.
 
 
 ### Project continuity / source preservation
