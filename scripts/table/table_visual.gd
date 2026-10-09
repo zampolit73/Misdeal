@@ -1,9 +1,9 @@
 extends Control
 
-const TABLE_CENTER := Vector2(640.0, 535.0)
-const TABLE_RADIUS := Vector2(760.0, 315.0)
-const CLOTH_RADIUS := Vector2(620.0, 250.0)
-const SIGIL_CENTER := Vector2(640.0, 510.0)
+const TABLE_CENTER := Vector2(640.0, 565.0)
+const TABLE_RADIUS := Vector2(760.0, 218.0)
+const CLOTH_RADIUS := Vector2(620.0, 188.0)
+const SIGIL_CENTER := Vector2(640.0, 520.0)
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
