@@ -1,3 +1,12 @@
+### Semantic choice-art continuation
+
+After the approved Rattling Bridge trio, `black_altar` recruitment also received dedicated semantic mini-art. Runtime path:
+- `assets/pixel/event/choice/black_altar_recruitment.svg`
+- `ApprovedEventChoiceArt.get_black_altar_texture(index)`
+- `act_choice.gd` applies it only while the Mage can still be recruited.
+
+Do not redo Whispering Well / Chained Prisoner / Curse Forge: they already have semantically distinct choice imagery (dedicated atlas cells or actual artifact art). The next real duplicate-thumbnail targets are Lost Purse, Debtor Bones and Wizard Tithe, followed by the recruitment branches of Ash Rest and Last Camp.
+
 ### Semantic event-choice art benchmark
 
 The next visual pass is now defined as: **context art describes the event; mini choice art describes the decision**. Do not keep reusing the same event illustration across all lower choice cards.
