@@ -43,6 +43,7 @@ const BOSS_BORDER := Color(0.92, 0.18, 0.10, 1.0)
 @onready var held_title: Label = $Frame/HeldPanel/CardTitle
 @onready var held_title_plate: ColorRect = $Frame/HeldPanel/TitlePlate
 @onready var held_status: Label = $Frame/HeldPanel/Status
+@onready var discard_card_layer: Control = $Frame/DiscardPanel/CardLayer
 @onready var discard_art: TextureRect = $Frame/DiscardPanel/CardLayer/Art
 @onready var discard_title: Label = $Frame/DiscardPanel/CardLayer/CardTitle
 @onready var discard_title_plate: ColorRect = $Frame/DiscardPanel/CardLayer/TitlePlate
@@ -413,6 +414,8 @@ func _refresh_held() -> void:
 		held_art.texture = CARD_ART_CATALOG.get_run_card_texture(card_id)
 		held_art.visible = held_art.texture != null
 		held_title.text = card.title if card != null else card_id
+		held_title.visible = true
+		held_title_plate.visible = true
 		held_title_plate.color = Color(0.80, 0.70, 0.55, 0.98)
 		held_title.add_theme_color_override("font_color", Color(0.20, 0.12, 0.08, 1.0))
 		held_status.text = "1/1 • ВЕРНЁТСЯ"
@@ -420,20 +423,21 @@ func _refresh_held() -> void:
 		held_art.texture = null
 		held_art.visible = false
 		held_title.text = ""
-		held_title_plate.color = Color(0.035, 0.022, 0.024, 0.96)
-		held_title.add_theme_color_override("font_color", Color(0.84, 0.72, 0.60, 0.94))
+		held_title.visible = false
+		held_title_plate.visible = false
 		held_status.text = "1/1 СВОБОДНО" if not RunState.fate_hold_used else "0/1 ИСПОЛЬЗОВАНО"
 
 
 func _refresh_discard() -> void:
 	var rejected_count: int = RunState.rejected_card_ids.size()
 	discard_status.text = "%d %s" % [rejected_count, _card_word(rejected_count)]
+	discard_card_layer.visible = rejected_count > 0
 	if rejected_count <= 0:
 		discard_art.texture = null
 		discard_art.visible = false
 		discard_title.text = ""
-		discard_title_plate.color = Color(0.035, 0.022, 0.024, 0.96)
-		discard_title.add_theme_color_override("font_color", Color(0.84, 0.72, 0.60, 0.94))
+		discard_title.visible = false
+		discard_title_plate.visible = false
 		return
 
 	var card_id: String = RunState.rejected_card_ids[rejected_count - 1]
@@ -441,6 +445,8 @@ func _refresh_discard() -> void:
 	discard_art.texture = CARD_ART_CATALOG.get_run_card_texture(card_id)
 	discard_art.visible = discard_art.texture != null
 	discard_title.text = card.title if card != null else card_id
+	discard_title.visible = true
+	discard_title_plate.visible = true
 	discard_title_plate.color = Color(0.80, 0.70, 0.55, 0.98)
 	discard_title.add_theme_color_override("font_color", Color(0.20, 0.12, 0.08, 1.0))
 
