@@ -2,6 +2,16 @@
 
 This is the authoritative handoff for the next Project chat. GitHub is the source of truth for implemented code/state.
 
+### Physical card-back solution is now canonical
+
+After local screenshots showed that dark cleanup masks kept reading as holes, the user chose the physical-card solution.
+
+`assets/pixel/table/card_back_runtime.svg` is now the shared neutral card back. On the normal Wizard table, two backs permanently occupy the baked offer positions beneath live cards, so a single centered live card reveals believable face-down cards rather than the baked sample events. The temporary cleanup panels and their table.gd visibility logic are gone.
+
+In Fate Spread, empty Hold shows the same back with no dark title strip. Wizard Discard is completely absent when empty; when populated, its live top card sits on a card-back frame and is transformed to follow the authored painted stack.
+
+Next local verification: one two-card deal, one single-card/retry state, empty Hold, populated Hold, empty discard and 2+ rejected-card discard. Only pixel alignment should remain.
+
 ### Latest refinement after local screenshots
 
 The first cleanup attempt was rejected locally: the giant dark oval under the offers looked like a hole, and the Wizard-discard card in Fate Spread still floated off-angle.
