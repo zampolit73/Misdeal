@@ -143,7 +143,7 @@ func _apply_choice_art() -> void:
 	pay_art.texture = pay_texture
 	leave_art.texture = leave_texture
 	for art in [accept_art, pay_art, leave_art]:
-		art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 		art.material = null
 		art.visible = art.texture != null
 
