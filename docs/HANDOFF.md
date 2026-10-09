@@ -1,3 +1,25 @@
+### Broad Act 1 semantic mini-art pass complete for the main duplicate cases
+
+Current runtime no longer relies on three copies of the event thumbnail for the main remaining duplicate-choice screens.
+
+Now explicitly mapped in `scripts/event/act_choice.gd`:
+- Lost Purse;
+- Debtor Bones;
+- Wizard Tithe;
+- Blood Ledger;
+- Bone Tax;
+- Ash Rest recruitment;
+- Last Camp recruitment;
+- both Rattling Bridge states;
+- Chained Prisoner states;
+- Black Altar recruitment.
+
+`scripts/ui/approved_event_choice_art.gd` exposes a small reusable semantic action library from already-approved assets: `rescue`, `bag`, `leave`, `whisper`, `coins`, `occult_card`, `chains`, `loot_body`, `blood`, `cursed_relic`.
+
+Native 384×160 sources are preferred whenever available. Do not regress these screens to the generic event-image fallback just to make implementation simpler.
+
+Remaining screenshot-driven exceptions should be handled individually. Faceless Card still has event-art fallback on choices without a truthful existing semantic image; shops/development cards already use the actual offered upgrade art and are not duplicate-thumbnail problems.
+
 ### Rattling Bridge mini-art wiring fix
 
 The already-authored native bridge trio in `assets/pixel/event/choice/rattling_bridge_hd/` is now used for **both** Rattling Bridge states. The regular `rush / scavenge / careful` branch previously fell through to the generic event thumbnail, causing three duplicate bridge images. `act_choice.gd` now routes every `rattling_bridge` choice screen through `ApprovedEventChoiceArt.get_rattling_bridge_texture(index)`, and the loader uses the original 384×160 cells directly for quality.
