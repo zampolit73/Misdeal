@@ -87,14 +87,18 @@ The same portraits are reused by Squad Dossier.
 
 ### Event choice mini-art
 
-- Benchmark approved semantic choice atlas: `assets/pixel/event/choice/rattling_bridge_hd/part_00.txt` + `part_01.txt` (runtime-decoded WebP, 1152×160, three 384×160 cells).
-- Runtime mapping: `scripts/ui/approved_event_choice_art.gd` + `scripts/event/act_choice.gd`.
-- Current approved cells: rescue ranger / take bag / cross alone.
-- The earlier schematic SVG prototype was rejected and removed.
-- The already-resolved Rattling Bridge branch still uses generic fallback art until a second semantic trio is authored.
-- Black Altar recruitment semantic atlas: `assets/pixel/event/choice/black_altar_recruitment.svg` (1152×160 runtime texture, three 384×160 cells): blood sacrifice / ritual payment / stolen offering.
-- Direction: mini-art depicts the decision, not a duplicate crop of the event context. Prefer one object/action, restrained palette, strong silhouette and low micro-detail.
-
+- Canonical approved mini-choice sheet: `assets/pixel/event/choice/approved_choice_sheet_v2/`.
+- Runtime decoded size: 576×320; cell size: 192×80; 3 columns × 4 rows.
+- Runtime mapping: `scripts/ui/approved_event_choice_art.gd`, consumed by `scripts/event/act_choice.gd` and `scripts/event/whispering_well.gd`.
+- Row 0 — Rattling Bridge recruitment: rescue / bag / cross alone.
+- Row 1 — Whispering Well: well/whisper / coins / leave.
+- Row 2 — Chained Prisoner recruitment: break chains / loot / leave.
+- Row 3 — Black Altar recruitment: blood sacrifice / coin payment / take offering.
+- The Black Altar payment cell intentionally reuses the approved coin-hand illustration from the well; live label/cost remains 35 gold.
+- Chained Prisoner's post-recruitment choices continue to use the older dedicated atlas because the options differ.
+- Curse Forge continues to use actual artifact art because it already reflects the live option identities.
+- Superseded runtime paths: `assets/pixel/event/choice/rattling_bridge_hd/` and `assets/pixel/event/choice/black_altar_recruitment.svg`.
+- Direction: context art describes the event; mini-art describes the action. Prefer one dominant object/action, strong silhouette, restrained detail and nearest-filtered low-res cells.
 ### V8 secondary event screens
 
 | card_id | Runtime art |
