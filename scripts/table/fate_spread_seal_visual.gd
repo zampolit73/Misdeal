@@ -4,8 +4,8 @@ extends Control
 # the FateSpreadOverlay slot layout so the path reads like a physical ritual
 # laid onto the Wizard's table rather than a generic progress bar.
 
-const CENTER := Vector2(390.0, 270.0)
-const RADIUS := Vector2(315.0, 215.0)
+const CENTER := Vector2(390.0, 260.0)
+const RADIUS := Vector2(300.0, 210.0)
 const SLOT_COUNT := 12
 
 const DIM_LINE := Color(0.30, 0.11, 0.10, 0.24)
