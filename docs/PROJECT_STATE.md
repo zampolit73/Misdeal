@@ -9,6 +9,7 @@ New semantic mappings:
 - `debtor_bones`: occult gamble / safe coins / violent break;
 - `wizard_tithe`: pay gold / pay blood / refuse and leave;
 - `blood_ledger`: sign with gold / sign with blood / erase from the book;
+- `faceless_card`: reveal uses occult-card art, paid fate uses the actual offered upgrade art, while the burn choice deliberately keeps the event illustration because there is no truthful approved burn-card mini-art yet;
 - `bone_tax`: pay gold / show chains scar or pay blood / force through with the actual offered upgrade art;
 - `ash_rest` ranger-recruitment branch: rescue / loot supplies / leave;
 - `last_camp` knight-recruitment branch: free/raise the knight / pay / loot the fallen.
