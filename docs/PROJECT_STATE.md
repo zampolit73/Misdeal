@@ -1,5 +1,34 @@
 # Misdeal — Project State
 
+## Broad semantic choice-art rollout — 2026-10-09
+
+The next large Act 1 choice-card pass is live in `main`.
+
+New semantic mappings:
+- `lost_purse`: take coins / take bag / search the corpse;
+- `debtor_bones`: occult gamble / safe coins / violent break;
+- `wizard_tithe`: pay gold / pay blood / refuse and leave;
+- `blood_ledger`: sign with gold / sign with blood / erase from the book;
+- `bone_tax`: pay gold / show chains scar or pay blood / force through with the actual offered upgrade art;
+- `ash_rest` ranger-recruitment branch: rescue / loot supplies / leave;
+- `last_camp` knight-recruitment branch: free/raise the knight / pay / loot the fallen.
+
+Existing semantic branches remain:
+- both Rattling Bridge states use the native 384×160 bridge trio;
+- Whispering Well now uses the original native 384×160 approved well cells instead of the compact upscaled copies;
+- Chained Prisoner recruitment now uses native chain/loot cells plus the native walk-away cell;
+- Chained Prisoner post-recruitment keeps its native approved atlas;
+- Black Altar recruitment uses semantic blood / payment / offering art, with the payment cell now coming from the native coin atlas;
+- Curse Forge still shows the three real relic illustrations;
+- role-development choices continue to show the actual offered upgrade illustrations.
+
+Implementation:
+- reusable action vocabulary lives in `ApprovedEventChoiceArt.get_action_texture()`;
+- shared rendering is centralized in `act_choice.gd::_apply_choice_texture_set()`;
+- the fallback event thumbnail is now reserved for choices that still have no truthful semantic or upgrade-specific source, rather than being the default visual strategy.
+
+This pass changes presentation only. Costs, RNG, recruitment, scars, rewards and event outcomes are unchanged.
+
 ### Rattling Bridge regular-choice fallback fixed
 
 The regular `ПЕРЕБЕЖАТЬ / СОБРАТЬ МОНЕТЫ С ПЕРИЛ / ИДТИ МЕДЛЕННО` state was still falling through to the generic event-art fallback. It now uses the already-authored bridge mini-art trio. For this event, runtime loading was switched back to the native `assets/pixel/event/choice/rattling_bridge_hd/` atlas so the live cards use the original 384×160 cells directly rather than an upscaled 192×80 copy.
