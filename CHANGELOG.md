@@ -57,6 +57,8 @@
 
 ### Changed
 
+- Rebuilt the normal Wizard/card-selection table around the approved Variant C composition: a wide oval red-black ritual tabletop, one strong central sigil, physical deck/discard holders and lower live offer cards; removed the old rectangular lower-table shading and duplicate compact progress ring.
+
 - Final Fate Spread polish: live future replacements now read as plain physical card-backs, the hover decision history is a compact cursor-adjacent tooltip instead of a bottom HUD strip, and empty Hold/Discard interiors use dark leather tones rather than flat black.
 
 - Refined the exact-reference Fate Spread cleanup so generic future card-backs and the sealed XIII remain visible from the approved art; live masks now appear only where run-specific state actually replaces the reference, eliminating the oversized black rectangles from the previous pass.
