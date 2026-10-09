@@ -187,7 +187,7 @@ offset_top = 72.0
 offset_right = 181.0
 offset_bottom = 250.0
 mouse_filter = 2
-color = Color(0.030, 0.020, 0.022, 0.98)
+color = Color(0.060, 0.030, 0.027, 0.93)
 
 [node name="Art" type="TextureRect" parent="Frame/HeldPanel"]
 offset_left = 58.0
@@ -252,7 +252,7 @@ offset_top = 111.0
 offset_right = 205.0
 offset_bottom = 326.0
 mouse_filter = 2
-color = Color(0.030, 0.020, 0.022, 0.985)
+color = Color(0.060, 0.030, 0.027, 0.94)
 
 [node name="Art" type="TextureRect" parent="Frame/DiscardPanel"]
 offset_left = 52.0
@@ -326,16 +326,16 @@ script = ExtResource("2_seal")
 
 [node name="DetailPanel" type="Panel" parent="Frame"]
 visible = false
-offset_left = 378.0
-offset_top = 646.0
-offset_right = 902.0
-offset_bottom = 704.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 320.0
+offset_bottom = 62.0
 theme_override_styles/panel = SubResource("DetailPanelStyle")
 
 [node name="Title" type="Label" parent="Frame/DetailPanel"]
 offset_left = 16.0
 offset_top = 7.0
-offset_right = 508.0
+offset_right = 304.0
 offset_bottom = 27.0
 theme_override_colors/font_color = Color(0.94, 0.74, 0.48, 1)
 theme_override_font_sizes/font_size = 12
@@ -344,10 +344,10 @@ horizontal_alignment = 1
 [node name="Body" type="Label" parent="Frame/DetailPanel"]
 offset_left = 14.0
 offset_top = 29.0
-offset_right = 510.0
-offset_bottom = 51.0
+offset_right = 306.0
+offset_bottom = 53.0
 theme_override_colors/font_color = Color(0.77, 0.70, 0.64, 1)
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 9
 horizontal_alignment = 1
 autowrap_mode = 2
 
