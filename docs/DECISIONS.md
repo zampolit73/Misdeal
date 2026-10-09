@@ -1621,3 +1621,21 @@ The canonical runtime solution is physical:
 - Wizard Discard is absent when empty, and when populated its live top card sits on the shared back/frame aligned to the painted stack.
 
 These backs are presentation-only. They do not reveal future card identity or change Hold/discard rules. Do not return to opaque dark cleanup slabs for these card zones.
+
+## D096 — Event context art and choice art have different jobs
+
+Date: 2026-10-09  
+Status: accepted by user, implementation started
+
+For Act 1 event screens, the large event illustration communicates **where/what is happening**. Lower choice-card illustrations communicate **what the player is choosing to do**.
+
+Choice cards should not default to three copies/crops of the event image when the options have distinct meanings. The preferred mini-art language is:
+- one dominant object, gesture or action per choice;
+- large readable silhouettes at card scale;
+- restrained recurring palette and low decorative density;
+- semantic accent colors support risk/greed/rescue/refusal, but text remains authoritative;
+- mutable costs, consequences and disabled states stay live in Godot.
+
+`rattling_bridge` is the benchmark implementation, with separate art for both its ranger-recruitment and already-resolved choice sets.
+
+This rule is a presentation-system decision, not a request for bespoke scene architecture per event. Reuse the shared Act Choice layout and add semantic art mappings data-first.
