@@ -283,7 +283,9 @@ func _apply_choice_texture_set(
 			art.visible = false
 			continue
 
-		var texture: Texture2D = textures[index] as Texture2D if index < textures.size() else null
+		var texture: Texture2D = null
+		if index < textures.size():
+			texture = textures[index] as Texture2D
 		if texture == null:
 			art.visible = false
 			continue
