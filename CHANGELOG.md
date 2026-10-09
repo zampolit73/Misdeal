@@ -57,6 +57,10 @@
 
 ### Changed
 
+- Expanded semantic mini-choice art across the remaining high-visibility Act 1 duplicate-thumbnail cases. Lost Purse, Debtor Bones, Wizard Tithe, Blood Ledger, Bone Tax, Ash Rest recruitment and Last Camp recruitment now show action-specific mini-art instead of three copies of the event illustration.
+- Reused the approved action vocabulary deliberately: coins/payment, greed bag, body search, occult gamble, blood cost, broken chains, rescue and walk-away now act as consistent visual verbs across events. Role-development screens continue to show the actual offered upgrade art, and Curse Forge continues to show the actual relics.
+- Restored native 384×160 sources wherever they already exist: Whispering Well now reads from the original approved 1152×320 choice atlas, Chained Prisoner recruitment mixes the native chain/loot cells with the native bridge leave cell, and Black Altar payment uses the native coin cell. Only Black Altar blood/offering still require the compact approved sheet.
+
 - Integrated the user-approved five-event semantic choice-card mockup as the new production mini-art benchmark. Rattling Bridge recruitment, Whispering Well, Chained Prisoner recruitment and Black Altar recruitment now use dedicated action-first pixel illustrations from the approved sheet instead of repeating the large event scene.
 - The approved mini-art sheet is stored as a runtime-decoded 576×320 WebP split into text parts under `assets/pixel/event/choice/approved_choice_sheet_v2/`; each 192×80 cell is shown with nearest filtering for a cleaner, less AI-like card-scale read.
 - Curse Forge intentionally keeps the actual Dead Man's Shield / Blind Quiver / Cracked Focus artifact illustrations because those images match the current live choices more accurately than the concept-sheet forge placeholders.
