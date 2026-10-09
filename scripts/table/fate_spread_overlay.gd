@@ -36,6 +36,7 @@ const BOSS_BORDER := Color(0.92, 0.18, 0.10, 1.0)
 @onready var phase_label: Label = $Frame/Phase
 @onready var counts_label: Label = $Frame/Counts
 @onready var spread_area: Control = $Frame/SpreadArea
+@onready var reference_cleanup: Control = $Frame/SpreadArea/ReferenceCleanup
 @onready var seal_visual: Control = $Frame/SpreadArea/SealVisual
 @onready var close_button: Button = $Frame/Close
 @onready var held_art: TextureRect = $Frame/HeldPanel/Art
@@ -81,6 +82,8 @@ func refresh() -> void:
 		1 if RunState.has_held_card() else 0
 	]
 
+	if reference_cleanup != null and reference_cleanup.has_method("refresh"):
+		reference_cleanup.call("refresh")
 	if seal_visual != null and seal_visual.has_method("refresh"):
 		seal_visual.call("refresh")
 	_refresh_slots()
@@ -332,6 +335,11 @@ func _refresh_slots() -> void:
 			symbol.text = "◆" if state == "current" else _future_symbol(index)
 			title.text = "СЛЕДУЮЩАЯ" if state == "current" else "НЕИЗВЕСТНО"
 
+		var use_reference_future: bool = state == "future" and index >= 4
+		panel.visible = not use_reference_future
+		if use_reference_future:
+			continue
+
 		var accent := SLOT_FUTURE
 		if state == "done":
 			accent = SLOT_DONE
@@ -353,22 +361,27 @@ func _refresh_slots() -> void:
 
 func _refresh_boss() -> void:
 	var active: bool = RunState.is_boss_due() or RunState.active_card_id == RunState.BOSS_CARD_ID or RunState.boss_defeated
-	_apply_panel_style(boss_panel, BOSS_BORDER, active, "boss")
-	if boss_seal_visual != null and boss_seal_visual.has_method("configure"):
-		boss_seal_visual.call("configure", RunState.cards_resolved, active)
-	boss_title.add_theme_color_override(
-		"font_color",
-		Color(1.0, 0.72, 0.48, 1.0) if active else Color(0.56, 0.42, 0.40, 1.0)
-	)
-	if active:
-		boss_art.texture = CARD_ART_CATALOG.get_run_card_texture(RunState.BOSS_CARD_ID)
-		boss_art.visible = boss_art.texture != null
-		boss_title.text = "КОСТЯНОЙ\nНАДЗИРАТЕЛЬ"
-	else:
+
+	# Before XIII becomes active, use the approved reference's chained skull card
+	# directly. It is part of the visual target and is not run-specific state.
+	boss_panel.visible = active
+	if not active:
 		boss_art.texture = null
 		boss_art.visible = false
-		boss_title.text = "ЗАПЕЧАТАНО"
-		boss_panel.tooltip_text = "XIII откроется после двенадцатой судьбы."
+		if boss_seal_visual != null:
+			boss_seal_visual.visible = false
+		return
+
+	_apply_panel_style(boss_panel, BOSS_BORDER, true, "boss")
+	if boss_seal_visual != null:
+		boss_seal_visual.visible = true
+		if boss_seal_visual.has_method("configure"):
+			boss_seal_visual.call("configure", RunState.cards_resolved, true)
+
+	boss_title.add_theme_color_override("font_color", Color(1.0, 0.72, 0.48, 1.0))
+	boss_art.texture = CARD_ART_CATALOG.get_run_card_texture(RunState.BOSS_CARD_ID)
+	boss_art.visible = boss_art.texture != null
+	boss_title.text = "КОСТЯНОЙ\nНАДЗИРАТЕЛЬ"
 
 
 func _refresh_held() -> void:
