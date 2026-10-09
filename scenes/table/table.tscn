@@ -1,8 +1,7 @@
-[gd_scene load_steps=25 format=3]
+[gd_scene load_steps=24 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/table.gd" id="1_table"]
 [ext_resource type="Script" path="res://scripts/table/table_visual.gd" id="2_visual"]
-[ext_resource type="Texture2D" path="res://assets/pixel/table/visual_pass_v6/table_wizard.webp" id="3_wizard"]
 [ext_resource type="Texture2D" path="res://assets/pixel/table/misdeal_logo.png" id="4_logo"]
 [ext_resource type="Texture2D" path="res://assets/pixel/table/cards/bone_patrol.png" id="5_bone"]
 [ext_resource type="Texture2D" path="res://assets/pixel/table/cards/graveyard_ambush.png" id="6_grave"]
