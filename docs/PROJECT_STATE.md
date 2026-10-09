@@ -2,6 +2,20 @@
 
 Last updated: 2026-10-09
 
+## Fate Spread reference-preserving cleanup — 2026-10-09
+
+The next local screenshot showed that the cleanup masks themselves had become the visual problem: oversized black rectangles were covering too much of the approved table art, and the live XIII replacement hid the strongest central card from the reference.
+
+The cleanup is now state-aware:
+- positions I–IV are always live-covered because the approved plate contains baked example cards there;
+- positions V–XII keep the approved generic future card-backs visible until that slot becomes current/resolved;
+- once a later slot becomes live, only a tight card-sized cloth mask plus a small Roman-numeral patch is drawn behind it;
+- the approved chained XIII/skull card remains fully visible while sealed;
+- XIII is masked only when the live boss card actually replaces it;
+- the baked header is now suppressed with a fully opaque, wider mask.
+
+This preserves substantially more of the approved composition while keeping run-specific history authoritative.
+
 ## Fate Spread baked-state cleanup — 2026-10-09
 
 Local verification of the exact-reference rebuild showed the remaining mismatch clearly: the full approved concept plate still exposed its baked sample cards, Roman numerals and title beneath the live run state. The composition itself was correct, so geometry was kept intact.
