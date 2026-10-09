@@ -1,5 +1,9 @@
 # Misdeal — Project State
 
+### Whispering Well mini-art hotfix
+
+The dedicated Whispering Well screen lost its choice illustrations after Motion Pass 1. Its controller has been restored to the last stable pre-motion version. `ApprovedEventChoiceArt.get_whispering_well_texture()` now uses the approved split-sheet cells again instead of the raw legacy atlas path, restoring the three mini-arts reliably in local/editor runs. Event mechanics are unchanged.
+
 ### Act Choice motion hotfix
 
 The first event-choice animation implementation caused a regression where the generic `act_choice.tscn` template could remain visible with placeholder text instead of the active event. `scripts/event/act_choice.gd` has been restored to the last known-good pre-motion version from the semantic-choice-art pass. Table/Hold/discard and Reward motion remain active. Event-choice motion should be reintroduced later in a smaller, testable patch.
