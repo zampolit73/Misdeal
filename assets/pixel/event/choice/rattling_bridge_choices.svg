@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="320" viewBox="0 0 1152 320" shape-rendering="crispEdges">
+  <defs>
+    <pattern id="grain" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#0a0d12"/>
+      <rect x="1" y="1" width="1" height="1" fill="#18202a" opacity=".55"/>
+      <rect x="6" y="3" width="1" height="1" fill="#251511" opacity=".45"/>
+      <rect x="3" y="6" width="1" height="1" fill="#101820" opacity=".45"/>
+    </pattern>
+  </defs>
+
+  <!-- shared cell backgrounds -->
+  <g>
+    <rect x="0" y="0" width="384" height="160" fill="url(#grain)"/>
+    <rect x="384" y="0" width="384" height="160" fill="url(#grain)"/>
+    <rect x="768" y="0" width="384" height="160" fill="url(#grain)"/>
+    <rect x="0" y="160" width="384" height="160" fill="url(#grain)"/>
+    <rect x="384" y="160" width="384" height="160" fill="url(#grain)"/>
+    <rect x="768" y="160" width="384" height="160" fill="url(#grain)"/>
+  </g>
+
+  <!-- A: return for the ranger / rescue -->
+  <g transform="translate(0 0)">
+    <path d="M22 122 L142 56 L356 78" fill="none" stroke="#27333c" stroke-width="5"/>
+    <path d="M22 132 L150 68 L356 88" fill="none" stroke="#6a2f24" stroke-width="3"/>
+    <g fill="#2a1a16">
+      <rect x="52" y="105" width="36" height="9" transform="rotate(-24 70 109)"/>
+      <rect x="95" y="84" width="38" height="9" transform="rotate(-20 114 88)"/>
+      <rect x="140" y="69" width="39" height="9" transform="rotate(-10 160 73)"/>
+    </g>
+    <circle cx="271" cy="66" r="9" fill="#807468"/>
+    <path d="M264 77 L253 111 L269 118 L280 87 Z" fill="#313841"/>
+    <path d="M255 89 L233 103" stroke="#807468" stroke-width="7"/>
+    <path d="M178 122 C198 108 221 105 240 102" fill="none" stroke="#b86a45" stroke-width="9"/>
+    <path d="M165 132 L181 120 L195 126 L181 139 Z" fill="#d58a56"/>
+    <path d="M237 95 L251 103" stroke="#d58a56" stroke-width="7"/>
+    <rect x="17" y="15" width="6" height="44" fill="#a6492d"/>
+    <rect x="25" y="20" width="2" height="31" fill="#d17a49"/>
+    <rect x="0" y="151" width="384" height="9" fill="#120b0d"/>
+  </g>
+
+  <!-- B: take the bag / greed -->
+  <g transform="translate(384 0)">
+    <path d="M30 126 L172 70 L354 91" fill="none" stroke="#27333c" stroke-width="5"/>
+    <path d="M36 135 L176 81 L354 101" fill="none" stroke="#563226" stroke-width="3"/>
+    <path d="M162 62 C177 48 211 47 229 61 L222 72 L171 72 Z" fill="#5b3a20"/>
+    <path d="M171 72 L222 72 L236 126 Q198 142 153 124 Z" fill="#6e4a26"/>
+    <path d="M169 72 Q196 89 224 72" fill="none" stroke="#c18a43" stroke-width="3"/>
+    <path d="M185 58 Q196 45 209 58" fill="none" stroke="#c18a43" stroke-width="3"/>
+    <g fill="#d5a14d" stroke="#6b4520" stroke-width="2">
+      <circle cx="132" cy="125" r="8"/><circle cx="151" cy="136" r="7"/><circle cx="250" cy="131" r="8"/>
+      <circle cx="267" cy="117" r="6"/><circle cx="286" cy="137" r="7"/>
+    </g>
+    <g opacity=".65">
+      <circle cx="323" cy="60" r="6" fill="#66717a"/>
+      <path d="M320 68 L309 101 L323 106 L334 80 Z" fill="#252d34"/>
+    </g>
+    <rect x="0" y="151" width="384" height="9" fill="#120b0d"/>
+  </g>
+
+  <!-- C: cross alone / cold refusal -->
+  <g transform="translate(768 0)">
+    <path d="M26 125 L148 68 L355 84" fill="none" stroke="#314252" stroke-width="5"/>
+    <path d="M26 138 L154 82 L355 98" fill="none" stroke="#4d5f6f" stroke-width="3"/>
+    <g fill="#2e2521">
+      <rect x="52" y="112" width="35" height="8" transform="rotate(-25 70 116)"/>
+      <rect x="95" y="91" width="35" height="8" transform="rotate(-20 112 95)"/>
+      <rect x="140" y="76" width="36" height="8" transform="rotate(-11 158 80)"/>
+      <rect x="188" y="72" width="38" height="8" transform="rotate(2 207 76)"/>
+      <rect x="239" y="75" width="38" height="8" transform="rotate(5 258 79)"/>
+    </g>
+    <circle cx="244" cy="59" r="8" fill="#7e8587"/>
+    <path d="M239 68 L231 101 L245 108 L255 80 Z" fill="#26313b"/>
+    <path d="M233 101 L226 128" stroke="#26313b" stroke-width="6"/>
+    <path d="M245 106 L253 130" stroke="#26313b" stroke-width="6"/>
+    <rect x="326" y="30" width="5" height="63" fill="#52687a"/>
+    <rect x="335" y="36" width="2" height="45" fill="#70879a"/>
+    <rect x="0" y="151" width="384" height="9" fill="#0b0d11"/>
+  </g>
+
+  <!-- D: rush / gamble with the bridge -->
+  <g transform="translate(0 160)">
+    <g fill="#2f211d" stroke="#765044" stroke-width="2">
+      <rect x="45" y="104" width="58" height="16" transform="rotate(-7 74 112)"/>
+      <rect x="108" y="98" width="58" height="16" transform="rotate(4 137 106)"/>
+      <rect x="173" y="102" width="58" height="16" transform="rotate(-5 202 110)"/>
+      <rect x="238" y="96" width="58" height="16" transform="rotate(6 267 104)"/>
+    </g>
+    <path d="M201 103 L213 119 L226 96" fill="none" stroke="#c24b30" stroke-width="4"/>
+    <path d="M236 42 L222 78 L252 93 L268 55 Z" fill="#3c3330"/>
+    <path d="M238 42 L259 49 L255 61 L232 55 Z" fill="#8f6a4a"/>
+    <path d="M220 79 L200 100" stroke="#57504c" stroke-width="8"/>
+    <path d="M249 90 L270 111" stroke="#57504c" stroke-width="8"/>
+    <path d="M34 47 L156 59" stroke="#314252" stroke-width="4"/>
+    <path d="M284 59 L354 72" stroke="#314252" stroke-width="4"/>
+    <rect x="0" y="151" width="384" height="9" fill="#120b0d"/>
+  </g>
+
+  <!-- E: scavenge coins from the rail -->
+  <g transform="translate(384 160)">
+    <path d="M42 95 L342 78" stroke="#41484c" stroke-width="8"/>
+    <path d="M50 106 L346 88" stroke="#82644a" stroke-width="3"/>
+    <g fill="#d3a14b" stroke="#6d4e24" stroke-width="2">
+      <circle cx="145" cy="81" r="8"/><circle cx="174" cy="78" r="7"/><circle cx="205" cy="75" r="8"/>
+      <circle cx="233" cy="73" r="6"/><circle cx="261" cy="71" r="8"/>
+    </g>
+    <path d="M106 126 C127 112 145 102 168 96" fill="none" stroke="#b86a45" stroke-width="10"/>
+    <path d="M164 96 L177 87" stroke="#d58a56" stroke-width="7"/>
+    <path d="M174 86 L181 94" stroke="#d58a56" stroke-width="5"/>
+    <rect x="0" y="151" width="384" height="9" fill="#120b0d"/>
+  </g>
+
+  <!-- F: careful crossing / no reward -->
+  <g transform="translate(768 160)">
+    <path d="M34 118 L150 71 L350 84" fill="none" stroke="#344a59" stroke-width="5"/>
+    <path d="M34 132 L155 83 L350 97" fill="none" stroke="#5b6d79" stroke-width="3"/>
+    <g fill="#322a26">
+      <rect x="63" y="108" width="48" height="12" transform="rotate(-18 87 114)"/>
+      <rect x="117" y="91" width="48" height="12" transform="rotate(-11 141 97)"/>
+      <rect x="174" y="82" width="48" height="12" transform="rotate(1 198 88)"/>
+      <rect x="232" y="83" width="48" height="12" transform="rotate(4 256 89)"/>
+    </g>
+    <path d="M179 49 C199 49 217 55 233 70" fill="none" stroke="#a66c4d" stroke-width="10"/>
+    <path d="M227 69 L239 61" stroke="#d09261" stroke-width="7"/>
+    <circle cx="156" cy="52" r="7" fill="#7e8587"/>
+    <path d="M151 60 L142 91 L154 96 L166 72 Z" fill="#2d3942"/>
+    <path d="M143 90 L132 111" stroke="#2d3942" stroke-width="6"/>
+    <path d="M153 95 L161 115" stroke="#2d3942" stroke-width="6"/>
+    <rect x="0" y="151" width="384" height="9" fill="#0b0d11"/>
+  </g>
+</svg>
