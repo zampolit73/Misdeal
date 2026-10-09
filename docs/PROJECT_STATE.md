@@ -1,5 +1,25 @@
 # Misdeal — Project State
 
+## Semantic event-choice pass — Black Altar added — 2026-10-09
+
+The semantic mini-art rule is now active beyond Rattling Bridge.
+
+Implemented:
+- `black_altar` recruitment branch now has three dedicated mini illustrations for blood sacrifice / paying the ritual / taking the offering;
+- art source: `assets/pixel/event/choice/black_altar_recruitment.svg`;
+- loader: `scripts/ui/approved_event_choice_art.gd`;
+- runtime selection: `scripts/event/act_choice.gd`;
+- the normal non-recruitment Black Altar branch continues to use live hero-upgrade art, which is already semantically tied to the three role choices.
+
+Audit of the original benchmark five:
+- Whispering Well already uses a dedicated three-cell event-choice atlas;
+- Chained Prisoner already uses its dedicated three-cell event-choice atlas;
+- Curse Forge deliberately uses the three actual artifact illustrations;
+- Rattling Bridge recruitment uses its approved painted trio;
+- Black Altar recruitment now uses its own semantic trio.
+
+Next duplicate-art targets: `lost_purse`, `debtor_bones`, `wizard_tithe`, then recruitment branches of `ash_rest` and `last_camp`. Do not regenerate the already-semantic benchmark screens just to make them different.
+
 ## Semantic event-choice art pass started — 2026-10-09
 
 The user approved replacing duplicated event thumbnails inside choice cards with dedicated mini illustrations that communicate the **decision**, while the large event art continues to communicate the **scene/context**.
