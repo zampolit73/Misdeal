@@ -157,7 +157,7 @@ func _apply_approved_choice_art() -> void:
 			_apply_choice_art_margins(button)
 		return
 
-	if active_card.card_id == "rattling_bridge" and RunState.can_recruit_companion("ranger"):
+	if active_card.card_id == "rattling_bridge":
 		for index in range(buttons.size()):
 			var art: TextureRect = arts[index]
 			var button: Button = buttons[index]
