@@ -37,12 +37,12 @@ The regular `ПЕРЕБЕЖАТЬ / СОБРАТЬ МОНЕТЫ С ПЕРИЛ / 
 
 The user selected the five-event mockup sheet as the visual benchmark for event mini-choice cards.
 
-Production now uses a low-resolution runtime-decoded WebP sheet derived from that approved mockup:
-- decoded size: 576×320;
-- cell size: 192×80;
-- storage: `assets/pixel/event/choice/approved_choice_sheet_v2/`;
+The approved mockup remains the semantic benchmark, but runtime now prefers the highest-quality already-approved source for each action:
+- native Rattling Bridge cells: 384×160 from `assets/pixel/event/choice/rattling_bridge_hd/`;
+- native Well/Prisoner cells: 384×160 from `assets/pixel/ui/approved_event_choice_polish/event_choice_atlas.bin`;
+- compact 192×80 cells from `assets/pixel/event/choice/approved_choice_sheet_v2/` only where no native approved equivalent exists;
 - runtime decoder/mapping: `scripts/ui/approved_event_choice_art.gd`;
-- nearest filtering is intentional so the cards keep large readable pixel shapes instead of high-frequency AI-like detail.
+- live cards use linear sampling for fractional UI fitting.
 
 Mapped live states:
 - `rattling_bridge` both recruitment and regular branches now use the existing semantic bridge trio; the regular branch no longer falls back to the large event thumbnail. The bridge uses its native `rattling_bridge_hd` 1152×160 atlas (384×160 per choice) for maximum quality;
