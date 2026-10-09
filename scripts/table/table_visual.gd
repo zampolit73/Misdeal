@@ -1,8 +1,8 @@
 extends Control
 
 const TABLE_CENTER := Vector2(640.0, 565.0)
-const TABLE_RADIUS := Vector2(760.0, 218.0)
-const CLOTH_RADIUS := Vector2(620.0, 188.0)
+const TABLE_RADIUS := Vector2(760.0, 178.0)
+const CLOTH_RADIUS := Vector2(620.0, 155.0)
 const SIGIL_CENTER := Vector2(640.0, 520.0)
 
 func _ready() -> void:
@@ -90,8 +90,8 @@ func _draw_ritual_sigil() -> void:
 	draw_arc(SIGIL_CENTER + Vector2(315.0, 36.0), 31.0, deg_to_rad(-122.0), deg_to_rad(122.0), 30, Color(0.72, 0.36, 0.16, 0.34), 5.0, true)
 
 func _draw_side_holders() -> void:
-	_draw_holder(Rect2(72.0, 392.0, 214.0, 196.0), false)
-	_draw_holder(Rect2(994.0, 392.0, 214.0, 196.0), true)
+	_draw_holder(Rect2(72.0, 408.0, 214.0, 184.0), false)
+	_draw_holder(Rect2(994.0, 408.0, 214.0, 184.0), true)
 
 func _draw_holder(rect: Rect2, mirrored: bool) -> void:
 	draw_rect(Rect2(rect.position + Vector2(7.0, 9.0), rect.size), Color(0.0, 0.0, 0.0, 0.48))
