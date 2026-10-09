@@ -11,7 +11,7 @@
 
 # Misdeal — Visual Asset Registry
 
-Last updated: 2026-10-08
+Last updated: 2026-10-09
 
 Purpose: make visual-source provenance and runtime mapping recoverable from GitHub without reading old chats.
 
@@ -56,8 +56,13 @@ Battle runtime mapping lives in `scripts/battle/authored_backdrop.gd`.
 
 ### Wizard table
 
-- Current authored Wizard/table layer: `assets/pixel/table/visual_pass_v6/table_wizard.webp`
-- Scene/runtime: `scenes/table/table.tscn`, `scripts/table/table.gd`
+- Current authored upper Wizard/environment layer: `assets/pixel/table/visual_pass_v6/table_wizard.webp`
+- Approved normal-table composition: **Variant C** — restrained oval ritual tabletop, Wizard centered behind it, two offer cards near the player, physical deck/discard holders at the sides.
+- Physical tabletop/sigil runtime: `scripts/table/table_visual.gd`
+- Live deck/discard stacks: `scripts/table/table_spread_visual.gd`
+- Scene/runtime logic: `scenes/table/table.tscn`, `scripts/table/table.gd`
+- The approved concept is a layout reference; run-specific cards, counts, Hold state, Wizard text and buttons remain live Godot UI.
+- Detailed run progress is not duplicated here; `РАСКЛАД СУДЬБЫ` owns the full I–XIII progression view.
 - Important: authored table art bypasses the old heavy environment/card grade.
 
 ### V7 high-visibility screens
