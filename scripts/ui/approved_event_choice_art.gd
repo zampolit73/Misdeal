@@ -12,15 +12,45 @@ const RATTLING_BRIDGE_PARTS: Array[String] = [
 	"res://assets/pixel/event/choice/rattling_bridge_hd/part_00.txt",
 	"res://assets/pixel/event/choice/rattling_bridge_hd/part_01.txt",
 ]
+const BLACK_ALTAR_PATH := "res://assets/pixel/event/choice/black_altar_recruitment.svg"
+const BLACK_ALTAR_CELL_SIZE := Vector2i(384, 160)
+const BLACK_ALTAR_COLUMNS := 3
 
 static var _sheet_texture: Texture2D
 static var _rattling_bridge_texture: Texture2D
+static var _black_altar_texture: Texture2D
 
 static func get_whispering_well_texture(index: int) -> Texture2D:
 	return _get_cell(index)
 
 static func get_chained_prisoner_texture(index: int) -> Texture2D:
 	return _get_cell(COLUMNS + index)
+
+
+static func get_black_altar_texture(index: int) -> Texture2D:
+	if index < 0 or index >= BLACK_ALTAR_COLUMNS:
+		return null
+	var sheet := _get_black_altar_texture()
+	if sheet == null:
+		return null
+	var atlas := AtlasTexture.new()
+	atlas.atlas = sheet
+	atlas.region = Rect2(
+		Vector2(float(index * BLACK_ALTAR_CELL_SIZE.x), 0.0),
+		Vector2(float(BLACK_ALTAR_CELL_SIZE.x), float(BLACK_ALTAR_CELL_SIZE.y))
+	)
+	return atlas
+
+
+static func _get_black_altar_texture() -> Texture2D:
+	if _black_altar_texture != null:
+		return _black_altar_texture
+	var loaded := ResourceLoader.load(BLACK_ALTAR_PATH)
+	if loaded is Texture2D:
+		_black_altar_texture = loaded as Texture2D
+	else:
+		push_error("Could not load Black Altar semantic choice art: %s" % BLACK_ALTAR_PATH)
+	return _black_altar_texture
 
 
 static func get_rattling_bridge_texture(index: int) -> Texture2D:
