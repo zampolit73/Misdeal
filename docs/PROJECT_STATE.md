@@ -1,5 +1,30 @@
 # Misdeal — Project State
 
+## Approved semantic choice sheet integrated — 2026-10-09
+
+The user selected the five-event mockup sheet as the visual benchmark for event mini-choice cards.
+
+Production now uses a low-resolution runtime-decoded WebP sheet derived from that approved mockup:
+- decoded size: 576×320;
+- cell size: 192×80;
+- storage: `assets/pixel/event/choice/approved_choice_sheet_v2/`;
+- runtime decoder/mapping: `scripts/ui/approved_event_choice_art.gd`;
+- nearest filtering is intentional so the cards keep large readable pixel shapes instead of high-frequency AI-like detail.
+
+Mapped live states:
+- `rattling_bridge` recruitment — rescue / take bag / cross alone;
+- Whispering Well — whisper/well / coins / leave;
+- `chained_prisoner` recruitment — break chains / loot / leave;
+- `black_altar` recruitment — blood sacrifice / 35-gold ritual payment / take the offering.
+
+Black Altar deliberately maps the approved coin-hand image to the current 35-gold ritual payment and the approved altar-offering image to the current +40-gold abandon/loot choice. Live text and mechanics remain authoritative.
+
+`curse_forge` is intentionally unchanged: its three current options already show the actual artifact illustrations (Dead Man's Shield / Blind Quiver / Cracked Focus), which communicate the real choices more accurately than the concept-sheet forge placeholders.
+
+The older Rattling Bridge split atlas and standalone Black Altar SVG are superseded runtime paths. Chained Prisoner's post-recruitment branch keeps its older dedicated semantic atlas because those choices differ from the recruitment branch.
+
+Next true duplicate-thumbnail targets: `lost_purse`, `debtor_bones`, `wizard_tithe`, then the recruitment branches of `ash_rest` and `last_camp`.
+
 ## Semantic event-choice pass — Black Altar added — 2026-10-09
 
 The semantic mini-art rule is now active beyond Rattling Bridge.
