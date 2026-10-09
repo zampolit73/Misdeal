@@ -57,6 +57,9 @@
 
 ### Changed
 
+- Replaced the oversized Wizard-table baked-card mask with two narrow cloth-toned cleanup patches that appear only for single-card offers; normal two-card deals no longer sit over a dark oval "hole".
+- Re-seated the Fate Spread Wizard-discard live card by shrinking it, lowering it and matching the painted stack angle more closely.
+
 - Added a dedicated dark oval cleanup layer beneath live Wizard-table offers so baked sample cards from the approved Variant C plate no longer bleed through when only one live card is shown.
 - Rotated and shifted the Fate Spread Wizard-discard live card layer to sit on the painted discard stack instead of exposing the rectangular cleanup backing.
 
