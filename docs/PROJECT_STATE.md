@@ -1,5 +1,70 @@
 # Misdeal — Project State
 
+## Continuation checkpoint — 2026-10-09 — Fate Spread frozen + exact normal-table Variant C live
+
+This is the current visual/gameplay handoff for the next Project chat.
+
+### Fate Spread
+
+The user has explicitly **frozen the Fate Spread composition** after repeated local screenshot passes. Treat it as done unless a concrete rendering bug appears.
+
+Canonical runtime:
+- scene: `scenes/table/fate_spread_overlay.tscn`
+- logic: `scripts/table/fate_spread_overlay.gd`
+- approved full plate: `assets/pixel/table/fate_spread/fate_spread_exact.webp`
+- source master: `assets/source_archive/fate_spread/fate_spread_exact_master.webp`
+- cleanup/masking: `scripts/table/fate_spread_reference_cleanup.gd`
+
+Important final behavior:
+- I–XII remain live run history;
+- the approved sealed XIII/skull-chain card is visible directly until the boss becomes active;
+- generic future backs from the reference remain visible where they are truthful;
+- live masks replace only baked sample/run-specific state;
+- history hover is a compact cursor-adjacent tooltip;
+- Hold/Discard and counters remain live;
+- do **not** redesign the ring/side holders/header from scratch.
+
+### Normal Wizard deal table
+
+The user rejected the earlier procedural oval-table approximation and approved the **latest cleaned-up Variant C full-screen art almost one-for-one**.
+
+Canonical runtime foundation:
+- `assets/pixel/table/approved_variant_c/table_exact.webp` — 1280×720 runtime WebP
+- `assets/source_archive/table/approved_variant_c/table_exact_master.webp` — preserved larger source
+- `scenes/table/table.tscn`
+- `scripts/table/table.gd`
+- full-screen art is decoded through `scripts/ui/runtime_webp_texture.gd`
+
+The old procedural `TableVisual`, compact `TableSpreadVisual`, and separate logo are still present in files for safety/history but are hidden on the canonical normal table.
+
+Current live layout follows the approved art:
+- Wizard/room/table/logo/physical deck/discard holders come from the plate;
+- compact top HUD and Wizard line remain live;
+- `РАСКЛАД СУДЬБЫ [R]` is centered below the Wizard;
+- two live offer cards sit lower on the physical oval table;
+- Hold buttons sit immediately above the two cards;
+- deck/discard counts are live numeric overlays on the physical holder labels;
+- deal/discard animation origins point to the physical side stacks;
+- offer-card hover/deal motion was reduced to preserve the physical-card feel;
+- card frames use restrained warm brass rather than the earlier bright cyan/red split;
+- old rectangular lower-table shade / focus panel are disabled;
+- detailed I–XIII progress is intentionally **not** duplicated on this screen.
+
+The most recent code pass replaced the previous v6 Wizard backdrop with the exact approved full-screen plate and aligned the live UI to it. This specific build has not yet had a fresh local screenshot after the exact-art integration, so **the immediate next task is visual verification only**, not another redesign.
+
+### Immediate next check
+
+After `git pull`, open the normal table at 1280×720 with two offer cards and verify:
+1. live cards cover the baked sample-card area cleanly;
+2. live Hold controls cover/reuse the baked Hold area without doubled text;
+3. deck/discard numeric overlays sit on the physical holders without visible stale baked numbers;
+4. top HUD/Wizard line are readable without feeling like a separate large black rectangle;
+5. cards do not cover the Wizard's hands and remain fully inside the visible table;
+6. no old procedural table/ring/logo leaks through.
+
+If the screenshot is close, only tune masks/offsets/font sizes by a few pixels. Do not return to the procedural oval-table version and do not regenerate a new visual direction unless the user explicitly asks.
+
+
 Last updated: 2026-10-09
 
 ## Normal table exact-reference integration — 2026-10-09
