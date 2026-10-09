@@ -1,5 +1,9 @@
 # Misdeal — Project State
 
+### Rattling Bridge regular-choice fallback fixed
+
+The regular `ПЕРЕБЕЖАТЬ / СОБРАТЬ МОНЕТЫ С ПЕРИЛ / ИДТИ МЕДЛЕННО` state was still falling through to the generic event-art fallback. It now uses the already-authored bridge mini-art trio. For this event, runtime loading was switched back to the native `assets/pixel/event/choice/rattling_bridge_hd/` atlas so the live cards use the original 384×160 cells directly rather than an upscaled 192×80 copy.
+
 ## Approved semantic choice sheet integrated — 2026-10-09
 
 The user selected the five-event mockup sheet as the visual benchmark for event mini-choice cards.
@@ -12,7 +16,7 @@ Production now uses a low-resolution runtime-decoded WebP sheet derived from tha
 - nearest filtering is intentional so the cards keep large readable pixel shapes instead of high-frequency AI-like detail.
 
 Mapped live states:
-- `rattling_bridge` recruitment — rescue / take bag / cross alone;
+- `rattling_bridge` both recruitment and regular branches now use the existing semantic bridge trio; the regular branch no longer falls back to the large event thumbnail. The bridge uses its native `rattling_bridge_hd` 1152×160 atlas (384×160 per choice) for maximum quality;
 - Whispering Well — whisper/well / coins / leave;
 - `chained_prisoner` recruitment — break chains / loot / leave;
 - `black_altar` recruitment — blood sacrifice / 35-gold ritual payment / take the offering.
@@ -21,7 +25,7 @@ Black Altar deliberately maps the approved coin-hand image to the current 35-gol
 
 `curse_forge` is intentionally unchanged: its three current options already show the actual artifact illustrations (Dead Man's Shield / Blind Quiver / Cracked Focus), which communicate the real choices more accurately than the concept-sheet forge placeholders.
 
-The older Rattling Bridge split atlas and standalone Black Altar SVG are superseded runtime paths. Chained Prisoner's post-recruitment branch keeps its older dedicated semantic atlas because those choices differ from the recruitment branch.
+The Rattling Bridge split HD atlas is active again as the canonical bridge source because it preserves the original 384×160 choice cells without the quality loss of the compact unified-sheet copy. The standalone Black Altar SVG remains superseded. Chained Prisoner's post-recruitment branch keeps its older dedicated semantic atlas because those choices differ from the recruitment branch.
 
 Next true duplicate-thumbnail targets: `lost_purse`, `debtor_bones`, `wizard_tithe`, then the recruitment branches of `ash_rest` and `last_camp`.
 
@@ -62,7 +66,7 @@ Current implementation:
 - the three 384×160 cells are: rescue the ranger / take the bag / cross alone;
 - `scripts/ui/approved_event_choice_art.gd` decodes the atlas at runtime;
 - `scripts/event/act_choice.gd` uses these semantic mini illustrations only for the ranger-recruitment branch;
-- the already-resolved bridge branch still falls back to its current generic art until a second approved trio is authored.
+- both the recruitment branch and the regular `rush / scavenge / careful` branch use this existing semantic trio, so the regular bridge no longer repeats the large event thumbnail.
 
 Art rule for this pass: one dominant object/action per choice, restrained palette, large readable shapes, low micro-detail, and no duplicate crop of the context image. Mechanics and option text remain unchanged.
 
