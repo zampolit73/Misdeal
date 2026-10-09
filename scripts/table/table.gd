@@ -18,6 +18,8 @@ const RIGHT_CARD_ROTATION := 0.024
 @onready var wizard_line: Label = $WizardLine
 @onready var stats_label: Label = $Stats
 @onready var wizard_backdrop: TextureRect = $WizardBackdrop
+@onready var single_offer_left_cleanup: Panel = $SingleOfferLeftCleanup
+@onready var single_offer_right_cleanup: Panel = $SingleOfferRightCleanup
 @onready var cards_root: Control = $Cards
 @onready var offer_a_button: Button = $Cards/BonePatrolCard
 @onready var offer_b_button: Button = $Cards/GraveyardCard
@@ -381,6 +383,10 @@ func _configure_card_pivots() -> void:
 		button.pivot_offset = Vector2(115.0, 139.0)
 
 func _layout_offer_cards(offer_count: int) -> void:
+	var show_single_cleanup := offer_count == 1
+	single_offer_left_cleanup.visible = show_single_cleanup
+	single_offer_right_cleanup.visible = show_single_cleanup
+
 	for index in range(offer_buttons.size()):
 		var button := offer_buttons[index]
 		if not button.visible:
