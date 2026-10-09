@@ -39,6 +39,9 @@ func _draw() -> void:
 			continue
 		_draw_slot_mask(index)
 
+	if RunState.is_boss_due() or RunState.active_card_id == RunState.BOSS_CARD_ID or RunState.boss_defeated:
+		draw_rect(Rect2(312.0, 154.0, 156.0, 214.0), Color(0.026, 0.010, 0.014, 0.96))
+
 
 func _slot_needs_live_cover(index: int) -> bool:
 	# The approved reference intentionally contains example cards in I–IV,
