@@ -2,6 +2,14 @@
 
 This is the authoritative handoff for the next Project chat. GitHub is the source of truth for implemented code/state.
 
+### Latest refinement after local screenshots
+
+The first cleanup attempt was rejected locally: the giant dark oval under the offers looked like a hole, and the Wizard-discard card in Fate Spread still floated off-angle.
+
+Current `main` replaces that with two compact cloth-toned side cleanup patches that are visible only for single-card offers; two-card offers have no extra cleanup surface. The Fate Spread discard live-card layer is now 90% scale, lower, and rotated to the painted stack angle.
+
+Next local check: pull `main`, inspect one normal two-card offer, one single-card/retry offer, and the Fate Spread discard with 2+ rejected cards. If anything remains, only small pixel offsets should be adjusted.
+
 ### Latest screenshot-driven fixes
 
 The first local screenshot of the exact Variant C normal table exposed the baked sample offer cards when only one live card was present. `scenes/table/table.tscn` now has a restrained rounded dark cleanup layer directly beneath the live offers, covering that baked sample-card area without changing the approved table art direction.
