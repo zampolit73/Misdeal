@@ -1639,3 +1639,22 @@ Choice cards should not default to three copies/crops of the event image when th
 `rattling_bridge` is the benchmark implementation, with separate art for both its ranger-recruitment and already-resolved choice sets.
 
 This rule is a presentation-system decision, not a request for bespoke scene architecture per event. Reuse the shared Act Choice layout and add semantic art mappings data-first.
+
+## D097 — The approved five-event choice sheet is the mini-art production benchmark
+
+Date: 2026-10-09  
+Status: accepted by user, implemented
+
+The selected five-event mockup is now the visual benchmark for event choice cards. Production uses cropped action-first illustrations from that approved sheet rather than duplicating the large event scene or using schematic vector placeholders.
+
+For card-scale clarity and a less AI-like result, canonical mapped cells are intentionally reduced to 192×80 and displayed with nearest filtering. Large silhouettes, one dominant action and restrained detail are preferred over high-frequency generated ornament.
+
+The approved sheet is mapped only where its imagery remains truthful to live mechanics:
+- Rattling Bridge recruitment;
+- Whispering Well;
+- Chained Prisoner recruitment;
+- Black Altar recruitment.
+
+Black Altar remaps the approved coin-hand and altar-offering images to the current 35-gold ritual payment and take-offering choices. Chained Prisoner's later branch keeps its older dedicated semantic art. Curse Forge keeps the actual artifact illustrations because its live choices are specific relics and those images are more mechanically accurate than the generic forge options shown in the concept mockup.
+
+Dynamic labels, costs, disabled states and outcomes remain authoritative Godot UI. Visual consistency must never override mechanical clarity.
