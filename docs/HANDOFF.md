@@ -1,6 +1,14 @@
-## Continuation checkpoint — 2026-10-09 14:39 +04 — continue from here
+## Continuation checkpoint — 2026-10-09 — screenshot cleanup committed — continue from here
 
 This is the authoritative handoff for the next Project chat. GitHub is the source of truth for implemented code/state.
+
+### Latest screenshot-driven fixes
+
+The first local screenshot of the exact Variant C normal table exposed the baked sample offer cards when only one live card was present. `scenes/table/table.tscn` now has a restrained rounded dark cleanup layer directly beneath the live offers, covering that baked sample-card area without changing the approved table art direction.
+
+The Fate Spread screenshot also exposed the Wizard-discard live card as axis-aligned over an angled painted stack, which made the dark backing visible. `scenes/table/fate_spread_overlay.tscn` now groups that live card/mask/title in a shared `CardLayer`, shifted and rotated to follow the physical stack; `scripts/table/fate_spread_overlay.gd` points at the new paths.
+
+These are visual-only fixes. No gameplay, Fate Spread ring geometry or discard rules changed. Next step: `git pull`, verify both screenshots at 1280×720, then only nudge pixels if needed.
 
 ### What is visually locked
 
