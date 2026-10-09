@@ -160,6 +160,8 @@
 
 ### Fixed
 
+- Fixed final Fate Spread reference alignment issues: baked XII sample card no longer leaks, the approved static title is used directly instead of a large black live header, Wizard Discard count sits inside its physical holder, and empty side holders no longer show a floating `ПУСТО` label.
+
 - Fixed baked reference-state leakage in `РАСКЛАД СУДЬБЫ`: old sample cards, Roman numerals, title/count text and XIII label are now masked beneath live state without darkening the physical table; empty Hold/Discard title plates also stay dark until populated.
 
 - Fixed the approved Fate Spread reference plate being almost invisible behind the outer frame. It now renders inside the frame above the panel background, while stronger live center/header masks prevent baked concept cards/text from competing with real run state.
