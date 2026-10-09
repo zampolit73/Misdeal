@@ -2,6 +2,24 @@
 
 Last updated: 2026-10-09
 
+## Normal table exact-reference integration — 2026-10-09
+
+The user approved the final cleaned-up Variant C table artwork as the canonical normal card-selection screen and requested implementation almost one-for-one.
+
+The live table now uses the full approved 1280×720 plate at `assets/pixel/table/approved_variant_c/table_exact.webp` as its authored foundation. A 1672×941 source master is archived at `assets/source_archive/table/approved_variant_c/table_exact_master.webp`.
+
+Runtime integration keeps gameplay state live:
+- `WizardBackdrop` now runtime-decodes the approved full-screen plate;
+- the old procedural `TableVisual`, duplicate compact `TableSpreadVisual` and separate logo are hidden on the normal deal screen;
+- live HUD, Wizard line, Squad button, Fate Spread button, Hold actions and offer cards are aligned to the artwork;
+- offer cards were reduced/re-laid to the approved physical-card proportions and use one warm bronze/gold frame language instead of teal-versus-red outer chrome;
+- the physical deck/discard plaques remain from the art while only their changing numeric counts are masked/replaced live;
+- baked Hold labels are covered so Hold availability remains authoritative;
+- deal/discard animation anchors now originate from the physical left deck and terminate at the physical right discard.
+
+The previous v6 upper-Wizard crop is no longer a runtime dependency of `table.tscn`. No gameplay rules changed.
+
+
 ## Main table Variant C visual rebuild — 2026-10-09
 
 The user froze the Fate Spread composition and then approved a cleaner **Variant C** target for the normal Wizard/card-selection table: a large oval ritual tabletop, one deliberate central sigil, Wizard centered behind it, two live offer cards near the player, and physical deck/discard holders at the left/right edges. The goal is to eliminate the old rectangular lower-table/UI-panel read without reintroducing dense generated-art prop noise.
