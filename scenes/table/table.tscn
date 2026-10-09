@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=25 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/table.gd" id="1_table"]
 [ext_resource type="Script" path="res://scripts/table/table_visual.gd" id="2_visual"]
@@ -28,6 +28,13 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.27, 0.15, 0.18, 0.48)
+
+[sub_resource type="StyleBoxFlat" id="OfferCleanupPanel"]
+bg_color = Color(0.028, 0.010, 0.013, 0.965)
+corner_radius_top_left = 118
+corner_radius_top_right = 118
+corner_radius_bottom_right = 118
+corner_radius_bottom_left = 118
 
 [sub_resource type="StyleBoxFlat" id="CardNormal"]
 bg_color = Color(0.050, 0.026, 0.028, 0.985)
@@ -394,6 +401,14 @@ offset_top = 334.0
 offset_right = 826.0
 offset_bottom = 360.0
 color = Color(0.025, 0.017, 0.021, 0.92)
+
+[node name="BakedOfferCleanup" type="Panel" parent="."]
+mouse_filter = 2
+offset_left = 370.0
+offset_top = 346.0
+offset_right = 910.0
+offset_bottom = 658.0
+theme_override_styles/panel = SubResource("OfferCleanupPanel")
 
 [node name="Cards" type="Control" parent="."]
 mouse_filter = 2
