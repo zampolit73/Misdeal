@@ -1701,3 +1701,23 @@ Avoid:
 - hiding core information during long transitions.
 
 Pass 1 applies this rule to Table, generic Events, Whispering Well and Rewards. A later pass should apply the same logic to battle anticipation/death feedback, Fate Spread ritual reveals and restrained Wizard reactions.
+
+## D100 — Combat anticipation is presentation, not a hidden balance nerf
+
+Date: 2026-10-10  
+Status: accepted implementation rule
+
+Attack windup may improve readability, but it must not silently retune Act 1 DPS.
+
+Implementation rule:
+- set `attack_cooldown = attack_interval` before the anticipation beat;
+- keep anticipation shorter than the supported attack intervals;
+- apply the hit after the anticipation;
+- repeated attack cadence therefore remains driven by the existing data-driven `attack_interval`, with only first-contact/target-switch impact shifted by a few frames.
+
+Current presentation timings are deliberately small:
+- melee ~0.08 s;
+- ranged ~0.11 s;
+- magic/support ~0.14 s.
+
+If local playtesting says combat feels sluggish, shorten/remove these visual timings before touching unit stats. Motion tuning and combat balance should remain separate concerns.
