@@ -1759,3 +1759,19 @@ Avoid:
 - ambient motion that competes with live cards or gameplay text.
 
 The authored still image remains the composition source of truth; runtime motion should behave like light passing over it.
+
+## D103 — Battle polish must be isolated from battle ownership and spawn flow
+
+Date: 2026-10-11  
+Status: accepted implementation rule
+
+After the empty-arena regression, battle presentation work must not casually alter the controller lifecycle.
+
+Rules:
+- keep `battle.gd` responsible for encounter setup, spawning, tactical mechanics, combat lifecycle and results;
+- presentation-only tactical tells belong in an isolated non-interactive overlay that observes existing button signals/state;
+- combat-unit feedback may modify existing non-blocking sprite/tween feedback functions, but must not insert `await` into attack/damage/spawn paths;
+- visual "strong hit" classification may change feedback intensity only; it must not change damage or crit mechanics;
+- authored battle backdrops remain composition truth; state FX should be low-alpha overlays rather than replacement environment art.
+
+This preserves the restored stable battle core while still allowing combat readability and personality to improve incrementally.
