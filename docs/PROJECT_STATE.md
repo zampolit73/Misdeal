@@ -1,5 +1,36 @@
 # Misdeal — Project State
 
+## Motion polish pass 4 — Table ambience + shell transitions — 2026-10-10
+
+Pass 4 is live in `main` and stays inside the accepted D099/D101 motion language.
+
+Wizard table:
+- `table_spread_visual.gd` now adds tiny translucent flicker halos aligned to the candle flames already painted into the exact Variant C plate;
+- no procedural candle bodies/flames are redrawn, so authored art remains visually authoritative;
+- a short ritual reaction overlay wakes the existing center-circle area on deal, Hold, card choice and Wizard reactions;
+- the ritual overlay uses restrained semantic tints: warm red/orange for deal/choice/pleased, cold blue for refusal, stronger red for meddling;
+- the physical deck stack gets a tiny scale/alpha response when a fresh deal starts;
+- all ritual/deck reactions are presentation-only.
+
+Scene transitions:
+- the persistent blackout veil still performs the same safe old-scene/new-scene swap and keeps the same fast timings;
+- destination scenes now tint that near-black veil very subtly: battle red-black, reward warm-black, event wine-black, run-end violet-black;
+- no white flash or long cinematic transition was introduced.
+
+Main menu:
+- approved splash fades from ~84% to full alpha once on entry;
+- Start appears with a short settle and gets a physical commit beat before Intro.
+
+Run End:
+- authored backdrop, title, Wizard line, summary panel and New Run action reveal in a compact hierarchy;
+- New Run gets one commit beat before resetting the run;
+- no looping ending-screen animation is used.
+
+Animation safety:
+- generic Act Choice and Whispering Well commitment motion remain intentionally rolled back;
+- Table/Reward/Battle/Fate Spread/Wizard/Shell motion is currently active;
+- next work should be local tuning or isolated missing-state polish, not another blanket animation framework.
+
 ## Motion polish pass 3 — Battle commands + Results + Last Deal — 2026-10-10
 
 The next battle-interface motion pass is live in `main`.
