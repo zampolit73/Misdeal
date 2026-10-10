@@ -357,6 +357,8 @@ func _on_hold_button_pressed(offer_index: int) -> void:
 		return
 
 	wizard_line.text = "«Хочешь оставить её на потом? Хорошо. Я верну её через две раздачи.»"
+	if table_spread_visual != null and table_spread_visual.has_method("pulse_ritual"):
+		table_spread_visual.call("pulse_ritual", "hold")
 	_setup_offer_button(card_button, card)
 	_refresh_hold_buttons(offers)
 	await _animate_card_return_from_hold(card_button)
@@ -495,6 +497,8 @@ func _animate_deal_if_needed(offers: Array[RunCardData]) -> void:
 
 	deal_in_progress = true
 	_disable_offer_buttons()
+	if table_spread_visual != null and table_spread_visual.has_method("pulse_deal"):
+		table_spread_visual.call("pulse_deal")
 	call_deferred("_play_deal_sounds", offers.size())
 
 	var deal_mode := "neutral"
@@ -624,6 +628,9 @@ func _pulse_wizard_reaction(kind: String = "attention") -> void:
 			settle_time = 0.30
 		"offer":
 			tint = Color(1.0, 0.84, 0.78, 1.0)
+
+	if table_spread_visual != null and table_spread_visual.has_method("pulse_ritual"):
+		table_spread_visual.call("pulse_ritual", kind)
 
 	wizard_reaction_tween = wizard_backdrop.create_tween()
 	wizard_reaction_tween.tween_property(wizard_backdrop, "modulate", tint, attack_time)
@@ -905,6 +912,8 @@ func _choose_card(card: RunCardData) -> void:
 
 func _animate_card_choice(chosen_card_id: String) -> void:
 	_play_table_audio("select")
+	if table_spread_visual != null and table_spread_visual.has_method("pulse_ritual"):
+		table_spread_visual.call("pulse_ritual", "choice")
 	var has_rejected := false
 
 	for button in offer_buttons:
