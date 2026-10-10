@@ -1737,3 +1737,25 @@ Rules:
 - do not add looping pulses, repeated shakes or other attention traps.
 
 This keeps rare states dramatic without slowing repeated roguelike play.
+
+## D102 — Ambient motion may animate authored light, not redraw the approved scene
+
+Date: 2026-10-10  
+Status: accepted implementation rule
+
+For approved full-screen art such as Variant C, ambient animation should preserve the authored plate.
+
+Allowed:
+- low-alpha halos aligned to existing candle flames;
+- short color/light reactions aligned to existing ritual markings;
+- event-driven pulses tied to real game state;
+- very small one-shot entrance/commit motion on UI above the art.
+
+Avoid:
+- replacing painted candles with procedural flame sprites;
+- moving/scaling the full approved background continuously;
+- permanent rotating ritual circles;
+- high-opacity glow blobs that change the composition;
+- ambient motion that competes with live cards or gameplay text.
+
+The authored still image remains the composition source of truth; runtime motion should behave like light passing over it.
