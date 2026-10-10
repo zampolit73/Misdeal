@@ -920,8 +920,8 @@ func _animate_result_overlay(player_won: bool) -> void:
 
 	var focus_color := Color(0.94, 1.04, 0.90, 1.0) if player_won else Color(1.08, 0.82, 0.78, 1.0)
 	var title_focus := result_label.create_tween()
-	title_focus.tween_property(result_label, "modulate", focus_color, 0.09).set_delay(0.13)
-	title_focus.tween_property(result_label, "modulate", Color.WHITE, 0.22)
+	title_focus.tween_property(result_label, "modulate", focus_color, 0.08).set_delay(0.27)
+	title_focus.tween_property(result_label, "modulate", Color.WHITE, 0.20)
 
 	var reveal_delay := 0.24
 	for control in [last_deal_price_label, continue_button, last_deal_accept_button, last_deal_refuse_button]:
