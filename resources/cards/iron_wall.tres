@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "iron_wall"
+title = "ЖЕЛЕЗНАЯ СТЕНА"
+card_text = "Два часовых держат фронт, лучник работает из-за их спин."
+wizard_line = "Стена хороша тем, что за ней всегда кто-то прячется."
+type_label = "БОЙ"
+tier = 1
+resolution_type = "combat"
+target_path = "res://resources/encounters/iron_wall.tres"
+prototype_result_text = ""
