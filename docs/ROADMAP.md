@@ -336,3 +336,12 @@ Do not prioritize these before the vertical slice works:
 - [x] Safe combat-feedback pass: isolated tactical-order markers, Sacrifice/Defiance state FX, Death Wager framing and stronger source-aware hit feedback without touching battle controller/spawn.
 - [ ] Combat polish follow-up: tune only intensity/readability from local screenshots; do not reintroduce async attack-windup/controller edits.
 
+
+### Combat Expansion v1
+
+- [x] Add six new combat cards, two per Act 1 tier, to increase run-to-run fight variety without extending act length.
+- [x] Add fast Raider and lighter AOE Sentinel UnitData variants using existing validated combat families.
+- [x] Give the new encounters distinct compositions, threat tags, preparation cues and proven deployment profiles.
+- [x] Keep new combat rewards on the existing normal-loot path; Death Wager / Crypt Guard / Bone Warden special reward identities remain unchanged.
+- [ ] Run several fresh Act 1 seeds and identify which new encounters feel redundant, overtuned or worth dedicated enemy/card art.
+- [ ] If Raider/Sentinel survive gameplay validation, create dedicated production silhouettes rather than keeping family-art reuse permanently.
