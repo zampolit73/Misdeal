@@ -1,3 +1,9 @@
+### Empty battle arena — full controller rollback applied
+
+The first rollback of only `unit.gd` did not fix the user's local empty preparation arena. `scripts/battle/battle.gd` has now also been restored to the known-good pre-animation baseline `aa8f9d5ed05134b4a3507995c22d845191c237b7`.
+
+This intentionally removes the recent battle tactical/result/Last Deal motion together with attack/death motion. Do not try to preserve those animation additions until local battle spawning is confirmed again. The next required check is simply: open Bone Patrol and confirm heroes + enemies render before pressing **БОЙ**.
+
 ### Battle units missing regression — hotfixed
 
 The battle preparation screen was reported with zero visible heroes/enemies. `scripts/battle/unit.gd` has been restored to the known-good pre-Motion-Pass-2 version from commit `ddae81ca7e385cfc77767c7a5fbd190f001a624c`.
