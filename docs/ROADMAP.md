@@ -332,5 +332,7 @@ Do not prioritize these before the vertical slice works:
 - [x] Pass 4: staged Main Menu and Run End entry/commit motion.
 - [ ] Motion cleanup: local verification and duration/intensity tuning only; avoid adding another broad animation layer before vertical-slice balance testing.
 - [x] Pass 5: Class Select card reveal/commit, Intro frame settle, Squad dossier open/switch/close motion.
-- [ ] Battle animation remains blocked until local verification confirms heroes/enemies render again on the stable controller.
+- [x] Battle recovery verified locally: heroes/enemies render again on the stable controller.
+- [x] Safe combat-feedback pass: isolated tactical-order markers, Sacrifice/Defiance state FX, Death Wager framing and stronger source-aware hit feedback without touching battle controller/spawn.
+- [ ] Combat polish follow-up: tune only intensity/readability from local screenshots; do not reintroduce async attack-windup/controller edits.
 
