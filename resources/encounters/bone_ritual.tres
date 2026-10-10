@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+encounter_id = "bone_ritual"
+title = "КОСТЯНОЙ РИТУАЛ"
+card_text = "Часовой держит круг, звонарь лечит, а быстрые налётчики рвут построение.\nУ этой группы нет одной очевидной слабости."
+wizard_line = "Наконец-то они научились работать вместе. Какая досада."
+arena_id = "ossuary"
+enemy_unit_paths = PackedStringArray("res://resources/units/crypt_sentinel.tres", "res://resources/units/grave_bellkeeper.tres", "res://resources/units/bone_raider.tres", "res://resources/units/bone_raider.tres", "res://resources/units/bone_raider.tres")
+enemy_names = PackedStringArray("Склепный часовой", "Могильный звонарь", "Костяной налётчик", "Костяной налётчик", "Костяной налётчик")
+enemy_positions = PackedVector2Array(905, 255, 1050, 355, 850, 145, 850, 355, 1030, 155)
