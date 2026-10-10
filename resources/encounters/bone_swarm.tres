@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+encounter_id = "bone_swarm"
+title = "КОСТЯНОЙ РОЙ"
+card_text = "Четыре быстрых налётчика бросаются вперёд без строя.\nОни хрупкие, но не дают времени на разгон."
+wizard_line = "Мелкие, быстрые и совершенно лишённые инстинкта самосохранения. Почти герои."
+arena_id = "bone_crush"
+enemy_unit_paths = PackedStringArray("res://resources/units/bone_raider.tres", "res://resources/units/bone_raider.tres", "res://resources/units/bone_raider.tres", "res://resources/units/bone_raider.tres")
+enemy_names = PackedStringArray("Костяной налётчик", "Костяной налётчик", "Костяной налётчик", "Костяной налётчик")
+enemy_positions = PackedVector2Array(845, 165, 945, 195, 945, 325, 845, 355)
