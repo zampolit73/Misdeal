@@ -1,5 +1,17 @@
 # Misdeal — Project State
 
+### Battle unit spawn hotfix
+
+A local screenshot after Motion Pass 4 showed the battle preparation screen with the entire party/enemy roster missing. The safest recovery was to restore `scripts/battle/unit.gd` from commit `ddae81ca7e385cfc77767c7a5fbd190f001a624c`, the last known-good version before the attack-windup/death-settle experiment.
+
+Current state:
+- hero/enemy unit rendering/spawn path is back on the stable pre-windup controller;
+- attack anticipation and the new death-settle sequence from Motion Pass 2 are temporarily removed;
+- battle tactical-order/result/Last Deal motion in `battle.gd` remains active;
+- Fate Spread, Wizard/table ambience, reward motion and shell transitions remain active.
+
+Do not reapply the previous `BattleUnit._play_attack_windup()` patch wholesale. Reintroduce combat-unit motion only as a smaller locally verified patch after confirming units render again.
+
 ## Motion polish pass 4 — Table ambience + shell transitions — 2026-10-10
 
 Pass 4 is live in `main` and stays inside the accepted D099/D101 motion language.
