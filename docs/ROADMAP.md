@@ -325,4 +325,6 @@ Do not prioritize these before the vertical slice works:
 - [x] Pass 2: Fate Spread ritual reveal/stagger and milestone emphasis without changing the frozen composition.
 - [x] Pass 2: restrained Wizard wager/meddling reactions without skeletal/puppet-style animation of the painted character.
 - [ ] Pass 2 local verification: confirm combat still reads fast, Fate Spread stagger does not feel slow, and backdrop reaction tints stay subtle.
+- [x] Pass 3: tactical-order confirmation, Fight commit beat, side-objective feedback, staged victory/defeat result reveal and Last Deal motion.
+- [ ] Pass 3 local verification: confirm result overlays stay fast, Last Deal remains immediately readable, and battle controls never feel delayed.
 
