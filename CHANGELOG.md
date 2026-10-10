@@ -57,6 +57,9 @@
 
 ### Changed
 
+- Added Motion Polish Pass 5 to safe non-battle screens while the battle core remains frozen for regression recovery. Class Select cards now stage in, the chosen protagonist gets one clear focus beat before leaving, Intro frames get a tiny settle instead of a static swap, and the Squad dossier opens/closes cleanly with a short role-switch focus reaction.
+- No battle controller/unit files were touched in this pass.
+
 - Added Motion Polish Pass 4 for table ambience and outer-shell flow. The approved Variant C table now gets subtle candle-halo flicker from the live overlay, while deal/hold/choice/Wizard moments wake the existing ritual-circle area with short color-coded pulses instead of moving the painted backdrop itself.
 - The physical deck now reacts slightly when a new deal starts; existing discard impact motion remains unchanged.
 - Scene veils keep the same fast timing but now use very dark destination-specific tints for battle, reward, event and run-end transitions, preserving the blackout safety system while making scene changes feel less generic.
