@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1_unit_data"]
+
+[resource]
+script = ExtResource("1_unit_data")
+unit_name = "Склепный часовой"
+visual_role = "crypt_guard"
+max_hp = 215.0
+damage = 18.0
+attack_interval = 1.15
+attack_range = 62.0
+splash_radius = 58.0
+splash_damage_multiplier = 0.25
+move_speed = 62.0
+body_radius = 27.0
+separation_padding = 12.0
+separation_strength = 135.0
+visual_scale = 1.08
+show_enemy_name = true
