@@ -99,6 +99,12 @@ const CARD_PATHS := {
 	"broken_crown": "res://resources/cards/broken_crown.tres",
 	"last_camp": "res://resources/cards/last_camp.tres",
 	"death_wager": "res://resources/cards/death_wager.tres",
+	"bone_swarm": "res://resources/cards/bone_swarm.tres",
+	"grave_crossfire": "res://resources/cards/grave_crossfire.tres",
+	"iron_wall": "res://resources/cards/iron_wall.tres",
+	"last_bell": "res://resources/cards/last_bell.tres",
+	"firing_square": "res://resources/cards/firing_square.tres",
+	"bone_ritual": "res://resources/cards/bone_ritual.tres",
 	"bone_warden": "res://resources/cards/bone_warden.tres"
 }
 
@@ -126,7 +132,13 @@ const ACT1_CARD_IDS := [
 	"blood_ledger",
 	"broken_crown",
 	"last_camp",
-	"death_wager"
+	"death_wager",
+	"bone_swarm",
+	"grave_crossfire",
+	"iron_wall",
+	"last_bell",
+	"firing_square",
+	"bone_ritual"
 ]
 
 var gold: int = 0
