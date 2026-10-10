@@ -1,3 +1,22 @@
+### Motion Pass 3 — battle commands/results is live
+
+Runtime changes are concentrated in `scripts/battle/battle.gd`:
+- tactical order selection calls `_play_tactical_order_feedback()`;
+- **БОЙ** awaits `_play_fight_commit_feedback()` before hiding deployment UI;
+- side-objective success/failure calls `_play_side_objective_feedback()`;
+- `_finish_battle()` defers `_animate_result_overlay(player_won)` after all result text/button visibility is configured;
+- Last Deal gets one follow-up emphasis via `_pulse_last_deal_after_reveal()`;
+- continue / Last Deal accept / Last Deal refuse await a tiny `_animate_result_choice_commit()` before navigation.
+
+Do not add continuous result-panel breathing or repeated Last Deal pulsing. The current direction is a single clear reveal/commit sequence.
+
+Local verification after pull:
+1. switch between several tactical orders during deployment;
+2. press **БОЙ** and confirm the short press beat does not feel laggy;
+3. trigger a side-objective failure/success if convenient;
+4. win a battle and take the reward;
+5. lose a battle and inspect Last Deal, then test accept/refuse when possible.
+
 ### Motion Pass 2 is implemented — battle / Fate Spread / Wizard reactions
 
 Current motion state:
