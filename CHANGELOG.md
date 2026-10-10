@@ -57,6 +57,11 @@
 
 ### Changed
 
+- Added Motion Polish Pass 4 for table ambience and outer-shell flow. The approved Variant C table now gets subtle candle-halo flicker from the live overlay, while deal/hold/choice/Wizard moments wake the existing ritual-circle area with short color-coded pulses instead of moving the painted backdrop itself.
+- The physical deck now reacts slightly when a new deal starts; existing discard impact motion remains unchanged.
+- Scene veils keep the same fast timing but now use very dark destination-specific tints for battle, reward, event and run-end transitions, preserving the blackout safety system while making scene changes feel less generic.
+- Main menu and Run End now use one-shot staged entrance motion plus short button commit beats; no looping panel motion was added.
+
 - Added Motion Polish Pass 3 for battle commands and post-combat flow. Tactical-order buttons now give a short physical confirmation beat, the FIGHT action visibly commits before the preparation HUD disappears, side-objective success/failure gets restrained panel feedback, and battle result overlays reveal in staged layers instead of appearing instantly.
 - Victory, defeat and Last Deal now share the same short result-motion language: scrim/backdrop/title/subtitle reveal in sequence, visible actions fade in after the result, Last Deal receives one restrained price/backdrop emphasis, and clicking reward/Last Deal actions gives a brief commit beat before scene navigation.
 - No battle rules, reward values, Last Deal costs or tactical-order effects changed.
