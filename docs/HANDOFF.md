@@ -1,3 +1,25 @@
+### Safe combat-feedback pass is live
+
+The user confirmed the restored battle core works again. New combat polish is intentionally isolated:
+
+- `scripts/battle/battle_motion_fx.gd` is a visual-only overlay added to `battle.tscn`;
+- it listens to tactical-order/Fight buttons directly and never calls spawn/controller/RunState logic;
+- normal orders show short squad markers; Sacrifice/Defiance gain restrained persistent red/blue auras after Fight; Death Wager has a subtle red frame tell;
+- `scripts/battle/unit.gd` only changes existing feedback functions: source-aware hit tint, stronger large-hit kick/number/sparks, slightly clearer ranged/magic tracers;
+- `scripts/battle/battle.gd` is unchanged.
+
+Regression guard:
+- do not reintroduce async attack windup or broad battle-controller animation patches;
+- do not move tactical FX into spawn/configure code;
+- if anything disappears in battle, first disable/remove `BattleMotionFx` and compare `unit.gd` feedback-only changes before touching controller logic.
+
+Local checks:
+1. open a normal combat and confirm all heroes/enemies are present before Fight;
+2. switch НАТИСК / ОХОТА / СТРОЙ and confirm only short markers appear;
+3. when available, test ЖЕРТВА and НЕПОВИНОВЕНИЕ for restrained red/blue auras;
+4. inspect melee/ranged/magic hits and one large hit;
+5. open Death Wager and confirm the red frame is subtle.
+
 ### Event motion is partially restored, entry-only
 
 Generic Act Choice and Whispering Well now have a safe entry-only choice-card stagger.
