@@ -57,6 +57,7 @@
 
 ### Changed
 
+- Reintroduced event animation conservatively after the earlier regressions: generic Act Choice and Whispering Well now only animate their already-initialized visible choice cards on screen entry (short stagger + settle). No button-down commitment hooks, event resolution timing, active-card initialization or choice-art loading paths were changed.
 - Added Motion Polish Pass 5 to safe non-battle screens while the battle core remains frozen for regression recovery. Class Select cards now stage in, the chosen protagonist gets one clear focus beat before leaving, Intro frames get a tiny settle instead of a static swap, and the Squad dossier opens/closes cleanly with a short role-switch focus reaction.
 - No battle controller/unit files were touched in this pass.
 
