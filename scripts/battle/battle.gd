@@ -79,7 +79,6 @@ var side_objective_failed := false
 var first_enemy_death_seen := false
 var combat_elapsed := 0.0
 var target_preview: BattleTargetPreview
-var result_motion_tween: Tween
 
 func _ready() -> void:
 	if not RunState.has_chosen_protagonist():
@@ -429,7 +428,6 @@ func _fail_side_objective(message: String) -> void:
 	side_objective_failed = true
 	side_objective_label.text = message
 	side_objective_label.add_theme_color_override("font_color", Color(0.82, 0.38, 0.30, 1.0))
-	_play_side_objective_feedback(false)
 
 func _claim_side_objective_reward() -> String:
 	if side_objective_id.is_empty() or side_objective_failed:
@@ -532,7 +530,6 @@ func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 			order_description_label.modulate = Color(0.48, 0.78, 1.0, 1.0)
 		else:
 			order_description_label.modulate = Color(1.0, 0.88, 0.66, 1.0)
-		_play_tactical_order_feedback(tactical_order)
 		_play_battle_audio("order")
 
 func _get_tactical_order_description(order_id: String) -> String:
@@ -708,21 +705,10 @@ func _show_boss_phase_flash() -> void:
 	phase_label.add_theme_constant_override("shadow_offset_y", 2)
 	add_child(phase_label)
 
-	var arena_tween := arena_visual.create_tween()
-	arena_tween.tween_property(arena_visual, "modulate", Color(1.0, 0.58, 0.46, 1.0), 0.08)
-	arena_tween.tween_property(arena_visual, "modulate", Color.WHITE, 0.34)
-
-	var backdrop_tween := battle_backdrop.create_tween()
-	backdrop_tween.tween_property(battle_backdrop, "modulate", Color(1.0, 0.78, 0.70, 1.0), 0.08)
-	backdrop_tween.tween_property(battle_backdrop, "modulate", Color.WHITE, 0.32)
-
 	var tween := phase_label.create_tween()
-	phase_label.pivot_offset = phase_label.size * 0.5
-	phase_label.scale = Vector2(0.92, 0.92)
 	tween.set_parallel(true)
 	tween.tween_property(phase_label, "position", phase_label.position + Vector2(0.0, -18.0), 0.9)
 	tween.tween_property(phase_label, "modulate:a", 0.0, 0.9)
-	tween.tween_property(phase_label, "scale", Vector2(1.04, 1.04), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.chain().tween_callback(phase_label.queue_free)
 
 func _on_placement_rejected(unit: BattleUnit) -> void:
@@ -743,7 +729,6 @@ func _on_fight_pressed() -> void:
 	fight_button.disabled = true
 	placement_hint.visible = false
 	_lock_tactical_orders()
-	await _play_fight_commit_feedback()
 	_hide_preparation_hud()
 	side_objective_panel.visible = not side_objective_id.is_empty()
 
@@ -849,134 +834,6 @@ func _get_combat_start_wizard_line() -> String:
 		_:
 			return "Ну же. Покажите мне, зачем я вас вернул."
 
-func _play_tactical_order_feedback(order_id: String) -> void:
-	var selected_button := _get_tactical_order_button(order_id)
-	if selected_button != null and selected_button.visible:
-		selected_button.pivot_offset = selected_button.size * 0.5
-		var button_tween := selected_button.create_tween()
-		button_tween.tween_property(selected_button, "scale", Vector2(1.07, 0.94), 0.07).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		button_tween.tween_property(selected_button, "scale", Vector2.ONE, 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-
-	order_description_label.pivot_offset = order_description_label.size * 0.5
-	var description_tween := order_description_label.create_tween()
-	description_tween.tween_property(order_description_label, "scale", Vector2(1.018, 1.018), 0.08).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	description_tween.tween_property(order_description_label, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-
-
-func _get_tactical_order_button(order_id: String) -> Button:
-	match order_id:
-		TACTICAL_ORDER_HUNT:
-			return hunt_order_button
-		TACTICAL_ORDER_FORMATION:
-			return formation_order_button
-		TACTICAL_ORDER_SACRIFICE:
-			return sacrifice_order_button
-		TACTICAL_ORDER_DEFIANCE:
-			return defiance_order_button
-		_:
-			return assault_order_button
-
-
-func _play_fight_commit_feedback() -> void:
-	if not fight_button.visible:
-		return
-
-	fight_button.pivot_offset = fight_button.size * 0.5
-	var button_tween := fight_button.create_tween()
-	button_tween.tween_property(fight_button, "scale", Vector2(0.96, 0.94), 0.055).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	button_tween.tween_property(fight_button, "scale", Vector2(1.035, 1.035), 0.075).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	button_tween.tween_property(fight_button, "scale", Vector2.ONE, 0.055)
-	await button_tween.finished
-
-
-func _animate_result_overlay(player_won: bool) -> void:
-	if not is_inside_tree():
-		return
-
-	if result_motion_tween != null and result_motion_tween.is_valid():
-		result_motion_tween.kill()
-
-	result_backdrop.pivot_offset = result_backdrop.size * 0.5
-	result_label.pivot_offset = result_label.size * 0.5
-	result_scrim.modulate.a = 0.0
-	result_backdrop.modulate.a = 0.0
-	result_backdrop.scale = Vector2(0.965, 0.965)
-	result_label.modulate.a = 0.0
-	result_label.scale = Vector2(0.92, 0.92)
-	result_subtitle.modulate.a = 0.0
-
-	for control in [continue_button, last_deal_price_label, last_deal_accept_button, last_deal_refuse_button]:
-		if control.visible:
-			control.modulate.a = 0.0
-
-	result_motion_tween = create_tween()
-	result_motion_tween.set_parallel(true)
-	result_motion_tween.tween_property(result_scrim, "modulate:a", 1.0, 0.16)
-	result_motion_tween.tween_property(result_backdrop, "modulate:a", 1.0, 0.18).set_delay(0.04)
-	result_motion_tween.tween_property(result_backdrop, "scale", Vector2.ONE, 0.22).set_delay(0.04).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	result_motion_tween.tween_property(result_label, "modulate:a", 1.0, 0.15).set_delay(0.10)
-	result_motion_tween.tween_property(result_label, "scale", Vector2.ONE, 0.18).set_delay(0.10).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	result_motion_tween.tween_property(result_subtitle, "modulate:a", 1.0, 0.18).set_delay(0.16)
-
-	var focus_color := Color(0.94, 1.04, 0.90, 1.0) if player_won else Color(1.08, 0.82, 0.78, 1.0)
-	var title_focus := result_label.create_tween()
-	title_focus.tween_property(result_label, "modulate", focus_color, 0.08).set_delay(0.27)
-	title_focus.tween_property(result_label, "modulate", Color.WHITE, 0.20)
-
-	var reveal_delay := 0.24
-	for control in [last_deal_price_label, continue_button, last_deal_accept_button, last_deal_refuse_button]:
-		if not control.visible:
-			continue
-		var control_tween := control.create_tween()
-		control_tween.tween_property(control, "modulate:a", 1.0, 0.15).set_delay(reveal_delay)
-		reveal_delay += 0.045
-
-	if last_deal_accept_button.visible:
-		call_deferred("_pulse_last_deal_after_reveal")
-
-
-func _pulse_last_deal_after_reveal() -> void:
-	await get_tree().create_timer(0.34).timeout
-	if not is_inside_tree() or not last_deal_accept_button.visible:
-		return
-
-	last_deal_price_label.pivot_offset = last_deal_price_label.size * 0.5
-	var price_tween := last_deal_price_label.create_tween()
-	price_tween.tween_property(last_deal_price_label, "scale", Vector2(1.04, 1.04), 0.08).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	price_tween.tween_property(last_deal_price_label, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-
-	var backdrop_pulse := result_backdrop.create_tween()
-	backdrop_pulse.tween_property(result_backdrop, "modulate", Color(1.08, 0.84, 0.78, 1.0), 0.08)
-	backdrop_pulse.tween_property(result_backdrop, "modulate", Color.WHITE, 0.22)
-
-
-func _play_side_objective_feedback(success: bool) -> void:
-	if not side_objective_panel.visible:
-		return
-
-	side_objective_panel.pivot_offset = side_objective_panel.size * 0.5
-	var accent := Color(0.82, 1.06, 0.86, 1.0) if success else Color(1.08, 0.72, 0.68, 1.0)
-
-	var panel_tween := side_objective_panel.create_tween()
-	panel_tween.set_parallel(true)
-	panel_tween.tween_property(side_objective_panel, "scale", Vector2(1.025, 1.025), 0.08).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	panel_tween.tween_property(side_objective_panel, "modulate", accent, 0.08)
-	panel_tween.chain().tween_property(side_objective_panel, "scale", Vector2.ONE, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	panel_tween.parallel().tween_property(side_objective_panel, "modulate", Color.WHITE, 0.16)
-
-
-func _animate_result_choice_commit(button: Button) -> void:
-	if button == null or not button.visible:
-		return
-
-	button.pivot_offset = button.size * 0.5
-	var tween := button.create_tween()
-	tween.tween_property(button, "scale", Vector2(0.96, 0.94), 0.055).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	tween.tween_property(button, "scale", Vector2(1.04, 1.04), 0.075).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(button, "scale", Vector2.ONE, 0.06)
-	await tween.finished
-
-
 func _show_wizard_line(message: String, urgent: bool = false) -> void:
 	if message.is_empty():
 		return
@@ -1040,7 +897,6 @@ func _on_unit_died(dead_unit: BattleUnit) -> void:
 		first_enemy_death_seen = true
 		if dead_unit.visual_role == "grave_bellkeeper":
 			side_objective_label.text = "УСЛОВИЕ ВЫПОЛНЕНО\nЗвонарь пал первым • награда после победы"
-			_play_side_objective_feedback(true)
 		else:
 			_fail_side_objective("УСЛОВИЕ ПРОВАЛЕНО • первым пал не звонарь")
 	elif dead_unit.team == 0 and side_objective_id == "no_critical" and not side_objective_failed:
@@ -1095,7 +951,6 @@ func _show_final_defeat() -> void:
 func _on_last_deal_accept_pressed() -> void:
 	last_deal_accept_button.disabled = true
 	last_deal_refuse_button.disabled = true
-	await _animate_result_choice_commit(last_deal_accept_button)
 	if not RunState.accept_last_deal():
 		last_deal_accept_button.disabled = false
 		last_deal_refuse_button.disabled = false
@@ -1105,7 +960,6 @@ func _on_last_deal_accept_pressed() -> void:
 func _on_last_deal_refuse_pressed() -> void:
 	last_deal_accept_button.disabled = true
 	last_deal_refuse_button.disabled = true
-	await _animate_result_choice_commit(last_deal_refuse_button)
 	var reason := "Вы приняли поражение в бою «%s»." % encounter.title
 	if RunState.last_deal_pending:
 		RunState.refuse_last_deal(reason)
@@ -1181,7 +1035,6 @@ func _finish_battle(player_won: bool) -> void:
 	result_subtitle.visible = true
 	fight_button.visible = false
 	fight_button.text = "БОЙ ОКОНЧЕН"
-	call_deferred("_animate_result_overlay", player_won)
 
 func _play_battle_audio(event_name: String) -> void:
 	if combat_audio != null and combat_audio.has_method("play_event"):
@@ -1197,7 +1050,6 @@ func _on_restart_pressed() -> void:
 
 func _on_continue_pressed() -> void:
 	continue_button.disabled = true
-	await _animate_result_choice_commit(continue_button)
 
 	if RunState.last_battle_won:
 		SCENE_ROUTER.change_to(self, "res://scenes/reward/reward.tscn")
