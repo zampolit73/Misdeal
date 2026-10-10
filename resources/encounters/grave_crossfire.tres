@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+encounter_id = "grave_crossfire"
+title = "МОГИЛЬНЫЙ ПЕРЕКРЁСТОК"
+card_text = "Два лучника держат разные углы, пока скелет не даёт пройти между ними.\nОдной линией этот бой не решить."
+wizard_line = "Две стрелы с разных сторон. И всего один ты. Пока что."
+arena_id = "graveyard"
+enemy_unit_paths = PackedStringArray("res://resources/units/skeleton.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_archer.tres")
+enemy_names = PackedStringArray("Могильный заслон", "Костяной лучник", "Костяной лучник")
+enemy_positions = PackedVector2Array(900, 285, 1060, 145, 1060, 365)
