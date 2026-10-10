@@ -1,5 +1,34 @@
 # Misdeal — Project State
 
+## Motion polish pass 3 — Battle commands + Results + Last Deal — 2026-10-10
+
+The next battle-interface motion pass is live in `main`.
+
+Preparation / tactical UI:
+- selecting a tactical order now compresses/releases the chosen button and lightly pulses the live order description;
+- the underlying order logic, stats and targeting behavior are unchanged;
+- pressing **БОЙ** now gets a ~0.18 s physical commit beat before the preparation HUD is hidden and the existing combat intro starts.
+
+Side objectives:
+- an objective success/failure now gives the side-objective panel one short scale/tint reaction;
+- this is presentation only; objective evaluation and reward logic are unchanged.
+
+Battle result:
+- the result scrim/backdrop/title/subtitle now reveal in a compact staged sequence;
+- visible result actions appear after the headline instead of being fully present on frame one;
+- victory gets a restrained warm/positive title beat, defeat a restrained red beat;
+- **ЗАБРАТЬ НАГРАДУ**, Last Deal accept/refuse and final-run exit now get a short button commit before navigation.
+
+Last Deal:
+- the offer gets one extra price/backdrop pulse after the base result reveal;
+- no continuous pulsing is used;
+- Last Deal availability, price, acceptance/refusal and retry logic are unchanged.
+
+Animation safety remains:
+- generic Act Choice commitment motion stays rolled back;
+- Whispering Well commitment motion stays rolled back;
+- future motion changes should keep using small isolated patches and local verification.
+
 ## Motion polish pass 2 — Battle + Fate Spread + Wizard reactions — 2026-10-10
 
 Pass 2 is live in `main` and follows D099: motion communicates cause/effect and weight without becoming a delay tax.
