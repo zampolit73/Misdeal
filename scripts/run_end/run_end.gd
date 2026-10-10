@@ -4,7 +4,9 @@ const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 
+@onready var backdrop_art: TextureRect = $BackdropArt
 @onready var title_label: Label = $Title
+@onready var summary_panel: Panel = $SummaryPanel
 @onready var summary_label: Label = $Summary
 @onready var wizard_line: Label = $WizardLine
 @onready var new_run_button: Button = $NewRunButton
@@ -50,7 +52,61 @@ func _ready() -> void:
 		title_label.text = "ЗАБЕГ ЗАВЕРШЁН"
 		wizard_line.text = "Двенадцать карт и мой надзиратель. Пожалуй, ты заслужил ещё одну партию."
 
+	call_deferred("_animate_run_end_in")
+
+
+func _animate_run_end_in() -> void:
+	backdrop_art.modulate.a = 0.72
+	title_label.pivot_offset = title_label.size * 0.5
+	title_label.scale = Vector2(0.94, 0.94)
+	title_label.modulate.a = 0.0
+	wizard_line.modulate.a = 0.0
+
+	summary_panel.pivot_offset = summary_panel.size * 0.5
+	summary_panel.scale = Vector2(0.975, 0.975)
+	summary_panel.modulate.a = 0.0
+	summary_label.modulate.a = 0.0
+
+	new_run_button.pivot_offset = new_run_button.size * 0.5
+	new_run_button.scale = Vector2(0.97, 0.97)
+	new_run_button.modulate.a = 0.0
+
+	var backdrop_tween := backdrop_art.create_tween()
+	backdrop_tween.tween_property(backdrop_art, "modulate:a", 0.90, 0.32)
+
+	var title_tween := title_label.create_tween()
+	title_tween.set_parallel(true)
+	title_tween.tween_property(title_label, "modulate:a", 1.0, 0.17).set_delay(0.05)
+	title_tween.tween_property(title_label, "scale", Vector2.ONE, 0.22).set_delay(0.05).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+	var line_tween := wizard_line.create_tween()
+	line_tween.tween_property(wizard_line, "modulate:a", 1.0, 0.18).set_delay(0.13)
+
+	var panel_tween := summary_panel.create_tween()
+	panel_tween.set_parallel(true)
+	panel_tween.tween_property(summary_panel, "modulate:a", 1.0, 0.18).set_delay(0.18)
+	panel_tween.tween_property(summary_panel, "scale", Vector2.ONE, 0.22).set_delay(0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+	var summary_tween := summary_label.create_tween()
+	summary_tween.tween_property(summary_label, "modulate:a", 1.0, 0.20).set_delay(0.24)
+
+	var button_tween := new_run_button.create_tween()
+	button_tween.set_parallel(true)
+	button_tween.tween_property(new_run_button, "modulate:a", 1.0, 0.16).set_delay(0.34)
+	button_tween.tween_property(new_run_button, "scale", Vector2.ONE, 0.18).set_delay(0.34).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+
 func _on_new_run_pressed() -> void:
 	new_run_button.disabled = true
+	await _animate_new_run_commit()
 	RunState.reset_run()
 	SCENE_ROUTER.change_to(self, "res://scenes/class_select/class_select.tscn")
+
+
+func _animate_new_run_commit() -> void:
+	new_run_button.pivot_offset = new_run_button.size * 0.5
+	var tween := new_run_button.create_tween()
+	tween.tween_property(new_run_button, "scale", Vector2(0.96, 0.94), 0.055).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.tween_property(new_run_button, "scale", Vector2(1.035, 1.035), 0.075).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(new_run_button, "scale", Vector2.ONE, 0.055)
+	await tween.finished
