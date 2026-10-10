@@ -59,6 +59,15 @@ const REDRAW_V5_INDEX := {
 	"death_wager": 4,
 }
 
+const COMBAT_EXPANSION_ART_ALIAS := {
+	"bone_swarm": "bone_crush",
+	"grave_crossfire": "graveyard_ambush",
+	"iron_wall": "crypt_guard",
+	"last_bell": "grave_bell",
+	"firing_square": "gallows_volley",
+	"bone_ritual": "ossuary_gate",
+}
+
 const RUN_INDEX := {
 	"bone_patrol": 0,
 	"graveyard_ambush": 1,
@@ -115,6 +124,9 @@ static var redraw_v5_sheet_texture: Texture2D
 static var bone_warden_card_texture: Texture2D
 
 static func get_run_card_texture(card_id: String) -> Texture2D:
+	if COMBAT_EXPANSION_ART_ALIAS.has(card_id):
+		return get_run_card_texture(String(COMBAT_EXPANSION_ART_ALIAS[card_id]))
+
 	if card_id == "bone_warden":
 		var warden_texture: Texture2D = _get_bone_warden_card_texture()
 		if warden_texture != null:
