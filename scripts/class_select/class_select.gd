@@ -41,6 +41,7 @@ func _ready() -> void:
 		button.mouse_exited.connect(_on_card_hover.bind(button, false))
 
 	_animate_screen_in()
+	call_deferred("_animate_cards_in")
 
 func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_panel(frame, MISDEAL_UI_KIT.BRONZE, true)
@@ -60,6 +61,39 @@ func _animate_screen_in() -> void:
 	tween.tween_property(frame, "scale", Vector2.ONE, 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(frame, "modulate:a", 1.0, 0.16)
 
+func _animate_cards_in() -> void:
+	var cards: Array[Button] = [knight_button, ranger_button, mage_button]
+	for index in range(cards.size()):
+		var button := cards[index]
+		button.pivot_offset = button.size * 0.5
+		button.scale = Vector2(0.975, 0.975)
+		button.modulate.a = 0.0
+
+		var tween := button.create_tween()
+		tween.set_parallel(true)
+		var delay := 0.05 + float(index) * 0.055
+		tween.tween_property(button, "scale", Vector2.ONE, 0.20).set_delay(delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "modulate:a", 1.0, 0.16).set_delay(delay)
+
+
+func _animate_choice_commit(selected_button: Button) -> void:
+	var cards: Array[Button] = [knight_button, ranger_button, mage_button]
+	for button in cards:
+		button.pivot_offset = button.size * 0.5
+		var tween := button.create_tween()
+		tween.set_parallel(true)
+		if button == selected_button:
+			button.z_index = 20
+			tween.tween_property(button, "scale", Vector2(1.045, 1.045), 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			tween.tween_property(button, "modulate", Color(1.08, 1.0, 0.90, 1.0), 0.12)
+		else:
+			button.z_index = 0
+			tween.tween_property(button, "scale", Vector2(0.985, 0.985), 0.12)
+			tween.tween_property(button, "modulate", Color(0.46, 0.43, 0.46, 0.62), 0.12)
+
+	await get_tree().create_timer(0.18).timeout
+
+
 func _on_card_hover(button: Button, hovered: bool) -> void:
 	if button.disabled or choosing:
 		return
@@ -78,8 +112,15 @@ func _choose(role: String) -> void:
 	ranger_button.disabled = true
 	mage_button.disabled = true
 
+	var selected_button := knight_button
+	if role == "ranger":
+		selected_button = ranger_button
+	elif role == "mage":
+		selected_button = mage_button
+
 	status_label.text = "— Вот так ты это помнишь, — говорит Волшебник."
-	await get_tree().create_timer(0.35).timeout
+	await _animate_choice_commit(selected_button)
+	await get_tree().create_timer(0.12).timeout
 	SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
 
 func _get_unit_sheet_texture() -> Texture2D:
