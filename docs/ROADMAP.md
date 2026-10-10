@@ -319,7 +319,8 @@ Do not prioritize these before the vertical slice works:
 ### Motion polish
 
 - [x] Pass 1: physical table interactions — Hold stamp, chosen-card focus, rejected-card travel and discard impact feedback.
-- [ ] Pass 1 follow-up: event choice commitment motion was rolled back after regressions; reintroduce only as isolated, locally verified screen-specific patches.
+- [x] Pass 1 follow-up A: safe entry-only choice-card stagger restored for generic Act Choice and Whispering Well without commitment hooks.
+- [ ] Pass 1 follow-up B: any choice-commit/result timing motion remains blocked until the entry-only patch is locally verified.
 - [x] Pass 1: staged reward reveal and selected-reward confirmation beat.
 - [ ] Pass 2 follow-up: attack anticipation/death settling was rolled back after a missing-unit regression; reintroduce only after local spawn/render verification.
 - [x] Pass 2: Fate Spread ritual reveal/stagger and milestone emphasis without changing the frozen composition.
