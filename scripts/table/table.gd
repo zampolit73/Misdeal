@@ -660,6 +660,18 @@ func _get_card_type_line(card: RunCardData) -> String:
 			return "БОЙ • ЛЕЧЕНИЕ"
 		"death_wager":
 			return "СТАВКА • AOE + ДАЛЬНИЙ"
+		"bone_swarm":
+			return "БОЙ • БЫСТРЫЙ РОЙ"
+		"grave_crossfire":
+			return "БОЙ • ПЕРЕКРЁСТНЫЙ ОГОНЬ"
+		"iron_wall":
+			return "БОЙ • 2 СТРАЖА"
+		"last_bell":
+			return "БОЙ • 2 ЗВОНАРЯ"
+		"firing_square":
+			return "БОЙ • 4 ЛУЧНИКА"
+		"bone_ritual":
+			return "БОЙ • СМЕШАННЫЙ"
 		"bone_warden":
 			return "БОСС • AOE • ФАЗЫ"
 		_:
