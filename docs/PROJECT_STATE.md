@@ -1,5 +1,37 @@
 # Misdeal — Project State
 
+## Combat Expansion v1 — six new random fights — 2026-10-11
+
+The Act 1 random card pool now contains six additional combat cards, distributed two per tier so full runs can see materially different enemy compositions without changing the twelve-card act length.
+
+Tier 0:
+- **КОСТЯНОЙ РОЙ** — four fast, fragile Bone Raiders; tests early anti-swarm/AOE readiness.
+- **МОГИЛЬНЫЙ ПЕРЕКРЁСТОК** — central melee blocker plus two archers on separated angles; introduces crossfire pressure earlier than Gallows Volley.
+
+Tier 1:
+- **ЖЕЛЕЗНАЯ СТЕНА** — two lighter AOE Crypt Sentinels with a protected archer; rewards target-priority choices rather than pure nearest-target attrition.
+- **ПОСЛЕДНИЙ ЗВОН** — two Bellkeepers plus fast Raiders; prolonged combat strongly favors the enemy because the healers sustain each other.
+
+Tier 2:
+- **РАССТРЕЛЬНАЯ ПЛОЩАДЬ** — four archers behind a Sentinel; late ranged-pressure check with deep-line deployment.
+- **КОСТЯНОЙ РИТУАЛ** — Sentinel + Bellkeeper + three Raiders; mixed late encounter with frontline, sustain and rush pressure simultaneously.
+
+New UnitData prototypes:
+- `bone_raider.tres`: faster/harder-hitting derivative of the Bone Thrall combat family, lower durability than a normal Skeleton;
+- `crypt_sentinel.tres`: lighter Crypt Guard derivative with smaller AOE and lower HP/damage than the elite Guard.
+
+Both deliberately reuse existing production silhouettes (`bone_thrall` / `crypt_guard`) for this gameplay-first pass. Dedicated new enemy art should only be commissioned after local runs show the archetypes are fun enough to keep.
+
+Pool integration:
+- all six cards are in `RunState.CARD_PATHS` and `ACT1_CARD_IDS`;
+- each keeps the existing tier-forced-combat rules, so the act remains twelve resolved pre-boss cards rather than becoming longer;
+- semantic existing combat-card art is temporarily reused so no new combat card appears blank;
+- table threat tags and battle preparation text identify the encounter's actual tactical pressure before commitment.
+
+Battle-safety note:
+- spawn lifecycle, attack timing and result flow were not redesigned;
+- `battle.gd` changes are limited to content-specific spawn/deployment profile aliases, preparation cues and Wizard start lines for the six new encounter IDs.
+
 ## Safe combat-feedback reintroduction — 2026-10-11
 
 The user locally confirmed that the battle arena/units were restored after the full battle rollback. Combat polish has therefore resumed, but only through isolated presentation paths.
