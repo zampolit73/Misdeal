@@ -1721,3 +1721,19 @@ Current presentation timings are deliberately small:
 - magic/support ~0.14 s.
 
 If local playtesting says combat feels sluggish, shorten/remove these visual timings before touching unit stats. Motion tuning and combat balance should remain separate concerns.
+
+## D101 — Result motion confirms state once, then gets out of the way
+
+Date: 2026-10-10  
+Status: accepted implementation rule
+
+Battle result, reward-entry and Last Deal presentation should use a single short hierarchy reveal rather than a permanently animated modal.
+
+Rules:
+- result headline/subtitle establish the state first;
+- actionable buttons may appear a fraction later, but the total reveal should remain well under one second;
+- Last Deal gets one deliberate emphasis beat because it is a rare run-defining offer;
+- navigation actions may use a tiny commit animation before scene change;
+- do not add looping pulses, repeated shakes or other attention traps.
+
+This keeps rare states dramatic without slowing repeated roguelike play.
