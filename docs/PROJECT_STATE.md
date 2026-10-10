@@ -1,5 +1,35 @@
 # Misdeal — Project State
 
+## Motion polish pass 2 — Battle + Fate Spread + Wizard reactions — 2026-10-10
+
+Pass 2 is live in `main` and follows D099: motion communicates cause/effect and weight without becoming a delay tax.
+
+Battle:
+- `BattleUnit._attack_target()` now waits through a short role-specific anticipation before applying the existing hit.
+- melee windup is ~0.08 s, ranged ~0.11 s, magic/support ~0.14 s;
+- attack cooldown starts before the windup, so repeated attack cadence/DPS remains governed by the same `attack_interval`; this adds readable first-contact anticipation rather than a new balance modifier;
+- melee pulls back, ranged draws back, and magic compresses/charges before the existing strike/tracer feedback;
+- dead units now make a ~0.07 s stagger reaction before the existing settle/fade, making deaths less like instant sprite deletion;
+- Bone Warden Phase II briefly warms the authored backdrop and arena overlay while the existing phase label appears. No generic screen shake was added.
+
+Fate Spread:
+- approved geometry, Hold/Discard layout and I–XIII composition remain frozen;
+- opening the overlay now reveals visible cards around the ring with a short stagger;
+- after entry, the current fate position (or XIII when boss-due) gets one restrained focus beat;
+- 4/8/12 milestones now emphasize the milestone card, phase/count labels and ritual seal in addition to the existing XIII reaction;
+- no history/progression rules changed.
+
+Wizard table:
+- the painted Wizard is still static art;
+- wager offer/accept/refuse, Wizard meddling and accepting a Wizard-marked card trigger a brief authored-backdrop tint pulse;
+- there is no continuous bobbing, face warping or skeletal animation of the painting.
+
+Known animation safety state:
+- Table Hold/discard motion and Reward motion remain enabled from Pass 1.
+- Generic `act_choice.gd` commitment motion remains rolled back after its template-screen regression.
+- Whispering Well commitment motion remains rolled back after its mini-art regression.
+- Event animations should only return later as small screen-specific patches after local verification.
+
 ### Whispering Well mini-art hotfix
 
 The dedicated Whispering Well screen lost its choice illustrations after Motion Pass 1. Its controller has been restored to the last stable pre-motion version. `ApprovedEventChoiceArt.get_whispering_well_texture()` now uses the approved split-sheet cells again instead of the raw legacy atlas path, restoring the three mini-arts reliably in local/editor runs. Event mechanics are unchanged.
@@ -20,15 +50,14 @@ Table:
 - Existing deal, hover, Wizard meddling and wager animations remain intact.
 
 Generic Act Choice events:
-- visible choice cards enter with a small stagger;
-- on press, the committed mini-card lifts/warms and its art flashes briefly;
-- alternative cards recede and dim;
-- result/continue reveal waits for that short commitment beat.
-- mechanics and event outcomes are unchanged.
+- the first commitment/stagger animation attempt was rolled back after it exposed the raw template screen;
+- semantic choice art and all event mechanics remain active/stable;
+- no generic event commitment animation is currently enabled.
 
 Whispering Well:
-- uses the same staged entry and committed-choice language;
-- result text fades in after the selection beat before the existing automatic return timing.
+- the first commitment animation attempt was rolled back after choice mini-art disappeared locally;
+- the stable dedicated screen and three approved choice illustrations are active;
+- no Well commitment animation is currently enabled.
 
 Rewards:
 - header and reward cards enter with a short stagger;
@@ -39,10 +68,10 @@ Rewards:
 
 Current motion principle: short physical reactions, readable anticipation and object weight. Avoid permanent bobbing, excessive screen shake, particles on every click, or decorative motion that slows repeated runs.
 
-Next motion pass target:
-1. battle anticipation by attack type + better death settling;
-2. Fate Spread ritual reveal/stagger and stronger 4/8/12 milestones;
-3. subtle Wizard ambience/reaction motion layered over the approved static art.
+Next motion target after local verification:
+1. keep Pass 2 only if attack readability still feels fast in live combat;
+2. tune exact durations/intensity from screenshots/video rather than adding more systems;
+3. reintroduce event commitment motion only as isolated, locally verified patches.
 
 ## Broad semantic choice-art rollout — 2026-10-09
 
