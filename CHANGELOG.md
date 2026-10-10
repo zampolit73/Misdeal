@@ -57,6 +57,7 @@
 
 ### Changed
 
+- Extended tactical-order visual tells from a sub-half-second flash to roughly one second total: the marker now holds briefly before fading, while Sacrifice/Defiance persistent combat auras remain unchanged.
 - Reintroduced combat polish safely after the empty-arena rollback. A new isolated `battle_motion_fx.gd` overlay listens to the existing tactical buttons without modifying battle spawning/controller flow: НАТИСК / ОХОТА / СТРОЙ show short readable squad markers, ЖЕРТВА adds a restrained red squad aura, НЕПОВИНОВЕНИЕ a cold-blue defensive aura, and Death Wager gets a subtle red battle-frame tell.
 - Improved hit readability inside the existing stable `BattleUnit` feedback path only: melee/ranged/magic impacts now tint differently, large hits get a stronger kick / larger damage number / two extra sparks, and ranged/magic tracers are slightly clearer. Attack cadence, damage application, targeting, cooldowns and spawn code are unchanged.
 
