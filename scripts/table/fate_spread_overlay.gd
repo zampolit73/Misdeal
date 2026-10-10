@@ -326,7 +326,7 @@ func play_milestone(milestone: int) -> void:
 			card_tween.parallel().tween_property(milestone_panel, "modulate", flash_color, 0.10)
 			card_tween.tween_property(milestone_panel, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 			card_tween.parallel().tween_property(milestone_panel, "modulate", Color.WHITE, 0.20)
-			card_tween.tween_callback(func() -> void: milestone_panel.z_index = 0)
+			card_tween.tween_callback(_reset_slot_z.bind(milestone_panel))
 
 	var counts_tween := counts_label.create_tween()
 	counts_label.pivot_offset = counts_label.size * 0.5
@@ -340,6 +340,11 @@ func play_milestone(milestone: int) -> void:
 		shake.tween_property(boss_panel, "position", base_position + Vector2(5.0, -1.0), 0.045)
 		shake.tween_property(boss_panel, "position", base_position + Vector2(-3.0, 0.0), 0.045)
 		shake.tween_property(boss_panel, "position", base_position, 0.07)
+
+func _reset_slot_z(panel: Panel) -> void:
+	if panel != null and is_instance_valid(panel):
+		panel.z_index = 0
+
 
 func _refresh_slots() -> void:
 	for index in range(slot_panels.size()):
