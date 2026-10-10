@@ -327,4 +327,7 @@ Do not prioritize these before the vertical slice works:
 - [ ] Pass 2 local verification: confirm combat still reads fast, Fate Spread stagger does not feel slow, and backdrop reaction tints stay subtle.
 - [x] Pass 3: tactical-order confirmation, Fight commit beat, side-objective feedback, staged victory/defeat result reveal and Last Deal motion.
 - [ ] Pass 3 local verification: confirm result overlays stay fast, Last Deal remains immediately readable, and battle controls never feel delayed.
+- [x] Pass 4: subtle Variant C candle ambience, ritual reaction pulses, deal/deck response and destination-tinted safe scene veils.
+- [x] Pass 4: staged Main Menu and Run End entry/commit motion.
+- [ ] Motion cleanup: local verification and duration/intensity tuning only; avoid adding another broad animation layer before vertical-slice balance testing.
 
