@@ -1,3 +1,17 @@
+### Motion Pass 5 — safe non-battle screens
+
+While battle spawning is being protected after the empty-arena regression, motion work continued only on isolated UI controllers:
+- `scripts/class_select/class_select.gd`: staggered three-card entry + chosen-card commit;
+- `scripts/intro/intro.gd`: one-shot frame settle + initial hint/skip reveal;
+- `scripts/table/squad_status.gd`: overlay open/close + role-switch focus.
+
+No battle file was modified in this pass.
+
+Local checks:
+1. Main → Intro: click through all five frames and confirm there is no input delay/double advance;
+2. Class Select: hover and choose each role once; selected card should focus before table transition;
+3. Table → Squad [TAB]: switch 1/2/3 several times and close with TAB/Escape; portrait/stats must stay correct.
+
 ### Empty battle arena — full controller rollback applied
 
 The first rollback of only `unit.gd` did not fix the user's local empty preparation arena. `scripts/battle/battle.gd` has now also been restored to the known-good pre-animation baseline `aa8f9d5ed05134b4a3507995c22d845191c237b7`.
