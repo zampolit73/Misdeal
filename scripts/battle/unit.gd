@@ -787,14 +787,14 @@ func _play_attack_feedback(primary_target: BattleUnit) -> void:
 			art_sprite.position = ART_BASE_POSITION - direction * 5.0
 			art_sprite.rotation = -direction.x * 0.055
 			art_sprite.scale = Vector2(base_sprite_scale.x * 0.96, base_sprite_scale.y * 1.04)
-			_spawn_attack_trace(primary_target, Color(1.0, 0.76, 0.38, 0.92), 1.6)
+			_spawn_attack_trace(primary_target, Color(1.0, 0.76, 0.38, 0.94), 2.0)
 		"magic":
 			art_sprite.position = ART_BASE_POSITION - direction * 2.0
 			art_sprite.rotation = direction.x * 0.035
 			art_sprite.scale = base_sprite_scale * 1.12
 			art_sprite.modulate = Color(0.90, 0.72, 1.0, 1.0) if visual_role == "mage" else Color(0.60, 1.0, 0.72, 1.0)
 			var trace_color := Color(0.72, 0.44, 1.0, 0.95) if visual_role == "mage" else Color(0.50, 1.0, 0.70, 0.92)
-			_spawn_attack_trace(primary_target, trace_color, 3.0)
+			_spawn_attack_trace(primary_target, trace_color, 3.4)
 		_:
 			art_sprite.position = ART_BASE_POSITION + direction * 9.0
 			art_sprite.rotation = direction.x * 0.08
@@ -860,9 +860,10 @@ func take_damage(amount: float, source_role: String = "", source_position: Vecto
 		return
 
 	var applied_amount := maxf(0.0, amount * damage_taken_multiplier)
-	_show_damage_number(applied_amount)
-	_play_hit_feedback(source_position)
-	_spawn_impact_sparks(source_role, source_position)
+	var strong_hit := applied_amount >= maxf(18.0, max_hp * 0.18)
+	_show_damage_number(applied_amount, strong_hit)
+	_play_hit_feedback(source_position, source_role, strong_hit)
+	_spawn_impact_sparks(source_role, source_position, strong_hit)
 	_play_combat_audio("hit")
 
 	hp = maxf(0.0, hp - applied_amount)
@@ -915,8 +916,12 @@ func _show_status_text(message: String, color: Color) -> void:
 	tween.tween_property(label, "modulate:a", 0.0, 0.55)
 	tween.chain().tween_callback(label.queue_free)
 
-func _play_hit_feedback(source_position: Vector2 = Vector2.ZERO) -> void:
-	hit_flash_time = 0.12
+func _play_hit_feedback(
+	source_position: Vector2 = Vector2.ZERO,
+	source_role: String = "",
+	strong_hit: bool = false
+) -> void:
+	hit_flash_time = 0.15 if strong_hit else 0.12
 
 	if hit_pulse_tween != null and hit_pulse_tween.is_valid():
 		hit_pulse_tween.kill()
@@ -924,16 +929,27 @@ func _play_hit_feedback(source_position: Vector2 = Vector2.ZERO) -> void:
 	var kick_direction := Vector2(-1.0 if int(get_instance_id()) % 2 == 0 else 1.0, -0.18)
 	if source_position != Vector2.ZERO:
 		kick_direction = source_position.direction_to(global_position)
-	scale = Vector2(1.12, 1.12)
-	hit_kick_offset = kick_direction.normalized() * 5.0 + Vector2(0.0, -1.0)
-	art_sprite.modulate = Color(1.0, 0.62, 0.52, 1.0)
+
+	var hit_tint := Color(1.0, 0.62, 0.52, 1.0)
+	if source_role == "mage" or source_role == "grave_bellkeeper":
+		hit_tint = Color(0.86, 0.62, 1.0, 1.0)
+	elif source_role == "ranger" or source_role == "bone_archer":
+		hit_tint = Color(1.0, 0.84, 0.54, 1.0)
+
+	var punch_scale := 1.16 if strong_hit else 1.10
+	var kick_distance := 7.0 if strong_hit else 4.5
+	scale = Vector2(punch_scale, punch_scale)
+	hit_kick_offset = kick_direction.normalized() * kick_distance + Vector2(0.0, -1.0)
+	art_sprite.modulate = hit_tint
+
 	hit_pulse_tween = create_tween()
 	hit_pulse_tween.set_parallel(true)
-	hit_pulse_tween.tween_property(self, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	hit_pulse_tween.tween_property(art_sprite, "modulate", base_art_modulate, 0.14)
-	hit_pulse_tween.tween_property(self, "hit_kick_offset", Vector2.ZERO, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	hit_pulse_tween.tween_property(self, "scale", Vector2.ONE, 0.16 if strong_hit else 0.13).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	hit_pulse_tween.tween_property(art_sprite, "modulate", base_art_modulate, 0.15)
+	hit_pulse_tween.tween_property(self, "hit_kick_offset", Vector2.ZERO, 0.16 if strong_hit else 0.13).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
-func _spawn_impact_sparks(source_role: String, source_position: Vector2) -> void:
+
+func _spawn_impact_sparks(source_role: String, source_position: Vector2, strong_hit: bool = false) -> void:
 	if get_parent() == null:
 		return
 
@@ -950,12 +966,15 @@ func _spawn_impact_sparks(source_role: String, source_position: Vector2) -> void
 	elif source_role == "ranger" or source_role == "bone_archer":
 		spark_color = Color(1.0, 0.86, 0.52, 0.94)
 
-	for index in range(3):
+	var spark_count := 5 if strong_hit else 3
+	for index in range(spark_count):
 		var spark := Line2D.new()
-		spark.width = 1.8
+		spark.width = 2.2 if strong_hit else 1.7
 		spark.default_color = spark_color
-		var angle := -0.48 + float(index) * 0.48
-		var ray := direction.rotated(angle) * (10.0 + float(index) * 3.0)
+		var angle_step := 0.30 if strong_hit else 0.48
+		var center_offset := float(spark_count - 1) * 0.5
+		var angle := (float(index) - center_offset) * angle_step
+		var ray := direction.rotated(angle) * (12.0 + float(index % 3) * (4.0 if strong_hit else 3.0))
 		spark.points = PackedVector2Array([impact_position, impact_position + ray])
 		spark.z_index = 2050
 		get_parent().add_child(spark)
@@ -966,25 +985,33 @@ func _spawn_impact_sparks(source_role: String, source_position: Vector2) -> void
 		tween.tween_property(spark, "modulate:a", 0.0, 0.16)
 		tween.chain().tween_callback(spark.queue_free)
 
-func _show_damage_number(amount: float) -> void:
+func _show_damage_number(amount: float, strong_hit: bool = false) -> void:
 	if get_parent() == null:
 		return
 
 	var damage_label := Label.new()
 	damage_label.text = "-%d" % int(round(amount))
 	damage_label.position = position + Vector2(-24.0, -60.0)
-	damage_label.size = Vector2(48.0, 22.0)
+	damage_label.size = Vector2(58.0, 24.0) if strong_hit else Vector2(48.0, 22.0)
 	damage_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	damage_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	damage_label.z_index = 2000
-	damage_label.add_theme_font_size_override("font_size", 14)
-	damage_label.add_theme_color_override("font_color", Color(1.0, 0.78, 0.58, 1.0))
+	damage_label.add_theme_font_size_override("font_size", 17 if strong_hit else 14)
+	damage_label.add_theme_color_override(
+		"font_color",
+		Color(1.0, 0.58, 0.34, 1.0) if strong_hit else Color(1.0, 0.78, 0.58, 1.0)
+	)
 	get_parent().add_child(damage_label)
 
 	var float_tween := damage_label.create_tween()
 	float_tween.set_parallel(true)
-	float_tween.tween_property(damage_label, "position", damage_label.position + Vector2(0.0, -30.0), 0.42)
-	float_tween.tween_property(damage_label, "modulate:a", 0.0, 0.42)
+	var rise := 36.0 if strong_hit else 30.0
+	var duration := 0.48 if strong_hit else 0.42
+	if strong_hit:
+		damage_label.scale = Vector2(1.10, 1.10)
+		float_tween.tween_property(damage_label, "scale", Vector2.ONE, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	float_tween.tween_property(damage_label, "position", damage_label.position + Vector2(0.0, -rise), duration)
+	float_tween.tween_property(damage_label, "modulate:a", 0.0, duration)
 	float_tween.chain().tween_callback(damage_label.queue_free)
 
 func _die() -> void:
