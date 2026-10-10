@@ -1,3 +1,24 @@
+### Motion Pass 2 is implemented — battle / Fate Spread / Wizard reactions
+
+Current motion state:
+- `scripts/battle/unit.gd`: attack impact is preceded by a tiny role-specific windup (melee ~0.08 s, ranged ~0.11 s, magic ~0.14 s). Cooldown is set before the windup, so do not additionally increase `attack_interval` to "compensate" — the presentation pass is not intended as a balance change.
+- death feedback now staggers briefly before settle/fade.
+- `scripts/battle/battle.gd`: Bone Warden Phase II pulses arena/backdrop color briefly; no generic camera shake.
+- `scripts/table/fate_spread_overlay.gd`: visible ring cards stagger in, current position gets a focus beat, 4/8/12 milestone cards/counts/seal are emphasized. Do not move/redesign the frozen approved Fate Spread geometry.
+- `scripts/table/table.gd`: Wizard wager/meddling/marked-card moments call `_pulse_wizard_reaction()`, which only tints the authored full-screen backdrop briefly. The Wizard painting itself remains static.
+
+Animation regression guard:
+- do **not** restore the previous wholesale `act_choice.gd` `button_down`/commit patch; it caused the raw template screen to appear.
+- do **not** restore the previous Whispering Well commitment patch wholesale; it coincided with missing mini-art.
+- Table Hold/discard and Reward motion remain active and locally accepted enough to continue from.
+
+Immediate local checks after pull:
+1. one melee-heavy battle and one ranged/magic battle;
+2. a unit death on each side;
+3. Bone Warden crossing 50% HP;
+4. open Fate Spread at an ordinary point and at a 4/8/12 milestone if convenient;
+5. trigger Wizard wager or meddling and confirm the backdrop tint is subtle, not a full-screen flash.
+
 ### Whispering Well choice art is restored
 
 After the motion pass, the dedicated Well screen could render without its three choice images. `scripts/event/whispering_well.gd` is back on the stable pre-motion controller, and `get_whispering_well_texture()` uses the approved split-sheet source. Do not reapply the removed Well commitment-motion patch wholesale.
