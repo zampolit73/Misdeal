@@ -293,6 +293,10 @@ func play_milestone(milestone: int) -> void:
 	if milestone != 4 and milestone != 8 and milestone != 12:
 		return
 
+	await get_tree().create_timer(0.24).timeout
+	if not is_inside_tree():
+		return
+
 	var flash_color := Color(1.0, 0.48, 0.18, 1.0)
 	if milestone >= 8:
 		flash_color = Color(1.0, 0.28, 0.10, 1.0)
@@ -311,6 +315,23 @@ func play_milestone(milestone: int) -> void:
 		var seal_tween := seal_visual.create_tween()
 		seal_tween.tween_property(seal_visual, "modulate", Color(1.6, 0.72, 0.48, 1.0), 0.08)
 		seal_tween.tween_property(seal_visual, "modulate", Color.WHITE, 0.32)
+
+	var milestone_index := milestone - 1
+	if milestone_index >= 0 and milestone_index < slot_panels.size():
+		var milestone_panel := slot_panels[milestone_index]
+		if milestone_panel.visible:
+			milestone_panel.z_index = 40
+			var card_tween := milestone_panel.create_tween()
+			card_tween.tween_property(milestone_panel, "scale", Vector2(1.16, 1.16), 0.10).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			card_tween.parallel().tween_property(milestone_panel, "modulate", flash_color, 0.10)
+			card_tween.tween_property(milestone_panel, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			card_tween.parallel().tween_property(milestone_panel, "modulate", Color.WHITE, 0.20)
+			card_tween.tween_callback(func() -> void: milestone_panel.z_index = 0)
+
+	var counts_tween := counts_label.create_tween()
+	counts_label.pivot_offset = counts_label.size * 0.5
+	counts_tween.tween_property(counts_label, "scale", Vector2(1.035, 1.035), 0.08)
+	counts_tween.tween_property(counts_label, "scale", Vector2.ONE, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 	if boss_panel != null:
 		var base_position := boss_panel.position
@@ -455,10 +476,66 @@ func _animate_in() -> void:
 	modulate.a = 0.0
 	frame.pivot_offset = frame.size * 0.5
 	frame.scale = Vector2(0.985, 0.985)
+
 	var tween := create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(self, "modulate:a", 1.0, 0.14)
 	tween.tween_property(frame, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+	var reveal_index := 0
+	for panel in slot_panels:
+		if not panel.visible:
+			continue
+		panel.scale = Vector2(0.90, 0.90)
+		panel.modulate = Color(0.78, 0.68, 0.64, 0.0)
+		var card_tween := panel.create_tween()
+		card_tween.set_parallel(true)
+		var delay := 0.05 + float(reveal_index) * 0.035
+		card_tween.tween_property(panel, "scale", Vector2.ONE, 0.18).set_delay(delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		card_tween.tween_property(panel, "modulate", Color.WHITE, 0.14).set_delay(delay)
+		reveal_index += 1
+
+	if boss_panel != null and boss_panel.visible:
+		boss_panel.pivot_offset = boss_panel.size * 0.5
+		boss_panel.scale = Vector2(0.88, 0.88)
+		boss_panel.modulate.a = 0.0
+		var boss_tween := boss_panel.create_tween()
+		boss_tween.set_parallel(true)
+		boss_tween.tween_property(boss_panel, "scale", Vector2.ONE, 0.24).set_delay(0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		boss_tween.tween_property(boss_panel, "modulate:a", 1.0, 0.18).set_delay(0.18)
+
+	if seal_visual != null:
+		seal_visual.modulate.a = 0.36
+		var seal_entry := seal_visual.create_tween()
+		seal_entry.tween_property(seal_visual, "modulate:a", 1.0, 0.30).set_delay(0.08)
+
+	call_deferred("_pulse_current_slot_after_entry")
+
+
+func _pulse_current_slot_after_entry() -> void:
+	await get_tree().create_timer(0.38).timeout
+	if not is_inside_tree():
+		return
+
+	if RunState.is_boss_due() and boss_panel != null and boss_panel.visible:
+		var boss_pulse := boss_panel.create_tween()
+		boss_pulse.tween_property(boss_panel, "scale", Vector2(1.045, 1.045), 0.10).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		boss_pulse.tween_property(boss_panel, "scale", Vector2.ONE, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		return
+
+	var current_index := RunState.cards_resolved
+	if current_index < 0 or current_index >= slot_panels.size():
+		return
+
+	var panel := slot_panels[current_index]
+	if not panel.visible:
+		return
+
+	var pulse_tween := panel.create_tween()
+	pulse_tween.tween_property(panel, "scale", Vector2(1.065, 1.065), 0.09).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	pulse_tween.parallel().tween_property(panel, "modulate", Color(1.10, 0.88, 0.72, 1.0), 0.09)
+	pulse_tween.tween_property(panel, "scale", Vector2.ONE, 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	pulse_tween.parallel().tween_property(panel, "modulate", Color.WHITE, 0.15)
 
 
 func _apply_panel_style(panel: Panel, accent: Color, strong: bool, state := "future") -> void:
