@@ -1,3 +1,16 @@
+### Event motion is partially restored, entry-only
+
+Generic Act Choice and Whispering Well now have a safe entry-only choice-card stagger.
+
+Important guardrails:
+- no `button_down` commitment callbacks;
+- no result-delay changes;
+- no active-card initialization changes;
+- no choice-art loader/source changes;
+- no battle files touched.
+
+The earlier broken wholesale event-motion patch must not be restored. Next local check is simple: open several generic events and Whispering Well, confirm all real text/art is present first, then verify the cards settle in without blank/template states.
+
 ### Motion Pass 5 — safe non-battle screens
 
 While battle spawning is being protected after the empty-arena regression, motion work continued only on isolated UI controllers:
