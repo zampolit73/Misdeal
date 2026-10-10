@@ -1,5 +1,18 @@
 # Misdeal — Project State
 
+## Safe event-motion reintroduction — 2026-10-11
+
+Event motion has been reintroduced in the smallest safe form after the earlier Act Choice template-screen and Whispering Well mini-art regressions.
+
+Current implementation:
+- `scripts/event/act_choice.gd`: after the event is fully initialized/configured/themed and the existing panel entrance starts, visible choice cards get a short ~0.17 s staggered settle;
+- `scripts/event/whispering_well.gd`: the same entry-only stagger is applied after the stable Well text/art setup;
+- no `button_down` commitment callbacks were added;
+- no resolver timing, `RunState` calls, active-card initialization, art-source routing or result reveal code changed;
+- battle files remain untouched.
+
+This is intentionally less ambitious than the rejected Motion Pass 1 event patch. If local verification passes, further event motion should still be added one isolated behavior at a time.
+
 ## Motion polish pass 5 — Class Select + Intro + Squad dossier — 2026-10-11
 
 A safe non-battle motion pass is live while the battle core remains on the stable pre-animation controller.
