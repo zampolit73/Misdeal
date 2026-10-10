@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "grave_crossfire"
+title = "МОГИЛЬНЫЙ ПЕРЕКРЁСТОК"
+card_text = "Два лучника держат разные углы, пока скелет перекрывает центр."
+wizard_line = "Две стрелы с разных сторон. И всего один ты. Пока что."
+type_label = "БОЙ"
+tier = 0
+resolution_type = "combat"
+target_path = "res://resources/encounters/grave_crossfire.tres"
+prototype_result_text = ""
