@@ -83,7 +83,9 @@ func _play_order_pulse(strength: float = 1.0) -> void:
 		order_tween.kill()
 	order_pulse = strength
 	order_tween = create_tween()
-	order_tween.tween_property(self, "order_pulse", 0.0, 0.38).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	# Keep the tactical tell readable for a moment instead of flashing for only a few frames.
+	order_tween.tween_interval(0.32)
+	order_tween.tween_property(self, "order_pulse", 0.0, 0.72).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 
 func _draw() -> void:
