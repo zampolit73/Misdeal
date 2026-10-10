@@ -8,6 +8,9 @@ const ROLE_PORTRAIT_PATHS := {
 	"mage": "res://assets/pixel/class_select/v7/mage.webp",
 }
 
+@onready var dim: ColorRect = $Dim
+@onready var frame: Panel = $Frame
+@onready var portrait_frame: Panel = $Frame/PortraitFrame
 @onready var knight_button: Button = $Frame/KnightButton
 @onready var ranger_button: Button = $Frame/RangerButton
 @onready var mage_button: Button = $Frame/MageButton
@@ -31,7 +34,8 @@ func _ready() -> void:
 	ranger_button.pressed.connect(_select_role.bind("ranger"))
 	mage_button.pressed.connect(_select_role.bind("mage"))
 	close_button.pressed.connect(_close)
-	_select_role(current_role)
+	_select_role(current_role, false)
+	call_deferred("_animate_open")
 
 func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_panel($Frame, MISDEAL_UI_KIT.BRONZE, true)
@@ -63,12 +67,64 @@ func _unhandled_input(event: InputEvent) -> void:
 				_select_role("mage")
 
 func _close() -> void:
+	set_process_unhandled_input(false)
+	close_button.disabled = true
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(dim, "modulate:a", 0.0, 0.12)
+	tween.tween_property(frame, "modulate:a", 0.0, 0.12)
+	tween.tween_property(frame, "scale", Vector2(0.985, 0.985), 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	await tween.finished
 	queue_free()
 
-func _select_role(role: String) -> void:
+
+func _select_role(role: String, animate: bool = true) -> void:
 	current_role = role
 	_refresh_role_buttons()
 	_refresh_hero()
+	if animate:
+		_animate_role_switch(role)
+
+func _animate_open() -> void:
+	dim.modulate.a = 0.0
+	frame.pivot_offset = frame.size * 0.5
+	frame.scale = Vector2(0.985, 0.985)
+	frame.modulate.a = 0.0
+
+	var tween := create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(dim, "modulate:a", 1.0, 0.14)
+	tween.tween_property(frame, "modulate:a", 1.0, 0.16).set_delay(0.02)
+	tween.tween_property(frame, "scale", Vector2.ONE, 0.20).set_delay(0.02).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+
+func _animate_role_switch(role: String) -> void:
+	var buttons := {
+		"knight": knight_button,
+		"ranger": ranger_button,
+		"mage": mage_button,
+	}
+	var selected_button := buttons.get(role) as Button
+	if selected_button != null:
+		selected_button.pivot_offset = selected_button.size * 0.5
+		var button_tween := selected_button.create_tween()
+		button_tween.tween_property(selected_button, "scale", Vector2(1.035, 1.035), 0.08).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		button_tween.tween_property(selected_button, "scale", Vector2.ONE, 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+	portrait_frame.pivot_offset = portrait_frame.size * 0.5
+	portrait_frame.scale = Vector2(0.985, 0.985)
+	portrait_frame.modulate = Color(0.90, 0.86, 0.88, 0.82)
+
+	var portrait_tween := portrait_frame.create_tween()
+	portrait_tween.set_parallel(true)
+	portrait_tween.tween_property(portrait_frame, "scale", Vector2.ONE, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	portrait_tween.tween_property(portrait_frame, "modulate", Color.WHITE, 0.14)
+
+	hero_name.pivot_offset = hero_name.size * 0.5
+	hero_name.scale = Vector2(0.985, 0.985)
+	var name_tween := hero_name.create_tween()
+	name_tween.tween_property(hero_name, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
 
 func _refresh_role_buttons() -> void:
 	var buttons := {
