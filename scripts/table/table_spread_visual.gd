@@ -20,6 +20,8 @@ var ritual_pulse := 0.0:
 		queue_redraw()
 
 var ritual_color := Color(0.74, 0.18, 0.12, 1.0)
+var ambient_time := 0.0
+var ambient_redraw_accum := 0.0
 
 var discard_pulse_tween: Tween
 var deck_pulse_tween: Tween
@@ -28,6 +30,14 @@ var ritual_pulse_tween: Tween
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	queue_redraw()
+
+
+func _process(delta: float) -> void:
+	ambient_time += delta
+	ambient_redraw_accum += delta
+	if ambient_redraw_accum >= 0.10:
+		ambient_redraw_accum = 0.0
+		queue_redraw()
 
 func refresh() -> void:
 	queue_redraw()
@@ -76,6 +86,7 @@ func pulse_ritual(kind: String = "attention") -> void:
 
 
 func _draw() -> void:
+	_draw_candle_ambience()
 	_draw_ritual_reaction()
 	_draw_deck()
 	_draw_discard()
@@ -149,6 +160,30 @@ func _draw_card_back(rect: Rect2, rotation: float, alpha: float) -> void:
 	draw_polyline(diamond, border.lightened(0.10), 1.5)
 	draw_circle(Vector2.ZERO, 2.5, border.lightened(0.12))
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+
+func _draw_candle_ambience() -> void:
+	# The exact Variant C plate owns the candle artwork. These tiny translucent
+	# halos only add life to the authored flames; no new flame shapes are drawn.
+	var candles := [
+		{"pos": Vector2(49.0, 211.0), "phase": 0.0, "radius": 26.0},
+		{"pos": Vector2(105.0, 220.0), "phase": 1.4, "radius": 24.0},
+		{"pos": Vector2(132.0, 226.0), "phase": 2.6, "radius": 20.0},
+		{"pos": Vector2(376.0, 126.0), "phase": 0.7, "radius": 18.0},
+		{"pos": Vector2(405.0, 128.0), "phase": 2.1, "radius": 17.0},
+		{"pos": Vector2(858.0, 126.0), "phase": 1.1, "radius": 18.0},
+		{"pos": Vector2(892.0, 128.0), "phase": 2.8, "radius": 17.0},
+		{"pos": Vector2(1238.0, 220.0), "phase": 0.5, "radius": 26.0},
+		{"pos": Vector2(1263.0, 237.0), "phase": 2.0, "radius": 21.0},
+	]
+
+	for candle in candles:
+		var phase: float = float(candle["phase"])
+		var flicker := 0.5 + 0.5 * sin(ambient_time * 7.0 + phase)
+		flicker = 0.65 * flicker + 0.35 * (0.5 + 0.5 * sin(ambient_time * 11.0 + phase * 1.7))
+		var alpha := 0.014 + flicker * 0.020
+		var radius := float(candle["radius"]) + flicker * 2.0
+		draw_circle(candle["pos"], radius, Color(1.0, 0.28, 0.08, alpha))
+
 
 func _draw_ritual_reaction() -> void:
 	if ritual_pulse <= 0.001:
