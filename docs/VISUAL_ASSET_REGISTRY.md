@@ -162,3 +162,19 @@ Earlier production passes (v4-v8 and battle/table v6) are already recoverable fr
 V9 additionally keeps larger source masters under `assets/source_archive/visual_pass_v9/` because these were the last generated images immediately before the transition away from broad art replacement.
 
 If a future pass needs a different crop or export, start from the archived master where available rather than regenerating a new scene.
+
+## Combat Expansion v1 temporary card-art aliases — 2026-10-11
+
+These six gameplay-test cards intentionally reuse semantically adjacent approved card art through `CardArtCatalog.COMBAT_EXPANSION_ART_ALIAS`; this is not final unique-art coverage:
+
+| New card | Temporary approved source |
+| --- | --- |
+| `bone_swarm` | `bone_crush` |
+| `grave_crossfire` | `graveyard_ambush` |
+| `iron_wall` | `crypt_guard` |
+| `last_bell` | `grave_bell` |
+| `firing_square` | `gallows_volley` |
+| `bone_ritual` | `ossuary_gate` |
+
+Likewise, `bone_raider` currently uses the production `bone_thrall` silhouette and `crypt_sentinel` uses the production `crypt_guard` silhouette. If the new mechanical roles survive playtesting, they should receive dedicated art in a targeted follow-up pass.
+
