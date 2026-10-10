@@ -1,3 +1,32 @@
+### Combat Expansion v1 is live
+
+Six new combat cards are in the Act 1 random pool:
+- tier 0: `bone_swarm`, `grave_crossfire`;
+- tier 1: `iron_wall`, `last_bell`;
+- tier 2: `firing_square`, `bone_ritual`.
+
+New UnitData:
+- `resources/units/bone_raider.tres` — fast fragile pressure, currently reuses `bone_thrall` visual_role;
+- `resources/units/crypt_sentinel.tres` — lighter AOE guard, currently reuses `crypt_guard` visual_role.
+
+New cards use semantic temporary art aliases in `scripts/ui/card_art_catalog.gd`:
+- Bone Swarm → Bone Crush;
+- Grave Crossfire → Graveyard Ambush;
+- Iron Wall → Crypt Guard;
+- Last Bell → Grave Bell;
+- Firing Square → Gallows Volley;
+- Bone Ritual → Ossuary Gate.
+
+This is intentional gameplay-first reuse under D104. Do not generate a broad replacement art batch until run testing identifies the encounters worth keeping.
+
+Local validation target:
+1. start fresh runs so the expanded `ACT1_CARD_IDS` pool is rebuilt;
+2. confirm new combat cards can appear in their intended tier;
+3. check no card art is blank;
+4. verify heroes/enemies spawn normally in each new fight;
+5. pay special attention to Iron Wall / Last Bell / Firing Square / Bone Ritual difficulty in solo and duo;
+6. report which fights actually feel different — redundant fights should be cut or redesigned before art investment.
+
 ### Safe combat-feedback pass is live
 
 The user confirmed the restored battle core works again. New combat polish is intentionally isolated:
