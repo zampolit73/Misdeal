@@ -1775,3 +1775,19 @@ Rules:
 - authored battle backdrops remain composition truth; state FX should be low-alpha overlays rather than replacement environment art.
 
 This preserves the restored stable battle core while still allowing combat readability and personality to improve incrementally.
+
+## D104 — Validate combat variety before commissioning another art batch
+
+Date: 2026-10-11  
+Status: accepted implementation rule
+
+The immediate boredom problem is encounter repetition, so Combat Expansion v1 prioritizes different tactical compositions over another broad visual-production pass.
+
+Rules:
+- new combat cards may temporarily reuse a semantically close approved combat-card illustration;
+- new enemy stat archetypes may temporarily reuse an existing combat family silhouette when the mechanical role is still being tested;
+- this reuse must be explicit and temporary, not presented as final unique art;
+- dedicated card/enemy art should be produced only for encounters/archetypes that survive local run testing;
+- the twelve-card Act 1 structure stays fixed; variety comes from a larger random pool, not a longer mandatory run.
+
+This keeps iteration cheap while testing whether the new fights actually solve run repetition.
