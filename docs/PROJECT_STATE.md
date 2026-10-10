@@ -1,5 +1,30 @@
 # Misdeal — Project State
 
+## Motion polish pass 5 — Class Select + Intro + Squad dossier — 2026-10-11
+
+A safe non-battle motion pass is live while the battle core remains on the stable pre-animation controller.
+
+Class Select:
+- the three protagonist cards reveal with a short stagger after the frame enters;
+- choosing a protagonist focuses the chosen card and dims the alternatives for ~0.18 s before table navigation;
+- protagonist selection logic remains unchanged.
+
+Intro:
+- frame-to-frame blackout timing remains unchanged;
+- each loaded frame gets a very small one-shot settle (about 1.2% scale back to 100%) and neutral-color recovery;
+- hint/skip controls fade in once on entry;
+- there is no continuous camera drift or Ken Burns loop.
+
+Squad dossier:
+- overlay dim + dossier frame reveal once on open;
+- switching hero tabs gives the selected tab, portrait frame and hero name a small focus beat;
+- closing fades/scales the dossier out before freeing it;
+- all displayed stats/fates/relic data are unchanged.
+
+Battle safety:
+- `battle.gd` and `unit.gd` were not touched in this pass;
+- do not resume battle animation work until the local empty-arena regression is confirmed gone.
+
 ### Full battle controller rollback after empty-arena regression
 
 Restoring only `scripts/battle/unit.gd` did not recover locally: the preparation screen still showed no heroes or enemies. The battle controller itself has now been restored to the same last known-good pre-animation baseline (`aa8f9d5ed05134b4a3507995c22d845191c237b7`).
