@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "firing_square"
+title = "РАССТРЕЛЬНАЯ ПЛОЩАДЬ"
+card_text = "Четыре лучника растянуты по линии, а часовой держит центр."
+wizard_line = "Вот теперь расстояние действительно имеет значение."
+type_label = "БОЙ"
+tier = 2
+resolution_type = "combat"
+target_path = "res://resources/encounters/firing_square.tres"
+prototype_result_text = ""
