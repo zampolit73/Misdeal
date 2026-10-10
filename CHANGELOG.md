@@ -57,6 +57,12 @@
 
 ### Changed
 
+- Added Motion Polish Pass 2 without changing combat balance or Fate Spread geometry. Melee, ranged and magic attacks now telegraph with short role-specific anticipation before the existing strike; death motion now has a brief stagger before the body settles/fades.
+- Bone Warden Phase II now carries a short arena/backdrop reaction in addition to the existing phase label and reinforcement call, giving the boss transition more weight without adding screen shake.
+- Fate Spread now opens as a ritual sequence: visible history/current cards reveal around the ring with a restrained stagger, the current position receives a short focus beat, and 4/8/12 milestones emphasize the relevant slot/counts/seal while keeping the approved layout frozen.
+- Added restrained Wizard table reactions to wagers, refusals, accepted deals and card meddling by briefly tinting the authored backdrop rather than animating the painted character as a puppet.
+- Generic Act Choice and Whispering Well commitment animations remain rolled back after the earlier regressions; their stable screens are intentionally left untouched in this pass.
+
 - Added the first large motion-polish pass for the vertical slice. Table card choices now feel physical: Fate Hold pulls the selected card into the hold control and stamps it before returning it marked, chosen cards move toward the player, rejected cards travel into the discard area, and the discard pile/count react on impact instead of updating before the card arrives.
 - Event choice screens now stage their mini-cards on entry and visibly commit a choice before revealing the result: the selected card lifts/warms while alternatives recede. Whispering Well uses the same interaction language.
 - Reward screens now stage the header/cards on entry and give the selected reward a short focal beat while the alternatives dim before the reward resolves or the next reward tier appears.
