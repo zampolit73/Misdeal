@@ -9,7 +9,21 @@ var discard_pulse := 0.0:
 		discard_pulse = value
 		queue_redraw()
 
+var deck_pulse := 0.0:
+	set(value):
+		deck_pulse = value
+		queue_redraw()
+
+var ritual_pulse := 0.0:
+	set(value):
+		ritual_pulse = value
+		queue_redraw()
+
+var ritual_color := Color(0.74, 0.18, 0.12, 1.0)
+
 var discard_pulse_tween: Tween
+var deck_pulse_tween: Tween
+var ritual_pulse_tween: Tween
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -26,7 +40,43 @@ func pulse_discard() -> void:
 	discard_pulse_tween = create_tween()
 	discard_pulse_tween.tween_property(self, "discard_pulse", 0.0, 0.24).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
+
+func pulse_deal() -> void:
+	if deck_pulse_tween != null and deck_pulse_tween.is_valid():
+		deck_pulse_tween.kill()
+	deck_pulse = 1.0
+	deck_pulse_tween = create_tween()
+	deck_pulse_tween.tween_property(self, "deck_pulse", 0.0, 0.30).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	pulse_ritual("deal")
+
+
+func pulse_ritual(kind: String = "attention") -> void:
+	if ritual_pulse_tween != null and ritual_pulse_tween.is_valid():
+		ritual_pulse_tween.kill()
+
+	match kind:
+		"meddle":
+			ritual_color = Color(0.95, 0.16, 0.10, 1.0)
+		"pleased":
+			ritual_color = Color(0.92, 0.42, 0.18, 1.0)
+		"cold":
+			ritual_color = Color(0.34, 0.56, 0.82, 1.0)
+		"hold":
+			ritual_color = Color(0.58, 0.32, 0.22, 1.0)
+		"choice":
+			ritual_color = Color(0.88, 0.32, 0.16, 1.0)
+		"deal":
+			ritual_color = Color(0.70, 0.18, 0.12, 1.0)
+		_:
+			ritual_color = Color(0.74, 0.18, 0.12, 1.0)
+
+	ritual_pulse = 1.0
+	ritual_pulse_tween = create_tween()
+	ritual_pulse_tween.tween_property(self, "ritual_pulse", 0.0, 0.42).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+
 func _draw() -> void:
+	_draw_ritual_reaction()
 	_draw_deck()
 	_draw_discard()
 	_draw_progress_spread()
@@ -36,7 +86,7 @@ func _draw_deck() -> void:
 	if not RunState.has_active_card():
 		remaining = maxi(0, remaining - RunState.current_offer_ids.size())
 
-	var base_rect := Rect2(137.0, 438.0, 84.0, 122.0)
+	var base_rect := Rect2(137.0, 438.0, 84.0, 122.0).grow(deck_pulse * 2.5)
 	if remaining <= 0:
 		_draw_empty_card_place(base_rect)
 		return
@@ -47,7 +97,7 @@ func _draw_deck() -> void:
 		_draw_card_back(
 			Rect2(base_rect.position + offset, base_rect.size),
 			deg_to_rad(-2.0 + float(layer) * 0.8),
-			0.72 + float(layer) * 0.07
+			0.72 + float(layer) * 0.07 + deck_pulse * 0.07
 		)
 
 func _draw_discard() -> void:
@@ -99,6 +149,32 @@ func _draw_card_back(rect: Rect2, rotation: float, alpha: float) -> void:
 	draw_polyline(diamond, border.lightened(0.10), 1.5)
 	draw_circle(Vector2.ZERO, 2.5, border.lightened(0.12))
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+
+func _draw_ritual_reaction() -> void:
+	if ritual_pulse <= 0.001:
+		return
+
+	# Variant C already contains the authored ritual circle. This overlay only
+	# wakes that area for a fraction of a second when the table reacts.
+	var center := Vector2(640.0, 468.0)
+	var alpha := ritual_pulse * 0.18
+	var outer := ritual_color
+	outer.a = alpha
+	var inner := ritual_color.lightened(0.10)
+	inner.a = alpha * 0.72
+
+	var expansion := (1.0 - ritual_pulse) * 10.0
+	draw_arc(center, 174.0 + expansion, 0.0, TAU, 64, outer, 2.0, true)
+	draw_arc(center, 132.0 + expansion * 0.45, 0.0, TAU, 56, inner, 1.5, true)
+	draw_circle(center, 5.0 + ritual_pulse * 2.5, Color(inner.r, inner.g, inner.b, alpha * 0.85), false, 1.5, true)
+
+	for index in range(4):
+		var angle := PI * 0.25 + float(index) * PI * 0.5
+		var direction := Vector2(cos(angle), sin(angle))
+		var point := center + direction * (154.0 + expansion * 0.6)
+		var tangent := Vector2(-direction.y, direction.x)
+		draw_line(point - tangent * 5.0, point + tangent * 5.0, inner, 1.5, true)
+
 
 func _draw_progress_spread() -> void:
 	# The approved Variant C table already owns one strong ritual circle.
