@@ -705,10 +705,21 @@ func _show_boss_phase_flash() -> void:
 	phase_label.add_theme_constant_override("shadow_offset_y", 2)
 	add_child(phase_label)
 
+	var arena_tween := arena_visual.create_tween()
+	arena_tween.tween_property(arena_visual, "modulate", Color(1.0, 0.58, 0.46, 1.0), 0.08)
+	arena_tween.tween_property(arena_visual, "modulate", Color.WHITE, 0.34)
+
+	var backdrop_tween := battle_backdrop.create_tween()
+	backdrop_tween.tween_property(battle_backdrop, "modulate", Color(1.0, 0.78, 0.70, 1.0), 0.08)
+	backdrop_tween.tween_property(battle_backdrop, "modulate", Color.WHITE, 0.32)
+
 	var tween := phase_label.create_tween()
+	phase_label.pivot_offset = phase_label.size * 0.5
+	phase_label.scale = Vector2(0.92, 0.92)
 	tween.set_parallel(true)
 	tween.tween_property(phase_label, "position", phase_label.position + Vector2(0.0, -18.0), 0.9)
 	tween.tween_property(phase_label, "modulate:a", 0.0, 0.9)
+	tween.tween_property(phase_label, "scale", Vector2(1.04, 1.04), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.chain().tween_callback(phase_label.queue_free)
 
 func _on_placement_rejected(unit: BattleUnit) -> void:
