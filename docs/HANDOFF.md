@@ -1,3 +1,9 @@
+### Battle units missing regression — hotfixed
+
+The battle preparation screen was reported with zero visible heroes/enemies. `scripts/battle/unit.gd` has been restored to the known-good pre-Motion-Pass-2 version from commit `ddae81ca7e385cfc77767c7a5fbd190f001a624c`.
+
+Keep the newer `battle.gd` tactical/result/Last Deal motion, but do not restore the prior async attack-windup/death-settle patch in `unit.gd` wholesale. First local check after pull must be that heroes and enemies render in preparation and can be dragged before battle.
+
 ### Motion Pass 4 — table ambience and outer shell is live
 
 Key implementation:
