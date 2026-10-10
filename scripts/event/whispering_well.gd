@@ -172,7 +172,28 @@ func _animate_screen_in() -> void:
 	tween.set_parallel(true)
 	tween.tween_property(header_panel, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(header_panel, "modulate:a", 1.0, 0.16)
-	tween.tween_property(choices, "modulate:a", 1.0, 0.24).set_delay(0.05)
+	tween.tween_property(choices, "modulate:a", 1.0, 0.20).set_delay(0.04)
+
+	call_deferred("_animate_choice_cards_in")
+
+
+func _animate_choice_cards_in() -> void:
+	var cards: Array[Button] = [accept_button, pay_button, leave_button]
+	var visible_index := 0
+	for button in cards:
+		if not button.visible:
+			continue
+
+		button.pivot_offset = button.size * 0.5
+		button.scale = Vector2(0.985, 0.985)
+		button.modulate.a = 0.0
+
+		var card_tween := button.create_tween()
+		card_tween.set_parallel(true)
+		var delay := 0.05 + float(visible_index) * 0.05
+		card_tween.tween_property(button, "scale", Vector2.ONE, 0.17).set_delay(delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		card_tween.tween_property(button, "modulate:a", 1.0, 0.14).set_delay(delay)
+		visible_index += 1
 
 func _on_choice_hover(button: Button, hovered: bool) -> void:
 	if button.disabled:
