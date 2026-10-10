@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+encounter_id = "iron_wall"
+title = "ЖЕЛЕЗНАЯ СТЕНА"
+card_text = "Два склепных часовых перекрывают проход, а лучник работает из-за их спин.\nФронт здесь намеренно неудобный."
+wizard_line = "Стена хороша тем, что за ней всегда кто-то прячется."
+arena_id = "crypt"
+enemy_unit_paths = PackedStringArray("res://resources/units/crypt_sentinel.tres", "res://resources/units/crypt_sentinel.tres", "res://resources/units/bone_archer.tres")
+enemy_names = PackedStringArray("Склепный часовой", "Склепный часовой", "Костяной лучник")
+enemy_positions = PackedVector2Array(875, 175, 875, 335, 1060, 255)
