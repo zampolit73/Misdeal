@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+encounter_id = "firing_square"
+title = "РАССТРЕЛЬНАЯ ПЛОЩАДЬ"
+card_text = "Четыре лучника растянуты по линии, а часовой держит центр.\nДо стрелков придётся добраться под огнём."
+wizard_line = "Вот теперь расстояние действительно имеет значение."
+arena_id = "gallows"
+enemy_unit_paths = PackedStringArray("res://resources/units/crypt_sentinel.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_archer.tres")
+enemy_names = PackedStringArray("Склепный часовой", "Костяной лучник", "Костяной лучник", "Костяной лучник", "Костяной лучник")
+enemy_positions = PackedVector2Array(900, 305, 1045, 205, 1100, 255, 1100, 355, 1045, 405)
