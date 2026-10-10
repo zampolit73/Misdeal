@@ -57,6 +57,10 @@
 
 ### Changed
 
+- Added Motion Polish Pass 3 for battle commands and post-combat flow. Tactical-order buttons now give a short physical confirmation beat, the FIGHT action visibly commits before the preparation HUD disappears, side-objective success/failure gets restrained panel feedback, and battle result overlays reveal in staged layers instead of appearing instantly.
+- Victory, defeat and Last Deal now share the same short result-motion language: scrim/backdrop/title/subtitle reveal in sequence, visible actions fade in after the result, Last Deal receives one restrained price/backdrop emphasis, and clicking reward/Last Deal actions gives a brief commit beat before scene navigation.
+- No battle rules, reward values, Last Deal costs or tactical-order effects changed.
+
 - Added Motion Polish Pass 2 without changing combat balance or Fate Spread geometry. Melee, ranged and magic attacks now telegraph with short role-specific anticipation before the existing strike; death motion now has a brief stagger before the body settles/fades.
 - Bone Warden Phase II now carries a short arena/backdrop reaction in addition to the existing phase label and reinforcement call, giving the boss transition more weight without adding screen shake.
 - Fate Spread now opens as a ritual sequence: visible history/current cards reveal around the ring with a restrained stagger, the current position receives a short focus beat, and 4/8/12 milestones emphasize the relevant slot/counts/seal while keeping the approved layout frozen.
