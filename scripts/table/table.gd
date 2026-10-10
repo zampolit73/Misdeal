@@ -52,6 +52,7 @@ var dealt_offer_signature := ""
 var card_rest_positions: Dictionary = {}
 var card_rest_rotations: Dictionary = {}
 var card_motion_tweens: Dictionary = {}
+var wizard_reaction_tween: Tween
 
 func _ready() -> void:
 	if RunState.is_run_complete():
@@ -601,6 +602,35 @@ func _kill_card_motion(button: Button) -> void:
 			tween.kill()
 	card_motion_tweens.erase(button.name)
 
+func _pulse_wizard_reaction(kind: String = "attention") -> void:
+	if wizard_backdrop == null:
+		return
+
+	if wizard_reaction_tween != null and wizard_reaction_tween.is_valid():
+		wizard_reaction_tween.kill()
+
+	var tint := Color(1.0, 0.92, 0.88, 1.0)
+	var attack_time := 0.08
+	var settle_time := 0.26
+	match kind:
+		"meddle":
+			tint = Color(1.0, 0.70, 0.62, 1.0)
+			attack_time = 0.06
+			settle_time = 0.34
+		"pleased":
+			tint = Color(1.0, 0.86, 0.72, 1.0)
+		"cold":
+			tint = Color(0.82, 0.90, 1.0, 1.0)
+			settle_time = 0.30
+		"offer":
+			tint = Color(1.0, 0.84, 0.78, 1.0)
+
+	wizard_reaction_tween = wizard_backdrop.create_tween()
+	wizard_reaction_tween.tween_property(wizard_backdrop, "modulate", tint, attack_time)
+	wizard_reaction_tween.tween_interval(0.04)
+	wizard_reaction_tween.tween_property(wizard_backdrop, "modulate", Color.WHITE, settle_time).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+
 func _play_table_audio(event_name: String) -> void:
 	if table_audio != null and table_audio.has_method("play_event"):
 		table_audio.call("play_event", event_name)
@@ -715,6 +745,7 @@ func _show_wizard_wager() -> void:
 		return
 
 	wager_root.visible = true
+	_pulse_wizard_reaction("offer")
 	wager_panel.pivot_offset = wager_panel.size * 0.5
 	wager_panel.scale = Vector2(0.95, 0.95)
 	wager_panel.modulate = Color(1.0, 0.80, 0.72, 0.0)
@@ -740,6 +771,7 @@ func _accept_wizard_wager() -> void:
 	_refresh_table(false)
 	default_wizard_line = "Вот и договорились. Следующий бой станет больнее, добыча — вдвое слаще. И я дам тебе ещё один приказ: «ЖЕРТВА»."
 	wizard_line.text = default_wizard_line
+	_pulse_wizard_reaction("pleased")
 
 func _refuse_wizard_wager() -> void:
 	if not RunState.decline_pending_wizard_wager():
@@ -750,6 +782,7 @@ func _refuse_wizard_wager() -> void:
 	_refresh_table(false)
 	default_wizard_line = "Какая осторожность. Почти разочаровывает."
 	wizard_line.text = default_wizard_line
+	_pulse_wizard_reaction("cold")
 
 
 func _play_pending_wizard_meddling() -> void:
@@ -793,6 +826,7 @@ func _play_pending_wizard_meddling() -> void:
 	await get_tree().create_timer(0.08).timeout
 
 	wizard_line.text = "Нет. Эту карту я передумал отдавать."
+	_pulse_wizard_reaction("meddle")
 	_play_table_audio("meddle")
 
 	var close_tween := button.create_tween()
@@ -854,6 +888,7 @@ func _choose_card(card: RunCardData) -> void:
 	hold_b_button.visible = false
 	if was_marked:
 		wizard_line.text = "«Печать принята. +20 золота. А следующий бой получит свои +15% боли.»"
+		_pulse_wizard_reaction("meddle")
 	else:
 		wizard_line.text = card.wizard_line
 	await _animate_card_choice(card.card_id)
