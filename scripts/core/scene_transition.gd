@@ -41,6 +41,7 @@ func change_to(scene_path: String) -> void:
 	# Block duplicate input immediately, but keep the current scene fully
 	# visible while the next PackedScene is prepared in the background.
 	_veil.visible = true
+	_veil.color = _get_veil_color(scene_path)
 	_veil.modulate.a = 0.0
 	_veil.mouse_filter = Control.MOUSE_FILTER_STOP
 	_sync_veil_rect()
@@ -150,7 +151,20 @@ func _sync_veil_rect() -> void:
 	_veil.size = get_viewport().get_visible_rect().size
 
 
+func _get_veil_color(scene_path: String) -> Color:
+	if scene_path.contains("/battle/"):
+		return Color(0.026, 0.006, 0.010, 1.0)
+	if scene_path.contains("/reward/"):
+		return Color(0.022, 0.013, 0.006, 1.0)
+	if scene_path.contains("/event/"):
+		return Color(0.020, 0.006, 0.014, 1.0)
+	if scene_path.contains("/run_end/"):
+		return Color(0.012, 0.006, 0.020, 1.0)
+	return VEIL_COLOR
+
+
 func _reset_veil() -> void:
+	_veil.color = VEIL_COLOR
 	_veil.modulate.a = 0.0
 	_veil.visible = false
 	_veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
