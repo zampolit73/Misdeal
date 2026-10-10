@@ -23,8 +23,14 @@ func _ready() -> void:
 	_show_frame(0)
 
 	fade.modulate.a = 1.0
+	hint_label.modulate.a = 0.0
+	skip_button.modulate.a = 0.0
 	var tween := create_tween()
+	tween.set_parallel(true)
 	tween.tween_property(fade, "modulate:a", 0.0, 0.32)
+	tween.tween_property(hint_label, "modulate:a", 1.0, 0.18).set_delay(0.16)
+	tween.tween_property(skip_button, "modulate:a", 1.0, 0.18).set_delay(0.20)
+	call_deferred("_animate_frame_settle")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if transitioning:
@@ -64,6 +70,7 @@ func _transition_to_frame(next_index: int) -> void:
 	await fade_out.finished
 
 	_show_frame(next_index)
+	_animate_frame_settle()
 
 	var fade_in := create_tween()
 	fade_in.tween_property(fade, "modulate:a", 0.0, 0.18)
@@ -82,6 +89,17 @@ func _show_frame(index: int) -> void:
 		hint_label.text = "КЛИК / ENTER — НАЧАТЬ РАЗДАЧУ"
 	else:
 		hint_label.text = "КЛИК / ПРОБЕЛ — ДАЛЕЕ"
+
+func _animate_frame_settle() -> void:
+	frame_rect.pivot_offset = frame_rect.size * 0.5
+	frame_rect.scale = Vector2(1.012, 1.012)
+	frame_rect.modulate = Color(0.94, 0.92, 0.94, 1.0)
+
+	var tween := frame_rect.create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(frame_rect, "scale", Vector2.ONE, 0.38).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(frame_rect, "modulate", Color.WHITE, 0.28)
+
 
 func _on_skip_pressed() -> void:
 	_finish_intro()
