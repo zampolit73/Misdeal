@@ -319,9 +319,10 @@ Do not prioritize these before the vertical slice works:
 ### Motion polish
 
 - [x] Pass 1: physical table interactions — Hold stamp, chosen-card focus, rejected-card travel and discard impact feedback.
-- [x] Pass 1: staged event choice entry/commit/result feedback for generic Act Choice screens and Whispering Well.
+- [ ] Pass 1 follow-up: event choice commitment motion was rolled back after regressions; reintroduce only as isolated, locally verified screen-specific patches.
 - [x] Pass 1: staged reward reveal and selected-reward confirmation beat.
-- [ ] Pass 2: battle anticipation by attack archetype, improved death settling and boss-phase weight.
-- [ ] Pass 2: Fate Spread ritual reveal/stagger and milestone emphasis.
-- [ ] Pass 2: restrained Wizard ambience/reactions without skeletal/puppet-style animation of the painted character.
+- [x] Pass 2: battle anticipation by attack archetype, improved death settling and boss-phase weight.
+- [x] Pass 2: Fate Spread ritual reveal/stagger and milestone emphasis without changing the frozen composition.
+- [x] Pass 2: restrained Wizard wager/meddling reactions without skeletal/puppet-style animation of the painted character.
+- [ ] Pass 2 local verification: confirm combat still reads fast, Fate Spread stagger does not feel slow, and backdrop reaction tints stay subtle.
 
