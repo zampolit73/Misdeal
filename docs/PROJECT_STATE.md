@@ -1,5 +1,17 @@
 # Misdeal — Project State
 
+### Full battle controller rollback after empty-arena regression
+
+Restoring only `scripts/battle/unit.gd` did not recover locally: the preparation screen still showed no heroes or enemies. The battle controller itself has now been restored to the same last known-good pre-animation baseline (`aa8f9d5ed05134b4a3507995c22d845191c237b7`).
+
+Current safety state:
+- `scripts/battle/battle.gd` and `scripts/battle/unit.gd` are back on the stable pre-motion versions;
+- battle unit spawning/deployment/tactics/objectives/Last Deal/result logic should therefore match the version that worked before the animation passes;
+- battle-specific Motion Pass 2/3 additions are temporarily removed;
+- Table, Reward, Fate Spread, Wizard/table ambience, scene transitions, Main Menu and Run End motion remain active.
+
+Do not reintroduce battle motion as a broad controller patch. First verify that heroes/enemies render again; then add battle animation only in isolated functions with a local check after each patch.
+
 ### Battle unit spawn hotfix
 
 A local screenshot after Motion Pass 4 showed the battle preparation screen with the entire party/enemy roster missing. The safest recovery was to restore `scripts/battle/unit.gd` from commit `ddae81ca7e385cfc77767c7a5fbd190f001a624c`, the last known-good version before the attack-windup/death-settle experiment.
