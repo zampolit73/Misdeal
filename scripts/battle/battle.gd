@@ -238,7 +238,7 @@ func _spawn_encounter() -> void:
 
 func _get_party_spawn_positions() -> Array[Vector2]:
 	match encounter.encounter_id:
-		"gallows_volley":
+		"gallows_volley", "grave_crossfire", "firing_square":
 			match RunState.get_party_size():
 				1:
 					return [Vector2(220, 305)]
@@ -246,7 +246,7 @@ func _get_party_spawn_positions() -> Array[Vector2]:
 					return [Vector2(220, 245), Vector2(220, 365)]
 				_:
 					return [Vector2(220, 225), Vector2(220, 305), Vector2(220, 385)]
-		"bone_crush":
+		"bone_crush", "bone_swarm":
 			match RunState.get_party_size():
 				1:
 					return [Vector2(240, 220)]
@@ -254,7 +254,7 @@ func _get_party_spawn_positions() -> Array[Vector2]:
 					return [Vector2(210, 165), Vector2(210, 335)]
 				_:
 					return [Vector2(170, 165), Vector2(170, 335), Vector2(390, 335)]
-		"ossuary_gate":
+		"ossuary_gate", "last_bell", "bone_ritual":
 			match RunState.get_party_size():
 				1:
 					return [Vector2(145, 245)]
@@ -281,14 +281,14 @@ func _get_party_spawn_positions() -> Array[Vector2]:
 
 func _get_placement_regions() -> Array[Rect2]:
 	match encounter.encounter_id:
-		"gallows_volley":
+		"gallows_volley", "grave_crossfire", "firing_square":
 			return [Rect2(Vector2(35, 195), Vector2(430, 205))]
-		"bone_crush":
+		"bone_crush", "bone_swarm":
 			return [
 				Rect2(Vector2(35, 115), Vector2(480, 130)),
 				Rect2(Vector2(35, 270), Vector2(480, 130))
 			]
-		"ossuary_gate":
+		"ossuary_gate", "last_bell", "bone_ritual":
 			return [
 				Rect2(Vector2(35, 82), Vector2(215, 326)),
 				Rect2(Vector2(325, 82), Vector2(215, 326))
@@ -312,11 +312,11 @@ func _configure_deployment_zones(regions: Array[Rect2]) -> void:
 
 func _get_placement_hint_text() -> String:
 	match encounter.encounter_id:
-		"gallows_volley":
+		"gallows_volley", "grave_crossfire", "firing_square":
 			return "РАССТАНОВКА: ГЛУБОКАЯ ЛИНИЯ — разнесите героев по вертикали"
-		"bone_crush":
+		"bone_crush", "bone_swarm":
 			return "РАССТАНОВКА: ДВЕ ПОЛОСЫ — решите, как разделить отряд"
-		"ossuary_gate":
+		"ossuary_gate", "last_bell", "bone_ritual":
 			return "РАССТАНОВКА: ДВА КАРМАНА — центр закрыт"
 		"bone_warden":
 			return "РАССТАНОВКА: ТЕСНЫЙ КРУГ — не подарите боссу удобный AOE"
@@ -371,9 +371,9 @@ func _spawn_unit(
 func _get_combat_bounds() -> Rect2:
 	if encounter != null:
 		match encounter.encounter_id:
-			"gallows_volley":
+			"gallows_volley", "grave_crossfire", "firing_square":
 				return GALLOWS_VOLLEY_COMBAT_BOUNDS
-			"bone_crush":
+			"bone_crush", "bone_swarm":
 				return BONE_CRUSH_COMBAT_BOUNDS
 	return COMBAT_BOUNDS
 
@@ -460,6 +460,18 @@ func _begin_preparation_phase() -> void:
 		status_label.text = "ВРАТА ОССУАРИЯ — ДВА КАРМАНА РАССТАНОВКИ. Страж впереди, звонарь лечит."
 	elif encounter.encounter_id == "gallows_volley":
 		status_label.text = "ЗАЛП С ВИСЕЛИЦЫ — ГЛУБОКАЯ ЛИНИЯ. Разведите героев по высоте против двух лучников."
+	elif encounter.encounter_id == "bone_swarm":
+		status_label.text = "КОСТЯНОЙ РОЙ — быстрые налётчики сразу давят дистанцию. AOE особенно ценен."
+	elif encounter.encounter_id == "grave_crossfire":
+		status_label.text = "МОГИЛЬНЫЙ ПЕРЕКРЁСТОК — два лучника держат разные углы. Не собирайте отряд в одну точку."
+	elif encounter.encounter_id == "iron_wall":
+		status_label.text = "ЖЕЛЕЗНАЯ СТЕНА — два часовых держат фронт, лучник прячется за ними. «ОХОТА» помогает сменить приоритет."
+	elif encounter.encounter_id == "last_bell":
+		status_label.text = "ПОСЛЕДНИЙ ЗВОН — два звонаря лечат друг друга. Затянутый бой работает против вас."
+	elif encounter.encounter_id == "firing_square":
+		status_label.text = "РАССТРЕЛЬНАЯ ПЛОЩАДЬ — четыре лучника и часовой. Глубокая расстановка и быстрый доступ к тылу решают бой."
+	elif encounter.encounter_id == "bone_ritual":
+		status_label.text = "КОСТЯНОЙ РИТУАЛ — часовой, лечение и быстрый натиск одновременно. Выберите главную угрозу до старта."
 	else:
 		status_label.text = "ПОДГОТОВКА — расставьте героев, выберите приказ и запускайте бой."
 
@@ -829,6 +841,18 @@ func _get_combat_start_wizard_line() -> String:
 			return "За этими вратами я уже почти слышу ваши кости."
 		"death_wager":
 			return "Вы сами выбрали ставку. Не разочаруйте меня слишком быстро."
+		"bone_swarm":
+			return "Попробуй считать их. Они бегают быстрее, чем ты думаешь."
+		"grave_crossfire":
+			return "Слева стрела. Справа стрела. В центре плохое решение."
+		"iron_wall":
+			return "Не обязательно ломать стену. Но вы обычно именно так и делаете."
+		"last_bell":
+			return "Если один звон раздражает, два должны понравиться."
+		"firing_square":
+			return "Шаг вперёд. Ещё шаг. Они как раз пристреляются."
+		"bone_ritual":
+			return "Вот это уже похоже на командную работу. Учись."
 		"bone_warden":
 			return "Надзиратель редко оставляет мне что-нибудь после себя."
 		_:
