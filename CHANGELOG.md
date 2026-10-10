@@ -214,6 +214,7 @@
 
 ### Fixed
 
+- Escalated the missing-unit hotfix: because restoring only `unit.gd` did not recover battle setup locally, `scripts/battle/battle.gd` was also restored to the last known-good pre-animation baseline. Battle spawning, deployment, tactics, side objectives, Last Deal and result flow are now back on the stable controller; battle-specific motion passes are temporarily removed pending a smaller verified reintroduction.
 - Hotfixed a severe battle regression where the preparation screen could load with no heroes or enemies. `scripts/battle/unit.gd` was restored to the last known-good pre-windup version; the attack-anticipation/death-motion experiment is temporarily rolled back while the rest of the battle UI/result/Fate Spread/table motion remains active.
 - Fixed Whispering Well choice cards losing their mini-art after the motion pass. The dedicated Well controller was restored to the last stable pre-motion version, and its three choice images now load again from the approved split-sheet source rather than the raw legacy atlas path.
 - Hotfixed an Act Choice regression from the first motion pass: the generic event scene could remain on its template placeholders (`СОБЫТИЕ / Описание / ВЫБОР A-B-C`) instead of initializing the active event. The risky Act Choice motion layer was rolled back to the last known-good semantic-art version; table and reward motion remain enabled.
