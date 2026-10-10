@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1_encounter"]
+
+[resource]
+script = ExtResource("1_encounter")
+encounter_id = "last_bell"
+title = "ПОСЛЕДНИЙ ЗВОН"
+card_text = "Два звонаря поддерживают друг друга, пока налётчики связывают отряд.\nЕсли бой затянется, лечение станет главной угрозой."
+wizard_line = "Один колокол зовёт мёртвых. Два — уже хор."
+arena_id = "graveyard"
+enemy_unit_paths = PackedStringArray("res://resources/units/bone_raider.tres", "res://resources/units/bone_raider.tres", "res://resources/units/grave_bellkeeper.tres", "res://resources/units/grave_bellkeeper.tres")
+enemy_names = PackedStringArray("Костяной налётчик", "Костяной налётчик", "Могильный звонарь", "Могильный звонарь")
+enemy_positions = PackedVector2Array(850, 175, 850, 335, 1040, 155, 1040, 355)
