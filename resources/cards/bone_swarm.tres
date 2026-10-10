@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "bone_swarm"
+title = "КОСТЯНОЙ РОЙ"
+card_text = "Четыре быстрых налётчика бросаются вперёд без строя."
+wizard_line = "Мелкие, быстрые и совершенно лишённые инстинкта самосохранения. Почти герои."
+type_label = "БОЙ"
+tier = 0
+resolution_type = "combat"
+target_path = "res://resources/encounters/bone_swarm.tres"
+prototype_result_text = ""
