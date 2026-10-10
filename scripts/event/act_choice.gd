@@ -712,6 +712,27 @@ func _animate_screen_in() -> void:
 	tween.tween_property(panel, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(panel, "modulate:a", 1.0, 0.16)
 
+	call_deferred("_animate_choice_cards_in")
+
+
+func _animate_choice_cards_in() -> void:
+	var cards: Array[Button] = [choice_a, choice_b, choice_c]
+	var visible_index := 0
+	for button in cards:
+		if not button.visible:
+			continue
+
+		button.pivot_offset = button.size * 0.5
+		button.scale = Vector2(0.985, 0.985)
+		button.modulate.a = 0.0
+
+		var card_tween := button.create_tween()
+		card_tween.set_parallel(true)
+		var delay := 0.045 + float(visible_index) * 0.05
+		card_tween.tween_property(button, "scale", Vector2.ONE, 0.17).set_delay(delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		card_tween.tween_property(button, "modulate:a", 1.0, 0.14).set_delay(delay)
+		visible_index += 1
+
 func _configure_card() -> void:
 	match active_card.card_id:
 		"ash_rest":
