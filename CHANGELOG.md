@@ -4,6 +4,10 @@
 
 ### Added
 
+- Added Combat Expansion v1: six new Act 1 combat cards are now in the random tier pools — КОСТЯНОЙ РОЙ, МОГИЛЬНЫЙ ПЕРЕКРЁСТОК, ЖЕЛЕЗНАЯ СТЕНА, ПОСЛЕДНИЙ ЗВОН, РАССТРЕЛЬНАЯ ПЛОЩАДЬ and КОСТЯНОЙ РИТУАЛ.
+- Added two lightweight enemy stat archetypes for encounter variety: Костяной налётчик (fast fragile pressure) and Склепный часовой (lighter AOE guard). They intentionally reuse the closest existing production combat silhouettes for this gameplay-validation pass.
+- New fights reuse proven arena/deployment profiles: swarm split lanes, crossfire/firing-square deep-line placement, and support/ritual pocket placement. Threat tags and preparation cues expose the tactical problem before Fight.
+
 - Added Fate Spread chosen/rejected pair history: hovering a completed slot enlarges it and shows which card was chosen and which alternative was rejected at that deal.
 - Added one-shot IV/VIII/XII Fate Spread ritual beats with automatic reveal, seal/XIII pulse-shake and a dedicated generated table sound.
 - Added a restrained procedural red-black table surface beneath the Fate Spread ring to keep the progression screen physically grounded in the cursed table.
