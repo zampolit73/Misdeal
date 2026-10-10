@@ -429,6 +429,7 @@ func _fail_side_objective(message: String) -> void:
 	side_objective_failed = true
 	side_objective_label.text = message
 	side_objective_label.add_theme_color_override("font_color", Color(0.82, 0.38, 0.30, 1.0))
+	_play_side_objective_feedback(false)
 
 func _claim_side_objective_reward() -> String:
 	if side_objective_id.is_empty() or side_objective_failed:
@@ -944,6 +945,25 @@ func _pulse_last_deal_after_reveal() -> void:
 	price_tween.tween_property(last_deal_price_label, "scale", Vector2(1.04, 1.04), 0.08).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	price_tween.tween_property(last_deal_price_label, "scale", Vector2.ONE, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
+	var backdrop_pulse := result_backdrop.create_tween()
+	backdrop_pulse.tween_property(result_backdrop, "modulate", Color(1.08, 0.84, 0.78, 1.0), 0.08)
+	backdrop_pulse.tween_property(result_backdrop, "modulate", Color.WHITE, 0.22)
+
+
+func _play_side_objective_feedback(success: bool) -> void:
+	if not side_objective_panel.visible:
+		return
+
+	side_objective_panel.pivot_offset = side_objective_panel.size * 0.5
+	var accent := Color(0.82, 1.06, 0.86, 1.0) if success else Color(1.08, 0.72, 0.68, 1.0)
+
+	var panel_tween := side_objective_panel.create_tween()
+	panel_tween.set_parallel(true)
+	panel_tween.tween_property(side_objective_panel, "scale", Vector2(1.025, 1.025), 0.08).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	panel_tween.tween_property(side_objective_panel, "modulate", accent, 0.08)
+	panel_tween.chain().tween_property(side_objective_panel, "scale", Vector2.ONE, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	panel_tween.parallel().tween_property(side_objective_panel, "modulate", Color.WHITE, 0.16)
+
 
 func _animate_result_choice_commit(button: Button) -> void:
 	if button == null or not button.visible:
@@ -1020,6 +1040,7 @@ func _on_unit_died(dead_unit: BattleUnit) -> void:
 		first_enemy_death_seen = true
 		if dead_unit.visual_role == "grave_bellkeeper":
 			side_objective_label.text = "УСЛОВИЕ ВЫПОЛНЕНО\nЗвонарь пал первым • награда после победы"
+			_play_side_objective_feedback(true)
 		else:
 			_fail_side_objective("УСЛОВИЕ ПРОВАЛЕНО • первым пал не звонарь")
 	elif dead_unit.team == 0 and side_objective_id == "no_critical" and not side_objective_failed:
