@@ -214,6 +214,7 @@
 
 ### Fixed
 
+- Hotfixed a severe battle regression where the preparation screen could load with no heroes or enemies. `scripts/battle/unit.gd` was restored to the last known-good pre-windup version; the attack-anticipation/death-motion experiment is temporarily rolled back while the rest of the battle UI/result/Fate Spread/table motion remains active.
 - Fixed Whispering Well choice cards losing their mini-art after the motion pass. The dedicated Well controller was restored to the last stable pre-motion version, and its three choice images now load again from the approved split-sheet source rather than the raw legacy atlas path.
 - Hotfixed an Act Choice regression from the first motion pass: the generic event scene could remain on its template placeholders (`СОБЫТИЕ / Описание / ВЫБОР A-B-C`) instead of initializing the active event. The risky Act Choice motion layer was rolled back to the last known-good semantic-art version; table and reward motion remain enabled.
 - Fixed Rattling Bridge regular-state choice cards falling back to the large event thumbnail. Both bridge branches now use the already-authored semantic mini-art trio, and the bridge specifically uses the original native 1152×160 / 384×160-per-cell HD atlas instead of the downscaled unified-sheet copy.
