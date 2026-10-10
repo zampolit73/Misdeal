@@ -1,5 +1,28 @@
 # Misdeal — Project State
 
+## Safe combat-feedback reintroduction — 2026-10-11
+
+The user locally confirmed that the battle arena/units were restored after the full battle rollback. Combat polish has therefore resumed, but only through isolated presentation paths.
+
+New safe layer:
+- `scripts/battle/battle_motion_fx.gd` is mounted as a non-interactive full-screen overlay in `battle.tscn`;
+- it connects directly to the existing tactical-order/Fight button signals and never calls spawn, encounter resolution, combat start/stop or RunState mutation;
+- НАТИСК / ОХОТА / СТРОЙ show a short icon above each living hero when selected;
+- ЖЕРТВА shows the same selection tell plus a restrained persistent red ground aura once combat is committed;
+- НЕПОВИНОВЕНИЕ uses a restrained cold-blue defensive aura;
+- Death Wager gets a very low-alpha red corner-frame tell so the arena reads as a wager state without changing the authored backdrop.
+
+Existing stable `BattleUnit` combat timing remains intact. Only existing non-blocking feedback functions changed:
+- ranged/magic tracers are slightly clearer;
+- hit tint now reflects melee/ranged/magic source type;
+- a purely visual "strong hit" threshold (>= 18 damage or >= 18% max HP) enlarges the damage number, kick and spark count;
+- damage amount, cooldown, target selection, attack timing, movement, spawn and death logic are unchanged.
+
+Safety invariant:
+- `scripts/battle/battle.gd` was not modified by this pass;
+- no `await` was introduced into attack/damage logic;
+- future battle polish should follow this same isolated visual-only pattern unless a separate gameplay change is explicitly requested.
+
 ## Safe event-motion reintroduction — 2026-10-11
 
 Event motion has been reintroduced in the smallest safe form after the earlier Act Choice template-screen and Whispering Well mini-art regressions.
@@ -36,7 +59,7 @@ Squad dossier:
 
 Battle safety:
 - `battle.gd` and `unit.gd` were not touched in this pass;
-- do not resume battle animation work until the local empty-arena regression is confirmed gone.
+- the empty-arena regression is now locally confirmed gone; battle polish may proceed only through isolated visual-only patches that do not alter spawn/controller flow.
 
 ### Full battle controller rollback after empty-arena regression
 
