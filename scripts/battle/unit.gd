@@ -743,6 +743,16 @@ func _attack_target() -> void:
 
 	attack_cooldown = attack_interval
 	var primary_target := target
+	await _play_attack_windup(primary_target)
+
+	if not alive or not combat_started or not _is_valid_target(primary_target):
+		attack_animating = false
+		art_sprite.position = ART_BASE_POSITION
+		art_sprite.rotation = 0.0
+		art_sprite.scale = base_sprite_scale
+		art_sprite.modulate = base_art_modulate
+		return
+
 	var impact_position := primary_target.global_position
 	_play_attack_feedback(primary_target)
 	_play_combat_audio("attack")
@@ -764,6 +774,48 @@ func _attack_target() -> void:
 
 		if unit.global_position.distance_to(impact_position) <= splash_radius:
 			unit.take_damage(splash_damage, visual_role, global_position)
+
+
+func _play_attack_windup(primary_target: BattleUnit) -> void:
+	if primary_target == null or not is_instance_valid(primary_target):
+		return
+
+	if attack_tween != null and attack_tween.is_valid():
+		attack_tween.kill()
+
+	attack_animating = true
+	var direction := global_position.direction_to(primary_target.global_position)
+	var style := _get_attack_style()
+	var windup_duration := 0.08
+	var target_position := ART_BASE_POSITION - direction * 5.0
+	var target_rotation := -direction.x * 0.045
+	var target_scale := Vector2(base_sprite_scale.x * 0.98, base_sprite_scale.y * 1.03)
+	var target_modulate := base_art_modulate
+
+	match style:
+		"ranged":
+			windup_duration = 0.11
+			target_position = ART_BASE_POSITION - direction * 7.0
+			target_rotation = direction.x * 0.075
+			target_scale = Vector2(base_sprite_scale.x * 1.025, base_sprite_scale.y * 0.975)
+		"magic":
+			windup_duration = 0.14
+			target_position = ART_BASE_POSITION + Vector2(0.0, 2.0)
+			target_rotation = -direction.x * 0.03
+			target_scale = base_sprite_scale * 0.95
+			target_modulate = (
+				Color(0.84, 0.62, 1.0, 1.0)
+				if visual_role == "mage"
+				else Color(0.58, 0.92, 0.68, 1.0)
+			)
+
+	attack_tween = create_tween()
+	attack_tween.set_parallel(true)
+	attack_tween.tween_property(art_sprite, "position", target_position, windup_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	attack_tween.tween_property(art_sprite, "rotation", target_rotation, windup_duration)
+	attack_tween.tween_property(art_sprite, "scale", target_scale, windup_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	attack_tween.tween_property(art_sprite, "modulate", target_modulate, windup_duration)
+	await attack_tween.finished
 
 func _apply_combat_hit_stop() -> void:
 	var duration := 0.045
@@ -1008,14 +1060,22 @@ func _die() -> void:
 	hit_kick_offset = Vector2.ZERO
 
 	var death_tilt := -0.22 if int(get_instance_id()) % 2 == 0 else 0.22
-	var death_duration := 0.26 if team == 1 else 0.42
+	var death_duration := 0.28 if team == 1 else 0.38
 	var death_scale := Vector2(0.58, 0.58) if team == 1 else Vector2(0.76, 0.76)
+	var stagger_direction := -1.0 if int(get_instance_id()) % 2 == 0 else 1.0
 	death_tween = create_tween()
-	death_tween.set_parallel(true)
-	death_tween.tween_property(self, "scale", death_scale, death_duration).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	death_tween.tween_property(self, "modulate:a", 0.10 if team == 1 else 0.16, death_duration)
-	death_tween.tween_property(art_sprite, "rotation", death_tilt, death_duration)
-	death_tween.tween_property(art_sprite, "position", ART_BASE_POSITION + Vector2(0.0, 12.0), death_duration)
+	death_tween.tween_property(
+		art_sprite,
+		"position",
+		ART_BASE_POSITION + Vector2(stagger_direction * 4.0, -3.0),
+		0.07
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	death_tween.parallel().tween_property(art_sprite, "rotation", -death_tilt * 0.30, 0.07)
+	death_tween.parallel().tween_property(self, "scale", Vector2(1.04, 0.97), 0.07)
+	death_tween.tween_property(self, "scale", death_scale, death_duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	death_tween.parallel().tween_property(self, "modulate:a", 0.10 if team == 1 else 0.16, death_duration)
+	death_tween.parallel().tween_property(art_sprite, "rotation", death_tilt, death_duration)
+	death_tween.parallel().tween_property(art_sprite, "position", ART_BASE_POSITION + Vector2(0.0, 14.0), death_duration)
 
 	queue_redraw()
 	died.emit(self)
