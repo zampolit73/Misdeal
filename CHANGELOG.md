@@ -57,6 +57,9 @@
 
 ### Changed
 
+- Reintroduced combat polish safely after the empty-arena rollback. A new isolated `battle_motion_fx.gd` overlay listens to the existing tactical buttons without modifying battle spawning/controller flow: НАТИСК / ОХОТА / СТРОЙ show short readable squad markers, ЖЕРТВА adds a restrained red squad aura, НЕПОВИНОВЕНИЕ a cold-blue defensive aura, and Death Wager gets a subtle red battle-frame tell.
+- Improved hit readability inside the existing stable `BattleUnit` feedback path only: melee/ranged/magic impacts now tint differently, large hits get a stronger kick / larger damage number / two extra sparks, and ranged/magic tracers are slightly clearer. Attack cadence, damage application, targeting, cooldowns and spawn code are unchanged.
+
 - Reintroduced event animation conservatively after the earlier regressions: generic Act Choice and Whispering Well now only animate their already-initialized visible choice cards on screen entry (short stagger + settle). No button-down commitment hooks, event resolution timing, active-card initialization or choice-art loading paths were changed.
 - Added Motion Polish Pass 5 to safe non-battle screens while the battle core remains frozen for regression recovery. Class Select cards now stage in, the chosen protagonist gets one clear focus beat before leaving, Intro frames get a tiny settle instead of a static swap, and the Squad dossier opens/closes cleanly with a short role-switch focus reaction.
 - No battle controller/unit files were touched in this pass.
