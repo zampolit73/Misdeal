@@ -1,3 +1,22 @@
+### Motion Pass 4 — table ambience and outer shell is live
+
+Key implementation:
+- `scripts/table/table_spread_visual.gd` owns subtle candle halos and the event-driven ritual-circle reaction overlay. It does not replace/redraw the Variant C art.
+- `pulse_deal()` reacts the deck and ritual area; `pulse_ritual(kind)` is called from existing deal/Hold/choice/Wizard state changes in `scripts/table/table.gd`.
+- `scripts/core/scene_transition.gd` keeps the existing safe blackout swap, but chooses a very dark veil tint by destination path.
+- `scripts/main.gd` has a one-shot entrance + Start commit.
+- `scripts/run_end/run_end.gd` has a one-shot hierarchy reveal + New Run commit.
+
+Do not increase candle halo opacity aggressively: the current overlay is meant to make authored flames feel alive, not draw new glowing blobs over the plate.
+Do not convert ritual reactions into a permanent rotating/pulsing HUD circle.
+Do not lengthen scene-transition timing; the tint is the polish, the fast swap is still the product requirement.
+
+Local checks after pull:
+1. stay on the table for several seconds and confirm candle flicker is barely perceptible rather than distracting;
+2. deal, Hold, choose a card, accept/refuse a wager and trigger meddling if available — center-table reactions should be momentary;
+3. traverse table → event/battle → reward/table and confirm transitions remain fast/dark;
+4. view Main Menu and Run End once and confirm entry motion does not delay input materially.
+
 ### Motion Pass 3 — battle commands/results is live
 
 Runtime changes are concentrated in `scripts/battle/battle.gd`:
