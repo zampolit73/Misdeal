@@ -324,47 +324,51 @@ func _spawn_encounter() -> void:
 
 
 func _get_party_spawn_positions() -> Array[Vector2]:
+	# Positions are in the original encounter coordinate space and are
+	# reprojected onto the walkable floor in _spawn_unit. Wider staggering
+	# prevents the enlarged pixel-art silhouettes from merging at 1280x720.
 	match encounter.encounter_id:
 		"gallows_volley", "grave_crossfire", "firing_square":
 			match RunState.get_party_size():
 				1:
-					return [Vector2(220, 305)]
+					return [Vector2(290, 305)]
 				2:
-					return [Vector2(220, 245), Vector2(220, 365)]
+					return [Vector2(205, 245), Vector2(425, 365)]
 				_:
-					return [Vector2(220, 225), Vector2(220, 305), Vector2(220, 385)]
+					return [Vector2(185, 225), Vector2(330, 305), Vector2(480, 385)]
 		"bone_crush", "bone_swarm":
 			match RunState.get_party_size():
 				1:
-					return [Vector2(240, 220)]
+					return [Vector2(275, 220)]
 				2:
-					return [Vector2(210, 165), Vector2(210, 335)]
+					return [Vector2(205, 165), Vector2(435, 335)]
 				_:
-					return [Vector2(170, 165), Vector2(170, 335), Vector2(390, 335)]
+					return [Vector2(210, 165), Vector2(340, 335), Vector2(500, 365)]
 		"ossuary_gate", "last_bell", "bone_ritual":
 			match RunState.get_party_size():
 				1:
-					return [Vector2(145, 245)]
+					return [Vector2(220, 245)]
 				2:
-					return [Vector2(145, 160), Vector2(425, 325)]
+					return [Vector2(205, 190), Vector2(445, 325)]
 				_:
-					return [Vector2(145, 150), Vector2(145, 335), Vector2(425, 245)]
+					return [Vector2(190, 175), Vector2(285, 365), Vector2(445, 260)]
 		"bone_warden":
 			match RunState.get_party_size():
 				1:
-					return [Vector2(250, 245)]
+					return [Vector2(300, 245)]
 				2:
-					return [Vector2(220, 175), Vector2(220, 315)]
+					return [Vector2(205, 190), Vector2(445, 350)]
 				_:
-					return [Vector2(205, 165), Vector2(310, 245), Vector2(205, 325)]
+					return [Vector2(190, 175), Vector2(340, 265), Vector2(500, 350)]
 		_:
 			match RunState.get_party_size():
 				1:
-					return [Vector2(270, 245)]
+					return [Vector2(300, 245)]
 				2:
-					return [Vector2(235, 180), Vector2(235, 315)]
+					return [Vector2(200, 205), Vector2(435, 340)]
 				_:
-					return [Vector2(280, 140), Vector2(210, 245), Vector2(280, 355)]
+					return [Vector2(185, 195), Vector2(335, 280), Vector2(490, 370)]
+
 
 func _get_placement_regions() -> Array[Rect2]:
 	match encounter.encounter_id:
