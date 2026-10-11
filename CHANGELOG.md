@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+### Changed — Unit Readability Pass (2026-10-11)
+
+- Enlarged live combat art silhouettes by about 10% for heroes, 8% for regular enemies and 5% for the boss, while keeping combat radii/physics unchanged.
+- Tuned restrained cold/warm sprite contours and a subtle dark local backdrop to distinguish units on dense arena art without neon outlines.
+- Kept contact shadows aligned with adjusted sprite anchors and moved health/name offsets to accommodate larger artwork.
+- Staggered hero-only initial trio/duo positions inside each legal battlefield placement profile, including split lanes and two pockets.
+- Widened the mouse pickup hit region over visible hero sprite art so dragging the enlarged figures is reliable.
+- Preserved approved arena images, drag-only deployment glow, all enemy composition/AI, tactical orders and battle balance.
+
+
 ### Changed — quieter battle placement feedback (2026-10-11)
 
 - Replaced always-on outlined deployment rectangles and 3×2 floor markers with a subtle floor glow that appears **only while dragging a hero** and derives from the true legal placement regions.
