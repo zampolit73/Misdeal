@@ -163,18 +163,21 @@ V9 additionally keeps larger source masters under `assets/source_archive/visual_
 
 If a future pass needs a different crop or export, start from the archived master where available rather than regenerating a new scene.
 
-## Combat Expansion v1 temporary card-art aliases — 2026-10-11
+## Combat Expansion v1 dedicated visual set — 2026-10-11
 
-These six gameplay-test cards intentionally reuse semantically adjacent approved card art through `CardArtCatalog.COMBAT_EXPANSION_ART_ALIAS`; this is not final unique-art coverage:
+The six gameplay-test encounters now have approved dedicated arena and card exports.
 
-| New card | Temporary approved source |
-| --- | --- |
-| `bone_swarm` | `bone_crush` |
-| `grave_crossfire` | `graveyard_ambush` |
-| `iron_wall` | `crypt_guard` |
-| `last_bell` | `grave_bell` |
-| `firing_square` | `gallows_volley` |
-| `bone_ritual` | `ossuary_gate` |
+| Encounter | Battle backdrop | Table card |
+| --- | --- | --- |
+| `bone_swarm` | `assets/pixel/battle/arenas/combat_expansion_v1/bone_swarm.webp` | `assets/pixel/ui/combat_expansion_v1/cards/bone_swarm_card.webp` |
+| `grave_crossfire` | `assets/pixel/battle/arenas/combat_expansion_v1/grave_crossfire.webp` | `assets/pixel/ui/combat_expansion_v1/cards/grave_crossfire_card.webp` |
+| `iron_wall` | `assets/pixel/battle/arenas/combat_expansion_v1/iron_wall.webp` | `assets/pixel/ui/combat_expansion_v1/cards/iron_wall_card.webp` |
+| `last_bell` | `assets/pixel/battle/arenas/combat_expansion_v1/last_bell.webp` | `assets/pixel/ui/combat_expansion_v1/cards/last_bell_card.webp` |
+| `firing_square` | `assets/pixel/battle/arenas/combat_expansion_v1/firing_square.webp` | `assets/pixel/ui/combat_expansion_v1/cards/firing_square_card.webp` |
+| `bone_ritual` | `assets/pixel/battle/arenas/combat_expansion_v1/bone_ritual.webp` | `assets/pixel/ui/combat_expansion_v1/cards/bone_ritual_card.webp` |
 
-Likewise, `bone_raider` currently uses the production `bone_thrall` silhouette and `crypt_sentinel` uses the production `crypt_guard` silhouette. If the new mechanical roles survive playtesting, they should receive dedicated art in a targeted follow-up pass.
+Production sizing:
+- battle: 1280×720 WebP;
+- card: 448×274 WebP.
 
+These exports were cropped from the six user-approved composite concepts generated for Combat Expansion v1. The former semantic card aliases are retired. Bone Raider and Crypt Sentinel still intentionally reuse existing production unit silhouettes pending mechanical validation.
