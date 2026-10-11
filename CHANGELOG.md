@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Fixed — Knight foot alignment (2026-10-12)
+
+- Fine-tuned Knight's visual-only floor offset from −6 px to −8 px, without touching Ranger or other units. Visual check in local Godot pending.
+
+
 ### Fixed — Knight ground offset fine-tune (2026-10-12)
 
 - Changed the Knight's visual-only floor offset from −4 px to −6 px to match the Ranger after side-by-side gameplay screenshots; no scene layout, animation atlas or combat logic change. Local Godot visual verification pending.
