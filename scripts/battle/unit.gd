@@ -388,7 +388,11 @@ func _input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			if global_position.distance_to(get_global_mouse_position()) <= body_radius + 10.0:
+			# Use the visible miniature silhouette for picking; physics radius is
+			# smaller and made clicking enlarged pixel art feel unreliable.
+			var local_click := to_local(get_global_mouse_position())
+			var sprite_pick_rect := Rect2(Vector2(-42.0, -72.0), Vector2(84.0, 116.0))
+			if sprite_pick_rect.has_point(local_click) or local_click.length() <= body_radius + 10.0:
 				dragging = true
 				drag_origin = position
 				drag_offset = position - _mouse_position_in_parent()
