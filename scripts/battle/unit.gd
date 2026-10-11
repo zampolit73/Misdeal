@@ -159,7 +159,8 @@ func _ready() -> void:
 	name_label.visible = team == 0 or is_boss or show_enemy_name
 	art_sprite.texture = _get_art_texture()
 	rim_sprite.texture = art_sprite.texture
-	var sprite_scale: float = 1.10 if is_boss else 1.08
+	# Keep the nearest-filtered silhouettes large enough to read against detailed arenas.
+	var sprite_scale: float = 1.18 if is_boss else 1.16
 	art_sprite.scale = Vector2.ONE * (sprite_scale * visual_scale)
 	base_sprite_scale = art_sprite.scale
 	idle_phase = fmod(float(get_instance_id()) * 0.731, TAU)
