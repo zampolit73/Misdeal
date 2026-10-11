@@ -1103,10 +1103,11 @@ func _draw() -> void:
 		draw_arc(Vector2.ZERO, ring_radius + 5.0, 0.0, TAU, 36, Color(0.92, 0.58, 0.20, 0.82), 2.0)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
-	if placement_enabled and team == 0 and alive:
-		var placement_color := Color(0.93, 0.79, 0.56, 0.98) if dragging else Color(0.80, 0.66, 0.44, 0.64)
+	if placement_enabled and team == 0 and alive and dragging:
+		# The placement marker follows the actively moved hero only.
+		var placement_color := Color(0.93, 0.79, 0.56, 0.82)
 		draw_set_transform(Vector2(0.0, 36.0), 0.0, Vector2(1.0, 0.35))
-		draw_arc(Vector2.ZERO, 32.0, 0.0, TAU, 36, placement_color, 2.0)
+		draw_arc(Vector2.ZERO, 32.0, 0.0, TAU, 36, placement_color, 1.5)
 		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 	if alive and target != null and is_instance_valid(target) and target.alive:
