@@ -357,8 +357,11 @@ static func apply_battle_order_choice(button: Button, selected: bool, accent: Co
 	if base == null:
 		return
 	var style := base.duplicate() as StyleBoxFlat
-	style.bg_color = Color(0.055 + accent.r * 0.070, 0.038 + accent.g * 0.038, 0.028 + accent.b * 0.022, 0.91)
-	style.border_color = Color(accent.r, accent.g, accent.b, 0.96)
+	# Bronze remains the default inactive button, gold marks active orders.
+	# Special sacrifice/defiance orders retain their ember/steel identity.
+	var selected_accent: Color = GOLD if accent == BRONZE else accent
+	style.bg_color = Color(0.055 + selected_accent.r * 0.070, 0.038 + selected_accent.g * 0.038, 0.028 + selected_accent.b * 0.022, 0.91)
+	style.border_color = Color(selected_accent.r, selected_accent.g, selected_accent.b, 0.96)
 	_set_border(style, BORDER_NORMAL)
 	style.shadow_color = Color(0.0, 0.0, 0.0, 0.36)
 	style.shadow_size = 4
