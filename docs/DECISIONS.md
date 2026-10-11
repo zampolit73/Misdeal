@@ -1956,3 +1956,15 @@ Use actual authored animation cells for visible `idle`, `walk`, `attack`, `hit` 
 
 Pack 1 only animates approved/generated Knight, Ranger, male Mage, Skeleton and Bone Archer sheets. Other visual roles and missing/corrupt atlas files preserve the static v4 fallback. The male Mage character attack sequence skips a projectile-only frame, with gameplay projectile FX separate. Do not silently delay/rebalance hit application or alter combat movement to match art; contact-frame timing may be a separately tested follow-up. No Godot runtime smoke has yet been reported.
 
+
+
+## D117 — Ground Pack 1 pixel frames by the shared contact sole; preserve originals
+
+Date: 2026-10-12  
+Status: accepted after user gameplay screenshots
+
+Generated 6×5 spritesheets may bleed disconnected limbs into adjacent frame rows; these **must be cleaned as artwork**, not disguised by shrinking all units or raising the entire arena. For Pack 1 each new asset is versioned `combat_units_anim_v2`, retains the authored posing, strips only detached upper-row fragments, and aligns the lowest solid nontransparent contact pixel of each frame to y=92 (out of 96).
+
+The real combat shadow ring is at local y=36 in `BattleUnit._draw()`. Derive animated art origin from that floor height and the actual pixel-art scale, including visual_scale, so that the current animated sole meets its shadow. Preserve the older static v4 presentation baseline for any unsupported role or broken atlas. Attack tween return must use the same calculated rest position. A slower non-synchronized idle plus small walk-state hysteresis improves readability without gameplay changes.
+
+Never rebalance speed, change collision/deployment bounds or repaint approved arena art to compensate for a flawed frame atlas. Keep the original v1 source assets for rollback and verify new animation poses on real Godot screenshots. The runtime still needs local smoke verification.
