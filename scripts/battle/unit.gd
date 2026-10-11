@@ -546,10 +546,11 @@ func _process(delta: float) -> void:
 			if attack_cooldown <= 0.0:
 				_attack_target()
 
-	var actual_step := velocity.limit_length(movement_speed * 1.35) * delta
-	position += actual_step
+	var prior_position := position
+	position += velocity.limit_length(movement_speed * 1.35) * delta
 	_clamp_to_combat_bounds()
-	visual_moving = actual_step.length_squared() > 0.20
+	# Do not play walking frames while pinned against the arena boundary.
+	visual_moving = position.distance_squared_to(prior_position) > 0.20
 	z_index = int(position.y)
 	queue_redraw()
 
