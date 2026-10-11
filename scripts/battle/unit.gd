@@ -14,6 +14,7 @@ const ENEMY_DISPLAY_SCALE := 1.25
 const BOSS_DISPLAY_SCALE := 1.24
 
 const V4_UNIT_ATLAS_PATH := "res://assets/pixel/units/combat_units_v4/atlas.webp.b64"
+const MALE_MAGE_TILE_PATH := "res://assets/pixel/units/combat_units_v4/mage_male.webp.b64"
 
 # Kept for local fallback/rollback if the v4 atlas cannot be decoded.
 const UNIT_SHEET_PARTS: Array[String] = [
@@ -85,6 +86,7 @@ var hit_pulse_tween: Tween
 var attack_tween: Tween
 var death_tween: Tween
 static var shared_unit_sheet_texture: Texture2D
+static var shared_male_mage_texture: Texture2D
 var base_sprite_scale := Vector2.ONE
 var idle_phase := 0.0
 var attack_animating := false
@@ -165,6 +167,10 @@ func _ready() -> void:
 	name_label.visible = team == 0 or is_boss or show_enemy_name
 	art_sprite.texture = _get_art_texture()
 	rim_sprite.texture = art_sprite.texture
+	# Source v4 miniatures look toward screen-right. Enemy units must
+	# face the heroes on the left, not outward toward the arena edge.
+	art_sprite.flip_h = team == 1
+	rim_sprite.flip_h = art_sprite.flip_h
 	# Preserve pixel silhouettes; scale only the art, not physics or hitboxes.
 	var sprite_scale: float = BOSS_DISPLAY_SCALE if is_boss else (HERO_DISPLAY_SCALE if team == 0 else ENEMY_DISPLAY_SCALE)
 	art_sprite.scale = Vector2.ONE * (sprite_scale * visual_scale)
@@ -184,6 +190,11 @@ func _ready() -> void:
 	queue_redraw()
 
 func _get_art_texture() -> Texture2D:
+	if visual_role == "mage":
+		var male_mage := _get_male_mage_texture()
+		if male_mage != null:
+			return male_mage
+
 	var tile := Vector2i(-1, -1)
 	match visual_role:
 		"knight":
@@ -218,6 +229,28 @@ func _get_art_texture() -> Texture2D:
 		Vector2(UNIT_TILE_SIZE, UNIT_TILE_SIZE)
 	)
 	return atlas
+
+func _get_male_mage_texture() -> Texture2D:
+	if shared_male_mage_texture != null:
+		return shared_male_mage_texture
+	if not FileAccess.file_exists(MALE_MAGE_TILE_PATH):
+		push_warning("Male mage tile not found, falling back to the v4 atlas.")
+		return null
+
+	var encoded := FileAccess.get_file_as_string(MALE_MAGE_TILE_PATH).strip_edges()
+	var bytes := Marshalls.base64_to_raw(encoded)
+	if bytes.is_empty():
+		push_warning("Male mage tile Base64 decoding failed, falling back to v4.")
+		return null
+
+	var mage_image := Image.new()
+	if mage_image.load_webp_from_buffer(bytes) != OK or mage_image.get_width() != 96 or mage_image.get_height() != 96:
+		push_warning("Male mage tile WebP invalid, falling back to v4.")
+		return null
+
+	shared_male_mage_texture = ImageTexture.create_from_image(mage_image)
+	return shared_male_mage_texture
+
 
 func _get_unit_sheet_texture() -> Texture2D:
 	if shared_unit_sheet_texture != null:
@@ -448,6 +481,7 @@ func _overlaps_friendly_unit() -> bool:
 	return false
 
 func _process(delta: float) -> void:
+	_update_unit_facing()
 	_update_idle_visual(delta)
 	_sync_rim_visual()
 
@@ -754,11 +788,23 @@ func _update_idle_visual(delta: float) -> void:
 		base_sprite_scale.y * breathe
 	)
 
+func _update_unit_facing() -> void:
+	# Keep the default side-on battle composition during deployment;
+	# during combat, turn toward the living current target.
+	if not alive:
+		return
+	if combat_started and target != null and is_instance_valid(target) and target.alive:
+		var delta_x := target.global_position.x - global_position.x
+		if absf(delta_x) > 12.0:
+			art_sprite.flip_h = delta_x < 0.0
+
+
 func _sync_rim_visual() -> void:
 	if rim_sprite == null or art_sprite == null:
 		return
 
 	rim_sprite.position = art_sprite.position + Vector2(0.0, 1.0)
+	rim_sprite.flip_h = art_sprite.flip_h
 	rim_sprite.rotation = art_sprite.rotation
 	rim_sprite.scale = art_sprite.scale * 1.06
 	rim_sprite.visible = art_sprite.visible
