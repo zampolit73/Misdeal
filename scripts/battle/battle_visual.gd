@@ -95,25 +95,11 @@ func _draw_ossuary_atmosphere() -> void:
 	draw_rect(Rect2(0.0, size.y - 110.0, size.x, 110.0), Color(0.30, 0.12, 0.035, 0.014 + breathe * 0.010))
 
 func _draw_bone_crush_atmosphere() -> void:
+	# Atmospheric shading only. Deployable chalk marks are drawn by the
+	# live floor overlay from BattleUnit's actual legal placement regions.
 	var breathe := 0.5 + 0.5 * sin(pulse * 1.7)
 	draw_rect(Rect2(Vector2.ZERO, size), Color(0.015, 0.020, 0.028, 0.018 + breathe * 0.006))
 
-	var chalk := Color(0.64, 0.57, 0.45, 0.24)
-	var chalk_faint := Color(0.64, 0.57, 0.45, 0.11)
-	var top_band := Rect2(35.0, 115.0, 480.0, 130.0)
-	var bottom_band := Rect2(35.0, 270.0, 480.0, 130.0)
-
-	var bands: Array[Rect2] = [top_band, bottom_band]
-	for band in bands:
-		draw_line(band.position, Vector2(band.end.x, band.position.y), chalk_faint, 1.0)
-		draw_line(Vector2(band.position.x, band.end.y), band.end, chalk_faint, 1.0)
-
-		for marker_index in range(3):
-			var x: float = band.position.x + 90.0 + float(marker_index) * 135.0
-			var y: float = band.position.y + band.size.y * 0.5
-			draw_line(Vector2(x - 12.0, y), Vector2(x + 12.0, y), chalk, 2.0)
-			draw_line(Vector2(x, y - 12.0), Vector2(x, y + 12.0), chalk, 2.0)
-			draw_line(Vector2(x - 7.0, y - 7.0), Vector2(x + 7.0, y + 7.0), chalk_faint, 1.0)
 
 func _draw_warden_atmosphere() -> void:
 	var intensity := 0.5 + 0.5 * sin(pulse * 3.3)
