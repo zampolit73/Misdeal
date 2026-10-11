@@ -12,4 +12,5 @@ type_label = "БОЙ"
 tier = 2
 resolution_type = "combat"
 target_path = "res://resources/encounters/bone_ritual.tres"
+art_path = "res://assets/pixel/ui/combat_expansion_v1/cards/bone_ritual_card.webp"
 prototype_result_text = ""
