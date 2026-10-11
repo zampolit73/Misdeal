@@ -1,3 +1,11 @@
+### Unit Animation Pack 1 — active for five roles (2026-10-12)
+
+- Five 576×480 transparent WebP atlases stored as Base64 text in `assets/pixel/units/combat_units_anim_v1/{knight,ranger,mage,skeleton,bone_archer}.webp.b64` (30 fixed 96×96 slots, only valid cells populated).
+- Generated input sheets: `пиксельный_спрайт_лист_синего_рыцаря.png`, `пиксельный_спрайт_лист_лесного_следопыта.png`, `пиксельный_атлас_тёмного_мага.png` (male Mage), `пиксельный_спрайт_лист_скелета_воина.png`, `пиксельный_спрайт_лист_скелета_лучника.png`, each 1374×1145 (6×5 × 229px).
+- Layout: row 0 Idle (4 frames), row 1 Walk (6), row 2 Attack (6; male Mage skips isolated projectile slot and uses 5), row 3 Hit (3), row 4 Death (6). Framerates and state rules in `scripts/battle/unit_animation_library.gd`; `BattleUnit` swaps frame textures and syncs rim texture.
+- Remaining aliases and units still use static v4. Approved v4 atlas/male-Mage override stay in repo for safe fallback. This animation pass does not modify arena background art or existing map/grid conditions.
+- F6 gallery: `res://scenes/dev/unit_animation_pack1_preview.tscn`. Full mapping and visual QA in `docs/UNIT_ANIMATION_PACK1.md`. Godot runtime QA pending.
+
 ### Combat Miniatures — approved Unit Art v4 (active 2026-10-11)
 
 - Canonical runtime 3×3 transparent WebP atlas, 288×288, 96×96 per sprite: `assets/pixel/units/combat_units_v4/atlas.webp.b64`.
