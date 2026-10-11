@@ -1,3 +1,9 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Knight ground offset −10 px
+
+User shared a three-hero Cemetery Ambush screenshot and suggested lifting Knight another couple pixels. **Done in GitHub `main`**: `scripts/battle/unit.gd`, `ROLE_FLOOR_OFFSETS["knight"]`: **−8.0 → −10.0**, commit `8d69a5812d98483f7c78c7fc800d50bcb7d09ee7`. No change to Ranger (−6px), Mage, enemies, animation atlases, logical placement/physics or game balance. The existing role-specific `_art_rest_position()` provides the final visual correction in all states. Next: user `git pull` and view Knight feet against blue floor ring during placement/attack. Godot runtime not tested here. No need to re-ask GitHub access. Historical notes below are superseded where they mention Knight −8px.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Knight optical height −8 px
 
 User asked for another +2 px visual lift of Knight after the previous Knight/Ranger parity test. **Successfully committed directly to GitHub `main`**: `scripts/battle/unit.gd` now sets `ROLE_FLOOR_OFFSETS["knight"] = -8.0` (formerly `-6.0`), commit `2452e6945396c257ce8ce5b71df15f012a1e7aca`. Ranger remains `-6.0`. Only the sprite's art-position calibration changed; runtime world position, animations, attack mechanics, shadows and UI are untouched. No local Godot test in this session. Next: user `git pull`, compare Knight foot contact in Bone Swarm and Grave Crossroads; adjust only Knight's offset further if warranted by screenshots. GitHub remains source of truth; all historical context below.
