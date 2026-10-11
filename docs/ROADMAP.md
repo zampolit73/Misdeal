@@ -1,3 +1,14 @@
+## Pack 1 animation hotfix — row-bleed, floor contact, startup jitter (2026-10-12)
+
+- [x] Inspect source atlases; confirm detached legs from previous row in Knight Walk and smaller enemy cross-row fragments.
+- [x] Generate versioned cleaned `combat_units_anim_v2` for Knight, Ranger, Mage, Skeleton and Bone Archer; align all 105 actively used frames to consistent y=92 sole.
+- [x] Switch SpriteFrames loader to v2, slow Idle 5→2.7 fps and Walk 9→7 fps.
+- [x] Synchronize art (including attack tween return) to y=36 contact-shadow floor using actual role sprite scale.
+- [x] Add randomized initial idle phase and short walk/idle hysteresis.
+- [x] Verify exact GitHub payload match and frame contact-line metrics; preserve v1 rollback files.
+- [ ] **LOCAL GATE**: `git pull` Godot 4.7.x, check Bone Swarm / Graveyard Ambush at start and when hitting/retreating. Confirm no extra floating Knight feet, no buried skeleton torsos and no idle strobe.
+- [ ] F6 `scenes/dev/unit_animation_pack1_preview.tscn` and spot-check all 5 states for all 5 roles. Fix screenshots if any source frame remains visually malformed before proceeding to Pack 2.
+
 ## Unit Animation Pack 1 — five live frame-animated roles (2026-10-12)
 
 - [x] Extract five generated 6×5 / 229px spritesheets to 96px transparent gameplay frames and package as GitHub-safe Base64 WebP text.
