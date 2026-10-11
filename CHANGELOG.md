@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Fixed — unit facing and male Mage (2026-10-12)
+
+- Enemy combat miniatures start facing toward the hero side and turn to face their current target as combat progresses; rim silhouettes mirror with them instead of appearing backwards after encounters shift.
+- Replaced only the active Mage role art with the approved bearded male Mage 96×96 transparent WebP tile; kept the original 3×3 v4 atlas as fallback and archived a lossless PNG source for future edits.
+- No changes to attack mechanics, AI targeting, stats, arenas or player placements.
+
+
 ### Added — Approved Combat Unit Art v4 (2026-10-11)
 
 - Replaced all nine combat miniature atlas roles with approved dark-Gothic character cutouts (Knight, Ranger, Mage, Skeleton, Bone Archer, Grave Bellkeeper, Bone Thrall, Crypt Guard, Bone Warden).
