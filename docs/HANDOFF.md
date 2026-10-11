@@ -1,3 +1,30 @@
+### Combat Expansion v1 dedicated arenas/cards are live
+
+All six new fights now have dedicated approved production art:
+- `bone_swarm`;
+- `grave_crossfire`;
+- `iron_wall`;
+- `last_bell`;
+- `firing_square`;
+- `bone_ritual`.
+
+Implementation:
+- native 1280×720 WebP backdrops: `assets/pixel/battle/arenas/combat_expansion_v1/`;
+- dedicated 448×274 card art: `assets/pixel/ui/combat_expansion_v1/cards/`;
+- encounter `.tres` files now use unique arena IDs;
+- `scripts/battle/authored_backdrop.gd` selects exact expansion backdrops;
+- `scripts/ui/card_art_catalog.gd` runtime-decodes exact expansion cards; the temporary alias map is removed;
+- `battle_visual.gd` / `unit.gd` keep the closest validated atmosphere/tint families.
+
+The only intentional visual reuse left in Combat Expansion v1 is enemy-unit silhouettes: Bone Raider still uses the Bone Thrall family, Crypt Sentinel the Crypt Guard family, pending gameplay validation.
+
+Local check after pull:
+1. start a fresh run;
+2. inspect all six new cards when they appear — each must have unique art;
+3. enter each new fight — each must show its matching unique arena;
+4. verify heroes/enemies still render and remain on the floor;
+5. report any arena whose playable floor visually disagrees with its current deployment bounds.
+
 ### Combat Expansion v1 is live
 
 Six new combat cards are in the Act 1 random pool:
