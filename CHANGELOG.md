@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Changed — Design System 1.0 Package 2 Components (2026-10-12)
+
+- Moved duplicate compact battle panel/button `StyleBoxFlat` code from `battle.gd` into the shared `MisdealUIKit`, keeping prior visual numbers and game geometry intact.
+- Added opt-in components: selected button styling, inset card surface, readable tooltip panel/native tooltip factory, plus reusable tooltip-enabled Button.
+- Added isolated interactive Components preview scene for default/hover/pressed/disabled/selected buttons, cards, HUD modular plate and Russian hover tooltip.
+- Updated Design System docs and continuity files. Existing game art, card/battle mechanics, HUD positions and table presentation are unchanged; Godot F6/local gameplay review pending.
+
+
 ### Added — Misdeal Design System 1.0 Foundation (2026-10-12)
 
 - Added shared design tokens to the already-used `MisdealUIKit`: semantic palette, typographic roles, 4px spacing, border weights, button-height guidelines and advisory UI layer bands for a 1280×720 baseline.
