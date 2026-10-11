@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Added — Misdeal Design System 1.0 Foundation (2026-10-12)
+
+- Added shared design tokens to the already-used `MisdealUIKit`: semantic palette, typographic roles, 4px spacing, border weights, button-height guidelines and advisory UI layer bands for a 1280×720 baseline.
+- Added opt-in `apply_text_role` and `apply_button_minimum` helpers without changing existing table/combat sizing or navigation.
+- Added `docs/DESIGN_SYSTEM.md` and a standalone in-Godot UI review scene at `scenes/dev/design_system_foundation_preview.tscn`, previewing palette, sample panels, buttons and Cyrillic type.
+- All approved gameplay scenes, art and mechanics remain unchanged; new reusable component/style migration and any screen restyling are separate reviewed follow-up packages.
+
+
 ### Fixed — unit facing and male Mage (2026-10-12)
 
 - Enemy combat miniatures start facing toward the hero side and turn to face their current target as combat progresses; rim silhouettes mirror with them instead of appearing backwards after encounters shift.
