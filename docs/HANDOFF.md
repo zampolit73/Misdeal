@@ -1,3 +1,45 @@
+# CURRENT SESSION CHECKPOINT — Combat Expansion art integrated
+
+Date: 2026-10-11
+
+This is the current continuation point for the next chat.
+
+The user reported that Act 1 runs felt repetitive, so Combat Expansion v1 was added first, then the six new fights received approved dedicated visual concepts and those visuals were integrated into GitHub.
+
+Current live expansion fights:
+- `bone_swarm` — КОСТЯНОЙ РОЙ;
+- `grave_crossfire` — МОГИЛЬНЫЙ ПЕРЕКРЁСТОК;
+- `iron_wall` — ЖЕЛЕЗНАЯ СТЕНА;
+- `last_bell` — ПОСЛЕДНИЙ ЗВОН;
+- `firing_square` — РАССТРЕЛЬНАЯ ПЛОЩАДЬ;
+- `bone_ritual` — КОСТЯНОЙ РИТУАЛ.
+
+Dedicated production exports are already live:
+- arenas: `assets/pixel/battle/arenas/combat_expansion_v1/*.webp` at 1280×720;
+- table cards: `assets/pixel/ui/combat_expansion_v1/cards/*_card.webp` at 448×274;
+- `scripts/battle/authored_backdrop.gd` routes each expansion `arena_id` to its own authored backdrop;
+- `scripts/ui/card_art_catalog.gd` loads dedicated card art instead of the temporary semantic aliases;
+- every new EncounterData now owns a matching dedicated `arena_id`.
+
+The original approved generated composite concepts are archived under `assets/source_archive/combat_expansion_v1/*_composite_master.webp` so future recrops/exports do not require regenerating the scenes.
+
+Important current gameplay state:
+- the six new cards are in the real Act 1 random tier pools, two per tier;
+- the act remains twelve resolved pre-boss cards;
+- Bone Raider and Crypt Sentinel still intentionally reuse the Bone Thrall / Crypt Guard unit silhouettes. Their mechanics should be validated before commissioning dedicated unit art;
+- battle spawning had a severe empty-arena regression earlier in the motion work. The stable battle core was restored and locally confirmed working. Do not reintroduce broad async attack/controller animation patches;
+- current battle polish is isolated visual-only feedback (tactical tells, Sacrifice/Defiance state FX, hit readability).
+
+Immediate next local action after `git pull`:
+1. start a fresh run so the expanded random pool is rebuilt;
+2. confirm the six new table cards show their new dedicated art rather than old aliases;
+3. enter any new fight that appears and confirm the matching new arena backdrop loads, heroes/enemies still spawn, and deployment remains usable;
+4. note which new encounters are fun/redundant/overtuned before adding more fights or creating dedicated Raider/Sentinel art.
+
+Do not redesign the approved six arena/card concepts unless the user asks. They were explicitly approved and should now be treated as the visual source of truth for Combat Expansion v1.
+
+---
+
 ### Combat Expansion v1 dedicated arenas/cards are live
 
 All six new fights now have dedicated approved production art:

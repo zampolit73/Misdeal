@@ -1,5 +1,11 @@
 # Misdeal — Project State
 
+## Session checkpoint — Combat Expansion art/source masters archived — 2026-10-11
+
+The six approved Combat Expansion v1 arena/card concepts are not just generated mockups anymore: dedicated production exports are wired live, and the original composite masters are archived in GitHub under `assets/source_archive/combat_expansion_v1/` for future recrops.
+
+Next verification is local only: fresh run, new card art, matching arena art, normal unit spawn/deployment. No additional combat-controller changes are required for this checkpoint.
+
 ## Combat Expansion v1 dedicated visual pass — 2026-10-11
 
 The six recently added combat encounters have graduated from temporary art reuse to dedicated production visuals approved in the current session.

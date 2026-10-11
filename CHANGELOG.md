@@ -4,6 +4,7 @@
 
 ### Added
 
+- Archived the six user-approved Combat Expansion v1 composite source masters under `assets/source_archive/combat_expansion_v1/` and added a top-level handoff checkpoint so a new chat can continue from the fully integrated arena/card-art state without reconstructing this session.
 - Added Combat Expansion v1: six new Act 1 combat cards are now in the random tier pools — КОСТЯНОЙ РОЙ, МОГИЛЬНЫЙ ПЕРЕКРЁСТОК, ЖЕЛЕЗНАЯ СТЕНА, ПОСЛЕДНИЙ ЗВОН, РАССТРЕЛЬНАЯ ПЛОЩАДЬ and КОСТЯНОЙ РИТУАЛ.
 - Added two lightweight enemy stat archetypes for encounter variety: Костяной налётчик (fast fragile pressure) and Склепный часовой (lighter AOE guard). They intentionally reuse the closest existing production combat silhouettes for this gameplay-validation pass.
 - New fights reuse proven arena/deployment profiles: swarm split lanes, crossfire/firing-square deep-line placement, and support/ritual pocket placement. Threat tags and preparation cues expose the tactical problem before Fight.

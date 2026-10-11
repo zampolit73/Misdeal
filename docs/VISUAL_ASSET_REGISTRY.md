@@ -181,3 +181,16 @@ Production sizing:
 - card: 448×274 WebP.
 
 These exports were cropped from the six user-approved composite concepts generated for Combat Expansion v1. The former semantic card aliases are retired. Bone Raider and Crypt Sentinel still intentionally reuse existing production unit silhouettes pending mechanical validation.
+
+### Combat Expansion v1 archived composite masters
+
+The approved generated composites used to derive the live arena/card exports are preserved for recropping:
+
+- `assets/source_archive/combat_expansion_v1/bone_swarm_composite_master.webp`
+- `assets/source_archive/combat_expansion_v1/grave_crossfire_composite_master.webp`
+- `assets/source_archive/combat_expansion_v1/iron_wall_composite_master.webp`
+- `assets/source_archive/combat_expansion_v1/last_bell_composite_master.webp`
+- `assets/source_archive/combat_expansion_v1/firing_square_composite_master.webp`
+- `assets/source_archive/combat_expansion_v1/bone_ritual_composite_master.webp`
+
+These 1055×1491 source composites contain the approved arena concept in the upper portion and the approved card illustration in the lower portion. Use these masters rather than regenerating the concepts if a crop or export needs adjustment.
