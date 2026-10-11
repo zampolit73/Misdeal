@@ -1,13 +1,13 @@
 class_name MisdealUnitAnimationLibrary
 extends RefCounted
 
-# Anim Pack 1: transparent 576x480 WebP atlases, each with 6x5 cells of
+# Grounded Animation Pack 1 v2: transparent 576x480 WebP, 6x5 cells of
 # 96x96. They are stored as Base64 text for Godot export compatibility.
 # Existing v4 still provides all fallback static units.
 const CELL_SIZE := 96
 const COLUMNS := 6
 const ROWS := 5
-const BASE_DIR := "res://assets/pixel/units/combat_units_anim_v1/"
+const BASE_DIR := "res://assets/pixel/units/combat_units_anim_v2/"
 const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer"]
 
 static var _frames_cache: Dictionary = {}
@@ -49,8 +49,8 @@ static func get_frames(role: String) -> SpriteFrames:
 	var frames := SpriteFrames.new()
 	if frames.has_animation("default"):
 		frames.remove_animation("default")
-	_add_row(frames, atlas, "idle", 0, 4, 5.0, true)
-	_add_row(frames, atlas, "walk", 1, 6, 9.0, true)
+	_add_row(frames, atlas, "idle", 0, 4, 2.7, true)
+	_add_row(frames, atlas, "walk", 1, 6, 7.0, true)
 	_add_row(frames, atlas, "attack", 2, 5 if role == "mage" else 6, 14.0 if role == "mage" else 16.0, false, role)
 	_add_row(frames, atlas, "hit", 3, 3, 12.0, false)
 	_add_row(frames, atlas, "death", 4, 6, 10.0, false)
