@@ -1968,3 +1968,13 @@ Generated 6×5 spritesheets may bleed disconnected limbs into adjacent frame row
 The real combat shadow ring is at local y=36 in `BattleUnit._draw()`. Derive animated art origin from that floor height and the actual pixel-art scale, including visual_scale, so that the current animated sole meets its shadow. Preserve the older static v4 presentation baseline for any unsupported role or broken atlas. Attack tween return must use the same calculated rest position. A slower non-synchronized idle plus small walk-state hysteresis improves readability without gameplay changes.
 
 Never rebalance speed, change collision/deployment bounds or repaint approved arena art to compensate for a flawed frame atlas. Keep the original v1 source assets for rollback and verify new animation poses on real Godot screenshots. The runtime still needs local smoke verification.
+
+
+## D118 — Per-role optical floor contact offsets do not move logical units
+
+Date: 2026-10-12  
+Status: accepted from in-game screenshot feedback
+
+Normalize animated source-frame foot contact in asset space first (D117), **then** allow a small role-specific visual-only signed Y offset in `BattleUnit` to align optical ground contact with the battle arena. Do not move the `BattleUnit` position, retune drag/placement bounds, AI speed, hitboxes, depth sorting or the background image to fake correct foot contact. Static v4 enemies also receive explicit role offsets when visually buried.
+
+A single `_art_rest_position()` applies scale-aware animated positioning plus `ROLE_FLOOR_OFFSETS`, or base position plus role offset for static miniatures. All idle/attack/rest/death visual paths should rely on it consistently. The initial values are deliberately modest (-4 to -7px) and **require a Godot screenshot check**; subsequent corrections should be per role, not a game-wide visual overhaul.
