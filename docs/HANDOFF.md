@@ -1,3 +1,17 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Knight static v4 fallback to restore readable legs
+
+User explicitly requested replacing the Knight immediately and pushing to GitHub, after repeated screenshots showed animated Knight has no readable legs even with Y lift to -16px. **Change committed directly to main:** `scripts/battle/unit.gd`, code commit `1a1141d7e33c32f5ef3c8aa8da94acfc4bcec6c5`.
+
+- New `STATIC_COMBAT_ART_ROLES := ["knight"]`, and `_ready()` skips the animation frame loader for that role only; calls established `_get_art_texture()` to use existing v4 atlas Knight tile (0,0), which has visible separate leg armor and boots. Unchanged: Ranger, male Mage, Skeleton, Bone Archer real SpriteFrames animations; unsupported enemies static v4.
+- Knight `ROLE_FLOOR_OFFSETS["knight"]` changed `-16.0` → `-8.0` because static atlas boot alpha extends to y≈94/96 and art scale 1.28; extra -8 positions boots near existing ring y=36. Do not reuse animated Knight's offset for static.
+- Retain Knight v1/v2 animation Base64 assets **and** the F6 animation gallery (which still previews the archived animated knight). Art fallback does not change the UnitData, HP/name nodes, combat timing/attack tween/facing, ally/enemy placement, collisions, arena or table art.
+- **Next user:** `git pull` then look at Knight legs in Bone Swarm/Grave Crossroads before and during battle. Visual check local; Godot binary not run here. Redraw actual Knight 5-state atlas before switching animation back; do not solve leg visibility by further Y-offset nudging. Other four role animations remain.
+- Checkpoints updated in `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`, `CHANGELOG.md`, `docs/UNIT_ANIMATION_PACK1.md`.
+
+Historical handoff entries about Knight -16/-12/other role animation status are superseded. Connected GitHub access worked; do not claim otherwise without checking.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Knight sprite floor offset −16 px
 
 The user requested raising Knight another 4px. Implemented and **committed directly into GitHub main**, code commit `11f904b003430f43e6d785a2b1bd4ed80fcc666b`: `scripts/battle/unit.gd` has `ROLE_FLOOR_OFFSETS["knight"] = -16.0`, previously -12.0. Ranger remains -6.0; no other roles, mechanics, hitbox/position, sprite atlas, arenas, scene geometry or gameplay were changed. Check in local Godot after `git pull`, especially Knight's boots to blue ground ring in Bone Swarm. Prior history with Knight -12px is superseded.
