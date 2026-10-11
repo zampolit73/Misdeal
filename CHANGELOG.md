@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Fixed — Knight silhouette readability (2026-10-12)
+
+- Temporarily replaced the malformed Pack 1 animated Knight with the existing static v4 Knight sprite showing readable independent armored legs and boots; Ranger, Mage, Skeleton and Bone Archer remain animated.
+- Restored an appropriate Knight-only v4 floor offset from -16 to -8px instead of endlessly lifting the faulty animated frames. Kept animation atlases for a future proper redraw.
+- Preserved existing combat damage/movement/tactical rules, enemy facing, ring contact and UI. Local Godot visual check pending.
+
+
 ### Fixed — Knight visual floor alignment (2026-10-12)
 
 - Raised the Knight's art-only floor offset by another 4px (`-12.0` → `-16.0`). Other roles and game mechanics unchanged; local visual verification pending.
