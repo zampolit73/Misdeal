@@ -1,3 +1,14 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Male Mage + target-aware enemy facing
+
+The user approved the second full 3×3 character roster specifically with a **male** Mage and reported that all new v4 undead appeared to fight with their backs to the heroes. The user instructed direct GitHub deployment. Implemented on `main`:
+
+1. `assets/pixel/units/combat_units_v4/mage_male.webp.b64` = transparent 96×96 WebP male Mage (bearded purple wizard) taken from the latest approved concept. Lossless tile source `assets/source_archive/unit_art_v4/mage_male_tile.png.b64` is archived. Mage role is loaded separately in `scripts/battle/unit.gd`, with existing v4 atlas fallback. The other eight v4 roles remain unchanged.
+2. `BattleUnit._ready` initializes enemy `ArtSprite.flip_h` to true (faces heroes on left). `_update_unit_facing` checks current target X during combat and flips the art when attacking/repositioning to the opposite side; `_sync_rim_visual` matches rim sprite flip. No code change to AI/target selection/combat metrics or arena presentation.
+
+Important: Existing v4 atlas file itself is *not* overwritten (only Mage's runtime texture is overridden); do not assume the old atlas Mage cell is the active sprite. If the separate tile is absent/invalid, old Mage tile is used as fallback. Local verification in Godot remains required, especially Crypt Patrol, Iron Wall, Warden and target-side swaps. Previous messages saying GitHub write access was unavailable were incorrect: the connected GitHub tool has been used for real commits.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-11 — Unit Art v4 now ACTIVE (nine sprites)
 
 The user approved the full v4 character set and requested immediate integration, following several earlier unsuccessful attempts. **The actual v4 atlas is now committed to `main` and referenced by the battle runtime**, not merely a preview.
