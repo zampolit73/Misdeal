@@ -1911,3 +1911,15 @@ Status: accepted
 All v4 combat sprites should face their opponent. The authored atlas nominally looks screen-right, so enemies appearing on the right start horizontally mirrored, and active combat art updates to the current target's horizontal direction. The `RimSprite` must match the `ArtSprite` mirror orientation. Do not change AI movement/targeting, physical body radii or tactical placement just to correct visual facing.
 
 Approved character art can be refined role-by-role without regenerating or replacing the entire shared 3×3 atlas. The male Mage uses a separate 96×96 transparent WebP override with a fallback to its existing atlas cell; the other eight roles stay on the approved production v4 atlas. Preserve original and lossless source art for rollback, and keep Godot sprites nearest-filtered.
+
+
+## D113 — One incremental UI Foundation, no redesign of approved game screens
+
+Date: 2026-10-12  
+Status: accepted for Design System 1.0 Package 1
+
+The canonical runtime color/spacing/typographic foundation remains **`scripts/ui/misdeal_ui_kit.gd`** because the live card table and battle screen already depend on it. Extend this file with neutral semantic tokens and opt-in methods; do not introduce a parallel styling framework, new font dependency or global singleton merely to make a design-system abstraction.
+
+Use a 1280×720 reference canvas, compact 4px-based spacing, readable Russian copy, subdued squared Gothic controls, and visually quiet battle overlays. Gold communicates hierarchy and choice; glowing embellishments do not substitute for legibility. Advisory UI layer bands must **not** override unit world-depth sorting or the active combat floor contract.
+
+The accepted Variant C tabletop, Arena Redraw v2, Fate Spread and Unit Art v4 are **visual constraints, not targets for wholesale restyling**. Package 1 creates tokens, documented rules and an isolated live preview; Package 2 may unify component styles, and Package 3 may migrate production scenes only after visual inspection. Protect quick-to-play vertical-slice progress.
