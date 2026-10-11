@@ -12,6 +12,21 @@ const ART_BASE_POSITION := Vector2(0.0, -16.0)
 const ANIM_CELL_HEIGHT := 96.0
 const ANIM_SOLE_Y := 92.5
 const FLOOR_CONTACT_Y := 36.0
+# Art-only, local pixel offsets: negative values raise boots above the ring.
+# These are visual corrections, not unit position or movement modifiers.
+const ROLE_FLOOR_OFFSETS := {
+	"knight": -4.0,
+	"ranger": -6.0,
+	"mage": -4.0,
+	"skeleton": -7.0,
+	"bone_archer": -7.0,
+	# Pack 2 enemies still use v4 art; they otherwise remain sunk below
+	# the same y=36 contact shadow because their center is kept at -16.
+	"bone_thrall": -6.0,
+	"grave_bellkeeper": -5.0,
+	"crypt_guard": -6.0,
+	"bone_warden": -6.0,
+}
 const HERO_DISPLAY_SCALE := 1.28
 const ENEMY_DISPLAY_SCALE := 1.25
 const BOSS_DISPLAY_SCALE := 1.24
@@ -200,8 +215,8 @@ func _ready() -> void:
 		name_label.offset_top = 48.0
 		name_label.offset_bottom = 70.0
 	base_sprite_scale = art_sprite.scale
-	if sprite_frames != null:
-		art_sprite.position = _art_rest_position()
+	# Apply the same per-role visual baseline to animated and static v4 art.
+	art_sprite.position = _art_rest_position()
 	idle_phase = fmod(float(get_instance_id()) * 0.731, TAU)
 	_apply_role_presentation()
 	_apply_arena_presentation()
@@ -802,11 +817,18 @@ func _get_current_move_speed() -> float:
 # Sprite2D interface used by attack tweens, targeting and the rim silhouette.
 # V2 cells have their actual boot/robe contact pixel at y=92.
 # Match the existing floor ring at +36, including role visual_scale.
+func _get_role_floor_offset() -> float:
+	return float(ROLE_FLOOR_OFFSETS.get(visual_role, 0.0))
+
+
 func _art_rest_position() -> Vector2:
+	var correction := _get_role_floor_offset()
 	if sprite_frames == null:
-		return ART_BASE_POSITION
+		# Preserve existing static v4 art positions apart from the chosen
+		# visual correction; no scene coordinates or battle logic change.
+		return ART_BASE_POSITION + Vector2(0.0, correction)
 	var baseline: float = FLOOR_CONTACT_Y - (ANIM_SOLE_Y - ANIM_CELL_HEIGHT * 0.5) * base_sprite_scale.y
-	return Vector2(ART_BASE_POSITION.x, roundf(baseline))
+	return Vector2(ART_BASE_POSITION.x, roundf(baseline + correction))
 
 
 func _play_frame_one_shot(name: String) -> void:
@@ -870,7 +892,7 @@ func _update_idle_visual(delta: float) -> void:
 
 	var bob := sin(idle_phase) * bob_amount
 	var breathe := 1.0 + sin(idle_phase * 0.72) * 0.012
-	art_sprite.position = ART_BASE_POSITION + Vector2(0.0, bob) + hit_kick_offset
+	art_sprite.position = _art_rest_position() + Vector2(0.0, bob) + hit_kick_offset
 	art_sprite.scale = Vector2(
 		base_sprite_scale.x * (2.0 - breathe),
 		base_sprite_scale.y * breathe
@@ -1218,7 +1240,7 @@ func _die() -> void:
 	death_tween.tween_property(self, "scale", death_scale, death_duration).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	death_tween.tween_property(self, "modulate:a", 0.10 if team == 1 else 0.16, death_duration)
 	death_tween.tween_property(art_sprite, "rotation", death_tilt, death_duration)
-	death_tween.tween_property(art_sprite, "position", ART_BASE_POSITION + Vector2(0.0, 12.0), death_duration)
+	death_tween.tween_property(art_sprite, "position", _art_rest_position() + Vector2(0.0, 12.0), death_duration)
 
 	queue_redraw()
 	died.emit(self)
