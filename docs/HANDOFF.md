@@ -1,3 +1,80 @@
+# SESSION CLOSEOUT — 2026-10-11 — START THE NEXT CHAT HERE
+
+This is the authoritative continuation point for the next Misdeal chat.
+
+## What just happened
+
+The user rejected the battle presentation twice:
+1. the original battle screen felt low-quality, cramped and left no convincing room for tactics;
+2. the first fix solved capacity but turned the screen into large black slabs and was also rejected.
+
+The current battle HUD therefore uses the later modular-islands version:
+- compact encounter plate at upper left;
+- compact run-status plate at upper right;
+- separate tactics island;
+- separate Fight/target island;
+- optional Wizard-condition island only when needed;
+- 3–5 tactical orders distribute dynamically, with **НЕПОВИНОВЕНИЕ** kept readable.
+
+After that, the user asked to improve **all arenas**. A complete unified redraw is now live for all twelve active arena IDs.
+
+## Canonical arena state
+
+Runtime directory:
+`assets/pixel/battle/arenas/arena_redraw_v1/`
+
+Active IDs:
+`crypt`, `graveyard`, `gallows`, `ossuary`, `warden`, `bone_crush`,
+`bone_swarm`, `grave_crossfire`, `iron_wall`, `last_bell`, `firing_square`, `bone_ritual`.
+
+Important implementation detail:
+- the committed runtime files are `*.webp.b64` payloads;
+- `scripts/battle/authored_backdrop.gd` reads the text payload, base64-decodes it, then loads the WebP bytes into an `ImageTexture`;
+- each decoded image is native 1280×720;
+- this storage form is intentional for the current GitHub tool path and is already wired live.
+
+Art direction of this set:
+- broad quiet playable floor;
+- high-frequency props pushed to edges/background;
+- stronger large landmark silhouettes per encounter;
+- warm stone/fire/red-cloth language, with colder moonlit separation where appropriate;
+- no baked units or gameplay UI.
+
+## Safety / do not regress
+
+The project previously had a severe empty-arena regression during broad battle-animation work. The stable spawn/controller path was restored and locally confirmed working.
+
+Do not casually rewrite attack timing, spawning, target acquisition or the battle controller while validating the new arena art. Current arena/HUD work is presentation-first.
+
+## Next action
+
+After `git pull`, locally open several fights — especially:
+- **КОСТЯНОЙ РОЙ**
+- **МОГИЛЬНЫЙ ПЕРЕКРЁСТОК**
+- **РАССТРЕЛЬНАЯ ПЛОЩАДЬ**
+- **КОСТЯНОЙ РИТУАЛ**
+- **КОСТЯНОЙ НАДЗИРАТЕЛЬ**
+
+Check only:
+1. correct arena is loaded;
+2. heroes/enemies remain readable;
+3. placement still matches the visible floor;
+4. units do not collide visually with the modular HUD;
+5. Bone Warden still feels like the finale.
+
+If screenshots show a concrete floor/deployment mismatch, fix that specific arena/profile. Do not redesign combat rules from visual feedback alone.
+
+## Relevant commits immediately before this checkpoint
+
+- `64ca6043699201df280ace773a850f68486b7dd9` — changelog for full arena redraw pass.
+- `9f45d907edd4ef8973528406620df2d1c4c7c11e` — registered unified arena redraw assets.
+- `77ecec67674887abb01e310701236dadf66694fa` — full arena redraw checkpoint.
+- `490a54bf0d2f76f725aed43eb64d6ac7047b2c69` — modular battle HUD replacing rejected full-width slabs.
+
+Everything needed to continue is in GitHub; do not ask the user to re-explain this session.
+
+---
+
 # CURRENT SESSION CHECKPOINT — All 12 battle arenas redrawn and live
 
 Date: 2026-10-11
