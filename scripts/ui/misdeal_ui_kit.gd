@@ -17,6 +17,78 @@ const TEXT := Color(0.94, 0.84, 0.70, 1.0)
 const TEXT_HOVER := Color(1.0, 0.94, 0.80, 1.0)
 const TEXT_MUTED := Color(0.48, 0.45, 0.45, 1.0)
 
+# Design System 1.0 foundations. Keep existing colors above as the canonical
+# runtime palette: battle, cards, and tabletop already import this kit.
+const VOID := Color(0.006, 0.004, 0.009, 1.0)
+const TEXT_SECONDARY := Color(0.80, 0.73, 0.65, 1.0)
+const TEXT_ON_DARK := Color(0.97, 0.93, 0.87, 1.0)
+const STATUS_SUCCESS := Color(0.42, 0.75, 0.46, 1.0)
+const STATUS_DANGER := Color(0.90, 0.32, 0.25, 1.0)
+
+const BASE_VIEWPORT := Vector2i(1280, 720)
+const SPACE_1 := 4
+const SPACE_2 := 8
+const SPACE_3 := 12
+const SPACE_4 := 16
+const SPACE_6 := 24
+const SPACE_8 := 32
+
+const TYPE_MICRO := 10
+const TYPE_CAPTION := 12
+const TYPE_META := 14
+const TYPE_BODY := 16
+const TYPE_SECTION := 20
+const TYPE_TITLE := 28
+const TYPE_DISPLAY := 36
+
+const BORDER_HAIRLINE := 1
+const BORDER_NORMAL := 2
+const BORDER_STRONG := 3
+const CORNER_RADIUS := 0
+const BUTTON_HEIGHT := 40
+const BUTTON_HEIGHT_PRIMARY := 48
+
+# Advisory layer bands, not replacement values for existing battle Node2D
+# depth-sorting. Use for newly built Control/CanvasLayer UI only.
+const LAYER_WORLD := 0
+const LAYER_GAMEPLAY_FEEDBACK := 10
+const LAYER_HUD := 20
+const LAYER_MODAL := 40
+const LAYER_TRANSITION := 60
+
+
+static func apply_text_role(target: Label, role: String = "body", accent: Color = TEXT) -> void:
+	# Opt-in typography. Do not silently resize approved current layouts.
+	if target == null:
+		return
+	var font_size := TYPE_BODY
+	match role:
+		"micro":
+			font_size = TYPE_MICRO
+		"caption":
+			font_size = TYPE_CAPTION
+		"meta":
+			font_size = TYPE_META
+		"section":
+			font_size = TYPE_SECTION
+		"title":
+			font_size = TYPE_TITLE
+		"display":
+			font_size = TYPE_DISPLAY
+	target.add_theme_font_size_override("font_size", font_size)
+	target.add_theme_color_override("font_color", accent)
+	target.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 0.90))
+	target.add_theme_constant_override("shadow_offset_x", 1)
+	target.add_theme_constant_override("shadow_offset_y", 1)
+
+
+static func apply_button_minimum(target: Button, primary: bool = false) -> void:
+	# Designed for new controls; the existing screens keep their authored geometry.
+	if target == null:
+		return
+	var minimum := BUTTON_HEIGHT_PRIMARY if primary else BUTTON_HEIGHT
+	target.custom_minimum_size.y = maxf(target.custom_minimum_size.y, float(minimum))
+
 
 static func apply_panel(target, accent: Color = BRONZE, strong: bool = false) -> void:
 	var panel: Control = target as Control
@@ -27,7 +99,7 @@ static func apply_panel(target, accent: Color = BRONZE, strong: bool = false) ->
 	if source != null:
 		style = source.duplicate() as StyleBoxFlat
 	style.bg_color = _panel_fill(accent, 0.94 if strong else 0.88)
-	_set_border(style, 3 if strong else 2)
+	_set_border(style, BORDER_STRONG if strong else BORDER_NORMAL)
 	style.border_color = Color(accent.r, accent.g, accent.b, 0.90 if strong else 0.70)
 	style.shadow_color = Color(0.0, 0.0, 0.0, 0.74 if strong else 0.58)
 	style.shadow_size = 10 if strong else 6
@@ -48,7 +120,7 @@ static func apply_chip(target, accent: Color = BRONZE) -> void:
 	if source != null:
 		style = source.duplicate() as StyleBoxFlat
 	style.bg_color = Color(0.010 + accent.r * 0.018, 0.008 + accent.g * 0.012, 0.012 + accent.b * 0.014, 0.90)
-	_set_border(style, 1)
+	_set_border(style, BORDER_HAIRLINE)
 	style.border_color = Color(accent.r, accent.g, accent.b, 0.62)
 	style.shadow_color = Color(0.0, 0.0, 0.0, 0.36)
 	style.shadow_size = 3
@@ -180,7 +252,7 @@ static func _apply_button_styles(button: Button, accent: Color, card: bool, stro
 			)
 			style.shadow_color = Color(accent.r * 0.30, accent.g * 0.18, accent.b * 0.14, 0.34 if active else 0.18)
 
-		_set_border(style, 3 if card or strong or active else 2)
+		_set_border(style, BORDER_STRONG if card or strong or active else BORDER_NORMAL)
 		style.shadow_size = 10 if active else (7 if card or strong else 5)
 		style.shadow_offset = Vector2(0.0, 3.0 if not pressed else 1.0)
 		_square_corners(style)
@@ -209,10 +281,10 @@ static func _set_border(style: StyleBoxFlat, width: int) -> void:
 
 
 static func _square_corners(style: StyleBoxFlat) -> void:
-	style.corner_radius_top_left = 0
-	style.corner_radius_top_right = 0
-	style.corner_radius_bottom_right = 0
-	style.corner_radius_bottom_left = 0
+	style.corner_radius_top_left = CORNER_RADIUS
+	style.corner_radius_top_right = CORNER_RADIUS
+	style.corner_radius_bottom_right = CORNER_RADIUS
+	style.corner_radius_bottom_left = CORNER_RADIUS
 	style.anti_aliasing = false
 
 
