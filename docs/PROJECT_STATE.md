@@ -1,5 +1,24 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-11 — Unit Readability Pass
+
+Local screenshots of Grave Crossfire and Gallows Volley showed miniatures disappearing into high-detail arena backgrounds despite improved ground placement. **Implemented in `main`:**
+
+- `scripts/battle/unit.gd`: hero pixel-art sprites grow from 1.16× to 1.28× (about +10%); regular enemies from 1.16× to 1.25× (about +8%); Bone Warden from 1.18× to 1.24×, preserving its special `visual_scale`. Combat body radii/stats are unchanged.
+- Brighter restrained team silhouette outlines using existing `RimSprite` at 1.06× art scale (cool for heroes, warm for foes) instead of heavy neon; very subtle layered localized darkening behind each silhouette helps contrast with busy cobblestones. Cold/amber arena tint no longer dims art as much.
+- Adjusted art pivot (baseline `ART_BASE_POSITION=-16`) to keep sprites planted at the established foot shadow Y=36; resized unit HP/name offsets to avoid clipping into enlarged art, with separate boss treatment. Existing ground shadows, colored team rings, and drag-only deployment visualization remain.
+- `BattleUnit` hero clicking uses a sensible silhouette-sized pickup rectangle plus the old body-radius fallback, so the enlarged art is draggable from its visible upper body.
+- `scripts/battle/battle.gd`: widened initial **hero** positions for all solo/duo/trio deployment profiles (deep line, split cave lanes, two pockets, Warden and default), preserving their legal `Rect2` ranges. After existing floor projection/clamping, the tightest trio starts about 115 px apart. Enemy spawn Resources and enemy tactics are unchanged; initial hero tactical geometry deliberately changes slightly.
+
+No backdrop replacements, combat stat rebalancing, AI/attacks, rewards, tactics, or card flow changes. This is visual readability plus initial party-layout/picking polish.
+
+**Static check completed:** inspected committed source and simulated floor projection + legal-placement clamps for all five spawn profiles and party sizes 1–3. Minimum pair separation for each trio is above 110 px; no local Godot 4.7 runtime available, so Godot parse/runtime and visual legibility still require user verification.
+
+**Next local check:** `git pull`, examine trio at Grave Crossfire and Gallows Volley; confirm hero/archer/mage distinct silhouettes with clean HP/name labels, no spawn overlap, correct drag and placement glow; run a full battle including a swarm and the Warden.
+
+---
+
+
 
 ## Latest implemented state — 2026-10-11 — Drag-only deployment highlight
 
