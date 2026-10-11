@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Added — Unit Animation Pack 1 (2026-10-12)
+
+- Added five transparent 576×480 animation WebP atlases, with 96×96 frames stored as Base64 resources, for Knight, Ranger, male Mage, Skeleton and Bone Archer.
+- Added cached `SpriteFrames` animation library and actual Idle/Walk/Attack/Hit/Death frame states in live `BattleUnit`; static v4 remains fallback and all other roles are unchanged.
+- Added in-Godot F6 animation gallery with actual `AnimatedSprite2D` samples and state buttons, plus `docs/UNIT_ANIMATION_PACK1.md` with export specs.
+- Maintained existing damage/AI/skill/placement mechanics, enemy facing, battle art and HP/name UI. Runtime screenshot/interaction check pending.
+
+
 ### Changed — Design System Package 3 core screen pass (2026-10-12)
 
 - Migrated production menu/intro, class selection, tabletop, battle prep and run-end copy to shared screen-readability colors/shadows while keeping their font sizes, layout geometry and painted backgrounds.
