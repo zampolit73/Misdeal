@@ -1,3 +1,15 @@
+## Undead Animation Pack 2 — Stage B QA gate implemented (2026-10-12)
+
+- [x] Check GitHub and available assets: four remaining enemies have only static v4 art, not any role-specific 6×5 animated sheet.
+- [x] Add offline `scripts/dev/import_animation_pack2_candidate.py` and test: real 6×5 transparent frames accepted; RGB opaque-background fake rejected; warning for unstable feet/edge bleed.
+- [x] Add `scripts/dev/unit_animation_candidate_validator.gd` to inspect frames inside Godot without modifying live loader.
+- [x] Add `scenes/dev/unit_animation_pack2_preview.tscn` side-by-side v4 vs prospective candidate, with Idle/Walk/Attack/Hit/Death review buttons and explicit `ОЖИДАЕТ АРТ` status.
+- [x] Staging contract documented; only approved candidate art may be moved into production `SpriteFrames`.
+- [ ] **GODOT F6:** inspect `unit_animation_pack2_preview.tscn` at 1280×720; without candidate files, all four panels should say `ОЖИДАЕТ АРТ`; no broken nodes or hover effects.
+- [ ] **ASSET STEP:** author 25 genuinely different poses per enemy (Bone Thrall, Grave Bellkeeper, Crypt Guard, Bone Warden) with legs/weapon/ground contact obvious in 96px cells; source art isn't available yet.
+- [ ] Validate candidates and stage WebP/Base64 files, review all five states in F6 at full arena scale. Reject malformed/floating frames; do not claim acceptance based solely on automatic checks.
+- [ ] Upon visual approval, connect those four roles to the real combat library with static-v4 fallback and check actual targeting, movement, attack contact, corpse behavior.
+
 ## Undead Animation Pack 2 — Stage A attack accents (2026-10-12)
 
 - [x] Confirm four enemy roles `bone_thrall`, `grave_bellkeeper`, `crypt_guard`, `bone_warden` currently have static v4 assets only; don't call wobbling/static tweens frame animation.
