@@ -1,3 +1,12 @@
+## Knight leg silhouette hotfix — static v4 fallback (2026-10-12)
+
+- [x] Confirm on repeated user screenshots that Pack 1 animated Knight legs are not readable; vertical adjustment alone cannot fix authored silhouette.
+- [x] Temporarily force **only Knight** to use the existing approved static v4 tile; all other four active Pack 1 character animations remain.
+- [x] Recalibrate Knight-only static floor offset to -8px so v4 feet align with the existing combat floor ring; keep name/HP/world origin and hitboxes unchanged.
+- [x] Preserve both Knight animation v1/v2 asset archives and the dev animation preview for a future redraw/rollback.
+- [ ] **LOCAL GATE**: user `git pull`, check Knight leg visibility/contact/attack in Bone Swarm and Grave Crossroads; other active roles' animations unaffected.
+- [ ] Before re-enabling Knight animation, **redraw and validate** all Knight sprite states with independent armored boots/clear negative space, shield moved away from legs, consistent ground contact; require real Godot screenshot approval.
+
 ## Unit floor contact visual pass — per-role offsets (2026-10-12)
 
 - [x] Respond to user feedback: Pack 1 frame cleanup solved fragment/jitter defects but some feet still looked submerged.
