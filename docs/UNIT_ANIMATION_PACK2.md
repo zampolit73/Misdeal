@@ -1,6 +1,6 @@
 # Misdeal — Unit Animation Pack 2
 
-Status: **Stage A implemented (attack-contact VFX only), frame animation artwork not yet ready.**  
+Status: **Stage A attack-contact VFX live, Stage B candidate QA/importer + side-by-side F6 review committed; no new frame artwork activated.**  
 Date: 2026-10-12
 
 ## Scope
@@ -42,3 +42,25 @@ Create **actual distinct 96×96 animation frames**, per role, with quality gates
 - Later, review a properly legible **animated Knight**; current live Knight should remain static v4 until those new frames are verified.
 
 See `docs/UNIT_ANIMATION_PACK1.md` for the existing reusable `SpriteFrames` export format and grounding lessons.
+
+## Stage B preparation — committed candidate pipeline (2026-10-12)
+
+**Implemented in GitHub, without changing the live battlefield:**
+
+- `scripts/dev/import_animation_pack2_candidate.py` — offline helper to convert an actual 576×480 RGBA PNG into a lossless 6×5 WebP/Base64 Godot resource. This checks 25 occupied cells per role (Idle 4, Walk 6, Attack 6, Hit 3, Death 6). It rejects wrong dimensions, non-alpha or mostly-opaque backgrounds, empty characters, cell-corner overflow and entirely identical Walk/Attack sequences. It warns about contact baseline outside y=87..94 and horizontal clipping. The helper requires Python 3 + Pillow **for asset production only**, not for running Misdeal in Godot. It was exercised locally with a known grounded pack-1 example and with an invalid opaque test sheet (rejected).
+- `assets/pixel/units/combat_units_anim_pack2_candidates/README.md` — staged file convention, one character per `{role}.webp.b64`, not included in the game loader. No candidate art is committed yet.
+- `scripts/dev/unit_animation_candidate_validator.gd` — pure Godot candidate reader and optional on-demand `SpriteFrames` constructor. Confirms WebP decode/grid dimensions, alpha presence through active pixels, frame variety, visible baseline and avoids enabling corrupt/empty sprites. Returns structured warnings/errors to review UI. Never called from real `BattleUnit`.
+- `scripts/dev/unit_animation_pack2_preview.gd` + `scenes/dev/unit_animation_pack2_preview.tscn` — an F6 review screen showing the **existing, approved v4 static unit** alongside any staged candidate. Each of the five state buttons controls candidate animations only. If a candidate doesn't exist, it explicitly displays `ОЖИДАЕТ АРТ`, rather than using blank/duplicate art in battle.
+
+This is a production-ready review workflow, **not a declaration that any of the four enemies already have new animated frames**. Attempts at generating art in the current environment produced battle-scene screenshots instead of valid sprite sheets; those images were excluded from the repository. A secondary image-generation account had insufficient credits. The remaining next step is genuinely authored 25-cell art per role, with distinct leg and weapon silhouettes and manual visual comparison.
+
+**Proposed candidate flow** (asset work, not part of game installation):
+
+```bash
+python scripts/dev/import_animation_pack2_candidate.py \
+  --role grave_bellkeeper \
+  --source path/to/grave_bellkeeper_rgba_576x480.png \
+  --output-dir assets/pixel/units/combat_units_anim_pack2_candidates
+```
+
+Once a real frame sheet is staged, open `res://scenes/dev/unit_animation_pack2_preview.tscn` with F6 and cycle through each animation; inspect image quality in Godot at full arena scale. After explicit visual approval, add the role to production `MisdealUnitAnimationLibrary` with a strict missing/invalid-sheet v4 fallback and preserve the existing combat/facing/HP logic. Do not accept the importer alone as evidence of silhouette quality: two separate boots, held shields, weapons and death-ground contact require human review.
