@@ -1,3 +1,18 @@
+# LATEST LIVE CHECKPOINT — 2026-10-11 — Unit Art v4 now ACTIVE (nine sprites)
+
+The user approved the full v4 character set and requested immediate integration, following several earlier unsuccessful attempts. **The actual v4 atlas is now committed to `main` and referenced by the battle runtime**, not merely a preview.
+
+Files:
+- `assets/pixel/units/combat_units_v4/atlas.webp.b64` — production 288×288 transparent RGBA WebP texture, encoded as text to match existing export-friendly asset packaging.
+- `assets/source_archive/unit_art_v4/combat_units_v4_master.png.b64` — lossless 288×288 source sheet for retouch/rollback.
+- `scripts/battle/unit.gd` — prioritizes v4 WebP, decodes via `Image.load_webp_from_buffer`, validates dimensions, caches one texture for all `BattleUnit` instances, and retains the previous v3 PNG parts as automatic fallback.
+
+Atlas order: knight / ranger / mage; skeleton / bone_archer / grave_bellkeeper; bone_thrall / crypt_guard / bone_warden. Hero defaults were chosen from approved **Variant A** (blue silver knight, green hooded ranger, purple mage) and matching approved enemy silhouettes; art was downscaled/cut out for exactly the existing 96×96 slots. All combat roles sharing an existing `visual_role` (Bone Raider→Bone Thrall; Crypt Sentinel→Crypt Guard) still intentionally share artwork.
+
+The gameplay, units' stats, AI, battle arena images, readable-floor changes, initial placements, HP HUD and tactical command logic are untouched. No local Godot run was available. The next task is **verify the nine sprites actually display at playtime**, evaluate transparent edges and 96px legibility, then fix *only concrete observed* cropping/art issues. Run `git pull`, Godot, Grave Crossfire/Iron Wall/Warden, capture screenshots and test dragging and a completed fight. Earlier handoff text claiming v4 is not integrated is superseded.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-11 — Unit Readability Pass committed
 
 The user found that figures visually disappeared into the approved rich v2 arena backgrounds in screenshots of Grave Crossfire and Gallows Volley, despite grounded unit positions and removal of always-on deployment grid. User requested immediate implementation directly in GitHub.
