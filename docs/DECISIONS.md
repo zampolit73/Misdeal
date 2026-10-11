@@ -1988,3 +1988,13 @@ Status: approved immediate visual hotfix
 Following repeated gameplay screenshots, the Pack 1 animated Knight's leg/boot silhouette is intrinsically unreadable. Small optical offsets (up to -16px) cannot reveal geometry hidden by the shield/cloak or malformed spritesheet. Keep the existing **v4 static Knight** as the live combat visual until a redesigned animated Knight sheet preserves clearly separated shin armor/boots in every state and is verified in the real Godot battle UI.
 
 `BattleUnit` opts the Knight out of the animated loader via `STATIC_COMBAT_ART_ROLES`; it retains existing v4 fallback, attack/hit/death feedback, team facing, scale/HP/name/collision and game balance. Use the **static Knight** floor correction -8px, not the old animated -16px value. Other four Unit Animation Pack 1 roles continue to use frame animations. Keep archived Knight animated source in GitHub and the F6 gallery for an eventual comparison. Do not alter tactical mechanics, the arena or approved tabletop art for this fix.
+
+
+## D120 — Stage undead visual motion independently from unready authored animation art
+
+Date: 2026-10-12  
+Status: accepted for Unit Animation Pack 2 Stage A
+
+Four remaining enemy roles (Bone Thrall, Grave Bellkeeper, Crypt Guard, Bone Warden) do not have suitable independently authored animation cells. The game should never turn static portraits, a screenshot-like illustration or 6×5 repeated crop into fake character animation, given the Knight leg/grounding regressions. Keep the approved static-v4 figure visible and add only restrained, very short, distinct **attack-contact FX** via a separate stateless `unit_attack_visuals.gd` helper until frame artwork actually exists.
+
+Visual effect lifetime is <0.4s; effects self-delete. Spawn only when an existing real attack fires, while current immediate damage timing and FX remain intact. Actual Idle/Walk/Attack/Hit/Death frame animation is **Stage B**, gated on per-frame readable legs/weapons/ground contact and local Godot review. This is a visual quality policy, not a fundamental change to the battle system.
