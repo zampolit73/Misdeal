@@ -1,3 +1,11 @@
+## Current priority — Drag-only floor UI polish (2026-10-11)
+
+- [x] Remove persistent deployment rectangles and 3×2 decorative circles that obscured approved arena art.
+- [x] Render a low-opacity glow of *real legal regions* only during hero drag; no fixed tile slots.
+- [x] Suppress the additional hero placement ring while idle, preserving contact shadow/team allegiance ring.
+- [ ] Validate default/drag/drop/Fight transitions on Crypt and Grave Crossfire; confirm two-pocket and split-lane variants still indicate legal areas.
+- [ ] Only after visual approval, continue with the two unfinished arena background assets.
+
 ## Current priority — Battle floor grounding and tactical placement, 2026-10-11
 
 - [x] Align all encounter spawns and combat movement with the new arena-floor plane, including boss reinforcements.
