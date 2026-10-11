@@ -1,3 +1,19 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Pack 2 Stage B art QA pipeline / gallery shipped, candidate art NOT yet available
+
+The user said "давай дальше" after Stage A attack FX for the remaining undead. Repo checked against `AGENTS.md`, `CONCEPT.md`, `PROJECT_STATE.md`, `ROADMAP.md`, `DECISIONS.md`. **No genuine multi-frame sheets exist** yet for Bone Thrall, Grave Bellkeeper, Crypt Guard, Bone Warden. Two attempts at built-in image generation yielded full battle screen compositions rather than independently authored sprite frames; they were **not** inserted into the project. OpenArt available but account has 0 credits so no art generated there.
+
+**Committed in main:**
+- `scripts/dev/import_animation_pack2_candidate.py` (requires Pillow only for authoring/export, not for game). Tests strict 576×480 image, RGBA/alpha, 25 occupied 96×96 slots with Idle4/Walk6/Attack6/Hit3/Death6, reject opaque/incomplete/duplicate Walk/Attack; warns on y foot baseline outside 87..94 or touching cell edges. Exports lossless `.webp.b64`. Tested locally with existing grounded Pack1 artwork (accepted with warnings) and deliberately invalid opaque sheet (rejected).
+- `scripts/dev/unit_animation_candidate_validator.gd` (runtime dev QA only): safely decode candidate staged resources, measure alpha presence/foot bounds and construct optional `SpriteFrames`; never consulted by live `BattleUnit`.
+- `scripts/dev/unit_animation_pack2_preview.gd` and `scenes/dev/unit_animation_pack2_preview.tscn`: F6 gallery shows four actual v4 static enemies alongside optional valid candidates. Missing candidates show `ОЖИДАЕТ АРТ`. State buttons demonstrate any future approved animation for frame review.
+- `assets/pixel/units/combat_units_anim_pack2_candidates/README.md`, `docs/UNIT_ANIMATION_PACK2.md`: candidate folder convention, visual quality tests and exact future stage steps.
+
+**UNCHANGED:** main combat, its movement/facing/HP/AI, all four v4 enemy sprites and Stage A role-specific attack cues; Knight still static v4 with readable boots, other four Pack1 sprites remain animated. Nothing new is live until actual 6×5 candidate art is produced, reviewed in Godot and explicitly approved. No Godot executable here, so F6 still to be smoke-tested.
+
+**NEXT:** author authentic readable 25-frame sheets for four remaining undead, validate/stage, show comparison and then deploy after approval. Don't pretend the QA implementation itself completed new character animations. For temporary playtest, `git pull` F6 both `scenes/dev/unit_undead_fx_preview.tscn` and `scenes/dev/unit_animation_pack2_preview.tscn`. Maintain GitHub continuity; no need to re-ask access. Old handoffs below are history.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Undead Pack 2 Stage A (real attack-contact FX, not new spritesheets)
 
 User said to continue after reverting Knight to a readable static v4. Inspected GitHub + checked local `/mnt/data` art for the four extra enemy roles. **There were no full frame animation sprite sheets** for Bone Thrall, Grave Bellkeeper, Crypt Guard, Bone Warden. Prior ImageGen attempt yielded a scenic battle illustration, **not valid separate animation cells**; it was correctly NOT connected to Godot. Instead committed a modest **production VFX stage** now, with clear Stage B to do later.
