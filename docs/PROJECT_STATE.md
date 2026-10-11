@@ -1,5 +1,12 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Knight sprite raised another 2 px
+
+User requested another 2 px upward optical adjustment for Knight after comparing live arena screenshots. Changed only `ROLE_FLOOR_OFFSETS["knight"]` from `-6.0` to `-8.0` in `scripts/battle/unit.gd` (commit `2452e6945396c257ce8ce5b71df15f012a1e7aca`). Ranger remains `-6.0`; other roles, the animated v2 assets, physical unit positions, battle rules and UI are unchanged. The change flows through existing `_art_rest_position()` for idling, moving and combat feedback. Local Godot review remains: `git pull` and check Knight boots relative to its contact ring in Bone Swarm and Grave Crossroads.
+
+---
+
+
 ## Latest implemented state — 2026-10-12 — Knight floor calibration refinement
 
 User compared Knight and Ranger in two updated in-game screenshots and suggested the same floor alignment. Adjusted only `ROLE_FLOOR_OFFSETS["knight"]` in `scripts/battle/unit.gd` from **−4 px to −6 px**, matching the Ranger. The renderer's existing `_art_rest_position()` applies it to idle/movement/attack recovery without modifying position, attack mechanics, shadow drawing, scale, art assets or UI. Knight and Ranger now share a −6 px visual lift. Code commit: `61c3cc291c9a0197fdce065af7385871b1bb348e`. **Godot local visual review pending**: `git pull`, view Bone Swarm and Grave Crossroads during placement and battle; check Knight boots against its ground ring and Ranger, no new hovering.
