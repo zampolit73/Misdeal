@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Added — Approved Combat Unit Art v4 (2026-10-11)
+
+- Replaced all nine combat miniature atlas roles with approved dark-Gothic character cutouts (Knight, Ranger, Mage, Skeleton, Bone Archer, Grave Bellkeeper, Bone Thrall, Crypt Guard, Bone Warden).
+- Added the 288×288 3×3 WebP atlas at `assets/pixel/units/combat_units_v4/atlas.webp.b64` and its lossless PNG source archive.
+- BattleUnit now decodes/caches the new WebP and automatically falls back to preserved v3 PNG assets if v4 is absent or invalid. Original v3 art is untouched for rollback.
+- This is an art-only upgrade; no combat mechanics, stats, arena backgrounds or placement rules changed. Local Godot playtest is pending.
+
+
 ### Changed — Unit Readability Pass (2026-10-11)
 
 - Enlarged live combat art silhouettes by about 10% for heroes, 8% for regular enemies and 5% for the boss, while keeping combat radii/physics unchanged.
