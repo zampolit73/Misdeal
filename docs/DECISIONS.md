@@ -1998,3 +1998,13 @@ Status: accepted for Unit Animation Pack 2 Stage A
 Four remaining enemy roles (Bone Thrall, Grave Bellkeeper, Crypt Guard, Bone Warden) do not have suitable independently authored animation cells. The game should never turn static portraits, a screenshot-like illustration or 6×5 repeated crop into fake character animation, given the Knight leg/grounding regressions. Keep the approved static-v4 figure visible and add only restrained, very short, distinct **attack-contact FX** via a separate stateless `unit_attack_visuals.gd` helper until frame artwork actually exists.
 
 Visual effect lifetime is <0.4s; effects self-delete. Spawn only when an existing real attack fires, while current immediate damage timing and FX remain intact. Actual Idle/Walk/Attack/Hit/Death frame animation is **Stage B**, gated on per-frame readable legs/weapons/ground contact and local Godot review. This is a visual quality policy, not a fundamental change to the battle system.
+
+
+## D121 — Stage and visually validate new enemy animation sheets before live activation
+
+Date: 2026-10-12  
+Status: accepted as Pack 2 Stage B quality gate
+
+The Pack 1 Knight regressions demonstrated that frame count and normalized bounding-box placement alone do not guarantee readable limbs/boots. New Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden animation assets must first be delivered as **real transparent 6×5 atlases with 96px distinct character poses**. Automated checks reject missing frames, opaque/background-filled sprites and fake identical walk/attack rows; they warn about unstable sole y and cell-edge bleed. They cannot *certify* two readable boots, weapon anatomy, death pose quality or stylistic fit; require real Godot visual comparison.
+
+The candidate import tool, validator and F6 side-by-side review scene must remain **separate from production `BattleUnit`**. The four live enemy types continue using static v4 art and brief Stage A contact VFX until their staged frame artwork passes inspection and is explicitly approved. Do not use image-generation outputs of full arena scenes as character sprites or automate 25 cells by scaling/rotating one still.
