@@ -7,9 +7,9 @@ const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/gra
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const TARGET_PREVIEW_SCRIPT := preload("res://scripts/battle/target_preview.gd")
 
-const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1240, 465))
-const GALLOWS_VOLLEY_COMBAT_BOUNDS := Rect2(Vector2(0, 185), Vector2(1240, 255))
-const BONE_CRUSH_COMBAT_BOUNDS := Rect2(Vector2(0, 105), Vector2(1240, 335))
+const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1240, 410))
+const GALLOWS_VOLLEY_COMBAT_BOUNDS := Rect2(Vector2(0, 150), Vector2(1240, 250))
+const BONE_CRUSH_COMBAT_BOUNDS := Rect2(Vector2(0, 90), Vector2(1240, 310))
 const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 82), Vector2(545, 326))
 
 const TACTICAL_ORDER_ASSAULT := "assault"
@@ -571,15 +571,21 @@ func _configure_tactical_order_buttons() -> void:
 	if defiance_order_unlocked:
 		buttons.append(defiance_order_button)
 
-	if buttons.size() <= 3:
-		return
-
-	var spacing := 78.0 if buttons.size() == 4 else 76.0
+	# Reserve five real slots in the footer instead of crushing unlocked tactics
+	# into abbreviated 72 px buttons.
+	const START_X := 40.0
+	const BUTTON_WIDTH := 108.0
+	const BUTTON_GAP := 8.0
 	for index in range(buttons.size()):
 		var button: Button = buttons[index]
-		button.position = Vector2(46.0 + float(index) * spacing, 626.0)
-		button.size = Vector2(72.0, 42.0)
-		button.add_theme_font_size_override("font_size", 10 if buttons.size() == 5 else 11)
+		button.position = Vector2(START_X + float(index) * (BUTTON_WIDTH + BUTTON_GAP), 584.0)
+		button.size = Vector2(BUTTON_WIDTH, 44.0)
+		if button == defiance_order_button:
+			button.add_theme_font_size_override("font_size", 9)
+		elif button == sacrifice_order_button:
+			button.add_theme_font_size_override("font_size", 11)
+		else:
+			button.add_theme_font_size_override("font_size", 12)
 
 
 func _apply_tactical_order_stats() -> void:

@@ -1,5 +1,21 @@
 # Misdeal — Project State
 
+## Battle readability / tactics footer rework — 2026-10-11
+
+The live battle screen was rejected locally because the command footer was cramped and unlocked tactics could collapse into tiny abbreviated buttons. The battle presentation has been repacked without touching spawn/combat timing:
+
+- a dedicated 170 px footer now owns commands instead of fighting the arena for the same pixels;
+- the tactical area reserves five full slots, so **НАТИСК / ОХОТА / СТРОЙ / ЖЕРТВА / НЕПОВИНОВЕНИЕ** never need the old 72 px squeeze;
+- **НЕПОВИНОВЕНИЕ** is shown by its full name;
+- the order explanation gets a wide dedicated text area;
+- target preview and the primary **БОЙ** action have their own center column;
+- Wizard side objectives live in the right footer column instead of floating over the battlefield;
+- the top encounter/status text now sits on a subtle framed plate rather than directly over busy arena art;
+- the live unit/combat floor is moved upward and its vertical bounds reduced so units do not disappear beneath the footer;
+- fallback arena resizing now uses nearest-neighbor rather than Lanczos to avoid softening pixel art.
+
+This is a presentation/layout pass only. Encounter composition, stats, tactical effects, targeting, attack cadence, spawn lifecycle, results and rewards are unchanged.
+
 ## Session checkpoint — Combat Expansion art/source masters archived — 2026-10-11
 
 The six approved Combat Expansion v1 arena/card concepts are not just generated mockups anymore: dedicated production exports are wired live, and the original composite masters are archived in GitHub under `assets/source_archive/combat_expansion_v1/` for future recrops.

@@ -62,6 +62,10 @@
 
 ### Changed
 
+- Repacked the battle HUD after local rejection: a dedicated 170 px command footer now reserves five readable tactical-order slots, shows **НЕПОВИНОВЕНИЕ** in full, gives the order description its own wide area, separates target preview from the primary **БОЙ** action, and moves Wizard side objectives out of the playable battlefield.
+- Added a subtle top battle information plate and moved the live combat floor upward so encounter/status text and units no longer compete with the command footer. Combat rules and timing are unchanged.
+- Pixel-art arena fallback resizing now uses nearest-neighbor instead of Lanczos to avoid softening authored battle plates.
+
 - Replaced all six Combat Expansion v1 temporary art aliases with dedicated approved visuals. Each new fight now has its own native 1280×720 authored battle backdrop and its own 448×274 table-card illustration: КОСТЯНОЙ РОЙ, МОГИЛЬНЫЙ ПЕРЕКРЁСТОК, ЖЕЛЕЗНАЯ СТЕНА, ПОСЛЕДНИЙ ЗВОН, РАССТРЕЛЬНАЯ ПЛОЩАДЬ and КОСТЯНОЙ РИТУАЛ.
 - Dedicated expansion arena IDs now select their exact backdrop while preserving the nearest validated low-alpha atmosphere/tint family. Combat mechanics, spawn composition and deployment rules are unchanged.
 

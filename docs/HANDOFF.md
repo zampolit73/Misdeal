@@ -1,3 +1,31 @@
+# CURRENT SESSION CHECKPOINT — Battle HUD/readability rework
+
+Date: 2026-10-11
+
+The latest local feedback rejected the battle screen presentation: the footer was too cramped, special tactics had no real room, and the overall battle UI read as low-quality.
+
+A layout/readability pass is now implemented:
+- battle footer expanded upward to 170 px;
+- five fixed tactical slots with full **НЕПОВИНОВЕНИЕ** label;
+- wide order-description area;
+- separate target-preview and Fight column;
+- side-objective panel moved into the right footer column;
+- top encounter/status text placed on a framed plate;
+- playable combat bounds moved above the footer;
+- pixel-art fallback resize changed from Lanczos to nearest-neighbor.
+
+Important safety note: no attack timing, spawn lifecycle, targeting rules, tactical effects, reward flow or encounter stats were changed. The earlier empty-arena regression guard still applies.
+
+Immediate local check after `git pull`:
+1. open a fight with only the normal three orders;
+2. open a fight where **ЖЕРТВА** or **НЕПОВИНОВЕНИЕ** is available;
+3. confirm all available tactics fit without abbreviations or overlap;
+4. drag all heroes around the legal deployment area and confirm nobody can end up under the footer;
+5. press **БОЙ** and verify units remain visible and fight normally;
+6. send one screenshot if the arena art itself still looks muddy — that would require a separate native-HD asset redraw, not another UI squeeze.
+
+---
+
 # CURRENT SESSION CHECKPOINT — Combat Expansion art integrated
 
 Date: 2026-10-11

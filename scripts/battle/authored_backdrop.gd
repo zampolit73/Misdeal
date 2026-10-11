@@ -70,7 +70,9 @@ func _get_runtime_texture(value: String) -> Texture2D:
 		return null
 
 	if image.get_width() != BACKDROP_SIZE.x or image.get_height() != BACKDROP_SIZE.y:
-		image.resize(BACKDROP_SIZE.x, BACKDROP_SIZE.y, Image.INTERPOLATE_LANCZOS)
+		# These are pixel-art production plates. If a fallback asset ever has the
+		# wrong dimensions, keep edges crisp instead of smearing them with Lanczos.
+		image.resize(BACKDROP_SIZE.x, BACKDROP_SIZE.y, Image.INTERPOLATE_NEAREST)
 
 	var rendered := ImageTexture.create_from_image(image)
 	runtime_textures[value] = rendered

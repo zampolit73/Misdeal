@@ -1807,3 +1807,15 @@ Rules:
 - dedicated unit sprites are a later targeted pass, not a prerequisite for keeping the six encounter compositions.
 
 This supersedes the temporary card/arena reuse portion of D104 while preserving its gameplay-first rule for unproven enemy archetypes.
+
+
+## D105 — Battle HUD reserves explicit space for five tactical orders
+
+Date: 2026-10-11  
+Status: accepted
+
+The battle preparation screen must not compress unlocked tactical orders into tiny or abbreviated controls.
+
+The bottom command footer reserves five readable tactical slots, keeps the order explanation separate from the primary Fight action, and keeps side objectives out of the playable combat floor. Pixel-art battle backdrops must use nearest-neighbor fallback scaling rather than smooth resampling.
+
+This is a presentation contract, not a combat-rule change.
