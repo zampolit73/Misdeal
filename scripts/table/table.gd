@@ -92,6 +92,11 @@ func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_panel($HudPanel, MISDEAL_UI_KIT.BRONZE, false)
 	MISDEAL_UI_KIT.apply_panel($WizardLinePanel, MISDEAL_UI_KIT.BRONZE, false)
 	MISDEAL_UI_KIT.apply_subtitle(wizard_line, MISDEAL_UI_KIT.BRONZE)
+	# Screen Pass: improve existing small HUD copy without changing its
+	# authored size, the physical card layout or the Wizard's panel.
+	MISDEAL_UI_KIT.apply_screen_copy(stats_label, MISDEAL_UI_KIT.TEXT_ON_DARK)
+	MISDEAL_UI_KIT.apply_screen_copy(deck_count_label, MISDEAL_UI_KIT.TEXT_SECONDARY)
+	MISDEAL_UI_KIT.apply_screen_copy(discard_count_label, MISDEAL_UI_KIT.TEXT_SECONDARY)
 	MISDEAL_UI_KIT.apply_action_button(squad_button, MISDEAL_UI_KIT.STEEL, false)
 	MISDEAL_UI_KIT.apply_action_button(fate_spread_button, MISDEAL_UI_KIT.BRONZE, false)
 	MISDEAL_UI_KIT.apply_action_button(hold_a_button, MISDEAL_UI_KIT.STEEL, false)
@@ -689,42 +694,12 @@ func _apply_card_style(button: Button, card: RunCardData) -> void:
 	var combat_like := card.type_label == "БОЙ" or card.type_label == "ЭЛИТА" or card.type_label == "БОСС"
 	var event_like := not combat_like
 
-	var normal := StyleBoxFlat.new()
-	normal.bg_color = Color(0.032, 0.020, 0.021, 0.992)
-	normal.border_width_left = 3
-	normal.border_width_top = 3
-	normal.border_width_right = 3
-	normal.border_width_bottom = 3
-	normal.border_color = Color(0.66, 0.42, 0.20, 1.0)
-	normal.shadow_color = Color(0, 0, 0, 0.68)
-	normal.shadow_size = 8
-
-	var hover := normal.duplicate() as StyleBoxFlat
-	hover.border_width_left = 4
-	hover.border_width_top = 4
-	hover.border_width_right = 4
-	hover.border_width_bottom = 4
-	hover.border_color = Color(0.98, 0.62, 0.26, 1.0)
-	hover.shadow_color = Color(0.48, 0.12, 0.03, 0.58)
-	hover.shadow_size = 12
-
-	if card.card_id == RunState.BOSS_CARD_ID:
-		normal.border_color = Color(0.72, 0.20, 0.12, 1.0)
-		hover.border_color = Color(1.0, 0.42, 0.18, 1.0)
-	elif RunState.is_wizard_marked_card(card.card_id):
-		normal.border_color = Color(0.92, 0.48, 0.12, 1.0)
-		normal.shadow_color = Color(0.62, 0.13, 0.03, 0.62)
-		normal.shadow_size = 12
-		hover.border_color = Color(1.0, 0.72, 0.22, 1.0)
-		hover.shadow_color = Color(0.82, 0.22, 0.04, 0.72)
-		hover.shadow_size = 16
-	elif RunState.is_card_held(card.card_id):
-		normal.border_color = Color(0.42, 0.68, 0.84, 1.0)
-		hover.border_color = Color(0.62, 0.84, 1.0, 1.0)
-
-	button.add_theme_stylebox_override("normal", normal)
-	button.add_theme_stylebox_override("hover", hover)
-	button.add_theme_stylebox_override("pressed", hover)
+	MISDEAL_UI_KIT.apply_offer_card_frame(
+		button,
+		card.card_id == RunState.BOSS_CARD_ID,
+		RunState.is_wizard_marked_card(card.card_id),
+		RunState.is_card_held(card.card_id)
+	)
 
 	var type_label := button.get_node("Type") as Label
 	var title_label := button.get_node("Title") as Label
