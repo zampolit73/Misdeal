@@ -1,5 +1,23 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Pack 2 Stage B candidate art validation + comparison gallery
+
+After shipping the four distinct undead attack impact FX (Stage A), the user said "давай дальше". Confirmed that valid new animation **sheets do not exist** for `bone_thrall`, `grave_bellkeeper`, `crypt_guard`, `bone_warden`. Image-generation attempts produced full battle screenshots instead of separated actor frames and were **not** integrated. Connected OpenArt model list showed insufficient credits, so that path was not used.
+
+**Committed a safe technical Stage B art intake/review gate** without changing the live combat:
+- `scripts/dev/import_animation_pack2_candidate.py` — developer offline Python/Pillow importer: validates true 576×480 RGBA 6×5 96px frame grids with required state counts (4/6/6/3/6), rejects empty/opaque/repeated Walk and Attack/cropped corners, warns if alpha sole is outside y87–94 or art hits horizontal cell bounds; writes **lossless WebP Base64** files for Godot. Tested via existing grounded pack-1 image (accepted, warnings for some cell edges) and an opaque fake sheet (rejected).
+- `assets/pixel/units/combat_units_anim_pack2_candidates/README.md` — staging folder conventions, no fake candidate assets stored.
+- `scripts/dev/unit_animation_candidate_validator.gd` — Godot-only role-specific candidate loader with structured validation errors/warnings and standalone `SpriteFrames`, independent of the game loader.
+- `scripts/dev/unit_animation_pack2_preview.gd` + `scenes/dev/unit_animation_pack2_preview.tscn` — new F6 preview displaying approved static v4 models next to *optional* staged candidate frames and state-switch buttons. Without valid candidate assets, it deliberately displays `ОЖИДАЕТ АРТ`.
+- `docs/UNIT_ANIMATION_PACK2.md` — Stage B commands, QA gates and honest boundary between prepared infrastructure and uncreated artwork.
+
+**Live combat unchanged:** Knight is intentionally v4 static with readable boots and -8px floor offset; Ranger, Mage, Skeleton, Bone Archer have existing v2 frame animation; Thrall, Bellkeeper, Crypt Guard and Warden stay static v4 plus Stage A attack FX. No new candidate assets enabled and no balance/art/UI changes. Godot editor unavailable in this environment; F6 smoke of both Pack 2 review scenes still pending.
+
+**Next meaningful work:** actual authored distinct poses (including two readable boots and role-specific weapons) for the four enemies, staged and visually inspected *before* adding to `MisdealUnitAnimationLibrary`. Do not simulate 25 fake frames by stretching one v4 sprite or cropping a full-scene screenshot. GitHub is source of truth.
+
+---
+
+
 ## Latest implemented state — 2026-10-12 — Undead Animation Pack 2 Stage A, role-specific contact VFX
 
 Following the static Knight v4 fix, the user said to continue. **Direct GitHub commits** added distinct *brief attack-contact* effects for the four remaining static enemy roles without pretending we have authored animation frames. See `docs/UNIT_ANIMATION_PACK2.md` for the precise scope and local tests.
