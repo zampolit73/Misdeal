@@ -334,6 +334,8 @@ func enable_placement_regions(regions: Array[Rect2]) -> void:
 	if placement_regions.is_empty():
 		placement_regions.append(Rect2(Vector2.ZERO, Vector2(1.0, 1.0)))
 	placement_bounds = placement_regions[0]
+	# Imported spawn depths must also obey the actual draggable region.
+	position = _clamp_to_placement_regions(position)
 	placement_enabled = true
 	queue_redraw()
 
@@ -1082,10 +1084,13 @@ func _draw() -> void:
 	var target_color := Color(0.78, 0.90, 1.0, 0.7) if team == 0 else Color(1.0, 0.58, 0.44, 0.7)
 	var ring_radius := maxf(22.0, body_radius * 1.05)
 
-	draw_set_transform(Vector2(0.0, 22.0), 0.0, Vector2(1.0, 0.30))
-	draw_circle(Vector2.ZERO, ring_radius + 7.0, Color(0.0, 0.0, 0.0, 0.16))
-	draw_circle(Vector2.ZERO, ring_radius + 1.0, Color(0.0, 0.0, 0.0, 0.38))
-	draw_arc(Vector2.ZERO, ring_radius, 0.0, TAU, 36, Color(team_color.r, team_color.g, team_color.b, 0.78), 2.2)
+	# The 96px atlas sprite is centered above the unit origin. Its sole
+	# should meet the floor at +36px; the previous +22px ring floated.
+	draw_set_transform(Vector2(0.0, 36.0), 0.0, Vector2(1.0, 0.30))
+	draw_circle(Vector2.ZERO, ring_radius + 10.0, Color(0.0, 0.0, 0.0, 0.21))
+	draw_circle(Vector2.ZERO, ring_radius + 4.0, Color(0.0, 0.0, 0.0, 0.40))
+	draw_circle(Vector2.ZERO, ring_radius * 0.66, Color(0.0, 0.0, 0.0, 0.24))
+	draw_arc(Vector2.ZERO, ring_radius, 0.0, TAU, 36, Color(team_color.r, team_color.g, team_color.b, 0.73), 2.0)
 	if is_boss:
 		var pulse := 0.5 + 0.5 * sin(float(Time.get_ticks_msec()) / 120.0)
 		var boss_color := Color(1.0, 0.20 + pulse * 0.08, 0.10, 0.98) if enraged else Color(0.95, 0.58 + pulse * 0.08, 0.16, 0.92)
@@ -1099,8 +1104,10 @@ func _draw() -> void:
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 	if placement_enabled and team == 0 and alive:
-		var placement_color := Color(0.58, 0.85, 1.0, 1.0) if dragging else Color(0.42, 0.72, 0.95, 0.72)
-		draw_arc(Vector2(0.0, 21.0), 30.0, 0.0, TAU, 36, placement_color, 2.0)
+		var placement_color := Color(0.93, 0.79, 0.56, 0.98) if dragging else Color(0.80, 0.66, 0.44, 0.64)
+		draw_set_transform(Vector2(0.0, 36.0), 0.0, Vector2(1.0, 0.35))
+		draw_arc(Vector2.ZERO, 32.0, 0.0, TAU, 36, placement_color, 2.0)
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 	if alive and target != null and is_instance_valid(target) and target.alive:
 		var local_target := to_local(target.global_position)
