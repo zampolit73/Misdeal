@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Fixed — Knight ground offset fine-tune (2026-10-12)
+
+- Changed the Knight's visual-only floor offset from −4 px to −6 px to match the Ranger after side-by-side gameplay screenshots; no scene layout, animation atlas or combat logic change. Local Godot visual verification pending.
+
+
 ### Fixed — Per-role foot-floor visual calibration (2026-10-12)
 
 - Applied optically calibrated sprite-only floor offsets for all five animated roles and four remaining static-v4 undead roles in `BattleUnit`; offsets lift characters by 4–7px where boots looked buried.
