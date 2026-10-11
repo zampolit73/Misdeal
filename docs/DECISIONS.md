@@ -1869,3 +1869,13 @@ The v2 backdrops revealed a mismatch with earlier encounter-coordinate assumptio
 Deployment-region `Rect2` values are the single source of truth for both hero drag legality and rendered on-floor marker circles/region outlines. The markers deliberately do not create fixed slots or change the combat game design, and they are hidden as combat begins. Avoid permanently painting supposedly legal placement cells into environment WebPs: they become incorrect whenever encounter-specific regions change.
 
 Contact shadows belong to each live unit at its sprite's feet. Revisit the perspective profile only when concrete 1280×720 gameplay screenshots show misplaced figures; do not independently adjust background art, drag boundaries and unit visuals.
+
+
+## D110 — Deployment zones must be quiet at rest
+
+Date: 2026-10-11  
+Status: accepted; refines D109's rendered guide requirement
+
+The user rejected always-visible rectangles and decorative 3×2 circles over the arena floor. The playable battle screen should show the environment and units without a persistent tactical grid. Draw a restrained low-opacity glow from the **existing legal deployment regions only while a hero is being dragged**; hide the overlay immediately on release and when combat starts. The extra hero placement ring is likewise drag-only; a small contact shadow and team identity ring may remain.
+
+This does not change legal drag geometry or add fixed gameplay slots. Do not bake tactical markers into arena WebP plates. Avoid an always-on debug-looking overlay in future art/arena passes.
