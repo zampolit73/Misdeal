@@ -1,3 +1,18 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Design System Package 2 Components
+
+User requested `пакет 2` after completing Foundation. Connected GitHub writes succeeded. Package 2 is **implemented in main but not yet run locally in Godot**.
+
+Files:
+- `scripts/ui/misdeal_ui_kit.gd`: added `apply_battle_panel` / `apply_battle_button`, `apply_selected_button`, `apply_tooltip_panel`, `make_tooltip`, `apply_card_surface`; all existing UI Kit APIs and tokens remain. Battle-specific styles are copied with the old numeric values intact.
+- `scripts/battle/battle.gd`: replaced six panel and seven button calls with `MISDEAL_UI_KIT.apply_battle_panel` / `apply_battle_button`; deleted the two duplicated private style constructors. No combat changes.
+- `scripts/ui/misdeal_tooltip_button.gd`: opt-in Button extending native `_make_custom_tooltip`. Existing game buttons still use their normal tooltip behavior.
+- `scripts/dev/design_system_components_preview.gd` + `scenes/dev/design_system_components_preview.tscn`: isolated, interactive gallery for action/disabled/selected states, battle HUD style, card surfaces, status chip and hover tooltip. Not wired to Main/Table.
+- `docs/DESIGN_SYSTEM.md` Section 7: component contract and manual smoke gate.
+
+The approved table, art, v4 units and combat logic are unchanged. **LOCAL NEXT:** `git pull`, F6 `res://scenes/dev/design_system_components_preview.tscn`; inspect 1280×720 and hover/selection/tooltip. Test normal gameplay Main → Table → Battle including orders (3–5), cards and completion. If Godot flags a parse/runtime issue, inspect GitHub current code and fix there before proposing other work. Only after visual approval implement **Package 3 / Screen Pass**. Previous handoff's Package 1 comments are historical.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Design System 1.0 Foundation
 
 The user agreed to start the proposed compact Misdeal design system with **Package 1 / Foundation**. A GitHub inspection found an existing actively used `scripts/ui/misdeal_ui_kit.gd` and many authored style sizes in `.tscn`/battle scripts. To protect the approved art and vertical slice, **no current production screen has been restyled**.
