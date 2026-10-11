@@ -1889,3 +1889,15 @@ Status: accepted prototype implementation after user screenshot review
 Retain approved detailed Gothic arena backdrops. To prevent miniatures blending into complex stone and firelight, tune `BattleUnit` presentation first: a moderate 8–10% visual-size lift, restrained tinted silhouette contour, soft low-alpha local value separation, aligned contact shadow, and uncluttered initial hero formations inside real legal deployment regions. A boss retains separate sizing. Do not solve this by adding a large glow, redrawing the arena, enlarging collision radii, or placing persistent grid markers on the floor.
 
 Initial hero arrangement is presentation-relevant but also affects tactics, so retain the encounter's deep-line / split-lane / two-pocket positioning contracts and locally test solo, duo and trio before further balance changes. Keep arena art, combat AI, enemy positions, stats and rewards independent of this pass.
+
+
+## D112 — Approved v4 nine-role unit atlas is the combat art source
+
+Date: 2026-10-11  
+Status: accepted; supersedes the earlier v3 active-unit-art asset version
+
+The user approved the new full nine-character Gothic/pixel-art character direction, with Variant A Knight, Ranger and Mage and the associated six undead figures. The live 3×3 `288×288` atlased WebP asset (96×96 per role) is stored as Base64 text for compatibility with the existing Godot text-based resource/export workflow.
+
+`BattleUnit` should prefer v4, cache its texture across units and retain v3 as a tested code-level fallback; future art changes should preserve the tile order or intentionally update role indexes in tandem. No change to combat balance, hit radii, tactical systems or encounter composition is implied by the sprite replacement.
+
+Because the new sheet comes from cut-outs of approved large concept images rather than original sprite-by-sprite painting, inspect 96px edges and silhouettes during local Godot validation, and perform targeted cleanup if defects appear.
