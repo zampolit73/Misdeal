@@ -14,8 +14,11 @@ const ANIM_SOLE_Y := 92.5
 const FLOOR_CONTACT_Y := 36.0
 # Art-only, local pixel offsets: negative values raise boots above the ring.
 # These are visual corrections, not unit position or movement modifiers.
+# The original v4 Knight has visible armored legs. Its Pack 1 animation
+# cells remain archived until a better animation sheet is authored.
+const STATIC_COMBAT_ART_ROLES := ["knight"]
 const ROLE_FLOOR_OFFSETS := {
-	"knight": -16.0,
+	"knight": -8.0,
 	"ranger": -6.0,
 	"mage": -4.0,
 	"skeleton": -7.0,
@@ -115,8 +118,8 @@ var critical_announced := false
 var arena_id := "crypt"
 var arena_tint := Color.WHITE
 
-# The five new animation roles use actual frame textures; others still use
-# their original v4 miniatures, idle motion and combat feedback.
+# Four active animation roles use frame textures. Knight temporarily
+# returns to its v4 miniature for readable legs; all other roles are unchanged.
 var sprite_frames: SpriteFrames
 var frame_state := "idle"
 var frame_time := 0.0
@@ -193,7 +196,9 @@ func _ready() -> void:
 	add_to_group("combat_units")
 	name_label.text = display_name
 	name_label.visible = team == 0 or is_boss or show_enemy_name
-	sprite_frames = ANIMATION_LIBRARY.get_frames(visual_role)
+	# A visually readable v4 Knight is preferable to the malformed Pack 1
+	# Knight legs. Do not delete the animated sheet (preview/rollback).
+	sprite_frames = null if STATIC_COMBAT_ART_ROLES.has(visual_role) else ANIMATION_LIBRARY.get_frames(visual_role)
 	if sprite_frames != null:
 		# Give each miniature its own quiet idle phase: no synchronized snap.
 		frame_time = randf_range(0.0, 0.70)
