@@ -11,7 +11,7 @@
 
 # Misdeal — Visual Asset Registry
 
-Last updated: 2026-10-09
+Last updated: 2026-10-11
 
 Purpose: make visual-source provenance and runtime mapping recoverable from GitHub without reading old chats.
 
@@ -36,12 +36,24 @@ All 25 active Act 1 cards resolve to current matching/object-specific art before
 
 ### Battle arenas
 
-- Crypt: `assets/pixel/battle/arenas/visual_pass_v4/crypt.webp`
-- Gallows: `assets/pixel/battle/arenas/visual_pass_v4/gallows.webp`
-- Graveyard: `assets/pixel/battle/arenas/visual_pass_v6/graveyard.webp`
-- Ossuary: `assets/pixel/battle/arenas/visual_pass_v6/ossuary.webp`
-- Warden: `assets/pixel/battle/arenas/visual_pass_v6/warden.webp`
-- Bone Crush: `assets/pixel/battle/arenas/visual_pass_v6/bone_crush.webp`
+Canonical runtime set: `assets/pixel/battle/arenas/arena_redraw_v1/`.
+
+| arena_id | Runtime source |
+| --- | --- |
+| `crypt` | `arena_redraw_v1/crypt.webp.b64` |
+| `graveyard` | `arena_redraw_v1/graveyard.webp.b64` |
+| `gallows` | `arena_redraw_v1/gallows.webp.b64` |
+| `ossuary` | `arena_redraw_v1/ossuary.webp.b64` |
+| `warden` | `arena_redraw_v1/warden.webp.b64` |
+| `bone_crush` | `arena_redraw_v1/bone_crush.webp.b64` |
+| `bone_swarm` | `arena_redraw_v1/bone_swarm.webp.b64` |
+| `grave_crossfire` | `arena_redraw_v1/grave_crossfire.webp.b64` |
+| `iron_wall` | `arena_redraw_v1/iron_wall.webp.b64` |
+| `last_bell` | `arena_redraw_v1/last_bell.webp.b64` |
+| `firing_square` | `arena_redraw_v1/firing_square.webp.b64` |
+| `bone_ritual` | `arena_redraw_v1/bone_ritual.webp.b64` |
+
+All twelve decode to native 1280×720 arena plates. The set uses quieter central floors and perimeter-weighted detail so live units remain the tactical focal point. Earlier v4/v6 and Combat Expansion arena files are superseded runtime sources but remain recoverable.
 
 Battle runtime mapping lives in `scripts/battle/authored_backdrop.gd`.
 
