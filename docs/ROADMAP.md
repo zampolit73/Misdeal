@@ -1,3 +1,12 @@
+## Current priority — Approved Unit Art v4 integration (2026-10-11)
+
+- [x] Transform approved nine-character concept art into a transparent 288×288 atlas with exact 3×3 / 96px tile layout.
+- [x] Integrate v4 Base64-WebP runtime art into `BattleUnit`, verify all nine visual-role indexes, cache decoded texture, preserve v3 fallback for rollback.
+- [x] Archive lossless PNG sprite sheet master and checkpoint art sources in GitHub.
+- [ ] **LOCAL GATE:** Godot 4.7.x screenshot in Grave Crossfire, Iron Wall, Bone Swarm and Warden to check in-game outline quality, missing pixels, transparent edges, silhouettes/weapon cropping, HP labels and attack/drag behavior.
+- [ ] Optionally refine individual cutouts after screenshots. Bone Raider / Crypt Sentinel currently share archetype silhouettes.
+- [ ] Resume remaining two arena arts once combat-unit readability is accepted.
+
 ## Current priority — Unit readability after arena redraw (2026-10-11)
 
 - [x] Improve battle silhouette clarity on detailed Gothic backdrops with restrained rim contour and subtle value separation, not neon halos.
