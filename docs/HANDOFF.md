@@ -1,3 +1,16 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Design System 1.0 Foundation
+
+The user agreed to start the proposed compact Misdeal design system with **Package 1 / Foundation**. A GitHub inspection found an existing actively used `scripts/ui/misdeal_ui_kit.gd` and many authored style sizes in `.tscn`/battle scripts. To protect the approved art and vertical slice, **no current production screen has been restyled**.
+
+Committed additions:
+- `scripts/ui/misdeal_ui_kit.gd`: one canonical semantic palette (prior brand/class colors retained); spacing `SPACE_1/2/3/4/6/8`; typography `TYPE_MICRO/CAPTION/META/BODY/SECTION/TITLE/DISPLAY`; button heights, borders, viewport and advisory layer bands. Opt-in `apply_text_role` and `apply_button_minimum` helpers. Original UI Kit public methods remain compatible and use the same border weights.
+- `docs/DESIGN_SYSTEM.md`: intent, exact usage, typography, contrast and visual constraints, no UI baked into arena art, Godot staging/review, package plan.
+- `scripts/dev/design_system_foundation_preview.gd` + `scenes/dev/design_system_foundation_preview.tscn`: separate runnable 1280×720 visual specimen using **real Godot components** (9 palette swatches, bronze/steel panels, action buttons, text roles). Not reachable from main game, no extra dependencies.
+
+**Next:** user `git pull`; open the preview scene, press **F6**; inspect Russian label readability and swatch layout, then check normal Main → Table → Battle still runs. Godot couldn't be launched here. Only after feedback start **Package 2 / Components**; review before changing HUD/card layouts. Current Male Mage, enemy flip, v4 characters and approved arenas remain untouched. Earlier HANDOFF descriptions remain historical.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Male Mage + target-aware enemy facing
 
 The user approved the second full 3×3 character roster specifically with a **male** Mage and reported that all new v4 undead appeared to fight with their backs to the heroes. The user instructed direct GitHub deployment. Implemented on `main`:
