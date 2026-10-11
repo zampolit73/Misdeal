@@ -16,16 +16,16 @@ const ARENA_BONE_RITUAL := "bone_ritual"
 const BACKDROP_SIZE := Vector2i(1280, 720)
 
 const ARENA_PATHS := {
-	ARENA_CRYPT: "res://assets/pixel/battle/arenas/arena_redraw_v1/crypt.webp.b64",
-	ARENA_GRAVEYARD: "res://assets/pixel/battle/arenas/arena_redraw_v1/graveyard.webp.b64",
-	ARENA_GALLOWS: "res://assets/pixel/battle/arenas/arena_redraw_v1/gallows.webp.b64",
-	ARENA_OSSUARY: "res://assets/pixel/battle/arenas/arena_redraw_v1/ossuary.webp.b64",
-	ARENA_WARDEN: "res://assets/pixel/battle/arenas/arena_redraw_v1/warden.webp.b64",
-	ARENA_BONE_CRUSH: "res://assets/pixel/battle/arenas/arena_redraw_v1/bone_crush.webp.b64",
-	ARENA_BONE_SWARM: "res://assets/pixel/battle/arenas/arena_redraw_v1/bone_swarm.webp.b64",
-	ARENA_GRAVE_CROSSFIRE: "res://assets/pixel/battle/arenas/arena_redraw_v1/grave_crossfire.webp.b64",
-	ARENA_IRON_WALL: "res://assets/pixel/battle/arenas/arena_redraw_v1/iron_wall.webp.b64",
-	ARENA_LAST_BELL: "res://assets/pixel/battle/arenas/arena_redraw_v1/last_bell.webp.b64",
+	ARENA_CRYPT: "res://assets/pixel/battle/arenas/arena_redraw_v2/crypt.webp",
+	ARENA_GRAVEYARD: "res://assets/pixel/battle/arenas/arena_redraw_v2/graveyard.webp",
+	ARENA_GALLOWS: "res://assets/pixel/battle/arenas/arena_redraw_v2/gallows.webp",
+	ARENA_OSSUARY: "res://assets/pixel/battle/arenas/arena_redraw_v2/ossuary.webp",
+	ARENA_WARDEN: "res://assets/pixel/battle/arenas/arena_redraw_v2/warden.webp",
+	ARENA_BONE_CRUSH: "res://assets/pixel/battle/arenas/arena_redraw_v2/bone_crush.webp",
+	ARENA_BONE_SWARM: "res://assets/pixel/battle/arenas/arena_redraw_v2/bone_swarm.webp",
+	ARENA_GRAVE_CROSSFIRE: "res://assets/pixel/battle/arenas/arena_redraw_v2/grave_crossfire.webp",
+	ARENA_IRON_WALL: "res://assets/pixel/battle/arenas/arena_redraw_v2/iron_wall.webp",
+	ARENA_LAST_BELL: "res://assets/pixel/battle/arenas/arena_redraw_v2/last_bell.webp",
 	ARENA_FIRING_SQUARE: "res://assets/pixel/battle/arenas/arena_redraw_v1/firing_square.webp.b64",
 	ARENA_BONE_RITUAL: "res://assets/pixel/battle/arenas/arena_redraw_v1/bone_ritual.webp.b64",
 }
@@ -53,14 +53,18 @@ func _get_runtime_texture(value: String) -> Texture2D:
 		return runtime_textures[value] as Texture2D
 
 	var path := str(ARENA_PATHS.get(value, ARENA_PATHS[ARENA_CRYPT]))
-	var encoded := FileAccess.get_file_as_string(path).strip_edges()
-	if encoded.is_empty():
-		push_error("Authored arena payload is empty: %s" % path)
-		return null
+	var bytes := PackedByteArray()
+	if path.ends_with(".webp.b64"):
+		var encoded := FileAccess.get_file_as_string(path).strip_edges()
+		if encoded.is_empty():
+			push_error("Authored arena payload is empty: %s" % path)
+			return null
+		bytes = Marshalls.base64_to_raw(encoded)
+	else:
+		bytes = FileAccess.get_file_as_bytes(path)
 
-	var bytes := Marshalls.base64_to_raw(encoded)
 	if bytes.is_empty():
-		push_error("Could not decode authored arena payload: %s" % path)
+		push_error("Could not read or decode authored arena WebP: %s" % path)
 		return null
 
 	var image := Image.new()

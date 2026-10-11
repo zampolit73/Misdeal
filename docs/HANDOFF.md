@@ -1,3 +1,15 @@
+# LATEST LIVE CHECKPOINT — 2026-10-11 — Approved arena package 1 now integrated
+
+The user approved the corrected arena art and explicitly requested live GitHub deployment. The TEN production WebPs under `assets/pixel/battle/arenas/arena_redraw_v2/` are now the active resources for `gallows`, `crypt`, `graveyard`, `ossuary`, `warden`, `bone_crush`, `bone_swarm`, `grave_crossfire`, `iron_wall`, and `last_bell`. Godot `scripts/battle/authored_backdrop.gd` loads these ten as raw WebP bytes, while `firing_square` and `bone_ritual` remain on v1 `.webp.b64` until art package 2.
+
+The previously stated 'review only / not integrated' checkpoint below is historical and superseded. Future sessions must **not** repeat the mistaken claim that GitHub write access is unavailable; this session successfully created and committed GitHub binary blobs through the connected GitHub tools.
+
+Important: no gameplay, spawn, battle controller, tactics or UI changes. Old v1 assets and old v4/v6/Combat Expansion art are retained. New visual rule: one major believable landmark per arena, no duplicated castle cities, readable unoccluded combat floor.
+
+NEXT: after `git pull`, validate the ten backdrops in Godot, especially Bone Swarm and Warden, unit contrast and deployment/floor alignment; then design and approve package 2 (`firing_square`, `bone_ritual`). Full manifest is in `docs/ARENA_REVIEW_2026_10_11.md`. The original PNG masters are in the conversation attachment ZIP; committed 1280×720 WebPs are in the repo and directly recoverable.
+
+---
+
 # LATEST VISUAL CHECKPOINT — 2026-10-11: package-1 arena redraw for review only
 
 Ten corrected battle-arena images plus one Bone Swarm alternative were generated after the user rejected castle-saturated backgrounds. They are NOT yet approved or wired into Godot. See `docs/ARENA_REVIEW_2026_10_11.md` for the full arena-by-arena manifest, rationale, attachment names, and next steps. The images are in the conversation's ZIP attachment, **not** yet in GitHub. Keep the live `arena_redraw_v1` assets untouched until the user approves the new concepts.

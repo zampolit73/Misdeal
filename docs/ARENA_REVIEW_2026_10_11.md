@@ -1,10 +1,10 @@
 # Misdeal arena review — 2026-10-11, redraw package 1
 
-## Status: ten new visual concepts generated, NOT APPROVED, NOT INTEGRATED
+## Status: user-approved; ten arena backdrops integrated into GitHub/Godot runtime (local test pending)
 
 The user rejected the prior package because backgrounds repeated excessive, implausible gothic castles and towers across the entire horizon. They marked the overbuilt landscape behind the original Gallows image with a red outline. The user explicitly asked to redraw all ten package-1 arenas from scratch, keeping the current Misdeal style rather than simplifying it.
 
-In the current chat, ten newly generated visuals were produced and shown, plus one alternative for Bone Swarm. The images were assembled into a user-visible ZIP attachment named `misdeal_arena_redraw_pack1_review.zip` and a contact sheet `misdeal_arena_redraw_pack1_contact_sheet.jpg`. **These source images are currently conversation artifacts, not committed GitHub assets.** New chats must not assume those images exist inside the repository; obtain/attach the ZIP again before integration if needed.
+In the current chat, ten newly generated visuals were produced and shown, plus one alternative for Bone Swarm. The images were assembled into a user-visible ZIP attachment named `misdeal_arena_redraw_pack1_review.zip` and a contact sheet `misdeal_arena_redraw_pack1_contact_sheet.jpg`. **Their 1280×720 production WebPs are now committed** in `assets/pixel/battle/arenas/arena_redraw_v2/`. The original 1672×941 PNG masters remain only in the conversation ZIP; restore them from the attachment for future recropping if required.
 
 ## Concept manifest
 
@@ -25,6 +25,10 @@ Review goals: one legible landmark per arena; believable geography; dark-gothic 
 
 Each generated original was 1672×941 PNG, with an additional export resized/cropped to 1280×720 WebP (Godot-ready only after artistic and floor/bounds approval).
 
-## Next action
+## Integration and next local validation
 
-Wait for the user's approval or new criticism of this package. On approval, add the selected actual image files to a permanent source archive in GitHub, then integrate the ten production exports using the current verified `AuthoredBackdrop` pipeline, leaving combat/spawn/tactics rules untouched. Update `docs/VISUAL_ASSET_REGISTRY.md`, `docs/PROJECT_STATE.md`, `CHANGELOG.md`, and `docs/HANDOFF.md` with precise paths and validation status. Do not commit placeholder binaries or pretend concept assets were already integrated.
+User approved all ten. `scripts/battle/authored_backdrop.gd` now maps these ten IDs to `arena_redraw_v2/{arena_id}.webp` with direct binary WebP loading. All ten committed files are 1280×720. No combat logic, stats, spawn paths, placement bounds or HUD code changed. `firing_square` and `bone_ritual` remain active on v1 until pack 2. Earlier v1 assets were not deleted.
+
+After `git pull`, open several normal and expansion fights, including Bone Swarm and Warden; validate matching arena, unit contrast, placement vs visible walkable floor and full Fight execution. If specific floor mismatches occur, inspect screenshots and adjust only the affected arena/profile after discussion. This session did not run local Godot.
+
+The earlier review-only source ZIP remains available in this conversation; unlike the original PNG masters, the ten runtime WebPs are now durable GitHub assets.

@@ -1,3 +1,11 @@
+## Current priority — Arena Redraw v2 package 1 integrated, 2026-10-11
+
+- [x] Replace the ten approved pack-1 arena backdrops with native 1280×720 WebPs via `AuthoredBackdrop`.
+- [x] Preserve the original twelve-arena v1 set for rollback and keep combat/HUD/deployment gameplay unchanged.
+- [ ] Locally verify all ten backgrounds against unit contrast, deployment zones, and a completed combat.
+- [ ] Generate/review and integrate remaining `firing_square` and `bone_ritual` with the same art constraints (package 2).
+- [ ] Resume Act 1 solo/duo/trio balance validation after visual checks.
+
 ## Current continuation priority — 2026-10-11
 
 - [x] Replace all 12 active battle backdrops with the unified `arena_redraw_v1` production set.

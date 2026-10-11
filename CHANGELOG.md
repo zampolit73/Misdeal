@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Changed
+
+- Integrated **Arena Redraw v2 package 1**: ten approved 1280×720 WebP battle backgrounds (`crypt`, `graveyard`, `gallows`, `ossuary`, `warden`, `bone_crush`, `bone_swarm`, `grave_crossfire`, `iron_wall`, `last_bell`). They now load from `arena_redraw_v2/`; `firing_square` and `bone_ritual` deliberately stay on the old v1 set pending package 2.
+- `AuthoredBackdrop` reads native WebP bytes for the new images and still decodes Base64-WebP for the two untouched arenas. Old art is retained for rollback; combat/UI logic is unchanged.
+- Updated arena design direction to give each fight a distinct readable landmark without repeating distant castles and ornamental clutter.
+
+
 ### Added
 
 - Archived the six user-approved Combat Expansion v1 composite source masters under `assets/source_archive/combat_expansion_v1/` and added a top-level handoff checkpoint so a new chat can continue from the fully integrated arena/card-art state without reconstructing this session.

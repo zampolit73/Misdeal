@@ -1,5 +1,20 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-11 — Arena Redraw v2 package 1
+
+The user approved the corrected 10-arena concept pack after rejecting castle-saturated horizons. **All ten images are now committed as native 1280×720 WebP assets** under `assets/pixel/battle/arenas/arena_redraw_v2/`, and `AuthoredBackdrop` resolves the corresponding arena IDs directly to those files.
+
+Updated IDs: `crypt`, `graveyard`, `gallows`, `ossuary`, `warden`, `bone_crush`, `bone_swarm`, `grave_crossfire`, `iron_wall`, `last_bell`. Unchanged IDs: `firing_square`, `bone_ritual`, still using `arena_redraw_v1/*.webp.b64` until package 2. The loader now accepts both native WebP bytes and existing Base64-WebP text; old v1 assets are preserved for safe rollback.
+
+Approved visual constraints: one recognizable environment/landmark per scene, no repeated distant Gothic castles, restrained edge decor, quiet floor, existing Misdeal moonlight/fire/crimson palette. No spawning, placement rules, battle controller, combat stats, tactical orders, encounter compositions or UI geometry were changed.
+
+**Local verification pending:** `git pull`, open each of the ten battles, check matching background, unit legibility, legal deployment vs visible floor, and full fight completion. Specifically inspect the final Warden arena for unit contrast and the Bone Swarm cave for ground placement. No local Godot run was possible in this session.
+
+See `docs/ARENA_REVIEW_2026_10_11.md` for the design map and `docs/VISUAL_ASSET_REGISTRY.md` for exact runtime paths. Package 2 (`firing_square`, `bone_ritual`) remains outstanding.
+
+---
+
+
 ## Session closeout / next-chat entry point — 2026-10-11
 
 The arena-redraw and battle-HUD context is fully checkpointed in GitHub. The next chat should begin by reading `docs/HANDOFF.md` first, then validating the new 12-arena set locally rather than proposing another speculative visual rewrite.

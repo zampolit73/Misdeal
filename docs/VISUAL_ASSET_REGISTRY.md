@@ -36,26 +36,28 @@ All 25 active Act 1 cards resolve to current matching/object-specific art before
 
 ### Battle arenas
 
-Canonical runtime set: `assets/pixel/battle/arenas/arena_redraw_v1/`.
+Canonical live art: **Arena Redraw v2 (approved pack 1)**, integrated 2026-10-11. Ten arena IDs use native 1280×720 WebP assets in `assets/pixel/battle/arenas/arena_redraw_v2/`. The remaining two retain the prior v1 Base64-WebP payloads until pack 2 is approved and implemented.
 
-| arena_id | Runtime source |
-| --- | --- |
-| `crypt` | `arena_redraw_v1/crypt.webp.b64` |
-| `graveyard` | `arena_redraw_v1/graveyard.webp.b64` |
-| `gallows` | `arena_redraw_v1/gallows.webp.b64` |
-| `ossuary` | `arena_redraw_v1/ossuary.webp.b64` |
-| `warden` | `arena_redraw_v1/warden.webp.b64` |
-| `bone_crush` | `arena_redraw_v1/bone_crush.webp.b64` |
-| `bone_swarm` | `arena_redraw_v1/bone_swarm.webp.b64` |
-| `grave_crossfire` | `arena_redraw_v1/grave_crossfire.webp.b64` |
-| `iron_wall` | `arena_redraw_v1/iron_wall.webp.b64` |
-| `last_bell` | `arena_redraw_v1/last_bell.webp.b64` |
-| `firing_square` | `arena_redraw_v1/firing_square.webp.b64` |
-| `bone_ritual` | `arena_redraw_v1/bone_ritual.webp.b64` |
+| arena_id | Runtime source | Format |
+| --- | --- | --- |
+| `crypt` | `arena_redraw_v2/crypt.webp` | WebP bytes |
+| `graveyard` | `arena_redraw_v2/graveyard.webp` | WebP bytes |
+| `gallows` | `arena_redraw_v2/gallows.webp` | WebP bytes |
+| `ossuary` | `arena_redraw_v2/ossuary.webp` | WebP bytes |
+| `warden` | `arena_redraw_v2/warden.webp` | WebP bytes |
+| `bone_crush` | `arena_redraw_v2/bone_crush.webp` | WebP bytes |
+| `bone_swarm` | `arena_redraw_v2/bone_swarm.webp` | WebP bytes |
+| `grave_crossfire` | `arena_redraw_v2/grave_crossfire.webp` | WebP bytes |
+| `iron_wall` | `arena_redraw_v2/iron_wall.webp` | WebP bytes |
+| `last_bell` | `arena_redraw_v2/last_bell.webp` | WebP bytes |
+| `firing_square` | `arena_redraw_v1/firing_square.webp.b64` | Base64 WebP text |
+| `bone_ritual` | `arena_redraw_v1/bone_ritual.webp.b64` | Base64 WebP text |
 
-All twelve decode to native 1280×720 arena plates. The set uses quieter central floors and perimeter-weighted detail so live units remain the tactical focal point. Earlier v4/v6 and Combat Expansion arena files are superseded runtime sources but remain recoverable.
+`scripts/battle/authored_backdrop.gd` is the authoritative live selector. It loads raw `.webp` bytes for the approved new pack and decodes legacy `.webp.b64` for the remaining two arenas; both paths create an `ImageTexture` and use nearest-neighbor fallback resizing. Live unit sprites, HUD, tactics, deployment and encounter data remain unchanged.
 
-Battle runtime mapping lives in `scripts/battle/authored_backdrop.gd`.
+The new visual direction limits each environment to one dominant meaningful landmark, believable geography and a broad readable central combat floor. It preserves the existing Misdeal blue-black moonlight, warm firelight and restrained crimson gothic identity while avoiding repetitive AI-looking castles. The earlier `arena_redraw_v1`, `visual_pass_v4/v6` and `combat_expansion_v1` assets remain in Git history/repo for rollback. The 1672×941 PNG generation masters remain in the conversation package `misdeal_arena_redraw_pack1_review.zip`; the committed native WebPs are the complete runtime sources.
+
+See `docs/ARENA_REVIEW_2026_10_11.md` for the approved arena-to-landmark map and local-validation checklist.
 
 ### Main menu
 

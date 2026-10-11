@@ -1845,3 +1845,15 @@ Arena art must reserve a broad readable combat floor and push high-frequency det
 The arena plate contains environment only. Units, health bars, deployment regions, tactical UI, objectives and other run-specific state remain live Godot elements.
 
 This decision changes presentation only. Encounter geometry or combat balance should be adjusted separately and only from local playtest evidence.
+
+
+## D108 — Distinct arena geography and approved visual redraw v2
+
+Date: 2026-10-11  
+Status: accepted; supersedes D107's requirement that all arena IDs use the same v1 art directory
+
+The user approved the reworked Arena Redraw v2 package 1 for ten combat arenas. The approved visual language keeps the dark detailed Misdeal Gothic mood and readable flat combat floor, but every arena must have **one clear landmark and believable geography**, not repeated AI-like castles or arbitrary towers covering the horizon. Atmosphere and encounter identity come from varied locations rather than endless decorative architecture.
+
+Native `.webp` assets may be read through `FileAccess.get_file_as_bytes()` and decoded into `ImageTexture`; existing `.webp.b64` assets remain supported for older arenas. The ten approved v2 WebPs are the canonical battle backgrounds; `firing_square` and `bone_ritual` still use v1 until separately approved. All previous arena assets remain recoverable.
+
+This is an art/asset-loading decision only. It does not authorize alterations to combat rules, spawns, deployment bounds, or tactics.
