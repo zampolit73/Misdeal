@@ -573,13 +573,13 @@ func _configure_tactical_order_buttons() -> void:
 
 	# Reserve five real slots in the footer instead of crushing unlocked tactics
 	# into abbreviated 72 px buttons.
-	const START_X := 40.0
-	const BUTTON_WIDTH := 108.0
-	const BUTTON_GAP := 8.0
+	var start_x := 40.0
+	var button_width := 108.0
+	var button_gap := 8.0
 	for index in range(buttons.size()):
 		var button: Button = buttons[index]
-		button.position = Vector2(START_X + float(index) * (BUTTON_WIDTH + BUTTON_GAP), 584.0)
-		button.size = Vector2(BUTTON_WIDTH, 44.0)
+		button.position = Vector2(start_x + float(index) * (button_width + button_gap), 584.0)
+		button.size = Vector2(button_width, 44.0)
 		if button == defiance_order_button:
 			button.add_theme_font_size_override("font_size", 9)
 		elif button == sacrifice_order_button:
