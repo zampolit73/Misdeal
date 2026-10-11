@@ -32,7 +32,10 @@ const BONE_CRUSH_TIME_LIMIT := 16.0
 @onready var battle_backdrop: TextureRect = $BattleBackdrop
 @onready var arena_visual: Control = $Arena
 @onready var combat_audio: Node = $CombatAudio
+@onready var top_hud_panel: Panel = $TopHudPanel
+@onready var run_hud_panel: Panel = $RunHudPanel
 @onready var bottom_hud_panel: Panel = $BottomHudPanel
+@onready var fight_hud_panel: Panel = $FightHudPanel
 @onready var wizard_commentary_panel: Panel = $WizardCommentaryPanel
 @onready var wizard_commentary_label: Label = $WizardCommentary
 @onready var intro_scrim: ColorRect = $BattleIntroOverlay/IntroScrim
@@ -171,23 +174,103 @@ func _sync_target_preview_button() -> void:
 
 
 func _apply_ui_kit() -> void:
-	MISDEAL_UI_KIT.apply_panel(bottom_hud_panel, MISDEAL_UI_KIT.BRONZE, false)
-	MISDEAL_UI_KIT.apply_panel(wizard_commentary_panel, MISDEAL_UI_KIT.BRONZE, false)
-	MISDEAL_UI_KIT.apply_panel(side_objective_panel, MISDEAL_UI_KIT.GOLD, false)
+	# Battle uses lighter modular chrome so the authored arena remains dominant.
+	_apply_battle_panel(top_hud_panel, MISDEAL_UI_KIT.BRONZE, 0.56)
+	_apply_battle_panel(run_hud_panel, MISDEAL_UI_KIT.GOLD, 0.60)
+	_apply_battle_panel(bottom_hud_panel, MISDEAL_UI_KIT.BRONZE, 0.74)
+	_apply_battle_panel(fight_hud_panel, MISDEAL_UI_KIT.EMBER, 0.78)
+	_apply_battle_panel(side_objective_panel, MISDEAL_UI_KIT.GOLD, 0.72)
+	_apply_battle_panel(wizard_commentary_panel, MISDEAL_UI_KIT.BRONZE, 0.68)
 	MISDEAL_UI_KIT.apply_panel(result_backdrop, MISDEAL_UI_KIT.BRONZE, true)
 	MISDEAL_UI_KIT.apply_title(title_label, MISDEAL_UI_KIT.GOLD)
 	MISDEAL_UI_KIT.apply_subtitle(wizard_commentary_label, MISDEAL_UI_KIT.BRONZE)
 
 	for button in [assault_order_button, hunt_order_button, formation_order_button]:
-		MISDEAL_UI_KIT.apply_action_button(button, MISDEAL_UI_KIT.BRONZE, false)
-	MISDEAL_UI_KIT.apply_action_button(sacrifice_order_button, MISDEAL_UI_KIT.EMBER, false)
-	MISDEAL_UI_KIT.apply_action_button(defiance_order_button, MISDEAL_UI_KIT.STEEL, false)
-	MISDEAL_UI_KIT.apply_action_button(target_preview_button, MISDEAL_UI_KIT.STEEL, false)
-	MISDEAL_UI_KIT.apply_action_button(fight_button, MISDEAL_UI_KIT.EMBER, true)
-	MISDEAL_UI_KIT.apply_action_button(restart_button, MISDEAL_UI_KIT.STEEL, false)
-	MISDEAL_UI_KIT.apply_action_button(continue_button, MISDEAL_UI_KIT.GOLD, true)
+		_apply_battle_button(button, MISDEAL_UI_KIT.BRONZE)
+	_apply_battle_button(sacrifice_order_button, MISDEAL_UI_KIT.EMBER)
+	_apply_battle_button(defiance_order_button, MISDEAL_UI_KIT.STEEL)
+	_apply_battle_button(target_preview_button, MISDEAL_UI_KIT.STEEL)
+	_apply_battle_button(fight_button, MISDEAL_UI_KIT.EMBER, true)
+	_apply_battle_button(restart_button, MISDEAL_UI_KIT.STEEL)
+	_apply_battle_button(continue_button, MISDEAL_UI_KIT.GOLD, true)
 	MISDEAL_UI_KIT.apply_action_button(last_deal_accept_button, MISDEAL_UI_KIT.EMBER, true)
 	MISDEAL_UI_KIT.apply_action_button(last_deal_refuse_button, MISDEAL_UI_KIT.STEEL, false)
+
+
+func _apply_battle_panel(panel: Panel, accent: Color, alpha: float) -> void:
+	if panel == null:
+		return
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(
+		0.010 + accent.r * 0.010,
+		0.008 + accent.g * 0.006,
+		0.012 + accent.b * 0.008,
+		alpha
+	)
+	style.border_width_left = 1
+	style.border_width_top = 1
+	style.border_width_right = 1
+	style.border_width_bottom = 1
+	style.border_color = Color(accent.r, accent.g, accent.b, 0.42)
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.42)
+	style.shadow_size = 4
+	style.shadow_offset = Vector2(0.0, 2.0)
+	style.corner_radius_top_left = 2
+	style.corner_radius_top_right = 2
+	style.corner_radius_bottom_left = 2
+	style.corner_radius_bottom_right = 2
+	style.anti_aliasing = false
+	panel.add_theme_stylebox_override("panel", style)
+
+
+func _apply_battle_button(button: Button, accent: Color, primary: bool = false) -> void:
+	if button == null:
+		return
+
+	for style_name in ["normal", "hover", "pressed", "disabled"]:
+		var style := StyleBoxFlat.new()
+		var active: bool = style_name == "hover" or style_name == "pressed"
+		var disabled: bool = style_name == "disabled"
+		var pressed: bool = style_name == "pressed"
+
+		if disabled:
+			style.bg_color = Color(0.012, 0.010, 0.014, 0.46)
+			style.border_color = Color(0.20, 0.18, 0.20, 0.42)
+		else:
+			var energy := 0.070 if active else (0.055 if primary else 0.030)
+			var panel_alpha := 0.90 if primary else (0.82 if active else 0.68)
+			style.bg_color = Color(
+				0.012 + accent.r * energy,
+				0.009 + accent.g * energy * 0.65,
+				0.014 + accent.b * energy * 0.60,
+				panel_alpha
+			)
+			style.border_color = Color(
+				accent.r,
+				accent.g,
+				accent.b,
+				0.94 if pressed else (0.74 if active else 0.48)
+			)
+
+		var border_width := 2 if primary or pressed else 1
+		style.border_width_left = border_width
+		style.border_width_top = border_width
+		style.border_width_right = border_width
+		style.border_width_bottom = border_width
+		style.shadow_color = Color(0.0, 0.0, 0.0, 0.34 if active else 0.20)
+		style.shadow_size = 4 if active else 2
+		style.shadow_offset = Vector2(0.0, 2.0 if not pressed else 1.0)
+		style.corner_radius_top_left = 2
+		style.corner_radius_top_right = 2
+		style.corner_radius_bottom_left = 2
+		style.corner_radius_bottom_right = 2
+		style.anti_aliasing = false
+		button.add_theme_stylebox_override(style_name, style)
+
+	button.add_theme_color_override("font_color", MISDEAL_UI_KIT.TEXT)
+	button.add_theme_color_override("font_hover_color", MISDEAL_UI_KIT.TEXT_HOVER)
+	button.add_theme_color_override("font_pressed_color", MISDEAL_UI_KIT.TEXT_HOVER)
+	button.add_theme_color_override("font_disabled_color", MISDEAL_UI_KIT.TEXT_MUTED)
 
 
 func _is_boss_encounter() -> bool:
@@ -571,18 +654,22 @@ func _configure_tactical_order_buttons() -> void:
 	if defiance_order_unlocked:
 		buttons.append(defiance_order_button)
 
-	# Reserve five real slots in the footer instead of crushing unlocked tactics
-	# into abbreviated 72 px buttons.
+	# Fill the tactical island with what is actually available. Three orders no
+	# longer sit in a dead five-slot grid; four/five-order states redistribute
+	# the same width while preserving full labels.
 	var start_x := 40.0
-	var button_width := 108.0
-	var button_gap := 8.0
+	var end_x := 628.0
+	var gap := 8.0
+	var button_width := (end_x - start_x - gap * float(buttons.size() - 1)) / float(buttons.size())
 	for index in range(buttons.size()):
 		var button: Button = buttons[index]
-		button.position = Vector2(start_x + float(index) * (button_width + button_gap), 584.0)
-		button.size = Vector2(button_width, 44.0)
-		if button == defiance_order_button:
+		button.position = Vector2(start_x + float(index) * (button_width + gap), 610.0)
+		button.size = Vector2(button_width, 38.0)
+		if buttons.size() >= 5 and button == defiance_order_button:
 			button.add_theme_font_size_override("font_size", 9)
-		elif button == sacrifice_order_button:
+		elif buttons.size() >= 5:
+			button.add_theme_font_size_override("font_size", 10)
+		elif buttons.size() == 4:
 			button.add_theme_font_size_override("font_size", 11)
 		else:
 			button.add_theme_font_size_override("font_size", 12)
@@ -783,6 +870,7 @@ func _on_fight_pressed() -> void:
 
 func _hide_preparation_hud() -> void:
 	bottom_hud_panel.visible = false
+	fight_hud_panel.visible = false
 	run_condition_label.visible = false
 	placement_hint.visible = false
 	deployment_zone_a.visible = false
@@ -1021,6 +1109,7 @@ func _finish_battle(player_won: bool) -> void:
 	side_objective_panel.visible = false
 	order_description_label.visible = false
 	bottom_hud_panel.visible = false
+	fight_hud_panel.visible = false
 	wizard_commentary_panel.visible = false
 	wizard_commentary_label.visible = false
 	restart_button.visible = false

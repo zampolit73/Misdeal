@@ -1819,3 +1819,15 @@ The battle preparation screen must not compress unlocked tactical orders into ti
 The bottom command footer reserves five readable tactical slots, keeps the order explanation separate from the primary Fight action, and keeps side objectives out of the playable combat floor. Pixel-art battle backdrops must use nearest-neighbor fallback scaling rather than smooth resampling.
 
 This is a presentation contract, not a combat-rule change.
+
+
+## D106 — Battle HUD uses modular islands, not full-width slabs
+
+Date: 2026-10-11  
+Status: accepted
+
+Battle preparation should preserve the authored arena as the dominant visual surface. Encounter/run information and preparation controls therefore use compact modular plates rather than full-width opaque bars.
+
+The tactical plate dynamically distributes the currently available 3–5 orders across its width. Temporary orders must stay fully named and readable, but empty reserved slots should not create dead visual space.
+
+This supersedes the literal fixed-slot/full-footer interpretation of D105 while preserving its readability requirement.

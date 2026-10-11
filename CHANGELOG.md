@@ -62,6 +62,10 @@
 
 ### Changed
 
+- Replaced the rejected full-width battle HUD slabs with compact modular plates: encounter info, run status, tactics, Fight/target preview and optional Wizard condition now occupy separate translucent islands so the authored arena remains visible.
+- Tactical buttons now distribute dynamically across the tactical island: three baseline orders fill the available width, while four/five-order states shrink evenly without abbreviating **НЕПОВИНОВЕНИЕ**.
+- Battle preparation now uses lighter one-pixel battle-specific panel/button chrome instead of the heavier shared menu/event UI treatment. Combat behavior is unchanged.
+
 - Repacked the battle HUD after local rejection: a dedicated 170 px command footer now reserves five readable tactical-order slots, shows **НЕПОВИНОВЕНИЕ** in full, gives the order description its own wide area, separates target preview from the primary **БОЙ** action, and moves Wizard side objectives out of the playable battlefield.
 - Added a subtle top battle information plate and moved the live combat floor upward so encounter/status text and units no longer compete with the command footer. Combat rules and timing are unchanged.
 - Pixel-art arena fallback resizing now uses nearest-neighbor instead of Lanczos to avoid softening authored battle plates.

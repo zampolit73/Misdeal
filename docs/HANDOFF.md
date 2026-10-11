@@ -1,3 +1,22 @@
+# CURRENT SESSION CHECKPOINT — Modular battle HUD after local rejection
+
+Date: 2026-10-11
+
+The previous 170 px full-width battle footer was rejected locally as too blocky and visually cheap. It has been superseded by a modular HUD pass.
+
+Live preparation layout now uses:
+- compact left encounter plate + compact right run-status plate instead of one top slab;
+- left tactical island, center Fight/target island and optional right Wizard-condition island instead of one bottom slab;
+- dynamic tactic widths: 3 orders fill the panel, 4/5 orders redistribute the same width, full **НЕПОВИНОВЕНИЕ** remains readable;
+- lighter battle-specific panel/button chrome;
+- arena art remains visible around the UI instead of being covered by black rectangles.
+
+Safety invariant remains unchanged: presentation only; no spawn/combat timing/targeting/tactical values were touched.
+
+Local check after `git pull`: open the same **КОСТЯНОЙ РОЙ** preparation screen and compare the silhouette of the HUD first. Then test a 4/5-tactic state if available.
+
+---
+
 # CURRENT SESSION CHECKPOINT — Battle HUD/readability rework
 
 Date: 2026-10-11

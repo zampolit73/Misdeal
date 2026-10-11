@@ -1,5 +1,19 @@
 # Misdeal — Project State
 
+## Battle HUD modular cleanup — 2026-10-11
+
+The first readability fix solved tactical-button capacity but was locally rejected as visually ugly because it replaced the screen with two large black slabs. That pass is superseded.
+
+Current battle composition:
+- the full-width top bar is gone; encounter text and run status live in two compact translucent plates;
+- the full-width bottom footer is gone; preparation uses three separate islands: tactics, Fight/target preview, and an optional Wizard-condition plate;
+- when only the three baseline orders are available, they expand to fill the tactical plate; four/five-order states redistribute the same width without abbreviating **НЕПОВИНОВЕНИЕ**;
+- battle-only panels/buttons use lighter one-pixel chrome instead of the heavy shared menu/event treatment;
+- the authored arena remains visible between and around the HUD islands;
+- the Fight island disappears with the rest of preparation UI when combat begins.
+
+No combat rule, spawn path, attack timing, targeting behavior, reward or encounter stat changed.
+
 ## Battle readability / tactics footer rework — 2026-10-11
 
 The live battle screen was rejected locally because the command footer was cramped and unlocked tactics could collapse into tiny abbreviated buttons. The battle presentation has been repacked without touching spawn/combat timing:
