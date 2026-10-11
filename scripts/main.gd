@@ -1,12 +1,15 @@
 extends Control
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 
 @onready var approved_splash: TextureRect = $ApprovedSplash
 @onready var status_label: Label = $Status
 @onready var start_button: Button = $StartButton
 
 func _ready() -> void:
+	# Keep the approved transparent splash hotspot and art intact.
+	MISDEAL_UI_KIT.apply_splash_hotspot(start_button)
 	start_button.pressed.connect(_on_start_button_pressed)
 	start_button.grab_focus()
 	call_deferred("_animate_main_in")
