@@ -188,6 +188,13 @@ func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_panel(result_backdrop, MISDEAL_UI_KIT.BRONZE, true)
 	MISDEAL_UI_KIT.apply_title(title_label, MISDEAL_UI_KIT.GOLD)
 	MISDEAL_UI_KIT.apply_subtitle(wizard_commentary_label, MISDEAL_UI_KIT.BRONZE)
+	# DS Screen Pass keeps the modular islands and their existing geometry.
+	# Only text contrast changes; tactical labels remain in their full forms.
+	MISDEAL_UI_KIT.apply_screen_copy(order_description_label, MISDEAL_UI_KIT.TEXT_SECONDARY)
+	MISDEAL_UI_KIT.apply_screen_copy(placement_hint, MISDEAL_UI_KIT.STEEL, true)
+	MISDEAL_UI_KIT.apply_screen_copy(deal_label, MISDEAL_UI_KIT.TEXT_ON_DARK)
+	MISDEAL_UI_KIT.apply_screen_copy(run_condition_label, MISDEAL_UI_KIT.TEXT_SECONDARY)
+	MISDEAL_UI_KIT.apply_screen_copy(side_objective_label, MISDEAL_UI_KIT.TEXT_SECONDARY)
 
 	for button in [assault_order_button, hunt_order_button, formation_order_button]:
 		MISDEAL_UI_KIT.apply_battle_button(button, MISDEAL_UI_KIT.BRONZE)
@@ -555,6 +562,16 @@ func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 	formation_order_button.button_pressed = tactical_order == TACTICAL_ORDER_FORMATION
 	sacrifice_order_button.button_pressed = tactical_order == TACTICAL_ORDER_SACRIFICE
 	defiance_order_button.button_pressed = tactical_order == TACTICAL_ORDER_DEFIANCE
+	# Shared visual selection, without modifying the existing toggle/AI logic.
+	for choice in [
+		[assault_order_button, TACTICAL_ORDER_ASSAULT, MISDEAL_UI_KIT.BRONZE],
+		[hunt_order_button, TACTICAL_ORDER_HUNT, MISDEAL_UI_KIT.BRONZE],
+		[formation_order_button, TACTICAL_ORDER_FORMATION, MISDEAL_UI_KIT.BRONZE],
+		[sacrifice_order_button, TACTICAL_ORDER_SACRIFICE, MISDEAL_UI_KIT.EMBER],
+		[defiance_order_button, TACTICAL_ORDER_DEFIANCE, MISDEAL_UI_KIT.STEEL]
+	]:
+		var choice_button: Button = choice[0]
+		MISDEAL_UI_KIT.apply_battle_order_choice(choice_button, tactical_order == choice[1], choice[2])
 	order_description_label.text = _get_tactical_order_description(tactical_order)
 	_apply_tactical_order_stats()
 
