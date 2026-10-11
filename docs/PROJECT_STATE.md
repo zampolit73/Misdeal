@@ -1,5 +1,15 @@
 # Misdeal — Project State
 
+## Unified arena redraw v1 — all 12 battle arenas — 2026-10-11
+
+All active battle environments now use one coherent 1280×720 authored set under `assets/pixel/battle/arenas/arena_redraw_v1/`.
+
+The full active arena roster is covered: `crypt`, `graveyard`, `gallows`, `ossuary`, `warden`, `bone_crush`, `bone_swarm`, `grave_crossfire`, `iron_wall`, `last_bell`, `firing_square`, and `bone_ritual`.
+
+The visual goal is combat readability: broader quiet floors, stronger large landmarks, and less fine detail directly behind units. `scripts/battle/authored_backdrop.gd` now routes every active arena ID through this single production set.
+
+Combat logic, encounter composition, placement rules, tactical orders, rewards and balance were not changed. Next validation is local: verify unit contrast and report only concrete visible-floor / deployment mismatches.
+
 ## Battle HUD modular cleanup — 2026-10-11
 
 The first readability fix solved tactical-button capacity but was locally rejected as visually ugly because it replaced the screen with two large black slabs. That pass is superseded.
