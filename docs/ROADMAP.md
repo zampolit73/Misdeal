@@ -1,3 +1,11 @@
+## Current priority — Male Mage and enemy facing (2026-10-12)
+
+- [x] Add male Mage 96×96 portrait-to-miniature cutout from approved roster, with alpha mask and lossless source archive.
+- [x] Point Mage role alone at the new v4 WebP tile, retaining original atlas and safe fallback for other roles.
+- [x] Face hostile miniatures toward heroes at spawn and toward their current target in combat; keep matching rim sprite oriented the same way.
+- [ ] **Local Godot gate:** check Crypt Patrol, Iron Wall, Bone Warden: enemy facing before Fight and after crossing/switching targets, Mage male silhouette and transparency, HP/name overlays and completed combat.
+- [ ] Continue to the remaining two arenas after validation.
+
 ## Current priority — Approved Unit Art v4 integration (2026-10-11)
 
 - [x] Transform approved nine-character concept art into a transparent 288×288 atlas with exact 3×3 / 96px tile layout.
