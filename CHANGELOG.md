@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+### Fixed — battle-floor grounding and preparation markings (2026-10-11)
+
+- Reprojected legacy authored encounter spawn depth into the actual playable floor of Arena Redraw v2; combat bounds now keep figures from entering distant scenery, including reinforcement spawns.
+- Shifted free hero deployment and its special split/deep/pocket patterns onto the visible floor; clamped initial hero positions to their legal regions.
+- Added `deployment_floor_markers.gd`: live warm-chalk circles and region edges that reflect real drag limits and disappear at Fight. These are visual hints for free placement, not fixed tile slots; they replace barely visible debug rectangles.
+- Aligned contact shadows, team rings and the placement highlight with the sprites' feet. Enemy stats, AI targeting, tactical orders, encounter rosters and rewards were not changed.
+- Kept existing approved v2 WebPs intact; experimental chat-only art with baked circles is not an active game dependency. Local Godot playtest is still required.
+
+
 ### Changed
 
 - Integrated **Arena Redraw v2 package 1**: ten approved 1280×720 WebP battle backgrounds (`crypt`, `graveyard`, `gallows`, `ossuary`, `warden`, `bone_crush`, `bone_swarm`, `grave_crossfire`, `iron_wall`, `last_bell`). They now load from `arena_redraw_v2/`; `firing_square` and `bone_ritual` deliberately stay on the old v1 set pending package 2.
