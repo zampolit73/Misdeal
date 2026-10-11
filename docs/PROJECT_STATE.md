@@ -1,5 +1,18 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Design System 1.0 Foundation
+
+**Foundation committed to `main`; existing production screen layouts are unchanged.** The current `MisdealUIKit` is the one canonical runtime source of UI colors, with additional semantic background/text/status tokens, typography sizes, 4px-based spacing scale, 1/2/3px border weights, square corners, button minimum heights, reference 1280×720 viewport and advisory UI layering bands. The opt-in helpers `apply_text_role` and `apply_button_minimum` allow future/migrated Godot controls to consume these tokens without resizing current authored battle/table controls.
+
+Source of truth for usage and visual rules: `docs/DESIGN_SYSTEM.md`. Separate runnable visual specimen: `res://scenes/dev/design_system_foundation_preview.tscn` + `scripts/dev/design_system_foundation_preview.gd`. It renders palette swatches, live kit-styled action buttons/panels and Cyrillic text roles. This is not in navigation, and adds no autoload, plugin or gameplay dependency.
+
+**Not implemented yet:** wholesale migration of combat/table/menu layouts, reusable `.tres` Theme architecture, new fonts, UI animations/motion settings or responsive scaling beyond current Godot viewport. These remain Package 2/3 and require visual review; the accepted Variant C table, Gothic v2 arenas, v4 unit art and combat mechanics remain untouched.
+
+Verification: GitHub paths/source text and helper call-sites are reviewed. **Godot editor/runtime unavailable here**; local smoke: `git pull` then open `res://scenes/dev/design_system_foundation_preview.tscn` and press F6, and confirm normal Main → Table → Battle remains unchanged.
+
+---
+
+
 ## Latest implemented state — 2026-10-12 — Male Mage + enemy facing correction
 
 The user reported that undead units looked as if they were fighting with their backs to the heroes, and asked for the approved **male** version of the Mage. Both corrections are now committed to `main`.
