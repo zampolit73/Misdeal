@@ -1,3 +1,14 @@
+## Design System 1.0 — Package 3 core screen pass implemented (2026-10-12)
+
+- [x] Keep Main and Intro art intact while bringing hotspot text/focus state into shared `MisdealUIKit`.
+- [x] Improve legibility of class-select instructions/rules/status and RunEnd recap copy without shifting approved layouts.
+- [x] Move live Table card border states (ordinary, Boss, Wizard mark, held) into the shared component and improve quiet HUD text contrast.
+- [x] Make Battle tactical selection visibly distinct for all unlocked 3–5 orders without changing logic or panel sizes.
+- [x] Record the six-screen scope and exact component contracts in `docs/DESIGN_SYSTEM.md` Section 8.
+- [ ] **LOCAL GATE STILL OPEN:** run Godot 4.7.x at 1280×720: Main → Intro → ClassSelect → Table → Battle → RunEnd; inspect transparency, art preservation, label clipping, card special states, 3/4/5 order highlighting, victory/defeat.
+- [ ] Confirm Foundation and Components F6 previews if not previously reviewed; correct any errors or overly bright accents before any further screen polish.
+- [ ] Next visual changes must be screenshot-driven and must not affect the playable vertical slice or approved art.
+
 ## Design System 1.0 — Package 2 Components implemented (2026-10-12)
 
 - [x] Centralize exact active battle HUD panel/button styles in `MisdealUIKit`; remove local `StyleBoxFlat` duplication without redesigning the HUD.
