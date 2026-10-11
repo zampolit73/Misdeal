@@ -1,3 +1,13 @@
+## Design System 1.0 — Package 2 Components implemented (2026-10-12)
+
+- [x] Centralize exact active battle HUD panel/button styles in `MisdealUIKit`; remove local `StyleBoxFlat` duplication without redesigning the HUD.
+- [x] Add reusable card surface, selected choice state, readable info/tooltip panel and opt-in native hover tooltip button.
+- [x] Add separate interactive Godot Components gallery with state examples, including card selected/normal and tactical choice switching.
+- [x] Document API/ownership/constraints in `docs/DESIGN_SYSTEM.md` Section 7.
+- [ ] **LOCAL GATE:** `git pull`, F6 `res://scenes/dev/design_system_components_preview.tscn`: hover/pressed/disabled/selected states, Cyrillic text, styled native tooltip and no clipping at 1280×720.
+- [ ] Play Main → Table → Battle to check unchanged layout/readability, all 3–5 tactical controls, cards, stakes, fight/rewards.
+- [ ] **Package 3 / Screen Pass** only after preview approval, with approved art/geometry unchanged unless discussed.
+
 ## Design System 1.0 — scoped rollout (2026-10-12)
 
 - [x] **Package 1 / Foundation:** document palette, type scale, spacing, borders, layering, readability and no-baked-HUD art rules in `docs/DESIGN_SYSTEM.md`.
