@@ -96,9 +96,9 @@ Already implemented:
 2. `MisdealUIKit.apply_text_role` and `apply_button_minimum` are **opt-in** helpers. Existing `apply_panel`, `apply_action_button`, `apply_card_button`, `apply_title`, and `apply_subtitle` remain compatible.
 3. A dedicated **non-gameplay review scene** demonstrates real Godot panels, colors, buttons and type: open `res://scenes/dev/design_system_foundation_preview.tscn` via Godot and run **Current Scene (F6)**. It is not routed from Main/Menu/Table and does not alter combat.
 
-Next:
-- **Package 2 — Components:** unify actual button/panel/card/tip states on top of tokens, removing duplicated stylistic implementation (particularly battle-local StyleBox constructors). Review on a visual comparison screen before migrating production.
-- **Package 3 — Screen pass:** review battle/table/class-select/menus against actual 1280×720 screenshots, prioritize tactical readability and preserve accepted artwork. Change layout only after approval.
+Current rollout:
+- **Package 2 — Components (implemented):** shared panel/button/card/tooltip variants, battle StyleBox migration and a live interactive preview (Section 7). **Awaiting local Godot review.**
+- **Package 3 — Screen pass (not started):** review battle/table/class-select/menus against actual 1280×720 screenshots, prioritize tactical readability and preserve accepted artwork. Change layout only after approval.
 
 ### Smoke check
 
