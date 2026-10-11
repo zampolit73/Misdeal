@@ -1,5 +1,23 @@
 # Misdeal — Project State
 
+## Combat Expansion v1 dedicated visual pass — 2026-10-11
+
+The six recently added combat encounters have graduated from temporary art reuse to dedicated production visuals approved in the current session.
+
+Dedicated battle backdrops (native 1280×720 WebP):
+- `bone_swarm` — rib-cage/bone-yard arena;
+- `grave_crossfire` — moonlit graveyard crossfire lane;
+- `iron_wall` — shielded crypt corridor;
+- `last_bell` — twin-bell necropolis;
+- `firing_square` — gallows firing yard;
+- `bone_ritual` — ossuary ritual chamber.
+
+Dedicated table-card illustrations (448×274 WebP) live under `assets/pixel/ui/combat_expansion_v1/cards/` and are loaded through `CardArtCatalog` via runtime WebP decoding. The former semantic aliases are removed.
+
+Each encounter now owns a unique `arena_id`. `AuthoredBackdrop` selects the exact image, while `battle_visual.gd` and `BattleUnit.set_arena_presentation()` deliberately map those unique IDs back to the closest validated atmosphere/tint family. This preserves readable unit presentation and avoids introducing a second environment style layer.
+
+Gameplay is unchanged by this visual pass: encounter compositions, stats, deployment geometry, targeting, rewards and the twelve-card Act 1 length remain as in Combat Expansion v1.
+
 ## Combat Expansion v1 — six new random fights — 2026-10-11
 
 The Act 1 random card pool now contains six additional combat cards, distributed two per tier so full runs can see materially different enemy compositions without changing the twelve-card act length.
@@ -25,7 +43,7 @@ Both deliberately reuse existing production silhouettes (`bone_thrall` / `crypt_
 Pool integration:
 - all six cards are in `RunState.CARD_PATHS` and `ACT1_CARD_IDS`;
 - each keeps the existing tier-forced-combat rules, so the act remains twelve resolved pre-boss cards rather than becoming longer;
-- semantic existing combat-card art is temporarily reused so no new combat card appears blank;
+- all six expansion cards now use dedicated approved 448×274 art; no temporary card-art alias remains;
 - table threat tags and battle preparation text identify the encounter's actual tactical pressure before commitment.
 
 Battle-safety note:
