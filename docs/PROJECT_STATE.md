@@ -1,5 +1,18 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Per-role unit floor calibration
+
+After the user confirmed that Pack 1 animations look good but **feet still appear buried in the floor** (new screenshots of Bone Swarm and another arena), we committed a targeted **visual-only** height correction to `scripts/battle/unit.gd` on `main` (code commit `53c998cd7cd8cd124a21e26d074b9a7d3a201695`).
+
+- Added a data-driven `ROLE_FLOOR_OFFSETS` table and `_get_role_floor_offset()`: Knight -4px, Ranger -6px, Mage -4px, Skeleton -7px, Bone Archer -7px, Bone Thrall -6px, Grave Bellkeeper -5px, Crypt Guard -6px, Bone Warden -6px.
+- `_art_rest_position()` now applies the role correction **after** its existing scale-aware animated 96px/sole-y=92.5 contact computation; the same table also visually lifts v4-static enemy silhouettes that do not use `SpriteFrames`. Each value is local to the sprite, not the `BattleUnit` world position.
+- Applied the common rest position immediately in `_ready()`, and in static idle/breathing and static death tween; animated idle, hit displacement and every attack tween already reference that same helper. Thus no snap back to buried feet when changing animation state, finishing an attack or starting the battle.
+- **Unchanged:** arena art and ground shadow ring at local y=36, unit world coordinates, physics/spacing, targeting and attack rules, HP bar/name offsets, team facing and animation frame assets. Pack 1 v2 still active, no new spritesheets.
+- **Verification:** repository source checks pending. No Godot executable available here; local `git pull` and screenshots in Bone Swarm and Cemetery Ambush before/after Fight are still required to confirm optical height and flag if any role needs another 1–2px adjustment.
+
+---
+
+
 ## Latest implemented state — 2026-10-12 — Animation Pack 1 grounding/jitter hotfix
 
 **Implemented directly in GitHub `main` after the user's screenshots of Bone Swarm and Graveyard Ambush:** the first animation atlas produced **orphan legs/heads from adjacent sheet rows**, and unit soles were not consistently aligned to the existing battlefield floor contact. The old v1 atlases remain intact for rollback.
