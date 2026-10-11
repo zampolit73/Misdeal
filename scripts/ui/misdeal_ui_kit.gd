@@ -281,6 +281,92 @@ static func apply_card_surface(panel: PanelContainer, accent: Color = BRONZE, se
 	panel.add_theme_stylebox_override("panel", style)
 
 
+# Screen-pass typography changes contrast only. Existing .tscn size, line
+# wrapping, color-coded card role, and geometry stay authored per screen.
+static func apply_screen_copy(target: Label, accent: Color = TEXT_SECONDARY, emphatic: bool = false) -> void:
+	if target == null:
+		return
+	target.add_theme_color_override("font_color", accent)
+	target.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 0.95 if emphatic else 0.88))
+	target.add_theme_constant_override("shadow_offset_x", 1)
+	target.add_theme_constant_override("shadow_offset_y", 1)
+
+
+# Main menu is a transparent hotspot over approved splash art. Never replace
+# its authored transparent Normal/Hover/Focus StyleBoxes with filled buttons.
+static func apply_splash_hotspot(button: Button) -> void:
+	if button == null:
+		return
+	button.add_theme_color_override("font_color", TEXT)
+	button.add_theme_color_override("font_hover_color", TEXT_HOVER)
+	button.add_theme_color_override("font_pressed_color", TEXT_HOVER)
+	button.add_theme_color_override("font_focus_color", TEXT_HOVER)
+	button.add_theme_color_override("font_disabled_color", TEXT_MUTED)
+
+
+# Restores the exact existing tactile offer-card frame used on the table.
+# RunState never enters UIKit: gameplay supplies only the semantic flags.
+static func apply_offer_card_frame(button: Button, boss: bool = false, marked: bool = false, held: bool = false) -> void:
+	if button == null:
+		return
+	var normal := StyleBoxFlat.new()
+	normal.bg_color = Color(0.032, 0.020, 0.021, 0.992)
+	_set_border(normal, BORDER_STRONG)
+	normal.border_color = Color(0.66, 0.42, 0.20, 1.0)
+	normal.shadow_color = Color(0, 0, 0, 0.68)
+	normal.shadow_size = 8
+
+	var hover := normal.duplicate() as StyleBoxFlat
+	_set_border(hover, 4)
+	hover.border_color = Color(0.98, 0.62, 0.26, 1.0)
+	hover.shadow_color = Color(0.48, 0.12, 0.03, 0.58)
+	hover.shadow_size = 12
+
+	if boss:
+		normal.border_color = Color(0.72, 0.20, 0.12, 1.0)
+		hover.border_color = Color(1.0, 0.42, 0.18, 1.0)
+	elif marked:
+		normal.border_color = Color(0.92, 0.48, 0.12, 1.0)
+		normal.shadow_color = Color(0.62, 0.13, 0.03, 0.62)
+		normal.shadow_size = 12
+		hover.border_color = Color(1.0, 0.72, 0.22, 1.0)
+		hover.shadow_color = Color(0.82, 0.22, 0.04, 0.72)
+		hover.shadow_size = 16
+	elif held:
+		normal.border_color = Color(0.42, 0.68, 0.84, 1.0)
+		hover.border_color = Color(0.62, 0.84, 1.0, 1.0)
+
+	button.add_theme_stylebox_override("normal", normal)
+	button.add_theme_stylebox_override("hover", hover)
+	button.add_theme_stylebox_override("pressed", hover)
+
+
+# Unlike apply_selected_button (regular action style), keep the compact
+# battle button base and accent only the ACTUAL selected toggle. Visible
+# distinction cannot rely solely on button_pressed or a subtle text tint.
+static func apply_battle_order_choice(button: Button, selected: bool, accent: Color = GOLD) -> void:
+	if button == null:
+		return
+	apply_battle_button(button, accent, false)
+	if not selected:
+		if button.has_theme_stylebox_override("hover_pressed"):
+			button.remove_theme_stylebox_override("hover_pressed")
+		return
+
+	var base := button.get_theme_stylebox("pressed") as StyleBoxFlat
+	if base == null:
+		return
+	var style := base.duplicate() as StyleBoxFlat
+	style.bg_color = Color(0.055 + accent.r * 0.070, 0.038 + accent.g * 0.038, 0.028 + accent.b * 0.022, 0.91)
+	style.border_color = Color(accent.r, accent.g, accent.b, 0.96)
+	_set_border(style, BORDER_NORMAL)
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.36)
+	style.shadow_size = 4
+	for name in ["pressed", "hover_pressed"]:
+		button.add_theme_stylebox_override(name, style)
+	button.add_theme_color_override("font_pressed_color", TEXT_HOVER)
+
+
 static func apply_title(target, accent: Color = GOLD) -> void:
 	var label: Control = target as Control
 	if label == null:
