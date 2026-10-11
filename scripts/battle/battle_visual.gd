@@ -6,6 +6,12 @@ const ARENA_GALLOWS := "gallows"
 const ARENA_OSSUARY := "ossuary"
 const ARENA_WARDEN := "warden"
 const ARENA_BONE_CRUSH := "bone_crush"
+const ARENA_BONE_SWARM := "bone_swarm"
+const ARENA_GRAVE_CROSSFIRE := "grave_crossfire"
+const ARENA_IRON_WALL := "iron_wall"
+const ARENA_LAST_BELL := "last_bell"
+const ARENA_FIRING_SQUARE := "firing_square"
+const ARENA_BONE_RITUAL := "bone_ritual"
 
 var pulse: float = 0.0
 var redraw_cooldown: float = 0.0
@@ -15,7 +21,7 @@ var arena_id: String = ARENA_CRYPT
 
 func set_arena_id(value: String) -> void:
 	match value:
-		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH:
+		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH, ARENA_BONE_SWARM, ARENA_GRAVE_CROSSFIRE, ARENA_IRON_WALL, ARENA_LAST_BELL, ARENA_FIRING_SQUARE, ARENA_BONE_RITUAL:
 			arena_id = value
 		_:
 			arena_id = ARENA_CRYPT
@@ -42,13 +48,13 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	match arena_id:
-		ARENA_GRAVEYARD, ARENA_GALLOWS:
+		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_GRAVE_CROSSFIRE, ARENA_LAST_BELL, ARENA_FIRING_SQUARE:
 			_draw_graveyard_atmosphere()
-		ARENA_OSSUARY:
+		ARENA_OSSUARY, ARENA_BONE_RITUAL:
 			_draw_ossuary_atmosphere()
 		ARENA_WARDEN:
 			_draw_warden_atmosphere()
-		ARENA_BONE_CRUSH:
+		ARENA_BONE_CRUSH, ARENA_BONE_SWARM:
 			_draw_bone_crush_atmosphere()
 		_:
 			_draw_crypt_atmosphere()
