@@ -1978,3 +1978,13 @@ Status: accepted from in-game screenshot feedback
 Normalize animated source-frame foot contact in asset space first (D117), **then** allow a small role-specific visual-only signed Y offset in `BattleUnit` to align optical ground contact with the battle arena. Do not move the `BattleUnit` position, retune drag/placement bounds, AI speed, hitboxes, depth sorting or the background image to fake correct foot contact. Static v4 enemies also receive explicit role offsets when visually buried.
 
 A single `_art_rest_position()` applies scale-aware animated positioning plus `ROLE_FLOOR_OFFSETS`, or base position plus role offset for static miniatures. All idle/attack/rest/death visual paths should rely on it consistently. The initial values are deliberately modest (-4 to -7px) and **require a Godot screenshot check**; subsequent corrections should be per role, not a game-wide visual overhaul.
+
+
+## D119 — Prefer readable static Knight v4 until animation art has actual legs
+
+Date: 2026-10-12  
+Status: approved immediate visual hotfix
+
+Following repeated gameplay screenshots, the Pack 1 animated Knight's leg/boot silhouette is intrinsically unreadable. Small optical offsets (up to -16px) cannot reveal geometry hidden by the shield/cloak or malformed spritesheet. Keep the existing **v4 static Knight** as the live combat visual until a redesigned animated Knight sheet preserves clearly separated shin armor/boots in every state and is verified in the real Godot battle UI.
+
+`BattleUnit` opts the Knight out of the animated loader via `STATIC_COMBAT_ART_ROLES`; it retains existing v4 fallback, attack/hit/death feedback, team facing, scale/HP/name/collision and game balance. Use the **static Knight** floor correction -8px, not the old animated -16px value. Other four Unit Animation Pack 1 roles continue to use frame animations. Keep archived Knight animated source in GitHub and the F6 gallery for an eventual comparison. Do not alter tactical mechanics, the arena or approved tabletop art for this fix.
