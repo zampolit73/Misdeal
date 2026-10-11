@@ -1,3 +1,15 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Per-role floor offset fix in main
+
+Following grounded Animation Pack 1 v2, the user provided **new gameplay screenshots** and confirmed animations are good except that feet still appear partly submerged in the battlefield. The previous assistant wrongly claimed it couldn't use GitHub; **this session successfully used connected GitHub tools and committed the fix**. Do not ask user to copy code or reconfirm GitHub access.
+
+**Code:** `scripts/battle/unit.gd`, commit `53c998cd7cd8cd124a21e26d074b9a7d3a201695`. New `ROLE_FLOOR_OFFSETS` Dictionary: Knight -4, Ranger -6, male Mage -4, Skeleton -7, Bone Archer -7, Bone Thrall -6, Grave Bellkeeper -5, Crypt Guard -6, Bone Warden -6 (all px/local Y; negatives lift sprite). `_get_role_floor_offset()` provides the correction. `_art_rest_position()` adds it to the scale-aware base (v2 sole y=92.5 to ring y=36) or to original `ART_BASE_POSITION` if the role is static v4. `_ready()` always applies `_art_rest_position()`; static breathing now uses it, as does the static death tween. Animated idle and attack previously used the helper so automatically inherit it. No change to `SpriteFrames` library, anim files, physical origin, HP bars, unit movement, combat rules or background.
+
+**Next LOCAL step:** `git pull`, launch Godot; check Bone Swarm / Cemetery Ambush in placement and after Fight, including the Skeleton/Bone Archer and static other undead variants. Confirm no hovering/sinking and that during Attack/Death feet don't snap to old Y. Godot cannot be launched from this GitHub connector session; if screenshots show one role still low, change just that entry (1–2px refinement). Do not implement animation Pack 2 before this visual gate unless user says so.
+
+Continuity and decisions in `PROJECT_STATE`, `ROADMAP`, `DECISIONS`, `CHANGELOG`. Prior HANDOFF sections remain historical.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Animation Pack 1 jitter / grounding hotfix
 
 **GitHub is source of truth.** User reported (with screenshots of `Костяной рой` and `Засада на кладбище`) that new Unit Animation Pack 1 figures were jittery before combat and some appeared partly buried/dislocated. The problem was confirmed in the actual input assets: the 6×5 source sheet leaked detached previous-row **Knight legs** into the next Walk frames, and some skeleton frames had similar scraps. Initial idle 5fps and walk 9fps made the problem more obvious; the prior -16px origin put foot pixels below the game's +36px floor ring.
