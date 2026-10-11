@@ -1,3 +1,15 @@
+## Unit Animation Pack 1 — five live frame-animated roles (2026-10-12)
+
+- [x] Extract five generated 6×5 / 229px spritesheets to 96px transparent gameplay frames and package as GitHub-safe Base64 WebP text.
+- [x] Commit `knight`, `ranger`, male `mage`, `skeleton`, `bone_archer` animation atlases.
+- [x] Introduce cached `SpriteFrames` library and bind actual idle, walk, attack, hit, death animation frames to existing live `BattleUnit` Sprite2D without changing combat timing or team facing.
+- [x] Skip Mage projectile-only raw attack cell, keep existing combat spell trace separate.
+- [x] Add dedicated F6 animation review scene using real `AnimatedSprite2D` previews; keep static v4 fallback for missing/other roles.
+- [ ] **LOCAL GATE:** F6 `res://scenes/dev/unit_animation_pack1_preview.tscn` at 1280×720. Test 5 states/5 characters, foot contact, weapon clipping, alpha, male Mage, enemy direction and Cyrillic labels.
+- [ ] **GAMEPLAY GATE:** three protagonist classes; skeleton and bone archer battles; pre-fight idle/drag, movement, attack, hit, death; confirm HP bars, target changes and victory/reward flow.
+- [ ] **Pack 2:** remaining role-specific assets/animation for Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden, after visual approval.
+- [ ] After smoke tests: consider syncing damage contact to specific attack frames without altering balance, and clean frame silhouettes only where screenshots show defects.
+
 ## Design System 1.0 — Package 3 core screen pass implemented (2026-10-12)
 
 - [x] Keep Main and Intro art intact while bringing hotspot text/focus state into shared `MisdealUIKit`.
