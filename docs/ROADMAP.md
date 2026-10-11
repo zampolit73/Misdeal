@@ -1,3 +1,12 @@
+## Unit floor contact visual pass — per-role offsets (2026-10-12)
+
+- [x] Respond to user feedback: Pack 1 frame cleanup solved fragment/jitter defects but some feet still looked submerged.
+- [x] Introduce per-role signed visual offsets in `BattleUnit`, including static-v4 enemy variants; animated + static sprites use one rest-position helper.
+- [x] Ensure combat attack tweens, idle visuals, initialization and old static death path all respect calibrated rest positions.
+- [x] Preserve world coordinates, shadow/arena layouts, collision and game balance; leave approved source art intact.
+- [ ] **LOCAL VISUAL CHECK:** `git pull`, run Bone Swarm and Cemetery Ambush at placement and during actual movement/attack/death; verify boots no longer look buried, and shadow contact, HP bars and enemy flip still read correctly.
+- [ ] If one archetype remains visually too low or appears to hover, tune only that role's `ROLE_FLOOR_OFFSETS` value based on new screenshot; do not move the entire arena or alter physics.
+
 ## Pack 1 animation hotfix — row-bleed, floor contact, startup jitter (2026-10-12)
 
 - [x] Inspect source atlases; confirm detached legs from previous row in Knight Walk and smaller enemy cross-row fragments.
