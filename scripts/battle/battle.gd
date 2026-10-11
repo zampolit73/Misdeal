@@ -372,8 +372,8 @@ func _get_placement_regions() -> Array[Rect2]:
 			return [Rect2(Vector2(145, 305), Vector2(385, 122))]
 		"bone_crush", "bone_swarm":
 			return [
-				Rect2(Vector2(145, 307), Vector2(400, 65)),
-				Rect2(Vector2(145, 371), Vector2(400, 65))
+				Rect2(Vector2(145, 303), Vector2(400, 62)),
+				Rect2(Vector2(145, 371), Vector2(400, 62))
 			]
 		"ossuary_gate", "last_bell", "bone_ritual":
 			return [
