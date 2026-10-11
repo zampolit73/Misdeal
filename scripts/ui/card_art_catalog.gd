@@ -18,6 +18,15 @@ const REDRAW_V4_COLUMNS := 5
 const REDRAW_V4_ATLAS_PATH := "res://assets/pixel/ui/visual_pass_v4/cards_hd.bin"
 const BONE_WARDEN_CARD_PATH := "res://assets/pixel/ui/visual_pass_v6/bone_warden_card.webp"
 const BONE_WARDEN_CARD_SIZE := Vector2i(448, 274)
+const COMBAT_EXPANSION_CARD_SIZE := Vector2i(448, 274)
+const COMBAT_EXPANSION_CARD_PATHS := {
+	"bone_swarm": "res://assets/pixel/ui/combat_expansion_v1/cards/bone_swarm_card.webp",
+	"grave_crossfire": "res://assets/pixel/ui/combat_expansion_v1/cards/grave_crossfire_card.webp",
+	"iron_wall": "res://assets/pixel/ui/combat_expansion_v1/cards/iron_wall_card.webp",
+	"last_bell": "res://assets/pixel/ui/combat_expansion_v1/cards/last_bell_card.webp",
+	"firing_square": "res://assets/pixel/ui/combat_expansion_v1/cards/firing_square_card.webp",
+	"bone_ritual": "res://assets/pixel/ui/combat_expansion_v1/cards/bone_ritual_card.webp",
+}
 
 const REDRAW_V4_INDEX := {
 	"bone_patrol": 0,
@@ -57,15 +66,6 @@ const REDRAW_V5_INDEX := {
 	"candle_seller": 2,
 	"bone_tax": 3,
 	"death_wager": 4,
-}
-
-const COMBAT_EXPANSION_ART_ALIAS := {
-	"bone_swarm": "bone_crush",
-	"grave_crossfire": "graveyard_ambush",
-	"iron_wall": "crypt_guard",
-	"last_bell": "grave_bell",
-	"firing_square": "gallows_volley",
-	"bone_ritual": "ossuary_gate",
 }
 
 const RUN_INDEX := {
@@ -122,10 +122,13 @@ static var ui_sheet_texture: Texture2D
 static var redraw_v4_sheet_texture: Texture2D
 static var redraw_v5_sheet_texture: Texture2D
 static var bone_warden_card_texture: Texture2D
+static var combat_expansion_card_textures: Dictionary = {}
 
 static func get_run_card_texture(card_id: String) -> Texture2D:
-	if COMBAT_EXPANSION_ART_ALIAS.has(card_id):
-		return get_run_card_texture(String(COMBAT_EXPANSION_ART_ALIAS[card_id]))
+	if COMBAT_EXPANSION_CARD_PATHS.has(card_id):
+		var expansion_texture := _get_combat_expansion_card_texture(card_id)
+		if expansion_texture != null:
+			return expansion_texture
 
 	if card_id == "bone_warden":
 		var warden_texture: Texture2D = _get_bone_warden_card_texture()
@@ -178,6 +181,24 @@ static func get_reward_texture(reward_key: String) -> Texture2D:
 	if sheet == null:
 		return null
 	return _get_cell(sheet, int(REWARD_INDEX[reward_key]), UI_CELL_SIZE, UI_COLUMNS)
+
+static func _get_combat_expansion_card_texture(card_id: String) -> Texture2D:
+	if combat_expansion_card_textures.has(card_id):
+		return combat_expansion_card_textures[card_id] as Texture2D
+
+	var path := String(COMBAT_EXPANSION_CARD_PATHS.get(card_id, ""))
+	if path.is_empty():
+		return null
+
+	var texture := _decode_sheet(
+		path,
+		COMBAT_EXPANSION_CARD_SIZE,
+		"Combat Expansion v1 card %s" % card_id
+	)
+	if texture != null:
+		combat_expansion_card_textures[card_id] = texture
+	return texture
+
 
 static func _get_bone_warden_card_texture() -> Texture2D:
 	if bone_warden_card_texture == null:
