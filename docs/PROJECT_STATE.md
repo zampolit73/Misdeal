@@ -10,7 +10,7 @@ The user approved connecting the five freshly generated animation sprite sheets.
 - New standalone `res://scenes/dev/unit_animation_pack1_preview.tscn` with actual `AnimatedSprite2D` test sprites, five-state buttons and all role names for F6 visual review. The production node intentionally remains `Sprite2D` to avoid disrupting its tween/outline code.
 - `docs/UNIT_ANIMATION_PACK1.md` records source and frame order, role mappings, compatibility, local smoke tests and Pack 2 next steps.
 
-**Verification status:** GitHub text assets and loader/callsites committed; static verification pending final pass. No Godot binary was available here; **user must `git pull` and run F6 gallery plus real fights** to validate code parsing, transparency, grounding, alignment, flips, HP labels and combat flow.
+**Verification status:** all five committed Base64 atlas files were compared for exact content equality against the generated assets; source/role/state paths and preview links passed static checks. No Godot binary was available here; **user must `git pull` and run F6 gallery plus real fights** to validate code parsing, transparency, grounding, alignment, flips, HP labels and combat flow.
 
 ---
 
