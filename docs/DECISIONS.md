@@ -1923,3 +1923,15 @@ The canonical runtime color/spacing/typographic foundation remains **`scripts/ui
 Use a 1280×720 reference canvas, compact 4px-based spacing, readable Russian copy, subdued squared Gothic controls, and visually quiet battle overlays. Gold communicates hierarchy and choice; glowing embellishments do not substitute for legibility. Advisory UI layer bands must **not** override unit world-depth sorting or the active combat floor contract.
 
 The accepted Variant C tabletop, Arena Redraw v2, Fate Spread and Unit Art v4 are **visual constraints, not targets for wholesale restyling**. Package 1 creates tokens, documented rules and an isolated live preview; Package 2 may unify component styles, and Package 3 may migrate production scenes only after visual inspection. Protect quick-to-play vertical-slice progress.
+
+
+## D114 — Component helpers extend the existing UI kit; gameplay scene layouts remain authoritative
+
+Date: 2026-10-12  
+Status: accepted for Design System 1.0 Package 2
+
+The existing `MisdealUIKit` is also the runtime source of reusable panel, battle, card, selectable-button and tooltip styles. The identical existing modular battle panel/button `StyleBoxFlat` values were migrated from `battle.gd` into the kit to remove duplication without redesigning approved HUD.
+
+Component APIs are **opt-in**. An explicitly selected state changes appearance only, not gameplay `button_pressed` or tactical orders. A native hover tooltip uses a separate optional Button script instead of automatically replacing all old hints. Hand-painted card art is not embedded into `StyleBoxFlat`, and the preview scene never participates in the live run.
+
+Do not introduce a separate framework or globally restyle the table and battle as part of component-library work. Package 3 may selectively migrate screens only after inspecting a real 1280×720 Godot preview; maintain the game's vertical-slice and tactile Gothic visual direction.
