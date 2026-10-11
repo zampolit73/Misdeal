@@ -1,5 +1,18 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Male Mage + enemy facing correction
+
+The user reported that undead units looked as if they were fighting with their backs to the heroes, and asked for the approved **male** version of the Mage. Both corrections are now committed to `main`.
+
+- `assets/pixel/units/combat_units_v4/mage_male.webp.b64` is a transparent 96×96 WebP cutout from the most recently approved nine-character roster (male mage with beard, purple robe/hat and glowing staff); the lossless PNG tile is archived at `assets/source_archive/unit_art_v4/mage_male_tile.png.b64`. These are text-packaged image bytes consistent with the existing v4 system.
+- `scripts/battle/unit.gd` now uses the separate male Mage texture only for `visual_role == "mage"`, with size/format validation and fallback to its previous v4 atlas cell if missing. Other eight characters still use the exact approved v4 288×288 atlas; the v3 fallback remains intact.
+- At preparation/spawn, enemy `ArtSprite.flip_h` is set true to face screen-left (the hero side). During combat both teams face their current live target based on relative global X (with 12px deadzone), while `RimSprite.flip_h` stays synchronized. This avoids flipping toward the wrong side after units cross each other. Hit boxes, stats, targeting, move speeds, mechanics, placement, arena art and tactical orders are unchanged.
+
+**Static checks:** the GitHub binary-text tile and code were committed, PNG/WebP tile dimensions (96×96) and transparency checked locally, loader/resource refs verified. **Godot runtime test pending:** `git pull`, check mage is visibly male and the undead face left before Fight / toward their enemies during movement, attacks and target-switches in Crypt Patrol, Iron Wall and Warden. Godot binary unavailable in the development environment.
+
+---
+
+
 ## Latest implemented state — 2026-10-11 — Approved Unit Art v4 replaces nine combat miniatures
 
 **Implemented in `main`** after user approval of the new nine-role concept atlas. Production 288×288 transparent RGBA WebP artwork is stored as Base64 text in `assets/pixel/units/combat_units_v4/atlas.webp.b64`, with 96×96 cells arranged by the existing BattleUnit tile indices (row 0: knight / ranger / mage; row 1: skeleton / bone_archer / grave_bellkeeper; row 2: bone_thrall / crypt_guard / bone_warden). The generated concept cutouts were reworked into tiles and stray disconnected fragments removed before committing.
