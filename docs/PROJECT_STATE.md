@@ -1,5 +1,20 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Design System 1.0 Package 3 / core Screen Pass
+
+The user explicitly requested Package 3 following Foundation and the shared Component Library. **Committed in `main`: focused production-screen migration**, not a new interface redesign. It covers `scripts/main.gd`, `scripts/intro/intro.gd`, `scripts/class_select/class_select.gd`, `scripts/table/table.gd`, `scripts/battle/battle.gd` and `scripts/run_end/run_end.gd`.
+
+- `MisdealUIKit` now owns four extra helpers: `apply_screen_copy` (contrast/shadow without changing authored size/position), `apply_splash_hotspot` (font states without touching transparent splash/skip area), `apply_offer_card_frame` (the prior normal/hover/pressed frame math including boss/wizard mark/held priority) and `apply_battle_order_choice` (visible selected highlight for current tactical toggle).
+- **Table:** moved the real offer-card framing from local `StyleBoxFlat` constructors into `MisdealUIKit`; frame colors, border thickness, boss, held and marked states are preserved; top HUD stats and deck/discard copy have shared text contrast.
+- **Battle:** adds an explicit accented selected tactical button on order changes, while retaining the order availability/layout, toggle state and attack/stat logic. Shared contrast updates to run condition, battle description, placement hint, objective and run metadata without resizing or covering the arena.
+- **Main / Intro:** transparent interactive hotspots are still transparent over the approved illustrated screens. **ClassSelect / RunEnd:** longer contextual instructions, rule/status and summary text are easier to distinguish from richly painted backgrounds; class color identities and original animations remain.
+- **UNCHANGED:** `.tscn` geometry, battle floor, unit sprites, enemies and tactics rules, card deal/held semantics, painted table and arena art, Fate Spread, end-game outcomes and existing transition timings.
+
+Design contract and smoke matrix: `docs/DESIGN_SYSTEM.md` Section 8. Static checks confirm updated methods and callsites in all six scripts, and no `RunState` dependency in UIKit. **No Godot runtime available here, so run/visual tests remain pending** at 1280×720, especially five available tactic buttons and the three special card borders. Only make screenshot-driven adjustments next; no mass re-layout was approved.
+
+---
+
+
 ## Latest implemented state — 2026-10-12 — Design System 1.0 Package 2 / Components
 
 **Committed to `main`: reusable visual components and a working review scene in Godot source (not yet locally run).** The single canonical `scripts/ui/misdeal_ui_kit.gd` now provides `apply_battle_panel` and `apply_battle_button` (migrated pixel-compatible from `scripts/battle/battle.gd`), `apply_card_surface`, `apply_selected_button`, `apply_tooltip_panel`, and `make_tooltip`. Original `apply_panel` / `apply_chip` / `apply_action_button` / `apply_card_button` / Foundation roles remain available. Selection styling is visual-only and does not mutate gameplay button logic. Existing battle's six modular panel surfaces and seven compact button style callsites now use the shared kit; the numeric layout, opacity, colors, borders, and 2px corner radii are retained.
