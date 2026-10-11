@@ -87,7 +87,9 @@ static func apply_button_minimum(target: Button, primary: bool = false) -> void:
 	if target == null:
 		return
 	var minimum := BUTTON_HEIGHT_PRIMARY if primary else BUTTON_HEIGHT
-	target.custom_minimum_size.y = maxf(target.custom_minimum_size.y, float(minimum))
+	var required_size := target.custom_minimum_size
+	required_size.y = maxf(required_size.y, float(minimum))
+	target.custom_minimum_size = required_size
 
 
 static func apply_panel(target, accent: Color = BRONZE, strong: bool = false) -> void:
