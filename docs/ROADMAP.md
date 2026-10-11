@@ -1,3 +1,15 @@
+## Undead Animation Pack 2 — Stage A attack accents (2026-10-12)
+
+- [x] Confirm four enemy roles `bone_thrall`, `grave_bellkeeper`, `crypt_guard`, `bone_warden` currently have static v4 assets only; don't call wobbling/static tweens frame animation.
+- [x] Implement per-role short action-contact FX with native Godot `Line2D`/Tween; no attack timing/damage change.
+- [x] Connect FX at real `BattleUnit` attack trigger, not pre-hit/fake telegraph; automatically clean up ephemeral nodes.
+- [x] Provide standalone F6 Godot gallery for four existing enemies and per-role effects.
+- [x] Document actual shipped scope and Stage B quality gates in `docs/UNIT_ANIMATION_PACK2.md`.
+- [ ] **LOCAL GATE:** `git pull`, F6 `scenes/dev/unit_undead_fx_preview.tscn`; inspect four cues at 1280×720, check UI text and node cleanup.
+- [ ] Play relevant encounters with Bellkeeper, Thrall, Crypt Guard and Warden; check accents aren't too bright or too frequent, no hit timing/regression.
+- [ ] **Stage B:** author *actual* distinct enemy `idle/walk/attack/hit/death` transparent frames, with clean feet/weapon/ground contact; review every row before activating roles in battle. The prior screenshot-style image cannot serve as a sprite sheet.
+- [ ] Revisit Knight animation only after an acceptable leg-readable sprite sheet exists; continue using v4 static Knight until approved.
+
 ## Knight leg silhouette hotfix — static v4 fallback (2026-10-12)
 
 - [x] Confirm on repeated user screenshots that Pack 1 animated Knight legs are not readable; vertical adjustment alone cannot fix authored silhouette.
