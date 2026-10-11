@@ -1,3 +1,20 @@
+# ART DIRECTION CORRECTION — 2026-10-11 (latest feedback)
+
+The user rejected the OpenArt arena exploration. Do NOT continue the pastoral/low-color indie pixel art experiments or use their generated variants as reference. The later nine-panel environment collage is also NOT an approved Misdeal battle style. Do NOT commit or wire any of those concept images into runtime.
+
+The user clarified that the existing/older Misdeal illustrations (especially those not replaced during the recent 12-arena unified redraw) are already good and should be IMPROVED, not reinvented. Directly inspected the original GitHub assets as reference:
+- `assets/pixel/battle/arenas/visual_pass_v4/gallows.webp` — strongest composition reference; moonlit Gothic skyline, restrained torches, wide stone arena and etched battle floor, serious dark-fantasy tonal language.
+- `assets/pixel/battle/arenas/visual_pass_v4/crypt.webp` — grounded stone hall and ritual circle.
+- `assets/pixel/battle/arenas/visual_pass_v6/graveyard.webp`, `warden.webp`, `ossuary.webp`, `bone_crush.webp` — accepted pre-unified art, accurate dark stone/red banner/teal moonlight/amber fire look.
+- `assets/pixel/battle/arenas/combat_expansion_v1/*.webp` — original six dedicated arenas that preserve encounter-specific landmarks and are recoverable.
+- `assets/pixel/table/approved_variant_c/table_exact.webp` and `assets/pixel/main/approved_splash_hd/main_splash.webp` — overall game's actual artistic language, **not** a 24-color minimalist mock-pixel-art style.
+
+Aim for *source-based, reference-faithful art improvement* on one arena first: preserve dark painted/pixel-gothic mood, deep blue-black midtones, rusty crimson fabrics, warm candlelight, recognisable silhouette, broad unoccupied stone floor with ritual markings and live Godot gameplay UI; improve unique environmental storytelling, material handling, focal hierarchy and reduce visually repeated generated clutter, but no wholesale redesign. The recently active unified `arena_redraw_v1` remains deployed until user explicitly approves a new replacement. Keep gameplay and encounter mappings untouched during concept approval.
+
+OpenArt generation in this session used the remaining 40 Free credits, and `openart_account_get` reported 0 remaining afterward; do not pretend further OpenArt generation happened. The previous batch was rejected. When generation is available, use image-to-image with the actual canonical GitHub source as visual reference, rather than text-to-image from a detached prompt. Make 1–2 specific comparison variants and request approval before integration.
+
+---
+
 # SESSION CLOSEOUT — 2026-10-11 — START THE NEXT CHAT HERE
 
 This is the authoritative continuation point for the next Misdeal chat.
