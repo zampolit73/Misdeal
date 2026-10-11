@@ -1,3 +1,11 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Knight grounded like Ranger
+
+After the per-role floor calibration hotfix, user screenshots showed Knight still a little lower than Ranger and suggested matching their settings. **Implemented on GitHub `main`:** `scripts/battle/unit.gd` has `ROLE_FLOOR_OFFSETS["knight"]` changed **−4 → −6 px**, matching Ranger (`−6 px`); change commit `61c3cc291c9a0197fdce065af7385871b1bb348e`. No other roles, animation rates, atlases, physical positions, renderer, battle rules or UI changed. Previous documented −4 for Knight is historical and superseded. The sole-origin helper is shared by all action/idle frames, so a single calibration value applies everywhere.
+
+**Next user action:** `git pull` then check placement and fight in Bone Swarm / Grave Crossroads, compare Knight boots-to-ring alignment with Ranger. If Knight floats, revert/tune its own offset only; no arena/general scaling changes. Godot engine wasn't run in connector environment. Continuity docs updated; repo remains source of truth.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Per-role floor offset fix in main
 
 Following grounded Animation Pack 1 v2, the user provided **new gameplay screenshots** and confirmed animations are good except that feet still appear partly submerged in the battlefield. The previous assistant wrongly claimed it couldn't use GitHub; **this session successfully used connected GitHub tools and committed the fix**. Do not ask user to copy code or reconfirm GitHub access.
