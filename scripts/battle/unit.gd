@@ -9,6 +9,9 @@ const TACTICAL_ORDER_SACRIFICE := "sacrifice"
 const TACTICAL_ORDER_DEFIANCE := "defiance"
 const ASSAULT_MOVE_MULTIPLIER := 1.15
 const ART_BASE_POSITION := Vector2(0.0, -16.0)
+const ANIM_CELL_HEIGHT := 96.0
+const ANIM_SOLE_Y := 92.5
+const FLOOR_CONTACT_Y := 36.0
 const HERO_DISPLAY_SCALE := 1.28
 const ENEMY_DISPLAY_SCALE := 1.25
 const BOSS_DISPLAY_SCALE := 1.24
@@ -104,6 +107,7 @@ var frame_state := "idle"
 var frame_time := 0.0
 var frame_one_shot_time := 0.0
 var visual_moving := false
+var walk_hold_timer := 0.0
 
 @onready var rim_sprite: Sprite2D = $RimSprite
 @onready var art_sprite: Sprite2D = $ArtSprite
@@ -176,7 +180,10 @@ func _ready() -> void:
 	name_label.visible = team == 0 or is_boss or show_enemy_name
 	sprite_frames = ANIMATION_LIBRARY.get_frames(visual_role)
 	if sprite_frames != null:
-		art_sprite.texture = sprite_frames.get_frame_texture("idle", 0)
+		# Give each miniature its own quiet idle phase: no synchronized snap.
+		frame_time = randf_range(0.0, 0.70)
+		var idle_index: int = int(frame_time * sprite_frames.get_animation_speed("idle")) % sprite_frames.get_frame_count("idle")
+		art_sprite.texture = sprite_frames.get_frame_texture("idle", idle_index)
 	else:
 		art_sprite.texture = _get_art_texture()
 	rim_sprite.texture = art_sprite.texture
@@ -193,6 +200,8 @@ func _ready() -> void:
 		name_label.offset_top = 48.0
 		name_label.offset_bottom = 70.0
 	base_sprite_scale = art_sprite.scale
+	if sprite_frames != null:
+		art_sprite.position = _art_rest_position()
 	idle_phase = fmod(float(get_instance_id()) * 0.731, TAU)
 	_apply_role_presentation()
 	_apply_arena_presentation()
@@ -791,6 +800,15 @@ func _get_current_move_speed() -> float:
 
 # SpriteFrames provide the five painted states without changing the
 # Sprite2D interface used by attack tweens, targeting and the rim silhouette.
+# V2 cells have their actual boot/robe contact pixel at y=92.
+# Match the existing floor ring at +36, including role visual_scale.
+func _art_rest_position() -> Vector2:
+	if sprite_frames == null:
+		return ART_BASE_POSITION
+	var baseline: float = FLOOR_CONTACT_Y - (ANIM_SOLE_Y - ANIM_CELL_HEIGHT * 0.5) * base_sprite_scale.y
+	return Vector2(ART_BASE_POSITION.x, roundf(baseline))
+
+
 func _play_frame_one_shot(name: String) -> void:
 	if sprite_frames == null or not sprite_frames.has_animation(name):
 		return
@@ -811,10 +829,16 @@ func _update_frame_animation(delta: float) -> void:
 	if alive and frame_one_shot_time > 0.0:
 		frame_one_shot_time = maxf(0.0, frame_one_shot_time - delta)
 	else:
-		var desired := "death" if not alive else ("walk" if combat_started and visual_moving else "idle")
+		# Brief hysteresis stops walk/idle flipping at body-separation edges.
+		if combat_started and visual_moving:
+			walk_hold_timer = 0.18
+		else:
+			walk_hold_timer = maxf(0.0, walk_hold_timer - delta)
+		var desired := "death" if not alive else ("walk" if combat_started and walk_hold_timer > 0.0 else "idle")
 		if frame_state != desired:
 			frame_state = desired
-			frame_time = 0.0
+			# Stagger new idle loops, not the first few frames of each attack.
+			frame_time = randf_range(0.0, 0.30) if desired == "idle" else 0.0
 
 	if sprite_frames.get_frame_count(frame_state) == 0:
 		return
@@ -836,7 +860,7 @@ func _update_idle_visual(delta: float) -> void:
 	if sprite_frames != null:
 		# The new hand-drawn walk/idle frames replace the former rubbery
 		# stretch-and-squash animation. Only real hit displacement remains.
-		art_sprite.position = ART_BASE_POSITION + hit_kick_offset
+		art_sprite.position = _art_rest_position() + hit_kick_offset
 		art_sprite.scale = base_sprite_scale
 		return
 
@@ -921,28 +945,29 @@ func _play_attack_feedback(primary_target: BattleUnit) -> void:
 	_play_frame_one_shot("attack")
 	var direction := global_position.direction_to(primary_target.global_position)
 	var style := _get_attack_style()
+	var rest_position := _art_rest_position()
 
 	match style:
 		"ranged":
-			art_sprite.position = ART_BASE_POSITION - direction * 5.0
+			art_sprite.position = rest_position - direction * 5.0
 			art_sprite.rotation = -direction.x * 0.055
 			art_sprite.scale = Vector2(base_sprite_scale.x * 0.96, base_sprite_scale.y * 1.04)
 			_spawn_attack_trace(primary_target, Color(1.0, 0.76, 0.38, 0.94), 2.0)
 		"magic":
-			art_sprite.position = ART_BASE_POSITION - direction * 2.0
+			art_sprite.position = rest_position - direction * 2.0
 			art_sprite.rotation = direction.x * 0.035
 			art_sprite.scale = base_sprite_scale * 1.12
 			art_sprite.modulate = Color(0.90, 0.72, 1.0, 1.0) if visual_role == "mage" else Color(0.60, 1.0, 0.72, 1.0)
 			var trace_color := Color(0.72, 0.44, 1.0, 0.95) if visual_role == "mage" else Color(0.50, 1.0, 0.70, 0.92)
 			_spawn_attack_trace(primary_target, trace_color, 3.4)
 		_:
-			art_sprite.position = ART_BASE_POSITION + direction * 9.0
+			art_sprite.position = rest_position + direction * 9.0
 			art_sprite.rotation = direction.x * 0.08
 			art_sprite.scale = Vector2(base_sprite_scale.x * 1.06, base_sprite_scale.y * 0.96)
 
 	attack_tween = create_tween()
 	attack_tween.set_parallel(true)
-	attack_tween.tween_property(art_sprite, "position", ART_BASE_POSITION, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	attack_tween.tween_property(art_sprite, "position", rest_position, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	attack_tween.tween_property(art_sprite, "rotation", 0.0, 0.14)
 	attack_tween.tween_property(art_sprite, "scale", base_sprite_scale, 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	attack_tween.tween_property(art_sprite, "modulate", base_art_modulate, 0.14)
