@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Fixed — Knight visual floor alignment (2026-10-12)
+
+- Raised the Knight's art-only floor offset by another 4px (`-12.0` → `-16.0`). Other roles and game mechanics unchanged; local visual verification pending.
+
+
 ### Fixed — Knight floor-contact refinement (2026-10-12)
 
 - Raised Knight render position 2px through `ROLE_FLOOR_OFFSETS["knight"] = -12.0`, preserving all other roles and combat mechanics. Local Godot visual verification pending.
