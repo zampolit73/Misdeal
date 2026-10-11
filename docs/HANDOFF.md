@@ -1,3 +1,9 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Knight optical height −8 px
+
+User asked for another +2 px visual lift of Knight after the previous Knight/Ranger parity test. **Successfully committed directly to GitHub `main`**: `scripts/battle/unit.gd` now sets `ROLE_FLOOR_OFFSETS["knight"] = -8.0` (formerly `-6.0`), commit `2452e6945396c257ce8ce5b71df15f012a1e7aca`. Ranger remains `-6.0`. Only the sprite's art-position calibration changed; runtime world position, animations, attack mechanics, shadows and UI are untouched. No local Godot test in this session. Next: user `git pull`, compare Knight foot contact in Bone Swarm and Grave Crossroads; adjust only Knight's offset further if warranted by screenshots. GitHub remains source of truth; all historical context below.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Knight grounded like Ranger
 
 After the per-role floor calibration hotfix, user screenshots showed Knight still a little lower than Ranger and suggested matching their settings. **Implemented on GitHub `main`:** `scripts/battle/unit.gd` has `ROLE_FLOOR_OFFSETS["knight"]` changed **−4 → −6 px**, matching Ranger (`−6 px`); change commit `61c3cc291c9a0197fdce065af7385871b1bb348e`. No other roles, animation rates, atlases, physical positions, renderer, battle rules or UI changed. Previous documented −4 for Knight is historical and superseded. The sole-origin helper is shared by all action/idle frames, so a single calibration value applies everywhere.
