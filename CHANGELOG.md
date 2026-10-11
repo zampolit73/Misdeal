@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Fixed — Knight visual ground-contact fine-tune (2026-10-12)
+
+- Raised Knight's rendered miniature another 2 px via `ROLE_FLOOR_OFFSETS["knight"] = -10.0`, preserving other role offsets, artwork and combat physics.
+
+
 ### Fixed — Knight foot alignment (2026-10-12)
 
 - Fine-tuned Knight's visual-only floor offset from −6 px to −8 px, without touching Ranger or other units. Visual check in local Godot pending.
