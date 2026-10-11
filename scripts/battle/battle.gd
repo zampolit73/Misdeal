@@ -6,11 +6,14 @@ const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const TARGET_PREVIEW_SCRIPT := preload("res://scripts/battle/target_preview.gd")
+const DEPLOYMENT_FLOOR_SCRIPT := preload("res://scripts/battle/deployment_floor_markers.gd")
 
-const COMBAT_BOUNDS := Rect2(Vector2.ZERO, Vector2(1240, 410))
-const GALLOWS_VOLLEY_COMBAT_BOUNDS := Rect2(Vector2(0, 150), Vector2(1240, 250))
-const BONE_CRUSH_COMBAT_BOUNDS := Rect2(Vector2(0, 90), Vector2(1240, 310))
-const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(35, 82), Vector2(545, 326))
+# Local to UnitsLayer (screen offset 20,96). Keep unit feet on the
+# actual stone floor, below the architectural horizon and above the HUD.
+const COMBAT_BOUNDS := Rect2(Vector2(90, 284), Vector2(1080, 158))
+const GALLOWS_VOLLEY_COMBAT_BOUNDS := Rect2(Vector2(90, 279), Vector2(1080, 163))
+const BONE_CRUSH_COMBAT_BOUNDS := Rect2(Vector2(105, 294), Vector2(1030, 148))
+const PLAYER_PLACEMENT_BOUNDS := Rect2(Vector2(140, 304), Vector2(395, 124))
 
 const TACTICAL_ORDER_ASSAULT := "assault"
 const TACTICAL_ORDER_HUNT := "hunt"
@@ -82,6 +85,7 @@ var side_objective_failed := false
 var first_enemy_death_seen := false
 var combat_elapsed := 0.0
 var target_preview: BattleTargetPreview
+var deployment_floor_markers: Node2D
 
 func _ready() -> void:
 	if not RunState.has_chosen_protagonist():
@@ -365,33 +369,34 @@ func _get_party_spawn_positions() -> Array[Vector2]:
 func _get_placement_regions() -> Array[Rect2]:
 	match encounter.encounter_id:
 		"gallows_volley", "grave_crossfire", "firing_square":
-			return [Rect2(Vector2(35, 195), Vector2(430, 205))]
+			return [Rect2(Vector2(145, 305), Vector2(385, 122))]
 		"bone_crush", "bone_swarm":
 			return [
-				Rect2(Vector2(35, 115), Vector2(480, 130)),
-				Rect2(Vector2(35, 270), Vector2(480, 130))
+				Rect2(Vector2(145, 307), Vector2(400, 65)),
+				Rect2(Vector2(145, 371), Vector2(400, 65))
 			]
 		"ossuary_gate", "last_bell", "bone_ritual":
 			return [
-				Rect2(Vector2(35, 82), Vector2(215, 326)),
-				Rect2(Vector2(325, 82), Vector2(215, 326))
+				Rect2(Vector2(150, 306), Vector2(163, 123)),
+				Rect2(Vector2(355, 306), Vector2(163, 123))
 			]
 		"bone_warden":
-			return [Rect2(Vector2(65, 105), Vector2(440, 280))]
+			return [Rect2(Vector2(155, 304), Vector2(405, 124))]
 		_:
 			return [PLAYER_PLACEMENT_BOUNDS]
 
+
 func _configure_deployment_zones(regions: Array[Rect2]) -> void:
-	var panels: Array[Panel] = [deployment_zone_a, deployment_zone_b]
-	for index in range(panels.size()):
-		var panel: Panel = panels[index]
-		if index >= regions.size():
-			panel.visible = false
-			continue
-		var region: Rect2 = regions[index]
-		panel.position = units_layer.position + region.position
-		panel.size = region.size
-		panel.visible = true
+	# The old panels suggested larger areas than the actual floor. The new
+	# overlay consumes exactly the same regions as BattleUnit dragging.
+	deployment_zone_a.visible = false
+	deployment_zone_b.visible = false
+	if deployment_floor_markers == null:
+		deployment_floor_markers = DEPLOYMENT_FLOOR_SCRIPT.new() as Node2D
+		units_layer.add_child(deployment_floor_markers)
+		units_layer.move_child(deployment_floor_markers, 0)
+	deployment_floor_markers.call("set_regions", regions)
+
 
 func _get_placement_hint_text() -> String:
 	match encounter.encounter_id:
@@ -413,7 +418,7 @@ func _spawn_unit(
 	name_override: String = ""
 ) -> void:
 	var unit := UNIT_SCENE.instantiate() as BattleUnit
-	unit.configure(data, team, spawn_position, name_override)
+	unit.configure(data, team, _project_spawn_on_floor(spawn_position), name_override)
 	unit.set_arena_presentation(encounter.arena_id)
 
 	if team == 0:
@@ -450,6 +455,17 @@ func _spawn_unit(
 
 	if combat_started:
 		unit.start_combat()
+
+func _project_spawn_on_floor(source_position: Vector2) -> Vector2:
+	# Encounter Resources authored for the older high/back-wall planes keep
+	# their order and horizontal strategy. Only remap depth into walkable stone.
+	var bounds := _get_combat_bounds()
+	var depth := clampf((source_position.y - 130.0) / 275.0, 0.0, 1.0)
+	return Vector2(
+		source_position.x,
+		lerpf(bounds.position.y + 32.0, bounds.end.y - 32.0, depth)
+	)
+
 
 func _get_combat_bounds() -> Rect2:
 	if encounter != null:
@@ -875,6 +891,8 @@ func _hide_preparation_hud() -> void:
 	placement_hint.visible = false
 	deployment_zone_a.visible = false
 	deployment_zone_b.visible = false
+	if deployment_floor_markers != null:
+		deployment_floor_markers.call("hide_markers")
 	order_label.visible = false
 	assault_order_button.visible = false
 	hunt_order_button.visible = false
