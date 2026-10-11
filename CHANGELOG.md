@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Fixed — Unit Animation Pack 1 jitter and grounding (2026-10-12)
+
+- Rebuilt all five Pack 1 WebP frame atlases as **v2**, eliminating orphan artwork from adjacent spritesheet rows and grounding all active frames to a uniform alpha sole y=92. Preserved the previous v1 atlases for rollback.
+- Adjusted live `BattleUnit` animation baseline against the existing y=36 shadow/floor ring, including per-role art scale and attack tween recovery.
+- Slowed Idle/Walk, staggered initial idle phase and debounced walk/idle state changes to reduce abrupt motion while preparing and during crowded autobattles.
+- No balance/AI/sprite-facing/arena layout changes; exact uploaded asset equality and contact-row consistency checked. Local Godot smoke still required.
+
+
 ### Added — Unit Animation Pack 1 (2026-10-12)
 
 - Added five transparent 576×480 animation WebP atlases, with 96×96 frames stored as Base64 resources, for Knight, Ranger, male Mage, Skeleton and Bone Archer.
