@@ -1,3 +1,13 @@
+# LATEST LIVE CHECKPOINT — 2026-10-11 — Grounded battle floor and dynamic deployment markers
+
+The user approved v2 arena pack 1 but screenshots from Bone Swarm / Last Bell / Iron Wall showed floating figures and no readable player placement zone. Code correction has now been committed in `scripts/battle/battle.gd`, `scripts/battle/unit.gd`, and NEW `scripts/battle/deployment_floor_markers.gd`: authored enemy/hero spawns are mapped from old high-background Y into a walkable floor band, combat movement clamps share that floor band, party placement regions are lowered and drawn using actual legal regions, dragged heroes snap to the real legal area, and contact shadows sit at the miniature soles. Split-band/pocket/front-line encounter distinctions are retained. The overlay hides on Fight and doesn't change enemy AI, tactics, rewards, or stat definitions. It works across all 12 IDs, while the 10 approved arena_redraw_v2 WebPs remain the active image assets and the 2 pack-2 arenas still use the v1 images.
+
+**Do not assume the newly generated in-chat pictures with baked white circles were committed**. Instead the current code renders the placement markings dynamically from legal regions to prevent artwork drifting from gameplay. The existing 10 approved WebPs remain unchanged. Key constants, spawn projection and regions are now in `battle.gd`.
+
+Next local check: `git pull`; run Godot 4.7.x, test Bone Swarm, Last Bell and Iron Wall (screenshots), then Gallows and Warden; verify all starts place units on stone, dragging respects bright chalk areas (including two pockets/bands), bars and labels remain legible, and the markings vanish when Fight begins. Godot could not be run here. Report the first failing arena/hero count if offsets need adjustment.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-11 — Approved arena package 1 now integrated
 
 The user approved the corrected arena art and explicitly requested live GitHub deployment. The TEN production WebPs under `assets/pixel/battle/arenas/arena_redraw_v2/` are now the active resources for `gallows`, `crypt`, `graveyard`, `ossuary`, `warden`, `bone_crush`, `bone_swarm`, `grave_crossfire`, `iron_wall`, and `last_bell`. Godot `scripts/battle/authored_backdrop.gd` loads these ten as raw WebP bytes, while `firing_square` and `bone_ritual` remain on v1 `.webp.b64` until art package 2.
