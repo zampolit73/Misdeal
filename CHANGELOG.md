@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Changed — Design System Package 3 core screen pass (2026-10-12)
+
+- Migrated production menu/intro, class selection, tabletop, battle prep and run-end copy to shared screen-readability colors/shadows while keeping their font sizes, layout geometry and painted backgrounds.
+- Replaced local tabletop offer-card `StyleBoxFlat` constructors with the shared exact visual variant for normal, held, Wizard-marked and boss cards.
+- Added clear persistent selected styling for the active battle tactical order via `MisdealUIKit`, without modifying the order toggle/AI/stat mechanics or the available 3–5 order layout.
+- Preserved fully transparent splash/intro hotspots and unchanged positioning of all scene elements; Godot 4.7.x gameplay/visual smoke is still pending.
+
+
 ### Changed — Design System 1.0 Package 2 Components (2026-10-12)
 
 - Moved duplicate compact battle panel/button `StyleBoxFlat` code from `battle.gd` into the shared `MisdealUIKit`, keeping prior visual numbers and game geometry intact.
