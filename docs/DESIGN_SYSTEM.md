@@ -1,6 +1,6 @@
 # Misdeal Design System 1.0 — Foundation
 
-Status: **Foundation + Package 2 Components implemented; full screen migration pending** (2026-10-12)  
+Status: **Packages 1–3 implemented in a conservative core-screen pass; local Godot review pending** (2026-10-12)  
 Godot: **4.7.x / GDScript**  
 Canonical runtime tokens: `scripts/ui/misdeal_ui_kit.gd` (`MisdealUIKit`)  
 Review scene: `res://scenes/dev/design_system_foundation_preview.tscn`
@@ -146,3 +146,41 @@ This preview is a **review gate**: the Godot executable was unavailable during c
 ### Next — Package 3 screen pass
 
 Only after visual approval, migrate select widgets and local sizes/spacing on table, battle and menus to these shared helpers. Battle unit positions, art and floor geometry are out of scope. If a shared default causes regressions, preserve the existing screen geometry and fix the variant rather than restyling the entire screen.
+
+## 8. Package 3 — Production Screen Pass (2026-10-12)
+
+**Scope:** selectively connect proven Component Library styles to the **real** `Main`, `Intro`, `ClassSelect`, `Table`, `Battle`, and `RunEnd` scripts without changing their approved `.tscn` positions or art.
+
+The user explicitly requested this package before the earlier local component-gallery gate was reported as passed. Treat code as committed but the **visual gate as still pending**. Do not infer that the Godot runtime has been exercised.
+
+| Production screen | Implemented migration | Explicitly preserved |
+| --- | --- | --- |
+| Main / splash | `apply_splash_hotspot` for semantic font colors, focus/disabled states | existing fully transparent normal button and painted splash |
+| Intro | same hotspot for skip area, `apply_screen_copy` for high-contrast help | original intro images, timings and click handling |
+| Class selection | shared copy readability for Wizard line, rules and status | knight/ranger/mage colored cards and character art |
+| Table / fate cards | `apply_offer_card_frame` replaces duplicate `StyleBoxFlat` logic; shared HUD text contrast for progress/count labels | artwork, card pivots, deck/deal animations, held/marked/boss frame colors, Wizard speech |
+| Tactical battle | `apply_battle_order_choice` highlights **only** current 3–5 selected order using existing button style; shared copy contrast improves hint, description and run metadata | all tactical effects, enemy AI, positions, modular HUD size, floor and fight flow |
+| RunEnd | summary and Wizard explanation use shared readable text styling | result conditions, exact data, animations and approved background |
+
+### Screen-pass components
+
+- `apply_screen_copy(label, color, emphatic)`: text color and 1px shadow **only** — keeps every Label's authored font size, position and line wrapping, avoiding accidental UI overflow.
+- `apply_splash_hotspot(button)`: **font color overrides only**. Never call `apply_action_button` on a transparent hotspot over a painted splash.
+- `apply_offer_card_frame(button, boss, marked, held)`: single semantic card-frame implementation, reproducing the actual original normal/hover/pressed palette and 3px/4px borders. `RunState` stays outside UIKit. The priority remains **boss → wizard marked → held**.
+- `apply_battle_order_choice(button, selected, accent)`: preserve compact battle button styling and overlay a more readable selected accent. `toggle_mode`, `button_pressed`, combat order selection and unlocked/order-count rules continue to live entirely in `battle.gd`.
+
+### Required local review
+
+1. `git pull` and Godot 4.7.x: enter normal Main → Intro → ClassSelect → Table → Battle → Results.
+2. Main start and intro skip hotspots remain transparently on top of authored illustrations. Mouse hover and keyboard focus continue working.
+3. Class selection: all three classes keep their authored accent and click/hover/confirm animations; Russian rule/status text remains legible.
+4. Table: check normal, held, Wizard-marked and boss cards (including hover), stakes, cards dealing/returning; verify the new shared card-frame helper preserves old highlights.
+5. Battle: choose НАТИСК → ОХОТА → СТРОЙ; where available check ЖЕРТВА and НЕПОВИНОВЕНИЕ. Only selected order should have the persistent accented state. Launch battle, confirm abilities/target preview and rewards unchanged.
+6. RunEnd: success and death data display with no clipping/overlap at 1280×720.
+7. Open both `scenes/dev/design_system_foundation_preview.tscn` and `scenes/dev/design_system_components_preview.tscn` with F6 if not already locally verified.
+
+No engine executable was present in the connector execution environment, so source-level checks are **not** a substitute for these visual and interaction tests.
+
+### Next after acceptance
+
+Fix any reported local UI visibility or error regression **before** new art passes. Future polishing should be scoped and screenshot-driven (especially dense card text and 5-order battle states), not a fresh wholesale redesign or new UI framework. Keep `MisdealUIKit` the one source of style truth.
