@@ -1,3 +1,12 @@
+## Current priority — Unit readability after arena redraw (2026-10-11)
+
+- [x] Improve battle silhouette clarity on detailed Gothic backdrops with restrained rim contour and subtle value separation, not neon halos.
+- [x] Increase only sprite presentation (heroes ~10%, enemies ~8%, boss ~5%) and relocate art/HP/name offsets without touching hitboxes or combat stats.
+- [x] Widen solo/duo/trio initial party stagger across all encounter-specific placement profiles, while retaining actual legal floor regions.
+- [x] Make the larger on-screen hero sprites easier to grab and drag without changing combat collision radii.
+- [ ] **LOCAL GATE:** verify Grave Crossfire, Gallows Volley, Bone Swarm and Warden readability and 1/2/3-player drag plus complete fights in Godot 4.7.x; adjust if sprite/UI overlap remains.
+- [ ] Return to arena package 2 only after readable miniature composition is accepted.
+
 ## Current priority — Drag-only floor UI polish (2026-10-11)
 
 - [x] Remove persistent deployment rectangles and 3×2 decorative circles that obscured approved arena art.
