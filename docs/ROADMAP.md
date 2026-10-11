@@ -1,3 +1,11 @@
+## Current continuation priority — 2026-10-11
+
+- [x] Replace all 12 active battle backdrops with the unified `arena_redraw_v1` production set.
+- [x] Preserve live Godot HUD, units and existing combat rules while changing arena art.
+- [ ] **Next:** run several fights locally, especially Bone Swarm / Grave Crossfire / Firing Square / Bone Ritual, and check unit contrast plus usable floor.
+- [ ] Fix only concrete arena/deployment mismatches found in screenshots.
+- [ ] After arena validation, resume full Act 1 solo/duo/trio testing through Bone Warden.
+
 ## Current continuation priority — 2026-10-09
 
 - [x] Freeze the accepted Fate Spread composition.
