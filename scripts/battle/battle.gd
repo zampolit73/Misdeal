@@ -570,8 +570,10 @@ func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 		[sacrifice_order_button, TACTICAL_ORDER_SACRIFICE, MISDEAL_UI_KIT.EMBER],
 		[defiance_order_button, TACTICAL_ORDER_DEFIANCE, MISDEAL_UI_KIT.STEEL]
 	]:
-		var choice_button: Button = choice[0]
-		MISDEAL_UI_KIT.apply_battle_order_choice(choice_button, tactical_order == choice[1], choice[2])
+		var choice_button := choice[0] as Button
+		var choice_order: String = choice[1]
+		var choice_accent: Color = choice[2]
+		MISDEAL_UI_KIT.apply_battle_order_choice(choice_button, tactical_order == choice_order, choice_accent)
 	order_description_label.text = _get_tactical_order_description(tactical_order)
 	_apply_tactical_order_stats()
 
