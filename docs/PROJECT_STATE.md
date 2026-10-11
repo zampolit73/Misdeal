@@ -1,5 +1,20 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Design System 1.0 Package 2 / Components
+
+**Committed to `main`: reusable visual components and a working review scene in Godot source (not yet locally run).** The single canonical `scripts/ui/misdeal_ui_kit.gd` now provides `apply_battle_panel` and `apply_battle_button` (migrated pixel-compatible from `scripts/battle/battle.gd`), `apply_card_surface`, `apply_selected_button`, `apply_tooltip_panel`, and `make_tooltip`. Original `apply_panel` / `apply_chip` / `apply_action_button` / `apply_card_button` / Foundation roles remain available. Selection styling is visual-only and does not mutate gameplay button logic. Existing battle's six modular panel surfaces and seven compact button style callsites now use the shared kit; the numeric layout, opacity, colors, borders, and 2px corner radii are retained.
+
+- New **opt-in** native hover tooltip button: `scripts/ui/misdeal_tooltip_button.gd`, which returns an actual styled `PanelContainer` to Godot's tooltip pipeline.
+- Standalone interactive gallery: `res://scenes/dev/design_system_components_preview.tscn` with `scripts/dev/design_system_components_preview.gd`; sample enabled/disabled/hover/pressed buttons, visually selected tactical options, sample card surfaces, chip, custom hover tooltip, and the same low-opacity battle chrome. **The gallery is not routed from live gameplay.**
+- `docs/DESIGN_SYSTEM.md` Section 7 contains exact component APIs, states, usage boundaries and Godot F6 test instructions. This is the confirmed Component Library implementation, not merely future planning.
+
+**Scope safeguard:** no environment/card/unit artwork, combat mechanics, tactical order availability, encounter definitions, or scene layout was changed. Table UI has not been restyled, and native tooltips in existing game scenes remain as before. No new global Theme or autoload was introduced.
+
+Verification: GitHub source/static references reviewed. The development environment had no installed Godot binary; user must run F6 Components Preview and smoke test Main → Table → Battle for visuals/parse errors. **Package 3 / Screen Pass is not started; wait for local Component preview review.**
+
+---
+
+
 ## Latest implemented state — 2026-10-12 — Design System 1.0 Foundation
 
 **Foundation committed to `main`; existing production screen layouts are unchanged.** The current `MisdealUIKit` is the one canonical runtime source of UI colors, with additional semantic background/text/status tokens, typography sizes, 4px-based spacing scale, 1/2/3px border weights, square corners, button minimum heights, reference 1280×720 viewport and advisory UI layering bands. The opt-in helpers `apply_text_role` and `apply_button_minimum` allow future/migrated Godot controls to consume these tokens without resizing current authored battle/table controls.
