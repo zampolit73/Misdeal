@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Fixed — Knight floor-contact refinement (2026-10-12)
+
+- Raised Knight render position 2px through `ROLE_FLOOR_OFFSETS["knight"] = -12.0`, preserving all other roles and combat mechanics. Local Godot visual verification pending.
+
+
 ### Fixed — Knight visual ground-contact fine-tune (2026-10-12)
 
 - Raised Knight's rendered miniature another 2 px via `ROLE_FLOOR_OFFSETS["knight"] = -10.0`, preserving other role offsets, artwork and combat physics.
