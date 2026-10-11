@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Added — Undead Pack 2 Stage A, attack-contact effects (2026-10-12)
+
+- Added small role-specific impact accents for static Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden; native Godot Line2D/Tween effects end after 0.17–0.36 seconds and self-delete.
+- Connected them to the live `BattleUnit` attack trigger, without delaying damage or changing AI, HP, cooldowns, tactics, art or floor offsets.
+- Added `scenes/dev/unit_undead_fx_preview.tscn` F6 gallery with real static v4 enemies and interactive buttons, and `docs/UNIT_ANIMATION_PACK2.md` for Stage A/Stage B distinction.
+- Actual multi-frame animations for those four enemies are **not yet created**. Local Godot smoke pending.
+
+
 ### Fixed — Knight silhouette readability (2026-10-12)
 
 - Temporarily replaced the malformed Pack 1 animated Knight with the existing static v4 Knight sprite showing readable independent armored legs and boots; Ranger, Mage, Skeleton and Bone Archer remain animated.
