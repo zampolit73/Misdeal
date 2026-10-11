@@ -1945,3 +1945,14 @@ Status: accepted for Design System 1.0 Package 3
 A useful game-wide design system **does not require** replacing approved art or overwriting existing `.tscn` layout values. The first core Screen Pass applies reusable text contrast/shadows without automatically changing sizes, migrates tabletop card border states with exact existing colors, and makes the selected tactical order visible using the same battle style family. Splash/intro hotspots remain transparent interactive areas over painted illustrations.
 
 Gameplay continues to determine class choice, tactical order, availability, Boss/Wizard mark/held-card semantics and outcomes. `MisdealUIKit` receives only semantic inputs, never `RunState` or the battle controller itself. The user's explicit request authorized code integration before the Package 2 F6 visual acceptance, **not** a sweeping visual redesign. Local Godot review remains the gate before further polish.
+
+
+## D116 — Frame-authored unit animation with safe v4 fallback
+
+Date: 2026-10-12  
+Status: accepted for Unit Animation Pack 1
+
+Use actual authored animation cells for visible `idle`, `walk`, `attack`, `hit` and `death` states rather than repeatedly scaling/stretching static character art. Keep the existing `BattleUnit` `Sprite2D` (and `RimSprite`) in gameplay because the current battle model, attack/hit tweens, team-facing and z-ordering depend on it; a cached `SpriteFrames` Resource can drive its displayed texture frame. Native `AnimatedSprite2D` can consume the same Resource for isolated preview/testing without changing live node paths.
+
+Pack 1 only animates approved/generated Knight, Ranger, male Mage, Skeleton and Bone Archer sheets. Other visual roles and missing/corrupt atlas files preserve the static v4 fallback. The male Mage character attack sequence skips a projectile-only frame, with gameplay projectile FX separate. Do not silently delay/rebalance hit application or alter combat movement to match art; contact-frame timing may be a separately tested follow-up. No Godot runtime smoke has yet been reported.
+
