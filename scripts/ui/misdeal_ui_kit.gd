@@ -244,6 +244,24 @@ static func apply_tooltip_panel(panel: PanelContainer, accent: Color = STEEL) ->
 	panel.add_theme_stylebox_override("panel", style)
 
 
+# Native hover tooltip factory, intended for new controls implementing
+# Control._make_custom_tooltip(). The returned node belongs to Godot's
+# tooltip popup: do not parent it to the requesting control.
+static func make_tooltip(message: String, accent: Color = STEEL) -> PanelContainer:
+	var panel := PanelContainer.new()
+	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.custom_minimum_size = Vector2(180.0, 0.0)
+	apply_tooltip_panel(panel, accent)
+	var label := Label.new()
+	label.text = message
+	label.custom_minimum_size.x = 180.0
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	apply_text_role(label, "caption", TEXT)
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.add_child(label)
+	return panel
+
+
 # In-world card art and labels remain separate; this draws an optional
 # simple card surface for reuse in Inspect/Reward panels, not gameplay art.
 static func apply_card_surface(panel: PanelContainer, accent: Color = BRONZE, selected: bool = false) -> void:
