@@ -1,5 +1,15 @@
 # Misdeal — Project State
 
+## Session closeout / next-chat entry point — 2026-10-11
+
+The arena-redraw and battle-HUD context is fully checkpointed in GitHub. The next chat should begin by reading `docs/HANDOFF.md` first, then validating the new 12-arena set locally rather than proposing another speculative visual rewrite.
+
+Current source of truth:
+- modular battle HUD is the accepted current code direction after the rejected full-width slab version;
+- all 12 active arena IDs resolve through `assets/pixel/battle/arenas/arena_redraw_v1/*.webp.b64`;
+- `AuthoredBackdrop` base64-decodes those native 1280×720 WebPs at runtime;
+- gameplay/spawn/balance logic was intentionally left unchanged by the arena replacement.
+
 ## Unified arena redraw v1 — all 12 battle arenas — 2026-10-11
 
 All active battle environments now use one coherent 1280×720 authored set under `assets/pixel/battle/arenas/arena_redraw_v1/`.
