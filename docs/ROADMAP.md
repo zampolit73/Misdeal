@@ -1,3 +1,12 @@
+## Current priority — Battle floor grounding and tactical placement, 2026-10-11
+
+- [x] Align all encounter spawns and combat movement with the new arena-floor plane, including boss reinforcements.
+- [x] Show live engraved deployment guides linked to the actual draggable regions; hide them when combat begins.
+- [x] Anchor contact shadows/rings under miniature feet and clamp preparation heroes into legal positions.
+- [ ] **LOCAL GATE:** in Godot 4.7.x check solo/duo/trio, Bone Swarm, Last Bell, Iron Wall, Gallows, and Warden reinforcements for floor contact, legal drag, completed fight and tactics UI.
+- [ ] Tune any specific new perspective/floor mismatch from gameplay screenshots; do not keep generating decorative baked grids.
+- [ ] Complete arena art package 2 only after ground/layout acceptance.
+
 ## Current priority — Arena Redraw v2 package 1 integrated, 2026-10-11
 
 - [x] Replace the ten approved pack-1 arena backdrops with native 1280×720 WebPs via `AuthoredBackdrop`.
