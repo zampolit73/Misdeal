@@ -15,6 +15,8 @@ func _ready() -> void:
 	MISDEAL_UI_KIT.apply_panel($SummaryPanel, MISDEAL_UI_KIT.BRONZE, true)
 	MISDEAL_UI_KIT.apply_title(title_label, MISDEAL_UI_KIT.GOLD)
 	MISDEAL_UI_KIT.apply_subtitle(wizard_line, MISDEAL_UI_KIT.BRONZE)
+	MISDEAL_UI_KIT.apply_screen_copy(wizard_line, MISDEAL_UI_KIT.TEXT_SECONDARY)
+	MISDEAL_UI_KIT.apply_screen_copy(summary_label, MISDEAL_UI_KIT.TEXT_ON_DARK)
 	MISDEAL_UI_KIT.apply_action_button(new_run_button, MISDEAL_UI_KIT.GOLD, true)
 	new_run_button.pressed.connect(_on_new_run_pressed)
 	var fate_lines: Array[String] = []
