@@ -15,6 +15,7 @@ const BOSS_DISPLAY_SCALE := 1.24
 
 const V4_UNIT_ATLAS_PATH := "res://assets/pixel/units/combat_units_v4/atlas.webp.b64"
 const MALE_MAGE_TILE_PATH := "res://assets/pixel/units/combat_units_v4/mage_male.webp.b64"
+const ANIMATION_LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
 
 # Kept for local fallback/rollback if the v4 atlas cannot be decoded.
 const UNIT_SHEET_PARTS: Array[String] = [
@@ -96,6 +97,14 @@ var critical_announced := false
 var arena_id := "crypt"
 var arena_tint := Color.WHITE
 
+# The five new animation roles use actual frame textures; others still use
+# their original v4 miniatures, idle motion and combat feedback.
+var sprite_frames: SpriteFrames
+var frame_state := "idle"
+var frame_time := 0.0
+var frame_one_shot_time := 0.0
+var visual_moving := false
+
 @onready var rim_sprite: Sprite2D = $RimSprite
 @onready var art_sprite: Sprite2D = $ArtSprite
 @onready var name_label: Label = $NameLabel
@@ -165,7 +174,11 @@ func _ready() -> void:
 	add_to_group("combat_units")
 	name_label.text = display_name
 	name_label.visible = team == 0 or is_boss or show_enemy_name
-	art_sprite.texture = _get_art_texture()
+	sprite_frames = ANIMATION_LIBRARY.get_frames(visual_role)
+	if sprite_frames != null:
+		art_sprite.texture = sprite_frames.get_frame_texture("idle", 0)
+	else:
+		art_sprite.texture = _get_art_texture()
 	rim_sprite.texture = art_sprite.texture
 	# Source v4 miniatures look toward screen-right. Enemy units must
 	# face the heroes on the left, not outward toward the arena edge.
@@ -482,6 +495,7 @@ func _overlaps_friendly_unit() -> bool:
 
 func _process(delta: float) -> void:
 	_update_unit_facing()
+	_update_frame_animation(delta)
 	_update_idle_visual(delta)
 	_sync_rim_visual()
 
@@ -532,8 +546,10 @@ func _process(delta: float) -> void:
 			if attack_cooldown <= 0.0:
 				_attack_target()
 
-	position += velocity.limit_length(movement_speed * 1.35) * delta
+	var actual_step := velocity.limit_length(movement_speed * 1.35) * delta
+	position += actual_step
 	_clamp_to_combat_bounds()
+	visual_moving = actual_step.length_squared() > 0.20
 	z_index = int(position.y)
 	queue_redraw()
 
@@ -772,8 +788,55 @@ func _get_current_move_speed() -> float:
 		return move_speed * ASSAULT_MOVE_MULTIPLIER
 	return move_speed
 
+# SpriteFrames provide the five painted states without changing the
+# Sprite2D interface used by attack tweens, targeting and the rim silhouette.
+func _play_frame_one_shot(name: String) -> void:
+	if sprite_frames == null or not sprite_frames.has_animation(name):
+		return
+	frame_state = name
+	frame_time = 0.0
+	art_sprite.texture = sprite_frames.get_frame_texture(name, 0)
+	if name == "death":
+		frame_one_shot_time = INF
+	else:
+		var count := sprite_frames.get_frame_count(name)
+		frame_one_shot_time = float(count) / sprite_frames.get_animation_speed(name)
+
+
+func _update_frame_animation(delta: float) -> void:
+	if sprite_frames == null:
+		return
+
+	if alive and frame_one_shot_time > 0.0:
+		frame_one_shot_time = maxf(0.0, frame_one_shot_time - delta)
+	else:
+		var desired := "death" if not alive else ("walk" if combat_started and visual_moving else "idle")
+		if frame_state != desired:
+			frame_state = desired
+			frame_time = 0.0
+
+	if sprite_frames.get_frame_count(frame_state) == 0:
+		return
+	frame_time += delta
+	var count: int = sprite_frames.get_frame_count(frame_state)
+	var index: int = int(frame_time * sprite_frames.get_animation_speed(frame_state))
+	if sprite_frames.get_animation_loop(frame_state):
+		index = index % count
+	else:
+		index = mini(index, count - 1)
+	var frame_texture: Texture2D = sprite_frames.get_frame_texture(frame_state, index)
+	if art_sprite.texture != frame_texture:
+		art_sprite.texture = frame_texture
+
+
 func _update_idle_visual(delta: float) -> void:
 	if not alive or attack_animating:
+		return
+	if sprite_frames != null:
+		# The new hand-drawn walk/idle frames replace the former rubbery
+		# stretch-and-squash animation. Only real hit displacement remains.
+		art_sprite.position = ART_BASE_POSITION + hit_kick_offset
+		art_sprite.scale = base_sprite_scale
 		return
 
 	var idle_speed := 2.7 if combat_started else 1.65
@@ -804,6 +867,8 @@ func _sync_rim_visual() -> void:
 		return
 
 	rim_sprite.position = art_sprite.position + Vector2(0.0, 1.0)
+	if rim_sprite.texture != art_sprite.texture:
+		rim_sprite.texture = art_sprite.texture
 	rim_sprite.flip_h = art_sprite.flip_h
 	rim_sprite.rotation = art_sprite.rotation
 	rim_sprite.scale = art_sprite.scale * 1.06
@@ -852,6 +917,7 @@ func _play_attack_feedback(primary_target: BattleUnit) -> void:
 		attack_tween.kill()
 
 	attack_animating = true
+	_play_frame_one_shot("attack")
 	var direction := global_position.direction_to(primary_target.global_position)
 	var style := _get_attack_style()
 
@@ -995,6 +1061,7 @@ func _play_hit_feedback(
 	strong_hit: bool = false
 ) -> void:
 	hit_flash_time = 0.15 if strong_hit else 0.12
+	_play_frame_one_shot("hit")
 
 	if hit_pulse_tween != null and hit_pulse_tween.is_valid():
 		hit_pulse_tween.kill()
@@ -1089,6 +1156,7 @@ func _show_damage_number(amount: float, strong_hit: bool = false) -> void:
 
 func _die() -> void:
 	alive = false
+	_play_frame_one_shot("death")
 	combat_started = false
 	placement_enabled = false
 	dragging = false
@@ -1106,6 +1174,15 @@ func _die() -> void:
 		attack_tween.kill()
 	attack_animating = false
 	hit_kick_offset = Vector2.ZERO
+
+	if sprite_frames != null:
+		# Frame-authored collapse replaces the static v4 shrink/tilt.
+		death_tween = create_tween()
+		death_tween.tween_interval(0.30)
+		death_tween.tween_property(self, "modulate:a", 0.08 if team == 1 else 0.16, 0.30)
+		queue_redraw()
+		died.emit(self)
+		return
 
 	var death_tilt := -0.22 if int(get_instance_id()) % 2 == 0 else 0.22
 	var death_duration := 0.26 if team == 1 else 0.42
