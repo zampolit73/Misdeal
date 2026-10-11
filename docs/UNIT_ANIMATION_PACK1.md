@@ -1,6 +1,6 @@
 # Misdeal — Unit Animation Pack 1 (2026-10-12)
 
-Status: **Five animated roles active with grounded/cleaned v2 frame atlases on `main`; local Godot check pending.**
+Status: **Four roles actively animated in battle; Knight intentionally uses readable static v4 art until redraw. All five animation v2 atlases preserved. Local Godot check pending.**
 
 ## Source and format
 
@@ -72,3 +72,12 @@ Pack 2: bespoke sprites for Grave Bellkeeper, Bone Thrall, Crypt Guard and Bone 
 5. Run `scenes/dev/unit_animation_pack1_preview.tscn` (F6) for 5 states / 5 roles. Engine runtime was **not** available in this GitHub connector session; report any Godot parse/import issue for direct GitHub fixing.
 
 **Rollback:** point `BASE_DIR` in `scripts/battle/unit_animation_library.gd` back to `combat_units_anim_v1/` if absolutely necessary, and restore original BattleUnit rest offsets. Do **not** delete the v1 archives.
+
+## Knight leg silhouette — live static-v4 fallback (2026-10-12)
+
+After multiple gameplay checks showed the Pack 1 Knight's boots were still obscured even when lifted by -16px, live `BattleUnit` now explicitly skips `get_frames("knight")` and loads the **existing v4 Knight tile (0,0)** through `_get_art_texture()`. This sprite has independent recognizable legs and a better shield/boot separation. Its source tile has visible boot alpha reaching approximately y=94 of a 96px cell. `ROLE_FLOOR_OFFSETS["knight"]` is reset to **-8px** for static art; the former -16px was a workaround for animated frames and is not used.
+
+In live combat `ranger`, `mage`, `skeleton` and `bone_archer` still run the full five-state `SpriteFrames` animation set. Their Base64 WebP files and speeds are unchanged. The animated Knight v1/v2 files are **still available** and the optional F6 animation gallery **still demonstrates that archived animation**; the gallery is not a preview of current live Knight artwork. Battle Knight retains standard attack/hit idle feedback via existing Sprite2D tweens, team facing, UI, movement and combat stats.
+
+**Local review:** `git pull` and check Bone Swarm / Grave Crossroads before the Fight button and during strikes. Confirm two separately visible Knight legs/boots, sprite-to-ring grounding and no clipping under the name label. Inspect the other four animated roles for regressions. A future Knight animation sheet requires visibly separate shins/boots, restrained shield and cloak, stable baseline in every state, and real Godot screenshot approval **before re-enabling animation**. Do not attempt to restore leg readability by only increasing vertical offsets.
+
