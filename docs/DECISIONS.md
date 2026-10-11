@@ -1935,3 +1935,13 @@ The existing `MisdealUIKit` is also the runtime source of reusable panel, battle
 Component APIs are **opt-in**. An explicitly selected state changes appearance only, not gameplay `button_pressed` or tactical orders. A native hover tooltip uses a separate optional Button script instead of automatically replacing all old hints. Hand-painted card art is not embedded into `StyleBoxFlat`, and the preview scene never participates in the live run.
 
 Do not introduce a separate framework or globally restyle the table and battle as part of component-library work. Package 3 may selectively migrate screens only after inspecting a real 1280×720 Godot preview; maintain the game's vertical-slice and tactile Gothic visual direction.
+
+
+## D115 — Production screen migration preserves authored composition
+
+Date: 2026-10-12  
+Status: accepted for Design System 1.0 Package 3
+
+A useful game-wide design system **does not require** replacing approved art or overwriting existing `.tscn` layout values. The first core Screen Pass applies reusable text contrast/shadows without automatically changing sizes, migrates tabletop card border states with exact existing colors, and makes the selected tactical order visible using the same battle style family. Splash/intro hotspots remain transparent interactive areas over painted illustrations.
+
+Gameplay continues to determine class choice, tactical order, availability, Boss/Wizard mark/held-card semantics and outcomes. `MisdealUIKit` receives only semantic inputs, never `RunState` or the battle controller itself. The user's explicit request authorized code integration before the Package 2 F6 visual acceptance, **not** a sweeping visual redesign. Local Godot review remains the gate before further polish.
