@@ -1,5 +1,18 @@
 # Misdeal — Project State
 
+
+## Latest implemented state — 2026-10-11 — Drag-only deployment highlight
+
+The latest screenshots of Grave Crossfire and the Crypt arena rejected the gold slot grid and bounding rectangles as ugly/debug-like. **The always-visible deployment UI is superseded in code**:
+- `scripts/battle/deployment_floor_markers.gd` uses the same legal `Rect2` regions, but draws nothing while idle. It polls the few live hero units, and only while one is being dragged draws four translucent feathered ellipses as a restrained warm floor glow (no rectangle edge, no 3×2 slot circles or baked marks). The overlay stops processing and hides when battle begins.
+- `scripts/battle/unit.gd` now shows its extra drag marker around a hero only during that hero's drag. The ordinary contact shadow/team ring remains for grounding and identification.
+- No arena WebP was changed, and no battle spawn geometry, stats, target logic, rewards or tactics were modified by this follow-up. The prior v2-grounding and legal placement region changes remain in force.
+
+**Local test pending:** after `git pull`, enter a battle without touching units (no rectangular/circle slot overlay), grab/drag a hero (soft glow shows both legal pockets/lanes and follows legal interaction), release (glow goes away), press Fight (no overlay), verify all 3–5 tactical orders still display correctly. Godot runtime has not been run here.
+
+---
+
+
 ## Latest implemented state — 2026-10-11 — Battle floor and deployment correction
 
 Local screenshots from Bone Swarm, Last Bell and Iron Wall showed units apparently hovering above the new v2 backgrounds: legacy encounter spawn Y positions (some as high as 145–165 in UnitsLayer coordinates) placed figures on distant scenery instead of the stone floor. The previous translucent deployment panels were also nearly invisible.
