@@ -1,5 +1,20 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Unit Animation Pack 1 ACTIVE
+
+The user approved connecting the five freshly generated animation sprite sheets. Five **actual frame-by-frame animations** are now wired into production `BattleUnit` on `main`: `knight`, `ranger`, `mage` (male), `skeleton`, `bone_archer`. Each role has a 576×480 transparent Base64/WebP atlas containing 6×5 cells at 96px, stored at `assets/pixel/units/combat_units_anim_v1/{role}.webp.b64`. Sprite action rows: idle (4), walk (6), attack (6; male Mage skips projectile-only cell and uses 5), hit (3), death (6).
+
+- New `scripts/battle/unit_animation_library.gd` lazily decodes/validates each atlas, constructs one cached `SpriteFrames` Resource per role from `AtlasTexture` cells and sets state framerates/loops.
+- `scripts/battle/unit.gd` now selects the role's frame resource when present, advances `ArtSprite.texture` through idle/walk/attack/hit/death while retaining its existing Sprite2D properties and all existing combat feedback; `RimSprite.texture` synchronizes on frame changes. Animated roles no longer use the previous fake squeeze/stretch idle. Pre-combat state idle, movement measured from actual computed step, one-shot attacks and hits, death holds last frame.
+- No change to attack timing/damage resolution, AI, battlefield layout, targeting, tactical orders, sprite facing, rewards or the approved arena artworks. Characters without animation assets and invalid/missing role atlases **fall back to approved static v4**.
+- New standalone `res://scenes/dev/unit_animation_pack1_preview.tscn` with actual `AnimatedSprite2D` test sprites, five-state buttons and all role names for F6 visual review. The production node intentionally remains `Sprite2D` to avoid disrupting its tween/outline code.
+- `docs/UNIT_ANIMATION_PACK1.md` records source and frame order, role mappings, compatibility, local smoke tests and Pack 2 next steps.
+
+**Verification status:** GitHub text assets and loader/callsites committed; static verification pending final pass. No Godot binary was available here; **user must `git pull` and run F6 gallery plus real fights** to validate code parsing, transparency, grounding, alignment, flips, HP labels and combat flow.
+
+---
+
+
 ## Latest implemented state — 2026-10-12 — Design System 1.0 Package 3 / core Screen Pass
 
 The user explicitly requested Package 3 following Foundation and the shared Component Library. **Committed in `main`: focused production-screen migration**, not a new interface redesign. It covers `scripts/main.gd`, `scripts/intro/intro.gd`, `scripts/class_select/class_select.gd`, `scripts/table/table.gd`, `scripts/battle/battle.gd` and `scripts/run_end/run_end.gd`.
