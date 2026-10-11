@@ -1,7 +1,7 @@
 ### Animation Pack 1 grounded v2 — live asset set (2026-10-12)
 
 - Canonical live animation assets are now `assets/pixel/units/combat_units_anim_v2/{knight,ranger,mage,skeleton,bone_archer}.webp.b64`. Original `combat_units_anim_v1` remains committed for rollback.
-- Cleaned detached previous-row legs/border scraps from generated sheet cuts and vertically aligned all **105 used role/state frames** to last solid foot/body contact pixel **y=92** inside their 96×96 cells. The loader applies 2.7 fps Idle, 7 fps Walk.
+- Cleaned detached previous-row legs/border scraps from generated sheet cuts and vertically aligned all **125 processed frame cells** (124 active character frames; Mage projectile-only frame is excluded) to last solid foot/body contact pixel **y=92** inside their 96×96 cells. The loader applies 2.7 fps Idle, 7 fps Walk.
 - Unit animation rest-position is computed in `BattleUnit` from pixel sole center y=92.5 to current floor shadow ring y=36 using effective art scale; all real-world spawn placements and health labels remain unchanged. No combat/game-balance or arena art edits.
 - Source review, applied fix and local gate documented in `docs/UNIT_ANIMATION_PACK1.md`.
 
