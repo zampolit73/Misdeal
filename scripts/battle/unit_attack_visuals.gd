@@ -10,7 +10,7 @@ const CHEST_Y := -17.0
 const ARC_SEGMENTS := 28
 
 
-static func spawn(role: String, canvas: Node, actor_position: Vector2, target_position: Vector2) -> void:
+static func spawn(role: String, canvas: Node, target_position: Vector2) -> void:
 	if canvas == null:
 		return
 
@@ -61,12 +61,12 @@ static func _ring(parent: Node, origin: Vector2, color: Color, radius: float, li
 	tween.chain().tween_callback(ring.queue_free)
 
 
-static func _stroke(parent: Node, from: Vector2, to: Vector2, color: Color, width: float, lifetime: float) -> void:
+static func _stroke(parent: Node, start_point: Vector2, end_point: Vector2, color: Color, width: float, lifetime: float) -> void:
 	var stroke := Line2D.new()
 	stroke.default_color = color
 	stroke.width = width
 	stroke.z_index = 1900
-	stroke.points = PackedVector2Array([from, to])
+	stroke.points = PackedVector2Array([start_point, end_point])
 	parent.add_child(stroke)
 	var tween := stroke.create_tween()
 	tween.tween_property(stroke, "modulate:a", 0.0, lifetime)
