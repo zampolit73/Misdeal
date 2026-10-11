@@ -1,3 +1,21 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Design System Package 3 core Screen Pass
+
+The user requested immediate Package 3 after the previously committed Component Library, **even though the earlier F6 visual gate had not yet been reported as passed**. We proceeded conservatively, using connected GitHub and preserving every approved `.tscn` layout.
+
+**Implemented:**
+- `scripts/ui/misdeal_ui_kit.gd`: screen contrast/shadow helper `apply_screen_copy`, transparent splash hotspot font helper `apply_splash_hotspot`, `apply_offer_card_frame` containing the precise old table card StyleBox math (boss/marked/held priority), and `apply_battle_order_choice` highlighting only the actively toggled tactical order.
+- `scripts/main.gd` / `scripts/intro/intro.gd`: apply text-only hotspot treatments, keeping backgrounds fully transparent and splash/intro art untouched.
+- `scripts/class_select/class_select.gd` / `scripts/run_end/run_end.gd`: brighten small wizard/rule/summary/status copy via shared contrast without changing font size or geometry.
+- `scripts/table/table.gd`: real offer-card frame moved to `MisdealUIKit`, source conditions remain `RunState` driven; top counts/stats text unified.
+- `scripts/battle/battle.gd`: actual selected button highlights on the 3–5 tactical order toggles, with semantic colors; placement/instructions/metadata contrast only. No mechanics changes or battle-layout modifications.
+- `docs/DESIGN_SYSTEM.md` Section 8: integration matrix and local smoke list.
+
+**Unchanged:** table Variant C composition, v2 arena backgrounds, v4 units, male mage/facing, gameplay flow, placement geometry and game data. **No source .tscn layout was changed**; no global Theme/autoload or new font. Did not run Godot locally; user must `git pull` and test Main → Intro → ClassSelect → Table → Battle → RunEnd with click/hover/keyboard, all special card borders, 3–5 tactics, and legibility/clipping. Previous HANDOFF section on Package 2 remains history.
+
+If errors are reported, first inspect live GitHub code; fix directly in repo. Keep next screen changes screenshot-driven rather than introducing new architecture.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Design System Package 2 Components
 
 User requested `пакет 2` after completing Foundation. Connected GitHub writes succeeded. Package 2 is **implemented in main but not yet run locally in Godot**.
