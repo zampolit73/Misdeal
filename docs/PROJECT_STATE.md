@@ -1,5 +1,12 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Knight floor calibration refinement
+
+User compared Knight and Ranger in two updated in-game screenshots and suggested the same floor alignment. Adjusted only `ROLE_FLOOR_OFFSETS["knight"]` in `scripts/battle/unit.gd` from **−4 px to −6 px**, matching the Ranger. The renderer's existing `_art_rest_position()` applies it to idle/movement/attack recovery without modifying position, attack mechanics, shadow drawing, scale, art assets or UI. Knight and Ranger now share a −6 px visual lift. Code commit: `61c3cc291c9a0197fdce065af7385871b1bb348e`. **Godot local visual review pending**: `git pull`, view Bone Swarm and Grave Crossroads during placement and battle; check Knight boots against its ground ring and Ranger, no new hovering.
+
+---
+
+
 ## Latest implemented state — 2026-10-12 — Per-role unit floor calibration
 
 After the user confirmed that Pack 1 animations look good but **feet still appear buried in the floor** (new screenshots of Bone Swarm and another arena), we committed a targeted **visual-only** height correction to `scripts/battle/unit.gd` on `main` (code commit `53c998cd7cd8cd124a21e26d074b9a7d3a201695`).
