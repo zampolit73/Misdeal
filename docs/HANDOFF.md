@@ -1,3 +1,9 @@
+# LATEST VISUAL CHECKPOINT — 2026-10-11: package-1 arena redraw for review only
+
+Ten corrected battle-arena images plus one Bone Swarm alternative were generated after the user rejected castle-saturated backgrounds. They are NOT yet approved or wired into Godot. See `docs/ARENA_REVIEW_2026_10_11.md` for the full arena-by-arena manifest, rationale, attachment names, and next steps. The images are in the conversation's ZIP attachment, **not** yet in GitHub. Keep the live `arena_redraw_v1` assets untouched until the user approves the new concepts.
+
+---
+
 # ART DIRECTION CORRECTION — 2026-10-11 (latest feedback)
 
 The user rejected the OpenArt arena exploration. Do NOT continue the pastoral/low-color indie pixel art experiments or use their generated variants as reference. The later nine-panel environment collage is also NOT an approved Misdeal battle style. Do NOT commit or wire any of those concept images into runtime.
