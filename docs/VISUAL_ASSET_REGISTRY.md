@@ -3,7 +3,8 @@
 - Canonical runtime 3×3 transparent WebP atlas, 288×288, 96×96 per sprite: `assets/pixel/units/combat_units_v4/atlas.webp.b64`.
 - Lossless editable 288×288 cutout master: `assets/source_archive/unit_art_v4/combat_units_v4_master.png.b64`; base64 decode to PNG before editing.
 - Runtime loading and fixed 3×3 role index mapping: `scripts/battle/unit.gd` (`_get_art_texture`, `_get_unit_sheet_texture`).
-- Tile order: row 0 `knight`, `ranger`, `mage`; row 1 `skeleton`, `bone_archer`, `grave_bellkeeper`; row 2 `bone_thrall`, `crypt_guard`, `bone_warden`.
+- Tile order in the fallback atlas: row 0 `knight`, `ranger`, `mage`; row 1 `skeleton`, `bone_archer`, `grave_bellkeeper`; row 2 `bone_thrall`, `crypt_guard`, `bone_warden`.
+- **Active male Mage override (2026-10-12):** `assets/pixel/units/combat_units_v4/mage_male.webp.b64` (standalone transparent 96×96 WebP, decoded in `_get_male_mage_texture()`); fallback is the atlas Mage cell. Lossless tile source: `assets/source_archive/unit_art_v4/mage_male_tile.png.b64`. Enemy sprites use `flip_h=true` on spawn, then turn toward live targets during combat; `RimSprite` flip is synchronized.
 - Approved concept choice: Variant A for Knight/Ranger/Mage; detailed undead variants from the approved bestiary sheet. Nine transparent sprites were manually extracted/trimmed from the previously approved concepts, then cleaned.
 - `bone_raider` and `crypt_sentinel` UnitData retain `visual_role` aliases to `bone_thrall` and `crypt_guard` pending unique silhouettes.
 - Archived v3 parts (`assets/pixel/units/combat_units_v3/part_*.txt`) remain in GitHub for fallback. Game tests still need to validate pixel transparency, readability and labels.
