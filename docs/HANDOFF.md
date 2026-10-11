@@ -1,3 +1,9 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Knight floor offset −12 px
+
+The user explicitly requested another two-pixel Knight lift after sharing a Bone Swarm screenshot. **Committed directly to GitHub main**: `scripts/battle/unit.gd`, `ROLE_FLOOR_OFFSETS["knight"]` **−10.0 → −12.0**; code commit `6a5ac695c12a13de73860113e101618a499f026d`. All other role offsets (including Ranger −6), animation assets, battles, hitboxes, scene layout and art are unchanged. Godot runtime wasn't run here. User action: `git pull`, test Knight visual boot contact in Bone Swarm during placement/movement and against the blue ring. GitHub is source of truth. Historical entries below are superseded where they mention Knight −10 or older.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Knight ground offset −10 px
 
 User shared a three-hero Cemetery Ambush screenshot and suggested lifting Knight another couple pixels. **Done in GitHub `main`**: `scripts/battle/unit.gd`, `ROLE_FLOOR_OFFSETS["knight"]`: **−8.0 → −10.0**, commit `8d69a5812d98483f7c78c7fc800d50bcb7d09ee7`. No change to Ranger (−6px), Mage, enemies, animation atlases, logical placement/physics or game balance. The existing role-specific `_art_rest_position()` provides the final visual correction in all states. Next: user `git pull` and view Knight feet against blue floor ring during placement/attack. Godot runtime not tested here. No need to re-ask GitHub access. Historical notes below are superseded where they mention Knight −8px.
