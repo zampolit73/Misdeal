@@ -1,5 +1,16 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Knight temporarily restored to static v4 artwork
+
+**User requested an immediate art replacement after screenshots showed Knight's legs are unreadable, despite repeated upward Y-offset changes.** Implemented in GitHub `main`, code commit `1a1141d7e33c32f5ef3c8aa8da94acfc4bcec6c5`. The current `scripts/battle/unit.gd` uses `STATIC_COMBAT_ART_ROLES := ["knight"]`: `BattleUnit._ready()` skips `ANIMATION_LIBRARY.get_frames("knight")` and renders `_get_art_texture()`, which loads the existing approved **v4 Knight** tile at index (0,0). This old tile has separate visible boots, unlike the Pack 1 animated Knight whose legs/pose are not legible. All Ranger, male Mage, Skeleton, Bone Archer animations remain ACTIVE. Knight attack/hit tweens, HP bar, facing, team, targeting, placement, stats and fight logic remain active on the static art.
+
+**Knight-only floor baseline was reset** from animated `-16 px` correction to `-8 px` for v4 static: v4 alpha boots reach tile y≈94 in a 96px cell; with scale 1.28 and static base art Y -16, an extra -8 brings pixel soles close to the existing floor contact y≈36. This is sprite positioning only; combat world position and ring remain unchanged. Existing animated Knight `combat_units_anim_v1`/`v2` atlas files are retained for preview/rollback and later complete replacement, not deleted. The 5-role F6 animation gallery intentionally still displays the archived animated Knight; the live fight no longer does.
+
+**LOCAL CHECK PENDING**: `git pull`, enter Bone Swarm / Grave Crossroads. Knight should show **two distinct boots/legs** in preparation and on attack, touching the blue contact ring without clipping into the ground. Ranger, Mage, Skeleton and Bone Archer still switch frames. Godot runtime cannot be launched from GitHub connector. Don't resume role-offset pixel nudging as a substitute for redrawing the bad animated Knight frames.
+
+---
+
+
 ## Latest implemented state — 2026-10-12 — Knight visual floor offset −16 px
 
 User explicitly requested a further **4 px upward** Knight lift. Committed to `main` in `scripts/battle/unit.gd`: `ROLE_FLOOR_OFFSETS["knight"]` changed from `-12.0` to **`-16.0`** (code commit `11f904b003430f43e6d785a2b1bd4ed80fcc666b`). All other roles, art, animation, combat logic, positioning and UI unchanged. Local Godot check: `git pull`, inspect Knight boots relative to blue floor ring on the Bone Swarm arena.
