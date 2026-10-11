@@ -13,6 +13,9 @@ const HERO_DISPLAY_SCALE := 1.28
 const ENEMY_DISPLAY_SCALE := 1.25
 const BOSS_DISPLAY_SCALE := 1.24
 
+const V4_UNIT_ATLAS_PATH := "res://assets/pixel/units/combat_units_v4/atlas.webp.b64"
+
+# Kept for local fallback/rollback if the v4 atlas cannot be decoded.
 const UNIT_SHEET_PARTS: Array[String] = [
 	"res://assets/pixel/units/combat_units_v3/part_00.txt",
 	"res://assets/pixel/units/combat_units_v3/part_01.txt",
@@ -81,7 +84,7 @@ var hit_flash_time := 0.0
 var hit_pulse_tween: Tween
 var attack_tween: Tween
 var death_tween: Tween
-var unit_sheet_texture: Texture2D
+static var shared_unit_sheet_texture: Texture2D
 var base_sprite_scale := Vector2.ONE
 var idle_phase := 0.0
 var attack_animating := false
@@ -217,36 +220,45 @@ func _get_art_texture() -> Texture2D:
 	return atlas
 
 func _get_unit_sheet_texture() -> Texture2D:
-	if unit_sheet_texture != null:
-		return unit_sheet_texture
+	if shared_unit_sheet_texture != null:
+		return shared_unit_sheet_texture
 
-	var encoded: String = ""
+	# The approved nine-role 3x3 atlas replaces v3 in all battles. The old
+	# PNG parts remain available for safe rollback if this WebP is invalid.
+	if FileAccess.file_exists(V4_UNIT_ATLAS_PATH):
+		var encoded: String = FileAccess.get_file_as_string(V4_UNIT_ATLAS_PATH).strip_edges()
+		var bytes: PackedByteArray = Marshalls.base64_to_raw(encoded)
+		if not bytes.is_empty():
+			var image := Image.new()
+			var err := image.load_webp_from_buffer(bytes)
+			if err == OK and image.get_width() == 288 and image.get_height() == 288:
+				shared_unit_sheet_texture = ImageTexture.create_from_image(image)
+				return shared_unit_sheet_texture
+		push_warning("Combat unit v4 atlas failed to decode; using the archived v3 atlas.")
+	else:
+		push_warning("Combat unit v4 atlas not found; using the archived v3 atlas.")
+
+	var legacy_encoded: String = ""
 	for part_path in UNIT_SHEET_PARTS:
 		if not FileAccess.file_exists(part_path):
-			push_error("Missing production combat unit atlas part: %s" % part_path)
+			push_error("Missing legacy combat unit atlas part: %s" % part_path)
 			return null
-		encoded += FileAccess.get_file_as_string(part_path).strip_edges()
+		legacy_encoded += FileAccess.get_file_as_string(part_path).strip_edges()
 
-	var bytes: PackedByteArray = Marshalls.base64_to_raw(encoded)
-	if bytes.is_empty():
-		push_error("Production combat unit atlas base64 decode failed.")
+	var legacy_bytes: PackedByteArray = Marshalls.base64_to_raw(legacy_encoded)
+	if legacy_bytes.is_empty():
+		push_error("Legacy combat unit atlas base64 decode failed.")
 		return null
 
-	var image := Image.new()
-	var error := image.load_png_from_buffer(bytes)
-	if error != OK:
-		push_error("Production combat unit atlas PNG decode failed: %s" % error_string(error))
+	var legacy_image := Image.new()
+	var legacy_err := legacy_image.load_png_from_buffer(legacy_bytes)
+	if legacy_err != OK or legacy_image.get_width() != 288 or legacy_image.get_height() != 288:
+		push_error("Legacy combat unit atlas PNG decode/dimension validation failed.")
 		return null
 
-	if image.get_width() != 288 or image.get_height() != 288:
-		push_error(
-			"Production combat unit atlas decoded at %dx%d, expected 288x288."
-			% [image.get_width(), image.get_height()]
-		)
-		return null
+	shared_unit_sheet_texture = ImageTexture.create_from_image(legacy_image)
+	return shared_unit_sheet_texture
 
-	unit_sheet_texture = ImageTexture.create_from_image(image)
-	return unit_sheet_texture
 
 func _apply_role_presentation() -> void:
 	match visual_role:
