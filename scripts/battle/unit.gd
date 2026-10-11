@@ -8,7 +8,10 @@ const TACTICAL_ORDER_FORMATION := "formation"
 const TACTICAL_ORDER_SACRIFICE := "sacrifice"
 const TACTICAL_ORDER_DEFIANCE := "defiance"
 const ASSAULT_MOVE_MULTIPLIER := 1.15
-const ART_BASE_POSITION := Vector2(0.0, -12.0)
+const ART_BASE_POSITION := Vector2(0.0, -16.0)
+const HERO_DISPLAY_SCALE := 1.28
+const ENEMY_DISPLAY_SCALE := 1.25
+const BOSS_DISPLAY_SCALE := 1.24
 
 const UNIT_SHEET_PARTS: Array[String] = [
 	"res://assets/pixel/units/combat_units_v3/part_00.txt",
@@ -125,13 +128,13 @@ func set_arena_presentation(value: String) -> void:
 	arena_id = value
 	match arena_id:
 		"graveyard", "gallows", "grave_crossfire", "last_bell", "firing_square":
-			arena_tint = Color(0.82, 0.90, 1.0, 1.0)
+			arena_tint = Color(0.92, 0.97, 1.0, 1.0)
 		"ossuary", "bone_ritual":
-			arena_tint = Color(1.0, 0.91, 0.76, 1.0)
+			arena_tint = Color(1.0, 0.95, 0.85, 1.0)
 		"warden":
-			arena_tint = Color(1.0, 0.80, 0.72, 1.0)
+			arena_tint = Color(1.0, 0.90, 0.82, 1.0)
 		_:
-			arena_tint = Color(1.0, 0.94, 0.86, 1.0)
+			arena_tint = Color(1.0, 0.98, 0.94, 1.0)
 
 	if is_node_ready():
 		_apply_arena_presentation()
@@ -159,9 +162,14 @@ func _ready() -> void:
 	name_label.visible = team == 0 or is_boss or show_enemy_name
 	art_sprite.texture = _get_art_texture()
 	rim_sprite.texture = art_sprite.texture
-	# Keep the nearest-filtered silhouettes large enough to read against detailed arenas.
-	var sprite_scale: float = 1.18 if is_boss else 1.16
+	# Preserve pixel silhouettes; scale only the art, not physics or hitboxes.
+	var sprite_scale: float = BOSS_DISPLAY_SCALE if is_boss else (HERO_DISPLAY_SCALE if team == 0 else ENEMY_DISPLAY_SCALE)
 	art_sprite.scale = Vector2.ONE * (sprite_scale * visual_scale)
+	if not is_boss:
+		health_bar.offset_top = -89.0
+		health_bar.offset_bottom = -79.0
+		name_label.offset_top = 48.0
+		name_label.offset_bottom = 70.0
 	base_sprite_scale = art_sprite.scale
 	idle_phase = fmod(float(get_instance_id()) * 0.731, TAU)
 	_apply_role_presentation()
@@ -273,9 +281,9 @@ func _apply_arena_presentation() -> void:
 	)
 	art_sprite.modulate = base_art_modulate
 
-	var rim_color := Color(0.34, 0.66, 1.0, 0.24) if team == 0 else Color(1.0, 0.34, 0.20, 0.22)
+	var rim_color := Color(0.64, 0.82, 1.0, 0.57) if team == 0 else Color(1.0, 0.69, 0.48, 0.54)
 	if is_boss:
-		rim_color = Color(1.0, 0.42, 0.16, 0.34)
+		rim_color = Color(1.0, 0.77, 0.49, 0.61)
 	rim_sprite.modulate = Color(
 		rim_color.r * arena_tint.r,
 		rim_color.g * arena_tint.g,
@@ -289,13 +297,13 @@ func _apply_boss_layout() -> void:
 		return
 
 	health_bar.offset_left = -72.0
-	health_bar.offset_top = -88.0
+	health_bar.offset_top = -108.0
 	health_bar.offset_right = 72.0
-	health_bar.offset_bottom = -77.0
+	health_bar.offset_bottom = -97.0
 	name_label.offset_left = -112.0
-	name_label.offset_top = 58.0
+	name_label.offset_top = 65.0
 	name_label.offset_right = 112.0
-	name_label.offset_bottom = 84.0
+	name_label.offset_bottom = 89.0
 	name_label.add_theme_font_size_override("font_size", 16)
 	name_label.add_theme_color_override("font_color", Color(0.96, 0.72, 0.42, 1.0))
 
@@ -736,7 +744,7 @@ func _sync_rim_visual() -> void:
 
 	rim_sprite.position = art_sprite.position + Vector2(0.0, 1.0)
 	rim_sprite.rotation = art_sprite.rotation
-	rim_sprite.scale = art_sprite.scale * 1.045
+	rim_sprite.scale = art_sprite.scale * 1.06
 	rim_sprite.visible = art_sprite.visible
 
 func _attack_target() -> void:
@@ -1080,6 +1088,16 @@ func _play_combat_audio(event_name: String) -> void:
 	get_tree().call_group("combat_audio", "play_event", event_name, visual_role)
 
 func _draw() -> void:
+	# A very soft localized value separation prevents detailed stonework from
+	# swallowing the silhouette. No solid glow or UI-looking halo.
+	if alive and art_sprite != null and art_sprite.texture != null:
+		var silhouette_scale := 1.32 if is_boss else 1.0
+		draw_set_transform(Vector2(0.0, -16.0), 0.0, Vector2(0.86, 1.10) * silhouette_scale)
+		draw_circle(Vector2.ZERO, 72.0, Color(0.012, 0.016, 0.025, 0.025))
+		draw_circle(Vector2.ZERO, 57.0, Color(0.012, 0.016, 0.025, 0.037))
+		draw_circle(Vector2.ZERO, 43.0, Color(0.012, 0.016, 0.025, 0.040))
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+
 	var team_color := Color(0.20, 0.58, 1.0, 0.95) if team == 0 else Color(0.95, 0.20, 0.16, 0.95)
 	var target_color := Color(0.78, 0.90, 1.0, 0.7) if team == 0 else Color(1.0, 0.58, 0.44, 0.7)
 	var ring_radius := maxf(22.0, body_radius * 1.05)
