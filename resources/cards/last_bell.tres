@@ -12,4 +12,5 @@ type_label = "БОЙ"
 tier = 1
 resolution_type = "combat"
 target_path = "res://resources/encounters/last_bell.tres"
+art_path = "res://assets/pixel/ui/combat_expansion_v1/cards/last_bell_card.webp"
 prototype_result_text = ""
