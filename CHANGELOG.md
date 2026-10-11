@@ -62,6 +62,9 @@
 
 ### Changed
 
+- Replaced all twelve active battle backdrops with the unified native-1280×720 `arena_redraw_v1` production set. The new plates use broader quiet combat floors, stronger large-scale silhouettes and perimeter-weighted detail so units read against the environment instead of disappearing into bones and props.
+- `AuthoredBackdrop` now routes `crypt`, `graveyard`, `gallows`, `ossuary`, `warden`, `bone_crush`, `bone_swarm`, `grave_crossfire`, `iron_wall`, `last_bell`, `firing_square` and `bone_ritual` through the same canonical arena directory. Combat mechanics and encounter geometry are unchanged.
+
 - Replaced the rejected full-width battle HUD slabs with compact modular plates: encounter info, run status, tactics, Fight/target preview and optional Wizard condition now occupy separate translucent islands so the authored arena remains visible.
 - Tactical buttons now distribute dynamically across the tactical island: three baseline orders fill the available width, while four/five-order states shrink evenly without abbreviating **НЕПОВИНОВЕНИЕ**.
 - Battle preparation now uses lighter one-pixel battle-specific panel/button chrome instead of the heavier shared menu/event UI treatment. Combat behavior is unchanged.
