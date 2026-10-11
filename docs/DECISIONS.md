@@ -1791,3 +1791,19 @@ Rules:
 - the twelve-card Act 1 structure stays fixed; variety comes from a larger random pool, not a longer mandatory run.
 
 This keeps iteration cheap while testing whether the new fights actually solve run repetition.
+
+## D105 — Combat Expansion encounters own dedicated arena/card art; unit prototypes may still share silhouettes
+
+Date: 2026-10-11  
+Status: accepted
+
+The six Combat Expansion v1 fights are now visually distinct enough to remain in the live Act 1 pool.
+
+Rules:
+- each expansion encounter owns a unique `arena_id` and a dedicated 1280×720 authored backdrop;
+- each expansion run card owns a dedicated 448×274 illustration and no longer aliases an older card;
+- unique arena IDs may reuse the nearest existing low-alpha atmosphere and unit-tint family; the authored backdrop is the composition truth;
+- the experimental `bone_raider` and `crypt_sentinel` UnitData may continue to reuse `bone_thrall` / `crypt_guard` silhouettes until their mechanical roles survive more run testing;
+- dedicated unit sprites are a later targeted pass, not a prerequisite for keeping the six encounter compositions.
+
+This supersedes the temporary card/arena reuse portion of D104 while preserving its gameplay-first rule for unproven enemy archetypes.
