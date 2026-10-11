@@ -1,5 +1,18 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-11 — Approved Unit Art v4 replaces nine combat miniatures
+
+**Implemented in `main`** after user approval of the new nine-role concept atlas. Production 288×288 transparent RGBA WebP artwork is stored as Base64 text in `assets/pixel/units/combat_units_v4/atlas.webp.b64`, with 96×96 cells arranged by the existing BattleUnit tile indices (row 0: knight / ranger / mage; row 1: skeleton / bone_archer / grave_bellkeeper; row 2: bone_thrall / crypt_guard / bone_warden). The generated concept cutouts were reworked into tiles and stray disconnected fragments removed before committing.
+
+`scripts/battle/unit.gd` now loads this v4 WebP first with `Marshalls.base64_to_raw` + `Image.load_webp_from_buffer`, validates the expected 288×288 dimensions and caches the shared ImageTexture to avoid decoding per combatant. The prior v3 Base64-PNG parts are retained intact and loaded only if v4 cannot decode, providing simple rollback. The exact lossless 288×288 source master is archived as `assets/source_archive/unit_art_v4/combat_units_v4_master.png.b64` for future edits.
+
+**No combat stats, AI, arena art, floor/deployment rules or tactical HUD changed.** Bone Raider and Crypt Sentinel still intentionally share the Bone Thrall and Crypt Guard silhouettes respectively through their authored `.tres` visual_role values; those archetype assets have not yet been uniquely drawn.
+
+**Local Godot 4.7.x verification still required:** `git pull`, enter a battle with Knight/Ranger/Mage and Bone Archers, visually check transparent sprite edges, feet/shadows, z-order, HP/name labels, initial placement, drag, combat animations and Warden boss (including reinforcements). Godot executable was not available in this environment. This implements the approved concept-derived 96px atlas; it is not a high-resolution rigged animation set.
+
+---
+
+
 ## Latest implemented state — 2026-10-11 — Unit Readability Pass
 
 Local screenshots of Grave Crossfire and Gallows Volley showed miniatures disappearing into high-detail arena backgrounds despite improved ground placement. **Implemented in `main`:**
