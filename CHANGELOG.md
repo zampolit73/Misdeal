@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Fixed — Per-role foot-floor visual calibration (2026-10-12)
+
+- Applied optically calibrated sprite-only floor offsets for all five animated roles and four remaining static-v4 undead roles in `BattleUnit`; offsets lift characters by 4–7px where boots looked buried.
+- Unified the sprite's initialized, idle, hit/attack-rest and old static death positions through `_art_rest_position()`, without changing the arena contact shadow or battle mechanics.
+- Maintained Pack 1 v2 assets, unit world coordinates, HP/name overlays, enemy facing and all ability timings. Local Godot visual validation pending.
+
+
 ### Fixed — Unit Animation Pack 1 jitter and grounding (2026-10-12)
 
 - Rebuilt all five Pack 1 WebP frame atlases as **v2**, eliminating orphan artwork from adjacent spritesheet rows and grounding all active frames to a uniform alpha sole y=92. Preserved the previous v1 atlases for rollback.
