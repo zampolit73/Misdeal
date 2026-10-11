@@ -1,6 +1,7 @@
 extends Control
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 
 const FRAME_PATHS: Array[String] = [
 	"res://assets/pixel/intro/frame_01.webp",
@@ -19,6 +20,9 @@ var frame_index: int = 0
 var transitioning := false
 
 func _ready() -> void:
+	# Intro is painted art with a transparent skip hotspot: preserve it.
+	MISDEAL_UI_KIT.apply_splash_hotspot(skip_button)
+	MISDEAL_UI_KIT.apply_screen_copy(hint_label, MISDEAL_UI_KIT.TEXT_ON_DARK, true)
 	skip_button.pressed.connect(_on_skip_pressed)
 	_show_frame(0)
 
