@@ -1,3 +1,31 @@
+# CURRENT SESSION CHECKPOINT — All 12 battle arenas redrawn and live
+
+Date: 2026-10-11
+
+The user asked to improve every battle arena after the previous environments read as noisy/muddy behind small combat units. A complete replacement set is now committed and wired live.
+
+Canonical runtime directory:
+- `assets/pixel/battle/arenas/arena_redraw_v1/`
+
+Covered arena IDs:
+- `crypt`, `graveyard`, `gallows`, `ossuary`, `warden`, `bone_crush`;
+- `bone_swarm`, `grave_crossfire`, `iron_wall`, `last_bell`, `firing_square`, `bone_ritual`.
+
+`scripts/battle/authored_backdrop.gd` maps every active arena ID to this directory. Earlier v4/v6 and Combat Expansion arena plates remain recoverable but are no longer the live sources.
+
+Art goal: larger environmental shapes, cleaner central floor, stronger encounter-to-encounter silhouettes and less fine detail competing with the units.
+
+No spawn/controller/attack/tactical/balance code changed.
+
+Immediate local check after `git pull`:
+1. open several different fights, including an expansion encounter;
+2. confirm the backdrop changes correctly with the encounter;
+3. confirm heroes/enemies remain readable against the center floor;
+4. drag heroes through the legal placement area and note any place where the visible floor disagrees with the gameplay bounds;
+5. check Bone Warden separately as the finale.
+
+---
+
 # CURRENT SESSION CHECKPOINT — Modular battle HUD after local rejection
 
 Date: 2026-10-11
