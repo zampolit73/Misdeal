@@ -61,6 +61,9 @@
 
 ### Changed
 
+- Replaced all six Combat Expansion v1 temporary art aliases with dedicated approved visuals. Each new fight now has its own native 1280×720 authored battle backdrop and its own 448×274 table-card illustration: КОСТЯНОЙ РОЙ, МОГИЛЬНЫЙ ПЕРЕКРЁСТОК, ЖЕЛЕЗНАЯ СТЕНА, ПОСЛЕДНИЙ ЗВОН, РАССТРЕЛЬНАЯ ПЛОЩАДЬ and КОСТЯНОЙ РИТУАЛ.
+- Dedicated expansion arena IDs now select their exact backdrop while preserving the nearest validated low-alpha atmosphere/tint family. Combat mechanics, spawn composition and deployment rules are unchanged.
+
 - Extended tactical-order visual tells from a sub-half-second flash to roughly one second total: the marker now holds briefly before fading, while Sacrifice/Defiance persistent combat auras remain unchanged.
 - Reintroduced combat polish safely after the empty-arena rollback. A new isolated `battle_motion_fx.gd` overlay listens to the existing tactical buttons without modifying battle spawning/controller flow: НАТИСК / ОХОТА / СТРОЙ show short readable squad markers, ЖЕРТВА adds a restrained red squad aura, НЕПОВИНОВЕНИЕ a cold-blue defensive aura, and Death Wager gets a subtle red battle-frame tell.
 - Improved hit readability inside the existing stable `BattleUnit` feedback path only: melee/ranged/magic impacts now tint differently, large hits get a stronger kick / larger damage number / two extra sparks, and ranged/magic tracers are slightly clearer. Attack cadence, damage application, targeting, cooldowns and spawn code are unchanged.
