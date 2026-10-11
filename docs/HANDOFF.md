@@ -1,3 +1,19 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Undead Pack 2 Stage A (real attack-contact FX, not new spritesheets)
+
+User said to continue after reverting Knight to a readable static v4. Inspected GitHub + checked local `/mnt/data` art for the four extra enemy roles. **There were no full frame animation sprite sheets** for Bone Thrall, Grave Bellkeeper, Crypt Guard, Bone Warden. Prior ImageGen attempt yielded a scenic battle illustration, **not valid separate animation cells**; it was correctly NOT connected to Godot. Instead committed a modest **production VFX stage** now, with clear Stage B to do later.
+
+Committed GitHub files:
+- `scripts/battle/unit_attack_visuals.gd`: small, transient native Line2D/Tween cues at attack contact: Thrall claw marks; Bellkeeper concentric gold-green bell pulses; Guard crossed bronze strokes; Warden red/gold ground pulses + heavy slash. FX last ~0.17–0.36s and queue_free themselves.
+- `scripts/battle/unit.gd`: `ATTACK_VISUALS` preload and a single spawn call inside `_play_attack_feedback()`. Original `_attack_target()` still does real immediate damage and splash; new FX are not combat telegraphs or stat changes.
+- `scripts/dev/unit_undead_fx_preview.gd` and `scenes/dev/unit_undead_fx_preview.tscn`: F6 gallery of actual static-v4 `BattleUnit` enemy nodes with per-role `ПОКАЗАТЬ УДАР` buttons, invoking identical effect helper without altering HP.
+- `docs/UNIT_ANIMATION_PACK2.md`: truthful shipped Stage A vs unimplemented Stage B, smoke testing, frame-art QA requirements.
+
+**Important live state:** Knight remains deliberately static v4 with clear legs and -8px static floor correction. Ranger, male Mage, Skeleton, Bone Archer have real v2 SpriteFrames. All four newly enhanced enemy types remain static v4 with attack-only VFX; DO NOT claim they now have idle/walk/death sprite animations. Keep main dark-fantasy combat/card gameplay intact.
+
+**User next:** `git pull`, open `scenes/dev/unit_undead_fx_preview.tscn` and F6, test four buttons. Then play encounters with each enemy (particularly boss), confirm no overwhelming visuals or damage-delay changes. Runtime Godot not available here. After approval, produce genuine leg/weapon-readable pixel-art sprite sheets for Stage B, then connect through existing `MisdealUnitAnimationLibrary`, reverting to static on bad/missing art. Review real frames; do not crop screenshot-style illustrations into fake sprites.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Knight static v4 fallback to restore readable legs
 
 User explicitly requested replacing the Knight immediately and pushing to GitHub, after repeated screenshots showed animated Knight has no readable legs even with Y lift to -16px. **Change committed directly to main:** `scripts/battle/unit.gd`, code commit `1a1141d7e33c32f5ef3c8aa8da94acfc4bcec6c5`.
