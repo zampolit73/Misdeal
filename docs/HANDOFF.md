@@ -1,3 +1,16 @@
+# LATEST LIVE CHECKPOINT — 2026-10-11 — Unit Readability Pass committed
+
+The user found that figures visually disappeared into the approved rich v2 arena backgrounds in screenshots of Grave Crossfire and Gallows Volley, despite grounded unit positions and removal of always-on deployment grid. User requested immediate implementation directly in GitHub.
+
+Implemented:
+- `scripts/battle/unit.gd`: heroes at 1.28×, ordinary enemies 1.25× and bosses 1.24× base pixel-art scale (still multiply authored `visual_scale`); adjusted artwork anchor and HP/name offset; brighter cool/warm thin `RimSprite` contours; low-alpha localized dark underlay behind figures; preserved feet shadow, colored team ring and drag-only deployment glow; expanded hero click detection to cover visible art (no changed physical hitbox).
+- `scripts/battle/battle.gd`: spread trio/duo initial `X` positions across the known legal tactical placement `Rect2` profiles instead of stacking heroes at `X=220` in Gallows/Crossfire. Also improved default, cave two-lanes, pocket/ossuary and Warden startup. This only affects hero initial staging; `_project_spawn_on_floor` still aligns the positions to the same walkable arena plane.
+- Did **not** replace approved arena WebPs, alter enemy spawn resources, unit stats, tactical effects, combat AI, encounters, rewards, or card flow.
+
+Static checks of the GitHub code and mathematical 1/2/3-hero spawn profile projection passed. **User local Godot playtest remains unverified.** To test: `git pull`, open Grave Crossfire and Gallows, inspect unit/enemy visibility plus labels and no overlap; drag a hero by upper torso, release, Fight. Also check boss and cave lanes. If visuals too harsh, tune these constants in `unit.gd` rather than changing background art.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-11 — Deployment markers show only while dragging
 
 Screenshots on Grave Crossfire and Crypt rejected the old **permanently visible pale bounding box and gold 3×2 slot circles**. The user explicitly asked for a code fix directly in GitHub.
