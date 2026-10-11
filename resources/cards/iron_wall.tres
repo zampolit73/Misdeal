@@ -12,4 +12,5 @@ type_label = "БОЙ"
 tier = 1
 resolution_type = "combat"
 target_path = "res://resources/encounters/iron_wall.tres"
+art_path = "res://assets/pixel/ui/combat_expansion_v1/cards/iron_wall_card.webp"
 prototype_result_text = ""
