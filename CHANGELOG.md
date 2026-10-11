@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Changed — quieter battle placement feedback (2026-10-11)
+
+- Replaced always-on outlined deployment rectangles and 3×2 floor markers with a subtle floor glow that appears **only while dragging a hero** and derives from the true legal placement regions.
+- Extra hero placement ring is visible only on the dragged unit; persistent contact shadow and restrained team ring remain.
+- Gameplay, spawn/depth alignment, approved arena artwork and tactical command HUD remain unchanged.
+
+
 ### Fixed — battle-floor grounding and preparation markings (2026-10-11)
 
 - Reprojected legacy authored encounter spawn depth into the actual playable floor of Arena Redraw v2; combat bounds now keep figures from entering distant scenery, including reinforcement spawns.
