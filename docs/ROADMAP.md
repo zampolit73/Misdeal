@@ -344,4 +344,5 @@ Do not prioritize these before the vertical slice works:
 - [x] Give the new encounters distinct compositions, threat tags, preparation cues and proven deployment profiles.
 - [x] Keep new combat rewards on the existing normal-loot path; Death Wager / Crypt Guard / Bone Warden special reward identities remain unchanged.
 - [ ] Run several fresh Act 1 seeds and identify which new encounters feel redundant, overtuned or worth dedicated enemy/card art.
-- [ ] If Raider/Sentinel survive gameplay validation, create dedicated production silhouettes rather than keeping family-art reuse permanently.
+- [x] Create dedicated battle backdrops and table-card art for all six Combat Expansion v1 encounters.
+- [ ] If Raider/Sentinel survive gameplay validation, create dedicated production unit silhouettes rather than keeping family-art reuse permanently.
