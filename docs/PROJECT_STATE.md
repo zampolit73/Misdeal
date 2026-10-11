@@ -1,5 +1,18 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Animation Pack 1 grounding/jitter hotfix
+
+**Implemented directly in GitHub `main` after the user's screenshots of Bone Swarm and Graveyard Ambush:** the first animation atlas produced **orphan legs/heads from adjacent sheet rows**, and unit soles were not consistently aligned to the existing battlefield floor contact. The old v1 atlases remain intact for rollback.
+
+Five cleaned v2 assets are now in `assets/pixel/units/combat_units_anim_v2/{knight,ranger,mage,skeleton,bone_archer}.webp.b64`. Each asset is a transparent 576×480 WebP (6×5 x 96px cells). Reprocessing removes detached border fragments mistakenly imported from adjacent sprite-sheet rows (including the first four Knight walk frames), preserves character pose/weapon, and normalizes the final opaque sole contact to atlas y=92 across **all 105 active frames**. Exact Base64 content equality against generated source exports and per-frame sole min/max (92/92) were checked for each of five assets. Original v1 remains untouched.
+
+`scripts/battle/unit_animation_library.gd` now prefers v2 assets and reduces idle 5→2.7 fps and walk 9→7 fps; attack/hit/death fps and the Mage projectile skip remain unchanged. `scripts/battle/unit.gd` determines the resting sprite position from its real art scale and the existing local-floor ring y=36, so boots meet floor regardless of the role's `visual_scale`. Attack position tweens return to this grounded rest, rather than legacy constant (-16). Each unit begins idle at a slightly different frame phase. A 0.18s walk-hold prevents strobing idle/walk at tight separation or arena edges.
+
+**Unchanged:** art of the arena/card game, combat rules and damage timing, AI, physical placement and unit coordinates, silhouette facings, HP/name offsets, role definitions, unsupported-unit v4 static fallback. **Local Godot 4.7.x playtest still pending.** Next: user `git pull`, check Bone Swarm and Graveyard Ambush idle before Fight, movement/attack at melee contact and corpse-grounding; also test F6 gallery. See `docs/UNIT_ANIMATION_PACK1.md`, section `Grounding / start-motion repair`.
+
+---
+
+
 ## Latest implemented state — 2026-10-12 — Unit Animation Pack 1 ACTIVE
 
 The user approved connecting the five freshly generated animation sprite sheets. Five **actual frame-by-frame animations** are now wired into production `BattleUnit` on `main`: `knight`, `ranger`, `mage` (male), `skeleton`, `bone_archer`. Each role has a 576×480 transparent Base64/WebP atlas containing 6×5 cells at 96px, stored at `assets/pixel/units/combat_units_anim_v1/{role}.webp.b64`. Sprite action rows: idle (4), walk (6), attack (6; male Mage skips projectile-only cell and uses 5), hit (3), death (6).
