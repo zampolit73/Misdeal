@@ -1901,3 +1901,13 @@ The user approved the new full nine-character Gothic/pixel-art character directi
 `BattleUnit` should prefer v4, cache its texture across units and retain v3 as a tested code-level fallback; future art changes should preserve the tile order or intentionally update role indexes in tandem. No change to combat balance, hit radii, tactical systems or encounter composition is implied by the sprite replacement.
 
 Because the new sheet comes from cut-outs of approved large concept images rather than original sprite-by-sprite painting, inspect 96px edges and silhouettes during local Godot validation, and perform targeted cleanup if defects appear.
+
+
+## D112 — Runtime facing and role-specific approved artwork overrides
+
+Date: 2026-10-12  
+Status: accepted
+
+All v4 combat sprites should face their opponent. The authored atlas nominally looks screen-right, so enemies appearing on the right start horizontally mirrored, and active combat art updates to the current target's horizontal direction. The `RimSprite` must match the `ArtSprite` mirror orientation. Do not change AI movement/targeting, physical body radii or tactical placement just to correct visual facing.
+
+Approved character art can be refined role-by-role without regenerating or replacing the entire shared 3×3 atlas. The male Mage uses a separate 96×96 transparent WebP override with a fallback to its existing atlas cell; the other eight roles stay on the approved production v4 atlas. Preserve original and lossless source art for rollback, and keep Godot sprites nearest-filtered.
