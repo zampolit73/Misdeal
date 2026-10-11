@@ -1857,3 +1857,15 @@ The user approved the reworked Arena Redraw v2 package 1 for ten combat arenas. 
 Native `.webp` assets may be read through `FileAccess.get_file_as_bytes()` and decoded into `ImageTexture`; existing `.webp.b64` assets remain supported for older arenas. The ten approved v2 WebPs are the canonical battle backgrounds; `firing_square` and `bone_ritual` still use v1 until separately approved. All previous arena assets remain recoverable.
 
 This is an art/asset-loading decision only. It does not authorize alterations to combat rules, spawns, deployment bounds, or tactics.
+
+
+## D109 — Arena-floor geometry is authoritative; tactical guides are live
+
+Date: 2026-10-11  
+Status: accepted implementation correction after local screenshots
+
+The v2 backdrops revealed a mismatch with earlier encounter-coordinate assumptions: heroes and enemies spawned over visually distant architecture rather than on the walkable floor. The battlefield is now constrained to an intentional floor band in UnitsLayer coordinates; legacy encounter Y positions are projected into that band on spawning, preserving horizontal tactical ordering.
+
+Deployment-region `Rect2` values are the single source of truth for both hero drag legality and rendered on-floor marker circles/region outlines. The markers deliberately do not create fixed slots or change the combat game design, and they are hidden as combat begins. Avoid permanently painting supposedly legal placement cells into environment WebPs: they become incorrect whenever encounter-specific regions change.
+
+Contact shadows belong to each live unit at its sprite's feet. Revisit the perspective profile only when concrete 1280×720 gameplay screenshots show misplaced figures; do not independently adjust background art, drag boundaries and unit visuals.
