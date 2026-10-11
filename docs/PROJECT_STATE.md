@@ -1,5 +1,19 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Undead Animation Pack 2 Stage A, role-specific contact VFX
+
+Following the static Knight v4 fix, the user said to continue. **Direct GitHub commits** added distinct *brief attack-contact* effects for the four remaining static enemy roles without pretending we have authored animation frames. See `docs/UNIT_ANIMATION_PACK2.md` for the precise scope and local tests.
+
+- `scripts/battle/unit_attack_visuals.gd`: transient `Line2D` + Tween accents tied to a valid attack target: Bone Thrall dual claw lines (0.17–0.21 s), Grave Bellkeeper small green-gold ripples (0.27–0.36 s), Crypt Guard bronze crossed clash (0.19–0.23 s), Bone Warden red/orange floor pulses and heavy slash (0.19–0.36 s). Each visual effect automatically frees its nodes, touches no health/stat code, and does not telegraph future damage.
+- `scripts/battle/unit.gd`: preloads this helper and invokes `ATTACK_VISUALS.spawn(visual_role, get_parent(), primary_target.position)` inside the existing `_play_attack_feedback()`; `_attack_target()` still immediately applies all original damage, hitstop and optional splash. Other roles no-op.
+- `scripts/dev/unit_undead_fx_preview.gd` + `scenes/dev/unit_undead_fx_preview.tscn`: standalone F6 gallery instantiates real `scenes/battle/unit.tscn` for four enemy roles using existing static v4 art, and provides per-role `ПОКАЗАТЬ УДАР` buttons that invoke the identical VFX helper without changing HP.
+- **Unchanged:** Knight static v4, animated Ranger/Mage/Skeleton/Bone Archer, all unit silhouettes/floor offsets, arena/card art, table, playable combat rules and HUD. **NO new frame sprite sheets** for four enemies — Pack 2 **Stage B** still requires bespoke pixel-art animation assets with verified leg/weapon silhouettes before any live art switch.
+
+**Static verification passed** for all GitHub files and shared helper hooks. Godot 4.7.x unavailable; user local smoke: `git pull`, F6 preview, then fight Bellkeeper, Thrall, Crypt Guard and Bone Warden to check effect duration/grounding/performance. Do not declare Pack 2 fully animated.
+
+---
+
+
 ## Latest implemented state — 2026-10-12 — Knight temporarily restored to static v4 artwork
 
 **User requested an immediate art replacement after screenshots showed Knight's legs are unreadable, despite repeated upward Y-offset changes.** Implemented in GitHub `main`, code commit `1a1141d7e33c32f5ef3c8aa8da94acfc4bcec6c5`. The current `scripts/battle/unit.gd` uses `STATIC_COMBAT_ART_ROLES := ["knight"]`: `BattleUnit._ready()` skips `ANIMATION_LIBRARY.get_frames("knight")` and renders `_get_art_texture()`, which loads the existing approved **v4 Knight** tile at index (0,0). This old tile has separate visible boots, unlike the Pack 1 animated Knight whose legs/pose are not legible. All Ranger, male Mage, Skeleton, Bone Archer animations remain ACTIVE. Knight attack/hit tweens, HP bar, facing, team, targeting, placement, stats and fight logic remain active on the static art.
