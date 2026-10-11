@@ -1,7 +1,7 @@
 ## Pack 1 animation hotfix — row-bleed, floor contact, startup jitter (2026-10-12)
 
 - [x] Inspect source atlases; confirm detached legs from previous row in Knight Walk and smaller enemy cross-row fragments.
-- [x] Generate versioned cleaned `combat_units_anim_v2` for Knight, Ranger, Mage, Skeleton and Bone Archer; align all 105 actively used frames to consistent y=92 sole.
+- [x] Generate versioned cleaned `combat_units_anim_v2` for Knight, Ranger, Mage, Skeleton and Bone Archer; align all 125 processed cells (124 active character frames) to consistent y=92 sole.
 - [x] Switch SpriteFrames loader to v2, slow Idle 5→2.7 fps and Walk 9→7 fps.
 - [x] Synchronize art (including attack tween return) to y=36 contact-shadow floor using actual role sprite scale.
 - [x] Add randomized initial idle phase and short walk/idle hysteresis.
