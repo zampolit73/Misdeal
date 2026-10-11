@@ -12,4 +12,5 @@ type_label = "БОЙ"
 tier = 0
 resolution_type = "combat"
 target_path = "res://resources/encounters/bone_swarm.tres"
+art_path = "res://assets/pixel/ui/combat_expansion_v1/cards/bone_swarm_card.webp"
 prototype_result_text = ""
