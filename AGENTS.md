@@ -13,6 +13,7 @@ At the start of a new chat, before proposing architecture or code changes, read:
 5. `docs/DECISIONS.md`
 6. `docs/HANDOFF.md`
 7. `docs/VISUAL_ASSET_REGISTRY.md`
+8. `docs/DESIGN_SYSTEM.md` (when working on UI or visual presentation)
 
 For implemented code and current project state, prefer GitHub over remembered chat context.
 
@@ -111,6 +112,8 @@ Dark-fantasy pixel art, cursed tabletop, theatrical evil wizard, tactile cards a
 Combat readability comes before detail: units must be recognizable by silhouette, team color is secondary, and UI should not overpower sprites.
 
 Use nearest-neighbor presentation for pixel assets. Avoid mixing realistic painted unit portraits into the combat field.
+
+For UI work, extend the existing `scripts/ui/misdeal_ui_kit.gd` and follow `docs/DESIGN_SYSTEM.md`. Do not restyle approved game screens solely to unify components; validate against actual 1280×720 Godot screenshots.
 
 The prototype may still use simple shapes and text where needed, but new player-facing art should move toward one coherent pixel-art language.
 
