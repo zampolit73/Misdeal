@@ -146,6 +146,123 @@ static func apply_action_button(button: Button, accent: Color = BRONZE, strong: 
 		add_corner_marks(button, accent, 9.0, 2.0)
 
 
+# Compact modular battle chrome, migrated from battle.gd without any pixel
+# change. Keep this distinct from the ornate table/card chrome above.
+static func apply_battle_panel(panel: Panel, accent: Color = BRONZE, alpha: float = 0.68) -> void:
+	if panel == null:
+		return
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(
+		0.010 + accent.r * 0.010,
+		0.008 + accent.g * 0.006,
+		0.012 + accent.b * 0.008,
+		clampf(alpha, 0.0, 1.0)
+	)
+	_set_border(style, BORDER_HAIRLINE)
+	style.border_color = Color(accent.r, accent.g, accent.b, 0.42)
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.42)
+	style.shadow_size = 4
+	style.shadow_offset = Vector2(0.0, 2.0)
+	# Compatibility: preserve the existing battle panel's 2px corner radius.
+	_set_corner_radius(style, 2)
+	panel.add_theme_stylebox_override("panel", style)
+
+
+static func apply_battle_button(button: Button, accent: Color = BRONZE, primary: bool = false) -> void:
+	if button == null:
+		return
+	for style_name in ["normal", "hover", "pressed", "disabled"]:
+		var style := StyleBoxFlat.new()
+		var active: bool = style_name == "hover" or style_name == "pressed"
+		var disabled: bool = style_name == "disabled"
+		var pressed: bool = style_name == "pressed"
+		if disabled:
+			style.bg_color = Color(0.012, 0.010, 0.014, 0.46)
+			style.border_color = Color(0.20, 0.18, 0.20, 0.42)
+		else:
+			var energy := 0.070 if active else (0.055 if primary else 0.030)
+			var panel_alpha := 0.90 if primary else (0.82 if active else 0.68)
+			style.bg_color = Color(
+				0.012 + accent.r * energy,
+				0.009 + accent.g * energy * 0.65,
+				0.014 + accent.b * energy * 0.60,
+				panel_alpha
+			)
+			style.border_color = Color(
+				accent.r,
+				accent.g,
+				accent.b,
+				0.94 if pressed else (0.74 if active else 0.48)
+			)
+		_set_border(style, BORDER_NORMAL if primary or pressed else BORDER_HAIRLINE)
+		style.shadow_color = Color(0.0, 0.0, 0.0, 0.34 if active else 0.20)
+		style.shadow_size = 4 if active else 2
+		style.shadow_offset = Vector2(0.0, 2.0 if not pressed else 1.0)
+		_set_corner_radius(style, 2)
+		button.add_theme_stylebox_override(style_name, style)
+	_apply_button_font_colors(button)
+
+
+# Opt-in selected state for a choice/tactic; does not change button_pressed,
+# toggle_mode, or control behavior. Reapply when the selection changes.
+static func apply_selected_button(button: Button, selected: bool, accent: Color = GOLD) -> void:
+	if button == null:
+		return
+	# Recreate a stable base rather than layering a permanent tinted override.
+	_apply_button_styles(button, accent, false, false)
+	if not selected:
+		return
+	for name in ["normal", "hover", "pressed", "hover_pressed"]:
+		var base: StyleBoxFlat = button.get_theme_stylebox(name) as StyleBoxFlat
+		if base == null:
+			continue
+		var style := base.duplicate() as StyleBoxFlat
+		style.bg_color = Color(0.075 + accent.r * 0.080, 0.050 + accent.g * 0.052, 0.038 + accent.b * 0.038, 0.98)
+		style.border_color = Color(accent.r, accent.g, accent.b, 0.97)
+		_set_border(style, BORDER_STRONG)
+		_square_corners(style)
+		button.add_theme_stylebox_override(name, style)
+	button.add_theme_color_override("font_color", TEXT_HOVER)
+
+
+# A panel-style variant for readable help text. It is not a global
+# tooltip override and cannot interfere with existing native tooltips.
+static func apply_tooltip_panel(panel: PanelContainer, accent: Color = STEEL) -> void:
+	if panel == null:
+		return
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.023, 0.019, 0.025, 0.97)
+	_set_border(style, BORDER_HAIRLINE)
+	style.border_color = Color(accent.r, accent.g, accent.b, 0.73)
+	style.content_margin_left = SPACE_4
+	style.content_margin_top = SPACE_3
+	style.content_margin_right = SPACE_4
+	style.content_margin_bottom = SPACE_3
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.52)
+	style.shadow_size = 5
+	_square_corners(style)
+	panel.add_theme_stylebox_override("panel", style)
+
+
+# In-world card art and labels remain separate; this draws an optional
+# simple card surface for reuse in Inspect/Reward panels, not gameplay art.
+static func apply_card_surface(panel: PanelContainer, accent: Color = BRONZE, selected: bool = false) -> void:
+	if panel == null:
+		return
+	var style := StyleBoxFlat.new()
+	style.bg_color = _panel_fill(accent, 0.97 if selected else 0.89)
+	_set_border(style, BORDER_STRONG if selected else BORDER_NORMAL)
+	style.border_color = Color(accent.r, accent.g, accent.b, 0.92 if selected else 0.55)
+	style.content_margin_left = SPACE_4
+	style.content_margin_top = SPACE_4
+	style.content_margin_right = SPACE_4
+	style.content_margin_bottom = SPACE_4
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.58)
+	style.shadow_size = 7 if selected else 4
+	_square_corners(style)
+	panel.add_theme_stylebox_override("panel", style)
+
+
 static func apply_title(target, accent: Color = GOLD) -> void:
 	var label: Control = target as Control
 	if label == null:
@@ -260,6 +377,10 @@ static func _apply_button_styles(button: Button, accent: Color, card: bool, stro
 		_square_corners(style)
 		button.add_theme_stylebox_override(style_name, style)
 
+	_apply_button_font_colors(button)
+
+
+static func _apply_button_font_colors(button: Button) -> void:
 	button.add_theme_color_override("font_color", TEXT)
 	button.add_theme_color_override("font_hover_color", TEXT_HOVER)
 	button.add_theme_color_override("font_pressed_color", TEXT_HOVER)
@@ -283,10 +404,14 @@ static func _set_border(style: StyleBoxFlat, width: int) -> void:
 
 
 static func _square_corners(style: StyleBoxFlat) -> void:
-	style.corner_radius_top_left = CORNER_RADIUS
-	style.corner_radius_top_right = CORNER_RADIUS
-	style.corner_radius_bottom_right = CORNER_RADIUS
-	style.corner_radius_bottom_left = CORNER_RADIUS
+	_set_corner_radius(style, CORNER_RADIUS)
+
+
+static func _set_corner_radius(style: StyleBoxFlat, radius: int) -> void:
+	style.corner_radius_top_left = radius
+	style.corner_radius_top_right = radius
+	style.corner_radius_bottom_right = radius
+	style.corner_radius_bottom_left = radius
 	style.anti_aliasing = false
 
 
