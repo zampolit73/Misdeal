@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Added — Pack 2 Stage B validation and art staging (2026-10-12)
+
+- Added a 6×5 RGBA sprite-sheet importer using lossless WebP Base64, rejecting empty, opaque, mismatched or duplicated animation rows, with grounding/edge warnings; tested on valid older artwork and deliberately invalid opaque art.
+- Added optional in-Godot candidate frame validation and an F6 side-by-side gallery showing each of the four static v4 enemy silhouettes beside prospective new Idle/Walk/Attack/Hit/Death clips.
+- Added a dedicated candidate folder/documentation; when no real sprite sheets exist, preview explicitly indicates the missing art. **No live combat sprite or mechanical changes.** High-quality authored enemy animation artwork is still pending.
+
+
 ### Added — Undead Pack 2 Stage A, attack-contact effects (2026-10-12)
 
 - Added small role-specific impact accents for static Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden; native Godot Line2D/Tween effects end after 0.17–0.36 seconds and self-delete.
