@@ -1,5 +1,12 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-12 — Knight visual floor offset −16 px
+
+User explicitly requested a further **4 px upward** Knight lift. Committed to `main` in `scripts/battle/unit.gd`: `ROLE_FLOOR_OFFSETS["knight"]` changed from `-12.0` to **`-16.0`** (code commit `11f904b003430f43e6d785a2b1bd4ed80fcc666b`). All other roles, art, animation, combat logic, positioning and UI unchanged. Local Godot check: `git pull`, inspect Knight boots relative to blue floor ring on the Bone Swarm arena.
+
+---
+
+
 ## Latest implemented state — 2026-10-12 — Knight visual floor offset −12 px
 
 Following another in-game Bone Swarm screenshot, the user requested lifting the Knight by 2 more pixels. Implemented in GitHub `main`, code commit `6a5ac695c12a13de73860113e101618a499f026d`: `scripts/battle/unit.gd` now sets `ROLE_FLOOR_OFFSETS["knight"] = -12.0` (previously `-10.0`). Ranger stays `-6.0`, all other units unchanged. This only affects the existing `_art_rest_position()` visual offset; it does not change world coordinates, collisions, attacks, animation frames, arenas or HUD. Godot runtime test pending. Next: `git pull`, compare Knight boots with its blue contact ring in Bone Swarm before and during combat.
