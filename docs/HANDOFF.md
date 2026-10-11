@@ -1,3 +1,13 @@
+# LATEST LIVE CHECKPOINT — 2026-10-11 — Deployment markers show only while dragging
+
+Screenshots on Grave Crossfire and Crypt rejected the old **permanently visible pale bounding box and gold 3×2 slot circles**. The user explicitly asked for a code fix directly in GitHub.
+
+Implemented on `main`: `scripts/battle/deployment_floor_markers.gd` now draws **nothing at rest** and only shows soft semi-transparent ellipses over actual legal deployment `Rect2` regions **while a hero is actively dragged**. `scripts/battle/unit.gd` additionally suppresses its secondary pre-battle placement ring until drag (the subtle contact shadow and team ring remain). No scene restructuring, artwork replacement, encounter logic, combat rules, spawn coordinates or HUD/tactics changes were made in this pass.
+
+The earlier "always-on chalk circles" descriptions in this document are historical; this latest section supersedes that visualization. All twelve arenas use the same dynamic behavior. Godot local gameplay verification remains outstanding. User action: `git pull`, open Crypt or Grave Crossfire, observe idle -> drag -> release -> Fight; include two-pocket and two-lane encounter tests.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-11 — Grounded battle floor and dynamic deployment markers
 
 The user approved v2 arena pack 1 but screenshots from Bone Swarm / Last Bell / Iron Wall showed floating figures and no readable player placement zone. Code correction has now been committed in `scripts/battle/battle.gd`, `scripts/battle/unit.gd`, and NEW `scripts/battle/deployment_floor_markers.gd`: authored enemy/hero spawns are mapped from old high-background Y into a walkable floor band, combat movement clamps share that floor band, party placement regions are lowered and drawn using actual legal regions, dragged heroes snap to the real legal area, and contact shadows sit at the miniature soles. Split-band/pocket/front-line encounter distinctions are retained. The overlay hides on Fight and doesn't change enemy AI, tactics, rewards, or stat definitions. It works across all 12 IDs, while the 10 approved arena_redraw_v2 WebPs remain the active image assets and the 2 pack-2 arenas still use the v1 images.
