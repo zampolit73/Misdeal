@@ -37,6 +37,7 @@ const BOSS_DISPLAY_SCALE := 1.24
 const V4_UNIT_ATLAS_PATH := "res://assets/pixel/units/combat_units_v4/atlas.webp.b64"
 const MALE_MAGE_TILE_PATH := "res://assets/pixel/units/combat_units_v4/mage_male.webp.b64"
 const ANIMATION_LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
+const ATTACK_VISUALS := preload("res://scripts/battle/unit_attack_visuals.gd")
 
 # Kept for local fallback/rollback if the v4 atlas cannot be decoded.
 const UNIT_SHEET_PARTS: Array[String] = [
@@ -991,6 +992,10 @@ func _play_attack_feedback(primary_target: BattleUnit) -> void:
 			art_sprite.position = rest_position + direction * 9.0
 			art_sprite.rotation = direction.x * 0.08
 			art_sprite.scale = Vector2(base_sprite_scale.x * 1.06, base_sprite_scale.y * 0.96)
+
+	# Role-specific contact flashes for static Pack-2 undead. Called only
+	# when an attack actually happens; no change to instant damage timing.
+	ATTACK_VISUALS.spawn(visual_role, get_parent(), primary_target.position)
 
 	attack_tween = create_tween()
 	attack_tween.set_parallel(true)
