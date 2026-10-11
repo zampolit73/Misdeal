@@ -1,5 +1,23 @@
 # Misdeal — Project State
 
+## Latest implemented state — 2026-10-11 — Battle floor and deployment correction
+
+Local screenshots from Bone Swarm, Last Bell and Iron Wall showed units apparently hovering above the new v2 backgrounds: legacy encounter spawn Y positions (some as high as 145–165 in UnitsLayer coordinates) placed figures on distant scenery instead of the stone floor. The previous translucent deployment panels were also nearly invisible.
+
+**Implemented in main:**
+- `scripts/battle/battle.gd` maps old authored spawn-depth Y values into arena-floor coordinates while preserving encounter-specific X positions and relative front/back ordering; this path also applies to boss reinforcements and every other call to `_spawn_unit`.
+- Each unit's movement clamp and the hero drag regions now use a floor-only Y range (approximately local 279–442, cave slightly lower); headings, the battle controller, attack timings, tactics, enemy counts and stats remain unchanged. This DOES change battlefield depth geometry intentionally to match the new art.
+- Existing split-band/deep-line/two-pocket/Bone Warden deployment profiles are preserved conceptually but moved down onto the real floor; freshly enabled heroes are clamped into the actual legal placement regions.
+- `scripts/battle/deployment_floor_markers.gd` draws subtle parchment/chalk ellipse guides and region outlines from **those same regions**; no hardcoded decorative slots and no blue debug panels. Markers disappear when Fight starts. The circles are guidance for free dragging within legal regions, not a locked tile grid.
+- `scripts/battle/unit.gd` anchors contact shadows and team rings near sprite soles and uses a matching floor-plane placement ring.
+
+The approved v2 backdrop WebPs remain intact. **The newly illustrated experimental arena plates with painted circles from the chat were NOT uploaded**: live Godot floor guides are authoritative and avoid future divergence between backdrop art and actual legal movement. `firing_square` and `bone_ritual` retain their v1 art and use the same runtime floor correction.
+
+**Pending local Godot validation:** check no parse errors after `git pull`; test one/two/three heroes, drag into/around every allowed lane, verify the rings match valid drag areas, no unit hanging over rocks/architecture at spawn or during combat, and full battle resolution in Bone Swarm, Last Bell, Iron Wall, Gallows and Bone Warden (including reinforcements). No headless Godot executable was available in the connector runtime; no runtime claim is made.
+
+---
+
+
 ## Latest implemented state — 2026-10-11 — Arena Redraw v2 package 1
 
 The user approved the corrected 10-arena concept pack after rejecting castle-saturated horizons. **All ten images are now committed as native 1280×720 WebP assets** under `assets/pixel/battle/arenas/arena_redraw_v2/`, and `AuthoredBackdrop` resolves the corresponding arena IDs directly to those files.
