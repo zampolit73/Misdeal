@@ -1,3 +1,17 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Unit Animation Pack 1 connected
+
+The user asked to **connect the five newly generated pixel-art sprite sheets** following the earlier proposal and generation. GitHub writes have been made directly to `zampolit73/Misdeal` default branch.
+
+**Active assets:** `assets/pixel/units/combat_units_anim_v1/knight.webp.b64`, `ranger.webp.b64`, `mage.webp.b64`, `skeleton.webp.b64`, `bone_archer.webp.b64`. Each decodes to a 576×480 transparent WebP atlas (6×5 grid, 96px cells) derived from conversation-provided/generated 1374×1145 source sheets. The male mage's projectile-only attack cell 4 is skipped in animated character frames. Source character artwork was not replaced for unsupported roles; approved static v4 retained as fallback.
+
+**Code:** `scripts/battle/unit_animation_library.gd` constructs/caches `SpriteFrames` with 4 idle, 6 walk, 6 attack (Mage 5), 3 hit and 6 death frames at role-appropriate fps. `scripts/battle/unit.gd` uses SpriteFrames to swap `ArtSprite.texture` in its *existing Sprite2D* to protect animations/tweens/facing/outline and battle code; special one-shots for attack/hit/death, no rubbery fake idle for the animated roles. Rim sprite texture stays synchronized. Existing AI and immediate damage application still work; code does **not** change the combat hit timing. Others continue using v4 static art.
+
+**Debug/test:** `scenes/dev/unit_animation_pack1_preview.tscn` F6, based on `scripts/dev/unit_animation_pack1_preview.gd`, draws all 5 using `AnimatedSprite2D` and offers IDLE/WALK/ATTACK/HIT/DEATH buttons; user should test F6 first, then run real Knight/Ranger/Mage fights against Skeleton/Bone Archer. See `docs/UNIT_ANIMATION_PACK1.md` for exact mapping and gate. No Godot runtime in this remote GitHub session; local verification pending.
+
+**Next:** fix any parse/visual issues reported on screenshots before attempting Pack 2. Keep current arenas and Design System packages 1–3. Preserve source-of-truth GitHub docs; no manual copying required.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Design System Package 3 core Screen Pass
 
 The user requested immediate Package 3 after the previously committed Component Library, **even though the earlier F6 visual gate had not yet been reported as passed**. We proceeded conservatively, using connected GitHub and preserving every approved `.tscn` layout.
