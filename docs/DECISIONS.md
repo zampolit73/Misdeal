@@ -1879,3 +1879,13 @@ Status: accepted; refines D109's rendered guide requirement
 The user rejected always-visible rectangles and decorative 3×2 circles over the arena floor. The playable battle screen should show the environment and units without a persistent tactical grid. Draw a restrained low-opacity glow from the **existing legal deployment regions only while a hero is being dragged**; hide the overlay immediately on release and when combat starts. The extra hero placement ring is likewise drag-only; a small contact shadow and team identity ring may remain.
 
 This does not change legal drag geometry or add fixed gameplay slots. Do not bake tactical markers into arena WebP plates. Avoid an always-on debug-looking overlay in future art/arena passes.
+
+
+## D111 — Combat miniature readability comes from local sprite presentation
+
+Date: 2026-10-11  
+Status: accepted prototype implementation after user screenshot review
+
+Retain approved detailed Gothic arena backdrops. To prevent miniatures blending into complex stone and firelight, tune `BattleUnit` presentation first: a moderate 8–10% visual-size lift, restrained tinted silhouette contour, soft low-alpha local value separation, aligned contact shadow, and uncluttered initial hero formations inside real legal deployment regions. A boss retains separate sizing. Do not solve this by adding a large glow, redrawing the arena, enlarging collision radii, or placing persistent grid markers on the floor.
+
+Initial hero arrangement is presentation-relevant but also affects tactics, so retain the encounter's deep-line / split-lane / two-pocket positioning contracts and locally test solo, duo and trio before further balance changes. Keep arena art, combat AI, enemy positions, stats and rewards independent of this pass.
