@@ -1,6 +1,6 @@
 # Misdeal Design System 1.0 — Foundation
 
-Status: **Foundation implemented, component migration pending** (2026-10-12)  
+Status: **Foundation + Package 2 Components implemented; full screen migration pending** (2026-10-12)  
 Godot: **4.7.x / GDScript**  
 Canonical runtime tokens: `scripts/ui/misdeal_ui_kit.gd` (`MisdealUIKit`)  
 Review scene: `res://scenes/dev/design_system_foundation_preview.tscn`
@@ -107,3 +107,42 @@ Next:
 - No new fonts, external addons, changes to `project.godot`, combat or art resources.
 
 Design decision: **the shared kit is the one runtime source of design token truth**, not a parallel Figma-only specification or a replacement renderer. See `docs/DECISIONS.md` (Foundation entry).
+
+## 7. Package 2 — live component library (2026-10-12)
+
+Source: `scripts/ui/misdeal_ui_kit.gd` and opt-in `scripts/ui/misdeal_tooltip_button.gd`  
+Interactive preview: `res://scenes/dev/design_system_components_preview.tscn` (Godot F6)
+
+The UI kit styles **native Godot Controls**. It is not a disconnected mockup or a replacement component framework. Call the shared helper **once** when the component is initialized (and after relevant state changes); styles are duplicated on each control rather than sharing mutable `StyleBoxFlat` instances.
+
+| Component | Entry point | States, purpose |
+| --- | --- | --- |
+| Card-decision button | `apply_card_button(button, BRONZE)` | normal / hover / pressed / disabled, existing tactile tabletop card chroming |
+| Standard / main action | `apply_action_button(button, accent, strong)` | same four states; risk in `EMBER`, neutral in `STEEL`, rare headline reward in `GOLD` |
+| Selected tactical/choice action | `apply_selected_button(button, selected, GOLD)` | optional persistent selected border/fill; **visual only**, does not change `button_pressed` or game state |
+| Modular battle panel | `apply_battle_panel(panel, accent, alpha)` | low-opacity original battle HUD surface; retains the approved **2px corner** from the running game |
+| Battle action button | `apply_battle_button(button, accent, primary)` | same normal/hover/pressed/disabled values as pre-migration battle code; no gameplay layout changes |
+| General panel / compact chip | `apply_panel(control, accent, strong)` / `apply_chip(control, accent)` | existing card/table framing plus slim status chip |
+| Inset event/card surface | `apply_card_surface(panel_container, accent, selected)` | 2px/3px frame and 16px insets; no replacement for the hand-painted card artwork |
+| Readable tip/description | `apply_tooltip_panel(panel_container, STEEL)` | high-opacity legible short text panel with insets |
+| Native hover tooltip | `make_tooltip(message, accent)` | returns a new unattached `PanelContainer` with text; intended for `_make_custom_tooltip` |
+
+To enable **native Godot popup tooltip** on a *new* button, instantiate
+`res://scripts/ui/misdeal_tooltip_button.gd` (extends `Button`) and assign `tooltip_text`. Existing buttons intentionally keep their current tooltip behavior until explicitly migrated. Do not parent the newly created tooltip returned by `_make_custom_tooltip`; Godot's popup manager takes ownership.
+
+The live `battle.gd` uses **`MisdealUIKit.apply_battle_panel` and `apply_battle_button`** instead of maintaining 100+ lines of duplicate `StyleBoxFlat` setup. The numeric color/transparency/border/corner rules were copied *verbatim* into shared helpers; changing the module location is not permission to redraw the user's approved modular battle HUD.
+
+### Test scenario (Godot 4.7.x)
+
+1. `git pull`; run `res://scenes/dev/design_system_components_preview.tscn` with **F6** at reference 1280×720.
+2. Hover card/action buttons. Check contrast and pressed feedback; disabled action should remain unavailable.
+3. Press **НАТИСК / ОХОТА / СТРОЙ**; exactly one retains selected visual highlight, clicking must switch it.
+4. Hover **НАВЕДИ НА МЕНЯ**; ensure the native tooltip appears with readable Cyrillic, no clipping.
+5. Compare inset card samples and modular battle HUD against actual tabletop and battle screens.
+6. Smoke Main → Table → battle: no visual size/position shift, and `БОЙ`, all 3–5 tactics, event cards, stakes and rewards still work.
+
+This preview is a **review gate**: the Godot executable was unavailable during connector-based implementation. No runtime claim is made before the user's local F6 test.
+
+### Next — Package 3 screen pass
+
+Only after visual approval, migrate select widgets and local sizes/spacing on table, battle and menus to these shared helpers. Battle unit positions, art and floor geometry are out of scope. If a shared default causes regressions, preserve the existing screen geometry and fix the variant rather than restyling the entire screen.
