@@ -1,3 +1,13 @@
+## Design System 1.0 — scoped rollout (2026-10-12)
+
+- [x] **Package 1 / Foundation:** document palette, type scale, spacing, borders, layering, readability and no-baked-HUD art rules in `docs/DESIGN_SYSTEM.md`.
+- [x] Centralize new foundation constants and opt-in typography/minimum-button helpers in existing `MisdealUIKit`; preserve backwards compatibility.
+- [x] Commit a standalone runnable Godot foundation specimen scene, not routed from gameplay.
+- [ ] **LOCAL GATE:** run F6 on `res://scenes/dev/design_system_foundation_preview.tscn` and check 1280×720 styling, Cyrillic, no layout clipping, and no Main/Table/Battle regressions.
+- [ ] **Package 2 / Components:** review unified visual states and shared Godot panel/button/card/tooltip implementation; migrate battle-local StyleBox duplication selectively.
+- [ ] **Package 3 / Screen pass:** apply approved components selectively to table, battle, cards and menus while preserving the accepted visual compositions.
+- [ ] Continue prior arena package-2 and local gameplay gates independently of this style-system effort.
+
 ## Current priority — Male Mage and enemy facing (2026-10-12)
 
 - [x] Add male Mage 96×96 portrait-to-miniature cutout from approved roster, with alpha mask and lossless source archive.
