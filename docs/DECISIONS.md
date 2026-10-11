@@ -1831,3 +1831,17 @@ Battle preparation should preserve the authored arena as the dominant visual sur
 The tactical plate dynamically distributes the currently available 3–5 orders across its width. Temporary orders must stay fully named and readable, but empty reserved slots should not create dead visual space.
 
 This supersedes the literal fixed-slot/full-footer interpretation of D105 while preserving its readability requirement.
+
+
+## D107 — Active battle arenas share one readability-first production set
+
+Date: 2026-10-11  
+Status: accepted
+
+All twelve active battle arena IDs use the unified `assets/pixel/battle/arenas/arena_redraw_v1/` visual set.
+
+Arena art must reserve a broad readable combat floor and push high-frequency detail toward the perimeter/background. Distinct encounter silhouettes should come from large landmarks and lighting rather than filling the walkable area with decoration.
+
+The arena plate contains environment only. Units, health bars, deployment regions, tactical UI, objectives and other run-specific state remain live Godot elements.
+
+This decision changes presentation only. Encounter geometry or combat balance should be adjusted separately and only from local playtest evidence.
