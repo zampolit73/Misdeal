@@ -15,7 +15,7 @@ const FLOOR_CONTACT_Y := 36.0
 # Art-only, local pixel offsets: negative values raise boots above the ring.
 # These are visual corrections, not unit position or movement modifiers.
 const ROLE_FLOOR_OFFSETS := {
-	"knight": -10.0,
+	"knight": -12.0,
 	"ranger": -6.0,
 	"mage": -4.0,
 	"skeleton": -7.0,
