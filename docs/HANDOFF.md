@@ -1,3 +1,9 @@
+# LATEST LIVE CHECKPOINT — 2026-10-12 — Knight sprite floor offset −16 px
+
+The user requested raising Knight another 4px. Implemented and **committed directly into GitHub main**, code commit `11f904b003430f43e6d785a2b1bd4ed80fcc666b`: `scripts/battle/unit.gd` has `ROLE_FLOOR_OFFSETS["knight"] = -16.0`, previously -12.0. Ranger remains -6.0; no other roles, mechanics, hitbox/position, sprite atlas, arenas, scene geometry or gameplay were changed. Check in local Godot after `git pull`, especially Knight's boots to blue ground ring in Bone Swarm. Prior history with Knight -12px is superseded.
+
+---
+
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Knight floor offset −12 px
 
 The user explicitly requested another two-pixel Knight lift after sharing a Bone Swarm screenshot. **Committed directly to GitHub main**: `scripts/battle/unit.gd`, `ROLE_FLOOR_OFFSETS["knight"]` **−10.0 → −12.0**; code commit `6a5ac695c12a13de73860113e101618a499f026d`. All other role offsets (including Ranger −6), animation assets, battles, hitboxes, scene layout and art are unchanged. Godot runtime wasn't run here. User action: `git pull`, test Knight visual boot contact in Bone Swarm during placement/movement and against the blue ring. GitHub is source of truth. Historical entries below are superseded where they mention Knight −10 or older.
