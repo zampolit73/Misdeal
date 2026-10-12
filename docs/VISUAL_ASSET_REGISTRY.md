@@ -1,3 +1,9 @@
+### CURRENT MAGE ART — 2026-10-12 — elder bearded Mage atlas committed
+
+- Active Mage: `assets/pixel/units/combat_units_anim_v2/mage.webp.b64` (`3e23cc8`), approved variant 1 of latest three concepts; white-bearded elder in dark-violet robes with glowing staff. Prior Mage asset archived as `mage_archived_pre_oldbeard.webp.b64` (`4c0e94a`).
+- Existing SpriteFrames animated role remains unchanged in code. Remote file matches approved source. Local Godot F6 and live fight QA are pending, especially 25-pose boundaries, attack projectile and alignment.
+- Other Pack 1/Pack 2 role configuration unchanged.
+
 ### CURRENT UNIT ART — 2026-10-12 — Blue Knight frame animation active
 
 - Approved blue Knight 576×480 atlas is now `assets/pixel/units/combat_units_anim_v2/knight.webp.b64` (`6afd288`), with the prior flawed sheet preserved as `knight_archived_pre_blue.webp.b64` (`0101679`). Live `BattleUnit` no longer excludes Knight from SpriteFrames (`dffa7ee`).
