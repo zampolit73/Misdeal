@@ -69,6 +69,8 @@ static func apply(scene: Control) -> void:
 	for button in buttons:
 		button.custom_minimum_size = Vector2(292, 410)
 		button.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+		# Keep the exact live offer wording accessible even when card copy is split.
+		button.tooltip_text = button.text
 		button.text = ""
 		button.add_theme_font_size_override("font_size", 13)
 	choices.add_theme_constant_override("separation", 26)
