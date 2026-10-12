@@ -57,6 +57,18 @@ Keep `GOLD`, `BRONZE`, `EMBER`, `STEEL`, `TEXT` and class/status colors backward
 
 ---
 
+
+## Stage 1 implementation — isolated Reward material preview (2026-10-12)
+
+**Committed to main, local Godot review pending**. F6 scene: \`res://scenes/dev/design_system_v2_reward_preview.tscn\`; controller: \`scripts/dev/design_system_v2_reward_preview.gd\`. This is NOT the production \`scenes/reward/reward.tscn\` and does not call \`RunState\`, award upgrades, change saves or navigate away.
+
+The review uses existing Variant C \`assets/pixel/table/approved_variant_c/table_exact.webp\` as background (no edits to source), 3 genuine reward illustrations via \`CardArtCatalog.get_reward_texture()\` with keys \`gold_windfall\`, \`relic_wager\`, and \`bonus_upgrade\`, and the real Death Wager's three category choices as **representative static text**. The 3 selectable cards demo hover, focused state, persistent selection, and a button that only updates explanatory demo text.
+
+Opt-in \`MisdealUIKit\` functions \`apply_v2_material_plate\`, \`apply_v2_parchment_plate\`, and \`apply_v2_reward_card\` use the approved blackened timber / aged bronze / parchment palette; no legacy UI functions or production callsites were restyled.
+
+**User acceptance test:** \`git pull\`, open \`scenes/dev/design_system_v2_reward_preview.tscn\` in Godot 4.7.x, run F6 at 1280×720; compare against the favorite Fate Spread screen. Check art loading, card labels and legible Cyrillic, three hover/focus/selection states, bottom button, no text clipping and no action beyond text feedback. If any screenshot looks less like handmade tabletop materials, tune only the isolated preview until approved. Godot executable was unavailable to connector-side author, so do not assert runtime success.
+
+
 ## Historical Design System 1.0 specification (retained for backwards compatibility)
 
 # Misdeal Design System 1.0 — Foundation (historical implementation baseline)
