@@ -1,3 +1,12 @@
+## Redesigned blue Knight animation integrated — local review pending (2026-10-12)
+
+- [x] User approved visibly separated two-legged Knight in blue armor, cape and shield; authored transparent 576×480 atlas with all 25 real poses.
+- [x] Archive previous flawed v2 Knight atlas at `combat_units_anim_v2/knight_archived_pre_blue.webp.b64`.
+- [x] Replace production Knight sheet with approved blue version and re-enable Knight frame animation via existing SpriteFrames loader, retaining static-v4 fallback.
+- [x] Offline transparency/cell/ground baseline checks passed; GitHub asset content matches approved source.
+- [ ] **LOCAL Godot F6 + fight:** check Knight two boots and leg readability at actual 1280×720 size, walking grounded on blue team ring, attack/hit/death, no frame bleed, sprite orientation/scale.
+- [ ] Validate all Pack 2 roles in engine; correct any animation defects found before closing animation polish.
+
 ## Pack 2 all four enemies hooked up — local acceptance gate (2026-10-12)
 
 - [x] Approved genuine transparent 576×480 framesheets staged for Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden (25 used poses each).
