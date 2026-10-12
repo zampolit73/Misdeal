@@ -1,3 +1,9 @@
+### PACK 2 CURRENT STATUS — 2026-10-12 — Four enemy animated sheets committed
+
+- **Active Pack 2 sheets:** `assets/pixel/units/combat_units_anim_pack2_candidates/{bone_thrall,grave_bellkeeper,crypt_guard,bone_warden}.webp.b64` — 576×480 transparent WebP Base64, 6×5 × 96px, 25 used frames per role.
+- **Last asset:** Bone Warden (`77a759d`), **loader:** `1238b3c`. `MisdealUnitAnimationLibrary` selects all 4 Pack 2 roles with v4 fallback. Existing Stage A attack VFX unchanged.
+- **Godot quality gate remains open:** F6 5-state inspection and in-battle grounding/phase verification needed, especially for boss attack arc and death. Knight static v4; Ranger/Mage/Skeleton/Bone Archer Pack 1 v2 animated.
+
 ### CURRENT PACK 2 STATUS — 2026-10-12 — Crypt Guard added
 
 - Pack 2 active animation roles: `bone_thrall`, `grave_bellkeeper`, `crypt_guard`; each has transparent 576×480 Base64 WebP in `assets/pixel/units/combat_units_anim_pack2_candidates/` and is loaded by `MisdealUnitAnimationLibrary` with v4 fallback.
