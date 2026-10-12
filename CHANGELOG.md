@@ -1,3 +1,8 @@
+## 2026-10-12 — Shop preview typography follow-up
+
+- Fixed potential initialization-order issue in F6 shop preview: populate authored Label copy after controls are parented and positioned, because screenshot showed dynamic prices but missing static headings/details.
+- Added clearer disabled-card dimming and contextual affordability text colors. Production shop untouched; local Godot confirmation outstanding.
+
 ## 2026-10-12 — Gravedigger Shop design preview
 
 - Added isolated `design_system_v2_shop_preview` Godot F6 scene with three illustrated DS2 merchant choices and non-gameplay affordability / role-availability interactions.
