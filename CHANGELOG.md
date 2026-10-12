@@ -1,3 +1,10 @@
+## 2026-10-12 — DS2 production Gravedigger Shop
+
+- After user approval of corrected F6 preview, enabled the approved bronze/parchment store presentation for `gravedigger_shop` only.
+- Added `scripts/event/gravedigger_shop_ds2.gd`: authentic run gold and variable Lost Purse-adjusted price, party/upgrade availability states, existing role art and choice buttons, full offer tooltips, result footer and table return.
+- `scripts/event/act_choice.gd` uses a card-id-guarded presenter call and shop-only resolved footer/coin refresh. Original shop transactions and other events are unchanged.
+- Source comparisons passed; local Godot gameplay validation still pending.
+
 ## 2026-10-12 — Shop preview typography follow-up
 
 - Fixed potential initialization-order issue in F6 shop preview: populate authored Label copy after controls are parented and positioned, because screenshot showed dynamic prices but missing static headings/details.
