@@ -1,3 +1,13 @@
+## NEXT ANIMATION ART STEP — frame production brief (2026-10-12)
+
+- [x] Technical preparation: offline importer, Godot candidate-only validation, side-by-side F6 review; **no live models switched**.
+- [x] Write per-role frame briefs and QA plan: `docs/UNIT_ANIMATION_PACK2_FRAME_BRIEFS.md`.
+- [ ] Draw and approve Bone Thrall four-key-pose proof; then Bellkeeper, Guard and Warden key-pose proofs.
+- [ ] Draw **four authentic 576×480 transparent spritesheets**, each with Idle4 / Walk6 / Attack6 / Hit3 / Death6 (25 authentic poses).
+- [ ] Import/stage, validate and F6-review all five states for each role; reject merged legs, detached weapons, float/clipping and fake duplicate poses.
+- [ ] Only after explicit approval, switch roles **one at a time** using existing animation library and static v4 fallback.
+- [ ] Local Godot 4.7.x runtime/F6 acceptance still required; Knight stays static v4.
+
 ## NEXT-CHAT PRIORITY — Undead Pack 2 Stage B: prepared / awaiting real art (2026-10-12)
 
 **Verified handoff gate:** toolchain and F6 preview committed; all four expected candidate atlas paths absent in GitHub. Next contributor should create and approve genuine role-specific sprite sheets rather than changing the production loader. No battle models were switched. See `docs/HANDOFF.md` and `docs/UNIT_ANIMATION_PACK2.md`.
