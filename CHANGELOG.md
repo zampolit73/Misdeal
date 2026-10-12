@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Accepted — Whispering Well live DS2 layout (2026-10-12)
+
+- User verbally confirmed final production Whispering Well card-row alignment and text treatment in local Godot after `1adc634`; marked visually accepted in decision D126 without requiring an extra screenshot.
+- Identified scoped Gravedigger Shop DS2 preview as next task; shared `act_choice.gd` must not be globally restyled. No game code or art changes in this checkpoint.
+
+
 ### Fixed — Whispering Well card row center and clipped recruitment copy (2026-10-12)
 
 - Corrected HBoxContainer's inherited old-width/min-size artifact: normalize child minima before sizing, use a centered 928px three-card row with deferred final layout (`1adc634`).
