@@ -1,3 +1,15 @@
+# CURRENT RESUME — 2026-10-12 — Animation frame briefs written; spritesheets not yet drawn
+
+**GitHub checkpoint:** Pack 2 Stage B infrastructure is finished (importer + Godot validator + F6 candidate comparison). The new `docs/UNIT_ANIMATION_PACK2_FRAME_BRIEFS.md` now specifies row-by-row animation beats for Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden plus key-pose approvals and frame-grounding rules. This is documentation / asset-production planning, **not generated animation art**.
+
+**Still missing:** all four true transparent 576×480 6×5 sheets, 25 distinct frame poses each; staged candidate `{role}.webp.b64` files have not been added. Begin with **four key poses for Bone Thrall**, review silhouette and foot contact, then build its full atlas and repeat for other roles. Do not crop arena images or fabricate animation from static v4.
+
+**Production unchanged:** Knight static v4 (-8px), Ranger/Mage/Skeleton/Bone Archer existing Pack 1 v2 frames, four target undead static v4 + already live Stage A hit FX. No switch in `scripts/battle/unit.gd` or `scripts/battle/unit_animation_library.gd`. Existing importer/preview are ready for real candidates; Godot F6 smoke still pending.
+
+**Next chat:** read `AGENTS.md`, `docs/PROJECT_STATE.md`, this file, `docs/UNIT_ANIMATION_PACK2.md` and `docs/UNIT_ANIMATION_PACK2_FRAME_BRIEFS.md`. Execute asset-production gate → candidate import → F6 quality review → user sign-off → **only then** per-role live activation.
+
+---
+
 # AUTHORITATIVE HANDOFF — 2026-10-12 — Pack 2 Stage B ready for art, NOT live
 
 **FINAL VERIFIED RESUME POINT:** Technical preparation is **COMPLETE**, with the offline importer, candidate validator, side-by-side F6 Godot scene and staging instructions all present in GitHub. All four candidate paths were checked individually and **none exists yet**. The production battle scene/animation loader was **NOT switched** to any Pack 2 art. Do not crop a battle-screen illustration into character frames or fabricate repeated poses. The next task is **source/author real per-character spritesheets → stage/import → validate in F6 → get visual approval → only then enable in battle**. Engine F6 preview hasn't been run in this connector session.
