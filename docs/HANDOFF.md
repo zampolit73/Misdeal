@@ -1,3 +1,9 @@
+# LATEST HANDOFF — 2026-10-12 — DS2 isolated Whispering Well event preview
+
+User approved production Reward major-upgrade appearance D124 and asked to continue. Isolated Event study now committed: `scenes/dev/design_system_v2_event_preview.tscn` + `scripts/dev/design_system_v2_event_preview.gd` (commit `95c3f68` script, `47ec75e` scene). Uses Variant C approved backdrop, DS2 `MisdealUIKit` material/bronze/parchment components, approved original Whispering Well choice art and three narrative options for preview. Click highlights selected card only; **no RunState or scene navigation**. Real production `scenes/event/whispering_well.tscn`, `scenes/event/act_choice.tscn` and award/choice code remain unchanged. Need user `git pull`, Godot F6 screenshot and approval BEFORE migrating one production event. Still need separate reward-flow gameplay smoke (the approved screenshot only proved major-upgrade visuals). Original Fate Spread/major-upgrade visuals protected by D123 and D124. Historical notes below.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — Real production Reward major-upgrade UI approved
 
 User shared an **actual Godot 4.7.x screen** of DS2 `РАЗВИТИЕ ОТРЯДА` with two party members and three upgrade cards `ЖЕЛЕЗНАЯ КЛЯТВА`, `ГРАД СТРЕЛ`, `ПАЛАЧ`. Feedback: **«Все отлично! Фиксируй»**. Record this as approved screenshot-level visual baseline (decision **D124**). Keep its Variant C-derived darkwood/bronze/parchment treatment, exact card composition, titles and upgrade text fitting. Do not tweak art/layout purely for subjective polish without requesting approval. Main code: `scripts/reward/reward.gd`, `scenes/reward/reward.tscn`; previous commits `9a5594b`, `5d121d8`, `29a797d`.
