@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Fixed — Hero display scale normalization (2026-10-12)
+
+- Added hero-only scale factors in `BattleUnit` to align Knight (0.90), Ranger (1.00) and Mage (1.15) artwork in shared battle scenes; enemy scale and gameplay physics unaffected.
+- Existing animated sole-based ground positioning uses final scale; Godot visual review remains pending.
+
+
 ### Changed — Bearded elder Mage animation (2026-10-12)
 
 - Replaced Mage Pack 1 v2 atlas with user-approved older white-bearded purple-robed staff wizard (`3e23cc8`), preserved previous atlas as `mage_archived_pre_oldbeard.webp.b64` (`4c0e94a`).
