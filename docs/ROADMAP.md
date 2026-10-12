@@ -1,3 +1,12 @@
+## Card Art Unification Wave 1 — inventory stage (2026-10-13)
+
+- [x] Audited live `CardArtCatalog` selection priority, active atlas regions and non-shop event backdrop paths.
+- [x] Documented 18 specific first-wave card-illustration targets and safe art replacement approach in `docs/CARD_ART_UNIFICATION_WAVE1.md`.
+- [ ] Compare actual current art as a contact sheet at run-card size; choose which assets need redraw versus preservation.
+- [ ] Draw/review a three-art reference sample before committing the batch; keep approved DS2 UI/screens untouched.
+- [ ] Implement only approved asset replacements with fallback and verify in Godot 1280x720.
+- [ ] Update visual registry and acceptance decisions after user approves changed art.
+
 ## Next milestone — 2026-10-13 — DS2 accepted, return to Act 1 gameplay
 
 - [x] Consolidated Design System 2.0 rollout across non-shop events, hero selection, squad dossier, run-end, battle HUD and table/Wizard Wager.
