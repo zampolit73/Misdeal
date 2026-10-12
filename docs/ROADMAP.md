@@ -1,3 +1,13 @@
+## Design System 2.0: production Reward migrated (2026-10-12)
+
+- [x] User approved reward-preview look and corrected parchment text-fit; authorized real game migration.
+- [x] Apply DS2 material/bronze/parchment card chrome and Variant C visual backdrop to production `Reward` without modifying the canonical Fate Spread.
+- [x] Preserve existing reward buttons, art catalogs, five reward modes and all `RunState` grant/claim/navigation paths.
+- [x] Add text wrapping, dynamic effect rows and full-text tooltips for longer upgrade or artifact copy.
+- [ ] **Godot 4.7.x runtime validation:** normal loot (one centered card), major upgrade followed by loot, Death Wager (three cards), bonus upgrade and elite artifacts; inspect long Cyrillic, art, button hover/click, exact reward effects and return to table.
+- [ ] Fix only observed issues before considering Reward DS2 visually accepted and moving on to events/shop/battle HUD.
+- [ ] Preserve original Fate Spread art and gameplay throughout.
+
 ## DS2 isolated Reward preview — text/layout acceptance follow-up (2026-10-12)
 
 - [x] User approved DS2 reward preview art direction, materials, palette and three-card composition at 1280×720.
