@@ -9,6 +9,7 @@ const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd"
 const EVENT_POLISH_ART := preload("res://scripts/ui/event_polish_art.gd")
 const APPROVED_EVENT_CHOICE_ART := preload("res://scripts/ui/approved_event_choice_art.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const GRAVEDIGGER_SHOP_DS2 := preload("res://scripts/event/gravedigger_shop_ds2.gd")
 const EVENT_SCENE_ART_PATHS := {
 	"curse_forge": "res://assets/pixel/event/v7/curse_forge.webp",
 	"chained_prisoner": "res://assets/pixel/event/v7/chained_prisoner.webp",
@@ -83,6 +84,8 @@ func _ready() -> void:
 	_apply_event_theme()
 	_apply_event_layout()
 	_apply_choice_semantic_styles()
+	if active_card.card_id == "gravedigger_shop":
+		GRAVEDIGGER_SHOP_DS2.apply(self)
 	_connect_choice_feedback()
 	_animate_screen_in()
 
@@ -1622,6 +1625,17 @@ func _apply_resolved_layout() -> void:
 	# resolved message owns its own strip and there is only one way back.
 	leave_button.visible = false
 
+	if active_card.card_id == "gravedigger_shop":
+		# Shop result shares the approved DS2 footer, not the generic 518px strip.
+		result_label.position = Vector2(192.0, 606.0)
+		result_label.size = Vector2(597.0, 88.0)
+		result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+		result_label.add_theme_font_size_override("font_size", 13)
+		continue_button.position = Vector2(826.0, 626.0)
+		continue_button.size = Vector2(256.0, 49.0)
+		GRAVEDIGGER_SHOP_DS2.show_result(self)
+		return
+
 	if active_card.card_id in [
 		"black_altar",
 		"candle_seller",
@@ -1683,6 +1697,8 @@ func _refresh_run_labels() -> void:
 	var condition_text := RunState.get_run_condition_text()
 	if not condition_text.is_empty():
 		artifacts_label.text += "   |   %s" % condition_text
+	if active_card != null and active_card.card_id == "gravedigger_shop":
+		GRAVEDIGGER_SHOP_DS2.refresh_gold(self)
 
 func _return_to_table() -> void:
 	continue_button.disabled = true
