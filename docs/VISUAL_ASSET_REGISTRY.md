@@ -1,3 +1,9 @@
+### CURRENT STATUS — 2026-10-12 — Pack 2 Bone Thrall + Grave Bellkeeper
+
+- **In GitHub and used by production loader:** `assets/pixel/units/combat_units_anim_pack2_candidates/bone_thrall.webp.b64` and `grave_bellkeeper.webp.b64` (transparent 576×480; 6×5; 25 used poses each), v4 fallback. Latest Bellkeeper asset commit `c28011d`, loader commit `9f32e4b`.
+- **Still static v4:** `crypt_guard` and `bone_warden`, each with existing Stage A attack-contact VFX. Knight intentionally static v4; other four Pack 1 roles animate as before.
+- **QA:** user approved Bellkeeper visual and offline technical frame checks passed, but no Godot F6 or actual combat runtime review has yet occurred. Old registry entries below predating this header are historical.
+
 ### CURRENT GAME-ART STATUS — 2026-10-12 — Pack 2 staging complete; new character animation art missing
 
 - **LIVE NOW:** Knight uses readable static v4 (offset -8); Ranger, male Mage, Skeleton and Bone Archer use real Pack 1 v2 frames. Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden still use **static v4** plus already-live Stage A short contact VFX.
