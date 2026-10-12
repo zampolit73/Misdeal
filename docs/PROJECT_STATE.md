@@ -1,3 +1,11 @@
+## CURRENT CHECKPOINT — 2026-10-12 — DS2 production Gravedigger Shop committed; Godot QA pending
+
+User approved the corrected isolated shop preview and explicitly authorized implementation. Live `gravedigger_shop` now gets DS2 backdrop/header, 3 knight/ranger/mage bronze+parchment upgrade cards, live prices, role/availability warnings, and a scoped result/footer/Continue layout via new `scripts/event/gravedigger_shop_ds2.gd` and a guarded hookup in `scripts/event/act_choice.gd`. No changes to shared `act_choice.tscn` or other event variants. Original shop setup, role grant, charge, leave, finish and routing function bodies unchanged by source comparison. `RunState.get_gravedigger_shop_price()`, Lost Purse modifiers, and current party/upgrade checks are used rather than the preview's sample 25 gold. Full offer wording remains in Button tooltip.
+
+Not yet executed in Godot: local smoke for real purchase, insufficient funds, absent party member, exhausted upgrades, history-modified price, decline, result and return. Main commits `bef2d4c`, `7b26850`, `664db0e`. D127 records preview approval and scoped production migration; previously approved screens remain frozen.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Shop preview missing-label fix, awaiting Godot recheck
 
 User screenshot of isolated `design_system_v2_shop_preview` revealed valid card art and changing labels but **absent static titles and descriptions** across header/cards/footer. Commit `f6bb46e` changes preview-only label initialization to assign static Cyrillic after all nodes are in tree and positioned; disabled-card contrast and availability-note tint adjusted. This is an unverified source-side fix; ask user for local F6 verification after `git pull`. Do not declare the visual accepted or migrate shared `act_choice.gd`. Existing RunState/shop economy and canonical screens untouched.
