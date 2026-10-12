@@ -1,3 +1,13 @@
+# LATEST HANDOFF — 2026-10-12 — Whispering Well card alignment committed
+
+User supplied a second **real production Whispering Well** screenshot at 1280×720 after header fix and said visual treatment looked great but wanted all elements better aligned. User explicitly requested GitHub implementation. `scripts/event/whispering_well.gd` now has uniform header and card text baseline geometry, a 153px parchment region and reserved bottom warning line for all cards (`c513b63`); disabled choice details no longer repeat the warning, and font sizing uses final displayed text (`dd4b486`). All three card image/width/position assets and approved colors unchanged. Only UI code was touched.
+
+**Strong static check:** `_refresh_choice_text`, `_on_accept_gift`, `_on_pay_coin`, `_on_leave`, `_disable_choices`, `_return_to_table`, `_apply_choice_art` are byte-identical to previous production script (blob `1226f476925a183beb734f438b52dff95c192430`). The complete original offer text remains on tooltips. No Godot executable available in this session.
+
+NEXT: `git pull`, replay production `ШЕПЧУЩИЙ КОЛОДЕЦ` at 1280×720 with insufficient gold (20) and then sufficient gold; visually verify header rhythm and common card baselines, especially the red warning. If accepted, lock screen and continue next DS2 event preview. Original Fate Spread D123 and Reward D124 remain untouched. Previous handoffs historical.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — Whispering Well screenshot fix committed
 
 After DS2 live event migration, user supplied a real 1280×720 screenshot showing production Whispering Well with three polished blood/coin/leave parchment cards. We found a visible **header layout defect**: the long story description lay across bottom header line; `GoldLabel` vanished behind opaque `HeaderPanel` due older scene draw order. `scripts/event/whispering_well.gd` now positions header title at y55, Wizard line y97, description y128 with header ending y180, and gold/party stats at y32 with `z_index=1` to render over panel; commit **`2a0baab`**. No changes to choice art geometry or seven preserved gameplay handlers. This is a code correction awaiting Godot recheck, **not user-accepted final live event**.
