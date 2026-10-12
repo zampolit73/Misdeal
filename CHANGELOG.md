@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Changed — Whispering Well final DS2 alignment (2026-10-12)
+
+- Aligned live event header and all three card titles, effect rows, descriptions and reserved warning strip (`c513b63`).
+- Kept unavailable-choice text concise while preserving full real offer in tooltip (`dd4b486`).
+- Confirmed original seven gameplay and illustration methods unchanged; local Godot visual recheck pending.
+
+
 ### Fixed — Live Whispering Well header overlap (2026-10-12)
 
 - Adjusted DS2 header narrative/title positions and restored previously occluded gold/party counters over the opaque panel after real Godot screenshot review (`2a0baab`). Cards and event gameplay unchanged; in-engine recheck pending.
