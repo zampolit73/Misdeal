@@ -1,3 +1,13 @@
+# MISDEAL — Current restart checkpoint (2026-10-13)
+
+**Status: Design System 2.0 bulk rollout accepted by user after local review.** The user responded «все хорошо» following the consolidated deployment of remaining interfaces. Treat the visual presentation of the batch as approved; do not demand another screenshot or reopen restyling without a new reported defect. This supersedes the earlier "awaiting full visual acceptance" notice below, but is **not** proof that every rare event branch, reward payout and combat outcome was exhaustively tested.
+
+**Implemented and preserved:** `scripts/event/act_choice_ds2.gd` skins the non-shop shared event choices; `scripts/event/gravedigger_shop_ds2.gd` handles the live merchant; `scripts/ui/misdeal_ds2_rollout.gd` skins Class Select, TAB Squad Dossier, Run End, Battle HUD, and table peripheral UI/Wizard Wager. Dedicated Reward and Whispering Well screens already use approved DS2. **Frozen references:** Fate Spread Variant C (D123), Reward major-upgrade (D124), Whispering Well (D126), shop (D127), accepted bulk pass (D129). Start and Intro authored artwork retained.
+
+**What to do next:** prioritize a small new *gameplay/content* vertical-slice improvement for Act 1, not speculative UI redrawing. Review `docs/ROADMAP.md` and current run/card/combat resources for the highest-impact change, discuss game-design changes before implementation. Functional regression tests may be done incidentally (shop price/charge, event branches, rewards and battle) but do not block future work merely because the earlier QA checklist was comprehensive. For any new reported defect inspect GitHub first. The new chat can proceed without reconstructing this history.
+
+---
+
 ## NEWEST — 2026-10-12 — LARGE Design System 2.0 rollout committed; live Godot smoke pending
 
 User requested remaining DS2 screens **in one large package** instead of screen-by-screen review. Applied production visual-only changes in GitHub main:
