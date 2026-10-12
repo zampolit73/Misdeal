@@ -14,6 +14,7 @@ At the start of a new chat, before proposing architecture or code changes, read:
 6. `docs/HANDOFF.md`
 7. `docs/VISUAL_ASSET_REGISTRY.md`
 8. `docs/DESIGN_SYSTEM.md` (when working on UI or visual presentation)
+9. `docs/UNIT_ANIMATION_PACK1.md` and `docs/UNIT_ANIMATION_PACK2.md` (when working on unit art or animation)
 
 For implemented code and current project state, prefer GitHub over remembered chat context.
 
