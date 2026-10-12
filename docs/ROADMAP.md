@@ -1,3 +1,8 @@
+## Mage size recheck after new clean atlas (2026-10-12)
+
+- [x] Correct Mage visual multiplier from 1.65 to 1.25 (`38831c0`); keep clean Mage art intact.
+- [ ] Local battle screenshot QA alongside Ranger/Knight to confirm size and foot baseline.
+
 ## Elder Mage sprite quality repair deployed (2026-10-12)
 
 - [x] User approved cleaner, solid elderly white-bearded Mage redraw.
