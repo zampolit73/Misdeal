@@ -1,3 +1,11 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Clean elderly Mage atlas deployed
+
+After screenshot feedback: Mage height was accepted with hero-only scale **1.65**, but the previous atlas showed weak/transparent silhouette and extraction artifacts. User approved a newly generated elder bearded Mage with solid purple cloak and staff. Production `assets/pixel/units/combat_units_anim_v2/mage.webp.b64` is replaced by the cleaner transparent 576×480 / 25-pose sheet (commit `9d72854`), verified remote text equals approved 414688-character Base64 file. Former atlas archived at `mage_archived_pre_dark_clean.webp.b64` (commit `089b9fd`).
+
+The new Mage attack row has six authored poses, so `scripts/battle/unit_animation_library.gd` was corrected to play all 6 instead of the obsolete projectile-only skip (commit `6ce91f9`). Existing gameplay projectile FX, attack timing implementation, balance, AI and all other roles unchanged. **Mage scale stays 1.65**, Knight 0.90, Ranger 1.00. Offline image dimension, occupied frames and sole checks passed; **Godot F6 and actual battle QA still pending**. At combat scale verify alpha edges, no leaked neighboring frames, Mage staff, death fall, feet and visible height; correct art if necessary rather than changing arena.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Elder Mage scaled to match hero trio
 
 On user's 1280×720 Firing Square screenshot the old-beard Mage was still noticeably shorter than Knight and Ranger after first pass. Increased hero-only `HERO_ROLE_VISUAL_SCALES["mage"]` from 1.15 to 1.65 in `scripts/battle/unit.gd` (commit `ab22b50`). Knight stays 0.90, Ranger 1.00. Animation grounding is recomputed from final sprite scale; enemy dimensions, stats, AI and placement untouched. Local Godot screenshot recheck pending. This is an empirical art-scale calibration, not a gameplay change.
