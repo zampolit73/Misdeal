@@ -1,3 +1,10 @@
+## Gravedigger Shop isolated DS2 preview — 2026-10-12
+
+- [x] Create independent `design_system_v2_shop_preview` F6 scene + GDScript with existing role upgrade art and tabletop materials.
+- [x] Simulate affordable/unaffordable gold and Mage present/absent; selection and leave are display-only.
+- [ ] Review preview in Godot 4.7.x at 1280×720 and obtain user visual approval.
+- [ ] After approval, migrate only `gravedigger_shop` branch in shared `act_choice` presentation, preserving actual dynamic price, Lost Purse, role restrictions, purchase grants and routing.
+
 ## DS2 event milestone — Whispering Well approved, Gravedigger Shop next (2026-10-12)
 
 - [x] Live Whispering Well row centering, full rescue copy and disabled-gold warnings corrected in `1adc634`; user confirmed local result is good, **without a new screenshot** (D126).
