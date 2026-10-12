@@ -1,3 +1,11 @@
+## Whispering Well real-game header QA correction (2026-10-12)
+
+- [x] Inspect first actual 1280×720 production screenshot: choice cards display but long story text collides with bronze header border; header obscures gold/party label.
+- [x] Reposition header title/quote/story text and restore top counter draw order with GoldLabel z-index (`2a0baab`).
+- [ ] Recheck live scene in Godot after `git pull`: complete story above border, visible gold/party counters, no text/card overlap in both recruit and revisit branches.
+- [ ] Test blood / 25-gold / leave outcome effects, disabled insufficient-funds state and return to table; do not infer game logic from screenshot.
+- [ ] Keep accepted Fate Spread and Reward art unaffected.
+
 ## DS2 production Whispering Well (2026-10-12)
 
 - [x] User approved isolated Whispering Well three-choice event preview and authorized live migration (D125).
