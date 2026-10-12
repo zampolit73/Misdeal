@@ -1,3 +1,12 @@
+## Crypt Guard — Pack 2 integrated (2026-10-12)
+
+- [x] User approved Crypt Guard look and 25-frame 576×480 sheet; offline asset validation: zero errors or warnings.
+- [x] Upload and verify exact `crypt_guard.webp.b64` in `combat_units_anim_pack2_candidates/` (`5412b1d`).
+- [x] Enable role in `unit_animation_library.gd` using existing static-v4 fallback (`fa78548`).
+- [ ] Local Godot F6 and fight review: armor/shield/sword, feet, attack effects, facing, death.
+- [ ] Create and approve Bone Warden genuine 25-frame atlas before activating last Pack 2 role.
+- [ ] Knight remains static v4 until a readable new animation is approved.
+
 ## Grave Bellkeeper Pack 2 integration — 2026-10-12
 
 - [x] Approved Grave Bellkeeper visual; prepared 576×480 transparent 6×5 atlas with 25 used poses, offline checks completed.
