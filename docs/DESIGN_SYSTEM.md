@@ -1,4 +1,65 @@
-# Misdeal Design System 1.0 — Foundation
+# Misdeal Design System 2.0 — Fate Spread Canonical Direction
+
+Status: **Art direction approved by user 2026-10-12; implementation phased and opt-in.** The 1.0 component implementation and its local QA caveats remain valid below.
+
+## Canonical visual reference
+
+The user's approved **«MISDEAL — РАСКЛАД СУДЬБЫ» / Fate Spread Variant C tabletop** is the *primary art-direction standard* for every future screen. User explicitly loves its colors, graphical treatment, material texture, illumination and composition. **Do not repaint, recolor, reposition or simplify this original Fate Spread composition** as part of the design-system revision. Do not treat earlier UI critique as a mandate to redesign it.
+
+Source of truth for actual scene and art: existing approved Fate Spread/tabletop assets and code in GitHub. The motivating 1280×720 screenshot was provided in chat on 2026-10-12; this document specifies its direction, not a replacement art asset.
+
+### Material-first visual grammar
+
+1. **Obsidian / blackened wood:** very dark textured ground, near-black stable readability plates; avoid generic smooth gradients.
+2. **Blood-red ritual marks:** restrained ominous carved circles, wax, Wizard interference, danger; the occult red of the Fate Spread is a signature identity.
+3. **Worn bronze and antique gold:** weathered metallic borders, typographic hierarchy, card fittings, interactive hardware; avoid shiny modern gold.
+4. **Aged parchment:** readable warm ivory card faces, ink-dark labels, tarot-like illustration frames; do not flatten cards into contemporary UI panels.
+5. **Cold steel-blue moonlight:** environmental contrast and distant shadows, secondary examination tools; class colors remain semantically distinct.
+6. **Warm practical light:** candles, ember, flicker and depth, used sparingly without obscuring controls.
+7. **Physicality and asymmetry:** cards can tilt and cast subtle shadows, deck/held/discard slots occupy tangible places. Irregularity belongs in authored art, not in the usability of click targets.
+
+### Reference palette — opt-in extension
+
+These are **provisional, art-derived semantic targets**, not sampled/pixel-measured replacement values for existing gameplay components:
+
+| Token (new, opt-in) | Color | Role |
+| --- | --- | --- |
+| `TABLE_OBSIDIAN` | `#100C0D` | Dark carved table / neutral backing |
+| `RITUAL_CRIMSON` | `#62201E` | Wizard mark / occult inlay |
+| `AGED_BRONZE` | `#A66636` | Worn metal trims / hardware |
+| `PARCHMENT_WARM` | `#DFB77E` | Warm card stock reference / highlighted ink labels |
+| `MOONLIT_STEEL` | `#334758` | Cool ambient accents / secondary visual metal |
+
+Keep `GOLD`, `BRONZE`, `EMBER`, `STEEL`, `TEXT` and class/status colors backward-compatible during migration. Contrast, state distinctions, Cyrillic legibility and Godot 1280×720 QA still apply. **No live screen should change automatically by adding the new tokens.**
+
+### Screen adoption contract
+
+- **Freeze original approved Fate Spread** (layout I–XIII, center boss XIII, Held/Rejected placement, illustrations, texture, colors, lighting and current interaction).
+- Main/Intro/Class Select: eventually adopt aged material framing and restrained ceremonial accents, preserving authored splash art, silhouettes and text visibility.
+- Table and event/choice UI: physical deck/ink/parchment conventions; no new generic flat-card treatment or invented route information.
+- Rewards, forge, merchant: tactile inventory, coin, brass and parchment, with strong readable content hierarchy.
+- Battle HUD: borrow **material UI** from the table, not its circular composition. Preserve pixel-art battlefields, floor space, tactical buttons and enemy readability.
+- Run End / Wizard stake: theatrical wax, ritual crimson and antique gold; significance over decoration.
+
+### Safe implementation stages
+
+- **Stage 0 — approved and recorded (this checkpoint):** document the Fate Spread as canonical, add opt-in palette tokens, record a binding design decision. No live screen restyling.
+- **Stage 1 — to review:** draft a single **isolated preview** of a reward/event material surface using opt-in primitives, screenshot it at 1280×720 in Godot and ask user approval.
+- **Stage 2 — after sign-off:** migrate one approved live screen at a time via `MisdealUIKit` helpers, verify events, text and click/hover/press/disabled states.
+- **Stage 3:** extend to remaining UI only from approved screenshots. No wholesale batch art remakes or changes to cards' meaning, layout, encounter flow, or battle physics.
+
+### Non-negotiables
+
+- Treat the Fate Spread screenshot as a style *anchor*, not as a texture to copy into every scene.
+- Do not claim completed 2.0 production migrations until they are actually in GitHub and reviewed in Godot.
+- Avoid ornamental noise and excessive glowing borders; the rich texture lives in the art, the UI stays legible.
+- New scene-specific art requires separate visual acceptance before switching runtime resources.
+
+---
+
+## Historical Design System 1.0 specification (retained for backwards compatibility)
+
+# Misdeal Design System 1.0 — Foundation (historical implementation baseline)
 
 Status: **Packages 1–3 implemented in a conservative core-screen pass; local Godot review pending** (2026-10-12)  
 Godot: **4.7.x / GDScript**  
