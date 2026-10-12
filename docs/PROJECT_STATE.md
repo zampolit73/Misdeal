@@ -1,3 +1,11 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Crypt Guard sprite animation committed and enabled
+
+**GitHub main implementation:** approved Crypt Guard 576×480 transparent sheet (6×5 grid, 25 poses) stored at `assets/pixel/units/combat_units_anim_pack2_candidates/crypt_guard.webp.b64` (commit `5412b1d`), exact remote Base64 text compared with the supplied asset. `scripts/battle/unit_animation_library.gd` includes `crypt_guard` in Pack 2 path alongside Bone Thrall and Grave Bellkeeper (commit `fa78548`), with existing v4 fallback. Previous offline grid/alpha/grounding validation: 0 errors/0 warnings. **Godot F6 and live-combat runtime validation remain pending**; do not imply engine-tested animation.
+
+Knight intentionally static v4; Ranger/Mage/Skeleton/Bone Archer remain Pack 1 v2 animated; Bone Thrall/Grave Bellkeeper/Crypt Guard Pack 2 animated; Bone Warden static v4 plus Stage A attack-contact effects. Next sheet is Bone Warden, requiring separate user visual approval before enabling. No combat balance or AI changes.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Grave Bellkeeper Pack 2 atlas committed and enabled
 
 **Implemented in GitHub main:** approved transparent 576×480 Grave Bellkeeper atlas `assets/pixel/units/combat_units_anim_pack2_candidates/grave_bellkeeper.webp.b64` (commit `c28011d`), remote file verified byte-for-byte against the prepared Base64 export (362748 characters). The production library now includes `grave_bellkeeper` beside `bone_thrall`, using the Pack 2 directory and existing static-v4 fallback (commit `9f32e4b`). The 25 active poses are Idle4 / Walk6 / Attack6 / Hit3 / Death6.
