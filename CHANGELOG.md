@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Docs — Pack 2 Stage B preparation complete; spritesheets remain outstanding (2026-10-12)
+
+- Pinned the canonical checkpoint for new chats: the offline importer, candidate-only Godot QA, F6 v4-vs-candidate review and staging documentation are implemented in GitHub.
+- Confirmed that no real frame sheets exist for Bone Thrall, Grave Bellkeeper, Crypt Guard or Bone Warden; **zero new combat models were switched**. Stage A contact VFX and current Knight static v4 / other Pack 1 frame animations are unchanged.
+- Next step: author genuine transparent 576x480 spritesheets, validate/stage, inspect and approve all five states in F6 before any production changes. No Godot F6 runtime validation was performed during this documentation pass.
+
 ### Added — Pack 2 Stage B validation and art staging (2026-10-12)
 
 - Added a 6×5 RGBA sprite-sheet importer using lossless WebP Base64, rejecting empty, opaque, mismatched or duplicated animation rows, with grounding/edge warnings; tested on valid older artwork and deliberately invalid opaque art.
