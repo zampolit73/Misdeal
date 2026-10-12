@@ -210,6 +210,7 @@ func _on_select(index: int) -> void:
 func _toggle_gold() -> void:
 	preview_no_gold = not preview_no_gold
 	cards[1].disabled = preview_no_gold
+	cards[1].modulate = Color(0.66, 0.61, 0.57, 0.72) if preview_no_gold else Color.WHITE
 	gold_toggle.text = "СИМ. 25 ЗОЛОТА" if preview_no_gold else "СИМ. 0 ЗОЛОТА"
 	if preview_no_gold and selected_index == 1:
 		selected_index = -1
