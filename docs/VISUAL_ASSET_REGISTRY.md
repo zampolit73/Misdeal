@@ -1,3 +1,9 @@
+### CURRENT UNIT ART — 2026-10-12 — Blue Knight frame animation active
+
+- Approved blue Knight 576×480 atlas is now `assets/pixel/units/combat_units_anim_v2/knight.webp.b64` (`6afd288`), with the prior flawed sheet preserved as `knight_archived_pre_blue.webp.b64` (`0101679`). Live `BattleUnit` no longer excludes Knight from SpriteFrames (`dffa7ee`).
+- All Pack 1 five roles and Pack 2 four enemies are now animation-enabled (asset-dependent static-v4 fallback). Local Godot F6 and real fights are required to accept boots, attack frames and overall coherence.
+- Older registry statements below claiming Knight is static v4 are historical and superseded by this header.
+
 ### PACK 2 CURRENT STATUS — 2026-10-12 — Four enemy animated sheets committed
 
 - **Active Pack 2 sheets:** `assets/pixel/units/combat_units_anim_pack2_candidates/{bone_thrall,grave_bellkeeper,crypt_guard,bone_warden}.webp.b64` — 576×480 transparent WebP Base64, 6×5 × 96px, 25 used frames per role.
