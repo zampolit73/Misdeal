@@ -1,3 +1,9 @@
+## LATEST ART PLAN — 2026-10-13 — precise card-art wave 1 inventory
+
+User wants art unification following approved full DS2 interface; requested a concrete asset-by-asset starting list. New `docs/CARD_ART_UNIFICATION_WAVE1.md` lists **18 source-backed candidate illustrations** (7 run/deal cards, 6 active non-shop event backdrops, 3 hero upgrades, 2 rewards), exact current art paths and cell indices, reusable style rules and safe integration. No image generation or production art changes in this session. Approved Fate Spread, Reward/Well/Shop visuals remain frozen; legacy Well/Shop event backdrops are not their live full-screen backgrounds. Next: visually audit/contact sheet, select keep/revise/redraw, author three reference pieces, show for approval, then bulk switch accepted art via overrides with fallback. Do not infer this inventory equals final user approval or finished art.
+
+---
+
 ## LATEST — 2026-10-13 — User accepted bulk Design System 2.0
 
 After the integrated DS2 UI rollout, user replied **«все хорошо»** to the full-screen update in local Godot. This is visual sign-off for the remaining screens, and older notes here asking for a new screenshot to approve them are superseded. Do not restyle accepted screens without a newly reported issue. Integration and files: `scripts/event/act_choice_ds2.gd` with scoped hookup in `act_choice.gd`, `scripts/event/gravedigger_shop_ds2.gd`, `scripts/ui/misdeal_ds2_rollout.gd` called from Class Select, TAB Squad Status, Run End, Battle and Table. D129 documents user acceptance. Existing D123 Fate Spread, D124 Reward, D126 Well, D127 Shop remain binding.
