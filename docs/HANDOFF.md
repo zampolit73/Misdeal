@@ -1,3 +1,13 @@
+# LATEST HANDOFF — 2026-10-12 — All four Pack 2 animation assets committed / enabled
+
+All four user-approved Pack 2 animated enemies have actual 576×480 transparent, 25-used-frame Base64 WebP resources at `assets/pixel/units/combat_units_anim_pack2_candidates/{bone_thrall,grave_bellkeeper,crypt_guard,bone_warden}.webp.b64`. Bone Warden was last: asset commit `77a759d`, loader commit `1238b3c`; GitHub's fetched Base64 text matches the approved source (379148 characters). Production `MisdealUnitAnimationLibrary` includes all four Pack 2 roles while preserving static v4 fallback. Original Stage A contact VFX remain; gameplay/AI/stat/battle layouts unaffected.
+
+**Not yet validated in Godot:** no F6/full game runtime test was performed in this connector environment. User should `git pull`, F6 `res://scenes/dev/unit_animation_pack2_preview.tscn` and check five states of all four enemies, especially Bone Warden staff/scale/floor/corpse, then play Bone Warden battle for phase/contact effects. Mark Pack 2 visually accepted only after local in-engine approval.
+
+**Other roles:** Knight static v4 by design due to unreadable archived animated legs; Ranger, Mage, Skeleton and Bone Archer keep Pack 1 v2 frames. Next meaningful animation asset work: genuinely redraw Knight frames and obtain visual approval; don't switch current static Knight without review. Sections below are historical and can incorrectly claim missing Pack 2 sheets.
+
+---
+
 # LATEST — 2026-10-12 — Crypt Guard animation uploaded and enabled
 
 User approved Crypt Guard. Genuine transparent 576×480 sprite atlas `assets/pixel/units/combat_units_anim_pack2_candidates/crypt_guard.webp.b64` is now committed to main (`5412b1d`), GitHub bytes checked against uploaded source. `scripts/battle/unit_animation_library.gd` now routes `crypt_guard` alongside `bone_thrall` and `grave_bellkeeper` to optional Pack 2 candidate atlas files (`fa78548`); any missing/invalid sheet falls back to static v4. All five states exist (4/6/6/3/6). Offline validation succeeded, **but Godot F6 and combat QA NOT done**.
