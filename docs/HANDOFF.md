@@ -1,3 +1,11 @@
+# LATEST HANDOFF — 2026-10-12 — Whispering Well screenshot fix committed
+
+After DS2 live event migration, user supplied a real 1280×720 screenshot showing production Whispering Well with three polished blood/coin/leave parchment cards. We found a visible **header layout defect**: the long story description lay across bottom header line; `GoldLabel` vanished behind opaque `HeaderPanel` due older scene draw order. `scripts/event/whispering_well.gd` now positions header title at y55, Wizard line y97, description y128 with header ending y180, and gold/party stats at y32 with `z_index=1` to render over panel; commit **`2a0baab`**. No changes to choice art geometry or seven preserved gameplay handlers. This is a code correction awaiting Godot recheck, **not user-accepted final live event**.
+
+Next: user `git pull`, trigger Whispering Well, inspect Cyrillic description entirely inside header, visible stats, three choices, disabled gold warning. Confirm actual outcome/return to table and revisit case. Protect favorite Fate Spread D123 and accepted Reward major-upgrade D124. Move to other events only after the live presentation is approved. Older entries historical.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — Live Whispering Well DS2 implemented (awaiting Godot QA)
 
 User approved the separate DS2 F6 Whispering Well preview and requested production implementation. Real `scripts/event/whispering_well.gd` migrated in `238c75b`, disabled-choice readability improved `f7c9fbc`, click selection highlighting added `3480acf`. `scenes/event/whispering_well.tscn` now points its backdrop to approved Variant C `table_exact.webp` (`ce5a35f`), not a new or edited table asset. The original production event Button nodes and approved choice art catalog remain; the layout/header/footer and dynamic descriptions use shared opt-in `MisdealUIKit` DS2 bronze/parchment styling.
