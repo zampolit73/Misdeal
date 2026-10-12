@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Fixed — DS2 Reward preview overflowing descriptions (2026-10-12)
+
+- Fixed bounded title/effect/description wrapping on the three preview parchment cards, adjusted typography and guarded clipping (`dac4953`). Production Reward and gameplay unchanged; local F6 verification pending.
+
+
 ### Added — Design System 2.0 isolated Reward preview (2026-10-12)
 
 - Added independent F6-only Death Wager reward presentation using the approved Variant C table backdrop and real reward illustrations, with functional hover/selection/inspect feedback but no gameplay grants.
