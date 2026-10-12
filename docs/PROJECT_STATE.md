@@ -1,3 +1,13 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Bone Thrall approved, export prepared, repository asset transfer pending
+
+User approved the Bone Thrall 576x480 RGBA 25-pose draft. Local source passed alpha/grid/filled-frame checks; a lossless WebP Base64 candidate was produced in the conversation runtime as `bone_thrall.webp.b64` (254065 bytes). **This file has NOT been uploaded to GitHub** because the connector only accepts directly supplied UTF-8 content, while the production image currently exists in the local artifact runtime; do not claim the combat animation is visually tested or fully deployed.
+
+The production animation library now has an **optional** `bone_thrall` candidate lookup with a strict missing-file static-v4 fallback (commit `d25e471`). Until the encoded candidate is placed at `assets/pixel/units/combat_units_anim_pack2_candidates/bone_thrall.webp.b64`, Bone Thrall remains static v4 with existing contact FX. Other roles and battle mechanics unaffected. Godot F6 still untested.
+
+NEXT: transfer the already-exported candidate asset to that exact repository path; visually verify in `scenes/dev/unit_animation_pack2_preview.tscn` and production battle, then record QA and activate only if the art reads correctly. Do not regenerate a different image silently.
+
+---
+
 ## ANIMATION PRODUCTION UPDATE — 2026-10-12 — Pack 2 frame briefs prepared, artwork still outstanding
 
 **Preparation COMPLETE:** existing importer, candidate validator and F6 comparison preview remain the approved technical route. Added `docs/UNIT_ANIMATION_PACK2_FRAME_BRIEFS.md` with per-role 25-frame shot lists, 96px contact rules, four-frame key-pose review and staged acceptance gates.
