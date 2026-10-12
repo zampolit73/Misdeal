@@ -90,6 +90,13 @@ Keep this accepted screen as the next reference after the favorite untouched Fat
 A separate DS2 event preview has been added at `res://scenes/dev/design_system_v2_well_preview.tscn`, backed by `scripts/dev/design_system_v2_well_preview.gd`. It reuses existing illustrated Well background and three choice illustrations while presenting *actual recruiting-state consequences* (blood rescue, gold payment, walk away) inside parchment-card surfaces identical in material language to the approved Reward. A simulate-no-gold control demonstrates dimmed/disabled paid choice; selecting/inspecting changes only explanatory text. No game state, award or production Well presentation is affected. Godot 4.7.x F6 approval at 1280×720 required before migrating the real Well screen, and all recruit/no-recruit variants must remain functional. Do not apply the art of the Fate Spread verbatim as a generic replacement for every event illustration.
 
 
+## Stage 2 — Whispering Well production event migrated (2026-10-12)
+
+User approved the isolated event treatment and authorized the production Whispering Well migration (D125). Real `scenes/event/whispering_well.tscn` now references the same approved Variant C table backdrop; `scripts/event/whispering_well.gd` uses opt-in DS2 aged bronze, darkwood and parchment UI helpers with three physical choice cards. Existing choice art, dynamic Wizard text, current gold/party status and result text remain. Choice cards render each **real live** offer's title, cost and outcome; full original offer remains available as tooltip, with disabled-state reasons and a selected-border flash before the original clicked handler runs.
+
+**All seven preexisting gameplay/availability/claim/navigation method bodies remain byte-for-byte unchanged** after migration. Do not interpret the F6 preview's mock choices as new mechanics. Source verification passed; running Godot 4.7.x game event screenshot and click-flow validation remains open. Check recruiting Mage by blood vs 25 gold vs rejecting, plus post-recruit revisit for extra upgrade/relic/fallback, including insufficient-gold disabled states and return to Fate Spread. Do not modify original Fate Spread or previously approved Reward major-upgrade visual baseline as part of event QA.
+
+
 ## Historical Design System 1.0 specification (retained for backwards compatibility)
 
 # Misdeal Design System 1.0 — Foundation (historical implementation baseline)
