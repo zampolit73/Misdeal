@@ -1,6 +1,7 @@
 extends Control
 
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 
 const ROLE_PORTRAIT_PATHS := {
 	"knight": "res://assets/pixel/class_select/v7/knight.webp",
@@ -27,6 +28,7 @@ var current_role := "knight"
 
 func _ready() -> void:
 	_apply_ui_kit()
+	MISDEAL_DS2_ROLLOUT.squad(self)
 	if RunState.has_chosen_protagonist():
 		current_role = RunState.protagonist_role
 
