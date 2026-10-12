@@ -1,3 +1,9 @@
+## Health bars compact gothic styling (2026-10-12)
+
+- [x] Restyle live unit `ProgressBar` as smaller dark inset track with thin edge and subdued team-colored fill (`d744e61`).
+- [x] Retain slightly wider Crypt Guard and boss-specific larger bar; unchanged combat HP logic.
+- [ ] Local Godot screenshot check in Gallows Volley, Bone Swarm and boss fight: low health readability, overlapping crowd and labels, no clipped bars.
+
 ## Mage size recheck after new clean atlas (2026-10-12)
 
 - [x] Correct Mage visual multiplier from 1.65 to 1.25 (`38831c0`); keep clean Mage art intact.
