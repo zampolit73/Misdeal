@@ -1,3 +1,12 @@
+## Design System 2.0 Reward preview — local visual approval pending (2026-10-12)
+
+- [x] Create isolated F6 reward preview scene/controller using approved Variant C tabletop image, actual reward art catalog and three representative Death Wager choices.
+- [x] Add opt-in blackened-material, aged-bronze framed-card and parchment-panel \`MisdealUIKit\` helpers; no production style changes.
+- [x] Make preview interaction real but harmless: hover/select/inspect feedback only, no reward grants or run-state writes.
+- [ ] Godot 4.7.x at 1280×720: validate actual textures, card text, Cyrillic, hover/focus/selection, button and layout; screenshot to user.
+- [ ] **User sign-off** before changing production Reward. Then migrate only Reward in a small reversible patch, with gameplay smoke.
+- [ ] Continue additional screens only if approved. Favorite Fate Spread art stays untouched.
+
 ## Approved Fate Spread → Design System 2.0 (2026-10-12)
 
 - [x] User selected the canonical Fate Spread Variant C as favorite whole-game visual reference; freeze its art/composition.
