@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Changed — DS2 production Whispering Well event (2026-10-12)
+
+- Migrated live Whispering Well choice UI to approved Variant C / DS2 wood, bronze and parchment with real approved choice illustrations and dynamically rendered choice text (`238c75b`, `ce5a35f`).
+- Added readable disabled-card state and selected border feedback (`f7c9fbc`, `3480acf`).
+- Source-diff verified that all seven original choice/resolve/cost/return handlers are unchanged. Actual Godot event gameplay and visual acceptance pending; no new reward mechanics.
+
+
 ### Added — DS2 Whispering Well review scene (2026-10-12)
 
 - New F6-only interactive event preview with approved Whispering Well illustrated backdrop and existing choice art, bronze/card/parchment material style and three authentic recruitment choices.
