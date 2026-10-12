@@ -1,3 +1,13 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Blue Knight reanimated; in-engine QA pending
+
+**GitHub main:** User-approved leg-readable blue Knight 576×480 transparent 6×5 atlas (Idle4/Walk6/Attack6/Hit3/Death6) replaced `assets/pixel/units/combat_units_anim_v2/knight.webp.b64` (commit `6afd288`). The former problematic v2 atlas was archived as `assets/pixel/units/combat_units_anim_v2/knight_archived_pre_blue.webp.b64` (commit `0101679`) for exact rollback. `scripts/battle/unit.gd` now has an empty `STATIC_COMBAT_ART_ROLES` list and uses normal `MisdealUnitAnimationLibrary.get_frames("knight")` again, with existing static v4 fallback on missing/unreadable atlas (commit `dffa7ee`).
+
+The new atlas passed offline frame-grid, alpha corner and sole-position checks (0 errors/0 warnings); remote Base64 matches the approved source exactly (456632 chars). **Godot F6 and actual combat visual acceptance still pending**. Critical checks: both boots separated at 1280×720, walking contact on blue team ring, shield not hiding shins, slash/hit/death texture boundaries, art baseline/scale. Do not further nudge Y offsets as a substitute for artwork corrections. No battle stats, AI or encounter changes.
+
+Pack 1 now has all five roles frame-enabled: Knight, Ranger, Mage, Skeleton, Bone Archer. Pack 2 four enemies frame-enabled: Bone Thrall, Grave Bellkeeper, Crypt Guard, Bone Warden. Full in-engine art QA of recent changes remains necessary.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Pack 2 four enemies enabled; local runtime QA pending
 
 **Actual GitHub main:** the approved Bone Warden 576×480 transparent WebP/Base64 atlas with 25 used poses (Idle4/Walk6/Attack6/Hit3/Death6) is now committed at `assets/pixel/units/combat_units_anim_pack2_candidates/bone_warden.webp.b64` (asset commit `77a759d`), and fetched remote text matches the approved source exactly (379148 Base64 characters). `scripts/battle/unit_animation_library.gd` routes `bone_warden` together with `bone_thrall`, `grave_bellkeeper`, and `crypt_guard` to the Pack 2 directory (commit `1238b3c`), all preserving static v4 missing/invalid asset fallback.
