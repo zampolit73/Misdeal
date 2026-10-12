@@ -1,3 +1,9 @@
+## LATEST — 2026-10-12 — Gravedigger Shop visual prototype available
+
+New isolated F6 preview in main: `res://scenes/dev/design_system_v2_shop_preview.tscn` + `scripts/dev/design_system_v2_shop_preview.gd`. Uses the existing DS2 visual kit and approved table, role upgrade images; 25 gold is illustrative only, demo toggle sets 40/10 gold and Mage absent/present. No RunState, production scene or economy modified. Ask user to `git pull` and F6 at 1280x720; do not migrate shared `act_choice.gd` without approval. Preserve D123 Fate Spread, D124 Reward, D126 Well. Existing real `gravedigger_shop` logic uses variable RunState price and Lost Purse consequences.
+
+---
+
 > **Fast restart:** Read [`docs/SESSION_CHECKPOINT.md`](SESSION_CHECKPOINT.md) for the concise current status, visual sign-offs, remaining QA and exactly scoped Gravedigger Shop task. Detailed history follows.
 
 # LATEST HANDOFF — 2026-10-12 — Whispering Well visuals accepted; next shop preview
