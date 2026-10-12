@@ -8,13 +8,14 @@ At the start of a new chat, before proposing architecture or code changes, read:
 
 1. `AGENTS.md`
 2. `docs/CONCEPT.md`
-3. `docs/PROJECT_STATE.md`
-4. `docs/ROADMAP.md`
-5. `docs/DECISIONS.md`
-6. `docs/HANDOFF.md`
-7. `docs/VISUAL_ASSET_REGISTRY.md`
-8. `docs/DESIGN_SYSTEM.md` (when working on UI or visual presentation)
-9. `docs/UNIT_ANIMATION_PACK1.md` and `docs/UNIT_ANIMATION_PACK2.md` (when working on unit art or animation)
+3. `docs/SESSION_CHECKPOINT.md` (short, current restart brief)
+4. `docs/PROJECT_STATE.md`
+5. `docs/ROADMAP.md`
+6. `docs/DECISIONS.md`
+7. `docs/HANDOFF.md`
+8. `docs/VISUAL_ASSET_REGISTRY.md`
+9. `docs/DESIGN_SYSTEM.md` (when working on UI or visual presentation)
+10. `docs/UNIT_ANIMATION_PACK1.md` and `docs/UNIT_ANIMATION_PACK2.md` (when working on unit art or animation)
 
 For implemented code and current project state, prefer GitHub over remembered chat context.
 
