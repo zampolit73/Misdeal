@@ -53,7 +53,7 @@ static func get_frames(role: String) -> SpriteFrames:
 		frames.remove_animation("default")
 	_add_row(frames, atlas, "idle", 0, 4, 2.7, true)
 	_add_row(frames, atlas, "walk", 1, 6, 7.0, true)
-	_add_row(frames, atlas, "attack", 2, 5 if role == "mage" else 6, 14.0 if role == "mage" else 16.0, false, role)
+	_add_row(frames, atlas, "attack", 2, 6, 14.0 if role == "mage" else 16.0, false, role)
 	_add_row(frames, atlas, "hit", 3, 3, 12.0, false)
 	_add_row(frames, atlas, "death", 4, 6, 10.0, false)
 	_frames_cache[role] = frames
@@ -65,9 +65,7 @@ static func _add_row(frames: SpriteFrames, atlas: Texture2D, name: String, row: 
 	frames.set_animation_speed(name, fps)
 	frames.set_animation_loop(name, looping)
 	for x in range(count):
-		# The mage sheet contains an isolated projectile-only fifth cell.
-		# Skip it: the in-game projectile is drawn by combat FX instead.
-		var frame_column := 5 if name == "attack" and role == "mage" and x == 4 else x
+		var frame_column := x
 		var tile := AtlasTexture.new()
 		tile.atlas = atlas
 		tile.region = Rect2(float(frame_column * CELL_SIZE), float(row * CELL_SIZE), float(CELL_SIZE), float(CELL_SIZE))
