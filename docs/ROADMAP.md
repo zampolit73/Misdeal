@@ -1,3 +1,13 @@
+## DS2 production Whispering Well (2026-10-12)
+
+- [x] User approved isolated Whispering Well three-choice event preview and authorized live migration (D125).
+- [x] Update live scene's materials/background to canonical Variant C and DS2 parchment cards; retain approved original event choice artwork.
+- [x] Show dynamic offers for both recruiting Mage and later revisit/extra-upgrade/relic states; preserve original action/cost/refund/route handlers exactly, confirmed by source comparison.
+- [x] Show cost and disabled-reason text legibly, retain full offer tooltips and highlight choice on click.
+- [ ] **Godot 4.7.x smoke:** live Whispering Well with/without 25g, recruitable Mage blood/coin/leave routes, later revisit with available/unavailable upgrades/artifacts, results and table return.
+- [ ] Validate actual full-screen 1280×720 screenshot; tune only observed legibility/layout bugs, then request live event visual acceptance.
+- [ ] Continue DS2 event/shop adoption only after this runtime gate; untouched Fate Spread and accepted Reward major-upgrade appearance stay frozen.
+
 ## DS2 next stage — isolated Whispering Well event (2026-10-12)
 
 - [x] Inspect existing `whispering_well.gd` options, recruit and upgrade branches and approved event choice artwork.
