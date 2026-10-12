@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Added — Crypt Guard frame animation (2026-10-12)
+
+- Committed approved transparent 576×480 Crypt Guard atlas with Idle4 / Walk6 / Attack6 / Hit3 / Death6 (`5412b1d`), source-to-remote verification succeeded.
+- Enabled Crypt Guard through the existing Pack 2 animation loading path with static v4 fallback (`fa78548`). Bone Thrall and Grave Bellkeeper unchanged, Bone Warden remains static.
+- Local Godot animation and combat QA outstanding. No balance or tactical behavior changes.
+
+
 ### Added — Grave Bellkeeper Pack 2 frame animation (2026-10-12)
 
 - Added approved 25-pose transparent 576×480 Grave Bellkeeper WebP/Base64 atlas in `combat_units_anim_pack2_candidates/`, exact GitHub content verified.
