@@ -1,3 +1,14 @@
+## Next milestone — 2026-10-13 — DS2 accepted, return to Act 1 gameplay
+
+- [x] Consolidated Design System 2.0 rollout across non-shop events, hero selection, squad dossier, run-end, battle HUD and table/Wizard Wager.
+- [x] User confirmed the full bulk visual pass looks good in local Godot («все хорошо»); **visual approval complete** (D129).
+- [x] Preserve frozen Fate Spread Variant C, accepted Reward major-upgrade, Whispering Well and Gravedigger Shop visuals.
+- [ ] Select next *gameplay/content* improvement to Act 1 after checking current deck/encounters, to make repeated runs more varied without expanding architecture prematurely.
+- [ ] Functional regression coverage when practical: actual shop paid/leave and Lost Purse price, conditional event choices, selected reward grants/return, battle tactics/results. User's broad approval does not prove every branch was executed.
+- [ ] Fix only reproducible defects, if any, without restarting a wholesale UI overhaul.
+
+**Historical note:** earlier sections below saying bulk DS2 visual acceptance is "pending" are superseded by this milestone; branch-specific functional test checklists are not automatically complete.
+
 ## Bulk Design System 2.0 rollout — 2026-10-12
 
 - [x] User explicitly authorized shipping the remaining UI as one large DS2 batch rather than requesting visual approval of each scene.
