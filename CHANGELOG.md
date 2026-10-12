@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Fixed — Live Whispering Well header overlap (2026-10-12)
+
+- Adjusted DS2 header narrative/title positions and restored previously occluded gold/party counters over the opaque panel after real Godot screenshot review (`2a0baab`). Cards and event gameplay unchanged; in-engine recheck pending.
+
+
 ### Changed — DS2 production Whispering Well event (2026-10-12)
 
 - Migrated live Whispering Well choice UI to approved Variant C / DS2 wood, bronze and parchment with real approved choice illustrations and dynamically rendered choice text (`238c75b`, `ce5a35f`).
