@@ -4,6 +4,9 @@
 
 ### Docs — Pack 2 Stage B preparation complete; spritesheets remain outstanding (2026-10-12)
 
+- Final GitHub handoff verification: all staging tools/preview files are present; all four expected `{role}.webp.b64` candidate paths are missing; production `BattleUnit` and animation loader were not migrated. No new game art is claimed.
+
+
 - Pinned the canonical checkpoint for new chats: the offline importer, candidate-only Godot QA, F6 v4-vs-candidate review and staging documentation are implemented in GitHub.
 - Confirmed that no real frame sheets exist for Bone Thrall, Grave Bellkeeper, Crypt Guard or Bone Warden; **zero new combat models were switched**. Stage A contact VFX and current Knight static v4 / other Pack 1 frame animations are unchanged.
 - Next step: author genuine transparent 576x480 spritesheets, validate/stage, inspect and approve all five states in F6 before any production changes. No Godot F6 runtime validation was performed during this documentation pass.
