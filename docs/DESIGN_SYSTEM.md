@@ -1,3 +1,9 @@
+## Bulk DS2 UI implementation — 2026-10-12
+
+The user authorized a single large implementation pass for remaining UI. Production new opt-in helpers `scripts/event/act_choice_ds2.gd` and `scripts/ui/misdeal_ds2_rollout.gd` extend the previously approved DS2 materials to non-shop ActChoice event cards, Class Select, Squad Dossier, Run End, Battle HUD and tabletop HUD/Wizard Wager chrome. Current approved Fate Spread Variant C art/layout is **never modified**. Existing approved Reward, Whispering Well and Gravedigger Shop have their own styling paths. Main/Intro retain original authored splash/frame art. Existing gameplay/signals/RunState must remain unchanged. Visual readiness is **source-integrated only**, not runtime-certified; verify multiple event states and combat/table workflows at 1280x720.
+
+---
+
 # Misdeal Design System 2.0 — Fate Spread Canonical Direction
 
 Status: **Art direction approved by user 2026-10-12; implementation phased and opt-in.** The 1.0 component implementation and its local QA caveats remain valid below.
