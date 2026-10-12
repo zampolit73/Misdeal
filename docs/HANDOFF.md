@@ -1,3 +1,9 @@
+# LATEST HANDOFF — 2026-10-12 — DS2 preview copy fit fix in main
+
+User F6-screenshot-approved the isolated Design System 2.0 Reward preview's overall visuals (based on canonical Fate Spread Variant C) **except overflowing card descriptions**. Fix committed as `dac4953` in `scripts/dev/design_system_v2_reward_preview.gd`: all three demo descriptions explicitly wrap to two lines, title/effect/description typography set to 16/15/13, auto-wrap configured before parenting/fixed layout, `clip_text` and parchment clipping guard neighboring cards. No assets, approved Fate Spread artwork, `RunState`, or live reward scene changed. Next: `git pull` and F6 `res://scenes/dev/design_system_v2_reward_preview.tscn` at 1280×720; check visible full text in all cards and hover/selection. **Production Reward migration still awaits final user approval of this corrected screenshot.** Older handoff entries are historical.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — F6-only Reward material preview for DS2
 
 Binding visual direction remains the user's favorite Fate Spread Variant C tabletop, **never repaint or rearrange it** (D123, lead \`docs/DESIGN_SYSTEM.md\`). In main: \`scenes/dev/design_system_v2_reward_preview.tscn\`, \`scripts/dev/design_system_v2_reward_preview.gd\` and new opt-in functions \`MisdealUIKit.apply_v2_material_plate / apply_v2_parchment_plate / apply_v2_reward_card\`. Prototype reuses \`assets/pixel/table/approved_variant_c/table_exact.webp\`, existing \`CardArtCatalog\` reward illustrations (\`gold_windfall\`, \`relic_wager\`, \`bonus_upgrade\`) and a static mock of Death Wager choices. Hover, selecting cards and the inspect button only change presentation text; no \`RunState\`, reward grants, or scene navigation. **Production reward, table, Fate Spread, battle are unmodified.**
