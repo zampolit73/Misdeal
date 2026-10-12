@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Added — Design System 2.0 isolated Reward preview (2026-10-12)
+
+- Added independent F6-only Death Wager reward presentation using the approved Variant C table backdrop and real reward illustrations, with functional hover/selection/inspect feedback but no gameplay grants.
+- Added opt-in material, parchment and reward-card components in \`MisdealUIKit\`; unchanged production reward and Fate Spread.
+- Godot 1280×720 screenshot and user sign-off pending before any runtime UI migration.
+
+
 ### Design — Fate Spread becomes canonical Design System 2.0 reference (2026-10-12)
 
 - Documented user-approved Fate Spread Variant C as primary whole-game visual reference and introduced opt-in dark wood/ritual red/aged bronze/parchment/moonlit steel material palette.
