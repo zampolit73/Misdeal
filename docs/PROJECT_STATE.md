@@ -1,3 +1,15 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Approved Bone Thrall sprite sheet uploaded and loader enabled
+
+**ACTUAL GitHub asset uploaded and verified:** `assets/pixel/units/combat_units_anim_pack2_candidates/bone_thrall.webp.b64` is in `main`, commit `29d0725c3bd2c1ae8b07f6de2df2cf9095c01637`; fetched Base64 bytes were checked against approved conversation export (exact match, 254064 Base64 characters). It is a transparent 576×480 6×5, 25-used-pose asset. The previously committed production `MisdealUnitAnimationLibrary` optional `bone_thrall` path now resolves this real file, so **Bone Thrall is switched to SpriteFrames on asset-present builds**, with static-v4 fallback if unavailable. Stage A attack FX remain.
+
+**Runtime acceptance pending:** no Godot 4.7.x local F6 or actual combat smoke done here; verify frame boundaries, feet/ground, animation timing, flip and death. Do not infer visual polish from successful asset transport.
+
+**Other characters unchanged:** Knight static v4; Ranger/Mage/Skeleton/Bone Archer Pack 1 v2 frames; Bellkeeper, Crypt Guard and Bone Warden static v4 plus attack FX. Those three new sheets still required.
+
+NEXT LOCAL: `git pull`, run `scenes/dev/unit_animation_pack2_preview.tscn` F6, inspect Bone Thrall five states and combat encounters; report problems before treating it as final-quality. Continue creating real art for remaining three enemies.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Bone Thrall approved, export prepared, repository asset transfer pending
 
 User approved the Bone Thrall 576x480 RGBA 25-pose draft. Local source passed alpha/grid/filled-frame checks; a lossless WebP Base64 candidate was produced in the conversation runtime as `bone_thrall.webp.b64` (254065 bytes). **This file has NOT been uploaded to GitHub** because the connector only accepts directly supplied UTF-8 content, while the production image currently exists in the local artifact runtime; do not claim the combat animation is visually tested or fully deployed.
