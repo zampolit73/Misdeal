@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Fixed — Whispering Well card row center and clipped recruitment copy (2026-10-12)
+
+- Corrected HBoxContainer's inherited old-width/min-size artifact: normalize child minima before sizing, use a centered 928px three-card row with deferred final layout (`1adc634`).
+- Restored full two-line recruit outcome copy and added warning bottom clearance; normalized top-aligned event description. Original gameplay and art unchanged; Godot screen recheck pending.
+
+
 ### Changed — Whispering Well final DS2 alignment (2026-10-12)
 
 - Aligned live event header and all three card titles, effect rows, descriptions and reserved warning strip (`c513b63`).
