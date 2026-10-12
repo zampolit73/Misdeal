@@ -223,8 +223,10 @@ func _ready() -> void:
 	var role_art_scale: float = float(HERO_ROLE_VISUAL_SCALES.get(visual_role, 1.0)) if team == 0 else 1.0
 	art_sprite.scale = Vector2.ONE * (sprite_scale * visual_scale * role_art_scale)
 	if not is_boss:
-		health_bar.offset_top = -89.0
-		health_bar.offset_bottom = -79.0
+		health_bar.offset_left = -29.0
+		health_bar.offset_right = 29.0
+		health_bar.offset_top = -90.0
+		health_bar.offset_bottom = -83.0
 		name_label.offset_top = 48.0
 		name_label.offset_bottom = 70.0
 	base_sprite_scale = art_sprite.scale
@@ -347,15 +349,15 @@ func _apply_role_presentation() -> void:
 	match visual_role:
 		"grave_bellkeeper":
 			base_art_modulate = Color.WHITE
-			health_bar.offset_left = -30.0
-			health_bar.offset_right = 30.0
+			health_bar.offset_left = -29.0
+			health_bar.offset_right = 29.0
 			name_label.add_theme_color_override("font_color", Color(0.62, 0.90, 0.74, 1.0))
 		"bone_thrall":
 			base_art_modulate = Color.WHITE
 		"crypt_guard":
 			base_art_modulate = Color.WHITE
-			health_bar.offset_left = -36.0
-			health_bar.offset_right = 36.0
+			health_bar.offset_left = -33.0
+			health_bar.offset_right = 33.0
 			name_label.offset_left = -72.0
 			name_label.offset_right = 72.0
 			name_label.add_theme_color_override("font_color", Color(0.94, 0.72, 0.46, 1.0))
@@ -391,10 +393,10 @@ func _apply_boss_layout() -> void:
 	if not is_boss:
 		return
 
-	health_bar.offset_left = -72.0
+	health_bar.offset_left = -57.0
 	health_bar.offset_top = -108.0
-	health_bar.offset_right = 72.0
-	health_bar.offset_bottom = -97.0
+	health_bar.offset_right = 57.0
+	health_bar.offset_bottom = -99.0
 	name_label.offset_left = -112.0
 	name_label.offset_top = 65.0
 	name_label.offset_right = 112.0
@@ -403,16 +405,18 @@ func _apply_boss_layout() -> void:
 	name_label.add_theme_color_override("font_color", Color(0.96, 0.72, 0.42, 1.0))
 
 func _apply_health_bar_style() -> void:
+	# Dark inset tracks sit above the miniatures without reading as UI banners.
 	var background := StyleBoxFlat.new()
-	background.bg_color = Color(0.025, 0.022, 0.03, 0.95)
-	background.border_width_left = 1
-	background.border_width_top = 1
-	background.border_width_right = 1
-	background.border_width_bottom = 1
-	background.border_color = Color(0.13, 0.12, 0.15, 1.0)
+	background.bg_color = Color(0.055, 0.043, 0.052, 0.94)
+	background.set_border_width_all(1)
+	background.border_color = Color(0.48, 0.39, 0.31, 0.88) if team == 0 else Color(0.44, 0.31, 0.30, 0.88)
 
 	var fill := StyleBoxFlat.new()
-	fill.bg_color = Color(0.25, 0.72, 0.36, 1.0) if team == 0 else Color(0.82, 0.19, 0.17, 1.0)
+	fill.bg_color = Color(0.33, 0.63, 0.48, 1.0) if team == 0 else Color(0.69, 0.29, 0.26, 1.0)
+	fill.content_margin_left = 1.0
+	fill.content_margin_right = 1.0
+	fill.content_margin_top = 1.0
+	fill.content_margin_bottom = 1.0
 
 	health_bar.add_theme_stylebox_override("background", background)
 	health_bar.add_theme_stylebox_override("fill", fill)
