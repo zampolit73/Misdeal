@@ -2015,3 +2015,12 @@ Date: 2026-10-12
 Status: accepted
 
 After the unreadable legs on Pack 1's original animated Knight, the user approved a new blue-armored pixel-art Knight with independently visible shin armor and boots. Preserve the original malformed v2 sheet for rollback and re-enable animation using the existing SpriteFrames infrastructure with static-v4 fallback. Do not replace silhouette problems with arbitrary Y-offset shifts. In-engine F6 and actual arena combat must verify boots/grounding and shield separation before the visual result is considered accepted. This replaces the *temporary* static-Knight requirement of D119 once the new atlas passes runtime QA; it does not change combat mechanics.
+
+## D123 — Fate Spread Variant C defines Misdeal Design System 2.0 visual identity
+
+Date: 2026-10-12  
+Status: **user approved; binding visual-art direction**
+
+The user declared the approved **«MISDEAL — РАСКЛАД СУДЬБЫ»** tabletop their favorite art and explicitly asked that future UI/design be based on its palette and graphics. Adopt the original Fate Spread Variant C as the canonical style reference: obsidian/blackened timber, occult blood-red engraving, aged brass/bronze, warm card parchment, cool nocturnal highlights, practical candlelight and tactile physical tarot cards. The original composition, illustrations, XIII central boss, I–XII order, held/discard/deck places, colors and art are **frozen**, not targets of redesign. Style evolution must respect readable Cyrillic and usable controls.
+
+Design System 2.0 starts with documentation and **opt-in** `MisdealUIKit` material tokens; existing 1.0 tokens and production styles must not change automatically. Preview one isolated component/screen, ask user to approve its screenshot, then migrate individual interfaces. Battle arenas and miniature art retain their own scene logic. No full-scene re-rendering or wholesale design replacement without explicit permission.
