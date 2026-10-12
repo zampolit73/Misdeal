@@ -1,3 +1,9 @@
+## CURRENT CHECKPOINT — 2026-10-12 — DS2 Reward preview parchment text overflow fixed
+
+User reviewed the first 1280×720 Godot F6 screenshot of `design_system_v2_reward_preview.tscn`: approved the materials/colors/layout, reported that all three descriptions overflow their parchment cards. `scripts/dev/design_system_v2_reward_preview.gd` now wraps all title/effect/description labels **before** fixed sizing, uses deliberately broken two-line sample descriptions, slightly smaller typography (16/15/13 px), bounding/clip behavior, and clips parchment contents; commit `dac4953`. **Only isolated preview changed**, no live reward UI or gameplay. Local F6 recheck of all text and hover/selection states is still pending; production migration requires final sign-off after that check.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Isolated Design System 2.0 Reward preview added
 
 Implemented in GitHub main an **F6-only, non-production** reward-material preview: \`scenes/dev/design_system_v2_reward_preview.tscn\` + \`scripts/dev/design_system_v2_reward_preview.gd\`. It reuses approved Variant C tabletop background and real existing reward card textures via \`CardArtCatalog\`; static Death Wager example with three cards (gold/relic/extra upgrade), click/hover/selected style and inspect feedback. Added opt-in DS2 material/card/parchment helpers to \`scripts/ui/misdeal_ui_kit.gd\`. Existing \`scenes/reward/reward.tscn\`, reward gameplay/RunState, the Fate Spread itself, battle HUD and character assets are **unchanged**.
