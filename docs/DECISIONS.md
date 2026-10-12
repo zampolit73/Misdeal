@@ -2049,3 +2049,11 @@ Status: **user accepted after local Godot check, no new screenshot required**
 Following the concrete `HBoxContainer` row-centering fix in commit `1adc634` (928px-wide centered 3-card row and complete two-line rescue copy), the user explicitly stated **«без скрина все хорошо»** and asked what comes next. Treat this as acceptance of the **production Whispering Well visual layout** under Design System 2.0, not an invitation for another speculative pixel polish pass. Preserve the original approved Fate Spread colors, bronze/parchment cards, event illustrations, header/footer centerline, Russian copy readability and warning positions unless the user reports a specific defect.
 
 This visual sign-off does NOT independently certify every live gameplay branch (blood scar, coin purchase, abandoning Mage, later return/upgrades/artifacts), or other events. Future work should focus on a scoped new DS2 UI preview for **Gravedigger Shop** (the `gravedigger_shop` case in shared `scripts/event/act_choice.gd`) and must not restyle unrelated event cases in bulk.
+
+## D127 — Accept Gravedigger Shop DS2 preview and approve shop-only live migration
+
+Date: 2026-10-12  
+Status: **isolated visual preview user-approved; production integration committed, engine QA pending**
+
+After the corrected isolated `design_system_v2_shop_preview.tscn` was checked in Godot, the user stated «все ок. внедряй». Accept the preview's physical bronze/parchment role-card visuals as the baseline for the **Gravedigger Shop**. The preview's fixed 25 gold was illustrative; it must not replace real `RunState.get_gravedigger_shop_price()` or Lost Purse history effects. Actual purchases, party restrictions, upgrades, gold deduction and routing must continue using existing handlers. The production presentation is scoped **exclusively** to `gravedigger_shop` in the shared `ActChoice` screen, not applied to unrelated events. User approval of F6 does not equal approval of the production gameplay until local Godot smoke. Preserve D123 Fate Spread, D124 Reward and D126 live Whispering Well.
+
