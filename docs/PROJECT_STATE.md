@@ -1,3 +1,11 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Isolated Design System 2.0 Reward preview added
+
+Implemented in GitHub main an **F6-only, non-production** reward-material preview: \`scenes/dev/design_system_v2_reward_preview.tscn\` + \`scripts/dev/design_system_v2_reward_preview.gd\`. It reuses approved Variant C tabletop background and real existing reward card textures via \`CardArtCatalog\`; static Death Wager example with three cards (gold/relic/extra upgrade), click/hover/selected style and inspect feedback. Added opt-in DS2 material/card/parchment helpers to \`scripts/ui/misdeal_ui_kit.gd\`. Existing \`scenes/reward/reward.tscn\`, reward gameplay/RunState, the Fate Spread itself, battle HUD and character assets are **unchanged**.
+
+**Local visual gate OPEN:** Godot 4.7.x was not available to run the scene. User should \`git pull\`, run \`res://scenes/dev/design_system_v2_reward_preview.tscn\` with F6 at 1280×720, test art/labels/hover/selection/button and send a screenshot. Only after explicit visual approval should this style be migrated into production Reward; keep DS2 materials opt-in.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Fate Spread canonical Design System 2.0 direction approved
 
 The user explicitly confirmed the existing Fate Spread Variant C screenshot as the **favorite art** and canonical style/color/material reference for the whole Misdeal UI. This does NOT authorize altering that art; its composition, cards, ring, ritual crimson, aged metal, candlelight and parchment should be preserved. `docs/DESIGN_SYSTEM.md` now starts with an approved Design System 2.0 visual/material direction, safe staged migration plan and provisional reference palette. `scripts/ui/misdeal_ui_kit.gd` gained **opt-in only** material constants `TABLE_OBSIDIAN`, `RITUAL_CRIMSON`, `AGED_BRONZE`, `PARCHMENT_WARM`, `MOONLIT_STEEL`; existing UI token values and callsites unchanged. Decision D123 records this binding style priority.
