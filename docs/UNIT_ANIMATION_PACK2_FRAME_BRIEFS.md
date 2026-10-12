@@ -81,3 +81,9 @@ Identity: large boss silhouette; maintain imposing head, oversized weapon and he
 ## Next contributor checklist
 
 Start with **Bone Thrall**, because the low feral silhouette best exercises feet and dual-claw readability; then Bellkeeper (prop attachment), Guard (armor weight), Warden (boss scale). This order is an asset-work recommendation, not a gameplay change. First make the four-frame Thrall proof; do not connect any placeholder art to production.
+
+## Bone Thrall visual exploration — 2026-10-12
+
+A chat-only pixel-art animation **presentation mockup** was generated for Bone Thrall. It demonstrates readable step, attack and collapse silhouette, but **DOES NOT PASS asset intake**: it is a labeled UI board with a background, five frames per row (not the canonical 4/6/6/3/6), 64×64 labels, and a sword instead of the specified dual claws. It is not a 576×480 transparent actor sheet, so **it was not staged, imported, or activated**. No production character asset was changed.
+
+Use it only as a mood/pose reference. Before committing an atlas, replace the sword with claws matching existing character identity, draw the correct 25 genuinely distinct frames on transparent 96px cells, then validate in F6. Do not extract frames with opaque UI/background pixels from this mockup.
