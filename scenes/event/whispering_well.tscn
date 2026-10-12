@@ -127,8 +127,9 @@ color = Color(0.008, 0.014, 0.018, 1)
 [node name="BackdropArt" type="TextureRect" parent="."]
 mouse_filter = 2
 script = ExtResource("4_backdrop")
-webp_path = "res://assets/pixel/event/v7/whispering_well.webp"
+webp_path = "res://assets/pixel/table/approved_variant_c/table_exact.webp"
 expected_size = Vector2i(1280, 720)
+use_nearest_filter = false
 offset_right = 1280.0
 offset_bottom = 720.0
 texture_filter = 1
