@@ -1,3 +1,9 @@
+### CURRENT PACK 2 STATUS — 2026-10-12 — Crypt Guard added
+
+- Pack 2 active animation roles: `bone_thrall`, `grave_bellkeeper`, `crypt_guard`; each has transparent 576×480 Base64 WebP in `assets/pixel/units/combat_units_anim_pack2_candidates/` and is loaded by `MisdealUnitAnimationLibrary` with v4 fallback.
+- Crypt Guard commit: asset `5412b1d`, loader `fa78548`; offline 25-frame grid QA passed but in-engine F6 and battle review still pending.
+- `bone_warden` remains static v4 with Stage A contact FX and needs a genuinely authored sheet. Knight intentionally static v4; the four other Pack 1 roles remain animated.
+
 ### CURRENT STATUS — 2026-10-12 — Pack 2 Bone Thrall + Grave Bellkeeper
 
 - **In GitHub and used by production loader:** `assets/pixel/units/combat_units_anim_pack2_candidates/bone_thrall.webp.b64` and `grave_bellkeeper.webp.b64` (transparent 576×480; 6×5; 25 used poses each), v4 fallback. Latest Bellkeeper asset commit `c28011d`, loader commit `9f32e4b`.
