@@ -1,3 +1,10 @@
+## Gravedigger Shop F6 screenshot defect — 2026-10-12
+
+- [x] Inspect user screenshot: static headings and detail labels absent while runtime-updated price/status text is visible.
+- [x] Apply preview-only post-construction static text assignment (`f6bb46e`) and distinguish disabled/available cards.
+- [ ] Validate corrected F6 scene in Godot 4.7.x at 1280×720; verify every Cyrillic heading/name/detail and both toggle states.
+- [ ] Obtain visual acceptance before modifying production shop branch.
+
 ## Gravedigger Shop isolated DS2 preview — 2026-10-12
 
 - [x] Create independent `design_system_v2_shop_preview` F6 scene + GDScript with existing role upgrade art and tabletop materials.
