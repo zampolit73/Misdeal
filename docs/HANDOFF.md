@@ -1,3 +1,9 @@
+# LATEST — 2026-10-12 — Mage art scale increased again
+
+User screenshot from Firing Square: Knight and Ranger reasonably similar in apparent size; old-beard Mage still much smaller. Hero-only Mage visual multiplier increased **1.15 → 1.65** in `scripts/battle/unit.gd` (`ab22b50`); Knight 0.90, Ranger 1.00 unchanged. Baseline recomputed with final art scale, no collision/AI changes. Next: `git pull`, inspect trio pre-fight and after movement, send screenshot if Mage overshoots or still differs. Older scale recommendations below are superseded.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — Hero art scale normalization
 
 Screenshot of **ЖЕЛЕЗНАЯ СТЕНА** revealed Knight visibly larger than Ranger and new elder Mage visually tiny. In `scripts/battle/unit.gd`, hero-only `HERO_ROLE_VISUAL_SCALES` now multiplies the existing hero art scale: Knight 0.90, Ranger 1.00, Mage 1.15 (commit `24b3df1`). `base_sprite_scale` and animated foot-rest position are computed AFTER the role factor, so floor baseline should follow the new scale. Enemies, boss, hitboxes, movement, AI, combat balance and art files are untouched.
