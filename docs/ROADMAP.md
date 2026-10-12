@@ -1,3 +1,13 @@
+## Approved Fate Spread → Design System 2.0 (2026-10-12)
+
+- [x] User selected the canonical Fate Spread Variant C as favorite whole-game visual reference; freeze its art/composition.
+- [x] Document material grammar, provisional palette, safe migration and acceptance rules in `docs/DESIGN_SYSTEM.md` and binding decision D123.
+- [x] Add opt-in color tokens in `MisdealUIKit` without touching existing screen styling.
+- [ ] Create an **isolated** 1280×720 reward/event material treatment preview in Godot; use existing data/art and proper font/Cyrillic support.
+- [ ] User approve screenshot before modifying any production screen.
+- [ ] Migrate one approved UI screen at a time; verify interaction, contrast and no art/layout regressions.
+- [ ] Keep original Fate Spread Variant C completely unchanged.
+
 ## Health bars compact gothic styling (2026-10-12)
 
 - [x] Restyle live unit `ProgressBar` as smaller dark inset track with thin edge and subdued team-colored fill (`d744e61`).
