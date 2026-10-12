@@ -1,5 +1,8 @@
 # AUTHORITATIVE HANDOFF — 2026-10-12 — Pack 2 Stage B ready for art, NOT live
 
+**FINAL VERIFIED RESUME POINT:** Technical preparation is **COMPLETE**, with the offline importer, candidate validator, side-by-side F6 Godot scene and staging instructions all present in GitHub. All four candidate paths were checked individually and **none exists yet**. The production battle scene/animation loader was **NOT switched** to any Pack 2 art. Do not crop a battle-screen illustration into character frames or fabricate repeated poses. The next task is **source/author real per-character spritesheets → stage/import → validate in F6 → get visual approval → only then enable in battle**. Engine F6 preview hasn't been run in this connector session.
+
+
 **GitHub `zampolit73/Misdeal` is source of truth. User explicitly requested a checkpoint for a new chat. No need to re-ask for GitHub access or past development context. Read AGENTS.md, docs/CONCEPT.md and this latest section first.**
 
 **PREPARATION COMPLETED:** `scripts/dev/import_animation_pack2_candidate.py` (authoring-only Python/Pillow PNG → lossless WebP/Base64, validated with existing Pack 1 art and invalid opaque art); `scripts/dev/unit_animation_candidate_validator.gd` (isolated candidate QA); `scripts/dev/unit_animation_pack2_preview.gd` and `scenes/dev/unit_animation_pack2_preview.tscn` (F6 v4 vs potential new frames); `assets/pixel/units/combat_units_anim_pack2_candidates/README.md`; `docs/UNIT_ANIMATION_PACK2.md`. Stage A real short attack-contact effects already live.
