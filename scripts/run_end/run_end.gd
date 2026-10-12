@@ -3,6 +3,7 @@ extends Control
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 
 @onready var backdrop_art: TextureRect = $BackdropArt
 @onready var title_label: Label = $Title
@@ -18,6 +19,7 @@ func _ready() -> void:
 	MISDEAL_UI_KIT.apply_screen_copy(wizard_line, MISDEAL_UI_KIT.TEXT_SECONDARY)
 	MISDEAL_UI_KIT.apply_screen_copy(summary_label, MISDEAL_UI_KIT.TEXT_ON_DARK)
 	MISDEAL_UI_KIT.apply_action_button(new_run_button, MISDEAL_UI_KIT.GOLD, true)
+	MISDEAL_DS2_ROLLOUT.run_end(self)
 	new_run_button.pressed.connect(_on_new_run_pressed)
 	var fate_lines: Array[String] = []
 	for role in RunState.HERO_ROLES:
