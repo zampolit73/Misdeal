@@ -1,3 +1,12 @@
+## NEXT-CHAT PRIORITY — Undead Pack 2 Stage B: prepared / awaiting real art (2026-10-12)
+
+- [x] **Technical preparation complete:** Python importer, candidate-only Godot validator, 1280x720 F6 side-by-side preview, staging folder README and full QA contract in GitHub.
+- [x] **No live-model switch:** Knight remains static v4; Ranger/Mage/Skeleton/Bone Archer keep existing frame animation; four remaining undead keep static v4 and Stage A impact VFX.
+- [x] **Context saved** in PROJECT_STATE, ROADMAP, HANDOFF, VISUAL_ASSET_REGISTRY, UNIT_ANIMATION_PACK2 and CHANGELOG. Important QA decision already captured as D121 in DECISIONS.
+- [ ] **ART IS THE BLOCKER:** create four authentic transparent 576x480 pixel-art sheets, one per `bone_thrall`, `grave_bellkeeper`, `crypt_guard`, `bone_warden`, 25 distinct poses each (Idle 4 / Walk 6 / Attack 6 / Hit 3 / Death 6).
+- [ ] Run `scripts/dev/import_animation_pack2_candidate.py` for each role, then F6 `res://scenes/dev/unit_animation_pack2_preview.tscn`; compare v4 with new animation frames and inspect legs, weapon and contact line. Until assets exist, F6 should show `ОЖИДАЕТ АРТ`.
+- [ ] After explicit approval only, update the production animation loader with static-v4 fallback and test real battles/grounding/death. Keep Knight static until a genuinely readable replacement exists.
+- [ ] Verify Godot 4.7.x F6 runtime locally (source checks alone are not enough).
 ## Undead Animation Pack 2 — Stage B QA gate implemented (2026-10-12)
 
 - [x] Check GitHub and available assets: four remaining enemies have only static v4 art, not any role-specific 6×5 animated sheet.
