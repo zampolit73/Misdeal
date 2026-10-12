@@ -1,3 +1,11 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Whispering Well live screenshot QA: header overlap corrected
+
+User supplied a real Godot 1280×720 screenshot of the newly migrated **production** `ШЕПЧУЩИЙ КОЛОДЕЦ`. The three DS2 artwork/parchment choice cards render with dynamic recruit-Mage blood (−12 max HP), coin (−25 gold), and leave outcomes. **Observed defect:** long narrative description sat on the header panel's bottom border; party/gold counters were invisible because the opaque header panel rendered over the earlier `GoldLabel` node. Fixed in `scripts/event/whispering_well.gd` (`2a0baab`): tighter vertical positions for heading and wizard line, description moved to y=128 within 24..180 header, gold counter moved to y=32 and z_index=1 to render above the header; all 3 card geometry, event outcome logic, art and original Fate Spread remain untouched.
+
+**Still requires local F6/gameplay screenshot** after `git pull`: confirm entire Russian story line is inside bronze header (including second non-recruit story variant), top gold/status strip now visible, no overlap with first card row, all three choices and missing-gold warnings remain readable, and successful choices resolve/return correctly. Earlier preview approval D125 is NOT a full live-event gameplay acceptance.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — DS2 live Whispering Well deployed, runtime QA pending
 
 User explicitly approved isolated DS2 Whispering Well preview and requested implementation. Main now contains a **production** DS2 implementation at `scripts/event/whispering_well.gd` (visual migration `238c75b`, disabled-copy improvement `f7c9fbc`, pressed-selection highlight `3480acf`) and `scenes/event/whispering_well.tscn` (background reference changed to canonical approved `table_exact.webp`, `ce5a35f`). New material framing and parchment cards reuse existing `MisdealUIKit` opt-in DS2 helpers and original approved event choice illustrations. Header retains dynamic Wizard/description and gold/party/status counters; footer retains the result text.
