@@ -69,6 +69,15 @@ Opt-in \`MisdealUIKit\` functions \`apply_v2_material_plate\`, \`apply_v2_parchm
 **User acceptance test:** \`git pull\`, open \`scenes/dev/design_system_v2_reward_preview.tscn\` in Godot 4.7.x, run F6 at 1280×720; compare against the favorite Fate Spread screen. Check art loading, card labels and legible Cyrillic, three hover/focus/selection states, bottom button, no text clipping and no action beyond text feedback. If any screenshot looks less like handmade tabletop materials, tune only the isolated preview until approved. Godot executable was unavailable to connector-side author, so do not assert runtime success.
 
 
+## Stage 2 — Production Reward implementation (2026-10-12)
+
+**Committed in main, runtime QA pending:** user approved Stage 1's material direction and card text fit, then requested real Reward adoption. `scripts/reward/reward.gd` now uses existing `MisdealUIKit` DS2 helpers on the original gameplay buttons, art and labels. `scenes/reward/reward.tscn` uses the approved Variant C runtime table image as its backdrop; **the original Fate Spread asset and presentation remain unchanged**. All five reward modes preserve their business logic: normal loot, major upgrades, bonus upgrades, Death Wager, elite/crypt-guard rewards.
+
+Presentation contract: 3 framed clickable cards when three rewards are offered, one centered card for ordinary loot; retained real portrait/reward textures, dark gothic exterior, parchment text panel. Title/effect/description wrap into bounded areas; lengthy upgrade effects are allowed extra space and full text remains in native tooltip. Reward claiming still occurs with the original single click; the isolated preview's inspect button was NOT transferred to gameplay.
+
+Production commits: `9a5594b` (controller), `5d121d8` (existing backdrop reference), `29a797d` (long upgrade effect layout). Local Godot engine validation was unavailable. **Required QA:** complete a normal fight for centered loot; a tier's major-upgrade → loot chain; Death Wager's three choices; bonus upgrade; an elite fight's relic picks. Confirm Cyrillic fits, animation remains tasteful, correct RunState effect occurs and routes back to table, no missing image or clipped text. Do not call DS2 Reward visually accepted until a screenshot and a real choice flow are verified.
+
+
 ## Historical Design System 1.0 specification (retained for backwards compatibility)
 
 # Misdeal Design System 1.0 — Foundation (historical implementation baseline)
