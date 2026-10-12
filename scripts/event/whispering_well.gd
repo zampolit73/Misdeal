@@ -188,9 +188,14 @@ func _sync_v2_choice_copy() -> void:
 		else:
 			detail_label.add_theme_font_size_override("font_size", 13)
 		if warnings[index].visible:
+			# Keep the reason fully visible instead of clipping a long
+			# unavailable-offer description beneath the red warning label.
+			detail_label.text = "Нет доступного дара" if index == 0 else "Обмен недоступен"
 			detail_label.size.y = 24.0
+			button.modulate = Color(0.75, 0.73, 0.71, 1.0)
 		else:
 			detail_label.size.y = 45.0
+			button.modulate = Color.WHITE
 		button.tooltip_text = offer
 		button.text = ""
 
