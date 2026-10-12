@@ -17,6 +17,7 @@ var selected := -1
 var cards: Array[Button] = []
 var card_prices: Array[Label] = []
 var card_notes: Array[Label] = []
+var pending_static_copy: Array[Dictionary] = []
 var gold_label: Label
 var status: Label
 
@@ -26,6 +27,15 @@ func _ready() -> void:
 	_cards()
 	_footer()
 	_refresh()
+	_apply_static_copy()
+
+func _apply_static_copy() -> void:
+	# Godot may not finalize the desired geometry for Labels populated before
+	# they enter the live scene tree. Assign authored copy only after parenting
+	# and fixed bounds, just like the live price/status labels.
+	for entry in pending_static_copy:
+		var label: Label = entry["label"] as Label
+		label.text = String(entry["text"])
 
 func _place(node: Control, pos: Vector2, dimensions: Vector2) -> void:
 	node.position = pos
@@ -33,13 +43,16 @@ func _place(node: Control, pos: Vector2, dimensions: Vector2) -> void:
 
 func _label(value: String, font_size: int, ink: Color, alignment: HorizontalAlignment = HORIZONTAL_ALIGNMENT_CENTER) -> Label:
 	var label := Label.new()
-	label.text = value
+	# Keep the initial Label blank until it has been added and positioned.
+	# The changing demo copy is already refreshed after construction.
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	label.horizontal_alignment = alignment
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_color", ink)
+	if not value.is_empty():
+		pending_static_copy.append({"label": label, "text": value})
 	return label
 
 func _background() -> void:
@@ -186,6 +199,8 @@ func _refresh_cards() -> void:
 		var affordable: bool = gold >= PREVIEW_PRICE
 		var enabled: bool = affordable and available_roles[i]
 		cards[i].disabled = not enabled
+		cards[i].modulate = Color.WHITE if enabled else Color(0.78, 0.77, 0.75, 1.0)
 		card_prices[i].text = "ЦЕНА: %d ЗОЛОТА" % PREVIEW_PRICE
 		card_notes[i].text = ("НЕТ ГЕРОЯ В ОТРЯДЕ" if not available_roles[i] else ("НЕ ХВАТАЕТ ЗОЛОТА" if not affordable else "ДОСТУПНО К ПОКУПКЕ"))
+		card_notes[i].add_theme_color_override("font_color", Color(0.38, 0.28, 0.15) if enabled else Color(0.57, 0.16, 0.11))
 		UI.apply_v2_reward_card(cards[i], selected == i)
