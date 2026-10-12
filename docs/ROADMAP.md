@@ -1,3 +1,12 @@
+## Bearded Mage redraw delivered — local acceptance pending (2026-10-12)
+
+- [x] User chose first of three concepts: older white-bearded male Mage with purple staff and robes.
+- [x] Preserve old `mage.webp.b64` as `mage_archived_pre_oldbeard.webp.b64` (`4c0e94a`).
+- [x] Commit new 576×480 transparent 25-pose Mage atlas to `combat_units_anim_v2/mage.webp.b64` (`3e23cc8`); remote content matched.
+- [x] Use existing SpriteFrames loader without gameplay code changes.
+- [ ] **Godot F6 + fight:** inspect all 5 states, staff/robe/boots, boundary scraps and attack spell alignment, death, 1280×720 scale; report visual defects before closure.
+- [ ] Follow up on blue Knight and four Pack 2 roles' engine acceptance.
+
 ## Redesigned blue Knight animation integrated — local review pending (2026-10-12)
 
 - [x] User approved visibly separated two-legged Knight in blue armor, cape and shield; authored transparent 576×480 atlas with all 25 real poses.
