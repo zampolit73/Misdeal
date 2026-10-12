@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Changed — Bearded elder Mage animation (2026-10-12)
+
+- Replaced Mage Pack 1 v2 atlas with user-approved older white-bearded purple-robed staff wizard (`3e23cc8`), preserved previous atlas as `mage_archived_pre_oldbeard.webp.b64` (`4c0e94a`).
+- Verified exact Base64 resource in GitHub; offline 576×480/25 used-frame grid checks passed.
+- Existing Mage loader and combat gameplay untouched; Godot F6 and actual battle visual inspection pending.
+
+
 ### Changed — Approved blue Knight frame animation (2026-10-12)
 
 - Archived old malformed Knight v2 atlas and replaced production `combat_units_anim_v2/knight.webp.b64` with approved 25-pose blue Knight atlas, preserving readable leg/boot separation.
