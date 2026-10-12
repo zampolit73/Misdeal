@@ -1,3 +1,10 @@
+## DS2 isolated Reward preview — text/layout acceptance follow-up (2026-10-12)
+
+- [x] User approved DS2 reward preview art direction, materials, palette and three-card composition at 1280×720.
+- [x] Fix overflowing card description labels with early wrapping, explicit sample line breaks, smaller card typography and parchment clipping (`dac4953`).
+- [ ] Godot F6 screenshot recheck: all Russian text fully legible and stays within each parchment, selected/hover state works; avoid treating clipping as a replacement for text fit.
+- [ ] Only after final approval, migrate the actual `scenes/reward/reward.tscn` screen without changing reward logic.
+
 ## Design System 2.0 Reward preview — local visual approval pending (2026-10-12)
 
 - [x] Create isolated F6 reward preview scene/controller using approved Variant C tabletop image, actual reward art catalog and three representative Death Wager choices.
