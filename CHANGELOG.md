@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Fixed — Mage clean-atlas scale (2026-10-12)
+
+- Reduced Mage art-only display multiplier from 1.65 to 1.25 after new atlas appeared too large relative to Ranger; no gameplay or asset changes.
+
+
 ### Fixed — Mage alpha/art quality and complete attack frames (2026-10-12)
 
 - Replaced fading Mage sheet with approved solid-bearded-purple-robe 25-pose atlas (`9d72854`), archived old file (`089b9fd`).
