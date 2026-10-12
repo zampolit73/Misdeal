@@ -2040,3 +2040,12 @@ Date: 2026-10-12
 Status: **preview approved by user; live engine acceptance pending**
 
 The user approved the isolated `design_system_v2_event_preview.tscn` featuring Whispering Well's three physically framed event-choice cards, then explicitly requested live implementation. Follow the canonical Fate Spread Variant C material language (D123) and the approved Reward DS2 treatment (D124) for this particular event. Keep blood / coin / departure as real choices, including disabled warnings and exact consequences, and render both recruitment and later revisit options using **actual dynamic** descriptions. The original Fate Spread remains unchanged. Live `whispering_well.gd` and `whispering_well.tscn` were migrated; no new mechanics. **User approval of the preview is not proof that the live event has passed a Godot run.** Do not mark runtime acceptance or apply the style to other events automatically.
+
+## D126 — Approve final live Whispering Well DS2 visual layout
+
+Date: 2026-10-12
+Status: **user accepted after local Godot check, no new screenshot required**
+
+Following the concrete `HBoxContainer` row-centering fix in commit `1adc634` (928px-wide centered 3-card row and complete two-line rescue copy), the user explicitly stated **«без скрина все хорошо»** and asked what comes next. Treat this as acceptance of the **production Whispering Well visual layout** under Design System 2.0, not an invitation for another speculative pixel polish pass. Preserve the original approved Fate Spread colors, bronze/parchment cards, event illustrations, header/footer centerline, Russian copy readability and warning positions unless the user reports a specific defect.
+
+This visual sign-off does NOT independently certify every live gameplay branch (blood scar, coin purchase, abandoning Mage, later return/upgrades/artifacts), or other events. Future work should focus on a scoped new DS2 UI preview for **Gravedigger Shop** (the `gravedigger_shop` case in shared `scripts/event/act_choice.gd`) and must not restyle unrelated event cases in bulk.
