@@ -2066,3 +2066,11 @@ User requested implementing remaining Design System 2.0 UI as one large batch in
 
 Each shared ActChoice event must keep its original button, disabled state, dynamic text/role eligibility and handler; no data/rules rewrites. Batch approval is permission to integrate, **not proof of visual acceptance in Godot**. Fix actual observed screenshot issues in the new scope-specific presenters after one consolidated local test.
 
+## D129 — Accept the full Design System 2.0 bulk presentation
+
+Date: 2026-10-13  
+Status: **user-approved after local review**
+
+After the large DS2 visual integration authorized by D128, the user confirmed «все хорошо» following their local Godot review. This is acceptance of the **visible, current** presentation of shared event choices, Class Select, Squad Dossier, Run End, Battle HUD and table HUD/Wizard Wager; avoid speculative repeat revisions. Original Fate Spread Variant C (D123), accepted Reward major-upgrade (D124), Whispering Well (D126) and Gravedigger Shop (D127) continue to be protected. Main/intro authored artwork is unchanged.
+
+This approval concerns the presented UI and does not imply every conditional shop/event/reward state or combat branch was exhaustively functionally tested. A concrete future regression may still warrant a focused fix. Prioritize new Act 1 content and gameplay/replayability rather than reopening the completed DS2 rollout.
