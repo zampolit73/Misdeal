@@ -78,6 +78,13 @@ Presentation contract: 3 framed clickable cards when three rewards are offered, 
 Production commits: `9a5594b` (controller), `5d121d8` (existing backdrop reference), `29a797d` (long upgrade effect layout). Local Godot engine validation was unavailable. **Required QA:** complete a normal fight for centered loot; a tier's major-upgrade → loot chain; Death Wager's three choices; bonus upgrade; an elite fight's relic picks. Confirm Cyrillic fits, animation remains tasteful, correct RunState effect occurs and routes back to table, no missing image or clipped text. Do not call DS2 Reward visually accepted until a screenshot and a real choice flow are verified.
 
 
+## Live production screenshot acceptance — Reward major upgrade (2026-10-12)
+
+**Status: approved visual baseline (D124).** User supplied an in-engine Godot 1280×720 screenshot of the live Reward screen in `major_upgrade` mode («РАЗВИТИЕ ОТРЯДА») with a **two-hero** party and three real upgrade cards («ЖЕЛЕЗНАЯ КЛЯТВА», «ГРАД СТРЕЛ», «ПАЛАЧ»), and said **«Все отлично! Фиксируй»**. The displayed header, three framed illustrations, bronze/blackwood framing, warm parchment copy sections with fitted Cyrillic, effect lines and footer are **accepted**. Do not casually alter these live positions, material colors, illustrations or content hierarchy. This validates the pictured major-upgrade appearance, not full Reward gameplay or other reward modes. Functional claim/navigation and the distinct one-card ordinary loot, wager, bonus and elite reward variants still require separate smoke tests.
+
+Keep this accepted screen as the next reference after the favorite untouched Fate Spread Variant C. See D123 for the overall style and D124 for this scoped approval.
+
+
 ## Historical Design System 1.0 specification (retained for backwards compatibility)
 
 # Misdeal Design System 1.0 — Foundation (historical implementation baseline)
