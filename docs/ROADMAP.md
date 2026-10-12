@@ -1,3 +1,12 @@
+## Whispering Well final alignment after live QA screenshot (2026-10-12)
+
+- [x] Keep existing approved DS2 background, event choice illustrations, colors and three-card positions.
+- [x] Align header type and three parchment title/effect/detail regions; reserve dedicated warning baseline for unavailable middle card (`c513b63`).
+- [x] Render disabled copy without repeated warning; size displayed text after choice-state adjustment (`dd4b486`).
+- [x] Confirm by source comparison original seven event branch/art/resolve/return handlers unchanged.
+- [ ] **Local Godot screenshot QA:** test 20-gold disabled center choice and 25+-gold enabled option, check that all Russian text is visible within three cards and header, warnings do not overlap.
+- [ ] Verify actual blood/coin/leave choice effects and return to table before declaring live event fully accepted; revisit branches remain outstanding.
+
 ## Whispering Well real-game header QA correction (2026-10-12)
 
 - [x] Inspect first actual 1280×720 production screenshot: choice cards display but long story text collides with bronze header border; header obscures gold/party label.
