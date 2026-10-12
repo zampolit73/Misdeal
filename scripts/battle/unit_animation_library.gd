@@ -9,7 +9,7 @@ const COLUMNS := 6
 const ROWS := 5
 const BASE_DIR := "res://assets/pixel/units/combat_units_anim_v2/"
 const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/"
-const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard"]
+const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden"]
 
 static var _frames_cache: Dictionary = {}
 static var _unavailable: Dictionary = {}
@@ -23,7 +23,7 @@ static func get_frames(role: String) -> SpriteFrames:
 	if _unavailable.has(role):
 		return null
 
-	var directory := PACK2_DIR if role in ["bone_thrall", "grave_bellkeeper", "crypt_guard"] else BASE_DIR
+	var directory := PACK2_DIR if role in ["bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden"] else BASE_DIR
 	var path := "%s%s.webp.b64" % [directory, role]
 	if not FileAccess.file_exists(path):
 		_unavailable[role] = true
