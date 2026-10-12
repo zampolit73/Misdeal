@@ -2057,3 +2057,12 @@ Status: **isolated visual preview user-approved; production integration committe
 
 After the corrected isolated `design_system_v2_shop_preview.tscn` was checked in Godot, the user stated «все ок. внедряй». Accept the preview's physical bronze/parchment role-card visuals as the baseline for the **Gravedigger Shop**. The preview's fixed 25 gold was illustrative; it must not replace real `RunState.get_gravedigger_shop_price()` or Lost Purse history effects. Actual purchases, party restrictions, upgrades, gold deduction and routing must continue using existing handlers. The production presentation is scoped **exclusively** to `gravedigger_shop` in the shared `ActChoice` screen, not applied to unrelated events. User approval of F6 does not equal approval of the production gameplay until local Godot smoke. Preserve D123 Fate Spread, D124 Reward and D126 live Whispering Well.
 
+## D128 — Bulk DS2 adoption approved, without replacing gameplay or frozen art
+
+Date: 2026-10-12  
+Status: **user authorized bulk migration; committed, runtime QA pending**
+
+User requested implementing remaining Design System 2.0 UI as one large batch instead of isolated previews for each screen. Allow consistent opt-in aged-bronze, blackwood and parchment chrome for remaining shared event choices, Class Select, Squad Status, Run End, Battle HUD and table HUD/Wizard Wager without changing their underlying mechanics or approved full-screen art. The existing original Fate Spread Variant C (D123), Reward major-upgrade (D124), Whispering Well (D126), and approved shop visual (D127) remain protected. Startup splash and illustrated intro are not targets for replacement.
+
+Each shared ActChoice event must keep its original button, disabled state, dynamic text/role eligibility and handler; no data/rules rewrites. Batch approval is permission to integrate, **not proof of visual acceptance in Godot**. Fix actual observed screenshot issues in the new scope-specific presenters after one consolidated local test.
+
