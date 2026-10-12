@@ -1,3 +1,16 @@
+# LATEST HANDOFF — 2026-10-12 — DS2 deployed to production Reward (Godot acceptance pending)
+
+User approved the DS2 reward preview and its corrected text, then asked to implement the actual screen immediately. Main now contains:
+- `scripts/reward/reward.gd` with real Reward Buttons/labels/award handlers retained but restyled to opt-in DS2 bronze/darkwood/parchment frame (commits `9a5594b` and `29a797d`). Normal loot, major/bonus upgrades, Death Wager, Crypt Guard/elite artifacts, RunState and scene routing unchanged.
+- `scenes/reward/reward.tscn` switches its background reference to already-approved `assets/pixel/table/approved_variant_c/table_exact.webp` (commit `5d121d8`); original approved Fate Spread/table code/asset untouched.
+- The shared DS2 `MisdealUIKit` methods were already opt-in; no other game screen migrated.
+
+Cards remain clickable once to claim the real reward; unlike preview there is no second confirmation. Card title/effect/description have wrapping and guarded sizes, longer upgrade effects get extra space, and full text is also available in tooltip. Static GitHub source checks passed; **Godot runtime was NOT executed** here.
+
+NEXT LOCAL: `git pull` and play ordinary loot, major upgrade into next reward, full three-card Death Wager, bonus upgrade and elite Crypt Guard. Check fonts/overflows, correct data, selection highlighting, real grants/navigation, and screenshots at 1280×720. Keep code-first bug triage in GitHub. If accepted, follow ROADMAP to events/shop one screen at a time, NEVER restyle favorite Fate Spread. Older handoffs are historical.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — DS2 preview copy fit fix in main
 
 User F6-screenshot-approved the isolated Design System 2.0 Reward preview's overall visuals (based on canonical Fate Spread Variant C) **except overflowing card descriptions**. Fix committed as `dac4953` in `scripts/dev/design_system_v2_reward_preview.gd`: all three demo descriptions explicitly wrap to two lines, title/effect/description typography set to 16/15/13, auto-wrap configured before parenting/fixed layout, `clip_text` and parchment clipping guard neighboring cards. No assets, approved Fate Spread artwork, `RunState`, or live reward scene changed. Next: `git pull` and F6 `res://scenes/dev/design_system_v2_reward_preview.tscn` at 1280×720; check visible full text in all cards and hover/selection. **Production Reward migration still awaits final user approval of this corrected screenshot.** Older handoff entries are historical.
