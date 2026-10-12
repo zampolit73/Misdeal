@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Changed — Compact gothic unit health tracks (2026-10-12)
+
+- Restyled battle health indicators into smaller dark framed progress bars with subdued green/red fill and boss width variant, without changing HP updates or combat mechanics. Local Godot visual review pending.
+
+
 ### Fixed — Mage clean-atlas scale (2026-10-12)
 
 - Reduced Mage art-only display multiplier from 1.65 to 1.25 after new atlas appeared too large relative to Ranger; no gameplay or asset changes.
