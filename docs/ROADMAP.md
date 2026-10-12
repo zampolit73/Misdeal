@@ -1,3 +1,8 @@
+## Hero size adjustment after Firing Square screenshot — 2026-10-12
+
+- [x] Increase Mage art-only factor 1.15 → 1.65 (`ab22b50`) to compensate small within-cell Mage pose.
+- [ ] Confirm with new Godot 1280×720 screenshot that three heroes are comparably tall and grounded in placement and attack.
+
 ## Player trio battle sprite size pass (2026-10-12)
 
 - [x] Hero-only art scale multipliers relative to Ranger: Knight 0.90, Ranger 1.00, Mage 1.15 (`24b3df1`).
