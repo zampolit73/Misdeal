@@ -31,6 +31,13 @@ const ROLE_FLOOR_OFFSETS := {
 	"bone_warden": -6.0,
 }
 const HERO_DISPLAY_SCALE := 1.28
+# Art-only normalization of the three player silhouettes against Ranger.
+# These factors never affect hitboxes, movement or enemy scale.
+const HERO_ROLE_VISUAL_SCALES := {
+	"knight": 0.90,
+	"ranger": 1.00,
+	"mage": 1.15,
+}
 const ENEMY_DISPLAY_SCALE := 1.25
 const BOSS_DISPLAY_SCALE := 1.24
 
@@ -213,7 +220,8 @@ func _ready() -> void:
 	rim_sprite.flip_h = art_sprite.flip_h
 	# Preserve pixel silhouettes; scale only the art, not physics or hitboxes.
 	var sprite_scale: float = BOSS_DISPLAY_SCALE if is_boss else (HERO_DISPLAY_SCALE if team == 0 else ENEMY_DISPLAY_SCALE)
-	art_sprite.scale = Vector2.ONE * (sprite_scale * visual_scale)
+	var role_art_scale: float = float(HERO_ROLE_VISUAL_SCALES.get(visual_role, 1.0)) if team == 0 else 1.0
+	art_sprite.scale = Vector2.ONE * (sprite_scale * visual_scale * role_art_scale)
 	if not is_boss:
 		health_bar.offset_top = -89.0
 		health_bar.offset_bottom = -79.0
