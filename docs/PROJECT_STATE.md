@@ -1,6 +1,5 @@
 # Misdeal — Project State
 
-
 ## CURRENT CHECKPOINT — 2026-10-12 — Pack 2 Stage B preparation finished; animation artwork missing
 
 **Preparation COMPLETED and committed:** the Python/Pillow importer (`scripts/dev/import_animation_pack2_candidate.py`), Godot candidate validation (`scripts/dev/unit_animation_candidate_validator.gd`), v4-vs-candidate F6 preview (`res://scenes/dev/unit_animation_pack2_preview.tscn`), staging README and `docs/UNIT_ANIMATION_PACK2.md` are available. The importer was tested on real Pack 1 art and a deliberately invalid opaque sample. The Godot F6 scene has not yet been locally tested.
