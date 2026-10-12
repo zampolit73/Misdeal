@@ -1,3 +1,12 @@
+## Bone Thrall approval and integration bridge (2026-10-12)
+
+- [x] User approved RGBA 576x480 / 25-pose visual draft; offline alpha/pose-grid checks passed.
+- [x] Generated lossless WebP/Base64 file in conversation artifact runtime; not yet present in GitHub.
+- [x] Optional production lookup for Bone Thrall with static v4 fallback if candidate is missing.
+- [ ] **BLOCKER:** commit `bone_thrall.webp.b64` bytes under `assets/pixel/units/combat_units_anim_pack2_candidates/`; no sheet currently exists in the GitHub path.
+- [ ] Run F6 review and live BattleUnit validation in Godot 4.7.x before declaring Bone Thrall animation implemented.
+- [ ] Author Bellkeeper/Guard/Warden original sheets later.
+
 ## NEXT ANIMATION ART STEP — frame production brief (2026-10-12)
 
 - [x] Technical preparation: offline importer, Godot candidate-only validation, side-by-side F6 review; **no live models switched**.
