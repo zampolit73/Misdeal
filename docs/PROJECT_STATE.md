@@ -1,3 +1,13 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Bearded elder Mage atlas replaced, Godot QA pending
+
+The user selected the **first** of the last three Mage visual variants: an older male archmage with long white beard, dark-purple robes and violet-orb staff. The former live Pack 1 v2 Mage atlas was preserved at `assets/pixel/units/combat_units_anim_v2/mage_archived_pre_oldbeard.webp.b64` (commit `4c0e94a`). The approved replacement is now `assets/pixel/units/combat_units_anim_v2/mage.webp.b64` (commit `3e23cc8`), with remote content verified identical to the 123144-character Base64 source.
+
+The new 576×480 transparent 6×5 / 25-pose sheet passed offline 25-cell transparency/contact checks (0 errors, 0 warnings). The live animation library ALREADY supports Mage, so no battle scripts, timing, damage, targeting, projectile FX or other roles were modified. **No Godot 4.7.x F6 or actual battle review completed**: visually inspect idle/walk/attack/hit/death, staff and head/hair clarity, unwanted frame lines/bleed, effect alignment, grounding and attack pose in the existing `res://scenes/dev/unit_animation_pack1_preview.tscn`. Replace or clean artwork if any borders or isolated projectile effects show at combat scale.
+
+All 5 Pack 1 roles (Knight, Ranger, Mage, Skeleton, Bone Archer) and 4 Pack 2 enemies still have animation resources. Blue Knight and Pack 2 runtime visual QA remain open.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Blue Knight reanimated; in-engine QA pending
 
 **GitHub main:** User-approved leg-readable blue Knight 576×480 transparent 6×5 atlas (Idle4/Walk6/Attack6/Hit3/Death6) replaced `assets/pixel/units/combat_units_anim_v2/knight.webp.b64` (commit `6afd288`). The former problematic v2 atlas was archived as `assets/pixel/units/combat_units_anim_v2/knight_archived_pre_blue.webp.b64` (commit `0101679`) for exact rollback. `scripts/battle/unit.gd` now has an empty `STATIC_COMBAT_ART_ROLES` list and uses normal `MisdealUnitAnimationLibrary.get_frames("knight")` again, with existing static v4 fallback on missing/unreadable atlas (commit `dffa7ee`).
