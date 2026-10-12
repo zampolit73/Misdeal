@@ -1,3 +1,11 @@
+## DS2 Event screens — isolated Whispering Well preview (2026-10-12)
+
+- [x] Inspect existing `whispering_well` scene and choice art loaders before proposing production edits.
+- [x] Commit isolated F6 preview with three tactile Fate Spread-style outcome cards and harmless selection interaction.
+- [ ] User `git pull`, run `res://scenes/dev/design_system_v2_event_preview.tscn` F6 at 1280×720, check Cyrillic, real art, selected focus, parchment and card alignment.
+- [ ] Secure user sign-off on Event treatment before making any `scenes/event` production changes.
+- [ ] Test production Reward gameplay modes (normal, upgrade chain, stake, elite) separately; do not infer from major-upgrade screenshot approval.
+
 ## DS2 live Reward visual approval — 2026-10-12
 
 - [x] User approved **production Godot** screenshot at 1280×720 for `major_upgrade` / `РАЗВИТИЕ ОТРЯДА` with two heroes and three upgrade cards (D124).
