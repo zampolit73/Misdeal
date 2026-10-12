@@ -1,3 +1,12 @@
+## Elder Mage sprite quality repair deployed (2026-10-12)
+
+- [x] User approved cleaner, solid elderly white-bearded Mage redraw.
+- [x] Archive prior atlas (`089b9fd`) and replace production Mage WebP/Base64 (`9d72854`), verified remote equals source.
+- [x] Play 6 real attack poses, retire old skipped fifth attack frame (`6ce91f9`).
+- [x] Preserve user-approved Mage hero scale 1.65; Knight/Ranger unchanged.
+- [ ] Review new Mage at actual 1280×720 Godot battle and F6 in all five states: no faint silhouette or cross-cell fragments, staff, boots and death.
+- [ ] Continue local in-engine visual acceptance of earlier Pack 1/2 animation changes.
+
 ## Hero size adjustment after Firing Square screenshot — 2026-10-12
 
 - [x] Increase Mage art-only factor 1.15 → 1.65 (`ab22b50`) to compensate small within-cell Mage pose.
