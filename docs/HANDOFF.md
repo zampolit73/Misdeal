@@ -1,3 +1,13 @@
+# LATEST — 2026-10-12 — Approved old-bearded Mage replacement in main
+
+User approved **variant 1 from the last three Mage concepts**, a silver-haired, white-bearded, staff-wielding elder with dark purple robe. Its new transparent 576×480 25-frame Base64 WebP replaces `assets/pixel/units/combat_units_anim_v2/mage.webp.b64` (`3e23cc8`); prior Mage sheet archived alongside as `mage_archived_pre_oldbeard.webp.b64` (`4c0e94a`). Remote Base64 confirmed exactly equal to supplied approved artifact (123144 characters). No `.gd` or combat content changed because Mage already loads animation frames.
+
+**LOCAL QA STILL REQUIRED:** `git pull`, Godot 4.7.x `res://scenes/dev/unit_animation_pack1_preview.tscn` F6, Mage idle/walk/attack/hit/death. Check beard/staff, boot-floor contact, old presentation-line artifacts, attack/projectile-only frames and actual combat scale. Existing Mage animation loader historically skips a projectile-only fifth raw attack cell; the new source has 6 visually authored poses and that role-specific skip may need later reconsideration after local review. Do not silently change projectile frame routing without inspecting in-engine impact.
+
+Pack 1: Knight blue, Ranger, Mage new oldbeard, Skeleton, Bone Archer all anim-enabled. Pack 2: Bone Thrall/Bellkeeper/Crypt Guard/Bone Warden anim-enabled. Other runtime QA remains outstanding. Old handoff sections below are historical.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — Blue Knight animation now live in GitHub
 
 User approved new **blue** armored Knight with clearly distinct legs. The transparent 576×480 25-frame atlas is committed as `assets/pixel/units/combat_units_anim_v2/knight.webp.b64` (`6afd288`), and source-to-GitHub Base64 was verified (456632 chars). Previous flawed Knight sheet archived alongside as `knight_archived_pre_blue.webp.b64` (`0101679`). Production `scripts/battle/unit.gd` opted Knight back into normal SpriteFrames (`dffa7ee`), keeping static v4 fallback when animation file fails.
