@@ -1,3 +1,11 @@
+## CURRENT CHECKPOINT — 2026-10-13 — Bulk Design System 2.0 visually accepted
+
+Following the large DS2 production rollout of 2026-10-12, the user locally reviewed the result and replied **«все хорошо»**. This is explicit approval of the currently presented UI, covering the integrated styling of shared non-shop ActChoice, Class Select, Squad Status, Run End, Battle HUD and table HUD/Wizard Wager. Keep these screens visually stable unless the user reports a concrete defect. Prior "pending local visual acceptance" status is superseded.
+
+No new gameplay/source changes in this checkpoint; this entry is documentation-only. Historical QA lists for exhaustive branch tests (Lost Purse-specific shop pricing, all event variations, every reward mode) remain optional outstanding **functional coverage**, not grounds to describe the approved look as unaccepted. Original Fate Spread Variant C, approved Reward/Well/shop visuals and authored splash/intro remain protected. New decision D129 records approval. Next priority: broaden Act 1's meaningful card/event/combat variety and run decisions after reviewing existing resources; preserve core game rules and prioritize playable vertical slice.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Bulk DS2 UI rollout implemented, runtime QA pending
 
 User asked to complete remaining interface adoption as one large implementation batch. Added `scripts/event/act_choice_ds2.gd` and hooked all **non-`gravedigger_shop`** shared `ActChoice` event cards to its material presentation. It dynamically reads existing card/choice text and state, preserves original event art backgrounds and original clickable buttons, and provides three physical illustration/parchment cards, centered according to visible choice count and a special result footer. Existing Gravedigger Shop remains on previously approved `gravedigger_shop_ds2.gd`, and Whispering Well retains its already-approved dedicated scene.
