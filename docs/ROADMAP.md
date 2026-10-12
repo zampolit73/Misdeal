@@ -1,3 +1,13 @@
+## DS2 event milestone — Whispering Well approved, Gravedigger Shop next (2026-10-12)
+
+- [x] Live Whispering Well row centering, full rescue copy and disabled-gold warnings corrected in `1adc634`; user confirmed local result is good, **without a new screenshot** (D126).
+- [x] Close **visual alignment QA** for the live Whispering Well; preserve accepted styling against unnecessary further passes.
+- [ ] Separately verify all Whispering Well gameplay branches (blood/25g/leave, revisit upgrade/relic/refund and table return) when practical; not implicit in layout approval.
+- [ ] Create **isolated F6 DS2 Gravedigger Shop preview**: three physical upgrade cards with dynamic price concepts and a leave option, using existing art and material tokens.
+- [ ] Show preview at 1280×720, receive user sign-off before migrating production.
+- [ ] In shared `act_choice.gd`, scope any production UI changes to `active_card.card_id == "gravedigger_shop"` so other event cards stay untouched.
+- [ ] Preserve existing `RunState.get_gravedigger_shop_price()`, Lost Purse discounts/penalties, gold checks, upgrade grants and scene navigation.
+
 ## Whispering Well group-centering fix after detailed screenshot review (2026-10-12)
 
 - [x] Recognize prior pass corrected card internals but **not** row-center alignment: `HBoxContainer` retained width constrained by previous 330px child minimums.
