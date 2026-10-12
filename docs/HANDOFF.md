@@ -1,3 +1,18 @@
+# AUTHORITATIVE HANDOFF — 2026-10-12 — Pack 2 Stage B ready for art, NOT live
+
+**GitHub `zampolit73/Misdeal` is source of truth. User explicitly requested a checkpoint for a new chat. No need to re-ask for GitHub access or past development context. Read AGENTS.md, docs/CONCEPT.md and this latest section first.**
+
+**PREPARATION COMPLETED:** `scripts/dev/import_animation_pack2_candidate.py` (authoring-only Python/Pillow PNG → lossless WebP/Base64, validated with existing Pack 1 art and invalid opaque art); `scripts/dev/unit_animation_candidate_validator.gd` (isolated candidate QA); `scripts/dev/unit_animation_pack2_preview.gd` and `scenes/dev/unit_animation_pack2_preview.tscn` (F6 v4 vs potential new frames); `assets/pixel/units/combat_units_anim_pack2_candidates/README.md`; `docs/UNIT_ANIMATION_PACK2.md`. Stage A real short attack-contact effects already live.
+
+**SPRITESHEETS STILL REQUIRED:** no accepted animation sheets for `bone_thrall`, `grave_bellkeeper`, `crypt_guard`, `bone_warden`. Candidate folder has only README; do NOT claim assets generated, uploaded, approved or activated. Needed per role: true transparent 576x480 atlas, 6x5 cells of 96px, populated Idle4 / Walk6 / Attack6 / Hit3 / Death6 (25 real distinct poses). Pixel silhouette, separate boots, intact weapons, correct row segmentation and foot contact must be reviewed visually. Full-scene generated illustrations are unsuitable and were not integrated.
+
+**PRODUCTION NOT SWITCHED:** `scripts/battle/unit.gd` and `scripts/battle/unit_animation_library.gd` were not modified in Stage B. Knight currently static v4 (visual Y offset -8); Ranger, male Mage, Skeleton and Bone Archer retain Pack 1 v2 frame animation. The four other undead remain static v4 with Stage A attack impact cues. No mechanics, targeting, positioning, damage or scene layouts were changed.
+
+**NEXT:** (1) produce real sprite art; (2) import/stage each valid asset with committed importer; (3) Godot F6 preview, all five states, compare against v4 and reject poor feet or weapons; (4) obtain user approval; (5) activate individually in existing SpriteFrames loader with v4 fallback and smoke gameplay. Without art F6 should say `ОЖИДАЕТ АРТ`. Local Godot test of new staging scene remains pending.
+
+**Canonical references:** PROJECT_STATE head, ROADMAP head, docs/UNIT_ANIMATION_PACK2.md, VISUAL_ASSET_REGISTRY head, DECISIONS D119–D121, CHANGELOG. All following HANDOFF sections are historical and may contain obsolete Knight offsets or animation states.
+
+---
 # LATEST LIVE CHECKPOINT — 2026-10-12 — Pack 2 Stage B art QA pipeline / gallery shipped, candidate art NOT yet available
 
 The user said "давай дальше" after Stage A attack FX for the remaining undead. Repo checked against `AGENTS.md`, `CONCEPT.md`, `PROJECT_STATE.md`, `ROADMAP.md`, `DECISIONS.md`. **No genuine multi-frame sheets exist** yet for Bone Thrall, Grave Bellkeeper, Crypt Guard, Bone Warden. Two attempts at built-in image generation yielded full battle screen compositions rather than independently authored sprite frames; they were **not** inserted into the project. OpenArt available but account has 0 credits so no art generated there.
