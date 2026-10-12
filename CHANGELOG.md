@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Added — Bone Warden frames and Pack 2 roster completion (2026-10-12)
+
+- Committed user-approved 25-frame transparent 576×480 Bone Warden atlas (`77a759d`) and verified identical remote Base64 content.
+- Enabled Bone Warden SpriteFrames (`1238b3c`) using existing Pack 2 path and static-v4 fallback. All four previously static Pack 2 undead enemy roles now have true frame art available in the live animation library.
+- Local Godot F6 and combat-quality acceptance is still outstanding; no AI, HP, combat damage or phase changes. Knight remains static v4 until a new leg-readable sheet is approved.
+
+
 ### Added — Crypt Guard frame animation (2026-10-12)
 
 - Committed approved transparent 576×480 Crypt Guard atlas with Idle4 / Walk6 / Attack6 / Hit3 / Death6 (`5412b1d`), source-to-remote verification succeeded.
