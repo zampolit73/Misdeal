@@ -1,3 +1,9 @@
+# LATEST — 2026-10-12 — Mage size correction after clean redraw
+
+Latest screenshot Bone Swarm: the improved clean Mage atlas looked oversized at former art-only scale 1.65. Reduced Mage hero visual multiplier to **1.25** in `scripts/battle/unit.gd` (commit `38831c0`). Knight 0.90 and Ranger 1.00 unchanged; no art/gameplay updates. Next: `git pull`, open battle with Mage and Ranger side-by-side and confirm comparable height/grounding; adjust only from screenshot feedback.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — Clean Mage atlas, retain accepted height
 
 User accepted Mage **height** at hero-only scale 1.65 but rejected poor alpha/art quality in screenshot. A stronger purple-robed, old-white-bearded Mage was generated and user approved it. New transparent 576×480 / 25-pose `assets/pixel/units/combat_units_anim_v2/mage.webp.b64` committed (`9d72854`) with exact GitHub Base64 verification (414688 chars). Old Mage resource archived as `mage_archived_pre_dark_clean.webp.b64` (`089b9fd`). Loader now plays all six Mage attack frames rather than obsolete skipped projectile-only cell (`6ce91f9`). **No change to current Mage scale 1.65**; all other heroes and battle mechanics unchanged.
