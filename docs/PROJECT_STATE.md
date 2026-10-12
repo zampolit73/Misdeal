@@ -1,3 +1,9 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Elder Mage scaled to match hero trio
+
+On user's 1280×720 Firing Square screenshot the old-beard Mage was still noticeably shorter than Knight and Ranger after first pass. Increased hero-only `HERO_ROLE_VISUAL_SCALES["mage"]` from 1.15 to 1.65 in `scripts/battle/unit.gd` (commit `ab22b50`). Knight stays 0.90, Ranger 1.00. Animation grounding is recomputed from final sprite scale; enemy dimensions, stats, AI and placement untouched. Local Godot screenshot recheck pending. This is an empirical art-scale calibration, not a gameplay change.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Hero silhouette scale normalization
 
 Following the 1280×720 Iron Wall battle screenshot, hero sprite sizes were inconsistent: blue Knight visually largest, new bearded Mage smallest, Ranger in between. Production `scripts/battle/unit.gd` now applies **hero-only role visual multipliers** relative to Ranger (Knight 0.90, Ranger 1.00, Mage 1.15) to existing `HERO_DISPLAY_SCALE * visual_scale` (commit `24b3df1`). Enemy/boss scaling, combat collision/movement/AI/stat parameters, art assets and scene layout are unchanged. `base_sprite_scale` is assigned from final scale before the animated sole-based `_art_rest_position()` calculation, preserving current ground-contact logic.
