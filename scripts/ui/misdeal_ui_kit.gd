@@ -5,6 +5,14 @@ extends RefCounted
 # The kit deliberately modifies existing StyleBoxFlat resources at runtime so
 # current layout/content margins and live gameplay text stay intact.
 
+# Design System 2.0: opt-in Fate Spread material palette (art-direction targets).
+# Do not replace existing live token values without a reviewed screen migration.
+const TABLE_OBSIDIAN := Color("#100c0d")
+const RITUAL_CRIMSON := Color("#62201e")
+const AGED_BRONZE := Color("#a66636")
+const PARCHMENT_WARM := Color("#dfb77e")
+const MOONLIT_STEEL := Color("#334758")
+
 const GOLD := Color(0.93, 0.68, 0.36, 1.0)
 const BRONZE := Color(0.67, 0.31, 0.19, 1.0)
 const EMBER := Color(0.88, 0.25, 0.13, 1.0)
