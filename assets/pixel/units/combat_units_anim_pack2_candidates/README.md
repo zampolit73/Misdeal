@@ -1,5 +1,7 @@
 # Pack 2 — animation candidates only
 
+**CHECKPOINT (2026-10-12): tooling and F6 review scene are already implemented; no usable new role spritesheets exist here yet, and production models were not changed.** Do not treat this staging directory as the active combat art folder.
+
 **None of these files are wired into gameplay.** BattleUnit still renders four static v4 enemy sprites and adds only their contact VFX. This directory is intentionally empty of candidates until a real artist or approved generation supplies suitable per-frame pixel art.
 
 Each accepted filename is `<visual_role>.webp.b64` where visual_role is one of:
