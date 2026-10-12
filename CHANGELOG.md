@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Added — DS2 Event visual preview (2026-10-12)
+
+- Added F6-only Whispering Well card choice study with existing game art, Variant C backdrop, shared bronze/parchment UI styles and non-gameplay selected-card interaction. Production event scenes and logic untouched; Godot visual review pending.
+
+
 ### Approved — Live Reward major-upgrade UI visual baseline (2026-10-12)
 
 - User accepted actual Godot 1280×720 production `РАЗВИТИЕ ОТРЯДА` with three upgrades (Knight/Ranger/Knight) in DS2 blackwood, bronze and parchment style; locked in D124.
