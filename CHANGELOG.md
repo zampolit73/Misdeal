@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Changed — Design System 2.0 live Reward screen (2026-10-12)
+
+- Migrated production Reward presentation from colored panels to approved Fate Spread material language: existing Variant C table background, dark card chrome, aged bronze and parchment with actual dynamic offer art/text (`9a5594b`, `5d121d8`).
+- Updated card copy layout for long reward/upgrade effect rows and bounded descriptions with full-text tooltips (`29a797d`).
+- Retained all five reward modes, original click-to-claim handlers, RunState grants and navigation; no original Fate Spread or battle mechanics changes.
+- Local Godot 4.7.x runtime visual/gameplay QA pending.
+
+
 ### Fixed — DS2 Reward preview overflowing descriptions (2026-10-12)
 
 - Fixed bounded title/effect/description wrapping on the three preview parchment cards, adjusted typography and guarded clipping (`dac4953`). Production Reward and gameplay unchanged; local F6 verification pending.
