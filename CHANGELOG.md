@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Changed — Bone Thrall animation loading bridge (2026-10-12)
+
+- Added optional `bone_thrall` SpriteFrames path to production animation library; missing atlas automatically falls back to existing v4 sprite. No combat timing/AI/stat changes.
+- Approved and encoded RGBA Bone Thrall 25-frame art locally but its Base64 asset **is not yet committed to GitHub**, so this is not an active art switch. F6 and combat visual smoke pending.
+
+
 ### Docs — Undead animation frame production briefs (2026-10-12)
 
 - Added explicit 25-pose storyboards and visual acceptance checks for Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden in `docs/UNIT_ANIMATION_PACK2_FRAME_BRIEFS.md`.
