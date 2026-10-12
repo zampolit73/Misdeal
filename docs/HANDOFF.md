@@ -1,3 +1,11 @@
+# LATEST HANDOFF — 2026-10-12 — Real production Reward major-upgrade UI approved
+
+User shared an **actual Godot 4.7.x screen** of DS2 `РАЗВИТИЕ ОТРЯДА` with two party members and three upgrade cards `ЖЕЛЕЗНАЯ КЛЯТВА`, `ГРАД СТРЕЛ`, `ПАЛАЧ`. Feedback: **«Все отлично! Фиксируй»**. Record this as approved screenshot-level visual baseline (decision **D124**). Keep its Variant C-derived darkwood/bronze/parchment treatment, exact card composition, titles and upgrade text fitting. Do not tweak art/layout purely for subjective polish without requesting approval. Main code: `scripts/reward/reward.gd`, `scenes/reward/reward.tscn`; previous commits `9a5594b`, `5d121d8`, `29a797d`.
+
+**Distinguish tested vs untested:** major-upgrade screen **look** accepted; screenshot alone does not establish clicked upgrades, follow-on loot, reward grants or routing. Test `major_upgrade → normal_loot → table`, `death_wager`, `bonus_upgrade`, `elite_artifact` before marking all Reward modes completed. Continue D123 DS2 rollout to one events/shop preview after tests. Original Fate Spread Variant C stays frozen. No gameplay/visual code changes performed in this approval-only session; docs/decision state made ready for next chat.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — DS2 deployed to production Reward (Godot acceptance pending)
 
 User approved the DS2 reward preview and its corrected text, then asked to implement the actual screen immediately. Main now contains:
