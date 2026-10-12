@@ -1,3 +1,11 @@
+# LATEST HANDOFF — 2026-10-12 — Clean Mage atlas, retain accepted height
+
+User accepted Mage **height** at hero-only scale 1.65 but rejected poor alpha/art quality in screenshot. A stronger purple-robed, old-white-bearded Mage was generated and user approved it. New transparent 576×480 / 25-pose `assets/pixel/units/combat_units_anim_v2/mage.webp.b64` committed (`9d72854`) with exact GitHub Base64 verification (414688 chars). Old Mage resource archived as `mage_archived_pre_dark_clean.webp.b64` (`089b9fd`). Loader now plays all six Mage attack frames rather than obsolete skipped projectile-only cell (`6ce91f9`). **No change to current Mage scale 1.65**; all other heroes and battle mechanics unchanged.
+
+LOCAL NEXT: `git pull`; F6 `res://scenes/dev/unit_animation_pack1_preview.tscn`; then actual Mage battle. Inspect solid cloak and readable beard/face, no speckled/ghost transparency, attack projectile FX, boots/ground and six attack poses. Offline frame checks passed but **no Godot runtime test was available**. Correct artwork based on actual screenshot; historical sections below are superseded.
+
+---
+
 # LATEST — 2026-10-12 — Mage art scale increased again
 
 User screenshot from Firing Square: Knight and Ranger reasonably similar in apparent size; old-beard Mage still much smaller. Hero-only Mage visual multiplier increased **1.15 → 1.65** in `scripts/battle/unit.gd` (`ab22b50`); Knight 0.90, Ranger 1.00 unchanged. Baseline recomputed with final art scale, no collision/AI changes. Next: `git pull`, inspect trio pre-fight and after movement, send screenshot if Mage overshoots or still differs. Older scale recommendations below are superseded.
