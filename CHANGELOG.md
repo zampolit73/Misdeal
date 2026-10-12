@@ -1,3 +1,10 @@
+## 2026-10-12 — Bulk Design System 2.0 UI adoption
+
+- Added `scripts/event/act_choice_ds2.gd` for remaining shared event screens: original story art + tactile choice cards, dynamic Cyrillic details, original choice input and state, centered variable-count rows, result footer.
+- Introduced `scripts/ui/misdeal_ds2_rollout.gd` and applied it to Class Select, Squad Status, Run End, Battle HUD and Table/Wizard Wager chrome.
+- Preserved already-approved Fate Spread, main/intro art, Reward, Whispering Well and Gravedigger Shop interfaces. No gameplay handler or `.tscn` modifications.
+- GitHub source/scene path checks passed; consolidated Godot runtime/visual smoke still required.
+
 ## 2026-10-12 — DS2 production Gravedigger Shop
 
 - After user approval of corrected F6 preview, enabled the approved bronze/parchment store presentation for `gravedigger_shop` only.
