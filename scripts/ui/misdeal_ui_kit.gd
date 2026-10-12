@@ -549,3 +549,62 @@ static func _add_bar(
 	bar.offset_right = to_offset.x
 	bar.offset_bottom = to_offset.y
 	parent.add_child(bar)
+
+
+# DS2 material helpers are opt-in: live 1.0 screens remain untouched.
+# Use in isolated previews until explicitly approved in a running Godot build.
+static func apply_v2_material_plate(target: Control, prominent: bool = false) -> void:
+	if target == null:
+		return
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.060, 0.042, 0.043, 0.94 if prominent else 0.89)
+	style.border_width_left = 2
+	style.border_width_right = 2
+	style.border_width_top = 2
+	style.border_width_bottom = 2
+	style.border_color = AGED_BRONZE if prominent else AGED_BRONZE.darkened(0.28)
+	style.content_margin_left = SPACE_6
+	style.content_margin_right = SPACE_6
+	style.content_margin_top = SPACE_4
+	style.content_margin_bottom = SPACE_4
+	style.shadow_color = Color(0.0, 0.0, 0.0, 0.82)
+	style.shadow_size = 12 if prominent else 7
+	style.shadow_offset = Vector2(0.0, 4.0)
+	_square_corners(style)
+	target.add_theme_stylebox_override("panel", style)
+
+
+static func apply_v2_parchment_plate(target: Control) -> void:
+	if target == null:
+		return
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.76, 0.65, 0.48, 0.99)
+	style.border_width_left = 2
+	style.border_width_right = 2
+	style.border_width_top = 2
+	style.border_width_bottom = 2
+	style.border_color = Color(0.36, 0.21, 0.13, 1.0)
+	_square_corners(style)
+	target.add_theme_stylebox_override("panel", style)
+
+
+static func apply_v2_reward_card(button: Button, selected: bool = false) -> void:
+	if button == null:
+		return
+	for state in ["normal", "hover", "pressed", "disabled", "focus"]:
+		var style := StyleBoxFlat.new()
+		var focused: bool = state == "focus"
+		var active: bool = state == "hover" or state == "pressed"
+		style.bg_color = Color(0.075, 0.046, 0.044, 0.97) if selected or active else Color(0.043, 0.030, 0.032, 0.96)
+		style.border_width_left = 3 if selected else 2
+		style.border_width_right = 3 if selected else 2
+		style.border_width_top = 3 if selected else 2
+		style.border_width_bottom = 3 if selected else 2
+		style.border_color = PARCHMENT_WARM if selected or focused else (AGED_BRONZE if active else AGED_BRONZE.darkened(0.24))
+		style.shadow_color = Color(0.0, 0.0, 0.0, 0.78)
+		style.shadow_size = 11 if selected or active else 6
+		style.shadow_offset = Vector2(0.0, 4.0)
+		_square_corners(style)
+		button.add_theme_stylebox_override(state, style)
+	button.add_theme_color_override("font_color", PARCHMENT_WARM)
+	button.add_theme_color_override("font_hover_color", TEXT_ON_DARK)
