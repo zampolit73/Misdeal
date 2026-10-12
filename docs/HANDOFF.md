@@ -1,3 +1,11 @@
+# LATEST HANDOFF — 2026-10-12 — Corrected true Whispering Well row misalignment
+
+User's latest Godot screenshot demonstrated the three card **group** was shifted ~50–55px right of header/footer; previous fixes only aligned text inside each card. Cause: sizing `HBoxContainer Choices` while three Buttons still had their old 330px minimum sizes, creating an oversized parent despite subsequent 292px child widths; centered layout left surplus space. Screenshot also showed clipping of «МАГ ПРИСОЕДИНИТСЯ» in first card and cramped disabled-gold warning. Commit `1adc634` in `scripts/event/whispering_well.gd`: apply child 292px minimums before parent size, set HBox beginning alignment, row x176 width928, reassert geometry deferred after live offer text is hidden, top-align header narrative and enlarge allowed two-line outcome area (56px), shift warning to y365. Header/footer centered at x640 in base 1280px viewport; no changes to actual DS2 art or card assets.
+
+Source audit against preceding script blob `f534a957...`: `_refresh_choice_text`, `_on_accept_gift`, `_on_pay_coin`, `_on_leave`, `_disable_choices`, `_return_to_table`, `_apply_choice_art` untouched. Godot executable was not available; **await user's live 1280×720 screenshot** after `git pull` before claiming layout is fixed in-engine. Check centered card group, two visible rescue lines, warning margin, and enabled/disabled choice flow. D123 favorite Fate Spread, D124 approved Reward and D125 event direction remain binding. Historic notes below.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — Whispering Well card alignment committed
 
 User supplied a second **real production Whispering Well** screenshot at 1280×720 after header fix and said visual treatment looked great but wanted all elements better aligned. User explicitly requested GitHub implementation. `scripts/event/whispering_well.gd` now has uniform header and card text baseline geometry, a 153px parchment region and reserved bottom warning line for all cards (`c513b63`); disabled choice details no longer repeat the warning, and font sizing uses final displayed text (`dd4b486`). All three card image/width/position assets and approved colors unchanged. Only UI code was touched.
