@@ -5,6 +5,7 @@ const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 const TARGET_PREVIEW_SCRIPT := preload("res://scripts/battle/target_preview.gd")
 const DEPLOYMENT_FLOOR_SCRIPT := preload("res://scripts/battle/deployment_floor_markers.gd")
 
@@ -206,6 +207,7 @@ func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_battle_button(continue_button, MISDEAL_UI_KIT.GOLD, true)
 	MISDEAL_UI_KIT.apply_action_button(last_deal_accept_button, MISDEAL_UI_KIT.EMBER, true)
 	MISDEAL_UI_KIT.apply_action_button(last_deal_refuse_button, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_DS2_ROLLOUT.battle(self)
 
 
 func _is_boss_encounter() -> bool:
