@@ -47,9 +47,9 @@ func _build_backdrop() -> void:
 	# Exactly the already-approved Variant C tabletop art, reused as a
 	# backdrop. No changes to its file, Fate Spread rings or live table.
 	var table_backdrop := WEBP_VIEW.new() as TextureRect
-	table_backdrop.webp_path = "res://assets/pixel/table/approved_variant_c/table_exact.webp"
-	table_backdrop.expected_size = Vector2i(1280, 720)
-	table_backdrop.use_nearest_filter = false
+	table_backdrop.set("webp_path", "res://assets/pixel/table/approved_variant_c/table_exact.webp")
+	table_backdrop.set("expected_size", Vector2i(1280, 720))
+	table_backdrop.set("use_nearest_filter", false)
 	table_backdrop.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	table_backdrop.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	add_child(table_backdrop)
@@ -87,7 +87,6 @@ func _build_header() -> void:
 
 func _build_cards() -> void:
 	var start_x := 175.0
-	var gap := 26.0
 	for index in range(REWARD_SAMPLES.size()):
 		var data: Dictionary = REWARD_SAMPLES[index]
 		var button := Button.new()
