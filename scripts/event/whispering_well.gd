@@ -37,6 +37,9 @@ func _ready() -> void:
 	_refresh_choice_text()
 	_apply_choice_art()
 	_sync_v2_choice_copy()
+	# Apply final bounds once the dynamic text has been cleared from the
+	# Buttons and the container has recalculated its minimum size.
+	call_deferred("_finalize_v2_choice_row")
 	_animate_screen_in()
 
 func _apply_ui_kit() -> void:
@@ -69,9 +72,12 @@ func _apply_ui_kit() -> void:
 
 	# Reserve a real inset before the bronze header bottom (y=180).
 	# Two-line event copy must remain above the cards at y=196.
-	_place_v2(description_label, Vector2(198, 134), Vector2(884, 34))
+	_place_v2(description_label, Vector2(198, 134), Vector2(884, 40))
 	description_label.add_theme_font_size_override("font_size", 13)
 	description_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	# Godot may keep an older, taller Label minimum size after the dynamic
+	# recruit-text update. Top alignment holds its copy away from the border.
+	description_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	MISDEAL_UI_KIT.apply_screen_copy(description_label, MISDEAL_UI_KIT.TEXT_SECONDARY)
 
 	_place_v2(result_label, Vector2(198, 619), Vector2(884, 60))
@@ -79,10 +85,25 @@ func _apply_ui_kit() -> void:
 	result_label.add_theme_font_size_override("font_size", 15)
 	MISDEAL_UI_KIT.apply_screen_copy(result_label, MISDEAL_UI_KIT.PARCHMENT_WARM)
 
-	_place_v2(choices, Vector2(173, 196), Vector2(934, 394))
+	# Update child minimum sizes BEFORE setting the HBoxContainer width.
+	# Otherwise its old 3 × 330px minimum expands the box and CENTER
+	# alignment leaves ~55px of excess space on the left of the cards.
+	for button: Button in [accept_button, pay_button, leave_button]:
+		button.custom_minimum_size = Vector2(292.0, 394.0)
+	choices.alignment = BoxContainer.ALIGNMENT_BEGIN
 	choices.add_theme_constant_override("separation", 26)
+	_place_v2(choices, Vector2(176, 196), Vector2(928, 394))
 	for index in range(3):
 		_build_v2_choice_card(index)
+
+
+
+func _finalize_v2_choice_row() -> void:
+	# Header and footer share x=640 in the 1280px design viewport.
+	# Keep the 928px three-card row on that same centerline.
+	choices.alignment = BoxContainer.ALIGNMENT_BEGIN
+	choices.add_theme_constant_override("separation", 26)
+	_place_v2(choices, Vector2(176, 196), Vector2(928, 394))
 
 
 func _build_v2_choice_card(index: int) -> void:
@@ -146,7 +167,7 @@ func _build_v2_choice_card(index: int) -> void:
 	button.get_node("ChoiceDivider").visible = false
 	button.get_node("ChoiceBadge").visible = false
 	var warning: Label = [accept_warning, pay_warning, leave_warning][index]
-	_place_v2(warning, Vector2(26, 369), Vector2(240, 14))
+	_place_v2(warning, Vector2(26, 365), Vector2(240, 14))
 	warning.add_theme_font_size_override("font_size", 11)
 	MISDEAL_UI_KIT.apply_screen_copy(warning, MISDEAL_UI_KIT.STATUS_DANGER)
 
@@ -193,7 +214,10 @@ func _sync_v2_choice_copy() -> void:
 		# The final lower row is reserved for an optional warning, so the
 		# insufficient-gold card cannot shift its main text upwards.
 		detail_label.position.y = 90.0
-		detail_label.size.y = 38.0
+		detail_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+		# Two-line positive outcomes must stay visible; reserve a shorter
+		# detail area only for disabled cards that show a warning below.
+		detail_label.size.y = 34.0 if warnings[index].visible else 56.0
 		if warnings[index].visible:
 			# Keep the red failure reason in its reserved bottom row;
 			# don't repeat that same message inside the parchment copy.
