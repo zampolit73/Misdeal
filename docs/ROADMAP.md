@@ -1,3 +1,13 @@
+## Pack 2 all four enemies hooked up — local acceptance gate (2026-10-12)
+
+- [x] Approved genuine transparent 576×480 framesheets staged for Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden (25 used poses each).
+- [x] Bone Warden atlas committed and remote content verified (`77a759d`); enabled `bone_warden` in production library with static-v4 fallback (`1238b3c`).
+- [x] All four enemies now have production SpriteFrames lookup; no other roles switched.
+- [ ] **Local Godot F6 acceptance:** check all 4 enemies, all 5 states, foot baseline, cropping, effects and visuals at 1280×720.
+- [ ] **Live combat acceptance:** attack contact/VFX/HP/death, Bone Warden boss scale/movement/phase, enemy facing, no art clipping.
+- [ ] **Knight remains static v4:** only replace after new independently readable 25-frame art and user approval.
+- [ ] Fix any observed in-game issues before declaring Pack 2 final visual polish complete.
+
 ## Crypt Guard — Pack 2 integrated (2026-10-12)
 
 - [x] User approved Crypt Guard look and 25-frame 576×480 sheet; offline asset validation: zero errors or warnings.
