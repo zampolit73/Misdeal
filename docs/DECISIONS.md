@@ -2024,3 +2024,12 @@ Status: **user approved; binding visual-art direction**
 The user declared the approved **«MISDEAL — РАСКЛАД СУДЬБЫ»** tabletop their favorite art and explicitly asked that future UI/design be based on its palette and graphics. Adopt the original Fate Spread Variant C as the canonical style reference: obsidian/blackened timber, occult blood-red engraving, aged brass/bronze, warm card parchment, cool nocturnal highlights, practical candlelight and tactile physical tarot cards. The original composition, illustrations, XIII central boss, I–XII order, held/discard/deck places, colors and art are **frozen**, not targets of redesign. Style evolution must respect readable Cyrillic and usable controls.
 
 Design System 2.0 starts with documentation and **opt-in** `MisdealUIKit` material tokens; existing 1.0 tokens and production styles must not change automatically. Preview one isolated component/screen, ask user to approve its screenshot, then migrate individual interfaces. Battle arenas and miniature art retain their own scene logic. No full-scene re-rendering or wholesale design replacement without explicit permission.
+
+## D124 — Approve live Reward major-upgrade presentation as DS2 reference
+
+Date: 2026-10-12
+Status: **user-approved visual baseline; freeze without explicit request**
+
+The user supplied a real Godot 4.7.x screenshot at 1280×720 of the **production** Reward screen, mode **«РАЗВИТИЕ ОТРЯДА»** for a **two-hero party**, showing three dynamic upgrade cards: **«ЖЕЛЕЗНАЯ КЛЯТВА»**, **«ГРАД СТРЕЛ»**, **«ПАЛАЧ»**. User responded **«Все отлично! Фиксируй»**. Accept and preserve the existing dark blackwood / antique bronze / warm parchment palette, Variant C tabletop background, header, three card positions, illustrations, compact stat-effect rows, text wrapping and footer hierarchy. This approved real-game screenshot supersedes earlier preview-only approval for the major-upgrade state. **No redesign, recolor, size changes or card layout overhaul without discussion.**
+
+This is visual approval of the shown live **major_upgrade** state; it does **not** by itself certify gameplay award/return navigation or the distinct **normal_loot, bonus_upgrade, death_wager, elite_artifact** layouts. Continue testing those modes and resolve concrete bugs without undoing the approved visual language. Main implementation is `scripts/reward/reward.gd`, `scenes/reward/reward.tscn`; canonical style contract is D123 and `docs/DESIGN_SYSTEM.md`.
