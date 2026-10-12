@@ -2008,3 +2008,10 @@ Status: accepted as Pack 2 Stage B quality gate
 The Pack 1 Knight regressions demonstrated that frame count and normalized bounding-box placement alone do not guarantee readable limbs/boots. New Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden animation assets must first be delivered as **real transparent 6×5 atlases with 96px distinct character poses**. Automated checks reject missing frames, opaque/background-filled sprites and fake identical walk/attack rows; they warn about unstable sole y and cell-edge bleed. They cannot *certify* two readable boots, weapon anatomy, death pose quality or stylistic fit; require real Godot visual comparison.
 
 The candidate import tool, validator and F6 side-by-side review scene must remain **separate from production `BattleUnit`**. The four live enemy types continue using static v4 art and brief Stage A contact VFX until their staged frame artwork passes inspection and is explicitly approved. Do not use image-generation outputs of full arena scenes as character sprites or automate 25 cells by scaling/rotating one still.
+
+## D122 — Approve blue Knight redraw before restoring live frame animation
+
+Date: 2026-10-12  
+Status: accepted
+
+After the unreadable legs on Pack 1's original animated Knight, the user approved a new blue-armored pixel-art Knight with independently visible shin armor and boots. Preserve the original malformed v2 sheet for rollback and re-enable animation using the existing SpriteFrames infrastructure with static-v4 fallback. Do not replace silhouette problems with arbitrary Y-offset shifts. In-engine F6 and actual arena combat must verify boots/grounding and shield separation before the visual result is considered accepted. This replaces the *temporary* static-Knight requirement of D119 once the new atlas passes runtime QA; it does not change combat mechanics.
