@@ -85,6 +85,11 @@ Production commits: `9a5594b` (controller), `5d121d8` (existing backdrop referen
 Keep this accepted screen as the next reference after the favorite untouched Fate Spread Variant C. See D123 for the overall style and D124 for this scoped approval.
 
 
+## Stage 3 candidate — Whispering Well event F6 review (2026-10-12)
+
+A separate DS2 event preview has been added at `res://scenes/dev/design_system_v2_well_preview.tscn`, backed by `scripts/dev/design_system_v2_well_preview.gd`. It reuses existing illustrated Well background and three choice illustrations while presenting *actual recruiting-state consequences* (blood rescue, gold payment, walk away) inside parchment-card surfaces identical in material language to the approved Reward. A simulate-no-gold control demonstrates dimmed/disabled paid choice; selecting/inspecting changes only explanatory text. No game state, award or production Well presentation is affected. Godot 4.7.x F6 approval at 1280×720 required before migrating the real Well screen, and all recruit/no-recruit variants must remain functional. Do not apply the art of the Fate Spread verbatim as a generic replacement for every event illustration.
+
+
 ## Historical Design System 1.0 specification (retained for backwards compatibility)
 
 # Misdeal Design System 1.0 — Foundation (historical implementation baseline)
