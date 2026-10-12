@@ -1,3 +1,13 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Live Whispering Well DS2 visuals accepted; next Gravedigger Shop preview
+
+After correcting the real rightward `HBoxContainer` card-row shift and clipped recruitment copy in `scripts/event/whispering_well.gd` (`1adc634`), the user **confirmed local Godot result verbally: «без скрина все хорошо»** and asked to move on. Treat the **production Whispering Well visual composition as accepted**; a new screenshot is not a prerequisite. Binding decision **D126** preserves the bronze/parchment layout, centered three-card row, physical illustrations, status/header and warning treatment. Do not keep adjusting this screen unless another defect is reported.
+
+**Scope of acceptance:** visual/typography alignment after user's local run. No explicit evidence yet that *every* gameplay path was tested (blood -12 max HP, 25-gold rescue, abandon, revisit relic/extra-upgrade or table routing); retain functional smoke as separate backlog, not a blocker for the next visual preview. D123 and D124 still protect Fate Spread and approved live Reward major-upgrade screen.
+
+**Next agreed direction, not yet implemented:** isolated Design System 2.0 preview of **Gravedigger Shop** choices. The real shop is a `gravedigger_shop` branch in shared `scripts/event/act_choice.gd` / `scenes/event/act_choice.tscn` (also used by many other events). Existing `_configure_shop()` offers three role-specific upgrades (Knight, Ranger, Mage) at `RunState.get_gravedigger_shop_price()`, with gold gating and Lost Purse consequences. Create an isolated F6 preview first, then after user approval add presentation behind a `gravedigger_shop`-specific condition, preserving the other ~15+ event cases and the actual price/purchase rules. No production art or gameplay changed in this session.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Fixed actual right-shifted Whispering Well card row
 
 User inspected the latest live 1280×720 Whispering Well screenshot and correctly observed that three cards as a group were **~50–55 px too far right** relative to header and footer, despite the earlier card-text alignment pass. Visible first/last borders span ~x236..1164 in the 1299px screenshot while header/footer are centered ~x648: the card row center was ~x700. Also the left rescue option's second description line **«МАГ ПРИСОЕДИНИТСЯ»** was clipped, and the disabled coin warning sat too close to the parchment bottom.
