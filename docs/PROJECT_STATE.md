@@ -1,3 +1,9 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Shop preview missing-label fix, awaiting Godot recheck
+
+User screenshot of isolated `design_system_v2_shop_preview` revealed valid card art and changing labels but **absent static titles and descriptions** across header/cards/footer. Commit `f6bb46e` changes preview-only label initialization to assign static Cyrillic after all nodes are in tree and positioned; disabled-card contrast and availability-note tint adjusted. This is an unverified source-side fix; ask user for local F6 verification after `git pull`. Do not declare the visual accepted or migrate shared `act_choice.gd`. Existing RunState/shop economy and canonical screens untouched.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Gravedigger Shop DS2 isolated F6 preview committed
 
 Implemented ONLY a non-gameplay Gravedigger Shop DS2 F6 review scene (`scenes/dev/design_system_v2_shop_preview.tscn`, `scripts/dev/design_system_v2_shop_preview.gd`). It uses existing tabletop art, DS2 helpers and three existing role-upgrade art textures; displays a clearly labeled illustrative price 25 gold, simulated 40/10 gold and Mage-party availability switches, card selection and harmless leave feedback. No live `act_choice.gd`, economy, Fate Spread or production scene changed. Next: user runs F6 at 1280×720, reviews texts/illustrations/spacing/disabled state and approves before any narrowly scoped live migration. Preserve real dynamic `RunState.get_gravedigger_shop_price()` and Lost Purse logic when implementing later.
