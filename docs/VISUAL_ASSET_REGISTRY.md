@@ -1,3 +1,9 @@
+### CURRENT MAGE — 2026-10-12 — clean bearded Mage sheet
+
+- New active Mage `assets/pixel/units/combat_units_anim_v2/mage.webp.b64` commit `9d72854`, transparent 576×480, 25 used frames; old low-quality Mage archived `mage_archived_pre_dark_clean.webp.b64` commit `089b9fd`.
+- Mage hero-only scale 1.65 remains as visually accepted in screenshot; Mage attack plays six authored frames (`6ce91f9`).
+- Pending Godot F6 and actual battle review for alpha, limb silhouette, attack effects and ground contact.
+
 ### CURRENT MAGE ART — 2026-10-12 — elder bearded Mage atlas committed
 
 - Active Mage: `assets/pixel/units/combat_units_anim_v2/mage.webp.b64` (`3e23cc8`), approved variant 1 of latest three concepts; white-bearded elder in dark-violet robes with glowing staff. Prior Mage asset archived as `mage_archived_pre_oldbeard.webp.b64` (`4c0e94a`).
