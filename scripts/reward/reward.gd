@@ -53,19 +53,184 @@ func _ready() -> void:
 	call_deferred("_animate_reward_screen_in")
 
 func _apply_ui_kit() -> void:
-	MISDEAL_UI_KIT.apply_panel($HudPanel, MISDEAL_UI_KIT.BRONZE, false)
-	MISDEAL_UI_KIT.apply_panel($HeaderPanel, MISDEAL_UI_KIT.BRONZE, true)
-	MISDEAL_UI_KIT.apply_title(title_label, MISDEAL_UI_KIT.GOLD)
-	MISDEAL_UI_KIT.apply_subtitle(summary_label, MISDEAL_UI_KIT.BRONZE)
+	# The F6-approved Fate Spread material layout is now used by Reward.
+	# Keep the scene's existing Buttons, child data labels and click signals:
+	# only their presentation changes; reward handlers remain untouched.
+	$Logo.visible = false
+	$Visual.visible = false
+	$HudPanel.visible = false
+	$WizardBackdrop.modulate = Color.WHITE
+	$BackdropShade.color = Color(0.030, 0.013, 0.014, 0.53)
+	MISDEAL_UI_KIT.apply_v2_material_plate(header_panel, true)
+	header_panel.position = Vector2(167.0, 20.0)
+	header_panel.size = Vector2(946.0, 151.0)
 
-	var accents: Array[Color] = [
-		MISDEAL_UI_KIT.KNIGHT,
-		MISDEAL_UI_KIT.RANGER,
-		MISDEAL_UI_KIT.MAGE,
-	]
+	title_label.position = Vector2(211.0, 61.0)
+	title_label.size = Vector2(858.0, 43.0)
+	title_label.add_theme_font_size_override("font_size", 30)
+	MISDEAL_UI_KIT.apply_screen_copy(title_label, MISDEAL_UI_KIT.PARCHMENT_WARM, true)
+
+	summary_label.position = Vector2(211.0, 105.0)
+	summary_label.size = Vector2(858.0, 37.0)
+	summary_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	summary_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	summary_label.add_theme_font_size_override("font_size", 15)
+	MISDEAL_UI_KIT.apply_screen_copy(summary_label, MISDEAL_UI_KIT.TEXT, false)
+
+	run_stats_label.position = Vector2(211.0, 146.0)
+	run_stats_label.size = Vector2(858.0, 22.0)
+	run_stats_label.add_theme_font_size_override("font_size", 12)
+	MISDEAL_UI_KIT.apply_screen_copy(run_stats_label, MISDEAL_UI_KIT.AGED_BRONZE)
+
+	rewards_root.position = Vector2(174.0, 184.0)
+	rewards_root.size = Vector2(932.0, 412.0)
+	rewards_root.add_theme_constant_override("separation", 26)
+
+	# This plate uses the unchanged Hint label; dynamic reward-mode advice
+	# remains available at the bottom, independent of the cards.
+	var footer := Panel.new()
+	footer.name = "DS2RewardFooter"
+	footer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	footer.position = Vector2(174.0, 608.0)
+	footer.size = Vector2(932.0, 87.0)
+	add_child(footer)
+	MISDEAL_UI_KIT.apply_v2_material_plate(footer, false)
+	move_child(footer, hint_label.get_index())
+
+	hint_label.position = Vector2(198.0, 627.0)
+	hint_label.size = Vector2(882.0, 48.0)
+	hint_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	hint_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	hint_label.add_theme_font_size_override("font_size", 14)
+	MISDEAL_UI_KIT.apply_screen_copy(hint_label, MISDEAL_UI_KIT.PARCHMENT_WARM)
+	hover_summary_label.visible = false
+
 	for index in range(reward_buttons.size()):
-		MISDEAL_UI_KIT.apply_card_button(reward_buttons[index], accents[index])
-		MISDEAL_UI_KIT.apply_panel(upgrade_choose_bars[index], accents[index], false)
+		_build_v2_card_chrome(index)
+
+
+func _build_v2_card_chrome(index: int) -> void:
+	var button := reward_buttons[index]
+	button.custom_minimum_size = Vector2(292.0, 410.0)
+	button.focus_mode = Control.FOCUS_ALL
+	MISDEAL_UI_KIT.apply_v2_reward_card(button, false)
+	# Parent Button remains the sole input target; sub-controls ignore mouse.
+	var art_frame := Panel.new()
+	art_frame.name = "DS2ArtFrame"
+	art_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	art_frame.position = Vector2(14.0, 42.0)
+	art_frame.size = Vector2(264.0, 183.0)
+	button.add_child(art_frame)
+	button.move_child(art_frame, 0)
+	MISDEAL_UI_KIT.apply_v2_material_plate(art_frame, false)
+
+	var parchment := Panel.new()
+	parchment.name = "DS2Parchment"
+	parchment.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	parchment.clip_contents = true
+	parchment.position = Vector2(14.0, 234.0)
+	parchment.size = Vector2(264.0, 161.0)
+	button.add_child(parchment)
+	button.move_child(parchment, 1)
+	MISDEAL_UI_KIT.apply_v2_parchment_plate(parchment)
+
+	var rule := ColorRect.new()
+	rule.name = "DS2Rule"
+	rule.color = Color(0.40, 0.23, 0.13, 0.74)
+	rule.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	rule.position = Vector2(38.0, 281.0)
+	rule.size = Vector2(216.0, 1.0)
+	button.add_child(rule)
+	button.move_child(rule, 2)
+
+	var portrait := upgrade_portraits[index]
+	portrait.position = Vector2(20.0, 48.0)
+	portrait.size = Vector2(252.0, 171.0)
+	portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	portrait.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+
+	var role := upgrade_role_labels[index]
+	role.position = Vector2(20.0, 10.0)
+	role.size = Vector2(252.0, 25.0)
+	role.add_theme_font_size_override("font_size", 13)
+	role.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	role.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	role.clip_text = true
+
+	var heading := upgrade_title_labels[index]
+	heading.position = Vector2(25.0, 243.0)
+	heading.size = Vector2(242.0, 34.0)
+	heading.add_theme_font_size_override("font_size", 16)
+	heading.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	heading.clip_text = true
+
+	var effect := upgrade_quick_labels[index]
+	effect.position = Vector2(26.0, 287.0)
+	effect.size = Vector2(240.0, 34.0)
+	effect.add_theme_font_size_override("font_size", 12)
+	effect.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	effect.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	effect.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	effect.clip_text = true
+
+	var description := upgrade_description_labels[index]
+	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	description.clip_text = true
+	description.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	description.add_theme_font_size_override("font_size", 13)
+	description.position = Vector2(29.0, 323.0)
+	description.size = Vector2(234.0, 63.0)
+
+	# Selection is communicated by the entire antique card border.
+	upgrade_choose_bars[index].visible = false
+
+
+func _style_v2_reward_copy(index: int, effect_text: String = "") -> void:
+	var role := upgrade_role_labels[index]
+	var heading := upgrade_title_labels[index]
+	var effect := upgrade_quick_labels[index]
+	var description := upgrade_description_labels[index]
+
+	role.add_theme_color_override("font_color", MISDEAL_UI_KIT.PARCHMENT_WARM)
+	heading.add_theme_color_override("font_color", Color(0.18, 0.09, 0.07))
+	effect.text = effect_text
+	effect.visible = not effect_text.is_empty()
+	effect.add_theme_color_override("font_color", Color(0.43, 0.18, 0.10))
+	description.add_theme_color_override("font_color", Color(0.22, 0.16, 0.13))
+
+	# One/two-line effects leave room for the full explanatory text.
+	var has_effect := effect.visible
+	description.position.y = 323.0 if has_effect else 290.0
+	description.size.y = 63.0 if has_effect else 96.0
+	var length := description.text.length()
+	var font_size := 13
+	if length > 125:
+		font_size = 11
+	elif length > 90:
+		font_size = 12
+	description.add_theme_font_size_override("font_size", font_size)
+	# Tooltip keeps every character accessible even if translation grows.
+	reward_buttons[index].tooltip_text = "%s\n\n%s\n%s" % [
+		heading.text, effect_text, description.text
+	]
+	call_deferred("_fit_v2_reward_copy", index)
+
+
+func _fit_v2_reward_copy(index: int) -> void:
+	if index < 0 or index >= reward_buttons.size():
+		return
+	var description := upgrade_description_labels[index]
+	if not description.visible:
+		return
+	# Auto-fit after Control's final width has been established. This
+	# prevents future longer role/artifact descriptions from clipping.
+	for point_size in range(description.get_theme_font_size("font_size"), 9, -1):
+		description.add_theme_font_size_override("font_size", point_size)
+		if description.get_line_count() * (point_size + 3) <= description.size.y:
+			break
 
 
 func _setup_initial_reward() -> void:
@@ -348,14 +513,14 @@ func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData)
 	upgrade_portraits[index].texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	upgrade_portraits[index].stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	upgrade_portraits[index].visible = approved_art != null
-	upgrade_choose_bars[index].visible = true
+	upgrade_choose_bars[index].visible = false
 	_apply_upgrade_text_layout(index, approved_art != null)
 	upgrade_role_labels[index].text = _get_role_label(upgrade.target_role)
 	upgrade_role_labels[index].add_theme_color_override("font_color", _get_role_color(upgrade.target_role))
 	upgrade_title_labels[index].text = upgrade.title
 	upgrade_title_labels[index].add_theme_color_override("font_color", _get_role_color(upgrade.target_role).lightened(0.12))
 	upgrade_description_labels[index].text = upgrade.description
-	upgrade_quick_labels[index].visible = false
+	_style_v2_reward_copy(index, _get_upgrade_quick_effect(upgrade_id))
 
 func _set_reward_card(index: int, art_key: String, kicker: String, title: String, description: String) -> void:
 	var button := reward_buttons[index]
@@ -375,10 +540,15 @@ func _set_reward_card(index: int, art_key: String, kicker: String, title: String
 	upgrade_role_labels[index].add_theme_color_override("font_color", accent.darkened(0.08))
 	upgrade_title_labels[index].text = title
 	upgrade_title_labels[index].add_theme_color_override("font_color", accent)
-	upgrade_description_labels[index].text = description
-	upgrade_description_labels[index].add_theme_color_override("font_color", Color(0.82, 0.78, 0.73, 1.0))
-	upgrade_quick_labels[index].visible = false
-	upgrade_choose_bars[index].visible = true
+	var detail := description
+	var effect := ""
+	var separator := description.find("\n")
+	if separator >= 0:
+		effect = description.substr(0, separator).strip_edges()
+		detail = description.substr(separator + 1).strip_edges()
+	upgrade_description_labels[index].text = detail
+	_style_v2_reward_copy(index, effect)
+	upgrade_choose_bars[index].visible = false
 
 func _set_upgrade_nodes_visible(index: int, visible: bool) -> void:
 	upgrade_portraits[index].visible = visible
@@ -412,9 +582,10 @@ func _get_upgrade_quick_effect(upgrade_id: String) -> String:
 			return "ПЕРЕПИСЫВАЕТ БИЛД ГЕРОЯ"
 
 func _apply_upgrade_text_layout(index: int, has_approved_art: bool) -> void:
-	upgrade_role_labels[index].position.y = 196.0
-	upgrade_title_labels[index].position.y = 224.0
-	upgrade_description_labels[index].position.y = 260.0
+	# Keep identical card geometry for normal loot, upgrades and wagers.
+	upgrade_role_labels[index].position.y = 10.0
+	upgrade_title_labels[index].position.y = 243.0
+	upgrade_description_labels[index].position.y = 323.0
 
 func _get_role_label(role: String) -> String:
 	match role:
@@ -535,6 +706,8 @@ func _reset_buttons() -> void:
 		button.remove_meta("quick_effect")
 		button.remove_theme_color_override("font_color")
 		button.remove_theme_color_override("font_hover_color")
+		button.tooltip_text = ""
+		MISDEAL_UI_KIT.apply_v2_reward_card(button, false)
 		_set_upgrade_nodes_visible(index, false)
 
 func _enable_reward_buttons() -> void:
