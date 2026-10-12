@@ -1,6 +1,6 @@
 # Misdeal — Unit Animation Pack 2
 
-Status: **Stage A attack-contact VFX live, Stage B candidate QA/importer + side-by-side F6 review committed; no new frame artwork activated.**  
+Status: **Stage B technical preparation COMPLETE in GitHub; authentic animation spritesheets for four enemy roles still REQUIRED; no new combat art activated. Stage A contact VFX live.**  
 Date: 2026-10-12
 
 ## Scope
