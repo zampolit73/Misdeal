@@ -1,3 +1,9 @@
+### CURRENT GAME-ART STATUS — 2026-10-12 — Pack 2 staging complete; new character animation art missing
+
+- **LIVE NOW:** Knight uses readable static v4 (offset -8); Ranger, male Mage, Skeleton and Bone Archer use real Pack 1 v2 frames. Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden still use **static v4** plus already-live Stage A short contact VFX.
+- **NOT YET CREATED / NOT IN BATTLE:** 4 authentic per-role transparent 576x480 sheets (6x5 grid, 96px cells; 25 used frames), for `bone_thrall`, `grave_bellkeeper`, `crypt_guard`, `bone_warden`. No candidate `.webp.b64` has been approved or enabled. Candidate folder contains README only.
+- **PREPARATION FINISHED:** staged importer `scripts/dev/import_animation_pack2_candidate.py`, isolated Godot validator `scripts/dev/unit_animation_candidate_validator.gd`, F6 comparison `scenes/dev/unit_animation_pack2_preview.tscn`. Details in `docs/UNIT_ANIMATION_PACK2.md`; check manual visual integrity of feet, weapon, pixel art and grounded fall.
+- **Important correction:** historical sections below refer to Knight as animated in Pack 1, but its animation was withdrawn from **current production** because legs were unreadable. Keep v4 until redesigned frames pass visual review. Stage B has not altered the production loader or miniature art.
 ### Animation Pack 1 grounded v2 — live asset set (2026-10-12)
 
 - Canonical live animation assets are now `assets/pixel/units/combat_units_anim_v2/{knight,ranger,mage,skeleton,bone_archer}.webp.b64`. Original `combat_units_anim_v1` remains committed for rollback.
