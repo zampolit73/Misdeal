@@ -1,3 +1,9 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Gravedigger Shop DS2 isolated F6 preview committed
+
+Implemented ONLY a non-gameplay Gravedigger Shop DS2 F6 review scene (`scenes/dev/design_system_v2_shop_preview.tscn`, `scripts/dev/design_system_v2_shop_preview.gd`). It uses existing tabletop art, DS2 helpers and three existing role-upgrade art textures; displays a clearly labeled illustrative price 25 gold, simulated 40/10 gold and Mage-party availability switches, card selection and harmless leave feedback. No live `act_choice.gd`, economy, Fate Spread or production scene changed. Next: user runs F6 at 1280×720, reviews texts/illustrations/spacing/disabled state and approves before any narrowly scoped live migration. Preserve real dynamic `RunState.get_gravedigger_shop_price()` and Lost Purse logic when implementing later.
+
+---
+
 > **One-page current handoff:** [`SESSION_CHECKPOINT.md`](SESSION_CHECKPOINT.md). The latest milestone below is authoritative; older pending visual checks were superseded by D126.
 
 ## CURRENT CHECKPOINT — 2026-10-12 — Live Whispering Well DS2 visuals accepted; next Gravedigger Shop preview
