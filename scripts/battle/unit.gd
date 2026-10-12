@@ -36,7 +36,7 @@ const HERO_DISPLAY_SCALE := 1.28
 const HERO_ROLE_VISUAL_SCALES := {
 	"knight": 0.90,
 	"ranger": 1.00,
-	"mage": 1.65,
+	"mage": 1.25,
 }
 const ENEMY_DISPLAY_SCALE := 1.25
 const BOSS_DISPLAY_SCALE := 1.24
