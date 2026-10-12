@@ -1,3 +1,8 @@
+## 2026-10-12 — Gravedigger Shop design preview
+
+- Added isolated `design_system_v2_shop_preview` Godot F6 scene with three illustrated DS2 merchant choices and non-gameplay affordability / role-availability interactions.
+- Production shop, real prices, purchases, events and accepted Fate Spread/Reward/Well art remain untouched.
+
 # Changelog
 
 ## Unreleased
