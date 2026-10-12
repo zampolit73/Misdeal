@@ -1,3 +1,7 @@
+## NEW — 2026-10-12 — Gravedigger Shop DS2 isolated preview staged
+
+F6 scene `res://scenes/dev/design_system_v2_shop_preview.tscn` and controller `scripts/dev/design_system_v2_shop_preview.gd` now exist in main. Three existing upgrade illustrations (Knight executioner, Ranger arrowstorm, Mage glass heart) are displayed on tactile DS2 cards with illustrative 25-gold prices, gold 40/10 toggle, Mage-in-party toggle and no-purchase action. This is a strictly non-gameplay review: no RunState or routing; price is **sample only**, NOT read from actual shop. User should `git pull`, open the preview scene and F6 at 1280×720 to approve or request polish. **DO NOT integrate into shared production `act_choice.gd` until visual acceptance**; actual `RunState.get_gravedigger_shop_price()` and Lost Purse pricing remain unchanged. D123/D124/D126 approved screens untouched.
+
 # Misdeal — Current Session Checkpoint
 
 **As of:** 2026-10-12 (user confirmed local visuals)  
