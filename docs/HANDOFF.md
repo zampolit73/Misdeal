@@ -1,3 +1,13 @@
+# LATEST HANDOFF — 2026-10-12 — Blue Knight animation now live in GitHub
+
+User approved new **blue** armored Knight with clearly distinct legs. The transparent 576×480 25-frame atlas is committed as `assets/pixel/units/combat_units_anim_v2/knight.webp.b64` (`6afd288`), and source-to-GitHub Base64 was verified (456632 chars). Previous flawed Knight sheet archived alongside as `knight_archived_pre_blue.webp.b64` (`0101679`). Production `scripts/battle/unit.gd` opted Knight back into normal SpriteFrames (`dffa7ee`), keeping static v4 fallback when animation file fails.
+
+**Engine acceptance outstanding:** Godot 4.7.x not run here; user must `git pull`, open `res://scenes/dev/unit_animation_pack1_preview.tscn` (F6), examine Knight all five states, then test solo/duo/trio in Bone Swarm / Grave Crossroads. Confirm distinct left/right boots, grounding against ring, shield not obscuring feet, death pose and no frame boundary scraps. Other four Pack 1 roles, all Pack 2 enemies, combat mechanics unchanged.
+
+Current art status: five Pack 1 roles and four Pack 2 roles now frame-enabled. After screenshot feedback, address only actual observed in-engine quality issues. Do not re-enable archived Knight or change fundamental combat design. All older handoff sections below are historical.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — All four Pack 2 animation assets committed / enabled
 
 All four user-approved Pack 2 animated enemies have actual 576×480 transparent, 25-used-frame Base64 WebP resources at `assets/pixel/units/combat_units_anim_pack2_candidates/{bone_thrall,grave_bellkeeper,crypt_guard,bone_warden}.webp.b64`. Bone Warden was last: asset commit `77a759d`, loader commit `1238b3c`; GitHub's fetched Base64 text matches the approved source (379148 characters). Production `MisdealUnitAnimationLibrary` includes all four Pack 2 roles while preserving static v4 fallback. Original Stage A contact VFX remain; gameplay/AI/stat/battle layouts unaffected.
