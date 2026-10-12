@@ -1,3 +1,9 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Mage visual scale reduced after clean art replacement
+
+User screenshot of Bone Swarm showed the latest clean Mage art too tall at multiplier 1.65 compared to Ranger. Changed only `HERO_ROLE_VISUAL_SCALES["mage"]` in `scripts/battle/unit.gd` from 1.65 to **1.25** (commit `38831c0`); Knight remains 0.90, Ranger 1.00. Asset, combat physics, enemy scales and gameplay unchanged. New Godot screenshot validation pending.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Clean elderly Mage atlas deployed
 
 After screenshot feedback: Mage height was accepted with hero-only scale **1.65**, but the previous atlas showed weak/transparent silhouette and extraction artifacts. User approved a newly generated elder bearded Mage with solid purple cloak and staff. Production `assets/pixel/units/combat_units_anim_v2/mage.webp.b64` is replaced by the cleaner transparent 576×480 / 25-pose sheet (commit `9d72854`), verified remote text equals approved 414688-character Base64 file. Former atlas archived at `mage_archived_pre_dark_clean.webp.b64` (commit `089b9fd`).
