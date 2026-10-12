@@ -1,3 +1,10 @@
+## Player trio battle sprite size pass (2026-10-12)
+
+- [x] Hero-only art scale multipliers relative to Ranger: Knight 0.90, Ranger 1.00, Mage 1.15 (`24b3df1`).
+- [x] Keep enemy/boss visual scale, battle hitboxes, stats, AI and placement unchanged; reuse animated sole grounding after final scale.
+- [ ] Local Godot check: Iron Wall encounter with all three heroes at 1280×720; compare visible head/boot heights, animation states and floor contact.
+- [ ] Refine only if screenshots demonstrate residual disparities; avoid shared camera/arena changes.
+
 ## Bearded Mage redraw delivered — local acceptance pending (2026-10-12)
 
 - [x] User chose first of three concepts: older white-bearded male Mage with purple staff and robes.
