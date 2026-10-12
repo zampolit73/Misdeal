@@ -12,21 +12,21 @@ const REWARD_SAMPLES := [
 		"eyebrow": "I  /  ДОБЫЧА",
 		"title": "ЗОЛОТОЙ КУШ",
 		"effect": "+60 золота",
-		"description": "Самый безопасный способ забрать выигрыш."
+		"description": "Самый безопасный способ\nзабрать выигрыш."
 	},
 	{
 		"art": "relic_wager",
 		"eyebrow": "II  /  РЕЛИКВИЯ",
 		"title": "ДАР ИЗ СКЛЕПА",
 		"effect": "Одна реликвия",
-		"description": "Сила с ценой, о которой Волшебник умолчал."
+		"description": "Сила с ценой, о которой\nВолшебник умолчал."
 	},
 	{
 		"art": "bonus_upgrade",
 		"eyebrow": "III  /  СТАВКА",
 		"title": "УДВОИТЬ СТАВКУ",
 		"effect": "+1 выбор развития",
-		"description": "Ещё один шанс переписать судьбу героя."
+		"description": "Ещё один шанс переписать\nсудьбу героя."
 	}
 ]
 
@@ -124,33 +124,42 @@ func _populate_card(button: Button, data: Dictionary) -> void:
 
 	var parchment := Panel.new()
 	parchment.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	parchment.clip_contents = true
 	_place(parchment, Vector2(14.0, 234.0), Vector2(264.0, 161.0))
 	button.add_child(parchment)
 	UI.apply_v2_parchment_plate(parchment)
 
-	var headline := _text(String(data["title"]), 18, Color(0.18, 0.09, 0.07))
-	_place(headline, Vector2(10.0, 12.0), Vector2(244.0, 28.0))
+	# Set word wrapping before parenting/sizing. Godot's Label minimum size
+	# otherwise expands to one long line, overrunning neighboring cards.
+	var headline := _text(String(data["title"]), 16, Color(0.18, 0.09, 0.07))
+	headline.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	headline.clip_text = true
 	headline.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	headline.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	parchment.add_child(headline)
+	_place(headline, Vector2(10.0, 9.0), Vector2(244.0, 35.0))
 
 	var rule := ColorRect.new()
 	rule.color = Color(0.40, 0.23, 0.13, 0.74)
 	rule.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_place(rule, Vector2(24.0, 47.0), Vector2(216.0, 1.0))
 	parchment.add_child(rule)
+	_place(rule, Vector2(24.0, 49.0), Vector2(216.0, 1.0))
 
-	var effect := _text(String(data["effect"]), 17, Color(0.43, 0.18, 0.10))
-	_place(effect, Vector2(10.0, 57.0), Vector2(244.0, 27.0))
+	var effect := _text(String(data["effect"]), 15, Color(0.43, 0.18, 0.10))
+	effect.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	effect.clip_text = true
 	effect.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	effect.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	parchment.add_child(effect)
+	_place(effect, Vector2(10.0, 55.0), Vector2(244.0, 31.0))
 
-	var description := _text(String(data["description"]), 14, Color(0.22, 0.16, 0.13))
-	_place(description, Vector2(16.0, 92.0), Vector2(232.0, 54.0))
+	var description := _text(String(data["description"]), 13, Color(0.22, 0.16, 0.13))
+	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	description.clip_text = true
 	description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	description.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	parchment.add_child(description)
-
+	_place(description, Vector2(14.0, 91.0), Vector2(236.0, 60.0))
 
 func _build_footer() -> void:
 	var footer := PanelContainer.new()
