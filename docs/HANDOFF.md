@@ -1,3 +1,11 @@
+# LATEST HANDOFF — 2026-10-12 — Hero art scale normalization
+
+Screenshot of **ЖЕЛЕЗНАЯ СТЕНА** revealed Knight visibly larger than Ranger and new elder Mage visually tiny. In `scripts/battle/unit.gd`, hero-only `HERO_ROLE_VISUAL_SCALES` now multiplies the existing hero art scale: Knight 0.90, Ranger 1.00, Mage 1.15 (commit `24b3df1`). `base_sprite_scale` and animated foot-rest position are computed AFTER the role factor, so floor baseline should follow the new scale. Enemies, boss, hitboxes, movement, AI, combat balance and art files are untouched.
+
+**Pending local QA:** `git pull`, open the Iron Wall encounter with all three heroes, inspect matching perceived height against floor ring in placement, idle and actual combat. These are initial correction factors, not user-verified final parity. Previous Knight blue and bearded Mage animation QA remains open. Older sections below are historical.
+
+---
+
 # LATEST — 2026-10-12 — Approved old-bearded Mage replacement in main
 
 User approved **variant 1 from the last three Mage concepts**, a silver-haired, white-bearded, staff-wielding elder with dark purple robe. Its new transparent 576×480 25-frame Base64 WebP replaces `assets/pixel/units/combat_units_anim_v2/mage.webp.b64` (`3e23cc8`); prior Mage sheet archived alongside as `mage_archived_pre_oldbeard.webp.b64` (`4c0e94a`). Remote Base64 confirmed exactly equal to supplied approved artifact (123144 characters). No `.gd` or combat content changed because Mage already loads animation frames.
