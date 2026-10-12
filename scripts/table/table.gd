@@ -6,6 +6,7 @@ const SQUAD_STATUS_SCENE := preload("res://scenes/table/squad_status.tscn")
 const FATE_SPREAD_SCENE := preload("res://scenes/table/fate_spread_overlay.tscn")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 
 const LEFT_CARD_POSITION := Vector2(396.0, 366.0)
 const RIGHT_CARD_POSITION := Vector2(654.0, 366.0)
@@ -110,6 +111,7 @@ func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_panel(wager_reward_panel, MISDEAL_UI_KIT.GOLD, false)
 	MISDEAL_UI_KIT.apply_action_button(wager_accept_button, MISDEAL_UI_KIT.EMBER, true)
 	MISDEAL_UI_KIT.apply_action_button(wager_refuse_button, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_DS2_ROLLOUT.table(self)
 
 
 func _input(event: InputEvent) -> void:
