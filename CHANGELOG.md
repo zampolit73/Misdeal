@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Documentation — compact next-chat restart checkpoint (2026-10-12)
+
+- Added `docs/SESSION_CHECKPOINT.md` with accepted Fate Spread/Reward/Whispering Well visual baselines, outstanding functionality checks and the scoped Gravedigger Shop F6 preview as next task.
+- Linked the checkpoint from `AGENTS.md`, `docs/PROJECT_STATE.md` and `docs/HANDOFF.md`. No gameplay code or assets changed.
+
+
 ### Accepted — Whispering Well live DS2 layout (2026-10-12)
 
 - User verbally confirmed final production Whispering Well card-row alignment and text treatment in local Godot after `1adc634`; marked visually accepted in decision D126 without requiring an extra screenshot.
