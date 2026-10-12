@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Added — DS2 Whispering Well review scene (2026-10-12)
+
+- New F6-only interactive event preview with approved Whispering Well illustrated backdrop and existing choice art, bronze/card/parchment material style and three authentic recruitment choices.
+- Preview-only selection, inspect and simulated insufficient-gold disabled state; no changes to live event, RunState, reward logic or approved Fate Spread.
+- Godot 1280×720 visual review and production migration approval pending.
+
+
 ### Added — DS2 Event visual preview (2026-10-12)
 
 - Added F6-only Whispering Well card choice study with existing game art, Variant C backdrop, shared bronze/parchment UI styles and non-gameplay selected-card interaction. Production event scenes and logic untouched; Godot visual review pending.
