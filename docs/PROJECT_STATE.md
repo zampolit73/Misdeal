@@ -1,3 +1,13 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Pack 2 four enemies enabled; local runtime QA pending
+
+**Actual GitHub main:** the approved Bone Warden 576×480 transparent WebP/Base64 atlas with 25 used poses (Idle4/Walk6/Attack6/Hit3/Death6) is now committed at `assets/pixel/units/combat_units_anim_pack2_candidates/bone_warden.webp.b64` (asset commit `77a759d`), and fetched remote text matches the approved source exactly (379148 Base64 characters). `scripts/battle/unit_animation_library.gd` routes `bone_warden` together with `bone_thrall`, `grave_bellkeeper`, and `crypt_guard` to the Pack 2 directory (commit `1238b3c`), all preserving static v4 missing/invalid asset fallback.
+
+**Pack 2 implementation complete in GitHub, NOT Godot-accepted:** all four enemy sheets and code lookup are present. Offline Pillow frame/grid/alpha/sole QA passed (Bone Warden: zero errors, zero warnings), but local Godot 4.7.x F6 and real battle verification STILL REQUIRED. Confirm boss scale, heavy staff swing, flash/fx alignment, grounded death, mirrored direction, and transitions before calling the visual pass accepted. No combat mechanics, AI, stats or encounter content changed.
+
+**Current roles:** Knight intentionally static v4 until readable replacement; Ranger/Mage/Skeleton/Bone Archer animated Pack 1 v2; Bone Thrall, Grave Bellkeeper, Crypt Guard, Bone Warden animated Pack 2 with v4 fallback. Next gameplay action: `git pull`, F6 `res://scenes/dev/unit_animation_pack2_preview.tscn`, then Bone Warden and other enemy encounters. Only remaining core animation replacement backlog is Knight redesign; do not blindly enable archived broken Knight frames.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Crypt Guard sprite animation committed and enabled
 
 **GitHub main implementation:** approved Crypt Guard 576×480 transparent sheet (6×5 grid, 25 poses) stored at `assets/pixel/units/combat_units_anim_pack2_candidates/crypt_guard.webp.b64` (commit `5412b1d`), exact remote Base64 text compared with the supplied asset. `scripts/battle/unit_animation_library.gd` includes `crypt_guard` in Pack 2 path alongside Bone Thrall and Grave Bellkeeper (commit `fa78548`), with existing v4 fallback. Previous offline grid/alpha/grounding validation: 0 errors/0 warnings. **Godot F6 and live-combat runtime validation remain pending**; do not imply engine-tested animation.
