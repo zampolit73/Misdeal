@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Design — Fate Spread becomes canonical Design System 2.0 reference (2026-10-12)
+
+- Documented user-approved Fate Spread Variant C as primary whole-game visual reference and introduced opt-in dark wood/ritual red/aged bronze/parchment/moonlit steel material palette.
+- Added non-breaking `MisdealUIKit` constants for future isolated preview and phased UI migration. Existing production visuals and gameplay remain unchanged.
+
+
 ### Changed — Compact gothic unit health tracks (2026-10-12)
 
 - Restyled battle health indicators into smaller dark framed progress bars with subdued green/red fill and boss width variant, without changing HP updates or combat mechanics. Local Godot visual review pending.
