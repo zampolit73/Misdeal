@@ -1,3 +1,11 @@
+## Grave Bellkeeper Pack 2 integration — 2026-10-12
+
+- [x] Approved Grave Bellkeeper visual; prepared 576×480 transparent 6×5 atlas with 25 used poses, offline checks completed.
+- [x] Upload `grave_bellkeeper.webp.b64` to `assets/pixel/units/combat_units_anim_pack2_candidates/` and verify exact GitHub content (commit `c28011d`).
+- [x] Enable Grave Bellkeeper via production SpriteFrames library, keeping static v4 fallback (commit `9f32e4b`).
+- [ ] **LOCAL GODOT F6 / BATTLE:** inspect Idle/Walk/Attack/Hit/Death, bell and chain, ground line, flip and death/targeting, against the existing v4 silhouette.
+- [ ] Author, validate, approve and enable Crypt Guard and Bone Warden sheets separately. Knight stays static v4 pending redraw.
+
 ## Bone Thrall Pack 2 sheet in GitHub — local QA gate (2026-10-12)
 
 - [x] User approved Bone Thrall 25-pose asset, transparent 576×480 grid.
