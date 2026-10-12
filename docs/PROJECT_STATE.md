@@ -1,3 +1,9 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Compact health bar visual pass
+
+After the user's Gallows Volley screenshot, the solid neon-green/red health bars were redesigned in `scripts/battle/unit.gd` (`d744e61`). Smaller 58px-wide/7px-high standard tracks with dark background, thin bronze borders and muted green/red fill replace thick flat strips; Crypt Guard remains slightly wider (66px) and boss has a distinct 114px/9px track. The style uses existing `ProgressBar` and health update logic; no mechanics, UI scene node hierarchy, sprite art or player/enemy positioning were changed. Local Godot 4.7.x battle/screenshot QA pending; examine readable HP, bar overlap at crowded positions, team contrast and boss presentation.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Mage visual scale reduced after clean art replacement
 
 User screenshot of Bone Swarm showed the latest clean Mage art too tall at multiplier 1.65 compared to Ranger. Changed only `HERO_ROLE_VISUAL_SCALES["mage"]` in `scripts/battle/unit.gd` from 1.65 to **1.25** (commit `38831c0`); Knight remains 0.90, Ranger 1.00. Asset, combat physics, enemy scales and gameplay unchanged. New Godot screenshot validation pending.
