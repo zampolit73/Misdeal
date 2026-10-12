@@ -1,3 +1,11 @@
+## DS2 live Reward visual approval — 2026-10-12
+
+- [x] User approved **production Godot** screenshot at 1280×720 for `major_upgrade` / `РАЗВИТИЕ ОТРЯДА` with two heroes and three upgrade cards (D124).
+- [x] Freeze approved visual hierarchy, parchment/bronze material treatment, illustration layout, wrapping, header and footer for this state.
+- [ ] Smoke-test clicking an upgrade, then subsequent ordinary loot and correct return to table.
+- [ ] Verify one-card normal loot, three-choice Death Wager, bonus upgrade and elite artifact rewards at 1280×720 for both art/text and actual reward grants.
+- [ ] Once remaining reward flows pass, advance DS2 screen-by-screen to events and merchant UI, keeping the favorite Fate Spread unchanged.
+
 ## Design System 2.0: production Reward migrated (2026-10-12)
 
 - [x] User approved reward-preview look and corrected parchment text-fit; authorized real game migration.
