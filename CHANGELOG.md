@@ -1,3 +1,9 @@
+## 2026-10-13 — Bulk DS2 visual acceptance
+
+- User reviewed the consolidated production Design System 2.0 update in local Godot and confirmed «все хорошо».
+- Marked bulk visual styling as accepted; no code, assets, layout or mechanics modified in this checkpoint.
+- Next focus shifts to Act 1 gameplay/content and replayability; exhaustive conditional gameplay regression checks remain separate.
+
 ## 2026-10-12 — Bulk Design System 2.0 UI adoption
 
 - Added `scripts/event/act_choice_ds2.gd` for remaining shared event screens: original story art + tactile choice cards, dynamic Cyrillic details, original choice input and state, centered variable-count rows, result footer.
