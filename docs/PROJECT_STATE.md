@@ -1,3 +1,13 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Grave Bellkeeper Pack 2 atlas committed and enabled
+
+**Implemented in GitHub main:** approved transparent 576×480 Grave Bellkeeper atlas `assets/pixel/units/combat_units_anim_pack2_candidates/grave_bellkeeper.webp.b64` (commit `c28011d`), remote file verified byte-for-byte against the prepared Base64 export (362748 characters). The production library now includes `grave_bellkeeper` beside `bone_thrall`, using the Pack 2 directory and existing static-v4 fallback (commit `9f32e4b`). The 25 active poses are Idle4 / Walk6 / Attack6 / Hit3 / Death6.
+
+**Godot acceptance STILL PENDING:** offline extraction/alpha/grid checks were run earlier; full F6 and real battle have not been executed in this environment. User should verify actual silhouettes, bell chain/weapon continuity, footing, facing and death. No stat, AI, targeting, tactical or encounter changes.
+
+**Active roles:** Knight static v4. Ranger/Mage/Skeleton/Bone Archer animated Pack 1 v2. Bone Thrall + Grave Bellkeeper animated Pack 2 with v4 fallback. Crypt Guard and Bone Warden still static v4 with existing Stage A contact VFX and need authored 25-frame sheets. Next asset: Crypt Guard.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Approved Bone Thrall sprite sheet uploaded and loader enabled
 
 **ACTUAL GitHub asset uploaded and verified:** `assets/pixel/units/combat_units_anim_pack2_candidates/bone_thrall.webp.b64` is in `main`, commit `29d0725c3bd2c1ae8b07f6de2df2cf9095c01637`; fetched Base64 bytes were checked against approved conversation export (exact match, 254064 Base64 characters). It is a transparent 576×480 6×5, 25-used-pose asset. The previously committed production `MisdealUnitAnimationLibrary` optional `bone_thrall` path now resolves this real file, so **Bone Thrall is switched to SpriteFrames on asset-present builds**, with static-v4 fallback if unavailable. Stage A attack FX remain.
