@@ -1,3 +1,11 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Production Reward major-upgrade visuals approved in Godot
+
+The user supplied a **real Godot 1280×720 screenshot** of the production `РАЗВИТИЕ ОТРЯДА` screen with a duo party and three live upgrade cards: `ЖЕЛЕЗНАЯ КЛЯТВА` (Knight), `ГРАД СТРЕЛ` (Ranger), `ПАЛАЧ` (Knight). They explicitly confirmed **«Все отлично! Фиксируй»**. **Visual acceptance granted** to the actual DS2 major-upgrade layout: blackened wood / Variant C table backdrop, aged bronze framed cards, warm parchment effect/description sections, title/summary/footer positioning, approved dynamic art and Cyrillic readability. Binding decision **D124** records the frozen visual baseline. No additional art or code edits were requested or made at this acceptance checkpoint.
+
+Important distinction: screenshot confirms **visual presentation** of `major_upgrade`, not whether an upgrade click, subsequent loot and table navigation worked; those functional checks remain open, along with visual/gameplay checks for `normal_loot`, `bonus_upgrade`, `death_wager` and `elite_artifact`. Do not revert accepted styling while addressing specific runtime issues. **Next UI migration candidates:** event choices/shop, only after appropriate preview or scoped review under D123.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Design System 2.0 live Reward migration committed; Godot smoke pending
 
 User approved the isolated DS2 reward preview visuals and subsequent card-text fit, then explicitly authorized deploying it to the real Reward screen. **Actual main code:** `scripts/reward/reward.gd` now lays out existing three clickable reward Buttons as DS2 cards over the canonical Fate Spread Variant C material aesthetic, using opt-in `MisdealUIKit.apply_v2_material_plate`, `apply_v2_parchment_plate`, `apply_v2_reward_card`. Existing reward labels and portraits are repurposed, not replaced with dummy offers; real art still resolves via `CardArtCatalog`, `ApprovedChoiceArt` and `ArtifactArtCatalog`. Live `scenes/reward/reward.tscn` references the existing `assets/pixel/table/approved_variant_c/table_exact.webp` background without modifying that asset. Card title/effect/description wrap, use bounded parchment areas and full-text tooltips; long upgrade bonus/penalty lines have extended display room.
