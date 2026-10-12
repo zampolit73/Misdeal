@@ -86,6 +86,9 @@ func _build_v2_choice_card(index: int) -> void:
 	button.focus_mode = Control.FOCUS_ALL
 	button.text = ""
 	MISDEAL_UI_KIT.apply_v2_reward_card(button)
+	# Connect before the gameplay handler so the chosen card is visibly
+	# highlighted during the original result/return animation.
+	button.pressed.connect(_highlight_v2_choice.bind(button))
 
 	# Panels intentionally sit behind the original in-game ChoiceArt node.
 	var art_frame := Panel.new()
@@ -198,6 +201,12 @@ func _sync_v2_choice_copy() -> void:
 			button.modulate = Color.WHITE
 		button.tooltip_text = offer
 		button.text = ""
+
+
+
+func _highlight_v2_choice(chosen: Button) -> void:
+	for button: Button in [accept_button, pay_button, leave_button]:
+		MISDEAL_UI_KIT.apply_v2_reward_card(button, button == chosen)
 
 
 func _make_v2_label(value: String, font_size: int, color: Color) -> Label:
