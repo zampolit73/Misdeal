@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Approved — Live Reward major-upgrade UI visual baseline (2026-10-12)
+
+- User accepted actual Godot 1280×720 production `РАЗВИТИЕ ОТРЯДА` with three upgrades (Knight/Ranger/Knight) in DS2 blackwood, bronze and parchment style; locked in D124.
+- Acceptance documents the live screen's appearance only. Other reward modes and claim/navigation flows remain pending verification. No code or game-art changes at this checkpoint.
+
+
 ### Changed — Design System 2.0 live Reward screen (2026-10-12)
 
 - Migrated production Reward presentation from colored panels to approved Fate Spread material language: existing Variant C table background, dark card chrome, aged bronze and parchment with actual dynamic offer art/text (`9a5594b`, `5d121d8`).
