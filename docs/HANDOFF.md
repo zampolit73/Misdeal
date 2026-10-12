@@ -1,3 +1,9 @@
+## LATEST — 2026-10-12 — Gravedigger Shop production DS2 done, pending local smoke
+
+User approved the corrected F6 shop preview («все ок. внедряй»). Implemented scoped live DS2 shop with helper `scripts/event/gravedigger_shop_ds2.gd` and `if active_card.card_id == "gravedigger_shop"` in existing shared `act_choice.gd` (commits `bef2d4c`, `7b26850`, `664db0e`). Real button signals, `_configure_shop`, `_resolve_shop`, `_resolve_leave`, `_finish`, `_disable_choices`, `_return_to_table` unchanged by source comparisons. Uses dynamic RunState shop price (including Lost Purse), role/upgrade restrictions, real gold, and original Choice Buttons rather than preview fake purchases; supports result + continue footer. Other events/Fate Spread/Reward/Well not modified. Static source checks passed; **no local engine run**. NEXT: user git pull, enter real shop at 1280x720, inspect all card labels, affordability, absent role, live prices, purchase grant and deduction, or choose leave, then Continue. Treat production visuals/gameplay unaccepted until verified.
+
+---
+
 ## NEWEST — 2026-10-12 — Shop preview F6 missing static text: fix pending QA
 
 Real screenshot of `res://scenes/dev/design_system_v2_shop_preview.tscn` showed art and runtime-updated prices but invisible pre-authored title/role/description labels. Commit `f6bb46e` reassigns static Label text after scene hierarchy is built, and improves disabled/available visual differentiation. No engine-side recheck yet: `git pull`, F6 at 1280×720, verify complete header, labels above/inside all cards, details and footnote; request next screenshot only if missing/overlapping. Do not touch real shop `act_choice.gd` pending explicit preview approval.
