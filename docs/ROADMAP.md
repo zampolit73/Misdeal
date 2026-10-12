@@ -1,3 +1,12 @@
+## Bone Thrall Pack 2 sheet in GitHub — local QA gate (2026-10-12)
+
+- [x] User approved Bone Thrall 25-pose asset, transparent 576×480 grid.
+- [x] Commit exact WebP Base64 candidate `assets/pixel/units/combat_units_anim_pack2_candidates/bone_thrall.webp.b64`; remote contents verified, commit `29d0725`.
+- [x] Production SpriteFrames lookup for `bone_thrall` (commit `d25e471`) with static v4 fallback, only this Pack 2 role enabled.
+- [ ] Run Godot F6 comparison preview and actual fight, check feet at the floor, attack/readability, death row, weapon/effects and enemy facing.
+- [ ] Create / approve / import three remaining sheets: `grave_bellkeeper`, `crypt_guard`, `bone_warden`. No activation before QA.
+- [ ] Keep Knight static v4 pending a leg-readable replacement.
+
 ## Bone Thrall approval and integration bridge (2026-10-12)
 
 - [x] User approved RGBA 576x480 / 25-pose visual draft; offline alpha/pose-grid checks passed.
