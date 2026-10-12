@@ -1,3 +1,11 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Whispering Well live DS2 card alignment pass deployed
+
+After screenshot at 1280×720, user approved **overall live Whispering Well DS2 art** (table background, three event illustrations, aged-bronze frame, parchment, gold/party counter and choice text) but requested final alignment. Applied a **layout-only adjustment** to `scripts/event/whispering_well.gd` (`c513b63`, `dd4b486`): refined title/quote/narrative positions inside header, uniform parchment title/divider/effect/detail baselines for all 3 cards, slightly taller parchment and distinct reserved bottom warning row. Unavailable coin choice now presents descriptive copy without repeating its red insufficient-funds warning; visible copy determines font size while the full original dynamic offer stays in tooltip.
+
+Preserved the user-approved physical artwork, 292×394 clickable cards, and current event branching. **Verified against prior live code SHA `1226f476...`: seven methods byte-for-byte unchanged** — `_refresh_choice_text`, `_on_accept_gift`, `_on_pay_coin`, `_on_leave`, `_disable_choices`, `_return_to_table`, `_apply_choice_art`. No changes to the original Fate Spread or approved Reward major-upgrade appearance. **Godot runtime screenshot recheck pending**: `git pull`, trigger live Whispering Well with 20 gold so the center choice is disabled; confirm 3 title/effect/detail baselines, alert legibility and header spacing. Also validate active 25-gold branch and second visit if possible.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Whispering Well live screenshot QA: header overlap corrected
 
 User supplied a real Godot 1280×720 screenshot of the newly migrated **production** `ШЕПЧУЩИЙ КОЛОДЕЦ`. The three DS2 artwork/parchment choice cards render with dynamic recruit-Mage blood (−12 max HP), coin (−25 gold), and leave outcomes. **Observed defect:** long narrative description sat on the header panel's bottom border; party/gold counters were invisible because the opaque header panel rendered over the earlier `GoldLabel` node. Fixed in `scripts/event/whispering_well.gd` (`2a0baab`): tighter vertical positions for heading and wizard line, description moved to y=128 within 24..180 header, gold counter moved to y=32 and z_index=1 to render above the header; all 3 card geometry, event outcome logic, art and original Fate Spread remain untouched.
