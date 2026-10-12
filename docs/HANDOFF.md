@@ -1,3 +1,13 @@
+# LATEST HANDOFF — 2026-10-12 — Whispering Well visuals accepted; next shop preview
+
+**User acceptance:** after commit `1adc634` fixed the actual ~55px right-shifted HBox card group, rescued the clipped two-line Mage outcome and separated warnings, user explicitly replied **«без скрина все хорошо. что дальше?»**. This confirms the local Godot **visual layout is good**; do not require another screenshot or continue polishing without a new reported defect. Recorded in binding decision **D126**. Earlier `Godot screenshot pending` notes below are superseded **for visual alignment only**. Detailed choice effect/routing gameplay verification remains separate and does not need to block the next preview.
+
+Next recommended DS2 target: **Магазин могильщика / `gravedigger_shop`**. Repo inspection found it is NOT a standalone scene: `scripts/event/act_choice.gd` and `scenes/event/act_choice.tscn` are shared by many events (`ash_rest`, `curse_forge`, `chained_prisoner`, `black_altar`, `gravedigger_shop`, etc.). `_configure_shop()` uses dynamic `RunState.get_gravedigger_shop_price()`, Lost Purse outcome, 3 role-specific upgrade buys, and gold gating. **Never restyle the whole shared scene without explicit approval.** Build one isolated F6 shop DS2 preview using existing role-choice art/DS2 materials; after visual approval, integrate only when `active_card.card_id == "gravedigger_shop"`, keeping all shop price and grant handlers.
+
+Original Fate Spread D123, live Reward major-upgrade D124, preview/live event D125, latest Whispering Well sign-off D126 remain authoritative. This session changed docs only, no production scripts or art; no git pull required for immediate visual changes.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — Corrected true Whispering Well row misalignment
 
 User's latest Godot screenshot demonstrated the three card **group** was shifted ~50–55px right of header/footer; previous fixes only aligned text inside each card. Cause: sizing `HBoxContainer Choices` while three Buttons still had their old 330px minimum sizes, creating an oversized parent despite subsequent 292px child widths; centered layout left surplus space. Screenshot also showed clipping of «МАГ ПРИСОЕДИНИТСЯ» in first card and cramped disabled-gold warning. Commit `1adc634` in `scripts/event/whispering_well.gd`: apply child 292px minimums before parent size, set HBox beginning alignment, row x176 width928, reassert geometry deferred after live offer text is hidden, top-align header narrative and enlarge allowed two-line outcome area (56px), shift warning to y365. Header/footer centered at x640 in base 1280px viewport; no changes to actual DS2 art or card assets.
