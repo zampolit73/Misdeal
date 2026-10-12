@@ -1,3 +1,15 @@
+## ANIMATION PRODUCTION UPDATE — 2026-10-12 — Pack 2 frame briefs prepared, artwork still outstanding
+
+**Preparation COMPLETE:** existing importer, candidate validator and F6 comparison preview remain the approved technical route. Added `docs/UNIT_ANIMATION_PACK2_FRAME_BRIEFS.md` with per-role 25-frame shot lists, 96px contact rules, four-frame key-pose review and staged acceptance gates.
+
+**Actual spritesheets STILL REQUIRED:** none of the four new 576×480 candidates (`bone_thrall`, `grave_bellkeeper`, `crypt_guard`, `bone_warden`) has been authored, approved, imported or committed in this update. Key-pose proof images are also pending. The next work is **art**, not loader rework.
+
+**Live combat models NOT SWITCHED:** Knight remains static v4 (-8 px); Ranger/Mage/Skeleton/Bone Archer retain Pack 1 v2 animations; all four Pack 2 targets remain static v4 with Stage A attack-contact VFX. No combat art, gameplay scripts or battle behavior changed. Local Godot F6 verification is outstanding.
+
+**Resume:** create and review four Bone Thrall key poses first, then complete 25 real frames; use importer + F6 QA and seek approval before connecting any Pack 2 sprites to live combat. See `docs/UNIT_ANIMATION_PACK2_FRAME_BRIEFS.md`.
+
+---
+
 # Misdeal — Project State
 
 ## CURRENT CHECKPOINT — 2026-10-12 — Pack 2 Stage B preparation finished; animation artwork missing
