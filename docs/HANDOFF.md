@@ -1,3 +1,13 @@
+# LATEST HANDOFF — 2026-10-12 — Grave Bellkeeper animation live via Pack 2
+
+User approved Grave Bellkeeper. The exact prepared transparent 576×480 (6×5, 96px each) 25-pose Base64 WebP sheet is committed at `assets/pixel/units/combat_units_anim_pack2_candidates/grave_bellkeeper.webp.b64` (commit `c28011d`) and verified against source export. `scripts/battle/unit_animation_library.gd` now includes `grave_bellkeeper` in production alongside `bone_thrall` (commit `9f32e4b`), with static-v4 fallback. Runtime Godot F6/battle is NOT tested yet.
+
+**Do next:** `git pull`, open `res://scenes/dev/unit_animation_pack2_preview.tscn` with F6 and inspect Bellkeeper all states; check real Bellkeeper fights for feet, bell/chain, alignment and death. No combat mechanics, roster, balance or other models changed.
+
+Knight static v4; Ranger/Mage/Skeleton/Bone Archer Pack 1 animated; Bone Thrall/Grave Bellkeeper Pack 2 animated; Crypt Guard and Bone Warden static v4 + Stage A VFX. **Next new asset: Crypt Guard.** All older handoff notes below are historical; prioritize this header.
+
+---
+
 # LATEST CHECKPOINT — 2026-10-12 — Bone Thrall Pack 2 asset uploaded
 
 Actual approved 576×480 / 25-used-frame `bone_thrall.webp.b64` is now committed to `main` at `assets/pixel/units/combat_units_anim_pack2_candidates/bone_thrall.webp.b64` (commit `29d0725`). Fetched remote file equals locally approved Base64 asset. Previously changed production loader (commit `d25e471`) searches that directory for Bone Thrall and returns SpriteFrames; fallback static v4 when missing/broken. **Bone Thrall animation is now enabled by the presence of the actual asset**. No Godot F6/runtime smoke has been performed, so visual approval of the actual in-engine motion is still required.
