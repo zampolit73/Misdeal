@@ -1,3 +1,11 @@
+# LATEST CHECKPOINT — 2026-10-12 — Bone Thrall Pack 2 asset uploaded
+
+Actual approved 576×480 / 25-used-frame `bone_thrall.webp.b64` is now committed to `main` at `assets/pixel/units/combat_units_anim_pack2_candidates/bone_thrall.webp.b64` (commit `29d0725`). Fetched remote file equals locally approved Base64 asset. Previously changed production loader (commit `d25e471`) searches that directory for Bone Thrall and returns SpriteFrames; fallback static v4 when missing/broken. **Bone Thrall animation is now enabled by the presence of the actual asset**. No Godot F6/runtime smoke has been performed, so visual approval of the actual in-engine motion is still required.
+
+Knight remains static v4; four existing Pack 1 roles stay animated; Grave Bellkeeper, Crypt Guard and Bone Warden remain static v4 + Stage A effects. These **three** spritesheets are still missing; no other combat unit switched. User should `git pull`, run F6 review scene then check Bone Thrall in a live encounter (feet, alpha, attack timing, death). Next chat can resume Pack 2 art with Bellkeeper.
+
+---
+
 # LATEST — 2026-10-12 — Approved Bone Thrall asset awaiting GitHub file upload
 
 User approved a 576x480 transparent 6x5 / 25-pose Bone Thrall draft in this chat. Local artifact converted losslessly to `bone_thrall.webp.b64` (254065 bytes); **it is NOT YET IN GitHub**. Production animation library was patched safely: optionally load this exact filename from `assets/pixel/units/combat_units_anim_pack2_candidates/` for role `bone_thrall`, otherwise keep static v4. Commit `d25e471`. Other roles unaffected. No runtime Godot testing performed.
