@@ -1,3 +1,9 @@
+# LATEST HANDOFF — 2026-10-12 — Compact battle health bars
+
+User requested redesign after Gallows Volley screenshot: bright solid green/red slabs obscured character art. `scripts/battle/unit.gd` now styles existing `ProgressBar` with near-black background, bronze hairline border, muted green hero fill / deep red enemy fill, 58×7 typical footprint, 66px Crypt Guard width and 114×9 boss variant (`d744e61`). HP calculation/damage/healing, combat gameplay, unit art, node paths unchanged. **Need local Godot visual verification:** `git pull`, re-run Gallows Volley with party and enemies, inspect at full and low HP, unit crowds, boss. Earlier notes below are historical.
+
+---
+
 # LATEST — 2026-10-12 — Mage size correction after clean redraw
 
 Latest screenshot Bone Swarm: the improved clean Mage atlas looked oversized at former art-only scale 1.65. Reduced Mage hero visual multiplier to **1.25** in `scripts/battle/unit.gd` (commit `38831c0`). Knight 0.90 and Ranger 1.00 unchanged; no art/gameplay updates. Next: `git pull`, open battle with Mage and Ranger side-by-side and confirm comparable height/grounding; adjust only from screenshot feedback.
