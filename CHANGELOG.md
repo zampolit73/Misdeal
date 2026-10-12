@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Added — Grave Bellkeeper Pack 2 frame animation (2026-10-12)
+
+- Added approved 25-pose transparent 576×480 Grave Bellkeeper WebP/Base64 atlas in `combat_units_anim_pack2_candidates/`, exact GitHub content verified.
+- Enabled `grave_bellkeeper` via existing animation library with static-v4 fallback, joining Bone Thrall. Knight, other Pack 1 roles and remaining two static enemies unchanged.
+- Godot F6 and actual battle visuals await local testing; no gameplay or stat changes.
+
+
 ### Added — Bone Thrall Pack 2 25-frame atlas (2026-10-12)
 
 - Committed approved transparent 576×480 lossless WebP Base64 sheet (`assets/pixel/units/combat_units_anim_pack2_candidates/bone_thrall.webp.b64`, commit `29d0725`); verified exact remote content.
