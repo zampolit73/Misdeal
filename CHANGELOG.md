@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Fixed — Elder Mage undersized in battle (2026-10-12)
+
+- Raised Mage hero-only sprite multiplier from 1.15 to 1.65 after Firing Square screenshot; Knight and Ranger unchanged, no combat physics or mechanics changed.
+
+
 ### Fixed — Hero display scale normalization (2026-10-12)
 
 - Added hero-only scale factors in `BattleUnit` to align Knight (0.90), Ranger (1.00) and Mage (1.15) artwork in shared battle scenes; enemy scale and gameplay physics unaffected.
