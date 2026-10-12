@@ -1,3 +1,11 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Hero silhouette scale normalization
+
+Following the 1280×720 Iron Wall battle screenshot, hero sprite sizes were inconsistent: blue Knight visually largest, new bearded Mage smallest, Ranger in between. Production `scripts/battle/unit.gd` now applies **hero-only role visual multipliers** relative to Ranger (Knight 0.90, Ranger 1.00, Mage 1.15) to existing `HERO_DISPLAY_SCALE * visual_scale` (commit `24b3df1`). Enemy/boss scaling, combat collision/movement/AI/stat parameters, art assets and scene layout are unchanged. `base_sprite_scale` is assigned from final scale before the animated sole-based `_art_rest_position()` calculation, preserving current ground-contact logic.
+
+**Local Godot screenshot QA pending:** `git pull`, inspect Knight/Ranger/Mage in Iron Wall trio setup and walking/attack, compare head height/visible boots and floor rings. Adjust values only if actual full-size screenshot still looks uneven; avoid moving entire arena or modifying physics. This change does not certify engine-tested size parity.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Bearded elder Mage atlas replaced, Godot QA pending
 
 The user selected the **first** of the last three Mage visual variants: an older male archmage with long white beard, dark-purple robes and violet-orb staff. The former live Pack 1 v2 Mage atlas was preserved at `assets/pixel/units/combat_units_anim_v2/mage_archived_pre_oldbeard.webp.b64` (commit `4c0e94a`). The approved replacement is now `assets/pixel/units/combat_units_anim_v2/mage.webp.b64` (commit `3e23cc8`), with remote content verified identical to the 123144-character Base64 source.
