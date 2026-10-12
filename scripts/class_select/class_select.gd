@@ -3,6 +3,7 @@ extends Control
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 
 const UNIT_TILE_SIZE: float = 96.0
 const UNIT_SHEET_PARTS: Array[String] = [
@@ -32,6 +33,7 @@ var choosing := false
 
 func _ready() -> void:
 	_apply_ui_kit()
+	MISDEAL_DS2_ROLLOUT.class_select(self)
 	knight_button.pressed.connect(_choose.bind("knight"))
 	ranger_button.pressed.connect(_choose.bind("ranger"))
 	mage_button.pressed.connect(_choose.bind("mage"))
