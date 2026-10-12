@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Fixed — Mage alpha/art quality and complete attack frames (2026-10-12)
+
+- Replaced fading Mage sheet with approved solid-bearded-purple-robe 25-pose atlas (`9d72854`), archived old file (`089b9fd`).
+- Fixed Mage playback to use all six attack poses (`6ce91f9`), retaining existing projectile gameplay FX.
+- Preserved hero Mage scale 1.65 and all other roles. Godot visual acceptance outstanding.
+
+
 ### Fixed — Elder Mage undersized in battle (2026-10-12)
 
 - Raised Mage hero-only sprite multiplier from 1.15 to 1.65 after Firing Square screenshot; Knight and Ranger unchanged, no combat physics or mechanics changed.
