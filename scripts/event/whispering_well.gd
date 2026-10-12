@@ -52,7 +52,7 @@ func _apply_ui_kit() -> void:
 	_place_v2($ResultPanel, Vector2(174, 608), Vector2(932, 87))
 
 	var title: Label = $Title
-	_place_v2(title, Vector2(194, 55), Vector2(892, 39))
+	_place_v2(title, Vector2(194, 52), Vector2(892, 42))
 	title.add_theme_font_size_override("font_size", 30)
 	MISDEAL_UI_KIT.apply_screen_copy(title, MISDEAL_UI_KIT.PARCHMENT_WARM, true)
 
@@ -63,13 +63,13 @@ func _apply_ui_kit() -> void:
 	gold_label.add_theme_font_size_override("font_size", 12)
 	MISDEAL_UI_KIT.apply_screen_copy(gold_label, MISDEAL_UI_KIT.AGED_BRONZE)
 
-	_place_v2(wizard_line, Vector2(197, 97), Vector2(886, 27))
+	_place_v2(wizard_line, Vector2(197, 98), Vector2(886, 28))
 	wizard_line.add_theme_font_size_override("font_size", 14)
 	MISDEAL_UI_KIT.apply_screen_copy(wizard_line, MISDEAL_UI_KIT.TEXT)
 
 	# Reserve a real inset before the bronze header bottom (y=180).
 	# Two-line event copy must remain above the cards at y=196.
-	_place_v2(description_label, Vector2(198, 128), Vector2(884, 38))
+	_place_v2(description_label, Vector2(198, 134), Vector2(884, 34))
 	description_label.add_theme_font_size_override("font_size", 13)
 	description_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	MISDEAL_UI_KIT.apply_screen_copy(description_label, MISDEAL_UI_KIT.TEXT_SECONDARY)
@@ -110,7 +110,7 @@ func _build_v2_choice_card(index: int) -> void:
 	paper.clip_contents = true
 	button.add_child(paper)
 	button.move_child(paper, 1)
-	_place_v2(paper, Vector2(14, 233), Vector2(264, 147))
+	_place_v2(paper, Vector2(14, 233), Vector2(264, 153))
 	MISDEAL_UI_KIT.apply_v2_parchment_plate(paper)
 
 	var eyebrow := _make_v2_label(["I / КРОВЬ", "II / МОНЕТА", "III / ОТКАЗ"][index], 13, MISDEAL_UI_KIT.PARCHMENT_WARM)
@@ -121,23 +121,23 @@ func _build_v2_choice_card(index: int) -> void:
 	var title := _make_v2_label("", 16, Color(0.18, 0.09, 0.07))
 	title.name = "DS2Title"
 	paper.add_child(title)
-	_place_v2(title, Vector2(9, 8), Vector2(246, 43))
+	_place_v2(title, Vector2(9, 10), Vector2(246, 36))
 
 	var rule := ColorRect.new()
 	rule.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	rule.color = Color(0.40, 0.23, 0.13, 0.74)
 	paper.add_child(rule)
-	_place_v2(rule, Vector2(24, 54), Vector2(216, 1))
+	_place_v2(rule, Vector2(24, 50), Vector2(216, 1))
 
 	var effect := _make_v2_label("", 14, Color(0.43, 0.18, 0.10))
 	effect.name = "DS2Effect"
 	paper.add_child(effect)
-	_place_v2(effect, Vector2(10, 62), Vector2(244, 27))
+	_place_v2(effect, Vector2(10, 58), Vector2(244, 24))
 
 	var detail := _make_v2_label("", 13, Color(0.22, 0.16, 0.13))
 	detail.name = "DS2Detail"
 	paper.add_child(detail)
-	_place_v2(detail, Vector2(13, 93), Vector2(238, 45))
+	_place_v2(detail, Vector2(13, 90), Vector2(238, 38))
 
 	var art: TextureRect = [accept_art, pay_art, leave_art][index]
 	_place_v2(art, Vector2(20, 49), Vector2(252, 168))
@@ -146,7 +146,7 @@ func _build_v2_choice_card(index: int) -> void:
 	button.get_node("ChoiceDivider").visible = false
 	button.get_node("ChoiceBadge").visible = false
 	var warning: Label = [accept_warning, pay_warning, leave_warning][index]
-	_place_v2(warning, Vector2(26, 359), Vector2(240, 18))
+	_place_v2(warning, Vector2(26, 369), Vector2(240, 14))
 	warning.add_theme_font_size_override("font_size", 11)
 	MISDEAL_UI_KIT.apply_screen_copy(warning, MISDEAL_UI_KIT.STATUS_DANGER)
 
@@ -195,14 +195,17 @@ func _sync_v2_choice_copy() -> void:
 			detail_label.add_theme_font_size_override("font_size", 12)
 		else:
 			detail_label.add_theme_font_size_override("font_size", 13)
+		# Use the same title/effect/detail baselines for all three cards.
+		# The final lower row is reserved for an optional warning, so the
+		# insufficient-gold card cannot shift its main text upwards.
+		detail_label.position.y = 90.0
+		detail_label.size.y = 38.0
 		if warnings[index].visible:
-			# Keep the reason fully visible instead of clipping a long
-			# unavailable-offer description beneath the red warning label.
-			detail_label.text = "Нет доступного дара" if index == 0 else "Обмен недоступен"
-			detail_label.size.y = 24.0
+			# Expose the real disabled reason in the reserved warning row;
+			# the body remains shorter to avoid duplicate error copy.
+			detail_label.text = "Нет доступного дара" if index == 0 else "Выкупить мага у колодца" if recruiting else "Колодец не может обменять"
 			button.modulate = Color(0.75, 0.73, 0.71, 1.0)
 		else:
-			detail_label.size.y = 45.0
 			button.modulate = Color.WHITE
 		button.tooltip_text = offer
 		button.text = ""
