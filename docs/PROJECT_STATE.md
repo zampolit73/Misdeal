@@ -1,5 +1,18 @@
 # Misdeal — Project State
 
+
+## CURRENT CHECKPOINT — 2026-10-12 — Pack 2 Stage B preparation finished; animation artwork missing
+
+**Preparation COMPLETED and committed:** the Python/Pillow importer (`scripts/dev/import_animation_pack2_candidate.py`), Godot candidate validation (`scripts/dev/unit_animation_candidate_validator.gd`), v4-vs-candidate F6 preview (`res://scenes/dev/unit_animation_pack2_preview.tscn`), staging README and `docs/UNIT_ANIMATION_PACK2.md` are available. The importer was tested on real Pack 1 art and a deliberately invalid opaque sample. The Godot F6 scene has not yet been locally tested.
+
+**Art STILL REQUIRED:** genuine transparent 576x480 sheets (6 columns x 5 rows, 96px cells, 25 used poses) for `bone_thrall`, `grave_bellkeeper`, `crypt_guard` and `bone_warden`. Rows: Idle 4, Walk 6, Attack 6, Hit 3, Death 6. Each frame needs clearly separate feet, recognizable weapon and consistent sole position; no previous-row bleed, repeated fake frames or opaque arena background. The candidates folder contains only `README.md`; **zero new spritesheets were approved or added**.
+
+**Live combat models NOT SWITCHED by Stage B:** `scripts/battle/unit.gd` and `scripts/battle/unit_animation_library.gd` still load the existing assets. Knight is intentionally **static v4** (current offset -8px) after the bad animated Knight leg silhouette; Ranger, male Mage, Skeleton and Bone Archer use their existing Pack 1 v2 frame animations. The four remaining undead are **static v4** with the already implemented Stage A short attack-contact VFX. All combat mechanics, unit placement and art are unchanged.
+
+**Next chat:** acquire real frames, validate/export into `assets/pixel/units/combat_units_anim_pack2_candidates/`, compare the five states with v4 via F6 at 1280x720, and **only after explicit visual approval** activate each role via the existing `SpriteFrames` library with v4 fallback. Without candidates the F6 scene must say `ОЖИДАЕТ АРТ`. Do not treat full battle illustrations as atlases. For details read `docs/HANDOFF.md`, `docs/ROADMAP.md`, `docs/UNIT_ANIMATION_PACK2.md` and decision D121. Historical states below may be superseded.
+
+---
+
 ## Latest implemented state — 2026-10-12 — Pack 2 Stage B candidate art validation + comparison gallery
 
 After shipping the four distinct undead attack impact FX (Stage A), the user said "давай дальше". Confirmed that valid new animation **sheets do not exist** for `bone_thrall`, `grave_bellkeeper`, `crypt_guard`, `bone_warden`. Image-generation attempts produced full battle screenshots instead of separated actor frames and were **not** integrated. Connected OpenArt model list showed insufficient credits, so that path was not used.
