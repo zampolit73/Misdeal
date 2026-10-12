@@ -52,19 +52,24 @@ func _apply_ui_kit() -> void:
 	_place_v2($ResultPanel, Vector2(174, 608), Vector2(932, 87))
 
 	var title: Label = $Title
-	_place_v2(title, Vector2(194, 61), Vector2(892, 42))
+	_place_v2(title, Vector2(194, 55), Vector2(892, 39))
 	title.add_theme_font_size_override("font_size", 30)
 	MISDEAL_UI_KIT.apply_screen_copy(title, MISDEAL_UI_KIT.PARCHMENT_WARM, true)
 
-	_place_v2(gold_label, Vector2(196, 36), Vector2(888, 22))
+	# The original scene stores GoldLabel BEFORE HeaderPanel, so the new
+	# opaque DS2 header would otherwise paint over this important counter.
+	gold_label.z_index = 1
+	_place_v2(gold_label, Vector2(196, 32), Vector2(888, 20))
 	gold_label.add_theme_font_size_override("font_size", 12)
 	MISDEAL_UI_KIT.apply_screen_copy(gold_label, MISDEAL_UI_KIT.AGED_BRONZE)
 
-	_place_v2(wizard_line, Vector2(197, 107), Vector2(886, 31))
+	_place_v2(wizard_line, Vector2(197, 97), Vector2(886, 27))
 	wizard_line.add_theme_font_size_override("font_size", 14)
 	MISDEAL_UI_KIT.apply_screen_copy(wizard_line, MISDEAL_UI_KIT.TEXT)
 
-	_place_v2(description_label, Vector2(198, 141), Vector2(884, 37))
+	# Reserve a real inset before the bronze header bottom (y=180).
+	# Two-line event copy must remain above the cards at y=196.
+	_place_v2(description_label, Vector2(198, 128), Vector2(884, 38))
 	description_label.add_theme_font_size_override("font_size", 13)
 	description_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	MISDEAL_UI_KIT.apply_screen_copy(description_label, MISDEAL_UI_KIT.TEXT_SECONDARY)
