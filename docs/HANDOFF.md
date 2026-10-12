@@ -1,3 +1,5 @@
+> **Fast restart:** Read [`docs/SESSION_CHECKPOINT.md`](SESSION_CHECKPOINT.md) for the concise current status, visual sign-offs, remaining QA and exactly scoped Gravedigger Shop task. Detailed history follows.
+
 # LATEST HANDOFF — 2026-10-12 — Whispering Well visuals accepted; next shop preview
 
 **User acceptance:** after commit `1adc634` fixed the actual ~55px right-shifted HBox card group, rescued the clipped two-line Mage outcome and separated warnings, user explicitly replied **«без скрина все хорошо. что дальше?»**. This confirms the local Godot **visual layout is good**; do not require another screenshot or continue polishing without a new reported defect. Recorded in binding decision **D126**. Earlier `Godot screenshot pending` notes below are superseded **for visual alignment only**. Detailed choice effect/routing gameplay verification remains separate and does not need to block the next preview.
