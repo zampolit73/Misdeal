@@ -2,6 +2,9 @@
 
 ## CURRENT CHECKPOINT — 2026-10-12 — Pack 2 Stage B preparation finished; animation artwork missing
 
+**GitHub verification at handoff (2026-10-12):** confirmed `scripts/dev/import_animation_pack2_candidate.py`, `scripts/dev/unit_animation_candidate_validator.gd`, `scripts/dev/unit_animation_pack2_preview.gd`, `scenes/dev/unit_animation_pack2_preview.tscn` and the staging README all exist. Direct checks of the four intended `{role}.webp.b64` candidate paths returned **not found**. `scripts/battle/unit.gd` and `scripts/battle/unit_animation_library.gd` are unchanged by this staging work. **Development can resume from art creation, not more loader/architecture work.** Real Godot F6 acceptance is still outstanding.
+
+
 **Preparation COMPLETED and committed:** the Python/Pillow importer (`scripts/dev/import_animation_pack2_candidate.py`), Godot candidate validation (`scripts/dev/unit_animation_candidate_validator.gd`), v4-vs-candidate F6 preview (`res://scenes/dev/unit_animation_pack2_preview.tscn`), staging README and `docs/UNIT_ANIMATION_PACK2.md` are available. The importer was tested on real Pack 1 art and a deliberately invalid opaque sample. The Godot F6 scene has not yet been locally tested.
 
 **Art STILL REQUIRED:** genuine transparent 576x480 sheets (6 columns x 5 rows, 96px cells, 25 used poses) for `bone_thrall`, `grave_bellkeeper`, `crypt_guard` and `bone_warden`. Rows: Idle 4, Walk 6, Attack 6, Hit 3, Death 6. Each frame needs clearly separate feet, recognizable weapon and consistent sole position; no previous-row bleed, repeated fake frames or opaque arena background. The candidates folder contains only `README.md`; **zero new spritesheets were approved or added**.
