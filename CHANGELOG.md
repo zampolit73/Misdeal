@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Changed — Approved blue Knight frame animation (2026-10-12)
+
+- Archived old malformed Knight v2 atlas and replaced production `combat_units_anim_v2/knight.webp.b64` with approved 25-pose blue Knight atlas, preserving readable leg/boot separation.
+- Re-enabled Knight SpriteFrames in live `BattleUnit`; existing static v4 fallback remains. Ranger, Mage, Skeleton, Bone Archer and all Pack 2 enemies unchanged.
+- Offline grid/alpha/grounding tests passed; Godot 4.7.x F6 and actual combat motion checks pending. No targeting, stats, balance or encounter changes.
+
+
 ### Added — Bone Warden frames and Pack 2 roster completion (2026-10-12)
 
 - Committed user-approved 25-frame transparent 576×480 Bone Warden atlas (`77a759d`) and verified identical remote Base64 content.
