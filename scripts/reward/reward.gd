@@ -196,15 +196,20 @@ func _style_v2_reward_copy(index: int, effect_text: String = "") -> void:
 
 	role.add_theme_color_override("font_color", MISDEAL_UI_KIT.PARCHMENT_WARM)
 	heading.add_theme_color_override("font_color", Color(0.18, 0.09, 0.07))
-	effect.text = effect_text
+	var long_effect := effect_text.length() > 38
+	effect.text = effect_text.replace("  •  ", "\n") if long_effect else effect_text
 	effect.visible = not effect_text.is_empty()
+	effect.position.y = 281.0 if long_effect else 287.0
+	effect.size.y = 48.0 if long_effect else 34.0
+	effect.add_theme_font_size_override("font_size", 11 if long_effect else 12)
 	effect.add_theme_color_override("font_color", Color(0.43, 0.18, 0.10))
 	description.add_theme_color_override("font_color", Color(0.22, 0.16, 0.13))
 
-	# One/two-line effects leave room for the full explanatory text.
+	# Long upgrades get a three-line effect area, short rewards a
+	# larger descriptive area, and relics without an effect get most.
 	var has_effect := effect.visible
-	description.position.y = 323.0 if has_effect else 290.0
-	description.size.y = 63.0 if has_effect else 96.0
+	description.position.y = 337.0 if long_effect else (323.0 if has_effect else 290.0)
+	description.size.y = 50.0 if long_effect else (63.0 if has_effect else 96.0)
 	var length := description.text.length()
 	var font_size := 13
 	if length > 125:
