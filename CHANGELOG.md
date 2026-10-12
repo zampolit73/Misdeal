@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Docs — Undead animation frame production briefs (2026-10-12)
+
+- Added explicit 25-pose storyboards and visual acceptance checks for Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden in `docs/UNIT_ANIMATION_PACK2_FRAME_BRIEFS.md`.
+- Clarified sequence: four key-pose proofs → four real transparent sheets → importer/validator → Godot F6 review → explicit approval → cautious per-role activation.
+- **No new sprite sheets supplied or generated; no production combat models switched.** Knight stays static v4 and current combat animations/VFX are unchanged. Runtime F6 QA remains pending.
+
+
 ### Docs — Pack 2 Stage B preparation complete; spritesheets remain outstanding (2026-10-12)
 
 - Final GitHub handoff verification: all staging tools/preview files are present; all four expected `{role}.webp.b64` candidate paths are missing; production `BattleUnit` and animation loader were not migrated. No new game art is claimed.
