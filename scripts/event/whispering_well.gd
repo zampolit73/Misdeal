@@ -189,24 +189,30 @@ func _sync_v2_choice_copy() -> void:
 		heading.text = title
 		effect_label.text = effect
 		detail_label.text = detail
-		if detail.length() > 55:
-			detail_label.add_theme_font_size_override("font_size", 11)
-		elif detail.length() > 34:
-			detail_label.add_theme_font_size_override("font_size", 12)
-		else:
-			detail_label.add_theme_font_size_override("font_size", 13)
 		# Use the same title/effect/detail baselines for all three cards.
 		# The final lower row is reserved for an optional warning, so the
 		# insufficient-gold card cannot shift its main text upwards.
 		detail_label.position.y = 90.0
 		detail_label.size.y = 38.0
 		if warnings[index].visible:
-			# Expose the real disabled reason in the reserved warning row;
-			# the body remains shorter to avoid duplicate error copy.
-			detail_label.text = "Нет доступного дара" if index == 0 else "Выкупить мага у колодца" if recruiting else "Колодец не может обменять"
+			# Keep the red failure reason in its reserved bottom row;
+			# don't repeat that same message inside the parchment copy.
+			if index == 0:
+				detail_label.text = "Нет доступного дара"
+			elif recruiting:
+				detail_label.text = "Выкупить мага у колодца"
+			else:
+				detail_label.text = "Колодец не может обменять"
 			button.modulate = Color(0.75, 0.73, 0.71, 1.0)
 		else:
 			button.modulate = Color.WHITE
+		# Fit the text actually displayed, not the original hidden offer.
+		if detail_label.text.length() > 55:
+			detail_label.add_theme_font_size_override("font_size", 11)
+		elif detail_label.text.length() > 34:
+			detail_label.add_theme_font_size_override("font_size", 12)
+		else:
+			detail_label.add_theme_font_size_override("font_size", 13)
 		button.tooltip_text = offer
 		button.text = ""
 
