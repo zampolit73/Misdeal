@@ -1,3 +1,5 @@
+> **One-page current handoff:** [`SESSION_CHECKPOINT.md`](SESSION_CHECKPOINT.md). The latest milestone below is authoritative; older pending visual checks were superseded by D126.
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Live Whispering Well DS2 visuals accepted; next Gravedigger Shop preview
 
 After correcting the real rightward `HBoxContainer` card-row shift and clipped recruitment copy in `scripts/event/whispering_well.gd` (`1adc634`), the user **confirmed local Godot result verbally: «без скрина все хорошо»** and asked to move on. Treat the **production Whispering Well visual composition as accepted**; a new screenshot is not a prerequisite. Binding decision **D126** preserves the bronze/parchment layout, centered three-card row, physical illustrations, status/header and warning treatment. Do not keep adjusting this screen unless another defect is reported.
