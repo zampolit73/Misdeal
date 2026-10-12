@@ -1,3 +1,13 @@
+## DS2 production Gravedigger Shop — 2026-10-12
+
+- [x] User approved the corrected independent F6 preview («все ок. внедряй»).
+- [x] Add shop-only DS2 presenter `scripts/event/gravedigger_shop_ds2.gd` and call it from shared `act_choice.gd` only when `card_id == "gravedigger_shop"`.
+- [x] Keep real `RunState.get_gravedigger_shop_price()`, actual party/extra-upgrade availability, Lost Purse consequences, existing purchase/leave/result/table handlers, and preserve complete offer tooltips.
+- [x] Source diff confirms seven critical original gameplay functions unchanged.
+- [ ] Godot 4.7.x 1280×720 LIVE shop smoke: all 3 texts/illustrations; price changes with Lost Purse; insufficient gold; absent party roles; limit/exhaustion.
+- [ ] Confirm exactly one upgrade awarded and exact gold deduction; leaving awards nothing; resolved footer and Continue reach table.
+- [ ] Fix only defects observed in live Godot, without altering unrelated `act_choice` events or approved screens.
+
 ## Gravedigger Shop F6 screenshot defect — 2026-10-12
 
 - [x] Inspect user screenshot: static headings and detail labels absent while runtime-updated price/status text is visible.
