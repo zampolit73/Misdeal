@@ -1,3 +1,12 @@
+## DS2 next stage — isolated Whispering Well event (2026-10-12)
+
+- [x] Inspect existing `whispering_well.gd` options, recruit and upgrade branches and approved event choice artwork.
+- [x] Stage separate F6-only DS2 material event preview with canonical bronze/parchment aesthetic and original approved well background/choice images.
+- [x] Allow harmless selection and simulate insufficient gold to demonstrate disabled choice; never touch RunState or production Well event.
+- [ ] User review at 1280×720 Godot F6: visible all three choices, no clipping, hover, click, gold-disabled styling and legible Wizard line.
+- [ ] Once approved, migrate the **real** Whispering Well event's visuals, keeping recruit/pay/leave and other upgrade/relic branches exactly intact.
+- [ ] Then tackle other events and merchant/shop one screen at a time; full Reward flow checks remain required.
+
 ## DS2 Event screens — isolated Whispering Well preview (2026-10-12)
 
 - [x] Inspect existing `whispering_well` scene and choice art loaders before proposing production edits.
