@@ -1,3 +1,9 @@
+## CURRENT CHECKPOINT — 2026-10-12 — DS2 Whispering Well event preview committed
+
+Approved Reward `major_upgrade` screen remains frozen (D124). New **isolated only** DS2 event concept files `scenes/dev/design_system_v2_event_preview.tscn`, `scripts/dev/design_system_v2_event_preview.gd` implement a 1280×720 F6 visual study of Whispering Well with three illustrative choice cards (blood, gold, leave), existing `ApprovedEventChoiceArt`/`CardArtCatalog`, Variant C table texture and shared opt-in `MisdealUIKit` DS2 material/bronze/parchment functions. Click tests selected state only; no RunState access, reward/change of hero, gold expenditure, routing, or modifications to the actual `whispering_well.tscn`/`act_choice.tscn`. GitHub code committed, Godot QA pending. User should `git pull`, F6 review and approve or request visual changes before production event migration. Reward mode smoke tests remain open.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Production Reward major-upgrade visuals approved in Godot
 
 The user supplied a **real Godot 1280×720 screenshot** of the production `РАЗВИТИЕ ОТРЯДА` screen with a duo party and three live upgrade cards: `ЖЕЛЕЗНАЯ КЛЯТВА` (Knight), `ГРАД СТРЕЛ` (Ranger), `ПАЛАЧ` (Knight). They explicitly confirmed **«Все отлично! Фиксируй»**. **Visual acceptance granted** to the actual DS2 major-upgrade layout: blackened wood / Variant C table backdrop, aged bronze framed cards, warm parchment effect/description sections, title/summary/footer positioning, approved dynamic art and Cyrillic readability. Binding decision **D124** records the frozen visual baseline. No additional art or code edits were requested or made at this acceptance checkpoint.
