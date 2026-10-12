@@ -1,3 +1,16 @@
+## Bulk Design System 2.0 rollout — 2026-10-12
+
+- [x] User explicitly authorized shipping the remaining UI as one large DS2 batch rather than requesting visual approval of each scene.
+- [x] Apply DS2 event shells to all remaining non-shop shared `ActChoice` events while keeping real descriptions/disabled states/art and their existing button signals.
+- [x] Apply scoped DS2 material pass to Class Select, TAB Squad Dossier, Run End, Battle HUD and Table HUD/Wizard Wager.
+- [x] Preserve accepted Fate Spread, Reward, Well and Shop and existing main/intro art.
+- [x] Static source audit of handlers and UI scene paths; no Godot test claimed.
+- [ ] **Consolidated Godot 4.7.x 1280×720 smoke** of new multi-screen visual pass: text, alignment, missing art, different event choice count, hover, disabled, result, navigation.
+- [ ] Check real Gravedigger Shop purchase/leave with sufficient/insufficient gold (previous stage's live QA is still open).
+- [ ] Check battle tactical orders/target preview/fight overlays and main table wager; no gameplay regressions.
+- [ ] Verify ActChoice recruitment, upgrades, one-choice and three-choice events, full-tooltips and state update correctly.
+- [ ] Only after running the full flow, accept or repair observed issues (avoid speculative restyling and preserve approved art).
+
 ## DS2 production Gravedigger Shop — 2026-10-12
 
 - [x] User approved the corrected independent F6 preview («все ок. внедряй»).
