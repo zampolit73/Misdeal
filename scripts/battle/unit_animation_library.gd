@@ -8,7 +8,8 @@ const CELL_SIZE := 96
 const COLUMNS := 6
 const ROWS := 5
 const BASE_DIR := "res://assets/pixel/units/combat_units_anim_v2/"
-const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer"]
+const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/"
+const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall"]
 
 static var _frames_cache: Dictionary = {}
 static var _unavailable: Dictionary = {}
@@ -22,7 +23,8 @@ static func get_frames(role: String) -> SpriteFrames:
 	if _unavailable.has(role):
 		return null
 
-	var path := "%s%s.webp.b64" % [BASE_DIR, role]
+	var directory := PACK2_DIR if role == "bone_thrall" else BASE_DIR
+	var path := "%s%s.webp.b64" % [directory, role]
 	if not FileAccess.file_exists(path):
 		_unavailable[role] = true
 		push_warning("Animation atlas missing: %s (using static v4 art)" % path)
