@@ -1,3 +1,13 @@
+## Whispering Well group-centering fix after detailed screenshot review (2026-10-12)
+
+- [x] Recognize prior pass corrected card internals but **not** row-center alignment: `HBoxContainer` retained width constrained by previous 330px child minimums.
+- [x] Set 292px button minimums before container resizing; set beginning alignment, explicit 928px row centered at x640 and deferred final bounds (`1adc634`).
+- [x] Increase two-line enabled-card description space to restore hidden «МАГ ПРИСОЕДИНИТСЯ»; place disabled warning with bottom margin; top-align event narrative.
+- [x] Confirm existing seven core choice/art/resolve methods unchanged.
+- [ ] Local Godot 1280×720 screenshot: compare actual first/last card edges to header/footer edges, check description two lines and 0-gold warning margins.
+- [ ] Test enabled coin choice and later revisit layout and actual branching; avoid further speculative pixel offsets without a screenshot.
+- [ ] Keep DS2 art/backdrop, approved Reward layout and favorite Fate Spread unmodified.
+
 ## Whispering Well final alignment after live QA screenshot (2026-10-12)
 
 - [x] Keep existing approved DS2 background, event choice illustrations, colors and three-card positions.
