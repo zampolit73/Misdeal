@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Added — Bone Thrall Pack 2 25-frame atlas (2026-10-12)
+
+- Committed approved transparent 576×480 lossless WebP Base64 sheet (`assets/pixel/units/combat_units_anim_pack2_candidates/bone_thrall.webp.b64`, commit `29d0725`); verified exact remote content.
+- Previously added optional `bone_thrall` loader now resolves this real asset and uses Idle/Walk/Attack/Hit/Death frames with existing v4 fallback. Combat stats, damage, AI, placement and other character models unchanged.
+- Godot 4.7.x F6 and live combat animation verification pending. Bellkeeper, Crypt Guard and Warden sprite sheets not yet authored.
+
+
 ### Changed — Bone Thrall animation loading bridge (2026-10-12)
 
 - Added optional `bone_thrall` SpriteFrames path to production animation library; missing atlas automatically falls back to existing v4 sprite. No combat timing/AI/stat changes.
