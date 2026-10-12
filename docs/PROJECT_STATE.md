@@ -1,3 +1,11 @@
+## CURRENT CHECKPOINT — 2026-10-12 — Fate Spread canonical Design System 2.0 direction approved
+
+The user explicitly confirmed the existing Fate Spread Variant C screenshot as the **favorite art** and canonical style/color/material reference for the whole Misdeal UI. This does NOT authorize altering that art; its composition, cards, ring, ritual crimson, aged metal, candlelight and parchment should be preserved. `docs/DESIGN_SYSTEM.md` now starts with an approved Design System 2.0 visual/material direction, safe staged migration plan and provisional reference palette. `scripts/ui/misdeal_ui_kit.gd` gained **opt-in only** material constants `TABLE_OBSIDIAN`, `RITUAL_CRIMSON`, `AGED_BRONZE`, `PARCHMENT_WARM`, `MOONLIT_STEEL`; existing UI token values and callsites unchanged. Decision D123 records this binding style priority.
+
+**No production screen redesign or artwork migration performed.** Next: isolated reward/event surface style preview at 1280×720 in Godot, get user's approval, then migrate one screen at a time. No alteration of active Fate Spread/table scene, combat stats, card state or run flow. Prior compact-HP-bar Godot review remains pending.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-12 — Compact health bar visual pass
 
 After the user's Gallows Volley screenshot, the solid neon-green/red health bars were redesigned in `scripts/battle/unit.gd` (`d744e61`). Smaller 58px-wide/7px-high standard tracks with dark background, thin bronze borders and muted green/red fill replace thick flat strips; Crypt Guard remains slightly wider (66px) and boss has a distinct 114px/9px track. The style uses existing `ProgressBar` and health update logic; no mechanics, UI scene node hierarchy, sprite art or player/enemy positioning were changed. Local Godot 4.7.x battle/screenshot QA pending; examine readable HP, bar overlap at crowded positions, team contrast and boss presentation.
