@@ -1,3 +1,11 @@
+# LATEST — 2026-10-12 — Crypt Guard animation uploaded and enabled
+
+User approved Crypt Guard. Genuine transparent 576×480 sprite atlas `assets/pixel/units/combat_units_anim_pack2_candidates/crypt_guard.webp.b64` is now committed to main (`5412b1d`), GitHub bytes checked against uploaded source. `scripts/battle/unit_animation_library.gd` now routes `crypt_guard` alongside `bone_thrall` and `grave_bellkeeper` to optional Pack 2 candidate atlas files (`fa78548`); any missing/invalid sheet falls back to static v4. All five states exist (4/6/6/3/6). Offline validation succeeded, **but Godot F6 and combat QA NOT done**.
+
+Now only Bone Warden remains static v4 among four Stage B enemies. Knight stays static v4; Ranger/Mage/Skeleton/Bone Archer stay animated Pack 1 v2. No gameplay/stat/AI changes. Next: user `git pull`, F6 `scenes/dev/unit_animation_pack2_preview.tscn`, inspect Crypt Guard and combat. Then author and approve actual Bone Warden sheet. The historical sections below may describe older checkpoints.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — Grave Bellkeeper animation live via Pack 2
 
 User approved Grave Bellkeeper. The exact prepared transparent 576×480 (6×5, 96px each) 25-pose Base64 WebP sheet is committed at `assets/pixel/units/combat_units_anim_pack2_candidates/grave_bellkeeper.webp.b64` (commit `c28011d`) and verified against source export. `scripts/battle/unit_animation_library.gd` now includes `grave_bellkeeper` in production alongside `bone_thrall` (commit `9f32e4b`), with static-v4 fallback. Runtime Godot F6/battle is NOT tested yet.
