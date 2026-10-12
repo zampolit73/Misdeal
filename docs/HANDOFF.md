@@ -1,3 +1,11 @@
+# LATEST HANDOFF — 2026-10-12 — F6-only Reward material preview for DS2
+
+Binding visual direction remains the user's favorite Fate Spread Variant C tabletop, **never repaint or rearrange it** (D123, lead \`docs/DESIGN_SYSTEM.md\`). In main: \`scenes/dev/design_system_v2_reward_preview.tscn\`, \`scripts/dev/design_system_v2_reward_preview.gd\` and new opt-in functions \`MisdealUIKit.apply_v2_material_plate / apply_v2_parchment_plate / apply_v2_reward_card\`. Prototype reuses \`assets/pixel/table/approved_variant_c/table_exact.webp\`, existing \`CardArtCatalog\` reward illustrations (\`gold_windfall\`, \`relic_wager\`, \`bonus_upgrade\`) and a static mock of Death Wager choices. Hover, selecting cards and the inspect button only change presentation text; no \`RunState\`, reward grants, or scene navigation. **Production reward, table, Fate Spread, battle are unmodified.**
+
+Next action: user \`git pull\`, open \`res://scenes/dev/design_system_v2_reward_preview.tscn\` and press **F6** at 1280×720. Validate art/background loaded, legible 3-card parchment panels, input/hover selection, and bottom feedback, then send screenshot for approval. Only after that migrate a single production Reward screen. Connector environment could not execute Godot, so do not claim runtime success. Older handoffs below are historical.
+
+---
+
 # LATEST HANDOFF — 2026-10-12 — Fate Spread is canonical Design System 2.0 reference
 
 **Binding user approval:** screenshot of «MISDEAL — РАСКЛАД СУДЬБЫ» (existing approved Variant C) is user's favorite screen and the principal visual reference for all Misdeal UI. Do not redesign or recolor its original composition, rings I–XIII, card faces or materials. Base new visual grammar on obsidian dark wood, ritual red markings, aged bronze/gold, parchment, blue night lighting, tactile deck/cards and candles. See new lead section of `docs/DESIGN_SYSTEM.md` and decision D123.
