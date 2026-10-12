@@ -1,5 +1,8 @@
 ## NEXT-CHAT PRIORITY — Undead Pack 2 Stage B: prepared / awaiting real art (2026-10-12)
 
+**Verified handoff gate:** toolchain and F6 preview committed; all four expected candidate atlas paths absent in GitHub. Next contributor should create and approve genuine role-specific sprite sheets rather than changing the production loader. No battle models were switched. See `docs/HANDOFF.md` and `docs/UNIT_ANIMATION_PACK2.md`.
+
+
 - [x] **Technical preparation complete:** Python importer, candidate-only Godot validator, 1280x720 F6 side-by-side preview, staging folder README and full QA contract in GitHub.
 - [x] **No live-model switch:** Knight remains static v4; Ranger/Mage/Skeleton/Bone Archer keep existing frame animation; four remaining undead keep static v4 and Stage A impact VFX.
 - [x] **Context saved** in PROJECT_STATE, ROADMAP, HANDOFF, VISUAL_ASSET_REGISTRY, UNIT_ANIMATION_PACK2 and CHANGELOG. Important QA decision already captured as D121 in DECISIONS.
