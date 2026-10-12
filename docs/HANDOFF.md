@@ -1,3 +1,11 @@
+# LATEST — 2026-10-12 — Approved Bone Thrall asset awaiting GitHub file upload
+
+User approved a 576x480 transparent 6x5 / 25-pose Bone Thrall draft in this chat. Local artifact converted losslessly to `bone_thrall.webp.b64` (254065 bytes); **it is NOT YET IN GitHub**. Production animation library was patched safely: optionally load this exact filename from `assets/pixel/units/combat_units_anim_pack2_candidates/` for role `bone_thrall`, otherwise keep static v4. Commit `d25e471`. Other roles unaffected. No runtime Godot testing performed.
+
+NEXT: commit the actual approved Base64 sprite asset, then run candidate F6 preview and a live Bone Thrall fight. Until the file exists in GitHub, no Bone Thrall animation is actually deployed. Remaining three enemies still need original sheets.
+
+---
+
 # CURRENT RESUME — 2026-10-12 — Animation frame briefs written; spritesheets not yet drawn
 
 **GitHub checkpoint:** Pack 2 Stage B infrastructure is finished (importer + Godot validator + F6 candidate comparison). The new `docs/UNIT_ANIMATION_PACK2_FRAME_BRIEFS.md` now specifies row-by-row animation beats for Bone Thrall, Grave Bellkeeper, Crypt Guard and Bone Warden plus key-pose approvals and frame-grounding rules. This is documentation / asset-production planning, **not generated animation art**.
