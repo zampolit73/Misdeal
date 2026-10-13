@@ -1,3 +1,11 @@
+## VERIFIED — 2026-10-13 — D139 Gameplay 2.3 Godot F6 PASS; new CSV pending
+
+User supplied a screenshot showing **TACTICAL GAMEPLAY 2.3 — PASS** in local Godot 4.7.2 after pulling the D139 change. The scene completed **180/180** isolated real-BattleUnit fights: **79 wins, 101 losses**, 0 timeout failures. Its specific Knight HUNT target regression also showed **«дальняя поддержка / ближний перехват — OK»**. Early tier was tested bare; late tier has bare and illustrative authored upgrade/artifact profiles with two seeds. Output file is `user://misdeal_tactical_v23_balance.csv`. **The CSV has not yet been attached**, so changes in HUNT performance versus previous v22 72-run CSV, upgraded-versus-bare tier-2 outcomes, breakdown by scenario/order/party, cannot yet be calculated. PASS certifies simulation completion and the explicit targeting regression, NOT balanced win rates, not full regular Act 1 gameplay.
+
+**NEXT:** request user to attach `misdeal_tactical_v23_balance.csv` from Godot Project > Open User Data Folder; analyze matched case results versus historical `docs/TACTICAL_GAMEPLAY_V22_BALANCE_REVIEW.md`, then decide whether any card-local adjustments are actually warranted. Continue real-world Act 1 battle/playthrough QA. No new gameplay production changes in this documentation-only checkpoint. Seven two-position card-faithful battles, approved DS2/Fate Spread/art and existing hero/party mechanics intact.
+
+---
+
 ## LATEST CHECKPOINT — 2026-10-13 — D139 HUNT near-threat fix and 180-fight stage benchmark SHIPPED; Godot F6 pending
 
 User approved («утверждаю») the two-point follow-on from the analyzed D138 Godot CSV (baseline 72 fights, 31 wins / 41 losses; HUNT only 5/24, especially `last_bell` HUNT 0/6 vs ASSAULT/FORMATION 6/6). Connected GitHub changes are **already implemented in `main`**. `scripts/battle/unit.gd` now makes melee `HUNT` temporarily intercept a closest enemy at distance <=165 if the preferred healer/ranged remains >165 away; support priority stays active when no frontline is nearby or when support becomes reachable, and Ranger/Mage retain strict HUNT priority. Constants `HUNT_MELEE_THREAT_RADIUS=165.0`, `HUNT_MELEE_RANGE_CUTOFF=100.0`. No changes to enemies/encounter cards/art/rewards/hero stat balance/solo/duo/trio scaling.
