@@ -1,3 +1,13 @@
+## NEWEST — 2026-10-13 — D139 v2.3 CSV ANALYZED, READY FOR NEXT DESIGN DECISION
+
+**Fresh user result:** uploaded `misdeal_tactical_v23_balance.csv` after local F6 PASS 180/180 (79 wins/101 losses). Assistant parsed 180 rows and compared directly against earlier supplied v22 72-row CSV. **Detailed GitHub report: `docs/TACTICAL_GAMEPLAY_V23_BALANCE_REVIEW.md`**. Match exactly by encounter, variant, party_size, protagonist and order with v23 bare sample0. Old/new HUNT **5/24→8/24** (+4 conversions, -1 reversal), ASSAULT **13/24→13/24** and FORMATION **13/24→13/24** with identical outcomes and durations. `last_bell` HUNT remains weak **0/6→1/6** versus ASSAULT/FORMATION **6/6**. This verifies limited benefit of D139 melee HUNT interception but calls for careful further investigation.
+
+Late-tier `ossuary_gate` + `firing_square`: `bare` 6/72 vs `tier2_built` 42/72 (36 matched losses converted into wins, zero reverse). Equipped party sizes: solo 22/24, duo 10/24, trio 10/24. **DO NOT directly conclude solo scaling is too strong:** protagonist rotates by variant/party size and upgraded resources differ; variants are also not fully class-matched. Both later seeds have the same win/loss for every corresponding setup. No statistically validated full Act 1 win-rate estimate here. User's exact approved D139 code already shipped and passed F6; current work analyzed/recorded only, no additional production edits.
+
+**NEXT:** discuss a focused experimental HUNT support focus (especially double healers on `last_bell`) and a genuinely class/roster-controlled stage2 benchmark; get go-ahead before adjusting underlying battle logic/scalers. Real Act 1 with upgrades/Wizard risk/rewards and XIII still needs play QA. Preserve unchanged enemy lineups and card art, seven two-layout authored encounters, DS2/Fate Spread and the 18 approved illustrations. GitHub directly connected; do not request access. Read `docs/TACTICAL_GAMEPLAY_V23_BALANCE_REVIEW.md`, `docs/DECISIONS.md` D137-139 and this checkpoint to resume.
+
+---
+
 ## NEWEST — 2026-10-13 — D139 stage-aware 180-fight F6 PASS; awaiting v23 CSV for analysis
 
 **Latest user feedback:** screenshot of **TACTICAL GAMEPLAY 2.3 — PASS** in Godot 4.7.2: **180/180 completed, 79 wins, 101 defeats**, and the Knight HUNT test **«дальняя поддержка / ближний перехват — OK»**. Covers 36 early bare fights and 144 later bare/equipped fights across two seeds. File reported: `user://misdeal_tactical_v23_balance.csv`. **User has not yet shared CSV**. Thus only aggregate count is known; cannot conclude the HUNT fix improved win rates or that late builds are viable from this screenshot alone. D139 production HUNT close-threat rule and v23 F6 script were already committed; no further gameplay change in this checkpoint.
