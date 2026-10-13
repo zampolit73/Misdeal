@@ -150,6 +150,8 @@ var party_hp_bonus: float = 0.0
 var party_damage_bonus: float = 0.0
 var last_battle_won := false
 var selected_encounter_path: String = DEFAULT_ENCOUNTER_PATH
+# Sampled once per encounter/card in a run; the same fight keeps its deployment on retry.
+var combat_formation_by_card: Dictionary = {}
 var whispering_well_resolved := false
 var wizard_debt_active := false
 var boss_defeated := false
@@ -228,6 +230,7 @@ func reset_run() -> void:
 	party_damage_bonus = 0.0
 	last_battle_won = false
 	selected_encounter_path = DEFAULT_ENCOUNTER_PATH
+	combat_formation_by_card.clear()
 	whispering_well_resolved = false
 	wizard_debt_active = false
 	boss_defeated = false
@@ -329,6 +332,14 @@ func is_role_in_party(role: String) -> bool:
 
 func get_party_size() -> int:
 	return party_roles.size()
+
+
+func get_combat_formation_variant(card_id: String, variant_count: int) -> int:
+	if variant_count <= 1 or card_id.is_empty():
+		return 0
+	if not combat_formation_by_card.has(card_id):
+		combat_formation_by_card[card_id] = randi_range(0, variant_count - 1)
+	return clampi(int(combat_formation_by_card[card_id]), 0, variant_count - 1)
 
 func get_companion_fate(role: String) -> String:
 	return String(hero_fates.get(role, FATE_UNKNOWN))
