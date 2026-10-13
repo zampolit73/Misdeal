@@ -43,7 +43,16 @@ static func get_reward_texture(reward_key: String) -> Texture2D:
 
 static func get_event_art_path(card_id: String, original: String) -> String:
 	var path := _path(EVENTS, card_id)
-	return path if not path.is_empty() and FileAccess.file_exists(path) else original
+	if path.is_empty() or not FileAccess.file_exists(path):
+		return original
+	if not _texture_cache.has(path + ":event_valid"):
+		var probe := Image.new()
+		var err := probe.load_webp_from_buffer(FileAccess.get_file_as_bytes(path))
+		var valid := err == OK and Vector2i(probe.get_width(), probe.get_height()) == Vector2i(1280, 720)
+		_texture_cache[path + ":event_valid"] = valid
+		if not valid:
+			push_warning("Wave 1 event art decode/size invalid, using previous approved background: %s" % path)
+	return path if bool(_texture_cache[path + ":event_valid"]) else original
 
 static func _get_texture(paths: Dictionary, art_id: String, expected_size: Vector2i) -> Texture2D:
 	var path := _path(paths, art_id)
