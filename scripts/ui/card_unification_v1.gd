@@ -58,7 +58,7 @@ static func _get_event_card_texture(card_id: String) -> Texture2D:
 
 	# Crop to the real 448:274 landscape ratio without stretching characters.
 	var width := roundi(float(image.get_height()) * 448.0 / 274.0)
-	var left := maxi(0, (image.get_width() - width) / 2)
+	var left := maxi(0, floori(float(image.get_width() - width) * 0.5))
 	image = image.get_region(Rect2i(left, 0, width, image.get_height()))
 	image.resize(448, 274, Image.INTERPOLATE_LANCZOS)
 	var texture := ImageTexture.create_from_image(image)
