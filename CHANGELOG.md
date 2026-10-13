@@ -1,3 +1,11 @@
+## 2026-10-13 — D140 local Godot 270-fight F6 passed (documentation only)
+
+- User screenshot confirms `TACTICAL GAMEPLAY 2.4 — PASS`: 270/270 controlled full-BattleUnit simulations completed, **158 victories / 112 defeats**, HUNT common bellkeeper/wounded priority/nearby threat fixture passed.
+- The CSV `user://misdeal_tactical_v24_party_focus.csv` is available locally in Godot user data, but has not been provided for case-by-case balance analysis.
+- This checkpoint records local verification only; no new gameplay code, art, cards, enemy rosters, reward flow or scaler changes.
+
+---
+
 ## 2026-10-13 — D140 Gameplay 2.4: coordinated Hunt focus and matched-party balance test
 
 - User approved further HUNT double-healer focus and class/roster-controlled party-size comparisons.
