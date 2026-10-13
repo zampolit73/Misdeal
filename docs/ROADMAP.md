@@ -1,3 +1,14 @@
+## D135 — Complete first-wave 18/18 illustrated assets in main (2026-10-13)
+
+- [x] User approved the last five standalone art originals: `gravedigger_shop`, `bone_swarm`, `grave_crossfire`, `candle_seller`, `last_camp`.
+- [x] Ship three 448×274 card WebPs and two 1280×720 event WebPs as actual binary blobs in GitHub main (`ac860ad2`), verify all five remote files.
+- [x] Wire three new `RUN_CARDS` + two new `EVENTS` mappings in `card_unification_v1.gd`, keep legacy fallbacks and do not restyle approved Shop.
+- [x] Provide deterministic F6 gallery `res://scenes/dev/card_unification_final5_preview.tscn` for these five without needing to roll the encounters.
+- [x] First-wave asset delivery `18/18` = D131 4 + D132 4 + D134 5 + D135 5, all art binaries on main.
+- [ ] User `git pull` and Godot 4.7.x smoke at 1280×720: five F6 images, 3 live dealt cards, 2 live event backgrounds, Candle Seller/Last Camp choices and navigation, Gravedigger Shop preserved.
+- [ ] If not yet done, local Godot review of the D134 5 upgrade/reward images plus complete reward behavior; asset delivery alone is NOT full runtime acceptance.
+- [ ] After art smoke passes, continue the Act 1 vertical slice/replayability work without reopening approved D123–D135 art.
+
 ## Wave 1 remaining 5 candidate artworks (2026-10-13) — concept stage
 
 - [x] Confirm previous 13 D130 illustrated art slots are binary-shipped on main; latest 5 D134 upgrade/reward screens still need local QA.
