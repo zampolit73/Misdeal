@@ -1,3 +1,13 @@
+## D131 four approved card-illustration binaries — shipped 2026-10-13
+
+- [x] Generate/source and user-approve the final distinct silhouettes for `bone_patrol`, `graveyard_ambush`, `gallows_volley`, `whispering_well` (D131).
+- [x] Convert latest approved 1604×981 originals directly to 448×274 WebP and **commit four binary files into GitHub main** (commit `9d864113`).
+- [x] Verify GitHub main contains the exact WebP blobs and existing RunCard texture resolver chooses them before previous atlas; no UI/gameplay edits.
+- [ ] Godot 4.7.x 1280×720: inspect these four via F6 and table, legibility and missing/aliasing issues.
+- [ ] Remaining nine originally pictured D130 compositions: prepare clean standalone binary assets and integrate, separate from this D131 acceptance.
+- [ ] Remaining five original first-wave candidates not pictured: require visual review before authoring or deployment.
+- [ ] Avoid unpacking obsolete old four cropped-image files from previous `misdeal_card_art_wave1_import.zip` over the new checked-in assets.
+
 ## D131 four fresh run-card art approvals — 2026-10-13
 
 - [x] User approved latest four standalone full-resolution images of `bone_patrol`, `graveyard_ambush`, `gallows_volley`, `whispering_well` as the replacement standard for their blurry low-resolution D130 crops.
