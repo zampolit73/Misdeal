@@ -1,3 +1,12 @@
+## D132 art appearance regression follow-up — 2026-10-13
+
+- [x] Diagnose: D132 first rollout replaced full-screen event backdrops but did **not** replace the matching Fate Deal / table card thumbnails.
+- [x] Use four already-shipped D132 images for both the real event backgrounds **and** corresponding live table card illustrations (center-cropped/cached, old atlas fallback).
+- [x] Ease DS2 full-screen tint on four D132 event views only, without changing authored card geometry or mechanics.
+- [ ] Local Godot smoke after `git pull`: confirm those four table deal cards have new illustrations and their event scenes display brighter D132 backgrounds.
+- [ ] If new cards display but event scene does not, ask for screenshot/event ID and investigate actual render layer/texture loading from current GitHub.
+- [ ] Keep approved 4 D131 table cards and all D123–D132 art/UI baselines frozen; five other approved artwork still outstanding.
+
 ## D132 event art batch — shipped to GitHub main 2026-10-13
 
 - [x] User approved new standalone `curse_forge`, `black_altar`, `chained_prisoner`, `rattling_bridge` imagery and requested direct deployment.
