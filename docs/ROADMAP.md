@@ -1,3 +1,11 @@
+## D139 verified in Godot — 2026-10-13
+
+- [x] User screenshot confirms `TACTICAL GAMEPLAY 2.3 — PASS`: all **180/180** controlled battles ended, **79 wins / 101 losses**, Knight HUNT near-threat interception preview PASS.
+- [ ] **Obtain the 180-row CSV** `user://misdeal_tactical_v23_balance.csv` via Godot Project > Open User Data Folder. Analyze card, order, solo/duo/trio, layout, seed, `bare` vs `tier2_built`. Compare matched old v22 bare cases to evaluate HUNT fix; aggregate 79/101 does not prove good/bad balance.
+- [ ] Verify actual Act 1 battles with improvements, boss/rewards/return; propose further targeted encounter changes only if measurements warrant it.
+
+---
+
 ## D139 — Gameplay 2.3 approved and source-committed — 2026-10-13
 
 - [x] User explicitly approved balancing HUNT without discarding healer/archer priority, plus stage-aware late-Act tests using actual authored upgrades/artifacts.
