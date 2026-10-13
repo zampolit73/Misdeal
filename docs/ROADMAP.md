@@ -1,3 +1,13 @@
+## Wave 1 remaining 5 candidate artworks (2026-10-13) — concept stage
+
+- [x] Confirm previous 13 D130 illustrated art slots are binary-shipped on main; latest 5 D134 upgrade/reward screens still need local QA.
+- [x] Identify the additional five original inventory IDs: `gravedigger_shop` (run/deal image ONLY), `bone_swarm`, `grave_crossfire` (run/deal combat), `candle_seller` and `last_camp` (large event backgrounds).
+- [x] Prepare five precise source-backed candidate briefs in `docs/CARD_ART_WAVE1_REMAINING5_BRIEF.md`.
+- [ ] Generate five genuinely distinct new standalone images (avoid replay of previously generated Knight/Ranger/Mage/Gold/Relic group).
+- [ ] Obtain user visual approval; **not approved or active yet**.
+- [ ] After approval commit WebPs and scoped `CardArtCatalog`/event-path mappings, preserving existing fallbacks and approved DS2 Shop screen.
+- [ ] Godot review at actual game card/event size; finalize asset registry and handoff only then.
+
 ## D134 — Five hero upgrade/reward artworks delivered (2026-10-13)
 
 - [x] User explicitly approved last individual illustrations (Knight Iron Oath, Ranger Arrowstorm, male bearded Mage Glass Heart, Gold Windfall, skeletal hand with ruby Relic Wager) and requested direct GitHub upload.
