@@ -2128,3 +2128,24 @@ Status: **user locally accepted rendered four-event art integration**
 After D132 four approved event backgrounds were committed, the user reported the art did not appear in the game. The source fix made the same four event scenes visible both on live deal-card thumbnails and within `ActChoice` backgrounds (event-card crop in `card_unification_v1.gd`, reduced DS2 background shade only for those four scenes), without changing accepted card geometry or any gameplay. The user then replied **«все ок. погнали дальше»**. Treat this as local acceptance of the reported display issue's resolution; no need to re-open these four screens/RunCard illustrations without a new concrete defect. Other D123–D132 art/design decisions remain binding.
 
 Next production target: the **five remaining approved D130 upgrade/reward concepts** (three hero upgrades + two reward art). Exact standalone prompts/paths and current image-generation limitation are in `docs/CARD_ART_WAVE1_FINAL5_BRIEF.md`. An attempted image-generation step erroneously repeated the previous 4 event scenes twice; those duplicate collages are **rejected**, not approved, and no new image binaries were shipped. This decision does not approve unseen new five images.
+
+## D134 — Approve and ship final five Wave 1 upgrade/reward illustrations
+
+Date: 2026-10-13  
+Status: **five user-approved illustrated textures uploaded as WebP binaries to GitHub main; in-engine visual QA pending**
+
+After viewing the latest five individual Misdeal paintings the user explicitly requested: «да, давай внедрим их. Заливай сразу в гит», then reiterated that the assistant has direct GitHub access. These **five last generated illustrations** are authoritative (not previous lower-resolution D130 contact sheet crops or the prior individually generated Knight). Their ids and original chat image filenames/generation IDs:
+
+| Art key | Original user-accepted image and generation | Runtime file |
+|---|---|---|
+| `knight_iron_oath` | `рыцарь_в_лунных_руинах_собора.png` — `99064d63-d2ca-4e91-8f30-509afa693455` | `assets/pixel/card_unification_v1/upgrade/knight_iron_oath.webp` |
+| `ranger_arrowstorm` | `лунный_залп_над_руинами.png` — `568fcdba-01b3-44f2-8333-2504f97adaa9` | `assets/pixel/card_unification_v1/upgrade/ranger_arrowstorm.webp` |
+| `mage_glass_heart` | `осколочное_сердце_древнего_мага.png` — `b0c9d788-0066-4f7e-bd33-6631c7dfe5f2` | `assets/pixel/card_unification_v1/upgrade/mage_glass_heart.webp` |
+| `gold_windfall` | `сундук_сокровищ_в_лунных_руинах.png` — `503c0d93-b07f-495c-9fdf-68250a88c46c` | `assets/pixel/card_unification_v1/reward/gold_windfall.webp` |
+| `relic_wager` | `скелетная_рука_с_кровавым_кристаллом.png` — `1951ab80-d0fd-4a09-9f11-f6ef067df57d` | `assets/pixel/card_unification_v1/reward/relic_wager.webp` |
+
+All five original PNGs were 1570×1002, nearly exactly the production 608×388 aspect, allowing high-quality direct Lanczos downsampling without cropping, quality 90 WebP. **Actual files are now in main**, commit `e3729a4a86a9cce006ec8803fa6e7e0aa1f00de5`; checked all five remote GitHub blob SHAs, valid WebP headers and a diff comprising exactly these five files. Existing `scripts/ui/card_unification_v1.gd` `UPGRADES`/`REWARDS` maps and `scripts/ui/card_art_catalog.gd` preferentially load new art, preserving old atlas fallbacks. No production code, mechanics, layout, Fate Spread, Well, shop or combat screens changed in that commit.
+
+**Binding art details** remain: Knight in worn black armor kneeling over upright sword; one hooded bow ranger and coherent arrows; **older male Mage with long gray beard** and luminous blue crystal heart; old chest of antique gold; **skeletal hand grasping a faceted red ruby**. Don't substitute other interpretations or the obsolete D130 low-resolution crops. The original D130 pictured 13/13 illustrations now have true binary files committed (D131 four run cards, D132 four event backgrounds, D134 five upgrade/reward images). The additional five candidate items from the earlier 18-art inventory remain separate, unapproved and unimplemented.
+
+**QA boundary:** upload and lookup verified in repo; the assistant has not executed Godot. User should `git pull`, inspect `res://scenes/dev/card_unification_v1_preview.tscn` via F6, then check hero upgrades and reward cards in the real UI at 1280×720. If older ZIP extractions have left the five exact `upgrade/` or `reward/` paths as untracked files, Git may require moving only those old files aside before pulling. No additional ZIP is required.
