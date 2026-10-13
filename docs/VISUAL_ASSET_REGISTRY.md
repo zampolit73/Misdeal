@@ -1,3 +1,17 @@
+## NEW DECK EXPANSION ART — D144 Bone Shepherd source SVG (2026-10-14; local Godot visual QA pending)
+
+This is **additional content**, separate from and in no way replacing the previous 18/18 approved Wave-1 WebP assets. The user approved the broad concept but **has not reviewed these live game atlas textures yet**. The composite generated concept-sheet image `e0f6a604-d75f-4cd2-83f0-3ab10fe24749` was illustrative only, **not the imported game asset**. All new files are independently authored pixel-shape SVG sources kept as UTF-8 in GitHub (the connected GitHub connector does not upload binary file contents), then loaded/imported by Godot as texture images.
+
+| New visual | GitHub path | Dimensions | State |
+|---|---|---:|---|
+| `bone_shepherd` | `assets/pixel/units/deck_expansion_v1/bone_shepherd_frames.svg` | 576×480 (6×5 grid, 96px per cell) | 25 original five-state frames, SVG importer + Godot gallery visual QA pending |
+| `ossuary_lamb` | `assets/pixel/units/deck_expansion_v1/ossuary_lamb_frames.svg` | 576×480 (6×5 grid, 96px per cell) | 25 original five-state frames, hoof/stance readability QA pending |
+| `bone_shepherd` run card | `assets/pixel/card_unification_v1/run/bone_shepherd.svg` | 448×274 | Original cemetery-scene/card image, user in-engine approval pending |
+
+Actual runtime: `scripts/battle/unit_animation_library.gd` uses `load(svg_path) as Texture2D` to build 4 idle, 6 walk, 6 attack, 3 hit, 6 death `SpriteFrames` per role, preserving new-species idle texture fallback. `scripts/ui/card_unification_v1.gd` returns the dedicated new card `Texture2D`. New SVG art must display feet/hooves correctly when rendered via `BattleUnit` at 1280×720; genuine Godot import not yet tested by assistant. F6 `res://scenes/dev/bone_shepherd_art_preview.tscn` to inspect. Existing imported units and Fate Spread unchanged. Source/UX accuracy: the real battle contains **1 Shepherd +2 Lambs, no ghost or dog**.
+
+---
+
 ### FIRST WAVE COMPLETE — 2026-10-13 — D135 last 5 standalone WebP assets in GitHub
 
 New five separate user-approved images from `docs/CARD_ART_WAVE1_REMAINING5_BRIEF.md` uploaded as **raw GitHub binaries** in `ac860ad2cacf17e7ab4e64c54f2ddfb70debd146`. Paths relative to `assets/pixel/card_unification_v1/`, SHA256 of the actual shipped WebP bytes:
