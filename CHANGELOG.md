@@ -1,3 +1,13 @@
+## 2026-10-14 — D145 Bone Shepherd artwork quality refinement (gameplay unchanged)
+
+- Reworked actual `assets/pixel/units/deck_expansion_v1/bone_shepherd_frames.svg` with 25 separately detailed pixel-shape animation frames, dark-fantasy layered cloth texture, old bronze fittings, skeletal mask/ribs, moonlit paint shadows and a small lantern on crooked staff.
+- Reworked `assets/pixel/units/deck_expansion_v1/ossuary_lamb_frames.svg` across 25 animation frames: richer horned skulls, jointed bone/hoof outlines, funerary drapery and textured rib plates, retaining the authentic four-legged silhouette.
+- Repainted `assets/pixel/card_unification_v1/run/bone_shepherd.svg` (448×274) with graveyard chapel, broken fencing, graves, atmospheric moon and mist, worn cobbles, amber lantern and additional material texture. All existing 576×480/96px enemy cells, poses and art loader paths preserved.
+- New composite AI concept sheet was shown only as reference, not used as a source sprite atlas; no unapproved extra event buttons/creature types/summons added. **Only 3 original source-art files + docs changed; no combat, balance, Whistle, UI or RunState changes.**
+- Static SVG syntax/size/25-frame audit PASS. **Actual local Godot visual approval after redraw and prior pending Bone Shepherd smoke 54/54 PASS still required.**
+
+---
+
 ## 2026-10-14 — D144 Bone Shepherd first local Godot parser hotfix
 
 - User supplied live Godot images: genuine card/Shepherd/Lamb SVG art preview loads and Knight battle scene starts with correct new 1+2 roster; proves render/import/startup but **not** 54-test run or art-quality acceptance.
