@@ -1,7 +1,7 @@
 ## D140 ACTIVE — Gameplay 2.4 coordinated HUNT and controlled party benchmark — 2026-10-13
 
 - [x] User approved («давай») further tactical support focus + fairer protagonist-fixed solo/duo/trio comparison; see `docs/DECISIONS.md` D140.
-- [x] Implement common alive-party-center tie break and wounded-health-ratio focus for HUNT targets within existing support/ranged/melee rank in `BattleUnit`. Retain D139 melee close-frontline interception and normal ranged support focus; no enemy/card/stat/art changes.
+- [x] Implement common alive-party-center tie break and wounded-health-ratio focus for HUNT targets within the healer/ranged ranks, retaining nearest-melee fallback in `BattleUnit`. Retain D139 melee close-frontline interception and normal ranged support focus; no enemy/card/stat/art changes.
 - [x] Add F6 `scenes/dev/tactical_gameplay_v24_focus_party_benchmark.tscn`: regression fixture for two bellkeepers, shared HUNT initial/wounded target, Knight proximity intercept and Ranger/Mage support priority.
 - [x] Add **270 actual-unit controlled fights**: `last_bell` 54 bare; `ossuary_gate` and `firing_square` 216 equipped with two seeds, 2 layouts × every protagonist × 1/2/3 party sizes × three orders. Fixed cyclic companion order for each protagonist; new CSV `user://misdeal_tactical_v24_party_focus.csv` with explicit `party_roles` and match key.
 - [ ] **User Godot F6:** `git pull`; run `res://scenes/dev/tactical_gameplay_v24_focus_party_benchmark.tscn`; expect `TACTICAL GAMEPLAY 2.4 — PASS`; attach screenshot and CSV; repair any engine errors in GitHub.
