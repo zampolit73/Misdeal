@@ -48,3 +48,7 @@ Applicable established constraint: `docs/DECISIONS.md` **D143**. New combat card
 ## Status caveats
 
 No new `resources/cards/bone_shepherd.tres`, `resources/encounters/bone_shepherd.tres`, `resources/units/bone_shepherd.tres` or `resources/units/ossuary_lamb.tres` exist as of this concept checkpoint. No associated new enemy miniatures/card image exist in the GitHub repo. This concept does not approve itself. Existing v25 combat diagnostics and outstanding D142 HUNT/party balance QA remain separate from the Deck Expansion. Do not break 30→45 pool accounting or 12+XIII rule.
+
+## Concept illustration clarification (same session)
+
+A provisional concept illustration was generated in the chat (generation ID `f4082d45-feb8-46e4-9401-a3f5ca97638d`), **not committed as a game asset**. As an exploratory moodboard it added extra optional-choice UI, an alternative quadruped name/appearance and a *third* ghost enemy which are **NOT in the approved scope or in the above proposed 1+2 enemy spec**. Do **not** implement its extra enemies, combat branches, summoning/healing/status abilities or extra interface as if user accepted them. If user prefers any of these illustrated extras, first explicitly revise this design and the artwork list with their approval. Neither the creature look nor the gameplay behavior is yet signed off. Current user decision required: approve the 1× Shepherd + 2× horned Ossuary Lamb idea, or request a visual/roster revision. The image is **not an authentic 96×96 sprite atlas**.
