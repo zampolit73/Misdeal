@@ -2248,3 +2248,17 @@ Previous D139 F6 180/180 PASS and real CSV analysis (`docs/TACTICAL_GAMEPLAY_V23
 - PASS requires targeting-fixture expectations, 270 completed fights/no timeouts and CSV write, **not balanced real-world win rates**. Fixed simulated 30 FPS and 75 s limit; no full Act 1 card-deal flow, Wizard risk or reward transitions. No global solo/duo/trio scalars touched.
 
 **Next Godot handoff:** user `git pull`, F6 v2.4 scene, return PASS/FAIL screenshot and `misdeal_tactical_v24_party_focus.csv` from Project > Open User Data Folder; GitHub changes are committed without engine runtime validation in assistant container. Then compare v2.4 HUNT vs other tactics in `last_bell`, and solo→duo→trio trajectories by *same protagonist* for late encounters. Only consider further tuning based on these controlled results plus actual Act 1 play. Original 7 two-layout encounter cards, 18 artworks, DS2 / Fate Spread Variant C, 12+XIII progression stay unchanged.
+
+
+## D141 — Gameplay 2.5 must diagnose, not speculate or rebalance
+
+Date: 2026-10-14
+Status: **user approved («Давай»); code committed in GitHub main, local F6 QA pending**
+
+Following the measured v24 results (report `docs/TACTICAL_GAMEPLAY_V24_BALANCE_REVIEW.md`), user agreed to **diagnostic-first** work. HUNT was outcome-dominated by ASSAULT on the v24 matrix despite sharing healer focus mechanically; Knight+Ranger late equipped duo had 0/24 wins compared with Knight solo 24/24 and trio 2/24. Neither result alone identifies its root cause; particularly party size changes the number of heroes, composition, placements, reward allocation and enemy pressure scalers together.
+
+Approved scope is **observability only**, not balance retuning. Add opt-in `BattleUnit` signals for actual executed attacks, effective HP damage (primary+splash) and healer support recovery. Signals emit only if connected, and **do not change** target selection, hit damage, timing or healing. Build a standalone dev-only real BattleUnit F6 diagnostic scene `res://scenes/dev/tactical_gameplay_v25_combat_diagnostics.tscn`. Its 126 scenarios are an exact-matched **subset** of previously Godot-validated v24 cases: all 54 `last_bell` layout/protagonist/party/order combinations plus 72 `ossuary_gate`/`firing_square` late equipped Knight / Knight+Ranger / Knight+Ranger+Mage scenarios, two layouts, three orders, two seeds. Use v24 seeds and authored upgrade/artifact/party-scaling logic, not new synthetic enemies or arbitrary stats. Record attack counts, attack-to-healer counts, true damage dealt/received, effective healing, chase seconds, support-target seconds, movement distance and target switches, alongside normal outcome metrics in **two** separate CSV outputs:
+- `user://misdeal_tactical_v25_trace_cases.csv` — per matched combat.
+- `user://misdeal_tactical_v25_trace_units.csv` — per spawned unit for each combat.
+
+**Interpretation boundary:** CSV metric totals such as chase seconds represent summed hero time; not a full in-game telemetry system nor an Act 1 win-rate sample. F6 PASS would mean 126 battles complete and both files are written, **not that HUNT or solo/duo/trio are fixed**. Assistant cannot run Godot in its container; user must `git pull`, run F6 and share both CSVs for actual diagnosis. Only after review and a normal Act 1 run with Wizard risk/rewards and boss XIII should any HUNT targeting or party-size scalers be tuned. Preserve card-specific opponent rosters, existing two-layout formations, DS2 / Fate Spread Variant C, 18 approved assets and 12+XIII structure.
