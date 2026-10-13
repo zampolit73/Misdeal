@@ -1,3 +1,13 @@
+## NEWEST — 2026-10-13 — D138 Gameplay 2.2 shipped in `main`; run new full-BattleUnit F6
+
+**User explicitly approved** proposal for Gameplay 2.2 («утверждаем»). Connected GitHub tool used to modify ONLY 4 existing encounter resources `gallows_volley`, `ossuary_gate`, `last_bell`, `firing_square`: each gets an alternate authored set of coordinates and two prep hints; their enemy roster paths/names, cards, arenas and graphics **unchanged**. Reuses D137 `EncounterData` variant and RunState per-run cache stable on retry; no production combat scripts, solo/duo/trio coefficients, rewards, DS2 or Fate Spread changed. This raises supported 2-layout combat cards from 3 to 7.
+
+New isolated F6 benchmark scene `res://scenes/dev/tactical_gameplay_v22_battle_benchmark.tscn` advances **real `BattleUnit._process`** (combat target acquisition, movement, attacks, support healing/deaths) in a hidden test arena at fixed 30-FPS simulation delta, capped at 75 virtual seconds/fight. Matrix: 4 cards × 2 layouts × 3 party sizes × 3 standard orders = **72 real-unit controlled fights** with matched seeds/rosters within order comparisons. CSV `user://misdeal_tactical_v22_battles.csv`: encounter, variant, party size, protagonist, order, win/loss/timeout, simulated seconds, survivor counts. It excludes equipment/upgrades/Wizard penalties/reward/Act 1 continuity; records results but cannot by itself declare good win rates. Structural and timeout checks produce PASS/FAIL. **User has NOT YET RUN D138 F6**; the assistant environment lacks the Godot 4.7.x executable.
+
+**IMMEDIATE NEXT ACTION:** user `git pull` then F6 scene; await `TACTICAL GAMEPLAY 2.2 — PASS` and share screenshot/FAIL Output plus CSV if analysis needed. After passing, play four encounters in the normal run, verify tactical differentiation, enemy placements, deployment labels and reward/return. Tune based on actual results. D136 (48 virtual deals) and D137 (54 prebattle setups) passed locally in earlier user reports. D137 general live feedback «все ок», not a statistical balance certification. Keep all 18 approved art files/DS2/Fate Spread untouched; never randomize enemy rosters per card. See `docs/DECISIONS.md` D138 and `docs/ROADMAP.md`.
+
+---
+
 ## CURRENT — 2026-10-13 — D137 general play feedback OK, Gameplay 2.2 proposal pending
 
 After successfully passing D137 local F6 (54 setups, 324 target decisions, 72 HUNT/ASSAULT differences), the user reported **«все ок. что дальше?»** to the request to try actual fights. Interpret this as favorable general feedback/no reported defects, NOT exhaustive win-rate evidence or confirmation of every solo/duo/trio pairing. D136 F6 also passed; full real Act 1 not explicitly certified.
