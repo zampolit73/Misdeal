@@ -75,6 +75,14 @@ func _ready() -> void:
 	await _run_benchmarks()
 	if errors.is_empty() and results.size() != total_trials:
 		errors.append("Incomplete benchmark: %d/%d results" % [results.size(), total_trials])
+	if errors.is_empty():
+		var counted_attacks := 0
+		var counted_damage := 0.0
+		for result in results:
+			counted_attacks += int(result["hero_attacks"])
+			counted_damage += float(result["hero_damage"]) + float(result["enemy_damage"])
+		if counted_attacks <= 0 or counted_damage <= 0.0 or per_unit_rows.size() <= results.size():
+			errors.append("Diagnostic capture missing real attack/damage or per-unit rows")
 	_write_results()
 	RunState.reset_run()
 
