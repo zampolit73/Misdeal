@@ -1,3 +1,11 @@
+## LATEST — 2026-10-13 — D140 local Gameplay 2.4 PASS; obtain CSV for balance
+
+User supplied Godot screenshot `TACTICAL GAMEPLAY 2.4 — PASS`: **270/270** controlled BattleUnit bouts complete, **158 wins, 112 losses**, and Hunt shared-healer/wounded-target/near-threat regression PASS. This confirms committed D140 logic launches in Godot with no simulation timeouts. **CSV `user://misdeal_tactical_v24_party_focus.csv` not attached**, so no per-card/per-order/per-class balance inferences yet. The matrix fixes protagonist across party sizes, companions are deterministic, advanced scenarios are equipped, rather than real Act 1 progression.
+
+**Next interaction:** ask for `misdeal_tactical_v24_party_focus.csv` via Godot user data folder, analyze each scenario and fixed-protagonist solo/duo/trio comparisons. Historical D139 case study `docs/TACTICAL_GAMEPLAY_V23_BALANCE_REVIEW.md`; earlier baseline had HUNT shortcomings and confounded protagonist rotation. Preserve accepted encounter identities, art and UI. No new source changes since D140; docs only updated with F6 PASS. Real Act 1 end-to-end rewards/boss still to verify.
+
+---
+
 ## LATEST — 2026-10-13 — D140 shipped, new 270-fight local F6 required
 
 User approved Gameplay 2.4 focused follow-up with «давай». Connected GitHub plugin used to implement `scripts/battle/unit.gd` shared HUNT target selection: alive-party-center tie breaker + lowest-HP-ratio first among healers or ranged enemies; nearest-target fallback for frontline-only fights remains unchanged. This coordinates hits on the same bellkeeper and preserves D139 Knight/melee immediate-threat (165) intercept. Hero/enemy stats, seven existing positional two-layout cards, DS2/Fate Spread/art, act/rewards and global solo/duo/trio scalers **untouched**. Full rationale in `docs/DECISIONS.md` D140.
