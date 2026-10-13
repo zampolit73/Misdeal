@@ -199,12 +199,8 @@ func _run_single_battle(
 			errors.append("Missing hero UnitData: %s" % role)
 			break
 		var hero := UNIT_SCENE.instantiate() as BattleUnit
-		var source: Vector2
-		if bounds == VOLLEY_COMBAT_BOUNDS:
-			source = [Vector2(290, 305)][0] if party_size == 1 else ([Vector2(205, 245), Vector2(425, 365)][i] if party_size == 2 else [Vector2(185, 225), Vector2(330, 305), Vector2(480, 385)][i])
-		else:
-			source = [Vector2(220, 245)][0] if party_size == 1 else ([Vector2(205, 190), Vector2(445, 325)][i] if party_size == 2 else [Vector2(190, 175), Vector2(285, 365), Vector2(445, 260)][i])
-		hero.configure(hero_data, 0, _project_spawn(source, bounds))
+		var source_position: Vector2 = _hero_spawn_source(encounter.encounter_id, party_size, i)
+		hero.configure(hero_data, 0, _project_spawn(source_position, bounds))
 		hero.max_hp *= RunState.get_party_hp_multiplier()
 		hero.damage *= RunState.get_party_damage_multiplier()
 		hero.attack_interval = maxf(0.2, hero.attack_interval * RunState.get_party_attack_interval_multiplier())
@@ -292,6 +288,28 @@ func _run_single_battle(
 		"survivors": survivors,
 		"enemy_survivors": enemy_survivors
 	}
+
+
+func _hero_spawn_source(encounter_id: String, party_size: int, index: int) -> Vector2:
+	# Mirrors the four relevant positioning profiles in battle.gd.
+	var positions: Array[Vector2] = []
+	if encounter_id == "gallows_volley" or encounter_id == "firing_square":
+		match party_size:
+			1:
+				positions = [Vector2(290, 305)]
+			2:
+				positions = [Vector2(205, 245), Vector2(425, 365)]
+			_:
+				positions = [Vector2(185, 225), Vector2(330, 305), Vector2(480, 385)]
+	else:
+		match party_size:
+			1:
+				positions = [Vector2(220, 245)]
+			2:
+				positions = [Vector2(205, 190), Vector2(445, 325)]
+			_:
+				positions = [Vector2(190, 175), Vector2(285, 365), Vector2(445, 260)]
+	return positions[index]
 
 
 func _project_spawn(source: Vector2, bounds: Rect2) -> Vector2:
