@@ -12,3 +12,6 @@ arena_id = "bone_swarm"
 enemy_unit_paths = PackedStringArray("res://resources/units/bone_raider.tres", "res://resources/units/bone_raider.tres", "res://resources/units/bone_raider.tres", "res://resources/units/bone_raider.tres")
 enemy_names = PackedStringArray("Костяной налётчик", "Костяной налётчик", "Костяной налётчик", "Костяной налётчик")
 enemy_positions = PackedVector2Array(845, 165, 945, 195, 945, 325, 845, 355)
+formation_hint = "ДВА ФЛАНГА — расставьте героев против широкого натиска."
+alternate_enemy_positions = PackedVector2Array(830, 230, 895, 215, 895, 300, 830, 315)
+alternate_formation_hint = "ПЛОТНАЯ ВОЛНА — урон по площади особенно полезен."
