@@ -1,3 +1,11 @@
+## LATEST — 2026-10-14 — D141 v2.5 diagnostic first-pass shipped; F6 outputs next
+
+User approved «Давай» to Gameplay 2.5 after D140 CSV revealed `HUNT` outcome domination (24/90 vs ASSAULT 67/90), Last Bell HUNT 4/18, and late Knight+Ranger duo 0/24 vs Knight solo 24/24. **Production balancing has NOT been changed.** One `BattleUnit` script (`scripts/battle/unit.gd`) gained three optional observer signals emitted only for listeners: `diagnostic_attack`, `diagnostic_damage` (effective HP loss incl splash), `diagnostic_heal` (net restore). No AI, damage or healer calculation changes. Dev-only F6 `res://scenes/dev/tactical_gameplay_v25_combat_diagnostics.tscn` with script in `scripts/dev/` runs 126 original v24 seed-matched outcomes: 54 Last Bell across 3 protagonists/orders/sizes, 72 Knight-led late equipped Ossuary Gate/Firing Square (solo/duo/trio, 2 layouts, 3 orders, 2 seeds). Generates case and per-unit telemetry CSVs `user://misdeal_tactical_v25_trace_cases.csv`, `user://misdeal_tactical_v25_trace_units.csv`. Full fields and scope in `docs/GAMEPLAY_V25_DIAGNOSTICS.md` and D141 decision.
+
+**NEXT USER:** `git pull`, F6 `scenes/dev/tactical_gameplay_v25_combat_diagnostics.tscn`, send PASS/FAIL screenshot and **both** CSVs. Assistant cannot run Godot locally: no engine PASS yet. Then compare v25 126 cases with exact corresponding previous D140 v24 case IDs, measure HUNT targets/chase vs attacks/healing and Knight duo per-unit performance; only after measured evidence consider actual balancing. Normal Act 1 progression with Wizard wagers, upgrades, rewards and boss XIII still requires test. Preserve original seven 2-layout card rosters, 18 arts, DS2/Fate Spread. GitHub write access connected; never ask user to copy scripts.
+
+---
+
 ## LATEST — 2026-10-14 — D140 270-fight CSV analyzed; diagnostic-first follow-up proposed
 
 User uploaded actual Godot-generated `misdeal_tactical_v24_party_focus.csv` (270 rows); source-level report **`docs/TACTICAL_GAMEPLAY_V24_BALANCE_REVIEW.md`** now records exact matrix, validated outcomes and caveats. User's previous D140 F6 PASS screen: 270/270, 158 wins, 112 defeats, HUNT shared focus/wounded target/frontline intercept preview PASS.
