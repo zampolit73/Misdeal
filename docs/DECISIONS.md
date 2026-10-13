@@ -2149,3 +2149,24 @@ All five original PNGs were 1570×1002, nearly exactly the production 608×388 a
 **Binding art details** remain: Knight in worn black armor kneeling over upright sword; one hooded bow ranger and coherent arrows; **older male Mage with long gray beard** and luminous blue crystal heart; old chest of antique gold; **skeletal hand grasping a faceted red ruby**. Don't substitute other interpretations or the obsolete D130 low-resolution crops. The original D130 pictured 13/13 illustrations now have true binary files committed (D131 four run cards, D132 four event backgrounds, D134 five upgrade/reward images). The additional five candidate items from the earlier 18-art inventory remain separate, unapproved and unimplemented.
 
 **QA boundary:** upload and lookup verified in repo; the assistant has not executed Godot. User should `git pull`, inspect `res://scenes/dev/card_unification_v1_preview.tscn` via F6, then check hero upgrades and reward cards in the real UI at 1280×720. If older ZIP extractions have left the five exact `upgrade/` or `reward/` paths as untracked files, Git may require moving only those old files aside before pulling. No additional ZIP is required.
+
+## D135 — Approve and ship the final five first-wave card illustrations (18/18 assets)
+
+Date: 2026-10-13  
+Status: **visually approved; binary files and optional runtime lookup committed to `main`; local Godot QA pending**
+
+The user reviewed five new, *separate* Misdeal paintings and explicitly approved them («Утверждаю. Давай заливай сразу в гит»). These five are the previously unpictured additions to the D130 13-item collection, completing the **18-image first-wave inventory** without changing the thirteen earlier approved arts. The assistant has real GitHub connector access and **used it**; a previous claim of no GitHub access is obsolete.
+
+| Runtime ID | Approved source image / gen ID | New game art |
+|---|---|---|
+| `gravedigger_shop` | `торговец_склепа_при_лунном_свете.png`, `2675f7e5-f080-4369-b705-9b102a70809e` | `assets/pixel/card_unification_v1/run/gravedigger_shop.webp`, 448×274 |
+| `bone_swarm` | `костяной_колосс_на_кладбище.png`, `69e31ef8-f24e-4761-a32a-1fab26f47385` | `assets/pixel/card_unification_v1/run/bone_swarm.webp`, 448×274 |
+| `grave_crossfire` | `мрачная_дуэль_лучников_на_кладбище.png`, `470fddf6-444d-4059-85da-81cf71f4f00c` | `assets/pixel/card_unification_v1/run/grave_crossfire.webp`, 448×274 |
+| `candle_seller` | `старьевщик_свечей_среди_руин.png`, `e7f6d158-a061-4936-866e-74f42bb06cf5` | `assets/pixel/card_unification_v1/event/candle_seller.webp`, 1280×720 |
+| `last_camp` | `одинокий_костёр_среди_лунных_руин.png`, `1c18a737-3358-4ad0-994a-1a138376afe8` | `assets/pixel/card_unification_v1/event/last_camp.webp`, 1280×720 |
+
+**Actual assets shipped**, GitHub `main` commit `ac860ad2cacf17e7ab4e64c54f2ddfb70debd146`. All five independently fetched and verified as remote Git blob SHAs and WebP magic; local originals were resized to the dimensions shown (no old collage crops). `scripts/ui/card_unification_v1.gd` adds these three `RUN_CARDS` and two `EVENTS` keys, making `CardArtCatalog.get_run_card_texture` and the existing `ActChoice` event background loader use them automatically. `candle_seller` and `last_camp` also display on their deal cards through the pre-existing event-to-card fallback crop. All original fallback atlases and old event backgrounds remain available if missing/invalid images are encountered. New no-gameplay F6 gallery: `scenes/dev/card_unification_final5_preview.tscn`.
+
+**Shop must remain untouched:** `gravedigger_shop` new art affects ONLY the run/deal card illustration; its independently approved DS2 live shop layout/price/transactions and `gravedigger_shop` live event backdrop stay exactly as before. No RunState, combat logic, purchase handlers, reward logic or D123–D134 approved layout/paintings were edited.
+
+**Test boundary:** Source paths, binary validity and lookup hooks verified in GitHub; the assistant did NOT run Godot. The user should `git pull`, F6 `scenes/dev/card_unification_final5_preview.tscn` at 1280×720, then check three offered cards and both in-game event backgrounds plus active choices/return navigation. Previous manually extracted `misdeal_remaining5_assets.zip` copies might make Git report untracked-file overwrites; move only those five locally before `git pull` if needed. The 18/18 statement means **binary assets committed and mapped**, not runtime visual QA certified.
