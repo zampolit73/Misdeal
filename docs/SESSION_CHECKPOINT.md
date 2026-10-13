@@ -1,3 +1,11 @@
+## NEWEST — 2026-10-13 — Gameplay 2.0 handoff saved for new chat; D136 IN MAIN, Godot QA NOT CONFIRMED
+
+**THIS IS THE RESUME POINT.** User explicitly asked to store the full working context in GitHub before starting a new chat. Full, compact next-chat brief: **`docs/GAMEPLAY_2_0_HANDOFF.md`**. Current project source truth is GitHub `zampolit73/Misdeal`, branch `main`, not earlier chats. The user said «Все ок» after first-wave art and resolved five formerly untracked D134 WebP files that blocked `git pull`; art wave **18/18** is shipped (D131–D135), approved DS2/Fate Spread visuals frozen. They then approved **Gameplay 2.0** (deal variety, meaningful existing battles, risk/reward, evil Wizard reactions; solo/duo/trio checks) with «да, давай». Importantly, **D136 Gameplay 2.0 production code and dev F6 smoke are ALREADY committed**, not merely planned; real Godot engine PASS and full Act 1 run are still unknown.
+
+**D136 current code:** `scripts/core/run_state.gd` varied legal mixed offer pairs/recent memory, Wizard context lines, Mark tier +20/+30/+40 gold for unchanged +15% next-battle enemy damage; `scripts/table/table.gd` precise UI hint/tooltip/confirmation and priority Wizard dialogue. No UI redesign, new encounters, combat balance, party/scaling changes. Smoke `res://scenes/dev/act1_gameplay_v2_smoke.tscn` uses 48 seeded solo/duo/trio simulations. **Next:** user `git pull`, F6 scene at 1280×720; look for **ACT 1 GAMEPLAY 2.0 — PASS**, send FAIL log if any; then test one real Act 1 run including Mark/Wager/Meddling/Hold/forced combat/XIII/reward return. Fix observed errors from current GitHub directly, update docs; do not reimplement completed D136 or ask again for GitHub access. This handoff step is **documentation-only**; it makes no gameplay or visual changes.
+
+---
+
 ## NEWEST — 2026-10-13 — D136 ACT 1 GAMEPLAY 2.0 source shipped; local Godot test pending
 
 User said «да, давай» to implement the previously discussed Gameplay 2.0 pack after confirming the 18/18 art wave was OK. GitHub **main** now contains directly committed scoped production changes: `scripts/core/run_state.gd` (`d0ec07e`, subsequent typed-safety and Wizard-dialogue commits) and `scripts/table/table.gd` (`8d4260e`); new test-only `scripts/dev/act1_gameplay_v2_smoke.gd` and `scenes/dev/act1_gameplay_v2_smoke.tscn`. D136 records binding behavior.
