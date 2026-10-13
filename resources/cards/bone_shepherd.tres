@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+card_id = "bone_shepherd"
+title = "КОСТЯНОЙ ПАСТУХ"
+card_text = "Из тумана выходит костяной пастух. Его стадо давно не дышит — но всё ещё слушается свиста."
+wizard_line = "Такие послушные овцы. Жаль, что тебя они не считают пастухом."
+type_label = "БОЙ"
+tier = 0
+resolution_type = "combat"
+target_path = "res://resources/encounters/bone_shepherd.tres"
+art_path = "res://assets/pixel/card_unification_v1/run/bone_shepherd.svg"
+prototype_result_text = ""
