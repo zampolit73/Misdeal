@@ -2299,3 +2299,20 @@ Three local Godot test entry points:
 - **F6** `res://scenes/dev/bone_shepherd_playtest.tscn` — enters the actual normal Battle scene with Knight and this new encounter for visual scale, deployment and game-flow QA.
 
 **Not yet validated:** assistant environment has no Godot 4.7 binary; only static source/integrity checks passed. Do not claim F6 PASS, actual balance, accepted final art or full Act1 QA until user tests. If local parse/import errors arise, fix GitHub code directly. Additional 14 planned Deck Expansion cards remain out of scope until this first verified full encounter.
+
+
+## D145 — Bone Shepherd DS2 artwork quality pass, preserving new enemy identities
+
+Date: 2026-10-14
+Status: **user approval («давай») following first Godot screenshots and suggestion to redraw simple SVGs closer to approved Fate Spread / detailed Knight / graveyard quality. Source-art updates committed; local visual acceptance pending.**
+
+The initial `bone_shepherd` + `ossuary_lamb` in-game artwork was technically visible but clearly **too flat and sparse** against the approved rich DS2 cemetery arena and Knight sprite. User agreed to a focused **art-only refinement pass**, **not** to replacing the creature roster, adding unapproved mechanics, or redesigning the existing Fate Spread/combat UI.
+
+The three existing text-based original SVG art files were enhanced **in place**:
+- `assets/pixel/units/deck_expansion_v1/bone_shepherd_frames.svg`: detailed cloth folds, worn dark metal, burial seams/stitches, layered bone skull/ribs, ember-lit crook lantern, frayed hems, highlights and localized crisp pixel texture. Preserves all **25 existing authored animation frames** in 576×480 grid, 96×96 cells, unique tall silhouette and real feet.
+- `assets/pixel/units/deck_expansion_v1/ossuary_lamb_frames.svg`: stronger plated rib silhouette, ram skull/muzzle, curled horn accents, marked hoof joints, burial bindings, moonlit bone shadows and crisp material clusters. Preserves all **25** idle/walk/attack/hit/death frame positions and all four grounded legs.
+- `assets/pixel/card_unification_v1/run/bone_shepherd.svg`: more convincing dense moonlit cemetery, gothic masonry, subtle fog, ironwork, stony ground texture, ancient headstones, warm crooked lantern and original three opponents. Retains **448×274** card framing, card text as Godot UI, strictly 1 Shepherd +2 Lambs and no extra wolves/ghosts/events.
+
+The new composite image-generator concept sheets shown in this chat are **visual references only**. They were **not committed as live textures, not used as sprite atlases and any extra event choice buttons/summoning shown on a moodboard were NOT implemented**. Actual source files remain independently authored SVG pixel-shapes for verified GitHub text writing and Godot texture import; no changes to previous approved DS2/Fate Spread Variant C artwork, production UI, unit AI, card choices, enemies, tactical orders or game balances.
+
+**QA boundary:** static GitHub audit confirms valid XML tag nesting, correct dimensions, unchanged 25 animation groups and no missing bindings. However actual post-redraw import/legibility at 1280×720 **has not been checked by the user yet**; send `git pull` and request F6 `bone_shepherd_art_preview.tscn` and actual `bone_shepherd_playtest.tscn` screenshots. The previously fixed `bone_shepherd_smoke.tscn` 54/54 Godot PASS is **still pending**. Do not claim images are finally approved, or that gameplay is proven balanced, from static QA alone.
