@@ -1,3 +1,14 @@
+## D139 — Gameplay 2.3 approved and source-committed — 2026-10-13
+
+- [x] User explicitly approved balancing HUNT without discarding healer/archer priority, plus stage-aware late-Act tests using actual authored upgrades/artifacts.
+- [x] **Production:** `BattleUnit._find_hunt_enemy()` now conditionally engages an immediate closest threat for melee hunters (within 165, support priority target beyond 165). Ranged Ranger/Mage HUNT unchanged; no enemies/card art/rosters/rewards/scalers altered.
+- [x] **F6:** new `scenes/dev/tactical_gameplay_v23_balance_benchmark.tscn` with Knight HUNT near-threat preview regression and 180 BattleUnit fights: 36 tier-1 bare, 144 tier-2 bare/upgraded with 2 seeds; matched seeds per order/build; real RunState authored upgrade and artifact resources and combat stat sequence. Exports `user://misdeal_tactical_v23_balance.csv`.
+- [ ] **Local Godot QA:** user `git pull`, F6 new scene, expect `TACTICAL GAMEPLAY 2.3 — PASS`, attach screenshot and resulting CSV; investigate any FAIL directly in repo.
+- [ ] Analyze v23 per-card/variant/party/seed/order and equipped versus bare; compare corresponding v22 bare scenarios for HUNT delta. Pass only certifies completion, not win-rate quality.
+- [ ] Play real `last_bell` / `ossuary_gate` / `firing_square` with typical upgrades and `HUNT`; tune card-local difficulty only if actual outcomes demand it. Keep original card identities, 12+XIII structure, approved art frozen.
+
+---
+
 ## NEXT PROPOSAL — D138 measured balance follow-up (not yet implemented) — 2026-10-13
 
 - [x] Obtain and inspect actual user CSV (72 valid rows). Full findings: `docs/TACTICAL_GAMEPLAY_V22_BALANCE_REVIEW.md`.
