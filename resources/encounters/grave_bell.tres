@@ -12,3 +12,6 @@ arena_id = "graveyard"
 enemy_unit_paths = PackedStringArray("res://resources/units/skeleton.tres", "res://resources/units/skeleton.tres", "res://resources/units/grave_bellkeeper.tres")
 enemy_names = PackedStringArray("Скелет", "Скелет", "Могильный звонарь")
 enemy_positions = PackedVector2Array(890, 150, 890, 340, 1040, 245)
+formation_hint = "ЗВОН ЗА СПИНАМИ — берегитесь затяжного боя."
+alternate_enemy_positions = PackedVector2Array(925, 215, 940, 340, 1070, 235)
+alternate_formation_hint = "СМЕЩЁННЫЙ ЗВОН — звонарь правее линии скелетов."
