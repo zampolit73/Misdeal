@@ -10,6 +10,9 @@ const RUN_CARDS := {
 	"graveyard_ambush": "run/graveyard_ambush.webp",
 	"gallows_volley": "run/gallows_volley.webp",
 	"whispering_well": "run/whispering_well.webp",
+	"gravedigger_shop": "run/gravedigger_shop.webp",
+	"bone_swarm": "run/bone_swarm.webp",
+	"grave_crossfire": "run/grave_crossfire.webp",
 }
 
 const EVENTS := {
@@ -17,6 +20,8 @@ const EVENTS := {
 	"black_altar": "event/black_altar.webp",
 	"chained_prisoner": "event/chained_prisoner.webp",
 	"rattling_bridge": "event/rattling_bridge.webp",
+	"candle_seller": "event/candle_seller.webp",
+	"last_camp": "event/last_camp.webp",
 }
 
 const UPGRADES := {
@@ -36,8 +41,8 @@ static func get_run_texture(card_id: String) -> Texture2D:
 	var explicit_card := _get_texture(RUN_CARDS, card_id, Vector2i(448, 274))
 	if explicit_card != null:
 		return explicit_card
-	# These four approved illustrations are 1280x720 event backgrounds.
-	# Also show the SAME art on the deal card instead of the old v4 atlas.
+	# Use approved event backgrounds as card art when no standalone card exists.
+	# Keep the legacy atlas as fallback if the new image is absent or invalid.
 	# A missing/invalid event image falls through to CardArtCatalog's fallback.
 	return _get_event_card_texture(card_id)
 
