@@ -1,3 +1,13 @@
+## 2026-10-13 — D139 outcome CSV analyzed; targeted follow-up proposed (documentation only)
+
+- Parsed actual user v2.3 Godot CSV: 180 complete cases, 79 wins/101 losses. Cross-joined original 72 v2.2 cases with corresponding v2.3 bare sample0.
+- HUNT changed from **5/24 to 8/24** on matching cases (+4 new wins, -1 lost win); ASSAULT and FORMATION remained 13/24 each with identical outcomes/durations. `last_bell` HUNT remained 1/6, so D139 is a partial improvement, not total fix.
+- Stage2 built loadout made 42/72 victories versus 6/72 bare; 36 matched cases improved and zero worsened. Late equipped solo 22/24, duo/trio 10/24 each, **but class/party confounding makes this a warning, not evidence for global scaling edits**.
+- Detailed full review committed as `docs/TACTICAL_GAMEPLAY_V23_BALANCE_REVIEW.md`. Recommended next consent gate is HUNT support-target cohesion and better class-matched late-stage testing before any combat tuning.
+- No gameplay scripts, enemy rosters, art, UI, rewards or combat coefficients changed.
+
+---
+
 ## 2026-10-13 — D139 180-fight Gameplay 2.3 F6 validated locally (docs only)
 
 - User screenshot confirms Godot `TACTICAL GAMEPLAY 2.3 — PASS`: **180/180** BattleUnit simulations completed with **79 victories / 101 defeats**, no timeout failures. Knight HUNT distant-support / near-threat interception regression passed.
