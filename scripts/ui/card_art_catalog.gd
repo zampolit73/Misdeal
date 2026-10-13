@@ -1,6 +1,7 @@
 extends RefCounted
 
 const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
+const CARD_UNIFICATION_V1 := preload("res://scripts/ui/card_unification_v1.gd")
 
 const RUN_CELL_SIZE := Vector2i(224, 137)
 const RUN_SHEET_SIZE := Vector2i(1120, 685)
@@ -125,6 +126,9 @@ static var bone_warden_card_texture: Texture2D
 static var combat_expansion_card_textures: Dictionary = {}
 
 static func get_run_card_texture(card_id: String) -> Texture2D:
+	var unified := CARD_UNIFICATION_V1.get_run_texture(card_id)
+	if unified != null:
+		return unified
 	if COMBAT_EXPANSION_CARD_PATHS.has(card_id):
 		var expansion_texture := _get_combat_expansion_card_texture(card_id)
 		if expansion_texture != null:
@@ -167,6 +171,9 @@ static func get_run_card_texture(card_id: String) -> Texture2D:
 	return _get_cell(sheet, int(RUN_INDEX[card_id]), RUN_CELL_SIZE, RUN_COLUMNS)
 
 static func get_upgrade_texture(upgrade_id: String) -> Texture2D:
+	var unified := CARD_UNIFICATION_V1.get_upgrade_texture(upgrade_id)
+	if unified != null:
+		return unified
 	if not UPGRADE_INDEX.has(upgrade_id):
 		return null
 	var sheet := _get_ui_sheet()
@@ -175,6 +182,9 @@ static func get_upgrade_texture(upgrade_id: String) -> Texture2D:
 	return _get_cell(sheet, int(UPGRADE_INDEX[upgrade_id]), UI_CELL_SIZE, UI_COLUMNS)
 
 static func get_reward_texture(reward_key: String) -> Texture2D:
+	var unified := CARD_UNIFICATION_V1.get_reward_texture(reward_key)
+	if unified != null:
+		return unified
 	if not REWARD_INDEX.has(reward_key):
 		return null
 	var sheet := _get_ui_sheet()
