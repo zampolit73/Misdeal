@@ -1,3 +1,11 @@
+## CURRENT — 2026-10-13 — D135 complete 18/18 first-wave illustrated assets in main, in-engine QA pending
+
+D135 records user approval and real GitHub delivery for last five additional images: three `run/` 448×274 WebPs for `gravedigger_shop`, `bone_swarm`, `grave_crossfire`; two `event/` 1280×720 WebPs for `candle_seller` and `last_camp`. Five binary additions `ac860ad2cacf17e7ab4e64c54f2ddfb70debd146`, hashes and magic verified. Optional validated mappings added in `scripts/ui/card_unification_v1.gd` (`05b3ca6`), using preexisting `CardArtCatalog` and `ActChoice` handlers. `candle_seller` and `last_camp` use their approved large event backgrounds and are also seen as center-cropped offer cards via existing resolver; Shop itself is frozen and ONLY its thumbnail changes. Legacy art fallback remains. A standalone F6 gallery `res://scenes/dev/card_unification_final5_preview.tscn` was added for deterministic preview.
+
+Total delivered first-wave art count **18/18** (D131, D132, D134, D135). Does NOT establish all runtime art was viewed in Godot: user must still pull and check latest five, as well as D134 upgrades/rewards if not already tested. No gameplay, shop economics, combat rules, reward routing, UI layout or Fate Spread changed. Previous note "five extra art candidates not yet approved" below is historical/superseded.
+
+---
+
 ## CURRENT ART CHECKPOINT — 2026-10-13 — remaining five Wave 1 candidates planned, no new game art
 
 Original user-approved D130 pictured set **13/13 shipped as binaries** (D131+D132+D134), Godot validation of latest five D134 upgrade/reward displays is not yet explicitly confirmed. Five *additional candidate-only* art IDs remain from 18-item first-wave inventory: `gravedigger_shop` table art, `bone_swarm` and `grave_crossfire` fight table art, `candle_seller` and `last_camp` large live event backdrops. Their exact conceptual briefs, possible file paths and live fallback sources are in `docs/CARD_ART_WAVE1_REMAINING5_BRIEF.md`. A single image generation in this continuation yielded wrong duplicate of **last five already delivered** rather than new candidates; it was discarded and NO new image binaries or gameplay/UI changes were committed. Do not interpret the user asking to progress as signoff on unshown five candidate art images.
