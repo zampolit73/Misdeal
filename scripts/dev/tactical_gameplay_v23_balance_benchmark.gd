@@ -72,6 +72,8 @@ func _ready() -> void:
 	var targeting_ok: bool = await _validate_hunt_intercept()
 	if targeting_ok:
 		await _run_benchmarks()
+	if errors.is_empty() and results.size() != total_trials:
+		errors.append("Incomplete benchmark: %d/%d results" % [results.size(), total_trials])
 	_write_results()
 	RunState.reset_run()
 
@@ -380,9 +382,10 @@ func _validate_hunt_intercept() -> bool:
 	var close_target: BattleUnit = knight.get_preview_target()
 	healer.position = Vector2(350, 320)
 	var reachable_target: BattleUnit = knight.get_preview_target()
+	var correct_targeting: bool = far_target == healer and close_target == frontline and reachable_target == healer
 	sandbox.queue_free()
 	await get_tree().process_frame
-	if far_target != healer or close_target != frontline or reachable_target != healer:
+	if not correct_targeting:
 		errors.append("HUNT intercept rule: distant support / nearby threat / reachable support mismatch")
 		return false
 	return true
