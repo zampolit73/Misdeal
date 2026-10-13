@@ -1,3 +1,11 @@
+## 2026-10-13 — D137 local tactical F6 confirmed PASS (documentation checkpoint)
+
+- User screenshot confirms Godot F6 `TACTICAL GAMEPLAY 2.1 — PASS` after pulling committed first-three-encounter gameplay: 54 setups, 324 initial target checks, 72 HUNT-vs-ASSAULT divergences.
+- Verified card-faithful enemy rosters and stable retry formation; this test does not simulate combat wins. Next acceptance gate is live Bone Swarm, Iron Wall and Grave Bell battle observation across accessible solo/duo/trio parties, with orders/placement/rewards tested.
+- **Docs-only checkpoint:** no production code, balance or art changed.
+
+---
+
 ## 2026-10-13 — D137 Gameplay 2.1: encounter-authored deployments and solo Formation
 
 - User confirmed the previous D136 48-run card-deal F6 simulation **PASS** in local Godot (not a complete real act-run confirmation).
