@@ -1,3 +1,12 @@
+## Wave 1 source art candidate delivery — 2026-10-13
+
+- [x] Prepare first 13 WebP candidates from approved D130 concept and validate sizes/ZIP structure.
+- [x] Add optional WebP override resolver + real legacy-fallback to CardArtCatalog and ActChoice.
+- [x] Preserve untouched DS2 UI, previous atlases, shop/well/table/battle gameplay.
+- [ ] Binary transfer to GitHub unresolved. ZIP is a conversation artifact, not committed assets: user local extraction is needed to activate the optional overrides.
+- [ ] Inspect 13 resulting images in actual Godot 1280x720; specifically check reconstructed picture-in-picture corners and softness of large event artwork. If unacceptable, create new clean native-resolution originals faithful to D130.
+- [ ] Complete remaining five previously planned art targets separately with new approval.
+
 ## Art direction sign-off — 2026-10-13 — approved final concept (D130)
 
 - [x] User approved the last consolidated concept board, including reduced medieval archers in `gallows_volley`, gray-bearded male mage and skeletal hand holding ruby for `relic_wager`.
