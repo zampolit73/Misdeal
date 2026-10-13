@@ -14,11 +14,11 @@ const ORDERS: Array[String] = ["assault", "hunt", "formation"]
 const STEP := 1.0 / 30.0
 const MAX_TIME := 75.0
 const COMBAT_BOUNDS := Rect2(Vector2(90, 284), Vector2(1080, 158))
-const EXPECTED_PATHS := PackedStringArray([
+const EXPECTED_PATHS: Array[String] = [
 	"res://resources/units/bone_shepherd.tres",
 	"res://resources/units/ossuary_lamb.tres",
 	"res://resources/units/ossuary_lamb.tres",
-])
+]
 
 var status: Label
 var title_label: Label
@@ -111,7 +111,7 @@ func _validate_resources() -> void:
 		return
 	if card.resolution_type != "combat" or card.target_path != "res://resources/encounters/bone_shepherd.tres":
 		errors.append("New card must refer to original Shepherd encounter")
-	if ENCOUNTER.enemy_unit_paths != EXPECTED_PATHS or ENCOUNTER.reinforcement_unit_paths.size() != 0:
+	if ENCOUNTER.enemy_unit_paths != PackedStringArray(EXPECTED_PATHS) or ENCOUNTER.reinforcement_unit_paths.size() != 0:
 		errors.append("Original 1+2 roster is not preserved")
 	if ENCOUNTER.get_formation_count() != 2 or ENCOUNTER.alternate_enemy_positions.size() != 3:
 		errors.append("Expected two authored formations with the same roster")
