@@ -1,3 +1,12 @@
+## 2026-10-13 — D138 CSV balance review completed (analysis / docs only)
+
+- User supplied actual `misdeal_tactical_v22_battles.csv`, parsed 72 full `BattleUnit` scenarios: 31 wins / 41 losses, 0 timeouts; group breakdown by card, party size, order and formation in new `docs/TACTICAL_GAMEPLAY_V22_BALANCE_REVIEW.md`.
+- Most striking matched case: `last_bell`: HUNT 0/6 vs ASSAULT and FORMATION 6/6 each. Current HUNT target rank ignores distance; candidate tactical AI correction, **not yet implemented**.
+- Bare tier-2 fights win only 3/36, but F6 excludes late build progression, so actual game balance cannot be inferred. Stage-aware benchmark proposed before encounter stat tweaks.
+- No production combat behavior, encounter enemy rosters, art, DS2 or rewards changed.
+
+---
+
 ## 2026-10-13 — D138 local full-battle F6 PASS verified (documentation only)
 
 - Screenshot from the user's local Godot: `TACTICAL GAMEPLAY 2.2 — PASS`, **72/72** isolated full-BattleUnit baseline scenarios completed, **31 victories and 41 defeats**; four original cards × two authored layouts × solo/duo/trio × three tactical orders.
