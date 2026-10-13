@@ -28,8 +28,8 @@ func _ready() -> void:
 		if RunState.get_party_size() != expected_party:
 			problems.append("Party size mismatch in trial %d" % trial)
 			break
-		var enemy_hp := [0.82, 0.92, 1.0][expected_party - 1]
-		var enemy_damage := [0.80, 0.90, 1.0][expected_party - 1]
+		var enemy_hp: float = [0.82, 0.92, 1.0][expected_party - 1]
+		var enemy_damage: float = [0.80, 0.90, 1.0][expected_party - 1]
 		if not is_equal_approx(RunState.get_enemy_hp_multiplier(), enemy_hp) or not is_equal_approx(RunState.get_enemy_base_damage_multiplier(), enemy_damage):
 			problems.append("Enemy pressure changed for party size %d" % expected_party)
 			break
