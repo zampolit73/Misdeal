@@ -785,10 +785,11 @@ func _find_hunt_enemy() -> BattleUnit:
 		elif unit.minimum_range > 0.0:
 			rank = 1
 
-		# A wounded healer is a better focus than two healthy healers
-		# regenerating each other. Equal-health targets use shared distance.
-		var health_ratio: float = unit.hp / maxf(1.0, unit.max_hp)
-		var party_distance: float = party_center.distance_squared_to(unit.global_position)
+		# Share the wounded-healer/ranged focus, but preserve the original
+		# nearest-target fallback when only melee enemies remain.
+		var health_ratio: float = unit.hp / maxf(1.0, unit.max_hp) if rank < 2 else 1.0
+		var party_distance: float = (party_center.distance_squared_to(unit.global_position)
+			if rank < 2 else global_position.distance_squared_to(unit.global_position))
 		if (rank < best_rank
 				or (rank == best_rank and health_ratio < best_health_ratio - 0.001)
 				or (rank == best_rank and absf(health_ratio - best_health_ratio) <= 0.001
