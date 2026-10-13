@@ -1,3 +1,11 @@
+## D140 local F6 acceptance — 2026-10-13
+
+- [x] User screenshot confirms **TACTICAL GAMEPLAY 2.4 — PASS**: 270/270 controlled BattleUnit battles completed, **158 wins and 112 losses**; test-specific two-bellkeeper HUNT shared focus, wounded priority and melee intercept assertions passed.
+- [ ] **Request the actual CSV** `user://misdeal_tactical_v24_party_focus.csv` through Godot Project > Open User Data Folder. Analyze 270 cases by card, formation, order, protagonist, companion roster, party size and seeded sample. Do not infer specific solo/duo/trio or HUNT balance from aggregate 158/112.
+- [ ] Validate core live Act 1 path with real Wizard risk/rewards and Bone Warden XIII; tune only observed and measured outliers. Preserve all card-enemy rosters, visual approvals and party-size scalers until evidence supports a specific change.
+
+---
+
 ## D140 ACTIVE — Gameplay 2.4 coordinated HUNT and controlled party benchmark — 2026-10-13
 
 - [x] User approved («давай») further tactical support focus + fairer protagonist-fixed solo/duo/trio comparison; see `docs/DECISIONS.md` D140.
