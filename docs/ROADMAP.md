@@ -1,3 +1,14 @@
+## Deck Expansion Card 01 — production-ready specification COMPLETE — 2026-10-14
+
+- [x] User approved preparing a production-ready package. Full design/implementation/QA plan committed in docs/DECK_EXPANSION_BONE_SHEPHERD_PRODUCTION.md. 1 brand-new bone_shepherd commander + 2 entirely new ossuary_lamb quadrupeds; unique 0.65s whistle warning + bounded 1.25s synchronized speed-boost rush (all preliminary combat timings/stats subject to F6).
+- [x] Defined actual Russian card copy, both authored enemy placements, UnitData fields, small data-driven Whistle state logic, original sprite/frame dimensions + separate card art, deterministic death/interrupt handling, Godot 54-case smoke and live-play acceptance. Compatible with existing BattleUnit, UnitData, EncounterData, RunCardData and animation/art pipelines; preserves D143 original-enemy contract.
+- [ ] Create original new 448×274 card art plus two genuinely animated 576×480 enemy sprite sheets (96×96 per cell; real idle/walk/attack/hit/death), confirm native 1280×720 readability, limb/hoof placement and correct orientation. NO reuse of old enemies.
+- [ ] Implement and commit two new UnitData, one new EncounterData + two layouts, new card Resource, scoped Whistle data/AI/cue, animation registration/unique fallback and standalone F6 art+combat preview.
+- [ ] Register card into RunState.CARD_PATHS and ACT1_CARD_IDS only after complete visual+behavioral package and Godot QA; pool becomes 31 Tier0=11, 12+XIII unchanged.
+- [ ] Then expand toward 45-card pool; each new battle card requires own new enemies, without random roster swaps. Separate D142 old balance work is still pending.
+
+---
+
 ## Deck Expansion Phase 1 — Bone Shepherd candidate design prepared (not implemented) — 2026-10-14
 
 - [x] User said «отлично погнали» to starting the first new card **after** D143's genuine-new-enemy constraint. The first proposed card is Tier0 `bone_shepherd` / «КОСТЯНОЙ ПАСТУХ».
