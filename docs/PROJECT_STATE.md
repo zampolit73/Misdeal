@@ -1,3 +1,9 @@
+## APPROVED NEW CARD ART — 2026-10-13 (D131)
+
+User approved four most recent high-resolution run-card artworks: `bone_patrol`, `graveyard_ambush`, `gallows_volley`, `whispering_well`. Previous four low-resolution card crops are now superseded by unique noncloned designs. The exact filenames and generation IDs are in D131 and `docs/CARD_ART_UNIFICATION_WAVE1.md`. This is **visual approval only**: approved new PNGs were not added to GitHub and old 13-crop ZIP still holds superseded low-resolution versions of these four. Existing optional art resolver works with 448x274 WebPs if/when committed. Other nine D130 designs stay approved and gameplay/UI remain untouched.
+
+---
+
 ## QA addendum — 2026-10-13
 
 A standalone no-gameplay F6 overview exists: scenes/dev/card_unification_v1_preview.tscn with script scripts/dev/card_unification_v1_preview.gd. It directly reads all 13 optional candidate assets and shows missing-file count, avoiding randomness of normal runs. It does not import those image bytes into the GitHub repository. The binary asset ZIP still must be installed locally for the new art to show, otherwise fallback remains. Godot execution not independently tested.
