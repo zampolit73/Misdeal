@@ -1,3 +1,11 @@
+## 2026-10-13 — D135 complete 18/18 first-wave card illustrations in GitHub
+
+- User accepted five additional paintings: Gravedigger Shop dealt card, Bone Swarm combat card, Grave Crossfire combat card, Candle Seller event and Last Camp event.
+- Added three 448×274 and two 1280×720 standalone WebP **binary assets** to GitHub main (`ac860ad2`), verified all GitHub blobs and WebP format.
+- Extended `card_unification_v1.gd` validated/fallback-aware RUN_CARDS and EVENTS mappings so existing real game art resolution loads the new artwork without altering gameplay or UI.
+- Added standalone F6 preview scene `scenes/dev/card_unification_final5_preview.tscn` for deterministic local inspection.
+- D131+D132+D134+D135 first-wave illustration delivery now `18/18` images in repo; local Godot runtime/visual smoke still needed.
+
 ## 2026-10-13 — Remaining five Wave 1 artwork concepts prepared
 
 - Identified five candidates beyond the approved 13 D130 pictured compositions: shop, bone swarm, grave crossfire table cards; candle seller, last camp event backgrounds.
