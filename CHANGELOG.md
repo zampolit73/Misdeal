@@ -1,3 +1,12 @@
+## 2026-10-14 — D140 detailed CSV balance review (documentation only)
+
+- Parsed actual user-provided `misdeal_tactical_v24_party_focus.csv`: 270 unique complete deterministic full-BattleUnit results, 158 wins/112 losses and no timeouts; report saved as `docs/TACTICAL_GAMEPLAY_V24_BALANCE_REVIEW.md`.
+- **HUNT** 24/90 vs ASSAULT and FORMATION 67/90 each; HUNT wins no matched scenario where ASSAULT loses, but fails in 43 where ASSAULT wins. `last_bell` HUNT 4/18 vs 18/18 for each other order.
+- Same-protagonist solo/duo/trio: 82/90, 30/90, 46/90; late equipped Knight solo 24/24 versus Knight+Ranger duo 0/24 and full trio 2/24. These results warrant diagnosis and full-run QA, **not automatic nerfs or global scaler edits**.
+- No gameplay code, assets, enemy composition or balance multipliers changed; future diagnostic-first Gameplay 2.5 is proposed and **not yet approved**.
+
+---
+
 ## 2026-10-13 — D140 local Godot 270-fight F6 passed (documentation only)
 
 - User screenshot confirms `TACTICAL GAMEPLAY 2.4 — PASS`: 270/270 controlled full-BattleUnit simulations completed, **158 victories / 112 defeats**, HUNT common bellkeeper/wounded priority/nearby threat fixture passed.
