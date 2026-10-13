@@ -18,6 +18,12 @@ extends Resource
 @export var alternate_formation_hint: String = ""
 
 
+@export_group("Reinforcements")
+@export var reinforcement_unit_paths: PackedStringArray = PackedStringArray()
+@export var reinforcement_names: PackedStringArray = PackedStringArray()
+@export var reinforcement_positions: PackedVector2Array = PackedVector2Array()
+
+
 func get_formation_count() -> int:
 	if not enemy_unit_paths.is_empty() and alternate_enemy_positions.size() == enemy_unit_paths.size():
 		return 2
@@ -35,8 +41,3 @@ func get_formation_hint(index: int) -> String:
 		return alternate_formation_hint
 	return formation_hint
 
-
-@export_group("Reinforcements")
-@export var reinforcement_unit_paths: PackedStringArray = PackedStringArray()
-@export var reinforcement_names: PackedStringArray = PackedStringArray()
-@export var reinforcement_positions: PackedVector2Array = PackedVector2Array()
