@@ -1,3 +1,19 @@
+### FIRST WAVE COMPLETE — 2026-10-13 — D135 last 5 standalone WebP assets in GitHub
+
+New five separate user-approved images from `docs/CARD_ART_WAVE1_REMAINING5_BRIEF.md` uploaded as **raw GitHub binaries** in `ac860ad2cacf17e7ab4e64c54f2ddfb70debd146`. Paths relative to `assets/pixel/card_unification_v1/`, SHA256 of the actual shipped WebP bytes:
+
+| Live ID | Relative path | Pixels | Bytes | SHA256 |
+|---|---|---|---:|---|
+| `gravedigger_shop` | `run/gravedigger_shop.webp` | 448×274 | 42900 | `27d946f5d00366d3c53ff148f5525a83a75129364055acb67bda84d98901a667` |
+| `bone_swarm` | `run/bone_swarm.webp` | 448×274 | 60158 | `444558761d3715a264025dd2cbe0d3925f1765aafbe21facb31805680fcf3664` |
+| `grave_crossfire` | `run/grave_crossfire.webp` | 448×274 | 39878 | `d501bef16504efb8b73a175e6f41b866522d73555370974e083200d4f8123f8a` |
+| `candle_seller` | `event/candle_seller.webp` | 1280×720 | 215846 | `33130fc7634cca9a1382effdf1319f6abcf8a6fd91a53176621fe5cce3605641` |
+| `last_camp` | `event/last_camp.webp` | 1280×720 | 217006 | `ef6116ce8f8af9431642667752579e51363e8e0ccb071a118b1904f8658f0bc5` |
+
+Git blob IDs remotely verified (all five). Mappings added in `scripts/ui/card_unification_v1.gd`: 3 `RUN_CARDS`, 2 `EVENTS`; original atlas event-path fallback remains. `gravedigger_shop` only overwrites its dealt-card illustration, NOT the separately approved Gravedigger Shop live DS2 appearance/economy; `bone_swarm` / `grave_crossfire` replace only offer card art, with combat logic untouched; `candle_seller` / `last_camp` supply both event background and cropped deal-card image through existing resolver. Exact source PNG titles/gen IDs and user approval: decision D135. New `scenes/dev/card_unification_final5_preview.tscn` F6 gallery for these five. Total D131 4 + D132 4 + D134 5 + D135 5 = **18/18** first-wave source inventory illustrations now committed, **without a Godot 4.7.x runtime certification**. User needs local smoke.
+
+---
+
 ### ACTIVE UPGRADE AND REWARD ART — 2026-10-13 — D134 five files in GitHub main
 
 Approved as five separate latest images and shipped as real WebP binaries in `e3729a4a86a9cce006ec8803fa6e7e0aa1f00de5`. All source 1570×1002, exported **608×388**, quality 90, directly resampled, no collage upscaling. Paths relative to `assets/pixel/card_unification_v1/`:
