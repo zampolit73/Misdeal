@@ -1,3 +1,12 @@
+## 2026-10-13 — D136 Act 1 Gameplay 2.0: varied deals, Wizard voice and staged Mark rewards
+
+- Updated `RunState` card-deal selection to soft-prefer content unlike the preceding two resolved cards, including mixed fight/nonfight pairs on unforced slots, while obeying each tier, mandatory combat slot, Fate Hold, Wizard Meddling and remaining-card rules.
+- Reused the 30 existing authored regular cards and 14 authored encounter setups; combat AI, enemies, party-size scalars, Fate Spread layout and boss progression unchanged.
+- Wizard Mark now pays **20/30/40 gold** across early/mid/late act tiers against the existing **+15% enemy next-battle damage**. Card hint, hover tooltip, pick confirmation and Wizard memory use the dynamic exact amount.
+- Added alternating contextual Wizard remarks reacting to fight/event streaks and late solo/trio state without overriding debt, active wagers or priority Wizard memories.
+- Added dev-only 48-run seeded F6 replayability/forced-combat/solo-duo-trio regression: `scenes/dev/act1_gameplay_v2_smoke.tscn`.
+- GitHub source integration verified; **real Godot engine QA pending**. All approved DS2 interfaces and 18 first-wave art files untouched.
+
 ## 2026-10-13 — D135 complete 18/18 first-wave card illustrations in GitHub
 
 - User accepted five additional paintings: Gravedigger Shop dealt card, Bone Swarm combat card, Grave Crossfire combat card, Candle Seller event and Last Camp event.
