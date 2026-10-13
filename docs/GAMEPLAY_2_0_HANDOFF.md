@@ -1,3 +1,5 @@
+> **Superseded as the newest active handoff on 2026-10-13 by D137 Gameplay 2.1.** The user confirmed the D136 48-run F6 smoke passed locally («тест пройден»), then approved and shipped the first three tactical encounters with authored alternate enemy formations and solo FORMATION defensive tradeoff. **Go to `docs/SESSION_CHECKPOINT.md` and `docs/HANDOFF.md` for CURRENT actions**, namely F6 `res://scenes/dev/tactical_gameplay_v21_smoke.tscn` and real combat QA. The remaining document is preserved as the D136 historical context; full real Act 1 run for D136 was not confirmed.
+
 # Misdeal — new-chat continuation checkpoint (2026-10-13)
 
 **Source of truth:** GitHub `zampolit73/Misdeal`, branch `main`. Work with the **connected GitHub plugin directly**, never claim there is no GitHub access before checking. User runs Godot 4.7.x + GDScript locally and pulls source changes via Git. Code and resource names in English; talk to user in Russian.
