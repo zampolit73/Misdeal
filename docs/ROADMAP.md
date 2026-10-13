@@ -1,3 +1,16 @@
+## D141 ACTIVE — Gameplay 2.5: diagnosis before balancing — 2026-10-14
+
+- [x] User explicitly approved («Давай») diagnostic-first Gameplay 2.5 on D140 CSV findings.
+- [x] Add optional `BattleUnit` signals for **executed attacks**, actual primary+splash HP damage and healing actually restored by bellkeepers. Signals fire only while a dev trace subscriber is connected; no balance/AI/tactic/card/arena/loot changes.
+- [x] Add F6 `res://scenes/dev/tactical_gameplay_v25_combat_diagnostics.tscn` with **126 exact v24-matched cases**: all 54 Last Bell combinations, 72 Knight-led late battles (Ossuary Gate/Firing Square) across solo/duo/trio × 2 layouts × 3 orders × 2 seeds.
+- [x] Export `misdeal_tactical_v25_trace_cases.csv` and `misdeal_tactical_v25_trace_units.csv` with attack counts, damage in/out, healer recovery, target pursuit/support focus time, movement, target changes, and normal W/L/seconds/survivors. Scope/interpretation in `docs/GAMEPLAY_V25_DIAGNOSTICS.md`.
+- [ ] **User local Godot F6:** `git pull`, run `scenes/dev/tactical_gameplay_v25_combat_diagnostics.tscn`. Expect `TACTICAL GAMEPLAY 2.5 — PASS` when all 126 finish; report Godot Output on error and attach **both** `user://` CSVs.
+- [ ] Verify v25 outcomes equal 126 corresponding old v24 cases; quantify Last Bell HUNT actual damage/healing/approach versus ASSAULT/FORMATION and Knight solo/duo/trio trace metrics before changing combat.
+- [ ] **Actual Act 1 QA still pending:** play through card choice, deals/risks/upgrades/battle/rewards and Bone Warden XIII. Only propose narrowly supported game balance changes after diagnostic + live play.
+- [ ] Do not alter global enemy/hero scalers, accepted enemy rosters/card identities/art/DS2 or Fate Spread on the basis of aggregate F6 win percentages alone.
+
+---
+
 ## NEXT ACTIONS — 2026-10-14 — D140 CSV review complete, Gameplay 2.5 proposal awaiting approval
 
 - [x] Download/parse user's `misdeal_tactical_v24_party_focus.csv`; **270 clean rows, 158W/112L, 0 timeouts**. Canonical measured report: **`docs/TACTICAL_GAMEPLAY_V24_BALANCE_REVIEW.md`**.
