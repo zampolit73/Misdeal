@@ -1,3 +1,14 @@
+## 2026-10-13 — D137 Gameplay 2.1: encounter-authored deployments and solo Formation
+
+- User confirmed the previous D136 48-run card-deal F6 simulation **PASS** in local Godot (not a complete real act-run confirmation).
+- Introduced optional two-formation support in `EncounterData` and a per-card cached random variant in `RunState` that remains stable on retries and resets only with the run.
+- `bone_swarm`, `iron_wall` and `grave_bell` now each have two authored positional formations and specific pre-battle placement tells. Enemy rosters, portraits/card IDs/arena IDs, unit stats and abilities are unchanged.
+- Solo `FORMATION` now reduces incoming damage by 10%, making it a real defensive option rather than duplicating solo nearest-target behavior; `ASSAULT` retains movement advantage. Duo/trio orders and party-size pressure remain unchanged.
+- Added `scenes/dev/tactical_gameplay_v21_smoke.tscn` F6 54-setup formation/party/protagonist/three-order target-preview and roster-fidelity regression with real BattleUnit instances. **Not yet run by user in Godot; not an end-to-end win-rate test.**
+- Existing Act 1 deal/card economics, art wave 18/18, DS2/Fate Spread visuals, shops and boss mechanics untouched.
+
+---
+
 ## 2026-10-13 — Gameplay 2.0 next-chat checkpoint (docs-only)
 
 - Added complete `docs/GAMEPLAY_2_0_HANDOFF.md` and updated canonical `SESSION_CHECKPOINT`, `PROJECT_STATE`, `ROADMAP`, `HANDOFF` for fresh-chat continuation.
