@@ -1,3 +1,8 @@
+## 2026-10-13 — Optional D130 card-art gallery
+
+- Added standalone Godot F6 gallery scenes/dev/card_unification_v1_preview.tscn to preview all 13 candidate assets and report missing files without entering a random run.
+- Does not change runtime mechanics or include the binary WebPs in GitHub.
+
 ## 2026-10-13 — Source hook for D130 card-art candidates
 
 - Added scripts/ui/card_unification_v1.gd with ID-keyed optional standalone WebP texture paths, size/decode validation and original-art fallback.
