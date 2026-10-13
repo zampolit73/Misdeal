@@ -1,3 +1,10 @@
+## 2026-10-13 — Remaining five Wave 1 artwork concepts prepared
+
+- Identified five candidates beyond the approved 13 D130 pictured compositions: shop, bone swarm, grave crossfire table cards; candle seller, last camp event backgrounds.
+- Created `docs/CARD_ART_WAVE1_REMAINING5_BRIEF.md` with precise distinct subject briefs, expected production sizes, safe art override paths and frozen-interface constraints.
+- New image generation did not follow these candidate briefs and instead duplicated the already-shipped five upgrade/reward artworks; rejected with **no gameplay, runtime, binary art or UI changes**.
+- Five proposed images remain unapproved; latest five D134 artwork integration still awaits explicit in-Godot confirmation.
+
 ## 2026-10-13 — D134 final 5 approved hero upgrade and reward card assets delivered
 
 - Added five standalone user-approved high-resolution card illustrations as actual binary 608×388 WebP in `assets/pixel/card_unification_v1/{upgrade,reward}/` (GitHub main commit `e3729a4a`): Knight Iron Oath, Ranger Arrowstorm, male gray-bearded Mage Glass Heart, Gold Windfall, skeletal hand gripping a red jewel for Relic Wager.
