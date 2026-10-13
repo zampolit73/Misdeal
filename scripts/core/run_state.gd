@@ -1586,8 +1586,8 @@ func get_wizard_deal_line() -> String:
 		var before := get_card(resolved_card_ids[resolved_card_ids.size() - 2])
 		if latest != null and before != null and latest.resolution_type == before.resolution_type:
 			if latest.resolution_type == "combat":
-				return "Два боя подряд? Похоже, тебе нравится звук ломающихся костей."
-			return "Всё торгуешься с судьбой? Смерть тоже умеет считать сдачу."
+				return "Два боя подряд? Похоже, тебе нравится звук ломающихся костей." if cards_resolved % 2 == 0 else "Опять бой. Мои солдаты почти успели к тебе привыкнуть."
+			return "Всё торгуешься с судьбой? Смерть тоже умеет считать сдачу." if cards_resolved % 2 == 0 else "Столько разговоров, столько сделок. А цена всегда найдётся."
 	if get_party_size() == 1 and cards_resolved >= 6:
 		return "Упрямо идёшь один. У стола длинная память."
 	if get_party_size() == 3 and cards_resolved >= 8:
