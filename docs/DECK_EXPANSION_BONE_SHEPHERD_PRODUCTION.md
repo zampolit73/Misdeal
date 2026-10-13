@@ -1,3 +1,18 @@
+## IMPLEMENTATION CHECKPOINT — 2026-10-14 — SOURCE SHIPPED, GODOT F6 PENDING
+
+**This newer section supersedes the original "not implemented" planning language below.** The user said «давай» to implementing Card 01. All the scoped sources and original text-based SVG pixel art now exist in GitHub `main`: `resources/cards/bone_shepherd.tres`, `resources/encounters/bone_shepherd.tres` (two authored variants, 1 Shepherd + 2 Lambs), `resources/units/bone_shepherd.tres` and `resources/units/ossuary_lamb.tres`; `scripts/data/bone_shepherd_whistle_data.gd`, `resources/encounters/bone_shepherd_whistle.tres` and `scripts/battle/bone_shepherd_whistle.gd`; role-specific temporary Lamb shared-target/movement speed in `scripts/battle/unit.gd`; production `scripts/battle/battle.gd` encounter-scoped ability binding; new roles loaded from **original source SVG frame atlases** at `assets/pixel/units/deck_expansion_v1/{bone_shepherd,ossuary_lamb}_frames.svg` via `scripts/battle/unit_animation_library.gd`; unique source-card image `assets/pixel/card_unification_v1/run/bone_shepherd.svg` via `scripts/ui/card_unification_v1.gd`. Original concept imagegen sheet is **a moodboard, not the live art**. Live pixel-style SVG images are original authored source with frame-specific poses (not old sprite recolors). This is the technical text-based vector-pixel equivalent of proposed 576×480 sprite atlases and 448×274 card WebP, necessary because the connected GitHub tool writes UTF-8 only.
+
+**The new card IS registered** in `RunState.CARD_PATHS` and `RunState.ACT1_CARD_IDS`; the pool is **31** cards (Tier0 **11**), 12 resolved + XIII boss unchanged. The previously suggested "register only after user engine QA" gate was superseded to allow the user to playtest the full integration before accepting it as final. It is not yet accepted or balanced.
+
+**New F6 Godot test scenes:**
+1. `res://scenes/dev/bone_shepherd_art_preview.tscn` — source card and two real five-state animated creature galleries; inspect feet, hooves, actual readable scale and frame motion.
+2. `res://scenes/dev/bone_shepherd_smoke.tscn` — Whistle lifecycle regression (warning, charge, cooldown, leader death) + 54 real BattleUnit cases for 2 layouts/3 protagonists/3 party sizes/3 baseline orders. Headline **DECK EXPANSION 01 — PASS** only if fully finished.
+3. `res://scenes/dev/bone_shepherd_playtest.tscn` — opens normal player-facing battle for card with a Knight, not a synthetic gallery.
+
+**QA:** Static checks confirmed art SVG tag nesting, sizes (576×480 atlases/448×274 card), 25 sprite-frame groups per role, resource and registry paths, whistle binding only to `bone_shepherd`, plus scenes. **Godot binary is NOT installed in assistant container**; Godot SVG import, GDScript runtime, 54 battles, actual visual quality, sprite scale and game flow remain to be verified by user's F6. If any scene FAILs or import errors occur, edit live GitHub directly and record fix. D143 original enemy contract and all approved 18 wave-one arts, DS2/Fate Spread unchanged.
+
+---
+
 # Act 1 Deck Expansion — Card 01 / Bone Shepherd: Production-Ready Specification
 
 **Prepared:** 2026-10-14. **Status:** implementation-ready **design/technical brief**. **No new live card, UnitData, sprite art or AI has shipped at this point.**  
