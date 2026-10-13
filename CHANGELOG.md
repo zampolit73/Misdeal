@@ -1,3 +1,9 @@
+## 2026-10-13 — Four deal-card artwork approvals (D131)
+
+- User approved the four latest high-resolution images for Bone Patrol, Graveyard Ambush, Gallows Volley and Whispering Well after rejecting fuzzy art and cloned AI-looking figures.
+- These replace the four older concept-board card crops; remaining nine approved D130 compositions stay accepted.
+- Documented filenames, generation IDs and restrictions. No new image binaries, game code or UI changed in this documentation-only approval checkpoint.
+
 ## 2026-10-13 — Optional D130 card-art gallery
 
 - Added standalone Godot F6 gallery scenes/dev/card_unification_v1_preview.tscn to preview all 13 candidate assets and report missing files without entering a random run.
