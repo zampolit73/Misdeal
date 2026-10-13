@@ -1,3 +1,11 @@
+## 2026-10-14 — D143 Act 1 new-card enemy contract recorded (docs only)
+
+- User clarified: **any new card that leads to battle, including optional event combat, must introduce genuinely new enemy types and original battle visuals/mechanics**; no existing old enemies reused as “new” combat content.
+- Existing planned 15-card expansion (30→45 Act 1 pool, 12 + XIII per run unchanged) requires per-new-encounter UnitData/art/AI/EncounterData/card identity. Preliminary named proposals imply **5** fight-bearing cards despite earlier “3 combats” shorthand; final production scope to be reconciled before shipping.
+- Design constraint recorded in `docs/DECISIONS.md` D143. **No new cards, opponents, combat logic or artwork shipped.** D142 old-combat balance experiments remain separate.
+
+---
+
 ## 2026-10-14 — D141 actual 126-battle traces analyzed (documentation only)
 
 - Received both user-generated CSVs: **126 complete fight cases, 792 per-unit entries**, 66 wins/60 losses; 126/126 matched old D140 case outcomes and durations exactly; aggregate diagnostic totals reconcile to all per-unit rows.
