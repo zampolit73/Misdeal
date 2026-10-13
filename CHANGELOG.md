@@ -1,3 +1,10 @@
+## 2026-10-13 — Gameplay 2.0 next-chat checkpoint (docs-only)
+
+- Added complete `docs/GAMEPLAY_2_0_HANDOFF.md` and updated canonical `SESSION_CHECKPOINT`, `PROJECT_STATE`, `ROADMAP`, `HANDOFF` for fresh-chat continuation.
+- Confirmed GitHub `main` already has D136 Gameplay 2.0 source (legally varied card offers, contextual Wizard tells and staged +20/+30/+40 Wizard Mark gold) and 48-run F6 regression scene. This is **implemented but not yet verified in Godot**.
+- User previously reported art updates «Все ок» after resolving old local untracked WebP pull conflict. First wave **18/18 assets are in GitHub**, with approved DS2/Fate Spread retained.
+- **No new production code, gameplay values, encounter data, visuals or assets changed** during this handoff-only update; next immediate action is `git pull` + F6 `scenes/dev/act1_gameplay_v2_smoke.tscn` and one real Act 1 run.
+
 ## 2026-10-13 — D136 Act 1 Gameplay 2.0: varied deals, Wizard voice and staged Mark rewards
 
 - Updated `RunState` card-deal selection to soft-prefer content unlike the preceding two resolved cards, including mixed fight/nonfight pairs on unforced slots, while obeying each tier, mandatory combat slot, Fate Hold, Wizard Meddling and remaining-card rules.
