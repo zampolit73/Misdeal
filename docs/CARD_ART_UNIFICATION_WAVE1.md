@@ -1,7 +1,46 @@
+# APPROVED ART BASELINE — 2026-10-13 — last Misdeal card-art concept board
+
+**User decision:** «отлично утверждаем последний визуал». The *last* image generation in the project conversation is the **approved visual master reference for the illustrated Wave 1 card-art direction** (D130). This is a concept board, **not** 13 individual texture files and **not** yet integrated into the game. Distinguish concept approval from runtime asset approval/verification. The native chat attachment is named `мрачный_концепт_арт_misdeal_награда_с_рубином.png` (1536x1024 PNG in the original conversation), generation ID `6c7d5d41-24a1-47f9-8f54-e689bbe265a5`; as of this checkpoint the raster concept master is **conversation-local, not committed to GitHub**. If the reference is not accessible in a fresh session, request/retrieve the already-approved master rather than regenerating from scratch and assuming fidelity.
+
+### Approved exact compositions visible in the final sheet (13 slots)
+
+**Deal cards — Section A (4):**
+- `bone_patrol`: moonlit skeleton patrol with one large front soldier and several secondary undead, blue-gray cemetery
+- `graveyard_ambush`: hooded/dark ambusher looming behind graves, isolated red eyes and blue moonlight
+- `gallows_volley`: **small group of medieval archers shooting bows/arrows toward the gallows; NO guns, muskets or firearms, NO crowd**; exactly the quieter final version
+- `whispering_well`: stone well with luminous pale blue spirits, restrained moonlit graveyard
+
+**Event illustrations — Section B (4):**
+- `curse_forge`: blacksmith at glowing forge, hot orange sparks against soot-dark stone
+- `black_altar`: hooded ritual leader framed by restrained red sigil and candles
+- `chained_prisoner`: muscular chained prisoner in gray-blue dungeon, clear pose
+- `rattling_bridge`: dangerous narrow suspended bridge, moonlight and one strong silhouette
+
+**Hero upgrades — Section C (3):**
+- `knight_iron_oath`: black-armored knight kneeling with sword, worn brass light
+- `ranger_arrowstorm`: hooded ranger with bow, flying arrows, cold green-blue environment
+- `mage_glass_heart`: **MALE wizard, visibly mature, with a long gray/white beard**, blue-glowing crystalline heart and frosted shards; never the previously generated female mage
+
+**Reward illustrations — Section D (2):**
+- `gold_windfall`: antique treasure chest and coin pile lit by warm candles
+- `relic_wager`: **anatomically recognizable skeletal/bony HAND holding a single large red faceted gemstone**, with crimson glow and candles; never the prior goblet/metal stand as the primary object
+
+User accepted **all other compositions without further changes** after those iterative corrections. Preserve last board's arrangement, dramatic lighting, dark charcoal/bronze frame grammar, cool steel-blue graves vs ember/orange ritual scenes, and legible focal subjects. Do not add gunpowder weapons, replace the bearded mage with a woman, or replace the skeletal ruby hand with a mounted relic. Do not regenerate the whole board solely to edit one approved item.
+
+### Five Wave 1 targets NOT shown/approved individually on the concept board
+
+`gravedigger_shop`, `bone_swarm`, `grave_crossfire` table thumbnails; `candle_seller`, `last_camp` live event illustrations. These remain in the candidate inventory below and need matching authoring/review later. The concept sheet's four event images and four table cards are distinct art asset categories; do not map event backdrops over table art or vice versa.
+
+### Implementation readiness
+
+**Approved:** 13 concept compositions and unified art direction. **Not done:** generating clean standalone source illustrations (the board has borders, labels and preview insets), exporting to correct native dimensions, verifying imagery at 224x137/304x194/on a live event background, uploading binary assets and wiring `CardArtCatalog` and event visuals. Existing production images remain active. Do not crop text and preview inset from the sheet into final standalone texture; redraw/cleanly reconstruct each as an independent texture *matching* the approved master. Approval to create art ≠ confirmation art is already shipped.
+
+---
+
 # Misdeal — Card Art Unification: Wave 1 Inventory
 
 Date: 2026-10-13  
-Status: **proposed source-backed 18-art production inventory, not yet user-approved as final art and not implemented**  
+Status: **13 compositions in the final concept board user-approved (D130); standalone assets and live integration still pending. Five other proposed Wave 1 targets not depicted.**  
 Source of truth: `scripts/ui/card_art_catalog.gd`, `scripts/ui/artifact_art_catalog.gd`, `scripts/event/act_choice.gd`, `scripts/event/gravedigger_shop_ds2.gd`, `scenes/event/whispering_well.tscn`, `scripts/core/run_state.gd`, `docs/DESIGN_SYSTEM.md`.
 
 ## Scope / guardrails
