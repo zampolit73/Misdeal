@@ -1,3 +1,13 @@
+## NEXT ACTIONS — 2026-10-14 — D140 CSV review complete, Gameplay 2.5 proposal awaiting approval
+
+- [x] Download/parse user's `misdeal_tactical_v24_party_focus.csv`; **270 clean rows, 158W/112L, 0 timeouts**. Canonical measured report: **`docs/TACTICAL_GAMEPLAY_V24_BALANCE_REVIEW.md`**.
+- [x] HUNT in D140 is **24/90** vs ASSAULT/FORMATION each **67/90**; HUNT wins in **zero** matched cases when ASSAULT loses. `last_bell` HUNT 4/18 vs other orders 18/18. Functional target test != viable tactical option.
+- [x] With class-held comparisons, solo **82/90**, duo **30/90**, trio **46/90**; late equipped Knight solo 24/24 vs Knight+Ranger duo 0/24, Knight trio 2/24. This is a warning under illustrative deterministic builds, NOT proof a particular scaler is defective.
+- [ ] **Wait for user approval** before any Gameplay 2.5 production retuning. Prefer dev-only matched-seed diagnostic instrumentation of HUNT target chasing, effective hits, healer heals, and Knight+Ranger duo behavior, prior to heuristic rewrites or global enemy/party stat changes.
+- [ ] Use observed diagnostic + **real Act 1 run** rewards/Wizard wagers/combat/boss XIII to decide any narrowly targeted changes. Keep each combat card's authored enemy roster/art/layout and established DS2/Fate Spread/18 approved assets frozen.
+
+---
+
 ## D140 local F6 acceptance — 2026-10-13
 
 - [x] User screenshot confirms **TACTICAL GAMEPLAY 2.4 — PASS**: 270/270 controlled BattleUnit battles completed, **158 wins and 112 losses**; test-specific two-bellkeeper HUNT shared focus, wounded priority and melee intercept assertions passed.
