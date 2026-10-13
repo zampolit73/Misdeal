@@ -1,3 +1,9 @@
+## QA detail — 2026-10-13
+
+Source-only Godot F6 preview for all 13 candidate WebPs shipped in scenes/dev/card_unification_v1_preview.tscn and scripts/dev/card_unification_v1_preview.gd. User should pull current main and extract the conversation ZIP to Misdeal root, then F6. Preview counts missing files. It does NOT substitute an engine check or push binary image assets to GitHub; until extraction, current artwork remains active. No other activity needed until user reviews art quality.
+
+---
+
 ## LATEST — 2026-10-13 — D130 art candidate package, Godot QA needed
 
 Committed optional art source resolver scripts/ui/card_unification_v1.gd (82b686b), lookup changes in card_art_catalog.gd (a795478), ActChoice backdrop override (a016ebf) and file validation (fa2fd7a). Prepared user-downloadable misdeal_card_art_wave1_import.zip in conversation, with 13 WebPs in paths matching assets/pixel/card_unification_v1/{run,event,upgrade,reward}, hash manifest and review contact sheet. CAUTION: the binary WebP files are NOT in GitHub; code falls back to previous art until assets are locally installed by extracting ZIP into project root. These images were approximate extractions of D130 approved board, not pristine masters; some inset portions were reconstructed and blown-up event art may be soft. Do NOT claim live art changed solely after git pull or that these candidates were approved. Existing UI/Fate Spread, Shop, Reward and Well frozen. Next: local Godot screenshot/QA, possible clean higher-resolution separate originals. Full mapping in docs/CARD_ART_UNIFICATION_WAVE1.md.
