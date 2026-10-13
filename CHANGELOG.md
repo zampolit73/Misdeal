@@ -1,3 +1,10 @@
+## 2026-10-13 — D132 live art confirmed, final five art briefs drafted (D133)
+
+- User confirmed D132 new event art appeared correctly after the earlier live card/tint fix; fixed visuals recorded as accepted.
+- Authored `docs/CARD_ART_WAVE1_FINAL5_BRIEF.md` specifying separate production art for the remaining three hero upgrades and two reward images with all D130 corrections intact.
+- Image generation in this session twice returned obsolete four-event compositions, so those results were explicitly rejected and **no additional art binaries or game code were changed**.
+- Five new individual illustrations and Godot verification remain future work.
+
 ## 2026-10-13 — Restore visibility of four D132 event illustrations on deal table
 
 - Fixed missing art on four table/deal cards: `curse_forge`, `black_altar`, `chained_prisoner`, `rattling_bridge` now use center-cropped cached 448×274 thumbnails from the already committed full-resolution event images instead of legacy v4 atlas.
