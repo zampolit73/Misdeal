@@ -1,3 +1,9 @@
+## 2026-10-13 — Final card-art concept board accepted (D130)
+
+- User approved the last concept illustration sheet after refinements to Gallows Volley (few archers with bows only), gray-bearded male Mage, and Relic Wager (skeletal hand holding red gemstone).
+- Recorded all 13 pictured compositions as binding visual reference in `docs/CARD_ART_UNIFICATION_WAVE1.md`; clarified 5 other candidate Wave 1 images were not pictured.
+- Documentation-only acceptance checkpoint: no PNG binaries, `.gd` wiring, texture swaps or gameplay changes committed.
+
 ## 2026-10-13 — Bulk DS2 visual acceptance
 
 - User reviewed the consolidated production Design System 2.0 update in local Godot and confirmed «все хорошо».
