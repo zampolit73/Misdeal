@@ -1,3 +1,14 @@
+## NEXT CHAT — D136 Gameplay 2.0 QA / first wave art closed — 2026-10-13
+
+- [x] Confirm all 18 first-wave illustrated assets are approved and in GitHub (D131–D135); prior local pull conflict from older untracked D134 PNG-derived WebPs was resolved; user said «Все ок». Existing DS2 and Fate Spread Variant C are frozen.
+- [x] User approved Gameplay 2.0 direction: greater deal variety, tactical interest from EXISTING authored fights, meaningful explicit stakes, contextual Wizard personality, respecting solo/duo/trio.
+- [x] Inspect `main`: the initial **D136 gameplay implementation is already shipped**, with optional legal mixed combat/event two-card deals and recent-resolution preference; Wizard Mark +20/30/40 vs unchanged +15% next battle enemy damage; contextual Wizard lines; existing rules/art untouched.
+- [x] Confirm committed smoke scene `res://scenes/dev/act1_gameplay_v2_smoke.tscn` and detailed next-chat plan `docs/GAMEPLAY_2_0_HANDOFF.md`.
+- [ ] **NEXT IMMEDIATE STEP (not another implementation):** user `git pull`, run F6 `scenes/dev/act1_gameplay_v2_smoke.tscn` in Godot 4.7.x 1280×720, report PASS/FAIL with Output errors if needed.
+- [ ] Play and verify one real Act 1 run: unconstrained mixed offers vs forced combat tiers; Mark 20/30/40 paid and next battle +15% penalty; Wizard text priorities; Meddling; Wager; Hold; reward/return; boss XIII after 12 choices.
+- [ ] If actual problems arise, fetch latest `RunState`/`table.gd`/smoke code, fix with connected GitHub, commit and revise handoff. Otherwise mark D136 locally accepted and plan a second SMALL replayability/content pass after auditing remaining weak points.
+- [ ] Do not redesign accepted art or invent new mechanics before discussing substantive changes with user.
+
 ## D136 — Act 1 Gameplay 2.0 replayability pass (2026-10-13)
 
 - [x] Review current 30 authored regular cards (10/tier), encounter archetypes, tier rules, hold/meddling/wagers/marks and existing solo/duo/trio balance in GitHub before changing game rules.
