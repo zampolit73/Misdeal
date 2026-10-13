@@ -18,6 +18,21 @@ func _ready() -> void:
 		if not RunState.choose_protagonist(roles[trial % roles.size()]):
 			problems.append("Cannot choose protagonist on trial %d" % trial)
 			break
+		# Include solo, duo and trio runs without modifying balance constants.
+		var expected_party := trial % 3 + 1
+		for role in roles:
+			if RunState.get_party_size() >= expected_party:
+				break
+			if role != RunState.protagonist_role:
+				RunState.recruit_companion(role, "F6 gameplay simulation")
+		if RunState.get_party_size() != expected_party:
+			problems.append("Party size mismatch in trial %d" % trial)
+			break
+		var enemy_hp := [0.82, 0.92, 1.0][expected_party - 1]
+		var enemy_damage := [0.80, 0.90, 1.0][expected_party - 1]
+		if not is_equal_approx(RunState.get_enemy_hp_multiplier(), enemy_hp) or not is_equal_approx(RunState.get_enemy_base_damage_multiplier(), enemy_damage):
+			problems.append("Enemy pressure changed for party size %d" % expected_party)
+			break
 		var chosen_ids: Dictionary = {}
 		for slot in range(ACT_SLOTS):
 			var offers := RunState.get_offer_cards()
