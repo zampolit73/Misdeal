@@ -1,3 +1,16 @@
+## D131 — FINAL APPROVED FOUR DEAL-CARD ARTWORKS (2026-10-13)
+
+The player approved four **new high-resolution standalone** card designs after rejecting blur and cloned AI-looking figures. They REPLACE the D130 collage's four table-card draft crops, but not the other nine D130 approved designs. **Exact mapping:**
+
+- `bone_patrol`: `марш_скелетов_под_полной_луной.png` — generation `8a477bfd-e779-468a-996c-19537c19c527`, unique skeleton role silhouettes
+- `graveyard_ambush`: `лунная_засада_на_кладбище.png` — generation `63ff9a81-cec8-4e97-a1b0-f12748f95f28`, one dominant hooded assassin
+- `gallows_volley`: `лучники_у_виселицы_на_закате.png` — generation `013c0ce3-983c-4480-86bc-15d7a751edd6`, THREE distinct medieval bow archers; absolutely no firearms
+- `whispering_well`: `призрачный_колодец_в_лунном_кладбище.png` — generation `a13b068f-6bda-42da-b00d-e9fa4e10052d`, distinct well ghosts
+
+These are **approved visual images**, NOT yet shipped image binaries or integrated live art. Earlier ZIP `misdeal_card_art_wave1_import.zip` still has older **low-resolution** crops of all four, and is now superseded for these IDs. D131 formal decision below in `docs/DECISIONS.md`. Preserve the accepted D130 remaining nine and D123-D129 screen designs. Next: export clean 448x274 versions of these four and commit binary files into `assets/pixel/card_unification_v1/run/` using GitHub; test at actual card scale.
+
+---
+
 ## Wave 1 candidate extraction and integration status — 2026-10-13
 
 The accepted D130 art direction and 13 source compositions now have optional image source support in GitHub. Commits: 82b686b (new scripts/ui/card_unification_v1.gd), a795478 (CardArtCatalog fallbacks), a016ebf (ActChoice event backdrops), fa2fd7a (WebP integrity/dimension validation). Four run cards, four event backgrounds, three hero upgrades and two reward images use the approved ID mappings when matching valid files are present. All original atlases, actual event handlers, gameplay and accepted DS2/Fate Spread layouts are unchanged.
