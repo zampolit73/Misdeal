@@ -2262,3 +2262,21 @@ Approved scope is **observability only**, not balance retuning. Add opt-in `Batt
 - `user://misdeal_tactical_v25_trace_units.csv` — per spawned unit for each combat.
 
 **Interpretation boundary:** CSV metric totals such as chase seconds represent summed hero time; not a full in-game telemetry system nor an Act 1 win-rate sample. F6 PASS would mean 126 battles complete and both files are written, **not that HUNT or solo/duo/trio are fixed**. Assistant cannot run Godot in its container; user must `git pull`, run F6 and share both CSVs for actual diagnosis. Only after review and a normal Act 1 run with Wizard risk/rewards and boss XIII should any HUNT targeting or party-size scalers be tuned. Preserve card-specific opponent rosters, existing two-layout formations, DS2 / Fate Spread Variant C, 18 approved assets and 12+XIII structure.
+
+
+## D143 — New Act 1 combat cards require genuinely new enemies
+
+Date: 2026-10-14
+Status: **user-explicit design requirement; approved constraint, NOT implemented yet**
+
+The user agreed in principle to expand Act 1's 30 existing non-boss cards to a 45-card pool (15 additions, preserving exactly 12 resolved cards + boss XIII per run), then explicitly clarified: **if a new card contains any fight, the opponents must be genuinely new enemies too.** This includes optional combat branches in otherwise event-like cards, not only cards labelled "combat".
+
+**Non-negotiable content contract for each new fight-bearing card:**
+
+1. Author **new enemy types**, with original `UnitData`/roles, readable silhouettes/sprite assets, animations where needed, and at least one recognizable new enemy mechanic/AI behavior. **Rearranging existing skeletons/archers/bellkeepers, renaming an old enemy, swapping its palette, or changing only HP/damage is NOT a new enemy.** New combat encounters must feature an original opposing roster, rather than recycling legacy lineups.
+2. Create a **card-specific `EncounterData`** with explicit enemy IDs and authored spawn placements and a suitable arena identity. The illustration/title/wizard description MUST accurately promise the actual opponents. Existing D137–D140 card-faithful formation invariants continue to apply. No random enemy substitutions beneath an unchanged card illustration.
+3. Give the new card an original, approved **DS2 / Fate Spread Variant C-compatible pixel illustration**. New enemy battle miniatures must have their own source art (no reused old sprite pretending to be a new foe), with clear combat readability and 1280×720 smoke validation.
+4. If implementing the full fifteen-card concept previously discussed, the preliminary candidate list has **five fight-bearing cards, not three**, because `Похоронный звон` and `Костяной пастух` (tier 0), `Палач на переправе` and optional-combat `Страж монетного склепа` (tier 1), and `Багровый караул` (tier 2) all contain fighting. The previous "3 combats" category shorthand was inconsistent with the named list. Revise the final design/effort estimate **before** coding or generating artwork. These names, all effects, and their exact enemy designs are **proposals, not individually approved implementations**.
+5. Don't begin implementation with a quick reused-enemy combat prototype and present it as final; if the art, new units and AI for a fight aren't ready, implement/test its noncombat sibling content first. Do not change existing approved combat cards/rosters without discussion.
+
+**Scope/status:** This comment is a design clarification, not an instruction to ship all 15 cards immediately. No new cards, enemy code, art or encounters are yet committed as part of the Deck Expansion; the existing 30-card Act 1 pool and 12 + XIII run shape remain unchanged. Older D142 controlled balancing experiment proposal is separate and not approved or performed.
