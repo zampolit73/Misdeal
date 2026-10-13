@@ -1,3 +1,11 @@
+## 2026-10-14 — New Bone Shepherd production-ready card package (design only)
+
+- Added docs/DECK_EXPANSION_BONE_SHEPHERD_PRODUCTION.md: exact proposed Tier0 new combat card copy, unique Bone Shepherd ×1 and Ossuary Lamb ×2 UnitData, two authored deployments, measurable Whistle warning/shared-target bounded rush with preliminary timings/stats, unique genuine card + two enemy animation-art deliverables, Godot resource/file map and 54-combat test requirements.
+- Confirmed spec uses existing UnitData, EncounterData, RunCardData, combat floor projection and animation B64 presentation. Existing 30-card pool, 12+XIII, seven approved two-layout combat identities, DS2/Fate Spread and 18 first-wave artworks unchanged.
+- Only docs/handoff updated. No new sprites or code yet; next implementation step is authentic new creature artwork and full original-enemy combat slice.
+
+---
+
 ## 2026-10-14 — First original-enemy Deck Expansion concept recorded (design only)
 
 - After user explicitly agreed to begin new combat card content under D143, authored **`docs/DECK_EXPANSION_BONE_SHEPHERD_CONCEPT.md`** as the first Tier0 card brief for «КОСТЯНОЙ ПАСТУХ».
