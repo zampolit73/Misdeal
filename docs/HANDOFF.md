@@ -1,3 +1,11 @@
+## LATEST — 2026-10-13 — 180-row D139 CSV analyzed and reviewed in GitHub
+
+User supplied real `misdeal_tactical_v23_balance.csv`, 180 BattleUnit result rows, all completed 79 wins / 101 losses, Godot F6 PASS. Direct exact v22 72-bare-case join proves HUNT improved from **5/24→8/24** (4 newly won, 1 former win lost); ASSAULT/FORMATION each remain 13/24 identically. `last_bell` HUNT remains **1/6**, indicating unresolved support-target issue. Late tier2 bare **6/72**, upgraded profile **42/72**; on identical cases upgrades turned 36 losses to wins without making a win fail. Enhanced late solo **22/24**, duo **10/24**, trio **10/24**, but sample rotates class and no real progression, so do NOT change overall party scalers based on this alone. Real physical layout comparisons also rotate protagonists. Both later seeds yielded identical win/loss flags across matched cases.
+
+**Canonical new analysis:** `docs/TACTICAL_GAMEPLAY_V23_BALANCE_REVIEW.md`; historical `docs/TACTICAL_GAMEPLAY_V22_BALANCE_REVIEW.md`. Next decision: request approval for improved HUNT focus/target cohesion experiment and a role-matched stage2 benchmark, then observe actual Act 1 rewards/run. Current turn changes docs ONLY; D139 production melee HUNT fix remains in code, no new production modifications. Maintain all approved enemy rosters/cards/assets/DS2/Fate Spread. Do not ask user to re-explain GitHub access.
+
+---
+
 ## LATEST — 2026-10-13 — D139 F6 180/180 PASS, request results CSV
 
 User shared Godot screenshot: `TACTICAL GAMEPLAY 2.3 — PASS`; 180 completed isolated BattleUnit fights, **79 wins, 101 losses**, and targeted Knight HUNT close-frontline vs distant-healer preview assertions PASS. D139 production `scripts/battle/unit.gd` (melee HUNT interceptions within 165) and F6 `scenes/dev/tactical_gameplay_v23_balance_benchmark.tscn` shipped previously. The scene generated `user://misdeal_tactical_v23_balance.csv`, **not yet uploaded**. Current only reliable results are total W/L and functional targeting regression, NOT breakdown by tier/protagonist/party/order/build.
