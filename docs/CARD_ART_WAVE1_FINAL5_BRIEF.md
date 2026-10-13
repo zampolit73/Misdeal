@@ -1,3 +1,11 @@
+## Delivery status — 2026-10-13 — D134 five actual image binaries in main
+
+**All five illustration briefs below have been implemented from the LAST user-approved 1570×1002 standalone images** and uploaded to GitHub `main`, commit `e3729a4a86a9cce006ec8803fa6e7e0aa1f00de5`. Five files exist as actual WebP binaries at the specified paths under `assets/pixel/card_unification_v1/`, **608×388** after downsampling, quality 90. GitHub blob SHA and five-file diff independently verified. Previously generated blurry D130 contact sheet art remains obsolete, not used as source. All five are now automatically selected by the existing `card_unification_v1.gd` and `CardArtCatalog`; fallback remains if missing/invalid. **Godot runtime visual check is outstanding**, no claims of in-engine test.
+
+Exact latest generation IDs: Knight `99064d63-d2ca-4e91-8f30-509afa693455`, Ranger `568fcdba-01b3-44f2-8333-2504f97adaa9`, Mage `b0c9d788-0066-4f7e-bd33-6631c7dfe5f2`, Gold `503c0d93-b07f-495c-9fdf-68250a88c46c`, Relic `1951ab80-d0fd-4a09-9f11-f6ef067df57d`. The latest knight is NOT the earlier single knight generation `40712d9a...`. D134 binding approval. The 13 D130 pictured examples are all shipped; five further candidate artworks from original larger inventory are separate future scope. Earlier "not generated" status below is historical and superseded by this header.
+
+---
+
 # Misdeal — Final five Wave 1 art production briefs
 
 Date: 2026-10-13
