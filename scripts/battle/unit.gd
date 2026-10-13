@@ -751,9 +751,25 @@ func _find_nearest_enemy() -> BattleUnit:
 	return nearest
 
 func _find_hunt_enemy() -> BattleUnit:
+	# All hunters evaluate support from the same party center, rather than
+	# separately choosing the closest of two bellkeepers and splitting damage.
+	var party_center := Vector2.ZERO
+	var party_count := 0
+	for node in get_tree().get_nodes_in_group("combat_units"):
+		if node is BattleUnit:
+			var ally := node as BattleUnit
+			if ally.alive and ally.team == team:
+				party_center += ally.global_position
+				party_count += 1
+	if party_count > 0:
+		party_center /= float(party_count)
+	else:
+		party_center = global_position
+
 	var best_target: BattleUnit = null
 	var best_rank: int = 999
-	var best_distance := INF
+	var best_health_ratio := INF
+	var best_party_distance := INF
 
 	for node in get_tree().get_nodes_in_group("combat_units"):
 		if not node is BattleUnit:
@@ -769,20 +785,26 @@ func _find_hunt_enemy() -> BattleUnit:
 		elif unit.minimum_range > 0.0:
 			rank = 1
 
-		var distance: float = global_position.distance_squared_to(unit.global_position)
-		if rank < best_rank or (rank == best_rank and distance < best_distance):
+		# A wounded healer is a better focus than two healthy healers
+		# regenerating each other. Equal-health targets use shared distance.
+		var health_ratio: float = unit.hp / maxf(1.0, unit.max_hp)
+		var party_distance: float = party_center.distance_squared_to(unit.global_position)
+		if (rank < best_rank
+				or (rank == best_rank and health_ratio < best_health_ratio - 0.001)
+				or (rank == best_rank and absf(health_ratio - best_health_ratio) <= 0.001
+					and party_distance < best_party_distance)):
 			best_rank = rank
-			best_distance = distance
+			best_health_ratio = health_ratio
+			best_party_distance = party_distance
 			best_target = unit
 
-	# Preserve long-range support priority while approaching the enemy line.
-	# Once a melee hero is threatened nearby, stop walking past that enemy
-	# if the desired support target is still outside the local danger zone.
+	# Keep D139's melee safety rule independent for each hero: a close
+	# frontline threat is intercepted if the shared support target is distant.
 	if team == 0 and attack_range < HUNT_MELEE_RANGE_CUTOFF and best_rank < 2:
 		var nearby_threat: BattleUnit = _find_nearest_enemy()
 		if nearby_threat != null and nearby_threat != best_target:
 			var danger_sq: float = HUNT_MELEE_THREAT_RADIUS * HUNT_MELEE_THREAT_RADIUS
-			if global_position.distance_squared_to(nearby_threat.global_position) <= danger_sq and best_distance > danger_sq:
+			if global_position.distance_squared_to(nearby_threat.global_position) <= danger_sq and global_position.distance_squared_to(best_target.global_position) > danger_sq:
 				return nearby_threat
 
 	return best_target
