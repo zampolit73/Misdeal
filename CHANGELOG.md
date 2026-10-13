@@ -1,3 +1,12 @@
+## 2026-10-14 — D144 Bone Shepherd first local Godot parser hotfix
+
+- User supplied live Godot images: genuine card/Shepherd/Lamb SVG art preview loads and Knight battle scene starts with correct new 1+2 roster; proves render/import/startup but **not** 54-test run or art-quality acceptance.
+- Fixed `scripts/dev/bone_shepherd_smoke.gd` compile error at line 17: GDScript does not permit `PackedStringArray([...])` as `const`. Declared `EXPECTED_PATHS` as constant literal string array; converted to PackedStringArray during runtime encounter-roster assertion.
+- Hid synthetic battle layer (`arena.visible = false`) so F6 benchmark statistics remain visible.
+- **54/54 Godot smoke still pending user rerun after `git pull`**. New SVG art is visibly simplified compared with polished Knight/cemetery and is marked for a future art-quality pass; original new enemy identities, encounter card, combat Whistle and global scaling unchanged.
+
+---
+
 ## 2026-10-14 — D144 first fully new-enemy combat card shipped (source, native Godot QA pending)
 
 - New Tier0 **`bone_shepherd`** RunCardData and 2-formation EncounterData, with exactly **1 original Bone Shepherd commander + 2 original four-legged Ossuary Lambs**, no old enemies or moodboard extras; registered in RunState (Act1 pool 30→31, first-tier 10→11, run still 12 cards+boss XIII).
