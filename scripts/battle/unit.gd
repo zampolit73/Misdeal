@@ -8,6 +8,10 @@ const TACTICAL_ORDER_FORMATION := "formation"
 const TACTICAL_ORDER_SACRIFICE := "sacrifice"
 const TACTICAL_ORDER_DEFIANCE := "defiance"
 const ASSAULT_MOVE_MULTIPLIER := 1.15
+# A melee hunter should clear a nearby frontline threat before crossing the field
+# toward a distant healer/archer. Ranged hunters retain their full priority.
+const HUNT_MELEE_THREAT_RADIUS := 165.0
+const HUNT_MELEE_RANGE_CUTOFF := 100.0
 const ART_BASE_POSITION := Vector2(0.0, -16.0)
 const ANIM_CELL_HEIGHT := 96.0
 const ANIM_SOLE_Y := 92.5
@@ -770,6 +774,16 @@ func _find_hunt_enemy() -> BattleUnit:
 			best_rank = rank
 			best_distance = distance
 			best_target = unit
+
+	# Preserve long-range support priority while approaching the enemy line.
+	# Once a melee hero is threatened nearby, stop walking past that enemy
+	# if the desired support target is still outside the local danger zone.
+	if team == 0 and attack_range < HUNT_MELEE_RANGE_CUTOFF and best_rank < 2:
+		var nearby_threat: BattleUnit = _find_nearest_enemy()
+		if nearby_threat != null and nearby_threat != best_target:
+			var danger_sq: float = HUNT_MELEE_THREAT_RADIUS * HUNT_MELEE_THREAT_RADIUS
+			if global_position.distance_squared_to(nearby_threat.global_position) <= danger_sq and best_distance > danger_sq:
+				return nearby_threat
 
 	return best_target
 
