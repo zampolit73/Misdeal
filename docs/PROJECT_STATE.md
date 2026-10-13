@@ -1,3 +1,11 @@
+## CURRENT CHECKPOINT — 2026-10-13 — D134 final five card illustrations deployed, 13/13 D130 pictured art assets on main
+
+After user accepted all five last separate art generations, binaries were delivered directly to GitHub `main` (commit `e3729a4a86a9cce006ec8803fa6e7e0aa1f00de5`): `upgrade/knight_iron_oath.webp`, `upgrade/ranger_arrowstorm.webp`, `upgrade/mage_glass_heart.webp`, `reward/gold_windfall.webp`, `reward/relic_wager.webp` under `assets/pixel/card_unification_v1/`. Every file is verified WebP 608×388, directly resized from last approved separate 1570×1002 PNGs, remote GitHub binary identity validated. Existing `CardArtCatalog` and `card_unification_v1.gd` select these five with original atlas fallbacks, no new game scripts or UI changes. D134 binds artwork identity, details (male elder gray-bearded Mage; skeletal hand grasping red gem), delivered commit and QA boundary.
+
+Including D131 four run cards and D132 four event scenes already accepted after fix D133, **all 13 originally pictured D130 concept slots are now committed as live-selectable assets**. Earlier inventory listed 18 target artworks; **five remaining candidate-only IDs** were not included in D130 sheet and must not be counted as shipped. User still needs to `git pull` and verify new 5 on F6 gallery and actual hero-upgrade and reward screens; no independent Godot runtime QA. No ZIP extraction required (old D130 ZIP is obsolete). Preserve agreed D123–D133 art and DS2 layouts.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-13 — D133 D132 event art confirmed OK; final five upgrades/rewards pending
 
 User confirmed «все ок» after the event-art thumbnail/tint fix; the four shipped D132 backgrounds and matching table art are accepted as displayed locally, no additional visual rework requested. D133 decision documents acceptance. The first 8/13 signed-off D130 art slots are integrated with actual GitHub binary images; last five slots (3 hero upgrades, 2 rewards) are **not yet shipped** and currently retain the original asset atlas fallback.
