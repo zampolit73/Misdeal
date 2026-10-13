@@ -12,3 +12,6 @@ arena_id = "firing_square"
 enemy_unit_paths = PackedStringArray("res://resources/units/crypt_sentinel.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_archer.tres")
 enemy_names = PackedStringArray("Склепный часовой", "Костяной лучник", "Костяной лучник", "Костяной лучник", "Костяной лучник")
 enemy_positions = PackedVector2Array(900, 305, 1045, 205, 1100, 255, 1100, 355, 1045, 405)
+formation_hint = "ЛИНИЯ ОГНЯ — четыре лучника прикрыты центральным часовым."
+alternate_enemy_positions = PackedVector2Array(890, 245, 1020, 150, 1110, 220, 1020, 345, 1110, 395)
+alternate_formation_hint = "ШАХМАТНЫЙ ЗАЛП — лучники на двух линиях за часовым."
