@@ -1,7 +1,7 @@
 ## 2026-10-13 — D140 Gameplay 2.4: coordinated Hunt focus and matched-party balance test
 
 - User approved further HUNT double-healer focus and class/roster-controlled party-size comparisons.
-- `scripts/battle/unit.gd`: HUNT now ranks same-category targets by lowest health ratio then shared alive-party-center distance (healers still above ranged, above others). Heroes using HUNT focus the same weakened support when possible; preserves D139 melee Knight immediate-danger interception.
+- `scripts/battle/unit.gd`: HUNT now ranks healer/ranged targets by lowest health ratio then shared alive-party-center distance (healers remain above ranged). Nearest-melee fallback stays unchanged. Heroes using HUNT focus the same weakened support when possible; preserves D139 melee Knight immediate-danger interception.
 - Added `scenes/dev/tactical_gameplay_v24_focus_party_benchmark.tscn` and dev GDScript with explicit two-bellkeeper focus/interception/return preview assertions and **270** controlled BattleUnit combat outcomes: 54 tier1 bare Last Bell, 216 tier2 equipped Ossuary Gate/Firing Square with fixed protagonists across party sizes, deterministic teammate order, 2 enemy layouts, 3 tactics, two late seeds.
 - Exports `user://misdeal_tactical_v24_party_focus.csv` with party roles and separate game profile/seed/outcome/time/hero-enemy survivor fields. Uses authored existing hero upgrades and artifacts, baseline RunState multipliers; no global stat adjustments.
 - **New F6 has not run in Godot yet**; previous v23 180 full-BattleUnit tests passed locally and v23 CSV analyzed. No changes to card identities, enemies, rewards, visual assets or Act 1 route.
