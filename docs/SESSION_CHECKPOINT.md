@@ -1,3 +1,11 @@
+## NEWEST — 2026-10-13 — D140 F6 270/270 PASS, CSV NEXT
+
+**Latest user screenshot:** local Godot F6 **TACTICAL GAMEPLAY 2.4 — PASS**: **270/270 finished**, **158 wins / 112 losses**, preflight `ОХОТА: общий звонарь, ослабленная цель, перехват — OK`. This verifies D140 coordinated targeting against two bellkeepers and controlled BattleUnit run completion, not statistical actual-run balance. The v24 scene tested 54 bare `last_bell` and 216 equipped `ossuary_gate`/`firing_square` cases with protagonist fixed across solo/duo/trio, cyclic fixed companion order, 2 authored positions, 3 orders, and 2 late seeds. **Godot wrote `user://misdeal_tactical_v24_party_focus.csv`, but user has not uploaded it yet.** Do not assert any per-card, order, protagonist or party outcome absent CSV.
+
+**Immediate next step:** user attaches `misdeal_tactical_v24_party_focus.csv` using Godot Проект → Открыть папку пользовательских данных. Assistant reviews row-level 270 results, compares to D139 baseline/report `docs/TACTICAL_GAMEPLAY_V23_BALANCE_REVIEW.md` carefully because case composition differs, then suggests any targeted further improvements only after evidence. D140 source already GitHub `main`: `scripts/battle/unit.gd` shared support-focus HUNT, retained D139 melee interception, and `res://scenes/dev/tactical_gameplay_v24_focus_party_benchmark.tscn`; no new code changes in this documentation-only acceptance commit. Full real Act 1 run with Wizard wagers, artifacts, rewards and boss XIII remains pending. GitHub access connected. Preserve existing 7 card-faithful two-layout encounters/18 arts/DS2 and Fate Spread.
+
+---
+
 ## NEWEST — 2026-10-13 — D140 Gameplay 2.4 implemented, F6 + CSV next
 
 **Exact latest user approval:** «давай» in reply to proposed Gameplay 2.4: (1) coordinated HUNT support target/focus against the `last_bell` double bellkeepers; (2) a fairer late-stage benchmark with the **same protagonist and controlled teammate choices** across solo/duo/trio. D139 real CSV showed HUNT changed 5/24→8/24 but still `last_bell` 1/6; equipped late solo 22/24 vs duo/trio 10/24, confounded by protagonist rotation. Full report `docs/TACTICAL_GAMEPLAY_V23_BALANCE_REVIEW.md`.
