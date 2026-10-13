@@ -1,3 +1,8 @@
+## Wave 1 inspection convenience — 2026-10-13
+
+- [x] Commit a standalone F6 gallery preview (scenes/dev/card_unification_v1_preview.tscn) for all 13 optional assets, displaying missing-file count without changing RunState.
+- [ ] Use GitHub git pull + conversation ZIP extraction, F6 at 1280x720 and verify 13 assets without dependence on random deck offerings; review any visual repair artifacts.
+
 ## Wave 1 source art candidate delivery — 2026-10-13
 
 - [x] Prepare first 13 WebP candidates from approved D130 concept and validate sizes/ZIP structure.
