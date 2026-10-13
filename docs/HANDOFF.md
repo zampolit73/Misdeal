@@ -1,3 +1,11 @@
+## LATEST — 2026-10-13 — D139 F6 180/180 PASS, request results CSV
+
+User shared Godot screenshot: `TACTICAL GAMEPLAY 2.3 — PASS`; 180 completed isolated BattleUnit fights, **79 wins, 101 losses**, and targeted Knight HUNT close-frontline vs distant-healer preview assertions PASS. D139 production `scripts/battle/unit.gd` (melee HUNT interceptions within 165) and F6 `scenes/dev/tactical_gameplay_v23_balance_benchmark.tscn` shipped previously. The scene generated `user://misdeal_tactical_v23_balance.csv`, **not yet uploaded**. Current only reliable results are total W/L and functional targeting regression, NOT breakdown by tier/protagonist/party/order/build.
+
+**Next:** user attaches v23 CSV via Project > Open User Data Folder; analyze per-card/party/order results and `tier2_built` vs `bare` pairs and historical v22 CSV report in `docs/TACTICAL_GAMEPLAY_V22_BALANCE_REVIEW.md`. Only then suggest any scope-limited further fixes and real Act 1 QA. No gameplay changes made in this response, docs updated to preserve next-chat context. Original card rosters and approved DS2/art/Fate Spread unchanged.
+
+---
+
 ## LATEST — 2026-10-13 — D139 implemented, new 180-fight v23 F6 acceptance required
 
 User approved («утверждаю») the D138 CSV-derived balancing follow-up. Direct GitHub production commit updates **`scripts/battle/unit.gd`**: HUNT for melee player hero now temporarily prioritizes the nearest immediate frontline enemy (within 165 units) if its preferred ranged/healer support target is outside that radius. HUNT still seeks healer/ranged normally when no imminent threat or when support is reachable, and ranged heroes are unaffected. Card enemy rosters/IDs/arts/position data, rewards and existing global scaling unchanged.
