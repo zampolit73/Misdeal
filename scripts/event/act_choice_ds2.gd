@@ -4,6 +4,7 @@ extends RefCounted
 # It only reads already-configured Button text/state/art; events keep their
 # original purchase, rescue, leave and progression handlers.
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const CARD_UNIFICATION_V1 := preload("res://scripts/ui/card_unification_v1.gd")
 
 static func apply(scene: Control) -> void:
 	var panel := scene.get_node("Panel") as Panel
@@ -17,7 +18,13 @@ static func apply(scene: Control) -> void:
 	# physical UI elements; never replace it with the Fate Spread plate.
 	var shade := ColorRect.new()
 	shade.name = "DS2EventShade"
-	shade.color = Color(0.024, 0.012, 0.015, 0.58)
+	var active: RunCardData = scene.get("active_card") as RunCardData
+	var has_new_event_art := false
+	if active != null and CARD_UNIFICATION_V1.EVENTS.has(active.card_id):
+		has_new_event_art = not CARD_UNIFICATION_V1.get_event_art_path(active.card_id, "").is_empty()
+	# Keep approved DS2 cards untouched while letting the four authored scene
+	# backdrops read through the full-screen tint. All other events keep 0.58.
+	shade.color = Color(0.024, 0.012, 0.015, 0.34 if has_new_event_art else 0.58)
 	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	scene.add_child(shade)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
