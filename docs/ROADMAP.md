@@ -1,3 +1,15 @@
+## D144 — Bone Shepherd Deck Expansion first playable source shipped (Godot QA NEXT) — 2026-10-14
+
+- [x] User authorized full first new combat card after approved concept and production brief. **Implemented in GitHub main**, not merely a plan: Tier0 `bone_shepherd` registered as new Act1 card, 31 total pool / 11 Tier0; normal 12+XIII run length untouched.
+- [x] Two entirely new enemy UnitData/visual roles `bone_shepherd` ×1 and `ossuary_lamb` ×2, fixed roster across two authored `EncounterData` formations; no old-enemy reskins/roster swaps. New pixel-shaped SVG 576×480 6×5 animation sheets with 25 frame positions/role and 448×274 unique card art SVG; load as Godot Texture2D, not binary WebP.
+- [x] Whistle integration: encounter-only BoneShepherdWhistleController + data Resource, 5.5s first warning, 0.65s visual cue, 1.25s Lamb shared-target rush ×1.35 movement only, 8s cycle; role-gated temporary AI, kill-during-warning/kill-during-rush cancellation. No changes to old orders/party-size stats.
+- [x] Three test/playtest entry points: `scenes/dev/bone_shepherd_art_preview.tscn`, `scenes/dev/bone_shepherd_smoke.tscn` (**54** real BattleUnit scenarios + whistle lifecycle), and `scenes/dev/bone_shepherd_playtest.tscn` (actual Knight vs new encounter in normal battle UI). Static SVG/role/registry/scene checks passed.
+- [ ] **USER NEXT:** `git pull`, open Art Preview and F6; inspect readability, horns/hooves, no floating art, native animation; F6 Smoke should yield **DECK EXPANSION 01 — PASS** (54/54); F6 Playtest should open normal new battle and show shared Lamb rush after a visible cue. Send screenshots + error text if FAIL.
+- [ ] Fix any actual Godot parse/import/runtime errors via connected GitHub, adjust visually approved original art only based on user QA, and measure tier0 solo/duo/trio balance. **Do NOT claim F6 PASS until user sees it**.
+- [ ] After Card01 Godot acceptance, proceed with 14 additional proposed Act1 cards toward 45, every future combat variant with entirely new units and art per D143. D142 HUNT/duo remains separate.
+  
+---
+
 ## Deck Expansion Card 01 — production-ready specification COMPLETE — 2026-10-14
 
 - [x] User approved preparing a production-ready package. Full design/implementation/QA plan committed in docs/DECK_EXPANSION_BONE_SHEPHERD_PRODUCTION.md. 1 brand-new bone_shepherd commander + 2 entirely new ossuary_lamb quadrupeds; unique 0.65s whistle warning + bounded 1.25s synchronized speed-boost rush (all preliminary combat timings/stats subject to F6).
