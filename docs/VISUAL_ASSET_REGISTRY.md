@@ -1,3 +1,19 @@
+### ACTIVE UPGRADE AND REWARD ART — 2026-10-13 — D134 five files in GitHub main
+
+Approved as five separate latest images and shipped as real WebP binaries in `e3729a4a86a9cce006ec8803fa6e7e0aa1f00de5`. All source 1570×1002, exported **608×388**, quality 90, directly resampled, no collage upscaling. Paths relative to `assets/pixel/card_unification_v1/`:
+
+| Live ID | File path | Bytes | SHA256 |
+|---|---|---:|---|
+| `knight_iron_oath` | `upgrade/knight_iron_oath.webp` | 84528 | `57dc237b0ec6ea7fe785e82d633cd04043a788ac2d9f35337ca54229d77f59e9` |
+| `ranger_arrowstorm` | `upgrade/ranger_arrowstorm.webp` | 79182 | `2d2ce9078d81de6fbbf066fe52e6ad3ed6ef0f0d545632168a3f6526fa5e7a5d` |
+| `mage_glass_heart` | `upgrade/mage_glass_heart.webp` | 89166 | `25cda1fb23898a5ab5cfd7f2e0b8f2b6156e95b66ffd6e24267a47ca422bcf4e` |
+| `gold_windfall` | `reward/gold_windfall.webp` | 89446 | `ac955a469970f05f3c92cdfd5a36e754441b256c213c0e1b19396c5ef663d8d0` |
+| `relic_wager` | `reward/relic_wager.webp` | 56646 | `6cc40c40c20abbbd8557ad08c0d38446c134e20c5ec2d15c9d5da68cb829b669` |
+
+The `CardArtCatalog.get_upgrade_texture()` / `get_reward_texture()` override lookup is already present. Original fallback atlas is retained; no UI/code changes in this art commit. User accepted images as drawn; local Godot in-engine QA still pending. User requirements: male gray-bearded wizard for `mage_glass_heart`, skeletal hand gripping ruby for `relic_wager`. D134 records exact source image names and generation IDs. **13/13 pictured D130 slots now have binary assets**; earlier 18-art inventory has additional 5 candidate-only items still outside approval/deployment.
+
+---
+
 ### LIVE EVENT BACKGROUNDS — 2026-10-13 — D132 four approved 1280×720 WebPs in main
 
 Binary delivery completed in `1722d070cfe5a5690596953a1465b198177a57b3`; paths below have their own separate approved event compositions (user signed off, no further generation needed):
