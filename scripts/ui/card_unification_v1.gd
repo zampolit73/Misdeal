@@ -33,7 +33,37 @@ const REWARDS := {
 static var _texture_cache: Dictionary = {}
 
 static func get_run_texture(card_id: String) -> Texture2D:
-	return _get_texture(RUN_CARDS, card_id, Vector2i(448, 274))
+	var explicit_card := _get_texture(RUN_CARDS, card_id, Vector2i(448, 274))
+	if explicit_card != null:
+		return explicit_card
+	# These four approved illustrations are 1280x720 event backgrounds.
+	# Also show the SAME art on the deal card instead of the old v4 atlas.
+	# A missing/invalid event image falls through to CardArtCatalog's fallback.
+	return _get_event_card_texture(card_id)
+
+
+static func _get_event_card_texture(card_id: String) -> Texture2D:
+	var path := _path(EVENTS, card_id)
+	if path.is_empty() or not FileAccess.file_exists(path):
+		return null
+	var key := path + ":run_card"
+	if _texture_cache.has(key):
+		return _texture_cache[key] as Texture2D
+
+	var image := Image.new()
+	var err := image.load_webp_from_buffer(FileAccess.get_file_as_bytes(path))
+	if err != OK or Vector2i(image.get_width(), image.get_height()) != Vector2i(1280, 720):
+		push_warning("Wave 1 event art invalid for deal card, using old atlas: %s" % path)
+		return null
+
+	# Crop to the real 448:274 landscape ratio without stretching characters.
+	var width := roundi(float(image.get_height()) * 448.0 / 274.0)
+	var left := maxi(0, (image.get_width() - width) / 2)
+	image = image.get_region(Rect2i(left, 0, width, image.get_height()))
+	image.resize(448, 274, Image.INTERPOLATE_LANCZOS)
+	var texture := ImageTexture.create_from_image(image)
+	_texture_cache[key] = texture
+	return texture
 
 static func get_upgrade_texture(upgrade_id: String) -> Texture2D:
 	return _get_texture(UPGRADES, upgrade_id, Vector2i(608, 388))
