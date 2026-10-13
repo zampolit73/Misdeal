@@ -1,3 +1,13 @@
+## NEWEST — 2026-10-14 — D140 ACTUAL CSV ANALYZED; AWAIT USER D141 DIRECTION
+
+**Current source of truth:** user uploaded `misdeal_tactical_v24_party_focus.csv` (270 rows) following screenshot `TACTICAL GAMEPLAY 2.4 — PASS` 270/270 (158W/112L). Full verified analysis committed to **`docs/TACTICAL_GAMEPLAY_V24_BALANCE_REVIEW.md`**. All actual CSV cases complete, no timeouts. `last_bell` HUNT 4/18 vs ASSAULT and FORMATION 18/18. Overall ASSAULT 67/90, FORMATION 67/90, HUNT 24/90; HUNT never wins when ASSAULT loses in any 90 matched scenario keys, whereas ASSAULT wins/HUNT loses 43 times. HUNT preview target fixture passed Godot but this does **not** establish tactical usefulness. D139 previous dataset has different seeds/protagonist permutations from D140, so cannot attribute old/new changes by raw win totals.
+
+With fixed protagonist across solo→duo→trio: 82/90, 30/90, 46/90 total wins respectively. Late equipped: 68/72, 16/72, 34/72. Knight late solo 24/24, Knight+Ranger duo 0/24, full trio Knight 2/24; Mage and Ranger duos are also weaker. Differences involve hero count + enemy pressure scalers + position + upgraded hero composition, **not isolated multiplier effects**. Alternate formation totals similar (78/135 vs 80/135). No full real Act 1 test yet; prior D136/D137/D138/D139/D140 F6 passes documented.
+
+**NEXT:** get user approval to perform **Gameplay 2.5 diagnostic-first** work: add dev-only matched-seed HUNT target/damage/healing observability, controlled Knight-plus-Ranger versus solo/trio stage2 repro, and/or prioritize real run QA. Only afterward consider production tweaks. No new combat changes or enemy/card/art edits in the CSV analysis turn; only `docs/TACTICAL_GAMEPLAY_V24_BALANCE_REVIEW.md` plus top docs updated. All GitHub access remains connected; never ask user to copy code. Preserve approved DS2/Fate Spread, 18 art files, seven card-faithful 2-layout encounters.
+
+---
+
 ## NEWEST — 2026-10-13 — D140 F6 270/270 PASS, CSV NEXT
 
 **Latest user screenshot:** local Godot F6 **TACTICAL GAMEPLAY 2.4 — PASS**: **270/270 finished**, **158 wins / 112 losses**, preflight `ОХОТА: общий звонарь, ослабленная цель, перехват — OK`. This verifies D140 coordinated targeting against two bellkeepers and controlled BattleUnit run completion, not statistical actual-run balance. The v24 scene tested 54 bare `last_bell` and 216 equipped `ossuary_gate`/`firing_square` cases with protagonist fixed across solo/duo/trio, cyclic fixed companion order, 2 authored positions, 3 orders, and 2 late seeds. **Godot wrote `user://misdeal_tactical_v24_party_focus.csv`, but user has not uploaded it yet.** Do not assert any per-card, order, protagonist or party outcome absent CSV.
