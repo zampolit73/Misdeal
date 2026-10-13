@@ -1,3 +1,18 @@
+### LIVE EVENT BACKGROUNDS — 2026-10-13 — D132 four approved 1280×720 WebPs in main
+
+Binary delivery completed in `1722d070cfe5a5690596953a1465b198177a57b3`; paths below have their own separate approved event compositions (user signed off, no further generation needed):
+
+| Event ID | New WebP, relative to `assets/pixel/card_unification_v1/event/` | Bytes | SHA256 |
+|---|---|---:|---|
+| `curse_forge` | `curse_forge.webp` | 284100 | `04658f71ce0aff97ed77235165fb7a9ea05f3ad848fe89b49239a31bf47b03ea` |
+| `black_altar` | `black_altar.webp` | 213172 | `33dcb8351ca90da60e91e0fcaf5b7c0a6e27d6ad830d6434d453de8f8472b933` |
+| `chained_prisoner` | `chained_prisoner.webp` | 251358 | `97ddc751b5390407269ebf8fb0dbb53a4ea41b6bdb1ab2077455dcf632093fb7` |
+| `rattling_bridge` | `rattling_bridge.webp` | 179336 | `e85c8385f9dae40c9f05310a04f6d01e9f56081bfad6b7e0f66fb14b3cdebe8b` |
+
+All exactly 1280×720 WEBP quality 91 exported from latest approved 1672×941 originals, rather than upscaled D130 contact sheet crops. Remote GitHub blobs verified; existing `card_unification_v1.gd` and `act_choice.gd` choose these first, preserving older backdrops as fallback. **In-engine live visuals remain for user to check**. D132 binds four exact source concepts. No other event/DS2/UI screen modified. Keep these distinct from 448×274 RunCard art.
+
+---
+
 ### ACTIVE CARD ART — 2026-10-13 — D131 four approved deal-card WebPs now in GitHub main
 
 The user-approved latest four D131 images were exported from their native 1604×981 PNGs as dedicated **448×274 WebP** (quality 82, not resized from the previous small concept collage) and committed as actual binary blobs in **`9d864113d66236111b8a3f048afaac35416cedf1`**:
