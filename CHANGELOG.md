@@ -1,3 +1,9 @@
+## 2026-10-13 — Restore visibility of four D132 event illustrations on deal table
+
+- Fixed missing art on four table/deal cards: `curse_forge`, `black_altar`, `chained_prisoner`, `rattling_bridge` now use center-cropped cached 448×274 thumbnails from the already committed full-resolution event images instead of legacy v4 atlas.
+- Reduced DS2 scene background shading only for events with these valid new artworks so they are visible behind choice UI.
+- No additional images, mechanics or unrelated UI edits. Local Godot smoke still required.
+
 ## 2026-10-13 — Four approved Act 1 event backgrounds shipped (D132)
 
 - Converted four exact user-approved individual full-resolution images to 1280×720 WebP (quality 91): Curse Forge, Black Altar, Chained Prisoner, Rattling Bridge.
