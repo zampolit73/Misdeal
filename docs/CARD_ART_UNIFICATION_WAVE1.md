@@ -1,3 +1,9 @@
+## CURRENT DELIVERY — 2026-10-13 — four D131 run-card binaries committed to main
+
+**Done:** The latest four user-approved high-resolution PNG illustrations were directly converted to clean 448×274 WebP and committed as actual binary Git objects (commit `9d864113d66236111b8a3f048afaac35416cedf1`) under `assets/pixel/card_unification_v1/run/` for `bone_patrol`, `graveyard_ambush`, `gallows_volley`, `whispering_well`. Source original images 1604×981, WebP quality 82; direct resize matches display aspect. On updated main the pre-existing `CardArtCatalog.get_run_card_texture()` override resolves these as first choice; old atlas remains fallback. Verified four exact binary blobs on main. These **supersede** the blurry D130-source crops previously distributed via `misdeal_card_art_wave1_import.zip`, but not the other nine D130-approved compositions. Old ZIP must not overwrite new run-card images. If user previously extracted ZIP, delete/move the four untracked old WebPs prior to git pull if Git reports an untracked-file collision. **Not yet engine-tested:** F6 preview `scenes/dev/card_unification_v1_preview.tscn` or actual table at 1280×720. Nine remaining D130 image binaries (4 event/3 upgrade/2 reward) are not in the repo and are still only draft ZIP crops; other five Wave 1 items were never approved individually. No UI or gameplay modifications.
+
+---
+
 ## D131 — FINAL APPROVED FOUR DEAL-CARD ARTWORKS (2026-10-13)
 
 The player approved four **new high-resolution standalone** card designs after rejecting blur and cloned AI-looking figures. They REPLACE the D130 collage's four table-card draft crops, but not the other nine D130 approved designs. **Exact mapping:**
