@@ -1,3 +1,13 @@
+## 2026-10-14 — D141 Gameplay 2.5: diagnostic-only combat telemetry
+
+- User approved Gameplay 2.5 diagnostics after actual D140 270-result analysis showed HUNT weak (24/90) and late equipped Knight+Ranger duo 0/24 versus solo Knight 24/24 in matched scenes.
+- Added optional `BattleUnit` signals `diagnostic_attack`, `diagnostic_damage`, `diagnostic_heal` for dev subscribers; all existing combat targeting/damage/heal/stat behavior unchanged.
+- Added `scripts/dev/tactical_gameplay_v25_combat_diagnostics.gd` and `scenes/dev/tactical_gameplay_v25_combat_diagnostics.tscn`. **126 v24 exact-seed matched controlled BattleUnit bouts** (54 Last Bell bare + 72 Knight-led late equipped), instrument attack counts, actual damage incl splash, healing, target/chase seconds, movement and retarget counts.
+- Write **two** per-case/per-unit CSV outputs (`user://misdeal_tactical_v25_trace_cases.csv`, `user://misdeal_tactical_v25_trace_units.csv`), documented in `docs/GAMEPLAY_V25_DIAGNOSTICS.md`. PASS would mean completion/file write, **not balanced gameplay or full Act 1**.
+- Source checks passed; local Godot 4.7.x F6 for v25 **not yet performed**. Art, cards, encounters, global party stats/rewards and Fate Spread untouched.
+
+---
+
 ## 2026-10-14 — D140 detailed CSV balance review (documentation only)
 
 - Parsed actual user-provided `misdeal_tactical_v24_party_focus.csv`: 270 unique complete deterministic full-BattleUnit results, 158 wins/112 losses and no timeouts; report saved as `docs/TACTICAL_GAMEPLAY_V24_BALANCE_REVIEW.md`.
