@@ -1,3 +1,11 @@
+## CURRENT — 2026-10-13 — D137 general play feedback OK, Gameplay 2.2 proposal pending
+
+After successfully passing D137 local F6 (54 setups, 324 target decisions, 72 HUNT/ASSAULT differences), the user reported **«все ок. что дальше?»** to the request to try actual fights. Interpret this as favorable general feedback/no reported defects, NOT exhaustive win-rate evidence or confirmation of every solo/duo/trio pairing. D136 F6 also passed; full real Act 1 not explicitly certified.
+
+Next **PROPOSAL (not implemented; await go-ahead)**: Gameplay 2.2 expand card-faithful alternate formations for existing `gallows_volley` (two archers + skeleton), `ossuary_gate` (guard + bellkeeper + archer + thrall), `last_bell` (two healers + raiders), `firing_square` (four archers + sentinel), preserving the exact original enemy rosters, card art/description/arena, stable retry formation. Add a new isolated Godot F6 end-to-end autobattle outcome benchmark (win/loss, time, survivor count, across solo/duo/trio + three base orders). The D137 smoke only checks preparation/initial targeting; do not call it a combat-balance pass. Keep DS2/Fate Spread and all 18 approved art assets frozen. GitHub is accessible for direct code updates after approval.
+
+---
+
 ## NEWEST — 2026-10-13 — D137 local tactical F6 **PASS**, live fights next
 
 **Latest concrete user feedback:** screenshot from Godot 4.7.x reads `TACTICAL GAMEPLAY 2.1 — PASS`: 54 setups across 3 cards × 2 enemy placements × 3 protagonists × solo/duo/trio; 324 initial target decisions checked across ASSAULT/HUNT/FORMATION; 72 cases HUNT targets differed from ASSAULT. Enemy rosters match their deal cards; cached formation survives a retry. The screenshot explicitly says **this is a preparation test, NOT a victory simulation**. Earlier D136 48-run deal smoke also passed locally. User pulled GitHub `main` through commit `a31ecf9` (Windows Git old pack cleanup had transient unlink warning; subsequent `git status` showed `main` up to date; untracked .import/.uid and modified project.godot were present locally; do not instruct destructive cleanup).
