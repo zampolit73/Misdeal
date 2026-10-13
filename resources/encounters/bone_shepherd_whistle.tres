@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BoneShepherdWhistleData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/bone_shepherd_whistle_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+initial_delay = 5.5
+warning_seconds = 0.65
+rush_seconds = 1.25
+period_seconds = 8.0
+lamb_speed_multiplier = 1.35
+max_target_distance = 850.0
