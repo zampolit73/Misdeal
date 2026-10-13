@@ -1,3 +1,14 @@
+## NEXT PROPOSAL — D138 measured balance follow-up (not yet implemented) — 2026-10-13
+
+- [x] Obtain and inspect actual user CSV (72 valid rows). Full findings: `docs/TACTICAL_GAMEPLAY_V22_BALANCE_REVIEW.md`.
+- [x] Confirm severe contrast between naked tier-1 vs tier-2 benchmarks: 28/36 vs 3/36 wins; source cannot certify real upgraded builds.
+- [x] Identify HUNT 5/24 total versus ASSAULT and FORMATION 13/24 each; in `last_bell` 0/6 HUNT vs 6/6 for both others under matched conditions.
+- [ ] **Await approval** to adjust HUNT's currently distance-unbounded support focus in `BattleUnit`. Test minimal distance/near-frontline-aware targeting without breaking its priority purpose; use identical benchmark inputs before/after.
+- [ ] Add stage-aware benchmarking with actual upgrade/artifact resources before reducing `ossuary_gate` / `firing_square` difficulty.
+- [ ] Inspect live Act 1 rewards/run flow and solo/duo/trio formation differences; only tweak specific encounters with evidence. Preserve all card rosters, visuals and gameplay pillars.
+
+---
+
 ## CURRENT — D138 Gameplay 2.2 advanced card-faithful tactical formations — 2026-10-13
 
 - [x] User **approved** the Gameplay 2.2 package after D137 favorable live feedback and D137 54-setup F6 PASS.
