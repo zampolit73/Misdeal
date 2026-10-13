@@ -72,6 +72,7 @@ const BONE_CRUSH_TIME_LIMIT := 16.0
 @onready var target_preview_button: Button = $TargetPreviewButton
 
 var encounter: EncounterData
+var enemy_formation_variant := 0
 var units: Array[BattleUnit] = []
 var combat_started := false
 var combat_live := false
@@ -117,6 +118,9 @@ func _ready() -> void:
 	continue_button.visible = false
 	continue_button.disabled = true
 	encounter = _load_selected_encounter()
+	enemy_formation_variant = RunState.get_combat_formation_variant(
+		encounter.encounter_id, encounter.get_formation_count()
+	)
 	if battle_backdrop.has_method("set_arena_id"):
 		battle_backdrop.call("set_arena_id", encounter.arena_id)
 	if arena_visual.has_method("set_arena_id"):
@@ -241,7 +245,8 @@ func _spawn_encounter() -> void:
 		var spawn_position: Vector2 = party_positions[position_index]
 		_spawn_unit(hero_data, 0, spawn_position)
 
-	var enemy_count: int = mini(encounter.enemy_unit_paths.size(), encounter.enemy_positions.size())
+	var enemy_spawn_positions: PackedVector2Array = encounter.get_enemy_positions_for_formation(enemy_formation_variant)
+	var enemy_count: int = mini(encounter.enemy_unit_paths.size(), enemy_spawn_positions.size())
 
 	for index in range(enemy_count):
 		var enemy_data := load(encounter.enemy_unit_paths[index]) as UnitData
@@ -253,7 +258,7 @@ func _spawn_encounter() -> void:
 		if index < encounter.enemy_names.size() and not encounter.enemy_names[index].is_empty():
 			enemy_name = encounter.enemy_names[index]
 
-		_spawn_unit(enemy_data, 1, encounter.enemy_positions[index], enemy_name)
+		_spawn_unit(enemy_data, 1, enemy_spawn_positions[index], enemy_name)
 
 
 func _get_party_spawn_positions() -> Array[Vector2]:
@@ -515,7 +520,8 @@ func _begin_preparation_phase() -> void:
 	_configure_deployment_zones(placement_regions)
 	run_condition_label.text = _build_battle_condition_text()
 	run_condition_label.visible = not run_condition_label.text.is_empty()
-	placement_hint.text = _get_placement_hint_text()
+	var authored_hint: String = encounter.get_formation_hint(enemy_formation_variant)
+	placement_hint.text = authored_hint if not authored_hint.is_empty() else _get_placement_hint_text()
 	placement_hint.visible = true
 	side_objective_panel.visible = not side_objective_id.is_empty()
 
