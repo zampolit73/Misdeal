@@ -1,3 +1,7 @@
+## QA addendum — 2026-10-13
+
+A standalone no-gameplay F6 overview exists: scenes/dev/card_unification_v1_preview.tscn with script scripts/dev/card_unification_v1_preview.gd. It directly reads all 13 optional candidate assets and shows missing-file count, avoiding randomness of normal runs. It does not import those image bytes into the GitHub repository. The binary asset ZIP still must be installed locally for the new art to show, otherwise fallback remains. Godot execution not independently tested.
+
 ## CURRENT CHECKPOINT — 2026-10-13 — Wave 1 art resolver committed; images available only as ZIP
 
 Added scripts/ui/card_unification_v1.gd and narrow optional art hooks in scripts/ui/card_art_catalog.gd and scripts/event/act_choice.gd. Supports 13 approved D130 card-art IDs and valid WebP dimensions, falling back to original runtime art if file absent/invalid. Original atlases, event functionality and all signed-off DS2 visuals are untouched. Generated local ZIP misdeal_card_art_wave1_import.zip contains 13 source-board extracted candidate art images with manifest/contact sheet, but binary WebPs were NOT uploaded to GitHub. New art only appears after manual ZIP extraction to local project root (assets/pixel/card_unification_v1/...). The source crops have imperfect inset repairs and low original detail for 1280x720 event screens; in-engine visual QA remains outstanding. Concept approval D130 is not approval of these processed standalone assets.
