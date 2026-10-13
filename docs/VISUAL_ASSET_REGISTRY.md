@@ -1,3 +1,15 @@
+### ACTIVE CARD ART — 2026-10-13 — D131 four approved deal-card WebPs now in GitHub main
+
+The user-approved latest four D131 images were exported from their native 1604×981 PNGs as dedicated **448×274 WebP** (quality 82, not resized from the previous small concept collage) and committed as actual binary blobs in **`9d864113d66236111b8a3f048afaac35416cedf1`**:
+- `assets/pixel/card_unification_v1/run/bone_patrol.webp` — 28,422 bytes; SHA256 `98d49a68620a0c096b90e9840d7cb6918ab090c519b9a129a7de4c6bb5dc515a`
+- `assets/pixel/card_unification_v1/run/graveyard_ambush.webp` — 28,626 bytes; SHA256 `120b2410843b51e13162cf6a6e59f5c82b2da9819dff491926ea3b4fd614775f`
+- `assets/pixel/card_unification_v1/run/gallows_volley.webp` — 20,632 bytes; SHA256 `4b71652ba533aff009a41988bf1b1c4e5fb088a8ce9f2b61d1a77565b88455f0`
+- `assets/pixel/card_unification_v1/run/whispering_well.webp` — 29,670 bytes; SHA256 `2b6cd5446498264b493626fd772015ed860c00affd316dba8dfd80d983960665`
+
+All four GitHub blob SHAs were verified. `scripts/ui/card_unification_v1.gd` is already loaded by `scripts/ui/card_art_catalog.gd` and selects these textures before previous v4 atlas. Existing art atlas remains as safe fallback. This modifies table **card images only**: the Whispering Well full event screen and DS2 Fate Spread stay untouched. D131 contains the precise approved originals/generation IDs and character requirements. **Local Godot F6/actual table visual QA is still pending.** The earlier chat artifact `misdeal_card_art_wave1_import.zip` included obsolete blurry versions for these four IDs and must not overwrite the new files after pulling. If those ZIP files were previously extracted as untracked files, remove/move just those four WebPs before `git pull` to avoid Git refusing to overwrite untracked paths.
+
+---
+
 ### CURRENT MAGE — 2026-10-12 — clean bearded Mage sheet
 
 - New active Mage `assets/pixel/units/combat_units_anim_v2/mage.webp.b64` commit `9d72854`, transparent 576×480, 25 used frames; old low-quality Mage archived `mage_archived_pre_dark_clean.webp.b64` commit `089b9fd`.
