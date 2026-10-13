@@ -1,3 +1,10 @@
+## 2026-10-13 — Four D131 approved Act 1 table-card images deployed
+
+- Added real binary 448×274 WebPs in `assets/pixel/card_unification_v1/run/` for Bone Patrol, Graveyard Ambush, Gallows Volley, Whispering Well, from the exact final user-approved individual PNGs (commit `9d864113`).
+- Existing optional CardArtCatalog resolver immediately uses these after pulling; old atlases remain preserved and as fallback.
+- Confirmed four GitHub blob hashes. No screen layout or gameplay changes. Godot runtime inspection still required.
+- Previous chat ZIP's blurred four D130 crops are superseded and should not be re-extracted over tracked assets.
+
 ## 2026-10-13 — Four deal-card artwork approvals (D131)
 
 - User approved the four latest high-resolution images for Bone Patrol, Graveyard Ambush, Gallows Volley and Whispering Well after rejecting fuzzy art and cloned AI-looking figures.
