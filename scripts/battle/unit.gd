@@ -33,6 +33,8 @@ const ROLE_FLOOR_OFFSETS := {
 	"grave_bellkeeper": -5.0,
 	"crypt_guard": -6.0,
 	"bone_warden": -6.0,
+	"bone_shepherd": -5.0,
+	"ossuary_lamb": -5.0,
 }
 const HERO_DISPLAY_SCALE := 1.28
 # Art-only normalization of the three player silhouettes against Ranger.
@@ -112,6 +114,10 @@ var base_art_modulate := Color.WHITE
 var tactical_order := TACTICAL_ORDER_ASSAULT
 var target_refresh_cooldown := 0.0
 var damage_taken_multiplier := 1.0
+
+# Only used by the new Ossuary Lamb; old enemies and hero orders are unchanged.
+var shepherd_rush_target: BattleUnit = null
+var shepherd_rush_speed_multiplier := 1.0
 
 var placement_enabled := false
 var placement_bounds := Rect2()
@@ -252,6 +258,8 @@ func _ready() -> void:
 	queue_redraw()
 
 func _get_art_texture() -> Texture2D:
+	if visual_role == "bone_shepherd" or visual_role == "ossuary_lamb":
+		return ANIMATION_LIBRARY.get_static_texture(visual_role)
 	if visual_role == "mage":
 		var male_mage := _get_male_mage_texture()
 		if male_mage != null:
@@ -731,6 +739,8 @@ func _is_valid_target(candidate: BattleUnit) -> bool:
 	return candidate != null and is_instance_valid(candidate) and candidate.alive and candidate.team != team
 
 func _find_preferred_enemy() -> BattleUnit:
+	if team == 1 and visual_role == "ossuary_lamb" and shepherd_rush_speed_multiplier > 1.0 and _is_valid_target(shepherd_rush_target):
+		return shepherd_rush_target
 	if team != 0:
 		return _find_nearest_enemy()
 
@@ -873,7 +883,25 @@ func apply_hit_stop(duration: float) -> void:
 		return
 	hit_stop_time = maxf(hit_stop_time, duration)
 
+func begin_shepherd_rush(chosen_target: BattleUnit, speed_factor: float) -> void:
+	if team != 1 or visual_role != "ossuary_lamb" or not alive:
+		return
+	shepherd_rush_target = chosen_target
+	shepherd_rush_speed_multiplier = maxf(1.0, speed_factor)
+	target = chosen_target
+	target_refresh_cooldown = 0.0
+
+func clear_shepherd_rush() -> void:
+	if visual_role != "ossuary_lamb":
+		return
+	shepherd_rush_speed_multiplier = 1.0
+	shepherd_rush_target = null
+	target = null
+	target_refresh_cooldown = 0.0
+
 func _get_current_move_speed() -> float:
+	if team == 1 and visual_role == "ossuary_lamb" and shepherd_rush_speed_multiplier > 1.0:
+		return move_speed * shepherd_rush_speed_multiplier
 	if team == 0 and tactical_order == TACTICAL_ORDER_ASSAULT:
 		return move_speed * ASSAULT_MOVE_MULTIPLIER
 	return move_speed
