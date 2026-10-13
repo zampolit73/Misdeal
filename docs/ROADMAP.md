@@ -1,3 +1,15 @@
+## D136 — Act 1 Gameplay 2.0 replayability pass (2026-10-13)
+
+- [x] Review current 30 authored regular cards (10/tier), encounter archetypes, tier rules, hold/meddling/wagers/marks and existing solo/duo/trio balance in GitHub before changing game rules.
+- [x] Add recent-choice soft scoring and mixed combat/event two-card offers **within** legal candidate pool; preserve first noncombat beat, mandatory per-tier combat slots, 12 regular decisions and boss XIII.
+- [x] Bias Wizard Meddling's same-tier/same-resolution replacement toward less repetitive eligible content without changing Wizard action counts.
+- [x] Scale Wizard Mark's positive gold tradeoff to +20/+30/+40 by tier while preserving its explicitly signaled next-battle +15% enemy damage; update deal-card copy/tooltip/confirmation/memory.
+- [x] Add optional contextual Wizard dialogue responding to recent battles/events and later solo/trio state while keeping existing special tell/wager precedence.
+- [x] Leave all authored tactical encounter rosters, combat balance values, rewards, hero classes, approved screens and existing 18 art binaries unchanged.
+- [x] Add F6 standalone regression `res://scenes/dev/act1_gameplay_v2_smoke.tscn`: 48 deterministic simulations of 12 choices across solo/duo/trio, forced combat windows, unique card selection, boss XIII and staged Mark sums.
+- [ ] **Local Godot 4.7.x engine execution**: `git pull`, F6 gameplay smoke shows PASS, then play one real Act 1; check deals/Mark/Meddling/Hold/Wager/boss at 1280×720.
+- [ ] If local gameplay shows problems, inspect actual current GitHub scripts and fix before further feature expansion; then tune fight/reward distributions from actual play feedback (rather than inventing more classes/mechanics).
+
 ## D135 — Complete first-wave 18/18 illustrated assets in main (2026-10-13)
 
 - [x] User approved the last five standalone art originals: `gravedigger_shop`, `bone_swarm`, `grave_crossfire`, `candle_seller`, `last_camp`.
