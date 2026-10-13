@@ -12,3 +12,6 @@ arena_id = "gallows"
 enemy_unit_paths = PackedStringArray("res://resources/units/skeleton.tres", "res://resources/units/bone_archer.tres", "res://resources/units/bone_archer.tres")
 enemy_names = PackedStringArray("Скелет", "Костяной лучник", "Костяной лучник")
 enemy_positions = PackedVector2Array(900, 305, 1040, 225, 1040, 385)
+formation_hint = "ПЕРЕКРЁСТНЫЙ ЗАЛП — два лучника за скелетом, разделите угрозы."
+alternate_enemy_positions = PackedVector2Array(870, 275, 1015, 155, 1090, 365)
+alternate_formation_hint = "СМЕЩЁННЫЙ ЗАЛП — лучники в разных углах за передним заслоном."
