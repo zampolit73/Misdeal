@@ -1,3 +1,11 @@
+## NEWEST — 2026-10-13 — D139 stage-aware 180-fight F6 PASS; awaiting v23 CSV for analysis
+
+**Latest user feedback:** screenshot of **TACTICAL GAMEPLAY 2.3 — PASS** in Godot 4.7.2: **180/180 completed, 79 wins, 101 defeats**, and the Knight HUNT test **«дальняя поддержка / ближний перехват — OK»**. Covers 36 early bare fights and 144 later bare/equipped fights across two seeds. File reported: `user://misdeal_tactical_v23_balance.csv`. **User has not yet shared CSV**. Thus only aggregate count is known; cannot conclude the HUNT fix improved win rates or that late builds are viable from this screenshot alone. D139 production HUNT close-threat rule and v23 F6 script were already committed; no further gameplay change in this checkpoint.
+
+**Immediate next user action:** attach `misdeal_tactical_v23_balance.csv` from Godot Project -> Open User Data Folder. Assistant should then compare v23 bare results with historical v22 baseline (`docs/TACTICAL_GAMEPLAY_V22_BALANCE_REVIEW.md`: 72 cases, 31W/41L, HUNT 5/24), and compare late `tier2_built` against late `bare` rows matched on hero, seed, order, roster, layout. Check mismatches/outliers before proposing balancing changes. Future QA: normal Act 1 `last_bell`, `ossuary_gate`, `firing_square`, rewards and full 12+XIII path. Preserve card identity, seven two-placement encounters, frozen DS2/Fate Spread and 18 approved art. GitHub access connected; do not ask for credentials.
+
+---
+
 ## NEWEST — 2026-10-13 — D139 approved, implemented in GitHub main; local Gameplay 2.3 F6 NEXT
 
 **Current exact resume point:** User said «утверждаю» to balance follow-up after supplying v22 CSV, and assistant implemented both requested parts via connected GitHub. Baseline measurements preserved `docs/TACTICAL_GAMEPLAY_V22_BALANCE_REVIEW.md`: 72 naked battles: `gallows_volley` 16/18, `last_bell` 12/18 (HUNT 0/6, ASSAULT/FORMATION 6/6 each under matched conditions), `ossuary_gate` 2/18, `firing_square` 1/18; HUNT 5/24 overall. D139 approved design in `docs/DECISIONS.md`.
