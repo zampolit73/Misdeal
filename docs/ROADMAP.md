@@ -1,3 +1,14 @@
+## DESIGN GATE — 2026-10-14 — Act 1 Deck Expansion (+15) requires original enemies
+
+- [x] User explicitly clarified rule for planned new cards: **any combat branch, including optional combat in an event, requires genuine NEW enemy types and custom enemy art/behavior/roster**. No old enemies passed off as fresh content. Canonical: **`docs/DECISIONS.md` D143**.
+- [x] Baseline from `RunState.ACT1_CARD_IDS`: **30 existing nonboss cards**, tier 0/1/2 10 apiece; goal **45 pool cards**, while each run stays **12 resolutions + central boss XIII**.
+- [ ] Resolve preliminary 15-card specification and cost. Previous proposal named **five** fight-bearing ideas, despite saying “3 combat cards”: Funeral Bell, Bone Shepherd, Executioner at Crossing, Vault Coin Guard (optional combat), Crimson Guard. Count every fight branch and design new enemy roster/resources/visuals accordingly.
+- [ ] Build new authored card art and unique enemy sprites/animations for a **single first new combat encounter** before shipping further new combat cards; stage noncombat choice/echo cards separately to deliver variety early.
+- [ ] Independently verify card pool selection, guaranteed fights by tier, unique encounter identity and end-to-end 12+XIII; no enemy-roster random substitutions. **No Deck Expansion code or art committed yet.**
+- [ ] Continue separate D142 tactical balance experiment only after user direction; do not conflate new enemy content with tuning old HUNT and solo/duo/trio problems.
+
+---
+
 ## CURRENT — 2026-10-14 — D141 measured trace review DONE; next decision D142
 
 - [x] User uploaded both D141 trace CSVs: **126 scenario rows + 792 unit rows**, 66 wins/60 losses and 0 timeouts; complete source analysis in **`docs/TACTICAL_GAMEPLAY_V25_DIAGNOSTIC_REVIEW.md`**. No separate F6 screenshot received; files produced by Godot harness.
