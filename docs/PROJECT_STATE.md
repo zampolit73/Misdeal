@@ -1,3 +1,11 @@
+## VERIFIED CHECKPOINT — 2026-10-13 — D137 tactical F6 PASS (local Godot); real combat QA next
+
+User supplied a screenshot of **`TACTICAL GAMEPLAY 2.1 — PASS`** after successfully pulling commit `a31ecf9` to their local `main`. The Godot 4.7.x F6 `res://scenes/dev/tactical_gameplay_v21_smoke.tscn` explicitly showed **54** authored setup combinations, **324** initial target checks for 3 base orders, and **72** cases where `HUNT` selected a different target than `ASSAULT`; same enemy rosters per card and stable retry formation also passed. This ACCEPTS D137's **preparation and target-selection regression gate**, not full autobattle victory or real Act 1 playthrough. The test is a preparation smoke and the screen itself says so.
+
+**Next live QA:** start the normal game and when `КОСТЯНОЙ РОЙ` (`bone_swarm`), `ЖЕЛЕЗНАЯ СТЕНА` (`iron_wall`) or `МОГИЛЬНЫЙ ЗВОН` (`grave_bell`) appears, inspect formation hint, enemy positions, target-preview behavior and order results. In solo try `FORMATION` (-10% incoming damage) versus `ASSAULT`; in duo/trio look for positional decisions and `HUNT` access to archer/healer. Verify actual hero movement, victory/defeat, rewards and return to the Fate Spread. Do not claim win-rate balance proved by F6; tune only from live play evidence before broadening to remaining cards. User has already pulled D137, so no new code `git pull` is needed for these checks. No gameplay files changed by this checkpoint update.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-13 — D137 Gameplay 2.1 first three encounter scenarios shipped; new F6 QA pending
 
 User **confirmed the D136 Gameplay 2.0 F6 smoke PASSED locally** («тест пройден»). This confirms 48 simulated deals, not a completed real Act 1 playthrough. User then approved the tactical-first Gameplay 2.1 direction, specifically different battle situations, meaningful pre-battle orders and solo/duo/trio balance **without decoupling battles from their dealt card art/description**. Production code is already committed to GitHub `main`; this is not merely a plan.
