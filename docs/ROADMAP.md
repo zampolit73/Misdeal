@@ -1,3 +1,14 @@
+## D134 — Five hero upgrade/reward artworks delivered (2026-10-13)
+
+- [x] User explicitly approved last individual illustrations (Knight Iron Oath, Ranger Arrowstorm, male bearded Mage Glass Heart, Gold Windfall, skeletal hand with ruby Relic Wager) and requested direct GitHub upload.
+- [x] Export all five from exact accepted 1570×1002 PNG masters as 608×388 WebP without old contact-sheet cropping.
+- [x] Commit five **binary WebPs** to `main` in `e3729a4a`, verify each remote blob SHA / WebP and exactly five changed paths.
+- [x] Existing `CardArtCatalog` and `card_unification_v1.gd` load these automatically, preserving original art fallback and approved UI / gameplay.
+- [x] Together with D131 & D132, **13 of 13 D130 approved pictured assets are now shipped to GitHub** (not equivalent to 18 of 18 early candidate inventory).
+- [ ] **Local Godot QA** after `git pull`: F6 `scenes/dev/card_unification_v1_preview.tscn`, all 13 thumbnails, then live hero-upgrade and reward flows to validate new art, layout/readability and actual reward logic.
+- [ ] Additional 5 original Wave 1 candidate artworks not on approved D130 image board need separate selection/approval if we decide to continue visual work.
+- [ ] After successful QA prioritize Act 1 gameplay replayability/content while preserving accepted art.
+
 ## D133 completed event-art smoke / last five Wave 1 artwork prep — 2026-10-13
 
 - [x] User accepted locally displayed four new D132 event scenes and deal-card art after the scoped visibility fix («все ок»).
