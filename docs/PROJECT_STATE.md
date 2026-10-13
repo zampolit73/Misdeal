@@ -1,3 +1,11 @@
+## CURRENT CHECKPOINT — 2026-10-13 — D133 D132 event art confirmed OK; final five upgrades/rewards pending
+
+User confirmed «все ок» after the event-art thumbnail/tint fix; the four shipped D132 backgrounds and matching table art are accepted as displayed locally, no additional visual rework requested. D133 decision documents acceptance. The first 8/13 signed-off D130 art slots are integrated with actual GitHub binary images; last five slots (3 hero upgrades, 2 rewards) are **not yet shipped** and currently retain the original asset atlas fallback.
+
+Prepared `docs/CARD_ART_WAVE1_FINAL5_BRIEF.md` with exact art IDs, file paths, individual scene prompts, 608×388 size, and binding requirements for an older gray-bearded male Mage and skeletal hand holding red gemstone. Two attempted current-session generations accidentally reproduced old event collage instead of these five, so those outputs were discarded; do not count them as assets or approval. No code/image binary work happened in this session, only a production brief and documentation. The next generation must target ONE named art at a time; show individually for approval before shipping. Existing Godot art paths in `scripts/ui/card_unification_v1.gd` already support the pending WebP files and old-atlas fallbacks.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-13 — Four D132 event arts now visible on deal cards too; local retest pending
 
 User reported new artwork had not appeared despite D132 event background upload. Source diagnosis found that earlier `ActChoice` override touched **event backdrop only**, while `CardArtCatalog` table/deal card textures still resolved the v4 atlas for those event IDs. `scripts/ui/card_unification_v1.gd` now derives cached 448×274 images from the four valid 1280×720 D132 backgrounds and returns them for the table's cards (`curse_forge`, `black_altar`, `chained_prisoner`, `rattling_bridge`) before old atlas lookup; existing D131 run cards still load their own exact art. `scripts/event/act_choice_ds2.gd` reduces overlay opacity only where one of the four new event art paths is valid, improving art visibility behind the unchanged DS2 event cards. No gameplay, scene, or data changes. **User has not yet retested this fix in Godot**. See `docs/SESSION_CHECKPOINT.md`.
