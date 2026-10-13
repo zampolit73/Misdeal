@@ -12,3 +12,6 @@ arena_id = "iron_wall"
 enemy_unit_paths = PackedStringArray("res://resources/units/crypt_sentinel.tres", "res://resources/units/crypt_sentinel.tres", "res://resources/units/bone_archer.tres")
 enemy_names = PackedStringArray("Склепный часовой", "Склепный часовой", "Костяной лучник")
 enemy_positions = PackedVector2Array(875, 175, 875, 335, 1060, 255)
+formation_hint = "ПРЯМОЙ ФРОНТ — два стража прикрывают лучника."
+alternate_enemy_positions = PackedVector2Array(850, 155, 945, 345, 1080, 255)
+alternate_formation_hint = "КОСОЙ ФРОНТ — два стража стоят по диагонали."
