@@ -5,6 +5,8 @@ extends RefCounted
 # This file contains no gameplay or UI layout changes.
 const ROOT := "res://assets/pixel/card_unification_v1"
 
+const BONE_SHEPHERD_CARD_SVG := "res://assets/pixel/card_unification_v1/run/bone_shepherd.svg"
+
 const RUN_CARDS := {
 	"bone_patrol": "run/bone_patrol.webp",
 	"graveyard_ambush": "run/graveyard_ambush.webp",
@@ -38,6 +40,14 @@ const REWARDS := {
 static var _texture_cache: Dictionary = {}
 
 static func get_run_texture(card_id: String) -> Texture2D:
+	if card_id == "bone_shepherd":
+		if not _texture_cache.has(BONE_SHEPHERD_CARD_SVG):
+			var unique_art := load(BONE_SHEPHERD_CARD_SVG) as Texture2D
+			if unique_art == null or unique_art.get_size() != Vector2(448, 274):
+				push_error("Bone Shepherd original card illustration missing or invalid.")
+				return null
+			_texture_cache[BONE_SHEPHERD_CARD_SVG] = unique_art
+		return _texture_cache[BONE_SHEPHERD_CARD_SVG] as Texture2D
 	var explicit_card := _get_texture(RUN_CARDS, card_id, Vector2i(448, 274))
 	if explicit_card != null:
 		return explicit_card
