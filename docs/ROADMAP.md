@@ -1,3 +1,14 @@
+## D132 event art batch — shipped to GitHub main 2026-10-13
+
+- [x] User approved new standalone `curse_forge`, `black_altar`, `chained_prisoner`, `rattling_bridge` imagery and requested direct deployment.
+- [x] Export exactly approved 1672×941 PNG scenes directly as 1280×720 WebP, quality 91, no low-res collage upscaling.
+- [x] Upload all four **binary** WebPs to `main` in commit `1722d070`; verify every remote blob and four-file diff.
+- [x] Existing event path overrides and legacy fallback already wired, preserve all gameplay/UI and D131 run cards.
+- [ ] User Godot 4.7.x 1280×720 live test: Curse Forge, Black Altar, Chained Prisoner and Rattling Bridge background art visibility/readability behind DS2 cards and ability to choose/leave/continue.
+- [ ] Complete remaining five **approved** D130 compositions: three standalone hero upgrade illustrations and two reward visuals. Male gray-bearded Mage and skeletal ruby hand required.
+- [ ] Other five originally proposed Wave 1 targets were not shown in D130 approval; separate review needed.
+- [ ] Do not extract older D130 ZIP event crops over newly tracked WebPs.
+
 ## D131 four approved card-illustration binaries — shipped 2026-10-13
 
 - [x] Generate/source and user-approve the final distinct silhouettes for `bone_patrol`, `graveyard_ambush`, `gallows_volley`, `whispering_well` (D131).
