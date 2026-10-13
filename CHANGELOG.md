@@ -1,3 +1,12 @@
+## 2026-10-14 — D141 actual 126-battle traces analyzed (documentation only)
+
+- Received both user-generated CSVs: **126 complete fight cases, 792 per-unit entries**, 66 wins/60 losses; 126/126 matched old D140 case outcomes and durations exactly; aggregate diagnostic totals reconcile to all per-unit rows.
+- `last_bell` HUNT 4/18 vs ASSAULT/FORMATION 18/18: mean executed attacks 12.78 vs 18.78, actual damage 281 vs 395, enemy damage 234 vs 103, healing 41 vs 26; chase time similar. Likely early enemy exposure and lost DPS rather than merely longer pathing; causality not yet isolated.
+- Knight late equipped solo 24/24 vs Knight+Ranger duo 0/24, trio 2/24; duo deaths occur before enough attacks and damage, with all 414 combined Knight+Ranger HP depleted each time. Solo scalars/positions require controlled follow-up before any tuning.
+- Full report in `docs/TACTICAL_GAMEPLAY_V25_DIAGNOSTIC_REVIEW.md`. **No new combat logic/stat/AI/card/art changes**; next proposed D142 controlled A/B diagnostics and full real Act 1 QA require user approval.
+
+---
+
 ## 2026-10-14 — D141 Gameplay 2.5: diagnostic-only combat telemetry
 
 - User approved Gameplay 2.5 diagnostics after actual D140 270-result analysis showed HUNT weak (24/90) and late equipped Knight+Ranger duo 0/24 versus solo Knight 24/24 in matched scenes.
