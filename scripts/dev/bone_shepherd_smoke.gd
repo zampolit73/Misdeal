@@ -76,9 +76,12 @@ func _run_validation() -> void:
 						]
 						if not errors.is_empty():
 							break
-					if not errors.is_empty(): break
-				if not errors.is_empty(): break
-			if not errors.is_empty(): break
+					if not errors.is_empty():
+						break
+				if not errors.is_empty():
+					break
+			if not errors.is_empty():
+				break
 
 	RunState.reset_run()
 	if errors.is_empty() and ended != 54:
@@ -233,8 +236,10 @@ func _fight_one(formation: int, protagonist_idx: int, size: int, order_id: Strin
 		var living_enemies := 0
 		for unit in all_units:
 			if unit.alive:
-				if unit.team == 0: living_heroes += 1
-				else: living_enemies += 1
+				if unit.team == 0:
+					living_heroes += 1
+				else:
+					living_enemies += 1
 		if living_enemies == 0:
 			verdict = "win"
 			break
