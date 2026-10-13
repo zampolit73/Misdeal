@@ -1,3 +1,9 @@
+## 2026-10-13 — Source hook for D130 card-art candidates
+
+- Added scripts/ui/card_unification_v1.gd with ID-keyed optional standalone WebP texture paths, size/decode validation and original-art fallback.
+- Added narrow lookup integration in scripts/ui/card_art_catalog.gd and scripts/event/act_choice.gd; no gameplay or layout edits.
+- Generated a 13-WebP ZIP and visual contact sheet from approved D130 concept, as conversation-only artifacts (NOT binary assets committed to GitHub). These candidate images need visual quality verification in Godot.
+
 ## 2026-10-13 — Final card-art concept board accepted (D130)
 
 - User approved the last concept illustration sheet after refinements to Gallows Volley (few archers with bows only), gray-bearded male Mage, and Relic Wager (skeletal hand holding red gemstone).
