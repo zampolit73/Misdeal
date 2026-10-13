@@ -1,3 +1,13 @@
+## LATEST — 2026-10-13 — D140 shipped, new 270-fight local F6 required
+
+User approved Gameplay 2.4 focused follow-up with «давай». Connected GitHub plugin used to implement `scripts/battle/unit.gd` shared HUNT target selection: alive-party-center tie breaker + lowest-HP-ratio first for same-rank enemies (healer > ranged > frontline). This coordinates hits on the same bellkeeper and preserves D139 Knight/melee immediate-threat (165) intercept. Hero/enemy stats, seven existing positional two-layout cards, DS2/Fate Spread/art, act/rewards and global solo/duo/trio scalers **untouched**. Full rationale in `docs/DECISIONS.md` D140.
+
+Godot F6 scene `res://scenes/dev/tactical_gameplay_v24_focus_party_benchmark.tscn` + script committed. Preflight tests the specific double-healer HUNT focus + Knight close-threat vs ranged targeting; then records **270 actual BattleUnit deterministic simulated battles**: 54 `last_bell` bare and 216 tier2 equipped `ossuary_gate`/`firing_square`. All protagonists separately remain fixed while adding companions in a deterministic cyclic order solo→duo→trio, 2 layouts, 3 orders; 2 seeds for tier2. CSV `user://misdeal_tactical_v24_party_focus.csv` has party_roles plus case metadata/outcome/time/survivors. No claim that it measures normal run win rate.
+
+**Next user:** `git pull`, run new v24 scene with F6 in Godot 4.7.x and send screenshot and new CSV. Godot binary unavailable in current assistant environment so this is source-shipped only, **not yet F6-verified**. Fix any parse/runtime errors directly via connected GitHub. After CSV, check `last_bell` HUNT viability and role-matched late solo/duo/trio. Full real Act 1 end-to-end 12+XIII path still needed. Historical `docs/TACTICAL_GAMEPLAY_V23_BALANCE_REVIEW.md` contains old matched comparison and confounds.
+
+---
+
 ## LATEST — 2026-10-13 — 180-row D139 CSV analyzed and reviewed in GitHub
 
 User supplied real `misdeal_tactical_v23_balance.csv`, 180 BattleUnit result rows, all completed 79 wins / 101 losses, Godot F6 PASS. Direct exact v22 72-bare-case join proves HUNT improved from **5/24→8/24** (4 newly won, 1 former win lost); ASSAULT/FORMATION each remain 13/24 identically. `last_bell` HUNT remains **1/6**, indicating unresolved support-target issue. Late tier2 bare **6/72**, upgraded profile **42/72**; on identical cases upgrades turned 36 losses to wins without making a win fail. Enhanced late solo **22/24**, duo **10/24**, trio **10/24**, but sample rotates class and no real progression, so do NOT change overall party scalers based on this alone. Real physical layout comparisons also rotate protagonists. Both later seeds yielded identical win/loss flags across matched cases.
