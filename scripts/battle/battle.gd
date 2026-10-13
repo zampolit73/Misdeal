@@ -8,6 +8,8 @@ const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 const TARGET_PREVIEW_SCRIPT := preload("res://scripts/battle/target_preview.gd")
 const DEPLOYMENT_FLOOR_SCRIPT := preload("res://scripts/battle/deployment_floor_markers.gd")
+const SHEPHERD_WHISTLE_SCRIPT := preload("res://scripts/battle/bone_shepherd_whistle.gd")
+const SHEPHERD_WHISTLE_DATA: BoneShepherdWhistleData = preload("res://resources/encounters/bone_shepherd_whistle.tres")
 
 # Local to UnitsLayer (screen offset 20,96). Keep unit feet on the
 # actual stone floor, below the architectural horizon and above the HUD.
@@ -87,6 +89,7 @@ var side_objective_id := ""
 var side_objective_failed := false
 var first_enemy_death_seen := false
 var combat_elapsed := 0.0
+var shepherd_whistle_controller: BoneShepherdWhistleController
 var target_preview: BattleTargetPreview
 var deployment_floor_markers: Node2D
 
@@ -260,6 +263,28 @@ func _spawn_encounter() -> void:
 			enemy_name = encounter.enemy_names[index]
 
 		_spawn_unit(enemy_data, 1, enemy_spawn_positions[index], enemy_name)
+
+	_setup_bone_shepherd_whistle()
+
+
+func _setup_bone_shepherd_whistle() -> void:
+	if encounter.encounter_id != "bone_shepherd":
+		return
+	var shepherd: BattleUnit
+	var lambs: Array[BattleUnit] = []
+	for unit in units:
+		if unit.team != 1:
+			continue
+		if unit.visual_role == "bone_shepherd":
+			shepherd = unit
+		elif unit.visual_role == "ossuary_lamb":
+			lambs.append(unit)
+	if shepherd == null or lambs.size() != 2:
+		push_error("Bone Shepherd encounter must contain 1 unique leader + 2 unique lambs.")
+		return
+	shepherd_whistle_controller = SHEPHERD_WHISTLE_SCRIPT.new() as BoneShepherdWhistleController
+	units_layer.add_child(shepherd_whistle_controller)
+	shepherd_whistle_controller.configure(shepherd, lambs, SHEPHERD_WHISTLE_DATA)
 
 
 func _get_party_spawn_positions() -> Array[Vector2]:
@@ -846,6 +871,8 @@ func _on_fight_pressed() -> void:
 		if unit.alive:
 			unit.start_combat()
 	combat_live = true
+	if shepherd_whistle_controller != null:
+		shepherd_whistle_controller.start_whistle()
 
 func _hide_preparation_hud() -> void:
 	bottom_hud_panel.visible = false
@@ -1068,6 +1095,8 @@ func _on_last_deal_refuse_pressed() -> void:
 
 
 func _finish_battle(player_won: bool) -> void:
+	if shepherd_whistle_controller != null:
+		shepherd_whistle_controller.stop_whistle()
 	battle_finished = true
 	combat_live = false
 	if target_preview != null:
