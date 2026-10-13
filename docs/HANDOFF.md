@@ -1,3 +1,11 @@
+## LATEST — 2026-10-13 — Gameplay 2.2 CSV review finished; findings in GitHub
+
+User uploaded actual Godot F6 72-fight CSV; report committed as **`docs/TACTICAL_GAMEPLAY_V22_BALANCE_REVIEW.md`**. Data: 31 wins/41 losses; by card `gallows_volley` 16/18, `last_bell` 12/18, `ossuary_gate` 2/18, `firing_square` 1/18. ASSAULT 13/24, HUNT 5/24, FORMATION 13/24. In six exactly matched `last_bell` cases HUNT loses 6/6 while both other orders win 6/6. Current HUNT code categorically prioritizes healers and then ranged by type above proximity; investigate safely without losing HUNT's value. Tier-2 baseline 3/36 wins, but no upgrades or artifacts in test, so do not global-nerf late-tier enemies from naked baseline. Full rationale and limitations in report.
+
+**NEXT DECISION GATE:** request approval for minimal HUNT targeting fix and stage-aware upgraded late-Act benchmark; only adjust encounter stats after upgraded outcomes + real Act 1 feedback. This session's analysis commits changed documentation only, not actual `BattleUnit`, encounter rosters, graphics or RunState. Keep seven authored two-layout encounters and DS2/Fate Spread untouched. GitHub direct write still available.
+
+---
+
 ## LATEST — 2026-10-13 — D138 72 full-BattleUnit baseline fights PASSED; CSV is next
 
 The user provided a Godot screenshot `TACTICAL GAMEPLAY 2.2 — PASS`: **72/72** scenarios completed with **31 wins / 41 defeats**; no timeout/roster check failures reported. Scenarios use 4 authored D138 card encounters, 2 spatial formations, 3 party sizes and 3 normal tactical orders; real BattleUnit combat is advanced deterministically in an isolated test, with no upgrades/items/Wizard risk/rewards. Benchmark wrote `user://misdeal_tactical_v22_battles.csv` with encounter ID, layout variant, party size, protagonist, order, win/loss, seconds and surviving heroes/enemies.
