@@ -1,3 +1,13 @@
+## LATEST — 2026-10-14 — D140 270-fight CSV analyzed; diagnostic-first follow-up proposed
+
+User uploaded actual Godot-generated `misdeal_tactical_v24_party_focus.csv` (270 rows); source-level report **`docs/TACTICAL_GAMEPLAY_V24_BALANCE_REVIEW.md`** now records exact matrix, validated outcomes and caveats. User's previous D140 F6 PASS screen: 270/270, 158 wins, 112 defeats, HUNT shared focus/wounded target/frontline intercept preview PASS.
+
+**What we now know:** ASSAULT 67/90, FORMATION 67/90, HUNT 24/90. Across the 90 exact same-encounter-layout-party-seed comparisons, HUNT is never successful where ASSAULT fails; 43 cases go the other way. `last_bell` HUNT 4/18 while other orders 18/18. Same protagonist controlled party-size progression: solo 82/90, duo 30/90, trio 46/90; late equipped Knight solo 24/24, Knight+Ranger duo **0/24**, trio 2/24. It is **not** a fair test of any sole stat multiplier because additional heroes, loadouts and enemy pressure change. Card variants 78/135 vs 80/135; no aggregate sign that layouts cause problem. v23/v24 seed/profile matrices differ; avoid false before/after causal HUNT conclusions.
+
+**Next decision:** ask user whether to implement a **D141 Gameplay 2.5 focused diagnostics** package; trace real HUNT target/following/attack/heal interactions in `last_bell` and stage2 Knight+Ranger controlled losses, use identical matched conditions before changing combat heuristics/scalers. Actual Act 1 run progression+rewards+boss XIII should be QA'd. No code/roster/art change approved or performed in this CSV-analysis session. Preserve DS2/Fate Spread and art approvals. Read review doc, D140 decision, latest `PROJECT_STATE`/`SESSION_CHECKPOINT`; GitHub connected direct access.
+
+---
+
 ## LATEST — 2026-10-13 — D140 local Gameplay 2.4 PASS; obtain CSV for balance
 
 User supplied Godot screenshot `TACTICAL GAMEPLAY 2.4 — PASS`: **270/270** controlled BattleUnit bouts complete, **158 wins, 112 losses**, and Hunt shared-healer/wounded-target/near-threat regression PASS. This confirms committed D140 logic launches in Godot with no simulation timeouts. **CSV `user://misdeal_tactical_v24_party_focus.csv` not attached**, so no per-card/per-order/per-class balance inferences yet. The matrix fixes protagonist across party sizes, companions are deterministic, advanced scenarios are equipped, rather than real Act 1 progression.
