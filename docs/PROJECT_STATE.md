@@ -1,3 +1,9 @@
+## CURRENT CHECKPOINT — 2026-10-13 — Wave 1 art resolver committed; images available only as ZIP
+
+Added scripts/ui/card_unification_v1.gd and narrow optional art hooks in scripts/ui/card_art_catalog.gd and scripts/event/act_choice.gd. Supports 13 approved D130 card-art IDs and valid WebP dimensions, falling back to original runtime art if file absent/invalid. Original atlases, event functionality and all signed-off DS2 visuals are untouched. Generated local ZIP misdeal_card_art_wave1_import.zip contains 13 source-board extracted candidate art images with manifest/contact sheet, but binary WebPs were NOT uploaded to GitHub. New art only appears after manual ZIP extraction to local project root (assets/pixel/card_unification_v1/...). The source crops have imperfect inset repairs and low original detail for 1280x720 event screens; in-engine visual QA remains outstanding. Concept approval D130 is not approval of these processed standalone assets.
+
+---
+
 ## CURRENT ART CHECKPOINT — 2026-10-13 — D130 visual concept approved, no production textures switched
 
 The user approved the final iteratively corrected Misdeal card-art concept board. The 13 compositions and their runtime asset ID mapping are documented in `docs/CARD_ART_UNIFICATION_WAVE1.md`, binding decision D130. Specific corrections: few bow-and-arrow archers in `gallows_volley` (no guns), mature gray-bearded male wizard in `mage_glass_heart`, skeletal hand holding a red jewel in `relic_wager`. All other pictured motifs accepted. Five planned Wave 1 targets were not pictured. The approved 1536x1024 concept PNG is from the conversation, **not an image present in GitHub**. Existing game art unchanged; standalone textures/cropping or redraw, new resource paths, scene preview and runtime QA all still pending. This sign-off must not be misinterpreted as asset migration. D123-D129 frozen UI remains approved.
