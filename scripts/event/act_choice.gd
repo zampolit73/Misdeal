@@ -5,6 +5,7 @@ const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 const APPROVED_EVENT_DECOR := preload("res://scripts/ui/approved_event_decor.gd")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
+const CARD_UNIFICATION_V1 := preload("res://scripts/ui/card_unification_v1.gd")
 const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
 const EVENT_POLISH_ART := preload("res://scripts/ui/event_polish_art.gd")
 const APPROVED_EVENT_CHOICE_ART := preload("res://scripts/ui/approved_event_choice_art.gd")
@@ -370,7 +371,7 @@ func _apply_event_layout() -> void:
 		"curse_forge":
 			_apply_feature_panel_shell()
 			backdrop.modulate = Color(0.28, 0.20, 0.18, 0.24)
-			feature_scene_art.call("load_webp_path", String(EVENT_SCENE_ART_PATHS["curse_forge"]), Vector2i(1280, 720))
+			feature_scene_art.call("load_webp_path", CARD_UNIFICATION_V1.get_event_art_path("curse_forge", String(EVENT_SCENE_ART_PATHS["curse_forge"])), Vector2i(1280, 720))
 			feature_scene_art.visible = true
 			feature_scene_art.position = Vector2.ZERO
 			feature_scene_art.size = Vector2(1280.0, 720.0)
@@ -385,7 +386,7 @@ func _apply_event_layout() -> void:
 		"chained_prisoner":
 			_apply_feature_panel_shell()
 			backdrop.modulate = Color(0.24, 0.22, 0.22, 0.22)
-			feature_scene_art.call("load_webp_path", String(EVENT_SCENE_ART_PATHS["chained_prisoner"]), Vector2i(1280, 720))
+			feature_scene_art.call("load_webp_path", CARD_UNIFICATION_V1.get_event_art_path("chained_prisoner", String(EVENT_SCENE_ART_PATHS["chained_prisoner"])), Vector2i(1280, 720))
 			feature_scene_art.visible = true
 			feature_scene_art.position = Vector2.ZERO
 			feature_scene_art.size = Vector2(1280.0, 720.0)
@@ -399,7 +400,7 @@ func _apply_event_layout() -> void:
 			_apply_prisoner_reference_layout()
 		"black_altar":
 			backdrop.modulate = Color(0.28, 0.18, 0.18, 0.22)
-			feature_scene_art.call("load_webp_path", String(EVENT_SCENE_ART_PATHS["black_altar"]), Vector2i(1280, 720))
+			feature_scene_art.call("load_webp_path", CARD_UNIFICATION_V1.get_event_art_path("black_altar", String(EVENT_SCENE_ART_PATHS["black_altar"])), Vector2i(1280, 720))
 			feature_scene_art.visible = true
 			feature_scene_art.position = Vector2.ZERO
 			feature_scene_art.size = Vector2(1280.0, 720.0)
@@ -415,7 +416,7 @@ func _apply_event_layout() -> void:
 			backdrop.modulate = Color(0.24, 0.20, 0.20, 0.18)
 			feature_scene_art.call(
 				"load_webp_path",
-				String(EVENT_SCENE_ART_PATHS[active_card.card_id]),
+				CARD_UNIFICATION_V1.get_event_art_path(active_card.card_id, String(EVENT_SCENE_ART_PATHS[active_card.card_id])),
 				Vector2i(1280, 720)
 			)
 			feature_scene_art.visible = true
@@ -433,7 +434,7 @@ func _apply_event_layout() -> void:
 			backdrop.modulate = Color(0.22, 0.19, 0.20, 0.16)
 			feature_scene_art.call(
 				"load_webp_path",
-				String(EVENT_SCENE_ART_PATHS[active_card.card_id]),
+				CARD_UNIFICATION_V1.get_event_art_path(active_card.card_id, String(EVENT_SCENE_ART_PATHS[active_card.card_id])),
 				Vector2i(1280, 720)
 			)
 			feature_scene_art.visible = true
