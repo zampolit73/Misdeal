@@ -1,3 +1,9 @@
+## CURRENT CHECKPOINT — 2026-10-13 — four approved D131 deal cards deployed as WebP binaries
+
+Latest four standalone artworks (`bone_patrol`, `graveyard_ambush`, `gallows_volley`, `whispering_well`) are now **in GitHub main**, not only chat attachments: commit `9d864113d66236111b8a3f048afaac35416cedf1`. Converted exact 1604×981 approved images directly to 448×274 WebP; existing `CardArtCatalog` and `card_unification_v1.gd` automatically choose them over old atlas. Binary files and preserved original repo files verified; no script, gameplay or DS2 layout changes in this image commit. Older D130 cropped four-card ZIP images are now superseded. Local Godot 1280×720 smoke of F6 13-art review and actual table card remains to be done. Other nine D130 drawings are approved in concept but not shipped as GitHub binaries. If user had extracted old ZIP to working tree, Git may stop before overwriting four untracked old paths; remove/move four old files and retry pull. D131 updated with delivery state.
+
+---
+
 ## APPROVED NEW CARD ART — 2026-10-13 (D131)
 
 User approved four most recent high-resolution run-card artworks: `bone_patrol`, `graveyard_ambush`, `gallows_volley`, `whispering_well`. Previous four low-resolution card crops are now superseded by unique noncloned designs. The exact filenames and generation IDs are in D131 and `docs/CARD_ART_UNIFICATION_WAVE1.md`. This is **visual approval only**: approved new PNGs were not added to GitHub and old 13-crop ZIP still holds superseded low-resolution versions of these four. Existing optional art resolver works with 448x274 WebPs if/when committed. Other nine D130 designs stay approved and gameplay/UI remain untouched.
