@@ -1,3 +1,9 @@
+## CURRENT ART CHECKPOINT — 2026-10-13 — D130 visual concept approved, no production textures switched
+
+The user approved the final iteratively corrected Misdeal card-art concept board. The 13 compositions and their runtime asset ID mapping are documented in `docs/CARD_ART_UNIFICATION_WAVE1.md`, binding decision D130. Specific corrections: few bow-and-arrow archers in `gallows_volley` (no guns), mature gray-bearded male wizard in `mage_glass_heart`, skeletal hand holding a red jewel in `relic_wager`. All other pictured motifs accepted. Five planned Wave 1 targets were not pictured. The approved 1536x1024 concept PNG is from the conversation, **not an image present in GitHub**. Existing game art unchanged; standalone textures/cropping or redraw, new resource paths, scene preview and runtime QA all still pending. This sign-off must not be misinterpreted as asset migration. D123-D129 frozen UI remains approved.
+
+---
+
 ## CURRENT CHECKPOINT — 2026-10-13 — Bulk Design System 2.0 visually accepted
 
 Following the large DS2 production rollout of 2026-10-12, the user locally reviewed the result and replied **«все хорошо»**. This is explicit approval of the currently presented UI, covering the integrated styling of shared non-shop ActChoice, Class Select, Squad Status, Run End, Battle HUD and table HUD/Wizard Wager. Keep these screens visually stable unless the user reports a concrete defect. Prior "pending local visual acceptance" status is superseded.
