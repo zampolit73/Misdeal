@@ -1,3 +1,11 @@
+## DELIVERY UPDATE — 2026-10-13 — Approved last five art files shipped (D135)
+
+User approved all five individually rendered final illustrations and requested direct GitHub upload. **Done:** five real binary files in GitHub `main` (commit `ac860ad2cacf17e7ab4e64c54f2ddfb70debd146`) at `assets/pixel/card_unification_v1/run/{gravedigger_shop,bone_swarm,grave_crossfire}.webp` 448×274 and `assets/pixel/card_unification_v1/event/{candle_seller,last_camp}.webp` 1280×720. All five GitHub blob hashes and valid WebP headers verified. Runtime mapping `scripts/ui/card_unification_v1.gd` updated to load three RUN_CARDS and two EVENTS, and existing `CardArtCatalog`/`ActChoice` paths load them without rewriting gameplay/approved UI. New gallery `scenes/dev/card_unification_final5_preview.tscn` for F6. Binding art decision D135 lists generation IDs and exact names. `18/18` initial Wave 1 candidate art images are **shipped in repo** but **new five NOT YET user tested in Godot**; review still pending. Gravedigger Shop live screen preserved.
+
+Historical "unapproved/not generated" text below predates D135 and is now superseded.
+
+---
+
 # Misdeal — Five unapproved remaining Wave 1 illustration targets
 
 Date: 2026-10-13  
