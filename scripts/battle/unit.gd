@@ -69,6 +69,12 @@ signal health_critical(unit: BattleUnit)
 signal boss_enraged(unit: BattleUnit)
 signal placement_rejected(unit: BattleUnit)
 
+# Optional observability only. No game behavior or stats depend on these
+# signals; dev benchmark scenes subscribe to count actual attacks/damage/heals.
+signal diagnostic_attack(attacker: BattleUnit, victim: BattleUnit)
+signal diagnostic_damage(attacker: BattleUnit, victim: BattleUnit, amount: float)
+signal diagnostic_heal(healer: BattleUnit, recipient: BattleUnit, amount: float)
+
 @export var team: int = 0
 @export var display_name: String = "Unit"
 @export var visual_role: String = "unit"
@@ -622,8 +628,13 @@ func _process_support(delta: float) -> void:
 		if global_position.distance_to(unit.global_position) > support_heal_radius:
 			continue
 
+		var before_heal: float = unit.hp
 		unit.heal(support_heal_amount)
-		healed_any = true
+		var real_healing: float = unit.hp - before_heal
+		if real_healing > 0.0:
+			if diagnostic_heal.has_connections():
+				diagnostic_heal.emit(self, unit, real_healing)
+			healed_any = true
 
 	if healed_any:
 		_show_status_text("ЗВОН!", Color(0.52, 1.0, 0.68, 1.0))
@@ -982,11 +993,16 @@ func _attack_target() -> void:
 
 	attack_cooldown = attack_interval
 	var primary_target := target
+	if diagnostic_attack.has_connections():
+		diagnostic_attack.emit(self, primary_target)
 	var impact_position := primary_target.global_position
 	_play_attack_feedback(primary_target)
 	_play_combat_audio("attack")
 	_apply_combat_hit_stop()
+	var before_damage: float = primary_target.hp
 	primary_target.take_damage(damage, visual_role, global_position)
+	if diagnostic_damage.has_connections():
+		diagnostic_damage.emit(self, primary_target, before_damage - primary_target.hp)
 
 	if splash_radius <= 0.0 or splash_damage_multiplier <= 0.0:
 		return
@@ -1002,7 +1018,10 @@ func _attack_target() -> void:
 			continue
 
 		if unit.global_position.distance_to(impact_position) <= splash_radius:
+			var before_splash: float = unit.hp
 			unit.take_damage(splash_damage, visual_role, global_position)
+			if diagnostic_damage.has_connections():
+				diagnostic_damage.emit(self, unit, before_splash - unit.hp)
 
 func _apply_combat_hit_stop() -> void:
 	var duration := 0.045
