@@ -153,6 +153,8 @@ func _setup_fixture(formation: int, protagonist_idx: int, size: int, order_id: S
 		var role: String = ROLES[(protagonist_idx + teammate) % 3]
 		RunState.recruit_companion(role, "dev smoke")
 	var arena := Node2D.new()
+	# Test-only battlefield: no miniatures over the PASS/FAIL readout.
+	arena.visible = false
 	add_child(arena)
 	var heroes: Array[BattleUnit] = []
 	var enemies: Array[BattleUnit] = []
