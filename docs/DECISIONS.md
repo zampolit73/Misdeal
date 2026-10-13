@@ -2101,3 +2101,21 @@ The user examined two successive sets of newly generated standalone dark-fantasy
 These four individual latest illustrations **supersede only the four corresponding small crops** from the previously accepted D130 concept board / 13-crop ZIP, because the user specifically rejected blur, cloned units and AI-looking duplication and approved the resulting unique compositions. The other nine D130 pictured compositions (four event, three hero upgrade, two reward) retain their existing acceptance, including the **gray-bearded male Mage** and **skeletal hand holding a crimson faceted gem**. D123-D129 UI remains protected; the approved Whispering Well *screen* is not to be replaced, only its `whispering_well` card illustration.
 
 **Delivery state (updated 2026-10-13):** Four 448×274 WebP runtime textures exported directly from the latest approved 1604×981 PNGs and **committed as binary files to GitHub `main`** in commit `9d864113d66236111b8a3f048afaac35416cedf1` under `assets/pixel/card_unification_v1/run/{bone_patrol,graveyard_ambush,gallows_volley,whispering_well}.webp`. Existing conditional resolver in `scripts/ui/card_unification_v1.gd` makes these the first-choice live RunCard artwork with the old atlas as fallback. Each binary blob SHA was verified on the updated `main`. The earlier chat ZIP of blurry D130 crops is obsolete for these four. **Godot runtime/visual QA remains pending**; do not state this has been engine-tested. Preserve these exact approved subjects/characters and avoid regenerating them without a concrete request.
+
+## D132 — Approve and deploy four clean high-resolution event backgrounds
+
+Date: 2026-10-13  
+Status: **latest standalone event illustrations user-approved and committed to main; Godot in-engine QA pending**
+
+User approved the latest four *individual* illustrations for `curse_forge`, `black_altar`, `chained_prisoner`, and `rattling_bridge` («Отлично, давай заливать»). They replace only the four corresponding small-background extractions from the D130 concept board; preserve the other D130 compositions and the four D131 run-card images.
+
+| Event ID | Exact approved PNG / generation | Visual scene |
+|---|---|---|
+| `curse_forge` | `кузнец_в_руинах_пламя_и_сталь.png`, `4127d0b4-9f70-41e5-ba45-faf61cdd19e9` | solitary muscular blacksmith forging red-hot blade at anvil, orange forge fire, dark ruined stone |
+| `black_altar` | `мрачный_ритуал_в_готической_крипте.png`, `f5fb4aee-f2d8-48da-b537-336254f3df20` | single hooded occult celebrant behind black stone altar, restrained red sigil and candles |
+| `chained_prisoner` | `узник_в_цепях_под_лунным_светом.png`, `a9a4da3c-df13-4439-892e-e3957c4526fc` | one chained kneeling adult prisoner in damp blue-gray stone cell |
+| `rattling_bridge` | `путь_через_лунную_бездну.png`, `5a477944-07f6-452f-b317-0fcb61c93090` | solitary hooded traveler with lantern crossing fragile rope bridge over moonlit chasm |
+
+All source PNGs were **1672×941** (nearly exact 16:9) and exported directly to **1280×720 WebP quality 91** with no source-board crop enlargement. Exact binary paths: `assets/pixel/card_unification_v1/event/{curse_forge,black_altar,chained_prisoner,rattling_bridge}.webp`. These four raw binaries were committed to GitHub `main` in `1722d070cfe5a5690596953a1465b198177a57b3`; each blob and the four-file-only commit diff were independently verified. The previously prepared `scripts/ui/card_unification_v1.gd` resolver and `scripts/event/act_choice.gd` hook now automatically select these images when the appropriate event is opened, falling back to the existing legacy background if invalid or missing. No UI, RunState, purchase, event handler, Fate Spread or other game functionality was modified in this art commit.
+
+**Acceptance boundary:** art as drawn is approved, GitHub integration is verified statically, but Godot live display and correct visual overlays have not been tested by the assistant. Have the user `git pull`, visit four real events in Godot 4.7.x at 1280×720 and inspect art visibility/contrast/size behind DS2 UI. Earlier chat ZIP `misdeal_card_art_wave1_import.zip` contains obsolete low-resolution versions of these four and should NOT be unpacked over tracked binaries. D123-D129 frozen interfaces and D131 table art stay accepted. Five still-unshipped D130 hero-upgrade/reward concepts remain next.
