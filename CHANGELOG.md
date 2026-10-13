@@ -1,3 +1,13 @@
+## 2026-10-13 — D139 Gameplay 2.3: melee HUNT interception and stage-aware benchmark
+
+- User approved targeted HUNT logic refinement plus upgraded late-tier autobattle checks after analysis of 72 original v22 fights.
+- `scripts/battle/unit.gd`: melee HUNT heroes (`attack_range<100`) intercept their closest immediate enemy when within 165 units and a support-priority target remains farther away; no changes to ranged hero target ranking, ASSAULT, FORMATION, AI abilities or enemy/combat stats.
+- New isolated Godot F6 `scenes/dev/tactical_gameplay_v23_balance_benchmark.tscn`, script `scripts/dev/tactical_gameplay_v23_balance_benchmark.gd`: preflight checks three HUNT preview-target distances, then records 180 BattleUnit outcomes: tier-1 36 original bare comparisons, tier-2 144 comparisons across 2 deterministic seeds and bare/built profiles. `tier2_built` uses actual hero upgrade + class artifact Resources with same application order as production, one upgrade per present hero and one artifact for protagonist.
+- Results exported to `user://misdeal_tactical_v23_balance.csv` with encounter, variant, party size, protagonist, order, profile, sample, result, simulated duration, survivors. PASS detects invalid/completion/timeouts, **not good balance**. Prior D136/D137/D138 Godot smoke were user-confirmed PASS, v23 local Godot run still pending.
+- No changes to card contents, enemy rosters/position profiles, artwork, rewards, party-size multipliers or Act 1 (12 + XIII) progression.
+
+---
+
 ## 2026-10-13 — D138 CSV balance review completed (analysis / docs only)
 
 - User supplied actual `misdeal_tactical_v22_battles.csv`, parsed 72 full `BattleUnit` scenarios: 31 wins / 41 losses, 0 timeouts; group breakdown by card, party size, order and formation in new `docs/TACTICAL_GAMEPLAY_V22_BALANCE_REVIEW.md`.
