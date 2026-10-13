@@ -1,3 +1,13 @@
+## Wave 1 candidate extraction and integration status — 2026-10-13
+
+The accepted D130 art direction and 13 source compositions now have optional image source support in GitHub. Commits: 82b686b (new scripts/ui/card_unification_v1.gd), a795478 (CardArtCatalog fallbacks), a016ebf (ActChoice event backdrops), fa2fd7a (WebP integrity/dimension validation). Four run cards, four event backgrounds, three hero upgrades and two reward images use the approved ID mappings when matching valid files are present. All original atlases, actual event handlers, gameplay and accepted DS2/Fate Spread layouts are unchanged.
+
+A ZIP file named misdeal_card_art_wave1_import.zip was created in the conversation with 13 individually cropped candidate WebPs, 448x274 run cards, 1280x720 event backdrops, and 608x388 upgrades/rewards. Also includes review image, hashes and manifest. The source was the actual accepted concept board; its lower-right miniature inset previews needed approximate reconstruction, and large backdrops have limited effective native detail. THESE ARE DRAFT EXTRACTIONS, not individually hand-painted production-ready master art; Godot visual QA is still needed. The new code falls back safely if files are missing or wrong-size.
+
+IMPORTANT: GitHub connector changes did NOT upload these binary WebPs to main. They remain in a conversation ZIP artifact. The new art only activates after the user downloads ZIP and extracts it into local Misdeal project root, keeping assets/pixel/card_unification_v1/{run,event,upgrade,reward}/ paths. A simple git pull alone keeps existing art. No claim of completed binary GitHub distribution or final image quality approval.
+
+---
+
 # APPROVED ART BASELINE — 2026-10-13 — last Misdeal card-art concept board
 
 **User decision:** «отлично утверждаем последний визуал». The *last* image generation in the project conversation is the **approved visual master reference for the illustrated Wave 1 card-art direction** (D130). This is a concept board, **not** 13 individual texture files and **not** yet integrated into the game. Distinguish concept approval from runtime asset approval/verification. The native chat attachment is named `мрачный_концепт_арт_misdeal_награда_с_рубином.png` (1536x1024 PNG in the original conversation), generation ID `6c7d5d41-24a1-47f9-8f54-e689bbe265a5`; as of this checkpoint the raster concept master is **conversation-local, not committed to GitHub**. If the reference is not accessible in a fresh session, request/retrieve the already-approved master rather than regenerating from scratch and assuming fidelity.
