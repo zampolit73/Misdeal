@@ -1,3 +1,10 @@
+## 2026-10-13 — D134 final 5 approved hero upgrade and reward card assets delivered
+
+- Added five standalone user-approved high-resolution card illustrations as actual binary 608×388 WebP in `assets/pixel/card_unification_v1/{upgrade,reward}/` (GitHub main commit `e3729a4a`): Knight Iron Oath, Ranger Arrowstorm, male gray-bearded Mage Glass Heart, Gold Windfall, skeletal hand gripping a red jewel for Relic Wager.
+- Confirmed all five remote GitHub blobs and the five-file diff. Existing ID-keyed `CardArtCatalog` override selects them with legacy fallbacks; no gameplay/UI changes.
+- **13/13** D130 pictured compositions now present as committed binary textures, separate from five other Wave 1 candidates not depicted or approved.
+- Godot F6 and real reward/upgrade visual smoke pending; no manual ZIP installation required.
+
 ## 2026-10-13 — D132 live art confirmed, final five art briefs drafted (D133)
 
 - User confirmed D132 new event art appeared correctly after the earlier live card/tint fix; fixed visuals recorded as accepted.
