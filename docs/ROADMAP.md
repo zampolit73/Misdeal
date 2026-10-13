@@ -1,3 +1,13 @@
+## D133 completed event-art smoke / last five Wave 1 artwork prep — 2026-10-13
+
+- [x] User accepted locally displayed four new D132 event scenes and deal-card art after the scoped visibility fix («все ок»).
+- [x] Preserve D123–D132 approved layouts/art and avoid rework.
+- [x] Write actionable single-subject briefs for the final 5 D130 art slots in `docs/CARD_ART_WAVE1_FINAL5_BRIEF.md`.
+- [ ] Generate **five separate** large artwork masters: Knight Iron Oath, Ranger Arrowstorm, male gray-bearded Mage Glass Heart, Gold Windfall, skeletal hand grasping ruby in Relic Wager. Never reuse earlier wrong 4-event collages.
+- [ ] Seek individual visual approval; export 608×388 WebP files and commit verified binary assets to mapped upgrade/reward paths.
+- [ ] Review Reward/upgrade live visuals in Godot; only then mark 13/13 Wave 1 art shipped.
+- [ ] Additional five originally proposed but not part of D130 picture list remain separate future candidates.
+
 ## D132 art appearance regression follow-up — 2026-10-13
 
 - [x] Diagnose: D132 first rollout replaced full-screen event backdrops but did **not** replace the matching Fate Deal / table card thumbnails.
