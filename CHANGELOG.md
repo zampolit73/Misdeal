@@ -1,3 +1,13 @@
+## 2026-10-14 — D144 first fully new-enemy combat card shipped (source, native Godot QA pending)
+
+- New Tier0 **`bone_shepherd`** RunCardData and 2-formation EncounterData, with exactly **1 original Bone Shepherd commander + 2 original four-legged Ossuary Lambs**, no old enemies or moodboard extras; registered in RunState (Act1 pool 30→31, first-tier 10→11, run still 12 cards+boss XIII).
+- Two completely new UnitData and original **pixel-form SVG sprite atlases** at `assets/pixel/units/deck_expansion_v1/{bone_shepherd,ossuary_lamb}_frames.svg` (576×480, 25 animation slots per role, idle/walk/attack/hit/death), plus original **448×274** `assets/pixel/card_unification_v1/run/bone_shepherd.svg` image. Godot loads SVG through Texture2D; text-based original artwork committed via connected UTF8 GitHub connector, not copied from old miniatures or the composite concept reference.
+- New encounter-local `scripts/battle/bone_shepherd_whistle.gd`/WhistleData Resource: 5.5s initial delay, 0.65s visible warning, 1.25s movement-only ×1.35 joint Lamb rush to shared living hero, 8s repeat; safe leader death/no stack/clean end. Legacy combat targeting/scalers unchanged.
+- New F6 scenes: `bone_shepherd_art_preview.tscn`, `bone_shepherd_smoke.tscn` (Whistle regression + 54 full-unit bouts), `bone_shepherd_playtest.tscn` (real battle UI). Static source/SVG/registry checks passed; **Godot 4.7 F6 engine and visual acceptance pending**.
+- Documented implementation status in `docs/DECK_EXPANSION_BONE_SHEPHERD_PRODUCTION.md`, D144, PROJECT_STATE/ROADMAP/HANDOFF/CHECKPOINT; 14 further candidate cards not yet created, Fate Spread/DS2 and existing cards untouched.
+
+---
+
 ## 2026-10-14 — New Bone Shepherd production-ready card package (design only)
 
 - Added docs/DECK_EXPANSION_BONE_SHEPHERD_PRODUCTION.md: exact proposed Tier0 new combat card copy, unique Bone Shepherd ×1 and Ossuary Lamb ×2 UnitData, two authored deployments, measurable Whistle warning/shared-target bounded rush with preliminary timings/stats, unique genuine card + two enemy animation-art deliverables, Godot resource/file map and 54-combat test requirements.
