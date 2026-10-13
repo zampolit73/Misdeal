@@ -1,3 +1,12 @@
+## Art direction sign-off — 2026-10-13 — approved final concept (D130)
+
+- [x] User approved the last consolidated concept board, including reduced medieval archers in `gallows_volley`, gray-bearded male mage and skeletal hand holding ruby for `relic_wager`.
+- [x] Map all **13 pictured compositions** to actual runtime art IDs in `docs/CARD_ART_UNIFICATION_WAVE1.md`; distinguish the remaining 5 unseen candidate assets.
+- [ ] Preserve accessible high-resolution copy of approved concept art in GitHub or Project sources; current concept PNG is only attached to the conversation, not in repository.
+- [ ] Produce 13 individually usable illustration textures matching approved board (no card frame, labels or inset previews baked into art).
+- [ ] Review/approve remaining 5 Wave 1 target compositions separately, if still in scope.
+- [ ] Integrate clean assets with keyed fallbacks and test at 1280x720 in Godot before declaring the **game art** shipped.
+
 ## Card Art Unification Wave 1 — inventory stage (2026-10-13)
 
 - [x] Audited live `CardArtCatalog` selection priority, active atlas regions and non-shop event backdrop paths.
