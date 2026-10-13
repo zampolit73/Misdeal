@@ -226,6 +226,12 @@ func _refresh_table(show_memory: bool = true) -> void:
 	else:
 		default_wizard_line = "До надзирателя недалеко. Ошибки становятся дороже."
 
+	# Context follows recent choices without suppressing debt, boss or memories.
+	if not RunState.wizard_debt_active and not RunState.has_active_card() and not RunState.is_boss_due():
+		var context_line := RunState.get_wizard_deal_line()
+		if not context_line.is_empty():
+			default_wizard_line = context_line
+
 	wizard_line.text = default_wizard_line
 
 	var offers := RunState.get_offer_cards()
@@ -302,7 +308,8 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	var marked: bool = RunState.is_wizard_marked_card(card.card_id)
 	mark_label.visible = marked
 	if marked:
-		hint_label.text = "ПЕЧАТЬ • +20 ЗОЛ. • ВРАГИ +15%"
+		hint_label.text = "ПЕЧАТЬ • +%d ЗОЛ. • ВРАГИ +15%%" % RunState.get_wizard_mark_gold_reward()
+		button.tooltip_text = "Получите %d золота сразу. Следующий бой: урон врагов +15%%." % RunState.get_wizard_mark_gold_reward()
 
 	if RunState.is_card_held(card.card_id):
 		hint_label.text = "УДЕРЖАНО • ВЕРНЁТСЯ ЧЕРЕЗ 2 КАРТЫ"
@@ -883,7 +890,7 @@ func _choose_card(card: RunCardData) -> void:
 	hold_a_button.visible = false
 	hold_b_button.visible = false
 	if was_marked:
-		wizard_line.text = "«Печать принята. +20 золота. А следующий бой получит свои +15% боли.»"
+		wizard_line.text = "«Печать принята. +%d золота. А следующий бой получит свои +15%% боли.»" % RunState.get_wizard_mark_gold_reward()
 		_pulse_wizard_reaction("meddle")
 	else:
 		wizard_line.text = card.wizard_line
