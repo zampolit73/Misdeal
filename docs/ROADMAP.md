@@ -1,3 +1,15 @@
+## LATEST — D139 measured v2.3 CSV analysis completed — 2026-10-13
+
+- [x] User uploaded `misdeal_tactical_v23_balance.csv`: 180 rows, 79 W/101 L, no timeouts; full review in `docs/TACTICAL_GAMEPLAY_V23_BALANCE_REVIEW.md`.
+- [x] Exact v22/v23 72-case regression: HUNT 5/24 -> 8/24 (four loss→win, one win→loss); ASSAULT and FORMATION remain 13/24 each with identical baseline outcomes.
+- [x] Late-stage upgrade sensitivity: bare 6/72 -> built 42/72 (36 matched loss→win), indicating upgrade resources have major impact; **do not global-nerf enemies based on bare cases**.
+- [x] Flag residual `last_bell` HUNT 1/6, and late equipped solo 22/24 vs duo/trio 10/24 each. Caution: hero roster/protagonist selection is not controlled independently for variant/party comparisons; two seeds showed no win/loss differences.
+- [ ] **User approval needed for further balancing pass:** experiment with focused healer/support targeting for HUNT in `last_bell` while keeping role distinction; do not blindly buff hero damage or randomize card enemy rosters.
+- [ ] Build better controlled late-tier benchmark varying party sizes with same protagonist/defined companions, seed/layout held fixed; compare accessible builds and validate live Act 1 battle progression.
+- [ ] Only after real data and gameplay verification consider encounter-local tuning, never assume a F6 PASS proves actual solo/duo/trio balance.
+
+---
+
 ## D139 verified in Godot — 2026-10-13
 
 - [x] User screenshot confirms `TACTICAL GAMEPLAY 2.3 — PASS`: all **180/180** controlled battles ended, **79 wins / 101 losses**, Knight HUNT near-threat interception preview PASS.
