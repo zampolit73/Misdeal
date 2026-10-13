@@ -1,3 +1,16 @@
+## CURRENT — D138 Gameplay 2.2 advanced card-faithful tactical formations — 2026-10-13
+
+- [x] User **approved** the Gameplay 2.2 package after D137 favorable live feedback and D137 54-setup F6 PASS.
+- [x] Authored two positions-only formations with unique positioning tells for four existing combat cards: `gallows_volley` (skeleton + 2 archers), `ossuary_gate` (guard + healer + archer + thrall), `last_bell` (2 raiders + 2 bellkeepers), `firing_square` (sentinel + 4 archers). No enemy roster substitutions or new cards/art.
+- [x] Reuse the existing D137 formation selection/memoization and same-encounter retry stability without changing `battle.gd`, `run_state.gd`, `EncounterData` or core combat abilities.
+- [x] Create new F6 real-BattleUnit `scenes/dev/tactical_gameplay_v22_battle_benchmark.tscn`: 72 controlled baseline fights (4 × 2 × 3 party sizes × 3 orders), virtual-time simulation of true movement/damage/healing, CSV outcome/time/survivors `user://misdeal_tactical_v22_battles.csv`; safe time cap/roster/formation checks.
+- [ ] **User Godot 4.7.x F6 gate:** `git pull`, run `scenes/dev/tactical_gameplay_v22_battle_benchmark.tscn` (may take a little while), report PASS/FAIL and benchmark counts; on FAIL supply Output and CSV (Godot user data folder). This is a controlled baseline, **not** real Act 1 victory certification.
+- [ ] Compare solo/duo/trio and ASSAULT/HUNT/FORMATION baseline results. Inspect timeouts, unreasonably hard solo setups, and one dominant order; do not re-balance without concrete measurements or real combat feedback.
+- [ ] Real Act 1 play: test all four new alternate formations, readable hints, target preview, victory/defeat, rewards, return to table; ensure D137 and boss XIII still work.
+- [ ] Finish Act 1 full run gameplay/regression (Wizard Mark, Hold/Meddling/Wager and XIII), previously not exhaustively confirmed. Keep accepted DS2/Fate Spread/18 art frozen.
+
+---
+
 ## ACTIVE — D137 Gameplay 2.1 / authored tactical encounters — 2026-10-13
 
 - [x] User confirmed **D136 48-run F6 Gameplay 2.0 PASS** locally; real full Act 1 regression still open.
