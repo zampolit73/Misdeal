@@ -26,6 +26,7 @@ const SACRIFICE_ATTACK_SPEED_MULTIPLIER := 1.20
 const SACRIFICE_HP_DRAIN_PER_SECOND := 0.02
 const DEFIANCE_DAMAGE_MULTIPLIER := 0.85
 const DEFIANCE_INCOMING_DAMAGE_MULTIPLIER := 0.80
+const SOLO_FORMATION_INCOMING_DAMAGE_MULTIPLIER := 0.90
 const SIDE_OBJECTIVE_GOLD := 15
 const BONE_CRUSH_TIME_LIMIT := 16.0
 
@@ -108,7 +109,7 @@ func _ready() -> void:
 	target_preview_button.toggled.connect(_on_target_preview_toggled)
 	assault_order_button.tooltip_text = "Ближайшая цель и +15% скорость движения."
 	hunt_order_button.tooltip_text = "Сначала поддержка и дальние враги."
-	formation_order_button.tooltip_text = "Фокус угрозы рядом с самым уязвимым союзником."
+	formation_order_button.tooltip_text = "Фокус угрозы у уязвимого союзника. В соло: -10% входящего урона."
 	sacrifice_order_button.tooltip_text = "+40% урона, +20% скорость атак, но герои теряют 2% макс. HP каждую секунду."
 	defiance_order_button.tooltip_text = "-20% входящего урона, но -15% собственного урона."
 	sacrifice_order_unlocked = RunState.has_sacrifice_order_for_next_battle()
@@ -603,6 +604,8 @@ func _get_tactical_order_description(order_id: String) -> String:
 		TACTICAL_ORDER_HUNT:
 			return "ОХОТА — сначала поддержка и дальние враги."
 		TACTICAL_ORDER_FORMATION:
+			if RunState.get_party_size() == 1:
+				return "СТРОЙ — в одиночку -10% входящего урона."
 			return "СТРОЙ — фокус угрозы рядом с самым уязвимым союзником."
 		TACTICAL_ORDER_SACRIFICE:
 			return "ЖЕРТВА — +40% урона, +20% скорость атак, -2% макс. HP/сек."
@@ -655,6 +658,11 @@ func _apply_tactical_order_stats() -> void:
 		unit.damage = base_damage
 		unit.attack_interval = base_interval
 		unit.damage_taken_multiplier = 1.0
+		# Without allies, FORMATION and ASSAULT pick the same nearest foe.
+		# This defensive tradeoff keeps the solo choice meaningful without
+		# modifying the baseline solo/duo/trio pressure multipliers.
+		if tactical_order == TACTICAL_ORDER_FORMATION and RunState.get_party_size() == 1:
+			unit.damage_taken_multiplier = SOLO_FORMATION_INCOMING_DAMAGE_MULTIPLIER
 		if tactical_order == TACTICAL_ORDER_SACRIFICE:
 			unit.damage = maxf(1.0, base_damage * SACRIFICE_DAMAGE_MULTIPLIER)
 			unit.attack_interval = maxf(0.2, base_interval / SACRIFICE_ATTACK_SPEED_MULTIPLIER)
