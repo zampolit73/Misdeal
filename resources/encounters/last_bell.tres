@@ -12,3 +12,6 @@ arena_id = "last_bell"
 enemy_unit_paths = PackedStringArray("res://resources/units/bone_raider.tres", "res://resources/units/bone_raider.tres", "res://resources/units/grave_bellkeeper.tres", "res://resources/units/grave_bellkeeper.tres")
 enemy_names = PackedStringArray("Костяной налётчик", "Костяной налётчик", "Могильный звонарь", "Могильный звонарь")
 enemy_positions = PackedVector2Array(850, 175, 850, 335, 1040, 155, 1040, 355)
+formation_hint = "ДВА КОЛОКОЛА — лечащие звонари стоят за налётчиками."
+alternate_enemy_positions = PackedVector2Array(860, 210, 935, 350, 1030, 240, 1110, 355)
+alternate_formation_hint = "СДВИНУТЫЙ ХОР — звонари сблизились за смещённым фронтом."
