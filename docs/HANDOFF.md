@@ -1,3 +1,13 @@
+## LATEST — 2026-10-13 — D139 implemented, new 180-fight v23 F6 acceptance required
+
+User approved («утверждаю») the D138 CSV-derived balancing follow-up. Direct GitHub production commit updates **`scripts/battle/unit.gd`**: HUNT for melee player hero now temporarily prioritizes the nearest immediate frontline enemy (within 165 units) if its preferred ranged/healer support target is outside that radius. HUNT still seeks healer/ranged normally when no imminent threat or when support is reachable, and ranged heroes are unaffected. Card enemy rosters/IDs/arts/position data, rewards and existing global scaling unchanged.
+
+New source `scripts/dev/tactical_gameplay_v23_balance_benchmark.gd`, scene `res://scenes/dev/tactical_gameplay_v23_balance_benchmark.tscn` is a Godot F6 outcome regression of **180** BattleUnit bouts (36 unupgraded tier 1, 144 tier-2 with 2 seeds and 2 profiles). The `tier2_built` illustrative profile uses one actual RunState-authored hero upgrade per present role plus one protagonist-linked artifact; exact production modifier order preserved. F6 also checks three Knight HUNT targeting cases. New CSV: `user://misdeal_tactical_v23_balance.csv`. This is new and **unrun by user or assistant in actual Godot**, not a claimed balance PASS.
+
+**Next action:** user `git pull`, F6 new v23 scene, send screenshot and CSV (Godot Project > Open User Data Folder); if FAILED, inspect and correct current GitHub directly. Analyze old v22 CSV against new v23 naked rows for HUNT, late built vs naked for realistic threat, then tune only validated encounter-local outliers. Docs `PROJECT_STATE`, `ROADMAP`, `DECISIONS`, `CHANGELOG` updated. Previous v22 CSV report `docs/TACTICAL_GAMEPLAY_V22_BALANCE_REVIEW.md`. All original 7 two-layout card compositions and approved pixel art DS2/Fate Spread remain protected.
+
+---
+
 ## LATEST — 2026-10-13 — Gameplay 2.2 CSV review finished; findings in GitHub
 
 User uploaded actual Godot F6 72-fight CSV; report committed as **`docs/TACTICAL_GAMEPLAY_V22_BALANCE_REVIEW.md`**. Data: 31 wins/41 losses; by card `gallows_volley` 16/18, `last_bell` 12/18, `ossuary_gate` 2/18, `firing_square` 1/18. ASSAULT 13/24, HUNT 5/24, FORMATION 13/24. In six exactly matched `last_bell` cases HUNT loses 6/6 while both other orders win 6/6. Current HUNT code categorically prioritizes healers and then ranged by type above proximity; investigate safely without losing HUNT's value. Tier-2 baseline 3/36 wins, but no upgrades or artifacts in test, so do not global-nerf late-tier enemies from naked baseline. Full rationale and limitations in report.
