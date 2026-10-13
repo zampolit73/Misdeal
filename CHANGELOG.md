@@ -1,3 +1,12 @@
+## 2026-10-14 — First original-enemy Deck Expansion concept recorded (design only)
+
+- After user explicitly agreed to begin new combat card content under D143, authored **`docs/DECK_EXPANSION_BONE_SHEPHERD_CONCEPT.md`** as the first Tier0 card brief for «КОСТЯНОЙ ПАСТУХ».
+- Proposed genuinely new `bone_shepherd` tall crooked funeral herder and `ossuary_lamb` horned quadruped (two identical lambs) with original character silhouette/art, plus a readable telegraphed Whistle/short collective rush.
+- **NOT SHIPPED:** no new RunState card, combat unit/encounter Resources, combat AI, sprite atlas or gameplay changes. Next gate is user's visual/mechanic approval; then complete 1+2 encounter including real art, tested in Godot.
+- No alterations to existing thirty Act1 cards, DS2/Fate Spread, seven two-layout encounters, art and D142 old-balance follow-up.
+
+---
+
 ## 2026-10-14 — D143 Act 1 new-card enemy contract recorded (docs only)
 
 - User clarified: **any new card that leads to battle, including optional event combat, must introduce genuinely new enemy types and original battle visuals/mechanics**; no existing old enemies reused as “new” combat content.
