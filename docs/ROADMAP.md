@@ -1,3 +1,15 @@
+## CURRENT — 2026-10-14 — D141 measured trace review DONE; next decision D142
+
+- [x] User uploaded both D141 trace CSVs: **126 scenario rows + 792 unit rows**, 66 wins/60 losses and 0 timeouts; complete source analysis in **`docs/TACTICAL_GAMEPLAY_V25_DIAGNOSTIC_REVIEW.md`**. No separate F6 screenshot received; files produced by Godot harness.
+- [x] Exact join against actual D140 v24 CSV: **126/126 case outcomes and durations unchanged**; unit metrics sum exactly to case metrics.
+- [x] `last_bell` HUNT **4/18** vs ASSAULT/FORMATION **18/18**, executing **12.78 vs 18.78** attacks, dealing **281.14 vs 394.69** effective damage, taking **233.93 vs 102.51** enemy damage and allowing more bellkeeper healing (**41.41 vs 25.71**). Chase seconds similar; do not assume chase distance alone is root cause.
+- [x] Late Knight solo **24/24** vs Knight+Ranger **0/24** and trio **2/24**; duo heroes both die each time, inflicting **281.27 vs 467.81** solo effective damage in shorter fights. Solo compensations likely important but not isolated from role composition/spawn formation.
+- [ ] **Get user approval for D142 isolated diagnostics**: matched fixed-seed HUNT ranged target access/near-threat strategy A/B using per-unit telemetry; separate one-factor party stat pressure vs placement experiments for Knight duo/trio.
+- [ ] Check full **real** Act 1 path (12 cards + Bone Warden XIII) including Wizard bargains, earned upgrades, event/reward return, companion recruitment/loss and solo viability; tune only based on specific causal data plus live feedback.
+- [ ] No changes to enemy rosters per card, DS2/Fate Spread or the 18 approved arts, and no blind global scaling revisions.
+
+---
+
 ## D141 ACTIVE — Gameplay 2.5: diagnosis before balancing — 2026-10-14
 
 - [x] User explicitly approved («Давай») diagnostic-first Gameplay 2.5 on D140 CSV findings.
