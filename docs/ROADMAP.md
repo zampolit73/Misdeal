@@ -1,3 +1,14 @@
+## D144 first user Godot screenshots — 2026-10-14 — smoke parser hotfix; 54 fights need rerun
+
+- [x] User locally verified **art preview & genuine new battle launch**; unique Shepherd/Lamb sprites display, card image renders, normal Knight deployment versus 1 Shepherd+2 Lambs shows in the cemetery arena. These screenshots confirm import/render, not full animation/ability/balance approval.
+- [x] Screenshot exposed **Godot compile error** `const EXPECTED_PATHS := PackedStringArray(...)` in `scripts/dev/bone_shepherd_smoke.gd`. Changed to `const EXPECTED_PATHS: Array[String] = [...]`, convert to PackedStringArray at runtime for authored-roster comparison. Also hide simulated arena while test writes PASS/FAIL. GitHub main hotfix committed.
+- [ ] **User now:** `git pull` then **F6** `res://scenes/dev/bone_shepherd_smoke.tscn`; expect `DECK EXPANSION 01 — PASS` 54/54 only if native compiler/runtime works; share screenshot and Godot Output if more errors. No F6 54-case PASS recorded yet.
+- [ ] **Visual art polish**: actual gallery/battle screenshots show extremely flat/vector-like creatures/card art compared with approved high-detail cemetery arena and blue Knight. Discuss desired rework direction; produce genuine denser but legible original pixel-art animation frames for both new species and consistent card illustration, without changing gameplay identity or reverting to old foes. Current art works as unapproved initial gameplay visuals only.
+- [ ] Test visible Whistle warning, both Lambs rushing, floor contact and full reward path in actual live encounter; don't infer whistle success from static battle screenshot.
+- [ ] Preserve D143 unique enemies, 31-card pool, old encounter rosters and existing Fate Spread; balancing HUNT/duo unrelated.
+
+---
+
 ## D144 — Bone Shepherd Deck Expansion first playable source shipped (Godot QA NEXT) — 2026-10-14
 
 - [x] User authorized full first new combat card after approved concept and production brief. **Implemented in GitHub main**, not merely a plan: Tier0 `bone_shepherd` registered as new Act1 card, 31 total pool / 11 Tier0; normal 12+XIII run length untouched.
