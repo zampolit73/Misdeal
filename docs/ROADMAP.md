@@ -1,3 +1,11 @@
+## D131 four fresh run-card art approvals — 2026-10-13
+
+- [x] User approved latest four standalone full-resolution images of `bone_patrol`, `graveyard_ambush`, `gallows_volley`, `whispering_well` as the replacement standard for their blurry low-resolution D130 crops.
+- [x] Lock distinct character roles, no repeated/cloned figures; Gallows Volley has three archers using bows, no guns.
+- [ ] Export runtime 448x274 WebPs from four accepted PNGs without borders/labels, retain safe originals and fallbacks.
+- [ ] Transfer WebP binary assets into GitHub under `assets/pixel/card_unification_v1/run/` and verify in Godot. Do not use old 13-art ZIP as final version of these four.
+- [ ] Finish remaining nine D130 assets and five not shown in concept board separately; no change in their approval status.
+
 ## Wave 1 inspection convenience — 2026-10-13
 
 - [x] Commit a standalone F6 gallery preview (scenes/dev/card_unification_v1_preview.tscn) for all 13 optional assets, displaying missing-file count without changing RunState.
