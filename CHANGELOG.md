@@ -1,3 +1,11 @@
+## 2026-10-13 — D139 180-fight Gameplay 2.3 F6 validated locally (docs only)
+
+- User screenshot confirms Godot `TACTICAL GAMEPLAY 2.3 — PASS`: **180/180** BattleUnit simulations completed with **79 victories / 101 defeats**, no timeout failures. Knight HUNT distant-support / near-threat interception regression passed.
+- Results CSV written by Godot to `user://misdeal_tactical_v23_balance.csv`; detailed per-card/per-tactic/bare-versus-built analysis still pending user upload.
+- Documentation-only acceptance checkpoint. No new code, balance, cards, enemies, artwork, rewards or visuals changed.
+
+---
+
 ## 2026-10-13 — D139 Gameplay 2.3: melee HUNT interception and stage-aware benchmark
 
 - User approved targeted HUNT logic refinement plus upgraded late-tier autobattle checks after analysis of 72 original v22 fights.
