@@ -1,3 +1,10 @@
+## 2026-10-13 — Four approved Act 1 event backgrounds shipped (D132)
+
+- Converted four exact user-approved individual full-resolution images to 1280×720 WebP (quality 91): Curse Forge, Black Altar, Chained Prisoner, Rattling Bridge.
+- Committed binary assets to `assets/pixel/card_unification_v1/event/` in GitHub main commit `1722d070`; verified each remote blob and 4-file-only diff.
+- Earlier optional `card_unification_v1.gd` / ActChoice art loading automatically activates images with original background fallback; no gameplay/UI/code changes in art commit.
+- Previous D130 small-crop event images superseded. Source-verified, Godot visual confirmation pending. With four D131 run cards, **8/13** approved compositions are now committed as runtime assets.
+
 ## 2026-10-13 — Four D131 approved Act 1 table-card images deployed
 
 - Added real binary 448×274 WebPs in `assets/pixel/card_unification_v1/run/` for Bone Patrol, Graveyard Ambush, Gallows Volley, Whispering Well, from the exact final user-approved individual PNGs (commit `9d864113`).
