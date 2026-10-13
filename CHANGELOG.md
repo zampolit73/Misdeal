@@ -1,3 +1,13 @@
+## 2026-10-13 — D138 Gameplay 2.2: four late-act tactical layouts and BattleUnit outcome benchmark
+
+- User explicitly approved Gameplay 2.2 after accepting first three Gameplay 2.1 encounters.
+- Added positional variants and distinct readable tactical tells to existing `gallows_volley`, `ossuary_gate`, `last_bell` and `firing_square` EncounterData Resources; the original enemy paths/names/card text/art/arenas/rewards are unchanged.
+- Reused D137 formation selection and retry caching unchanged; existing baseline solo/duo/trio pressure and 3+2 orders, Wizard wagers/Mark and gameplay flow untouched.
+- Added isolated F6 scene `scenes/dev/tactical_gameplay_v22_battle_benchmark.tscn` and GDScript: 72 controlled fixed-delta real BattleUnit autobattle runs (4 encounters × 2 authored layouts × 3 party sizes × 3 standard orders), comparing identical rosters/seeds for each order and writing outcomes, elapsed simulated time and hero/enemy survivor counts to `user://misdeal_tactical_v22_battles.csv`. Flags 75-second unresolved fights; not a proof of good win rates or complete Act 1/upgrade/reward coverage.
+- **New F6 not executed in Godot by assistant; user local QA pending.** Earlier D136/D137 F6 tests passed per user. All 18 Wave 1 illustrations and DS2/Fate Spread preserved.
+
+---
+
 ## 2026-10-13 — D137 local tactical F6 confirmed PASS (documentation checkpoint)
 
 - User screenshot confirms Godot F6 `TACTICAL GAMEPLAY 2.1 — PASS` after pulling committed first-three-encounter gameplay: 54 setups, 324 initial target checks, 72 HUNT-vs-ASSAULT divergences.
