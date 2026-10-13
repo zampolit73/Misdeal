@@ -1,3 +1,11 @@
+## LATEST — 2026-10-13 — D138 72 full-BattleUnit baseline fights PASSED; CSV is next
+
+The user provided a Godot screenshot `TACTICAL GAMEPLAY 2.2 — PASS`: **72/72** scenarios completed with **31 wins / 41 defeats**; no timeout/roster check failures reported. Scenarios use 4 authored D138 card encounters, 2 spatial formations, 3 party sizes and 3 normal tactical orders; real BattleUnit combat is advanced deterministically in an isolated test, with no upgrades/items/Wizard risk/rewards. Benchmark wrote `user://misdeal_tactical_v22_battles.csv` with encounter ID, layout variant, party size, protagonist, order, win/loss, seconds and surviving heroes/enemies.
+
+**Do NOT claim the balance is accepted or tune enemies yet.** The 31/41 result alone does not identify hard cards, unfair solo, or best strategy. Request the **actual CSV attachment** from the user via Godot Project > Open User Data Folder; then analyze per-card/variant/party/order outcomes, durations and survivor counts to decide targeted follow-on testing and balance changes. Live Act 1 QA (battle HUD, prebattle tell, victory/reward/return and boss XIII) remains open. D136/D137 earlier tests user-confirmed PASS. Original card identities, DS2/Fate Spread, 18 shipped artworks frozen. This checkpoint only updates docs, not production.
+
+---
+
 ## LATEST — 2026-10-13 — D138 approved/committed Gameplay 2.2, new Godot test next
 
 User accepted the assistant's Gameplay 2.2 proposal with «утверждаем». Four existing late-Act tactical battles (`gallows_volley`, `ossuary_gate`, `last_bell`, `firing_square`) now each have a second authored enemy placement and contextual pre-battle hint via the D137 data-driven system. **No enemy types/rosters/names, cards/art, existing battle scripts, rewards, baseline scalars or UI layouts altered**. GitHub `main` also contains new `res://scenes/dev/tactical_gameplay_v22_battle_benchmark.tscn`/script: 72 simulated *full battle interactions* from real `BattleUnit` objects with deterministic 30-FPS ticks, win/loss/timeout, elapsed virtual seconds, surviving heroes and enemies; CSV at `user://misdeal_tactical_v22_battles.csv`. Full production Battle-scene UI/intro/reward/Wizard context is **not** exercised by benchmark, and measured outcomes are not automatically good balance.
