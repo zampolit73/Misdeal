@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+encounter_id = "bone_shepherd"
+title = "КОСТЯНОЙ ПАСТУХ"
+card_text = "На тропу выходит Пастух с двумя костяными агнцами. Его свист заставляет стадо одновременно бросаться в атаку. Убейте пастуха, чтобы он больше не отдавал приказов."
+wizard_line = "Такие послушные овцы. Жаль, что тебя они не считают пастухом."
+arena_id = "graveyard"
+enemy_unit_paths = PackedStringArray("res://resources/units/bone_shepherd.tres", "res://resources/units/ossuary_lamb.tres", "res://resources/units/ossuary_lamb.tres")
+enemy_names = PackedStringArray("Костяной пастух", "Костяной агнец", "Костяной агнец")
+enemy_positions = PackedVector2Array(1035, 262, 840, 173, 848, 355)
+alternate_enemy_positions = PackedVector2Array(1090, 270, 852, 223, 929, 337)
+formation_hint = "РАЗДЕЛЁННОЕ СТАДО — агнцы с разных сторон, Пастух держится позади."
+alternate_formation_hint = "СБЛИЖЁННОЕ СТАДО — агнцы наступают рядом, Пастух глубже в тылу."
