@@ -1,3 +1,13 @@
+## D145 Bone Shepherd artwork quality pass — 2026-10-14
+
+- [x] User accepted art polish rather than adding more placeholder cards. Three live original SVG art resources **updated in place in GitHub**: detailed cloth/bone/lantern Shepherd 25-frame sheet, detailed ram ribs/hooves/horns Lamb 25-frame sheet and richer gothic moonlit graveyard 448×274 card illustration. Existing frame grid, encounter creature silhouettes, no old sprite reuse, new Whistle/combat gameplay and DS2/Fate Spread layout unchanged.
+- [x] Static QA of all 3 XML SVG files: valid tag balance, 576×480 enemies / 448×274 card, all **25 real frames** per role, no unresolved generation tokens; Godot importer and existing animation scene mappings remain the same. Canonical decision `docs/DECISIONS.md` D145.
+- [ ] **USER VISUAL QA:** `git pull`; F6 `scenes/dev/bone_shepherd_art_preview.tscn` — verify detailed enemies, unique silhouettes, authentic walk/attack/hit/death (not just idle), hooves/feet contact and art-card readability. F6 `scenes/dev/bone_shepherd_playtest.tscn` to judge true 1280×720 scale and Whistle cue. Send screenshots if more work is needed.
+- [ ] **54-CASE TEST STILL PENDING:** F6 `scenes/dev/bone_shepherd_smoke.tscn` after previously committed PackedStringArray-constant parser hotfix; should show 54/54 and no new Godot runtime errors. No PASS yet.
+- [ ] If artwork remains visibly too simplified against approved Knight and arena, iterate live assets based on screenshots before proceeding to next Deck Expansion card. Preserve frozen 30 original card rosters, DS2 and prior 18 approved art files. Act1 now 31-card pool; rest +14 not yet implemented.
+
+---
+
 ## D144 first user Godot screenshots — 2026-10-14 — smoke parser hotfix; 54 fights need rerun
 
 - [x] User locally verified **art preview & genuine new battle launch**; unique Shepherd/Lamb sprites display, card image renders, normal Knight deployment versus 1 Shepherd+2 Lambs shows in the cemetery arena. These screenshots confirm import/render, not full animation/ability/balance approval.
