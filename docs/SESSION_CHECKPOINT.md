@@ -1,3 +1,11 @@
+## NEWEST — 2026-10-13 — D138 F6 FULL AUTOBATTLE PASSED, NEED CSV
+
+User has supplied screenshot of **TACTICAL GAMEPLAY 2.2 — PASS** in local Godot after the D138 late-Act tactical formation and benchmark commits. F6 measured **72/72 completed** controlled BattleUnit simulations: **31 victory / 41 defeat** across `gallows_volley`, `ossuary_gate`, `last_bell`, `firing_square` × original/alternate positions × solo/duo/trio × ASSAULT/HUNT/FORMATION. Screenshot confirms outcomes/durations/survivors stored in `user://misdeal_tactical_v22_battles.csv`. **User has NOT uploaded the CSV; do not invent subgroup figures or change difficulty based solely on 31/41.** These are naked baseline fights, without artifacts/upgrades/Wizard stakes and not actual full Act 1 play. Prior D136 deal F6 and D137 prebattle F6 PASS were also user-confirmed.
+
+**Immediate next interaction:** ask user to send `misdeal_tactical_v22_battles.csv` (Godot menu **Project > Open User Data Folder**). Analyze row-level results by card, party size, order, variant and inspect duration/survivors for balance. After that, validate four fights in real run, only then consider any scoped balance fixes. The repo has 7 two-layout card-faithful encounters, all enemy rosters, art, UI and the existing 12+XIII Act 1 structure unchanged. This update is **documentation-only**; no gameplay scripts or balance touched. GitHub connected and direct commits available.
+
+---
+
 ## NEWEST — 2026-10-13 — D138 Gameplay 2.2 shipped in `main`; run new full-BattleUnit F6
 
 **User explicitly approved** proposal for Gameplay 2.2 («утверждаем»). Connected GitHub tool used to modify ONLY 4 existing encounter resources `gallows_volley`, `ossuary_gate`, `last_bell`, `firing_square`: each gets an alternate authored set of coordinates and two prep hints; their enemy roster paths/names, cards, arenas and graphics **unchanged**. Reuses D137 `EncounterData` variant and RunState per-run cache stable on retry; no production combat scripts, solo/duo/trio coefficients, rewards, DS2 or Fate Spread changed. This raises supported 2-layout combat cards from 3 to 7.
