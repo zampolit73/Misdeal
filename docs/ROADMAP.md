@@ -1,3 +1,15 @@
+## Deck Expansion Phase 1 — Bone Shepherd candidate design prepared (not implemented) — 2026-10-14
+
+- [x] User said «отлично погнали» to starting the first new card **after** D143's genuine-new-enemy constraint. The first proposed card is Tier0 `bone_shepherd` / «КОСТЯНОЙ ПАСТУХ».
+- [x] Draft and commit concept with **two original species**, `bone_shepherd` commander and `ossuary_lamb` bone ram, 1+2 fixed roster, distinctive nonlegacy visuals and original Whistle→short coordinated rush, `docs/DECK_EXPANSION_BONE_SHEPHERD_CONCEPT.md`.
+- [ ] **Visual/mechanics approval:** show art concept and get specific signoff before shipping battle creatures. Don't confuse concept illustration with production sprite sheet.
+- [ ] Produce authentic new character miniature animations/source art and own card illustration in locked DS2/Fate Spread style; not reused palette-swap sprites.
+- [ ] Implement one card `bone_shepherd`, one unique EncounterData, two new UnitData creature types, data-driven commander/lamb charge behavior, clear cues and tests; verify solo/duo/trio Tier0, card truth and 12+XIII unchanged. **None implemented yet.**
+- [ ] Then expand remaining noncombat and original-enemy combat cards toward 45-card Act1 pool after independent review.
+- [ ] Keep unrelated D142 HUNT/party-size experiments separate.
+
+---
+
 ## DESIGN GATE — 2026-10-14 — Act 1 Deck Expansion (+15) requires original enemies
 
 - [x] User explicitly clarified rule for planned new cards: **any combat branch, including optional combat in an event, requires genuine NEW enemy types and custom enemy art/behavior/roster**. No old enemies passed off as fresh content. Canonical: **`docs/DECISIONS.md` D143**.
