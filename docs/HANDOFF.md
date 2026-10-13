@@ -1,3 +1,9 @@
+## MOST RECENT ART APPROVAL — 2026-10-13 — D131 FOUR FINAL TABLE CARD IMAGES
+
+User approved the last four individual high-res image generations, improving formerly blurry cloned units. `bone_patrol` (gen 8a477bfd...), `graveyard_ambush` (gen 63ff9a81...), `gallows_volley` (gen 013c0ce3...), `whispering_well` (gen a13b068f...) are approved **as shown**. Full exact filenames/IDs and motifs documented in D131 and `docs/CARD_ART_UNIFICATION_WAVE1.md`. These supersede only D130's four table-card crops; the other nine D130 compositions stay accepted. The earlier 13-art ZIP still contains low-res obsolete versions of these four. Approved full-res images currently live in conversation attachments, **not GitHub**. No source/runtime files changed in this approval-only session; next task is export and deploy standalone 448x274 WebPs to existing optional override paths, then local QA. Do not regenerate approved images or restyle gameplay UI.
+
+---
+
 ## QA detail — 2026-10-13
 
 Source-only Godot F6 preview for all 13 candidate WebPs shipped in scenes/dev/card_unification_v1_preview.tscn and scripts/dev/card_unification_v1_preview.gd. User should pull current main and extract the conversation ZIP to Misdeal root, then F6. Preview counts missing files. It does NOT substitute an engine check or push binary image assets to GitHub; until extraction, current artwork remains active. No other activity needed until user reviews art quality.
