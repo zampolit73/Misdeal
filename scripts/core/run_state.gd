@@ -1353,7 +1353,7 @@ func _clear_pending_wizard_meddling() -> void:
 func _pick_deal_candidate(candidate_ids: Array[String], paired_id: String = "") -> String:
 	var best_id := ""
 	var best_score := -99999
-	var paired := get_card(paired_id) if not paired_id.is_empty() else null
+	var paired: RunCardData = get_card(paired_id) if not paired_id.is_empty() else null
 
 	for candidate_id in candidate_ids:
 		var card := get_card(candidate_id)
