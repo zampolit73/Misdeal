@@ -9,7 +9,9 @@ const COLUMNS := 6
 const ROWS := 5
 const BASE_DIR := "res://assets/pixel/units/combat_units_anim_v2/"
 const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/"
-const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden"]
+const DECK_EXPANSION_DIR := "res://assets/pixel/units/deck_expansion_v1/"
+const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb"]
+const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb"]
 
 static var _frames_cache: Dictionary = {}
 static var _unavailable: Dictionary = {}
@@ -22,6 +24,15 @@ static func get_frames(role: String) -> SpriteFrames:
 		return _frames_cache[role] as SpriteFrames
 	if _unavailable.has(role):
 		return null
+
+	if NEW_ENEMY_ROLES.has(role):
+		var svg_path := "%s%s_frames.svg" % [DECK_EXPANSION_DIR, role]
+		var svg_texture := load(svg_path) as Texture2D
+		if svg_texture == null or svg_texture.get_size() != Vector2(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
+			push_error("Original Deck Expansion SVG animation atlas missing/invalid: %s" % svg_path)
+			_unavailable[role] = true
+			return null
+		return _create_frames(role, svg_texture)
 
 	var directory := PACK2_DIR if role in ["bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden"] else BASE_DIR
 	var path := "%s%s.webp.b64" % [directory, role]
@@ -48,6 +59,15 @@ static func get_frames(role: String) -> SpriteFrames:
 		_unavailable[role] = true
 		return null
 
+	return _create_frames(role, atlas)
+
+static func get_static_texture(role: String) -> Texture2D:
+	var frames := get_frames(role)
+	if frames == null or frames.get_frame_count("idle") == 0:
+		return null
+	return frames.get_frame_texture("idle", 0)
+
+static func _create_frames(role: String, atlas: Texture2D) -> SpriteFrames:
 	var frames := SpriteFrames.new()
 	if frames.has_animation("default"):
 		frames.remove_animation("default")
