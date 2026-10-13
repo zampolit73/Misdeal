@@ -7,7 +7,7 @@
 - [x] Select/memoize a random encounter layout per chosen card for the run; **retry preserves the same layout**; display the appropriate succinct formation tell using the existing placement hint.
 - [x] Give solo `FORMATION` its missing defensive distinction (-10% incoming damage), without changing its duo/trio behavior or established party pressure multipliers.
 - [x] Add new F6 `res://scenes/dev/tactical_gameplay_v21_smoke.tscn`: validate 54 formations/party/protagonist setups and 3 basic tactical targeting options using real unit script/resources. No claimed engine PASS or actual battle wins.
-- [ ] **User Godot 4.7.x F6 local QA:** `git pull`, run tactical_gameplay_v21_smoke.tscn at 1280×720; expect `TACTICAL GAMEPLAY 2.1 — PASS`. Return FAIL logs if any for direct GitHub fix.
+- [x] **User Godot 4.7.x F6 local QA PASSED on 2026-10-13:** screenshot `TACTICAL GAMEPLAY 2.1 — PASS`: 54 setups, 324 initial target checks, 72 HUNT vs ASSAULT differences; card roster fidelity and retry stability verified. This is NOT an end-to-end battle win-rate test.
 - [ ] **Live combat QA:** do Bone Swarm, Iron Wall, Grave Bell in solo/duo/trio; compare ASSAULT/HUNT/FORMATION, target-preview accuracy, visible variant tells, ranged/healer accessibility, movement/overlaps, retreat and reward/return. Confirm that no formation makes solo unwinnable and no one default order dominates. Use actual observations before tuning.
 - [ ] After verified outcomes: adapt remaining combat encounters only where preparation lacks significance. Keep 12 + XIII, enemy rosters/art, frozen DS2 and Fate Spread unchanged; no new buttons/classes/new cards.
 
