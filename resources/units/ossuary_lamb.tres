@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+unit_name = "Костяной агнец"
+visual_role = "ossuary_lamb"
+max_hp = 44.0
+damage = 7.0
+attack_interval = 0.95
+attack_range = 45.0
+move_speed = 104.0
+body_radius = 17.0
+separation_padding = 9.0
+separation_strength = 115.0
+visual_scale = 0.94
