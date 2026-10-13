@@ -9,7 +9,9 @@ const WIZARD_WAGERS_PER_RUN := 2
 const WIZARD_MARKS_PER_RUN := 2
 const FATE_HOLD_DELAY := 2
 const WIZARD_MARK_GOLD_REWARD := 20
+const WIZARD_MARK_GOLD_PER_TIER := 10
 const WIZARD_MARK_ENEMY_DAMAGE_BONUS := 0.15
+const RECENT_DEAL_MEMORY := 2
 
 # Party-size pressure compensation. Trio is the encounter-authoring baseline.
 # Solo/duo keep their hero-side bonuses, but enemy durability/damage also step
@@ -1158,14 +1160,17 @@ func _ensure_current_offers() -> void:
 		record_wizard_memory("held_card_return", returning_held_id)
 
 	if not returning_held_id.is_empty():
+		# A Fate-held card must return, even if it is outside the current tier.
 		current_offer_ids.append(returning_held_id)
 		candidates.erase(returning_held_id)
 		if not candidates.is_empty():
-			current_offer_ids.append(candidates[0])
+			current_offer_ids.append(_pick_deal_candidate(candidates, returning_held_id))
 	else:
 		var offer_count := mini(2, candidates.size())
 		for index in range(offer_count):
-			current_offer_ids.append(candidates[index])
+			var picked := _pick_deal_candidate(candidates, current_offer_ids[0] if not current_offer_ids.is_empty() else "")
+			current_offer_ids.append(picked)
+			candidates.erase(picked)
 
 	_prepare_wizard_meddling_if_due()
 	_prepare_wizard_wager_if_due()
@@ -1296,7 +1301,7 @@ func _prepare_wizard_meddling_if_due() -> void:
 		wizard_meddling_pending = true
 		wizard_meddling_offer_index = offer_index
 		wizard_meddling_original_id = original_id
-		wizard_meddling_replacement_id = replacements[0]
+		wizard_meddling_replacement_id = _pick_deal_candidate(replacements, current_offer_ids[1 - offer_index])
 		return
 
 	wizard_meddling_consumed_slots.append(cards_resolved)
@@ -1342,6 +1347,39 @@ func _clear_pending_wizard_meddling() -> void:
 	wizard_meddling_original_id = ""
 	wizard_meddling_replacement_id = ""
 
+# Keep mandatory combat, act tiers, Fate Hold and same-kind Wizard replacements
+# authoritative: this helper only ranks the candidates already allowed.
+# Incoming shuffle breaks ties, preserving run-to-run variation.
+func _pick_deal_candidate(candidate_ids: Array[String], paired_id: String = "") -> String:
+	var best_id := ""
+	var best_score := -99999
+	var paired := get_card(paired_id) if not paired_id.is_empty() else null
+
+	for candidate_id in candidate_ids:
+		var card := get_card(candidate_id)
+		if card == null:
+			continue
+		var score := 0
+		# Offer a battle and an event side-by-side where the slot permits.
+		if paired != null and card.resolution_type != paired.resolution_type:
+			score += 16
+		for offset in range(mini(RECENT_DEAL_MEMORY, resolved_card_ids.size())):
+			var previous_id := resolved_card_ids[resolved_card_ids.size() - 1 - offset]
+			var previous := get_card(previous_id)
+			if previous == null:
+				continue
+			var weight := RECENT_DEAL_MEMORY - offset
+			if card.resolution_type == previous.resolution_type:
+				score -= 2 * weight
+			if card.type_label == previous.type_label:
+				score -= weight
+		if score > best_score:
+			best_score = score
+			best_id = candidate_id
+
+	return best_id if not best_id.is_empty() else candidate_ids[0]
+
+
 func _is_combat_card_id(card_id: String) -> bool:
 	var card := get_card(card_id)
 	return card != null and card.resolution_type == "combat"
@@ -1378,9 +1416,10 @@ func choose_card(card_id: String) -> bool:
 		held_card_return_at = -1
 
 	if chose_marked_card:
-		gold += WIZARD_MARK_GOLD_REWARD
+		var mark_reward := get_wizard_mark_gold_reward()
+		gold += mark_reward
 		wizard_mark_danger_active = true
-		record_wizard_memory("wizard_mark_accept", card_id)
+		record_wizard_memory("wizard_mark_accept", str(mark_reward))
 	elif not wizard_mark_card_id.is_empty():
 		record_wizard_memory("wizard_mark_decline", wizard_mark_card_id)
 		_register_defiance_refusal()
@@ -1531,6 +1570,31 @@ func get_enemy_damage_multiplier() -> float:
 		danger_multiplier += WIZARD_MARK_ENEMY_DAMAGE_BONUS
 	return get_enemy_base_damage_multiplier() * danger_multiplier
 
+func get_wizard_mark_gold_reward() -> int:
+	# Same explicit +15% enemy damage risk, with a better later-act payout.
+	return WIZARD_MARK_GOLD_REWARD + WIZARD_MARK_GOLD_PER_TIER * mini(int(cards_resolved / 4), 2)
+
+
+func get_wizard_deal_line() -> String:
+	# Contextual dialogue only, not a new hidden rule or Wizard action.
+	if not active_card_id.is_empty() or is_boss_due() or cards_resolved < 2:
+		return ""
+	if wizard_mark_danger_active:
+		return "Моя печать всё ещё на тебе. Следующий бой это почувствует."
+	if resolved_card_ids.size() >= 2:
+		var latest := get_card(resolved_card_ids[resolved_card_ids.size() - 1])
+		var before := get_card(resolved_card_ids[resolved_card_ids.size() - 2])
+		if latest != null and before != null and latest.resolution_type == before.resolution_type:
+			if latest.resolution_type == "combat":
+				return "Два боя подряд? Похоже, тебе нравится звук ломающихся костей."
+			return "Всё торгуешься с судьбой? Смерть тоже умеет считать сдачу."
+	if get_party_size() == 1 and cards_resolved >= 6:
+		return "Упрямо идёшь один. У стола длинная память."
+	if get_party_size() == 3 and cards_resolved >= 8:
+		return "Теперь вас трое. Посмотрим, останетесь ли вы вместе."
+	return ""
+
+
 func get_reward_multiplier() -> int:
 	return 2 if wizard_debt_active else 1
 
@@ -1639,7 +1703,7 @@ func _build_wizard_memory_line(event_id: String, detail: String) -> String:
 		"held_card_return":
 			return "Я придержал её, как ты просил. Не заставляй меня думать, что это было зря."
 		"wizard_mark_accept":
-			return "Ты выбрал карту с моей печатью. Двадцать монет уже твои. Следующий бой тоже теперь немного мой."
+			return "Ты выбрал карту с моей печатью. %s монет уже твои. Следующий бой тоже теперь немного мой." % detail
 		"wizard_mark_decline":
 			return "Не понравилась моя печать? Какая неожиданная осторожность."
 		"defiance_ready":
