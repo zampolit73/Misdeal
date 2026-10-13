@@ -1,3 +1,11 @@
+## 2026-10-13 — D138 local full-battle F6 PASS verified (documentation only)
+
+- Screenshot from the user's local Godot: `TACTICAL GAMEPLAY 2.2 — PASS`, **72/72** isolated full-BattleUnit baseline scenarios completed, **31 victories and 41 defeats**; four original cards × two authored layouts × solo/duo/trio × three tactical orders.
+- The test wrote `user://misdeal_tactical_v22_battles.csv` with individual durations and survivor counts. The CSV has **not** been reviewed by assistant; the aggregate outcome is not a verdict on balance. Ask user for the CSV and actual Act 1 gameplay observations before modifying combat tuning.
+- This commit updates handoff/test status only. **No combat data, game code, visuals, art or rewards changed.**
+
+---
+
 ## 2026-10-13 — D138 Gameplay 2.2: four late-act tactical layouts and BattleUnit outcome benchmark
 
 - User explicitly approved Gameplay 2.2 after accepting first three Gameplay 2.1 encounters.
