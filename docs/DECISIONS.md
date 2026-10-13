@@ -2280,3 +2280,22 @@ The user agreed in principle to expand Act 1's 30 existing non-boss cards to a 4
 5. Don't begin implementation with a quick reused-enemy combat prototype and present it as final; if the art, new units and AI for a fight aren't ready, implement/test its noncombat sibling content first. Do not change existing approved combat cards/rosters without discussion.
 
 **Scope/status:** This comment is a design clarification, not an instruction to ship all 15 cards immediately. No new cards, enemy code, art or encounters are yet committed as part of the Deck Expansion; the existing 30-card Act 1 pool and 12 + XIII run shape remain unchanged. Older D142 controlled balancing experiment proposal is separate and not approved or performed.
+
+
+## D144 — Deck Expansion Card 01 implemented as new enemy-only encounter (Godot QA pending)
+
+Date: 2026-10-14
+Status: **user explicitly approved implementation («давай»); source and self-contained original SVG pixel art committed in GitHub main, Godot F6 runtime/user visual approval STILL PENDING**
+
+The first fully new Act 1 combat card is **`bone_shepherd`**, **Tier 0**, one genuinely new `bone_shepherd` funeral-crook commander + two genuinely new `ossuary_lamb` four-legged horned creatures. Both authored encounter variants contain the SAME exact 1+2 roster; no legacy skeleton/bellkeeper/archer/thrall recolor, no randomly replaced enemies, no additional ghosts/wolves/summons/event-choice buttons from the exploratory moodboard.
+
+Implementation uses existing `RunCardData`, `UnitData`, `EncounterData`, `BattleUnit`, and `RunState` flow. Card pool grows **30→31** (Tier0 10→11), with **12 Act1 resolutions + sealed boss XIII unchanged**. Opponents have original data resources and two individual SVG-format pixel-art 576×480 sprite atlases, each **6×5 cells of 96×96** with explicitly drawn idle/walk/attack/hit/death variants, plus a dedicated **448×274** original pixel-style card illustration SVG. SVG is stored as **text source** for compatibility with the connected GitHub connector (UTF-8 only), imported as `Texture2D` by Godot; it does **not** use the WebP Base64 pack-1 asset pipeline nor copy pixels from the exploratory concept sheet. The user's previously approved DS2/Fate Spread and 18 wave-1 art assets stay untouched. Since Godot has not been run by the assistant, native SVG import and in-game visual quality/feet must be verified in the local Godot F6 preview before claiming production art acceptance.
+
+Unique, isolated **Shepherd's Whistle**: encounter-only `BoneShepherdWhistleController` with actual `BoneShepherdWhistleData` Godot Resource: initial delay 5.5s, visible 0.65s warning (small red cue), Lamb move speed 1.35× for 1.25s while the two living Lambs focus the same living hero, subsequent warnings every 8s counted from rush start. Killing Shepherd during warning cancels; killing while an issued rush is active lets that brief rush finish, without future whistles. No summons, direct ability damage, new statuses, or global AI changes. Only `ossuary_lamb` receives a temporary target override/speed modifier; legacy HUNT and hero/party scalers remain unchanged.
+
+Three local Godot test entry points:
+- **F6** `res://scenes/dev/bone_shepherd_art_preview.tscn` — real card texture and new miniatures' five animation states at enlarged size.
+- **F6** `res://scenes/dev/bone_shepherd_smoke.tscn` — checks exact roster/art/card registration, Whistle warning/rush/recovery/leader death and **54** BattleUnit simulations (two layouts × three protagonists × solo/duo/trio × three orders); the screenshot should read `DECK EXPANSION 01 — PASS` if all scenarios complete.
+- **F6** `res://scenes/dev/bone_shepherd_playtest.tscn` — enters the actual normal Battle scene with Knight and this new encounter for visual scale, deployment and game-flow QA.
+
+**Not yet validated:** assistant environment has no Godot 4.7 binary; only static source/integrity checks passed. Do not claim F6 PASS, actual balance, accepted final art or full Act1 QA until user tests. If local parse/import errors arise, fix GitHub code directly. Additional 14 planned Deck Expansion cards remain out of scope until this first verified full encounter.
