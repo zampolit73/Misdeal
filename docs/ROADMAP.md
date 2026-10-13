@@ -1,3 +1,18 @@
+## ACTIVE — D137 Gameplay 2.1 / authored tactical encounters — 2026-10-13
+
+- [x] User confirmed **D136 48-run F6 Gameplay 2.0 PASS** locally; real full Act 1 regression still open.
+- [x] User approved tactical-first Gameplay 2.1: meaningful formation/order decisions and viable solo/duo/trio **while each battle remains true to its original card**.
+- [x] Audit real `EncounterData`, `BattleUnit` targeting and existing 3+2 orders, three test-case enemy rosters/encounter cards.
+- [x] Author two enemy **position-only** setups per `bone_swarm`, `iron_wall`, `grave_bell` in existing `.tres`, keeping the exact enemy unit paths, card imagery, names, rosters and arenas.
+- [x] Select/memoize a random encounter layout per chosen card for the run; **retry preserves the same layout**; display the appropriate succinct formation tell using the existing placement hint.
+- [x] Give solo `FORMATION` its missing defensive distinction (-10% incoming damage), without changing its duo/trio behavior or established party pressure multipliers.
+- [x] Add new F6 `res://scenes/dev/tactical_gameplay_v21_smoke.tscn`: validate 54 formations/party/protagonist setups and 3 basic tactical targeting options using real unit script/resources. No claimed engine PASS or actual battle wins.
+- [ ] **User Godot 4.7.x F6 local QA:** `git pull`, run tactical_gameplay_v21_smoke.tscn at 1280×720; expect `TACTICAL GAMEPLAY 2.1 — PASS`. Return FAIL logs if any for direct GitHub fix.
+- [ ] **Live combat QA:** do Bone Swarm, Iron Wall, Grave Bell in solo/duo/trio; compare ASSAULT/HUNT/FORMATION, target-preview accuracy, visible variant tells, ranged/healer accessibility, movement/overlaps, retreat and reward/return. Confirm that no formation makes solo unwinnable and no one default order dominates. Use actual observations before tuning.
+- [ ] After verified outcomes: adapt remaining combat encounters only where preparation lacks significance. Keep 12 + XIII, enemy rosters/art, frozen DS2 and Fate Spread unchanged; no new buttons/classes/new cards.
+
+---
+
 ## NEXT CHAT — D136 Gameplay 2.0 QA / first wave art closed — 2026-10-13
 
 - [x] Confirm all 18 first-wave illustrated assets are approved and in GitHub (D131–D135); prior local pull conflict from older untracked D134 PNG-derived WebPs was resolved; user said «Все ок». Existing DS2 and Fate Spread Variant C are frozen.
