@@ -2,7 +2,7 @@
 
 ## New-chat bootstrap
 
-**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — latest D151 user-approved **Funeral Procession / Last Rite** replaces rejected redundant Mourning Bell; new isolated resources and F6 `last_rite_smoke.tscn` in main, but NOT live until unique card/animation art is ready. 33-card pool unchanged, D148 Shepherd 54/54 PASS, D149 event flows and D150 original WebP gallery previously user-confirmed. GitHub connector is available; use it directly without asking again.
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession / Last Rite user-confirmed isolated Godot F6 **PASS**; resource and 1+2 mechanic validated, but the combat card remains unregistered until its original card WebP and both authentic 25-frame enemy animation atlases are ready and reviewed. Current Act 1 pool still 33/45, D148 Shepherd 54/54 passed. GitHub connector is available; use it without asking.
 
 GitHub is the source of truth for the current technical state of Misdeal.
 
