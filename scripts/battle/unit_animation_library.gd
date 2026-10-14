@@ -26,6 +26,19 @@ static func get_frames(role: String) -> SpriteFrames:
 		return null
 
 	if NEW_ENEMY_ROLES.has(role):
+		# D147: approved raster animation atlas has precedence over legacy SVG.
+		# Text-packed WebP mirrors the existing animation packs and is Godot export-safe.
+		var raster_path := "%s%s_frames.webp.b64" % [DECK_EXPANSION_DIR, role]
+		if FileAccess.file_exists(raster_path):
+			var encoded_raster := FileAccess.get_file_as_string(raster_path).strip_edges()
+			var raster_bytes := Marshalls.base64_to_raw(encoded_raster)
+			var raster_image := Image.new()
+			if not raster_bytes.is_empty() and raster_image.load_webp_from_buffer(raster_bytes) == OK:
+				if raster_image.get_size() == Vector2i(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
+					var raster_texture := ImageTexture.create_from_image(raster_image)
+					if raster_texture != null:
+						return _create_frames(role, raster_texture)
+			push_warning("New Deck Expansion raster atlas failed validation, falling back to SVG: %s" % raster_path)
 		var svg_path := "%s%s_frames.svg" % [DECK_EXPANSION_DIR, role]
 		var svg_texture := load(svg_path) as Texture2D
 		if svg_texture == null or svg_texture.get_size() != Vector2(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
