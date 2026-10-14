@@ -50,6 +50,8 @@ func _ready() -> void:
 func _run_matrix() -> void:
 	_validate_assets()
 	if errors.is_empty():
+		_validate_facing()
+	if errors.is_empty():
 		for formation in range(2):
 			for protagonist in range(3):
 				for size in range(1, 4):
@@ -120,6 +122,52 @@ func _validate_assets() -> void:
 		for pair in [["idle", 4], ["walk", 6], ["attack", 6], ["hit", 3], ["death", 6]]:
 			if frames.get_frame_count(String(pair[0])) != int(pair[1]):
 				errors.append("Incomplete %s animation: %s" % [role, String(pair[0])])
+
+
+# D151 regression: the new texture sheets face LEFT in their source frames,
+# unlike legacy right-facing art. Check both deployment and combat retargeting.
+func _validate_facing() -> void:
+	var arena := Node2D.new()
+	arena.visible = false
+	add_child(arena)
+	var hero_data := load("res://resources/units/knight.tres") as UnitData
+	var old_enemy_data := load("res://resources/units/skeleton.tres") as UnitData
+	if hero_data == null or old_enemy_data == null:
+		errors.append("Facing QA fixture resources missing")
+		arena.queue_free()
+		return
+	var hero := _make_unit(arena, hero_data, 0, Vector2(260, 350), "assault")
+	var old_enemy := _make_unit(arena, old_enemy_data, 1, Vector2(820, 350), "assault")
+	if hero.art_sprite.flip_h or not old_enemy.art_sprite.flip_h:
+		errors.append("Hero or legacy skeleton deployment orientation changed")
+	for resource_path in [
+		"res://resources/units/funeral_priest.tres",
+		"res://resources/units/pallbearer.tres",
+	]:
+		var data := load(resource_path) as UnitData
+		if data == null:
+			errors.append("Facing QA unit data missing: " + resource_path)
+			continue
+		var enemy := _make_unit(arena, data, 1, Vector2(800, 350), "assault")
+		if enemy.art_sprite.flip_h:
+			errors.append("D151 native-left enemy is mirrored away during deployment: " + data.visual_role)
+		enemy.combat_started = true
+		enemy.target = hero
+		enemy._update_unit_facing()
+		if enemy.art_sprite.flip_h:
+			errors.append("D151 enemy is mirrored away from hero on left: " + data.visual_role)
+		hero.position.x = 1090.0
+		enemy._update_unit_facing()
+		if not enemy.art_sprite.flip_h:
+			errors.append("D151 enemy failed to turn toward target on right: " + data.visual_role)
+		hero.position.x = 260.0
+		legacy_facing_reset(enemy)
+	arena.queue_free()
+
+
+func legacy_facing_reset(enemy: BattleUnit) -> void:
+	enemy.target = null
+	enemy.combat_started = false
 
 
 func _make_unit(arena: Node2D, data: UnitData, team: int, pos: Vector2, tactic: String) -> BattleUnit:
