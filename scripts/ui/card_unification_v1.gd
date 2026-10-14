@@ -11,6 +11,9 @@ const BONE_SHEPHERD_CARD_SVG := "res://assets/pixel/card_unification_v1/run/bone
 const RUN_CARDS := {
 	"bone_patrol": "run/bone_patrol.webp",
 	"bone_shepherd": "run/bone_shepherd.webp",
+	# D149 provisional matching Wave1 art. Dedicated painterly files replace aliases in later art pass.
+	"moon_seal": "run/whispering_well.webp",
+	"echo_crypt": "run/gravedigger_shop.webp",
 	"graveyard_ambush": "run/graveyard_ambush.webp",
 	"gallows_volley": "run/gallows_volley.webp",
 	"whispering_well": "run/whispering_well.webp",
