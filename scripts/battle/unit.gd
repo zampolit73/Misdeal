@@ -737,8 +737,15 @@ func _get_separation_velocity() -> Vector2:
 
 	return separation
 
-func _is_valid_target(candidate: BattleUnit) -> bool:
-	return candidate != null and is_instance_valid(candidate) and candidate.alive and candidate.team != team
+# A previously freed target can remain referenced between diagnostic fights.
+# Keep this argument as Variant: Godot rejects a stale Object reference when
+# coercing it to BattleUnit *before* a typed function can check its validity.
+func _is_valid_target(candidate: Variant) -> bool:
+	if not is_instance_valid(candidate):
+		return false
+	if not candidate is BattleUnit:
+		return false
+	return candidate.alive and candidate.team != team
 
 func _find_preferred_enemy() -> BattleUnit:
 	if team == 1 and visual_role == "ossuary_lamb" and shepherd_rush_speed_multiplier > 1.0 and _is_valid_target(shepherd_rush_target):
