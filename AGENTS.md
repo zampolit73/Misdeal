@@ -2,7 +2,7 @@
 
 ## New-chat bootstrap
 
-**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D149 two new event choices user-tested in Godot (33-card pool); D150 two original 448×274 card art candidates and safe WebP loader/F6 scene committed, binary ZIP installer pending; D148 Shepherd local 54/54 smoke PASS. Read before further changes; GitHub is the source of truth.
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D149 paired noncombat events user-tested (33-card Act 1 pool); D150 original Moon Seal/Echo Crypt WebPs are in GitHub and displayed in user's Godot F6 screenshot (explicit user aesthetic approval still pending); Bone Shepherd native 54/54 smoke passed. Next: continue new cards only under D143 new-enemy requirement, and complete the full combat→reward→table QA.
 
 GitHub is the source of truth for the current technical state of Misdeal.
 
