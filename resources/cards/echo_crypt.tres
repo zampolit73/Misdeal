@@ -12,5 +12,5 @@ type_label = "СОБЫТИЕ"
 tier = 1
 resolution_type = "event"
 target_path = "res://scenes/event/act_choice.tscn"
-art_path = "res://assets/pixel/card_unification_v1/run/gravedigger_shop.webp"
+art_path = "res://assets/pixel/card_unification_v1/run/echo_crypt.webp"
 prototype_result_text = ""
