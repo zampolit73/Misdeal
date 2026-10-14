@@ -35,9 +35,15 @@ static func get_frames(role: String) -> SpriteFrames:
 			var raster_image := Image.new()
 			if not raster_bytes.is_empty() and raster_image.load_webp_from_buffer(raster_bytes) == OK:
 				if raster_image.get_size() == Vector2i(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
-					var raster_texture := ImageTexture.create_from_image(raster_image)
-					if raster_texture != null:
-						return _create_frames(role, raster_texture)
+					# D148: a source atlas may have empty alpha in an otherwise valid cell.
+					# Fill only missing frames before turning the image into a texture;
+					# never let an empty idle/walk/attack frame flicker on screen.
+					if not _repair_empty_deck_frames(raster_image, role):
+						push_warning("Deck Expansion raster atlas has an unrecoverable empty first frame: %s" % raster_path)
+					else:
+						var raster_texture := ImageTexture.create_from_image(raster_image)
+						if raster_texture != null:
+							return _create_frames(role, raster_texture)
 			push_warning("New Deck Expansion raster atlas failed validation, falling back to SVG: %s" % raster_path)
 		var svg_path := "%s%s_frames.svg" % [DECK_EXPANSION_DIR, role]
 		var svg_texture := load(svg_path) as Texture2D
@@ -73,6 +79,36 @@ static func get_frames(role: String) -> SpriteFrames:
 		return null
 
 	return _create_frames(role, atlas)
+
+
+# Only the explicitly authored (4/6/6/3/6) cells should be checked.
+# WebP can leave alpha=1 compression noise in otherwise transparent cells;
+# sample against a real visibility threshold, not alpha != 0.
+static func _deck_frame_visible(image: Image, column: int, row: int) -> bool:
+	var left := column * CELL_SIZE
+	var top := row * CELL_SIZE
+	for y in range(2, CELL_SIZE, 4):
+		for x in range(2, CELL_SIZE, 4):
+			if image.get_pixel(left + x, top + y).a > 0.12:
+				return true
+	return false
+
+
+static func _repair_empty_deck_frames(image: Image, role: String) -> bool:
+	var state_names := ["idle", "walk", "attack", "hit", "death"]
+	var state_counts := [4, 6, 6, 3, 6]
+	for row in range(state_names.size()):
+		var previous_valid := -1
+		for column in range(state_counts[row]):
+			if _deck_frame_visible(image, column, row):
+				previous_valid = column
+				continue
+			if previous_valid < 0:
+				return false
+			var source := image.get_region(Rect2i(previous_valid * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+			image.blit_rect(source, Rect2i(0, 0, CELL_SIZE, CELL_SIZE), Vector2i(column * CELL_SIZE, row * CELL_SIZE))
+			push_warning("Repaired transparent %s %s frame %d with previous visible pose." % [role, state_names[row], column])
+	return true
 
 static func get_static_texture(role: String) -> Texture2D:
 	var frames := get_frames(role)
