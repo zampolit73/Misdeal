@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+card_id = "echo_crypt"
+title = "СКЛЕП ОТЗВУКОВ"
+card_text = "На двери склепа темнеет знак: такой же, как на Лунной печати. Внутри кто-то оставил выбор."
+wizard_line = "— Мёртвые умеют считать. Особенно когда им задолжали."
+type_label = "СОБЫТИЕ"
+tier = 1
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
+art_path = "res://assets/pixel/card_unification_v1/run/gravedigger_shop.webp"
+prototype_result_text = ""
