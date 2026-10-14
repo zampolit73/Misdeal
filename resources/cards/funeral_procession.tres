@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+card_id = "funeral_procession"
+title = "ПОГРЕБАЛЬНАЯ ПРОЦЕССИЯ"
+card_text = "В грязи вязнет гроб, а за ним тянется служитель запретного обряда. Его молитва обещает мёртвым вторую попытку."
+wizard_line = "Похороны по правилам? Нет, у моего жреца другие договорённости."
+type_label = "БОЙ"
+tier = 1
+resolution_type = "combat"
+target_path = "res://resources/encounters/funeral_procession.tres"
+art_path = "res://assets/pixel/card_unification_v1/run/funeral_procession.webp"
+prototype_result_text = ""
