@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+unit_name = "Погребальный распорядитель"
+visual_role = "mourning_sexton"
+max_hp = 102.0
+damage = 5.0
+attack_interval = 1.60
+attack_range = 114.0
+minimum_range = 62.0
+move_speed = 52.0
+body_radius = 20.0
+separation_padding = 12.0
+separation_strength = 110.0
+visual_scale = 1.0
+show_enemy_name = true
