@@ -1,3 +1,7 @@
+> **SUPERSEDED 2026-10-14 — DO NOT IMPLEMENT THIS BELL VARIANT.** User rejected overlap with existing Grave Bellkeeper. The accepted and only active D151 is **Funeral Procession** (`funeral_procession` / `funeral_priest` / `LastRiteController`); all old Mourning Bell/Grave Toll draft source was deleted. Read [`DECK_EXPANSION_D151_FUNERAL_PROCESSION.md`](DECK_EXPANSION_D151_FUNERAL_PROCESSION.md) before continuing. The 33-card run remains unchanged; gameplay and art still gated.
+
+---
+
 # D151 — Mourning Bell / Похоронный звон — gated implementation
 
 Date: 2026-10-14. Status: **source/gameplay controller + isolated Godot smoke created; art sheet and native F6 QA PENDING; NOT in live Act1 pool**.
