@@ -12,6 +12,7 @@ const ATLAS_SIZE := Vector2i(576, 480)
 var actors: Array[AnimatedSprite2D] = []
 var mode_label: Label
 var errors: Array[String] = []
+var clipped_frames: Dictionary = {}
 
 
 func _ready() -> void:
@@ -57,11 +58,19 @@ func _ready() -> void:
 		_make_label("ПОГРЕБАЛЬНЫЙ ЖРЕЦ" if index == 0 else "ГРОБОНОСЕЦ",
 			Vector2(actor.position.x - 130, 474), Vector2(260, 32), 17, Color("#dfb77e"))
 
-	mode_label = _make_label("Пять состояний: отдельные прозрачные кадры", Vector2(46, 539), Vector2(1180, 35), 17, Color("#ddd3c4"))
+	var priest_cut: int = int(clipped_frames.get("funeral_priest", 0))
+	var bearer_cut: int = int(clipped_frames.get("pallbearer", 0))
+	if priest_cut > 0 or bearer_cut > 0:
+		_make_label("АРТ НЕ ГОТОВ: выход за края ячеек — жрец %d/25, гробоносец %d/25. Ноги и края обрезаны." % [priest_cut, bearer_cut],
+			Vector2(35, 511), Vector2(1170, 46), 16, Color("#e79b79"))
+	else:
+		_make_label("Проверка границ кадров пройдена — анимации требуют визуальной приёмки.",
+			Vector2(35, 511), Vector2(1170, 44), 15, Color("#9dc7a8"))
+	mode_label = _make_label("Пять состояний: отдельные прозрачные кадры", Vector2(46, 556), Vector2(1180, 35), 17, Color("#ddd3c4"))
 	for i in range(STATES.size()):
 		var button := Button.new()
 		button.text = STATES[i].to_upper()
-		button.position = Vector2(102 + 218 * i, 600)
+		button.position = Vector2(102 + 218 * i, 613)
 		button.size = Vector2(188, 48)
 		button.pressed.connect(_select_state.bind(STATES[i]))
 		add_child(button)
@@ -105,6 +114,8 @@ func _load_actor(role: String) -> SpriteFrames:
 			var cell := image.get_region(region)
 			if not _has_visible_pixels(cell):
 				errors.append("%s %s кадр %d пуст" % [role, state, column + 1])
+			if _touches_cell_edge(cell):
+				clipped_frames[role] = int(clipped_frames.get(role, 0)) + 1
 			var tile := ImageTexture.create_from_image(cell)
 			frames.add_frame(state, tile)
 	return frames
@@ -117,6 +128,23 @@ func _has_visible_pixels(cell: Image) -> bool:
 			if cell.get_pixel(x, y).a > 0.24:
 				count += 1
 	return count > 16
+
+
+# Detect actual clipping in the authored source atlas, not viewer positioning.
+# Dense alpha on 2px cell borders means limbs/coffin/cloak are truncated.
+func _touches_cell_edge(cell: Image) -> bool:
+	var border_count := 0
+	for pixel in range(CELL_SIZE):
+		for margin in range(2):
+			if cell.get_pixel(pixel, margin).a > 0.25:
+				border_count += 1
+			if cell.get_pixel(pixel, CELL_SIZE - 1 - margin).a > 0.25:
+				border_count += 1
+			if cell.get_pixel(margin, pixel).a > 0.25:
+				border_count += 1
+			if cell.get_pixel(CELL_SIZE - 1 - margin, pixel).a > 0.25:
+				border_count += 1
+	return border_count > 8
 
 
 func _select_state(state: String) -> void:
