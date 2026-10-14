@@ -115,8 +115,8 @@ func _validate_resources() -> void:
 		errors.append("Original 1+2 roster is not preserved")
 	if ENCOUNTER.get_formation_count() != 2 or ENCOUNTER.alternate_enemy_positions.size() != 3:
 		errors.append("Expected two authored formations with the same roster")
-	if RunState.ACT1_CARD_IDS.size() != 31 or not RunState.ACT1_CARD_IDS.has("bone_shepherd"):
-		errors.append("Act 1 card registration should be 31, not a placeholder")
+	if RunState.ACT1_CARD_IDS.size() != 33 or not RunState.ACT1_CARD_IDS.has("bone_shepherd"):
+		errors.append("Act 1 card registration should be 33 with both D149 events included")
 	var art := ART_CATALOG.get_run_card_texture("bone_shepherd")
 	if art == null or art.get_size() != Vector2(448, 274):
 		errors.append("Original card illustration is missing/incorrect")
