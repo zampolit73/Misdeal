@@ -1,3 +1,9 @@
+## D146 VISUAL REDIRECTION — 2026-10-14 (NOT implemented yet)
+
+User rejected the D145 Bone Shepherd/Lamb SVG sprites and card illustration as inconsistent with established cards. Inspected approved run art `bone_patrol.webp`, `bone_swarm.webp`, `grave_crossfire.webp` and combat atlases Knight/Bone Warden. D146 requires painterly full-bleed card art and truly detailed 25-frame animated unit atlases; generated pixel-art UI/pose boards are only reference experiments and **not** production-ready art. DO NOT claim this art has been shipped or accepted. No runtime assets/code changed under D146, prior 31-card pool + Whistle untouched, post-hotfix 54/54 F6 still pending. Full brief: `docs/DECK_EXPANSION_D146_ART_REWORK.md`.
+
+---
+
 ## NEXT-CHAT CONTINUITY — 2026-10-14
 
 **Full verified handoff:** [`docs/NEXT_CHAT_HANDOFF.md`](NEXT_CHAT_HANDOFF.md). This is the self-contained restart document; read it together with `AGENTS.md`, the current GitHub tree and this state file. **Latest implementation:** D145 3 enhanced Bone Shepherd / Lamb / card SVG assets; D144 smoke parser hotfix; **updated live Godot art gallery and 54/54 smoke NOT yet rerun by user**. No new source changes in this handoff-only checkpoint. User can open a fresh chat immediately without repeating history.
