@@ -10,8 +10,9 @@ const ROWS := 5
 const BASE_DIR := "res://assets/pixel/units/combat_units_anim_v2/"
 const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/"
 const DECK_EXPANSION_DIR := "res://assets/pixel/units/deck_expansion_v1/"
-const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb"]
-const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb"]
+const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer"]
+const D151_ROLES := ["funeral_priest", "pallbearer"]
+const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer"]
 
 static var _frames_cache: Dictionary = {}
 static var _unavailable: Dictionary = {}
@@ -38,13 +39,22 @@ static func get_frames(role: String) -> SpriteFrames:
 					# D148: a source atlas may have empty alpha in an otherwise valid cell.
 					# Fill only missing frames before turning the image into a texture;
 					# never let an empty idle/walk/attack frame flicker on screen.
-					if not _repair_empty_deck_frames(raster_image, role):
-						push_warning("Deck Expansion raster atlas has an unrecoverable empty first frame: %s" % raster_path)
+					var frames_valid := false
+					if D151_ROLES.has(role):
+						# D151 must have all 25 independently authored nontransparent frames.
+						# Unlike the already-shipped D147 atlas, never synthesize missing poses.
+						frames_valid = _all_authored_deck_frames_visible(raster_image)
 					else:
+						frames_valid = _repair_empty_deck_frames(raster_image, role)
+					if frames_valid:
 						var raster_texture := ImageTexture.create_from_image(raster_image)
 						if raster_texture != null:
 							return _create_frames(role, raster_texture)
-			push_warning("New Deck Expansion raster atlas failed validation, falling back to SVG: %s" % raster_path)
+			push_warning("Deck Expansion animation atlas absent, invalid or has empty frames: %s" % raster_path)
+		if D151_ROLES.has(role):
+			# The new enemy does not borrow old SVG or enemy art on failure.
+			_unavailable[role] = true
+			return null
 		var svg_path := "%s%s_frames.svg" % [DECK_EXPANSION_DIR, role]
 		var svg_texture := load(svg_path) as Texture2D
 		if svg_texture == null or svg_texture.get_size() != Vector2(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
@@ -92,6 +102,17 @@ static func _deck_frame_visible(image: Image, column: int, row: int) -> bool:
 			if image.get_pixel(left + x, top + y).a > 0.12:
 				return true
 	return false
+
+
+# Only 25 used cells are expected to contain original artwork. Empty cells
+# are a hard failure for these new roles instead of repeating neighbouring poses.
+static func _all_authored_deck_frames_visible(image: Image) -> bool:
+	var state_counts := [4, 6, 6, 3, 6]
+	for row in range(state_counts.size()):
+		for col in range(state_counts[row]):
+			if not _deck_frame_visible(image, col, row):
+				return false
+	return true
 
 
 static func _repair_empty_deck_frames(image: Image, role: String) -> bool:
