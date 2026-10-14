@@ -5,10 +5,12 @@ extends RefCounted
 # This file contains no gameplay or UI layout changes.
 const ROOT := "res://assets/pixel/card_unification_v1"
 
+// D147: approved full-bleed raster takes priority; keep legacy SVG as a safe fallback.
 const BONE_SHEPHERD_CARD_SVG := "res://assets/pixel/card_unification_v1/run/bone_shepherd.svg"
 
 const RUN_CARDS := {
 	"bone_patrol": "run/bone_patrol.webp",
+	"bone_shepherd": "run/bone_shepherd.webp",
 	"graveyard_ambush": "run/graveyard_ambush.webp",
 	"gallows_volley": "run/gallows_volley.webp",
 	"whispering_well": "run/whispering_well.webp",
@@ -41,6 +43,9 @@ static var _texture_cache: Dictionary = {}
 
 static func get_run_texture(card_id: String) -> Texture2D:
 	if card_id == "bone_shepherd":
+		var approved_raster := _get_texture(RUN_CARDS, card_id, Vector2i(448, 274))
+		if approved_raster != null:
+			return approved_raster
 		if not _texture_cache.has(BONE_SHEPHERD_CARD_SVG):
 			var unique_art := load(BONE_SHEPHERD_CARD_SVG) as Texture2D
 			if unique_art == null or unique_art.get_size() != Vector2(448, 274):
