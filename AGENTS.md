@@ -2,7 +2,7 @@
 
 ## New-chat bootstrap
 
-**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D149 paired noncombat events user-tested (33-card Act 1 pool); D150 original Moon Seal/Echo Crypt WebPs are in GitHub and displayed in user's Godot F6 screenshot (explicit user aesthetic approval still pending); Bone Shepherd native 54/54 smoke passed. Next: continue new cards only under D143 new-enemy requirement, and complete the full combat→reward→table QA.
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 new `mourning_bell` / original-enemy `GraveTollController` prototype exists behind strict no-registration art gate; isolated `scenes/dev/grave_toll_smoke.tscn` F6 is pending. D150 original card art verified in Godot, pool remains 33/45, D148 Shepherd native 54/54 smoke passed. GitHub connector is available and should be used directly without re-requesting permission.
 
 GitHub is the source of truth for the current technical state of Misdeal.
 
