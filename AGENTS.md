@@ -2,7 +2,7 @@
 
 ## New-chat bootstrap
 
-**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession / Last Rite user-confirmed isolated Godot F6 **PASS**; resource and 1+2 mechanic validated, but the combat card remains unregistered until its original card WebP and both authentic 25-frame enemy animation atlases are ready and reviewed. Current Act 1 pool still 33/45, D148 Shepherd 54/54 passed. GitHub connector is available; use it without asking.
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession new original 448×274 card illustration and two 25-frame 576×480 transparent animation atlases **committed directly to GitHub**; F6 `funeral_procession_art_preview.tscn` pending user visual QA, Last Rite isolated smoke already PASS. The card is still NOT in the 33/45 Act1 pool; do not wire production combat until art/encounter QA. GitHub connector works; implement directly without asking for access.
 
 GitHub is the source of truth for the current technical state of Misdeal.
 
