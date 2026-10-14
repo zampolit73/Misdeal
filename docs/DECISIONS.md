@@ -2411,3 +2411,11 @@ Date: 2026-10-15
 Status: code and smoke regression committed; native Godot recheck pending
 
 The D151 V2 `funeral_priest` and `pallbearer` art is authored facing **left**, unlike legacy right-facing unit art. A screenshot in full prebattle revealed both new enemies were inadvertently flipped *away* from the player by the global `BattleUnit` convention. Preserve original Godot assets and combat AI; correct this with a **role-scoped source-facing override**, applied both in initial side-facing and dynamic target-facing. All other roles retain the prior flip behavior. Add a smoke assertion for both D151 roles and the older Knight/Skeleton. Do not consider the live D151 integration accepted until Godot playtest and 54-fight smoke are re-run. See `docs/DECK_EXPANSION_D151_ART_QA.md`.
+
+
+## D157 — Release Funeral Procession as the 34th Act 1 card
+
+Date: 2026-10-15  
+Status: user acceptance reported; GitHub source released, post-release native smoke pending
+
+After D151's authentic 448×274 card art, original 25-frame Funeral Priest / Pallbearer sprites, isolated Last Rite smoke PASS, real-battle integration and role-specific facing fix, the user replied «все ок» to the latest D151 playtest/smoke check request. Ship Tier1 `funeral_procession` into `RunState.ACT1_CARD_IDS` as nonboss card **34** (goal 45) and update existing fixed deck-count smoke assertions. Do not misrepresent that brief confirmation as a new 54/54 screenshot, independently measured win rates or fully verified reward navigation. Preserve 12 resolved cards + sealed boss XIII, existing Grave Bellkeeper and approved art, solo/duo multipliers, previous mechanics and cards. Recheck the newly updated D151 54-combat smoke under local Godot after `git pull`; adjust only defects if discovered. Next 11 expansion cards must follow D143, requiring completely original enemies for each new combat encounter. See `docs/DECK_EXPANSION_D151_FUNERAL_PROCESSION.md`.
