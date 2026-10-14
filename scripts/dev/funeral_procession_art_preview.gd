@@ -40,7 +40,9 @@ func _ready() -> void:
 	for index in range(ROLES.size()):
 		var role: String = ROLES[index]
 		var actor := AnimatedSprite2D.new()
-		actor.position = Vector2(715 + index * 272, 346)
+		# Repacked D151 frames are bottom-aligned to y=90 in the 96px cell.
+		# At 2.10x scale this lands the feet on the y=442 gallery guide.
+		actor.position = Vector2(715 + index * 272, 354)
 		actor.scale = Vector2(2.10, 2.10)
 		actor.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		actor.flip_h = true
