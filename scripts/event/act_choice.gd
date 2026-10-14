@@ -114,6 +114,28 @@ func _apply_approved_choice_art() -> void:
 	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
 	var arts: Array[TextureRect] = [choice_art_a, choice_art_b, choice_art_c]
 
+	if active_card.card_id == "moon_seal":
+		_apply_choice_texture_set(
+			buttons, arts,
+			[
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("occult_card"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("coins"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("blood"),
+			]
+		)
+		return
+
+	if active_card.card_id == "echo_crypt":
+		_apply_choice_texture_set(
+			buttons, arts,
+			[
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("cursed_relic"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("coins"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("occult_card"),
+			]
+		)
+		return
+
 	if active_card.card_id == "curse_forge":
 		var artifact_ids := ["dead_mans_shield", "blind_quiver", "cracked_focus"]
 		var textures: Array = []
@@ -742,6 +764,10 @@ func _animate_choice_cards_in() -> void:
 
 func _configure_card() -> void:
 	match active_card.card_id:
+		"moon_seal":
+			_configure_moon_seal()
+		"echo_crypt":
+			_configure_echo_crypt()
 		"ash_rest":
 			_configure_ash_rest()
 		"gravedigger_shop":
@@ -776,6 +802,39 @@ func _configure_card() -> void:
 			push_warning("Unsupported act choice card: %s" % active_card.card_id)
 			leave_button.text = "ВЕРНУТЬСЯ К СТОЛУ"
 			_set_choices_visible(false)
+
+
+
+# D149: two stand-alone noncombat choices with a conditional event-outcome echo.
+# They share the established DS2 event cards; no enemy rosters or combat here.
+func _configure_moon_seal() -> void:
+	choice_a.text = "СОХРАНИТЬ ПЕЧАТЬ\n\n+10 золота\nСклеп запомнит знак"
+	choice_b.text = "ПРОДАТЬ ПЕЧАТЬ\n\n+30 золота"
+	choice_c.text = "СЖЕЧЬ СИГИЛ\n\nУрон отряда +1\nЗдоровье отряда -10"
+	leave_button.text = "ОСТАВИТЬ В ЧАШЕ"
+	choice_a.pressed.connect(_resolve_moon_seal.bind("keep"))
+	choice_b.pressed.connect(_resolve_moon_seal.bind("sell"))
+	choice_c.pressed.connect(_resolve_moon_seal.bind("burn"))
+
+
+func _configure_echo_crypt() -> void:
+	var remembered: bool = RunState.get_event_outcome("moon_seal") == "kept"
+	var relics_available: bool = not RunState.get_available_artifact_ids().is_empty()
+	if not relics_available:
+		choice_a.text = "ПУСТОЙ РЕЛИКВАРИЙ\n\n+35 золота вместо реликвии"
+	else:
+		choice_a.text = ("ОТКРЫТЬ ПЕЧАТЬЮ\n\nРеликвия бесплатно" if remembered
+			else "ВСКРЫТЬ ГРОБ\n\nРеликвия\nЗдоровье отряда -15")
+	choice_b.text = ("ВЗЯТЬ ПОДНОШЕНИЯ\n\n+40 золота" if remembered
+		else "ВЗЯТЬ ПОДНОШЕНИЯ\n\n+25 золота")
+	choice_c.text = ("СЛУШАТЬ ОТЗВУК\n\nУрон отряда +1.5\nЗдоровье отряда -5" if remembered
+		else "СЛУШАТЬ ОТЗВУК\n\nУрон отряда +1.5\nЗдоровье отряда -15")
+	if remembered:
+		wizard_line.text = "— Неужели ты сохранил печать? Что ж, склеп умеет ценить вежливость."
+	leave_button.text = "ЗАКРЫТЬ СКЛЕП"
+	choice_a.pressed.connect(_resolve_echo_crypt.bind("relic"))
+	choice_b.pressed.connect(_resolve_echo_crypt.bind("gold"))
+	choice_c.pressed.connect(_resolve_echo_crypt.bind("listen"))
 
 
 func _configure_ash_rest() -> void:
@@ -1509,6 +1568,57 @@ func _resolve_rattling_bridge(choice: String) -> void:
 		"careful":
 			_finish("Вы переходите мост медленно и скучно. Даже волшебник зевает.")
 
+
+func _resolve_moon_seal(choice: String) -> void:
+	if resolved:
+		return
+	match choice:
+		"keep":
+			RunState.gold += 10
+			RunState.set_event_outcome("moon_seal", "kept")
+			_finish("Вы прячете серебряную печать и находите под ней 10 золотых. Камень запомнит ваш выбор.")
+		"sell":
+			RunState.gold += 30
+			RunState.set_event_outcome("moon_seal", "sold")
+			RunState.record_wizard_memory("greed", "moon_seal")
+			_finish("Монета исчезает в руке Волшебника. Получено 30 золота.")
+		"burn":
+			RunState.party_hp_bonus -= 10.0
+			RunState.party_damage_bonus += 1.0
+			RunState.set_event_outcome("moon_seal", "burned")
+			_finish("Печать становится пеплом: урон отряда +1, здоровье отряда -10.")
+
+
+func _resolve_echo_crypt(choice: String) -> void:
+	if resolved:
+		return
+	var remembered: bool = RunState.get_event_outcome("moon_seal") == "kept"
+	match choice:
+		"relic":
+			var artifact_id: String = RunState.add_random_available_artifact()
+			RunState.set_event_outcome("echo_crypt", "opened")
+			if artifact_id.is_empty():
+				RunState.gold += 35
+				_finish("Реликварий пуст. Вы находите 35 золота, и склеп отпускает вас.")
+			else:
+				if not remembered:
+					RunState.party_hp_bonus -= 15.0
+				var artifact := RunState.get_artifact(artifact_id)
+				var cost_text := "Печать открыла дверь без крови." if remembered else "Открытие стоило 15 здоровья."
+				_finish("%s Получена реликвия: %s." % [cost_text, artifact.title])
+		"gold":
+			var gain: int = 40 if remembered else 25
+			RunState.gold += gain
+			RunState.set_event_outcome("echo_crypt", "gold")
+			_finish("Вы собираете подношения. Получено %d золота." % gain)
+		"listen":
+			var hp_cost: float = 5.0 if remembered else 15.0
+			RunState.party_hp_bonus -= hp_cost
+			RunState.party_damage_bonus += 1.5
+			RunState.set_event_outcome("echo_crypt", "listened")
+			_finish("Шёпот учит наносить удар: урон отряда +1.5, здоровье отряда -%d." % int(hp_cost))
+
+
 func _resolve_lost_purse(choice: String) -> void:
 	if resolved:
 		return
@@ -1572,6 +1682,12 @@ func _resolve_leave() -> void:
 		return
 
 	match active_card.card_id:
+		"moon_seal":
+			RunState.set_event_outcome("moon_seal", "left")
+			_finish("Лунная печать остаётся в чаше. Вы ничего не берёте.")
+		"echo_crypt":
+			RunState.set_event_outcome("echo_crypt", "left")
+			_finish("Вы запираете склеп и оставляете его тайны нетронутыми.")
 		"ash_rest":
 			_finish("Вы оставляете пепел остывать. Волшебник выглядит разочарованным.")
 		"gravedigger_shop":
