@@ -45,7 +45,8 @@ func _ready() -> void:
 		actor.position = Vector2(715 + index * 272, 354)
 		actor.scale = Vector2(2.10, 2.10)
 		actor.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		actor.flip_h = true
+		# D151 source frames already face left toward the opposing hero side.
+		actor.flip_h = false
 		actor.sprite_frames = _load_actor(role)
 		add_child(actor)
 		actors.append(actor)
