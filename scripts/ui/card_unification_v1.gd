@@ -11,6 +11,8 @@ const BONE_SHEPHERD_CARD_SVG := "res://assets/pixel/card_unification_v1/run/bone
 const RUN_CARDS := {
 	"bone_patrol": "run/bone_patrol.webp",
 	"bone_shepherd": "run/bone_shepherd.webp",
+	# D151 candidate; not dealt until both original enemy atlases pass native F6 review.
+	"funeral_procession": "run/funeral_procession.webp",
 	# D150: two original painterly 448x274 scene illustrations.
 	"moon_seal": "run/moon_seal.webp",
 	"echo_crypt": "run/echo_crypt.webp",
