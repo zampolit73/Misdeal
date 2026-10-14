@@ -21,6 +21,9 @@ const FLOOR_CONTACT_Y := 36.0
 # Keep the static v4 path as fallback when a frame atlas is missing or invalid.
 # The redesigned blue Knight uses actual leg-readable SpriteFrames.
 const STATIC_COMBAT_ART_ROLES: Array[String] = []
+# D151 authored sprites face LEFT at source; legacy/unit art faces RIGHT.
+# Only these original Funeral Procession roles invert the usual flip rule.
+const SOURCE_FACES_LEFT_ROLES: Array[String] = ["funeral_priest", "pallbearer"]
 const ROLE_FLOOR_OFFSETS := {
 	"knight": -8.0,
 	"ranger": -6.0,
@@ -230,9 +233,8 @@ func _ready() -> void:
 	else:
 		art_sprite.texture = _get_art_texture()
 	rim_sprite.texture = art_sprite.texture
-	# Source v4 miniatures look toward screen-right. Enemy units must
-	# face the heroes on the left, not outward toward the arena edge.
-	art_sprite.flip_h = team == 1
+	# Preserve default team-facing even for D151 art authored toward screen-left.
+	_set_facing_left(team == 1)
 	rim_sprite.flip_h = art_sprite.flip_h
 	# Preserve pixel silhouettes; scale only the art, not physics or hitboxes.
 	var sprite_scale: float = BOSS_DISPLAY_SCALE if is_boss else (HERO_DISPLAY_SCALE if team == 0 else ENEMY_DISPLAY_SCALE)
@@ -991,6 +993,12 @@ func _update_idle_visual(delta: float) -> void:
 		base_sprite_scale.y * breathe
 	)
 
+func _set_facing_left(face_left: bool) -> void:
+	# Visual-only: all existing actors were authored facing right; D151 faces left.
+	# XOR keeps combat targeting unchanged while correcting both preview and battle.
+	art_sprite.flip_h = face_left != SOURCE_FACES_LEFT_ROLES.has(visual_role)
+
+
 func _update_unit_facing() -> void:
 	# Keep the default side-on battle composition during deployment;
 	# during combat, turn toward the living current target.
@@ -999,7 +1007,7 @@ func _update_unit_facing() -> void:
 	if combat_started and target != null and is_instance_valid(target) and target.alive:
 		var delta_x := target.global_position.x - global_position.x
 		if absf(delta_x) > 12.0:
-			art_sprite.flip_h = delta_x < 0.0
+			_set_facing_left(delta_x < 0.0)
 
 
 func _sync_rim_visual() -> void:
