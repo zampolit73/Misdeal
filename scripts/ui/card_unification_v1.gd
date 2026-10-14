@@ -11,9 +11,9 @@ const BONE_SHEPHERD_CARD_SVG := "res://assets/pixel/card_unification_v1/run/bone
 const RUN_CARDS := {
 	"bone_patrol": "run/bone_patrol.webp",
 	"bone_shepherd": "run/bone_shepherd.webp",
-	# D149 provisional matching Wave1 art. Dedicated painterly files replace aliases in later art pass.
-	"moon_seal": "run/whispering_well.webp",
-	"echo_crypt": "run/gravedigger_shop.webp",
+	# D150: two original painterly 448x274 scene illustrations.
+	"moon_seal": "run/moon_seal.webp",
+	"echo_crypt": "run/echo_crypt.webp",
 	"graveyard_ambush": "run/graveyard_ambush.webp",
 	"gallows_volley": "run/gallows_volley.webp",
 	"whispering_well": "run/whispering_well.webp",
@@ -56,6 +56,13 @@ static func get_run_texture(card_id: String) -> Texture2D:
 				return null
 			_texture_cache[BONE_SHEPHERD_CARD_SVG] = unique_art
 		return _texture_cache[BONE_SHEPHERD_CARD_SVG] as Texture2D
+	if card_id == "moon_seal" or card_id == "echo_crypt":
+		var event_scene := _get_texture(RUN_CARDS, card_id, Vector2i(448, 274))
+		if event_scene != null:
+			return event_scene
+		# Missing/invalid binary art must not break an event's card UI.
+		var fallback_id := "whispering_well" if card_id == "moon_seal" else "gravedigger_shop"
+		return _get_texture(RUN_CARDS, fallback_id, Vector2i(448, 274))
 	var explicit_card := _get_texture(RUN_CARDS, card_id, Vector2i(448, 274))
 	if explicit_card != null:
 		return explicit_card
