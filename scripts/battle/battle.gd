@@ -10,6 +10,9 @@ const TARGET_PREVIEW_SCRIPT := preload("res://scripts/battle/target_preview.gd")
 const DEPLOYMENT_FLOOR_SCRIPT := preload("res://scripts/battle/deployment_floor_markers.gd")
 const SHEPHERD_WHISTLE_SCRIPT := preload("res://scripts/battle/bone_shepherd_whistle.gd")
 const SHEPHERD_WHISTLE_DATA: BoneShepherdWhistleData = preload("res://resources/encounters/bone_shepherd_whistle.tres")
+# D151: encounter-local necromantic ritual, never active in other fights.
+const LAST_RITE_SCRIPT := preload("res://scripts/battle/last_rite.gd")
+const LAST_RITE_DATA: LastRiteData = preload("res://resources/encounters/last_rite.tres")
 
 # Local to UnitsLayer (screen offset 20,96). Keep unit feet on the
 # actual stone floor, below the architectural horizon and above the HUD.
@@ -90,6 +93,7 @@ var side_objective_failed := false
 var first_enemy_death_seen := false
 var combat_elapsed := 0.0
 var shepherd_whistle_controller: BoneShepherdWhistleController
+var last_rite_controller: LastRiteController
 var target_preview: BattleTargetPreview
 var deployment_floor_markers: Node2D
 
@@ -265,6 +269,27 @@ func _spawn_encounter() -> void:
 		_spawn_unit(enemy_data, 1, enemy_spawn_positions[index], enemy_name)
 
 	_setup_bone_shepherd_whistle()
+	_setup_funeral_procession_rite()
+
+
+func _setup_funeral_procession_rite() -> void:
+	if encounter.encounter_id != "funeral_procession":
+		return
+	var priest: BattleUnit
+	var bearers: Array[BattleUnit] = []
+	for unit in units:
+		if unit.team != 1:
+			continue
+		if unit.visual_role == "funeral_priest":
+			priest = unit
+		elif unit.visual_role == "pallbearer":
+			bearers.append(unit)
+	if priest == null or bearers.size() != 2:
+		push_error("Funeral Procession requires one original priest and two pallbearers.")
+		return
+	last_rite_controller = LAST_RITE_SCRIPT.new() as LastRiteController
+	units_layer.add_child(last_rite_controller)
+	last_rite_controller.configure(priest, bearers, LAST_RITE_DATA)
 
 
 func _setup_bone_shepherd_whistle() -> void:
@@ -521,6 +546,8 @@ func _begin_preparation_phase() -> void:
 		status_label.text = "ЭЛИТА — страж бьёт по площади. Разведите героев и не стойте плотной группой."
 	elif encounter.encounter_id == "grave_bell":
 		status_label.text = "МОГИЛЬНЫЙ ЗВОН — звонарь лечит нежить. «ОХОТА» помогает быстрее добраться до поддержки."
+	elif encounter.encounter_id == "funeral_procession":
+		status_label.text = "ПОГРЕБАЛЬНАЯ ПРОЦЕССИЯ — жрец готовит «Последний обряд». Пока он жив, павший гробоносец может подняться ещё раз. Прервите ритуал!"
 	elif encounter.encounter_id == "bone_crush":
 		status_label.text = "КОСТЯНАЯ ДАВКА — РАЗДЕЛЁННАЯ РАССТАНОВКА. Две полосы, пять хрупких целей."
 	elif encounter.encounter_id == "ossuary_gate":
@@ -873,6 +900,8 @@ func _on_fight_pressed() -> void:
 	combat_live = true
 	if shepherd_whistle_controller != null:
 		shepherd_whistle_controller.start_whistle()
+	if last_rite_controller != null:
+		last_rite_controller.start_rite()
 
 func _hide_preparation_hud() -> void:
 	bottom_hud_panel.visible = false
@@ -1097,6 +1126,8 @@ func _on_last_deal_refuse_pressed() -> void:
 func _finish_battle(player_won: bool) -> void:
 	if shepherd_whistle_controller != null:
 		shepherd_whistle_controller.stop_whistle()
+	if last_rite_controller != null:
+		last_rite_controller.stop_rite()
 	battle_finished = true
 	combat_live = false
 	if target_preview != null:
@@ -1140,6 +1171,8 @@ func _finish_battle(player_won: bool) -> void:
 			result_subtitle.text = "Склеп открыт. Внутри осталось кое-что ценное."
 		elif encounter.encounter_id == "grave_bell":
 			result_subtitle.text = "Колокол наконец замолчал."
+		elif encounter.encounter_id == "funeral_procession":
+			result_subtitle.text = "Жрец пал. На этот раз похороны окончательные."
 		elif encounter.encounter_id == "ossuary_gate":
 			result_subtitle.text = "Последние врата перед надзирателем открыты."
 		else:
