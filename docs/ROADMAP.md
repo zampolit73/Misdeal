@@ -1,3 +1,14 @@
+## D146 PRIORITY — Visual parity before new cards (2026-10-14)
+
+- [x] User explicitly rejects current D145 flat SVG Shepherd/Lamb/card presentation. Audit approved `bone_patrol`, `bone_swarm`, `grave_crossfire` and Knight/Bone Warden atlas; identify cinematic/painterly vs flat/vector quality gap.
+- [x] Freeze additional deck expansion and document exact independent asset requirements in `docs/DECK_EXPANSION_D146_ART_REWORK.md`.
+- [ ] Create and show **true full-bleed 448×274** Bone Shepherd art at approved card quality (no card border/text/UI), get user visual review.
+- [ ] Create distinct **genuinely animated 25-frame** detailed transparent 576×480 Shepherd and Lamb atlases, compare real battle size with approved units; obtain visual approval.
+- [ ] Replace only the relevant live paths/loader after artwork is validated; Godot F6 `bone_shepherd_art_preview.tscn`, `bone_shepherd_playtest.tscn`, `bone_shepherd_smoke.tscn` 54/54; verify full reward return.
+- [ ] Resume other 14 planned cards ONLY after Card01 art and runtime QA passes; D142 tactical tuning separate.
+
+---
+
 ## NEXT-CHAT PRIORITY — 2026-10-14
 
 **Canonical complete project handoff:** [`docs/NEXT_CHAT_HANDOFF.md`](NEXT_CHAT_HANDOFF.md). The **next action remains local Godot QA**, not an unapproved second card: user `git pull` → F6 `bone_shepherd_art_preview.tscn` (all five animation states) → F6 `bone_shepherd_smoke.tscn` (**54/54 PASS still unconfirmed**) → F6 `bone_shepherd_playtest.tscn` (visual matching, Whistle, reward return). Read the checkpoint if new chat has no context. D142 separate tactical balance proposal not implemented; 14 more cards not shipped.
