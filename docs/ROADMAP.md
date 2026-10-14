@@ -1,3 +1,9 @@
+## NEXT-CHAT PRIORITY — 2026-10-14
+
+**Canonical complete project handoff:** [`docs/NEXT_CHAT_HANDOFF.md`](NEXT_CHAT_HANDOFF.md). The **next action remains local Godot QA**, not an unapproved second card: user `git pull` → F6 `bone_shepherd_art_preview.tscn` (all five animation states) → F6 `bone_shepherd_smoke.tscn` (**54/54 PASS still unconfirmed**) → F6 `bone_shepherd_playtest.tscn` (visual matching, Whistle, reward return). Read the checkpoint if new chat has no context. D142 separate tactical balance proposal not implemented; 14 more cards not shipped.
+
+---
+
 ## D145 Bone Shepherd artwork quality pass — 2026-10-14
 
 - [x] User accepted art polish rather than adding more placeholder cards. Three live original SVG art resources **updated in place in GitHub**: detailed cloth/bone/lantern Shepherd 25-frame sheet, detailed ram ribs/hooves/horns Lamb 25-frame sheet and richer gothic moonlit graveyard 448×274 card illustration. Existing frame grid, encounter creature silhouettes, no old sprite reuse, new Whistle/combat gameplay and DS2/Fate Spread layout unchanged.
