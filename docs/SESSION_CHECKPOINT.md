@@ -1,3 +1,9 @@
+## NEWEST — 2026-10-14 — D146 user-rejected flat art; rebuild to approved card/units
+
+The user explicitly stopped additional card/content work: D145 SVG card and enemy sprites **do not match the accepted visuals**. Inspected actual approved WebP cards `bone_patrol`, `bone_swarm`, `grave_crossfire` and existing Knight/Bone Warden animation atlases. Approved card art is richly painted moonlit dark fantasy, NOT simple vector or boxed pixel-art UI concept. Generate real standalone 448×274 full-bleed illustration and two authentic 25-frame 576×480 creature sprites with original 1 Shepherd+2 Lambs identity. Four new generated multi-panel pose/reference boards were **not production assets**, not approved, not committed. **NO live textures, card/gameplay logic or resource links replaced under D146.** User art QA before switch. Details: `docs/DECK_EXPANSION_D146_ART_REWORK.md`; `docs/DECISIONS.md` D146. Previous D145 visual QA and post-fix 54/54 still outstanding; 31 cards and old Whistle unchanged.
+
+---
+
 ## NEWEST — 2026-10-14 — Session frozen for new chat; entire context preserved
 
 **Read first:** [`docs/NEXT_CHAT_HANDOFF.md`](NEXT_CHAT_HANDOFF.md) — full current code/art/file inventory, D143–D145 decisions, initial Godot screenshots, repaired smoke parser error, prior measured v24/v25 tactical baselines, unresolved tests, and exact next F6 actions. User explicitly asked to copy the entire context to GitHub and make a fresh chat start at this exact point. **No additional gameplay/art changes in this final checkpoint** beyond prior committed D145 artwork. Act1 currently 31-card pool (only Bone Shepherd +1 of proposed +15); 12+XIII unchanged. Latest DS2 D145 SVG post-redraw has **no** live Godot screenshot; new 54-combat smoke after parser fix has **no** PASS. Do not skip these validations or claim approval. After user `git pull`, ask for three F6 scene results rather than repeating design; fix any errors in GitHub directly.
