@@ -2419,3 +2419,11 @@ Date: 2026-10-15
 Status: user acceptance reported; GitHub source released, post-release native smoke pending
 
 After D151's authentic 448×274 card art, original 25-frame Funeral Priest / Pallbearer sprites, isolated Last Rite smoke PASS, real-battle integration and role-specific facing fix, the user replied «все ок» to the latest D151 playtest/smoke check request. Ship Tier1 `funeral_procession` into `RunState.ACT1_CARD_IDS` as nonboss card **34** (goal 45) and update existing fixed deck-count smoke assertions. Do not misrepresent that brief confirmation as a new 54/54 screenshot, independently measured win rates or fully verified reward navigation. Preserve 12 resolved cards + sealed boss XIII, existing Grave Bellkeeper and approved art, solo/duo multipliers, previous mechanics and cards. Recheck the newly updated D151 54-combat smoke under local Godot after `git pull`; adjust only defects if discovered. Next 11 expansion cards must follow D143, requiring completely original enemies for each new combat encounter. See `docs/DECK_EXPANSION_D151_FUNERAL_PROCESSION.md`.
+
+
+## D158 — Validate freed unit references before typed GDScript coercion
+
+Date: 2026-10-15  
+Status: D151 smoke fix committed; native recheck pending
+
+In Godot 4.7, a previously freed `BattleUnit` cannot be passed into `_is_valid_target(candidate: BattleUnit)` safely: GDScript rejects the argument before `is_instance_valid()` inside the function can run. Use `candidate: Variant`, check `is_instance_valid(candidate)` first and `candidate is BattleUnit` second, then read `alive/team`. Isolated smoke-fixture nodes processed manually must use immediate `free()` **after** each completed simulation, rather than delayed `queue_free()` plus awaiting `process_frame` (which may leave old `combat_units` visible to next fixture). This specifically fixes the real user-reported `funeral_procession_smoke.tscn` crash; preserve normal production arena lifecycle and combat stats. Keep a destroyed-target reproduction in the smoke. User must re-run Godot before calling matrix PASS. Full checkpoint in `docs/NEXT_CHAT_HANDOFF.md`.
