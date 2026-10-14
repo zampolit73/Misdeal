@@ -2,7 +2,7 @@
 
 ## New-chat bootstrap
 
-**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession V2 art explicitly approved by user. Last Rite isolated F6 PASS. Real `battle.gd` integration and two new test scenes `funeral_procession_playtest.tscn` and `funeral_procession_smoke.tscn` staged in main, **not yet tested in Godot**. Card only in RunState CARD_PATHS, NOT ACT1_CARD_IDS; deal pool remains **33/45** until 54-case combat and real reward→table QA. Read current `docs/DECK_EXPANSION_D151_FUNERAL_PROCESSION.md`. GitHub connected, implement directly without access questions.
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession V2 sprites user-approved, isolated Last Rite PASS. Actual battle playtest screenshot showed both D151 enemies facing backwards; targeted `BattleUnit` source-facing override for `funeral_priest`/`pallbearer` and facing regression now committed. Godot retest of `funeral_procession_playtest.tscn` plus `funeral_procession_smoke.tscn` (54 cases) pending. Card is lookup-only, NOT dealt yet; Act1 remains 33/45. GitHub connected; fix through repo without repeated access questions.
 
 GitHub is the source of truth for the current technical state of Misdeal.
 
