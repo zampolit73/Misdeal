@@ -5,7 +5,7 @@ extends RefCounted
 # This file contains no gameplay or UI layout changes.
 const ROOT := "res://assets/pixel/card_unification_v1"
 
-// D147: approved full-bleed raster takes priority; keep legacy SVG as a safe fallback.
+# D147: approved full-bleed raster takes priority; keep legacy SVG as a safe fallback.
 const BONE_SHEPHERD_CARD_SVG := "res://assets/pixel/card_unification_v1/run/bone_shepherd.svg"
 
 const RUN_CARDS := {
