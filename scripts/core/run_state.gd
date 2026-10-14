@@ -79,6 +79,8 @@ const HERO_UPGRADE_PATHS := {
 const CARD_PATHS := {
 	"bone_patrol": "res://resources/cards/bone_patrol.tres",
 	"bone_shepherd": "res://resources/cards/bone_shepherd.tres",
+	"moon_seal": "res://resources/cards/moon_seal.tres",
+	"echo_crypt": "res://resources/cards/echo_crypt.tres",
 	"graveyard_ambush": "res://resources/cards/graveyard_ambush.tres",
 	"whispering_well": "res://resources/cards/whispering_well.tres",
 	"ash_rest": "res://resources/cards/ash_rest.tres",
@@ -114,6 +116,7 @@ const CARD_PATHS := {
 const ACT1_CARD_IDS := [
 	"bone_patrol",
 	"bone_shepherd",
+	"moon_seal",
 	"graveyard_ambush",
 	"whispering_well",
 	"ash_rest",
@@ -123,6 +126,7 @@ const ACT1_CARD_IDS := [
 	"candle_seller",
 	"gallows_volley",
 	"grave_bell",
+	"echo_crypt",
 	"bone_crush",
 	"black_altar",
 	"chained_prisoner",
