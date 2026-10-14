@@ -2403,3 +2403,11 @@ Date: 2026-10-15
 Status: D151 original unit art accepted by user; real battle staging implemented, native battle certification pending
 
 The user explicitly approved the V2 rebuilt 25-frame pixel-art atlases of `funeral_priest` and `pallbearer` after the cut-off-legs issue was fixed. Freeze those **current** approved atlases and D151 original card artwork unless a new concrete visual defect appears. Release strategy: reuse the tested `LastRiteController` **only** in the `funeral_procession` combat encounter; wire it to normal battle lifecycle with explicit cleanup, not to the old Grave Bellkeeper or Bone Shepherd. Make the card selectable only through `RunState.CARD_PATHS` in isolated developer tests while production `ACT1_CARD_IDS` remains **33**. New F6 real battle and 54-case real-unit matrix must be run locally, and the ordinary reward→table route verified before adding `funeral_procession` as the **34th** dealt Act 1 card. Previously passed standalone Last Rite smoke is not proof of live integration, or balance. Full current state and paths: `docs/DECK_EXPANSION_D151_FUNERAL_PROCESSION.md`.
+
+
+## D156 — Role-scoped source facing for D151 character atlases
+
+Date: 2026-10-15  
+Status: code and smoke regression committed; native Godot recheck pending
+
+The D151 V2 `funeral_priest` and `pallbearer` art is authored facing **left**, unlike legacy right-facing unit art. A screenshot in full prebattle revealed both new enemies were inadvertently flipped *away* from the player by the global `BattleUnit` convention. Preserve original Godot assets and combat AI; correct this with a **role-scoped source-facing override**, applied both in initial side-facing and dynamic target-facing. All other roles retain the prior flip behavior. Add a smoke assertion for both D151 roles and the older Knight/Skeleton. Do not consider the live D151 integration accepted until Godot playtest and 54-fight smoke are re-run. See `docs/DECK_EXPANSION_D151_ART_QA.md`.
