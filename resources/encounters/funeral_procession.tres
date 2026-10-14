@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+encounter_id = "funeral_procession"
+title = "ПОГРЕБАЛЬНАЯ ПРОЦЕССИЯ"
+card_text = "Из тумана выходит погребальный жрец с кадилом и запретным гримуаром. Два гробоносца тащат его реликварий. Остановите обряд, пока павшие не вернулись."
+wizard_line = "Мёртвых редко зовут по имени. Зато жрец помнит каждого."
+arena_id = "graveyard"
+enemy_unit_paths = PackedStringArray("res://resources/units/funeral_priest.tres", "res://resources/units/pallbearer.tres", "res://resources/units/pallbearer.tres")
+enemy_names = PackedStringArray("Погребальный жрец", "Гробоносец", "Гробоносец")
+enemy_positions = PackedVector2Array(1035, 269, 862, 175, 855, 345)
+alternate_enemy_positions = PackedVector2Array(1060, 290, 862, 241, 969, 356)
+formation_hint = "ПОГРЕБАЛЬНЫЙ ОБРЯД — носильщики прикрывают жреца. Прервите ритуал, пока он не завершён."
+alternate_formation_hint = "КОСОЙ КАТАФАЛК — носильщики идут уступом, а жрец держится в тылу."
