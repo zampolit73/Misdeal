@@ -2331,3 +2331,11 @@ Date: 2026-10-14
 Status: approved visual direction, loader implemented; binary delivery and runtime QA pending
 
 The user selected the **first** of the two last generated wide cinematic cemetery compositions (generation `46ed7a48-538d-4e5c-bd0f-27a0c41a7bbf`) for the `bone_shepherd` card, matching the previously approved DS2 painterly dark-fantasy standard. Keep the card as a 448×274 standalone full-bleed illustration without embedded title or UI. Two distinct 25-pose 576×480 raster animation atlases (Shepherd/Lamb) were prepared from earlier separately generated pose sheets, pending full live engine validation. Production art loaders prefer the new WebP and `.webp.b64` filenames but **fall back to D145 SVG when binary files are absent/invalid**. The binary assets remain external to GitHub until the accompanying verified one-click ZIP installer copies and pushes them from the user's Godot clone. No alteration to encounters, enemies, Whistle, battle, RunState, or frozen previous art. Godot F6 54/54 and visual signoff remain mandatory.
+
+
+## D148 — Guard against missing D147 animation frames; fix GDScript parser
+
+Date: 2026-10-14  
+Status: code hotfix committed; Godot native QA pending
+
+D147 added invalid C-style `//` comment in `scripts/ui/card_unification_v1.gd`, which breaks preload of `card_art_catalog.gd` (art preview and smoke). Fix is the standard GDScript `#` comment. User confirmed new enemies render in battle, but Shepherd idle flickers invisible due to authored source atlas idle fourth cell being transparent. Handle transparent authored frame defensively within D147-specific raster loader, substituting the most recent visible pose in same animation row. Preserve raw art, old SVG fallback, new original 1+2 roster, global UI, Whistle and other units. User F6 acceptance not yet confirmed; fixing the missing source pose may be a later quality polish.
