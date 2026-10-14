@@ -2,6 +2,8 @@
 
 ## New-chat bootstrap
 
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — complete last-session status, D143–D145 Deck Expansion, 54-fight QA pending, older tactical statistics, exact next F6 steps, verified GitHub paths. Read it before resuming implementation; keep it current after meaningful work.
+
 GitHub is the source of truth for the current technical state of Misdeal.
 
 At the start of a new chat, before proposing architecture or code changes, read:
