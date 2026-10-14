@@ -1,8 +1,8 @@
 extends Control
 
 # D151 art QA only. Reads explicit staged candidate assets, never joins Act1 deck.
-const ROOT := "res://assets/pixel/deck_expansion_d151_candidates/"
-const CARD_FILE := ROOT + "funeral_procession.webp"
+const CARD_FILE := "res://assets/pixel/card_unification_v1/run/funeral_procession.webp"
+const ATLAS_DIR := "res://assets/pixel/units/deck_expansion_v1/"
 const ROLES := ["funeral_priest", "pallbearer"]
 const STATES := ["idle", "walk", "attack", "hit", "death"]
 const COUNTS := [4, 6, 6, 3, 6]
@@ -82,7 +82,7 @@ func _load_card() -> Texture2D:
 
 
 func _load_actor(role: String) -> SpriteFrames:
-	var path := ROOT + role + "_frames.webp.b64"
+	var path := ATLAS_DIR + role + "_frames.webp.b64"
 	if not FileAccess.file_exists(path):
 		errors.append("нет атласа " + role)
 		return null
