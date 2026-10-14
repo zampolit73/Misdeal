@@ -1,3 +1,10 @@
+## 2026-10-14 — Project-wide current-session GitHub handoff
+
+- Wrote comprehensive [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md): current GitHub source/asset paths, 31-card Act1 pool, D143/D144/D145 rules/status, all three F6 test scenes, previous parser fix, pending **54/54** post-fix smoke, pending **D145 art in-engine screenshot**, previous D139–D141 actual CSV diagnostics, unapproved D142 follow-up and remaining Deck Expansion scope.
+- Linked the file from `AGENTS.md`, `PROJECT_STATE.md`, `ROADMAP.md`, `SESSION_CHECKPOINT.md`, and `HANDOFF.md` for immediate discovery in the next chat. **Documentation-only continuity pass** — no new gameplay, visuals, balancing, art approvals or engine test results claimed.
+
+---
+
 ## 2026-10-14 — D145 Bone Shepherd artwork quality refinement (gameplay unchanged)
 
 - Reworked actual `assets/pixel/units/deck_expansion_v1/bone_shepherd_frames.svg` with 25 separately detailed pixel-shape animation frames, dark-fantasy layered cloth texture, old bronze fittings, skeletal mask/ribs, moonlit paint shadows and a small lantern on crooked staff.
