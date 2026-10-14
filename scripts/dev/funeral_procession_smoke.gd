@@ -161,13 +161,9 @@ func _validate_facing() -> void:
 		if not enemy.art_sprite.flip_h:
 			errors.append("D151 enemy failed to turn toward target on right: " + data.visual_role)
 		hero.position.x = 260.0
-		legacy_facing_reset(enemy)
+		enemy.target = null
+		enemy.combat_started = false
 	arena.queue_free()
-
-
-func legacy_facing_reset(enemy: BattleUnit) -> void:
-	enemy.target = null
-	enemy.combat_started = false
 
 
 func _make_unit(arena: Node2D, data: UnitData, team: int, pos: Vector2, tactic: String) -> BattleUnit:
