@@ -2,7 +2,7 @@
 
 ## New-chat bootstrap
 
-**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession V2 sprites user-approved, isolated Last Rite PASS. Actual battle playtest screenshot showed both D151 enemies facing backwards; targeted `BattleUnit` source-facing override for `funeral_priest`/`pallbearer` and facing regression now committed. Godot retest of `funeral_procession_playtest.tscn` plus `funeral_procession_smoke.tscn` (54 cases) pending. Card is lookup-only, NOT dealt yet; Act1 remains 33/45. GitHub connected; fix through repo without repeated access questions.
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession (original priest + two pallbearers, Last Rite, approved 25-frame art and corrected facing) has been added to the normal Act1 pool as card **34/45**. User said «все ок» after the facing hotfix; post-release local 54-case smoke is still worth re-running, no independent 54/54 result claimed. Fixed-count smoke assertions now expect 34 cards. 12+XIII per run unchanged. GitHub connected: implement directly without repeated access questions.
 
 GitHub is the source of truth for the current technical state of Misdeal.
 
