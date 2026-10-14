@@ -43,7 +43,8 @@ static func get_frames(role: String) -> SpriteFrames:
 					if D151_ROLES.has(role):
 						# D151 must have all 25 independently authored nontransparent frames.
 						# Unlike the already-shipped D147 atlas, never synthesize missing poses.
-						frames_valid = _all_authored_deck_frames_visible(raster_image)
+						# Reject edge-cropped actor poses even when every cell has alpha.
+						frames_valid = _all_authored_deck_frames_visible(raster_image) and _all_authored_deck_frames_padded(raster_image)
 					else:
 						frames_valid = _repair_empty_deck_frames(raster_image, role)
 					if frames_valid:
@@ -111,6 +112,33 @@ static func _all_authored_deck_frames_visible(image: Image) -> bool:
 	for row in range(state_counts.size()):
 		for col in range(state_counts[row]):
 			if not _deck_frame_visible(image, col, row):
+				return false
+	return true
+
+
+# D151 quality gate: native 96px cells must contain the *whole* actor.
+# A frame with opaque pixels crowding the first/last two columns or rows
+# has probably lost hands, boots, cloak or coffin at the cell boundary.
+# This rule is intentionally opt-in for new unpublished D151 enemy roles.
+static func _all_authored_deck_frames_padded(image: Image) -> bool:
+	var state_counts := [4, 6, 6, 3, 6]
+	for row in range(state_counts.size()):
+		for col in range(state_counts[row]):
+			var left := col * CELL_SIZE
+			var top := row * CELL_SIZE
+			var border_pixels := 0
+			for pixel in range(CELL_SIZE):
+				for margin in range(2):
+					if image.get_pixel(left + pixel, top + margin).a > 0.25:
+						border_pixels += 1
+					if image.get_pixel(left + pixel, top + CELL_SIZE - 1 - margin).a > 0.25:
+						border_pixels += 1
+					if image.get_pixel(left + margin, top + pixel).a > 0.25:
+						border_pixels += 1
+					if image.get_pixel(left + CELL_SIZE - 1 - margin, top + pixel).a > 0.25:
+						border_pixels += 1
+			if border_pixels > 8:
+				push_warning("Unshipped D151 art needs full-size frames: cropped at %d:%d" % [row, col])
 				return false
 	return true
 
