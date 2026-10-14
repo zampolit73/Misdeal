@@ -2,7 +2,7 @@
 
 ## New-chat bootstrap
 
-**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession (original priest + two pallbearers, Last Rite, approved 25-frame art and corrected facing) has been added to the normal Act1 pool as card **34/45**. User said «все ок» after the facing hotfix; post-release local 54-case smoke is still worth re-running, no independent 54/54 result claimed. Fixed-count smoke assertions now expect 34 cards. 12+XIII per run unchanged. GitHub connected: implement directly without repeated access questions.
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — Act1 currently 34/45 cards including D151 Funeral Procession with approved art/Last Rite/facing. **Latest native D151 54-fight smoke FAILED**: a previously freed `BattleUnit` crashed `_is_valid_target()` because the parameter was typed. Patched to `Variant` with validity/type checks; smoke arena cleanup switched to immediate `free()` and a freed-target regression was added. Commits are in main, **Godot F6 retest still pending**, do not claim 54/54 PASS. No gameplay/art changes. GitHub connected; use it directly.
 
 GitHub is the source of truth for the current technical state of Misdeal.
 
