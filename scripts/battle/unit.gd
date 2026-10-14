@@ -1307,6 +1307,48 @@ func _show_damage_number(amount: float, strong_hit: bool = false) -> void:
 	float_tween.tween_property(damage_label, "modulate:a", 0.0, duration)
 	float_tween.chain().tween_callback(damage_label.queue_free)
 
+# D151: only the new encounter's original pallbearer is resurrectable.
+# The controller guarantees a single revival per encounter; this method only
+# restores this individual Unit's state (including its interrupted death tween).
+func revive_from_grave_toll(hp_fraction: float) -> bool:
+	if alive or team != 1 or visual_role != "pallbearer":
+		return false
+	if death_tween != null and death_tween.is_valid():
+		death_tween.kill()
+	if hit_pulse_tween != null and hit_pulse_tween.is_valid():
+		hit_pulse_tween.kill()
+	if attack_tween != null and attack_tween.is_valid():
+		attack_tween.kill()
+	attack_animating = false
+	alive = true
+	combat_started = true
+	hp = maxf(1.0, max_hp * clampf(hp_fraction, 0.10, 1.0))
+	health_bar.visible = true
+	health_bar.value = hp
+	name_label.visible = show_enemy_name
+	modulate = Color.WHITE
+	art_sprite.modulate = base_art_modulate
+	art_sprite.rotation = 0.0
+	art_sprite.scale = base_sprite_scale
+	art_sprite.position = _art_rest_position()
+	scale = Vector2.ONE
+	frame_state = "idle"
+	frame_time = 0.0
+	frame_one_shot_time = 0.0
+	walk_hold_timer = 0.0
+	visual_moving = false
+	hit_flash_time = 0.0
+	hit_stop_time = 0.0
+	hit_kick_offset = Vector2.ZERO
+	target = null
+	attack_cooldown = 0.45
+	target_refresh_cooldown = 0.0
+	if sprite_frames != null and sprite_frames.get_frame_count("idle") > 0:
+		art_sprite.texture = sprite_frames.get_frame_texture("idle", 0)
+	queue_redraw()
+	return true
+
+
 func _die() -> void:
 	alive = false
 	_play_frame_one_shot("death")
