@@ -2339,3 +2339,11 @@ Date: 2026-10-14
 Status: code hotfix committed; Godot native QA pending
 
 D147 added invalid C-style `//` comment in `scripts/ui/card_unification_v1.gd`, which breaks preload of `card_art_catalog.gd` (art preview and smoke). Fix is the standard GDScript `#` comment. User confirmed new enemies render in battle, but Shepherd idle flickers invisible due to authored source atlas idle fourth cell being transparent. Handle transparent authored frame defensively within D147-specific raster loader, substituting the most recent visible pose in same animation row. Preserve raw art, old SVG fallback, new original 1+2 roster, global UI, Whistle and other units. User F6 acceptance not yet confirmed; fixing the missing source pose may be a later quality polish.
+
+
+## D149 — Connected, noncombat Act 1 events before another original-enemy encounter
+
+Date: 2026-10-14
+Status: source implemented in GitHub main; Godot QA and unique artwork pending
+
+User accepted the detailed D147 Bone Shepherd visual/card presentation in local Godot 1280×720 screenshots after D148 54/54 PASS and requested to continue. Add two tightly scoped **noncombat** choices into the Act1 pool: Tier0 `moon_seal` (keep/sell/burn/leave a silver seal) and Tier1 `echo_crypt` (open/gold/listen/leave, with better terms if the seal was kept). The events use existing generic Act Choice DS2 styling, RunState event outcomes, no hidden guarantee that the second event is drawn, and no new combat, forced enemies, party-size or battle AI changes. Pool grows 31→33, exactly 12 resolved + Bone Warden XIII unchanged. Do NOT count thematic references to a crypt as a new combat encounter. **Visually the source presently uses approved reused WebPs as provisional fallbacks, not original D149 production-art illustrations.** Both own 448×274 painterly illustrations remain a mandatory art polish gate, maintaining the Bone Shepherd D147 quality bar; never redraw existing Wave1 assets to achieve it. Godot F6 new preview and real return route still need local QA. Design and full effects: `docs/DECK_EXPANSION_D149_EVENT_DUO.md`. D143 remains absolute for future new fight-bearing cards with original enemy types/behaviors/art.
