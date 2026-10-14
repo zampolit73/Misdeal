@@ -2323,3 +2323,11 @@ Date: 2026-10-14
 Status: accepted requirement; art implementation pending
 
 User explicitly rejected the current D145 flat SVG Shepherd/Lamb animation art and card image: they do not match the visual standard of previously approved Misdeal cards and units. A palette match or pixel-art concept sheet alone is insufficient. Rework the **standalone cinematic painterly 448×274 card art** against approved `bone_patrol`, `bone_swarm`, `grave_crossfire`, and re-author **genuine 25-frame/5-state 576×480 combat unit atlases** with comparable material and silhouette quality to existing Knight/Bone Warden animation packs. Preserve approved DS2/Fate Spread and 1 Shepherd+2 Lambs encounter, Whistle and gameplay. Do not import concept sheets, text baked into card images, or a static single pose disguised as animation. **Do not switch live texture sources until standalone asset review and Godot QA.** Detailed art contract: `docs/DECK_EXPANSION_D146_ART_REWORK.md`.
+
+
+## D147 — First Bone Shepherd art approved; raster animation delivery
+
+Date: 2026-10-14  
+Status: approved visual direction, loader implemented; binary delivery and runtime QA pending
+
+The user selected the **first** of the two last generated wide cinematic cemetery compositions (generation `46ed7a48-538d-4e5c-bd0f-27a0c41a7bbf`) for the `bone_shepherd` card, matching the previously approved DS2 painterly dark-fantasy standard. Keep the card as a 448×274 standalone full-bleed illustration without embedded title or UI. Two distinct 25-pose 576×480 raster animation atlases (Shepherd/Lamb) were prepared from earlier separately generated pose sheets, pending full live engine validation. Production art loaders prefer the new WebP and `.webp.b64` filenames but **fall back to D145 SVG when binary files are absent/invalid**. The binary assets remain external to GitHub until the accompanying verified one-click ZIP installer copies and pushes them from the user's Godot clone. No alteration to encounters, enemies, Whistle, battle, RunState, or frozen previous art. Godot F6 54/54 and visual signoff remain mandatory.
