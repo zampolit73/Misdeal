@@ -52,6 +52,11 @@ func _run_matrix() -> void:
 	if errors.is_empty():
 		_validate_facing()
 	if errors.is_empty():
+		# Flush queued fixture cleanup before the destroyed-target regression.
+		await get_tree().process_frame
+		_validate_freed_target()
+	if errors.is_empty():
+		await get_tree().process_frame
 		for formation in range(2):
 			for protagonist in range(3):
 				for size in range(1, 4):
@@ -163,6 +168,33 @@ func _validate_facing() -> void:
 		hero.position.x = 260.0
 		enemy.target = null
 		enemy.combat_started = false
+	arena.queue_free()
+
+
+# Reproduce the original Godot crash: a typed target reference survives
+# the unit's immediate free(), then a different unit's _process() validates it.
+# This should clear/replace the stale reference, not trigger a type error.
+func _validate_freed_target() -> void:
+	var arena := Node2D.new()
+	arena.visible = false
+	add_child(arena)
+	var knight_data := load("res://resources/units/knight.tres") as UnitData
+	var bearer_data := load("res://resources/units/pallbearer.tres") as UnitData
+	if knight_data == null or bearer_data == null:
+		errors.append("Freed-target regression cannot load original units")
+		arena.queue_free()
+		return
+	var hero := _make_unit(arena, knight_data, 0, Vector2(260, 350), "assault")
+	var victim := _make_unit(arena, bearer_data, 1, Vector2(820, 350), "assault")
+	hero.start_combat()
+	hero.target = victim
+	victim.free()
+	if hero._is_valid_target(hero.target):
+		errors.append("A freed BattleUnit must never count as a valid target")
+	# This line used to stop execution in _is_valid_target's typed argument.
+	hero._process(STEP)
+	if hero.target != null and not is_instance_valid(hero.target):
+		errors.append("Hero continued to hold a freed combat target")
 	arena.queue_free()
 
 
