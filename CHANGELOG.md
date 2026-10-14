@@ -1,3 +1,11 @@
+## 2026-10-14 — D146 Bone Shepherd visual parity requirements (docs only)
+
+- User rejected D145 flat SVG Shepherd/Lamb animation and new card art; visually audited against approved painterly run cards and detailed Knight/Bone Warden combat sprites.
+- Added `docs/DECK_EXPANSION_D146_ART_REWORK.md` with original-enemy, dimensions, full-frame animation and visual approval gates; refreshed handoff, roadmap, art registry and decision log.
+- Concept generation experiments were not production assets. No actual card/sprite, runtime loading, gameplay, Whistle, scale or previously approved artwork changed in this documentation checkpoint. 54/54 native Godot QA still pending.
+
+---
+
 ## 2026-10-14 — Project-wide current-session GitHub handoff
 
 - Wrote comprehensive [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md): current GitHub source/asset paths, 31-card Act1 pool, D143/D144/D145 rules/status, all three F6 test scenes, previous parser fix, pending **54/54** post-fix smoke, pending **D145 art in-engine screenshot**, previous D139–D141 actual CSV diagnostics, unapproved D142 follow-up and remaining Deck Expansion scope.
