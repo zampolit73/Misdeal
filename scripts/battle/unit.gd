@@ -1307,10 +1307,10 @@ func _show_damage_number(amount: float, strong_hit: bool = false) -> void:
 	float_tween.tween_property(damage_label, "modulate:a", 0.0, duration)
 	float_tween.chain().tween_callback(damage_label.queue_free)
 
-# D151: only the new encounter's original pallbearer is resurrectable.
+# D151 revision: only a newly authored pallbearer can be raised by Last Rite.
 # The controller guarantees a single revival per encounter; this method only
 # restores this individual Unit's state (including its interrupted death tween).
-func revive_from_grave_toll(hp_fraction: float) -> bool:
+func revive_from_last_rite(hp_fraction: float) -> bool:
 	if alive or team != 1 or visual_role != "pallbearer":
 		return false
 	if death_tween != null and death_tween.is_valid():
