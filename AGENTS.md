@@ -2,7 +2,7 @@
 
 ## New-chat bootstrap
 
-**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession new original 448×274 card illustration and two 25-frame 576×480 transparent animation atlases **committed directly to GitHub**; F6 `funeral_procession_art_preview.tscn` pending user visual QA, Last Rite isolated smoke already PASS. The card is still NOT in the 33/45 Act1 pool; do not wire production combat until art/encounter QA. GitHub connector works; implement directly without asking for access.
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession Last Rite isolated test PASS, card art visually good, BUT both enemy atlases failed user's Godot art review: feet cut / neighbouring frames bleeding. Verified 50/50 authored 96px cells touch outer 2px border. GitHub preview shows ART NOT READY, strict D151 loader rejects clipped frames. **Do not activate the encounter**, redraw real full-body original 25-frame atlases and re-test in Godot. Pool remains 33/45. GitHub connector available; use it directly.
 
 GitHub is the source of truth for the current technical state of Misdeal.
 
