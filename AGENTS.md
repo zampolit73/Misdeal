@@ -2,7 +2,7 @@
 
 ## New-chat bootstrap
 
-**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 new `mourning_bell` / original-enemy `GraveTollController` prototype exists behind strict no-registration art gate; isolated `scenes/dev/grave_toll_smoke.tscn` F6 is pending. D150 original card art verified in Godot, pool remains 33/45, D148 Shepherd native 54/54 smoke passed. GitHub connector is available and should be used directly without re-requesting permission.
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — latest D151 user-approved **Funeral Procession / Last Rite** replaces rejected redundant Mourning Bell; new isolated resources and F6 `last_rite_smoke.tscn` in main, but NOT live until unique card/animation art is ready. 33-card pool unchanged, D148 Shepherd 54/54 PASS, D149 event flows and D150 original WebP gallery previously user-confirmed. GitHub connector is available; use it directly without asking again.
 
 GitHub is the source of truth for the current technical state of Misdeal.
 
