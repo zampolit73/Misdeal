@@ -139,7 +139,7 @@ func _validate_facing() -> void:
 	var old_enemy_data := load("res://resources/units/skeleton.tres") as UnitData
 	if hero_data == null or old_enemy_data == null:
 		errors.append("Facing QA fixture resources missing")
-		arena.queue_free()
+		arena.free()
 		return
 	var hero := _make_unit(arena, hero_data, 0, Vector2(260, 350), "assault")
 	var old_enemy := _make_unit(arena, old_enemy_data, 1, Vector2(820, 350), "assault")
@@ -168,7 +168,7 @@ func _validate_facing() -> void:
 		hero.position.x = 260.0
 		enemy.target = null
 		enemy.combat_started = false
-	arena.queue_free()
+	arena.free()
 
 
 # Reproduce the original Godot crash: a typed target reference survives
@@ -182,7 +182,7 @@ func _validate_freed_target() -> void:
 	var bearer_data := load("res://resources/units/pallbearer.tres") as UnitData
 	if knight_data == null or bearer_data == null:
 		errors.append("Freed-target regression cannot load original units")
-		arena.queue_free()
+		arena.free()
 		return
 	var hero := _make_unit(arena, knight_data, 0, Vector2(260, 350), "assault")
 	var victim := _make_unit(arena, bearer_data, 1, Vector2(820, 350), "assault")
@@ -195,7 +195,7 @@ func _validate_freed_target() -> void:
 	hero._process(STEP)
 	if hero.target != null and not is_instance_valid(hero.target):
 		errors.append("Hero continued to hold a freed combat target")
-	arena.queue_free()
+	arena.free()
 
 
 func _make_unit(arena: Node2D, data: UnitData, team: int, pos: Vector2, tactic: String) -> BattleUnit:
@@ -289,7 +289,10 @@ func _fight(formation: int, protagonist: int, size: int, tactic: String) -> Dict
 		"revives": controller.revive_count,
 		"furies": controller.fury_count}
 	controller.stop_rite()
-	(state["arena"] as Node2D).queue_free()
+	# All test units have manual processing disabled. Dispose immediately:
+	# queue_free() waits until the frame ends, leaking prior arena units into
+	# get_nodes_in_group("combat_units") for the next simulated encounter.
+	(state["arena"] as Node2D).free()
 	await get_tree().process_frame
 	if verdict.is_empty():
 		return {}
