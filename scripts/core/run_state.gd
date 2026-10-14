@@ -79,6 +79,8 @@ const HERO_UPGRADE_PATHS := {
 const CARD_PATHS := {
 	"bone_patrol": "res://resources/cards/bone_patrol.tres",
 	"bone_shepherd": "res://resources/cards/bone_shepherd.tres",
+	# D151: available to isolated F6 playtest, but not dealt in Act1 until full combat QA.
+	"funeral_procession": "res://resources/cards/funeral_procession.tres",
 	"moon_seal": "res://resources/cards/moon_seal.tres",
 	"echo_crypt": "res://resources/cards/echo_crypt.tres",
 	"graveyard_ambush": "res://resources/cards/graveyard_ambush.tres",
