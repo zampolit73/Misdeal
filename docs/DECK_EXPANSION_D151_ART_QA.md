@@ -1,3 +1,11 @@
+## D151 FRAME-CLIPPING BLOCKER — 2026-10-15 — GODOT SCREENSHOT + SOURCE AUDIT
+
+User ran real `funeral_procession_art_preview.tscn`: original card looks good, but both **Funeral Priest and Pallbearer have feet/lower silhouettes cut off**, with fragments of neighbouring cells visible. User explicitly asked whether legs should be visible: **yes** for Pallbearer; Priest has a ground-touching robe, but no rectangular truncation/bleed should show. Checking `funeral_priest_frames.webp` and `pallbearer_frames.webp` decoded from the committed `576×480` atlas confirms **50/50 authored 96×96 cells contain visible alpha in the outer 2px border (>8 opaque pixels)**. First Pallbearer idle cell has 85 nontransparent pixels in last 2 rows and 95 in right border, i.e. the figure is already cropped in source. Prior frame audit only tested empty/duplicate frames and missed this. **Do not claim D151 sprite art visually passed** or enable `funeral_procession` in the main 33-card pool.
+
+**Fixes already committed:** `scripts/dev/funeral_procession_art_preview.gd` now diagnoses per-role clipped-frame counts and shows **АРТ НЕ ГОТОВ** in F6 while retaining the source candidate for inspection. `scripts/battle/unit_animation_library.gd` has a D151-specific edge-margin validation rejecting these unfinished atlases before use, with no changes to old Bone Shepherd and other approved roles. The card image needs no change. **This is a safety gate, not a new fixed animation**: the currently committed 2 image binaries are still visually invalid and should be replaced with fully redrawn source actor poses, truly centered within 96px cells with 2+ px transparent margins all around, readable feet and grounded idle/walk, complete arms/coffin, no cross-cell bleed. Genuine 4/6/6/3/6 frames per role, avoid simple transforms or repeated poses. After creating replacement source, use exact 576×480 WebP base64 paths, run offline edge/alpha/uniqueness/baseline tests, then new Godot F6 preview and full combat QA. `Last Rite` isolated logic already PASS; no gameplay or 33-card pool change. **Do not ask user for another screenshot until source atlas artwork is actually corrected.**
+
+---
+
 # D151 — Funeral Procession: imported sprite atlases, awaiting in-engine art QA
 
 Date: 2026-10-15. Repository: `zampolit73/Misdeal` main.
