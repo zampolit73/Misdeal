@@ -12,5 +12,5 @@ type_label = "БОЙ"
 tier = 0
 resolution_type = "combat"
 target_path = "res://resources/encounters/bone_shepherd.tres"
-art_path = "res://assets/pixel/card_unification_v1/run/bone_shepherd.svg"
+art_path = "res://assets/pixel/card_unification_v1/run/bone_shepherd.webp"
 prototype_result_text = ""
