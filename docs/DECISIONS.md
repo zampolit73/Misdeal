@@ -2379,3 +2379,11 @@ Date: 2026-10-15
 Status: staged art binaries and isolated gallery in main; live battle and native visual QA pending
 
 Commit genuine original 576×480 25-frame/5-state transparent WebP animation atlases for `funeral_priest` and `pallbearer`, plus standalone 448×274 `funeral_procession` card art, directly through GitHub. Do **not** repurpose the earlier UI/label concept boards or existing Grave Bellkeeper/Bone Shepherd assets. The strict D151 animation loader rejects missing original frame cells rather than duplicating a neighbouring pose as the D148 Shepherd compatibility fix once did; local alpha/pose-difference audit passes but Godot motion/feet/clipping still requires F6. Add a standalone `funeral_procession_art_preview.tscn` to inspect all five animations at once. **Keep `funeral_procession` out of `RunState` and defer `battle.gd` hook until screenshot approval and original combat smoke**. Retain 33/45 registered cards, 12+XIII run, previous DS2 approved art and existing bell enemy. Production resources and QA evidence: `docs/DECK_EXPANSION_D151_ART_QA.md`.
+
+
+## D153 — Sprite atlas acceptance requires contained full-body silhouettes
+
+Date: 2026-10-15
+Status: QA requirement confirmed by user screenshot; quality gate implemented
+
+D151 Funeral Procession candidate sprite atlases were originally declared nonempty/unique, but the user correctly noticed **missing feet** in the actual Godot art gallery. Inspection of committed atlas pixels showed large alpha spans touching 96px cell borders in **all 50 used frames**, proving hard clipping and neighbouring-pose contamination. An idle screenshot cannot be accepted simply because animation plays or frames are different. The battle unit and its props must fit completely into the cell with transparent margins, a consistent grounded baseline, and distinct authored actions. No cropping repair by shrinking broken sprites, mirroring or repeating partial poses. D151-specific `MisdealUnitAnimationLibrary` margin check and gallery warning now reject the two offending candidate atlases; do not apply this new gate retroactively to previously approved art. D151 card remains unregistered, 33 Act1 cards unchanged, until replacement sprite sheets pass proper full-body QA in Godot. See `docs/DECK_EXPANSION_D151_ART_QA.md`.
