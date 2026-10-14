@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+encounter_id = "mourning_bell"
+title = "ПОХОРОННЫЙ ЗВОН"
+card_text = "Два гробоносца тащат останки к забытому колоколу. Погребальный распорядитель готовит звон, способный вернуть одного павшего носильщика."
+wizard_line = "Вот что мне нравится в похоронах: некоторые гости возвращаются."
+arena_id = "graveyard"
+enemy_unit_paths = PackedStringArray("res://resources/units/mourning_sexton.tres", "res://resources/units/pallbearer.tres", "res://resources/units/pallbearer.tres")
+enemy_names = PackedStringArray("Погребальный распорядитель", "Гробоносец", "Гробоносец")
+enemy_positions = PackedVector2Array(1035, 269, 862, 175, 855, 345)
+alternate_enemy_positions = PackedVector2Array(1060, 290, 862, 241, 969, 356)
+formation_hint = "ПОХОРОННАЯ ПРОЦЕССИЯ — гробоносцы защищают распорядителя. Убейте его до звона."
+alternate_formation_hint = "КОСОЙ КАТАФАЛК — носильщики идут уступом, распорядитель дальше в тылу."
