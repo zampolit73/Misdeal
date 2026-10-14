@@ -2,7 +2,7 @@
 
 ## New-chat bootstrap
 
-**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D149 paired noncombat events shipped (33-card pool, local F6 pending), D147/148 Bone Shepherd visual acceptance and native 54/54 smoke PASS, original artwork still needed for new events, and precise continuation tasks. Read it before resuming implementation; keep it current after meaningful work.
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D149 two new event choices user-tested in Godot (33-card pool); D150 two original 448×274 card art candidates and safe WebP loader/F6 scene committed, binary ZIP installer pending; D148 Shepherd local 54/54 smoke PASS. Read before further changes; GitHub is the source of truth.
 
 GitHub is the source of truth for the current technical state of Misdeal.
 
