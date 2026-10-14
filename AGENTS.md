@@ -2,7 +2,7 @@
 
 ## New-chat bootstrap
 
-**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession Last Rite isolated smoke PASS; both original D151 enemy atlases have been rebuilt/repacked in GitHub main after the user's clipped-feet report. All 50 authored frames now have clean 96px cell borders in offline QA; **Godot F6 art recheck is pending**, and the card remains OUT of live 33/45 pool. Next run `scenes/dev/funeral_procession_art_preview.tscn`, inspect 5 animations, then scoped combat integration after user acceptance. GitHub connected; change directly, don't ask for access.
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession V2 art explicitly approved by user. Last Rite isolated F6 PASS. Real `battle.gd` integration and two new test scenes `funeral_procession_playtest.tscn` and `funeral_procession_smoke.tscn` staged in main, **not yet tested in Godot**. Card only in RunState CARD_PATHS, NOT ACT1_CARD_IDS; deal pool remains **33/45** until 54-case combat and real reward→table QA. Read current `docs/DECK_EXPANSION_D151_FUNERAL_PROCESSION.md`. GitHub connected, implement directly without access questions.
 
 GitHub is the source of truth for the current technical state of Misdeal.
 
