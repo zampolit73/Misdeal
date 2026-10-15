@@ -10,4 +10,6 @@ export_presets.cfg
 Thumbs.db
 *.tmp
 *.swp
-\n# Local D152 PNG animation candidates; production artwork will use tracked WebP base64.\n/assets/local_previews/d152/\n
+
+# Local D152 PNG candidates (runtime uses tracked WebP/base64)
+/assets/local_previews/d152/
