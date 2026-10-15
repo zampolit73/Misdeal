@@ -22,9 +22,11 @@ func _ready() -> void:
 	details.add_theme_font_size_override("font_size", 20)
 	add_child(details)
 	_run_test()
+	if errors.is_empty():
+		_validate_dense_group_target()
 	headline.text = "D152 / LAB HAZARDS — PASS" if errors.is_empty() else "D152 / LAB HAZARDS — FAIL"
 	details.text = ("Телеграф, химические зоны, урон герою, гибель гомункула и очистка: PASS.\n"
-		+ "Это изолированная логика, не боевой баланс и не проверка артов.\n"
+		+ "Это изолированная логика, не боевой баланс и не проверка артов.\n"		+ "Проверен выбор химической зоны по плотной группе героев.\n"
 		+ "Карта ещё не в колоде.") if errors.is_empty() else "\n".join(errors)
 	details.add_theme_color_override("font_color", Color(0.65, 0.88, 0.65) if errors.is_empty() else Color(1.0, 0.4, 0.4))
 
@@ -78,4 +80,28 @@ func _run_test() -> void:
 	controller.stop_hazards()
 	if controller.running or not controller.zones.is_empty():
 		errors.append("Hazards not cleared after stop")
+	arena.free()
+
+
+# D152 local balance regression: clustered heroes, not merely the first
+# party member, should be selected as a warning target.
+func _validate_dense_group_target() -> void:
+	var arena := Node2D.new()
+	arena.visible = false
+	add_child(arena)
+	var leader: BattleUnit = _make_unit(arena, "res://resources/units/plague_alchemist.tres", 1, Vector2(900, 350))
+	var isolated: BattleUnit = _make_unit(arena, "res://resources/units/knight.tres", 0, Vector2(750, 350))
+	var grouped_a: BattleUnit = _make_unit(arena, "res://resources/units/ranger.tres", 0, Vector2(350, 350))
+	var grouped_b: BattleUnit = _make_unit(arena, "res://resources/units/mage.tres", 0, Vector2(390, 350))
+	if leader == null or isolated == null or grouped_a == null or grouped_b == null:
+		errors.append("Could not load grouped heroes for target-regression fixture")
+		arena.free()
+		return
+	var controller := HAZARDS.new() as LaboratoryHazardController
+	arena.add_child(controller)
+	controller.configure(leader, [], [isolated, grouped_a, grouped_b, leader])
+	var target_position: Vector2 = controller._choose_target_position()
+	if target_position.distance_to(grouped_a.position) > 0.1 and target_position.distance_to(grouped_b.position) > 0.1:
+		errors.append("Lab hazard failed to prioritize clustered heroes over the isolated frontline hero")
+	controller.stop_hazards()
 	arena.free()
