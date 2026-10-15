@@ -1,3 +1,9 @@
+## 2026-10-15 — D153 ORIGINAL SKELETAL STRINGS NATIVE F6 PASS
+
+User supplied Godot 4.7.2 screenshot of `res://scenes/dev/threadbare_theatre_smoke.tscn`: **D153 / SKELETAL STRINGS — PASS**. The scene explicitly reports passing original two-undead-types/two-formations data, **32% marionette protection within 285px**, range-severed bonds, immediate loss of protection on Puppeteer death, and cleanup restoring original damage multipliers. Godot debugger shows **0 errors** in this screenshot. This is **only the isolated encounter logic QA**, NOT animation approval, real battle wiring, theatre arena, real victory/reward/table or balance approval. D153 selected skeletal-theatre card artwork separately rendered in user Godot screenshots. The assistant now proceeds to original 25-frames-per-role unit animation production (puppeteer + bone marionette), then native gallery QA before battle integration. Active pool stays **35/45**, D153 NOT in CARD_PATHS nor ACT1_CARD_IDS; preserve D143/D167/D168, 12+sealed XIII, DS2 and all older encounters.
+
+---
+
 ## 2026-10-15 — D153 SELECTED SKELETAL THEATRE ART + ISOLATED THREAD MECHANIC STAGED (NATIVE QA PENDING)
 
 **User correction and approval:** all D153 marionettes must be **skeletal undead**, consistent with Misdeal's Act1, not wooden dolls. User chose the **third** shown image (ruined gothic puppet theatre under moonlight) and asked to continue. This satisfies D168 art-options-before-selection for this encounter. D153 new identities are `threadbare_puppeteer` (skeletal leader) and `bone_marionette` (two skeletal marionettes); NO reuse of old enemy atlas/roles. Both D152 original animation/card art already accepted and retained.
