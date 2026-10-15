@@ -1,3 +1,11 @@
+## D167 CARD SCENE RULE + D152 ENVIRONMENTAL ART CANDIDATE — 2026-10-15
+
+**Approved rule:** encounter card images must look like slices of Misdeal's dark-fantasy world, never character sprite showcases. Must include narrative environment, scale, shadows, volumetric atmosphere, approved DS2 restrained palette; UI and card text live in Godot, not the image. Canonical: `AGENTS.md` and `docs/DECISIONS.md` D167.
+
+**D152 visual candidate:** a new illustrated original alchemy workshop has been generated in this work session, with vaulted occult gothic laboratory architecture, suspended cages, green reaction vats, alchemical glassware, dark crimson drapery, liquid spills, a hooded Plague Alchemist and a crouched Homunculus both integrated into the scene. Prepared at 448×274 and visually inspected. **IMPORTANT: this candidate is NOT committed into GitHub runtime assets yet because the cross-tool byte transfer failed.** The live art remains the previous sprite-on-blurred-backdrop version under `assets/pixel/card_unification_v1/run/defiled_laboratory.webp.b64`. Preserve original art until transfer; use a versioned path for the new artwork and obtain user native F6 screenshot after changing the art loader. No mechanics, balance, cards or animation changes. The art can be re-generated from this scene description if conversation-local PNG is inaccessible in a fresh session.
+
+---
+
 ## D151 ART/RESOURCE QA — 2026-10-15
 
 User approved revised full-footprint `funeral_priest` and `pallbearer` (each 25 authored frames) and corrected left-facing source orientation. Godot F6 `funeral_procession_smoke.tscn` now **54/54 PASS**, confirms original 448×274 `funeral_procession` card and both 576×480 WebP animation atlases are loaded. The 54-case smoke does not certify every animation frame's artistic quality beyond prior user preview approval, nor normal reward transition or balance. Preserve accepted image binaries, palette and DS2 styling; no art assets changed in this QA-only update. `docs/DECK_EXPANSION_D151_FINAL_SMOKE_QA.md` is the dated acceptance reference.
