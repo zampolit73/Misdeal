@@ -81,7 +81,7 @@ const CARD_PATHS := {
 	"bone_shepherd": "res://resources/cards/bone_shepherd.tres",
 	# D151: original Tier1 Funeral Procession encounter.
 	"funeral_procession": "res://resources/cards/funeral_procession.tres",
-	# D152 QA-only: registered for F6 playtest, NOT in ACT1_CARD_IDS until original art and native acceptance.
+	# D152: original Tier1 Defiled Laboratory encounter, released after native 54-case challenge QA.
 	"defiled_laboratory": "res://resources/cards/defiled_laboratory.tres",
 	"moon_seal": "res://resources/cards/moon_seal.tres",
 	"echo_crypt": "res://resources/cards/echo_crypt.tres",
@@ -131,6 +131,7 @@ const ACT1_CARD_IDS := [
 	"gallows_volley",
 	"grave_bell",
 	"funeral_procession",
+	"defiled_laboratory",
 	"echo_crypt",
 	"bone_crush",
 	"black_altar",
