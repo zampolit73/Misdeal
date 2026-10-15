@@ -1,6 +1,6 @@
 extends Control
 
-# D151 source-only Last Rite regression: no registration in Act1 pool.
+# D151 Last Rite regression: the shipped card remains registered in Act1.
 # Uses real BattleUnit instances and the real ritual controller, not mocks.
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const LEADER: UnitData = preload("res://resources/units/funeral_priest.tres")
@@ -34,11 +34,11 @@ func _ready() -> void:
 
 
 func _check_all() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 33 or RunState.ACT1_CARD_IDS.has("funeral_procession"):
-		failures.append("Unfinished card must not be in the Act1 deal pool")
+	if RunState.ACT1_CARD_IDS.size() != 35 or not RunState.ACT1_CARD_IDS.has("funeral_procession") or not RunState.ACT1_CARD_IDS.has("defiled_laboratory"):
+		failures.append("The released D151 and D152 cards must be in the 35-card Act1 pool")
 	var card := load("res://resources/cards/funeral_procession.tres") as RunCardData
 	if card == null or card.card_id != "funeral_procession" or card.tier != 1 or card.resolution_type != "combat":
-		failures.append("Missing unregistered D151 card Resource")
+		failures.append("Missing released D151 card Resource")
 	if ENCOUNTER.get_formation_count() != 2 or ENCOUNTER.enemy_unit_paths.size() != 3:
 		failures.append("Expected two formations with one original leader + two original bearers")
 	if ENCOUNTER.enemy_unit_paths != PackedStringArray([
@@ -61,7 +61,7 @@ func _check_all() -> void:
 			+ "Повторного воскрешения нет — OK.\n"
 			+ "Смерть лидера отменяет предупреждение — OK.\n"
 			+ "Временный баф снимается без накопления — OK.\n"
-			+ "Карта НЕ включена в обычную колоду до готовности артов.\n"
+			+ "Карта включена в колоду; это изолированный тест ритуала.\n"
 			+ "Это тест механики, НЕ сертификат игрового баланса.")
 		status_label.add_theme_color_override("font_color", Color(0.56, 0.85, 0.66))
 	else:
