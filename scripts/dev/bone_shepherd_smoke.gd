@@ -115,8 +115,8 @@ func _validate_resources() -> void:
 		errors.append("Original 1+2 roster is not preserved")
 	if ENCOUNTER.get_formation_count() != 2 or ENCOUNTER.alternate_enemy_positions.size() != 3:
 		errors.append("Expected two authored formations with the same roster")
-	if RunState.ACT1_CARD_IDS.size() != 34 or not RunState.ACT1_CARD_IDS.has("bone_shepherd") or not RunState.ACT1_CARD_IDS.has("funeral_procession"):
-		errors.append("Act 1 must include 34 unique cards including Bone Shepherd and Funeral Procession")
+	if RunState.ACT1_CARD_IDS.size() != 35 or not RunState.ACT1_CARD_IDS.has("bone_shepherd") or not RunState.ACT1_CARD_IDS.has("funeral_procession") or not RunState.ACT1_CARD_IDS.has("defiled_laboratory"):
+		errors.append("Act 1 must include 35 unique cards including Bone Shepherd, Funeral Procession and Defiled Laboratory")
 	var art := ART_CATALOG.get_run_card_texture("bone_shepherd")
 	if art == null or art.get_size() != Vector2(448, 274):
 		errors.append("Original card illustration is missing/incorrect")
