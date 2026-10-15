@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+unit_name = "Нестабильный гомункул"
+visual_role = "unstable_homunculus"
+max_hp = 72.0
+damage = 8.0
+attack_interval = 1.30
+attack_range = 42.0
+move_speed = 76.0
+body_radius = 18.0
+separation_padding = 12.0
