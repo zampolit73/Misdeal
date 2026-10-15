@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+encounter_id = "black_crossing"
+title = "ЧЁРНАЯ ПЕРЕПРАВА"
+card_text = "Утонувшие тянутся из-под разбитых мостков. Мёртвый перевозчик требует плату за переход."
+wizard_line = "Вода не выбирает сторону. Но она знает, кто стоит ближе к краю."
+arena_id = "black_crossing"
+enemy_unit_paths = PackedStringArray("res://resources/units/drowned_ferryman.tres", "res://resources/units/drowned_hand.tres", "res://resources/units/drowned_hand.tres")
+enemy_names = PackedStringArray("Мёртвый перевозчик", "Утопленник", "Утопленник")
+enemy_positions = PackedVector2Array(1080, 321, 880, 330, 920, 401)
+alternate_enemy_positions = PackedVector2Array(1090, 402, 860, 405, 1000, 329)
+formation_hint = "ПРИБОЙ — заранее отмеченная полоса будет смыта волной. Не задерживайтесь на ней."
+alternate_formation_hint = "РАЗБИТЫЕ МОСТКИ — утопленники атакуют раздельно, волны сбивают строй."

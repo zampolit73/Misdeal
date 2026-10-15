@@ -117,6 +117,8 @@ var base_art_modulate := Color.WHITE
 var tactical_order := TACTICAL_ORDER_ASSAULT
 var target_refresh_cooldown := 0.0
 var damage_taken_multiplier := 1.0
+# D188: optional encounter-only storm surge slowdown (1.0 everywhere else).
+var wave_move_speed_multiplier := 1.0
 
 # Only used by the new Ossuary Lamb; old enemies and hero orders are unchanged.
 var shepherd_rush_target: BattleUnit = null
@@ -172,6 +174,7 @@ func configure(data: UnitData, unit_team: int, spawn_position: Vector2, name_ove
 	splash_radius = data.splash_radius
 	splash_damage_multiplier = data.splash_damage_multiplier
 	move_speed = data.move_speed
+	wave_move_speed_multiplier = 1.0
 	body_radius = data.body_radius
 	separation_padding = data.separation_padding
 	separation_strength = data.separation_strength
@@ -914,11 +917,12 @@ func clear_shepherd_rush() -> void:
 	target_refresh_cooldown = 0.0
 
 func _get_current_move_speed() -> float:
+	var effective_speed := move_speed
 	if team == 1 and visual_role == "ossuary_lamb" and shepherd_rush_speed_multiplier > 1.0:
-		return move_speed * shepherd_rush_speed_multiplier
+		effective_speed *= shepherd_rush_speed_multiplier
 	if team == 0 and tactical_order == TACTICAL_ORDER_ASSAULT:
-		return move_speed * ASSAULT_MOVE_MULTIPLIER
-	return move_speed
+		effective_speed *= ASSAULT_MOVE_MULTIPLIER
+	return effective_speed * wave_move_speed_multiplier
 
 # SpriteFrames provide the five painted states without changing the
 # Sprite2D interface used by attack tweens, targeting and the rim silhouette.

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+unit_name = "Утопленник"
+visual_role = "drowned_hand"
+max_hp = 80.0
+damage = 9.5
+attack_interval = 1.34
+attack_range = 43.0
+move_speed = 71.0
+body_radius = 17.0
+separation_padding = 12.0

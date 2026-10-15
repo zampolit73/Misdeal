@@ -17,6 +17,8 @@ const LAST_RITE_DATA: LastRiteData = preload("res://resources/encounters/last_ri
 const LABORATORY_HAZARDS_SCRIPT := preload("res://scripts/battle/laboratory_hazards.gd")
 # D153: original skeletal threads exist only in Threadbare Theatre.
 const THREAD_TETHER_SCRIPT := preload("res://scripts/battle/thread_tether.gd")
+# D188: telegraphed waves only for original Black Crossing.
+const BLACK_CROSSING_SURGE_SCRIPT := preload("res://scripts/battle/black_crossing_surge.gd")
 
 # Local to UnitsLayer (screen offset 20,96). Keep unit feet on the
 # actual stone floor, below the architectural horizon and above the HUD.
@@ -100,6 +102,7 @@ var shepherd_whistle_controller: BoneShepherdWhistleController
 var last_rite_controller: LastRiteController
 var laboratory_hazards_controller: LaboratoryHazardController
 var thread_tether_controller: ThreadTetherController
+var black_crossing_surge_controller: BlackCrossingSurgeController
 var target_preview: BattleTargetPreview
 var deployment_floor_markers: Node2D
 
@@ -278,6 +281,27 @@ func _spawn_encounter() -> void:
 	_setup_funeral_procession_rite()
 	_setup_defiled_laboratory_hazards()
 	_setup_threadbare_theatre_tethers()
+	_setup_black_crossing_surge()
+
+
+func _setup_black_crossing_surge() -> void:
+	if encounter.encounter_id != "black_crossing":
+		return
+	var ferrymen := 0
+	var drowned := 0
+	for unit in units:
+		if unit.team != 1:
+			continue
+		if unit.visual_role == "drowned_ferryman":
+			ferrymen += 1
+		elif unit.visual_role == "drowned_hand":
+			drowned += 1
+	if ferrymen != 1 or drowned != 2:
+		push_error("Black Crossing needs exactly one new Ferryman and two Drowned.")
+		return
+	black_crossing_surge_controller = BLACK_CROSSING_SURGE_SCRIPT.new() as BlackCrossingSurgeController
+	units_layer.add_child(black_crossing_surge_controller)
+	black_crossing_surge_controller.configure(units)
 
 
 func _setup_threadbare_theatre_tethers() -> void:
@@ -954,6 +978,8 @@ func _on_fight_pressed() -> void:
 		laboratory_hazards_controller.start_hazards()
 	if thread_tether_controller != null:
 		thread_tether_controller.start_threads()
+	if black_crossing_surge_controller != null:
+		black_crossing_surge_controller.start_surge()
 
 func _hide_preparation_hud() -> void:
 	bottom_hud_panel.visible = false
@@ -1186,6 +1212,8 @@ func _finish_battle(player_won: bool) -> void:
 		laboratory_hazards_controller.stop_hazards()
 	if thread_tether_controller != null:
 		thread_tether_controller.stop_threads()
+	if black_crossing_surge_controller != null:
+		black_crossing_surge_controller.stop_surge()
 	battle_finished = true
 	combat_live = false
 	if target_preview != null:
@@ -1233,6 +1261,8 @@ func _finish_battle(player_won: bool) -> void:
 			result_subtitle.text = "Жрец пал. На этот раз похороны окончательные."
 		elif encounter.encounter_id == "threadbare_theatre":
 			result_subtitle.text = "Нити оборваны. Костяной спектакль окончен."
+		elif encounter.encounter_id == "black_crossing":
+			result_subtitle.text = "Шторм отступил. Перевозчик не дождался платы."
 		elif encounter.encounter_id == "ossuary_gate":
 			result_subtitle.text = "Последние врата перед надзирателем открыты."
 		else:

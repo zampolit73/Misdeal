@@ -85,6 +85,8 @@ const CARD_PATHS := {
 	"defiled_laboratory": "res://resources/cards/defiled_laboratory.tres",
 	# D153: Tier1 original theatre encounter, released as Act1 card #36 after native QA.
 	"threadbare_theatre": "res://resources/cards/threadbare_theatre.tres",
+	# D188: QA-only lookup for full real Reward→Table playtest; NOT in ACT1_CARD_IDS.
+	"black_crossing": "res://resources/cards/black_crossing.tres",
 	"moon_seal": "res://resources/cards/moon_seal.tres",
 	"echo_crypt": "res://resources/cards/echo_crypt.tres",
 	"graveyard_ambush": "res://resources/cards/graveyard_ambush.tres",

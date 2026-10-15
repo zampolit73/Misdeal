@@ -24,8 +24,8 @@ func _ready() -> void:
 	if RunState.ACT1_CARD_IDS.size() != 36 or RunState.ACT1_CARD_IDS.has("black_crossing"):
 		_error("D182 must remain outside the 36-card live pool.")
 		return
-	if RunState.CARD_PATHS.has("black_crossing"):
-		_error("D182 must not be registered before original fight QA.")
+	if RunState.CARD_PATHS.get("black_crossing", "") != "res://resources/cards/black_crossing.tres":
+		_error("D188 QA-only card resource mapping is missing.")
 		return
 	var frame := Panel.new()
 	frame.position = Vector2(376, 145)
