@@ -1,3 +1,9 @@
+## LATEST NATIVE GODOT QA — 2026-10-15 — D152 54/54 FUNCTIONAL PASS (BALANCE PENDING)
+
+User supplied actual Godot 4.7.2 screenshot for `res://scenes/dev/defiled_laboratory_battle_smoke.tscn`: **D152 / DEFILED LABORATORY — FUNCTIONAL PASS**, **54/54 battles completed, 54 wins/0 losses**; solo **18/0**, duo **18/0**, trio **18/0**, **67** chemical warnings, **435** chemical hits, **108** spills, max battle duration **14.9 seconds**. This supersedes ALL older D152 "54-case pending" notes. Confirms encounter-scoped hazard functionality, roster and animation loading across the matrix; does **not** constitute balance approval, nor a normal live fight→reward→table verification. 54/54 perfect wins (even solo) strongly merit a scoped challenge evaluation, NOT a knee-jerk global change. D152 original hero/enemy art gallery separately accepted by user; the original **448×274 card illustration and native art inspection** remains the next gate before live registration. Live Act1 stays **34/45**; D152 exists only in CARD_PATHS for QA, not ACT1_CARD_IDS. D151 victory→reward→table also awaits specific verification.
+
+---
+
 ## 2026-10-15 — D152 ART GALLERY ACCEPTED; 54-CASE NATIVE BATTLE SMOKE STAGED
 
 User supplied an actual running Godot 4.7.2 screenshot of `res://scenes/dev/defiled_laboratory_art_preview.tscn` showing **both original animated characters** (Plague Alchemist and Unstable Homunculus) loading and rendering normally, and explicitly replied **«Все ок.»** The earlier GDScript `var role := ROLES[i]` parser error is no longer observed on the new screenshot. Record **native art gallery accepted by the user**, not proof of complete animation-frame technical validation by screenshot alone. Both original 25-frame atlases are tracked in GitHub (no ZIP).
