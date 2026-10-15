@@ -148,9 +148,9 @@ func _run_matrix() -> void:
 func _validate_assets() -> void:
 	var card: RunCardData = RunState.get_card("defiled_laboratory")
 	if card == null or card.resolution_type != "combat" or card.tier != 1:
-		errors.append("Missing D152 QA-only Tier1 card")
-	if RunState.ACT1_CARD_IDS.size() != 34 or RunState.ACT1_CARD_IDS.has("defiled_laboratory"):
-		errors.append("D152 must not enter live Act1 until card-art / full QA release")
+		errors.append("Missing D152 released Tier1 combat card")
+	if RunState.ACT1_CARD_IDS.size() != 35 or not RunState.ACT1_CARD_IDS.has("defiled_laboratory"):
+		errors.append("D152 must be in the 35-card Act1 deal pool after art / functional / challenge QA")
 	if ENCOUNTER.encounter_id != "defiled_laboratory" or ENCOUNTER.get_formation_count() != 2:
 		errors.append("Expected two authored laboratory formations")
 	var expected: PackedStringArray = PackedStringArray([
