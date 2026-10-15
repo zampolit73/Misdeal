@@ -1,3 +1,13 @@
+## NEW ACTUAL GODOT EVIDENCE — 2026-10-15
+
+User sent two screenshots from Godot 4.7.2:
+1. `defiled_laboratory_art_preview.tscn` failed to parse `var role := ROLES[i]` (could not infer static type). **Source hotfix committed** to `scripts/dev/defiled_laboratory_art_preview.gd`: explicit type for role, SpriteFrames, Label and state/frame counter. The new art gallery **has not yet been re-run after this fix**.
+2. `defiled_laboratory_playtest.tscn` visibly runs a real **Knight vs Plague Alchemist + two Homunculi** fight with native original sprites and a chemical-zone visual ring. This is an in-engine entry/render confirmation, **not** proof of victory, reward→table, correct balance, or completed F6 gallery.
+
+Next minimal user action: `git pull`, re-open Godot and F6 art gallery, check motions/feet/facing, then finish existing real fight and check transition. Both WebP atlases already in GitHub; no ZIP/PowerShell. Card remains **NOT LIVE 34/45**, original 448×274 card illustration still pending.
+
+---
+
 # D152 — Defiled Laboratory: GitHub art shipped, native playtest pending
 
 **2026-10-15 latest:** Both original 25-frame animation atlases are now tracked in GitHub `main` as `.webp.b64`. Their exact base64 bytes were independently refetched from GitHub and verified against offline-generated WebP binaries. **No ZIP extraction or manual PowerShell is required.** The old ZIP / ignored local PNG pathway is historic optional fallback; **`git pull` alone now provides both actual D152 role atlases.** The production code prioritizes tracked `.webp.b64`.
