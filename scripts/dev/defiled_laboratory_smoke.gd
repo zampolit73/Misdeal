@@ -26,7 +26,8 @@ func _ready() -> void:
 		_validate_dense_group_target()
 	headline.text = "D152 / LAB HAZARDS — PASS" if errors.is_empty() else "D152 / LAB HAZARDS — FAIL"
 	details.text = ("Телеграф, химические зоны, урон герою, гибель гомункула и очистка: PASS.\n"
-		+ "Это изолированная логика, не боевой баланс и не проверка артов.\n"		+ "Проверен выбор химической зоны по плотной группе героев.\n"
+		+ "Это изолированная логика, не боевой баланс и не проверка артов.\n"
+		+ "Проверен выбор химической зоны по плотной группе героев.\n"
 		+ "Карта ещё не в колоде.") if errors.is_empty() else "\n".join(errors)
 	details.add_theme_color_override("font_color", Color(0.65, 0.88, 0.65) if errors.is_empty() else Color(1.0, 0.4, 0.4))
 
