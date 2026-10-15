@@ -7,8 +7,9 @@ const ROOT := "res://assets/pixel/card_unification_v1"
 
 # D147: approved full-bleed raster takes priority; keep legacy SVG as a safe fallback.
 const BONE_SHEPHERD_CARD_SVG := "res://assets/pixel/card_unification_v1/run/bone_shepherd.svg"
-# D152 is still QA-only; artwork is text-packed so GitHub can deliver it via git pull.
-const D152_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/defiled_laboratory.webp.b64"
+# D152 D168-approved scene-led illustration v2 (448x274); original v1 remains tracked for rollback.
+# Export-safe WebP bytes are in GitHub, no manual ZIP steps required.
+const D152_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/defiled_laboratory_scene_v2.webp.b64"
 
 const RUN_CARDS := {
 	"bone_patrol": "run/bone_patrol.webp",
