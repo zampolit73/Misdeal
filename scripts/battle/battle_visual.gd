@@ -13,6 +13,7 @@ const ARENA_LAST_BELL := "last_bell"
 const ARENA_FIRING_SQUARE := "firing_square"
 const ARENA_BONE_RITUAL := "bone_ritual"
 const ARENA_THREADBARE_THEATRE := "threadbare_theatre"
+const ARENA_BLACK_CROSSING := "black_crossing"
 
 var pulse: float = 0.0
 var redraw_cooldown: float = 0.0
@@ -22,7 +23,7 @@ var arena_id: String = ARENA_CRYPT
 
 func set_arena_id(value: String) -> void:
 	match value:
-		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH, ARENA_BONE_SWARM, ARENA_GRAVE_CROSSFIRE, ARENA_IRON_WALL, ARENA_LAST_BELL, ARENA_FIRING_SQUARE, ARENA_BONE_RITUAL, ARENA_THREADBARE_THEATRE:
+		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH, ARENA_BONE_SWARM, ARENA_GRAVE_CROSSFIRE, ARENA_IRON_WALL, ARENA_LAST_BELL, ARENA_FIRING_SQUARE, ARENA_BONE_RITUAL, ARENA_THREADBARE_THEATRE, ARENA_BLACK_CROSSING:
 			arena_id = value
 		_:
 			arena_id = ARENA_CRYPT
@@ -59,6 +60,10 @@ func _draw() -> void:
 			_draw_bone_crush_atmosphere()
 		ARENA_THREADBARE_THEATRE:
 			_draw_threadbare_theatre_atmosphere()
+		ARENA_BLACK_CROSSING:
+			# Approved storm artwork already contains rain and sea spray.
+			# Reserve battle overlays for the future encounter-specific wave warning.
+			pass
 		_:
 			_draw_crypt_atmosphere()
 

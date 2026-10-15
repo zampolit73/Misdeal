@@ -3,6 +3,10 @@ Updated: 2026-10-15.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D187 — Stormy Last Pier final arena accepted and integrated for isolated preview
+
+Date: 2026-10-16. User explicitly approved the **final** clean "Последний причал" storm artwork, after iterative removals of repetitive left-background stone structures and the right-background wooden frame. The accepted 1672×941 source image is `a_wide_cinematic_highly_detailed_pixel_art_digit.png`; its full composition is exported to 1280×720 WebP and bound to new `arena_id = "black_crossing"` as a unique battle-only backdrop, not a repainted card image. **Do not restore removed ruins, replace with prior drafts or overlay decorative UI.** The normal/crypt fallback atmosphere is not painted over this backdrop. The scripted wave telegraph will be a distinct, restrained effect added only when the new D187/D188 encounter exists. User has *not* yet run native Godot F6 on this integrated background; no battle or deck release approval is implied. Act1 stays 36/45.
+
 ## D186 — D183 original animation gallery accepted; original arena next
 
 Date: 2026-10-15. The user confirmed **«все ок»** after being asked to run `res://scenes/dev/black_crossing_animation_preview.tscn` and check the two 25-frame original sprites. Record **user-reported native visual QA acceptance** of Ferryman B and Drowned C animations, not independently produced engine logs. Do not redo sprite art or demand the same F6 unless a concrete regression appears.
