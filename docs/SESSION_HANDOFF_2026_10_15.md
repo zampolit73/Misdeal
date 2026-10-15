@@ -1,3 +1,9 @@
+## LATEST NATIVE GODOT QA — 2026-10-15 — D151 FUNERAL PROCESSION 54/54 PASS
+
+**New verified evidence supersedes ALL older D151 “54/54 pending / crash blocking” notes below.** User sent a final Godot F6 screenshot of `res://scenes/dev/funeral_procession_smoke.tscn` displaying **FUNERAL PROCESSION — PASS**, **54/54 battles finished; 54 wins / 0 losses; 58 ritual warnings, 38 resurrections, 14 temporary buffs**; original card art and both enemy atlases loaded. Earlier Godot previously-freed `BattleUnit` crashes are historical, **not the latest outcome**. The isolated smoke's own message explicitly says **NOT a balance evaluation** and **real battle → reward → table remains a separate QA gate**. 54 wins of 54 should prompt a later challenge/balance review, not an automatic rebalance. Live Act 1 pool remains **34/45** with `funeral_procession`, original priest and pallbearers, accepted sprite art/facing and scoped Last Rite, **12 resolutions + sealed XIII**. Remaining **11 cards** follow D143: entirely new enemies/AI/sprite/card art for every new fight. **Detailed authoritative result and next-session choices:** [`docs/DECK_EXPANSION_D151_FINAL_SMOKE_QA.md`](DECK_EXPANSION_D151_FINAL_SMOKE_QA.md). [`docs/SESSION_HANDOFF_2026_10_15.md`](SESSION_HANDOFF_2026_10_15.md) preserves cross-chat context; historical pending QA instructions there are superseded by this verified pass. **This checkpoint is documentation only: no new game code, balance changes or art.**
+
+---
+
 # Misdeal — consolidated cross-chat checkpoint, 2026-10-15
 
 **Purpose:** permanent, self-contained restart for a new ChatGPT session. **GitHub `zampolit73/Misdeal` `main` is authoritative for implemented state; this file does not override newer commits.** Godot 4.7.x/GDScript, desktop local test followed by `git pull`. GitHub tools are connected: directly edit/commit changes when user asks for implementation; do not ask for repeated access, do not require code copy-paste.
