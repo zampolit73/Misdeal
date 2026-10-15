@@ -1,3 +1,9 @@
+## 2026-10-15 — D153 ORIGINAL SKELETAL STRINGS NATIVE F6 PASS
+
+User supplied Godot 4.7.2 screenshot of `res://scenes/dev/threadbare_theatre_smoke.tscn`: **D153 / SKELETAL STRINGS — PASS**. The scene explicitly reports passing original two-undead-types/two-formations data, **32% marionette protection within 285px**, range-severed bonds, immediate loss of protection on Puppeteer death, and cleanup restoring original damage multipliers. Godot debugger shows **0 errors** in this screenshot. This is **only the isolated encounter logic QA**, NOT animation approval, real battle wiring, theatre arena, real victory/reward/table or balance approval. D153 selected skeletal-theatre card artwork separately rendered in user Godot screenshots. The assistant now proceeds to original 25-frames-per-role unit animation production (puppeteer + bone marionette), then native gallery QA before battle integration. Active pool stays **35/45**, D153 NOT in CARD_PATHS nor ACT1_CARD_IDS; preserve D143/D167/D168, 12+sealed XIII, DS2 and all older encounters.
+
+---
+
 ## 2026-10-15 — D153 NATIVE CARD PREVIEW RENDER CONFIRMED; THREAD SMOKE STILL UNVERIFIED
 
 The user supplied **two Godot 4.7.2 screenshots of the same** `res://scenes/dev/threadbare_theatre_card_preview.tscn` scene. The selected third skeletal marionette / moonlit theatre illustration visibly loads in the **actual 448×274 slot**, with title, description and QA-only status; neither screenshot shows a blocking card-loader issue or any red error count (red counter 0). This verifies **native rendering of the staged D153 artwork** and confirms the chosen image is legible, but the user did not yet send an explicit statement of aesthetic acceptance after these screenshots.
