@@ -1,5 +1,16 @@
 # Misdeal — D153 current handoff (2026-10-15)
 
+## 2026-10-15 — D153 REAL BATTLE → REWARD → TABLE USER-REPORTED PASS; BALANCE SIGNOFF REMAINS
+
+**Newest user QA:** After running the D153 real-scene dev entry `res://scenes/dev/threadbare_theatre_playtest.tscn`, the user replied **«все работает.»** This confirms, by direct user report, the *real gameplay test they were asked to perform*: approved ruined-theatre combat stage, original skeletal roster and D153-only tethers, completion and **victory → claim reward → return to Fate Spread/table** work in local Godot. This is a **user-reported full playtest PASS**, not an assistant-run engine test and not a separate video/screenshots of each screen. Do not ask for the same playtest again without a specific regression or change.
+
+**Previous confirmed native technical QA:** `threadbare_theatre_battle_smoke.tscn` **54/54 FUNCTIONAL PASS**, 54 victories / 0 defeats, solo/duo/trio 18 each, surviving HP ~85 / 82–83 / 86%, battle duration 11.2 / 12.2 / 11.5 seconds, 123 tether joins / 92 ordinary breaks / 54 master-death breaks. Skeleton animations previously user-approved. Original arena already committed. All functional D153 requirements reported working.
+
+**Remaining design gate before release:** encounter challenge is **not yet approved**. Universal victories and high surviving HP in the matrix may indicate the encounter is too forgiving; ask the user whether the real fight felt *too easy or appropriately challenging*. If too easy, adjust only D153-specific `threadbare_puppeteer.tres`, `bone_marionette.tres`, or encounter-specific placement; do **not** alter global party scaling or accepted art. Run a fresh 54-case matrix and route regression after tuning. If user says difficulty feels right, finalize release by adding only `threadbare_theatre` to `RunState.ACT1_CARD_IDS` as **36/45** and check normal offer/deal routing. **No automatic release on the phrase “все работает”.** Current live Act1 remains **35/45**; D153 remains QA-only although its `CARD_PATHS` lookup exists.
+
+---
+
+
 ## 2026-10-15 — D153 REAL GODOT 54-CASE TECHNICAL MATRIX PASSED; PLAYTEST/REWARD & BALANCE PENDING
 
 **NEWEST USER EVIDENCE:** User supplied two in-engine Godot screenshots showing **`D153 / THEATRE BATTLE — FUNCTIONAL PASS`** for `res://scenes/dev/threadbare_theatre_battle_smoke.tscn`. This is the **actual native outcome** (not an inferred assistant-side run):

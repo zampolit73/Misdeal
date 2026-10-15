@@ -2,6 +2,14 @@
 
 This file records decisions that future chats should not casually reverse.
 
+## D175 — D153 real route verified by user; balance gate before live release
+
+Date: 2026-10-15  
+Status: native gameplay route user-reported PASS; challenge signoff and pool activation pending
+
+Following the 54/54 functional Godot matrix PASS, the user ran the real `threadbare_theatre_playtest.tscn` flow and reported **«все работает»**. Count this as confirmation of the tested real battle → reward → table gameplay chain, with approved arena/skeleton assets and encounter-local ThreadTether. Do not imply this is proof of balanced challenge: deterministic matrix showed 54/54 victories and ~82–86% surviving hero HP. Before enabling D153 as Act1 card 36/45, ask the user how challenging the live fight felt. Tune only D153-specific units/formation if needed; do not rebalance globally or alter approved art. Keep `ACT1_CARD_IDS` 35/45 and `CARD_PATHS` QA lookup until the challenge decision.
+
+
 ## D174 — D153 Godot combat matrix PASS is not a release/balance signoff
 
 Date: 2026-10-15  
