@@ -1,3 +1,9 @@
+## 2026-10-15 — D152 LAB HAZARDS NATIVE F6 PASS (USER SCREENSHOT)
+
+User supplied an actual Godot F6 screenshot showing **D152 / LAB HAZARDS — PASS**, with text confirming telegraph, chemical zones, hero damage, homunculus death/spill and cleanup all PASS. This verifies the **isolated** `scenes/dev/defiled_laboratory_smoke.tscn` behavior, not a real D152 battle, balance, art, scene navigation, or card release. D152 remains **STAGED / NOT IN LIVE DECK**. Live pool stays 34/45. Next: original 448x274 card artwork and real 25-frame transparent atlases for both new roles, Godot art previews; then wire scoped controller into battle, complete real battle smoke + reward/table. D151 real victory→reward→table remains separately unverified. Preserve D143 original-enemy requirement, approved DS2 / 12+XIII, no global balance changes.
+
+---
+
 ## 2026-10-15 — D152 LOCAL HAZARD CONTROLLER STAGED, NATIVE F6 PENDING
 
 Implemented `scripts/battle/laboratory_hazards.gd`: encounter-scoped, telegraphed position-based toxic zones, non-stacking damage pulses for player units, temporary chemical spills on homunculus death, cleanup on stop. Added `res://scenes/dev/defiled_laboratory_smoke.tscn` + script to exercise original two-formation resource, telegraph, timed hazard, damage, minion death and cleanup. This is **source committed, not run in Godot**; user should `git pull`, F6 that scene and report PASS/FAIL. No claims of engine verification. Hazard controller is currently isolated, **not wired to production battle.gd**, original 25-frame animation atlases and 448×274 card art still missing. **D152 IS NOT LIVE**, Act1 stays **34/45**. D151 full win→reward→table remains unverified, while its earlier isolated 54/54 PASS stays valid. Next gates: fix native F6 issues if any; original assets/animation galleries; scoped real battle wiring and solo/duo/trio QA; then and only then add to card registry. D143 and DS2 unchanged.
