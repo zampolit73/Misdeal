@@ -1,3 +1,11 @@
+## 2026-10-15 — D168 ART OPTIONS FIRST; D152 SELECTED ENVIRONMENTAL ILLUSTRATION ACTIVE
+
+**ACTUAL state in GitHub:** approved D152 original 448×274 world-scene image installed at `assets/pixel/card_unification_v1/run/defiled_laboratory_scene_v2.webp.b64`. Runtime `scripts/ui/card_unification_v1.gd::D152_CARD_WEBP_B64` now points at V2; legacy `run/defiled_laboratory.webp.b64` retained, allowing a one-line rollback. Remote GitHub text bytes matched source exactly. User explicitly chose/approved this image in chat. **Native Godot V2 card preview pending**, NOT automatically validated. Act1 live count **35/45**, game logic/animation/tactics/DS2 unchanged. No user ZIP handling.
+
+**Mandatory future art workflow now D168:** show default **3 visibly different rendered image compositions** first, let user select or request revisions, only then author/commit the selected final bitmap. Applies to D153+, all future cards/redraws. Each candidate must comply with D167 dark-fantasy scene-first standard (not sprite showcase). User need only `git pull` and F6 `scenes/dev/defiled_laboratory_card_preview.tscn` now; no code or asset copying.
+
+---
+
 ## 2026-10-15 — D152 RELEASED as Act1 card 35/45 (post-release native check pending)
 
 **Verified before release:** user Godot screenshot of the **POST-TUNE** 54-case D152 combat matrix: 54/54 FUNCTIONAL PASS, 54 wins/0 losses; average remaining HP **70% solo / 57% duo / 60% trio**; hero casualties **0/4/4**; average duration **10.8/12.2/10.9s**, longest **16.6s**; tactics ASSAULT/HUNT/FORMATION each 18 victories, remaining HP **70/49/69%**; acid warnings **73**, hits **512**, spills **108**. This is the current result, not the old 67/435/14.9 pre-tune screenshot. The measured attrition is enough to release this Tier1 candidate without further buffs; technical 100% test wins are **not balance certification**. Approved original 448×274 card illustration and both 25-frame enemy atlases are in GitHub, and user previously accepted dev-preview real win→reward→table.
