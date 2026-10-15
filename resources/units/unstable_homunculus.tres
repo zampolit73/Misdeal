@@ -6,8 +6,8 @@
 script = ExtResource("1")
 unit_name = "Нестабильный гомункул"
 visual_role = "unstable_homunculus"
-max_hp = 72.0
-damage = 8.0
+max_hp = 84.0
+damage = 9.0
 attack_interval = 1.30
 attack_range = 42.0
 move_speed = 76.0
