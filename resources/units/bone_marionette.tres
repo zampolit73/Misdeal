@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
 
 [resource]
-# D176 localized balance: faster bone strikes without new attack mechanics.
 script = ExtResource("1")
 unit_name = "Костяная марионетка"
 visual_role = "bone_marionette"

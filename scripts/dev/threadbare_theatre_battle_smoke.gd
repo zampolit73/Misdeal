@@ -67,6 +67,20 @@ func _check_resources() -> void:
 		failures.append("D153 must have one original puppeteer and two original skeletal marionettes")
 	if RunState.ACT1_CARD_IDS.size() != 35 or RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
 		failures.append("D153 must not enter the 35-card deal pool yet")
+	# Resolve every hero and both unique enemy resources *before* spawning.
+	# Report the exact file if a malformed .tres breaks ResourceLoader in Godot.
+	for role in HERO_ROLES:
+		var hero_data: UnitData = RunState.get_hero_unit_data(role)
+		if hero_data == null:
+			var hero_path: String = str(RunState.HERO_UNIT_PATHS.get(role, ""))
+			failures.append("D153 missing hero UnitData: %s (%s)" % [role, hero_path])
+	for enemy_path in [
+		"res://resources/units/threadbare_puppeteer.tres",
+		"res://resources/units/bone_marionette.tres"
+	]:
+		var enemy_data: UnitData = load(enemy_path) as UnitData
+		if enemy_data == null:
+			failures.append("D153 missing enemy UnitData: %s" % enemy_path)
 	var card: RunCardData = RunState.get_card("threadbare_theatre")
 	if card == null or card.resolution_type != "combat" or card.target_path != "res://resources/encounters/threadbare_theatre.tres":
 		failures.append("QA-only D153 combat card missing")
@@ -90,7 +104,7 @@ func _check_resources() -> void:
 
 func _make_unit(arena: Node2D, data: UnitData, team: int, pos: Vector2, tactic: String) -> BattleUnit:
 	if data == null:
-		failures.append("Missing BattleUnit data in D153 matrix")
+		failures.append("D153 unit configuration missing data: team %d at %s" % [team, str(pos)])
 		return null
 	var unit := UNIT_SCENE.instantiate() as BattleUnit
 	if unit == null:
@@ -126,7 +140,12 @@ func _fixture(formation: int, protagonist: int, party_size: int, tactic: String)
 	var all_units: Array[BattleUnit] = []
 	var start_positions: Array[Vector2] = [Vector2(280, 340), Vector2(335, 410), Vector2(245, 305)]
 	for i in range(RunState.party_roles.size()):
-		var hero_data: UnitData = RunState.get_hero_unit_data(String(RunState.party_roles[i]))
+		var hero_role: String = String(RunState.party_roles[i])
+		var hero_data: UnitData = RunState.get_hero_unit_data(hero_role)
+		if hero_data == null:
+			failures.append("D153 hero load failed during matrix: %s" % hero_role)
+			arena.free()
+			return {}
 		var hero: BattleUnit = _make_unit(arena, hero_data, 0, start_positions[i], tactic)
 		if hero == null:
 			arena.free()
@@ -135,7 +154,12 @@ func _fixture(formation: int, protagonist: int, party_size: int, tactic: String)
 	var enemy_start: PackedVector2Array = ENCOUNTER.get_enemy_positions_for_formation(formation)
 	var enemies: Array[BattleUnit] = []
 	for i in range(ENCOUNTER.enemy_unit_paths.size()):
-		var enemy_data := load(ENCOUNTER.enemy_unit_paths[i]) as UnitData
+		var enemy_path: String = ENCOUNTER.enemy_unit_paths[i]
+		var enemy_data: UnitData = load(enemy_path) as UnitData
+		if enemy_data == null:
+			failures.append("D153 enemy load failed during matrix: %s" % enemy_path)
+			arena.free()
+			return {}
 		var depth: float = clampf((enemy_start[i].y - 130.0) / 275.0, 0.0, 1.0)
 		var pos := Vector2(enemy_start[i].x, lerpf(316.0, 410.0, depth))
 		var enemy: BattleUnit = _make_unit(arena, enemy_data, 1, pos, tactic)

@@ -1,5 +1,18 @@
 # Misdeal — D153 current handoff (2026-10-15)
 
+## 2026-10-15 — D177 D153 MATRIX RESOURCE-LOAD REGRESSION FIX; RETEST PENDING
+
+**User-provided real Godot screenshots:** after D176 local stat tuning, F6 `threadbare_theatre_battle_smoke.tscn` displays **`D153 / THEATRE BATTLE — FAIL`**, `Missing BattleUnit data in D153 matrix`. The diagnostic stopped during setup with a null `UnitData` — **this is not a combat loss or a balance conclusion**. It gave no filename, so the exact null source was not proven by screenshots.
+
+**Probable D176 regression found in GitHub:** D176 inserted `# ...` comment lines **inside the `[resource]` block immediately before `script = ExtResource("1")`** in the two edited D153 enemy `.tres` files. Prior working versions had `script` as the first property. D177 removes these newly inserted lines while preserving all D176 tuned combat stats: Puppeteer HP 142/damage 7.5/interval 1.65/speed 55; Marionette HP 88/damage 10.5/interval 1.22/speed 78. Do not assert resource parsing was conclusively the cause until Godot is rerun.
+
+**Regression detection improved:** `scripts/dev/threadbare_theatre_battle_smoke.gd` now preloads and validates all three hero `UnitData` resources and the two original enemy `.tres` files **before** the 54 cases, reporting exactly which resource fails. The later fixture also identifies hero role/enemy resource rather than only `Missing BattleUnit data`. 54-seed coverage, real BattleUnit/tether, win/loss/HP metrics and balancing warnings remain unchanged.
+
+**NEXT:** `git pull`; F6 `res://scenes/dev/threadbare_theatre_battle_smoke.tscn` and send the updated output. If still failing, the new output should name the specific missing hero/enemy resource. If 54 cases complete, inspect win rates/HP for safe solo, duo, trio balance, then briefly repeat real `res://scenes/dev/threadbare_theatre_playtest.tscn` to verify combat feel. **D153 is still QA-only, Act1 35/45; do not enable #36 on the failed test.** Native D176/D177 post-tune matrix PASS is not claimed.
+
+---
+
+
 ## 2026-10-15 — D176 D153 LOCAL BALANCE PASS COMMITTED; POST-TUNE GODOT QA PENDING
 
 **User explicitly felt the real D153 fight was too easy and requested a local balance pass, a 54-case matrix recheck, and release preparation.** Source stats for original skeletons have been raised **only inside D153**: Puppeteer HP **108 → 142**, damage **5.5 → 7.5**, attack interval **1.80 → 1.65s**, speed **51 → 55**; Bone Marionette HP **71 → 88**, damage **8.5 → 10.5**, attack interval **1.33 → 1.22s**, speed **73 → 78**. Roster remains 1+2, ThreadTether stays at 32% defense in 285px and retains break/relink/death/cleanup semantics. No changes to D153 accepted sprites/arena/card art, global damage or party-size compensations, encounter placement, or non-D153 enemies.

@@ -2,6 +2,14 @@
 
 This file records decisions that future chats should not casually reverse.
 
+## D177 — D153 post-tune UnitData load regression and exact-path QA
+
+Date: 2026-10-15  
+Status: source fix in GitHub; native retest pending
+
+User's F6 shows **D153 THEATRE BATTLE — FAIL / Missing BattleUnit data in D153 matrix** after D176. This is a null-resource setup failure, not a combat defeat. D176 introduced `#` comments directly under `[resource]` and before `script = ExtResource("1")` in both tuned skeleton UnitData files, unlike the previous known-working resource format. D177 restores the earlier serialized ordering (script as first property) without rolling back the D176 stat changes, and adds exact hero/enemy path reporting to the deterministic matrix. The screenshot cannot identify which `UnitData` was null, so do not claim proven parser causality; validate after `git pull` + F6. If it still fails, use the printed resource path to isolate further. Keep D153 out of the live pool (35/45), preserve accepted art and existing tether behavior.
+
+
 ## D176 — D153 scoped balancing after confirmed too-easy playtest
 
 Date: 2026-10-15  

@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
 
 [resource]
-# D176 localized balance: sturdier thread master and meaningful ranged pressure.
 script = ExtResource("1")
 unit_name = "Костяной кукловод"
 visual_role = "threadbare_puppeteer"
