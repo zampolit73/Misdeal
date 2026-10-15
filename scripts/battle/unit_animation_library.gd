@@ -30,19 +30,29 @@ static func get_frames(role: String) -> SpriteFrames:
 	if D152_ROLES.has(role):
 		# Original D152 candidate sheets are separate 576x480 PNGs. Missing or
 		# clipped art must never silently reuse an older enemy's sprite.
-		var d152_path := "%s%s_frames.png" % [DECK_EXPANSION_DIR, role]
-		if not FileAccess.file_exists(d152_path):
-			push_warning("D152 original animation atlas missing: %s" % d152_path)
-			return null
+		# Production atlas will use the established export-safe .webp.b64 format.
+		# Until native visual approval, an ignored local PNG candidate can be
+		# unpacked from the separately provided art preview pack.
+		var d152_raster_path := "%s%s_frames.webp.b64" % [DECK_EXPANSION_DIR, role]
+		var d152_preview_path := "res://assets/local_previews/d152/%s_frames.png" % role
 		var d152_image := Image.new()
-		if d152_image.load(d152_path) != OK:
-			push_warning("D152 original animation atlas cannot load: %s" % d152_path)
-			return null
+		if FileAccess.file_exists(d152_raster_path):
+			var d152_bytes := Marshalls.base64_to_raw(FileAccess.get_file_as_string(d152_raster_path).strip_edges())
+			if d152_bytes.is_empty() or d152_image.load_webp_from_buffer(d152_bytes) != OK:
+				push_warning("D152 production animation atlas corrupt: %s" % d152_raster_path)
+				return null
+		else:
+			if not FileAccess.file_exists(d152_preview_path):
+				push_warning("D152 original animation atlas not installed: %s" % d152_preview_path)
+				return null
+			if d152_image.load(d152_preview_path) != OK:
+				push_warning("D152 original preview atlas cannot load: %s" % d152_preview_path)
+				return null
 		if d152_image.get_size() != Vector2i(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
-			push_warning("D152 original animation atlas size invalid: %s" % d152_path)
+			push_warning("D152 original animation atlas size invalid: %s" % role)
 			return null
 		if not _all_authored_deck_frames_visible(d152_image) or not _all_authored_deck_frames_padded(d152_image):
-			push_warning("D152 original animation cells missing or cropped: %s" % d152_path)
+			push_warning("D152 original animation cells missing or cropped: %s" % role)
 			return null
 		var d152_texture := ImageTexture.create_from_image(d152_image)
 		if d152_texture == null:
@@ -161,7 +171,7 @@ static func _all_authored_deck_frames_padded(image: Image) -> bool:
 					if image.get_pixel(left + CELL_SIZE - 1 - margin, top + pixel).a > 0.25:
 						border_pixels += 1
 			if border_pixels > 8:
-				push_warning("Unshipped D151 art needs full-size frames: cropped at %d:%d" % [row, col])
+				push_warning("Original Deck Expansion art needs full-size frames: cropped at %d:%d" % [row, col])
 				return false
 	return true
 
