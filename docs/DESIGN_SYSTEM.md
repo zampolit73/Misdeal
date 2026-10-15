@@ -1,3 +1,9 @@
+## Accepted card-art quality rule D167 — 2026-10-15
+
+Encounter illustrations in Misdeal must be believable **dark-fantasy scenes**, not showcases of unit sprites. The environment must tell the story through location-specific props, practical/occult light, believable shadows, contact with the floor and atmosphere. Characters must inhabit the same physical scene, not float in front of a blurred backdrop. At native **448×274** size, the player should immediately identify the encounter and its mood. Keep existing DS2 / Fate Spread Variant C interface, bronze/obsidian/parchment materials and reserved green magical highlights. Do not bake titles, frames, buttons or playable choices into art. This rule is **mandatory for D153 and all future encounter cards**, and guides opportunistic scene-driven polish to legacy encounter cards. See `AGENTS.md` and `docs/DECISIONS.md` **D167**.
+
+---
+
 ## Bulk DS2 UI implementation — 2026-10-12
 
 The user authorized a single large implementation pass for remaining UI. Production new opt-in helpers `scripts/event/act_choice_ds2.gd` and `scripts/ui/misdeal_ds2_rollout.gd` extend the previously approved DS2 materials to non-shop ActChoice event cards, Class Select, Squad Dossier, Run End, Battle HUD and tabletop HUD/Wizard Wager chrome. Current approved Fate Spread Variant C art/layout is **never modified**. Existing approved Reward, Whispering Well and Gravedigger Shop have their own styling paths. Main/Intro retain original authored splash/frame art. Existing gameplay/signals/RunState must remain unchanged. Visual readiness is **source-integrated only**, not runtime-certified; verify multiple event states and combat/table workflows at 1280x720.
