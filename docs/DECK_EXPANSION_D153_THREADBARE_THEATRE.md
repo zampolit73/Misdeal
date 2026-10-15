@@ -1,0 +1,34 @@
+# D153 — Threadbare Theatre / Театр оборванных нитей
+
+Date: 2026-10-15
+Status: **original skeletal encounter DATA + local thread controller + 448x274 user-selected art staged, NOT LIVE**.
+
+## Original undead direction / user approval
+
+User specified that Misdeal's current enemies are undead, so the previous *wooden puppet* concept must be replaced by **skeleton marionettes**. The user liked the **third** visual option best, featuring an angular ruined theatre under shattered moonlight, an undead crowned puppet master, two bony marionettes in theatrical rags and physically visible threads. They then instructed the assistant to continue. Art direction must follow D167 dark-fantasy scene illustration, and D168 options-before-final workflow is considered satisfied by the already selected third concept.
+
+The exact resulting 1604×981 selected/refined image was resized to **448×274** and saved as export-safe original WebP in GitHub:
+`assets/pixel/card_unification_v1/run/threadbare_theatre_approved_v1.webp.b64`.
+SHA256 of decoded WebP: `9a98c35b46f820acea3a0e3e3821fdb652f31a611428f384be6fd16900e260c3`.
+Remote GitHub base64 content was refetched and independently compared byte-for-byte with the prepared source (MATCH). `scripts/ui/card_unification_v1.gd` now provides `get_run_texture("threadbare_theatre")` using a strict 448×274 WebP check; this is **only a QA art preview**, not a live card addition.
+
+## Original staged resources (all independent of old enemies)
+
+- `resources/units/threadbare_puppeteer.tres`: skeletal, ranged leader `threadbare_puppeteer`, provisional stats HP 108, damage 5.5.
+- `resources/units/bone_marionette.tres`: original bone-and-rags marionette `bone_marionette` (two separate units), provisional HP 71/damage 8.5.
+- `resources/encounters/threadbare_theatre.tres`: 1 master + 2 skeleton puppets, two independently-authored placements. The `crypt` arena is a **temporary data placeholder**, NOT approved theatre scenery.
+- `resources/cards/threadbare_theatre.tres`: QA-only combat card data; intentionally **NOT** in `RunState.CARD_PATHS` or `ACT1_CARD_IDS`, which remains **35/45**.
+- `scripts/battle/thread_tether.gd`: scoped ThreadTetherController without modifying global BattleUnit. While the skeletal master lives, puppets within **285px** receive **32% less damage** (multiplying each unit's original `damage_taken_multiplier` by 0.68). Movement can sever/reconnect a thread and death of the master immediately breaks all links and restores multipliers. Lines drawn between living units are distinct, not a generic area-of-effect poison/revive.
+- `scripts/dev/threadbare_theatre_smoke.gd`, `scenes/dev/threadbare_theatre_smoke.tscn`: direct real BattleUnit F6 test of data/roster, near/far tether, damage reduction, break/relink, master death and cleanup.
+- `scripts/dev/threadbare_theatre_card_preview.gd`, `scenes/dev/threadbare_theatre_card_preview.tscn`: staged original image shown at 448×274 using normal CardArtCatalog, and source guard that D153 is NOT yet live.
+
+## IMPORTANT native QA boundary
+
+**None of the new D153 scenes has yet been run in native Godot**. The source and GitHub files have been verified but cannot be labeled F6 PASS. Do not imply that a real D153 fight works: the controller is **not wired into** `battle.gd` and the two new enemy roles **do not yet have original animation atlases**. It is intentional to avoid rendering old skeleton sprites or blank units in a live battle.
+
+Next minimal user steps:
+1. `git pull`, F6 `res://scenes/dev/threadbare_theatre_card_preview.tscn` to verify card art is correct at runtime.
+2. F6 `res://scenes/dev/threadbare_theatre_smoke.tscn` to test thread mechanics. Send one screenshot or PASS/FAIL text.
+No manual file copying, ZIP extraction, or PowerShell required.
+
+After that: generate original **25 authored frames per role** (idle4/walk6/attack6/hit3/death6) in separate transparent 576×480 atlases, preserve visible feet and actual unique poses; user reviews Godot gallery before production. Prepare original theatre combat arena, then wire controller **only** for `threadbare_theatre`, do native 54-case mechanical/balance test and real win→reward→table navigation, and only then register D153 as **36/45**. Maintain 12 Fate Spread resolutions + sealed XIII, DS2 Variant C, D143 genuine new enemies and D167/D168 card-art rules.
