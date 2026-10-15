@@ -1,3 +1,13 @@
+## 2026-10-15 — D152 ART GALLERY ACCEPTED; 54-CASE NATIVE BATTLE SMOKE STAGED
+
+User supplied an actual running Godot 4.7.2 screenshot of `res://scenes/dev/defiled_laboratory_art_preview.tscn` showing **both original animated characters** (Plague Alchemist and Unstable Homunculus) loading and rendering normally, and explicitly replied **«Все ок.»** The earlier GDScript `var role := ROLES[i]` parser error is no longer observed on the new screenshot. Record **native art gallery accepted by the user**, not proof of complete animation-frame technical validation by screenshot alone. Both original 25-frame atlases are tracked in GitHub (no ZIP).
+
+**New test staging:** committed `scenes/dev/defiled_laboratory_battle_smoke.tscn` and `scripts/dev/defiled_laboratory_battle_smoke.gd`: 54 simulated real BattleUnit fights covering 2 authored formations × 3 protagonists × solo/duo/trio × ASSAULT/HUNT/FORMATION; scoped real `LaboratoryHazardController` steps in each fight. Checks QA-only card/34-pool guard, 25-frame original atlas roles, source-right D152 facing and 54 completed win/loss outcomes; reports party-size wins/losses, toxic warnings/hits/spills and max encounter duration, FAILs on timeout or zero telegraphs. **This new 54-case F6 scene has NOT been run in native Godot** and must not be called PASS yet. It is technical diagnostic, not balance or normal reward navigation verification.
+
+**Single next user action:** `git pull` and F6 `res://scenes/dev/defiled_laboratory_battle_smoke.tscn`; send screenshot/PASS/FAIL. Assistant edits/fixes GitHub directly. D152 is **still NOT live**; `ACT1_CARD_IDS` remains 34/45, 12+sealed XIII. Original 448×274 card illustration and normal D152 victory→reward→table still pending, along with D151 real end-to-end UX. Do not change global scaling, old sprites or D143 original-enemy requirement.
+
+---
+
 ## NEW ACTUAL GODOT EVIDENCE — 2026-10-15
 
 User sent two screenshots from Godot 4.7.2:
