@@ -1,3 +1,17 @@
+## 2026-10-15 — D153 ORIGINAL SKELETAL ANIMATION ATLASES COMMITTED; NATIVE ART QA PENDING
+
+**Latest implemented source:** Both new, independently authored skeleton pixel-art animation WebP/base64 atlases now exist on `main`:
+- `assets/pixel/units/deck_expansion_v1/threadbare_puppeteer_frames.webp.b64` (3,504 WebP bytes; SHA-256 `b3d13f1eea6f84eb43d6a3d14308b49f7cf0394beebe29bda72dfa4a4c8d0989`).
+- `assets/pixel/units/deck_expansion_v1/bone_marionette_frames.webp.b64` (3,178 WebP bytes; SHA-256 `dcd1c3079917d1171b7026a9fa08aefd71e7121852d47fc136d42e0bef50e7eb`).
+
+Each decoded lossless WebP is **576×480**, 6×5 transparent cells of 96×96 with **25 separately drawn, non-identical, visible skeleton poses** (idle 4, walk 6, attack 6, hit 3, death 6). Both were decoded and checked **after WebP export** for nonempty/unique used cells, transparent unused cells, two-pixel empty borders, full feet and source-right orientation. Both GitHub files were remotely refetched and their decoded bytes SHA-256 matched the local originals **exactly**. They are deliberately stylized hand-built pixel miniatures, not recycled enemy artwork, card-image cutouts or concept-board frames; full motion visual signoff remains the user's call. See `docs/D153_ANIMATION_ATLASES.md`.
+
+**NEXT USER ACTION:** `git pull`, then **F6 `res://scenes/dev/threadbare_theatre_art_preview.tscn`**. Inspect both original skeletons across five repeating states (every 2 seconds), visible feet, direction, transitions, thread effects and no disappearing frames; send a screenshot or specific corrections. **This F6 has NOT been run in native Godot since the atlases were added, so do not claim user art acceptance or runtime PASS.** Existing prior D153 tether-logic F6 **PASS** remains valid; don't rerun it just to review sprites.
+
+**Still gated (NOT live):** User's native gallery acceptance, authored theatre arena, production battle-only ThreadTether wiring, real battle→reward→table and 54-case matrix. D153 remains absent from both `RunState.CARD_PATHS` and `ACT1_CARD_IDS`; **live Act1 = 35/45**, 12 Fate Spread + sealed XIII. DS2 and D143/D167/D168 frozen. GitHub writes belong to the assistant; no manual ZIP, image transfer, code copy or upload.
+
+---
+
 ## D152 approved environmental card art V2 installed + D168 variants rule (2026-10-15)
 
 **Approved scene artwork delivered to GitHub:** `assets/pixel/card_unification_v1/run/defiled_laboratory_scene_v2.webp.b64` is the user-approved environment-driven D152 448×274 illustration (gothic alchemical laboratory with hooded Plague Alchemist, unstable Homunculus, vats, glassware, cages and occult light). `scripts/ui/card_unification_v1.gd` now points `D152_CARD_WEBP_B64` to this exact V2 file. GitHub content bytes were independently refetched and verified **identical** to the source; old sprite-showcase image remains unchanged in `assets/pixel/card_unification_v1/run/defiled_laboratory.webp.b64` for a one-line rollback. User approved the original composition **before** replacement, but the new v2 **has not yet been F6-reviewed inside Godot**. Original enemy 25-frame sprite atlases/balance unaffected, live deck still **35/45**. D168 now requires 2–3 real, meaningfully distinct visual previews **before** finalizing all future card art (default 3); D152 is an explicitly approved one-off exception. See AGENTS.md and DECISIONS.md D167/D168.

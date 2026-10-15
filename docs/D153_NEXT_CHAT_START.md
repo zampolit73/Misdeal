@@ -1,44 +1,22 @@
-# Misdeal — D153 next-chat start (2026-10-15)
+# Misdeal — D153 animation checkpoint (2026-10-15)
 
-## This is the current checkpoint
+**Repository:** `zampolit73/Misdeal`, branch `main`. Continue the project from GitHub, without re-asking access or asking the user to transfer art/code. This document **supersedes historical entries elsewhere saying D153 atlases are missing**.
 
-Continue **D153 / Threadbare Theatre («Театр оборванных нитей»)** in `zampolit73/Misdeal`, Godot **4.7.x + GDScript** on `main`. The user explicitly requested pausing development **now** and starting the **next stage in a new chat**, so this checkpoint must be sufficient without rereading the conversation. GitHub is the current-code source of truth; the assistant has connected GitHub write access and should commit changes itself. **Do not ask for access or require manual ZIP, PowerShell or file copying.**
+## Already confirmed by native Godot screenshots
+- The user-selected third ruined **skeletal** theatre card illustration renders in the 448×274 QA preview.
+- `res://scenes/dev/threadbare_theatre_smoke.tscn` shows **D153 / SKELETAL STRINGS — PASS** with 0 errors: unique skeleton roster/two formations, 32% protection within 285px, break/reconnect, master-death break and cleanup. This was isolated mechanics QA, not a production battle.
 
-### Confirmed by actual user Godot screenshots
+## D153 animation work now in GitHub
+- `assets/pixel/units/deck_expansion_v1/threadbare_puppeteer_frames.webp.b64`: original crowned bone puppeteer with marionette rig, moving limbs/crossbar and thread-whip.
+- `assets/pixel/units/deck_expansion_v1/bone_marionette_frames.webp.b64`: original jointed undead skeleton in worn crimson theatre costume, shoulder strings and bone-claw attacks.
+- Both are **genuine raster** lossless WebP (576×480, 6×5, 96px cells); **25 different rendered poses per role**, idle 4 / walk 6 / attack 6 / hit 3 / death 6. No substitutes/repeats.
+- Alpha/full-frame/uniqueness/unused-cell checks passed after WebP decoding. Actual decoded GitHub WebP hashes match the produced sources. Detailed hashes and QA: `docs/D153_ANIMATION_ATLASES.md`.
+- Strict D153 `scripts/battle/unit_animation_library.gd` loader and `res://scenes/dev/threadbare_theatre_art_preview.tscn` gallery were prepared beforehand; source assets now occupy their exact expected paths.
 
-- D153 card F6 `res://scenes/dev/threadbare_theatre_card_preview.tscn`: the chosen **third** dark-fantasy **skeletal** puppeteer theatre image loads in the native 448×274 slot. Original game card artwork source: `assets/pixel/card_unification_v1/run/threadbare_theatre_approved_v1.webp.b64`. No missing-art error shown.
-- D153 logic F6 `res://scenes/dev/threadbare_theatre_smoke.tscn`: **D153 / SKELETAL STRINGS — PASS**, Godot error counter **0**. Original two-unit-type undead roster and both formations PASS. Tether protects marionettes by **32%** within **285 px** of living Puppeteer, breaks outside range, returns on reconnection, breaks instantly on master death and cleans up base damage multipliers. This proves **isolated logic only**, NOT real battle or art animations.
+## Immediate continuation
+**User only:** `git pull`, F6 `res://scenes/dev/threadbare_theatre_art_preview.tscn`, review the five state cycles of both new characters; send screenshot/feedback about motion, feet, direction and silhouettes. **Gallery has not yet been executed by user in native Godot; no art acceptance or native PASS claimed.** The assistant owns any corrections via GitHub.
 
-### Committed and staged
+**After gallery acceptance:** design a unique ruined skeletal puppet-theatre **battle arena** (existing crypt is a placeholder); scope `ThreadTetherController` to D153 production battle; verify real fight→reward→table and full 54-case battle matrix, tune encounter-only if necessary. **Do not activate card #36** before gates.
 
-- `resources/cards/threadbare_theatre.tres`
-- `resources/encounters/threadbare_theatre.tres` — two formations; **crypt** arena only a temporary placeholder, not a theatre arena.
-- `resources/units/threadbare_puppeteer.tres`, `resources/units/bone_marionette.tres` — genuinely new skeletons, NOT reuse of existing skeleton assets.
-- `scripts/battle/thread_tether.gd` — battle-local protection mechanic, **not yet wired into production `battle.gd`**.
-- `scripts/ui/card_unification_v1.gd` — selected original card illustration loader (preview only).
-- `scripts/battle/unit_animation_library.gd` — strict, new D153 role loader: only real 576×480 (.webp.b64) animation spritesheets, **25 separately authored full-body frames per role**, with 96×96 cells and counts **idle 4 / walk 6 / attack 6 / hit 3 / death 6**, visibility, padding, uniqueness enforced, **no old-enemy sprite fallback**.
-- `res://scenes/dev/threadbare_theatre_art_preview.tscn` — an animation F6 gallery, scaffolding only. **Do not ask user to run it before sprite sheets are committed.**
+**Unchanged:** D153 QA only, NOT in `RunState.CARD_PATHS` or `ACT1_CARD_IDS`; live Act1 35/45; 12 cards + sealed XIII. D143 new enemy originality, D167 world-scene card art, D168 image options before future card-art replacements. D153 selected card art already approved direction; no new concept choice needed. DS2/Fate Spread Variant C and D151/D152 stay intact.
 
-### Missing (verified against GitHub; 404)
-
-- `assets/pixel/units/deck_expansion_v1/threadbare_puppeteer_frames.webp.b64`
-- `assets/pixel/units/deck_expansion_v1/bone_marionette_frames.webp.b64`
-
-The theatre card art is NOT an animation sheet; generated mood images / concept boards are NOT authentic 25-frame atlases. **Do not claim missing animations are complete.**
-
-## Next stage — start here in the new chat
-
-1. Create **two original skeletal character atlases** meeting the exact 6×5/96px technical contract, matching approved theatre art. Preserve visible feet, source-right facing, fully distinct real animation poses, no 2px edge cropping/blank frames/flicker. If image generation cannot reliably create actual frame sequences, say so rather than fabricating poses.
-2. Independently validate the decoded images (size, alpha padding, occupied and unique cells), commit both `.webp.b64` files into GitHub directly, as with earlier D152 assets.
-3. Only then request **one short user action**: `git pull`, F6 `res://scenes/dev/threadbare_theatre_art_preview.tscn`, send visual feedback.
-4. After Godot art acceptance: produce proper theatrical battle backdrop/arena with D167 scene-level environmental storytelling; scope `ThreadTetherController` to D153 in `battle.gd`, real combat/reward/table QA, then deterministic 54-case balance matrix. Do not activate the card in the live Act1 pool until all release gates pass.
-
-## Frozen constraints
-
-- Live Act 1 is **35/45** cards; D153 remains **NOT** in `RunState.CARD_PATHS` **nor** `ACT1_CARD_IDS`; target after release **36/45**. Physical run is **12 Fate Spread encounters + sealed XIII**.
-- D143: new fighting cards must contain genuinely original enemies and animations; these **must be undead skeleton marionettes**, **not wooden puppets**.
-- D167: card illustrations must be fully realized dark-fantasy *world scenes*, not sprite showcases.
-- D168: show user **three materially different image options before final art selection**; D153 already satisfied this rule, user selected variant C. Do not restart D153 art choice or replace approved artwork.
-- DS2 / Fate Spread Variant C, existing D151/D152, global tactics and combat balance are unchanged. Prior D152 released as card #35, with accepted V2 environment illustration.
-
-Read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md` and this document at the next chat start, then verify current `main` before edits.

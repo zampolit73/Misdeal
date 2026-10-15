@@ -185,7 +185,7 @@ static func _all_authored_deck_frames_distinct(image: Image) -> bool:
 			var tile := image.get_region(Rect2i(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE))
 			var fingerprint := hash(tile.get_data())
 			if fingerprints.has(fingerprint):
-				push_warning("Original D152 art has duplicated animation cells: %d:%d" % [row, col])
+				push_warning("Original Deck Expansion art has duplicated animation cells: %d:%d" % [row, col])
 				return false
 			fingerprints[fingerprint] = true
 	return true

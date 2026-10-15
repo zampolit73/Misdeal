@@ -1,3 +1,17 @@
+## 2026-10-15 — D153 ORIGINAL SKELETAL ANIMATION ATLASES COMMITTED; NATIVE ART QA PENDING
+
+**Latest implemented source:** Both new, independently authored skeleton pixel-art animation WebP/base64 atlases now exist on `main`:
+- `assets/pixel/units/deck_expansion_v1/threadbare_puppeteer_frames.webp.b64` (3,504 WebP bytes; SHA-256 `b3d13f1eea6f84eb43d6a3d14308b49f7cf0394beebe29bda72dfa4a4c8d0989`).
+- `assets/pixel/units/deck_expansion_v1/bone_marionette_frames.webp.b64` (3,178 WebP bytes; SHA-256 `dcd1c3079917d1171b7026a9fa08aefd71e7121852d47fc136d42e0bef50e7eb`).
+
+Each decoded lossless WebP is **576×480**, 6×5 transparent cells of 96×96 with **25 separately drawn, non-identical, visible skeleton poses** (idle 4, walk 6, attack 6, hit 3, death 6). Both were decoded and checked **after WebP export** for nonempty/unique used cells, transparent unused cells, two-pixel empty borders, full feet and source-right orientation. Both GitHub files were remotely refetched and their decoded bytes SHA-256 matched the local originals **exactly**. They are deliberately stylized hand-built pixel miniatures, not recycled enemy artwork, card-image cutouts or concept-board frames; full motion visual signoff remains the user's call. See `docs/D153_ANIMATION_ATLASES.md`.
+
+**NEXT USER ACTION:** `git pull`, then **F6 `res://scenes/dev/threadbare_theatre_art_preview.tscn`**. Inspect both original skeletons across five repeating states (every 2 seconds), visible feet, direction, transitions, thread effects and no disappearing frames; send a screenshot or specific corrections. **This F6 has NOT been run in native Godot since the atlases were added, so do not claim user art acceptance or runtime PASS.** Existing prior D153 tether-logic F6 **PASS** remains valid; don't rerun it just to review sprites.
+
+**Still gated (NOT live):** User's native gallery acceptance, authored theatre arena, production battle-only ThreadTether wiring, real battle→reward→table and 54-case matrix. D153 remains absent from both `RunState.CARD_PATHS` and `ACT1_CARD_IDS`; **live Act1 = 35/45**, 12 Fate Spread + sealed XIII. DS2 and D143/D167/D168 frozen. GitHub writes belong to the assistant; no manual ZIP, image transfer, code copy or upload.
+
+---
+
 ## 2026-10-15 — D153 NATIVE THREAD QA PASS; STRICT ORIGINAL ANIMATION GATE COMMITTED
 
 Confirmed user Godot screenshot: `D153 / SKELETAL STRINGS — PASS`, 0 visible errors; original skeletal roster/two placements, 32% damage protection within 285px, tether break/relink and immediate protection removal on Puppeteer death plus cleanup all verified in **isolated** F6 logic test. D153 art preview was already seen rendering correctly in two separate screenshots.

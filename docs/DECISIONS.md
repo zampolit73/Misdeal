@@ -2,6 +2,16 @@
 
 This file records decisions that future chats should not casually reverse.
 
+## D170 — D153 original skeletal atlas production and native approval gate
+
+Date: 2026-10-15  
+Status: implemented asset handoff; native animation review pending
+
+The original D153 animation assets are separate for `threadbare_puppeteer` and `bone_marionette`. Each uses a transparent lossless WebP, text-packed for Godot export, with 25 individually posed pixel-art cells on an exact 576×480 6×5 grid (96px cells; idle4/walk6/attack6/hit3/death6). New skeletons must keep fully visible feet, source-right facing and distinct frame silhouettes; replacing them with existing Bone Shepherd/Skeleton sprites or looping duplicates is not acceptable.
+
+The strict `MisdealUnitAnimationLibrary` D153 loader remains in force. Raster/source checks and GitHub SHA-256 match passed; **visual motion and runtime Godot QA still require F6 approval**. Neither asset delivery nor gallery approval alone authorizes putting D153 in the live deck. Original theatre arena, local battle tether, 54-case QA and reward/table route remain release gates. See `docs/D153_ANIMATION_ATLASES.md`.
+
+
 ## D001 — Project name: Misdeal
 
 Date: 2026-10-04  
