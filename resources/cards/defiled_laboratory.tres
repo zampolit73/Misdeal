@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+card_id = "defiled_laboratory"
+title = "ОСКВЕРНЁННАЯ ЛАБОРАТОРИЯ"
+card_text = "Внутри алхимической мастерской не осталось живых. Но опыты всё ещё движутся."
+wizard_line = "Я всегда считал, что химия — просто колдовство без хороших манер."
+type_label = "БОЙ"
+tier = 1
+resolution_type = "combat"
+target_path = "res://resources/encounters/defiled_laboratory.tres"
+art_path = ""
+prototype_result_text = ""
