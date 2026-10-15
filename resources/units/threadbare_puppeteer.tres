@@ -3,15 +3,16 @@
 [ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
 
 [resource]
+# D176 localized balance: sturdier thread master and meaningful ranged pressure.
 script = ExtResource("1")
 unit_name = "Костяной кукловод"
 visual_role = "threadbare_puppeteer"
-max_hp = 108.0
-damage = 5.5
-attack_interval = 1.8
+max_hp = 142.0
+damage = 7.5
+attack_interval = 1.65
 attack_range = 132.0
 minimum_range = 62.0
-move_speed = 51.0
+move_speed = 55.0
 body_radius = 19.0
 separation_padding = 13.0
 show_enemy_name = true

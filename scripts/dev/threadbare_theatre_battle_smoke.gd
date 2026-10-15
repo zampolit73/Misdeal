@@ -28,8 +28,10 @@ var all_links := 0
 var all_breaks := 0
 var all_master_breaks := 0
 var wins_per_size: Array[int] = [0, 0, 0]
+var wins_per_protagonist: Array[int] = [0, 0, 0]
 var duration_per_size: Array[float] = [0.0, 0.0, 0.0]
 var hp_per_size: Array[float] = [0.0, 0.0, 0.0]
+var lowest_hp_per_size: Array[float] = [1.0, 1.0, 1.0]
 var deaths_per_size: Array[int] = [0, 0, 0]
 
 
@@ -236,6 +238,7 @@ func _run() -> void:
 						if String(result["outcome"]) == "win":
 							wins += 1
 							wins_per_size[party_size - 1] += 1
+							wins_per_protagonist[protagonist] += 1
 						else:
 							defeats += 1
 						if String(result["outcome"]).is_empty():
@@ -246,6 +249,9 @@ func _run() -> void:
 						all_breaks += int(result["breaks"])
 						all_master_breaks += int(result["master_breaks"])
 						hp_per_size[party_size - 1] += float(result["hp_fraction"])
+						lowest_hp_per_size[party_size - 1] = minf(
+							lowest_hp_per_size[party_size - 1], float(result["hp_fraction"])
+						)
 						duration_per_size[party_size - 1] += float(result["duration"])
 						deaths_per_size[party_size - 1] += int(result["hero_deaths"])
 						status_label.text = "%d / 54 • %s • %d героя • %s\nПобеды: %d • Поражения: %d" % [
@@ -263,24 +269,43 @@ func _run() -> void:
 		failures.append("Only %d of 54 battles completed" % completed)
 	if failures.is_empty() and all_links <= 0:
 		failures.append("No active thread links were observed in the real battles")
+	if failures.is_empty() and (wins + defeats != TOTAL_CASES):
+		failures.append("Every D153 test case must end in a definite win or loss")
+	if failures.is_empty() and (wins_per_size[0] == 0 or wins_per_size[1] == 0 or wins_per_size[2] == 0):
+		failures.append("D153 unwinnable for at least one of solo/duo/trio party sizes")
 	if failures.is_empty():
+		var average_party_hp: float = (
+			hp_per_size[0] + hp_per_size[1] + hp_per_size[2]
+		) / float(TOTAL_CASES)
+		var balance_review := "БАЛАНС: оценить сложность в реальном бою до выпуска."
+		if wins == TOTAL_CASES and average_party_hp >= 0.80:
+			balance_review = "БАЛАНС: 54 победы и HP 80%+; вероятно, всё ещё легко."
+		elif wins < 40:
+			balance_review = "БАЛАНС: меньше 40 побед; проверить риск перегиба."
 		title_label.text = "D153 / THEATRE BATTLE — FUNCTIONAL PASS"
 		status_label.text = ("54 / 54 боёв • %d побед / %d поражений\n"
 			+ "Соло / дуо / трио: %d / %d / %d побед\n"
-			+ "HP отряда: %.0f%% / %.0f%% / %.0f%%\n"
+			+ "Рыцарь / Следопыт / Маг: %d / %d / %d побед\n"
+			+ "Средний HP: %.0f%% / %.0f%% / %.0f%%\n"
+			+ "Худший HP: %.0f%% / %.0f%% / %.0f%%\n"
 			+ "Средняя длительность: %.1f / %.1f / %.1f с\n"
 			+ "Погибшие герои: %d / %d / %d\n"
-			+ "Нити: %d соединений, %d разрывов, %d разрывов при смерти Кукловода.\n"
-			+ "Технический PASS не подтверждает баланс или маршрут награды.") % [
+			+ "Нити: %d соединений, %d разрывов, %d при смерти Кукловода.\n"
+			+ "%s\n"
+			+ "Функциональный PASS не означает, что баланс принят.") % [
 			wins, defeats, wins_per_size[0], wins_per_size[1], wins_per_size[2],
+			wins_per_protagonist[0], wins_per_protagonist[1], wins_per_protagonist[2],
 			hp_per_size[0] * 100.0 / 18.0,
 			hp_per_size[1] * 100.0 / 18.0,
 			hp_per_size[2] * 100.0 / 18.0,
+			lowest_hp_per_size[0] * 100.0,
+			lowest_hp_per_size[1] * 100.0,
+			lowest_hp_per_size[2] * 100.0,
 			duration_per_size[0] / 18.0,
 			duration_per_size[1] / 18.0,
 			duration_per_size[2] / 18.0,
 			deaths_per_size[0], deaths_per_size[1], deaths_per_size[2],
-			all_links, all_breaks, all_master_breaks]
+			all_links, all_breaks, all_master_breaks, balance_review]
 		status_label.add_theme_color_override("font_color", Color(0.63, 0.90, 0.70))
 	else:
 		title_label.text = "D153 / THEATRE BATTLE — FAIL"

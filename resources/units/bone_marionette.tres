@@ -3,13 +3,14 @@
 [ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
 
 [resource]
+# D176 localized balance: faster bone strikes without new attack mechanics.
 script = ExtResource("1")
 unit_name = "Костяная марионетка"
 visual_role = "bone_marionette"
-max_hp = 71.0
-damage = 8.5
-attack_interval = 1.33
+max_hp = 88.0
+damage = 10.5
+attack_interval = 1.22
 attack_range = 44.0
-move_speed = 73.0
+move_speed = 78.0
 body_radius = 18.0
 separation_padding = 12.0

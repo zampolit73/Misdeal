@@ -2,6 +2,16 @@
 
 This file records decisions that future chats should not casually reverse.
 
+## D176 — D153 scoped balancing after confirmed too-easy playtest
+
+Date: 2026-10-15  
+Status: source changes committed; post-tune native matrix and user difficulty acceptance pending
+
+User explicitly reported the real `Threadbare Theatre` battle felt too easy. Strengthen only the two original enemy `UnitData` resources: `threadbare_puppeteer` **108→142 HP, 5.5→7.5 damage, 1.80→1.65s interval, 51→55 movement**; `bone_marionette` **71→88 HP, 8.5→10.5 damage, 1.33→1.22s interval, 73→78 movement**. No new active spell, no new units, no modifications to the already-native-smoke-tested tether (32% / 285px). This is an encounter-specific, data-driven tuning step that increases punishment and makes prioritizing the master meaningful, not a game-wide difficulty redesign.
+
+The previous 54/54 technical PASS predates D176. The matrix now highlights class-specific victories, minimum HP and overly-easy/overly-punishing aggregates without conflating functional completion with challenge acceptance. It MUST be rerun on Godot 4.7.x before releasing D153. Keep the live random pool at 35/45; only after user approves updated challenge and a fresh matrix PASS add the card as 36/45, then validate a normal deal. Detailed checks: `docs/D153_BALANCE_D176.md`.
+
+
 ## D175 — D153 real route verified by user; balance gate before live release
 
 Date: 2026-10-15  
