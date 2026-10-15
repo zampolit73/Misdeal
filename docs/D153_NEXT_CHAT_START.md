@@ -1,5 +1,22 @@
 # Misdeal — D153 current handoff (2026-10-15)
 
+## 2026-10-15 — D153 REAL GODOT 54-CASE TECHNICAL MATRIX PASSED; PLAYTEST/REWARD & BALANCE PENDING
+
+**NEWEST USER EVIDENCE:** User supplied two in-engine Godot screenshots showing **`D153 / THEATRE BATTLE — FUNCTIONAL PASS`** for `res://scenes/dev/threadbare_theatre_battle_smoke.tscn`. This is the **actual native outcome** (not an inferred assistant-side run):
+- **54/54 simulations completed**, 54 player victories, 0 player defeats; 18/18 victories each in solo/duo/trio. Coverage: 2 formations × 3 starting protagonists × 3 party sizes × 3 tactical choices (`assault`, `hunt`, `formation`).
+- Mean surviving hero HP: **solo 85%, duo 82–83%, trio 86%** (two screenshots differ by one rounded percentage point on duo; do not invent greater precision).
+- Mean combat durations: **solo 11.2s, duo 12.2s, trio 11.5s**.
+- Fallen heroes across simulations: **0 solo, 0 duo, 2 trio**.
+- Tether counters: **123 established links, 92 normal breaks, 54 break events triggered by Puppeteer death**. Means ThreadTetherController was actively exercised.
+- This is a **functional** result from the deterministic BattleUnit diagnostic; the smoke runner manually simulates AI and tether updates. It is **NOT** the live `battle.tscn` presentation/reward-route QA and it does **NOT** certify challenge/fairness. In particular, 54/54 victories with 82–86% average remaining HP signal **possibly low encounter difficulty**; do not alter other encounters/global multipliers or declare a balance verdict without the manual QA route.
+
+**IMMEDIATE NEXT STEP:** User should run **F6 `res://scenes/dev/threadbare_theatre_playtest.tscn`** (this starts the **real** battle flow, unlike the matrix), review selected gloomy backstage arena/approved crimson skeleton animations, observe 32% thread protection and breaks, win and press **«ЗАБРАТЬ НАГРАДУ»**, choose a reward and return to **Fate Spread/table**. Ask for a real battle screenshot and whether reward→table works. If difficulty feels trivial, then tune **D153-specific** original UnitData/encounter parameters, rerun the 54-case test and repeat the live route. Avoid automatic buff solely based on scripted matrix numbers.
+
+**GATE:** D153 remains QA-only and **absent from `RunState.ACT1_CARD_IDS` (35/45 live)**, despite a QA-only `CARD_PATHS` mapping. Native production battle flow/arena visibility and real reward/table transition are still unverified. Do **not** ship card #36 yet. Preserve the approved user-selected arena, D153 sprites, D151/D152, DS2 and 12+sealed XIII.
+
+---
+
+
 Repository: `zampolit73/Misdeal`, branch `main`. Read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md` first; GitHub is the live technical truth. The assistant uses the connected GitHub tools to make all changes; user uses local Godot 4.7.x and `git pull`.
 
 ## Confirmed by user

@@ -2,6 +2,14 @@
 
 This file records decisions that future chats should not casually reverse.
 
+## D174 — D153 Godot combat matrix PASS is not a release/balance signoff
+
+Date: 2026-10-15  
+Status: native functional matrix accepted; real battle route and encounter tuning pending
+
+Two user Godot screenshots of `threadbare_theatre_battle_smoke.tscn` show FUNCTIONAL PASS with 54/54 finished cases and 54 player victories (18 each solo/duo/trio), mean hero HP ~85/82–83/86%, mean durations 11.2/12.2/11.5s, 0/0/2 hero deaths, and 123 join / 92 separation / 54 Puppeteer-death thread breaks. This validates the scripted BattleUnit + ThreadTether matrix in real Godot, **not** the real `battle.tscn` UI, actual victory→Reward→Fate Spread flow or desired difficulty. Universal victories and high remaining HP warrant manual encounter feel check, not immediate global stat changes. Continue with the D153 QA-only real battle playtest before enabling `threadbare_theatre` in live `ACT1_CARD_IDS`. Keep Act1 35/45.
+
+
 ## D173 — D153 approved theatre arena + encounter-only production tether QA
 
 Date: 2026-10-15  
