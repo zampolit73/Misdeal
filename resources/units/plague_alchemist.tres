@@ -6,8 +6,8 @@
 script = ExtResource("1")
 unit_name = "Чумной алхимик"
 visual_role = "plague_alchemist"
-max_hp = 92.0
-damage = 6.0
+max_hp = 108.0
+damage = 7.5
 attack_interval = 1.75
 attack_range = 125.0
 minimum_range = 55.0
