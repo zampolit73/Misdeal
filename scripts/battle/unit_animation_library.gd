@@ -51,7 +51,7 @@ static func get_frames(role: String) -> SpriteFrames:
 		if d152_image.get_size() != Vector2i(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
 			push_warning("D152 original animation atlas size invalid: %s" % role)
 			return null
-		if not _all_authored_deck_frames_visible(d152_image) or not _all_authored_deck_frames_padded(d152_image):
+		if not _all_authored_deck_frames_visible(d152_image) or not _all_authored_deck_frames_padded(d152_image) or not _all_authored_deck_frames_distinct(d152_image):
 			push_warning("D152 original animation cells missing or cropped: %s" % role)
 			return null
 		var d152_texture := ImageTexture.create_from_image(d152_image)
@@ -146,6 +146,22 @@ static func _all_authored_deck_frames_visible(image: Image) -> bool:
 		for col in range(state_counts[row]):
 			if not _deck_frame_visible(image, col, row):
 				return false
+	return true
+
+
+# D152 quality gate: avoid visually frozen frames being disguised as authored motion.
+# Compare raw 96px cells exactly; a repeated pose is a failed preview, not filler.
+static func _all_authored_deck_frames_distinct(image: Image) -> bool:
+	var state_counts := [4, 6, 6, 3, 6]
+	var fingerprints: Dictionary = {}
+	for row in range(state_counts.size()):
+		for col in range(state_counts[row]):
+			var tile := image.get_region(Rect2i(col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+			var fingerprint := hash(tile.get_data())
+			if fingerprints.has(fingerprint):
+				push_warning("Original D152 art has duplicated animation cells: %d:%d" % [row, col])
+				return false
+			fingerprints[fingerprint] = true
 	return true
 
 
