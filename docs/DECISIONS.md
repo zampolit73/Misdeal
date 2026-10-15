@@ -3,6 +3,13 @@ Updated: 2026-10-15.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D180 — Release Threadbare Theatre as Act 1 card 36/45
+Date: 2026-10-15. **Source released; native normal-deal regression pending.**
+
+After the user accepted the D176/D177 revised D153 encounter in principle (`пока все ок`) and asked to continue development, D153 becomes the 36th live nonboss Act1 card. Add only `threadbare_theatre` to `ACT1_CARD_IDS`; its `CARD_PATHS`, original scene art, genuinely new skeletal enemies, arena and local 32%/285px tether mechanic were already complete. Preserve existing D176 stats, the 12 + XIII run structure, approved DS2 visuals and all other encounters. Remove obsolete 35-card QA guards; introduce an F6 release smoke through the actual `RunState.get_offer_cards` / `choose_card` / `complete_active_card` path.
+
+The native 54/54 combat matrix PASS remains valid for unchanged mechanics; it is **not** proof that the newly live card has completed post-release normal-deal QA. Never invent a Godot PASS until user checks the new `threadbare_theatre_release_smoke.tscn`.
+
 ## Foundation
 
 - **D001–D006:** Name Misdeal; Godot 4.7.x with GDScript; card-driven cursed tabletop + compact tactical autobattler; evil wizard as host; playable vertical slice first; GitHub is technical source of truth.
@@ -24,4 +31,4 @@ This file is an **active index**, not a replacement for the full decision histor
 - **D178:** **post-tune** native matrix 54/54 functional PASS; surviving HP mean 74/67/74%, worst 39/15/37%. No blind global buffs and no automatic D153 card #36 release from a matrix result.
 - **D179 (documentation hygiene, 2026-10-15):** keep working docs concise with a single canonical handoff, archive snapshots of full prior files, avoid repeatedly prepending entire session reports. Do not delete historical decisions, approved art or potentially referenced runtime files as part of documentation cleanup.
 
-**Release state:** 35/45 until a user-approved live difficulty check and normal-deal test; see `docs/HANDOFF.md`.
+**Release state:** 36/45 in main; native D180 ordinary-deal smoke pending. See `docs/HANDOFF.md`.

@@ -7,16 +7,16 @@ Each run resolves **12 cards** in the Fate Spread, with the Bone Warden as seale
 ## Current state (2026-10-15)
 
 - **Playable Godot 4.7.x / GDScript prototype**, not just a starting combat demo.
-- **35 live Act 1 cards** in the ordinary pool (target **45**); the boss is separate.
+- **36 live Act 1 cards** in the ordinary pool (target **45**); the boss is separate.
 - Original battle arenas, unit animations, interface design system 2.0 / Fate Spread Variant C, special encounters and event flows.
-- **D153 / Театр оборванных нитей:** user-approved theatre art + bone puppeteer/marionettes, encounter-only tether mechanic, real battle/reward route already tested; post-tune matrix **54/54 functional PASS**. **Not yet a live #36 card** until final release check.
+- **D153 / Театр оборванных нитей:** user-approved theatre art + bone puppeteer/marionettes, encounter-only tether mechanic, real battle/reward route already tested; post-tune matrix **54/54 functional PASS**. **Live as card #36**; native ordinary-deal release smoke pending.
 - Current implementation and next action: [Project State](docs/PROJECT_STATE.md) · [Active Roadmap](docs/ROADMAP.md) · [Handoff](docs/HANDOFF.md).
 
 ## Run locally
 
 1. `git clone https://github.com/zampolit73/Misdeal.git` (or update existing checkout with `git pull`).
 2. Open `project.godot` in **Godot 4.7.x** and run the main scene.
-3. For the isolated D153 challenge test, run current scene (F6): `scenes/dev/threadbare_theatre_playtest.tscn`. For seeded 54-case technical combat QA: `scenes/dev/threadbare_theatre_battle_smoke.tscn`.
+3. For the D153 release QA, press F6 on `scenes/dev/threadbare_theatre_release_smoke.tscn`. For the isolated D153 challenge test, run current scene (F6): `scenes/dev/threadbare_theatre_playtest.tscn`. For seeded 54-case technical combat QA: `scenes/dev/threadbare_theatre_battle_smoke.tscn`.
 
 ## Developer entry points
 

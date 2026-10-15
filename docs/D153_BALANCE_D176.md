@@ -23,6 +23,6 @@ One master + two marionettes; unchanged 32% tether protection within 285px. Only
 | Individual hero deaths | 0/0/2 | **0/4/4** |
 | Tethers: joins/normal breaks/master-death breaks | 123/92/54 | **123/91/54** |
 
-Coverage: 2 enemy formations × 3 protagonists × 3 party sizes × 3 combat orders = 54 seeded cases. Functional PASS does **not** certify balance enjoyment or the full reward route. Pre-D176 user reported real battle→reward→table working. On revised stats, user said `пока все ок` and requested repository tidy-up; do not automatically release D153 without a clear final release decision.
+Coverage: 2 enemy formations × 3 protagonists × 3 party sizes × 3 combat orders = 54 seeded cases. Functional PASS does **not** certify balance enjoyment or the full reward route. Pre-D176 user reported real battle→reward→table working. On revised stats, user said `пока все ок` and requested repository tidy-up; D180 subsequently activates D153 after the request to continue development; new ordinary-deal QA must be confirmed in Godot.
 
-**Next:** user confirms revised real battle feel; then release as card 36/45, update QA guards and verify normal random dealing. All detailed previous iterations preserved at [archived D153 balance file](archive/2026-10-15-pre-cleanup/docs/D153_BALANCE_D176.md).
+**D180 release:** Card #36 is enabled in source, D151/D152/D153 QA guards updated. Run F6 `scenes/dev/threadbare_theatre_release_smoke.tscn` and spot-check the main-game table. All detailed previous iterations preserved at [archived D153 balance file](archive/2026-10-15-pre-cleanup/docs/D153_BALANCE_D176.md).
