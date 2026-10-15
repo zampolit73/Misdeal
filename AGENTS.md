@@ -1,5 +1,11 @@
 # MISDEAL — Development Guide
 
+## Card art approval workflow — show options BEFORE finalizing
+
+**User-approved mandatory rule (2026-10-15):** Before producing/replacing final card illustrations, **show the user multiple distinct visual options (normally 3)** as actual image previews, not just written descriptions. Distinguish composition, framing, scene emphasis or lighting; avoid minor palette-only variations masquerading as options. **Wait for the user to choose/approve one** before replacing any live card art in GitHub. Iterate on the selected option if requested. Every option must already satisfy the scene-first dark-fantasy quality bar (D167), DS2 and text-free illustration rules. After approval, the assistant itself commits the approved image into GitHub (prefer versioned export-safe 448×274 WebP/base64), switches the runtime art pointer, keeps the previous file for one-step rollback, and asks the user only to `git pull` and inspect the Godot F6 card preview. Never require users to unzip assets, manually paste code or upload approved pictures for the assistant.
+
+**Already-approved exception:** The user explicitly approved the scene-driven D152 replacement illustration on 2026-10-15. Transfer that exact image now; **do not ask for additional D152 concept choices retroactively**. Apply the options-first rule to D153 and all future card art passes.
+
 ## Card art quality bar — illustrated world scenes, never sprite showcases
 
 **Mandatory for all new and revised encounter-card illustrations in Misdeal.** A card must look like a moment in the game's dark-fantasy world, **not a demonstration of character/unit sprites**.
