@@ -1,15 +1,15 @@
 extends Control
 
-# D152 visual QA + real battle staging, outside the 34-card Act1 deal pool.
+# D152 visual QA + reproducible battle staging for the released 35th Act1 card.
 const ANIMATIONS := preload("res://scripts/battle/unit_animation_library.gd")
 
 func _ready() -> void:
-	if RunState.ACT1_CARD_IDS.has("defiled_laboratory"):
-		_show_blocker("D152 ещё не прошла QA: карта не должна быть в живой колоде.")
+	if not RunState.ACT1_CARD_IDS.has("defiled_laboratory"):
+		_show_blocker("D152 должна быть в обычной колоде Act 1 (35/45).")
 		return
 	for role in ["plague_alchemist", "unstable_homunculus"]:
 		if ANIMATIONS.get_frames(role) == null:
-			_show_blocker("Отсутствует полноценный оригинальный атлас: %s\nСначала загрузите D152 art pack и откройте art_preview." % role)
+			_show_blocker("Отсутствует полноценный оригинальный атлас: %s\nПроверьте оригинальные атласы D152 в GitHub." % role)
 			return
 	RunState.reset_run()
 	RunState.choose_protagonist("knight")
