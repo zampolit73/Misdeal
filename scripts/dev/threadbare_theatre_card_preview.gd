@@ -23,8 +23,8 @@ func _ready() -> void:
 	if CARD.card_id != "threadbare_theatre" or CARD.resolution_type != "combat":
 		_show_error("D153 card resource is incomplete.")
 		return
-	if RunState.ACT1_CARD_IDS.size() != 35 or RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
-		_show_error("D153 ещё тестовая карта, колода должна оставаться 35/45.")
+	if RunState.ACT1_CARD_IDS.size() != 36 or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
+		_show_error("D153 должна входить в актуальную колоду 36/45.")
 		return
 	var frame := Panel.new()
 	frame.position = Vector2(376, 135)
@@ -40,7 +40,7 @@ func _ready() -> void:
 	add_child(illustration)
 	var description := _label(CARD.card_text, Vector2(212, 504), Vector2(856, 65), 19)
 	description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var status := _label("Утверждённый вариант C · 448×274 · костяные марионетки\nТолько арт-предпросмотр, карта ещё не в раздаче (35/45).", Vector2(190, 596), Vector2(900, 75), 17)
+	var status := _label("Утверждённый вариант C · 448×274 · костяные марионетки\nАрт-предпросмотр выпущенной карты №36 (36/45).", Vector2(190, 596), Vector2(900, 75), 17)
 	status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	status.add_theme_color_override("font_color", Color(0.72, 0.83, 0.73))
 

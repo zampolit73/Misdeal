@@ -28,8 +28,8 @@ func _ready() -> void:
 		+ "Удаление с дистанции разрывает связь: PASS.\n"
 		+ "Гибель Кукловода мгновенно снимает защиту: PASS.\n"
 		+ "Остановка восстанавливает исходные множители: PASS.\n"
-		+ "ТОЛЬКО логика: новые оригинальные анимации и реальный бой ещё не выпущены.\n"
-		+ "Колода Act 1 остаётся 35/45.") if issues.is_empty() else "\n".join(issues)
+		+ "Изолированная проверка нитей; боевые анимации и арена уже утверждены.\n"
+		+ "Карта D153 входит в Act 1 (36/45).") if issues.is_empty() else "\n".join(issues)
 	detail.add_theme_color_override("font_color", Color(0.64, 0.90, 0.70) if issues.is_empty() else Color(0.98, 0.44, 0.36))
 
 
@@ -59,8 +59,8 @@ func _test_threads() -> void:
 	]):
 		issues.append("Expected unique original 1+2 undead roster")
 		return
-	if RunState.ACT1_CARD_IDS.size() != 35 or RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
-		issues.append("D153 must remain outside the 35-card live deck until original animations and full QA")
+	if RunState.ACT1_CARD_IDS.size() != 36 or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
+		issues.append("D153 must be in the 36-card live Act1 pool")
 		return
 	var arena := Node2D.new()
 	arena.visible = false

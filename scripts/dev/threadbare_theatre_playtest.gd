@@ -1,12 +1,11 @@
 extends Control
 
-# D153 developer-only entry into the REAL battle scene and Reward flow.
-# The card is in CARD_PATHS for this explicit fixture, but is not in ACT1_CARD_IDS.
+# D153 reproducible REAL battle/Reward QA for released Act1 card #36.
 const ARENA_FILE := "res://assets/pixel/battle/arenas/threadbare_theatre_approved_v1.webp.b64"
 
 func _ready() -> void:
-	if RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
-		_block("D153 must remain outside the live Act1 deck until matrix / route QA.")
+	if RunState.ACT1_CARD_IDS.size() != 36 or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
+		_block("D153 must be present in the 36-card live Act1 pool.")
 		return
 	if not FileAccess.file_exists(ARENA_FILE):
 		_block("Missing original D153 theatre arena: " + ARENA_FILE)
@@ -19,7 +18,7 @@ func _ready() -> void:
 	RunState.current_offer_ids.append("threadbare_theatre")
 	RunState.current_offer_ids.append("bone_patrol")
 	if not RunState.choose_card("threadbare_theatre"):
-		_block("QA-only Threadbare Theatre card lookup failed")
+		_block("Released Threadbare Theatre card selection failed")
 		return
 	call_deferred("_enter_real_battle")
 

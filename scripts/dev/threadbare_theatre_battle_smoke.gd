@@ -65,8 +65,8 @@ func _check_resources() -> void:
 		"res://resources/units/bone_marionette.tres"
 	]):
 		failures.append("D153 must have one original puppeteer and two original skeletal marionettes")
-	if RunState.ACT1_CARD_IDS.size() != 35 or RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
-		failures.append("D153 must not enter the 35-card deal pool yet")
+	if RunState.ACT1_CARD_IDS.size() != 36 or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
+		failures.append("D153 must be the 36th live Act1 card")
 	# Resolve every hero and both unique enemy resources *before* spawning.
 	# Report the exact file if a malformed .tres breaks ResourceLoader in Godot.
 	for role in HERO_ROLES:
@@ -83,7 +83,7 @@ func _check_resources() -> void:
 			failures.append("D153 missing enemy UnitData: %s" % enemy_path)
 	var card: RunCardData = RunState.get_card("threadbare_theatre")
 	if card == null or card.resolution_type != "combat" or card.target_path != "res://resources/encounters/threadbare_theatre.tres":
-		failures.append("QA-only D153 combat card missing")
+		failures.append("D153 released combat card resource missing")
 	var data := FileAccess.get_file_as_string(ARENA_PATH)
 	if data.is_empty():
 		failures.append("Missing original approved theatre battle plate")
