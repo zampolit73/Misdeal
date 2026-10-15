@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+unit_name = "Костяной кукловод"
+visual_role = "threadbare_puppeteer"
+max_hp = 108.0
+damage = 5.5
+attack_interval = 1.8
+attack_range = 132.0
+minimum_range = 62.0
+move_speed = 51.0
+body_radius = 19.0
+separation_padding = 13.0
+show_enemy_name = true
