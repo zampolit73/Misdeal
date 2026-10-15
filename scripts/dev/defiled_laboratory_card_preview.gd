@@ -1,7 +1,7 @@
 extends Control
 
-# D152 original card-art acceptance and one-click real-battle QA.
-# This gallery does not register the card in the live 34-card Act1 pool.
+# D152 original card-art preview and one-click real-battle QA.
+# Released D152 is loaded through the normal 35-card Act1 pool.
 const ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const CARD_ID := "defiled_laboratory"
 const EXPECTED_SIZE := Vector2i(448, 274)
@@ -22,8 +22,8 @@ func _ready() -> void:
 	if card == null or art == null or art.get_size() != Vector2(EXPECTED_SIZE):
 		_show_error("Оригинальная иллюстрация D152 не загружена или имеет неверный размер 448x274.")
 		return
-	if RunState.ACT1_CARD_IDS.has(CARD_ID):
-		_show_error("D152 ещё проходит QA и не должна быть в основной колоде.")
+	if not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		_show_error("D152 должна быть доступна в основной колоде Act 1.")
 		return
 
 	var plate := Panel.new()
@@ -44,7 +44,7 @@ func _ready() -> void:
 	description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
-	var status := _label("448×274 • оригинальные враги • арт только для QA\nПосле проверки можно запустить настоящий бой.", Vector2(315.0, 584.0), Vector2(650.0, 57.0), 16)
+	var status := _label("448×274 • оригинальные враги • карта Act 1\nМожно проверить столкновение отдельно от обычной раздачи.", Vector2(315.0, 584.0), Vector2(650.0, 57.0), 16)
 	status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	status.add_theme_color_override("font_color", Color(0.73, 0.80, 0.70, 1.0))
 
