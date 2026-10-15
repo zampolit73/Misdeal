@@ -8,9 +8,9 @@ const ACTIVE := 2
 const RADIUS := 66.0
 const WARNING_SECONDS := 1.2
 const ACTIVE_SECONDS := 2.2
-const COOLDOWN_SECONDS := 5.0
+const COOLDOWN_SECONDS := 4.5
 const PULSE_SECONDS := 0.65
-const PULSE_DAMAGE := 5.0
+const PULSE_DAMAGE := 6.0
 
 var alchemist: BattleUnit
 var homunculi: Array[BattleUnit] = []
@@ -91,11 +91,28 @@ func advance_battle(delta: float) -> void:
 	queue_redraw()
 
 
+# Target a cluster rather than always burning the first hero in the array.
+# This rewards pre-battle spacing without changing player control or AI.
+# Ties prefer the frontmost hero nearest the alchemist.
 func _choose_target_position() -> Vector2:
-	for unit in combat_units:
-		if is_instance_valid(unit) and unit.alive and unit.team == 0:
-			return unit.position
-	return alchemist.position
+	var best_position: Vector2 = alchemist.position
+	var best_cluster_size: int = 0
+	var best_distance_sq: float = INF
+	for candidate in combat_units:
+		if not is_instance_valid(candidate) or not candidate.alive or candidate.team != 0:
+			continue
+		var nearby_count: int = 0
+		for friend in combat_units:
+			if not is_instance_valid(friend) or not friend.alive or friend.team != 0:
+				continue
+			if candidate.position.distance_squared_to(friend.position) <= RADIUS * RADIUS:
+				nearby_count += 1
+		var distance_sq: float = candidate.position.distance_squared_to(alchemist.position)
+		if nearby_count > best_cluster_size or (nearby_count == best_cluster_size and distance_sq < best_distance_sq):
+			best_cluster_size = nearby_count
+			best_distance_sq = distance_sq
+			best_position = candidate.position
+	return best_position
 
 
 func _on_minion_died(unit: BattleUnit) -> void:
