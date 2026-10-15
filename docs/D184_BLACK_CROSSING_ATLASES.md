@@ -1,20 +1,19 @@
-# Misdeal D184 — unit atlas packaging and next GitHub handoff
+# D185 — Source-derived sprite atlas GitHub transfer completed (2026-10-15)
 
-## D184 — Black Crossing original sprites: art selected, local atlas QA, GitHub loader staged
+**STATUS: both approved-role animated sprite files committed to GitHub. Native Godot F6 gallery still PENDING.**
 
-Date: 2026-10-15.
-User explicitly **approved the combat pair**: Ferryman visual **B (ragged cloak)** and Drowned visual **C (torn clothes)**. They subsequently explicitly approved the generated two stand-alone animation source sheets:
-- `пиксельный_спрайт_лист_мрачного_перевозчика.png` (conversation file `file_00000000fa3481f5a8b818d8440c2d9e`; 1374×1145)
-- `пиксельный_атлас_болотного_зомби.png` (conversation file `file_0000000041f081f5b835e5e534a0e554`; 1374×1145)
-These are **approved artistic source previews**, not production atlases.
+The previous upload blocker in D184 is resolved. The transfer used an internal temporary text-file bridge and GitHub blob objects; no manual user ZIP upload or copy/paste was necessary. Git object SHA for each committed base64 text file was matched against the local bytes.
 
-**Local repacking performed in this conversation:** isolated source cells and produced `/mnt/data/d183_drowned_ferryman_q36.webp` and `/mnt/data/d183_drowned_hand_q36.webp`, each 576×480, 6×5/96px, containing 25 nonempty/unique visibly padded frames with 5 empty cells, as independently checked after WebP decode. Corresponding local QA contact sheets `/mnt/data/d183_drowned_ferryman_qa.png` and `/mnt/data/d183_drowned_hand_qa.png`. Ferryman source art has **only five attack poses (24 original poses total)** and an oversized last horizontal pole-thrust: one additional distinct, transformed follow-through pose was constructed to meet Godot 4/6/6/3/6 contract. Some source-frame stray boundary fragments from contiguous generated artwork still need visual artist cleanup before claiming shipping-grade fidelity. No claim that all 25 Ferryman poses were independently generated; do not misrepresent as 25 user-drawn original source poses.
+| Original role | Final GitHub production file | WebP bytes | WebP SHA-256 | Git blob SHA |
+| --- | --- | ---: | --- | --- |
+| Ferryman B | `assets/pixel/units/deck_expansion_v1/drowned_ferryman_frames.webp.b64` | 76,662 | `1326ad61f106fd97a38c3a54659a6d2d38676faeb991f933f7247acd3817c03c` | `a07f5efc54e18a473846c0d4fa7424fbb41c3ca8` |
+| Drowned C | `assets/pixel/units/deck_expansion_v1/drowned_hand_frames.webp.b64` | 76,168 | `139d97e25bd95e64ae9acb4a9e87d9da27842238a1b48295679be2c149e3cbcd` | `9a6f2ce4ba15374a7a74bdac082d6ff94242e72d` |
 
-**Crucial upload gate:** this assistant environment's connected GitHub actions accept UTF-8 strings / base64 content, not a local `/mnt/data` file pointer, and the prepared high-quality WebP payloads have not been transferred to GitHub. DO NOT claim the rasters are committed, or ask the user to run the F6 gallery until exact runtime `.webp.b64` files are present and fetched back from GitHub. This pass commits the **strict D183 role loader and isolated gallery source** only, so the normal game remains unaffected.
+Both assets were decoded and validated in the assistant's container: exact 576×480, 6×5 cells of 96×96, **4/6/6/3/6 = 25 nontransparent, distinct and 2px padded poses**, 5 fully unused transparent cells. Removed 14 visually detached lateral fragments in the Drowned source cells, without changing the approved character identity. Ferryman source was actually 24 poses (5 attacks); one source-derived distinct attack follow-through was constructed for the sixth required attack cell. This technical completion is disclosed, not disguised as a newly hand-drawn frame.
 
-Target runtime paths:
-- `assets/pixel/units/deck_expansion_v1/drowned_ferryman_frames.webp.b64`
-- `assets/pixel/units/deck_expansion_v1/drowned_hand_frames.webp.b64`
+Runtime `scripts/battle/unit_animation_library.gd` supports these two roles in strict no-fallback D183 branch. F6 gallery `scenes/dev/black_crossing_animation_preview.tscn` cycles idle→walk→attack→hit→death and reports any missing atlas rather than substituting old enemies.
 
-Loader enforces 576×480, 25 visible/padded/distinct poses and 5 empty cells, with no fallback to old undead. Native QA gallery `res://scenes/dev/black_crossing_animation_preview.tscn` must only be run **after** the atlas files are actually in `main`. Status: **candidate art approved; atlas packaging/upload and F6 native QA pending**. Live Act1 stays 36/45; no encounter, arena or waves yet. Do not change D151–D153.
+**What is NOT done:** Neither finished atlas has been viewed in the user's Godot runtime, so do NOT call the animation QA complete until the user runs the gallery and approves appearance/motion. No original black-crossing 1280×720 battle arena, authored enemy UnitData, encounter-only wave controller, 54-case suite, real battle/reward/table QA or #37 release exists. Act1 remains **36/45**.
+
+Original art source IDs and historical upload issue: [D184 preceding notes](D184_BLACK_CROSSING_ATLASES.md) (superseded above). Source concept details: `docs/D183_BLACK_CROSSING_UNIT_ART.md`.
 

@@ -3,6 +3,10 @@ Updated: 2026-10-15.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D185 — Black Crossing animation bitmap transfer complete, native QA pending
+
+Date: 2026-10-15. Ferryman B and Drowned C remain the user-approved original characters. Their new actual 576×480 WebP/Base64 assets are now in GitHub and bound to the D183 no-fallback 25-frame loader, with a separate Godot preview gallery. Local decoded structural QA passed (25 distinct/padded frames, five empty), and exact UTF-8 Git blob SHA checks match. Drowned atlas minor disconnected visual fragments were cleaned; Ferryman attack required a sixth distinct source-derived transition (original art only supplied 24 frames). This **does not** constitute native F6 visual approval or battle QA. Preserve existing D151–D153 and keep #37 outside live Act1 36/45 until battle, reward, and deal gates pass.
+
 ## D184 — Black Crossing original combat appearances approved, production byte transfer still pending
 
 Date: 2026-10-15. User explicitly approved Ferryman B / Drowned C, then accepted both original generated motion sheets. Existing approved card art remains unchanged. Animation production must use the 96px/25-pose contract with fully visible feet and hooked pole. The Ferryman image actually contains 24 source poses (5 attack); one distinct additional transition pose must be documented, never presented as pre-existing artwork. Local image conversion/cell QA is NOT a committed GitHub bitmap or Godot run. A strict loader and F6 gallery have been added but must fail clearly until actual new `.webp.b64` files are uploaded and remotely verified. D153 and live 36/45 remain unaffected. See `docs/D184_BLACK_CROSSING_ATLASES.md`.

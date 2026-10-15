@@ -19,10 +19,11 @@ Updated: 2026-10-15. **Live Act 1: 36/45.** Current technical status: `docs/PROJ
 5. [x] Exact approved image option 3 committed; strict 448×274 card loader and isolated F6 preview created, remote bytes verified.
 6. [x] D183: user-approved native 448×274 F6 preview for Black Crossing option 3.
 7. [x] D184 user explicitly approved Ferryman **B** + Drowned **C** and both original generated animation concept sheets; local WebP packing/decoded-cell QA completed.
-8. [ ] Complete visual cell cleanup, upload exact source-derived WebPs to GitHub and confirm native 25-frame F6 gallery, without fallback art.
-9. [ ] Create independent pier arena and scoped telegraphed wave push/slow.
-10. [ ] Scoped encounter combat, 54-case matrix, real battle→reward→table; only then release #37.
-11. [ ] Continue Act1 toward 45 with nine remaining cards and avoid D151–D153 regressions.
+8. [x] D185: complete artifact cleanup and upload both original 576×480 WebP/Base64 atlases to GitHub; verify matching Git blob SHAs and decoded 25-pose/five-blank structure.
+9. [ ] **Native Godot F6** `res://scenes/dev/black_crossing_animation_preview.tscn` to approve five movement states and full-body silhouettes. No fallback art.
+10. [ ] Create independent pier arena and scoped telegraphed wave push/slow.
+11. [ ] Scoped encounter combat, 54-case matrix, real battle→reward→table; only then release #37.
+12. [ ] Continue Act1 toward 45 with nine remaining cards and avoid D151–D153 regressions.
 
 ## Rules for all subsequent phases
 
