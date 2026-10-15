@@ -16,7 +16,8 @@ func _ready() -> void:
 	if not FileAccess.file_exists(ARENA_PATH):
 		_block("D188 approved storm arena is missing.")
 		return
-	if load(ENCOUNTER_PATH) as EncounterData == null:
+	var encounter_resource: EncounterData = load(ENCOUNTER_PATH) as EncounterData
+	if encounter_resource == null:
 		_block("D188 original Black Crossing encounter failed to load.")
 		return
 	RunState.reset_run()

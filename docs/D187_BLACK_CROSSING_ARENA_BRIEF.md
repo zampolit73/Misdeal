@@ -20,3 +20,7 @@ D187 production export `assets/pixel/battle/arenas/black_crossing_storm_pier_app
 
 **Release gate:** D187 changes only the background id and F6 gallery, not the encounter, UnitData, wave mechanic, deck registry, battle/reward route or D151–D153. The live Act1 pool remains **36/45**. Next: user `git pull` + F6 arena preview; if the approved art looks correct in-game, add original enemy resources/encounter and scoped visible warned wave surge (push/slow), then 54-case native matrix and real battle → reward → table before unlocking card #37.
 
+
+## D188 follow-up (2026-10-16)
+
+User replied «все ок» after F6 of the integrated arena — **native arena visual gate accepted**. New original enemy UnitData, 1+2 authored two-formation encounter and encounter-local warned waves are now in source. Details and pending 54-case/real battle QA: [D188 Black Crossing Encounter](D188_BLACK_CROSSING_ENCOUNTER.md). Keep Act1 36/45.

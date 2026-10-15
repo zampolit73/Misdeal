@@ -34,3 +34,7 @@ Decoded-WebP SHA-256 `dfb77dd9c153ee2f9254a3b4469a2a7b8b132d44ae7169cbf75db643e8
 4. Integrate scoped surge mechanic, test 54 cases and real reward→table. Only then release as #37 and increase live pool 36→37/45.
 
 The existing D182 candidate card `resources/cards/black_crossing.tres` is **not registered** in `RunState.CARD_PATHS` or `ACT1_CARD_IDS`, and its target path is a future string path, not yet a real encounter.
+
+## D188 implementation status (2026-10-16)
+
+The storm pier native art check has been accepted. Original Ferryman/Drowned UnitData and two-formation encounter `res://resources/encounters/black_crossing.tres` have been added with their approved atlas roles. `BlackCrossingSurgeController` adds encounter-only marked waves (1.4s warning, neutral 43px push, 30% slow, then cleanup). QA-only card lookup was added to `RunState.CARD_PATHS` for real battle→reward→table testing, **not** to `ACT1_CARD_IDS`; current Act1 **36/45**. F6 54-case and live playtest pending. See `docs/D188_BLACK_CROSSING_ENCOUNTER.md`.

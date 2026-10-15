@@ -22,10 +22,11 @@ Updated: 2026-10-15. **Live Act 1: 36/45.** Current technical status: `docs/PROJ
 8. [x] D185: complete artifact cleanup and upload both original 576×480 WebP/Base64 atlases to GitHub; verify matching Git blob SHAs and decoded 25-pose/five-blank structure.
 9. [x] D186: user F6 gallery feedback «все ок» approves both original five-state battle animations; do not request the same animation QA again without a regression.
 10. [x] D187: user chose and repeatedly refined stormy **«Последний причал»** (no duplicate left ruin/right structure); installed final original 1280×720 WebP as isolated `black_crossing` backdrop.
-11. [ ] F6 `res://scenes/dev/black_crossing_arena_preview.tscn` to confirm native arena art (not yet approved in Godot).
-12. [ ] Build original `drowned_ferryman`/`drowned_hand` UnitData, two encounter formations and encounter-only warned water-surge push/slow.
-13. [ ] 54-case battle QA, real battle→reward→table; only then release #37 as 37/45.
-14. [ ] Continue Act1 toward 45 with nine remaining cards and avoid D151–D153 regressions.
+11. [x] D187: user-confirmed native arena F6 («все ок»). Approved cleaned storm picture locked.
+12. [x] D188: new Ferryman/Drowned UnitData, 1+2 enemy encounter with two formations, scoped 1.4s warning + push/slow wave, no damage/stun; QA-only card lookup.
+13. [ ] **Native Godot F6** `res://scenes/dev/black_crossing_battle_smoke.tscn` (54 combat cases), then `black_crossing_playtest.tscn` for real battle→reward→table and challenge approval.
+14. [ ] Release #37 into the actual pool only after QA; separate ordinary-deal check.
+15. [ ] Continue Act1 toward 45 with nine remaining cards and avoid D151–D153 regressions.
 
 ## Rules for all subsequent phases
 

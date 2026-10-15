@@ -24,7 +24,7 @@ var running := false
 var phase := WAITING
 var remaining := INITIAL_DELAY
 var next_lane_index := 0
-var current_center_y := LANE_CENTERS[0]
+var current_center_y: float = 337.0
 
 var warnings := 0
 var surges := 0
