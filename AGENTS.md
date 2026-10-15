@@ -2,7 +2,7 @@
 
 ## New-chat bootstrap
 
-**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — Act1 currently 34/45 cards including D151 Funeral Procession with approved art/Last Rite/facing. **Latest native D151 54-fight smoke FAILED**: a previously freed `BattleUnit` crashed `_is_valid_target()` because the parameter was typed. Patched to `Variant` with validity/type checks; smoke arena cleanup switched to immediate `free()` and a freed-target regression was added. Commits are in main, **Godot F6 retest still pending**, do not claim 54/54 PASS. No gameplay/art changes. GitHub connected; use it directly.
+**Latest canonical restart snapshot:** [`docs/NEXT_CHAT_HANDOFF.md`](docs/NEXT_CHAT_HANDOFF.md) — D151 Funeral Procession is 34th Act1 card. Godot user reported the same `BattleUnit._is_valid_target(target)` previously-freed typed-argument error **again**, despite GitHub already having `candidate: Variant` (suggests local code or cached Godot run may be older; unproven). QA2 fix `a59a9d9` now clears freed target in `BattleUnit._process` before other calls. D151 54-fight smoke is **NOT PASS** yet. User next: stop scene, `git pull`, fully restart Godot editor, F6 `scenes/dev/funeral_procession_smoke.tscn`; if same error ask for local HEAD/version. Do not change art/balance, and use connected GitHub directly.
 
 GitHub is the source of truth for the current technical state of Misdeal.
 
