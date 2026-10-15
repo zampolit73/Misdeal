@@ -1,3 +1,13 @@
+## 2026-10-15 — D168 OPTIONS-FIRST RULE + USER-APPROVED D152 ENVIRONMENT ART V2 IN MAIN
+
+**User's explicit new visual workflow rule:** Before any *future* card art is finalized/installed, show **multiple rendered visual alternatives (normally three; at least two materially different compositions)** and let the user select the preferred one. Don't silently finalize or replace with the assistant's choice. Every variant must follow D167, "dark-fantasy world scene, never pasted sprite showcase"; apply to D153+ and future card redraws. Rule committed into `AGENTS.md`, `docs/DECISIONS.md` **D168**, `docs/DESIGN_SYSTEM.md`, and `docs/VISUAL_ASSET_REGISTRY.md`.
+
+**D152 approved and transferred NOW:** User expressly approved the new D167 gothic alchemy laboratory scene ("ПО этой картинке ок") and asked assistant to integrate it directly, so **do not ask for 3 D152 options retroactively**. The exact accepted 448×274 color WebP is in GitHub as NEW versioned `assets/pixel/card_unification_v1/run/defiled_laboratory_scene_v2.webp.b64`, with 67,212 base64 characters. GitHub content fetched back and **exactly matched** source data. `scripts/ui/card_unification_v1.gd` points `D152_CARD_WEBP_B64` to that versioned path. PREVIOUS card art remains safely in `run/defiled_laboratory.webp.b64` for instant rollback. Other cards, 25-frame unit atlases, balance, card mechanics, DS2 UI, Fate Spread 12+XIII and **live Act1 35/45** unchanged.
+
+**QA honesty:** New illustration is artistically approved in chat and transferred/verified at binary-source level; native Godot F6 **V2 runtime preview not yet run by the user**. Next ONLY user action: `git pull`, F6 `res://scenes/dev/defiled_laboratory_card_preview.tscn`; send screenshot or report. No manual file transfer/ZIP/PowerShell. Assistant fixes any errors via connected GitHub, then starts D153 by first offering 2–3 distinct card-art options (not choosing/committing one before user approval). Do not confuse the old D152 sprite-showcase art with new active V2.
+
+---
+
 ## 2026-10-15 — D167 CARD ART RULE COMMITTED; D152 NEW SCENE ART PREVIEW GENERATED (NOT YET IN RUNTIME)
 
 User explicitly decided **"Карта должна выглядеть как часть нашего тёмного фэнтезийного мира, а не как демонстрация спрайтов"** and asked assistant to update GitHub itself and continue. Decision **D167** is appended to `docs/DECISIONS.md`, mandatory rules added to `AGENTS.md` and `docs/DESIGN_SYSTEM.md`. It requires scene-first environment storytelling and forbids sprites pasted over a background; no UI baked into card art. Existing D152 is live **35/45**, mechanics/25-frame sprites/balance unchanged.
