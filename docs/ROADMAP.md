@@ -15,7 +15,10 @@ Updated: 2026-10-15. **Live Act 1: 36/45.** Current technical status: `docs/PROJ
 1. [x] D153 improved challenge and 54/54 native Godot post-tune matrix; player indicated current tuning is acceptable.
 2. [x] D180 enabled `threadbare_theatre` as **Act1 card #36/45** and updated D151/D152/D153 test guards.
 3. [x] D181 **native Godot D153 release smoke PASS**: 36 unique cards, controlled Tier1 offer→choice→encounter, Fate Spread and boss XIII verified. Optional ordinary random-run spot-check remains useful.
-4. [ ] Select gameplay direction for card **#37** (not chosen yet), then implement original Act1 expansion from **36 toward 45** (9 cards remaining), with genuinely new enemies, user-approved art and encounter QA in small increments.
+4. [x] D182 user selected gameplay concept `ЧЁРНАЯ ПЕРЕПРАВА` for #37 and approved **rendered art variant 3**, diagonal pier/ferryman/drowned scene.
+5. [ ] Transfer the **approved exact variant-3 image** to GitHub (not currently committed), add isolated F6 card-art preview, then original drowned enemy atlases, independent arena and telegraphed periodic wave push/slow.
+6. [ ] Scoped encounter combat, 54-case matrix, real battle→reward→table, then unlock #37 only with QA.
+7. [ ] Continue original Act1 expansion from **36 toward 45** (9 remaining), preserving all previous art and mechanics.
 5. [ ] Continue solo/duo/trio and boss regressions without affecting D151/D152.
 
 ## Rules for all subsequent phases

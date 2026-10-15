@@ -3,6 +3,12 @@ Updated: 2026-10-15.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D182 — Black Crossing (#37) art option 3 and encounter direction selected
+
+Date: 2026-10-15. **User chose the encounter and third rendered card illustration. Implementation staged, not live.**
+
+The 37th Act1 candidate is `black_crossing` / `ЧЁРНАЯ ПЕРЕПРАВА` (Tier1): one new drowned skeletal ferryman with long boat pole plus two original drowned corpse enemies. The encounter-only mechanic is a visible timed wave surge across the broken pier lane with wind-up and modest movement push/slow (not poison, revive or puppet strings). Two authored placements, original scene art and independent 1280×720 combat arena are required. The user selected **the third of three actually rendered artwork options**: diagonal pier, master at top right, two drowned low left. Assistant incorrectly returned the first image filename on the next turn; D182 canonically binds to the **third generated variant** `лунная_переправа_мертвецов.png`. Only a standalone candidate `.tres` and planning notes are staged at this point; source WebP export is local and **not yet committed**. Keep D143/D167/D168 visual gates and 36-card live pool. See `docs/DECK_EXPANSION_D182_BLACK_CROSSING.md`.
+
 ## D181 — D153 release smoke passed in native Godot
 
 Date: 2026-10-15. **Confirmed by user's Godot screenshot; no further code changes needed for this gate.**

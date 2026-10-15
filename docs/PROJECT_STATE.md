@@ -18,11 +18,15 @@ Godot **4.7.x / GDScript** dark-fantasy tabletop roguelike with a 12-resolution 
 - User previously reported **real Battle → Reward → Fate Spread/Table works**; following D176, the user said `пока все ок` and explicitly asked to continue development after the D179 document cleanup. The D180 source release enables card #36.
 - **Native Godot release smoke PASS (D181):** user screenshot of F6 `scenes/dev/threadbare_theatre_release_smoke.tscn` shows `D153 / ACT 1 RELEASE — PASS`: 36 distinct cards, D153 included in a controlled Tier1 offer, correct encounter choice, Fate Spread completion record, and boss XIII alone after 12 resolutions. This is a deterministic two-card fixture using production RunState methods, **not** randomized deal-frequency QA and **not** a fresh battle simulation. Separate D178 54-case combat test and earlier real reward/table user report remain valid. A normal non-fixture table spot-check is optional.
 
+## D182 — Black Crossing, new #37 candidate (ART CHOSEN, NOT LIVE)
+
+User selected gameplay concept 1, `ЧЁРНАЯ ПЕРЕПРАВА`, with an original drowned Ferryman + two undead drowned hands and timed/telegraphed water surges. From three rendered illustrations user chose image **option 3**, the diagonally framed pier scene (see `docs/DECK_EXPANSION_D182_BLACK_CROSSING.md` for exact source mapping). Standalone `resources/cards/black_crossing.tres` is **unregistered**; approved image export exists locally, **NOT deployed to GitHub**, and original enemies/arena/battle QA remain undone. Live pool stays **36/45**.
+
 ## Stable design and pending work
 
 - D143: new combat cards must feature genuinely new enemies and mechanics.
 - D167: cards are scene-driven illustrations; D168: render three image options before approval; accepted D153 imagery must not be substituted with generic sprite displays.
 - No changes to accepted D151/D152/Fate Spread assets or global solo/duo/trio rules during D153 balancing.
-- **Next product action:** choose the gameplay concept for original card #37 (9 remaining cards including #37), then present three distinct rendered card-art options for user approval before implementation. See `docs/HANDOFF.md`.
+- **Next product action:** implement the user-chosen Black Crossing #37 from exact approved option-3 card art, then original drowned enemies, arena, scoped surge mechanic, F6 QA and release gates. See `docs/HANDOFF.md`.
 
 See `docs/INDEX.md` for current references and the **full pre-cleanup snapshot in `docs/archive/2026-10-15-pre-cleanup/`** for detailed historical QA/design notes.
