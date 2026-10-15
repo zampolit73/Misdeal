@@ -19,6 +19,7 @@ const LABORATORY_HAZARDS_SCRIPT := preload("res://scripts/battle/laboratory_haza
 const THREAD_TETHER_SCRIPT := preload("res://scripts/battle/thread_tether.gd")
 # D188: telegraphed waves only for original Black Crossing.
 const BLACK_CROSSING_SURGE_SCRIPT := preload("res://scripts/battle/black_crossing_surge.gd")
+const BLACK_CROSSING_FLOOR := preload("res://scripts/battle/black_crossing_floor.gd")
 
 # Local to UnitsLayer (screen offset 20,96). Keep unit feet on the
 # actual stone floor, below the architectural horizon and above the HUD.
@@ -433,6 +434,8 @@ func _get_party_spawn_positions() -> Array[Vector2]:
 
 func _get_placement_regions() -> Array[Rect2]:
 	match encounter.encounter_id:
+		"black_crossing":
+			return [BLACK_CROSSING_FLOOR.PLACEMENT_BOUNDS]
 		"gallows_volley", "grave_crossfire", "firing_square":
 			return [Rect2(Vector2(145, 305), Vector2(385, 122))]
 		"bone_crush", "bone_swarm":
@@ -465,6 +468,8 @@ func _configure_deployment_zones(regions: Array[Rect2]) -> void:
 
 func _get_placement_hint_text() -> String:
 	match encounter.encounter_id:
+		"black_crossing":
+			return "РАССТАНОВКА: ТОЛЬКО ЦЕЛЫЙ НАСТИЛ — СЛЕДИТЕ ЗА ПРИБОЕМ"
 		"gallows_volley", "grave_crossfire", "firing_square":
 			return "РАССТАНОВКА: ГЛУБОКАЯ ЛИНИЯ — разнесите героев по вертикали"
 		"bone_crush", "bone_swarm":
@@ -535,6 +540,10 @@ func _project_spawn_on_floor(source_position: Vector2) -> Vector2:
 func _get_combat_bounds() -> Rect2:
 	if encounter != null:
 		match encounter.encounter_id:
+			"black_crossing":
+				# Intact central deck only: prevents standing on the snapped
+				# foreground beams even when AI pursues a target or waves push.
+				return BLACK_CROSSING_FLOOR.COMBAT_BOUNDS
 			"gallows_volley", "grave_crossfire", "firing_square":
 				return GALLOWS_VOLLEY_COMBAT_BOUNDS
 			"bone_crush", "bone_swarm":

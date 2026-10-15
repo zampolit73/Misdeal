@@ -5,6 +5,7 @@ extends Control
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const ENCOUNTER: EncounterData = preload("res://resources/encounters/black_crossing.tres")
 const SURGE_SCRIPT := preload("res://scripts/battle/black_crossing_surge.gd")
+const FLOOR := preload("res://scripts/battle/black_crossing_floor.gd")
 const ANIMATIONS := preload("res://scripts/battle/unit_animation_library.gd")
 const ARENA_PATH := "res://assets/pixel/battle/arenas/black_crossing_storm_pier_approved_v1.webp.b64"
 const HERO_ROLES: Array[String] = ["knight", "ranger", "mage"]
@@ -13,7 +14,6 @@ const STATES: Array[String] = ["idle", "walk", "attack", "hit", "death"]
 const COUNTS: Array[int] = [4, 6, 6, 3, 6]
 const STEP := 1.0 / 30.0
 const MAX_SECONDS := 85.0
-const COMBAT_BOUNDS := Rect2(Vector2(90, 284), Vector2(1080, 158))
 const TOTAL_CASES := 54
 
 var failures: Array[String] = []
@@ -114,7 +114,7 @@ func _make_unit(arena: Node2D, data: UnitData, team: int, position_value: Vector
 	else:
 		unit.max_hp *= RunState.get_enemy_hp_multiplier()
 		unit.damage *= RunState.get_enemy_damage_multiplier()
-	unit.set_combat_bounds(COMBAT_BOUNDS)
+	unit.set_combat_bounds(FLOOR.COMBAT_BOUNDS)
 	unit.set_process(false)
 	arena.add_child(unit)
 	return unit
@@ -131,7 +131,7 @@ func _fight(formation: int, protagonist: int, party_size: int, tactic: String) -
 	arena.visible = false
 	add_child(arena)
 	var combat_units: Array[BattleUnit] = []
-	var hero_starts: Array[Vector2] = [Vector2(270, 341), Vector2(340, 402), Vector2(240, 306)]
+	var hero_starts: Array[Vector2] = [Vector2(270, 284), Vector2(340, 330), Vector2(240, 302)]
 	for index in range(RunState.party_roles.size()):
 		var hero_data: UnitData = RunState.get_hero_unit_data(String(RunState.party_roles[index]))
 		var hero: BattleUnit = _make_unit(arena, hero_data, 0, hero_starts[index], tactic)
@@ -144,7 +144,10 @@ func _fight(formation: int, protagonist: int, party_size: int, tactic: String) -
 		var enemy_path: String = ENCOUNTER.enemy_unit_paths[index]
 		var enemy_data: UnitData = load(enemy_path) as UnitData
 		var depth: float = clampf((enemy_positions[index].y - 130.0) / 275.0, 0.0, 1.0)
-		var enemy_position := Vector2(enemy_positions[index].x, lerpf(316.0, 410.0, depth))
+		var enemy_position := Vector2(
+			enemy_positions[index].x,
+			lerpf(FLOOR.COMBAT_BOUNDS.position.y + 32.0, FLOOR.COMBAT_BOUNDS.end.y - 32.0, depth)
+		)
 		var enemy: BattleUnit = _make_unit(arena, enemy_data, 1, enemy_position, tactic)
 		if enemy == null:
 			failures.append("D188 enemy load failed: " + enemy_path)
@@ -166,6 +169,14 @@ func _fight(formation: int, protagonist: int, party_size: int, tactic: String) -
 			if unit.alive:
 				unit._process(STEP)
 		controller.advance_battle(STEP)
+		for fighter in combat_units:
+			if not FLOOR.contains_unit_origin(fighter.position, fighter.body_radius):
+				failures.append("D189 fighter left the walkable planks: %s (%s)" % [
+					fighter.display_name, str(fighter.position)
+				])
+				break
+		if not failures.is_empty():
+			break
 		elapsed += STEP
 		frame += 1
 		var heroes_alive := 0
