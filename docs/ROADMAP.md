@@ -1,3 +1,9 @@
+## 2026-10-15 — D152 LOCAL HAZARD CONTROLLER STAGED, NATIVE F6 PENDING
+
+Implemented `scripts/battle/laboratory_hazards.gd`: encounter-scoped, telegraphed position-based toxic zones, non-stacking damage pulses for player units, temporary chemical spills on homunculus death, cleanup on stop. Added `res://scenes/dev/defiled_laboratory_smoke.tscn` + script to exercise original two-formation resource, telegraph, timed hazard, damage, minion death and cleanup. This is **source committed, not run in Godot**; user should `git pull`, F6 that scene and report PASS/FAIL. No claims of engine verification. Hazard controller is currently isolated, **not wired to production battle.gd**, original 25-frame animation atlases and 448×274 card art still missing. **D152 IS NOT LIVE**, Act1 stays **34/45**. D151 full win→reward→table remains unverified, while its earlier isolated 54/54 PASS stays valid. Next gates: fix native F6 issues if any; original assets/animation galleries; scoped real battle wiring and solo/duo/trio QA; then and only then add to card registry. D143 and DS2 unchanged.
+
+---
+
 ## 2026-10-15 — D152 DATA STAGING (NOT LIVE) + D151 INTEGRATION GATE
 
 After user approval of next stage, inspected real `battle.gd` victory transition to `reward.tscn`, and `reward.gd` calling `RunState.complete_active_card()` then routing to table. This flow exists in code but native end-to-end D151 victory→reward→table is still **UNVERIFIED**. Previously verified D151 54/54 isolated F6 PASS is unchanged; do not rerun it reflexively.
