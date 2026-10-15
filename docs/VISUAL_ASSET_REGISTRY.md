@@ -1,3 +1,9 @@
+## D152 approved environmental card art V2 installed + D168 variants rule (2026-10-15)
+
+**Approved scene artwork delivered to GitHub:** `assets/pixel/card_unification_v1/run/defiled_laboratory_scene_v2.webp.b64` is the user-approved environment-driven D152 448×274 illustration (gothic alchemical laboratory with hooded Plague Alchemist, unstable Homunculus, vats, glassware, cages and occult light). `scripts/ui/card_unification_v1.gd` now points `D152_CARD_WEBP_B64` to this exact V2 file. GitHub content bytes were independently refetched and verified **identical** to the source; old sprite-showcase image remains unchanged in `assets/pixel/card_unification_v1/run/defiled_laboratory.webp.b64` for a one-line rollback. User approved the original composition **before** replacement, but the new v2 **has not yet been F6-reviewed inside Godot**. Original enemy 25-frame sprite atlases/balance unaffected, live deck still **35/45**. D168 now requires 2–3 real, meaningfully distinct visual previews **before** finalizing all future card art (default 3); D152 is an explicitly approved one-off exception. See AGENTS.md and DECISIONS.md D167/D168.
+
+---
+
 ## D167 CARD SCENE RULE + D152 ENVIRONMENTAL ART CANDIDATE — 2026-10-15
 
 **Approved rule:** encounter card images must look like slices of Misdeal's dark-fantasy world, never character sprite showcases. Must include narrative environment, scale, shadows, volumetric atmosphere, approved DS2 restrained palette; UI and card text live in Godot, not the image. Canonical: `AGENTS.md` and `docs/DECISIONS.md` D167.
