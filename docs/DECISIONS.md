@@ -2,6 +2,16 @@
 
 This file records decisions that future chats should not casually reverse.
 
+## D171 — D153 skeletal animation appearance follows accepted ruined-theatre illustration
+
+Date: 2026-10-15  
+Status: visual direction user-approved; raster integration pending
+
+The existing D153 skeletal puppeteer and bone marionette mini-atlases in `main` were rejected for failing to resemble the accepted moonlit ruined-theatre card. User explicitly chose the subsequent two generated redraw previews (responded «Подходит)»). Retain the **crowned skeletal puppet master in deeply torn crimson robe, pale bones, and dangling strings**, and the **jointed smaller skeletal marionette wearing bone-white/blood-red stage tatters, headpiece and cords**, while rendering in the same *readable small pixel-art game language* as other units. Never return to generic minimal skeleton sprites or wooden dolls.
+
+**Do not confuse approval of the illustrations with a production-ready atlas or a Godot F6 signoff.** Naïvely downscaled generated sheets contain border-clipped sprites and occupied unused cells. Before replacing the old runtime `.webp.b64` atlases, assistant must repack 25 real frames per role into accurate padded 96×96 cells, validate final decoded WebP and push directly to connected GitHub. Then request native F6 gallery QA. See `docs/D153_NEXT_CHAT_START.md`. D153 remains QA-only; live Act1 35/45.
+
+
 ## D170 — D153 original skeletal atlas production and native approval gate
 
 Date: 2026-10-15  

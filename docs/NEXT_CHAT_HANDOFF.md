@@ -1,3 +1,13 @@
+## 2026-10-15 — D153 USER-APPROVED REDRAW DIRECTION; PRODUCTION REPACK AND GITHUB REPLACEMENT PENDING
+
+**NEWEST VISUAL HANDOFF:** Read `docs/D153_NEXT_CHAT_START.md` first. User rejected the previous tiny D153 sprite art (although it was technically complete and committed); user re-shared the previously approved ruined-theatre card illustration. A pair of newly **redrawn skeletal sprite sheet previews**, matching the theatrical crimson robes / bone / crown / marionette strings, were shown; user replied **«Подходит)»**. This is **approval of redrawn artistic direction**, not of the existing GitHub sprite files.
+
+**Implementation status as verified:** GitHub still contains the **old rejected** `threadbare_puppeteer_frames.webp.b64` and `bone_marionette_frames.webp.b64`, not the newly accepted redrawn versions. Two new redraws were saved in the previous chat as `d153_threadbare_puppeteer_redraw.*` and `d153_bone_marionette_redraw.*` (PNG/WebP/Base64), but the naïvely downscaled 576×480 candidate has **cropped/bleeding sprite cell boundaries and nonempty unused cells** (25/25 frames touching outer 2px in both roles, 5/5 unused cells nonempty in both). Therefore these candidates require proper per-frame extraction/repacking and alpha validation **before** the strict Godot loader can accept them. **Do not tell user to `git pull`/F6 expecting approved redraws; no updated art was deployed yet.** The assistant must do the integration in GitHub without requesting ZIP/manual edits.
+
+**Still unchanged:** D153 isolated tether logic F6 PASS, D153 card-art native display PASS, original theatre arena/battle integration/54-case QA pending; live Act1 **35/45**, not 36. Original card scene remains approved and should not be redrawn.
+
+---
+
 ## 2026-10-15 — D153 ORIGINAL SKELETAL ANIMATION ATLASES COMMITTED; NATIVE ART QA PENDING
 
 **Latest implemented source:** Both new, independently authored skeleton pixel-art animation WebP/base64 atlases now exist on `main`:
