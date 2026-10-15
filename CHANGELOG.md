@@ -2,11 +2,16 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
-## 2026-10-15 — D180: D153 releases as Act1 card #36 (native release smoke pending)
+## 2026-10-15 — D181: D153 release-routing smoke confirmed in Godot
+- User screenshot confirms F6 `D153 / ACT 1 RELEASE — PASS`: 36 unique cards, Tier1 controlled offer/choice, encounter routing, Fate Spread resolution, boss XIII gate.
+- No gameplay or source edits required. Release #36 verified with this deterministic route fixture; randomized multi-run offer frequency remains untested.
+- Next original #37 gameplay and art concept selection pending; D143/D167/D168 remain mandatory.
+
+## 2026-10-15 — D180: D153 releases as Act1 card #36 (native smoke subsequently passed D181)
 - Added `threadbare_theatre` to the normal Tier1 `ACT1_CARD_IDS` pool; now 36 unique nonboss cards.
 - Fixed former 35-card assumptions in D151/D152/D153 smoke scenes and playtests, avoiding false failure after release.
 - Added `threadbare_theatre_release_smoke.tscn`: tests real RunState offer, card selection, encounter routing, Fate Spread choice and boss XIII gating in a deterministic two-card Tier1 fixture.
-- Previously confirmed native D176/D177 54/54 combat matrix remains valid for unchanged D153 values. Post-release ordinary-deal Godot F6 still pending.
+- Previously confirmed native D176/D177 54/54 combat matrix remains valid for unchanged D153 values. Post-release deterministic normal-deal Godot F6 was subsequently confirmed PASS (D181).
 
 ## 2026-10-15 — Documentation hygiene (D179)
 - Archived exact pre-cleanup copies of AGENTS, PROJECT_STATE, ROADMAP, DECISIONS, CHANGELOG, old handoffs, visual registry and D153 working docs.

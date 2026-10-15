@@ -9,7 +9,7 @@ Each run resolves **12 cards** in the Fate Spread, with the Bone Warden as seale
 - **Playable Godot 4.7.x / GDScript prototype**, not just a starting combat demo.
 - **36 live Act 1 cards** in the ordinary pool (target **45**); the boss is separate.
 - Original battle arenas, unit animations, interface design system 2.0 / Fate Spread Variant C, special encounters and event flows.
-- **D153 / Театр оборванных нитей:** user-approved theatre art + bone puppeteer/marionettes, encounter-only tether mechanic, real battle/reward route already tested; post-tune matrix **54/54 functional PASS**. **Live as card #36**; native ordinary-deal release smoke pending.
+- **D153 / Театр оборванных нитей:** user-approved theatre art + bone puppeteer/marionettes, encounter-only tether mechanic, real battle/reward route already tested; post-tune matrix **54/54 functional PASS**. **Live as card #36**; native release-routing F6 PASS.
 - Current implementation and next action: [Project State](docs/PROJECT_STATE.md) · [Active Roadmap](docs/ROADMAP.md) · [Handoff](docs/HANDOFF.md).
 
 ## Run locally

@@ -5,7 +5,7 @@ Updated 2026-10-15 — D179 document organization.
 
 1. [Development rules](../AGENTS.md) — project goals, GitHub workflow, engine, art gates.
 2. [Concept](CONCEPT.md) — high-level design pillars and Fate Spread.
-3. [Current Project State](PROJECT_STATE.md) — **what is implemented now**; live Act1 35/45, D153 QA.
+3. [Current Project State](PROJECT_STATE.md) — **what is implemented now**; live Act1 36/45, D153 D181 release-routing PASS.
 4. [Roadmap](ROADMAP.md) — completed milestones and next priorities.
 5. [Active Decisions](DECISIONS.md) — binding summarized requirements and links to original decisions.
 6. [Canonical Handoff](HANDOFF.md) — only one active next-chat continuation pointer.

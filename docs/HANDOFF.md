@@ -1,5 +1,5 @@
 # Misdeal — Canonical Working Handoff
-Updated: 2026-10-15 (D180, Act1 card #36 source release).
+Updated: 2026-10-15 (D181, Act1 #36 native release smoke PASS).
 
 Read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md` first. This file is the only canonical next-chat handoff. Historical notes remain archived via `docs/INDEX.md`.
 
@@ -9,11 +9,13 @@ Read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`,
 
 D180 also updated D151/D152/D153 dev QA scripts that previously rejected anything other than 35 cards.
 
-## Immediate native verification
+## Release verification — complete
 
-**User:** `git pull` and F6 `res://scenes/dev/threadbare_theatre_release_smoke.tscn`. It should display **`D153 / ACT 1 RELEASE — PASS`** for unique 36 cards, actual `RunState` Tier1 offer/choice/encounter, resolution recorded in Fate Spread and boss XIII gate. This uses a deliberately restricted two-card Tier1 fixture, **not** random multi-run offer frequency and **not** a battle simulation. Native D180 test **not yet executed**; no PASS claim.
+User's in-engine screenshot shows **`D153 / ACT 1 RELEASE — PASS`** from F6 `res://scenes/dev/threadbare_theatre_release_smoke.tscn`. It checks 36 unique cards, D153's controlled Tier1 offer/selection/encounter routing, Fate Spread completion, and boss XIII after 12 resolutions. It does **not** simulate a new battle or claim statistical random-deal coverage. Earlier D178 native 54/54 combat PASS and real battle→reward→table report are preserved. **No reason to request the same F6 again without a regression.**
 
-A quick normal main-game Tier1 deal and D153 battle/reward check is useful after the smoke, and may reveal routing regressions not covered by the fixture. When confirmed, update `PROJECT_STATE`, `ROADMAP`, `CHANGELOG`/this handoff as concise new status (D179 hygiene).
+## Next step: Act 1 card #37 — concept choice
+
+Choose between distinct original gameplay concepts with the user before committing a new card or enemies. Maintain the undead/dark-fantasy world but avoid repeating the existing skeletal-theatre tether, D151 revival or D152 toxic-zone mechanics. After concept selection, **show three actually rendered scene-first card illustrations** before integration (D168), then original UnitData/animations, encounter/arena and scoped mechanics, QA, and release gates. **No #37 concept or artwork has yet been approved.**
 
 ## After release QA
 
