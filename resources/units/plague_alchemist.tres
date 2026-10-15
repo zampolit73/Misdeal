@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+unit_name = "Чумной алхимик"
+visual_role = "plague_alchemist"
+max_hp = 92.0
+damage = 6.0
+attack_interval = 1.75
+attack_range = 125.0
+minimum_range = 55.0
+move_speed = 51.0
+body_radius = 19.0
+separation_padding = 12.0
+show_enemy_name = true
