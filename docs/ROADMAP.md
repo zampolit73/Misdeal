@@ -1,3 +1,13 @@
+## 2026-10-15 — D153 NATIVE THREAD QA PASS; STRICT ORIGINAL ANIMATION GATE COMMITTED
+
+Confirmed user Godot screenshot: `D153 / SKELETAL STRINGS — PASS`, 0 visible errors; original skeletal roster/two placements, 32% damage protection within 285px, tether break/relink and immediate protection removal on Puppeteer death plus cleanup all verified in **isolated** F6 logic test. D153 art preview was already seen rendering correctly in two separate screenshots.
+
+**Next stage source committed, not yet animation assets:** `scripts/battle/unit_animation_library.gd` registers original D153 `threadbare_puppeteer` and `bone_marionette` with strictly separate `576×480` (6×5 cells of 96px) `.webp.b64` atlas paths under `assets/pixel/units/deck_expansion_v1/`. Requires all **25 independent visible frames** (idle4, walk6, attack6, hit3, death6), empty outer margins and unique non-repeated poses. **No fallback to old skeleton sprites**. Added `scenes/dev/threadbare_theatre_art_preview.tscn` five-state gallery with an explicit missing-original-art message. **Neither original 25-frame D153 atlas has been delivered or native-validated yet**; the art gallery is a preparation scaffold, NOT PASS, and no user F6 is needed until production sprite sheets exist. Generated concept boards / scene illustrations are references ONLY and must NOT be misrepresented as actual frame sheets. Future sprite art must retain full feet, right-facing source pose, no flicker.
+
+**Release gates still pending:** approved source-accurate two full animation atlases in GitHub; native art gallery signoff; original theatre combat arena; D153-only `ThreadTetherController` lifecycle wiring in real `battle.gd`; native 54-case plus real battle→reward→table. D153 still NOT in `CARD_PATHS` or `ACT1_CARD_IDS`, live Act1 **35/45**, 12 Fate Spread + sealed XIII unchanged. Assistant handles source/assets in connected GitHub. Documentation in `docs/DECK_EXPANSION_D153_THREADBARE_THEATRE.md` and handoff; no manual ZIP/PowerShell/copying.
+
+---
+
 ## 2026-10-15 — D153 SELECTED SKELETAL THEATRE ART + ISOLATED THREAD MECHANIC STAGED (NATIVE QA PENDING)
 
 **User correction and approval:** all D153 marionettes must be **skeletal undead**, consistent with Misdeal's Act1, not wooden dolls. User chose the **third** shown image (ruined gothic puppet theatre under moonlight) and asked to continue. This satisfies D168 art-options-before-selection for this encounter. D153 new identities are `threadbare_puppeteer` (skeletal leader) and `bone_marionette` (two skeletal marionettes); NO reuse of old enemy atlas/roles. Both D152 original animation/card art already accepted and retained.
