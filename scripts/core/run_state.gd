@@ -81,6 +81,8 @@ const CARD_PATHS := {
 	"bone_shepherd": "res://resources/cards/bone_shepherd.tres",
 	# D151: original Tier1 Funeral Procession encounter.
 	"funeral_procession": "res://resources/cards/funeral_procession.tres",
+	# D152 QA-only: registered for F6 playtest, NOT in ACT1_CARD_IDS until original art and native acceptance.
+	"defiled_laboratory": "res://resources/cards/defiled_laboratory.tres",
 	"moon_seal": "res://resources/cards/moon_seal.tres",
 	"echo_crypt": "res://resources/cards/echo_crypt.tres",
 	"graveyard_ambush": "res://resources/cards/graveyard_ambush.tres",
