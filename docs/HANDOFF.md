@@ -1,3 +1,11 @@
+## 2026-10-15 — D152 CARD ART EXPLAINED; ENCOUNTER-ONLY BALANCE V1 RECHECK PENDING
+
+**Actual card art vs concept:** original D152 448×274 image of Alchemist/Homunculus/acid lab is ALREADY tracked as `assets/pixel/card_unification_v1/run/defiled_laboratory.webp.b64` and displayed via `card_unification_v1.gd` and F6 card preview. The earlier large UI mock-up with buttons was concept art only; keep DS2 and no bypass mechanic. User previously replied «Все ок» to the real preview→battle→reward→table workflow (user-reported, not an automated trace). D152 is still **NOT IN THE LIVE ACT1 DECK (34/45)**.
+
+**New provisional D152-only tuning:** Alchemist HP 108/damage 7.5; Homunculus HP 84/damage 9; acid cooldown 4.5s, pulse 6 damage, same 1.2s warning, 2.2s active duration, 66 radius; telegraph prefers dense living hero groups instead of first party member. No global balance or other cards changed. D152's existing 54-case native screenshot (**54 wins/0 losses**) is **PRE-TUNE baseline**, NOT fresh evidence. New F6 scene reports wins by party/tactic and residual HP, time and hero deaths, and verifies group target selection. **NOT YET RUN after tuning.** Next minimal user step `git pull`, F6 `res://scenes/dev/defiled_laboratory_battle_smoke.tscn` and send result. No ZIP, code edits or PowerShell. Details in `docs/DECK_EXPANSION_D152_BALANCE_V1.md`. Release to **35/45** only after measured balance acceptance.
+
+---
+
 ## D152 QA UPDATE — 2026-10-15 — GODOT 54/54 PASS; ORIGINAL CARD ART STAGED
 
 **User's Godot screenshot confirms:** `res://scenes/dev/defiled_laboratory_battle_smoke.tscn` **FUNCTIONAL PASS**, 54/54 completed, 54 wins / 0 losses (solo 18/0, duo 18/0, trio 18/0), 67 chemical telegraphs, 435 toxic hits, 108 death spills, maximum battle 14.9 seconds. This replaces any previous D152 "54-case pending" statement. Original D152 Plague Alchemist + Homunculus animation gallery was separately approved by user, and both real 25-frame atlases are already in GitHub. **54/54 is a technical smoke, NOT balance approval.** 100% wins in all compositions merits later challenge evaluation; do not change global solo/duo scalers or other encounters automatically.
