@@ -1,3 +1,9 @@
+## D168 — card-art option review workflow (2026-10-15)
+
+Before a **new or redrawn card illustration** enters production, show **three visibly different image concepts** by default (at least two meaningful choices). Each already meets the D167 scene-first worldbuilding standard: integrated action, spatial depth, real environment, restrained DS2 palette and no embedded interface. Show actual picture previews, not merely textual moodboards. Wait for explicit user selection before integrating a final bitmap, then commit only the selected image via GitHub (448×274 export-safe `.webp.b64`, versioned for rollback); user only performs `git pull` and Godot F6 check. D152 exception: its already-rendered alchemical-laboratory image was explicitly approved by user on 2026-10-15, so install that exact illustration without another round of options. Runtime card UI, fonts, margins, DS2 and Fate Spread remain unchanged.
+
+---
+
 ## Accepted card-art quality rule D167 — 2026-10-15
 
 Encounter illustrations in Misdeal must be believable **dark-fantasy scenes**, not showcases of unit sprites. The environment must tell the story through location-specific props, practical/occult light, believable shadows, contact with the floor and atmosphere. Characters must inhabit the same physical scene, not float in front of a blurred backdrop. At native **448×274** size, the player should immediately identify the encounter and its mood. Keep existing DS2 / Fate Spread Variant C interface, bronze/obsidian/parchment materials and reserved green magical highlights. Do not bake titles, frames, buttons or playable choices into art. This rule is **mandatory for D153 and all future encounter cards**, and guides opportunistic scene-driven polish to legacy encounter cards. See `AGENTS.md` and `docs/DECISIONS.md` **D167**.
