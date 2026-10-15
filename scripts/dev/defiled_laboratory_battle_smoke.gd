@@ -61,6 +61,8 @@ func _ready() -> void:
 func _run_matrix() -> void:
 	_validate_assets()
 	if errors.is_empty():
+		_validate_cluster_target()
+	if errors.is_empty():
 		_validate_facing()
 	if errors.is_empty():
 		await get_tree().process_frame
@@ -166,6 +168,38 @@ func _validate_assets() -> void:
 		for state_index in range(STATE_NAMES.size()):
 			if frames.get_frame_count(STATE_NAMES[state_index]) != STATE_COUNTS[state_index]:
 				errors.append("Wrong animation count for %s/%s" % [role_name, STATE_NAMES[state_index]])
+
+
+# Deterministic regression: two tightly grouped heroes must be the target
+# even when a solitary Knight stands closer to the alchemist.
+func _validate_cluster_target() -> void:
+	var arena := Node2D.new()
+	arena.visible = false
+	add_child(arena)
+	var leader_data := load("res://resources/units/plague_alchemist.tres") as UnitData
+	var knight_data := load("res://resources/units/knight.tres") as UnitData
+	var ranger_data := load("res://resources/units/ranger.tres") as UnitData
+	var mage_data := load("res://resources/units/mage.tres") as UnitData
+	if leader_data == null or knight_data == null or ranger_data == null or mage_data == null:
+		errors.append("Missing D152 clustered-telegraph fixture data")
+		arena.free()
+		return
+	var leader: BattleUnit = _make_unit(arena, leader_data, 1, Vector2(920.0, 350.0), "assault")
+	var isolated: BattleUnit = _make_unit(arena, knight_data, 0, Vector2(750.0, 350.0), "assault")
+	var grouped_a: BattleUnit = _make_unit(arena, ranger_data, 0, Vector2(330.0, 350.0), "assault")
+	var grouped_b: BattleUnit = _make_unit(arena, mage_data, 0, Vector2(372.0, 350.0), "assault")
+	if leader == null or isolated == null or grouped_a == null or grouped_b == null:
+		errors.append("D152 grouped target fixture could not spawn")
+		arena.free()
+		return
+	var hazard_controller := HAZARDS_SCRIPT.new() as LaboratoryHazardController
+	arena.add_child(hazard_controller)
+	hazard_controller.configure(leader, [], [isolated, grouped_a, grouped_b, leader])
+	var marked_position: Vector2 = hazard_controller._choose_target_position()
+	if marked_position.distance_to(grouped_a.position) > 0.1 and marked_position.distance_to(grouped_b.position) > 0.1:
+		errors.append("D152 poison ignored clustered heroes and targeted isolated Knight")
+	hazard_controller.stop_hazards()
+	arena.free()
 
 
 func _validate_facing() -> void:
