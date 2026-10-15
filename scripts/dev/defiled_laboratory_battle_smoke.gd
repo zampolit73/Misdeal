@@ -115,6 +115,7 @@ func _run_matrix() -> void:
 			+ "Средняя длительность: %.1f / %.1f / %.1f сек\n"
 			+ "Погибшие герои в боях: %d / %d / %d\n"
 			+ "Тактики ASSAULT/HUNT/FORMATION: %d / %d / %d побед\n"
+			+ "Остаток HP по тактикам: %.0f%% / %.0f%% / %.0f%%\n"
 			+ "Предупреждения: %d • попадания химией: %d • разливы: %d\n"
 			+ "Максимальная длительность: %.1f сек\n"
 			+ "Технический PASS не означает одобренный баланс.") % [
@@ -130,6 +131,9 @@ func _run_matrix() -> void:
 				party_duration_sum[2] / 18.0,
 				party_hero_deaths[0], party_hero_deaths[1], party_hero_deaths[2],
 				tactic_win_count[0], tactic_win_count[1], tactic_win_count[2],
+				tactic_hp_fraction_sum[0] * 100.0 / 18.0,
+				tactic_hp_fraction_sum[1] * 100.0 / 18.0,
+				tactic_hp_fraction_sum[2] * 100.0 / 18.0,
 				warnings, pulses, spills, max_duration]
 		summary.add_theme_color_override("font_color", Color(0.60, 0.88, 0.70))
 	else:
