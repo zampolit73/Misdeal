@@ -29,6 +29,13 @@ var spills := 0
 var max_duration := 0.0
 var wins_by_party: Array[int] = [0, 0, 0]
 var losses_by_party: Array[int] = [0, 0, 0]
+# New D152-only challenge telemetry: party HP retained and fight duration.
+# A functional PASS with 54 victories can still be poor balance.
+var party_hp_fraction_sum: Array[float] = [0.0, 0.0, 0.0]
+var party_duration_sum: Array[float] = [0.0, 0.0, 0.0]
+var party_hero_deaths: Array[int] = [0, 0, 0]
+var tactic_win_count: Array[int] = [0, 0, 0]
+var tactic_hp_fraction_sum: Array[float] = [0.0, 0.0, 0.0]
 
 
 func _ready() -> void:
@@ -75,6 +82,13 @@ func _run_matrix() -> void:
 						warnings += int(result["warnings"])
 						pulses += int(result["pulses"])
 						spills += int(result["spills"])
+						var tactic_index: int = TACTICS.find(tactic)
+						party_hp_fraction_sum[party_size - 1] += float(result["remaining_hp_fraction"])
+						party_duration_sum[party_size - 1] += float(result["duration"])
+						party_hero_deaths[party_size - 1] += int(result["hero_deaths"])
+						tactic_hp_fraction_sum[tactic_index] += float(result["remaining_hp_fraction"])
+						if String(result["outcome"]) == "win":
+							tactic_win_count[tactic_index] += 1
 						max_duration = maxf(max_duration, float(result["duration"]))
 						summary.text = "%d/54 • %s • %d героя • %s\nПобед: %d • Поражений: %d" % [
 							completed, HERO_ROLES[protagonist], party_size, tactic, wins, losses]
@@ -95,16 +109,27 @@ func _run_matrix() -> void:
 
 	if errors.is_empty():
 		headline.text = "D152 / DEFILED LABORATORY — FUNCTIONAL PASS"
-		summary.text = ("54/54 боёв завершено • побед: %d • поражений: %d\n"
-			+ "Соло: %d побед / %d поражений  •  Дуо: %d / %d  •  Трио: %d / %d\n"
-			+ "Предупреждений: %d • попаданий химией: %d • разливов: %d\n"
-			+ "Самый длинный бой: %.1f сек.\n"
-			+ "Это функциональный smoke, НЕ подтверждение баланса.\n"
-			+ "Настоящий бой → награда → стол проверяется отдельно.") % [
+		summary.text = ("54/54 боёв • %d побед / %d поражений\n"
+			+ "Соло: %d/%d • Дуо: %d/%d • Трио: %d/%d\n"
+			+ "Остаток HP (соло/дуо/трио): %.0f%% / %.0f%% / %.0f%%\n"
+			+ "Средняя длительность: %.1f / %.1f / %.1f сек\n"
+			+ "Погибшие герои в боях: %d / %d / %d\n"
+			+ "Тактики ASSAULT/HUNT/FORMATION: %d / %d / %d побед\n"
+			+ "Предупреждения: %d • попадания химией: %d • разливы: %d\n"
+			+ "Максимальная длительность: %.1f сек\n"
+			+ "Технический PASS не означает одобренный баланс.") % [
 				wins, losses,
 				wins_by_party[0], losses_by_party[0],
 				wins_by_party[1], losses_by_party[1],
 				wins_by_party[2], losses_by_party[2],
+				party_hp_fraction_sum[0] * 100.0 / 18.0,
+				party_hp_fraction_sum[1] * 100.0 / 18.0,
+				party_hp_fraction_sum[2] * 100.0 / 18.0,
+				party_duration_sum[0] / 18.0,
+				party_duration_sum[1] / 18.0,
+				party_duration_sum[2] / 18.0,
+				party_hero_deaths[0], party_hero_deaths[1], party_hero_deaths[2],
+				tactic_win_count[0], tactic_win_count[1], tactic_win_count[2],
 				warnings, pulses, spills, max_duration]
 		summary.add_theme_color_override("font_color", Color(0.60, 0.88, 0.70))
 	else:
@@ -279,12 +304,25 @@ func _fight(formation: int, protagonist: int, party_size: int, tactic: String) -
 			await get_tree().process_frame
 	if outcome.is_empty():
 		errors.append("Timeout %d / %s / size %d / %s" % [formation, HERO_ROLES[protagonist], party_size, tactic])
+	var total_hero_hp_fraction: float = 0.0
+	var starting_hero_count: int = 0
+	var hero_deaths: int = 0
+	for unit in all_units:
+		if unit.team != 0:
+			continue
+		starting_hero_count += 1
+		total_hero_hp_fraction += clampf(unit.hp / maxf(1.0, unit.max_hp), 0.0, 1.0)
+		if not unit.alive:
+			hero_deaths += 1
+	var hp_fraction: float = total_hero_hp_fraction / float(maxi(1, starting_hero_count))
 	var result := {
 		"outcome": outcome,
 		"duration": elapsed,
 		"warnings": controller.warnings,
 		"pulses": controller.pulses,
-		"spills": controller.spills
+		"spills": controller.spills,
+		"remaining_hp_fraction": hp_fraction,
+		"hero_deaths": hero_deaths
 	}
 	controller.stop_hazards()
 	# Explicit free after manually stepped units to prevent cross-case targets.
