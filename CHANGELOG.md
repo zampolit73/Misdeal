@@ -2,6 +2,11 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-15 — D183: Black Crossing card-art native acceptance
+- User F6 screenshot + «утверждено»: original third D182 card illustration PASS in the intended 448×274 framing.
+- Next combat models need separate silhouette approval, full original 25-frame sprite animation sheets and native QA; no changes to live cards or encounters.
+- Current live Act1 **36/45**; release #37 remains gated by original enemies, independent arena, wave mechanic and battle/reward route.
+
 ## 2026-10-15 — D182: Black Crossing #37 direction approved, QA-only candidate staged
 - User selected new drowned ferryman + two drowned corpse encounter with timed, telegraphed waves, and card-art option #3 (diagonal pier composition).
 - Added standalone `resources/cards/black_crossing.tres` and detailed handoff spec; **no live registry/pool change**.

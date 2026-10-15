@@ -3,6 +3,12 @@ Updated: 2026-10-15.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D183 — D182 selected card art accepted in native Godot
+
+Date: 2026-10-15. Status: **native visual F6 approved; original enemy art pending**.
+
+User supplied a screenshot from `black_crossing_card_preview.tscn` and wrote **«утверждено»**. This confirms the already selected **third** diagonal pier scene at the intended 448×274 display. Preserve this exact image. Do not conflate this with approving original combat sprites; next produce distinct Ferryman and Drowned silhouette options consistent with 96px Misdeal pixel-art units. After user chooses, package authentic 25-pose transparent atlases per role with padded frames before native gallery QA. Original arena, scoped water-wave battle and reward tests still pending. Live pool **36/45**.
+
 ## D182 — Black Crossing (#37) art option 3 and encounter direction selected
 
 Date: 2026-10-15. **User chose the encounter and third rendered card illustration. Implementation staged, not live.**

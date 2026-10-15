@@ -17,10 +17,11 @@ Updated: 2026-10-15. **Live Act 1: 36/45.** Current technical status: `docs/PROJ
 3. [x] D181 **native Godot D153 release smoke PASS**: 36 unique cards, controlled Tier1 offer→choice→encounter, Fate Spread and boss XIII verified. Optional ordinary random-run spot-check remains useful.
 4. [x] D182 user selected gameplay concept `ЧЁРНАЯ ПЕРЕПРАВА` for #37 and approved **rendered art variant 3**, diagonal pier/ferryman/drowned scene.
 5. [x] Exact approved image option 3 committed; strict 448×274 card loader and isolated F6 preview created, remote bytes verified.
-6. [ ] F6 `res://scenes/dev/black_crossing_card_preview.tscn`, then original drowned enemy atlases, independent arena and telegraphed periodic wave push/slow.
-7. [ ] Scoped encounter combat, 54-case matrix, real battle→reward→table, then unlock #37 only with QA.
-8. [ ] Continue original Act1 expansion from **36 toward 45** (9 remaining), preserving all previous art and mechanics.
-5. [ ] Continue solo/duo/trio and boss regressions without affecting D151/D152.
+6. [x] D183: user-approved native 448×274 F6 preview for Black Crossing option 3.
+7. [ ] Present original Ferryman/Drowned combat-silhouette options; then create independently authored padded 25-frame animation atlases and native F6 gallery.
+8. [ ] Create independent pier arena and scoped telegraphed wave push/slow.
+9. [ ] Scoped encounter combat, 54-case matrix, real battle→reward→table; only then release #37.
+10. [ ] Continue Act1 toward 45 with nine remaining cards and avoid D151–D153 regressions.
 
 ## Rules for all subsequent phases
 
