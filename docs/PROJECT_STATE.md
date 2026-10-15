@@ -20,7 +20,7 @@ Godot **4.7.x / GDScript** dark-fantasy tabletop roguelike with a 12-resolution 
 
 ## D182 — Black Crossing, new #37 candidate (ART CHOSEN, NOT LIVE)
 
-User selected gameplay concept 1, `ЧЁРНАЯ ПЕРЕПРАВА`, with an original drowned Ferryman + two undead drowned hands and timed/telegraphed water surges. From three rendered illustrations user chose image **option 3**, the diagonally framed pier scene (see `docs/DECK_EXPANSION_D182_BLACK_CROSSING.md` for exact source mapping). Standalone `resources/cards/black_crossing.tres` is **unregistered**; approved image export exists locally, **NOT deployed to GitHub**, and original enemies/arena/battle QA remain undone. Live pool stays **36/45**.
+User selected gameplay concept 1, `ЧЁРНАЯ ПЕРЕПРАВА`, with an original drowned Ferryman + two undead drowned hands and timed/telegraphed water surges. From three rendered illustrations user chose image **option 3**, the diagonally framed pier scene (see `docs/DECK_EXPANSION_D182_BLACK_CROSSING.md` for exact source mapping). Standalone `resources/cards/black_crossing.tres` is **unregistered**; approved option-3 image is **committed in GitHub** with strict 448×274 loader and isolated F6 preview. Native art F6 approval plus original enemies, arena and battle QA remain pending. Live pool stays **36/45**.
 
 ## Stable design and pending work
 

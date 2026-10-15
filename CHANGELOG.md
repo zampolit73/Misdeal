@@ -5,7 +5,7 @@ Current implementation summaries only; the exhaustive pre-cleanup change history
 ## 2026-10-15 — D182: Black Crossing #37 direction approved, QA-only candidate staged
 - User selected new drowned ferryman + two drowned corpse encounter with timed, telegraphed waves, and card-art option #3 (diagonal pier composition).
 - Added standalone `resources/cards/black_crossing.tres` and detailed handoff spec; **no live registry/pool change**.
-- Approved 448×274 art exported locally; **not yet committed to GitHub** or shown in Godot. Next step is image transfer, catalog and F6 preview, then original enemies, stage and encounter mechanics. Act1 remains 36/45.
+- Approved exact option-3 448×274 image now committed as `black_crossing_approved_v1.webp.b64`; strict loader and F6 art preview added. Remote text matched source export exactly. Native preview and enemies/arena/waves are pending; Act1 remains 36/45.
 
 ## 2026-10-15 — D181: D153 release-routing smoke confirmed in Godot
 - User screenshot confirms F6 `D153 / ACT 1 RELEASE — PASS`: 36 unique cards, Tier1 controlled offer/choice, encounter routing, Fate Spread resolution, boss XIII gate.

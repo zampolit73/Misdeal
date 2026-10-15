@@ -1,7 +1,7 @@
 # D182 — Чёрная переправа / Black Crossing (card #37 candidate)
 
 Date: 2026-10-15  
-Status: **concept selected and image option 3 user-approved; NOT live, no battle implementation, native QA pending.**
+Status: **concept selected; approved third image installed as a 448×274 candidate in GitHub. NOT live; no battle implementation, native preview QA pending.**
 
 ## What the user selected
 
@@ -18,13 +18,17 @@ Status: **concept selected and image option 3 user-approved; NOT live, no battle
 - Deployments: two authored enemy formations with same roster; own arena `black_crossing`. No alternative/reused enemies and no dynamic substitutions.
 - **Do not** activate new card or new enemies in production RunState or generic Battle until original `.tres`, approved 25-frame atlases (where needed), original arena, QA matrix and real battle→reward→table are validated. Existing Act1 stays **36/45**, and D153 remains untouched.
 
-## Image export and GitHub transfer state (be explicit)
+## Approved art export and GitHub transfer — completed
 
-The selected original file `/mnt/data/лунная_переправа_мертвецов.png` exists in the current conversation Python environment. A **448×274 RGB WebP** preview was generated locally as `/mnt/data/d182_black_ferry_approved_v1.webp` with decoded-WebP SHA-256 `dfb77dd9c153ee2f9254a3b4469a2a7b8b132d44ae7169cbf75db643e889472b` (quality 76, Lanczos). Its Base64 export is `/mnt/data/d182_black_ferry_approved_v1.webp.b64`. These local paths are **not** a guarantee they persist to a new container or that GitHub contains the image. The image still needs a reliable transfer to `assets/pixel/card_unification_v1/run/black_crossing_approved_v1.webp.b64` via connected Github before wiring the runtime art catalog; do not falsely claim deployment. Do not ask user to manually copy images while access is available; solve the transfer as part of next implementation.
+The chosen original is the **third** image, `лунная_переправа_мертвецов.png` (1604×981, Project generated file ID `file_00000000ffb081f5a8c40af34fc03493`). Derived from the selected pixels, the exact 448×274 WebP is now in GitHub:
+`assets/pixel/card_unification_v1/run/black_crossing_approved_v1.webp.b64`.
+Decoded-WebP SHA-256 `dfb77dd9c153ee2f9254a3b4469a2a7b8b132d44ae7169cbf75db643e889472b`. Remote encoded bytes were read back and matched the local exported Base64 exactly. `scripts/ui/card_unification_v1.gd` and `scenes/dev/black_crossing_card_preview.tscn` provide strict loading and isolated F6 display.
+
+**User native Godot F6 preview pending.** Standalone art candidate only: #37 not live, Act1 36/45.
 
 ## Next authorized integration
 
-1. Safely send the **exact option-3** WebP to GitHub, verify 448×274/base64 and image subject, add isolated preview scene and card catalog branch; preserve other cards.
+1. **Done:** exact third WebP committed and byte-verified, isolated 448×274 preview staged. **Next:** `git pull`, F6 `res://scenes/dev/black_crossing_card_preview.tscn`.
 2. Show user preview in native Godot (`git pull`, F6), then produce original monster silhouettes/atlases and the **separate** arena, taking art approval gates seriously.
 3. Integrate scoped surge mechanic in battle, test solo/duo/trio 54-case and real reward→table. Only then release as #37 and increase live pool 36→37/45.
 

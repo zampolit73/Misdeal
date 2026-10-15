@@ -1,4 +1,9 @@
 # Misdeal — Active Visual Asset Registry
+
+## D182 — Black Crossing candidate (approved card art, native QA pending)
+
+Chosen **third** image: diagonal ruined pier, ferryman above right, two drowned undead low left. `assets/pixel/card_unification_v1/run/black_crossing_approved_v1.webp.b64` (448×274 WebP from selected image; remote bytes verified). F6: `res://scenes/dev/black_crossing_card_preview.tscn`. No original battle arena or unit sprite atlases yet. Live Act1 stays 36/45.
+
 Updated: 2026-10-15. **Approved assets must not be replaced during cleanup.**
 
 ## D153 — approved production assets
