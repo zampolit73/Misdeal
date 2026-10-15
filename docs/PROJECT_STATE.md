@@ -1,3 +1,9 @@
+## 2026-10-15 — CANONICAL D153 NEXT-CHAT HANDOFF (SESSION PAUSED)
+
+**Start the next chat with `docs/D153_NEXT_CHAT_START.md`.** The user requested ending this work session and continuing the **next stage** in a fresh chat; this file is the authoritative concise checkpoint, with concrete file paths, confirmed Godot evidence, pending exact sprite atlas resources and first next action. User's **D153 / SKELETAL STRINGS — PASS** screenshot confirms ONLY the isolated tether logic. D153 448×274 skeletal theatre art renders in Godot, and the strict 25-frame/role animation loader and F6 gallery source are already committed. **Both actual 576×480 D153 sprite atlases are MISSING and must be created/committed next** before asking user to run the gallery. D153 NOT in the live deck, Act1 remains **35/45**. No need to replay previous card-preview or thread-logic tests; assistant should use connected GitHub to produce art and code, user just `git pull` and test when genuine sprites are installed. D143/D167/D168 and 12+sealed XIII remain locked.
+
+---
+
 ## 2026-10-15 — D153 NATIVE THREAD QA PASS; STRICT ORIGINAL ANIMATION GATE COMMITTED
 
 Confirmed user Godot screenshot: `D153 / SKELETAL STRINGS — PASS`, 0 visible errors; original skeletal roster/two placements, 32% damage protection within 285px, tether break/relink and immediate protection removal on Puppeteer death plus cleanup all verified in **isolated** F6 logic test. D153 art preview was already seen rendering correctly in two separate screenshots.
