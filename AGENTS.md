@@ -1,5 +1,16 @@
 # MISDEAL — Development Guide
 
+## 2026-10-15 — D178 D153 POST-BALANCE NATIVE MATRIX 54/54 PASS; MANUAL FEEL BEFORE RELEASE
+
+**Newest, authoritative native Godot evidence:** User screenshot of `res://scenes/dev/threadbare_theatre_battle_smoke.tscn` after D176 stat tuning and D177 UnitData load fix confirms **FUNCTIONAL PASS**, **54/54 cases completed, 54 hero victories, zero entire-party defeats**. Per party size solo/duo/trio **18/18/18 wins**; Knight/Ranger/Mage **18/18/18 wins**; **average surviving HP 74% / 67% / 74%**, **worst party-average HP 39% / 15% / 37%**, average battle duration **13.0 / 15.1 / 13.3s**, individual hero deaths **0 / 4 / 4**, tether **123 joins / 91 breaks / 54 breaks at Puppeteer death**. Compared with pre-D176 **54/54 victories and ~85% / 82–83% / 86% average HP**, D176 has clearly increased pressure without making any tested composition unable to win. The user's screenshot supersedes the historical D177 "native retest pending" entry below.
+
+**Scope:** The source remains D176 stats: Puppeteer **142 HP / 7.5 damage / 1.65s attack / 55 speed**, Marionette **88 HP / 10.5 damage / 1.22s attack / 78 speed**; the D177 fixed `.tres` format loads successfully for all sampled cases. Original accepted stage/card/25-frame artwork, 32% tether within 285px, other enemies and global stats are untouched. No further buff from these metrics alone.
+
+**RELEASE GATE NOT YET PASSED:** Matrix `FUNCTIONAL PASS` confirms scripted AI simulation, not enjoyment/real-battle feel on the updated D176 stats. The **real battle → reward → table** route was **user-reported PASS before D176**; since only local UnitData and test diagnostics changed, a brief post-tune `res://scenes/dev/threadbare_theatre_playtest.tscn` F6 sanity run is the remaining practical check. Ask the user whether it now feels fair/challenging. If accepted, assistant can activate **only** `threadbare_theatre` in `RunState.ACT1_CARD_IDS` (36/45) and adjust any QA smoke's hard-coded pre-release 35/45 expectation for the new live state; then verify ordinary card dealing and the Fate Spread reward route. Until then **D153 remains QA-only, live Act1 35/45**. Don't mistake a positive matrix screenshot for release approval.
+
+---
+
+
 ## 2026-10-15 — D177 D153 MATRIX RESOURCE-LOAD REGRESSION FIX; RETEST PENDING
 
 **User-provided real Godot screenshots:** after D176 local stat tuning, F6 `threadbare_theatre_battle_smoke.tscn` displays **`D153 / THEATRE BATTLE — FAIL`**, `Missing BattleUnit data in D153 matrix`. The diagnostic stopped during setup with a null `UnitData` — **this is not a combat loss or a balance conclusion**. It gave no filename, so the exact null source was not proven by screenshots.

@@ -2,6 +2,16 @@
 
 This file records decisions that future chats should not casually reverse.
 
+## D178 — D153 local balancing is functionally validated, keep release gated by feel
+
+Date: 2026-10-15  
+Status: user Godot post-tune 54/54 PASS; manual revised encounter assessment pending
+
+After the D177 `.tres` resource-format correction, the user supplied the Godot F6 screenshot proving the **D176-tuned D153 matrix 54/54 FUNCTIONAL PASS**, 54 wins / 0 full defeats, solo/duo/trio 18 each, Knight/Ranger/Mage 18 each, average HP 74/67/74%, worst party-average HP 39/15/37%, battle duration 13.0/15.1/13.3s, hero casualties 0/4/4, and tether joins/breaks/master-death breaks 123/91/54. This is the first **post-tune** native matrix PASS; distinguish it from the older 54-win pre-tune result with ~82–86% HP.
+
+The increased tactical pressure is promising, not proof of fair play: the user has not yet assessed the revised encounter in the real `threadbare_theatre_playtest.tscn`. Keep D153 out of `ACT1_CARD_IDS` (35/45) until the user accepts the challenge. Do not globally rebalance, change approved art, or add complexity. On acceptance, enable card #36 and update the pre-release pool assertion in the matrix; then QA an ordinary deal.
+
+
 ## D177 — D153 post-tune UnitData load regression and exact-path QA
 
 Date: 2026-10-15  
