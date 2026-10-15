@@ -1,3 +1,11 @@
+## 2026-10-15 — D152 DATA STAGING (NOT LIVE) + D151 INTEGRATION GATE
+
+After user approval of next stage, inspected real `battle.gd` victory transition to `reward.tscn`, and `reward.gd` calling `RunState.complete_active_card()` then routing to table. This flow exists in code but native end-to-end D151 victory→reward→table is still **UNVERIFIED**. Previously verified D151 54/54 isolated F6 PASS is unchanged; do not rerun it reflexively.
+
+Added **D152 Defiled Laboratory as staged data only**: original `plague_alchemist` and `unstable_homunculus` UnitData, `defiled_laboratory` EncounterData with two formations. **No playable release**, no card registry change, no original animations or card art yet, no hazard controller yet. Details and release criteria: `docs/DECK_EXPANSION_D152_DEFILED_LABORATORY.md`. Remains **34/45** live cards, 11 missing. NEXT: user can F6 `res://scenes/dev/funeral_procession_playtest.tscn` and complete win→reward→table manually; assistant then develops original D152 art + encounter-local hazards + native QA before shipping to deck. Preserve D143 originality rule, DS2, 12+XIII, and D142 backlog.
+
+---
+
 ## FIRST READ, CURRENT 2026-10-15 — D151 verified Godot PASS
 
 The previous blocking `_is_valid_target` crash has now been superseded by **user's Godot screenshot of D151 `FUNERAL PROCESSION — PASS`**: 54/54 combats complete; 54 wins, 0 losses, 58 warning telegraphs, 38 one-time revivals, 14 attack-speed buff occurrences, both original atlases/cards loaded. User previously approved corrected D151 character feet, coffin rendering and facing. `funeral_procession` is *live*, card 34 of 45; 12+XIII per run. **Do not ask to rerun same smoke** absent new regression. Full UI battle→reward→table still *not certified*, and 54 wins of 54 require a future measured balance check. For next-chat workflow read `docs/NEXT_CHAT_HANDOFF.md` and `docs/DECK_EXPANSION_D151_FINAL_SMOKE_QA.md` alongside consolidated `docs/SESSION_HANDOFF_2026_10_15.md`. Preserve all previous approval, D143 original-new-enemies mandate and separate D142 tactical balance backlog. No source/gameplay changes in this QA documentation pass.
