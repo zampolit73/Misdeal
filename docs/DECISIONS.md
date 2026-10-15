@@ -3,6 +3,12 @@ Updated: 2026-10-15.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D186 — D183 original animation gallery accepted; original arena next
+
+Date: 2026-10-15. The user confirmed **«все ок»** after being asked to run `res://scenes/dev/black_crossing_animation_preview.tscn` and check the two 25-frame original sprites. Record **user-reported native visual QA acceptance** of Ferryman B and Drowned C animations, not independently produced engine logs. Do not redo sprite art or demand the same F6 unless a concrete regression appears.
+
+For D187, present **three genuinely different 1280×720 combat arena backdrop concepts** *before* committing any bitmap. The previously approved third `black_crossing` card image is not a battle arena and must remain untouched. Arena requirements: level and readable central combat floor for small hero/enemy groups, plausible broken wooden pier over black water, cold steel-blue moonlight, restrained lantern accent, **asymmetric** architecture without repeated towers/castles or clutter, one clean recognizable strip where the wave warning/knockback will be drawn by Godot. The chosen backdrop is environment art **without combat characters, wave UI, card labels or baked HUD**; only on user selection integrate it and then create a separate scoped surge controller. `ACT1_CARD_IDS` remains 36/45 until #37 encounter and reward tests.
+
 ## D185 — Black Crossing animation bitmap transfer complete, native QA pending
 
 Date: 2026-10-15. Ferryman B and Drowned C remain the user-approved original characters. Their new actual 576×480 WebP/Base64 assets are now in GitHub and bound to the D183 no-fallback 25-frame loader, with a separate Godot preview gallery. Local decoded structural QA passed (25 distinct/padded frames, five empty), and exact UTF-8 Git blob SHA checks match. Drowned atlas minor disconnected visual fragments were cleaned; Ferryman attack required a sixth distinct source-derived transition (original art only supplied 24 frames). This **does not** constitute native F6 visual approval or battle QA. Preserve existing D151–D153 and keep #37 outside live Act1 36/45 until battle, reward, and deal gates pass.

@@ -1,6 +1,6 @@
 # D185 — Source-derived sprite atlas GitHub transfer completed (2026-10-15)
 
-**STATUS: both approved-role animated sprite files committed to GitHub. Native Godot F6 gallery still PENDING.**
+**STATUS (D186): both approved-role sprite atlases in GitHub and user-reported native Godot F6 gallery PASS («все ок»).**
 
 The previous upload blocker in D184 is resolved. The transfer used an internal temporary text-file bridge and GitHub blob objects; no manual user ZIP upload or copy/paste was necessary. Git object SHA for each committed base64 text file was matched against the local bytes.
 
@@ -13,7 +13,7 @@ Both assets were decoded and validated in the assistant's container: exact 576×
 
 Runtime `scripts/battle/unit_animation_library.gd` supports these two roles in strict no-fallback D183 branch. F6 gallery `scenes/dev/black_crossing_animation_preview.tscn` cycles idle→walk→attack→hit→death and reports any missing atlas rather than substituting old enemies.
 
-**What is NOT done:** Neither finished atlas has been viewed in the user's Godot runtime, so do NOT call the animation QA complete until the user runs the gallery and approves appearance/motion. No original black-crossing 1280×720 battle arena, authored enemy UnitData, encounter-only wave controller, 54-case suite, real battle/reward/table QA or #37 release exists. Act1 remains **36/45**.
+**Latest user QA:** the user confirmed «все ок» after being instructed to run the animation gallery and check movement/full-body poses; consider the native visual QA accepted, without inventing diagnostic screenshots. **What is NOT done:** No original black-crossing 1280×720 battle arena, authored enemy UnitData, encounter-only wave controller, 54-case suite, real battle/reward/table QA or #37 release exists. Act1 remains **36/45**.
 
 Original art source IDs and historical upload issue: [D184 preceding notes](D184_BLACK_CROSSING_ATLASES.md) (superseded above). Source concept details: `docs/D183_BLACK_CROSSING_UNIT_ART.md`.
 
