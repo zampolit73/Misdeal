@@ -2445,3 +2445,15 @@ Status: staged by user-approved continuation; native real battle/art QA pending
 The new `defiled_laboratory` encounter introduces ONE genuinely original `plague_alchemist` and TWO `unstable_homunculus` enemies. A telegraphed alchemical-zone controller (plus short spills on homunculus death) is attached **only** to the D152 encounter in `battle.gd`. Do not alter global combat targeting or party scaling; existing Bone Shepherd Whistle and Funeral Procession Last Rite remain independent. The user-provided D152 isolated hazard F6 screenshot was PASS, but that does **not** certify the new real battle or its balance.
 
 D152 is available ONLY through a test-scene `CARD_PATHS` lookup, not the live `ACT1_CARD_IDS` pool (34/45). Strict original 25-frame animation checks are mandatory, with no old-enemy sprite reuse or synthesized frames. This session generated original 576×480/25-frame-atlas local PNG candidates and a conversation ZIP; these art binary bytes **are not yet tracked in GitHub**. QA-only images use ignored `assets/local_previews/d152/` paths so they cannot block future `git pull` commands. Final approved animations must be committed as original `.webp.b64` resources, alongside a unique 448×274 card illustration, BEFORE live registration. Need native 5-state art gallery and real battle/54-case + reward navigation approval first. See `docs/DECK_EXPANSION_D152_DEFILED_LABORATORY.md` for precise paths and stage boundaries.
+
+
+## D161 — Ship original D152 animation art through GitHub; never require manual extraction
+
+Date: 2026-10-15  
+Status: implemented / repository-refetch verified; native art QA pending
+
+After staging D152 as local PNG candidates, the assistant transferred both original character animation sheets into GitHub `main` as export-safe base64 WebP text:
+- `assets/pixel/units/deck_expansion_v1/plague_alchemist_frames.webp.b64`
+- `assets/pixel/units/deck_expansion_v1/unstable_homunculus_frames.webp.b64`
+
+Production loading prioritizes these files. Fetched GitHub bytes match the local encoded originals exactly; both atlases decode to 576×480 with 25 active, distinct and border-padded animation cells (4/6/6/3/6) from original generated art. Unlike the **obsolete** earlier ZIP scheme, this removes all user file transfer or PowerShell steps: only `git pull` and F6 Godot validation remain. No change to D143 originality requirements, no silent old art fallback, no D152 release (34/45 live), and no claim of native animation/real-battle approval. The user's instruction to minimize manual work requires using connected GitHub for future assets when possible rather than asking them to extract archives. Detailed status: `docs/DECK_EXPANSION_D152_DEFILED_LABORATORY.md`.
