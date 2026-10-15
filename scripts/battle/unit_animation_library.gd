@@ -10,9 +10,10 @@ const ROWS := 5
 const BASE_DIR := "res://assets/pixel/units/combat_units_anim_v2/"
 const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/"
 const DECK_EXPANSION_DIR := "res://assets/pixel/units/deck_expansion_v1/"
-const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer"]
+const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus"]
+const D152_ROLES := ["plague_alchemist", "unstable_homunculus"]
 const D151_ROLES := ["funeral_priest", "pallbearer"]
-const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer"]
+const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus"]
 
 static var _frames_cache: Dictionary = {}
 static var _unavailable: Dictionary = {}
@@ -25,6 +26,28 @@ static func get_frames(role: String) -> SpriteFrames:
 		return _frames_cache[role] as SpriteFrames
 	if _unavailable.has(role):
 		return null
+
+	if D152_ROLES.has(role):
+		# Original D152 candidate sheets are separate 576x480 PNGs. Missing or
+		# clipped art must never silently reuse an older enemy's sprite.
+		var d152_path := "%s%s_frames.png" % [DECK_EXPANSION_DIR, role]
+		if not FileAccess.file_exists(d152_path):
+			push_warning("D152 original animation atlas missing: %s" % d152_path)
+			return null
+		var d152_image := Image.new()
+		if d152_image.load(d152_path) != OK:
+			push_warning("D152 original animation atlas cannot load: %s" % d152_path)
+			return null
+		if d152_image.get_size() != Vector2i(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
+			push_warning("D152 original animation atlas size invalid: %s" % d152_path)
+			return null
+		if not _all_authored_deck_frames_visible(d152_image) or not _all_authored_deck_frames_padded(d152_image):
+			push_warning("D152 original animation cells missing or cropped: %s" % d152_path)
+			return null
+		var d152_texture := ImageTexture.create_from_image(d152_image)
+		if d152_texture == null:
+			return null
+		return _create_frames(role, d152_texture)
 
 	if NEW_ENEMY_ROLES.has(role):
 		# D147: approved raster animation atlas has precedence over legacy SVG.
