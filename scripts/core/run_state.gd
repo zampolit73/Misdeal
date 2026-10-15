@@ -83,6 +83,8 @@ const CARD_PATHS := {
 	"funeral_procession": "res://resources/cards/funeral_procession.tres",
 	# D152: original Tier1 Defiled Laboratory encounter, released after native 54-case challenge QA.
 	"defiled_laboratory": "res://resources/cards/defiled_laboratory.tres",
+	# D153: QA-only lookup for real battle -> reward -> table. NOT in ACT1_CARD_IDS.
+	"threadbare_theatre": "res://resources/cards/threadbare_theatre.tres",
 	"moon_seal": "res://resources/cards/moon_seal.tres",
 	"echo_crypt": "res://resources/cards/echo_crypt.tres",
 	"graveyard_ambush": "res://resources/cards/graveyard_ambush.tres",

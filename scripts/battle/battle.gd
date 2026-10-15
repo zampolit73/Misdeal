@@ -15,6 +15,8 @@ const LAST_RITE_SCRIPT := preload("res://scripts/battle/last_rite.gd")
 const LAST_RITE_DATA: LastRiteData = preload("res://resources/encounters/last_rite.tres")
 # D152: local chemical hazards, only for defiled_laboratory.
 const LABORATORY_HAZARDS_SCRIPT := preload("res://scripts/battle/laboratory_hazards.gd")
+# D153: original skeletal threads exist only in Threadbare Theatre.
+const THREAD_TETHER_SCRIPT := preload("res://scripts/battle/thread_tether.gd")
 
 # Local to UnitsLayer (screen offset 20,96). Keep unit feet on the
 # actual stone floor, below the architectural horizon and above the HUD.
@@ -97,6 +99,7 @@ var combat_elapsed := 0.0
 var shepherd_whistle_controller: BoneShepherdWhistleController
 var last_rite_controller: LastRiteController
 var laboratory_hazards_controller: LaboratoryHazardController
+var thread_tether_controller: ThreadTetherController
 var target_preview: BattleTargetPreview
 var deployment_floor_markers: Node2D
 
@@ -274,6 +277,27 @@ func _spawn_encounter() -> void:
 	_setup_bone_shepherd_whistle()
 	_setup_funeral_procession_rite()
 	_setup_defiled_laboratory_hazards()
+	_setup_threadbare_theatre_tethers()
+
+
+func _setup_threadbare_theatre_tethers() -> void:
+	if encounter.encounter_id != "threadbare_theatre":
+		return
+	var master: BattleUnit
+	var puppets: Array[BattleUnit] = []
+	for unit in units:
+		if unit.team != 1:
+			continue
+		if unit.visual_role == "threadbare_puppeteer":
+			master = unit
+		elif unit.visual_role == "bone_marionette":
+			puppets.append(unit)
+	if master == null or puppets.size() != 2:
+		push_error("Threadbare Theatre requires the original 1 skeletal puppeteer + 2 bone marionettes.")
+		return
+	thread_tether_controller = THREAD_TETHER_SCRIPT.new() as ThreadTetherController
+	units_layer.add_child(thread_tether_controller)
+	thread_tether_controller.configure(master, puppets)
 
 
 func _setup_funeral_procession_rite() -> void:
@@ -928,6 +952,8 @@ func _on_fight_pressed() -> void:
 		last_rite_controller.start_rite()
 	if laboratory_hazards_controller != null:
 		laboratory_hazards_controller.start_hazards()
+	if thread_tether_controller != null:
+		thread_tether_controller.start_threads()
 
 func _hide_preparation_hud() -> void:
 	bottom_hud_panel.visible = false
@@ -1012,6 +1038,8 @@ func _get_combat_start_wizard_line() -> String:
 			return "Вот это уже похоже на командную работу. Учись."
 		"bone_warden":
 			return "Надзиратель редко оставляет мне что-нибудь после себя."
+		"threadbare_theatre":
+			return "Пока Кукловод жив, его актёры держатся крепче. Оборви нити."
 		_:
 			return "Ну же. Покажите мне, зачем я вас вернул."
 
@@ -1156,6 +1184,8 @@ func _finish_battle(player_won: bool) -> void:
 		last_rite_controller.stop_rite()
 	if laboratory_hazards_controller != null:
 		laboratory_hazards_controller.stop_hazards()
+	if thread_tether_controller != null:
+		thread_tether_controller.stop_threads()
 	battle_finished = true
 	combat_live = false
 	if target_preview != null:
@@ -1201,6 +1231,8 @@ func _finish_battle(player_won: bool) -> void:
 			result_subtitle.text = "Колокол наконец замолчал."
 		elif encounter.encounter_id == "funeral_procession":
 			result_subtitle.text = "Жрец пал. На этот раз похороны окончательные."
+		elif encounter.encounter_id == "threadbare_theatre":
+			result_subtitle.text = "Нити оборваны. Костяной спектакль окончен."
 		elif encounter.encounter_id == "ossuary_gate":
 			result_subtitle.text = "Последние врата перед надзирателем открыты."
 		else:

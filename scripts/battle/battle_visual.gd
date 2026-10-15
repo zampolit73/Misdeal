@@ -12,6 +12,7 @@ const ARENA_IRON_WALL := "iron_wall"
 const ARENA_LAST_BELL := "last_bell"
 const ARENA_FIRING_SQUARE := "firing_square"
 const ARENA_BONE_RITUAL := "bone_ritual"
+const ARENA_THREADBARE_THEATRE := "threadbare_theatre"
 
 var pulse: float = 0.0
 var redraw_cooldown: float = 0.0
@@ -21,7 +22,7 @@ var arena_id: String = ARENA_CRYPT
 
 func set_arena_id(value: String) -> void:
 	match value:
-		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH, ARENA_BONE_SWARM, ARENA_GRAVE_CROSSFIRE, ARENA_IRON_WALL, ARENA_LAST_BELL, ARENA_FIRING_SQUARE, ARENA_BONE_RITUAL:
+		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH, ARENA_BONE_SWARM, ARENA_GRAVE_CROSSFIRE, ARENA_IRON_WALL, ARENA_LAST_BELL, ARENA_FIRING_SQUARE, ARENA_BONE_RITUAL, ARENA_THREADBARE_THEATRE:
 			arena_id = value
 		_:
 			arena_id = ARENA_CRYPT
@@ -56,6 +57,8 @@ func _draw() -> void:
 			_draw_warden_atmosphere()
 		ARENA_BONE_CRUSH, ARENA_BONE_SWARM:
 			_draw_bone_crush_atmosphere()
+		ARENA_THREADBARE_THEATRE:
+			_draw_threadbare_theatre_atmosphere()
 		_:
 			_draw_crypt_atmosphere()
 
@@ -99,6 +102,17 @@ func _draw_bone_crush_atmosphere() -> void:
 	# live floor overlay from BattleUnit's actual legal placement regions.
 	var breathe := 0.5 + 0.5 * sin(pulse * 1.7)
 	draw_rect(Rect2(Vector2.ZERO, size), Color(0.015, 0.020, 0.028, 0.018 + breathe * 0.006))
+
+
+func _draw_threadbare_theatre_atmosphere() -> void:
+	# Subtle moonlit stage dust above the tactical floor: no artificial borders,
+	# unit silhouettes or copied scene decorations. The approved authored WebP
+	# supplies all architecture and candles.
+	for index in range(7):
+		var seed_value := float(index) * 173.0
+		var drift_x := fmod(seed_value * 2.3 + pulse * (2.0 + float(index % 3)), maxf(1.0, size.x))
+		var drift_y := 92.0 + fmod(seed_value * 1.1 + pulse * 2.0, 170.0)
+		draw_circle(Vector2(drift_x, drift_y), 1.0, Color(0.65, 0.69, 0.75, 0.055))
 
 
 func _draw_warden_atmosphere() -> void:

@@ -12,6 +12,7 @@ const ARENA_IRON_WALL := "iron_wall"
 const ARENA_LAST_BELL := "last_bell"
 const ARENA_FIRING_SQUARE := "firing_square"
 const ARENA_BONE_RITUAL := "bone_ritual"
+const ARENA_THREADBARE_THEATRE := "threadbare_theatre"
 
 const BACKDROP_SIZE := Vector2i(1280, 720)
 
@@ -28,6 +29,7 @@ const ARENA_PATHS := {
 	ARENA_LAST_BELL: "res://assets/pixel/battle/arenas/arena_redraw_v2/last_bell.webp",
 	ARENA_FIRING_SQUARE: "res://assets/pixel/battle/arenas/arena_redraw_v1/firing_square.webp.b64",
 	ARENA_BONE_RITUAL: "res://assets/pixel/battle/arenas/arena_redraw_v1/bone_ritual.webp.b64",
+	ARENA_THREADBARE_THEATRE: "res://assets/pixel/battle/arenas/threadbare_theatre_approved_v1.webp.b64",
 }
 
 var arena_id := ARENA_CRYPT
@@ -40,7 +42,7 @@ func _ready() -> void:
 
 func set_arena_id(value: String) -> void:
 	match value:
-		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH, ARENA_BONE_SWARM, ARENA_GRAVE_CROSSFIRE, ARENA_IRON_WALL, ARENA_LAST_BELL, ARENA_FIRING_SQUARE, ARENA_BONE_RITUAL:
+		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH, ARENA_BONE_SWARM, ARENA_GRAVE_CROSSFIRE, ARENA_IRON_WALL, ARENA_LAST_BELL, ARENA_FIRING_SQUARE, ARENA_BONE_RITUAL, ARENA_THREADBARE_THEATRE:
 			arena_id = value
 		_:
 			arena_id = ARENA_CRYPT
