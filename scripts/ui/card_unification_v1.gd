@@ -7,6 +7,8 @@ const ROOT := "res://assets/pixel/card_unification_v1"
 
 # D147: approved full-bleed raster takes priority; keep legacy SVG as a safe fallback.
 const BONE_SHEPHERD_CARD_SVG := "res://assets/pixel/card_unification_v1/run/bone_shepherd.svg"
+# D152 is still QA-only; artwork is text-packed so GitHub can deliver it via git pull.
+const D152_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/defiled_laboratory.webp.b64"
 
 const RUN_CARDS := {
 	"bone_patrol": "run/bone_patrol.webp",
@@ -47,6 +49,8 @@ const REWARDS := {
 static var _texture_cache: Dictionary = {}
 
 static func get_run_texture(card_id: String) -> Texture2D:
+	if card_id == "defiled_laboratory":
+		return _get_d152_card_texture()
 	if card_id == "bone_shepherd":
 		var approved_raster := _get_texture(RUN_CARDS, card_id, Vector2i(448, 274))
 		if approved_raster != null:
@@ -72,6 +76,28 @@ static func get_run_texture(card_id: String) -> Texture2D:
 	# Keep the legacy atlas as fallback if the new image is absent or invalid.
 	# A missing/invalid event image falls through to CardArtCatalog's fallback.
 	return _get_event_card_texture(card_id)
+
+
+# One original 448x274 D152 card image; never fall back to a different battle card.
+static func _get_d152_card_texture() -> Texture2D:
+	if _texture_cache.has(D152_CARD_WEBP_B64):
+		return _texture_cache[D152_CARD_WEBP_B64] as Texture2D
+	if not FileAccess.file_exists(D152_CARD_WEBP_B64):
+		push_warning("D152 authored card art missing: " + D152_CARD_WEBP_B64)
+		return null
+	var encoded: String = FileAccess.get_file_as_string(D152_CARD_WEBP_B64).strip_edges()
+	var bytes: PackedByteArray = Marshalls.base64_to_raw(encoded)
+	if bytes.is_empty():
+		push_warning("D152 authored card art cannot decode base64.")
+		return null
+	var image := Image.new()
+	if image.load_webp_from_buffer(bytes) != OK or image.get_size() != Vector2i(448, 274):
+		push_warning("D152 authored card art rejected (expected 448x274 WebP).")
+		return null
+	var texture: Texture2D = ImageTexture.create_from_image(image)
+	if texture != null:
+		_texture_cache[D152_CARD_WEBP_B64] = texture
+	return texture
 
 
 static func _get_event_card_texture(card_id: String) -> Texture2D:
