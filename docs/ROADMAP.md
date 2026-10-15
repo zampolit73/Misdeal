@@ -1,3 +1,11 @@
+## 2026-10-15 — D152 DATA STAGING (NOT LIVE) + D151 INTEGRATION GATE
+
+After user approval of next stage, inspected real `battle.gd` victory transition to `reward.tscn`, and `reward.gd` calling `RunState.complete_active_card()` then routing to table. This flow exists in code but native end-to-end D151 victory→reward→table is still **UNVERIFIED**. Previously verified D151 54/54 isolated F6 PASS is unchanged; do not rerun it reflexively.
+
+Added **D152 Defiled Laboratory as staged data only**: original `plague_alchemist` and `unstable_homunculus` UnitData, `defiled_laboratory` EncounterData with two formations. **No playable release**, no card registry change, no original animations or card art yet, no hazard controller yet. Details and release criteria: `docs/DECK_EXPANSION_D152_DEFILED_LABORATORY.md`. Remains **34/45** live cards, 11 missing. NEXT: user can F6 `res://scenes/dev/funeral_procession_playtest.tscn` and complete win→reward→table manually; assistant then develops original D152 art + encounter-local hazards + native QA before shipping to deck. Preserve D143 originality rule, DS2, 12+XIII, and D142 backlog.
+
+---
+
 ## D151 QA GATE COMPLETED — 2026-10-15
 
 **Native Godot F6 `funeral_procession_smoke.tscn`: 54/54 PASS** on user's screenshot. 54 wins, 0 losses; Last Rite produced 58 warnings, 38 revivals and 14 attack buffs; card art and both animation atlases loaded. Previously-freed-target crash no longer reproduced in latest reported run. The 54-case smoke gate is complete (historic “pending” sections below are outdated). **Remaining validation:** one actual game-path Funeral Procession victory → reward → cursed-table transition and design/balance review; 54/54 wins are NOT balance approval. **Content goal:** 34/45 cards in the Act1 pool, 11 still to author, 12+XIII per run. Each additional fight must have original enemies and artwork (D143). See `docs/DECK_EXPANSION_D151_FINAL_SMOKE_QA.md`. No new code shipped by this documentation-only checkpoint.
