@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+card_id = "threadbare_theatre"
+title = "ТЕАТР ОБОРВАННЫХ НИТЕЙ"
+card_text = "Костяные актёры танцуют на оборванных нитях. Над ними возвышается неживой хозяин сцены."
+wizard_line = "У всех нас есть ниточки. У этих хотя бы видно, кто их дёргает."
+type_label = "БОЙ"
+tier = 1
+resolution_type = "combat"
+target_path = "res://resources/encounters/threadbare_theatre.tres"
+art_path = ""
+prototype_result_text = ""
