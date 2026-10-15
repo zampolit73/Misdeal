@@ -13,6 +13,8 @@ const SHEPHERD_WHISTLE_DATA: BoneShepherdWhistleData = preload("res://resources/
 # D151: encounter-local necromantic ritual, never active in other fights.
 const LAST_RITE_SCRIPT := preload("res://scripts/battle/last_rite.gd")
 const LAST_RITE_DATA: LastRiteData = preload("res://resources/encounters/last_rite.tres")
+# D152: local chemical hazards, only for defiled_laboratory.
+const LABORATORY_HAZARDS_SCRIPT := preload("res://scripts/battle/laboratory_hazards.gd")
 
 # Local to UnitsLayer (screen offset 20,96). Keep unit feet on the
 # actual stone floor, below the architectural horizon and above the HUD.
@@ -94,6 +96,7 @@ var first_enemy_death_seen := false
 var combat_elapsed := 0.0
 var shepherd_whistle_controller: BoneShepherdWhistleController
 var last_rite_controller: LastRiteController
+var laboratory_hazards_controller: LaboratoryHazardController
 var target_preview: BattleTargetPreview
 var deployment_floor_markers: Node2D
 
@@ -270,6 +273,7 @@ func _spawn_encounter() -> void:
 
 	_setup_bone_shepherd_whistle()
 	_setup_funeral_procession_rite()
+	_setup_defiled_laboratory_hazards()
 
 
 func _setup_funeral_procession_rite() -> void:
@@ -290,6 +294,26 @@ func _setup_funeral_procession_rite() -> void:
 	last_rite_controller = LAST_RITE_SCRIPT.new() as LastRiteController
 	units_layer.add_child(last_rite_controller)
 	last_rite_controller.configure(priest, bearers, LAST_RITE_DATA)
+
+
+func _setup_defiled_laboratory_hazards() -> void:
+	if encounter.encounter_id != "defiled_laboratory":
+		return
+	var alchemist: BattleUnit
+	var homunculi: Array[BattleUnit] = []
+	for unit in units:
+		if unit.team != 1:
+			continue
+		if unit.visual_role == "plague_alchemist":
+			alchemist = unit
+		elif unit.visual_role == "unstable_homunculus":
+			homunculi.append(unit)
+	if alchemist == null or homunculi.size() != 2:
+		push_error("Defiled Laboratory expects original alchemist + two homunculi.")
+		return
+	laboratory_hazards_controller = LABORATORY_HAZARDS_SCRIPT.new() as LaboratoryHazardController
+	units_layer.add_child(laboratory_hazards_controller)
+	laboratory_hazards_controller.configure(alchemist, homunculi, units)
 
 
 func _setup_bone_shepherd_whistle() -> void:
@@ -902,6 +926,8 @@ func _on_fight_pressed() -> void:
 		shepherd_whistle_controller.start_whistle()
 	if last_rite_controller != null:
 		last_rite_controller.start_rite()
+	if laboratory_hazards_controller != null:
+		laboratory_hazards_controller.start_hazards()
 
 func _hide_preparation_hud() -> void:
 	bottom_hud_panel.visible = false
@@ -1128,6 +1154,8 @@ func _finish_battle(player_won: bool) -> void:
 		shepherd_whistle_controller.stop_whistle()
 	if last_rite_controller != null:
 		last_rite_controller.stop_rite()
+	if laboratory_hazards_controller != null:
+		laboratory_hazards_controller.stop_hazards()
 	battle_finished = true
 	combat_live = false
 	if target_preview != null:
