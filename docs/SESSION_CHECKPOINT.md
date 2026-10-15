@@ -1,3 +1,9 @@
+## 2026-10-15 — CANONICAL D153 NEXT-CHAT HANDOFF (SESSION PAUSED)
+
+**Start the next chat with `docs/D153_NEXT_CHAT_START.md`.** The user requested ending this work session and continuing the **next stage** in a fresh chat; this file is the authoritative concise checkpoint, with concrete file paths, confirmed Godot evidence, pending exact sprite atlas resources and first next action. User's **D153 / SKELETAL STRINGS — PASS** screenshot confirms ONLY the isolated tether logic. D153 448×274 skeletal theatre art renders in Godot, and the strict 25-frame/role animation loader and F6 gallery source are already committed. **Both actual 576×480 D153 sprite atlases are MISSING and must be created/committed next** before asking user to run the gallery. D153 NOT in the live deck, Act1 remains **35/45**. No need to replay previous card-preview or thread-logic tests; assistant should use connected GitHub to produce art and code, user just `git pull` and test when genuine sprites are installed. D143/D167/D168 and 12+sealed XIII remain locked.
+
+---
+
 ## 2026-10-15 — D168 ART OPTIONS FIRST; D152 SELECTED ENVIRONMENTAL ILLUSTRATION ACTIVE
 
 **ACTUAL state in GitHub:** approved D152 original 448×274 world-scene image installed at `assets/pixel/card_unification_v1/run/defiled_laboratory_scene_v2.webp.b64`. Runtime `scripts/ui/card_unification_v1.gd::D152_CARD_WEBP_B64` now points at V2; legacy `run/defiled_laboratory.webp.b64` retained, allowing a one-line rollback. Remote GitHub text bytes matched source exactly. User explicitly chose/approved this image in chat. **Native Godot V2 card preview pending**, NOT automatically validated. Act1 live count **35/45**, game logic/animation/tactics/DS2 unchanged. No user ZIP handling.
