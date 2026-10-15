@@ -18,10 +18,10 @@ func _ready() -> void:
 	message.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var issues: Array[String] = []
 	for i in range(ROLES.size()):
-		var role := ROLES[i]
-		var title := _label(LABELS[i], Vector2(70.0 + 620.0 * i, 140), Vector2(540, 40), 22)
+		var role: String = String(ROLES[i])
+		var title: Label = _label(String(LABELS[i]), Vector2(70.0 + 620.0 * i, 140), Vector2(540, 40), 22)
 		title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		var frames := ANIMATIONS.get_frames(role)
+		var frames: SpriteFrames = ANIMATIONS.get_frames(role)
 		if frames == null:
 			issues.append("%s: атлас отсутствует или не прошёл проверки" % role)
 			continue
@@ -33,9 +33,11 @@ func _ready() -> void:
 		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		add_child(sprite)
 		sprites.append(sprite)
-		for row in STATES:
-			if frames.get_frame_count(row) != [4, 6, 6, 3, 6][STATES.find(row)]:
-				issues.append("%s: неполная анимация %s" % [role, row])
+		for row_index in range(STATES.size()):
+			var state_name: String = String(STATES[row_index])
+			var expected_count: int = [4, 6, 6, 3, 6][row_index]
+			if frames.get_frame_count(state_name) != expected_count:
+				issues.append("%s: неполная анимация %s" % [role, state_name])
 	if not issues.is_empty():
 		message.text = "АРТ НЕ ГОТОВ / ЗАГРУЗКА НЕ ПРОШЛА\n" + "\n".join(issues)
 		message.add_theme_color_override("font_color", Color(0.96, 0.44, 0.38))
@@ -66,4 +68,4 @@ func _process(delta: float) -> void:
 
 func _show_state() -> void:
 	for sprite in sprites:
-		sprite.play(STATES[state_index])
+		sprite.play(String(STATES[state_index]))
