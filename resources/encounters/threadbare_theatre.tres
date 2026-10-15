@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+encounter_id = "threadbare_theatre"
+title = "ТЕАТР ОБОРВАННЫХ НИТЕЙ"
+card_text = "Под разбитой луной покачиваются костяные актёры. Их нити ведут к хозяину сцены."
+wizard_line = "Аплодируйте, если сможете. Эти актёры никогда не уходят на поклон добровольно."
+arena_id = "crypt"
+enemy_unit_paths = PackedStringArray("res://resources/units/threadbare_puppeteer.tres", "res://resources/units/bone_marionette.tres", "res://resources/units/bone_marionette.tres")
+enemy_names = PackedStringArray("Костяной кукловод", "Костяная марионетка", "Костяная марионетка")
+enemy_positions = PackedVector2Array(1070, 248, 900, 170, 895, 351)
+alternate_enemy_positions = PackedVector2Array(1090, 339, 855, 287, 1025, 171)
+formation_hint = "ЗАВЕСА — марионетки прикрывают кукловода, пока нити целы."
+alternate_formation_hint = "СЛОМАННАЯ СЦЕНА — кукловод позади, марионетки атакуют под разными углами."
