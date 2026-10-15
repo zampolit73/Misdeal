@@ -2519,3 +2519,16 @@ Status: **accepted by user; applies to all future encounter art**
 **Quality gate:** Reject "two units on a backdrop" art as a final card even when technically correct. Validate the *scene* in native Godot at intended size. This standard applies to D152's immediate art improvement, D153+, and future retrospective polish without mandatory wholesale repainting of previously accepted art. Do not change mechanics or gameplay choices for an art-only improvement.
 
 **Immediate D152 application:** The 35th live card `defiled_laboratory` has technically valid but sprite-showcase-like art. Replace ONLY its 448×274 illustration with an original environmental alchemical-laboratory encounter scene containing approved Plague Alchemist and Unstable Homunculus characters *within* the architecture and drama. Preserve all gameplay, 35/45 deck membership and accepted unit animations. Mark new bitmap as a **candidate pending native screenshot/user signoff**, not as a user-approved final by default.
+
+
+## D168 — Present multiple original card-art options before selecting the final image
+
+Date: 2026-10-15  
+Status: **accepted by user; applies from D153 onward and all future redraws**
+
+Before finalizing any encounter/event card illustration, the assistant must **present 2–3 meaningfully distinct visual candidates (default three), rendered as visible images**, and ask the user to choose one or request revisions. Variants must differ in composition, viewpoint, story beat, scene emphasis and/or lighting—not merely trivial color adjustments. All presented candidates must follow D167: an actual dark-fantasy scene from Misdeal, with atmospheric environment and characters physically integrated into it (never isolated sprites on generic blurred backgrounds). Respect DS2 / Fate Spread Variant C, source aspect ratio 448×274 and text-free bitmaps.
+
+**Production gate:** do not silently select and replace live card illustration before user approval. After the user approves a specific option, the assistant transfers that exact art into GitHub itself, keeps prior art version for rollback, updates only the runtime image path, and requests only `git pull` plus native F6 visual check. This process should minimize user manual work: no ZIP extraction, PowerShell, manual code edits or asset transfer by the user.
+
+**D152 exception:** user approved the already-rendered environmental alchemy-laboratory scene after seeing it, and explicitly requested immediate transfer. Do NOT delay that accepted D152 choice by presenting variants after the fact; version and install the approved exact image now. This new rule applies to D153+, all later illustrations and future retrospective art redesigns.
+
