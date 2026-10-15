@@ -1,3 +1,13 @@
+## 2026-10-15 — D153 ORIGINAL SKELETON ANIMATIONS ACCEPTED BY USER; THEATRE ARENA NEXT
+
+**Newest direct user report:** After the assistant replaced both runtime D153 atlases with the richly illustrated theatre-aligned bone puppeteer and bone marionette, supplied a `git pull` + five-state F6 gallery check, the user replied **«все ок.»** Treat this as **user-reported native visual acceptance of D153 character animations** (idle/walk/attack/hit/death), not an independently captured debugger trace or proof of real combat. Supersedes the older "F6 art QA pending" top-of-file notes. Keep accepted crimson crowned master/marionette assets and rollback files unchanged.
+
+**NEXT D153 STAGE: original combat arena.** Current `resources/encounters/threadbare_theatre.tres` still has `arena_id = "crypt"` as a temporary placeholder. `scripts/battle/authored_backdrop.gd` controls 1280×720 arena WebP (including `.webp.b64`), while `scripts/battle/battle_visual.gd` applies scene-specific atmospheric overlays. Author original *empty, playable* ruined moonlit puppet-theatre arena without characters, UI, baked tactical graphics or imported card illustration: crimson curtain remains, collapsed stage, moonlit Gothic arches, candles and physically meaningful dangling strings; central combat zone must stay clear and readable (UnitsLayer offset (20,96), combat bounds local y284–442, world y~380–538). Follow DS2/Fate Spread restrained palette and the already-approved card illustration. **Show 3 meaningfully different rendered arena compositions and obtain the user's choice BEFORE committing the new arena image or switching its runtime id.** This is new arena design, not another D153 card-art selection.
+
+After arena visual approval, scope `ThreadTetherController` to the D153 production battle lifecycle only, native 54-case matrix and real victory→reward→table QA. **Not live**, absent from `RunState.CARD_PATHS` and `ACT1_CARD_IDS`; Act1 stays **35/45**, 12 Fate Spread cards + sealed XIII. Do not modify D151/D152, global combat or approved Fate Spread.
+
+---
+
 ## 2026-10-15 — D153 APPROVED THEATRE-ALIGNED REDRAW INSTALLED; GODOT F6 ART QA PENDING
 
 **CURRENT MAIN OVERRIDES OLDER D153 ATLAS MESSAGES.** After seeing the original tiny skeleton atlases, the user rejected their appearance as unrelated to the approved moonlit ruined-theatre card and approved the **new** crimson-robed two-character redraws («Подходит)»). The assistant recovered those accepted high-resolution renderings, repacked each pose individually into 96×96 padded frames and **replaced BOTH runtime `.webp.b64` atlases on GitHub**:

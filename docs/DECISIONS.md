@@ -2,6 +2,14 @@
 
 This file records decisions that future chats should not casually reverse.
 
+## D172 — D153 animation gallery accepted; theatre arena requires visual selection
+
+Date: 2026-10-15  
+Status: accepted (user report for animations); arena selection pending
+
+The user reported «все ок» after the newly deployed, card-consistent D153 `threadbare_puppeteer` and `bone_marionette` atlases were presented for F6 QA. Keep these redrawn animation assets as the accepted characters; no reversion to generic original mini-skeletons. This is **reported native art approval**, not real battle QA. Next, review three rendered **battle-arena-only** compositions grounded in the approved moonlit skeletal puppet theatre; leave the center floor clear for heroes/foes/tether lines and do not place character figures/UI in the arena bitmap. Only commit the chosen composition and wire its unique arena ID after user selection. The existing D153 `crypt` ID is temporary. Remain 35/45 until fight/reward/table and 54-case gates pass.
+
+
 ## D172 — Approved D153 theatrical skeleton redesign is active; native motion QA still required
 
 Date: 2026-10-15  
