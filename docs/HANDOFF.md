@@ -1,3 +1,9 @@
+## 2026-10-15 — CANONICAL D153 NEXT-CHAT HANDOFF (SESSION PAUSED)
+
+**Start the next chat with `docs/D153_NEXT_CHAT_START.md`.** The user requested ending this work session and continuing the **next stage** in a fresh chat; this file is the authoritative concise checkpoint, with concrete file paths, confirmed Godot evidence, pending exact sprite atlas resources and first next action. User's **D153 / SKELETAL STRINGS — PASS** screenshot confirms ONLY the isolated tether logic. D153 448×274 skeletal theatre art renders in Godot, and the strict 25-frame/role animation loader and F6 gallery source are already committed. **Both actual 576×480 D153 sprite atlases are MISSING and must be created/committed next** before asking user to run the gallery. D153 NOT in the live deck, Act1 remains **35/45**. No need to replay previous card-preview or thread-logic tests; assistant should use connected GitHub to produce art and code, user just `git pull` and test when genuine sprites are installed. D143/D167/D168 and 12+sealed XIII remain locked.
+
+---
+
 ## 2026-10-15 — D153 SELECTED SKELETAL THEATRE ART + ISOLATED THREAD MECHANIC STAGED (NATIVE QA PENDING)
 
 **User correction and approval:** all D153 marionettes must be **skeletal undead**, consistent with Misdeal's Act1, not wooden dolls. User chose the **third** shown image (ruined gothic puppet theatre under moonlight) and asked to continue. This satisfies D168 art-options-before-selection for this encounter. D153 new identities are `threadbare_puppeteer` (skeletal leader) and `bone_marionette` (two skeletal marionettes); NO reuse of old enemy atlas/roles. Both D152 original animation/card art already accepted and retained.
