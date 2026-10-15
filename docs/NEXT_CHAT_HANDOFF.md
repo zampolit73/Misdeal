@@ -1,3 +1,11 @@
+## 2026-10-15 — D152 SCENE-DRIVEN V2 CARD ART NATIVE ACCEPTED; D153 VISUAL OPTIONS NEXT
+
+User confirmed «все ок» after F6 of the new V2 `defiled_laboratory` 448×274 environmental card illustration. **Treat the exact V2 as native-user-accepted**: scene-driven gothic alchemy laboratory, original characters physically embedded in the environment. Previous V1 image stays tracked for rollback; active path `assets/pixel/card_unification_v1/run/defiled_laboratory_scene_v2.webp.b64` unchanged. D152 remains LIVE card **35/45** (34 other cards), no combat, balance, DS2, 12+sealed XIII or unit sprite changes.
+
+Start **D153 concept phase only**, consistent with D168. Proposed new original combat theme: **«Театр оборванных нитей» / Threadbare Theatre**. New entirely original enemy identities: marionette master and two uncanny wooden puppets (not reusing Bone Shepherd/Last Rite/Alchemist roles). Distinct tactical idea for discussion: vulnerable master links puppets with visible cursed threads, making target selection and placement matter; avoid another toxin zone/revive/old enemy reskin. These ideas are **NOT approved gameplay, NOT implemented, NOT in the deck**. Before any art integration, show the user **three distinct actual image compositions**: A frontal crimson proscenium with puppet master and suspended figures; B ominous backstage with cords/shadowplay, oblique view; C diagonal broken stage with severed strings, spotlight and gothic decay. All must meet D167 world-scene requirement, DS2 palette, no embedded UI text. Wait for user choice per D168. Active pool 35/45, next target **36/45**. User should not need to run Godot or pull anything for a visual-choice-only step.
+
+---
+
 ## 2026-10-15 — D168 OPTIONS-FIRST RULE + USER-APPROVED D152 ENVIRONMENT ART V2 IN MAIN
 
 **User's explicit new visual workflow rule:** Before any *future* card art is finalized/installed, show **multiple rendered visual alternatives (normally three; at least two materially different compositions)** and let the user select the preferred one. Don't silently finalize or replace with the assistant's choice. Every variant must follow D167, "dark-fantasy world scene, never pasted sprite showcase"; apply to D153+ and future card redraws. Rule committed into `AGENTS.md`, `docs/DECISIONS.md` **D168**, `docs/DESIGN_SYSTEM.md`, and `docs/VISUAL_ASSET_REGISTRY.md`.
