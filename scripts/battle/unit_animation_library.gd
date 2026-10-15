@@ -12,8 +12,10 @@ const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/
 const DECK_EXPANSION_DIR := "res://assets/pixel/units/deck_expansion_v1/"
 const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus"]
 const D152_ROLES := ["plague_alchemist", "unstable_homunculus"]
+# D153 original undead stage actors. No legacy enemy/pose substitution permitted.
+const D153_ROLES := ["threadbare_puppeteer", "bone_marionette"]
 const D151_ROLES := ["funeral_priest", "pallbearer"]
-const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus"]
+const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus", "threadbare_puppeteer", "bone_marionette"]
 
 static var _frames_cache: Dictionary = {}
 static var _unavailable: Dictionary = {}
@@ -26,6 +28,30 @@ static func get_frames(role: String) -> SpriteFrames:
 		return _frames_cache[role] as SpriteFrames
 	if _unavailable.has(role):
 		return null
+
+	if D153_ROLES.has(role):
+		# D153 must ship two NEW 25-frame full-body atlases, never a legacy
+		# skeleton fallback, never synthetic/repeated/edge-cropped poses.
+		var d153_path: String = "%s%s_frames.webp.b64" % [DECK_EXPANSION_DIR, role]
+		if not FileAccess.file_exists(d153_path):
+			push_warning("D153 original animation atlas not yet installed: " + d153_path)
+			return null
+		var encoded_d153: String = FileAccess.get_file_as_string(d153_path).strip_edges()
+		var d153_bytes: PackedByteArray = Marshalls.base64_to_raw(encoded_d153)
+		var d153_image := Image.new()
+		if d153_bytes.is_empty() or d153_image.load_webp_from_buffer(d153_bytes) != OK:
+			push_warning("D153 animation cannot decode: " + d153_path)
+			return null
+		if d153_image.get_size() != Vector2i(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
+			push_warning("D153 atlas is not 576x480: " + d153_path)
+			return null
+		if not _all_authored_deck_frames_visible(d153_image) or not _all_authored_deck_frames_padded(d153_image) or not _all_authored_deck_frames_distinct(d153_image):
+			push_warning("D153 atlas has empty, repeated or cropped poses: " + d153_path)
+			return null
+		var d153_texture: Texture2D = ImageTexture.create_from_image(d153_image)
+		if d153_texture == null:
+			return null
+		return _create_frames(role, d153_texture)
 
 	if D152_ROLES.has(role):
 		# Original D152 candidate sheets are separate 576x480 PNGs. Missing or
