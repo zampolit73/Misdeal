@@ -1,3 +1,13 @@
+## 2026-10-15 — D152 RELEASED as Act1 card 35/45 (post-release native check pending)
+
+**Verified before release:** user Godot screenshot of the **POST-TUNE** 54-case D152 combat matrix: 54/54 FUNCTIONAL PASS, 54 wins/0 losses; average remaining HP **70% solo / 57% duo / 60% trio**; hero casualties **0/4/4**; average duration **10.8/12.2/10.9s**, longest **16.6s**; tactics ASSAULT/HUNT/FORMATION each 18 victories, remaining HP **70/49/69%**; acid warnings **73**, hits **512**, spills **108**. This is the current result, not the old 67/435/14.9 pre-tune screenshot. The measured attrition is enough to release this Tier1 candidate without further buffs; technical 100% test wins are **not balance certification**. Approved original 448×274 card illustration and both 25-frame enemy atlases are in GitHub, and user previously accepted dev-preview real win→reward→table.
+
+**RELEASE IMPLEMENTED IN MAIN:** `scripts/core/run_state.gd` now puts `defiled_laboratory` into `ACT1_CARD_IDS` (35 unique nonboss Act1 cards total; the 12+sealed XIII run length is unchanged). D152 remains in `CARD_PATHS`; do not add it twice. Updated 35-card assertions in `bone_shepherd_smoke.gd`, `funeral_procession_smoke.gd`, `last_rite_smoke.gd`, `defiled_laboratory_smoke.gd`, `defiled_laboratory_battle_smoke.gd` and adjusted `defiled_laboratory_playtest.gd` / `defiled_laboratory_card_preview.gd` to continue functioning after release. Other enemies, global multipliers, tactics, D143 originality, DS2 and Fate Spread untouched.
+
+**Important qualification:** New 35-card pool code was reviewed/committed but **has not been rerun in the user's native Godot after activation**. The earlier D152 54-case F6 and dev real fight confirmations occurred **before** the card was placed into the live deck. Next user action: `git pull`, launch Godot and play a normal run / verify no new errors. No ZIP, PowerShell or manual edits. If any regression appears, assistant fixes it directly via connected GitHub. Next expansion target is **36/45** (10 remaining).
+
+---
+
 # D152 — Defiled Laboratory: encounter-local challenge pass v1
 
 Date: 2026-10-15
