@@ -14,8 +14,11 @@ const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb", "funeral_priest", "pa
 const D152_ROLES := ["plague_alchemist", "unstable_homunculus"]
 # D153 original undead stage actors. No legacy enemy/pose substitution permitted.
 const D153_ROLES := ["threadbare_puppeteer", "bone_marionette"]
+# D183 Black Crossing: the two accepted original drowned combat identities.
+# QA-only until the corresponding approved image bytes are committed.
+const D183_ROLES := ["drowned_ferryman", "drowned_hand"]
 const D151_ROLES := ["funeral_priest", "pallbearer"]
-const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus", "threadbare_puppeteer", "bone_marionette"]
+const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus", "threadbare_puppeteer", "bone_marionette", "drowned_ferryman", "drowned_hand"]
 
 static var _frames_cache: Dictionary = {}
 static var _unavailable: Dictionary = {}
@@ -28,6 +31,30 @@ static func get_frames(role: String) -> SpriteFrames:
 		return _frames_cache[role] as SpriteFrames
 	if _unavailable.has(role):
 		return null
+
+
+	if D183_ROLES.has(role):
+		# D183 uses original 96px cel atlases, never another enemy as fallback.
+		# Do not add synthetic "last frame" repair or accept edge-cropped art.
+		var source_path: String = "%s%s_frames.webp.b64" % [DECK_EXPANSION_DIR, role]
+		if not FileAccess.file_exists(source_path):
+			push_warning("D183 approved animation file not in repository yet: " + source_path)
+			return null
+		var raw: PackedByteArray = Marshalls.base64_to_raw(FileAccess.get_file_as_string(source_path).strip_edges())
+		var img := Image.new()
+		if raw.is_empty() or img.load_webp_from_buffer(raw) != OK:
+			push_warning("D183 animation WebP decode failed: " + source_path)
+			return null
+		if img.get_size() != Vector2i(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
+			push_warning("D183 animation must be 576x480: " + source_path)
+			return null
+		if not _all_authored_deck_frames_visible(img) or not _all_authored_deck_frames_padded(img) or not _all_authored_deck_frames_distinct(img) or not _unused_deck_cells_clear(img):
+			push_warning("D183 requires 25 unique padded poses and five empty cells: " + source_path)
+			return null
+		var texture: Texture2D = ImageTexture.create_from_image(img)
+		if texture == null:
+			return null
+		return _create_frames(role, texture)
 
 	if D153_ROLES.has(role):
 		# D153 must ship two NEW 25-frame full-body atlases, never a legacy
@@ -233,6 +260,21 @@ static func _repair_empty_deck_frames(image: Image, role: String) -> bool:
 			image.blit_rect(source, Rect2i(0, 0, CELL_SIZE, CELL_SIZE), Vector2i(column * CELL_SIZE, row * CELL_SIZE))
 			push_warning("Repaired transparent %s %s frame %d with previous visible pose." % [role, state_names[row], column])
 	return true
+
+
+# A 6x5 atlas has 30 slots but just 25 authored poses.
+# Compression noise near zero-alpha can occur; only material alpha counts.
+static func _unused_deck_cells_clear(image: Image) -> bool:
+	var state_counts := [4, 6, 6, 3, 6]
+	for row in range(state_counts.size()):
+		for col in range(state_counts[row], COLUMNS):
+			for y in range(CELL_SIZE):
+				for x in range(CELL_SIZE):
+					if image.get_pixel(col * CELL_SIZE + x, row * CELL_SIZE + y).a > 0.12:
+						push_warning("D183 atlas must have no neighboring sprite leakage: row %d column %d" % [row, col])
+						return false
+	return true
+
 
 static func get_static_texture(role: String) -> Texture2D:
 	var frames := get_frames(role)

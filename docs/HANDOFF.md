@@ -1,5 +1,5 @@
 # Misdeal — Canonical Working Handoff
-Updated: 2026-10-15 (D183, D182 card-art F6 PASS; #37 not live).
+Updated: 2026-10-15 (D184, approved combat art, loader staged; #37 not live).
 
 Read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md` first. This file is the only canonical next-chat handoff. Historical notes remain archived via `docs/INDEX.md`.
 
@@ -17,7 +17,7 @@ User's in-engine screenshot shows **`D153 / ACT 1 RELEASE — PASS`** from F6 `r
 
 **User chose** gameplay idea #1 `Чёрная переправа` (dead boatman + two unique drowned enemies, telegraphed wave strip that pushes/slows), and then the **third rendered** card illustration (diagonal pier, ferryman high/right, drowned low/left, one moonlit ruin). User replied «ок». This fulfills D168 concept selection; **don't re-run art concept choices**. Exact approved image variant 3 is installed in GitHub as `assets/pixel/card_unification_v1/run/black_crossing_approved_v1.webp.b64`. Isolated card-art F6 `res://scenes/dev/black_crossing_card_preview.tscn` **PASS**: user sent screenshot and replied «утверждено». The original 1604×981 image is `лунная_переправа_мертвецов.png` (conversation file ID `file_00000000ffb081f5a8c40af34fc03493`). **Previous assistant mistakenly wrote the filename of option 1** while answering selection "3"; the visual user selected remains option 3. See `docs/DECK_EXPANSION_D182_BLACK_CROSSING.md` for source detail and export hash.
 
-Candidate `resources/cards/black_crossing.tres` exists but is deliberately **not in `RunState.CARD_PATHS` nor `ACT1_CARD_IDS`**; its future encounter does not yet exist. Don't activate #37. Next: show choices for the **original Ferryman + Drowned combat sprites** (not card art), then create complete independent 25-frame pixel atlases and F6 animation QA; separate combat arena, wave push/slow, 54-case combat and real reward/table follow before #37 release. Full unit-art specification: `docs/D183_BLACK_CROSSING_UNIT_ART.md`. **Live pool remains 36/45.**
+Candidate `resources/cards/black_crossing.tres` exists but is deliberately **not in `RunState.CARD_PATHS` nor `ACT1_CARD_IDS`**; its future encounter does not yet exist. Don't activate #37. User has now **approved Ferryman B (ragged cloak) and Drowned C (torn clothes)** and then twice approved the resulting independent animation source sheets. D184 source-derived 96px cell assets exist locally with decoded-WebP structure QA, but the **actual WebP/base64 files are NOT YET COMMITTED** due to local-container→GitHub upload limitations. New D183-only strict loader and gallery `scenes/dev/black_crossing_animation_preview.tscn` are committed and intentionally fail without these files. **Do not request gallery F6 yet.** First finish stray-pixel cleanup, transfer exact new assets into GitHub, verify 25/25 and 5 blank cells remotely, then native F6. See `docs/D184_BLACK_CROSSING_ATLASES.md`. After that, separate arena, waves, 54 cases and real reward/table. **Live pool remains 36/45.**
 
 ## After release QA
 

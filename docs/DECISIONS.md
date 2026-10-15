@@ -3,6 +3,10 @@ Updated: 2026-10-15.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D184 — Black Crossing original combat appearances approved, production byte transfer still pending
+
+Date: 2026-10-15. User explicitly approved Ferryman B / Drowned C, then accepted both original generated motion sheets. Existing approved card art remains unchanged. Animation production must use the 96px/25-pose contract with fully visible feet and hooked pole. The Ferryman image actually contains 24 source poses (5 attack); one distinct additional transition pose must be documented, never presented as pre-existing artwork. Local image conversion/cell QA is NOT a committed GitHub bitmap or Godot run. A strict loader and F6 gallery have been added but must fail clearly until actual new `.webp.b64` files are uploaded and remotely verified. D153 and live 36/45 remain unaffected. See `docs/D184_BLACK_CROSSING_ATLASES.md`.
+
 ## D183 — D182 selected card art accepted in native Godot
 
 Date: 2026-10-15. Status: **native visual F6 approved; original enemy art pending**.

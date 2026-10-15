@@ -2,6 +2,11 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-15 — D184: Approved Black Crossing combat art and staged original role loader
+- User confirmed Ferryman B / Drowned C and approved both generated original animation sprite-sheet previews.
+- Locally created two 576×480 atlas candidates, checked 25 distinct alpha-padded poses, five unused transparent cells, documented the Ferryman's originally missing sixth attack pose. Remote raster upload still pending; do **not** claim a native F6 PASS.
+- Added strict no-fallback D183 role support to MisdealUnitAnimationLibrary and an isolated F6 gallery; **the two `.webp.b64` files have not been committed**. All existing characters, encounters and live pool (36/45) remain untouched.
+
 ## 2026-10-15 — D183: Black Crossing card-art native acceptance
 - User F6 screenshot + «утверждено»: original third D182 card illustration PASS in the intended 448×274 framing.
 - Next combat models need separate silhouette approval, full original 25-frame sprite animation sheets and native QA; no changes to live cards or encounters.

@@ -1,6 +1,6 @@
 # D183 — Black Crossing original combat sprite art gate
 
-Date: 2026-10-15. **Card image user-approved in native Godot. Combat models are NOT approved or implemented yet.**
+Date: 2026-10-15. **Card art approved in native Godot; Ferryman B + Drowned C appearances and generated motion sheets now explicitly approved by user (D184). Runtime source code staged; raster atlas upload/native animation QA pending.**
 
 ## Locked reference
 D182 option 3 (diagonal collapsed pier) is the **approved** 448×274 card illustration, already in `assets/pixel/card_unification_v1/run/black_crossing_approved_v1.webp.b64`. Godot screenshot of `scenes/dev/black_crossing_card_preview.tscn` was supplied; user explicitly said «утверждено». Do not change or reinterpret the approved bitmap.
@@ -14,3 +14,8 @@ D182 option 3 (diagonal collapsed pier) is the **approved** 448×274 card illust
 Present several meaningfully different **combat-silhouette** options for both enemies before creating runtime atlases, then ask user which pair to use. Approval of the card illustration **does not** mean sprite silhouettes or animation production are approved.
 
 Production gate after sprite choice: two independent transparent `576×480` WebP atlases (`.webp.b64` for Godot), 6 columns × 5 rows, `96×96` frame cells, each with real `idle4 / walk6 / attack6 / hit3 / death6` poses. **25 independently legible frames**, five empty unused cells, full feet, safe 2-pixel clear padding and no cropped poles/hands, distinct valid poses in final decoded WebP. **No automated duplication/filled holes.** First native F6 sprite gallery approval, then independent open-floor 1280×720 battle arena, scoped telegraphed push/slow wave, native 54-case battle QA and actual reward→table. Keep candidate `black_crossing` out of `CARD_PATHS` and `ACT1_CARD_IDS`; live Act1 stays **36/45**.
+
+
+## D184 status
+
+The B+C character-art choice and the two subsequent generated sprite-sheet previews were explicitly accepted. For the production file-transfer/QA limitation, source image IDs, local converted frames and next tasks see [D184 atlas handoff](D184_BLACK_CROSSING_ATLASES.md). Do not re-ask the user to choose combat appearances.
