@@ -1,3 +1,13 @@
+## 2026-10-15 — D153 NATIVE CARD PREVIEW RENDER CONFIRMED; THREAD SMOKE STILL UNVERIFIED
+
+The user supplied **two Godot 4.7.2 screenshots of the same** `res://scenes/dev/threadbare_theatre_card_preview.tscn` scene. The selected third skeletal marionette / moonlit theatre illustration visibly loads in the **actual 448×274 slot**, with title, description and QA-only status; neither screenshot shows a blocking card-loader issue or any red error count (red counter 0). This verifies **native rendering of the staged D153 artwork** and confirms the chosen image is legible, but the user did not yet send an explicit statement of aesthetic acceptance after these screenshots.
+
+**Crucial:** BOTH images are of `ThreadbareTheatreCardPreview`; there is **NO evidence yet for** `res://scenes/dev/threadbare_theatre_smoke.tscn`. DO NOT call the D153 32%-protection/range break/master death logic native PASS until its test screen is submitted. D153 still has no original 25-frame unit animation atlases, no theatre battle arena, and no production battle lifecycle wiring. Remains **NOT LIVE**, Act1 stays **35/45**, Fate Spread 12 + sealed XIII unchanged.
+
+**Only next user action:** run F6 `res://scenes/dev/threadbare_theatre_smoke.tscn` after their existing `git pull` and share PASS/FAIL screenshot. Assistant must fix errors in GitHub; user should never manually paste code or manage assets. Proceed afterward to original skeletal character animation art, then real battle and full matrix before release. User's D168 multiple-concept selection is already fulfilled for D153; don't show another unrequested option round for this approved direction.
+
+---
+
 # D153 — Threadbare Theatre / Театр оборванных нитей
 
 Date: 2026-10-15
