@@ -1,3 +1,13 @@
+## 2026-10-15 — D151 native Godot smoke verified (QA-only checkpoint)
+
+- **PASS: 54/54** simulated Funeral Procession battles, **54 wins / 0 losses** in latest user-provided Godot F6 screenshot.
+- Scoped Last Rite diagnostics: **58 warnings, 38 revivals, 14 buffs**; both original D151 enemy animation atlases and card resources loaded.
+- Previous freed-target crash reports now superseded by successful latest run; fixes to `BattleUnit`/fixture cleanup already committed earlier, **no gameplay code changed in this checkpoint**.
+- **Not a balance certificate**: full normal battle→reward→table still unverified separately. Pool: **34/45**, with 11 future cards under D143 novel-enemy rule.
+- Recorded reproducible result, caveats and next-chat instructions in `docs/DECK_EXPANSION_D151_FINAL_SMOKE_QA.md`, `docs/NEXT_CHAT_HANDOFF.md`, `docs/SESSION_HANDOFF_2026_10_15.md`.
+
+---
+
 ## CONSOLIDATED NEW-CHAT HANDOFF — 2026-10-15 — D151 is CURRENT, D145 art history preserved
 
 **Current cross-chat source of truth:** `docs/SESSION_HANDOFF_2026_10_15.md` (full integrated history), then **`docs/NEXT_CHAT_HANDOFF.md`** (most recent D151 bug/runtime details). GitHub main currently has **34/45 Act1 cards**, latest `funeral_procession` with all-new Priest/Pallbearers and Last Rite; **12 + XIII run shape unchanged**. DO NOT regress to earlier Bone Shepherd 31-card checkpoint. First priority remains native Godot **F6 `scenes/dev/funeral_procession_smoke.tscn`** after `git pull` and a **complete Godot editor restart**: previous user screenshot twice reproduced `BattleUnit._is_valid_target` use-after-free. GitHub main already has Variant validation, smoke immediate fixture free, and additional upfront freed-target reset in `_process` (latest protective commit `a59a9d9`). The possibility of a stale local/cached typed GDScript is unproven; if repeat, collect `git log -1 --oneline` and Godot debugger. **54/54 new F6 PASS NOT YET REPORTED**, do not invent it.
