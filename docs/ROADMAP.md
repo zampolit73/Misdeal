@@ -24,9 +24,11 @@ Updated: 2026-10-15. **Live Act 1: 36/45.** Current technical status: `docs/PROJ
 10. [x] D187: user chose and repeatedly refined stormy **«Последний причал»** (no duplicate left ruin/right structure); installed final original 1280×720 WebP as isolated `black_crossing` backdrop.
 11. [x] D187: user-confirmed native arena F6 («все ок»). Approved cleaned storm picture locked.
 12. [x] D188: new Ferryman/Drowned UnitData, 1+2 enemy encounter with two formations, scoped 1.4s warning + push/slow wave, no damage/stun; QA-only card lookup.
-13. [ ] **Native Godot F6** `res://scenes/dev/black_crossing_battle_smoke.tscn` (54 combat cases), then `black_crossing_playtest.tscn` for real battle→reward→table and challenge approval.
-14. [ ] Release #37 into the actual pool only after QA; separate ordinary-deal check.
-15. [ ] Continue Act1 toward 45 with nine remaining cards and avoid D151–D153 regressions.
+13. [x] D188 **user native 54/54 FUNCTIONAL PASS** before geometry/visual correction; 85/78/84% mean HP and 81 warnings / 58 surges / 71 pushes / 71 clean resets. User's real battle screenshot revealed a rectangular debug-like surf visual and characters on broken beams.
+14. [x] D189 source fix: rolling irregular surf with foam/spray, and shared safe plank movement/deployment/push bounds for D188 only.
+15. [ ] **Recheck native Godot after D189:** F6 `black_crossing_playtest.tscn` for wave motion, full-body foot contact, and reward→table; rerun `black_crossing_battle_smoke.tscn` (54-case outcomes may shift due to new floor layout).
+16. [ ] Release #37 into the actual pool only after QA; separate ordinary-deal check.
+17. [ ] Continue Act1 toward 45 with nine remaining cards and avoid D151–D153 regressions.
 
 ## Rules for all subsequent phases
 

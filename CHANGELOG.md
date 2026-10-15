@@ -2,10 +2,15 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D189: Black Crossing rolling surf and intact planks fix
+- User's native D188 smoke screenshot: historical 54/54 functional PASS (85/78/84% average HP; 81 wave warnings, 58 strikes, 71 pushes and 71 cleanup resets). Separate battle screenshot shows amber rectangle wave and actor soles standing on broken forward beams.
+- Replaced overlay rectangles with animated irregular sea foam, crest, water body and spray. Shared `BlackCrossingFloor` gives consistent intact-deck movement bounds for battle spawn/AI, hero drag zone, wave knockback, and 54-case matrix; wave lanes moved to the middle of the deck.
+- Strictly local D188 art/geometry change; does not modify enemy HP, run pool or accepted original art. **Native Godot retest after D189 is pending**; prior 54/54 is not a substitute.
+
 ## 2026-10-16 — D188: Original Black Crossing battle & scoped wave QA
 - User confirmed D187 arena Godot F6 OK; unchanged user-approved selected storm plate and original 25-frame Ferryman/Drowned art.
 - Added two unique UnitData and two-placement 1+2 Ferryman/Drowned encounter, QA-only card lookup (not live in Act1), and neutral warned wave strip with bounds-safe push and temporary 30% movement slowdown.
-- Added 54-seeded real BattleUnit matrix and isolated real Battle→Reward→Table playtest. **Native QA pending; no win-rate or release claims.** Act1 remains 36/45.
+- Added 54-seeded real BattleUnit matrix and isolated real Battle→Reward→Table playtest. Subsequent pre-D189 native matrix confirmed 54/54 functional PASS, but visual/off-floor defects required D189. Act1 remains 36/45.
 
 ## 2026-10-16 — D187: Black Crossing storm arena selected and source-integrated
 - User approved final clean stormy "Последний причал" after removing the repeated left ruin and right background pier-frame; exported exactly this final image to 1280×720 WebP/Base64.

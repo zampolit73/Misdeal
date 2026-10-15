@@ -3,6 +3,12 @@ Updated: 2026-10-15.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D189 — Replace rectangular surf and lock D188 fighters to the intact pier
+
+Date: 2026-10-16. User screenshot confirms D188 native **54/54 FUNCTIONAL PASS** with 54 victories, 0 entire-party defeats, 85/78/84% solo/duo/trio mean HP and 81 warned/58 active waves/71 pushes/71 slowdown resets. The **real battle screenshot also demonstrates two unacceptable presentation bugs**: orange `draw_rect()` warning is not a sea wave, and sprites stand on the foreground broken beams rather than whole central planks. Functional PASS does not override visual/geometry defects.
+
+**D189 specific fix in source:** introduce shared `BlackCrossingFloor` with UnitsLayer-local legal `Rect2(110,240,1060,128)`, player placement `Rect2(145,250,390,112)` and two tide lanes at y284/330, 25px half width. Feet visibly land on the central intact deck (UnitsLayer y offset 96 + animated sole/rim y offset 36); AI, drag placement, seed-based smoke and wave impulse use the same legal bounds. Replace both debug filled/stroked rectangles with moving, irregular water polygons, foam crests and sprays, with a subtle **advance warning** still visually distinct. Keep previous 3.2s delay, 1.4s warning, 43px left push, 30% temporary slow for 1.6s, both factions, no direct damage. Keep art bytes untouched; no new global mechanics. After this change previous 54/54 is **historical only** and does not validate the D189 coordinate revision; native F6 retest and visual feedback remain necessary. `black_crossing` stays QA-only and Act1 36/45.
+
 ## D188 — Storm surge is a neutral, telegraphed encounter-local repositioning hazard
 
 Date: 2026-10-16. Status: **source-integrated in main, untested in native Godot**.

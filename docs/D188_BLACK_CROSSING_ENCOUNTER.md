@@ -1,6 +1,6 @@
 # D188 — Black Crossing encounter & storm waves (QA candidate)
 
-Updated 2026-10-16. **Source-integrated only. Native Godot QA NOT RUN. Act1 live pool remains 36/45.**
+Updated 2026-10-16 (D189). **Pre-fix native Godot 54/54 functional PASS; improved waves/floor need new F6 checks. Act1 36/45.**
 
 ## User approvals carried forward
 
@@ -19,15 +19,15 @@ Updated 2026-10-16. **Source-integrated only. Native Godot QA NOT RUN. Act1 live
 `resources/encounters/black_crossing.tres` contains 1+2 original enemies, two authored placements and separate formation hints, arena id `black_crossing`. Party-size multipliers are unchanged. Initial parameters are **candidates**, not proven balanced.
 
 `scripts/battle/black_crossing_surge.gd` is an encounter-only `BlackCrossingSurgeController`:
-- A fixed horizontal band in the fight floor alternates between center Y **337** and **403**; x = 130–1130, full band height 68.
-- Initial delay **3.2s**, visible amber warning **1.4s**, then the blue surf **pushes affected living combatants 43 px left** (clamped to normal legal arena bounds) and reduces movement speed **30% for 1.6s**, followed by **4.5s** rest. **Both factions** can be caught; no raw damage, permanent slow, stun or global hazard.
+- **D189 floor fix:** legal UnitsLayer-local combat rectangle x110–1170, y240–368 (unit origin, before radius inset); actual sprite feet are roughly screen y389–483 on solid center deck. Heroes can only be dragged into x145–535, y250–362. Smoke uses the exact same `BlackCrossingFloor` file and asserts units never leave the safe plank rectangle. **Wave lanes now y284/330**, 25px half width, x135–1145, entirely inside the safe floor.
+- Initial delay **3.2s**. **1.4s early warning** now renders thin shimmering foam ripples rather than an orange rectangle. During the 1.6s impact, a blue translucent irregular rolling water body, moving white foam crest, broken eddies and spray droplets flow across the marked portion of the deck. The wave still **pushes hit actors 43px left** (clamped to the D189 whole-plank legal bounds) and slows movement by **30% for 1.6s**, followed by **4.5s** rest. **Both factions** can be caught; no raw damage, permanent slow or stun.
 - `BattleUnit.wave_move_speed_multiplier` remains **1.0 by default** and only the D188 controller changes it. `stop_surge()` restores 1.0 to all affected units. The controller starts with `_on_fight_pressed()` and stops before victory/defeat/results in `_finish_battle()`.
 - Hazard overlay is separate from the approved storm bitmap, under units. No new effect for other arenas or D151–D153.
 
 ## QA gates
 
-1. After `git pull`, **F6** `res://scenes/dev/black_crossing_battle_smoke.tscn`. Actual Godot `BattleUnit` deterministic 54 cases: two formations × three protagonists × solo/duo/trio × assault/hunt/formation. Must complete, ensure win/loss counts, at least one victory per size, no timeouts, wave warnings/surges/pushes, and **zero lingering slowdown**. Prints average/worst surviving HP, hero deaths and wave counts. **No 54/54 claim until user shares the actual screen.**
-2. **F6** `res://scenes/dev/black_crossing_playtest.tscn`: a real Knight run with QA-only Black Crossing card chosen from a controlled pair, actual stormy arena, wave telegraph, original enemy sprites, victory → `ЗАБРАТЬ НАГРАДУ` → Reward → Table. Try solo and spacing/tactics if feasible. A screenshot and difficulty impression are valuable. This is not the randomized normal-deal route.
+1. **Pre-D189 native Godot 54/54 PASS** from screenshot: 54 wins/0 full defeats; 18 wins per party size and protagonist, average HP 85/78/84%, worst HP 58/46/63%, duration 10.4/11.3/10.6s, individual hero deaths 0/1/4 and surf warnings/strikes/pushes/resets 81/58/71/71. **This is before the D189 floor adjustment** and must not be presented as D189 validation. After `git pull`, **re-run F6** `res://scenes/dev/black_crossing_battle_smoke.tscn`. It additionally asserts fighters stay on solid planks and no slow modifier survives. Capture the actual new outcome.
+2. **F6** `res://scenes/dev/black_crossing_playtest.tscn`: this is the **first priority for visual feedback** after D189. Verify that feet stay on the real planks, that pre-impact foam looks like coming surf, that the water body flows rather than appearing as an amber wireframe, and that all fighters remain on the deck after knockback. Continue to `ЗАБРАТЬ НАГРАДУ` → Reward → Table. This test is a controlled offer, not the random-release route.
 3. Analyze if 54-case matrix says the fight is trivial/overpowered, especially solo and duo; tune **only new D188 enemy resources or controller parameters**, then rerun F6.
 4. Only after battle-feel approval and native tests, enable card #37 into `ACT1_CARD_IDS`, adjust existing 36-card guard scenes for release and add separate normal-deal smoke. Keep Fate Spread 12 + sealed XIII.
 
