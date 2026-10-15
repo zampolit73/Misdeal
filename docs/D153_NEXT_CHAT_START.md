@@ -1,35 +1,23 @@
-# Misdeal — D153 current next-chat checkpoint (2026-10-15)
+# Misdeal — D153 current handoff (2026-10-15)
 
-## 2026-10-15 — D153 ORIGINAL SKELETON ANIMATIONS ACCEPTED BY USER; THEATRE ARENA NEXT
+Repository: `zampolit73/Misdeal`, branch `main`. Read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md` first; GitHub is the live technical truth. The assistant uses the connected GitHub tools to make all changes; user uses local Godot 4.7.x and `git pull`.
 
-**Newest direct user report:** After the assistant replaced both runtime D153 atlases with the richly illustrated theatre-aligned bone puppeteer and bone marionette, supplied a `git pull` + five-state F6 gallery check, the user replied **«все ок.»** Treat this as **user-reported native visual acceptance of D153 character animations** (idle/walk/attack/hit/death), not an independently captured debugger trace or proof of real combat. Supersedes the older "F6 art QA pending" top-of-file notes. Keep accepted crimson crowned master/marionette assets and rollback files unchanged.
+## Confirmed by user
+- D153 card scene: chosen third, original moonlit destroyed theatre with **skeletal undead** puppeteer and two skeletal marionettes; source card art 448×274 has rendered in Godot.
+- Redrawn crimson-bone animation atlases `threadbare_puppeteer_frames.webp.b64` and `bone_marionette_frames.webp.b64` were user-accepted after five-state gallery F6 («все ок»); never revert to the old generic mini-skeletons.
+- Approved D153 arena image: latest rendered `лунная_арена_среди_руин_театра.png`, a relatively understated dark backstage scene with ONE distant silhouette, moon through broken roof, asymmetrical ladders, old rigging and open floor. User explicitly said «утвердили — продолжай» and requested implementation.
+- Earlier isolated `scenes/dev/threadbare_theatre_smoke.tscn` native screenshot **PASS**, 0 displayed errors: 32% marionette damage reduction within 285px, severed distance, master death, and cleanup. This does **not** certify production battle.
 
-**NEXT D153 STAGE: original combat arena.** Current `resources/encounters/threadbare_theatre.tres` still has `arena_id = "crypt"` as a temporary placeholder. `scripts/battle/authored_backdrop.gd` controls 1280×720 arena WebP (including `.webp.b64`), while `scripts/battle/battle_visual.gd` applies scene-specific atmospheric overlays. Author original *empty, playable* ruined moonlit puppet-theatre arena without characters, UI, baked tactical graphics or imported card illustration: crimson curtain remains, collapsed stage, moonlit Gothic arches, candles and physically meaningful dangling strings; central combat zone must stay clear and readable (UnitsLayer offset (20,96), combat bounds local y284–442, world y~380–538). Follow DS2/Fate Spread restrained palette and the already-approved card illustration. **Show 3 meaningfully different rendered arena compositions and obtain the user's choice BEFORE committing the new arena image or switching its runtime id.** This is new arena design, not another D153 card-art selection.
+## Now committed to main (source-integrated, not native-tested yet)
+- `assets/pixel/battle/arenas/threadbare_theatre_approved_v1.webp.b64`: approved picture downsampled to 1280×720 WebP; 94,090 bytes decoded; SHA-256 `6cb6db8138afca085add843833fbf579c00c99f81535a8a2f6266850e102ebe0`. Refetched GitHub encoded contents byte-for-byte matched source.
+- `resources/encounters/threadbare_theatre.tres` now points to `arena_id = "threadbare_theatre"`. `scripts/battle/authored_backdrop.gd` + `battle_visual.gd` route this specific arena to its new art and unobtrusive atmosphere.
+- `scripts/battle/battle.gd` wires `ThreadTetherController` **only for D153**. Instantiates after enemy spawn, starts after intro, stops/restores on combat conclusion; enemy leader must be `threadbare_puppeteer`, 2 allies `bone_marionette`. Existing mechanisms for other encounters are untouched.
+- `scripts/core/run_state.gd` includes D153 in `CARD_PATHS` **only for dev QA to reach real reward flow**. `ACT1_CARD_IDS` still excludes it: live Act1 remains **35/45**.
+- `scenes/dev/threadbare_theatre_battle_smoke.tscn` — NEW 54-case F6 deterministic matrix, actual combat units and tether controller.
+- `scenes/dev/threadbare_theatre_playtest.tscn` — NEW real battle → reward → table isolated QA entry. It sets up a Knight and injects an explicit D153 dev offer; no live deck insertion.
 
-After arena visual approval, scope `ThreadTetherController` to the D153 production battle lifecycle only, native 54-case matrix and real victory→reward→table QA. **Not live**, absent from `RunState.CARD_PATHS` and `ACT1_CARD_IDS`; Act1 stays **35/45**, 12 Fate Spread cards + sealed XIII. Do not modify D151/D152, global combat or approved Fate Spread.
+## Immediate next native checks (user only)
+1. `git pull`, F6 `res://scenes/dev/threadbare_theatre_battle_smoke.tscn`; send screenshot showing PASS/FAIL, 54/54, victory/defeat and linked/broken counters.
+2. F6 `res://scenes/dev/threadbare_theatre_playtest.tscn`. Observe original theatre **arena and skeletons**, actual battle, links, fight end → Claim Reward → Table. Send screenshot or exact error; assistant must fix in GitHub.
 
----
-
-# Misdeal — D153 next-chat checkpoint, 2026-10-15
-
-## Current repo and accepted visual
-
-Read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Repository is `zampolit73/Misdeal` on `main`. GitHub is technical truth and the connected assistant does repository edits itself.
-
-**MOST RECENT USER FEEDBACK:** After the first 25-frame D153 atlas pair was committed, user said the generic small sprites did NOT resemble the accepted skeletal theatre card illustration. The assistant generated two much richer, deep-crimson pixel character sprite sheets; user saw them and said **«Подходит)»**. This is approved new artistic direction, not acceptance of the final native Godot animation.
-
-**IMPLEMENTED NOW:** Both approved redraws have been correctly repacked into **actual strict production atlases** and committed under the paths read directly by `MisdealUnitAnimationLibrary`:
-- `assets/pixel/units/deck_expansion_v1/threadbare_puppeteer_frames.webp.b64` — SHA-256 (decoded WebP) `93f8839a778709f3c144a97eb3bef51e0b16944dc796e7cf9ec690896d23b846`, 44,426 bytes.
-- `assets/pixel/units/deck_expansion_v1/bone_marionette_frames.webp.b64` — SHA-256 (decoded WebP) `eb51e5d13968921bfa4ee4e9adef65c9c1939fb15a91f9e10a1c88e37633c755`, 43,114 bytes.
-
-576×480 each, 6×5 grid of 96×96, **25 unique nonempty poses**, idle4/walk6/attack6/hit3/death6, unused cells blank, per-cell padding validated after WebP export. Early naïve resized redraws FAILED these contracts; these newly individually recropped/cleaned/quantized assets passed automated alpha/cell/uniqueness checks. Rejected old V1 runtime files are preserved as `*_frames_rejected_v1.webp.b64`. Do not revive V1 or change the user-approved card illustration.
-
-## Next exact action
-
-**User:** `git pull`, run F6 `res://scenes/dev/threadbare_theatre_art_preview.tscn`, inspect both skeletons over five states and send screenshot or feedback. **Native animation F6 not yet performed or accepted after replacing sprites.** Assistant fixes any art or GDScript issue in connected GitHub directly, not by user copy-paste.
-
-**Already passed in user Godot:** D153 selected theatrical 448×274 card art renders. Isolated `threadbare_theatre_smoke.tscn` F6 **PASS** with zero reported errors: 32% thread protection within 285px, range break/reconnect, master-death break and cleanup. This controller still is not production battle-wired.
-
-**Next after native art approval:** author dedicated ruined puppet-theatre battle arena, scope thread controller to D153 `battle.gd`, 54-case matrix, real fight→reward→table, then and ONLY then register card #36.
-
-**Frozen:** D153 NOT in `RunState.CARD_PATHS` nor `ACT1_CARD_IDS`, live Act1 35/45, 12 Fate Spread + sealed XIII, D143 original enemies, D167 illustrated world-scene card art, D168 concept options before choosing card illustration (D153 already chosen), DS2/Variant C and existing D151/D152.
+**Do not call native QA PASS yet**; no Godot binary available in authoring runtime. Matrix PASS will prove technical completion only; balancing with solo/duo/trio damage/HP telemetry is a separate user acceptance gate. D153 is NOT randomly playable until verified/released as #36. Keep DS2/Fate Spread I–XII+sealed XIII, D143 original-enemy rule, D167/D168 scene-first art/approval rule and all previously accepted D151/D152 visuals locked.

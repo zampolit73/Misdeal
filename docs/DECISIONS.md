@@ -2,6 +2,16 @@
 
 This file records decisions that future chats should not casually reverse.
 
+## D173 — D153 approved theatre arena + encounter-only production tether QA
+
+Date: 2026-10-15  
+Status: source-integrated; native combat QA pending
+
+User approved the **darker asymmetrical ruined indoor theatre** image after several concept iterations; rejected earlier AI-repetitive castle panoramas. Use the final approved `лунная_арена_среди_руин_театра.png` picture as an independent 1280×720 authored arena, not copied card art, preserving an open readable central combat floor. Assign arena id `threadbare_theatre` exclusively to this encounter. The skeletons' accepted 25-frame animations remain unchanged.
+
+Production `Battle` may now instantiate and run the **already native-smoke-validated** `ThreadTetherController` only with a D153-specific 1+2 bone cast. Activation after the combat intro, immediate master-death severance, distance break/relink and cleanup at fight end must survive actual Godot QA. A **QA-only** card registry lookup is permitted to drive real Reward → Table without enabling the card in `ACT1_CARD_IDS`; it does not count as live #36. Before release require native 54-case matrix and real-route verification, and consider fairness across party sizes. No generic battle-unit changes, no changes to other encounters, preserved Act1 35/45 until released.
+
+
 ## D172 — D153 animation gallery accepted; theatre arena requires visual selection
 
 Date: 2026-10-15  

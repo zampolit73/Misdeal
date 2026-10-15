@@ -1,3 +1,21 @@
+## 2026-10-15 — D153 THEATRE ARENA INSTALLED + PRODUCTION BATTLE TETHER WIRED; NATIVE QA NEXT
+
+**LATEST AUTHORITATIVE D153 STATUS:** User approved the late, darker, restrained backstage image `лунная_арена_среди_руин_театра.png` (ruined internal theatre, central wooden battle floor, moon through broken roof, asymmetric stairs/rigging, crimson curtain, candles). After previously accepting both reauthored D153 25-frame skeleton animations in the Godot gallery («все ок»), user said «утвердили — продолжай», then «давай» for implementation.
+
+**IN MAIN:** approved arena resampled to 1280×720 and stored as actual export-safe authored WebP `assets/pixel/battle/arenas/threadbare_theatre_approved_v1.webp.b64` (binary SHA-256 `6cb6db8138afca085add843833fbf579c00c99f81535a8a2f6266850e102ebe0`, 94,090 decoded bytes; exact remote Base64 content checked against source). `resources/encounters/threadbare_theatre.tres` now uses `arena_id = "threadbare_theatre"`. `authored_backdrop.gd` and `battle_visual.gd` register distinct D153 art and subtle stage dust; approved sprite art, card image and legacy arenas untouched.
+
+**REAL BATTLE LOGIC SOURCE-INTEGRATED:** `scripts/battle/battle.gd` creates a `ThreadTetherController` only for the original one `threadbare_puppeteer` + two `bone_marionette` enemy roster. The controller starts only after combat intro/units start, protects linked skeletal marionettes by 32% in 285px, breaks/relinks with distance or master death, and restores baseline on battle resolution. Local-only; no global BattleUnit edits. The battle win subtitle/wizard combat line reflect severed strings. `scripts/core/run_state.gd` adds **only** a QA-accessible `CARD_PATHS` lookup for D153 to let the proper reward route resolve; **`ACT1_CARD_IDS` deliberately still has 35 entries and excludes D153**, so it is NOT in ordinary deals. This is a QA lookup, not card #36 release.
+
+**NEW NATIVE TESTS TO RUN:** 
+1. `git pull` then F6 `res://scenes/dev/threadbare_theatre_battle_smoke.tscn`. This deterministic diagnostic uses actual `BattleUnit` AI + ThreadTether on **54 cases**: 2 formations × 3 protagonists × 3 party sizes × 3 tactics. It prints technical PASS/FAIL, 54 completion, wins/losses, HP/durations and tether join/break counters. Must receive real user screenshot before claiming 54-case PASS or balance.
+2. F6 `res://scenes/dev/threadbare_theatre_playtest.tscn` for **real scene**, starting QA-only Knight vs 1+2 skeletons. Inspect original ruined-stage background and original crimson skeleton art at 1280×720, preparation/tactical selections, golden protection strings, midfight break and end states; win → **ЗАБРАТЬ НАГРАДУ** → Reward → Table. This is an isolated dev-only offer; QA real-route proof remains pending.
+
+**QA BOUNDARY:** GitHub commit and static code inspection passed; **Godot 4.7.x was not available to run natively in this session**. Therefore arena presentation, matrix, exact thread behavior in real battle, and reward/table navigation are **NOT YET NATIVE PASS**. User should send F6 screenshots/errors. Do not automatically activate D153 until native gameplay/balance QA passes. 12 Fate Spread slots + sealed XIII, DS2 and prior D151/D152 remain unchanged.
+
+**Relevant source:** `docs/D153_NEXT_CHAT_START.md` is canonical compact handoff. Full prior thread smoke native PASS was an isolated controller test, accepted animation F6 was a separate art review.
+
+---
+
 ## 2026-10-15 — D153 APPROVED THEATRE-ALIGNED REDRAW INSTALLED; GODOT F6 ART QA PENDING
 
 **CURRENT MAIN OVERRIDES OLDER D153 ATLAS MESSAGES.** After seeing the original tiny skeleton atlases, the user rejected their appearance as unrelated to the approved moonlit ruined-theatre card and approved the **new** crimson-robed two-character redraws («Подходит)»). The assistant recovered those accepted high-resolution renderings, repacked each pose individually into 96×96 padded frames and **replaced BOTH runtime `.webp.b64` atlases on GitHub**:
