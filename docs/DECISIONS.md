@@ -2532,3 +2532,14 @@ Before finalizing any encounter/event card illustration, the assistant must **pr
 
 **D152 exception:** user approved the already-rendered environmental alchemy-laboratory scene after seeing it, and explicitly requested immediate transfer. Do NOT delay that accepted D152 choice by presenting variants after the fact; version and install the approved exact image now. This new rule applies to D153+, all later illustrations and future retrospective art redesigns.
 
+
+
+
+## D169 — D153 skeletal marionettes and thread-link encounter (staged)
+
+Date: 2026-10-15  
+Status: **user-directed undead visual concept; original data/art/controller staged; native Godot QA pending**
+
+The user explicitly rejected ordinary *wooden puppet* designs for D153 because Misdeal's Act1 enemy world is undead-focused. The two new marionettes must be distinctly **skeletal undead theatre puppets**, and the master must be a newly authored skeletal puppeteer. Do not reuse Bone Shepherd, Pallbearer, Funeral Priest, or another existing skeleton unit/atlas. The user selected the **third** visible D153 art concept (ruined gothic stage under moonlight), thereby fulfilling D168 options-first approval for this card. No gameplay code may replace that approved art with another composition without discussion.
+
+Candidate D153 mechanic: while the living bone master is within 285px of its skeleton marionette followers, **visible cursed threads** reduce incoming damage to linked marionettes by 32%. Range changes break/reconnect the bond; master death severs all bonds and resets their original damage multipliers. Implemented only inside `scripts/battle/thread_tether.gd` and an isolated smoke, no global AI or BattleUnit damage-code changes. Balance numbers are provisional. The original 448×274 environmental illustration is committed in `assets/pixel/card_unification_v1/run/threadbare_theatre_approved_v1.webp.b64`, the existing CardArtCatalog can load it, and new F6 preview/logic test scenes exist. Neither test has been run in native Godot. **D153 is NOT live** or in CARD_PATHS; Act1 is still **35/45**. Original 25-frame unit animation atlases, an original theatre arena, true combat wiring, full native combat/balance QA and reward/table acceptance are all hard release gates before 36/45. Follow D143/D167/D168 and do all GitHub delivery via connected tools.
