@@ -555,6 +555,11 @@ func _overlaps_friendly_unit() -> bool:
 	return false
 
 func _process(delta: float) -> void:
+	# A unit can retain a dead ObjectID when a diagnostic fight ends, or an
+	# encounter despawns an enemy. Never pass a freed BattleUnit to ANY typed
+	# target API or read its properties in this frame.
+	if not is_instance_valid(target):
+		target = null
 	_update_unit_facing()
 	_update_frame_animation(delta)
 	_update_idle_visual(delta)
