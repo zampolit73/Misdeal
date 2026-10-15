@@ -1,3 +1,13 @@
+## 2026-10-15 — D152 RELEASED as Act1 card 35/45 (post-release native check pending)
+
+User's new Godot post-tuning F6 result: **54/54 FUNCTIONAL PASS**, 54 wins / 0 losses; mean remaining HP **70% solo / 57% duo / 60% trio**; casualties **0/4/4**, mean fight seconds **10.8/12.2/10.9**; tactic remaining HP **70% ASSAULT, 49% HUNT, 69% FORMATION**; warning / toxic-hit / spill counts **73 / 512 / 108**, max fight **16.6s**. A technical 100% win rate is not balance certification; damage and some fallen heroes show meaningful pressure without eliminating solo viability. The user previously accepted D152 original card art, the enemy animation gallery, and the developer battle→reward→table loop.
+
+The completed source has the unique `defiled_laboratory` card in `RunState.ACT1_CARD_IDS` as **card 35/45**, preserving **12 pre-boss Fate Spread resolutions + sealed XIII**. QA scenes `defiled_laboratory_battle_smoke`, `defiled_laboratory_smoke`, `defiled_laboratory_card_preview`, `defiled_laboratory_playtest` were updated for live registration, as were D151/D144 test cardinalities and the obsolete Last Rite guard. The distinct 448×274 art remains in GitHub `assets/pixel/card_unification_v1/run/defiled_laboratory.webp.b64`, with both original animation atlases. Changes were statically inspected in GitHub; **no fresh post-release native F6 run is yet available**, unlike pre-release Godot matrix screenshot.
+
+Next one-step native release check: after `git pull`, F6 `res://scenes/dev/defiled_laboratory_card_preview.tscn` to confirm D152 art and 35-card registration (no manual ZIP/copying); normal encounters can now deal the card. Future challenge tuning should use actual play evidence, not inflate damage from simulated 54/54 alone. Next card goal: **36/45** with D143 original enemies.
+
+---
+
 ## 2026-10-15 — D152 ENCOUNTER-ONLY BALANCE V1 STAGED (NATIVE RECHECK PENDING)
 
 User explicitly approved the next D152 challenge pass and asked what happened to the card visual. **Card art clarification:** the unique original **448×274 text-free illustration** of Alchemist, Homunculus and poisonous laboratory is already tracked in `assets/pixel/card_unification_v1/run/defiled_laboratory.webp.b64`, wired into `card_unification_v1.gd` and displayed by the F6 `defiled_laboratory_card_preview.tscn`. The large generated mock-up with card frame, Russian text and two buttons was **only a concept**, NOT gameplay/UI; do not add a bypass choice or replace DS2. Artwork has user-reported visual acceptance from prior flow; it is **not yet dealt on the live table** because D152 remains QA-only `CARD_PATHS`, NOT `ACT1_CARD_IDS` (**34/45**).
