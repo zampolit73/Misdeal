@@ -2475,3 +2475,13 @@ Date: 2026-10-15
 Status: source/art staged; native card art and end-to-end gameplay verification pending
 
 D152 `defiled_laboratory` has a unique 448×274 illustration built from the original Plague Alchemist / Homunculus character art and cursed laboratory scenery, with no pre-rendered text, buttons, or invented choices. Store the asset in GitHub as export-safe `assets/pixel/card_unification_v1/run/defiled_laboratory.webp.b64`, and resolve it via the existing `CardArtCatalog` / `card_unification_v1.gd` path with a strict dimensions check; do not use art from another encounter. This avoids user ZIP handling and requires only `git pull`. The art is a visual candidate until inspected and accepted in native Godot. A generated UI moodboard suggested an optional bypass choice; that is **not an authorized gameplay mechanic** and was deliberately excluded from the actual card. D152 remains a fixed combat card, QA-only `CARD_PATHS` entry, not live `ACT1_CARD_IDS`. The user confirmed functional D152 native 54/54 smoke (54 wins/0 losses; 67 warnings, 435 chemical hits, 108 spills; max 14.9s), which is **not balance approval**. Do not release as live card 35/45 before end-to-end victory→reward→table QA and challenge review. Preserve D143 all-new-enemy rule, DS2 visuals and Fate Spread 12+XIII.
+
+
+## D164 — D152 card art and full reward navigation accepted; balance gates live deck release
+
+Date: 2026-10-15  
+Status: user acceptance recorded; local encounter challenge assessment pending
+
+After validating the original Plague Alchemist and Unstable Homunculus animation gallery and showing actual F6 54/54 functional results, the user was asked to inspect D152 card art and navigate the real playtest `defiled_laboratory_card_preview.tscn` → battle → victory → reward choice → cursed table. The user replied **«Все ок»**. Record this as the user's acceptance of the card appearance and complete flow (not an independent automated replay or a fresh screenshot). Preserve the original, text-free 448×274 authored card art already committed to GitHub and the separate 25-frame atlases; no need for a design redo or manual file copying.
+
+**Do not register D152 in `ACT1_CARD_IDS` merely because the UI route works.** Its 54-case diagnostic won 54/54 with solo, duo and trio each 18/18; a measured D152-local challenge pass is the remaining gate. Before any scoped changes, compare party size, class and tactic outcomes. Do not change global enemy HP/damage multipliers, Fate Spread 12+XIII, other encounters, or D143 all-original-enemies/art rule without discussion. Live pool remains **34/45** and D152 stays development-lookup-only. On native balance recheck and approval, release may advance to 35/45 with deck-count test updates.
