@@ -2,6 +2,11 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D190: New-chat checkpoint after D189
+- Rechecked live GitHub source; **D189 surf-animation and safe-pier movement correction already committed**, so no duplicate gameplay patch.
+- Rewrote canonical `docs/HANDOFF.md` with pre-fix Godot screenshot metrics, the exact two visual issues, D189 code paths and the **post-fix F6 retest still required**.
+- Corrected stale status in `PROJECT_STATE` (Black Crossing QA-only `CARD_PATHS` lookup) and stale D187 preview-pending wording. No gameplay, stats or approved art changed; Act1 remains 36/45.
+
 ## 2026-10-16 — D189: Black Crossing rolling surf and intact planks fix
 - User's native D188 smoke screenshot: historical 54/54 functional PASS (85/78/84% average HP; 81 wave warnings, 58 strikes, 71 pushes and 71 cleanup resets). Separate battle screenshot shows amber rectangle wave and actor soles standing on broken forward beams.
 - Replaced overlay rectangles with animated irregular sea foam, crest, water body and spray. Shared `BlackCrossingFloor` gives consistent intact-deck movement bounds for battle spawn/AI, hero drag zone, wave knockback, and 54-case matrix; wave lanes moved to the middle of the deck.

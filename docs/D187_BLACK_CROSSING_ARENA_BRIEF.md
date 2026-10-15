@@ -1,6 +1,6 @@
-# D187 — Black Crossing combat arena (approved stormy Last Pier installed, native F6 pending)
+# D187 — Black Crossing combat arena (approved stormy Last Pier, native F6 accepted)
 
-Date: 2026-10-15. Act 1 **36/45**, candidate card #37 (`black_crossing`) still QA-only; character animation gallery **user-reported PASS (D186)**.
+Date: 2026-10-16. Act 1 **36/45**, candidate card #37 (`black_crossing`) still QA-only; character animation gallery **user-reported PASS (D186)**.
 
 Earlier art directions, superseded by the user-approved final stormy **Last Pier**. User repeatedly removed repetitive background objects before saying «согласовано»:
 - **A — Broken timber pier**: an asymmetrically collapsed old timber landing; wide horizontal center plank floor, black tide below, single lantern on the right, moonlight upper left, ONE distant ruin, few purposeful posts.
@@ -24,3 +24,7 @@ D187 production export `assets/pixel/battle/arenas/black_crossing_storm_pier_app
 ## D188 follow-up (2026-10-16)
 
 User replied «все ок» after F6 of the integrated arena — **native arena visual gate accepted**. New original enemy UnitData, 1+2 authored two-formation encounter and encounter-local warned waves are now in source. Details and pending 54-case/real battle QA: [D188 Black Crossing Encounter](D188_BLACK_CROSSING_ENCOUNTER.md). Keep Act1 36/45.
+
+## D190 handoff clarification
+
+The D187 **cleaned storm arena itself was user-approved in native F6**. Earlier 'native preview pending' text above is historic to initial integration. The later D188 full battle exposed off-plank movement (not art approval failure); D189 has already changed movement bounds and foam. Await **post-D189 full battle F6** and refreshed 54-case combat test. See `docs/HANDOFF.md`.
