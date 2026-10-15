@@ -2427,3 +2427,11 @@ Date: 2026-10-15
 Status: D151 smoke fix committed; native recheck pending
 
 In Godot 4.7, a previously freed `BattleUnit` cannot be passed into `_is_valid_target(candidate: BattleUnit)` safely: GDScript rejects the argument before `is_instance_valid()` inside the function can run. Use `candidate: Variant`, check `is_instance_valid(candidate)` first and `candidate is BattleUnit` second, then read `alive/team`. Isolated smoke-fixture nodes processed manually must use immediate `free()` **after** each completed simulation, rather than delayed `queue_free()` plus awaiting `process_frame` (which may leave old `combat_units` visible to next fixture). This specifically fixes the real user-reported `funeral_procession_smoke.tscn` crash; preserve normal production arena lifecycle and combat stats. Keep a destroyed-target reproduction in the smoke. User must re-run Godot before calling matrix PASS. Full checkpoint in `docs/NEXT_CHAT_HANDOFF.md`.
+
+
+## D159 — D151 native smoke PASS is a functional gate, not balance signoff
+
+Date: 2026-10-15  
+Status: confirmed in user's local Godot 4.7.2, documented in GitHub
+
+The latest user-provided Godot screenshot of `res://scenes/dev/funeral_procession_smoke.tscn` reads **`DECK EXPANSION 03 / FUNERAL PROCESSION — PASS`** with **54/54 completed**, **54 wins / 0 losses**, **58 Last Rite warning telegraphs**, **38 pallbearer revivals** and **14 temporary boosts**; the original card resources and both sprite atlases loaded. This supersedes older D151 “`_is_valid_target` crash / test not yet passed” documentation. Preserve the post-crash target guard, fixture lifetime cleanup and revised sprite-facing logic unless new evidence requires a fix. Do **not** ask the user to rerun the same 54-case suite as a default action. Equally important, 100% synthetic wins are **not** acceptance of difficulty/balance or user-earned campaign progression; normal fight→reward→cursed table remains an independent check, and D142 HUNT/duo imbalance remains a separate measurement workstream. Act1 holds **34 of 45 nonboss cards**, each run 12 + sealed XIII; upcoming 11 cards and any new combat obey D143 genuinely original enemies and art. Full evidence, caveats and handoff: `docs/DECK_EXPANSION_D151_FINAL_SMOKE_QA.md`.
