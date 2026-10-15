@@ -2457,3 +2457,13 @@ After staging D152 as local PNG candidates, the assistant transferred both origi
 - `assets/pixel/units/deck_expansion_v1/unstable_homunculus_frames.webp.b64`
 
 Production loading prioritizes these files. Fetched GitHub bytes match the local encoded originals exactly; both atlases decode to 576×480 with 25 active, distinct and border-padded animation cells (4/6/6/3/6) from original generated art. Unlike the **obsolete** earlier ZIP scheme, this removes all user file transfer or PowerShell steps: only `git pull` and F6 Godot validation remain. No change to D143 originality requirements, no silent old art fallback, no D152 release (34/45 live), and no claim of native animation/real-battle approval. The user's instruction to minimize manual work requires using connected GitHub for future assets when possible rather than asking them to extract archives. Detailed status: `docs/DECK_EXPANSION_D152_DEFILED_LABORATORY.md`.
+
+
+## D162 — Accept original D152 unit art gallery; require measured battle QA before deck activation
+
+Date: 2026-10-15  
+Status: original unit art visually accepted by user, battle matrix native QA pending
+
+Following the D152 art gallery GDScript parser hotfix, the user supplied an actual Godot 4.7.2 screenshot showing both original Plague Alchemist and Unstable Homunculus loaded in \`defiled_laboratory_art_preview.tscn\`, and confirmed «Все ок.» Treat these original character sprites as **user-approved visual direction**; do not needlessly redo them or substitute other enemies. The screenshot does not independently certify every animation transition. Both 576×480/25-frame atlases are committed to GitHub and load without any ZIP.
+
+A new dedicated 54-case combat QA scene \`defiled_laboratory_battle_smoke.tscn\` is committed (two formations × three protagonists × three party sizes × three tactics), with original acid-zone warning/hit/spill telemetry and win/loss by party size. The user has **not yet executed this matrix**. Functional completion does not equal balance approval. Preserve the strict D143 all-new-enemy rule, scoped hazards, and the existing 34/45 active pool, 12+XIII run design. D152 needs original 448×274 card art and full normal battle→reward→table acceptance before becoming the 35th live card. See \`docs/DECK_EXPANSION_D152_DEFILED_LABORATORY.md\`.
