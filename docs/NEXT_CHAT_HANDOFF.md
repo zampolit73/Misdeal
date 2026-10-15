@@ -1,3 +1,9 @@
+## 2026-10-15 — D153 ART CONCEPT REVIEW IN PROGRESS, NO RELEASE
+
+D152 illustrated V2 card F6 native visual result accepted by user («все ок»). Act1 remains **35/45**. New concept D153 `Threadbare Theatre / Театр оборванных нитей`: original Puppeteer + two wooden marionettes, possible cursed strings affecting tactical target priority; mechanics are only preliminary, NOT user-approved/implemented. D168 applies: *show three actual visual images, user selects before the first D153 art/encounter commit*. Three independent specific 16:9 generation jobs have been **submitted** to Canva (A frontal red-curtain stage, B angled shadowy backstage, C shattered moonlit stage); asynchronous artwork has **not been reviewed for completion**. The earlier image-generation artifacts showing an undead chapel and abandoned caravan were off-brief and explicitly **REJECTED**. Do not reuse them or falsely present them as D153 options. Await the actual three theatre renders and user's selection; do not preemptively modify Act1 pool/gameplay. Continue all file edits via GitHub.
+
+---
+
 ## 2026-10-15 — D152 SCENE-DRIVEN V2 CARD ART NATIVE ACCEPTED; D153 VISUAL OPTIONS NEXT
 
 User confirmed «все ок» after F6 of the new V2 `defiled_laboratory` 448×274 environmental card illustration. **Treat the exact V2 as native-user-accepted**: scene-driven gothic alchemy laboratory, original characters physically embedded in the environment. Previous V1 image stays tracked for rollback; active path `assets/pixel/card_unification_v1/run/defiled_laboratory_scene_v2.webp.b64` unchanged. D152 remains LIVE card **35/45** (34 other cards), no combat, balance, DS2, 12+sealed XIII or unit sprite changes.
