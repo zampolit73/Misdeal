@@ -1,3 +1,17 @@
+## 2026-10-15 — D153 APPROVED THEATRE-ALIGNED REDRAW INSTALLED; GODOT F6 ART QA PENDING
+
+**CURRENT MAIN OVERRIDES OLDER D153 ATLAS MESSAGES.** After seeing the original tiny skeleton atlases, the user rejected their appearance as unrelated to the approved moonlit ruined-theatre card and approved the **new** crimson-robed two-character redraws («Подходит)»). The assistant recovered those accepted high-resolution renderings, repacked each pose individually into 96×96 padded frames and **replaced BOTH runtime `.webp.b64` atlases on GitHub**:
+- `assets/pixel/units/deck_expansion_v1/threadbare_puppeteer_frames.webp.b64` — **44,426 decoded WebP bytes**, SHA-256 `93f8839a778709f3c144a97eb3bef51e0b16944dc796e7cf9ec690896d23b846`.
+- `assets/pixel/units/deck_expansion_v1/bone_marionette_frames.webp.b64` — **43,114 decoded WebP bytes**, SHA-256 `eb51e5d13968921bfa4ee4e9adef65c9c1939fb15a91f9e10a1c88e37633c755`.
+
+**Static QA:** 576×480 transparent lossless WebP; 6×5 96px cells; exactly **25 filled unique poses each** (idle4, walk6, attack6, hit3, death6); all 5 unused cells empty; >3px alpha-safe border for all used cells after WebP decoding; complete body/feet; source-right. Removed spill fragments from the imprecise generated sprite-sheet gutters, then applied restrained 96-colour pixel palette. The very small previous D153 atlases are retained under `*_frames_rejected_v1.webp.b64` for rollback; the old generic appearance is **not approved**. The stage silhouettes now follow the **already approved** card: tall crowned puppeteer with ragged dark-crimson mantle, bone face/chest and dangling strings; smaller bone marionette with torn white/red garments and stage rig.
+
+**NEXT ACTION for user:** `git pull` then F6 **`res://scenes/dev/threadbare_theatre_art_preview.tscn`**, watch both roles across all five states (each state changes every 2s). Confirm silhouette, feet, scale, no invisible/blinking frames, facing and continuity; send screenshot/feedback. **The newly installed redraw has NOT been validated by user in native Godot. Static QA is NOT native visual acceptance.**
+
+**Remaining D153 gates:** native F6 gallery user acceptance, original theatre battle arena (crypt is placeholder), scoped real `ThreadTetherController` battle lifecycle, 54-case combat matrix, actual victory→reward→table QA. D153 still **NOT LIVE**, absent from `RunState.CARD_PATHS` and `ACT1_CARD_IDS`; Act1 **35/45**, 12 Fate Spread + sealed XIII. Preserve D143/D167/D168, DS2 and previously accepted D151/D152 unchanged. Next stage after art F6 acceptance is original theatre arena; no premature live activation.
+
+---
+
 ## 2026-10-15 — D153 USER-APPROVED REDRAW DIRECTION; PRODUCTION REPACK AND GITHUB REPLACEMENT PENDING
 
 **NEWEST VISUAL HANDOFF:** Read `docs/D153_NEXT_CHAT_START.md` first. User rejected the previous tiny D153 sprite art (although it was technically complete and committed); user re-shared the previously approved ruined-theatre card illustration. A pair of newly **redrawn skeletal sprite sheet previews**, matching the theatrical crimson robes / bone / crown / marionette strings, were shown; user replied **«Подходит)»**. This is **approval of redrawn artistic direction**, not of the existing GitHub sprite files.

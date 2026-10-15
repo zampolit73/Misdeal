@@ -2,6 +2,16 @@
 
 This file records decisions that future chats should not casually reverse.
 
+## D172 — Approved D153 theatrical skeleton redesign is active; native motion QA still required
+
+Date: 2026-10-15  
+Status: implemented artwork; native Godot gallery review pending
+
+The user rejected the initial generic/miniature D153 skeleton atlases. The user's accepted replacement direction («Подходит)») is **exactly the ornate bone puppeteer in a gold crown and torn deep-crimson theatrical cloak with strings**, paired with **smaller skeletal marionette in blood-red/off-white theatre tatters and shoulder cords**, both adapted to the combat sprite format. The old art has been replaced at the two D153 role paths on `main` using individually repacked 25-pose lossless WebP assets and archived as versioned rejected V1 rollback files. Do not silently reactivate V1, substitute old enemy sprites or redesign the accepted card art.
+
+The 576×480/25-frame/cell-alpha/padding/distinctness source gates pass on the new files; **native 1280×720 five-state F6 art acceptance remains open**. Art integration does not activate the encounter. Preserve D153 QA-only 35/45 until own theatre arena, actual ThreadTether combat wiring, full matrix and reward route pass.
+
+
 ## D171 — D153 skeletal animation appearance follows accepted ruined-theatre illustration
 
 Date: 2026-10-15  
