@@ -70,6 +70,8 @@ Since D204, user explicitly chose **A — Black Forest Bend**, then **the THIRD*
 
 Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton concept animation sheets. Read `docs/D205_BLACK_LANTERN_ASSET_AND_LIGHT_STAGING.md` for their exact original Russian filenames, role mapping and art QC. Static converter packaged five 576×480 6×5 96px QA candidates with 25 varied populated frames, but **source edge clipping flagged 13 / 20 / 24 / 21 / 13 frames**, and `road_sentinel` uses an unapproved axe instead of a spear. Art not approved; pack is only in conversation `Misdeal_D205_Lantern_Animation_QA_Pack.zip`. `scripts/dev/stage_black_lantern_art.py` in GitHub reproduces candidate conversion from the original files (not included in GitHub assets). Do not wire up unfinished 5 roles or replace them with legacy art.
 
+**D205 Godot 4.7.2 parser fix:** user screenshot showed `Cannot infer the type of opacity` at `scripts/dev/black_lantern_road_light_preview.gd:121`. Fixed GitHub `main` in commit `a786d2b` by replacing ambiguous `abs(...)` expression with typed float / `absf(...)`, and typing `v` and `eased`. **Ask user to `git pull` and F6 the same isolated preview; no native re-test is confirmed yet.** No changes to production gameplay or active deck.
+
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
 ## NEXT TASK — run isolated F6 light QA, then art integration
