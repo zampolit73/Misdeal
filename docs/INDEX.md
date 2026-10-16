@@ -5,7 +5,7 @@ Updated 2026-10-16 — D198 live Black Crossing #37.
 
 1. [Development rules](../AGENTS.md) — project goals, GitHub workflow, engine, art gates.
 2. [Concept](CONCEPT.md) — high-level design pillars and Fate Spread.
-3. [Current Project State](PROJECT_STATE.md) — **what is implemented now**; live Act1 37/45, D197 real Black Crossing route user-confirmed and D198 native release smoke pending.
+3. [Current Project State](PROJECT_STATE.md) — **what is implemented now**; live Act1 37/45; both D197 real Battle→Reward→Table and D198 ordinary-deal native release smoke user-reported PASS; next card #38.
 4. [Roadmap](ROADMAP.md) — completed milestones and next priorities.
 5. [Active Decisions](DECISIONS.md) — binding summarized requirements and links to original decisions.
 6. [Canonical Handoff](HANDOFF.md) — only one active next-chat continuation pointer.

@@ -1,6 +1,6 @@
 # D188–D198 — Black Crossing encounter, waves and live card #37
 
-Updated 2026-10-16 (D198 release). **D191 native 54/54 gameplay PASS; D196 waves retained; D197 real battle→reward→table confirmed; D198 live 37/45 with native D198 release smoke pending.**
+Updated 2026-10-16 (D198 QA closed). **D191 native 54/54 combat PASS; D196 waves retained; D197 real battle→reward→table user-confirmed; D198 37-card native release smoke user-confirmed PASS. Live Act 1 37/45.**
 
 ## User approvals carried forward
 
@@ -30,6 +30,6 @@ Updated 2026-10-16 (D198 release). **D191 native 54/54 gameplay PASS; D196 waves
 2. **D191 native post-D189 functional PASS:** 54/54 wins, 0 full-party defeats, 18/18/18 victories per party size and 18/18/18 per protagonist, mean remaining HP 86/74/77%. 78 wave warnings, 62 impacts, 66 pushes and 66 full slow resets. D198 is deck-only, so another 54-case matrix is not required.
 3. D192–D195 had several native visual rejections; D196 became the current forward-moving wave with 94px drawn advance and foam runoff. User said «давай пока оставим этот. продолжай». Do not change D196 unless new feedback warrants it.
 4. **D197 native real route approved:** after user ran preflight and real Battle→Reward→Fate Spread/Table test, they answered «Все ок».
-5. **D198 is LIVE in source:** card #37 enabled in the 37-card ordinary pool; old D151–D153, Shepherd and Black Crossing guards updated. New smoke: `res://scenes/dev/black_crossing_release_smoke.tscn` validates the actual full-pool random Tier1 deals, original resources, Fate Spread and boss XIII. **Native D198 F6 result is still pending**; do not claim PASS without it.
+5. **D198 LIVE and native release user-reported PASS:** card #37 was enabled in the 37-card pool; previous smoke guards were updated, and `res://scenes/dev/black_crossing_release_smoke.tscn` checks ordinary full-pool Tier1 dealing, original assets, Fate Spread and XIII. After the F6 request the user replied **«все ок»** (2026-10-16): record a **user-confirmed** native release PASS, not an independently captured Godot log. #37 release is closed; card #38 planning is next.
 
 Keep D151–D153, safe planks, 43px push, 30% movement slow/1.6s and accepted art unchanged. Preserve 12 resolutions + XIII.
