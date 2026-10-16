@@ -87,8 +87,11 @@ func get_phase() -> String:
 func get_pool_centers() -> Array[Vector2]:
 	var cycle_index: int = int(floorf(elapsed / CYCLE_SECONDS))
 	var set_a: bool = cycle_index % 2 == 0
-	var targets: Array[Vector2] = ZONES_A if set_a else ZONES_B
-	var previous: Array[Vector2] = ZONES_B if set_a else ZONES_A
+	var targets: Array[Vector2] = ZONES_A
+	var previous: Array[Vector2] = ZONES_B
+	if not set_a:
+		targets = ZONES_B
+		previous = ZONES_A
 	var time_in_cycle: float = fposmod(elapsed, CYCLE_SECONDS)
 	var factor: float = 0.0
 	if time_in_cycle >= WARNING_SECONDS:
@@ -101,12 +104,16 @@ func get_pool_centers() -> Array[Vector2]:
 
 func get_warning_centers() -> Array[Vector2]:
 	var cycle_index: int = int(floorf(elapsed / CYCLE_SECONDS))
-	return ZONES_A if cycle_index % 2 == 0 else ZONES_B
+	if cycle_index % 2 == 0:
+		return ZONES_A
+	return ZONES_B
 
 func _update_enemy_intervals() -> void:
 	buffed_enemy_count = 0
 	var active: bool = get_phase() == "active"
-	var centers: Array[Vector2] = get_pool_centers() if active else []
+	var centers: Array[Vector2] = []
+	if active:
+		centers = get_pool_centers()
 	for unit in participants:
 		if not is_instance_valid(unit) or unit.team != 1:
 			continue
