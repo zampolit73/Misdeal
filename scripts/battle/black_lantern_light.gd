@@ -30,7 +30,7 @@ func configure(units: Array[BattleUnit]) -> void:
 	stop_light()
 	participants = units.duplicate()
 	enemy_base_intervals.clear()
-	for unit: BattleUnit in participants:
+	for unit in participants:
 		if not is_instance_valid(unit) or unit.team != 1:
 			continue
 		enemy_base_intervals[unit.get_instance_id()] = unit.attack_interval
@@ -48,7 +48,7 @@ func start_light() -> void:
 func stop_light() -> void:
 	# Restore every surviving enemy to its original combat interval. This
 	# must also happen on victory/defeat before the battle scene is removed.
-	for unit: BattleUnit in participants:
+	for unit in participants:
 		if not is_instance_valid(unit) or unit.team != 1:
 			continue
 		var key: int = unit.get_instance_id()
@@ -95,7 +95,7 @@ func get_pool_centers() -> Array[Vector2]:
 		var active_fraction: float = clampf((time_in_cycle - WARNING_SECONDS) / ACTIVE_SECONDS, 0.0, 1.0)
 		factor = smoothstep(0.0, 0.70, active_fraction)
 	var centers: Array[Vector2] = []
-	for i: int in range(targets.size()):
+	for i in range(targets.size()):
 		centers.append(previous[i].lerp(targets[i], factor))
 	return centers
 
@@ -107,7 +107,7 @@ func _update_enemy_intervals() -> void:
 	buffed_enemy_count = 0
 	var active: bool = get_phase() == "active"
 	var centers: Array[Vector2] = get_pool_centers() if active else []
-	for unit: BattleUnit in participants:
+	for unit in participants:
 		if not is_instance_valid(unit) or unit.team != 1:
 			continue
 		var key: int = unit.get_instance_id()
@@ -116,7 +116,7 @@ func _update_enemy_intervals() -> void:
 		var original_interval: float = float(enemy_base_intervals[key])
 		var illuminated: bool = false
 		if active and unit.alive:
-			for center: Vector2 in centers:
+			for center in centers:
 				if (unit.position + FOOT_OFFSET).distance_squared_to(center) <= POOL_RADIUS * POOL_RADIUS:
 					illuminated = true
 					break
@@ -130,10 +130,10 @@ func _draw() -> void:
 	var phase: String = get_phase()
 	if phase == "warning":
 		var flicker: float = 0.45 + 0.20 * absf(sin(elapsed * 6.0))
-		for center: Vector2 in get_warning_centers():
+		for center in get_warning_centers():
 			draw_arc(center, POOL_RADIUS, 0.0, TAU, 60, Color(1.0, 0.72, 0.35, flicker), 2.0, true)
 	elif phase == "active":
-		for center: Vector2 in get_pool_centers():
+		for center in get_pool_centers():
 			draw_circle(center, POOL_RADIUS, Color(0.92, 0.52, 0.18, 0.14))
 			draw_circle(center, POOL_RADIUS * 0.66, Color(1.0, 0.72, 0.31, 0.08))
 			draw_arc(center, POOL_RADIUS, 0.0, TAU, 60, Color(1.0, 0.74, 0.39, 0.60), 2.0, true)
