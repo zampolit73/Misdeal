@@ -118,13 +118,13 @@ func _draw_light() -> void:
 	if phase == "rest":
 		return
 	if phase == "warning":
-		var opacity := 0.42 + 0.30 * abs(sin(_cycle_time() * 5.0))
+		var opacity: float = 0.42 + 0.30 * absf(sin(_cycle_time() * 5.0))
 		for center in next_zones:
 			draw_arc(center, POOL_RADIUS, 0, TAU, 56, Color(1.0, 0.72, 0.32, opacity), 3.0, true)
 		return
 	# In the active phase pools visibly travel, then remain in place.
-	var v := (_cycle_time() - WARNING_DURATION) / ACTIVE_DURATION
-	var eased := smoothstep(0.0, 0.66, v)
+	var v: float = (_cycle_time() - WARNING_DURATION) / ACTIVE_DURATION
+	var eased: float = smoothstep(0.0, 0.66, v)
 	for i in range(2):
 		var center: Vector2 = old_zones[i].lerp(next_zones[i], eased)
 		draw_circle(center, POOL_RADIUS, Color(0.9, 0.48, 0.12, 0.13))
