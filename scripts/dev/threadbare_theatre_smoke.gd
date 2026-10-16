@@ -29,7 +29,7 @@ func _ready() -> void:
 		+ "Гибель Кукловода мгновенно снимает защиту: PASS.\n"
 		+ "Остановка восстанавливает исходные множители: PASS.\n"
 		+ "Изолированная проверка нитей; боевые анимации и арена уже утверждены.\n"
-		+ "Карта D153 входит в Act 1 (36/45).") if issues.is_empty() else "\n".join(issues)
+		+ "Карта D153 остаётся в Act 1 (37/45).") if issues.is_empty() else "\n".join(issues)
 	detail.add_theme_color_override("font_color", Color(0.64, 0.90, 0.70) if issues.is_empty() else Color(0.98, 0.44, 0.36))
 
 
@@ -59,8 +59,8 @@ func _test_threads() -> void:
 	]):
 		issues.append("Expected unique original 1+2 undead roster")
 		return
-	if RunState.ACT1_CARD_IDS.size() != 36 or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
-		issues.append("D153 must be in the 36-card live Act1 pool")
+	if RunState.ACT1_CARD_IDS.size() != 37 or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
+		issues.append("D153 must remain in the 37-card live Act1 pool")
 		return
 	var arena := Node2D.new()
 	arena.visible = false

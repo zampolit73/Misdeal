@@ -3,7 +3,7 @@ extends Control
 # D180: actual RunState normal offer and choice smoke for release card #36.
 const D153_ID := "threadbare_theatre"
 const D153_ENCOUNTER := "res://resources/encounters/threadbare_theatre.tres"
-const EXPECTED_CARD_COUNT := 36
+const EXPECTED_CARD_COUNT := 37
 var issues: Array[String] = []
 
 
@@ -26,7 +26,7 @@ func _ready() -> void:
 	RunState.reset_run()
 	if issues.is_empty():
 		heading.text = "D153 / ACT 1 RELEASE — PASS"
-		report.text = ("36 уникальных карт • D153 присутствует в колоде\n"
+		report.text = ("37 уникальных карт • D153 (#36) присутствует в колоде\n"
 			+ "Tier1-раздача показывает Театр оборванных нитей\n"
 			+ "Выбор карты открывает правильный бой\n"
 			+ "Завершение записывается в Расклад судьбы\n"
@@ -42,7 +42,7 @@ func _ready() -> void:
 
 func _run_checks() -> void:
 	if RunState.ACT1_CARD_IDS.size() != EXPECTED_CARD_COUNT:
-		issues.append("Act1 must contain exactly 36 cards")
+		issues.append("Act1 must contain exactly 37 cards after D198")
 	if not RunState.ACT1_CARD_IDS.has(D153_ID):
 		issues.append("D153 missing from live pool")
 	var seen: Dictionary = {}
@@ -67,7 +67,7 @@ func _run_checks() -> void:
 		issues.append("Cannot choose protagonist")
 		return
 	if RunState.remaining_card_ids.size() != EXPECTED_CARD_COUNT:
-		issues.append("New run must start with 36 cards")
+		issues.append("New run must start with 37 cards after D198")
 	if not RunState.remaining_card_ids.has(D153_ID):
 		issues.append("New run does not include theatre")
 	# Two real Tier1 combat candidates, forced into a controlled fixture.

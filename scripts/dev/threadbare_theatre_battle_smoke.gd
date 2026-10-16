@@ -65,8 +65,8 @@ func _check_resources() -> void:
 		"res://resources/units/bone_marionette.tres"
 	]):
 		failures.append("D153 must have one original puppeteer and two original skeletal marionettes")
-	if RunState.ACT1_CARD_IDS.size() != 36 or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
-		failures.append("D153 must be the 36th live Act1 card")
+	if RunState.ACT1_CARD_IDS.size() != 37 or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
+		failures.append("D153 must remain live as card #36 after D198 card #37")
 	# Resolve every hero and both unique enemy resources *before* spawning.
 	# Report the exact file if a malformed .tres breaks ResourceLoader in Godot.
 	for role in HERO_ROLES:
