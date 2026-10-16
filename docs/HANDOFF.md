@@ -74,6 +74,10 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
+## D206 Godot 4.7.2 light typed-array runtime fix (NEXT F6)
+
+User-native `black_lantern_road_contract_smoke.tscn` screenshot reported `Trying to assign an array of type "Array" to a variable of type "Array[Vector2]"` in `scripts/battle/black_lantern_light.gd` line 109. The conditional `get_pool_centers() if active else []` created an untyped empty array. GitHub fix `9f751e7`: initialize a typed empty Array then populate inside `if active`, and replace other conditional typed array selections with explicit branches. Smoke is **NOT YET PASS**; next action is `git pull` and F6 the SAME `res://scenes/dev/black_lantern_road_contract_smoke.tscn`, report native result. No released gameplay or card pool changes.
+
 ## D206 — five original resources and isolated light mechanics staged, no production switch
 
 GitHub `main` now has exactly five **new** UnitData Resources and standalone `resources/encounters/black_lantern_road.tres` (two 5-unit placements). These are **unbalanced candidates** and not registered in RunState normal card paths or ACT1 pool. An isolated `BlackLanternLightController` in `scripts/battle/black_lantern_light.gd` records enemy baseline attack intervals, warns/activates/rests (1.4/3.1/1.8s candidates), gives up to +16% attack speed to illuminated ENEMIES only, then resets intervals on unlit/rest/stop. **It is not connected to `battle.gd` or live combat yet**. Godot engine QA not run.
