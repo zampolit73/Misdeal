@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D191: Black Crossing native-QA parity hardening
+- Inspected current GitHub `main` and D190 handoff; D189 surf/floor source exists, native Godot still unavailable in assistant environment.
+- Updated Black Crossing 54-case smoke to mirror real battle solo/duo/trio hero spawn positions, floor-depth mapping, and initial placement clamp; replaced artificial hero positions.
+- Set explicit release gate of 54/54 wins (not merely 54 completed cases), preserving per-frame plank legality and post-combat slow reset checks.
+- No arena/card/unit bitmap, enemy stats, wave behavior, party scaling, or live deck change. Await native F6 playtest + matrix + reward→table confirmation; 36/45 live.
+
 ## 2026-10-16 — D190: New-chat checkpoint after D189
 - Rechecked live GitHub source; **D189 surf-animation and safe-pier movement correction already committed**, so no duplicate gameplay patch.
 - Rewrote canonical `docs/HANDOFF.md` with pre-fix Godot screenshot metrics, the exact two visual issues, D189 code paths and the **post-fix F6 retest still required**.

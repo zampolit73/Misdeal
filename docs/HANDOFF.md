@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D190 new-chat checkpoint after D189 source fix.**
+Updated: 2026-10-16 — **D191 QA parity hardening after D190 handoff.**
 Repository: `zampolit73/Misdeal`, branch `main`. **GitHub is the technical source of truth, and the assistant has connected GitHub tools; inspect and edit directly without asking the user for manual patches or access.** Godot **4.7.x / GDScript**.
 
 ## READ FIRST
@@ -30,13 +30,13 @@ The user's *real battle screenshot* revealed two defects and explicitly requeste
 - `scripts/battle/black_crossing_floor.gd`: the shared UnitsLayer-local safe plank `COMBAT_BOUNDS = Rect2(110,240,1060,128)`; hero placement `Rect2(145,250,390,112)`; wave centers y284/330. (UnitsLayer offset and sprite feet must be considered when assessing visible floor.)
 - `scripts/battle/battle.gd`: only Black Crossing selects the custom bounds for AI and deployment. `scripts/dev/black_crossing_battle_smoke.gd` uses the same bounds and checks position legality.
 - `scripts/battle/black_crossing_surge.gd`: animated irregular blue wave polygon, foam crest, ruffled advance warning and spray instead of `draw_rect`; the push clamps to unit bounds and slowdown cleanup remains.
-- **Native Godot retest after D189 is NOT confirmed**. Existing D189 commits (code + docs) precede this checkpoint; see Git log. Do not invent PASS or claim the old 54/54 result covers the corrected geometry.
+- **D191 smoke QA code update is in main:** 54-case matrix uses real battle's solo/duo/trio authored hero starts, floor projection and placement clamping; requires 54/54 wins in addition to no off-plank positions and proper slow cleanup. **Native Godot retest after D189/D191 is NOT confirmed**. Existing D189 commits (code + docs) precede this checkpoint; see Git log. Do not invent PASS or claim the old 54/54 result covers the corrected geometry.
 
 ## NEXT TASK — start here in the new chat
 
 1. Ask only for the shortest necessary check: the user does `git pull` and **F6 `res://scenes/dev/black_crossing_playtest.tscn`**. Inspect **actual units' soles** throughout deployment, movement and impact: on intact planks only; foam warning and surging water must look like natural ocean surf, not geometry, with no UI overlap. Capture visual feedback/screenshot. Verify **battle → reward → Fate Spread/table** if the battle ends in victory.
-2. Re-run **F6 `res://scenes/dev/black_crossing_battle_smoke.tscn`** and examine new 54-case results plus no off-plank positions or lingering slows. The narrower D189 bounds may change challenge; if issues arise, **inspect current GitHub code, fix it yourself and commit**. Avoid touching D151–D153 or global party scaling.
+2. Re-run **F6 `res://scenes/dev/black_crossing_battle_smoke.tscn`** (D191: production-matching hero deployment) and examine new 54-case results, 54/54 victories, no off-plank positions and no lingering slows. The narrower D189 bounds may change challenge; if issues arise, **inspect current GitHub code, fix it yourself and commit**. Avoid touching D151–D153 or global party scaling.
 3. Only when the user accepts fight presentation/difficulty and the real reward route is checked, release `black_crossing` into the normal `ACT1_CARD_IDS` as **#37/45**, update hardcoded 36-card smoke guards and run a separate ordinary-deal smoke. Do not release based on the old pre-fix matrix.
 4. Update `PROJECT_STATE`, `ROADMAP`, `DECISIONS` for any new design rule, `CHANGELOG` and this `HANDOFF`, commit to GitHub and give user only `git pull` + an exact Godot test.
 
-**The user's latest request was to preserve all context and continue in a new chat from this exact point. This checkpoint does not make further gameplay changes.**
+**D191 session:** current `main` and D190 handoff read. No game runtime or headless Godot is available in assistant execution environment; do not claim F6 validation. QA parity update is committed, not a player-facing gameplay/visual revision. Release of #37 awaits user-provided native Godot visual, 54-case, and reward-route evidence.

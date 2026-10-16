@@ -1,7 +1,8 @@
 extends Control
 
-# D188: 54 deterministic *real BattleUnit* combats with the encounter-only
-# warned wave controller. Technical PASS is not a balance or reward signoff.
+# D191: 54 deterministic *real BattleUnit* combats with the encounter-only
+# warned wave controller, using the actual Black Crossing deployment starts.
+# Technical PASS is not visual acceptance or reward-route signoff.
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const ENCOUNTER: EncounterData = preload("res://resources/encounters/black_crossing.tres")
 const SURGE_SCRIPT := preload("res://scripts/battle/black_crossing_surge.gd")
@@ -41,7 +42,7 @@ func _ready() -> void:
 	title_label.size = Vector2(1190, 68)
 	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title_label.add_theme_font_size_override("font_size", 27)
-	title_label.text = "D188 / BLACK CROSSING — RUNNING"
+	title_label.text = "D191 / BLACK CROSSING — RUNNING"
 	add_child(title_label)
 	status_label = Label.new()
 	status_label.position = Vector2(80, 172)
@@ -120,6 +121,17 @@ func _make_unit(arena: Node2D, data: UnitData, team: int, position_value: Vector
 	return unit
 
 
+func _authored_hero_starts(party_size: int) -> Array[Vector2]:
+	# Keep in sync with Battle._get_party_spawn_positions default branch.
+	match party_size:
+		1:
+			return [Vector2(300, 245)]
+		2:
+			return [Vector2(200, 205), Vector2(435, 340)]
+		_:
+			return [Vector2(185, 195), Vector2(335, 280), Vector2(490, 370)]
+
+
 func _fight(formation: int, protagonist: int, party_size: int, tactic: String) -> Dictionary:
 	RunState.reset_run()
 	if not RunState.choose_protagonist(HERO_ROLES[protagonist]):
@@ -131,13 +143,24 @@ func _fight(formation: int, protagonist: int, party_size: int, tactic: String) -
 	arena.visible = false
 	add_child(arena)
 	var combat_units: Array[BattleUnit] = []
-	var hero_starts: Array[Vector2] = [Vector2(270, 284), Vector2(340, 330), Vector2(240, 302)]
+	# Mirror Battle._get_party_spawn_positions + _project_spawn_on_floor and
+	# BattleUnit.enable_placement_regions. Do not use synthetic QA-only starts.
+	var hero_starts: Array[Vector2] = _authored_hero_starts(party_size)
 	for index in range(RunState.party_roles.size()):
 		var hero_data: UnitData = RunState.get_hero_unit_data(String(RunState.party_roles[index]))
-		var hero: BattleUnit = _make_unit(arena, hero_data, 0, hero_starts[index], tactic)
+		var source: Vector2 = hero_starts[index]
+		var depth: float = clampf((source.y - 130.0) / 275.0, 0.0, 1.0)
+		var actual_spawn := Vector2(
+			source.x,
+			lerpf(FLOOR.COMBAT_BOUNDS.position.y + 32.0, FLOOR.COMBAT_BOUNDS.end.y - 32.0, depth)
+		)
+		var hero: BattleUnit = _make_unit(arena, hero_data, 0, actual_spawn, tactic)
 		if hero == null:
 			arena.free()
 			return {}
+		hero.enable_placement_regions([FLOOR.PLACEMENT_BOUNDS])
+		if not FLOOR.contains_unit_origin(hero.position, hero.body_radius):
+			failures.append("D191 hero spawn outside walkable planks: %s" % str(hero.position))
 		combat_units.append(hero)
 	var enemy_positions: PackedVector2Array = ENCOUNTER.get_enemy_positions_for_formation(formation)
 	for index in range(ENCOUNTER.enemy_unit_paths.size()):
@@ -258,7 +281,7 @@ func _run_matrix() -> void:
 						surges += int(result["surges"])
 						pushed += int(result["pushed"])
 						cleared += int(result["cleared"])
-						status_label.text = "D188: %d/54 • %s • %d героя • %s" % [
+						status_label.text = "D191: %d/54 • %s • %d героя • %s" % [
 							completed, HERO_ROLES[protagonist], party_size, tactic
 						]
 						if not failures.is_empty():
@@ -273,7 +296,9 @@ func _run_matrix() -> void:
 	if failures.is_empty() and completed != TOTAL_CASES:
 		failures.append("Only %d of 54 D188 cases completed" % completed)
 	if failures.is_empty() and (wins + defeats != TOTAL_CASES or timeouts > 0):
-		failures.append("Not all D188 cases ended in win/loss")
+		failures.append("Not all D191 cases ended in win/loss")
+	if failures.is_empty() and wins != TOTAL_CASES:
+		failures.append("D191 release gate: %d/54 wins, %d full-party defeats (all 54 must win)" % [wins, defeats])
 	if failures.is_empty() and (warnings == 0 or surges == 0 or pushed == 0):
 		failures.append("D188 waves never telegraphed, struck or affected any fighters")
 	if failures.is_empty() and cleared < pushed:
@@ -282,7 +307,7 @@ func _run_matrix() -> void:
 		failures.append("D188 unwinnable for solo, duo or trio")
 
 	if failures.is_empty():
-		title_label.text = "D188 / BLACK CROSSING — FUNCTIONAL PASS"
+		title_label.text = "D191 / BLACK CROSSING — FUNCTIONAL PASS"
 		status_label.text = ("54/54 боёв • %d побед / %d поражений\n"
 			+ "Соло / дуо / трио: %d / %d / %d побед\n"
 			+ "Рыцарь / Следопыт / Маг: %d / %d / %d побед\n"
@@ -302,7 +327,7 @@ func _run_matrix() -> void:
 		]
 		status_label.add_theme_color_override("font_color", Color(0.62, 0.90, 0.73))
 	else:
-		title_label.text = "D188 / BLACK CROSSING — FAIL"
+		title_label.text = "D191 / BLACK CROSSING — FAIL"
 		status_label.text = "\n".join(failures.slice(0, 8))
 		status_label.add_theme_color_override("font_color", Color(0.96, 0.38, 0.32))
 		push_error(status_label.text)

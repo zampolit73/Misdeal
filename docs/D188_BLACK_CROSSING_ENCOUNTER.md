@@ -1,6 +1,6 @@
 # D188 — Black Crossing encounter & storm waves (QA candidate)
 
-Updated 2026-10-16 (D189). **Pre-fix native Godot 54/54 functional PASS; improved waves/floor need new F6 checks. Act1 36/45.**
+Updated 2026-10-16 (D191 QA hardening). **Pre-fix native Godot 54/54 functional PASS; improved waves/floor need new F6 checks. Act1 36/45.**
 
 ## User approvals carried forward
 
@@ -26,7 +26,7 @@ Updated 2026-10-16 (D189). **Pre-fix native Godot 54/54 functional PASS; improve
 
 ## QA gates
 
-1. **Pre-D189 native Godot 54/54 PASS** from screenshot: 54 wins/0 full defeats; 18 wins per party size and protagonist, average HP 85/78/84%, worst HP 58/46/63%, duration 10.4/11.3/10.6s, individual hero deaths 0/1/4 and surf warnings/strikes/pushes/resets 81/58/71/71. **This is before the D189 floor adjustment** and must not be presented as D189 validation. After `git pull`, **re-run F6** `res://scenes/dev/black_crossing_battle_smoke.tscn`. It additionally asserts fighters stay on solid planks and no slow modifier survives. Capture the actual new outcome.
+1. **Pre-D189 native Godot 54/54 PASS** from screenshot: 54 wins/0 full defeats; 18 wins per party size and protagonist, average HP 85/78/84%, worst HP 58/46/63%, duration 10.4/11.3/10.6s, individual hero deaths 0/1/4 and surf warnings/strikes/pushes/resets 81/58/71/71. **This is before the D189 floor adjustment** and must not be presented as D189 validation. After `git pull`, **re-run F6** `res://scenes/dev/black_crossing_battle_smoke.tscn`. D191 additionally mirrors real battle solo/duo/trio spawn and deployment regions, requires 54/54 wins for release, checks that fighters stay on solid planks and that no slow modifier survives. Capture the actual new outcome.
 2. **F6** `res://scenes/dev/black_crossing_playtest.tscn`: this is the **first priority for visual feedback** after D189. Verify that feet stay on the real planks, that pre-impact foam looks like coming surf, that the water body flows rather than appearing as an amber wireframe, and that all fighters remain on the deck after knockback. Continue to `ЗАБРАТЬ НАГРАДУ` → Reward → Table. This test is a controlled offer, not the random-release route.
 3. Analyze if 54-case matrix says the fight is trivial/overpowered, especially solo and duo; tune **only new D188 enemy resources or controller parameters**, then rerun F6.
 4. Only after battle-feel approval and native tests, enable card #37 into `ACT1_CARD_IDS`, adjust existing 36-card guard scenes for release and add separate normal-deal smoke. Keep Fate Spread 12 + sealed XIII.
