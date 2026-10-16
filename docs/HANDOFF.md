@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D200 third card art F6 user-confirmed PASS; D201 original arena selection next**.
+Updated: 2026-10-16 — **D204 three arena geography blockouts shown; user choice and final scene-art approval NEXT**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -60,10 +60,14 @@ The user asked to continue using three uploaded custom skills (designer, artist,
 
 **Next:** produce genuinely new, distinct empty arena geographies (forest bend / dark ford / broken toll gate); once user chooses, integrate exact art and run F6. No arena selected yet; Act1 37/45, D200 card approved. `backups/KARAMBA73-2026-10-16` snapshot must stay frozen.
 
+## D204 — geography blockouts shown (NO scene/image integration)
+
+Three deliberately simple, separate 1280×720 pixel-style **composition blockouts** were produced as conversation-only PNGs, plus a comparison montage and `Misdeal_D201_arena_blockouts.zip`: **A black forest bend**, **B peat-water ford with dry central walkway**, **C collapsed toll gate with old cart wheel**. Their job is to test geographic difference, leg-contact floor space, and restrained lamp positions after the failed repetitive D201 castle-background attempts. All three remain **unapproved**; they are NOT polished artist backgrounds, native Godot previews, or committed game assets. Do not replace approved #38 D200 card illustration with any blockout. One D204 documentary record: `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
+
 ## NEXT TASK — D201 arena selection, then animation production
 
 1. **D200 native card-art F6 is user-reported approved** (2026-10-16: «вск ок»). Do not request a repeat unless there is later regression.
-2. **D201:** render **2–3 clearly different original 1280×720 unoccupied battle environments**, drawn for usable Godot 2D battle with broad flat center road and lamp posts/tree props only at sides/behind unit plane; no enemy skeletons painted into backdrop, no labels or UI. Ask user to choose one before importing to GitHub and constructing arena scene/safe ground regions.
+2. **D201:** ask whether rough layout A (forest bend), B (peat ford), or C (toll gate) is preferred geography; then render **2–3 visually finished, genuinely distinct, unoccupied Misdeal-quality 1280×720 battle artworks** for that direction, still with broad usable road and sparse edge lanterns. Ask user to select the exact finished image before committing or F6 staging. No character sprites or UI baked into the background.
 3. Produce five genuinely distinct **full animation atlases** (idle/walk/attack/hit/death, if D153/D188 grid reused, 25 frames per role). Giant must remain double-height at combat scale while sharing a grounded boot line; do not crop or fake sprites from static sheet. After art review, implement `RunCardData`, `EncounterData`, five `UnitData`, encounter-local light logic, solo/duo/trio matrices (54 cases candidate), and Battle→Reward→Table.
 4. Stage #38 as QA-only, NOT `ACT1_CARD_IDS`. Release only after original art, 54-case/functional checks, real reward path and full-pool random-deal smoke. Continue Act1 from **37/45**, no new cards live yet.
 5. Keep D196 surf and existing #34–#37 code/DS2/Fate Spread 12+XIII unchanged. Work through connected GitHub and update state, changelog, decisions/roadmap as needed.
