@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+unit_name = "Масляный служка"
+visual_role = "oil_acolyte"
+max_hp = 44.0
+damage = 5
+attack_interval = 1.28
+attack_range = 47.0
+minimum_range = 0.0
+move_speed = 80.0
+body_radius = 15.0
+separation_padding = 11.0
+visual_scale = 1
+show_enemy_name = false
