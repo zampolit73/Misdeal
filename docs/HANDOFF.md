@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D191 QA parity hardening after D190 handoff.**
+Updated: 2026-10-16 — **D192 wave volume and curling foam after D191 native matrix.**
 Repository: `zampolit73/Misdeal`, branch `main`. **GitHub is the technical source of truth, and the assistant has connected GitHub tools; inspect and edit directly without asking the user for manual patches or access.** Godot **4.7.x / GDScript**.
 
 ## READ FIRST
@@ -32,11 +32,16 @@ The user's *real battle screenshot* revealed two defects and explicitly requeste
 - `scripts/battle/black_crossing_surge.gd`: animated irregular blue wave polygon, foam crest, ruffled advance warning and spray instead of `draw_rect`; the push clamps to unit bounds and slowdown cleanup remains.
 - **D191 smoke QA code update is in main:** 54-case matrix uses real battle's solo/duo/trio authored hero starts, floor projection and placement clamping; requires 54/54 wins in addition to no off-plank positions and proper slow cleanup. **Native Godot retest after D189/D191 is NOT confirmed**. Existing D189 commits (code + docs) precede this checkpoint; see Git log. Do not invent PASS or claim the old 54/54 result covers the corrected geometry.
 
+## D191 native QA and D192 response (latest)
+User's F6 screenshot **D191 / BLACK CROSSING — FUNCTIONAL PASS**: 54/54 battles and wins, 0 whole-party losses; solo/duo/trio 18/18/18, Knight/Ranger/Mage 18/18/18; mean survivor HP **86/74/77%**, worst **58/42/50%**, durations **10.0/11.6/10.8s**; fallen heroes **0/4/4**; waves **78 warnings, 62 impacts, 66 pushes, 66 complete slow resets**. Native functional combat QA after D189/D191 is now **confirmed**. The user supplied a real-battle screenshot and said the wave still looks lifeless / line-like; **did not approve presentation**, and did not separately confirm reward→table.
+
+**D192 (this commit):** render-only replacement in `scripts/battle/black_crossing_surge.gd`: deep shaded water body, raised forward-moving crest, asymmetric curling foam caps, uneven wake and deterministic spray. All geometry and gameplay functions above drawing are unchanged: hit lane, 3.2s wait, 1.4s warning, 43px left push, 30% slow/1.6s and clean resets. The original accepted bitmap, combat arena, sprites, floor bounds and 36-card live pool are untouched. **Native D192 visual QA still pending**.
+
 ## NEXT TASK — start here in the new chat
 
-1. Ask only for the shortest necessary check: the user does `git pull` and **F6 `res://scenes/dev/black_crossing_playtest.tscn`**. Inspect **actual units' soles** throughout deployment, movement and impact: on intact planks only; foam warning and surging water must look like natural ocean surf, not geometry, with no UI overlap. Capture visual feedback/screenshot. Verify **battle → reward → Fate Spread/table** if the battle ends in victory.
-2. Re-run **F6 `res://scenes/dev/black_crossing_battle_smoke.tscn`** (D191: production-matching hero deployment) and examine new 54-case results, 54/54 victories, no off-plank positions and no lingering slows. The narrower D189 bounds may change challenge; if issues arise, **inspect current GitHub code, fix it yourself and commit**. Avoid touching D151–D153 or global party scaling.
-3. Only when the user accepts fight presentation/difficulty and the real reward route is checked, release `black_crossing` into the normal `ACT1_CARD_IDS` as **#37/45**, update hardcoded 36-card smoke guards and run a separate ordinary-deal smoke. Do not release based on the old pre-fix matrix.
-4. Update `PROJECT_STATE`, `ROADMAP`, `DECISIONS` for any new design rule, `CHANGELOG` and this `HANDOFF`, commit to GitHub and give user only `git pull` + an exact Godot test.
+1. User does `git pull` and **F6 `res://scenes/dev/black_crossing_playtest.tscn`** to review only the newly implemented D192 advancing breaker, foamy crest and sprite foot contact. If victory, verify **reward → Fate Spread/table**. Ask for screenshot/acceptance; user explicitly expects assistant to work directly through GitHub, never give manual patch steps.
+2. **D191 54/54 native matrix is confirmed for unchanged gameplay**. D192 only draws visuals, so do not require a repeat of all 54 cases unless errors or altered mechanics demand it.
+3. On user's visual acceptance and confirmation of the real reward route, release `black_crossing` into normal `ACT1_CARD_IDS` as **#37/45**, update all old 36-card guards and add/execute an ordinary-deal release smoke. Preserve D151–D153 and global scaling.
+4. Update `PROJECT_STATE`, `ROADMAP`, `CHANGELOG` and this `HANDOFF`; decisions only for actual new binding design rules. Commit directly to GitHub.
 
-**D191 session:** current `main` and D190 handoff read. No game runtime or headless Godot is available in assistant execution environment; do not claim F6 validation. QA parity update is committed, not a player-facing gameplay/visual revision. Release of #37 awaits user-provided native Godot visual, 54-case, and reward-route evidence.
+**D192 session:** user supplied native D191 54/54 PASS and still disliked thin-line surf. Assistant directly edited source and docs via connected GitHub. No Godot runtime in assistant execution environment, so D192 rendering must be judged in the user's Godot F6. Live pool still 36/45; release #37 awaits D192 visual approval and reward→table confirmation.

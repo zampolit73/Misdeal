@@ -1,7 +1,11 @@
 # Misdeal — Active Design & Technical Decisions
-Updated: 2026-10-15.
+Updated: 2026-10-16.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
+
+## D192 — Breaking sea wave must read as moving volume, not HUD lines
+
+Date: 2026-10-16. User's **D191 post-floor-fix native functional matrix PASSED 54/54**, but the actual combat screenshot shows the D189 surf was still visually a thin, lifeless line. For the approved stormy Last Pier, a readable ocean breaker requires **a moving shaded mass of water, a curling uneven foam lip, wave-height variation, trailing turbulence and spray**. Implement in the isolated `BlackCrossingSurgeController` drawing code, using procedural polygons and deterministic phase animation (not new/unauthorized art replacements). The telegraph must stay clear, miniatures remain legible and the foot-floor lock stays unchanged. **Gameplay timings/lanes, knockback and slow, art assets, solo/duo/trio balance and 36-card pool remain unchanged.** D192 code in GitHub; **native visual acceptance is still required before card #37 releases**.
 
 ## D189 — Replace rectangular surf and lock D188 fighters to the intact pier
 

@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D192: Fuller breaking surf, native 54-case confirmation
+
+- User native D191 F6 screenshot **54/54 wins, 0 full defeats**; 18 wins for every party size and protagonist, mean HP 86/74/77%, worst 58/42/50%; 78 warnings, 62 wave impacts, 66 pushes and 66 slow resets.
+- User real-battle screenshot still showed D189 wave as thin artificial line. Replaced *only* Black Crossing's procedural drawing with layered sea-body polygons, an advancing lifting crest, irregular curled whitecaps, swells, broken wake and restrained spray.
+- Left `BlackCrossingSurgeController` gameplay timings, damage, hit lane, push/slow, floor bounds, enemy stats and original approved artwork unchanged. D192 native **visual** F6 is pending; reward→table and #37 release not yet approved. Act1 remains 36/45.
+
 ## 2026-10-16 — D191: Black Crossing native-QA parity hardening
 - Inspected current GitHub `main` and D190 handoff; D189 surf/floor source exists, native Godot still unavailable in assistant environment.
 - Updated Black Crossing 54-case smoke to mirror real battle solo/duo/trio hero spawn positions, floor-depth mapping, and initial placement clamp; replaced artificial hero positions.

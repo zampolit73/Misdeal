@@ -1,5 +1,5 @@
 # Misdeal — Active Roadmap
-Updated: 2026-10-16 (D191 QA checkpoint). **Live Act 1: 36/45.** Current technical status: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-16 (D192 surf visual pass). **Live Act 1: 36/45.** Current technical status: `docs/PROJECT_STATE.md`.
 
 ## Completed / established
 
@@ -26,9 +26,11 @@ Updated: 2026-10-16 (D191 QA checkpoint). **Live Act 1: 36/45.** Current technic
 12. [x] D188: new Ferryman/Drowned UnitData, 1+2 enemy encounter with two formations, scoped 1.4s warning + push/slow wave, no damage/stun; QA-only card lookup.
 13. [x] D188 **user native 54/54 FUNCTIONAL PASS** before geometry/visual correction; 85/78/84% mean HP and 81 warnings / 58 surges / 71 pushes / 71 clean resets. User's real battle screenshot revealed a rectangular debug-like surf visual and characters on broken beams.
 14. [x] D189 source fix: rolling irregular surf with foam/spray, and shared safe plank movement/deployment/push bounds for D188 only.
-15. [ ] **NEXT GODOT CHECK:** D189 visual/floor fix and D191 production-spawn matrix parity are committed; user `git pull` and F6 `res://scenes/dev/black_crossing_playtest.tscn` for rolling surf, safe full-body foot contact, and real reward→table; then F6 `res://scenes/dev/black_crossing_battle_smoke.tscn`. **Post-fix native QA still unconfirmed** (pre-fix 54/54 cannot be reused). Fix any failures yourself through connected GitHub.
-16. [ ] Release #37 into the actual pool only after QA; separate ordinary-deal check. D191 matrix requires 54/54 wins, correct floor and complete slowdown cleanup.
-17. [ ] Continue Act1 toward 45 with nine remaining cards and avoid D151–D153 regressions.
+15. [x] D191 **user native Godot matrix PASS** post-D189: 54/54 wins, no party defeats; mean HP 86/74/77% (solo/duo/trio), 78 warned / 62 surge / 66 pushed / 66 cleaned. Actual combat screenshot: unit movement on upper deck improved, but surf looked like thin lines.
+16. [x] D192 source-only breaking surf visual pass: large shaded advancing water body, foamy curled lip, individual irregular foam caps and spray. All hit lanes, push/slow timing and movement floor untouched.
+17. [ ] **NEXT NATIVE VISUAL QA:** user `git pull`; F6 `res://scenes/dev/black_crossing_playtest.tscn` and judge D192 breaking surf, foot contact, and victory→reward→table. Do not claim D192 visual PASS from source alone.
+18. [ ] Release `black_crossing` as #37 after user confirms visuals and route; update 36-card guards, run separate ordinary-deal smoke. D191 54/54 already validated unchanged gameplay.
+19. [ ] Continue Act1 toward 45 with eight cards remaining *after* #37 releases; avoid D151–D153 regressions.
 
 ## Rules for all subsequent phases
 
