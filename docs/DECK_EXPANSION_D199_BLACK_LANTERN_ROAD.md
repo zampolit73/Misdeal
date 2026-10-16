@@ -1,7 +1,7 @@
 # D199 — Дорога чёрных фонарей / Road of Black Lanterns
 
 Date: 2026-10-16
-Status: **GAMEPLAY CONCEPT + FINAL CHARACTER-STYLE CONCEPT SHEET APPROVED; production artwork, sprites, battle logic and native QA NOT implemented.** Keep Act 1 at 37/45 until the separate release gates pass.
+Status: **D200 THIRD production art option selected and installed at 448×274 for native card QA (not yet Godot-approved); five enemy sprites, arena, battle logic and combat QA NOT implemented.** Live Act 1 remains 37/45.
 
 ## Exact user selections (binding)
 
@@ -11,6 +11,16 @@ Status: **GAMEPLAY CONCEPT + FINAL CHARACTER-STYLE CONCEPT SHEET APPROVED; produ
 4. User required the **main Lantern Guide to be around 2× the height** of the other skeletons, visually powerful rather than merely a larger copy.
 5. User asked to distinguish that giant guide unmistakably from the followers, so the last AI-generated **character/encounter concept sheet** gave him a unique cloaked/armoured silhouette, chains, pole-like lantern yoke and multiple heavy lanterns. User then replied **«последняя концепция подходит»** — this is approval of the last reference sheet and 5-role identity.
 6. **Latest approved sheet reference:** this conversation, generated image id `6fadac31-7e69-40c7-878f-1cb7602bbd75`, upload `a_wide_detailed_pixel_art_concept_game_design_lay.png` (`file_00000000041c81f7bae21d0c53926e17`). The sheet includes printed Russian annotations and panels: **DO NOT use the sheet as the in-game card artwork or arena texture.** Its visual direction is approved, but separate text-free production media must be made and checked.
+
+## D200 — selected production card illustration (third of a NEW group)
+
+Following the approved five-role concept sheet, the assistant rendered **three further standalone scene illustrations**. The user explicitly selected **the THIRD** with «третий арт лучше всего подходит», then requested «продолжай». **This newest choice supersedes the initial first-of-three environment moodboard preference for the final card image**, while keeping the original moonlit road language and all five enemy identities. Do not confuse third art in the NEW D200 group with option 3 of the older D199 gameplay selection.
+
+- Chosen original chat image: `лунный_марш_скелетного_легиона.png`, generation ID `f1821747-a46a-4e58-9fd9-9fd2b0f0a214`, file ID `file_00000000e49081f781fea566239097d4`, original 1604×981.
+- Exact chosen scene resized without recropping silhouettes or rerendering to a text-free **448×274 WebP**, committed to `assets/pixel/card_unification_v1/run/black_lantern_road_selected_v1.webp.b64` (D200). This is a selected-source conversion, not a new AI repaint, so the tall Guide and four escort skeletons are preserved.
+- Native loader `scripts/ui/card_unification_v1.gd` checks decoded WebP dimensions and caches texture; `scripts/ui/card_art_catalog.gd` automatically uses it via the existing unified-art priority.
+- **QA-only** `resources/cards/black_lantern_road.tres` is Tier1 combat but has **no encounter target yet**; standalone F6 `res://scenes/dev/black_lantern_road_card_preview.tscn` loads the exact resource/image. Do not select the QA card through normal dealing until a real encounter is built.
+- **Native F6 card preview acceptance is still PENDING.** The prior user approval applies to the 1604×981 third image, not to a Godot 448×274 render log. Never claim F6 PASS in advance.
 
 ## Combat identity, one encounter with five DISTINCT skeleton enemies
 
@@ -34,7 +44,7 @@ Values still subject to native QA: light-zone count/diameter, cycle length, init
 
 ## Art contract / next production gates
 
-- **Card illustration**: render a standalone, text-free, scene-led **448×274** version of the selected first composition: wet muddy road, readable wood lamp posts and a few warm lanterns, cold moonlit trees, the looming special Guide flanked by 4 varied skeleton silhouettes. Distill clutter, repetitive lamp posts, tiny noise and gratuitous background architecture. A scene, NOT a pasted enemy lineup. The latest approved sheet is reference art, not a usable bitmap.
+- **Card illustration D200:** the user-chosen THIRD standalone illustration is now installed as QA-only **448×274** art under `black_lantern_road_selected_v1.webp.b64`, with original 1604×981 scene reference above. Check F6 before marking the runtime appearance approved. The earlier first-of-three is mood reference only, and the labelled design sheet is not runtime artwork.
 - **Battle arena**: separately author a clean, 1280×720 environment with broad flat walkable middle road and an unambiguous lane for the actual hero/enemy deployment. Hanging lantern posts on margins/behind unit plane, no decorative obstacles drawn across the valid walkable combat floor.
 - **Five new enemy sprite atlases**: distinct readable silhouettes (including double-height Guide), real full-body idle/walk/attack/hit/death animation states, in the existing 25-pose grid contract if the D153/D188 pipeline is reused. The concept-sheet character panels are static illustrations, **not** animation sprite sheets. Do not pretend an unanimated cropped illustration is native-tested art.
 - **Encounter**: data-driven card `RunCardData`, `EncounterData`, five new `UnitData`, two 5-enemy placements and a local light-zone controller. Register into `CARD_PATHS` for QA first, **not** into `ACT1_CARD_IDS` until smoke and real reward route PASS.

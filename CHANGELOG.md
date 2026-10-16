@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D200: Install user-selected THIRD lantern-road card art for QA-only review
+
+- User chose **third** of three newer standalone illustrated Lantern Road scenes after approving the five original skeletal enemy designs. Preserved exact chosen image (`лунный_марш_скелетного_легиона.png`) and exported it to text-free **448×274 WebP/Base64**. No rerender, replacement art or text in bitmap.
+- Committed `assets/pixel/card_unification_v1/run/black_lantern_road_selected_v1.webp.b64` and strict cached `scripts/ui/card_unification_v1.gd` card-ID override; unchanged existing art catalog/UI.
+- Added **QA-only** `resources/cards/black_lantern_road.tres` (Tier1 combat, encounter target still blank) and F6 `res://scenes/dev/black_lantern_road_card_preview.tscn`. It verifies exact 448×274 asset and confirms #38 is NOT in the 37-card live pool.
+- **Native art preview QA pending**; arena, five original animation atlases and moving light zones are next. No gameplay/balance/#37 or Fate Spread edits.
+
 ## 2026-10-16 — D199: Approve Black Lantern Road five-skeleton concept for card #38
 
 - User selected **gameplay proposal 3**, «Дорога чёрных фонарей» (Tier1 combat), then first among 3 moonlit forest-road image options. Rejected artificial detail noise and required Act1's skeleton-first enemy theme and **more than 3** actual enemy combatants.

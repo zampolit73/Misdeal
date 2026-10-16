@@ -1,5 +1,5 @@
 # Misdeal Documentation Index
-Updated 2026-10-16 — D199 card #38 concept approved; live Act1 37/45.
+Updated 2026-10-16 — D200 third card-art choice installed QA-only, native F6 pending; live Act1 37/45.
 
 ## Read first (current, short, authoritative)
 

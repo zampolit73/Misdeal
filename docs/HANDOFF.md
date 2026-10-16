@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D199 selected card #38, first road scene and final giant-five-skeleton concept accepted, production next**.
+Updated: 2026-10-16 — **D200 selected THIRD production card art integrated QA-only, Godot F6 acceptance next**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -39,9 +39,20 @@ After several generated scene alternatives, user **selected gameplay option 3** 
 
 **New committed specification**: `docs/DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md` and binding D199 record in `docs/DECISIONS.md`.
 
-## NEXT TASK — begin production, not another concept vote
+## D200 — chosen THIRD production art is now in GitHub
 
-1. Show one clean, **text-free standalone scene-led 448×274 card artwork candidate** faithful to approved moonlit-road scene and giant distinct Guide with 4 skeleton escorts; reduce detail noise and repeated posts. The user must visually approve the actual production image before putting it in `assets/pixel/card_unification_v1/run/`. The labelled concept sheet does **not** qualify.
+After the D199 approved five-role concept sheet, the user was shown three NEW text-free illustrations and explicitly chose **the THIRD** («третий арт лучше всего подходит»), then asked to continue. Source selected image `лунный_марш_скелетного_легиона.png` 1604×981, generation `f1821747-a46a-4e58-9fd9-9fd2b0f0a214`, conversation `file_00000000e49081f781fea566239097d4`. **Do NOT confuse it with the FIRST moodboard selected earlier; the later THIRD is definitive.**
+
+D200 committed:
+- `assets/pixel/card_unification_v1/run/black_lantern_road_selected_v1.webp.b64` — actual original third composition resized to **448×274**. Contains no UI text. Source art reference above preserves selection and rollback history.
+- `scripts/ui/card_unification_v1.gd` — exact-card-ID strict WebP/Base64 loader, cached through existing `card_art_catalog.gd`.
+- `resources/cards/black_lantern_road.tres` — **QA-only Tier1 combat metadata**, deliberately no encounter target until implemented.
+- `scripts/dev/black_lantern_road_card_preview.gd` and `scenes/dev/black_lantern_road_card_preview.tscn` — F6 show approved third art at 448×274. Check card ID, dimensions and **37 cards still live**.
+- No `RunState.CARD_PATHS` nor `ACT1_CARD_IDS` edits; no arena, sprites or mechanics yet. D199 rules require 5 unique skeleton roles and 2× distinct Guide, and user has NOT native-approved the 448×274 crop. **DO NOT claim native PASS.**
+
+## NEXT TASK — native art acceptance then arena and animation production
+
+1. User `git pull`, F6 **`res://scenes/dev/black_lantern_road_card_preview.tscn`**, confirm exact third-art 448×274 image and readable giant Guide/four escorts. If rejected, address art feedback; do not silently substitute earlier alternatives. Actual WebP is already in GitHub. This native check is pending.
 2. Produce a **separate** 1280×720 battle arena with safe broad middle road and props only at sides/depth; user review in Godot before actual release.
 3. Produce five genuinely distinct **full animation atlases** (idle/walk/attack/hit/death, if D153/D188 grid reused, 25 frames per role). Giant must remain double-height at combat scale while sharing a grounded boot line; do not crop or fake sprites from static sheet. After art review, implement `RunCardData`, `EncounterData`, five `UnitData`, encounter-local light logic, solo/duo/trio matrices (54 cases candidate), and Battle→Reward→Table.
 4. Stage #38 as QA-only, NOT `ACT1_CARD_IDS`. Release only after original art, 54-case/functional checks, real reward path and full-pool random-deal smoke. Continue Act1 from **37/45**, no new cards live yet.

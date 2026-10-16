@@ -1,8 +1,12 @@
 # Misdeal — Active Visual Asset Registry
 
-## D199 — Road of Black Lanterns concept direction ACCEPTED; no runtime assets yet
+## D200 — Road of Black Lanterns chosen THIRD scene art staged 448×274
 
-User picked first of three moonlit lantern-road scene concepts for card #38, asked to remove AI detail noise, and required more than three skeletal enemies and a main Lantern Guide ~2× taller/distinct from others. Latest five-role character/encounter sheet was explicitly approved («последняя концепция подходит»). Reference image ID `6fadac31-7e69-40c7-878f-1cb7602bbd75`, filename `a_wide_detailed_pixel_art_concept_game_design_lay.png` from conversation, described fully in `docs/DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md`. That collage has **printed titles and panel UI**, so it is **not** an in-game 448×274 card illustration, 1280×720 arena or 25-frame animated sheet. Required clean art/arena/five atlases are still NOT created or approved. Live 37/45; do not put #38 into the normal deck.
+User selected THIRD of a newer three-image production-scene group (`лунный_марш_скелетного_легиона.png`, generated ID `f1821747-a46a-4e58-9fd9-9fd2b0f0a214`, source 1604×981). D200 added the exact text-free scene converted to `assets/pixel/card_unification_v1/run/black_lantern_road_selected_v1.webp.b64` (448×274) and strict `CardUnificationV1` override, plus QA-only card and `res://scenes/dev/black_lantern_road_card_preview.tscn`. The user's selection approves the source composition; **native 448×274 F6 acceptance PENDING**. The five original sprites, 1280×720 arena and lanternlight encounter mechanic have NOT been implemented. Live pool remains 37/45.
+
+## D199 — Road of Black Lanterns concept direction ACCEPTED; concept sheet not runtime art
+
+User picked first of three moonlit lantern-road scene concepts for card #38, asked to remove AI detail noise, and required more than three skeletal enemies and a main Lantern Guide ~2× taller/distinct from others. Latest five-role character/encounter sheet was explicitly approved («последняя концепция подходит»). Reference image ID `6fadac31-7e69-40c7-878f-1cb7602bbd75`, filename `a_wide_detailed_pixel_art_concept_game_design_lay.png` from conversation, described fully in `docs/DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md`. That collage has **printed titles and panel UI**, so it is **not** an in-game 448×274 card illustration, 1280×720 arena or 25-frame animated sheet. **Clean D200 scene card art now exists in GitHub for native QA**, but the arena/five atlases are still NOT created. Live 37/45; do not put #38 into the normal deck.
 
 
 ## D182–D183 — Black Crossing card artwork (native F6 approved)
