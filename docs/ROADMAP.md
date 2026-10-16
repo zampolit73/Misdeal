@@ -1,5 +1,5 @@
 # Misdeal — Active Roadmap
-Updated: 2026-10-16 (D193 grounded surf visual correction). **Live Act 1: 36/45.** Current technical status: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-16 (D194 storm breaker rebuild). **Live Act 1: 36/45.** Current technical status: `docs/PROJECT_STATE.md`.
 
 ## Completed / established
 
@@ -30,9 +30,11 @@ Updated: 2026-10-16 (D193 grounded surf visual correction). **Live Act 1: 36/45.
 16. [x] D192 source-only breaking surf visual pass: large shaded advancing water body, foamy curled lip, individual irregular foam caps and spray. All hit lanes, push/slow timing and movement floor untouched.
 17. [x] D192 **native visual FAIL**: screenshot shows a large teal band floating over the sea/horizon, above combatants' feet. The source drew at unit-origin lane Y rather than art boot-contact Y.
 18. [x] D193 local visual-only fix: shoreline drops 36px to foot contact, dark slate translucent broken crests/eddy patches replace continuous wide teal rectangle; no art, floor or combat parameter changes.
-19. [ ] **NEXT NATIVE VISUAL QA:** user `git pull`; F6 `res://scenes/dev/black_crossing_playtest.tscn` and judge D193 patches on planks, feet contact and victory→reward→table. D191 matrix already native PASS; D193 does not change gameplay.
-20. [ ] Release `black_crossing` as #37 after user confirms visuals and route; update 36-card guards, run separate ordinary-deal smoke. D191 54/54 already validated unchanged gameplay.
-21. [ ] Continue Act1 toward 45 with eight cards remaining *after* #37 releases; avoid D151–D153 regressions.
+19. [x] D193 native screenshot: **VISUAL FAIL**. Seven weak foam fragments read as chalk scratches; no storm-wave volume despite massive environmental storm.
+20. [x] D194 source remake: three 450px overlapping storm breakers, organically tapered dark raised faces, breaking whitecaps + wind spray + moving shallow wash, using animation keyed to warning/surge phase. Rendering stays grounded at unit foot contact and does not change hit lane, push or slow.
+21. [ ] **NEXT NATIVE VISUAL QA:** `git pull`; F6 `res://scenes/dev/black_crossing_playtest.tscn`; judge actual D194 swell, distinct warning/impact, foot-floor contact and victory→reward→table. Godot visual approval not yet given.
+22. [ ] Release `black_crossing` as #37 after visual acceptance and real reward route confirmation; update 36-card guards and check ordinary deal. Native D191 54/54 still applies to unchanged gameplay.
+23. [ ] Continue Act1 toward 45 with eight remaining cards *after* #37 releases; avoid D151–D153 regressions.
 
 ## Rules for all subsequent phases
 

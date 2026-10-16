@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D193 grounded segmented surf after user D192 visual fail.**
+Updated: 2026-10-16 — **D194 breaking storm wave after D193 visual rejection.**
 Repository: `zampolit73/Misdeal`, branch `main`. **GitHub is the technical source of truth, and the assistant has connected GitHub tools; inspect and edit directly without asking the user for manual patches or access.** Godot **4.7.x / GDScript**.
 
 ## READ FIRST
@@ -43,11 +43,17 @@ User's native F6 D192 screenshot (2026-10-16) shows huge flat cyan water wall st
 
 D193 source-only patch to `scripts/battle/black_crossing_surge.gd`: render at the visible sole depth (`current_center_y + 36` in UnitsLayer space) rather than unit origins, draw seven staggered tapering pools of desaturated stormwater separated by gaps, with interrupted gray-white foam tongues, very few bubbles, and low opacity so plank wood grain stays visible. No floating 1000px teal band. The moving wash advances only ~26px along the floor. Gameplay controller code including wave hit test, pushes, slow duration, safe floor, encounter and original art bytes remain **unchanged**. **Native D193 visuals pending**.
 
+## D194 native rejection and remake
+
+User supplied real native Godot screenshot of D193: the wave was now barely visible, with thin white scratches along the wet floor; explicitly called it visually unacceptable given the massive storm behind the pier. **D192 was too much rectangular turquoise water; D193 too weak. Both visual versions rejected.** Functional native D191 **54/54 PASSED** and remains valid because no combat mechanics have changed. Real victory→reward→table navigation has not been explicitly confirmed.
+
+**D194 committed source update:** `scripts/battle/black_crossing_surge.gd` only redraws surf using **three broad overlapping organically tapered breakers** with raised dark volume, rising broken foam crowns, two-tone shading, spray and accelerating southward/down-plank water wash (up to 38px). Warning has smaller/dimmer rising crests, impact full breaking wave. All visual curves local to UnitsLayer (boot y = origin +36). The hitbox still uses the unchanged 50px horizontal bands at y284/y330; 43px left push, 30% slowdown for 1.6 seconds, timers and cleanup are unchanged. Original user-approved pixel battle backdrop/card/unit atlases untouched. **D194 is source-committed but not tested or approved in native Godot.** Never mislabel it PASS before user checks.
+
 ## NEXT TASK — start here in the new chat
 
-1. User does `git pull` and **F6 `res://scenes/dev/black_crossing_playtest.tscn`** to review only the new D193 grounded fragmented wash with boot-level contact and no floating cyan wall. If victory, verify **reward → Fate Spread/table**. Ask for screenshot/acceptance; user explicitly expects assistant to work directly through GitHub, never give manual patch steps.
+1. User does `git pull` and **F6 `res://scenes/dev/black_crossing_playtest.tscn`** to review only the new D194 breaking storm wave with curved elevated foamy crests, no rectangular blue wall or near-invisible scratches. If victory, verify **reward → Fate Spread/table**. Ask for screenshot/acceptance; user explicitly expects assistant to work directly through GitHub, never give manual patch steps.
 2. **D191 54/54 native matrix is confirmed for unchanged gameplay**. D192 only draws visuals, so do not require a repeat of all 54 cases unless errors or altered mechanics demand it.
 3. On user's visual acceptance and confirmation of the real reward route, release `black_crossing` into normal `ACT1_CARD_IDS` as **#37/45**, update all old 36-card guards and add/execute an ordinary-deal release smoke. Preserve D151–D153 and global scaling.
 4. Update `PROJECT_STATE`, `ROADMAP`, `CHANGELOG` and this `HANDOFF`; decisions only for actual new binding design rules. Commit directly to GitHub.
 
-**D193 session:** user supplied D192 real-battle screenshot. The large suspended banner is unapproved. Assistant independently corrected drawing coordinates and appearance via connected GitHub, preserved gameplay and updated active docs. No native Godot in assistant environment. D193 visual approval and real reward→table check are pending; Act1 remains 36/45.
+**D194 session:** user showed D193 real-battle screenshot and explicitly rejected negligible scratch effects. Assistant rebuilt visual rendering directly in GitHub and updated canonical docs. No native Godot in assistant environment; D194 visual approval and reward→table route still pending, while D191 54/54 combat is already confirmed. Live Act1 remains 36/45.

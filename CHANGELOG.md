@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D194: Replace rejected spray scratches with true rolling breaker silhouette
+
+- User D193 Godot screenshot and feedback: prior fragmented foam looked like tiny pale scratches on the deck despite the massive storm; not approved. D192 long turquoise banner was also rejected.
+- Rebuilt encounter-only wave rendering as three offset overlapping storm swells with tapered 3D-like faces, raised and curling pale foam tops, animated chop, impact spray and a 38px shoreward sliding wash. Warning is darker and smaller than the impact.
+- Left gameplay hit lane, knockback 43px left, 30% slow/1.6s, floor, animations, approved scene backdrop and original enemies **unchanged**. D191 native **54/54 FUNCTIONAL PASS** continues to apply, but D194 still needs Godot visual approval and real reward→table check. Act1 remains 36/45.
+
 ## 2026-10-16 — D193: Ground Black Crossing surf on planks
 
 - Native D192 screenshot rejected: prior full-width bright turquoise water band appeared suspended at the far side of the board, above the foot line and distant surf.
