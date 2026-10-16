@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-16 (D200 selected third card illustration F6 user-confirmed; arena concepts next). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-16 (D204 three composition blockouts presented; arena art still unapproved). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -33,6 +33,10 @@ There are **eight remaining planned cards** to reach 45. Boss XIII is NOT in the
 ## D203 arena staging evaluation (not production)
 
 Used the newly supplied artist/designer/developer skill archives for D201 art QA. Generated castle/causeway concepts remained too visually repetitive; **no arena was approved, committed as game art or assigned to #38**. The existing D201 option #2 (1280×720) was used **only** as a temporary staging test with 3 hero proxies, 5 skeletal enemy proxies (2× tall Guide), and 2 illustrative light zones. The production default ground bounds map to screen X110–1190 and Y380–538. Result: the region accommodates the intended figures, but excessive baked lamp highlights clash with the gameplay cue, so an alternate **dead-forest / ford / toll-gate** environment needs user selection. Details: `docs/D203_BLACK_LANTERN_ARENA_ART_QA.md`. Annotated preview `d201_arena_gameplay_clearance_test.png` is a **conversation attachment**, not a playable or committed arena. The frozen **КАРАМБА73** backup is unchanged. Act1 still **37/45**.
+
+## D204 composition-only arena options (NOT production art)
+
+Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
 ## Next action
 
