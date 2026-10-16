@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+encounter_id = "black_lantern_road"
+title = "ДОРОГА ЧЁРНЫХ ФОНАРЕЙ"
+card_text = "Над лесной дорогой качаются фонари. Пять скелетов идут за Погасшим проводником: пока они освещены, их удары становятся быстрее."
+wizard_line = "Беги к свету, если хочешь. Я не обещал, что он на твоей стороне."
+arena_id = "black_lantern_road"
+enemy_unit_paths = PackedStringArray("res://resources/units/extinguished_guide.tres", "res://resources/units/lantern_bearer.tres", "res://resources/units/road_sentinel.tres", "res://resources/units/oil_acolyte.tres", "res://resources/units/lantern_archer.tres")
+enemy_names = PackedStringArray("Погасший проводник", "Носильщик фонаря", "Страж дороги", "Масляный служка", "Стрелок фонарей")
+enemy_positions = PackedVector2Array(1010, 345, 900, 390, 870, 320, 1055, 410, 1120, 315)
+alternate_enemy_positions = PackedVector2Array(1060, 375, 905, 330, 920, 410, 1005, 330, 1140, 404)
+formation_hint = "ФОНАРНЫЙ МАРШ — пять разных угроз. Две зоны света усиливают атаки нежити: не оставляйте стрелка без внимания."
+alternate_formation_hint = "ПЕРЕКРЁСТОК ТЕНЕЙ — проводник в тылу, защитники разнесены. Свет будет смещаться между участками дороги."
