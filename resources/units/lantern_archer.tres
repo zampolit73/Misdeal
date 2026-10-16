@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+unit_name = "Стрелок фонарей"
+visual_role = "lantern_archer"
+max_hp = 46.0
+damage = 6.5
+attack_interval = 1.75
+attack_range = 202.0
+minimum_range = 85.0
+move_speed = 53.0
+body_radius = 15.0
+separation_padding = 11.0
+visual_scale = 1
+show_enemy_name = false
