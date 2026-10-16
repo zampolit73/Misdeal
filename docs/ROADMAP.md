@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-16 (D204 three unapproved geographical composition previews shown; final D201 art choice next). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-16 (D205 third forest art selected; sprite concepts statically staged; light F6 preview in GitHub). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -14,12 +14,15 @@ Updated: 2026-10-16 (D204 three unapproved geographical composition previews sho
 
 ## Next (strict order)
 
-1. [x] **D199 concept chosen:** card #38 is **«Дорога чёрных фонарей»**, skeleton-heavy fight with 5 original enemy roles; user chose the **first** moonlit road composition among three initial illustrations and explicitly approved the last character/encounter concept sheet. Main Guide must stand ~2× taller and look radically distinct; AI visual noise must be removed. See `docs/DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md`.
-2. [x] **D200 art selection + source integration:** after three new standalone scene illustrations, user chose the **THIRD**. The exact selected moonlit skeleton procession (not the labelled concept sheet) was exported text-free at 448×274, committed as WebP/Base64 and wired to existing unified card art; dedicated QA-only RunCardData and F6 preview created. **Native 448×274 F6 art approval user-reported PASS** («вск ок» in reply to the requested F6 preview); runtime screenshot not independently provided.
-3. [ ] **D201/D203 arena options and approval:** skill-guided QA found multiple castle-road candidates compositionally repetitive. A temporary 1280×720 **D201 option #2 floor staging overlay** demonstrated space for 3 heroes and 5 skeletons, including a giant 2× Guide, but excessive baked lanterns obscure the intended movable light pools. See `docs/D203_BLACK_LANTERN_ARENA_ART_QA.md`. **Next:** show 2–3 truly different actor-free original environments (dead-forest bend / gloomy ford / abandoned toll gate), choose one, then integrate exact approved background and native F6-test feet/contrast. D204 now has three **composition-only** blockouts (dead forest / flooded ford / abandoned toll gate; see `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`); **none is production art or user approved**. User chooses a geography, then reviews properly finished art variants before any arena integration.
-4. [ ] Create five original animated skeletal enemy atlases (Guide ~2× tall) with full-body feet/facing; preview gallery native F6.
-5. [ ] Implement the scoped moving-lanternlight mechanic and 5-enemy/two-formation encounter in QA-only Godot Resources, then solo/duo/trio 54-case matrix, battle→reward→table and full-pool release smoke. Activate #38 only after user-approved native QA, reaching 38/45.
-6. [ ] Complete the **seven** cards remaining *after* #38 is released, while preserving existing #34–#37, D196 waves, 12+XIII and party scaling.
+1. [x] **D199:** #38 `black_lantern_road` approved design — five original skeletal roles, 2×-height Guide, travelling light; no live enemy assets or gameplay.
+2. [x] **D200:** exact third card illustration installed QA-only, user-native art review previously reported OK. Keep it unchanged.
+3. [x] **D204 → D205 arena selection:** user chose geography **A dead forest bend** and then **third of three finished forest backdrops**, exact source `лунная_дорога_через_туманный_лес.png` (1672×941); image is conversation-only, not yet Godot scene or GitHub assets.
+4. [x] **D205 tech staging:** convert five previously generated 5×5 source concept atlases into 6×5 96px **review-only** candidates (25 nonempty unique frames per role). Edge-cropped source poses and Sentinel spear/axe mismatch **BLOCK art sign-off**; never enable them as live animations. Stager and QC spec documented.
+5. [ ] **D205 native light-cue F6:** run `res://scenes/dev/black_lantern_road_light_preview.tscn`, verify clear moving circles / warning / five enemy proxies and pause. It is explicitly not battle code.
+6. [ ] Import **exact selected** empty forest artwork into a 1280×720 QA-only arena and native-check ground/contact/contrast (requires proper image-byte GitHub upload; do not quietly repaint).
+7. [ ] Finish/correct five genuinely distinct skeletal 25-frame atlases to the approved silhouettes; native animation gallery and sprite F6.
+8. [ ] QA-only encounter resources, two distinct five-enemy formations, encounter-local light buff, 54-case solo/duo/trio combat matrix, real battle→reward→table, then full-pool smoke. Only after approval release #38 to **38/45**.
+9. [ ] Finish remaining seven cards without rewriting existing D151–D153 or D196 effects.
 
 ## Constraints
 
