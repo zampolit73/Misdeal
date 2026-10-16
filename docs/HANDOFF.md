@@ -54,6 +54,12 @@ D200 committed:
 - `scripts/dev/black_lantern_road_card_preview.gd` and `scenes/dev/black_lantern_road_card_preview.tscn` — F6 show approved third art at 448×274. Check card ID, dimensions and **37 cards still live**.
 - No `RunState.CARD_PATHS` nor `ACT1_CARD_IDS` edits; no arena, sprites or mechanics yet. D199 rules require 5 unique skeleton roles and 2× distinct Guide, and the native F6 crop has now been **user-confirmed** («вск ок» in reply to the preview request). This is user-reported approval, not independently captured Godot footage.
 
+## D203 — specialist-skill arena QA status (no runtime changes)
+
+The user asked to continue using three uploaded custom skills (designer, artist, developer). All three `SKILL.md` instructions were actually read; the artist's style/pixel/QA references were consulted. Freshly generated landscape samples remained too similar (fortress + viaduct + dozens of amber lanterns), so **no new environment is accepted or loaded in Godot**. A technical overlay on already-shown **D201 option #2**, native 1280×720, tested **3 heroes versus 5 enemies** including a **double-height** boss and two illustrative moving light zones. Screenshot artifact: `d201_arena_gameplay_clearance_test.png` in conversation only; rectangle computed from production `battle.gd` UnitsLayer offset (20,96) and COMBAT_BOUNDS (90,284,1080,158). Overlay is *not* a sprite or Godot native result. Main visual blocker: baked lantern clutter would drown out tactical lanternlight cue. Technical acceptance brief: `docs/D203_BLACK_LANTERN_ARENA_ART_QA.md`.
+
+**Next:** produce genuinely new, distinct empty arena geographies (forest bend / dark ford / broken toll gate); once user chooses, integrate exact art and run F6. No arena selected yet; Act1 37/45, D200 card approved. `backups/KARAMBA73-2026-10-16` snapshot must stay frozen.
+
 ## NEXT TASK — D201 arena selection, then animation production
 
 1. **D200 native card-art F6 is user-reported approved** (2026-10-16: «вск ок»). Do not request a repeat unless there is later regression.

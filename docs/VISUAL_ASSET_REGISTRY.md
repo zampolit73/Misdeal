@@ -1,5 +1,9 @@
 # Misdeal — Active Visual Asset Registry
 
+## D203 — D201 arena candidates audited but UNAPPROVED
+
+The three old D201 wide environment images and several newer samples are **not** meaningfully distinct; repeated fortress/viaduct/lantern backdrops were rejected at the art-direction stage. A 1280×720 temporary **layout-only overlay** `d201_arena_gameplay_clearance_test.png` tested D201 option #2 against 3 hero + 5 new skeletal enemy proxy silhouettes and the 2× Guide plus two illustrative light pools; the playable floor fits in principle, but too many permanent orange highlights hurt mechanic readability. The image stays on the conversation surface; **no new card-38 arena asset is tracked in GitHub or approved by the user**. Detailed brief: `docs/D203_BLACK_LANTERN_ARENA_ART_QA.md`. Next art needs *forest, ford, toll gate* as distinct geography, no characters or baked tactical overlay. All existing approved art remains unchanged.
+
 ## D201 — D200 Black Lantern Road card art native-accepted; arena pending
 
 The user responded «вск ок» to the D200 native 448×274 card preview. The exact selected THIRD art remains in `assets/pixel/card_unification_v1/run/black_lantern_road_selected_v1.webp.b64`. **This approves the card art only**, not any in-game arena. Next render 2–3 separate **empty** 1280×720 battle environment options; preserve readable level 2D ground and margins for hanging black lanterns. No existing selected sprites or combat art are to be overwritten before the user's selection.

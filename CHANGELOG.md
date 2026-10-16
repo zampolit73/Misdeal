@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D203: Specialist-skill review of Black Lantern arena composition and combat clearance
+
+- Read three user-supplied dark-fantasy designer, game-artist and developer SKILL.md archives and the art-style/QA references; project rules still override defaults.
+- Rejected repeated fortress-on-hill/viaduct castle-scene generations as **not genuinely distinct** dark-forest arena options. No unapproved art imported.
+- Verified existing D201 option #2 PNG at native 1280×720 and created a **conversation-only transparent staging-overlay test** with 3 hero proxies, 5 enemy proxies (2× Guide) and illustrative twin amber lantern zones. Floor region is derived from actual `battle.gd` coordinates; this is NOT Godot native F6 or implementation of the light mechanic.
+- Documented 3 meaningful environment alternatives and artist/developer release criteria in `docs/D203_BLACK_LANTERN_ARENA_ART_QA.md`. Live Act1 remains **37/45**, card #38 QA-only, original D200 art and KARAMBA73 frozen restore branches unchanged.
+
 ## 2026-10-16 — D202: Freeze KARAMBA73 full GitHub-tracked project checkpoint
 
 - User requested an explicit whole-project/context restore point tied to the recovery word **КАРАМБА73**.
