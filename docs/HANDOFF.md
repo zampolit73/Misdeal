@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D204 three arena geography blockouts shown; user choice and final scene-art approval NEXT**.
+Updated: 2026-10-16 — **D205 user selected third forest backdrop; dev-only light F6 preview committed; five atlas concept assets QA-staged but blocked**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -64,12 +64,20 @@ The user asked to continue using three uploaded custom skills (designer, artist,
 
 Three deliberately simple, separate 1280×720 pixel-style **composition blockouts** were produced as conversation-only PNGs, plus a comparison montage and `Misdeal_D201_arena_blockouts.zip`: **A black forest bend**, **B peat-water ford with dry central walkway**, **C collapsed toll gate with old cart wheel**. Their job is to test geographic difference, leg-contact floor space, and restrained lamp positions after the failed repetitive D201 castle-background attempts. All three remain **unapproved**; they are NOT polished artist backgrounds, native Godot previews, or committed game assets. Do not replace approved #38 D200 card illustration with any blockout. One D204 documentary record: `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## NEXT TASK — D201 arena selection, then animation production
+## D205 — user-selected actual forest art; sprite concepts and QA-only light scene
 
-1. **D200 native card-art F6 is user-reported approved** (2026-10-16: «вск ок»). Do not request a repeat unless there is later regression.
-2. **D201:** ask whether rough layout A (forest bend), B (peat ford), or C (toll gate) is preferred geography; then render **2–3 visually finished, genuinely distinct, unoccupied Misdeal-quality 1280×720 battle artworks** for that direction, still with broad usable road and sparse edge lanterns. Ask user to select the exact finished image before committing or F6 staging. No character sprites or UI baked into the background.
-3. Produce five genuinely distinct **full animation atlases** (idle/walk/attack/hit/death, if D153/D188 grid reused, 25 frames per role). Giant must remain double-height at combat scale while sharing a grounded boot line; do not crop or fake sprites from static sheet. After art review, implement `RunCardData`, `EncounterData`, five `UnitData`, encounter-local light logic, solo/duo/trio matrices (54 cases candidate), and Battle→Reward→Table.
-4. Stage #38 as QA-only, NOT `ACT1_CARD_IDS`. Release only after original art, 54-case/functional checks, real reward path and full-pool random-deal smoke. Continue Act1 from **37/45**, no new cards live yet.
-5. Keep D196 surf and existing #34–#37 code/DS2/Fate Spread 12+XIII unchanged. Work through connected GitHub and update state, changelog, decisions/roadmap as needed.
+Since D204, user explicitly chose **A — Black Forest Bend**, then **the THIRD** from three newly rendered forest arena images. This latest arena source is `лунная_дорога_через_туманный_лес.png`, RGB 1672×941, **NOT** the D200 selected card illustration. It is a chat artifact only; DO NOT falsely claim imported or replaced in GitHub. Record/user-selected art direction is final, Godot integration/QA pending.
 
-Historical details: `docs/D188_BLACK_CROSSING_ENCOUNTER.md`, `docs/DECISIONS.md`, `CHANGELOG.md`, Git history. New chat needs only mandatory start files plus D199 spec.
+Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton concept animation sheets. Read `docs/D205_BLACK_LANTERN_ASSET_AND_LIGHT_STAGING.md` for their exact original Russian filenames, role mapping and art QC. Static converter packaged five 576×480 6×5 96px QA candidates with 25 varied populated frames, but **source edge clipping flagged 13 / 20 / 24 / 21 / 13 frames**, and `road_sentinel` uses an unapproved axe instead of a spear. Art not approved; pack is only in conversation `Misdeal_D205_Lantern_Animation_QA_Pack.zip`. `scripts/dev/stage_black_lantern_art.py` in GitHub reproduces candidate conversion from the original files (not included in GitHub assets). Do not wire up unfinished 5 roles or replace them with legacy art.
+
+**Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
+
+## NEXT TASK — run isolated F6 light QA, then art integration
+
+1. User `git pull`; open `res://scenes/dev/black_lantern_road_light_preview.tscn`, press F6; inspect warning readability, moving pools under actors, large Guide/HUD clearance, pause button. Report only what fails and screenshot if needed.
+2. Import **the selected exact third forest image** into GitHub at 1280×720 in accepted game art format when image-byte transfer is available; QA-only native arena with floor bounds. Never substitute an AI re-render, previous A/B/C blockout or a different option.
+3. Improve source atlases until each has correct approved original five roles, no source-frame crop, correctly scaled Guide and aligned feet; then commit/present native animated sprite preview. A converter PASS is not art acceptance.
+4. Implement QA-only five-enemy encounter with two formations and local moving-light buff, plus 54-seed native combat matrix and real battle→reward→table; verify normal-deal smoke before #38 enters live pool.
+5. Preserve existing D196 storm and released #34–#37, DS2, 12+XIII; never touch frozen backup `backups/KARAMBA73-2026-10-16`.
+
+Detailed current handoff: `docs/D205_BLACK_LANTERN_ASSET_AND_LIGHT_STAGING.md`. **Live Act1 remains 37/45**. Godot 4.7.x / GDScript only.
