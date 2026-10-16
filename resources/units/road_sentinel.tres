@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+unit_name = "Страж дороги"
+visual_role = "road_sentinel"
+max_hp = 76.0
+damage = 7
+attack_interval = 1.75
+attack_range = 80.0
+minimum_range = 0.0
+move_speed = 62.0
+body_radius = 17.0
+separation_padding = 11.0
+visual_scale = 1
+show_enemy_name = false
