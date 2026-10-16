@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+card_id = "black_lantern_road"
+title = "ДОРОГА ЧЁРНЫХ ФОНАРЕЙ"
+card_text = "По забытой дороге идёт костяной дозор. Там, где загораются фонари, мертвецы становятся сильнее."
+wizard_line = "Ступай к свету. Впрочем, здесь свет принадлежит не тебе."
+type_label = "БОЙ"
+tier = 1
+resolution_type = "combat"
+target_path = ""
+art_path = ""
+prototype_result_text = ""

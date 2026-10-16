@@ -14,6 +14,8 @@ const D152_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/defiled_
 const D153_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/threadbare_theatre_approved_v1.webp.b64"
 # D182 candidate art only; card #37 remains unavailable in normal deck.
 const D182_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/black_crossing_approved_v1.webp.b64"
+# D200: card #38 user-selected THIRD image, 448x274 scene artwork; QA ONLY.
+const D200_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/black_lantern_road_selected_v1.webp.b64"
 
 const RUN_CARDS := {
 	"bone_patrol": "run/bone_patrol.webp",
@@ -54,6 +56,8 @@ const REWARDS := {
 static var _texture_cache: Dictionary = {}
 
 static func get_run_texture(card_id: String) -> Texture2D:
+	if card_id == "black_lantern_road":
+		return _get_d200_candidate_texture()
 	if card_id == "black_crossing":
 		return _get_d182_candidate_texture()
 	if card_id == "threadbare_theatre":
@@ -107,6 +111,30 @@ static func _get_d153_candidate_texture() -> Texture2D:
 	var texture: Texture2D = ImageTexture.create_from_image(image)
 	if texture != null:
 		_texture_cache[D153_CARD_WEBP_B64] = texture
+	return texture
+
+
+
+# D200: the exact user-chosen third Black Lantern Road scene (no UI text).
+# This art is registered for a standalone preview, NOT for regular dealing.
+static func _get_d200_candidate_texture() -> Texture2D:
+	if _texture_cache.has(D200_CARD_WEBP_B64):
+		return _texture_cache[D200_CARD_WEBP_B64] as Texture2D
+	if not FileAccess.file_exists(D200_CARD_WEBP_B64):
+		push_error("D200 chosen Black Lantern Road card art missing: " + D200_CARD_WEBP_B64)
+		return null
+	var encoded: String = FileAccess.get_file_as_string(D200_CARD_WEBP_B64).strip_edges()
+	var bytes: PackedByteArray = Marshalls.base64_to_raw(encoded)
+	if bytes.is_empty():
+		push_error("D200 card art could not decode base64.")
+		return null
+	var image := Image.new()
+	if image.load_webp_from_buffer(bytes) != OK or image.get_size() != Vector2i(448, 274):
+		push_error("D200 card art must be the chosen 448x274 WebP.")
+		return null
+	var texture: Texture2D = ImageTexture.create_from_image(image)
+	if texture != null:
+		_texture_cache[D200_CARD_WEBP_B64] = texture
 	return texture
 
 
