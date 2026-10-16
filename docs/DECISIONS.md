@@ -3,6 +3,12 @@ Updated: 2026-10-16.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D205 — Third forest arena option chosen; original skeletal roles remain binding
+
+Date: 2026-10-16. After selecting D204 environment **A — black forest bend**, user selected the **third** of three finished moonlit forest backgrounds. Exact source: conversation image `лунная_дорога_через_туманный_лес.png` (1672×941). Preserve this *arena selection* separately from the D200 third **card art**. Background has no built-in enemies/UI. User selection is authoritative, but GitHub import and native Godot preview still pending.
+
+The five D199 roles retain their agreed silhouettes and weapons (**Road Sentinel must have a spear**, not the axe visible in the newer unapproved concept sheet). Remapping 5×5 raw concept images into 6×5 format is **QA staging only**, never acceptance of clipped/repeated or wrongly designed art. New 1.4/3.1/1.8s travelling-light timing is an **unapproved isolated visual prototype**, not final combat balance. See `docs/D205_BLACK_LANTERN_ASSET_AND_LIGHT_STAGING.md`.
+
 ## D202 — Fixed disaster-recovery bookmark КАРАМБА73
 
 Date: 2026-10-16. The user explicitly requested a **full-project/context backup** and a recovery trigger **КАРАМБА73**. Capture the GitHub-tracked `main` snapshot after adding a short manifest at `docs/checkpoints/KARAMBA73_2026-10-16.md`; keep its backup branch `backups/KARAMBA73-2026-10-16` unchanged. A later user message containing the exact recovery key explicitly instructs the assistant to **restore the saved tree as the current game version**, while preserving newer history via a fresh `backups/pre-KARAMBA73-restore-...` branch and using a new non-force forward Git commit. Do not use `git reset --hard` or force-update `main`. Uncommitted local files and unselected D201 concept PNGs are outside the tracked-project snapshot. Card #38 remains QA-only, Act1 37/45. Full manifest controls the procedure.
