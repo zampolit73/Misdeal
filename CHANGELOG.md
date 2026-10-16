@@ -2,6 +2,14 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D205: Selected forest artwork and isolated moving-lanternlight QA preview
+
+- User selected **A: dead-forest bend** geography and then **the third** of 3 finished forest arena images (`лунная_дорога_через_туманный_лес.png`, 1672×941). Preserve as the selected scene source; no bitmap upload/engine stage claimed.
+- Inspected five recent character concept sheets, each 1254×1254 RGBA in 5×5 format; remapped them offline to 576×480 6×5 candidate atlases, 25 distinct nonblank cells each with five blank cells. Detected 13/20/24/21/13 source-cell boundary risks and Sentinel's axe instead of approved spear. The generated animation QA pack is a chat artifact, not activated production media.
+- Added offline developer helper `scripts/dev/stage_black_lantern_art.py` for deterministic candidate staging. **No new art bytes committed or live `unit_animation_library.gd` roles changed.**
+- Added stand-alone QA-only `res://scenes/dev/black_lantern_road_light_preview.tscn` and controller. Two travelling pools, warning and pause button are demo-only; no combat buffs/damage/spawn/routing. Native F6 **NOT RUN**.
+- Captured exact gates in `docs/D205_BLACK_LANTERN_ASSET_AND_LIGHT_STAGING.md`. Act1 **37/45**, #38 remains QA-only, `КАРАМБА73` frozen checkpoint untouched.
+
 ## 2026-10-16 — D204: Present three composition-only Black Lantern arena geographies
 
 - Audited active repository and applied the four supplied DARK FORGE skill briefs. Rejected two accidental roadmap/infographic generations as unsuitable arena artwork; no incorrect bitmap enters the game.
