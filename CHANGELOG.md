@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D198 closeout: user-native card #37 release PASS; next D199
+
+- After the requested Godot F6 full-pool `black_crossing_release_smoke.tscn`, the user replied **«все ок»**. Record **user-reported native release PASS** (not an independent engine log/screenshot). D197 Battle→Reward→Table route was already user-confirmed.
+- `black_crossing` #37 is fully released in the **37/45** Act 1 pool. D191 54/54 combat still applies; D196 wave VFX remains the user's accepted-for-now presentation. No runtime code/art modifications in this closeout.
+- Reconciled active project state, roadmap, encounter QA spec, decisions, visual registry, index and canonical handoff; next task **D199 gameplay concept choices for card #38** (8 cards remaining to reach 45).
+
 ## 2026-10-16 — D198: Black Crossing released into the 37-card Act 1 pool
 
 - User confirmed the D197 native route (preflight → real battle → reward → table) with «Все ок». D196 surf is the approved current baseline for continued development; D191 native battle matrix 54/54 remains valid.

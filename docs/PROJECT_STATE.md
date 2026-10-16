@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-16 (D198 source release). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-16 (D198 native release QA user-confirmed, D199 next). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Live playable baseline
 
@@ -24,11 +24,11 @@ There are **eight remaining planned cards** to reach 45. Boss XIII is NOT in the
 - **D196 visuals:** storm-wave renderer draws three rolling breakers with a 94px forward impact, foam and runoff, while damage remains zero, push 43px left and 30% slow for 1.6s. User said **«давай пока оставим этот. продолжай»**. Leave D196 as the current baseline; do not return to wave tuning without new feedback.
 - **D197 native route QA:** after F6 preflight and pressing the actual battle→reward→table button, user replied **«Все ок»**. Treat pre-release real navigation as approved.
 - **D198 live-source release:** `black_crossing` is in `RunState.ACT1_CARD_IDS` as card #37. Legacy D151–D153, shepherd and D188 regression guards were updated to 37. Added `res://scenes/dev/black_crossing_release_smoke.tscn`: it tests all 37 unique cards, original assets/formation, real **full-pool** random Tier1 offers (80 deterministic seed samples, without a two-card fixture), production selection/completion/Fate Spread and sealed boss XIII.
-- **Outstanding:** **D198 native Godot release smoke has NOT yet been run/confirmed**. GitHub/static source review does not equal a native PASS. Ordinary random-deal release still needs that one F6 result. D191 matrix need not be repeated because D198 did not alter combat logic.
+- **D198 user-reported native release smoke PASS:** after being asked to run `git pull` and F6 `res://scenes/dev/black_crossing_release_smoke.tscn`, the user replied **«все ок»** (2026-10-16). Treat the 37-card ordinary-pool release gate as satisfied by the user's confirmation, not as an independently captured engine log or screenshot. Card #37 is fully released. D191 54/54 remains valid because D198 changed only deck registration.
 
 ## Next action
 
-User: `git pull`, open **`res://scenes/dev/black_crossing_release_smoke.tscn`**, F6, send PASS screenshot or error. Assistant: fix any issue directly in GitHub; on native PASS mark D198 release verified, then plan card #38 with the established **options-first** art workflow.
+**D199 / next card #38:** propose 2–3 distinct gameplay concepts (combat or event, no unilateral choice). Let the user select the next card. If combat, require completely new opponent types and localized mechanic (D143). After concept approval, show 2–3 *actually rendered* scene-first visual variants (D167/D168) before importing the user's choice. Do not alter D196 waves, D151–D153, accepted #37 art, 12+XIII Fate Spread or party-size balance. No outstanding D198 Godot step.
 
 Binding rules: D143 genuinely new enemies and encounter mechanic for each new combat card; D167 credible scene-first dark-fantasy art; D168 show 2–3 actually rendered variants *before* replacing card art. Preserve D151–D153, accepted DS2 and original user-selected sources.
 
