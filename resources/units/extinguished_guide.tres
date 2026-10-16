@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+unit_name = "Погасший проводник"
+visual_role = "extinguished_guide"
+max_hp = 95.0
+damage = 7.5
+attack_interval = 2
+attack_range = 92.0
+minimum_range = 40.0
+move_speed = 45.0
+body_radius = 21.0
+separation_padding = 11.0
+visual_scale = 1.8
+show_enemy_name = true
