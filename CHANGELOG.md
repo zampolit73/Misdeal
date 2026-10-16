@@ -2,6 +2,14 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D198: Black Crossing released into the 37-card Act 1 pool
+
+- User confirmed the D197 native route (preflight → real battle → reward → table) with «Все ок». D196 surf is the approved current baseline for continued development; D191 native battle matrix 54/54 remains valid.
+- Registered `black_crossing` as live Act1 **#37/45** in `RunState.ACT1_CARD_IDS`; card/encounter resource, scene art, original Ferryman/Drowned animation atlases and scoped wave mechanics unchanged.
+- Updated D151, D152, D153, Bone Shepherd, D188 diagnostic/battle/release smoke guards, and legacy card/playtest previews for a **37-card** pool.
+- Added `scenes/dev/black_crossing_release_smoke.tscn`: checks 37 unique real cards, originals, real full-pool random Tier1 offers across 80 seeded samples (NOT a forced two-card fixture), choice/completion/Fate Spread and sealed boss XIII.
+- **Native D198 release smoke pending** — code in `main`, not yet a Godot PASS. Next: F6 the new scene; upon native PASS move to card #38.
+
 ## 2026-10-16 — D197: Black Crossing #37 release-route preflight
 
 - User elected to leave D196 wave VFX as the current baseline and continue progression rather than tune surf further. D196 rendering and D191 battle logic untouched.

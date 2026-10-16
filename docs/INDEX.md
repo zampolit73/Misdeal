@@ -1,11 +1,11 @@
 # Misdeal Documentation Index
-Updated 2026-10-15 — D179 document organization.
+Updated 2026-10-16 — D198 live Black Crossing #37.
 
 ## Read first (current, short, authoritative)
 
 1. [Development rules](../AGENTS.md) — project goals, GitHub workflow, engine, art gates.
 2. [Concept](CONCEPT.md) — high-level design pillars and Fate Spread.
-3. [Current Project State](PROJECT_STATE.md) — **what is implemented now**; live Act1 36/45, D153 D181 release-routing PASS.
+3. [Current Project State](PROJECT_STATE.md) — **what is implemented now**; live Act1 37/45, D197 real Black Crossing route user-confirmed and D198 native release smoke pending.
 4. [Roadmap](ROADMAP.md) — completed milestones and next priorities.
 5. [Active Decisions](DECISIONS.md) — binding summarized requirements and links to original decisions.
 6. [Canonical Handoff](HANDOFF.md) — only one active next-chat continuation pointer.
@@ -15,6 +15,7 @@ Updated 2026-10-15 — D179 document organization.
 - [Design System](DESIGN_SYSTEM.md) — DS2/Variant C and historic UI patterns.
 - [Visual Asset Registry](VISUAL_ASSET_REGISTRY.md) — accepted image paths and legacy inventory.
 - [D153 encounter specification](DECK_EXPANSION_D153_THREADBARE_THEATRE.md).
+- [Black Crossing #37 encounter, battle QA and release gates](D188_BLACK_CROSSING_ENCOUNTER.md).
 - [D153 D176 balance/QA](D153_BALANCE_D176.md).
 - `UNIT_ANIMATION_PACK1.md`, `UNIT_ANIMATION_PACK2.md` — sprite frame contracts, where relevant.
 - `NEXT_CHAT_HANDOFF.md`, `SESSION_CHECKPOINT.md`, `D153_NEXT_CHAT_START.md` — intentionally short compatibility pointers to canonical `HANDOFF.md`.
