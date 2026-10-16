@@ -38,6 +38,10 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
+## D206 F6 runtime finding and hotfix — native re-test pending
+
+User Godot 4.7.2 screenshot of `black_lantern_road_contract_smoke.tscn` showed **typed-array runtime error** in staged `black_lantern_light.gd:109`: `Array` cannot be assigned to `Array[Vector2]`. Fixed GitHub `main` in `9f751e7`: explicit typed-array initialization and branch assignments across all light-zone array selection points. No native re-run was supplied yet; D206 contract **NOT PASS** until F6 checks. Live combat untouched; pool still **37/45**.
+
 ## D206 CURRENT — Five original enemy data resources and local light logic, QA-only
 
 **Added to main but NOT LIVE:** 5 new `resources/units/{extinguished_guide,lantern_bearer,road_sentinel,oil_acolyte,lantern_archer}.tres`; a standalone `resources/encounters/black_lantern_road.tres` with two separate five-enemy formations; `scripts/battle/black_lantern_light.gd` with deterministic alternating pools, candidate 1.4s warning/3.1s active/1.8s rest and +16% attack speed for **lit enemies only**, restoring intervals when light ends or battle stops. This **is not wired into actual battle/RunState**. Numbers await native balance.
