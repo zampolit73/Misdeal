@@ -64,11 +64,11 @@ func _check_resources() -> void:
 		"res://resources/units/drowned_hand.tres"
 	]):
 		failures.append("D188 must have two formations, 1 original Ferryman + 2 original Drowned")
-	if RunState.ACT1_CARD_IDS.size() != 36 or RunState.ACT1_CARD_IDS.has("black_crossing"):
-		failures.append("D188 card must remain QA-only, live pool 36/45")
+	if RunState.ACT1_CARD_IDS.size() != 37 or not RunState.ACT1_CARD_IDS.has("black_crossing"):
+		failures.append("D198 Black Crossing must now be live in the 37-card Act1 pool")
 	var card: RunCardData = RunState.get_card("black_crossing")
 	if card == null or card.target_path != "res://resources/encounters/black_crossing.tres" or card.resolution_type != "combat":
-		failures.append("D188 QA-only card lookup missing")
+		failures.append("D198 Black Crossing released card lookup missing")
 	for role in HERO_ROLES:
 		if RunState.get_hero_unit_data(role) == null:
 			failures.append("D188 missing hero UnitData: " + role)

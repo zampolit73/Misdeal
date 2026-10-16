@@ -149,8 +149,8 @@ func _validate_assets() -> void:
 	var card: RunCardData = RunState.get_card("defiled_laboratory")
 	if card == null or card.resolution_type != "combat" or card.tier != 1:
 		errors.append("Missing D152 released Tier1 combat card")
-	if RunState.ACT1_CARD_IDS.size() != 36 or not RunState.ACT1_CARD_IDS.has("defiled_laboratory") or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
-		errors.append("D152 must be in the 36-card Act1 deal pool after art / functional / challenge QA")
+	if RunState.ACT1_CARD_IDS.size() != 37 or not RunState.ACT1_CARD_IDS.has("defiled_laboratory") or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
+		errors.append("D152 must remain in the 37-card Act1 deal pool after D198")
 	if ENCOUNTER.encounter_id != "defiled_laboratory" or ENCOUNTER.get_formation_count() != 2:
 		errors.append("Expected two authored laboratory formations")
 	var expected: PackedStringArray = PackedStringArray([

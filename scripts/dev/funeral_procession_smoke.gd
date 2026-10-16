@@ -1,7 +1,7 @@
 extends Control
 
 # D151 isolated simulated combat matrix. Runs real BattleUnit AI and Last Rite,
-# not the main game UI, and does not alter the shipped 36-card deal pool.
+# not the main game UI, and does not alter the shipped 37-card deal pool.
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const ENCOUNTER: EncounterData = preload("res://resources/encounters/funeral_procession.tres")
 const RITE_DATA: LastRiteData = preload("res://resources/encounters/last_rite.tres")
@@ -106,8 +106,8 @@ func _validate_assets() -> void:
 	var card := RunState.get_card("funeral_procession")
 	if card == null or card.resolution_type != "combat" or card.tier != 1:
 		errors.append("D151 card must be a Tier1 combat card in CARD_PATHS")
-	if RunState.ACT1_CARD_IDS.size() != 36 or not RunState.ACT1_CARD_IDS.has("funeral_procession") or not RunState.ACT1_CARD_IDS.has("defiled_laboratory") or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
-		errors.append("D151, D152 and D153 must remain registered in the 36-card Act1 deal pool")
+	if RunState.ACT1_CARD_IDS.size() != 37 or not RunState.ACT1_CARD_IDS.has("funeral_procession") or not RunState.ACT1_CARD_IDS.has("defiled_laboratory") or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
+		errors.append("D151, D152 and D153 must remain registered in the 37-card Act1 deal pool")
 	if ENCOUNTER.encounter_id != "funeral_procession" or ENCOUNTER.get_formation_count() != 2:
 		errors.append("Missing both authored original formations")
 	var expected := PackedStringArray([

@@ -28,7 +28,7 @@ func _ready() -> void:
 	details.text = ("Телеграф, химические зоны, урон герою, гибель гомункула и очистка: PASS.\n"
 		+ "Это изолированная логика, не боевой баланс и не проверка артов.\n"
 		+ "Проверен выбор химической зоны по плотной группе героев.\n"
-		+ "Карта добавлена в колоду Act 1 (36/45).") if errors.is_empty() else "\n".join(errors)
+		+ "Карта остаётся в колоде Act 1 (37/45).") if errors.is_empty() else "\n".join(errors)
 	details.add_theme_color_override("font_color", Color(0.65, 0.88, 0.65) if errors.is_empty() else Color(1.0, 0.4, 0.4))
 
 
@@ -48,8 +48,8 @@ func _run_test() -> void:
 	if ENCOUNTER.encounter_id != "defiled_laboratory" or ENCOUNTER.get_formation_count() != 2:
 		errors.append("Expected original two-formation laboratory encounter")
 		return
-	if RunState.ACT1_CARD_IDS.size() != 36 or not RunState.ACT1_CARD_IDS.has("defiled_laboratory") or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
-		errors.append("D152 must remain in the current 36-card Act1 pool")
+	if RunState.ACT1_CARD_IDS.size() != 37 or not RunState.ACT1_CARD_IDS.has("defiled_laboratory") or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
+		errors.append("D152 must remain in the current 37-card Act1 pool")
 		return
 	var arena := Node2D.new()
 	arena.visible = false
