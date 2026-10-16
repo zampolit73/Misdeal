@@ -2,6 +2,10 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D205 hotfix: Godot 4.7 parser type inference in lantern preview
+
+- User screenshot showed Godot 4.7.2 parse error at `black_lantern_road_light_preview.gd:121`: implicit `opacity` inference from `abs(sin(...))` failed. Fixed with explicitly typed `float`, `absf()` and typed `v`/`eased` to prevent nearby inference issues. **Native re-test still pending**; change limited to isolated dev scene, no combat behavior or card pool changes.
+
 ## 2026-10-16 — D205: Selected forest artwork and isolated moving-lanternlight QA preview
 
 - User selected **A: dead-forest bend** geography and then **the third** of 3 finished forest arena images (`лунная_дорога_через_туманный_лес.png`, 1672×941). Preserve as the selected scene source; no bitmap upload/engine stage claimed.
