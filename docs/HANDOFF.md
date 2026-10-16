@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D196 larger seaward→deck wave advance after D195 screenshot.**
+Updated: 2026-10-16 — **D197 release preflight after user freezes D196 waves.**
 Repository: `zampolit73/Misdeal`, branch `main`. **GitHub is the technical source of truth, and the assistant has connected GitHub tools; inspect and edit directly without asking the user for manual patches or access.** Godot **4.7.x / GDScript**.
 
 ## READ FIRST
@@ -63,11 +63,23 @@ User shared native Godot D195 screenshot: organic rounded foam is present, but t
 
 **Status:** D191 native Godot combat matrix 54/54 PASSED and remains valid for unchanged gameplay; D196 native visual F6 not yet run and reward→Fate Spread/table route for #37 not yet explicitly confirmed; Act1 remains **36/45**. Next assistant action after visual approval: validate real route, then activate #37 and run ordinary-deal smoke.
 
+## D197 — Freeze waves and check release route
+
+User said **«давай пока оставим этот. продолжай»** referring to D196 wave VFX. Treat this as approval to **stop visual iterations for now**, not proof that the full battle→reward→table route worked. D196 source remains untouched. D191 native combat 54/54 PASS remains valid.
+
+**D197 GitHub additions:**
+- `res://scenes/dev/black_crossing_release_preflight.tscn` + `scripts/dev/black_crossing_release_preflight.gd` check 36-card QA-only pool, unique cards and original D151–D153 registration, the Black Crossing original encounter (1 Ferryman + 2 Drowned, 2 formations), approved art files, real RunState Tier1 offer → choose → completion/Fate Spread, and the lone boss XIII after 12 resolutions. A PASS is **only source/production-API route readiness**, not a real Reward UI PASS. The PASS screen contains a button to launch the real playtest.
+- `scripts/dev/black_crossing_playtest.gd` no longer blocks when later released as #37; it accepts the current 36-card QA pool and future 37-card live pool, but still validates exact encounter path and original arena.
+
+**NEXT NATIVE ACTION:** user `git pull`, **F6 `res://scenes/dev/black_crossing_release_preflight.tscn`**. Expected screen **D197 / BLACK CROSSING — PREFLIGHT PASS**. Click **«ПРОЙТИ РЕАЛЬНЫЙ БОЙ → НАГРАДА → СТОЛ»**, win combat, click **«ЗАБРАТЬ НАГРАДУ»**, select actual reward (may require upgrade then loot), confirm return to the table/Fate Spread. Ask for PASS screenshot plus simple confirmation of the real route. *Do not* call that route confirmed from preflight alone.
+
+After native confirmation: update `RunState.ACT1_CARD_IDS` to include `black_crossing` as **#37/45**, remove stale QA-only comment, adjust D151–D153 hard-coded 36-card guards and D153 release smoke, create/adjust released-pool smoke, update docs and commit; ask the user only for `git pull` + exact Godot test. Remain **36/45** until that gate.
+
 ## NEXT TASK — start here in the new chat
 
-1. User does `git pull` and **F6 `res://scenes/dev/black_crossing_playtest.tscn`** to review only the D196 substantial continuous runup from approaching warning through impact plus a separate fading runoff sheet. If victory, verify **reward → Fate Spread/table**. Ask for screenshot/acceptance; user explicitly expects assistant to work directly through GitHub, never give manual patch steps.
+1. User does `git pull` and **F6 `res://scenes/dev/black_crossing_release_preflight.tscn`**, checks D197 PREFLIGHT PASS, then presses its real battle button and completes **battle → reward → table**. User need only confirm whether the actual reward route succeeded.
 2. **D191 54/54 native matrix is confirmed for unchanged gameplay**. D192 only draws visuals, so do not require a repeat of all 54 cases unless errors or altered mechanics demand it.
 3. On user's visual acceptance and confirmation of the real reward route, release `black_crossing` into normal `ACT1_CARD_IDS` as **#37/45**, update all old 36-card guards and add/execute an ordinary-deal release smoke. Preserve D151–D153 and global scaling.
 4. Update `PROJECT_STATE`, `ROADMAP`, `CHANGELOG` and this `HANDOFF`; decisions only for actual new binding design rules. Commit directly to GitHub.
 
-**D196 session:** User native D195 screenshot criticized lack of forward wave movement. Assistant implemented a 94px traveling impact, warning/surge continuity and capped runoff, all render-only, directly in GitHub and updated docs. Native D196 visual check pending, D191 54/54 gameplay valid and card #37 QA-only 36/45 pending visual and reward route approval.
+**D197 session:** User chose to keep D196 wave visuals for now and proceed. Assistant audited production Battle→Reward→Table code and implemented a native release preflight plus a real-battle-launch button through connected GitHub. No Godot runtime available in assistant environment, so native D197 preflight and full Reward→Table check remain unconfirmed. D191 54/54 battle PASS stands. Act1 card pool still QA-only **36/45**; next live release must follow native real-route confirmation.

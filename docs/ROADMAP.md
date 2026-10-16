@@ -1,5 +1,5 @@
 # Misdeal — Active Roadmap
-Updated: 2026-10-16 (D196 advancing storm surf). **Live Act 1: 36/45.** Current technical status: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-16 (D197 release preflight). **Live Act 1: 36/45.** Current technical status: `docs/PROJECT_STATE.md`.
 
 ## Completed / established
 
@@ -36,9 +36,11 @@ Updated: 2026-10-16 (D196 advancing storm surf). **Live Act 1: 36/45.** Current 
 22. [x] D195 drawing-only polish: remove seven-point cap triangle repetition; use 72-sample asymmetric wave envelopes, three rounded staggered foam clusters per breaker, mixed-frequency turbulence and time-delayed whitewater wash/recede, with restrained cold storm palette.
 23. [x] D195 native screenshot: smoother foam but wave is still too static and doesn't convincingly run up the planks. User requests more pronounced advance.
 24. [x] D196 render-only pass: warning moves from -91px to -62px relative to boot line; surge starts at -62px without jump and advances 94px toward the intact deck (vs 37px); an additional shallow, capped runoff layer follows the falling crest. No changes to hit lanes, timings, push or slow.
-25. [ ] **NEXT NATIVE VISUAL QA:** `git pull` and F6 `res://scenes/dev/black_crossing_playtest.tscn`; look for continuous warning→surge motion, long forward runup and visible runoff on planks; confirm victory→reward→table. D191 54/54 gameplay still valid.
-26. [ ] Release #37 only after user accepts visual and real reward route; update 36-card guards and verify ordinary deal.
-27. [ ] Continue Act1 toward 45 with eight remaining cards *after* #37 releases; avoid D151–D153 regressions.
+25. [x] User approved leaving D196 surf as the **current provisional visual baseline** and asked to continue toward release. No more wave tuning in this pass.
+26. [x] D197 pre-release audit scene: verify 36-card QA-only state, card/encounter art, original enemy formation, production Tier1 RunState offer→selection→Fate Spread→XIII; one button launches real Black Crossing battle→reward→table. Old playtest now also supports the future 37-card state.
+27. [ ] **NEXT NATIVE ROUTE GATE:** user `git pull`, F6 `res://scenes/dev/black_crossing_release_preflight.tscn`, confirm preflight PASS and use its button to complete actual battle → choose reward → return to Fate Spread/table. Native D197 result pending; D191 54/54 remains confirmed.
+28. [ ] After real route confirmed, activate #37, update existing 36-card smoke guards, run a separate actual-pool/ordinary-deal smoke. Do not call a source-only preflight a real reward UI test.
+29. [ ] Continue Act1 toward 45, eight cards remain *after* #37 goes live; avoid D151–D153 regressions.
 
 ## Rules for all subsequent phases
 

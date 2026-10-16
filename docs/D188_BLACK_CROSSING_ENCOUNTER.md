@@ -1,6 +1,6 @@
 # D188 — Black Crossing encounter & storm waves (QA candidate)
 
-Updated 2026-10-16 (D196 visuals). **D191 native 54/54 gameplay PASS; D195 smoother foam but static-looking waves; D196 farther forward roll and runoff awaiting F6. Act1 36/45.**
+Updated 2026-10-16 (D197 pre-release). **D191 native 54/54 gameplay PASS; user elected to retain D196 waves for now; D197 native reward-route preflight pending. Act1 QA-only 36/45.**
 
 ## User approvals carried forward
 
@@ -29,6 +29,6 @@ Updated 2026-10-16 (D196 visuals). **D191 native 54/54 gameplay PASS; D195 smoot
 1. **Historical pre-D189 native Godot 54/54 PASS** from screenshot: 54 wins/0 full defeats; 18 wins per party size and protagonist, average HP 85/78/84%, worst HP 58/46/63%, duration 10.4/11.3/10.6s, individual hero deaths 0/1/4 and surf warnings/strikes/pushes/resets 81/58/71/71. **This is before the D189 floor adjustment** and must not be presented as D189 validation. After `git pull`, **re-run F6** `res://scenes/dev/black_crossing_battle_smoke.tscn`. D191 additionally mirrors real battle solo/duo/trio spawn and deployment regions, requires 54/54 wins for release, checks that fighters stay on solid planks and that no slow modifier survives. **D191 post-fix native Godot 54/54 PASS is now confirmed from user screenshot** (86/74/77% mean HP; 78/62/66/66 wave events); repeat matrix only if gameplay changes.
 2. **F6** `res://scenes/dev/black_crossing_playtest.tscn`: this is the **first priority for visual feedback** after D196. Verify the visibly traveling surf passes seamlessly from warning into forward-rolling impact and a second runoff flow, with naturally rounded foam (no triangle teeth), and fades onto intact planks, remain below the heroes' body silhouettes, have a clear warning versus impact, do not resemble a full-width filled strip and keep the fighters on solid planks. Continue to `ЗАБРАТЬ НАГРАДУ` → Reward → Table. This test is a controlled offer, not the random-release route.
 3. Analyze if 54-case matrix says the fight is trivial/overpowered, especially solo and duo; tune **only new D188 enemy resources or controller parameters**, then rerun F6.
-4. Only after battle-feel approval and native tests, enable card #37 into `ACT1_CARD_IDS`, adjust existing 36-card guard scenes for release and add separate normal-deal smoke. Keep Fate Spread 12 + sealed XIII.
+4. **D197:** launch `res://scenes/dev/black_crossing_release_preflight.tscn` (QA-only 36-card release readiness/RunState path) and click its button to play the real combat → reward → Fate Spread/table. The preflight PASS **does not** establish native Reward UI PASS. User froze D196 visuals as a provisional baseline. **Only after the real route is confirmed**, enable #37 in `ACT1_CARD_IDS`, adjust existing hardcoded 36-card guards and run a distinct normal-deal release smoke. Keep Fate Spread 12 + sealed XIII.
 
 Do not repeat previous approved image or sprite approvals and do not silently release #37.

@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D197: Black Crossing #37 release-route preflight
+
+- User elected to leave D196 wave VFX as the current baseline and continue progression rather than tune surf further. D196 rendering and D191 battle logic untouched.
+- Audited real Battle victory → Reward screen → RunState.complete_active_card() → Table code path. This is a source review, **not** native route confirmation.
+- Added `scenes/dev/black_crossing_release_preflight.tscn` with production RunState/asset/encounter/deck/XIII audits and one button to launch real Black Crossing Battle→Reward→Table. Updated the existing Black Crossing playtest to support both QA-only 36/45 and future released 37/45 without changing its encounter routing.
+- Kept `black_crossing` outside the ordinary random pool until native real reward route sign-off; D197 Godot preflight/result still pending. No gameplay or approved art changes.
+
 ## 2026-10-16 — D196: Advance Black Crossing breakers farther onto intact pier
 
 - User native D195 screenshot: smoother foam, but the waves look static; requested a much more substantial forward-moving storm surge.

@@ -1,17 +1,19 @@
 extends Control
 
-# D188 reproducible QA-only full gameplay route: battle → reward → table.
-# Card is registered in CARD_PATHS for QA but intentionally NOT ACT1_CARD_IDS.
+# D197 full native gameplay route: battle → reward → table.
+# Works while card #37 is QA-only (36/45) and after final release (37/45).
 const ENCOUNTER_PATH := "res://resources/encounters/black_crossing.tres"
 const ARENA_PATH := "res://assets/pixel/battle/arenas/black_crossing_storm_pier_approved_v1.webp.b64"
 
 
 func _ready() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 36 or RunState.ACT1_CARD_IDS.has("black_crossing"):
-		_block("D188 must stay outside the 36-card random pool.")
+	var live := RunState.ACT1_CARD_IDS.has("black_crossing")
+	var expected_count := 37 if live else 36
+	if RunState.ACT1_CARD_IDS.size() != expected_count:
+		_block("Unexpected Act1 pool size for the current Black Crossing release phase.")
 		return
 	if RunState.CARD_PATHS.get("black_crossing", "") != "res://resources/cards/black_crossing.tres":
-		_block("D188 QA-only Black Crossing card path is missing.")
+		_block("Black Crossing card lookup is missing.")
 		return
 	if not FileAccess.file_exists(ARENA_PATH):
 		_block("D188 approved storm arena is missing.")
