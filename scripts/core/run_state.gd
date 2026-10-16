@@ -85,7 +85,7 @@ const CARD_PATHS := {
 	"defiled_laboratory": "res://resources/cards/defiled_laboratory.tres",
 	# D153: Tier1 original theatre encounter, released as Act1 card #36 after native QA.
 	"threadbare_theatre": "res://resources/cards/threadbare_theatre.tres",
-	# D188: QA-only lookup for full real Reward→Table playtest; NOT in ACT1_CARD_IDS.
+	# D198: live Act 1 card #37, released after native D197 Battle→Reward→Table QA.
 	"black_crossing": "res://resources/cards/black_crossing.tres",
 	"moon_seal": "res://resources/cards/moon_seal.tres",
 	"echo_crypt": "res://resources/cards/echo_crypt.tres",
@@ -137,6 +137,7 @@ const ACT1_CARD_IDS := [
 	"funeral_procession",
 	"defiled_laboratory",
 	"threadbare_theatre",
+	"black_crossing",
 	"echo_crypt",
 	"bone_crush",
 	"black_altar",
