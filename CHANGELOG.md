@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D206 hotfix: typed lanternlight arrays in Godot 4.7.2
+
+- User-native F6 screenshot: runtime error in `scripts/battle/black_lantern_light.gd:109`, `Trying to assign an array of type "Array" to a variable of type "Array[Vector2]"`. Root cause was the conditional `get_pool_centers() if active else []` promoting the empty branch to an untyped array.
+- Updated the staged encounter-only controller: initialize a strictly typed `Array[Vector2]` first, conditionally populate it, and avoid conditional expressions for typed zone arrays/returns. **Only the isolated QA light controller was changed**; regular battle remains untouched.
+- Fixed in GitHub commit `9f751e7`; source review completed, **Godot-native F6 re-test pending**. Do not mark D206 smoke passed until user re-runs `res://scenes/dev/black_lantern_road_contract_smoke.tscn`.
+
 ## 2026-10-16 — D206: New five-enemy encounter data and scoped lanternlight source (QA-only)
 
 - Created five **original** unbalanced `UnitData` candidates for `extinguished_guide`, `lantern_bearer`, `road_sentinel`, `oil_acolyte`, `lantern_archer`, plus a standalone `EncounterData` with two five-unit formations within existing battle bounds.
