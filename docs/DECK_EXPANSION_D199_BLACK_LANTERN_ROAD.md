@@ -1,7 +1,7 @@
 # D199 — Дорога чёрных фонарей / Road of Black Lanterns
 
 Date: 2026-10-16
-Status: **D200 THIRD production art option selected and installed at 448×274 for native card QA (not yet Godot-approved); five enemy sprites, arena, battle logic and combat QA NOT implemented.** Live Act 1 remains 37/45.
+Status: **D200 THIRD production card art F6 user-confirmed approved** («вск ок»); D201 arena visual selection and five enemy sprite atlases, battle logic and combat QA still pending. Live Act 1 remains 37/45.
 
 ## Exact user selections (binding)
 
@@ -20,7 +20,7 @@ Following the approved five-role concept sheet, the assistant rendered **three f
 - Exact chosen scene resized without recropping silhouettes or rerendering to a text-free **448×274 WebP**, committed to `assets/pixel/card_unification_v1/run/black_lantern_road_selected_v1.webp.b64` (D200). This is a selected-source conversion, not a new AI repaint, so the tall Guide and four escort skeletons are preserved.
 - Native loader `scripts/ui/card_unification_v1.gd` checks decoded WebP dimensions and caches texture; `scripts/ui/card_art_catalog.gd` automatically uses it via the existing unified-art priority.
 - **QA-only** `resources/cards/black_lantern_road.tres` is Tier1 combat but has **no encounter target yet**; standalone F6 `res://scenes/dev/black_lantern_road_card_preview.tscn` loads the exact resource/image. Do not select the QA card through normal dealing until a real encounter is built.
-- **Native F6 card preview acceptance is still PENDING.** The prior user approval applies to the 1604×981 third image, not to a Godot 448×274 render log. Never claim F6 PASS in advance.
+- **D200 native F6 card preview now USER-CONFIRMED PASS** (2026-10-16): after the request to check `res://scenes/dev/black_lantern_road_card_preview.tscn`, user replied «вск ок». This supports proceeding to D201 arena art; no screenshot or engine log was independently collected.
 
 ## Combat identity, one encounter with five DISTINCT skeleton enemies
 

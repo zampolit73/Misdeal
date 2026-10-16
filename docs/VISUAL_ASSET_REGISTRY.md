@@ -1,5 +1,9 @@
 # Misdeal — Active Visual Asset Registry
 
+## D201 — D200 Black Lantern Road card art native-accepted; arena pending
+
+The user responded «вск ок» to the D200 native 448×274 card preview. The exact selected THIRD art remains in `assets/pixel/card_unification_v1/run/black_lantern_road_selected_v1.webp.b64`. **This approves the card art only**, not any in-game arena. Next render 2–3 separate **empty** 1280×720 battle environment options; preserve readable level 2D ground and margins for hanging black lanterns. No existing selected sprites or combat art are to be overwritten before the user's selection.
+
 ## D200 — Road of Black Lanterns chosen THIRD scene art staged 448×274
 
 User selected THIRD of a newer three-image production-scene group (`лунный_марш_скелетного_легиона.png`, generated ID `f1821747-a46a-4e58-9fd9-9fd2b0f0a214`, source 1604×981). D200 added the exact text-free scene converted to `assets/pixel/card_unification_v1/run/black_lantern_road_selected_v1.webp.b64` (448×274) and strict `CardUnificationV1` override, plus QA-only card and `res://scenes/dev/black_lantern_road_card_preview.tscn`. The user's selection approves the source composition; **native 448×274 F6 acceptance PENDING**. The five original sprites, 1280×720 arena and lanternlight encounter mechanic have NOT been implemented. Live pool remains 37/45.

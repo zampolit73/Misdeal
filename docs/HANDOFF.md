@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D200 selected THIRD production card art integrated QA-only, Godot F6 acceptance next**.
+Updated: 2026-10-16 — **D200 third card art F6 user-confirmed PASS; D201 original arena selection next**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -48,12 +48,12 @@ D200 committed:
 - `scripts/ui/card_unification_v1.gd` — exact-card-ID strict WebP/Base64 loader, cached through existing `card_art_catalog.gd`.
 - `resources/cards/black_lantern_road.tres` — **QA-only Tier1 combat metadata**, deliberately no encounter target until implemented.
 - `scripts/dev/black_lantern_road_card_preview.gd` and `scenes/dev/black_lantern_road_card_preview.tscn` — F6 show approved third art at 448×274. Check card ID, dimensions and **37 cards still live**.
-- No `RunState.CARD_PATHS` nor `ACT1_CARD_IDS` edits; no arena, sprites or mechanics yet. D199 rules require 5 unique skeleton roles and 2× distinct Guide, and user has NOT native-approved the 448×274 crop. **DO NOT claim native PASS.**
+- No `RunState.CARD_PATHS` nor `ACT1_CARD_IDS` edits; no arena, sprites or mechanics yet. D199 rules require 5 unique skeleton roles and 2× distinct Guide, and the native F6 crop has now been **user-confirmed** («вск ок» in reply to the preview request). This is user-reported approval, not independently captured Godot footage.
 
-## NEXT TASK — native art acceptance then arena and animation production
+## NEXT TASK — D201 arena selection, then animation production
 
-1. User `git pull`, F6 **`res://scenes/dev/black_lantern_road_card_preview.tscn`**, confirm exact third-art 448×274 image and readable giant Guide/four escorts. If rejected, address art feedback; do not silently substitute earlier alternatives. Actual WebP is already in GitHub. This native check is pending.
-2. Produce a **separate** 1280×720 battle arena with safe broad middle road and props only at sides/depth; user review in Godot before actual release.
+1. **D200 native card-art F6 is user-reported approved** (2026-10-16: «вск ок»). Do not request a repeat unless there is later regression.
+2. **D201:** render **2–3 clearly different original 1280×720 unoccupied battle environments**, drawn for usable Godot 2D battle with broad flat center road and lamp posts/tree props only at sides/behind unit plane; no enemy skeletons painted into backdrop, no labels or UI. Ask user to choose one before importing to GitHub and constructing arena scene/safe ground regions.
 3. Produce five genuinely distinct **full animation atlases** (idle/walk/attack/hit/death, if D153/D188 grid reused, 25 frames per role). Giant must remain double-height at combat scale while sharing a grounded boot line; do not crop or fake sprites from static sheet. After art review, implement `RunCardData`, `EncounterData`, five `UnitData`, encounter-local light logic, solo/duo/trio matrices (54 cases candidate), and Battle→Reward→Table.
 4. Stage #38 as QA-only, NOT `ACT1_CARD_IDS`. Release only after original art, 54-case/functional checks, real reward path and full-pool random-deal smoke. Continue Act1 from **37/45**, no new cards live yet.
 5. Keep D196 surf and existing #34–#37 code/DS2/Fate Spread 12+XIII unchanged. Work through connected GitHub and update state, changelog, decisions/roadmap as needed.

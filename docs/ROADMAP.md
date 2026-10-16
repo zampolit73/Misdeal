@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-16 (D200 chosen third standalone image installed for native QA). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-16 (D200 native card-art user-confirmed; D201 arena selection next). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -15,10 +15,11 @@ Updated: 2026-10-16 (D200 chosen third standalone image installed for native QA)
 ## Next (strict order)
 
 1. [x] **D199 concept chosen:** card #38 is **«Дорога чёрных фонарей»**, skeleton-heavy fight with 5 original enemy roles; user chose the **first** moonlit road composition among three initial illustrations and explicitly approved the last character/encounter concept sheet. Main Guide must stand ~2× taller and look radically distinct; AI visual noise must be removed. See `docs/DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md`.
-2. [x] **D200 art selection + source integration:** after three new standalone scene illustrations, user chose the **THIRD**. The exact selected moonlit skeleton procession (not the labelled concept sheet) was exported text-free at 448×274, committed as WebP/Base64 and wired to existing unified card art; dedicated QA-only RunCardData and F6 preview created. **Native 448×274 F6 approval still PENDING.**
-3. [ ] **NEXT NATIVE CARD ART QA:** `git pull`, F6 `res://scenes/dev/black_lantern_road_card_preview.tscn`; check 448×274 readability, giant Guide / four escorts, no baked labels. Then create separate 1280×720 walkable road arena and five individual animation atlases (Guide ~2×), obtain F6 visual approval.
-4. [ ] Implement scoped moving lanternlight zones and original 5-enemy/two-formation encounter in QA-only Godot Resources; balance for solo/duo/trio with a 54-case matrix, test battle→reward→table. Release #38 only after full-pool random deal smoke passes, then 38/45.
-5. [ ] Complete the **seven** cards remaining *after* #38 is released, while preserving existing #34–#37, D196 waves, 12+XIII and party scaling.
+2. [x] **D200 art selection + source integration:** after three new standalone scene illustrations, user chose the **THIRD**. The exact selected moonlit skeleton procession (not the labelled concept sheet) was exported text-free at 448×274, committed as WebP/Base64 and wired to existing unified card art; dedicated QA-only RunCardData and F6 preview created. **Native 448×274 F6 art approval user-reported PASS** («вск ок» in reply to the requested F6 preview); runtime screenshot not independently provided.
+3. [ ] **D201 NEXT: arena variants and approval.** Show 2–3 original text-free 1280×720 **empty** road-arena options, with a broad clear battle floor, light posts only at the edges/background, and no embedded skeleton fighters. User chooses one before GitHub integration; then native F6 inspect ground contact, safe unit paths and moving light zones.
+4. [ ] Create five original animated skeletal enemy atlases (Guide ~2× tall) with full-body feet/facing; preview gallery native F6.
+5. [ ] Implement the scoped moving-lanternlight mechanic and 5-enemy/two-formation encounter in QA-only Godot Resources, then solo/duo/trio 54-case matrix, battle→reward→table and full-pool release smoke. Activate #38 only after user-approved native QA, reaching 38/45.
+6. [ ] Complete the **seven** cards remaining *after* #38 is released, while preserving existing #34–#37, D196 waves, 12+XIII and party scaling.
 
 ## Constraints
 

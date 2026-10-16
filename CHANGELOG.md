@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D201: Record native card-art approval and start arena art selection
+
+- User replied «вск ок» after requested native F6 preview of the exact D200 chosen third Black Lantern Road 448×274 card image. Mark **user-reported native card-art approval**; no independent Godot screenshot/log received.
+- Next production stage is **2–3 original 1280×720 actor-free arena visual options**, clear road battleground with hanging lamps positioned outside fighter lanes. User must select one before it becomes the battlefield background.
+- No gameplay, scripts, live deal registration, selected card art or opponent assets changed in this checkpoint; Act1 stays **37/45**, #38 remains QA-only.
+
 ## 2026-10-16 — D200: Install user-selected THIRD lantern-road card art for QA-only review
 
 - User chose **third** of three newer standalone illustrated Lantern Road scenes after approving the five original skeletal enemy designs. Preserved exact chosen image (`лунный_марш_скелетного_легиона.png`) and exported it to text-free **448×274 WebP/Base64**. No rerender, replacement art or text in bitmap.
