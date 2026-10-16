@@ -2,6 +2,14 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D206: New five-enemy encounter data and scoped lanternlight source (QA-only)
+
+- Created five **original** unbalanced `UnitData` candidates for `extinguished_guide`, `lantern_bearer`, `road_sentinel`, `oil_acolyte`, `lantern_archer`, plus a standalone `EncounterData` with two five-unit formations within existing battle bounds.
+- Implemented independent, deterministic `BlackLanternLightController` (two moving light pools, telegraph, enemy-only temporary attack-interval multiplier, cleanup/reset). **Not wired into live battle or cards**; provisional parameters pending art and native balance.
+- Added Godot F6 `black_lantern_road_contract_smoke.tscn` to verify resource identity, formations, buff scope and cleanup. Source committed, native run **NOT CONFIRMED**.
+- Converted the user-selected exact option-3 forest scene to local 1280×720 WebP; exact original bytes and conversion hashes documented. **Neither local bitmap nor unresolved 5-role art candidates imported into GitHub.** Existing #34–#37, D196, DS2, Fate Spread and fixed `КАРАМБА73` backup preserved.
+- Full contract and next handoff in `docs/D206_BLACK_LANTERN_ENCOUNTER_STAGING.md`. Live Act1 stays **37/45**, #38 QA-only.
+
 ## 2026-10-16 — D205 hotfix: Godot 4.7 parser type inference in lantern preview
 
 - User screenshot showed Godot 4.7.2 parse error at `black_lantern_road_light_preview.gd:121`: implicit `opacity` inference from `abs(sin(...))` failed. Fixed with explicitly typed `float`, `absf()` and typed `v`/`eased` to prevent nearby inference issues. **Native re-test still pending**; change limited to isolated dev scene, no combat behavior or card pool changes.
