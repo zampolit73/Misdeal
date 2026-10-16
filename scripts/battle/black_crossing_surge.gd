@@ -1,7 +1,7 @@
 class_name BlackCrossingSurgeController
 extends Node2D
 
-# D192: storm breaker with volume, curling foam and forward rolling motion.
+# D193: grounded patchy pier wash instead of a floating wave wall.
 # Gameplay stays encounter-local and neutral: a warned leftward push and a
 # temporary slowdown for both teams, with no damage or global AI changes.
 const FLOOR := preload("res://scripts/battle/black_crossing_floor.gd")
@@ -15,7 +15,9 @@ const WARNING_SECONDS := 1.4
 const SLOW_SECONDS := 1.6
 const PUSH_DISTANCE := 43.0
 const SLOW_MULTIPLIER := 0.70
-const WAVE_SAMPLES := 56
+const SURF_PATCH_COUNT := 7
+const PATCH_SAMPLES := 12
+const SURF_CONTACT_OFFSET_Y := 36.0
 
 var combat_units: Array[BattleUnit] = []
 var slowed_units: Array[BattleUnit] = []
@@ -137,127 +139,101 @@ func _clear_slow() -> void:
 	slowed_units.clear()
 
 
-# D192: actual breaking surf instead of a glowing horizontal line.
-# Shapes are deterministic, time-driven Godot polygons: no new art assets,
-# no UI, and no gameplay impact. Foam/body occupy visual space beyond the
-# 50px hit lane; _lane_rect() alone decides which units are affected.
-func _ripple(y: float, amplitude: float, offset: float) -> PackedVector2Array:
-	var points := PackedVector2Array()
-	for sample in range(WAVE_SAMPLES + 1):
-		var fraction := float(sample) / float(WAVE_SAMPLES)
-		var x := lerpf(FLOOR.WAVE_MIN_X, FLOOR.WAVE_MAX_X, fraction)
-		# Long asymmetric swell with smaller broken wind-driven chop.
-		var displaced := sin(x * 0.017 + offset + phase_elapsed * 2.4) * amplitude
-		displaced += sin(x * 0.047 - offset * 1.3 - phase_elapsed * 4.1) * amplitude * 0.46
-		displaced += sin(x * 0.091 + offset * 2.2 + phase_elapsed * 5.8) * amplitude * 0.16
-		points.append(Vector2(x, y + displaced))
-	return points
+# D193: shallow storm wash lives ON the pier at the miniature's foot line.
+# The D192 1000px-long opaque crest floated above the deck because the local
+# wave lane marks unit ORIGINS, while sprite soles sit another 36px down.
+# Several ragged shoreward-moving tongues replace the horizontal water wall.
+# This is VISUAL ONLY. _lane_rect(), push/slow, and safe combat floor do not move.
+func _surface_between(back: PackedVector2Array, front: PackedVector2Array) -> PackedVector2Array:
+	var shape := PackedVector2Array()
+	for point in back:
+		shape.append(point)
+	for index in range(front.size() - 1, -1, -1):
+		shape.append(front[index])
+	return shape
 
 
-func _water_between(rear_edge: PackedVector2Array, front_edge: PackedVector2Array) -> PackedVector2Array:
-	var polygon := PackedVector2Array()
-	for point in rear_edge:
-		polygon.append(point)
-	for index in range(front_edge.size() - 1, -1, -1):
-		polygon.append(front_edge[index])
-	return polygon
+func _draw_surf_patch(patch_index: int, progress: float, warning: bool) -> void:
+	# Space the partial crests irregularly; gaps reveal actual wet planks.
+	var lane_span := FLOOR.WAVE_MAX_X - FLOOR.WAVE_MIN_X
+	var patch_step := lane_span / float(SURF_PATCH_COUNT)
+	var center_x := FLOOR.WAVE_MIN_X + (float(patch_index) + 0.5) * patch_step
+	center_x += sin(float(patch_index) * 2.17) * 9.0
+	var half_width := patch_step * (0.52 + sin(float(patch_index) * 1.87) * 0.11)
+	var start_x := maxf(FLOOR.WAVE_MIN_X, center_x - half_width)
+	var end_x := minf(FLOOR.WAVE_MAX_X, center_x + half_width)
+	# Neighboring tongues arrive at slightly different moments.
+	var delay := float(patch_index % 3) * 0.075
+	var t := clampf((progress - delay) / (1.0 - delay), 0.0, 1.0)
+	var travel := t * t * (3.0 - 2.0 * t)
+	var swell := sin(t * PI)
+	var opacity := 0.55 + 0.45 * t
+	if not warning:
+		opacity = minf(clampf(t / 0.14, 0.0, 1.0), clampf((1.0 - t) / 0.27, 0.0, 1.0))
+	if opacity <= 0.001:
+		return
 
+	# Unit origins are inside the hit lane, but their visible boots are 36px
+	# below that origin. Draw the sea wash near the boots, not at head height.
+	var foot_y := current_center_y + SURF_CONTACT_OFFSET_Y
+	var front_y := foot_y - 17.0 + travel * 7.0 if warning else foot_y - 10.0 + travel * 26.0
+	front_y += sin(float(patch_index) * 1.6) * 2.0
+	var depth := 5.0 + 4.0 * t if warning else 10.0 + 10.0 * swell
+	var back := PackedVector2Array()
+	var middle := PackedVector2Array()
+	var lip := PackedVector2Array()
+	for sample in range(PATCH_SAMPLES + 1):
+		var fraction := float(sample) / float(PATCH_SAMPLES)
+		var x := lerpf(start_x, end_x, fraction)
+		var taper := pow(maxf(sin(fraction * PI), 0.0), 0.76)
+		var chop := sin(x * 0.046 + phase_elapsed * 2.7 + float(patch_index)) * 3.2
+		chop += sin(x * 0.105 - phase_elapsed * 4.4) * 1.6
+		var edge_y := front_y + chop * taper
+		lip.append(Vector2(x, edge_y))
+		back.append(Vector2(x, edge_y - depth * taper))
+		middle.append(Vector2(x, edge_y - depth * 0.37 * taper))
 
-func _draw_foam_caps(edge: PackedVector2Array, intensity: float, spraying: bool) -> void:
-	# Uneven curling tongues give the foam a recognizable broken-wave outline.
-	# Stable sample locations avoid flickering random confetti every frame.
-	for index in range(3, WAVE_SAMPLES - 3, 7):
-		var pulse := 0.5 + 0.5 * sin(float(index) * 1.37 + phase_elapsed * 5.5)
-		var curl_height := (6.0 + pulse * 7.0) * intensity
-		var left := edge[index - 2]
-		var shoulder_left := edge[index - 1]
-		var center := edge[index]
-		var shoulder_right := edge[index + 1]
-		var right := edge[index + 2]
-		var cap := PackedVector2Array([
-			left + Vector2(0.0, -2.0),
-			shoulder_left + Vector2(0.0, -curl_height * 0.66),
-			center + Vector2(0.0, -curl_height),
-			shoulder_right + Vector2(0.0, -curl_height * 0.45),
-			right + Vector2(0.0, -1.0),
-			shoulder_right + Vector2(0.0, 2.0 + 4.0 * intensity),
-			center + Vector2(0.0, 4.0 + 6.0 * intensity),
-			shoulder_left + Vector2(0.0, 2.0 + 3.0 * intensity)
+	# No opaque rectangle or 50px-tall turquoise ribbon; deck grain shows
+	# through the separate crescent-shaped pools of dark stormwater.
+	var dark_alpha := (0.17 + 0.09 * swell) * opacity
+	var lit_alpha := (0.17 + 0.10 * swell) * opacity
+	draw_colored_polygon(_surface_between(back, lip), Color(0.06, 0.17, 0.24, dark_alpha))
+	draw_colored_polygon(_surface_between(middle, lip), Color(0.28, 0.44, 0.50, lit_alpha))
+
+	# Short attached whitecaps, with non-uniform height and missing sections.
+	# They never join into one luminous ruler-straight line.
+	for sample in range(2, PATCH_SAMPLES - 2, 3):
+		var pulse := 0.5 + 0.5 * sin(float(sample + patch_index * 3) * 1.63 + phase_elapsed * 5.3)
+		var curl := (2.5 + pulse * 4.0) * (0.65 if warning else 1.0 + swell * 0.45)
+		var foam := PackedVector2Array([
+			lip[sample - 1],
+			lip[sample] + Vector2(-2.0, -curl),
+			lip[sample + 1] + Vector2(0.0, -curl * 0.34),
+			lip[sample + 2],
+			middle[sample + 1],
+			middle[sample]
 		])
-		draw_colored_polygon(cap, Color(0.76, 0.91, 0.94, 0.23 + 0.44 * intensity))
-		var scallop := PackedVector2Array([
-			left,
-			shoulder_left + Vector2(0.0, -curl_height * 0.28),
-			center + Vector2(0.0, -curl_height * 0.57),
-			shoulder_right + Vector2(0.0, -curl_height * 0.23),
-			right
-		])
-		draw_polyline(scallop, Color(0.89, 0.97, 0.97, 0.30 + 0.55 * intensity), 2.5, false)
-		if spraying:
-			var spray_height := 8.0 + pulse * 13.0
-			var spray_alpha := (0.32 + pulse * 0.42) * intensity
-			draw_circle(center + Vector2(-4.0, -curl_height - spray_height), 1.5 + pulse, Color(0.86, 0.97, 1.0, spray_alpha))
-			draw_circle(center + Vector2(8.0, -curl_height - spray_height * 0.55), 1.2 + pulse * 0.7, Color(0.77, 0.92, 0.96, spray_alpha * 0.7))
+		draw_colored_polygon(foam, Color(0.67, 0.79, 0.81, (0.29 + 0.24 * pulse) * opacity))
+		draw_line(lip[sample - 1], lip[sample] + Vector2(-2.0, -curl), Color(0.87, 0.93, 0.93, 0.44 * opacity), 1.9, false)
+		if not warning and swell > 0.25:
+			var bubble := lip[sample] + Vector2(4.0, -curl - 3.0 - pulse * 4.0)
+			draw_circle(bubble, 1.0 + pulse * 0.6, Color(0.78, 0.87, 0.89, opacity * swell * 0.44))
+	# A few broken eddies show motion without covering the scene in confetti.
+	for sample in range(3, PATCH_SAMPLES - 2, 4):
+		var wake := back[sample].lerp(middle[sample], 0.45)
+		draw_line(wake + Vector2(-9.0, 0.0), wake + Vector2(7.0, -1.7), Color(0.50, 0.66, 0.71, opacity * 0.26), 1.4, false)
 
 
 func _draw_warning() -> void:
-	# A growing dark swell approaches BEFORE impact, not an outlined AoE.
-	var t := clampf(phase_elapsed / WARNING_SECONDS, 0.0, 1.0)
-	var lift := sin(t * PI)
-	var shoreline := current_center_y - 15.0 + t * 10.0
-	var rear := _ripple(shoreline - 29.0 - lift * 3.0, 3.4, 1.6)
-	var shoulder := _ripple(shoreline - 11.0, 4.0 + lift * 1.5, 0.95)
-	var lip := _ripple(shoreline + 10.0, 5.0 + lift * 3.0, 0.3)
-	# Layered volume stays under the miniatures and gives the surge a silhouette.
-	draw_colored_polygon(_water_between(rear, lip), Color(0.035, 0.18, 0.27, 0.30 + t * 0.18))
-	draw_colored_polygon(_water_between(shoulder, lip), Color(0.10, 0.38, 0.46, 0.18 + t * 0.18))
-	draw_polyline(shoulder, Color(0.24, 0.53, 0.64, 0.24 + t * 0.20), 5.0, false)
-	draw_polyline(lip, Color(0.40, 0.71, 0.78, 0.36 + t * 0.22), 4.0, false)
-	_draw_foam_caps(lip, 0.32 + t * 0.27, false)
-	# Scattered moving wake patches inside the water instead of ruler lines.
-	var wake := _ripple(shoreline - 4.0, 4.0, 2.7)
-	for index in range(1, WAVE_SAMPLES - 4, 9):
-		var patch := PackedVector2Array()
-		for j in range(index, index + 4):
-			patch.append(wake[j])
-		draw_polyline(patch, Color(0.61, 0.84, 0.87, 0.16 + t * 0.22), 2.5, false)
+	var progress := clampf(phase_elapsed / WARNING_SECONDS, 0.0, 1.0)
+	for patch_index in range(SURF_PATCH_COUNT):
+		_draw_surf_patch(patch_index, progress, true)
 
 
 func _draw_surge() -> void:
-	var t := clampf(phase_elapsed / SLOW_SECONDS, 0.0, 1.0)
-	# The breaking lip actually travels shoreward (~65px) while the water
-	# behind it swells, catches the light, and dissipates into the planks.
-	var travel := t * t * (3.0 - 2.0 * t)
-	var crest_lift := sin(t * PI)
-	var front_y := lerpf(
-		current_center_y - FLOOR.WAVE_HALF_WIDTH - 12.0,
-		current_center_y + FLOOR.WAVE_HALF_WIDTH + 4.0,
-		travel
-	)
-	var rear := _ripple(front_y - 52.0 - crest_lift * 7.0, 4.5, 1.8)
-	var shoulder := _ripple(front_y - 29.0 - crest_lift * 6.0, 6.2, 1.25)
-	var face := _ripple(front_y - 9.0 - crest_lift * 3.0, 7.0 + crest_lift * 2.5, 0.8)
-	var lip := _ripple(front_y + crest_lift * 4.0, 8.5 + crest_lift * 3.0, 0.25)
-	# Fade in/out rather than abruptly drawing a ribbon at full opacity.
-	var fade_in := clampf(t / 0.12, 0.0, 1.0)
-	var fade_out := clampf((1.0 - t) / 0.22, 0.0, 1.0)
-	var opacity := minf(fade_in, fade_out)
-	# Three shaded surfaces read as an advancing breaker, not a debug stripe.
-	draw_colored_polygon(_water_between(rear, lip), Color(0.03, 0.16, 0.26, 0.58 * opacity))
-	draw_colored_polygon(_water_between(rear, shoulder), Color(0.05, 0.26, 0.35, 0.53 * opacity))
-	draw_colored_polygon(_water_between(shoulder, lip), Color(0.10, 0.44, 0.54, 0.51 * opacity))
-	draw_colored_polygon(_water_between(face, lip), Color(0.27, 0.65, 0.71, 0.26 * opacity))
-	draw_polyline(shoulder, Color(0.22, 0.54, 0.66, 0.48 * opacity), 6.0, false)
-	draw_polyline(face, Color(0.34, 0.71, 0.78, 0.74 * opacity), 8.0, false)
-	draw_polyline(lip, Color(0.68, 0.88, 0.91, 0.88 * opacity), 6.5, false)
-	_draw_foam_caps(lip, opacity * (0.75 + crest_lift * 0.25), true)
-	# Uneven foam strings trail the rolling crest as it loses momentum.
-	var wake := _ripple(front_y - 19.0, 4.6, 2.4)
-	for index in range(2, WAVE_SAMPLES - 4, 8):
-		var strand := PackedVector2Array()
-		for j in range(index, index + 5):
-			strand.append(wake[j])
-		draw_polyline(strand, Color(0.70, 0.88, 0.90, 0.53 * opacity), 3.3, false)
+	var progress := clampf(phase_elapsed / SLOW_SECONDS, 0.0, 1.0)
+	for patch_index in range(SURF_PATCH_COUNT):
+		_draw_surf_patch(patch_index, progress, false)
 
 
 func _draw() -> void:

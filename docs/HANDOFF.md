@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D192 wave volume and curling foam after D191 native matrix.**
+Updated: 2026-10-16 — **D193 grounded segmented surf after user D192 visual fail.**
 Repository: `zampolit73/Misdeal`, branch `main`. **GitHub is the technical source of truth, and the assistant has connected GitHub tools; inspect and edit directly without asking the user for manual patches or access.** Godot **4.7.x / GDScript**.
 
 ## READ FIRST
@@ -37,11 +37,17 @@ User's F6 screenshot **D191 / BLACK CROSSING — FUNCTIONAL PASS**: 54/54 battle
 
 **D192 (this commit):** render-only replacement in `scripts/battle/black_crossing_surge.gd`: deep shaded water body, raised forward-moving crest, asymmetric curling foam caps, uneven wake and deterministic spray. All geometry and gameplay functions above drawing are unchanged: hit lane, 3.2s wait, 1.4s warning, 43px left push, 30% slow/1.6s and clean resets. The original accepted bitmap, combat arena, sprites, floor bounds and 36-card live pool are untouched. **Native D192 visual QA still pending**.
 
+## D193 new screenshot and correction
+
+User's native F6 D192 screenshot (2026-10-16) shows huge flat cyan water wall stretching from x140 to x1145 at screen y320-380, hovering over the ocean-side edge of the board and above the knight's feet: **visually rejected**. This is not evidence of correct rolling surf. D191 native functional 54/54 remains valid; route victory→reward→table still not confirmed.
+
+D193 source-only patch to `scripts/battle/black_crossing_surge.gd`: render at the visible sole depth (`current_center_y + 36` in UnitsLayer space) rather than unit origins, draw seven staggered tapering pools of desaturated stormwater separated by gaps, with interrupted gray-white foam tongues, very few bubbles, and low opacity so plank wood grain stays visible. No floating 1000px teal band. The moving wash advances only ~26px along the floor. Gameplay controller code including wave hit test, pushes, slow duration, safe floor, encounter and original art bytes remain **unchanged**. **Native D193 visuals pending**.
+
 ## NEXT TASK — start here in the new chat
 
-1. User does `git pull` and **F6 `res://scenes/dev/black_crossing_playtest.tscn`** to review only the newly implemented D192 advancing breaker, foamy crest and sprite foot contact. If victory, verify **reward → Fate Spread/table**. Ask for screenshot/acceptance; user explicitly expects assistant to work directly through GitHub, never give manual patch steps.
+1. User does `git pull` and **F6 `res://scenes/dev/black_crossing_playtest.tscn`** to review only the new D193 grounded fragmented wash with boot-level contact and no floating cyan wall. If victory, verify **reward → Fate Spread/table**. Ask for screenshot/acceptance; user explicitly expects assistant to work directly through GitHub, never give manual patch steps.
 2. **D191 54/54 native matrix is confirmed for unchanged gameplay**. D192 only draws visuals, so do not require a repeat of all 54 cases unless errors or altered mechanics demand it.
 3. On user's visual acceptance and confirmation of the real reward route, release `black_crossing` into normal `ACT1_CARD_IDS` as **#37/45**, update all old 36-card guards and add/execute an ordinary-deal release smoke. Preserve D151–D153 and global scaling.
 4. Update `PROJECT_STATE`, `ROADMAP`, `CHANGELOG` and this `HANDOFF`; decisions only for actual new binding design rules. Commit directly to GitHub.
 
-**D192 session:** user supplied native D191 54/54 PASS and still disliked thin-line surf. Assistant directly edited source and docs via connected GitHub. No Godot runtime in assistant execution environment, so D192 rendering must be judged in the user's Godot F6. Live pool still 36/45; release #37 awaits D192 visual approval and reward→table confirmation.
+**D193 session:** user supplied D192 real-battle screenshot. The large suspended banner is unapproved. Assistant independently corrected drawing coordinates and appearance via connected GitHub, preserved gameplay and updated active docs. No native Godot in assistant environment. D193 visual approval and real reward→table check are pending; Act1 remains 36/45.
