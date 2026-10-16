@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D194 breaking storm wave after D193 visual rejection.**
+Updated: 2026-10-16 — **D195 organic foam and phase polish after D194 screenshot.**
 Repository: `zampolit73/Misdeal`, branch `main`. **GitHub is the technical source of truth, and the assistant has connected GitHub tools; inspect and edit directly without asking the user for manual patches or access.** Godot **4.7.x / GDScript**.
 
 ## READ FIRST
@@ -49,11 +49,17 @@ User supplied real native Godot screenshot of D193: the wave was now barely visi
 
 **D194 committed source update:** `scripts/battle/black_crossing_surge.gd` only redraws surf using **three broad overlapping organically tapered breakers** with raised dark volume, rising broken foam crowns, two-tone shading, spray and accelerating southward/down-plank water wash (up to 38px). Warning has smaller/dimmer rising crests, impact full breaking wave. All visual curves local to UnitsLayer (boot y = origin +36). The hitbox still uses the unchanged 50px horizontal bands at y284/y330; 43px left push, 30% slowdown for 1.6 seconds, timers and cleanup are unchanged. Original user-approved pixel battle backdrop/card/unit atlases untouched. **D194 is source-committed but not tested or approved in native Godot.** Never mislabel it PASS before user checks.
 
+## D195 — native D194 feedback and refinement
+
+User's **native D194 screenshot** shows large raised wave body now visibly present; user said **«уже лучше, но можно сделать еще профессиональнее»**. The remaining prominent defect is repeated evenly spaced sharp icy/white **triangles** on every crest. This is feedback, **not D194 approval**.
+
+**D195 visual-only code change:** keep 3 broad storm breakers; replace D194 seven-vertex cap triangles with smooth round irregular foam clusters and significantly denser (72 point) crest envelope, layered dark stormwater, mild asymmetric wave chop, discrete spray and visible collapse/wash phase. Retain y+36 foot anchoring. D195 touches only `_draw*` helpers/render constants in `scripts/battle/black_crossing_surge.gd`. Preserve original bitmap and sprites. No change to wave hit rectangles, safe floor, AI, 43px push, 30% slow for 1.6s, warning/rest delays. **D191 native 54/54 gameplay matrix PASS remains the latest valid functional evidence. D195 visual F6 not yet checked.** The real reward→Fate Spread/table transition has not been confirmed for #37; live deck stays 36/45.
+
 ## NEXT TASK — start here in the new chat
 
-1. User does `git pull` and **F6 `res://scenes/dev/black_crossing_playtest.tscn`** to review only the new D194 breaking storm wave with curved elevated foamy crests, no rectangular blue wall or near-invisible scratches. If victory, verify **reward → Fate Spread/table**. Ask for screenshot/acceptance; user explicitly expects assistant to work directly through GitHub, never give manual patch steps.
+1. User does `git pull` and **F6 `res://scenes/dev/black_crossing_playtest.tscn`** to review only the D195 smoother crest with rounded asymmetric foam and fading runoff, avoiding D194 triangle teeth. If victory, verify **reward → Fate Spread/table**. Ask for screenshot/acceptance; user explicitly expects assistant to work directly through GitHub, never give manual patch steps.
 2. **D191 54/54 native matrix is confirmed for unchanged gameplay**. D192 only draws visuals, so do not require a repeat of all 54 cases unless errors or altered mechanics demand it.
 3. On user's visual acceptance and confirmation of the real reward route, release `black_crossing` into normal `ACT1_CARD_IDS` as **#37/45**, update all old 36-card guards and add/execute an ordinary-deal release smoke. Preserve D151–D153 and global scaling.
 4. Update `PROJECT_STATE`, `ROADMAP`, `CHANGELOG` and this `HANDOFF`; decisions only for actual new binding design rules. Commit directly to GitHub.
 
-**D194 session:** user showed D193 real-battle screenshot and explicitly rejected negligible scratch effects. Assistant rebuilt visual rendering directly in GitHub and updated canonical docs. No native Godot in assistant environment; D194 visual approval and reward→table route still pending, while D191 54/54 combat is already confirmed. Live Act1 remains 36/45.
+**D195 session:** user showed D194 Godot screenshot and said the larger wave is better but clearly artificial. Assistant fixed repeated triangular foam, introduced rounded broken crests and progression from swell to wash-out via connected GitHub; code/docs in main. Native Godot execution unavailable here: D195 must be visually checked by user. D191 54/54 combat still valid, card #37 QA-only 36/45 until visual and route gates.

@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D195: Organic storm foam and breaker decay
+
+- User native D194 Godot screenshot: wave size is an improvement, but evenly spaced light-blue triangular peaks look artificial; requested a professional animation pass.
+- Rebuilt **render-only** foam from continuous asymmetric wave contours and three soft rounded irregular clusters per breaker. Denser 72-sample geometry, multiple flowing frequencies, quieter cold-blue tones, foam flecks, and visible wash/recede phase replace repeated polygon teeth.
+- No changes to storm art, character animations, encounter balance, floor, wave hit lanes, 43px push, 30%/1.6s slow, or battle results. D191 **native 54/54** remains valid; D195 visual F6 and real reward→table route still require user confirmation, so live Act1 stays 36/45.
+
 ## 2026-10-16 — D194: Replace rejected spray scratches with true rolling breaker silhouette
 
 - User D193 Godot screenshot and feedback: prior fragmented foam looked like tiny pale scratches on the deck despite the massive storm; not approved. D192 long turquoise banner was also rejected.
