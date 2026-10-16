@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-16 (D205 forest arena option 3 selected; five atlas candidates staged locally; isolated lanternlight F6 preview committed). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-16 (D206 five-role encounter + isolated light controller and resource smoke staged; native F6 pending). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,15 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D205 CURRENT — Forest art selection, sprite QA staging and light preview
+## D206 CURRENT — Five original enemy data resources and local light logic, QA-only
+
+**Added to main but NOT LIVE:** 5 new `resources/units/{extinguished_guide,lantern_bearer,road_sentinel,oil_acolyte,lantern_archer}.tres`; a standalone `resources/encounters/black_lantern_road.tres` with two separate five-enemy formations; `scripts/battle/black_lantern_light.gd` with deterministic alternating pools, candidate 1.4s warning/3.1s active/1.8s rest and +16% attack speed for **lit enemies only**, restoring intervals when light ends or battle stops. This **is not wired into actual battle/RunState**. Numbers await native balance.
+
+**Added isolated native data smoke (F6 not run):** `res://scenes/dev/black_lantern_road_contract_smoke.tscn` validates all 5 original UnitData roles, both safe 5-unit formations and isolated enemy-only light/reset behavior. Prior D205 visual light preview F6 also remains unconfirmed after the parser hotfix.
+
+**Exact approved forest source prepared locally only:** third forest arena image from D205 resized to 1280×720 WebP in conversation container. The chosen bitmap is **not** committed to GitHub nor displayed by the game. Five art candidate sheets still need clean source frames and approved role-accurate weapons (Sentinel spear, not axe). No released cards, D196 waves, DS2 or checkpoint branch changed. Live pool **37/45**, #38 remains QA-only. D206 technical contract, art hashes and next gates: `docs/D206_BLACK_LANTERN_ENCOUNTER_STAGING.md`.
+
+## D205 PREVIOUS — Forest art selection, sprite QA staging and light preview
 
 **Selected arena art (user choice, NOT imported):** after selecting D204 geography A (Black Forest Bend), the user chose **option 3** of three new original forest images: `лунная_дорога_через_туманный_лес.png`, 1672×941. This approved *exact source* is a conversation artifact, not yet 1280×720 GitHub game art and not Godot QA. Preserve separate D200 selected card illustration.
 
