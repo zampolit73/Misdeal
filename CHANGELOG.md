@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D202: Freeze KARAMBA73 full GitHub-tracked project checkpoint
+
+- User requested an explicit whole-project/context restore point tied to the recovery word **КАРАМБА73**.
+- Frozen snapshot branch: `backups/KARAMBA73-2026-10-16`, including **all tracked** game code, scenes, Resources, `.webp.b64` art, `project.godot`, current docs and full Git commit ancestry. Source game mechanics and artwork unchanged by D202; only manifest/handoff/status/decision/index documentation added.
+- Created `docs/checkpoints/KARAMBA73_2026-10-16.md` with the exact saved milestone (live 37/45, #38 QA-only, D200 art accepted, D201 arena approval pending) and **non-destructive** future restore steps: safety branch from then-current `main`, new commit using saved Git tree, no force push.
+- Pending D201 concept art images produced in chat are **not part of the tracked game state**; they are not silently substituted as approved arena assets. User's untracked local files/caches likewise are not included in a GitHub snapshot.
+
 ## 2026-10-16 — D201: Record native card-art approval and start arena art selection
 
 - User replied «вск ок» after requested native F6 preview of the exact D200 chosen third Black Lantern Road 448×274 card image. Mark **user-reported native card-art approval**; no independent Godot screenshot/log received.

@@ -3,6 +3,10 @@ Updated: 2026-10-16.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D202 — Fixed disaster-recovery bookmark КАРАМБА73
+
+Date: 2026-10-16. The user explicitly requested a **full-project/context backup** and a recovery trigger **КАРАМБА73**. Capture the GitHub-tracked `main` snapshot after adding a short manifest at `docs/checkpoints/KARAMBA73_2026-10-16.md`; keep its backup branch `backups/KARAMBA73-2026-10-16` unchanged. A later user message containing the exact recovery key explicitly instructs the assistant to **restore the saved tree as the current game version**, while preserving newer history via a fresh `backups/pre-KARAMBA73-restore-...` branch and using a new non-force forward Git commit. Do not use `git reset --hard` or force-update `main`. Uncommitted local files and unselected D201 concept PNGs are outside the tracked-project snapshot. Card #38 remains QA-only, Act1 37/45. Full manifest controls the procedure.
+
 ## D201 — Native D200 card art approved; arena selection requires separate render
 
 Date: 2026-10-16. In response to the Godot F6 QA request for the exact user-selected THIRD 448×274 `black_lantern_road` card illustration, user replied **«вск ок»**. Record **user-reported native card-art approval**; do not relabel a code-only check as an independently captured Godot run. D201 must design a **separate, actor-free, full-width 1280×720 battle arena** with unobstructed road combat surface, 2–3 actual visual options before importing one. Existing D200 card artwork and five original skeleton enemy design are locked. Card #38 is still QA-only and Act1 live is 37/45.

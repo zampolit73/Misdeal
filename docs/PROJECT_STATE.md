@@ -2,6 +2,10 @@
 
 Updated: 2026-10-16 (D200 selected third card illustration F6 user-confirmed; arena concepts next). Source of truth: `zampolit73/Misdeal` / `main`.
 
+## Safety snapshot: КАРАМБА73
+
+User requested a 2026-10-16 fixed restore point for the **entire GitHub-tracked Misdeal project**, current game and development context. Frozen branch: `backups/KARAMBA73-2026-10-16`; exact recovery process and snapshot scope: `docs/checkpoints/KARAMBA73_2026-10-16.md`. The saved milestone is **37/45 released cards**, #38 QA-only, D200 third card artwork user-native-approved, D201 empty battle-arena concepts awaiting a choice. Saying **КАРАМБА73** later authorizes restoring this saved Git tree to `main` while first preserving the then-current `main` on a separate safety branch. Tracked GitHub files only; not unknown local Godot/untracked files.
+
 ## Live playable baseline
 
 Godot **4.7.x / GDScript** dark-fantasy card-driven roguelike: evil Wizard hosts a cursed 12-resolution Fate Spread; the central Bone Warden is sealed as **XIII**. Knight / Ranger / Mage protagonists, conditional companion recruitment and loss (solo, duo, trio), decision cards, prepared tactical autobattles, rewards and return to the table all exist. DS2 / Fate Spread Variant C is the accepted UI. Preserve existing party-size compensation and Wizard Debt/Mark logic.

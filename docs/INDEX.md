@@ -10,6 +10,10 @@ Updated 2026-10-16 — D200 third card-art choice installed QA-only, native F6 p
 5. [Active Decisions](DECISIONS.md) — binding summarized requirements and links to original decisions.
 6. [Canonical Handoff](HANDOFF.md) — only one active next-chat continuation pointer.
 
+## Fixed project backups
+
+- [КАРАМБА73 — full GitHub-tracked project checkpoint and safe restoration procedure](checkpoints/KARAMBA73_2026-10-16.md) — restore trigger, exact project status and immutable-branch policy.
+
 ## Specialist references
 
 - [Design System](DESIGN_SYSTEM.md) — DS2/Variant C and historic UI patterns.

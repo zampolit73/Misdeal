@@ -4,6 +4,10 @@ Updated: 2026-10-16 — **D200 third card art F6 user-confirmed PASS; D201 origi
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
+## Frozen safety checkpoint — КАРАМБА73
+
+**2026-10-16 user-requested full tracked-project snapshot:** GitHub fixed branch `backups/KARAMBA73-2026-10-16` and manifest `docs/checkpoints/KARAMBA73_2026-10-16.md`. When the user sends the exact code word **КАРАМБА73**, follow that manifest's non-destructive recovery procedure: first preserve current `main` on a separate pre-restore branch, then commit the backup's exact **tree** on top of current `main` and fast-forward the branch. No force push, no overwriting the frozen checkpoint, no assumptions about untracked local files. This is a restore command, not an invitation to discuss options. The checkpoint saves **Act1 37/45**, #38 QA-only and D201 arena choice pending.
+
 ## Current exact milestone — Act 1 37/45 LIVE
 
 RunState.ACT1_CARD_IDS includes 37 unique cards:
