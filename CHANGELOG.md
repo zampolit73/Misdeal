@@ -2,6 +2,14 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D199: Approve Black Lantern Road five-skeleton concept for card #38
+
+- User selected **gameplay proposal 3**, «Дорога чёрных фонарей» (Tier1 combat), then first among 3 moonlit forest-road image options. Rejected artificial detail noise and required Act1's skeleton-first enemy theme and **more than 3** actual enemy combatants.
+- User then approved a cleaner road-scene revision and requested a **roughly 2×-height, truly distinct giant Lantern skeleton**. Last generated encounter/character sheet features **5 new skeletal roles** (large Погасший проводник; Носильщик фонаря; Страж дороги; Масляный служка; Стрелок фонарей). User approved with «последняя концепция подходит».
+- Locked these choices in `docs/DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md`, `docs/DECISIONS.md` and the active roadmap/handoff. Moving, telegraphed lanternlight zones are the unique planned local mechanic; timings/damage stats still not implemented or balanced.
+- **Reference sheet contains labels, therefore is NOT an approved runtime card bitmap or animation atlas.** Next production: clean standalone text-free 448×274 scene, walkable arena and five 25-pose original enemy sprites, with explicit art and Godot QA gates.
+- **No runtime code or images modified by this documentation phase.** Live Act1 stays **37/45**, D198 released; card #38 remains concept-approved but not live.
+
 ## 2026-10-16 — D198 closeout: user-native card #37 release PASS; next D199
 
 - After the requested Godot F6 full-pool `black_crossing_release_smoke.tscn`, the user replied **«все ок»**. Record **user-reported native release PASS** (not an independent engine log/screenshot). D197 Battle→Reward→Table route was already user-confirmed.

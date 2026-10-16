@@ -1,5 +1,10 @@
 # Misdeal — Active Visual Asset Registry
 
+## D199 — Road of Black Lanterns concept direction ACCEPTED; no runtime assets yet
+
+User picked first of three moonlit lantern-road scene concepts for card #38, asked to remove AI detail noise, and required more than three skeletal enemies and a main Lantern Guide ~2× taller/distinct from others. Latest five-role character/encounter sheet was explicitly approved («последняя концепция подходит»). Reference image ID `6fadac31-7e69-40c7-878f-1cb7602bbd75`, filename `a_wide_detailed_pixel_art_concept_game_design_lay.png` from conversation, described fully in `docs/DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md`. That collage has **printed titles and panel UI**, so it is **not** an in-game 448×274 card illustration, 1280×720 arena or 25-frame animated sheet. Required clean art/arena/five atlases are still NOT created or approved. Live 37/45; do not put #38 into the normal deck.
+
+
 ## D182–D183 — Black Crossing card artwork (native F6 approved)
 
 Chosen **third** image: diagonal ruined pier, ferryman above right, two drowned undead low left. `assets/pixel/card_unification_v1/run/black_crossing_approved_v1.webp.b64` (448×274 WebP from selected image; remote bytes verified). F6: `res://scenes/dev/black_crossing_card_preview.tscn` — user screenshot and explicit «утверждено», **PASS**. Original approved Ferryman/Drowned sprite atlases are shipped and user F6-approved (D186); the user-approved final stormy battle arena is now `assets/pixel/battle/arenas/black_crossing_storm_pier_approved_v1.webp.b64` (1280×720; native F6 accepted by user, D187). Live Act1 is **37/45** following D198 Black Crossing release; D196 storm-wave VFX is held as the current version. Native D198 random-deal release smoke was user-confirmed PASS; D196 surf remains the accepted-for-now visual baseline.

@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-16 (D198 native release QA user-confirmed, D199 next). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-16 (D199 card #38 selected; latest concept sheet approved, production pending). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Live playable baseline
 
@@ -28,7 +28,7 @@ There are **eight remaining planned cards** to reach 45. Boss XIII is NOT in the
 
 ## Next action
 
-**D199 / next card #38:** propose 2–3 distinct gameplay concepts (combat or event, no unilateral choice). Let the user select the next card. If combat, require completely new opponent types and localized mechanic (D143). After concept approval, show 2–3 *actually rendered* scene-first visual variants (D167/D168) before importing the user's choice. Do not alter D196 waves, D151–D153, accepted #37 art, 12+XIII Fate Spread or party-size balance. No outstanding D198 Godot step.
+**D199 card #38 concept and latest character design explicitly user-approved (NOT LIVE):** `black_lantern_road` / «Дорога чёрных фонарей», Tier1 combat. User chose **third gameplay option**, then **first** of 3 generated moonlit forest-road images, requested lower AI visual noise, Act1 skeleton consistency and **more than 3 enemies**. After a cleaner scene and 2×-height giant Lantern skeleton iteration, the user approved the **last five-role concept sheet** («последняя концепция подходит»). Exactly **5 proposed distinct skeletal enemies**: Погасший проводник (large ~2× height, heavy lantern yoke, cloak/chains), Носильщик фонаря, Страж дороги, Масляный служка, Стрелок фонарей. Encounter-local, telegraphed shifting lanternlight zones temporarily empower undead; numeric values/balance pending. **This final sheet is NOT a text-free card illustration, arena background or combat animation atlas.** See `docs/DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md` for reference ID and production contract. **Next: clean original 448×274 text-free card scene**, then original 1280×720 walkable arena and five animated units; keep new card outside normal pool until art and native QA/release. Live Act1 remains **37/45**. Preserve D196 waves, D151–D153, #37 art, 12+XIII and party scaling.
 
 Binding rules: D143 genuinely new enemies and encounter mechanic for each new combat card; D167 credible scene-first dark-fantasy art; D168 show 2–3 actually rendered variants *before* replacing card art. Preserve D151–D153, accepted DS2 and original user-selected sources.
 

@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D198 native release QA user-confirmed PASS; next D199/card #38**.
+Updated: 2026-10-16 — **D199 selected card #38, first road scene and final giant-five-skeleton concept accepted, production next**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -29,11 +29,22 @@ The fate spread has **12 resolutions** then only sealed Bone Warden **XIII**. Ei
 
 **No D198 tasks remain**; do not reopen #37, its asset selection, waves or balance unless the user identifies a new problem.
 
-## Exact next action — D199 / Act 1 card #38
+## D199 — approved choice for card #38 (selected, NOT implemented)
 
-1. Present **2–3 genuinely different new card gameplay concepts** that suit Misdeal's cursed tabletop, dark fantasy and tactical loop; clarify their risk/reward and whether combat or event. User makes the selection — do not decide the type or fundamental design unilaterally.
-2. For a fight-bearing card D143 requires **entirely new enemy identities/sprites** AND a localized new combat mechanic. Do not reuse the D151–D153 or drowned roster. Preserve solo/duo/trio and accepted systems.
-3. After concept selection, show **2–3 actually rendered scene-led card art alternatives** before integrating the specific user-approved image (D167/D168). Use approved DS2 color/graphic baseline; avoid obvious AI repetition, micro-detail and showcase-of-sprites card compositions.
-4. Develop focused data-driven Godot `.gd`/`.tscn`/`.tres` via GitHub. Perform source checks, ask user only for necessary Godot F6; for new combats include a meaningful matrix, real reward route and separate normal-deal release QA. Update `PROJECT_STATE`, `ROADMAP`, `DECISIONS` for new decisions, `CHANGELOG` and this `HANDOFF`, commit changes directly.
+After several generated scene alternatives, user **selected gameplay option 3** («Дорога чёрных фонарей») and **scene art option 1** (moonlit muddy forest road, warm hanging lanterns, barren trees, distant gothic ruins). User required less generic AI-detail noise, Act1 skeleton-driven enemies, **more than three opponents**, then requested the main skeleton **2× taller** and materially more distinctive than his escorts. The assistant rendered a final character/encounter **concept sheet** with five unique skeletal archetypes, a giant draped lantern Guide carrying chained lanterns and a road formation. The latest user message explicitly says **«последняя концепция подходит»**. Treat this as approval of the final character design and theme.
 
-History: `docs/D188_BLACK_CROSSING_ENCOUNTER.md`, `docs/DECISIONS.md`, `CHANGELOG.md`, D182–D198 Git commits. New chat does not need the prior conversation.
+**Five distinct roles, target roster 5 enemies** (one of each, two authored formations): `extinguished_guide` (Погасший проводник, giant ~2×), `lantern_bearer` (Носильщик фонаря), `road_sentinel` (Страж дороги), `oil_acolyte` (Масляный служка), `lantern_archer` (Стрелок фонарей). All are new skeletal enemies, not recolored D151–D153 or drowned units. Planned local combat mechanic: **two telegraphed moving lanternlight pools** temporarily buff enemies within their light; numbers must be designed/balanced after existing code inspection. No new global accuracy system, no D188 wash lane, no D152 chemical damage puddle or D153 tether copy.
+
+**Exact reference to selected last concept sheet**: generated image ID `6fadac31-7e69-40c7-878f-1cb7602bbd75`, conversation upload filename `a_wide_detailed_pixel_art_concept_game_design_lay.png`, uploaded file ID `file_00000000041c81f7bae21d0c53926e17`. Last sheet has baked Russian text and panels: **CONCEPT REFERENCE ONLY**, not a production card bitmap or playable sprite atlas. Previous first selected standalone road scene and user-directed cleaner + 2× giant revisions should guide the **production, scene-first illustration**. Preserve this exact design in production rather than accidentally substituting another variant (same problem that arose with old D182 art).
+
+**New committed specification**: `docs/DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md` and binding D199 record in `docs/DECISIONS.md`.
+
+## NEXT TASK — begin production, not another concept vote
+
+1. Show one clean, **text-free standalone scene-led 448×274 card artwork candidate** faithful to approved moonlit-road scene and giant distinct Guide with 4 skeleton escorts; reduce detail noise and repeated posts. The user must visually approve the actual production image before putting it in `assets/pixel/card_unification_v1/run/`. The labelled concept sheet does **not** qualify.
+2. Produce a **separate** 1280×720 battle arena with safe broad middle road and props only at sides/depth; user review in Godot before actual release.
+3. Produce five genuinely distinct **full animation atlases** (idle/walk/attack/hit/death, if D153/D188 grid reused, 25 frames per role). Giant must remain double-height at combat scale while sharing a grounded boot line; do not crop or fake sprites from static sheet. After art review, implement `RunCardData`, `EncounterData`, five `UnitData`, encounter-local light logic, solo/duo/trio matrices (54 cases candidate), and Battle→Reward→Table.
+4. Stage #38 as QA-only, NOT `ACT1_CARD_IDS`. Release only after original art, 54-case/functional checks, real reward path and full-pool random-deal smoke. Continue Act1 from **37/45**, no new cards live yet.
+5. Keep D196 surf and existing #34–#37 code/DS2/Fate Spread 12+XIII unchanged. Work through connected GitHub and update state, changelog, decisions/roadmap as needed.
+
+Historical details: `docs/D188_BLACK_CROSSING_ENCOUNTER.md`, `docs/DECISIONS.md`, `CHANGELOG.md`, Git history. New chat needs only mandatory start files plus D199 spec.
