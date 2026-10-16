@@ -21,8 +21,8 @@ func _ready() -> void:
 	if CARD.card_id != "black_crossing" or CARD.resolution_type != "combat":
 		_error("D182 candidate RunCardData is invalid.")
 		return
-	if RunState.ACT1_CARD_IDS.size() != 36 or RunState.ACT1_CARD_IDS.has("black_crossing"):
-		_error("D182 must remain outside the 36-card live pool.")
+	if RunState.ACT1_CARD_IDS.size() != 37 or not RunState.ACT1_CARD_IDS.has("black_crossing"):
+		_error("D198 Black Crossing must now be in the 37-card live pool.")
 		return
 	if RunState.CARD_PATHS.get("black_crossing", "") != "res://resources/cards/black_crossing.tres":
 		_error("D188 QA-only card resource mapping is missing.")
@@ -41,7 +41,7 @@ func _ready() -> void:
 	add_child(illustration)
 	var description := _label(CARD.card_text, Vector2(235, 510), Vector2(810, 70), 18)
 	description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var status := _label("Композиция 3 • 448×274 • будущая карта №37", Vector2(155, 608), Vector2(970, 54), 18)
+	var status := _label("Композиция 3 • 448×274 • выпущенная карта №37 (37/45)", Vector2(155, 608), Vector2(970, 54), 18)
 	status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	status.add_theme_color_override("font_color", Color(0.72, 0.83, 0.75))
 

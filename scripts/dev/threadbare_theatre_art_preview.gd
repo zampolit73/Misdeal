@@ -43,7 +43,7 @@ func _ready() -> void:
 		add_child(figure)
 		figures.append(figure)
 	if not problems.is_empty():
-		caption_label.text = "D153 / АНИМАЦИИ ЕЩЁ НЕ ГОТОВЫ\n" + "\n".join(problems) + "\nD153 входит в колоду (36/45); исправь отсутствующие кадры."
+		caption_label.text = "D153 / АНИМАЦИИ ЕЩЁ НЕ ГОТОВЫ\n" + "\n".join(problems) + "\nD153 остаётся в колоде (37/45); исправь отсутствующие кадры."
 		caption_label.add_theme_color_override("font_color", Color(0.98, 0.58, 0.44))
 		set_process(false)
 		return

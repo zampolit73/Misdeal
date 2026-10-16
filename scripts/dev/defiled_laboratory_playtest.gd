@@ -5,7 +5,7 @@ const ANIMATIONS := preload("res://scripts/battle/unit_animation_library.gd")
 
 func _ready() -> void:
 	if not RunState.ACT1_CARD_IDS.has("defiled_laboratory"):
-		_show_blocker("D152 должна быть в обычной колоде Act 1 (теперь 36/45).")
+		_show_blocker("D152 должна быть в обычной колоде Act 1 (теперь 37/45).")
 		return
 	for role in ["plague_alchemist", "unstable_homunculus"]:
 		if ANIMATIONS.get_frames(role) == null:

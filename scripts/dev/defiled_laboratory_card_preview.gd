@@ -1,7 +1,7 @@
 extends Control
 
 # D152 original card-art preview and one-click real-battle QA.
-# Released D152 remains in the normal Act1 pool, now 36 cards with D153.
+# Released D152 remains in the normal Act1 pool, now 37 cards with D153 and D198.
 const ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const CARD_ID := "defiled_laboratory"
 const EXPECTED_SIZE := Vector2i(448, 274)
