@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-16 (D205 third forest art selected; sprite concepts statically staged; light F6 preview in GitHub). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-16 (D206 five-role QA-only encounter, local light controller and F6 resource smoke staged). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -18,11 +18,13 @@ Updated: 2026-10-16 (D205 third forest art selected; sprite concepts statically 
 2. [x] **D200:** exact third card illustration installed QA-only, user-native art review previously reported OK. Keep it unchanged.
 3. [x] **D204 → D205 arena selection:** user chose geography **A dead forest bend** and then **third of three finished forest backdrops**, exact source `лунная_дорога_через_туманный_лес.png` (1672×941); image is conversation-only, not yet Godot scene or GitHub assets.
 4. [x] **D205 tech staging:** convert five previously generated 5×5 source concept atlases into 6×5 96px **review-only** candidates (25 nonempty unique frames per role). Edge-cropped source poses and Sentinel spear/axe mismatch **BLOCK art sign-off**; never enable them as live animations. Stager and QC spec documented.
-5. [ ] **D205 native light-cue F6:** run `res://scenes/dev/black_lantern_road_light_preview.tscn`, verify clear moving circles / warning / five enemy proxies and pause. It is explicitly not battle code.
-6. [ ] Import **exact selected** empty forest artwork into a 1280×720 QA-only arena and native-check ground/contact/contrast (requires proper image-byte GitHub upload; do not quietly repaint).
-7. [ ] Finish/correct five genuinely distinct skeletal 25-frame atlases to the approved silhouettes; native animation gallery and sprite F6.
-8. [ ] QA-only encounter resources, two distinct five-enemy formations, encounter-local light buff, 54-case solo/duo/trio combat matrix, real battle→reward→table, then full-pool smoke. Only after approval release #38 to **38/45**.
-9. [ ] Finish remaining seven cards without rewriting existing D151–D153 or D196 effects.
+5. [x] **D206 QA-only encounter and scoped effect source:** five unique UnitData, 2 five-enemy formations and isolated +16% enemy-only travelling-lantern buff/reset logic; *not wired into a playable battle, no native QA yet*. See `docs/D206_BLACK_LANTERN_ENCOUNTER_STAGING.md`.
+6. [ ] **D206 Godot data/light contract smoke:** F6 `res://scenes/dev/black_lantern_road_contract_smoke.tscn`, plus inspect original D205 preview if the parser hotfix has not been re-tested.
+7. [ ] **D205 native light-cue F6:** run `res://scenes/dev/black_lantern_road_light_preview.tscn`, verify clear moving circles / warning / five enemy proxies and pause. It is explicitly not battle code.
+8. [ ] Import **exact selected** empty forest artwork into a 1280×720 QA-only arena and native-check ground/contact/contrast (requires proper image-byte GitHub upload; do not quietly repaint).
+9. [ ] Finish/correct five genuinely distinct skeletal 25-frame atlases to the approved silhouettes; native animation gallery and sprite F6.
+10. [ ] **Activate the staged encounter locally** only after art QA: wire #38 light into battle, then 54-case solo/duo/trio combat matrix, real battle→reward→table, and full-pool smoke. Only after approval release #38 to **38/45**.
+11. [ ] Finish remaining seven cards without rewriting existing D151–D153 or D196 effects.
 
 ## Constraints
 
