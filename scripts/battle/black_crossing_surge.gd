@@ -139,7 +139,11 @@ func _clear_slow() -> void:
 	slowed_units.clear()
 
 
-# D195 — ORGANIC BREAKING SURF
+# D196 — ADVANCING STORM SURF (render-only)
+# The D195 organic whitewater looked static because the wave advanced only
+# 37px over 1.6s. Warning now approaches from farther seaward and hands off
+# to a 94px forward-moving breaker. After impact, runoff continues toward
+# the pier edge. ALL hit areas, push and slowdown remain unchanged.
 # D194's repeated seven-point cap polygons were rendered as identical white
 # triangles. A wave is one continuous turbulent mass: broad asymmetric swell,
 # winding shade, rounded scattered whitewater, short streaks of retreating
@@ -213,8 +217,13 @@ func _draw_breaker(swell_index: int, progress: float, telegraph: bool) -> void:
 	var left_x := maxf(FLOOR.WAVE_MIN_X, center_x - span)
 	var right_x := minf(FLOOR.WAVE_MAX_X, center_x + span)
 	var foot_y := current_center_y + SURF_CONTACT_OFFSET_Y
-	var height := 12.0 + 8.0 * t if telegraph else 15.0 + 40.0 * rise
-	var push_forward := 9.0 * roll if telegraph else 37.0 * roll
+	var height := 13.0 + 9.0 * t if telegraph else 18.0 + 46.0 * rise
+	# Warning approaches from the sea; impact starts EXACTLY where warning
+	# ended, so the front cannot jump backwards at phase transition.
+	# The impact face travels 94px along the pier (was only 37px in D195).
+	var advance_start := -91.0 if telegraph else -62.0
+	var advance_distance := 29.0 if telegraph else 94.0
+	var push_forward := advance_start + advance_distance * roll
 
 	var crest := PackedVector2Array()
 	var shoulder := PackedVector2Array()
@@ -247,20 +256,37 @@ func _draw_breaker(swell_index: int, progress: float, telegraph: bool) -> void:
 		var last := mini(first + 12 + (swell_index + cluster * 2) % 8, BREAKER_SAMPLES - 4)
 		_draw_whitewater(crest, shoulder, first, last, foam_rise, float(swell_index * 3 + cluster) * 1.9)
 
-	# The surge has an unmistakable breakdown/recede phase, not a held crest.
+	# Past the breaking point a SECOND, lower layer of runoff travels
+	# beyond the collapsing front. It tapers at both ends and stays above the
+	# broken foreground boards; it is strictly visual, not an extra hit zone.
 	if not telegraph:
-		var collapse := clampf((t - 0.36) / 0.38, 0.0, 1.0)
+		var collapse := clampf((t - 0.33) / 0.40, 0.0, 1.0)
 		var wash_strength := visibility * collapse
-		for segment in range(5, BREAKER_SAMPLES - 7, 9):
-			var start_point := wash[segment]
-			var mid_point := wash[segment + 3]
-			var end_point := wash[segment + 6]
-			var streak := PackedVector2Array([
-				start_point + Vector2(-8.0, 2.0),
-				mid_point + Vector2(0.0, 4.0 + collapse * 7.0),
-				end_point + Vector2(6.0, -1.0)
-			])
-			draw_polyline(streak, Color(0.65, 0.81, 0.84, wash_strength * 0.47), 2.0, false)
+		if collapse > 0.0:
+			var runoff_back := PackedVector2Array()
+			var runoff_front := PackedVector2Array()
+			var max_deck_y := FLOOR.COMBAT_BOUNDS.end.y + SURF_CONTACT_OFFSET_Y - 5.0
+			for sample in range(BREAKER_SAMPLES + 1):
+				var fraction := float(sample) / float(BREAKER_SAMPLES)
+				var taper := pow(maxf(sin(fraction * PI), 0.0), 0.85)
+				var slip := (9.0 + collapse * 17.0) * taper
+				var back_y := wash[sample].y - (4.0 + 8.0 * collapse) * taper
+				var front_y := minf(wash[sample].y + slip, max_deck_y)
+				# A tiny skirt never reverses its polygon after clipping at the pier.
+				back_y = minf(back_y, front_y)
+				runoff_back.append(Vector2(wash[sample].x, back_y))
+				runoff_front.append(Vector2(wash[sample].x, front_y))
+			draw_colored_polygon(
+				_surface_between(runoff_back, runoff_front),
+				Color(0.07, 0.21, 0.27, wash_strength * 0.27)
+			)
+			for segment in range(5, BREAKER_SAMPLES - 7, 9):
+				var streak := PackedVector2Array([
+					runoff_front[segment] + Vector2(-8.0, -3.0),
+					runoff_front[segment + 3] + Vector2(0.0, -4.0),
+					runoff_front[segment + 6] + Vector2(7.0, -1.0)
+				])
+				draw_polyline(streak, Color(0.66, 0.83, 0.86, wash_strength * 0.67), 2.5, false)
 		# Sparse spray blows toward the shore and settles back down.
 		for spray_index in range(4):
 			var index := 12 + spray_index * 14 + (swell_index * 3) % 5

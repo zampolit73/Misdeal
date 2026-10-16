@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D195 organic foam and phase polish after D194 screenshot.**
+Updated: 2026-10-16 — **D196 larger seaward→deck wave advance after D195 screenshot.**
 Repository: `zampolit73/Misdeal`, branch `main`. **GitHub is the technical source of truth, and the assistant has connected GitHub tools; inspect and edit directly without asking the user for manual patches or access.** Godot **4.7.x / GDScript**.
 
 ## READ FIRST
@@ -55,11 +55,19 @@ User's **native D194 screenshot** shows large raised wave body now visibly prese
 
 **D195 visual-only code change:** keep 3 broad storm breakers; replace D194 seven-vertex cap triangles with smooth round irregular foam clusters and significantly denser (72 point) crest envelope, layered dark stormwater, mild asymmetric wave chop, discrete spray and visible collapse/wash phase. Retain y+36 foot anchoring. D195 touches only `_draw*` helpers/render constants in `scripts/battle/black_crossing_surge.gd`. Preserve original bitmap and sprites. No change to wave hit rectangles, safe floor, AI, 43px push, 30% slow for 1.6s, warning/rest delays. **D191 native 54/54 gameplay matrix PASS remains the latest valid functional evidence. D195 visual F6 not yet checked.** The real reward→Fate Spread/table transition has not been confirmed for #37; live deck stays 36/45.
 
+## D196 — User's D195 native result and new runup fix
+
+User shared native Godot D195 screenshot: organic rounded foam is present, but the wave is still essentially stationary with small pools on the pier. User explicitly requests greater, unmistakable forward **накат**. This does **not** approve visuals; user again explicitly asks the assistant to implement directly through connected GitHub. Do not claim GitHub is unavailable.
+
+**D196 render-only change in `scripts/battle/black_crossing_surge.gd`:** end warning at footline -62px after advancing from -91px. Surge begins at the same -62px (no visual reset) and travels 94px rather than 37px over the 1.6s existing surge phase. Larger but organic rising crest, separately advancing semi-transparent runoff and streaks clipped at the safe intact pier edge. All gameplay above drawing code is byte-for-byte unchanged: hit rectangles y284/y330 ±25, timings initial 3.2/warn 1.4/slow 1.6/rest 4.5, 43px LEFT push, 30% slow, reset and unit-safe movement. Approved storm backdrop, card art, enemies, combat sprites, party scaling and live Act1 deck untouched.
+
+**Status:** D191 native Godot combat matrix 54/54 PASSED and remains valid for unchanged gameplay; D196 native visual F6 not yet run and reward→Fate Spread/table route for #37 not yet explicitly confirmed; Act1 remains **36/45**. Next assistant action after visual approval: validate real route, then activate #37 and run ordinary-deal smoke.
+
 ## NEXT TASK — start here in the new chat
 
-1. User does `git pull` and **F6 `res://scenes/dev/black_crossing_playtest.tscn`** to review only the D195 smoother crest with rounded asymmetric foam and fading runoff, avoiding D194 triangle teeth. If victory, verify **reward → Fate Spread/table**. Ask for screenshot/acceptance; user explicitly expects assistant to work directly through GitHub, never give manual patch steps.
+1. User does `git pull` and **F6 `res://scenes/dev/black_crossing_playtest.tscn`** to review only the D196 substantial continuous runup from approaching warning through impact plus a separate fading runoff sheet. If victory, verify **reward → Fate Spread/table**. Ask for screenshot/acceptance; user explicitly expects assistant to work directly through GitHub, never give manual patch steps.
 2. **D191 54/54 native matrix is confirmed for unchanged gameplay**. D192 only draws visuals, so do not require a repeat of all 54 cases unless errors or altered mechanics demand it.
 3. On user's visual acceptance and confirmation of the real reward route, release `black_crossing` into normal `ACT1_CARD_IDS` as **#37/45**, update all old 36-card guards and add/execute an ordinary-deal release smoke. Preserve D151–D153 and global scaling.
 4. Update `PROJECT_STATE`, `ROADMAP`, `CHANGELOG` and this `HANDOFF`; decisions only for actual new binding design rules. Commit directly to GitHub.
 
-**D195 session:** user showed D194 Godot screenshot and said the larger wave is better but clearly artificial. Assistant fixed repeated triangular foam, introduced rounded broken crests and progression from swell to wash-out via connected GitHub; code/docs in main. Native Godot execution unavailable here: D195 must be visually checked by user. D191 54/54 combat still valid, card #37 QA-only 36/45 until visual and route gates.
+**D196 session:** User native D195 screenshot criticized lack of forward wave movement. Assistant implemented a 94px traveling impact, warning/surge continuity and capped runoff, all render-only, directly in GitHub and updated docs. Native D196 visual check pending, D191 54/54 gameplay valid and card #37 QA-only 36/45 pending visual and reward route approval.

@@ -1,5 +1,5 @@
 # Misdeal — Active Roadmap
-Updated: 2026-10-16 (D195 organic foam polish). **Live Act 1: 36/45.** Current technical status: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-16 (D196 advancing storm surf). **Live Act 1: 36/45.** Current technical status: `docs/PROJECT_STATE.md`.
 
 ## Completed / established
 
@@ -34,9 +34,11 @@ Updated: 2026-10-16 (D195 organic foam polish). **Live Act 1: 36/45.** Current t
 20. [x] D194 source remake: three 450px overlapping storm breakers, organically tapered dark raised faces, breaking whitecaps + wind spray + moving shallow wash, using animation keyed to warning/surge phase. Rendering stays grounded at unit foot contact and does not change hit lane, push or slow.
 21. [x] D194 native screenshot: major swell reads better, but repeated solid white triangular foam peaks still look computer-generated. User requested more professional movement/detail, not release.
 22. [x] D195 drawing-only polish: remove seven-point cap triangle repetition; use 72-sample asymmetric wave envelopes, three rounded staggered foam clusters per breaker, mixed-frequency turbulence and time-delayed whitewater wash/recede, with restrained cold storm palette.
-23. [ ] **NEXT NATIVE VISUAL QA:** `git pull`; F6 `res://scenes/dev/black_crossing_playtest.tscn`; judge D195 smooth foam, warning/impact/recede, safe foot contact and victory→reward→table. No native D195 PASS yet.
-24. [ ] Release #37 after user approves visuals and real reward route; update 36-card guards and verify ordinary deal. Native D191 54/54 gameplay PASS still applies.
-25. [ ] Continue Act1 toward 45 with eight remaining cards *after* #37 releases; avoid D151–D153 regressions.
+23. [x] D195 native screenshot: smoother foam but wave is still too static and doesn't convincingly run up the planks. User requests more pronounced advance.
+24. [x] D196 render-only pass: warning moves from -91px to -62px relative to boot line; surge starts at -62px without jump and advances 94px toward the intact deck (vs 37px); an additional shallow, capped runoff layer follows the falling crest. No changes to hit lanes, timings, push or slow.
+25. [ ] **NEXT NATIVE VISUAL QA:** `git pull` and F6 `res://scenes/dev/black_crossing_playtest.tscn`; look for continuous warning→surge motion, long forward runup and visible runoff on planks; confirm victory→reward→table. D191 54/54 gameplay still valid.
+26. [ ] Release #37 only after user accepts visual and real reward route; update 36-card guards and verify ordinary deal.
+27. [ ] Continue Act1 toward 45 with eight remaining cards *after* #37 releases; avoid D151–D153 regressions.
 
 ## Rules for all subsequent phases
 

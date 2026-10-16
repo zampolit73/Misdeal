@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-16 — D196: Advance Black Crossing breakers farther onto intact pier
+
+- User native D195 screenshot: smoother foam, but the waves look static; requested a much more substantial forward-moving storm surge.
+- Rendering-only: warning waterline advances from -91 to -62px relative to the foot contact; 1.6s impact begins continuously at -62px, covers 94px on screen rather than 37px, and then spreads semi-transparent, physically bounded runoff with moving broken foam across planks.
+- No hitbox, warning/rest/slow timing, 43px left push, -30% movement, encounter stats, sprites, approved art or deck changes; D191 native 54/54 gameplay PASS remains valid. D196 visual F6 + real reward→table still required. Act1 36/45.
+
 ## 2026-10-16 — D195: Organic storm foam and breaker decay
 
 - User native D194 Godot screenshot: wave size is an improvement, but evenly spaced light-blue triangular peaks look artificial; requested a professional animation pass.
