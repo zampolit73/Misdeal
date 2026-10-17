@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D209 user-native approved forest F6 PASS; D210 five original skeleton animation sources QC audited, NOT integrated). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D211 two original spear Sentinel concept directions shown; user A/B choice pending; no atlas enabled). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D210 CURRENT — native D209 arena visual approval, 5 skeletal atlas blockers
+## D211 CURRENT — Road Sentinel original long-spear silhouette choices, NOT atlases
+
+D211 visual concept step: two **separate standing pixel-art spear-bearing Road Sentinel directions** were shown to user: **A armored pauldron + diagonal spear/lantern**, **B more hooded ragged cloak + long spear/lantern**, plus 96×96 native cel previews. Comparison artifact `Misdeal_D211_Road_Sentinel_Concept_Options.png` in conversation. Both are **concept crops with dark backdrops, no alpha and no genuine 25 animated frames**; no finished sprite assets committed. Their diagonal pole shapes do not keep the full skeleton sufficiently big in a 96px cell; next approved silhouette must be redrawn with a steeper compact spear (not merely downscaled). **User A/B selection pending.** Current details `docs/D211_ROAD_SENTINEL_SPEAR_CONCEPT_OPTIONS.md`. Regular Act1 **37/45** and D209 exact arena unchanged.
+
+## D210 PREVIOUS — native D209 arena visual approval, 5 skeletal atlas blockers
 
 User Godot screenshot on 2026-10-17 showed the exact third forest background, 3 blue + 5 bronze proxy silhouettes, tall Guide and two moving light circles; user replied **«все ок»**. **D209 isolated arena composition/native F6 PASS**; no player-facing sprite art or combat mechanic can be declared approved.
 
