@@ -1,3 +1,9 @@
+## D216 — New shield Lantern Bearer original animation atlas, QA-only, native F6 pending
+
+Original true 25-cel `lantern_bearer` (576×480 RGBA WebP/Base64, 6×5, alpha margin clean) **in GitHub QA only**: `assets/pixel/units/black_lantern_road_qa/lantern_bearer_d216_candidate.webp.b64`. Separate wooden plank barricade + heavy amber lamp; authored source `tools/art/author_lantern_bearer_d216.py`; `res://scenes/dev/black_lantern_bearer_animation_preview.tscn` checks 3×/1× five-state motion over accepted forest scene. **Native F6 awaiting user.** D215 original spear Sentinel user said «всё ок» after native gallery instruction; no active #38 combat image switching. Details: `docs/D216_LANTERN_BEARER_ANIMATION_QA.md`.
+
+---
+
 ## D215 — original spear Sentinel QA-only atlas, NOT approved active sprite
 
 QA art-only GitHub asset `res://assets/pixel/units/black_lantern_road_qa/road_sentinel_d215_candidate.webp.b64` is **lossless WebP 576×480**. It contains original, authored native-size pixel skeleton poses (idle4/walk6/attack6/hit3/death6), 5 fully transparent cells; offline QC 25 unique, 0 border-contact violations. Reproducible generator `tools/art/author_road_sentinel_d215.py`; isolated native review `res://scenes/dev/black_lantern_sentinel_animation_preview.tscn`. The user selected D211 Armored Spear Sentinel option A; the D215 technical candidate follows spear/pauldron/lantern but is visually simpler and **NOT yet accepted by the user**. Do not add it to production animation loader until native F6/visual approval. D209 exact forest art is accepted, no need to choose again. Full stage gate `docs/D215_SENTINEL_NATIVE_ANIMATION_QA.md`. Act1 37/45, KARAMBA73 frozen.
