@@ -1,6 +1,6 @@
 # D207 — Black Lantern Road: 54-case real BattleUnit balance baseline
 
-Date: 2026-10-17. **NEW SOURCE COMMITTED, NATIVE D207 F6 NOT YET RUN.** Act1 remains **37/45**; #38 is not in ordinary offers.
+Date: 2026-10-17. **D207 NATIVE F6 USER-SCREENSHOT FUNCTIONAL PASS; D208 local balance rerun pending.** Act1 remains **37/45**; #38 is not in ordinary offers.
 
 ## D206 native Godot gate CLOSED (user screenshot)
 
@@ -32,6 +32,6 @@ The scene follows the project's prior `black_crossing_battle_smoke.gd` technique
 2. Godot F6: `res://scenes/dev/black_lantern_road_battle_matrix.tscn`
 3. Send the final matrix result (screenshot with class/party size/HP/light metrics or error).
 
-**Do not claim D207 PASSED until that screenshot/result is received**. Even a functional PASS is not a release balance gate: review actual statistics first and locally tune UnitData or light values, then re-run. Do not release before the exact chosen `лунная_дорога_через_туманный_лес.png` arena is committed/tested and five approved **original** 25-frame skeleton atlases (correct Sentinel SPEAR) are in the game, followed by normal Battle → Reward → Table smoke.
+**D207 F6 user screenshot received 2026-10-17**: 54/54 wins, 0 full-party defeats/timeouts; solo/duo/trio average HP 80/70/74%, worst 52/30/44%, 90 warnings, 11,434 active frames, 15,502 buffed exposure frames, at most 3 lit enemies. See `docs/D208_BLACK_LANTERN_BALANCE_PASS.md` for complete recorded baseline and the modest #38-only follow-up. Even a functional PASS is not a release balance gate: review actual statistics first and locally tune UnitData or light values, then re-run. Do not release before the exact chosen `лунная_дорога_через_туманный_лес.png` arena is committed/tested and five approved **original** 25-frame skeleton atlases (correct Sentinel SPEAR) are in the game, followed by normal Battle → Reward → Table smoke.
 
 Existing #34–#37, D196 waves, DS2/Fate Spread 12+XIII, combat scripts, normal card pool and frozen `backups/KARAMBA73-2026-10-16` remain untouched.
