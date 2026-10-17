@@ -1,5 +1,5 @@
 # Misdeal Documentation Index
-Updated 2026-10-17 — D207 native 54/54 PASS, D208 lit-enemy-only +22% candidate and attack instrumentation pending F6; live Act1 37/45.
+Updated 2026-10-17 — D208 native 54/54 PASS, ineffective +22% bonus reverted to validated +16%; selected #38 forest arena QA next; live Act1 37/45.
 
 ## Read first (current, short, authoritative)
 
