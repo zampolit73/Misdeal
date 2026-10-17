@@ -3,6 +3,10 @@ Updated: 2026-10-17.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D227 — native pixel detail improvement is a QA candidate, not final illustration approval
+
+2026-10-17: User agreed «хорошо» to continuing D227 after D226 native screenshot; existing D211 armored spear A + D220 group B + D221 approved high-detail Sentinel drawing remain canon. Generated original native-96px new geometry for 25 true sprite frames: better asymmetric armor, cheekbone/skull, torn red cloth, pointed blade, chain lantern and greaves, strict no-border/empty-cell checks. Source + separate original WebP/B64 QA art + standalone 3x/1x two-facing Godot F6 committed. At 96px this is modest art-quality gain, **not** equivalence to original D221 illustration, and **not** a reason to switch production sprites or release #38. User native/art QA is pending. Details: `docs/D227_SENTINEL_PIXEL_FIDELITY_QA.md`.
+
 ## D226 visual gate — native screenshot is NOT final art approval
 
 2026-10-17: User screenshot of D226 spear Sentinel F6 gallery showed x3/x1 views and left-facing WALK with no visible error, confirming load/display only. It does NOT approve five complete states, both orientations, or replace the previously approved detailed D221 B-style appearance. Current simplified bones/flat armor/square lamp still require true pixel-level detail improvement across actual 25 frames; keep provisional D226 sprite isolated. See `docs/D226_SENTINEL_STYLE_B_ART_QA.md`.
