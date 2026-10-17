@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D238H: Clean new-chat continuation and documentation consistency
+
+- User requested all current GitHub context saved for resuming in a new chat. Added standalone compact `docs/D238_BATCH_ANIMATION_NEXT_CHAT.md` describing the **full 25-frame in one batch / one finished F6** workflow, each current source art reference, exact #38 work boundaries, and next code/art implementation action.
+- Reconciled `docs/INDEX.md` and linked D238 from `PROJECT_STATE`, `ROADMAP`, `DECISIONS`, and `HANDOFF` so earlier D237 micro-approvals and D230 premature "final art" claims cannot be mistaken as active instructions.
+- Documentation/handoff only; **no new 25-frame atlas implemented**, no current runtime code, card ID pool, art sources, or frozen KARAMBA73 modified. Act1 LIVE remains **37/45**, #38 QA-only.
+
 ## 2026-10-18 — D238: Restore batch-first original 25-cel character art delivery
 
 - User explicitly requested the old workflow: finish all **25 real idle/walk/attack/hit/death poses** for the game in one batch instead of seeking approval for every minor animation increment.
