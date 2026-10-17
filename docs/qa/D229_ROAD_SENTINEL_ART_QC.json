@@ -1,0 +1,19 @@
+{
+  "width": 576,
+  "height": 480,
+  "cells": 30,
+  "visible": 25,
+  "transparent": 5,
+  "states": {
+    "idle": 4,
+    "walk": 6,
+    "attack": 6,
+    "hit": 3,
+    "death": 6
+  },
+  "border_failures": [],
+  "dup_frames": [],
+  "changed_pixels_from_d228": 1686,
+  "changed_RGBA_pixels_from_d228": 12880,
+  "webp_sha256": "dd8ab21d7e115fe23418778a40e8f27e01abace9f3ccb1630025a09d318d2618"
+}
