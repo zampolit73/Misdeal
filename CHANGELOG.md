@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D226 native screenshot result and D227 fidelity gap
+
+- User sent actual Godot screenshot of `black_lantern_sentinel_d226_art_preview.tscn`: accepted D209 arena and both 3×/1× Sentinel views visible; shown `ХОДЬБА · ← ВЛЕВО` with no red QA error. Confirmed **gallery loads and left-facing walk pose displays**; cannot infer complete 5-state animation/right-facing PASS from a still.
+- Art inspection: D226 is still visually technical/simplified compared to selected D221 highly detailed style-B armored spear Sentinel — thin/plain skull/chest shapes, flat iron, simple square lamp and insufficient native x1 detailing. **NO final-art acceptance**. Next is genuine artwork improvement to all 25 native 96px poses, not interpolation, forced rescale or toggling pixel filter. Original D226 retained for comparison.
+- Only documentation changed in this pass. No production asset/animation library, arena, Battle, card pool, or immutable KARAMBA73 changed.
+
 ## 2026-10-17 — D226: Sentinel B-style native pixel art and new two-facing F6 scene
 
 - User responded «все ок. давай дальше» to the D225 left/right Bearer gallery test; noted user-reported direction QA PASS, not full final-art/gameplay integration.
