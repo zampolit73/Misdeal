@@ -1,0 +1,239 @@
+{
+  "stage": "D236R GAIT REPAIR after user reports D236 unnatural",
+  "decision": "D236 user visual FAIL, new gait still UNAPPROVED",
+  "technique": "3-phase alternating stance per foot, softer center-of-mass bob, no toe teleport",
+  "canvas": [
+    576,
+    480
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "states_implemented": [
+    "walk"
+  ],
+  "visible": 6,
+  "unused": 24,
+  "production_installed": false,
+  "whole_character_fully_repainted": false,
+  "native_godot_pass": false,
+  "support_frames": [],
+  "frames": [
+    {
+      "i": 0,
+      "phase": "A-contact",
+      "support": "A",
+      "boot_A": [
+        35,
+        91
+      ],
+      "boot_B": [
+        57,
+        87
+      ],
+      "body_offset": [
+        0,
+        0
+      ],
+      "knees": {
+        "knee_A": [
+          38,
+          80
+        ],
+        "knee_B": [
+          62,
+          78
+        ]
+      },
+      "bbox": [
+        12,
+        6,
+        86,
+        93
+      ],
+      "hash": "bd88adf3c2d2a1c7f4d8e0cb7d9f4d1c27b6cdb8dcc2cc200fa98ccb507f9df7"
+    },
+    {
+      "i": 1,
+      "phase": "A-weight",
+      "support": "A",
+      "boot_A": [
+        42,
+        91
+      ],
+      "boot_B": [
+        47,
+        85
+      ],
+      "body_offset": [
+        1,
+        0
+      ],
+      "knees": {
+        "knee_A": [
+          44,
+          80
+        ],
+        "knee_B": [
+          52,
+          77
+        ]
+      },
+      "bbox": [
+        13,
+        6,
+        87,
+        93
+      ],
+      "hash": "4a196d483098f4b049b250c576f09d99334972ba40ee719718d334b39d4b09d1"
+    },
+    {
+      "i": 2,
+      "phase": "A-push",
+      "support": "A",
+      "boot_A": [
+        50,
+        91
+      ],
+      "boot_B": [
+        39,
+        88
+      ],
+      "body_offset": [
+        1,
+        -1
+      ],
+      "knees": {
+        "knee_A": [
+          48,
+          80
+        ],
+        "knee_B": [
+          48,
+          79
+        ]
+      },
+      "bbox": [
+        13,
+        5,
+        87,
+        93
+      ],
+      "hash": "e2b5948bacd1d5941b03f11554f5b158b5860c5c3a5b961cb40481d5c503d588"
+    },
+    {
+      "i": 3,
+      "phase": "B-contact",
+      "support": "B",
+      "boot_A": [
+        57,
+        87
+      ],
+      "boot_B": [
+        35,
+        91
+      ],
+      "body_offset": [
+        0,
+        0
+      ],
+      "knees": {
+        "knee_A": [
+          56,
+          78
+        ],
+        "knee_B": [
+          46,
+          81
+        ]
+      },
+      "bbox": [
+        12,
+        6,
+        86,
+        93
+      ],
+      "hash": "bff8e74728f7b419cf9c444f26b81ff4cabb60bbdb8a3b7a12cdfb546399112d"
+    },
+    {
+      "i": 4,
+      "phase": "B-weight",
+      "support": "B",
+      "boot_A": [
+        47,
+        85
+      ],
+      "boot_B": [
+        42,
+        91
+      ],
+      "body_offset": [
+        -1,
+        0
+      ],
+      "knees": {
+        "knee_A": [
+          46,
+          77
+        ],
+        "knee_B": [
+          48,
+          81
+        ]
+      },
+      "bbox": [
+        11,
+        6,
+        85,
+        93
+      ],
+      "hash": "53b9e163c84b24fa0b09660094c82df070b955be2b34886f328f58c19c2e84e0"
+    },
+    {
+      "i": 5,
+      "phase": "B-push",
+      "support": "B",
+      "boot_A": [
+        39,
+        88
+      ],
+      "boot_B": [
+        50,
+        91
+      ],
+      "body_offset": [
+        -1,
+        -1
+      ],
+      "knees": {
+        "knee_A": [
+          40,
+          78
+        ],
+        "knee_B": [
+          52,
+          80
+        ]
+      },
+      "bbox": [
+        11,
+        5,
+        85,
+        93
+      ],
+      "hash": "6aa127e4f90b9ebca3aaaa65f7120b61edde76448fbf1f649e0fab112d4ca06c"
+    }
+  ],
+  "hashes": [
+    "bd88adf3c2d2a1c7f4d8e0cb7d9f4d1c27b6cdb8dcc2cc200fa98ccb507f9df7",
+    "4a196d483098f4b049b250c576f09d99334972ba40ee719718d334b39d4b09d1",
+    "e2b5948bacd1d5941b03f11554f5b158b5860c5c3a5b961cb40481d5c503d588",
+    "bff8e74728f7b419cf9c444f26b81ff4cabb60bbdb8a3b7a12cdfb546399112d",
+    "53b9e163c84b24fa0b09660094c82df070b955be2b34886f328f58c19c2e84e0",
+    "6aa127e4f90b9ebca3aaaa65f7120b61edde76448fbf1f649e0fab112d4ca06c"
+  ],
+  "warnings": [],
+  "webp_sha256": "bef95a03eb3da3996846e0826a5bf6fe53a1250b284ffa12f44d4d3fd50b73d5",
+  "max_ankle_delta": 10
+}
