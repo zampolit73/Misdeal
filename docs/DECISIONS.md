@@ -3,6 +3,10 @@ Updated: 2026-10-17.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D228 — Art detail improvement is limited to explicit QA candidate until native comparison
+
+2026-10-17: User asked to follow original staged polish sequence and proceed D228 on Road Sentinel, maintaining **approved D211 armored spear + D220 group style B + D221 rich illustration**. D228 uses native 96px-per-frame freshly constructed forged plates, flowing jagged cloth, genuine pointed long spear with tiny pennant, and metal-caged suspended amber lantern across retained genuine 25 idle/walk/thrust/hit/death poses. No secret changes to mechanics or other skeleton roles. Static QA **25 distinct/5 transparent/0 edge violations**, new independent x1/x3 left/right Godot gallery; **native F6 and aesthetic approval remain pending** and D228 should not be represented as equivalent to the large finished D221 illustration. `docs/D228_SENTINEL_ORNAMENTAL_PIXEL_ART_QA.md`.
+
 ## D227 — native pixel detail improvement is a QA candidate, not final illustration approval
 
 2026-10-17: User agreed «хорошо» to continuing D227 after D226 native screenshot; existing D211 armored spear A + D220 group B + D221 approved high-detail Sentinel drawing remain canon. Generated original native-96px new geometry for 25 true sprite frames: better asymmetric armor, cheekbone/skull, torn red cloth, pointed blade, chain lantern and greaves, strict no-border/empty-cell checks. Source + separate original WebP/B64 QA art + standalone 3x/1x two-facing Godot F6 committed. At 96px this is modest art-quality gain, **not** equivalence to original D221 illustration, and **not** a reason to switch production sprites or release #38. User native/art QA is pending. Details: `docs/D227_SENTINEL_PIXEL_FIDELITY_QA.md`.
