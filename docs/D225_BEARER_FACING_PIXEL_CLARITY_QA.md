@@ -22,7 +22,11 @@ Modified ONLY `scripts/dev/black_lantern_bearer_d224_art_preview.gd`:
 
 User screenshot showed somewhat **soft/overdetailed** contour at ×3. Code already uses `CanvasItem.TEXTURE_FILTER_NEAREST` and an integer ×3 display scale, so simply changing to NEAREST is not a cure. The D224 576×480 WebP QA candidate was cut and **downsized from the user-approved larger 1374×1145 source**, with source seam overlap; fine source detail is baked into 96px cells (see D224 authoring/QC docs). Mirroring cannot restore detail. **Do NOT silently run sharpening, alter pixel palette, regenerate source, or present a filtered image as the approved one.** After user F6 confirms orientation, polish source true pixel-density/individual cel separation preserving original approved style B, then re-check native motion before registering into production `MisdealUnitAnimationLibrary`.
 
-## Next USER action
+## 2026-10-17 user-reported D225 facing preview OK
+
+User replied **«все ок. давай дальше»** after being asked to F6 the D224 scene's left/right mirroring. Mark **D225 dual-facing preview USER-REPORTED PASS**. This does not establish all animations' final visual polish, exact real Battle enemy orientation or reward route acceptance. D226 next proceeds to separate spear Sentinel native pixel/role art QA.
+
+## Historical user action (completed at user-report level)
 
 1. `git pull`.
 2. Godot F6 `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`.
