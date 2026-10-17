@@ -2,6 +2,13 @@
 
 Updated: 2026-10-18 (D238 user requested all 25 game-animation frames together, no individual pose approval gates; next full Sentinel asset pack, QA and all 37 LIVE unchanged). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
+## D239 next acceptance gate
+
+- [x] Author/assemble **one complete** 25-cell richly illustrated-source Road Sentinel QA atlas (4/6/6/3/6, 5 clear), and generate source-traced pixel QC in GitHub.
+- [x] Stage **one native full-pack F6 gallery** with both facing directions, x1 and x3, approved D209 forest. No per-state user approvals.
+- [ ] **Native Godot 4.7 full-pack test and artistic acceptance:** spear thrust/contact, natural knees/corpse pose and real ×1 quality still need user feedback. D239 source-composited is not 25 independently repainted full drawings.
+- [ ] Refine whole pack from that single review; complete other four original role packs, then 3v5/light/route/54-case/full-pool QA before #38 release. Preserve existing 37-card pool.
+
 ## Completed / locked
 
 - [x] Playable cursed table, exactly 12 Fate Spread resolutions + sealed boss XIII, and tactical battle → reward → table core loop. Solo/duo/trio preserved; DS2 / Variant C visual system accepted.
