@@ -1,3 +1,9 @@
+## D218 — new giant Guide triple-chain lantern QA sprite staged (NOT production art)
+
+The user-confirmed D217 post-border-fix F6 is PASS («все ок»). Original `extinguished_guide` sprite art in GitHub `assets/pixel/units/black_lantern_road_qa/extinguished_guide_d218_candidate.webp.b64` is 576×480 25 hand-authored original poses + 5 blank, 0 offline border issues. Its 3 lanterns and metal yoke differ unmistakably from the other 4 enemies; actual native visual 1.8× beside 1× Bearer comparison is staged in isolated scene `res://scenes/dev/black_lantern_guide_animation_preview.tscn` with the accepted D209 forest. **Native D218 F6/art QA still PENDING.** Full doc: `docs/D218_EXTINGUISHED_GUIDE_ANIMATION_QA.md`. No runtime sprite registry or Act1 pool change; still 37/45.
+
+---
+
 ## D217 — Oil Acolyte 25-state vector-cel QA (new), raster variant remains conversation-only
 
 In GitHub: `assets/pixel/units/black_lantern_road_qa/oil_acolyte_d217_vector_candidate.svg` is original source-only 576×480 transparent art with 25 original posed skeleton groups and five unused tiles. It has the **curved sickle, separate oil flask and amber belt lamp** silhouette. Standalone Godot F6 gallery `scenes/dev/black_lantern_oil_acolyte_animation_preview.tscn` uses Godot native SVG rasterization and post-render QC; native user PASS pending.
