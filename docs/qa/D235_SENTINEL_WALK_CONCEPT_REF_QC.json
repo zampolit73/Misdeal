@@ -1,0 +1,34 @@
+{
+  "source_filename": "шесть_кадров_шагающего_скелета_воина.png",
+  "source_sha256": "9fa8e48baed60364411e13e2a58d1549e052bbdc250c26b37933d2081442b181",
+  "source_format": "PNG",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "source_mode": "RGBA",
+  "reference_webp_quality": 95,
+  "lossy_reference_note": "High-quality visual reference copy, NOT identical PNG pixels, not approved atlas",
+  "reference_sha256": "fccc8642bb5d880bef39ff59dc3695a28779cd0ae35c8a1e5a7ff16639795566",
+  "reference_size_bytes": 270064,
+  "candidate_count": 6,
+  "candidate_layout": "3 columns x 2 rows, presentation on brown gradient background; static image not 6 transparent cels",
+  "production_requirements": {
+    "cell": [
+      96,
+      96
+    ],
+    "atlas": [
+      576,
+      480
+    ],
+    "states": [
+      4,
+      6,
+      6,
+      3,
+      6
+    ]
+  },
+  "user_approval": "visual concept and direction of six walk poses, NOT Godot animation or production sprite approval"
+}
