@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-17 (D217 third enemy Oil Acolyte QA-only vector gallery committed; separate original PNG source pack; D216 and D217 F6 pending). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-17 (D217 user-native SVG death frame border FAIL, two source rib strokes fixed, native F6 recheck pending; D216 native attack/gallery visible). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -24,8 +24,9 @@ Updated: 2026-10-17 (D217 third enemy Oil Acolyte QA-only vector gallery committ
 - [x] **D215 Road Sentinel native F6 OK** — user replied «все ок продолжай дальше» after five-state standalone gallery check. QA candidate is acceptable for next art step; still not registered as live sprite or in battle.
 - [x] **D216 Lantern Bearer original 25-frame QA asset staged:** shield-first melee, separately held amber lamp, walk/hit/death (576x480 WebP/B64, 25 distinct poses, 5 blank, zero border flags). Authored Python source + QA-only Godot gallery committed. `docs/D216_LANTERN_BEARER_ANIMATION_QA.md`.
 - [x] **D217 Oil Acolyte QA source/gallery staged:** genuine third role with original flask+curved sickle+small belt-lamp identities. Local independent 25-pose PNG/WebP raster passed offline alpha QC; GitHub hosts a **separate 25-state original SVG QA** plus native `load_svg_from_buffer` F6 scene. Neither is production library art. `docs/D217_OIL_ACOLYTE_ANIMATION_QA.md`.
-- [ ] **D217 native Oil Acolyte F6 gallery:** `res://scenes/dev/black_lantern_oil_acolyte_animation_preview.tscn`; test SVG decode, 25 distinct, transparent overflow, sickle slash, oil flask, grounded death. No native PASS yet.
-- [ ] **D216 native gallery F6** — `res://scenes/dev/black_lantern_bearer_animation_preview.tscn`, check stance/foot contact, shield attack and final collapse on approved D209 arena.
+- [x] **D217 error diagnosis + source fix:** user Godot F6 screenshot flagged death row4 cells4/5; deleted only two offending low rib strokes from editable SVG, commit `a8a80f1`. QA checks remain strict, no gameplay/source substitution; native retest required.
+- [ ] **D217 native Oil Acolyte F6 recheck:** `res://scenes/dev/black_lantern_oil_acolyte_animation_preview.tscn`; test SVG decode, 25 distinct, transparent overflow, sickle slash, oil flask, grounded death. No native PASS yet.
+- [ ] **D216 five-state art approval** — gallery **renders** (user screenshot shows 3×/1× and shield attack, no QA FAIL); idle/walk/hit/death motion not yet separately confirmed. Scene: `res://scenes/dev/black_lantern_bearer_animation_preview.tscn`, check stance/foot contact, shield attack and final collapse on approved D209 arena.
 - [ ] After sprite approval: Godot animation F6, actual #38 five-enemy battle with encounter-only light, then real reward→table and release smoke before Act1 **38/45**.
 
 ## Next (strict order)
