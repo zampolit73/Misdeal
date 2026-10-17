@@ -17,8 +17,11 @@ const D153_ROLES := ["threadbare_puppeteer", "bone_marionette"]
 # D183 Black Crossing: the two accepted original drowned combat identities.
 # QA-only until the corresponding approved image bytes are committed.
 const D183_ROLES := ["drowned_ferryman", "drowned_hand"]
+# D230: User selected the second (D229) spear Sentinel. Only this new role is approved.
+# The other four Black Lantern Road characters remain QA-only; no generic fallback.
+const D230_APPROVED_ROLES := ["road_sentinel"]
 const D151_ROLES := ["funeral_priest", "pallbearer"]
-const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus", "threadbare_puppeteer", "bone_marionette", "drowned_ferryman", "drowned_hand"]
+const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus", "threadbare_puppeteer", "bone_marionette", "drowned_ferryman", "drowned_hand", "road_sentinel"]
 
 static var _frames_cache: Dictionary = {}
 static var _unavailable: Dictionary = {}
@@ -32,6 +35,30 @@ static func get_frames(role: String) -> SpriteFrames:
 	if _unavailable.has(role):
 		return null
 
+
+	if D230_APPROVED_ROLES.has(role):
+		# One role only: user-selected D229 becomes the production 25-pose atlas.
+		# Never synthesize, borrow or repeat missing frames. Card #38 is still QA-only.
+		var approved_path: String = "%s%s_frames.webp.b64" % [DECK_EXPANSION_DIR, role]
+		if not FileAccess.file_exists(approved_path):
+			push_warning("D230 approved original Sentinel atlas missing: " + approved_path)
+			return null
+		var bytes_d230: PackedByteArray = Marshalls.base64_to_raw(FileAccess.get_file_as_string(approved_path).strip_edges())
+		var img_d230 := Image.new()
+		if bytes_d230.is_empty() or img_d230.load_webp_from_buffer(bytes_d230) != OK:
+			push_warning("D230 approved Sentinel atlas cannot decode: " + approved_path)
+			return null
+		if img_d230.get_size() != Vector2i(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
+			push_warning("D230 approved Sentinel atlas must be 576x480: " + approved_path)
+			return null
+		img_d230.convert(Image.FORMAT_RGBA8)
+		if not _all_authored_deck_frames_visible(img_d230) or not _all_authored_deck_frames_padded(img_d230) or not _all_authored_deck_frames_distinct(img_d230) or not _unused_deck_cells_clear(img_d230):
+			push_warning("D230 rejected non-original/cropped Sentinel cells: " + approved_path)
+			return null
+		var texture_d230: Texture2D = ImageTexture.create_from_image(img_d230)
+		if texture_d230 == null:
+			return null
+		return _create_frames(role, texture_d230)
 
 	if D183_ROLES.has(role):
 		# D183 uses original 96px cel atlases, never another enemy as fallback.
