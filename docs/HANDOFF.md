@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D221 Sentinel B look user-approved; D222 3 Bearer concept illustrations rejected (wrong staff/lamp mounting), next standalone Bearer shield+separate-lantern art; Act1 37/45**.
+Updated: 2026-10-17 — **D223 corrected Lantern Bearer style-B character image SHOWN (separate hand lantern + board; no staff), USER ART APPROVAL PENDING; no final animation atlas, 37/45 live**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,13 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D222 — EXACT CURRENT NEXT GATE: correct Lantern Bearer image, NOT animated sprite yet
+## D223 — EXACT CURRENT NEXT STEP: ask whether corrected Lantern Bearer LOOK is approved
+
+Latest user message was «продолжай» after D222 (three *rejected* staff-bearing shield character boards). Generated new group-B look and cropped **one character-only preview** `Misdeal_D223_Lantern_Bearer_Concept_B_Portrait.png`, 388×386, SHA-256 `05eba5e00706e51abdab61d50026ca83bc38b5bfa421a68a4d53b9e995eff2cf`, from `a_dark_moody_concept_art_game_character_sheet_in.png` (crop 388,45 to 776,431). It correctly has a hefty iron-braced *wooden plank shield in one hand* and an amber iron-cage lantern hanging by short handle in the **OTHER**; **NO POLE/SPEAR/STAFF**. User has now been shown this corrected concept in chat. **USER LOOK APPROVAL STILL PENDING**; DO NOT infer «продолжай» is approval for the new art.
+
+The crop still contains an atmospheric forest backdrop and is NOT alpha transparent, 576×480 atlas, or 25 animation cels. The actual PNG bytes are an in-conversation artifact, **not committed to GitHub**. Exact production/art gate: `docs/D223_LANTERN_BEARER_CORRECTED_CONCEPT.md`. **NEXT**: get user approval or requested adjustments; if approved, lock aesthetic reference, produce genuine original 25-pose pixel frames per D213 (idle4/walk6/attack6/hit3/death6 in separate rows, 5 clear cells), native Godot 1× readability and motion QC on exact D209 approved forest. Then remaining polished skeletal cast and real #38 battle/reward/release. Final QA placeholder sprites D215–D219 remain temporary. Act1 37/45, freeze KARAMBA73 preserved.
+
+## D222 — PREVIOUS NEXT GATE: correct Lantern Bearer image, NOT animated sprite yet
 
 User previously chose D220 five-skeleton style **B** and explicitly accepted D221 **Road Sentinel armored SPEAR** appearance. User next said «продолжай» to begin final Lantern Bearer. Three generated concept board attempts showed broad wooden shield but incorrectly gave Bearer a **long shaft/staff** (Sentinel-like) and moved amber lantern onto shield; these were **rejected in assistant QA** (user did not approve). Do not use or import them, do not claim final atlases or actual original 25 frames from generated presentation grids. See `docs/D222_LANTERN_BEARER_FINAL_ART_REVIEW.md`.
 
