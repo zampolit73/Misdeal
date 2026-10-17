@@ -2,6 +2,15 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D230: User final choice for second D229 Sentinel; exact production animation registration
+
+- User explicitly selected **D229 SECOND (RIGHT) side-by-side Road Sentinel** as final art («давай примем 2 вариант и уже закончим с этим»). **Stop further Sentinel cosmetic passes**; D221 detailed concept remains historical inspiration only, not permission to override current final user selection.
+- Promoted the **identical** approved original 25-frame WebP/Base64 atlas into `assets/pixel/units/deck_expansion_v1/road_sentinel_frames.webp.b64`. Source/canonical GitHub re-fetch comparison exact, no resizing or painting changes.
+- Registered only `road_sentinel` in `scripts/battle/unit_animation_library.gd`, adding strong original-frame count/uniqueness/padding/unused-tile validation without touching other character art or Act1 card IDs.
+- Corrected `scripts/battle/unit.gd` role-specific LEFT-authored atlas flipping for enemy-to-hero target facing; old combat roles behave unchanged.
+- Added `res://scenes/dev/black_lantern_sentinel_d230_approved_smoke.tscn` with actual animation library source + final atlas identity check and five synchronized states at 3×/1× in both directions. **Native F6 still not received**, this is engine integration verification pending, NOT another artwork approval vote.
+- Full milestone documentation: `docs/D230_ROAD_SENTINEL_FINAL_APPROVAL.md`. #38 still QA-only, Act1 37/45; other 4 enemies require final artwork and real battle route QA; KARAMBA73 untouched.
+
 ## 2026-10-18 — D229: side-by-side old/new Road Sentinel native-scale animation gallery
 
 - User instructed continue after D228 art staging without confirming its native F6; retained D228 status as **pending**, NOT implicit PASS.
