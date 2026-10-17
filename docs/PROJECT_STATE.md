@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-18 (D236R user says «пойдет» — repaired 6-frame walk visually accepted for continued QA; D236 remains rejected; rich complete 25-cel atlas still pending; live Act1 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-18 (D238 user restores one-batch 25-cel animation authoring and one F6 per character; D234/D235/D236R visual/motion rules remain, no new art yet, 37/45 LIVE). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D237 NEXT — Road Sentinel spear attack, following user-accepted D236R gait
+## D238 CURRENT — 25 frames ONE BATCH, skip separate idle/walk/attack/hit/death approvals
+
+User requested restoring the original animation workflow: **create an entire polished game-ready 25-frame character atlas in one working pass**, not solicit Godot screenshots or approval for every few frames. The previous proposed D237 six-attack-frames-only user review is **SUPERSEDED AS WORKFLOW** (not yet executed). For current Road Sentinel complete **idle4 / walk6 / attack6 / hit3 / death6** with real distinct 96px alpha poses and 5 blank cells, preserving **D234 physically-held lantern, D235 accepted rich Style B spear look, D236R user-accepted gait**. Independently iterate per-state and perform quality checks before presenting a SINGLE complete Godot F6 QA scene for the unit. Keep QA-only until accepted; no premature live #38 release. `AGENTS.md` governs future chats; full context `docs/HANDOFF.md`. **No new complete atlas authored merely by recording workflow**. 37/45 playable.
+
+## D237 PRIOR PLAN — Road Sentinel spear attack, following user-accepted D236R gait
 
 User responded **«пойдет»** to D236R old-versus-new Godot walking QA. Treat as **user visual acceptance of repaired six-step WALK for continuing development**, not approval of the final 25-frame artwork, all directions in Battle or card #38 release. D236 was explicitly rejected as unnatural and stays superseded. **LOCK D236R support/swing cycle as the current baseline** and preserve D234 wrist-held lantern and approved rich D235 figure design. Next build **actual six-pose SPEAR THRUST** QA-only animation `attack6` with visible anticipation → extension → contact → recovery, free-hand lantern anchored, legs planted and no axe/slash; preview at real ×1 on approved D209 forest before registering complete combat. Existing idle4/walk6 do not imply hit3/death6 already exist. Pool remains 37/45. 
 
