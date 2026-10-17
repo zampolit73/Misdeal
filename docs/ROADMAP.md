@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-18 (D232 rich single-pose 96px Sentinel comparison staged, awaiting user Godot x1 art choice; 25-pose finale pending; Act1 live 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-18 (D233 experimental illustrated-Sentinel four-frame IDLE motion staged with native F6 QA pending; other 21 required source poses still missing; live 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -20,7 +20,15 @@ Updated: 2026-10-18 (D232 rich single-pose 96px Sentinel comparison staged, awai
 - [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
-## D232 CURRENT — ONE art-quality check before authentic 25-cel animation
+## D233 CURRENT — validate real rich-art idle motion before 25-frame commitment
+
+- [x] **D233 idle-only motion proof** from D232 rich transparent figure, reproducible repo-relative painter `tools/art/author_road_sentinel_d233_idle_proof.py`: original body preserved, independent lantern and cloak tip movement, warm flicker. 4 actual distinct alpha cels + 26 clear, zero border faults. **Cutout animation from ONE illustrated pose; not hand-drawn four distinct full character stances or 25 finished cells.** `docs/D233_SENTINEL_IDLE_CUTOUT_PROOF.md`.
+- [x] **Dedicated D233 Godot F6 preview** `res://scenes/dev/black_lantern_sentinel_d233_idle_cutout_proof.tscn`, left D232 single still/right 4-frame idle moving, both x3/x1 on approved D209 forest, pause and both orientations, strict 4+26 cell QA.
+- [ ] **Native F6 and user method/art feedback:** judge if frame motion preserves lantern and cloak quality at x1; D232 look quality not yet explicitly user-approved.
+- [ ] **Then 21 additional different original character poses** (walk6, attack6, hit3, death6) as true art, not 21 copies/tweens of idle. Real full 25-cel QA and battle only after quality success.
+- [x] Current staged technical D229 production loader and normal 37-card pool remain untouched.
+
+## D232 PREVIOUS — ONE art-quality check before authentic 25-cel animation
 
 - [x] **D232 one alpha-cleared high-detail original-looking spear guard sample**: correctly shaped long spear, ornate iron armor, separate hand lantern and oxblood cape. Extracted from **one** generated pixel illustration pose and scaled to exactly 96×96 with NEAREST; **NOT native pixel-painted and NOT a valid 25-cel animation sheet**. Original cutout saved as lossless WebP/B64; alpha safe (9,5)–(86,93).
 - [x] **D232 actual x1/x3 comparison scene:** `res://scenes/dev/black_lantern_sentinel_d232_art_direction_preview.tscn`, D229 old LEFT vs new static candidate RIGHT, five-state playback INTENTIONALLY ABSENT, correct D209 forest.
