@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-17 (D224 user Godot screenshot shows native gallery/attack; D225 both-facing toggle in F6 committed; source softness from resampling, 37/45 live). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-17 (D225 dual-direction Bearer user OK; D226 Sentinel B-style native 25-cel QA art/scene committed, F6 pending; 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -16,8 +16,16 @@ Updated: 2026-10-17 (D224 user Godot screenshot shows native gallery/attack; D22
 
 - [x] **D224 native gallery screenshot received:** correct D209 backdrop, selected Bearer full art visible in x3 and x1, shield-attack pose on screen. This is **NOT** the full five-motion or two-way motion PASS.
 - [x] **D225 gallery both-facing controls added** to `scripts/dev/black_lantern_bearer_d224_art_preview.gd`: two buttons `← ВЛЕВО` / `ВПРАВО →` flip both views together and update the current state label. Both views retain nearest filtering; no actual 25-cel image bytes changed.
-- [ ] **D225 native Godot F6:** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
+- [x] **D225 native Godot direction controls user OK:** user replied «все ок. давай дальше» after F6 request; this confirms gallery directional QA at user-report level, not production combat/art.
+- [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
+
+## D226 next candidate visual gate — painted Road Sentinel
+
+- [x] **D226 richer original 25-cel spear Sentinel candidate:** deterministic native 96px drawn art in approved armored A silhouette/B palette with torn russet hood and copper-iron wear; 25 unique + 5 transparent, zero edge warnings, original pointed spear/amber lamp. **Not the final D221 fine-detail quality yet.**
+- [x] **D226 isolated Godot F6 gallery:** original D209 moonlit forest, 3× and 1× frames, left/right direction switches, five states, strict validators. Source/asset/QA documented in `docs/D226_SENTINEL_STYLE_B_ART_QA.md`.
+- [ ] **D226 user-native F6 & visual review:** `res://scenes/dev/black_lantern_sentinel_d226_art_preview.tscn`, confirm direction, leg contact, real spear thrust, visible lantern at 1×, death; assess against D221 accepted detailed illustration. No live sprite swap until approved.
+- [ ] **Full five-hero original art completion + real #38 battle/reward/table/release smoke** remains outstanding; live 37/45.
 
 ## D209/D210 status
 
