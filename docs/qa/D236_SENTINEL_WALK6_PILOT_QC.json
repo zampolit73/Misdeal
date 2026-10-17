@@ -1,0 +1,196 @@
+{
+  "stage": "D236 TRUE 6-phase articulated leg rig pilot using rich D234 illustrated upper body",
+  "approved_visual_reference": "D235 six-pose 1536x1024 poster (not used as engine cells)",
+  "states_implemented": [
+    "walk"
+  ],
+  "poses_authored_as": "six DIFFERENT knee/boot coordinate pairs with plated leg/boot drawing; 4 handgrip-held rich D234 upper-body phases REUSED; this is NOT six fully separately painted whole bodies",
+  "canvas": [
+    576,
+    480
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "used_cells": 6,
+  "unused_cells": 24,
+  "row_index": 1,
+  "no_full_sprite_claim": true,
+  "native_F6_status": "PENDING",
+  "production_installed": false,
+  "coordinates": [
+    {
+      "frame": 0,
+      "bbox": [
+        12,
+        6,
+        86,
+        93
+      ],
+      "knee_left": [
+        39,
+        78
+      ],
+      "boot_left": [
+        27,
+        91
+      ],
+      "knee_right": [
+        65,
+        78
+      ],
+      "boot_right": [
+        72,
+        91
+      ],
+      "lift_left": 0,
+      "lift_right": 0
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        12,
+        6,
+        86,
+        93
+      ],
+      "knee_left": [
+        43,
+        78
+      ],
+      "boot_left": [
+        37,
+        88
+      ],
+      "knee_right": [
+        64,
+        80
+      ],
+      "boot_right": [
+        69,
+        91
+      ],
+      "lift_left": 3,
+      "lift_right": 0
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        12,
+        6,
+        86,
+        93
+      ],
+      "knee_left": [
+        50,
+        79
+      ],
+      "boot_left": [
+        52,
+        91
+      ],
+      "knee_right": [
+        57,
+        78
+      ],
+      "boot_right": [
+        58,
+        88
+      ],
+      "lift_left": 0,
+      "lift_right": 3
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        12,
+        6,
+        86,
+        93
+      ],
+      "knee_left": [
+        63,
+        78
+      ],
+      "boot_left": [
+        76,
+        91
+      ],
+      "knee_right": [
+        42,
+        78
+      ],
+      "boot_right": [
+        29,
+        91
+      ],
+      "lift_left": 0,
+      "lift_right": 0
+    },
+    {
+      "frame": 4,
+      "bbox": [
+        12,
+        6,
+        86,
+        93
+      ],
+      "knee_left": [
+        60,
+        79
+      ],
+      "boot_left": [
+        66,
+        88
+      ],
+      "knee_right": [
+        44,
+        79
+      ],
+      "boot_right": [
+        37,
+        91
+      ],
+      "lift_left": 3,
+      "lift_right": 0
+    },
+    {
+      "frame": 5,
+      "bbox": [
+        12,
+        6,
+        86,
+        93
+      ],
+      "knee_left": [
+        50,
+        79
+      ],
+      "boot_left": [
+        52,
+        91
+      ],
+      "knee_right": [
+        52,
+        79
+      ],
+      "boot_right": [
+        54,
+        88
+      ],
+      "lift_left": 0,
+      "lift_right": 3
+    }
+  ],
+  "hashes": [
+    "1891064cebc7cb0ac3572131a357a204faa28750e95b1a3351ffa6c4d71d9bc3",
+    "f548144dfae9a476158769575c2e25b42a01fb601befc5962611e02e8935520e",
+    "33e63450915acde65511803ef0ea83680bc1983f3857046f1554a52ddf238796",
+    "b8190c548ddd41442a3cec508ac3672ae560160a80277c01056c29feb110477f",
+    "5387be938afa5ed6fc0061f0b8770a8fa9c8184bb3d879fd9ba36fa8d4e87363",
+    "a6189140d1762cf4ae9d75d64bf8b5531991120761f30ea61de4519cb0e0e256"
+  ],
+  "warnings": [],
+  "webp_sha256": "c37d8155925de2e6cad90140cbe5328b91fa489b7ed4da2c301cd30b8b1ac6fb"
+}
