@@ -1,6 +1,6 @@
 # D215 — Road Sentinel A: original 25-cel animation QA candidate
 
-Date: 2026-10-17. Status: **ART CANDIDATE SOURCE-INTEGRATED, STATIC QC PASS, NATIVE GODOT F6 / USER ART APPROVAL PENDING**. Ordinary Act1 **37/45**, #38 QA-only.
+Date: 2026-10-17. Status: **ART CANDIDATE SOURCE-INTEGRATED, STATIC QC PASS, USER-REPORTED NATIVE F6 / ART REVIEW OK (2026-10-17)**. Ordinary Act1 **37/45**, #38 QA-only.
 
 ## What genuinely changed
 
@@ -24,6 +24,10 @@ Conversation-only QA materials (not GitHub):
 3. Click `ОЖИДАНИЕ`, `ХОДЬБА`, `АТАКА`, `УРОН`, `СМЕРТЬ`. Examine the first 3× sprite on dark stage for readable actual bone joints and spear-tip continuity; second 1× sprite on exact accepted D209 art for role silhouette, foot placement, attack impact/direction and leg movement. One-shot death should finish with a grounded corpse, not vanish.
 4. If screen says `D215 / QA FAIL` or Godot parser errors, fix them directly in GitHub and rerun.
 5. Even if all states animate and static QA passes, **ask user whether art fidelity is adequate** before connecting to the real battle. The D215 procedurally illustrated draft is visibly simpler than the approved scenic art; if rejected, keep it QA-only and improve/art-direct rather than falsely label finished.
+
+## User native gallery confirmation — 2026-10-17
+
+After F6 five-state Road Sentinel gallery instructions, user replied **«все ок продолжай дальше»**. This supports accepting the D215 standalone animation for proceeding to next character art, not full game battle/production sprite activation. Next character is D216 original Lantern Bearer: `docs/D216_LANTERN_BEARER_ANIMATION_QA.md`.
 
 ## Next actual production
 
