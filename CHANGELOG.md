@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D229: side-by-side old/new Road Sentinel native-scale animation gallery
+
+- User instructed continue after D228 art staging without confirming its native F6; retained D228 status as **pending**, NOT implicit PASS.
+- Repainted native 96px forge-steel chest planes, segmented pauldron, hood edge and pointed spear highlight on all 25 pose-authored cels. D229 transparent WebP/Base64 original 576×480 6×5, 25 unique+5 empty, zero 2px cell-edge warnings, bit-exact PNG/WebP; 12,880 different RGBA pixels vs D228. Source `tools/art/author_road_sentinel_d229.py`, art `assets/pixel/units/black_lantern_road_qa/road_sentinel_d229_art_candidate.webp.b64`, QC `docs/qa/D229_ROAD_SENTINEL_ART_QC.json`.
+- New `res://scenes/dev/black_lantern_sentinel_d229_compare.tscn` side-by-side real x1 plus x3 art comparison (D228 left vs D229 right, all 5 animations and both facing buttons synchronized) on exact approved D209 forest. No new production sprite switching.
+- Actual x1 aesthetic improvement remains subtle; final user approved D221 Style B detail bar NOT met/declared passed. Native F6 pending. Keep original armor SPEAR, 5 skeleton roles and 37-card live pool untouched; frozen KARAMBA73 preserved. See `docs/D229_SENTINEL_NATIVE_SCALE_AB_REVIEW.md`.
+
 ## 2026-10-17 — D228: Road Sentinel original armor/cloth/spear/lantern pixel art pass
 
 - Continued user's selected original D228 polish pipeline rather than distributing effort across other skeletons; no artwork choices re-opened.
