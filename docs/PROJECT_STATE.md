@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-18 (D231 user highlighted rich-art mismatch: D229 is technical staging only, not final visual art; 37/45 live). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-18 (D232 ONE transparent high-detail Sentinel pose 96×96 staged for x1 user look acceptance; D229 technical atlas unchanged; #38 QA-only, live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D231 CURRENT — rich-art quality gate REOPENED
+## D232 CURRENT — one better-looking transparent 96px spear Sentinel look candidate, awaiting user approval
+
+After D231 user objection to downgraded visuals, built and committed ONE rich armored pointed-spear Sentinel from a generated detail illustration (not a fake '25 frames' presentation grid). Isolated alpha from illustration, nearest-reduced to crisp 96×96 with safe bbox **(9,5,86,93)**. Candidate `assets/pixel/units/black_lantern_road_qa/road_sentinel_d232_single_96px.webp.b64`, preserved cutout source `road_sentinel_d232_reference_cutout.webp.b64`, machine-readable `docs/qa/D232_ROAD_SENTINEL_SINGLE_POSE_QC.json`. **This single sprite is illustration-derived, NOT 25 authored moving sprites or an art-final commitment.** New `res://scenes/dev/black_lantern_sentinel_d232_art_direction_preview.tscn` compares technical D229 left vs candidate D232 right, both x3 and true x1 on approved D209 moonlit forest. New Godot user F6 and art feedback PENDING. **Production role still loads technical D229**, card #38 absent from ordinary run, Act1 **37/45**. Need user decision on visible ×1 fidelity before 25-pose hand-authoring. Full detail `docs/D232_SENTINEL_SINGLE_FRAME_ART_REVIEW.md`.
+
+## D231 PREVIOUS — rich-art quality gate REOPENED
 
 User questioned why the beautiful original Sentinel atlas was replaced by plain D229. Verified original 1254×1254 axe-bearing rich atlas was never imported; the approved D221 long-spear illustration was only a visual reference, while D229 was procedurally drawn at 96px. D230 selection of D229 over D228 is a **technical preference, NOT final visual quality acceptance**. Keep D229 in QA staging only and DO NOT release #38 with it. Next: one genuinely polished, spear-equipped character frame at true combat scale for user review, then 25 separate final animation frames. See `docs/D231_SENTINEL_ART_FIDELITY_CORRECTION.md`. Live pool stays 37/45.
 
