@@ -1,6 +1,6 @@
 # D211 — Road Sentinel spear silhouette options (concept gate, NOT engine art)
 
-Date: 2026-10-17. Status: **TWO ART OPTIONS SHOWN, USER CHOICE PENDING.** Normal Act1 cards remain **37/45**, #38 unreleased. No new character atlases, battle scripts, unit loader, card routing or frozen backup changed.
+Date: 2026-10-17. Status: **USER SELECTED OPTION A — armored spear Sentinel silhouette LOCKED; production sprite NOT YET MADE.** Normal Act1 cards remain **37/45**, #38 unreleased. No new character atlases, battle scripts, unit loader, card routing or frozen backup changed.
 
 ## Why D211 is a concept step, not fake production completion
 
@@ -15,7 +15,7 @@ The exact cropped options are in conversation:
 
 ## Next decision and hard animation constraints
 
-**Ask the user to choose A or B** (if neither, revise with another distinct image option). Do not assume preferred A equals user approval.
+**User explicitly replied «а» to A/B review. Option A is therefore selected; do NOT ask again or substitute hooded B.** This accepts the armored long-spear direction ONLY, not the image crops as atlas cels or a Godot-native sprite.
 
 After user selection, paint an ORIGINAL full-body pixel spearman for Misdeal, preserving user-chosen silhouette but **angle spear more upright / tighten hand grip** to fit a 96×96 cel *while keeping skeletal height legible*. Make **25 purposeful, individually distinguishable poses** in exactly 576×480 RGBA 6 columns × 5 rows:
 - idle 4, walk 6, attack 6, hit 3, death 6;
