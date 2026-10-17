@@ -1,6 +1,10 @@
 # D219 — Lantern Archer / Стрелок фонарей: 25 original pixel animation frames, QA-only
 
-Date: 2026-10-17. **ART SOURCE + 25-CEL WEBP/B64 + ISOLATED GODOT F6 SCENE COMMITTED. GODOT NATIVE D219 F6 / ART APPROVAL PENDING.** Act1 live **37/45**, #38 `black_lantern_road` remains QA-only.
+Date: 2026-10-17. **ART SOURCE + 25-CEL WEBP/B64 + ISOLATED GODOT F6 SCENE COMMITTED. D219 STANDALONE GODOT F6 USER REPORTED «все ок»; FINAL ART APPROVAL PENDING.** Act1 live **37/45**, #38 `black_lantern_road` remains QA-only.
+
+## D219 2026-10-17 user report and D220 final replacement clarification
+
+After being asked to `git pull` and F6 `black_lantern_archer_animation_preview.tscn`, user replied **«все ок»**, then asked if all character sprites would later be replaced. **Yes:** accepted this as a **positive user-native isolated Archer QA response**, NOT a final-art acceptance. The present D219 simplified archer and all other D215–D218 candidates are explicitly technical, to be **replaced by full-quality original dark-fantasy art** for all five roles before #38 ships. Do not simply enlarge, recolor, or adopt previous undead sprites; see `docs/D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md`. No user screenshot of all Archer motion states; ordinary Battle→Reward→Table remains untested.
 
 ## Latest user feedback / predecessor gate
 
