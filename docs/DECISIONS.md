@@ -3,6 +3,10 @@ Updated: 2026-10-17.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D236R — User visual FAIL outranks animation hash count; weight-transfer gait required
+
+2026-10-18: User said **«не естествено»** about the D236 six-WALK pilot. Six technically distinct sprites and zero edge problems DID NOT imply convincing movement: wide x27..72 boot separation, abrupt swaps between frame2 and frame3 and still torso. D236 is rejected visually. New D236R six support/swing phases alternate 3+3 planted foot cycles, modest 1px body motion, reduced stride and checked circular foot continuity; preserves D234 illustrated hand/lantern/spear/armor, not yet final art. Side-by-side x1/x3 native F6 on D209 with optional slow playback; no user PASS yet, no real battle art replacement. If unsuccessful, prefer separately authored full-body animation poses to more small procedural patches. `docs/D236R_SENTINEL_GAIT_REPAIR_QA.md`.
+
 ## D236 — Distinct six-phase articulated WALK proof is separate from rich D235 final-art acceptance
 
 2026-10-18: User ordered implementation after D235 six illustrated walking-like figure look approved. Direct 3×2 poster background removal **failed** with brown gradient remnants/cropped spear and was rejected. Built reproducible Godot-compatible limited 576×480 alpha WALK-only pilot: six hand-positioned realistic grounded knee/shin/boot poses with illustrated D234 torso, true free-hand attached lantern and proper spear. Six real distinct WALK cells row1/24 empty/2px inset. This is **limited cutout/leg-rig work**, not 6 independently fully repainted ornate character frames, so does not fully satisfy D235 artistic quality. Native F6/user QA still pending; production BattleUnit/RunState not touched. `docs/D236_SENTINEL_WALK6_MOTION_PILOT.md`.
