@@ -1,6 +1,6 @@
 # D206 — Black Lantern Road: QA-only enemy resources and light-controller candidate
 
-Date: 2026-10-16. Status: **SOURCE-INTEGRATED QA-ONLY / GODOT NATIVE TEST PENDING**. Regular Act1 deal pool stays **37/45**.
+Date: 2026-10-16. Updated 2026-10-17: **QA-ONLY / ISOLATED CONTRACT USER-NATIVE PASS**. Regular Act1 deal pool stays **37/45**.
 
 ## User-approved art, held apart from production code
 
@@ -35,6 +35,8 @@ Time/geometry first-pass candidates: **1.4 s warning → 3.1 s active travelling
 New `res://scenes/dev/black_lantern_road_contract_smoke.tscn` and `scripts/dev/black_lantern_road_contract.gd` verify:
 - Encounter loads, five unique matching UnitData roles, 2×5 placement points inside established combat bounds;
 - Initial warning gives no speed bonus, active light accelerates an illuminated *enemy* but never a nearby hero, rest/stop reliably reset baseline.
+
+**D206 NATIVE CONTRACT PASS (2026-10-17):** user screenshot showed the complete green confirmation including 5 unique UnitData, 2 formations/5 enemies and buff affecting only lit enemies with cleanup, following typed-array fix commit `9f751e7`. This is not visual approval nor 54-case balance. Next benchmark `docs/D207_BLACK_LANTERN_BATTLE_MATRIX.md` is source-committed but not yet Godot F6-tested.
 
 The smoke uses temporary unparented BattleUnit instances; it does not run real AI, damage, sprites, RNG encounter selection, solo/duo/trio matrices or Battle→Reward→Table. **Native Godot 4.7 F6 result is not yet known.**
 
