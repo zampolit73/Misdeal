@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D226 user-native Godot screenshot confirms Sentinel gallery + walk-left visible with no QA errors; D221 final art style NOT matched/approved, next native-pixel fidelity pass, Act1 37/45**.
+Updated: 2026-10-17 — **D227 original detailed native-96px Sentinel atlas and standalone two-direction F6 scene committed, offline QC 25/5/0; user-native and final art approval pending, 37/45 live**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,15 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D226 — ACTUAL NATIVE SCREENSHOT RECEIVED; final art fidelity is the blocker
+## D227 — EXACT NEXT STEP: F6 native art QA for Sentinel detail improvement
+
+After D226 screenshot showed working x1/x3 gallery but simplified native sprites, user replied **«хорошо»** to next D227 art fidelity pass. D227 artist built real independent 96×96-per-frame pixel art *not a generated sheet crop*, retaining old physical joints but repainting each pose: asymmetric layered iron chest/pauldrons, sculpted 3/4 skull, muted ragged oxblood mantle, fitted greaves, long pointed spear with reinforced socket, short-slung cage lantern distinct from torso. Verified **25 unique authored frames, five alpha-clear cells, ZERO 2px border warnings**, correct rows on 576×480. WebP SHA `f1b50b919c76f5af9173ea33c77e484188077dbd72aee98110329210d84f7fbc`.
+
+**Files IN GITHUB:** `tools/art/author_road_sentinel_d227.py`, `assets/pixel/units/black_lantern_road_qa/road_sentinel_d227_art_candidate.webp.b64`, `docs/qa/D227_ROAD_SENTINEL_ART_QC.json`, `scripts/dev/black_lantern_sentinel_d227_art_preview.gd`, `scenes/dev/black_lantern_sentinel_d227_art_preview.tscn`. New preview uses EXACT chosen D209 moonlit forest, x3/x1 views and both face directions, five animation buttons. Previous D226 art/scene remains unchanged as fallback and comparison. The detailed D221 Sentinel illustration is **still the authoritative desired ART appearance**, D227 modest progression; NO user F6 or art acceptance yet. Do not call final sprite or integrate #38.
+
+**User next:** `git pull`, press F6 on `res://scenes/dev/black_lantern_sentinel_d227_art_preview.tscn`, test 5 states and left/right; evaluate real x1 aesthetics against D226 and D221. If it looks too sparse, keep improving *actual pixels* instead of pretending pose sheet generated with UI is production-ready. Only after final five roles approved wire real encounter-light/Battle→Reward→Table/matrix/release. All 37 live cards, D196 waves, D200 card art, D209 arena and frozen KARAMBA73 unchanged. Detail: `docs/D227_SENTINEL_PIXEL_FIDELITY_QA.md`.
+
+## D226 — PREVIOUS SCREENSHOT GATE; final art fidelity is the blocker
 
 **D226 current visual evidence:** User posted Godot 4.7.x screenshot with D226 gallery x3/x1 Road Sentinel on approved D209 forest, no red errors, `ХОДЬБА · ← ВЛЕВО` visible and left/right + 5 state controls. **CONFIRMED: native scene loads and shows a left-facing walk pose**. This does NOT prove animation states/direction completed or final-art acceptance. Assistant review finds simplified head/bones/armor and square lantern still far below the already approved D221 detailed B-style appearance; keep **final art gate OPEN** and plan true native-pixel 25-cel detailing pass. `docs/D226_SENTINEL_STYLE_B_ART_QA.md` updated. No game changes, 37/45 live.
 
