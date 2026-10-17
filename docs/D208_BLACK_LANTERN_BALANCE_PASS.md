@@ -1,6 +1,15 @@
 # D208 — Road of Black Lanterns: focused lanternlight balance candidate
 
-Date: 2026-10-17. **Baseline D207 native PASS; D208 source staged for native re-test.** Act1 normal pool remains **37/45**, `black_lantern_road` is QA-only.
+Date: 2026-10-17. **Baseline D207 native PASS; D208 +22% user-native F6 PASS; numeric experiment rejected and reverted to +16%.** Act1 normal pool remains **37/45**, `black_lantern_road` is QA-only.
+
+## D208 — user-native rerun PASS, +22% experiment reverted
+
+Date: 2026-10-17. The user ran the same deterministic F6 `res://scenes/dev/black_lantern_road_battle_matrix.tscn` again after enabling +22% illuminated-enemy attack speed. Screenshot reports **D208 FUNCTIONAL PASS, 54/54 complete, 54 wins, 0 defeats, 0 timeouts**. Per party size solo/duo/trio 18/18/18 wins, per Knight/Ranger/Mage 18/18/18; mean surviving HP **80/70/74%**, worst **52/30/44%**, hero losses **0/2/4**, durations **13.2/14.6/13.3 sec**. All of those displayed metrics were identical (to displayed precision) to the user-native D207 +16% baseline. D208 counters: **90 warnings**, **11,433 active frames** (D207 11,434), **15,510 buffed-enemy frames** (D207 15,502), peak **3 lit enemies**, **635 real enemy attacks total, 59 attacks with a lantern speed bonus (9.3%)**. D207 did not count real attacks, so do not assert an exact before/after attack-count comparison.
+
+Interpretation: The +22% experiment made no *observed* difference to the aggregate HP/duration/wins at displayed precision. Only 59/635 enemy attacks were made while accelerated; in this short fight increased cadence is therefore unlikely to meaningfully improve engagement. **Do not continue inflating enemy stats or light attack-speed numerics without visual/real combat evidence.** Reverted **only** `BlackLanternLightController.ATTACK_SPEED_MULTIPLIER` from 1.22 back to the **previous user-native-validated 1.16** in commit `cc624e3`. The D208 diagnostic_attack instrumentation remains in `scripts/dev/black_lantern_road_battle_matrix.gd` for future balance work. The reverted exact parameter is covered by the earlier D207 Godot test, but **no new post-revert D208 instrumented Godot run has been performed**. D208 +22% variant itself is user-native PASS; **this is not full balance approval**, much less release.
+
+Next milestone: prioritize **exact user-selected third moonlit forest arena asset** (`лунная_дорога_через_туманный_лес.png`, 1672×941; source conversation artifact), import exact source-derived 1280×720 WebP as original art **only via supported authenticated GitHub asset transfer** (the connected GitHub creator accepts UTF-8 text; approved binary not committed yet). Then native scene QA for boot-floor clearance and telegraphed moving light/readability; check moving light paths against actual early/late skeleton movement before deciding whether to retune zones/timing. Five original skeleton animation sheets are still blocked by frame-edge cropping and the Sentinel axe/spear mismatch. Do not substitute prior backgrounds, doodles or unapproved art. Continue with true Battle→Reward→Table and full-pool smoke only after original art QA. Live pool remains **37/45**, `КАРАМБА73` untouched.
+
 
 ## Locked observed D207 native results
 
