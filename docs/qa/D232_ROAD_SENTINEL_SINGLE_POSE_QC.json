@@ -1,0 +1,39 @@
+{
+  "stage": "D232 one-pose art direction QA",
+  "source": "single idle artwork extracted from generated high-detail illustration; not 25 real animation poses",
+  "format": "RGBA 96x96 one frame",
+  "production_installed": false,
+  "godot_native_pass": false,
+  "files": {
+    "road_sentinel_d232_reference_cutout.webp": {
+      "dimensions": [
+        115,
+        129
+      ],
+      "alpha_bbox": [
+        12,
+        11,
+        112,
+        126
+      ],
+      "sha256_raw_webp": "8e6fe4bf084b25e76b40bf0b48200785e99d17157b3f71a327d8c041fb6d999c",
+      "b64_length": 24084,
+      "bytes": 18062
+    },
+    "road_sentinel_d232_single_96px.webp": {
+      "dimensions": [
+        96,
+        96
+      ],
+      "alpha_bbox": [
+        9,
+        5,
+        86,
+        93
+      ],
+      "sha256_raw_webp": "7721a6a64998c7487fbd759c89efa4f626671ad6dec55667d45572ca093df2aa",
+      "b64_length": 9016,
+      "bytes": 6760
+    }
+  }
+}
