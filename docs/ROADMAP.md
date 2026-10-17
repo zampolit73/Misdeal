@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-17 (D215 original 25-frame Sentinel QA-only atlas / source / isolated F6 gallery committed, user Godot and art acceptance pending). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-17 (D215 Sentinel user-native F6 OK, D216 original shield-bearing Lantern Bearer 25-frame atlas and QA-only gallery staged; native D216 F6 pending). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -21,6 +21,9 @@ Updated: 2026-10-17 (D215 original 25-frame Sentinel QA-only atlas / source / is
 - [x] **D214 Bearer production specification committed:** 25 explicit pose directions, heavy lantern + wooden defensive plank, real pixel/foot/alpha gates; purely ART specifications, no real atlas. `docs/D214_LANTERN_BEARER_PRODUCTION_SPEC.md`.
 - [x] **D215 first original Road Sentinel QA atlas produced and committed:** handmade pose-specific 25 frames, 6×5 correct rows, transparent WebP/B64, no border spills, isolated native gallery F6; 3× and 1× on D209. **User art approval and native F6 PENDING; QA-only, not enabled in gameplay.** `docs/D215_SENTINEL_NATIVE_ANIMATION_QA.md`.
 - [ ] Produce/review FIVE **genuinely authored** idle/walk/attack/hit/death 96px transparent atlases. Begin with Sentinel's correct spear; retain prior selected arena and card illustration.
+- [x] **D215 Road Sentinel native F6 OK** — user replied «все ок продолжай дальше» after five-state standalone gallery check. QA candidate is acceptable for next art step; still not registered as live sprite or in battle.
+- [x] **D216 Lantern Bearer original 25-frame QA asset staged:** shield-first melee, separately held amber lamp, walk/hit/death (576x480 WebP/B64, 25 distinct poses, 5 blank, zero border flags). Authored Python source + QA-only Godot gallery committed. `docs/D216_LANTERN_BEARER_ANIMATION_QA.md`.
+- [ ] **D216 native gallery F6** — `res://scenes/dev/black_lantern_bearer_animation_preview.tscn`, check stance/foot contact, shield attack and final collapse on approved D209 arena.
 - [ ] After sprite approval: Godot animation F6, actual #38 five-enemy battle with encounter-only light, then real reward→table and release smoke before Act1 **38/45**.
 
 ## Next (strict order)
