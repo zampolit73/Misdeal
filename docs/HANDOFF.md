@@ -83,25 +83,3 @@ New source on GitHub `main`: `scripts/dev/black_lantern_road_battle_matrix.gd` +
 **NEXT USER ACTION**: `git pull`, run F6 `res://scenes/dev/black_lantern_road_battle_matrix.tscn`, share final results screenshot. If fail, inspect GitHub script and fix directly; if technical PASS, review party/class stats and balance before connecting full combat. D205 light preview separate native F6 still awaiting user confirmation. Full spec: `docs/D207_BLACK_LANTERN_BATTLE_MATRIX.md`.
 
 Art blockers remain: chosen third 1672×941 forest scene `лунная_дорога_через_туманный_лес.png` only local/conversation and NOT GitHub game bitmap; five generated 5×5 source sheets fail source-edge QC, Sentinel has axe instead of approved spear. New unapproved art must not be silently used. Preserve selected D200 third *card art* separately. Full main 37/45, D196 approved waves, DS2, 12+XIII and immutable `backups/KARAMBA73-2026-10-16` unchanged.
-
-## D206 Godot 4.7.2 light typed-array runtime fix — RESOLVED
-
-User-native `black_lantern_road_contract_smoke.tscn` screenshot reported `Trying to assign an array of type "Array" to a variable of type "Array[Vector2]"` in `scripts/battle/black_lantern_light.gd` line 109. The conditional `get_pool_centers() if active else []` created an untyped empty array. GitHub fix `9f751e7`: initialize a typed empty Array then populate inside `if active`, and replace other conditional typed array selections with explicit branches. **D206 user-native PASS now confirmed** by green screenshot 2026-10-17; re-running the earlier contract is unnecessary unless regression occurs. No released gameplay or card pool changes.
-
-## D206 — five original resources and isolated light mechanics staged, no production switch
-
-GitHub `main` now has exactly five **new** UnitData Resources and standalone `resources/encounters/black_lantern_road.tres` (two 5-unit placements). These are **unbalanced candidates** and not registered in RunState normal card paths or ACT1 pool. An isolated `BlackLanternLightController` in `scripts/battle/black_lantern_light.gd` records enemy baseline attack intervals, warns/activates/rests (1.4/3.1/1.8s candidates), gives up to +16% attack speed to illuminated ENEMIES only, then resets intervals on unlit/rest/stop. **It is not connected to `battle.gd` or live combat yet**. Godot engine QA not run.
-
-A second native QA scene is now present: `res://scenes/dev/black_lantern_road_contract_smoke.tscn`. It verifies resources, both authored formations in bounds, only-enemy speedup and reset. Next chat should ask user to `git pull`, F6 the contract smoke; also ask about the older D205 `black_lantern_road_light_preview.tscn` (parser error repaired but native F6 response still missing).
-
-Chosen exact arena bitmap `лунная_дорога_через_туманный_лес.png` was converted **locally** to 1280×720 WebP (same source, 16:9); it remains **not imported to GitHub**, so do not claim arena is visible in Godot. Original approved D200 card art remains untouched; D205 skeletal atlas candidates still art QA blocked. No game behavior, DS2, #37 waves or `КАРАМБА73` branch changed. Details & SHA references: `docs/D206_BLACK_LANTERN_ENCOUNTER_STAGING.md`.
-
-## NEXT TASK — D206 contract F6, D205 light F6, then approved arena import
-
-1. User `git pull`; **F6 `res://scenes/dev/black_lantern_road_contract_smoke.tscn`** and report PASS/FAIL. Then recheck the D205 `res://scenes/dev/black_lantern_road_light_preview.tscn` after parser fix if not yet confirmed. Native smoke has NOT run.
-2. Import **the selected exact third forest image** into GitHub at 1280×720 in accepted game art format when image-byte transfer is available; QA-only native arena with floor bounds. Never substitute an AI re-render, previous A/B/C blockout or a different option.
-3. Improve source atlases until each has correct approved original five roles, no source-frame crop, correctly scaled Guide and aligned feet; then commit/present native animated sprite preview. A converter PASS is not art acceptance. New UnitData are **proposals only**; do not pretend the latest sheet supplies original animation atlases.
-4. Connect the already-staged `EncounterData` and `BlackLanternLightController` to #38 battle **only after approved art**; run 54-case native matrix, real battle→reward→table, and ordinary-deal smoke before releasing card #38.
-5. Preserve existing D196 storm and released #34–#37, DS2, 12+XIII; never touch frozen backup `backups/KARAMBA73-2026-10-16`.
-
-Detailed current handoff: `docs/D205_BLACK_LANTERN_ASSET_AND_LIGHT_STAGING.md`. **Live Act1 remains 37/45**. Godot 4.7.x / GDScript only.
