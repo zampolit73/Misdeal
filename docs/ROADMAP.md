@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-18 (D236R six-step repaired WALK user-accepted as workable; next D237 six-pose spear attack, rich complete atlas and actual #38 still QA; live Act1 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-18 (D238 user requested all 25 game-animation frames together, no individual pose approval gates; next full Sentinel asset pack, QA and all 37 LIVE unchanged). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -20,7 +20,14 @@ Updated: 2026-10-18 (D236R six-step repaired WALK user-accepted as workable; nex
 - [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
-## D237 NEXT — accepted WALK baseline, genuine spear attack six-cel QA
+## D238 CURRENT — produce FULL 25-cel Sentinel animation before next user QA
+
+- [x] **Workflow approved by user**: no more piecemeal idle/walk/attack/death proposals and screenshots; one full game-ready 25-frame delivery per character, one F6 QA when complete. New rule permanently added to `AGENTS.md` / `docs/DECISIONS.md`.
+- [ ] **ONE complete rich Road Sentinel atlas:** idle4 + **approved D236R walk6** + original spear-thrust attack6 + hit3 + death6, with 5 unused alpha-clear slots, correct wrist-held D234 lantern, rich D235 outfit, full-scale x1 readability and grounded movement. Rework source frame-by-frame internally until look/motion passes; don't swap in procedural D229 art or fake cropped imagegen animation sheets.
+- [ ] **ONE integrated native F6 QA** displaying all five animation states and both directions at x1/x3 on D209; after that, directly fix reported issues and update production art. Do not demand five separate user checkpoints.
+- [ ] Repeat complete-25 approach for remaining Lantern Bearer, Oil Acolyte, Extinguished Guide and Lantern Archer; only after the cast, actual #38 combat/lighting/reward/matrix/release. Regular card pool 37/45.
+
+## D237 SUPERSEDED PER-STATE USER GATE — accepted WALK baseline, genuine spear attack six-cel QA
 
 - [x] User replied **«пойдет»** to D236R comparison: corrected gait sufficiently good to move forward. This is a **limited walk visual OK**, not complete final art or integrated battle.
 - [x] Supersede D236 unnatural walk; retain D236R original six support/swing WALK frames with accepted D234 lantern grip and approved D235 richer visual direction.
