@@ -1,0 +1,293 @@
+{
+  "width": 576,
+  "height": 480,
+  "alpha": "RGBA",
+  "state_counts": {
+    "idle": 4,
+    "walk": 6,
+    "attack": 6,
+    "hit": 3,
+    "death": 6
+  },
+  "poses": 25,
+  "unique_frames": 25,
+  "unused_cells": 5,
+  "frame_warnings": [],
+  "frames": [
+    {
+      "state": "idle",
+      "index": 1,
+      "alpha_bbox": [
+        23,
+        6,
+        70,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "idle",
+      "index": 2,
+      "alpha_bbox": [
+        24,
+        6,
+        70,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "idle",
+      "index": 3,
+      "alpha_bbox": [
+        23,
+        6,
+        69,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "idle",
+      "index": 4,
+      "alpha_bbox": [
+        22,
+        6,
+        70,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "walk",
+      "index": 1,
+      "alpha_bbox": [
+        23,
+        7,
+        69,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "walk",
+      "index": 2,
+      "alpha_bbox": [
+        22,
+        7,
+        68,
+        93
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "walk",
+      "index": 3,
+      "alpha_bbox": [
+        25,
+        9,
+        70,
+        93
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "walk",
+      "index": 4,
+      "alpha_bbox": [
+        24,
+        7,
+        71,
+        91
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "walk",
+      "index": 5,
+      "alpha_bbox": [
+        22,
+        7,
+        74,
+        93
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "walk",
+      "index": 6,
+      "alpha_bbox": [
+        21,
+        8,
+        71,
+        93
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "attack",
+      "index": 1,
+      "alpha_bbox": [
+        22,
+        7,
+        70,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "attack",
+      "index": 2,
+      "alpha_bbox": [
+        31,
+        11,
+        71,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "attack",
+      "index": 3,
+      "alpha_bbox": [
+        8,
+        10,
+        81,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "attack",
+      "index": 4,
+      "alpha_bbox": [
+        5,
+        9,
+        82,
+        94
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "attack",
+      "index": 5,
+      "alpha_bbox": [
+        10,
+        10,
+        76,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "attack",
+      "index": 6,
+      "alpha_bbox": [
+        22,
+        8,
+        70,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "hit",
+      "index": 1,
+      "alpha_bbox": [
+        25,
+        8,
+        72,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "hit",
+      "index": 2,
+      "alpha_bbox": [
+        27,
+        9,
+        74,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "hit",
+      "index": 3,
+      "alpha_bbox": [
+        23,
+        7,
+        72,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "death",
+      "index": 1,
+      "alpha_bbox": [
+        26,
+        12,
+        72,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "death",
+      "index": 2,
+      "alpha_bbox": [
+        16,
+        21,
+        73,
+        93
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "death",
+      "index": 3,
+      "alpha_bbox": [
+        7,
+        32,
+        84,
+        94
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "death",
+      "index": 4,
+      "alpha_bbox": [
+        7,
+        44,
+        87,
+        92
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "death",
+      "index": 5,
+      "alpha_bbox": [
+        9,
+        62,
+        88,
+        93
+      ],
+      "edge_warning": []
+    },
+    {
+      "state": "death",
+      "index": 6,
+      "alpha_bbox": [
+        10,
+        63,
+        89,
+        93
+      ],
+      "edge_warning": []
+    }
+  ]
+}
