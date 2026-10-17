@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D219 standalone Archer F6 user OK; D220 all five procedural QA sprites explicitly slated for full Misdeal-style redraw BEFORE #38 release; 37/45 live). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D221 user approved D220 group B and detailed armored spear Sentinel appearance; actual 25-frame final animation repaint still pending; 37/45 live). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D220 CURRENT — D219 user preview OK; five QA sprites MUST be replaced before release
+## D221 CURRENT — user approved Sentinel final art appearance, not finished sprites
+
+User selected **D220 group art style B** and then explicitly replied **«отлично»** to the detailed Sentinel character illustration `лунный_страж_проклятой_дороги.png` (heavily armored, hooded bone spearman, compact pole-hung lantern). **Appearance/direction approved.** Illustration is a background-composited concept with labels; it is **NOT a transparent production sprite atlas**, nor a native-F6 animation acceptance. **Do NOT register in the game or claim 25 final frames**. Next role art-look proposal is `lantern_bearer` (thick wooden board shield, heavy separate lamp) in the same B style; after user approval, frame-by-frame polish per D213/D214 and QA. Details: `docs/D221_SENTINEL_FINAL_STYLE_APPROVAL.md`. All five D215–D219 QA sprites remain temporary, normal Act1 **37/45**.
+
+## D220 PREVIOUS — D219 user preview OK; five QA sprites MUST be replaced before release
 
 User replied **«все ок»** after D219 archer isolated Godot F6 request, plus explicitly asked if the five simplified character sprites will later be replaced. **Yes: agreed hard gate.** D219 is **user-reported functional isolated preview OK**, NOT polished final-art approval or full five-role real-battle PASS. These D215–D219 cels were intentionally **technical QA art**; all FIVE must receive new full-quality original dark-fantasy pixel-art drawing, retain useful genuine 25-pose walk/attack/death motion, and be shown together **at native game size on the already approved D209 third moonlit forest arena** for user's artistic acceptance. Not just upscaling or repainting one idle frame; do NOT silently reuse older undead art. D211 **Sentinel A spear**, Bearer board shield + separate lantern, Acolyte curved sickle/oil flask, Guide tall 1.8× and three chained lamps, Archer real bow/quiver/lantern are locked. The correct 576×480 6×5×96px five-row atlas contract remains D213; 2px alpha-safe margins, five clear cells. Only after explicit art/native F6 approval register production sprites and integrate actual #38 battle→reward→table, 54-case combat matrix and full-pool smoke; THEN release 38/45. Current card #38 **QA-only / 37 cards live**, untouched code; reference **`docs/D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md`**.
 
