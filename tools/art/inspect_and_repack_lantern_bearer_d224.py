@@ -1,16 +1,21 @@
+# QA-only converter for the exact D224 user-approved original from GitHub.
+# Run from a writable directory: python tools/art/inspect_and_repack_lantern_bearer_d224.py
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np, io, json, hashlib, base64, math
-SOURCE=Path('/mnt/data/спрайт_лист_скелета_рыцаря_с_фонарём.png')
-OUT=Path('/mnt/data/d224_bearer')
+ROOT = Path(__file__).resolve().parents[2]
+SOURCE = ROOT / 'assets/pixel/units/black_lantern_road_qa/lantern_bearer_d224_approved_original_lossless.webp.b64'
+OUT = Path.cwd() / 'd224_bearer_build'
+OUT.mkdir(parents=True, exist_ok=True)
 COL_COUNTS=[4,6,6,3,6]
 YBOUNDS=[0,239,468,690,913,1145]
-image=Image.open(SOURCE).convert('RGBA'); original=np.asarray(image)
+webp_bytes = base64.b64decode(SOURCE.read_text(encoding='utf-8').strip())
+image=Image.open(io.BytesIO(webp_bytes)).convert('RGBA'); original=np.asarray(image)
 alpha=np.asarray(image)[:,:,3]
-reference_sha=hashlib.sha256(SOURCE.read_bytes()).hexdigest()
+reference_sha=hashlib.sha256(webp_bytes).hexdigest()
 cell=96; source_cell=229
 out=Image.new('RGBA',(576,480),(0,0,0,0))
-report={'source':str(SOURCE),'source_size':list(image.size),'source_sha256':reference_sha,'source_is_valid_godot_atlas':False,'source_blending_warning':'Cell art lies across nominal grid boundaries; 1-cut at a seam has 20 opaque source pixels. No original bitmap qualifies as Godot atlas before repack/cleanup.','cut_rows':YBOUNDS,'states':['idle','walk','attack','hit','death'],'expected_counts':COL_COUNTS,'cells':[],'cuts_x':{},'scale':0.37,'native_QA':'pending'}
+report={'source':str(SOURCE),'source_size':list(image.size),'source_webp_sha256':reference_sha,'source_is_valid_godot_atlas':False,'source_blending_warning':'Cell art lies across nominal grid boundaries; at least one cut still crosses 20 source alpha pixels. Repack requires native F6 visual inspection; offline 0-border flags are not proof of zero silhouette loss.','cut_rows':YBOUNDS,'states':['idle','walk','attack','hit','death'],'expected_counts':COL_COUNTS,'cells':[],'cuts_x':{},'scale':0.37,'native_QA':'pending'}
 for r,n in enumerate(COL_COUNTS):
     y0,y1=YBOUNDS[r],YBOUNDS[r+1]
     rowmask=(alpha[y0:y1,:]>48)
@@ -81,4 +86,4 @@ for row,state in enumerate(report['states']):
   x=20+col*175; y=54+row*195
   board.paste(check,(x,y)); d.text((x+62,y+149),str(col+1),fill='#aaa')
 board.save(OUT/'D224_approved_sprite_grid_qa.png')
-print(json.dumps({k:report[k] for k in ['source_size','source_sha256','candidate_webp_sha256','source_webp_size','filled','unique','unused','warnings','cuts_x']},indent=2))
+print(json.dumps({k:report[k] for k in ['source_size','source_webp_sha256','candidate_webp_sha256','source_webp_size','filled','unique','unused','warnings','cuts_x']},indent=2))
