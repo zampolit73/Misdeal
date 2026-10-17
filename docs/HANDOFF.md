@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D215 original 25-frame spear Sentinel QA asset and isolated Godot F6 gallery committed; native/art approval pending; Act1 37/45**.
+Updated: 2026-10-17 — **D215 spear Sentinel user-native QA OK; D216 original Lantern Bearer 25-frame atlas and independent F6 gallery source committed; D216 native F6 pending; Act1 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,21 +74,15 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D215 CURRENT — first original Road Sentinel A atlas in QA only, F6/ART APPROVAL NEXT
+## D216 CURRENT — Sentinel user OK, shield Lantern Bearer native gallery NEXT
 
-Accepted prerequisite: user selected Road Sentinel **D211 armored spear option A**; D213 corrected actual Godot row-per-animation atlas; D214 Bearer pose brief fixed. D209 third moonlit forest backdrop user-native accepted, no more selection. The new pixel character is **NOT the rich D211 cropped concept**, and is not described as finished-quality art.
+**Latest user's message** after D215 standalone Road Sentinel 5-state gallery request: **«все ок продолжай дальше»**. Record **user-native D215 QA gallery/art direction OK**, not actual #38 combat or sprite library activation. Do not ask D215 F6 again without a new issue.
 
-**Actually committed in GitHub main**:
-- `assets/pixel/units/black_lantern_road_qa/road_sentinel_d215_candidate.webp.b64` — genuine native-size 576×480 RGBA transparent lossless WebP pixel sprite candidate, 25 independently authored cels in **idle4+2clear / walk6 / attack6 / hit3+3clear / death6**, not invalid 5×5 concept remap. A plated skeletal guard with LONG SPEAR, asymmetrical shoulder armor, skull, lamp, animated two-step walk, six-cel spear thrust and grounded death.
-- `tools/art/author_road_sentinel_d215.py` — reproducible offline Pillow artist geometry source; retained so future chat can refine without reverse-engineering the B64.
-- `res://scenes/dev/black_lantern_sentinel_animation_preview.tscn` and `scripts/dev/black_lantern_sentinel_animation_preview.gd` — QA-only Godot gallery (loads exact D209 arena, builds SpriteFrames from candidate, displays 3×/1× with five state buttons; asserts 25 nonempty distinct and five transparent, with margin checks). Does NOT register any `MisdealUnitAnimationLibrary` role, alter live battle, change RunState or replace frozen art.
-- Conversation ZIP `Misdeal_D215_Road_Sentinel_Animation_QA.zip` and contact sheet `D215_sentinel_animation_contact_sheet.png`.
+**New work on GitHub `main`**: `assets/pixel/units/black_lantern_road_qa/lantern_bearer_d216_candidate.webp.b64` contains newly hand-authored parametrically native-size **576×480 RGBA / 6×5 / 25 distinct + 5 transparent**, true five animation rows. Normal-size heavy skeleton carries a tall **WOODEN BARRICADE PLANK SHIELD** in the front hand and a **separate amber lantern** in the other. Distinct two-step march, shield-check close melee hit, reaction and heavy shield-first death. Authored source `tools/art/author_lantern_bearer_d216.py` imports D215 utility painter, writes reproducible PNG, lossless WebP+B64, JSON and contact sheet. Offline QC **25 unique, five blank, zero alpha edge warnings**. Re-fetched GitHub B64 equals the exact locally tested source. Static proof, NOT native Godot pass.
 
-**Static offline QC PASS:** exactly 25 distinct/visible original pixels poses, 5 transparent, 0 bounds warnings. GitHub B64 roundtrip confirms byte identity. **Native Godot F6 has NOT run; true art quality NOT approved**. Character is a first clean but simplified pixel draft, visibly less painterly/detail-rich than option-A reference and D209 forest. Do not claim final 25-frame ART PASS or fight-ready sprites. Full notes: `docs/D215_SENTINEL_NATIVE_ANIMATION_QA.md`.
+**NEXT USER ACTION**: `git pull` and F6 `res://scenes/dev/black_lantern_bearer_animation_preview.tscn`. Click **ОЖИДАНИЕ / ХОДЬБА / АТАКА / УРОН / СМЕРТЬ**, inspect 3× and native 1× on exact user-approved D209 forest. Pay attention to grounded walk, recognizable frontal BOARD strike (not spear), separate swinging light and last prone shield/corpse. Ask for screenshot only if bugs/quality concerns; plain «всё ок» closes D216 art preview. Details `docs/D216_LANTERN_BEARER_ANIMATION_QA.md`.
 
-**NEXT USER ACTION:** `git pull`; open `res://scenes/dev/black_lantern_sentinel_animation_preview.tscn` and F6. Click 5 state buttons; check grounded alternating footsteps, actual spear thrust and drawn feet, complete death hold, and 1× readability on approved D209 forest. Request visual feedback, not a blanket PASS assumption. If texture parsing or GDScript error, fix current GitHub file directly. If visual quality fails, iterate this QA asset (not production sprite) before starting Bearer. Once Sentinel approved, create `lantern_bearer` from D214 25-cel brief and continue other original roles. Only then battle→reward→table, 54-case matrix and release to 38/45.
-
-Preserve existing D196 wave baseline, DS2, 12+XIII, 37-card live pool, D200 card art, D209 forest, and immutable `backups/KARAMBA73-2026-10-16`. Current encounter lanternlight multiplier 1.16.
+**After D216 approval**: author 25 real original `oil_acolyte` (flask+sickle) pixels, then full-height Guide and lantern archer, each with isolated F6; *only after all five* wire scoped `black_lantern_road` true battle & rewards, regression matrix and release smoke. **No new defensive gameplay/shield block** is approved. D206 contract native PASS, D207 and D208 battle matrix 54/54, local light bonus 1.16. Act1 **37/45**, existing D196 waves, DS2 Fate Spread 12+XIII, accepted D200 card artwork, D209 forest art and frozen `backups/KARAMBA73-2026-10-16` untouched.
 
 ## D210 PREVIOUS — D209 F6 approved, five sprite atlases remain blocked
 
