@@ -1,7 +1,7 @@
 # Misdeal Documentation Index
-Updated 2026-10-18 — D236 six-phase WALK motion proof with genuine alternating boots and rich D234 upper, standalone x1/x3 F6 pending, 37/45 live.
+Updated 2026-10-18 — D236 native gait rejected by user; D236R grounded 6-phase replacement and F6 A/B comparison staged; full rich visual art not yet released, 37/45.
 
-**CURRENT ENGINE QA:** [D236 six-walk articulated boot + held-lantern pilot](D236_SENTINEL_WALK6_MOTION_PILOT.md): native F6 pending, six WALK-only cels, NOT original full 25-cel art. 
+**CURRENT ENGINE QA:** [D236R support/swing gait A/B native Godot preview](D236R_SENTINEL_GAIT_REPAIR_QA.md): user rejected previous D236 step; new 6 WALK-only cels staged, F6 PASS pending.  [D236 six-walk articulated boot + held-lantern pilot](D236_SENTINEL_WALK6_MOTION_PILOT.md): native F6 pending, six WALK-only cels, NOT original full 25-cel art. 
 
 **CURRENT APPROVED LOOK:** [D235 six-walk rich Sentinel illustration](D235_SENTINEL_WALK_ART_APPROVAL.md) — user accepted 3×2 pose/appearance artwork; full-resolution reference exists in GitHub, NOT yet real 96px alpha animation. 
 
