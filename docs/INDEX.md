@@ -1,7 +1,7 @@
 # Misdeal Documentation Index
-Updated 2026-10-18 — D233 limited 4-cel illustrated idle motion proof/F6 staged; still need native art feedback and actual 21 original source poses, live 37/45.
+Updated 2026-10-18 — D234 illustrated Sentinel free-hand lantern fix, side-by-side Godot F6 pending; 4 idle only, production atlas unchanged, 37/45 live.
 
-**CURRENT QA:** [D233 illustrated Sentinel 4-IDLE cutout motion F6](D233_SENTINEL_IDLE_CUTOUT_PROOF.md): 4 genuine rendered variants from one approved-style illustrated pose; 26 transparent cells, no full 25-cel animation or game integration.  [D232 one-pose original Sentinel visual x1 review](D232_SENTINEL_SINGLE_FRAME_ART_REVIEW.md). This is exactly ONE clean 96px static figure on D209 forest, not 25 animation cels; visual user OK pending. 
+**CURRENT QA:** [D234 hand-held Sentinel lantern and D233 side-by-side x1/x3 F6](D234_SENTINEL_HAND_LANTERN_ATTACHMENT_QA.md): D233 user-visible fail; D234 4 attached idle cels/26 blanks, Godot x1 confirmation pending.  [D233 illustrated Sentinel 4-IDLE cutout motion F6](D233_SENTINEL_IDLE_CUTOUT_PROOF.md): 4 genuine rendered variants from one approved-style illustrated pose; 26 transparent cells, no full 25-cel animation or game integration.  [D232 one-pose original Sentinel visual x1 review](D232_SENTINEL_SINGLE_FRAME_ART_REVIEW.md). This is exactly ONE clean 96px static figure on D209 forest, not 25 animation cels; visual user OK pending. 
 
 **LATEST ART DECISION:** [D231 sprite fidelity correction](D231_SENTINEL_ART_FIDELITY_CORRECTION.md): D229 selected over D228 as technical temporary, NOT a final rich art replacement; D230 final-art claim superseded. Original highly detailed 1254 atlas has WRONG AXE; D221 chosen rich spear reference remains target. 
 
