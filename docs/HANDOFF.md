@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-18 — **D230 user explicitly LOCKED second/right D229 spear Sentinel as FINAL; promoted bit-identical atlas to production and registered approved role with correct authored-left facing; focus remaining four skeletons, 37/45 live**.
+Updated: 2026-10-18 — **D231 USER CORRECTION: beautiful original 1254 atlas was NEVER converted into game; selected D229 is much simpler procedural source, ART quality gate reopened, no more fake 'final' claims; Act1 live 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,15 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D230 — EXACT CURRENT HANDOFF: Road Sentinel final art DONE; do NOT restart its repaint
+## D231 — EXACT CURRENT HANDOFF: user's art-quality objection overrides D230 visual-final claim
+
+**LATEST USER MESSAGE:** «так стой а спрайт будет такой? Атлас же был намного красивее что произошло?» following assistant's announcement that D229/right was final. User is right: original gorgeous generated `пиксельный_атлас_скелета_стража.png` (1254×1254 RGBA, approximate 5×5) has richly lit rust steel plate and dramatic cloak/lantern, but **WRONG AXE/HALBERD**, is not a valid 576×480 6×5×96px animation atlas. Separately, user's explicitly approved spear-bearing D221 concept `лунный_страж_проклятой_дороги.png` (1672×941 RGB) is beautifully painted but baked into UI/backdrop; not alpha sprite frames. D215–D229 were independently **programmatically painted skinny 96px skeletons**, not cropped/cleaned authentic original art. They are obviously less beautiful. D230's claim that selecting D229 over D228 closed the ART quality issue was overly strong. **D231 correction supersedes that ART FINAL statement**. User chose second *of two technical variants* — keep recorded choice as the better temporary option, but this is NOT authorization to replace the intended polished art quality indefinitely.
+
+**IMPLEMENTED TECH STATE:** D230 `road_sentinel_frames.webp.b64` canonical file and `MisdealUnitAnimationLibrary.get_frames("road_sentinel")` currently load exact procedural D229, with role-authored LEFT facing handling. It is now classified **technical placeholder** only, not final paint. `res://scenes/dev/black_lantern_sentinel_d230_approved_smoke.tscn` can still test engineering but **doesn't settle art**. #38 remains absent from normal 37-card pool, so no active fight harmed. Other 4 skeleton production art gates open.
+
+**NEXT LOGICAL WORK**: No more iterative procedural micropolish. Build a **TRUE polished drawn Sentinel with POINTED LONG SPEAR (not axe)** based on accepted D221 image and rich original atmospheric armor/cloak/lantern quality. Before painting 25 frames, show **ONE crisp battle-scale character pose** and clarify any tradeoff about hard 96px budget. Only then draw 25 genuine separated transparent cels, preserve genuine walk/thrust/hit/death, check five blank cells/feet. Revisit D230 technical asset only when the approved replacement exists. Main concept/layout/gameplay remain locked. Preserve KARAMBA73, D209 third forest, D200 third card, no #38 release. Canonical new explanation `docs/D231_SENTINEL_ART_FIDELITY_CORRECTION.md`. Do NOT state "final sprite now ready" just because D229 passed alpha/animation checks.
+
+## D230 — PREVIOUS / ART-FINAL CLAIM SUPERSEDED / TECH-ONLY HANDOFF: Road Sentinel final art DONE; do NOT restart its repaint
 
 **MOST RECENT USER VISUAL DECISION:** «давай примем 2 вариант и уже закончим с этим» in reply to D229 A/B comparison. LEFT = old D228 / RIGHT = D229. **USER SELECTED RIGHT/SECOND D229 FINAL.** The long-spear armored skeleton with amber hanging lantern is art approved and its appearance is FROZEN at this visual milestone. This later direct instruction supersedes all old notes saying the spear Sentinel art still requires additional stylistic passes. Do not waste another session asking to choose A/B or doing D231 Sentinel microdetails.
 
