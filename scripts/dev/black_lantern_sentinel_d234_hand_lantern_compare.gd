@@ -1,7 +1,7 @@
 extends Control
 
-# D233: limited animation-production method QA only.
-# Four variants of ONE D232 illustrated pose, with cloak tip/lantern movement.
+# D234: compare D233 rejected knee-level floating lantern vs fixed free-hand grip.
+# Both candidates derive four idle variants from ONE rich D232 illustrated pose.
 # NOT a full 25-cel production animation; other 26 atlas cells are empty.
 const OLD_IDLE: String = "res://assets/pixel/units/black_lantern_road_qa/road_sentinel_d233_idle4_cutout_proof.webp.b64"
 const NEW_IDLE: String = "res://assets/pixel/units/black_lantern_road_qa/road_sentinel_d234_handheld_idle4.webp.b64"
