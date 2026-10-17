@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D239: Full 25-frame Sentinel illustrated-source QA package
+
+- Generated and committed **actual 576×480 WebP/Base64 atlas** with 25 distinct roles across idle4/walk6/attack6/hit3/death6, five empty alpha cells and valid 2px margins, via a scoped GitHub Actions Pillow builder. Machine report `docs/qa/D239_SENTINEL_FULL25_QC.json`, SHA256 `79817fba4ee8469de6923fc9cdb30436db6852aa415533a25c93529f4fc49487`.
+- Source-preserving art construction uses accepted D234 visible free-hand lantern and D236R gait, with pose-staged illustrated-source attack/hit/collapse. Not 25 independently full-body-painted cels; *visual completion still subject to one full-package native review*.
+- Added `res://scenes/dev/black_lantern_sentinel_d239_full25_preview.tscn` on existing D209 forest, five state buttons, both facings, ×1/×3 and strict decoded-atlas QC. **Godot 4.7 F6 not performed here.**
+- No production sprite or #38 pool switch; Act1 37/45, frozen КАРАМБА73, D200/D209/D196 and older staged art untouched. Full handoff `docs/D239_SENTINEL_FULL25_QA.md`.
+
 ## 2026-10-18 — D238H: Clean new-chat continuation and documentation consistency
 
 - User requested all current GitHub context saved for resuming in a new chat. Added standalone compact `docs/D238_BATCH_ANIMATION_NEXT_CHAT.md` describing the **full 25-frame in one batch / one finished F6** workflow, each current source art reference, exact #38 work boundaries, and next code/art implementation action.
