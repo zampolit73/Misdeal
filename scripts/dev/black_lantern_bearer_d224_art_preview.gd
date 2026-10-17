@@ -56,7 +56,7 @@ func _ready() -> void:
 	_label("D224 / НОСИЛЬЩИК — АРТ B / QA", Vector2(190, 19), Vector2(900, 38), 25, true)
 	_label("Большой просмотр x3", Vector2(123, 154), Vector2(345, 33), 19, true)
 	_label("В боевом масштабе x1", Vector2(690, 155), Vector2(420, 32), 19, true)
-	state_name = _label("", Vector2(138, 506), Vector2(340, 32), 20, true)
+	state_name = _label("", Vector2(84, 506), Vector2(448, 32), 18, true)
 	status = _label(
 		"D224: СЦЕНА ЗАГРУЖЕНА. ПРОВЕРЬ ОБА НАПРАВЛЕНИЯ И ВСЕ 5 АНИМАЦИЙ.\n"
 		+ "NEAREST УЖЕ ВКЛЮЧЁН; МЯГКОСТЬ ДЕТАЛЕЙ ПОСЛЕ ПЕРЕНАРЕЗКИ ИСХОДНИКА.",
