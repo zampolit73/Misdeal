@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D228 Road Sentinel native 96px ornamental repaint + 25-cel transparent atlas + dedicated two-facing Godot F6 staged; native F6/final-art QA NOT YET RECEIVED; live 37/45**.
+Updated: 2026-10-18 — **D229 synchronized x1/x3 D228-vs-D229 Road Sentinel art comparison scene committed (25 original/5 clear/0 border), user F6 & final art still pending; Act1 37/45 LIVE**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,15 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D228 — EXACT NEXT USER STEP: native visual QA of improved Road Sentinel
+## D229 — EXACT CURRENT HANDOFF: run side-by-side native x1 art comparison
+
+User said **«продолжай»** following D228 original ornamental Sentinel art candidate; this is NOT acceptance of D228 native F6. Since user's desired final Style B illustration quality has not been reached by many incremental 96px texture passes, D229 introduces **synchronized A/B visual QA**, rather than claiming another microscopic improvement is final.
+
+**NEW GitHub files:** `tools/art/author_road_sentinel_d229.py` (new 96px per-pose armor facets/hood/spear geometry, original motion 25 cels), `assets/pixel/units/black_lantern_road_qa/road_sentinel_d229_art_candidate.webp.b64`, `docs/qa/D229_ROAD_SENTINEL_ART_QC.json` (25 truly distinct/5 fully clear, zero alpha-border warnings; lossless WebP SHA `dd8ab21d7e115fe23418778a40e8f27e01abace9f3ccb1630025a09d318d2618`), `scripts/dev/black_lantern_sentinel_d229_compare.gd` + **`scenes/dev/black_lantern_sentinel_d229_compare.tscn`**. The viewer compares D228 on LEFT against D229 on RIGHT *simultaneously* at x3 and x1, all five motion states synchronized and direction ←/→ mirrored on both; untouched correct D209 third moonlit forest. Local contact sheet/source/ZIP supplied in this chat. No production registry or active card changes.
+
+**EXACT USER ACTION:** `git pull`, F6 `res://scenes/dev/black_lantern_sentinel_d229_compare.tscn`, test `ХОДЬБА`, `АТАКА`, `СМЕРТЬ` in both directions, judge silhouettes specifically at x1. Both Godot atlases are statically validated in scene. **Native D229 F6 NOT received.** Compare to already approved D221 illustration; still consider current fidelity insufficient for final. If x1 does not clearly improve, do NOT run more tiny procedural ornament passes; prefer an explicitly higher quality silhouette/pose-authoring workflow before finalizing five enemies and wiring #38. No architecture/renderer changes without user discussion. Accepted D221 dark plate armor SPEAR and amber lantern, group B, approved D200 card/D209 forest all remain LOCKED. Current live cards **37/45**, #38 QA-only. Detailed `docs/D229_SENTINEL_NATIVE_SCALE_AB_REVIEW.md`. Frozen KARAMBA73 unchanged.
+
+## D228 — PREVIOUS USER ACTION: native visual QA of improved Road Sentinel
 
 User expressly said **«продолжай»** after agreeing to the original D228 art-pass plan: focus on polishing **Road Sentinel** before other skeletons. Current source of truth GitHub `main`. New D228 true **native 96px** (NOT cropped concept art) `tools/art/author_road_sentinel_d228.py` draws 25 authored pose cels in per-animation Godot rows (idle4/walk6/attack6/hit3/death6), five transparent unused slots. Painter adds genuinely layered irregular chest and pauldrons, frayed burgundy cloth, reinforced real spear point and wrapped shaft, short banner ribbon and separate Gothic cage amber lantern. New file `assets/pixel/units/black_lantern_road_qa/road_sentinel_d228_art_candidate.webp.b64`, decoded WebP SHA `7ef8f0833a17d06812f7f472b8946f2bdcadc49dd3c0caf28f91adc750663322`, static alpha QC 25 distinct+5 blank+0 edge, **29,154 RGBA pixel changes** relative to D227, exact output report `docs/qa/D228_ROAD_SENTINEL_ART_QC.json`.
 
