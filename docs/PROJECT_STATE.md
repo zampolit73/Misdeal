@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D225 user-reported left/right preview OK; D226 B-style native pixel Sentinel 25-cel QA candidate committed with separate F6 pending; Act1 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D226 user-native screenshot confirms Sentinel QA gallery loads and shows left-facing walk, but final B-style art fidelity remains below approved D221; 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,11 +38,15 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D226 CURRENT — 25-cel richly layered Sentinel source QA STAGED, native F6 PENDING
+## D226 CURRENT — Godot screenshot, technical gallery load verified; polished-art QA still OPEN
+
+**D226 current visual evidence:** User posted Godot 4.7.x screenshot with D226 gallery x3/x1 Road Sentinel on approved D209 forest, no red errors, `ХОДЬБА · ← ВЛЕВО` visible and left/right + 5 state controls. **CONFIRMED: native scene loads and shows a left-facing walk pose**. This does NOT prove animation states/direction completed or final-art acceptance. Assistant review finds simplified head/bones/armor and square lantern still far below the already approved D221 detailed B-style appearance; keep **final art gate OPEN** and plan true native-pixel 25-cel detailing pass. `docs/D226_SENTINEL_STYLE_B_ART_QA.md` updated. No game changes, 37/45 live.
+
+
 
 User replied **«все ок. давай дальше»** to D225 Bearer both-facing gallery check. Record D225 **user-reported dual-direction visual preview PASS** but not as a complete production combat/art signoff.
 
-D226 authored a new **native 96px 25-frame** richer armored **spear** Sentinel (approved D211 A + D220 B direction). Source `tools/art/author_road_sentinel_d226.py`, lossless candidate `assets/pixel/units/black_lantern_road_qa/road_sentinel_d226_art_candidate.webp.b64`, 25 distinct/5 clear/0 border warnings `docs/qa/D226_ROAD_SENTINEL_ART_QC.json`. New isolated **LEFT/RIGHT and five-state F6** at `res://scenes/dev/black_lantern_sentinel_d226_art_preview.tscn`; **not yet run by user**. Main appearance D221 illustration is much richer; new candidate is incremental 96px palette/cape/armor pass, not a declared finished art-quality match. Generated a wrong Oil Acolyte presentation sheet during the attempt, rejected it without use. Detailed QA: `docs/D226_SENTINEL_STYLE_B_ART_QA.md`. No production animation registration/encounter/card pool changes, 37/45 live.
+D226 authored a new **native 96px 25-frame** richer armored **spear** Sentinel (approved D211 A + D220 B direction). Source `tools/art/author_road_sentinel_d226.py`, lossless candidate `assets/pixel/units/black_lantern_road_qa/road_sentinel_d226_art_candidate.webp.b64`, 25 distinct/5 clear/0 border warnings `docs/qa/D226_ROAD_SENTINEL_ART_QC.json`. New isolated **LEFT/RIGHT and five-state F6** at `res://scenes/dev/black_lantern_sentinel_d226_art_preview.tscn`; **one user screenshot now confirms the gallery displays the left-facing walking pose**, with additional state/mirror QA still pending. Main appearance D221 illustration is much richer; new candidate is incremental 96px palette/cape/armor pass, not a declared finished art-quality match. Generated a wrong Oil Acolyte presentation sheet during the attempt, rejected it without use. Detailed QA: `docs/D226_SENTINEL_STYLE_B_ART_QA.md`. No production animation registration/encounter/card pool changes, 37/45 live.
 
 ## D225 PREVIOUS — explicit two-way Bearer F6 gallery + source softness diagnosis
 
