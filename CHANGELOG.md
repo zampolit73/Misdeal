@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D233: rich Sentinel 4-frame idle cutout-motion proof, no fake 25-pose completion
+
+- Continued D232 illustrated spear Sentinel visual recovery work without treating user «прододалжай» as artistic F6 approval.
+- Added deterministic `tools/art/author_road_sentinel_d233_idle_proof.py`: reads **tracked D232 original source**, masks/sways hanging lantern and outer cloak independently, flickers amber glass, strengthens thin spear-wood continuity, generates **four** distinctive idle-only true RGBA 96px tiles + **26 transparent** slots, lossless 576×480 WebP/B64. Reproduced byte-for-byte from repo source and checked alpha margins/uniqueness in `docs/qa/D233_SENTINEL_CUTOUT_IDLE_QC.json`.
+- Added `res://scenes/dev/black_lantern_sentinel_d233_idle_cutout_proof.tscn` with D232 still LEFT vs D233 moving 4-IDLE RIGHT, x3/x1, both directions, pause/resume on exact D209 arena. Native Godot F6 pending. **This is an illustration-cutout motion study, NOT 25 hand-authored full-body poses; walk/attack/hit/death have not been done.**
+- No changes to `BattleUnit`, `MisdealUnitAnimationLibrary`, active #38, original D200/D209 art or frozen KARAMBA73. Live Act1 37/45. `docs/D233_SENTINEL_IDLE_CUTOUT_PROOF.md`.
+
 ## 2026-10-18 — D232: one high-fidelity Sentinel 96px still and real Godot-scale comparison
 
 - Avoided repeating the D215–D229 error of calling procedural/test-pose sprites visually final. Generated new Style-B long pointed spear/hood/rust-plate/amber-lantern references; rejected decorative multi-panel `25 frames` compositions as NON-Godot animation atlases.
