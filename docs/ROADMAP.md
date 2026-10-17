@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-18 (D236 six-phase Sentinel WALK joint-motion original pilot staged with side-by-side F6 x1; final D235 art quality and native PASS pending; Act1 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-18 (D236 user visual gait FAIL; D236R 6-frame stance/swing fix staged for F6 side-by-side, full D235 polished art still pending; 37/45 live). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -20,7 +20,15 @@ Updated: 2026-10-18 (D236 six-phase Sentinel WALK joint-motion original pilot st
 - [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
-## D236 CURRENT — real leg-movement proof, need x1 art acceptance
+## D236R current — gait fix after user's D236 visual FAIL
+
+- [x] **D236 native visual FAIL:** user «не естествено». Do NOT accept motion based on six unique art hashes. Extreme stride, sudden swapped boots and nearly static torso investigated.
+- [x] **D236R gait loop correction staged in main:** alternate 3 contact/weight/push vs 3 opposite-foot stance phases, each frame one planted foot (y91), ≤10px x/y next-step incl wrap, smaller stride, slight body bob while keeping D234 lantern attached; 6 distinct WALK +24 alpha-clear, zero clipped margins. `docs/D236R_SENTINEL_GAIT_REPAIR_QA.md`.
+- [x] **D236 vs D236R side-by-side F6:** `res://scenes/dev/black_lantern_sentinel_d236r_gait_compare.tscn` x3/x1 both moving on D209 forest, half-speed control, facing, floor guides.
+- [ ] **User-native D236R F6:** verify right-hand gait at actual x1 incl seamless repeat, spear/lantern and soles. **Unconfirmed**. If still unnatural, switch to genuine per-pose illustrated limb animation instead of repeated synthetic limb coordinate polishing.
+- [ ] Final richly painted 25 original cels and full #38 release QA. Technical live cards remain **37/45**.
+
+## D236 PREVIOUS / FAILED — real leg-movement proof, need x1 art acceptance
 
 - [x] **Discarded defective D235 poster auto-segmentation:** background brown gradients and spear cropping make naive extract unsuitable, never promote those.
 - [x] **D236 true six-phase leg pose motion pilot:** reconstruct from clean D234 handled-lantern upper artwork; hand-defined 6 planted/passing/swing boot/knee poses, 6 distinct cells in walk row1, **24 EMPTY**, no alpha-edge errors. Reproducible GitHub `tools/art/author_road_sentinel_d236_walk6_pilot.py`, art `road_sentinel_d236_walk6_pilot.webp.b64`. `docs/D236_SENTINEL_WALK6_MOTION_PILOT.md`.
