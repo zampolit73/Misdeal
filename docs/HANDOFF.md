@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-18 — **D232 one richer illustrated Sentinel static 96×96 frame + native x1/x3 comparison scene staged for user's look approval; D229 still technically registered and #38 QA-only; 37/45 live**.
+Updated: 2026-10-18 — **D233 four frame original-illustration cutout-IDLE QA with new F6 scene committed; not full animated sprite or final art approval, unchanged technical D229 and active 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,13 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D232 — EXACT CURRENT NEXT USER ACTION: ONE-pose 96px visual quality decision
+## D233 — EXACT CURRENT USER CHECK: 4 illustrated idle pose variations, NOT finished full animation
+
+User wrote «прододалжай» after D232 one rich transparent 96px static Sentinel QA scene; no native feedback/explicit approval was given. Built method-specific **IDLE-ONLY** 4 variant sprite (cloaked tail and hanging lantern shifted, gentle amber flame flicker) from originally illustrated D232 single source. **NOT four separately artist-painted poses**, and certainly **NOT 25 original walk/attack/hit/death frames**. User's earlier concern that plain D215–D229 procedural sprites dropped quality remains central. Assets/code committed GitHub: `tools/art/author_road_sentinel_d233_idle_proof.py` (reproducible from checked-in D232 `reference_cutout.webp.b64`, source+pixel output bit-identical on local replay), `assets/pixel/units/black_lantern_road_qa/road_sentinel_d233_idle4_cutout_proof.webp.b64`, `docs/qa/D233_SENTINEL_CUTOUT_IDLE_QC.json` (4 unique / 26 fully blank / 0 border warnings), new `res://scenes/dev/black_lantern_sentinel_d233_idle_cutout_proof.tscn` with dedicated `.gd`. Scene shows D232 **static on LEFT** and D233 **moving idle RIGHT** at both x3/x1, with pause and direction buttons, original D209 moonlit road.
+
+**USER NEXT:** `git pull`, F6 `res://scenes/dev/black_lantern_sentinel_d233_idle_cutout_proof.tscn`, check whether the cloth/lantern animation reads at **x1** without detached pieces or obvious fake motion. Also D232 overall look is STILL subject to user x1 approval. If good, plan true 21 remaining distinct combat frames, walking legs, spear thrust and grounded corpse, with high-fidelity source and strict 576×480/6×5 contract. If bad, abandon quick cutout method rather than fake a 25-pose atlas. Current production `MisdealUnitAnimationLibrary` uses technical D229, D233 deliberately absent; actual #38 Battle/reward/matrix not tested/released and pool remains **37/45**. Preserve user-approved D221 rich spear, D200 card, D209 forest and frozen KARAMBA73. Exact `docs/D233_SENTINEL_IDLE_CUTOUT_PROOF.md`.
+
+## D232 — PREVIOUS NEXT USER ACTION: ONE-pose 96px visual quality decision
 
 D231 acknowledged user objection to earlier beautiful drawn Sentinel art quality being replaced by low-detail procedural D229. User next said **«продолжай»**, which authorizes making the **single quality test first**; does NOT yet approve art. A few generated images were misleadingly labeled 25-frame infographic sheets; do not use them as engine animations! Artist extracted one isolated figure from a later richly rendered generated pose, producing a TRUE transparent **ONE-frame** 96×96 nearest-neighbor sprite with worn layered iron, dark-red cloak, pointed long SPEAR and separate amber lantern. 96px bbox (9,5,86,93), lossless WebP `7721a6a64998c7487fbd759c89efa4f626671ad6dec55667d45572ca093df2aa`.
 
