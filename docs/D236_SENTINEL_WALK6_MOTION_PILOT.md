@@ -2,6 +2,10 @@
 
 Date: 2026-10-18. **Six distinct moving 96×96 walk cels STAGED; offline QC PASS; native Godot F6 and user art acceptance PENDING.** Act1 live **37/45**, card #38 QA-only.
 
+## LATER USER RESULT: D236 gait REJECTED
+
+2026-10-18: User replied **«не естествено»** after testing the six-WALK scene. D236 native visual gait is **FAIL**, although six distinct frames passed static alpha bounds. A/B foot switching and upper body rigidity were identified. Do not treat this experiment as approved, or continue to next attack state without correcting gait. New standalone D236R source/asset/slow-motion side-by-side F6 is in `docs/D236R_SENTINEL_GAIT_REPAIR_QA.md`. This historical D236 asset stays for comparison only.
+
 ## Background and accepted constraints
 
 - **D235 visual:** user explicitly approved («принято») the 1536×1024 illustrated six-full-body-figure composition of richly corroded plated Sentinel with dark-red cape, long genuine pointed **SPEAR**, warm lantern explicitly held by the other hand. The D235 image is an artistic composition with a brown gradient background, not transparent 6×5 engine frames; its six poses in particular are very similar in leg stance.
