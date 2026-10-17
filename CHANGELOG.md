@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D208 native QA PASS and local balance rollback
+
+- User-provided Godot screenshot: D208 +22% scoped light trial **54/54 functional PASS**; 54 wins, zero defeats/timeouts, unchanged average HP 80/70/74%, worst HP 52/30/44%, and 13.2/14.6/13.3-second mean battles compared with D207 +16% (rounded displayed metrics).
+- Measured actual attack exposure: **635 real enemy attacks, 59 under light (9.3%)**; 90 warnings, 11,433 active frames, 15,510 enemy-buffed frames, maximum 3 simultaneously lit. Increased raw attack-speed multiplier did not yield measurable aggregate difficulty difference at display precision.
+- **Reverted +22% to prior validated +16%** in `scripts/battle/black_lantern_light.gd` (commit `cc624e3`), retaining D208 instrumentation for future route/zone timing analysis. No new post-revert instrumented native F6 is claimed.
+- Next focus exact approved moonlit-forest backdrop/5 original skeletal atlas corrections and native readability, not stat inflation. Existing releases and KARAMBA73 untouched.
+
 ## 2026-10-17 — D208: Native D207 54/54 baseline and local light-risk pass
 
 - User's real Godot screenshot confirms D207 54/54 completed, 54 wins, no party defeats or timeouts; 18 wins each by class and party size. HP avg 80/70/74%, worst 52/30/44%; individual deaths 0/2/4, durations 13.2/14.6/13.3s. Light 90 telegraphs, 11,434 active frames, 15,502 buffed-enemy exposure frames, max three buffed. Distinguish functional PASS from accepted difficulty/art.
