@@ -3,6 +3,10 @@ Updated: 2026-10-17.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D235 — Detailed six-walk Sentinel artistic look is approved, not Godot sprites
+
+2026-10-18: User wrote **«принято»** immediately after assistant generated a 1536×1024 3×2 illustration of Road Sentinel's six walking-like poses in rich Style B: heavy plated iron, torn oxblood cloak, long pointed spear and bright amber lantern visibly held by the hand. This art/character direction is LOCKED as final desired quality for walk; high-quality full-resolution reference now archived in GitHub. **Approval of illustrated visual poses does NOT verify original 96px alpha cels, actual six different stride mechanics, x1 animation, or native F6.** Do not release a poster as game sprites, abandon correct wrist/lantern linkage approved D234, or revert to D229 art fidelity. Native frame painting/QA remains. `docs/D235_SENTINEL_WALK_ART_APPROVAL.md`.
+
 ## D234 — Lantern has to be visibly HELD; unrelated cutout movement is a fail
 
 2026-10-18: User judged D233 free-floating lantern («тут как будто бы он не держит фонарь»). The right/free hand and hanging lantern were far apart in D232 source; idle lantern was moved without a continuous grip. D233 acceptance now explicitly **FAILED**. D234 shifts the actual illustrated lantern below the right gauntlet, adds forged handle/short ring with hand drawn OVER it, anchors its tiny movement to one wrist pivot and fills old location with matching illustrated cloak texture. Only 4 distinct idle cells + 26 clear, NOT final 25 frames. Compare original D233 LEFT and fixed D234 RIGHT in dedicated x1/x3 Godot F6 scene; no user native PASS yet. Real battle library and release stay staged at 37/45. `docs/D234_SENTINEL_HAND_LANTERN_ATTACHMENT_QA.md`.
