@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-18 (D234 user-reported D233 lantern grip FAIL; wrist-anchored rich 4-idle D234 corrected and x1 Godot comparison committed, user/native QA pending; technical D229 untouched, Act1 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-18 (D235 3×2 six-walk detailed Style-B Sentinel illustration USER APPROVED and reference archived in GitHub; real 96px transparent six-frame walk and native F6 remain pending, #38 QA-only, Act1 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D234 CURRENT — fixed Sentinel free-hand lantern attachment, native review pending
+## D235 CURRENT — user accepted rich 6-illustration walk LOOK, not native walking animation
+
+User said **«принято»** to freshly illustrated **six large walking poses** of richly armored skeletal Road Sentinel (long real SPEAR, dark oxblood hood/cloak, bright amber lantern CLEARLY HELD in free gauntlet) presented in a 3×2 composite. This user art-direction acceptance is NOW LOCKED and takes priority over returning to simplified D229. Original `шесть_кадров_шагающего_скелета_воина.png`: **1536×1024 RGBA**, SHA `9fa8e48baed60364411e13e2a58d1549e052bbdc250c26b37933d2081442b181`. High-quality 1536×1024 visual reference saved **IN GitHub** as `assets/pixel/units/black_lantern_road_qa/road_sentinel_d235_approved_walk_concept_q95.webp.b64` (quality95 WebP copy, not bit-identical PNG), provenance `docs/qa/D235_SENTINEL_WALK_CONCEPT_REF_QC.json`. **IMPORTANT**: 3×2 characters over brown-background is NOT 6 transparent native Godot WALK cels, poses may need independent leg/ground contact work. Real six 96px-alpha animations and native F6 are STILL PENDING. D234 linked right-hand lantern look user-approved; continue that hand grip. No `MisdealUnitAnimationLibrary`, `BattleUnit`, encounters or normal 37-card pool changed. Full next steps `docs/D235_SENTINEL_WALK_ART_APPROVAL.md`.
+
+## D234 PREVIOUS — fixed Sentinel free-hand lantern attachment, native review pending
 
 User flagged **D233 visual FAIL**: «тут как будто бы он не держит фонарь». Original D232 source lamp at knee x~54, wrist at x~82; D233 independently moved lantern without any valid continuous handgrip. **New D234** preserves rich D232 spear Sentinel, masks/transfers **existing lantern to free right hand**, redraws short wrought-iron hanger and gauntlet over grip (anchor x82,y82 to crown x82–83,y91–92), and fills old lamp void with **actual source cloak texture**, avoiding an artificial black patch. `tools/art/author_road_sentinel_d234_hand_lantern.py` deterministically rebuilds QA `road_sentinel_d234_handheld_idle4.webp.b64`: **4 distinct alpha-safe IDLE frames + 26 empty cells**, NOT full 25. `docs/qa/D234_SENTINEL_HAND_LANTERN_QC.json` checks frame hashes/hand anchor/alpha boundaries. New `res://scenes/dev/black_lantern_sentinel_d234_hand_lantern_compare.tscn`: D233 LEFT vs D234 RIGHT, both ×3 and ×1, synchronized idle and direction/pause on exact D209 forest. **Godot F6 and user's art acceptance STILL PENDING**, current real library remains technical D229 only and card #38 QA-only, live **37/45**. Full `docs/D234_SENTINEL_HAND_LANTERN_ATTACHMENT_QA.md`.
 
