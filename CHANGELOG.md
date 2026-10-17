@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D207: Native D206 contract PASS, isolated 54-case battle matrix staged
+
+- User supplied **green native Godot F6 screenshot** confirming D206 five new UnitData, two five-enemy formations and enemy-only temporary light-buff/reset after typed-array fix.
+- Added `scripts/dev/black_lantern_road_battle_matrix.gd` + `scenes/dev/black_lantern_road_battle_matrix.tscn`: deterministic **54 cases** with actual BattleUnit AI, 2 formations, Knight/Ranger/Mage, solo/duo/trio and 3 tactical orders, plus D206 scoped lanternlight. Captures wins/losses/timeouts, surviving HP, durations, casualties, illuminated enemy exposure, movement/clamp and buff cleanup.
+- This is **diagnostic QA only**; battle simulation runs invisibly so no unfinished original enemy art is displayed or replaced by recycled sprites. No regular pool/real Battle route/source mechanics touched. D207 native F6 pending; code/source checks are not gameplay balance approval. Full contract: `docs/D207_BLACK_LANTERN_BATTLE_MATRIX.md`.
+- Preserve existing live Act1 37/45, D196 waves and frozen KARAMBA73 checkpoint.
+
 ## 2026-10-16 — D206 hotfix: typed lanternlight arrays in Godot 4.7.2
 
 - User-native F6 screenshot: runtime error in `scripts/battle/black_lantern_light.gd:109`, `Trying to assign an array of type "Array" to a variable of type "Array[Vector2]"`. Root cause was the conditional `get_pool_centers() if active else []` promoting the empty branch to an untyped array.
