@@ -21,7 +21,7 @@ Updated 2026-10-17 — D209 exact approved third forest arena imported and SHA-v
 - [D153 encounter specification](DECK_EXPANSION_D153_THREADBARE_THEATRE.md).
 - [Black Crossing #37 encounter, battle QA and release gates](D188_BLACK_CROSSING_ENCOUNTER.md).
 - [D199 approved card #38: Road of Black Lanterns concept, five skeletons and production gates](DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md).
-- [D209 approved original forest scene and native lanternlight/footprint QA](D209_BLACK_LANTERN_ARENA_NATIVE_QA.md) — **current next F6**.
+- [D210 five skeletal animation source QC and acceptance requirements](D210_BLACK_LANTERN_ANIMATION_ART_QA.md) — current #38 art stage.\n- [D209 approved original forest scene and native lanternlight/footprint QA](D209_BLACK_LANTERN_ARENA_NATIVE_QA.md) — **current next F6**.
 - [D208 54-case baseline and local lanternlight balance candidate](D208_BLACK_LANTERN_BALANCE_PASS.md) — current next-F6 gate.
 - [D207 54-case native BattleUnit matrix](D207_BLACK_LANTERN_BATTLE_MATRIX.md) — current QA gate, awaiting Godot F6 results.
 - [D206 staged encounter resources, isolated lanternlight and native contract smoke](D206_BLACK_LANTERN_ENCOUNTER_STAGING.md) — **current #38 gate**.
