@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D210: User-native D209 forest layout PASS; five-animation-sheet art audit
+
+- User supplied screenshot of `black_lantern_road_arena_visual_preview.tscn` with correct third forest artwork, 3 hero + 5 enemy proxies, 2 legible light pools and replied «все ок». **D209 Godot visual-composition PASS** (not actual sprites/combat).
+- Inspected all five D205 skeleton 5×5 concept atlases and their technical 6×5 remaps. Created conversation-only `Misdeal_D210_Animation_Review.png` and a QA ZIP/JSON summarizing states and frame-boundary warning counts 13/20/24/21/13; warns of Sentinel axe vs approved spear, missing distinctive bearer rig and oil-acolyte silhouette work. Art remains blocked; original animations not yet approved.
+- Added `docs/D210_BLACK_LANTERN_ANIMATION_ART_QA.md` with acceptance contract; no new production sprite bytes, card pool changes, live combat wiring or changes to approved forest artwork. Baseline **37/45**, KARAMBA73 frozen.
+
 ## 2026-10-17 — D209: user-selected exact forest arena added to GitHub, native QA scene
 
 - Imported **exact previously user-selected third** moonlit forest source as 1280×720 WebP/Base64 `assets/pixel/battle/arenas/black_lantern_road_arena_selected_v1.webp.b64`; 170,424 decoded bytes. Verified fetched GitHub blob SHA matches independently computed export Git blob SHA `6fad8192e4e2a9baa308db82e0ce84beeeb167ad`. No new art generation or substitute.
