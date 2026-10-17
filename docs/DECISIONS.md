@@ -3,6 +3,10 @@ Updated: 2026-10-17.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D237 — Proceed with spear-thrust attack after user accepts repaired walk
+
+2026-10-18: User responded **«пойдет»** after D236R repaired six-phase gait QA. Treat as explicit **acceptability for continuing development** of WALK row1, rather than a blanket approval of final illustrated quality, entire combat role, or the normal #38 card. D236 remains rejected. Preserve D236R gait motion design, approved D234 wrist-held lantern and D235 rich B-style appearance. Next author six real long **spear-thrust** attack poses before registering the final 25-cel actor; no axe/slash, no detached lantern, no change to live 37-card pool. 
+
 ## D236R — User visual FAIL outranks animation hash count; weight-transfer gait required
 
 2026-10-18: User said **«не естествено»** about the D236 six-WALK pilot. Six technically distinct sprites and zero edge problems DID NOT imply convincing movement: wide x27..72 boot separation, abrupt swaps between frame2 and frame3 and still torso. D236 is rejected visually. New D236R six support/swing phases alternate 3+3 planted foot cycles, modest 1px body motion, reduced stride and checked circular foot continuity; preserves D234 illustrated hand/lantern/spear/armor, not yet final art. Side-by-side x1/x3 native F6 on D209 with optional slow playback; no user PASS yet, no real battle art replacement. If unsuccessful, prefer separately authored full-body animation poses to more small procedural patches. `docs/D236R_SENTINEL_GAIT_REPAIR_QA.md`.
