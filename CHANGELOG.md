@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D223: corrected Lantern Bearer shield + separate lantern visual candidate
+
+- After D222 rejected staff-bearing generated layouts, produced a new style-B Bearer composition and a cleanly **cropped, text-free character reference** `Misdeal_D223_Lantern_Bearer_Concept_B_Portrait.png` (388×386). Heavy iron-banded plank shield in one hand and an amber lantern in the separate free hand; no staff or spear. The background is still baked into the concept image.
+- Presented design to user for **visual approval pending**. Not a native transparent atlas/25 frames, not committed as game art, no QA sprite replacement or card #38 release. Authored `docs/D223_LANTERN_BEARER_CORRECTED_CONCEPT.md` with source/crop SHA and next production gate.
+- Retain D221 accepted Sentinel B look, D209 exact forest, normal pool 37/45 and frozen KARAMBA73.
+
 ## 2026-10-17 — D222: Lantern Bearer final-appearance concepts blocked by art QA
 
 - After user requested to continue, attempted three B-style Lantern Bearer illustrations. All mistakenly added a long staff/diagonal pole and mounted lamp on wooden shield rather than separate heavy hand-carried lantern; assistant rejected concepts without requesting user accept compromised design. Those image panels contain simulated frame sheets and are **not actual 25-cel original sprites**.
