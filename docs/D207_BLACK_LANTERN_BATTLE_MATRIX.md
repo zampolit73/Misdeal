@@ -34,4 +34,4 @@ The scene follows the project's prior `black_crossing_battle_smoke.gd` technique
 
 **Do not claim D207 PASSED until that screenshot/result is received**. Even a functional PASS is not a release balance gate: review actual statistics first and locally tune UnitData or light values, then re-run. Do not release before the exact chosen `лунная_дорога_через_туманный_лес.png` arena is committed/tested and five approved **original** 25-frame skeleton atlases (correct Sentinel SPEAR) are in the game, followed by normal Battle → Reward → Table smoke.
 
-Existing #34–#37, D196 waves, DS2/Fate Spread 12+XIII, combat scripts, normal card pool and frozen `backups/KARAMБА73-2026-10-16` (actual branch uses Latin `KARAMBA73`) remain untouched.
+Existing #34–#37, D196 waves, DS2/Fate Spread 12+XIII, combat scripts, normal card pool and frozen `backups/KARAMBA73-2026-10-16` remain untouched.
