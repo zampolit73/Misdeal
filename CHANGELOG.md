@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D221: group style B and detailed Sentinel character art accepted
+
+- User selected illustration **B** as the cohesive dark-fantasy pixel direction for all 5 skeletons and replied «отлично» to the separately rendered plated/hooded long-spear Road Sentinel with suspended lamp.
+- Approved the **visual character direction only**. The multi-scale concept image includes scene background and labels, **NOT a production 25-frame 6×5 transparent atlas**; no game art bytes or runtime animation registration changed.
+- Added `docs/D221_SENTINEL_FINAL_STYLE_APPROVAL.md`; next character visual concept is Lantern Bearer in the same style, followed by real source-cel repaint/user approval. Live Act1 37/45, all other scenes and KARAMBA73 preserved.
+
 ## 2026-10-17 — D220: Isolated D219 user OK and hard final-art replacement gate
 
 - User replied «все ок» after D219 standalone Lantern Archer preview F6 request. Treat as user-reported QA success only, not a full five-role motion video/production art acceptance.
