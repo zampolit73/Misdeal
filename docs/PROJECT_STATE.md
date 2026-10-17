@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D208 user-native 54/54 functional PASS; +22% numeric experiment reverted to +16%; visual arena QA next). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D209 exact approved forest art committed and SHA-verified; native arena F6 pending; D208 balance reverted to +16%). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -37,6 +37,12 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 ## D204 composition-only arena options (NOT production art)
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
+
+## D209 — Exact selected moonlit forest battle arena in GitHub, native visual F6 next
+
+Committed the **exact user-approved third forest** from source `лунная_дорога_через_туманный_лес.png` (original 1672×941) as 1280×720 WebP/Base64 `assets/pixel/battle/arenas/black_lantern_road_arena_selected_v1.webp.b64`, no repaint/replacement. Export WebP SHA-256 `b82a0eb5f88113522fe31371b3cec634a059886fa001fbafb71c0794bad52307`. Verified GitHub blob SHA `6fad8192e4e2a9baa308db82e0ce84beeeb167ad` matches encoded export bytes. Added `black_lantern_road` to the existing authored-backdrop loader without changing other arena IDs.
+
+New **QA-only** Godot F6 scene `res://scenes/dev/black_lantern_road_arena_visual_preview.tscn` shows actual selected plate under 3 hero/5 enemy silhouette envelopes (Guide ~2×), actual lantern controller's light-circle coordinates/telegraph/active/rest, projected grounded feet, pause and floor debug toggle. **Native preview NOT RUN yet**; screenshots/inspection required for foot position, contrast with baked warm lights and HUD clearance. No original skeleton atlases activated, no real battle integration, no RunState pool change. Detailed next step and hashes: `docs/D209_BLACK_LANTERN_ARENA_NATIVE_QA.md`. Live **37/45**, backup `КАРАМБА73` untouched.
 
 ## D208 — user-native rerun PASS, +22% experiment reverted
 
