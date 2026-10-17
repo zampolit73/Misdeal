@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-17 (D218 Guide user feedback positive; D219 fifth original Archer QA atlas/gallery committed, native F6 pending; Act1 still 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-17 (D219 Archer user-reported isolated F6 OK; D220 firm five-skeleton final-art replacement requirement, not QA sprites as final; Act1 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -28,7 +28,10 @@ Updated: 2026-10-17 (D218 Guide user feedback positive; D219 fifth original Arch
 - [x] **D217 native Oil Acolyte F6 retest user-reported PASS:** user replied «все ок» after the exact post-hotfix F6 request; removed border errors from death row4 col4/5, without loosening QA. No video or full-flow battle acceptance.
 - [x] **D218 Guide QA atlas and F6 gallery source committed:** 25 original 96px cels, 5 unused transparent, no offline border contact; large leader silhouette with 3 chained lamps, 1.8x beside 1x Bearer on accepted D209 art. Full: `docs/D218_EXTINGUISHED_GUIDE_ANIMATION_QA.md`. **Godot F6 still pending**.
 - [ ] **D218 native Guide F6:** `res://scenes/dev/black_lantern_guide_animation_preview.tscn`, inspect size ratio, feet, light chains, five motions, final corpse.
-- [ ] **D219 final Lantern Archer:** new original 25-frame archer bow, quiver and lantern, with proper bow draw and user-native gallery before battle.
+- [x] **D219 isolated Lantern Archer F6 positive user report** — user replied «все ок» after the D219 gallery test; technical preview only, NOT polished production-art approval.
+- [x] **D220 explicit user-facing final-art requirement documented** — all FIVE QA-simplified sprites must be fully repainted into approved Misdeal dark-fantasy pixel art and reviewed together on D209 at real scale before production registration and #38 release. See `docs/D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md`.
+- [ ] **D220 actual FIVE final atlases:** original repaint, not upscale/recolor. Art options → explicit approval → native gallery/combined scene → integrate battle→reward→table → release smoke.
+- [x] **D219 final Lantern Archer QA-only atlas produced:** new original 25-frame archer bow, quiver and lantern, with proper bow draw and user-native gallery before battle.
 - [ ] **D216 five-state art approval** — gallery **renders** (user screenshot shows 3×/1× and shield attack, no QA FAIL); idle/walk/hit/death motion not yet separately confirmed. Scene: `res://scenes/dev/black_lantern_bearer_animation_preview.tscn`, check stance/foot contact, shield attack and final collapse on approved D209 arena.
 - [ ] After sprite approval: Godot animation F6, actual #38 five-enemy battle with encounter-only light, then real reward→table and release smoke before Act1 **38/45**.
 
