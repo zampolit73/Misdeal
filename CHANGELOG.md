@@ -2,6 +2,11 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D222: Lantern Bearer final-appearance concepts blocked by art QA
+
+- After user requested to continue, attempted three B-style Lantern Bearer illustrations. All mistakenly added a long staff/diagonal pole and mounted lamp on wooden shield rather than separate heavy hand-carried lantern; assistant rejected concepts without requesting user accept compromised design. Those image panels contain simulated frame sheets and are **not actual 25-cel original sprites**.
+- Logged precise rejection and next standalone full-body character look in `docs/D222_LANTERN_BEARER_FINAL_ART_REVIEW.md`; no art binary, Godot code, UnitData or release pool changes. Sentinel B look approval preserved; #38 QA-only, 37/45 cards live.
+
 ## 2026-10-17 — D221: group style B and detailed Sentinel character art accepted
 
 - User selected illustration **B** as the cohesive dark-fantasy pixel direction for all 5 skeletons and replied «отлично» to the separately rendered plated/hooded long-spear Road Sentinel with suspended lamp.
