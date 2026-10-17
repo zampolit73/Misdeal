@@ -23,6 +23,7 @@ Updated: 2026-10-18 (D238 user requested all 25 game-animation frames together, 
 ## D238 CURRENT — produce FULL 25-cel Sentinel animation before next user QA
 
 - [x] **Workflow approved by user**: no more piecemeal idle/walk/attack/death proposals and screenshots; one full game-ready 25-frame delivery per character, one F6 QA when complete. New rule permanently added to `AGENTS.md` / `docs/DECISIONS.md`.
+- [x] **New-chat handoff archived:** [`docs/D238_BATCH_ANIMATION_NEXT_CHAT.md`](D238_BATCH_ANIMATION_NEXT_CHAT.md) captures accepted D234/D235/D236R, exact QA asset paths, five-role #38 scope, production status, and immediate one-pack task.
 - [ ] **ONE complete rich Road Sentinel atlas:** idle4 + **approved D236R walk6** + original spear-thrust attack6 + hit3 + death6, with 5 unused alpha-clear slots, correct wrist-held D234 lantern, rich D235 outfit, full-scale x1 readability and grounded movement. Rework source frame-by-frame internally until look/motion passes; don't swap in procedural D229 art or fake cropped imagegen animation sheets.
 - [ ] **ONE integrated native F6 QA** displaying all five animation states and both directions at x1/x3 on D209; after that, directly fix reported issues and update production art. Do not demand five separate user checkpoints.
 - [ ] Repeat complete-25 approach for remaining Lantern Bearer, Oil Acolyte, Extinguished Guide and Lantern Archer; only after the cast, actual #38 combat/lighting/reward/matrix/release. Regular card pool 37/45.
