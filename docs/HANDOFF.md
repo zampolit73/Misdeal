@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D218 Guide got positive user feedback; D219 fifth-original-enemy Lantern Archer 25-cel art and standalone F6 gallery committed, D219 native review pending; 37/45 live**.
+Updated: 2026-10-17 — **D219 isolated Archer viewer user-reported OK, D220 user explicitly requires FULL repaint/replacement of FIVE simplified QA sprites before #38; no actual art replacement or production battle yet, 37/45 live**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -73,6 +73,11 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 **D205 Godot 4.7.2 parser fix:** user screenshot showed `Cannot infer the type of opacity` at `scripts/dev/black_lantern_road_light_preview.gd:121`. Fixed GitHub `main` in commit `a786d2b` by replacing ambiguous `abs(...)` expression with typed float / `absf(...)`, and typing `v` and `eased`. **Ask user to `git pull` and F6 the same isolated preview; no native re-test is confirmed yet.** No changes to production gameplay or active deck.
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
+
+## D220 — EXACT CURRENT HANDOFF — D219 user preview OK; five QA sprites MUST be replaced before release
+
+User replied **«все ок»** after D219 archer isolated Godot F6 request, plus explicitly asked if the five simplified character sprites will later be replaced. **Yes: agreed hard gate.** D219 is **user-reported functional isolated preview OK**, NOT polished final-art approval or full five-role real-battle PASS. These D215–D219 cels were intentionally **technical QA art**; all FIVE must receive new full-quality original dark-fantasy pixel-art drawing, retain useful genuine 25-pose walk/attack/death motion, and be shown together **at native game size on the already approved D209 third moonlit forest arena** for user's artistic acceptance. Not just upscaling or repainting one idle frame; do NOT silently reuse older undead art. D211 **Sentinel A spear**, Bearer board shield + separate lantern, Acolyte curved sickle/oil flask, Guide tall 1.8× and three chained lamps, Archer real bow/quiver/lantern are locked. The correct 576×480 6×5×96px five-row atlas contract remains D213; 2px alpha-safe margins, five clear cells. Only after explicit art/native F6 approval register production sprites and integrate actual #38 battle→reward→table, 54-case combat matrix and full-pool smoke; THEN release 38/45. Current card #38 **QA-only / 37 cards live**, untouched code; reference **`docs/D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md`**.
+
 
 ## D219 CURRENT — FIFTH ORIGINAL SKELETON READY FOR USER-NATIVE QA
 
