@@ -1,7 +1,8 @@
 extends Control
 
-# D217 / QA ONLY: hand-authored Road Oil Acolyte candidate (SHIELD + LANTERN), 25 genuine
-# cels, FIVE unused empty atlas cells. No live unit animation registration.
+# D217 / QA ONLY: original Oil Acolyte vector-cel trial (curved SICKLE,
+# separate oil FLASK and small LANTERN). Source SVG is game-independent.
+# FIVE unused empty atlas cells. No live unit animation registration.
 const CANDIDATE := "res://assets/pixel/units/black_lantern_road_qa/oil_acolyte_d217_vector_candidate.svg"
 const STATE_NAMES: Array[String] = ["idle", "walk", "attack", "hit", "death"]
 const STATE_COUNTS: Array[int] = [4, 6, 6, 3, 6]
@@ -55,7 +56,7 @@ func _ready() -> void:
 	_label("В боевом масштабе x1", Vector2(690, 155), Vector2(420, 32), 19, true)
 	state_name = _label("", Vector2(138, 506), Vector2(340, 32), 20, true)
 	status = _label(
-		"ТЕХНИЧЕСКИЙ QA: 25 отдельных SVG-поз, 5 пустых ячеек.\n"
+		"ТЕХНИЧЕСКИЙ QA: 25 SVG-поз с прозрачностью и 5 пустых ячеек.\n"
 		+ "ПОЛЬЗОВАТЕЛЬСКИЙ АРТ-QA / БОЕВОЕ ПОДКЛЮЧЕНИЕ ЕЩЁ НЕ ПРИНЯТЫ.",
 		Vector2(130, 558), Vector2(1020, 65), 16, true
 	)
