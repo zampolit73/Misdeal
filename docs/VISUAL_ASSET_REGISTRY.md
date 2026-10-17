@@ -1,3 +1,11 @@
+## D217 — Oil Acolyte 25-state vector-cel QA (new), raster variant remains conversation-only
+
+In GitHub: `assets/pixel/units/black_lantern_road_qa/oil_acolyte_d217_vector_candidate.svg` is original source-only 576×480 transparent art with 25 original posed skeleton groups and five unused tiles. It has the **curved sickle, separate oil flask and amber belt lamp** silhouette. Standalone Godot F6 gallery `scenes/dev/black_lantern_oil_acolyte_animation_preview.tscn` uses Godot native SVG rasterization and post-render QC; native user PASS pending.
+
+A separate **offline Pillow raster** D217 PNG/WebP candidate with 25 unique frames, five empty cells and zero edge flags is **only in this conversation's D217 ZIP**, NOT byte-identical to GitHub SVG and NOT installed in `MisdealUnitAnimationLibrary`. Do not claim an accepted production atlas or final role animation based on D217 staging. D216 Bearer F6 pending, D215 Sentinel user-native gallery accepted. Act1 still 37/45.
+
+---
+
 ## D216 — New shield Lantern Bearer original animation atlas, QA-only, native F6 pending
 
 Original true 25-cel `lantern_bearer` (576×480 RGBA WebP/Base64, 6×5, alpha margin clean) **in GitHub QA only**: `assets/pixel/units/black_lantern_road_qa/lantern_bearer_d216_candidate.webp.b64`. Separate wooden plank barricade + heavy amber lamp; authored source `tools/art/author_lantern_bearer_d216.py`; `res://scenes/dev/black_lantern_bearer_animation_preview.tscn` checks 3×/1× five-state motion over accepted forest scene. **Native F6 awaiting user.** D215 original spear Sentinel user said «всё ок» after native gallery instruction; no active #38 combat image switching. Details: `docs/D216_LANTERN_BEARER_ANIMATION_QA.md`.
