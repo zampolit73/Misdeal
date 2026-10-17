@@ -2,6 +2,14 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D227: Native 25-frame original Sentinel detail repaint and F6 staging
+
+- User «хорошо» approved proceeding from D226 screenshot feedback; NOT final D226 art acceptance.
+- Enhanced 25 individually posed Sentinel sprite cels with actual 96px-authored asymmetric plate armor, skull depth, mottled oxblood layered cloth, reinforced spear tip, moved iron-caged separate amber hanging lantern, guard boots; same authentic walk/thrust/hit/death pose logic. No image generator's wrong-role panel imported, no source sheet resampling.
+- Added new versioned `tools/art/author_road_sentinel_d227.py`, QA asset `assets/pixel/units/black_lantern_road_qa/road_sentinel_d227_art_candidate.webp.b64`, `docs/qa/D227_ROAD_SENTINEL_ART_QC.json`. Offline validated **576×480 RGBA, 25 distinct authentic frames, 5 alpha-empty cels, zero 2px edge warnings**; WebP SHA `f1b50b919c76f5af9173ea33c77e484188077dbd72aee98110329210d84f7fbc`.
+- Added `res://scenes/dev/black_lantern_sentinel_d227_art_preview.tscn` for two facing directions and all five animation states on approved D209 forest. **Native Godot F6 and polished D221 art fidelity acceptance PENDING.**
+- D226 candidate preserved, runtime Battle/UnitData/RunState/forest/other 37 live cards/KARAMBA73 unchanged. Full checkpoint: `docs/D227_SENTINEL_PIXEL_FIDELITY_QA.md`.
+
 ## 2026-10-17 — D226 native screenshot result and D227 fidelity gap
 
 - User sent actual Godot screenshot of `black_lantern_sentinel_d226_art_preview.tscn`: accepted D209 arena and both 3×/1× Sentinel views visible; shown `ХОДЬБА · ← ВЛЕВО` with no red QA error. Confirmed **gallery loads and left-facing walk pose displays**; cannot infer complete 5-state animation/right-facing PASS from a still.
