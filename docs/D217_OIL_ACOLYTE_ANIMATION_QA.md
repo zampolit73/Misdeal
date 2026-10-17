@@ -1,8 +1,12 @@
 # D217 — Oil Acolyte / Масляный служка: original 25-state animation QA staging
 
-Date: 2026-10-17. **USER-NATIVE GODOT F6 RETURNED BORDER FAIL; SVG SOURCE HOTFIX COMMITTED; RE-RUN PENDING. ALL LIVE GAMEPLAY UNCHANGED.** Act1 **37/45**; #38 `black_lantern_road` is QA-only.
+Date: 2026-10-17. **ORIGINAL F6 BORDER FAIL FIXED AT a8a80f1; USER-REPORTED POST-FIX F6 PASS («все ок»), 2026-10-17. ALL LIVE GAMEPLAY UNCHANGED.** Act1 **37/45**; #38 `black_lantern_road` is QA-only.
 
-## D217 SVG death-cel border hotfix — user-native FAIL, source fix F6 pending
+## D217 native recovery — final user report
+
+After the source-art correction and `git pull` + F6 retest request, user replied **«все ок»** (2026-10-17). This closes the isolated SVG/border native gate: **user-reported D217 F6 PASS**, previous red error not re-raised. This isn't independent native video of every animation nor integration into live game. Next D218 original towering Guide gallery: `docs/D218_EXTINGUISHED_GUIDE_ANIMATION_QA.md`.
+
+## D217 SVG death-cel border hotfix (history) — user-native FAIL, source fix F6 pending
 
 **2026-10-17 user's Godot 4.7.x screenshots:** the D217 F6 gallery loads the exact user-approved D209 forest but raises red `D217 / QA FAIL: D217 проверка атласа: край ячейки 4:4 / край ячейки 4:5`. These are **zero-based row=4 (death), columns=4 and 5 (death frames 5 and 6)**, *not* a Godot parser error or an issue in D209 art. The independent Pillow raster D217 candidate's offline QC did not apply to this **different SVG asset**; do not conflate them.
 
@@ -10,7 +14,7 @@ Date: 2026-10-17. **USER-NATIVE GODOT F6 RETURNED BORDER FAIL; SVG SOURCE HOTFIX
 
 **D216 separate screenshot:** the Lantern Bearer F6 gallery shows its intended character both at 3× and 1× on the D209 forest and displays `АТАКА ЩИТОМ`; no red QA failure is visible. Record **D216 native visual load and shown attack pose confirmed**, but **do not claim all idle/walk/hit/death states individually validated** from this still image.
 
-**NEXT USER ACTION:** `git pull`; F6 **`res://scenes/dev/black_lantern_oil_acolyte_animation_preview.tscn`**. Expect the red border FAIL to disappear and 3×/1× original Oil Acolyte to animate with sickle/flask/lantern. User can then click five state buttons and report any defect or «все ок». Only after this screen result can D217 be marked native PASS. Existing QA-only SVG art does NOT register `oil_acolyte` in production animation loader, doesn't alter `battle.gd`, UnitData or live deck; Act1 still **37/45**, #38 unreleased, frozen `backups/KARAMBA73-2026-10-16` unchanged.
+**HISTORICAL original retest request (completed by user):** `git pull`; F6 **`res://scenes/dev/black_lantern_oil_acolyte_animation_preview.tscn`**. Expect the red border FAIL to disappear and 3×/1× original Oil Acolyte to animate with sickle/flask/lantern. User can then click five state buttons and report any defect or «все ок». Only after this screen result can D217 be marked native PASS. Existing QA-only SVG art does NOT register `oil_acolyte` in production animation loader, doesn't alter `battle.gd`, UnitData or live deck; Act1 still **37/45**, #38 unreleased, frozen `backups/KARAMBA73-2026-10-16` unchanged.
 
 
 ## Exact current gates / evidence
