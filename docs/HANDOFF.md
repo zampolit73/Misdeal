@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-18 — **D233 four frame original-illustration cutout-IDLE QA with new F6 scene committed; not full animated sprite or final art approval, unchanged technical D229 and active 37/45**.
+Updated: 2026-10-18 — **D234 fix of free-hand lantern attachment in 4 rich-style Sentinel idle frames STAGED; user D233 visual rejection captured; native x1 compare pending; no new live #38, 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,17 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D233 — EXACT CURRENT USER CHECK: 4 illustrated idle pose variations, NOT finished full animation
+## D234 — EXACT CURRENT USER CHECK: lantern held by wrist, not floating
+
+User explicitly said **«тут как будто бы он не держит фонарь»** on D233 4-idle cutout result. This is a specific **user visual FAIL**. Source D232 illustrated guardian has original lantern at knee x~54 while right/free gauntlet is x~82,y~79; D233 moved lantern independently, so no visible grip. User next said **«продолжай»**, authorizing specific attachment fix.
+
+**D234 work NOW in GitHub `main`:** `tools/art/author_road_sentinel_d234_hand_lantern.py` reads D232 checked-in rich RGBA illustration cutout and reproducibly masks original knee lamp, moves **same illustrated lantern** under free right wrist to x~82, draws iron hanger from fixed anchor (82,82) to moving cap x82–83/y91–92, re-layers original gauntlet in front so hand overlaps handle. Replaces old lamp opening with **mirrored original burgundy cloak texture**, not a flat dark geometry block. Four real, distinct idle cels at 96×96, 26 transparent surplus in versioned `assets/pixel/units/black_lantern_road_qa/road_sentinel_d234_handheld_idle4.webp.b64`, QC `docs/qa/D234_SENTINEL_HAND_LANTERN_QC.json`, WebP SHA `14e3714ef16ca061431a7bc42585568dcafce96dc969da7da113612fc6cd0a1b`. This remains an experiment from **one cutout body**, NOT 25 fully authored poses.
+
+**New exact F6**: `res://scenes/dev/black_lantern_sentinel_d234_hand_lantern_compare.tscn`. LEFT = rejected D233 knee lamp, RIGHT = attached D234; two large x3 and two actual x1 animations on accepted D209 forest; pause and facing ←/→; strict 4+26 atlas checks. User should `git pull`, F6 scene, evaluate **right hand gripping the suspended lamp at x1** and whether prior lamp void reads like textured cloth; share screenshot/fix request. **Native Godot F6 NOT YET RUN/CONFIRMED** here. If it still looks detached, fix illustrated source masking/handle and repeat native art QA, do NOT claim pass because numerical anchors match. Only after user approves proceed to individually drawn walk/attack/hit/death frames for final illustrated 25. Canonical note `docs/D234_SENTINEL_HAND_LANTERN_ATTACHMENT_QA.md`.
+
+Actual `MisdealUnitAnimationLibrary.get_frames("road_sentinel")` still TECHNICAL D229; D234 not registered, no #38 RunState activation, Act1 live **37/45**. D200 card art, D209 forest, backup `backups/KARAMBA73-2026-10-16`, Godot 4.7 GDScript unchanged. No further fake generated poster atlas. Continue from D234 result in next chat WITHOUT reasking GitHub access.
+
+## D233 — PREVIOUS USER CHECK: 4 illustrated idle pose variations, NOT finished full animation
 
 User wrote «прододалжай» after D232 one rich transparent 96px static Sentinel QA scene; no native feedback/explicit approval was given. Built method-specific **IDLE-ONLY** 4 variant sprite (cloaked tail and hanging lantern shifted, gentle amber flame flicker) from originally illustrated D232 single source. **NOT four separately artist-painted poses**, and certainly **NOT 25 original walk/attack/hit/death frames**. User's earlier concern that plain D215–D229 procedural sprites dropped quality remains central. Assets/code committed GitHub: `tools/art/author_road_sentinel_d233_idle_proof.py` (reproducible from checked-in D232 `reference_cutout.webp.b64`, source+pixel output bit-identical on local replay), `assets/pixel/units/black_lantern_road_qa/road_sentinel_d233_idle4_cutout_proof.webp.b64`, `docs/qa/D233_SENTINEL_CUTOUT_IDLE_QC.json` (4 unique / 26 fully blank / 0 border warnings), new `res://scenes/dev/black_lantern_sentinel_d233_idle_cutout_proof.tscn` with dedicated `.gd`. Scene shows D232 **static on LEFT** and D233 **moving idle RIGHT** at both x3/x1, with pause and direction buttons, original D209 moonlit road.
 
