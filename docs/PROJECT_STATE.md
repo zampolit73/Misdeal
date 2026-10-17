@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D223 corrected Bearer B-look concept now shown, shield plus separate handheld lantern and no pole; user approval pending; live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D224 approved full Bearer 25-pose source preserved losslessly in GitHub; 576×480 repack + isolated native F6 art QA staged, Godot pending; 37/45 live). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D223 CURRENT — correct Lantern Bearer silhouette presented, USER CHOICE PENDING
+## D224 CURRENT — user-approved rich Lantern Bearer source + Godot 25-pose QA staged
+
+User approved corrected D223 freehand-lantern+plank-shield appearance («да все ок»), then said **«подходит»** to a newly generated transparent illustrated 5-row 25-pose image for `lantern_bearer`, source `спрайт_лист_скелета_рыцаря_с_фонарём.png` (1374×1145 RGBA, SHA-256 `4fb9e0ce2ebfcb608b35d948c084cb6cc5c41d43afe8310597bdc23959ad325f`). This is **USER ART/POSE CHOICE approval**, not native Godot motion approval. Source stored in GitHub as **visibly lossless** original WebP/B64: `assets/pixel/units/black_lantern_road_qa/lantern_bearer_d224_approved_original_lossless.webp.b64`. A separate **576×480 6×5 96px repacked candidate**, `lantern_bearer_d224_approved_repacked_candidate.webp.b64`, was derived with state rows idle4, walk6, attack6, hit3, death6, five alpha-empty cells. 25 images distinct, zero 2px atlas margin warnings in Pillow. GitHub B64 exactly matched the locally checked asset; reproducing from lossless GH input through `tools/art/inspect_and_repack_lantern_bearer_d224.py` yielded identical WebP SHA `816efbc6416a65408b5f3aa121b8a3985a3ce67dcd26a5ce17af992a98c15b87`. **Source frames crossed original cell seams**; reconstruction/adaptive cuts may clip details or change apparent pixel scale, so native visual QA is mandatory. Standalone F6 scene `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn` and 3×/1× animations staged, **USER-NATIVE F6 PENDING**. Nothing changed in `MisdealUnitAnimationLibrary`, `battle.gd`, normal card pool or D209 backdrop; #38 QA-only, 37/45. Canonical: `docs/D224_LANTERN_BEARER_APPROVED_ART_QA.md`.
+
+## D223 PREVIOUS — correct Lantern Bearer silhouette presented, USER CHOICE PENDING
 
 After the three rejected staff-bearing D222 boards, produced D223 **character-only cropped concept** `Misdeal_D223_Lantern_Bearer_Concept_B_Portrait.png` (388×386; conversation attachment; not uploaded as game asset) from a new group-B illustration. Clearly shows a tall wooden barrier in one hand and a **separate heavy handled amber lantern in the other**; **NO STAFF or spear**. This resolves previous role-silhouette errors. The crop still contains forest backdrop, is NOT 576×480 alpha animation, and is **NOT YET USER ART-APPROVED**. Await user's acceptance/refinement; then commission/paint authentic 25 cels, native F6 and eventual all-five replacement, not sprite cropping. Exact spec `docs/D223_LANTERN_BEARER_CORRECTED_CONCEPT.md`. Accepted Sentinel D221 unchanged. Act1 remains 37/45.
 
