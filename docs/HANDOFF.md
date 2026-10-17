@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-18 — **D229 synchronized x1/x3 D228-vs-D229 Road Sentinel art comparison scene committed (25 original/5 clear/0 border), user F6 & final art still pending; Act1 37/45 LIVE**.
+Updated: 2026-10-18 — **D230 user explicitly LOCKED second/right D229 spear Sentinel as FINAL; promoted bit-identical atlas to production and registered approved role with correct authored-left facing; focus remaining four skeletons, 37/45 live**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,15 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D229 — EXACT CURRENT HANDOFF: run side-by-side native x1 art comparison
+## D230 — EXACT CURRENT HANDOFF: Road Sentinel final art DONE; do NOT restart its repaint
+
+**MOST RECENT USER VISUAL DECISION:** «давай примем 2 вариант и уже закончим с этим» in reply to D229 A/B comparison. LEFT = old D228 / RIGHT = D229. **USER SELECTED RIGHT/SECOND D229 FINAL.** The long-spear armored skeleton with amber hanging lantern is art approved and its appearance is FROZEN at this visual milestone. This later direct instruction supersedes all old notes saying the spear Sentinel art still requires additional stylistic passes. Do not waste another session asking to choose A/B or doing D231 Sentinel microdetails.
+
+**Already IN GitHub main:** user-selected D229 Base64 asset was copied EXACTLY from `assets/pixel/units/black_lantern_road_qa/road_sentinel_d229_art_candidate.webp.b64` to final `assets/pixel/units/deck_expansion_v1/road_sentinel_frames.webp.b64`, re-fetched matching content. `scripts/battle/unit_animation_library.gd` has explicit isolated `D230_APPROVED_ROLES := ["road_sentinel"]` and registers only this new role with strict cell visibility, uniqueness, alpha padding, 5 blank slots and full 576×480 transparent WebP decoding; no sprite borrowing. `scripts/battle/unit.gd` includes `road_sentinel` in authored-LEFT source roles, so enemy target facing is correct without impacting legacy unit flips. Standalone **one-time engine smoke** `res://scenes/dev/black_lantern_sentinel_d230_approved_smoke.tscn` checks same approved candidate bytes vs installed production asset and loads the production sprites using the **actual `MisdealUnitAnimationLibrary.get_frames("road_sentinel")`**; shows x3/x1 + all five states + both facings. It is NOT another art-choice ballot. **User-native smoke not yet received**, Godot CLI absent here; do not say native PASS. This can be checked together with later five-role integration to spare user repetitive screenshot requests. No `RunState` / actual #38 route changed; Act1 **37/45**.
+
+**NEXT DEVELOPMENT WORK:** leave Sentinel as approved and focus on other FOUR: Lantern Bearer (D223/D224 style B with thick wood shield and separate free-hand lamp, D225 native direction check user OK; finish pixel art if needed); Oil Acolyte (curved sickle + oil flask), Extinguished Guide (1.8× three chained lamps), Lantern Archer (real bow/quiver). Keep D209 user-approved third forest and D200 third card art, two enemy-lit pools local +16% attack interval mechanic as defined, no fundamental design changes. After all four are accepted, stage *real* five-enemy battle and actual reward→table, 54-case benchmark and release QA, then #38 into regular 38/45. D196, DS2, Fate Spread 12+XIII, frozen KARAMBA73 unchanged. `docs/D230_ROAD_SENTINEL_FINAL_APPROVAL.md` is the latest art/technical record.
+
+## D229 — PREVIOUS / SUPERSEDED NEXT-ART-QA HANDOFF: run side-by-side native x1 art comparison
 
 User said **«продолжай»** following D228 original ornamental Sentinel art candidate; this is NOT acceptance of D228 native F6. Since user's desired final Style B illustration quality has not been reached by many incremental 96px texture passes, D229 introduces **synchronized A/B visual QA**, rather than claiming another microscopic improvement is final.
 
