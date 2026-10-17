@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D232: one high-fidelity Sentinel 96px still and real Godot-scale comparison
+
+- Avoided repeating the D215–D229 error of calling procedural/test-pose sprites visually final. Generated new Style-B long pointed spear/hood/rust-plate/amber-lantern references; rejected decorative multi-panel `25 frames` compositions as NON-Godot animation atlases.
+- Isolated **ONE** individual figure from the illustrated reference, cleaned background alpha and nearest-scaled to 96×96. Original 115×129 cutout plus versioned single transparent WebP/Base64 committed as `assets/pixel/units/black_lantern_road_qa/road_sentinel_d232_{reference_cutout,single_96px}.webp.b64`; alpha bounds and lossless verification recorded in `docs/qa/D232_ROAD_SENTINEL_SINGLE_POSE_QC.json`.
+- Added `res://scenes/dev/black_lantern_sentinel_d232_art_direction_preview.tscn` (D229 LEFT vs D232 ONE-POSE RIGHT, each x3 and true x1, exact approved D209 forest). **User-native F6/art decision still pending**, no fake 25 pose scenes or full combat claims.
+- `MisdealUnitAnimationLibrary` and 37-card ordinary deck remain unchanged; sprite art finality still OPEN for Sentinel and four other role designs. Full handoff `docs/D232_SENTINEL_SINGLE_FRAME_ART_REVIEW.md`.
+
 ## 2026-10-18 — D231: Correct D230 premature Sentinel sprite-art 'FINAL' claim
 
 - User explicitly objected that original atlas was much more beautiful than the newly registered sprite and asked what happened. Inspected actual local originals: `пиксельный_атлас_скелета_стража.png` **1254×1254** has far richer armor/cloak/lantern but incorrectly carries an **AXE**, and D221 accepted `лунный_страж_проклятой_дороги.png` **1672×941** has valid long spear but embedded presentation/background. Neither was transformed into transparent 25-frame game atlas; D229 was procedurally painted from geometric code and looks much simpler.
