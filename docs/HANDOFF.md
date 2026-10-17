@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D219 isolated Archer viewer user-reported OK, D220 user explicitly requires FULL repaint/replacement of FIVE simplified QA sprites before #38; no actual art replacement or production battle yet, 37/45 live**.
+Updated: 2026-10-17 — **D221 user approved group style B and final detailed Sentinel long-spear illustration; production 25-frame sprites still pending; next Lantern Bearer appearance preview; Act1 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,13 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D220 — EXACT CURRENT HANDOFF — D219 user preview OK; five QA sprites MUST be replaced before release
+## D221 — EXACT CURRENT HANDOFF: approved Sentinel style, next Lantern Bearer
+
+User selected illustrated **GROUP ART VARIANT B** for the five skeletons, then replied **«отлично»** to dedicated detailed **Road Sentinel** appearance `лунный_страж_проклятой_дороги.png` (heavily armored and hooded undead, genuine long spear with amber pole lantern, visual at 3× and scene-like 1×). This **approves the drawing's art direction, not 25-frame final production atlas**. D215–D219 simpler QA atlases remain staged only. Character reference image includes baked dark-forest scene and headings and MUST NOT be spliced into `SpriteFrames` or substituted for the approved separate D209 arena. User expects ALL FIVE final dark-fantasy pixel-art sprites to replace QA versions before #38 can release, without a global code rewrite.
+
+**Next**: present Lantern Bearer polished look in the SAME group B direction: large rough wooden plank shield/defensive stance, distinct heavy lantern in free hand, no spear. Ask for artistic acceptance before genuinely painting 25 96px source cels (D213 real row packing). Afterwards Oil Acolyte / Guide / Archer. Finish real sprite alpha QC and F6 animation together on exact approved D209 arena, then wire original five/enemy light into real QA Battle→Reward→Table; release gate last. Canonical spec `docs/D221_SENTINEL_FINAL_STYLE_APPROVAL.md`.
+
+## D220 — PREVIOUS HANDOFF — D219 user preview OK; five QA sprites MUST be replaced before release
 
 User replied **«все ок»** after D219 archer isolated Godot F6 request, plus explicitly asked if the five simplified character sprites will later be replaced. **Yes: agreed hard gate.** D219 is **user-reported functional isolated preview OK**, NOT polished final-art approval or full five-role real-battle PASS. These D215–D219 cels were intentionally **technical QA art**; all FIVE must receive new full-quality original dark-fantasy pixel-art drawing, retain useful genuine 25-pose walk/attack/death motion, and be shown together **at native game size on the already approved D209 third moonlit forest arena** for user's artistic acceptance. Not just upscaling or repainting one idle frame; do NOT silently reuse older undead art. D211 **Sentinel A spear**, Bearer board shield + separate lantern, Acolyte curved sickle/oil flask, Guide tall 1.8× and three chained lamps, Archer real bow/quiver/lantern are locked. The correct 576×480 6×5×96px five-row atlas contract remains D213; 2px alpha-safe margins, five clear cells. Only after explicit art/native F6 approval register production sprites and integrate actual #38 battle→reward→table, 54-case combat matrix and full-pool smoke; THEN release 38/45. Current card #38 **QA-only / 37 cards live**, untouched code; reference **`docs/D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md`**.
 
