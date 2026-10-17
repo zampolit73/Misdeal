@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-17 (D217 user-native SVG death frame border FAIL, two source rib strokes fixed, native F6 recheck pending; D216 native attack/gallery visible). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-17 (D217 fixed native F6 user-reported PASS; D218 original 25-frame towering Guide QA gallery/source in GitHub, native D218 F6 pending). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -25,7 +25,10 @@ Updated: 2026-10-17 (D217 user-native SVG death frame border FAIL, two source ri
 - [x] **D216 Lantern Bearer original 25-frame QA asset staged:** shield-first melee, separately held amber lamp, walk/hit/death (576x480 WebP/B64, 25 distinct poses, 5 blank, zero border flags). Authored Python source + QA-only Godot gallery committed. `docs/D216_LANTERN_BEARER_ANIMATION_QA.md`.
 - [x] **D217 Oil Acolyte QA source/gallery staged:** genuine third role with original flask+curved sickle+small belt-lamp identities. Local independent 25-pose PNG/WebP raster passed offline alpha QC; GitHub hosts a **separate 25-state original SVG QA** plus native `load_svg_from_buffer` F6 scene. Neither is production library art. `docs/D217_OIL_ACOLYTE_ANIMATION_QA.md`.
 - [x] **D217 error diagnosis + source fix:** user Godot F6 screenshot flagged death row4 cells4/5; deleted only two offending low rib strokes from editable SVG, commit `a8a80f1`. QA checks remain strict, no gameplay/source substitution; native retest required.
-- [ ] **D217 native Oil Acolyte F6 recheck:** `res://scenes/dev/black_lantern_oil_acolyte_animation_preview.tscn`; test SVG decode, 25 distinct, transparent overflow, sickle slash, oil flask, grounded death. No native PASS yet.
+- [x] **D217 native Oil Acolyte F6 retest user-reported PASS:** user replied «все ок» after the exact post-hotfix F6 request; removed border errors from death row4 col4/5, without loosening QA. No video or full-flow battle acceptance.
+- [x] **D218 Guide QA atlas and F6 gallery source committed:** 25 original 96px cels, 5 unused transparent, no offline border contact; large leader silhouette with 3 chained lamps, 1.8x beside 1x Bearer on accepted D209 art. Full: `docs/D218_EXTINGUISHED_GUIDE_ANIMATION_QA.md`. **Godot F6 still pending**.
+- [ ] **D218 native Guide F6:** `res://scenes/dev/black_lantern_guide_animation_preview.tscn`, inspect size ratio, feet, light chains, five motions, final corpse.
+- [ ] **D219 final Lantern Archer:** new original 25-frame archer bow, quiver and lantern, with proper bow draw and user-native gallery before battle.
 - [ ] **D216 five-state art approval** — gallery **renders** (user screenshot shows 3×/1× and shield attack, no QA FAIL); idle/walk/hit/death motion not yet separately confirmed. Scene: `res://scenes/dev/black_lantern_bearer_animation_preview.tscn`, check stance/foot contact, shield attack and final collapse on approved D209 arena.
 - [ ] After sprite approval: Godot animation F6, actual #38 five-enemy battle with encounter-only light, then real reward→table and release smoke before Act1 **38/45**.
 
