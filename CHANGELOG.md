@@ -2,6 +2,14 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D226: Sentinel B-style native pixel art and new two-facing F6 scene
+
+- User responded «все ок. давай дальше» to the D225 left/right Bearer gallery test; noted user-reported direction QA PASS, not full final-art/gameplay integration.
+- Art generation initially produced a wrong Oil Acolyte presentation board; REJECTED with no import or misleading sprite claim.
+- Authored new original per-frame Road Sentinel **96×96** pixel details using existing D215 pose/movement joints with rich rust-red cloth, deep hood and layered copper iron; kept real pointed spear + small amber lantern. Full **25 separate poses**, 5 empty/transparent unused slots, **0 edge warnings**, no rescaling-induced blur. `tools/art/author_road_sentinel_d226.py`, `assets/pixel/units/black_lantern_road_qa/road_sentinel_d226_art_candidate.webp.b64`, and machine-readable `docs/qa/D226_ROAD_SENTINEL_ART_QC.json`.
+- Dedicated `res://scenes/dev/black_lantern_sentinel_d226_art_preview.tscn` + GDScript with both left/right directions, enlarged/native views, all five states on exact D209 arena. **User-native F6/final art fidelity acceptance pending.**
+- Added `docs/D226_SENTINEL_STYLE_B_ART_QA.md` and updated context. No live sprites, Battle, deck #38, D196 surf, D200 card art, D209 arena, DS2 or frozen KARAMBA73 changed.
+
 ## 2026-10-17 — D225: Both-direction Lantern Bearer art gallery for native QA
 
 - User D224 Godot screenshot confirms original accepted shield-and-handheld-lantern B art loaded at x3 and x1, with shield-attack shown and no red QA error; it does not prove every state or both directions.
