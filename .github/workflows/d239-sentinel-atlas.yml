@@ -1,0 +1,38 @@
+name: D239 Sentinel Atlas QA Build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/art/author_road_sentinel_d239_full25.py'
+      - '.github/workflows/d239-sentinel-atlas.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  author-sentinel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out current art sources
+        uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pixel-art encoder
+        run: python -m pip install 'Pillow>=10,<12'
+      - name: Generate full 25-frame QA atlas and verify bounds
+        run: python tools/art/author_road_sentinel_d239_full25.py
+      - name: Commit authored QA artifact and report
+        run: |
+          git add assets/pixel/units/black_lantern_road_qa/road_sentinel_d239_full25_qa.webp.b64 docs/qa/D239_SENTINEL_FULL25_QC.json
+          if git diff --cached --quiet; then
+            echo "Atlas bytes already current"
+          else
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'art(d239): publish reproducible full Sentinel QA atlas (25 cels)'
+            git push origin HEAD:main
+          fi
