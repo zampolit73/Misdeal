@@ -2,6 +2,14 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D236R: repair unnatural Sentinel walk reported by user
+
+- User `не естествено` rejected D236 Godot walk QA, superseding offline six-unique test. Root cause: wide hard-coded straddle, abrupt A/B foot swap between phases and frozen torso.
+- Created independent `tools/art/author_road_sentinel_d236r_walk.py`: physically phased A-foot support contact/weight/toe push then B-foot support, swing arcs, y91 aligned support soles, max ankle transition10px across all adjacent frames including loop seam, small torso bob to transfer weight. Kept complete rich D234 cloak, spear, attached lantern source and D235 accepted look reference.
+- Committed `road_sentinel_d236r_walk6_support_cycle.webp.b64` with 6 genuinely distinct row1 WALK images and 24 empty slots, 2px borders safe, WebP SHA `bef95a03eb3da3996846e0826a5bf6fe53a1250b284ffa12f44d4d3fd50b73d5`; report `docs/qa/D236R_SENTINEL_GAIT_QC.json`.
+- New isolated `res://scenes/dev/black_lantern_sentinel_d236r_gait_compare.tscn` old D236 left/new gait right, ×3 and ×1, both directions, 0.5× playback, ground guidelines. **Native F6 pending; still a rigging pilot, not six fully hand-painted rich D235 art cels.**
+- No production sprite, Battle, RunState, #38 release or backup changes; live 37/45. `docs/D236R_SENTINEL_GAIT_REPAIR_QA.md`.
+
 ## 2026-10-18 — D236: real six-step gait PILOT with accepted D234 rich torso/held lamp
 
 - Attempted extracting original D235 3×2 illustrated poster into real alpha animation; automatic background matting left visible brown gradients and truncated spear. **REJECTED**, not shipped as engine art.
