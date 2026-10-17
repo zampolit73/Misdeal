@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D206 native 5-role/light contract PASS; D207 54-case real-BattleUnit matrix QA-only committed, F6 pending). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D207 user-native 54/54 functional PASS; D208 focused +22% lanternlight balance candidate awaits F6). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,9 +38,15 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D207 — 54-case tactical and balance baseline staged, native F6 pending
+## D208 — modest encounter-only lanternlight pressure test (native F6 pending)
 
-New `res://scenes/dev/black_lantern_road_battle_matrix.tscn` tests **54 actual BattleUnit fights** (2 formations × 3 protagonist classes × solo/duo/trio × Assault/Hunt/Formation) using staged #38 UnitData and the encounter-only light controller, **without ever wiring #38 into normal battle or displaying unapproved sprites**. It records wins/losses, timeouts, mean/worst HP, casualty/round durations and light buff exposure. It verifies no light buff leakage or actors leaving battle bounds; victories alone are NOT a balance approval. Static source inspected in GitHub, **Godot F6 not yet run**. Full QA contract: `docs/D207_BLACK_LANTERN_BATTLE_MATRIX.md`.
+User Godot screenshot (2026-10-17) confirms **D207 real BattleUnit matrix 54/54 wins, 0 losses/timeouts**, 18 wins per solo/duo/trio and per Knight/Ranger/Mage. Mean surviving HP **80/70/74%**, worst **52/30/44%**, durations **13.2/14.6/13.3s**, individual hero deaths **0/2/4**, lantern telegraphs **90**, active frames **11,434**, buff-exposure frames **15,502**, max three lit enemies. This is functional **PASS**, not approved balance or actual player-facing combat/art. Compared with D153 accepted matrix (74/67/74% mean HP), the encounter is only moderately more forgiving; avoid blanket HP/damage increases.
+
+D208 changes **only the candidate #38 light speed multiplier 1.16 → 1.22** in `scripts/battle/black_lantern_light.gd`, preserving five enemy stats, light phase timings/locations and all live battles. Updated the SAME invisible deterministic 54-case Godot scene `res://scenes/dev/black_lantern_road_battle_matrix.tscn` to label results D208 and instrument *real attacks during lanternlight* via BattleUnit's existing diagnostic signal. **D208 Godot F6 not yet run.** Full baseline + new QA gate: `docs/D208_BLACK_LANTERN_BALANCE_PASS.md`. Card #38 still **QA-only**, live pool **37/45**; approved selected arena binary and correct five original animation atlases still outstanding.
+
+## D207 — 54-case tactical and balance baseline staged, native F6 PASS
+
+New `res://scenes/dev/black_lantern_road_battle_matrix.tscn` tests **54 actual BattleUnit fights** (2 formations × 3 protagonist classes × solo/duo/trio × Assault/Hunt/Formation) using staged #38 UnitData and the encounter-only light controller, **without ever wiring #38 into normal battle or displaying unapproved sprites**. It records wins/losses, timeouts, mean/worst HP, casualty/round durations and light buff exposure. It verifies no light buff leakage or actors leaving battle bounds; victories alone are NOT a balance approval. Godot D207 F6 now **PASS per user screenshot**; D208 rereun pending. Full baseline: `docs/D207_BLACK_LANTERN_BATTLE_MATRIX.md` and `docs/D208_BLACK_LANTERN_BALANCE_PASS.md`.
 
 ## D206 F6 native contract — user screenshot PASS
 
