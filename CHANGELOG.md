@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D213/D214: Canonical original-animation master, full Lantern Bearer production spec
+
+- User chose **D211 Armored Spear Sentinel option A** («а»), concept silhouette LOCKED only; five final sprite atlases remain uncreated/unapproved.
+- Read actual `scripts/battle/unit_animation_library.gd` and found old chat's D212/D213 **sequential row-major** atlas layout contradicts the real per-state-row loader. Documented correct 576×480 RGBA, 6×5 cells, `idle4+2empty` / `walk6` / `attack6` / `hit3+3empty` / `death6`, 25 authored cels in `docs/D213_BLACK_LANTERN_MASTER_ANIMATION_BRIEF.md`. Do not use contradictory old chat diagram.
+- Added `docs/D214_LANTERN_BEARER_PRODUCTION_SPEC.md`: thick-boned shield/plank escort with heavy lantern, detailed 25 individual animation-pose instructions, row-level correct Godot layout, alpha margins/leg placement/source-art/orientation QA and acceptance conditions. **Art brief only; no new shield gameplay.**
+- Synchronized docs/DECISIONS, ROADMAP, PROJECT_STATE, HANDOFF and INDEX to preserve user approvals across chats. **No `.gd`/`.tres`/runtime sprite assets modified; Act1 37/45; D209 accepted forest and KARAMBA73 untouched.**
+
 ## 2026-10-17 — D211: Spear Sentinel A/B illustrated alternatives (art direction only)
 
 - Created two isolated pixel-art **character silhouette concept crops**, both correctly show a LONG SPEAR unlike rejected D205 axe: A armored pauldron/lantern on shaft and B ragged hood/lantern on shaft. Comparison board `Misdeal_D211_Road_Sentinel_Concept_Options.png` contains native 96px cell scale sanity checks; source and board exist as conversation art only.
