@@ -1,10 +1,14 @@
 # D218 — Extinguished Guide / Погасший проводник: original three-lantern animation QA
 
-Date: 2026-10-17. Status: **25-CEL ORIGINAL QA ART SOURCE + WEBP/B64 + ISOLATED GODOT F6 SCENE COMMITTED, USER-NATIVE D218 F6 PENDING**. Act1 live pool **37/45**; #38 `black_lantern_road` is still QA-only.
+Date: 2026-10-17. Status: **25-CEL QA ART / F6 GALLERY COMMITTED; USER REPLIED «отлично» AFTER F6 REQUEST, DETAILED ALL-MOTION REVIEW NOT PROVIDED**. Act1 live pool **37/45**; #38 `black_lantern_road` is still QA-only.
 
 ## Native D217 follow-up: user confirmed fixed PASS
 
 After receiving the user's native D217 screenshot with border failures at 0-based death row4 col4/5, code/art was fixed directly in `assets/pixel/units/black_lantern_road_qa/oil_acolyte_d217_vector_candidate.svg` at commit `a8a80f1` (removed two border-spilling low rib strokes, kept strict Godot QA). Asked the user `git pull` + F6 the SAME Oil Acolyte scene; the user's immediate reply was **«все ок»**. Treat it as **user-reported native post-fix D217 gallery functional PASS**. No fresh screenshot/log was supplied for the repeat, so avoid claiming independent per-frame/finished art approval. D216 earlier screenshot shows Bearer gallery render at x3 and x1 with shield attack, but full five-state motion still not explicitly tested by screenshots. D215 Sentinel gallery received prior verbal OK.
+
+## D218 user feedback (2026-10-17)
+
+After the D218 guide F6 invitation, user replied **«отлично»**. Log as positive feedback on this development milestone and continue to the fifth character; no screenshot of the guide's 5 states, independent engine log or real battle is supplied, so do not overstate proof. D219 Archer staging is recorded in `docs/D219_LANTERN_ARCHER_ANIMATION_QA.md`.
 
 ## D218 genuinely created and committed
 
