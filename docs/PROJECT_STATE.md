@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-18 (D232 ONE transparent high-detail Sentinel pose 96×96 staged for x1 user look acceptance; D229 technical atlas unchanged; #38 QA-only, live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-18 (D233 four illustrated-source cutout IDLE proof cels and F6 viewer committed, native Godot/art approval pending, NOT 25 production frames; D229 technical pool staged, Act1 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D232 CURRENT — one better-looking transparent 96px spear Sentinel look candidate, awaiting user approval
+## D233 CURRENT — four real idle-only animation variants, original body poses still pending
+
+User wrote «прододалжай» after D232 one rich 96px pose QA, **not approval** of D232 in Godot. Built reproducible limited `D233` cutout animation: movement of **separately masked lantern, warm amber glass and lower torn cape edge** across four idle variants, using the **D232 source illustrated pose**, not programmatically replacing full character with simple geometry. `tools/art/author_road_sentinel_d233_idle_proof.py` now reads GitHub D232 original source from repo-relative WebP/B64 and regenerates bit-identical `assets/pixel/units/black_lantern_road_qa/road_sentinel_d233_idle4_cutout_proof.webp.b64`; **4 distinctive idle cels, 26 fully transparent, zero border hits**, `docs/qa/D233_SENTINEL_CUTOUT_IDLE_QC.json`. **Not 25 frames / no walk / attack / hit / death**. New F6 `res://scenes/dev/black_lantern_sentinel_d233_idle_cutout_proof.tscn` on original D209 forest compares static D232 LEFT vs IDLE moving D233 RIGHT, x3/x1 with pause and both directions. **Godot native F6 STILL PENDING**. Current D229 standard `road_sentinel` library and #38 non-live untouched; **37/45**. Next: judge x1 cutout quality before attempting distinct walking/thrust poses, see `docs/D233_SENTINEL_IDLE_CUTOUT_PROOF.md`.
+
+## D232 PREVIOUS — one better-looking transparent 96px spear Sentinel look candidate, awaiting user approval
 
 After D231 user objection to downgraded visuals, built and committed ONE rich armored pointed-spear Sentinel from a generated detail illustration (not a fake '25 frames' presentation grid). Isolated alpha from illustration, nearest-reduced to crisp 96×96 with safe bbox **(9,5,86,93)**. Candidate `assets/pixel/units/black_lantern_road_qa/road_sentinel_d232_single_96px.webp.b64`, preserved cutout source `road_sentinel_d232_reference_cutout.webp.b64`, machine-readable `docs/qa/D232_ROAD_SENTINEL_SINGLE_POSE_QC.json`. **This single sprite is illustration-derived, NOT 25 authored moving sprites or an art-final commitment.** New `res://scenes/dev/black_lantern_sentinel_d232_art_direction_preview.tscn` compares technical D229 left vs candidate D232 right, both x3 and true x1 on approved D209 moonlit forest. New Godot user F6 and art feedback PENDING. **Production role still loads technical D229**, card #38 absent from ordinary run, Act1 **37/45**. Need user decision on visible ×1 fidelity before 25-pose hand-authoring. Full detail `docs/D232_SENTINEL_SINGLE_FRAME_ART_REVIEW.md`.
 
