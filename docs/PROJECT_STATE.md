@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D218 Guide received positive user feedback; D219 original 25-frame Lantern Archer QA atlas and isolated Godot gallery committed; native D219 F6 pending, live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D219 standalone Archer F6 user OK; D220 all five procedural QA sprites explicitly slated for full Misdeal-style redraw BEFORE #38 release; 37/45 live). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -37,6 +37,10 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 ## D204 composition-only arena options (NOT production art)
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
+
+## D220 CURRENT — D219 user preview OK; five QA sprites MUST be replaced before release
+
+User replied **«все ок»** after D219 archer isolated Godot F6 request, plus explicitly asked if the five simplified character sprites will later be replaced. **Yes: agreed hard gate.** D219 is **user-reported functional isolated preview OK**, NOT polished final-art approval or full five-role real-battle PASS. These D215–D219 cels were intentionally **technical QA art**; all FIVE must receive new full-quality original dark-fantasy pixel-art drawing, retain useful genuine 25-pose walk/attack/death motion, and be shown together **at native game size on the already approved D209 third moonlit forest arena** for user's artistic acceptance. Not just upscaling or repainting one idle frame; do NOT silently reuse older undead art. D211 **Sentinel A spear**, Bearer board shield + separate lantern, Acolyte curved sickle/oil flask, Guide tall 1.8× and three chained lamps, Archer real bow/quiver/lantern are locked. The correct 576×480 6×5×96px five-row atlas contract remains D213; 2px alpha-safe margins, five clear cells. Only after explicit art/native F6 approval register production sprites and integrate actual #38 battle→reward→table, 54-case combat matrix and full-pool smoke; THEN release 38/45. Current card #38 **QA-only / 37 cards live**, untouched code; reference **`docs/D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md`**.
 
 ## D219 CURRENT — fifth original skeleton staged, standalone Archer F6 pending
 
