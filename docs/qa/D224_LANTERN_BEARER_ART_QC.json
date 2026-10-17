@@ -1,0 +1,839 @@
+{
+  "source": "/mnt/data/спрайт_лист_скелета_рыцаря_с_фонарём.png",
+  "source_size": [
+    1374,
+    1145
+  ],
+  "source_sha256": "4fb9e0ce2ebfcb608b35d948c084cb6cc5c41d43afe8310597bdc23959ad325f",
+  "source_is_valid_godot_atlas": false,
+  "source_blending_warning": "Cell art lies across nominal grid boundaries; 1-cut at a seam has 20 opaque source pixels. No original bitmap qualifies as Godot atlas before repack/cleanup.",
+  "cut_rows": [
+    0,
+    239,
+    468,
+    690,
+    913,
+    1145
+  ],
+  "states": [
+    "idle",
+    "walk",
+    "attack",
+    "hit",
+    "death"
+  ],
+  "expected_counts": [
+    4,
+    6,
+    6,
+    3,
+    6
+  ],
+  "cells": [
+    {
+      "state": "idle",
+      "row": 0,
+      "col": 0,
+      "source_region": [
+        0,
+        0,
+        231,
+        239
+      ],
+      "crop_bbox": [
+        0,
+        16,
+        231,
+        239
+      ],
+      "source_crop": [
+        231,
+        223
+      ],
+      "target_size": [
+        85,
+        83
+      ],
+      "offset": [
+        5,
+        9
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "idle",
+      "row": 0,
+      "col": 1,
+      "source_region": [
+        231,
+        0,
+        458,
+        239
+      ],
+      "crop_bbox": [
+        0,
+        15,
+        227,
+        239
+      ],
+      "source_crop": [
+        227,
+        224
+      ],
+      "target_size": [
+        84,
+        83
+      ],
+      "offset": [
+        6,
+        9
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "idle",
+      "row": 0,
+      "col": 2,
+      "source_region": [
+        458,
+        0,
+        687,
+        239
+      ],
+      "crop_bbox": [
+        0,
+        15,
+        229,
+        239
+      ],
+      "source_crop": [
+        229,
+        224
+      ],
+      "target_size": [
+        85,
+        83
+      ],
+      "offset": [
+        5,
+        9
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "idle",
+      "row": 0,
+      "col": 3,
+      "source_region": [
+        687,
+        0,
+        916,
+        239
+      ],
+      "crop_bbox": [
+        0,
+        33,
+        226,
+        239
+      ],
+      "source_crop": [
+        226,
+        206
+      ],
+      "target_size": [
+        84,
+        76
+      ],
+      "offset": [
+        6,
+        16
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "walk",
+      "row": 1,
+      "col": 0,
+      "source_region": [
+        0,
+        239,
+        229,
+        468
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        229,
+        229
+      ],
+      "source_crop": [
+        229,
+        229
+      ],
+      "target_size": [
+        85,
+        85
+      ],
+      "offset": [
+        5,
+        7
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "walk",
+      "row": 1,
+      "col": 1,
+      "source_region": [
+        229,
+        239,
+        458,
+        468
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        229,
+        229
+      ],
+      "source_crop": [
+        229,
+        229
+      ],
+      "target_size": [
+        85,
+        85
+      ],
+      "offset": [
+        5,
+        7
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "walk",
+      "row": 1,
+      "col": 2,
+      "source_region": [
+        458,
+        239,
+        687,
+        468
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        229,
+        229
+      ],
+      "source_crop": [
+        229,
+        229
+      ],
+      "target_size": [
+        85,
+        85
+      ],
+      "offset": [
+        5,
+        7
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "walk",
+      "row": 1,
+      "col": 3,
+      "source_region": [
+        687,
+        239,
+        916,
+        468
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        229,
+        229
+      ],
+      "source_crop": [
+        229,
+        229
+      ],
+      "target_size": [
+        85,
+        85
+      ],
+      "offset": [
+        5,
+        7
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "walk",
+      "row": 1,
+      "col": 4,
+      "source_region": [
+        916,
+        239,
+        1145,
+        468
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        229,
+        229
+      ],
+      "source_crop": [
+        229,
+        229
+      ],
+      "target_size": [
+        85,
+        85
+      ],
+      "offset": [
+        5,
+        7
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "walk",
+      "row": 1,
+      "col": 5,
+      "source_region": [
+        1145,
+        239,
+        1374,
+        468
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        213,
+        229
+      ],
+      "source_crop": [
+        213,
+        229
+      ],
+      "target_size": [
+        79,
+        85
+      ],
+      "offset": [
+        8,
+        7
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "attack",
+      "row": 2,
+      "col": 0,
+      "source_region": [
+        0,
+        468,
+        241,
+        690
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        241,
+        222
+      ],
+      "source_crop": [
+        241,
+        222
+      ],
+      "target_size": [
+        89,
+        82
+      ],
+      "offset": [
+        3,
+        10
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "attack",
+      "row": 2,
+      "col": 1,
+      "source_region": [
+        241,
+        468,
+        448,
+        690
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        207,
+        222
+      ],
+      "source_crop": [
+        207,
+        222
+      ],
+      "target_size": [
+        77,
+        82
+      ],
+      "offset": [
+        9,
+        10
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "attack",
+      "row": 2,
+      "col": 2,
+      "source_region": [
+        448,
+        468,
+        689,
+        690
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        241,
+        222
+      ],
+      "source_crop": [
+        241,
+        222
+      ],
+      "target_size": [
+        89,
+        82
+      ],
+      "offset": [
+        3,
+        10
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "attack",
+      "row": 2,
+      "col": 3,
+      "source_region": [
+        689,
+        468,
+        922,
+        690
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        233,
+        222
+      ],
+      "source_crop": [
+        233,
+        222
+      ],
+      "target_size": [
+        86,
+        82
+      ],
+      "offset": [
+        5,
+        10
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "attack",
+      "row": 2,
+      "col": 4,
+      "source_region": [
+        922,
+        468,
+        1150,
+        690
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        228,
+        222
+      ],
+      "source_crop": [
+        228,
+        222
+      ],
+      "target_size": [
+        84,
+        82
+      ],
+      "offset": [
+        6,
+        10
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "attack",
+      "row": 2,
+      "col": 5,
+      "source_region": [
+        1150,
+        468,
+        1374,
+        690
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        223,
+        222
+      ],
+      "source_crop": [
+        223,
+        222
+      ],
+      "target_size": [
+        83,
+        82
+      ],
+      "offset": [
+        6,
+        10
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "hit",
+      "row": 3,
+      "col": 0,
+      "source_region": [
+        0,
+        690,
+        251,
+        913
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        251,
+        223
+      ],
+      "source_crop": [
+        251,
+        223
+      ],
+      "target_size": [
+        88,
+        78
+      ],
+      "offset": [
+        4,
+        14
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "hit",
+      "row": 3,
+      "col": 1,
+      "source_region": [
+        251,
+        690,
+        478,
+        913
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        227,
+        223
+      ],
+      "source_crop": [
+        227,
+        223
+      ],
+      "target_size": [
+        84,
+        83
+      ],
+      "offset": [
+        6,
+        9
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "hit",
+      "row": 3,
+      "col": 2,
+      "source_region": [
+        478,
+        690,
+        693,
+        913
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        215,
+        216
+      ],
+      "source_crop": [
+        215,
+        216
+      ],
+      "target_size": [
+        80,
+        80
+      ],
+      "offset": [
+        8,
+        12
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "death",
+      "row": 4,
+      "col": 0,
+      "source_region": [
+        0,
+        913,
+        228,
+        1145
+      ],
+      "crop_bbox": [
+        15,
+        4,
+        228,
+        218
+      ],
+      "source_crop": [
+        213,
+        214
+      ],
+      "target_size": [
+        79,
+        79
+      ],
+      "offset": [
+        8,
+        13
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "death",
+      "row": 4,
+      "col": 1,
+      "source_region": [
+        228,
+        913,
+        450,
+        1145
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        222,
+        204
+      ],
+      "source_crop": [
+        222,
+        204
+      ],
+      "target_size": [
+        82,
+        75
+      ],
+      "offset": [
+        7,
+        17
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "death",
+      "row": 4,
+      "col": 2,
+      "source_region": [
+        450,
+        913,
+        674,
+        1145
+      ],
+      "crop_bbox": [
+        0,
+        55,
+        224,
+        232
+      ],
+      "source_crop": [
+        224,
+        177
+      ],
+      "target_size": [
+        83,
+        65
+      ],
+      "offset": [
+        6,
+        27
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "death",
+      "row": 4,
+      "col": 3,
+      "source_region": [
+        674,
+        913,
+        920,
+        1145
+      ],
+      "crop_bbox": [
+        0,
+        9,
+        246,
+        232
+      ],
+      "source_crop": [
+        246,
+        223
+      ],
+      "target_size": [
+        88,
+        80
+      ],
+      "offset": [
+        4,
+        12
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "death",
+      "row": 4,
+      "col": 4,
+      "source_region": [
+        920,
+        913,
+        1166,
+        1145
+      ],
+      "crop_bbox": [
+        0,
+        1,
+        246,
+        232
+      ],
+      "source_crop": [
+        246,
+        231
+      ],
+      "target_size": [
+        88,
+        83
+      ],
+      "offset": [
+        4,
+        9
+      ],
+      "seam_loss_unquantified": true
+    },
+    {
+      "state": "death",
+      "row": 4,
+      "col": 5,
+      "source_region": [
+        1166,
+        913,
+        1374,
+        1145
+      ],
+      "crop_bbox": [
+        0,
+        0,
+        198,
+        216
+      ],
+      "source_crop": [
+        198,
+        216
+      ],
+      "target_size": [
+        73,
+        80
+      ],
+      "offset": [
+        11,
+        12
+      ],
+      "seam_loss_unquantified": true
+    }
+  ],
+  "cuts_x": {
+    "0": [
+      0,
+      231,
+      458,
+      687,
+      916,
+      1145,
+      1374
+    ],
+    "1": [
+      0,
+      229,
+      458,
+      687,
+      916,
+      1145,
+      1374
+    ],
+    "2": [
+      0,
+      241,
+      448,
+      689,
+      922,
+      1150,
+      1374
+    ],
+    "3": [
+      0,
+      251,
+      478,
+      693,
+      916,
+      1145,
+      1374
+    ],
+    "4": [
+      0,
+      228,
+      450,
+      674,
+      920,
+      1166,
+      1374
+    ]
+  },
+  "scale": 0.37,
+  "native_QA": "pending",
+  "candidate_webp_sha256": "816efbc6416a65408b5f3aa121b8a3985a3ce67dcd26a5ce17af992a98c15b87",
+  "source_webp_size": 266934,
+  "filled": 25,
+  "unique": 25,
+  "unused": 5,
+  "warnings": []
+}
