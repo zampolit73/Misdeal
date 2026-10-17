@@ -17,7 +17,10 @@ var actual: AnimatedSprite2D
 var status: Label
 var state_name: Label
 var current_state: String = "walk"
+var facing_left: bool = true
 var source_frames: SpriteFrames
+var left_button: Button
+var right_button: Button
 
 
 func _ready() -> void:
@@ -55,12 +58,17 @@ func _ready() -> void:
 	_label("В боевом масштабе x1", Vector2(690, 155), Vector2(420, 32), 19, true)
 	state_name = _label("", Vector2(138, 506), Vector2(340, 32), 20, true)
 	status = _label(
-		"АРТ B: 25 поз / 5 пустых ячеек. ПОЛЬЗОВАТЕЛЬСКИЙ F6 ЕЩЁ НЕ ПРОЙДЕН.\n"
-		+ "ИСТОЧНИК ПЕРЕНАРЕЗАН: НУЖНА ПРОВЕРКА НОГ, ЩИТА И ФОНАРЯ.",
+		"D224: СЦЕНА ЗАГРУЖЕНА. ПРОВЕРЬ ОБА НАПРАВЛЕНИЯ И ВСЕ 5 АНИМАЦИЙ.\n"
+		+ "NEAREST УЖЕ ВКЛЮЧЁН; МЯГКОСТЬ ДЕТАЛЕЙ ПОСЛЕ ПЕРЕНАРЕЗКИ ИСХОДНИКА.",
 		Vector2(130, 558), Vector2(1020, 65), 16, true
 	)
 	large = _sprite(Vector2(280, 384), 3.0)
 	actual = _sprite(Vector2(912, 451), 1.0)
+	# The original art faces RIGHT; the enemy normally faces heroes on the LEFT.
+	# Flip both galleries, rather than inventing another 25 drawings.
+	left_button = _direction_button("← ВЛЕВО", Vector2(82, 102), true)
+	right_button = _direction_button("ВПРАВО →", Vector2(285, 102), false)
+	_set_facing(true)
 	var names: Array[String] = ["ОЖИДАНИЕ", "ХОДЬБА", "АТАКА", "УРОН", "СМЕРТЬ"]
 	for i in range(5):
 		var button := Button.new()
@@ -75,14 +83,49 @@ func _ready() -> void:
 
 func _sprite(at: Vector2, magnification: float) -> AnimatedSprite2D:
 	var view := AnimatedSprite2D.new()
-	view.position = at
+	view.position = at.round()
 	view.sprite_frames = source_frames
 	view.centered = true
 	view.scale = Vector2(magnification, magnification)
+	# No interpolation at x1 or x3. 96px art was already downscaled from
+	# the approved larger source, so NEAREST alone cannot restore lost detail.
 	view.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	view.z_index = 20
 	add_child(view)
 	return view
+
+
+func _direction_button(caption: String, at: Vector2, face_left: bool) -> Button:
+	var button := Button.new()
+	button.position = at
+	button.size = Vector2(190, 42)
+	button.text = caption
+	button.toggle_mode = true
+	button.add_theme_font_size_override("font_size", 18)
+	add_child(button)
+	button.pressed.connect(_set_facing.bind(face_left))
+	return button
+
+
+func _set_facing(face_left: bool) -> void:
+	facing_left = face_left
+	if large != null:
+		large.flip_h = facing_left
+	if actual != null:
+		actual.flip_h = facing_left
+	if left_button != null:
+		left_button.button_pressed = facing_left
+	if right_button != null:
+		right_button.button_pressed = not facing_left
+	_update_state_label()
+
+
+func _update_state_label() -> void:
+	if state_name == null:
+		return
+	var ru := {"idle":"ОЖИДАНИЕ","walk":"ХОДЬБА","attack":"АТАКА ЩИТОМ","hit":"РЕАКЦИЯ НА УДАР","death":"ПАДЕНИЕ"}
+	var side := "← ВЛЕВО" if facing_left else "ВПРАВО →"
+	state_name.text = "%s · %s" % [String(ru.get(current_state, current_state)), side]
 
 
 func _label(value: String, at: Vector2, dims: Vector2, font_size: int, centered: bool) -> Label:
@@ -161,8 +204,7 @@ func _build_frames(texture: Texture2D) -> SpriteFrames:
 
 func _play_state(name: String) -> void:
 	current_state = name
-	var ru := {"idle":"ОЖИДАНИЕ","walk":"ХОДЬБА","attack":"АТАКА ЩИТОМ","hit":"РЕАКЦИЯ НА УДАР","death":"ПАДЕНИЕ"}
-	state_name.text = String(ru.get(name, name)).to_upper()
+	_update_state_label()
 	large.stop()
 	actual.stop()
 	large.play(name)
