@@ -2,6 +2,10 @@
 
 Date: 2026-10-18. **D236 native/user visual FAIL; D236R corrected SIX-frame WALK-only atlas and A/B viewer committed. Godot F6 and aesthetic acceptance of D236R PENDING.** Ordinary Act1 live **37/45**; card #38 remains QA-only.
 
+## Later actual user verdict (2026-10-18)
+
+After D236R side-by-side Godot QA, user replied **«пойдет»**. Update status to **USER VISUAL OK — repaired six-frame walk is sufficient to continue with SPEAR ATTACK stage D237**. This is acceptance of the gait, NOT confirmation that all 25 animation frames are finished, that the illustrated D235 visual fidelity is fully matched or that actual Battle #38 has passed. Keep earlier `native Godot F6 pending` references below as historical pre-test statements; latest user verdict supersedes their gait-acceptance status. D236 earlier gait remains rejected. No release/production role asset was changed by accepting this candidate.
+
 ## Reason for correction
 
 After user was asked to F6 `black_lantern_sentinel_d236_walk6_pilot.tscn`, they replied **«не естествено»**. This is explicit rejection of **D236 walking motion**, regardless of previous 6-unique-cel/24-empty static technical success. Investigated `tools/art/author_road_sentinel_d236_walk6_pilot.py`:
