@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-18 (D234 correct visual wrist grip of Sentinel's lantern committed in four-idle QA, Godot x1 test pending, #38 QA-only, 37/45 live). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-18 (D235 rich Sentinel 6-pose walk visual USER APPROVED, original 3×2 art archived as high-quality reference; actual alpha walk F6 pending, normal Act1 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -20,7 +20,15 @@ Updated: 2026-10-18 (D234 correct visual wrist grip of Sentinel's lantern commit
 - [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
-## D234 CURRENT — fix art continuity BEFORE adding more animations
+## D235 CURRENT — six-walk Sentinel Style-B visual approved, production cells next
+
+- [x] **D234 grip art direction accepted** by user: wrist-mounted amber lantern visibly HELD, no floating prop. Previous D233 rejected.
+- [x] **D235 visual approval** («принято»): rich six-character 3×2 walking illustration, real long SPEAR, layered armor, burgundy hood, hand-held lamp. Original image source SHA `9fa8e48baed60364411e13e2a58d1549e052bbdc250c26b37933d2081442b181`, high-quality full-resolution WebP reference now **committed** under `assets/pixel/units/black_lantern_road_qa/road_sentinel_d235_approved_walk_concept_q95.webp.b64`. `docs/D235_SENTINEL_WALK_ART_APPROVAL.md`.
+- [ ] **D235 original six walk cels at true 96px alpha:** draw six physically distinct legs/sole/planted passing poses, consistent lantern wrist grip + spear, protect rich look at x1. Original generated 3×2 poster has gradient backdrop; not a packable animation sheet.
+- [ ] Isolated F6 native walk motion/feet/hand x1 on **D209** then remaining attack6, hit3, death6 genuinely authored. Do NOT switch released battle sprite library or card #38 before full art, battle and release QA.
+- [x] D229 remains only staged technical alpha atlas; normal pool **37/45**.
+
+## D234 PREVIOUS — fix art continuity BEFORE adding more animations
 
 - [x] **D233 visual issue confirmed by user**: lantern near knee appears detached from free hand; D233 is **REJECTED** as an animation method acceptance.
 - [x] **D234 source fix committed**: relocate same rich illustrated lantern to gauntlet, visible short forged hanger + wrist overlap and strictly pivot-linked tiny sway across 4 idle; vacated image region patched with source burgundy-cloak texture. `docs/D234_SENTINEL_HAND_LANTERN_ATTACHMENT_QA.md`.
