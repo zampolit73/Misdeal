@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D211 spear Sentinel A selected; D213 true Godot row-state atlas packing corrected; D214 Bearer full 25-pose production brief committed; all sprites still blocked). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D215 first original 25-pose spear Sentinel QA-only atlas and native F6 gallery committed; Godot and artistic approval pending; #38 not live). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,13 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D214 CURRENT — Lantern Bearer specification, canonical animation packing correction
+## D215 CURRENT — 25 original spear Sentinel cels in QA-only GitHub and independent F6 gallery
+
+**Actually committed to main**: `assets/pixel/units/black_lantern_road_qa/road_sentinel_d215_candidate.webp.b64` (576×480 lossless WebP/Base64, 25 individually laid-out native 96px pixel-art poses in correct D213 state rows, 5 clear unused cells); production source `tools/art/author_road_sentinel_d215.py`; isolated F6 `res://scenes/dev/black_lantern_sentinel_animation_preview.tscn` with scripted state buttons, 3× preview and 1× on accepted D209 background. Source generated native-size cels by authored skeleton/leg/spear rigs and is NOT a remapped/labelled concept crop. Offline art QC: **25 unique/nonblank, 5 alpha-clear, 0 edge warnings**, GitHub roundtrip base64 bytes identical to exported asset.
+
+**NOT approved yet**: this is a deliberately simple low-detail first pixel draft compared to earlier rich D211 reference art. Godot 4.7 F6 not run, no visual user art approval. User should `git pull` / F6 gallery and review how spear attack, feet, death and scale look; if insufficient, improve art within isolated candidate first. The main combat animation library is untouched; no new role registered, no ordinary `black_lantern_road` card. See `docs/D215_SENTINEL_NATIVE_ANIMATION_QA.md`. Live Act1 **37/45**; accepted exact third D209 forest and D200 card image preserved.
+
+## D214 PREVIOUS — Lantern Bearer specification, canonical animation packing correction
 
 **Approval state:** User chose Road Sentinel **D211 OPTION A** (armored skeleton carrying long spear and hanging lantern). This is an accepted **visual direction**, not a true 25-cel sprite. D213 consolidated all five required original undead roles and corrected an IMPORTANT mistake in the prior chat-written D212/D213: real Godot `MisdealUnitAnimationLibrary::_create_frames` uses **row-per-animation**, NOT sequential row-major frames. Correct rows: `idle [4 filled,2 transparent]`, `walk [6]`, `attack [6]`, `hit [3 filled,3 transparent]`, `death [6]`; total exactly **576x480 RGBA, 6x5, 25 authentic +5 blank**. New authoritative source: `docs/D213_BLACK_LANTERN_MASTER_ANIMATION_BRIEF.md`; earlier chat layout is superseded. Applies to all five new units.
 
