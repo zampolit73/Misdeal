@@ -2,6 +2,14 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D225: Both-direction Lantern Bearer art gallery for native QA
+
+- User D224 Godot screenshot confirms original accepted shield-and-handheld-lantern B art loaded at x3 and x1, with shield-attack shown and no red QA error; it does not prove every state or both directions.
+- User asked whether animation was bidirectional and agreed to add preview controls. Read `scripts/battle/unit.gd` target-facing code; actual battle already uses `art_sprite.flip_h` but the isolated D224 gallery did not.
+- Added `← ВЛЕВО` and `ВПРАВО →` buttons to **same** D224 Godot QA scene script; both sprites mirror together, label indicates active direction, start facing left toward heroes. No separate 25 frames needed. **Native Godot after change pending.**
+- Reconfirmed both previews already use `TEXTURE_FILTER_NEAREST` and x3 integer scale; visible softness is inherited from downsampling original 1374×1145 illustration into 96px frames, so did not claim a fake filtering fix or modify locked art.
+- Added `docs/D225_BEARER_FACING_PIXEL_CLARITY_QA.md` and aligned handoff/state/roadmap/decisions. No production Battle, source image, live 37-card pool or KARAMBA73 change.
+
 ## 2026-10-17 — D224: approved original 25-pose Bearer art preserved, standalone native grid QA
 
 - User approved D223 corrected Bearer design («да все ок») and new dark-fantasy style-B 25-pose shield/hand-lantern original image («подходит»). Saved selected **1374×1145 PNG-visible pixels losslessly as WebP/B64** in GitHub QA asset `lantern_bearer_d224_approved_original_lossless.webp.b64`; PNG and WebP origin hashes in `docs/D224_LANTERN_BEARER_APPROVED_ART_QA.md`.
