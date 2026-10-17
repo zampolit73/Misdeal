@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-18 (D235 rich Sentinel 6-pose walk visual USER APPROVED, original 3×2 art archived as high-quality reference; actual alpha walk F6 pending, normal Act1 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-18 (D236 six-phase Sentinel WALK joint-motion original pilot staged with side-by-side F6 x1; final D235 art quality and native PASS pending; Act1 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -20,7 +20,15 @@ Updated: 2026-10-18 (D235 rich Sentinel 6-pose walk visual USER APPROVED, origin
 - [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
-## D235 CURRENT — six-walk Sentinel Style-B visual approved, production cells next
+## D236 CURRENT — real leg-movement proof, need x1 art acceptance
+
+- [x] **Discarded defective D235 poster auto-segmentation:** background brown gradients and spear cropping make naive extract unsuitable, never promote those.
+- [x] **D236 true six-phase leg pose motion pilot:** reconstruct from clean D234 handled-lantern upper artwork; hand-defined 6 planted/passing/swing boot/knee poses, 6 distinct cells in walk row1, **24 EMPTY**, no alpha-edge errors. Reproducible GitHub `tools/art/author_road_sentinel_d236_walk6_pilot.py`, art `road_sentinel_d236_walk6_pilot.webp.b64`. `docs/D236_SENTINEL_WALK6_MOTION_PILOT.md`.
+- [x] **D236 isolated F6 scene:** `res://scenes/dev/black_lantern_sentinel_d236_walk6_pilot.tscn`; static accepted D209, D234 4-IDLE left vs D236 6-WALK right, x3/x1/facing/pause, structural validators.
+- [ ] **USER Godot F6:** confirm feet walk (not slide/floating), correct wrist-lantern, leg art at x1; **NOT native-PASS** until user response. Six poses use reused upper D234 illustrations and drawn legs, NOT fully artist-painted six rich whole bodies, so final D235 fidelity is not automatically accepted.
+- [ ] Polish motion/character frame quality before attempting next actual attack6, hit3, death6 and final 25 + five other skeletons/release #38; live pool 37/45.
+
+## D235 PREVIOUS — six-walk Sentinel Style-B visual approved, production cells next
 
 - [x] **D234 grip art direction accepted** by user: wrist-mounted amber lantern visibly HELD, no floating prop. Previous D233 rejected.
 - [x] **D235 visual approval** («принято»): rich six-character 3×2 walking illustration, real long SPEAR, layered armor, burgundy hood, hand-held lamp. Original image source SHA `9fa8e48baed60364411e13e2a58d1549e052bbdc250c26b37933d2081442b181`, high-quality full-resolution WebP reference now **committed** under `assets/pixel/units/black_lantern_road_qa/road_sentinel_d235_approved_walk_concept_q95.webp.b64`. `docs/D235_SENTINEL_WALK_ART_APPROVAL.md`.
