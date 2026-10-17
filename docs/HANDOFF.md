@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D209 native forest art/layout PASS, D210 five new skeleton animation sources audited and blocked pending corrected artwork; Act1 37/45**.
+Updated: 2026-10-17 — **D211 Road Sentinel with approved SPEAR: two new concept options A/B shown; user art selection pending, all five true atlases still blocked; Act1 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,13 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D210 — CURRENT HANDOFF: D209 F6 approved, five sprite atlases remain blocked
+## D211 CURRENT — next input is A/B spear Sentinel silhouette selection
+
+Two **distinct image concepts** now exist: A armored skeleton with pauldron/diagonal spear and small lantern vs B hooded cloak skeleton with taller spear and small lantern. Files `d211_option_A_crop.png`, `d211_option_B_crop.png`, combined `Misdeal_D211_Road_Sentinel_Concept_Options.png` (in chat, not GitHub runtime assets). Source art compositions came from two generated design-sheet renderings; they are NOT framesheets and include baked backdrops. Native 96×96 fit check on both shows full spear shrinks skeleton; after user's choice, redraw actual animated character with steeper tighter spear, preserving visible full body/boots. Do not turn presentation images into animation frames or pretend candidate atlas is done. **User visual A/B choice is PENDING**; propose A because shoulder armor differentiates it from Guide. Full source/QA: `docs/D211_ROAD_SENTINEL_SPEAR_CONCEPT_OPTIONS.md`.
+
+**NEXT**: once user picks A or B, author genuine transparent 576×480 (6×5×96px, 25 distinct cels idle4/walk6/attack6/hit3/death6) original pixel-art spear Sentinel animation, validate native Godot art. If still no safe 25-frame source, stay blocked; do not enable fallback art. Then four other enemy atlases, real #38 battle + rewards, release. Act1 **37/45**, D209 selected arena is USER-APPROVED; no re-review necessary.
+
+## D210 PREVIOUS — D209 F6 approved, five sprite atlases remain blocked
 
 **Latest user input, 2026-10-17:** Screenshot of `res://scenes/dev/black_lantern_road_arena_visual_preview.tscn` displaying exact selected third moonlit forest backdrop, three blue hero rectangles, five bronze enemy rectangles (tall Guide) and two moving amber light circles. User replied **«все ок»**. This is **user-native D209 visual-composition approval**, not a production sprite or battle-effect approval. **Do not request D209 rerun or another forest art choice.** The approved source is already in GitHub as `assets/pixel/battle/arenas/black_lantern_road_arena_selected_v1.webp.b64`; D200 separately chosen third **card illustration** remains untouched.
 
