@@ -3,6 +3,10 @@ Updated: 2026-10-17.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D229 — Visual acceptance must be assessed side by side at actual 1× battle scale
+
+2026-10-18: User requested to continue after D228 without explicitly confirming Godot F6/native art or production readiness. Do not falsely record D228 as approved. D229 repaints actual native 96px chest/outer shoulder and spear/hood shapes across 25 authored poses; offline 25 nonempty unique +5 empty +0 edge; however enlarged x3 art gain remains subtle at x1. To prevent endless pseudo-final incremental passes, added synchronized D228 LEFT / D229 RIGHT dual-scale x3+x1, five-anim/two-facing F6 comparison. **Neither D228 nor D229 is accepted as final Style B production art** and accepted D221 character reference remains hard gate. No live game integration or architectural changes. `docs/D229_SENTINEL_NATIVE_SCALE_AB_REVIEW.md`.
+
 ## D228 — Art detail improvement is limited to explicit QA candidate until native comparison
 
 2026-10-17: User asked to follow original staged polish sequence and proceed D228 on Road Sentinel, maintaining **approved D211 armored spear + D220 group style B + D221 rich illustration**. D228 uses native 96px-per-frame freshly constructed forged plates, flowing jagged cloth, genuine pointed long spear with tiny pennant, and metal-caged suspended amber lantern across retained genuine 25 idle/walk/thrust/hit/death poses. No secret changes to mechanics or other skeleton roles. Static QA **25 distinct/5 transparent/0 edge violations**, new independent x1/x3 left/right Godot gallery; **native F6 and aesthetic approval remain pending** and D228 should not be represented as equivalent to the large finished D221 illustration. `docs/D228_SENTINEL_ORNAMENTAL_PIXEL_ART_QA.md`.
