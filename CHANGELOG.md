@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D237 handoff: user accepts repaired six-phase gait
+
+- User responded «пойдет» to the D236R A/B native visual comparison, so repaired D236R six-frame WALK accepted **for continued development**. Previous D236 gait still rejected.
+- No new art or live code changed in this acceptance update. No full 25-frame premium Sentinel atlas, actual Battle/UnitData/RunState, final-art or #38 release PASS implied.
+- Next art work: original 6-frame planted spear-thrust ATTACK pilot with windup, contact and recovery preserving D234 hand-held lantern and D235 richness; after that hit/death and full art integration.
+- Synced HANDOFF, PROJECT_STATE, ROADMAP and DECISIONS for fresh chats; 37/45 live.
+
 ## 2026-10-18 — D236R: repair unnatural Sentinel walk reported by user
 
 - User `не естествено` rejected D236 Godot walk QA, superseding offline six-unique test. Root cause: wide hard-coded straddle, abrupt A/B foot swap between phases and frozen torso.
