@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D209: user-selected exact forest arena added to GitHub, native QA scene
+
+- Imported **exact previously user-selected third** moonlit forest source as 1280×720 WebP/Base64 `assets/pixel/battle/arenas/black_lantern_road_arena_selected_v1.webp.b64`; 170,424 decoded bytes. Verified fetched GitHub blob SHA matches independently computed export Git blob SHA `6fad8192e4e2a9baa308db82e0ce84beeeb167ad`. No new art generation or substitute.
+- Registered `black_lantern_road` in existing `scripts/battle/authored_backdrop.gd` loader without redirecting existing arenas, normal Battle scene or ordinary card offers.
+- Added QA-only native `res://scenes/dev/black_lantern_road_arena_visual_preview.tscn` with the exact forest background, actual D206 lanternlight geometry/cue under 3 hero/5 enemy foot-contact envelopes (2× Guide), floor and pause controls. **Godot F6 not yet run**; not a playable card, rendered skeleton animation or art signoff.
+- Details, hashes and next user test `docs/D209_BLACK_LANTERN_ARENA_NATIVE_QA.md`. D208 +22% speed trial remained reverted to +16%; live Act1 37/45 and frozen KARAMBA73 untouched.
+
 ## 2026-10-17 — D208 native QA PASS and local balance rollback
 
 - User-provided Godot screenshot: D208 +22% scoped light trial **54/54 functional PASS**; 54 wins, zero defeats/timeouts, unchanged average HP 80/70/74%, worst HP 52/30/44%, and 13.2/14.6/13.3-second mean battles compared with D207 +16% (rounded displayed metrics).
