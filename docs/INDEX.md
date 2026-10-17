@@ -1,5 +1,5 @@
 # Misdeal Documentation Index
-Updated 2026-10-17 — D211 Sentinel option A selected; D213 corrected original animation atlas row contract; D214 Lantern Bearer 25-pose spec ready; no sprite imports, Act1 37/45.
+Updated 2026-10-17 — D215 original spear Sentinel QA-only 25-frame atlas and Godot F6 gallery available, awaiting visual approval; live Act1 37/45.
 
 ## Read first (current, short, authoritative)
 
@@ -21,6 +21,7 @@ Updated 2026-10-17 — D211 Sentinel option A selected; D213 corrected original 
 - [D153 encounter specification](DECK_EXPANSION_D153_THREADBARE_THEATRE.md).
 - [Black Crossing #37 encounter, battle QA and release gates](D188_BLACK_CROSSING_ENCOUNTER.md).
 - [D199 approved card #38: Road of Black Lanterns concept, five skeletons and production gates](DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md).
+- [D215 original spear Sentinel animation candidate and F6 gallery](D215_SENTINEL_NATIVE_ANIMATION_QA.md) — **CURRENT next native QA**, not live art.
 - [D213 canonical five-skeleton animation master production brief](D213_BLACK_LANTERN_MASTER_ANIMATION_BRIEF.md) — **correct 6×5 Godot state-row layout, supersedes chat D212/D213 row-major layout**.
 - [D214 Lantern Bearer art production specification](D214_LANTERN_BEARER_PRODUCTION_SPEC.md) — 25 original cel descriptions, shield/lamp identity, pixel QA; awaiting production sprites.
 - [D211 long-spear Road Sentinel two illustration concepts](D211_ROAD_SENTINEL_SPEAR_CONCEPT_OPTIONS.md) — **user selected option A**, not yet animated sprites.
