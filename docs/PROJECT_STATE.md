@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D209 exact approved forest art committed and SHA-verified; native arena F6 pending; D208 balance reverted to +16%). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D209 user-native approved forest F6 PASS; D210 five original skeleton animation sources QC audited, NOT integrated). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -37,6 +37,12 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 ## D204 composition-only arena options (NOT production art)
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
+
+## D210 CURRENT — native D209 arena visual approval, 5 skeletal atlas blockers
+
+User Godot screenshot on 2026-10-17 showed the exact third forest background, 3 blue + 5 bronze proxy silhouettes, tall Guide and two moving light circles; user replied **«все ок»**. **D209 isolated arena composition/native F6 PASS**; no player-facing sprite art or combat mechanic can be declared approved.
+
+D210 inspected all five generated 1254×1254 5×5 skeletal sheets and staged 576×480 6×5 preview contact board with sample IDLE/WALK/ATTACK/HIT/DEATH frames (conversation-only `Misdeal_D210_Animation_Review.png`). Source border-contact warning counts remain **13/20/24/21/13** for Guide/Bearer/Sentinel/Acolyte/Archer. These are **risk flags** requiring art review, not proof every flagged frame is irreparable. Major design block: Sentinel still carries an axe, **must be the approved spear**; bearer defensive rig, acolyte oil/sickle, Guide 2× height, archer silhouette require full-motion quality gates. None of five unapproved atlases is live or in GitHub game art. See `docs/D210_BLACK_LANTERN_ANIMATION_ART_QA.md`. Keep 37/45, no #38 in normal pool.
 
 ## D209 — Exact selected moonlit forest battle arena in GitHub, native visual F6 next
 
