@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D217 user-native post-fix F6 verbal PASS; D218 original 25-frame tall Guide QA atlas / scale gallery committed, native D218 F6 pending; #38 remains 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D218 Guide received positive user feedback; D219 original 25-frame Lantern Archer QA atlas and isolated Godot gallery committed; native D219 F6 pending, live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,17 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D218 CURRENT — original triple-chain-lantern Guide art source/Godot gallery F6 pending
+## D219 CURRENT — fifth original skeleton staged, standalone Archer F6 pending
+
+D218 triple-lantern Guide gallery received user's positive reply **«отлично»** after requesting native F6; record as user-reported positive preview feedback, without inventing a screenshot/complete movement evidence or production battle PASS. D216 Bearer native screenshot showed shield attack at 3×/1×, but complete five-state motion remains not explicitly confirmed. D215 Sentinel and post-fix D217 Acolyte previously received user verbal OK.
+
+New D219 **QA-only** original `lantern_archer` pixel atlas at `assets/pixel/units/black_lantern_road_qa/lantern_archer_d219_candidate.webp.b64` and deterministic art author `tools/art/author_lantern_archer_d219.py`. Correct 576×480 alpha 6×5 / 96px, **25 distinct nonempty original poses, five transparent unused cels, zero 2px edge warnings**, verified locally; GitHub Base64 source equality checked. Curved bow + quiver of arrows + small amber lamp and 6-stage bowstring draw/release separate it from four melee enemies. First death frames clipped and quiver stood upright; corrected the pixel source before asset commit. No actual projectile code was introduced.
+
+New standalone Godot F6 `res://scenes/dev/black_lantern_archer_animation_preview.tscn`: native 3×/1× on the EXACT user-approved D209 third forest art, five selectable states, strict in-engine per-frame checks. **D219 native Godot PASS NOT YET KNOWN**. Detail: `docs/D219_LANTERN_ARCHER_ANIMATION_QA.md`.
+
+After D219 F6, do **combined 5-character D209 arena animation visual QA** (especially grounded feet, real 1× readability, left-facing bow release, Guide 1.8×); then source-controlled production sprite library integration, isolated real encounter-local Battle→Reward→Table, full pool regressions and #38 release gate. Live Act1 **37/45**; KARAMBA73 unchanged.
+
+## D218 PREVIOUS — original triple-chain-lantern Guide art source/Godot gallery
 
 Following D217 source fix `a8a80f1`, user reran F6 and said **«все ок»** (2026-10-17). Treat this as **user-reported native D217 post-fix PASS**; prior FAIL is resolved, no claim of independently inspected five-state animation video. D216 native screenshot already showed Bearer 3×/1× and shield attack without red QA; full five-state approval not yet documented.
 
