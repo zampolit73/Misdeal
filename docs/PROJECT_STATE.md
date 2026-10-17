@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-16 (D206 five-role encounter + isolated light controller and resource smoke staged; native F6 pending). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D206 native 5-role/light contract PASS; D207 54-case real-BattleUnit matrix QA-only committed, F6 pending). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,9 +38,17 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D206 F6 runtime finding and hotfix — native re-test pending
+## D207 — 54-case tactical and balance baseline staged, native F6 pending
 
-User Godot 4.7.2 screenshot of `black_lantern_road_contract_smoke.tscn` showed **typed-array runtime error** in staged `black_lantern_light.gd:109`: `Array` cannot be assigned to `Array[Vector2]`. Fixed GitHub `main` in `9f751e7`: explicit typed-array initialization and branch assignments across all light-zone array selection points. No native re-run was supplied yet; D206 contract **NOT PASS** until F6 checks. Live combat untouched; pool still **37/45**.
+New `res://scenes/dev/black_lantern_road_battle_matrix.tscn` tests **54 actual BattleUnit fights** (2 formations × 3 protagonist classes × solo/duo/trio × Assault/Hunt/Formation) using staged #38 UnitData and the encounter-only light controller, **without ever wiring #38 into normal battle or displaying unapproved sprites**. It records wins/losses, timeouts, mean/worst HP, casualty/round durations and light buff exposure. It verifies no light buff leakage or actors leaving battle bounds; victories alone are NOT a balance approval. Static source inspected in GitHub, **Godot F6 not yet run**. Full QA contract: `docs/D207_BLACK_LANTERN_BATTLE_MATRIX.md`.
+
+## D206 F6 native contract — user screenshot PASS
+
+**2026-10-17 screenshot:** green `СТАТИЧЕСКИЕ ПРОВЕРКИ ПРОЙДЕНЫ`, including 5 distinct UnitData, two formations/five enemies, and enemy-only lantern buff with cleanup. This is a genuine user-native **isolated resource/light PASS** after the `Array[Vector2]` fix `9f751e7`. It does not validate art, real combat, balance, complete route or release.
+
+## D206 F6 runtime finding and hotfix — resolved
+
+User Godot 4.7.2 screenshot of `black_lantern_road_contract_smoke.tscn` showed **typed-array runtime error** in staged `black_lantern_light.gd:109`: `Array` cannot be assigned to `Array[Vector2]`. Fixed GitHub `main` in `9f751e7`: explicit typed-array initialization and branch assignments across all light-zone array selection points. Native F6 re-run now **PASS** (user screenshot 2026-10-17). Live combat untouched; pool still **37/45**.
 
 ## D206 CURRENT — Five original enemy data resources and local light logic, QA-only
 
