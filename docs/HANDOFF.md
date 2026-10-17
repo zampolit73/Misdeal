@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D224 user-native F6 screenshot displays Bearer attack at x3/x1; D225 same gallery now has left/right switch, new F6 pending; 37/45 live**.
+Updated: 2026-10-17 — **D225 both-facing Bearer QA user OK; D226 new native 25-cel Sentinel B-palette/cape candidate and separate F6 preview committed, USER F6 + fidelity approval pending; live Act1 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,15 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D225 — EXACT CURRENT USER ACTION: test two-way Bearer animation in SAME F6 scene
+## D226 — EXACT NEXT USER ACTION: native F6 for art-updated spear Sentinel
+
+User said **«все ок. давай дальше»** in response to D225 left/right toggles for the B-art Lantern Bearer gallery. Accept as **user-reported D225 facing-preview success**; full artistic polish and actual Battle sprite integration are still pending. No need to re-test D225 just to proceed.
+
+D226 work is now in GitHub: `tools/art/author_road_sentinel_d226.py` (reproducible 25 original authored pixel poses based on D215 skeletal rig with new russet layered cloak, hood, copper/rusted armor detailing), `assets/pixel/units/black_lantern_road_qa/road_sentinel_d226_art_candidate.webp.b64` (true 576×480 lossless WebP 6×5×96px), `docs/qa/D226_ROAD_SENTINEL_ART_QC.json` (25 unique/5 blank/0 bounds errors), and **new F6 scene `res://scenes/dev/black_lantern_sentinel_d226_art_preview.tscn`** with all 5 motion states, large 3×/real 1× views, left/right mirroring on exact selected D209 forest. Candidate faces LEFT natively, so initial ← has flip_h=false; right has flip_h=true. New photo generation in attempt mistakenly returned an Oil Acolyte board; **rejected** and not committed. Candidate is **intermediate art-quality pass**, visually simpler than accepted D221 high-detail armored Sentinel illustration; do not announce polished final art.
+
+**CURRENT REQUEST TO USER:** `git pull` and Godot F6 `res://scenes/dev/black_lantern_sentinel_d226_art_preview.tscn`; inspect attack spear direction, stride/contact feet, hood and hanging lamp, fall, LEFT/RIGHT. Ask whether D226 gets acceptable fidelity at game x1; further hand-painted detail may be required. **Native D226 has NOT been run/confirmed.** No `unit_animation_library.gd`, Battle or RunState changes; card #38 QA-only, 37/45 live. Canonical full record `docs/D226_SENTINEL_STYLE_B_ART_QA.md`. D196/D200/D209/DS2/12+XIII/immutable KARAMBA73 remain untouched.
+
+## D225 — PREVIOUS USER ACTION: test two-way Bearer animation in SAME F6 scene
 
 2026-10-17 user screenshot confirmed native Godot loaded original user-approved D224 B-art Bearer in 3x and 1x views, shield attack visible on exact D209 forest. Screenshot did **not** prove directional animation. User asked if it works both ways. Verified the real `scripts/battle/unit.gd` DOES use target-based `flip_h`, but `scripts/dev/black_lantern_bearer_d224_art_preview.gd` previously displayed only identical orientation at different scales. User replied **«хорошо»** to direction-toggle plan.
 
