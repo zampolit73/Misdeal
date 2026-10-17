@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D234: free-hand lantern attachment and illustrated robe repair
+
+- User observed **D233 FAIL**: skeleton did not appear to hold hanging lantern. Diagnosed source coordinates: original lantern under opposite knee, free hand far right; independent cutout movement made lamp visually float.
+- Created reproducible `tools/art/author_road_sentinel_d234_hand_lantern.py`, relocated exact original illustrated lantern under right gauntlet, redrew continuous handle/iron ring to its wrist anchor and composited hand over the ring. Repaired cutout region with mirrored original cloth texture rather than flat paint. Four independent idle image variants, 26 unused empty cells; zero alpha-edge faults. `assets/pixel/units/black_lantern_road_qa/road_sentinel_d234_handheld_idle4.webp.b64`, `docs/qa/D234_SENTINEL_HAND_LANTERN_QC.json`.
+- Added `res://scenes/dev/black_lantern_sentinel_d234_hand_lantern_compare.tscn` with old D233 LEFT/new D234 RIGHT, ×1 and ×3 and direction/pause on approved D209. Native F6 and visual approval pending; not a full 25-pose atlas.
+- All code/assets for ordinary 37-card run and real D229 technical Sentinel role remain untouched; card #38 still QA-only. `docs/D234_SENTINEL_HAND_LANTERN_ATTACHMENT_QA.md`.
+
 ## 2026-10-18 — D233: rich Sentinel 4-frame idle cutout-motion proof, no fake 25-pose completion
 
 - Continued D232 illustrated spear Sentinel visual recovery work without treating user «прододалжай» as artistic F6 approval.
