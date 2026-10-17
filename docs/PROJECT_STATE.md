@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D217 oil-acolyte 25-state SVG QA-only gallery and separate offline 25-cel PNG candidate staged; D216 native F6 still pending; live #38 not enabled). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D217 user-native SVG border FAIL diagnosed/fixed in source commit a8a80f1, re-F6 pending; D216 gallery renders without QA failure; #38 not live). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,11 +38,22 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
+## D217 SVG death-cel border hotfix — user-native FAIL, source fix F6 pending
+
+**2026-10-17 user's Godot 4.7.x screenshots:** the D217 F6 gallery loads the exact user-approved D209 forest but raises red `D217 / QA FAIL: D217 проверка атласа: край ячейки 4:4 / край ячейки 4:5`. These are **zero-based row=4 (death), columns=4 and 5 (death frames 5 and 6)**, *not* a Godot parser error or an issue in D209 art. The independent Pillow raster D217 candidate's offline QC did not apply to this **different SVG asset**; do not conflate them.
+
+**Root cause found in GitHub SVG** `assets/pixel/units/black_lantern_road_qa/oil_acolyte_d217_vector_candidate.svg`: two low chest/rib strokes in last two death cels extended past y=93 alpha-safe 96px tile: `M39,94L54,96` and `M40,93L55,95`, stroke width 2px. At rasterization they touched the bottom cell margin. Fixed **source art**, not QA thresholds: removed ONLY these two superfluous off-screen rib strokes, leaving skeleton, face, hook sickle, separate oil flask, belt lantern, boots and all other cels untouched. Commit **`a8a80f1ba73a148e9f52b63f776779171938a528`**. GitHub source re-fetch/geometry scan: **25 authored `<g>` cell groups**, approximate geometric max Y for affected death cels now 93 and 92.5; none of 25 groups exceed the 2px allowed frame edges by SVG geometric bounds. This **does not equal native Godot F6 PASS**; antialias/rasterizer needs user rerun. Do NOT change `_inspect()` acceptance rules to work around malformed art.
+
+**D216 separate screenshot:** the Lantern Bearer F6 gallery shows its intended character both at 3× and 1× on the D209 forest and displays `АТАКА ЩИТОМ`; no red QA failure is visible. Record **D216 native visual load and shown attack pose confirmed**, but **do not claim all idle/walk/hit/death states individually validated** from this still image.
+
+**NEXT USER ACTION:** `git pull`; F6 **`res://scenes/dev/black_lantern_oil_acolyte_animation_preview.tscn`**. Expect the red border FAIL to disappear and 3×/1× original Oil Acolyte to animate with sickle/flask/lantern. User can then click five state buttons and report any defect or «все ок». Only after this screen result can D217 be marked native PASS. Existing QA-only SVG art does NOT register `oil_acolyte` in production animation loader, doesn't alter `battle.gd`, UnitData or live deck; Act1 still **37/45**, #38 unreleased, frozen `backups/KARAMBA73-2026-10-16` unchanged.
+
+
 ## D217 CURRENT — original oil flask + sickle + belt-lamp sprite gallery staged
 
 New *QA-only* `assets/pixel/units/black_lantern_road_qa/oil_acolyte_d217_vector_candidate.svg` (transparent 576×480, 25 original per-state SVG groups in correct rows, 5 empty positions) and `res://scenes/dev/black_lantern_oil_acolyte_animation_preview.tscn` are in GitHub. The gallery renders this SVG via `Image.load_svg_from_buffer`, applies native decoded alpha/cel QC, shows five animation buttons plus 3×/1× views on exact accepted D209 moonlit forest. A **different**, raster 25-pose Pillow original PNG/WebP QA candidate and reproducible Python authoring source exist in conversation ZIP `Misdeal_D217_Oil_Acolyte_Animation_QA.zip`; offline raster QC returned **25 unique, 5 transparent, zero border contacts**. Do not confuse this exact raster binary with GitHub SVG or claim cross-format SHA identity. Design: slim ritual skeleton, **curved SICKLE (not axe)**, separate green oil flask and small amber hanging belt lamp. No stats/gameplay changes. **D217 Godot F6 pending**, no art quality PASS yet; see `docs/D217_OIL_ACOLYTE_ANIMATION_QA.md`.
 
-**D216 Lantern Bearer native F6 ALSO pending:** user said only «продолжай», not «всё ок»/screenshot for Bearer. D215 Sentinel user-reported F6 OK. Live Act1 **37/45**, #38 not in normal cards or battle routing.
+**D216 Lantern Bearer:** subsequent user screenshot confirms native **gallery renders at 3× and 1×, attack-with-shield shown, no QA FAIL**. Other four animation states are not independently confirmed. D215 Sentinel user-reported F6 OK. Live Act1 **37/45**, #38 not in normal cards or battle routing.
 
 ## D216 PREVIOUS — Lantern Bearer 25-frame original QA art, native F6 pending
 
