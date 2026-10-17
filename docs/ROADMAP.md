@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-18 (D233 experimental illustrated-Sentinel four-frame IDLE motion staged with native F6 QA pending; other 21 required source poses still missing; live 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-18 (D234 correct visual wrist grip of Sentinel's lantern committed in four-idle QA, Godot x1 test pending, #38 QA-only, 37/45 live). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -20,7 +20,15 @@ Updated: 2026-10-18 (D233 experimental illustrated-Sentinel four-frame IDLE moti
 - [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
-## D233 CURRENT — validate real rich-art idle motion before 25-frame commitment
+## D234 CURRENT — fix art continuity BEFORE adding more animations
+
+- [x] **D233 visual issue confirmed by user**: lantern near knee appears detached from free hand; D233 is **REJECTED** as an animation method acceptance.
+- [x] **D234 source fix committed**: relocate same rich illustrated lantern to gauntlet, visible short forged hanger + wrist overlap and strictly pivot-linked tiny sway across 4 idle; vacated image region patched with source burgundy-cloak texture. `docs/D234_SENTINEL_HAND_LANTERN_ATTACHMENT_QA.md`.
+- [x] **D234 side-by-side Godot F6 scene** `res://scenes/dev/black_lantern_sentinel_d234_hand_lantern_compare.tscn`: left BAD D233/right fixed D234, both x3/x1 and facing controls on exact D209. Static QC 4 unique, 26 blank, no border hits; **not 25 real frames**.
+- [ ] **User-native D234 visual check**: at ×1 confirm free hand/handle truly reads as joined and patch isn't an obvious flat panel in all four phases. Only then continue actual separate poses walk6/attack6/hit3/death6. Godot native PASS not yet received.
+- [ ] Final illustrated 25-pose quality, four other unique enemies and real battle→reward/light/balance release are still pending. Actual 37-card pool unchanged.
+
+## D233 PREVIOUS — validate real rich-art idle motion before 25-frame commitment
 
 - [x] **D233 idle-only motion proof** from D232 rich transparent figure, reproducible repo-relative painter `tools/art/author_road_sentinel_d233_idle_proof.py`: original body preserved, independent lantern and cloak tip movement, warm flicker. 4 actual distinct alpha cels + 26 clear, zero border faults. **Cutout animation from ONE illustrated pose; not hand-drawn four distinct full character stances or 25 finished cells.** `docs/D233_SENTINEL_IDLE_CUTOUT_PROOF.md`.
 - [x] **Dedicated D233 Godot F6 preview** `res://scenes/dev/black_lantern_sentinel_d233_idle_cutout_proof.tscn`, left D232 single still/right 4-frame idle moving, both x3/x1 on approved D209 forest, pause and both orientations, strict 4+26 cell QA.
