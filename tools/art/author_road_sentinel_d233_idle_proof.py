@@ -4,12 +4,13 @@ Includes tail-cloth and lantern swing isolated and composited in source-resoluti
 then mapped to an alpha-safe 96x96 engine tile with NEAREST filtering.
 """
 from PIL import Image, ImageDraw, ImageEnhance
-import base64,hashlib,json,math,os
+import base64,hashlib,json,math,os,io,sys
 from pathlib import Path
-P=Path('/mnt/data/d233_sentinel')
-P.mkdir(exist_ok=True)
-SOURCE=Path('/mnt/data/d231_sentinel_art/D231_generated_pose_cutout_transparent_source.png')
-SRC=Image.open(SOURCE).convert('RGBA')
+ROOT=Path(__file__).resolve().parents[2]
+P=Path(sys.argv[1]) if len(sys.argv) > 1 else Path.cwd() / 'd233_idle_output'
+P.mkdir(parents=True, exist_ok=True)
+SOURCE=ROOT / 'assets/pixel/units/black_lantern_road_qa/road_sentinel_d232_reference_cutout.webp.b64'
+SRC=Image.open(io.BytesIO(base64.b64decode(SOURCE.read_text().strip()))).convert('RGBA')
 assert SRC.size == (115,129)
 # full figure alpha mask originally generated from a painted scene. Keep original geometry intact.
 # isolate only separate lower right cloak tail, whose outline has room to move around torso.
