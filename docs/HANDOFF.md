@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-18 — **D236R gait accepted by user («пойдет») as workable 6-frame walk; next D237 original spear-thrust six-frame art QA; D229 technical library unchanged, #38 not live, Act1 37/45**.
+Updated: 2026-10-18 — **D238 user restores batch-first full 25-frame animation work and ONE completed F6 per character; stop asking approval for each state; next produce full rich Road Sentinel atlas (D234/D235/D236R constraints); live 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,17 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D237 — EXACT CURRENT HANDOFF: user ACCEPTED repaired D236R walk; next create SPEAR ATTACK
+## D238 — CURRENT WORKFLOW OVERRIDE: full 25-frame character deliveries, no micro-approvals
+
+**LATEST EXPLICIT USER PROCESS INSTRUCTION:** «а можешь делать как раньше ты отрисовывал сразу всю анимацию для игры все 25 кадров и не просил меня постоянно каждый пук согласовывать». The user is frustrated with the D232–D237 cycle of requiring a Godot screenshot / approval for every small 1/4/6-frame slice. The assistant must go back to **batch-first animation production**.
+
+**WHAT TO DO NEXT:** Independently create the actual **ENTIRE Road Sentinel 25-cel** 576×480 transparent Godot-compatible atlas with **idle4, walk6, attack6, hit3, death6 +5 clear**, original separate state poses, no repeats, no imagegen decorative poster. Preserve user-approved **D234 hand visibly holding the hanging amber lantern** (not hovering), **D235 richly detailed B-style spear/armor/mantle**, and **D236R sufficiently natural 6-phase walk**. Add credible planted spear windup→thrust→recoil, hit motion, fall/death. Self-QA frame uniqueness, cropping, alpha, x1 appearance, continuity, floor, real spear and facing. Iterate internally as needed, do NOT ask user for per-animation micro-approval.
+
+**WHEN TO INVOLVE USER:** ONLY when the **COMPLETE** 25-frame original game character is staged in connected GitHub with a single F6 scene showing all five states and both directions at x1/x3 (or if a true conceptual/technical blocker forces a significant choice). One native F6 QA request for the whole role, then fix concrete feedback yourself in GitHub. This new policy lives in `AGENTS.md` and `docs/DECISIONS.md`, so *new chats must respect it*. D237 planned 6-frame spear attack as a separate user visual checkpoint is **superseded**; attack still needs to be authored inside the one 25-frame batch, not forgotten.
+
+**STATUS RIGHT NOW:** This commit updates PROJECT POLICY and handoff, **does NOT claim the full 25 frames already exist**. Current staged user-accepted gait remains `road_sentinel_d236r_walk6_support_cycle.webp.b64`; production library still references low-detail TECHNICAL D229 and card #38 is NOT active. First complete rich Sentinel pack must not silently degrade back to D229 quality or become a collage with fake movement. Once Sentinel packed, do other four originals the same batch-first way, then 3v5 visual, #38 real Battle→Reward→Table/light/balance/release gates. Act1 **37/45**; D200 card illustration, D209 moonlit forest, D196 waves, DS2, Fate Spread 12+XIII, frozen KARAMBA73 unchanged. User does not need to re-explain approved character look or GitHub access.
+
+## D237 — PRIOR HANDOFF (per-state user approvals superseded): user ACCEPTED repaired D236R walk; next create SPEAR ATTACK
 
 **LATEST USER MESSAGE:** «пойдет» to the D236R six-phase gait comparison where LEFT was user-rejected unnatural D236 and RIGHT was repaired support/swing D236R. Record **D236R WALK visually accepted for project progress**; no further invitation to recheck the same gait needed, unless a genuine later defect. This is **not** approval of all character art or full native battle: rich D235 look and D234 wrist-lantern anchor remain requirements. User did not request switching the production sprite or adding #38 to the deck.
 
