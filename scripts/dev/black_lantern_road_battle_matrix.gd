@@ -27,6 +27,8 @@ var light_warnings: int = 0
 var light_active_steps: int = 0
 var buffed_enemy_steps: int = 0
 var max_buffed_enemies: int = 0
+var enemy_attacks: int = 0
+var lit_enemy_attacks: int = 0
 var wins_per_size: Array[int] = [0, 0, 0]
 var wins_per_class: Array[int] = [0, 0, 0]
 var hp_per_size: Array[float] = [0.0, 0.0, 0.0]
@@ -48,7 +50,7 @@ func _ready() -> void:
 	title_label.size = Vector2(1140, 58)
 	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title_label.add_theme_font_size_override("font_size", 27)
-	title_label.text = "D207 / ФОНАРИ — ПРЕДВАРИТЕЛЬНАЯ МАТРИЦА"
+	title_label.text = "D208 / ФОНАРИ — ЛОКАЛЬНЫЙ БАЛАНС-ПАСС"
 	add_child(title_label)
 	report_label = Label.new()
 	report_label.position = Vector2(65, 146)
@@ -163,6 +165,9 @@ func _fight(formation: int, protagonist: int, party_size: int, tactic: String) -
 	arena.add_child(light)
 	light.configure(all_units)
 	for unit in all_units:
+		if unit.team == 1:
+			# Count real attacks made while the enemy receives the moving-light bonus.
+			unit.diagnostic_attack.connect(_record_enemy_attack.bind(light))
 		unit.start_combat()
 	light.start_light()
 	light.set_process(false)
@@ -246,6 +251,15 @@ func _fight(formation: int, protagonist: int, party_size: int, tactic: String) -
 	return result
 
 
+func _record_enemy_attack(attacker: BattleUnit, _victim: BattleUnit, light: BlackLanternLightController) -> void:
+	enemy_attacks += 1
+	var key: int = attacker.get_instance_id()
+	if light.get_phase() != "active" or not light.enemy_base_intervals.has(key):
+		return
+	if attacker.attack_interval + 0.001 < float(light.enemy_base_intervals[key]):
+		lit_enemy_attacks += 1
+
+
 func _run_matrix() -> void:
 	_check_contract()
 	if failures.is_empty():
@@ -297,10 +311,12 @@ func _run_matrix() -> void:
 	if failures.is_empty() and light_active_steps == 0:
 		failures.append("D207: не наступила ни одна активная фаза света")
 	if failures.is_empty() and buffed_enemy_steps == 0:
-		failures.append("D207: свет ни разу не усилил скелета")
+		failures.append("D208: свет ни разу не усилил скелета")
+	if failures.is_empty() and lit_enemy_attacks == 0:
+		failures.append("D208: ни один враг не совершил атаку под фонарным усилением")
 	# IMPORTANT: even 54/54 wins alone does not mean the balance is approved.
 	if failures.is_empty():
-		title_label.text = "D207 / ФУНКЦИОНАЛЬНЫЙ PASS — БАЛАНС НЕ ПРИНЯТ"
+		title_label.text = "D208 / ФУНКЦИОНАЛЬНЫЙ PASS — БАЛАНС НЕ ПРИНЯТ"
 		report_label.text = (
 			"54/54 завершено • победы %d • поражения %d • тайм-ауты %d\n"
 			+ "Победы соло / дуо / трио: %d / %d / %d\n"
@@ -310,6 +326,7 @@ func _run_matrix() -> void:
 			+ "Средняя длительность: %.1f / %.1f / %.1f сек\n"
 			+ "Потери героев: %d / %d / %d\n"
 			+ "Свет: %d предупреждений, %d активных кадров, %d кадров усиления, максимум %d врагов одновременно\n"
+			+ "Атаки врагов: %d всего, %d под светом (x%.2f скорость)\n"
 			+ "АРТ / РЕАЛЬНЫЙ БОЙ / НАГРАДЫ НЕ ПРОВЕРЕНЫ"
 		) % [
 			victories, defeats, timeouts,
@@ -319,11 +336,12 @@ func _run_matrix() -> void:
 			worst_hp[0] * 100.0, worst_hp[1] * 100.0, worst_hp[2] * 100.0,
 			duration_per_size[0] / 18.0, duration_per_size[1] / 18.0, duration_per_size[2] / 18.0,
 			fallen_per_size[0], fallen_per_size[1], fallen_per_size[2],
-			light_warnings, light_active_steps, buffed_enemy_steps, max_buffed_enemies
+			light_warnings, light_active_steps, buffed_enemy_steps, max_buffed_enemies,
+			enemy_attacks, lit_enemy_attacks, BlackLanternLightController.ATTACK_SPEED_MULTIPLIER
 		]
 		report_label.add_theme_color_override("font_color", Color(0.67, 0.90, 0.74))
 	else:
-		title_label.text = "D207 / ФУНКЦИОНАЛЬНЫЙ FAIL"
+		title_label.text = "D208 / ФУНКЦИОНАЛЬНЫЙ FAIL"
 		report_label.text = "\n".join(failures.slice(0, 8))
 		report_label.add_theme_color_override("font_color", Color(1.0, 0.45, 0.37))
 		push_error(report_label.text)
