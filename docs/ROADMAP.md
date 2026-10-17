@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-17 (D223 corrected Bearer shield + separate handheld lamp concept shown to user; art approval pending, 37/45 live). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-17 (D224 user-approved new 25-pose Bearer sheet preserved losslessly + 576×480 F6 candidate; Godot visual test pending, live Act1 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -33,7 +33,10 @@ Updated: 2026-10-17 (D223 corrected Bearer shield + separate handheld lamp conce
 - [x] **D221 Sentinel final appearance chosen** — user accepted detailed heavy-armored long-spear Sentinel illustration in selected collective style B («отлично»). Design approval only; composite is not transparent 25-cel game art. `docs/D221_SENTINEL_FINAL_STYLE_APPROVAL.md`.
 - [x] **D222 Bearer concept quality review:** three B-style illustration panels generated but all had **unapproved long staff + lantern on shield** rather than a separate hand lantern, so REJECTED in art QA; do not use as assets. `docs/D222_LANTERN_BEARER_FINAL_ART_REVIEW.md`.
 - [x] **D223 corrected Bearer visual concept illustrated:** 388×386 character-only crop with broad wood barricade and **separate hand-held lantern**, no pole, style B; conversation asset (not in-game art). User artistic approval **PENDING**. `docs/D223_LANTERN_BEARER_CORRECTED_CONCEPT.md`.
-- [ ] **D223 Lantern Bearer specific visual acceptance** — user confirms D223 or requests edits, then real full-quality 25-cel animated original sprite in correctly packed rows.
+- [x] **D223 Lantern Bearer appearance approved** («да все ок»), shield one hand and separate lantern other; no spear.
+- [x] **D224 Bearer 25-pose art sheet approved** («подходит»): exact RGBA source converted to visibly-lossless WebP/B64 in GitHub, 25-cel 576×480 repack + reproducible author and machine-readable QC, strict isolated F6 scene; no live sprite switch. `docs/D224_LANTERN_BEARER_APPROVED_ART_QA.md`.
+- [ ] **D224 user-native F6:** `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`; check 5 animations at 3× and 1× for any missing pixels at seam, feet/lantern/shield movement, final corpse; only then production art readiness.
+- [x] **D223 Lantern Bearer specific visual acceptance** — user confirms D223 or requests edits, then real full-quality 25-cel animated original sprite in correctly packed rows.
 - [ ] **D222 Lantern Bearer corrected standalone character appearance** — shield plus separate HANDHELD lantern, absolutely no staff/spear or composite fake 25-frame sheet; show to user before true final atlas.
 - [ ] **D221 Lantern Bearer appearance** — present in same B art direction with broad wooden defensive barrier and heavy hand lantern, obtain user look approval before 25-cel art.
 - [ ] **D220 actual FIVE final atlases:** original repaint, not upscale/recolor. Art options → explicit approval → native gallery/combined scene → integrate battle→reward→table → release smoke.
