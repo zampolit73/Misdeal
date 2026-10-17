@@ -1,0 +1,315 @@
+{
+  "stage": "D239 ONE full 25-frame illustrated-source Sentinel QA pack",
+  "state_names": [
+    "idle",
+    "walk",
+    "attack",
+    "hit",
+    "death"
+  ],
+  "state_counts": [
+    4,
+    6,
+    6,
+    3,
+    6
+  ],
+  "size": [
+    576,
+    480
+  ],
+  "cell": [
+    96,
+    96
+  ],
+  "sources": [
+    "assets/pixel/units/black_lantern_road_qa/road_sentinel_d234_handheld_idle4.webp.b64",
+    "assets/pixel/units/black_lantern_road_qa/road_sentinel_d236r_walk6_support_cycle.webp.b64"
+  ],
+  "source_notes": "D234 connected gauntlet lantern, D236R user-accepted 6-step feet, D235 rich look",
+  "method": "composited illustrated body + planted support boots; distinct thrust/hit/collapse staging",
+  "fully_independently_repainted_bodies": false,
+  "native_godot_pass": false,
+  "live_game_integrated": false,
+  "frames": [
+    {
+      "row": 0,
+      "col": 0,
+      "bbox": [
+        12,
+        6,
+        86,
+        90
+      ],
+      "sha256": "4dfffaa880b582b76e723d4f144d427ac4ce9ef1f00f77198cce6d8a45674e77"
+    },
+    {
+      "row": 0,
+      "col": 1,
+      "bbox": [
+        12,
+        6,
+        86,
+        90
+      ],
+      "sha256": "011d5a87252a47f0eb87264f89287ece18f9439d1e0c09c6b1906ac54cfb4ab6"
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "bbox": [
+        12,
+        6,
+        86,
+        90
+      ],
+      "sha256": "fb5d9ba5a8f6feb5f70277aeb451c410504c99d505221b475eaeca6b245ba173"
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "bbox": [
+        12,
+        6,
+        86,
+        90
+      ],
+      "sha256": "73a971ce63ff63cdb8074b7d9490594fc98859d94bd605d14e073140388d2aed"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "bbox": [
+        12,
+        6,
+        86,
+        93
+      ],
+      "sha256": "bd88adf3c2d2a1c7f4d8e0cb7d9f4d1c27b6cdb8dcc2cc200fa98ccb507f9df7"
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "bbox": [
+        13,
+        6,
+        87,
+        93
+      ],
+      "sha256": "4a196d483098f4b049b250c576f09d99334972ba40ee719718d334b39d4b09d1"
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "bbox": [
+        13,
+        5,
+        87,
+        93
+      ],
+      "sha256": "e2b5948bacd1d5941b03f11554f5b158b5860c5c3a5b961cb40481d5c503d588"
+    },
+    {
+      "row": 1,
+      "col": 3,
+      "bbox": [
+        12,
+        6,
+        86,
+        93
+      ],
+      "sha256": "bff8e74728f7b419cf9c444f26b81ff4cabb60bbdb8a3b7a12cdfb546399112d"
+    },
+    {
+      "row": 1,
+      "col": 4,
+      "bbox": [
+        11,
+        6,
+        85,
+        93
+      ],
+      "sha256": "53b9e163c84b24fa0b09660094c82df070b955be2b34886f328f58c19c2e84e0"
+    },
+    {
+      "row": 1,
+      "col": 5,
+      "bbox": [
+        11,
+        5,
+        85,
+        93
+      ],
+      "sha256": "6aa127e4f90b9ebca3aaaa65f7120b61edde76448fbf1f649e0fab112d4ca06c"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "bbox": [
+        11,
+        6,
+        85,
+        93
+      ],
+      "sha256": "6d57210bc6728a1076ba3d03b2023db8a4757539808f62491bf9f66dda6d2b15"
+    },
+    {
+      "row": 2,
+      "col": 1,
+      "bbox": [
+        14,
+        6,
+        88,
+        93
+      ],
+      "sha256": "35a7d67891d6223089b007d72d439a18248a08aaddb34816c8cd4a30722102cd"
+    },
+    {
+      "row": 2,
+      "col": 2,
+      "bbox": [
+        9,
+        5,
+        83,
+        93
+      ],
+      "sha256": "b2222a3f316aaf697299ee1a569a92fdfe712e13c3bfcb821ef0dd8af07cb225"
+    },
+    {
+      "row": 2,
+      "col": 3,
+      "bbox": [
+        7,
+        4,
+        83,
+        93
+      ],
+      "sha256": "477b63facedcdaa226e84bac0374804051cf5933c16da03cbaf44514c7be775e"
+    },
+    {
+      "row": 2,
+      "col": 4,
+      "bbox": [
+        10,
+        5,
+        84,
+        93
+      ],
+      "sha256": "1c6ba7905c7436c4ad7201ff4be4edbef7da84d9a733c594bffc8f26fdec86f3"
+    },
+    {
+      "row": 2,
+      "col": 5,
+      "bbox": [
+        12,
+        6,
+        86,
+        93
+      ],
+      "sha256": "636ca0883b857ddd529906dae4f531a25c619879e14ee88d78b9424f8499e575"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "bbox": [
+        14,
+        7,
+        88,
+        93
+      ],
+      "sha256": "ac12e38d0ffec13310223f627baf38fdd5fea8c3936bd74d43660b78c5bc1df2"
+    },
+    {
+      "row": 3,
+      "col": 1,
+      "bbox": [
+        16,
+        8,
+        90,
+        93
+      ],
+      "sha256": "f7e2f1b68c3f8c2475308817944c26ff3506f0332e4d3bca55cc6c972e2ee8c3"
+    },
+    {
+      "row": 3,
+      "col": 2,
+      "bbox": [
+        13,
+        6,
+        87,
+        93
+      ],
+      "sha256": "611e662ee2d200565c9a3f54bec8bcce23a6e7dee3ff0ffd747a5a5244647cda"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "bbox": [
+        13,
+        6,
+        87,
+        93
+      ],
+      "sha256": "db83c814715d34d2de63455ecd41ef494b07eb4173638e35ee8777488453bf7d"
+    },
+    {
+      "row": 4,
+      "col": 1,
+      "bbox": [
+        2,
+        14,
+        90,
+        92
+      ],
+      "sha256": "b6d8b7117c7f4f7ea4089fc3a3acf870bf45d3d4a588521a34fca19e7cc41a85"
+    },
+    {
+      "row": 4,
+      "col": 2,
+      "bbox": [
+        2,
+        29,
+        90,
+        92
+      ],
+      "sha256": "5c2e9ec77f84754060e297707bd2a1c4840fd671e0051be38b6654f9481a8f15"
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "bbox": [
+        2,
+        42,
+        90,
+        92
+      ],
+      "sha256": "9f7f0dfebdb3acd2f7cd8b5e10b8c047926bc5157b7ea0357817fa1c188e3324"
+    },
+    {
+      "row": 4,
+      "col": 4,
+      "bbox": [
+        3,
+        33,
+        91,
+        92
+      ],
+      "sha256": "75565a6730f164409b36f69358850d90c0a57af7799acf125d6c369ad1ffc940"
+    },
+    {
+      "row": 4,
+      "col": 5,
+      "bbox": [
+        7,
+        23,
+        89,
+        92
+      ],
+      "sha256": "62c0d6cd1e149ba672544f0329bed7d2a7b802ccb13a884322c5e367c4f9cf49"
+    }
+  ],
+  "unique_poses": 25,
+  "transparent_unused": 5,
+  "safe_inset_px": 2,
+  "atlas_sha256": "79817fba4ee8469de6923fc9cdb30436db6852aa415533a25c93529f4fc49487"
+}
