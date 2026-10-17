@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D223 corrected Lantern Bearer style-B character image SHOWN (separate hand lantern + board; no staff), USER ART APPROVAL PENDING; no final animation atlas, 37/45 live**.
+Updated: 2026-10-17 — **D224 user accepted detailed Bearer art sheet, original lossless-source+native 25-cel QA candidate committed; NEW D224 F6 PREVIEW PENDING; live 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,15 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D223 — EXACT CURRENT NEXT STEP: ask whether corrected Lantern Bearer LOOK is approved
+## D224 — EXACT NEXT STEP: native F6 on source-derived Bearer art animation, NOT card release
+
+User replied **«да все ок»** to corrected D223 broad-plank-shield + freehand-lantern appearance, and **«подходит»** to a newly rendered original transparent-looking 5-row 25-pose full sprite sheet. Latest exact selected image in current conversation: `спрайт_лист_скелета_рыцаря_с_фонарём.png`, **1374×1145 RGBA**, PNG SHA-256 `4fb9e0ce2ebfcb608b35d948c084cb6cc5c41d43afe8310597bdc23959ad325f`. The approved artwork was stored into **GitHub** `assets/pixel/units/black_lantern_road_qa/lantern_bearer_d224_approved_original_lossless.webp.b64`, lossless RGBA visible pixels same as PNG, decoded WebP sha `53da04d58b10c87a9229dfa1235b11aa64b5ccd9376302cc6341fb5866f82e0d`.
+
+A SECOND `assets/pixel/units/black_lantern_road_qa/lantern_bearer_d224_approved_repacked_candidate.webp.b64` is a derived **576×480, 6×5 96px, 25 distinct cels, five empty alpha, zero new 2px-border touches**, decoded WebP SHA `816efbc6416a65408b5f3aa121b8a3985a3ce67dcd26a5ce17af992a98c15b87`. Source art was **not a true grid** and crosses original 229px nominal cel seams; Python `tools/art/inspect_and_repack_lantern_bearer_d224.py` uses alpha-minimizing cut positions and nearest resampling, preserving boot baseline; source-reproduced atlas SHA matches the committed candidate. Cutaway may still truncate bits of shield, lantern or cloak, or alias native pixel density, so these QC metrics are only **STATIC**, not final art acceptance. Contact sheet and ZIP present in conversation. Quality JSON `docs/qa/D224_LANTERN_BEARER_ART_QC.json` and specification `docs/D224_LANTERN_BEARER_APPROVED_ART_QA.md`. User's choice **does not grant approval of this newly derived 96px result**.
+
+**NEXT USER ACTION**: `git pull` and Godot F6 `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. View idle, walk, attack, hit, death at **3×** and **1×** on exact D209 accepted forest. Share screenshot/error or report «все ок», and especially verify moving boots, plank-and-lantern equipment, attack gesture, death. If fail, fix the new derived art/cut positions **in Github**, never relax Godot quality checks or switch back to unapproved sprite. Do NOT ask user to run old D216 viewer; D224 is independent. No `unit_animation_library.gd` or real `battle.gd` changed. 37-card pool and frozen KARAMBA73 untouched; other roles still need actual final art and collective QA before #38 release.
+
+## D223 — PREVIOUS NEXT STEP: ask whether corrected Lantern Bearer LOOK is approved
 
 Latest user message was «продолжай» after D222 (three *rejected* staff-bearing shield character boards). Generated new group-B look and cropped **one character-only preview** `Misdeal_D223_Lantern_Bearer_Concept_B_Portrait.png`, 388×386, SHA-256 `05eba5e00706e51abdab61d50026ca83bc38b5bfa421a68a4d53b9e995eff2cf`, from `a_dark_moody_concept_art_game_character_sheet_in.png` (crop 388,45 to 776,431). It correctly has a hefty iron-braced *wooden plank shield in one hand* and an amber iron-cage lantern hanging by short handle in the **OTHER**; **NO POLE/SPEAR/STAFF**. User has now been shown this corrected concept in chat. **USER LOOK APPROVAL STILL PENDING**; DO NOT infer «продолжай» is approval for the new art.
 
