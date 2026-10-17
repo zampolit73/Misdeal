@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D215 first original 25-pose spear Sentinel QA-only atlas and native F6 gallery committed; Godot and artistic approval pending; #38 not live). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D215 Sentinel user-native F6 OK; D216 original Lantern Bearer 25-pose shield+lantern QA-only atlas and F6 gallery staged; #38 not live). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D215 CURRENT — 25 original spear Sentinel cels in QA-only GitHub and independent F6 gallery
+## D216 CURRENT — Lantern Bearer 25-frame original QA art, native F6 pending
+
+User replied **«все ок продолжай дальше»** after being asked to F6 D215 `black_lantern_sentinel_animation_preview.tscn` and review five motions. Record **D215 user-reported native gallery/animation acceptance** (not real battle or finished production release). D216 now has new **576×480 6×5 lossless WebP/B64** art: `assets/pixel/units/black_lantern_road_qa/lantern_bearer_d216_candidate.webp.b64`, with 25 independent shield-bearing skeleton poses, five fully transparent cells, **zero boundary warnings**. Authored offline source `tools/art/author_lantern_bearer_d216.py` (imports D215 helper); QA asset B64 round-trip re-fetched byte-identical. New QA-only `res://scenes/dev/black_lantern_bearer_animation_preview.tscn` shows 3× and 1× moving animation on the user-approved D209 forest; five state buttons. **D216 Godot F6 NOT YET RUN**. No changes to UnitData shields/defense, the live sprite animation loader, existing battles, or 37-card deck. Read `docs/D216_LANTERN_BEARER_ANIMATION_QA.md`. Next: user `git pull`, F6 the isolated Bearer gallery, then paint oil flask + sickle Acolyte.
+
+## D215 PREVIOUS — 25 original spear Sentinel cels in QA-only GitHub and independent F6 gallery
 
 **Actually committed to main**: `assets/pixel/units/black_lantern_road_qa/road_sentinel_d215_candidate.webp.b64` (576×480 lossless WebP/Base64, 25 individually laid-out native 96px pixel-art poses in correct D213 state rows, 5 clear unused cells); production source `tools/art/author_road_sentinel_d215.py`; isolated F6 `res://scenes/dev/black_lantern_sentinel_animation_preview.tscn` with scripted state buttons, 3× preview and 1× on accepted D209 background. Source generated native-size cels by authored skeleton/leg/spear rigs and is NOT a remapped/labelled concept crop. Offline art QC: **25 unique/nonblank, 5 alpha-clear, 0 edge warnings**, GitHub roundtrip base64 bytes identical to exported asset.
 
