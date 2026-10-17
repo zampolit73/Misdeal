@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-18 (D236 six-phase separate WALK rig pilot staged using approved D234 handgrip and D235 art target; native x1 F6 and rich final leg painting pending; Act1 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-18 (D236 user-native WALK visual FAIL; D236R 6-phase repaired stance/swing and side-by-side F6 staged, new Godot QA pending; live Act1 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D236 CURRENT — 6-phase 96px WALK pilot available, NOT rich final painted sprites
+## D236R CURRENT — D236 gait rejected by user, six-phase repair committed
+
+User explicitly replied **«не естествено»** to D236 gait preview — this is **D236 native visual FAIL**, not a valid final walk. Diagnosed instant leg-swap, exaggerated wide strides (x27..72) and static torso. New QA-only D236R walk keeps D234 rich illustrated skull/armor, SPEAR and wrist-held lantern, but implements cyclic **A three stance phases → B three stance phases**, reduced leg spread, both feet physically alternate contact at y91, subtle ±1px torso bob, bounded transition including frame6→1. Versioned source `tools/art/author_road_sentinel_d236r_walk.py`, asset `road_sentinel_d236r_walk6_support_cycle.webp.b64`, QC `docs/qa/D236R_SENTINEL_GAIT_QC.json`: 6 unique WALK cels row1 + 24 transparent, zero crop, max ankle step 10px; **not fully hand-painted D235-quality legs**. NEW F6 `res://scenes/dev/black_lantern_sentinel_d236r_gait_compare.tscn` left REJECTED D236/right NEW D236R, x3/x1, direction, pause, 0.5x playback and ground guidelines on D209 forest. **D236R native F6 / art PASS PENDING**. `docs/D236R_SENTINEL_GAIT_REPAIR_QA.md`. Technical production D229 unchanged, #38 QA-only, 37/45.
+
+## D236 PREVIOUS / USER REJECTED — 6-phase 96px WALK pilot available, NOT rich final painted sprites
 
 Following user «давай» after D235 look approval, automatic matting of original D235 six-figure poster was REJECTED due brown background islands and spear clipping; no such flawed poster crops committed. Built separate source-driven **six different boot/knee stride phases** with approved D234 rich upper illustration, continuous free-hand lantern grip, correct spear, user-selected D235 art reference. `tools/art/author_road_sentinel_d236_walk6_pilot.py`, transparent `road_sentinel_d236_walk6_pilot.webp.b64` and `docs/qa/D236_SENTINEL_WALK6_PILOT_QC.json`: 6 distinct native 96px moving WALK cells ONLY in row1, **24 transparent**, alpha margins clear, WebP SHA `c37d8155925de2e6cad90140cbe5328b91fa489b7ed4da2c301cd30b8b1ac6fb`. Upper body repeats D234 cels, digitally authored leg rig may be visually simpler than accepted D235 full-res poster: **motion PROOF, not final full-body painting**. New isolated user-facing scene `res://scenes/dev/black_lantern_sentinel_d236_walk6_pilot.tscn` left D234 idle/right D236 walk, both x1 and x3 on chosen D209 forest with pause and facing ←/→. **Native F6 not yet confirmed**. Actual `MisdealUnitAnimationLibrary.get_frames("road_sentinel")` and live 37-card pool untouched; #38 QA-only. Complete handoff `docs/D236_SENTINEL_WALK6_MOTION_PILOT.md`.
 
