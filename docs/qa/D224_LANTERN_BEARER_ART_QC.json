@@ -1,12 +1,12 @@
 {
-  "source": "/mnt/data/спрайт_лист_скелета_рыцаря_с_фонарём.png",
+  "source": "/mnt/data/d224_replay_repo/assets/pixel/units/black_lantern_road_qa/lantern_bearer_d224_approved_original_lossless.webp.b64",
   "source_size": [
     1374,
     1145
   ],
-  "source_sha256": "4fb9e0ce2ebfcb608b35d948c084cb6cc5c41d43afe8310597bdc23959ad325f",
+  "source_webp_sha256": "53da04d58b10c87a9229dfa1235b11aa64b5ccd9376302cc6341fb5866f82e0d",
   "source_is_valid_godot_atlas": false,
-  "source_blending_warning": "Cell art lies across nominal grid boundaries; 1-cut at a seam has 20 opaque source pixels. No original bitmap qualifies as Godot atlas before repack/cleanup.",
+  "source_blending_warning": "Cell art lies across nominal grid boundaries; at least one cut still crosses 20 source alpha pixels. Repack requires native F6 visual inspection; offline 0-border flags are not proof of zero silhouette loss.",
   "cut_rows": [
     0,
     239,
