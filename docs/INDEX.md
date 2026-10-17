@@ -1,5 +1,7 @@
 # Misdeal Documentation Index
-Updated 2026-10-18 — D231 original richly painted Sentinel atlas quality mismatch discovered; D230 D229 art no longer considered final, ordinary pool 37/45.
+Updated 2026-10-18 — D232 high-detail SINGLE Sentinel 96px pose staged for original x1 user visual check vs D229; normal deck 37/45, final 25-pose sprite still pending.
+
+**CURRENT QA:** [D232 one-pose original Sentinel visual x1 review](D232_SENTINEL_SINGLE_FRAME_ART_REVIEW.md). This is exactly ONE clean 96px static figure on D209 forest, not 25 animation cels; visual user OK pending. 
 
 **LATEST ART DECISION:** [D231 sprite fidelity correction](D231_SENTINEL_ART_FIDELITY_CORRECTION.md): D229 selected over D228 as technical temporary, NOT a final rich art replacement; D230 final-art claim superseded. Original highly detailed 1254 atlas has WRONG AXE; D221 chosen rich spear reference remains target. 
 
