@@ -2,6 +2,14 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D228: Road Sentinel original armor/cloth/spear/lantern pixel art pass
+
+- Continued user's selected original D228 polish pipeline rather than distributing effort across other skeletons; no artwork choices re-opened.
+- Reauthored native pixel geometry in **all 25** Sentinel state cels through new self-contained `tools/art/author_road_sentinel_d228.py`: irregular layered forged cuirass and pauldron, ripped oxblood mantle, real narrow steel spear with strapped shaft and short trailing ribbon, metal-caged Gothic amber lantern, while keeping original physically different walk/thrust/hit/death poses.
+- Committed QA-only `assets/pixel/units/black_lantern_road_qa/road_sentinel_d228_art_candidate.webp.b64`, `docs/qa/D228_ROAD_SENTINEL_ART_QC.json`; **25 individual frames, 5 fully alpha-clear cells, 0 border warnings**, changed 29,154 RGBA pixels vs D227. Transparent WebP SHA `7ef8f0833a17d06812f7f472b8946f2bdcadc49dd3c0caf28f91adc750663322`.
+- Added `res://scenes/dev/black_lantern_sentinel_d228_art_preview.tscn` and its GDScript with 3x/x1 gallery, both facing buttons, five animations on exact D209 forest. **Native F6 and final Style B art acceptance pending**, D227 preserved for comparison; no production sprite registration or real #38 release.
+- Added `docs/D228_SENTINEL_ORNAMENTAL_PIXEL_ART_QA.md`, updated source-of-truth handoff. Act1 live 37/45; D196/D200/D209, boss XIII and KARAMBA73 untouched.
+
 ## 2026-10-17 — D227: Native 25-frame original Sentinel detail repaint and F6 staging
 
 - User «хорошо» approved proceeding from D226 screenshot feedback; NOT final D226 art acceptance.
