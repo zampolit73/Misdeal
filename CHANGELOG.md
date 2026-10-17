@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D215: First genuine spear Sentinel 25-frame QA candidate and native animation gallery
+
+- Produced original 576×480 RGBA 6×5 atlas for D211 user-selected armored `road_sentinel`, through authored native-pixel limb/armor/spear/lantern cels rather than rescanning the rejected 5×5 axe sheet. **25 unique nonempty poses**, 5 alpha-empty, **zero cell-margin warnings** after death sprite adjustment; correct animation rows (4/6/6/3/6). First draft artistic fidelity is intentionally not described as user-approved.
+- Committed lossless WebP/Base64 `assets/pixel/units/black_lantern_road_qa/road_sentinel_d215_candidate.webp.b64` and the reproducible offline `tools/art/author_road_sentinel_d215.py`. GitHub B64 matches generated source exact bytes.
+- Added isolated F6 `scenes/dev/black_lantern_sentinel_animation_preview.tscn` and GDScript gallery, loads accepted D209 backdrop, performs cell checks and presents 3×/1× animations with state buttons. **Godot native test and final art sign-off pending**; no live animation library, battle scripts, UnitData or card pool changed.
+- Current art QA gate: `docs/D215_SENTINEL_NATIVE_ANIMATION_QA.md`. Preserve accepted D200/D209 artwork and KARAMBA73. Live Act1 **37/45**.
+
 ## 2026-10-17 — D213/D214: Canonical original-animation master, full Lantern Bearer production spec
 
 - User chose **D211 Armored Spear Sentinel option A** («а»), concept silhouette LOCKED only; five final sprite atlases remain uncreated/unapproved.
