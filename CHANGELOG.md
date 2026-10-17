@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D220: Isolated D219 user OK and hard final-art replacement gate
+
+- User replied «все ок» after D219 standalone Lantern Archer preview F6 request. Treat as user-reported QA success only, not a full five-role motion video/production art acceptance.
+- User explicitly asked whether five simple character sprites would later be replaced; confirmed YES. Locked that D215–D219 procedural 25-cel atlases are **temporary QA versions** and that ALL FIVE must be newly drawn to production dark-fantasy pixel-art quality, with real-size composition approval on D209 exact chosen forest BEFORE connecting finished characters into active battle/card #38. Preserve role-specific weapons/features, authentic 25 poses, alpha/foot QC; no upscaling or recycled skeleton sprites.
+- Added `docs/D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md`; all changes to docs only. Act1 live 37/45, `RunState` and frozen KARAMBA73 unchanged.
+
 ## 2026-10-17 — D219: fifth original Lantern Archer 25-frame candidate and F6 gallery
 
 - User gave positive feedback «отлично» after D218 Guide F6 request. This permits proceeding; native D218 full five-state motion still has no supplied detailed log.
