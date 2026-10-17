@@ -1,0 +1,103 @@
+{
+  "stage": "D234 four idle ONLY, fixed visible wrist-to-lantern link",
+  "atlas_size": [
+    576,
+    480
+  ],
+  "used_idle_frames": 4,
+  "transparent_unused_cells": 26,
+  "frame_qc": [
+    {
+      "frame": 0,
+      "bbox": [
+        12,
+        6,
+        86,
+        90
+      ],
+      "arm_anchor_src": [
+        82,
+        82
+      ],
+      "lamp_crown_src": [
+        82,
+        91
+      ],
+      "handle_connected": true
+    },
+    {
+      "frame": 1,
+      "bbox": [
+        12,
+        6,
+        86,
+        90
+      ],
+      "arm_anchor_src": [
+        82,
+        82
+      ],
+      "lamp_crown_src": [
+        83,
+        91
+      ],
+      "handle_connected": true
+    },
+    {
+      "frame": 2,
+      "bbox": [
+        12,
+        6,
+        86,
+        90
+      ],
+      "arm_anchor_src": [
+        82,
+        82
+      ],
+      "lamp_crown_src": [
+        83,
+        92
+      ],
+      "handle_connected": true
+    },
+    {
+      "frame": 3,
+      "bbox": [
+        12,
+        6,
+        86,
+        90
+      ],
+      "arm_anchor_src": [
+        82,
+        82
+      ],
+      "lamp_crown_src": [
+        82,
+        92
+      ],
+      "handle_connected": true
+    }
+  ],
+  "frame_hashes": [
+    "4dfffaa880b582b76e723d4f144d427ac4ce9ef1f00f77198cce6d8a45674e77",
+    "011d5a87252a47f0eb87264f89287ece18f9439d1e0c09c6b1906ac54cfb4ab6",
+    "fb5d9ba5a8f6feb5f70277aeb451c410504c99d505221b475eaeca6b245ba173",
+    "73a971ce63ff63cdb8074b7d9490594fc98859d94bd605d14e073140388d2aed"
+  ],
+  "pixel_unique_frames": 4,
+  "edge_faults": [],
+  "original_image_source": "D232 rich-source illustrated SINGLE character; D233 layer rig modified, no 21 original walk/attack/hit/death frames",
+  "source_hand_anchor": [
+    82,
+    82
+  ],
+  "repositioned_lamp_crown": [
+    82,
+    91
+  ],
+  "webp_sha256": "14e3714ef16ca061431a7bc42585568dcafce96dc969da7da113612fc6cd0a1b",
+  "production_installed": false,
+  "native_godot_pass": false
+}
