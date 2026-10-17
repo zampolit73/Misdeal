@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D227 original detailed native-96px Sentinel atlas and standalone two-direction F6 scene committed, offline QC 25/5/0; user-native and final art approval pending, 37/45 live**.
+Updated: 2026-10-17 — **D228 Road Sentinel native 96px ornamental repaint + 25-cel transparent atlas + dedicated two-facing Godot F6 staged; native F6/final-art QA NOT YET RECEIVED; live 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,15 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D227 — EXACT NEXT STEP: F6 native art QA for Sentinel detail improvement
+## D228 — EXACT NEXT USER STEP: native visual QA of improved Road Sentinel
+
+User expressly said **«продолжай»** after agreeing to the original D228 art-pass plan: focus on polishing **Road Sentinel** before other skeletons. Current source of truth GitHub `main`. New D228 true **native 96px** (NOT cropped concept art) `tools/art/author_road_sentinel_d228.py` draws 25 authored pose cels in per-animation Godot rows (idle4/walk6/attack6/hit3/death6), five transparent unused slots. Painter adds genuinely layered irregular chest and pauldrons, frayed burgundy cloth, reinforced real spear point and wrapped shaft, short banner ribbon and separate Gothic cage amber lantern. New file `assets/pixel/units/black_lantern_road_qa/road_sentinel_d228_art_candidate.webp.b64`, decoded WebP SHA `7ef8f0833a17d06812f7f472b8946f2bdcadc49dd3c0caf28f91adc750663322`, static alpha QC 25 distinct+5 blank+0 edge, **29,154 RGBA pixel changes** relative to D227, exact output report `docs/qa/D228_ROAD_SENTINEL_ART_QC.json`.
+
+**NEW USER QA SCENE:** `res://scenes/dev/black_lantern_sentinel_d228_art_preview.tscn`, separate script `scripts/dev/black_lantern_sentinel_d228_art_preview.gd`: five animation buttons, left/right mirror, x3/x1 on exact accepted D209 forest with strict frame validation. Previous D226/D227 all untouched.
+
+**USER ACTION:** `git pull`, F6 D228 scene, examine overall detailed style B at x1, walking legs/floor, real long spear thrust, continuous lantern motion, corpse ground contact, left/right; report screenshot or visual critique. **Native D228 F6 NOT CONFIRMED** (no Godot CLI available here); D228 remains art-QA candidate, not promised polished equivalence to detailed D221 character illustration. Once satisfied with one original role, continue Bearer/Oil Acolyte/Guide/Archer final art, combined 3v5 on D209, actual black_lantern_road battle/light/reward then release checks. Do not claim #38 live; pool still 37/45. All D196/D200/D209/DS2/12+XIII and frozen KARAMBA73 preserved. Detailed `docs/D228_SENTINEL_ORNAMENTAL_PIXEL_ART_QA.md`.
+
+## D227 — PREVIOUS USER STEP: F6 native art QA for Sentinel detail improvement
 
 After D226 screenshot showed working x1/x3 gallery but simplified native sprites, user replied **«хорошо»** to next D227 art fidelity pass. D227 artist built real independent 96×96-per-frame pixel art *not a generated sheet crop*, retaining old physical joints but repainting each pose: asymmetric layered iron chest/pauldrons, sculpted 3/4 skull, muted ragged oxblood mantle, fitted greaves, long pointed spear with reinforced socket, short-slung cage lantern distinct from torso. Verified **25 unique authored frames, five alpha-clear cells, ZERO 2px border warnings**, correct rows on 576×480. WebP SHA `f1b50b919c76f5af9173ea33c77e484188077dbd72aee98110329210d84f7fbc`.
 
