@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D224 user accepted detailed Bearer art sheet, original lossless-source+native 25-cel QA candidate committed; NEW D224 F6 PREVIEW PENDING; live 37/45**.
+Updated: 2026-10-17 — **D224 user-native F6 screenshot displays Bearer attack at x3/x1; D225 same gallery now has left/right switch, new F6 pending; 37/45 live**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,15 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D224 — EXACT NEXT STEP: native F6 on source-derived Bearer art animation, NOT card release
+## D225 — EXACT CURRENT USER ACTION: test two-way Bearer animation in SAME F6 scene
+
+2026-10-17 user screenshot confirmed native Godot loaded original user-approved D224 B-art Bearer in 3x and 1x views, shield attack visible on exact D209 forest. Screenshot did **not** prove directional animation. User asked if it works both ways. Verified the real `scripts/battle/unit.gd` DOES use target-based `flip_h`, but `scripts/dev/black_lantern_bearer_d224_art_preview.gd` previously displayed only identical orientation at different scales. User replied **«хорошо»** to direction-toggle plan.
+
+**Code NOW COMMITTED to main** (D225): QA-only D224 preview has **`← ВЛЕВО` and `ВПРАВО →`** toggle buttons flipping both AnimatedSprite2D views at once. Gallery defaults LEFT (enemy faces left to heroes), changing button mirrors both x3/x1 and updates direction in state caption; all 5 animation buttons remain functional. Native Godot after code change is **NOT YET TESTED BY USER**. Do not claim two-sided PASS. **NEXT USER ACTION**: `git pull`, F6 **`res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`**, click BOTH direction buttons during walk, attack, death and check the shield and separate lantern stay attached; report screenshot or «все ок». Controls are preview-only and only mirror pixels, not live unit movement.
+
+**Image softness:** explicit NEAREST and integer x3 were present in earlier gallery. Some detail is already softened/aliased during adaptive resampling of 1374×1145 approved artwork into 96×96 cells. Do NOT claim it was corrected via new NEAREST flag. Real cel retouch is a separate future art gate preserving user's exact chosen B-style source. No bitmap/runtime Battle/UnitData/regular deck edited. D225 details: `docs/D225_BEARER_FACING_PIXEL_CLARITY_QA.md`; D224 original asset SHA and generator preserved. Existing releases 37/45, card #38 QA-only, KARAMBA73 frozen.
+
+## D224 — PREVIOUS NEXT STEP: native F6 on source-derived Bearer art animation, NOT card release
 
 User replied **«да все ок»** to corrected D223 broad-plank-shield + freehand-lantern appearance, and **«подходит»** to a newly rendered original transparent-looking 5-row 25-pose full sprite sheet. Latest exact selected image in current conversation: `спрайт_лист_скелета_рыцаря_с_фонарём.png`, **1374×1145 RGBA**, PNG SHA-256 `4fb9e0ce2ebfcb608b35d948c084cb6cc5c41d43afe8310597bdc23959ad325f`. The approved artwork was stored into **GitHub** `assets/pixel/units/black_lantern_road_qa/lantern_bearer_d224_approved_original_lossless.webp.b64`, lossless RGBA visible pixels same as PNG, decoded WebP sha `53da04d58b10c87a9229dfa1235b11aa64b5ccd9376302cc6341fb5866f82e0d`.
 
