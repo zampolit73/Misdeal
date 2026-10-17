@@ -3,6 +3,12 @@ Updated: 2026-10-17.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D213/D214 — Accepted spear Sentinel A; correct original atlas packing
+
+2026-10-17: User explicitly chose **Road Sentinel D211 option A**, an armored guard with real long spear and hanging lamp. This selection is final only for silhouette/concept, not production 25-cel sprite. Lantern Bearer remains the distinctive broad **wooden board/barrier + heavy free-hand lantern** defensive escort; shield mechanics are NOT approved by art brief.
+
+**Critical code-derived correction:** Earlier chat D212/D213 put frame states in a single sequential (row-major) flow; this is NOT compatible with GitHub `scripts/battle/unit_animation_library.gd::_create_frames`, which reads one animation state per row: **row0 idle4+2empty; row1 walk6; row2 attack6; row3 hit3+3empty; row4 death6**. Canonical production requirement is **576×480, 6×5, 96px, 25 original meaningful poses and 5 clear cells**. This overrides contradictory chat art instructions. Exact master: `docs/D213_BLACK_LANTERN_MASTER_ANIMATION_BRIEF.md`; 25-frame Bearer art contract: `docs/D214_LANTERN_BEARER_PRODUCTION_SPEC.md`. No changes to gameplay/runtime art from this decision.
+
 ## D208 — No blind global difficulty increases from isolated matrix metrics
 
 2026-10-17: User's native 54-case D208 benchmark at +22% lit-enemy attack speed yielded the same displayed battle survival and duration as the D207 +16% run; only **59 of 635** actual attacks occurred under the bonus. Reverted controller to **+16%** and preserved attack diagnostics. Investigate moving-light paths and actual scene readability after the exact approved arena and five original art atlases are integrated, before setting final timings/bonuses. This is a scoped balancing decision, not a redesign of tactics or core combat. See `docs/D208_BLACK_LANTERN_BALANCE_PASS.md`.
