@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D224: approved original 25-pose Bearer art preserved, standalone native grid QA
+
+- User approved D223 corrected Bearer design («да все ок») and new dark-fantasy style-B 25-pose shield/hand-lantern original image («подходит»). Saved selected **1374×1145 PNG-visible pixels losslessly as WebP/B64** in GitHub QA asset `lantern_bearer_d224_approved_original_lossless.webp.b64`; PNG and WebP origin hashes in `docs/D224_LANTERN_BEARER_APPROVED_ART_QA.md`.
+- Adaptive-repacked the image to Godot 576×480 6×5×96px and committed `lantern_bearer_d224_approved_repacked_candidate.webp.b64`: 25 unique pose cels, 5 empty clear slots, 0 new 2px border failures, byte-verified against GH upload. The source layout includes **overlapping neighboring cel artwork**; cropping may lose individual source pixels, so these metrics are technical QC only, not native art QA approval.
+- Added reproducible `tools/art/inspect_and_repack_lantern_bearer_d224.py`, QA source/region data `docs/qa/D224_LANTERN_BEARER_ART_QC.json`, and isolated original-style Godot gallery `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`, with 3×/1× state buttons; **Godot F6 PENDING**.
+- No changes to older D216 candidate, active animation library, real Battle, approved D209 arena, RunState 37-card pool, D196 waves, DS2, sealed boss or frozen KARAMBA73. D224 documentation added and handoff updated.
+
 ## 2026-10-17 — D223: corrected Lantern Bearer shield + separate lantern visual candidate
 
 - After D222 rejected staff-bearing generated layouts, produced a new style-B Bearer composition and a cleanly **cropped, text-free character reference** `Misdeal_D223_Lantern_Bearer_Concept_B_Portrait.png` (388×386). Heavy iron-banded plank shield in one hand and an amber lantern in the separate free hand; no staff or spear. The background is still baked into the concept image.
