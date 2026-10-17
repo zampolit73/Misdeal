@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D231: Correct D230 premature Sentinel sprite-art 'FINAL' claim
+
+- User explicitly objected that original atlas was much more beautiful than the newly registered sprite and asked what happened. Inspected actual local originals: `пиксельный_атлас_скелета_стража.png` **1254×1254** has far richer armor/cloak/lantern but incorrectly carries an **AXE**, and D221 accepted `лунный_страж_проклятой_дороги.png` **1672×941** has valid long spear but embedded presentation/background. Neither was transformed into transparent 25-frame game atlas; D229 was procedurally painted from geometric code and looks much simpler.
+- Corrected acceptance boundary: the user chose D229 over D228 within two TECHNICAL 96px drafts, **not** as permission to abandon the rich final art quality. D230 art-final statement **superseded** by explicit user concern. D230 selected candidate/loader is retained as unused #38-only staging, not a visually finalized approved sprite; 37 cards live unaffected.
+- New full handoff `docs/D231_SENTINEL_ART_FIDELITY_CORRECTION.md`. NEXT: verify appealing spear-bearing armor and lantern in single true game-scale frame, not yet another simplistic 25-pose version; then genuinely new high-quality 25-cel asset with native QA and later #38 integration. No actual art or release code changed by this correction.
+
 ## 2026-10-18 — D230: User final choice for second D229 Sentinel; exact production animation registration
 
 - User explicitly selected **D229 SECOND (RIGHT) side-by-side Road Sentinel** as final art («давай примем 2 вариант и уже закончим с этим»). **Stop further Sentinel cosmetic passes**; D221 detailed concept remains historical inspiration only, not permission to override current final user selection.
