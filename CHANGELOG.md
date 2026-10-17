@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D217 Godot border FAIL repaired in SVG art source
+
+- User-native D217 F6 screenshot showed red QA FAIL on 0-based death row4 col4 and col5; backdrop D209 loaded fine. Investigated committed SVG and found exactly two late-death rib strokes extending into y94–96 outside the approved 96px-cell margin.
+- Fixed only these SVG strokes in `assets/pixel/units/black_lantern_road_qa/oil_acolyte_d217_vector_candidate.svg` (commit `a8a80f1`). No tolerance changes to Godot's 25-frame/5-empty/border validator; post-fix GitHub geometry scan shows 25 groups and no predicted alpha-safe border violations. **Native Godot F6 recheck still pending.**
+- Separate user D216 screenshot shows Lantern Bearer gallery renders at 3× + 1× and shield attack frame without red failure; five-state full artistic acceptance still not documented. All runtime scenes, card pool and KARAMBA73 unchanged.
+
 ## 2026-10-17 — D217: Oil Acolyte third original animation role, standalone QA only
 
 - Drew a new 25-pose (idle4/walk6/attack6/hit3/death6) 576×480 RGBA Oil Acolyte **raster** candidate: light skeletal ritualist with separate green oil bottle, tiny amber belt lamp and curved open **sickle** instead of an early cleaver-like blade. Offline Pillow QA after edge fixes: 25 distinct visible, five transparent unused, zero edge contacts. This local raster PNG/WebP/B64 plus reproducible authoring code is available in a conversation ZIP, not committed as engine bytes.
