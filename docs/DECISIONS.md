@@ -3,6 +3,10 @@ Updated: 2026-10-17.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D236 — Distinct six-phase articulated WALK proof is separate from rich D235 final-art acceptance
+
+2026-10-18: User ordered implementation after D235 six illustrated walking-like figure look approved. Direct 3×2 poster background removal **failed** with brown gradient remnants/cropped spear and was rejected. Built reproducible Godot-compatible limited 576×480 alpha WALK-only pilot: six hand-positioned realistic grounded knee/shin/boot poses with illustrated D234 torso, true free-hand attached lantern and proper spear. Six real distinct WALK cells row1/24 empty/2px inset. This is **limited cutout/leg-rig work**, not 6 independently fully repainted ornate character frames, so does not fully satisfy D235 artistic quality. Native F6/user QA still pending; production BattleUnit/RunState not touched. `docs/D236_SENTINEL_WALK6_MOTION_PILOT.md`.
+
 ## D235 — Detailed six-walk Sentinel artistic look is approved, not Godot sprites
 
 2026-10-18: User wrote **«принято»** immediately after assistant generated a 1536×1024 3×2 illustration of Road Sentinel's six walking-like poses in rich Style B: heavy plated iron, torn oxblood cloak, long pointed spear and bright amber lantern visibly held by the hand. This art/character direction is LOCKED as final desired quality for walk; high-quality full-resolution reference now archived in GitHub. **Approval of illustrated visual poses does NOT verify original 96px alpha cels, actual six different stride mechanics, x1 animation, or native F6.** Do not release a poster as game sprites, abandon correct wrist/lantern linkage approved D234, or revert to D229 art fidelity. Native frame painting/QA remains. `docs/D235_SENTINEL_WALK_ART_APPROVAL.md`.
