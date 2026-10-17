@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D226 user-native screenshot confirms Sentinel QA gallery loads and shows left-facing walk, but final B-style art fidelity remains below approved D221; 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D227 native 96px Sentinel sprite geometry repaint and F6 viewer committed, static QC 25/25+5 clear+0 border, native/art approval pending; live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D226 CURRENT — Godot screenshot, technical gallery load verified; polished-art QA still OPEN
+## D227 CURRENT — original native-pixel Sentinel fidelity repaint staged, F6 PENDING
+
+User replied **«хорошо»** to proposed D227 improvement after D226 Godot screenshot. Built revised **Road Sentinel** at true native 96px resolution: layered dark-steel plates/3-part asymmetric pauldron, 3/4 bone face, burgundy torn cape, steel reinforced spear head and separate suspended iron-cage amber lantern moved clear of hip. 25 authored poses in correct 6×5 layout, 5 empty alpha, zero border violations, WebP `f1b50b919c76f5af9173ea33c77e484188077dbd72aee98110329210d84f7fbc`; source `tools/art/author_road_sentinel_d227.py`, art `assets/pixel/units/black_lantern_road_qa/road_sentinel_d227_art_candidate.webp.b64`, report `docs/qa/D227_ROAD_SENTINEL_ART_QC.json`. New **left/right + all 5 animations** isolated `res://scenes/dev/black_lantern_sentinel_d227_art_preview.tscn` uses exact D209 selected forest at x1 and x3. User-native F6 **NOT** run, artistic acceptance **NOT** given, may still be less detailed than approved D221 large-scale concept. D226 remains intact for comparison, real #38 fight and live pool untouched. Full gate `docs/D227_SENTINEL_PIXEL_FIDELITY_QA.md`.
+
+## D226 PREVIOUS — Godot screenshot, technical gallery load verified; polished-art QA still OPEN
 
 **D226 current visual evidence:** User posted Godot 4.7.x screenshot with D226 gallery x3/x1 Road Sentinel on approved D209 forest, no red errors, `ХОДЬБА · ← ВЛЕВО` visible and left/right + 5 state controls. **CONFIRMED: native scene loads and shows a left-facing walk pose**. This does NOT prove animation states/direction completed or final-art acceptance. Assistant review finds simplified head/bones/armor and square lantern still far below the already approved D221 detailed B-style appearance; keep **final art gate OPEN** and plan true native-pixel 25-cel detailing pass. `docs/D226_SENTINEL_STYLE_B_ART_QA.md` updated. No game changes, 37/45 live.
 
