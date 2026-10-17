@@ -1,5 +1,7 @@
 # Misdeal Documentation Index
-Updated 2026-10-17 — D218 Guide positive user feedback, D219 original 25-cel Lantern Archer QA gallery committed (native F6 pending), live Act1 37/45.
+Updated 2026-10-17 — D219 standalone Archer F6 user-reported OK; D220 five production-quality sprite REPLACEMENTS required before #38 release, live Act1 37/45.
+
+**CURRENT D220 ART GATE:** [Replace all five technical QA skeleton sprites with original final Misdeal-style art before #38 release](D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md). D219 F6 isolated preview was user-accepted, not polished art. Main deck remains 37/45.
 
 ## Read first (current, short, authoritative)
 
