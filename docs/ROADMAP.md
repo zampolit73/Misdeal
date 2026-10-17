@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-17 (D225 dual-direction Bearer user OK; D226 Sentinel B-style native 25-cel QA art/scene committed, F6 pending; 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-17 (D226 native Sentinel scene displays left-facing walk without error; artistic fidelity gap vs approved D221 art blocks final sprite approval, 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -24,7 +24,9 @@ Updated: 2026-10-17 (D225 dual-direction Bearer user OK; D226 Sentinel B-style n
 
 - [x] **D226 richer original 25-cel spear Sentinel candidate:** deterministic native 96px drawn art in approved armored A silhouette/B palette with torn russet hood and copper-iron wear; 25 unique + 5 transparent, zero edge warnings, original pointed spear/amber lamp. **Not the final D221 fine-detail quality yet.**
 - [x] **D226 isolated Godot F6 gallery:** original D209 moonlit forest, 3× and 1× frames, left/right direction switches, five states, strict validators. Source/asset/QA documented in `docs/D226_SENTINEL_STYLE_B_ART_QA.md`.
-- [ ] **D226 user-native F6 & visual review:** `res://scenes/dev/black_lantern_sentinel_d226_art_preview.tscn`, confirm direction, leg contact, real spear thrust, visible lantern at 1×, death; assess against D221 accepted detailed illustration. No live sprite swap until approved.
+- [x] **D226 screenshot: native loading and leftward walk visible** — user showed x3 + x1 gallery on D209 background with no red QA error. This is **partial evidence only**, not all five motion states and left/right toggles tested.
+- [ ] **D226 art fidelity / D227 native 96px repaint:** skull, plate volume, rusty metal clusters, spear head, lantern shape and burgundy mantle still visibly simpler than user-approved D221 illustration. Preserve 25 authored poses; not permitted to call D226 a final art PASS based solely on rendered gallery.
+- [ ] **D226 full five-state/direction user-native visual review:** `res://scenes/dev/black_lantern_sentinel_d226_art_preview.tscn`, confirm direction, leg contact, real spear thrust, visible lantern at 1×, death; assess against D221 accepted detailed illustration. No live sprite swap until approved.
 - [ ] **Full five-hero original art completion + real #38 battle/reward/table/release smoke** remains outstanding; live 37/45.
 
 ## D209/D210 status
