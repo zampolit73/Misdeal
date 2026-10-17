@@ -2,7 +2,7 @@
 
 Date: 2026-10-18. **Four actual transparent alpha frame images committed with reproducible source. NOT a finished 25-frame game animation, NOT final art approval.** Act1 still 37/45; black_lantern_road card #38 QA-only.
 
-## User feedback and goal
+**LATER USER D234 CORRECTION:** User explicitly REJECTED D233 lantern hand continuity («тут как будто бы он не держит фонарь»). D233 remains a historical QA study and must not be considered approved or promoted. Current fixed candidate/side-by-side x1 scene: `docs/D234_SENTINEL_HAND_LANTERN_ATTACHMENT_QA.md`.\n\n## User feedback and goal
 
 After D232 showed an illustrated high-detail 96×96 one-pose Sentinel x1/x3 QA candidate, user wrote **«прододалжай»**. This authorizes continued exploratory work, **NOT a native Godot PASS or explicit final-art acceptance of D232**. The user previously objected to the loss of visual richness when D215–D229 procedural sprite revisions replaced the original illustrated look. We must not repeat that substitution.
 
