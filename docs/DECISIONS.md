@@ -3,6 +3,10 @@ Updated: 2026-10-17.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D226 — Maintain actual original pixel framing and honest final-art gate
+
+2026-10-17: D225 user reported both-facing Bearer gallery OK. D226 began original **Road Sentinel** art fidelity improvements, preserving user-approved armored SPEAR A silhouette and common B palette with new **native 96px** oxblood mantle and armor details across 25 individual poses. Static QA 25 unique/5 clear/zero alpha-edge warnings; dedicated F6 scene with left/right, real x1 and large x3. This is **NOT accepted as equivalent to D221 ornate high-detail illustration**, and no production animation library switch is allowed yet. Do not use unrelated generated Oil Acolyte panels or pretend aesthetic approval. F6 user check/character polish gate: `docs/D226_SENTINEL_STYLE_B_ART_QA.md`.
+
 ## D225 — Enemy facing in gallery must match real battle; don't falsely "fix" baked softness
 
 2026-10-17: Following D224 native shield-attack gallery screenshot, user asked whether the animation worked in both directions. Existing combat `BattleUnit` already uses `art_sprite.flip_h` toward targets; isolated D224 gallery had shown only one orientation at two sizes. Added two real gallery buttons to mirror **both** views for user-native F6 QA, default enemy-left, without changing real battle or art files. Godot nearest-neighbor filtering was already explicitly enabled; source pixel softness is a 1374×1145→96px repack artifact and must be corrected later at art-source/cel level, not by silently altering approved artwork, sharpening or turning off validator. Await D225 native F6. Details: `docs/D225_BEARER_FACING_PIXEL_CLARITY_QA.md`.
