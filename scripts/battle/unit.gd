@@ -21,9 +21,9 @@ const FLOOR_CONTACT_Y := 36.0
 # Keep the static v4 path as fallback when a frame atlas is missing or invalid.
 # The redesigned blue Knight uses actual leg-readable SpriteFrames.
 const STATIC_COMBAT_ART_ROLES: Array[String] = []
-# D151 authored sprites face LEFT at source; legacy/unit art faces RIGHT.
-# Only these original Funeral Procession roles invert the usual flip rule.
-const SOURCE_FACES_LEFT_ROLES: Array[String] = ["funeral_priest", "pallbearer"]
+# D151 and approved D230 Road Sentinel atlases face LEFT at source.
+# Remaining legacy and hero sprites face RIGHT; keep per-role target-based flipping.
+const SOURCE_FACES_LEFT_ROLES: Array[String] = ["funeral_priest", "pallbearer", "road_sentinel"]
 const ROLE_FLOOR_OFFSETS := {
 	"knight": -8.0,
 	"ranger": -6.0,
@@ -1010,8 +1010,8 @@ func _update_idle_visual(delta: float) -> void:
 	)
 
 func _set_facing_left(face_left: bool) -> void:
-	# Visual-only: all existing actors were authored facing right; D151 faces left.
-	# XOR keeps combat targeting unchanged while correcting both preview and battle.
+	# Visual-only: most actors face right at source; D151 and D230 Sentinel face left.
+	# XOR keeps combat targeting unchanged while honoring original atlas orientation.
 	art_sprite.flip_h = face_left != SOURCE_FACES_LEFT_ROLES.has(visual_role)
 
 
