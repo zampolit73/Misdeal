@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D208: Native D207 54/54 baseline and local light-risk pass
+
+- User's real Godot screenshot confirms D207 54/54 completed, 54 wins, no party defeats or timeouts; 18 wins each by class and party size. HP avg 80/70/74%, worst 52/30/44%; individual deaths 0/2/4, durations 13.2/14.6/13.3s. Light 90 telegraphs, 11,434 active frames, 15,502 buffed-enemy exposure frames, max three buffed. Distinguish functional PASS from accepted difficulty/art.
+- Made one controlled local change: `BlackLanternLightController.ATTACK_SPEED_MULTIPLIER` **1.16 → 1.22** for *lit enemies only*, no five-enemy global stat inflation or changes to existing live battles.
+- Extended existing D207 54-case F6 matrix to label D208 and count *actual light-buffed enemy attacks* from existing `BattleUnit.diagnostic_attack`; new D208 Godot run pending. Full before/after source/QA notes: `docs/D208_BLACK_LANTERN_BALANCE_PASS.md`.
+- Act1 stays 37/45, `КАРАМБА73` preserved, new arena/skeleton art still not imported/accepted.
+
 ## 2026-10-17 — D207: Native D206 contract PASS, isolated 54-case battle matrix staged
 
 - User supplied **green native Godot F6 screenshot** confirming D206 five new UnitData, two five-enemy formations and enemy-only temporary light-buff/reset after typed-array fix.
