@@ -18,7 +18,11 @@ The original generated RGBA canvas **was not a valid 96px engine atlas** and por
 
 The checked **contact sheet** `D224_approved_sprite_grid_qa.png` (conversation artifact), all source/QA files and the original PNG are also bundled in `Misdeal_D224_Lantern_Bearer_Approved_Art_QA.zip` for visual/offline review. This ZIP is available in the ongoing conversation, while the **two exact game-reference WebP/B64 files and reproducible source are in GitHub** for new chats.
 
-## Native Godot F6 stage — source committed / Godot PASS PENDING
+## D225 continuation — native art displayed, both-direction gallery F6 pending
+
+User sent screenshot of **running D224 Godot gallery** with selected Bearer at x3 and x1 on approved forest, in **shield attack**, without red error. This confirms native load/presentation, but not all five states or left/right motion. User specifically asked whether both directions work; prior gallery did not expose mirroring (both were one orientation, different sizes). D225 now adds two working `← ВЛЕВО` / `ВПРАВО →` buttons that `flip_h` both sprites and update labels; original art/data unchanged, source image already face-right. Godot battle's target-facing `flip_h` remains independent and was not touched. Screenshot of NEW buttons in action still pending. Sharpness note: nearest filtering already explicit; softness stems from original source adaptive downscale and seam overlaps, not from interpolation at 3×. See `docs/D225_BEARER_FACING_PIXEL_CLARITY_QA.md`.
+
+## Native Godot F6 stage — HISTORICAL pre-D225 request
 
 New isolated scene:
 
