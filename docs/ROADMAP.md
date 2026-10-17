@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-18 (D229 original 25-cel Sentinel + synchronized D228-vs-D229 x1/x3 Godot comparison committed; no user F6 or final art approval yet; Act1 live 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-18 (D230 second/right D229 Road Sentinel artistically FINAL accepted and production atlas installed; next four skeletons; Godot loader smoke pending; Act1 live 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -20,7 +20,15 @@ Updated: 2026-10-18 (D229 original 25-cel Sentinel + synchronized D228-vs-D229 x
 - [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
-## D229 current production-art quality decision — compare actual x1 before another repaint
+## D230 CURRENT — Road Sentinel final art DONE; proceed to remaining four enemies
+
+- [x] **User formally chose option TWO / RIGHT D229 as final Road Sentinel** («давай примем 2 вариант и уже закончим с этим»). Never restart pixel-polish passes or ask again between D228/D229. Final art bytes exactly equal approved D229 source. `docs/D230_ROAD_SENTINEL_FINAL_APPROVAL.md`.
+- [x] **D230 role-specific production atlas and library registration:** `assets/pixel/units/deck_expansion_v1/road_sentinel_frames.webp.b64`, `MisdealUnitAnimationLibrary.get_frames("road_sentinel")` strict 25 genuine frames/5 empty, `BattleUnit` authored-left orientation correct. Card #38 still QA-only.
+- [x] **D230 isolated production-loader F6 smoke staged:** `res://scenes/dev/black_lantern_sentinel_d230_approved_smoke.tscn` compares selected art with actual animation library output at x1/x3 and both directions; does not re-open art approval.
+- [ ] **D230 engine-native smoke (may bundle with combined QA):** Godot F6 not yet user-confirmed. Errors should prompt code fixes only, not aesthetic reconsideration.
+- [ ] **Next art role:** Lantern Bearer source-approved D224 shield + free-hand lantern; complete its accepted final frame quality as needed; after that original Oil Acolyte, 1.8× Extinguished Guide, Lantern Archer. Then collective 3-vs-5 forest, real #38 battle/light/reward/matrix and release, 37→38 cards only after PASS.
+
+## D229 PREVIOUS / SUPERSEDED artistic comparison — compare actual x1 before another repaint
 
 - [x] **D229 original native 96px art experiment**: real large chest/pauldron facets, richer hood, improved real-spear blade edge, preserves all 25 moving states + 5 fully empty with 0 border violations. Old D228 art unchanged. `docs/D229_SENTINEL_NATIVE_SCALE_AB_REVIEW.md`.
 - [x] **D229 A/B Godot F6 comparison scene**: `res://scenes/dev/black_lantern_sentinel_d229_compare.tscn`, D228 left and D229 right, both x3/x1, common animation state + direction controls, exact chosen D209 forest.
