@@ -1,3 +1,9 @@
+## D215 — original spear Sentinel QA-only atlas, NOT approved active sprite
+
+QA art-only GitHub asset `res://assets/pixel/units/black_lantern_road_qa/road_sentinel_d215_candidate.webp.b64` is **lossless WebP 576×480**. It contains original, authored native-size pixel skeleton poses (idle4/walk6/attack6/hit3/death6), 5 fully transparent cells; offline QC 25 unique, 0 border-contact violations. Reproducible generator `tools/art/author_road_sentinel_d215.py`; isolated native review `res://scenes/dev/black_lantern_sentinel_animation_preview.tscn`. The user selected D211 Armored Spear Sentinel option A; the D215 technical candidate follows spear/pauldron/lantern but is visually simpler and **NOT yet accepted by the user**. Do not add it to production animation loader until native F6/visual approval. D209 exact forest art is accepted, no need to choose again. Full stage gate `docs/D215_SENTINEL_NATIVE_ANIMATION_QA.md`. Act1 37/45, KARAMBA73 frozen.
+
+---
+
 ## D210 — Approved #38 forest native, five original skeletal animation atlas roles QC BLOCKED
 
 User-native Godot F6 screenshot and «все ок» (2026-10-17) accept the exact D209 third forest artwork in `assets/pixel/battle/arenas/black_lantern_road_arena_selected_v1.webp.b64` with 3 hero / 5 enemy proxy layout and two amber light circles, **visual-only**. The previous D203/D201 "arena pending" sections below are historical and superseded, not the current gate.
