@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D217 user-native SVG border FAIL diagnosed/fixed in source commit a8a80f1, re-F6 pending; D216 gallery renders without QA failure; #38 not live). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D217 user-native post-fix F6 verbal PASS; D218 original 25-frame tall Guide QA atlas / scale gallery committed, native D218 F6 pending; #38 remains 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,13 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D217 SVG death-cel border hotfix — user-native FAIL, source fix F6 pending
+## D218 CURRENT — original triple-chain-lantern Guide art source/Godot gallery F6 pending
+
+Following D217 source fix `a8a80f1`, user reran F6 and said **«все ок»** (2026-10-17). Treat this as **user-reported native D217 post-fix PASS**; prior FAIL is resolved, no claim of independently inspected five-state animation video. D216 native screenshot already showed Bearer 3×/1× and shield attack without red QA; full five-state approval not yet documented.
+
+**D218 QA-only art committed:** `tools/art/author_extinguished_guide_d218.py` draws **25 individually posed original pixels** for towering original `extinguished_guide` (hunched ragged mantle, asymmetric plates, wide metal yoke and three chained lamps). Exact lossless 576×480 6×5 96px cells `assets/pixel/units/black_lantern_road_qa/extinguished_guide_d218_candidate.webp.b64`; decoded WebP SHA256 `ad5c734e7df5d62baf5de1813086d1ae6759c5da819cc81181133bef1bf0cc06`. Local offline 25 distinct/5 empty/0 border PASS after correcting low death geometry by drawing into tall canvas and lifting complete last death poses; **Godot F6 NOT YET RUN**. Committed isolated `res://scenes/dev/black_lantern_guide_animation_preview.tscn` shows 2.8× detail and **1.8× actual Guide beside 1.0× Lantern Bearer** on the exact D209 forest floor. The source, B64 and scene were re-fetched from GitHub; all art remains QA-only. `resources/units/extinguished_guide.tres` previously had `visual_scale=1.8`, and no collider/combat/balance changes were made. Detailed handoff: `docs/D218_EXTINGUISHED_GUIDE_ANIMATION_QA.md`. Next native gate F6 that scene, then original Lantern Archer fifth enemy. Act1 pool **37/45**.
+
+## D217 SVG death-cel border hotfix (HISTORICAL; resolved by user re-F6) — user-native FAIL, source fix F6 pending
 
 **2026-10-17 user's Godot 4.7.x screenshots:** the D217 F6 gallery loads the exact user-approved D209 forest but raises red `D217 / QA FAIL: D217 проверка атласа: край ячейки 4:4 / край ячейки 4:5`. These are **zero-based row=4 (death), columns=4 and 5 (death frames 5 and 6)**, *not* a Godot parser error or an issue in D209 art. The independent Pillow raster D217 candidate's offline QC did not apply to this **different SVG asset**; do not conflate them.
 
