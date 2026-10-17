@@ -2,6 +2,10 @@
 
 Date: 2026-10-17. **User requested an explicit answer about replacing the sprites after D219 and assistant committed to replacing all five QA-looking sprites with finished original Misdeal artwork BEFORE card #38 ships.** This is a production-art commitment, not a claim that finished art or a playable #38 has been completed. Act1 LIVE **37/45**, #38 QA-only.
 
+## Current D238 production-workflow override (2026-10-18)
+
+User now requires final character **all-25-frame animation packs in one self-QA'd batch**, NOT per-state approval. See `docs/D238_BATCH_ANIMATION_NEXT_CHAT.md` and permanent `AGENTS.md` rule. This does **not** relax the quality bar below: source fidelity, genuinely authored motion, 1× readability, correct lantern grip, and all five distinct final enemies before #38 can ship. Character-wide one-time F6 review only, with direct code/art fixes after reported problems. The Sentinel rich art D235 and held lantern D234 and workable gait D236R remain the locked target, D229 remains a technical placeholder.
+
 ## Latest D219 feedback
 
 User replied **«все ок. и у меня вопрос ты потом заменишь спрайты или нет?»** immediately after being asked to F6 the D219 `black_lantern_archer_animation_preview.tscn`. Record **user-reported positive isolated D219 animation-preview feedback**. This is not independently verified per-frame native footage, proof of all five-role full-cast QA, or acceptance of final character art. Older confirmed/pending gates: D215 Sentinel user OK; D216 Bearer F6 screenshot rendered a shield attack, not yet full five-state visual feedback; D217 Acolyte corrected SVG was user-reported PASS; D218 Guide user said «отлично» without detailed logs. Preserve distinctions.
