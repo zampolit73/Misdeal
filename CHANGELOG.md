@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D217: Oil Acolyte third original animation role, standalone QA only
+
+- Drew a new 25-pose (idle4/walk6/attack6/hit3/death6) 576×480 RGBA Oil Acolyte **raster** candidate: light skeletal ritualist with separate green oil bottle, tiny amber belt lamp and curved open **sickle** instead of an early cleaver-like blade. Offline Pillow QA after edge fixes: 25 distinct visible, five transparent unused, zero edge contacts. This local raster PNG/WebP/B64 plus reproducible authoring code is available in a conversation ZIP, not committed as engine bytes.
+- Added a **separate** original editable, transparent 25-state 576×480 SVG vector-cel QA candidate in GitHub: `assets/pixel/units/black_lantern_road_qa/oil_acolyte_d217_vector_candidate.svg`. Its graphics are **not byte-identical** to the raster candidate; do not substitute one QA result for another.
+- Added `scenes/dev/black_lantern_oil_acolyte_animation_preview.tscn` and script; renders GitHub SVG using Godot SVG image decoder, does native post-decoding alpha/25-unique/5-blank/border inspections and displays all five states on the D209 accepted forest at 3× and 1×. **Godot F6 pending**.
+- No new oil-burning mechanics, no modifications to `UnitData` stats, production animation library or live battle. D216 Bearer native F6 **still pending**, D215 Sentinel user accepted QA; deck remains 37/45, KARAMBA73 untouched. Detailed `docs/D217_OIL_ACOLYTE_ANIMATION_QA.md`.
+
 ## 2026-10-17 — D216: native D215 OK and QA-only 25-cel Lantern Bearer animation art
 
 - User replied **«все ок продолжай дальше»** after D215 Road Sentinel animation gallery review; record user-native standalone gallery QA OK, not #38 battle release.
