@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-17 (D228 Road Sentinel native-pixel detail pass committed, separate x1/x3 two-facing Godot F6 pending, #38 art still unapproved; live 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-18 (D229 original 25-cel Sentinel + synchronized D228-vs-D229 x1/x3 Godot comparison committed; no user F6 or final art approval yet; Act1 live 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -20,7 +20,14 @@ Updated: 2026-10-17 (D228 Road Sentinel native-pixel detail pass committed, sepa
 - [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
-## D228 next QA gate — style-B Sentinel art fidelity
+## D229 current production-art quality decision — compare actual x1 before another repaint
+
+- [x] **D229 original native 96px art experiment**: real large chest/pauldron facets, richer hood, improved real-spear blade edge, preserves all 25 moving states + 5 fully empty with 0 border violations. Old D228 art unchanged. `docs/D229_SENTINEL_NATIVE_SCALE_AB_REVIEW.md`.
+- [x] **D229 A/B Godot F6 comparison scene**: `res://scenes/dev/black_lantern_sentinel_d229_compare.tscn`, D228 left and D229 right, both x3/x1, common animation state + direction controls, exact chosen D209 forest.
+- [ ] **USER native F6 and aesthetic result**: compare A/B especially ×1; D228 native F6 was NOT separately accepted just because user asked to continue. Check walk/attack/death and left/right. No assumed PASS.
+- [ ] **Final Sprite art fidelity:** x1 differences remain subtle; consider higher-quality silhouette composition at same 96px, *not* endless micro-polish, before agreeing to production sprite. Then remaining original four enemy final passes, combined battle and #38 real release.
+
+## D228 previous QA gate — style-B Sentinel art fidelity
 
 - [x] **D228 native sprite repaint shipped to QA branch of main:** detailed 96px original armor shapes, frayed burgundy cloak, upgraded genuine spear head and bindings, lantern metal cage. 25 different physical animation cels/5 empty/zero alpha border violations, correct 6×5 row-per-state. D227 preserved for visual comparison. `docs/D228_SENTINEL_ORNAMENTAL_PIXEL_ART_QA.md`.
 - [x] **Isolated D228 F6 Godot gallery added:** `res://scenes/dev/black_lantern_sentinel_d228_art_preview.tscn` x3/x1, left/right, all five state buttons, approved D209 backdrop.
