@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D215 Sentinel user-native F6 OK; D216 original Lantern Bearer 25-pose shield+lantern QA-only atlas and F6 gallery staged; #38 not live). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D217 oil-acolyte 25-state SVG QA-only gallery and separate offline 25-cel PNG candidate staged; D216 native F6 still pending; live #38 not enabled). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,13 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D216 CURRENT — Lantern Bearer 25-frame original QA art, native F6 pending
+## D217 CURRENT — original oil flask + sickle + belt-lamp sprite gallery staged
+
+New *QA-only* `assets/pixel/units/black_lantern_road_qa/oil_acolyte_d217_vector_candidate.svg` (transparent 576×480, 25 original per-state SVG groups in correct rows, 5 empty positions) and `res://scenes/dev/black_lantern_oil_acolyte_animation_preview.tscn` are in GitHub. The gallery renders this SVG via `Image.load_svg_from_buffer`, applies native decoded alpha/cel QC, shows five animation buttons plus 3×/1× views on exact accepted D209 moonlit forest. A **different**, raster 25-pose Pillow original PNG/WebP QA candidate and reproducible Python authoring source exist in conversation ZIP `Misdeal_D217_Oil_Acolyte_Animation_QA.zip`; offline raster QC returned **25 unique, 5 transparent, zero border contacts**. Do not confuse this exact raster binary with GitHub SVG or claim cross-format SHA identity. Design: slim ritual skeleton, **curved SICKLE (not axe)**, separate green oil flask and small amber hanging belt lamp. No stats/gameplay changes. **D217 Godot F6 pending**, no art quality PASS yet; see `docs/D217_OIL_ACOLYTE_ANIMATION_QA.md`.
+
+**D216 Lantern Bearer native F6 ALSO pending:** user said only «продолжай», not «всё ок»/screenshot for Bearer. D215 Sentinel user-reported F6 OK. Live Act1 **37/45**, #38 not in normal cards or battle routing.
+
+## D216 PREVIOUS — Lantern Bearer 25-frame original QA art, native F6 pending
 
 User replied **«все ок продолжай дальше»** after being asked to F6 D215 `black_lantern_sentinel_animation_preview.tscn` and review five motions. Record **D215 user-reported native gallery/animation acceptance** (not real battle or finished production release). D216 now has new **576×480 6×5 lossless WebP/B64** art: `assets/pixel/units/black_lantern_road_qa/lantern_bearer_d216_candidate.webp.b64`, with 25 independent shield-bearing skeleton poses, five fully transparent cells, **zero boundary warnings**. Authored offline source `tools/art/author_lantern_bearer_d216.py` (imports D215 helper); QA asset B64 round-trip re-fetched byte-identical. New QA-only `res://scenes/dev/black_lantern_bearer_animation_preview.tscn` shows 3× and 1× moving animation on the user-approved D209 forest; five state buttons. **D216 Godot F6 NOT YET RUN**. No changes to UnitData shields/defense, the live sprite animation loader, existing battles, or 37-card deck. Read `docs/D216_LANTERN_BEARER_ANIMATION_QA.md`. Next: user `git pull`, F6 the isolated Bearer gallery, then paint oil flask + sickle Acolyte.
 
