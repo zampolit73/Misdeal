@@ -17,7 +17,9 @@ const D153_ROLES := ["threadbare_puppeteer", "bone_marionette"]
 # D183 Black Crossing: the two accepted original drowned combat identities.
 # QA-only until the corresponding approved image bytes are committed.
 const D183_ROLES := ["drowned_ferryman", "drowned_hand"]
-# D230: User selected the second (D229) spear Sentinel. Only this new role is approved.
+# D231: D229 was chosen over D228 as a TECHNICAL candidate, but the user
+# flagged loss of the original rich art. This role is STAGED for UNRELEASED #38;
+# do not regard source art as final quality or enable the regular card pool yet.
 # The other four Black Lantern Road characters remain QA-only; no generic fallback.
 const D230_APPROVED_ROLES := ["road_sentinel"]
 const D151_ROLES := ["funeral_priest", "pallbearer"]
