@@ -1,5 +1,5 @@
 # Misdeal Documentation Index
-Updated 2026-10-17 — D217 SVG border repair user-native F6 PASS, D218 towering Guide original 25-frame QA gallery committed (native F6 pending), live Act1 37/45.
+Updated 2026-10-17 — D218 Guide positive user feedback, D219 original 25-cel Lantern Archer QA gallery committed (native F6 pending), live Act1 37/45.
 
 ## Read first (current, short, authoritative)
 
@@ -21,7 +21,7 @@ Updated 2026-10-17 — D217 SVG border repair user-native F6 PASS, D218 towering
 - [D153 encounter specification](DECK_EXPANSION_D153_THREADBARE_THEATRE.md).
 - [Black Crossing #37 encounter, battle QA and release gates](D188_BLACK_CROSSING_ENCOUNTER.md).
 - [D199 approved card #38: Road of Black Lanterns concept, five skeletons and production gates](DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md).
-- [D218 Extinguished Guide original 25-frame art / towering visual native F6](D218_EXTINGUISHED_GUIDE_ANIMATION_QA.md) — current QA stage; guide 1.8x vs bearer 1x, not combat live.
+- [D219 Lantern Archer original bow animation F6 QA](D219_LANTERN_ARCHER_ANIMATION_QA.md) — current fifth-role gate, native Godot pending.\n- [D218 Extinguished Guide original 25-frame art / towering visual native F6](D218_EXTINGUISHED_GUIDE_ANIMATION_QA.md) — current QA stage; guide 1.8x vs bearer 1x, not combat live.
 - [D217 Oil Acolyte original SVG animation QA and local raster source review](D217_OIL_ACOLYTE_ANIMATION_QA.md) — new Godot F6 gallery; not production art.
 - [D216 original Lantern Bearer 25-pose atlas & isolated F6 gallery](D216_LANTERN_BEARER_ANIMATION_QA.md) — **current QA gate**; not live battle sprites.
 - [D215 original spear Sentinel animation candidate and F6 gallery](D215_SENTINEL_NATIVE_ANIMATION_QA.md) — user-reported isolated F6 gallery OK, not live art.
