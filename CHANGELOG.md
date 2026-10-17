@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D218 original towering Guide art/source and QA-only F6 gallery; D217 native post-fix PASS
+
+- User replied «все ок» after the D217 original SVG death border fix and exact Godot F6 retest request. Treat D217 isolated user-native QA as PASS, not real combat.
+- Added `tools/art/author_extinguished_guide_d218.py` (original 25 hand-directed pixel-frame configurations) and `assets/pixel/units/black_lantern_road_qa/extinguished_guide_d218_candidate.webp.b64`: 576×480 lossless alpha/WebP B64, 25 distinct populated cels, 5 entirely unused, zero offline alpha-boundary warnings after correcting original death drawing on extended canvas. Model has ragged large mantle, irregular armored shoulders, three chained lanterns on metal yoke, heavy attack/collapse.
+- Added `scripts/dev/black_lantern_guide_animation_preview.gd` + `scenes/dev/black_lantern_guide_animation_preview.tscn`: exact D209 forest, original 1.8× Guide next to 1× Bearer at matched floor level, 2.8× detail and five QA state buttons with strict on-load checks. User-native D218 F6 pending; not a final battle-art approval. `docs/D218_EXTINGUISHED_GUIDE_ANIMATION_QA.md`.
+- No production animation registry, collider, five-enemy stats, light bonuses or card pool changes; baseline 37/45 and KARAMBA73 remain safe.
+
 ## 2026-10-17 — D217 Godot border FAIL repaired in SVG art source
 
 - User-native D217 F6 screenshot showed red QA FAIL on 0-based death row4 col4 and col5; backdrop D209 loaded fine. Investigated committed SVG and found exactly two late-death rib strokes extending into y94–96 outside the approved 96px-cell margin.
