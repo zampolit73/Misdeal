@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-18 (D231 user flagged drastic loss of visual quality from rich original Sentinel atlas; technical D229 asset staged but FINAL ART NOT ACCEPTED, Act1 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-18 (D232 rich single-pose 96px Sentinel comparison staged, awaiting user Godot x1 art choice; 25-pose finale pending; Act1 live 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -20,7 +20,15 @@ Updated: 2026-10-18 (D231 user flagged drastic loss of visual quality from rich 
 - [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
-## D231 CURRENT — restore promised rich Sentinel visual bar; D230 final-art flag REOPENED
+## D232 CURRENT — ONE art-quality check before authentic 25-cel animation
+
+- [x] **D232 one alpha-cleared high-detail original-looking spear guard sample**: correctly shaped long spear, ornate iron armor, separate hand lantern and oxblood cape. Extracted from **one** generated pixel illustration pose and scaled to exactly 96×96 with NEAREST; **NOT native pixel-painted and NOT a valid 25-cel animation sheet**. Original cutout saved as lossless WebP/B64; alpha safe (9,5)–(86,93).
+- [x] **D232 actual x1/x3 comparison scene:** `res://scenes/dev/black_lantern_sentinel_d232_art_direction_preview.tscn`, D229 old LEFT vs new static candidate RIGHT, five-state playback INTENTIONALLY ABSENT, correct D209 forest.
+- [ ] **D232 real user visual/art direction acceptance:** examine x1 on Godot; only after acceptance work on original 25 true poses. Native Godot not run here.
+- [ ] **D232 25-frame production (future):** recreate high-fidelity style in true state cels/alpha/bounds, protect spear and lantern, then real 3v5/battle/reward/light/54-case checks. Do not re-register single still as BattleUnit animation.
+- [x] D229 production-stage 25-cel atlas and #38 pool intentionally unchanged; **37/45** live.
+
+## D231 PREVIOUS — restore promised rich Sentinel visual bar; D230 final-art flag REOPENED
 
 - [x] **Diagnosed visual regression / expectation mismatch:** original 1254×1254 illustrated `пиксельный_атлас_скелета_стража.png` has elaborate armor, cloak and lantern but an incorrect **AXE**, 5×5 generated poses; accepted D221 spear concept is rich but includes baked background. Both differ substantially from plain procedural D229 6×5×96px code-generated atlas. D230's claim of final quality was misleading. `docs/D231_SENTINEL_ART_FIDELITY_CORRECTION.md`.
 - [x] **D229 SECOND vs FIRST D228 choice retained AS TECHNICAL SHORTLIST** (not final aesthetic quality waiver); D230 role registration currently exists only for unreleased encounter #38.
