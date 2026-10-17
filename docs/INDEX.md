@@ -1,5 +1,5 @@
 # Misdeal Documentation Index
-Updated 2026-10-17 — D206 user-native contract PASS and D207 QA-only 54-case BattleUnit matrix ready for F6; live Act1 37/45.
+Updated 2026-10-17 — D207 native 54/54 PASS, D208 lit-enemy-only +22% candidate and attack instrumentation pending F6; live Act1 37/45.
 
 ## Read first (current, short, authoritative)
 
@@ -21,6 +21,7 @@ Updated 2026-10-17 — D206 user-native contract PASS and D207 QA-only 54-case B
 - [D153 encounter specification](DECK_EXPANSION_D153_THREADBARE_THEATRE.md).
 - [Black Crossing #37 encounter, battle QA and release gates](D188_BLACK_CROSSING_ENCOUNTER.md).
 - [D199 approved card #38: Road of Black Lanterns concept, five skeletons and production gates](DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md).
+- [D208 54-case baseline and local lanternlight balance candidate](D208_BLACK_LANTERN_BALANCE_PASS.md) — current next-F6 gate.
 - [D207 54-case native BattleUnit matrix](D207_BLACK_LANTERN_BATTLE_MATRIX.md) — current QA gate, awaiting Godot F6 results.
 - [D206 staged encounter resources, isolated lanternlight and native contract smoke](D206_BLACK_LANTERN_ENCOUNTER_STAGING.md) — **current #38 gate**.
 - [D205 selected forest arena, sprite concept QA, and light preview](D205_BLACK_LANTERN_ASSET_AND_LIGHT_STAGING.md) — current card #38 gate; exact F6 scene and asset blockers.
