@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-17 (D226 native Sentinel scene displays left-facing walk without error; artistic fidelity gap vs approved D221 art blocks final sprite approval, 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-17 (D227 original Sentinel improved B-style 25-cel art committed with separate native F6 viewer, no real battle/release; live 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -20,7 +20,14 @@ Updated: 2026-10-17 (D226 native Sentinel scene displays left-facing walk withou
 - [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
-## D226 next candidate visual gate — painted Road Sentinel
+## D227 next native art QA gate — original painted Sentinel 96px
+
+- [x] **D227 25-frame pixel art pass committed**: true native-resolution geometry (armor, skull, cloth, spear, lamp and greaves), alpha-safe original frames `idle4/walk6/attack6/hit3/death6`, five transparent cells, 25 unique, zero border touches. Original D226 QA untouched; **full D221 visual fidelity still not claimed**. `docs/D227_SENTINEL_PIXEL_FIDELITY_QA.md`.
+- [x] **D227 F6 scene committed** `res://scenes/dev/black_lantern_sentinel_d227_art_preview.tscn` with x3 / x1 and LEFT/RIGHT, on accepted D209 forest.
+- [ ] **D227 user Godot QA and art decision:** check walking soles, exact spear thrust, arm/lantern placement, final grounded collapse in both orientations; compare D226 vs D227. **Native PASS not yet received**.
+- [ ] Full polished five-role artwork, real integrated #38 battle, reward route/matrix and 38/45 release checks all pending. Old released pool stays 37/45.
+
+## D226 previous gate — painted Road Sentinel
 
 - [x] **D226 richer original 25-cel spear Sentinel candidate:** deterministic native 96px drawn art in approved armored A silhouette/B palette with torn russet hood and copper-iron wear; 25 unique + 5 transparent, zero edge warnings, original pointed spear/amber lamp. **Not the final D221 fine-detail quality yet.**
 - [x] **D226 isolated Godot F6 gallery:** original D209 moonlit forest, 3× and 1× frames, left/right direction switches, five states, strict validators. Source/asset/QA documented in `docs/D226_SENTINEL_STYLE_B_ART_QA.md`.
