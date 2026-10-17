@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D228 Sentinel native 96px detailed armor/lantern/spear pixel repaint + isolated F6 QA staged; 25/25+5 clear+0 edge, native F6 and art approval pending; 37/45 live). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-18 (D229 native x1/x3 A/B Sentinel art comparison scene committed, technical QC 25/5/0; both D228 & D229 art still unapproved and new native F6 pending; Act1 live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,13 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D228 CURRENT — native-pixel Road Sentinel ornamental art QA candidate COMMITTED
+## D229 CURRENT — NEW synchronized D228-vs-D229 art comparison, native F6 pending
+
+User said **«продолжай»** after D228 candidate without submitting D228 F6 screenshot or affirmative PASS. **DO NOT infer D228 was accepted.** New D229 original pose-derived 96px pixel art `tools/art/author_road_sentinel_d229.py` strengthens asymmetric chest facets, outer plate armor, hood edge and spear engraving across the retained 25 authentic states. New WebP/B64 `assets/pixel/units/black_lantern_road_qa/road_sentinel_d229_art_candidate.webp.b64`, QC `docs/qa/D229_ROAD_SENTINEL_ART_QC.json`: 25 individually nonempty unique, five alpha-clear, zero 2px border warnings, exact lossless image match, 12,880 decoded RGBA pixels different vs D228. SHA `dd8ab21d7e115fe23418778a40e8f27e01abace9f3ccb1630025a09d318d2618`.
+
+**IMPORTANT PRODUCTIVITY CHANGE:** instead of yet another standalone single-version viewer, new `res://scenes/dev/black_lantern_sentinel_d229_compare.tscn` displays D228 **LEFT** and D229 **RIGHT**, each ×3/×1, with synchronized 5-state play buttons and BOTH LEFT/RIGHT mirrors on exact already approved D209 forest. Source image-level visual review finds x1 fidelity improvement **still subtle**, so D229 is NOT final Style B art. If user finds visual improvement insufficient, avoid more tiny procedural 96px detail passes; take a real holistic silhouette-art approach while retaining engine 96px contract. **New Godot F6 NOT YET RUN**. Act1 still **37/45** and #38 QA-only, accepted D221 detailed silhouette reference remains binding. Full record `docs/D229_SENTINEL_NATIVE_SCALE_AB_REVIEW.md`; frozen KARAMBA73 intact.
+
+## D228 PREVIOUS — native-pixel Road Sentinel ornamental art QA candidate COMMITTED
 
 User asked to proceed with D228 as planned, continuing the fixed D211 armored spear Sentinel A silhouette and shared D220 style B, without turning #38 live. New genuine per-pose 96px painter `tools/art/author_road_sentinel_d228.py` reconstructs shoulder/chest armor with forged overlapping planes, moving tattered burgundy mantle, upgraded genuine long SPEAR tip and grip, short spear pennant, separate hanging wrought-iron amber lamp. New transparent engine QA asset `assets/pixel/units/black_lantern_road_qa/road_sentinel_d228_art_candidate.webp.b64` and report `docs/qa/D228_ROAD_SENTINEL_ART_QC.json`: **25 distinct authored animation cels, 5 fully clear cells, 0 alpha-margin warnings**; differs from D227 in **29,154 decoded RGBA pixels**. New **`res://scenes/dev/black_lantern_sentinel_d228_art_preview.tscn`** has both facing directions, five state buttons, x3 and x1 on exact user-approved D209 moonlit forest. **User-native F6 NOT YET RECEIVED.** Offline cell counts do not equal final artistic success; still a QA-only approximation of richly painted accepted D221 Sentinel illustration. **No production animation, battle, card pool, or art references replaced**; Act1 remains 37/45. Detailed gate `docs/D228_SENTINEL_ORNAMENTAL_PIXEL_ART_QA.md`.
 
