@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-16 — **D206 five-role QA-only encounter + isolated light controller + F6 contract smoke committed; no native PASS or live pool change**.
+Updated: 2026-10-17 — **D206 native F6 isolated contract PASS; D207 54-case actual BattleUnit tactical matrix QA-only committed, F6 pending**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,9 +74,19 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D206 Godot 4.7.2 light typed-array runtime fix (NEXT F6)
+## D207 — exact current working checkpoint (NEXT F6)
 
-User-native `black_lantern_road_contract_smoke.tscn` screenshot reported `Trying to assign an array of type "Array" to a variable of type "Array[Vector2]"` in `scripts/battle/black_lantern_light.gd` line 109. The conditional `get_pool_centers() if active else []` created an untyped empty array. GitHub fix `9f751e7`: initialize a typed empty Array then populate inside `if active`, and replace other conditional typed array selections with explicit branches. Smoke is **NOT YET PASS**; next action is `git pull` and F6 the SAME `res://scenes/dev/black_lantern_road_contract_smoke.tscn`, report native result. No released gameplay or card pool changes.
+User screenshot on 2026-10-17 shows **GREEN PASS** in `res://scenes/dev/black_lantern_road_contract_smoke.tscn`: 5 unique UnitData, 2 authored formations/five enemies, light accelerating lit enemies only and resetting. **D206 native contract gate is now CLOSED.** This is *not* a playable battle or visual acceptance.
+
+New source on GitHub `main`: `scripts/dev/black_lantern_road_battle_matrix.gd` + `res://scenes/dev/black_lantern_road_battle_matrix.tscn`. It simulates **54 actual BattleUnit AI encounters** with staged five original #38 role resources and the isolated lanternlight controller. Matrix = 2 formations × 3 protagonist classes × solo/duo/trio × Assault/Hunt/Formation; collects wins/losses, HP, duration, casualties and buff-time metrics, asserts bounded movement and no buff leaks. Runs invisibly because five new sprite-sheet sources are NOT yet approved; this is **math/AI diagnostics only**. It does NOT wire #38 into `battle.gd` or RunState/live 37-card pool. **Godot F6 NOT RUN**; do not claim a result.
+
+**NEXT USER ACTION**: `git pull`, run F6 `res://scenes/dev/black_lantern_road_battle_matrix.tscn`, share final results screenshot. If fail, inspect GitHub script and fix directly; if technical PASS, review party/class stats and balance before connecting full combat. D205 light preview separate native F6 still awaiting user confirmation. Full spec: `docs/D207_BLACK_LANTERN_BATTLE_MATRIX.md`.
+
+Art blockers remain: chosen third 1672×941 forest scene `лунная_дорога_через_туманный_лес.png` only local/conversation and NOT GitHub game bitmap; five generated 5×5 source sheets fail source-edge QC, Sentinel has axe instead of approved spear. New unapproved art must not be silently used. Preserve selected D200 third *card art* separately. Full main 37/45, D196 approved waves, DS2, 12+XIII and immutable `backups/KARAMBA73-2026-10-16` unchanged.
+
+## D206 Godot 4.7.2 light typed-array runtime fix — RESOLVED
+
+User-native `black_lantern_road_contract_smoke.tscn` screenshot reported `Trying to assign an array of type "Array" to a variable of type "Array[Vector2]"` in `scripts/battle/black_lantern_light.gd` line 109. The conditional `get_pool_centers() if active else []` created an untyped empty array. GitHub fix `9f751e7`: initialize a typed empty Array then populate inside `if active`, and replace other conditional typed array selections with explicit branches. **D206 user-native PASS now confirmed** by green screenshot 2026-10-17; re-running the earlier contract is unnecessary unless regression occurs. No released gameplay or card pool changes.
 
 ## D206 — five original resources and isolated light mechanics staged, no production switch
 
