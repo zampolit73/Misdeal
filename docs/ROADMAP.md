@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-18 (D230 second/right D229 Road Sentinel artistically FINAL accepted and production atlas installed; next four skeletons; Godot loader smoke pending; Act1 live 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-18 (D231 user flagged drastic loss of visual quality from rich original Sentinel atlas; technical D229 asset staged but FINAL ART NOT ACCEPTED, Act1 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -20,7 +20,14 @@ Updated: 2026-10-18 (D230 second/right D229 Road Sentinel artistically FINAL acc
 - [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
-## D230 CURRENT — Road Sentinel final art DONE; proceed to remaining four enemies
+## D231 CURRENT — restore promised rich Sentinel visual bar; D230 final-art flag REOPENED
+
+- [x] **Diagnosed visual regression / expectation mismatch:** original 1254×1254 illustrated `пиксельный_атлас_скелета_стража.png` has elaborate armor, cloak and lantern but an incorrect **AXE**, 5×5 generated poses; accepted D221 spear concept is rich but includes baked background. Both differ substantially from plain procedural D229 6×5×96px code-generated atlas. D230's claim of final quality was misleading. `docs/D231_SENTINEL_ART_FIDELITY_CORRECTION.md`.
+- [x] **D229 SECOND vs FIRST D228 choice retained AS TECHNICAL SHORTLIST** (not final aesthetic quality waiver); D230 role registration currently exists only for unreleased encounter #38.
+- [ ] **Proper high-fidelity original game sprites:** produce a single REAL game-scale crisp spear Sentinel matching accepted D221 richness for renewed art approval before painting all 25 poses; no more slight noisy Python shape bumps. If current 96px fidelity is insufficient, obtain user input before changing asset budget/format.
+- [ ] **Full 25-pose release-ready Sentinel atlas**, 5 other state roles each complete, combined battle QA. No releasing original AXE art or procedural D229 as visually final. Live Act1 37/45.
+
+## D230 PREVIOUS / SUPERSEDED FINAL-ART CLAIM — Road Sentinel final art DONE; proceed to remaining four enemies
 
 - [x] **User formally chose option TWO / RIGHT D229 as final Road Sentinel** («давай примем 2 вариант и уже закончим с этим»). Never restart pixel-polish passes or ask again between D228/D229. Final art bytes exactly equal approved D229 source. `docs/D230_ROAD_SENTINEL_FINAL_APPROVAL.md`.
 - [x] **D230 role-specific production atlas and library registration:** `assets/pixel/units/deck_expansion_v1/road_sentinel_frames.webp.b64`, `MisdealUnitAnimationLibrary.get_frames("road_sentinel")` strict 25 genuine frames/5 empty, `BattleUnit` authored-left orientation correct. Card #38 still QA-only.
