@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D224 approved full Bearer 25-pose source preserved losslessly in GitHub; 576×480 repack + isolated native F6 art QA staged, Godot pending; 37/45 live). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D224 native Godot gallery load/attack visible; D225 left/right mirror controls committed; five-state two-way QA pending, 37/45 live). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,13 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D224 CURRENT — user-approved rich Lantern Bearer source + Godot 25-pose QA staged
+## D225 CURRENT — explicit two-way Bearer F6 gallery + source softness diagnosis
+
+User's Godot screenshot on 2026-10-17 shows **D224 selected B-art Bearer** playing at x3 and x1 with shield and separate lamp, on correct D209 forest, no QA error. This is a user-native **gallery loads / shield attack visible** result, NOT evidence of walking in both directions or complete animation/real combat PASS. Both sprite views had the same orientation; production `BattleUnit` uses `art_sprite.flip_h` to face its combat target, but the D224 gallery did not expose it.
+
+D225 changed ONLY `scripts/dev/black_lantern_bearer_d224_art_preview.gd`: `← ВЛЕВО` / `ВПРАВО →` buttons now flip both 3x and 1x AnimatedSprite2D simultaneously; state label displays direction and both view positions are integer aligned. Source illustrations appear authored facing screen RIGHT, so preview defaults to LEFT toward heroes. Godot `NEAREST` filtering was ALREADY enabled; blurred detail is baked into D224 adaptive downscale/cropped 96px input, and **no source art sharpen/upscale/cel corrections have been applied**. Visual polishing requires original pixel cleanup later. **D225 new two-way user-native F6 still pending.** Full contract: `docs/D225_BEARER_FACING_PIXEL_CLARITY_QA.md`. Current active pool 37/45 and #38 still QA-only.
+
+## D224 PREVIOUS — user-approved rich Lantern Bearer source + Godot 25-pose QA staged
 
 User approved corrected D223 freehand-lantern+plank-shield appearance («да все ок»), then said **«подходит»** to a newly generated transparent illustrated 5-row 25-pose image for `lantern_bearer`, source `спрайт_лист_скелета_рыцаря_с_фонарём.png` (1374×1145 RGBA, SHA-256 `4fb9e0ce2ebfcb608b35d948c084cb6cc5c41d43afe8310597bdc23959ad325f`). This is **USER ART/POSE CHOICE approval**, not native Godot motion approval. Source stored in GitHub as **visibly lossless** original WebP/B64: `assets/pixel/units/black_lantern_road_qa/lantern_bearer_d224_approved_original_lossless.webp.b64`. A separate **576×480 6×5 96px repacked candidate**, `lantern_bearer_d224_approved_repacked_candidate.webp.b64`, was derived with state rows idle4, walk6, attack6, hit3, death6, five alpha-empty cells. 25 images distinct, zero 2px atlas margin warnings in Pillow. GitHub B64 exactly matched the locally checked asset; reproducing from lossless GH input through `tools/art/inspect_and_repack_lantern_bearer_d224.py` yielded identical WebP SHA `816efbc6416a65408b5f3aa121b8a3985a3ce67dcd26a5ce17af992a98c15b87`. **Source frames crossed original cell seams**; reconstruction/adaptive cuts may clip details or change apparent pixel scale, so native visual QA is mandatory. Standalone F6 scene `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn` and 3×/1× animations staged, **USER-NATIVE F6 PENDING**. Nothing changed in `MisdealUnitAnimationLibrary`, `battle.gd`, normal card pool or D209 backdrop; #38 QA-only, 37/45. Canonical: `docs/D224_LANTERN_BEARER_APPROVED_ART_QA.md`.
 
