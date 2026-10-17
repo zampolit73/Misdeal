@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D211: Spear Sentinel A/B illustrated alternatives (art direction only)
+
+- Created two isolated pixel-art **character silhouette concept crops**, both correctly show a LONG SPEAR unlike rejected D205 axe: A armored pauldron/lantern on shaft and B ragged hood/lantern on shaft. Comparison board `Misdeal_D211_Road_Sentinel_Concept_Options.png` contains native 96px cell scale sanity checks; source and board exist as conversation art only.
+- **No real 25-frame atlas**, no isolated-alpha sprite and no native character motion approval; both diagonal spears reduce readable body size when forcing 96×96. User design choice A/B pending; next actual production needs new cel-accurate spearman, not cropping the concept sheet.
+- Added `docs/D211_ROAD_SENTINEL_SPEAR_CONCEPT_OPTIONS.md` with strict exact-art/animation gate. No combat, card pool, accepted D209 arena or frozen KARAMBA73 changes.
+
 ## 2026-10-17 — D210: User-native D209 forest layout PASS; five-animation-sheet art audit
 
 - User supplied screenshot of `black_lantern_road_arena_visual_preview.tscn` with correct third forest artwork, 3 hero + 5 enemy proxies, 2 legible light pools and replied «все ок». **D209 Godot visual-composition PASS** (not actual sprites/combat).
