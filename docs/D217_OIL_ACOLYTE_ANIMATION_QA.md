@@ -1,11 +1,22 @@
 # D217 — Oil Acolyte / Масляный служка: original 25-state animation QA staging
 
-Date: 2026-10-17. **SOURCE COMMITTED TO GITHUB, GODOT F6 NOT RUN; ALL LIVE GAMEPLAY UNCHANGED.** Act1 **37/45**; #38 `black_lantern_road` is QA-only.
+Date: 2026-10-17. **USER-NATIVE GODOT F6 RETURNED BORDER FAIL; SVG SOURCE HOTFIX COMMITTED; RE-RUN PENDING. ALL LIVE GAMEPLAY UNCHANGED.** Act1 **37/45**; #38 `black_lantern_road` is QA-only.
+
+## D217 SVG death-cel border hotfix — user-native FAIL, source fix F6 pending
+
+**2026-10-17 user's Godot 4.7.x screenshots:** the D217 F6 gallery loads the exact user-approved D209 forest but raises red `D217 / QA FAIL: D217 проверка атласа: край ячейки 4:4 / край ячейки 4:5`. These are **zero-based row=4 (death), columns=4 and 5 (death frames 5 and 6)**, *not* a Godot parser error or an issue in D209 art. The independent Pillow raster D217 candidate's offline QC did not apply to this **different SVG asset**; do not conflate them.
+
+**Root cause found in GitHub SVG** `assets/pixel/units/black_lantern_road_qa/oil_acolyte_d217_vector_candidate.svg`: two low chest/rib strokes in last two death cels extended past y=93 alpha-safe 96px tile: `M39,94L54,96` and `M40,93L55,95`, stroke width 2px. At rasterization they touched the bottom cell margin. Fixed **source art**, not QA thresholds: removed ONLY these two superfluous off-screen rib strokes, leaving skeleton, face, hook sickle, separate oil flask, belt lantern, boots and all other cels untouched. Commit **`a8a80f1ba73a148e9f52b63f776779171938a528`**. GitHub source re-fetch/geometry scan: **25 authored `<g>` cell groups**, approximate geometric max Y for affected death cels now 93 and 92.5; none of 25 groups exceed the 2px allowed frame edges by SVG geometric bounds. This **does not equal native Godot F6 PASS**; antialias/rasterizer needs user rerun. Do NOT change `_inspect()` acceptance rules to work around malformed art.
+
+**D216 separate screenshot:** the Lantern Bearer F6 gallery shows its intended character both at 3× and 1× on the D209 forest and displays `АТАКА ЩИТОМ`; no red QA failure is visible. Record **D216 native visual load and shown attack pose confirmed**, but **do not claim all idle/walk/hit/death states individually validated** from this still image.
+
+**NEXT USER ACTION:** `git pull`; F6 **`res://scenes/dev/black_lantern_oil_acolyte_animation_preview.tscn`**. Expect the red border FAIL to disappear and 3×/1× original Oil Acolyte to animate with sickle/flask/lantern. User can then click five state buttons and report any defect or «все ок». Only after this screen result can D217 be marked native PASS. Existing QA-only SVG art does NOT register `oil_acolyte` in production animation loader, doesn't alter `battle.gd`, UnitData or live deck; Act1 still **37/45**, #38 unreleased, frozen `backups/KARAMBA73-2026-10-16` unchanged.
+
 
 ## Exact current gates / evidence
 
 - **D215 Road Sentinel:** user replied «все ок продолжай дальше» after the 5-state native F6 test request; accepted as a user-reported standalone animation/gallery OK, NOT confirmation of a true #38 battle/reward route.
-- **D216 Lantern Bearer:** original 25-frame shield+lantern QA atlas, local PNG/WebP producer and Godot F6 gallery are already in GitHub. **There is NO D216 user F6 result yet**. User's subsequent «продолжай» means proceed with more work, not retroactive PASS.
+- **D216 Lantern Bearer:** original 25-frame shield+lantern QA atlas, local PNG/WebP producer and Godot F6 gallery are already in GitHub. **A D216 user F6 screenshot is now received**: gallery shows original shield/lantern at 3× and 1×, attack-with-shield pose, no red QA FAIL. Full five-motion feedback not yet received.
 - **D217 Oil Acolyte:** third distinct enemy identity, a *light-boned nervous skeletal ritualist* with a visible **separate oil flask, open curved SICKLE (not an axe)** and small hanging belt lamp. No new oil/burning/attack buffs or new unit mechanics are authorized by this purely visual pass.
 
 ## TWO separate candidate representations — don't conflate them
@@ -23,7 +34,7 @@ These art assets are source trials, **not final production animation**. No conve
 - Decodes the committed SVG directly with `Image.load_svg_from_buffer(source_svg.to_utf8_buffer())` into a native 576×480 `Image`, generates Godot `SpriteFrames` in **idle4, walk6, attack6, hit3, death6** layout, and runs alpha/25-unique/5-clear/border QC **on the rendered data** before showing the sprites.
 - Displays interactive **3×** enlarged and **1×** battle-scale examples, with buttons `ОЖИДАНИЕ / ХОДЬБА / АТАКА / УРОН / СМЕРТЬ`.
 - Is independent of real `battle.gd`, normal card routing, encounter damage stats and sprites.
-- **Native Godot F6 result NOT RECEIVED.** If SVG rasterization or cell margin check fails, fix the current GitHub SVG and QA scene; do not assert PASS.
+- **Native Godot F6 FAIL screenshot RECEIVED**, showing edge warnings for last two death cels. SVG source corrected (see dated hotfix above); **post-fix F6 NOT RECEIVED**, so do not assert PASS.
 
 ## User test after git pull
 
