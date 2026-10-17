@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-17 (D217 fixed native F6 user-reported PASS; D218 original 25-frame towering Guide QA gallery/source in GitHub, native D218 F6 pending). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-17 (D218 Guide user feedback positive; D219 fifth original Archer QA atlas/gallery committed, native F6 pending; Act1 still 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -31,6 +31,15 @@ Updated: 2026-10-17 (D217 fixed native F6 user-reported PASS; D218 original 25-f
 - [ ] **D219 final Lantern Archer:** new original 25-frame archer bow, quiver and lantern, with proper bow draw and user-native gallery before battle.
 - [ ] **D216 five-state art approval** — gallery **renders** (user screenshot shows 3×/1× and shield attack, no QA FAIL); idle/walk/hit/death motion not yet separately confirmed. Scene: `res://scenes/dev/black_lantern_bearer_animation_preview.tscn`, check stance/foot contact, shield attack and final collapse on approved D209 arena.
 - [ ] After sprite approval: Godot animation F6, actual #38 five-enemy battle with encounter-only light, then real reward→table and release smoke before Act1 **38/45**.
+
+## D219 — fifth original role, art integration/release still gated
+
+- [x] D218 triple-lantern Guide standalone preview: user replied **«отлично»** after native F6 request. Positive user feedback; no independently supplied new screenshot/log, nor real battle validation.
+- [x] D219 original Lantern Archer 25-pose alpha WebP/B64 and editable Pillow art source created and committed: curled bow, quiver, amber lamp, intentional draw→loose→recover; **25 distinct / 5 empty / 0 border flags** offline, GitHub content verified; native F6 pending.
+- [ ] **D219 native F6:** `res://scenes/dev/black_lantern_archer_animation_preview.tscn`. Judge 3×/1× bowstring, arrow leftward, alternating feet, grounded death and health/HUD room on accepted forest.
+- [ ] Joint animation-scale/orientation QA for all five roles on D209; D216 Bearer complete five-motion user check if needed.
+- [ ] Only after art/native QA: register five distinct original enemy roles in animation library for **QA-only** real `black_lantern_road` encounter, wire moving light, verify real Battle→Reward→Table; 54-case regression and full-pool release smoke before live card #38/45.
+- [ ] Preserve `backups/KARAMBA73-2026-10-16`, live 37-card deck and accepted older encounters.
 
 ## Next (strict order)
 
