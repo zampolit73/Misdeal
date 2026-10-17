@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-18 — **D234 fix of free-hand lantern attachment in 4 rich-style Sentinel idle frames STAGED; user D233 visual rejection captured; native x1 compare pending; no new live #38, 37/45**.
+Updated: 2026-10-18 — **D235 USER APPROVED rich Style-B six-walk illustration and GitHub art reference archived (1536×1024); need actual 96px transparent six-cel motion, not a finished native atlas; #38 QA-only, 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,17 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D234 — EXACT CURRENT USER CHECK: lantern held by wrist, not floating
+## D235 — EXACT CURRENT HANDOFF: six-walk visual reference USER APPROVED, build actual native motion
+
+Latest user message **«принято»** immediately following a newly generated rich six-walk-pose Sentinel illustration. **APPROVED ART REFERENCE IS NOW THE 3×2 COMPOSITE** `шесть_кадров_шагающего_скелета_воина.png` (1536×1024 RGBA, SHA `9fa8e48baed60364411e13e2a58d1549e052bbdc250c26b37933d2081442b181`): ornate dark iron and big three-part shoulder guard, frayed burgundy hood/cape, true pointed long SPEAR, glowing amber lantern held by the free gauntlet. THIS supersedes the simplified D229 fidelity for final production art and continues D234 correct wrist-grip styling. **Do not ask user to choose another look; this six-pose image was accepted.**
+
+**Art file IN GITHUB:** `assets/pixel/units/black_lantern_road_qa/road_sentinel_d235_approved_walk_concept_q95.webp.b64` — full 1536×1024 approved poster composition preserved at WebP Q95 (not pixel-identical original), reference meta `docs/qa/D235_SENTINEL_WALK_CONCEPT_REF_QC.json`. Visual/art task specification `docs/D235_SENTINEL_WALK_ART_APPROVAL.md`.
+
+**CRITICAL TRUTH:** The illustration is 3 columns × 2 rows over a brown atmospheric background, NOT 576×480 transparent 6×5 cels, and does not prove six mechanically correct different walking poses (poses appear quite similar). The source must be art-authored/isolated into **six genuine individual 96px RGBA WALK frames** with changing leg placement, planted foot, body weight, spear and wrist-lantern continuity, 2px alpha margins; no poster slicing masquerading as finished animation. Then build native Godot F6 x1 preview on exact accepted D209 forest. **No active sprite switched** and no Godot F6 test has yet been done for D235. Current `MisdealUnitAnimationLibrary.get_frames("road_sentinel")` still returns technical D229 staged for QA only, D234 has 4 limited idle cutout variants, entire final 25 cels not done. #38 not in ordinary pool, normal Act1 **37/45**.
+
+NEXT: make six original walk animation frames (not merely rename six poster portraits). Once a true native-x1 walking loop works and looks like accepted rich image, continue spear attack6, hit3, death6, build complete 25 original, then cast and actual #38 battle/light/reward/fullpool. Preserve D200 third card, D209 third moonlit forest, D196 sea waves, DS2, Fate Spread12+XIII and frozen KARAMBA73. No repeat visual re-selection or GitHub access request.
+
+## D234 — PREVIOUS HANDOFF: lantern held by wrist, not floating
 
 User explicitly said **«тут как будто бы он не держит фонарь»** on D233 4-idle cutout result. This is a specific **user visual FAIL**. Source D232 illustrated guardian has original lantern at knee x~54 while right/free gauntlet is x~82,y~79; D233 moved lantern independently, so no visible grip. User next said **«продолжай»**, authorizing specific attachment fix.
 
