@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D219: fifth original Lantern Archer 25-frame candidate and F6 gallery
+
+- User gave positive feedback «отлично» after D218 Guide F6 request. This permits proceeding; native D218 full five-state motion still has no supplied detailed log.
+- Created genuine QA-only 25-frame `lantern_archer` pixel-art atlas with curved bow, quiver, amber lantern, specifically differentiated six-frame draw/loose animation, two-grounded-step walk, recoil and collapse. Correct 576×480 alpha 6×5/96px in `assets/pixel/units/black_lantern_road_qa/lantern_archer_d219_candidate.webp.b64`, original reproducible `tools/art/author_lantern_archer_d219.py`.
+- Addressed original bottom-bleeding death poses and unnatural upright quiver before export. Offline: 25 distinct nonempty, 5 unused transparent, zero 2px-border flags; GitHub Base64 exact text equality verified against local QA output.
+- Added **QA-only** `res://scenes/dev/black_lantern_archer_animation_preview.tscn` / GDScript showing 3×/1× on accepted D209 arena with strict live image validation and five animation controls. Native F6 pending. No live sprite library, Battle, UnitData, projectile, card pool or KARAMBA73 changes. Detailed `docs/D219_LANTERN_ARCHER_ANIMATION_QA.md`.
+
 ## 2026-10-17 — D218 original towering Guide art/source and QA-only F6 gallery; D217 native post-fix PASS
 
 - User replied «все ок» after the D217 original SVG death border fix and exact Godot F6 retest request. Treat D217 isolated user-native QA as PASS, not real combat.
