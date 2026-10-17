@@ -1,6 +1,6 @@
-# D223 — Lantern Bearer: correct shield + separate hand-lantern concept (USER ART APPROVAL PENDING)
+# D223 — Lantern Bearer: correct shield + separate hand-lantern concept (USER ART APPROVED)
 
-Date: 2026-10-17. Status **NEW CORRECTED ART-LOOK CANDIDATE PRESENTED TO USER / NOT YET APPROVED / NOT AN ANIMATION ATLAS**. Live Act1 remains **37/45**, #38 `black_lantern_road` QA-only.
+Date: 2026-10-17. Updated: **USER APPROVED D223 with «да все ок»; later selected D224 detailed 25-pose art with «подходит». D224 native atlas QA pending.** Live Act1 remains **37/45**, #38 `black_lantern_road` QA-only.
 
 ## Latest working context and purpose
 
@@ -18,6 +18,6 @@ The D220 five-enemy **style B** is the approved common visual language. D221 arm
 
 ## Quality gate and next action
 
-**USER ART APPROVAL IS PENDING**: show this exact character crop to user and ask for approval or specific changes. No inference of visual approval from their previous «продолжай». If approved, lock this image as *design reference* only and create new real 25 meaningful pixel frames; avoid repeating the prior generated boards with fake labels/rows. Required actual in-game source atlas remains exactly **576×480, 6×5×96px, 25 meaningful distinct cels + 5 fully transparent** in per-animation rows: idle4+2clear, walk6, attack6, hit3+3clear, death6. True alpha-safe 2px margins, no clipped board/lantern, boots grounded, full-body defensive walk, **shield bash, not spear thrust**, believable death; verify 1× native readability on EXACT D209 approved arena, native F6 animation gallery, and all-five lineup before registering final production assets. Current D216 simplified shield-bearer sprite remains a technical QA temporary candidate.
+**D223 ART DIRECTION ACCEPTED**: user replied «да все ок». A new detailed 25-pose sheet was subsequently generated and user explicitly chose it with «подходит». The approved source has been preserved losslessly in GitHub and its first 576×480 repack staged in an isolated QA F6 scene; see `docs/D224_LANTERN_BEARER_APPROVED_ART_QA.md`. Actual native animation approval and production registration are still pending. Required actual in-game source atlas remains exactly **576×480, 6×5×96px, 25 meaningful distinct cels + 5 fully transparent** in per-animation rows: idle4+2clear, walk6, attack6, hit3+3clear, death6. True alpha-safe 2px margins, no clipped board/lantern, boots grounded, full-body defensive walk, **shield bash, not spear thrust**, believable death; verify 1× native readability on EXACT D209 approved arena, native F6 animation gallery, and all-five lineup before registering final production assets. Current D216 simplified shield-bearer sprite remains a technical QA temporary candidate.
 
 Neither D223 concept nor prior D222 boards have been transferred into production sprite library, no Godot scenes/UnitData/encounter mechanics/live card count changed. User requested final replacements for ALL FIVE characters before card #38 release (D220), preserved. Frozen branch `backups/KARAMBA73-2026-10-16` untouched. See D214, D220–D222 and `docs/HANDOFF.md`.
