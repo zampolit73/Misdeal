@@ -44,7 +44,7 @@ User Godot screenshot on 2026-10-17 showed the exact third forest background, 3 
 
 D210 inspected all five generated 1254×1254 5×5 skeletal sheets and staged 576×480 6×5 preview contact board with sample IDLE/WALK/ATTACK/HIT/DEATH frames (conversation-only `Misdeal_D210_Animation_Review.png`). Source border-contact warning counts remain **13/20/24/21/13** for Guide/Bearer/Sentinel/Acolyte/Archer. These are **risk flags** requiring art review, not proof every flagged frame is irreparable. Major design block: Sentinel still carries an axe, **must be the approved spear**; bearer defensive rig, acolyte oil/sickle, Guide 2× height, archer silhouette require full-motion quality gates. None of five unapproved atlases is live or in GitHub game art. See `docs/D210_BLACK_LANTERN_ANIMATION_ART_QA.md`. Keep 37/45, no #38 in normal pool.
 
-## D209 — Exact selected moonlit forest battle arena in GitHub, native visual F6 next
+## D209 — Selected moonlit forest battle arena committed, user-native visual F6 PASS
 
 Committed the **exact user-approved third forest** from source `лунная_дорога_через_туманный_лес.png` (original 1672×941) as 1280×720 WebP/Base64 `assets/pixel/battle/arenas/black_lantern_road_arena_selected_v1.webp.b64`, no repaint/replacement. Export WebP SHA-256 `b82a0eb5f88113522fe31371b3cec634a059886fa001fbafb71c0794bad52307`. Verified GitHub blob SHA `6fad8192e4e2a9baa308db82e0ce84beeeb167ad` matches encoded export bytes. Added `black_lantern_road` to the existing authored-backdrop loader without changing other arena IDs.
 
