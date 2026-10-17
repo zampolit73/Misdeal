@@ -1,3 +1,11 @@
+## D210 — Approved #38 forest native, five original skeletal animation atlas roles QC BLOCKED
+
+User-native Godot F6 screenshot and «все ок» (2026-10-17) accept the exact D209 third forest artwork in `assets/pixel/battle/arenas/black_lantern_road_arena_selected_v1.webp.b64` with 3 hero / 5 enemy proxy layout and two amber light circles, **visual-only**. The previous D203/D201 "arena pending" sections below are historical and superseded, not the current gate.
+
+D205 candidate 5×5 sheets for five new distinct skeletons have 13/20/24/21/13 source-frame boundary contact warnings (Guide/Bearer/Sentinel/Acolyte/Archer); converted 6×5 preview art is not approved or in GitHub runtime assets. Road Sentinel is wielding an **axe**, contrary to locked **spear**; bearer shield rig, acolyte oil/sickle, Guide 2× scale/floor anchors and archer also need real animation review. D210 contact sheet and report are conversation attachments, not game imports. Acceptance conditions: `docs/D210_BLACK_LANTERN_ANIMATION_ART_QA.md`. Live Act1 37/45; no #38 battle or art switch.
+
+---
+
 # Misdeal — Active Visual Asset Registry
 
 ## D203 — D201 arena candidates audited but UNAPPROVED
