@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-17 — D216: native D215 OK and QA-only 25-cel Lantern Bearer animation art
+
+- User replied **«все ок продолжай дальше»** after D215 Road Sentinel animation gallery review; record user-native standalone gallery QA OK, not #38 battle release.
+- Drew completely new flat pixel-art **Lantern Bearer** 576×480 RGBA row-per-state (idle4, walk6, attack6, hit3, death6), 25 individually articulated poses with wooden barricade shield and separately swinging amber lantern; 5 transparent unused cells and **zero border contact warnings** after shifting last falling poses.
+- Committed lossless WebP/B64 under **QA-only** `assets/pixel/units/black_lantern_road_qa/lantern_bearer_d216_candidate.webp.b64`, confirmed GitHub encoded bytes match local source, source `tools/art/author_lantern_bearer_d216.py`, plus `res://scenes/dev/black_lantern_bearer_animation_preview.tscn` and controller. F6 native visual PASS **NOT YET REPORTED**.
+- No shield mechanics, UnitData stat changes, production SpriteFrames registration, battle logic or regular deck changes. Detailed `docs/D216_LANTERN_BEARER_ANIMATION_QA.md`; Act1 37/45 and frozen `КАРАМБА73` preserved.
+
 ## 2026-10-17 — D215: First genuine spear Sentinel 25-frame QA candidate and native animation gallery
 
 - Produced original 576×480 RGBA 6×5 atlas for D211 user-selected armored `road_sentinel`, through authored native-pixel limb/armor/spear/lantern cels rather than rescanning the rejected 5×5 axe sheet. **25 unique nonempty poses**, 5 alpha-empty, **zero cell-margin warnings** after death sprite adjustment; correct animation rows (4/6/6/3/6). First draft artistic fidelity is intentionally not described as user-approved.
