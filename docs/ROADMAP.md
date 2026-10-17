@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-17 (D224 user-approved new 25-pose Bearer sheet preserved losslessly + 576×480 F6 candidate; Godot visual test pending, live Act1 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-17 (D224 user Godot screenshot shows native gallery/attack; D225 both-facing toggle in F6 committed; source softness from resampling, 37/45 live). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -11,6 +11,13 @@ Updated: 2026-10-17 (D224 user-approved new 25-pose Bearer sheet preserved lossl
 - [x] D196 storm VFX held as the current visual baseline after user's request; no more wave tuning in this phase.
 - [x] D197 user-native preflight and real battle → reward → table confirmed («Все ок»).
 - [x] **D198 Black Crossing #37 fully released.** Live 37-card pool, migrated D151–D153/shepherd smoke guards and full-pool random-deal release scene committed. The user replied **«все ок»** to the requested Godot F6 release smoke (user-reported native PASS, no independent log).
+
+## D225 next QA gate — D224 art turning left/right
+
+- [x] **D224 native gallery screenshot received:** correct D209 backdrop, selected Bearer full art visible in x3 and x1, shield-attack pose on screen. This is **NOT** the full five-motion or two-way motion PASS.
+- [x] **D225 gallery both-facing controls added** to `scripts/dev/black_lantern_bearer_d224_art_preview.gd`: two buttons `← ВЛЕВО` / `ВПРАВО →` flip both views together and update the current state label. Both views retain nearest filtering; no actual 25-cel image bytes changed.
+- [ ] **D225 native Godot F6:** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
+- [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
 ## D209/D210 status
 
