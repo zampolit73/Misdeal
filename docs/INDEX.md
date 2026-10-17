@@ -1,5 +1,5 @@
 # Misdeal Documentation Index
-Updated 2026-10-17 — D211 two Road Sentinel spear concepts A/B offered, user selection pending, 5 original atlas production blocked; Act1 37/45.
+Updated 2026-10-17 — D211 Sentinel option A selected; D213 corrected original animation atlas row contract; D214 Lantern Bearer 25-pose spec ready; no sprite imports, Act1 37/45.
 
 ## Read first (current, short, authoritative)
 
@@ -21,13 +21,15 @@ Updated 2026-10-17 — D211 two Road Sentinel spear concepts A/B offered, user s
 - [D153 encounter specification](DECK_EXPANSION_D153_THREADBARE_THEATRE.md).
 - [Black Crossing #37 encounter, battle QA and release gates](D188_BLACK_CROSSING_ENCOUNTER.md).
 - [D199 approved card #38: Road of Black Lanterns concept, five skeletons and production gates](DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md).
-- [D211 long-spear Road Sentinel two illustration concepts](D211_ROAD_SENTINEL_SPEAR_CONCEPT_OPTIONS.md) — **current art-selection gate, not animated sprites**.
+- [D213 canonical five-skeleton animation master production brief](D213_BLACK_LANTERN_MASTER_ANIMATION_BRIEF.md) — **correct 6×5 Godot state-row layout, supersedes chat D212/D213 row-major layout**.
+- [D214 Lantern Bearer art production specification](D214_LANTERN_BEARER_PRODUCTION_SPEC.md) — 25 original cel descriptions, shield/lamp identity, pixel QA; awaiting production sprites.
+- [D211 long-spear Road Sentinel two illustration concepts](D211_ROAD_SENTINEL_SPEAR_CONCEPT_OPTIONS.md) — **user selected option A**, not yet animated sprites.
 - [D210 five skeletal animation source QC and acceptance requirements](D210_BLACK_LANTERN_ANIMATION_ART_QA.md) — current #38 art stage.
 - [D209 approved original forest scene and native lanternlight/footprint QA](D209_BLACK_LANTERN_ARENA_NATIVE_QA.md) — native composition F6 approved.
-- [D208 54-case baseline and local lanternlight balance candidate](D208_BLACK_LANTERN_BALANCE_PASS.md) — current next-F6 gate.
+- [D208 54-case baseline and local lanternlight balance candidate](D208_BLACK_LANTERN_BALANCE_PASS.md) — historical D208 simulation comparison, both native functional PASS.
 - [D207 54-case native BattleUnit matrix](D207_BLACK_LANTERN_BATTLE_MATRIX.md) — historical D207 native 54/54 functional PASS.
-- [D206 staged encounter resources, isolated lanternlight and native contract smoke](D206_BLACK_LANTERN_ENCOUNTER_STAGING.md) — **current #38 gate**.
-- [D205 selected forest arena, sprite concept QA, and light preview](D205_BLACK_LANTERN_ASSET_AND_LIGHT_STAGING.md) — current card #38 gate; exact F6 scene and asset blockers.
+- [D206 staged encounter resources, isolated lanternlight and native contract smoke](D206_BLACK_LANTERN_ENCOUNTER_STAGING.md) — historical D206 isolated contract PASS.
+- [D205 selected forest arena, sprite concept QA, and light preview](D205_BLACK_LANTERN_ASSET_AND_LIGHT_STAGING.md) — earlier art stage notes; D209 arena F6 already approved.
 - [D153 D176 balance/QA](D153_BALANCE_D176.md).
 - `UNIT_ANIMATION_PACK1.md`, `UNIT_ANIMATION_PACK2.md` — sprite frame contracts, where relevant.
 - `NEXT_CHAT_HANDOFF.md`, `SESSION_CHECKPOINT.md`, `D153_NEXT_CHAT_START.md` — intentionally short compatibility pointers to canonical `HANDOFF.md`.
