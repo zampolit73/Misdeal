@@ -1,7 +1,9 @@
 # Misdeal Documentation Index
-Updated 2026-10-17 — D219 standalone Archer F6 user-reported OK; D220 five production-quality sprite REPLACEMENTS required before #38 release, live Act1 37/45.
+Updated 2026-10-17 — D221 user approved coherent group style B and detailed spear Sentinel appearance; five real painted animation atlases still pending, Act1 37/45.
 
-**CURRENT D220 ART GATE:** [Replace all five technical QA skeleton sprites with original final Misdeal-style art before #38 release](D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md). D219 F6 isolated preview was user-accepted, not polished art. Main deck remains 37/45.
+**CURRENT ART GATE:** [D221 approved Sentinel art direction](D221_SENTINEL_FINAL_STYLE_APPROVAL.md) — approved detailed illustration, NOT playable sprite frames. [D220 mandatory final replacements](D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md) remain outstanding.
+
+**D220 BACKGROUND:** [Replace all five technical QA skeleton sprites with original final Misdeal-style art before #38 release](D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md). D219 F6 isolated preview was user-accepted, not polished art. Main deck remains 37/45.
 
 ## Read first (current, short, authoritative)
 
