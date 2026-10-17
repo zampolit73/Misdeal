@@ -1,6 +1,6 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-17 (D227 original Sentinel improved B-style 25-cel art committed with separate native F6 viewer, no real battle/release; live 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-17 (D228 Road Sentinel native-pixel detail pass committed, separate x1/x3 two-facing Godot F6 pending, #38 art still unapproved; live 37/45). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
 ## Completed / locked
 
@@ -20,7 +20,14 @@ Updated: 2026-10-17 (D227 original Sentinel improved B-style 25-cel art committe
 - [x] **D225 native Godot F6 previously requested (now user-confirmed):** same `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`. Check walk / shield attack / fall in BOTH directions. The image's slightly soft details originate from prior 1374→96 pixel repack, not a missing NEAREST setting. Original art refinement later, do NOT silently sharpen user-approved source.
 - [ ] Original five-role final polished atlases + combined five-vs-three art review, Battle→Reward→Table and #38 release gates remain.
 
-## D227 next native art QA gate — original painted Sentinel 96px
+## D228 next QA gate — style-B Sentinel art fidelity
+
+- [x] **D228 native sprite repaint shipped to QA branch of main:** detailed 96px original armor shapes, frayed burgundy cloak, upgraded genuine spear head and bindings, lantern metal cage. 25 different physical animation cels/5 empty/zero alpha border violations, correct 6×5 row-per-state. D227 preserved for visual comparison. `docs/D228_SENTINEL_ORNAMENTAL_PIXEL_ART_QA.md`.
+- [x] **Isolated D228 F6 Godot gallery added:** `res://scenes/dev/black_lantern_sentinel_d228_art_preview.tscn` x3/x1, left/right, all five state buttons, approved D209 backdrop.
+- [ ] **D228 native user art/animation QA:** verify appearance at x1, full spear thrust, lantern/cape staying attached through walking and collapse, both directions. No actual F6 PASS as of this commit. Polished accepted D221 visual target remains a hard gate.
+- [ ] **Before live release:** final-art quality for all five enemies, integrated real #38 Battle→Reward→Table/light and full-pool/matrix smoke; ordinary pool stays 37/45.
+
+## D227 previous native art QA gate — original painted Sentinel 96px
 
 - [x] **D227 25-frame pixel art pass committed**: true native-resolution geometry (armor, skull, cloth, spear, lamp and greaves), alpha-safe original frames `idle4/walk6/attack6/hit3/death6`, five transparent cells, 25 unique, zero border touches. Original D226 QA untouched; **full D221 visual fidelity still not claimed**. `docs/D227_SENTINEL_PIXEL_FIDELITY_QA.md`.
 - [x] **D227 F6 scene committed** `res://scenes/dev/black_lantern_sentinel_d227_art_preview.tscn` with x3 / x1 and LEFT/RIGHT, on accepted D209 forest.
