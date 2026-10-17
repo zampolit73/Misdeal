@@ -1,6 +1,6 @@
 # D209 — exact user-approved Black Lantern Road forest arena: GitHub import and F6 layout QA
 
-Date: 2026-10-17. State: **ART SOURCE COMMITTED AND SHA-VERIFIED, GODOT F6 VISUAL REVIEW PENDING.** Live Act1: **37/45**. #38 remains QA-only.
+Date: 2026-10-17. State: **EXACT ARENA ART NATIVE F6 VISUAL PASS — user screenshot and «все ок» received.** Live Act1: **37/45**. #38 remains QA-only.
 
 ## Authoritative original and binary traceability
 
@@ -24,14 +24,14 @@ Run `res://scenes/dev/black_lantern_road_arena_visual_preview.tscn` (F6). This n
 
 QA-only proxy silhouettes are deliberately rectangular, **not** replacement art, stylized "final" characters or evidence that the new five skeletal animations exist. All combat stats and balance timings remain unchanged; the failed +22% D208 experiment was reverted to **1.16** in `cc624e3` before D209 import.
 
-## Native F6 checklist — awaited
+## Native F6 checklist — user screenshot PASS (2026-10-17)
 
 1. The **exact previously selected** moonlit forest scene is displayed edge-to-edge, no blank/black background or duplicate castle.
 2. Three blue proxy characters occupy road on the left and five bronze skeletal proxies occupy right of road; the tall Guide is clearly ~2× others. Feet remain on grounded surface, no obstacle/foreground collision; large Guide not hidden by upper labels.
 3. Two warn-then-move lanternlight circles remain legible *on top of warm highlights baked into the road*; moving circles stay underneath proxy silhouettes and do not cover UI. Warning → active → dark → repeat; pause toggles, floor debug outline toggles.
 4. If leg placement/color contrast is off, adjust only this F6 staging and later approved encounter-scoped pool paths; do not force visual art or global movement changes.
 
-The user should `git pull`, F6 **this new scene**, and send a screenshot or simple confirmation. **No native Godot test has been run by the assistant.** Do not mark the arena native PASS until user evidence is received.
+**User has now sent the F6 screenshot and replied «все ок».** The exact selected forest backdrop and layout are accepted as an art-composition preview, with 3 blue hero proxies, 5 bronze enemy proxies and two visible amber light circles. This is user-native visual PASS (not independently run by assistant); no real skeletal sprite animations, physics contact, combat bonuses or reward routing were tested. D210 animation art QA is next: `docs/D210_BLACK_LANTERN_ANIMATION_ART_QA.md`.
 
 ## Remaining D210 gates
 
