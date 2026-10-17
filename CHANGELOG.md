@@ -2,6 +2,14 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D236: real six-step gait PILOT with accepted D234 rich torso/held lamp
+
+- Attempted extracting original D235 3×2 illustrated poster into real alpha animation; automatic background matting left visible brown gradients and truncated spear. **REJECTED**, not shipped as engine art.
+- Added reproducible `tools/art/author_road_sentinel_d236_walk6_pilot.py` using approved D234 illustrator body/free-hand attached lantern and six author-controlled alternating boot and armored shin articulation states. Genuine moving legs, while upper body repeats D234 partial cels; therefore **not a complete individually illustrated D235-quality six-frame atlas**.
+- Staged `assets/pixel/units/black_lantern_road_qa/road_sentinel_d236_walk6_pilot.webp.b64`: valid lossless 576×480 / 96×96, exactly **6 distinct row1 WALK** poses and **24 clear others**, zero boundary faults, WebP SHA `c37d8155925de2e6cad90140cbe5328b91fa489b7ed4da2c301cd30b8b1ac6fb`; `docs/qa/D236_SENTINEL_WALK6_PILOT_QC.json`.
+- Added QA-only `res://scenes/dev/black_lantern_sentinel_d236_walk6_pilot.tscn` with original D209 forest, left D234 4-IDLE and right D236 6-WALK, x3/x1 and pause/flip. **Godot native F6 and style acceptance pending**, not integrated with real battle; only six walk cells, still no attack6/hit3/death6 rich originals.
+- Full current handoff `docs/D236_SENTINEL_WALK6_MOTION_PILOT.md`; ordinary live 37/45, #38 QA-only, no changes to active actors, D200/D209 or frozen KARAMBA73.
+
 ## 2026-10-18 — D235: user accepts rich six-pose Sentinel WALK visual; source archived
 
 - User explicitly **«принято»** on the new 1536×1024 3×2 richly illustrated skeletal Road Sentinel walk concept with real pointed long SPEAR, layered plate, burgundy cloak and separate amber **wrist-held lantern**. The selected visual direction is locked; retain D234 right-hand handle.
