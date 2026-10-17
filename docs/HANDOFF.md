@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D225 both-facing Bearer QA user OK; D226 new native 25-cel Sentinel B-palette/cape candidate and separate F6 preview committed, USER F6 + fidelity approval pending; live Act1 37/45**.
+Updated: 2026-10-17 — **D226 user-native Godot screenshot confirms Sentinel gallery + walk-left visible with no QA errors; D221 final art style NOT matched/approved, next native-pixel fidelity pass, Act1 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,13 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D226 — EXACT NEXT USER ACTION: native F6 for art-updated spear Sentinel
+## D226 — ACTUAL NATIVE SCREENSHOT RECEIVED; final art fidelity is the blocker
+
+**D226 current visual evidence:** User posted Godot 4.7.x screenshot with D226 gallery x3/x1 Road Sentinel on approved D209 forest, no red errors, `ХОДЬБА · ← ВЛЕВО` visible and left/right + 5 state controls. **CONFIRMED: native scene loads and shows a left-facing walk pose**. This does NOT prove animation states/direction completed or final-art acceptance. Assistant review finds simplified head/bones/armor and square lantern still far below the already approved D221 detailed B-style appearance; keep **final art gate OPEN** and plan true native-pixel 25-cel detailing pass. `docs/D226_SENTINEL_STYLE_B_ART_QA.md` updated. No game changes, 37/45 live.
+
+**NEXT FOR DEVELOPERS:** preserve existing D226 current art as a comparison candidate, then improve actual 96px hand-authored artwork across all 25 true state poses to match user's approved detailed D221 Sentinel concept, without rerouting code or recreating arena. Keep the spear not axe, hanging independent lantern, full readable body, real footprint/grounding and clear motion. After improved source Godot gallery, request user artistic review and test full left/right states. Do NOT treat screenshot alone as final art or actual #38 Battle→Reward→Table PASS.
+
+## D226 — PREVIOUS USER ACTION: native F6 for art-updated spear Sentinel
 
 User said **«все ок. давай дальше»** in response to D225 left/right toggles for the B-art Lantern Bearer gallery. Accept as **user-reported D225 facing-preview success**; full artistic polish and actual Battle sprite integration are still pending. No need to re-test D225 just to proceed.
 
