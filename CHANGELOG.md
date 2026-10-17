@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D238: Restore batch-first original 25-cel character art delivery
+
+- User explicitly requested the old workflow: finish all **25 real idle/walk/attack/hit/death poses** for the game in one batch instead of seeking approval for every minor animation increment.
+- Added permanent character-animation policy to `AGENTS.md` and locked D238 in `docs/DECISIONS.md`: self-QA five states, 6×5 packing, image fidelity, hand/weapon grip, leg contact, x1 appearance, clean alpha and frame uniqueness **internally**, show ONE complete F6 preview per character. True fundamental art direction changes still require user input; D168 2–3 card art choices unaffected.
+- Updated `PROJECT_STATE`, `ROADMAP` and `HANDOFF`: next is one full rich Road Sentinel atlas using approved D234 wrist-held lantern, D235 rich long-spear style and D236R walk, **not six-attack-only approval D237**. Complete pack not yet implemented in this policy-only commit.
+- No Godot/runtime/regular deck changes, #38 QA-only and 37/45 live; untouched KARAMBA73.
+
 ## 2026-10-18 — D237 handoff: user accepts repaired six-phase gait
 
 - User responded «пойдет» to the D236R A/B native visual comparison, so repaired D236R six-frame WALK accepted **for continued development**. Previous D236 gait still rejected.
