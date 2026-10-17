@@ -1,5 +1,7 @@
 # D229 — Road Sentinel native-scale A/B art comparison, not a final sprite
 
+**LATER OVERRIDING USER DECISION D230:** User explicitly chose the RIGHT/SECOND D229 as FINAL («давай примем 2 вариант и уже закончим с этим»). D229 artifact is now accepted and promoted unchanged to canonical `road_sentinel_frames.webp.b64`. All art-polish concerns/pending art votes below are historical as of D230; see `docs/D230_ROAD_SENTINEL_FINAL_APPROVAL.md`. **Native loader smoke still pending; #38 not yet in ordinary pool.**
+
 Date: 2026-10-18. Status: **SIDE-BY-SIDE GODOT QA COMMITTED, NATIVE F6 / FINAL ART APPROVAL PENDING.** Live Act1 remains **37/45**, #38 stays QA-only. Do not confuse a user request to «продолжай» with acceptance of D228.
 
 ## Why this stage differs from D226–D228
