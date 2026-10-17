@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-18 — **D236 user-rejected unnatural gait; D236R physically coherent 6-step stance/swing cutout pilot plus A/B Godot F6 committed, awaiting native QA; art not final; Act1 37/45**.
+Updated: 2026-10-18 — **D236R gait accepted by user («пойдет») as workable 6-frame walk; next D237 original spear-thrust six-frame art QA; D229 technical library unchanged, #38 not live, Act1 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,15 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D236R — EXACT CURRENT USER ACTION: compare repaired gait with REJECTED D236
+## D237 — EXACT CURRENT HANDOFF: user ACCEPTED repaired D236R walk; next create SPEAR ATTACK
+
+**LATEST USER MESSAGE:** «пойдет» to the D236R six-phase gait comparison where LEFT was user-rejected unnatural D236 and RIGHT was repaired support/swing D236R. Record **D236R WALK visually accepted for project progress**; no further invitation to recheck the same gait needed, unless a genuine later defect. This is **not** approval of all character art or full native battle: rich D235 look and D234 wrist-lantern anchor remain requirements. User did not request switching the production sprite or adding #38 to the deck.
+
+**Next stage D237:** build 6 original **long SPEAR thrust** attack frames with real weapon/arm/body motion: anticipation and grounded windup → outward pointed spear extension → clear contact pose → recovery to rest; no slashes or axe. Keep D234 free-hand gauntlet visibly holding lantern throughout, heavy legs planted consistently and preserve visually accepted D236R six-step gait source as separate WALK row1. Keep all new art as QA-only, judge ×1 against approved D235 before claiming finished 25. Implement in connected GitHub directly when user asks to continue. Current script `tools/art/author_road_sentinel_d236r_walk.py`; QA-only atlas `assets/pixel/units/black_lantern_road_qa/road_sentinel_d236r_walk6_support_cycle.webp.b64`, scene `res://scenes/dev/black_lantern_sentinel_d236r_gait_compare.tscn`. `docs/D236R_SENTINEL_GAIT_REPAIR_QA.md` records this approval and remaining qualification.
+
+**Currently** `MisdealUnitAnimationLibrary.get_frames("road_sentinel")` remains technical D229 25-cel placeholder in QA-only card #38; DO NOT confuse it with rich animated final character. `RunState.ACT1_CARD_IDS` contains 37 playable cards; #38 unreleased; D200/D209 accepted third art, D196, DS2 and frozen KARAMBA73 intact. Next also needs HIT 3, DEATH 6, full original 25-cel art and production QA after the attack; other four distinct skeletons remain incomplete.
+
+## D236R — PREVIOUS USER CHECK: compare repaired gait with REJECTED D236
 
 **Latest USER result** on D236: **«не естествено»**. Record D236 user-native visual FAIL; do NOT falsely accept gait. Assistant inspected source: six frame leg positions were wide and suddenly swapped sides, with a stationary body. User did not authorize abandoning approved D235 rich Style-B artwork or the D234 physically HELD lantern.
 
