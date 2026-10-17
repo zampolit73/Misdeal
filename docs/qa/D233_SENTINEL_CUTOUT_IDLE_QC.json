@@ -1,0 +1,40 @@
+{
+  "stage": "D233 4-frame IDLE cutout-rig experiment ONLY",
+  "atlas_size": [
+    576,
+    480
+  ],
+  "visible_frame_count": 4,
+  "transparent_cell_count": 26,
+  "frame_bboxes": [
+    [
+      12,
+      6,
+      86,
+      90
+    ],
+    [
+      12,
+      6,
+      87,
+      90
+    ],
+    [
+      12,
+      6,
+      86,
+      90
+    ],
+    [
+      12,
+      6,
+      86,
+      90
+    ]
+  ],
+  "unique_sha_count": 4,
+  "edge_warnings": [],
+  "not_valid_full_animation": true,
+  "art_source": "D232 one original illustrated pose segmented lamp and cloak, shifted per pose; no hand-painted walk/attack/hit/death",
+  "webp_sha256": "c77272c46011a000dd601af6d3b7234356979ffcfe38fa63f2b49a5f6bf37b83"
+}
