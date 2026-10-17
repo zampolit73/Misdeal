@@ -3,6 +3,10 @@ Updated: 2026-10-17.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D217/D218 — Guide visual height without collider scaling; strict artifact QA
+
+2026-10-17: User confirmed native D217 art-border hotfix retest with «все ок». Continue to original `extinguished_guide` leader art: preserve D199 **roughly twice-height** silhouette and three moving hanging lanterns, via genuinely authored tall art with current scoped `UnitData.visual_scale=1.8`; **do NOT increase body radius, collision bounds, melee reach or global enemy multipliers** merely to make the drawing tall. The D218 viewer compares 1.8× Guide beside 1× Bearer at the SAME floor depth on accepted D209 forest. Keep five state rows (idle4/walk6/attack6/hit3/death6), 25 distinct cels/5 transparent, and strict 2px borders; native and user art review REQUIRED before production library registration. See `docs/D218_EXTINGUISHED_GUIDE_ANIMATION_QA.md`.
+
 ## D215/D216 — First two #38 skeleton art candidates, isolated QA-only
 
 2026-10-17: User replied **«все ок продолжай дальше»** after the D215 Road Sentinel isolated five-state gallery test; record a **user-reported standalone animated sprite QA acceptance**, not permission to register card #38, claim native production battle tests, or alter existing releases. D216 independently stages a true 25-frame **Lantern Bearer** with rough wooden protective plank and held lantern, visually distinct from spear guard; 6×5 alpha-safe art and F6 isolated scene. Its BOARD shield/guard identity is **purely visual** until a gameplay decision is separately approved; no passive damage blocking/taunt has been added. D216 native F6 still pending. Full doc: `docs/D216_LANTERN_BEARER_ANIMATION_QA.md`.
