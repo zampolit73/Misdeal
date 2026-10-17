@@ -1,4 +1,6 @@
-# D230 — Road Sentinel D229 SECOND variant ACCEPTED / FINAL FOR CARD #38
+# D230 — Road Sentinel D229 SECOND variant TECHNICALLY selected (final-art claim superseded by D231)
+
+**IMPORTANT LATER D231 USER CORRECTION:** User objected to severe loss of richness compared with earlier beautiful Atlas. This document's wording **FINAL FOR CARD #38** was overly broad: SECOND/RIGHT D229 is the **best of two simplified technical drafts**, NOT the fully polished source-art quality the user expects. D230 loader and candidate stay QA-only for unreleased card #38; MUST replace with truly rich 25-cel pointed-spear artwork after user approves a new battle-size quality frame. See `docs/D231_SENTINEL_ART_FIDELITY_CORRECTION.md`. Do not quote superseded 'final visual approval' below as current.
 
 Date: 2026-10-18. **User explicitly said «давай примем 2 вариант и уже закончим с этим»** in direct response to D229 simultaneous side-by-side art comparison where LEFT panel = D228, RIGHT panel = D229. This is an unambiguous artistic decision: **RIGHT / D229 is FINAL selected art for `road_sentinel`**, and the iterative Sentinel art-polish series D215/D226/D227/D228/D229 is CLOSED. Do NOT ask user to reselect spear Sentinel or start D231 another art fidelity pass. The earlier D221 detailed concept remains background visual guidance but is superseded as a demand for further Sentinel sprite polish by this explicit final-asset approval. D220 requirement for polished/approved original artwork on **the other four roles** is still binding.
 
