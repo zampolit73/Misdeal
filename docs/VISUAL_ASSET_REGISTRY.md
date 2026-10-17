@@ -1,3 +1,9 @@
+## D224 — original rich Lantern Bearer approved; source + 96px QA repack committed, F6 pending
+
+User approved D223 corrected plank-shield + freehand lamp, then accepted rich **1374×1145 RGBA sheet** («подходит»). Exact visibly-lossless source is now stored in GitHub as `assets/pixel/units/black_lantern_road_qa/lantern_bearer_d224_approved_original_lossless.webp.b64`, plus separate **576×480 25-cel derived** `lantern_bearer_d224_approved_repacked_candidate.webp.b64`. Static 25 distinct poses/5 clear/0 final-tile edge hits; **original source poses overlap across several nominal cells, native F6 might reveal visual clipping or foot slide**. QA-only native scene `res://scenes/dev/black_lantern_bearer_d224_art_preview.tscn`; user F6 NOT YET RECEIVED. No production library or #38 release. Full art/sha QA: `docs/D224_LANTERN_BEARER_APPROVED_ART_QA.md`. Act1 37/45, exact D209 forest unchanged.
+
+---
+
 ## D218 — new giant Guide triple-chain lantern QA sprite staged (NOT production art)
 
 The user-confirmed D217 post-border-fix F6 is PASS («все ок»). Original `extinguished_guide` sprite art in GitHub `assets/pixel/units/black_lantern_road_qa/extinguished_guide_d218_candidate.webp.b64` is 576×480 25 hand-authored original poses + 5 blank, 0 offline border issues. Its 3 lanterns and metal yoke differ unmistakably from the other 4 enemies; actual native visual 1.8× beside 1× Bearer comparison is staged in isolated scene `res://scenes/dev/black_lantern_guide_animation_preview.tscn` with the accepted D209 forest. **Native D218 F6/art QA still PENDING.** Full doc: `docs/D218_EXTINGUISHED_GUIDE_ANIMATION_QA.md`. No runtime sprite registry or Act1 pool change; still 37/45.
