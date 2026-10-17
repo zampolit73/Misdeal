@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D206 native F6 isolated contract PASS; D207 54-case actual BattleUnit tactical matrix QA-only committed, F6 pending**.
+Updated: 2026-10-17 — **D207 native 54/54 functional PASS; D208 local lanternlight +22% candidate and attack metric committed, F6 pending**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,12 +74,13 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D207 — exact current working checkpoint (NEXT F6)
+## D208 — EXACT CURRENT CONTINUATION (NEXT F6, after native D207 PASS)
 
-User screenshot on 2026-10-17 shows **GREEN PASS** in `res://scenes/dev/black_lantern_road_contract_smoke.tscn`: 5 unique UnitData, 2 authored formations/five enemies, light accelerating lit enemies only and resetting. **D206 native contract gate is now CLOSED.** This is *not* a playable battle or visual acceptance.
+User screenshot on 2026-10-17 confirmed **D207 real BattleUnit 54/54 functional PASS** for card #38: 54 wins/0 full-party defeats/0 timeouts; 18/18/18 solo/duo/trio and Knight/Ranger/Mage; mean HP **80/70/74%**, worst **52/30/44%**, average duration **13.2/14.6/13.3s**, individual fallen heroes **0/2/4**; light warning count 90, active frames 11,434, buffed enemy exposure 15,502 frames, max 3 buffed together. This is a real user-native Godot result for isolated simulation, not visual/real Battle route or approved difficulty.
 
-New source on GitHub `main`: `scripts/dev/black_lantern_road_battle_matrix.gd` + `res://scenes/dev/black_lantern_road_battle_matrix.tscn`. It simulates **54 actual BattleUnit AI encounters** with staged five original #38 role resources and the isolated lanternlight controller. Matrix = 2 formations × 3 protagonist classes × solo/duo/trio × Assault/Hunt/Formation; collects wins/losses, HP, duration, casualties and buff-time metrics, asserts bounded movement and no buff leaks. Runs invisibly because five new sprite-sheet sources are NOT yet approved; this is **math/AI diagnostics only**. It does NOT wire #38 into `battle.gd` or RunState/live 37-card pool. **Godot F6 NOT RUN**; do not claim a result.
+**D208 staged GitHub code now**: `scripts/battle/black_lantern_light.gd` has encounter-only `ATTACK_SPEED_MULTIPLIER` **1.16 → 1.22**. All five `UnitData`, positions, floor, timers and combat mechanics unchanged. The existing `res://scenes/dev/black_lantern_road_battle_matrix.tscn` now prints D208 and counts **actual attacks made while enemy has the active lit speed bonus** using existing `BattleUnit.diagnostic_attack`. This makes a mechanism-salience check instead of relying on buff-frame totals only. QA is invisibly simulated (no unapproved enemy art). **D208 F6 not yet run.**
 
-**NEXT USER ACTION**: `git pull`, run F6 `res://scenes/dev/black_lantern_road_battle_matrix.tscn`, share final results screenshot. If fail, inspect GitHub script and fix directly; if technical PASS, review party/class stats and balance before connecting full combat. D205 light preview separate native F6 still awaiting user confirmation. Full spec: `docs/D207_BLACK_LANTERN_BATTLE_MATRIX.md`.
+**NEXT USER ACTION:** `git pull`; F6 the SAME `res://scenes/dev/black_lantern_road_battle_matrix.tscn`; share screenshot of D208 outcome/HP/"Атаки врагов" row. Compare carefully with D207: solo survival and duo/trio casualties matter; do not celebrate a 54/54 result if little gameplay risk/agency changes. If an engine error occurs, inspect current GitHub before fixing it. See `docs/D208_BLACK_LANTERN_BALANCE_PASS.md`.
 
-Art blockers remain: chosen third 1672×941 forest scene `лунная_дорога_через_туманный_лес.png` only local/conversation and NOT GitHub game bitmap; five generated 5×5 source sheets fail source-edge QC, Sentinel has axe instead of approved spear. New unapproved art must not be silently used. Preserve selected D200 third *card art* separately. Full main 37/45, D196 approved waves, DS2, 12+XIII and immutable `backups/KARAMBA73-2026-10-16` unchanged.
+**Art and release blockers unchanged:** the user chose exact third `лунная_дорога_через_туманный_лес.png` (arena, distinct from approved D200 third card bitmap), not yet in GitHub game assets. Five original skeleton animation sheets are QC blocked, especially wrong axe on `road_sentinel` (approved spear), edge clipping and double-height Guide. The light is NOT wired into ordinary `battle.gd`. D196 waves, DS2, Act1 **37/45**, 12+XIII and frozen `backups/KARAMBA73-2026-10-16` preserved.
+
