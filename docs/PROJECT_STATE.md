@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-18 (D236 user-native WALK visual FAIL; D236R 6-phase repaired stance/swing and side-by-side F6 staged, new Godot QA pending; live Act1 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-18 (D236R user says «пойдет» — repaired 6-frame walk visually accepted for continued QA; D236 remains rejected; rich complete 25-cel atlas still pending; live Act1 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D236R CURRENT — D236 gait rejected by user, six-phase repair committed
+## D237 NEXT — Road Sentinel spear attack, following user-accepted D236R gait
+
+User responded **«пойдет»** to D236R old-versus-new Godot walking QA. Treat as **user visual acceptance of repaired six-step WALK for continuing development**, not approval of the final 25-frame artwork, all directions in Battle or card #38 release. D236 was explicitly rejected as unnatural and stays superseded. **LOCK D236R support/swing cycle as the current baseline** and preserve D234 wrist-held lantern and approved rich D235 figure design. Next build **actual six-pose SPEAR THRUST** QA-only animation `attack6` with visible anticipation → extension → contact → recovery, free-hand lantern anchored, legs planted and no axe/slash; preview at real ×1 on approved D209 forest before registering complete combat. Existing idle4/walk6 do not imply hit3/death6 already exist. Pool remains 37/45. 
+
+## D236R PREVIOUS — D236 gait rejected by user, six-phase repair committed
 
 User explicitly replied **«не естествено»** to D236 gait preview — this is **D236 native visual FAIL**, not a valid final walk. Diagnosed instant leg-swap, exaggerated wide strides (x27..72) and static torso. New QA-only D236R walk keeps D234 rich illustrated skull/armor, SPEAR and wrist-held lantern, but implements cyclic **A three stance phases → B three stance phases**, reduced leg spread, both feet physically alternate contact at y91, subtle ±1px torso bob, bounded transition including frame6→1. Versioned source `tools/art/author_road_sentinel_d236r_walk.py`, asset `road_sentinel_d236r_walk6_support_cycle.webp.b64`, QC `docs/qa/D236R_SENTINEL_GAIT_QC.json`: 6 unique WALK cels row1 + 24 transparent, zero crop, max ankle step 10px; **not fully hand-painted D235-quality legs**. NEW F6 `res://scenes/dev/black_lantern_sentinel_d236r_gait_compare.tscn` left REJECTED D236/right NEW D236R, x3/x1, direction, pause, 0.5x playback and ground guidelines on D209 forest. **D236R native F6 / art PASS PENDING**. `docs/D236R_SENTINEL_GAIT_REPAIR_QA.md`. Technical production D229 unchanged, #38 QA-only, 37/45.
 
