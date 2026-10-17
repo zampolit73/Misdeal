@@ -1,5 +1,5 @@
 # Misdeal Documentation Index
-Updated 2026-10-16 — D206 five-role QA-only resources and lanternlight controller, standalone F6 contract scene; live Act1 37/45.
+Updated 2026-10-17 — D206 user-native contract PASS and D207 QA-only 54-case BattleUnit matrix ready for F6; live Act1 37/45.
 
 ## Read first (current, short, authoritative)
 
@@ -21,6 +21,7 @@ Updated 2026-10-16 — D206 five-role QA-only resources and lanternlight control
 - [D153 encounter specification](DECK_EXPANSION_D153_THREADBARE_THEATRE.md).
 - [Black Crossing #37 encounter, battle QA and release gates](D188_BLACK_CROSSING_ENCOUNTER.md).
 - [D199 approved card #38: Road of Black Lanterns concept, five skeletons and production gates](DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md).
+- [D207 54-case native BattleUnit matrix](D207_BLACK_LANTERN_BATTLE_MATRIX.md) — current QA gate, awaiting Godot F6 results.
 - [D206 staged encounter resources, isolated lanternlight and native contract smoke](D206_BLACK_LANTERN_ENCOUNTER_STAGING.md) — **current #38 gate**.
 - [D205 selected forest arena, sprite concept QA, and light preview](D205_BLACK_LANTERN_ASSET_AND_LIGHT_STAGING.md) — current card #38 gate; exact F6 scene and asset blockers.
 - [D153 D176 balance/QA](D153_BALANCE_D176.md).
