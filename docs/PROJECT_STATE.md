@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D211 two original spear Sentinel concept directions shown; user A/B choice pending; no atlas enabled). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D211 spear Sentinel A selected; D213 true Godot row-state atlas packing corrected; D214 Bearer full 25-pose production brief committed; all sprites still blocked). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,9 +38,17 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D211 CURRENT — Road Sentinel original long-spear silhouette choices, NOT atlases
+## D214 CURRENT — Lantern Bearer specification, canonical animation packing correction
 
-D211 visual concept step: two **separate standing pixel-art spear-bearing Road Sentinel directions** were shown to user: **A armored pauldron + diagonal spear/lantern**, **B more hooded ragged cloak + long spear/lantern**, plus 96×96 native cel previews. Comparison artifact `Misdeal_D211_Road_Sentinel_Concept_Options.png` in conversation. Both are **concept crops with dark backdrops, no alpha and no genuine 25 animated frames**; no finished sprite assets committed. Their diagonal pole shapes do not keep the full skeleton sufficiently big in a 96px cell; next approved silhouette must be redrawn with a steeper compact spear (not merely downscaled). **User A/B selection pending.** Current details `docs/D211_ROAD_SENTINEL_SPEAR_CONCEPT_OPTIONS.md`. Regular Act1 **37/45** and D209 exact arena unchanged.
+**Approval state:** User chose Road Sentinel **D211 OPTION A** (armored skeleton carrying long spear and hanging lantern). This is an accepted **visual direction**, not a true 25-cel sprite. D213 consolidated all five required original undead roles and corrected an IMPORTANT mistake in the prior chat-written D212/D213: real Godot `MisdealUnitAnimationLibrary::_create_frames` uses **row-per-animation**, NOT sequential row-major frames. Correct rows: `idle [4 filled,2 transparent]`, `walk [6]`, `attack [6]`, `hit [3 filled,3 transparent]`, `death [6]`; total exactly **576x480 RGBA, 6x5, 25 authentic +5 blank**. New authoritative source: `docs/D213_BLACK_LANTERN_MASTER_ANIMATION_BRIEF.md`; earlier chat layout is superseded. Applies to all five new units.
+
+**D214 documentation complete:** `docs/D214_LANTERN_BEARER_PRODUCTION_SPEC.md` has 25 individual frame directions and visual QC for `lantern_bearer`—heavy lantern and wooden barricade/plank shield, dense bone silhouette, grounded defensive march, short shield-check, impact/recovery, heavy shield-first collapse. The board is a **VISUAL** equipment identity only; no new blocking/taunt/status gameplay or UnitData stats were changed. The full atlas itself is **NOT DRAWN/APPROVED/IN GITHUB**, no new character art imported into animation loader. D210 5-atlas blockers remain. D209 approved exact third forest backdrop unchanged, live Act1 **37/45**, #38 QA-only.
+
+**NEXT:** artist produce actual properly packed unique 25-cel original Sentinel A sprite sheet, then Bearer according to D214; next Acolyte, Guide and Archer. Show real-size previews for approval and native Godot sprite F6 before any real #38 battle wiring. No native tests claimed for D213–D214 (docs only).
+
+## D211 PREVIOUS — Road Sentinel original long-spear silhouette directions, NOT atlases
+
+D211 visual concept step: two **separate standing pixel-art spear-bearing Road Sentinel directions** were shown to user: **A armored pauldron + diagonal spear/lantern**, **B more hooded ragged cloak + long spear/lantern**, plus 96×96 native cel previews. Comparison artifact `Misdeal_D211_Road_Sentinel_Concept_Options.png` in conversation. Both are **concept crops with dark backdrops, no alpha and no genuine 25 animated frames**; no finished sprite assets committed. Their diagonal pole shapes do not keep the full skeleton sufficiently big in a 96px cell; next approved silhouette must be redrawn with a steeper compact spear (not merely downscaled). **User later selected option A; older pending status superseded.** Current details `docs/D211_ROAD_SENTINEL_SPEAR_CONCEPT_OPTIONS.md`. Regular Act1 **37/45** and D209 exact arena unchanged.
 
 ## D210 PREVIOUS — native D209 arena visual approval, 5 skeletal atlas blockers
 
