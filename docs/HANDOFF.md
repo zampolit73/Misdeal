@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-18 — **D235 USER APPROVED rich Style-B six-walk illustration and GitHub art reference archived (1536×1024); need actual 96px transparent six-cel motion, not a finished native atlas; #38 QA-only, 37/45**.
+Updated: 2026-10-18 — **D236 six-phase Sentinel boot/knee animated WALK prototype on top of accepted D234 illustrated grip built and scene F6 staged, but rich D235 full-body fidelity/user-native Godot PASS still pending; Act1 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,15 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D235 — EXACT CURRENT HANDOFF: six-walk visual reference USER APPROVED, build actual native motion
+## D236 — EXACT CURRENT NEXT STEP: run native WALK rig x1 QA (6 cels only)
+
+User latest said **«давай»** to creating real D235 walk frames. Tried to segment six figures from approved 1536×1024 poster: GrabCut returned bad brown islands/cropped spear, rejected; those failed crops NOT committed. Instead authored **D236 proof of gait** from the tracked clean D234 illustrated **UPPER BODY with correct continuous wrist/lantern** and six distinctly posed armor-plated shin/boot pieces. This is a concrete **articulated limited animation** with changing feet, not six artist-painted full-body D235 frames. Must honestly preserve this distinction.
+
+**GitHub main NOW:** `tools/art/author_road_sentinel_d236_walk6_pilot.py` (reproducible from checked-in D234 4-IDLE WebP/B64, manual six boot/knee joints), `assets/pixel/units/black_lantern_road_qa/road_sentinel_d236_walk6_pilot.webp.b64` (576×480 RGBA lossless; **ONLY WALK row1 col0–5 occupied**, 24 fully alpha-clear surplus; decoded WebP SHA `c37d8155925de2e6cad90140cbe5328b91fa489b7ed4da2c301cd30b8b1ac6fb`), `docs/qa/D236_SENTINEL_WALK6_PILOT_QC.json`, and the separate **F6 QA scene `res://scenes/dev/black_lantern_sentinel_d236_walk6_pilot.tscn`** with GDScript: D234 idle LEFT vs D236 walking RIGHT, both enlarged x3 and real x1 on exact user-approved D209 forest, both facing directions/pause, strict row/blank/border validation. Local contact image `D236_walk6_contact_sheet.png` in conversation. No real Godot CLI, native F6 **PENDING**. D235 six-walk rich artwork **look is already user approved**, but motion rig shin/boots may still be simpler and full art quality NOT asserted; source D235 3×2 poster remains archived in GitHub. Next request user `git pull`, F6 new scene, look for actual leg gait/floor contact and free-hand lantern and style at x1. If too crude, refine actual painted shin/boot art or authoring before full 25-frame claim. Remaining motion states attack/hit/death NOT authored.
+
+**Do not silently switch production role to D236:** `MisdealUnitAnimationLibrary.get_frames("road_sentinel")` still technical D229, user-approved D234 grip reference intact, live pool remains 37/45, #38 unreleased, backup KARAMBA73 frozen. Full `docs/D236_SENTINEL_WALK6_MOTION_PILOT.md`. New chat must NOT lose approval of rich D235 illustrated walk appearance, nor call 6 movement cells the full atlas.
+
+## D235 — PREVIOUS HANDOFF: six-walk visual reference USER APPROVED, build actual native motion
 
 Latest user message **«принято»** immediately following a newly generated rich six-walk-pose Sentinel illustration. **APPROVED ART REFERENCE IS NOW THE 3×2 COMPOSITE** `шесть_кадров_шагающего_скелета_воина.png` (1536×1024 RGBA, SHA `9fa8e48baed60364411e13e2a58d1549e052bbdc250c26b37933d2081442b181`): ornate dark iron and big three-part shoulder guard, frayed burgundy hood/cape, true pointed long SPEAR, glowing amber lantern held by the free gauntlet. THIS supersedes the simplified D229 fidelity for final production art and continues D234 correct wrist-grip styling. **Do not ask user to choose another look; this six-pose image was accepted.**
 
