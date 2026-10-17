@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-18 — **D236 six-phase Sentinel boot/knee animated WALK prototype on top of accepted D234 illustrated grip built and scene F6 staged, but rich D235 full-body fidelity/user-native Godot PASS still pending; Act1 37/45**.
+Updated: 2026-10-18 — **D236 user-rejected unnatural gait; D236R physically coherent 6-step stance/swing cutout pilot plus A/B Godot F6 committed, awaiting native QA; art not final; Act1 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,17 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D236 — EXACT CURRENT NEXT STEP: run native WALK rig x1 QA (6 cels only)
+## D236R — EXACT CURRENT USER ACTION: compare repaired gait with REJECTED D236
+
+**Latest USER result** on D236: **«не естествено»**. Record D236 user-native visual FAIL; do NOT falsely accept gait. Assistant inspected source: six frame leg positions were wide and suddenly swapped sides, with a stationary body. User did not authorize abandoning approved D235 rich Style-B artwork or the D234 physically HELD lantern.
+
+**GitHub main D236R fix:** genuine revised 6-frame animated leg/boot **QA pilot** with per-foot stance/contact/push phases [A,A,A,B,B,B], planted foot sole y=91 in each frame, opposing foot lifts with bounded transition (including frame5→frame0), reduced step spread from ~45px to ≤23px, subtle ±1px torso bob. Original rich D234 torso/spear/lantern stay together and the visual D235 six-figure artwork remains approved as target. Script `tools/art/author_road_sentinel_d236r_walk.py`, lossless transparent `assets/pixel/units/black_lantern_road_qa/road_sentinel_d236r_walk6_support_cycle.webp.b64`, QC `docs/qa/D236R_SENTINEL_GAIT_QC.json` (six unique WALK row1, 24 empty, safe margins, WebP SHA `bef95a03eb3da3996846e0826a5bf6fe53a1250b284ffa12f44d4d3fd50b73d5`). **Not** six independently repainted high-fidelity full characters; animation source is still limited cutout + authored leg rig.
+
+**EXACT USER ACTION:** `git pull`, F6 **`res://scenes/dev/black_lantern_sentinel_d236r_gait_compare.tscn`**. LEFT=previous rejected D236, RIGHT=repaired D236R, both 6-WALK cycles at enlarged x3 and real x1. Direction ←/→, pause and `СЛОУМО ×0.5` allow viewing steps and loop seam, faint guide lines show ground. Confirm whether right new character NOW looks like a heavy guard stepping and lantern stays held. **NATIVE D236R PASS NOT RECEIVED**. If still stiff, do not keep cloning synthetic rigs; require genuine per-pose drawn full lower-body animation with D235 visual detail. Only then do attack/hit/death/25-frame game implementation.
+
+**Nothing on real game changed:** `MisdealUnitAnimationLibrary` still technical D229 (unreleased role), no card #38 in normal pool, all 37 live cards intact, D200 selected card, D209 selected third forest, D196 waves, boss XIII and frozen KARAMBA73 unchanged. `docs/D236R_SENTINEL_GAIT_REPAIR_QA.md` latest source of truth.
+
+## D236 — PREVIOUS FAILED HANDOFF: run native WALK rig x1 QA (6 cels only)
 
 User latest said **«давай»** to creating real D235 walk frames. Tried to segment six figures from approved 1536×1024 poster: GrabCut returned bad brown islands/cropped spear, rejected; those failed crops NOT committed. Instead authored **D236 proof of gait** from the tracked clean D234 illustrated **UPPER BODY with correct continuous wrist/lantern** and six distinctly posed armor-plated shin/boot pieces. This is a concrete **articulated limited animation** with changing feet, not six artist-painted full-body D235 frames. Must honestly preserve this distinction.
 
