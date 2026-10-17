@@ -3,6 +3,10 @@ Updated: 2026-10-17.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D226 visual gate — native screenshot is NOT final art approval
+
+2026-10-17: User screenshot of D226 spear Sentinel F6 gallery showed x3/x1 views and left-facing WALK with no visible error, confirming load/display only. It does NOT approve five complete states, both orientations, or replace the previously approved detailed D221 B-style appearance. Current simplified bones/flat armor/square lamp still require true pixel-level detail improvement across actual 25 frames; keep provisional D226 sprite isolated. See `docs/D226_SENTINEL_STYLE_B_ART_QA.md`.
+
 ## D226 — Maintain actual original pixel framing and honest final-art gate
 
 2026-10-17: D225 user reported both-facing Bearer gallery OK. D226 began original **Road Sentinel** art fidelity improvements, preserving user-approved armored SPEAR A silhouette and common B palette with new **native 96px** oxblood mantle and armor details across 25 individual poses. Static QA 25 unique/5 clear/zero alpha-edge warnings; dedicated F6 scene with left/right, real x1 and large x3. This is **NOT accepted as equivalent to D221 ornate high-detail illustration**, and no production animation library switch is allowed yet. Do not use unrelated generated Oil Acolyte panels or pretend aesthetic approval. F6 user check/character polish gate: `docs/D226_SENTINEL_STYLE_B_ART_QA.md`.
