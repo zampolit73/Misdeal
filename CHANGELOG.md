@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D235: user accepts rich six-pose Sentinel WALK visual; source archived
+
+- User explicitly **«принято»** on the new 1536×1024 3×2 richly illustrated skeletal Road Sentinel walk concept with real pointed long SPEAR, layered plate, burgundy cloak and separate amber **wrist-held lantern**. The selected visual direction is locked; retain D234 right-hand handle.
+- Saved full-resolution near-original WebP-quality-95 visual reference as `assets/pixel/units/black_lantern_road_qa/road_sentinel_d235_approved_walk_concept_q95.webp.b64` and checksum/report `docs/qa/D235_SENTINEL_WALK_CONCEPT_REF_QC.json` so later project chats can inspect the approved reference without previous-chat media. Original PNG SHA `9fa8e48baed60364411e13e2a58d1549e052bbdc250c26b37933d2081442b181`.
+- **NO game animation/production asset was changed:** poster 3×2/background is NOT six individually authored 96px RGBA walk frames, full 25-frame set, or Godot-native PASS. Next six actual walking poses/grounded movement and x1 F6, then attack/hit/death. Existing D229 technical registered atlas and 37-card pool intact.
+- Full accepted-art note `docs/D235_SENTINEL_WALK_ART_APPROVAL.md`.
+
 ## 2026-10-18 — D234: free-hand lantern attachment and illustrated robe repair
 
 - User observed **D233 FAIL**: skeleton did not appear to hold hanging lantern. Diagnosed source coordinates: original lantern under opposite knee, free hand far right; independent cutout movement made lamp visually float.
