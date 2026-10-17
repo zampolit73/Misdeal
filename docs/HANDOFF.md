@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D211 spear Sentinel option A user-selected; D213 corrected original 25-pose Godot atlas row contract; D214 Lantern Bearer master per-frame spec in GitHub; live Act1 37/45**.
+Updated: 2026-10-17 — **D215 original 25-frame spear Sentinel QA asset and isolated Godot F6 gallery committed; native/art approval pending; Act1 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,15 +74,21 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D214 CURRENT — master sprite art briefs committed, actual art production NEXT
+## D215 CURRENT — first original Road Sentinel A atlas in QA only, F6/ART APPROVAL NEXT
 
-**Latest user approvals:** D211 Road Sentinel **armored option A** chosen with «а». This locks its silhouette (long SPEAR, pauldron and small lantern) but not a generated sprite atlas. User then approved creating an all-five D213 master art brief and full D214 Lantern Bearer production brief. Both have now been authored as actual GitHub documents.
+Accepted prerequisite: user selected Road Sentinel **D211 armored spear option A**; D213 corrected actual Godot row-per-animation atlas; D214 Bearer pose brief fixed. D209 third moonlit forest backdrop user-native accepted, no more selection. The new pixel character is **NOT the rich D211 cropped concept**, and is not described as finished-quality art.
 
-**CODE-DERIVED IMPORTANT CORRECTION:** old chat D212/D213 sequential/row-major animation packing was wrong for the current actual `scripts/battle/unit_animation_library.gd::_create_frames`. The CORRECT `576×480 RGBA / 6×5 96px` production atlas uses **row0=idle4 (+2 EMPTY), row1=walk6, row2=attack6, row3=hit3 (+3 EMPTY), row4=death6**. 25 authentic poses and five clear surplus tiles. The canonical revised documentation is `docs/D213_BLACK_LANTERN_MASTER_ANIMATION_BRIEF.md`. **Never implement the chat's previous row-major sequence**.
+**Actually committed in GitHub main**:
+- `assets/pixel/units/black_lantern_road_qa/road_sentinel_d215_candidate.webp.b64` — genuine native-size 576×480 RGBA transparent lossless WebP pixel sprite candidate, 25 independently authored cels in **idle4+2clear / walk6 / attack6 / hit3+3clear / death6**, not invalid 5×5 concept remap. A plated skeletal guard with LONG SPEAR, asymmetrical shoulder armor, skull, lamp, animated two-step walk, six-cel spear thrust and grounded death.
+- `tools/art/author_road_sentinel_d215.py` — reproducible offline Pillow artist geometry source; retained so future chat can refine without reverse-engineering the B64.
+- `res://scenes/dev/black_lantern_sentinel_animation_preview.tscn` and `scripts/dev/black_lantern_sentinel_animation_preview.gd` — QA-only Godot gallery (loads exact D209 arena, builds SpriteFrames from candidate, displays 3×/1× with five state buttons; asserts 25 nonempty distinct and five transparent, with margin checks). Does NOT register any `MisdealUnitAnimationLibrary` role, alter live battle, change RunState or replace frozen art.
+- Conversation ZIP `Misdeal_D215_Road_Sentinel_Animation_QA.zip` and contact sheet `D215_sentinel_animation_contact_sheet.png`.
 
-**D214:** `docs/D214_LANTERN_BEARER_PRODUCTION_SPEC.md` enumerates all 25 intended distinct poses (idle/walk/attack/hit/death) for the thick-boned defensive **Lantern Bearer** with oversized worn wooden plank/guard shield and a separate heavy amber lantern. Distinct from chosen spear Sentinel A, tall Guide, archer and oil flask/sickle servant. **Shield is visual only**, no stat blocks or invented shielding mechanic. Staging art constraints: true transparency, 2px margins, steady sole y87–94 for upright poses, no frame bleed, enemy-facing direction and leg grounding; Godot image loader requires row-per-state. **D213/D214 are TEXT SPECS ONLY. There are zero approved new playable five-skeleton animation atlases**; nothing uploaded to unit animation runtime. D210 QC blockers remain.
+**Static offline QC PASS:** exactly 25 distinct/visible original pixels poses, 5 transparent, 0 bounds warnings. GitHub B64 roundtrip confirms byte identity. **Native Godot F6 has NOT run; true art quality NOT approved**. Character is a first clean but simplified pixel draft, visibly less painterly/detail-rich than option-A reference and D209 forest. Do not claim final 25-frame ART PASS or fight-ready sprites. Full notes: `docs/D215_SENTINEL_NATIVE_ANIMATION_QA.md`.
 
-**NEXT ACTION:** produce corrected real 25-frame pixel sprite atlases in small batches: first Sentinel A (already chosen), then Bearer by D214, then Acolyte, Guide, Archer; artwork approval + isolated native Godot animation gallery/real battle composition F6 each. User need NOT redo D209 approved moonlit forest arena; existing two light pools visual QA user-native PASS. Later wire #38 real scoped Battle→Reward→Table and release smokes. D206 contract PASS, D207/D208 54-case simulation PASS, +22% light experiment reverted to +16%; active deck **37/45**. Keep D196, DS2, 12+XIII and frozen `backups/KARAMBA73-2026-10-16` unchanged. No need to ask about GitHub access, which is connected.
+**NEXT USER ACTION:** `git pull`; open `res://scenes/dev/black_lantern_sentinel_animation_preview.tscn` and F6. Click 5 state buttons; check grounded alternating footsteps, actual spear thrust and drawn feet, complete death hold, and 1× readability on approved D209 forest. Request visual feedback, not a blanket PASS assumption. If texture parsing or GDScript error, fix current GitHub file directly. If visual quality fails, iterate this QA asset (not production sprite) before starting Bearer. Once Sentinel approved, create `lantern_bearer` from D214 25-cel brief and continue other original roles. Only then battle→reward→table, 54-case matrix and release to 38/45.
+
+Preserve existing D196 wave baseline, DS2, 12+XIII, 37-card live pool, D200 card art, D209 forest, and immutable `backups/KARAMBA73-2026-10-16`. Current encounter lanternlight multiplier 1.16.
 
 ## D210 PREVIOUS — D209 F6 approved, five sprite atlases remain blocked
 
