@@ -1,5 +1,5 @@
 # Misdeal Documentation Index
-Updated 2026-10-17 — D209 forest native visual F6 user PASS; D210 5 original skeletal animation atlases under art QA; Act1 37/45.
+Updated 2026-10-17 — D211 two Road Sentinel spear concepts A/B offered, user selection pending, 5 original atlas production blocked; Act1 37/45.
 
 ## Read first (current, short, authoritative)
 
@@ -21,6 +21,7 @@ Updated 2026-10-17 — D209 forest native visual F6 user PASS; D210 5 original s
 - [D153 encounter specification](DECK_EXPANSION_D153_THREADBARE_THEATRE.md).
 - [Black Crossing #37 encounter, battle QA and release gates](D188_BLACK_CROSSING_ENCOUNTER.md).
 - [D199 approved card #38: Road of Black Lanterns concept, five skeletons and production gates](DECK_EXPANSION_D199_BLACK_LANTERN_ROAD.md).
+- [D211 long-spear Road Sentinel two illustration concepts](D211_ROAD_SENTINEL_SPEAR_CONCEPT_OPTIONS.md) — **current art-selection gate, not animated sprites**.
 - [D210 five skeletal animation source QC and acceptance requirements](D210_BLACK_LANTERN_ANIMATION_ART_QA.md) — current #38 art stage.
 - [D209 approved original forest scene and native lanternlight/footprint QA](D209_BLACK_LANTERN_ARENA_NATIVE_QA.md) — native composition F6 approved.
 - [D208 54-case baseline and local lanternlight balance candidate](D208_BLACK_LANTERN_BALANCE_PASS.md) — current next-F6 gate.
