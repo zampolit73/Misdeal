@@ -1,6 +1,6 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-17 — **D221 user approved group style B and final detailed Sentinel long-spear illustration; production 25-frame sprites still pending; next Lantern Bearer appearance preview; Act1 37/45**.
+Updated: 2026-10-17 — **D221 Sentinel B look user-approved; D222 3 Bearer concept illustrations rejected (wrong staff/lamp mounting), next standalone Bearer shield+separate-lantern art; Act1 37/45**.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
@@ -74,7 +74,13 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 **Source-integrated in GitHub (dev-only):** `scripts/dev/black_lantern_road_light_preview.gd` + `res://scenes/dev/black_lantern_road_light_preview.tscn`. F6 shows two travelling light pools, 5 rectangular enemy proxies (175px large guide), 3 hero proxies, 1.4s warning → 3.1s active → 1.8s rest. This does NOT modify attacks/damage, battle or live deck. Native F6 is **NOT RUN**.
 
-## D221 — EXACT CURRENT HANDOFF: approved Sentinel style, next Lantern Bearer
+## D222 — EXACT CURRENT NEXT GATE: correct Lantern Bearer image, NOT animated sprite yet
+
+User previously chose D220 five-skeleton style **B** and explicitly accepted D221 **Road Sentinel armored SPEAR** appearance. User next said «продолжай» to begin final Lantern Bearer. Three generated concept board attempts showed broad wooden shield but incorrectly gave Bearer a **long shaft/staff** (Sentinel-like) and moved amber lantern onto shield; these were **rejected in assistant QA** (user did not approve). Do not use or import them, do not claim final atlases or actual original 25 frames from generated presentation grids. See `docs/D222_LANTERN_BEARER_FINAL_ART_REVIEW.md`.
+
+**Immediate next art:** produce **one isolated** full-body high-quality pixel native enemy Bearer without labels/panels, facing toward hero side, thick-boned short/squat defensive guard, broad wood plank shield **in one hand** plus heavy separate short-handled amber lamp **IN THE OTHER HAND** — NO spear, pole, staff, pike, sword, axe. After user approves look, repaint authentic 25 RGBA cels per D213 row-state layout, verify at x1 on exact D209 forest and native F6. Only then final other enemies and real card #38 battle/release. **All 5 D215–D219 sprites remain temporary QA**, Act1 live 37/45, no battle code or accepted arena changed; KARAMBA73 frozen.
+
+## D221 — PREVIOUS HANDOFF: approved Sentinel style, next Lantern Bearer
 
 User selected illustrated **GROUP ART VARIANT B** for the five skeletons, then replied **«отлично»** to dedicated detailed **Road Sentinel** appearance `лунный_страж_проклятой_дороги.png` (heavily armored and hooded undead, genuine long spear with amber pole lantern, visual at 3× and scene-like 1×). This **approves the drawing's art direction, not 25-frame final production atlas**. D215–D219 simpler QA atlases remain staged only. Character reference image includes baked dark-forest scene and headings and MUST NOT be spliced into `SpriteFrames` or substituted for the approved separate D209 arena. User expects ALL FIVE final dark-fantasy pixel-art sprites to replace QA versions before #38 can release, without a global code rewrite.
 
