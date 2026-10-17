@@ -1,5 +1,7 @@
 # Misdeal Documentation Index
-Updated 2026-10-18 — D234 illustrated Sentinel free-hand lantern fix, side-by-side Godot F6 pending; 4 idle only, production atlas unchanged, 37/45 live.
+Updated 2026-10-18 — D235 user-approved rich 3×2 six-walk Sentinel visual archived as full-res WebP Q95 reference, not native animation; live Act1 37/45.
+
+**CURRENT APPROVED LOOK:** [D235 six-walk rich Sentinel illustration](D235_SENTINEL_WALK_ART_APPROVAL.md) — user accepted 3×2 pose/appearance artwork; full-resolution reference exists in GitHub, NOT yet real 96px alpha animation. 
 
 **CURRENT QA:** [D234 hand-held Sentinel lantern and D233 side-by-side x1/x3 F6](D234_SENTINEL_HAND_LANTERN_ATTACHMENT_QA.md): D233 user-visible fail; D234 4 attached idle cels/26 blanks, Godot x1 confirmation pending.  [D233 illustrated Sentinel 4-IDLE cutout motion F6](D233_SENTINEL_IDLE_CUTOUT_PROOF.md): 4 genuine rendered variants from one approved-style illustrated pose; 26 transparent cells, no full 25-cel animation or game integration.  [D232 one-pose original Sentinel visual x1 review](D232_SENTINEL_SINGLE_FRAME_ART_REVIEW.md). This is exactly ONE clean 96px static figure on D209 forest, not 25 animation cels; visual user OK pending. 
 
