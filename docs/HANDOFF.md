@@ -76,6 +76,8 @@ Previous assistant turn generated five separate 1254×1254 RGBA 5×5 skeleton co
 
 ## D238 — CURRENT WORKFLOW OVERRIDE: full 25-frame character deliveries, no micro-approvals
 
+**CANONICAL NEXT CHAT CONTINUATION:** [D238_BATCH_ANIMATION_NEXT_CHAT.md](D238_BATCH_ANIMATION_NEXT_CHAT.md), a self-contained compact source-path / design / next-task checkpoint. **User's latest request:** save ALL the current context to GitHub before starting a new chat. All approved art/animation source references and the new one-batch policy are there. The previous 6-frame user-by-user D237 attack step is superseded; the next development deliverable is the full 25-frame Sentinel **only**.
+
 **LATEST EXPLICIT USER PROCESS INSTRUCTION:** «а можешь делать как раньше ты отрисовывал сразу всю анимацию для игры все 25 кадров и не просил меня постоянно каждый пук согласовывать». The user is frustrated with the D232–D237 cycle of requiring a Godot screenshot / approval for every small 1/4/6-frame slice. The assistant must go back to **batch-first animation production**.
 
 **WHAT TO DO NEXT:** Independently create the actual **ENTIRE Road Sentinel 25-cel** 576×480 transparent Godot-compatible atlas with **idle4, walk6, attack6, hit3, death6 +5 clear**, original separate state poses, no repeats, no imagegen decorative poster. Preserve user-approved **D234 hand visibly holding the hanging amber lantern** (not hovering), **D235 richly detailed B-style spear/armor/mantle**, and **D236R sufficiently natural 6-phase walk**. Add credible planted spear windup→thrust→recoil, hit motion, fall/death. Self-QA frame uniqueness, cropping, alpha, x1 appearance, continuity, floor, real spear and facing. Iterate internally as needed, do NOT ask user for per-animation micro-approval.
