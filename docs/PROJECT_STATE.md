@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-18 (D229 native x1/x3 A/B Sentinel art comparison scene committed, technical QC 25/5/0; both D228 & D229 art still unapproved and new native F6 pending; Act1 live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-18 (D230 user EXPLICITLY chose D229 second/right Sentinel as FINAL; exact atlas in production library, source facing fixed; native loader smoke pending, live Act1 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D229 CURRENT — NEW synchronized D228-vs-D229 art comparison, native F6 pending
+## D230 CURRENT — Sentinel sprite ART FINAL: second option D229 user-accepted, production asset registered
+
+**Latest decisive user instruction:** «давай примем 2 вариант и уже закончим с этим» to D229 comparison (LEFT D228 / RIGHT D229). **ROAD SENTINEL VISUAL ART APPROVED FINAL: D229 SECOND / RIGHT.** No more iterative D226/D227/D228/D229 look passes; later explicit decision supersedes older "not accepted" notes below. Approved pixel data copied **unchanged** to canonical `assets/pixel/units/deck_expansion_v1/road_sentinel_frames.webp.b64` and GitHub re-fetch equality verified. `MisdealUnitAnimationLibrary.get_frames("road_sentinel")` now loads this one role with strict original 25/5 dimensions/border/uniqueness validation; `BattleUnit.SOURCE_FACES_LEFT_ROLES` now includes original LEFT-authored `road_sentinel` for correct target-facing. Only approved Sentinel role registered (other four remain unregistered). New `res://scenes/dev/black_lantern_sentinel_d230_approved_smoke.tscn` checks source byte match + **actual library loader**, 5 states and left/right at x1 and x3. **Godot native D230 F6 still pending; art selection itself is CLOSED.** No active card #38 release, real integrated Battle or ordinary pool changes; currently **37/45**. Handoff and exact gate `docs/D230_ROAD_SENTINEL_FINAL_APPROVAL.md`.
+
+## D229 PREVIOUS / SUPERSEDED — NEW synchronized D228-vs-D229 art comparison, native F6 pending
 
 User said **«продолжай»** after D228 candidate without submitting D228 F6 screenshot or affirmative PASS. **DO NOT infer D228 was accepted.** New D229 original pose-derived 96px pixel art `tools/art/author_road_sentinel_d229.py` strengthens asymmetric chest facets, outer plate armor, hood edge and spear engraving across the retained 25 authentic states. New WebP/B64 `assets/pixel/units/black_lantern_road_qa/road_sentinel_d229_art_candidate.webp.b64`, QC `docs/qa/D229_ROAD_SENTINEL_ART_QC.json`: 25 individually nonempty unique, five alpha-clear, zero 2px border warnings, exact lossless image match, 12,880 decoded RGBA pixels different vs D228. SHA `dd8ab21d7e115fe23418778a40e8f27e01abace9f3ccb1630025a09d318d2618`.
 
