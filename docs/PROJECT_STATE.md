@@ -1,6 +1,6 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-17 (D221 Sentinel B-look approved; D222 Bearer concept boards rejected due staff/lantern-on-shield, clean separate-lantern silhouette still pending; 37/45 live). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-17 (D223 corrected Bearer B-look concept now shown, shield plus separate handheld lantern and no pole; user approval pending; live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## Safety snapshot: КАРАМБА73
 
@@ -38,7 +38,11 @@ Used the newly supplied artist/designer/developer skill archives for D201 art QA
 
 Three **1280×720** pixel-style geographic **blockouts** were drawn and shown for card #38: **A dead forest bend**, **B stagnant flooded ford (dry fight strip)**, **C abandoned toll gate**. Each keeps the central battle strip open, avoiding the repetitive castles and excessive lanterns rejected in D203. They are intentionally low-fidelity composition aids, **not approved production bitmaps, and not in GitHub game assets**; no native Godot F6 took place. The image trio and montage remain conversation artifacts (`Misdeal_D201_arena_blockouts.zip`). User geography selection is pending; after selection, create genuinely finished alternate scene arts, ask for exact visual approval, then QA-only Godot staging. See `docs/D204_BLACK_LANTERN_ARENA_BLOCKOUT_OPTIONS.md`.
 
-## D222 CURRENT — Lantern Bearer art attempts REJECTED, production unchanged
+## D223 CURRENT — correct Lantern Bearer silhouette presented, USER CHOICE PENDING
+
+After the three rejected staff-bearing D222 boards, produced D223 **character-only cropped concept** `Misdeal_D223_Lantern_Bearer_Concept_B_Portrait.png` (388×386; conversation attachment; not uploaded as game asset) from a new group-B illustration. Clearly shows a tall wooden barrier in one hand and a **separate heavy handled amber lantern in the other**; **NO STAFF or spear**. This resolves previous role-silhouette errors. The crop still contains forest backdrop, is NOT 576×480 alpha animation, and is **NOT YET USER ART-APPROVED**. Await user's acceptance/refinement; then commission/paint authentic 25 cels, native F6 and eventual all-five replacement, not sprite cropping. Exact spec `docs/D223_LANTERN_BEARER_CORRECTED_CONCEPT.md`. Accepted Sentinel D221 unchanged. Act1 remains 37/45.
+
+## D222 PREVIOUS — Lantern Bearer art attempts REJECTED, production unchanged
 
 After user «продолжай» to D221, three image boards for Lantern Bearer in style B were generated. All repeatedly include an incorrect **long pole/staff** across the skeleton and attach the lantern to the shield rather than using a distinct **free-hand heavy lantern**. Assistant art-QA **REJECTED** these attempts; no user approval, no transparent 25-cel atlas, no new runtime art. Next produce ONE isolated clear full-body silhouette with rough wooden barricade in one hand and **separate handheld lantern in the other, absolutely no spear/staff**. Do not create faux 25-frame infographic panels. Full rejection/next gate: `docs/D222_LANTERN_BEARER_FINAL_ART_REVIEW.md`. Previously user-approved D221 spear Sentinel B-look stays accepted, D209 exact forest unchanged, #38 QA-only, **37/45** live.
 
