@@ -1,7 +1,7 @@
 # Misdeal Documentation Index
-Updated 2026-10-17 — D221 detailed spear Sentinel B look accepted; D222 Lantern Bearer concept panels rejected due long staff and wrongly mounted lamp; 37/45 live.
+Updated 2026-10-17 — D223 corrected Lantern Bearer style-B concept presented, user look approval pending; no final atlases or card #38 release (37/45 live).
 
-**CURRENT ART GATE:** [D222 rejected Bearer art and exact correct next-image contract](D222_LANTERN_BEARER_FINAL_ART_REVIEW.md).  [D221 approved Sentinel art direction](D221_SENTINEL_FINAL_STYLE_APPROVAL.md) — approved detailed illustration, NOT playable sprite frames. [D220 mandatory final replacements](D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md) remain outstanding.
+**CURRENT ART GATE:** [D223 corrected Bearer shield + handheld lantern reference](D223_LANTERN_BEARER_CORRECTED_CONCEPT.md) awaits user's look approval.  [D222 rejected Bearer art and exact correct next-image contract](D222_LANTERN_BEARER_FINAL_ART_REVIEW.md).  [D221 approved Sentinel art direction](D221_SENTINEL_FINAL_STYLE_APPROVAL.md) — approved detailed illustration, NOT playable sprite frames. [D220 mandatory final replacements](D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md) remain outstanding.
 
 **D220 BACKGROUND:** [Replace all five technical QA skeleton sprites with original final Misdeal-style art before #38 release](D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md). D219 F6 isolated preview was user-accepted, not polished art. Main deck remains 37/45.
 
