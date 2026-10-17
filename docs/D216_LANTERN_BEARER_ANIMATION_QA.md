@@ -1,6 +1,10 @@
 # D216 — Lantern Bearer: original shield + lantern animation atlas (QA candidate)
 
-Date: 2026-10-17. **QA CONTENT COMMITTED / STATIC IMAGE AND GITHUB BYTE COMPARISON PASS / NATIVE GODOT F6 PENDING.** Act1 normal random deck **37/45**; card #38 is still unreleased. The current D215 Road Sentinel F6 scene has a **user-reported native PASS**: in response to "F6, click five buttons, inspect feet/spear/death", the user replied **«все ок продолжай дальше»**. Treat D215's simple draft as accepted for continued QA development, not as evidence #38 battle/art/route is released.
+Date: 2026-10-17. **QA CONTENT COMMITTED / STATIC IMAGE AND GITHUB BYTE COMPARISON PASS / USER-NATIVE F6 GALLERY LOAD + ATTACK POSE VISIBLE; FIVE-STATE ART REVIEW NOT COMPLETE.** Act1 normal random deck **37/45**; card #38 is still unreleased. The current D215 Road Sentinel F6 scene has a **user-reported native PASS**: in response to "F6, click five buttons, inspect feet/spear/death", the user replied **«все ок продолжай дальше»**. Treat D215's simple draft as accepted for continued QA development, not as evidence #38 battle/art/route is released.
+
+## 2026-10-17 user-native partial gallery evidence
+
+User posted D216 Godot F6 screenshot after D217 staging: accepted D209 forest loaded, original Lantern Bearer displayed both in enlarged 3× and game-sized 1× views with `АТАКА ЩИТОМ` text and buttons. No red QA FAIL or parser error visible. **This confirms load, QC pass to display and shown shield-attack pose**. It does NOT prove idle, walk, hit or complete death motions were clicked; preserve a separate final full-motion approval gate. The screenshot was supplied alongside a separate D217 red failure, which is being fixed in source.
 
 ## Art output genuinely committed
 
