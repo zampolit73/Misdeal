@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D242: Native D241 video proves visual animation FAIL
+
+- Opened user's 16.6s Loom via connected Atlassian and inspected the actual attached ~17s MP4 frame by frame. Godot's D241 x3/x1 QA scene runs; walking ~5–10s is stiff, attack ~11–13s leaves spear raised rather than making thrust, death ~13–16s collapses into flattened poster-like smear. Full hit and both facings were not shown; not falsely marked tested.
+- **D241 ART REJECTED**, despite technical 25 unique / 5 blank QC. D239 also rejected. Existing assets left safely in QA history; no character registry, card pool, game or KARAMBA73 changes.
+- Wrote `docs/D242_SENTINEL_NATIVE_VIDEO_ART_FAIL.md` and aligned full new-char redraw acceptance/handoff. Next real milestone: independently drawn all-state whole-body spear Sentinel matching shipped D153/D183 motion fidelity. No repeated individual frame approval.
+
 ## 2026-10-18 — D240/D241: Rework Sentinel after user-native D239 art rejection
 
 - User's native D239 F6 shows scene loads but **explicit art FAIL**: detached foreign-looking polygon legs and wooden weightless steps. Inspected previous released D153 Puppeteer/Marionette and D183 Ferryman original whole-body 25-frame atlases. Logged root cause: D236R hand-coded boot/greave overlay and D239 rigid body-splicing, rotating still for death.
