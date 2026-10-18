@@ -2,6 +2,13 @@
 
 Updated: 2026-10-18 (D238 user requested all 25 game-animation frames together, no individual pose approval gates; next full Sentinel asset pack, QA and all 37 LIVE unchanged). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
+## D243 — Technical movement study, NOT yet finished art
+
+- [x] Construct 25 separate per-pose joint silhouettes, including horizontal spear impact and staged physical fall, and verify 25 unique/5 clear/2px/576×480 lossless texture.
+- [x] Internally reject D243's visually simplified geometric finish against approved D235 high-detail character. No need for user to test rejected draft.
+- [ ] Replace entire study with actual rich B-style painted frames in a ONE-BATCH original 25-cel pack; internal motion/art QA first, only ONE real finished-pack F6 by user.
+- [ ] Finish four other original roles and #38 3v5 light/route/reward/balance/release. LIVE 37/45, KARAMBA73 frozen.
+
 ## D242 — Native recorded D241 QA fails acting/motion
 
 - [x] Reviewed user's actual 17s MP4 / 16.6s Loom of full D241 QA scene; walk stiff, spear attack not a convincing thrust, death becomes a rotated flattened illustration. Loading PASS is **NOT animation ART PASS**. `docs/D242_SENTINEL_NATIVE_VIDEO_ART_FAIL.md`.

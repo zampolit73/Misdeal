@@ -1,0 +1,294 @@
+{
+  "stage": "D243 explicit 25-frame joint-posed art study",
+  "artifact_stage": "QA ONLY — native visual NOT RUN",
+  "not_final_art": true,
+  "approved_d235_painted_reference_matched": false,
+  "full_body_pasted_transforms": false,
+  "counts": [
+    4,
+    6,
+    6,
+    3,
+    6
+  ],
+  "empty": 5,
+  "unique": 25,
+  "frames": [
+    {
+      "state": "idle",
+      "frame": 0,
+      "alpha_bbox": [
+        9,
+        7,
+        72,
+        91
+      ],
+      "rgba_sha256": "666c0c91c204f33afa89eed3fd07cd692e37cb05ca487c5ff3f241db0ae7d1a0"
+    },
+    {
+      "state": "idle",
+      "frame": 1,
+      "alpha_bbox": [
+        9,
+        6,
+        73,
+        91
+      ],
+      "rgba_sha256": "591756c9c9a91bc3ef89b3253b69c72310420aedecee6bde80b3d01df4eb913d"
+    },
+    {
+      "state": "idle",
+      "frame": 2,
+      "alpha_bbox": [
+        8,
+        8,
+        71,
+        91
+      ],
+      "rgba_sha256": "f1034fdea627bed9efc78e9b223f5df14f45bdb491e9fb8b413973e421dc4643"
+    },
+    {
+      "state": "idle",
+      "frame": 3,
+      "alpha_bbox": [
+        10,
+        9,
+        74,
+        91
+      ],
+      "rgba_sha256": "66e6f9b6fb3483af14c54d78ab678b884b209379ee04040a19df5ce617f6c8a7"
+    },
+    {
+      "state": "walk",
+      "frame": 0,
+      "alpha_bbox": [
+        9,
+        7,
+        74,
+        91
+      ],
+      "rgba_sha256": "cae83894c547580353440c2fb96437edee83c90d91ff99c3cebf52286f53afd6"
+    },
+    {
+      "state": "walk",
+      "frame": 1,
+      "alpha_bbox": [
+        8,
+        8,
+        72,
+        92
+      ],
+      "rgba_sha256": "46c8af0e2b57c730f80105b7a7e06380ca32ac386af717479d74c618ef747bce"
+    },
+    {
+      "state": "walk",
+      "frame": 2,
+      "alpha_bbox": [
+        9,
+        7,
+        70,
+        91
+      ],
+      "rgba_sha256": "51df9c32448af06acfcf505dd251d38d7945e315bb98563511cbf8f9bb228119"
+    },
+    {
+      "state": "walk",
+      "frame": 3,
+      "alpha_bbox": [
+        9,
+        7,
+        70,
+        92
+      ],
+      "rgba_sha256": "534904722ee95800dfd04934f4856c5dc97d1689d42b5f7e1d5f3d75e314728f"
+    },
+    {
+      "state": "walk",
+      "frame": 4,
+      "alpha_bbox": [
+        10,
+        8,
+        70,
+        92
+      ],
+      "rgba_sha256": "5e3f7b9410f943255bab6dcbb921dd67222bf09f102f8be701234f9ad76b9577"
+    },
+    {
+      "state": "walk",
+      "frame": 5,
+      "alpha_bbox": [
+        9,
+        7,
+        71,
+        91
+      ],
+      "rgba_sha256": "6fbdf38ae3767ff245cb30f01394ae3102818acfb1fe7bf542260760cf77e8c1"
+    },
+    {
+      "state": "attack",
+      "frame": 0,
+      "alpha_bbox": [
+        23,
+        6,
+        77,
+        91
+      ],
+      "rgba_sha256": "a7f5f7b62f717f77fc4ea3d2ee5be378ad5aaa1a7fcbd506226758ad74c87a77"
+    },
+    {
+      "state": "attack",
+      "frame": 1,
+      "alpha_bbox": [
+        14,
+        8,
+        81,
+        92
+      ],
+      "rgba_sha256": "eb13bbba17673991cf6650afbfe130b93b019bb52753792996300915a8843b19"
+    },
+    {
+      "state": "attack",
+      "frame": 2,
+      "alpha_bbox": [
+        7,
+        10,
+        83,
+        92
+      ],
+      "rgba_sha256": "d229903a09bb8714cbb20d4ce8905666c05690ff6cae53ba1604a9e0828a9993"
+    },
+    {
+      "state": "attack",
+      "frame": 3,
+      "alpha_bbox": [
+        5,
+        12,
+        85,
+        92
+      ],
+      "rgba_sha256": "92d78b48c9fb55f63e9479a6eab92be07ab3b1e6dad72784e921dc0a554312b4"
+    },
+    {
+      "state": "attack",
+      "frame": 4,
+      "alpha_bbox": [
+        12,
+        11,
+        80,
+        92
+      ],
+      "rgba_sha256": "5350e70cd33a8abcc6ac3c1692523830da1b5115eba33bed93551b9c275d83c5"
+    },
+    {
+      "state": "attack",
+      "frame": 5,
+      "alpha_bbox": [
+        10,
+        8,
+        75,
+        91
+      ],
+      "rgba_sha256": "50732e13400e65e57e2a8e6192e5b08eb4f2c11abf7565372e3e971b27f008aa"
+    },
+    {
+      "state": "hit",
+      "frame": 0,
+      "alpha_bbox": [
+        17,
+        7,
+        72,
+        92
+      ],
+      "rgba_sha256": "d2bdf5cfcd473ac339e418b70859a4a91d909232a4d20fd21d137df5b51c14ec"
+    },
+    {
+      "state": "hit",
+      "frame": 1,
+      "alpha_bbox": [
+        7,
+        17,
+        74,
+        92
+      ],
+      "rgba_sha256": "52d1e890059f7515083d7895522eae321626be7ec7de8bf3df9e41273c06001d"
+    },
+    {
+      "state": "hit",
+      "frame": 2,
+      "alpha_bbox": [
+        11,
+        11,
+        71,
+        92
+      ],
+      "rgba_sha256": "a56ec7bf778016a78c9f7e5096435f66f625cbaa2b61e3362b65be811257269f"
+    },
+    {
+      "state": "death",
+      "frame": 0,
+      "alpha_bbox": [
+        11,
+        8,
+        74,
+        92
+      ],
+      "rgba_sha256": "f3cce35bda22adf1db9a5e50cc8345695aaf527f02f3ca397e8fd059ddbef7f1"
+    },
+    {
+      "state": "death",
+      "frame": 1,
+      "alpha_bbox": [
+        6,
+        17,
+        73,
+        93
+      ],
+      "rgba_sha256": "32595dd02ef3bdd8a21cb7557bcce20c38f3282578d2a36ddb93d9917b20dfee"
+    },
+    {
+      "state": "death",
+      "frame": 2,
+      "alpha_bbox": [
+        7,
+        32,
+        76,
+        92
+      ],
+      "rgba_sha256": "8888a7567f575e6935c8698ca0999ced27d2843a310e877b497a8a85c6e0365d"
+    },
+    {
+      "state": "death",
+      "frame": 3,
+      "alpha_bbox": [
+        7,
+        63,
+        94,
+        92
+      ],
+      "rgba_sha256": "c7cdc8a3632a329fb8c4938580809bc7d3a890d1c929585261b5eaf918519920"
+    },
+    {
+      "state": "death",
+      "frame": 4,
+      "alpha_bbox": [
+        7,
+        73,
+        92,
+        92
+      ],
+      "rgba_sha256": "788f19b22ef8f215c6f76e3ef7f8629d55da488a804887bcf052cb28d5b43015"
+    },
+    {
+      "state": "death",
+      "frame": 5,
+      "alpha_bbox": [
+        6,
+        75,
+        92,
+        94
+      ],
+      "rgba_sha256": "21b9b48275625134768dbdaf10d7bfc97f23d1539819161c75af7871ed633c82"
+    }
+  ],
+  "sha256": "c0bf57102b4d9b983411f5fb002bd1bcbc9086e7fc3315e7a5e315ac11bae3dc"
+}

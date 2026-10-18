@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D243: internal 25-pose motion study, not final painted art
+
+- Drew 25 explicit articulated 96px motion frames with separately positioned armored joints, grounded spear thrust, visible lantern grip and staged kneel/fall/corpse. QA-only WebP atlas, Python source, machine checks and native Godot preview are staged.
+- Offline structural QA PASS (25 unique, five clear, 2px margins, lossless). **Internal visual art FAIL**: too simplified against D235 accepted rich B-style. Native Godot NOT RUN; no user retest requested.
+- `docs/D243_SENTINEL_MOTION_STUDY_ART_FAIL.md` records the blocker and next full character-redraw gate. No real Battle/Act1 pool/approved visuals or KARAMBA73 changes.
+
 ## 2026-10-18 — D242: Native D241 video proves visual animation FAIL
 
 - Opened user's 16.6s Loom via connected Atlassian and inspected the actual attached ~17s MP4 frame by frame. Godot's D241 x3/x1 QA scene runs; walking ~5–10s is stiff, attack ~11–13s leaves spear raised rather than making thrust, death ~13–16s collapses into flattened poster-like smear. Full hit and both facings were not shown; not falsely marked tested.

@@ -2,7 +2,11 @@
 
 Updated: 2026-10-18 (D238 user restores one-batch 25-cel animation authoring and one F6 per character; D234/D235/D236R visual/motion rules remain, no new art yet, 37/45 LIVE). Source of truth: `zampolit73/Misdeal` / `main`.
 
-## D242 CURRENT — D241 native Loom/video motion QA = ART FAIL
+## D243 — INTERNAL motion pose study; painted-art gate remains OPEN
+
+2026-10-18: New QA-only 25-frame articulated Sentinel pose study (4/6/6/3/6 + five blank; 576×480 safe margins; original per-pose joints, spear thrust and kneeling corpse), authored as `tools/art/author_road_sentinel_d243.py`; preview at `res://scenes/dev/black_lantern_sentinel_d243_motion_study_preview.tscn`. **Local static checks PASS, internal artistic review FAIL**: simplified pixel geometry does not match user-approved rich painted D235 Style B. **Never offer D243 as final 25 hand-painted frames; do not request another user F6 or register #38.** Next make genuinely repainted rich original 25-pose actor, then ONE full Godot F6; other four roles and real battle afterward. `docs/D243_SENTINEL_MOTION_STUDY_ART_FAIL.md`. Pool remains 37/45, KARAMBA73 untouched.
+
+## D242 LAST USER VERIFIED — D241 native Loom/video motion QA = ART FAIL
 
 2026-10-18: User supplied an **actual 17s MP4 of D241 running in Godot**, alongside [Loom recording](https://www.loom.com/share/c988401b2fff4fecb6de0017da607c0c). Frames **~5–10.5s walk**, **~11–13.4s attack**, **~13.4–16.5s death** were visually reviewed, not inferred from Loom transcript. D241 ×3/×1 gallery on D209 forest renders (technical scene loads), but WALK is stiff and lacks coherent body mass, ATTACK leaves long spear high instead of a committed stab, DEATH collapses via picture rotation into a flat red smear. **D241 ART FAIL; D239 already ART FAIL.** Only walk/attack/death are evidenced; hit and both facings were not tested in the recording. No false all-animation PASS. Complete report [D242](D242_SENTINEL_NATIVE_VIDEO_ART_FAIL.md).
 
