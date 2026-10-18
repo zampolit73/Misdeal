@@ -1,0 +1,304 @@
+{
+  "stage": "D241 whole-body painted source QA after user rejects mismatched D239 legs",
+  "artifact_status": "SOURCE-COMPOSITED ART CANDIDATE; NATIVE VISUAL UNAPPROVED",
+  "source_original": "D235 fullbody six-pose illustration, D240 matte source",
+  "reused_weapon": "D234 authentic painted spear with hand pivot",
+  "technical_checks": "25 distinct, 5 clear, safe 2px, lossless exact roundtrip",
+  "states": [
+    "idle",
+    "walk",
+    "attack",
+    "hit",
+    "death"
+  ],
+  "counts": [
+    4,
+    6,
+    6,
+    3,
+    6
+  ],
+  "unique": 25,
+  "clear": 5,
+  "frames": [
+    {
+      "state": "idle",
+      "cel": 0,
+      "bbox": [
+        9,
+        3,
+        87,
+        93
+      ],
+      "sha256": "14a12a490abccc88842a7df96838aa78995dff44003ebe40c0249117c4ce2fd2"
+    },
+    {
+      "state": "idle",
+      "cel": 1,
+      "bbox": [
+        8,
+        5,
+        87,
+        93
+      ],
+      "sha256": "cff92b8c005cdec080a02cb1555d815b38ae09a2b582ae93e5abe321a5097eb8"
+    },
+    {
+      "state": "idle",
+      "cel": 2,
+      "bbox": [
+        12,
+        4,
+        84,
+        93
+      ],
+      "sha256": "7a8ee14a7484c8fd40f385f819bdbe7e6c9cef5e5ad49e2e4c18b0e48717f5cc"
+    },
+    {
+      "state": "idle",
+      "cel": 3,
+      "bbox": [
+        7,
+        6,
+        89,
+        93
+      ],
+      "sha256": "0d32dbe365fae3f6e89774c8123e420c363a5adca011dfbde7d49e1d9c902ee9"
+    },
+    {
+      "state": "walk",
+      "cel": 0,
+      "bbox": [
+        9,
+        6,
+        87,
+        93
+      ],
+      "sha256": "4c41baa3d911b8b956eaae6168c95a7fbc7e53ff6fa2e8dbea9430e70b42bea4"
+    },
+    {
+      "state": "walk",
+      "cel": 1,
+      "bbox": [
+        8,
+        6,
+        87,
+        93
+      ],
+      "sha256": "c6fee797dbf2d6182325f86bedbd9fd0cea875b5a767115aa8dfcfa5301b1a42"
+    },
+    {
+      "state": "walk",
+      "cel": 2,
+      "bbox": [
+        12,
+        6,
+        84,
+        93
+      ],
+      "sha256": "7cbcb3efab6acd07c97ed9841ccbc7cfc625ff4024d9345197df43a2597e5aa1"
+    },
+    {
+      "state": "walk",
+      "cel": 3,
+      "bbox": [
+        7,
+        6,
+        89,
+        93
+      ],
+      "sha256": "817d3fb78a33cd5d7ea37b791138d209ec876cabd93eda62e203aa127c2ec6ab"
+    },
+    {
+      "state": "walk",
+      "cel": 4,
+      "bbox": [
+        12,
+        6,
+        84,
+        93
+      ],
+      "sha256": "ba30ee4a424576f8ad420f620cc3f9c768d5d82226b03ae06fd2065af7f9dc72"
+    },
+    {
+      "state": "walk",
+      "cel": 5,
+      "bbox": [
+        8,
+        6,
+        87,
+        93
+      ],
+      "sha256": "1fd6d573698bd84a7d057352a99abca8b7a49a2cc0cf63310234b7030e074ec5"
+    },
+    {
+      "state": "attack",
+      "cel": 0,
+      "bbox": [
+        10,
+        3,
+        88,
+        93
+      ],
+      "sha256": "03cdf471d4a5da99bb391336cb72c7a7db5c5d9a120c1c249de5005f69b6518e"
+    },
+    {
+      "state": "attack",
+      "cel": 1,
+      "bbox": [
+        5,
+        7,
+        89,
+        93
+      ],
+      "sha256": "45265872629e3f5e6ad742f5f2670abfb1d7b748291c587745683877881ae84e"
+    },
+    {
+      "state": "attack",
+      "cel": 2,
+      "bbox": [
+        8,
+        18,
+        82,
+        93
+      ],
+      "sha256": "2b0650e45a707543107f5c73e1dedd4caca531efb09d42e54686e1eac51644ce"
+    },
+    {
+      "state": "attack",
+      "cel": 3,
+      "bbox": [
+        5,
+        10,
+        84,
+        93
+      ],
+      "sha256": "38ebe34862cf96684bb5d1e86c348a6f14c5ac84bf47e6b5d71616c3c874ffa7"
+    },
+    {
+      "state": "attack",
+      "cel": 4,
+      "bbox": [
+        8,
+        18,
+        82,
+        93
+      ],
+      "sha256": "80547a90e95021d56810f85aef903438aaaaf59870bed064c5059b0ea4f26c00"
+    },
+    {
+      "state": "attack",
+      "cel": 5,
+      "bbox": [
+        8,
+        6,
+        87,
+        93
+      ],
+      "sha256": "3d6f4ea815d75b18e6ac10548dcdc138ffe8bc27e0a8fac9a05f71d85121a4a0"
+    },
+    {
+      "state": "hit",
+      "cel": 0,
+      "bbox": [
+        9,
+        6,
+        88,
+        93
+      ],
+      "sha256": "cc7f819fed4a21157daea10e2fa3bc21cbf80ad83c56f46b33282742d112767e"
+    },
+    {
+      "state": "hit",
+      "cel": 1,
+      "bbox": [
+        21,
+        6,
+        79,
+        93
+      ],
+      "sha256": "75427b06ba8195685b82923cd36cab023953a1d231d686e57d60cffe6bc252f7"
+    },
+    {
+      "state": "hit",
+      "cel": 2,
+      "bbox": [
+        7,
+        6,
+        89,
+        93
+      ],
+      "sha256": "92f38137335b19b076f0870a8621d2709b67c7bf5fff068dc227e10f6ff0bbb3"
+    },
+    {
+      "state": "death",
+      "cel": 0,
+      "bbox": [
+        14,
+        6,
+        81,
+        93
+      ],
+      "sha256": "8526bd2192e31ced3ad1b320ae599c7c78532160bec2c7500d3eecef2a06d514"
+    },
+    {
+      "state": "death",
+      "cel": 1,
+      "bbox": [
+        5,
+        6,
+        88,
+        93
+      ],
+      "sha256": "da4f9ab874e1384e721d266d9d666359fa67340b085363c19912f72d748b5acc"
+    },
+    {
+      "state": "death",
+      "cel": 2,
+      "bbox": [
+        2,
+        37,
+        90,
+        93
+      ],
+      "sha256": "c64139472f3633ce10d14a01c8b6f6b0a4d1bf1e6d552fbb76d3545279a9ba65"
+    },
+    {
+      "state": "death",
+      "cel": 3,
+      "bbox": [
+        2,
+        41,
+        90,
+        93
+      ],
+      "sha256": "f7ee2d112f6fc9a1c80a47cef173125769ca9d7d6afc83cd099476191707bb9a"
+    },
+    {
+      "state": "death",
+      "cel": 4,
+      "bbox": [
+        15,
+        35,
+        83,
+        93
+      ],
+      "sha256": "071997293305869db21ce1bd03cc9b8da3da308df8f1c9cbbba48c1c6084135d"
+    },
+    {
+      "state": "death",
+      "cel": 5,
+      "bbox": [
+        24,
+        47,
+        73,
+        93
+      ],
+      "sha256": "fc9ff477504e3ef84f7036f707b9f3b42e3ab04b161f395bb7ebae84e4ee4a80"
+    }
+  ],
+  "fullbody_original_cels": false,
+  "native_godot_pass": false,
+  "runstate_unchanged": true,
+  "asset_sha256": "45c777f70c52ee7d83f89b5596843ae5033edc5937eb7091fe92c01e16de729a"
+}
