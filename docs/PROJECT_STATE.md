@@ -2,6 +2,12 @@
 
 Updated: 2026-10-18 (D238 user restores one-batch 25-cel animation authoring and one F6 per character; D234/D235/D236R visual/motion rules remain, no new art yet, 37/45 LIVE). Source of truth: `zampolit73/Misdeal` / `main`.
 
+## D242 CURRENT — D241 native Loom/video motion QA = ART FAIL
+
+2026-10-18: User supplied an **actual 17s MP4 of D241 running in Godot**, alongside [Loom recording](https://www.loom.com/share/c988401b2fff4fecb6de0017da607c0c). Frames **~5–10.5s walk**, **~11–13.4s attack**, **~13.4–16.5s death** were visually reviewed, not inferred from Loom transcript. D241 ×3/×1 gallery on D209 forest renders (technical scene loads), but WALK is stiff and lacks coherent body mass, ATTACK leaves long spear high instead of a committed stab, DEATH collapses via picture rotation into a flat red smear. **D241 ART FAIL; D239 already ART FAIL.** Only walk/attack/death are evidenced; hit and both facings were not tested in the recording. No false all-animation PASS. Complete report [D242](D242_SENTINEL_NATIVE_VIDEO_ART_FAIL.md).
+
+**NEXT: full 25-frame independently authored / posed original dark-fantasy character pack** in the already approved D235/D234 rich spear/lantern look, with linked planted armored legs, genuine connected spear action and progressive kneeling/fall/corpse; refer to previously released D153 Puppeteer/Marionette and D183 Ferryman whole-body animation quality. Do **not** repackage rigid cutouts, rotate/stretch a standing image, change FPS to disguise poor art or request user to retest rejected D241. Work complete-pack internally (D238) and only ask for **ONE new full-pack F6** when there is meaningful actual improved source art. Keep D239/D241 QA archives, don't register either. **37/45 LIVE**, #38 QA only, frozen КАРАМБА73 untouched.
+
 ## D240/D241 — D239 art rejected by native screenshot; new D235 whole-body QA pack staged
 
 2026-10-18: User's actual Godot D239 screenshot **loads the scene** but user explicitly rejected the animation: legs look taken from another character, motion frightening. Compared shipped `threadbare_puppeteer`, `bone_marionette`, `drowned_ferryman` animation atlases; those animate anatomically coherent whole drawn figures. D239 grafted coarse procedural D236R greaves/boots onto elegant D234 illustrated armor and rotated the still for death. **D239 native ART QA = FAIL** irrespective of 25 distinct SHA count. Full root-cause note [D240](D240_SENTINEL_ANIMATION_ART_REJECTION.md).
