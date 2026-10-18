@@ -1,0 +1,122 @@
+{
+  "stage": "D240 MATTE PROBE, NOT APPROVED ART",
+  "source": "assets/pixel/units/black_lantern_road_qa/road_sentinel_d235_approved_walk_concept_q95.webp.b64",
+  "poses": [
+    {
+      "pose": 0,
+      "source_bbox": [
+        84,
+        50,
+        484,
+        490
+      ],
+      "game_bbox": [
+        9,
+        7,
+        87,
+        93
+      ],
+      "foreground_px": 64929,
+      "source_components": 1,
+      "signature": "b197c8209d79d9a6c5cb4b43bf972affc2ccb41aea9e3731e6a10d9f4b9181b6"
+    },
+    {
+      "pose": 1,
+      "source_bbox": [
+        71,
+        50,
+        474,
+        490
+      ],
+      "game_bbox": [
+        8,
+        7,
+        87,
+        93
+      ],
+      "foreground_px": 71800,
+      "source_components": 9,
+      "signature": "ea78823db3c159336db0f6c130138dd29d6a2d0e3ae8508e79a204e043d48bfa"
+    },
+    {
+      "pose": 2,
+      "source_bbox": [
+        89,
+        50,
+        456,
+        481
+      ],
+      "game_bbox": [
+        11,
+        7,
+        84,
+        93
+      ],
+      "foreground_px": 68834,
+      "source_components": 6,
+      "signature": "47b8f361a121943687d8b9f41d6e3b5fac45165f8ec86f3b2e53f7ed6e672e4c"
+    },
+    {
+      "pose": 3,
+      "source_bbox": [
+        69,
+        9,
+        512,
+        476
+      ],
+      "game_bbox": [
+        7,
+        7,
+        89,
+        93
+      ],
+      "foreground_px": 84389,
+      "source_components": 1,
+      "signature": "359a3c70e07391a5127b799519b6613a986f7f5ed0a088dbaff08f593f210d8b"
+    },
+    {
+      "pose": 4,
+      "source_bbox": [
+        56,
+        15,
+        441,
+        476
+      ],
+      "game_bbox": [
+        12,
+        7,
+        84,
+        93
+      ],
+      "foreground_px": 74276,
+      "source_components": 1,
+      "signature": "4578c13f629ee5c7ddba68016fecf74c44fef3ead32a9dda334c16f6f04e52dc"
+    },
+    {
+      "pose": 5,
+      "source_bbox": [
+        48,
+        27,
+        463,
+        476
+      ],
+      "game_bbox": [
+        8,
+        7,
+        87,
+        93
+      ],
+      "foreground_px": 76555,
+      "source_components": 3,
+      "signature": "fbd2288737a4834dd55cf4281999f8066a155943b6ea51a91855c605f86cf57d"
+    }
+  ],
+  "canvas": [
+    576,
+    480
+  ],
+  "author_art_method": "D235 original six full painted bodies, iterative GrabCut",
+  "native_godot_pass": false,
+  "game_integrated": false,
+  "sha256": "53568b0a42f25fc0d725e709768a42e752c3014b50f8db9b8e635a11747b9380"
+}
