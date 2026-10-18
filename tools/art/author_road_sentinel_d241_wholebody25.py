@@ -92,7 +92,7 @@ def build():
     # No rectangular puppet boots; ALL bodies+boots derived from painted D235.
     walks=[render(f) for f in raw_walks]
     idle_choices=[0,1,2,3]
-    idle=[render(raw_walks[idx],lean=(0,-1 if i==1 else 0)) for i,idx in enumerate(idle_choices)]
+    idle=[render(raw_walks[idx],angle=[-3,2,-2,3][i]) for i,idx in enumerate(idle_choices)]
     # Spear windup (raised), heavy step, hand-driven forward jab, hit, recovery.
     attack_source=[0,3,4,5,2,1]
     attack_angles=[-8,8,29,55,24,3]
@@ -109,7 +109,7 @@ def build():
     # Stagger → knee buckle → lean → catch floor → fall → settled corpse.
     death_src=[raw_walks[j] for j in (0,2,4,5,3,1)]
     death=[ground_rotate(render(death_src[i],angle=[0,0,15,32,52,65][i]),
-             angle=[0,8,32,62,84,89][i],dx=[0,-1,-2,-2,1,1][i],
+             angle=[-4,8,32,62,84,89][i],dx=[0,-1,-2,-2,1,1][i],
              limit_h=[87,87,82,73,58,46][i]) for i in range(6)]
     return [idle,walks,attack,hit,death]
 
