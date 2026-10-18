@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://scripts/dev/black_lantern_sentinel_d241_full25_preview.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/dev/black_lantern_sentinel_d241_wholebody25_preview.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/battle/authored_backdrop.gd" id="2"]
 
-[node name="BlackLanternSentinelD241Full25Preview" type="Control"]
+[node name="BlackLanternSentinelD241Wholebody25Preview" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
