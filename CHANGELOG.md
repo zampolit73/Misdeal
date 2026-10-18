@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D254: real #38 Battle→Reward→Table F6 launcher, live deck unchanged
+
+- Added a dedicated F6-only front end to select party size and either formation, then instantiate full real Battle (preparation/tactics/intro/true D206 encounter light), navigate actual Reward and Table inside the throwaway debug process.
+- QA card #38 is now look-up-able by ID in RunState.CARD_PATHS only, **not** included in 37-card ACT1_CARD_IDS. Inject original Guide/Oil/Archer technical animation into QA units only; accepted D244/D224 roles untouched.
+- Generated Guide reference with opaque labels not promoted to animation; final genuine transparent 25-frame Style B remains required, along with 54-case matrix, visual QA and native full-route check. No live encounter rollout.
+
 ## 2026-10-19 — D253: scope already-tested lantern light into the real Battle scene
 
 - Reused original D206 attack-interval boost controller exclusively for unreleased `black_lantern_road` in real Battle. Exact five original enemy-role guard, normal party/run modifiers, Fight-intro start and win/lose interval-restoring stop; other cards unchanged.

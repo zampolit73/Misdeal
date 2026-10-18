@@ -1,8 +1,12 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-19 — D253 scoped real Battle lanternlight for unreleased #38 staged, main route native pending; three rich 25-pose roles outstanding; 37/45 live.
+Updated: 2026-10-19 — D254 real full Battle route F6 QA staged for #38 (not released); final Guide/Acolyte/Archer 25 rich art still pending.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
+
+## D254 — Full real Battle→Reward→Table QA launcher staged, card #38 NOT released
+
+2026-10-19: Added F6-only `res://scenes/dev/black_lantern_d254_real_battle_route_qa.tscn`, selects solo/duo/trio and either #38 formation, creates a clean QA-only RunState and instantiates the **actual `scenes/battle/battle.tscn`** (not a clone). D253 scoped D206 light now runs under real Battle and restores on result, then Reward→Table navigation can be inspected. Registered `black_lantern_road` ONLY in `RunState.CARD_PATHS` to allow reward lookup; **ACT1_CARD_IDS stays 37 and excludes it**. Unfinished D218/D217/D219 25-pose original technical sprite sets are loaded/validated and injected only into their three enemy instances at QA launch, while staged D244 Sentinel and D224 Bearer use the shared loader. **Native F6 not run/approved**, no full-route or 54-case QA PASS. A fresh generated Guide reference with opaque background/captions was rejected for gameplay: full clean original 25-pose B-style Guide remains the art priority, followed by Acolyte/Archer. See `docs/D254_REAL_BATTLE_ROUTE_QA.md`. KARAMBA73 untouched.
 
 ## D253 — Actual Battle lanternlight gated for unreleased card #38
 

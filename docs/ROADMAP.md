@@ -1,6 +1,13 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-19 (D253 dormant real Battle Black Lantern light attached; art and native full-route still gate #38). Act 1 LIVE 37/45.
+Updated: 2026-10-19 (D254 F6 real Battle→Reward→Table launcher behind unreleased #38, native test pending; 37/45 live).
+
+## D254 — Original #38 real Battle QA route and party variation
+
+- [x] Add `black_lantern_road` **ONLY** to RunState CARD_PATHS so a test session may resolve it; leave 37 ACT1_CARD_IDS exactly unchanged.
+- [x] Add standalone F6 launcher for real Battle with solo/duo/trio and both authored formations. Temporary Guide/Acolyte/Archer 25-frame original QA art is injected per instance, Sentinel and Bearer use staged rich art.
+- [ ] Native user F6 `scenes/dev/black_lantern_d254_real_battle_route_qa.tscn`: verify real Battle intro/tactics/lantern boost, win→Reward→Table, no engine errors. This is a technical route check, not final art approval.
+- [ ] Full original clean rich Guide 25 cels, Oil Acolyte and Archer, then normalized 54-case balance/native final visual pass and #38 public 38/45 smoke. KARAMBA73 frozen.
 
 ## D253 — Dormant real Battle lanternlight hook for #38
 

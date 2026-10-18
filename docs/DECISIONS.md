@@ -3,6 +3,10 @@ Updated: 2026-10-19.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D254 — QA-only card lookup and actual Battle route without deck release
+
+2026-10-19: To test full native `Battle→Reward→Table` for unreleased #38, register it in addressable `RunState.CARD_PATHS` but **not ACT1_CARD_IDS**; a new F6-only launcher sets its active card and encounter in a throwaway run, instantiates the real Battle, and injects the three still-unfinished original 25-pose tech atlases only into its three corresponding QA actor instances. No global unfinished role registration, no change to normal deal probabilities, stats, or fundamental design. Real route remains unverified until Godot F6. `docs/D254_REAL_BATTLE_ROUTE_QA.md`.
+
 ## D253 — Scope a native-proven encounter mechanic in real Battle before card release
 
 2026-10-19: existing D206 light passed two D252 isolated 3v5 native formations; integrate that same controller behind exact `black_lantern_road` encounter and original five-role validation in regular Battle without inserting #38 in live deck. Lifecycle: setup after UnitData + difficulty modifiers, start after Fight intro, stop/restore on victory or defeat. This is safe dormant vertical-slice plumbing, NOT evidence that real Battle→Reward→Table or final art gates passed. D251 edge-pass did not solve actual animation errors; do not force through. `docs/D253_BLACK_LANTERN_BATTLE_LIGHT_HOOK.md`.
