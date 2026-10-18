@@ -1,2 +1,2 @@
-D241 saved full illustrated-body QA atlas /home/runner/work/Misdeal/Misdeal/assets/pixel/units/black_lantern_road_qa/road_sentinel_d241_wholebody25_qa.webp.b64 hash 45c777f70c52ee7d83f89b5596843ae5033edc5937eb7091fe92c01e16de729a
+D241 saved full illustrated-body QA atlas /home/runner/work/Misdeal/Misdeal/assets/pixel/units/black_lantern_road_qa/road_sentinel_d241_wholebody25_qa.webp.b64 hash 47078522c29d2f5d55418800054edff21ef70541ad3fe51db0db4eb26b422be1
 STATUS=PASS

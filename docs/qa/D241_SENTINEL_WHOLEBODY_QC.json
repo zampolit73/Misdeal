@@ -267,38 +267,38 @@
       "state": "death",
       "cel": 3,
       "bbox": [
-        2,
-        41,
-        90,
+        4,
+        37,
+        87,
         93
       ],
-      "sha256": "f7ee2d112f6fc9a1c80a47cef173125769ca9d7d6afc83cd099476191707bb9a"
+      "sha256": "4e676f6c2b90d57761b92c6de6b29321b148b0f6348dc5f1ba4d776dd41e5ff8"
     },
     {
       "state": "death",
       "cel": 4,
       "bbox": [
-        15,
-        35,
-        83,
+        6,
+        56,
+        91,
         93
       ],
-      "sha256": "071997293305869db21ce1bd03cc9b8da3da308df8f1c9cbbba48c1c6084135d"
+      "sha256": "21e5b10af6da5185cdb8f7116ecc097de5929a90941ac23f2d8a6e4ea90d9a8c"
     },
     {
       "state": "death",
       "cel": 5,
       "bbox": [
-        24,
-        47,
-        73,
+        6,
+        65,
+        92,
         93
       ],
-      "sha256": "fc9ff477504e3ef84f7036f707b9f3b42e3ab04b161f395bb7ebae84e4ee4a80"
+      "sha256": "b8ba9cccc11cde2044d320af868e669a3759b0c790c30c5dfefae32c471efcca"
     }
   ],
   "fullbody_original_cels": false,
   "native_godot_pass": false,
   "runstate_unchanged": true,
-  "asset_sha256": "45c777f70c52ee7d83f89b5596843ae5033edc5937eb7091fe92c01e16de729a"
+  "asset_sha256": "47078522c29d2f5d55418800054edff21ef70541ad3fe51db0db4eb26b422be1"
 }
