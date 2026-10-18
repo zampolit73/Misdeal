@@ -1,6 +1,14 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-19 (D252 native both D249 3v5 formations PASS; original three-role art and production flow/balance remain). Act1 LIVE 37/45.
+Updated: 2026-10-19 (D253 dormant real Battle Black Lantern light attached; art and native full-route still gate #38). Act 1 LIVE 37/45.
+
+## D253 — Dormant real Battle lanternlight hook for #38
+
+- [x] Reuse D206 scoped light in normal Battle ONLY for exact original five-enemy `black_lantern_road` roster. Configure after normal units, start after Fight/intro, stop + restore on either battle result.
+- [x] Preserve all other encounters, original battle data, D244/D224 staged art, live pool 37/45, KARAMBA73.
+- [x] Local D251 matte cleanup test internally rejected as insufficient to fix compressed chain-attack motion and scale. No invalid art shipped.
+- [ ] Rich original 25 whole posed frames for rigid triple-chain-lantern yoke Guide, then Acolyte and Archer, all with internal art QA.
+- [ ] Godot-native actual #38 Battle→Reward→Table and 54-case party/formation matrix under released balance AFTER art is complete; release #38 only then.
 
 ## D252 — Native two-formation 3v5 visual-smoke gate closed
 

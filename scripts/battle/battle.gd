@@ -19,6 +19,8 @@ const LABORATORY_HAZARDS_SCRIPT := preload("res://scripts/battle/laboratory_haza
 const THREAD_TETHER_SCRIPT := preload("res://scripts/battle/thread_tether.gd")
 # D188: telegraphed waves only for original Black Crossing.
 const BLACK_CROSSING_SURGE_SCRIPT := preload("res://scripts/battle/black_crossing_surge.gd")
+# D253: original card #38 lanternlight, only if encounter is selected.
+const BLACK_LANTERN_LIGHT_SCRIPT := preload("res://scripts/battle/black_lantern_light.gd")
 const BLACK_CROSSING_FLOOR := preload("res://scripts/battle/black_crossing_floor.gd")
 
 # Local to UnitsLayer (screen offset 20,96). Keep unit feet on the
@@ -104,6 +106,7 @@ var last_rite_controller: LastRiteController
 var laboratory_hazards_controller: LaboratoryHazardController
 var thread_tether_controller: ThreadTetherController
 var black_crossing_surge_controller: BlackCrossingSurgeController
+var black_lantern_light_controller: BlackLanternLightController
 var target_preview: BattleTargetPreview
 var deployment_floor_markers: Node2D
 
@@ -283,6 +286,29 @@ func _spawn_encounter() -> void:
 	_setup_defiled_laboratory_hazards()
 	_setup_threadbare_theatre_tethers()
 	_setup_black_crossing_surge()
+	_setup_black_lantern_light()
+
+
+func _setup_black_lantern_light() -> void:
+	# Card #38 is not in the live Act 1 card pool. All other encounters skip.
+	if encounter.encounter_id != "black_lantern_road":
+		return
+	var expected_roles: Array[String] = [
+		"extinguished_guide", "lantern_bearer", "road_sentinel",
+		"oil_acolyte", "lantern_archer"
+	]
+	var actual_roles: Array[String] = []
+	for unit in units:
+		if unit.team == 1:
+			actual_roles.append(unit.visual_role)
+	expected_roles.sort()
+	actual_roles.sort()
+	if actual_roles != expected_roles:
+		push_error("Black Lantern Road: original five-role roster required for light.")
+		return
+	black_lantern_light_controller = BLACK_LANTERN_LIGHT_SCRIPT.new() as BlackLanternLightController
+	units_layer.add_child(black_lantern_light_controller)
+	black_lantern_light_controller.configure(units)
 
 
 func _setup_black_crossing_surge() -> void:
@@ -989,6 +1015,8 @@ func _on_fight_pressed() -> void:
 		thread_tether_controller.start_threads()
 	if black_crossing_surge_controller != null:
 		black_crossing_surge_controller.start_surge()
+	if black_lantern_light_controller != null:
+		black_lantern_light_controller.start_light()
 
 func _hide_preparation_hud() -> void:
 	bottom_hud_panel.visible = false
@@ -1223,6 +1251,9 @@ func _finish_battle(player_won: bool) -> void:
 		thread_tether_controller.stop_threads()
 	if black_crossing_surge_controller != null:
 		black_crossing_surge_controller.stop_surge()
+	if black_lantern_light_controller != null:
+		# D206 restores each enemy attack interval on either result.
+		black_lantern_light_controller.stop_light()
 	battle_finished = true
 	combat_live = false
 	if target_preview != null:

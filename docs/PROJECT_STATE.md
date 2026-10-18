@@ -1,6 +1,10 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-19 (D252 user native D251/D249 both formations 3v5 smoke PASS; rich Guide art still internal FAIL; live 37/45). Source of truth: zampolit73/Misdeal main.
+Updated: 2026-10-19 (D253 gated real Battle D206 lantern light wired; native real route/art still pending; 37/45 LIVE). Source of truth: zampolit73/Misdeal main.
+
+## D253 — Actual Battle lanternlight gated for unreleased card #38
+
+2026-10-19: Reused existing D206 `BlackLanternLightController` inside normal `scripts/battle/battle.gd` **only** when encounter ID is `black_lantern_road` and exactly five original Black Lantern enemy roles are present. The controller is configured under `UnitsLayer` after `UnitData` and RunState modifiers, starts after user Fight/intro/normal `unit.start_combat()`, stops on either win or loss and restores pre-light attack intervals. It keeps D206 timing and +16% attack cadence for illuminated enemies. Other released encounters are gated out, and **#38 remains OUT of RunState.ACT1_CARD_IDS (37/45 live)**. No production sprite/UnitData/light script changes. **Static source verification PASS; native actual Battle #38 test NOT RUN**. D252 isolated real 3v5 both formations PASS remains last native evidence. A local D251 matte cleanup reduced fringe somewhat but failed to repair flattened chain swings/pose scale, so it was rejected (no new art registered). Guide full rich 25-pose art and Oil Acolyte/Archer art remain gating. Full details `docs/D253_BLACK_LANTERN_BATTLE_LIGHT_HOOK.md`. KARAMBA73 frozen.
 
 ## D252 — D251 user-native video: BOTH 3v5 formations verified (technical QA PASS)
 

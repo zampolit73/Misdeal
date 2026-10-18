@@ -1,8 +1,12 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-19 — D252 both 3v5 formations user-native PASS, Guide rich replacement/Oil/Archer still gated; Act1 37/45 live.
+Updated: 2026-10-19 — D253 scoped real Battle lanternlight for unreleased #38 staged, main route native pending; three rich 25-pose roles outstanding; 37/45 live.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
+
+## D253 — Actual Battle lanternlight gated for unreleased card #38
+
+2026-10-19: Reused existing D206 `BlackLanternLightController` inside normal `scripts/battle/battle.gd` **only** when encounter ID is `black_lantern_road` and exactly five original Black Lantern enemy roles are present. The controller is configured under `UnitsLayer` after `UnitData` and RunState modifiers, starts after user Fight/intro/normal `unit.start_combat()`, stops on either win or loss and restores pre-light attack intervals. It keeps D206 timing and +16% attack cadence for illuminated enemies. Other released encounters are gated out, and **#38 remains OUT of RunState.ACT1_CARD_IDS (37/45 live)**. No production sprite/UnitData/light script changes. **Static source verification PASS; native actual Battle #38 test NOT RUN**. D252 isolated real 3v5 both formations PASS remains last native evidence. A local D251 matte cleanup reduced fringe somewhat but failed to repair flattened chain swings/pose scale, so it was rejected (no new art registered). Guide full rich 25-pose art and Oil Acolyte/Archer art remain gating. Full details `docs/D253_BLACK_LANTERN_BATTLE_LIGHT_HOOK.md`. KARAMBA73 frozen.
 
 ## D252 — D251 user-native video: BOTH 3v5 formations verified (technical QA PASS)
 

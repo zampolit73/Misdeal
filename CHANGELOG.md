@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D253: scope already-tested lantern light into the real Battle scene
+
+- Reused original D206 attack-interval boost controller exclusively for unreleased `black_lantern_road` in real Battle. Exact five original enemy-role guard, normal party/run modifiers, Fight-intro start and win/lose interval-restoring stop; other cards unchanged.
+- Static source contract checked; Godot main Battle route with #38 NOT yet run; normal pool still 37/45, no unit art or stats changed.
+- Local D251 Guide alpha fringe experiment rejected as insufficient; complete painterly 25-pose Guide, Acolyte, Archer and full integration/matrix QA remain before release.
+
 ## 2026-10-19 — D252: user-native D251 scene verifies BOTH five-enemy formations
 
 - Reviewed ~27.76 sec actual Godot user recording. Native **ПЕРЕКРЁСТОК** and **МАРШ** each completed real isolated 3v5 fights at roughly 9.7 in-game seconds with all three heroes surviving; both encounter position variants and selector were actually exercised. Previous D250 second-formation PENDING is now CLOSED for **isolated QA**.

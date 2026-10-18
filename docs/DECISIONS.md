@@ -3,6 +3,10 @@ Updated: 2026-10-19.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D253 — Scope a native-proven encounter mechanic in real Battle before card release
+
+2026-10-19: existing D206 light passed two D252 isolated 3v5 native formations; integrate that same controller behind exact `black_lantern_road` encounter and original five-role validation in regular Battle without inserting #38 in live deck. Lifecycle: setup after UnitData + difficulty modifiers, start after Fight intro, stop/restore on victory or defeat. This is safe dormant vertical-slice plumbing, NOT evidence that real Battle→Reward→Table or final art gates passed. D251 edge-pass did not solve actual animation errors; do not force through. `docs/D253_BLACK_LANTERN_BATTLE_LIGHT_HOOK.md`.
+
 ## D251 — Do not promote a successful atlas export when action art loses physical consistency
 
 2026-10-19: The D251 rich Guide illustration finally honors the iron yoke + three chained lanterns. Its complete 25-cel 576×480 alpha atlas nonetheless fails internal artistic motion review (seam/halo from opaque source, compressed swing, variable body scale on death). **Static structural QA cannot become production art approval.** Archive reproducible source and derived QA-only sheet; keep D218 as technical Guide in isolated 3v5 until genuinely consistent rich B-style 25-pose final pack passes. The isolated D249 readability patch may hide enemy names by default but must retain HP bars and actual units and support toggling original labels and authored formations; no production gameplay/presentation rewriting. `docs/D251_GUIDE_RICH_ART_INTERNAL_FAIL.md`.
