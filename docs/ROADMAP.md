@@ -2,7 +2,14 @@
 
 Updated: 2026-10-18 (D238 user requested all 25 game-animation frames together, no individual pose approval gates; next full Sentinel asset pack, QA and all 37 LIVE unchanged). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
-## D240/D241 current full-character acceptance gate
+## D242 — Native recorded D241 QA fails acting/motion
+
+- [x] Reviewed user's actual 17s MP4 / 16.6s Loom of full D241 QA scene; walk stiff, spear attack not a convincing thrust, death becomes a rotated flattened illustration. Loading PASS is **NOT animation ART PASS**. `docs/D242_SENTINEL_NATIVE_VIDEO_ART_FAIL.md`.
+- [ ] **Reauthor complete Sentinel 25 full-body illustrated poses** for walking weight transfer, stab/hand mechanics, hit and collapsing death, preserving approved D235 B style and D234 held lantern. Avoid programmatically assembled body rotations, failed D236 polygon boots and reuse of rejected D239/D241.
+- [ ] Internally evaluate new full pack against real shipped D153/D183 motion at x1/x3, stage ONE full Godot F6 scene; no old D241 retest, no per-state user approvals.
+- [ ] Only after full art QA tackle other four roles and #38 3v5 light/route/balance/full-pool release gate. Live pool remains 37/45.
+
+## D240/D241 PREVIOUS (ART REJECTED) full-character acceptance gate
 
 - [x] Compared previous released Puppeteer/Marionette/Ferryman full-body animations and traced D239 mismatch to independently drawn polygon boots/greaves and upper/lower compositing; user explicitly **rejected** D239 visuals.
 - [x] Re-extracted genuine D235 full-body illustrations with matching armored legs and assembled **one new 25-state D241 QA candidate** with 5 empty cels, static QC and one native F6 scene.
