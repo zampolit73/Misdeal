@@ -1,6 +1,14 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-19 (D247 staged rich D244 Sentinel, real D224 Bearer QA scene awaits F6). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-19 (D248: user OK for D224 Bearer native duel; canonical two-role staging, simplified Guide D218 technical QA). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+
+## D248 — Bearer accepted-to-proceed; original rich Guide 25-frame art required
+
+- [x] User replied `«все ок»` after real D247 Bearer-vs-Knight Godot duel.
+- [x] Canonical D224 Bearer atlas staged byte-exact beside D244 Sentinel; shared strict library registers only these two original B-style #38 roles, no card release.
+- [x] QA-only D248 `black_lantern_guide_d248_combat_preview.tscn` real BattleUnit Guide-vs-Knight motion probe with temporary **simplified** original 25-pose D218 source; both directions/death, HP×3 only, no library role activation.
+- [ ] Author new truly rich B-style **25 wholly posed** tall Guide, distinctive *three separate chain-hung lamps from iron yoke*; internally QA all actions before ONE user-native full-pack F6; never replace with new Bearer/shield clone.
+- [ ] Rich Oil Acolyte & Lantern Archer full-25 art; genuine #38 3v5 with moving pools/light, deterministic matrix, reward/table and 38-card smoke/release only after full approval. 37/45 LIVE, KARAMBA73 frozen.
 
 ## D247 — Sentinel staged, next Bearer real combat check
 

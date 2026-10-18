@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D248: Bearer staged, Guide real 1v1 technical QA added
+
+- Recorded user's `«все ок»` after D247 actual Bearer Knight duel. Linked the original user-selected D224 25-frame asset blob into canonical Bearer `.webp.b64`; added Bearer to strict staged library alongside D244 Sentinel (two of five #38 roles).
+- Added D248 isolated real BattleUnit Guide 1v1 on D209 to probe AI movement with the old D218 triple-lantern tech atlas; keeps all 25 frames local to one instance. New Godot F6 NOT RUN. D218 simplified geometry NOT accepted for production.
+- Rejected off-identity exploratory shield-bearer illustration; did not import any new art for Guide. Future B-style 25-frame original Guide work remains required.
+- Zero RunState, normal battle/unit stats, #38 pool, DS2, D200/D209 or frozen checkpoint changes. Live remains 37/45.
+
 ## 2026-10-19 — D247: rich Sentinel staged, Bearer real Knight duel ready
 
 - User feedback D246 `«вроде все ок. продолжай»` authorizes moving forward with Sentinel B-style D244 on the QA-only #38 lane, not a complete game-release confirmation.

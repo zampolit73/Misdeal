@@ -1,6 +1,10 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-19 (D247 D244 Sentinel staged after provisional 1v1 no-blocker; D224 Bearer 1v1 F6 pending; 37/45 LIVE). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-19 (D248 Bearer user-native no-blocker staged, Guide technical QA probe, new Style-B art outstanding; 37/45 LIVE). Source of truth: `zampolit73/Misdeal` / `main`.
+
+## D248 — Bearer accepted and staged, Guide technical combat probe, rich art outstanding
+
+2026-10-19: User replied **«все ок»** to D247 Knight-vs-Lantern Bearer real native QA; accepted-to-proceed, **not full five-role card release**. Copied exact same D224 25-frame user-selected original atlas into `assets/pixel/units/deck_expansion_v1/lantern_bearer_frames.webp.b64`; registered `lantern_bearer` (source RIGHT) alongside D244 `road_sentinel` (source LEFT) in strict `MisdealUnitAnimationLibrary`, with rollback QA source preserved. **#38 remains outside ordinary 37/45 Act 1 cards.** Next tall three-chained-lantern `extinguished_guide`: old D218 original 25-pose pixel atlas is **simplified technical art**, not matching approved rich B-style. Added isolated `res://scenes/dev/black_lantern_guide_d248_combat_preview.tscn` real Guide vs Knight AI fight (both directions, death, HP×3 only) with D218 injected exclusively in QA instance; **new native F6 not yet run** and no Guide global registration. A generated shield-bearer picture was rejected as wrong identity, not imported. NEXT production art gate: illustrate complete high-detail 25 poses for actual triple-lamp Guide, internally QA, then a single completed-pack native F6; remaining Acolyte/Archer and full 3v5+light/matrix/reward/table later. `docs/D248_BEARER_ACCEPTED_GUIDE_PROBE.md`. Frozen KARAMBA73, DS2, approved D200/D209 and 37/45 LIVE unchanged.
 
 ## D247 — Sentinel D244 staged in library; Bearer D224 real 1v1 QA next
 

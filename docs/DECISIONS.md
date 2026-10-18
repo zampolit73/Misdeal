@@ -3,6 +3,10 @@ Updated: 2026-10-19.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D248 — Per-character real combat acceptance does not release unfinished #38
+
+2026-10-19: User `«все ок»` on actual D247 Lantern Bearer 1v1 permits staging the user-approved rich D224 25 poses in shared runtime library alongside D244 Sentinel, preserving correct facing and original sources. This is not a five-role/card-release PASS. D218 triple-lantern Guide is a simplified yet 25-pose technical reference permitted **only in isolated real 1v1 QA**, never as final original B-style art. Full illustrated original 25 poses required in one batch before Guide registration. D238 one-batch no micro-approvals; D143 unique enemy identity; see `docs/D248_BEARER_ACCEPTED_GUIDE_PROBE.md`.
+
 ## D247 — Provisional Sentinel combat acceptance and careful next-character staging
 
 2026-10-19: User replied `«так вродвсе ок. продолжай»` after playing D246 real 1v1. Treat as approval **to proceed** with technical D244 staging, not blanket full #38 art/balance/release approval. Safe to stage D244 in existing canonical `road_sentinel_frames.webp.b64` because #38 is still outside normal cards; preserve D229 archival source and update archive comparison. For the next role, keep previously user-approved D224 Bearer illustration, test its repacked original 25 animation cels in another **isolated** real Knight duel before any shared library activation; do not replace its unique shield/lamp with generic art. Real full #38 release still requires five original roles and all encounter QA. `docs/D247_SENTINEL_STAGING_AND_BEARER_COMBAT_QA.md`.

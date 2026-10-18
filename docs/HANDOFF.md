@@ -1,8 +1,12 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-19 — D247 Sentinel D244 canonical staged for QA only; Bearer D224 battle preview ready; one F6 next, 37/45 live.
+Updated: 2026-10-19 — D248 D224 Bearer staged after user OK; Guide D218 1v1 QA only, rich complete Style B Guide next, 37/45 live.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
+
+## D248 — Bearer accepted and staged, Guide technical combat probe, rich art outstanding
+
+2026-10-19: User replied **«все ок»** to D247 Knight-vs-Lantern Bearer real native QA; accepted-to-proceed, **not full five-role card release**. Copied exact same D224 25-frame user-selected original atlas into `assets/pixel/units/deck_expansion_v1/lantern_bearer_frames.webp.b64`; registered `lantern_bearer` (source RIGHT) alongside D244 `road_sentinel` (source LEFT) in strict `MisdealUnitAnimationLibrary`, with rollback QA source preserved. **#38 remains outside ordinary 37/45 Act 1 cards.** Next tall three-chained-lantern `extinguished_guide`: old D218 original 25-pose pixel atlas is **simplified technical art**, not matching approved rich B-style. Added isolated `res://scenes/dev/black_lantern_guide_d248_combat_preview.tscn` real Guide vs Knight AI fight (both directions, death, HP×3 only) with D218 injected exclusively in QA instance; **new native F6 not yet run** and no Guide global registration. A generated shield-bearer picture was rejected as wrong identity, not imported. NEXT production art gate: illustrate complete high-detail 25 poses for actual triple-lamp Guide, internally QA, then a single completed-pack native F6; remaining Acolyte/Archer and full 3v5+light/matrix/reward/table later. `docs/D248_BEARER_ACCEPTED_GUIDE_PROBE.md`. Frozen KARAMBA73, DS2, approved D200/D209 and 37/45 LIVE unchanged.
 
 ## D247 — Sentinel D244 staged in library; Bearer D224 real 1v1 QA next
 
