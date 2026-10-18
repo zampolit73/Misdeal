@@ -1,5 +1,7 @@
 # D241 — Road Sentinel: whole-body illustrated animation replacement (QA ONLY)
 
+> **2026-10-18 D242 NATIVE MOTION ART FAIL.** User provided real Loom/video; walking is stiff, spear attack does not clearly thrust, and death folds into a flattened figure. This D241 asset is **REJECTED** and preserved only as a QA/rollback experiment. Do not ask the user to retest it. New correct work: [D242 evidence and complete redraw contract](D242_SENTINEL_NATIVE_VIDEO_ART_FAIL.md).
+
 **Date:** 2026-10-18. **Motivation:** user saw D239 Godot F6 and explicitly rejected the art ("ноги как будто бы от другого персонажа"). The defect was real — flat procedural D236R greaves were pasted under richly illustrated armor. See [D240 comparative art rejection](D240_SENTINEL_ANIMATION_ART_REJECTION.md) for checked-in older character animation reference sheets and full technical explanation.
 
 ## Actually changed
