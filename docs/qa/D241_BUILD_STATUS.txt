@@ -2,5 +2,5 @@ Traceback (most recent call last):
   File "/home/runner/work/Misdeal/Misdeal/tools/art/author_road_sentinel_d241_wholebody25.py", line 124, in <module>
     assert sha not in seen,('duplicate',row,col)
            ^^^^^^^^^^^^^^^
-AssertionError: ('duplicate', 0, 2)
+AssertionError: ('duplicate', 1, 0)
 STATUS=FAIL; NO READY GAME ART PUBLISHED
