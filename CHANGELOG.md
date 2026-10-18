@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D246: real 1×1 Sentinel D244 combat preview (QA-only)
+
+- Added Godot F6 scene `black_lantern_sentinel_d246_combat_preview.tscn` using real `BattleUnit` AI for exactly one D244 Sentinel and one Knight; authentic movement, auto-facing, melee hit effects and death on approved D209.
+- Kept D244 art override on preview instance only; no shared animation-library/caching, live battle scene, `UnitData` or random-deal modifications. HP ×3 is clearly QA-only to prolong observation; buttons restart, reverse sides and trigger actual death.
+- Added native QA instructions and source-of-truth D246 handoff. **Static source checks completed, native Godot F6 not yet verified**. Live 37/45; card #38 and frozen KARAMBA73 untouched.
+
 ## 2026-10-19 — D245: recorded real native Godot D244 gallery QA
 
 - Evaluated user's 21.38s Godot screen recording frame-by-frame: ×1/×3 D209 stage, both directions, all five states, visible horizontal spear thrust, multi-stage falling body and attached amber lantern. Gallery rendering/motion reviewed as **native scene PASS**, not inferred from static 25-frame QA.

@@ -1,6 +1,10 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-19 (D245 user-native recorded D244 all-state/two-facing gallery PASS, final subjective art approval pending; 37/45 LIVE). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-19 (D246 single Sentinel D244 battle QA committed; one native F6 real-unit combat test PENDING; 37/45 live). Source of truth: `zampolit73/Misdeal` / `main`.
+
+## D246 — ONE Road Sentinel D244 in actual BattleUnit-vs-BattleUnit combat QA
+
+2026-10-19: User explicitly asked to insert **just Road Sentinel** into a real moving fight before approving art or completing #38. Built isolated scene `res://scenes/dev/black_lantern_sentinel_d246_combat_preview.tscn`: D244 is injected **only into one QA enemy instance after ready**, Knight is real unmodified battle-role sprite, both run real `BattleUnit` auto-targeting/foot movement/facing/attacks/hits/death on approved D209. QA controls: replay, swap sides (attack in both directions), show death. Only **HP ×3 during QA** extends time to observe; movement/attack data unchanged. Shared `MisdealUnitAnimationLibrary` (still D229 for road_sentinel), actual Battle UI, `RunState.ACT1_CARD_IDS`, light controller and game encounter data untouched. **Godot F6 native combat QA PENDING**; no claim of real combat visual PASS or final D244 art approval. Full contract in `docs/D246_SENTINEL_SINGLE_REAL_COMBAT_QA.md`. Act1 **37/45 live**, card #38 QA only, KARAMBA73 frozen.
 
 ## D245 — User-recorded D244 native full-pack F6: TECHNICAL/PREVIEW PASS, final aesthetic verdict PENDING
 

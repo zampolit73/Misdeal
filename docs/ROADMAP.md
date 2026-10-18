@@ -1,6 +1,13 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-19 (D245 real native D244 user video QA reviewed; five states/two facings preview works; artistic final verdict not explicitly given). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-19 (D246 isolated real-unit 1v1 scene staged for testing D244 Sentinel movement, native F6 pending). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+
+## D246 — Single Sentinel D244 real BattleUnit movement QA
+
+- [x] Add isolated real AI **one Sentinel vs one Knight** D209 forest fight, unaltered movement, aiming, real hit/death feedback. D244 frames apply to only a QA BattleUnit instance (no global role cache).
+- [x] Include restart, swapped-side attack direction and explicit death controls. Only HP ×3 locally to lengthen observation; check #38 stays outside 37-card live pool.
+- [ ] **User-native F6:** run `res://scenes/dev/black_lantern_sentinel_d246_combat_preview.tscn`, observe actual walk floor contact, left/right automatic facing and attacks; send one short recording or defect list. Do not claim PASS until native test.
+- [ ] Final D244 art verdict, four other unique characters, full 3v5/light/balance/reward and release gates; existing 37/45 and KARAMBA73 untouched.
 
 ## D245 — One complete D244 native video review (real Godot)
 

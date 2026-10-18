@@ -1,7 +1,11 @@
 # Misdeal — Active Design & Technical Decisions
-Updated: 2026-10-18.
+Updated: 2026-10-19.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
+
+## D246 — One-character QA battle before entire #38 character cast is finished
+
+2026-10-19: User requested testing exactly **one D244 Road Sentinel** in actual active combat to judge walking before final aesthetic approval. Permit an isolated F6 real `BattleUnit` vs Knight fight on approved D209 with source-rendered D244 frames substituted **only for the preview's Road Sentinel instance**. No global animation-library/cache change, no `RunState` registration, no encounter/balance/reward changes. Local HP-only QA extension is labeled non-production. Requires one user-native run before any claim of native combat PASS. This testing exception does NOT supersede D238 one complete art batch per character or D143 original five enemies before #38 release. See `docs/D246_SENTINEL_SINGLE_REAL_COMBAT_QA.md`.
 
 ## D242 — Video-native QA rejects D241; require real full-body acting poses
 
