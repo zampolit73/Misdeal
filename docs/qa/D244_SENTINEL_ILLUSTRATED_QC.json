@@ -1,0 +1,444 @@
+{
+  "stage": "D244 original illustrated animation from 25 transparent full-body painted poses",
+  "authoring": "connected alpha island extraction from transparent 6x5 original source; see script",
+  "stage_status": "QA candidate only; user native F6 PENDING, visual approval PENDING",
+  "counts": [
+    4,
+    6,
+    6,
+    3,
+    6
+  ],
+  "filled_cels": 25,
+  "empty_cels": 5,
+  "source_original_png_hash": "660732bb24435e51756741793ec7167aeebddf0466e8565b29eb3ab408eb9f06",
+  "source_b64_sha256": "cfe46de34eb6e328ca894b85b3975e8b670bf5f7cdd01eb4f2f664c7f214ece1",
+  "atlas_webp_sha256": "e9853f65fe0eb9ce045dec3e07c298c21e463086efbb52966a5ba95e108ef0ef",
+  "frame_info": [
+    {
+      "state": "idle",
+      "column": 0,
+      "source_bbox": [
+        18,
+        7,
+        199,
+        220
+      ],
+      "packed_bbox": [
+        13,
+        10,
+        83,
+        92
+      ],
+      "sha256": "5214c2fbaf2fb0c883b02396c24969e8d813a11944164c5a7ce32b3469767b60"
+    },
+    {
+      "state": "idle",
+      "column": 1,
+      "source_bbox": [
+        236,
+        7,
+        432,
+        221
+      ],
+      "packed_bbox": [
+        10,
+        10,
+        85,
+        92
+      ],
+      "sha256": "029bbca32d5f361f6a0bf1eb7091b085f66f5ff09e24a462620c98c47cd3ca5a"
+    },
+    {
+      "state": "idle",
+      "column": 2,
+      "source_bbox": [
+        462,
+        7,
+        663,
+        221
+      ],
+      "packed_bbox": [
+        9,
+        10,
+        86,
+        92
+      ],
+      "sha256": "4b9c23eaa62ae131acd8f07387e6d09412984dfe0d20d6e6d81fb3cc4d20f36d"
+    },
+    {
+      "state": "idle",
+      "column": 3,
+      "source_bbox": [
+        680,
+        7,
+        886,
+        221
+      ],
+      "packed_bbox": [
+        8,
+        10,
+        87,
+        92
+      ],
+      "sha256": "3e51818829d4a189bcb6903e29ae2ef2ad3c2c44a011783055786cffec758d01"
+    },
+    {
+      "state": "walk",
+      "column": 0,
+      "source_bbox": [
+        10,
+        1,
+        214,
+        216
+      ],
+      "packed_bbox": [
+        8,
+        9,
+        87,
+        92
+      ],
+      "sha256": "31fe1bb4fe941f442b93b1286d7a288718456392343666a26c347471901338d1"
+    },
+    {
+      "state": "walk",
+      "column": 1,
+      "source_bbox": [
+        231,
+        2,
+        450,
+        216
+      ],
+      "packed_bbox": [
+        6,
+        10,
+        90,
+        92
+      ],
+      "sha256": "b49dd745dc7f4a25a4481a22d7926e1fa201619a51654c27dd8d5ec2be51c69c"
+    },
+    {
+      "state": "walk",
+      "column": 2,
+      "source_bbox": [
+        458,
+        2,
+        664,
+        216
+      ],
+      "packed_bbox": [
+        8,
+        10,
+        87,
+        92
+      ],
+      "sha256": "7e18315451e7725a704dc9cebdca6e8e8e0f9095b8a70a76e23b7832a51ded1b"
+    },
+    {
+      "state": "walk",
+      "column": 3,
+      "source_bbox": [
+        678,
+        3,
+        891,
+        216
+      ],
+      "packed_bbox": [
+        7,
+        10,
+        89,
+        92
+      ],
+      "sha256": "90ad6ab5bb02902c1957f1ba4901b63bb3ffa7ba1af27f0fc7a1e5ae09c75a89"
+    },
+    {
+      "state": "walk",
+      "column": 4,
+      "source_bbox": [
+        899,
+        1,
+        1122,
+        217
+      ],
+      "packed_bbox": [
+        5,
+        9,
+        91,
+        92
+      ],
+      "sha256": "bb89d1a6b90c1f3c51609966915aecf826613db54b9767954f3d5680ba72734c"
+    },
+    {
+      "state": "walk",
+      "column": 5,
+      "source_bbox": [
+        1134,
+        0,
+        1340,
+        216
+      ],
+      "packed_bbox": [
+        8,
+        9,
+        87,
+        92
+      ],
+      "sha256": "572abf69a9f0c01a4eca6a284dd8a4bb236025124940aad706bd044d52c3c8ec"
+    },
+    {
+      "state": "attack",
+      "column": 0,
+      "source_bbox": [
+        16,
+        0,
+        211,
+        210
+      ],
+      "packed_bbox": [
+        10,
+        11,
+        85,
+        92
+      ],
+      "sha256": "de329f556690ee31ab587e928da8f6b19c226dd454cf38a77c37b3057995f198"
+    },
+    {
+      "state": "attack",
+      "column": 1,
+      "source_bbox": [
+        219,
+        0,
+        441,
+        210
+      ],
+      "packed_bbox": [
+        5,
+        11,
+        90,
+        92
+      ],
+      "sha256": "2192a367fe98fdbed5f6f9980e95344fd5156a98626ea77f0088c2fa8f5b0b9b"
+    },
+    {
+      "state": "attack",
+      "column": 2,
+      "source_bbox": [
+        371,
+        58,
+        684,
+        210
+      ],
+      "packed_bbox": [
+        4,
+        33,
+        91,
+        92
+      ],
+      "sha256": "f3c3b98fb60023abad9535685a83609fb6090085d41073eebdec4b6961a8ea39"
+    },
+    {
+      "state": "attack",
+      "column": 3,
+      "source_bbox": [
+        673,
+        71,
+        1007,
+        211
+      ],
+      "packed_bbox": [
+        2,
+        43,
+        94,
+        92
+      ],
+      "sha256": "4776d4d4936011d1829c0d886f2021f4a7fcfa07e1b2adc11d1604e1d477c972"
+    },
+    {
+      "state": "attack",
+      "column": 4,
+      "source_bbox": [
+        928,
+        7,
+        1159,
+        211
+      ],
+      "packed_bbox": [
+        3,
+        13,
+        92,
+        92
+      ],
+      "sha256": "06e9d3fcd75cbb860a82338b07a7096450c4ccd11633f497d56b68783a04fa66"
+    },
+    {
+      "state": "attack",
+      "column": 5,
+      "source_bbox": [
+        1145,
+        0,
+        1360,
+        211
+      ],
+      "packed_bbox": [
+        6,
+        11,
+        89,
+        92
+      ],
+      "sha256": "c8b543af2c52035ab01f8a853f423c543a84089e99992a65b64be88288939b09"
+    },
+    {
+      "state": "hit",
+      "column": 0,
+      "source_bbox": [
+        17,
+        6,
+        220,
+        205
+      ],
+      "packed_bbox": [
+        9,
+        15,
+        87,
+        92
+      ],
+      "sha256": "756d498b9637a0b2447f5dccd0fe7354498ddaf117944133dceaf2fb3c0d73d9"
+    },
+    {
+      "state": "hit",
+      "column": 1,
+      "source_bbox": [
+        233,
+        11,
+        452,
+        206
+      ],
+      "packed_bbox": [
+        6,
+        17,
+        90,
+        92
+      ],
+      "sha256": "139789bd54e0c9c822fcd914357b1e95ead29347ebbfcd10fb15ffa479b398d1"
+    },
+    {
+      "state": "hit",
+      "column": 2,
+      "source_bbox": [
+        454,
+        8,
+        662,
+        205
+      ],
+      "packed_bbox": [
+        8,
+        16,
+        88,
+        92
+      ],
+      "sha256": "e3dbf2ea3591ba93b751444722fd2d94319862e652cc64ab6300499aa5553c86"
+    },
+    {
+      "state": "death",
+      "column": 0,
+      "source_bbox": [
+        19,
+        0,
+        213,
+        184
+      ],
+      "packed_bbox": [
+        10,
+        21,
+        85,
+        92
+      ],
+      "sha256": "f49968241ca711f67b7affbea2c4f18553201b1d3ba3124c431a4f3b46afbbc1"
+    },
+    {
+      "state": "death",
+      "column": 1,
+      "source_bbox": [
+        241,
+        2,
+        454,
+        186
+      ],
+      "packed_bbox": [
+        7,
+        21,
+        89,
+        92
+      ],
+      "sha256": "3ef2a5a37873e6bd72ce17300d115bfa94c5ed39af6e3f48f4fd311e458b47bc"
+    },
+    {
+      "state": "death",
+      "column": 2,
+      "source_bbox": [
+        455,
+        32,
+        674,
+        182
+      ],
+      "packed_bbox": [
+        6,
+        34,
+        90,
+        92
+      ],
+      "sha256": "748ed410df7e6dab28a8e9b0c2e142bbde39939cc6ed4fdc9ff7fd817dfa5852"
+    },
+    {
+      "state": "death",
+      "column": 3,
+      "source_bbox": [
+        653,
+        87,
+        906,
+        182
+      ],
+      "packed_bbox": [
+        2,
+        57,
+        94,
+        92
+      ],
+      "sha256": "353d0a0e323dcb10d2e0f23ee932b9c01eb81fafbc32edd402433ba1ba0baed7"
+    },
+    {
+      "state": "death",
+      "column": 4,
+      "source_bbox": [
+        897,
+        110,
+        1140,
+        187
+      ],
+      "packed_bbox": [
+        2,
+        63,
+        94,
+        92
+      ],
+      "sha256": "8c5f49f09e740615adabf58b4eec7d778858abd1c06ffe7b943559fed2c9a1c8"
+    },
+    {
+      "state": "death",
+      "column": 5,
+      "source_bbox": [
+        1113,
+        110,
+        1367,
+        188
+      ],
+      "packed_bbox": [
+        2,
+        64,
+        94,
+        92
+      ],
+      "sha256": "422c688ec5ccec78dbb6ae1ffc0d2abf3262d20c27fab58ad645d716b73056e8"
+    }
+  ]
+}

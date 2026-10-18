@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D244: original illustrated Sentinel 25-pose QA, native review pending
+
+- Authored new detailed D235-inspired skeletal spear/held-lantern 25-frame illustrated source with true distinct whole-body poses instead of D243 flat vector geometry or D241 static cutout rotations.
+- Packed one 576×480 25-state lossless WebP atlas via connected-alpha island extraction to avoid source overlaps, plus separate spear-tip perspective correction on two attack frames, 5 transparent unused cells and 2px pad.
+- Static QA PASS on source segmentation, 25 unique frames, alpha, dimensions and lossless export. Godot F6, game motion and player artistic acceptance PENDING; new isolated preview does not change production sprites, card pool 37/45, selected card/arena or frozen KARAMBA73.
+- Source/provenance, author script, machine report, isolated F6 and decision gates in `docs/D244_SENTINEL_RICH_ILLUSTRATED25_QA.md`.
+
 ## 2026-10-18 — D243: internal 25-pose motion study, not final painted art
 
 - Drew 25 explicit articulated 96px motion frames with separately positioned armored joints, grounded spear thrust, visible lantern grip and staged kneel/fall/corpse. QA-only WebP atlas, Python source, machine checks and native Godot preview are staged.

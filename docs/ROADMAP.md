@@ -2,6 +2,15 @@
 
 Updated: 2026-10-18 (D238 user requested all 25 game-animation frames together, no individual pose approval gates; next full Sentinel asset pack, QA and all 37 LIVE unchanged). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
+## D244 — Illustrated Sentinel all-25 pack QA
+
+- [x] Generated 25 whole illustrated B-style armored skeleton poses in one complete image (not D243 geometry), preserving held amber lantern and long spear.
+- [x] Isolated all 25 source characters via alpha-connected segmentation (prevents source-grid clipping on long thrust), perspectively shortened spear only where necessary to fit fixed 96×96, packed 6×5 lossless WebP/Base64.
+- [x] Offline QC: 25 distinct, 5 transparent unused, full character in 2px inset, source-reproducible Python authoring and QC report.
+- [x] Created new separate ×1/×3, five-state, left/right Godot F6 gallery using exact D209 forest; **native F6 not yet run**.
+- [ ] ONE real full-pack native F6 visual review: leg weight during walk, forward pointed-spear contact, wrist lantern grip, progressive fall/corpse, both facings. Fix any identified flaws before registering.
+- [ ] Other four authored role packs, #38 3v5 + localized light mechanic + balance + actual Battle→Reward→Table + 38-card pool smoke. Live still 37/45, checkpoint KARAMBA73 frozen.
+
 ## D243 — Technical movement study, NOT yet finished art
 
 - [x] Construct 25 separate per-pose joint silhouettes, including horizontal spear impact and staged physical fall, and verify 25 unique/5 clear/2px/576×480 lossless texture.
