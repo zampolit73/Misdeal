@@ -2,6 +2,14 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-18 — D240/D241: Rework Sentinel after user-native D239 art rejection
+
+- User's native D239 F6 shows scene loads but **explicit art FAIL**: detached foreign-looking polygon legs and wooden weightless steps. Inspected previous released D153 Puppeteer/Marionette and D183 Ferryman original whole-body 25-frame atlases. Logged root cause: D236R hand-coded boot/greave overlay and D239 rigid body-splicing, rotating still for death.
+- Added D240 reproducible internal foreground-extraction QA of selected rich D235 six full-body illustrated poses including **their original armored legs**; GitHub generated six transparent source frames and matte inspection. No new card art or live characters changed.
+- Built D241 **entire QA 25-frame illustrated-body atlas** (idle4, walk6, attack6, hit3, death6 +5 clear) with original illustrated boots, reused D234 actual painted spear at hand pivot, reconstructed attack stances and visible horizontal grounded corpse poses. GitHub Actions source/strict alpha/unique/2px validation PASS. D241 full atlas sha256 `47078522c29d2f5d55418800054edff21ef70541ad3fe51db0db4eb26b422be1`.
+- One isolated Godot F6 scene `res://scenes/dev/black_lantern_sentinel_d241_wholebody25_preview.tscn` compares ×1/×3 and both facings across five states on existing D209 forest. **No native engine execution or artistic PASS claimed**; full individual painting (especially spear thrust and death) may still be needed.
+- No D229 production registry switch, no #38 release, active **37/45**, KARAMBA73 frozen. Canonical notes `docs/D240_SENTINEL_ANIMATION_ART_REJECTION.md` and `docs/D241_SENTINEL_WHOLEBODY_FULL25_QA.md`.
+
 ## 2026-10-18 — D239: Full 25-frame Sentinel illustrated-source QA package
 
 - Generated and committed **actual 576×480 WebP/Base64 atlas** with 25 distinct roles across idle4/walk6/attack6/hit3/death6, five empty alpha cells and valid 2px margins, via a scoped GitHub Actions Pillow builder. Machine report `docs/qa/D239_SENTINEL_FULL25_QC.json`, SHA256 `79817fba4ee8469de6923fc9cdb30436db6852aa415533a25c93529f4fc49487`.
