@@ -53,12 +53,12 @@ func _ready() -> void:
 	panel.color = Color(0.035, 0.047, 0.059, 0.89)
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(panel)
-	_label("D239 / СТРАЖ ДОРОГИ · ПОЛНЫЕ 25 КАДРОВ / QA", Vector2(190, 19), Vector2(900, 38), 25, true)
+	_label("D239 / АРТ ЗАБРАКОВАН · ОТКРОЙ D241", Vector2(190, 19), Vector2(900, 38), 25, true)
 	_label("Большой просмотр x3", Vector2(123, 154), Vector2(345, 33), 19, true)
 	_label("В боевом масштабе x1", Vector2(690, 155), Vector2(420, 32), 19, true)
 	state_name = _label("", Vector2(84, 506), Vector2(448, 32), 18, true)
 	status = _label(
-		"D239: СЦЕНА ЗАГРУЖЕНА. ПРОВЕРЬ ОБА НАПРАВЛЕНИЯ И ВСЕ 5 АНИМАЦИЙ.\n"
+		"D239: ВИЗУАЛЬНЫЙ FAIL; НОВАЯ QA-СЦЕНА D241. ПРОВЕРЬ ОБА НАПРАВЛЕНИЯ И ВСЕ 5 АНИМАЦИЙ.\n"
 		+ "25 ПОЗ В ОДНОМ ПАКЕТЕ · ВАЖНО ОЦЕНИТЬ ПЛАВНОСТЬ УКОЛА И ПАДЕНИЯ НА ×1.",
 		Vector2(130, 558), Vector2(1020, 65), 16, true
 	)
