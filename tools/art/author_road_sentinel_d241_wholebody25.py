@@ -45,11 +45,20 @@ def rotate_grip(image,angle,pivot=(36,48),shift=(0,0)):
     # rotate in visual screen coordinates around the hand, not cell center
     big=Image.new('RGBA',(256,256))
     off=(128-pivot[0],128-pivot[1])
+    # A 96px cel cannot fit a fully horizontal original long spear.
+    # Temporarily foreshorten only during the advanced forward attack poses,
+    # keeping its actual illustrated pixel art and the same hand pivot.
+    factor=(0.66 if angle>40 else (0.77 if angle>26 else (0.88 if angle>16 else 1.0)))
+    if factor < 1.0:
+        new_size=(round(96*factor),round(96*factor))
+        image=image.resize(new_size,Image.Resampling.LANCZOS)
+        off=(128-round(pivot[0]*factor),128-round(pivot[1]*factor))
     big.alpha_composite(image,off)
     # pillow's +deg rotates visually from raised NW to forward-left.
     big=big.rotate(angle,resample=Image.Resampling.BICUBIC,expand=False)
     canvas=Image.new('RGBA',(96,96))
-    canvas.alpha_composite(big,(-off[0]+shift[0],-off[1]+shift[1]))
+    # World-space hand pivot stays x36,y48 after angular foreshortening.
+    canvas.alpha_composite(big,(-128+pivot[0]+shift[0],-128+pivot[1]+shift[1]))
     return canvas
 def undress_weapon(src):
     body=src.copy()
