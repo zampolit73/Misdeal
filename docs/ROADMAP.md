@@ -1,6 +1,14 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-19 (D250 native D249 single MARШ smoke confirmed; guide rich art, second formation, full #38 release QA PENDING). Act 1 LIVE 37/45.
+Updated: 2026-10-19 (D251 triple-yoke Guide candidate structural PASS art FAIL, D249 QA names/formation toggle staged). Act 1 LIVE 37/45.
+
+## D251 — Guide paint and encounter readability (not yet production-ready)
+
+- [x] New detailed original Guide silhouette shows correct rigid shoulder yoke with three amber chain lamps, preserves Style B materials rather than copying a shield soldier.
+- [x] Reproducibly pack 25 distinct transparent 96×96 native cels from 1536×1024 concept illustration; alpha margin, unique hashes, WebP round-trip structural PASS; **reject** as final due hairline cutout and distorting extreme chain attacks/falls.
+- [x] D249 isolated 3v5: name labels hidden by default for enemy crowd readability, optional toggle; formation switch now explicitly shows destination → ПЕРЕКРЁСТОК / ← МАРШ.
+- [ ] Rich original clean transparent per-pose Guide repaint correcting attack body/lamps and corpse consistency; one full 25-frame native F6 ONLY when internally ready. Do not weaken checks or force D251 through.
+- [ ] F6 D249 improved QA and actual second ПЕРЕКРЁСТОК formation; then remaining rich Acolyte/Archer, true Battle→Reward→Table, 54 cases and pool 38/45. Live 37/45 KARAMBA73 frozen.
 
 ## D250 — User's first authentic D249 3v5 recording: one formation passes
 

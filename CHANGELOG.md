@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D251: rich triple-lantern Guide structural pack, internally rejected as final; isolated QA HUD
+
+- New original 1536×1024 rich B-style Guide reference has rigid overhead iron yoke and three chain-hung lamps; extracted 25 frame-wise illustrative poses into lossless alpha 576×480 with 25 distinct/5 clear/margins PASS, original source/reproducible offline author and QC staged in QA.
+- **Internal art FAIL:** matte fringe, compressed chain motion in wide attacks, inconsistent animation proportions. No shared Guide registry switch and no player F6 requested for rejected candidate.
+- D249 3v5 isolated test now shows explicit alternate-formation destination and optional enemy name overlays, OFF by default to reduce overlap without touching HP bars, units or production Battle. New Godot native test pending.
+- Current released 37/45, unchanged unit stats, D209, DS2, Fate Spread and frozen KARAMBA73.
+
 ## 2026-10-19 — D250: actual user D249 3v5 native video review
 
 - Independently inspected user's ~21.4s running Godot footage. D249 MARШ first encounter proceeds through 3v5 combat and light boost/off control, winning around 9.6s with 3 heroes alive, 0 enemies, attack count 17/6; a second MARШ run starts successfully.

@@ -1,6 +1,10 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-19 (D250 user video shows D249 native 3v5 MARШ smoke PASS, second formation & final art PENDING; 37/45 live). Source of truth: zampolit73/Misdeal main.
+Updated: 2026-10-19 (D251 rich Guide candidate STRUCTURAL PASS / internal ART FAIL, D249 QA readability controls pending F6; 37/45 LIVE). Source of truth: zampolit73/Misdeal main.
+
+## D251 — Guide rich triple-yoke illustrated source and 25-pose structural QA, ART FAIL; D249 readability patch
+
+2026-10-19: Authored detailed new Guide source with correct rigid iron yoke and three chained lanterns, saved lossless technical 25-pose alpha atlas **QA ONLY** + reproducible extractor + machine report. 576×480/25 distinct/5 blank/2px checks PASS; **internal motion-art FAIL** from background matting halos, wide ATTACK chain foreshortening and inconsistent proportions on death. Do NOT show as final, register shared Guide role or request native F6 yet. Updated D249 3v5 **QA-only** HUD: enemy names hidden by default (button toggles), formation switch explicitly reads **ПЕРЕКРЁСТОК → / ← МАРШ**. Godot F6 of the new controls NOT RUN. Source `docs/D251_GUIDE_RICH_ART_INTERNAL_FAIL.md`. D250 native MARШ-only smoke remains last verified result, PЕРЕКРЁСТОК still pending; normal pool 37/45, KARAMBA73 frozen.
 
 ## D250 — User-native D249 five-role 3v5 video smoke: one formation PASS, art gates OPEN
 

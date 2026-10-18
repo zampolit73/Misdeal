@@ -48,6 +48,9 @@ var status_label: Label
 var details_label: Label
 var result_label: Label
 var light_button: Button
+var formation_button: Button
+var names_button: Button
+var enemy_names_visible: bool = false
 
 
 func _ready() -> void:
@@ -182,6 +185,9 @@ func _spawn_actor(data: UnitData, team_id: int, source: Vector2, enemy_name: Str
 		actor.set_tactical_order("assault")
 	units_layer.add_child(actor)
 	if team_id == 1:
+		# QA-only readability: the Guide has an oversized label from UnitData.
+		# Keep character models and health bars; allow toggling names manually.
+		actor.name_label.visible = enemy_names_visible
 		var frames: SpriteFrames = null
 		if data.visual_role == "road_sentinel" or data.visual_role == "lantern_bearer":
 			frames = ANIMATION_LIBRARY.get_frames(data.visual_role)
@@ -251,7 +257,16 @@ func _process(delta: float) -> void:
 
 func _toggle_formation() -> void:
 	formation = 1 - formation
+	formation_button.text = "← МАРШ" if formation == 1 else "ПЕРЕКРЁСТОК →"
 	_reset_battle()
+
+
+func _toggle_enemy_names() -> void:
+	enemy_names_visible = not enemy_names_visible
+	names_button.text = "ИМЕНА ВКЛ" if enemy_names_visible else "ИМЕНА ВЫКЛ"
+	for actor in actors:
+		if is_instance_valid(actor) and actor.team == 1:
+			actor.name_label.visible = enemy_names_visible and actor.alive
 
 
 func _toggle_lantern_light() -> void:
@@ -305,9 +320,10 @@ func _make_ui() -> void:
 	var note := _label("Настоящий AI и две расстановки. Страж/Носильщик: принятый арт B; Проводник/Служка/Стрелок: ТОЛЬКО технический QA, не релиз.", Vector2(24, 623), Vector2(1236, 29), 13)
 	note.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_button("СНОВА", Vector2(24, 668), Vector2(150, 39), _reset_battle)
-	_button("СМЕНИТЬ РАССТАНОВКУ", Vector2(187, 668), Vector2(287, 39), _toggle_formation)
+	formation_button = _button("ПЕРЕКРЁСТОК →", Vector2(187, 668), Vector2(287, 39), _toggle_formation)
 	light_button = _button("СВЕТ ВКЛ", Vector2(489, 668), Vector2(190, 39), _toggle_lantern_light)
-	_label("#38 QA · обычная колода 37/45 · баланс и награды не проверены", Vector2(691, 671), Vector2(568, 27), 12)
+	names_button = _button("ИМЕНА ВЫКЛ", Vector2(691, 668), Vector2(185, 39), _toggle_enemy_names)
+	_label("#38 QA · 37/45 · НЕ РЕЛИЗ", Vector2(890, 671), Vector2(365, 27), 12)
 
 
 func _button(title: String, at: Vector2, dimensions: Vector2, callback: Callable) -> Button:
