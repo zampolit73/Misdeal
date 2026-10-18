@@ -1,6 +1,10 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-19 (D251 rich Guide candidate STRUCTURAL PASS / internal ART FAIL, D249 QA readability controls pending F6; 37/45 LIVE). Source of truth: zampolit73/Misdeal main.
+Updated: 2026-10-19 (D252 user native D251/D249 both formations 3v5 smoke PASS; rich Guide art still internal FAIL; live 37/45). Source of truth: zampolit73/Misdeal main.
+
+## D252 — D251 user-native video: BOTH 3v5 formations verified (technical QA PASS)
+
+2026-10-19: Reviewed user's ~27.76 sec D249 scene after D251 QA UI improvements. **ПЕРЕКРЁСТОК** ends around in-game 9.7s with 3/3 heroes, 0/5 enemies, 16 hero attacks/6 enemy attacks; then **МАРШ** ends around in-game 9.7s with 3/3 heroes and 0/5 enemies. Formation selector changes correctly; enemy labels hidden by default, hero names/HP visible. Real localized lanternlight active/rest phase and buff counters observed in both configurations. **This closes D250's previously open SECOND FORMATION native smoke gate**, not production battle-route or balance QA. Both fights are easy for a three-hero party, but this is isolated non-normalized QA only; no balance tuning from it alone. The large flat D218 Guide still obscures melee and hero names/HP still overlap; D251 rich Guide study remains internally ART FAIL, never substituted. Exact video evidence `docs/D252_D251_NATIVE_BOTH_FORMATIONS_QA.md`. Act1 **37/45 live**, #38 QA, KARAMBA73 untouched.
 
 ## D251 — Guide rich triple-yoke illustrated source and 25-pose structural QA, ART FAIL; D249 readability patch
 

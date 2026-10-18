@@ -19,3 +19,7 @@ Offline author `tools/art/author_extinguished_guide_d251.py` manually identifies
 User D250 video showed name and health overlay collision with the massive Guide. QA scene `res://scenes/dev/black_lantern_d249_five_enemy_combat_qa.tscn` now defaults enemy **name labels off** (does NOT hide actor models or HP bars; hero name labels untouched), with explicit `ИМЕНА ВЫКЛ / ВКЛ` button to restore them. The authored formation switch is now labeled `ПЕРЕКРЁСТОК →` or `← МАРШ` and restarts exactly the alternative encounter positions. Full `BattleUnit`, light controller, enemy stats and combat AI remain unchanged. This is QA-only UI, NOT a production HUD redesign and NOT evidence the second formation ran in Godot; native retest remains pending.
 
 Frozen KARAMBA73 untouched. 37/45 released, #38 pending three art roles, true balance and normal Battle→Reward→Table.
+
+## Later D252 video (2026-10-19)
+
+New video of D249 with D251's UI controls **passes both native authored 3v5 deployments**; it does not run or approve the D251 Guide art (D218 still displayed). See `docs/D252_D251_NATIVE_BOTH_FORMATIONS_QA.md`.

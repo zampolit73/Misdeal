@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D252: user-native D251 scene verifies BOTH five-enemy formations
+
+- Reviewed ~27.76 sec actual Godot user recording. Native **ПЕРЕКРЁСТОК** and **МАРШ** each completed real isolated 3v5 fights at roughly 9.7 in-game seconds with all three heroes surviving; both encounter position variants and selector were actually exercised. Previous D250 second-formation PENDING is now CLOSED for **isolated QA**.
+- Confirmed enemy labels hidden by default (optional ON untested), existing hero HP/names still have crowd overlap, D206 attack-buff phases and counters visible; no red QA FAIL on record.
+- The D218 Guide remains oversized simplified technical art. D251 new rich character pack was NOT installed, and remains internally rejected, as stated in `docs/D251_GUIDE_RICH_ART_INTERNAL_FAIL.md`. Normal card #38 still unreleased, full balance and Battle→Reward→Table untested. Evidence in `docs/D252_D251_NATIVE_BOTH_FORMATIONS_QA.md`.
+- No gameplay or asset changes; 37/45 live and frozen KARAMBA73 preserved.
+
 ## 2026-10-19 — D251: rich triple-lantern Guide structural pack, internally rejected as final; isolated QA HUD
 
 - New original 1536×1024 rich B-style Guide reference has rigid overhead iron yoke and three chain-hung lamps; extracted 25 frame-wise illustrative poses into lossless alpha 576×480 with 25 distinct/5 clear/margins PASS, original source/reproducible offline author and QC staged in QA.

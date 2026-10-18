@@ -1,6 +1,14 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-19 (D251 triple-yoke Guide candidate structural PASS art FAIL, D249 QA names/formation toggle staged). Act 1 LIVE 37/45.
+Updated: 2026-10-19 (D252 native both D249 3v5 formations PASS; original three-role art and production flow/balance remain). Act1 LIVE 37/45.
+
+## D252 — Native two-formation 3v5 visual-smoke gate closed
+
+- [x] D251 user video: **ПЕРЕКРЁСТОК** native 3v5 ends win at 9.7 sec, all 3 heroes, 0 enemies; **МАРШ** native 3v5 also wins at 9.7 sec, 3/3 heroes. Actual button switches, not just restart.
+- [x] New enemy-name OFF default improves crowded combat; changing to ON itself not tested. Scoped lantern light active and rest states with live enemy buff counter are visibly working.
+- [ ] Original rich 25-pose **rigid triple-lamp shoulder-yoke Guide**: D251 extraction is an internally rejected art/motion reference, D218 tech actor still large and flat. Do not register as finished until genuinely clean consistent frame-by-frame art.
+- [ ] Oil Acolyte and Lantern Archer rich character packs, crowded hero label/HP readability adjustments, then NORMAL #38 Battle→Reward→Table + solo/duo/trio 54-case matrix. Both current isolated 3v5 wins at 9.7s/3 heroes surviving should prompt difficulty review only in normalized final QA.
+- [ ] #38 release to 38/45 only after full five-role art and live encounter QA; KARAMBA73 unchanged.
 
 ## D251 — Guide paint and encounter readability (not yet production-ready)
 
