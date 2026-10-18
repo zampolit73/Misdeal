@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D250: actual user D249 3v5 native video review
+
+- Independently inspected user's ~21.4s running Godot footage. D249 MARШ first encounter proceeds through 3v5 combat and light boost/off control, winning around 9.6s with 3 heroes alive, 0 enemies, attack count 17/6; a second MARШ run starts successfully.
+- Remaining second ПЕРЕКРЁСТОК formation is **not** demonstrated in this video; no real Battle→Reward→Table/balance evidence. Document exact video evidence and boundaries in `docs/D250_NATIVE_D249_3V5_VIDEO_QA.md`.
+- Noted major nonrelease visual defect: huge gray D218 Guide technical actor obscures accepted detailed sprites and labels in melee; B-style guide 25 original yoke/three-lamp frames remain required. No game code, active cards, original art, or KARAMBA73 modified.
+
 ## 2026-10-19 — D249: native original five-enemy 3v5 diagnostic scene staged
 
 - User reports D248 real 1v1 technical Guide QA OK; D218 still NOT painterly Style B art. Internally rejected three new artwork sheets with wrong yoke/lantern identity and invalid game atlas structure, imported none.

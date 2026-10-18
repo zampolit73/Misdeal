@@ -1,6 +1,10 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-19 (D249 3v5 original-roles QA staged, Godot F6 pending; Guide rich B-style art still required; 37/45 LIVE). Source of truth: zampolit73/Misdeal main.
+Updated: 2026-10-19 (D250 user video shows D249 native 3v5 MARШ smoke PASS, second formation & final art PENDING; 37/45 live). Source of truth: zampolit73/Misdeal main.
+
+## D250 — User-native D249 five-role 3v5 video smoke: one formation PASS, art gates OPEN
+
+2026-10-19: Reviewed user's real ~21.4s Godot D249 video. `МАРШ` starts with 3/3 heroes and 5/5 distinct enemies; original D209 arena, real auto-combat, D206 lantern light warning→active (`усилено скелетов 1` observed), light-off button works, and first fight ends at **9.6s with 3/3 heroes alive, enemies 0/5, 17 hero/6 enemy attack counter**. A second restart of **МАРШ** occurs with light off. **The `ПЕРЕКРЁСТОК` formation is NOT shown**, nor any normal Battle→Reward→Table; do not claim comprehensive 3v5 or balance PASS. Major remaining visual blocker: oversized simplified geometric D218 Guide dominates the cluster, obscures other actors; name/HP labels collide. Strict final yoke+three chain-lamp, rich B-style original 25-pose Guide still needed; existing art D218 remains isolated QA only. Source `docs/D250_NATIVE_D249_3V5_VIDEO_QA.md`. **37/45 live**; KARAMBA73 frozen.
 
 ## D249 — User says D248 Guide technical 1v1 OK; real five-role 3v5 QA staged
 

@@ -1,6 +1,14 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-19 (D249 isolated real 3v5 QA scene pending native F6; original Guide/Acolyte/Archer rich art still required). Act 1 LIVE 37/45.
+Updated: 2026-10-19 (D250 native D249 single MARШ smoke confirmed; guide rich art, second formation, full #38 release QA PENDING). Act 1 LIVE 37/45.
+
+## D250 — User's first authentic D249 3v5 recording: one formation passes
+
+- [x] D249 first real Godot video shows MARШ 3 heroes vs 5 original enemies on D209, real AI movement, 5→0 enemies, 3 heroes survive first ~9.6s, visible damage/attack counters.
+- [x] Scoped light warning/active phases and live `усилено скелетов 1` counter, manual light off; restart observed.
+- [ ] Confirm `ПЕРЕКРЁСТОК` second deployment on a future test. Recorded second run **also says МАРШ**, so do not mark the two-formation gate closed.
+- [ ] Replace the large flat/geometric obstructive Guide D218 with full rich B-style **25 unique poses** depicting a rigid yoke and exactly three separately chained amber lanterns. Tight battle HUD labels and overlaps also need composition QA.
+- [ ] Original rich Oil Acolyte/Archer; final 3v5 native both formation passes, true balance/matrix and production Battle→Reward→Table release gates before 38/45.
 
 ## D249 — Complete five-role REAL combat composition without premature card release
 
