@@ -1,6 +1,6 @@
 Traceback (most recent call last):
-  File "/home/runner/work/Misdeal/Misdeal/tools/art/author_road_sentinel_d241_wholebody25.py", line 124, in <module>
-    assert sha not in seen,('duplicate',row,col)
-           ^^^^^^^^^^^^^^^
-AssertionError: ('duplicate', 1, 0)
+  File "/home/runner/work/Misdeal/Misdeal/tools/art/author_road_sentinel_d241_wholebody25.py", line 122, in <module>
+    assert bbox and bbox[0]>=2 and bbox[1]>=2 and bbox[2]<=94 and bbox[3]<=94,(row,col,bbox)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (2, 2, (0, 18, 82, 93))
 STATUS=FAIL; NO READY GAME ART PUBLISHED
