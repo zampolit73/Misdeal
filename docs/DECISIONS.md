@@ -3,6 +3,10 @@ Updated: 2026-10-19.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D255 — Approved original character visual direction ≠ release-ready frame extraction
+
+2026-10-19: the user responded «отлично» to three separately generated **complete character sheets** for the last three #38 original enemies. Preserve these as accepted visual directions and original illustrated source art; batch all 25 poses per role rather than seeking approval state-by-state. Although uniform 96px unpacking yields 75 distinct padded frames, crossing source-sheet columns clips some props in 12/13/9 cels. These are known ART HOLD defects, **not** production-ready just because offline checks pass. Never hide this clipping by repeating frames or shrinking the whole actor during attacks. New three-character F6 gallery stays QA only and shared library unchanged until correct. `docs/D255_THREE_RICH_CHARACTER_ATLASES.md`.
+
 ## D254 — QA-only card lookup and actual Battle route without deck release
 
 2026-10-19: To test full native `Battle→Reward→Table` for unreleased #38, register it in addressable `RunState.CARD_PATHS` but **not ACT1_CARD_IDS**; a new F6-only launcher sets its active card and encounter in a throwaway run, instantiates the real Battle, and injects the three still-unfinished original 25-pose tech atlases only into its three corresponding QA actor instances. No global unfinished role registration, no change to normal deal probabilities, stats, or fundamental design. Real route remains unverified until Godot F6. `docs/D254_REAL_BATTLE_ROUTE_QA.md`.

@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D255: complete original visual packs for three remaining #38 roles (QA source and sprites)
+
+- User-approved visual directions for Guide/Oil Acolyte/Archer preserved in lossless Git source. Authored 75 original illustrated pose cutouts as three complete 25-frame WebP alpha candidates + Python generator + per-cell QC and combined x1/x2.1 five-state/two-facing Godot F6 gallery.
+- Offline structural QC passed 25 unique per role, 5 fully clear unused cells per role, 2px safe margins and fixed transform without pose-by-pose whole-body shrink.
+- **Internal art hold**: edge-overlap in original six-column images clips moving lamps/chains/cloth (12/13/9 source frame flags respectively), not visually release-ready. No global animation registration, #38 deal activation or game balance changes. One final full-pack native F6 should follow repaired atlas only.
+- 37/45 active cards, D244 Sentinel/D224 Bearer, real D253 light, D254 QA launcher and frozen KARAMBA73 untouched.
+
 ## 2026-10-19 — D254: real #38 Battle→Reward→Table F6 launcher, live deck unchanged
 
 - Added a dedicated F6-only front end to select party size and either formation, then instantiate full real Battle (preparation/tactics/intro/true D206 encounter light), navigate actual Reward and Table inside the throwaway debug process.

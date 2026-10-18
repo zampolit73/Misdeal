@@ -1,0 +1,755 @@
+{
+  "version": "D255",
+  "status": "STRUCTURAL_PASS_ART_REVIEW_PENDING",
+  "roles": [
+    {
+      "role": "extinguished_guide",
+      "sheet_size": [
+        1374,
+        1145
+      ],
+      "atlas_size": [
+        576,
+        480
+      ],
+      "asset_sha256": "d3258aae81e9bb4e3648ec0feb58206a9203cdd4381ae8b4026ee86ad8e0b6e4",
+      "distinct": 25,
+      "empty": 5,
+      "source_edge_warnings": [
+        {
+          "animation": "walk",
+          "frame": 0,
+          "source_vertical_edge_alpha_pixels": 26
+        },
+        {
+          "animation": "walk",
+          "frame": 1,
+          "source_vertical_edge_alpha_pixels": 85
+        },
+        {
+          "animation": "walk",
+          "frame": 2,
+          "source_vertical_edge_alpha_pixels": 43
+        },
+        {
+          "animation": "attack",
+          "frame": 0,
+          "source_vertical_edge_alpha_pixels": 143
+        },
+        {
+          "animation": "attack",
+          "frame": 1,
+          "source_vertical_edge_alpha_pixels": 258
+        },
+        {
+          "animation": "attack",
+          "frame": 2,
+          "source_vertical_edge_alpha_pixels": 168
+        },
+        {
+          "animation": "attack",
+          "frame": 3,
+          "source_vertical_edge_alpha_pixels": 286
+        },
+        {
+          "animation": "attack",
+          "frame": 4,
+          "source_vertical_edge_alpha_pixels": 446
+        },
+        {
+          "animation": "attack",
+          "frame": 5,
+          "source_vertical_edge_alpha_pixels": 199
+        },
+        {
+          "animation": "hit",
+          "frame": 1,
+          "source_vertical_edge_alpha_pixels": 54
+        },
+        {
+          "animation": "death",
+          "frame": 4,
+          "source_vertical_edge_alpha_pixels": 173
+        },
+        {
+          "animation": "death",
+          "frame": 5,
+          "source_vertical_edge_alpha_pixels": 181
+        }
+      ],
+      "states": [
+        {
+          "animation": "idle",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 3876,
+              "source_edge_pixels": 0,
+              "hash": "e82a178375bc0037c5c70c5566ede14bdc29566d54f897db426d3806703ea5f1"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 3888,
+              "source_edge_pixels": 0,
+              "hash": "2a39b67a69581fae8dc00409bb98bcdb0a8d242fd518a3bc8f979ef51f21b091"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 3908,
+              "source_edge_pixels": 0,
+              "hash": "dcb5af9209ad3b082a020c809d520dd33ee6ec4ead2e556ad22a55bce86846ae"
+            },
+            {
+              "frame": 3,
+              "opaque_pixels": 4061,
+              "source_edge_pixels": 0,
+              "hash": "98bfd0fb4b5895ebdc3b3faee6da6e9c9c0ae7ac860984e5ce4972d892f70e86"
+            }
+          ]
+        },
+        {
+          "animation": "walk",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 4045,
+              "source_edge_pixels": 26,
+              "hash": "57f06b50745159dbd9f8a226d2c91e5157c30ef2a484c191f66479d0c79cc240"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 3856,
+              "source_edge_pixels": 85,
+              "hash": "2b9b748e5ca7c3ad165a2ca5826fc22da9cee67376b9e3e01878c688163a877c"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 3972,
+              "source_edge_pixels": 43,
+              "hash": "bd47044cdb5d769ee8cbda6271b15bb72e1c9062a9e3a23c32b3e675729479a4"
+            },
+            {
+              "frame": 3,
+              "opaque_pixels": 3855,
+              "source_edge_pixels": 0,
+              "hash": "c18314f48469b6a57b886ec7c1dd8f817269004e822f710c2da0c3da077e361f"
+            },
+            {
+              "frame": 4,
+              "opaque_pixels": 3969,
+              "source_edge_pixels": 0,
+              "hash": "a2a813a37e3166c14007af3922edbf200208ce2c063794d5360640f202dd3e22"
+            },
+            {
+              "frame": 5,
+              "opaque_pixels": 3949,
+              "source_edge_pixels": 0,
+              "hash": "7b647d531ed384b22c1e96f4a408e3dbc0625d00f2489e482c486d87b2f7eacc"
+            }
+          ]
+        },
+        {
+          "animation": "attack",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 4084,
+              "source_edge_pixels": 143,
+              "hash": "b2d6eea7a2eb5686e5e12581d59dfa9a0dc4289ff415d726e54b67c0aaa24a10"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 4205,
+              "source_edge_pixels": 258,
+              "hash": "78120386a88888975c37a928a037423e5e35a142e9d68ddd2b60f233695405e1"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 4136,
+              "source_edge_pixels": 168,
+              "hash": "88f992069900227cf1a5e24928952a4cddb60f26a9601e694abbcf4bbda99ca9"
+            },
+            {
+              "frame": 3,
+              "opaque_pixels": 4438,
+              "source_edge_pixels": 286,
+              "hash": "f146c558163bf191c77093f76324e60b0a6445c6a64cf78fbd9748a6570339c5"
+            },
+            {
+              "frame": 4,
+              "opaque_pixels": 3953,
+              "source_edge_pixels": 446,
+              "hash": "f80c31ee385bcb5841bddb1696bd89a3c5ab4a6d983ca50855775d20ddf9804d"
+            },
+            {
+              "frame": 5,
+              "opaque_pixels": 3991,
+              "source_edge_pixels": 199,
+              "hash": "644acaf1ac9e0acd362eb5a950b8887a6e6cc642e14405450d487dc1cd921ad3"
+            }
+          ]
+        },
+        {
+          "animation": "hit",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 3859,
+              "source_edge_pixels": 0,
+              "hash": "b6016887fe2c42792685102a164039664066fdde2b5b51c08f20253a4d45f09d"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 3755,
+              "source_edge_pixels": 54,
+              "hash": "341c44276acd8cedebe573a08be5a838df66b2ccbdd0c24730d9d9f9f2b80b16"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 3720,
+              "source_edge_pixels": 4,
+              "hash": "7f73176864c4936dab0d780539337e0fca664acae6af056cb3bbe1cf3f1a0058"
+            }
+          ]
+        },
+        {
+          "animation": "death",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 3698,
+              "source_edge_pixels": 0,
+              "hash": "cd2c0c3d1d50083955b67560c8ce194b2196fb44d5c0824fe11358c9430b2147"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 3259,
+              "source_edge_pixels": 0,
+              "hash": "714c3e1011a2ccaea28bce990201a3e26c709537e1633ae97ab16415e29acbd3"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 2752,
+              "source_edge_pixels": 0,
+              "hash": "f13588f8b11887f128d73f508c838b265d5f87e185cf6f71c5365aea963cb042"
+            },
+            {
+              "frame": 3,
+              "opaque_pixels": 2306,
+              "source_edge_pixels": 0,
+              "hash": "fcd55d0165b1cbe29a6c50ba637d53c16a3b5a6e8d47ac6bab1f5f82b4f69e43"
+            },
+            {
+              "frame": 4,
+              "opaque_pixels": 2661,
+              "source_edge_pixels": 173,
+              "hash": "e83597870f72c4335a9043215bb53bb22d421291ea2bdd577f4602188dabd71d"
+            },
+            {
+              "frame": 5,
+              "opaque_pixels": 1924,
+              "source_edge_pixels": 181,
+              "hash": "b73331f11244b01ad8ab623d1dbd55ad0b69816f976da86d63982944d7ad6321"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "oil_acolyte",
+      "sheet_size": [
+        1374,
+        1145
+      ],
+      "atlas_size": [
+        576,
+        480
+      ],
+      "asset_sha256": "7968449156ab9c892fc8b9bb03ed92119c818b367494744590ea2fff33953d1f",
+      "distinct": 25,
+      "empty": 5,
+      "source_edge_warnings": [
+        {
+          "animation": "walk",
+          "frame": 0,
+          "source_vertical_edge_alpha_pixels": 57
+        },
+        {
+          "animation": "walk",
+          "frame": 1,
+          "source_vertical_edge_alpha_pixels": 53
+        },
+        {
+          "animation": "attack",
+          "frame": 0,
+          "source_vertical_edge_alpha_pixels": 27
+        },
+        {
+          "animation": "attack",
+          "frame": 2,
+          "source_vertical_edge_alpha_pixels": 144
+        },
+        {
+          "animation": "attack",
+          "frame": 3,
+          "source_vertical_edge_alpha_pixels": 244
+        },
+        {
+          "animation": "attack",
+          "frame": 4,
+          "source_vertical_edge_alpha_pixels": 183
+        },
+        {
+          "animation": "attack",
+          "frame": 5,
+          "source_vertical_edge_alpha_pixels": 70
+        },
+        {
+          "animation": "hit",
+          "frame": 0,
+          "source_vertical_edge_alpha_pixels": 28
+        },
+        {
+          "animation": "hit",
+          "frame": 1,
+          "source_vertical_edge_alpha_pixels": 24
+        },
+        {
+          "animation": "death",
+          "frame": 0,
+          "source_vertical_edge_alpha_pixels": 33
+        },
+        {
+          "animation": "death",
+          "frame": 3,
+          "source_vertical_edge_alpha_pixels": 46
+        },
+        {
+          "animation": "death",
+          "frame": 4,
+          "source_vertical_edge_alpha_pixels": 100
+        },
+        {
+          "animation": "death",
+          "frame": 5,
+          "source_vertical_edge_alpha_pixels": 68
+        }
+      ],
+      "states": [
+        {
+          "animation": "idle",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 3015,
+              "source_edge_pixels": 0,
+              "hash": "9082bf9d235e90b8fde835e8a70e5449936102f643a26c42bfcfd87dec2ac764"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 3089,
+              "source_edge_pixels": 0,
+              "hash": "039e5c9f8561c83f6bb008f73583f03e77682c816a5ee0e19b528007ad64cff8"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 2981,
+              "source_edge_pixels": 0,
+              "hash": "6da6ebd8ed82f67e54bbaca1787f6b0ad191118c237c6329fdb0f9fd5c4033fb"
+            },
+            {
+              "frame": 3,
+              "opaque_pixels": 3024,
+              "source_edge_pixels": 0,
+              "hash": "12e62ce37ecd81efdb34c71851daa612893471b419bb3feafc25cd23517add4d"
+            }
+          ]
+        },
+        {
+          "animation": "walk",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 3349,
+              "source_edge_pixels": 57,
+              "hash": "a9517badb5903b6ffd8b6078ff61411d211c91db2305be2eadc0e04ca260943a"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 3334,
+              "source_edge_pixels": 53,
+              "hash": "09afd26b67f4e70547f352e8090833a5c9fced023ebcc9ac5c7a47392d721f30"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 3127,
+              "source_edge_pixels": 0,
+              "hash": "30731305ff4d79ff9fae33308e53359ab8c48ad246a2792e0c9f4d987721e1cd"
+            },
+            {
+              "frame": 3,
+              "opaque_pixels": 3064,
+              "source_edge_pixels": 0,
+              "hash": "1d3992e5f810b760a5ec3dd36b529736d40cbf5801d5190340fa755f7793f35f"
+            },
+            {
+              "frame": 4,
+              "opaque_pixels": 3072,
+              "source_edge_pixels": 0,
+              "hash": "c4369fc781eb1bb9680de8da6d7e16e90bab97c084a247ebd653b506d08cfeba"
+            },
+            {
+              "frame": 5,
+              "opaque_pixels": 3161,
+              "source_edge_pixels": 0,
+              "hash": "ef2eff4ced02f1d6a3377da430603288a1b7dbae25869e67ed98475501734a96"
+            }
+          ]
+        },
+        {
+          "animation": "attack",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 3136,
+              "source_edge_pixels": 27,
+              "hash": "3adce16a62a9eba7f8866f5b595243168a06451603bec25620b4f5edb8b4f93f"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 3136,
+              "source_edge_pixels": 0,
+              "hash": "11a858c8e5b4f75feb8edc312cf0b5d07daf95e0effc985e769e3c77d6fdb7b2"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 3084,
+              "source_edge_pixels": 144,
+              "hash": "3c5c0a0683d3a9c94c33b5f13574c0dd5d846296159fce99822449491f26edc9"
+            },
+            {
+              "frame": 3,
+              "opaque_pixels": 3252,
+              "source_edge_pixels": 244,
+              "hash": "7c8bfadab08c4ae34a39dc32a55d0556143ea3a4f0d4f8c0bac16fc0484b94b5"
+            },
+            {
+              "frame": 4,
+              "opaque_pixels": 3451,
+              "source_edge_pixels": 183,
+              "hash": "4244e4217bda7b6a33c08efcc9e2abdb292950f15f832065f2cfb30215ddc00c"
+            },
+            {
+              "frame": 5,
+              "opaque_pixels": 2907,
+              "source_edge_pixels": 70,
+              "hash": "60823549c14edec3c5334bcd4ab02ee7fd79487f6afba7d4ec9cee027c45eff9"
+            }
+          ]
+        },
+        {
+          "animation": "hit",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 3205,
+              "source_edge_pixels": 28,
+              "hash": "912696dbcc09b21f00544735079a08f4aea9c533ffe8feef2eccb408315cb1b9"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 2598,
+              "source_edge_pixels": 24,
+              "hash": "44abd51d8e46f602e005cb806c2a282e4d7a5614c165b9f8997e7cabdd517f52"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 2485,
+              "source_edge_pixels": 0,
+              "hash": "8a956e10dcd6cd656e2056fb61822be3ed05f97e1fd6031ff07981985b94e753"
+            }
+          ]
+        },
+        {
+          "animation": "death",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 3054,
+              "source_edge_pixels": 33,
+              "hash": "aa56801462330ff092270a61d4963d860b37c71dcf4b340519d3b8b307631978"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 2534,
+              "source_edge_pixels": 2,
+              "hash": "59d340a30a27cab9c6d31cd61f8e2eaa0e7cde0727ee663832c15c2850db89c7"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 2305,
+              "source_edge_pixels": 5,
+              "hash": "cfb9ac27f646f18f1a9e2db6bdb1293f5fad930c2072aec0206f2bec45ce7e48"
+            },
+            {
+              "frame": 3,
+              "opaque_pixels": 1950,
+              "source_edge_pixels": 46,
+              "hash": "af92bc559263ea5ea65868ceb875d45fac140f1d6d5d29aa6624a88024f1af41"
+            },
+            {
+              "frame": 4,
+              "opaque_pixels": 1741,
+              "source_edge_pixels": 100,
+              "hash": "027e998154355801e25c13692c3fd6bbcedd55f6057cc7da7686715d2cd781eb"
+            },
+            {
+              "frame": 5,
+              "opaque_pixels": 1599,
+              "source_edge_pixels": 68,
+              "hash": "f41196907c8d2b6a19b866ce1d2555238f5098f8f5add24a619fc888bdfb071a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "lantern_archer",
+      "sheet_size": [
+        1374,
+        1145
+      ],
+      "atlas_size": [
+        576,
+        480
+      ],
+      "asset_sha256": "1a310cd8a73bfa20c6fa0dc293f2eece10a1353ade0d6c0b1e5054256cbba1c3",
+      "distinct": 25,
+      "empty": 5,
+      "source_edge_warnings": [
+        {
+          "animation": "walk",
+          "frame": 4,
+          "source_vertical_edge_alpha_pixels": 55
+        },
+        {
+          "animation": "walk",
+          "frame": 5,
+          "source_vertical_edge_alpha_pixels": 47
+        },
+        {
+          "animation": "attack",
+          "frame": 0,
+          "source_vertical_edge_alpha_pixels": 36
+        },
+        {
+          "animation": "attack",
+          "frame": 2,
+          "source_vertical_edge_alpha_pixels": 69
+        },
+        {
+          "animation": "attack",
+          "frame": 3,
+          "source_vertical_edge_alpha_pixels": 82
+        },
+        {
+          "animation": "attack",
+          "frame": 4,
+          "source_vertical_edge_alpha_pixels": 66
+        },
+        {
+          "animation": "attack",
+          "frame": 5,
+          "source_vertical_edge_alpha_pixels": 45
+        },
+        {
+          "animation": "death",
+          "frame": 3,
+          "source_vertical_edge_alpha_pixels": 50
+        },
+        {
+          "animation": "death",
+          "frame": 4,
+          "source_vertical_edge_alpha_pixels": 50
+        }
+      ],
+      "states": [
+        {
+          "animation": "idle",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 2356,
+              "source_edge_pixels": 0,
+              "hash": "21e7519f182b30202e87c9b76a8833770f58a1cc54af09d3ef5965a6af132067"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 2453,
+              "source_edge_pixels": 0,
+              "hash": "e6039b99b6dc56078e0b5c348d6912c793fba272e163ecc8f939e98eb11661bc"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 2608,
+              "source_edge_pixels": 0,
+              "hash": "63eb17e10e57eac6aa4cfb11299db71a9e94e362a23f3c0bdbf5daa4f33e4bba"
+            },
+            {
+              "frame": 3,
+              "opaque_pixels": 2626,
+              "source_edge_pixels": 0,
+              "hash": "c29cbf1e7b9e6794e1d0f075a51bff2ed3dd28e06bd5ce10c8fc7020471c9a84"
+            }
+          ]
+        },
+        {
+          "animation": "walk",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 2735,
+              "source_edge_pixels": 0,
+              "hash": "6a2adc144c20bfe270f9b10c990d996f279b2384bdc6ccc19b4823fa5ec6f520"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 2783,
+              "source_edge_pixels": 0,
+              "hash": "62529298bed8fef64fbe0c12a6f08c1d38200aad3d9f7f378364224f575d70d7"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 2766,
+              "source_edge_pixels": 6,
+              "hash": "4b2265f22b2d36ab99f1e9744e1395bd5ddd70dd9c46a43b74a8d75bff9c1e9d"
+            },
+            {
+              "frame": 3,
+              "opaque_pixels": 2736,
+              "source_edge_pixels": 0,
+              "hash": "ace9f62faeaffcf22ee846a507865fac4cfe9f2f37f4f9e148c074114bf0459c"
+            },
+            {
+              "frame": 4,
+              "opaque_pixels": 2758,
+              "source_edge_pixels": 55,
+              "hash": "dc6feddabb063e9fad3fdc64356a8fea8f00a6a3c4fd2ba3d7a78bd2bd80cc62"
+            },
+            {
+              "frame": 5,
+              "opaque_pixels": 2593,
+              "source_edge_pixels": 47,
+              "hash": "11189a280ac86d33b67c366c7d498e2b1f1af05e55fc61defc8e00b327fc6c43"
+            }
+          ]
+        },
+        {
+          "animation": "attack",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 2732,
+              "source_edge_pixels": 36,
+              "hash": "f26e2a1574e039e9b3a1103a7a5049b464cd51bc3cd620e606d11b5491a7d9ea"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 2636,
+              "source_edge_pixels": 10,
+              "hash": "56c1e5622a11c60c656340c3baef44effe5f8d7a21263514e4337fa16f8d0713"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 2846,
+              "source_edge_pixels": 69,
+              "hash": "eb560eeea3a48337dd5dd33da7b8322582dfb63dc983b8b5d81ed3af6a838cb2"
+            },
+            {
+              "frame": 3,
+              "opaque_pixels": 2434,
+              "source_edge_pixels": 82,
+              "hash": "886b06d66dfee8a5e579e1567c9832505c2f43cc86ef73b2d227d843040f1261"
+            },
+            {
+              "frame": 4,
+              "opaque_pixels": 2551,
+              "source_edge_pixels": 66,
+              "hash": "0879ce88facab0f7101139930c9b5b58b860498c730ab2b37e527432185bf14f"
+            },
+            {
+              "frame": 5,
+              "opaque_pixels": 2507,
+              "source_edge_pixels": 45,
+              "hash": "bc798a16ee38cc0a647bc8c8346969dda5af04ad951e2cf26fb1162227f41c45"
+            }
+          ]
+        },
+        {
+          "animation": "hit",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 2592,
+              "source_edge_pixels": 0,
+              "hash": "bb8a6a1f27c78bf10d9af846da67976adc8ff7e2b476d58618cf3828d6480d2a"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 2358,
+              "source_edge_pixels": 0,
+              "hash": "e82b4b74b8a8936efabcd7ded9cf13218e6ce08d47e47411bd38fc4de700858a"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 2356,
+              "source_edge_pixels": 0,
+              "hash": "1283ff86323d7002c805093da077dfc54bd44f75d8da618ca4913b59813a2fc9"
+            }
+          ]
+        },
+        {
+          "animation": "death",
+          "frames": [
+            {
+              "frame": 0,
+              "opaque_pixels": 2519,
+              "source_edge_pixels": 0,
+              "hash": "cc2c3c36bc64f9e20589cda2840c0f64b14949b542694e57f9586268b1f1fa29"
+            },
+            {
+              "frame": 1,
+              "opaque_pixels": 2131,
+              "source_edge_pixels": 0,
+              "hash": "0e14466ebaf76cd2cf796d1e5d2c0cbb08b1fa2299cf828a09d044378fa8bc96"
+            },
+            {
+              "frame": 2,
+              "opaque_pixels": 2437,
+              "source_edge_pixels": 8,
+              "hash": "c60dac2bf173edeb88307ff3ab8de3f4f90792e21024db7d6146d6fa16c1975a"
+            },
+            {
+              "frame": 3,
+              "opaque_pixels": 2009,
+              "source_edge_pixels": 50,
+              "hash": "a4239060c25e883a65281fecf22aac735338f44ddd83cb1fdb5d76fd22c3f6cd"
+            },
+            {
+              "frame": 4,
+              "opaque_pixels": 1619,
+              "source_edge_pixels": 50,
+              "hash": "395bb1a64c3926d7c4d7bdfd4792e4dfb90ec1e81e60b7072c53df3dc4841eba"
+            },
+            {
+              "frame": 5,
+              "opaque_pixels": 1525,
+              "source_edge_pixels": 5,
+              "hash": "051bcd37581f83620b2dad42492d835fcd8a9206cb2c60e1baed22a2d767bffb"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

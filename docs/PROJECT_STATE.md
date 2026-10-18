@@ -1,6 +1,10 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-19 (D254 real Battle→Reward→Table QA F6 launcher ready, native test pending; #38 still unreleased, 37/45). Source of truth: zampolit73/Misdeal main.
+Updated: 2026-10-19 (D255 three rich original 25-pose QA art sheets committed, 75 unique frames structural pass, source-edge ART HOLD; #38 unreleased, 37/45 live). Source of truth: zampolit73/Misdeal main.
+
+## D255 — User-approved visual direction for all three missing #38 enemies; 75-cel QA pack staged, ART GATE OPEN
+
+2026-10-19: After user asked to finish all remaining character art and replied **«отлично»** to the three newly rendered transparent complete sheets, archived the exact **visual directions** for `extinguished_guide`, `oil_acolyte`, `lantern_archer`. Built reproducible **three 576×480 transparent WebP 25-frame QA atlases** (each 4 idle/6 walk/6 attack/3 hit/6 death, 5 alpha-empty cels) at fixed per-role scale, 2px cell borders, 75 distinct and machine QC PASS. Generated one **QA-only all-three at ×2.1 and ×1** preview `res://scenes/dev/black_lantern_d255_three_character_art_preview.tscn`. **Important internal ART HOLD:** source-sheet cell cut lines visibly sever airborne lamps/cloth/projectiles in 12 Guide, 13 Acolyte and 9 Archer cels by the source-edge QA heuristic; particularly attack motion. These are not accepted finished animation despite 75 hashes and one user aesthetic reaction. **No automatic game/production role registration or #38 release**; do not ask for micro-approvals, repair all three source-bleed defects within one combined batch and perform native motion check before requesting the single overall full-art verdict. Source images, complete atlas exports, deterministic author and per-cell machine report preserved at `docs/D255_THREE_RICH_CHARACTER_ATLASES.md`. Main released pool **37/45**; D244 Sentinel/D224 Bearer, D253 light, D254 route, KARAMBA73 untouched.
 
 ## D254 — Full real Battle→Reward→Table QA launcher staged, card #38 NOT released
 

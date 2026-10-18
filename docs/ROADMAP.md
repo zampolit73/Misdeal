@@ -1,6 +1,14 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-19 (D254 F6 real Battle→Reward→Table launcher behind unreleased #38, native test pending; 37/45 live).
+Updated: 2026-10-19 (D255 approved visual directions and all three complete structural atlases staged; source-edge clipping remains ART FAIL). Act 1 live 37/45.
+
+## D255 — Three complete character-art candidates in one batch; source cropping art gate
+
+- [x] User positively received new visual direction for original Guide/Oil Acolyte/Archer; archive their three transparent full 25-pose illustrated sheets, distinct original silhouettes.
+- [x] Reproducibly pack **three complete 25-frame** sets at fixed source scale into 576×480 RGBA lossless WebP, 75 unique/15 genuinely empty, inset margins correct, verify visible-pixel round-trip. One combined x1/x2.1 five-state left/right Godot QA preview created.
+- [ ] Repair known **12/13/9 source-cell edge-overflows** (Guide/Oil/Archer) that sever airborne lamps/chain fire/cloth; inspect true motion quality internally. No provisional style regression or code-only fake uniqueness.
+- [ ] After a clean full-batch art pass, one user-native combined F6 and real 3v5. Stage remaining three roles globally only if art approved; D254 real Battle→Reward→Table, 54-case balance and 38/45 card release still gated.
+- [ ] Keep 37/45 released cards and KARAMBA73 unchanged.
 
 ## D254 — Original #38 real Battle QA route and party variation
 
