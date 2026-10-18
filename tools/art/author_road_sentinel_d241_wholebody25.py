@@ -48,7 +48,7 @@ def rotate_grip(image,angle,pivot=(36,48),shift=(0,0)):
     # A 96px cel cannot fit a fully horizontal original long spear.
     # Temporarily foreshorten only during the advanced forward attack poses,
     # keeping its actual illustrated pixel art and the same hand pivot.
-    factor=(0.66 if angle>40 else (0.77 if angle>26 else (0.88 if angle>16 else 1.0)))
+    factor=(0.52 if angle>40 else (0.59 if angle>26 else (0.65 if angle>16 else 1.0)))
     if factor < 1.0:
         new_size=(round(96*factor),round(96*factor))
         image=image.resize(new_size,Image.Resampling.LANCZOS)
