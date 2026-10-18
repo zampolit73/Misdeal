@@ -2,7 +2,14 @@
 
 Updated: 2026-10-18 (D238 user requested all 25 game-animation frames together, no individual pose approval gates; next full Sentinel asset pack, QA and all 37 LIVE unchanged). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
 
-## D239 next acceptance gate
+## D240/D241 current full-character acceptance gate
+
+- [x] Compared previous released Puppeteer/Marionette/Ferryman full-body animations and traced D239 mismatch to independently drawn polygon boots/greaves and upper/lower compositing; user explicitly **rejected** D239 visuals.
+- [x] Re-extracted genuine D235 full-body illustrations with matching armored legs and assembled **one new 25-state D241 QA candidate** with 5 empty cels, static QC and one native F6 scene.
+- [ ] One native Godot full-package review of `res://scenes/dev/black_lantern_sentinel_d241_wholebody25_preview.tscn` for feet, weight shift, spear grip/thrust, grounded death. Whole-body source compositing has NOT been approved as final original hand-painted action poses.
+- [ ] If still unnatural, **repaint full-body attack/death/movement poses**, not geometric boot grafts or FPS tweaks. Do not register in real Battle until genuine art acceptance. Then other four 25-frame enemies and #38 balance/release QA.
+
+## D239 previous/rejected acceptance gate
 
 - [x] Author/assemble **one complete** 25-cell richly illustrated-source Road Sentinel QA atlas (4/6/6/3/6, 5 clear), and generate source-traced pixel QC in GitHub.
 - [x] Stage **one native full-pack F6 gallery** with both facing directions, x1 and x3, approved D209 forest. No per-state user approvals.
