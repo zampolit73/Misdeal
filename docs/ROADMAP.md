@@ -1,6 +1,14 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-19 (D246 isolated real-unit 1v1 scene staged for testing D244 Sentinel movement, native F6 pending). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-19 (D247 staged rich D244 Sentinel, real D224 Bearer QA scene awaits F6). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+
+## D247 — Sentinel staged, next Bearer real combat check
+
+- [x] User reports D246 real one-Sentinel movement **«вроде все ок»**, provisionally acceptable; no asserted video/exhaustive art PASS.
+- [x] Copy *exact D244 git blob* into staged `road_sentinel_frames.webp.b64` (D229 archive preserved), update regression gallery and animation-library notes; #38 still not in pool.
+- [x] Create one Knight vs D224 Lantern Bearer real AI preview (25 different original frames, HP-only ×3, reverse side and death buttons) on approved D209; no generic fallback or global Bearer registration.
+- [ ] ONE **native F6** for `scenes/dev/black_lantern_bearer_d247_combat_preview.tscn`; accept or repair known potential D224 shield/cape cut, floor contact, hand-held lantern, flip and collapse.
+- [ ] After Bearer, new original 25-frame complete packs for Guide, Oil Acolyte and Lantern Archer; then 5-role 3v5, light, balance, real battle/reward/table and full #38 release QA. Live **37/45**, KARAMBA73 frozen.
 
 ## D246 — Single Sentinel D244 real BattleUnit movement QA
 

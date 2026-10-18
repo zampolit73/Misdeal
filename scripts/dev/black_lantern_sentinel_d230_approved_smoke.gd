@@ -1,10 +1,11 @@
 extends Control
 
-# D230: verify the user-approved D229 atlas equals the committed canonical asset and
-# that the real MisdealUnitAnimationLibrary returns all five animated states.
+# D247: historical comparison scene now verifies D244 staged runtime art matches
+# the separate QA source, while retaining D229 on the LEFT for rollback inspection.
 # QA-only scene: NO encounter or normal card pool enabled.
 const OLD_ATLAS: String = "res://assets/pixel/units/black_lantern_road_qa/road_sentinel_d229_art_candidate.webp.b64"
 const NEW_ATLAS: String = "res://assets/pixel/units/deck_expansion_v1/road_sentinel_frames.webp.b64"
+const CURRENT_SOURCE: String = "res://assets/pixel/units/black_lantern_road_qa/road_sentinel_d244_illustrated25_qa.webp.b64"
 const LIBRARY = preload("res://scripts/battle/unit_animation_library.gd")
 const ANIMATIONS: Array[String] = ["idle", "walk", "attack", "hit", "death"]
 const COUNTS: Array[int] = [4, 6, 6, 3, 6]
@@ -31,11 +32,11 @@ func _ready() -> void:
 		_show_failure("D209 утверждённый лес не загрузился")
 		return
 
-	if not FileAccess.file_exists(OLD_ATLAS) or not FileAccess.file_exists(NEW_ATLAS):
-		_show_failure("Нет исходника D229 или утверждённого боевого атласа")
+	if not FileAccess.file_exists(OLD_ATLAS) or not FileAccess.file_exists(NEW_ATLAS) or not FileAccess.file_exists(CURRENT_SOURCE):
+		_show_failure("Нет D229 архива, D244 QA или боевого атласа")
 		return
-	if FileAccess.get_file_as_string(OLD_ATLAS).strip_edges() != FileAccess.get_file_as_string(NEW_ATLAS).strip_edges():
-		_show_failure("Боевой атлас НЕ совпадает с утверждённым D229")
+	if FileAccess.get_file_as_string(CURRENT_SOURCE).strip_edges() != FileAccess.get_file_as_string(NEW_ATLAS).strip_edges():
+		_show_failure("Боевой атлас НЕ совпадает с D244 QA")
 		return
 	var old_frames: SpriteFrames = _load_checked_frames(OLD_ATLAS)
 	var checked_production: SpriteFrames = _load_checked_frames(NEW_ATLAS)
@@ -52,9 +53,9 @@ func _ready() -> void:
 			return
 	_panel(Vector2(60, 160), Vector2(552, 404))
 	_panel(Vector2(667, 160), Vector2(552, 404))
-	_label("D230 / СТРАЖ ДОРОГИ — ПРИНЯТО В БИБЛИОТЕКУ", Vector2(160, 15), Vector2(970, 42), 26)
-	_label("D229 — УТВЕРЖДЁН", Vector2(124, 163), Vector2(420, 30), 21)
-	_label("БОЕВАЯ БИБЛИОТЕКА", Vector2(729, 163), Vector2(425, 30), 21)
+	_label("D247 / СТРАЖ ДОРОГИ — D244 В БИБЛИОТЕКЕ, #38 QA", Vector2(160, 15), Vector2(970, 42), 26)
+	_label("D229 — АРХИВ", Vector2(124, 163), Vector2(420, 30), 21)
+	_label("D244 — БОЕВАЯ БИБЛИОТЕКА", Vector2(729, 163), Vector2(425, 30), 21)
 	_label("Увеличение ×3", Vector2(198, 194), Vector2(280, 28), 17)
 	_label("Увеличение ×3", Vector2(804, 194), Vector2(280, 28), 17)
 	_label("Боевой масштаб ×1", Vector2(354, 507), Vector2(212, 28), 15)
@@ -77,7 +78,7 @@ func _ready() -> void:
 		animation_buttons.append(btn)
 	_apply_facing(true)
 	_play_anim("walk")
-	print("D230: approved D229 art bytes match canonical production asset; MisdealUnitAnimationLibrary loaded 4/6/6/3/6; QA ONLY.")
+	print("D247: D244 candidate exactly matches staged Sentinel runtime atlas; D229 archived; card #38 QA ONLY.")
 
 
 func _load_checked_frames(path: String) -> SpriteFrames:
@@ -198,7 +199,7 @@ func _update_label() -> void:
 		return
 	var ru: Dictionary = {"idle":"ОЖИДАНИЕ", "walk":"ХОДЬБА", "attack":"УКОЛ КОПЬЁМ", "hit":"УРОН", "death":"СМЕРТЬ"}
 	var facing: String = "ВЛЕВО" if face_left else "ВПРАВО"
-	status_label.text = "%s · %s | СОПОСТАВЬ БРОНЮ, КОПЬЁ, ФОНАРЬ И ПОСТАНОВКУ НОГ В МАСШТАБЕ ×1.\nУТВЕРЖДЁННЫЙ D229 ПОБАЙТОВО СОВПАДАЕТ С БОЕВЫМ АТЛАСОМ. КАРТА №38 ПОКА НЕ В КОЛОДЕ." % [String(ru.get(current_anim, current_anim)), facing]
+	status_label.text = "%s · %s | СОПОСТАВЬ БРОНЮ, КОПЬЁ, ФОНАРЬ И ПОСТАНОВКУ НОГ В МАСШТАБЕ ×1.\nD244 ПОБАЙТОВО СОВПАДАЕТ С БОЕВЫМ АТЛАСОМ. КАРТА №38 ПОКА НЕ В КОЛОДЕ." % [String(ru.get(current_anim, current_anim)), facing]
 
 
 func _panel(at: Vector2, bounds: Vector2) -> void:
@@ -228,6 +229,6 @@ func _label(content: String, at: Vector2, bounds: Vector2, size: int) -> Label:
 
 
 func _show_failure(message: String) -> void:
-	var label: Label = _label("D230 / QA FAIL: " + message, Vector2(102, 280), Vector2(1070, 150), 24)
+	var label: Label = _label("D247 / QA FAIL: " + message, Vector2(102, 280), Vector2(1070, 150), 24)
 	label.add_theme_color_override("font_color", Color(1.0, 0.29, 0.27))
 	push_error(message)

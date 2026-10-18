@@ -1,6 +1,10 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-19 (D246 single Sentinel D244 battle QA committed; one native F6 real-unit combat test PENDING; 37/45 live). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-19 (D247 D244 Sentinel staged after provisional 1v1 no-blocker; D224 Bearer 1v1 F6 pending; 37/45 LIVE). Source of truth: `zampolit73/Misdeal` / `main`.
+
+## D247 — Sentinel D244 staged in library; Bearer D224 real 1v1 QA next
+
+2026-10-19: User's `«так вродвсе ок. продолжай»` after D246 is **provisional no-blocker feedback for single-Sentinel actual combat**, not explicit full-art signoff. Archived D229 unchanged, staged D244 **byte-exact** in `assets/pixel/units/deck_expansion_v1/road_sentinel_frames.webp.b64` for unreleased #38. Updated D230 archival gallery to compare D229 vs current D244 shared library. Next role is **user-art-approved D224 shield-bearing Lantern Bearer**, whose previously packed 96px animation has known possible seam cut loss. Created **real Knight-versus-Bearer QA 1v1** `res://scenes/dev/black_lantern_bearer_d247_combat_preview.tscn` to assess feet, shield contact, separate lantern and death under authentic BattleUnit physics. D224 injected **only into this QA actor**, not registered globally; HP×3 only locally. **Godot D247 F6 PENDING**; no full #38 fight/matrix/reward acceptance; **37/45 LIVE**. Full details `docs/D247_SENTINEL_STAGING_AND_BEARER_COMBAT_QA.md`.
 
 ## D246 — ONE Road Sentinel D244 in actual BattleUnit-vs-BattleUnit combat QA
 

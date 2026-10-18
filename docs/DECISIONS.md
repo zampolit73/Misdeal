@@ -3,6 +3,10 @@ Updated: 2026-10-19.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D247 — Provisional Sentinel combat acceptance and careful next-character staging
+
+2026-10-19: User replied `«так вродвсе ок. продолжай»` after playing D246 real 1v1. Treat as approval **to proceed** with technical D244 staging, not blanket full #38 art/balance/release approval. Safe to stage D244 in existing canonical `road_sentinel_frames.webp.b64` because #38 is still outside normal cards; preserve D229 archival source and update archive comparison. For the next role, keep previously user-approved D224 Bearer illustration, test its repacked original 25 animation cels in another **isolated** real Knight duel before any shared library activation; do not replace its unique shield/lamp with generic art. Real full #38 release still requires five original roles and all encounter QA. `docs/D247_SENTINEL_STAGING_AND_BEARER_COMBAT_QA.md`.
+
 ## D246 — One-character QA battle before entire #38 character cast is finished
 
 2026-10-19: User requested testing exactly **one D244 Road Sentinel** in actual active combat to judge walking before final aesthetic approval. Permit an isolated F6 real `BattleUnit` vs Knight fight on approved D209 with source-rendered D244 frames substituted **only for the preview's Road Sentinel instance**. No global animation-library/cache change, no `RunState` registration, no encounter/balance/reward changes. Local HP-only QA extension is labeled non-production. Requires one user-native run before any claim of native combat PASS. This testing exception does NOT supersede D238 one complete art batch per character or D143 original five enemies before #38 release. See `docs/D246_SENTINEL_SINGLE_REAL_COMBAT_QA.md`.

@@ -2,6 +2,13 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D247: rich Sentinel staged, Bearer real Knight duel ready
+
+- User feedback D246 `«вроде все ок. продолжай»` authorizes moving forward with Sentinel B-style D244 on the QA-only #38 lane, not a complete game-release confirmation.
+- Staged D244's **existing exact Git blob** in canonical Sentinel animation file, leaving D229 archived and updating its historical smoke into a D229-vs-D244 library comparison.
+- Added Lantern Bearer D224 actual AI combat preview using one isolated instance of the already-approved illustrated original repack; 25-cel strict validation, side swap, actual shield range/attack, forced death and HP-only extension.
+- Changed no live Act1 cards, five-role encounter, original UnitData, main battle, light mechanic or frozen backup. D247 native Godot test PENDING.
+
 ## 2026-10-19 — D246: real 1×1 Sentinel D244 combat preview (QA-only)
 
 - Added Godot F6 scene `black_lantern_sentinel_d246_combat_preview.tscn` using real `BattleUnit` AI for exactly one D244 Sentinel and one Knight; authentic movement, auto-facing, melee hit effects and death on approved D209.

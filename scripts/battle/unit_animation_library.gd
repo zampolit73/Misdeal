@@ -17,11 +17,11 @@ const D153_ROLES := ["threadbare_puppeteer", "bone_marionette"]
 # D183 Black Crossing: the two accepted original drowned combat identities.
 # QA-only until the corresponding approved image bytes are committed.
 const D183_ROLES := ["drowned_ferryman", "drowned_hand"]
-# D231: D229 was chosen over D228 as a TECHNICAL candidate, but the user
-# flagged loss of the original rich art. This role is STAGED for UNRELEASED #38;
-# do not regard source art as final quality or enable the regular card pool yet.
-# The other four Black Lantern Road characters remain QA-only; no generic fallback.
-const D230_APPROVED_ROLES := ["road_sentinel"]
+# D247: D244 replaces the old D229 TECHNICAL art for Road Sentinel in the
+# shared loader. The user's D246 isolated 1v1 looked OK, but #38 remains
+# unreleased until all five ORIGINAL characters and full encounter QA pass.
+# All other Black Lantern roles still QA-only; never borrow a generic sprite.
+const BLACK_LANTERN_STAGED_ROLES := ["road_sentinel"]
 const D151_ROLES := ["funeral_priest", "pallbearer"]
 const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus", "threadbare_puppeteer", "bone_marionette", "drowned_ferryman", "drowned_hand", "road_sentinel"]
 
@@ -38,12 +38,12 @@ static func get_frames(role: String) -> SpriteFrames:
 		return null
 
 
-	if D230_APPROVED_ROLES.has(role):
-		# One role only: user-selected D229 becomes the production 25-pose atlas.
-		# Never synthesize, borrow or repeat missing frames. Card #38 is still QA-only.
+	if BLACK_LANTERN_STAGED_ROLES.has(role):
+		# D247: approved-to-continue illustrated D244 Sentinel is staged in the
+		# canonical runtime path, but #38 remains outside the live card pool.
 		var approved_path: String = "%s%s_frames.webp.b64" % [DECK_EXPANSION_DIR, role]
 		if not FileAccess.file_exists(approved_path):
-			push_warning("D230 approved original Sentinel atlas missing: " + approved_path)
+			push_warning("D247 staged D244 Sentinel atlas missing: " + approved_path)
 			return null
 		var bytes_d230: PackedByteArray = Marshalls.base64_to_raw(FileAccess.get_file_as_string(approved_path).strip_edges())
 		var img_d230 := Image.new()
@@ -55,7 +55,7 @@ static func get_frames(role: String) -> SpriteFrames:
 			return null
 		img_d230.convert(Image.FORMAT_RGBA8)
 		if not _all_authored_deck_frames_visible(img_d230) or not _all_authored_deck_frames_padded(img_d230) or not _all_authored_deck_frames_distinct(img_d230) or not _unused_deck_cells_clear(img_d230):
-			push_warning("D230 rejected non-original/cropped Sentinel cells: " + approved_path)
+			push_warning("D247 rejected invalid Sentinel atlas cells: " + approved_path)
 			return null
 		var texture_d230: Texture2D = ImageTexture.create_from_image(img_d230)
 		if texture_d230 == null:
