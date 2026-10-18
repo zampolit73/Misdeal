@@ -88,10 +88,18 @@ def ground_rotate(image,angle,dx=0,limit_h=87):
     bbox=big.getchannel('A').getbbox()
     assert bbox
     big=big.crop(bbox)
-    scale=min(1.0,88/big.width,limit_h/big.height)
-    if scale<1:
-        big=big.resize((max(1,round(big.width*scale)),
-                        max(1,round(big.height*scale))),Image.Resampling.LANCZOS)
+    # Once fallen sideways, the entire armored body must remain readable
+    # across most of the 96px tile. Scaling uniformly into a 46px bounding
+    # BOX made the final corpse look like a tiny disappearing insect.
+    if angle >= 80:
+        big=big.resize((86,28 if angle >= 88 else 37),Image.Resampling.LANCZOS)
+    elif angle >= 60:
+        big=big.resize((83,56),Image.Resampling.LANCZOS)
+    else:
+        scale=min(1.0,88/big.width,limit_h/big.height)
+        if scale<1:
+            big=big.resize((max(1,round(big.width*scale)),
+                            max(1,round(big.height*scale))),Image.Resampling.LANCZOS)
     cell=Image.new('RGBA',(96,96))
     x=max(2,min(94-big.width,(96-big.width)//2+dx))
     cell.alpha_composite(big,(x,93-big.height))
