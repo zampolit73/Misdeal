@@ -91,7 +91,7 @@ def ground_rotate(image,angle,dx=0,limit_h=87):
 def build():
     # No rectangular puppet boots; ALL bodies+boots derived from painted D235.
     walks=[render(f) for f in raw_walks]
-    idle_choices=[0,1,0,2]
+    idle_choices=[0,1,2,3]
     idle=[render(raw_walks[idx],lean=(0,-1 if i==1 else 0)) for i,idx in enumerate(idle_choices)]
     # Spear windup (raised), heavy step, hand-driven forward jab, hit, recovery.
     attack_source=[0,3,4,5,2,1]
