@@ -1,7 +1,9 @@
 # Misdeal Documentation Index
 Updated 2026-10-18 — **D238 restored batch-first complete 25-frame unit animations**; current sprite task: one full rich Road Sentinel pack. No new complete pack has been produced yet; #38 stays QA-only, Act1 LIVE 37/45.
 
-**LATEST D239 actual QA deliverable:** [Complete 25-cell Sentinel atlas and one full F6](D239_SENTINEL_FULL25_QA.md). Native artistic QA pending; no #38 release. 
+**LATEST D241 (after user D239 art FAIL):** [Whole-body painted-leg full 25-cell Sentinel QA](D241_SENTINEL_WHOLEBODY_FULL25_QA.md). Earlier [D240 root cause and rejected D239](D240_SENTINEL_ANIMATION_ART_REJECTION.md).
+
+**PREVIOUS D239 actual QA deliverable (REJECTED ART):** [Complete 25-cell Sentinel atlas and one full F6](D239_SENTINEL_FULL25_QA.md). Native artistic QA pending; no #38 release. 
 
 **READ THIS FIRST FOR A NEW CHAT:** [D238 — complete current continuation checkpoint](D238_BATCH_ANIMATION_NEXT_CHAT.md). **One 25-frame character atlas per work batch; only ONE full Godot F6 visual review per character**, no approval requests for individual idle/walk/attack/hit/death. Permanent rule: [AGENTS.md](../AGENTS.md); design lock: [DECISIONS.md](DECISIONS.md); exact latest state: [HANDOFF.md](HANDOFF.md).
 
