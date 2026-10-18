@@ -1,5 +1,7 @@
 # D239 — Road Sentinel full 25-frame illustrated-source QA package
 
+> **VISUAL ART FAIL — user-rejected on 2026-10-18 native F6:** legs from a different geometric style, unnatural walk, weak attack/death. This document is preserved as historical technical QA, NOT acceptance. See [D240 failure analysis](D240_SENTINEL_ANIMATION_ART_REJECTION.md) and [D241 matching illustrated full-body replacement](D241_SENTINEL_WHOLEBODY_FULL25_QA.md).
+
 Date: 2026-10-18. **In GitHub `main`: a complete 576×480 atlas with 25 distinct opaque roles and five fully alpha-clear cells; isolated full-state Godot preview. Not a live #38 release, not native Godot PASS, and not claimed as 25 independently repainted illustrations.** This is the first complete full-pack checkpoint after D238 batch-only workflow policy.
 
 ## Exactly committed
