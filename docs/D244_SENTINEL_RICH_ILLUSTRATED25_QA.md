@@ -14,7 +14,11 @@ Source frames must **NOT** be cropped using nominal 229px tile edges: extended s
 
 **Local offline technical QA: PASS**, including 25 unique hashes, empty cells, 2px border, alpha WebP round trip. **Native Godot 4.7: NOT RUN. User animation/art acceptance: PENDING**. A new original image itself does not establish natural motion under playback; double-check 6-phase planted gait and body mass, actual contact timing and spear visual length at native ×1. Do not mistake static QC for native pass.
 
-## ONE native review
+## D245 user-native video update (supersedes D244 F6 PENDING)
+
+The user supplied a real 21.38s Godot D244 recording on 2026-10-19. All five states display in both directions, ×3/×1; horizontal spear contact and illustrated kneel/fall/corpse are visible. **The one native preview review has occurred**; see `docs/D245_SENTINEL_USER_VIDEO_NATIVE_QA.md` for exact evidence and caveats. This does not imply the user has explicitly accepted the visual art or that a real 3v5 fight is release-ready.
+
+## ONE native review (historical setup)
 
 After `git pull`, open `res://scenes/dev/black_lantern_sentinel_d244_illustrated25_preview.tscn`, press **F6**. The existing D241 gallery contract is reused: approved D209 forest, ×3 and real ×1 views, state buttons idle/walk/attack/hit/death, left/right buttons. One full-pack review only; inspect natural support/swing in WALK, a single joined spear-thrust in ATTACK, lantern actually held, grounded stagger→kneel→corpse in DEATH, and both facings. Share one screenshot/video or verdict. If unnatural, edit and republish this pack — do not reintroduce micro-approvals or switch back to D241/D243.
 

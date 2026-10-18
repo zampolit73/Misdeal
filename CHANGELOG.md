@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D245: recorded real native Godot D244 gallery QA
+
+- Evaluated user's 21.38s Godot screen recording frame-by-frame: ×1/×3 D209 stage, both directions, all five states, visible horizontal spear thrust, multi-stage falling body and attached amber lantern. Gallery rendering/motion reviewed as **native scene PASS**, not inferred from static 25-frame QA.
+- Artistic motion substantially improved over D241; final user aesthetic acceptance not explicitly received. No actual #38 combat/matrix/navigation test and no real animation registry or run-pool change. Recorded constraints and next single overall art verdict at `docs/D245_SENTINEL_USER_VIDEO_NATIVE_QA.md`.
+- 37/45 live cards and frozen KARAMBA73 preserved.
+
 ## 2026-10-19 — D244: original illustrated Sentinel 25-pose QA, native review pending
 
 - Authored new detailed D235-inspired skeletal spear/held-lantern 25-frame illustrated source with true distinct whole-body poses instead of D243 flat vector geometry or D241 static cutout rotations.

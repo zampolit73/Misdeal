@@ -1,6 +1,10 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-18 (D238 user restores one-batch 25-cel animation authoring and one F6 per character; D234/D235/D236R visual/motion rules remain, no new art yet, 37/45 LIVE). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-19 (D245 user-native recorded D244 all-state/two-facing gallery PASS, final subjective art approval pending; 37/45 LIVE). Source of truth: `zampolit73/Misdeal` / `main`.
+
+## D245 — User-recorded D244 native full-pack F6: TECHNICAL/PREVIEW PASS, final aesthetic verdict PENDING
+
+2026-10-19: Reviewed user's **21.38s screen recording** (despite Chrome/Skills filename, footage visibly contains Godot D244 QA gallery). D209 forest loads, both original ×3 and in-game ×1 displays show the Road Sentinel, all five animation buttons are exercised and left/right direction flips around ~13.2s. Recorded WALK 2–4s and 8.5–13.5s plus 18.5–21s; HIT ~5–7s and ~15.5–16s; ATTACK ~7.45–7.8s and ~14.5–14.8s with a real horizontal spear thrust and return; DEATH ~4.0–4.7s and ~16.1–16.9s progresses kneel/fall/grounded corpse without D241 whole-picture rotation; IDLE ~17.5–18.3s. The held amber lantern persists in the animated silhouette, the weapon faces the selected target side. **User-native preview renders and motion completeness verified**, a genuine step up from D239/D241. Distinguish this from real 3v5 combat/animation integration, not shown. Review caveats: attack contact lasts only a fraction of a second at current ~16fps; minor planted-step/weight nuance and ×1 leg readability remain aesthetic considerations, not a demonstrated engine failure. No engine error panel/log was visible, but absence of errors cannot be fully proved from screen recording. **The user supplied the video without an explicit visual 'approved' verdict**; final STYLE B release gate remains PENDING and no new F6 per sub-state should be requested. Do not ship #38 or switch production library. See `docs/D245_SENTINEL_USER_VIDEO_NATIVE_QA.md`. 37/45 LIVE, frozen KARAMBA73 untouched.
 
 ## D244 — COMPLETE rich illustrated Road Sentinel 25-pose QA pack, native F6 PENDING
 

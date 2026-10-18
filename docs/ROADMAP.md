@@ -1,6 +1,13 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-18 (D238 user requested all 25 game-animation frames together, no individual pose approval gates; next full Sentinel asset pack, QA and all 37 LIVE unchanged). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-19 (D245 real native D244 user video QA reviewed; five states/two facings preview works; artistic final verdict not explicitly given). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+
+## D245 — One complete D244 native video review (real Godot)
+
+- [x] Reviewed user's actual 21.38s Godot D244 recording; 5 animations and both facings shown, ×3 and ×1 on D209 forest; gallery loads and plays, native review gate **completed**.
+- [x] Confirmed spear extends nearly horizontally at ATTACK contact in both facings; DEATH buckles/falls to visible armored floor corpse rather than rotated/smeared poster; held lantern stays with actor.
+- [ ] **One overall subjective D244 art acceptance** (user supplied video without verdict); avoid inventing user approval. Short-lived contact pose and subtle foot weight shift are visual review considerations; do not merely change FPS.
+- [ ] After art sign-off, complete remaining four original roles in 25-frame batches, then real #38 3v5, lighting, route/matrix, reward and card-pool release QA. **37/45 LIVE.**
 
 ## D244 — Illustrated Sentinel all-25 pack QA
 
