@@ -1,8 +1,12 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-19 — D248 D224 Bearer staged after user OK; Guide D218 1v1 QA only, rich complete Style B Guide next, 37/45 live.
+Updated: 2026-10-19 — D249 real 3v5 original composition/light QA scene ready F6, Guide rich 25-cel art still outstanding. 37/45 live.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
+
+## D249 — User says D248 Guide technical 1v1 OK; real five-role 3v5 QA staged
+
+2026-10-19: User replied «все ок» after isolated D248 Guide vs Knight: technical combat no-blocker ONLY, not finished art acceptance. The three exploratory high-detail Guide generation attempts were rejected internally: chain lanterns carried by hand instead of rigid overhead triple-lantern yoke, inaccurate frame counts and opaque labeled backgrounds. NO such concept images enter GitHub assets. Added isolated res://scenes/dev/black_lantern_d249_five_enemy_combat_qa.tscn: real 3 heroes vs five original authored enemies, both encounter formations, exact D209 forest and authentic D206 scoped moving amber-light zones (+16% illuminated enemy attack cadence). D244 Sentinel and D224 Bearer use previously staged rich atlases, D218 Guide/D217 Oil Acolyte SVG/D219 Archer use original technical QA art injected only in these instances, strict original 25-cel frame checks. New F6 native user test PENDING, not automatically passed. No released #38 Battle or reward/table/balance functionality changed, no RunState/UnitData/main Battle edits, pool stays 37/45 LIVE; KARAMBA73 untouched. Guide still needs real richly illustrated full 25 original poses with its rigid three-lamp iron yoke; then Acolyte and Archer rich art. Details docs/D249_BLACK_LANTERN_FIVE_ROLE_REAL_COMBAT_QA.md.
 
 ## D248 — Bearer accepted and staged, Guide technical combat probe, rich art outstanding
 

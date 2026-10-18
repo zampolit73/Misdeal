@@ -1,6 +1,14 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-19 (D248: user OK for D224 Bearer native duel; canonical two-role staging, simplified Guide D218 technical QA). **Act 1 live: 37/45.** Technical truth: `docs/PROJECT_STATE.md`.
+Updated: 2026-10-19 (D249 isolated real 3v5 QA scene pending native F6; original Guide/Acolyte/Archer rich art still required). Act 1 LIVE 37/45.
+
+## D249 — Complete five-role REAL combat composition without premature card release
+
+- [x] User D248 Guide native 1v1 technical no-blocker. D218 NOT rich final art.
+- [x] Reject three exploratory Guide image sheets that lost rigid iron shoulder yoke/three lanterns or proper 25-cel sprite source. No accidental import.
+- [x] Isolated D249 real 3v5 BattleUnit encounter with three real heroes, five original enemies, two formation options, scoped D206 light speed buff and strict temporary original art (D218/D217/D219) only for incomplete three roles.
+- [ ] One F6 scene res://scenes/dev/black_lantern_d249_five_enemy_combat_qa.tscn: inspect all 8 sprites, two formations, floor contact and light cycles; report concrete errors for fix.
+- [ ] Rich original Style B 25 poses with rigid yoke and three chain-hung lanterns Guide; then Oil Acolyte and Archer. Only after true art acceptance integrate full #38 Battle/Reward/Table, rerun 54-case matrix and release 38/45. KARAMBA73 frozen.
 
 ## D248 — Bearer accepted-to-proceed; original rich Guide 25-frame art required
 

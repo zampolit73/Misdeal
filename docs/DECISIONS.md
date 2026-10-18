@@ -3,6 +3,10 @@ Updated: 2026-10-19.
 
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
+## D249 — QA-only five original roles before final artwork, no release
+
+2026-10-19: positive user D248 Guide 1v1 feedback authorizes moving to a fully isolated 3-hero vs 5-enemy REAL BattleUnit preview with 2 authored formations and encounter-local D206 lanternlight, not automatic rollout to normal Battle. Staged D244/D224 visuals are preserved. D218 Guide, D217 Acolyte and D219 Archer are distinctly their own original TECHNICAL artwork and may ONLY be injected into the QA scene. Do not register unfinished roles or draw misleading generic proxy silhouettes, do not mutate RunState or actual card/balance. New concept attempts that lacked Guide's rigid overhead three-lantern yoke were rejected and NEVER imported. The next Guide still requires rich original whole-body 25-cel hand-posed Style B imagery as one batch under D238. See docs/D249_BLACK_LANTERN_FIVE_ROLE_REAL_COMBAT_QA.md.
+
 ## D248 — Per-character real combat acceptance does not release unfinished #38
 
 2026-10-19: User `«все ок»` on actual D247 Lantern Bearer 1v1 permits staging the user-approved rich D224 25 poses in shared runtime library alongside D244 Sentinel, preserving correct facing and original sources. This is not a five-role/card-release PASS. D218 triple-lantern Guide is a simplified yet 25-pose technical reference permitted **only in isolated real 1v1 QA**, never as final original B-style art. Full illustrated original 25 poses required in one batch before Guide registration. D238 one-batch no micro-approvals; D143 unique enemy identity; see `docs/D248_BEARER_ACCEPTED_GUIDE_PROBE.md`.

@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D249: native original five-enemy 3v5 diagnostic scene staged
+
+- User reports D248 real 1v1 technical Guide QA OK; D218 still NOT painterly Style B art. Internally rejected three new artwork sheets with wrong yoke/lantern identity and invalid game atlas structure, imported none.
+- Added isolated Godot F6 D249 real 3v5 with original enemy data, two authored positions and working previously scoped lantern light controller. The 2 previously accepted-to-proceed characters come from the shared staged animation library; remaining three original, TECHNICAL art packs are injected into only the QA instances.
+- Static source paths/contracts checked; native Godot D249 F6 pending, not a balance benchmark or actual release route. No ordinary 37/45 deck, production battles, hero progression, reward, KARAMBA73 or DS2 changes.
+
 ## 2026-10-19 — D248: Bearer staged, Guide real 1v1 technical QA added
 
 - Recorded user's `«все ок»` after D247 actual Bearer Knight duel. Linked the original user-selected D224 25-frame asset blob into canonical Bearer `.webp.b64`; added Bearer to strict staged library alongside D244 Sentinel (two of five #38 roles).
