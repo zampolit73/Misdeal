@@ -29,6 +29,17 @@ func _verify() -> void:
 	var confirm := selection.get_node("Frame/ConfirmButton") as Button
 	var valid := confirm.disabled and not bool(game_state.call("has_chosen_protagonist"))
 	valid = valid and selection.get_node("WizardBackdrop").get("webp_path") == "res://assets/pixel/table/approved_variant_c/table_exact.webp"
+	# D279R screenshot-failure guard: the source WebP already bakes old UI.
+	# The ClassSelect-specific masks must cover old HUD/holds/offers before cards.
+	valid = valid and selection.has_node("TopHeaderPlate")
+	valid = valid and selection.has_node("FateSpreadCover")
+	valid = valid and selection.has_node("OldOfferObscurer")
+	valid = valid and selection.has_node("TopRightCover")
+	var matte := selection.get_node("OldOfferObscurer") as ColorRect
+	valid = valid and matte.material is ShaderMaterial
+	valid = valid and matte.position == Vector2(345.0,313.0)
+	valid = valid and matte.size == Vector2(591.0,363.0)
+	valid = valid and selection.get_node("Frame/Title").position.y < 50.0
 	valid = valid and selection.get_node("Frame") is Control
 	for i in range(buttons.size()):
 		var b: Button = buttons[i]
@@ -71,6 +82,6 @@ func _verify() -> void:
 		selection.queue_free()
 		quit(1)
 		return
-	print("D279_CLASS_SELECT_PASS: actual table backdrop, 3 framed cards, source hero stats on hover, two-step choice, no early RunState changes and confirmed solo Mage run")
+	print("D279_CLASS_SELECT_PASS: D279R baked-UI masks, 3 framed cards, source hero stats on hover, two-step choice and confirmed solo Mage run")
 	selection.queue_free()
 	quit(0)

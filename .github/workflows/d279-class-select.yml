@@ -8,6 +8,7 @@ on:
       - 'scenes/class_select/class_select.tscn'
       - 'scripts/class_select/class_select.gd'
       - 'scripts/class_select/class_select_card_skin.gd'
+      - 'shaders/class_select_brocade_cover.gdshader'
       - 'scripts/dev/d279_class_select_smoke.gd'
       - 'scripts/table/table_offer_frame_asset.gd'
       - 'shaders/table_offer_parchment.gdshader'
