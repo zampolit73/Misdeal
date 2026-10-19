@@ -1,15 +1,14 @@
 # Misdeal — Active Roadmap
 
-## D268 — Court first real playable QA preview staged; complete native/art gates before #39 release
+## D268 — Court functional QA verified; ONLY art and release gates left for #39
 
-- [x] Real Battle uses distinct Court QA backdrop, no Crypt fallback/atmosphere; D264 lower-floor geometry preserved, D265 art still QA-only.
-- [x] Native real Battle F6 launcher with 1/2/3 heroes ×2 Court formations, D267 original rich roles and D262 verdict.
-- [x] Rich all-three animation F6 has pause/frame-step navigation across 27 source-QC flagged frames; not artistic approval.
-- [x] Wrote 54-scenario Court BattleUnit/hero balance diagnostics, direct unreleased Court Battle→Reward→Table smoke, Godot 4.7.2 CI workflow.
-- [ ] **FIRST VERIFY** D268 actual GitHub Actions Godot outcome, fix reported parser/runtime failures; no new PASS claimed yet.
-- [ ] True x1 art/motion review and appropriate repairs (especially Bailiff death3–5); finish rich actor-free arena with D264 lower floor.
-- [ ] Review 54-case combat statistics and genuine end-to-end native reward route; separately release #39 only after all gates. **38/45 live now.** [D268 handoff](D268_NEW_CHAT_HANDOFF.md).
-
+- [x] Character-free QA Court arena integrated into actual Battle, correct D264 lower combat floor, removed unrelated Crypt effects; final painted backdrop NOT finished.
+- [x] Real Court F6 1/2/3 hero × two-formation launcher, plus D267 rich animation F6 pause/frame-step/27-warning navigator.
+- [x] 54 original Court BattleUnit matrix, six real Court Battle startup checks, and direct unreleased Battle→Reward→Table test: [official Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39249979969).
+- [x] Court-only measured balance pass: **54/54 wins, 0 timeouts**, mean remaining HP **83.84% / 75.54% / 80.16%** solo/duo/trio, 2 individual trio casualties. Marked hero held by Bailiffs for all 7,694 live active samples, 0 artificial redirect needed. [Full data](D268_NATIVE_COURT_BALANCE_AND_ROUTE_PASS.md).
+- [ ] One genuine x1/x2 visual QA for all 75 original D267 sprite poses, inspect 27 source-edge warnings and repair actual defects, especially Bailiff death/halberd/shield.
+- [ ] Finished richly illustrated **actor-free** tribunal replacing still-schematic D265 QA background, preserve bottom floor screen x40–1268/y532–710.
+- [ ] Then final art-enabled native QA and separate intentional release card #39 to 39/45, including ordinary dealt-card smoke. **Currently 38/45 live, card #39 target_path empty**. [Current handoff](D268_NEW_CHAT_HANDOFF.md).
 
 ## D267 — Approved PNG import and rich 75-frame recovery DONE; user F6/release gates open
 
