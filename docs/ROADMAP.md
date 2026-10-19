@@ -1,5 +1,14 @@
 # Misdeal — Active Roadmap
 
+## D258 — All five skeletons in real Battle QA and Godot CI matrix
+
+- [x] Stage all five original rich enemy identities with full 25-pose atlases in isolated D258 real-AI 3v5 and genuine Battle launcher; correct left-origin Guide/Archer QA facing in memory only.
+- [x] Godot 4.7.2 native headless source/scene smoke and **actual Battle preflight PASS** (eight BattleUnits, D253 light, two authored formations available, three D257 packs injected).
+- [x] Rerun existing **54/54 real BattleUnit matrix functional PASS**: zero party defeats/timeouts, 18 wins per party size and class. Balance acceptance **OPEN**.
+- [ ] **NEXT** real local F6 Fight→Reward→Table (trio/Перекрёсток, then solo/duo/Марш) plus original ×1 movement, prop/floor/HUD and lanternlight visual QA.
+- [ ] Correct artistic, HUD or encounter difficulty issues from real game, run release smoke, register remaining three roles globally **only when complete**, then consider #38 38/45.
+- [x] Preserve 37/45 live, original D244/D224 sprites and frozen KARAMBA73.
+
 ## D257 — Three complete character atlas repair candidates and one native art gate
 
 - [x] Restore cross-cell pixels with a source-aware author for all three approved D255 silhouettes; stage three lossless 25-frame **QA-only** atlases via successful GitHub Actions.
@@ -8,7 +17,7 @@
 - [ ] **NEXT** F6 visual art/motion review and repair defects, particularly sole contact and prop continuity; technical QC is not artistic sign-off. Only stage all three in real 3v5 upon acceptance.
 - [ ] Actual D254 Battle→Reward→Table with solo/duo/trio and both formations; normalized 54-case balance matrix, crowding fix as needed; release #38 only after all gates. **Live pool remains 37/45**.
 
-Updated: 2026-10-19 (D257 three restored QA atlases, original art review still pending; LIVE 37/45).
+Updated: 2026-10-19 (D258 Godot functional PASS; Fight→Reward→Table and art gate open; LIVE 37/45).
 
 ## D256 — Current new-chat restart checkpoint
 
