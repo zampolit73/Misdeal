@@ -1,0 +1,36 @@
+name: D266 Court original 3x25 pose asset authoring
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/d266-court-three-role-atlases.yml'
+      - 'tools/art/author_court_d266_three_atlases.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  author-all-three:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Pillow for original pose drawing
+        run: python -m pip install 'Pillow>=10,<12'
+      - name: Render all 75 Court original poses and lossless alpha atlases
+        run: python tools/art/author_court_d266_three_atlases.py
+      - name: Commit three QA atlases and generation QA report
+        shell: bash
+        run: |
+          git add assets/pixel/units/court_of_the_mute_qa/*_d266_qa.webp.b64 docs/qa/D266_ORIGINAL_75_POSE_AUTHORING.json
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'art(d266): stage three full animated Court pose sets for x1 F6 inspection'
+            git push origin HEAD:main
+          fi
