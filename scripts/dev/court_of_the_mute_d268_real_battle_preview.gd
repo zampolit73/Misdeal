@@ -2,7 +2,7 @@ extends Control
 
 # D268: F6-only genuine Court Battle; QA scene is not a release or accepted background.
 # Three genuine approved rich character atlases come from MisdealUnitAnimationLibrary.
-# No alternate sprites; card #39 is absent from normal draws.
+# No alternate sprites; card #39 is released and also testable from this F6 launcher.
 const BATTLE_SCENE: PackedScene = preload("res://scenes/battle/battle.tscn")
 const ANIMATION_LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
 const ENCOUNTER_PATH := "res://resources/encounters/court_of_the_mute.tres"
@@ -22,11 +22,11 @@ var d271_legacy_art_enabled := false
 
 func _ready() -> void:
 	_build_menu()
-	if RunState.ACT1_CARD_IDS.size() != 38 or RunState.ACT1_CARD_IDS.has(CARD_ID):
-		_fail("QA: карта #39 НЕ должна быть в обычной колоде 38/45.")
+	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		_fail("Карта #39 должна быть в выпущенной колоде 39/45.")
 		return
-	if RunState.get_card(CARD_ID) == null or not RunState.get_card(CARD_ID).target_path.is_empty():
-		_fail("Нужна невыпущенная Court QA-карта с пустым target_path.")
+	if RunState.get_card(CARD_ID) == null or RunState.get_card(CARD_ID).target_path != ENCOUNTER_PATH:
+		_fail("Не найден выпущенный ресурс Court #39 с путём к бою.")
 		return
 
 
@@ -48,7 +48,7 @@ func _build_menu() -> void:
 	var title := _label("D271 · СУД БЕЗМОЛВНЫХ", 28)
 	content.add_child(title)
 	content.add_child(_label("РЕАЛЬНЫЙ BATTLE → REWARD → TABLE · НЕВЫПУЩЕННАЯ КАРТА · QA", 17))
-	content.add_child(_label("Карта №39 ещё в QA (38/45). Настоящий бой запускается с новым рисованным фоном D271; обычная колода не меняется.", 15))
+	content.add_child(_label("Карта №39 выпущена (39/45). F6 запускает реальный бой с утверждённой D271 ареной независимо от случайной раздачи.", 15))
 
 	content.add_child(_label("Состав отряда", 18))
 	party_picker = OptionButton.new()
@@ -88,8 +88,8 @@ func _label(message: String, font_size: int) -> Label:
 func _launch_real_battle() -> void:
 	if running:
 		return
-	if RunState.ACT1_CARD_IDS.size() != 38 or RunState.ACT1_CARD_IDS.has(CARD_ID):
-		_fail("Карта #39 пока не выпущена: ожидаем 38/45 и отдельный QA-маршрут.")
+	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		_fail("Карта #39 должна быть доступна в обычной колоде 39/45.")
 		return
 
 	# Validate all three original Court roles BEFORE changing RunState.
@@ -162,7 +162,7 @@ func _launch_real_battle() -> void:
 		_fail("Настоящий бой отобразил не Суд, а подменённую арену.")
 		return
 	_build_d269_floor_guide(battle)
-	print("D268_COURT_REAL_BATTLE_PREVIEW_PASS: 3 original roles/4 actors, lower floor + verdict + painted Court D271 QA plate; card #39 UNRELEASED (38/45).")
+	print("D268_COURT_REAL_BATTLE_PREVIEW_PASS: 3 original roles/4 actors, lower floor + verdict + painted Court D271 QA plate; card #39 RELEASED (39/45).")
 
 
 # D269: debug *only* overlay. In real Battle this is added after validation
