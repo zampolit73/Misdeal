@@ -11,6 +11,7 @@ on:
       - 'scripts/battle/unit_animation_library.gd'
       - 'scripts/core/run_state.gd'
       - 'scripts/dev/court_of_the_mute_d262_verdict_contract.gd'
+      - 'scripts/dev/black_lantern_road_battle_matrix.gd'
       - 'resources/cards/court_of_the_mute.tres'
       - 'scripts/dev/court_of_the_mute_d267_rich_animation_preview.gd'
       - 'scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn'
