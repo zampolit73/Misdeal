@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _run_boot() -> void:
 	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
-		_abort("do not release Court before the actual original 25-frame art")
+		_abort("Court #39 release or original 25-frame character art missing from 39/45")
 		return
 	var result_cases := 0
 	for party_size in [1, 2, 3]:
