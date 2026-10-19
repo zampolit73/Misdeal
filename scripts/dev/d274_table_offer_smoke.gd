@@ -34,11 +34,20 @@ func _verify() -> void:
 	valid = valid and a.get_node("Art") is TextureRect and a.get_node("Hint") is Label
 	valid = valid and ha.position.y == 295.0 and hb.position.y == 295.0
 	valid = valid and SKIN.short_description("Длинное описание должно быть доступно для просмотра на карте.") != ""
+	var lore := "ЛУННАЯ ПЕЧАТЬ\nСОБЫТИЕ\n\nВ погребальной чаше лежит серебряная печать. Она ещё помнит, кому должны были открыть склеп."
+	var popup := a.call("_make_custom_tooltip", lore) as PanelContainer
+	valid = valid and popup != null
+	if popup != null:
+		var copy := popup.get_node_or_null("LoreCopy") as Label
+		valid = valid and copy != null and copy.text == lore
+		valid = valid and popup.get_combined_minimum_size().x <= 350.0
+		popup.free()
+	valid = valid and ha.z_index > 20 and hb.z_index > 20
 	if not valid:
 		push_error("D274_TABLE_UI_FAIL: material or clickable nodes invalid")
 		table.free()
 		quit(1)
 		return
 	table.free()
-	print("D274_TABLE_UI_PASS: Table scene, two 272x338 parchment offers, action faces, hold tabs, shader and hover frame")
+	print("D274_TABLE_UI_PASS: two parchment offers, bounded full-lore tooltip, readable ink, hold tabs above hovered cards")
 	quit(0)

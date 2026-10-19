@@ -23,7 +23,7 @@ static func prepare(button: Button) -> void:
 	button.move_child(paper, 0)
 	var mount := _strip(button, "IllustrationMount", Vector2(8.0, 8.0), Vector2(256.0, 152.0), Color("#3d281a"))
 	button.move_child(mount, 1)
-	var action := _strip(button, "ChooseFace", Vector2(18.0, 302.0), Vector2(236.0, 29.0), Color("#541b17"))
+	var action := _strip(button, "ChooseFace", Vector2(18.0, 302.0), Vector2(236.0, 29.0), Color("#66231d"))
 	button.move_child(action, 2)
 	var top_edge := _strip(button, "ChooseEdgeTop", Vector2(18.0, 302.0), Vector2(236.0, 2.0), BRONZE)
 	button.move_child(top_edge, 3)
@@ -38,12 +38,14 @@ static func prepare(button: Button) -> void:
 	var title := button.get_node("Title") as Label
 	_set_rect(title, Vector2(16.0, 161.0), Vector2(240.0, 44.0))
 	title.add_theme_font_size_override("font_size", 18)
+	title.add_theme_color_override("font_color", Color("#332119"))
 	title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	title.clip_text = true
 	var category := button.get_node("Type") as Label
 	_set_rect(category, Vector2(20.0, 202.0), Vector2(232.0, 17.0))
 	category.add_theme_font_size_override("font_size", 11)
+	category.add_theme_color_override("font_color", Color("#5b4531"))
 	var description := button.get_node("Description") as Label
 	_set_rect(description, Vector2(22.0, 223.0), Vector2(228.0, 74.0))
 	description.add_theme_font_size_override("font_size", 13)
@@ -84,6 +86,8 @@ static func short_description(original: String) -> String:
 	return clipped.strip_edges() + "…"
 
 static func style_hold_button(button: Button) -> void:
+	# Stay visible above a hovered card, which raises to z_index=20.
+	button.z_index = 40
 	var idle := StyleBoxFlat.new()
 	idle.bg_color = Color("#1c1112")
 	idle.border_width_left = 2

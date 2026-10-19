@@ -717,11 +717,11 @@ func _apply_card_style(button: Button, card: RunCardData) -> void:
 	var title_label := button.get_node("Title") as Label
 	type_label.add_theme_color_override(
 		"font_color",
-		Color(0.28, 0.36, 0.34, 1.0) if event_like else Color(0.40, 0.24, 0.16, 1.0)
+		Color("#5b4531") if event_like else Color("#743e2c")
 	)
 	title_label.add_theme_color_override(
 		"font_color",
-		Color(0.15, 0.23, 0.22, 1.0) if event_like else Color(0.19, 0.10, 0.065, 1.0)
+		Color("#332119") if event_like else Color("#362018")
 	)
 
 	if card.card_id == RunState.BOSS_CARD_ID:

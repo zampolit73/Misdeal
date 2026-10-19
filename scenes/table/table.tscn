@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3]
+[gd_scene load_steps=26 format=3]
 
 [ext_resource type="Script" path="res://scripts/table/table.gd" id="1_table"]
 [ext_resource type="Script" path="res://scripts/table/table_visual.gd" id="2_visual"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/table/table_audio.gd" id="10_audio"]
 [ext_resource type="Script" path="res://scripts/ui/runtime_webp_texture.gd" id="11_runtime_webp"]
 [ext_resource type="Texture2D" path="res://assets/pixel/table/card_back_runtime.svg" id="12_back"]
+[ext_resource type="Script" path="res://scripts/table/table_offer_button.gd" id="13_offer"]
 
 [sub_resource type="StyleBoxFlat" id="HudPanel"]
 bg_color = Color(0.018, 0.013, 0.021, 0.72)
@@ -439,6 +440,7 @@ grow_vertical = 2
 
 [node name="BonePatrolCard" type="Button" parent="Cards"]
 clip_contents = true
+script = ExtResource("13_offer")
 custom_minimum_size = Vector2(272, 338)
 offset_left = 349.0
 offset_top = 329.0
@@ -556,6 +558,7 @@ text = "УДЕРЖАТЬ"
 
 [node name="GraveyardCard" type="Button" parent="Cards"]
 clip_contents = true
+script = ExtResource("13_offer")
 custom_minimum_size = Vector2(272, 338)
 offset_left = 659.0
 offset_top = 329.0
