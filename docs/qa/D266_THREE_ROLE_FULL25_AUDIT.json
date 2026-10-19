@@ -1,0 +1,58 @@
+{
+  "version": "D266",
+  "stage": "ALL_THREE_STRUCTURAL_READY_NATIVE_F6_NOT_APPROVED",
+  "animation_contract": "idle4/walk6/attack6/hit3/death6, 6x5 at 96px",
+  "roles": [
+    {
+      "role": "mute_magistrate",
+      "path": "assets/pixel/units/court_of_the_mute_qa/mute_magistrate_d266_qa.webp.b64",
+      "status": "STRUCTURAL_PASS_PENDING_GODOT_VISUAL",
+      "authored_frames_found": 25,
+      "required_frames": 25,
+      "empty_spare_cells": 5,
+      "visual_approval": "NOT_RUN",
+      "native_motion_F6": "NOT_RUN",
+      "sha256": "6322bc29bca7d6780a56d35b9fbadd2ea66c1c55ad1870b58c838f0f73043f21",
+      "dimensions": [
+        576,
+        480
+      ]
+    },
+    {
+      "role": "ash_scrivener",
+      "path": "assets/pixel/units/court_of_the_mute_qa/ash_scrivener_d266_qa.webp.b64",
+      "status": "STRUCTURAL_PASS_PENDING_GODOT_VISUAL",
+      "authored_frames_found": 25,
+      "required_frames": 25,
+      "empty_spare_cells": 5,
+      "visual_approval": "NOT_RUN",
+      "native_motion_F6": "NOT_RUN",
+      "sha256": "409a5711b3d9d30ef8db0aca0bd6057aa83a61b604259ac3fb89fecbd347af91",
+      "dimensions": [
+        576,
+        480
+      ]
+    },
+    {
+      "role": "bone_bailiff",
+      "path": "assets/pixel/units/court_of_the_mute_qa/bone_bailiff_d266_qa.webp.b64",
+      "status": "STRUCTURAL_PASS_PENDING_GODOT_VISUAL",
+      "authored_frames_found": 25,
+      "required_frames": 25,
+      "empty_spare_cells": 5,
+      "visual_approval": "NOT_RUN",
+      "native_motion_F6": "NOT_RUN",
+      "sha256": "d067b30ce7f286be9c0e28d31812a7794c6a114092608689ea2cb043160c4e6e",
+      "dimensions": [
+        576,
+        480
+      ]
+    }
+  ],
+  "original_frames_required_total": 75,
+  "original_frames_structurally_accepted": 75,
+  "production_registered": false,
+  "card39_released": false,
+  "live_act1_card_count": 38,
+  "important": "Structure/hash checks do NOT establish original motion, grip, boots or art quality. Never auto-activate a role on structural PASS."
+}
