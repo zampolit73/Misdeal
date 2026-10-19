@@ -1,0 +1,17 @@
+{
+  "version": "D265",
+  "status": "RICH_QA_ARENA_NOT_YET_ART_APPROVED",
+  "type": "original procedural-authored pixel architecture; not imported approved art",
+  "source": "tools/art/author_court_d265_rich_arena.py",
+  "path": "assets/pixel/battle/arenas/court_of_the_mute_d265_rich_qa.webp.b64",
+  "sha256": "867abf998d65d947369f6935808dd716bd8951c415c3d2e2573e7e122fb4d160",
+  "width": 1280,
+  "height": 720,
+  "actor_cutouts": 0,
+  "characters_baked_into_scene": false,
+  "has_distinct_floor": true,
+  "source_card_art_modified": false,
+  "live_cards": 38,
+  "card39_released": false,
+  "native_F6_visual_acceptance": "NOT_YET_APPROVED"
+}
