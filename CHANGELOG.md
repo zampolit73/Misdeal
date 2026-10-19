@@ -1,5 +1,10 @@
 ## 2026-10-19 — D278 native screenshot review
 
+## 2026-10-19 — Act I siege mystery direction (design only)
+
+- Recorded user-selected narrative reveal: the historic hero sacrificed a besieged castle to protect the country but sent an honest no-relief order; **someone else forged reassuring letters**. Culprit and motive deliberately left open for investigation.
+- Created [docs/ACT1_SIEGE_MYSTERY_DIRECTION.md](docs/ACT1_SIEGE_MYSTERY_DIRECTION.md) covering hooks for all 39 current cards, randomized clue delivery and unresolved story decisions. No runtime, art, card pool or balance changes.
+
 - Reviewed user Godot screenshots for normal two-card deal, hover-raised offer and lore inspection: painted frame is live on both cards; Cyrillic, buttons and art remain legible, no visual blocking failure detected. Formal user approval still open; no gameplay code changed.
 
 ## 2026-10-19 — D278 separate painted transparent frame on live cards
