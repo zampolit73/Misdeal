@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/d260-balance-diagnostics.yml'
       - 'scripts/dev/black_lantern_d260_balance_diagnostics.gd'
+      - 'scripts/dev/black_lantern_road_battle_matrix.gd'
       - 'scenes/dev/black_lantern_d260_balance_diagnostics.tscn'
   workflow_dispatch:
 

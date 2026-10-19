@@ -32,6 +32,13 @@ jobs:
           set -o pipefail
           /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --editor --import --quit 2>&1 | tee /tmp/d260-import.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script' /tmp/d260-import.log; then exit 1; fi
+      - name: Load native F6 released-card preview without scripting errors
+        shell: bash
+        run: |
+          set -o pipefail
+          /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --quit-after 18 \
+            --scene res://scenes/dev/black_lantern_d260_released_battle_preview.tscn 2>&1 | tee /tmp/d260-preview.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D260:.*failed' /tmp/d260-preview.log; then exit 1; fi
       - name: Released Tier 1 normal deal and real Battle Reward Table smoke
         shell: bash
         run: |

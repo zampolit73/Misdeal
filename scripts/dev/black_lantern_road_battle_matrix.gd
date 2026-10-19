@@ -1,8 +1,8 @@
 extends Control
 
-# D207 / QA ONLY: 54 deterministic simulations of the REAL BattleUnit AI,
-# with encounter-local lanternlight. No approved #38 sprites are available:
-# the arena remains invisible and this smoke does NOT unlock the live card.
+# D260: 54 original BattleUnit AI simulations for the released #38 encounter.
+# The scene stays an invisible diagnostic; approved original sprites are
+# loaded through the normal library and the released card must be in Act1.
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const ENCOUNTER: EncounterData = preload("res://resources/encounters/black_lantern_road.tres")
 const LIGHT_SCRIPT := preload("res://scripts/battle/black_lantern_light.gd")
@@ -65,8 +65,8 @@ func _ready() -> void:
 
 
 func _check_contract() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 37 or RunState.ACT1_CARD_IDS.has("black_lantern_road"):
-		failures.append("D207: карта #38 должна оставаться вне обычной колоды 37/45")
+	if RunState.ACT1_CARD_IDS.size() != 38 or not RunState.ACT1_CARD_IDS.has("black_lantern_road"):
+		failures.append("D260: выпущенная карта #38 должна входить в обычную колоду 38/45")
 	if ENCOUNTER.encounter_id != "black_lantern_road" or ENCOUNTER.get_formation_count() != 2:
 		failures.append("D207: две оригинальные расстановки не загрузились")
 	if ENCOUNTER.enemy_unit_paths.size() != 5:
@@ -141,7 +141,7 @@ func _fight(formation: int, protagonist: int, party_size: int, tactic: String) -
 		RunState.recruit_companion(HERO_ROLES[(protagonist + member) % HERO_ROLES.size()], "D207 matrix")
 
 	var arena := Node2D.new()
-	arena.visible = false # No art substitution / no unapproved enemy sprites rendered.
+	arena.visible = false # Invisible deterministic combat diagnostic; separate from real Battle.
 	add_child(arena)
 	var all_units: Array[BattleUnit] = []
 	var hero_starts: Array[Vector2] = _hero_positions(party_size)
