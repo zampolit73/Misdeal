@@ -4,8 +4,8 @@
   "roles": [
     {
       "role": "mute_magistrate",
-      "source_name": "mute_magistrate_d267_approved_original.webp.b64",
-      "source_sha256": "487788de2784e870e4c7e75c5b07ea742994baf3348ee0334e3d6eb9686695ad",
+      "source_name": "mute_magistrate_d267_approved_source_png.b64",
+      "source_sha256": "5470412996902bac1005bc3b593db84009b1d5a0adfd1f04ba9f66e3fc182d32",
       "atlas_sha256": "bcd51d98ceb255da89cc0e1385b998e3fef1bd51c754831200652d1ae9610dd8",
       "source_dimensions": [
         1374,
@@ -557,8 +557,8 @@
     },
     {
       "role": "ash_scrivener",
-      "source_name": "ash_scrivener_d267_approved_original.webp.b64",
-      "source_sha256": "6e973462cc0bd36688c87182e6d56d2ac5f4d6303c80e886bb000218806dc3e2",
+      "source_name": "ash_scrivener_d267_approved_source_png.b64",
+      "source_sha256": "fcaa784168b7c9ac35d86044f2df71b75837280a83a60854a326f3377e084ec7",
       "atlas_sha256": "2f56d0f76c80640982b1738234b48da0f4ddc8e71a959e38aaff4a74ab7d8f1d",
       "source_dimensions": [
         1374,
@@ -1079,8 +1079,8 @@
     },
     {
       "role": "bone_bailiff",
-      "source_name": "bone_bailiff_d267_approved_original.webp.b64",
-      "source_sha256": "f108065d4357333255404ee5387810f5adaa0d08aeb8490949c44978d3cee095",
+      "source_name": "bone_bailiff_d267_approved_source_png.b64",
+      "source_sha256": "c50ec7f782554ffb9b125a02432f236a00a958b744bd2b5939558e62920d6816",
       "atlas_sha256": "c42fc265000e4f742771a7e18d104c995820514763b13ec7ab189ff5f3229fb8",
       "source_dimensions": [
         1374,

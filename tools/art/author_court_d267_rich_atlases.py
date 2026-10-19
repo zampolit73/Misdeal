@@ -17,9 +17,9 @@ OUT.mkdir(exist_ok=True)
 CELL=229
 SPEC=(('idle',4),('walk',6),('attack',6),('hit',3),('death',6))
 ROLES={
-'mute_magistrate':'mute_magistrate_d267_approved_original.webp.b64',
-'ash_scrivener':'ash_scrivener_d267_approved_original.webp.b64',
-'bone_bailiff':'bone_bailiff_d267_approved_original.webp.b64'}
+'mute_magistrate':'mute_magistrate_d267_approved_source_png.b64',
+'ash_scrivener':'ash_scrivener_d267_approved_source_png.b64',
+'bone_bailiff':'bone_bailiff_d267_approved_source_png.b64'}
 REPORT={"version":"D267","stage":"SOURCE_CONVERTED_QA_ONLY_NATIVE_GODOT_PENDING","roles":[],"source":"original user-approved transparent generated rich sheets"}
 
 
@@ -112,7 +112,7 @@ def pack(role,path):
     target=OUT/f'{role}_d267_rich_qa.webp.b64'
     # split base64 into accessible library text lines (small 256 chars each)
     b64=base64.b64encode(raw).decode('ascii')
-    target.write_text(b64,encoding='ascii')
+    target.write_text(b64+'\n',encoding='ascii')
     arr=Image.open(BytesIO(base64.b64decode(target.read_text()))).convert('RGBA')
     if not np.array_equal(np.asarray(arr)[:,:,3],np.asarray(atlas)[:,:,3]):raise RuntimeError('alpha roundtrip')
     return atlas,{'role':role,'source_name':path.name,'source_sha256':hashlib.sha256(source_bytes).hexdigest(),'atlas_sha256':hashlib.sha256(raw).hexdigest(),'source_dimensions':[1374,1145],'atlas_dimensions':[576,480],'authored_poses':25,'unused_alpha_clear_cells':5,'full_frame_details':details,'warnings':flags,'source_warning_count':len(flags),'visual_Godot_x1':'NOT_RUN','art_approved_in_chat':'USER_APPROVED_DIRECTION_NEEDS_IN_ENGINE_CONFIRMATION'}

@@ -1,0 +1,103 @@
+name: D267 Approved Rich Court Original Art and Native F6
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/d267-approved-court-originals.yml'
+      - 'tools/art/author_court_d267_rich_atlases.py'
+      - 'tools/art/audit_court_d267_three_roles.py'
+      - 'assets/pixel/units/court_of_the_mute_qa/source_d267/*.b64'
+      - 'assets/pixel/units/court_of_the_mute_qa/*_d267_rich_qa.webp.b64'
+      - 'scripts/dev/court_of_the_mute_d267_three_animation_preview.gd'
+      - 'scenes/dev/court_of_the_mute_d267_three_animation_preview.tscn'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-native-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original seam-aware image tooling
+        run: python -m pip install 'Pillow>=10,<12' 'numpy>=1.26,<3' 'opencv-python-headless>=4.9,<5'
+      - name: Rebuild full 75 rich poses from unchanged APPROVED PNG source pixels
+        shell: bash
+        run: |
+          set -o pipefail
+          python tools/art/author_court_d267_rich_atlases.py | tee /tmp/d267-source.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          j=json.loads(Path("docs/qa/D267_RICH_COURT_ART_RECOVERY_QC.json").read_text())
+          assert j["accepted_structurally"] == 75
+          assert len(j["roles"]) == 3
+          assert j["source_warnings_total"] == 27
+          expected = {
+            "mute_magistrate": ("5470412996902bac1005bc3b593db84009b1d5a0adfd1f04ba9f66e3fc182d32", "bcd51d98ceb255da89cc0e1385b998e3fef1bd51c754831200652d1ae9610dd8"),
+            "ash_scrivener": ("fcaa784168b7c9ac35d86044f2df71b75837280a83a60854a326f3377e084ec7", "2f56d0f76c80640982b1738234b48da0f4ddc8e71a959e38aaff4a74ab7d8f1d"),
+            "bone_bailiff": ("c50ec7f782554ffb9b125a02432f236a00a958b744bd2b5939558e62920d6816", "c42fc265000e4f742771a7e18d104c995820514763b13ec7ab189ff5f3229fb8"),
+          }
+          for row in j["roles"]:
+            assert (row["source_sha256"], row["atlas_sha256"]) == expected[row["role"]]
+          print("D267_RICH_ORIGINAL_SOURCE_REPRODUCIBLE_PASS: 3 raw approved PNG / 75 poses / 27 source warnings documented")
+          PY
+          git diff --exit-code -- docs/qa/D267_RICH_COURT_ART_RECOVERY_QC.json
+      - name: Independent D267 75-cell padding/uniqueness audit
+        shell: bash
+        run: |
+          python tools/art/audit_court_d267_three_roles.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          j=json.loads(Path("docs/qa/D267_THREE_ROLE_FULL25_AUDIT.json").read_text())
+          assert j["original_frames_structurally_accepted"]==75
+          assert all(r["status"]=="STRUCTURAL_PASS_PENDING_GODOT_VISUAL" for r in j["roles"])
+          print("D267_INDEPENDENT_FULL25_PASS: 75 used distinct cels, 15 empty spares, transparent 2px frame margins")
+          PY
+      - name: Install official Godot 4.7.2
+        shell: bash
+        run: |
+          curl --fail --retry 3 -L https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o /tmp/godot.zip
+          echo 'cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  /tmp/godot.zip' | sha256sum -c -
+          unzip -q /tmp/godot.zip -d /tmp/godot-bin
+          chmod +x /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+      - name: GDScript parser and normal project import
+        shell: bash
+        run: |
+          set -o pipefail
+          /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --editor --import --quit 2>&1 | tee /tmp/d267-godot-import.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script' /tmp/d267-godot-import.log; then exit 1; fi
+      - name: Native combined preview all THREE approved rich originals (1x and 2x)
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 70s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . \
+             --quit-after 36 --scene res://scenes/dev/court_of_the_mute_d267_three_animation_preview.tscn 2>&1 | tee /tmp/d267-native-preview.log
+          grep -q 'D267_RICH_THREE_ROLE_F6_PASS' /tmp/d267-native-preview.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D267 THREE QA FAILURE' /tmp/d267-native-preview.log; then exit 1; fi
+      - name: Ensure Court #39 not in ordinary 38 card pool
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s=Path("scripts/core/run_state.gd").read_text()
+          pool=s.split('const ACT1_CARD_IDS',1)[1].split(']',1)[0]
+          assert '"court_of_the_mute"' not in pool
+          assert '"black_lantern_road"' in pool
+          assert 'target_path = ""' in Path("resources/cards/court_of_the_mute.tres").read_text()
+          print("D267_UNRELEASED_COURT_PASS: 38/45 live; card 39 QA only")
+          PY
+      - name: Keep logs for later QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: d267-approved-rich-court-originals-native-qa
+          path: /tmp/d267-*.log
+          retention-days: 14
