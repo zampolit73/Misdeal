@@ -1,3 +1,8 @@
+## 2026-10-19 — D274 Table parchment offer UI
+
+- User-selected hybrid two-card treatment in production Table: 272×338 parchment cards, preserved painted encounter art, ink text, bronze borders/hold tabs, crimson choose area, motion/hover states and complete card text in tooltips.
+- Added a Godot 4.7.2 D274 UI import and component smoke workflow. Actual 1280×720 user visual QA remains open; no Fate Spread, RunState, battle, or Act1 39/45 changes.
+
 # Changelog
 
 ## 2026-10-19 — D273 Court #39 RELEASED (39/45), native real-deal PASS
