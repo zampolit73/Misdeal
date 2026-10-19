@@ -70,7 +70,7 @@ func _exercise() -> void:
 	for offered in dealt:
 		offered_ids.append(offered.card_id)
 	if not offered_ids.has(CARD):
-		_fail("ordinary Tier 1 deal did not contain #38: %s" % [offered_ids])
+		_fail("ordinary Tier 1 deal did not contain #39: %s" % [offered_ids])
 		return
 	if not RunState.choose_card(CARD):
 		_fail("ordinary RunState.choose_card rejected released #39")
