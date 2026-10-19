@@ -1,5 +1,11 @@
 ## 2026-10-19 — D278 native screenshot review
 
+## 2026-10-19 — Act I «Обещанный рассвет» story bible (documentation only)
+
+- Approved new story facts: Chancellor forged the protagonist's truthful no-relief dispatch; castle Commandant learned of the forgery yet maintained the lie; Commandant is the future Bone Warden XIII.
+- Added [docs/ACT1_PROMISED_DAWN_STORY_BIBLE.md](docs/ACT1_PROMISED_DAWN_STORY_BIBLE.md): draft 20-day siege timeline, 12 discoverable letters/records, verified unique hooks for **all 39** existing Act I cards, non-linear clue discovery, a tactile dispatch/seal comparison and conditional XIII dialog + three morally costly possible outcomes.
+- No existing game code, card content, visuals, balances, Acts or finale were modified.
+
 ## 2026-10-19 — Act I siege mystery direction (design only)
 
 - Recorded user-selected narrative reveal: the historic hero sacrificed a besieged castle to protect the country but sent an honest no-relief order; **someone else forged reassuring letters**. Culprit and motive deliberately left open for investigation.
