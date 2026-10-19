@@ -1,5 +1,12 @@
 # Misdeal — Canonical Working Handoff
 
+## D269 — CURRENT: native Court upper-atmosphere L/G QA PASS, original rich empty battlefield still missing
+
+User says «Да, Все ок» after D268 real F6 QA. D269 adds **Court-only upper scenic moon/torch dust lighting** in `scripts/battle/battle_visual.gd` and **QA-only L (light A/B) / G (exact lower floor overlay)** to real `res://scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn`. [Official Godot 4.7.2 workflow SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39252464563) confirms D269 F6 toggles/full legal floor, D262 six genuine Battle setups, D268 54 original BattleUnit cases and direct unreleased-QA Fight→Reward→Table. **This is incremental theatrical polish, not a replacement finished illustrated battle background**. Existing actor-free D265 provisional Court WebP is still used; no newly generated full-screen art with baked heroes/judges/UI was added.
+
+**NEXT:** Finish true painterly **CHARACTER-FREE** original Court arena (1280×720, locked screen playable floor x40–1268/y532–710) and inspect D267 75 rich original poses at native ×1 especially 27 source seam flags/Bailiff death3–5. Integrate final art after visible QA, rerun D268/D269 and deliberately release #39 separately with ordinary-deal test. Card target_path remains empty, **38/45 live**, D261 selected second portrait, D264 lower floor, D260 #38/DS2/KARAMBA73 preserved. [Details](D269_COURT_UPPER_TRIBUNAL_ATMOSPHERE_QA.md) · [exact new chat handoff](D269_NEW_CHAT_HANDOFF.md).
+
+
 ## D268 — CURRENT: Godot native 54-case Court + reward route PASS; finished visual art NEXT
 
 [Official Godot 4.7.2 run #9 SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39249979969): parser, two native F6 scene smoke tests, D262 six real Battle setups, 54/54 Court BattleUnit balance scenarios (0 timeouts, 54 wins, mean HP 83.84/75.54/80.16% solo/duo/trio), and direct QA Court Fight→Reward→Table PASS. D268 Court original UnitData local mild pressure pass committed (Magistrate 9.0 damage/55 speed, Scrivener 5.5 dmg, Bailiffs 7.8 dmg/68 speed); global combat untouched. Target-hold validated in 7,694 live active Bailiff steps despite no forced redirects in natural nearest-target arrangements. QA preview: `res://scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn` (1/2/3 heroes ×2 formations); art QA: `res://scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn` (pause, frame, 27 QC flags). The actual Battle now uses Court's **QA-only D265** tribunal instead of fallback Crypt and D264 lower-floor bounds.
