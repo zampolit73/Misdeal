@@ -1,5 +1,10 @@
 # Misdeal — Current Project State
 
+## D274 — User-approved parchment Table offer-card UI in main; native review open
+
+2026-10-19: Implemented the selected TWO-card hybrid at 1280×720: 272×338 parchment cards, original large CardArtCatalog illustrations, ink Cyrillic copy, crimson inline ВЫБРАТЬ face, bronze УДЕРЖАТЬ tabs, full description via tooltip. Only normal-deal Table card presentation changes; all original RunState choice/hold/mark/meddling/wager transitions, Wizard, approved Variant C Fate Spread, and art assets remain unchanged. Act1 stays 39/45 (#39 released), D271/D264/KARAMBA73 intact. Main code e1b32fd; optional Godot 4.7.2 D274 native component smoke CI added. **User native visual acceptance is still pending**: test hover, held, marked, boss/single, long Cyrillic and real choice transitions. See docs/D274_TABLE_PARCHMENT_UI.md.
+
+
 ## D273 — CURRENT: card #39 «СУД БЕЗМОЛВНЫХ» RELEASED; Act 1 39/45
 
 2026-10-19: User approved real painted D271 Court arena («все ок»). Kept approved Magistrate/Scrivener/Bailiff D267 identities (75 rich cels); D272 independently verified **all 75 outputs distinct, 3px+ clean gutters, 15 clear unused**, while **27 original-source flags remain unproven motion QA pointers**. **Released #39 into normal `RunState.ACT1_CARD_IDS`, set actual encounter target_path**. [Official Godot 4.7.2 full native Court #39 ordinary Tier1 deal → original four-actor Battle + Verdict + D271 painted backdrop + D264 lower floor → Reward → Table SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39264156351); 6 real Battle setups/54/54 functional cases also pass. Original D267 reproducibility [PASS](https://github.com/zampolit73/Misdeal/actions/runs/39264427458). **Live Act1: 39/45**. Historical "unreleased #39"/"painted art pending" sections below are **SUPERSEDED**. Next D274 should consider card #40 new concept/enemies, or repair demonstrated live sprite-motion issues. D260 #38, exact D261 image, D264 floor, DS2/Fate Spread, KARAMBA73 unchanged. [Release report](D273_COURT_CARD39_RELEASE.md) · [current handoff](D273_NEW_CHAT_HANDOFF.md).
