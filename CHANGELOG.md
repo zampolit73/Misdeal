@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-19 — D269 Court upper-tribunal atmospheric QA pass, verified
+
+- User replied «Да, Все ок» to D268 native real battle check. Incrementally added Court-only upper-architecture cold shafts, warm four-brazier breathing, sparse dust motes; every effect remains safely above the D264 screen lower-floor start y532, **no changes to movement or unit cards**.
+- F6 `res://scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn` now has **L** light on/off compare and **G** precise lower battle zone overlay, both only in QA preview; added independent real F6 D269 floor/light contract and CI step.
+- [Official Godot 4.7.2 Actions PASS](https://github.com/zampolit73/Misdeal/actions/runs/39252464563): D269 new L/G test, D262 six genuine Court Battle startup cases, D268 54 original BattleUnit balance simulations and QA-only Fight→Reward→Table. **Card #39 stays UNRELEASED, 38/45 LIVE.**
+- **Art remains OPEN:** existing D265 actor-free provisional raster unchanged, newly brainstormed baked-actor/UI scene comps intentionally NOT used; need genuine rich empty Court painting and x1 review of all 75 D267 original rich poses/27 flagged sources. [D269 report](docs/D269_COURT_UPPER_TRIBUNAL_ATMOSPHERE_QA.md) · [handoff](docs/D269_NEW_CHAT_HANDOFF.md). D261 selected portrait/D264 floor/#38/KARAMBA73 unchanged.
+
+
 ## 2026-10-19 — D268 verified native Court QA, balanced local encounter, reward route PASS
 
 - [Official Godot 4.7.2 workflow #9 SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39249979969): parser, two combined F6 scene headless smoke tests, six real Court Battle startups, **54/54 original Court BattleUnit functional scenarios**, and direct QA only Fight→Reward→Table.
