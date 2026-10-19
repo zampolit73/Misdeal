@@ -1,0 +1,50 @@
+{
+  "version": "D259",
+  "date": "2026-10-19",
+  "engine": "Godot 4.7.2 stable",
+  "status": "CANONICAL_FIVE_ROLE_AND_HEADLESS_ROUTE_PASS_RELEASE_HOLD",
+  "run": "https://github.com/zampolit73/Misdeal/actions/runs/39206093134",
+  "canonical_art": {
+    "roles": [
+      "road_sentinel",
+      "lantern_bearer",
+      "extinguished_guide",
+      "oil_acolyte",
+      "lantern_archer"
+    ],
+    "total_authored_frames": 125,
+    "guide_and_archer_source_normalized_by_per_cell_mirror": true,
+    "source_d257_warnings": 11,
+    "production_sprite_injection": false
+  },
+  "actual_battle": {
+    "qa_party": "trio",
+    "formation": "crossroads",
+    "battle_from_shared_library": "pass",
+    "controller_d253": "pass",
+    "fight_win": "pass",
+    "continue_to_reward": "pass",
+    "claim_reward": "pass",
+    "return_to_table": "pass",
+    "card_resolved_in_throwaway_qa_run": true
+  },
+  "balance_matrix": {
+    "completed": 54,
+    "wins": 54,
+    "losses": 0,
+    "timeouts": 0,
+    "fallen_heroes_per_party_size": [
+      0,
+      2,
+      4
+    ],
+    "enemy_attacks_observed_latest": 641,
+    "attacks_while_light_accelerated_latest": 62,
+    "status": "FUNCTIONAL_PASS_DIFFICULTY_ACCEPTANCE_OPEN"
+  },
+  "caveat": "Headless driver emits synthetic RenderingServer.frame_post_draw signals ONLY outside game scene to drive SceneTransition. It does not prove rendered visuals.",
+  "live_card_pool": 37,
+  "card38_released": false,
+  "unrelated_editor_import_issue": "res://assets/concepts/approved_battle_direction.jpg",
+  "checkpoint": "KARAMBA73 unchanged"
+}
