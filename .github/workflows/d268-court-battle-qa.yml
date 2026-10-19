@@ -6,7 +6,9 @@ on:
     paths:
       - '.github/workflows/d268-court-battle-qa.yml'
       - 'scripts/dev/court_of_the_mute_d268_*.gd'
+      - 'scripts/dev/court_of_the_mute_d269_*.gd'
       - 'scenes/dev/court_of_the_mute_d268_*.tscn'
+      - 'scenes/dev/court_of_the_mute_d269_*.tscn'
       - 'scripts/battle/authored_backdrop.gd'
       - 'scripts/battle/battle_visual.gd'
       - 'scripts/dev/court_of_the_mute_d267_rich_animation_preview.gd'
@@ -60,6 +62,13 @@ jobs:
           timeout 100s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --scene res://scenes/dev/court_of_the_mute_d262_real_battle_boot.tscn 2>&1 | tee /tmp/d268-six-boot.log
           grep -q 'D262_COURT_REAL_BATTLE_PASS' /tmp/d268-six-boot.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D262_COURT_REAL_BATTLE_FAIL' /tmp/d268-six-boot.log; then exit 1; fi
+      - name: D269 actual Court Battle F6 L-light and G-floor native contract
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 100s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --scene res://scenes/dev/court_of_the_mute_d269_visual_qa_contract.tscn 2>&1 | tee /tmp/d268-d269-visual.log
+          grep -q 'D269_COURT_NATIVE_VISUAL_QA_PASS:' /tmp/d268-d269-visual.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D269_COURT_NATIVE_VISUAL_QA_FAIL:' /tmp/d268-d269-visual.log; then exit 1; fi
       - name: All 54 Court BattleUnit original enemy balance and verdict cases
         shell: bash
         run: |
