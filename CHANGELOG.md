@@ -1,3 +1,9 @@
+## 2026-10-19 — D279 class-select tabletop UI
+
+- Replaced the large black hero-selection modal with the approved full Variant C cursed table and three live D278 parchment/bronze character cards. Existing authored v7 class portraits are loaded independently, not baked into screenshot UI.
+- Added source-backed HP/damage reveal on hover/selection, subtle card lift/choice dim, class-specific Wizard commentary and separate crimson confirmation button; arrow keys cycle and Enter confirms.
+- Kept `RunState.choose_protagonist` exclusive to final confirmation, all combat numbers, starting solo-party contract, and original Table route. Added official native Godot import and interaction smoke; user art approval pending.
+
 ## 2026-10-19 — D278 native screenshot review
 
 ## 2026-10-19 — Act I «Обещанный рассвет» story bible (documentation only)

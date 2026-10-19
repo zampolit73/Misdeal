@@ -1,3 +1,9 @@
+## D279 — Three physical protagonist cards, no opaque character modal
+
+User selected the more restrained **actual DS2 tabletop** rendering of the three existing starting classes. Approved visual intent: keep the existing Variant C backdrop/wizard and D278 parchment/bronze cards (do not use generated whole-screen mockup as game background); show idle class portrait/title/role/short narrative; HP + damage sourced from real UnitData appear on hover or selected state, not all three by default. The Wizard commentary line changes per focused role. A card click is selection only; a separate blood-red `ПРИНЯТЬ ЭТУ СУДЬБУ` explicitly launches the existing one-hero run. Existing Knight/Ranger/Mage portraits stay independent and unmodified. No stats/perks/dialogue branches introduced. Native 1280×720 screenshot required for final art signoff.
+
+---
+
 ## D278 — Painted reusable frame, never a baked gameplay card
 
 Only the TWO live normal-deal Table cards receive the D278 independent alpha-metal frame asset. The source is an isolated drawing of aged bronze fittings; its center is transparent and **no card art, names, status, description, Hold or Choose text** are embedded into the asset. The original Godot UI keeps all input/animation semantics. Avoid stacking D277 code-drawn corner engravings with this painterly rim. Keep the frame visually subordinate to 448×274 encounter illustrations and Cyrillic text. A complete screenshot generated as source inspiration is NOT a runtime tabletop background. Inspect real Godot 1280×720 output before accepting artistic quality.
