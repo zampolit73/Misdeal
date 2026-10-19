@@ -1,5 +1,9 @@
 # Act I — Siege mystery: truthful order, forged promise
 
+## 2026-10-19 update — culprit chosen; read the new story bible
+
+**SUPERSEDED ONLY on culprit identity and boss identity:** the user has since approved **Chancellor as the forger, Commandant as the person who discovered the forgery and continued lying, and Bone Warden XIII as that Commandant**. The rest of this document is historical proposal context. Use [ACT1_PROMISED_DAWN_STORY_BIBLE.md](ACT1_PROMISED_DAWN_STORY_BIBLE.md) for the canonical approved character configuration and the current (unimplemented) siege chronology, all-card clue map, draft letters, tabletop prototype and finale. Supernatural cause and exact endings remain unapproved suggestions.
+
 **Status:** approved CORE REVEAL DIRECTION by user on 2026-10-19 ("второй" in response to two competing twists). Full story, culprit, oath, individual letters and ending mechanics are **not yet approved or implemented**. This is a narrative brief, not gameplay content.
 
 ## Locked premise (player choice)
