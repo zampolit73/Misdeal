@@ -6,7 +6,7 @@
     {
       "role": "extinguished_guide",
       "stage": "QA_ONLY",
-      "sha256": "ee2ad02894d7d0c55fdf0ddaf958f3b724bb0bbefc9dc7e51cd6a76fd5002cbc",
+      "sha256": "fbf4a648238c05de280e50ea3c1659e6fc717147aa68a41dc99e2193065f3184",
       "poses": 25,
       "distinct_poses": 25,
       "unused_transparent_cells": 5,
@@ -152,7 +152,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "idle",
           "frame": 0,
-          "hash": "e82a178375bc0037c5c70c5566ede14bdc29566d54f897db426d3806703ea5f1"
+          "hash": "54aa4b220f70fca4d5dbb7724c0f988e890d62e28a270cddbeaa6e92c2a7185e"
         },
         {
           "span": [
@@ -166,7 +166,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "idle",
           "frame": 1,
-          "hash": "2a39b67a69581fae8dc00409bb98bcdb0a8d242fd518a3bc8f979ef51f21b091"
+          "hash": "72dfd0cb3afcc844d7c9b217873c9210dbf32bc4527d45d10bb637f1b69d81d6"
         },
         {
           "span": [
@@ -180,7 +180,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "idle",
           "frame": 2,
-          "hash": "dcb5af9209ad3b082a020c809d520dd33ee6ec4ead2e556ad22a55bce86846ae"
+          "hash": "0011b724056a4b82a50fae37f6c1afb2954b28eb866891df41ccf67a1c9e60e9"
         },
         {
           "span": [
@@ -194,7 +194,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "idle",
           "frame": 3,
-          "hash": "98bfd0fb4b5895ebdc3b3faee6da6e9c9c0ae7ac860984e5ce4972d892f70e86"
+          "hash": "d658e0a76a09c9a4c5b8d5372acd9d59af31c491c634d8614386239fa99f2be7"
         },
         {
           "span": [
@@ -208,7 +208,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 0,
-          "hash": "4cef96f81868bd7073fded740b7d3c56bdb40fc042db53c3f4dd7f38deae330b"
+          "hash": "28fdd3703be3f8bbd0812a98f52e27c63b16139982bc6453bb4b9ab9093660d4"
         },
         {
           "span": [
@@ -222,7 +222,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 1,
-          "hash": "db59bcf146cbea657fe42045f1b11b3f86dde28dec990a821ff2653275a7b9bd"
+          "hash": "ea84a92cee44cce5375814bbb27729af555c9148f76adf57fb80a6f48ffded1f"
         },
         {
           "span": [
@@ -236,7 +236,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 2,
-          "hash": "e144b53cd6a8a58991157184c8ead4c0f973d22a58f8411aad8118c983eb600f"
+          "hash": "27abf2b0c7da1b7bc879f036cbfb6a771d6cb9f76e35e665122d2b8c2acab08d"
         },
         {
           "span": [
@@ -250,7 +250,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 3,
-          "hash": "c18314f48469b6a57b886ec7c1dd8f817269004e822f710c2da0c3da077e361f"
+          "hash": "bf6f41ea1c1b7c6b422b4c8d118e4fbcd714077c9bd446e7d3aa4495e7ee4b27"
         },
         {
           "span": [
@@ -264,7 +264,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 4,
-          "hash": "a2a813a37e3166c14007af3922edbf200208ce2c063794d5360640f202dd3e22"
+          "hash": "2691b970085ffef03fb9ab0a4f72f4be0fd24bb5733fe3802b3c263c96eb8013"
         },
         {
           "span": [
@@ -278,7 +278,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 5,
-          "hash": "7b647d531ed384b22c1e96f4a408e3dbc0625d00f2489e482c486d87b2f7eacc"
+          "hash": "1807938d64216b1e01ed87dad9e40bae69dc31f969f43613228b59e47c9dde17"
         },
         {
           "span": [
@@ -292,7 +292,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 0,
-          "hash": "01872e68ea322d5fd7dca5c917bcccef0066880c24583c9fe8f1c89b2e6bc683"
+          "hash": "d5e4be94b7ae88be14851eb8aea709d67226b8fd8a8be8d09f1b57cccafe8344"
         },
         {
           "span": [
@@ -306,7 +306,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 1,
-          "hash": "94ad38eb4ae6ce8907ca9be979db9baf520f779a0c7b19ad6ce12e8fdc47b9d4"
+          "hash": "f924c320969899747eaa7bb698f97676534a8a5b4f02d8aca8740e8807ec0f2a"
         },
         {
           "span": [
@@ -320,7 +320,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 2,
-          "hash": "7fb7fea907f04a9bb901c50846801871483241bf51a2d3f4a4d89722841a4585"
+          "hash": "4e2e253e2afb4a4aac987bc94d67869b57b901fabd595770280a90297f239ad1"
         },
         {
           "span": [
@@ -334,7 +334,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 3,
-          "hash": "a67977f8d2d109b0d4b85b7ff1c54dfe78ecfa8701ac6905f271b95d35cbc232"
+          "hash": "62d208f8ac1a38a14e270472afe67b89e580e6d04c18afbefe8bb4c4963e593a"
         },
         {
           "span": [
@@ -348,7 +348,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 4,
-          "hash": "9189f38c0f8c2d84c78edfe2502b77d1f9610219c6f5d1cd8114f84b97677f30"
+          "hash": "d217c0014360be1e12a7d7e79c1b84033cc91e6da83b2d71097ece338d58d325"
         },
         {
           "span": [
@@ -362,7 +362,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 5,
-          "hash": "1eed3eb86289b1539a1b415a5d076a3ef634b4bd8dd14ef4c93328dc5d6c5167"
+          "hash": "d6691649cc379f876b6d6f5e84ec55c33e00c2e7db0dd2745bfc3a041389b2b8"
         },
         {
           "span": [
@@ -376,7 +376,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "hit",
           "frame": 0,
-          "hash": "b6016887fe2c42792685102a164039664066fdde2b5b51c08f20253a4d45f09d"
+          "hash": "168b888423e9224750d5e745b0cd8f9527ff2fe969be71eb3febb46cddfb2528"
         },
         {
           "span": [
@@ -390,7 +390,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "hit",
           "frame": 1,
-          "hash": "51bdff69426297d2edf2bb28f6e5944b12cfac9df94cecfad08ef2e01103a169"
+          "hash": "1d62329afb9194eaf6fe5e33dd06017ab0bc9af6f7851dacecbf66cc038cce08"
         },
         {
           "span": [
@@ -404,7 +404,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "hit",
           "frame": 2,
-          "hash": "33952632b89c963013557e4d1e9f0d8fc35e0fc9e45fbb74b6a092923b44e1d6"
+          "hash": "cd3937b123734a372b7590487c92493d860f5e99e2c55fa0e1f2ead26d83fa83"
         },
         {
           "span": [
@@ -418,7 +418,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 0,
-          "hash": "59a1b69495a945d8addaa8573d865a066c9d8a69251194d6116c8d547720bf9b"
+          "hash": "e98fb76dca74e025cc551768815cf4154622162a1605e15a7b9f92f1482817e0"
         },
         {
           "span": [
@@ -432,7 +432,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 1,
-          "hash": "714c3e1011a2ccaea28bce990201a3e26c709537e1633ae97ab16415e29acbd3"
+          "hash": "5394735da31832adb9cfcd4a9bcc9d4ac554f73a617aa11473b98267a5114453"
         },
         {
           "span": [
@@ -446,7 +446,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 2,
-          "hash": "f13588f8b11887f128d73f508c838b265d5f87e185cf6f71c5365aea963cb042"
+          "hash": "21c22126193c384382fe3735ec384b5836310c6971c960e0d62e0fecbd0549d3"
         },
         {
           "span": [
@@ -460,7 +460,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 3,
-          "hash": "fcd55d0165b1cbe29a6c50ba637d53c16a3b5a6e8d47ac6bab1f5f82b4f69e43"
+          "hash": "e0cdb546dffb6312f257a66a02d0559a7472ffa17626147b6f03f956e744a008"
         },
         {
           "span": [
@@ -474,7 +474,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 4,
-          "hash": "f1a4193afee5830dd77e85b6291bb4d6012960588d8634a372a00c3c2a7be31b"
+          "hash": "1350bf9e44037485a384e1cc1f6404b15cd6251fbfe532988facb4d3db17d54b"
         },
         {
           "span": [
@@ -488,7 +488,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 5,
-          "hash": "ea9477caa631df17a992a574cd131857a94db8a7b676d80c2c9115374ebe87fc"
+          "hash": "de9785bb83f0cc98d637b6f892f22a29e3b022d9a061907befdd36db53d0b782"
         }
       ],
       "native_F6": "NOT_RUN",
@@ -497,7 +497,7 @@
     {
       "role": "oil_acolyte",
       "stage": "QA_ONLY",
-      "sha256": "73137e7d5bd5db4000d490d8a757c5210747df7aae68c82c93ec530ccb990494",
+      "sha256": "f6ca1fea3182040d7be6caa2c1536b9392aaa2601457e262cc21778ab4dee3e9",
       "poses": 25,
       "distinct_poses": 25,
       "unused_transparent_cells": 5,
@@ -654,7 +654,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "idle",
           "frame": 0,
-          "hash": "9082bf9d235e90b8fde835e8a70e5449936102f643a26c42bfcfd87dec2ac764"
+          "hash": "10e5b23226c36150aa889646ef7e01bcb97e280d6b2b2fe78f02ee2727d66565"
         },
         {
           "span": [
@@ -668,7 +668,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "idle",
           "frame": 1,
-          "hash": "039e5c9f8561c83f6bb008f73583f03e77682c816a5ee0e19b528007ad64cff8"
+          "hash": "926ef039558ad7f015fac71cdcef49d43e28a326a650feb03ea6d08a84d870ee"
         },
         {
           "span": [
@@ -682,7 +682,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "idle",
           "frame": 2,
-          "hash": "6da6ebd8ed82f67e54bbaca1787f6b0ad191118c237c6329fdb0f9fd5c4033fb"
+          "hash": "78bae7615af47ab42b73a244fef79fe0e20d28249e68ecfe3e8e0fb7e01ac6b7"
         },
         {
           "span": [
@@ -696,7 +696,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "idle",
           "frame": 3,
-          "hash": "12e62ce37ecd81efdb34c71851daa612893471b419bb3feafc25cd23517add4d"
+          "hash": "cb10b0e9767956fb3521e6447b3e154a4f8a2036d2fa7de39724d28c55c6990d"
         },
         {
           "span": [
@@ -710,7 +710,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 0,
-          "hash": "f541ad54f3f8c8e5599dfe95daf515f3178e2aee76293a37e604c57c6882f8b4"
+          "hash": "7abd8d95455a6792c2b6e6a399fe5376b0281c6a21870ec0355dd0df6e41e4a8"
         },
         {
           "span": [
@@ -724,7 +724,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 1,
-          "hash": "598845d353b1ca6e1b4d0f61ed88d37384125ef93d0bd58bd97468d168507c5a"
+          "hash": "bde1694c9bb4964175f23c9fb5b29eec8f750f67717612703e55804b7dbf7c4d"
         },
         {
           "span": [
@@ -738,7 +738,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 2,
-          "hash": "30731305ff4d79ff9fae33308e53359ab8c48ad246a2792e0c9f4d987721e1cd"
+          "hash": "804667306a42232b30f8776ce3863fff3044ad6ac84a18ef70609902f79d6a47"
         },
         {
           "span": [
@@ -752,7 +752,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 3,
-          "hash": "1d3992e5f810b760a5ec3dd36b529736d40cbf5801d5190340fa755f7793f35f"
+          "hash": "d358bcc49e4bd3f5acbe04f03d8ae98a8a8ca0ab853955c741dd5e8be02de7f7"
         },
         {
           "span": [
@@ -766,7 +766,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 4,
-          "hash": "c4369fc781eb1bb9680de8da6d7e16e90bab97c084a247ebd653b506d08cfeba"
+          "hash": "5f0ee55b02786c618d9c0b10c48078e81befb210f39b18d26e67f5e955f517dd"
         },
         {
           "span": [
@@ -780,7 +780,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 5,
-          "hash": "ef2eff4ced02f1d6a3377da430603288a1b7dbae25869e67ed98475501734a96"
+          "hash": "3ced78392d23de42b10d37d2ad18a78898ac2bba82aaebaf12795426331e5bd5"
         },
         {
           "span": [
@@ -794,7 +794,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 0,
-          "hash": "89f46cd41a5313426341a0801ec33f91e6d4579913b1e9e02744681782921089"
+          "hash": "34f2f907c9619855ea01e36766ec5fc68da7bf38fc7259976e0f5585c6220b09"
         },
         {
           "span": [
@@ -808,7 +808,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 1,
-          "hash": "11a858c8e5b4f75feb8edc312cf0b5d07daf95e0effc985e769e3c77d6fdb7b2"
+          "hash": "0b44e0f93c9e7f657526c51be23c4ad2ec66423bbc381ffd499a32506348a03f"
         },
         {
           "span": [
@@ -822,7 +822,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 2,
-          "hash": "74a7c9c4b3b79b1fe299ff34ce8f99ecd0d8d46dce77e6a52bd583e43ea5655a"
+          "hash": "93fe3201d475d0d16fa53a8dc14bc9626aa49a42e32b64a4359e8ef14883f82b"
         },
         {
           "span": [
@@ -836,7 +836,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 3,
-          "hash": "59e4d805e3194a91f67f052ca4cdc96687ffa04f1a3cdb0f8fc276beaa105c8c"
+          "hash": "50623bb3f61753b22bc6a3520e7775e1ca5fc66fc80cfed10ecceaaf329d6c0e"
         },
         {
           "span": [
@@ -850,7 +850,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 4,
-          "hash": "91b2e447da845a38b77bcfc8ae82785123625f4fa7e4a87bdf4cd0b80963aaeb"
+          "hash": "e6e7c3a1e8b4180f03b4994611f53d6e7ef60912aa84323a2c9c4de9f0737d72"
         },
         {
           "span": [
@@ -864,7 +864,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 5,
-          "hash": "084ee867f7d04e768a95a7cb667d64b46a35c21ddd9409c378c4f0cafce325dd"
+          "hash": "d36e7d9268dcbf64ed2bd2d5a7d879e6fe2bc988085947d3eddb26f2605da0b2"
         },
         {
           "span": [
@@ -878,7 +878,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "hit",
           "frame": 0,
-          "hash": "2b804a28a529ac4af824b5d7dd50ca60ac376bc66d4f7e7dbb12674ef57a4b80"
+          "hash": "9e925ce4c3c6b0e4bae5a11af95cc1635d47ffa6305d3467d419fac2402c2e24"
         },
         {
           "span": [
@@ -892,7 +892,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "hit",
           "frame": 1,
-          "hash": "a797d07fb6fc5fbabb4084ee5fba8e645146355312583c627ec93020058dbf2a"
+          "hash": "6c13df3ffc510fa9b7748f64d082a6a8c2e47f344351f253839a382d0c41f6a6"
         },
         {
           "span": [
@@ -906,7 +906,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "hit",
           "frame": 2,
-          "hash": "8a956e10dcd6cd656e2056fb61822be3ed05f97e1fd6031ff07981985b94e753"
+          "hash": "522d82c4e787fb52366e3f1460045c5c28acb45abdc72c76b69f00bdbfb8824f"
         },
         {
           "span": [
@@ -920,7 +920,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 0,
-          "hash": "63450f196a7af61c0dca4622ffb71e503bdc60ae49af65504b95e006f204ac1f"
+          "hash": "a620ab4ed5d733a1f8884628045771de3cae7ec67244dcd417427d79ad5188d1"
         },
         {
           "span": [
@@ -934,7 +934,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 1,
-          "hash": "b5845a639fc100027ab0dde5c9f02985b94f7c51b1a9b4da561fe0531f884123"
+          "hash": "ce7404fd41368d39d06816c8669fdb84b4fa11fb19cd152bbae5eca3796c014b"
         },
         {
           "span": [
@@ -948,7 +948,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 2,
-          "hash": "d1f5781940b55e2c5b441b17f885959091d71776d6a197b779aa7deeed5b4a23"
+          "hash": "3bf2db8f515cf59f1ed2f542892840704bb8dd4cc290ee64335c4edbb56f075e"
         },
         {
           "span": [
@@ -962,7 +962,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 3,
-          "hash": "b5a03e8ffda64b28966d1819e064c11b1803ec70843dc8538f9fa426860c5eb7"
+          "hash": "6fc8c1bc54a3a5fbecaaee2b38c46d68e12f6474c6f692f12710c2847de1d361"
         },
         {
           "span": [
@@ -976,7 +976,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 4,
-          "hash": "5550475c30f5947de63e9f0904e7052d945d51ea3f4ea99ae53e7da33b29a4db"
+          "hash": "616d1a6bb81bfadde336868d04287a615c1c6cd3b8458e1556c50a5684a1ea09"
         },
         {
           "span": [
@@ -990,7 +990,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 5,
-          "hash": "2ef439a9d4e399b2f4726b9c9ef808e74dc6f711d28874866f4b2f3482f55017"
+          "hash": "e6b8e3f716e005ee4fb315a67a02056437c13da9228c17872264fe8a96525630"
         }
       ],
       "native_F6": "NOT_RUN",
@@ -999,7 +999,7 @@
     {
       "role": "lantern_archer",
       "stage": "QA_ONLY",
-      "sha256": "fd017ff97b0079e271c64409befa3b125a5c4cc37e65ead63daaf5ede6f5cdeb",
+      "sha256": "c57691bb1d61b5ade7786f907e92ec8f3b8e78a3323dd1451f10c30a2b8ea21c",
       "poses": 25,
       "distinct_poses": 25,
       "unused_transparent_cells": 5,
@@ -1128,7 +1128,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "idle",
           "frame": 0,
-          "hash": "21e7519f182b30202e87c9b76a8833770f58a1cc54af09d3ef5965a6af132067"
+          "hash": "445602130abff270e1b1117e0a0dcc46b8dbda533a593ccb099215b2efb0b156"
         },
         {
           "span": [
@@ -1142,7 +1142,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "idle",
           "frame": 1,
-          "hash": "e6039b99b6dc56078e0b5c348d6912c793fba272e163ecc8f939e98eb11661bc"
+          "hash": "178d7e80992c97786e35e57a63f45821dfb817af3239aac32e480223485ffd90"
         },
         {
           "span": [
@@ -1156,7 +1156,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "idle",
           "frame": 2,
-          "hash": "63eb17e10e57eac6aa4cfb11299db71a9e94e362a23f3c0bdbf5daa4f33e4bba"
+          "hash": "ed58590c6a08cc767c84c0f771c9271206d9ef801260cbcefec7145d1dff62cf"
         },
         {
           "span": [
@@ -1170,7 +1170,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "idle",
           "frame": 3,
-          "hash": "c29cbf1e7b9e6794e1d0f075a51bff2ed3dd28e06bd5ce10c8fc7020471c9a84"
+          "hash": "20aebdbc1e8bf36907c49f927d9a7fa44f43bd84f232bcdddfb2763845520df6"
         },
         {
           "span": [
@@ -1184,7 +1184,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 0,
-          "hash": "6a2adc144c20bfe270f9b10c990d996f279b2384bdc6ccc19b4823fa5ec6f520"
+          "hash": "2d497b15d7b3dcb520cb14069dc9616cabca07af23d239310009a93e9b6d917b"
         },
         {
           "span": [
@@ -1198,7 +1198,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 1,
-          "hash": "62529298bed8fef64fbe0c12a6f08c1d38200aad3d9f7f378364224f575d70d7"
+          "hash": "1579fc7407554a3589cda1c1d79974a3368019c9909f2630d51ed4a550d27fa9"
         },
         {
           "span": [
@@ -1212,7 +1212,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 2,
-          "hash": "fceda8a924b07d38ada931789b1db4ebbe8b3e3c71025961133b9fc96f07c2a7"
+          "hash": "a2829d9e4a9faa89dab0ee046d831c76af19f04ca39b9cbc3d294e0ad92e32a7"
         },
         {
           "span": [
@@ -1226,7 +1226,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 3,
-          "hash": "ace9f62faeaffcf22ee846a507865fac4cfe9f2f37f4f9e148c074114bf0459c"
+          "hash": "badad83fc813b6015cc2bcae39cb834f424af34518996a4f23f4b8d0bc8f0549"
         },
         {
           "span": [
@@ -1240,7 +1240,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 4,
-          "hash": "9db1d59041cd7c61a802af6c1e0bec48e0249b55bea2cefc0d2e154d5466734b"
+          "hash": "50374c4a191f5776176eba5eebd79432409610835474173da4e07c96f3677dcc"
         },
         {
           "span": [
@@ -1254,7 +1254,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "walk",
           "frame": 5,
-          "hash": "0a0cd3711a38f534828fc80afd1b7ccc9abec5d28d0663e5f41fe0a2704acb84"
+          "hash": "77487be67b21648ade3f586469b5a1b23ff2d401005226c2a1aa1a848b9e70c6"
         },
         {
           "span": [
@@ -1268,7 +1268,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 0,
-          "hash": "66a2880d4d71d1e84a75d3cdf34603ef1a91a4e038a081e1e77a8b8d602bbaf7"
+          "hash": "5e6eb47da610a0220fbd1573055d446d33bd925fd28974904c42a9ff29c9e4f9"
         },
         {
           "span": [
@@ -1282,7 +1282,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 1,
-          "hash": "7160fbc6a9a70c8d78648e8a95131d5db222c5e4b762747dd471729062bc4de1"
+          "hash": "1b390abac2c273378ae8d33d87ee4588553bba09bfb11c3599366e6b6f103bf2"
         },
         {
           "span": [
@@ -1296,7 +1296,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 2,
-          "hash": "966e0608aa5be94983657a319e8ea1d033f2ae8335bd83f54f343e4247522e79"
+          "hash": "00c087a5c5c9e31a641b47504cb634810efe092e761dc3d0da14ec1dc062c7ea"
         },
         {
           "span": [
@@ -1310,7 +1310,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 3,
-          "hash": "767123b9c587363635b6da51811a3c086dff05e3aa6043ab734124071900b7d1"
+          "hash": "2e6933dbb64b7dc5f85662a60e85cbb1d2e98f25a2209434a99c218072a581a2"
         },
         {
           "span": [
@@ -1324,7 +1324,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 4,
-          "hash": "80ed2850230728a9c89aa4f713ffbb4d4c9f0dc2cd8cfc1f185a7a8fe5c46f51"
+          "hash": "40de73d68d94a915b5cb45c07e1bd1956e7b3773b7fca75b145a951662ea8469"
         },
         {
           "span": [
@@ -1338,7 +1338,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "attack",
           "frame": 5,
-          "hash": "b468aee332acb5007b0f1f5e48b92d72ee100884bde47b266c09e0c373c33b07"
+          "hash": "2f1be909c62ce9795fd866d0c7b09a72d6a4d6c52889e1f3b56e026e48b7cc58"
         },
         {
           "span": [
@@ -1352,7 +1352,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "hit",
           "frame": 0,
-          "hash": "bb8a6a1f27c78bf10d9af846da67976adc8ff7e2b476d58618cf3828d6480d2a"
+          "hash": "cb59005334551a3cc9598b152361c3cd33010c5be2c2a6a2f94c81a639ee7545"
         },
         {
           "span": [
@@ -1366,7 +1366,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "hit",
           "frame": 1,
-          "hash": "e82b4b74b8a8936efabcd7ded9cf13218e6ce08d47e47411bd38fc4de700858a"
+          "hash": "e2b5473cbce75a1b969b2c4c5d47ac0f7a3c56b77d0de9b5116fb660a3980b06"
         },
         {
           "span": [
@@ -1380,7 +1380,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "hit",
           "frame": 2,
-          "hash": "1283ff86323d7002c805093da077dfc54bd44f75d8da618ca4913b59813a2fc9"
+          "hash": "1983221c194939d9e9fdd8c2f2e4917295a2000c30dd658b9a1358d80ebd93da"
         },
         {
           "span": [
@@ -1394,7 +1394,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 0,
-          "hash": "cc2c3c36bc64f9e20589cda2840c0f64b14949b542694e57f9586268b1f1fa29"
+          "hash": "1b3a492661a51d267bac9be7ac640a24aa81761e2df462a7de44dc035edf26e9"
         },
         {
           "span": [
@@ -1408,7 +1408,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 1,
-          "hash": "0e14466ebaf76cd2cf796d1e5d2c0cbb08b1fa2299cf828a09d044378fa8bc96"
+          "hash": "542f989782b92caed0d1d87b21f36e0802cef71d1d03691b0901665f884ddfd7"
         },
         {
           "span": [
@@ -1422,7 +1422,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 2,
-          "hash": "4971ab3d5c929d0b6c93bc8d5c62a9f4a0689687e373e3402e748692e0e86698"
+          "hash": "4f81694c4a7ba007bb0ff029e91e0a1337a528413c470e027ff16b00cedaefb6"
         },
         {
           "span": [
@@ -1436,7 +1436,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 3,
-          "hash": "53a938d4899b6a999f5f74bdd8f568e91df0ea0250c6f2034195b471d6f9b3f2"
+          "hash": "70668354f854966ed675461bdc46e6a3ba7aae7cc85954693c6306f8c534da4e"
         },
         {
           "span": [
@@ -1450,7 +1450,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 4,
-          "hash": "c7dc74ca4b749c566cefdebc1bd824778c2b7366b2382ff22ff0da9e6e70b538"
+          "hash": "38629248cfcd16f5376b1580df54a90a4f295b83f4b2894fc261806a806db6fa"
         },
         {
           "span": [
@@ -1464,7 +1464,7 @@
           "remaining_horizontal_edge_pixels": 0,
           "state": "death",
           "frame": 5,
-          "hash": "a0410002ccc020631a69e7513f9b9bf5d896278505d84b2d7bd932e2aa94c2d1"
+          "hash": "7321262bc0acb48af4e13c85d0e57a805c9ca5a6d44850267b846004f0b6e48d"
         }
       ],
       "native_F6": "NOT_RUN",
