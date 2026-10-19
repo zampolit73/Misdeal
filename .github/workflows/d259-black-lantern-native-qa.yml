@@ -61,7 +61,7 @@ jobs:
           if grep -E -i 'SCRIPT ERROR|Parse Error|Parser Error|D259_REAL_BATTLE_PREFLIGHT_FAIL' /tmp/d259-real-battle-preflight.log; then
             exit 1
           fi
-      - name: Regression: run real 54-case BattleUnit combat matrix
+      - name: "Regression - real 54-case BattleUnit combat matrix"
         shell: bash
         run: |
           set -o pipefail
