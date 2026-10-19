@@ -1,5 +1,15 @@
 # Misdeal — Active Roadmap
 
+## D269 — Court upper-scene local atmosphere verified; full illustrated arena next
+
+- [x] Added Court-only upper-vault subtle moon shafts, four original-brazier warm flicker and sparse motes, strictly **above** D264 lower combat terrace. Existing D265 provisional bitmap unchanged.
+- [x] F6 genuine Court Battle QA now supports **L** upper light on/off, **G** exact lower legal floor debug highlight, both non-invasive/QA-only; independent D269 real F6 contract.
+- [x] [Official Godot 4.7.2 native CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39252464563) incl. new D269 L/G checks, six Court Battle startups, 54 functional balance fights and true *direct-QA* Reward→Table.
+- [ ] **Next art production:** actor-free **genuinely rich Court arena** (replace D265 temporary schematic) tied to D261 second selected card atmosphere; lower D264 floor unchanged, no painted characters/UI.
+- [ ] Native ×1 visual review D267 all 75 poses and 27 source-edge flags; grouped repairs only for visibly broken frames.
+- [ ] Final bitmap/native 1280×720 screenshot and route QA, then distinct gated #39 release and ordinary dealt-card test. **38/45 live now.** [Current handoff](D269_NEW_CHAT_HANDOFF.md).
+
+
 ## D268 — Court functional QA verified; ONLY art and release gates left for #39
 
 - [x] Character-free QA Court arena integrated into actual Battle, correct D264 lower combat floor, removed unrelated Crypt effects; final painted backdrop NOT finished.
