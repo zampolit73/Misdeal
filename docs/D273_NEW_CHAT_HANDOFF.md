@@ -1,0 +1,19 @@
+# Misdeal D273 — authoritative new-chat handoff, 2026-10-19
+
+**GitHub source:** `zampolit73/Misdeal`, `main`. At new-chat start read **AGENTS.md, docs/CONCEPT.md, docs/PROJECT_STATE.md, docs/ROADMAP.md, docs/DECISIONS.md**, then [D273 verified release report](D273_COURT_CARD39_RELEASE.md). Godot **4.7.x**, **GDScript**, GitHub tools connected — do not re-ask the user for write access.
+
+## Latest VERIFIED, NOT pending
+
+**Card #39 «СУД БЕЗМОЛВНЫХ» IS RELEASED** into `RunState.ACT1_CARD_IDS`, **39/45 Act1 regular pool** (not 39 Fate Spread slots). `resources/cards/court_of_the_mute.tres` targets its real encounter; genuine Tier 1 `RunState.get_offer_cards() → choose_card() → Battle → Reward → Table` [native Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39264156351). New D273 normal-deal QA scene `res://scenes/dev/court_of_the_mute_d273_release_route_runner.tscn` (headless only) verifies 4 original skeletal enemies, verdict, painted Court backdrop SHA, D264 bottom walkable terrace and card resolution. Six genuine Party 1/2/3 × 2 formation Court Battle setups and 54/54 Court functional BattleUnit fights also PASS.
+
+**D271 painted arena accepted by user** («все ок» after native F6 check). Source `assets/pixel/battle/arenas/court_of_the_mute_d271_painted_qa.webp.b64` 1280×720; SHA256 `1eb45164d9c7418fb9c459d18c0640935452266aeecbb04d1e9d7bd527af8784`. D270 SVG was explicitly rejected (“заглушка”); do NOT reactivate it. QA real Battle F6 `res://scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn`: **B** compare current D271/rollback D265; **L** ambience; **G** exact floor screen x40..1268, y532..710.
+
+**Original D267 rich art** for Magistrate/Scrivener/Bailiff **75 frames** remains unmodified. D272 independent output alpha audit [PASS](https://github.com/zampolit73/Misdeal/actions/runs/39263055006) confirmed every output frame distinct, 3px+ margins, all 15 unused cells completely transparent; 27 original-source seam warnings (5/0/22) remain review pointers, NOT proved output-crop defects and NOT human artistic validation of every motion. D267 independent original PNG/atlas SHA reproducibility [CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39264427458). Existing combined F6 viewer `res://scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn` has pause/frame-step/27 marker navigation over D271. Future concrete defects (Bailiff death3–5, hands/grip/feet) can be grouped into a single targeted correction if user video demonstrates them. Do not redraw approved identities or request 25 micro-approvals.
+
+**Remaining ordinary project state:** D260 #38 Black Lantern still live; Fate Spread I–XII / XIII sealed, DS2, KARAMBA73 frozen, D261 selected exact second card art and D264 lower floor untouched.
+
+## What to do next
+
+Do NOT continue pretending #39 is unreleased; many historical D267/D268/D270 paragraphs are intentionally marked as superseded by this report. Move on to **D274 and #40 preparation** unless user asks to refine released encounters. Follow D168 *options-first* for new card illustrations: render 2–3 real different image options, ask one selection, commit exact accepted concept (unless user delegates choosing). New combat card = **new original enemies and distinct mechanic**, not a recycle of Bailiff/other current units. After substantive progress update PROJECT_STATE, ROADMAP, DECISIONS, CHANGELOG and this handoff. Write code/art directly through connected GitHub and report just `git pull` plus precise F6 check. If user flags a playability bug, inspect live code first and fix it yourself.
+
+**Optional local sanity:** `git pull` then ordinary tabletop run to naturally deal #39 Tier1 or F6 `res://scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn` for immediate live 3×Court Battle.
