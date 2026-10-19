@@ -1,5 +1,9 @@
 # Misdeal — Current Project State
 
+## Act I siege mystery — user-selected narrative direction (2026-10-19, design only)
+
+The user explicitly chose the plot reveal that the protagonist **sent the besieged castle a truthful order stating no relief would come**, but an **unknown third party forged the letters promising relief**. The protagonist still consciously sacrificed the castle to protect the country. Culprit, motive, undead origin and exact finale remain open, not canon. This is a narrative design decision only; **no current card/gameplay or art was changed**. Existing Act I remains **39/45** with I–XII and Bone Warden XIII. [Full story handoff](ACT1_SIEGE_MYSTERY_DIRECTION.md).
+
 ## D278 — Native screenshot review (2026-10-19)
 
 User supplied three actual Godot tabletop screenshots after pulling D278: regular two-offer composition (Moon Seal + Whispering Well), raised/hovered card, and explicit RMB full-lore modal. Review: newly painted gold-bronze border is visibly present on BOTH original live illustrated cards, no evident opaque art/text overlay, Russian titles/descriptions and crimson Choose actions remain legible; raised-state and held tabs are visible; inspection modal is clean, readable and separate. Subtle gold edging is visually heavy near the corners, but no screenshot-proven blocking issue. **Native screenshot visual QA: no evident blockers; formal artistic approval not explicitly stated by user**. No new functionality or mechanical changes requested in this screenshot-only turn. Recommend pausing frame micro-polish and prioritizing a separately discussed tactile/lore interaction on the cursed table; preserve current D278 graphics for rollback. Act1 remains 39/45.
