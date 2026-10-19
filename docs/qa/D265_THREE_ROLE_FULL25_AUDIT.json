@@ -1,0 +1,43 @@
+{
+  "version": "D265",
+  "stage": "ORIGINAL_CHARACTER_ART_HOLD",
+  "animation_contract": "idle4/walk6/attack6/hit3/death6, 6x5 at 96px",
+  "roles": [
+    {
+      "role": "mute_magistrate",
+      "path": "assets/pixel/units/court_of_the_mute_qa/mute_magistrate_d265_qa.webp.b64",
+      "status": "BLOCKED_MISSING_SOURCE",
+      "authored_frames_found": 0,
+      "required_frames": 25,
+      "empty_spare_cells": 5,
+      "visual_approval": "NOT_RUN",
+      "native_motion_F6": "NOT_RUN"
+    },
+    {
+      "role": "ash_scrivener",
+      "path": "assets/pixel/units/court_of_the_mute_qa/ash_scrivener_d265_qa.webp.b64",
+      "status": "BLOCKED_MISSING_SOURCE",
+      "authored_frames_found": 0,
+      "required_frames": 25,
+      "empty_spare_cells": 5,
+      "visual_approval": "NOT_RUN",
+      "native_motion_F6": "NOT_RUN"
+    },
+    {
+      "role": "bone_bailiff",
+      "path": "assets/pixel/units/court_of_the_mute_qa/bone_bailiff_d265_qa.webp.b64",
+      "status": "BLOCKED_MISSING_SOURCE",
+      "authored_frames_found": 0,
+      "required_frames": 25,
+      "empty_spare_cells": 5,
+      "visual_approval": "NOT_RUN",
+      "native_motion_F6": "NOT_RUN"
+    }
+  ],
+  "original_frames_required_total": 75,
+  "original_frames_structurally_accepted": 0,
+  "production_registered": false,
+  "card39_released": false,
+  "live_act1_card_count": 38,
+  "important": "Structure/hash checks do NOT establish original motion, grip, boots or art quality. Never auto-activate a role on structural PASS."
+}
