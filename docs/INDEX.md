@@ -1,8 +1,8 @@
 # Misdeal Documentation Index
 
-Updated: 2026-10-19 — **D264 COURT LOWER FLOOR FIXED** after user's red-rectangle screenshot; Godot 4.7.2 F6 and all six real Court Battle variants/54-case regression PASS. **D264 rich three full25 sprites + final Court arena still ART HOLD**, #39 unreleased, Act1 38/45, KARAMBA73 frozen.
+Updated 2026-10-19 — **D265 CURRENT**: richer original EMPTY Court arena preview Godot 4.7.2 PASS; **all 3 Court original 25-frame transparent animation packs still missing (0/75 structural source acceptance)**; chosen D261 second card art unchanged. Live Act1 **38/45**; #39 still QA, D264 lower-floor placement and frozen KARAMBA73 preserved.
 
-**START:** [D264 exact lower-floor contract and verified CI](D264_COURT_LOWER_FLOOR_FIX.md) · [Current handoff](NEXT_CHAT_HANDOFF.md) · [F6 empty Court arena preview](../scenes/dev/court_of_the_mute_d263_empty_arena_preview.tscn). D263 backdrop remains QA only.
+**START:** [D265 full original art state and next-step handoff](D265_COURT_RICH_ARENA_AND_ART_AUDIT.md) · [D265 native F6 richer empty Court preview](../scenes/dev/court_of_the_mute_d265_richer_arena_preview.tscn) · [D265 three-role source audit](qa/D265_THREE_ROLE_FULL25_AUDIT.json) · [Current new-chat handoff](NEXT_CHAT_HANDOFF.md).
 
 ## Read first (current, short, authoritative)
 
