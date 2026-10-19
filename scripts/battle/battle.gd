@@ -21,6 +21,8 @@ const THREAD_TETHER_SCRIPT := preload("res://scripts/battle/thread_tether.gd")
 const BLACK_CROSSING_SURGE_SCRIPT := preload("res://scripts/battle/black_crossing_surge.gd")
 # D253: original card #38 lanternlight, only if encounter is selected.
 const BLACK_LANTERN_LIGHT_SCRIPT := preload("res://scripts/battle/black_lantern_light.gd")
+# D262: new Court of the Mute scoped marked-target controller. Card #39 remains QA only.
+const COURT_VERDICT_SCRIPT := preload("res://scripts/battle/court_verdict.gd")
 const BLACK_CROSSING_FLOOR := preload("res://scripts/battle/black_crossing_floor.gd")
 
 # Local to UnitsLayer (screen offset 20,96). Keep unit feet on the
@@ -107,6 +109,7 @@ var laboratory_hazards_controller: LaboratoryHazardController
 var thread_tether_controller: ThreadTetherController
 var black_crossing_surge_controller: BlackCrossingSurgeController
 var black_lantern_light_controller: BlackLanternLightController
+var court_verdict_controller: CourtVerdictController
 var target_preview: BattleTargetPreview
 var deployment_floor_markers: Node2D
 
@@ -287,6 +290,36 @@ func _spawn_encounter() -> void:
 	_setup_threadbare_theatre_tethers()
 	_setup_black_crossing_surge()
 	_setup_black_lantern_light()
+	_setup_court_verdict()
+
+
+func _setup_court_verdict() -> void:
+	if encounter.encounter_id != "court_of_the_mute":
+		return
+	var scribe: BattleUnit = null
+	var bailiffs: Array[BattleUnit] = []
+	var heroes: Array[BattleUnit] = []
+	var magistrate_count := 0
+	for actor in units:
+		if actor.team == 0:
+			heroes.append(actor)
+			continue
+		match actor.visual_role:
+			"mute_magistrate":
+				magistrate_count += 1
+			"ash_scrivener":
+				scribe = actor
+			"bone_bailiff":
+				bailiffs.append(actor)
+			_:
+				push_error("D262 Court: unexpected enemy role " + actor.visual_role)
+				return
+	if magistrate_count != 1 or not is_instance_valid(scribe) or bailiffs.size() != 2 or heroes.is_empty():
+		push_error("D262 Court: requires one Magistrate, one Scrivener, two Bailiffs and heroes.")
+		return
+	court_verdict_controller = COURT_VERDICT_SCRIPT.new() as CourtVerdictController
+	units_layer.add_child(court_verdict_controller)
+	court_verdict_controller.configure(scribe, bailiffs, heroes)
 
 
 func _setup_black_lantern_light() -> void:
@@ -1017,6 +1050,8 @@ func _on_fight_pressed() -> void:
 		black_crossing_surge_controller.start_surge()
 	if black_lantern_light_controller != null:
 		black_lantern_light_controller.start_light()
+	if court_verdict_controller != null:
+		court_verdict_controller.start_verdict()
 
 func _hide_preparation_hud() -> void:
 	bottom_hud_panel.visible = false
@@ -1254,6 +1289,8 @@ func _finish_battle(player_won: bool) -> void:
 	if black_lantern_light_controller != null:
 		# D206 restores each enemy attack interval on either result.
 		black_lantern_light_controller.stop_light()
+	if court_verdict_controller != null:
+		court_verdict_controller.stop_verdict()
 	battle_finished = true
 	combat_live = false
 	if target_preview != null:
