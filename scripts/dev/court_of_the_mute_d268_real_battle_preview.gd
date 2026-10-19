@@ -88,7 +88,7 @@ func _launch_real_battle() -> void:
 		_fail("Карта #39 пока не выпущена: ожидаем 38/45 и отдельный QA-маршрут.")
 		return
 
-	# Validate the actual library for all five roles BEFORE changing RunState.
+	# Validate all three original Court roles BEFORE changing RunState.
 	for role in ENEMY_ROLES:
 		var frames: SpriteFrames = ANIMATION_LIBRARY.get_frames(role)
 		if frames == null:
@@ -160,5 +160,12 @@ func _launch_real_battle() -> void:
 	print("D268_COURT_REAL_BATTLE_PREVIEW_PASS: 3 original roles/4 actors, lower floor + verdict + Court QA plate; card #39 UNRELEASED (38/45).")
 
 func _fail(message: String) -> void:
-	error_label.text = message
+	if menu != null:
+		menu.visible = true
+	running = false
+	var previous_battle := get_node_or_null("Battle")
+	if previous_battle != null:
+		previous_battle.queue_free()
+	if error_label != null:
+		error_label.text = message
 	push_error("D268: " + message)
