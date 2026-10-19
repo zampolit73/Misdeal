@@ -1,6 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 Updated: 2026-10-19.
 
+## D265 — Do not mark source/QA motion readiness from composited sprite-reference images
+
+2026-10-19: Court's role-unique 25-pose production art must come from 3 real independent full-body 96px clean-alpha atlases, not cropped label-containing montage, per-frame duplicate/mirror padding or palette-shifted placeholder. D265 introduced a strict all-three structure/source audit, currently **0/75 source frames present**; green CI only confirms the audit ran. Richer empty architectural plate is separate QA-only variant and **not approved** as selected D261-quality battle art. Keep D264 lower-floor bounds and original selected card picture. [D265 QA](D265_COURT_RICH_ARENA_AND_ART_AUDIT.md); live 38/45, immutable KARAMBA73.
+
 ## D264 — Court battle takes place only on bottom flat stone; stairs are architecture
 
 2026-10-19: User explicitly chose lower red-marked rectangle in their D263 F6 screenshot and requested immediate direct implementation without separate approval. **Lock:** for `court_of_the_mute` alone use screen combat bounds x40–1268 / y532–710, independent of generic courtyard/stair bounds. Before Fight use shallow lower-floor entry/deployment y~557–567 to prevent overlapping the shared y574–710 tactics HUD, then allow actual BattleUnit movement anywhere inside the full lower-floor rectangle once combat HUD hides. A common `court_of_the_mute_floor.gd` drives both actual Battle AI limits and QA floor overlay; don't move stairs or paint characters in the arena. Other arenas, global BattleUnit target logic and chosen D261 second card bitmap unaffected. [D264 native checks and coordinates](D264_COURT_LOWER_FLOOR_FIX.md). Card #39 ART HOLD (38/45 live), frozen KARAMBA73.
