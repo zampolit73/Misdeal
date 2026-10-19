@@ -1,6 +1,6 @@
 extends Control
 
-# D268: unreleased Court #39, deterministic BattleUnit matrix (NOT visual approval).
+# D268: released Court #39, deterministic BattleUnit matrix (NOT visual approval).
 # 2 Court formations × 3 protagonists × 3 party sizes × 3 ordinary tactics.
 # Follows D260 BattleUnit diagnostic and D262 encounter-scoped verdict contract.
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
@@ -44,11 +44,11 @@ func _ready() -> void:
 
 
 func _check_contract() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 38 or RunState.ACT1_CARD_IDS.has(CARD_ID):
-		failures.append("Court #39 must stay unreleased; Act1 is 38/45")
+	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		failures.append("Court #39 must be released into Act1 39/45")
 	var card: RunCardData = RunState.get_card(CARD_ID)
-	if card == null or not card.target_path.is_empty() or card.resolution_type != "combat":
-		failures.append("Court QA card must have combat resolution and empty target_path")
+	if card == null or card.target_path != "res://resources/encounters/court_of_the_mute.tres" or card.resolution_type != "combat":
+		failures.append("Court #39 released card requires real encounter target_path")
 	if ENCOUNTER.encounter_id != CARD_ID or ENCOUNTER.get_formation_count() != 2:
 		failures.append("Court must have 2 original formations")
 	if ENCOUNTER.enemy_unit_paths.size() != 4:
@@ -322,11 +322,11 @@ func _run_matrix() -> void:
 		"first_active_guard_counts": first_active_guard_counts,
 		"scrivener_interruptions": scrivener_interruptions,
 		"failures": failures,
-		"card39_live": false
+		"card39_live": true
 	}
 	print("D268_COURT_BALANCE_DIAGNOSTICS ", JSON.stringify(report))
 	if failures.is_empty():
-		print("D268_COURT_54_CASE_FUNCTIONAL_PASS: all 54 original Court BattleUnit fights complete; release/art gate still open")
+		print("D268_COURT_54_CASE_FUNCTIONAL_PASS: all 54 original Court BattleUnit fights complete; D273 ordinary deal handled in separate smoke")
 	else:
 		push_error("D268_COURT_54_CASE_FUNCTIONAL_FAIL: " + "; ".join(failures))
 	get_tree().quit(0 if failures.is_empty() else 1)
