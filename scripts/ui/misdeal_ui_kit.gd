@@ -349,6 +349,34 @@ static func apply_offer_card_frame(button: Button, boss: bool = false, marked: b
 	button.add_theme_stylebox_override("pressed", hover)
 
 
+
+# D274: scoped parchment card border, never applied to the Fate Spread overlay.
+static func apply_parchment_offer_card_frame(button: Button, boss: bool = false, marked: bool = false, held: bool = false) -> void:
+	var normal := StyleBoxFlat.new()
+	normal.bg_color = Color("#160e0b")
+	_set_border(normal, 4)
+	normal.border_color = Color("#8d542d")
+	normal.shadow_color = Color(0.0, 0.0, 0.0, 0.85)
+	normal.shadow_size = 12
+	var hover := normal.duplicate() as StyleBoxFlat
+	hover.border_color = Color("#e8ae64")
+	hover.shadow_color = Color(0.75, 0.30, 0.08, 0.68)
+	hover.shadow_size = 17
+	if boss:
+		normal.border_color = Color("#9a382d")
+		hover.border_color = Color("#e5714a")
+	elif marked:
+		normal.border_color = Color("#d58b3b")
+		normal.shadow_color = Color(0.62, 0.16, 0.03, 0.68)
+	elif held:
+		normal.border_color = Color("#72868c")
+		hover.border_color = Color("#a5c7cf")
+	button.add_theme_stylebox_override("normal", normal)
+	button.add_theme_stylebox_override("hover", hover)
+	button.add_theme_stylebox_override("pressed", hover)
+	button.add_theme_stylebox_override("disabled", normal.duplicate() as StyleBoxFlat)
+	button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+
 # Unlike apply_selected_button (regular action style), keep the compact
 # battle button base and accent only the ACTUAL selected toggle. Visible
 # distinction cannot rely solely on button_pressed or a subtle text tint.

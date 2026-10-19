@@ -7,14 +7,15 @@ const FATE_SPREAD_SCENE := preload("res://scenes/table/fate_spread_overlay.tscn"
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
+const TABLE_OFFER_SKIN := preload("res://scripts/table/table_offer_skin.gd")
 
-const LEFT_CARD_POSITION := Vector2(396.0, 366.0)
-const RIGHT_CARD_POSITION := Vector2(654.0, 366.0)
-const SINGLE_CARD_POSITION := Vector2(525.0, 366.0)
+const LEFT_CARD_POSITION := Vector2(349.0, 329.0)
+const RIGHT_CARD_POSITION := Vector2(659.0, 329.0)
+const SINGLE_CARD_POSITION := Vector2(504.0, 329.0)
 const DEAL_SOURCE_POSITION := Vector2(94.0, 408.0)
 const DISCARD_TARGET_POSITION := Vector2(956.0, 408.0)
-const LEFT_CARD_ROTATION := -0.024
-const RIGHT_CARD_ROTATION := 0.024
+const LEFT_CARD_ROTATION := -0.010
+const RIGHT_CARD_ROTATION := 0.010
 
 @onready var wizard_line: Label = $WizardLine
 @onready var stats_label: Label = $Stats
@@ -100,11 +101,13 @@ func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_screen_copy(discard_count_label, MISDEAL_UI_KIT.TEXT_SECONDARY)
 	MISDEAL_UI_KIT.apply_action_button(squad_button, MISDEAL_UI_KIT.STEEL, false)
 	MISDEAL_UI_KIT.apply_action_button(fate_spread_button, MISDEAL_UI_KIT.BRONZE, false)
-	MISDEAL_UI_KIT.apply_action_button(hold_a_button, MISDEAL_UI_KIT.STEEL, false)
-	MISDEAL_UI_KIT.apply_action_button(hold_b_button, MISDEAL_UI_KIT.STEEL, false)
+	MISDEAL_UI_KIT.apply_action_button(hold_a_button, MISDEAL_UI_KIT.AGED_BRONZE, false)
+	MISDEAL_UI_KIT.apply_action_button(hold_b_button, MISDEAL_UI_KIT.AGED_BRONZE, false)
+	TABLE_OFFER_SKIN.style_hold_button(hold_a_button)
+	TABLE_OFFER_SKIN.style_hold_button(hold_b_button)
 
 	for button in offer_buttons:
-		MISDEAL_UI_KIT.apply_card_button(button, MISDEAL_UI_KIT.BRONZE)
+		TABLE_OFFER_SKIN.prepare(button)
 
 	MISDEAL_UI_KIT.apply_panel(wager_panel, MISDEAL_UI_KIT.BRONZE, true)
 	MISDEAL_UI_KIT.apply_panel(wager_risk_panel, MISDEAL_UI_KIT.EMBER, false)
@@ -299,20 +302,20 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	button.set_meta("card_id", card.card_id)
 	title_label.text = card.title
 	type_label.text = _get_card_type_line(card)
-	description_label.text = card.card_text
+	description_label.text = TABLE_OFFER_SKIN.short_description(card.card_text)
 	hint_label.text = _get_hint_text(card)
-	button.tooltip_text = ""
+	button.tooltip_text = "%s\n%s\n\n%s" % [card.title, _get_card_type_line(card), card.card_text]
 	button.disabled = false
 	button.modulate = Color.WHITE
 
 	var marked: bool = RunState.is_wizard_marked_card(card.card_id)
 	mark_label.visible = marked
 	if marked:
-		hint_label.text = "ПЕЧАТЬ • +%d ЗОЛ. • ВРАГИ +15%%" % RunState.get_wizard_mark_gold_reward()
-		button.tooltip_text = "Получите %d золота сразу. Следующий бой: урон врагов +15%%." % RunState.get_wizard_mark_gold_reward()
+		button.tooltip_text += "\n\nПЕЧАТЬ: +%d золота сразу. Следующий бой: урон врагов +15%%." % RunState.get_wizard_mark_gold_reward()
 
 	if RunState.is_card_held(card.card_id):
-		hint_label.text = "УДЕРЖАНО • ВЕРНЁТСЯ ЧЕРЕЗ 2 КАРТЫ"
+		hint_label.text = "УДЕРЖАНО"
+		button.tooltip_text += "\n\nУдержанная карта вернётся через две раздачи."
 
 	art.texture = CARD_ART_CATALOG.get_run_card_texture(card.card_id)
 	art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -447,7 +450,7 @@ func _on_offer_button_mouse_exited(button: Button) -> void:
 
 func _configure_card_pivots() -> void:
 	for button in offer_buttons:
-		button.pivot_offset = Vector2(115.0, 139.0)
+		button.pivot_offset = button.size * 0.5
 
 func _layout_offer_cards(offer_count: int) -> void:
 	for index in range(offer_buttons.size()):
@@ -703,7 +706,7 @@ func _apply_card_style(button: Button, card: RunCardData) -> void:
 	var combat_like := card.type_label == "БОЙ" or card.type_label == "ЭЛИТА" or card.type_label == "БОСС"
 	var event_like := not combat_like
 
-	MISDEAL_UI_KIT.apply_offer_card_frame(
+	MISDEAL_UI_KIT.apply_parchment_offer_card_frame(
 		button,
 		card.card_id == RunState.BOSS_CARD_ID,
 		RunState.is_wizard_marked_card(card.card_id),
@@ -714,19 +717,19 @@ func _apply_card_style(button: Button, card: RunCardData) -> void:
 	var title_label := button.get_node("Title") as Label
 	type_label.add_theme_color_override(
 		"font_color",
-		Color(0.34, 0.84, 0.76, 1.0) if event_like else Color(0.93, 0.55, 0.32, 1.0)
+		Color(0.28, 0.36, 0.34, 1.0) if event_like else Color(0.40, 0.24, 0.16, 1.0)
 	)
 	title_label.add_theme_color_override(
 		"font_color",
-		Color(0.68, 0.92, 0.86, 1.0) if event_like else Color(0.95, 0.83, 0.65, 1.0)
+		Color(0.15, 0.23, 0.22, 1.0) if event_like else Color(0.19, 0.10, 0.065, 1.0)
 	)
 
 	if card.card_id == RunState.BOSS_CARD_ID:
-		type_label.add_theme_color_override("font_color", Color(1.0, 0.40, 0.24, 1.0))
-		title_label.add_theme_color_override("font_color", Color(1.0, 0.76, 0.48, 1.0))
+		type_label.add_theme_color_override("font_color", Color(0.58, 0.14, 0.10, 1.0))
+		title_label.add_theme_color_override("font_color", Color(0.35, 0.09, 0.07, 1.0))
 	elif RunState.is_wizard_marked_card(card.card_id):
-		type_label.add_theme_color_override("font_color", Color(1.0, 0.58, 0.18, 1.0))
-		title_label.add_theme_color_override("font_color", Color(1.0, 0.78, 0.42, 1.0))
+		type_label.add_theme_color_override("font_color", Color(0.53, 0.24, 0.10, 1.0))
+		title_label.add_theme_color_override("font_color", Color(0.36, 0.14, 0.06, 1.0))
 
 func _preview_card(card: RunCardData) -> void:
 	if selection_locked:
