@@ -106,11 +106,13 @@ func _make_unit(arena: Node2D, data: UnitData, team: int, point: Vector2, order:
 		unit.max_hp *= RunState.get_enemy_hp_multiplier()
 		unit.damage *= RunState.get_enemy_damage_multiplier()
 		unit.support_heal_amount *= RunState.get_enemy_hp_multiplier()
-		if unit.sprite_frames == null or unit.sprite_frames != ANIMATION_LIBRARY.get_frames(data.visual_role):
-			failures.append("Court unit did not use rich original D267 art: " + data.visual_role)
 	unit.set_combat_bounds(COURT_FLOOR.COMBAT_BOUNDS)
 	unit.set_process(false)
 	arena.add_child(unit)
+	# BattleUnit receives its visual SpriteFrames in _ready(), which runs only
+	# after add_child. Checking earlier falsely reported four missing atlases.
+	if team == 1 and (unit.sprite_frames == null or unit.sprite_frames != ANIMATION_LIBRARY.get_frames(data.visual_role)):
+		failures.append("Court unit did not use rich original D267 art: " + data.visual_role)
 	return unit
 
 
