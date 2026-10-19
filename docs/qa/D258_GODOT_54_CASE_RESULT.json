@@ -1,0 +1,44 @@
+{
+  "version": "D258",
+  "engine": "Godot 4.7.2 stable",
+  "github_run": "https://github.com/zampolit73/Misdeal/actions/runs/39203396451",
+  "commit": "afc30f57884e807fd33bf9e9d6482ff9a8d8ab7c",
+  "status": "HEADLESS_TECHNICAL_PASS_VISUAL_AND_FULL_ROUTE_PENDING",
+  "checks": {
+    "project_parser": "pass_with_unrelated_asset_import_error",
+    "five_enemy_3v5": "pass",
+    "real_route_launcher_load": "pass",
+    "actual_battle_preflight": "pass",
+    "full_fight_reward_table": "not_yet_tested"
+  },
+  "matrix": {
+    "completed": 54,
+    "victories": 54,
+    "defeats": 0,
+    "timeouts": 0,
+    "wins_per_party": [
+      18,
+      18,
+      18
+    ],
+    "wins_per_protagonist": [
+      18,
+      18,
+      18
+    ],
+    "individual_hero_deaths_per_party": [
+      0,
+      2,
+      4
+    ],
+    "enemy_attacks": 635,
+    "lit_attacks_latest": 52,
+    "lit_attacks_previous_run": 53,
+    "warnings": 89,
+    "light_active_steps": 11494,
+    "failures": 0
+  },
+  "import_error": "res://assets/concepts/approved_battle_direction.jpg",
+  "live_cards": 37,
+  "card38_released": false
+}
