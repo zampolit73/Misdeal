@@ -65,8 +65,8 @@ func _ready() -> void:
 
 
 func _check_contract() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 38 or not RunState.ACT1_CARD_IDS.has("black_lantern_road"):
-		failures.append("D260: выпущенная карта #38 должна входить в обычную колоду 38/45")
+	if RunState.ACT1_CARD_IDS.size() < 38 or not RunState.ACT1_CARD_IDS.has("black_lantern_road"):
+		failures.append("D260: выпущенная карта #38 должна входить в обычную колоду (сейчас 39/45)")
 	if ENCOUNTER.encounter_id != "black_lantern_road" or ENCOUNTER.get_formation_count() != 2:
 		failures.append("D207: две оригинальные расстановки не загрузились")
 	if ENCOUNTER.enemy_unit_paths.size() != 5:
