@@ -2,7 +2,7 @@
 
 ## D274 — User-approved parchment Table offer-card UI in main; native review open
 
-2026-10-19: Implemented the selected TWO-card hybrid at 1280×720: 272×338 parchment cards, original large CardArtCatalog illustrations, ink Cyrillic copy, crimson inline ВЫБРАТЬ face, bronze УДЕРЖАТЬ tabs, full description via tooltip. Only normal-deal Table card presentation changes; all original RunState choice/hold/mark/meddling/wager transitions, Wizard, approved Variant C Fate Spread, and art assets remain unchanged. Act1 stays 39/45 (#39 released), D271/D264/KARAMBA73 intact. Main code e1b32fd; optional Godot 4.7.2 D274 native component smoke CI added. **User native visual acceptance is still pending**: test hover, held, marked, boss/single, long Cyrillic and real choice transitions. See docs/D274_TABLE_PARCHMENT_UI.md.
+2026-10-19: Implemented the selected TWO-card hybrid at 1280×720: 272×338 parchment cards, original large CardArtCatalog illustrations, ink Cyrillic copy, crimson inline ВЫБРАТЬ face, bronze УДЕРЖАТЬ tabs, full description via tooltip. Only normal-deal Table card presentation changes; all original RunState choice/hold/mark/meddling/wager transitions, Wizard, approved Variant C Fate Spread, and art assets remain unchanged. Act1 stays 39/45 (#39 released), D271/D264/KARAMBA73 intact. Main code e1b32fd; official Godot 4.7.2 D274 import and actual Table component smoke CI PASS (https://github.com/zampolit73/Misdeal/actions/runs/39288370462). **User native visual acceptance is still pending**: test hover, held, marked, boss/single, long Cyrillic and real choice transitions. See docs/D274_TABLE_PARCHMENT_UI.md.
 
 
 ## D273 — CURRENT: Court #39 LIVE 39/45, native ordinary deal + rich art PASS
