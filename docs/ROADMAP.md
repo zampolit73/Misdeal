@@ -1,5 +1,15 @@
 # Misdeal — Active Roadmap
 
+## D270 — Editable actor-free Court battlefield staged, technical PASS; art review remains
+
+- [x] Independently authored complete original *empty* Gothic tribunal D270 SVG; actual Court-only Battle uses it in QA at 1280×720. Existing D265 art remains for instant rollback; **B** in F6 compares both.
+- [x] Separate native 1280×720 Godot SVG raster/opaque floor contract; **B/L/G** QA toggles no gameplay/geometry changes.
+- [x] [Godot 4.7.2 native D270 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39255650012): new art, six real boots, 54 Court `BattleUnit` cases and direct unreleased QA Fight→Reward→Table.
+- [ ] User-native **art quality** verdict at ×1 (B toggles D265 vs D270): SVG currently candidate, **not accepted painterly final**, preserve DS2 / D261 original style and D264 lower floor.
+- [ ] Full D267 original rich sprite motion ×1 review/27 source-edge flags, fix only real Bailiff death or grip issues as a batch.
+- [ ] Export final user-accepted arena safely and rerun native smoke, then separate #39 **ordinary dealt** release to 39/45. **Currently 38/45**. [D270 handoff](D270_NEW_CHAT_HANDOFF.md).
+
+
 ## D269 — Court upper-scene local atmosphere verified; full illustrated arena next
 
 - [x] Added Court-only upper-vault subtle moon shafts, four original-brazier warm flicker and sparse motes, strictly **above** D264 lower combat terrace. Existing D265 provisional bitmap unchanged.
