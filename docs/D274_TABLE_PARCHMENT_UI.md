@@ -19,3 +19,13 @@ User's real Godot screenshot showed a long single-line gray native tooltip overl
 Code commit 16107bb adds scripts/table/table_offer_button.gd, subclassing the two card Buttons to make a 318px dark/bronze wrapped full-lore tooltip. Card titles and type labels now use dark ink. Hover-raised cards must not cover the Hold buttons. No card data, backgrounds, Fate Spread or encounter mechanics were modified.
 
 Official native Godot 4.7.2 smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39289351602. It checks a long Cyrillic tooltip width/label content plus hold z-index and parser. Await actual user Godot 1280x720 after git pull, hovering the same Moon Seal card, and verify no overlapping lore panel and correct card interactions. Technical PASS is not the same as artistic sign-off.
+
+## D275 — No hover tooltip: intentional card examination
+
+The second native user screenshot showed that wrapping the Godot tooltip only made it smaller; it still covered both physical offer cards. This is a usability failure. Remove popup entirely from hover; preserving a large popup somewhere else near the pointer is not an acceptable fix.
+
+New contract: LMB anywhere on the card = original choose handler; pointer hover = card lift + Wizard reaction, no floating tooltip; RMB on card = separate modal examination with unchanged independent card art and FULL Russian lore in scrollable RichTextLabel. Close with ESC, the close button or outside click. A quiet line below cards advertises `ПКМ ПО КАРТЕ — ЧИТАТЬ ПОДРОБНЕЕ`. The modal has no state change and cannot be confused with selecting or holding.
+
+Code: scripts/table/table_offer_button.gd (inspect_requested signal), scenes/table/card_lore_inspect.tscn and scripts/table/card_lore_inspect.gd; scripts/table/table.gd connects the signal and supplies actual RunCardData/card art and Wizard Mark/Held annotations. Do not re-enable tooltip_text for the live two offers; use the explicit mode instead. scripts/dev/d274_table_offer_smoke.gd covers the new scene and real signal. LMB choice, hold, wizard wager/meddling, Fate Spread and all 39 live Act1 cards remain unchanged.
+
+QA: `git pull`, run the table at 1280x720, hover and confirm no lore obscures the two card titles or Choose buttons; RMB left/right card and scroll, dismiss via ESC/close/outside click; LMB should still proceed into an encounter. Verify when one offer, a held card, Wizard Mark and after Reward→Table. Native component CI must pass, **visual acceptance remains open**.

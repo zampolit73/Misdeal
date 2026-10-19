@@ -1,3 +1,9 @@
+## 2026-10-19 — D275 deliberate card lore inspection
+
+- Removed automatic offer hover tooltips after actual Godot screenshot showed even wrapped hints blocking both cards and embedded Choose controls.
+- Added card RMB inspect overlay with original large card art, full lore with scrolling, ESC/close/outside dismiss and a discoverable table hint; LMB Choose and Hold behavior unchanged.
+- Expanded D274 native smoke to exercise the new inspection panel. CI and user visual sign-off tracked separately.
+
 ## 2026-10-19 — D274R card-tooltip overflow repair
 
 - Corrected screenshot-proven giant unwrapped stock tooltip across two parchment cards, preserving full Russian lore in a 318px wrapped tooltip.

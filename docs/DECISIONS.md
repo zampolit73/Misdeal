@@ -1,5 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D275 — Native screenshot: hover popup still obscured choice; inspect on RMB instead
+
+2026-10-19: User's follow-up 1280x720 Godot screenshot proves D274R wrapped 318px tooltip is technically legible but **still covers card names, descriptions and red choose buttons**. Reject hover tooltip behavior as UI/UX failure, despite technical D274 green smoke. D275 now has **no automatic offer-card tooltip**: pointer hover only lifts card and previews Wizard line; **RMB on card** opens a dedicated framed inspect window with original art, FULL original Russian description and scrollbar; close by ESC, close button or outside click. A visible bottom-table hint advertises RMB; LMB retains original card selection, hold controls and all RunState logic stay unchanged. Implemented in commit 23adc330, Godot native parser/smoke pending (workflow D274 Table parchment UI). This is presentation-only, no card art/Fate Spread/combat rewrite. Accept artistic quality only after native screenshot review, not solely CI. Read docs/D274_TABLE_PARCHMENT_UI.md. Act1 39/45, Court/D264, KARAMBA73 unchanged.
+
+
 ## D274R — Native screenshot visual FAIL repaired; re-review pending
 
 2026-10-19: Real user 1280x720 Table screenshot revealed an unwrapped native Godot stock tooltip displaying long Russian card lore across BOTH parchment cards; earlier D274 technical CI did not guarantee visual acceptance. The problem was tooltip popup width, NOT duplicated card node labels. Commit 16107bb switches both live offers to a bounded 318px wrapped bronze/dark tooltip, darkens parchment title/type ink, and keeps hold tabs above hover-raised cards. The Godot 4.7.2 D274 component/long-Cyrillic-tooltip regression workflow PASSED: https://github.com/zampolit73/Misdeal/actions/runs/39289351602. Artistic verdict after user git pull remains OPEN. Do not change approved Wizard/table/Fate Spread, artwork, Act1 39/45, D264/D271, or KARAMBA73. Full handoff: docs/D274_TABLE_PARCHMENT_UI.md.
