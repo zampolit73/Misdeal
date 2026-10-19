@@ -18,3 +18,7 @@ Newly rendered DS2-aligned dark-fantasy card concept supplied a gold-bronze phys
 Keep 272×338 two-card placements, Hold tabs above cards, actual CardArtCatalog art, separate paper/text/HUD/CTA/mark and LMB Choose / RMB lore exactly as before. No RunState or Fate Spread edits. Act1 39/45 preserved. Native CI PASS does not establish visual approval; after git pull, inspect a normal two-card deal, hover, selected/marked state, longer Cyrillic title, single boss card, RMB inspection and modal close at 1280×720.
 
 Rollback: revert D278 integration commit `6fcdf100` to restore D277 procedure while preserving D277 art material and mechanic.
+
+## Native visual review from user's three screenshots (2026-10-19)
+
+D278 art is actually visible on both live game cards and in the raised hover state, with readable Russian text and red choose strip. The independent RMB modal is unchanged and unobstructed. No obvious clipping or alpha-center leak in the screenshot. Gold ornamental corners are bright/high-contrast but not demonstrably broken. Treat this as screenshot QA with no blocking defect; **do not infer a formal final art sign-off from screenshots alone**. No source/logic changes needed for this review. Next proposed focus: table interaction and lore discovery as a separate gameplay decision, not unrequested D279 mechanics.

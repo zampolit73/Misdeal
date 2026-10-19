@@ -1,3 +1,7 @@
+## 2026-10-19 — D278 native screenshot review
+
+- Reviewed user Godot screenshots for normal two-card deal, hover-raised offer and lore inspection: painted frame is live on both cards; Cyrillic, buttons and art remain legible, no visual blocking failure detected. Formal user approval still open; no gameplay code changed.
+
 ## 2026-10-19 — D278 separate painted transparent frame on live cards
 
 - Replaced D277 procedural offer-card ornament display with a cropped artist-rendered, alpha-isolated real worn-bronze transparent image, reused by both actual 272×338 offer cards.
