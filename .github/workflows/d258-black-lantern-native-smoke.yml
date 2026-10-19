@@ -56,6 +56,17 @@ jobs:
           if grep -E -i "SCRIPT ERROR|Parse Error|Parser Error|D258: .*failed|D258: .*missing" /tmp/d258-route.log; then
             exit 1
           fi
+      - name: Inspect actual Battle scene, five QA sprites and D253 light
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 90s /tmp/godot-bin/godot --headless --path . \
+            --scene res://scenes/dev/black_lantern_d258_battle_preflight.tscn \
+            2>&1 | tee /tmp/d258-real-battle-preflight.log
+          grep -q 'D258_REAL_BATTLE_PREFLIGHT_PASS:' /tmp/d258-real-battle-preflight.log
+          if grep -E -i 'SCRIPT ERROR|Parse Error|Parser Error|D258_REAL_BATTLE_PREFLIGHT_FAIL' /tmp/d258-real-battle-preflight.log; then
+            exit 1
+          fi
       - name: Run real Godot 54-case encounter balance matrix
         shell: bash
         run: |
