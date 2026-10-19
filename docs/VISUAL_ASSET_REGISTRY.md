@@ -1,5 +1,12 @@
 ## D255 — User-approved visual direction for all three missing #38 enemies; 75-cel QA pack staged, ART GATE OPEN
 
+## D281 — Native 1280×720 pure background for ClassSelect
+
+**Correct production asset**: `assets/pixel/class_select/d281_clean_table_hd.webp` (1280×720, 168,948 bytes, SHA256 `7464edde5990b53a6d1ec8d1646e96080c9944be0a4a79e04bdba6689d5f28e1`). High-quality export from previously generated 1672×941 clean wizard/table master, NOT upscale of previously damaged 640x360 art. ClassSelect loads it with `scripts/ui/runtime_webp_texture.gd`. Legacy `d280_clean_table_01..04.webp.b64` and `class_select_clean_backdrop.gd` deleted. Existing logo keyed with `shaders/class_select_logo_key.gdshader` on this scene. Native Godot test PASS; user visual re-review OPEN.
+
+---
+
+
 ## D266 — Court three original 25-pose QA animation sources, visual art acceptance OPEN
 
 `assets/pixel/units/court_of_the_mute_qa/{mute_magistrate,ash_scrivener,bone_bailiff}_d266_qa.webp.b64` contain three independent 6×5×96 transparent original pose series, idle4/walk6/attack6/hit3/death6 and five clear spares each. [75/75 structural QC](qa/D266_THREE_ROLE_FULL25_AUDIT.json) and native F6 x1/x2 PASS. **These original procedurally drawn character sheets are stylized simplified QA candidates, not visually approved game-ready rich characters**. No library registration, #39 still unreleased. [D266 report](D266_COURT_ALL_THREE_ANIMATION_QA.md).
