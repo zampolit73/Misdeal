@@ -7,6 +7,8 @@ const BATTLE: PackedScene = preload("res://scenes/battle/battle.tscn")
 const CARD_ID := "court_of_the_mute"
 const ENCOUNTER := "res://resources/encounters/court_of_the_mute.tres"
 const EXPECTED := ["mute_magistrate", "ash_scrivener", "bone_bailiff", "bone_bailiff"]
+const COURT_FLOOR := preload("res://scripts/battle/court_of_the_mute_floor.gd")
+const OTHER_ARENA_EXPECTED := Rect2(Vector2(90, 284), Vector2(1080, 158))
 
 func _ready() -> void:
 	call_deferred("_run_boot")
@@ -64,6 +66,78 @@ func _run_boot() -> void:
 			if enemy_roles != expected or hero_count != party_size or court.bailiffs.size() != 2:
 				_abort("invalid roster size %d-%d, roles %s" % [party_size, formation, enemy_roles])
 				return
+			# D264 screenshot fix: feet, actor AI bounds and draggable region
+			# must all be on the lower floor in EVERY party and formation.
+			var world_bounds: Rect2 = court.scrivener.combat_bounds
+			if world_bounds != COURT_FLOOR.COMBAT_BOUNDS:
+				_abort("Court did not receive lower stone floor combat bounds")
+				return
+			if world_bounds.position.y + COURT_FLOOR.UNITS_LAYER_OFFSET.y < COURT_FLOOR.FLOOR_TOP_SCREEN_Y:
+				_abort("Court combat begins on decorative stairs")
+				return
+			if world_bounds.end.y + COURT_FLOOR.UNITS_LAYER_OFFSET.y > COURT_FLOOR.FLOOR_BOTTOM_SCREEN_Y:
+				_abort("Court combat overflows lower floor")
+				return
+			for check_unit in all:
+				var actor := check_unit as BattleUnit
+				if actor.combat_bounds != COURT_FLOOR.COMBAT_BOUNDS:
+					_abort("Court unit lacks shared lower-floor movement bounds")
+					return
+				if not COURT_FLOOR.COMBAT_BOUNDS.has_point(actor.position):
+					_abort("Court actor spawned off the walkable floor")
+					return
+				if actor.team == 0:
+					if actor.placement_bounds != COURT_FLOOR.PLACEMENT_BOUNDS:
+						_abort("Court hero drag region not moved onto floor")
+						return
+					if not COURT_FLOOR.PLACEMENT_BOUNDS.has_point(actor.position):
+						_abort("Court hero started outside authored drag lane")
+						return
+			if actor.team == 1 and actor.position.y + COURT_FLOOR.UNITS_LAYER_OFFSET.y < COURT_FLOOR.FLOOR_TOP_SCREEN_Y:
+					_abort("Court enemy placed on the throne stairs")
+					return
+			if actor.team == 1 and actor.position.y + COURT_FLOOR.UNITS_LAYER_OFFSET.y > COURT_FLOOR.FLOOR_BOTTOM_SCREEN_Y:
+					_abort("Court enemy placed below lower stone floor")
+					return
+			if actor.team == 0 and actor.combat_bounds == OTHER_ARENA_EXPECTED:
+					_abort("Court inherited the default arena bounds")
+					return
+			if actor.team == 1 and actor.combat_bounds == OTHER_ARENA_EXPECTED:
+					_abort("Court reused generic arena geometry")
+					return
+			if actor.position.y + COURT_FLOOR.UNITS_LAYER_OFFSET.y < COURT_FLOOR.FLOOR_TOP_SCREEN_Y:
+					_abort("Court actor feet overlap decorative steps")
+					return
+			if actor.position.y + COURT_FLOOR.UNITS_LAYER_OFFSET.y > COURT_FLOOR.FLOOR_BOTTOM_SCREEN_Y:
+					_abort("Court actor feet overflow screen")
+					return
+			if not world_bounds.has_point(actor.position):
+					_abort("Court placement leaked beyond real combat bounds")
+					return
+			if actor.team == 0 and actor.position.y + COURT_FLOOR.UNITS_LAYER_OFFSET.y >= 574.0:
+					_abort("Court hero starts behind preparation HUD")
+					return
+			if actor.team == 1 and actor.position.x < 700.0:
+					_abort("Court enemy spawn crossed hero-side formation")
+					return
+			if actor.team == 0 and actor.position.x > 590.0:
+					_abort("Court hero spawn crossed enemy-side formation")
+					return
+			if actor.team == 1 and actor.position.x > COURT_FLOOR.COMBAT_BOUNDS.end.x:
+					_abort("Court enemy spawn outside far floor bound")
+					return
+			if actor.team == 0 and actor.position.x < COURT_FLOOR.COMBAT_BOUNDS.position.x:
+					_abort("Court hero spawn outside near floor bound")
+					return
+			if actor.combat_bounds != world_bounds:
+					_abort("Court actors do not share common floor")
+					return
+			if actor.team == 0 and not COURT_FLOOR.COMBAT_BOUNDS.encloses(actor.placement_bounds):
+					_abort("Court hero drag area is outside the lower floor")
+					return
+			if actor.team == 0 and actor.placement_bounds.end.y + COURT_FLOOR.UNITS_LAYER_OFFSET.y >= 610.0:
+					_abort("Court pre-fight placement overlaps too much HUD")
+					return
 			if court.running or court.phase != "idle":
 				_abort("verdict started during placement, before Fight")
 				return

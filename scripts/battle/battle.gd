@@ -24,6 +24,8 @@ const BLACK_LANTERN_LIGHT_SCRIPT := preload("res://scripts/battle/black_lantern_
 # D262: new Court of the Mute scoped marked-target controller. Card #39 remains QA only.
 const COURT_VERDICT_SCRIPT := preload("res://scripts/battle/court_verdict.gd")
 const BLACK_CROSSING_FLOOR := preload("res://scripts/battle/black_crossing_floor.gd")
+# D264: Court is staged with a completely separate lower-stone-floor geometry.
+const COURT_FLOOR := preload("res://scripts/battle/court_of_the_mute_floor.gd")
 
 # Local to UnitsLayer (screen offset 20,96). Keep unit feet on the
 # actual stone floor, below the architectural horizon and above the HUD.
@@ -493,6 +495,8 @@ func _get_party_spawn_positions() -> Array[Vector2]:
 
 func _get_placement_regions() -> Array[Rect2]:
 	match encounter.encounter_id:
+		"court_of_the_mute":
+			return [COURT_FLOOR.PLACEMENT_BOUNDS]
 		"black_crossing":
 			return [BLACK_CROSSING_FLOOR.PLACEMENT_BOUNDS]
 		"gallows_volley", "grave_crossfire", "firing_square":
@@ -599,6 +603,9 @@ func _project_spawn_on_floor(source_position: Vector2) -> Vector2:
 func _get_combat_bounds() -> Rect2:
 	if encounter != null:
 		match encounter.encounter_id:
+			"court_of_the_mute":
+			# Only lower floor; the throne, bench and steps are scenery.
+			return COURT_FLOOR.COMBAT_BOUNDS
 			"black_crossing":
 				# Intact central deck only: prevents standing on the snapped
 				# foreground beams even when AI pursues a target or waves push.

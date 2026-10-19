@@ -5,6 +5,8 @@ extends Control
 const ARENA_FILE := "res://assets/pixel/battle/arenas/court_of_the_mute_d263_qa.webp.b64"
 const ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const CARD_ID := "court_of_the_mute"
+# Exact same bounds that the real Court Battle uses for collision and AI.
+const COURT_FLOOR := preload("res://scripts/battle/court_of_the_mute_floor.gd")
 
 var bounds_overlay: ColorRect
 var bounds_label: Label
@@ -67,20 +69,21 @@ func _ready() -> void:
 
 	bounds_overlay = ColorRect.new()
 	bounds_overlay.color = Color(0.37, 0.83, 0.64, 0.13)
-	bounds_overlay.position = Vector2(110, 380)
-	bounds_overlay.size = Vector2(1080, 158)
+	bounds_overlay.position = COURT_FLOOR.SCREEN_COMBAT_BOUNDS.position
+	bounds_overlay.size = COURT_FLOOR.SCREEN_COMBAT_BOUNDS.size
 	bounds_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	bounds_overlay.visible = false
 	add_child(bounds_overlay)
 	bounds_label = Label.new()
-	bounds_label.position = Vector2(28, 665)
-	bounds_label.size = Vector2(1050, 28)
-	bounds_label.text = "G — показать / скрыть реальную зону боя · 38/45 LIVE · #39 НЕ ВЫПУЩЕНА"
+	# Place instructions above the combat floor instead of across the units' feet.
+	bounds_label.position = Vector2(28, 105)
+	bounds_label.size = Vector2(1020, 28)
+	bounds_label.text = "G — нижний каменный пол: зона боя · 38/45 LIVE · #39 НЕ ВЫПУЩЕНА"
 	bounds_label.add_theme_font_size_override("font_size", 15)
 	bounds_label.add_theme_color_override("font_color", Color(0.78, 0.75, 0.69))
 	add_child(bounds_label)
 
-	print("D263_COURT_ARENA_PREVIEW_PASS: 1280x720 empty architectural tribunal QA plate, original D261 selected card image exact loader, 38 cards LIVE")
+	print("D264_COURT_LOWER_FLOOR_PREVIEW_PASS: real lower stone floor matches Court combat geometry, 1280x720 Court QA art, 38 cards LIVE")
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
