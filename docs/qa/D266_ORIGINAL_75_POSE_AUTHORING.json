@@ -1,0 +1,48 @@
+{
+  "version": "D266",
+  "stage": "THREE_ATLASES_GENERATED_QA_NOT_USER_APPROVED",
+  "roles": [
+    {
+      "role": "mute_magistrate",
+      "path": "assets/pixel/units/court_of_the_mute_qa/mute_magistrate_d266_qa.webp.b64",
+      "source_sha256": "6322bc29bca7d6780a56d35b9fbadd2ea66c1c55ad1870b58c838f0f73043f21",
+      "image_size": [
+        576,
+        480
+      ],
+      "frame_count": 25,
+      "original_generation_method": "role-specific joint+prop anatomy keyframe drawing (procedural authored QA)",
+      "art_user_approved": false
+    },
+    {
+      "role": "ash_scrivener",
+      "path": "assets/pixel/units/court_of_the_mute_qa/ash_scrivener_d266_qa.webp.b64",
+      "source_sha256": "409a5711b3d9d30ef8db0aca0bd6057aa83a61b604259ac3fb89fecbd347af91",
+      "image_size": [
+        576,
+        480
+      ],
+      "frame_count": 25,
+      "original_generation_method": "role-specific joint+prop anatomy keyframe drawing (procedural authored QA)",
+      "art_user_approved": false
+    },
+    {
+      "role": "bone_bailiff",
+      "path": "assets/pixel/units/court_of_the_mute_qa/bone_bailiff_d266_qa.webp.b64",
+      "source_sha256": "d067b30ce7f286be9c0e28d31812a7794c6a114092608689ea2cb043160c4e6e",
+      "image_size": [
+        576,
+        480
+      ],
+      "frame_count": 25,
+      "original_generation_method": "role-specific joint+prop anatomy keyframe drawing (procedural authored QA)",
+      "art_user_approved": false
+    }
+  ],
+  "frames_total": 75,
+  "spare_blank_total": 15,
+  "goal": "Native F6 x1 and x2 motion: inspect real grip, boots, proportions, facing, attacks and death",
+  "not_finished": "Procedural original frames do not equal artist-approved rich D261 character art; release stays HOLD",
+  "live_card_count": 38,
+  "card39_released": false
+}
