@@ -1,3 +1,9 @@
+## 2026-10-19 — D276 compact lore and engraved offer-card trim
+
+- Reviewed user-supplied native D275 screenshots: hover text no longer obstructs the table and the deliberate RMB lore window works, but the modal had too much unused space.
+- Tightened full-text inspection from 760×440 to 720×364 with rebalanced content; removed redundant instruction copy beneath artwork and added restrained dark-fantasy linework.
+- Added subtle card inner-frame/illustration-rim/choose-divider accents and improved the bottom RMB hint contrast. All game data, card arts and click/hold routes remain unchanged; new screenshot acceptance pending.
+
 ## 2026-10-19 — D275 deliberate card lore inspection
 
 - Removed automatic offer hover tooltips after actual Godot screenshot showed even wrapped hints blocking both cards and embedded Choose controls.

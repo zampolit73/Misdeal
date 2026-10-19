@@ -32,3 +32,11 @@ QA: `git pull`, run the table at 1280x720, hover and confirm no lore obscures th
 
 
 D275 native Godot 4.7.2 import plus inspect-scene smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39290459465 (CI expected-output label corrected in commit dc49d03). Technical verification includes the original Cyrillic full lore in the separate dialog; **final visual screenshot/interaction acceptance still requires user Godot F6**.
+
+## D276 — Native D275 screenshot review and restrained polish
+
+Native user screenshots from 2026-10-19 confirmed the previous D275 UX repair: normal card offers and `УДЕРЖАТЬ`/`ВЫБРАТЬ` are unobstructed, and the deliberate RMB lore inspection correctly shows full `ПЕПЕЛЬНЫЙ ПРИВАЛ` card lore in a separate framed surface. D275 mechanics/read flow are accepted as a usable basis, not a final reproduction of the chosen painted UI mock.
+
+New D276 scope: compact the original 760x440 lore modal to 720x364; keep the image, card title/type, full scrollable copy and all dismiss behavior but remove unnecessary under-image navigation instructions. Use fine bronze image/text rules and a restrained Misdeal emblem to reduce the impression of empty generic UI. In the two live parchment cards add only a thin engraved internal frame, slim artwork rims and a hairline above the red CTA; slightly improve the bottom RMB hint contrast. No changes to positions of cards (272x338), their meanings, existing art assets, button hitboxes, or RunState.
+
+QA: official Godot 4.7.2 D276 CI should verify the new modal bounds and inner card frame. User should `git pull` and take one native screenshot of the updated RMB window and table at 1280x720. Native artistic sign-off for D276 remains OPEN until shown. Keep the current source values and this record in case any further visual refinements are needed.
