@@ -31,20 +31,6 @@ jobs:
           echo 'cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  /tmp/godot.zip' | sha256sum -c -
           unzip -q /tmp/godot.zip -d /tmp/godot-bin
           chmod +x /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
-      - name: Inspect candidate clean wizard layer (development QA)
-        shell: bash
-        run: |
-          python -m pip -q install pillow
-          python - <<'PY'
-          import io,base64
-          from PIL import Image
-          p='assets/pixel/table/table_wizard_layer.png'
-          img=Image.open(p)
-          print('D280_LAYER_METADATA:',img.size,img.mode,'center-alpha:',img.getpixel((img.width//2,img.height//2)))
-          img.thumbnail((640,360))
-          out=io.BytesIO();img.convert('RGB').save(out,format='JPEG',quality=66)
-          print('D280_LAYER_THUMB_START:'+base64.b64encode(out.getvalue()).decode() + ':D280_LAYER_THUMB_END')
-          PY
       - name: Import and parse all Godot scripts
         shell: bash
         run: |
