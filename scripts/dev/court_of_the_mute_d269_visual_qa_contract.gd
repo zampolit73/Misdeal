@@ -59,6 +59,24 @@ func _check() -> void:
 		return
 	print("D270_COURT_EMPTY_SVG_NATIVE_PASS: actual Court Battle displays independent 1280x720 character-free editable vector QA, D264 floor untouched")
 
+	# D270 B comparison must swap only Court texture, retain 1280×720 and
+	# the prior D265 asset for rollback. Native Battle actors never change.
+	var original_d270_texture: Texture2D = image_texture
+	var art_event := InputEventKey.new()
+	art_event.pressed = true
+	art_event.keycode = KEY_B
+	preview.call("_unhandled_key_input", art_event)
+	if not bool(backdrop.get("court_qa_show_legacy")) or backdrop.texture == null or backdrop.texture == original_d270_texture:
+		_abort("D270 B did not switch to tracked D265 rollback")
+		return
+	if backdrop.texture.get_width() != 1280 or backdrop.texture.get_height() != 720:
+		_abort("D270 B fallback plate has wrong size")
+		return
+	preview.call("_unhandled_key_input", art_event)
+	if bool(backdrop.get("court_qa_show_legacy")) or backdrop.texture == null or backdrop.texture.get_width() != 1280:
+		_abort("D270 B failed to restore new empty stage")
+		return
+	print("D270_COURT_BACKGROUND_AB_NATIVE_PASS: D270 empty SVG and D265 original QA WebP toggled inside real Battle, no unit/bounds mutation")
 	var toggle := InputEventKey.new()
 	toggle.pressed = true
 	toggle.keycode = KEY_L
