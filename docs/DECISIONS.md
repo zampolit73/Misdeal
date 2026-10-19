@@ -1,5 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D274 — User-approved parchment Table offer-card UI in main; native review open
+
+2026-10-19: Implemented the selected TWO-card hybrid at 1280×720: 272×338 parchment cards, original large CardArtCatalog illustrations, ink Cyrillic copy, crimson inline ВЫБРАТЬ face, bronze УДЕРЖАТЬ tabs, full description via tooltip. Only normal-deal Table card presentation changes; all original RunState choice/hold/mark/meddling/wager transitions, Wizard, approved Variant C Fate Spread, and art assets remain unchanged. Act1 stays 39/45 (#39 released), D271/D264/KARAMBA73 intact. Main code e1b32fd; optional Godot 4.7.2 D274 native component smoke CI added. **User native visual acceptance is still pending**: test hover, held, marked, boss/single, long Cyrillic and real choice transitions. See docs/D274_TABLE_PARCHMENT_UI.md.
+
+
 ## D273 — Release Court #39 with verified ordinary deal and approved painted arena
 
 After user native acceptance of D271 painted, actor-free battlefield and original D267 approved character identities, approve **separate release** of Court of the Mute as **regular Act1 Tier1 #39**. Its 4-actor original enemy roster, two formations and D262 red-target verdict remain scoped; D268 mild local encounter tuning retained, no global modifiers. D272 separate output audit establishes 75/75 distinct rich frames with ≥3px alpha gutters and 15 clear spare cells; 27 D267 **source** warnings remain as *visual follow-up pointers*, not invented verified artistic repair. Godot [real ordinary deal→Battle→Reward→Table CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39264156351), plus [D267 original art source rebuild PASS](https://github.com/zampolit73/Misdeal/actions/runs/39264427458). Act1 now **39/45** without altering Fate Spread I–XII and sealed XIII. Explicit decision: historical "QA-only #39" notes are superseded; continue #40 via truly new enemies and options-first illustration. Original D261 selected second card art, user-chosen D264 x40–1268/y532–710 floor, approved D271 arena, released D260 #38 and frozen KARAMBA73 stay unchanged. [Release details](D273_COURT_CARD39_RELEASE.md).
