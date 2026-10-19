@@ -37,9 +37,11 @@ const ARENA_PATHS := {
 	ARENA_THREADBARE_THEATRE: "res://assets/pixel/battle/arenas/threadbare_theatre_approved_v1.webp.b64",
 	ARENA_BLACK_CROSSING: "res://assets/pixel/battle/arenas/black_crossing_storm_pier_approved_v1.webp.b64",
 	ARENA_BLACK_LANTERN_ROAD: "res://assets/pixel/battle/arenas/black_lantern_road_arena_selected_v1.webp.b64",
-	# D270: new independently editable 640px-authored actor-free QA illustration.
-	# Court #39 remains unreleased; D265 original is retained for rollback.
-	ARENA_COURT_OF_THE_MUTE: "res://assets/pixel/battle/arenas/court_of_the_mute_d270_empty_qa.svg",
+	# D271: actual painted 1280×720 actor-free Court tribunal; QA only.
+	# Source input verified pixel-identical and encoded to real WebP SHA256
+	# 1eb45164d9c7418fb9c459d18c0640935452266aeecbb04d1e9d7bd527af8784.
+	# D270 rejected SVG and D265 prior QA WebP remain versioned for rollback.
+	ARENA_COURT_OF_THE_MUTE: "res://assets/pixel/battle/arenas/court_of_the_mute_d271_painted_qa.webp.b64",
 }
 
 var arena_id := ARENA_CRYPT
@@ -61,8 +63,8 @@ func set_arena_id(value: String) -> void:
 	material = null
 	texture = _get_runtime_texture(arena_id)
 
-# D270 QA-only visual comparison: switch between D265 rollback and the
-# editable D270 illustrated empty tribunal in the exact same real Battle.
+# D271 QA-only visual comparison: switch between D265 rollback and the
+# actual D271 painted tribunal in the exact same real Battle.
 func set_court_qa_legacy_art(enabled: bool) -> void:
 	if arena_id != ARENA_COURT_OF_THE_MUTE:
 		return
@@ -93,9 +95,8 @@ func _get_runtime_texture(value: String) -> Texture2D:
 		return null
 
 	var image := Image.new()
-	# D270: load raw editable SVG only for the Court's new QA raster.
-	# Godot converts 640×360 source at scale 1; existing NEAREST upscale is
-	# intentional for 1280×720 small-pixel tactical stage presentation.
+	# Old D270 SVG is retained for archival QA, whereas the new D271 final-size
+	# painted raster is decoded from WebP b64; normal 1280×720 avoids resizing.
 	var error := image.load_svg_from_buffer(bytes) if path.ends_with(".svg") else image.load_webp_from_buffer(bytes)
 	if error != OK:
 		push_error("Could not decode authored arena image '%s': %s" % [path, error_string(error)])
