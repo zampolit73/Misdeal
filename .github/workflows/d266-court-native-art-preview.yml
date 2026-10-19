@@ -1,0 +1,49 @@
+name: D266 Court original three role native F6 animation preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/d266-court-native-art-preview.yml'
+      - 'scripts/dev/court_of_the_mute_d266_three_animation_preview.gd'
+      - 'scenes/dev/court_of_the_mute_d266_three_animation_preview.tscn'
+      - 'assets/pixel/units/court_of_the_mute_qa/*_d266_qa.webp.b64'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-animation-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get official Godot 4.7.2
+        shell: bash
+        run: |
+          curl --fail --retry 3 -L https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o /tmp/godot.zip
+          echo 'cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  /tmp/godot.zip' | sha256sum -c -
+          unzip -q /tmp/godot.zip -d /tmp/godot-bin
+          chmod +x /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+      - name: Import project
+        shell: bash
+        run: |
+          set -o pipefail
+          /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --editor --import --quit 2>&1 | tee /tmp/d266-import.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script' /tmp/d266-import.log; then exit 1; fi
+      - name: Load all 75 alpha sprite poses through standard Godot SpriteFrames
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 60s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . \
+            --quit-after 36 --scene res://scenes/dev/court_of_the_mute_d266_three_animation_preview.tscn 2>&1 | tee /tmp/d266-animation-preview.log
+          grep -q 'D266_THREE_ROLE_F6_PASS' /tmp/d266-animation-preview.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D266 THREE QA FAILURE' /tmp/d266-animation-preview.log; then exit 1; fi
+      - name: Preserve logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: d266-court-all-three-native-f6-logs
+          path: /tmp/d266-*.log
+          retention-days: 14
