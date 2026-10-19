@@ -2,7 +2,7 @@
 
 ## D277 — Production antique parchment and engraved cards (2026-10-19)
 
-User requested immediate implementation after visually verifying D276 two-card + RMB lore UI. D277 code commit 0d3a1b9 modifies ONLY presentation: more nuanced deterministic aged-paper shader, engraved corner fittings and wax/bronze rivets, warm bronze offer borders, hover-dependent crimson/gleam on the existing Choose plate, and restrained ornamental trim around the compact RMB lore dialog. Existing painted encounter art remains independent; RunState, LMB Choose, RMB lore, hold, mark, dealing, Fate Spread I–XIII, wizard and 39/45 Act1 remain unchanged. Native CI D277 verification in progress when this section authored; **DO NOT assert user visual sign-off before new native 1280×720 screenshots**. Details: docs/D277_TABLE_ART_PASS.md.
+User requested immediate implementation after visually verifying D276 two-card + RMB lore UI. D277 code commit 0d3a1b9 modifies ONLY presentation: more nuanced deterministic aged-paper shader, engraved corner fittings and wax/bronze rivets, warm bronze offer borders, hover-dependent crimson/gleam on the existing Choose plate, and restrained ornamental trim around the compact RMB lore dialog. Existing painted encounter art remains independent; RunState, LMB Choose, RMB lore, hold, mark, dealing, Fate Spread I–XIII, wizard and 39/45 Act1 remain unchanged. Official Godot 4.7.2 D277 import/component test PASS: https://github.com/zampolit73/Misdeal/actions/runs/39293886000; **DO NOT assert user visual sign-off before new native 1280×720 screenshots**. Details: docs/D277_TABLE_ART_PASS.md.
 
 
 ## D276 — Screenshot-accepted D275 usability, compact art-polish in main; native visual QA pending

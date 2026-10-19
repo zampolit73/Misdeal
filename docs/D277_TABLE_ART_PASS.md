@@ -1,6 +1,6 @@
 # D277 — Approved hybrid two-card antique material pass
 
-Status: D277 implementation committed to main (0d3a1b958809eb47f1adaf62f2bd5baca35a2457). Native 1280×720 Godot visual verdict remains pending; technical CI tracked separately.
+Status: D277 implementation committed to main (0d3a1b958809eb47f1adaf62f2bd5baca35a2457). **Official Godot 4.7.2 native import/visual-component contract PASS**: https://github.com/zampolit73/Misdeal/actions/runs/39293886000. User native 1280×720 artistic verdict remains pending.
 
 ## User approval and boundaries
 
