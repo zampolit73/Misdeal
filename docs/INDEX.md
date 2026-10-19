@@ -1,10 +1,8 @@
 # Misdeal Documentation Index
 
-Updated: 2026-10-19 — **D258 is current.** Full five-role rich Black Lantern original test 3v5 and actual Battle launcher are in GitHub. Official Godot 4.7.2 **real Battle preflight + 54/54 functional matrix PASS**. **Full Fight→Reward→Table and visual art acceptance still pending.** Live Act1 **37/45**, #38 QA only.
+Updated: 2026-10-19 — **D259 is current**: five original rich 25-frame Black Lantern enemies in shared canonical runtime library, Godot 4.7.2 actual Battle startup + 54-case functional matrix PASS. Card #38 remains QA-only (**37/45 live**), real end-to-end Reward/Table and balance gate open.
 
-**NEW CHAT START:** [D258 — Five-role Godot results, scripts, assets and release gates](D258_FIVE_ROLE_GODOT_QA.md) · [D258 real Battle route F6](../scenes/dev/black_lantern_d258_real_battle_route_qa.tscn) · [D258 matrix evidence](qa/D258_GODOT_54_CASE_RESULT.json). Prior art checkpoints: [D257 reconstructed full atlases](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md) and [D256 consolidated handoff](D256_NEW_CHAT_HANDOFF.md).
-
-Historical D249–D257 stage notes remain in [PROJECT_STATE.md](PROJECT_STATE.md) and [HANDOFF.md](HANDOFF.md); older waiting-for-art pointers are historical, not today's priority.
+**START HERE:** [D259 canonical original five-role staging and next release requirements](D259_CANONICAL_FIVE_ROLE_RELEASE_PREP.md) · [D259 genuine library-only Battle F6](../scenes/dev/black_lantern_d259_real_battle_route_qa.tscn) · [D259 asset QC](qa/D259_BLACK_LANTERN_CANONICAL_ATLASES_QC.json). Previous checkpoints: [D258](D258_FIVE_ROLE_GODOT_QA.md) and [D257](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md).
 
 ## Read first (current, short, authoritative)
 

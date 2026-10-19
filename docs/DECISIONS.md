@@ -1,6 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 Updated: 2026-10-19.
 
+## D259 — Stage all five original 25-pose roles through strict runtime loader before activating card #38
+
+2026-10-19: user responded `«все ок»` to D258 F6. Stage Guide/Oil Acolyte/Archer by preserving D257 raw sources and importing canonical RIGHT-source runtime sheets (two mirrored per 96px cel, one byte-exact) alongside original D244 Sentinel/D224 Bearer. The real Battle automatically reads five roles from `MisdealUnitAnimationLibrary` with **no post-ready QA sprite injection**. A card resource's `target_path` may be wired before release for verification, but `RunState.ACT1_CARD_IDS` activation to 38/45 requires a separate full-route/balance gate. 54 wins in 54 functional simulations are not by themselves a tuned-difficulty approval. [D259 detail](D259_CANONICAL_FIVE_ROLE_RELEASE_PREP.md).
+
 ## D258 — Test the complete original cast in isolated real Battle, never release from headless frame counts
 
 2026-10-19: User `«все ок. продолжай»` after D257 permits staging the three new 25-pose Style B assets alongside the existing two original enemies in complete real combat QA. Guide and Archer illustrated source sheets face LEFT; normalize their frame pixels to RIGHT in an **instance-only QA loader**, not by changing shared `BattleUnit` or registering unfinished roles. Godot 4.7.2 Battle preflight + 54/54 functional matrix do **not** imply user-native full route, art approval, difficulty acceptance or release of card #38. [D258 evidence](D258_FIVE_ROLE_GODOT_QA.md).

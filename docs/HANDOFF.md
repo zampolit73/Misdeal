@@ -1,5 +1,9 @@
 # Misdeal — Canonical Working Handoff
 
+## D259 — CURRENT: five canonical original roles ready in Battle; card #38 unreleased
+
+`main` now stages ALL FIVE unique rich 25-pose Black Lantern roles in `MisdealUnitAnimationLibrary`, using canonical converted D257 Guide/Acolyte/Archer and byte-exact D244 Sentinel/D224 Bearer. No edits to main BattleUnit facing, stats or light. Exact chosen D200 card art and D209 arena preserved; card `black_lantern_road.tres` now targets its true encounter path, **ACT1_CARD_IDS still 37**. User `«все ок»` after D258 native F6 means no reported blocker, not full recorded QA. D259 Godot 4.7.2 standard-library Battle preflight and 54/54 functional matrix PASS. **NEXT:** finish and verify CI headless Fight→Reward→Table; if unavailable check F6 `res://scenes/dev/black_lantern_d259_real_battle_route_qa.tscn` for full win/reward/table and true native x1 visuals. Then make an explicit local difficulty judgment on 54/54 wins before releasing #38 into 38/45. Details [D259 handoff](D259_CANONICAL_FIVE_ROLE_RELEASE_PREP.md). **KARAMBA73 frozen.**
+
 ## D258 — CURRENT next action: native full Battle→Reward→Table, one art check
 
 Main now includes D258 five-role original rich 3v5 and `res://scenes/dev/black_lantern_d258_real_battle_route_qa.tscn`, a true Battle F6 launcher with 1/2/3 heroes and both formations. GitHub Actions with actual Godot 4.7.2 **PASS** for Battle preflight (all five original enemy roles, D257 sprites, D253 light) and **54/54 functional balance matrix**; **54 victories alone is NOT balance approval**. D257 11 source-floor warnings and user-native full Fight→Reward→Table still pending. **NEXT:** one F6 trio / Перекрёсток through victory → Reward → Table, then solo/duo with Марш; inspect x1 scale, grips/feet, crowding and light. Fix defects as a complete pack without micro-approvals; keep #38 out of normal deck. Source [D258 handoff](D258_FIVE_ROLE_GODOT_QA.md). **37/45 LIVE, KARAMBA73 untouched.**

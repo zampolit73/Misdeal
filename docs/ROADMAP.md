@@ -1,5 +1,15 @@
 # Misdeal — Active Roadmap
 
+## D259 — Original five-role production-format staging before card #38 release
+
+- [x] Export source-preserving canonical D257 Guide/Acolyte/Archer 25-cel WebP to runtime `deck_expansion_v1`; cell-wise normalize source facing, validate 25 unique/5 clear per role.
+- [x] Register all FIVE in strict shared library, preserving exact Sentinel/Bearer, `BattleUnit` behavior, enemy UnitData and original 37-card pool.
+- [x] Fix QA-release card's missing `target_path` to point to original Black Lantern encounter; **not** added to deal pool yet.
+- [x] Official Godot 4.7.2 full five-library-real-Battle preflight and 54-case functional regression PASS.
+- [x] Correct invalid >4096 `z_index` values in real Battle HUD without changing layout ordering.
+- [ ] Validate automated real Fight→Reward→Table (headless real route may need QA-only frame signal) and user F6 authentic route/character contact if necessary.
+- [ ] Make evidence-based local difficulty decision; 54/54 wins alone do not approve balance. Then release card #38 in **separate commit** to 38/45 only when gates pass. KARAMBA73 frozen.
+
 ## D258 — All five skeletons in real Battle QA and Godot CI matrix
 
 - [x] Stage all five original rich enemy identities with full 25-pose atlases in isolated D258 real-AI 3v5 and genuine Battle launcher; correct left-origin Guide/Archer QA facing in memory only.

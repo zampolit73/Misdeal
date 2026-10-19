@@ -1,5 +1,9 @@
 ## D255 — User-approved visual direction for all three missing #38 enemies; 75-cel QA pack staged, ART GATE OPEN
 
+## D259 — Three remaining Black Lantern original 25-pose atlases in canonical runtime staging
+
+`assets/pixel/units/deck_expansion_v1/{extinguished_guide,oil_acolyte,lantern_archer}_frames.webp.b64` built reproducibly from **exact D257 approved-direction source artwork**, with left→right per-cel export for Guide/Archer and byte-identical Acolyte. 25 complete distinct frames, five blank, 2px margins per role; strict shared library now exposes all five roles (D244 Sentinel and D224 Bearer exact old assets retained). This is **staged combat content** for unreleased card #38, not proof that old 11 source-truncation warnings disappeared. CI native five-role scene pass and user D258 no-blocker feedback recorded in [D259 canonical QA](D259_CANONICAL_FIVE_ROLE_RELEASE_PREP.md). 37/45 live; KARAMBA73 unchanged.
+
 ## D258 — All five approved-direction Black Lantern original silhouettes in combat QA
 
 The D257 full-25 Guide/Acolyte/Archer atlases join exact retained D244 Road Sentinel and D224 Lantern Bearer **only in D258 test 3v5 and real Battle launcher**. Right-authored facing normalization for original-left Guide and Archer is performed in-memory for QA; production library and bitmaps untouched. Godot 4.7.2 validates real five-role Battle injection; outstanding native x1 motion/11 source floor-boundary warnings mean **not final art release**. See [D258 QA](D258_FIVE_ROLE_GODOT_QA.md). 37/45 LIVE, KARAMBA73 frozen.
