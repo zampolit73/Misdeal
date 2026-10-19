@@ -1,5 +1,13 @@
 ## 2026-10-20 — D280 pure ritual table class selection
 
+## 2026-10-20 — D281 Full-HD ClassSelect correction
+
+- User screenshot REJECTED 640×360 (11KB) background stretched to 1280×720; returned to an actual 1280×720 high-quality clean wizard/table painting derived directly from the original 1672×941 art.
+- Removed obsolete D280 base64 transport and loader; native WebP lives in `assets/pixel/class_select/d281_clean_table_hd.webp`.
+- Keyed dark rectangular source backing out of the existing logo for ClassSelect only.
+- All card portraits, D278 frames, HP/damage hover and solo confirm unchanged. Godot 4.7.2 CI PASS; native artistic screenshot acceptance pending.
+
+
 - Integrated independent clean wizard/candles/rune-circle artwork under the three ClassSelect protagonist cards, without painted HUD, cards, Hold or counters.
 - Removed temporary D279R screenshot concealment shader/plaques, fake FateTitle and duplicate emblem; inserted real logo and lighter header, moved Wizard reaction above cards.
 - Retained all D278 character art and frames, real source data HP/damage hover, two-step selection and solo-hero routing.
