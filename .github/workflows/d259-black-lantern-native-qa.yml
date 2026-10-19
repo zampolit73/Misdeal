@@ -61,6 +61,17 @@ jobs:
           if grep -E -i 'SCRIPT ERROR|Parse Error|Parser Error|D259_REAL_BATTLE_PREFLIGHT_FAIL' /tmp/d259-real-battle-preflight.log; then
             exit 1
           fi
+      - name: End-to-end actual Fight to Reward to Table
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 150s /tmp/godot-bin/godot --headless --path . \
+            --scene res://scenes/dev/black_lantern_d259_end_to_end_runner.tscn \
+            2>&1 | tee /tmp/d259-end-to-end.log
+          grep -q 'D259_END_TO_END_PASS:' /tmp/d259-end-to-end.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D259_END_TO_END_FAIL' /tmp/d259-end-to-end.log; then
+            exit 1
+          fi
       - name: "Regression - real 54-case BattleUnit combat matrix"
         shell: bash
         run: |
