@@ -17,7 +17,7 @@ var menu: Control
 var running := false
 var d269_floor_overlay: ColorRect
 var d269_ambient_enabled := true
-var d270_legacy_art_enabled := false
+var d271_legacy_art_enabled := false
 
 
 func _ready() -> void:
@@ -45,10 +45,10 @@ func _build_menu() -> void:
 	content.add_theme_constant_override("separation", 15)
 	menu.add_child(content)
 
-	var title := _label("D268 · СУД БЕЗМОЛВНЫХ", 28)
+	var title := _label("D271 · СУД БЕЗМОЛВНЫХ", 28)
 	content.add_child(title)
 	content.add_child(_label("РЕАЛЬНЫЙ BATTLE → REWARD → TABLE · НЕВЫПУЩЕННАЯ КАРТА · QA", 17))
-	content.add_child(_label("Карта №39 пока НЕ выпущена (38/45). F6 запускает настоящий бой и временную QA-арену без изменения основной колоды.", 15))
+	content.add_child(_label("Карта №39 ещё в QA (38/45). Настоящий бой запускается с новым рисованным фоном D271; обычная колода не меняется.", 15))
 
 	content.add_child(_label("Состав отряда", 18))
 	party_picker = OptionButton.new()
@@ -69,7 +69,7 @@ func _build_menu() -> void:
 	launch.custom_minimum_size = Vector2(0, 46)
 	launch.pressed.connect(_launch_real_battle)
 	content.add_child(launch)
-	content.add_child(_label("Оригинальные D267 персонажи · D265 фон ещё QA. D270: в бою B — фон D265/D270; L — подсветка, G — точная разрешённая зона.", 14))
+	content.add_child(_label("Оригинальные D267 персонажи · рисованная D271 арена · B — сравнить со старой D265, L — свет, G — точный нижний пол.", 14))
 
 	error_label = _label("", 15)
 	error_label.add_theme_color_override("font_color", Color(1.0, 0.45, 0.38))
@@ -162,7 +162,7 @@ func _launch_real_battle() -> void:
 		_fail("Настоящий бой отобразил не Суд, а подменённую арену.")
 		return
 	_build_d269_floor_guide(battle)
-	print("D268_COURT_REAL_BATTLE_PREVIEW_PASS: 3 original roles/4 actors, lower floor + verdict + Court QA plate; card #39 UNRELEASED (38/45).")
+	print("D268_COURT_REAL_BATTLE_PREVIEW_PASS: 3 original roles/4 actors, lower floor + verdict + painted Court D271 QA plate; card #39 UNRELEASED (38/45).")
 
 
 # D269: debug *only* overlay. In real Battle this is added after validation
@@ -188,9 +188,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if event.keycode == KEY_B:
 		var court_background := get_node_or_null("Battle/BattleBackdrop")
 		if court_background != null and court_background.has_method("set_court_qa_legacy_art"):
-			d270_legacy_art_enabled = not d270_legacy_art_enabled
-			court_background.call("set_court_qa_legacy_art", d270_legacy_art_enabled)
-			print("D270_COURT_BACKGROUND_AB: ", "D265 ORIGINAL" if d270_legacy_art_enabled else "D270 EMPTY QA")
+			d271_legacy_art_enabled = not d271_legacy_art_enabled
+			court_background.call("set_court_qa_legacy_art", d271_legacy_art_enabled)
+			print("D271_COURT_BACKGROUND_AB: ", "D265 ORIGINAL" if d271_legacy_art_enabled else "D271 PAINTED QA")
 			get_viewport().set_input_as_handled()
 	elif event.keycode == KEY_L:
 		var court_atmosphere := get_node_or_null("Battle/Arena")
