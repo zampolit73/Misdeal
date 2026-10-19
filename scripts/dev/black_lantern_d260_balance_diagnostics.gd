@@ -15,7 +15,7 @@ func _ready() -> void:
 		snappedf(duration_per_size[2] / 18.0, 0.0001),
 	]
 	var result := {
-		"version": "D260_PRE_RELEASE",
+		"version": "D260_RELEASED",
 		"completed": completed,
 		"wins_by_party_size": wins_per_size,
 		"wins_by_protagonist": wins_per_class,

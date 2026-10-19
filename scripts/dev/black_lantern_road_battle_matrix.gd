@@ -50,7 +50,7 @@ func _ready() -> void:
 	title_label.size = Vector2(1140, 58)
 	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title_label.add_theme_font_size_override("font_size", 27)
-	title_label.text = "D208 / ФОНАРИ — ЛОКАЛЬНЫЙ БАЛАНС-ПАСС"
+	title_label.text = "D260 / ФОНАРИ — РЕЛИЗНАЯ БОЕВАЯ МАТРИЦА"
 	add_child(title_label)
 	report_label = Label.new()
 	report_label.position = Vector2(65, 146)
@@ -316,7 +316,7 @@ func _run_matrix() -> void:
 		failures.append("D208: ни один враг не совершил атаку под фонарным усилением")
 	# IMPORTANT: even 54/54 wins alone does not mean the balance is approved.
 	if failures.is_empty():
-		title_label.text = "D208 / ФУНКЦИОНАЛЬНЫЙ PASS — БАЛАНС НЕ ПРИНЯТ"
+		title_label.text = "D260 / ФУНКЦИОНАЛЬНЫЙ PASS — КОНТРОЛЬ РЕЛИЗА"
 		report_label.text = (
 			"54/54 завершено • победы %d • поражения %d • тайм-ауты %d\n"
 			+ "Победы соло / дуо / трио: %d / %d / %d\n"
@@ -327,7 +327,7 @@ func _run_matrix() -> void:
 			+ "Потери героев: %d / %d / %d\n"
 			+ "Свет: %d предупреждений, %d активных кадров, %d кадров усиления, максимум %d врагов одновременно\n"
 			+ "Атаки врагов: %d всего, %d под светом (x%.2f скорость)\n"
-			+ "АРТ / РЕАЛЬНЫЙ БОЙ / НАГРАДЫ НЕ ПРОВЕРЕНЫ"
+			+ "ПОЛНЫЙ БОЕВОЙ МАРШРУТ И НАГРАДА: СМОТРИ ОТДЕЛЬНЫЙ D260 CI"
 		) % [
 			victories, defeats, timeouts,
 			wins_per_size[0], wins_per_size[1], wins_per_size[2],
@@ -341,7 +341,7 @@ func _run_matrix() -> void:
 		]
 		report_label.add_theme_color_override("font_color", Color(0.67, 0.90, 0.74))
 	else:
-		title_label.text = "D208 / ФУНКЦИОНАЛЬНЫЙ FAIL"
+		title_label.text = "D260 / ФУНКЦИОНАЛЬНЫЙ FAIL"
 		report_label.text = "\n".join(failures.slice(0, 8))
 		report_label.add_theme_color_override("font_color", Color(1.0, 0.45, 0.37))
 		push_error(report_label.text)
