@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-19 — D258: original five-enemy Black Lantern real combat QA
+
+- Staged all five original rich 25-pose characters in a separate D258 3v5 BattleUnit scene and real Battle→Reward→Table F6 launcher; Guide/Archer left-authored art normalized in QA only. D244 Sentinel and D224 Bearer unchanged.
+- Official Godot 4.7.2 GitHub Actions **PASS**: GDScript parser, actual five-role 3v5, real Battle injection preflight and **54/54 normalized matrix cases** (54 wins/0 party defeats/0 timeouts; 0/2/4 individual hero losses). Full route and art judgement **not yet tested**.
+- Preserved all original art and previous D249/D254 scenes; no production sprite library/RunState/card pool/balance changes. 37/45 live, KARAMBA73 frozen. [D258 QA evidence](docs/D258_FIVE_ROLE_GODOT_QA.md).
+
 ## 2026-10-19 — D257: seam-aware repair candidates for all three approved D255 characters
 
 - Added tracked source-aware Python art recovery, GitHub Actions build, **three newly generated QA-only WebP/Base64 25-pose atlases** and detailed per-pose machine QC.
