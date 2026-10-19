@@ -1,11 +1,8 @@
 # Misdeal Documentation Index
 
-**D268 CURRENT, 2026-10-19:** [new-chat handoff](D268_NEW_CHAT_HANDOFF.md) · [Court real-battle QA staging](D268_COURT_BATTLE_QA_STAGING.md) · [native F6 1–3 hero Battle](../scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn) · [rich frame-step F6 gallery](../scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn). CI newly staged, **outcome not confirmed**. Three rich originals imported D267, source-edge flags 27, #39 NOT live, 38/45.
+**D268 VERIFIED CURRENT · 2026-10-19:** [Godot 4.7.2 native 54-case Court + QA Fight→Reward→Table SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39249979969); mean hero HP 83.84% / 75.54% / 80.16% solo/duo/trio after narrow Court-only balance. [Latest next-chat handoff](D268_NEW_CHAT_HANDOFF.md) · [complete D268 native/balance report](D268_NATIVE_COURT_BALANCE_AND_ROUTE_PASS.md) · [F6 actual Court battle](../scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn) · [D267 rich animation x1/gallery with 27 warning-point controls](../scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn).
 
-
-**Verified after connection interruption, 2026-10-19 — D267 CURRENT.** All three exact approved Court PNGs and 75 original rich atlas cels **already on GitHub**, Godot 4.7.2 preview CI PASS. **27 source edge warnings** await real ×1 motion review; rich empty tribunal arena and full Court Battle release gates remain. Live **38/45**, #39 QA only.
-
-**START NEXT CHAT:** [D267 verified handoff](D267_NEW_CHAT_HANDOFF.md) · [D267 rich original import QA](D267_ACTUAL_RICH_ATLAS_IMPORT_QA.md) · [D267 ×1/×2 F6 scene](../scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn) · [Machine QC](qa/D267_RICH_COURT_ART_RECOVERY_QC.json).
+**WHAT REMAINS:** true x1 original sprite artistic inspection + 27 QC source flags, **finished rich character-free Court tribunal instead of provisional D265 geometry**, final art QA, intentional #39 release to 39/45 with ordinary dealt-card smoke. **Currently 38/45 live, #39 unreleased, target_path empty.** Older D267 approvals/import status are historical; their three user-approved original PNG and 75 animation frames are already committed and remain locked.
 
 ## Read first (current, short, authoritative)
 
