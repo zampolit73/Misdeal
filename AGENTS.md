@@ -17,6 +17,7 @@ Misdeal is a dark-fantasy card-driven roguelike with an evil wizard presiding ov
 - Godot **4.7.x**, **GDScript**. No C#/.NET migration, heavyweight frameworks, global rewrites or third-party dependencies without approval.
 - Prefer typed, focused GDScript; data-driven `.gd`, `.tscn`, `.tres` and Resource contracts. Use English for file/node/class/resource names and code, Russian for conversations and game UI as applicable.
 - On a bug, **inspect live GitHub code before fixing**. When the user requests implementation, make the change directly through connected GitHub, use a meaningful commit, and request only `git pull` and the specific Godot test.
+- **GitHub is the default implementation path.** Use the connected GitHub actions first, even if the local container has no repository checkout or outbound network. A failed terminal `git clone`/`git ls-remote` does NOT imply that GitHub access is unavailable. Do not ask the user to reattach GitHub or upload source files before actually checking connected GitHub actions. Never promise perpetual access; report a connector-specific failure only after testing it.
 - Preserve existing working combat flows, progression and DS2 while touching individual encounters. Treat native Godot user screenshots as evidence; never claim runtime PASS from static review alone.
 - After meaningful work update `docs/PROJECT_STATE.md`, `docs/ROADMAP.md` when needed, `docs/DECISIONS.md` for new locked decisions, `CHANGELOG.md` and `docs/HANDOFF.md`. Keep current documents short; put lengthy historical notes in dated archives.
 
