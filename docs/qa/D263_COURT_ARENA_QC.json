@@ -1,0 +1,17 @@
+{
+  "version": "D263",
+  "status": "QA_ARENA_CANDIDATE_NOT_APPROVED",
+  "type": "original procedural-authored pixel architecture; not imported approved art",
+  "source": "tools/art/author_court_d263_arena.py",
+  "path": "assets/pixel/battle/arenas/court_of_the_mute_d263_qa.webp.b64",
+  "sha256": "d1bedf7e585dd1e673b9f4a9d01f8620b750a09e44386ea46c7655f83612ca1d",
+  "width": 1280,
+  "height": 720,
+  "actor_cutouts": 0,
+  "characters_baked_into_scene": false,
+  "has_distinct_floor": true,
+  "source_card_art_modified": false,
+  "live_cards": 38,
+  "card39_released": false,
+  "native_F6_visual_acceptance": "NOT_YET_APPROVED"
+}
