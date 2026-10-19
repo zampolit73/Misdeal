@@ -1,3 +1,8 @@
+## 2026-10-19 — D274R card-tooltip overflow repair
+
+- Corrected screenshot-proven giant unwrapped stock tooltip across two parchment cards, preserving full Russian lore in a 318px wrapped tooltip.
+- Darker readable text ink and hold tabs above hovered cards. Official Godot 4.7.2 custom tooltip native component check PASS; real visual acceptance pending.
+
 ## 2026-10-19 — D274 Table parchment offer UI
 
 - User-selected hybrid two-card treatment in production Table: 272×338 parchment cards, preserved painted encounter art, ink text, bronze borders/hold tabs, crimson choose area, motion/hover states and complete card text in tooltips.
