@@ -1,8 +1,8 @@
 # Misdeal Documentation Index
 
-Updated: 2026-10-19 — D260 card #38 is released, normal Act1 **38/45 LIVE** with Godot 4.7.2 real Battle→Reward→Table functional and balance PASS. **D261 current:** select card #39 design from three original choices; no #39 game content, artwork or release yet.
+Updated: 2026-10-19 — **D261 Court of the Mute SECOND portrait approved and committed** as native `448×274` game card art, with F6 preview and Godot 4.7.2 QC PASS. **#39 in QA only**, three truly new original animated enemy roles/arena/unique verdict mechanic are next. Normal Act1 remains **38/45 LIVE**; #38 was released in D260.
 
-**CURRENT NEW CHAT START:** [D261 option A/B/C concepts](D261_CARD39_CONCEPT_OPTIONS.md) · [D261 current handoff](NEXT_CHAT_HANDOFF.md). Technical source: [D260 released #38 report](D260_BLACK_LANTERN_CARD38_RELEASE.md), [D260 QA](qa/D260_RELEASE_QC.json), [D260 F6](../scenes/dev/black_lantern_d260_released_battle_preview.tscn).
+**START CURRENT:** [D261 exact second-art selection and native QA](D261_COURT_SELECTED_ART_QA.md) · [D261 selected-art QC record](qa/D261_COURT_ART_QC.json) · [D261 F6 standalone card preview](../scenes/dev/court_of_the_mute_d261_card_preview.tscn) · [D261 current handoff](NEXT_CHAT_HANDOFF.md). Previous [D261 A/B/C options](D261_CARD39_CONCEPT_OPTIONS.md) are historical concept selection; D260 card #38 remains in [released record](D260_BLACK_LANTERN_CARD38_RELEASE.md).
 
 ## Read first (current, short, authoritative)
 
