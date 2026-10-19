@@ -11,6 +11,6 @@ wizard_line = "Присяжные давно истлели. Зато приго
 type_label = "БОЙ"
 tier = 1
 resolution_type = "combat"
-target_path = ""
+target_path = "res://resources/encounters/court_of_the_mute.tres"
 art_path = ""
 prototype_result_text = ""
