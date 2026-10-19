@@ -1,8 +1,8 @@
 # Misdeal Documentation Index
 
-Updated: 2026-10-19 — **D260 card #38 RELEASED**, Act1 ordinary deck **38/45**. Godot 4.7.2 released normal Tier1 deal → real Battle win → Reward claim → Table PASS; 54-case balance matrix PASS. All 5 original Black Lantern character sprite packs live in shared animation library. Next: D261 / design and art direction for #39.
+Updated: 2026-10-19 — D260 card #38 is released, normal Act1 **38/45 LIVE** with Godot 4.7.2 real Battle→Reward→Table functional and balance PASS. **D261 current:** select card #39 design from three original choices; no #39 game content, artwork or release yet.
 
-**START:** [D260 full release and next-chat context](D260_BLACK_LANTERN_CARD38_RELEASE.md) · [D260 QA evidence](qa/D260_RELEASE_QC.json) · [D260 direct released Battle F6 preview](../scenes/dev/black_lantern_d260_released_battle_preview.tscn). [D259 staging history](D259_CANONICAL_FIVE_ROLE_RELEASE_PREP.md) retained for rollback, **not current release status**.
+**CURRENT NEW CHAT START:** [D261 option A/B/C concepts](D261_CARD39_CONCEPT_OPTIONS.md) · [D261 current handoff](NEXT_CHAT_HANDOFF.md). Technical source: [D260 released #38 report](D260_BLACK_LANTERN_CARD38_RELEASE.md), [D260 QA](qa/D260_RELEASE_QC.json), [D260 F6](../scenes/dev/black_lantern_d260_released_battle_preview.tscn).
 
 ## Read first (current, short, authoritative)
 
