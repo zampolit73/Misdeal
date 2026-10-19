@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+unit_name = "Безмолвный магистрат"
+visual_role = "mute_magistrate"
+max_hp = 102.0
+damage = 8.0
+attack_interval = 1.85
+attack_range = 63.0
+move_speed = 49.0
+body_radius = 19.0
+separation_padding = 12.0
+visual_scale = 1.0
+show_enemy_name = false

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/encounter_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+encounter_id = "court_of_the_mute"
+title = "СУД БЕЗМОЛВНЫХ"
+card_text = "В пустом трибунале писарь выносит приговор живым. Пока красная печать не погасла, приставы преследуют отмеченного героя."
+wizard_line = "Прошу тишины. Я ещё не решил, какую вину тебе назначить."
+arena_id = "court_of_the_mute"
+enemy_unit_paths = PackedStringArray("res://resources/units/mute_magistrate.tres", "res://resources/units/ash_scrivener.tres", "res://resources/units/bone_bailiff.tres", "res://resources/units/bone_bailiff.tres")
+enemy_names = PackedStringArray("Безмолвный магистрат", "Писарь праха", "Костяной пристав", "Костяной пристав")
+enemy_positions = PackedVector2Array(1100, 370, 1060, 295, 910, 380, 900, 310)
+alternate_enemy_positions = PackedVector2Array(1080, 327, 1130, 414, 950, 335, 945, 420)
+formation_hint = "ПРИГОВОР — писарь предупреждает красной печатью. Пока он жив, приставы выбирают помеченного героя."
+alternate_formation_hint = "ДВА ПРИСТАВА — судья прикрывает писаря, приставы наступают с разных сторон. Снимите печать, убив писаря."

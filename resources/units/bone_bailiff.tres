@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+unit_name = "Костяной пристав"
+visual_role = "bone_bailiff"
+max_hp = 74.0
+damage = 6.8
+attack_interval = 1.70
+attack_range = 81.0
+move_speed = 63.0
+body_radius = 18.0
+separation_padding = 11.0
+visual_scale = 1.0
+show_enemy_name = false
