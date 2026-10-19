@@ -1,6 +1,10 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-19 (D255 three rich original 25-pose QA art sheets committed, 75 unique frames structural pass, source-edge ART HOLD; #38 unreleased, 37/45 live). Source of truth: zampolit73/Misdeal main.
+Updated: 2026-10-19 (D256 consolidated handoff after D255; three style-approved 25-frame QA atlases still ART HOLD from source-edge cuts; live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+
+## D256 — Canonical NEW-CHAT checkpoint (after D255, no gameplay changes)
+
+2026-10-19: Consolidated D255 sprite files, all project locks, current native QA truth, 34 source-edge warning sites, original triple-lantern Guide/Oil Acolyte/Archer identities and exact remaining release gates into **[`docs/D256_NEW_CHAT_HANDOFF.md`](D256_NEW_CHAT_HANDOFF.md)**. D255 user feedback `«отлично»` confirms the THREE **art directions**; 75 structural sprites remain QA-only due 12/13/9 boundary issues. **NEXT: internally repair clipped animated props in the three full 25-frame packs; run one combined visual F6 when genuinely ready; then integrate and full native release QA.** No new gameplay or animation library changes in D256. LIVE 37/45, card #38 unreleased, KARAMBA73 frozen.
 
 ## D255 — User-approved visual direction for all three missing #38 enemies; 75-cel QA pack staged, ART GATE OPEN
 

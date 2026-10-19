@@ -1,6 +1,13 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-19 (D255 approved visual directions and all three complete structural atlases staged; source-edge clipping remains ART FAIL). Act 1 live 37/45.
+Updated: 2026-10-19 (D256 single-file new-chat handoff; D255 3×25 rich sprite ART HOLD; current LIVE 37/45).
+
+## D256 — Current new-chat restart checkpoint
+
+- [x] Archive complete D255 source files, 75 unique candidate sprites, per-frame QA report and F6 triple-character preview in GitHub.
+- [x] Consolidate exact continuation and risks in `docs/D256_NEW_CHAT_HANDOFF.md`; align NEXT_CHAT_HANDOFF/INDEX/HANDOFF/PROJECT_STATE.
+- [ ] **NEXT** correct D255 source-edge **12 Guide / 13 Acolyte / 9 Archer** frame warnings at original pose/prop level, verify 75 natural motions and true original rich silhouette. Only then one combined Godot F6.
+- [ ] Register all three after actual artistic acceptance; native #38 real Battle→Reward→Table, normalized 54-case balance and release smoke. Until then ACT1 **37/45**, checkpoint frozen.
 
 ## D255 — Three complete character-art candidates in one batch; source cropping art gate
 

@@ -1,17 +1,10 @@
 # Misdeal Documentation Index
-Updated 2026-10-18 — **D238 restored batch-first complete 25-frame unit animations**; current sprite task: one full rich Road Sentinel pack. No new complete pack has been produced yet; #38 stays QA-only, Act1 LIVE 37/45.
 
-**D242 LATEST NATIVE VIDEO ART QA:** [D241 failed in motion; source-level redesign contract](D242_SENTINEL_NATIVE_VIDEO_ART_FAIL.md). Do NOT ask to retest D241 or treat its loading as visual PASS.
+Updated: 2026-10-19 — **D256 new-chat checkpoint after D255**. Act 1 LIVE **37/45**, #38 remains QA-only. Two rich original Black Lantern enemies staged (D244 Sentinel / D224 Bearer); remaining THREE rich D255 illustrated sets have **75 structural PASS sprites, internal ART HOLD** from 12/13/9 source-edge warnings. **Do not mistake technical output for finished animated art.**
 
-**PREVIOUS D241 (NOW REJECTED ART):** [Whole-body painted-leg full 25-cell Sentinel QA](D241_SENTINEL_WHOLEBODY_FULL25_QA.md). Earlier [D240 root cause and rejected D239](D240_SENTINEL_ANIMATION_ART_REJECTION.md).
+**START A NEW CHAT HERE:** [D256 — Full current continuation, asset paths, 34 source-edge warnings, next steps](D256_NEW_CHAT_HANDOFF.md). Detailed [D255 all-three art source and known clipping](D255_THREE_RICH_CHARACTER_ATLASES.md), [D255 one combined QA gallery](../scenes/dev/black_lantern_d255_three_character_art_preview.tscn), [D255 QC](qa/D255_THREE_RICH25_QC.json).
 
-**PREVIOUS D239 actual QA deliverable (REJECTED ART):** [Complete 25-cell Sentinel atlas and one full F6](D239_SENTINEL_FULL25_QA.md). Native artistic QA pending; no #38 release. 
-
-**READ THIS FIRST FOR A NEW CHAT:** [D238 — complete current continuation checkpoint](D238_BATCH_ANIMATION_NEXT_CHAT.md). **One 25-frame character atlas per work batch; only ONE full Godot F6 visual review per character**, no approval requests for individual idle/walk/attack/hit/death. Permanent rule: [AGENTS.md](../AGENTS.md); design lock: [DECISIONS.md](DECISIONS.md); exact latest state: [HANDOFF.md](HANDOFF.md).
-
-**LOCKED Road Sentinel art/animation:** [D234 — free-hand grip](D234_SENTINEL_HAND_LANTERN_ATTACHMENT_QA.md) user accepted; [D235 — rich long-SPEAR design](D235_SENTINEL_WALK_ART_APPROVAL.md) user approved; [D236R — six-phase walk](D236R_SENTINEL_GAIT_REPAIR_QA.md) user says «пойдет». D236 gait was rejected. D229 procedural library sprite is only a technical temporary for **unreleased** #38 and NOT final accepted art.
-
-**#38 Black Lantern Road release:** five DISTINCT skeletal original units and accepted D209 moonlit forest; actual cast/combat/light/reward/balance/full-pool QA pending. Do not touch live 37-card pool or immutable [КАРАМБА73 checkpoint](checkpoints/KARAMBA73_2026-10-16.md). Main art reference/release contract: [D220 final sprite gate](D220_BLACK_LANTERN_FINAL_SPRITE_REPLACEMENT_GATE.md).
+Historical earlier D238/D242-D254 records remain below and in [PROJECT_STATE.md](PROJECT_STATE.md) / [HANDOFF.md](HANDOFF.md); superseded older "pending D241 Sentinel" pointers are **not current status**. Live technical source of truth is GitHub main and this active state.
 
 ## Read first (current, short, authoritative)
 

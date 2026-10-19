@@ -1,8 +1,12 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-19 — D255 user visual direction accepted for all three missing #38 originals; 75-cell atlas QA staged; internal attack/chain cropping art hold; 37/45 live.
+Updated: 2026-10-19 — D256 NEW-CHAT entrypoint: docs/D256_NEW_CHAT_HANDOFF.md. Three D255 sprite packs are QA-only until boundary repairs; 37/45 live.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
+
+## D256 — Canonical NEW-CHAT checkpoint (after D255, no gameplay changes)
+
+2026-10-19: Consolidated D255 sprite files, all project locks, current native QA truth, 34 source-edge warning sites, original triple-lantern Guide/Oil Acolyte/Archer identities and exact remaining release gates into **[`docs/D256_NEW_CHAT_HANDOFF.md`](D256_NEW_CHAT_HANDOFF.md)**. D255 user feedback `«отлично»` confirms the THREE **art directions**; 75 structural sprites remain QA-only due 12/13/9 boundary issues. **NEXT: internally repair clipped animated props in the three full 25-frame packs; run one combined visual F6 when genuinely ready; then integrate and full native release QA.** No new gameplay or animation library changes in D256. LIVE 37/45, card #38 unreleased, KARAMBA73 frozen.
 
 ## D255 — User-approved visual direction for all three missing #38 enemies; 75-cel QA pack staged, ART GATE OPEN
 

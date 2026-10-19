@@ -2,6 +2,12 @@
 
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
+## 2026-10-19 — D256: complete self-contained new-chat handoff for D255 art checkpoint
+
+- Consolidated user-approved *visual directions* vs pending animation approval; all 6 large D255 source/atlas blobs, deterministic generator, 75-cel static QA, unified F6 scene, and 34 source-border warnings in `docs/D256_NEW_CHAT_HANDOFF.md`.
+- Updated legacy NEXT_CHAT_HANDOFF and INDEX to point at current D256, rather than old D238/D241 as latest; prepended concise current status to PROJECT_STATE, HANDOFF and ROADMAP.
+- Docs-only. No character registrations, gameplay mechanics, balance, live 37/45 deck or frozen KARAMBA73 changed.
+
 ## 2026-10-19 — D255: complete original visual packs for three remaining #38 roles (QA source and sprites)
 
 - User-approved visual directions for Guide/Oil Acolyte/Archer preserved in lossless Git source. Authored 75 original illustrated pose cutouts as three complete 25-frame WebP alpha candidates + Python generator + per-cell QC and combined x1/x2.1 five-state/two-facing Godot F6 gallery.
