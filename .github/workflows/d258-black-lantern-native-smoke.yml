@@ -56,6 +56,17 @@ jobs:
           if grep -E -i "SCRIPT ERROR|Parse Error|Parser Error|D258: .*failed|D258: .*missing" /tmp/d258-route.log; then
             exit 1
           fi
+      - name: Run real Godot 54-case encounter balance matrix
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 180s /tmp/godot-bin/godot --headless --path . \
+            --scene res://scenes/dev/black_lantern_d258_native_balance_matrix.tscn \
+            2>&1 | tee /tmp/d258-matrix.log
+          grep -q 'D258_MATRIX_RESULT ' /tmp/d258-matrix.log
+          if grep -E -i "SCRIPT ERROR|Parse Error|Parser Error|D207: .*fail" /tmp/d258-matrix.log; then
+            exit 1
+          fi
       - name: Preserve diagnostic logs
         if: always()
         uses: actions/upload-artifact@v4
