@@ -8,6 +8,7 @@ const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 const TABLE_OFFER_SKIN := preload("res://scripts/table/table_offer_skin.gd")
+const CARD_LORE_INSPECT_SCENE := preload("res://scenes/table/card_lore_inspect.tscn")
 
 const LEFT_CARD_POSITION := Vector2(349.0, 329.0)
 const RIGHT_CARD_POSITION := Vector2(659.0, 329.0)
@@ -55,6 +56,7 @@ var card_rest_positions: Dictionary = {}
 var card_rest_rotations: Dictionary = {}
 var card_motion_tweens: Dictionary = {}
 var wizard_reaction_tween: Tween
+var card_lore_inspect: Control
 
 func _ready() -> void:
 	if RunState.is_run_complete():
@@ -71,6 +73,7 @@ func _ready() -> void:
 		button.pressed.connect(_on_offer_button_pressed.bind(button))
 		button.mouse_entered.connect(_on_offer_button_mouse_entered.bind(button))
 		button.mouse_exited.connect(_on_offer_button_mouse_exited.bind(button))
+		button.connect("inspect_requested", _on_offer_inspect_requested.bind(button))
 
 	hidden_card_a.visible = false
 	hidden_card_b.visible = false
@@ -118,7 +121,7 @@ func _apply_ui_kit() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if selection_locked:
+	if selection_locked or is_instance_valid(card_lore_inspect):
 		return
 
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -304,18 +307,19 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	type_label.text = _get_card_type_line(card)
 	description_label.text = TABLE_OFFER_SKIN.short_description(card.card_text)
 	hint_label.text = _get_hint_text(card)
-	button.tooltip_text = "%s\n%s\n\n%s" % [card.title, _get_card_type_line(card), card.card_text]
+	# Full lore is opened deliberately with RMB; no automatic popup may hide cards.
+	button.tooltip_text = ""
 	button.disabled = false
 	button.modulate = Color.WHITE
 
 	var marked: bool = RunState.is_wizard_marked_card(card.card_id)
 	mark_label.visible = marked
 	if marked:
-		button.tooltip_text += "\n\nПЕЧАТЬ: +%d золота сразу. Следующий бой: урон врагов +15%%." % RunState.get_wizard_mark_gold_reward()
+		pass # Marked reward is rendered in the explicit full-lore inspection view.
 
 	if RunState.is_card_held(card.card_id):
 		hint_label.text = "УДЕРЖАНО"
-		button.tooltip_text += "\n\nУдержанная карта вернётся через две раздачи."
+
 
 	art.texture = CARD_ART_CATALOG.get_run_card_texture(card.card_id)
 	art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -447,6 +451,34 @@ func _on_offer_button_mouse_exited(button: Button) -> void:
 	if not selection_locked and not deal_in_progress:
 		_animate_card_hover(button, false)
 	_restore_wizard_line()
+
+func _on_offer_inspect_requested(button: Button) -> void:
+	if selection_locked or deal_in_progress or wager_root.visible:
+		return
+	if is_instance_valid(fate_spread_overlay) or is_instance_valid(squad_status):
+		return
+	var card := _get_button_card(button)
+	if card == null:
+		return
+	if is_instance_valid(card_lore_inspect):
+		card_lore_inspect.queue_free()
+		card_lore_inspect = null
+	var art: Texture2D = (button.get_node("Art") as TextureRect).texture
+	var annotation := ""
+	if RunState.is_wizard_marked_card(card.card_id):
+		annotation = "ПЕЧАТЬ: +%d золота. Следующий бой: урон врагов +15%%." % RunState.get_wizard_mark_gold_reward()
+	if RunState.is_card_held(card.card_id):
+		annotation += "\nУДЕРЖАНО: карта вернётся через две раздачи."
+	card_lore_inspect = CARD_LORE_INSPECT_SCENE.instantiate() as Control
+	add_child(card_lore_inspect)
+	card_lore_inspect.call("present", card.title, _get_card_type_line(card), card.card_text, art, annotation)
+	card_lore_inspect.tree_exited.connect(_on_card_lore_closed)
+
+
+func _on_card_lore_closed() -> void:
+	card_lore_inspect = null
+	_restore_wizard_line()
+
 
 func _configure_card_pivots() -> void:
 	for button in offer_buttons:

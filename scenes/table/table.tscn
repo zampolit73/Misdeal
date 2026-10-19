@@ -794,6 +794,20 @@ text = "ВЫБРАТЬ"
 horizontal_alignment = 1
 
 
+[node name="CardInspectHint" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 470.0
+offset_top = 679.0
+offset_right = 810.0
+offset_bottom = 699.0
+theme_override_colors/font_color = Color(0.87, 0.68, 0.48, 0.95)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 12
+text = "ПКМ ПО КАРТЕ — ЧИТАТЬ ПОДРОБНЕЕ"
+horizontal_alignment = 1
+
 [node name="WagerOverlay" type="CanvasLayer" parent="."]
 layer = 30
 

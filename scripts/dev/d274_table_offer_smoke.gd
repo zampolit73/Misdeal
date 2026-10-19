@@ -2,6 +2,7 @@ extends SceneTree
 
 const SKIN := preload("res://scripts/table/table_offer_skin.gd")
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const LORE_SCENE := preload("res://scenes/table/card_lore_inspect.tscn")
 
 func _initialize() -> void:
 	call_deferred("_verify")
@@ -35,19 +36,21 @@ func _verify() -> void:
 	valid = valid and ha.position.y == 295.0 and hb.position.y == 295.0
 	valid = valid and SKIN.short_description("Длинное описание должно быть доступно для просмотра на карте.") != ""
 	var lore := "ЛУННАЯ ПЕЧАТЬ\nСОБЫТИЕ\n\nВ погребальной чаше лежит серебряная печать. Она ещё помнит, кому должны были открыть склеп."
-	var popup := a.call("_make_custom_tooltip", lore) as PanelContainer
-	valid = valid and popup != null
-	if popup != null:
-		var copy := popup.get_node_or_null("LoreCopy") as Label
-		valid = valid and copy != null and copy.text == lore
-		valid = valid and popup.get_combined_minimum_size().x <= 350.0
-		popup.free()
+	valid = valid and a.has_signal("inspect_requested") and b.has_signal("inspect_requested")
+	var inspect := LORE_SCENE.instantiate() as Control
+	root.add_child(inspect)
+	inspect.call("present", "ЛУННАЯ ПЕЧАТЬ", "СОБЫТИЕ", lore, null, "")
+	var body := inspect.get_node_or_null("Frame/FullDescription") as RichTextLabel
+	valid = valid and body != null and body.text == lore
+	valid = valid and inspect.get_node_or_null("Frame/CloseButton") != null
+	valid = valid and a.tooltip_text.is_empty() and b.tooltip_text.is_empty()
 	valid = valid and ha.z_index > 20 and hb.z_index > 20
+	inspect.queue_free()
 	if not valid:
 		push_error("D274_TABLE_UI_FAIL: material or clickable nodes invalid")
 		table.free()
 		quit(1)
 		return
 	table.free()
-	print("D274_TABLE_UI_PASS: two parchment offers, bounded full-lore tooltip, readable ink, hold tabs above hovered cards")
+	print("D275_TABLE_UI_PASS: normal hover without tooltip, intentional RMB lore panel, full original Cyrillic, card select nodes kept")
 	quit(0)
