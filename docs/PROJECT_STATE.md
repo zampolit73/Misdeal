@@ -1,10 +1,14 @@
 # Misdeal — Current Project State
 
+## D258 — Five rich skeletons in real Godot QA, 54-case technical PASS
+
+2026-10-19: After user's `«все ок. продолжай»` on D257, built QA-only full-five `black_lantern_d258_five_enemy_combat_qa.tscn` and genuine `black_lantern_d258_real_battle_route_qa.tscn` with D257 Guide/Acolyte/Archer plus untouched D244 Sentinel/D224 Bearer. Guide/Archer LEFT sources are mirrored only inside the D258 QA loader. **Actual official Godot 4.7.2 Actions PASS:** parser/import (aside from unrelated legacy JPG import error), 3v5 scene, real Battle launcher and eight-unit/formation #2/D253 light preflight; **54/54 functional matrix**, 54 wins/0 defeats/0 timeouts, 0/2/4 individual hero deaths. **Full Fight→Reward→Table, natural 25-pose animation/HUD art sign-off, and balance acceptance remain unverified.** See [D258 full evidence](D258_FIVE_ROLE_GODOT_QA.md). Live **37/45**, #38 unreleased, KARAMBA73 frozen.
+
 ## D257 — Three recovered 25-frame Black Lantern atlas candidates, single F6 gallery (ART HOLD)
 
 2026-10-19: GitHub Actions successfully authored and committed `extinguished_guide`, `oil_acolyte`, `lantern_archer` **D257 QA-only** 576×480 sprite atlases from the original user-style-approved D255 full sheets. Recovered neighboring-cell image components **9/10/8**, with edge-only fitting, stable core proportions and a separate tentative lower-silhouette contour treatment. Offline QA verifies **75 unique frames + 15 alpha-empty cells + 2px margins**; machine report `docs/qa/D257_SEAM_RECOVERY_QC.json` still marks **11 original lower-boundary source warnings** (4 Guide IDLE, 4 Acolyte IDLE, 3 Archer ATTACK). This is a technical repair attempt **not independently validated artistic recovery**. ONE combined preview: `res://scenes/dev/black_lantern_d257_three_character_art_preview.tscn` (×2.1/×1, all states/both directions); **native F6 NOT RUN**, art judgment PENDING. No three-role production registration, #38 activation, balance or battle-path changes; **37/45 live** and KARAMBA73 frozen. Reproduction, remaining uncertainties, next gates: [D257 report](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md).
 
-Updated: 2026-10-19 (D257 three recovered 25-frame QA atlases in GitHub; 11 original lower-edge source warnings; one native F6 pending; live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+Updated: 2026-10-19 (D258 five original rich roles, Godot 4.7.2 Battle preflight and 54-case functional PASS; full user-native route pending; live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## D256 — Canonical NEW-CHAT checkpoint (after D255, no gameplay changes)
 
