@@ -10,6 +10,7 @@ on:
       - 'scripts/dev/court_of_the_mute_d262_verdict_contract.gd'
       - 'scenes/dev/court_of_the_mute_d262_verdict_contract.tscn'
       - 'scripts/dev/court_of_the_mute_d262_real_battle_boot.gd'
+      - 'scripts/dev/black_lantern_road_battle_matrix.gd'
       - 'scenes/dev/court_of_the_mute_d262_real_battle_boot.tscn'
       - 'resources/encounters/court_of_the_mute.tres'
       - 'resources/units/mute_magistrate.tres'
@@ -53,7 +54,7 @@ jobs:
           timeout 95s /tmp/godot-dir/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --scene res://scenes/dev/court_of_the_mute_d262_real_battle_boot.tscn 2>&1 | tee /tmp/d262-real-battle.log
           grep -q 'D262_COURT_REAL_BATTLE_PASS' /tmp/d262-real-battle.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D262_COURT_REAL_BATTLE_FAIL' /tmp/d262-real-battle.log; then exit 1; fi
-      - name: Regression old 38-card encounter full battle matrix
+      - name: Regression original #38 encounter inside expanded 39-card Act1 pool
         shell: bash
         run: |
           set -o pipefail
