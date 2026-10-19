@@ -58,12 +58,19 @@ func _verify() -> void:
 	buttons[2].pressed.emit()
 	valid = valid and selection.get("selected_role") == "mage"
 	valid = valid and not bool(game_state.call("has_chosen_protagonist"))
+	# ONLY explicit confirmation mutates the run and retains a SOLO hero.
+	confirm.pressed.emit()
+	valid = valid and bool(game_state.call("has_chosen_protagonist"))
+	valid = valid and str(game_state.get("protagonist_role")) == "mage"
+	var starters: Array = game_state.get("party_roles")
+	valid = valid and starters.size() == 1 and str(starters[0]) == "mage"
+	valid = valid and confirm.disabled
 	# Existing game state API remains the only commit path.
 	if not valid:
 		push_error("D279_CLASS_SELECT_FAIL: class table, hover, live stats or two-step selection")
 		selection.queue_free()
 		quit(1)
 		return
-	print("D279_CLASS_SELECT_PASS: actual table backdrop, 3 framed cards, source hero stats on hover, two-step choice without early RunState mutation")
+	print("D279_CLASS_SELECT_PASS: actual table backdrop, 3 framed cards, source hero stats on hover, two-step choice, no early RunState changes and confirmed solo Mage run")
 	selection.queue_free()
 	quit(0)
