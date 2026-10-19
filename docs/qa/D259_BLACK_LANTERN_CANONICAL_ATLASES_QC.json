@@ -1,0 +1,46 @@
+{
+  "version": "D259",
+  "status": "STRUCTURAL_PASS_ART_REVIEW_USER_NO_BLOCKER",
+  "roles": [
+    {
+      "role": "extinguished_guide",
+      "source_origin": "LEFT",
+      "canonical_origin": "RIGHT",
+      "source_sha256": "fbf4a648238c05de280e50ea3c1659e6fc717147aa68a41dc99e2193065f3184",
+      "canonical_sha256": "95a054b282b58fca72d9dc15c7921d727a2c2958c3a651587d79899e850e1991",
+      "source_distinct": 25,
+      "canonical_distinct": 25,
+      "empty_spares": 5,
+      "path": "assets/pixel/units/deck_expansion_v1/extinguished_guide_frames.webp.b64",
+      "status": "STAGED_NOT_RELEASED"
+    },
+    {
+      "role": "oil_acolyte",
+      "source_origin": "RIGHT",
+      "canonical_origin": "RIGHT",
+      "source_sha256": "f6ca1fea3182040d7be6caa2c1536b9392aaa2601457e262cc21778ab4dee3e9",
+      "canonical_sha256": "f6ca1fea3182040d7be6caa2c1536b9392aaa2601457e262cc21778ab4dee3e9",
+      "source_distinct": 25,
+      "canonical_distinct": 25,
+      "empty_spares": 5,
+      "path": "assets/pixel/units/deck_expansion_v1/oil_acolyte_frames.webp.b64",
+      "status": "STAGED_NOT_RELEASED"
+    },
+    {
+      "role": "lantern_archer",
+      "source_origin": "LEFT",
+      "canonical_origin": "RIGHT",
+      "source_sha256": "c57691bb1d61b5ade7786f907e92ec8f3b8e78a3323dd1451f10c30a2b8ea21c",
+      "canonical_sha256": "a980ce794589b6433476971744720f3001923da8904bd56c1b6bed394406a6ea",
+      "source_distinct": 25,
+      "canonical_distinct": 25,
+      "empty_spares": 5,
+      "path": "assets/pixel/units/deck_expansion_v1/lantern_archer_frames.webp.b64",
+      "status": "STAGED_NOT_RELEASED"
+    }
+  ],
+  "original_source_warnings": 11,
+  "released_card_count": 37,
+  "card38_live": false,
+  "note": "D258 user reported all OK, complete QA animation not independently captured; no card activation."
+}
