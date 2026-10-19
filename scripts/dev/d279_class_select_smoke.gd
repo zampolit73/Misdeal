@@ -21,6 +21,15 @@ func _verify() -> void:
 		return
 	var selection := packed.instantiate() as Control
 	root.add_child(selection)
+	# Rendering diagnostic complements node tests; headless viewport may be empty.
+	await process_frame
+	await process_frame
+	var scene_capture := root.get_viewport().get_texture().get_image()
+	if scene_capture != null and scene_capture.get_width() >= 640:
+		scene_capture.resize(640, 360, Image.INTERPOLATE_LANCZOS)
+		var output: PackedByteArray = scene_capture.save_jpg_to_buffer(0.58)
+		if not output.is_empty():
+			print("D279_RENDER_THUMB_START:" + Marshalls.raw_to_base64(output) + ":D279_RENDER_THUMB_END")
 	var buttons: Array[Button] = [
 		selection.get_node("Frame/Cards/Knight") as Button,
 		selection.get_node("Frame/Cards/Ranger") as Button,
