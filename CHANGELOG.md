@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-19 — D263: QA-only empty Court battle arena authoring and native preview (art hold)
+
+- Added reproducible original Court `1280×720` character-free pixel battle plate from `tools/art/author_court_d263_arena.py`; stairs, pillars, cracked tribunal, scales and wide walkable stone. Kept separate from production `BattleBackdrop` pending artistic quality.
+- GitHub Actions Pillow source/QC PASS; native Godot 4.7.2 full image decode + D261 approved card reference in `res://scenes/dev/court_of_the_mute_d263_empty_arena_preview.tscn` PASS; G toggles floor footprint.
+- Explored character montage poses but **NO THREE COMPLETE original 25-frame alpha-animation packs obtained or committed**. Incomplete/opaque source intentionally rejected; full artistic D263 release gate OPEN.
+- No normal `ACT1_CARD_IDS`, UnitData balance, common sprite registration or original card art changes. **38/45 LIVE**, #39 QA-only, KARAMBA73 frozen. [D263 honest QA note](docs/D263_COURT_EMPTY_ARENA_QA.md).
+
 ## 2026-10-19 — D262: Court new combat UnitData + encounter-scoped verdict mechanic (QA only)
 
 - Added `mute_magistrate`, `ash_scrivener` and `bone_bailiff` wholly distinct skeletal `UnitData` and Court encounter with four enemy instances/two original formations.

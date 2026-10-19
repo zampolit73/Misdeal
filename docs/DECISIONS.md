@@ -1,6 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 Updated: 2026-10-19.
 
+## D263 — Character-free Court arena mandatory; reject opaque/incomplete sprite montage as release art
+
+2026-10-19: D261 exact second card art is locked; D262 Court red-verdict scoped mechanic is already functional. D263 original **empty** architectural tribunal and separate Godot F6 viewer are staged as QA **only**; this reproducible pixel geometry may support floor/contact tests but does NOT meet selected card art's painterly visual quality and is NOT registered as a finished battle plate. Exploratory generated composite sheets lack a clean 25-pose alpha contract for all three roles; never fabricate the missing Magistrate/Bailiff poses by repeats or generic flips or copy earlier D229-quality sprites into final build. Next produce all three original complete 25-frame packs as a batch and a rich real empty tribunal arena; preserve user-picked D261 image and 38/45 live state. [D263 art truth](D263_COURT_EMPTY_ARENA_QA.md).
+
 ## D262 — Court verdict is encounter-scoped, warned and counterable; no global target AI changes
 
 2026-10-19: Implement the user-selected `Суд безмолвных` fight as **one Judge, one Scribe and two Bailiffs** (3 genuinely new original role identities), with 2 authored deployments. The Scribe visibly marks nearest living hero for 1.4s before Bailiffs have a 2.5s **target preference**; mark expires, or Scribe death immediately cancels; 3.6s between phases. Do not lock a hero with stun, auto-damage an unreachable target, modify common `BattleUnit` AI/target formula, or borrow old UnitData/visuals. Test controller and hookup in real Battle headless but **withhold release and production visuals** until 3 complete 25-pose sprites and a separate empty (no painted actors) walkable tribunal arena are ready. Godot 4.7.2 6 real Battle configurations and D260 54-case regression PASS. [D262 record](D262_COURT_VERDICT_QA.md). ACT1 remains 38/45, accepted D261 card art frozen.

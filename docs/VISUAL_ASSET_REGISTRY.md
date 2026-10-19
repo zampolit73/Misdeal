@@ -1,5 +1,9 @@
 ## D255 — User-approved visual direction for all three missing #38 enemies; 75-cel QA pack staged, ART GATE OPEN
 
+## D263 — Empty Court architecture QA candidate, NOT production/approved arena
+
+User-approved SECOND D261 `court_of_the_mute_selected_v1.webp.b64` card image remains byte-identical. D263 source-authored empty `1280×720` Court architectural plate: `assets/pixel/battle/arenas/court_of_the_mute_d263_qa.webp.b64` (stage-only), giant scales, stone bench, arches, walkable floor, NO baked combat characters. Native F6 at `res://scenes/dev/court_of_the_mute_d263_empty_arena_preview.tscn` Godot 4.7.2 PASS; artistically simplified, **NOT yet approved or registered for real Battle**. Generated art montage has incomplete/small opaque pose grids; do not declare 25-frame Magistrate/Scrivener/Bailiff or substitute prior unit art; full three original 25-frame packs still pending. [Detailed D263 source/QC](D263_COURT_EMPTY_ARENA_QA.md). Live 38/45, KARAMBA73 frozen.
+
 ## D261 — Court of the Mute #39, user-approved SECOND portrait composition
 
 User selected D261 A and specifically **image #2** of three rendered `Суд безмолвных` art options. Exact portrait source `мрачный_трибунал_у_трона_смерти.png` (1086×1448, SHA256 `3b1abff4...`) depicts judge center, scribe right, two bailiffs guarding, giant hanging scale and ruined tribunal. GitHub selected export: `assets/pixel/card_unification_v1/run/court_of_the_mute_selected_v1.webp.b64`, source crop x0–1086/y222–886 resized without distorting figures to 448×274. WebP SHA256 `704eef55...`; Godot 4.7.2 native art preview CI PASS. The selected scene is **card art only**; it is NOT a combat background and does not substitute new full-body sprites. Arena and full 25-frame `mute_magistrate`, `ash_scrivener`, `bone_bailiff` still pending, #39 QA only, Act1 **38/45 LIVE**. [D261 exact choice and crop report](D261_COURT_SELECTED_ART_QA.md). KARAMBA73 unchanged.

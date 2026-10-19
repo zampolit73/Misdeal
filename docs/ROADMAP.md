@@ -1,5 +1,14 @@
 # Misdeal — Active Roadmap
 
+## D263 — Original character-free Court architecture candidate and honest art gate
+
+- [x] Reproducibly generate a standalone **1280×720 empty** underground tribunal with stairs, throne, scales, candles, contiguous tactical floor; NO burned-in Court units.
+- [x] Validate image size, lossless round-trip and Godot 4.7.2 scene decoding with approved D261 selected-card-art reference intact; F6 `court_of_the_mute_d263_empty_arena_preview.tscn`, G toggles legal floor.
+- [x] Inspect exploratory sprite montage and reject as final: Magistrate ~24 miniatures, Bailiff ~18–20; Scrivener ~30 but opaque/composite, no clean grounded 6×5 sheet. Do NOT invent missing original poses or register false art.
+- [ ] **NEXT D264:** make THREE full original clean-alpha sprite sheets (each 25 distinct = idle4/walk6/attack6/hit3/death6, 5 empty in 6×5 96px), coherent grip/facing and boots; single combined native F6.
+- [ ] Refine current flat-color geometric floor into artistically acceptable **rich authored, character-free** scene matching selected second D261 portrait; current D263 asset remains QA only.
+- [ ] Stage game-ready arena + rich original sprites, test full native 54-case Court balance and Battle→Reward→Table, then **release card #39 separately**. Keep ACT1 38/45 and KARAMBA73 unchanged.
+
 ## D262 — Court original combat roster and encounter-only red verdict targeting (QA technical PASS)
 
 - [x] Stage **new** `mute_magistrate`, `ash_scrivener`, `bone_bailiff` `UnitData` with four original enemy instances and two formations; no borrowed enemy roles.

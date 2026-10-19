@@ -1,8 +1,8 @@
 # Misdeal Documentation Index
 
-Updated: 2026-10-19 — **D262 CURRENT:** Court of the Mute new original UnitData roles, four-enemy two-formation encounter and isolated verdict mechanic Godot 4.7.2 native PASS (6 real Battle cases), all **ART HOLD until three 25-pose packs and true empty tribunal arena**. Live **38/45** and selected second D261 card art unchanged.
+Updated 2026-10-19 — **D263 CURRENT: empty Court tribunal QA arena PASS in Godot 4.7.2, original 3×25 character animation and final painterly arena ART HOLD**. Live **38/45**, #39 unreleased; second approved D261 card illustration and frozen KARAMBA73 untouched.
 
-**START:** [D262 Court QA and exact next art gate](D262_COURT_VERDICT_QA.md) · [D261 exact approved second card illustration](D261_COURT_SELECTED_ART_QA.md) · [D262 project handoff](NEXT_CHAT_HANDOFF.md). No #39 release yet.
+**START:** [D263 truthful art QA and next gate](D263_COURT_EMPTY_ARENA_QA.md) · [D263 empty arena F6](../scenes/dev/court_of_the_mute_d263_empty_arena_preview.tscn) · [D263 source QC](qa/D263_COURT_ART_GATE_REPORT.json) · [D262 verdict mechanic PASS](D262_COURT_VERDICT_QA.md).
 
 ## Read first (current, short, authoritative)
 
