@@ -1,5 +1,9 @@
 # Misdeal — Current Project State
 
+## Story checkpoint — Act I «Обещанный рассвет» fully outlined, not implemented (2026-10-19)
+
+The user approved **Chancellor forged a truthful military order; Commandant learned of forgery and kept lying; Commandant is Bone Warden XIII**. Protagonist still made a conscious tragic decision to sacrifice the castle to save the country. New [story bible](ACT1_PROMISED_DAWN_STORY_BIBLE.md) contains 20-day chronology, 12 draft letters, 39/39 unique live card hooks (verified against RunState.ACT1_CARD_IDS), evidence graph, optional physical table inspection of two seals and conditional post-XIII castle-vs-country endings. All of these are **story-only**, with no newly implemented letter UI, investigation progression, altered encounters, or changed finale. Exact supernatural cause and Wizard role remain open. Existing Act1 stays **39/45**, Fate Spread I–XII + XIII, DS2, original combat and frozen art unchanged. Prior note saying culprit unknown is superseded for **culprit identity only**.
+
 ## Act I siege mystery — user-selected narrative direction (2026-10-19, design only)
 
 The user explicitly chose the plot reveal that the protagonist **sent the besieged castle a truthful order stating no relief would come**, but an **unknown third party forged the letters promising relief**. The protagonist still consciously sacrificed the castle to protect the country. Culprit, motive, undead origin and exact finale remain open, not canon. This is a narrative design decision only; **no current card/gameplay or art was changed**. Existing Act I remains **39/45** with I–XII and Bone Warden XIII. [Full story handoff](ACT1_SIEGE_MYSTERY_DIRECTION.md).
