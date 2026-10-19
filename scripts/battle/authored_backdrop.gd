@@ -18,6 +18,7 @@ const ARENA_BLACK_LANTERN_ROAD := "black_lantern_road"
 # D268: QA battle renders Court geometry, not fallback crypt; #39 remains unreleased.
 const ARENA_COURT_OF_THE_MUTE := "court_of_the_mute"
 
+const COURT_QA_LEGACY_PATH := "res://assets/pixel/battle/arenas/court_of_the_mute_d265_rich_qa.webp.b64"
 const BACKDROP_SIZE := Vector2i(1280, 720)
 
 const ARENA_PATHS := {
@@ -43,6 +44,7 @@ const ARENA_PATHS := {
 
 var arena_id := ARENA_CRYPT
 var runtime_textures: Dictionary = {}
+var court_qa_show_legacy := false
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -59,11 +61,23 @@ func set_arena_id(value: String) -> void:
 	material = null
 	texture = _get_runtime_texture(arena_id)
 
+# D270 QA-only visual comparison: switch between D265 rollback and the
+# editable D270 illustrated empty tribunal in the exact same real Battle.
+func set_court_qa_legacy_art(enabled: bool) -> void:
+	if arena_id != ARENA_COURT_OF_THE_MUTE:
+		return
+	court_qa_show_legacy = enabled
+	runtime_textures.erase(ARENA_COURT_OF_THE_MUTE)
+	texture = _get_runtime_texture(ARENA_COURT_OF_THE_MUTE)
+
+
 func _get_runtime_texture(value: String) -> Texture2D:
 	if runtime_textures.has(value):
 		return runtime_textures[value] as Texture2D
 
 	var path := str(ARENA_PATHS.get(value, ARENA_PATHS[ARENA_CRYPT]))
+	if value == ARENA_COURT_OF_THE_MUTE and court_qa_show_legacy:
+		path = COURT_QA_LEGACY_PATH
 	var bytes := PackedByteArray()
 	if path.ends_with(".webp.b64"):
 		var encoded := FileAccess.get_file_as_string(path).strip_edges()
