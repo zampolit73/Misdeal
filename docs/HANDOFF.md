@@ -1,6 +1,10 @@
 # Misdeal — Canonical Working Handoff
 
-## D266 — CURRENT: three full25 Court prototypes native QA PASS, artistic quality still open
+## D267 — CURRENT: all THREE rich Court source designs user APPROVED; next import and clean atlas pass
+
+User **«отлично. подходит»** explicitly approved the newest rich transparent illustration pose sheets for Magistrate, Scrivener and Bailiff, all delivered as 1374×1145 conversation PNGs. Preserve the bronze scale-staff, real ledger/quill and shield/halberd. **NOT yet imported to GitHub as original images**, NOT 75 native-frame PASS. Supersede simplified D266 candidate artwork direction, but keep D266 mechanics QA. Exact required next task: transfer the actual approved three PNG sources, perform seam-aware attribution of original poses to 25 distinct 96px cells per role, visually check feet/held props/facing/full motions in one native Godot F6, then real Battle and only after QA release #39. [D267 source details](D267_APPROVED_COURT_CHARACTER_ART.md). D264 lower-floor locked, #39 QA-only, live **38/45**, KARAMBA73 intact.
+
+## D266 — HISTORICAL: three full25 Court prototypes native QA PASS, artistic quality still open
 
 2026-10-19: D266 adds three role-original pixel-motion QA sheets for Magistrate/Scrivener/Bailiff with 25 transparent poses each (idle4/walk6/attack6/hit3/death6, 576x480). [Independent audit](qa/D266_THREE_ROLE_FULL25_AUDIT.json): **75/75 structural PASS**, all 15 spare cells transparent; [native Godot 4.7.2 F6 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39227508979). Scene `res://scenes/dev/court_of_the_mute_d266_three_animation_preview.tscn` displays all 3 at real x1 and enlarged x2, five motion states/directions. **Important: programmatically drawn character prototypes are still too simplified for APPROVED final rich D261 style**, no production role registration; D265 backdrop QA-only, #39 still unreleased (38/45 live). NEXT D267: one batch artistic enrichment and single native visual review, then production battle/balance/reward gate. [Details](D266_COURT_ALL_THREE_ANIMATION_QA.md). KARAMBA73 frozen.
 

@@ -1,5 +1,12 @@
 # Misdeal — Active Roadmap
 
+## D267 — Rich Court trio artistic direction approved; source import and native atlas conversion NEXT
+
+- [x] User approved THREE detailed 1374×1145 transparent pose-sheet illustrations (Magistrate/Scrivener/Bailiff) after D266 stylized QA prototype review.
+- [ ] Transfer unchanged three source PNGs from conversation to GitHub source archive; seam-aware compose 25 full original clean poses per role into 6×5×96, with 5 clear spare cells and planted feet.
+- [ ] One F6 native x1/x2 motion review all five states/directions and real weapon/book grip; only then register real sprite assets. No art reconceptualization or micro-approvals.
+- [ ] Refine character-free Court arena and test actual Battle/Reward and 54-case matrix; release #39 only when gates pass. Live **38/45**, KARAMBA73 frozen.
+
 ## D266 — Court three transparent 25-pose sprites structurally QA-ready, not yet approved rich game art
 
 - [x] Three different 576x480 / 6x5x96 authored pose sheets: Judge, Scribe, Bailiff with 25 used and 5 empty cells each.

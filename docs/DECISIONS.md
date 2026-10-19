@@ -1,6 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 Updated: 2026-10-19.
 
+## D267 — User approved rich Court trio; never substitute D266 procedural QA art as final
+
+2026-10-19: User accepted three new actual illustrated transparent pose sheets, individually character-true Magistrate scales-staff, Scrivener book/quill, Bailiff shield/halberd. **Approval covers visual identity**, not completed runtime cels: sources are 1374×1145, need 6×5×96 clean-alpha seam-aware repack, genuine separate 25 poses, F6 x1 motion checks, no false final runtime PASS. Preserve original images and this artistic direction, D261 exact selected card art and D264 lower-floor decision. See [D267](D267_APPROVED_COURT_CHARACTER_ART.md). No #39 release yet, 38/45 live.
+
 ## D266 — Original procedural keyframed art may pass structural QA, not final visual acceptance
 
 2026-10-19: Three distinct 25-pose original Court motion sheets were procedurally authored as transparent QA candidates, all 75 independently valid. Godot F6 scene shows authentic ×1 alongside ×2; **do not equate technical distinctness and alpha correctness with rich final quality** under D168/D229 art standards. Keep these in QA, outside strict production animation library and card #39 deck, until complete visual approval. [D266 report](D266_COURT_ALL_THREE_ANIMATION_QA.md). D264 bottom floor and KARAMBA73 preserved.

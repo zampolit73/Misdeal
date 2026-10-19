@@ -1,5 +1,9 @@
 # Misdeal — Current Project State
 
+## D267 — Rich Court character art direction APPROVED by user (atlas conversion pending)
+
+2026-10-19: User replied **«отлично. подходит»** to all THREE rich 1374×1145 transparent source sheets generated for `mute_magistrate` (bronze scales staff), `ash_scrivener` (ledger/quill), `bone_bailiff` (shield and hooked halberd). **Designs APPROVED**, replacing the intentionally simplified D266 sprite prototype direction; do not misconstrue approval as a 75-frame runtime atlas import. Next convert exact original PNG source poses to three clean 6×5×96 alpha atlases using seam-aware composition and independent x1 Godot motion inspection, THEN integrate. The approved source PNGs currently live in conversation, **not GitHub**. Selected D261 card picture, D264 lower combat floor, D262 mechanics, live **38/45**, D260 #38 and KARAMBA73 unchanged. [Full D267 approval and handoff](D267_APPROVED_COURT_CHARACTER_ART.md).
+
 ## D266 — All 3 Court animation sheets available (75/75 structural PASS; visual art HOLD)
 
 2026-10-19: D266 adds three role-original pixel-motion QA sheets for Magistrate/Scrivener/Bailiff with 25 transparent poses each (idle4/walk6/attack6/hit3/death6, 576x480). [Independent audit](qa/D266_THREE_ROLE_FULL25_AUDIT.json): **75/75 structural PASS**, all 15 spare cells transparent; [native Godot 4.7.2 F6 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39227508979). Scene `res://scenes/dev/court_of_the_mute_d266_three_animation_preview.tscn` displays all 3 at real x1 and enlarged x2, five motion states/directions. **Important: programmatically drawn character prototypes are still too simplified for APPROVED final rich D261 style**, no production role registration; D265 backdrop QA-only, #39 still unreleased (38/45 live). NEXT D267: one batch artistic enrichment and single native visual review, then production battle/balance/reward gate. [Details](D266_COURT_ALL_THREE_ANIMATION_QA.md). KARAMBA73 frozen.

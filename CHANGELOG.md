@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-19 — D267: all three rich Court character art directions user-approved
+
+- User explicitly approved the detailed transparent Judge, Scribe and Bailiff source pose illustrations (three 1374×1145 RGBA images). Archived exact source filenames/design description and no-more-reconcepting rule in [D267](docs/D267_APPROVED_COURT_CHARACTER_ART.md).
+- Original image import, seam-aware 75-frame atlas QC and native F6 not yet complete. D266 simplified QA prototype art not promoted to production. #39 still QA-only, 38/45 live, KARAMBA73 preserved.
+
 ## 2026-10-19 — D266 three Court 25-pose prototype animation atlases + QA
 
 - Authored three entirely new 576x480 25-pose transparent skeletal animation atlases (Magistrate/Scrivener/Bailiff) under `assets/pixel/units/court_of_the_mute_qa/`, from source keyed joint and prop movement, not borrowed sprites or annotated montage.
