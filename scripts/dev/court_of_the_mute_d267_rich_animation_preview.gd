@@ -34,12 +34,12 @@ var floor_overlay: ColorRect
 
 
 func _ready() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 38 or RunState.ACT1_CARD_IDS.has(CARD_ID):
-		_fail("QA must not release #39 into ordinary Act1 card pool")
+	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		_fail("Court #39 should be included in the 39/45 released Act1 pool")
 		return
 	var card: RunCardData = RunState.get_card(CARD_ID)
-	if card == null or not card.target_path.is_empty():
-		_fail("Card #39 must remain an unconnected QA card")
+	if card == null or card.target_path != "res://resources/encounters/court_of_the_mute.tres":
+		_fail("Released card #39 has no actual Court encounter path")
 		return
 	var background := _image_from_base64(BACKDROP, Vector2i(1280, 720))
 	if background == null:
@@ -103,7 +103,7 @@ func _ready() -> void:
 	_set_facing(true)
 	_play("walk")
 	_label("D268 · 27 исходных меток: 5 Магистрат / 0 Писарь / 22 Пристав. Это точки проверки, не доказанные дефекты.",Vector2(62,599),Vector2(1152,27),13)
-	print("D267_THREE_RICH_COURT_F6_PASS: Godot decoded 3 original 25-pose alpha animation atlases; idle/walk/attack/hit/death; native x1 and zoom x2; card39 still QA")
+	print("D267_THREE_RICH_COURT_F6_PASS: Godot decoded 3 original 25-pose alpha animation atlases; idle/walk/attack/hit/death; native x1 and zoom x2; card39 released; 39/45")
 	print("D272_COURT_GALLERY_D271_PASS: accepted painted Court backdrop in all-three rich sprite inspection")
 	print("D272_VISUAL_REVIEW: 27 original SOURCE flags need x1 grip, feet and Bailiff death3-5 inspection; not proven output crop defects")
 
@@ -244,7 +244,7 @@ func _update_caption(focus_role: String = "") -> void:
 		note = " · ПРОВЕРИТЬ ИСХОДНЫЙ КРАЙ: " + ", ".join(active_flags)
 	if not focus_role.is_empty():
 		note += " · ФОКУС: " + focus_role
-	caption.text = "D268 / %s · %s · %s%s · #39 QA · 38/45" % [current_state.to_upper(), direction, hint, note]
+	caption.text = "D268 / %s · %s · %s%s · #39 · 39/45" % [current_state.to_upper(), direction, hint, note]
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
