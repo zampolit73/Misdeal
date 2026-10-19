@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-19 — D267 continuity: verified source/art integration after interrupted connection
+
+- Checked live GitHub main: all three approved original Court source PNGs, their rich full25 atlases and Godot ×1/×2 F6 preview are committed; [native Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39242455779). No retransmission or accidental overwrite required.
+- Archived **exact current next-chat handoff** in [D267_NEW_CHAT_HANDOFF.md](docs/D267_NEW_CHAT_HANDOFF.md): 27 seam warnings by role, art review, actor-free arena and full Court Battle/Reward/54-case QA open; card #39 still QA only, Act1 **38/45** and frozen KARAMBA73 preserved.
+
 ## 2026-10-19 — D267 rich user-approved Court originals/75-frame atlas integration verified
 
 - All three exact approved RGBA PNG sources and all three rich 25-pose QA atlases committed to GitHub. Recovered actual original artwork instead of D266 simplified procedural placeholders.

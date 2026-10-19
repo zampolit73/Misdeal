@@ -1,6 +1,8 @@
 # Misdeal Documentation Index
 
-**Current D267:** all three selected rich Court PNGs and recovered 75/75 sprites in GitHub, native Godot 4.7.2 PASS. [Up-to-date source/QC](D267_ACTUAL_RICH_ATLAS_IMPORT_QA.md). Remaining 27 warnings and native ×1 motion/art gate. #39 QA only, Act1 38/45 live.
+**Verified after connection interruption, 2026-10-19 — D267 CURRENT.** All three exact approved Court PNGs and 75 original rich atlas cels **already on GitHub**, Godot 4.7.2 preview CI PASS. **27 source edge warnings** await real ×1 motion review; rich empty tribunal arena and full Court Battle release gates remain. Live **38/45**, #39 QA only.
+
+**START NEXT CHAT:** [D267 verified handoff](D267_NEW_CHAT_HANDOFF.md) · [D267 rich original import QA](D267_ACTUAL_RICH_ATLAS_IMPORT_QA.md) · [D267 ×1/×2 F6 scene](../scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn) · [Machine QC](qa/D267_RICH_COURT_ART_RECOVERY_QC.json).
 
 ## Read first (current, short, authoritative)
 
