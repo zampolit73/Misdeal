@@ -1,18 +1,22 @@
 # Misdeal — Canonical Working Handoff
 
-## D259 — CURRENT: five canonical original roles ready in Battle; card #38 unreleased
+## D260 — CURRENT: #38 RELEASED (38/45), next D261 card #39
+
+Misdeal `main` now deals `black_lantern_road` as Act1 card #38 (**38/45 live**), with all five distinct original 25-pose skeletons in shared animation library and unchanged D200 card, D209 forest, scoped lanternlight x1.16, DS2, Fate Spread and KARAMBA73. Godot 4.7.2 [release route PASS](https://github.com/zampolit73/Misdeal/actions/runs/39207937827): real Tier1 offer + choose → Battle win → Reward claim → Table. [Post-release balance matrix PASS](https://github.com/zampolit73/Misdeal/actions/runs/39207937886): 54/54, no party losses/timeouts, reasonable average hero HP 79.5/69.4/74.4%. Direct F6: `res://scenes/dev/black_lantern_d260_released_battle_preview.tscn`; user last said `«Все ок»`. Next **D261 design card #39**, ensuring unique enemies for any new combat and offering 2–3 rendered scene options under D168 before choosing art. D259/D258 pre-release 37-card smoke guards are historical. Legacy import warning `approved_battle_direction.jpg` and 11 older source-art boundary flags remain documented. [Full D260 handoff](D260_BLACK_LANTERN_CARD38_RELEASE.md).
+
+## D259 — HISTORICAL pre-release: five canonical original roles ready in Battle; card #38 unreleased
 
 `main` now stages ALL FIVE unique rich 25-pose Black Lantern roles in `MisdealUnitAnimationLibrary`, using canonical converted D257 Guide/Acolyte/Archer and byte-exact D244 Sentinel/D224 Bearer. No edits to main BattleUnit facing, stats or light. Exact chosen D200 card art and D209 arena preserved; card `black_lantern_road.tres` now targets its true encounter path, **ACT1_CARD_IDS still 37**. User `«все ок»` after D258 native F6 means no reported blocker, not full recorded QA. D259 Godot 4.7.2 standard-library Battle preflight and 54/54 functional matrix PASS. **GODOT HEADLESS END-TO-END PASS:** [final CI](https://github.com/zampolit73/Misdeal/actions/runs/39206093134) completed real Battle win→Continue→Reward→Table and card completion without any sprite injections; 54-case regression PASS. The QA-only headless frame-signal pump is not a real visual verdict. **NEXT:** focused balance/readability pass; stage single native F6 if needed, then release #38 into 38/45 with a dedicated deal/route smoke. Avoid generic stat inflation; previous user reported no visible blockers. Details [D259 handoff](D259_CANONICAL_FIVE_ROLE_RELEASE_PREP.md). **KARAMBA73 frozen.**
 
-## D258 — CURRENT next action: native full Battle→Reward→Table, one art check
+## D258 — HISTORICAL next action: native full Battle→Reward→Table, one art check
 
 Main now includes D258 five-role original rich 3v5 and `res://scenes/dev/black_lantern_d258_real_battle_route_qa.tscn`, a true Battle F6 launcher with 1/2/3 heroes and both formations. GitHub Actions with actual Godot 4.7.2 **PASS** for Battle preflight (all five original enemy roles, D257 sprites, D253 light) and **54/54 functional balance matrix**; **54 victories alone is NOT balance approval**. D257 11 source-floor warnings and user-native full Fight→Reward→Table still pending. **NEXT:** one F6 trio / Перекрёсток through victory → Reward → Table, then solo/duo with Марш; inspect x1 scale, grips/feet, crowding and light. Fix defects as a complete pack without micro-approvals; keep #38 out of normal deck. Source [D258 handoff](D258_FIVE_ROLE_GODOT_QA.md). **37/45 LIVE, KARAMBA73 untouched.**
 
-## D257 — ACTIVE next action: one native complete-pack art check, then original five-role #38 gates
+## D257 — HISTORICAL next action: one native complete-pack art check, then original five-role #38 gates
 
 GitHub `main` now contains all three new reconstructed QA atlases, deterministic D257 author/Actions build, successful 75-frame structural report and **`res://scenes/dev/black_lantern_d257_three_character_art_preview.tscn`**. Recovered 9/10/8 source-side components; 11 lower-edge original warnings remain under localized color-contour repair. **Next: one F6 visual check of all three characters at true ×1 and ×2.1, both facings and five states, especially Guide three-lamp rigid yoke, Oil tank/burner, Archer bow/release and sole contact.** Fix any art/motion defects internally in a full batch before registration. F6 and real combat NOT yet run; do not call this final. Then route three roles through actual 3v5/D254 Battle→Reward→Table/54-case balance and only then consider #38 release. Live **37/45**, DS2, D244/D224 and frozen KARAMBA73 untouched. Details: [D257 current QA/handoff](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md). D256 note is historical.
 
-Updated: 2026-10-19 — D259 all-five canonical native technical QA and real headless Fight→Reward→Table PASS. Balance/release gate open, 37/45 live.
+Updated: 2026-10-19 — D260 card #38 RELEASED, 38/45, native full release route + balance CI PASS, next D261.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
