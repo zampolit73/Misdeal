@@ -1,5 +1,10 @@
 # Misdeal — Canonical Working Handoff
 
+## D271 — ACTUAL PAINTED COURT IN MAIN; Godot native PASS, artistic user verdict next
+
+The previously rejected D270 SVG has been replaced in real **Court-only** QA Battle by the genuine full-resolution painted D271 WebP b64 (1280×720; SHA256 `1eb45164d9c7418fb9c459d18c0640935452266aeecbb04d1e9d7bd527af8784`). [Godot 4.7.2 full D271 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39261648732): source bytes, 1280×720 texture, F6 **B** D265/D271 comparison, **L/G**, six real Battle setups, 54/54 Court BattleUnit simulations and QA-only Fight→Reward→Table. The old "not transferred" D271 notes below are HISTORICAL/SUPERSEDED. Need native visual acceptance from user, then rich D267 ×1 animation review/27 flags, then separate #39 ordinary-deal release. Card #39 still UNRELEASED, 38/45, D261/D264/#38/KARAMBA73 unchanged. [D271 verified report](D271_PAINTED_COURT_NATIVE_PASS.md).
+
+
 ## D271 — CURRENT: User REJECTED D270 schematic Court art; do not call it finished
 
 User showed native 1280×720 Battle screenshot of D270 SVG and said «Это вообще не отрисованая арена, а какая то заглушка». **Accept this as an explicit artistic FAIL**, not an invitation to polish procedural polygons again. A new genuinely detailed raster painterly **actor-free** Court background has been generated, cropped/resized to a flat *unbroken* lower-floor 1280×720 QA candidate in current conversation at `/mnt/data/misdeal_court_d271_painted_arena_qa.webp` with preview PNG. **NOT yet copied to GitHub; do not pretend otherwise.** Need binary-safe transfer of exact WebP to `assets/pixel/battle/arenas/`, then GitHub `AuthoredBattleBackdrop` Court-only mapping, native F6 Battle scene visual comparison and 54-case/reward regression, then x1 27 source-edge animation checks. User-approved combat floor x40–1268/y532–710, D261 selected second card, D267 original approved enemies, D260 #38, 38/45 normal pool and KARAMBA73 must remain fixed. [D271 record](D271_REAL_PAINTED_ARENA_ART_HOLD.md).
