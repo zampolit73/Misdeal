@@ -163,7 +163,8 @@ const ACT1_CARD_IDS := [
 	"last_bell",
 	"firing_square",
 	"bone_ritual",
-	"black_lantern_road" # D260: released 38/45 after original five-role Battle route QA
+	"black_lantern_road", # D260: released card #38, approved original five-role battle
+	"court_of_the_mute" # D273: released card #39, painted D271 arena, D267 original undead trio + Verdict
 ]
 
 var gold: int = 0
