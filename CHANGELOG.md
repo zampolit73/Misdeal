@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-19 — D262: Court new combat UnitData + encounter-scoped verdict mechanic (QA only)
+
+- Added `mute_magistrate`, `ash_scrivener` and `bone_bailiff` wholly distinct skeletal `UnitData` and Court encounter with four enemy instances/two original formations.
+- Added `CourtVerdictController` with red warned marked hero and temporary Bailiff-only target preference; Scribe death cancels, no shared `BattleUnit` AI modifications. Wired exact encounter setup/start/stop to actual Battle.
+- Native Godot 4.7.2 CI **PASS**: warning/focus/expiry/Scribe-death contract, 1/2/3-party×two-formation (6) genuine Battle launches, D260 released #38 54-case regression.
+- Original three complete 25-frame sprite atlases and playable Court arena **remain ART HOLD**, not replaced by generic sprites or baked-art scene; #39 card resource target_path blank and live pool **38/45** unchanged. Selected second D261 card art and KARAMBA73 untouched. [D262 QA handoff](docs/D262_COURT_VERDICT_QA.md).
+
 ## 2026-10-19 — D261: second Court of the Mute art selected and wired into native QA
 
 - User selected battle option A `Суд безмолвных` and **image #2** of the three rendered portrait concepts. Exported selected exact composition as 448×274 source-derived WebP, original selected portrait not restyled. Export SHA256 `704eef553a1ef528d2793b692462315048b06cf23ddaf17dff0c1fba0ed69d5c`.

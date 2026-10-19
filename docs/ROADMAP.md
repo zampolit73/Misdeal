@@ -1,5 +1,14 @@
 # Misdeal — Active Roadmap
 
+## D262 — Court original combat roster and encounter-only red verdict targeting (QA technical PASS)
+
+- [x] Stage **new** `mute_magistrate`, `ash_scrivener`, `bone_bailiff` `UnitData` with four original enemy instances and two formations; no borrowed enemy roles.
+- [x] Implement original `verdict_target`: 1.4s conspicuous red warning on one hero, 2.5s focus from both Bailiffs, 3.6s rest; scribe death removes focus. Local controller only; no global AI, stun or guaranteed damage.
+- [x] Hook exact Court encounter lifecycle into genuine Battle without exposing #39 in regular card pool; Godot 4.7.2 **6 true Battle startup cases and verdict contract PASS**, D260 38-card 54-case matrix regression PASS.
+- [ ] **NEXT: batch-author 3 rich original 25-pose animated pixel-art atlases** `6×5×96px`, 5 alpha blank cells each; unique prop grips and planted feet, proper 1x facing/contact, one combined native F6.
+- [ ] Original separate tribunal arena in the exact chosen card world's language: giant scales, ruined bench, walkable stone under units, NO baked unit illustrations; pass actual native art review.
+- [ ] Native full 54-case solo/duo/trio×formations balance + Battle→Reward→Table; then explicit #39 activation **39/45**. Until then 38/45 live, original D261 card art and KARAMBA73 frozen.
+
 ## D261 — User-approved SECOND Court card art integrated in GitHub, native QA PASS
 
 - [x] User chose **A `Суд безмолвных`**, a new tactical undead tribunal encounter; three original combat enemy types required, no reused costume swaps.
