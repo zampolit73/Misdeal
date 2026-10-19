@@ -185,7 +185,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="WizardCommentaryPanel" type="Panel" parent="."]
-z_index = 5090
+z_index = 3090
 visible = false
 mouse_filter = 2
 offset_left = 300.0
@@ -195,7 +195,7 @@ offset_bottom = 136.0
 theme_override_styles/panel = SubResource("WizardPanel")
 
 [node name="WizardCommentary" type="Label" parent="."]
-z_index = 5091
+z_index = 3091
 visible = false
 mouse_filter = 2
 offset_left = 316.0
@@ -306,7 +306,7 @@ offset_bottom = 558.0
 theme_override_styles/panel = SubResource("DeploymentZoneStyle")
 
 [node name="SideObjectivePanel" type="Panel" parent="."]
-z_index = 5092
+z_index = 3092
 visible = false
 mouse_filter = 2
 offset_left = 944.0
@@ -350,7 +350,7 @@ script = ExtResource("5_motion")
 
 
 [node name="BottomHudPanel" type="Panel" parent="."]
-z_index = 5090
+z_index = 3090
 mouse_filter = 2
 offset_left = 22.0
 offset_top = 574.0
@@ -359,7 +359,7 @@ offset_bottom = 710.0
 theme_override_styles/panel = SubResource("BottomHudPanel")
 
 [node name="FightHudPanel" type="Panel" parent="."]
-z_index = 5090
+z_index = 3090
 mouse_filter = 2
 offset_left = 662.0
 offset_top = 574.0
@@ -368,7 +368,7 @@ offset_bottom = 710.0
 theme_override_styles/panel = SubResource("BottomHudPanel")
 
 [node name="OrderLabel" type="Label" parent="."]
-z_index = 5100
+z_index = 3100
 mouse_filter = 2
 offset_left = 40.0
 offset_top = 584.0
@@ -383,7 +383,7 @@ text = "ТАКТИЧЕСКИЙ ПРИКАЗ"
 horizontal_alignment = 1
 
 [node name="AssaultOrderButton" type="Button" parent="."]
-z_index = 5100
+z_index = 3100
 offset_left = 40.0
 offset_top = 610.0
 offset_right = 230.0
@@ -400,7 +400,7 @@ theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "НАТИСК"
 
 [node name="HuntOrderButton" type="Button" parent="."]
-z_index = 5100
+z_index = 3100
 offset_left = 239.0
 offset_top = 610.0
 offset_right = 429.0
@@ -417,7 +417,7 @@ theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "ОХОТА"
 
 [node name="FormationOrderButton" type="Button" parent="."]
-z_index = 5100
+z_index = 3100
 offset_left = 438.0
 offset_top = 610.0
 offset_right = 628.0
@@ -434,7 +434,7 @@ theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "СТРОЙ"
 
 [node name="SacrificeOrderButton" type="Button" parent="."]
-z_index = 5100
+z_index = 3100
 visible = false
 offset_left = 40.0
 offset_top = 610.0
@@ -455,7 +455,7 @@ theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "ЖЕРТВА"
 
 [node name="DefianceOrderButton" type="Button" parent="."]
-z_index = 5100
+z_index = 3100
 visible = false
 offset_left = 158.0
 offset_top = 610.0
@@ -476,7 +476,7 @@ theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "НЕПОВИНОВЕНИЕ"
 
 [node name="OrderDescription" type="Label" parent="."]
-z_index = 5100
+z_index = 3100
 mouse_filter = 2
 offset_left = 40.0
 offset_top = 652.0
@@ -493,7 +493,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="TargetPreviewButton" type="Button" parent="."]
-z_index = 5100
+z_index = 3100
 offset_left = 684.0
 offset_top = 584.0
 offset_right = 904.0
@@ -510,7 +510,7 @@ theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "ЦЕЛИ: ВЫКЛ"
 
 [node name="FightButton" type="Button" parent="."]
-z_index = 5100
+z_index = 3100
 offset_left = 684.0
 offset_top = 620.0
 offset_right = 904.0
@@ -528,7 +528,7 @@ theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "БОЙ"
 
 [node name="RestartButton" type="Button" parent="."]
-z_index = 5100
+z_index = 3100
 visible = false
 offset_left = 950.0
 offset_top = 620.0
@@ -545,7 +545,7 @@ theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "ПЕРЕИГРАТЬ"
 
 [node name="ContinueButton" type="Button" parent="."]
-z_index = 5100
+z_index = 3100
 visible = false
 offset_left = 684.0
 offset_top = 620.0
