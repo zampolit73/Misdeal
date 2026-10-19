@@ -1,5 +1,8 @@
 # Misdeal Documentation Index
 
+**D270 CURRENT · 2026-10-19:** Original **editable empty Court SVG** staged in real QA-only Battle, original D265 rollback retained. F6 Court **B** art A/B, **L** upper light, **G** D264 lower floor guide. [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39255650012): D270 native SVG + B/L/G, six real boots, 54/54 original Court BattleUnit cases, direct QA Battle→Reward→Table. Still requires **visual art-quality approval**, D267 x1/27 rich sprite-source warning review and separate #39 release; live **38/45**. [D270 latest handoff](D270_NEW_CHAT_HANDOFF.md) · [D270 QA report](D270_COURT_EMPTY_ARENA_NATIVE_QA.md) · [new editable Court environment](../assets/pixel/battle/arenas/court_of_the_mute_d270_empty_qa.svg).
+
+
 **D269 CURRENT · 2026-10-19:** User accepted D268 native real Battle F6. Court-only subtle upper ambient depth (cold shafts, brazier breath and sparse dust), F6 **L** light A/B / **G** exact green walkable-floor highlight; [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39252464563) checks D269 native F6, 6 real boots, 54 original Court BattleUnit fights, direct QA Battle→Reward→Table. **Real richly illustrated ACTOR-FREE arena remains needed**, D265 texture remains provisional, 27 original rich D267 source frame flags need artistic ×1 review, card #39 not live (38/45). [D269 handoff](D269_NEW_CHAT_HANDOFF.md) · [D269 QA record](D269_COURT_UPPER_TRIBUNAL_ATMOSPHERE_QA.md) · [D269 F6 scene](../scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn).
 
 
