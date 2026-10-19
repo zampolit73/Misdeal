@@ -1,6 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 Updated: 2026-10-19.
 
+## D264 — Court battle takes place only on bottom flat stone; stairs are architecture
+
+2026-10-19: User explicitly chose lower red-marked rectangle in their D263 F6 screenshot and requested immediate direct implementation without separate approval. **Lock:** for `court_of_the_mute` alone use screen combat bounds x40–1268 / y532–710, independent of generic courtyard/stair bounds. Before Fight use shallow lower-floor entry/deployment y~557–567 to prevent overlapping the shared y574–710 tactics HUD, then allow actual BattleUnit movement anywhere inside the full lower-floor rectangle once combat HUD hides. A common `court_of_the_mute_floor.gd` drives both actual Battle AI limits and QA floor overlay; don't move stairs or paint characters in the arena. Other arenas, global BattleUnit target logic and chosen D261 second card bitmap unaffected. [D264 native checks and coordinates](D264_COURT_LOWER_FLOOR_FIX.md). Card #39 ART HOLD (38/45 live), frozen KARAMBA73.
+
 ## D263 — Character-free Court arena mandatory; reject opaque/incomplete sprite montage as release art
 
 2026-10-19: D261 exact second card art is locked; D262 Court red-verdict scoped mechanic is already functional. D263 original **empty** architectural tribunal and separate Godot F6 viewer are staged as QA **only**; this reproducible pixel geometry may support floor/contact tests but does NOT meet selected card art's painterly visual quality and is NOT registered as a finished battle plate. Exploratory generated composite sheets lack a clean 25-pose alpha contract for all three roles; never fabricate the missing Magistrate/Bailiff poses by repeats or generic flips or copy earlier D229-quality sprites into final build. Next produce all three original complete 25-frame packs as a batch and a rich real empty tribunal arena; preserve user-picked D261 image and 38/45 live state. [D263 art truth](D263_COURT_EMPTY_ARENA_QA.md).

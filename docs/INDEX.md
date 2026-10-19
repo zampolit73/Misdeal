@@ -1,8 +1,8 @@
 # Misdeal Documentation Index
 
-Updated 2026-10-19 — **D263 CURRENT: empty Court tribunal QA arena PASS in Godot 4.7.2, original 3×25 character animation and final painterly arena ART HOLD**. Live **38/45**, #39 unreleased; second approved D261 card illustration and frozen KARAMBA73 untouched.
+Updated: 2026-10-19 — **D264 COURT LOWER FLOOR FIXED** after user's red-rectangle screenshot; Godot 4.7.2 F6 and all six real Court Battle variants/54-case regression PASS. **D264 rich three full25 sprites + final Court arena still ART HOLD**, #39 unreleased, Act1 38/45, KARAMBA73 frozen.
 
-**START:** [D263 truthful art QA and next gate](D263_COURT_EMPTY_ARENA_QA.md) · [D263 empty arena F6](../scenes/dev/court_of_the_mute_d263_empty_arena_preview.tscn) · [D263 source QC](qa/D263_COURT_ART_GATE_REPORT.json) · [D262 verdict mechanic PASS](D262_COURT_VERDICT_QA.md).
+**START:** [D264 exact lower-floor contract and verified CI](D264_COURT_LOWER_FLOOR_FIX.md) · [Current handoff](NEXT_CHAT_HANDOFF.md) · [F6 empty Court arena preview](../scenes/dev/court_of_the_mute_d263_empty_arena_preview.tscn). D263 backdrop remains QA only.
 
 ## Read first (current, short, authoritative)
 

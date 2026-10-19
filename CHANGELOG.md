@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-19 — D264: move Court walkable floor to user's red-marked lowest stone platform
+
+- Applied explicit screenshot feedback to **actual** `court_of_the_mute` combat and F6 preview: shared screen bounds `(40,532)-(1268,710)` instead of former raised overlay `(110,380)-(1190,538)`. Stairs/throne no longer valid Court pathing.
+- Scoped `Battle` combat bounds, preparation hero drag pocket and pre-Fight actor starting depth to lower terrace (visible above lower tactics HUD); rest of card pools and arenas unchanged. Green QA preview overlay shares the exact new bounds, title/hints moved away from feet.
+- Godot 4.7.2 native F6 scene import/launch and six real Court solo/duo/trio×two-formation simulations PASS, including original verdict controller and existing 54-case released #38 regression. [D264 QA report](docs/D264_COURT_LOWER_FLOOR_FIX.md).
+- D263 original arena is STILL QA visual candidate and three 25-frame authentic character packs still not accepted. D261 chosen card bitmap byte-identical, #39 unreleased 38/45, KARAMBA73 preserved.
+
 ## 2026-10-19 — D263: QA-only empty Court battle arena authoring and native preview (art hold)
 
 - Added reproducible original Court `1280×720` character-free pixel battle plate from `tools/art/author_court_d263_arena.py`; stairs, pillars, cracked tribunal, scales and wide walkable stone. Kept separate from production `BattleBackdrop` pending artistic quality.

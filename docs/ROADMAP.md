@@ -1,5 +1,14 @@
 # Misdeal — Active Roadmap
 
+## D264 — Court combat bounds moved to lower floor (done); art still pending
+
+- [x] Apply user RED-rectangle floor selection in actual Court Battle + F6 preview, not just a misleading visual overlay: screen `Rect2((40,532),(1228,178))`, `UnitsLayer` local `Rect2((20,436),(1228,178))`.
+- [x] Court actors spawn on lower floor **above tactics HUD** before Fight, while AI remains bounded to entire lower terrace during battle; three party sizes and both formations retained. Existing other arenas / #38 unchanged.
+- [x] Official Godot 4.7.2 floor preview PASS and real Battle 6-case bounds/verdict plus 54-case released #38 regression PASS; original D261 second card artwork unchanged.
+- [ ] NEXT: three original full 25-cel transparent role atlases `mute_magistrate`, `ash_scrivener`, `bone_bailiff`; one batch with true x1 foot/grip/facing checks.
+- [ ] Refine D263 geometric arena into suitably rich **character-free** Court scenery; D263 current file remains QA layout only. Then native full Battle→Reward→Table and Court 54-case balance, and deliberate #39 (39/45) release only after all gates.
+- [x] Maintain live 38/45, DS2/Fate Spread and frozen KARAMBA73.
+
 ## D263 — Original character-free Court architecture candidate and honest art gate
 
 - [x] Reproducibly generate a standalone **1280×720 empty** underground tribunal with stairs, throne, scales, candles, contiguous tactical floor; NO burned-in Court units.
