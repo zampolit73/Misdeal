@@ -15,6 +15,9 @@ border_color = Color(0.63, 0.37, 0.20, 0.96)
 shadow_color = Color(0.0, 0.0, 0.0, 0.75)
 shadow_size = 10
 
+[sub_resource type="ShaderMaterial" id="BrocadeMat"]
+shader = ExtResource("4_brocade")
+
 [node name="ClassSelect" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -41,9 +44,6 @@ script = ExtResource("2_runtime")
 webp_path = "res://assets/pixel/table/approved_variant_c/table_exact.webp"
 expected_size = Vector2i(1280, 720)
 use_nearest_filter = false
-
-[sub_resource type="ShaderMaterial" id="BrocadeMat"]
-shader = ExtResource("4_brocade")
 
 [node name="OldOfferObscurer" type="ColorRect" parent="."]
 mouse_filter = 2
