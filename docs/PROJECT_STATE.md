@@ -1,5 +1,10 @@
 # Misdeal — Current Project State
 
+## D268 — CURRENT: Court real Battle QA staged; native CI result not confirmed
+
+2026-10-19: Court #39 still **QA only / 38 of 45 live**. D268 now renders its own character-free **D265 provisional** tribunal in real Battle (instead of Crypt fallback), excludes Crypt atmosphere, and provides solo/duo/trio + two-formation real F6 scene `scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn`. The combined rich D267 three-role gallery gained pause/frame and 27 original-source-QC flag navigation. A new deterministic **54 BattleUnit-case** Court/verdicт matrix and QA-only direct Battle→Reward→Table headless route plus Godot 4.7.2 workflow were committed; **new workflow result NOT confirmed** in this session, so no claimed PASS/metrics. Full visual x1 acceptance, Bailiff death source flags and truly rich actor-free arena remain open. Exact D261 card art, D264 bottom floor, D267 approved PNGs, D260 #38 and KARAMBA73 frozen. [D268 detailed QA](D268_COURT_BATTLE_QA_STAGING.md) · [current new-chat handoff](D268_NEW_CHAT_HANDOFF.md).
+
+
 ## D267 — Актуально: три богатых оригинала и 75 кадров уже в GitHub, native CI PASS
 
 Три user-approved исходных PNG и новые D267 богатые атласы 25×3 **уже импортированы в main**, подтверждён [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39242455779). Судья/Писарь/Пристав подключены к strict SpriteFrames library для QA, но карта #39 **не выпущена** (38/45). Осталось **27 предупреждений о границах оригинала**, нужно реальное F6 ×1 зрительное ревью, богатая пустая арена, баланс 54 случаев и Battle→Reward→Table. Старое утверждение «PNG не в GitHub» ниже — историческое. [Актуальный D267](D267_ACTUAL_RICH_ATLAS_IMPORT_QA.md).
