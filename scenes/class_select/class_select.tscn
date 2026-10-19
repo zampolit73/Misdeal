@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/class_select/class_select.gd" id="1_class"]
 [ext_resource type="Script" path="res://scripts/ui/runtime_webp_texture.gd" id="2_runtime"]

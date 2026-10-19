@@ -56,7 +56,7 @@ jobs:
           set -o pipefail
           timeout 65s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --script res://scripts/dev/d279_class_select_smoke.gd 2>&1 | tee /tmp/d279-test.log
           grep -q 'D280_CLASS_SELECT_PASS' /tmp/d279-test.log
-          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D279_CLASS_SELECT_FAIL' /tmp/d279-test.log; then exit 1; fi
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D279_CLASS_SELECT_FAIL|D280_CLASS_SELECT_FAIL' /tmp/d279-test.log; then exit 1; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:

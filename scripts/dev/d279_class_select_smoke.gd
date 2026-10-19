@@ -32,7 +32,7 @@ func _verify() -> void:
 	var backdrop := selection.get_node("WizardBackdrop") as TextureRect
 	valid = valid and backdrop.texture != null
 	if backdrop.texture != null:
-		valid = valid and backdrop.texture.get_size() == Vector2i(640, 360)
+		valid = valid and backdrop.texture.get_size() == Vector2(640.0, 360.0)
 	valid = valid and not selection.has_node("OldOfferObscurer")
 	valid = valid and not selection.has_node("FateSpreadCover")
 	valid = valid and not selection.has_node("TopHeaderPlate")
