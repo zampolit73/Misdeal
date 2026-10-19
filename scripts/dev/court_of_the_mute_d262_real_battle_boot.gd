@@ -2,7 +2,7 @@ extends Control
 
 # D262 HEADLESS ONLY: builds real Battle (not a false preview with old art)
 # with the new original Court roster for solo/duo/trio and both deployments.
-# This is NOT a visual arena/art PASS and does not release card #39.
+# This is a real Court startup/targeting contract; #39 has a separate release gate.
 const BATTLE: PackedScene = preload("res://scenes/battle/battle.tscn")
 const CARD_ID := "court_of_the_mute"
 const ENCOUNTER := "res://resources/encounters/court_of_the_mute.tres"
@@ -15,7 +15,7 @@ func _ready() -> void:
 	call_deferred("_run_boot")
 
 func _run_boot() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 38 or RunState.ACT1_CARD_IDS.has(CARD_ID):
+	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
 		_abort("do not release Court before the actual original 25-frame art")
 		return
 	var result_cases := 0
@@ -128,7 +128,7 @@ func _run_boot() -> void:
 			battle.queue_free()
 			await get_tree().process_frame
 			result_cases += 1
-	print("D262_COURT_REAL_BATTLE_PASS: 6 genuine Battle startup cases (solo/duo/trio x 2 formations); 4 new actors, warned + focused verdict only in Court, 38-card live pool unchanged")
+	print("D262_COURT_REAL_BATTLE_PASS: 6 genuine Battle startup cases (solo/duo/trio x 2 formations); 4 new actors, warned + focused verdict only in Court, 39-card released pool preserved")
 	get_tree().quit(0)
 
 func _abort(message: String) -> void:
