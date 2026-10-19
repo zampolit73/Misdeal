@@ -1,5 +1,12 @@
 # Misdeal — Active Roadmap
 
+## D265 — Richer Court background QA PASS; 3×25 original character-art source gate OPEN
+
+- [x] New reproducible richer *character-free* tribunal QA WebP, separate from D263/approved D261 card, preserving D264 floor; Godot 4.7.2 F6 native decode PASS.
+- [x] New unified **75-frame** structural, alpha, 2px-margin, spare-cell and pose-uniqueness audit, machine-readable: **0/75 originals accepted, all three Court atlases missing**; green audit process does not imply artwork completion.
+- [ ] **NEXT:** batch draw/render all 75 original 96px cell poses, single Godot F6 1× / 2× movement/grip/feet review; no fake duplicate/mirror padding of missing art.
+- [ ] Upgrade empty Court background beyond current schematic D265 QA, then native full Court Battle→Reward→Table and 54-case balance, deliberate #39 release to 39/45. Stay 38/45 live, KARAMBA73 untouched.
+
 ## D264 — Court combat bounds moved to lower floor (done); art still pending
 
 - [x] Apply user RED-rectangle floor selection in actual Court Battle + F6 preview, not just a misleading visual overlay: screen `Rect2((40,532),(1228,178))`, `UnitsLayer` local `Rect2((20,436),(1228,178))`.
