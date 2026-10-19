@@ -18,18 +18,22 @@ The user answered **«все ок»** following the D258 real Battle F6 instruct
 4. NEW genuine library-only F6 `res://scenes/dev/black_lantern_d259_real_battle_route_qa.tscn`: no D258 post-ready sprite injection; selecting solo/duo/trio and either enemy formation opens **unchanged real** `scenes/battle/battle.tscn`, checks all five roles use the same original `SpriteFrames` returned by the shared library, and leaves native Fight→Reward→Table intact.
 5. NEW D259 real Battle headless preflight and dedicated Godot 4.7.2 Actions workflow `.github/workflows/d259-black-lantern-native-qa.yml`. It checks real Battle eight-unit trio, Crossroads formation, D253 lanternlight, **five unmodified library-loaded original roles**, and 54-case original BattleUnit matrix regression. Native stage/recovery original QA scenes retained.
 
-## Verified / remaining
+## Verified / remaining (final D259 CI now PASS)
 
 - The D259 atlas stage GitHub Actions **PASS**: [asset job](https://github.com/zampolit73/Misdeal/actions/runs/39204724854).
 - Godot 4.7.2 **D259 canonical-library preflight and 54/54 regression PASS**: [native run](https://github.com/zampolit73/Misdeal/actions/runs/39205118907). Five sprites loaded **without QA replacement**; 54/54 completed (54 wins, no party defeats/timeouts) on previously accepted 1.16x light bonus. **Balance not automatically accepted**; original D208 54 wins likewise and later visuals still matter.
-- Separate end-to-end CI driver `black_lantern_d259_end_to_end_runner.tscn` is designed to push actual Fight, watch win, click actual Continue, claim actual Reward, return to Table. Its outcome must be explicitly recorded from the completed GitHub run; never mark PASS from just compilation or preflight.
+- **Full actual Battle→Reward→Table HEADLESS PASS**: [GitHub Actions run #39206093134](https://github.com/zampolit73/Misdeal/actions/runs/39206093134) started the genuine unchanged Battle with five canonical-library enemies (trio/Crossroads), pressed the actual Fight button, saw hero victory, pressed Continue, loaded real Reward, selected the normal loot and returned to Table. Confirmed card #38 resolved in this throwaway run while ordinary Act1 pool remained 37. Headless CI's QA-only observer emits synthetic render frame signals to allow the unchanged production SceneTransition to proceed; this proves navigation/data and Battle logic, **not what the screen looked like**. User already reported «все ок» after D258 native F6 instructions.
 - The project still logs an **unrelated existing** `assets/concepts/approved_battle_direction.jpg` import error in full editor import; not introduced by D259, no speculative replacement of user-approved art.
 
 ## Required next release gates
 
-1. Confirm headless Fight→Reward→Table end-to-end result and repair any actual failures.
+1. [x] **Headless real Fight→Reward→Table PASS** after QA-only frame signal fix. Keep user-native visual judgment and final difficulty acceptance distinct.
 2. Treat user's D258 «все ок» as permission to continue, but if any newly staged native Battle art shows incorrect facing, floor/HP crowding or clipped props, fix original coherent 25-pose pack as a batch.
 3. Assess **54/54 wins** against the project's solo accessibility and short-fight goal. No generic enemy-stat inflation or changing the D206 light multiplier without targeted evidence; explicitly record a hold/pass decision.
 4. Then consider **a separate final commit** activating `black_lantern_road` in `RunState.ACT1_CARD_IDS` (38/45) and updating QA guards/tests to distinguish unreleased historical D258 from current release. Until that intentional step, live pool remains 37/45.
 
 **Preserved:** DS2/Fate Spread, 12 resolutions+boss XIII, D200 accepted run-card art, D209 forest, D244/D224 sprites, all combat metrics, light behavior, frozen KARAMBA73 backup.
+
+## Final D259 CI confirmation
+
+The final passing run also verified original strict Game Library sprite identities and D253 light before Fight, and reran normalized **54/54** real BattleUnit cases after production atlas staging: 54 wins, 0 party losses, 0 timeouts, 0 contract errors; 0/2/4 individual hero deaths by solo/duo/trio. The light-accelerated attack count varies with timing (62 of 641 on this CI run); no balance values were changed. The approved original D200 card illustration, D209 forest, and 37-card live pool remain intact. Current release decision is **HOLD** until one explicit challenge/readability pass; do not silently add #38 to ACT1_CARD_IDS just because functional routes passed.
