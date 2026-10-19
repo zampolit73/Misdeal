@@ -1,0 +1,52 @@
+name: D274 Table parchment UI Godot smoke
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/d274-table-ui.yml'
+      - 'scripts/table/table.gd'
+      - 'scripts/table/table_offer_skin.gd'
+      - 'scripts/ui/misdeal_ui_kit.gd'
+      - 'scenes/table/table.tscn'
+      - 'shaders/table_offer_parchment.gdshader'
+      - 'scripts/dev/d274_table_offer_smoke.gd'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  godot-table-ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install official Godot 4.7.2
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --retry 3 -L https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o /tmp/godot.zip
+          echo 'cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  /tmp/godot.zip' | sha256sum -c -
+          unzip -q /tmp/godot.zip -d /tmp/godot-bin
+          chmod +x /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+      - name: Godot import and GDScript parse
+        shell: bash
+        run: |
+          set -o pipefail
+          /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --editor --import --quit 2>&1 | tee /tmp/d274-import.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script' /tmp/d274-import.log; then exit 1; fi
+      - name: Validate two live Table card nodes
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 60s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --script res://scripts/dev/d274_table_offer_smoke.gd 2>&1 | tee /tmp/d274-table.log
+          grep -q 'D274_TABLE_UI_PASS' /tmp/d274-table.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D274_TABLE_UI_FAIL' /tmp/d274-table.log; then exit 1; fi
+      - name: Preserve Godot diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: d274-table-ui-native-smoke
+          path: /tmp/d274-*.log
+          retention-days: 14
