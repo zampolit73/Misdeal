@@ -1,6 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 Updated: 2026-10-19.
 
+## D267 — Three original-rich approved Court sprites are staged; clipping flags remain art QA gate
+
+Approved user-original PNGs and derived 25×3 rich atlases **actually committed** to main, three roles staged in standard animation library, official Godot parser+preview CI PASS. Do not mistake **27 source row-edge warnings** or headless test for full ×1 visual acceptance. Preserve no-release gate for #39 until genuine F6, rich empty arena and real Fight→Reward→Table. [Current import report](D267_ACTUAL_RICH_ATLAS_IMPORT_QA.md). D261 chosen card, D264 floor, KARAMBA73 frozen.
+
 ## D267 — User approved rich Court trio; never substitute D266 procedural QA art as final
 
 2026-10-19: User accepted three new actual illustrated transparent pose sheets, individually character-true Magistrate scales-staff, Scrivener book/quill, Bailiff shield/halberd. **Approval covers visual identity**, not completed runtime cels: sources are 1374×1145, need 6×5×96 clean-alpha seam-aware repack, genuine separate 25 poses, F6 x1 motion checks, no false final runtime PASS. Preserve original images and this artistic direction, D261 exact selected card art and D264 lower-floor decision. See [D267](D267_APPROVED_COURT_CHARACTER_ART.md). No #39 release yet, 38/45 live.

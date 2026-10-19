@@ -1,5 +1,12 @@
 # Misdeal — Active Roadmap
 
+## D267 — Approved PNG import and rich 75-frame recovery DONE; user F6/release gates open
+
+- [x] All three exact approved PNG sources and three clean-alpha D267 rich 25-frame atlas files committed; 75/75 structural PASS.
+- [x] Strict Court role library QA-stage integration and native Godot 4.7.2 combined x1/x2 preview CI PASS.
+- [ ] Visual F6 review of **27 original source seam warnings** (Judge 5, Scribe 0, Bailiff 22), including Bailiff death poses.
+- [ ] Rich empty tribunal (D265 still QA), real 54-case new battle balance, Fight→Reward→Table, separate card #39 release to 39/45. Remains 38/45 LIVE now.
+
 ## D267 — Rich Court trio artistic direction approved; source import and native atlas conversion NEXT
 
 - [x] User approved THREE detailed 1374×1145 transparent pose-sheet illustrations (Magistrate/Scrivener/Bailiff) after D266 stylized QA prototype review.

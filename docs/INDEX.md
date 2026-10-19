@@ -1,8 +1,6 @@
 # Misdeal Documentation Index
 
-Updated 2026-10-19 — **D266 CURRENT**: three original Court 25-frame transparent animation QA atlases present (75/75 structural PASS, official Godot 4.7.2 native F6 PASS). The art is still stylized **prototype quality**, NOT accepted as final rich D261-compatible artwork. #39 QA-only / live Act1 **38/45**. Lower-floor D264, approved second D261 card image, D260 #38 and KARAMBA73 preserved.
-
-**START:** [D266 original all-three animation full QA + art gate](D266_COURT_ALL_THREE_ANIMATION_QA.md) · [D266 x1/x2 all-three animation F6](../scenes/dev/court_of_the_mute_d266_three_animation_preview.tscn) · [75/75 structural frame audit](qa/D266_THREE_ROLE_FULL25_AUDIT.json) · [Current next-chat handoff](NEXT_CHAT_HANDOFF.md).
+**Current D267:** all three selected rich Court PNGs and recovered 75/75 sprites in GitHub, native Godot 4.7.2 PASS. [Up-to-date source/QC](D267_ACTUAL_RICH_ATLAS_IMPORT_QA.md). Remaining 27 warnings and native ×1 motion/art gate. #39 QA only, Act1 38/45 live.
 
 ## Read first (current, short, authoritative)
 

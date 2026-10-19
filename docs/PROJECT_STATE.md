@@ -1,5 +1,9 @@
 # Misdeal — Current Project State
 
+## D267 — Актуально: три богатых оригинала и 75 кадров уже в GitHub, native CI PASS
+
+Три user-approved исходных PNG и новые D267 богатые атласы 25×3 **уже импортированы в main**, подтверждён [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39242455779). Судья/Писарь/Пристав подключены к strict SpriteFrames library для QA, но карта #39 **не выпущена** (38/45). Осталось **27 предупреждений о границах оригинала**, нужно реальное F6 ×1 зрительное ревью, богатая пустая арена, баланс 54 случаев и Battle→Reward→Table. Старое утверждение «PNG не в GitHub» ниже — историческое. [Актуальный D267](D267_ACTUAL_RICH_ATLAS_IMPORT_QA.md).
+
 ## D267 — Rich Court character art direction APPROVED by user (atlas conversion pending)
 
 2026-10-19: User replied **«отлично. подходит»** to all THREE rich 1374×1145 transparent source sheets generated for `mute_magistrate` (bronze scales staff), `ash_scrivener` (ledger/quill), `bone_bailiff` (shield and hooked halberd). **Designs APPROVED**, replacing the intentionally simplified D266 sprite prototype direction; do not misconstrue approval as a 75-frame runtime atlas import. Next convert exact original PNG source poses to three clean 6×5×96 alpha atlases using seam-aware composition and independent x1 Godot motion inspection, THEN integrate. The approved source PNGs currently live in conversation, **not GitHub**. Selected D261 card picture, D264 lower combat floor, D262 mechanics, live **38/45**, D260 #38 and KARAMBA73 unchanged. [Full D267 approval and handoff](D267_APPROVED_COURT_CHARACTER_ART.md).

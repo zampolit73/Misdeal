@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-19 — D267 rich user-approved Court originals/75-frame atlas integration verified
+
+- All three exact approved RGBA PNG sources and all three rich 25-pose QA atlases committed to GitHub. Recovered actual original artwork instead of D266 simplified procedural placeholders.
+- Godot 4.7.2 CI source regeneration, 75-cel QA, three-role library registration and native combined rich ×1/×2 preview **PASS** ([CI](https://github.com/zampolit73/Misdeal/actions/runs/39242455779)).
+- Source clipping warnings **27** remain visual-review items; background and full Court route unfinished. **38/45 LIVE**, #39 not released. [D267 handoff](docs/D267_ACTUAL_RICH_ATLAS_IMPORT_QA.md).
+
 ## 2026-10-19 — D267: all three rich Court character art directions user-approved
 
 - User explicitly approved the detailed transparent Judge, Scribe and Bailiff source pose illustrations (three 1374×1145 RGBA images). Archived exact source filenames/design description and no-more-reconcepting rule in [D267](docs/D267_APPROVED_COURT_CHARACTER_ART.md).

@@ -1,6 +1,10 @@
 # Misdeal — Canonical Working Handoff
 
-## D267 — CURRENT: all THREE rich Court source designs user APPROVED; next import and clean atlas pass
+## D267 — CURRENT: originals and rich sprites imported, native CI PASS; F6 visual review NEXT
+
+Three exact approved original PNGs, all 75 rich frame atlases **committed** and Court roles staged in shared animation library. [Official Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39242455779). 27 source-boundary warnings (5 Judge / 0 Scribe / 22 Bailiff) still require true-scale F6 motion review at `res://scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn`. Then empty rich arena + Court 54-case matrix + Reward→Table. Card #39 target_path empty, **38/45 live**, KARAMBA73 frozen. [Full current state](D267_ACTUAL_RICH_ATLAS_IMPORT_QA.md). Previous approval-only D267 sections below are HISTORY.
+
+## D267 — HISTORICAL: three images were approved, before completed import
 
 User **«отлично. подходит»** explicitly approved the newest rich transparent illustration pose sheets for Magistrate, Scrivener and Bailiff, all delivered as 1374×1145 conversation PNGs. Preserve the bronze scale-staff, real ledger/quill and shield/halberd. **NOT yet imported to GitHub as original images**, NOT 75 native-frame PASS. Supersede simplified D266 candidate artwork direction, but keep D266 mechanics QA. Exact required next task: transfer the actual approved three PNG sources, perform seam-aware attribution of original poses to 25 distinct 96px cells per role, visually check feet/held props/facing/full motions in one native Godot F6, then real Battle and only after QA release #39. [D267 source details](D267_APPROVED_COURT_CHARACTER_ART.md). D264 lower-floor locked, #39 QA-only, live **38/45**, KARAMBA73 intact.
 
