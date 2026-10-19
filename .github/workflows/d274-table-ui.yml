@@ -7,6 +7,8 @@ on:
       - '.github/workflows/d274-table-ui.yml'
       - 'scripts/table/table.gd'
       - 'scripts/table/table_offer_skin.gd'
+      - 'scripts/table/table_offer_engraving.gd'
+      - 'scripts/table/card_lore_inspect.gd'
       - 'scripts/ui/misdeal_ui_kit.gd'
       - 'scenes/table/table.tscn'
       - 'shaders/table_offer_parchment.gdshader'
@@ -41,7 +43,7 @@ jobs:
         run: |
           set -o pipefail
           timeout 60s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --script res://scripts/dev/d274_table_offer_smoke.gd 2>&1 | tee /tmp/d274-table.log
-          grep -q 'D276_TABLE_UI_PASS' /tmp/d274-table.log
+          grep -q 'D277_TABLE_UI_PASS' /tmp/d274-table.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D274_TABLE_UI_FAIL' /tmp/d274-table.log; then exit 1; fi
       - name: Preserve Godot diagnostics
         if: always()

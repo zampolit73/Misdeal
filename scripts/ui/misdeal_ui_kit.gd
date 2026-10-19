@@ -355,11 +355,11 @@ static func apply_parchment_offer_card_frame(button: Button, boss: bool = false,
 	var normal := StyleBoxFlat.new()
 	normal.bg_color = Color("#160e0b")
 	_set_border(normal, 4)
-	normal.border_color = Color("#8d542d")
+	normal.border_color = Color("#997044")
 	normal.shadow_color = Color(0.0, 0.0, 0.0, 0.85)
 	normal.shadow_size = 12
 	var hover := normal.duplicate() as StyleBoxFlat
-	hover.border_color = Color("#e8ae64")
+	hover.border_color = Color("#f0bd79")
 	hover.shadow_color = Color(0.75, 0.30, 0.08, 0.68)
 	hover.shadow_size = 17
 	if boss:

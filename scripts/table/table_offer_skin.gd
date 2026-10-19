@@ -2,6 +2,7 @@ extends RefCounted
 
 # D274 approved two-card parchment face. Only the live Table offer Buttons use it.
 const PAPER_SHADER: Shader = preload("res://shaders/table_offer_parchment.gdshader")
+const ENGRAVING_SCRIPT: Script = preload("res://scripts/table/table_offer_engraving.gd")
 const CARD_SIZE := Vector2(272.0, 338.0)
 const BRONZE := Color("#a66b3d")
 
@@ -93,6 +94,31 @@ static func prepare(button: Button) -> void:
 	_strip(button, "ArtRimTop", Vector2(10.0, 10.0), Vector2(252.0, 2.0), Color("#aa794b"))
 	_strip(button, "ArtRimBottom", Vector2(10.0, 158.0), Vector2(252.0, 2.0), Color("#aa794b"))
 	_strip(button, "ActionHairline", Vector2(33.0, 299.0), Vector2(206.0, 1.0), Color("#a37a4a"))
+	var glow := _strip(button, "ChooseGleam", Vector2(34.0, 304.0), Vector2(204.0, 1.0), Color(0.87, 0.63, 0.36, 0.48))
+	var engraving := Control.new()
+	engraving.name = "OfferEngraving"
+	engraving.size = CARD_SIZE
+	engraving.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	engraving.set_script(ENGRAVING_SCRIPT)
+	button.add_child(engraving)
+	button.mouse_entered.connect(_set_hover_visual.bind(button, true))
+	button.mouse_exited.connect(_set_hover_visual.bind(button, false))
+
+
+
+# Glints are visual feedback on the existing whole-card Button. These
+# callbacks never select a card or alter RunState.
+static func _set_hover_visual(button: Button, hovering: bool) -> void:
+	var face := button.get_node_or_null("ChooseFace") as ColorRect
+	var gleam := button.get_node_or_null("ChooseGleam") as ColorRect
+	if face == null or gleam == null:
+		return
+	if hovering and not button.disabled:
+		face.color = Color("#8b3025")
+		gleam.color = Color(1.0, 0.78, 0.46, 0.88)
+	else:
+		face.color = Color("#66231d")
+		gleam.color = Color(0.87, 0.63, 0.36, 0.48)
 
 
 static func short_description(original: String) -> String:

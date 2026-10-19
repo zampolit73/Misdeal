@@ -40,9 +40,27 @@ func _ready() -> void:
 	border.shadow_size = 19
 	frame.add_theme_stylebox_override("panel", border)
 	add_child(frame)
+	# Engraved interior line / corner fittings are decorative and input-passive.
+	var inner := Panel.new()
+	inner.name = "InnerBronzeFrame"
+	inner.position = Vector2(10.0, 10.0)
+	inner.size = Vector2(700.0, 344.0)
+	inner.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var inner_style := StyleBoxFlat.new()
+	inner_style.draw_center = false
+	inner_style.border_width_left = 1
+	inner_style.border_width_top = 1
+	inner_style.border_width_right = 1
+	inner_style.border_width_bottom = 1
+	inner_style.border_color = Color(0.60, 0.38, 0.23, 0.52)
+	inner.add_theme_stylebox_override("panel", inner_style)
+	frame.add_child(inner)
 
 	var caption := _label(frame, "Caption", Vector2(27.0, 16.0), Vector2(430.0, 24.0), 13, Color("#d3a779"))
 	caption.text = "СТРАНИЦА ИЗ ПРОКЛЯТОЙ КОЛОДЫ"
+	var seal := _label(frame, "ChapterSeal", Vector2(650.0, 18.0), Vector2(42.0, 27.0), 20, Color("#ae7746"))
+	seal.text = "✦"
+	seal.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var divider := ColorRect.new()
 	divider.name = "Divider"
 	divider.color = Color("#705036")
@@ -74,6 +92,8 @@ func _ready() -> void:
 	lore_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	lore_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	frame.add_child(lore_art)
+	_rule(frame, "ArtGildingTop", Vector2(37.0, 91.0), Vector2(258.0, 1.0), Color("#d19b5f"))
+	_rule(frame, "ArtGildingBottom", Vector2(37.0, 261.0), Vector2(258.0, 1.0), Color("#715032"))
 
 	var image_rule := _rule(frame, "ArtRule", Vector2(30.0, 289.0), Vector2(272.0, 1.0), Color("#765034"))
 	image_rule.mouse_filter = Control.MOUSE_FILTER_IGNORE

@@ -33,6 +33,13 @@ func _verify() -> void:
 	valid = valid and b.size == Vector2(272.0, 338.0)
 	valid = valid and a.has_node("ChooseFace") and b.has_node("ChooseFace")
 	valid = valid and a.has_node("InnerEngravedFrame") and b.has_node("InnerEngravedFrame")
+	valid = valid and a.has_node("OfferEngraving") and b.has_node("OfferEngraving")
+	valid = valid and a.has_node("ChooseGleam") and b.has_node("ChooseGleam")
+	var choose_face := a.get_node("ChooseFace") as ColorRect
+	a.mouse_entered.emit()
+	valid = valid and choose_face.color == Color("#8b3025")
+	a.mouse_exited.emit()
+	valid = valid and choose_face.color == Color("#66231d")
 	valid = valid and a.get_node("Art") is TextureRect and a.get_node("Hint") is Label
 	valid = valid and ha.position.y == 295.0 and hb.position.y == 295.0
 	valid = valid and SKIN.short_description("Длинное описание должно быть доступно для просмотра на карте.") != ""
@@ -51,6 +58,8 @@ func _verify() -> void:
 		valid = valid and modal_frame.position == Vector2(280.0, 178.0)
 		valid = valid and modal_frame.get_node_or_null("ArtHint") == null
 		valid = valid and modal_frame.get_node_or_null("ArtEmblem") != null
+		valid = valid and modal_frame.get_node_or_null("InnerBronzeFrame") != null
+		valid = valid and modal_frame.get_node_or_null("ChapterSeal") != null
 	valid = valid and a.tooltip_text.is_empty() and b.tooltip_text.is_empty()
 	valid = valid and ha.z_index > 20 and hb.z_index > 20
 	inspect.queue_free()
@@ -60,5 +69,5 @@ func _verify() -> void:
 		quit(1)
 		return
 	table.free()
-	print("D276_TABLE_UI_PASS: parchment engraved frame and compact lore inspection, full Cyrillic and intact offer inputs")
+	print("D277_TABLE_UI_PASS: antique parchment shader, engraved edge, hover CTA and lore trim with original interaction paths")
 	quit(0)
