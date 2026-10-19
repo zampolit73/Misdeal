@@ -32,7 +32,9 @@ func _verify() -> void:
 	var backdrop := selection.get_node("WizardBackdrop") as TextureRect
 	valid = valid and backdrop.texture != null
 	if backdrop.texture != null:
-		valid = valid and backdrop.texture.get_size() == Vector2(640.0, 360.0)
+		valid = valid and backdrop.texture.get_size() == Vector2(1280.0, 720.0)
+	valid = valid and backdrop.get("webp_path") == "res://assets/pixel/class_select/d281_clean_table_hd.webp"
+	valid = valid and selection.get_node("Logo").material is ShaderMaterial
 	valid = valid and not selection.has_node("OldOfferObscurer")
 	valid = valid and not selection.has_node("FateSpreadCover")
 	valid = valid and not selection.has_node("TopHeaderPlate")
@@ -83,6 +85,6 @@ func _verify() -> void:
 		selection.queue_free()
 		quit(1)
 		return
-	print("D280_CLASS_SELECT_PASS: clean UI-free table art, no D279 masks, 3 live framed hero cards, real hover stats and selected solo Mage")
+	print("D281_CLASS_SELECT_PASS: verified full-resolution 1280x720 clean art, key-matted original logo, 3 live framed cards, hover stats and selected solo Mage")
 	selection.queue_free()
 	quit(0)

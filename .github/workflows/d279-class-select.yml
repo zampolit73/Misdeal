@@ -8,8 +8,8 @@ on:
       - 'scenes/class_select/class_select.tscn'
       - 'scripts/class_select/class_select.gd'
       - 'scripts/class_select/class_select_card_skin.gd'
-      - 'scripts/class_select/class_select_clean_backdrop.gd'
-      - 'assets/pixel/class_select/d280_clean_table_*.webp.b64'
+      - 'assets/pixel/class_select/d281_clean_table_hd.webp'
+      - 'shaders/class_select_logo_key.gdshader'
       - 'scripts/dev/d279_class_select_smoke.gd'
       - 'scripts/table/table_offer_frame_asset.gd'
       - 'shaders/table_offer_parchment.gdshader'
@@ -32,17 +32,18 @@ jobs:
           echo 'cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  /tmp/godot.zip' | sha256sum -c -
           unzip -q /tmp/godot.zip -d /tmp/godot-bin
           chmod +x /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
-      - name: Verify D280 clean tabletop bytes
+      - name: Verify native HD clean tabletop source
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
-          import base64,hashlib,io
-          parts=[Path(f"assets/pixel/class_select/d280_clean_table_{i:02d}.webp.b64") for i in range(1,5)]
-          raw=base64.b64decode("".join(p.read_text().strip() for p in parts),validate=True)
-          assert len(raw)==11320 and raw[:4]==b"RIFF" and raw[8:12]==b"WEBP"
-          assert hashlib.sha256(raw).hexdigest()=="8005eca284768611b923cdf8b87f9a8f4db0554dd4a7e4d6277925c27a6d93fe"
-          print("D280_CLEAN_ART_PASS: separate WebP clean tableau, 640x360, 11320 bytes")
+          import hashlib
+          art = Path("assets/pixel/class_select/d281_clean_table_hd.webp")
+          raw = art.read_bytes()
+          assert len(raw)==168948 and raw[:4]==b"RIFF" and raw[8:12]==b"WEBP"
+          assert hashlib.sha256(raw).hexdigest()=="7464edde5990b53a6d1ec8d1646e96080c9944be0a4a79e04bdba6689d5f28e1"
+          assert len(raw) > 100_000, "ClassSelect art accidentally low-quality again"
+          print("D281_HD_ART_PASS: actual 1280x720 native-resolution WebP, 168948 bytes")
           PY
       - name: Import and parse all Godot scripts
         shell: bash
@@ -55,7 +56,7 @@ jobs:
         run: |
           set -o pipefail
           timeout 65s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --script res://scripts/dev/d279_class_select_smoke.gd 2>&1 | tee /tmp/d279-test.log
-          grep -q 'D280_CLASS_SELECT_PASS' /tmp/d279-test.log
+          grep -q 'D281_CLASS_SELECT_PASS' /tmp/d279-test.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D279_CLASS_SELECT_FAIL|D280_CLASS_SELECT_FAIL' /tmp/d279-test.log; then exit 1; fi
       - uses: actions/upload-artifact@v4
         if: always()
