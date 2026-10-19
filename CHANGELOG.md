@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-19 — D268 Court Battle QA staging (native CI result still unverified)
+
+- Registered unreleased Court `court_of_the_mute` with the actor-free D265 provisional tribunal background in real `BattleBackdrop`, suppressed accidental Crypt ambient overlay; preserved combat bounds and all released cards.
+- Added F6 real Court encounter launcher for solo/duo/trio and two formations using original D267 rich SpriteFrames + D262 red verdict; extended combined all-three rich animation gallery with pause/frame stepping and review of 27 source-edge QC flags.
+- Authored 54-scenario deterministic Court BattleUnit matrix and a separately staged direct-QA full Fight→Reward→Table smoke; added Godot 4.7.2 Actions workflow covering the new scripts/scenes plus existing six real Court Battle contract. **Await observed CI logs: this changelog records committed implementation, not PASS or measured balance.**
+- [Current D268 report](docs/D268_COURT_BATTLE_QA_STAGING.md) / [new chat handoff](docs/D268_NEW_CHAT_HANDOFF.md). Exact accepted D261 card art, D264 floor, D267 originals, released #38, 38/45 Act1 and frozen KARAMBA73 unchanged. Card #39 remains unreleased.
+
+
 ## 2026-10-19 — D267 continuity: verified source/art integration after interrupted connection
 
 - Checked live GitHub main: all three approved original Court source PNGs, their rich full25 atlases and Godot ×1/×2 F6 preview are committed; [native Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39242455779). No retransmission or accidental overwrite required.
