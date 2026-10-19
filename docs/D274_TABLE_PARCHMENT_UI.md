@@ -55,3 +55,11 @@ User reviewed native D276 screenshot and asked to continue polishing only the ar
 - scripts/dev/d274_table_offer_smoke.gd & .github/workflows/d274-table-ui.yml: cover new engraving nodes, hover color restore, lore frame ornament, existing controls and native parse.
 
 Native manual acceptance: run 1280×720, hover either card and see a soft gold frame/red footer accent; confirm text, CTA and illustrations remain readable and no old popup; RMB one card, inspect compact gilt frame and read full text; close via Esc, then LMB choose. Test Wizard Mark and hold after progression. Compare with originally selected two-card concept for restrained material feel. Native automatic smoke alone is NOT visual artistic sign-off.
+
+## D278 — Real painted source instead of procedural card decoration
+
+User approved production implementation of a separate, reusable graphic frame. A newly rendered dark-fantasy card concept was used **only as a painting source**; the specific bronze rim was cropped and the card illustration, card caption/type/body and crimson action were masked completely transparent. Source bitmap is 272×338 compressed WebP 5088 bytes with SHA256 `94c1991dd4ea421b566bf5e6782fba9c04387cb6b4da97b31f0091754128f6b9`; center pixel is fully alpha-clear. The composite source screenshot was NOT installed.
+
+For GitHub's UTF-8-only art transfer, this single image's Base64 is stored as four ordered and verified equal 1696-character chunks, all at `assets/pixel/table/offer_frame_d278_{1..4}.webp.b64`. `scripts/table/table_offer_frame_asset.gd` reconstructs and caches one `Texture2D`. `scripts/table/table_offer_skin.gd` adds mouse-ignoring transparent IllustratedFrame as the last decorative child on both live offer Buttons, hiding previous D277 code-drawn corner fittings only when asset loading succeeds. The rest of the Table scene, disabled/held/marked styles and custom RMB inspection are untouched.
+
+Acceptance: CI checks base64 reconstruction exact SHA, 272×338 WebP dimensions and alpha-center as well as actual two-card nodes. User native F6 screenshot is necessary to judge whether gilded side edges overprint titles/illustrations and if the shadow and button balance match approved conceptual art. Do not claim aesthetic signoff from CI alone.

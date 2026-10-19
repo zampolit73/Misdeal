@@ -1,3 +1,9 @@
+## D278 — Painted reusable frame, never a baked gameplay card
+
+Only the TWO live normal-deal Table cards receive the D278 independent alpha-metal frame asset. The source is an isolated drawing of aged bronze fittings; its center is transparent and **no card art, names, status, description, Hold or Choose text** are embedded into the asset. The original Godot UI keeps all input/animation semantics. Avoid stacking D277 code-drawn corner engravings with this painterly rim. Keep the frame visually subordinate to 448×274 encounter illustrations and Cyrillic text. A complete screenshot generated as source inspiration is NOT a runtime tabletop background. Inspect real Godot 1280×720 output before accepting artistic quality.
+
+---
+
 ## D277 — Scope of the accepted antique-card styling
 
 The user approved the existing two-card table UX and requested production visual polish. D277 is opt-in to normal offer cards only: richer aged-paper material and restrained engraved bronze without replacing authored encounter illustrations, introducing new icons/roles or baking text into artwork. Current card dimensions 272×338, their legibility, internal crimson Choose area and the separate RMB read-more screen remain fixed. Avoid excessive procedural decoration or a fake painterly stand-in for original card-art assets. Visually review native Godot at 1280×720; CI is only a parser/component contract.

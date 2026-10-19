@@ -1,3 +1,9 @@
+## 2026-10-19 — D278 separate painted transparent frame on live cards
+
+- Replaced D277 procedural offer-card ornament display with a cropped artist-rendered, alpha-isolated real worn-bronze transparent image, reused by both actual 272×338 offer cards.
+- Stored one 5088-byte 272×338 WebP in four GitHub-safe text fragments, with source SHA256 and Godot cached image loader; preserved all live card text, art, CTA, Hold, RMB lore and original RunState behavior.
+- Extended official Godot smoke to verify byte-perfect WebP rebuild, dimensions, transparent center, overlays, mouse-pass-through and original actions. Artistic screenshot check still required.
+
 ## 2026-10-19 — D277 dark-fantasy parchment art pass
 
 - Enriched the opt-in two-card parchment shader with uneven pigmented paper, foxing, fibers and singed edges while retaining ink contrast.
