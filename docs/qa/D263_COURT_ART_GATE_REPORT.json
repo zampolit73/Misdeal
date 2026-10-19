@@ -1,0 +1,44 @@
+{
+  "version": "D263",
+  "date": "2026-10-19",
+  "stage": "EMPTY_ARENA_QA_COMMITTED_FULL_CHARACTER_ART_INCOMPLETE",
+  "live_act1_cards": 38,
+  "card39_released": false,
+  "selected_card_art": "unchanged; user chose second D261 image; src WebP SHA256 704eef553a1ef528d2793b692462315048b06cf23ddaf17dff0c1fba0ed69d5c",
+  "qa_arena": {
+    "path": "assets/pixel/battle/arenas/court_of_the_mute_d263_qa.webp.b64",
+    "size": [
+      1280,
+      720
+    ],
+    "decoded_sha256": "d1bedf7e585dd1e673b9f4a9d01f8620b750a09e44386ea46c7655f83612ca1d",
+    "pixel_style": "source-authored architectural flat-color pixel QA, not user art approved",
+    "painted_combat_units": 0,
+    "walkable_floor": "flat y ~520-720 screen, actual combat 380-538",
+    "native_scene": "res://scenes/dev/court_of_the_mute_d263_empty_arena_preview.tscn",
+    "floor_bounds_key": "G",
+    "native_ci": "https://github.com/zampolit73/Misdeal/actions/runs/39217314242",
+    "source_action": "https://github.com/zampolit73/Misdeal/actions/runs/39217023278"
+  },
+  "characters": {
+    "mute_magistrate": {
+      "status": "ART_HOLD",
+      "illustrated_montage_pose_cells_observed": 24
+    },
+    "ash_scrivener": {
+      "status": "ART_HOLD",
+      "illustrated_montage_pose_cells_observed": 30
+    },
+    "bone_bailiff": {
+      "status": "ART_HOLD",
+      "illustrated_montage_pose_cells_observed_approx": 18
+    },
+    "required_complete_original_poses_each": 25,
+    "layout": "6 columns × 5 rows × 96x96, 25 meaningful distinct poses, 5 transparent spare cells",
+    "source_is_clean_alpha": false,
+    "source_montage_contains_UI_and_arena": true,
+    "note": "Illustrated composite is only a visual source direction. No three role atlases registered or committed. Do not use duplicates/mirroring to fabricate missing original death/hit poses."
+  },
+  "next": "D264: source-clean full25 animation art batch and mature tribunal arena composition, single Godot F6 gallery and actual original sprites only after independent checks",
+  "checkpoint": "KARAMBA73 preserved"
+}
