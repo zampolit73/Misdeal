@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-19 — D271 Court visual art correction (binary art transfer still pending)
+
+- User screenshot demonstrated D270 editable SVG was visibly schematic/placeholder, despite valid Godot native functional tests. Mark D270 **ART REJECTED**, do not release #39 with that picture.
+- Prepared a high-detail actor-free new Gothic tribunal background from generated painted art and reframed it into exact 1280×720 with a genuinely uninterrupted lower combat terrace. QA preview and WebP generated as chat artifacts. **Not yet committed or switched in GitHub**, so no runtime artwork replacement or CI claim.
+- Next: copy exact painted asset binary-safe to GitHub and wire Court-only, run full native Battle/Balancing/Reward tests, solicit one real Godot visual review. #39 stays unreleased, Act1 **38/45**; D261 card, D264 floor, D267 original sprites and frozen KARAMBA73 unchanged.
+
+
 ## 2026-10-19 — D270 new actor-free tribunal QA stage in actual Battle
 
 - Authored `assets/pixel/battle/arenas/court_of_the_mute_d270_empty_qa.svg`, editable independent empty Court with carved throne, justice scales, banners, elevated braziers, ruined arches and contiguous **D264 legal lower floor**, no embedded people, sprites, text or UI. Court-only Battle now previews its 1280×720 nearest-neighbor native SVG; original D265 `.webp.b64` kept as full rollback.
