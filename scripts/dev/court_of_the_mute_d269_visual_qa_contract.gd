@@ -5,7 +5,8 @@ extends Control
 const PREVIEW_SCENE := preload("res://scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn")
 const COURT_FLOOR := preload("res://scripts/battle/court_of_the_mute_floor.gd")
 const CARD_ID := "court_of_the_mute"
-const D270_ART_PATH := "res://assets/pixel/battle/arenas/court_of_the_mute_d270_empty_qa.svg"
+const D271_ART_PATH := "res://assets/pixel/battle/arenas/court_of_the_mute_d271_painted_qa.webp.b64"
+const D271_WEBP_SHA256 := "1eb45164d9c7418fb9c459d18c0640935452266aeecbb04d1e9d7bd527af8784"
 
 
 func _ready() -> void:
@@ -39,11 +40,16 @@ func _check() -> void:
 	if guide.visible or not bool(atmosphere.get("court_ambience_enabled")):
 		_abort("D269 ambience defaults or hidden floor guide are wrong")
 		return
-	# New Court scene art is an authored SVG, no embedded sprite/UI raster:
-	# record editability, dimensions and empty-stage resource wiring.
-	var svg := FileAccess.get_file_as_string(D270_ART_PATH)
-	if not svg.contains("<svg ") or not svg.contains("width=\"640\"") or svg.contains("<image ") or svg.contains("<text"):
-		_abort("D270 empty editable 640px Court SVG file is malformed or has baked image/text")
+	# D271 actual painted bitmap must be the exact verified source, never
+	# the rejected D270 geometric SVG nor a downscaled gallery thumbnail.
+	var encoded := FileAccess.get_file_as_string(D271_ART_PATH).strip_edges()
+	var original_bytes := Marshalls.base64_to_raw(encoded)
+	if original_bytes.size() < 100000 or original_bytes.sha256_text() != D271_WEBP_SHA256:
+		_abort("D271 full-resolution painted WebP missing or byte mismatch")
+		return
+	var authored_image := Image.new()
+	if authored_image.load_webp_from_buffer(original_bytes) != OK or authored_image.get_size() != Vector2i(1280, 720):
+		_abort("D271 Court painted bitmap did not decode to 1280x720")
 		return
 	var backdrop := battle.get_node_or_null("BattleBackdrop")
 	if backdrop == null or str(backdrop.get("arena_id")) != CARD_ID:
@@ -51,32 +57,35 @@ func _check() -> void:
 		return
 	var image_texture := backdrop.texture as Texture2D
 	if image_texture == null or image_texture.get_width() != 1280 or image_texture.get_height() != 720:
-		_abort("D270 Court SVG failed to rasterize to exact 1280x720 in real Battle")
+		_abort("D271 Court painterly bitmap did not render 1280x720 in genuine Battle")
 		return
 	var pixels: Image = image_texture.get_image()
 	if pixels == null or pixels.get_pixel(500, 650).a < 0.99 or pixels.get_pixel(640, 240).a < 0.99:
-		_abort("D270 Court image is missing opaque throne or lower floor")
+		_abort("D271 Court bitmap is missing its opaque architecture or legal lower floor")
 		return
-	print("D270_COURT_EMPTY_SVG_NATIVE_PASS: actual Court Battle displays independent 1280x720 character-free editable vector QA, D264 floor untouched")
+	print("D271_COURT_PAINTED_WEBP_NATIVE_PASS: actual Court Battle displays exact full-quality painted 1280x720 asset, D264 floor unchanged")
 
-	# D270 B comparison must swap only Court texture, retain 1280×720 and
-	# the prior D265 asset for rollback. Native Battle actors never change.
-	var original_d270_texture: Texture2D = image_texture
+	# D271 B comparison must swap only backdrop textures, retain 1280x720
+	# and the tracked D265 asset for rollback. Units and Court Verdict unchanged.
+	var original_d271_texture: Texture2D = image_texture
 	var art_event := InputEventKey.new()
 	art_event.pressed = true
 	art_event.keycode = KEY_B
 	preview.call("_unhandled_key_input", art_event)
-	if not bool(backdrop.get("court_qa_show_legacy")) or backdrop.texture == null or backdrop.texture == original_d270_texture:
-		_abort("D270 B did not switch to tracked D265 rollback")
+	if not bool(backdrop.get("court_qa_show_legacy")) or backdrop.texture == null or backdrop.texture == original_d271_texture:
+		_abort("D271 B did not switch to tracked D265 rollback")
 		return
 	if backdrop.texture.get_width() != 1280 or backdrop.texture.get_height() != 720:
-		_abort("D270 B fallback plate has wrong size")
+		_abort("D271 B fallback plate has wrong size")
 		return
 	preview.call("_unhandled_key_input", art_event)
 	if bool(backdrop.get("court_qa_show_legacy")) or backdrop.texture == null or backdrop.texture.get_width() != 1280:
-		_abort("D270 B failed to restore new empty stage")
+		_abort("D271 B failed to restore painted Court background")
 		return
-	print("D270_COURT_BACKGROUND_AB_NATIVE_PASS: D270 empty SVG and D265 original QA WebP toggled inside real Battle, no unit/bounds mutation")
+	if backdrop.texture.get_image().get_pixel(500, 650) != original_d271_texture.get_image().get_pixel(500, 650):
+		_abort("D271 B did not restore original painted WebP image pixels")
+		return
+	print("D271_COURT_BACKGROUND_AB_NATIVE_PASS: painted D271 and original D265 toggle in genuine Battle with unchanged enemy/floor state")
 	var toggle := InputEventKey.new()
 	toggle.pressed = true
 	toggle.keycode = KEY_L
