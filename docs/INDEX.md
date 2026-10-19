@@ -1,8 +1,8 @@
 # Misdeal Documentation Index
 
-Updated 2026-10-19 — **D265 CURRENT**: richer original EMPTY Court arena preview Godot 4.7.2 PASS; **all 3 Court original 25-frame transparent animation packs still missing (0/75 structural source acceptance)**; chosen D261 second card art unchanged. Live Act1 **38/45**; #39 still QA, D264 lower-floor placement and frozen KARAMBA73 preserved.
+Updated 2026-10-19 — **D266 CURRENT**: three original Court 25-frame transparent animation QA atlases present (75/75 structural PASS, official Godot 4.7.2 native F6 PASS). The art is still stylized **prototype quality**, NOT accepted as final rich D261-compatible artwork. #39 QA-only / live Act1 **38/45**. Lower-floor D264, approved second D261 card image, D260 #38 and KARAMBA73 preserved.
 
-**START:** [D265 full original art state and next-step handoff](D265_COURT_RICH_ARENA_AND_ART_AUDIT.md) · [D265 native F6 richer empty Court preview](../scenes/dev/court_of_the_mute_d265_richer_arena_preview.tscn) · [D265 three-role source audit](qa/D265_THREE_ROLE_FULL25_AUDIT.json) · [Current new-chat handoff](NEXT_CHAT_HANDOFF.md).
+**START:** [D266 original all-three animation full QA + art gate](D266_COURT_ALL_THREE_ANIMATION_QA.md) · [D266 x1/x2 all-three animation F6](../scenes/dev/court_of_the_mute_d266_three_animation_preview.tscn) · [75/75 structural frame audit](qa/D266_THREE_ROLE_FULL25_AUDIT.json) · [Current next-chat handoff](NEXT_CHAT_HANDOFF.md).
 
 ## Read first (current, short, authoritative)
 
