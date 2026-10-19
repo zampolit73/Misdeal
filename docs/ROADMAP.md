@@ -1,5 +1,17 @@
 # Misdeal — Active Roadmap
 
+## Act I «Обещанный рассвет» — narrative production track (2026-10-19)
+
+- [x] Approve hero sacrificed castle to save country but sent truthful no-relief order.
+- [x] Approve **Chancellor forged letter; Commandant later learned truth and continued lying; Commandant = Bone Warden XIII**.
+- [x] Author 20-day siege chronology, 12 draft letters, 39/39 current-card clue hooks and conditional XIII scene draft in [story bible](ACT1_PROMISED_DAWN_STORY_BIBLE.md).
+- [ ] Settle specifics left open: actual origin/price of undead oath, Wizard relationship to events, name/localization details and finale consequence balance.
+- [ ] Implement minimal tactile DS2 table slice: inspect two dispatches, compare two seals, log evidence and show one consequential Wizard response; test native Godot before broad rollout.
+- [ ] Extend short optional clues across multiple cards/tiers, preserving random 12+XIII and existing event decisions; add QA seeded runs with sufficient/insufficient clue cases.
+- [ ] Implement Warden identity reveal and final strategic choice in a separately reviewed/game-tested pass; current run_end is still a stats-only screen.
+
+**Story-only now:** Act1 39/45, code, art, balance and final UX unchanged. The older «Narrative workstream: Siege mystery» list below is historical/superseded where it asks the team to select culprit.
+
 ## Narrative workstream: Siege mystery (approved direction; implementation not started)
 
 - [x] Approve core twist: commander sacrificed castle to save country but sent **truthful** no-relief order; third party forged promised-rescue letters. Protagonist's tragic command responsibility remains.
