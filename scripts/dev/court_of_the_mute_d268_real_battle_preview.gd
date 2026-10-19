@@ -17,6 +17,7 @@ var menu: Control
 var running := false
 var d269_floor_overlay: ColorRect
 var d269_ambient_enabled := true
+var d270_legacy_art_enabled := false
 
 
 func _ready() -> void:
@@ -68,7 +69,7 @@ func _build_menu() -> void:
 	launch.custom_minimum_size = Vector2(0, 46)
 	launch.pressed.connect(_launch_real_battle)
 	content.add_child(launch)
-	content.add_child(_label("Оригинальные D267 персонажи · D265 фон ещё QA. D269: в бою L — свет ВКЛ/ВЫКЛ; G — показать точную разрешённую зону пола.", 14))
+	content.add_child(_label("Оригинальные D267 персонажи · D265 фон ещё QA. D270: в бою B — фон D265/D270; L — подсветка, G — точная разрешённая зона.", 14))
 
 	error_label = _label("", 15)
 	error_label.add_theme_color_override("font_color", Color(1.0, 0.45, 0.38))
@@ -184,7 +185,14 @@ func _build_d269_floor_guide(battle: Control) -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not running or not (event is InputEventKey) or not event.pressed or event.echo:
 		return
-	if event.keycode == KEY_L:
+	if event.keycode == KEY_B:
+		var court_background := get_node_or_null("Battle/BattleBackdrop")
+		if court_background != null and court_background.has_method("set_court_qa_legacy_art"):
+			d270_legacy_art_enabled = not d270_legacy_art_enabled
+			court_background.call("set_court_qa_legacy_art", d270_legacy_art_enabled)
+			print("D270_COURT_BACKGROUND_AB: ", "D265 ORIGINAL" if d270_legacy_art_enabled else "D270 EMPTY QA")
+			get_viewport().set_input_as_handled()
+	elif event.keycode == KEY_L:
 		var court_atmosphere := get_node_or_null("Battle/Arena")
 		if court_atmosphere != null and court_atmosphere.has_method("set_court_ambience_enabled"):
 			d269_ambient_enabled = not d269_ambient_enabled
