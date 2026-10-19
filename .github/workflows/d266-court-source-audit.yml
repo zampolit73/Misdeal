@@ -1,0 +1,47 @@
+name: D266 Court all-75 QA independent audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/art/audit_court_d266_three_roles.py'
+      - '.github/workflows/d266-court-source-audit.yml'
+      - 'assets/pixel/units/court_of_the_mute_qa/*_d266_qa.webp.b64'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect-three-originals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install actual alpha inspection
+        run: python -m pip install 'Pillow>=10,<12'
+      - name: Require three structurally valid 25-frame sources
+        shell: bash
+        run: |
+          python tools/art/audit_court_d266_three_roles.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('docs/qa/D266_THREE_ROLE_FULL25_AUDIT.json').read_text())
+          print('D266_INDEPENDENT_ALPHA_AUDIT',data['stage'])
+          assert data['original_frames_structurally_accepted']==75, data
+          assert all(r['status']=='STRUCTURAL_PASS_PENDING_GODOT_VISUAL' for r in data['roles']), data
+          PY
+      - name: Commit per-role alpha QA (not art approval)
+        shell: bash
+        run: |
+          git add docs/qa/D266_THREE_ROLE_FULL25_AUDIT.json
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'qa(d266): independent all-75 alpha/uniqueness audit pending native art review'
+            git push origin HEAD:main
+          fi
