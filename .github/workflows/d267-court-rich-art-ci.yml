@@ -86,7 +86,7 @@ jobs:
             --scene res://scenes/dev/court_of_the_mute_d262_real_battle_boot.tscn 2>&1 | tee /tmp/d267-real-battle.log
           grep -q 'D262_COURT_REAL_BATTLE_PASS' /tmp/d267-real-battle.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D262_COURT_REAL_BATTLE_FAIL' /tmp/d267-real-battle.log; then exit 1; fi
-      - name: Released card 38 regression: 54 battle cases unaffected
+      - name: Released card 38 regression - 54 battle cases unaffected
         shell: bash
         run: |
           set -o pipefail
