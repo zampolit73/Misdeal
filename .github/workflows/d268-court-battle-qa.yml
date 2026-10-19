@@ -8,6 +8,9 @@ on:
       - 'scripts/dev/court_of_the_mute_d268_*.gd'
       - 'scenes/dev/court_of_the_mute_d268_*.tscn'
       - 'scripts/battle/authored_backdrop.gd'
+      - 'scripts/battle/battle_visual.gd'
+      - 'scripts/dev/court_of_the_mute_d267_rich_animation_preview.gd'
+      - 'scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn'
       - 'scripts/battle/court_verdict.gd'
       - 'resources/encounters/court_of_the_mute.tres'
       - 'resources/units/mute_magistrate.tres'
@@ -43,6 +46,13 @@ jobs:
           set -o pipefail
           timeout 60s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --quit-after 18 --scene res://scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn 2>&1 | tee /tmp/d268-preview.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D268:.*(failed|ошибка)' /tmp/d268-preview.log; then exit 1; fi
+      - name: Rich D267 combined art QA viewer frame-step controls load
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 60s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --quit-after 24 --scene res://scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn 2>&1 | tee /tmp/d268-art-gallery.log
+          grep -q 'D267_THREE_RICH_COURT_F6_PASS:' /tmp/d268-art-gallery.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D268 THREE RICH COURT QA FAILURE:' /tmp/d268-art-gallery.log; then exit 1; fi
       - name: Existing six genuine Court Battle launch contract
         shell: bash
         run: |
