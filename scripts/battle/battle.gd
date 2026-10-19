@@ -610,8 +610,8 @@ func _get_combat_bounds() -> Rect2:
 	if encounter != null:
 		match encounter.encounter_id:
 			"court_of_the_mute":
-			# Only lower floor; the throne, bench and steps are scenery.
-			return COURT_FLOOR.COMBAT_BOUNDS
+				# Only lower floor; the throne, bench and steps are scenery.
+				return COURT_FLOOR.COMBAT_BOUNDS
 			"black_crossing":
 				# Intact central deck only: prevents standing on the snapped
 				# foreground beams even when AI pursues a target or waves push.
