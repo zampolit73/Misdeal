@@ -16,6 +16,8 @@ const D153_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/threadba
 const D182_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/black_crossing_approved_v1.webp.b64"
 # D200: card #38 user-selected THIRD image, 448x274 scene artwork; QA ONLY.
 const D200_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/black_lantern_road_selected_v1.webp.b64"
+# D261: user explicitly selected SECOND Court of the Mute art, QA only. No #39 release.
+const D261_COURT_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/court_of_the_mute_selected_v1.webp.b64"
 
 const RUN_CARDS := {
 	"bone_patrol": "run/bone_patrol.webp",
@@ -56,6 +58,8 @@ const REWARDS := {
 static var _texture_cache: Dictionary = {}
 
 static func get_run_texture(card_id: String) -> Texture2D:
+	if card_id == "court_of_the_mute":
+		return _get_d261_selected_texture()
 	if card_id == "black_lantern_road":
 		return _get_d200_candidate_texture()
 	if card_id == "black_crossing":
@@ -113,6 +117,30 @@ static func _get_d153_candidate_texture() -> Texture2D:
 		_texture_cache[D153_CARD_WEBP_B64] = texture
 	return texture
 
+
+
+# D261: scene-first, user-selected SECOND court illustration. No alternative art
+# fallback is allowed for this unreleased card — a missing or corrupt export
+# should FAIL preview rather than silently display a different encounter.
+static func _get_d261_selected_texture() -> Texture2D:
+	if _texture_cache.has(D261_COURT_CARD_WEBP_B64):
+		return _texture_cache[D261_COURT_CARD_WEBP_B64] as Texture2D
+	if not FileAccess.file_exists(D261_COURT_CARD_WEBP_B64):
+		push_error("D261 approved option 2 card art missing: " + D261_COURT_CARD_WEBP_B64)
+		return null
+	var encoded: String = FileAccess.get_file_as_string(D261_COURT_CARD_WEBP_B64).strip_edges()
+	var bytes: PackedByteArray = Marshalls.base64_to_raw(encoded)
+	if bytes.is_empty():
+		push_error("D261 selected art base64 failed to decode.")
+		return null
+	var img := Image.new()
+	if img.load_webp_from_buffer(bytes) != OK or img.get_size() != Vector2i(448, 274):
+		push_error("D261 selected option 2 must decode to WebP 448x274.")
+		return null
+	var texture: Texture2D = ImageTexture.create_from_image(img)
+	if texture != null:
+		_texture_cache[D261_COURT_CARD_WEBP_B64] = texture
+	return texture
 
 
 # D200: the exact user-chosen third Black Lantern Road scene (no UI text).

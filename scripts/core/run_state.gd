@@ -89,6 +89,8 @@ const CARD_PATHS := {
 	"black_crossing": "res://resources/cards/black_crossing.tres",
 	# D260: released Act1 card #38; addressable Tier 1 original five-enemy encounter.
 	"black_lantern_road": "res://resources/cards/black_lantern_road.tres",
+	# D261: user-selected option A / second art; addressable QA card only.
+	"court_of_the_mute": "res://resources/cards/court_of_the_mute.tres",
 	"moon_seal": "res://resources/cards/moon_seal.tres",
 	"echo_crypt": "res://resources/cards/echo_crypt.tres",
 	"graveyard_ambush": "res://resources/cards/graveyard_ambush.tres",

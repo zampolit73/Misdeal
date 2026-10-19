@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+card_id = "court_of_the_mute"
+title = "СУД БЕЗМОЛВНЫХ"
+card_text = "Мёртвый судья поднимает печать. Писарь заносит в книгу имя того, кого приставы настигнут первым."
+wizard_line = "Присяжные давно истлели. Зато приговоры здесь исполняют исправно."
+type_label = "БОЙ"
+tier = 1
+resolution_type = "combat"
+target_path = ""
+art_path = ""
+prototype_result_text = ""
