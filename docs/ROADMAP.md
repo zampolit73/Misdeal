@@ -1,5 +1,16 @@
 # Misdeal — Active Roadmap
 
+## D268 — Court first real playable QA preview staged; complete native/art gates before #39 release
+
+- [x] Real Battle uses distinct Court QA backdrop, no Crypt fallback/atmosphere; D264 lower-floor geometry preserved, D265 art still QA-only.
+- [x] Native real Battle F6 launcher with 1/2/3 heroes ×2 Court formations, D267 original rich roles and D262 verdict.
+- [x] Rich all-three animation F6 has pause/frame-step navigation across 27 source-QC flagged frames; not artistic approval.
+- [x] Wrote 54-scenario Court BattleUnit/hero balance diagnostics, direct unreleased Court Battle→Reward→Table smoke, Godot 4.7.2 CI workflow.
+- [ ] **FIRST VERIFY** D268 actual GitHub Actions Godot outcome, fix reported parser/runtime failures; no new PASS claimed yet.
+- [ ] True x1 art/motion review and appropriate repairs (especially Bailiff death3–5); finish rich actor-free arena with D264 lower floor.
+- [ ] Review 54-case combat statistics and genuine end-to-end native reward route; separately release #39 only after all gates. **38/45 live now.** [D268 handoff](D268_NEW_CHAT_HANDOFF.md).
+
+
 ## D267 — Approved PNG import and rich 75-frame recovery DONE; user F6/release gates open
 
 - [x] All three exact approved PNG sources and three clean-alpha D267 rich 25-frame atlas files committed; 75/75 structural PASS.
