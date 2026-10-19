@@ -1,5 +1,10 @@
 # Misdeal — Active Roadmap
 
+## D271 — ACTUAL PAINTED COURT IN MAIN; Godot native PASS, artistic user verdict next
+
+The previously rejected D270 SVG has been replaced in real **Court-only** QA Battle by the genuine full-resolution painted D271 WebP b64 (1280×720; SHA256 `1eb45164d9c7418fb9c459d18c0640935452266aeecbb04d1e9d7bd527af8784`). [Godot 4.7.2 full D271 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39261648732): source bytes, 1280×720 texture, F6 **B** D265/D271 comparison, **L/G**, six real Battle setups, 54/54 Court BattleUnit simulations and QA-only Fight→Reward→Table. The old "not transferred" D271 notes below are HISTORICAL/SUPERSEDED. Need native visual acceptance from user, then rich D267 ×1 animation review/27 flags, then separate #39 ordinary-deal release. Card #39 still UNRELEASED, 38/45, D261/D264/#38/KARAMBA73 unchanged. [D271 verified report](D271_PAINTED_COURT_NATIVE_PASS.md).
+
+
 ## D271 — Court D270 SVG was rejected as placeholder; painterly arena restoration
 
 - [x] Recorded user's native screenshot feedback as **artistic FAIL of D270**, despite its technically successful Godot CI.
