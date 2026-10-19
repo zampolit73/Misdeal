@@ -41,3 +41,7 @@ User approved the overall D281 sharp 1280×720 full-HD tabletop/three card compo
 - Footer: fine translucent `FooterHintPlate`, caption at 13pt / Y688–711.
 
 Official Godot 4.7.2 asset/import/scene/hover/select/deselect/confirm and solo-run regression PASS: https://github.com/zampolit73/Misdeal/actions/runs/39322918562. **Native user screenshot and final artistic sign-off pending.** Check original card image exposure, readability, header dominance, selected highlight, footer at 1280×720; then stop micro-polishing once accepted.
+
+## D282 real Godot screenshot review (2026-10-20)
+
+The user sent a screenshot showing Knight selected. No blocking visual issues: full-resolution wizard/table, delicate bronze heading, readable moved Wizard comment, strong golden selection rim on Knight, muted other hero cards, prominent crimson confirm button and legible bottom hint. A minor cosmetic issue remains: caption overlaps a small area of the hood, without affecting interactivity. D282 is a good current visual baseline; the user has not explicitly given final artistic signoff. Native CI PASS: https://github.com/zampolit73/Misdeal/actions/runs/39322918562. No game code changed during screenshot review.
