@@ -9,6 +9,8 @@ on:
       - 'scripts/battle/battle.gd'
       - 'scripts/dev/court_of_the_mute_d262_verdict_contract.gd'
       - 'scenes/dev/court_of_the_mute_d262_verdict_contract.tscn'
+      - 'scripts/dev/court_of_the_mute_d262_real_battle_boot.gd'
+      - 'scenes/dev/court_of_the_mute_d262_real_battle_boot.tscn'
       - 'resources/encounters/court_of_the_mute.tres'
       - 'resources/units/mute_magistrate.tres'
       - 'resources/units/ash_scrivener.tres'
@@ -44,6 +46,20 @@ jobs:
           timeout 65s /tmp/godot-dir/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --scene res://scenes/dev/court_of_the_mute_d262_verdict_contract.tscn 2>&1 | tee /tmp/d262-court-contract.log
           grep -q 'D262_COURT_VERDICT_PASS' /tmp/d262-court-contract.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D262_COURT_VERDICT_FAIL' /tmp/d262-court-contract.log; then exit 1; fi
+      - name: Actual Battle Court roster and verdict in six party/formation cases
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 95s /tmp/godot-dir/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --scene res://scenes/dev/court_of_the_mute_d262_real_battle_boot.tscn 2>&1 | tee /tmp/d262-real-battle.log
+          grep -q 'D262_COURT_REAL_BATTLE_PASS' /tmp/d262-real-battle.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D262_COURT_REAL_BATTLE_FAIL' /tmp/d262-real-battle.log; then exit 1; fi
+      - name: Regression old 38-card encounter full battle matrix
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 120s /tmp/godot-dir/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --scene res://scenes/dev/black_lantern_d260_balance_diagnostics.tscn 2>&1 | tee /tmp/d262-regression.log
+          grep -q 'D260_BALANCE_DIAGNOSTICS ' /tmp/d262-regression.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D260: выпущенная' /tmp/d262-regression.log; then exit 1; fi
       - name: Preserve source and contract logs
         uses: actions/upload-artifact@v4
         if: always()
