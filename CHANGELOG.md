@@ -1,3 +1,9 @@
+## 2026-10-19 — D279R screenshot-proven baked background defect
+
+- Reviewed user native Godot ClassSelect screenshots: the original D279 background is a **fully baked table screenshot** and visibly duplicates gameplay cards, HUD, Hold and Fate Spread controls under the three new hero cards. D279 visual quality rejected despite native functional success.
+- Added scoped bronze header/counter/spread concealment and textured brocade behind the playable class cards, moving the title/Wizard line off the face; preserved active ClassSelect layout/stats/confirmation and original production Table.
+- Added automatic Godot node tests for occlusion masks, but final native 1280×720 artistic screenshot acceptance remains open. A genuine clean tabletop source is still preferable long term.
+
 ## 2026-10-19 — D279 class-select tabletop UI
 
 - Replaced the large black hero-selection modal with the approved full Variant C cursed table and three live D278 parchment/bronze character cards. Existing authored v7 class portraits are loaded independently, not baked into screenshot UI.

@@ -26,3 +26,17 @@ Keep Act1 at 39/45, `RunState` alone determines hero stats/party and no story-on
 ## Verified official Godot CI
 
 [Native Godot 4.7.2 complete D279 smoke PASS](https://github.com/zampolit73/Misdeal/actions/runs/39312723690), after `dd72b1c`: parses/imports real ClassSelect, instantiates the actual 3 UI Buttons with existing textures and transparency, validates all three `.tres` HP/damage readouts, hover/exit, multiple role selections **without starting a run**, then presses the actual confirmation button and validates the exact selected SOLO Mage in RunState. This is real native interaction QA, not an artistic screenshot. User acceptance at 1280×720 remains pending.
+
+
+## D279R visual correction prompted by user's screenshots — NOT a final background replacement
+
+**Observed visual FAIL after D279:** wizard had HUD at the top from the background art plus custom title at center, with an old visible Fate Spread button and two ghost encounter cards between the three protagonist cards. User sent actual screenshots before/after clicking. Root cause: `approved_variant_c/table_exact.webp` is a finished table UI concept **with old UI baked in**, not an empty scene; a former `table_wizard_layer.png` preview also has old combat UI baked in. Godot node tests did not reveal this.
+
+Implemented immediate ClassSelect-only concealment:
+- `TopHeaderPlate`: x334..947 y19..111 hides old HUD/WizardLine, now hosts "Кем ты был..." and dynamic Wizard commentary without covering the face at y160..260.
+- `TopRightCover`: x1091..1247 y19..71 covers baked "ОТРЯД TAB"; a noninteractive small emblem replaces the false gameplay button.
+- `FateSpreadCover`: x496..784 y241..287 hides stale Fate Spread button behind class-choice-specific label.
+- `OldOfferObscurer` (`shaders/class_select_brocade_cover.gdshader`): x345..936 y313..676, near-opaque dark red textured occult brocade and soft edge; it hides old illustrated offer-card/hold UI behind our three live cards, no flat huge window.
+- `scripts/dev/d279_class_select_smoke.gd` asserts all concealment nodes and layering dimensions in addition to all prior source stat/RunState interaction checks.
+
+Official native 4.7.2 Godot CI: https://github.com/zampolit73/Misdeal/actions/runs/39315102093 and https://github.com/zampolit73/Misdeal/actions/runs/39315252479 PASS. A real **new** Godot screenshot is still necessary to verify no leak through card gaps, no oversize top title, and no accidental hard-edged brocade rectangle. In the long term author/approve a true clean-tableplate illustration with no baked UI, as mandated by DS2. **No newly generated candidate background has been committed as the game's approved art.** No impacts to Table screen, Fate Spread I–XIII, Act1 39/45, protagonist mechanics or approved D278 cards.

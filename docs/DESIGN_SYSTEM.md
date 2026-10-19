@@ -1,3 +1,9 @@
+## D279R — Character select background must be free of baked UI
+
+User's actual Godot D279 screenshots proved that canonical approved `table_exact.webp` and older `table_wizard_layer.png` include old tabletop HUD, printed card text and game buttons. They are **not clean reusable backgrounds** for a new UI. Stopgap ClassSelect-only screens (D279R) now mask these specific elements behind a thin bronze header plaque and partly covered matching brocade tabletop area; source Table game is unchanged. This is not a final clean-plate art solution. Future ClassSelect backdrop should be an approved 1280×720 **empty** ritual table in exact dark crimson/blackened wood/aged gold DS2 palette, wizard/hands/candles intact but with NO baked HUD, UI, cards, counters or inscriptions. Newly generated clean background candidates cannot be assumed approved or committed just because native regression tests are green. Re-review 1280×720 in actual Godot after any class-select art replacement.
+
+---
+
 ## D279 — Three physical protagonist cards, no opaque character modal
 
 User selected the more restrained **actual DS2 tabletop** rendering of the three existing starting classes. Approved visual intent: keep the existing Variant C backdrop/wizard and D278 parchment/bronze cards (do not use generated whole-screen mockup as game background); show idle class portrait/title/role/short narrative; HP + damage sourced from real UnitData appear on hover or selected state, not all three by default. The Wizard commentary line changes per focused role. A card click is selection only; a separate blood-red `ПРИНЯТЬ ЭТУ СУДЬБУ` explicitly launches the existing one-hero run. Existing Knight/Ranger/Mage portraits stay independent and unmodified. No stats/perks/dialogue branches introduced. Native 1280×720 screenshot required for final art signoff.
