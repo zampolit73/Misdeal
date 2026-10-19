@@ -1,0 +1,68 @@
+{
+  "version": "D260",
+  "date": "2026-10-19",
+  "status": "RELEASED_CARD_38_45_HEADLESS_FUNCTIONAL_PASS",
+  "release_commit": "0d316dcd07fc72c1dff1752fc6adc72c172a4bc9",
+  "live_act1_card_count": 38,
+  "released_card": "black_lantern_road",
+  "mechanic": "moving lanternlight x1.16 attack cadence while lit",
+  "enemy_roles": [
+    "extinguished_guide",
+    "lantern_bearer",
+    "road_sentinel",
+    "oil_acolyte",
+    "lantern_archer"
+  ],
+  "balance": {
+    "pre_release_run": "https://github.com/zampolit73/Misdeal/actions/runs/39207190779",
+    "post_release_run": "https://github.com/zampolit73/Misdeal/actions/runs/39207937886",
+    "cases": 54,
+    "wins": 54,
+    "defeats": 0,
+    "timeouts": 0,
+    "average_hp_pre": [
+      0.7969,
+      0.6923,
+      0.7455
+    ],
+    "minimum_hp_pre": [
+      0.529545454545455,
+      0.297916666666667,
+      0.440740740740741
+    ],
+    "average_duration_seconds_pre": [
+      13.1852,
+      14.6296,
+      13.5278
+    ],
+    "individual_fallen_heroes_per_size": [
+      0,
+      2,
+      4
+    ],
+    "reference_avg_hp_d153": [
+      0.74,
+      0.67,
+      0.74
+    ],
+    "decision": "accept encounter's current numbers for first release; no global buff"
+  },
+  "real_deal": {
+    "run": "https://github.com/zampolit73/Misdeal/actions/runs/39207937827",
+    "status": "PASS",
+    "normal_offer_and_choose": true,
+    "tier": 1,
+    "controlled_tier1_candidate_subset": true,
+    "real_battle_with_five_library_atlases": true,
+    "real_win_continue_reward_table": true,
+    "card_resolution": true,
+    "claimed_reward": true,
+    "headless_test_frame_signal": true,
+    "visual_review_in_headless": false
+  },
+  "preview_scene": "res://scenes/dev/black_lantern_d260_released_battle_preview.tscn",
+  "unresolved_import_issue": "res://assets/concepts/approved_battle_direction.jpg",
+  "historical_d257_source_warning_count": 11,
+  "previous_checkpoint": "KARAMBA73 untouched",
+  "next_step": "D261 begin #39 concept and visual direction with 2-3 user art options"
+}
