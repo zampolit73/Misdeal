@@ -1,10 +1,16 @@
 extends Control
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+const CARD_SKIN := preload("res://scripts/class_select/class_select_card_skin.gd")
+const HERO_ROLES: Array[String] = ["knight", "ranger", "mage"]
+const WIZARD_DEFAULT := "— Начнём с простого. Выбери ту версию себя, которой ещё доверяешь."
+const WIZARD_REACTIONS := {
+	"knight": "— Этот всё ещё верит, что сталь решает больше, чем страх.",
+	"ranger": "— Всегда ищет выход. Даже там, где я предусмотрел только вход.",
+	"mage": "— Любопытный ум. Жаль, что он редко думает о последствиях."
+}
 
-const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
-const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
-
+# Keep the original source-backed class values, not mock-up numbers.
 const UNIT_TILE_SIZE: float = 96.0
 const UNIT_SHEET_PARTS: Array[String] = [
 	"res://assets/pixel/units/combat_units_v3/part_00.txt",
@@ -25,108 +31,136 @@ const UNIT_SHEET_PARTS: Array[String] = [
 @onready var knight_portrait: TextureRect = $Frame/Cards/Knight/Portrait
 @onready var ranger_portrait: TextureRect = $Frame/Cards/Ranger/Portrait
 @onready var mage_portrait: TextureRect = $Frame/Cards/Mage/Portrait
-@onready var status_label: Label = $Frame/Status
-@onready var frame: Panel = $Frame
+@onready var confirm_button: Button = $Frame/ConfirmButton
+@onready var wizard_line: Label = $Frame/WizardLine
 
 var unit_sheet_texture: Texture2D
+var selected_role := ""
+var hovered_role := ""
 var choosing := false
+var card_buttons: Dictionary = {}
+
 
 func _ready() -> void:
-	_apply_ui_kit()
-	MISDEAL_DS2_ROLLOUT.class_select(self)
-	knight_button.pressed.connect(_choose.bind("knight"))
-	ranger_button.pressed.connect(_choose.bind("ranger"))
-	mage_button.pressed.connect(_choose.bind("mage"))
-
-	for button in [knight_button, ranger_button, mage_button]:
-		button.mouse_entered.connect(_on_card_hover.bind(button, true))
-		button.mouse_exited.connect(_on_card_hover.bind(button, false))
-
-	_animate_screen_in()
+	card_buttons = {
+		"knight": knight_button,
+		"ranger": ranger_button,
+		"mage": mage_button
+	}
+	for role in HERO_ROLES:
+		var button: Button = card_buttons[role]
+		CARD_SKIN.prepare(button)
+		var unit: Resource = load(RunState.HERO_UNIT_PATHS[role]) as Resource
+		if unit != null:
+			(button.get_node("Stats") as Label).text = "%d HP    •    %d УРОН" % [
+				roundi(float(unit.get("max_hp"))),
+				roundi(float(unit.get("damage")))
+			]
+		else:
+			push_error("ClassSelect missing hero data for " + role)
+		button.pressed.connect(_select_role.bind(role))
+		button.mouse_entered.connect(_on_card_hover.bind(role, true))
+		button.mouse_exited.connect(_on_card_hover.bind(role, false))
+	confirm_button.pressed.connect(_confirm_choice)
+	CARD_SKIN.prepare_confirm(confirm_button)
+	confirm_button.disabled = true
+	_refresh_cards()
 	call_deferred("_animate_cards_in")
 
-func _apply_ui_kit() -> void:
-	MISDEAL_UI_KIT.apply_panel(frame, MISDEAL_UI_KIT.BRONZE, true)
-	MISDEAL_UI_KIT.apply_title($Frame/Title, MISDEAL_UI_KIT.GOLD)
-	MISDEAL_UI_KIT.apply_subtitle($Frame/WizardLine, MISDEAL_UI_KIT.BRONZE)
-	MISDEAL_UI_KIT.apply_screen_copy($Frame/WizardLine, MISDEAL_UI_KIT.TEXT_SECONDARY)
-	MISDEAL_UI_KIT.apply_screen_copy($Frame/Rule, MISDEAL_UI_KIT.TEXT_SECONDARY)
-	MISDEAL_UI_KIT.apply_screen_copy(status_label, MISDEAL_UI_KIT.TEXT_ON_DARK)
-	MISDEAL_UI_KIT.apply_card_button(knight_button, MISDEAL_UI_KIT.KNIGHT)
-	MISDEAL_UI_KIT.apply_card_button(ranger_button, MISDEAL_UI_KIT.RANGER)
-	MISDEAL_UI_KIT.apply_card_button(mage_button, MISDEAL_UI_KIT.MAGE)
 
-
-func _animate_screen_in() -> void:
-	frame.pivot_offset = frame.size * 0.5
-	frame.scale = Vector2(0.985, 0.985)
-	frame.modulate.a = 0.0
-	var tween := frame.create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(frame, "scale", Vector2.ONE, 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(frame, "modulate:a", 1.0, 0.16)
-
-func _animate_cards_in() -> void:
-	var cards: Array[Button] = [knight_button, ranger_button, mage_button]
-	for index in range(cards.size()):
-		var button := cards[index]
-		button.pivot_offset = button.size * 0.5
-		button.scale = Vector2(0.975, 0.975)
-		button.modulate.a = 0.0
-
-		var tween := button.create_tween()
-		tween.set_parallel(true)
-		var delay := 0.05 + float(index) * 0.055
-		tween.tween_property(button, "scale", Vector2.ONE, 0.20).set_delay(delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		tween.tween_property(button, "modulate:a", 1.0, 0.16).set_delay(delay)
-
-
-func _animate_choice_commit(selected_button: Button) -> void:
-	var cards: Array[Button] = [knight_button, ranger_button, mage_button]
-	for button in cards:
-		button.pivot_offset = button.size * 0.5
-		var tween := button.create_tween()
-		tween.set_parallel(true)
-		if button == selected_button:
-			button.z_index = 20
-			tween.tween_property(button, "scale", Vector2(1.045, 1.045), 0.14).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-			tween.tween_property(button, "modulate", Color(1.08, 1.0, 0.90, 1.0), 0.12)
-		else:
-			button.z_index = 0
-			tween.tween_property(button, "scale", Vector2(0.985, 0.985), 0.12)
-			tween.tween_property(button, "modulate", Color(0.46, 0.43, 0.46, 0.62), 0.12)
-
-	await get_tree().create_timer(0.18).timeout
-
-
-func _on_card_hover(button: Button, hovered: bool) -> void:
-	if button.disabled or choosing:
+func _select_role(role: String) -> void:
+	if choosing or not card_buttons.has(role):
 		return
-	button.pivot_offset = button.size * 0.5
-	var tween := button.create_tween()
-	tween.tween_property(button, "scale", Vector2(1.022, 1.022) if hovered else Vector2.ONE, 0.11).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	# A click only marks the card. It must NOT start a run.
+	selected_role = role
+	wizard_line.text = WIZARD_REACTIONS.get(role, WIZARD_DEFAULT)
+	confirm_button.disabled = false
+	_refresh_cards()
 
-func _choose(role: String) -> void:
+
+func _on_card_hover(role: String, entered: bool) -> void:
 	if choosing:
 		return
-	if not RunState.choose_protagonist(role):
+	hovered_role = role if entered else ("" if hovered_role == role else hovered_role)
+	if not selected_role.is_empty() and hovered_role.is_empty():
+		wizard_line.text = WIZARD_REACTIONS.get(selected_role, WIZARD_DEFAULT)
+	elif hovered_role.is_empty():
+		wizard_line.text = WIZARD_DEFAULT
+	else:
+		wizard_line.text = WIZARD_REACTIONS.get(hovered_role, WIZARD_DEFAULT)
+	_refresh_cards()
+
+
+func _refresh_cards() -> void:
+	for role in HERO_ROLES:
+		var button: Button = card_buttons[role]
+		var active := role == selected_role
+		var preview := role == hovered_role
+		var other := not selected_role.is_empty() and not active and not preview
+		var stats := button.get_node("Stats") as Label
+		var desc := button.get_node("Description") as Label
+		var plate := button.get_node("StatsPlate") as ColorRect
+		var show_stats := active or preview
+		stats.visible = show_stats
+		plate.visible = show_stats
+		desc.visible = not show_stats
+		CARD_SKIN.set_state(button, active, preview, other)
+		button.z_index = 15 if (preview or active) else 0
+	CARD_SKIN.update_confirm(confirm_button)
+
+
+func _animate_cards_in() -> void:
+	for i in range(HERO_ROLES.size()):
+		var card: Button = card_buttons[HERO_ROLES[i]]
+		card.pivot_offset = card.size * 0.5
+		card.modulate.a = 0.0
+		var tween := create_tween()
+		tween.tween_property(card, "modulate:a", 1.0, 0.26).set_delay(float(i) * 0.07)
+
+
+func _input(event: InputEvent) -> void:
+	if choosing or not (event is InputEventKey):
 		return
+	var key := event as InputEventKey
+	if not key.pressed or key.echo:
+		return
+	if key.keycode == KEY_LEFT or key.keycode == KEY_RIGHT:
+		var index := HERO_ROLES.find(selected_role)
+		if index == -1:
+			index = 0 if key.keycode == KEY_RIGHT else HERO_ROLES.size() - 1
+		else:
+			index = posmod(index + (1 if key.keycode == KEY_RIGHT else -1), HERO_ROLES.size())
+		hovered_role = ""
+		_select_role(HERO_ROLES[index])
+		get_viewport().set_input_as_handled()
+	elif (key.keycode == KEY_ENTER or key.keycode == KEY_KP_ENTER) and not selected_role.is_empty():
+		get_viewport().set_input_as_handled()
+		_confirm_choice()
 
+
+func _confirm_choice() -> void:
+	if choosing or selected_role.is_empty():
+		return
+	# RunState is updated ONLY after explicit confirmation.
+	if not RunState.choose_protagonist(selected_role):
+		return
 	choosing = true
-	knight_button.disabled = true
-	ranger_button.disabled = true
-	mage_button.disabled = true
-
-	var selected_button := knight_button
-	if role == "ranger":
-		selected_button = ranger_button
-	elif role == "mage":
-		selected_button = mage_button
-
-	status_label.text = "— Вот так ты это помнишь, — говорит Волшебник."
-	await _animate_choice_commit(selected_button)
-	await get_tree().create_timer(0.12).timeout
+	confirm_button.disabled = true
+	for role in HERO_ROLES:
+		(card_buttons[role] as Button).disabled = true
+	wizard_line.text = "— Вот так ты это помнишь, — говорит Волшебник."
+	var chosen_button: Button = card_buttons[selected_role]
+	for role in HERO_ROLES:
+		var button: Button = card_buttons[role]
+		var tween := create_tween()
+		if button == chosen_button:
+			button.z_index = 25
+			tween.tween_property(button, "scale", Vector2(1.065, 1.065), 0.15)
+		else:
+			tween.tween_property(button, "modulate", Color(0.47, 0.44, 0.43, 0.58), 0.15)
+	await get_tree().create_timer(0.28).timeout
 	SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
+
 
 func _get_unit_sheet_texture() -> Texture2D:
 	if unit_sheet_texture != null:

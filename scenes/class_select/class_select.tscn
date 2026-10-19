@@ -1,62 +1,8 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/class_select/class_select.gd" id="1_class"]
-[ext_resource type="Texture2D" path="res://assets/pixel/table/table_wizard_layer.png" id="2_wizard"]
+[ext_resource type="Script" path="res://scripts/ui/runtime_webp_texture.gd" id="2_runtime"]
 [ext_resource type="Texture2D" path="res://assets/pixel/table/misdeal_logo.png" id="3_logo"]
-[ext_resource type="Script" path="res://scripts/ui/cursed_choice_visual.gd" id="4_visual"]
-[ext_resource type="Script" path="res://scripts/ui/runtime_webp_texture.gd" id="5_runtime_webp"]
-
-[sub_resource type="StyleBoxFlat" id="Frame"]
-bg_color = Color(0.022, 0.012, 0.019, 0.95)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.66, 0.30, 0.18, 0.96)
-shadow_color = Color(0, 0, 0, 0.86)
-shadow_size = 18
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="Card"]
-bg_color = Color(0.022, 0.018, 0.026, 0.985)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.36, 0.22, 0.24, 0.90)
-shadow_color = Color(0, 0, 0, 0.62)
-shadow_size = 9
-content_margin_left = 16.0
-content_margin_right = 16.0
-content_margin_top = 16.0
-content_margin_bottom = 16.0
-
-[sub_resource type="StyleBoxFlat" id="KnightHover"]
-bg_color = Color(0.045, 0.065, 0.095, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.46, 0.68, 0.95, 1)
-
-[sub_resource type="StyleBoxFlat" id="RangerHover"]
-bg_color = Color(0.040, 0.075, 0.050, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.42, 0.72, 0.36, 1)
-
-[sub_resource type="StyleBoxFlat" id="MageHover"]
-bg_color = Color(0.072, 0.044, 0.092, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.68, 0.46, 0.88, 1)
 
 [node name="ClassSelect" type="Control"]
 layout_mode = 3
@@ -68,68 +14,43 @@ grow_vertical = 2
 script = ExtResource("1_class")
 
 [node name="Background" type="ColorRect" parent="."]
-layout_mode = 1
+mouse_filter = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.008, 0.006, 0.012, 1)
+color = Color(0.01, 0.007, 0.012, 1)
 
 [node name="WizardBackdrop" type="TextureRect" parent="."]
 mouse_filter = 2
 offset_right = 1280.0
 offset_bottom = 720.0
-texture_filter = 1
-texture = ExtResource("2_wizard")
 expand_mode = 1
 stretch_mode = 6
-modulate = Color(0.82, 0.72, 0.70, 0.78)
+script = ExtResource("2_runtime")
+webp_path = "res://assets/pixel/table/approved_variant_c/table_exact.webp"
+expected_size = Vector2i(1280, 720)
+use_nearest_filter = false
 
-[node name="BackdropShade" type="ColorRect" parent="."]
+[node name="TitleShadow" type="ColorRect" parent="."]
 mouse_filter = 2
+offset_left = 310.0
+offset_top = 155.0
+offset_right = 970.0
+offset_bottom = 272.0
+color = Color(0.027, 0.011, 0.015, 0.76)
+
+[node name="Frame" type="Control" parent="."]
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0.006, 0.003, 0.008, 0.30)
-
-[node name="Visual" type="Control" parent="."]
-mouse_filter = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_visual")
-accent = Color(0.78, 0.31, 0.16, 1)
-secondary = Color(0.18, 0.05, 0.08, 1)
-variant = "candles"
-
-[node name="Logo" type="TextureRect" parent="."]
-mouse_filter = 2
-offset_left = 22.0
-offset_top = 14.0
-offset_right = 238.0
-offset_bottom = 104.0
-texture_filter = 1
-texture = ExtResource("3_logo")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Frame" type="Panel" parent="."]
-offset_left = 70.0
-offset_top = 62.0
-offset_right = 1210.0
-offset_bottom = 684.0
-theme_override_styles/panel = SubResource("Frame")
 
 [node name="Title" type="Label" parent="Frame"]
-offset_left = 36.0
-offset_top = 24.0
-offset_right = 1124.0
-offset_bottom = 68.0
+mouse_filter = 2
+offset_left = 220.0
+offset_top = 160.0
+offset_right = 1060.0
+offset_bottom = 210.0
 theme_override_colors/font_color = Color(0.96, 0.82, 0.64, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.95)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 31
@@ -137,251 +58,246 @@ text = "КЕМ ТЫ БЫЛ, КОГДА ВСЁ НАЧАЛОСЬ?"
 horizontal_alignment = 1
 
 [node name="WizardLine" type="Label" parent="Frame"]
-offset_left = 120.0
-offset_top = 78.0
-offset_right = 1040.0
-offset_bottom = 112.0
-theme_override_colors/font_color = Color(0.72, 0.64, 0.60, 1)
+mouse_filter = 2
+offset_left = 306.0
+offset_top = 220.0
+offset_right = 974.0
+offset_bottom = 266.0
+theme_override_colors/font_color = Color(0.92, 0.79, 0.66, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
 theme_override_font_sizes/font_size = 16
 text = "— Начнём с простого. Выбери ту версию себя, которой ещё доверяешь."
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Cards" type="HBoxContainer" parent="Frame"]
-offset_left = 54.0
-offset_top = 138.0
-offset_right = 1106.0
-offset_bottom = 520.0
-theme_override_constants/separation = 20
+offset_left = 204.0
+offset_top = 292.0
+offset_right = 1076.0
+offset_bottom = 630.0
+theme_override_constants/separation = 28
 
 [node name="Knight" type="Button" parent="Frame/Cards"]
-custom_minimum_size = Vector2(337, 382)
+custom_minimum_size = Vector2(272, 338)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.72, 0.84, 0.98, 1)
-theme_override_colors/font_hover_color = Color(0.92, 0.96, 1, 1)
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("Card")
-theme_override_styles/hover = SubResource("KnightHover")
-theme_override_styles/pressed = SubResource("KnightHover")
 text = ""
 
 [node name="Portrait" type="TextureRect" parent="Frame/Cards/Knight"]
 mouse_filter = 2
-script = ExtResource("5_runtime_webp")
+script = ExtResource("2_runtime")
 webp_path = "res://assets/pixel/class_select/v7/knight.webp"
 expected_size = Vector2i(640, 480)
-offset_left = 64.0
-offset_top = 18.0
-offset_right = 273.0
-offset_bottom = 194.0
-texture_filter = 1
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 260.0
+offset_bottom = 172.0
 expand_mode = 1
 stretch_mode = 6
 
 [node name="ClassTitle" type="Label" parent="Frame/Cards/Knight"]
 mouse_filter = 2
-offset_left = 18.0
-offset_top = 204.0
-offset_right = 319.0
-offset_bottom = 232.0
-theme_override_colors/font_color = Color(0.72, 0.84, 0.98, 1)
-theme_override_font_sizes/font_size = 18
+offset_left = 17.0
+offset_top = 180.0
+offset_right = 255.0
+offset_bottom = 215.0
 text = "РЫЦАРЬ"
-horizontal_alignment = 1
-
-[node name="Stats" type="Label" parent="Frame/Cards/Knight"]
-mouse_filter = 2
-offset_left = 18.0
-offset_top = 238.0
-offset_right = 319.0
-offset_bottom = 262.0
-theme_override_colors/font_color = Color(0.88, 0.82, 0.75, 1)
-theme_override_font_sizes/font_size = 14
-text = "150 HP   •   18 УРОН"
 horizontal_alignment = 1
 
 [node name="Role" type="Label" parent="Frame/Cards/Knight"]
 mouse_filter = 2
 offset_left = 18.0
-offset_top = 268.0
-offset_right = 319.0
-offset_bottom = 292.0
-theme_override_colors/font_color = Color(0.72, 0.84, 0.98, 1)
-theme_override_font_sizes/font_size = 13
+offset_top = 220.0
+offset_right = 254.0
+offset_bottom = 244.0
 text = "БЛИЖНИЙ БОЙ"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Frame/Cards/Knight"]
 mouse_filter = 2
-offset_left = 24.0
-offset_top = 306.0
-offset_right = 313.0
-offset_bottom = 364.0
-theme_override_colors/font_color = Color(0.72, 0.84, 0.98, 1)
-theme_override_font_sizes/font_size = 14
+offset_left = 23.0
+offset_top = 263.0
+offset_right = 249.0
+offset_bottom = 319.0
 text = "Стоять там, где остальные отступают."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 clip_text = true
 
+[node name="StatsPlate" type="ColorRect" parent="Frame/Cards/Knight"]
+visible = false
+mouse_filter = 2
+offset_left = 22.0
+offset_top = 265.0
+offset_right = 250.0
+offset_bottom = 312.0
+color = Color(0.31, 0.20, 0.15, 0.10)
+
+[node name="Stats" type="Label" parent="Frame/Cards/Knight"]
+visible = false
+mouse_filter = 2
+offset_left = 21.0
+offset_top = 267.0
+offset_right = 251.0
+offset_bottom = 309.0
+theme_override_colors/font_color = Color(0.31, 0.17, 0.11, 1)
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Ranger" type="Button" parent="Frame/Cards"]
-custom_minimum_size = Vector2(337, 382)
+custom_minimum_size = Vector2(272, 338)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.66, 0.90, 0.58, 1)
-theme_override_colors/font_hover_color = Color(0.90, 1, 0.86, 1)
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("Card")
-theme_override_styles/hover = SubResource("RangerHover")
-theme_override_styles/pressed = SubResource("RangerHover")
 text = ""
 
 [node name="Portrait" type="TextureRect" parent="Frame/Cards/Ranger"]
 mouse_filter = 2
-script = ExtResource("5_runtime_webp")
+script = ExtResource("2_runtime")
 webp_path = "res://assets/pixel/class_select/v7/ranger.webp"
 expected_size = Vector2i(640, 480)
-offset_left = 64.0
-offset_top = 18.0
-offset_right = 273.0
-offset_bottom = 194.0
-texture_filter = 1
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 260.0
+offset_bottom = 172.0
 expand_mode = 1
 stretch_mode = 6
 
 [node name="ClassTitle" type="Label" parent="Frame/Cards/Ranger"]
 mouse_filter = 2
-offset_left = 18.0
-offset_top = 204.0
-offset_right = 319.0
-offset_bottom = 232.0
-theme_override_colors/font_color = Color(0.66, 0.90, 0.58, 1)
-theme_override_font_sizes/font_size = 18
+offset_left = 17.0
+offset_top = 180.0
+offset_right = 255.0
+offset_bottom = 215.0
 text = "СЛЕДОПЫТ"
-horizontal_alignment = 1
-
-[node name="Stats" type="Label" parent="Frame/Cards/Ranger"]
-mouse_filter = 2
-offset_left = 18.0
-offset_top = 238.0
-offset_right = 319.0
-offset_bottom = 262.0
-theme_override_colors/font_color = Color(0.88, 0.82, 0.75, 1)
-theme_override_font_sizes/font_size = 14
-text = "90 HP   •   14 УРОН"
 horizontal_alignment = 1
 
 [node name="Role" type="Label" parent="Frame/Cards/Ranger"]
 mouse_filter = 2
 offset_left = 18.0
-offset_top = 268.0
-offset_right = 319.0
-offset_bottom = 292.0
-theme_override_colors/font_color = Color(0.66, 0.90, 0.58, 1)
-theme_override_font_sizes/font_size = 13
+offset_top = 220.0
+offset_right = 254.0
+offset_bottom = 244.0
 text = "ДАЛЬНИЙ БОЙ"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Frame/Cards/Ranger"]
 mouse_filter = 2
-offset_left = 24.0
-offset_top = 306.0
-offset_right = 313.0
-offset_bottom = 364.0
-theme_override_colors/font_color = Color(0.66, 0.90, 0.58, 1)
-theme_override_font_sizes/font_size = 14
+offset_left = 23.0
+offset_top = 263.0
+offset_right = 249.0
+offset_bottom = 319.0
 text = "Выживать там, где дороги уже нет."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 clip_text = true
 
+[node name="StatsPlate" type="ColorRect" parent="Frame/Cards/Ranger"]
+visible = false
+mouse_filter = 2
+offset_left = 22.0
+offset_top = 265.0
+offset_right = 250.0
+offset_bottom = 312.0
+color = Color(0.31, 0.20, 0.15, 0.10)
+
+[node name="Stats" type="Label" parent="Frame/Cards/Ranger"]
+visible = false
+mouse_filter = 2
+offset_left = 21.0
+offset_top = 267.0
+offset_right = 251.0
+offset_bottom = 309.0
+theme_override_colors/font_color = Color(0.31, 0.17, 0.11, 1)
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Mage" type="Button" parent="Frame/Cards"]
-custom_minimum_size = Vector2(337, 382)
+custom_minimum_size = Vector2(272, 338)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.86, 0.66, 1, 1)
-theme_override_colors/font_hover_color = Color(0.97, 0.90, 1, 1)
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("Card")
-theme_override_styles/hover = SubResource("MageHover")
-theme_override_styles/pressed = SubResource("MageHover")
 text = ""
 
 [node name="Portrait" type="TextureRect" parent="Frame/Cards/Mage"]
 mouse_filter = 2
-script = ExtResource("5_runtime_webp")
+script = ExtResource("2_runtime")
 webp_path = "res://assets/pixel/class_select/v7/mage.webp"
 expected_size = Vector2i(640, 480)
-offset_left = 64.0
-offset_top = 18.0
-offset_right = 273.0
-offset_bottom = 194.0
-texture_filter = 1
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 260.0
+offset_bottom = 172.0
 expand_mode = 1
 stretch_mode = 6
 
 [node name="ClassTitle" type="Label" parent="Frame/Cards/Mage"]
 mouse_filter = 2
-offset_left = 18.0
-offset_top = 204.0
-offset_right = 319.0
-offset_bottom = 232.0
-theme_override_colors/font_color = Color(0.86, 0.66, 1, 1)
-theme_override_font_sizes/font_size = 18
+offset_left = 17.0
+offset_top = 180.0
+offset_right = 255.0
+offset_bottom = 215.0
 text = "МАГ"
-horizontal_alignment = 1
-
-[node name="Stats" type="Label" parent="Frame/Cards/Mage"]
-mouse_filter = 2
-offset_left = 18.0
-offset_top = 238.0
-offset_right = 319.0
-offset_bottom = 262.0
-theme_override_colors/font_color = Color(0.88, 0.82, 0.75, 1)
-theme_override_font_sizes/font_size = 14
-text = "80 HP   •   24 УРОН"
 horizontal_alignment = 1
 
 [node name="Role" type="Label" parent="Frame/Cards/Mage"]
 mouse_filter = 2
 offset_left = 18.0
-offset_top = 268.0
-offset_right = 319.0
-offset_bottom = 292.0
-theme_override_colors/font_color = Color(0.86, 0.66, 1, 1)
-theme_override_font_sizes/font_size = 13
+offset_top = 220.0
+offset_right = 254.0
+offset_bottom = 244.0
 text = "ВЗРЫВНОЙ УРОН"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Frame/Cards/Mage"]
 mouse_filter = 2
-offset_left = 24.0
-offset_top = 306.0
-offset_right = 313.0
-offset_bottom = 364.0
-theme_override_colors/font_color = Color(0.86, 0.66, 1, 1)
-theme_override_font_sizes/font_size = 14
+offset_left = 23.0
+offset_top = 263.0
+offset_right = 249.0
+offset_bottom = 319.0
 text = "Знать то, что следовало оставить забытым."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 clip_text = true
 
-[node name="Rule" type="Label" parent="Frame"]
-offset_left = 120.0
-offset_top = 536.0
-offset_right = 1040.0
-offset_bottom = 566.0
-theme_override_colors/font_color = Color(0.56, 0.51, 0.50, 1)
-theme_override_font_sizes/font_size = 13
-text = "Остальные двое не входят в отряд. Их судьбы придётся снова встретить в картах."
-horizontal_alignment = 1
+[node name="StatsPlate" type="ColorRect" parent="Frame/Cards/Mage"]
+visible = false
+mouse_filter = 2
+offset_left = 22.0
+offset_top = 265.0
+offset_right = 250.0
+offset_bottom = 312.0
+color = Color(0.31, 0.20, 0.15, 0.10)
 
-[node name="Status" type="Label" parent="Frame"]
-offset_left = 120.0
-offset_top = 576.0
-offset_right = 1040.0
-offset_bottom = 606.0
-theme_override_colors/font_color = Color(0.78, 0.62, 0.52, 1)
-theme_override_font_sizes/font_size = 14
+[node name="Stats" type="Label" parent="Frame/Cards/Mage"]
+visible = false
+mouse_filter = 2
+offset_left = 21.0
+offset_top = 267.0
+offset_right = 251.0
+offset_bottom = 309.0
+theme_override_colors/font_color = Color(0.31, 0.17, 0.11, 1)
 text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="Frame"]
+offset_left = 451.0
+offset_top = 640.0
+offset_right = 829.0
+offset_bottom = 682.0
+disabled = true
+text = "ПРИНЯТЬ ЭТУ СУДЬБУ"
+
+[node name="Rule" type="Label" parent="Frame"]
+mouse_filter = 2
+offset_left = 247.0
+offset_top = 689.0
+offset_right = 1033.0
+offset_bottom = 709.0
+theme_override_colors/font_color = Color(0.81, 0.68, 0.53, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_font_sizes/font_size = 12
+text = "Остальные двое не входят в отряд. Их судьбы придётся снова встретить в картах."
 horizontal_alignment = 1
