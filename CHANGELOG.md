@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-19 — D273 Court #39 RELEASED (39/45), native real-deal PASS
+
+- User accepted real D271 painted character-free Court battle artwork. D272 independent 75-frame alpha audit found all approved D267 rich sprites unique and safely padded (minimum **3px** transparent margin; 15 spare cells alpha-clear), with 27 original-source warnings retained as possible visual review points rather than proven sprite corruption. Original D267 PNG→WebP rebuild sha contract PASS.
+- **Act1 38→39/45**: connected `resources/cards/court_of_the_mute.tres` encounter path and appended `court_of_the_mute` to normal `RunState.ACT1_CARD_IDS`. Four original enemy actors (Magistrate, Scribe, Bailiffs×2), existing D262 verdict/2 formations/D268 local balance, actual approved D271 1280×720 painted arena and D264 exact floor unchanged.
+- Added `scenes/dev/court_of_the_mute_d273_release_route_runner.tscn` testing ordinary Tier1 `RunState.get_offer_cards()` + `choose_card()`, real Battle/Fight, Reward claim, Table resolution. [Godot 4.7.2 native all-green CI](https://github.com/zampolit73/Misdeal/actions/runs/39264156351) also includes 6 real battle setups, 54/54 BattleUnit matches, D271 art identity, B/L/G QA controls; [independent original-rich CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39264427458).
+- Migrated existing historical sprite preview, F6 Battle launcher and native QA contracts to **39/45 released** without changing source artwork/other live encounters. Source-edge art flags preserved for future motion review when evidence warrants. D261 exact second card illustration, D260 #38, D264 floor, DS2/Fate Spread and KARAMBA73 frozen. [D273 release](docs/D273_COURT_CARD39_RELEASE.md) / [handoff](docs/D273_NEW_CHAT_HANDOFF.md).
+
+
 ## D271 — ACTUAL PAINTED COURT IN MAIN; Godot native PASS, artistic user verdict next
 
 The previously rejected D270 SVG has been replaced in real **Court-only** QA Battle by the genuine full-resolution painted D271 WebP b64 (1280×720; SHA256 `1eb45164d9c7418fb9c459d18c0640935452266aeecbb04d1e9d7bd527af8784`). [Godot 4.7.2 full D271 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39261648732): source bytes, 1280×720 texture, F6 **B** D265/D271 comparison, **L/G**, six real Battle setups, 54/54 Court BattleUnit simulations and QA-only Fight→Reward→Table. The old "not transferred" D271 notes below are HISTORICAL/SUPERSEDED. Need native visual acceptance from user, then rich D267 ×1 animation review/27 flags, then separate #39 ordinary-deal release. Card #39 still UNRELEASED, 38/45, D261/D264/#38/KARAMBA73 unchanged. [D271 verified report](D271_PAINTED_COURT_NATIVE_PASS.md).
