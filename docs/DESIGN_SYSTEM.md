@@ -1,3 +1,9 @@
+## D274 — Approved hybrid Table offer interface
+
+Selected on 2026-10-19: TWO large cards on parchment with independently loaded scene-first illustration, dark ink title/type/short description, crimson choose band as part of each card Button, bronze hold controls above; no new three-card layout. Keep original approved Variant C Table background, Wizard, physical deck/discard and Fate Spread I–XIII. Artwork is not replaced with a screenshot that bakes text or controls. Native visual QA pending; apply only as an opt-in tabletop UI skin.
+
+---
+
 ## D168 — card-art option review workflow (2026-10-15)
 
 Before a **new or redrawn card illustration** enters production, show **three visibly different image concepts** by default (at least two meaningful choices). Each already meets the D167 scene-first worldbuilding standard: integrated action, spatial depth, real environment, restrained DS2 palette and no embedded interface. Show actual picture previews, not merely textual moodboards. Wait for explicit user selection before integrating a final bitmap, then commit only the selected image via GitHub (448×274 export-safe `.webp.b64`, versioned for rollback); user only performs `git pull` and Godot F6 check. D152 exception: its already-rendered alchemical-laboratory image was explicitly approved by user on 2026-10-15, so install that exact illustration without another round of options. Runtime card UI, fonts, margins, DS2 and Fate Spread remain unchanged.
