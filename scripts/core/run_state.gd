@@ -87,7 +87,7 @@ const CARD_PATHS := {
 	"threadbare_theatre": "res://resources/cards/threadbare_theatre.tres",
 	# D198: live Act 1 card #37, released after native D197 Battle→Reward→Table QA.
 	"black_crossing": "res://resources/cards/black_crossing.tres",
-	# D254 QA-only addressable card; NOT in ACT1_CARD_IDS / regular deals.
+	# D260: released Act1 card #38; addressable Tier 1 original five-enemy encounter.
 	"black_lantern_road": "res://resources/cards/black_lantern_road.tres",
 	"moon_seal": "res://resources/cards/moon_seal.tres",
 	"echo_crypt": "res://resources/cards/echo_crypt.tres",
