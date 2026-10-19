@@ -44,8 +44,12 @@ func _check() -> void:
 	# the rejected D270 geometric SVG nor a downscaled gallery thumbnail.
 	var encoded := FileAccess.get_file_as_string(D271_ART_PATH).strip_edges()
 	var original_bytes := Marshalls.base64_to_raw(encoded)
-	if original_bytes.size() < 100000 or original_bytes.sha256_text() != D271_WEBP_SHA256:
-		_abort("D271 full-resolution painted WebP missing or byte mismatch")
+	var hasher := HashingContext.new()
+	hasher.start(HashingContext.HASH_SHA256)
+	hasher.update(original_bytes)
+	var actual_sha256 := hasher.finish().hex_encode()
+	if original_bytes.size() < 100000 or actual_sha256 != D271_WEBP_SHA256:
+		_abort("D271 full-resolution painted WebP missing or byte mismatch: " + actual_sha256)
 		return
 	var authored_image := Image.new()
 	if authored_image.load_webp_from_buffer(original_bytes) != OK or authored_image.get_size() != Vector2i(1280, 720):
