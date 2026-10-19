@@ -1,6 +1,6 @@
 # D278 — Painted standalone bronze frame on live tabletop offers
 
-Status: runtime committed `6fcdf1003cba90ed5c605e7c92e0b0897e62c760`; Godot CI native import/asset verification and user actual 1280×720 visual acceptance tracked separately.
+Status: runtime committed `6fcdf1003cba90ed5c605e7c92e0b0897e62c760`; Official Godot 4.7.2 native source WebP hash/alpha-center/two-live-card verification PASS: https://github.com/zampolit73/Misdeal/actions/runs/39296402449. Actual 1280×720 visual user acceptance remains open.
 
 ## Artistic source
 
