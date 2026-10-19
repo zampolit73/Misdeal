@@ -10,11 +10,11 @@ func _ready() -> void:
 	call_deferred("_run_contract")
 
 func _run_contract() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 38 or RunState.ACT1_CARD_IDS.has("court_of_the_mute"):
-		_fail("unreleased card #39 changed normal 38-card pool")
+	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has("court_of_the_mute"):
+		_fail("released Court #39 missing from normal 39-card pool")
 		return
 	var card: RunCardData = RunState.get_card("court_of_the_mute")
-	if card == null or not card.target_path.is_empty():
+	if card == null or card.target_path != "res://resources/encounters/court_of_the_mute.tres":
 		_fail("new card resource missing or prematurely pointed to incomplete battle")
 		return
 	if ENCOUNTER.encounter_id != "court_of_the_mute" or ENCOUNTER.get_formation_count() != 2:
