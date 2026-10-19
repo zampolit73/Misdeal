@@ -1,6 +1,14 @@
 # Misdeal — Active Roadmap
 
-Updated: 2026-10-19 (D256 single-file new-chat handoff; D255 3×25 rich sprite ART HOLD; current LIVE 37/45).
+## D257 — Three complete character atlas repair candidates and one native art gate
+
+- [x] Restore cross-cell pixels with a source-aware author for all three approved D255 silhouettes; stage three lossless 25-frame **QA-only** atlases via successful GitHub Actions.
+- [x] Verify 75 distinct frames, 15 truly blank slots, 2px alpha margins and report 9/10/8 reconstructed source components. Apply local lower-edge contour trial; **11 original lower-cut source flags remain reviewable**.
+- [x] Provide ONE combined D257 Godot gallery for all three roles, all states, both facings, and native ×1 scale.
+- [ ] **NEXT** F6 visual art/motion review and repair defects, particularly sole contact and prop continuity; technical QC is not artistic sign-off. Only stage all three in real 3v5 upon acceptance.
+- [ ] Actual D254 Battle→Reward→Table with solo/duo/trio and both formations; normalized 54-case balance matrix, crowding fix as needed; release #38 only after all gates. **Live pool remains 37/45**.
+
+Updated: 2026-10-19 (D257 three restored QA atlases, original art review still pending; LIVE 37/45).
 
 ## D256 — Current new-chat restart checkpoint
 

@@ -1,6 +1,10 @@
 # Misdeal — Current Project State
 
-Updated: 2026-10-19 (D256 consolidated handoff after D255; three style-approved 25-frame QA atlases still ART HOLD from source-edge cuts; live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
+## D257 — Three recovered 25-frame Black Lantern atlas candidates, single F6 gallery (ART HOLD)
+
+2026-10-19: GitHub Actions successfully authored and committed `extinguished_guide`, `oil_acolyte`, `lantern_archer` **D257 QA-only** 576×480 sprite atlases from the original user-style-approved D255 full sheets. Recovered neighboring-cell image components **9/10/8**, with edge-only fitting, stable core proportions and a separate tentative lower-silhouette contour treatment. Offline QA verifies **75 unique frames + 15 alpha-empty cells + 2px margins**; machine report `docs/qa/D257_SEAM_RECOVERY_QC.json` still marks **11 original lower-boundary source warnings** (4 Guide IDLE, 4 Acolyte IDLE, 3 Archer ATTACK). This is a technical repair attempt **not independently validated artistic recovery**. ONE combined preview: `res://scenes/dev/black_lantern_d257_three_character_art_preview.tscn` (×2.1/×1, all states/both directions); **native F6 NOT RUN**, art judgment PENDING. No three-role production registration, #38 activation, balance or battle-path changes; **37/45 live** and KARAMBA73 frozen. Reproduction, remaining uncertainties, next gates: [D257 report](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md).
+
+Updated: 2026-10-19 (D257 three recovered 25-frame QA atlases in GitHub; 11 original lower-edge source warnings; one native F6 pending; live 37/45). Source of truth: `zampolit73/Misdeal` / `main`.
 
 ## D256 — Canonical NEW-CHAT checkpoint (after D255, no gameplay changes)
 

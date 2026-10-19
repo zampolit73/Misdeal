@@ -1,9 +1,9 @@
-# Misdeal — New Chat Entry Point (CURRENT D256)
+# Misdeal — New Chat Entry Point (CURRENT D257)
 
-**Read first:** [D256 — single-file complete continuation](D256_NEW_CHAT_HANDOFF.md).
+**Read first:** [D257 — three repaired atlas QA packages and next native F6 gate](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md). The preceding full design/history reference is [D256 handoff](D256_NEW_CHAT_HANDOFF.md).
 
-The full live implementation truth remains [PROJECT_STATE.md](PROJECT_STATE.md), ongoing working log [HANDOFF.md](HANDOFF.md), tasks [ROADMAP.md](ROADMAP.md), binding choices [DECISIONS.md](DECISIONS.md), and permanent project rules [AGENTS.md](../AGENTS.md).
+Canonical working documents: [PROJECT_STATE.md](PROJECT_STATE.md), [HANDOFF.md](HANDOFF.md), [ROADMAP.md](ROADMAP.md), [DECISIONS.md](DECISIONS.md), and [AGENTS.md](../AGENTS.md).
 
-**Latest art:** D255 original user-accepted visual directions for Guide, Oil Acolyte and Archer, **75 QA frames only**, with known source-boundary clipping. **Do not start by inventing new designs, registering cropped atlases, or releasing #38.** Next fix the known frame boundary issues across all three originals, then one complete native F6.
+**Current immediate step:** User-style-approved original Guide/Oil Acolyte/Archer now have D257 25-frame source-recovery QA atlases, one combined Godot F6 preview, and successful GitHub Actions static checks. **No native/art PASS yet**; 11 raw lower-edge warnings remain. Inspect complete 75-frame motion at true ×1, repair any cropped props/feet as one batch, then stage in real five-role 3v5, D254 Battle→Reward→Table and 54-case balance. Card #38 remains unreleased (**37/45 live**); KARAMBA73 frozen.
 
-Original pre-cleanup long handoff is [archived here](archive/2026-10-15-pre-cleanup/docs/NEXT_CHAT_HANDOFF.md). This short document intentionally points to the single current checkpoint.
+Historical pre-cleanup handoff: [archive](archive/2026-10-15-pre-cleanup/docs/NEXT_CHAT_HANDOFF.md).

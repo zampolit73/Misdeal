@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-19 — D257: seam-aware repair candidates for all three approved D255 characters
+
+- Added tracked source-aware Python art recovery, GitHub Actions build, **three newly generated QA-only WebP/Base64 25-pose atlases** and detailed per-pose machine QC.
+- Cross-cell alpha ownership reclaimed **9/10/8** components respectively for Guide, Oil Acolyte and Archer; local lower-contour treatment staged. Static generator/format PASS: 75 unique frames, 15 transparent unused cells, 2px margins. **11 raw lower-source-boundary warnings remain**, and true art/motion PASS is pending F6.
+- Added single combined D257 Godot x1/x2.1 gallery. Preserved all original D255 assets, both existing accepted-stage roles, 37/45 live card pool, normal game scripts, Battle→Reward→Table and frozen KARAMBA73.
+- Complete next-chat context and limitations: [D257 atlas QA](docs/D257_THREE_ATLAS_SEAM_RECOVERY_QA.md).
+
 Current implementation summaries only; the exhaustive pre-cleanup change history lives at [CHANGELOG archive](docs/archive/2026-10-15-pre-cleanup/CHANGELOG.md).
 
 ## 2026-10-19 — D256: complete self-contained new-chat handoff for D255 art checkpoint

@@ -1,8 +1,8 @@
 # Misdeal Documentation Index
 
-Updated: 2026-10-19 — **D256 new-chat checkpoint after D255**. Act 1 LIVE **37/45**, #38 remains QA-only. Two rich original Black Lantern enemies staged (D244 Sentinel / D224 Bearer); remaining THREE rich D255 illustrated sets have **75 structural PASS sprites, internal ART HOLD** from 12/13/9 source-edge warnings. **Do not mistake technical output for finished animated art.**
+Updated: 2026-10-19 — **D257 QA three-atlas recovery is now current**. 75 structural sprite frames/15 blank slots pass source-build QA; 11 original lower-edge visual warnings and native F6 art check are outstanding. Act1 **37/45 live**; card #38 unreleased.
 
-**START A NEW CHAT HERE:** [D256 — Full current continuation, asset paths, 34 source-edge warnings, next steps](D256_NEW_CHAT_HANDOFF.md). Detailed [D255 all-three art source and known clipping](D255_THREE_RICH_CHARACTER_ATLASES.md), [D255 one combined QA gallery](../scenes/dev/black_lantern_d255_three_character_art_preview.tscn), [D255 QC](qa/D255_THREE_RICH25_QC.json).
+**CURRENT:** [D257 reconstructed three-atlas QA and F6 gate](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md) · [D257 complete gallery](../scenes/dev/black_lantern_d257_three_character_art_preview.tscn) · [D257 frame QC](qa/D257_SEAM_RECOVERY_QC.json). [Prior D256 continuation](D256_NEW_CHAT_HANDOFF.md) and [D255 source](D255_THREE_RICH_CHARACTER_ATLASES.md) retained for full history/rollback.
 
 Historical earlier D238/D242-D254 records remain below and in [PROJECT_STATE.md](PROJECT_STATE.md) / [HANDOFF.md](HANDOFF.md); superseded older "pending D241 Sentinel" pointers are **not current status**. Live technical source of truth is GitHub main and this active state.
 

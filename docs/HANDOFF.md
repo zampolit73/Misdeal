@@ -1,6 +1,10 @@
 # Misdeal — Canonical Working Handoff
 
-Updated: 2026-10-19 — D256 NEW-CHAT entrypoint: docs/D256_NEW_CHAT_HANDOFF.md. Three D255 sprite packs are QA-only until boundary repairs; 37/45 live.
+## D257 — ACTIVE next action: one native complete-pack art check, then original five-role #38 gates
+
+GitHub `main` now contains all three new reconstructed QA atlases, deterministic D257 author/Actions build, successful 75-frame structural report and **`res://scenes/dev/black_lantern_d257_three_character_art_preview.tscn`**. Recovered 9/10/8 source-side components; 11 lower-edge original warnings remain under localized color-contour repair. **Next: one F6 visual check of all three characters at true ×1 and ×2.1, both facings and five states, especially Guide three-lamp rigid yoke, Oil tank/burner, Archer bow/release and sole contact.** Fix any art/motion defects internally in a full batch before registration. F6 and real combat NOT yet run; do not call this final. Then route three roles through actual 3v5/D254 Battle→Reward→Table/54-case balance and only then consider #38 release. Live **37/45**, DS2, D244/D224 and frozen KARAMBA73 untouched. Details: [D257 current QA/handoff](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md). D256 note is historical.
+
+Updated: 2026-10-19 — D257 recovery QA staged: docs/D257_THREE_ATLAS_SEAM_RECOVERY_QA.md. One combined F6 review pending; 37/45 live.
 
 Source of truth: `zampolit73/Misdeal`, branch `main`. The assistant has direct connected GitHub read/write tools; do not ask the user to paste code, repeat project history or grant GitHub access without checking. Godot **4.7.x / GDScript**, no C# migration. Start a new chat by reading `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Other references: `docs/INDEX.md`.
 
