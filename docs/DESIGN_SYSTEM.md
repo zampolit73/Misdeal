@@ -1,3 +1,9 @@
+## D280 — Pure ClassSelect tabletop art; no UI embedded in bitmap
+
+Use dedicated ClassSelect UI-free dark-fantasy wizard/ritual-table background loaded by class_select_clean_backdrop.gd. Never use approved_variant_c/table_exact.webp as ClassSelect background because it has baked HUD, encounter cards and labels. No D279R cosmetic masks or fake button labels: all portrait cards, text, source-validated stat panel, Wizard comments, logo and confirm action remain separate interactive Godot controls. DS2 black/crimson/aged bronze palette and real D278 decorative frame. Native artistic 1280×720 review still pending despite passing component regression; artwork may be upgraded to higher resolution without changing mechanics.
+
+---
+
 ## D279R — Character select background must be free of baked UI
 
 User's actual Godot D279 screenshots proved that canonical approved `table_exact.webp` and older `table_wizard_layer.png` include old tabletop HUD, printed card text and game buttons. They are **not clean reusable backgrounds** for a new UI. Stopgap ClassSelect-only screens (D279R) now mask these specific elements behind a thin bronze header plaque and partly covered matching brocade tabletop area; source Table game is unchanged. This is not a final clean-plate art solution. Future ClassSelect backdrop should be an approved 1280×720 **empty** ritual table in exact dark crimson/blackened wood/aged gold DS2 palette, wizard/hands/candles intact but with NO baked HUD, UI, cards, counters or inscriptions. Newly generated clean background candidates cannot be assumed approved or committed just because native regression tests are green. Re-review 1280×720 in actual Godot after any class-select art replacement.

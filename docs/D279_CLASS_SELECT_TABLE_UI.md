@@ -40,3 +40,8 @@ Implemented immediate ClassSelect-only concealment:
 - `scripts/dev/d279_class_select_smoke.gd` asserts all concealment nodes and layering dimensions in addition to all prior source stat/RunState interaction checks.
 
 Official native 4.7.2 Godot CI: https://github.com/zampolit73/Misdeal/actions/runs/39315102093 and https://github.com/zampolit73/Misdeal/actions/runs/39315252479 PASS. A real **new** Godot screenshot is still necessary to verify no leak through card gaps, no oversize top title, and no accidental hard-edged brocade rectangle. In the long term author/approve a true clean-tableplate illustration with no baked UI, as mandated by DS2. **No newly generated candidate background has been committed as the game's approved art.** No impacts to Table screen, Fate Spread I–XIII, Act1 39/45, protagonist mechanics or approved D278 cards.
+
+
+## D280 supersedes D279R stopgap
+
+Production screen now uses a separate 640×360 clean ritual table illustration with no baked old gameplay. The masks introduced in D279R have been removed. Source-backed hero stats, click/select/confirm and art kept. Read docs/D280_CLASS_SELECT_CLEAN_TABLE.md. Godot 4.7.2 passed CI; native user artistic signoff still pending.

@@ -1,5 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D280 — Clean three-fates class selection (2026-10-20)
+
+User approved a final pure ritual-table ClassSelect: no baked HUD, no old offers or masked background UI, restrained heading, three existing hero cards, authentic hover HP/damage and separate crimson confirmation. Code commits a9b3cbeb, 52571357, 33f53350 now replace D279R screenshot with a NEW clean wizard/table painting (no old cards, buttons or counters). A single 640×360 UI-free WebP (11,320 bytes, SHA256 8005eca284768611b923cdf8b87f9a8f4db0554dd4a7e4d6277925c27a6d93fe) is reconstructed from four exact Base64 fragments by scripts/class_select/class_select_clean_backdrop.gd. D279R OldOfferObscurer and all fake cover plaques/FateTitle are removed. Real Misdeal logo returns; softer title at Y42-85, dynamic Wizard commentary at Y243-283, existing three 272×338 D278 framed cards at Y292-630 and confirm at Y640-682. Original Knight/Ranger/Mage portraits and .tres stats and solo RunState routing unchanged. Production Table and Fate Spread untouched. Official native Godot 4.7.2 asset-integrity, import and interaction smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39318175090. THIS IS NOT THE USER'S 1280×720 ARTISTIC APPROVAL. Background source integrated at 640×360 for reasonable runtime footprint; review whether higher-res is necessary based on actual Godot screenshot. See docs/D280_CLASS_SELECT_CLEAN_TABLE.md.
+
+
 ## D279R — Screenshot FAIL: baked Table UI beneath ClassSelect; first-pass scoped concealment (2026-10-19)
 
 Actual user Godot screenshots of D279 (idle and selected Knight) showed SEVERE art layering defect: background `assets/pixel/table/approved_variant_c/table_exact.webp` is a **FULL painted mock with baked HUD, WizardLine, FateSpread action, two old encounter cards, Hold controls, Deck/Discard counters**, NOT a UI-free photographic background. D279 wrongly used that image under three new live hero Buttons, so ghost card names, hold buttons and table UI remained visible. D279 native CI PASS was ONLY functional and did not imply visual approval. Mark D279 original layout **visual FAIL**.

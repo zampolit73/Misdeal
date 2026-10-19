@@ -1,3 +1,10 @@
+## 2026-10-20 — D280 pure ritual table class selection
+
+- Integrated independent clean wizard/candles/rune-circle artwork under the three ClassSelect protagonist cards, without painted HUD, cards, Hold or counters.
+- Removed temporary D279R screenshot concealment shader/plaques, fake FateTitle and duplicate emblem; inserted real logo and lighter header, moved Wizard reaction above cards.
+- Retained all D278 character art and frames, real source data HP/damage hover, two-step selection and solo-hero routing.
+- Official Godot 4.7.2 integrity plus actual scene and solo-confirm native tests PASS. User visual approval at 1280×720 still open.
+
 ## 2026-10-19 — D279R screenshot-proven baked background defect
 
 - Reviewed user native Godot ClassSelect screenshots: the original D279 background is a **fully baked table screenshot** and visibly duplicates gameplay cards, HUD, Hold and Fate Spread controls under the three new hero cards. D279 visual quality rejected despite native functional success.
