@@ -4,6 +4,7 @@ extends Control
 # motion atlas CANDIDATES. Structurally distinct is not art approval.
 # Intentionally never registers them with the global animation library.
 const LOADER := preload("res://scripts/dev/black_lantern_d249_five_enemy_combat_qa.gd")
+const PRODUCTION_LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
 const PATH := "res://assets/pixel/units/court_of_the_mute_qa/"
 const BACKDROP := "res://assets/pixel/battle/arenas/court_of_the_mute_d265_rich_qa.webp.b64"
 const ROLES: Array[String] = ["mute_magistrate", "ash_scrivener", "bone_bailiff"]
@@ -49,6 +50,10 @@ func _ready() -> void:
 	add_child(veil)
 	var loader := LOADER.new() as Control
 	for role in ROLES:
+		if PRODUCTION_LIBRARY.get_frames(role) != null:
+			loader.free()
+			_fail("QA art leaked into shipped animation library: " + role)
+			return
 		var source: String = PATH + role + "_d266_qa.webp.b64"
 		var original := _image_from_base64(source, Vector2i(576, 480))
 		if original == null:
@@ -83,7 +88,7 @@ func _ready() -> void:
 	floor_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	floor_overlay.visible = false
 	add_child(floor_overlay)
-	floor_overlay.z_index = -1
+	floor_overlay.z_index = 1
 	_set_facing(true)
 	_play("walk")
 	print("D266_THREE_ROLE_F6_PASS: Godot decoded 3 original 25-pose alpha animation atlases; idle/walk/attack/hit/death; native x1 and zoom x2; card39 still QA")
