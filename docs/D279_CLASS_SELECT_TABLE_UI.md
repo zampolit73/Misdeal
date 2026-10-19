@@ -22,3 +22,7 @@ Scope: real ClassSelect screen UI only. Technical implementation in `3d6476ba3b7
 After `git pull`, launch a new run at 1280×720 and capture normal three-card screen and hover/selected examples. Check no overlap with wizard hands/title, screen/CTA fit, original approved images and readable long Russian text. Try each class, switch selection before confirmation, inspect actual HP/damage 150/18, 90/14, 80/24, and verify confirmation goes to Table with chosen SOLO hero only. Keyboard Left/Right/Enter should work. Godot CI technical PASS does not mean the user has approved the artistic integration.
 
 Keep Act1 at 39/45, `RunState` alone determines hero stats/party and no story-only Act I intrigue is implemented by this pass.
+
+## Verified official Godot CI
+
+[Native Godot 4.7.2 complete D279 smoke PASS](https://github.com/zampolit73/Misdeal/actions/runs/39312723690), after `dd72b1c`: parses/imports real ClassSelect, instantiates the actual 3 UI Buttons with existing textures and transparency, validates all three `.tres` HP/damage readouts, hover/exit, multiple role selections **without starting a run**, then presses the actual confirmation button and validates the exact selected SOLO Mage in RunState. This is real native interaction QA, not an artistic screenshot. User acceptance at 1280×720 remains pending.
