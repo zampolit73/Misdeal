@@ -20,13 +20,13 @@ const D183_ROLES := ["drowned_ferryman", "drowned_hand"]
 # D259: all FIVE original Black Lantern 25-pose atlases are staged in
 # the strict shared library. Guide/Archer atlases are frame-mirrored to
 # canonical RIGHT-source; card #38 remains out of the 37-card draw pool.
-const BLACK_LANTERN_STAGED_ROLES := ["road_sentinel", "lantern_bearer", "extinguished_guide", "oil_acolyte", "lantern_archer", "mute_magistrate", "ash_scrivener", "bone_bailiff"]
+const BLACK_LANTERN_STAGED_ROLES := ["road_sentinel", "lantern_bearer", "extinguished_guide", "oil_acolyte", "lantern_archer"]
 # D267: the three user-approved rich Court skeleton atlases are staged in
 # normal strict SpriteFrames decoding, but card #39 is not in the live deck.
 const COURT_STAGED_ROLES := ["mute_magistrate", "ash_scrivener", "bone_bailiff"]
 const COURT_ATLAS_DIR := "res://assets/pixel/units/court_of_the_mute_qa/"
 const D151_ROLES := ["funeral_priest", "pallbearer"]
-const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus", "threadbare_puppeteer", "bone_marionette", "drowned_ferryman", "drowned_hand", "road_sentinel", "lantern_bearer", "extinguished_guide", "oil_acolyte", "lantern_archer"]
+const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus", "threadbare_puppeteer", "bone_marionette", "drowned_ferryman", "drowned_hand", "road_sentinel", "lantern_bearer", "extinguished_guide", "oil_acolyte", "lantern_archer", "mute_magistrate", "ash_scrivener", "bone_bailiff"]
 
 static var _frames_cache: Dictionary = {}
 static var _unavailable: Dictionary = {}
