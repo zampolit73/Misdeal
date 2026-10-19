@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-19 — D270 new actor-free tribunal QA stage in actual Battle
+
+- Authored `assets/pixel/battle/arenas/court_of_the_mute_d270_empty_qa.svg`, editable independent empty Court with carved throne, justice scales, banners, elevated braziers, ruined arches and contiguous **D264 legal lower floor**, no embedded people, sprites, text or UI. Court-only Battle now previews its 1280×720 nearest-neighbor native SVG; original D265 `.webp.b64` kept as full rollback.
+- Real F6 Court preview added **B** comparison old D265/new D270 in-place; existing **L** ambience and **G** floor toggles retained. Godot actual F6 checks SVG opaque floor and both B states.
+- [Godot 4.7.2 D270 official CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39255650012): SVG resource, all QA toggles, 6 Court Battle setups, 54/54 original BattleUnit diagnostic fights, direct QA-only Fight→Reward→Table. **No art-quality claim from CI.**
+- D267 rich animated originals (75 poses/27 source QC review marks), D261 selected original card bitmap, D264 movement floor, D260 released #38 and frozen KARAMBA73 unchanged. **Card #39 remains unreleased (38/45 live)**; full painterly art verdict and native x1 motion review required. [D270 QA details](docs/D270_COURT_EMPTY_ARENA_NATIVE_QA.md) · [handoff](docs/D270_NEW_CHAT_HANDOFF.md).
+
+
 ## 2026-10-19 — D269 Court upper-tribunal atmospheric QA pass, verified
 
 - User replied «Да, Все ок» to D268 native real battle check. Incrementally added Court-only upper-architecture cold shafts, warm four-brazier breathing, sparse dust motes; every effect remains safely above the D264 screen lower-floor start y532, **no changes to movement or unit cards**.
