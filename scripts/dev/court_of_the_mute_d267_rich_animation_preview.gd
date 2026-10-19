@@ -2,10 +2,10 @@ extends Control
 
 # D267: user-selected RICH original Court sprites at native x1 and x2.1.
 # These are identical to the atlases staged in the game's strict library.
-# Original source edge warnings remain; full Battle is still QA-only.
+# Original source edge warnings remain open for visual review. D271 Court backdrop approved.
 const PRODUCTION_LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
 const PATH := "res://assets/pixel/units/court_of_the_mute_qa/"
-const BACKDROP := "res://assets/pixel/battle/arenas/court_of_the_mute_d265_rich_qa.webp.b64"
+const BACKDROP := "res://assets/pixel/battle/arenas/court_of_the_mute_d271_painted_qa.webp.b64"
 const ROLES: Array[String] = ["mute_magistrate", "ash_scrivener", "bone_bailiff"]
 const TITLES: Array[String] = ["БЕЗМОЛВНЫЙ МАГИСТРАТ", "ПИСАРЬ ПРАХА", "КОСТЯНОЙ ПРИСТАВ"]
 const STATES: Array[String] = ["idle", "walk", "attack", "hit", "death"]
@@ -43,7 +43,7 @@ func _ready() -> void:
 		return
 	var background := _image_from_base64(BACKDROP, Vector2i(1280, 720))
 	if background == null:
-		_fail("D265 original empty Court backdrop cannot be decoded")
+		_fail("D271 accepted painted Court backdrop cannot be decoded")
 		return
 	var paint := TextureRect.new()
 	paint.texture = ImageTexture.create_from_image(background)
@@ -80,7 +80,7 @@ func _ready() -> void:
 		_label(TITLES[i],Vector2(x - 192,153),Vector2(384,33),16)
 		big[role] = _animated(frames[role],Vector2(x,354),2.1)
 		native[role] = _animated(frames[role],Vector2(x,517),1.0)
-	_label("D267 · УТВЕРЖДЁННЫЙ АРТ · 75 КАДРОВ · ПРОВЕРКА АНИМАЦИЙ",Vector2(37,12),Vector2(1204,50),24)
+	_label("D272 · УТВЕРЖДЁННЫЕ ПЕРСОНАЖИ · 75 КАДРОВ · РЕВИЗИЯ",Vector2(37,12),Vector2(1204,50),24)
 	_label("МАСШТАБ ×2.1 · сравни захват предметов, движение и падение",Vector2(60,218),Vector2(1160,28),15)
 	_label("БОЕВОЙ МАСШТАБ ×1",Vector2(60,438),Vector2(1160,23),13)
 	caption = _label("",Vector2(58,570),Vector2(1160,27),13)
@@ -104,7 +104,8 @@ func _ready() -> void:
 	_play("walk")
 	_label("D268 · 27 исходных меток: 5 Магистрат / 0 Писарь / 22 Пристав. Это точки проверки, не доказанные дефекты.",Vector2(62,599),Vector2(1152,27),13)
 	print("D267_THREE_RICH_COURT_F6_PASS: Godot decoded 3 original 25-pose alpha animation atlases; idle/walk/attack/hit/death; native x1 and zoom x2; card39 still QA")
-	print("D267_VISUAL_REVIEW: user approved original rich sheets; engine x1 review and flagged source-edge poses still required")
+	print("D272_COURT_GALLERY_D271_PASS: accepted painted Court backdrop in all-three rich sprite inspection")
+	print("D272_VISUAL_REVIEW: 27 original SOURCE flags need x1 grip, feet and Bailiff death3-5 inspection; not proven output crop defects")
 
 
 func _image_from_base64(path: String, dims: Vector2i) -> Image:
