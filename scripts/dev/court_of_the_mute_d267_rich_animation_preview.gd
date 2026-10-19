@@ -11,12 +11,24 @@ const TITLES: Array[String] = ["БЕЗМОЛВНЫЙ МАГИСТРАТ", "ПИ�
 const STATES: Array[String] = ["idle", "walk", "attack", "hit", "death"]
 const ANIM_LABELS: Array[String] = ["ОЖИДАНИЕ", "ХОДЬБА", "АТАКА", "УРОН", "СМЕРТЬ"]
 const CARD_ID := "court_of_the_mute"
+# D268 manual art-QA navigation for 27 SOURCE flags (not 27 proven broken sprites).
+const REVIEW_FLAGS := {
+	"mute_magistrate": {"walk": [2, 3], "attack": [0, 1, 3]},
+	"bone_bailiff": {
+		"idle": [0, 1, 2, 3], "walk": [0, 1, 2, 3, 4, 5],
+		"attack": [0, 1, 2, 3, 4, 5], "hit": [0, 1, 2],
+		"death": [3, 4, 5]
+	}
+}
 
 var big: Dictionary = {}
 var native: Dictionary = {}
 var frames: Dictionary = {}
 var current_state := "walk"
 var facing_left := true
+var paused := false
+var current_frame := 0
+var warning_cursor := -1
 var caption: Label
 var floor_overlay: ColorRect
 
@@ -74,6 +86,10 @@ func _ready() -> void:
 	caption = _label("",Vector2(58,570),Vector2(1160,27),13)
 	_button("← ВЛЕВО",Vector2(58,70),Vector2(173,34)).pressed.connect(_set_facing.bind(true))
 	_button("ВПРАВО →",Vector2(245,70),Vector2(173,34)).pressed.connect(_set_facing.bind(false))
+	_button("◀ КАДР",Vector2(447,70),Vector2(157,34)).pressed.connect(_step_frame.bind(-1))
+	_button("ПАУЗА / PLAY",Vector2(615,70),Vector2(183,34)).pressed.connect(_toggle_pause)
+	_button("КАДР ▶",Vector2(808,70),Vector2(157,34)).pressed.connect(_step_frame.bind(1))
+	_button("27 МЕТОК ▶",Vector2(976,70),Vector2(236,34)).pressed.connect(_next_warning)
 	for i in range(STATES.size()):
 		_button(ANIM_LABELS[i],Vector2(75+i*229,637),Vector2(201,45)).pressed.connect(_play.bind(STATES[i]))
 	floor_overlay = ColorRect.new()
@@ -86,6 +102,7 @@ func _ready() -> void:
 	floor_overlay.z_index = 1
 	_set_facing(true)
 	_play("walk")
+	_label("D268 · 27 исходных меток: 5 Магистрат / 0 Писарь / 22 Пристав. Это точки проверки, не доказанные дефекты.",Vector2(62,599),Vector2(1152,27),13)
 	print("D267_THREE_RICH_COURT_F6_PASS: Godot decoded 3 original 25-pose alpha animation atlases; idle/walk/attack/hit/death; native x1 and zoom x2; card39 still QA")
 	print("D267_VISUAL_REVIEW: user approved original rich sheets; engine x1 review and flagged source-edge poses still required")
 
@@ -144,17 +161,89 @@ func _set_facing(left: bool) -> void:
 	for role in ROLES:
 		(big[role] as AnimatedSprite2D).flip_h = not left
 		(native[role] as AnimatedSprite2D).flip_h = not left
+	_update_caption()
 
 
 func _play(state: String) -> void:
 	current_state = state
+	paused = false
+	current_frame = 0
 	for role in ROLES:
 		for sprite in [big[role],native[role]]:
 			var s := sprite as AnimatedSprite2D
 			s.stop()
 			s.play(state)
-	if caption:
-		caption.text = "D266 QA / %s · %s · НЕ ВЫПУЩЕНО · 38/45" % [state.to_upper(),"←" if facing_left else "→"]
+	_update_caption()
+
+
+func _toggle_pause() -> void:
+	paused = not paused
+	for role in ROLES:
+		for sprite in [big[role], native[role]]:
+			var actor := sprite as AnimatedSprite2D
+			if paused:
+				actor.pause()
+			else:
+				actor.play(current_state)
+	if paused:
+		current_frame = (native[ROLES[0]] as AnimatedSprite2D).frame
+	_update_caption()
+
+
+func _step_frame(delta: int) -> void:
+	paused = true
+	var count: int = (frames[ROLES[0]] as SpriteFrames).get_frame_count(current_state)
+	current_frame = posmod(current_frame + delta, count)
+	for role in ROLES:
+		for sprite in [big[role], native[role]]:
+			var actor := sprite as AnimatedSprite2D
+			actor.pause()
+			actor.frame = current_frame
+	_update_caption()
+
+
+func _next_warning() -> void:
+	# One combined D267 three-role review; focus only frames flagged by source QC.
+	var flagged: Array[Dictionary] = []
+	for role in ROLES:
+		var by_state: Dictionary = REVIEW_FLAGS.get(role, {})
+		for state in STATES:
+			var frame_indices: Array = by_state.get(state, [])
+			for index in frame_indices:
+				flagged.append({"role": role, "state": state, "frame": int(index)})
+	if flagged.size() != 27:
+		_fail("D268 QC marker mismatch: expected 27 original source flags")
+		return
+	warning_cursor = (warning_cursor + 1) % flagged.size()
+	var marked: Dictionary = flagged[warning_cursor]
+	_play(String(marked["state"]))
+	paused = true
+	current_frame = int(marked["frame"])
+	for role in ROLES:
+		for sprite in [big[role], native[role]]:
+			var actor := sprite as AnimatedSprite2D
+			actor.pause()
+			actor.frame = current_frame
+	_update_caption(String(marked["role"]))
+
+
+func _update_caption(focus_role: String = "") -> void:
+	if caption == null:
+		return
+	var direction := "←" if facing_left else "→"
+	var hint := "АВТОВОСПРОИЗВЕДЕНИЕ" if not paused else "ПАУЗА · КАДР %d" % current_frame
+	var active_flags: Array[String] = []
+	for role in ROLES:
+		var by_state: Dictionary = REVIEW_FLAGS.get(role, {})
+		var indices: Array = by_state.get(current_state, [])
+		if paused and current_frame in indices:
+			active_flags.append(role)
+	var note := ""
+	if not active_flags.is_empty():
+		note = " · ПРОВЕРИТЬ ИСХОДНЫЙ КРАЙ: " + ", ".join(active_flags)
+	if not focus_role.is_empty():
+		note += " · ФОКУС: " + focus_role
+	caption.text = "D268 / %s · %s · %s%s · #39 QA · 38/45" % [current_state.to_upper(), direction, hint, note]
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -164,10 +253,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		floor_overlay.visible = not floor_overlay.visible
 	if event.keycode == KEY_A: _set_facing(true)
 	if event.keycode == KEY_D: _set_facing(false)
+	if event.keycode == KEY_SPACE: _toggle_pause()
+	if event.keycode == KEY_LEFT: _step_frame(-1)
+	if event.keycode == KEY_RIGHT: _step_frame(1)
+	if event.keycode == KEY_N: _next_warning()
 	for i in range(5):
 		if event.keycode == KEY_1 + i: _play(STATES[i])
 
 
 func _fail(reason: String) -> void:
-	push_error("D266 THREE QA FAILURE: " + reason)
+	push_error("D268 THREE RICH COURT QA FAILURE: " + reason)
 	_label(reason,Vector2(65,270),Vector2(1150,200),23)
