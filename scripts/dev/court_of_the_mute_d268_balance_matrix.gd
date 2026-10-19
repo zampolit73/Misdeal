@@ -286,8 +286,13 @@ func _run_matrix() -> void:
 		failures.append("Court matrix outcomes not accounted for")
 	if timeouts != 0:
 		failures.append("Court BattleUnit simulated timeouts: %d" % timeouts)
-	if warnings == 0 or verdicts == 0 or redirects == 0:
-		failures.append("Court warning/focus mechanic did not activate across 54 cases")
+	# Redirects can legitimately stay zero: Judge/guards and Scrivener may
+	# naturally prefer the same nearest hero. Observe real guard target HOLD
+	# during every live active phase, rather than demanding gratuitous retarget.
+	if warnings == 0 or verdicts == 0 or active_alive_guard_steps == 0:
+		failures.append("Court warning/focus mechanic did not activate with living Bailiffs")
+	if active_marked_guard_steps != active_alive_guard_steps:
+		failures.append("Court Bailiff abandoned marked hero during active verdict")
 	var report := {
 		"version": "D268_QA_ONLY",
 		"completed": completed,
