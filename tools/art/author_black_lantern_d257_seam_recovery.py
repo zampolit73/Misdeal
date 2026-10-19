@@ -80,6 +80,23 @@ def recovered_frame(row,owners,idx):
     grid_y=np.broadcast_to(np.arange(CELL,dtype=np.float32)[:,None],(CELL,CELL))
     corrected=cv2.remap(selected,grid_x,grid_y,cv2.INTER_LINEAR,
                         borderMode=cv2.BORDER_CONSTANT,borderValue=(0,0,0,0))
+    # The approved sheet truncates a few boot/toe silhouettes against its row
+    # floor. Recompose a 6-source-pixel lower gutter at fixed scale for EVERY
+    # cel (so idle/walk do not bob against each other). Only source-supported
+    # color/alpha columns receive a short, tapered lower contour continuation.
+    # This is localized repaint, not a fake QC PASS: raw source warnings remain.
+    floor_touch = int(np.count_nonzero(corrected[-3:,:,3]>48))
+    shifted=np.zeros_like(corrected)
+    shifted[:CELL-6,:,:]=corrected[6:,:,:]
+    if floor_touch>10:
+        for x in range(CELL):
+            tail=corrected[-1,x,:]
+            if tail[3]>48:
+                for step in range(1,5):
+                    yy=CELL-7+step
+                    shifted[yy,x,:3]=tail[:3]
+                    shifted[yy,x,3]=int(int(tail[3])*(1.0-0.10*step))
+    corrected=shifted
     tile=Image.new("RGBA",(96,96),(0,0,0,0))
     tile.alpha_composite(Image.fromarray(corrected,"RGBA").resize((92,92),Image.Resampling.LANCZOS),(2,2))
     horizontal=int(np.count_nonzero(corrected[:,:4,3]>48)+np.count_nonzero(corrected[:,-4:,3]>48))
