@@ -19,6 +19,16 @@ The user said «все ок» after F6 testing of the newly painted D271 arena. 
 2. [Godot 4.7.2 independently reconstructed D267 original sources PASS](https://github.com/zampolit73/Misdeal/actions/runs/39264427458) — 3 exact D267 PNG source SHA + 3 original rich atlas SHA, all 75 unique cels, normal import and historical three-character F6, confirms **Court is released into 39/45**.
 3. [Pre-release independent D272 alpha margin audit PASS](https://github.com/zampolit73/Misdeal/actions/runs/39263055006) — all three original rich roles 25 frames each, 15 transparent spare cels, **minimum 3px outer alpha gutter**, 27 original-source warning markers retained. Does **not** claim human x1 full death/weapon-grip inspection.
 
+## Postrelease compatibility checks — also GREEN
+
+The subsequent native CI runs were re-executed after updating historically hard-coded 38-card assertions, **without changing combat behaviors or old art**:
+- [Original released #38 normal dealt Battle→Reward→Table PASS](https://github.com/zampolit73/Misdeal/actions/runs/39265487917), and [original #38 54-case BattleUnit balance diagnostics PASS](https://github.com/zampolit73/Misdeal/actions/runs/39265907347).
+- [Exact D261 user-selected second Court card image SHA/native preview PASS](https://github.com/zampolit73/Misdeal/actions/runs/39265495582).
+- [D262 Court verdict forced-target + six real battle setups + original #38 regression PASS](https://github.com/zampolit73/Misdeal/actions/runs/39265977185).
+- [D267 full source-rich 75-frame rebuild + six Court Battle starts + original #38 regression PASS](https://github.com/zampolit73/Misdeal/actions/runs/39265987091).
+- [D267 separate original three-rich F6 full source reconstruction PASS](https://github.com/zampolit73/Misdeal/actions/runs/39264427458).
+- Temporary red CI runs during commits between card target-path change and finished pool-migration were superseded by these completed green re-runs; they do not reflect current `main`.
+
 These are native automated integration checks. Artistic micro-motion concerns can still be addressed from concrete future gameplay video; do not roll the card back simply because a source flag exists.
 
 ## Next steps (D274+)
