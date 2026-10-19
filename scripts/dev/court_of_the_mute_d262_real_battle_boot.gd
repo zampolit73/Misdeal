@@ -117,6 +117,9 @@ func _run_boot() -> void:
 			if actor.team == 0 and actor.position.y + COURT_FLOOR.UNITS_LAYER_OFFSET.y >= 574.0:
 					_abort("Court hero starts behind preparation HUD")
 					return
+			if actor.position.y + COURT_FLOOR.UNITS_LAYER_OFFSET.y >= 574.0:
+				_abort("Court units must be visible ABOVE tactics HUD before Fight")
+				return
 			if actor.team == 1 and actor.position.x < 700.0:
 					_abort("Court enemy spawn crossed hero-side formation")
 					return

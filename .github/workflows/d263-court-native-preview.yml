@@ -38,7 +38,7 @@ jobs:
         run: |
           set -o pipefail
           timeout 50s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --quit-after 25 --scene res://scenes/dev/court_of_the_mute_d263_empty_arena_preview.tscn 2>&1 | tee /tmp/d263-preview.log
-          grep -q 'D263_COURT_ARENA_PREVIEW_PASS' /tmp/d263-preview.log
+          grep -q 'D264_COURT_LOWER_FLOOR_PREVIEW_PASS' /tmp/d263-preview.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D263_COURT_ARENA_PREVIEW_FAIL' /tmp/d263-preview.log; then exit 1; fi
       - name: Recheck no Court card release in standard pool
         shell: bash

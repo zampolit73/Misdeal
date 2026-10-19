@@ -594,6 +594,12 @@ func _project_spawn_on_floor(source_position: Vector2) -> Vector2:
 	# their order and horizontal strategy. Only remap depth into walkable stone.
 	var bounds := _get_combat_bounds()
 	var depth := clampf((source_position.y - 130.0) / 275.0, 0.0, 1.0)
+	if encounter != null and encounter.encounter_id == "court_of_the_mute":
+		# Pre-fight tactics HUD occupies screen y=574..710. All Court actors
+		# therefore START in a shallow strip of the bottom stone terrace,
+		# above the HUD. Once Fight begins, the HUD hides and the unit AI can
+		# traverse the FULL red-rectangle floor (screen 532..710).
+		return Vector2(source_position.x, lerpf(bounds.position.y + 25.0, bounds.position.y + 35.0, depth))
 	return Vector2(
 		source_position.x,
 		lerpf(bounds.position.y + 32.0, bounds.end.y - 32.0, depth)
