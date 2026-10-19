@@ -1,3 +1,10 @@
+## 2026-10-19 — D277 dark-fantasy parchment art pass
+
+- Enriched the opt-in two-card parchment shader with uneven pigmented paper, foxing, fibers and singed edges while retaining ink contrast.
+- Added restrained engraved bronze corners, borders and small rivets; hover brightens the existing crimson Choose face without changing its hit target.
+- Added subtle bronze hardware and frame details to the compact separate RMB lore window. Updated native Godot component regression to cover the new engraving/hover states.
+- No changes to core game, Fate Spread, event art, Act1 39/45 or any other UI skin; native screenshot/artistic approval remains open.
+
 ## 2026-10-19 — D276 compact lore and engraved offer-card trim
 
 - Reviewed user-supplied native D275 screenshots: hover text no longer obstructs the table and the deliberate RMB lore window works, but the modal had too much unused space.

@@ -1,5 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D277 — Production antique parchment and engraved cards (2026-10-19)
+
+User requested immediate implementation after visually verifying D276 two-card + RMB lore UI. D277 code commit 0d3a1b9 modifies ONLY presentation: more nuanced deterministic aged-paper shader, engraved corner fittings and wax/bronze rivets, warm bronze offer borders, hover-dependent crimson/gleam on the existing Choose plate, and restrained ornamental trim around the compact RMB lore dialog. Existing painted encounter art remains independent; RunState, LMB Choose, RMB lore, hold, mark, dealing, Fate Spread I–XIII, wizard and 39/45 Act1 remain unchanged. Native CI D277 verification in progress when this section authored; **DO NOT assert user visual sign-off before new native 1280×720 screenshots**. Details: docs/D277_TABLE_ART_PASS.md.
+
+
 ## D275 — Native screenshot: hover popup still obscured choice; inspect on RMB instead
 
 2026-10-19: User's follow-up 1280x720 Godot screenshot proves D274R wrapped 318px tooltip is technically legible but **still covers card names, descriptions and red choose buttons**. Reject hover tooltip behavior as UI/UX failure, despite technical D274 green smoke. D275 now has **no automatic offer-card tooltip**: pointer hover only lifts card and previews Wizard line; **RMB on card** opens a dedicated framed inspect window with original art, FULL original Russian description and scrollbar; close by ESC, close button or outside click. A visible bottom-table hint advertises RMB; LMB retains original card selection, hold controls and all RunState logic stay unchanged. Implemented in commit 23adc330, Godot native parser/smoke pending (workflow D274 Table parchment UI). This is presentation-only, no card art/Fate Spread/combat rewrite. Accept artistic quality only after native screenshot review, not solely CI. Read docs/D274_TABLE_PARCHMENT_UI.md. Act1 39/45, Court/D264, KARAMBA73 unchanged.

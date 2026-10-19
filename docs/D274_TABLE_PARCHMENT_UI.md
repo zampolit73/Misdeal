@@ -42,3 +42,16 @@ New D276 scope: compact the original 760x440 lore modal to 720x364; keep the ima
 QA: official Godot 4.7.2 D276 CI should verify the new modal bounds and inner card frame. User should `git pull` and take one native screenshot of the updated RMB window and table at 1280x720. Native artistic sign-off for D276 remains OPEN until shown. Keep the current source values and this record in case any further visual refinements are needed.
 
 Official Godot 4.7.2 D276 parser + compact-modal and engraved-card node smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39291565684. This is a functional/native source check, NOT the user's visual approval of D276.
+
+## D277 — Antique parchment and physical-card polish
+
+User reviewed native D276 screenshot and asked to continue polishing only the artwork of the existing two live offer cards. D277 production change 0d3a1b9:
+
+- shaders/table_offer_parchment.gdshader: richer but deterministic warm paper with coarse pigment variation, sparse foxing, fine fibre and irregular edge browning; card art and text remain separate Godot layers.
+- scripts/table/table_offer_engraving.gd: custom light-touch thin metalwork outside legible captions, small crimson/bronze rivets. No gameplay signals.
+- scripts/table/table_offer_skin.gd: attaches the engraving after the existing parchment/art/CTA, supplies a slim warm gleam above the red action and changes only its tint on existing Button hover signals. All drawing controls MOUSE_FILTER_IGNORE.
+- scripts/ui/misdeal_ui_kit.gd: adjusts ONLY the opt-in parchment offer normal/hover border metal tones. Combat, Reward and Fate Spread skins untouched.
+- scripts/table/card_lore_inspect.gd: slightly richer inner bronze frame, small upper seal mark and two slim artwork gilding rules; established compact 720×364 layout, full Russian lore and modal interactions unchanged.
+- scripts/dev/d274_table_offer_smoke.gd & .github/workflows/d274-table-ui.yml: cover new engraving nodes, hover color restore, lore frame ornament, existing controls and native parse.
+
+Native manual acceptance: run 1280×720, hover either card and see a soft gold frame/red footer accent; confirm text, CTA and illustrations remain readable and no old popup; RMB one card, inspect compact gilt frame and read full text; close via Esc, then LMB choose. Test Wizard Mark and hold after progression. Compare with originally selected two-card concept for restrained material feel. Native automatic smoke alone is NOT visual artistic sign-off.

@@ -1,5 +1,10 @@
 # Misdeal — Active Roadmap
 
+## D277 — Production antique parchment and engraved cards (2026-10-19)
+
+User requested immediate implementation after visually verifying D276 two-card + RMB lore UI. D277 code commit 0d3a1b9 modifies ONLY presentation: more nuanced deterministic aged-paper shader, engraved corner fittings and wax/bronze rivets, warm bronze offer borders, hover-dependent crimson/gleam on the existing Choose plate, and restrained ornamental trim around the compact RMB lore dialog. Existing painted encounter art remains independent; RunState, LMB Choose, RMB lore, hold, mark, dealing, Fate Spread I–XIII, wizard and 39/45 Act1 remain unchanged. Native CI D277 verification in progress when this section authored; **DO NOT assert user visual sign-off before new native 1280×720 screenshots**. Details: docs/D277_TABLE_ART_PASS.md.
+
+
 ## D276 — Screenshot-accepted D275 usability, compact art-polish in main; native visual QA pending
 
 2026-10-19: User provided TWO native 1280x720 Godot screenshots: (1) intentional RMB lore examination modal for `ПЕПЕЛЬНЫЙ ПРИВАЛ`; (2) ordinary two-card table with `ПЕПЕЛЬНЫЙ ПРИВАЛ`, `КОСТЯНОЙ ДОЗОР` and Wizard Mark. **D275 hover obstruction is resolved in these actual screenshots**: offers remain visible and readable, and full lore appears in a separate modal. New visual issue: oversized empty space in 760x440 lore window and flat card trim. D276 scoped polish reduced inspect frame to 720x364 centered at (280,178), removed redundant under-art instructions, balanced artwork/title/scroll area, added two restrained engraved detail lines and a quiet emblem; cards gained an inner bronze line, art rims and an action divider. Read-more hint contrast improved. Original approved art and Background, single/duo/trio gameplay, card choice/hold, Fate Spread I–XIII, Wizard Mark and 39/45 Act1 pool unchanged. Commits 141e2b0 / a783f66; source-integrated, native Godot visual review of the **D276 pass** is still required. See docs/D274_TABLE_PARCHMENT_UI.md.

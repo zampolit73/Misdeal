@@ -1,3 +1,9 @@
+## D277 — Scope of the accepted antique-card styling
+
+The user approved the existing two-card table UX and requested production visual polish. D277 is opt-in to normal offer cards only: richer aged-paper material and restrained engraved bronze without replacing authored encounter illustrations, introducing new icons/roles or baking text into artwork. Current card dimensions 272×338, their legibility, internal crimson Choose area and the separate RMB read-more screen remain fixed. Avoid excessive procedural decoration or a fake painterly stand-in for original card-art assets. Visually review native Godot at 1280×720; CI is only a parser/component contract.
+
+---
+
 ## D274 — Approved hybrid Table offer interface
 
 Selected on 2026-10-19: TWO large cards on parchment with independently loaded scene-first illustration, dark ink title/type/short description, crimson choose band as part of each card Button, bronze hold controls above; no new three-card layout. Keep original approved Variant C Table background, Wizard, physical deck/discard and Fate Spread I–XIII. Artwork is not replaced with a screenshot that bakes text or controls. Native visual QA pending; apply only as an opt-in tabletop UI skin.
