@@ -6,6 +6,14 @@ extends Node
 const ROUTE := preload("res://scenes/dev/black_lantern_d259_real_battle_route_qa.tscn")
 const CARD := "black_lantern_road"
 
+# A headless Godot run has no real frame_post_draw signal. The normal
+# SceneTransition awaits a real rendered frame before scene replacement.
+# Drive that signal ONLY in this external QA observer to exercise navigation
+# semantics without changing the production router. NOT a visual render test.
+func _process(_delta: float) -> void:
+	if DisplayServer.get_name() == "headless":
+		RenderingServer.frame_post_draw.emit()
+
 func _ready() -> void:
 	call_deferred("_exercise")
 
@@ -51,11 +59,13 @@ func _exercise() -> void:
 	if continue_button == null or not continue_button.visible:
 		_fail("real battle did not expose ContinueButton after win")
 		return
+	print("D259_END_TO_END: Battle win; triggering Continue -> Reward")
 	continue_button.emit_signal("pressed")
 	var reward := await _wait_for_scene("res://scenes/reward/reward.tscn", 30.0)
 	if reward == null:
 		_fail("real Battle did not navigate to Reward")
 		return
+	print("D259_END_TO_END: Reward loaded")
 	var rewards_chosen := 0
 	var passed_time := 0.0
 	while passed_time < 35.0:
