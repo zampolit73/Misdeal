@@ -1,0 +1,1324 @@
+{
+  "version": "D257",
+  "status": "QA_ONLY_ART_REVIEW_PENDING",
+  "method": "connected overhang ownership; no whole-body scaling",
+  "roles": [
+    {
+      "role": "extinguished_guide",
+      "stage": "QA_ONLY",
+      "sha256": "ee2ad02894d7d0c55fdf0ddaf958f3b724bb0bbefc9dc7e51cd6a76fd5002cbc",
+      "poses": 25,
+      "distinct_poses": 25,
+      "unused_transparent_cells": 5,
+      "recovered_component_count": 9,
+      "transfers": [
+        {
+          "state": "walk",
+          "frame": 0,
+          "recovered_source_pixels": 54,
+          "component_bounds": [
+            22,
+            25,
+            213,
+            195
+          ]
+        },
+        {
+          "state": "walk",
+          "frame": 1,
+          "recovered_source_pixels": 120,
+          "component_bounds": [
+            265,
+            31,
+            204,
+            188
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 0,
+          "recovered_source_pixels": 401,
+          "component_bounds": [
+            14,
+            25,
+            228,
+            196
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 1,
+          "recovered_source_pixels": 192,
+          "component_bounds": [
+            246,
+            26,
+            221,
+            195
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 3,
+          "recovered_source_pixels": 454,
+          "component_bounds": [
+            693,
+            27,
+            230,
+            194
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 4,
+          "recovered_source_pixels": 608,
+          "component_bounds": [
+            936,
+            35,
+            221,
+            186
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 2,
+          "recovered_source_pixels": 114,
+          "component_bounds": [
+            456,
+            40,
+            238,
+            180
+          ]
+        },
+        {
+          "state": "hit",
+          "frame": 1,
+          "recovered_source_pixels": 4,
+          "component_bounds": [
+            252,
+            30,
+            207,
+            182
+          ]
+        },
+        {
+          "state": "death",
+          "frame": 5,
+          "recovered_source_pixels": 851,
+          "component_bounds": [
+            1128,
+            106,
+            229,
+            77
+          ]
+        }
+      ],
+      "unresolved_warnings": [
+        {
+          "state": "idle",
+          "frame": 0,
+          "reason": "source_vertical_clip",
+          "pixels": 24
+        },
+        {
+          "state": "idle",
+          "frame": 1,
+          "reason": "source_vertical_clip",
+          "pixels": 21
+        },
+        {
+          "state": "idle",
+          "frame": 2,
+          "reason": "source_vertical_clip",
+          "pixels": 18
+        },
+        {
+          "state": "idle",
+          "frame": 3,
+          "reason": "source_vertical_clip",
+          "pixels": 26
+        }
+      ],
+      "warning_count": 4,
+      "frames": [
+        {
+          "span": [
+            30,
+            218
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 24,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "idle",
+          "frame": 0,
+          "hash": "e82a178375bc0037c5c70c5566ede14bdc29566d54f897db426d3806703ea5f1"
+        },
+        {
+          "span": [
+            23,
+            212
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 21,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "idle",
+          "frame": 1,
+          "hash": "2a39b67a69581fae8dc00409bb98bcdb0a8d242fd518a3bc8f979ef51f21b091"
+        },
+        {
+          "span": [
+            20,
+            214
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 18,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "idle",
+          "frame": 2,
+          "hash": "dcb5af9209ad3b082a020c809d520dd33ee6ec4ead2e556ad22a55bce86846ae"
+        },
+        {
+          "span": [
+            23,
+            211
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 26,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "idle",
+          "frame": 3,
+          "hash": "98bfd0fb4b5895ebdc3b3faee6da6e9c9c0ae7ac860984e5ce4972d892f70e86"
+        },
+        {
+          "span": [
+            22,
+            234
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 0,
+          "hash": "4cef96f81868bd7073fded740b7d3c56bdb40fc042db53c3f4dd7f38deae330b"
+        },
+        {
+          "span": [
+            4,
+            239
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 1,
+          "hash": "db59bcf146cbea657fe42045f1b11b3f86dde28dec990a821ff2653275a7b9bd"
+        },
+        {
+          "span": [
+            0,
+            222
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 2,
+          "hash": "e144b53cd6a8a58991157184c8ead4c0f973d22a58f8411aad8118c983eb600f"
+        },
+        {
+          "span": [
+            32,
+            219
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 3,
+          "hash": "c18314f48469b6a57b886ec7c1dd8f817269004e822f710c2da0c3da077e361f"
+        },
+        {
+          "span": [
+            18,
+            224
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 4,
+          "hash": "a2a813a37e3166c14007af3922edbf200208ce2c063794d5360640f202dd3e22"
+        },
+        {
+          "span": [
+            18,
+            221
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 5,
+          "hash": "7b647d531ed384b22c1e96f4a408e3dbc0625d00f2489e482c486d87b2f7eacc"
+        },
+        {
+          "span": [
+            14,
+            241
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 0,
+          "hash": "01872e68ea322d5fd7dca5c917bcccef0066880c24583c9fe8f1c89b2e6bc683"
+        },
+        {
+          "span": [
+            4,
+            237
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 1,
+          "hash": "94ad38eb4ae6ce8907ca9be979db9baf520f779a0c7b19ad6ce12e8fdc47b9d4"
+        },
+        {
+          "span": [
+            -2,
+            235
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 2,
+          "hash": "7fb7fea907f04a9bb901c50846801871483241bf51a2d3f4a4d89722841a4585"
+        },
+        {
+          "span": [
+            2,
+            235
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 3,
+          "hash": "a67977f8d2d109b0d4b85b7ff1c54dfe78ecfa8701ac6905f271b95d35cbc232"
+        },
+        {
+          "span": [
+            0,
+            240
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 4,
+          "hash": "9189f38c0f8c2d84c78edfe2502b77d1f9610219c6f5d1cd8114f84b97677f30"
+        },
+        {
+          "span": [
+            0,
+            216
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 5,
+          "hash": "1eed3eb86289b1539a1b415a5d076a3ef634b4bd8dd14ef4c93328dc5d6c5167"
+        },
+        {
+          "span": [
+            30,
+            223
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "hit",
+          "frame": 0,
+          "hash": "b6016887fe2c42792685102a164039664066fdde2b5b51c08f20253a4d45f09d"
+        },
+        {
+          "span": [
+            23,
+            229
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "hit",
+          "frame": 1,
+          "hash": "51bdff69426297d2edf2bb28f6e5944b12cfac9df94cecfad08ef2e01103a169"
+        },
+        {
+          "span": [
+            11,
+            222
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "hit",
+          "frame": 2,
+          "hash": "33952632b89c963013557e4d1e9f0d8fc35e0fc9e45fbb74b6a092923b44e1d6"
+        },
+        {
+          "span": [
+            36,
+            226
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 0,
+          "hash": "59a1b69495a945d8addaa8573d865a066c9d8a69251194d6116c8d547720bf9b"
+        },
+        {
+          "span": [
+            11,
+            224
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 1,
+          "hash": "714c3e1011a2ccaea28bce990201a3e26c709537e1633ae97ab16415e29acbd3"
+        },
+        {
+          "span": [
+            8,
+            222
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 2,
+          "hash": "f13588f8b11887f128d73f508c838b265d5f87e185cf6f71c5365aea963cb042"
+        },
+        {
+          "span": [
+            4,
+            222
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 3,
+          "hash": "fcd55d0165b1cbe29a6c50ba637d53c16a3b5a6e8d47ac6bab1f5f82b4f69e43"
+        },
+        {
+          "span": [
+            3,
+            228
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 4,
+          "hash": "f1a4193afee5830dd77e85b6291bb4d6012960588d8634a372a00c3c2a7be31b"
+        },
+        {
+          "span": [
+            -17,
+            211
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 5,
+          "hash": "ea9477caa631df17a992a574cd131857a94db8a7b676d80c2c9115374ebe87fc"
+        }
+      ],
+      "native_F6": "NOT_RUN",
+      "art_final": "NOT_APPROVED"
+    },
+    {
+      "role": "oil_acolyte",
+      "stage": "QA_ONLY",
+      "sha256": "73137e7d5bd5db4000d490d8a757c5210747df7aae68c82c93ec530ccb990494",
+      "poses": 25,
+      "distinct_poses": 25,
+      "unused_transparent_cells": 5,
+      "recovered_component_count": 10,
+      "transfers": [
+        {
+          "state": "walk",
+          "frame": 0,
+          "recovered_source_pixels": 38,
+          "component_bounds": [
+            34,
+            46,
+            199,
+            175
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 2,
+          "recovered_source_pixels": 1481,
+          "component_bounds": [
+            467,
+            61,
+            277,
+            162
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 3,
+          "recovered_source_pixels": 7,
+          "component_bounds": [
+            684,
+            66,
+            9,
+            7
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 4,
+          "recovered_source_pixels": 119,
+          "component_bounds": [
+            964,
+            69,
+            188,
+            156
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 3,
+          "recovered_source_pixels": 2574,
+          "component_bounds": [
+            734,
+            73,
+            240,
+            153
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 3,
+          "recovered_source_pixels": 10,
+          "component_bounds": [
+            907,
+            184,
+            12,
+            13
+          ]
+        },
+        {
+          "state": "hit",
+          "frame": 0,
+          "recovered_source_pixels": 32,
+          "component_bounds": [
+            51,
+            52,
+            182,
+            166
+          ]
+        },
+        {
+          "state": "death",
+          "frame": 3,
+          "recovered_source_pixels": 7,
+          "component_bounds": [
+            685,
+            116,
+            219,
+            87
+          ]
+        },
+        {
+          "state": "death",
+          "frame": 4,
+          "recovered_source_pixels": 43,
+          "component_bounds": [
+            913,
+            123,
+            215,
+            76
+          ]
+        },
+        {
+          "state": "death",
+          "frame": 5,
+          "recovered_source_pixels": 179,
+          "component_bounds": [
+            1123,
+            132,
+            232,
+            70
+          ]
+        }
+      ],
+      "unresolved_warnings": [
+        {
+          "state": "idle",
+          "frame": 0,
+          "reason": "source_vertical_clip",
+          "pixels": 28
+        },
+        {
+          "state": "idle",
+          "frame": 1,
+          "reason": "source_vertical_clip",
+          "pixels": 30
+        },
+        {
+          "state": "idle",
+          "frame": 2,
+          "reason": "source_vertical_clip",
+          "pixels": 24
+        },
+        {
+          "state": "idle",
+          "frame": 3,
+          "reason": "source_vertical_clip",
+          "pixels": 29
+        }
+      ],
+      "warning_count": 4,
+      "frames": [
+        {
+          "span": [
+            47,
+            204
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 28,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "idle",
+          "frame": 0,
+          "hash": "9082bf9d235e90b8fde835e8a70e5449936102f643a26c42bfcfd87dec2ac764"
+        },
+        {
+          "span": [
+            50,
+            212
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 30,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "idle",
+          "frame": 1,
+          "hash": "039e5c9f8561c83f6bb008f73583f03e77682c816a5ee0e19b528007ad64cff8"
+        },
+        {
+          "span": [
+            53,
+            210
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 24,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "idle",
+          "frame": 2,
+          "hash": "6da6ebd8ed82f67e54bbaca1787f6b0ad191118c237c6329fdb0f9fd5c4033fb"
+        },
+        {
+          "span": [
+            38,
+            200
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 29,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "idle",
+          "frame": 3,
+          "hash": "12e62ce37ecd81efdb34c71851daa612893471b419bb3feafc25cd23517add4d"
+        },
+        {
+          "span": [
+            34,
+            232
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 0,
+          "hash": "f541ad54f3f8c8e5599dfe95daf515f3178e2aee76293a37e604c57c6882f8b4"
+        },
+        {
+          "span": [
+            2,
+            228
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 1,
+          "hash": "598845d353b1ca6e1b4d0f61ed88d37384125ef93d0bd58bd97468d168507c5a"
+        },
+        {
+          "span": [
+            37,
+            212
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 2,
+          "hash": "30731305ff4d79ff9fae33308e53359ab8c48ad246a2792e0c9f4d987721e1cd"
+        },
+        {
+          "span": [
+            42,
+            211
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 3,
+          "hash": "1d3992e5f810b760a5ec3dd36b529736d40cbf5801d5190340fa755f7793f35f"
+        },
+        {
+          "span": [
+            29,
+            203
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 4,
+          "hash": "c4369fc781eb1bb9680de8da6d7e16e90bab97c084a247ebd653b506d08cfeba"
+        },
+        {
+          "span": [
+            22,
+            202
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 5,
+          "hash": "ef2eff4ced02f1d6a3377da430603288a1b7dbae25869e67ed98475501734a96"
+        },
+        {
+          "span": [
+            35,
+            228
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 0,
+          "hash": "89f46cd41a5313426341a0801ec33f91e6d4579913b1e9e02744681782921089"
+        },
+        {
+          "span": [
+            36,
+            206
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 1,
+          "hash": "11a858c8e5b4f75feb8edc312cf0b5d07daf95e0effc985e769e3c77d6fdb7b2"
+        },
+        {
+          "span": [
+            9,
+            285
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 2,
+          "hash": "74a7c9c4b3b79b1fe299ff34ce8f99ecd0d8d46dce77e6a52bd583e43ea5655a"
+        },
+        {
+          "span": [
+            -3,
+            286
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 3,
+          "hash": "59e4d805e3194a91f67f052ca4cdc96687ffa04f1a3cdb0f8fc276beaa105c8c"
+        },
+        {
+          "span": [
+            0,
+            235
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 4,
+          "hash": "91b2e447da845a38b77bcfc8ae82785123625f4fa7e4a87bdf4cd0b80963aaeb"
+        },
+        {
+          "span": [
+            0,
+            196
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 5,
+          "hash": "084ee867f7d04e768a95a7cb667d64b46a35c21ddd9409c378c4f0cafce325dd"
+        },
+        {
+          "span": [
+            51,
+            232
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "hit",
+          "frame": 0,
+          "hash": "2b804a28a529ac4af824b5d7dd50ca60ac376bc66d4f7e7dbb12674ef57a4b80"
+        },
+        {
+          "span": [
+            1,
+            225
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "hit",
+          "frame": 1,
+          "hash": "a797d07fb6fc5fbabb4084ee5fba8e645146355312583c627ec93020058dbf2a"
+        },
+        {
+          "span": [
+            58,
+            216
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "hit",
+          "frame": 2,
+          "hash": "8a956e10dcd6cd656e2056fb61822be3ed05f97e1fd6031ff07981985b94e753"
+        },
+        {
+          "span": [
+            41,
+            228
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 0,
+          "hash": "63450f196a7af61c0dca4622ffb71e503bdc60ae49af65504b95e006f204ac1f"
+        },
+        {
+          "span": [
+            44,
+            226
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 1,
+          "hash": "b5845a639fc100027ab0dde5c9f02985b94f7c51b1a9b4da561fe0531f884123"
+        },
+        {
+          "span": [
+            24,
+            227
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 2,
+          "hash": "d1f5781940b55e2c5b441b17f885959091d71776d6a197b779aa7deeed5b4a23"
+        },
+        {
+          "span": [
+            -2,
+            227
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 3,
+          "hash": "b5a03e8ffda64b28966d1819e064c11b1803ec70843dc8538f9fa426860c5eb7"
+        },
+        {
+          "span": [
+            -3,
+            228
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 4,
+          "hash": "5550475c30f5947de63e9f0904e7052d945d51ea3f4ea99ae53e7da33b29a4db"
+        },
+        {
+          "span": [
+            -22,
+            209
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 5,
+          "hash": "2ef439a9d4e399b2f4726b9c9ef808e74dc6f711d28874866f4b2f3482f55017"
+        }
+      ],
+      "native_F6": "NOT_RUN",
+      "art_final": "NOT_APPROVED"
+    },
+    {
+      "role": "lantern_archer",
+      "stage": "QA_ONLY",
+      "sha256": "fd017ff97b0079e271c64409befa3b125a5c4cc37e65ead63daaf5ede6f5cdeb",
+      "poses": 25,
+      "distinct_poses": 25,
+      "unused_transparent_cells": 5,
+      "recovered_component_count": 8,
+      "transfers": [
+        {
+          "state": "walk",
+          "frame": 4,
+          "recovered_source_pixels": 100,
+          "component_bounds": [
+            960,
+            38,
+            193,
+            187
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 0,
+          "recovered_source_pixels": 15,
+          "component_bounds": [
+            37,
+            44,
+            194,
+            183
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 4,
+          "recovered_source_pixels": 93,
+          "component_bounds": [
+            939,
+            44,
+            213,
+            183
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 2,
+          "recovered_source_pixels": 37,
+          "component_bounds": [
+            458,
+            53,
+            232,
+            174
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 3,
+          "recovered_source_pixels": 17,
+          "component_bounds": [
+            712,
+            90,
+            207,
+            137
+          ]
+        },
+        {
+          "state": "attack",
+          "frame": 3,
+          "recovered_source_pixels": 16,
+          "component_bounds": [
+            683,
+            105,
+            71,
+            19
+          ]
+        },
+        {
+          "state": "death",
+          "frame": 3,
+          "recovered_source_pixels": 11,
+          "component_bounds": [
+            684,
+            104,
+            224,
+            102
+          ]
+        },
+        {
+          "state": "death",
+          "frame": 4,
+          "recovered_source_pixels": 142,
+          "component_bounds": [
+            900,
+            134,
+            246,
+            79
+          ]
+        }
+      ],
+      "unresolved_warnings": [
+        {
+          "state": "attack",
+          "frame": 0,
+          "reason": "source_vertical_clip",
+          "pixels": 16
+        },
+        {
+          "state": "attack",
+          "frame": 2,
+          "reason": "source_vertical_clip",
+          "pixels": 11
+        },
+        {
+          "state": "attack",
+          "frame": 5,
+          "reason": "source_vertical_clip",
+          "pixels": 26
+        }
+      ],
+      "warning_count": 3,
+      "frames": [
+        {
+          "span": [
+            50,
+            208
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "idle",
+          "frame": 0,
+          "hash": "21e7519f182b30202e87c9b76a8833770f58a1cc54af09d3ef5965a6af132067"
+        },
+        {
+          "span": [
+            51,
+            207
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "idle",
+          "frame": 1,
+          "hash": "e6039b99b6dc56078e0b5c348d6912c793fba272e163ecc8f939e98eb11661bc"
+        },
+        {
+          "span": [
+            39,
+            202
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "idle",
+          "frame": 2,
+          "hash": "63eb17e10e57eac6aa4cfb11299db71a9e94e362a23f3c0bdbf5daa4f33e4bba"
+        },
+        {
+          "span": [
+            29,
+            201
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "idle",
+          "frame": 3,
+          "hash": "c29cbf1e7b9e6794e1d0f075a51bff2ed3dd28e06bd5ce10c8fc7020471c9a84"
+        },
+        {
+          "span": [
+            33,
+            223
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 0,
+          "hash": "6a2adc144c20bfe270f9b10c990d996f279b2384bdc6ccc19b4823fa5ec6f520"
+        },
+        {
+          "span": [
+            41,
+            222
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 1,
+          "hash": "62529298bed8fef64fbe0c12a6f08c1d38200aad3d9f7f378364224f575d70d7"
+        },
+        {
+          "span": [
+            40,
+            226
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 2,
+          "hash": "fceda8a924b07d38ada931789b1db4ebbe8b3e3c71025961133b9fc96f07c2a7"
+        },
+        {
+          "span": [
+            32,
+            223
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 3,
+          "hash": "ace9f62faeaffcf22ee846a507865fac4cfe9f2f37f4f9e148c074114bf0459c"
+        },
+        {
+          "span": [
+            44,
+            236
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 4,
+          "hash": "9db1d59041cd7c61a802af6c1e0bec48e0249b55bea2cefc0d2e154d5466734b"
+        },
+        {
+          "span": [
+            0,
+            215
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "walk",
+          "frame": 5,
+          "hash": "0a0cd3711a38f534828fc80afd1b7ccc9abec5d28d0663e5f41fe0a2704acb84"
+        },
+        {
+          "span": [
+            37,
+            230
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 16,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 0,
+          "hash": "66a2880d4d71d1e84a75d3cdf34603ef1a91a4e038a081e1e77a8b8d602bbaf7"
+        },
+        {
+          "span": [
+            1,
+            217
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 1,
+          "hash": "7160fbc6a9a70c8d78648e8a95131d5db222c5e4b762747dd471729062bc4de1"
+        },
+        {
+          "span": [
+            0,
+            231
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 11,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 2,
+          "hash": "966e0608aa5be94983657a319e8ea1d033f2ae8335bd83f54f343e4247522e79"
+        },
+        {
+          "span": [
+            -4,
+            231
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 7,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 3,
+          "hash": "767123b9c587363635b6da51811a3c086dff05e3aa6043ab734124071900b7d1"
+        },
+        {
+          "span": [
+            0,
+            235
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 7,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 4,
+          "hash": "80ed2850230728a9c89aa4f713ffbb4d4c9f0dc2cd8cfc1f185a7a8fe5c46f51"
+        },
+        {
+          "span": [
+            0,
+            215
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 26,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "attack",
+          "frame": 5,
+          "hash": "b468aee332acb5007b0f1f5e48b92d72ee100884bde47b266c09e0c373c33b07"
+        },
+        {
+          "span": [
+            32,
+            221
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "hit",
+          "frame": 0,
+          "hash": "bb8a6a1f27c78bf10d9af846da67976adc8ff7e2b476d58618cf3828d6480d2a"
+        },
+        {
+          "span": [
+            28,
+            223
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "hit",
+          "frame": 1,
+          "hash": "e82b4b74b8a8936efabcd7ded9cf13218e6ce08d47e47411bd38fc4de700858a"
+        },
+        {
+          "span": [
+            9,
+            190
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "hit",
+          "frame": 2,
+          "hash": "1283ff86323d7002c805093da077dfc54bd44f75d8da618ca4913b59813a2fc9"
+        },
+        {
+          "span": [
+            40,
+            214
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 0,
+          "hash": "cc2c3c36bc64f9e20589cda2840c0f64b14949b542694e57f9586268b1f1fa29"
+        },
+        {
+          "span": [
+            29,
+            208
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 1,
+          "hash": "0e14466ebaf76cd2cf796d1e5d2c0cbb08b1fa2299cf828a09d044378fa8bc96"
+        },
+        {
+          "span": [
+            15,
+            227
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 2,
+          "hash": "4971ab3d5c929d0b6c93bc8d5c62a9f4a0689687e373e3402e748692e0e86698"
+        },
+        {
+          "span": [
+            -3,
+            227
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 3,
+          "hash": "53a938d4899b6a999f5f74bdd8f568e91df0ea0250c6f2034195b471d6f9b3f2"
+        },
+        {
+          "span": [
+            -16,
+            229
+          ],
+          "warp_outside_central_body": true,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 4,
+          "hash": "c7dc74ca4b749c566cefdebc1bd824778c2b7366b2382ff22ff0da9e6e70b538"
+        },
+        {
+          "span": [
+            7,
+            215
+          ],
+          "warp_outside_central_body": false,
+          "original_vertical_edge_pixels": 0,
+          "remaining_horizontal_edge_pixels": 0,
+          "state": "death",
+          "frame": 5,
+          "hash": "a0410002ccc020631a69e7513f9b9bf5d896278505d84b2d7bd932e2aa94c2d1"
+        }
+      ],
+      "native_F6": "NOT_RUN",
+      "art_final": "NOT_APPROVED"
+    }
+  ]
+}
