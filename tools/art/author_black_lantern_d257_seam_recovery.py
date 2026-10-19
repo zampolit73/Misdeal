@@ -65,7 +65,9 @@ def recovered_frame(row,owners,idx):
     ys,xs=np.where(selected[:,:,3]>16)
     assert len(xs)>150,(idx,"empty frame")
     lo,hi=int(xs.min()-idx*CELL),int(xs.max()-idx*CELL)
-    vert=int(np.count_nonzero(selected[:3,:,3]>48)+np.count_nonzero(selected[-3:,:,3]>48))
+    top=int(np.count_nonzero(selected[:3,:,3]>48))
+    bottom=int(np.count_nonzero(selected[-3:,:,3]>48))
+    vert=top+bottom
     sample=np.arange(CELL,dtype=np.float32)
     if lo<4:
         m=sample<76
@@ -82,7 +84,7 @@ def recovered_frame(row,owners,idx):
     tile.alpha_composite(Image.fromarray(corrected,"RGBA").resize((92,92),Image.Resampling.LANCZOS),(2,2))
     horizontal=int(np.count_nonzero(corrected[:,:4,3]>48)+np.count_nonzero(corrected[:,-4:,3]>48))
     return tile,{"span":[lo,hi],"warp_outside_central_body":lo<4 or hi>224,
-                 "original_vertical_edge_pixels":vert,"remaining_horizontal_edge_pixels":horizontal}
+                 "original_vertical_edge_pixels":vert,"top_edge_pixels":top,"bottom_edge_pixels":bottom,"remaining_horizontal_edge_pixels":horizontal}
 
 def author(role):
     original=source(role)
