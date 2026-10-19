@@ -1,5 +1,9 @@
 ## D255 — User-approved visual direction for all three missing #38 enemies; 75-cel QA pack staged, ART GATE OPEN
 
+## D265 — New richer Court EMPTY battle plate, original 3×25 character art still missing
+
+`assets/pixel/battle/arenas/court_of_the_mute_d265_rich_qa.webp.b64`, original 1280×720 lossless character-free tribunal QA with added stone/lighting detail. Native F6 `res://scenes/dev/court_of_the_mute_d265_richer_arena_preview.tscn` Godot 4.7.2 PASS, **G** shows same screenshot-approved lower floor. D263 source and selected second D261 448×274 card image untouched. **Not artistically accepted as production**. D265 all-three [strict original 75-pose intake](qa/D265_THREE_ROLE_FULL25_AUDIT.json) = **0/75 accepted; Magistrate/Scrivener/Bailiff complete transparent sprite atlases not provided**. Do not register fake proxy grids. [D265 detailed art gate](D265_COURT_RICH_ARENA_AND_ART_AUDIT.md).
+
 ## D263 — Empty Court architecture QA candidate, NOT production/approved arena
 
 User-approved SECOND D261 `court_of_the_mute_selected_v1.webp.b64` card image remains byte-identical. D263 source-authored empty `1280×720` Court architectural plate: `assets/pixel/battle/arenas/court_of_the_mute_d263_qa.webp.b64` (stage-only), giant scales, stone bench, arches, walkable floor, NO baked combat characters. Native F6 at `res://scenes/dev/court_of_the_mute_d263_empty_arena_preview.tscn` Godot 4.7.2 PASS; artistically simplified, **NOT yet approved or registered for real Battle**. Generated art montage has incomplete/small opaque pose grids; do not declare 25-frame Magistrate/Scrivener/Bailiff or substitute prior unit art; full three original 25-frame packs still pending. [Detailed D263 source/QC](D263_COURT_EMPTY_ARENA_QA.md). Live 38/45, KARAMBA73 frozen.
