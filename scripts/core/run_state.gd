@@ -160,7 +160,8 @@ const ACT1_CARD_IDS := [
 	"iron_wall",
 	"last_bell",
 	"firing_square",
-	"bone_ritual"
+	"bone_ritual",
+	"black_lantern_road" # D260: released 38/45 after original five-role Battle route QA
 ]
 
 var gold: int = 0
