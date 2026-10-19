@@ -1,5 +1,7 @@
 # D259 — Canonical original five-role art staging and real Battle release preparation
 
+**HISTORICAL PRE-RELEASE CHECKPOINT:** This D259 staging note was superseded by the official [D260 card #38 release](D260_BLACK_LANTERN_CARD38_RELEASE.md). Current normal Act1 pool is **38/45**, all five original sprites are registered and live. Earlier references to the 37-card HOLD are period-accurate but no longer describe main.
+
 2026-10-19 · branch `main` · **STAGED — NOT IN LIVE CARD POOL**
 
 ## User feedback and gate interpretation
