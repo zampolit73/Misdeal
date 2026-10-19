@@ -10,6 +10,7 @@ on:
       - 'assets/pixel/units/court_of_the_mute_qa/source_d267/*.b64'
       - 'scripts/battle/unit_animation_library.gd'
       - 'scripts/core/run_state.gd'
+      - 'scripts/dev/court_of_the_mute_d262_verdict_contract.gd'
       - 'resources/cards/court_of_the_mute.tres'
       - 'scripts/dev/court_of_the_mute_d267_rich_animation_preview.gd'
       - 'scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn'
