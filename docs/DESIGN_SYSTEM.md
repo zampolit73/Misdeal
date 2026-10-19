@@ -1,5 +1,12 @@
 ## D280 — Pure ClassSelect tabletop art; no UI embedded in bitmap
 
+## D281 — Never stretch 640×360 artwork to a 1280×720 game screen
+
+The user's real D280 screenshot revealed severe blur: 640×360 / 11KB background was stretched 2×. Fullscreen painterly backgrounds must be at least **native 1280×720** and sufficiently detailed, not interpolated from a tiny destructive copy. Correct D281 asset: `assets/pixel/class_select/d281_clean_table_hd.webp` (1280×720, 168948 bytes, directly made from original 1672×941 clean table art). Use the reusable runtime WebP loader; do not reinstate D280 Base64 or opaque screenshot logo. ClassSelect-only matte shader keys source logo PNG onto clean scene. New user screenshot required; no other game mechanics changed.
+
+---
+
+
 Use dedicated ClassSelect UI-free dark-fantasy wizard/ritual-table background loaded by class_select_clean_backdrop.gd. Never use approved_variant_c/table_exact.webp as ClassSelect background because it has baked HUD, encounter cards and labels. No D279R cosmetic masks or fake button labels: all portrait cards, text, source-validated stat panel, Wizard comments, logo and confirm action remain separate interactive Godot controls. DS2 black/crimson/aged bronze palette and real D278 decorative frame. Native artistic 1280×720 review still pending despite passing component regression; artwork may be upgraded to higher resolution without changing mechanics.
 
 ---
