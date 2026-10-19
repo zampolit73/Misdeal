@@ -21,8 +21,8 @@ func _ready() -> void:
 	call_deferred("_exercise")
 
 func _exercise() -> void:
-	# Check the released ACT1 catalog, not the unreleased test card registry.
-	if RunState.ACT1_CARD_IDS.size() != 38 or not RunState.ACT1_CARD_IDS.has(CARD):
+	# Check the released ACT1 catalog, not the old unreleased QA registry.
+	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD):
 		_fail("card #39 is not in the regular 39-card pool")
 		return
 	var card := RunState.get_card(CARD)
@@ -36,7 +36,7 @@ func _exercise() -> void:
 	# Set up a legitimate Tier 1 deal through RunState.get_offer_cards()
 	# rather than manually assigning active_card_id / selected_encounter_path.
 	# Limit the Tier 1 candidate subset to two combat cards (the others
-	# remain in the deck by tier), making #38 discoverable deterministically.
+	# remain in the deck by tier), making #39 discoverable deterministically.
 	RunState.reset_run()
 	if not RunState.choose_protagonist("knight"):
 		_fail("protagonist setup failed")
@@ -177,7 +177,7 @@ func _exercise() -> void:
 	if not RunState.resolved_card_ids.has(CARD):
 		_fail("Reward-to-Table did not resolve released card #39")
 		return
-	if RunState.ACT1_CARD_IDS.size() != 38 or not RunState.ACT1_CARD_IDS.has(CARD):
+	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD):
 		_fail("release disappeared from ordinary draw pool")
 		return
 	print("D273_COURT_RELEASE_ROUTE_PASS: released ordinary deal → original Battle Fight → win → Reward → Table, 39/45 LIVE")
