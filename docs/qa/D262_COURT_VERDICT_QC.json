@@ -1,0 +1,52 @@
+{
+  "version": "D262",
+  "date": "2026-10-19",
+  "source": "zampolit73/Misdeal/main",
+  "stage": "QA_TECHNICAL_PASS_ART_PENDING",
+  "workflow": "https://github.com/zampolit73/Misdeal/actions/runs/39214875883",
+  "current_live_cards": 38,
+  "card39_in_live_deck": false,
+  "staged_unit_roles": [
+    "mute_magistrate",
+    "ash_scrivener",
+    "bone_bailiff"
+  ],
+  "encounter_enemy_instances": 4,
+  "formation_variants": 2,
+  "mechanic": {
+    "name": "verdict_target",
+    "warning_seconds": 1.4,
+    "active_seconds": 2.5,
+    "rest_seconds": 3.6,
+    "initial_delay_seconds": 1,
+    "select": "closest living hero to ash_scrivener",
+    "bailiffs_prefer_marked_target": true,
+    "global_target_logic_modified": false,
+    "scribe_death_cancels": true,
+    "warning_visible_in_renderer_but_not_visually_approved": true
+  },
+  "qa": {
+    "engine": "Godot 4.7.2",
+    "verdict_contract": "pass",
+    "real_battle_cases": 6,
+    "party_sizes": [
+      1,
+      2,
+      3
+    ],
+    "formations": [
+      0,
+      1
+    ],
+    "legacy_38_card_54_case_regression": "pass",
+    "end_to_end_reward_table": "not_run",
+    "native_art_x1": "not_run"
+  },
+  "unfinished": {
+    "hero_court_3x25_atlases": false,
+    "original_arena": false,
+    "full_release_route": false
+  },
+  "checkpoint": "KARAMBA73 unchanged",
+  "existing_issue": "approved_battle_direction.jpg editor import error; independent from D262"
+}
