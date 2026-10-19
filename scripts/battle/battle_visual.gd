@@ -21,6 +21,8 @@ var redraw_cooldown: float = 0.0
 var boss_mode: bool = false
 var boss_phase_two: bool = false
 var arena_id: String = ARENA_CRYPT
+# D269: encounter-local optional theatrical light. Only the Court actually draws it.
+var court_ambience_enabled := true
 
 func set_arena_id(value: String) -> void:
 	match value:
@@ -29,6 +31,12 @@ func set_arena_id(value: String) -> void:
 		_:
 			arena_id = ARENA_CRYPT
 	queue_redraw()
+
+func set_court_ambience_enabled(enabled: bool) -> void:
+	# F6-only visual A/B switch; no effect on combat, other arenas or card art.
+	court_ambience_enabled = enabled
+	queue_redraw()
+
 
 func set_boss_mode(enabled: bool) -> void:
 	boss_mode = enabled
@@ -62,8 +70,8 @@ func _draw() -> void:
 		ARENA_THREADBARE_THEATRE:
 			_draw_threadbare_theatre_atmosphere()
 		ARENA_COURT_OF_THE_MUTE:
-			# Court QA plate already provides its own architecture/lighting.
-			pass
+			if court_ambience_enabled:
+				_draw_court_ambience()
 		ARENA_BLACK_CROSSING:
 			# Approved storm artwork already contains rain and sea spray.
 			# Reserve battle overlays for the future encounter-specific wave warning.
@@ -73,6 +81,58 @@ func _draw() -> void:
 
 	if boss_mode:
 		_draw_boss_runes()
+
+# D269: very restrained local theatrical depth pass on the pre-approved D264
+# *upper architecture only*. Arena origin is screen (20,96); the actual Court
+# battle floor starts at screen Y=532 / local Y=436. Every primitive here
+# stays ABOVE local Y=336, at least 100px from the first walkable foot pixel.
+# No painted figures, attacks, target markers, VFX on the floor, or UI plates.
+# The baked D265 backdrop is still a QA placeholder, not final painted art.
+func _draw_court_ambience() -> void:
+	var slow := pulse * 0.73
+	var breathing := 0.5 + 0.5 * sin(slow)
+	# Soft shafts framed by the two Court lancet windows. Their low alpha
+	# allows bronze throne/scales to stay dominant instead of flattening art.
+	draw_colored_polygon(
+		PackedVector2Array([
+			Vector2(388, 25), Vector2(455, 25),
+			Vector2(685, 330), Vector2(580, 330)
+		]),
+		Color(0.36, 0.48, 0.57, 0.012 + breathing * 0.009)
+	)
+	draw_colored_polygon(
+		PackedVector2Array([
+			Vector2(829, 25), Vector2(895, 25),
+			Vector2(716, 326), Vector2(645, 326)
+		]),
+		Color(0.40, 0.49, 0.56, 0.011 + (1.0 - breathing) * 0.008)
+	)
+
+	# The four *existing* wall braziers are lit in the D265 raster itself;
+	# merely breathe with their light, do not place new floating fire sprites.
+	for i in range(4):
+		var center := [
+			Vector2(194, 246), Vector2(1040, 246),
+			Vector2(146, 314), Vector2(1086, 314)
+		][i] as Vector2
+		var flicker := 0.5 + 0.5 * sin(pulse * (4.3 + float(i) * 0.41) + float(i) * 1.7)
+		draw_circle(center, 64.0, Color(0.69, 0.26, 0.10, 0.009 + flicker * 0.008))
+		draw_circle(center, 32.0, Color(0.97, 0.42, 0.15, 0.012 + flicker * 0.012))
+
+	# A few visible suspended grains ONLY inside the sconce/arch volumes.
+	# Asymmetric placements and 0.05-second frame refresh avoid particle noise
+	# or the random/generated-sparkle look that previously hurt visual fidelity.
+	for i in range(13):
+		var idx := float(i)
+		var left_side := i < 7
+		var region_x := 168.0 if left_side else 1010.0
+		var scatter := sin(idx * 11.73) * 74.0
+		var x := region_x + scatter + sin(slow * (0.7 + idx * 0.06) + idx) * 9.0
+		var y := 134.0 + fmod(idx * 41.0 - pulse * (3.4 + fmod(idx, 4.0)), 190.0)
+		if y < 58.0:
+			y += 190.0
+		var alpha := 0.035 + 0.025 * (0.5 + 0.5 * sin(slow * 1.3 + idx * 2.0))
+		draw_circle(Vector2(x, y), 0.8 if i % 3 != 0 else 1.1, Color(0.82, 0.65, 0.43, alpha))
 
 func _draw_crypt_atmosphere() -> void:
 	var flicker := 0.5 + 0.5 * sin(pulse * 8.0)
