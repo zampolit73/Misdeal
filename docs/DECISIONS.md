@@ -1,6 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 Updated: 2026-10-19.
 
+## D258 — Test the complete original cast in isolated real Battle, never release from headless frame counts
+
+2026-10-19: User `«все ок. продолжай»` after D257 permits staging the three new 25-pose Style B assets alongside the existing two original enemies in complete real combat QA. Guide and Archer illustrated source sheets face LEFT; normalize their frame pixels to RIGHT in an **instance-only QA loader**, not by changing shared `BattleUnit` or registering unfinished roles. Godot 4.7.2 Battle preflight + 54/54 functional matrix do **not** imply user-native full route, art approval, difficulty acceptance or release of card #38. [D258 evidence](D258_FIVE_ROLE_GODOT_QA.md).
+
 This file is an **active index**, not a replacement for the full decision history. The complete D001–D178 records (including intermediate and superseded numeric versions) are preserved unchanged at [DECISIONS archive](archive/2026-10-15-pre-cleanup/docs/DECISIONS.md). **Older accepted rules remain binding unless a newer decision supersedes them.** Never treat outdated "pending" text as latest project status; `docs/PROJECT_STATE.md` and code win.
 
 ## D255 — Approved original character visual direction ≠ release-ready frame extraction
