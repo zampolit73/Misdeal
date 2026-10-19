@@ -1,0 +1,35 @@
+{
+  "version": "D261",
+  "date": "2026-10-19",
+  "user_selection": "option A Court of the Mute; second of three final images",
+  "selected_original": "мрачный_трибунал_у_трона_смерти.png",
+  "source_dimensions": [
+    1086,
+    1448
+  ],
+  "source_sha256": "3b1abff4c637cb9fd1e862dde8210652b008f48f6d9024aa796fc2c7a67db2ea",
+  "crop_rect": [
+    0,
+    222,
+    1086,
+    886
+  ],
+  "export_dimensions": [
+    448,
+    274
+  ],
+  "image_format": "WEBP",
+  "image_quality": 82,
+  "export_sha256": "704eef553a1ef528d2793b692462315048b06cf23ddaf17dff0c1fba0ed69d5c",
+  "export_size_bytes": 33294,
+  "asset_path": "assets/pixel/card_unification_v1/run/court_of_the_mute_selected_v1.webp.b64",
+  "repo": "zampolit73/Misdeal",
+  "status": "GODOT_4_7_2_PREVIEW_PASS_QA_ONLY",
+  "actions_run": "https://github.com/zampolit73/Misdeal/actions/runs/39212443418",
+  "qa_scene": "res://scenes/dev/court_of_the_mute_d261_card_preview.tscn",
+  "addressable_card": "res://resources/cards/court_of_the_mute.tres",
+  "card39_in_live_pool": false,
+  "act1_live_count": 38,
+  "full_portrait_stored_in_github": false,
+  "next": "Three entirely new full25 enemy sprites and original arena/encounter-scoped verdict mechanic"
+}
