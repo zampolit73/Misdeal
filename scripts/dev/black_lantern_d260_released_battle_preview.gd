@@ -18,8 +18,8 @@ var running := false
 
 func _ready() -> void:
 	_build_menu()
-	if RunState.ACT1_CARD_IDS.size() != 38 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
-		_fail("Выпускная проверка: карта #38 отсутствует в колоде 38/45.")
+	if RunState.ACT1_CARD_IDS.size() < 38 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		_fail("Выпускная проверка: карта #38 отсутствует в колоде 39/45.")
 		return
 	if RunState.get_card(CARD_ID) == null:
 		_fail("Не найден RunCardData выпущенной карты #38.")
@@ -44,7 +44,7 @@ func _build_menu() -> void:
 	var title := _label("D260 · ДОРОГА ЧЁРНЫХ ФОНАРЕЙ", 28)
 	content.add_child(title)
 	content.add_child(_label("РЕАЛЬНЫЙ BATTLE → REWARD → TABLE · ПРЕДПРОСМОТР РЕЛИЗА", 17))
-	content.add_child(_label("Карта №38 уже в обычной колоде 38/45. Этот F6-тест сразу запускает её боевой маршрут без сохранения игрового прогресса.", 15))
+	content.add_child(_label("Карта №38 по-прежнему доступна в обычной колоде (сейчас 39/45). Этот F6-тест сразу запускает её боевой маршрут без сохранения игрового прогресса.", 15))
 
 	content.add_child(_label("Состав отряда", 18))
 	party_picker = OptionButton.new()
@@ -84,8 +84,8 @@ func _label(message: String, font_size: int) -> Label:
 func _launch_real_battle() -> void:
 	if running:
 		return
-	if RunState.ACT1_CARD_IDS.size() != 38 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
-		_fail("Карта #38 должна быть в живой колоде 38/45.")
+	if RunState.ACT1_CARD_IDS.size() < 38 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		_fail("Карта #38 должна быть в живой колоде 39/45.")
 		return
 
 	# Validate the actual library for all five roles BEFORE changing RunState.
@@ -150,7 +150,7 @@ func _launch_real_battle() -> void:
 	if role_seen != expected:
 		_fail("В реальном Battle неполный оригинальный состав: %s" % [role_seen])
 		return
-	print("D260_PRODUCTION_LIBRARY_BATTLE_READY: 5 original 25-pose roles in genuine Battle, no sprite injection, #38 LIVE (38/45).")
+	print("D260_PRODUCTION_LIBRARY_BATTLE_READY: 5 original 25-pose roles in genuine Battle, no sprite injection, #38 LIVE (39/45).")
 
 func _fail(message: String) -> void:
 	error_label.text = message
