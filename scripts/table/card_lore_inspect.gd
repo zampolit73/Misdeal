@@ -26,8 +26,8 @@ func _ready() -> void:
 
 	frame = Panel.new()
 	frame.name = "Frame"
-	frame.position = Vector2(260.0, 144.0)
-	frame.size = Vector2(760.0, 440.0)
+	frame.position = Vector2(280.0, 178.0)
+	frame.size = Vector2(720.0, 364.0)
 	frame.mouse_filter = Control.MOUSE_FILTER_STOP
 	var border := StyleBoxFlat.new()
 	border.bg_color = Color("#211512")
@@ -41,20 +41,20 @@ func _ready() -> void:
 	frame.add_theme_stylebox_override("panel", border)
 	add_child(frame)
 
-	var caption := _label(frame, "Caption", Vector2(30.0, 18.0), Vector2(430.0, 28.0), 14, Color("#c79c68"))
+	var caption := _label(frame, "Caption", Vector2(27.0, 16.0), Vector2(430.0, 24.0), 13, Color("#d3a779"))
 	caption.text = "СТРАНИЦА ИЗ ПРОКЛЯТОЙ КОЛОДЫ"
 	var divider := ColorRect.new()
 	divider.name = "Divider"
 	divider.color = Color("#705036")
-	divider.position = Vector2(31.0, 52.0)
-	divider.size = Vector2(698.0, 1.0)
+	divider.position = Vector2(28.0, 49.0)
+	divider.size = Vector2(664.0, 1.0)
 	divider.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	frame.add_child(divider)
 
 	var art_border := Panel.new()
 	art_border.name = "ArtBorder"
-	art_border.position = Vector2(32.0, 73.0)
-	art_border.size = Vector2(282.0, 200.0)
+	art_border.position = Vector2(30.0, 87.0)
+	art_border.size = Vector2(272.0, 178.0)
 	art_border.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var art_style := StyleBoxFlat.new()
 	art_style.bg_color = Color("#402820")
@@ -68,27 +68,30 @@ func _ready() -> void:
 
 	lore_art = TextureRect.new()
 	lore_art.name = "LoreArt"
-	lore_art.position = Vector2(36.0, 77.0)
-	lore_art.size = Vector2(274.0, 192.0)
+	lore_art.position = Vector2(34.0, 91.0)
+	lore_art.size = Vector2(264.0, 170.0)
 	lore_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	lore_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	lore_art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	frame.add_child(lore_art)
 
-	var artwork_hint := _label(frame, "ArtHint", Vector2(32.0, 292.0), Vector2(282.0, 54.0), 13, Color("#c8ab83"))
-	artwork_hint.text = "Нажми «Закрыть» или ESC,\nчтобы вернуться к выбору."
-	artwork_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var image_rule := _rule(frame, "ArtRule", Vector2(30.0, 289.0), Vector2(272.0, 1.0), Color("#765034"))
+	image_rule.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var art_emblem := _label(frame, "ArtEmblem", Vector2(92.0, 300.0), Vector2(150.0, 20.0), 12, Color("#b48654"))
+	art_emblem.text = "✦  MISDEAL  ✦"
+	art_emblem.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
-	lore_title = _label(frame, "CardTitle", Vector2(338.0, 70.0), Vector2(392.0, 72.0), 23, Color("#f0d0a0"))
+	lore_title = _label(frame, "CardTitle", Vector2(325.0, 68.0), Vector2(369.0, 66.0), 23, Color("#f0d0a0"))
 	lore_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	lore_title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 
-	lore_kind = _label(frame, "CardType", Vector2(341.0, 142.0), Vector2(380.0, 23.0), 13, Color("#ba8457"))
+	lore_kind = _label(frame, "CardType", Vector2(327.0, 138.0), Vector2(366.0, 23.0), 13, Color("#ba8457"))
+	_rule(frame, "TextRule", Vector2(327.0, 169.0), Vector2(365.0, 1.0), Color("#765034"))
 
 	lore_body = RichTextLabel.new()
 	lore_body.name = "FullDescription"
-	lore_body.position = Vector2(338.0, 176.0)
-	lore_body.size = Vector2(392.0, 165.0)
+	lore_body.position = Vector2(325.0, 180.0)
+	lore_body.size = Vector2(368.0, 110.0)
 	lore_body.bbcode_enabled = false
 	lore_body.scroll_active = true
 	lore_body.scroll_following = false
@@ -98,13 +101,15 @@ func _ready() -> void:
 	lore_body.mouse_filter = Control.MOUSE_FILTER_STOP
 	frame.add_child(lore_body)
 
-	annotation = _label(frame, "ExtraRule", Vector2(338.0, 347.0), Vector2(392.0, 32.0), 13, Color("#e0a971"))
+	annotation = _label(frame, "ExtraRule", Vector2(326.0, 290.0), Vector2(367.0, 31.0), 13, Color("#e0a971"))
+	annotation.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	annotation.visible = false
 	annotation.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
 	var close_button := Button.new()
 	close_button.name = "CloseButton"
-	close_button.position = Vector2(536.0, 392.0)
-	close_button.size = Vector2(194.0, 35.0)
+	close_button.position = Vector2(520.0, 325.0)
+	close_button.size = Vector2(174.0, 31.0)
 	close_button.text = "ЗАКРЫТЬ  [ESC]"
 	close_button.add_theme_font_size_override("font_size", 14)
 	close_button.add_theme_color_override("font_color", Color("#ffddb0"))
@@ -129,7 +134,8 @@ func present(card_title: String, card_type: String, full_text: String, card_art:
 	lore_kind.text = card_type
 	lore_body.text = full_text
 	lore_art.texture = card_art
-	annotation.text = extra
+	annotation.text = extra.strip_edges()
+	annotation.visible = not annotation.text.is_empty()
 
 
 func close() -> void:
@@ -147,6 +153,17 @@ func _on_scrim_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		accept_event()
 		close()
+
+
+func _rule(parent: Control, node_name: String, at: Vector2, dimensions: Vector2, pigment: Color) -> ColorRect:
+	var rule := ColorRect.new()
+	rule.name = node_name
+	rule.position = at
+	rule.size = dimensions
+	rule.color = pigment
+	rule.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	parent.add_child(rule)
+	return rule
 
 
 func _label(parent: Control, node_name: String, at: Vector2, dimensions: Vector2, font_size: int, pigment: Color) -> Label:

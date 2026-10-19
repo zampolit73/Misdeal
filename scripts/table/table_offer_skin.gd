@@ -74,6 +74,27 @@ static func prepare(button: Button) -> void:
 		ornament.add_theme_font_size_override("font_size", 12)
 		button.add_child(ornament)
 
+	# Engraved bronze outline and artwork mount detailing. Neither layer
+	# owns input; selection remains on the original whole-card Button.
+	var inner_frame := Panel.new()
+	inner_frame.name = "InnerEngravedFrame"
+	inner_frame.position = Vector2(8.0, 8.0)
+	inner_frame.size = Vector2(256.0, 322.0)
+	inner_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var edge_style := StyleBoxFlat.new()
+	edge_style.draw_center = false
+	edge_style.border_width_left = 1
+	edge_style.border_width_top = 1
+	edge_style.border_width_right = 1
+	edge_style.border_width_bottom = 1
+	edge_style.border_color = Color(0.58, 0.35, 0.19, 0.65)
+	inner_frame.add_theme_stylebox_override("panel", edge_style)
+	button.add_child(inner_frame)
+	_strip(button, "ArtRimTop", Vector2(10.0, 10.0), Vector2(252.0, 2.0), Color("#aa794b"))
+	_strip(button, "ArtRimBottom", Vector2(10.0, 158.0), Vector2(252.0, 2.0), Color("#aa794b"))
+	_strip(button, "ActionHairline", Vector2(33.0, 299.0), Vector2(206.0, 1.0), Color("#a37a4a"))
+
+
 static func short_description(original: String) -> String:
 	var plain := original.replace("\n", " ").strip_edges()
 	const MAX_COPY := 100
