@@ -20,7 +20,11 @@ const D183_ROLES := ["drowned_ferryman", "drowned_hand"]
 # D259: all FIVE original Black Lantern 25-pose atlases are staged in
 # the strict shared library. Guide/Archer atlases are frame-mirrored to
 # canonical RIGHT-source; card #38 remains out of the 37-card draw pool.
-const BLACK_LANTERN_STAGED_ROLES := ["road_sentinel", "lantern_bearer", "extinguished_guide", "oil_acolyte", "lantern_archer"]
+const BLACK_LANTERN_STAGED_ROLES := ["road_sentinel", "lantern_bearer", "extinguished_guide", "oil_acolyte", "lantern_archer", "mute_magistrate", "ash_scrivener", "bone_bailiff"]
+# D267: the three user-approved rich Court skeleton atlases are staged in
+# normal strict SpriteFrames decoding, but card #39 is not in the live deck.
+const COURT_STAGED_ROLES := ["mute_magistrate", "ash_scrivener", "bone_bailiff"]
+const COURT_ATLAS_DIR := "res://assets/pixel/units/court_of_the_mute_qa/"
 const D151_ROLES := ["funeral_priest", "pallbearer"]
 const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus", "threadbare_puppeteer", "bone_marionette", "drowned_ferryman", "drowned_hand", "road_sentinel", "lantern_bearer", "extinguished_guide", "oil_acolyte", "lantern_archer"]
 
@@ -35,6 +39,28 @@ static func get_frames(role: String) -> SpriteFrames:
 		return _frames_cache[role] as SpriteFrames
 	if _unavailable.has(role):
 		return null
+
+	if COURT_STAGED_ROLES.has(role):
+		var court_path: String = "%s%s_d267_rich_qa.webp.b64" % [COURT_ATLAS_DIR, role]
+		if not FileAccess.file_exists(court_path):
+			push_warning("D267 original Court atlas is missing: " + court_path)
+			return null
+		var court_bytes: PackedByteArray = Marshalls.base64_to_raw(FileAccess.get_file_as_string(court_path).strip_edges())
+		var court_image := Image.new()
+		if court_bytes.is_empty() or court_image.load_webp_from_buffer(court_bytes) != OK:
+			push_warning("D267 original Court atlas cannot decode: " + court_path)
+			return null
+		if court_image.get_size() != Vector2i(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
+			push_warning("D267 original Court atlas must be 576x480: " + court_path)
+			return null
+		court_image.convert(Image.FORMAT_RGBA8)
+		if not _all_authored_deck_frames_visible(court_image) or not _all_authored_deck_frames_padded(court_image) or not _all_authored_deck_frames_distinct(court_image) or not _unused_deck_cells_clear(court_image):
+			push_warning("D267 original Court atlas rejected: " + court_path)
+			return null
+		var court_texture: Texture2D = ImageTexture.create_from_image(court_image)
+		if court_texture == null:
+			return null
+		return _create_frames(role, court_texture)
 
 
 	if BLACK_LANTERN_STAGED_ROLES.has(role):

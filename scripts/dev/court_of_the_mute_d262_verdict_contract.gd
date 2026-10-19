@@ -35,9 +35,14 @@ func _run_contract() -> void:
 		_fail("reused actor role or wrong Court roster")
 		return
 	for role in ["mute_magistrate", "ash_scrivener", "bone_bailiff"]:
-		if ART_LIBRARY.get_frames(role) != null:
-			_fail("unfinished Court enemy art should NOT be registered globally")
+		var art: SpriteFrames = ART_LIBRARY.get_frames(role)
+		if art == null:
+			_fail("approved rich Court animation is not in strict library: " + role)
 			return
+		for state in ["idle", "walk", "attack", "hit", "death"]:
+			if not art.has_animation(state):
+				_fail("D267 missing original animation: %s/%s" % [role, state])
+				return
 
 	var stage := Node2D.new()
 	add_child(stage)

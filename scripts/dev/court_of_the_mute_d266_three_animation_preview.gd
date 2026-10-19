@@ -50,10 +50,9 @@ func _ready() -> void:
 	add_child(veil)
 	var loader := LOADER.new() as Control
 	for role in ROLES:
-		if PRODUCTION_LIBRARY.get_frames(role) != null:
-			loader.free()
-			_fail("QA art leaked into shipped animation library: " + role)
-			return
+		# D266 historical prototype stays viewable after D267 rich original
+		# roles were staged in the strict library; never swap this preview
+		# for production without selecting the D267 art scene.
 		var source: String = PATH + role + "_d266_qa.webp.b64"
 		var original := _image_from_base64(source, Vector2i(576, 480))
 		if original == null:

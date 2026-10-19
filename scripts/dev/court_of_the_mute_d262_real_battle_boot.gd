@@ -8,6 +8,7 @@ const CARD_ID := "court_of_the_mute"
 const ENCOUNTER := "res://resources/encounters/court_of_the_mute.tres"
 const EXPECTED := ["mute_magistrate", "ash_scrivener", "bone_bailiff", "bone_bailiff"]
 const COURT_FLOOR := preload("res://scripts/battle/court_of_the_mute_floor.gd")
+const ART_LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
 const OTHER_ARENA_EXPECTED := Rect2(Vector2(90, 284), Vector2(1080, 158))
 
 func _ready() -> void:
@@ -60,6 +61,13 @@ func _run_boot() -> void:
 					hero_count += 1
 				else:
 					enemy_roles.append(actor.visual_role)
+					if actor.sprite_frames == null or actor.sprite_frames != ART_LIBRARY.get_frames(actor.visual_role):
+						_abort("D267 Court enemy is not showing user-approved rich atlas: " + actor.visual_role)
+						return
+					for animation in ["idle", "walk", "attack", "hit", "death"]:
+						if not actor.sprite_frames.has_animation(animation):
+							_abort("D267 missing original Court animation: " + actor.visual_role + "/" + animation)
+							return
 			enemy_roles.sort()
 			var expected := EXPECTED.duplicate()
 			expected.sort()
