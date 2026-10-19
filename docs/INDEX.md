@@ -1,10 +1,10 @@
 # Misdeal Documentation Index
 
-Updated: 2026-10-19 — **D257 QA three-atlas recovery is now current**. 75 structural sprite frames/15 blank slots pass source-build QA; 11 original lower-edge visual warnings and native F6 art check are outstanding. Act1 **37/45 live**; card #38 unreleased.
+Updated: 2026-10-19 — **D258 is current.** Full five-role rich Black Lantern original test 3v5 and actual Battle launcher are in GitHub. Official Godot 4.7.2 **real Battle preflight + 54/54 functional matrix PASS**. **Full Fight→Reward→Table and visual art acceptance still pending.** Live Act1 **37/45**, #38 QA only.
 
-**CURRENT:** [D257 reconstructed three-atlas QA and F6 gate](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md) · [D257 complete gallery](../scenes/dev/black_lantern_d257_three_character_art_preview.tscn) · [D257 frame QC](qa/D257_SEAM_RECOVERY_QC.json). [Prior D256 continuation](D256_NEW_CHAT_HANDOFF.md) and [D255 source](D255_THREE_RICH_CHARACTER_ATLASES.md) retained for full history/rollback.
+**NEW CHAT START:** [D258 — Five-role Godot results, scripts, assets and release gates](D258_FIVE_ROLE_GODOT_QA.md) · [D258 real Battle route F6](../scenes/dev/black_lantern_d258_real_battle_route_qa.tscn) · [D258 matrix evidence](qa/D258_GODOT_54_CASE_RESULT.json). Prior art checkpoints: [D257 reconstructed full atlases](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md) and [D256 consolidated handoff](D256_NEW_CHAT_HANDOFF.md).
 
-Historical earlier D238/D242-D254 records remain below and in [PROJECT_STATE.md](PROJECT_STATE.md) / [HANDOFF.md](HANDOFF.md); superseded older "pending D241 Sentinel" pointers are **not current status**. Live technical source of truth is GitHub main and this active state.
+Historical D249–D257 stage notes remain in [PROJECT_STATE.md](PROJECT_STATE.md) and [HANDOFF.md](HANDOFF.md); older waiting-for-art pointers are historical, not today's priority.
 
 ## Read first (current, short, authoritative)
 
