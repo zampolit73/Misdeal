@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-19 — D266 three Court 25-pose prototype animation atlases + QA
+
+- Authored three entirely new 576x480 25-pose transparent skeletal animation atlases (Magistrate/Scrivener/Bailiff) under `assets/pixel/units/court_of_the_mute_qa/`, from source keyed joint and prop movement, not borrowed sprites or annotated montage.
+- Independent **75/75** source QC and native Godot 4.7.2 **all-three ×1/×2 F6** preview PASS. Scene: `res://scenes/dev/court_of_the_mute_d266_three_animation_preview.tscn`.
+- Current visual styling is simplified QA art, **not accepted final rich animated artwork or production library content**. #39 remains QA-only; 38/45 live and KARAMBA73 untouched. [Full D266 record](docs/D266_COURT_ALL_THREE_ANIMATION_QA.md).
+
 ## 2026-10-19 — D265 Court richer empty arena / strict three-original-atlas readiness audit
 
 - Reproducible `1280×720` actor-free richer tribunal QA source `tools/art/author_court_d265_rich_arena.py`, independent WebP rollback-preserving `court_of_the_mute_d265_rich_qa.webp.b64`; official Godot 4.7.2 F6 import and same D264 lower-floor overlay PASS.

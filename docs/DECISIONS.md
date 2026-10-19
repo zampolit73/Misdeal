@@ -1,6 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 Updated: 2026-10-19.
 
+## D266 — Original procedural keyframed art may pass structural QA, not final visual acceptance
+
+2026-10-19: Three distinct 25-pose original Court motion sheets were procedurally authored as transparent QA candidates, all 75 independently valid. Godot F6 scene shows authentic ×1 alongside ×2; **do not equate technical distinctness and alpha correctness with rich final quality** under D168/D229 art standards. Keep these in QA, outside strict production animation library and card #39 deck, until complete visual approval. [D266 report](D266_COURT_ALL_THREE_ANIMATION_QA.md). D264 bottom floor and KARAMBA73 preserved.
+
 ## D265 — Do not mark source/QA motion readiness from composited sprite-reference images
 
 2026-10-19: Court's role-unique 25-pose production art must come from 3 real independent full-body 96px clean-alpha atlases, not cropped label-containing montage, per-frame duplicate/mirror padding or palette-shifted placeholder. D265 introduced a strict all-three structure/source audit, currently **0/75 source frames present**; green CI only confirms the audit ran. Richer empty architectural plate is separate QA-only variant and **not approved** as selected D261-quality battle art. Keep D264 lower-floor bounds and original selected card picture. [D265 QA](D265_COURT_RICH_ARENA_AND_ART_AUDIT.md); live 38/45, immutable KARAMBA73.

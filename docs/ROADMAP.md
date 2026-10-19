@@ -1,5 +1,13 @@
 # Misdeal — Active Roadmap
 
+## D266 — Court three transparent 25-pose sprites structurally QA-ready, not yet approved rich game art
+
+- [x] Three different 576x480 / 6x5x96 authored pose sheets: Judge, Scribe, Bailiff with 25 used and 5 empty cells each.
+- [x] Independent 75/75 alpha-padding-and-uniqueness validation and Godot 4.7.2 x1/x2 three-role animation scene PASS.
+- [ ] **NEXT D267:** enrich silhouette, bone/cloth shading, correct gripping hands, gait/death poses in one batch; single native F6 visual review, no per-frame signoff.
+- [ ] Improve separate EMPTY Court arena beyond schematic QA; then stage original sprites in Battle, 54-case local balance and actual Reward→Table, release #39 only after passing.
+- [x] Preserve selected D261 art, D264 lower combat floor, D260 #38, Act1 38/45, KARAMBA73.
+
 ## D265 — Richer Court background QA PASS; 3×25 original character-art source gate OPEN
 
 - [x] New reproducible richer *character-free* tribunal QA WebP, separate from D263/approved D261 card, preserving D264 floor; Godot 4.7.2 F6 native decode PASS.

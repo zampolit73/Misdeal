@@ -1,5 +1,9 @@
 ## D255 — User-approved visual direction for all three missing #38 enemies; 75-cel QA pack staged, ART GATE OPEN
 
+## D266 — Court three original 25-pose QA animation sources, visual art acceptance OPEN
+
+`assets/pixel/units/court_of_the_mute_qa/{mute_magistrate,ash_scrivener,bone_bailiff}_d266_qa.webp.b64` contain three independent 6×5×96 transparent original pose series, idle4/walk6/attack6/hit3/death6 and five clear spares each. [75/75 structural QC](qa/D266_THREE_ROLE_FULL25_AUDIT.json) and native F6 x1/x2 PASS. **These original procedurally drawn character sheets are stylized simplified QA candidates, not visually approved game-ready rich characters**. No library registration, #39 still unreleased. [D266 report](D266_COURT_ALL_THREE_ANIMATION_QA.md).
+
 ## D265 — New richer Court EMPTY battle plate, original 3×25 character art still missing
 
 `assets/pixel/battle/arenas/court_of_the_mute_d265_rich_qa.webp.b64`, original 1280×720 lossless character-free tribunal QA with added stone/lighting detail. Native F6 `res://scenes/dev/court_of_the_mute_d265_richer_arena_preview.tscn` Godot 4.7.2 PASS, **G** shows same screenshot-approved lower floor. D263 source and selected second D261 448×274 card image untouched. **Not artistically accepted as production**. D265 all-three [strict original 75-pose intake](qa/D265_THREE_ROLE_FULL25_AUDIT.json) = **0/75 accepted; Magistrate/Scrivener/Bailiff complete transparent sprite atlases not provided**. Do not register fake proxy grids. [D265 detailed art gate](D265_COURT_RICH_ARENA_AND_ART_AUDIT.md).
