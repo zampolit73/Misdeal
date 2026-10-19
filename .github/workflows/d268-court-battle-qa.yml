@@ -14,6 +14,7 @@ on:
       - 'assets/pixel/battle/arenas/court_of_the_mute_d271_painted_qa.webp.b64'
       - 'scripts/battle/battle_visual.gd'
       - 'scripts/dev/court_of_the_mute_d267_rich_animation_preview.gd'
+      - 'tools/art/audit_court_d272_original_alpha.py'
       - 'scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn'
       - 'scripts/battle/court_verdict.gd'
       - 'resources/encounters/court_of_the_mute.tres'
@@ -50,12 +51,20 @@ jobs:
           set -o pipefail
           timeout 60s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --quit-after 18 --scene res://scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn 2>&1 | tee /tmp/d268-preview.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D268:.*(failed|ошибка)' /tmp/d268-preview.log; then exit 1; fi
+      - name: D272 independent original Court 75-frame exported alpha and source-seam audit
+        shell: bash
+        run: |
+          set -o pipefail
+          python -m pip -q install pillow
+          python tools/art/audit_court_d272_original_alpha.py 2>&1 | tee /tmp/d268-d272-alpha.log
+          grep -q 'D272_COURT_75_ALPHA_NATIVE_PASS:' /tmp/d268-d272-alpha.log
       - name: Rich D267 combined art QA viewer frame-step controls load
         shell: bash
         run: |
           set -o pipefail
           timeout 60s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --quit-after 24 --scene res://scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn 2>&1 | tee /tmp/d268-art-gallery.log
           grep -q 'D267_THREE_RICH_COURT_F6_PASS:' /tmp/d268-art-gallery.log
+          grep -q 'D272_COURT_GALLERY_D271_PASS:' /tmp/d268-art-gallery.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D268 THREE RICH COURT QA FAILURE:' /tmp/d268-art-gallery.log; then exit 1; fi
       - name: Existing six genuine Court Battle launch contract
         shell: bash
@@ -93,5 +102,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: d268-court-qa-logs
-          path: /tmp/d268-*.log
+          path: |
+            /tmp/d268-*.log
+            docs/qa/D272_COURT_NATIVE_ALPHA_QA.json
           retention-days: 14
