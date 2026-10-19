@@ -5,6 +5,7 @@ extends Control
 const PREVIEW_SCENE := preload("res://scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn")
 const COURT_FLOOR := preload("res://scripts/battle/court_of_the_mute_floor.gd")
 const CARD_ID := "court_of_the_mute"
+const D270_ART_PATH := "res://assets/pixel/battle/arenas/court_of_the_mute_d270_empty_qa.svg"
 
 
 func _ready() -> void:
@@ -38,10 +39,25 @@ func _check() -> void:
 	if guide.visible or not bool(atmosphere.get("court_ambience_enabled")):
 		_abort("D269 ambience defaults or hidden floor guide are wrong")
 		return
+	# New Court scene art is an authored SVG, no embedded sprite/UI raster:
+	# record editability, dimensions and empty-stage resource wiring.
+	var svg := FileAccess.get_file_as_string(D270_ART_PATH)
+	if not svg.contains("<svg ") or not svg.contains("width=\"640\"") or svg.contains("<image ") or svg.contains("<text"):
+		_abort("D270 empty editable 640px Court SVG file is malformed or has baked image/text")
+		return
 	var backdrop := battle.get_node_or_null("BattleBackdrop")
 	if backdrop == null or str(backdrop.get("arena_id")) != CARD_ID:
 		_abort("D269 actual Battle uses a foreign arena plate")
 		return
+	var image_texture := backdrop.texture as Texture2D
+	if image_texture == null or image_texture.get_width() != 1280 or image_texture.get_height() != 720:
+		_abort("D270 Court SVG failed to rasterize to exact 1280x720 in real Battle")
+		return
+	var pixels: Image = image_texture.get_image()
+	if pixels == null or pixels.get_pixel(500, 650).a < 0.99 or pixels.get_pixel(640, 240).a < 0.99:
+		_abort("D270 Court image is missing opaque throne or lower floor")
+		return
+	print("D270_COURT_EMPTY_SVG_NATIVE_PASS: actual Court Battle displays independent 1280x720 character-free editable vector QA, D264 floor untouched")
 
 	var toggle := InputEventKey.new()
 	toggle.pressed = true
