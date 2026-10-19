@@ -1,6 +1,16 @@
 # Misdeal — Active Roadmap
 
-## D261 — Card #39 concept and scene art selection gate (NOT RELEASED)
+## D261 — User-approved SECOND Court card art integrated in GitHub, native QA PASS
+
+- [x] User chose **A `Суд безмолвных`**, a new tactical undead tribunal encounter; three original combat enemy types required, no reused costume swaps.
+- [x] User explicitly chose **second** of three rendered illustration alternatives; source SHA-256 recorded and exact portrait-derived `448×274` WebP uploaded to GitHub, no repaint or regenerate.
+- [x] New QA-only `court_of_the_mute.tres`, `CARD_PATHS` addressable entry, strict chosen-art loader, F6 preview. Godot 4.7.2 WebP integrity/native preview **PASS**.
+- [ ] **NEXT D262:** new pixel art/complete animation packs (25 genuinely distinct frames per role) for Magistrate, Scrivener, Bailiff; one combined visual/motion QA, no micro-approvals.
+- [ ] Original tribunal combat arena with walkable stone floor and recognizable huge scales. Scoped visibly telegraphed red `verdict_target` mechanics; no stuns, no global target AI changes.
+- [ ] Native Godot real 3-party-size/two-formation battle+54-case regression and actual Battle→Reward→Table; only then release #39 to **39/45**, separate commit.
+- [x] Keep #38 and Act1 **38/45 LIVE**, DS2/Fate Spread and KARAMBA73 unchanged.
+
+## D261 — HISTORICAL: 3-way concept and pre-art review stage
 
 - [x] Review latest `main`: Act1 **38/45** after released #38; DS2, Fate Spread, original new-enemy D143 and scene-first art D167/D168 rules remain.
 - [x] Draft **three distinct next-card directions** in [D261 options](D261_CARD39_CONCEPT_OPTIONS.md): A mute skeletal court with encounter-local marked target; B haunted memorial garden with finite defensive ward; C stranger's epitaph choice event.

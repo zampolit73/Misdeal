@@ -1,6 +1,10 @@
 # Misdeal — Canonical Working Handoff
 
-## D261 — CURRENT: choose card #39 direction (A/B/C)
+## D261 — CURRENT: second Court illustration approved and loaded; NEXT original enemies/arena
+
+The user selected **A `Суд безмолвных`** and explicitly chose **image #2** from the three portrait illustrations (`«второй мне подходит арт»`). Selected portrait source is `мрачный_трибунал_у_трона_смерти.png`, 1086×1448; exact source-derived, proportionally cropped **448×274** WebP now in `assets/pixel/card_unification_v1/run/court_of_the_mute_selected_v1.webp.b64`. The native QA card is addressable at `resources/cards/court_of_the_mute.tres` but **not in `ACT1_CARD_IDS`** and has deliberately empty `target_path`. The strict selected-art branch in `CardUnificationV1` is integrated and [official Godot 4.7.2 headless F6 scene PASS](https://github.com/zampolit73/Misdeal/actions/runs/39212443418). **F6:** `res://scenes/dev/court_of_the_mute_d261_card_preview.tscn`. Next D262: complete original three-role pixel-animated 25-frame packs in batch (`mute_magistrate`, `ash_scrivener`, `bone_bailiff`), exact tribunal arena and localized telegraphed verdict targeting; QA solo/duo/trio and real Battle→Reward→Table **before** release #39. No further approval needed for already-chosen card art. [D261 exact selected-art handoff](D261_COURT_SELECTED_ART_QA.md). **38/45 LIVE; KARAMBA73 frozen.**
+
+## D261 — HISTORICAL: choice A/B/C before approval
 
 User reported `«все ок»` following D260 #38 release. New [D261 three-way card #39 concept options](D261_CARD39_CONCEPT_OPTIONS.md) are staged **for decision only**, not locked gameplay: **A** `Суд безмолвных` (3 new undead roles, red-seal target priority, ruined tribunal) **recommended**; **B** `Сад сломанных надгробий` (3 original graveyard foes, limited protective ward); **C** `Чужая эпитафия` (grave-road event with choices, no new combat sprites). Await user selection **A/B/C** before implementing a new role mechanic or art. Once chosen, show **3 actual rendered** card-art composition options, integrate only selected D168 art, then build and QA full release with no reused enemies for combat (D143). Normal ACT1 **38/45 LIVE**, #38 original five-role Godot CI PASS, KARAMBA73 untouched. Prior [D260 report](D260_BLACK_LANTERN_CARD38_RELEASE.md).
 

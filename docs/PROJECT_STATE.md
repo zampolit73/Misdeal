@@ -1,6 +1,10 @@
 # Misdeal — Current Project State
 
-## D261 — Card #39 choice prepared; NO gameplay or art integration yet
+## D261 — Approved card #39 «СУД БЕЗМОЛВНЫХ», SECOND scene illustration in Godot QA
+
+2026-10-19: User explicitly chose concept A `Суд безмолвных`, then selected **second of three original illustrated compositions** with `«второй мне подходит арт»`. The **exact chosen portrait** (`мрачный_трибунал_у_трона_смерти.png`, original 1086×1448, SHA256 `3b1abff4...`) was source-cropped (x0–1086, y222–886), resized preserving proportions and committed as chosen **448×274 WebP** `assets/pixel/card_unification_v1/run/court_of_the_mute_selected_v1.webp.b64` (raw SHA256 `704eef55...`). Strict `CardUnificationV1` → `CardArtCatalog` loader, QA-only Tier1 `resources/cards/court_of_the_mute.tres` (empty target path), addressable `CARD_PATHS` entry, and native `res://scenes/dev/court_of_the_mute_d261_card_preview.tscn` committed. Official [Godot 4.7.2 art hash + native card preview PASS](https://github.com/zampolit73/Misdeal/actions/runs/39212443418). **NOT #39 released:** original underground tribunal arena, three new full25 animation packs and scoped marked-target mechanic to come. Full [D261 exact-art note](D261_COURT_SELECTED_ART_QA.md). Act1 remains **38/45 LIVE**; D260 #38 and frozen KARAMBA73 unchanged.
+
+## D261 — HISTORICAL concept-choice preparation (superseded by selected second art)
 
 2026-10-19: Following user's `«все ок»` on released D260, prepared **three distinct directions for card #39** (A: `Суд безмолвных` new skeletal court with marked-target mechanic; B: `Сад сломанных надгробий` new memorial-garden skeletons with finite defensive ward; C: `Чужая эпитафия` non-combat graveyard risk/choice). A recommended for original tactical identity, **none approved yet**. Next ask user for **A/B/C**, then show three rendered DS2-compatible scene-first illustration options for the chosen concept under D168; no image/card/encounter release before approval. [D261 concept comparison](D261_CARD39_CONCEPT_OPTIONS.md). Act1 stays **38/45 live**, #38 Godot PASS, frozen KARAMBA73 unchanged.
 
