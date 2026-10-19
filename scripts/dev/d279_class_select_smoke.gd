@@ -41,8 +41,20 @@ func _verify() -> void:
 	valid = valid and not selection.has_node("TopRightCover")
 	valid = valid and not selection.has_node("FateTitle")
 	valid = valid and selection.has_node("TitleVeil") and selection.has_node("Logo")
-	valid = valid and selection.get_node("Frame/WizardLine").position.y > 225.0
+	# D282 native chrome acceptance: restrained header/caption, readable footer
+	# and a real active gold rim above the D278 illustrated card frame.
+	var title_veil := selection.get_node("TitleVeil") as Panel
+	var title_style := title_veil.get_theme_stylebox("panel") as StyleBoxFlat
+	valid = valid and title_style.bg_color.a < 0.40
+	valid = valid and title_style.border_width_top == 1
+	valid = valid and selection.has_node("WizardCaption") and selection.has_node("FooterHintPlate")
+	valid = valid and selection.get_node("Frame/WizardLine").position.y >= 100.0
+	valid = valid and selection.get_node("Frame/WizardLine").position.y < 145.0
 	valid = valid and selection.get_node("Frame/Title").position.y < 90.0
+	var hint := selection.get_node("Frame/Rule") as Label
+	valid = valid and hint.position.y >= 684.0 and hint.position.y + hint.size.y < 715.0
+	valid = valid and hint.get_theme_font_size("font_size") >= 13
+	valid = valid and confirm.has_node("GildedTopEdge") and confirm.has_node("PressedLowerEdge")
 	valid = valid and selection.get_node("Frame") is Control
 	for i in range(buttons.size()):
 		var b: Button = buttons[i]
@@ -50,6 +62,7 @@ func _verify() -> void:
 		var unit: Resource = load(["res://resources/units/knight.tres", "res://resources/units/ranger.tres", "res://resources/units/mage.tres"][i]) as Resource
 		valid = valid and b.size == Vector2(272.0, 338.0)
 		valid = valid and b.has_node("Parchment") and b.has_node("IllustratedFrame")
+		valid = valid and b.has_node("SelectionRim") and not (b.get_node("SelectionRim") as Panel).visible
 		var overlay := b.get_node("IllustratedFrame") as TextureRect
 		valid = valid and overlay.texture != null and overlay.mouse_filter == Control.MOUSE_FILTER_IGNORE
 		valid = valid and stats.text.contains(str(roundi(float(unit.get("max_hp")))))
@@ -58,18 +71,23 @@ func _verify() -> void:
 		valid = valid and (b.get_node("Description") as Label).visible
 
 	buttons[0].mouse_entered.emit()
+	valid = valid and (buttons[0].get_node("SelectionRim") as Panel).visible
 	valid = valid and (buttons[0].get_node("Stats") as Label).visible
 	valid = valid and not (buttons[0].get_node("Description") as Label).visible
 	valid = valid and confirm.disabled and not bool(game_state.call("has_chosen_protagonist"))
 	buttons[0].mouse_exited.emit()
+	valid = valid and not (buttons[0].get_node("SelectionRim") as Panel).visible
 	valid = valid and not (buttons[0].get_node("Stats") as Label).visible
 	buttons[1].pressed.emit()
+	valid = valid and (buttons[1].get_node("SelectionRim") as Panel).visible
 	valid = valid and selection.get("selected_role") == "ranger"
 	valid = valid and not confirm.disabled
 	valid = valid and (buttons[1].get_node("Stats") as Label).visible
 	valid = valid and not bool(game_state.call("has_chosen_protagonist"))
 	# Switching to a different choice must still be reversible.
 	buttons[2].pressed.emit()
+	valid = valid and not (buttons[1].get_node("SelectionRim") as Panel).visible
+	valid = valid and (buttons[2].get_node("SelectionRim") as Panel).visible
 	valid = valid and selection.get("selected_role") == "mage"
 	valid = valid and not bool(game_state.call("has_chosen_protagonist"))
 	# ONLY explicit confirmation mutates the run and retains a SOLO hero.
@@ -85,6 +103,6 @@ func _verify() -> void:
 		selection.queue_free()
 		quit(1)
 		return
-	print("D281_CLASS_SELECT_PASS: verified full-resolution 1280x720 clean art, key-matted original logo, 3 live framed cards, hover stats and selected solo Mage")
+	print("D282_CLASS_SELECT_PASS: native 1280x720 art, restrained title, lifted wizard caption, readable footer, brass CTA, gold selected rim and solo Mage")
 	selection.queue_free()
 	quit(0)

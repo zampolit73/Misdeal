@@ -6,11 +6,23 @@
 [ext_resource type="Shader" path="res://shaders/class_select_logo_key.gdshader" id="5_logo_key"]
 
 [sub_resource type="StyleBoxFlat" id="TitleVeilStyle"]
-bg_color = Color(0.025, 0.010, 0.013, 0.66)
+bg_color = Color(0.064, 0.033, 0.031, 0.29)
+border_width_top = 1
 border_width_bottom = 1
-border_color = Color(0.52, 0.30, 0.17, 0.60)
-shadow_color = Color(0, 0, 0, 0.43)
-shadow_size = 7
+border_color = Color(0.67, 0.43, 0.24, 0.73)
+shadow_color = Color(0, 0, 0, 0.26)
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="WizardCaptionStyle"]
+bg_color = Color(0.038, 0.018, 0.018, 0.53)
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.51, 0.34, 0.22, 0.46)
+
+[sub_resource type="StyleBoxFlat" id="FooterHintStyle"]
+bg_color = Color(0.023, 0.011, 0.014, 0.61)
+border_width_top = 1
+border_color = Color(0.55, 0.36, 0.22, 0.45)
 
 [sub_resource type="ShaderMaterial" id="LogoKeyMat"]
 shader = ExtResource("5_logo_key")
@@ -62,6 +74,22 @@ offset_right = 945.0
 offset_bottom = 92.0
 theme_override_styles/panel = SubResource("TitleVeilStyle")
 
+[node name="WizardCaption" type="Panel" parent="."]
+mouse_filter = 2
+offset_left = 321.0
+offset_top = 98.0
+offset_right = 959.0
+offset_bottom = 136.0
+theme_override_styles/panel = SubResource("WizardCaptionStyle")
+
+[node name="FooterHintPlate" type="Panel" parent="."]
+mouse_filter = 2
+offset_left = 268.0
+offset_top = 684.0
+offset_right = 1012.0
+offset_bottom = 715.0
+theme_override_styles/panel = SubResource("FooterHintStyle")
+
 [node name="Frame" type="Control" parent="."]
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -82,10 +110,10 @@ horizontal_alignment = 1
 
 [node name="WizardLine" type="Label" parent="Frame"]
 mouse_filter = 2
-offset_left = 318.0
-offset_top = 243.0
-offset_right = 962.0
-offset_bottom = 283.0
+offset_left = 327.0
+offset_top = 103.0
+offset_right = 953.0
+offset_bottom = 131.0
 theme_override_colors/font_color = Color(0.92, 0.79, 0.66, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
 theme_override_font_sizes/font_size = 15
@@ -307,20 +335,22 @@ vertical_alignment = 1
 
 [node name="ConfirmButton" type="Button" parent="Frame"]
 offset_left = 451.0
-offset_top = 640.0
+offset_top = 638.0
 offset_right = 829.0
-offset_bottom = 682.0
+offset_bottom = 678.0
 disabled = true
 text = "ПРИНЯТЬ ЭТУ СУДЬБУ"
 
 [node name="Rule" type="Label" parent="Frame"]
 mouse_filter = 2
-offset_left = 247.0
-offset_top = 689.0
-offset_right = 1033.0
-offset_bottom = 709.0
-theme_override_colors/font_color = Color(0.81, 0.68, 0.53, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
-theme_override_font_sizes/font_size = 12
+offset_left = 275.0
+offset_top = 688.0
+offset_right = 1005.0
+offset_bottom = 711.0
+theme_override_colors/font_color = Color(0.96, 0.82, 0.63, 1)
+theme_override_colors/font_shadow_color = Color(0.004, 0.002, 0.003, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 13
 text = "Остальные двое не входят в отряд. Их судьбы придётся снова встретить в картах."
 horizontal_alignment = 1

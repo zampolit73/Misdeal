@@ -89,6 +89,16 @@ static func prepare(button: Button) -> void:
 	frame_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	button.add_child(frame_art)
 
+	# Gold edge sits ABOVE the painted frame, never over the portrait or copy.
+	# Hover gets a discreet line; click-selection keeps a stronger permanent rim.
+	var selection_rim := Panel.new()
+	selection_rim.name = "SelectionRim"
+	selection_rim.position = Vector2(2.0, 2.0)
+	selection_rim.size = CARD_SIZE - Vector2(4.0, 4.0)
+	selection_rim.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	selection_rim.visible = false
+	button.add_child(selection_rim)
+
 
 static func set_state(button: Button, selected: bool, hovered: bool, dimmed: bool) -> void:
 	var style := StyleBoxFlat.new()
@@ -104,6 +114,21 @@ static func set_state(button: Button, selected: bool, hovered: bool, dimmed: boo
 		style.border_color = Color("#f1b568")
 		style.shadow_size = 17
 		style.shadow_color = Color(0.70, 0.30, 0.07, 0.75)
+	var rim := button.get_node_or_null("SelectionRim") as Panel
+	if rim != null:
+		rim.visible = selected or hovered
+		if rim.visible:
+			var gilding := StyleBoxFlat.new()
+			gilding.draw_center = false
+			var width := 3 if selected else 2
+			gilding.border_width_left = width
+			gilding.border_width_top = width
+			gilding.border_width_right = width
+			gilding.border_width_bottom = width
+			gilding.border_color = Color(1.0, 0.77, 0.39, 0.98) if selected else Color(0.95, 0.71, 0.40, 0.70)
+			gilding.shadow_size = 8 if selected else 3
+			gilding.shadow_color = Color(0.85, 0.36, 0.075, 0.60) if selected else Color(0.57, 0.32, 0.12, 0.26)
+			rim.add_theme_stylebox_override("panel", gilding)
 	button.add_theme_stylebox_override("normal", style)
 	button.add_theme_stylebox_override("hover", style)
 	button.add_theme_stylebox_override("pressed", style)
@@ -113,7 +138,7 @@ static func set_state(button: Button, selected: bool, hovered: bool, dimmed: boo
 		art.modulate = Color(1, 0.99, 0.96) if (hovered or selected) else Color(0.94, 0.91, 0.86)
 	# The choice card remains a single focus/hit target.
 	if dimmed:
-		button.modulate = Color(0.78, 0.74, 0.71, 0.82)
+		button.modulate = Color(0.65, 0.62, 0.60, 0.76)
 	else:
 		button.modulate = Color.WHITE
 	var target_scale := Vector2(1.035, 1.035) if (hovered or selected) else Vector2.ONE
@@ -124,6 +149,21 @@ static func set_state(button: Button, selected: bool, hovered: bool, dimmed: boo
 
 static func prepare_confirm(button: Button) -> void:
 	button.add_theme_font_size_override("font_size", 21)
+	# A restrained metal inset gives the CTA a physical crimson enamel edge.
+	var gleam := ColorRect.new()
+	gleam.name = "GildedTopEdge"
+	gleam.position = Vector2(10.0, 3.0)
+	gleam.size = Vector2(358.0, 1.0)
+	gleam.color = Color(0.97, 0.72, 0.39, 0.61)
+	gleam.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(gleam)
+	var shadow_edge := ColorRect.new()
+	shadow_edge.name = "PressedLowerEdge"
+	shadow_edge.position = Vector2(11.0, 37.0)
+	shadow_edge.size = Vector2(356.0, 1.0)
+	shadow_edge.color = Color(0.15, 0.04, 0.035, 0.80)
+	shadow_edge.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	button.add_child(shadow_edge)
 	button.add_theme_color_override("font_color", Color("#f7d8a8"))
 	button.add_theme_color_override("font_hover_color", Color("#fff0cc"))
 	button.add_theme_color_override("font_disabled_color", Color("#a98869"))
@@ -133,14 +173,17 @@ static func prepare_confirm(button: Button) -> void:
 
 static func update_confirm(button: Button) -> void:
 	var base := StyleBoxFlat.new()
-	base.bg_color = Color("#6c201c") if not button.disabled else Color("#301914")
+	base.bg_color = Color("#76251d") if not button.disabled else Color("#301914")
 	base.border_width_left = 3
-	base.border_width_top = 3
+	base.border_width_top = 2
 	base.border_width_right = 3
-	base.border_width_bottom = 3
-	base.border_color = Color("#d2a064") if not button.disabled else Color("#775037")
-	base.shadow_color = Color(0.38, 0.10, 0.04, 0.60) if not button.disabled else Color(0, 0, 0, 0.35)
-	base.shadow_size = 10
+	base.border_width_bottom = 4
+	base.border_color = Color("#d3a15e") if not button.disabled else Color("#775037")
+	base.shadow_color = Color(0.52, 0.14, 0.055, 0.62) if not button.disabled else Color(0, 0, 0, 0.35)
+	base.shadow_size = 12
+	var gleam := button.get_node_or_null("GildedTopEdge") as ColorRect
+	if gleam != null:
+		gleam.visible = not button.disabled
 	var hot := base.duplicate() as StyleBoxFlat
 	hot.bg_color = Color("#922b24")
 	hot.border_color = Color("#f2bf73")
