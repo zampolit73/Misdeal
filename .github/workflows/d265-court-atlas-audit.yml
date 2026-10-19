@@ -1,0 +1,36 @@
+name: D265 Court 3x25 original art intake audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/art/audit_court_d265_three_roles.py'
+      - '.github/workflows/d265-court-atlas-audit.yml'
+      - 'assets/pixel/units/court_of_the_mute_qa/*.webp.b64'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install clean-alpha inspection library
+        run: python -m pip install 'Pillow>=10,<12'
+      - name: Audit all THREE original role atlases in one batch
+        run: python tools/art/audit_court_d265_three_roles.py
+      - name: Persist truthful source status in GitHub
+        shell: bash
+        run: |
+          git add docs/qa/D265_THREE_ROLE_FULL25_AUDIT.json
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'qa(d265): record Court all-three animation structural art-readiness status'
+            git push origin HEAD:main
+          fi
