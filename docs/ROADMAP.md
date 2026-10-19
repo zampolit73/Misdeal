@@ -1,5 +1,15 @@
 # Misdeal — Active Roadmap
 
+## D273 — COMPLETE: Court #39 released into Act1 39/45; prepare D274
+
+- [x] D271 genuine painted 1280×720 character-free Court arena visually accepted by user; D270 flat SVG explicitly rejected and no longer active.
+- [x] D272 all 75 approved D267 rich exported poses structurally independently validated: 3px+ safe alpha gutters, all unique, 15 unused cells clear. **27 source flags remain visual pointers, not proven output-cut frames**.
+- [x] **#39 released**: target_path connected; `RunState.ACT1_CARD_IDS` now **39/45**, no Fate Spread / party / balance rewrite.
+- [x] [Godot 4.7.2 actual ordinary dealt #39 → Court 4 originals + red verdict + D271 → Reward → Table PASS](https://github.com/zampolit73/Misdeal/actions/runs/39264156351); 6 real Party/Formation boot cases and 54/54 functional cases green. [Original SHA/native rich gallery CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39264427458).
+- [ ] Future QA if gameplay video demonstrates Bailiff death/grip or foot defects: one bundled targeted fix, preserve original D267 identity. Not a reason to call technical release unverified.
+- [ ] **D274:** plan next #40 based on original enemy identities/mechanic and D168 2–3 genuinely rendered *card illustration* choices before final artwork selection. No unapproved underlying redesign. [Current handoff](D273_NEW_CHAT_HANDOFF.md).
+
+
 ## D271 — ACTUAL PAINTED COURT IN MAIN; Godot native PASS, artistic user verdict next
 
 The previously rejected D270 SVG has been replaced in real **Court-only** QA Battle by the genuine full-resolution painted D271 WebP b64 (1280×720; SHA256 `1eb45164d9c7418fb9c459d18c0640935452266aeecbb04d1e9d7bd527af8784`). [Godot 4.7.2 full D271 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39261648732): source bytes, 1280×720 texture, F6 **B** D265/D271 comparison, **L/G**, six real Battle setups, 54/54 Court BattleUnit simulations and QA-only Fight→Reward→Table. The old "not transferred" D271 notes below are HISTORICAL/SUPERSEDED. Need native visual acceptance from user, then rich D267 ×1 animation review/27 flags, then separate #39 ordinary-deal release. Card #39 still UNRELEASED, 38/45, D261/D264/#38/KARAMBA73 unchanged. [D271 verified report](D271_PAINTED_COURT_NATIVE_PASS.md).
