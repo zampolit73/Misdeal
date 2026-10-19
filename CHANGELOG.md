@@ -5,7 +5,7 @@
 - Added reproducible original D257 → canonical RIGHT-facing WebP exporter and CI source QA for Guide/Acolyte/Archer; all 25 distinct cels and five blanks per atlas retained.
 - Shared strict `MisdealUnitAnimationLibrary` now supplies all **five original Black Lantern enemies**; existing D244 Sentinel and D224 Bearer unchanged. New D259 real Battle F6 and headless preflight use **no temporary sprite injection**.
 - Wired unreleased `black_lantern_road` card's `target_path` to its actual five-role encounter; `RunState.ACT1_CARD_IDS` remains **37/45**, no production balance/light modifications.
-- Official Godot 4.7.2 standard-loader smoke and **54/54** normalized functional combat PASS. Corrected invalid HUD Z indices (5090–5100) to legal 3090–3100; corrected QA-only headless observer creation. Full automatic Fight→Reward→Table under new test harness remains a separate outcome gate.
+- Official Godot 4.7.2 standard-loader smoke and **54/54** normalized functional combat PASS. Corrected invalid HUD Z indices (5090–5100) to legal 3090–3100; corrected QA-only headless observer creation. Final Godot 4.7.2 [CI](https://github.com/zampolit73/Misdeal/actions/runs/39206093134) **PASS** for the entire genuine Battle win→Reward→Table navigation and 54/54 normalized battle regression; test-only synthetic frame signal compensates for headless RenderingServer, not a visual proof.
 - Previous art, DS2 and KARAMBA73 preserved. [D259 detailed handoff](docs/D259_CANONICAL_FIVE_ROLE_RELEASE_PREP.md).
 
 ## 2026-10-19 — D258: original five-enemy Black Lantern real combat QA

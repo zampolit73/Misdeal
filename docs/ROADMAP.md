@@ -7,7 +7,7 @@
 - [x] Fix QA-release card's missing `target_path` to point to original Black Lantern encounter; **not** added to deal pool yet.
 - [x] Official Godot 4.7.2 full five-library-real-Battle preflight and 54-case functional regression PASS.
 - [x] Correct invalid >4096 `z_index` values in real Battle HUD without changing layout ordering.
-- [ ] Validate automated real Fight→Reward→Table (headless real route may need QA-only frame signal) and user F6 authentic route/character contact if necessary.
+- [x] **Real headless Fight→Reward→Table PASS** in Godot 4.7.2: 3v5 win, Continue→Reward→Table/card completion using QA-only frame signal for native transition. User D258 reported no issues; visual critique remains feedback-driven.
 - [ ] Make evidence-based local difficulty decision; 54/54 wins alone do not approve balance. Then release card #38 in **separate commit** to 38/45 only when gates pass. KARAMBA73 frozen.
 
 ## D258 — All five skeletons in real Battle QA and Godot CI matrix

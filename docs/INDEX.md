@@ -1,8 +1,8 @@
 # Misdeal Documentation Index
 
-Updated: 2026-10-19 — **D259 is current**: five original rich 25-frame Black Lantern enemies in shared canonical runtime library, Godot 4.7.2 actual Battle startup + 54-case functional matrix PASS. Card #38 remains QA-only (**37/45 live**), real end-to-end Reward/Table and balance gate open.
+Updated: 2026-10-19 — **D259 is current**: five original rich 25-frame Black Lantern enemies in shared canonical runtime library, Godot 4.7.2 actual Battle startup + 54-case functional matrix PASS. Card #38 remains QA-only (**37/45 live**); **real headless Battle→Reward→Table CI PASS**, challenge/visual release decision still open.
 
-**START HERE:** [D259 canonical original five-role staging and next release requirements](D259_CANONICAL_FIVE_ROLE_RELEASE_PREP.md) · [D259 genuine library-only Battle F6](../scenes/dev/black_lantern_d259_real_battle_route_qa.tscn) · [D259 asset QC](qa/D259_BLACK_LANTERN_CANONICAL_ATLASES_QC.json). Previous checkpoints: [D258](D258_FIVE_ROLE_GODOT_QA.md) and [D257](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md).
+**START HERE:** [D259 canonical original five-role staging and next release requirements](D259_CANONICAL_FIVE_ROLE_RELEASE_PREP.md) · [D259 genuine library-only Battle F6](../scenes/dev/black_lantern_d259_real_battle_route_qa.tscn) · [D259 asset QC](qa/D259_BLACK_LANTERN_CANONICAL_ATLASES_QC.json) · [D259 full route QA](qa/D259_REAL_ROUTE_AND_MATRIX_QC.json). Previous checkpoints: [D258](D258_FIVE_ROLE_GODOT_QA.md) and [D257](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md).
 
 ## Read first (current, short, authoritative)
 
