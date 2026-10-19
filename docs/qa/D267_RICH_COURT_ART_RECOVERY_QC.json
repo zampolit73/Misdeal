@@ -1,0 +1,1400 @@
+{
+  "version": "D267",
+  "stage": "SOURCE_CONVERTED_QA_ONLY_NATIVE_GODOT_PENDING",
+  "roles": [
+    {
+      "role": "mute_magistrate",
+      "source_name": "mute_magistrate_d267_approved_original.webp.b64",
+      "source_sha256": "487788de2784e870e4c7e75c5b07ea742994baf3348ee0334e3d6eb9686695ad",
+      "atlas_sha256": "bcd51d98ceb255da89cc0e1385b998e3fef1bd51c754831200652d1ae9610dd8",
+      "source_dimensions": [
+        1374,
+        1145
+      ],
+      "atlas_dimensions": [
+        576,
+        480
+      ],
+      "authored_poses": 25,
+      "unused_alpha_clear_cells": 5,
+      "full_frame_details": [
+        {
+          "frame": 0,
+          "source_bbox": [
+            20,
+            14,
+            189,
+            200
+          ],
+          "pixels": 19020,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "idle",
+          "output_col": 0,
+          "scale": 0.44,
+          "output_span": [
+            83,
+            88
+          ],
+          "pose_sha256": "669dcb103013dd818d354d6fbe2e4dc5a0a2a6b8f22da559a186529b462c752f"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            241,
+            14,
+            189,
+            199
+          ],
+          "pixels": 19179,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "idle",
+          "output_col": 1,
+          "scale": 0.44,
+          "output_span": [
+            83,
+            88
+          ],
+          "pose_sha256": "f7c297cd23a86145bf3952a8aca95fc41828f9f657868540c424a79e059013f0"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            466,
+            11,
+            187,
+            203
+          ],
+          "pixels": 18955,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "idle",
+          "output_col": 2,
+          "scale": 0.4384,
+          "output_span": [
+            82,
+            89
+          ],
+          "pose_sha256": "b3971897ccd9891877dbddfe98ec6fbe01cb764f8aecadfb13a6b95666ee8d66"
+        },
+        {
+          "frame": 3,
+          "source_bbox": [
+            695,
+            14,
+            184,
+            200
+          ],
+          "pixels": 18819,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "idle",
+          "output_col": 3,
+          "scale": 0.44,
+          "output_span": [
+            81,
+            88
+          ],
+          "pose_sha256": "469869eb6970cdd703779f277817b197f6fbb30d7e694b2e3dbb82ff9edc5a5d"
+        },
+        {
+          "frame": 0,
+          "source_bbox": [
+            16,
+            7,
+            200,
+            205
+          ],
+          "pixels": 19746,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "walk",
+          "output_col": 0,
+          "scale": 0.4341,
+          "output_span": [
+            87,
+            89
+          ],
+          "pose_sha256": "75bae6307ac0e7f22161ce6e0f8152cd374144199f407752350d5a7ca5b722be"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            243,
+            6,
+            207,
+            206
+          ],
+          "pixels": 20047,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "walk",
+          "output_col": 1,
+          "scale": 0.432,
+          "output_span": [
+            89,
+            89
+          ],
+          "pose_sha256": "6db71001acec158c5bf486e0d3e3142d65a8b92aa35e460039688bc682ec28c0"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            463,
+            0,
+            210,
+            212
+          ],
+          "pixels": 20948,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 15,
+          "state": "walk",
+          "output_col": 2,
+          "scale": 0.4198,
+          "output_span": [
+            88,
+            89
+          ],
+          "pose_sha256": "8818fb2e738507061913664991efe7680373e7db3287800c8023963ea98ef15e"
+        },
+        {
+          "frame": 3,
+          "source_bbox": [
+            693,
+            0,
+            218,
+            212
+          ],
+          "pixels": 21069,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 13,
+          "state": "walk",
+          "output_col": 3,
+          "scale": 0.4128,
+          "output_span": [
+            90,
+            88
+          ],
+          "pose_sha256": "06d2dd0ba47e3edc237bfead544dc7af128d549208825b0aceb1fa8b7aa9c322"
+        },
+        {
+          "frame": 4,
+          "source_bbox": [
+            916,
+            9,
+            208,
+            203
+          ],
+          "pixels": 20023,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "walk",
+          "output_col": 4,
+          "scale": 0.4327,
+          "output_span": [
+            90,
+            88
+          ],
+          "pose_sha256": "dff8010b25def2a3a83a103621f6f96d6b7c6a03d0f90cfccad7bbf96aefe4ec"
+        },
+        {
+          "frame": 5,
+          "source_bbox": [
+            1139,
+            10,
+            216,
+            202
+          ],
+          "pixels": 21715,
+          "recovered_outside_cell": 28,
+          "source_at_row_edges": 0,
+          "state": "walk",
+          "output_col": 5,
+          "scale": 0.4167,
+          "output_span": [
+            90,
+            84
+          ],
+          "pose_sha256": "6f1391958cc6f9c149153f0f5daf8de259a03029e1aeb08e694feaa215fe57f2"
+        },
+        {
+          "frame": 0,
+          "source_bbox": [
+            11,
+            0,
+            207,
+            211
+          ],
+          "pixels": 21690,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 20,
+          "state": "attack",
+          "output_col": 0,
+          "scale": 0.4218,
+          "output_span": [
+            87,
+            89
+          ],
+          "pose_sha256": "cbc3cfe419959731829d0f5b70b4b20ae75d89c2c7b8c4b87ea50d36628feefb"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            231,
+            0,
+            205,
+            211
+          ],
+          "pixels": 22213,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 10,
+          "state": "attack",
+          "output_col": 1,
+          "scale": 0.4218,
+          "output_span": [
+            86,
+            89
+          ],
+          "pose_sha256": "cf9f38fbeb56f0bb7753cd846be696668d8e7305d90c0b5f453e4aaa4e7c9a12"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            456,
+            16,
+            227,
+            195
+          ],
+          "pixels": 20742,
+          "recovered_outside_cell": 19,
+          "source_at_row_edges": 0,
+          "state": "attack",
+          "output_col": 2,
+          "scale": 0.3965,
+          "output_span": [
+            90,
+            77
+          ],
+          "pose_sha256": "f089c06f3f16e6feac6c9d35d2109af631c9326cc173f284bc8c84b4255bbc72"
+        },
+        {
+          "frame": 3,
+          "source_bbox": [
+            671,
+            0,
+            259,
+            212
+          ],
+          "pixels": 23082,
+          "recovered_outside_cell": 557,
+          "source_at_row_edges": 27,
+          "state": "attack",
+          "output_col": 3,
+          "scale": 0.3475,
+          "output_span": [
+            90,
+            74
+          ],
+          "pose_sha256": "0d5781fde988879595f11ef2f3be8a790a6ea1cb23d69d28679ae1c2db060912"
+        },
+        {
+          "frame": 4,
+          "source_bbox": [
+            894,
+            2,
+            274,
+            211
+          ],
+          "pixels": 23482,
+          "recovered_outside_cell": 998,
+          "source_at_row_edges": 0,
+          "state": "attack",
+          "output_col": 4,
+          "scale": 0.3285,
+          "output_span": [
+            90,
+            69
+          ],
+          "pose_sha256": "b6b6986485626fc6dd24194a095f70b4a227daa0c5cbf0cb3ba09925bdf55498"
+        },
+        {
+          "frame": 5,
+          "source_bbox": [
+            1100,
+            28,
+            266,
+            185
+          ],
+          "pixels": 20412,
+          "recovered_outside_cell": 1612,
+          "source_at_row_edges": 0,
+          "state": "attack",
+          "output_col": 5,
+          "scale": 0.3383,
+          "output_span": [
+            90,
+            63
+          ],
+          "pose_sha256": "c2268f0b0e7d6bdad0c118f57ba4cd6826e1fa6487c617e95d1f2296dbba4872"
+        },
+        {
+          "frame": 0,
+          "source_bbox": [
+            13,
+            6,
+            206,
+            201
+          ],
+          "pixels": 22028,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "hit",
+          "output_col": 0,
+          "scale": 0.4369,
+          "output_span": [
+            90,
+            88
+          ],
+          "pose_sha256": "1290809ffa42740462e4e7720ff1560e289c7f35c277e797aefacb3076822af5"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            232,
+            30,
+            218,
+            176
+          ],
+          "pixels": 20350,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "hit",
+          "output_col": 1,
+          "scale": 0.4128,
+          "output_span": [
+            90,
+            73
+          ],
+          "pose_sha256": "6c64dfc066ca45d3b8793e54278a09422ce60f8f3584b09033aab3bbd9df6c75"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            443,
+            45,
+            250,
+            165
+          ],
+          "pixels": 20584,
+          "recovered_outside_cell": 145,
+          "source_at_row_edges": 0,
+          "state": "hit",
+          "output_col": 2,
+          "scale": 0.36,
+          "output_span": [
+            90,
+            59
+          ],
+          "pose_sha256": "1a4639a3ad1a1343087193fd773f06e4d808e3a681af8bfa552a0e0cd8b6dbc6"
+        },
+        {
+          "frame": 0,
+          "source_bbox": [
+            6,
+            12,
+            217,
+            178
+          ],
+          "pixels": 18574,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "death",
+          "output_col": 0,
+          "scale": 0.4147,
+          "output_span": [
+            90,
+            74
+          ],
+          "pose_sha256": "ee2a83c0fae6fb7b7c4b1da78800cd3d770550244f893bb8b24e2958f995e080"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            223,
+            33,
+            210,
+            162
+          ],
+          "pixels": 16699,
+          "recovered_outside_cell": 44,
+          "source_at_row_edges": 0,
+          "state": "death",
+          "output_col": 1,
+          "scale": 0.4286,
+          "output_span": [
+            90,
+            69
+          ],
+          "pose_sha256": "648f0a489a42b2c61dec8b52740b1d6381b4ad2bbafd38eaf5f9e1c02b1fa796"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            432,
+            77,
+            239,
+            119
+          ],
+          "pixels": 16247,
+          "recovered_outside_cell": 482,
+          "source_at_row_edges": 0,
+          "state": "death",
+          "output_col": 2,
+          "scale": 0.3766,
+          "output_span": [
+            90,
+            45
+          ],
+          "pose_sha256": "0bab270eac2fa9e398b5ed919de041d71ff0b116aa35cfa09fe768e64bd314f0"
+        },
+        {
+          "frame": 3,
+          "source_bbox": [
+            678,
+            104,
+            238,
+            97
+          ],
+          "pixels": 13952,
+          "recovered_outside_cell": 68,
+          "source_at_row_edges": 0,
+          "state": "death",
+          "output_col": 3,
+          "scale": 0.3782,
+          "output_span": [
+            90,
+            37
+          ],
+          "pose_sha256": "c698ebbdc135c8704ad018a737c6a688e5b55cb9e224bb68f4fd88e7137d0313"
+        },
+        {
+          "frame": 4,
+          "source_bbox": [
+            921,
+            114,
+            233,
+            88
+          ],
+          "pixels": 12395,
+          "recovered_outside_cell": 194,
+          "source_at_row_edges": 0,
+          "state": "death",
+          "output_col": 4,
+          "scale": 0.3863,
+          "output_span": [
+            90,
+            34
+          ],
+          "pose_sha256": "96508e4d37ede120c2af8fcdbc59caffae193d7caee185a2e67e654509049399"
+        },
+        {
+          "frame": 5,
+          "source_bbox": [
+            1159,
+            126,
+            210,
+            64
+          ],
+          "pixels": 7497,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "death",
+          "output_col": 5,
+          "scale": 0.4286,
+          "output_span": [
+            90,
+            27
+          ],
+          "pose_sha256": "923706242dc41acec9261dba637e7fe328603d96334425f1be130ada8609e0cb"
+        }
+      ],
+      "warnings": [
+        {
+          "state": "walk",
+          "frame": 2,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 15
+        },
+        {
+          "state": "walk",
+          "frame": 3,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 13
+        },
+        {
+          "state": "attack",
+          "frame": 0,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 20
+        },
+        {
+          "state": "attack",
+          "frame": 1,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 10
+        },
+        {
+          "state": "attack",
+          "frame": 3,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 27
+        }
+      ],
+      "source_warning_count": 5,
+      "visual_Godot_x1": "NOT_RUN",
+      "art_approved_in_chat": "USER_APPROVED_DIRECTION_NEEDS_IN_ENGINE_CONFIRMATION"
+    },
+    {
+      "role": "ash_scrivener",
+      "source_name": "ash_scrivener_d267_approved_original.webp.b64",
+      "source_sha256": "6e973462cc0bd36688c87182e6d56d2ac5f4d6303c80e886bb000218806dc3e2",
+      "atlas_sha256": "2f56d0f76c80640982b1738234b48da0f4ddc8e71a959e38aaff4a74ab7d8f1d",
+      "source_dimensions": [
+        1374,
+        1145
+      ],
+      "atlas_dimensions": [
+        576,
+        480
+      ],
+      "authored_poses": 25,
+      "unused_alpha_clear_cells": 5,
+      "full_frame_details": [
+        {
+          "frame": 0,
+          "source_bbox": [
+            21,
+            36,
+            191,
+            190
+          ],
+          "pixels": 20854,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "idle",
+          "output_col": 0,
+          "scale": 0.44,
+          "output_span": [
+            84,
+            84
+          ],
+          "pose_sha256": "53a26104299dbfadb3d3de1e92cc56749f497438838c953e02a0f577c73310eb"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            242,
+            35,
+            188,
+            191
+          ],
+          "pixels": 20636,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "idle",
+          "output_col": 1,
+          "scale": 0.44,
+          "output_span": [
+            83,
+            84
+          ],
+          "pose_sha256": "f749dc1c638629dd63d725b32cf1069afd46084be5cc15b773cdf1f69d054f79"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            464,
+            39,
+            202,
+            187
+          ],
+          "pixels": 22021,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "idle",
+          "output_col": 2,
+          "scale": 0.44,
+          "output_span": [
+            89,
+            82
+          ],
+          "pose_sha256": "3b7a6b5c7ad1b4d1c1005f49528e9b66fa06259856b32f40eedfab54e36974f9"
+        },
+        {
+          "frame": 3,
+          "source_bbox": [
+            690,
+            38,
+            200,
+            188
+          ],
+          "pixels": 22446,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "idle",
+          "output_col": 3,
+          "scale": 0.44,
+          "output_span": [
+            88,
+            83
+          ],
+          "pose_sha256": "44eaad8c1f578bdf8cde173758ba5ab0a8b33c1c6ea3cf33db7ac3a7c3ff0458"
+        },
+        {
+          "frame": 0,
+          "source_bbox": [
+            19,
+            32,
+            179,
+            187
+          ],
+          "pixels": 19798,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "walk",
+          "output_col": 0,
+          "scale": 0.44,
+          "output_span": [
+            79,
+            82
+          ],
+          "pose_sha256": "2ff3626773275750ac11c69cddb025c4e7fb812f2c3f459f9b86ec644ff3ce52"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            244,
+            29,
+            203,
+            192
+          ],
+          "pixels": 22063,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "walk",
+          "output_col": 1,
+          "scale": 0.44,
+          "output_span": [
+            89,
+            84
+          ],
+          "pose_sha256": "81a73583f57b2871312698679b8d2a7260c5726c1626d3180be0cfed8e0f7bd9"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            474,
+            29,
+            196,
+            191
+          ],
+          "pixels": 21848,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "walk",
+          "output_col": 2,
+          "scale": 0.44,
+          "output_span": [
+            86,
+            84
+          ],
+          "pose_sha256": "25ab5dde39b0e3a7a31b2713590081a58c0ba0747cbe0ed322495801ac5c6b16"
+        },
+        {
+          "frame": 3,
+          "source_bbox": [
+            698,
+            30,
+            205,
+            190
+          ],
+          "pixels": 21742,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "walk",
+          "output_col": 3,
+          "scale": 0.439,
+          "output_span": [
+            90,
+            83
+          ],
+          "pose_sha256": "fb114d2b432ff0e6d590b0ab07645089453f086df6f698be11a17a601095b3af"
+        },
+        {
+          "frame": 4,
+          "source_bbox": [
+            921,
+            29,
+            205,
+            191
+          ],
+          "pixels": 21987,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "walk",
+          "output_col": 4,
+          "scale": 0.439,
+          "output_span": [
+            90,
+            84
+          ],
+          "pose_sha256": "272c4eb1ec82e00e66e7be0b983700ea7a08f1064463493a860696abc2dc1c89"
+        },
+        {
+          "frame": 5,
+          "source_bbox": [
+            1154,
+            36,
+            205,
+            183
+          ],
+          "pixels": 22032,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "walk",
+          "output_col": 5,
+          "scale": 0.439,
+          "output_span": [
+            90,
+            80
+          ],
+          "pose_sha256": "053a6b2e2a4270f664efd1eeacd2d88660472b86acad0f53d945781316c0e24f"
+        },
+        {
+          "frame": 0,
+          "source_bbox": [
+            20,
+            11,
+            214,
+            208
+          ],
+          "pixels": 22931,
+          "recovered_outside_cell": 37,
+          "source_at_row_edges": 0,
+          "state": "attack",
+          "output_col": 0,
+          "scale": 0.4206,
+          "output_span": [
+            90,
+            87
+          ],
+          "pose_sha256": "f06deef444353e93736c8e33f9d9092989781acda6e9252c85b1d050b76f4b54"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            240,
+            4,
+            205,
+            216
+          ],
+          "pixels": 24435,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "attack",
+          "output_col": 1,
+          "scale": 0.412,
+          "output_span": [
+            84,
+            89
+          ],
+          "pose_sha256": "ba981a75e865485d46705276bcea02b3d3817e44b9a521cffb2c4f899afac134"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            460,
+            7,
+            222,
+            211
+          ],
+          "pixels": 25800,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "attack",
+          "output_col": 2,
+          "scale": 0.4054,
+          "output_span": [
+            90,
+            86
+          ],
+          "pose_sha256": "17875eedfaf46e81e0acacc769e7a06e8a349d716aca808c0c48f40bdbfc089d"
+        },
+        {
+          "frame": 3,
+          "source_bbox": [
+            692,
+            19,
+            219,
+            199
+          ],
+          "pixels": 23772,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "attack",
+          "output_col": 3,
+          "scale": 0.411,
+          "output_span": [
+            90,
+            82
+          ],
+          "pose_sha256": "8ae1eb8c43721865b7231b4bbb333f557186fa8b7bd71010a744e6689d6bc0cb"
+        },
+        {
+          "frame": 4,
+          "source_bbox": [
+            914,
+            14,
+            225,
+            204
+          ],
+          "pixels": 23057,
+          "recovered_outside_cell": 6,
+          "source_at_row_edges": 0,
+          "state": "attack",
+          "output_col": 4,
+          "scale": 0.4,
+          "output_span": [
+            90,
+            82
+          ],
+          "pose_sha256": "59912cd12980c1bde560e094a5b03981e131b9c60c5d925489abcccc253cd061"
+        },
+        {
+          "frame": 5,
+          "source_bbox": [
+            1139,
+            41,
+            208,
+            177
+          ],
+          "pixels": 20972,
+          "recovered_outside_cell": 33,
+          "source_at_row_edges": 0,
+          "state": "attack",
+          "output_col": 5,
+          "scale": 0.4327,
+          "output_span": [
+            90,
+            77
+          ],
+          "pose_sha256": "9d82bc66c38a38956561b8a22a38c45da40de2bfdca7588953428bbe13cd9569"
+        },
+        {
+          "frame": 0,
+          "source_bbox": [
+            21,
+            20,
+            202,
+            191
+          ],
+          "pixels": 21246,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "hit",
+          "output_col": 0,
+          "scale": 0.44,
+          "output_span": [
+            89,
+            84
+          ],
+          "pose_sha256": "8a075151c075f7fcff200096fa9c65261e384c610eac7300fc4bef08d7fc0728"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            243,
+            32,
+            203,
+            179
+          ],
+          "pixels": 19787,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "hit",
+          "output_col": 1,
+          "scale": 0.44,
+          "output_span": [
+            89,
+            79
+          ],
+          "pose_sha256": "87fb6f8344002f265c9b5f7809aafeaba93dfdf1687753dc323018831cc24662"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            468,
+            48,
+            207,
+            162
+          ],
+          "pixels": 18913,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "hit",
+          "output_col": 2,
+          "scale": 0.4348,
+          "output_span": [
+            90,
+            70
+          ],
+          "pose_sha256": "ac42b743671602448ae09d16b5d25affc936140a193c6b5a2fd84e0061138ea5"
+        },
+        {
+          "frame": 0,
+          "source_bbox": [
+            16,
+            18,
+            202,
+            166
+          ],
+          "pixels": 19559,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "death",
+          "output_col": 0,
+          "scale": 0.44,
+          "output_span": [
+            89,
+            73
+          ],
+          "pose_sha256": "1cfe793ce29f8aaa360e25a0380ddcad3eb8751c31a4ae20bd840ae69719aedf"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            225,
+            44,
+            215,
+            141
+          ],
+          "pixels": 19475,
+          "recovered_outside_cell": 12,
+          "source_at_row_edges": 0,
+          "state": "death",
+          "output_col": 1,
+          "scale": 0.4186,
+          "output_span": [
+            90,
+            59
+          ],
+          "pose_sha256": "78b7c7ec669c33bec20f03fb8827296ea31c204c0e03d843a98b0ebceb1230d3"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            454,
+            57,
+            235,
+            130
+          ],
+          "pixels": 18094,
+          "recovered_outside_cell": 17,
+          "source_at_row_edges": 0,
+          "state": "death",
+          "output_col": 2,
+          "scale": 0.383,
+          "output_span": [
+            90,
+            50
+          ],
+          "pose_sha256": "d6dae2155e11c3974df8554b150a4bc6d8cff4dff15f3aad2f7ee930dd37614f"
+        },
+        {
+          "frame": 3,
+          "source_bbox": [
+            694,
+            82,
+            242,
+            106
+          ],
+          "pixels": 15782,
+          "recovered_outside_cell": 460,
+          "source_at_row_edges": 0,
+          "state": "death",
+          "output_col": 3,
+          "scale": 0.3719,
+          "output_span": [
+            90,
+            39
+          ],
+          "pose_sha256": "ebc62874ed94a2ab54084baeb74745c6b081942b2126ecb2885d7492daca18d2"
+        },
+        {
+          "frame": 4,
+          "source_bbox": [
+            934,
+            99,
+            223,
+            88
+          ],
+          "pixels": 12847,
+          "recovered_outside_cell": 162,
+          "source_at_row_edges": 0,
+          "state": "death",
+          "output_col": 4,
+          "scale": 0.4036,
+          "output_span": [
+            90,
+            36
+          ],
+          "pose_sha256": "b3b3747b6aa7672123d6e44488fcfd5a776da973ecbca452d77385531c11ae70"
+        },
+        {
+          "frame": 5,
+          "source_bbox": [
+            1157,
+            104,
+            211,
+            82
+          ],
+          "pixels": 11427,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "state": "death",
+          "output_col": 5,
+          "scale": 0.4265,
+          "output_span": [
+            90,
+            35
+          ],
+          "pose_sha256": "42cdd0d6aba26cd858fe46aaacb19ee0d576b071594dda27449056cc74759011"
+        }
+      ],
+      "warnings": [],
+      "source_warning_count": 0,
+      "visual_Godot_x1": "NOT_RUN",
+      "art_approved_in_chat": "USER_APPROVED_DIRECTION_NEEDS_IN_ENGINE_CONFIRMATION"
+    },
+    {
+      "role": "bone_bailiff",
+      "source_name": "bone_bailiff_d267_approved_original.webp.b64",
+      "source_sha256": "f108065d4357333255404ee5387810f5adaa0d08aeb8490949c44978d3cee095",
+      "atlas_sha256": "c42fc265000e4f742771a7e18d104c995820514763b13ec7ab189ff5f3229fb8",
+      "source_dimensions": [
+        1374,
+        1145
+      ],
+      "atlas_dimensions": [
+        576,
+        480
+      ],
+      "authored_poses": 25,
+      "unused_alpha_clear_cells": 5,
+      "full_frame_details": [
+        {
+          "frame": 0,
+          "source_bbox": [
+            46,
+            27,
+            144,
+            202
+          ],
+          "pixels": 19137,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 174,
+          "state": "idle",
+          "output_col": 0,
+          "scale": 0.44,
+          "output_span": [
+            63,
+            89
+          ],
+          "pose_sha256": "cf1b6496d06c88b5b905d7dcc53e72c93589e8648195b0a5b7260c2b9a13b70e"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            276,
+            29,
+            149,
+            200
+          ],
+          "pixels": 19514,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 174,
+          "state": "idle",
+          "output_col": 1,
+          "scale": 0.44,
+          "output_span": [
+            66,
+            88
+          ],
+          "pose_sha256": "7b21f91a9b9827a56fdf8324200e0c47f8153dc43331e55737a6fee4848f441c"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            494,
+            21,
+            152,
+            208
+          ],
+          "pixels": 19746,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 170,
+          "state": "idle",
+          "output_col": 2,
+          "scale": 0.4279,
+          "output_span": [
+            65,
+            89
+          ],
+          "pose_sha256": "0ff8b593dc5328b936f72ebd761f708248cff83999fe74c98c7e3b251bf9ffba"
+        },
+        {
+          "frame": 3,
+          "source_bbox": [
+            714,
+            30,
+            153,
+            199
+          ],
+          "pixels": 18192,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 134,
+          "state": "idle",
+          "output_col": 3,
+          "scale": 0.44,
+          "output_span": [
+            67,
+            88
+          ],
+          "pose_sha256": "f080123a9c9b72d396d8e2a2e6cf1ab08bfc431ee8f828e537df8531a21772fd"
+        },
+        {
+          "frame": 0,
+          "source_bbox": [
+            22,
+            30,
+            176,
+            199
+          ],
+          "pixels": 19058,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 160,
+          "state": "walk",
+          "output_col": 0,
+          "scale": 0.44,
+          "output_span": [
+            77,
+            88
+          ],
+          "pose_sha256": "fe83554bd515df81af5c904d506f381a3876495ab9be31b054e1806c00e6e61e"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            252,
+            30,
+            182,
+            199
+          ],
+          "pixels": 18998,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 113,
+          "state": "walk",
+          "output_col": 1,
+          "scale": 0.44,
+          "output_span": [
+            80,
+            88
+          ],
+          "pose_sha256": "238ebb1504527a647148593f854423966508229043f3505aa1194773fc3a6adc"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            470,
+            40,
+            190,
+            189
+          ],
+          "pixels": 19420,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 148,
+          "state": "walk",
+          "output_col": 2,
+          "scale": 0.44,
+          "output_span": [
+            84,
+            83
+          ],
+          "pose_sha256": "76ae3b9c9392901309eee25975d4f9d7523d1fa716d530a1480f42c9756b7721"
+        },
+        {
+          "frame": 3,
+          "source_bbox": [
+            698,
+            39,
+            193,
+            190
+          ],
+          "pixels": 18923,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 93,
+          "state": "walk",
+          "output_col": 3,
+          "scale": 0.44,
+          "output_span": [
+            85,
+            84
+          ],
+          "pose_sha256": "08b4883e95cc2dcb365b2ba8b20906d8a12a3b74bf0a5866ea6e0b924b5d0cef"
+        },
+        {
+          "frame": 4,
+          "source_bbox": [
+            940,
+            43,
+            187,
+            186
+          ],
+          "pixels": 18013,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 100,
+          "state": "walk",
+          "output_col": 4,
+          "scale": 0.44,
+          "output_span": [
+            82,
+            82
+          ],
+          "pose_sha256": "0e11360eec9bb8b54c85b6687c3d02db174125ce2a3ba3361c60b6891528d672"
+        },
+        {
+          "frame": 5,
+          "source_bbox": [
+            1169,
+            27,
+            188,
+            202
+          ],
+          "pixels": 18688,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 148,
+          "state": "walk",
+          "output_col": 5,
+          "scale": 0.44,
+          "output_span": [
+            83,
+            89
+          ],
+          "pose_sha256": "64086f367204d17b64653193a43760c54e16acfeb03d5044ef4d0cb6c7d74e71"
+        },
+        {
+          "frame": 0,
+          "source_bbox": [
+            19,
+            39,
+            183,
+            190
+          ],
+          "pixels": 18169,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 273,
+          "state": "attack",
+          "output_col": 0,
+          "scale": 0.44,
+          "output_span": [
+            81,
+            84
+          ],
+          "pose_sha256": "e6af234eb9b8ba83c0d9011c06a8a7229e83e14015bd36a0064f527561704841"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            242,
+            72,
+            216,
+            157
+          ],
+          "pixels": 16975,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 264,
+          "state": "attack",
+          "output_col": 1,
+          "scale": 0.4167,
+          "output_span": [
+            90,
+            65
+          ],
+          "pose_sha256": "47fe0126399cdd9c09e65593a0f6a0df953c6d17ac5476f8977168c21f31f6d0"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            455,
+            31,
+            205,
+            198
+          ],
+          "pixels": 19657,
+          "recovered_outside_cell": 22,
+          "source_at_row_edges": 361,
+          "state": "attack",
+          "output_col": 2,
+          "scale": 0.439,
+          "output_span": [
+            90,
+            87
+          ],
+          "pose_sha256": "7d36838b56f57051c5ba2143ccf368e8ea2c0d8421d90b602ace6cf20b32814f"
+        },
+        {
+          "frame": 3,
+          "source_bbox": [
+            701,
+            74,
+            260,
+            155
+          ],
+          "pixels": 20188,
+          "recovered_outside_cell": 1140,
+          "source_at_row_edges": 246,
+          "state": "attack",
+          "output_col": 3,
+          "scale": 0.3462,
+          "output_span": [
+            90,
+            54
+          ],
+          "pose_sha256": "369d7b6d3801849922d9493eb1021e1b844d0a94d5efe5a709dcca1d9d36fc0a"
+        },
+        {
+          "frame": 4,
+          "source_bbox": [
+            940,
+            27,
+            179,
+            202
+          ],
+          "pixels": 16460,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 277,
+          "state": "attack",
+          "output_col": 4,
+          "scale": 0.44,
+          "output_span": [
+            79,
+            89
+          ],
+          "pose_sha256": "b80386b634e305b4c7f947c3fe81a93a0a189be3c5af25054d5258819ad9c149"
+        },
+        {
+          "frame": 5,
+          "source_bbox": [
+            1144,
+            97,
