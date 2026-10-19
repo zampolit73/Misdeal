@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-19 — D261: card #39 three-way concept proposal (no runtime changes)
+
+- Following user acceptance of released card #38, drafted three intentionally different card #39 options: mute tribunal battle with new marked-target enemies, haunted memorial-garden ward combat, and stranger's epitaph event.
+- Archived mechanics, new-enemy requirements, scope comparisons and D168 scene-first three-rendered-art selection gate in [D261 concept options](docs/D261_CARD39_CONCEPT_OPTIONS.md).
+- **No artwork generated or approved yet; no implementation, card pool modification or release.** Act1 remains 38/45, D260 untouched, KARAMБA73 frozen.
+
 ## 2026-10-19 — D260: RELEASED Black Lantern Road, Act1 38/45
 
 - Released `black_lantern_road` into normal `RunState.ACT1_CARD_IDS` (new pool **38/45**), preserving five original 25-frame skeleton animations and previously selected D200 card illustration/D209 forest arena.

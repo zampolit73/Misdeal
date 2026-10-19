@@ -1,5 +1,14 @@
 # Misdeal — Active Roadmap
 
+## D261 — Card #39 concept and scene art selection gate (NOT RELEASED)
+
+- [x] Review latest `main`: Act1 **38/45** after released #38; DS2, Fate Spread, original new-enemy D143 and scene-first art D167/D168 rules remain.
+- [x] Draft **three distinct next-card directions** in [D261 options](D261_CARD39_CONCEPT_OPTIONS.md): A mute skeletal court with encounter-local marked target; B haunted memorial garden with finite defensive ward; C stranger's epitaph choice event.
+- [ ] **NEXT user selects A/B/C** (recommend A); no assumption that `«все ок»` picked a design.
+- [ ] Show 3 actually rendered, non-repetitive art options under D168 for selected direction; wait for explicit choice before committing selected source image.
+- [ ] Combat A/B requires 3 completely new original enemy roles, full 25-cel animation packets, novel localized mechanic and original arena, native solo/duo/trio balance and real Battle→Reward→Table; event C requires approved actual event choices and normal route validation.
+- [ ] Only after all relevant gates release #39 to **39/45**. Until then keep Act1 38/45, no change to KARAMBA73.
+
 ## D260 — Card #38 released: Act1 38/45
 
 - [x] Actual Godot 4.7.2 54-case local balance assessment: average remaining HP solo/duo/trio 79.7/69.2/74.6%, 54 wins/zero timeouts, 0/2/4 individual hero deaths, ~13–15s fights.
