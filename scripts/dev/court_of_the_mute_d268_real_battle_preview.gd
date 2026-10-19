@@ -7,6 +7,7 @@ const BATTLE_SCENE: PackedScene = preload("res://scenes/battle/battle.tscn")
 const ANIMATION_LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
 const ENCOUNTER_PATH := "res://resources/encounters/court_of_the_mute.tres"
 const CARD_ID := "court_of_the_mute"
+const COURT_FLOOR := preload("res://scripts/battle/court_of_the_mute_floor.gd")
 const ENEMY_ROLES: Array[String] = ["mute_magistrate", "ash_scrivener", "bone_bailiff", "bone_bailiff"]
 
 var party_picker: OptionButton
@@ -14,6 +15,8 @@ var formation_picker: OptionButton
 var error_label: Label
 var menu: Control
 var running := false
+var d269_floor_overlay: ColorRect
+var d269_ambient_enabled := true
 
 
 func _ready() -> void:
@@ -65,7 +68,7 @@ func _build_menu() -> void:
 	launch.custom_minimum_size = Vector2(0, 46)
 	launch.pressed.connect(_launch_real_battle)
 	content.add_child(launch)
-	content.add_child(_label("Магистрат, Писарь и два Пристава используют 75 оригинальных D267 кадров; D265 фон всё ещё QA. Проверка: красная печать и только нижний пол.", 14))
+	content.add_child(_label("Оригинальные D267 персонажи · D265 фон ещё QA. D269: в бою L — свет ВКЛ/ВЫКЛ; G — показать точную разрешённую зону пола.", 14))
 
 	error_label = _label("", 15)
 	error_label.add_theme_color_override("font_color", Color(1.0, 0.45, 0.38))
@@ -157,12 +160,48 @@ func _launch_real_battle() -> void:
 	if backdrop == null or str(backdrop.get("arena_id")) != CARD_ID:
 		_fail("Настоящий бой отобразил не Суд, а подменённую арену.")
 		return
+	_build_d269_floor_guide(battle)
 	print("D268_COURT_REAL_BATTLE_PREVIEW_PASS: 3 original roles/4 actors, lower floor + verdict + Court QA plate; card #39 UNRELEASED (38/45).")
+
+
+# D269: debug *only* overlay. In real Battle this is added after validation
+# but remains invisible until G, preserving actual actor/audio/HUD rendering.
+func _build_d269_floor_guide(battle: Control) -> void:
+	if d269_floor_overlay != null and is_instance_valid(d269_floor_overlay):
+		d269_floor_overlay.queue_free()
+	var guide := ColorRect.new()
+	guide.name = "D269WalkableFloorGuide"
+	guide.position = COURT_FLOOR.SCREEN_COMBAT_BOUNDS.position
+	guide.size = COURT_FLOOR.SCREEN_COMBAT_BOUNDS.size
+	guide.color = Color(0.22, 0.77, 0.48, 0.12)
+	guide.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	guide.z_index = 2500
+	guide.visible = false
+	battle.add_child(guide)
+	d269_floor_overlay = guide
+
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if not running or not (event is InputEventKey) or not event.pressed or event.echo:
+		return
+	if event.keycode == KEY_L:
+		var court_atmosphere := get_node_or_null("Battle/Arena")
+		if court_atmosphere != null and court_atmosphere.has_method("set_court_ambience_enabled"):
+			d269_ambient_enabled = not d269_ambient_enabled
+			court_atmosphere.call("set_court_ambience_enabled", d269_ambient_enabled)
+			print("D269_COURT_AMBIENCE_AB: ", "ON" if d269_ambient_enabled else "OFF")
+			get_viewport().set_input_as_handled()
+	elif event.keycode == KEY_G:
+		if d269_floor_overlay != null and is_instance_valid(d269_floor_overlay):
+			d269_floor_overlay.visible = not d269_floor_overlay.visible
+			print("D269_COURT_FLOOR_GUIDE: ", "ON" if d269_floor_overlay.visible else "OFF")
+			get_viewport().set_input_as_handled()
 
 func _fail(message: String) -> void:
 	if menu != null:
 		menu.visible = true
 	running = false
+	d269_floor_overlay = null
 	var previous_battle := get_node_or_null("Battle")
 	if previous_battle != null:
 		previous_battle.queue_free()
