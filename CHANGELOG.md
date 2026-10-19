@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-19 — D261: second Court of the Mute art selected and wired into native QA
+
+- User selected battle option A `Суд безмолвных` and **image #2** of the three rendered portrait concepts. Exported selected exact composition as 448×274 source-derived WebP, original selected portrait not restyled. Export SHA256 `704eef553a1ef528d2793b692462315048b06cf23ddaf17dff0c1fba0ed69d5c`.
+- Committed `assets/pixel/card_unification_v1/run/court_of_the_mute_selected_v1.webp.b64`, strict `CardUnificationV1` art branch, QA-only `resources/cards/court_of_the_mute.tres` + `RunState.CARD_PATHS` entry (NOT `ACT1_CARD_IDS`), and `scenes/dev/court_of_the_mute_d261_card_preview.tscn`.
+- Official [Godot 4.7.2 WebP exact-transfer and native preview CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39212443418). Three new 25-pose original unit sets, underground arena and scoped `verdict_target` mechanic to follow in D262. Full [selected art QA](docs/D261_COURT_SELECTED_ART_QA.md).
+- Act1 live **38/45**, released #38, DS2/Fate Spread and KARAMBA73 unchanged.
+
 ## 2026-10-19 — D261: card #39 three-way concept proposal (no runtime changes)
 
 - Following user acceptance of released card #38, drafted three intentionally different card #39 options: mute tribunal battle with new marked-target enemies, haunted memorial-garden ward combat, and stranger's epitaph event.

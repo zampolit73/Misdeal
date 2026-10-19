@@ -1,5 +1,9 @@
 ## D255 — User-approved visual direction for all three missing #38 enemies; 75-cel QA pack staged, ART GATE OPEN
 
+## D261 — Court of the Mute #39, user-approved SECOND portrait composition
+
+User selected D261 A and specifically **image #2** of three rendered `Суд безмолвных` art options. Exact portrait source `мрачный_трибунал_у_трона_смерти.png` (1086×1448, SHA256 `3b1abff4...`) depicts judge center, scribe right, two bailiffs guarding, giant hanging scale and ruined tribunal. GitHub selected export: `assets/pixel/card_unification_v1/run/court_of_the_mute_selected_v1.webp.b64`, source crop x0–1086/y222–886 resized without distorting figures to 448×274. WebP SHA256 `704eef55...`; Godot 4.7.2 native art preview CI PASS. The selected scene is **card art only**; it is NOT a combat background and does not substitute new full-body sprites. Arena and full 25-frame `mute_magistrate`, `ash_scrivener`, `bone_bailiff` still pending, #39 QA only, Act1 **38/45 LIVE**. [D261 exact choice and crop report](D261_COURT_SELECTED_ART_QA.md). KARAMBA73 unchanged.
+
 ## D260 — Original Black Lantern Road card art/arena/five sprites LIVE
 
 Act1 **38/45**: real released `black_lantern_road` uses unchanged exact user-chosen D200 moonlit skeleton column image and D209 forest battle artwork. Five original 25-pose character roles are loaded strictly via game `MisdealUnitAnimationLibrary`: Guide, Lantern Bearer, Road Sentinel, Oil Acolyte, Lantern Archer. D259 canonical exports preserve D257 rich 25-frame approved-direction poses; D244/D224 originals unchanged. Headless Godot 4.7.2 live deal→real Battle win→Reward→Table PASS, user last reported `«Все ок»`. D257 11 historical source-side crop warnings are retained as quality records, not proof of currently missing in-game frames. Details [D260 release](D260_BLACK_LANTERN_CARD38_RELEASE.md). KARAMBA73 unchanged.
