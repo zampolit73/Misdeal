@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-19 — D260: RELEASED Black Lantern Road, Act1 38/45
+
+- Released `black_lantern_road` into normal `RunState.ACT1_CARD_IDS` (new pool **38/45**), preserving five original 25-frame skeleton animations and previously selected D200 card illustration/D209 forest arena.
+- Local Godot 4.7.2 balance assessment 54/54 scenarios, 0 defeats/timeouts, average HP solo/duo/trio ~79.7/69.2/74.6%, worst ~53/29.8/44.1%, 0/2/4 individual fallen heroes; accepted original five UnitData and travelling lanternlight ×1.16 for initial release with no inflated damage.
+- Released normal Tier1 `RunState` deal/choose→actual five-role Battle win→Reward claim→Table **native headless PASS**. Repeated post-release 54-case balance matrix PASS; dedicated `res://scenes/dev/black_lantern_d260_released_battle_preview.tscn` for direct F6 preview with party and authored formation selectors.
+- Updated original matrix 38-card contract, built repeatable Godot 4.7.2 release CI, preserved old D259 QA/history; KARAMBA73, Fate Spread and DS2 unchanged. [D260 full release note](docs/D260_BLACK_LANTERN_CARD38_RELEASE.md).
+
 ## 2026-10-19 — D259: canonical five-role original animation library staging, card #38 release prep
 
 - Added reproducible original D257 → canonical RIGHT-facing WebP exporter and CI source QA for Guide/Acolyte/Archer; all 25 distinct cels and five blanks per atlas retained.
