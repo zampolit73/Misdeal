@@ -110,11 +110,12 @@ func _draw_court_ambience() -> void:
 
 	# The four *existing* wall braziers are lit in the D265 raster itself;
 	# merely breathe with their light, do not place new floating fire sprites.
-	for i in range(4):
-		var center := [
-			Vector2(194, 246), Vector2(1040, 246),
-			Vector2(146, 314), Vector2(1086, 314)
-		][i] as Vector2
+	var braziers: Array[Vector2] = [
+		Vector2(194, 246), Vector2(1040, 246),
+		Vector2(146, 314), Vector2(1086, 314)
+	]
+	for i in range(braziers.size()):
+		var center: Vector2 = braziers[i]
 		var flicker := 0.5 + 0.5 * sin(pulse * (4.3 + float(i) * 0.41) + float(i) * 1.7)
 		draw_circle(center, 64.0, Color(0.69, 0.26, 0.10, 0.009 + flicker * 0.008))
 		draw_circle(center, 32.0, Color(0.97, 0.42, 0.15, 0.012 + flicker * 0.012))
