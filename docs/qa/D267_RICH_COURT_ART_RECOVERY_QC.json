@@ -1398,3 +1398,348 @@
           "source_bbox": [
             1144,
             97,
+            223,
+            132
+          ],
+          "pixels": 15462,
+          "recovered_outside_cell": 4,
+          "source_at_row_edges": 272,
+          "state": "attack",
+          "output_col": 5,
+          "scale": 0.4036,
+          "output_span": [
+            90,
+            53
+          ],
+          "pose_sha256": "41db8b19753eb41e1f2dc6d54b2084a91ac505bd948c31cd44085198751d51f4"
+        },
+        {
+          "frame": 0,
+          "source_bbox": [
+            20,
+            63,
+            188,
+            166
+          ],
+          "pixels": 18318,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 252,
+          "state": "hit",
+          "output_col": 0,
+          "scale": 0.44,
+          "output_span": [
+            83,
+            73
+          ],
+          "pose_sha256": "50fa6430a7d0ff1ba4a2c6cb64c04b967c3ad5b6165af713b451c61aab8eb18e"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            251,
+            75,
+            177,
+            154
+          ],
+          "pixels": 16098,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 272,
+          "state": "hit",
+          "output_col": 1,
+          "scale": 0.44,
+          "output_span": [
+            78,
+            68
+          ],
+          "pose_sha256": "23e0c9d63038b4fedcfc4f75504a80348346c42d1a4c6c5434afe8875b06aaee"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            454,
+            103,
+            204,
+            126
+          ],
+          "pixels": 14882,
+          "recovered_outside_cell": 10,
+          "source_at_row_edges": 407,
+          "state": "hit",
+          "output_col": 2,
+          "scale": 0.44,
+          "output_span": [
+            90,
+            55
+          ],
+          "pose_sha256": "1ea4c1784585350d009f7cd5bb8bd909d5ddf99913322686bf4da6b8286ee150"
+        },
+        {
+          "frame": 0,
+          "source_bbox": [
+            9,
+            35,
+            193,
+            162
+          ],
+          "pixels": 17009,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "merged_pose_split": false,
+          "state": "death",
+          "output_col": 0,
+          "scale": 0.44,
+          "output_span": [
+            85,
+            71
+          ],
+          "pose_sha256": "faa05ad0df38332825dc9abe0bb91a5135ca276e19de43efb7c2c0c045f4f57c"
+        },
+        {
+          "frame": 1,
+          "source_bbox": [
+            219,
+            76,
+            232,
+            125
+          ],
+          "pixels": 15416,
+          "recovered_outside_cell": 63,
+          "source_at_row_edges": 0,
+          "merged_pose_split": false,
+          "state": "death",
+          "output_col": 1,
+          "scale": 0.3879,
+          "output_span": [
+            90,
+            48
+          ],
+          "pose_sha256": "0dc890619cd51466617d9d0d8cacc881a0ade58e0d5223b0fcc4b2b7618253bb"
+        },
+        {
+          "frame": 2,
+          "source_bbox": [
+            437,
+            88,
+            249,
+            118
+          ],
+          "pixels": 14928,
+          "recovered_outside_cell": 354,
+          "source_at_row_edges": 0,
+          "merged_pose_split": false,
+          "state": "death",
+          "output_col": 2,
+          "scale": 0.3614,
+          "output_span": [
+            90,
+            43
+          ],
+          "pose_sha256": "57eac70aeaa4756ac6069eedf9873b566befda160f8321beccf0e57cebe9c622"
+        },
+        {
+          "frame": 3,
+          "source_bbox": [
+            687,
+            112,
+            229,
+            98
+          ],
+          "pixels": 13760,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "merged_pose_split": true,
+          "state": "death",
+          "output_col": 3,
+          "scale": 0.393,
+          "output_span": [
+            90,
+            39
+          ],
+          "pose_sha256": "b02f47ba73e746d12c3c99a6d1b094110d47f467e17705ca0afaed22bd4e8280"
+        },
+        {
+          "frame": 4,
+          "source_bbox": [
+            916,
+            118,
+            229,
+            92
+          ],
+          "pixels": 12900,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "merged_pose_split": true,
+          "state": "death",
+          "output_col": 4,
+          "scale": 0.393,
+          "output_span": [
+            90,
+            36
+          ],
+          "pose_sha256": "33b20f2d9b7549da10febad64d2cea8d00dbeed26bb981340a6eb4a6bdca277c"
+        },
+        {
+          "frame": 5,
+          "source_bbox": [
+            1145,
+            127,
+            221,
+            81
+          ],
+          "pixels": 10979,
+          "recovered_outside_cell": 0,
+          "source_at_row_edges": 0,
+          "merged_pose_split": true,
+          "state": "death",
+          "output_col": 5,
+          "scale": 0.4072,
+          "output_span": [
+            90,
+            33
+          ],
+          "pose_sha256": "52f056f6db094a4dbdbbc2284ba1b3122d44a321697ec367ca408902b00fecb5"
+        }
+      ],
+      "warnings": [
+        {
+          "state": "idle",
+          "frame": 0,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 174
+        },
+        {
+          "state": "idle",
+          "frame": 1,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 174
+        },
+        {
+          "state": "idle",
+          "frame": 2,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 170
+        },
+        {
+          "state": "idle",
+          "frame": 3,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 134
+        },
+        {
+          "state": "walk",
+          "frame": 0,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 160
+        },
+        {
+          "state": "walk",
+          "frame": 1,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 113
+        },
+        {
+          "state": "walk",
+          "frame": 2,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 148
+        },
+        {
+          "state": "walk",
+          "frame": 3,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 93
+        },
+        {
+          "state": "walk",
+          "frame": 4,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 100
+        },
+        {
+          "state": "walk",
+          "frame": 5,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 148
+        },
+        {
+          "state": "attack",
+          "frame": 0,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 273
+        },
+        {
+          "state": "attack",
+          "frame": 1,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 264
+        },
+        {
+          "state": "attack",
+          "frame": 2,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 361
+        },
+        {
+          "state": "attack",
+          "frame": 3,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 246
+        },
+        {
+          "state": "attack",
+          "frame": 4,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 277
+        },
+        {
+          "state": "attack",
+          "frame": 5,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 272
+        },
+        {
+          "state": "hit",
+          "frame": 0,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 252
+        },
+        {
+          "state": "hit",
+          "frame": 1,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 272
+        },
+        {
+          "state": "hit",
+          "frame": 2,
+          "kind": "SOURCE_ROW_EDGE_TRUNCATION",
+          "pixels": 407
+        },
+        {
+          "state": "death",
+          "frame": 3,
+          "kind": "SHARED_ORIGINAL_ALPHA_CONNECTED_SILHOUETTES_REVIEW_SEAM"
+        },
+        {
+          "state": "death",
+          "frame": 4,
+          "kind": "SHARED_ORIGINAL_ALPHA_CONNECTED_SILHOUETTES_REVIEW_SEAM"
+        },
+        {
+          "state": "death",
+          "frame": 5,
+          "kind": "SHARED_ORIGINAL_ALPHA_CONNECTED_SILHOUETTES_REVIEW_SEAM"
+        }
+      ],
+      "source_warning_count": 22,
+      "visual_Godot_x1": "NOT_RUN",
+      "art_approved_in_chat": "USER_APPROVED_DIRECTION_NEEDS_IN_ENGINE_CONFIRMATION"
+    }
+  ],
+  "source": "original user-approved transparent generated rich sheets",
+  "required_original_poses": 75,
+  "accepted_structurally": 75,
+  "source_warnings_total": 27,
+  "imported_to_production_library": false,
+  "game_card39_live": false
+}
