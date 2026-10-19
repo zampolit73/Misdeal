@@ -1,3 +1,9 @@
+## D282 — Final ClassSelect chrome principles
+
+Keep D281 actual approved-looking full-HD clean tabletop, all authored hero portraits and 272×338 D278 card frame fixed. UI-only: a **thin translucent bronze** heading frame, Wizard commentary above his hands at approx. Y103–131, accessible 13pt bottom companion reminder and a tangible crimson/brass confirm with clear disabled state. Crucially the selected hero needs a **persistent readable gilt overlay ABOVE the illustrated frame**, distinguishable from a soft temporary hover ring; dim nonselected cards modestly. Do not add heavy opaque windows, painted stats into the background or a second logo. Final visual approval requires actual Godot 1280×720 screenshots despite native CI PASS.
+
+---
+
 ## D280 — Pure ClassSelect tabletop art; no UI embedded in bitmap
 
 ## D281 — Never stretch 640×360 artwork to a 1280×720 game screen

@@ -1,3 +1,10 @@
+## 2026-10-20 — D282 Final ClassSelect UI chrome polish
+
+- Kept approved full-HD clean cursed-table background and original three D278-framed hero portraits.
+- Replaced heavy dark title plate with translucent aged-bronze trim; lifted Wizard commentary into a subtle standalone caption above the hands.
+- Added proper persistent gold overlay for selected protagonist (independent softer hover), strengthened crimson/brass confirmation and improved bottom companion tip readability.
+- Extended native Godot 4.7.2 tests for title/caption/footer/over-frame hover & selected rims. CI PASS; user visual re-check still pending. Gameplay selection and solo-confirmation remain unchanged.
+
 ## 2026-10-20 — D280 pure ritual table class selection
 
 ## 2026-10-20 — D281 Full-HD ClassSelect correction

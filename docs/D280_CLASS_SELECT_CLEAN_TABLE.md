@@ -28,3 +28,16 @@ No changes to actual production table/gameplay, Fate Spread I-XII/XIII, existing
 ## D281 — D280 blurred backdrop formally superseded
 
 User's screenshot shows severe 2× blur plus opaque logo backing. **The 640×360 / 11,320-byte asset and four Base64 fragments documented above were removed** and must NOT be reused. Now: `assets/pixel/class_select/d281_clean_table_hd.webp` exact **1280×720** WebP (168,948 bytes; SHA256 `7464edde5990b53a6d1ec8d1646e96080c9944be0a4a79e04bdba6689d5f28e1`), made directly from the already generated 1672×941 source. New RuntimeWebpTexture on WizardBackdrop at native resolution; no D280 loader. `shaders/class_select_logo_key.gdshader` handles only legacy logo's dark matte. Original portrait cards, the Wizard text, real hover stats, solo confirmation and production Table unchanged. Official Godot 4.7.2 native image integrity and scene interaction PASS: https://github.com/zampolit73/Misdeal/actions/runs/39320810866. Still needs native user's acceptance after `git pull`.
+
+
+## D282 — Final UI chrome pass (2026-10-20)
+
+User approved the overall D281 sharp 1280×720 full-HD tabletop/three card composition and requested a LAST UI-only pass. Code commit [`8c66148f`](https://github.com/zampolit73/Misdeal/commit/8c66148f075da4fed0043c38228d25c5abe51deb) modifies only `scenes/class_select/class_select.tscn`, `scripts/class_select/class_select_card_skin.gd` and QA. No generated art, shader background, character resources or mechanics changed.
+
+- Title: reduce opaque `TitleVeilStyle` from alpha .66 to .29, line-bronze top/bottom, faint shadow.
+- Wizard line: rehome to `WizardCaption` subtle antique panel Y98–136; actual line Y103–131, away from hand/card seam. Same reactions/data.
+- Cards: add passive `SelectionRim` Panel after independent `IllustratedFrame`; gilt 2px on hover vs 3px stronger gold on selected role; keep source stats and description toggle, other cards dim.
+- Confirm: use small passive top/bottom edge accents and thicker lower brass bevel, subdued until a hero is selected, no change in input logic.
+- Footer: fine translucent `FooterHintPlate`, caption at 13pt / Y688–711.
+
+Official Godot 4.7.2 asset/import/scene/hover/select/deselect/confirm and solo-run regression PASS: https://github.com/zampolit73/Misdeal/actions/runs/39322918562. **Native user screenshot and final artistic sign-off pending.** Check original card image exposure, readability, header dominance, selected highlight, footer at 1280×720; then stop micro-polishing once accepted.
