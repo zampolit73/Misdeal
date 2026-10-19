@@ -1,4 +1,9 @@
 # Misdeal — Active Design & Technical Decisions
+
+## D268 — Stage Court real Battle and headless tests without treating QA art as shipped
+
+Court #39 now has a genuine *QA-only* backdrop mapping in `AuthoredBattleBackdrop` to the existing D265 provisional actor-free original, and `BattleVisual` no longer incorrectly overlays Crypt effects. This enables native Battle composition review without approving D265 as production-quality art or adding #39 to the ordinary deck. A real F6 Court party/formation picker and isolated 54-case BattleUnit + direct-QA Reward route are diagnostic tools; the card resource still has empty `target_path`. The 27 D267 source-edge marks are **review points, not proven clipped sprites**. New D268 native CI outcome is **not confirmed**; do not release until 1× visual, finished battle arena, actual 54-case metrics and full route are accepted. [D268 technical status](D268_COURT_BATTLE_QA_STAGING.md). D261 second card art, D264 lower floor and D260 #38 remain locked, 38/45 LIVE, KARAMBA73 frozen.
+
 Updated: 2026-10-19.
 
 ## D267 — Three original-rich approved Court sprites are staged; clipping flags remain art QA gate
