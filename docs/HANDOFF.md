@@ -1,5 +1,10 @@
 # Misdeal — Canonical Working Handoff
 
+## D268 — CURRENT: real Court QA battle, frame-flag viewer and 54-case/route CI STAGED (new CI PASS not verified)
+
+New QA-only live-Battle Court backdrop (D265 schematic, no Crypt fallback), single F6 `res://scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn` for 1/2/3 heroes ×2 formations and existing `res://scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn` enhanced with pause, frame steps and cycle of 27 flagged source poses. Separate deterministic Court 54-case BattleUnit script and direct unreleased Court Battle→Reward→Table headless runner committed with `d268-court-battle-qa.yml`. **NO confirmed D268 native CI run/result yet, do NOT claim 54/54 or full route PASS**. First check CI and fix errors; then one combined art x1 review and truly rich empty tribunal, analyze combat and route; only then separate release #39 (38/45 live now). [Exact new chat handoff](D268_NEW_CHAT_HANDOFF.md) · [D268 details](D268_COURT_BATTLE_QA_STAGING.md). Previous D267 handoff remains historical; approved three rich originals remain in GitHub, D261 card bitmap/D264 lower floor/D260 #38/DS2/KARAMBA73 locked.
+
+
 ## D267 — CURRENT: originals and rich sprites imported, native CI PASS; F6 visual review NEXT
 
 Three exact approved original PNGs, all 75 rich frame atlases **committed** and Court roles staged in shared animation library. [Official Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39242455779). 27 source-boundary warnings (5 Judge / 0 Scribe / 22 Bailiff) still require true-scale F6 motion review at `res://scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn`. Then empty rich arena + Court 54-case matrix + Reward→Table. Card #39 target_path empty, **38/45 live**, KARAMBA73 frozen. [Full current state](D267_ACTUAL_RICH_ATLAS_IMPORT_QA.md). Previous approval-only D267 sections below are HISTORY.
