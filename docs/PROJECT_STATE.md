@@ -1,5 +1,10 @@
 # Misdeal — Current Project State
 
+## D282 visual screenshot checkpoint — 2026-10-20
+
+User shared a real Godot screenshot with Knight selected. Review found no blocking D282 issues: sharp D281 wizard/table, thin bronze title and Wizard caption, distinct glowing selected Knight, dimmed other hero cards, readable footer and crimson confirmation. Wizard caption slightly overlaps hood but is legible. Keep D282 as current baseline; do not claim explicit user final art approval. No further gameplay changes needed. Native D282 smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39322918562. Detailed handoff: docs/D280_CLASS_SELECT_CLEAN_TABLE.md.
+
+
 ## D282 — Final ClassSelect chrome polish (2026-10-20)
 
 User reviewed real native D281 screenshot and found the **full-HD clean-table background / character illustrations good**, requested a small final UI-only polish. Runtime commit `8c66148f075da4fed0043c38228d25c5abe51deb` leaves the **1280×720 D281 source image, 272×338 D278 bronze hero cards, original three portraits, source UnitData HP/damage, solo hero and RunState, Battle/Table/Fate Spread untouched**. Visual changes: reduced the black top title slab to translucent narrow aged-bronze edging; moved Wizard dialogue from Y243–283 to a restrained, readable line in a separate thin band at Y98–136 (actual text Y103–131); added a mild bottom caption strip and larger readable 13pt explanatory text at Y688–711; improved crimson/bronze confirmation bevel; the selected hero now gets a **visible persistent 3px gilt rim OVER the illustrated card frame** (2px soft outline on hover; other hero cards modestly dim). Source-backed native Godot 4.7.2 import/scene/hover/selection/reselection/confirm/solo smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39322918562. **User native 1280×720 D282 screenshot and final artistic acceptance remain OPEN**. Next: `git pull`, new ClassSelect screenshot idle and chosen, check header/line/readability and selected rim. No more speculative repaint without screenshot evidence.
