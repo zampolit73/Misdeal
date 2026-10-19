@@ -1,5 +1,15 @@
 # Misdeal — Active Roadmap
 
+## Narrative workstream: Siege mystery (approved direction; implementation not started)
+
+- [x] Approve core twist: commander sacrificed castle to save country but sent **truthful** no-relief order; third party forged promised-rescue letters. Protagonist's tragic command responsibility remains.
+- [ ] Propose and choose culprit, motive, what garrison knew, and supernatural mechanism of undead; validate against the current intro and three selectable protagonist classes.
+- [ ] Write compact branching clue map using all 39 current Act I cards, with overlapping discovery paths suitable for randomized I–XII.
+- [ ] Design first tactile tabletop investigation vertical slice (inspect letter, compare two seals, reveal consequential option) without bloating UI or requiring extra clicking on every deal.
+- [ ] Plan XIII Warden revelation and final castle-vs-country choice after user approves detailed narrative; only then modify actual story/card events and test normal Godot gameplay.
+
+Detailed non-code brief: [ACT1_SIEGE_MYSTERY_DIRECTION.md](ACT1_SIEGE_MYSTERY_DIRECTION.md). Act I currently 39/45; code and gameplay unchanged.
+
 ## D278 — Native screenshot review (2026-10-19)
 
 User supplied three actual Godot tabletop screenshots after pulling D278: regular two-offer composition (Moon Seal + Whispering Well), raised/hovered card, and explicit RMB full-lore modal. Review: newly painted gold-bronze border is visibly present on BOTH original live illustrated cards, no evident opaque art/text overlay, Russian titles/descriptions and crimson Choose actions remain legible; raised-state and held tabs are visible; inspection modal is clean, readable and separate. Subtle gold edging is visually heavy near the corners, but no screenshot-proven blocking issue. **Native screenshot visual QA: no evident blockers; formal artistic approval not explicitly stated by user**. No new functionality or mechanical changes requested in this screenshot-only turn. Recommend pausing frame micro-polish and prioritizing a separately discussed tactile/lore interaction on the cursed table; preserve current D278 graphics for rollback. Act1 remains 39/45.
