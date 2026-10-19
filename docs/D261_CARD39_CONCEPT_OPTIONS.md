@@ -1,5 +1,7 @@
 # D261 — Card #39 concept selection (THREE OPTIONS; no release)
 
+**CHOICE NOW LOCKED (2026-10-19):** User selected **A — «Суд безмолвных»**, then selected **SECOND** of three rendered portrait scene illustrations with `«второй мне подходит арт»`. The chosen image is integrated into GitHub (QA-only) and Godot 4.7.2 card preview **PASS**. This three-option document remains HISTORICAL comparison; do not ask user to choose A/B/C or art again. Current source of truth: [D261 exact approved second illustration and handoff](D261_COURT_SELECTED_ART_QA.md). Normal Act1 **38/45**; #39 unreleased.
+
 **2026-10-19.** GitHub `main`: D260 user reported **«все ок»** after successful 38/45 Act1 release. This is a checkpoint confirmation, not a selection of a new #39 gameplay or illustration.
 
 ## Purpose and constraints
