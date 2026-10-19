@@ -1,5 +1,14 @@
 # Misdeal — Active Roadmap
 
+## D271 — Court D270 SVG was rejected as placeholder; painterly arena restoration
+
+- [x] Recorded user's native screenshot feedback as **artistic FAIL of D270**, despite its technically successful Godot CI.
+- [x] New detailed **actor-free** Court painted 1280×720 visual candidate prepared from generated architectural art, recropped to remove lower ledges/steps so **screen y532–710 is entirely floor**.
+- [ ] **BLOCKER:** transfer candidate WebP from chat artifact to GitHub asset without loss, stage exact actual image (not another programmatically drawn flat SVG). It is *not live yet*. Keep D265/D270 rollback.
+- [ ] Native 1280×720 Godot real Battle image QA, user visual inspection, full 54-case QA plus Battle→Reward→Table, and D267 original full animation 27 source-edge review.
+- [ ] Only after real artistic acceptance release card #39 separately; currently **38/45**.
+
+
 ## D270 — Editable actor-free Court battlefield staged, technical PASS; art review remains
 
 - [x] Independently authored complete original *empty* Gothic tribunal D270 SVG; actual Court-only Battle uses it in QA at 1280×720. Existing D265 art remains for instant rollback; **B** in F6 compares both.
