@@ -33,6 +33,10 @@ var warnings := 0
 var verdicts := 0
 var redirects := 0
 var scrivener_interruptions := 0
+var active_alive_guard_steps := 0
+var active_marked_guard_steps := 0
+var active_dead_guard_steps := 0
+var first_active_guard_counts: Array[int] = [0, 0, 0]
 
 
 func _ready() -> void:
@@ -168,8 +172,22 @@ func _fight(formation: int, protagonist: int, party_size: int, tactic: String) -
 	var elapsed := 0.0
 	var outcome := ""
 	var step_count := 0
+	var saw_first_active := false
 	while elapsed < MAX_SECONDS:
 		verdict.advance_battle(STEP)
+		if verdict.phase == "active":
+			var guards_alive := 0
+			for guard in guards:
+				if guard.alive:
+					guards_alive += 1
+					active_alive_guard_steps += 1
+					if guard.target == verdict.marked_hero and verdict.marked_hero != null:
+						active_marked_guard_steps += 1
+				else:
+					active_dead_guard_steps += 1
+			if not saw_first_active:
+				first_active_guard_counts[guards_alive] += 1
+				saw_first_active = true
 		for unit in all_units:
 			if unit.alive:
 				unit._process(STEP)
@@ -293,6 +311,10 @@ func _run_matrix() -> void:
 		"verdict_warnings": warnings,
 		"verdict_activations": verdicts,
 		"bailiff_redirects": redirects,
+		"active_alive_guard_steps": active_alive_guard_steps,
+		"active_marked_guard_steps": active_marked_guard_steps,
+		"active_dead_guard_steps": active_dead_guard_steps,
+		"first_active_guard_counts": first_active_guard_counts,
 		"scrivener_interruptions": scrivener_interruptions,
 		"failures": failures,
 		"card39_live": false
