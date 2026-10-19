@@ -1,12 +1,12 @@
 # Changelog
 
-## 2026-10-19 — D268 Court Battle QA staging (native CI result still unverified)
+## 2026-10-19 — D268 verified native Court QA, balanced local encounter, reward route PASS
 
-- Registered unreleased Court `court_of_the_mute` with the actor-free D265 provisional tribunal background in real `BattleBackdrop`, suppressed accidental Crypt ambient overlay; preserved combat bounds and all released cards.
-- Added F6 real Court encounter launcher for solo/duo/trio and two formations using original D267 rich SpriteFrames + D262 red verdict; extended combined all-three rich animation gallery with pause/frame stepping and review of 27 source-edge QC flags.
-- Authored 54-scenario deterministic Court BattleUnit matrix and a separately staged direct-QA full Fight→Reward→Table smoke; added Godot 4.7.2 Actions workflow covering the new scripts/scenes plus existing six real Court Battle contract. **Await observed CI logs: this changelog records committed implementation, not PASS or measured balance.**
-- [Current D268 report](docs/D268_COURT_BATTLE_QA_STAGING.md) / [new chat handoff](docs/D268_NEW_CHAT_HANDOFF.md). Exact accepted D261 card art, D264 floor, D267 originals, released #38, 38/45 Act1 and frozen KARAMBA73 unchanged. Card #39 remains unreleased.
-
+- [Official Godot 4.7.2 workflow #9 SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39249979969): parser, two combined F6 scene headless smoke tests, six real Court Battle startups, **54/54 original Court BattleUnit functional scenarios**, and direct QA only Fight→Reward→Table.
+- Replaced erroneous Crypt arena fallback and ambience with Court's own empty D265 *provisional QA* art in real Battle. Added F6 selectable Court solo/duo/trio + 2 formations and 27 flagged-source-frame navigation in rich D267 three-character preview.
+- Local Court-only difficulty adjustment: Magistrate damage **8→9** / movement **49→55**; Scribe damage **5→5.5**; Bailiffs damage **6.8→7.8** / movement **63→68**. New means solo/duo/trio **83.84% / 75.54% / 80.16%** HP, 2 individual trio fallen, **54 wins / 0 timeouts**; older baseline was 86.29/78.42/82.77%. No global AI/party changes.
+- Corrected QA checker that sampled SpriteFrames before `add_child`; instrumented all live active marked-target ticks: **7,694/7,694 actual Bailiff target-hold**. Zero forced retarget counters expected when they already prefer the marked hero naturally. D262 forced-retarget contract separately passes.
+- **Still art HOLD**: 27 D267 source-edge warnings need true Godot ×1 visual review and scene-appropriate rich character-free Court tribunal not yet authored. Normal #39 still unreleased: ACT1 **38/45**, card target_path empty, chosen D261 second illustration/D264 floor/D260 #38/KARAMBA73 preserved. [Detailed native run and balance metrics](docs/D268_NATIVE_COURT_BALANCE_AND_ROUTE_PASS.md) · [current handoff](docs/D268_NEW_CHAT_HANDOFF.md).
 
 ## 2026-10-19 — D267 continuity: verified source/art integration after interrupted connection
 
