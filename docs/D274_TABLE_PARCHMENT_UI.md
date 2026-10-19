@@ -29,3 +29,6 @@ New contract: LMB anywhere on the card = original choose handler; pointer hover 
 Code: scripts/table/table_offer_button.gd (inspect_requested signal), scenes/table/card_lore_inspect.tscn and scripts/table/card_lore_inspect.gd; scripts/table/table.gd connects the signal and supplies actual RunCardData/card art and Wizard Mark/Held annotations. Do not re-enable tooltip_text for the live two offers; use the explicit mode instead. scripts/dev/d274_table_offer_smoke.gd covers the new scene and real signal. LMB choice, hold, wizard wager/meddling, Fate Spread and all 39 live Act1 cards remain unchanged.
 
 QA: `git pull`, run the table at 1280x720, hover and confirm no lore obscures the two card titles or Choose buttons; RMB left/right card and scroll, dismiss via ESC/close/outside click; LMB should still proceed into an encounter. Verify when one offer, a held card, Wizard Mark and after Reward→Table. Native component CI must pass, **visual acceptance remains open**.
+
+
+D275 native Godot 4.7.2 import plus inspect-scene smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39290459465 (CI expected-output label corrected in commit dc49d03). Technical verification includes the original Cyrillic full lore in the separate dialog; **final visual screenshot/interaction acceptance still requires user Godot F6**.
