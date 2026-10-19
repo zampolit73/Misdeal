@@ -1,5 +1,10 @@
 # Misdeal — Current Project State
 
+## D271 — ACTUAL PAINTED COURT IN MAIN; Godot native PASS, artistic user verdict next
+
+The previously rejected D270 SVG has been replaced in real **Court-only** QA Battle by the genuine full-resolution painted D271 WebP b64 (1280×720; SHA256 `1eb45164d9c7418fb9c459d18c0640935452266aeecbb04d1e9d7bd527af8784`). [Godot 4.7.2 full D271 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39261648732): source bytes, 1280×720 texture, F6 **B** D265/D271 comparison, **L/G**, six real Battle setups, 54/54 Court BattleUnit simulations and QA-only Fight→Reward→Table. The old "not transferred" D271 notes below are HISTORICAL/SUPERSEDED. Need native visual acceptance from user, then rich D267 ×1 animation review/27 flags, then separate #39 ordinary-deal release. Card #39 still UNRELEASED, 38/45, D261/D264/#38/KARAMBA73 unchanged. [D271 verified report](D271_PAINTED_COURT_NATIVE_PASS.md).
+
+
 ## D271 — CURRENT: D270 visual FAIL reported by user, painted replacement prepared but NOT in GitHub
 
 2026-10-19: User supplied native screenshot of D270 Court SVG and explicitly called it a placeholder, not an illustrated arena. **User is correct; D270 official Godot native CI was technical-only and MUST NOT be treated as art approval.** Prepared a true detailed actor-free painterly replacement at 1280×720 with continuous flat lower floor, but the generated bitmap is **currently a chat artifact, not a GitHub-committed runtime asset**. Do not falsely claim that the new background is live. Current GitHub Battle still renders D270 SVG by default and can B-toggle to D265. The D271 candidate has empty throne, sculpted architectural figures/statues (not runtime actors), candle/torch architecture and restored contiguous stone terrace. Technical code and D268 54/54 QA still unchanged; #39 UNRELEASED 38/45. Next task: transfer exact generated D271 WebP into repository binary-safe, wire Court-only runtime path, native Godot QA, user screenshot, then revisit original D267 27 sprite-source warnings. [D271 working note](D271_REAL_PAINTED_ARENA_ART_HOLD.md).
