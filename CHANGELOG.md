@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-19 — D265 Court richer empty arena / strict three-original-atlas readiness audit
+
+- Reproducible `1280×720` actor-free richer tribunal QA source `tools/art/author_court_d265_rich_arena.py`, independent WebP rollback-preserving `court_of_the_mute_d265_rich_qa.webp.b64`; official Godot 4.7.2 F6 import and same D264 lower-floor overlay PASS.
+- Added `tools/art/audit_court_d265_three_roles.py` + GitHub Actions to check 3×25 original Court alpha pose sheets together; [reported **0/75 real frames accepted**](docs/qa/D265_THREE_ROLE_FULL25_AUDIT.json), all three original sprites missing. Successful audit script ≠ sprite art PASS. Generated labelled art montage intentionally NOT installed.
+- D265 backdrop still QA schematic, not a completed production replacement. D261 chosen second court card, #38 release, 38/45 live, D262 verdict, DS2/KARAMBA73 unchanged. [D265 art hold](docs/D265_COURT_RICH_ARENA_AND_ART_AUDIT.md).
+
 ## 2026-10-19 — D264: move Court walkable floor to user's red-marked lowest stone platform
 
 - Applied explicit screenshot feedback to **actual** `court_of_the_mute` combat and F6 preview: shared screen bounds `(40,532)-(1268,710)` instead of former raised overlay `(110,380)-(1190,538)`. Stairs/throne no longer valid Court pathing.
