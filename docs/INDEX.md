@@ -1,14 +1,14 @@
 # Misdeal Documentation Index
 
-Updated: 2026-10-19 — **D259 is current**: five original rich 25-frame Black Lantern enemies in shared canonical runtime library, Godot 4.7.2 actual Battle startup + 54-case functional matrix PASS. Card #38 remains QA-only (**37/45 live**); **real headless Battle→Reward→Table CI PASS**, challenge/visual release decision still open.
+Updated: 2026-10-19 — **D260 card #38 RELEASED**, Act1 ordinary deck **38/45**. Godot 4.7.2 released normal Tier1 deal → real Battle win → Reward claim → Table PASS; 54-case balance matrix PASS. All 5 original Black Lantern character sprite packs live in shared animation library. Next: D261 / design and art direction for #39.
 
-**START HERE:** [D259 canonical original five-role staging and next release requirements](D259_CANONICAL_FIVE_ROLE_RELEASE_PREP.md) · [D259 genuine library-only Battle F6](../scenes/dev/black_lantern_d259_real_battle_route_qa.tscn) · [D259 asset QC](qa/D259_BLACK_LANTERN_CANONICAL_ATLASES_QC.json) · [D259 full route QA](qa/D259_REAL_ROUTE_AND_MATRIX_QC.json). Previous checkpoints: [D258](D258_FIVE_ROLE_GODOT_QA.md) and [D257](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md).
+**START:** [D260 full release and next-chat context](D260_BLACK_LANTERN_CARD38_RELEASE.md) · [D260 QA evidence](qa/D260_RELEASE_QC.json) · [D260 direct released Battle F6 preview](../scenes/dev/black_lantern_d260_released_battle_preview.tscn). [D259 staging history](D259_CANONICAL_FIVE_ROLE_RELEASE_PREP.md) retained for rollback, **not current release status**.
 
 ## Read first (current, short, authoritative)
 
 1. [Development rules](../AGENTS.md) — project goals, GitHub workflow, engine, art gates.
 2. [Concept](CONCEPT.md) — high-level design pillars and Fate Spread.
-3. [Current Project State](PROJECT_STATE.md) — **what is implemented now**; live Act1 37/45; both D197 real Battle→Reward→Table and D198 ordinary-deal native release smoke user-reported PASS; next card #38.
+3. [Current Project State](PROJECT_STATE.md) — **what is implemented now**; live Act1 38/45; both D197 real Battle→Reward→Table and D198 ordinary-deal native release smoke user-reported PASS; next card #39.
 4. [Roadmap](ROADMAP.md) — completed milestones and next priorities.
 5. [Active Decisions](DECISIONS.md) — binding summarized requirements and links to original decisions.
 6. [Canonical Handoff](HANDOFF.md) — only one active next-chat continuation pointer.
