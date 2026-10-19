@@ -3,11 +3,12 @@ extends TextureRect
 # D280: a genuinely UI-free tabletop; unlike table_exact.webp this
 # image contains no HUD, old encounter cards, holds or buttons.
 # ASCII transport allows the linked GitHub connector to store one real
-# 640x360 WebP (11,320 bytes) as three lossless Base64 fragments.
+# 640x360 WebP (11,320 bytes) as four lossless Base64 fragments.
 const SOURCE_PARTS := [
 	"res://assets/pixel/class_select/d280_clean_table_01.webp.b64",
 	"res://assets/pixel/class_select/d280_clean_table_02.webp.b64",
-	"res://assets/pixel/class_select/d280_clean_table_03.webp.b64"
+	"res://assets/pixel/class_select/d280_clean_table_03.webp.b64",
+	"res://assets/pixel/class_select/d280_clean_table_04.webp.b64"
 ]
 const EXPECTED_BYTES := 11320
 const EXPECTED_SIZE := Vector2i(640, 360)

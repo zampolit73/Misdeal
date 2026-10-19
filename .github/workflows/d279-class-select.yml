@@ -38,7 +38,7 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import base64,hashlib,io
-          parts=[Path(f"assets/pixel/class_select/d280_clean_table_{i:02d}.webp.b64") for i in range(1,4)]
+          parts=[Path(f"assets/pixel/class_select/d280_clean_table_{i:02d}.webp.b64") for i in range(1,5)]
           raw=base64.b64decode("".join(p.read_text().strip() for p in parts),validate=True)
           assert len(raw)==11320 and raw[:4]==b"RIFF" and raw[8:12]==b"WEBP"
           assert hashlib.sha256(raw).hexdigest()=="8005eca284768611b923cdf8b87f9a8f4db0554dd4a7e4d6277925c27a6d93fe"
