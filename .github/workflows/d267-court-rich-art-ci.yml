@@ -9,6 +9,8 @@ on:
       - 'assets/pixel/units/court_of_the_mute_qa/*_d267_rich_qa.webp.b64'
       - 'assets/pixel/units/court_of_the_mute_qa/source_d267/*.b64'
       - 'scripts/battle/unit_animation_library.gd'
+      - 'scripts/core/run_state.gd'
+      - 'resources/cards/court_of_the_mute.tres'
       - 'scripts/dev/court_of_the_mute_d267_rich_animation_preview.gd'
       - 'scenes/dev/court_of_the_mute_d267_rich_animation_preview.tscn'
   workflow_dispatch:
@@ -86,7 +88,7 @@ jobs:
             --scene res://scenes/dev/court_of_the_mute_d262_real_battle_boot.tscn 2>&1 | tee /tmp/d267-real-battle.log
           grep -q 'D262_COURT_REAL_BATTLE_PASS' /tmp/d267-real-battle.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D262_COURT_REAL_BATTLE_FAIL' /tmp/d267-real-battle.log; then exit 1; fi
-      - name: Released card 38 regression - 54 battle cases unaffected
+      - name: Regress original Black Lantern card #38 functional matrix within 39-card pool
         shell: bash
         run: |
           set -o pipefail
