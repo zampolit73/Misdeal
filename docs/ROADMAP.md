@@ -1,5 +1,15 @@
 # Misdeal — Active Roadmap
 
+## D260 — Card #38 released: Act1 38/45
+
+- [x] Actual Godot 4.7.2 54-case local balance assessment: average remaining HP solo/duo/trio 79.7/69.2/74.6%, 54 wins/zero timeouts, 0/2/4 individual hero deaths, ~13–15s fights.
+- [x] Compared previous D153 74/67/74% remaining HP; **accept existing five-enemy UnitData and x1.16 travelling light for initial release**, no generic buff inflation.
+- [x] Explicitly add `black_lantern_road` in `ACT1_CARD_IDS`, now **38/45 live**; card art D200/arena D209/original full-five animations intact.
+- [x] Official Godot 4.7.2 released Tier1 offer/choose→Battle win→Reward claim→Table PASS; post-release 54-case matrix PASS.
+- [x] Provide `res://scenes/dev/black_lantern_d260_released_battle_preview.tscn` for direct user F6 (party/formation).
+- [ ] **NEXT D261:** develop card #39 direction with user; D143 new enemies for any combat, 2–3 distinct rendered options before card art change (D168).
+- [ ] Fix unrelated `approved_battle_direction.jpg` concept import only after tracing actual references; respond to reproducible visual crop issues from real gameplay. KARAMBA73 immutable.
+
 ## D259 — Original five-role production-format staging before card #38 release
 
 - [x] Export source-preserving canonical D257 Guide/Acolyte/Archer 25-cel WebP to runtime `deck_expansion_v1`; cell-wise normalize source facing, validate 25 unique/5 clear per role.
@@ -27,7 +37,7 @@
 - [ ] **NEXT** F6 visual art/motion review and repair defects, particularly sole contact and prop continuity; technical QC is not artistic sign-off. Only stage all three in real 3v5 upon acceptance.
 - [ ] Actual D254 Battle→Reward→Table with solo/duo/trio and both formations; normalized 54-case balance matrix, crowding fix as needed; release #38 only after all gates. **Live pool remains 37/45**.
 
-Updated: 2026-10-19 (D258 Godot functional PASS; Fight→Reward→Table and art gate open; LIVE 37/45).
+Updated: 2026-10-19 (D260 #38 released 38/45, release route and balance CI PASS; next D261).
 
 ## D256 — Current new-chat restart checkpoint
 
