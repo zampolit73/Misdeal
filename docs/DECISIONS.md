@@ -1,10 +1,8 @@
 # Misdeal — Active Design & Technical Decisions
 
-## D268 — Stage Court real Battle and headless tests without treating QA art as shipped
+## D268 — Court QA and local difficulty validated; final-art-first release gate remains
 
-Court #39 now has a genuine *QA-only* backdrop mapping in `AuthoredBattleBackdrop` to the existing D265 provisional actor-free original, and `BattleVisual` no longer incorrectly overlays Crypt effects. This enables native Battle composition review without approving D265 as production-quality art or adding #39 to the ordinary deck. A real F6 Court party/formation picker and isolated 54-case BattleUnit + direct-QA Reward route are diagnostic tools; the card resource still has empty `target_path`. The 27 D267 source-edge marks are **review points, not proven clipped sprites**. New D268 native CI outcome is **not confirmed**; do not release until 1× visual, finished battle arena, actual 54-case metrics and full route are accepted. [D268 technical status](D268_COURT_BATTLE_QA_STAGING.md). D261 second card art, D264 lower floor and D260 #38 remain locked, 38/45 LIVE, KARAMBA73 frozen.
-
-Updated: 2026-10-19.
+Official Godot 4.7.2 [D268 successful native pipeline](https://github.com/zampolit73/Misdeal/actions/runs/39249979969) confirms 54 Court BattleUnit functional cases and direct (not naturally dealt) real Battle→Reward→Table. Authored **Court-only** pressure increased gently: Magistrate damage 9.0/speed55, Scrivener damage5.5, two Bailiffs damage7.8/speed68, without global AI or HP changes. Outcome: 54/54 wins, no timeouts, average hero HP solo/duo/trio 83.84/75.54/80.16%, two individual trio casualties; **still QA, not final game balance acceptance**. Distinguish actual focused-target *hold* from forced *retarget*: 7,694/7,694 live active Bailiff ticks on the marked hero; natural fights required zero redirects, and separate D262 forced-target contract covers changes. Court's own D265 plate is rendered in actual Battle rather than Crypt, **but it is schematic QA art, not accepted final battlefield**. Rich originals x1 review of 27 source warnings and final actor-free tribunal must precede separate #39 release. Original D261 second card art, D264 bottom stone combat floor and 38/45 live state remain locked. [Detailed verified results](D268_NATIVE_COURT_BALANCE_AND_ROUTE_PASS.md).
 
 ## D267 — Three original-rich approved Court sprites are staged; clipping flags remain art QA gate
 
