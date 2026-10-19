@@ -1,5 +1,9 @@
 ## D255 — User-approved visual direction for all three missing #38 enemies; 75-cel QA pack staged, ART GATE OPEN
 
+## D258 — All five approved-direction Black Lantern original silhouettes in combat QA
+
+The D257 full-25 Guide/Acolyte/Archer atlases join exact retained D244 Road Sentinel and D224 Lantern Bearer **only in D258 test 3v5 and real Battle launcher**. Right-authored facing normalization for original-left Guide and Archer is performed in-memory for QA; production library and bitmaps untouched. Godot 4.7.2 validates real five-role Battle injection; outstanding native x1 motion/11 source floor-boundary warnings mean **not final art release**. See [D258 QA](D258_FIVE_ROLE_GODOT_QA.md). 37/45 LIVE, KARAMBA73 frozen.
+
 ## D257 — Three reconstructed original-rich Black Lantern atlases (QA ONLY)
 
 2026-10-19: Committed `assets/pixel/units/black_lantern_road_qa/{extinguished_guide,oil_acolyte,lantern_archer}_d257_seam_recovery_qa.webp.b64`, sourced from exact D255 approved transparent 25-pose illustrated sheets with component-level horizontal seam recovery and localized lower-contour repair. Full real-source GitHub Actions generation PASS (75 unique/15 transparent/2px borders) **does not certify appearance**: 11 original bottom-edge warnings and native F6 artistic motion review remain. Combined visual preview `scenes/dev/black_lantern_d257_three_character_art_preview.tscn`, detailed [D257 documentation](D257_THREE_ATLAS_SEAM_RECOVERY_QA.md). **No global registration, no card #38 release.** Live 37/45, KARAMBA73 unchanged.
