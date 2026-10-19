@@ -36,8 +36,9 @@ const ARENA_PATHS := {
 	ARENA_THREADBARE_THEATRE: "res://assets/pixel/battle/arenas/threadbare_theatre_approved_v1.webp.b64",
 	ARENA_BLACK_CROSSING: "res://assets/pixel/battle/arenas/black_crossing_storm_pier_approved_v1.webp.b64",
 	ARENA_BLACK_LANTERN_ROAD: "res://assets/pixel/battle/arenas/black_lantern_road_arena_selected_v1.webp.b64",
-	# D265 art still QA-only; register solely to preview the unreleased Court real Battle.
-	ARENA_COURT_OF_THE_MUTE: "res://assets/pixel/battle/arenas/court_of_the_mute_d265_rich_qa.webp.b64",
+	# D270: new independently editable 640px-authored actor-free QA illustration.
+	# Court #39 remains unreleased; D265 original is retained for rollback.
+	ARENA_COURT_OF_THE_MUTE: "res://assets/pixel/battle/arenas/court_of_the_mute_d270_empty_qa.svg",
 }
 
 var arena_id := ARENA_CRYPT
@@ -78,9 +79,12 @@ func _get_runtime_texture(value: String) -> Texture2D:
 		return null
 
 	var image := Image.new()
-	var error := image.load_webp_from_buffer(bytes)
+	# D270: load raw editable SVG only for the Court's new QA raster.
+	# Godot converts 640×360 source at scale 1; existing NEAREST upscale is
+	# intentional for 1280×720 small-pixel tactical stage presentation.
+	var error := image.load_svg_from_buffer(bytes) if path.ends_with(".svg") else image.load_webp_from_buffer(bytes)
 	if error != OK:
-		push_error("Could not decode authored arena WebP '%s': %s" % [path, error_string(error)])
+		push_error("Could not decode authored arena image '%s': %s" % [path, error_string(error)])
 		return null
 
 	if image.get_width() != BACKDROP_SIZE.x or image.get_height() != BACKDROP_SIZE.y:
