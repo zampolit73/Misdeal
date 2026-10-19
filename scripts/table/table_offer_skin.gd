@@ -3,6 +3,7 @@ extends RefCounted
 # D274 approved two-card parchment face. Only the live Table offer Buttons use it.
 const PAPER_SHADER: Shader = preload("res://shaders/table_offer_parchment.gdshader")
 const ENGRAVING_SCRIPT: Script = preload("res://scripts/table/table_offer_engraving.gd")
+const ART_FRAME_ASSET := preload("res://scripts/table/table_offer_frame_asset.gd")
 const CARD_SIZE := Vector2(272.0, 338.0)
 const BRONZE := Color("#a66b3d")
 
@@ -103,6 +104,25 @@ static func prepare(button: Button) -> void:
 	button.add_child(engraving)
 	button.mouse_entered.connect(_set_hover_visual.bind(button, true))
 	button.mouse_exited.connect(_set_hover_visual.bind(button, false))
+	# D278: a real transparent WebP border, extracted from authored art.
+	# Existing paper/art/title/type/description/CTA stay editable and live.
+	var frame_texture: Texture2D = ART_FRAME_ASSET.get_texture()
+	if frame_texture != null:
+		var frame_art := TextureRect.new()
+		frame_art.name = "IllustratedFrame"
+		frame_art.position = Vector2.ZERO
+		frame_art.size = CARD_SIZE
+		frame_art.texture = frame_texture
+		frame_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		frame_art.stretch_mode = TextureRect.STRETCH_SCALE
+		frame_art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+		frame_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		button.add_child(frame_art)
+		# Replace the D277 procedural fittings; never stack two sets of filigree.
+		for name in ["OfferEngraving", "InnerEngravedFrame", "ArtRimTop", "CornerTL", "CornerTR", "CornerBL", "CornerBR"]:
+			var old_detail: CanvasItem = button.get_node_or_null(name) as CanvasItem
+			if old_detail != null:
+				old_detail.visible = false
 
 
 
@@ -119,6 +139,9 @@ static func _set_hover_visual(button: Button, hovering: bool) -> void:
 	else:
 		face.color = Color("#66231d")
 		gleam.color = Color(0.87, 0.63, 0.36, 0.48)
+	var frame_art := button.get_node_or_null("IllustratedFrame") as TextureRect
+	if frame_art != null:
+		frame_art.modulate = Color(1.0, 0.99, 0.93) if hovering and not button.disabled else Color(0.95, 0.93, 0.87)
 
 
 static func short_description(original: String) -> String:

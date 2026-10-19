@@ -35,6 +35,19 @@ func _verify() -> void:
 	valid = valid and a.has_node("InnerEngravedFrame") and b.has_node("InnerEngravedFrame")
 	valid = valid and a.has_node("OfferEngraving") and b.has_node("OfferEngraving")
 	valid = valid and a.has_node("ChooseGleam") and b.has_node("ChooseGleam")
+	var art_frame_a := a.get_node_or_null("IllustratedFrame") as TextureRect
+	var art_frame_b := b.get_node_or_null("IllustratedFrame") as TextureRect
+	valid = valid and art_frame_a != null and art_frame_b != null
+	if art_frame_a != null and art_frame_b != null:
+		valid = valid and art_frame_a.texture != null and art_frame_b.texture != null
+		valid = valid and art_frame_a.size == Vector2(272.0, 338.0)
+		valid = valid and art_frame_a.mouse_filter == Control.MOUSE_FILTER_IGNORE
+		if art_frame_a.texture != null:
+			var actual_frame: Image = art_frame_a.texture.get_image()
+			valid = valid and actual_frame.get_size() == Vector2i(272, 338)
+			valid = valid and actual_frame.get_pixel(136, 169).a < 0.05
+		valid = valid and not (a.get_node("OfferEngraving") as Control).visible
+		valid = valid and not (b.get_node("CornerTL") as Control).visible
 	var choose_face := a.get_node("ChooseFace") as ColorRect
 	a.mouse_entered.emit()
 	valid = valid and choose_face.color == Color("#8b3025")
@@ -69,5 +82,5 @@ func _verify() -> void:
 		quit(1)
 		return
 	table.free()
-	print("D277_TABLE_UI_PASS: antique parchment shader, engraved edge, hover CTA and lore trim with original interaction paths")
+	print("D278_TABLE_UI_PASS: artist-authored transparent frame on both real Buttons, live copy and LMB/RMB preserved")
 	quit(0)

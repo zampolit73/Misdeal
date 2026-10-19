@@ -8,6 +8,8 @@ on:
       - 'scripts/table/table.gd'
       - 'scripts/table/table_offer_skin.gd'
       - 'scripts/table/table_offer_engraving.gd'
+      - 'scripts/table/table_offer_frame_asset.gd'
+      - 'assets/pixel/table/offer_frame_d278_*.webp.b64'
       - 'scripts/table/card_lore_inspect.gd'
       - 'scripts/ui/misdeal_ui_kit.gd'
       - 'scenes/table/table.tscn'
@@ -32,6 +34,21 @@ jobs:
           echo 'cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  /tmp/godot.zip' | sha256sum -c -
           unzip -q /tmp/godot.zip -d /tmp/godot-bin
           chmod +x /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+      - name: Verify complete D278 transparent WebP source
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64,hashlib,struct
+          paths=[Path(f"assets/pixel/table/offer_frame_d278_{i}.webp.b64") for i in range(1,5)]
+          encoded="".join(p.read_text().strip() for p in paths)
+          assert all(len(p.read_text().strip())==1696 for p in paths)
+          raw=base64.b64decode(encoded,validate=True)
+          assert len(raw)==5088 and raw[:4]==b"RIFF" and raw[8:12]==b"WEBP"
+          assert struct.unpack_from("<I",raw,4)[0]+8==len(raw)
+          assert hashlib.sha256(raw).hexdigest()=="94c1991dd4ea421b566bf5e6782fba9c04387cb6b4da97b31f0091754128f6b9"
+          print("D278_ART_BYTES_PASS: 4 intact Base64 parts reassemble to exact 272x338 WebP")
+          PY
       - name: Godot import and GDScript parse
         shell: bash
         run: |
@@ -43,7 +60,7 @@ jobs:
         run: |
           set -o pipefail
           timeout 60s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --script res://scripts/dev/d274_table_offer_smoke.gd 2>&1 | tee /tmp/d274-table.log
-          grep -q 'D277_TABLE_UI_PASS' /tmp/d274-table.log
+          grep -q 'D278_TABLE_UI_PASS' /tmp/d274-table.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D274_TABLE_UI_FAIL' /tmp/d274-table.log; then exit 1; fi
       - name: Preserve Godot diagnostics
         if: always()
