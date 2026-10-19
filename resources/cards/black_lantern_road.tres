@@ -11,6 +11,6 @@ wizard_line = "Ступай к свету. Впрочем, здесь свет �
 type_label = "БОЙ"
 tier = 1
 resolution_type = "combat"
-target_path = ""
+target_path = "res://resources/encounters/black_lantern_road.tres"
 art_path = ""
 prototype_result_text = ""
