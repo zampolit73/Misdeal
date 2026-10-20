@@ -1,5 +1,10 @@
 # Misdeal — Current Project State
 
+## D294 — New-chat handoff / D293 art QA still open (2026-10-20)
+
+**Current continuation:** [D294_NEW_CHAT_HANDOFF.md](D294_NEW_CHAT_HANDOFF.md). User requested a new chat. D293 material-based battle HUD is implemented; official Godot 4.7.2 native smoke [PASS 39399922113](https://github.com/zampolit73/Misdeal/actions/runs/39399922113), but user **has not yet seen D293 in local Godot**. D292 flat black HUD was rejected. Next: fresh D293 Battle screenshot, examine readability/new decorative insets and genuine tactic controls, fix observed issues only. DS2 snapshot branch preserved at `4cbd206`.
+
+
 ## D293 — Battle DS3 redesign after user rejected D292 (2026-10-20)
 
 **Explicit user feedback:** supplied a D292 screenshot of `graveyard_ambush` (Mage + Knight, available fourth Defiance tactic) and wrote **«не очень( ты же хотел под DS3 сделать»**. This is **NOT acceptance** of D291/D292 Battle HUD. Reason: the UI was merely recolored black rectangular boxes, not DS3's cohesive material-based art. We agreed to fix the design itself instead of polishing tiny lines.

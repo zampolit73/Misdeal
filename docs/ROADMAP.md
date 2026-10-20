@@ -1,5 +1,13 @@
 # Misdeal — Active Roadmap
 
+## D294 — Handoff checkpoint for next chat (2026-10-20)
+
+- [x] Preserve the complete DS3/D293 session context in [D294_NEW_CHAT_HANDOFF.md](D294_NEW_CHAT_HANDOFF.md); primary full-project DS2 rollback branch untouched.
+- [x] D293 real Battle native Godot smoke PASS: [run 39399922113](https://github.com/zampolit73/Misdeal/actions/runs/39399922113).
+- [ ] **Next:** user runs `git pull`, supplies real D293 Battle preparation screenshot. D292 screenshot was rejected; new D293 visual is still unapproved.
+- [ ] Check legibility, inset-to-text stacking, ruby Fight and tactic states before further changes or reward/shop DS3 rollout.
+
+
 ## D293 — Correct rejected Battle DS3 visual direction (2026-10-20)
 
 - [x] User explicitly rejected D292 Battle visual after native screenshot, as being dark flat boxes rather than DS3.

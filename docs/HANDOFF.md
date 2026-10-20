@@ -1,5 +1,10 @@
 # Misdeal — Canonical Working Handoff
 
+## D294 — Next chat: read [D294_NEW_CHAT_HANDOFF.md](D294_NEW_CHAT_HANDOFF.md)
+
+Current D293 battle DS3 implementation is in main and native Godot 4.7.2 CI PASS ([run 39399922113](https://github.com/zampolit73/Misdeal/actions/runs/39399922113)), but **not yet artistically approved by user**. D292 screenshot was explicitly rejected. Next chat starts with `git pull` and screenshot of actual D293 Battle preparation; inspect text layering and new command tray. Keep DS2 checkpoint `checkpoint/ds2-pre-ds3-2026-10-20` immutable. Full context and paths: [D294 handoff](D294_NEW_CHAT_HANDOFF.md).
+
+
 ## D293 — Next chat continuation (2026-10-20)
 
 The user said the D292 Battle preparation screenshot was **not DS3**. D293 applies material redesign, not minor color change, inside `scripts/battle/battle_ds3_pass.gd` with real gilt/ruby art from D287. New visual includes upper engraved ledgers, copper command tray, inset tactical scrolls and distinct crimson Fight button. Battle/gameplay untouched. Source and smoke in main; run https://github.com/zampolit73/Misdeal/actions/runs/39399922113 PASSED, user must then `git pull` and send a fresh actual Godot Battle screenshot before accepting further DS3 rollout. Restore `checkpoint/ds2-pre-ds3-2026-10-20` has not moved. Do not confuse a native smoke PASS with aesthetic approval.
