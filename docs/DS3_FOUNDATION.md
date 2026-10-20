@@ -1,3 +1,7 @@
+## D299 — Source-painted rather than redrawn vector ornaments for Battle DS3
+
+After user approved the richer second-style Battle reference, real material source fragments are now integrated through a cached text-backed four-image WebP pack (approved crimson banner, bronze compass seal, candles, wax textile). Only decorative `TextureRect`s were changed; native UI labels/values/selection and all combat remain live. The overlapping D298 SVG objects are not spawned in D299; DS2 checkpoint and earlier source art preserved. **Visual signoff after real Godot screenshot, CI check pending**. [D299 specification](D299_REFERENCE_ART_IMPLEMENTATION.md).
+
 ## D298 — Source-authored decorated Gothic Battle pilot from second chosen reference
 
 User explicitly judged current Battle D297 less beautiful than the **second approved concept**. Visual response now adds six independent editable source SVG decoration components (transparent torn crimson banner, compass medallion, wax ribbon, finial, empty physical command/Fight plates) without baking the simulated mock's texts, buttons, health bars or actors. Code in `scripts/battle/battle_ds3_pass.gd` composes this artwork behind the real six panels and 3–5 tactical Buttons. The real deployment hint now avoids unit feet and optional wizard objective. Arena paintings, active combat data, actual RunState values and DS2 restore untouched. **Not yet signed off in native Godot / visual comparison**, and source-authored interpretation is not identical pixel crop from mocked screen. All other DS3 rollout gates remain.
