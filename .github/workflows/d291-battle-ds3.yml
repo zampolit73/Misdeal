@@ -6,6 +6,10 @@ on:
     paths:
       - '.github/workflows/d291-battle-ds3.yml'
       - 'scripts/battle/battle_ds3_pass.gd'
+      - 'scripts/ui/battle_approved_modules.gd'
+      - 'scripts/ui/battle_engraved_frame.gd'
+      - 'assets/pixel/ui/battle_ds3_d303/**'
+      - 'tools/install_d303_battle_art.ps1'
       - 'scripts/battle/battle.gd'
       - 'scripts/ui/misdeal_ds3.gd'
       - 'scenes/battle/battle.tscn'
