@@ -332,6 +332,7 @@ static func style_tactic(button: Button, selected: bool, accent: Color) -> void:
 		relief.position = Vector2.ZERO
 		relief.size = button.size
 	relief.set("kind", "order_selected" if selected else "order")
+	relief.set("order_symbol", button.name)
 	relief.queue_redraw()
 	button.add_theme_color_override("font_color", PARCHMENT_BRIGHT if selected else Color(0.82, 0.73, 0.61))
 	button.add_theme_color_override("font_pressed_color", PARCHMENT_BRIGHT)
