@@ -1,3 +1,7 @@
+## D308 — Art/UX previews must be directly runnable without altering normal Misdeal progress (2026-10-20)
+
+User wants to inspect the latest D307 Wizard UI in Godot without replaying 7+ Fate cards to encounter the condition. Deliver a tiny `scenes/dev/` **F6-only test scene** that calls the **same production D307 drawing/text layout helpers** as Battle, uses the approved arena image only for context and can locally simulate phase, reward-success and fail text. Keep the canonical ObjectiveLabel source of truth and provide a button to launch the real Grave Bell Battle in the isolated F6 process. Do not change `project.godot` main_scene or add test controls to normal gameplay. Preserve all actual combat and side-objective payouts.
+
 ## D307 — Painted Wizard module uses two live labels but one canonical game rule (2026-10-20)
 
 The optional Wizard challenge needs to look like the approved D303 physical UI. A newly drawn art asset contains **two separate dark wells** and a medallion; baking fixed quest text would break dynamic rules and fail states. Use real, mouse-ignoring art as an optional panel skin; keep the old `ObjectiveLabel.text` as the sole authoritative condition string. Derive only display heading/body for the artwork and re-sync after source changes, including fast-crush countdown and failure. Do not move/gate payout logic or introduce new combat behavior. Fallback stays D306 if texture is missing. Artistically this is a **candidate**, not an explicit user-approved in-game result; verify fit in Godot before signoff.
