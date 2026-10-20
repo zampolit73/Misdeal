@@ -108,4 +108,3 @@ func _draw_order(w: float, h: float, selected: bool) -> void:
 		draw_line(Vector2(x, h - 8), Vector2(x - side * 5.0, h - 3), rim, 1.0, true)
 	if selected:
 		draw_line(Vector2(18, h - 6), Vector2(w - 18, h - 6), Color(0.98, 0.70, 0.38, 0.94), 2.0, true)
-		_draw_diamond(Vector2(16, h * 0.5), 4.3, Color(0.97, 0.76, 0.45, 0.88))
