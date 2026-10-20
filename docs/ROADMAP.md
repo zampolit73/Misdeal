@@ -1,3 +1,14 @@
+## D298 — Rebuild Battle DS3 material fidelity toward selected second reference (2026-10-20)
+
+- [x] User says second reference looks considerably richer than actual D297; user explicitly requests matching its artistic level, **not a new layout or combat rework**.
+- [x] Add six separate original decorated editable SVG art resources under `assets/pixel/ui/battle_ds3_d298`: banner, progress medallion, bronze finial, crimson textile, command background, Fight background. **No baked UI text/buttons/units.**
+- [x] Integrate through genuine mouse-ignoring TextureRects in Battle only, keep dynamic labels, actual 3–5 tactics, gameplay, arena, active marks, Fight/Continue and in-game RunState.
+- [x] Remove double right heraldry; offset Title, Status and Party from hanging banner; move real deployment hint away from combatant feet and handle optional objective.
+- [x] Extend native Battle smoke with actual seven ornament placements, art import, no input interception, header readability and hint constraint.
+- [ ] **Verify official Godot 4.7.2 editor import and native real-Battle regression** before declaring D298 technical PASS.
+- [ ] **Request fresh native 1280×720 user screenshot** to judge whether true game screen now approaches second approved reference. Fix evidenced differences only.
+- [ ] Do not globally migrate Reward, Shop or other screens before this real visual gate. DS2 snapshot remains stable.
+
 ## D297 — Screenshot-driven Battle HUD final readability (2026-10-20)
 
 - [x] Review real D296 native user screenshot of solo Knight vs three undead at Graveyard Ambush.
