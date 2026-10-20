@@ -133,11 +133,21 @@ func _ready() -> void:
 	sacrifice_order_button.pressed.connect(_on_sacrifice_order_pressed)
 	defiance_order_button.pressed.connect(_on_defiance_order_pressed)
 	target_preview_button.toggled.connect(_on_target_preview_toggled)
-	assault_order_button.tooltip_text = "Ближайшая цель и +15% скорость движения."
-	hunt_order_button.tooltip_text = "Сначала поддержка и дальние враги."
-	formation_order_button.tooltip_text = "Фокус угрозы у уязвимого союзника. В соло: -10% входящего урона."
-	sacrifice_order_button.tooltip_text = "+40% урона, +20% скорость атак, но герои теряют 2% макс. HP каждую секунду."
-	defiance_order_button.tooltip_text = "-20% входящего урона, но -15% собственного урона."
+	# D301: all five real tactics already have an always-visible description
+	# strip. Native Godot tooltips used to float over this strip and duplicate
+	# the same text (confirmed on D300 user screenshot). Preview in-place.
+	for entry in [
+		[assault_order_button, TACTICAL_ORDER_ASSAULT],
+		[hunt_order_button, TACTICAL_ORDER_HUNT],
+		[formation_order_button, TACTICAL_ORDER_FORMATION],
+		[sacrifice_order_button, TACTICAL_ORDER_SACRIFICE],
+		[defiance_order_button, TACTICAL_ORDER_DEFIANCE]
+	]:
+		var tactic_button := entry[0] as Button
+		var order_id: String = entry[1]
+		tactic_button.tooltip_text = ""
+		tactic_button.mouse_entered.connect(_on_tactic_preview_entered.bind(order_id))
+		tactic_button.mouse_exited.connect(_on_tactic_preview_exited)
 	sacrifice_order_unlocked = RunState.has_sacrifice_order_for_next_battle()
 	defiance_order_unlocked = RunState.has_defiance_order_for_next_battle()
 	_configure_tactical_order_buttons()
@@ -814,6 +824,21 @@ func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 		else:
 			order_description_label.modulate = Color(1.0, 0.88, 0.66, 1.0)
 		_play_battle_audio("order")
+
+# D301: hovering an UNSELECTED tactic previews only its description.
+# Nothing about combat order, stats, unlocks or the selected button changes.
+# The same text strip owns the preview, so no native tooltip overlaps the HUD.
+func _on_tactic_preview_entered(order_id: String) -> void:
+	if combat_started or battle_finished or order_id == tactical_order:
+		return
+	order_description_label.text = "ПРОСМОТР: " + _get_tactical_order_description(order_id)
+
+
+func _on_tactic_preview_exited() -> void:
+	if combat_started or battle_finished:
+		return
+	order_description_label.text = _get_tactical_order_description(tactical_order)
+
 
 func _get_tactical_order_description(order_id: String) -> String:
 	match order_id:
