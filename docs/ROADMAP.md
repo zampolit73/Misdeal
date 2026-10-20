@@ -1,3 +1,12 @@
+## D306 — Real Grave Bell Battle screen QA (2026-10-20)
+
+- [x] User screenshots confirm D303 approved modular command and Fight art is actually imported/rendered in Godot with 4 unlocked tactics and true animated combat.
+- [x] Locate actual low-contrast Wizard objective cause: opaque `DS3EngravedRelief` appended over existing child `ObjectiveLabel`; preserve same challenge and reward.
+- [x] Put live objective text above engraving, apply readable bronze/dark styling, and move existing condition panel from prep lower-left to top-left safe area after actual Fight begins.
+- [x] Add native `grave_bell` regression checking actual side rule, style/z-index, combat transition and preserved rule; include in D291 Actions job.
+- [ ] Verify official Godot 4.7.x CI and new real screenshot of prep and combat for `Могильный звон`.
+- [ ] Obtain explicit user approval for final integrated Battle DS3 layout (art modules themselves are already approved), then continue to Reward UI.
+
 ## D305 — Binary publication verified; next real Battle QA (2026-10-20)
 
 - [x] Confirm GitHub `main` already contains all ten D303 original/adapted WebP artworks and `manifest.json` at `a933bc36`.
