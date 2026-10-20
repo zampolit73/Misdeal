@@ -159,7 +159,7 @@ func _check() -> void:
 	if actual_units.is_empty():
 		_fail("no live BattleUnits were instantiated")
 		return
-	print("D295_BATTLE_DS3_NATIVE_PASS: approved minimal Gothic layout, battle arena, native tactics and target selection")
+	print("D291_BATTLE_DS3_NATIVE_PASS: D295 approved minimal Gothic layout, original arena, native tactics and target selection")
 	scene.queue_free()
 	await process_frame
 	quit(0)
