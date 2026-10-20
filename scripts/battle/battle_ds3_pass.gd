@@ -170,8 +170,8 @@ static func _draw_hardware(panel: Panel, prefix: String, material: String) -> vo
 	relief.name = "DS3EngravedRelief"
 	relief.set("kind", material)
 	relief.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	relief.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	panel.add_child(relief)
+	relief.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	# The panel is already laid out before the decoration is created.
 	relief.position = Vector2.ZERO
 	relief.size = panel.size
@@ -292,9 +292,8 @@ static func style_tactic(button: Button, selected: bool, accent: Color) -> void:
 		relief = ENGRAVED_FRAME.new() as Control
 		relief.name = "DS3EtchedToken"
 		relief.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		relief.anchor_right = 1.0
-		relief.anchor_bottom = 1.0
 		button.add_child(relief)
+		relief.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		relief.position = Vector2.ZERO
 		relief.size = button.size
 	relief.set("kind", "order_selected" if selected else "order")
