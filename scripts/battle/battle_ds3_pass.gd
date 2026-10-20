@@ -149,6 +149,20 @@ static func compact_run_conditions(full_text: String) -> String:
 	return "\n".join(summary)
 
 
+# A rare wizard side objective occupies the left lower margin.
+# Place instructions in the open upper sky in that case, never on top of
+# a meaningful live objective or a character's lower combat floor.
+static func position_placement_hint(scene: Control) -> void:
+	var hint := scene.get_node("PlacementHint") as Label
+	var active_objective := scene.get_node("SideObjectivePanel") as Panel
+	if active_objective.visible:
+		_place(hint, Vector2(298, 138), Vector2(676, 39))
+		hint.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	else:
+		_place(hint, Vector2(30, 580), Vector2(211, 114))
+		hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+
+
 static func _place(control: Control, at: Vector2, dimensions: Vector2) -> void:
 	control.position = at
 	control.size = dimensions
