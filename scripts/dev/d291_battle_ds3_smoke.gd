@@ -166,6 +166,14 @@ func _check() -> void:
 		if not button.toggle_mode or button.size.y != 38 or button.pressed.get_connections().is_empty():
 			_fail("Battle original real tactical controls changed: " + path)
 			return
+		# D301: every one of the 3-5 unlocked original Buttons previews the
+		# description in-place, never floating a duplicate Godot tooltip.
+		if not button.tooltip_text.is_empty():
+			_fail("D301 tactic still creates a duplicate floating tooltip: " + path)
+			return
+		if button.mouse_entered.get_connections().is_empty() or button.mouse_exited.get_connections().is_empty():
+			_fail("D301 order preview signals missing: " + path)
+			return
 		var engraving := button.get_node_or_null("DS3EtchedToken") as Control
 		if engraving == null or engraving.get_script() == null or engraving.mouse_filter != Control.MOUSE_FILTER_IGNORE:
 			_fail("D296 tactic plaque decoration is absent or intercepts press: " + path)
@@ -210,6 +218,23 @@ func _check() -> void:
 	if scene.get("tactical_order") != "hunt" or not hunt.button_pressed:
 		_fail("real Hunt action no longer selects correct tactical order")
 		return
+	var formation_preview := scene.get_node("FormationOrderButton") as Button
+	var live_description := scene.get_node("OrderDescription") as Label
+	var selected_hunt_description: String = live_description.text
+	formation_preview.mouse_entered.emit()
+	if not live_description.text.begins_with("ПРОСМОТР: СТРОЙ") or scene.get("tactical_order") != "hunt":
+		_fail("D301 hover preview should show Formation without selecting it")
+		return
+	formation_preview.mouse_exited.emit()
+	if live_description.text != selected_hunt_description:
+		_fail("D301 leaving a tactic must restore the actually selected Hunt description")
+		return
+	# Hovering the selected order should never hide its live description.
+	hunt.mouse_entered.emit()
+	if live_description.text != selected_hunt_description:
+		_fail("D301 selected tactic hover should not replace its own description")
+		return
+	hunt.mouse_exited.emit()
 	var hunt_style := hunt.get_theme_stylebox("normal") as StyleBoxFlat
 	var assault := scene.get_node("AssaultOrderButton") as Button
 	var assault_style := assault.get_theme_stylebox("normal") as StyleBoxFlat
@@ -254,7 +279,7 @@ func _check() -> void:
 	if actual_units.is_empty():
 		_fail("no live BattleUnits were instantiated")
 		return
-	print("D291_BATTLE_DS3_NATIVE_PASS: D295 approved minimal Gothic layout, original arena, native tactics and target selection")
+	print("D291_BATTLE_DS3_NATIVE_PASS: D301 in-place tactic preview, D300 painted HUD, original arena and native targeting")
 	scene.queue_free()
 	await process_frame
 	quit(0)
