@@ -117,6 +117,18 @@ func _check() -> void:
 			_fail("D300 fragment transparent corner became a black rectangle: " + str(id))
 			return
 	if approved_art:
+		var source_sizes := {
+			"command_game.webp": Vector2(1100, 278),
+			"fight_panel_game.webp": Vector2(650, 388),
+			"idle_game.webp": Vector2(540, 111),
+			"selected_game.webp": Vector2(540, 111),
+			"fight_button_game.webp": Vector2(524, 154)
+		}
+		for asset_name in source_sizes:
+			var native_asset := load("res://assets/pixel/ui/battle_ds3_d303/" + asset_name) as Texture2D
+			if native_asset == null or native_asset.get_size() != source_sizes[asset_name]:
+				_fail("D304 source-derived painted module missing/imported at wrong resolution: " + asset_name)
+				return
 		var command_art := scene.get_node_or_null("BottomHudPanel/D304CommandArt") as TextureRect
 		var fight_art := scene.get_node_or_null("FightHudPanel/D304FightArt") as TextureRect
 		if command_art == null or fight_art == null or command_art.texture == null or fight_art.texture == null:
