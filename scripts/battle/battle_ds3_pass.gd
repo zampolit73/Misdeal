@@ -22,7 +22,7 @@ static func apply(scene: Control) -> void:
 	]
 	for pair in panels:
 		var panel := scene.get_node(pair[0]) as Panel
-		var is_action := pair[0] == "FightHudPanel"
+		var is_action: bool = String(pair[0]) == "FightHudPanel"
 		var accent := BRONZE if is_action else STEEL
 		var style := DS3.make_plate(
 			Color(0.015, 0.015, 0.022, pair[1]),
