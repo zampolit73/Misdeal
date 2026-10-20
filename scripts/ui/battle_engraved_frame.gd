@@ -16,6 +16,9 @@ func _ready() -> void:
 func _draw() -> void:
 	var w := size.x
 	var h := size.y
+	if kind == "order" or kind == "order_selected":
+		_draw_order(w, h, kind == "order_selected")
+		return
 	if w < 48.0 or h < 40.0:
 		return
 	var warm := kind != "steel"
@@ -85,3 +88,24 @@ func _closed(points: PackedVector2Array) -> PackedVector2Array:
 	var closed := points.duplicate()
 	closed.append(points[0])
 	return closed
+
+
+# Tactic plaques are true Godot Buttons. This transparent child only draws
+# edge tooling and the selected copper foot: text, tooltip and signals live
+# on their original parent.
+func _draw_order(w: float, h: float, selected: bool) -> void:
+	if w < 60.0 or h < 28.0:
+		return
+	var rim := Color(0.82, 0.53, 0.30, 0.91) if selected else Color(0.48, 0.35, 0.26, 0.53)
+	var gleam := Color(0.98, 0.78, 0.48, 0.83) if selected else Color(0.68, 0.48, 0.31, 0.37)
+	# Raised top bevel, shadow foot and four individually cut metal corners.
+	draw_line(Vector2(9, 3), Vector2(w - 9, 3), gleam, 1.2, true)
+	draw_line(Vector2(9, h - 4), Vector2(w - 9, h - 4), rim.darkened(0.25), 1.1, true)
+	for side in [-1.0, 1.0]:
+		var x := 5.0 if side < 0.0 else w - 5.0
+		draw_line(Vector2(x, 7), Vector2(x, h - 8), rim, 1.0, true)
+		draw_line(Vector2(x, 7), Vector2(x - side * 5.0, 2), gleam, 1.0, true)
+		draw_line(Vector2(x, h - 8), Vector2(x - side * 5.0, h - 3), rim, 1.0, true)
+	if selected:
+		draw_line(Vector2(18, h - 6), Vector2(w - 18, h - 6), Color(0.98, 0.70, 0.38, 0.94), 2.0, true)
+		_draw_diamond(Vector2(16, h * 0.5), 4.3, Color(0.97, 0.76, 0.45, 0.88))
