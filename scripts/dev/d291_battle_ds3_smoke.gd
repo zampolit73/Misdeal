@@ -59,6 +59,36 @@ func _check() -> void:
 	if scene.get_node_or_null("RunHudPanel/DS3ProgressSeal") == null:
 		_fail("D296 progress heraldic fragment missing")
 		return
+	# D298 decorative assets are transparent empty holder surfaces, loaded
+	# as independent Godot textures. They must never capture native input.
+	var painted := {
+		"TopHudPanel/DS3Banner": Vector2(87, 147),
+		"RunHudPanel/DS3ProgressMedallion": Vector2(67, 85),
+		"BottomHudPanel/DS3CommandPlate": Vector2(691, 133),
+		"BottomHudPanel/DS3LeftFinial": Vector2(66, 37),
+		"BottomHudPanel/DS3RightFinial": Vector2(66, 37),
+		"FightHudPanel/DS3FightPlate": Vector2(293, 133),
+		"FightHudPanel/DS3FightRibbon": Vector2(68, 108),
+	}
+	for art_path in painted:
+		var ornament := scene.get_node_or_null(art_path) as TextureRect
+		if ornament == null or ornament.texture == null:
+			_fail("D298 Gothic real-art import/decode missing: " + str(art_path))
+			return
+		if ornament.mouse_filter != Control.MOUSE_FILTER_IGNORE:
+			_fail("D298 painted-only asset intercepts Battle input: " + str(art_path))
+			return
+		if ornament.size != painted[art_path]:
+			_fail("D298 painted asset violates authored HUD geometry: " + str(art_path))
+			return
+	var header := scene.get_node("Title") as Label
+	if header.position.x < 100.0 or header.size.x < 800.0:
+		_fail("D298 header title no longer clears physical red hanging banner")
+		return
+	var hint_label := scene.get_node("PlacementHint") as Label
+	if hint_label.position != Vector2(30, 580) or hint_label.size.x > 215.0:
+		_fail("D298 deployment hint can obscure live unit feet instead of wrapping at the left margin")
+		return
 	var run_plate := scene.get_node("RunHudPanel") as Panel
 	var run_modifiers := scene.get_node("RunConditionLabel") as Label
 	if run_plate.position != Vector2(959, 14) or run_plate.size != Vector2(299, 78):
