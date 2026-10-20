@@ -10,9 +10,9 @@ const PORTRAITS := {
 }
 const NAMES := {"knight": "РЫЦАРЬ", "ranger": "СЛЕДОПЫТ", "mage": "МАГ"}
 const ROLE_NOTES := {
-	"knight": "Держит удар и прикрывает остальных.",
-	"ranger": "Выбирает дистанцию и бьёт издалека.",
-	"mage": "Поражает врагов магией по области.",
+	"knight": "Непоколебимая стена между тьмой и теми, кто ещё сражается.",
+	"ranger": "Его путь пролегает там, где враг не ждёт удара.",
+	"mage": "За каждым заклинанием скрыта опасная цена.",
 }
 const BRONZE := Color(0.52, 0.34, 0.21, 1.0)
 const BRONZE_LIGHT := Color(0.81, 0.59, 0.34, 1.0)
@@ -26,22 +26,35 @@ static func apply(scene: Control) -> void:
 	var portrait_frame := scene.get_node("Frame/PortraitFrame") as Panel
 	portrait_frame.add_theme_stylebox_override("panel", _plate(Color(0.025, 0.019, 0.029, 1), BRONZE_LIGHT, 2, 10))
 	portrait_frame.clip_contents = true
+	# Screenshot D286: a 640x480 class illustration must cover the tall frame.
+	# The earlier ASPECT_CENTERED mode left ~120px of black both above and below.
+	var main_portrait := scene.get_node("Frame/PortraitFrame/Portrait") as TextureRect
+	main_portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	main_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	main_portrait.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	for path in ["Frame/BuildPanel", "Frame/RelicsPanel"]:
 		(scene.get_node(path) as Panel).add_theme_stylebox_override("panel", _plate(Color(0.032, 0.025, 0.029, 0.98), BRONZE, 1, 6))
 	(scene.get_node("Frame/CommonPanel") as Panel).add_theme_stylebox_override("panel", _plate(Color(0.027, 0.023, 0.028, 0.99), BRONZE, 1, 5))
 	for role in ["knight", "ranger", "mage"]:
 		_build_role_card(scene, role)
-	_make_label(frame, "RoleDescription", Vector2(586, 187), Vector2(213, 94), 14, FADED, true)
-	_make_label(frame, "StatBaseHint", Vector2(582, 340), Vector2(212, 17), 11, FADED, false).text = "ИТОГ  /  (БАЗА)"
+	_make_label(frame, "RoleDescription", Vector2(586, 191), Vector2(213, 88), 15, Color(0.69, 0.62, 0.57), true)
+	var rule := ColorRect.new()
+	rule.name = "HeroInfoRule"
+	rule.position = Vector2(584, 284)
+	rule.size = Vector2(210, 1)
+	rule.color = Color(0.55, 0.35, 0.22, 0.9)
+	rule.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	frame.add_child(rule)
+	_make_label(frame, "StatBaseHint", Vector2(582, 325), Vector2(212, 19), 12, FADED, false).text = "ИТОГ  /  (БАЗА)"
 	_make_label(frame, "UpgradeCount", Vector2(1072, 130), Vector2(67, 25), 14, Color(0.65, 0.81, 0.99), false).horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_make_label(frame, "RelicCount", Vector2(1072, 405), Vector2(67, 25), 13, FADED, false).horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_make_label(frame, "RelicCount", Vector2(1072, 397), Vector2(67, 25), 13, FADED, false).horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_build_upgrade_marks(frame)
 	_build_relic_slots(frame)
 	_build_footer(frame)
 	_make_label(frame, "PartyCaption", Vector2(31, 465), Vector2(244, 74), 13, Color(0.64, 0.55, 0.49), true).text = "Три судьбы — одна дорога.\nКого удастся вернуть\nиз прошлого?"
-	(scene.get_node("Frame/Stats") as RichTextLabel).add_theme_font_size_override("normal_font_size", 12)
-	(scene.get_node("Frame/BuildList") as RichTextLabel).add_theme_font_size_override("normal_font_size", 12)
-	(scene.get_node("Frame/RelicsList") as RichTextLabel).add_theme_font_size_override("normal_font_size", 12)
+	(scene.get_node("Frame/Stats") as RichTextLabel).add_theme_font_size_override("normal_font_size", 15)
+	(scene.get_node("Frame/BuildList") as RichTextLabel).add_theme_font_size_override("normal_font_size", 14)
+	(scene.get_node("Frame/RelicsList") as RichTextLabel).add_theme_font_size_override("normal_font_size", 13)
 	var hint := scene.get_node("Frame/Hint") as Label
 	hint.add_theme_color_override("font_color", Color(0.71, 0.63, 0.56, 1.0))
 	var title := scene.get_node("Frame/Title") as Label
@@ -122,22 +135,31 @@ static func refresh_role_cards(scene: Control, selected_role: String) -> void:
 		status.add_theme_color_override("font_color", Color(0.74, 0.64, 0.53) if active else (Color(0.78, 0.36, 0.32) if lost else FADED))
 
 static func _build_upgrade_marks(frame: Control) -> void:
+	# Simple connecting rules carry the visual rhythm; only real progress fills a mark.
+	for i in 2:
+		var connector := ColorRect.new()
+		connector.name = "UpgradeConnector%d" % (i + 1)
+		connector.position = Vector2(903 + i * 97, 216)
+		connector.size = Vector2(49, 1)
+		connector.color = Color(0.47, 0.34, 0.25, 0.7)
+		connector.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		frame.add_child(connector)
 	for i in 3:
-		var marker := _make_label(frame, "UpgradeMarker%d" % (i + 1), Vector2(840 + i * 97, 197), Vector2(81, 42), 25, FADED, false)
+		var marker := _make_label(frame, "UpgradeMarker%d" % (i + 1), Vector2(840 + i * 97, 191), Vector2(81, 51), 37, FADED, false)
 		marker.text = "◇"
 		marker.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		_make_label(frame, "UpgradeNumber%d" % (i + 1), Vector2(840 + i * 97, 235), Vector2(81, 17), 11, FADED, false).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_make_label(frame, "UpgradeNumber%d" % (i + 1), Vector2(840 + i * 97, 241), Vector2(81, 20), 12, FADED, false).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 static func _build_relic_slots(frame: Control) -> void:
 	for i in 3:
 		var rect := Panel.new()
 		rect.name = "RelicSlot%d" % (i + 1)
-		rect.position = Vector2(832 + i * 105, 461)
-		rect.size = Vector2(91, 54)
+		rect.position = Vector2(832 + i * 105, 440)
+		rect.size = Vector2(91, 75)
 		rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		rect.add_theme_stylebox_override("panel", _plate(Color(0.033, 0.028, 0.033, 1), BRONZE.darkened(0.38), 1, 1))
 		frame.add_child(rect)
-		var symbol := _make_label(rect, "Symbol", Vector2(4, 5), Vector2(83, 44), 20, FADED, false)
+		var symbol := _make_label(rect, "Symbol", Vector2(4, 10), Vector2(83, 54), 26, FADED, false)
 		symbol.text = "—"
 		symbol.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
@@ -148,7 +170,8 @@ static func _build_footer(frame: Control) -> void:
 	for i in 4:
 		var label := _make_label(footer, "Summary%d" % i, Vector2(start[i], 8), Vector2(140, 22), 14, PARCHMENT, false)
 		label.text = headings[i]
-	_make_label(footer, "Strength", Vector2(609, 9), Vector2(497, 39), 12, Color(0.72, 0.64, 0.60), true).horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	# Keep the solo/duo modifiers on their own full-width row instead of a tiny squeezed footer.
+	_make_label(footer, "Strength", Vector2(17, 31), Vector2(1095, 24), 13, Color(0.72, 0.64, 0.60), false).horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	var common := footer.get_node("Common") as Label
 	common.visible = false
 

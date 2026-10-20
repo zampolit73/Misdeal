@@ -35,11 +35,18 @@ func _verify() -> void:
 			return
 	var main_portrait := dossier.get_node("Frame/PortraitFrame/Portrait") as TextureRect
 	var frame := dossier.get_node("Frame/PortraitFrame") as Panel
-	if main_portrait.texture == null or frame.size.y < 440 or main_portrait.size.y < 420:
+	if main_portrait.texture == null or frame.size.y < 440 or main_portrait.size.y < 420 or main_portrait.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_COVERED or not frame.clip_contents:
 		_fail("variant 3 portrait dimensions are not tall")
 		return
 	var stats := dossier.get_node("Frame/Stats") as RichTextLabel
 	var role_caption := dossier.get_node("Frame/RoleDescription") as Label
+	if stats.get_theme_font_size("normal_font_size") < 14 or stats.size.y < 210:
+		_fail("D286 screenshot legibility regression: small or cramped stats")
+		return
+	var relic_slot := dossier.get_node("Frame/RelicSlot1") as Panel
+	if relic_slot.size.y < 70 or dossier.get_node_or_null("Frame/HeroInfoRule") == null:
+		_fail("D286 screenshot panel hierarchy regression")
+		return
 	if dossier.get_node("Frame/HeroName").text != "Рыцарь" or stats.text.is_empty():
 		_fail("Knight/real stats absent")
 		return
