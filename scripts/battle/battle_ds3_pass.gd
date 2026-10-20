@@ -1,6 +1,7 @@
 extends RefCounted
 
-# D297: Screenshot-led Battle DS3 status legibility and individual engraved order tokens.
+# D298: Visual fidelity pass to the selected second Gothic battle reference.
+# Four separate hand-authored ornament illustrations carry zero baked UI data.
 # Preserve real data-backed UI, tactics and the authored battle arena.
 # Gameplay, tactical data, unit positions, scene geometry and arena images
 # stay in the production Battle. The ornate fragments are already approved
@@ -9,6 +10,7 @@ const DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
 const WEBP_TEXTURE := preload("res://scripts/ui/runtime_webp_texture.gd")
 const ENGRAVED_FRAME := preload("res://scripts/ui/battle_engraved_frame.gd")
 const ORNAMENT_DIR := "res://assets/pixel/ui/squad_dossier_d287/"
+const GOTHIC_ART_DIR := "res://assets/pixel/ui/battle_ds3_d298/"
 
 const BRONZE := Color("#a66636")
 const MOONSTEEL := Color("#526477")
@@ -28,6 +30,14 @@ static func apply(scene: Control) -> void:
 		if legacy != null:
 			legacy.visible = false
 		_draw_hardware(panel, name, material)
+
+	# Art panels are actual independent transparent assets, not a full
+	# screenshot. Their alpha never interferes with live Title/Status/Buttons.
+	_svg_decor(scene.get_node("TopHudPanel") as Panel, "DS3Banner", "battle_banner.svg", Vector2(-18, -14), Vector2(87, 147), Color(1, 1, 1, 0.91))
+	_svg_decor(scene.get_node("RunHudPanel") as Panel, "DS3ProgressMedallion", "battle_progress_seal.svg", Vector2(-15, -10), Vector2(67, 85), Color(1, 1, 1, 0.90))
+	_svg_decor(scene.get_node("BottomHudPanel") as Panel, "DS3LeftFinial", "battle_filigree.svg", Vector2(8, -11), Vector2(66, 37), Color(1, 1, 1, 0.80))
+	_svg_decor(scene.get_node("BottomHudPanel") as Panel, "DS3RightFinial", "battle_filigree.svg", Vector2(615, -11), Vector2(66, 37), Color(1, 1, 1, 0.80))
+	_svg_decor(scene.get_node("FightHudPanel") as Panel, "DS3FightRibbon", "battle_fight_ribbon.svg", Vector2(-20, 12), Vector2(68, 108), Color(1, 1, 1, 0.74))
 
 	_style_label(scene, "Title", PARCHMENT_BRIGHT, 23)
 	_style_label(scene, "Status", SECONDARY, 12)
@@ -67,11 +77,11 @@ static func apply(scene: Control) -> void:
 static func _layout_panels(scene: Control) -> void:
 	_place(scene.get_node("TopHudPanel") as Control, Vector2(22, 14), Vector2(902, 72))
 	_place(scene.get_node("RunHudPanel") as Control, Vector2(959, 14), Vector2(299, 78))
-	_place(scene.get_node("Title") as Control, Vector2(48, 19), Vector2(864, 32))
-	_place(scene.get_node("Status") as Control, Vector2(49, 50), Vector2(861, 30))
+	_place(scene.get_node("Title") as Control, Vector2(103, 19), Vector2(815, 32))
+	_place(scene.get_node("Status") as Control, Vector2(104, 50), Vector2(806, 30))
 	_place(scene.get_node("DealLabel") as Control, Vector2(1004, 19), Vector2(236, 29))
 	_place(scene.get_node("RunConditionLabel") as Control, Vector2(967, 49), Vector2(280, 38))
-	_place(scene.get_node("PartyLabel") as Control, Vector2(32, 106), Vector2(166, 25))
+	_place(scene.get_node("PartyLabel") as Control, Vector2(115, 106), Vector2(166, 25))
 	_place(scene.get_node("EnemyLabel") as Control, Vector2(1096, 106), Vector2(152, 25))
 	_place(scene.get_node("BottomHudPanel") as Control, Vector2(251, 575), Vector2(691, 133))
 	_place(scene.get_node("FightHudPanel") as Control, Vector2(949, 575), Vector2(293, 133))
@@ -81,6 +91,14 @@ static func _layout_panels(scene: Control) -> void:
 	_place(scene.get_node("SideObjectivePanel/ObjectiveLabel") as Control, Vector2(10, 8), Vector2(196, 115))
 	_place(scene.get_node("OrderLabel") as Control, Vector2(267, 581), Vector2(659, 21))
 	_place(scene.get_node("OrderDescription") as Control, Vector2(277, 656), Vector2(637, 42))
+	# The former 660px single-line hint could cover the Ranger/other units.
+	# Put the real hint in the unused left command margin, and wrap long
+	# encounter-specific instructions instead of drawing over combatant feet.
+	_place(scene.get_node("PlacementHint") as Control, Vector2(30, 580), Vector2(211, 114))
+	var hint_copy := scene.get_node("PlacementHint") as Label
+	hint_copy.add_theme_font_size_override("font_size", 12)
+	hint_copy.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	hint_copy.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_place(scene.get_node("TargetPreviewButton") as Control, Vector2(965, 582), Vector2(259, 30))
 	_place(scene.get_node("FightButton") as Control, Vector2(964, 619), Vector2(262, 77))
 	_place(scene.get_node("ContinueButton") as Control, Vector2(964, 619), Vector2(262, 77))
@@ -264,6 +282,29 @@ static func _strip(parent: Control, name: String, at: Vector2, dimensions: Vecto
 	strip.color = tint
 	strip.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	parent.add_child(strip)
+
+
+# A separate high-quality vector painting is imported by Godot as a genuine
+# Texture2D (SVG source remains editable in Git). No copy of the conceptual
+# screenshot and no painted text, counter, unit, button or health indicator.
+static func _svg_decor(parent: Control, name: String, asset_name: String, at: Vector2, dimensions: Vector2, tint: Color) -> TextureRect:
+	var existing := parent.get_node_or_null(name) as TextureRect
+	if existing != null:
+		return existing
+	var art := TextureRect.new()
+	art.name = name
+	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	art.position = at
+	art.size = dimensions
+	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	art.stretch_mode = TextureRect.STRETCH_SCALE
+	art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	art.modulate = tint
+	art.texture = load(GOTHIC_ART_DIR + asset_name) as Texture2D
+	if art.texture == null:
+		push_error("D298 missing battle Gothic source: " + asset_name)
+	parent.add_child(art)
+	return art
 
 
 static func _ornament(parent: Control, name: String, asset: String, at: Vector2, dimensions: Vector2, native_size: Vector2i, tint: Color) -> TextureRect:
