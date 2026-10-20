@@ -1,3 +1,13 @@
+## D295 — User-selected second Battle DS3 concept (2026-10-20)
+
+- [x] Reject D293 screenshot as still visually cheap (flat panels against excellent approved painted arena).
+- [x] Present two actual visual proposals; user chose **second, lighter minimal Gothic** direction.
+- [x] Implement scoped real Godot Battle header, centered tactical command frame, separate right Fight action, optional objective away from Fight, restrained bronze/ruby decoration, preserve 3–5 authentic tactics and mechanics.
+- [x] Extend real-scene native smoke to assert new geometry and original action / unit contracts.
+- [ ] **Review new D295 Godot 4.7.2 CI**, fix any parser/UI errors before art signoff.
+- [ ] **User screenshot** at 1280×720 in real Godot: check long encounter title, 3/4/5 unlocked tactic widths, alternative objective, target-preview/Fight click and unit feet.
+- [ ] Do NOT migrate Reward/Shop until Battle art review. DS2 restore branch remains immutable.
+
 # Misdeal — Active Roadmap
 
 ## D294 — Handoff checkpoint for next chat (2026-10-20)
