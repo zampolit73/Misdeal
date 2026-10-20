@@ -1,3 +1,12 @@
+## D301 — Remove duplicate tactical hover popups (2026-10-20)
+
+- [x] Inspect user's real D300 `КОСТЯНОЙ ДОЗОР` battle screenshot and identify overlapping native tooltip above the identical lower command description.
+- [x] Trace to five `battle.gd` tactical button `tooltip_text` assignments; retain real `OrderDescription` as sole description surface.
+- [x] Change hover on available tactics to in-panel `ПРОСМОТР:` text and restore true selected description on leave; keep original select handlers, buffs/AI, locked states, and Battle art.
+- [x] Extend real-scene smoke for empty native tactic popups and hover/leave without order change.
+- [ ] Confirm native Godot 4.7.x CI and one user-local hover screenshot (new HUD vs D300 duplicate tooltip). No art signoff claim yet.
+- [ ] After fixing verified UX only, request actual aesthetic decision rather than more unsolicited borders.
+
 ## D300 — Actual D299 screenshots: higher fidelity without layout drift (2026-10-20)
 
 - [x] Inspect user real `Костяной рой` and `Засада на кладбище` Godot screenshots: D299 painted ornaments render, but fine details are visibly soft; aesthetic signoff remains OPEN.
