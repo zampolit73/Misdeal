@@ -1,6 +1,7 @@
 extends RefCounted
 
-# D293: FIRST actual tabletop-material DS3 combat rework.
+# D295: User-selected second concept -- restrained Gothic DS3 battle chrome.
+# Preserve real data-backed UI, tactics and the authored battle arena.
 # Gameplay, tactical data, unit positions, scene geometry and arena images
 # stay in the production Battle. The ornate fragments are already approved
 # D287 dossier art, never a baked picture of fake buttons or stats.
@@ -16,8 +17,8 @@ const PARCHMENT_BRIGHT := Color("#f2d3a2")
 const SECONDARY := Color(0.80, 0.72, 0.65, 1.0)
 
 static func apply(scene: Control) -> void:
-	# The upper display stays subdued; only the lower interaction islands
-	# receive physical wood/metal detailing. The battle floor is untouched.
+	# Recompose only presentation Controls. Arena, spawning and AI are unchanged.
+	_layout_panels(scene)
 	for name in ["TopHudPanel", "RunHudPanel", "BottomHudPanel", "FightHudPanel", "SideObjectivePanel", "WizardCommentaryPanel"]:
 		var panel := scene.get_node(name) as Panel
 		var material := "wood" if name == "BottomHudPanel" else ("wager" if name == "FightHudPanel" else "steel")
@@ -27,8 +28,8 @@ static func apply(scene: Control) -> void:
 			legacy.visible = false
 		_draw_hardware(panel, name, material)
 
-	_style_label(scene, "Title", PARCHMENT_BRIGHT, 26)
-	_style_label(scene, "Status", SECONDARY, 14)
+	_style_label(scene, "Title", PARCHMENT_BRIGHT, 23)
+	_style_label(scene, "Status", SECONDARY, 12)
 	_style_label(scene, "OrderLabel", PARCHMENT_BRIGHT, 14)
 	_style_label(scene, "OrderDescription", SECONDARY, 12)
 	_style_label(scene, "DealLabel", PARCHMENT_BRIGHT, 18)
@@ -48,38 +49,96 @@ static func apply(scene: Control) -> void:
 	style_primary(scene.get_node("ContinueButton") as Button, BRONZE)
 	# This seal belongs only to the existing real primary action, never to
 	# the battle background or a second floating fake button.
-	_ornament(scene.get_node("FightButton") as Button, "DS3FightRubySeal", "ruby_crest.webp", Vector2(13, 14), Vector2(47, 47), Vector2i(103, 103), Color(1, 1, 1, 0.91))
+	_ornament(scene.get_node("FightButton") as Button, "DS3FightRubySeal", "ruby_crest.webp", Vector2(10, 11), Vector2(45, 45), Vector2i(103, 103), Color(1, 1, 1, 0.91))
 	# Continue may take the place of Fight after win; retain its legibility
 	# without making it look like a second Fight button.
 	# All original Button.pressed/toggled handlers remain owned by battle.gd.
+
+
+# Native 1280x720 D295 composition from approved concept 2. All positions
+# concern pre-existing actual Control nodes, never simulated painted controls.
+static func _layout_panels(scene: Control) -> void:
+	_place(scene.get_node("TopHudPanel") as Control, Vector2(22, 14), Vector2(902, 72))
+	_place(scene.get_node("RunHudPanel") as Control, Vector2(988, 14), Vector2(270, 72))
+	_place(scene.get_node("Title") as Control, Vector2(48, 19), Vector2(864, 32))
+	_place(scene.get_node("Status") as Control, Vector2(49, 50), Vector2(861, 30))
+	_place(scene.get_node("DealLabel") as Control, Vector2(1003, 19), Vector2(241, 29))
+	_place(scene.get_node("RunConditionLabel") as Control, Vector2(1002, 48), Vector2(242, 31))
+	_place(scene.get_node("PartyLabel") as Control, Vector2(32, 106), Vector2(166, 25))
+	_place(scene.get_node("EnemyLabel") as Control, Vector2(1096, 106), Vector2(152, 25))
+	_place(scene.get_node("BottomHudPanel") as Control, Vector2(251, 575), Vector2(691, 133))
+	_place(scene.get_node("FightHudPanel") as Control, Vector2(949, 575), Vector2(293, 133))
+	# Secondary objectives previously occupied the same lower-right region.
+	# Relocate this real conditional panel so it cannot cover the Fight control.
+	_place(scene.get_node("SideObjectivePanel") as Control, Vector2(22, 575), Vector2(216, 133))
+	_place(scene.get_node("SideObjectivePanel/ObjectiveLabel") as Control, Vector2(10, 8), Vector2(196, 115))
+	_place(scene.get_node("OrderLabel") as Control, Vector2(267, 581), Vector2(659, 21))
+	_place(scene.get_node("OrderDescription") as Control, Vector2(277, 656), Vector2(637, 42))
+	_place(scene.get_node("TargetPreviewButton") as Control, Vector2(965, 582), Vector2(259, 30))
+	_place(scene.get_node("FightButton") as Control, Vector2(964, 619), Vector2(262, 77))
+	_place(scene.get_node("ContinueButton") as Control, Vector2(964, 619), Vector2(262, 77))
+	_place(scene.get_node("RestartButton") as Control, Vector2(964, 619), Vector2(262, 77))
+	var caption := scene.get_node("OrderLabel") as Label
+	caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	(scene.get_node("Status") as Label).clip_text = true
+	(scene.get_node("OrderDescription") as Label).vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	(scene.get_node("SideObjectivePanel/ObjectiveLabel") as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	for name in ["PartyLabel", "EnemyLabel"]:
+		var side := scene.get_node(name) as Label
+		side.add_theme_color_override("font_color", PARCHMENT)
+		side.add_theme_font_size_override("font_size", 13)
+
+
+static func _place(control: Control, at: Vector2, dimensions: Vector2) -> void:
+	control.position = at
+	control.size = dimensions
+
+
+# Called after Battle's existing 3/4/5-tactic unlock/configure logic. This is
+# exclusively geometry: never changes active/disabled, handlers or selection.
+static func layout_tactics(scene: Control) -> void:
+	var active: Array[Button] = []
+	for name in ["AssaultOrderButton", "HuntOrderButton", "FormationOrderButton", "SacrificeOrderButton", "DefianceOrderButton"]:
+		var choice := scene.get_node(name) as Button
+		if choice.visible:
+			active.append(choice)
+	if active.is_empty():
+		return
+	var left := 268.0
+	var width := 657.0
+	var gap := 8.0
+	var cell_width := (width - gap * float(active.size() - 1)) / float(active.size())
+	for i in range(active.size()):
+		active[i].position = Vector2(left + float(i) * (cell_width + gap), 608)
+		active[i].size = Vector2(cell_width, 38)
 
 
 static func _material(material: String) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
 	match material:
 		"wood":
-			style.bg_color = Color(0.108, 0.058, 0.044, 0.92)
-			style.border_color = Color(0.59, 0.37, 0.21, 0.92)
-			style.border_width_top = 3
-			style.border_width_bottom = 2
-			style.border_width_left = 2
-			style.border_width_right = 2
-			style.shadow_size = 6
+			style.bg_color = Color(0.052, 0.040, 0.038, 0.90)
+			style.border_color = Color(0.62, 0.40, 0.23, 0.84)
+			style.border_width_top = 2
+			style.border_width_bottom = 1
+			style.border_width_left = 1
+			style.border_width_right = 1
+			style.shadow_size = 5
 		"wager":
-			style.bg_color = Color(0.129, 0.051, 0.049, 0.91)
-			style.border_color = Color(0.66, 0.38, 0.21, 0.90)
-			style.border_width_top = 3
-			style.border_width_bottom = 2
-			style.border_width_left = 2
-			style.border_width_right = 2
-			style.shadow_size = 6
+			style.bg_color = Color(0.11, 0.041, 0.044, 0.91)
+			style.border_color = Color(0.67, 0.42, 0.25, 0.86)
+			style.border_width_top = 2
+			style.border_width_bottom = 1
+			style.border_width_left = 1
+			style.border_width_right = 1
+			style.shadow_size = 5
 		_:
-			style.bg_color = Color(0.040, 0.033, 0.041, 0.85)
-			style.border_color = Color(0.38, 0.39, 0.40, 0.55)
+			style.bg_color = Color(0.028, 0.026, 0.033, 0.74)
+			style.border_color = Color(0.52, 0.38, 0.27, 0.53)
 			style.set_border_width_all(1)
-			style.shadow_size = 3
-	style.set_corner_radius_all(4)
-	style.shadow_color = Color(0, 0, 0, 0.68)
+			style.shadow_size = 2
+	style.set_corner_radius_all(2)
+	style.shadow_color = Color(0, 0, 0, 0.65)
 	style.shadow_offset = Vector2(0, 3)
 	return style
 
@@ -90,36 +149,31 @@ static func _draw_hardware(panel: Panel, prefix: String, material: String) -> vo
 	var w := panel.size.x
 	var h := panel.size.y
 	var warm := material != "steel"
-	var trim := Color(0.73, 0.49, 0.27, 0.64) if warm else Color(0.47, 0.52, 0.56, 0.45)
-	_strip(panel, "DS3MaterialUpper", Vector2(11, 6), Vector2(w - 22, 1), trim)
-	_strip(panel, "DS3MaterialLower", Vector2(11, h - 8), Vector2(w - 22, 1), trim.darkened(0.35))
+	var trim := Color(0.73, 0.49, 0.27, 0.69) if warm else Color(0.67, 0.48, 0.31, 0.44)
+	_strip(panel, "DS3MaterialUpper", Vector2(9, 5), Vector2(w - 18, 1), trim)
+	_strip(panel, "DS3MaterialLower", Vector2(10, h - 7), Vector2(w - 20, 1), trim.darkened(0.38))
 	if warm:
-		# Long-line chrome is no longer the entire design: genuine layered
-		# command tray, double-metal cap and inset holders carry hierarchy.
-		_strip(panel, "DS3CapInset", Vector2(15, 11), Vector2(w - 30, 1), Color(0.84, 0.56, 0.30, 0.28))
+		_strip(panel, "DS3CapInset", Vector2(12, 12), Vector2(w - 24, 1), Color(0.85, 0.58, 0.32, 0.24))
 		if material == "wood":
-			_inset(panel, "DS3CommandHolder", Vector2(11, 33), Vector2(w - 22, 51), false)
-			_inset(panel, "DS3OrderScroll", Vector2(25, 89), Vector2(w - 50, 32), true)
+			_inset(panel, "DS3CommandHolder", Vector2(13, 32), Vector2(w - 26, 48), false)
+			_inset(panel, "DS3OrderScroll", Vector2(19, 80), Vector2(w - 38, 43), true)
 		else:
-			_inset(panel, "DS3StrikeHolder", Vector2(11, 45), Vector2(w - 22, h - 53), true)
-			_strip(panel, "DS3ActionDivider", Vector2(12, 43), Vector2(w - 24, 1), Color(0.81, 0.51, 0.28, 0.7))
-		# Reuse small native image elements approved for the Dossier: purposeful
-		# metalwork, not a generated poster/infographic on top of gameplay.
-		_ornament(panel, "DS3GiltLeft", "gilt_corner.webp", Vector2(3, 4), Vector2(26, 26), Vector2i(53, 53), Color(1, 0.90, 0.72, 0.75))
-		var corner := _ornament(panel, "DS3GiltRight", "gilt_corner.webp", Vector2(w - 29, h - 29), Vector2(26, 26), Vector2i(53, 53), Color(1, 0.90, 0.72, 0.75))
-		corner.pivot_offset = Vector2(13, 13)
+			_inset(panel, "DS3StrikeHolder", Vector2(10, 43), Vector2(w - 20, h - 52), true)
+			_strip(panel, "DS3ActionDivider", Vector2(12, 40), Vector2(w - 24, 1), Color(0.78, 0.50, 0.28, 0.63))
+		# Small source-authored D287 fragments, not the entire ornate framing
+		# of concept one. These remain purely visual and mouse-ignoring.
+		_ornament(panel, "DS3GiltLeft", "gilt_corner.webp", Vector2(3, 4), Vector2(22, 22), Vector2i(53, 53), Color(1, 0.90, 0.72, 0.59))
+		var corner := _ornament(panel, "DS3GiltRight", "gilt_corner.webp", Vector2(w - 25, h - 25), Vector2(22, 22), Vector2i(53, 53), Color(1, 0.90, 0.72, 0.59))
+		corner.pivot_offset = Vector2(11, 11)
 		corner.rotation = PI
 	else:
-		# Physical ledger fields in the header, not a flat slab with two
-		# isolated white text rows. These are behind existing live Labels.
 		if prefix == "TopHudPanel":
-			_inset(panel, "DS3EncounterTitleInset", Vector2(13, 8), Vector2(w - 26, 37), true)
-			_strip(panel, "DS3EncounterDivider", Vector2(22, 49), Vector2(w - 44, 1), Color(0.65, 0.43, 0.27, 0.68))
+			_inset(panel, "DS3EncounterTitleInset", Vector2(13, 6), Vector2(w - 26, 31), true)
+			_strip(panel, "DS3EncounterDivider", Vector2(21, 40), Vector2(w - 42, 1), Color(0.65, 0.43, 0.27, 0.43))
 		elif prefix == "RunHudPanel":
-			_inset(panel, "DS3CardProgressPlaque", Vector2(8, 7), Vector2(w - 16, 34), true)
-			_strip(panel, "DS3ProgressDivider", Vector2(18, 46), Vector2(w - 36, 1), Color(0.65, 0.43, 0.27, 0.65))
-		# Small top panels stay readable, no fiddly symbols over long text.
-		_strip(panel, "DS3SteelRivet", Vector2(11, h - 13), Vector2(17, 2), Color(0.71, 0.48, 0.32, 0.40))
+			_inset(panel, "DS3CardProgressPlaque", Vector2(8, 6), Vector2(w - 16, 30), true)
+			_strip(panel, "DS3ProgressDivider", Vector2(18, 40), Vector2(w - 36, 1), Color(0.65, 0.43, 0.27, 0.43))
+		_strip(panel, "DS3SteelRivet", Vector2(11, h - 12), Vector2(13, 1), Color(0.71, 0.48, 0.32, 0.36))
 
 
 static func _inset(panel: Panel, name: String, at: Vector2, dimensions: Vector2, scroll: bool) -> void:
