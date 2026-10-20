@@ -247,8 +247,9 @@ static func _style_side_objective(scene: Control) -> void:
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
-# D311: Approved third variant has restrained bronze framing and a Wizard\n# medallion at left; two live labels still occupy independent wells.
-# presentation Labels mirror the original text, without owning gameplay data.
+# D311: Approved third variant has restrained bronze framing and a Wizard
+# medallion at left; two live labels mirror the authentic gameplay wording
+# in independent header/body wells (no baked text).
 # On an art-less checkout retain the existing readable D306 Panel + Label.
 static func _install_wizard_plaque(scene: Control) -> void:
 	if not ResourceLoader.exists(WIZARD_PLAQUE):
@@ -263,9 +264,8 @@ static func _install_wizard_plaque(scene: Control) -> void:
 		if child.name.begins_with("DS3"):
 			(child as CanvasItem).hide()
 	panel.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
-	# D311: Keep the D309 fixed-size drawing guard, and avoid the old\n	# texture-dependent TextureRect enlargement that expanded
-	# this 252x158 ornament to the native 756x472 image in the real Godot
-	# screenshots. A Control with explicit draw_texture_rect is size-invariant.
+	# D311: Preserve D309 fixed-size drawing guard; a TextureRect previously
+	# expanded to imported image dimensions and obscured the entire arena.
 	var art := Control.new()
 	art.name = "D307WizardArt"
 	art.set_script(preload("res://scripts/ui/battle_wizard_plaque_canvas.gd"))
