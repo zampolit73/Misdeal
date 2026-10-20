@@ -1,3 +1,7 @@
+## D299 — Approved-reference extracted Battle UI painted fragments
+
+Art source: the user's latest accepted second Gothic `Могильный перекрёсток` 1672×941 painted concept. `assets/pixel/ui/battle_ds3_d299/reference_fragments.webp.pack.b64` holds **four separately alpha-matted exact reference-pixel WebP crops**: `banner` 74×127, `medallion` 74×96, `candles` 44×135, `wax_ribbon` 64×135. Pack raw bytes =10,084, encoded length 13,448 characters; stored FNV1a `a440ed74`. Runtime decode via `battle_reference_fragments.gd`; real scene overlays in `battle_ds3_pass.gd`. These are **decor only**: no fixed UI text, health, units or painted control states. Previously authored D298 SVG counterparts remain as rollback source; do not draw them simultaneously. [Full sizes, slices and acceptance gate](D299_REFERENCE_ART_IMPLEMENTATION.md). Native 4.7.2 and user screenshot pending.
+
 ## D298 — Editable Battle DS3 reference-inspired ornamental art (2026-10-20)
 
 Selected user visual direction = **second restrained Gothic Battle HUD reference** (first ornament-heavy concept is not approved). Runtime now imports **six new manually authored SVG assets**, not a screenshot pasted over the battle:
