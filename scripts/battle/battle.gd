@@ -6,6 +6,7 @@ const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
+const BATTLE_DS3_PASS := preload("res://scripts/battle/battle_ds3_pass.gd")
 const TARGET_PREVIEW_SCRIPT := preload("res://scripts/battle/target_preview.gd")
 const DEPLOYMENT_FLOOR_SCRIPT := preload("res://scripts/battle/deployment_floor_markers.gd")
 const SHEPHERD_WHISTLE_SCRIPT := preload("res://scripts/battle/bone_shepherd_whistle.gd")
@@ -238,6 +239,8 @@ func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_action_button(last_deal_accept_button, MISDEAL_UI_KIT.EMBER, true)
 	MISDEAL_UI_KIT.apply_action_button(last_deal_refuse_button, MISDEAL_UI_KIT.STEEL, false)
 	MISDEAL_DS2_ROLLOUT.battle(self)
+	# D291: opt-in smaller DS3 visual chrome, following the legacy DS2 pass.
+	BATTLE_DS3_PASS.apply(self)
 
 
 func _is_boss_encounter() -> bool:
@@ -788,6 +791,8 @@ func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 		var choice_order: String = choice[1]
 		var choice_accent: Color = choice[2]
 		MISDEAL_UI_KIT.apply_battle_order_choice(choice_button, tactical_order == choice_order, choice_accent)
+		# Reapply DS3 selected/hover visuals after each real tactic change.
+		BATTLE_DS3_PASS.style_tactic(choice_button, tactical_order == choice_order, BATTLE_DS3_PASS._accent_for(choice_button.name))
 	order_description_label.text = _get_tactical_order_description(tactical_order)
 	_apply_tactical_order_stats()
 
