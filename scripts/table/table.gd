@@ -7,6 +7,7 @@ const FATE_SPREAD_SCENE := preload("res://scenes/table/fate_spread_overlay.tscn"
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
+const TABLE_DS3_PASS := preload("res://scripts/table/table_ds3_pass.gd")
 const TABLE_OFFER_SKIN := preload("res://scripts/table/table_offer_skin.gd")
 const CARD_LORE_INSPECT_SCENE := preload("res://scenes/table/card_lore_inspect.tscn")
 
@@ -118,6 +119,8 @@ func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_action_button(wager_accept_button, MISDEAL_UI_KIT.EMBER, true)
 	MISDEAL_UI_KIT.apply_action_button(wager_refuse_button, MISDEAL_UI_KIT.STEEL, false)
 	MISDEAL_DS2_ROLLOUT.table(self)
+	# D289: opt-in visual pass AFTER DS2; gameplay and 2-offer card layout untouched.
+	TABLE_DS3_PASS.apply(self)
 
 
 func _input(event: InputEvent) -> void:
