@@ -275,13 +275,13 @@ static func _install_wizard_plaque(scene: Control) -> void:
 	art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	panel.add_child(art)
 	art.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
-	art.position = Vector2(-15, -12)
-	art.size = Vector2(286, 153)
+	art.position = Vector2(-16, -14)
+	art.size = Vector2(258, 138)
 	art.queue_redraw()
 	var headline := Label.new()
 	headline.name = "D307WizardHeading"
-	headline.position = Vector2(62, 13)
-	headline.size = Vector2(204, 34)
+	headline.position = Vector2(66, 8)
+	headline.size = Vector2(166, 33)
 	headline.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	headline.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	headline.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -295,8 +295,8 @@ static func _install_wizard_plaque(scene: Control) -> void:
 	panel.add_child(headline)
 	var body := Label.new()
 	body.name = "D307WizardBody"
-	body.position = Vector2(65, 57)
-	body.size = Vector2(190, 65)
+	body.position = Vector2(54, 47)
+	body.size = Vector2(177, 56)
 	body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
