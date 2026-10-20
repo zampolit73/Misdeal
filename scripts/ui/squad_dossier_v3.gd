@@ -101,9 +101,9 @@ static func _build_role_card(scene: Control, role: String) -> void:
 static func refresh_role_cards(scene: Control, selected_role: String) -> void:
 	for role in ["knight", "ranger", "mage"]:
 		var button := scene.get_node("Frame/" + role.capitalize() + "Button") as Button
-		var active := RunState.is_role_in_party(role)
-		var selected := role == selected_role
-		var lost := RunState.get_companion_fate(role) == RunState.FATE_LOST
+		var active: bool = RunState.is_role_in_party(role)
+		var selected: bool = role == selected_role
+		var lost: bool = RunState.get_companion_fate(role) == RunState.FATE_LOST
 		button.text = ""
 		var body := Color(0.11, 0.047, 0.045, 1) if selected else Color(0.037, 0.027, 0.032, 1)
 		var line := BRONZE_LIGHT if selected else BRONZE.darkened(0.40)
