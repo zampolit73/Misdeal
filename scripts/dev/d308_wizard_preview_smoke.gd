@@ -1,0 +1,78 @@
+extends SceneTree
+
+# D308 - opens the actual F6 preview scene (with real production D307 art
+# and layout methods), changes its visible conditions, and never saves a run.
+const PREVIEW := "res://scenes/dev/d308_wizard_panel_preview.tscn"
+
+func _initialize() -> void:
+	call_deferred("_verify")
+
+
+func _verify() -> void:
+	var packed := load(PREVIEW) as PackedScene
+	if packed == null:
+		_fail("test scene not loadable")
+		return
+	var scene := packed.instantiate() as Control
+	root.add_child(scene)
+	await process_frame
+	var panel := scene.get_node("SideObjectivePanel") as Panel
+	var original := scene.get_node("SideObjectivePanel/ObjectiveLabel") as Label
+	var art := panel.get_node_or_null("D307WizardArt") as TextureRect
+	if art == null or art.texture == null:
+		_fail("approved D307 binary art did not load in the F6 scene")
+		return
+	if art.mouse_filter != Control.MOUSE_FILTER_IGNORE:
+		_fail("D307 art can intercept preview controls")
+		return
+	var header := panel.get_node("D307WizardHeading") as Label
+	var body := panel.get_node("D307WizardBody") as Label
+	if not original.text.contains("Звонарь должен пасть первым") or header.text != "УСЛОВИЕ ВОЛШЕБНИКА":
+		_fail("native default Grave Bell wording missing")
+		return
+	if not body.text.contains("+15 золота") or original.visible:
+		_fail("real quest reward missing or duplicated label visible")
+		return
+	if panel.position != Vector2(22, 575):
+		_fail("default preparation location differs from production D306")
+		return
+	var picker := scene.get_node("PreviewTools/RulePicker") as OptionButton
+	if picker.item_count != 3:
+		_fail("not all three actual Wizard objective text lengths are offered")
+		return
+	scene.call("_set_phase", true)
+	if panel.position != Vector2(98, 165) or not panel.visible:
+		_fail("combat preview does not use original D306 geometry")
+		return
+	scene.call("_set_outcome", 1)
+	if header.text != "УСЛОВИЕ ВЫПОЛНЕНО" or not body.text.contains("Звонарь пал первым"):
+		_fail("success is not reflected in both live art wells")
+		return
+	scene.call("_set_outcome", 2)
+	if header.text != "УСЛОВИЕ ПРОВАЛЕНО" or not body.text.contains("первым пал не звонарь"):
+		_fail("failure is not reflected in both live art wells")
+		return
+	scene.call("_on_rule_selected", 1)
+	if header.text != "УСЛОВИЕ ВОЛШЕБНИКА" or not body.text.contains("25% HP"):
+		_fail("the health limit preview was not restored")
+		return
+	scene.call("_on_rule_selected", 2)
+	if not body.text.contains("16 сек"):
+		_fail("the production fast-crush condition was not restored")
+		return
+	scene.call("_set_phase", false)
+	if panel.position != Vector2(22, 575):
+		_fail("preparation location did not restore")
+		return
+	if (scene.get_node("PreviewTools/RealBattleButton") as Button).pressed.get_connections().is_empty():
+		_fail("real Battle launch has no connected button")
+		return
+	print("D308_WIZARD_PREVIEW_NATIVE_PASS: direct F6 scene, D307 imported art, 3 conditions, phase and outcomes")
+	scene.queue_free()
+	await process_frame
+	quit(0)
+
+
+func _fail(reason: String) -> void:
+	push_error("D308_WIZARD_PREVIEW_FAIL: " + reason)
+	quit(1)
