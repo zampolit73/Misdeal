@@ -4,7 +4,7 @@
 
 - User rejected the flat-box D292 Battle HUD despite technical PASS. Rebuilt the actual Godot cosmetic layer with blackened wood/bronze tactical command holder, inlaid scroll/hardware, a lacquered crimson Fight action decorated with the approved ruby crest, and physically engraved upper encounter/card ledgers.
 - Reused previously approved D287 art fragments as **real PNG-free transparent WebP layers**; no AI-generated screen with fake health bars/buttons/text. Kept old scene geometry, actors/HP, 3–5 genuine tactics, handlers/RunState and all approved arenas intact.
-- Expanded native Battle smoke for painted art decode and real Hunt→Formation selection. D293 CI pending screenshot review; the D292 approved-art claim is **not** carried forward.
+- Expanded native Battle smoke for painted art decode and real Hunt→Formation selection. D293 official Godot 4.7.2 CI **PASS** ([run 39399922113](https://github.com/zampolit73/Misdeal/actions/runs/39399922113)); **new user visual signoff pending**, and no D292 art approval assumed.
 
 
 ## 2026-10-20 — D292 screenshot-led DS3 Battle readability
