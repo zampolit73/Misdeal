@@ -26,7 +26,7 @@ func _draw() -> void:
 	var metal := Color(0.61, 0.40, 0.23, 0.82) if warm else Color(0.54, 0.42, 0.33, 0.56)
 	var lit := Color(0.93, 0.66, 0.35, 0.59) if warm else Color(0.77, 0.59, 0.42, 0.36)
 	var dark := Color(0.015, 0.013, 0.020, 0.96)
-	var face := Color(0.092, 0.060, 0.050, 0.90) if kind == "wood" else (Color(0.16, 0.055, 0.053, 0.92) if kind == "wager" else Color(0.037, 0.030, 0.037, 0.79))
+	var face := Color(0.092, 0.060, 0.050, 0.90) if kind == "wood" else (Color(0.16, 0.055, 0.053, 0.92) if kind == "wager" else Color(0.037, 0.030, 0.037, 0.55))
 	# Small clipped corners and stacked metal edges give a physical cross-section.
 	draw_colored_polygon(_cut_rect(Rect2(0, 1, w, h - 2), cut), dark)
 	draw_colored_polygon(_cut_rect(Rect2(2, 3, w - 4, h - 6), cut - 2), metal.darkened(0.49))
