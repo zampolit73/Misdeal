@@ -1,11 +1,11 @@
 extends Control
 
-# D311: Explicitly draw the selected third-variant Wizard plaque into a FIXED 286x153
+# D311: Explicitly draw the selected third-variant Wizard plaque into a FIXED 258x138
 # local rect. TextureRect's intrinsic imported-image minimum size could
 # expand its drawn surface back to the 756x472 source resolution when
 # dynamically parented in Godot, covering the entire battle arena.
 # DrawCanvasItem has no texture-dependent minimum size.
-const DESIGN_SIZE := Vector2(286, 153)
+const DESIGN_SIZE := Vector2(258, 138)
 
 var art_texture: Texture2D
 
