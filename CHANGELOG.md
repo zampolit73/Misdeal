@@ -1,3 +1,10 @@
+## 2026-10-20 — D306: Real Grave Bell Wizard condition visibility and combat location
+
+- Reviewed user screenshots of actual D303 illustrated Battle UI, with four tactics, Grave Bellkeeper, optional wizard challenge and combat.
+- Fixed nested Wizard objective label obscured by the later-appended engraved overlay: moved live label above ornaments, increased contrast and added readable aged-bronze panel styling.
+- Made the same optional objective panel move from left lower prep margin to unobstructed upper-left during real Fight, without changing rule text, +15-gold reward, enemy death order or HUD input.
+- Added actual `grave_bell` native Godot smoke plus GitHub Actions gate for the objective's visibility/contrast, state and real Fight transition. CI/native D306 PASS and user in-game visual signoff remain pending.
+
 ## 2026-10-20 — D305: Verify direct GitHub publication of approved Battle DS3 modules
 
 - Confirmed `main` commit `a933bc36` already published all five approved game-ready WebP skins and five full-size source WebPs plus manifest.
