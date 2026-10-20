@@ -1,3 +1,12 @@
+## D302 — REOPEN Battle DS3 against actual accepted art reference (2026-10-20)
+
+- [x] User explicitly rejected D301 fidelity: `«Все еще не похоже на референс»`; cancel proposed Battle 1.0 signoff and next-screen migration.
+- [x] Diagnose: actual in-game bottom/upper panels are still procedural/SVG UI rectangles decorated with four small source-painted ornaments; original concept instead paints complete physically credible structures.
+- [x] Reject naive full-panel crop/inpainting: it smears baked Russian words/button imagery; cannot ship it as independent genuine Godot controls.
+- [ ] Author clean, high-resolution, text-free material art foundations directly from the accepted second concept, with real aged brass/blackened wood/oxblood/red cloth and reliable cutouts/skin states; maintain clear 1280×720 button/hitbox geometry.
+- [ ] Wire background skins into live Battle `TextureRect`/resource layers, preserve all 3–5 tactical states, labels, target preview, Fight, HP/actors/AI, arena art and RunState.
+- [ ] Run native Godot 4.7.x smoke; compare real 1280×720 screenshots side by side to the accepted 1672×941 reference; require explicit user approval before locking Battle DS3.
+
 ## D301 — Remove duplicate tactical hover popups (2026-10-20)
 
 - [x] Inspect user's real D300 `КОСТЯНОЙ ДОЗОР` battle screenshot and identify overlapping native tooltip above the identical lower command description.
