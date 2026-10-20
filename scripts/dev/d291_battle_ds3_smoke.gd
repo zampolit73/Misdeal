@@ -3,6 +3,7 @@ extends SceneTree
 # D291 native real Battle smoke: active tactics and UI in the production scene,
 # using RunState and the original battle script (not a mock preview or bitmap).
 const SCENE_PATH := "res://scenes/battle/battle.tscn"
+const APPROVED_BATTLE_FRAGMENTS := preload("res://scripts/ui/battle_reference_fragments.gd")
 
 func _initialize() -> void:
 	call_deferred("_check")
@@ -84,9 +85,8 @@ func _check() -> void:
 		if ornament.size != painted[art_path]:
 			_fail("D299 artwork outside authored screen dimensions: " + str(art_path))
 			return
-	var pack := load("res://scripts/ui/battle_reference_fragments.gd") as Script
 	for id in ["banner", "medallion", "candles", "wax_ribbon"]:
-		var tex := pack.call("get_fragment", id) as Texture2D
+		var tex := APPROVED_BATTLE_FRAGMENTS.get_fragment(id) as Texture2D
 		if tex == null or tex.get_image() == null or tex.get_image().is_empty():
 			_fail("D299 source alpha WebP not really decoded: " + id)
 			return
