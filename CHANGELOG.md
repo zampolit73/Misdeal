@@ -1,3 +1,11 @@
+## 2026-10-21 — D311: integrate user's selected third Wizard art module
+
+- User selected third illustrated Battle Wizard plaque concept with hooded character medallion and restrained bronze/wood, replacing previous D307 ornate silhouette art direction.
+- Extracted original selected painted panel from concept, removed all baked rule/heading lettering, published isolated RGBA source and game WebP binaries in `assets/pixel/ui/battle_ds3_d311/`.
+- Reused fixed-size D309 drawing contract, draw at 258×138 instead of imported WebP 286×153; relocated live header/body labels in independent material wells for original dynamic rule/bonus/failure data.
+- Updated real Battle and D308 F6 regression checks and CI asset triggers; original arena, animated units, stats, 3–5 tactics, actual Wizard payouts and DS2 restore point untouched.
+- Awaiting native Godot smoke result and visual screenshots for final runtime approval.
+
 ## 2026-10-21 — D310 real Godot screenshots confirm D309 layout repair
 
 - Inspected fresh user preparation and live-combat screenshots of `Могильный звон`: approved Battle modules unchanged, Wizard decorative panel now remains compact in both locations, no longer covers combatants or overflows screen.
