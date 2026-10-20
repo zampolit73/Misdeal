@@ -1,3 +1,12 @@
+## D296 — Screenshot-driven second Battle DS3 finish (2026-10-20)
+
+- [x] Review actual user native screenshot of D295 `Костяной рой`: **layout functional, visuals still too flat**. No visual signoff.
+- [x] Implement source-authored embossed relief/cut corners/patina for real live Battle panels and tactics, restrained transparent upper ledgers, SystemFont serif heading/order/Fight text with Cyrillic fallbacks; preserve real state and input.
+- [x] Extend original real-scene smoke for new ornament children, input noninterception, Cyrillic-ready font overrides and geometry.
+- [ ] Confirm official Godot 4.7.2 native import/smoke in Actions; fix any parse or rendering errors.
+- [ ] Request actual post-D296 1280×720 screenshot before aesthetic acceptance; inspect 3/4/5 tactics, title clipping, mouse clicks, right target preview and special objective.
+- [ ] Only after approved Battle art consider other DS3 surfaces. DS2 backup stays immutable.
+
 ## D295 — User-selected second Battle DS3 concept (2026-10-20)
 
 - [x] Reject D293 screenshot as still visually cheap (flat panels against excellent approved painted arena).
