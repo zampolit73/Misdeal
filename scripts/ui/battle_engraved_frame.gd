@@ -5,6 +5,7 @@ extends Control
 # Shape/cuts, grooves and patina are redrawn at native UI resolution.
 
 var kind: String = "steel"
+var order_symbol: String = ""
 
 
 func _ready() -> void:
@@ -108,3 +109,41 @@ func _draw_order(w: float, h: float, selected: bool) -> void:
 		draw_line(Vector2(x, h - 8), Vector2(x - side * 5.0, h - 3), rim, 1.0, true)
 	if selected:
 		draw_line(Vector2(18, h - 6), Vector2(w - 18, h - 6), Color(0.98, 0.70, 0.38, 0.94), 2.0, true)
+	# On ordinary three-order layouts, each engraved token has its own tiny
+	# truthful insignia. In dense four/five-order layouts text takes priority.
+	if w >= 168.0:
+		_draw_order_symbol(Vector2(37, h * 0.50), gleam)
+
+
+
+func _draw_order_symbol(at: Vector2, tone: Color) -> void:
+	match order_symbol:
+		"AssaultOrderButton":
+			# Crossed swords.
+			draw_line(at + Vector2(-6, -6), at + Vector2(6, 6), tone, 1.6, true)
+			draw_line(at + Vector2(6, -6), at + Vector2(-6, 6), tone, 1.6, true)
+			draw_line(at + Vector2(-7, 1), at + Vector2(-1, 7), tone, 1.2, true)
+			draw_line(at + Vector2(7, 1), at + Vector2(1, 7), tone, 1.2, true)
+		"HuntOrderButton":
+			# Curved bow and arrow.
+			draw_arc(at + Vector2(-4, 0), 7.0, -PI * 0.46, PI * 0.46, 12, tone, 1.4, true)
+			draw_line(at + Vector2(-2, -7), at + Vector2(-2, 7), tone, 1.0, true)
+			draw_line(at + Vector2(-8, 0), at + Vector2(8, 0), tone, 1.4, true)
+			draw_line(at + Vector2(5, -3), at + Vector2(8, 0), tone, 1.3, true)
+			draw_line(at + Vector2(5, 3), at + Vector2(8, 0), tone, 1.3, true)
+		"FormationOrderButton":
+			# Shield.
+			var shield := PackedVector2Array([
+				at + Vector2(-6, -7), at + Vector2(6, -7),
+				at + Vector2(6, 2), at + Vector2(0, 9),
+				at + Vector2(-6, 2), at + Vector2(-6, -7)
+			])
+			draw_polyline(shield, tone, 1.35, true)
+			draw_line(at + Vector2(0, -6), at + Vector2(0, 6), tone, 1.0, true)
+		"SacrificeOrderButton":
+			_draw_diamond(at, 7.0, tone)
+			draw_line(at + Vector2(0, -5), at + Vector2(0, 5), tone, 1.15, true)
+		"DefianceOrderButton":
+			draw_arc(at + Vector2(-3, 0), 5.0, -PI * 0.65, PI * 0.70, 10, tone, 1.4, true)
+			draw_arc(at + Vector2(3, 0), 5.0, PI * 0.35, PI * 1.65, 10, tone, 1.4, true)
+			draw_line(at + Vector2(-1, -1), at + Vector2(2, -4), tone, 1.3, true)
