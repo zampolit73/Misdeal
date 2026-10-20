@@ -1,3 +1,12 @@
+## D305 — Binary publication verified; next real Battle QA (2026-10-20)
+
+- [x] Confirm GitHub `main` already contains all ten D303 original/adapted WebP artworks and `manifest.json` at `a933bc36`.
+- [x] Verify **all five live WebP blob SHA1 hashes** match the approved art package byte-for-byte.
+- [x] Confirm `battle_approved_modules.gd` consumes those exact `*_game.webp` files; no manual install/push is necessary.
+- [ ] Confirm actual Godot 4.7.x native Battle import/regression on the artwork-installed `main`.
+- [ ] User `git -c gc.auto=0 pull --ff-only`, open Battle, test hover/3–5 tactics/Fight and share screenshot for art approval.
+- [ ] Keep Reward/Shop DS3 expansion blocked until genuine Battle art approval.
+
 ## D304 — Implement five user-approved Battle UI module illustrations (2026-10-20)
 
 - [x] Verify D303 approved source ZIP: five independent genuine RGBA originals, no baked dynamic text.
