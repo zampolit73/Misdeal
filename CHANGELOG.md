@@ -1,3 +1,10 @@
+## 2026-10-20 — D304 approved modular Battle skin integration scaffold
+
+- Added optional true full-panel user-approved D303 source-derived art skins under real Battle Controls, with no fake labels/buttons and safe D301 fallback when the binary source pack has not yet been installed.
+- Kept the actual three-to-five tactical orders, click/selected and hover description logic, red Fight and targeting callbacks, original arenas/units/HP and RunState unchanged.
+- Added a one-time Windows PowerShell installer/publisher with strict SHA256 checks and isolated path staging; user downloads genuine art ZIP and the script commits the source-derived images to GitHub, not general modified Godot files.
+- Extended real Battle native smoke and Godot CI triggers to accommodate approved art/fallback. **Binary publication, native Godot evidence and in-game visual signoff remain pending**.
+
 ## 2026-10-20 — D303: user art approval of five modular Gothic Battle UI source images
 
 - User signed off five independent artistically rich, transparent, empty Battle UI skins: command cabinet, Fight cabinet, tactic idle, tactic selected, crimson Fight action.
