@@ -10,6 +10,7 @@ const DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
 const WEBP_TEXTURE := preload("res://scripts/ui/runtime_webp_texture.gd")
 const ENGRAVED_FRAME := preload("res://scripts/ui/battle_engraved_frame.gd")
 const PAINTED_ART := preload("res://scripts/ui/battle_reference_fragments.gd")
+const D303_APPROVED := preload("res://scripts/ui/battle_approved_modules.gd")
 const ORNAMENT_DIR := "res://assets/pixel/ui/squad_dossier_d287/"
 const GOTHIC_ART_DIR := "res://assets/pixel/ui/battle_ds3_d298/"
 
@@ -78,6 +79,9 @@ static func apply(scene: Control) -> void:
 	# Continue may take the place of Fight after win; retain its legibility
 	# without making it look like a second Fight button.
 	# All original Button.pressed/toggled handlers remain owned by battle.gd.
+	# D304: replace the old paint-on-flat-rectangles when all five approved
+	# modules are installed. Fallback to D301 chrome on a code-only checkout.
+	D303_APPROVED.apply(scene)
 
 
 # Native 1280x720 D295 composition from approved concept 2. All positions
@@ -422,6 +426,9 @@ static func style_tactic(button: Button, selected: bool, accent: Color) -> void:
 	button.add_theme_color_override("font_color", PARCHMENT_BRIGHT if selected else Color(0.82, 0.73, 0.61))
 	button.add_theme_color_override("font_pressed_color", PARCHMENT_BRIGHT)
 	button.add_theme_color_override("font_hover_color", PARCHMENT_BRIGHT)
+	# A real Button, not a painted fake. Switch selected/idle user-approved
+	# art every time the production selector changes the actual order.
+	D303_APPROVED.style_tactic(button, selected)
 
 
 static func style_primary(button: Button, accent: Color) -> void:
@@ -431,6 +438,8 @@ static func style_primary(button: Button, accent: Color) -> void:
 	button.add_theme_color_override("font_color", PARCHMENT_BRIGHT)
 	button.add_theme_color_override("font_hover_color", Color(1, 0.95, 0.81))
 	button.add_theme_color_override("font_pressed_color", Color(1, 0.96, 0.86))
+	if button.name == "FightButton":
+		D303_APPROVED.style_fight(button)
 
 
 static func style_secondary(button: Button, accent: Color) -> void:
