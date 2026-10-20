@@ -1,3 +1,10 @@
+## 2026-10-20 — D307 Gothic Wizard condition candidate implemented
+
+- Published a new text-free illustrated `wizard_condition_game.webp` and full-resolution `wizard_condition_source.webp` directly as binary Git objects.
+- Integrated the painted frame with separate dynamic title/body labels on the actual optional Battle Wizard challenge; retired overlapping legacy chrome only when art imports. Original ObjectiveLabel remains the sole canonical gameplay text source.
+- Synced text after legitimate initial, failure, countdown and bellkeeper-first updates; no change to side wager reward, battle AI, tactical controls or arena.
+- Extended real Grave Bell native regression and GitHub Actions asset triggers. User-local Godot rendering and explicit artistic approval remain pending.
+
 ## 2026-10-20 — D306: Real Grave Bell Wizard condition visibility and combat location
 
 - Reviewed user screenshots of actual D303 illustrated Battle UI, with four tactics, Grave Bellkeeper, optional wizard challenge and combat.
