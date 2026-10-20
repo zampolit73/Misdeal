@@ -1,3 +1,7 @@
+## D296 — User Godot screenshot of D295 is the material quality gate
+
+D295 user screenshot of `Костяной рой` (second Gothic Battle concept) exposed visually flat dark boxes and generic typography despite successfully reorganized HUD. D296 adds opt-in Battle-only vector etched chrome (`scripts/ui/battle_engraved_frame.gd`), aged bronze highlights, native Cyrillic-capable OS serif fallback font for titles/tactics/Fight, transparent top title/progress insets and selected token detail. Decorative Controls ignore mouse and cannot replace live labels/toggles. **Post-D296 local screenshot and native CI pending**, no global DS3 rollout, no new gameplay or background edits.
+
 ## D295 — Approved second Battle design direction, visual QA pending
 
 User chose the second of two rendered replacement compositions after a real D293 Battle screenshot remained too cheap. Selected look is a **lighter minimal Gothic overlay**, NOT maximal prop ornament: slim upper inscriptions; center-bottom inlaid order board with live 3–5 tactical Buttons and copy; separated crimson action at right; no large dark slabs. Scope: real `scripts/battle/battle_ds3_pass.gd`, a UI-layout hook in `battle.gd`, and native `d291_battle_ds3_smoke.gd`. Original Arena scene x20/y96, unit positions/feet, all 3–5 unlocked tactics, mechanics and Battle→Reward untouched. D295 new actual screenshot and CI are required before runtime art signoff. DS2 frozen branch still available.
