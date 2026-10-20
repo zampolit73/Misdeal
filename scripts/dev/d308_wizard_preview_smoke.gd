@@ -22,12 +22,12 @@ func _verify() -> void:
 	if art == null or art.get("art_texture") == null:
 		_fail("approved D307 binary art did not load in the F6 scene")
 		return
-	if art.size != Vector2(252, 158) or art.position != Vector2(-17, -20):
-		_fail("D309 F6 art failed to stay inside a compact fixed-size canvas")
+	if art.size != Vector2(286, 153) or art.position != Vector2(-15, -12):
+		_fail("D311 F6 art failed to stay inside a compact fixed-size canvas")
 		return
 	var initial_bounds := Rect2(panel.position + art.position, art.size)
-	if initial_bounds.position.y < 0 or initial_bounds.end.y > 720:
-		_fail("D309 F6 art clips beyond the 720px preparation viewport")
+	if initial_bounds.position.y < 0 or initial_bounds.end.y > 720 or initial_bounds.end.x > 330:
+		_fail("D311 F6 art clips beyond the 720px preparation viewport")
 		return
 	if art.mouse_filter != Control.MOUSE_FILTER_IGNORE:
 		_fail("D307 art can intercept preview controls")
@@ -52,8 +52,8 @@ func _verify() -> void:
 		_fail("combat preview does not use original D306 geometry")
 		return
 	var combat_bounds := Rect2(panel.position + art.position, art.size)
-	if combat_bounds.end.x > 360 or combat_bounds.end.y > 320:
-		_fail("D309 F6 combat artwork grew past its designated corner")
+	if combat_bounds.end.x > 380 or combat_bounds.end.y > 320:
+		_fail("D311 F6 combat artwork grew past its designated corner")
 		return
 	scene.call("_set_outcome", 1)
 	if header.text != "УСЛОВИЕ ВЫПОЛНЕНО" or not body.text.contains("Звонарь пал первым"):
