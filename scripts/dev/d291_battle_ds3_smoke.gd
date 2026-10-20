@@ -4,6 +4,7 @@ extends SceneTree
 # using RunState and the original battle script (not a mock preview or bitmap).
 const SCENE_PATH := "res://scenes/battle/battle.tscn"
 const APPROVED_BATTLE_FRAGMENTS := preload("res://scripts/ui/battle_reference_fragments.gd")
+const D303_APPROVED := preload("res://scripts/ui/battle_approved_modules.gd")
 
 func _initialize() -> void:
 	call_deferred("_check")
@@ -30,16 +31,26 @@ func _check() -> void:
 	root.add_child(scene)
 	await process_frame
 
+	# D304: allow both a code-only checkout with D301 fallback and a
+	# checkout with all five approved D303 binary art skins installed.
+	var approved_art: bool = D303_APPROVED.available()
 	# D295 selected concept 2: slim top ledgers, centered live command tray,
 	# separated right action; conditional objective moved left, no collisions.
 	var panels := ["TopHudPanel", "RunHudPanel", "BottomHudPanel", "FightHudPanel", "WizardCommentaryPanel", "SideObjectivePanel"]
 	for path in panels:
 		var plate := scene.get_node(path) as Panel
-		var style := plate.get_theme_stylebox("panel") as StyleBoxFlat
-		var expected_shadow: int = 5 if path == "BottomHudPanel" or path == "FightHudPanel" else 2
-		if style == null or style.border_width_left != 1 or style.shadow_size != expected_shadow:
-			_fail("D295 selected minimal Gothic material not loaded: " + path)
-			return
+		var full_paint: bool = approved_art and (path == "BottomHudPanel" or path == "FightHudPanel")
+		var plate_style := plate.get_theme_stylebox("panel")
+		if full_paint:
+			if not (plate_style is StyleBoxEmpty):
+				_fail("D304 original frame still visible behind painted material: " + path)
+				return
+		else:
+			var style := plate_style as StyleBoxFlat
+			var expected_shadow: int = 5 if path == "BottomHudPanel" or path == "FightHudPanel" else 2
+			if style == null or style.border_width_left != 1 or style.shadow_size != expected_shadow:
+				_fail("D295 selected material not loaded: " + path)
+				return
 		var expected_mouse: int = Control.MOUSE_FILTER_STOP if path == "RunHudPanel" else Control.MOUSE_FILTER_IGNORE
 		if plate.mouse_filter != expected_mouse and (path == "RunHudPanel" or plate.mouse_filter != Control.MOUSE_FILTER_PASS):
 			_fail("battle panel mouse interception changed: " + path)
@@ -105,6 +116,23 @@ func _check() -> void:
 		if raw_image.get_pixel(0, 0).a > 0.02:
 			_fail("D300 fragment transparent corner became a black rectangle: " + str(id))
 			return
+	if approved_art:
+		var command_art := scene.get_node_or_null("BottomHudPanel/D304CommandArt") as TextureRect
+		var fight_art := scene.get_node_or_null("FightHudPanel/D304FightArt") as TextureRect
+		if command_art == null or fight_art == null or command_art.texture == null or fight_art.texture == null:
+			_fail("D304 approved full-size UI modules were not imported")
+			return
+		if command_art.mouse_filter != Control.MOUSE_FILTER_IGNORE or fight_art.mouse_filter != Control.MOUSE_FILTER_IGNORE:
+			_fail("D304 painted material may not intercept a live UI control")
+			return
+		if command_art.size != Vector2(691, 175) or fight_art.size != Vector2(293, 175):
+			_fail("D304 approved module scaling does not match native UI footprint")
+			return
+		for art_path in ["BottomHudPanel/DS3CommandPlate", "FightHudPanel/DS3FightPlate", "BottomHudPanel/DS3PaintedCandles", "FightHudPanel/DS3PaintedWaxRibbon"]:
+			var old_fragment := scene.get_node(art_path) as CanvasItem
+			if old_fragment.visible:
+				_fail("D304 duplicate old SVG/painted fragment overlaps approved module: " + art_path)
+				return
 	var header := scene.get_node("Title") as Label
 	if header.position.x < 100.0 or header.size.x < 800.0:
 		_fail("D298 header title no longer clears physical red hanging banner")
@@ -235,34 +263,54 @@ func _check() -> void:
 		_fail("D301 selected tactic hover should not replace its own description")
 		return
 	hunt.mouse_exited.emit()
-	var hunt_style := hunt.get_theme_stylebox("normal") as StyleBoxFlat
 	var assault := scene.get_node("AssaultOrderButton") as Button
-	var assault_style := assault.get_theme_stylebox("normal") as StyleBoxFlat
-	if hunt_style == null or assault_style == null or hunt_style.border_width_left <= assault_style.border_width_left:
-		_fail("DS3 selected order highlight not reapplied after original selector")
-		return
 	var hunt_inlay := hunt.get_node_or_null("DS3SelectedInlay") as ColorRect
 	var assault_inlay := assault.get_node_or_null("DS3SelectedInlay") as ColorRect
-	if hunt_inlay == null or assault_inlay == null or not hunt_inlay.visible or assault_inlay.visible:
-		_fail("D293 selected Hunt token / idle Assault visibility wrong")
-		return
 	var token := hunt.get_node_or_null("DS3OrderMark") as ColorRect
-	if token == null or not token.visible:
-		_fail("D293 selected Tactic heraldic mark missing")
-		return
-	if hunt_style.bg_color.r <= assault_style.bg_color.r + 0.10:
-		_fail("D292 selected tactical fill lacks contrast")
-		return
+	if approved_art:
+		var selected_skin := hunt.get_theme_stylebox("normal") as StyleBoxTexture
+		var idle_skin := assault.get_theme_stylebox("normal") as StyleBoxTexture
+		if selected_skin == null or idle_skin == null or selected_skin.texture == idle_skin.texture:
+			_fail("D304 live Hunt selection does not change to an approved skin")
+			return
+		if hunt_inlay.visible or assault_inlay.visible or token.visible:
+			_fail("D304 old vector token overlay obscures approved painted skin")
+			return
+		if str((hunt.get_node("DS3EtchedToken") as Control).get("kind")) != "order_symbol_only":
+			_fail("D304 selected real order icon is missing or adds double borders")
+			return
+	else:
+		var hunt_style := hunt.get_theme_stylebox("normal") as StyleBoxFlat
+		var assault_style := assault.get_theme_stylebox("normal") as StyleBoxFlat
+		if hunt_style == null or assault_style == null or hunt_style.border_width_left <= assault_style.border_width_left:
+			_fail("DS3 fallback selected order highlight not reapplied after original selector")
+			return
+		if hunt_inlay == null or assault_inlay == null or not hunt_inlay.visible or assault_inlay.visible:
+			_fail("D293 fallback Hunt token / idle Assault visibility wrong")
+			return
+		if token == null or not token.visible:
+			_fail("D293 fallback selected heraldic mark missing")
+			return
+		if hunt_style.bg_color.r <= assault_style.bg_color.r + 0.10:
+			_fail("D292 fallback selected tactical fill lacks contrast")
+			return
 	scene.call("_select_tactical_order", "formation", false)
 	if scene.get("tactical_order") != "formation" or not (scene.get_node("FormationOrderButton") as Button).button_pressed:
 		_fail("real Formation action or UI state not preserved")
 		return
-	if hunt_inlay.visible or not (scene.get_node("FormationOrderButton/DS3SelectedInlay") as ColorRect).visible:
-		_fail("D293 selected token did not follow Formation")
-		return
-	if token.visible:
-		_fail("D293 selected Hunt icon stayed visible after switching to Formation")
-		return
+	if approved_art:
+		var formation_skin := (scene.get_node("FormationOrderButton") as Button).get_theme_stylebox("normal") as StyleBoxTexture
+		var idle_hunt_skin := hunt.get_theme_stylebox("normal") as StyleBoxTexture
+		if formation_skin == null or idle_hunt_skin == null or formation_skin.texture == idle_hunt_skin.texture:
+			_fail("D304 formation selection did not swap genuine painted tactics")
+			return
+	else:
+		if hunt_inlay.visible or not (scene.get_node("FormationOrderButton/DS3SelectedInlay") as ColorRect).visible:
+			_fail("D293 fallback selected token did not follow Formation")
+			return
+		if token.visible:
+			_fail("D293 fallback selected Hunt icon stayed visible after switching to Formation")
+			return
 
 	for btn in ["TargetPreviewButton", "FightButton", "ContinueButton", "RestartButton"]:
 		var control := scene.get_node(btn) as Button
@@ -279,7 +327,7 @@ func _check() -> void:
 	if actual_units.is_empty():
 		_fail("no live BattleUnits were instantiated")
 		return
-	print("D291_BATTLE_DS3_NATIVE_PASS: D301 in-place tactic preview, D300 painted HUD, original arena and native targeting")
+	print("D291_BATTLE_DS3_NATIVE_PASS: D304 painted modules / fallback, D301 live tactics, arena and targeting")
 	scene.queue_free()
 	await process_frame
 	quit(0)
