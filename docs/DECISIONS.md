@@ -1,3 +1,7 @@
+## D309 — Painted Wizard ornament must NEVER adopt its native imported texture size (2026-10-21)
+
+D307 screen-sized images made an optional HUD decoration about three times the intended display size in *real* Godot, covering the heroes. This cannot be solved by more art polish or assuming `TextureRect.size` reliably controls native minimum geometry. Lock a visual constraint: **every painted Wizard plaque draws explicitly into a fixed pixel Rect2** (252×158 in a 1280×720 design viewport) through a minimum-free `Control._draw()`. Panel can protrude modestly beyond its functional 216×133 bounds, but may never overflow the viewport or cover combatants. Keep authentic two-label text, dynamic gameplay conditions, no fake text baked in, and accessible F6 preview. Require actual screenshot QA.
+
 ## D308 — Art/UX previews must be directly runnable without altering normal Misdeal progress (2026-10-20)
 
 User wants to inspect the latest D307 Wizard UI in Godot without replaying 7+ Fate cards to encounter the condition. Deliver a tiny `scenes/dev/` **F6-only test scene** that calls the **same production D307 drawing/text layout helpers** as Battle, uses the approved arena image only for context and can locally simulate phase, reward-success and fail text. Keep the canonical ObjectiveLabel source of truth and provide a button to launch the real Grave Bell Battle in the isolated F6 process. Do not change `project.godot` main_scene or add test controls to normal gameplay. Preserve all actual combat and side-objective payouts.
