@@ -1,7 +1,7 @@
 extends SceneTree
 
 # D285 tests the real live Godot dossier, not the approved static mockup.
-const SQUAD_SCENE := preload("res://scenes/table/squad_status.tscn")
+# Load dynamically AFTER creating /root/RunState in script-mode test.
 const PORTRAITS := ["knight", "ranger", "mage"]
 
 func _initialize() -> void:
@@ -17,7 +17,8 @@ func _verify() -> void:
 	if not state.call("choose_protagonist", "knight"):
 		_fail("cannot choose starting Knight")
 		return
-	var dossier := SQUAD_SCENE.instantiate() as Control
+	var packed := load("res://scenes/table/squad_status.tscn") as PackedScene
+	var dossier := packed.instantiate() as Control
 	if dossier == null:
 		_fail("dossier scene invalid")
 		return
