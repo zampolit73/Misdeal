@@ -39,13 +39,24 @@ func _check() -> void:
 	if panel.position != Vector2(22, 575) or panel.size != Vector2(216, 133):
 		_fail("preparation challenge displaced from left command margin")
 		return
-	var artwork := panel.get_node_or_null("D307WizardArt") as TextureRect
+	var artwork := panel.get_node_or_null("D307WizardArt") as Control
 	if artwork != null:
-		if artwork.texture == null or artwork.mouse_filter != Control.MOUSE_FILTER_IGNORE:
-			_fail("D307 painted Wizard module missing or intercepts controls")
+		var source_texture := artwork.get("art_texture") as Texture2D
+		if source_texture == null or artwork.mouse_filter != Control.MOUSE_FILTER_IGNORE:
+			_fail("D309 painted Wizard canvas missing art or intercepts controls")
 			return
-		if artwork.size != Vector2(252, 158) or not (panel.get_theme_stylebox("panel") is StyleBoxEmpty):
-			_fail("D307 Wizard art still sits on duplicate black software plaque")
+		if artwork.size != Vector2(252, 158) or artwork.position != Vector2(-17, -20):
+			_fail("D309 Wizard asset is no longer rendered in the fixed compact bounds")
+			return
+		if artwork.custom_minimum_size != Vector2.ZERO or not artwork.has_method("_draw"):
+			_fail("D309 compact art uses a texture-dependent minimum or has no explicit draw")
+			return
+		if not (panel.get_theme_stylebox("panel") is StyleBoxEmpty):
+			_fail("D309 old plaque still displays behind approved image")
+			return
+		var art_bounds := Rect2(panel.position + artwork.position, artwork.size)
+		if art_bounds.position.y < 0 or art_bounds.end.y > 720 or art_bounds.end.x > 1280:
+			_fail("D309 wizard frame crops outside the 1280x720 preparation viewport")
 			return
 		var heading := panel.get_node("D307WizardHeading") as Label
 		var body := panel.get_node("D307WizardBody") as Label
@@ -83,6 +94,11 @@ func _check() -> void:
 	if not panel.visible or panel.position != Vector2(98, 165):
 		_fail("D306 optional challenge did not move to safe combat corner")
 		return
+	if artwork != null:
+		var combat_art_bounds := Rect2(panel.position + artwork.position, artwork.size)
+		if combat_art_bounds.position.y < 100 or combat_art_bounds.end.y > 320 or combat_art_bounds.end.x > 360:
+			_fail("D309 Wizard art obscures units or returns to full source resolution in combat")
+			return
 	if objective.text != original_text:
 		_fail("D306 movement mutated the reward rule")
 		return
