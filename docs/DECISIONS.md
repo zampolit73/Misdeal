@@ -1,3 +1,7 @@
+## D297 — Dense Battle conditions must remain inspectable without crowding the scene (2026-10-20)
+
+Real D296 Godot `ЗАСАДА НА КЛАДБИЩЕ` screenshot shows solo conditions crammed under `КАРТА 2/12`. Freeze arena geometry and 3–5 tactical mechanics. **Presentation rule:** in the slim DS3 run plate show a compact maximum-two-row summary with precise underlying values; when there are more rows, indicate `+N` and expose **all original RunState conditions unedited on hover**. Never silently erase debt, enemy buffs or unlock notifications from the inspectable content. Retain second, light Gothic design direction, no flat painted UI art. Tiny tactic engravings remain real button decoration and must not cover the labels or capture clicks. Real user aesthetic signoff remains open.
+
 ## D296 — Fix material authenticity of approved light Gothic Battle chrome (2026-10-20)
 
 A screenshot of actual D295 `Костяной рой` proves reorganizing boxes does **not** yet reproduce selected second DS3 concept. User has **not** approved the screenshot. Keep compact arena-first composition, but use **subtly etched physical shapes and gothic/serif typography** rather than adding more flat borders or switching to the unselected busy first concept. Native-drawn `battle_engraved_frame.gd` is decorative only, no UI data, no input events; optional local OS serif can fall back for Cyrillic. Preserve core real `Button`s, source `RunState`, tactical toggles and arena. Official native/art tests still required.
