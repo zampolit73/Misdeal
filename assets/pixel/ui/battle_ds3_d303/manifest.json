@@ -1,0 +1,25 @@
+{
+  "version": "D304",
+  "source": "User-approved D303 standalone Gothic modules",
+  "runtime_assets": [
+    "command_game.webp",
+    "fight_panel_game.webp",
+    "idle_game.webp",
+    "selected_game.webp",
+    "fight_button_game.webp"
+  ],
+  "asset_hashes_sha256": {
+    "command_game.webp": "dedee26e488bd75ecbda28014dd62cc16cb9212e8d023613f330d6c4a66dcc47",
+    "fight_panel_game.webp": "343f85ec4af6088f51112cf152b6538162d625dee887b6b78413fe1764cf041c",
+    "idle_game.webp": "d9a08beb75a645134c114b4a7362721ecbf824fd1c65d359a1c12da2263d46a9",
+    "selected_game.webp": "991635cdbb1de565f48f4b9a9bcf9bf6ad5262064361e9c07d480f21a1e206db",
+    "fight_button_game.webp": "bdccdd7d0730b9e8cce312de6eb5d754c548aa2c9d186d0b0363ea8ab0d3d4c6",
+    "battle_command_base.webp": "fcb2007b73096bb4339c98275c968c322425c7552a590bc3dce5dee4d86b2960",
+    "battle_fight_panel_base.webp": "01ad32c92be25ec1a3c8f1f80886af61fc1377c3b0a470005c247b01d57dfbbc",
+    "tactic_button_idle.webp": "0d11557470a11e450ddf147a2cb34c2d1bfc5903a2c5857fc1832c8f32d26c06",
+    "tactic_button_selected.webp": "42f6f12416896d6f01862bb240c24ac852b866aab1f29223d23571ca952bdf74",
+    "battle_fight_button.webp": "fd8e0dcc3969fac73dee2654b1d695fdd66faff2e7f756ea5106f68f9339138a"
+  },
+  "status": "Binary assets committed; native Godot validation pending",
+  "canvas": "1280x720"
+}
