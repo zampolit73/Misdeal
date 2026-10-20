@@ -85,10 +85,25 @@ func _check() -> void:
 		if ornament.size != painted[art_path]:
 			_fail("D299 artwork outside authored screen dimensions: " + str(art_path))
 			return
-	for id in ["banner", "medallion", "candles", "wax_ribbon"]:
+	# D300 upgrades the actual artwork, not the canvas coordinates.
+	# Keep D299 packed source as rollback but never load its smaller pixels.
+	var high_quality_sizes := {
+		"banner": Vector2(111, 189),
+		"medallion": Vector2(88, 113),
+		"candles": Vector2(57, 172),
+		"wax_ribbon": Vector2(84, 178),
+	}
+	for id in high_quality_sizes:
 		var tex := APPROVED_BATTLE_FRAGMENTS.get_fragment(id) as Texture2D
 		if tex == null or tex.get_image() == null or tex.get_image().is_empty():
-			_fail("D299 source alpha WebP not really decoded: " + id)
+			_fail("D300 source alpha WebP did not decode: " + str(id))
+			return
+		if tex.get_size() != high_quality_sizes[id]:
+			_fail("D300 source material is still the downsampled D299 art: " + str(id))
+			return
+		var raw_image := tex.get_image()
+		if raw_image.get_pixel(0, 0).a > 0.02:
+			_fail("D300 fragment transparent corner became a black rectangle: " + str(id))
 			return
 	var header := scene.get_node("Title") as Label
 	if header.position.x < 100.0 or header.size.x < 800.0:
