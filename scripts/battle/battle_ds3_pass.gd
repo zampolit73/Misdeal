@@ -263,16 +263,21 @@ static func _install_wizard_plaque(scene: Control) -> void:
 		if child.name.begins_with("DS3"):
 			(child as CanvasItem).hide()
 	panel.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
-	var art := TextureRect.new()
+	# D309: avoid TextureRect's imported-image minimum size, which expanded
+	# this 252x158 ornament to the native 756x472 image in the real Godot
+	# screenshots. A Control with explicit draw_texture_rect is size-invariant.
+	var art := Control.new()
 	art.name = "D307WizardArt"
-	art.texture = texture
+	art.set_script(preload("res://scripts/ui/battle_wizard_plaque_canvas.gd"))
+	art.set("art_texture", texture)
+	art.custom_minimum_size = Vector2.ZERO
+	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	panel.add_child(art)
+	art.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
 	art.position = Vector2(-17, -20)
 	art.size = Vector2(252, 158)
-	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	art.stretch_mode = TextureRect.STRETCH_SCALE
-	art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	panel.add_child(art)
+	art.queue_redraw()
 	var headline := Label.new()
 	headline.name = "D307WizardHeading"
 	headline.position = Vector2(55, 22)
