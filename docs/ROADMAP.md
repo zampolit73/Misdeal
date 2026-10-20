@@ -1,3 +1,12 @@
+## D308 — Test D307 candidate in Godot without playing a run (2026-10-20)
+
+- [x] Add standalone test scene `scenes/dev/d308_wizard_panel_preview.tscn` for user direct F6 launch (normal `project.godot` unchanged).
+- [x] Reuse production D307 art import + two-well text synchronization and D306 prep/combat positions, against existing Graveyard backdrop.
+- [x] Build clickable phase, rule and success/failure controls; add a launcher into the genuine Grave Bell Battle for integrated checks.
+- [x] Create D308 native preview smoke and wire it into D291 CI, documenting the short user steps.
+- [ ] Confirm CI-native Godot 4.7.x import and exact F6 GUI screenshot from user's environment.
+- [ ] Fix screenshot-evidenced overflow/spacing in new Wizard art, ask for user approval; do not globally apply a new design before Battle signoff.
+
 ## D307 — Candidate painted Wizard condition module (2026-10-20)
 
 - [x] Reuse the new text-free, alpha-painted Wizard panel rendered in the conversation; create game-quality and full-resolution WebP source assets.
