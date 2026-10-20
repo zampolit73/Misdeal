@@ -1,3 +1,10 @@
+## 2026-10-20 — D299 Reference-source Battle DS3 art integration
+
+- User approved proceeding with the more artistic second Gothic `Могильный перекрёсток` concept instead of D298's simplified vector treatment.
+- Extracted four transparent, scaled WebP decorations **from the approved image pixels**, not hand-rebuilt icon silhouettes: aged crimson banner, compass medallion, tall candles and worn wax ribbon.
+- Added packed base64 material resource and GDScript caching decoder; live Battle swaps overlapping D298 SVG art for these genuine painted fragments, retaining empty command/Fight plates, dynamic labels, actual 3–5 tactics and all existing gameplay/arena.
+- Extended real-Battle native smoke for texture decode, eight layers and no doubled emblem/click interception. Source pack length and checksum independently verified; **native CI and user screenshot remain pending**. [Details](docs/D299_REFERENCE_ART_IMPLEMENTATION.md).
+
 ## 2026-10-20 — D298 Reference-level materials for selected light Gothic Battle DS3
 
 - User requested actual game Battle to approach the richer **second illustrated reference** (D297 was visually functional but still flat).
