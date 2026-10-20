@@ -151,7 +151,7 @@ static func _material(material: String) -> StyleBoxFlat:
 			style.border_width_right = 1
 			style.shadow_size = 5
 		_:
-			style.bg_color = Color(0.028, 0.026, 0.033, 0.74)
+			style.bg_color = Color(0.028, 0.026, 0.033, 0.16)
 			style.border_color = Color(0.52, 0.38, 0.27, 0.53)
 			style.set_border_width_all(1)
 			style.shadow_size = 2
