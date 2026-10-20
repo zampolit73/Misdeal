@@ -7,6 +7,7 @@ on:
       - '.github/workflows/d291-battle-ds3.yml'
       - 'scripts/battle/battle_ds3_pass.gd'
       - 'scripts/ui/battle_approved_modules.gd'
+      - 'scripts/ui/battle_wizard_plaque_canvas.gd'
       - 'scripts/ui/battle_engraved_frame.gd'
       - 'assets/pixel/ui/battle_ds3_d303/**'
       - 'assets/pixel/ui/battle_ds3_d307/**'
