@@ -1,5 +1,9 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D284 — Grave Crossfire: keep existing approved arena (2026-10-20)
+
+After reviewing three proposed replacement concepts and a widened combat-floor variant, the user explicitly decided **«Могильный перекрёсток оставим таким как есть»**. Retain the **existing production** `grave_crossfire` art at `assets/pixel/battle/arenas/arena_redraw_v2/grave_crossfire.webp`. Do **not** integrate any of the newly generated replacement images or change placement, floor/navigation, actors, game logic, UI or combat parameters. Do not reopen this art pass unless the user explicitly requests it.
+
 ## D283 — Selected Bone Ritual and Firing Square visual canon (2026-10-20)
 
 - User-approved `bone_ritual`: moonlit Gothic cathedral ruin with raised altar on the right, sparse ivory rib crescents, cold mountains/arches to the left, broad stone floor; source conversation `лунная_арена_разрушенного_собора.png`. Do not substitute later generated near-duplicates.
