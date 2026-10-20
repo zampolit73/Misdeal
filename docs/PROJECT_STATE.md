@@ -1,5 +1,12 @@
 # Misdeal — Current Project State
 
+## D286 — Screenshot-driven D285 squad dossier polish (2026-10-20)
+
+**Evidence:** user's actual 1280×720-equivalent Godot screenshot after D285. Significant visual defect: 640×480 source portrait rendered by `TextureRect.STRETCH_KEEP_ASPECT_CENTERED` inside the tall 273×445 view, producing ~120px empty black bands above and below the active Knight portrait. Other evidence: cramped 12pt stat text, weak small upgrade marks/relic slots, lengthy party modifiers in a compressed footer.
+
+**Fix:** `f6e5039` changes ONLY `scenes/table/squad_status.tscn`, `scripts/ui/squad_dossier_v3.gd` and D285 live-native smoke: `STRETCH_KEEP_ASPECT_COVERED` fills the portrait slot (cropping edges, not distorting identity); increases live stat font 12→15pt, moves stat header higher and makes more vertical room for 6–9 lines; better role separator and descriptive text; larger upgrade markers/real-state relic boxes; party modifier line on its own wide footer row. Original V7 source portraits and exact D285 third variant direction retained. **No RunState, effect, companion fate or game mechanic changes.** The native Godot 4.7.2 regression **PASS**: https://github.com/zampolit73/Misdeal/actions/runs/39387267091. This verifies loaded portraits, selection, real stats, detail panels, footer and close, including the cover-mode assertion; **new user-local screenshot visual signoff remains OPEN**. Next: `git pull`, show actual dossier at 1280×720 with Knight selected; inspect tight framing (sword/shield/head), legibility and right-panel rhythm before further polish.
+
+
 ## D285 — Squad Dossier third visual option integrated (2026-10-20)
 
 User selected **third** of three rendered dossier design concepts (hybrid: left portrait roster, tall central hero card, clear middle stats and role text, right progression/relic panels, segmented party footer). Implementation is in `scripts/ui/squad_dossier_v3.gd`, wired to actual `scenes/table/squad_status.tscn` and `scripts/table/squad_status.gd`; real RunState data/role switching, upgrade counts, relics, solo modifiers and close preserved. Native Godot 4.7.2 regression initially failed due inferred `selected` boolean type; fixed in commit `2b9e2c5`. Native D285 Actions **PASS**: https://github.com/zampolit73/Misdeal/actions/runs/39386342756. **User screenshot visual validation still OPEN**: ask for one 1280×720 screenshot of real dossier and address only observed differences. This is not a pixel-perfect reproduction claim. No combat/balance changes.

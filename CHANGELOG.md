@@ -1,5 +1,12 @@
 ## 2026-10-20 — D283 Approved Bone Ritual + Firing Square production art
 
+## 2026-10-20 — D286 Squad dossier real-screenshot polish
+
+- Fixed tall portrait black bands by switching only the live `Portrait` TextureRect to aspect COVERED and panel clipping; original V7 Knight/Ranger/Mage paintings retained, with no baked UI.
+- Improved readable stat size and vertical spacing, upgraded right-side progression/relic visual landmarks and split the long footer modifier onto its own line. True RunState counts and effects unchanged.
+- Strengthened native smoke to assert fill mode/stat legibility and right-side marker layout. Godot 4.7.2 CI PASS; real user screenshot recheck pending.
+
+
 ## D285 — Squad Dossier third visual option integrated (2026-10-20)
 
 User selected **third** of three rendered dossier design concepts (hybrid: left portrait roster, tall central hero card, clear middle stats and role text, right progression/relic panels, segmented party footer). Implementation is in `scripts/ui/squad_dossier_v3.gd`, wired to actual `scenes/table/squad_status.tscn` and `scripts/table/squad_status.gd`; real RunState data/role switching, upgrade counts, relics, solo modifiers and close preserved. Native Godot 4.7.2 regression initially failed due inferred `selected` boolean type; fixed in commit `2b9e2c5`. Native D285 Actions **PASS**: https://github.com/zampolit73/Misdeal/actions/runs/39386342756. **User screenshot visual validation still OPEN**: ask for one 1280×720 screenshot of real dossier and address only observed differences. This is not a pixel-perfect reproduction claim. No combat/balance changes.

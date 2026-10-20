@@ -1,5 +1,13 @@
 # Misdeal — Active Roadmap
 
+## D286 — Dossier screenshot correction (2026-10-20)
+
+- [x] Real D285 screenshot diagnosed: tall hero card had severe vertical black bands; stats too tiny and footer crowded.
+- [x] D286 screenshot-directed UI-only correction committed `f6e5039`: cover-mode portrait, stronger stat hierarchy, larger progress/relic markers, multi-row footer; real RunState unchanged.
+- [x] Official native Godot 4.7.2 smoke PASS ([Actions 39387267091](https://github.com/zampolit73/Misdeal/actions/runs/39387267091)).
+- [ ] Real new 1280×720 Godot screenshot of D286 dossier: verify cropped source portrait is not too zoomed, title/stats/empty panels look harmonious; only make screenshot-evidenced adjustments.
+
+
 ## D285 — Squad Dossier third visual option integrated (2026-10-20)
 
 User selected **third** of three rendered dossier design concepts (hybrid: left portrait roster, tall central hero card, clear middle stats and role text, right progression/relic panels, segmented party footer). Implementation is in `scripts/ui/squad_dossier_v3.gd`, wired to actual `scenes/table/squad_status.tscn` and `scripts/table/squad_status.gd`; real RunState data/role switching, upgrade counts, relics, solo modifiers and close preserved. Native Godot 4.7.2 regression initially failed due inferred `selected` boolean type; fixed in commit `2b9e2c5`. Native D285 Actions **PASS**: https://github.com/zampolit73/Misdeal/actions/runs/39386342756. **User screenshot visual validation still OPEN**: ask for one 1280×720 screenshot of real dossier and address only observed differences. This is not a pixel-perfect reproduction claim. No combat/balance changes.
