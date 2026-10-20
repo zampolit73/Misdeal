@@ -19,6 +19,9 @@ const BRONZE_LIGHT := Color(0.81, 0.59, 0.34, 1.0)
 const PARCHMENT := Color(0.90, 0.80, 0.64, 1.0)
 const FADED := Color(0.49, 0.45, 0.45, 1.0)
 const PANEL_DARK := Color(0.031, 0.022, 0.028, 0.965)
+# D287: ONLY isolated transparent ornament scraps from the user-approved final render.
+# No painted Cyrillic text, filled-in stats, item counts or fake UI are embedded.
+const DECOR_DIR := "res://assets/pixel/ui/squad_dossier_d287/"
 
 static func apply(scene: Control) -> void:
 	var frame := scene.get_node("Frame") as Panel
@@ -33,7 +36,14 @@ static func apply(scene: Control) -> void:
 	main_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	main_portrait.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	for path in ["Frame/BuildPanel", "Frame/RelicsPanel"]:
-		(scene.get_node(path) as Panel).add_theme_stylebox_override("panel", _plate(Color(0.032, 0.025, 0.029, 0.98), BRONZE, 1, 6))
+		(scene.get_node(path) as Panel).add_theme_stylebox_override("panel", _plate(Color(0.026, 0.019, 0.023, 0.995), Color(0.56, 0.36, 0.21), 2, 7))
+	# The approved mockup is a reference, NEVER a full-screen runtime image.
+	# These three isolated image details sit BEHIND real Godot labels and markers.
+	_decor_texture(frame, "PortraitRubyCrest", "ruby_crest.webp", Vector2(385, 84), Vector2(78, 78), Vector2i(103, 103), Color(1, 1, 1, 0.93))
+	_gilt_panel(scene.get_node("Frame/BuildPanel") as Panel, "Development", true)
+	_gilt_panel(scene.get_node("Frame/RelicsPanel") as Panel, "Relics", false)
+	_gilt_corners(frame, "Dossier", Vector2(13, 13), Vector2(1162, 626), 35)
+	_gilt_corners(portrait_frame, "HeroPortrait", Vector2(2, 2), Vector2(244, 417), 35)
 	(scene.get_node("Frame/CommonPanel") as Panel).add_theme_stylebox_override("panel", _plate(Color(0.027, 0.023, 0.028, 0.99), BRONZE, 1, 5))
 	for role in ["knight", "ranger", "mage"]:
 		_build_role_card(scene, role)
@@ -90,6 +100,74 @@ static func _make_label(parent: Control, node_name: String, where: Vector2, dime
 	parent.add_child(label)
 	return label
 
+# Parent panels render first; move textured backgrounds before title/other children.
+static func _decor_texture(parent: Control, name: String, filename: String, at: Vector2, area: Vector2, native_size: Vector2i, tint: Color) -> TextureRect:
+	var item := TextureRect.new()
+	item.name = name
+	item.set_script(WEBP_TEXTURE)
+	item.position = at
+	item.size = area
+	item.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	item.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	item.stretch_mode = TextureRect.STRETCH_SCALE
+	item.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	item.modulate = tint
+	parent.add_child(item)
+	item.call("load_webp_path", DECOR_DIR + filename, native_size)
+	return item
+
+
+static func _gilt_corners(parent: Control, prefix: String, near: Vector2, far: Vector2, side: int) -> void:
+	var corners := [Vector2(near.x, near.y), Vector2(far.x, near.y), Vector2(far.x, far.y), Vector2(near.x, far.y)]
+	for i in 4:
+		var ornament := _decor_texture(parent, prefix + "Filigree%d" % i, "gilt_corner.webp", corners[i], Vector2(side, side), Vector2i(53, 53), Color(1, 0.96, 0.89, 0.82))
+		ornament.pivot_offset = Vector2(side, side) * 0.5
+		ornament.rotation = float(i) * PI * 0.5
+
+
+static func _thin_rule(parent: Control, node_name: String, at: Vector2, dimensions: Vector2, tone: Color) -> void:
+	var rule := ColorRect.new()
+	rule.name = node_name
+	rule.position = at
+	rule.size = dimensions
+	rule.color = tone
+	rule.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	parent.add_child(rule)
+
+
+static func _gilt_panel(panel: Panel, prefix: String, with_relief: bool) -> void:
+	if with_relief:
+		var relief := _decor_texture(panel, prefix + "StoneRelief", "carved_knight_relief.webp", Vector2(106, 40), Vector2(138, 91), Vector2i(138, 91), Color(1, 1, 1, 0.72))
+		panel.move_child(relief, 0)
+	_thin_rule(panel, prefix + "TopRule", Vector2(15, 42), Vector2(panel.size.x - 30, 1), Color(0.51, 0.32, 0.20, 0.9))
+	_thin_rule(panel, prefix + "LowerRule", Vector2(15, panel.size.y - 15), Vector2(panel.size.x - 30, 1), Color(0.34, 0.23, 0.16, 0.7))
+	_gilt_corners(panel, prefix, Vector2(4, 4), Vector2(panel.size.x - 32, panel.size.y - 32), 28)
+
+
+static func _upgrade_diamond(frame: Control, index: int) -> void:
+	var gem := Panel.new()
+	gem.name = "UpgradeGem%d" % (index + 1)
+	gem.position = Vector2(862 + index * 97, 197)
+	gem.size = Vector2(36, 36)
+	gem.pivot_offset = Vector2(18, 18)
+	gem.rotation = PI / 4.0
+	gem.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	gem.add_theme_stylebox_override("panel", _plate(Color(0.05, 0.044, 0.046), BRONZE.darkened(0.42), 2, 2))
+	frame.add_child(gem)
+
+
+static func _relic_medallion(rect: Panel) -> void:
+	var medal := Panel.new()
+	medal.name = "Medallion"
+	medal.position = Vector2(19, 12)
+	medal.size = Vector2(53, 53)
+	medal.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var style := _plate(Color(0.043, 0.033, 0.038, 1), Color(0.44, 0.29, 0.18, 1), 2, 2)
+	style.set_corner_radius_all(26)
+	medal.add_theme_stylebox_override("panel", style)
+	rect.add_child(medal)
+
+
 static func _build_role_card(scene: Control, role: String) -> void:
 	var button := scene.get_node("Frame/" + role.capitalize() + "Button") as Button
 	button.clip_contents = true
@@ -145,9 +223,11 @@ static func _build_upgrade_marks(frame: Control) -> void:
 		connector.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		frame.add_child(connector)
 	for i in 3:
-		var marker := _make_label(frame, "UpgradeMarker%d" % (i + 1), Vector2(840 + i * 97, 191), Vector2(81, 51), 37, FADED, false)
-		marker.text = "◇"
+		_upgrade_diamond(frame, i)
+		var marker := _make_label(frame, "UpgradeMarker%d" % (i + 1), Vector2(850 + i * 97, 198), Vector2(60, 35), 25, FADED, false)
+		marker.text = "+"
 		marker.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		marker.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		_make_label(frame, "UpgradeNumber%d" % (i + 1), Vector2(840 + i * 97, 241), Vector2(81, 20), 12, FADED, false).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 static func _build_relic_slots(frame: Control) -> void:
@@ -157,10 +237,13 @@ static func _build_relic_slots(frame: Control) -> void:
 		rect.position = Vector2(832 + i * 105, 440)
 		rect.size = Vector2(91, 75)
 		rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		rect.add_theme_stylebox_override("panel", _plate(Color(0.033, 0.028, 0.033, 1), BRONZE.darkened(0.38), 1, 1))
+		rect.add_theme_stylebox_override("panel", _plate(Color(0.032, 0.024, 0.025, 1), Color(0.52, 0.33, 0.20), 2, 2))
 		frame.add_child(rect)
+		_relic_medallion(rect)
+		_gilt_corners(rect, "Slot%d" % (i + 1), Vector2(2, 2), Vector2(67, 51), 22)
 		var symbol := _make_label(rect, "Symbol", Vector2(4, 10), Vector2(83, 54), 26, FADED, false)
-		symbol.text = "—"
+		symbol.text = "+"
+		symbol.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		symbol.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 static func _build_footer(frame: Control) -> void:
@@ -172,6 +255,8 @@ static func _build_footer(frame: Control) -> void:
 		label.text = headings[i]
 	# Keep the solo/duo modifiers on their own full-width row instead of a tiny squeezed footer.
 	_make_label(footer, "Strength", Vector2(17, 31), Vector2(1095, 24), 13, Color(0.72, 0.64, 0.60), false).horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	for i in [149, 294, 440, 589]:
+		_thin_rule(footer, "ColumnRule%d" % i, Vector2(i, 6), Vector2(1, 20), Color(0.43, 0.28, 0.18, 0.75))
 	var common := footer.get_node("Common") as Label
 	common.visible = false
 
@@ -190,8 +275,10 @@ static func refresh_details(scene: Control, role: String, has_role: bool) -> voi
 	for i in 3:
 		var completed := has_role and i < count
 		var icon := frame.get_node("UpgradeMarker%d" % (i + 1)) as Label
-		icon.text = "◆" if completed else "◇"
-		icon.add_theme_color_override("font_color", BRONZE_LIGHT if completed else FADED)
+		icon.text = "◆" if completed else "+"
+		icon.add_theme_color_override("font_color", BRONZE_LIGHT if completed else Color(0.51, 0.45, 0.42))
+		var gem := frame.get_node("UpgradeGem%d" % (i + 1)) as Panel
+		gem.add_theme_stylebox_override("panel", _plate(Color(0.23, 0.075, 0.062, 1) if completed else Color(0.045, 0.036, 0.04, 1), BRONZE_LIGHT if completed else BRONZE.darkened(0.4), 2, 3))
 		(frame.get_node("UpgradeNumber%d" % (i + 1)) as Label).text = ["I", "II", "III"][i]
 	var artifacts: Array = RunState.get_artifacts_for_role(role) if has_role else []
 	(frame.get_node("RelicCount") as Label).text = "%d" % artifacts.size() if has_role else "—"
@@ -199,8 +286,12 @@ static func refresh_details(scene: Control, role: String, has_role: bool) -> voi
 		var slot := frame.get_node("RelicSlot%d" % (i + 1)) as Panel
 		var glyph := slot.get_node("Symbol") as Label
 		var occupied := i < artifacts.size()
-		glyph.text = "◆" if occupied else "—"
-		glyph.add_theme_color_override("font_color", BRONZE_LIGHT if occupied else FADED)
+		glyph.text = "◆" if occupied else "+"
+		glyph.add_theme_color_override("font_color", BRONZE_LIGHT if occupied else Color(0.51, 0.42, 0.37))
+		var medal := slot.get_node("Medallion") as Panel
+		var medal_style := _plate(Color(0.17, 0.072, 0.050, 1) if occupied else Color(0.043, 0.033, 0.038, 1), BRONZE_LIGHT if occupied else Color(0.44, 0.29, 0.18, 1), 2, 2)
+		medal_style.set_corner_radius_all(26)
+		medal.add_theme_stylebox_override("panel", medal_style)
 		slot.tooltip_text = str(artifacts[i].title) if occupied else "Нет реликвии"
 	refresh_footer(scene)
 
