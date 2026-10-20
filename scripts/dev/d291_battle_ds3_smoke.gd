@@ -2,7 +2,7 @@ extends SceneTree
 
 # D291 native real Battle smoke: active tactics and UI in the production scene,
 # using RunState and the original battle script (not a mock preview or bitmap).
-const SCENE := preload("res://scenes/battle/battle.tscn")
+const SCENE_PATH := "res://scenes/battle/battle.tscn"
 
 func _initialize() -> void:
 	call_deferred("_check")
@@ -17,7 +17,12 @@ func _check() -> void:
 	if not state.call("choose_protagonist", "knight"):
 		_fail("could not choose hero")
 		return
-	var scene := SCENE.instantiate() as Control
+	# Script-mode headless runs must register RunState before loading battle.gd.
+	var packed := load(SCENE_PATH) as PackedScene
+	if packed == null:
+		_fail("production Battle resource missing after RunState registration")
+		return
+	var scene := packed.instantiate() as Control
 	if scene == null:
 		_fail("cannot instantiate production Battle")
 		return
