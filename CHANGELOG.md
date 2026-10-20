@@ -1,3 +1,9 @@
+## 2026-10-20 — D301 Live Battle: in-panel order descriptions instead of overlapping native tooltips
+
+- User's actual D300 `КОСТЯНОЙ ДОЗОР` screenshot confirms painted DS3 Battle ornaments render, but the default Godot tooltip covers the lower tactical description and repeats the same data.
+- Removed five redundant native tactic `tooltip_text` values; added mouse-hover preview of unselected tactics in the existing actual `OrderDescription` Label and restoration of active tactic upon mouse exit. No fake UI, new panels or combat behavior.
+- Expanded production Battle native smoke to test hover preview and selection isolation. Official Godot run / local screenshot still pending; checkpoint DS2 and prior art packs unchanged.
+
 ## 2026-10-20 — D300 Actual-Godot-screen material quality recovery
 
 - Two actual 1280×720 screenshots prove D299 painted ornaments load, but embroidered banner/candles are fuzzy due to source thumbnail downsampling and aggressive WebP loss.
