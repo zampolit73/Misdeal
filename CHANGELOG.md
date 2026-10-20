@@ -1,3 +1,10 @@
+## 2026-10-20 — D300 Actual-Godot-screen material quality recovery
+
+- Two actual 1280×720 screenshots prove D299 painted ornaments load, but embroidered banner/candles are fuzzy due to source thumbnail downsampling and aggressive WebP loss.
+- Rebuilt the four original-reference material fragments with higher-quality encoding, less edge blur and native source dimensions: banner 111×189, medallion 88×113, candles 57×172, wax ribbon 84×178. Added isolated 23,510-byte packed WebP at `assets/pixel/ui/battle_ds3_d300/reference_fragments_hq.webp.pack.b64`; original D299 source preserved.
+- Updated only source decoder constants, validated GitHub pack FNV and extended real-Battle native smoke for larger source sizes and transparency. Real live tactical UI, arena, units and all combat mechanics unaffected.
+- Godot 4.7.2 CI/native render and art approval still pending. Pre-DS3 rollback unchanged.
+
 ## 2026-10-20 — D299 Reference-source Battle DS3 art integration
 
 - User approved proceeding with the more artistic second Gothic `Могильный перекрёсток` concept instead of D298's simplified vector treatment.
