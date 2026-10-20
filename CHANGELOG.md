@@ -1,3 +1,9 @@
+## 2026-10-20 — D305: Verify direct GitHub publication of approved Battle DS3 modules
+
+- Confirmed `main` commit `a933bc36` already published all five approved game-ready WebP skins and five full-size source WebPs plus manifest.
+- Independently uploaded raw Git blobs from the approved local binary archive; their SHA1 identities matched existing GitHub artwork byte-for-byte. Duplicate commit unnecessary; user does not need to install or publish anything manually.
+- Updated documentation to remove stale 'binary pending' action item. Actual Godot 4.7 native/visual approval remains pending; no combat or UI logic modified in this verification pass.
+
 ## 2026-10-20 — D304 approved modular Battle skin integration scaffold
 
 - Added optional true full-panel user-approved D303 source-derived art skins under real Battle Controls, with no fake labels/buttons and safe D301 fallback when the binary source pack has not yet been installed.
