@@ -1,5 +1,13 @@
 # Misdeal — Active Roadmap
 
+## D283 — User-approved arena replacement (2026-10-20)
+
+- [x] Integrate exactly chosen Bone Ritual and Firing Square 1280×720 scene art into the existing two `AuthoredBattleBackdrop` production mappings, with unchanged gameplay and rollback.
+- [x] Provide native Godot 4.7.2 image decode/texture sanity smoke and update art gallery, source-hash notes and handoff.
+- [ ] Wait for official D283 Actions result and actual user Godot 1280×720 screenshots: inspect unit HP visibility, planted feet on stone floor, room for tactical HUD, scene readability, and fight→reward→table.
+- [ ] Only then continue new arena passes; `grave_crossfire` remains a separate candidate, not approved for automatic redraw.
+
+
 ## D282 — Final ClassSelect chrome polish (2026-10-20)
 
 User reviewed real native D281 screenshot and found the **full-HD clean-table background / character illustrations good**, requested a small final UI-only polish. Runtime commit `8c66148f075da4fed0043c38228d25c5abe51deb` leaves the **1280×720 D281 source image, 272×338 D278 bronze hero cards, original three portraits, source UnitData HP/damage, solo hero and RunState, Battle/Table/Fate Spread untouched**. Visual changes: reduced the black top title slab to translucent narrow aged-bronze edging; moved Wizard dialogue from Y243–283 to a restrained, readable line in a separate thin band at Y98–136 (actual text Y103–131); added a mild bottom caption strip and larger readable 13pt explanatory text at Y688–711; improved crimson/bronze confirmation bevel; the selected hero now gets a **visible persistent 3px gilt rim OVER the illustrated card frame** (2px soft outline on hover; other hero cards modestly dim). Source-backed native Godot 4.7.2 import/scene/hover/selection/reselection/confirm/solo smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39322918562. **User native 1280×720 D282 screenshot and final artistic acceptance remain OPEN**. Next: `git pull`, new ClassSelect screenshot idle and chosen, check header/line/readability and selected rim. No more speculative repaint without screenshot evidence.

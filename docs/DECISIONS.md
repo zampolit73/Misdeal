@@ -1,5 +1,12 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D283 — Selected Bone Ritual and Firing Square visual canon (2026-10-20)
+
+- User-approved `bone_ritual`: moonlit Gothic cathedral ruin with raised altar on the right, sparse ivory rib crescents, cold mountains/arches to the left, broad stone floor; source conversation `лунная_арена_разрушенного_собора.png`. Do not substitute later generated near-duplicates.
+- User-approved `firing_square`: option **1** from the three execution-yard arts, with wall, hanging cages, execution platform and wide dark stone foreground; source conversation `готический_двор_под_кровавой_луной.png`.
+- Export exact selections to 1280×720 WebP, preserving the pixel language. Use these only for the appropriate two arena IDs; game logic, unit positions and previously approved 14 arenas remain frozen. Old v1 files remain rollback.
+
+
 ## D282 — Final ClassSelect chrome polish (2026-10-20)
 
 User reviewed real native D281 screenshot and found the **full-HD clean-table background / character illustrations good**, requested a small final UI-only polish. Runtime commit `8c66148f075da4fed0043c38228d25c5abe51deb` leaves the **1280×720 D281 source image, 272×338 D278 bronze hero cards, original three portraits, source UnitData HP/damage, solo hero and RunState, Battle/Table/Fate Spread untouched**. Visual changes: reduced the black top title slab to translucent narrow aged-bronze edging; moved Wizard dialogue from Y243–283 to a restrained, readable line in a separate thin band at Y98–136 (actual text Y103–131); added a mild bottom caption strip and larger readable 13pt explanatory text at Y688–711; improved crimson/bronze confirmation bevel; the selected hero now gets a **visible persistent 3px gilt rim OVER the illustrated card frame** (2px soft outline on hover; other hero cards modestly dim). Source-backed native Godot 4.7.2 import/scene/hover/selection/reselection/confirm/solo smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39322918562. **User native 1280×720 D282 screenshot and final artistic acceptance remain OPEN**. Next: `git pull`, new ClassSelect screenshot idle and chosen, check header/line/readability and selected rim. No more speculative repaint without screenshot evidence.

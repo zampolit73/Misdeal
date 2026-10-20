@@ -1,5 +1,10 @@
 # Misdeal — Current Project State
 
+## D283 — Approved Bone Ritual and Firing Square runtime arena art (2026-10-20)
+
+User explicitly selected a moonlit ruined-cathedal ritual arena with sparse bone accents (`bone_ritual`) and **option 1** of the later moonlit execution courtyard triptych (`firing_square`). Exported the **exact selected** 1672×941 chat-original artworks to native 1280×720 WebP (no repaint) as `assets/pixel/battle/arenas/approved_d283/{bone_ritual,firing_square}.webp`. The two `ARENA_PATHS` in `scripts/battle/authored_backdrop.gd` now point to these independent files, not to previous `arena_redraw_v1` images. Previous v1 artworks remain tracked for rollback; other 14 arenas and all Battle encounters, party placement/floor, stats, HUD, Fate Spread, RunState unaffected. Native Godot 4.7.2 source/texture smoke workflow `.github/workflows/d283-two-approved-arenas.yml` created; **CI result and user-native visual QA not yet confirmed**. Next: verify CI, `git pull`, inspect two actual Battle fights (sprites on floor, legibility, battle->reward->table). Full detail: [D283 art register](D283_APPROVED_ARENA_REPLACEMENT.md).
+
+
 ## D282 visual screenshot checkpoint — 2026-10-20
 
 User shared a real Godot screenshot with Knight selected. Review found no blocking D282 issues: sharp D281 wizard/table, thin bronze title and Wizard caption, distinct glowing selected Knight, dimmed other hero cards, readable footer and crimson confirmation. Wizard caption slightly overlaps hood but is legible. Keep D282 as current baseline; do not claim explicit user final art approval. No further gameplay changes needed. Native D282 smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39322918562. Detailed handoff: docs/D280_CLASS_SELECT_CLEAN_TABLE.md.
