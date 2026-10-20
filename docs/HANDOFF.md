@@ -1,3 +1,7 @@
+## D295 — Active continuation: Battle second concept selected / actual Godot art gate
+
+The user supplied a real D293 battle screenshot, said the arena was strong but HUD still looked **cheap**, reviewed two rendered UI alternatives, and explicitly selected the **SECOND, lighter Gothic** variant (NOT first heavy prop-filled variant). Implemented D295 in `scripts/battle/battle_ds3_pass.gd` (slim top ledgers, centered lower tactical commands, separate Fight, objective moved left) + one cosmetic layout hook after Battle's 3–5 tactics configure + amended native smoke. Combat logic, RunState and arena data untouched. **Await Godot 4.7.2 CI confirmation and user 1280×720 screenshot; D295 is not aesthetically accepted until inspected.** See `docs/PROJECT_STATE.md` and `docs/ROADMAP.md`. DS2 frozen checkpoint SHA `4cbd206` unchanged.
+
 # Misdeal — Canonical Working Handoff
 
 ## D294 — Next chat: read [D294_NEW_CHAT_HANDOFF.md](D294_NEW_CHAT_HANDOFF.md)
