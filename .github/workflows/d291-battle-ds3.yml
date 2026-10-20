@@ -11,6 +11,7 @@ on:
       - 'scripts/ui/battle_engraved_frame.gd'
       - 'assets/pixel/ui/battle_ds3_d303/**'
       - 'assets/pixel/ui/battle_ds3_d307/**'
+      - 'assets/pixel/ui/battle_ds3_d311/**'
       - 'tools/install_d303_battle_art.ps1'
       - 'scripts/battle/battle.gd'
       - 'scripts/ui/misdeal_ds3.gd'
