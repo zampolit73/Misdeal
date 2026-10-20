@@ -44,6 +44,25 @@ func _verify() -> void:
 	if hud.get_node_or_null("StatusDS3EdgeTop") == null or wizard.get_node_or_null("WizardDS3Seal") == null:
 		_fail("restrained bronze edge details missing")
 		return
+	# D290 screenshot regression: avoid doubled DS2+DS3 brackets.
+	for panel in [hud, wizard]:
+		var old_chrome := panel.get_node_or_null("_MisdealChrome") as CanvasItem
+		if old_chrome != null and old_chrome.visible:
+			_fail("legacy thick DS2 corner chrome still double-drawn on DS3 bar")
+			return
+	# The original painterly table contains a fixed '22' in the left deck
+	# footer. The live RunState number MUST be the only legible number there.
+	var deck_mask := table.get_node("DeckCountMask") as ColorRect
+	var deck_value := table.get_node("DeckCount") as Label
+	if deck_mask.position.x > 149.0 or deck_mask.size.x < 69.0 or deck_mask.color.a < 0.97:
+		_fail("D290 old printed deck number is not fully covered")
+		return
+	var expected_deck: int = state.remaining_card_ids.size()
+	if not state.has_active_card():
+		expected_deck = maxi(0, expected_deck - state.current_offer_ids.size())
+	if deck_value.text != "%02d" % expected_deck:
+		_fail("D290 real deck count accidentally changed while masking painted number")
+		return
 	if status.text.is_empty() or not status.text.contains("ЗОЛОТО") or wizard_line.text.is_empty():
 		_fail("Table RunState live status/Wizard line missing")
 		return

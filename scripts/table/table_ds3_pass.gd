@@ -17,8 +17,14 @@ static func apply(scene: Control) -> void:
 	# Existing authored geometry (including two 272x338 offer cards) remains.
 	var hud := scene.get_node("HudPanel") as Panel
 	var wizard := scene.get_node("WizardLinePanel") as Panel
-	hud.add_theme_stylebox_override("panel", DS3.make_plate(PANEL_BG, GILT, 1, 4))
-	wizard.add_theme_stylebox_override("panel", DS3.make_plate(WIZARD_BG, GILT_LOW, 1, 4))
+	# The preceding DS2 pass attached extra painted-looking 2px corner strokes.
+	# Hide them on these TWO panels only; DS3 provides the thinner single trim.
+	for panel in [hud, wizard]:
+		var old_chrome := panel.get_node_or_null("_MisdealChrome") as CanvasItem
+		if old_chrome != null:
+			old_chrome.visible = false
+	hud.add_theme_stylebox_override("panel", DS3.make_plate(PANEL_BG, GILT_LOW, 1, 3))
+	wizard.add_theme_stylebox_override("panel", DS3.make_plate(WIZARD_BG, GILT_LOW, 1, 3))
 	_engrave_plate(hud, "Status", false)
 	_engrave_plate(wizard, "Wizard", true)
 
@@ -37,6 +43,16 @@ static func apply(scene: Control) -> void:
 	spread.add_theme_stylebox_override("normal", spread_idle)
 	spread.add_theme_color_override("font_color", PARCHMENT)
 	spread.add_theme_font_size_override("font_size", 12)
+
+	# D290 screenshot QA: the approved painterly Table is a legacy composite
+	# containing a STATIC "КОЛОДА 22" inscription. The old mask began at x166,
+	# leaving the baked number visible beside the LIVE value (e.g. 22 / 37).
+	# Extend the matte only over that baked number, NOT over "КОЛОДА" lettering.
+	# Preserve the real DeckCount label, its position and RunState updates.
+	var deck_mask := scene.get_node("DeckCountMask") as ColorRect
+	deck_mask.position.x = 148.0
+	deck_mask.size.x = 70.0
+	deck_mask.color = Color(0.035, 0.018, 0.016, 0.985)
 
 	# Scattered tabletop labels are counters, NOT more interactive buttons.
 	for counter_path in ["DeckCount", "DiscardCount"]:
@@ -65,10 +81,10 @@ static func _engrave_plate(panel: Panel, prefix: String, center_mark: bool) -> v
 		return
 	var w := panel.size.x
 	var h := panel.size.y
-	_strip(panel, prefix + "DS3EdgeTop", Vector2(8, 3), Vector2(w - 16, 1), GILT_LOW)
-	_strip(panel, prefix + "DS3EdgeBottom", Vector2(8, h - 4), Vector2(w - 16, 1), GILT_LOW)
-	_strip(panel, prefix + "DS3RivetLeft", Vector2(3, 7), Vector2(2, h - 14), GILT)
-	_strip(panel, prefix + "DS3RivetRight", Vector2(w - 5, 7), Vector2(2, h - 14), GILT)
+	# An understated top/bottom hairline; do not stack a second set of
+	# orange corner brackets inside this already framed UI panel.
+	_strip(panel, prefix + "DS3EdgeTop", Vector2(10, 3), Vector2(w - 20, 1), GILT_LOW.darkened(0.30))
+	_strip(panel, prefix + "DS3EdgeBottom", Vector2(10, h - 4), Vector2(w - 20, 1), GILT_LOW.darkened(0.30))
 	if center_mark:
 		# Inside the top border, away from Wizard text. Decorative only.
 		_strip(panel, prefix + "DS3Seal", Vector2(w * 0.5 - 5, 2), Vector2(10, 2), Color(0.68, 0.18, 0.13, 0.87))
