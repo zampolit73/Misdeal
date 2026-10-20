@@ -1,3 +1,9 @@
+## 2026-10-21 — D309 Wizard art display-size regression fixed
+
+- Diagnosed two real user Godot screenshots: oversized D307 Wizard decoration hid action HUD in prep and much of the battlefield during combat, with text left outside artwork.
+- Switched the illustration from auto-sized TextureRect to explicit fixed 252×158 `draw_texture_rect` on a mouse-ignoring Control. Source WebP, original rule text, two live labels, reward and combat unchanged.
+- Extended both native Battle and isolated F6 preview smoke scripts to assert source art, fixed coordinates, viewport bounds and combat safety. Godot CI/local visual recheck still pending.
+
 ## 2026-10-20 — D308 standalone Godot Wizard UI inspection scene
 
 - Added `scenes/dev/d308_wizard_panel_preview.tscn` for F6 direct visual QA of D307 painted Wizard challenge against the real Graveyard arena artwork.
