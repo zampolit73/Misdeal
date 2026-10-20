@@ -1,3 +1,7 @@
+## D300 — Real Battle screenshot: restore actual source-art quality
+
+User's two D299 Godot screenshots confirm dynamic controls and painted ornaments but show blurred/detail-poor banner/candles. D300 replaces only the decoder's WebP pack with the same approved painting crops held at larger native dimensions/quality; all D299 UI positions and behavior remain. New pack sizes and hash in `docs/VISUAL_ASSET_REGISTRY.md`. D299 packed art and frozen DS2 branch preserved. Source verified, Godot CI and **aesthetic approval OPEN**.
+
 ## D299 — Source-painted rather than redrawn vector ornaments for Battle DS3
 
 After user approved the richer second-style Battle reference, real material source fragments are now integrated through a cached text-backed four-image WebP pack (approved crimson banner, bronze compass seal, candles, wax textile). Only decorative `TextureRect`s were changed; native UI labels/values/selection and all combat remain live. The overlapping D298 SVG objects are not spawned in D299; DS2 checkpoint and earlier source art preserved. **Visual signoff after real Godot screenshot, CI check pending**. [D299 specification](D299_REFERENCE_ART_IMPLEMENTATION.md).
