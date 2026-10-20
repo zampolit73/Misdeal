@@ -1,0 +1,195 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/dev/d308_wizard_panel_preview.gd" id="1_preview"]
+[ext_resource type="Texture2D" path="res://assets/pixel/battle/arenas/arena_redraw_v2/graveyard.webp" id="2_arena"]
+
+[node name="D308WizardPanelPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_preview")
+
+[node name="Arena" type="TextureRect" parent="."]
+mouse_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_arena")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Shade" type="ColorRect" parent="."]
+mouse_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.008, 0.005, 0.014, 0.18)
+
+[node name="PreviewTitle" type="Panel" parent="."]
+mouse_filter = 2
+offset_left = 322.0
+offset_top = 18.0
+offset_right = 925.0
+offset_bottom = 101.0
+
+[node name="Heading" type="Label" parent="PreviewTitle"]
+mouse_filter = 2
+offset_left = 18.0
+offset_top = 8.0
+offset_right = 587.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.961, 0.833, 0.654, 1)
+text = "D308 — УСЛОВИЕ ВОЛШЕБНИКА"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Status" type="Label" parent="PreviewTitle"]
+mouse_filter = 2
+offset_left = 14.0
+offset_top = 45.0
+offset_right = 589.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.78, 0.71, 0.64, 1)
+text = "Состояние: Активно · до боя"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SideObjectivePanel" type="Panel" parent="."]
+mouse_filter = 2
+offset_left = 22.0
+offset_top = 575.0
+offset_right = 238.0
+offset_bottom = 708.0
+
+[node name="ObjectiveLabel" type="Label" parent="SideObjectivePanel"]
+mouse_filter = 2
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 206.0
+offset_bottom = 123.0
+text = "УСЛОВИЕ ВОЛШЕБНИКА\nЗвонарь должен пасть первым • +15 золота"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PreviewTools" type="Panel" parent="."]
+offset_left = 936.0
+offset_top = 152.0
+offset_right = 1268.0
+offset_bottom = 649.0
+
+[node name="PhaseLabel" type="Label" parent="PreviewTools"]
+mouse_filter = 2
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 319.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.96, 0.84, 0.68, 1)
+text = "Фаза: ПОДГОТОВКА"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrepButton" type="Button" parent="PreviewTools"]
+offset_left = 14.0
+offset_top = 54.0
+offset_right = 161.0
+offset_bottom = 95.0
+text = "Подготовка"
+
+[node name="CombatButton" type="Button" parent="PreviewTools"]
+offset_left = 171.0
+offset_top = 54.0
+offset_right = 318.0
+offset_bottom = 95.0
+text = "Бой"
+
+[node name="RuleCaption" type="Label" parent="PreviewTools"]
+mouse_filter = 2
+offset_left = 14.0
+offset_top = 106.0
+offset_right = 319.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.83, 0.72, 0.60, 1)
+text = "Вариант условия"
+
+[node name="RulePicker" type="OptionButton" parent="PreviewTools"]
+offset_left = 14.0
+offset_top = 135.0
+offset_right = 318.0
+offset_bottom = 175.0
+
+[node name="OutcomeCaption" type="Label" parent="PreviewTools"]
+mouse_filter = 2
+offset_left = 14.0
+offset_top = 188.0
+offset_right = 319.0
+offset_bottom = 219.0
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.83, 0.72, 0.60, 1)
+text = "Результат условия"
+
+[node name="NormalButton" type="Button" parent="PreviewTools"]
+offset_left = 14.0
+offset_top = 225.0
+offset_right = 112.0
+offset_bottom = 266.0
+text = "Активно"
+
+[node name="SuccessButton" type="Button" parent="PreviewTools"]
+offset_left = 119.0
+offset_top = 225.0
+offset_right = 217.0
+offset_bottom = 266.0
+text = "Успех"
+
+[node name="FailButton" type="Button" parent="PreviewTools"]
+offset_left = 224.0
+offset_top = 225.0
+offset_right = 318.0
+offset_bottom = 266.0
+text = "Провал"
+
+[node name="RealBattleButton" type="Button" parent="PreviewTools"]
+offset_left = 14.0
+offset_top = 297.0
+offset_right = 318.0
+offset_bottom = 351.0
+text = "Открыть настоящий бой"
+
+[node name="NoteLabel" type="Label" parent="PreviewTools"]
+mouse_filter = 2
+offset_left = 13.0
+offset_top = 369.0
+offset_right = 320.0
+offset_bottom = 477.0
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.80, 0.76, 0.70, 1)
+text = "Изолированный предпросмотр.\nНикакие правила игры не изменены."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Help" type="Label" parent="."]
+mouse_filter = 2
+offset_left = 328.0
+offset_top = 672.0
+offset_right = 919.0
+offset_bottom = 712.0
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.86, 0.82, 0.73, 1)
+text = "Отдельная тестовая сцена · запуск F6 · основная сцена Misdeal не изменена"
+horizontal_alignment = 1
+vertical_alignment = 1
