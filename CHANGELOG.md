@@ -1,3 +1,11 @@
+## 2026-10-20 — D298 Reference-level materials for selected light Gothic Battle DS3
+
+- User requested actual game Battle to approach the richer **second illustrated reference** (D297 was visually functional but still flat).
+- Authored six editable **text-free SVG artwork components**, each independent of real controls and gameplay, in `assets/pixel/ui/battle_ds3_d298/`: hanging torn-red banner, bronze progress compass seal, small metal floral finial, tattered crimson Fight fabric, engraved wood/metal empty tactical tray and lacquer/gold empty Fight tray.
+- Integrated seven mouse-ignoring transparent decorative TextureRects in `battle_ds3_pass.gd`; repositioned dynamic header/party copy to clear banner, retired doubled progress emblem, preserved selected tactics as living Godot Buttons, aligned Fight decor with original callback.
+- Fixed deployment-hint collision with actor feet by moving/wrapping into unused lower-left margin, conditionally raising it to open sky when the real wizard secondary objective occupies that margin.
+- Expanded actual Battle native smoke for SVG decode/scene geometry/text clearance and noninteractive art. CI and true native screenshot aesthetic comparison **not yet confirmed**. Arena art, hero/enemy sprite files, balance, AI, RunState and DS2 backup are unchanged.
+
 ## 2026-10-20 — D297 Battle DS3: readable run modifiers and genuine order heraldry
 
 - Reviewed user's actual D296 `ЗАСАДА НА КЛАДБИЩЕ` screenshot: material/typography now visible and battlefield unobstructed; right solo status copy still too dense.
