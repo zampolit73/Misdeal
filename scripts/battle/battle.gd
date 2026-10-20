@@ -681,6 +681,7 @@ func _configure_side_objective() -> void:
 			side_objective_label.text = "УСЛОВИЕ ВОЛШЕБНИКА\nПобедить за %.0f сек • +%d золота" % [BONE_CRUSH_TIME_LIMIT, SIDE_OBJECTIVE_GOLD]
 
 	side_objective_panel.visible = not side_objective_id.is_empty()
+	BATTLE_DS3_PASS.sync_side_objective(self)
 
 func _fail_side_objective(message: String) -> void:
 	if side_objective_failed:
@@ -688,6 +689,7 @@ func _fail_side_objective(message: String) -> void:
 	side_objective_failed = true
 	side_objective_label.text = message
 	side_objective_label.add_theme_color_override("font_color", Color(0.82, 0.38, 0.30, 1.0))
+	BATTLE_DS3_PASS.sync_side_objective(self)
 
 func _claim_side_objective_reward() -> String:
 	if side_objective_id.is_empty() or side_objective_failed:
@@ -1237,6 +1239,7 @@ func _process(delta: float) -> void:
 				maxf(0.0, BONE_CRUSH_TIME_LIMIT - combat_elapsed),
 				SIDE_OBJECTIVE_GOLD
 			]
+			BATTLE_DS3_PASS.sync_side_objective(self)
 
 	if tactical_order != TACTICAL_ORDER_SACRIFICE:
 		return
@@ -1256,6 +1259,7 @@ func _on_unit_died(dead_unit: BattleUnit) -> void:
 		first_enemy_death_seen = true
 		if dead_unit.visual_role == "grave_bellkeeper":
 			side_objective_label.text = "УСЛОВИЕ ВЫПОЛНЕНО\nЗвонарь пал первым • награда после победы"
+			BATTLE_DS3_PASS.sync_side_objective(self)
 		else:
 			_fail_side_objective("УСЛОВИЕ ПРОВАЛЕНО • первым пал не звонарь")
 	elif dead_unit.team == 0 and side_objective_id == "no_critical" and not side_objective_failed:
