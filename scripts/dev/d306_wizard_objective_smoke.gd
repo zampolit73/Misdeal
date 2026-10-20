@@ -45,7 +45,7 @@ func _check() -> void:
 		if source_texture == null or artwork.mouse_filter != Control.MOUSE_FILTER_IGNORE:
 			_fail("D311 painted Wizard canvas missing art or intercepts controls")
 			return
-		if artwork.size != Vector2(286, 153) or artwork.position != Vector2(-15, -12):
+		if artwork.size != Vector2(258, 138) or artwork.position != Vector2(-16, -14):
 			_fail("D311 Wizard asset is no longer rendered in the fixed compact bounds")
 			return
 		if artwork.custom_minimum_size != Vector2.ZERO or not artwork.has_method("_draw"):
@@ -99,7 +99,7 @@ func _check() -> void:
 		return
 	if artwork != null:
 		var combat_art_bounds := Rect2(panel.position + artwork.position, artwork.size)
-		if combat_art_bounds.position.y < 100 or combat_art_bounds.end.y > 320 or combat_art_bounds.end.x > 380:
+		if combat_art_bounds.position.y < 100 or combat_art_bounds.end.y > 320 or combat_art_bounds.end.x > 345:
 			_fail("D311 Wizard art obscures units or returns to full source resolution in combat")
 			return
 	if objective.text != original_text:
