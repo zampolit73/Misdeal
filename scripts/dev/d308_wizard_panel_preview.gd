@@ -84,12 +84,12 @@ func _open_real_battle() -> void:
 	if state == null:
 		push_error("D308: RunState autoload not found")
 		return
-	state.reset_run()
-	if not state.choose_protagonist("knight"):
+	state.call("reset_run")
+	if not state.call("choose_protagonist", "knight"):
 		push_error("D308: Failed to initialize test Knight")
 		return
-	state.recruit_companion("ranger", "D308 test: Grave Bell art check")
-	state.select_encounter(GRAVE_BELL)
+	state.call("recruit_companion", "ranger", "D308 test: Grave Bell art check")
+	state.call("select_encounter", GRAVE_BELL)
 	get_tree().change_scene_to_file(BATTLE_SCENE)
 
 
