@@ -1,5 +1,12 @@
 # Misdeal — Current Project State
 
+## D289 — First DS3 visible pilot: live two-card Table (2026-10-20)
+
+After user said **«продолжай»** from D288 foundation, implemented DS3 **only for the real Table's peripheral controls**, not for generated mockups. Runtime commit `bd56af7` adds `scripts/table/table_ds3_pass.gd` and invokes it AFTER `MISDEAL_DS2_ROLLOUT.table(self)` from `scripts/table/table.gd::_apply_ui_kit()`. Uses DS3 aged bronze/obsidian thin panel chrome on live `HudPanel`, `WizardLinePanel`, `SquadButton`, `FateSpreadButton`, real Deck/Discard labels, and the actual existing Wager popup; adds restrained mouse-ignoring metal edge details. NO card art, parchment/frame sprites, normal **two-offer** layout (272×338 at authored coordinates), hold, inspect-RMB, Fate Spread history, Wizard dialogue logic, RunState, balance, combat, party or art assets changed.
+
+Automated **official Godot 4.7.2 native PASS**: [D289 full Table boot + exact two-card, callbacks, Wager and DS3 chrome regression](https://github.com/zampolit73/Misdeal/actions/runs/39393893259); original [D274 card art/hold/inspection suite](https://github.com/zampolit73/Misdeal/actions/runs/39393779824) also PASS. The saved baseline is STILL `checkpoint/ds2-pre-ds3-2026-10-20` at immutable `4cbd206cc3739355a9d375a0752a6a840e35caa2`. **New native 1280×720 user Table screenshot is now the ART QA gate, not yet received.** Before advancing to Battle DS3, compare DS3 live table against DS2 visual baseline; preserve two normal cards and adapt only screenshot-evidenced problems. Detailed status: `docs/DS3_FOUNDATION.md`.
+
+
 ## D288 — Freeze DS2 before DS3; safe opt-in foundation (2026-10-20)
 
 User explicitly requested a **save/rollback point of the current design system before starting DS3**. Created and verified immutable working-branch snapshot [`checkpoint/ds2-pre-ds3-2026-10-20`](https://github.com/zampolit73/Misdeal/tree/checkpoint/ds2-pre-ds3-2026-10-20) at exact pre-DS3 HEAD `4cbd206cc3739355a9d375a0752a6a840e35caa2` (tree `955d34147260d725264a104a6f8b3a1fe60fd725`). No files on the checkpoint branch are altered by continuing `main`. Full recovery instructions: `docs/DS2_CHECKPOINT.md`.

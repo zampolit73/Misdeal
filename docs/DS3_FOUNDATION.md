@@ -64,3 +64,12 @@ Art styles may use subdued intermediate shades; avoid globally replacing per-scr
 4. **Later:** reward/shop/info screens after their UI requirements are grounded in existing gameplay; no automatic full-game conversion.
 
 See also `docs/DESIGN_SYSTEM.md` for approved historical DS2 decisions and `docs/DS2_CHECKPOINT.md` for a short restoration guide.
+
+## D289 — Live Table visual-only pilot
+
+- Implemented in [`scripts/table/table_ds3_pass.gd`](../scripts/table/table_ds3_pass.gd), attached from `scripts/table/table.gd::_apply_ui_kit()` **after** `MISDEAL_DS2_ROLLOUT.table(self)`.
+- Scope: metal/material styling of live HUD and Wizard text, two existing navigation buttons, truthful Deck/Discard counts and the existing optional Wager window. Minimal thin engraved detail is drawn as native mouse-ignoring `ColorRect` children of those panels.
+- Explicitly excluded: two live offers, choice/hold/inspection handlers, D278 full art, existing tabletop, actual Fate Spread, per-card rewards, all gameplay.
+- Native test `scripts/dev/d289_table_ds3_smoke.gd` bootstraps `RunState` and the **real** Table and checks exactly two `get_offer_cards()`, original card art/size, connected callbacks, Wager and DS3 panels. [Godot 4.7.2 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39393893259). Original D274 regression PASS.
+- **Open:** actual 1280×720 user screenshot of two-card Table D289. Do not claim pixel-perfect equivalence or final artistic signoff. Next Battle HUD pass only after assessing this visual gate.
+

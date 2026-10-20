@@ -1,5 +1,13 @@
 ## 2026-10-20 — D287 Approved third dossier art refinement
 
+## 2026-10-20 — D289 First DS3 real Table pilot
+
+- Added per-screen `table_ds3_pass.gd` for thinner aged-bronze DS3 plates, warm live text and subtle control chrome on the actual HUD, Wizard, Squad, Fate Spread and Wager; original two painted encounter card Buttons untouched.
+- Applied the DS3 pass after the old DS2 rollout to avoid altering any other screen. No RunState, selection, card art, balance, battle or rewards changes.
+- Added official native D289 full two-card Table smoke for real game-state, card art, actions and Wager. PASS ([run 39393893259](https://github.com/zampolit73/Misdeal/actions/runs/39393893259)); D274 card-art smoke still PASS. User visual screenshot review pending.
+- Pre-DS3 full-project rollback branch remains fixed at `4cbd206`.
+
+
 ## 2026-10-20 — D288 DS2 checkpoint and opt-in DS3 foundation
 
 - Created and verified `checkpoint/ds2-pre-ds3-2026-10-20` at exact pre-migration Git HEAD `4cbd206` (full tracked project rollback; branch is isolated from future `main`).

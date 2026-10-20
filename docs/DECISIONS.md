@@ -1,5 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D289 — DS3 is a chrome migration, NOT Table redesign or three-card mechanic (2026-10-20)
+
+The first visible DS3 trial targets the authentic **two-card** in-world Table. Its original D274/D278 illustrated parchment cards and D167 scene-based artwork remain frozen; no new cards, CTA behavior, timed choices, order systems, party mechanics or third center card from the DS3 concept imagery are introduced. DS3 operates as a last-applied **opt-in** peripheral styling layer `scripts/table/table_ds3_pass.gd` after DS2, including real Wager; mouse interactions remain on original Buttons, all ornament is noninteractive. Official headless Godot has passed, but actual screenshot approval is still pending. Keep `checkpoint/ds2-pre-ds3-2026-10-20` untouched.
+
+
 ## D288 — DS2 checkpoint and non-destructive DS3 migration policy (2026-10-20)
 
 User requested a **full checkpoint before DS3 rollout**, so freeze the complete pre-DS3 project at [branch `checkpoint/ds2-pre-ds3-2026-10-20`](https://github.com/zampolit73/Misdeal/tree/checkpoint/ds2-pre-ds3-2026-10-20), commit `4cbd206cc3739355a9d375a0752a6a840e35caa2`. This includes more than UI: a true tracked full-repo Git snapshot. Never move the checkpoint. DS2 remains the supported visual baseline on unconverted scenes; DS3 is introduced as **opt-in per-screen** styling, not a global destructive palette/style rewrite. All concepts drawn in the DS3 exploration (3-card deal, manual combat abilities, invented rewards) are **mood/UX mockups**, not game-design approvals. Actual 2-card Table, existing tactical autobattler and data-bound interface semantics are fixed. For rollback prefer normal revert commits on `main`, never unconditional force-reset. See `docs/DS2_CHECKPOINT.md` and `docs/DS3_FOUNDATION.md`.

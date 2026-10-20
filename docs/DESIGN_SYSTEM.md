@@ -1,3 +1,7 @@
+## D289 — The Table uses DS3 as physical chrome, not a painted mockup
+
+Adopt DS3 on the real table only at the edges: aged bronze/obsidian for live HUD, Wizard speech plate, Squad/Fate Spread buttons, counters and existing Wager. The central two authored parchment encounter cards, physical backs/hold, in-world table paint and 12-step Fate Spread must retain original content and spacing. No 3-card concept art overlay, no new painted HUD text, no repeated bright gold ornament covering hand-painted scenes. Existing `scripts/ui/misdeal_ui_kit.gd` remains intact. Apply `scripts/table/table_ds3_pass.gd` after the older scoped DS2 `table()` call. Screenshots, not green Godot tests, determine visual acceptance. See `docs/DS3_FOUNDATION.md`.
+
 ## D288 — DS3 staged migration (DS2 kept intact)
 
 Current active DS3 overview is [DS3_FOUNDATION.md](DS3_FOUNDATION.md). The immutable DS2 full-repo restore branch, commit/tree and non-destructive restoration steps are in [DS2_CHECKPOINT.md](DS2_CHECKPOINT.md). All historical DS2 design approvals below remain authoritative for screens not explicitly migrated. Do not use the generated 3-card Table or turn-based battle mockups as gameplay specs.

@@ -1,5 +1,15 @@
 # Misdeal — Active Roadmap
 
+## D289 — DS3 Table-only live visual pilot (2026-10-20)
+
+- [x] Apply DS3 copper/obsidian low-density chrome to peripheral live table HUD, Wizard line, Squad/Fate Spread buttons, actual Deck/Discard labels and Wizard Wager action panel, **after** existing DS2 styles.
+- [x] Preserve BOTH physical 272×338 live encounter cards, D278 painterly frames/parchment/art, separate Hold controls, Lore RMB, 12-card Fate Spread and all two-offer RunState data.
+- [x] Native Godot 4.7.2 two-card Table startup + live controls regression PASS ([D289 Actions](https://github.com/zampolit73/Misdeal/actions/runs/39393893259)); D274 original card-art contract regression PASS.
+- [ ] User Godot screenshot at 1280×720 of normal Table with two offers. Assess frame weight, contrast, Wizard copy, card spacing, only actual issues to fix. Not yet visually signed off.
+- [ ] Next, after accepting Table visuals, trial compact DS3 Battle HUD separately; original arena/units/tactics and combat mechanics must be preserved.
+- [x] DS2 rollback branch remains immutable; D289 changes reversible by reverting DS3-specific commits.
+
+
 ## D288 — DS2 safe checkpoint, staged DS3 rollout (2026-10-20)
 
 - [x] Record entire pre-DS3 `main` as verified immutable `checkpoint/ds2-pre-ds3-2026-10-20`, commit `4cbd206`, plus safe restoration instructions.
