@@ -55,7 +55,7 @@ func _check() -> void:
 			_fail("D311 old plaque still displays behind approved image")
 			return
 		var art_bounds := Rect2(panel.position + artwork.position, artwork.size)
-		if not str(artwork.get("art_texture").resource_path).contains("battle_ds3_d311/wizard_variant3_game.webp"):
+		if not source_texture.resource_path.contains("battle_ds3_d311/wizard_variant3_game.webp"):
 			_fail("D311 active skin is not the approved third Wizard module")
 			return
 		if art_bounds.position.y < 0 or art_bounds.end.y > 720 or art_bounds.end.x > 1280:
