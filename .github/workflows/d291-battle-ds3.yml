@@ -9,6 +9,7 @@ on:
       - 'scripts/ui/battle_approved_modules.gd'
       - 'scripts/ui/battle_engraved_frame.gd'
       - 'assets/pixel/ui/battle_ds3_d303/**'
+      - 'assets/pixel/ui/battle_ds3_d307/**'
       - 'tools/install_d303_battle_art.ps1'
       - 'scripts/battle/battle.gd'
       - 'scripts/ui/misdeal_ds3.gd'
@@ -58,5 +59,7 @@ jobs:
         if: always()
         with:
           name: d291-battle-ds3-native
-          path: /tmp/d291-*.log
+          path: |
+            /tmp/d291-*.log
+            /tmp/d306-*.log
           retention-days: 14
