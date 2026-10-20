@@ -29,18 +29,37 @@ func _check() -> void:
 	root.add_child(scene)
 	await process_frame
 
-	# All six combat plates remain outside the main 20,96->1260,574 arena.
+	# D295 selected concept 2: slim top ledgers, centered live command tray,
+	# separated right action; conditional objective moved left, no collisions.
 	var panels := ["TopHudPanel", "RunHudPanel", "BottomHudPanel", "FightHudPanel", "WizardCommentaryPanel", "SideObjectivePanel"]
 	for path in panels:
 		var plate := scene.get_node(path) as Panel
 		var style := plate.get_theme_stylebox("panel") as StyleBoxFlat
-		var physical: bool = path == "BottomHudPanel" or path == "FightHudPanel"
-		if style == null or style.border_width_left != (2 if physical else 1) or style.shadow_size != (6 if physical else 3):
-			_fail("D293 Battle physical DS3 material not loaded: " + path)
+		var expected_shadow: int = 5 if path == "BottomHudPanel" or path == "FightHudPanel" else 2
+		if style == null or style.border_width_left != 1 or style.shadow_size != expected_shadow:
+			_fail("D295 selected minimal Gothic material not loaded: " + path)
 			return
 		if plate.mouse_filter != Control.MOUSE_FILTER_IGNORE and plate.mouse_filter != Control.MOUSE_FILTER_PASS:
 			_fail("battle panel mouse interception changed: " + path)
 			return
+	var top := scene.get_node("TopHudPanel") as Panel
+	var commands := scene.get_node("BottomHudPanel") as Panel
+	var fight_plate := scene.get_node("FightHudPanel") as Panel
+	var objective := scene.get_node("SideObjectivePanel") as Panel
+	var fight_action := scene.get_node("FightButton") as Button
+	if top.size.y != 72.0 or top.position.y != 14.0 or commands.position != Vector2(251, 575):
+		_fail("D295 slim title / centered command geometry wrong")
+		return
+	if commands.size != Vector2(691, 133) or fight_plate.position != Vector2(949, 575) or fight_action.position != Vector2(964, 619):
+		_fail("D295 real command or action geometry wrong")
+		return
+	if objective.position.x + objective.size.x >= commands.position.x or fight_plate.position.x <= commands.position.x + commands.size.x:
+		_fail("D295 conditional objective/action overlaps the tactics")
+		return
+	var desc := scene.get_node("OrderDescription") as Label
+	if desc.position.y < 655.0 or desc.position.y + desc.size.y > commands.position.y + commands.size.y:
+		_fail("D295 description outside central inset")
+		return
 	var arena := scene.get_node("Arena") as Control
 	var backdrop := scene.get_node("BattleBackdrop") as TextureRect
 	if arena.position != Vector2(20, 96) or arena.size != Vector2(1240, 478) or backdrop == null:
@@ -53,6 +72,9 @@ func _check() -> void:
 	var orders := ["AssaultOrderButton", "HuntOrderButton", "FormationOrderButton", "SacrificeOrderButton", "DefianceOrderButton"]
 	for path in orders:
 		var button := scene.get_node(path) as Button
+		if button.visible and (button.position.x < 268.0 or button.position.x + button.size.x > 925.1 or button.position.y != 608.0):
+			_fail("D295 unlocked tactic outside centered command holder: " + path)
+			return
 		if not button.toggle_mode or button.size.y != 38 or button.pressed.get_connections().is_empty():
 			_fail("Battle original real tactical controls changed: " + path)
 			return
@@ -137,7 +159,7 @@ func _check() -> void:
 	if actual_units.is_empty():
 		_fail("no live BattleUnits were instantiated")
 		return
-	print("D291_BATTLE_DS3_NATIVE_PASS: real unit scene, authentic arena geometry, combat controls and dynamic tactic selection")
+	print("D295_BATTLE_DS3_NATIVE_PASS: approved minimal Gothic layout, battle arena, native tactics and target selection")
 	scene.queue_free()
 	await process_frame
 	quit(0)
