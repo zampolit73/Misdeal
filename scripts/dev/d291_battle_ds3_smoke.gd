@@ -42,6 +42,22 @@ func _check() -> void:
 		if plate.mouse_filter != Control.MOUSE_FILTER_IGNORE and plate.mouse_filter != Control.MOUSE_FILTER_PASS:
 			_fail("battle panel mouse interception changed: " + path)
 			return
+		var relief := plate.get_node_or_null("DS3EngravedRelief") as Control
+		if relief == null or relief.get_script() == null or relief.mouse_filter != Control.MOUSE_FILTER_IGNORE:
+			_fail("D296 real engraved Control missing or intercepts input: " + path)
+			return
+		if relief.size != plate.size:
+			_fail("D296 relief is not aligned with the real battle panel: " + path)
+			return
+	if not (scene.get_node("Title") as Label).has_theme_font_override("font"):
+		_fail("D296 gothic title typography missing")
+		return
+	if not (scene.get_node("FightButton") as Button).has_theme_font_override("font"):
+		_fail("D296 primary serif typography missing")
+		return
+	if scene.get_node_or_null("RunHudPanel/DS3ProgressSeal") == null:
+		_fail("D296 progress heraldic fragment missing")
+		return
 	var top := scene.get_node("TopHudPanel") as Panel
 	var commands := scene.get_node("BottomHudPanel") as Panel
 	var fight_plate := scene.get_node("FightHudPanel") as Panel
@@ -77,6 +93,10 @@ func _check() -> void:
 			return
 		if not button.toggle_mode or button.size.y != 38 or button.pressed.get_connections().is_empty():
 			_fail("Battle original real tactical controls changed: " + path)
+			return
+		var engraving := button.get_node_or_null("DS3EtchedToken") as Control
+		if engraving == null or engraving.get_script() == null or engraving.mouse_filter != Control.MOUSE_FILTER_IGNORE:
+			_fail("D296 tactic plaque decoration is absent or intercepts press: " + path)
 			return
 		for style_name in ["normal", "hover", "pressed", "disabled", "hover_pressed"]:
 			if not button.has_theme_stylebox_override(style_name):
