@@ -212,8 +212,9 @@ static func _inset(panel: Panel, name: String, at: Vector2, dimensions: Vector2,
 	inset.size = dimensions
 	inset.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var mat := StyleBoxFlat.new()
-	mat.bg_color = Color(0.055, 0.032, 0.031, 0.91) if scroll else Color(0.023, 0.021, 0.026, 0.82)
-	mat.border_color = Color(0.43, 0.28, 0.17, 0.69)
+	var ledger := name == "DS3EncounterTitleInset" or name == "DS3CardProgressPlaque"
+	mat.bg_color = Color(0.026, 0.022, 0.030, 0.27) if ledger else (Color(0.055, 0.032, 0.031, 0.91) if scroll else Color(0.023, 0.021, 0.026, 0.82))
+	mat.border_color = Color(0.51, 0.36, 0.23, 0.30) if ledger else Color(0.43, 0.28, 0.17, 0.69)
 	mat.set_border_width_all(1)
 	mat.set_corner_radius_all(2)
 	inset.add_theme_stylebox_override("panel", mat)
