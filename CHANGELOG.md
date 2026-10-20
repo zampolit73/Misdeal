@@ -1,3 +1,10 @@
+## 2026-10-20 — D308 standalone Godot Wizard UI inspection scene
+
+- Added `scenes/dev/d308_wizard_panel_preview.tscn` for F6 direct visual QA of D307 painted Wizard challenge against the real Graveyard arena artwork.
+- Reuses production Gothic panel renderer, canonical source text, 3 encounter rule samples and prep/combat positions; preview controls simulate active/success/fail with no game-state changes.
+- Added `Открыть настоящий бой` button to run genuine Grave Bell Battle in isolated test process, plus native headless preview smoke in the D291 Battle workflow.
+- No change to default launch scene, HP/AI/rewards or approved D303 Battle art. CI/native screenshot and explicit art approval remain pending; see `docs/D308_WIZARD_PANEL_TEST_SCENE.md`.
+
 ## 2026-10-20 — D307 Gothic Wizard condition candidate implemented
 
 - Published a new text-free illustrated `wizard_condition_game.webp` and full-resolution `wizard_condition_source.webp` directly as binary Git objects.
