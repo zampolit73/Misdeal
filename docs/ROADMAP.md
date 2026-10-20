@@ -1,3 +1,12 @@
+## D300 — Actual D299 screenshots: higher fidelity without layout drift (2026-10-20)
+
+- [x] Inspect user real `Костяной рой` and `Засада на кладбище` Godot screenshots: D299 painted ornaments render, but fine details are visibly soft; aesthetic signoff remains OPEN.
+- [x] Locate the technical cause: cropped WebPs were downsampled to 44–74px and strongly compressed, then scaled back up in the Battle UI.
+- [x] Re-extract all 4 approved-source ornaments at higher native dimensions, preserve transparent alpha and use higher quality encoding; commit D300 23,510-byte source pack through GitHub (base64 hash verified).
+- [x] Update source decoder and native real-Battle smoke for exact dimensions and transparent corner checks; old D299 pack remains intact for rollback.
+- [ ] Verify Godot 4.7.2 native CI / editor runtime and request one actual D300 1280×720 Battle screenshot to compare surface quality with reference before approving Battle DS3.
+- [ ] Do not alter arena art/units/mechanics, and do not expand DS3 globally before visual acceptance.
+
 ## D299 — Replace vector-only HUD ornament with approved reference painting (2026-10-20)
 
 - [x] User authorized implementation after receiving the new reference-quality second Gothic Battle concept.
