@@ -1,8 +1,8 @@
 # Misdeal — галерея утверждённых боевых арен
 
-**Дата сверки:** 2026-10-19. **Источник истины:** `scripts/battle/authored_backdrop.gd` (production `ARENA_PATHS`). Ниже представлены **16 активных игровых арен** в оригинальном размере **1280×720**, без персонажей и интерфейса. Альтернативные, архивные и отвергнутые QA-варианты не включены.
+**Дата сверки:** 2026-10-20. **Источник истины:** `scripts/battle/authored_backdrop.gd` (production `ARENA_PATHS`). Ниже представлены **16 активных игровых арен** в оригинальном размере **1280×720**, без персонажей и интерфейса. Альтернативные, архивные и отвергнутые QA-варианты не включены.
 
-> Файлы в `docs/arena_gallery/*.webp` — точные, без перерисовки, бинарные экспорты исходных runtime `.webp.b64`. Они добавлены только для просмотра галереи; игровые ссылки и логика не изменены.
+> Архивные WebP в `docs/arena_gallery/` — переведённые из старых `.webp.b64` изображения для просмотра; **D283 заменил два игровых фона** `bone_ritual` и `firing_square` на отдельно утверждённые, полноразмерные WebP из `assets/pixel/battle/arenas/approved_d283/`. Игровые механики не изменены.
 
 ## Основной утверждённый пакет — 10 арен
 
@@ -70,15 +70,15 @@
 
 ### Расстрельная площадь · `firing_square`
 
-![Расстрельная площадь](arena_gallery/firing_square.webp)
+![Расстрельная площадь](../assets/pixel/battle/arenas/approved_d283/firing_square.webp)
 
-[Открыть изображение](arena_gallery/firing_square.webp) · [Runtime-источник](../assets/pixel/battle/arenas/arena_redraw_v1/firing_square.webp.b64)
+[Открыть утверждённый игровой WebP](../assets/pixel/battle/arenas/approved_d283/firing_square.webp) · [Архив v1](../assets/pixel/battle/arenas/arena_redraw_v1/firing_square.webp.b64)
 
 ### Костяной ритуал · `bone_ritual`
 
-![Костяной ритуал](arena_gallery/bone_ritual.webp)
+![Костяной ритуал](../assets/pixel/battle/arenas/approved_d283/bone_ritual.webp)
 
-[Открыть изображение](arena_gallery/bone_ritual.webp) · [Runtime-источник](../assets/pixel/battle/arenas/arena_redraw_v1/bone_ritual.webp.b64)
+[Открыть утверждённый игровой WebP](../assets/pixel/battle/arenas/approved_d283/bone_ritual.webp) · [Архив v1](../assets/pixel/battle/arenas/arena_redraw_v1/bone_ritual.webp.b64)
 
 ### Обветшавший театр · `threadbare_theatre`
 
@@ -107,6 +107,6 @@
 ## Контрольные сведения
 
 - Основной набор из десяти фонов утверждён по `docs/ARENA_REVIEW_2026_10_11.md` и подключён из `arena_redraw_v2`.
-- `firing_square` и `bone_ritual` подключены из `arena_redraw_v1`; их более ранний визуальный статус не нужно путать с новым v2.
+- С D283 `firing_square` и `bone_ritual` используют `approved_d283` — точно выбранные пользователем новые полноразмерные изображения. Старая версия `arena_redraw_v1` оставлена для отката.
 - Театр, переправа и дорога используют отдельные выбранные/утверждённые файлы. Суд безмолвных использует D271 — расписанный фон, принятый пользователем после отклонения схематичной D270.
 - Все 16 слотов соответствуют актуальному `ARENA_PATHS`. Галерея **не** меняет фон в Godot, игровые границы/пол, баланс и порядок боя.

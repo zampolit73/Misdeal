@@ -1,3 +1,9 @@
+## 2026-10-20 — D283 Approved Bone Ritual + Firing Square production art
+
+- Integrated two explicitly selected **1280×720** painted arena illustrations from original 1672×941 PNGs, without new image generation or gameplay code changes.
+- `bone_ritual` now uses sparse-bone moonlit ruined chapel; `firing_square` uses approved first execution-yard variant. Preserved old v1 files for rollback; other 14 arenas unaffected.
+- Added native Godot 4.7.2 source/texture smoke; updated live gallery. CI and user battle screenshot review are separate gates, not presumed passed.
+
 ## 2026-10-20 — D282 Final ClassSelect UI chrome polish
 
 - Kept approved full-HD clean cursed-table background and original three D278-framed hero portraits.

@@ -1,3 +1,7 @@
+## D283 — Approved active battle arena art: ritual + execution courtyard
+
+**Both production backgrounds live** in `assets/pixel/battle/arenas/approved_d283/` as native 1280×720 WebP, sourced from precisely approved PNGs (not re-generated): `bone_ritual.webp` = moonlit ruined cathedral/sparse bone altar, `firing_square.webp` = first approved walled execution courtyard. SHA256/size/image sourcing: [D283 manifest](D283_APPROVED_ARENA_REPLACEMENT.md). Old `arena_redraw_v1` remains for rollback; other 14 existing arenas unchanged. Native Godot runtime and artistic screenshot QA not yet confirmed.
+
 ## D255 — User-approved visual direction for all three missing #38 enemies; 75-cel QA pack staged, ART GATE OPEN
 
 ## D281 — Native 1280×720 pure background for ClassSelect
