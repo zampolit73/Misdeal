@@ -43,6 +43,9 @@ func _check() -> void:
 	if style == null or style.bg_color.a < 0.9 or style.border_width_top < 2:
 		_fail("D306 challenge lacks legible ink and aged bronze frame")
 		return
+	if objective.z_index <= (panel.get_node("DS3EngravedRelief") as CanvasItem).z_index:
+		_fail("D306 objective text is still hidden under late-appended relief")
+		return
 	if objective.get_theme_font_size("font_size") < 13 or objective.get_theme_color("font_color").r < 0.8:
 		_fail("D306 Wizard text contrast/font too weak")
 		return
