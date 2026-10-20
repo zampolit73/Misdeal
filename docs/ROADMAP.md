@@ -1,3 +1,12 @@
+## D311 — Implement selected third Wizard plaque option (2026-10-21)
+
+- [x] User approved visual direction **option 3**: small horizontal blackwood/bronze plaque with hooded portrait medallion and crimson cloth, calmer ornament density.
+- [x] Create text-free transparent material art extracted from exactly the selected third concept; retain independent 286×153 WebP source and full source RGBA PNG in GitHub main.
+- [x] Switch production Battle skin to option 3; use D309 canvas renderer at reference-proportional 258×138, dynamic header/body labels, canonical rule/reward data untouched.
+- [x] Adjust fixed prep/combat coordinates, labels, and two native Battle/F6 smoke scripts; add D311 art to Actions workflow watch set.
+- [ ] Run native Godot 4.7.x / CI test and compare real F6 and live Grave Bell 1280×720 screenshot against the selected third approved illustration.
+- [ ] Ask for **final runtime screen approval**, not merely concept selection. Do not move to Reward screen before this gate.
+
 ## D310 — Actual post-D309 screenshot QA (2026-10-21)
 
 - [x] User screenshots in **preparation** and **live combat** confirm that the fixed-size painted Wizard plaque remains compact, texts are inside artistic wells, and the combat placement no longer covers combatants.
