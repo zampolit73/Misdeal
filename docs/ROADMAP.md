@@ -1,5 +1,15 @@
 # Misdeal — Active Roadmap
 
+## D293 — Correct rejected Battle DS3 visual direction (2026-10-20)
+
+- [x] User explicitly rejected D292 Battle visual after native screenshot, as being dark flat boxes rather than DS3.
+- [x] Replace superficial reskin with a material-based actual Godot Battle command tray: inset tactic tokens/scroll, bronze hardware and existing approved D287 genuine gilt fragments, red primary action with heraldic ruby crest, engraved upper run/encounter ledger inlays.
+- [x] Keep approved arenas, unit feet and HP, all 3–5 real tactic Buttons, dynamic selected highlights, Fight/Continue/Preview, tooltip/action and RunState unchanged.
+- [ ] Verify updated official native D293 regression ([Actions](https://github.com/zampolit73/Misdeal/actions/runs/39399922113)) for painted ornament files, panel structure and live tactical switching.
+- [ ] **Visual gate:** after `git pull`, user screenshot in real Godot of the new Battle preparation screen at 1280×720. User has NOT yet approved D293. Review for overwhelming ornament, click coverage, small font and arena visibility. If rejected, revert D293 scope rather than insisting on it.
+- [ ] Only after actual user approval continue DS3 rollout beyond Battle.
+
+
 ## D292 — Screenshot-driven battle DS3 tuning (2026-10-20)
 
 - [x] First live D291 Battle prep screenshot received: arena/sprites/feet/HP readable, tactical bar visually plain and chosen button weakly differentiated.

@@ -1,5 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D293 — Battle DS3 must be a real designed physical UI, not simple dark rectangles (2026-10-20)
+
+D292 Battle screenshot was **rejected by user**: thin frame and tint changes did not satisfy the expected DS3. Correct approach: physically modeled blackened-wood tactic holder with readable actual toggle tokens and copper hardware; rich but restrained engraved encounter/run ledger; distinct wax/crimson Fight action. Use **already-approved authentic D287 painted bronze and ruby ornaments** as tiny mouse-ignoring fragments, not another AI mock or flattened poster. Keep every actual tactical/unlock/auto-battle signal, code, original arena, hero/enemy positions and floor untouched. Real screenshot approval required before DS3 battle is considered finished; the DS2 checkpoint remains unchanged.
+
+
 ## D292 — DS3 tactical state must be visually obvious without clutter (2026-10-20)
 
 The real D291 Battle screenshot proved correct arena/actor placement but the selected command could barely be distinguished from inactive options. DS3 combat buttons retain all five original real `tactical_order` / unlock / AI contracts, plus a single warm active style and a small bottom inlay `DS3SelectedInlay` tied to `_select_tactical_order()`. Never convey an unearned/unlocked tactic with an always-on marker. Combat panels must stay more translucent than dossier/table panels and use minimal one-line metallic detail; all decoration is mouse-ignoring. Local user D292 art screenshot remains pending; original D288 DS2 checkpoint immutable.

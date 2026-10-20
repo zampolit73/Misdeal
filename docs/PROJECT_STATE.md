@@ -1,5 +1,14 @@
 # Misdeal — Current Project State
 
+## D293 — Battle DS3 redesign after user rejected D292 (2026-10-20)
+
+**Explicit user feedback:** supplied a D292 screenshot of `graveyard_ambush` (Mage + Knight, available fourth Defiance tactic) and wrote **«не очень( ты же хотел под DS3 сделать»**. This is **NOT acceptance** of D291/D292 Battle HUD. Reason: the UI was merely recolored black rectangular boxes, not DS3's cohesive material-based art. We agreed to fix the design itself instead of polishing tiny lines.
+
+D293 actual source changes: `scripts/battle/battle_ds3_pass.gd` replaces the purely flat Battle panel pass with layered **bronze-and-blackened-wood physical command tray** and crimson action holder, double-cap engraved trim, real inset tactical token holder and scroll behind actual live tactical text; makes real Fight button a distinct lacquered action carrying the **previously user-approved D287 ruby heraldic crest**. Also reuses the exact approved gilt corner fragment; no generated bitmap with painted fake buttons/numbers. Upper encounter title and card stage now have inset ledger plaques and dividers. The DS3 dark bronze/parchment system is intentionally closer to the rich approved Dossier/Table palette; existing `Battle` scene node geometry, enemy and hero art, 3–5 real tactical button controls and their connected signals, Arena, BattleUnit, RunState, encounter data, reward chain unchanged. The existing D292 dynamic selected-token functionality is preserved.
+
+Native regression `scripts/dev/d291_battle_ds3_smoke.gd` updated to verify true renderer assets decode (gilt 53×53 and ruby 103×103), genuinely layered panels and correct per-selection signal UI. [D293 real Battle native Godot 4.7.2 run](https://github.com/zampolit73/Misdeal/actions/runs/39399922113) — check conclusion. **Artistic status: user-local 1280×720 D293 screenshot PENDING**; do not call this visually approved or proceed to Rewards/Shop DS3 before checking the result. Old D292 UI remains recoverable via Git history; full DS2 restore branch still `checkpoint/ds2-pre-ds3-2026-10-20` SHA `4cbd206`.
+
+
 ## D292 — Actual DS3 Battle screenshot review and restrained UI polish (2026-10-20)
 
 User provided the first actual native D291 Battle preparation screenshot (Bone Patrol, Knight + Ranger versus undead): painted stone arena, readable hero/enemy sprites and planted feet, readable HP bars and intact bottom tactic controls. **Observation, not final visual approval:** battle floor is unobstructed, but selected "НАТИСК" barely differs from idle buttons; bottom DS3 panels look like heavy black slabs; deployment hint on stone is faint.

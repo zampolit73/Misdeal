@@ -1,5 +1,10 @@
 # Misdeal — Canonical Working Handoff
 
+## D293 — Next chat continuation (2026-10-20)
+
+The user said the D292 Battle preparation screenshot was **not DS3**. D293 applies material redesign, not minor color change, inside `scripts/battle/battle_ds3_pass.gd` with real gilt/ruby art from D287. New visual includes upper engraved ledgers, copper command tray, inset tactical scrolls and distinct crimson Fight button. Battle/gameplay untouched. Source and smoke in main; run https://github.com/zampolit73/Misdeal/actions/runs/39399922113 must pass, user must then `git pull` and send a fresh actual Godot Battle screenshot before accepting further DS3 rollout. Restore `checkpoint/ds2-pre-ds3-2026-10-20` has not moved. Do not confuse a native smoke PASS with aesthetic approval.
+
+
 ## D292 — Actual DS3 Battle screenshot review and restrained UI polish (2026-10-20)
 
 User provided the first actual native D291 Battle preparation screenshot (Bone Patrol, Knight + Ranger versus undead): painted stone arena, readable hero/enemy sprites and planted feet, readable HP bars and intact bottom tactic controls. **Observation, not final visual approval:** battle floor is unobstructed, but selected "НАТИСК" barely differs from idle buttons; bottom DS3 panels look like heavy black slabs; deployment hint on stone is faint.
