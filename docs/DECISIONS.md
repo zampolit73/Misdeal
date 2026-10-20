@@ -1,5 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D288 — DS2 checkpoint and non-destructive DS3 migration policy (2026-10-20)
+
+User requested a **full checkpoint before DS3 rollout**, so freeze the complete pre-DS3 project at [branch `checkpoint/ds2-pre-ds3-2026-10-20`](https://github.com/zampolit73/Misdeal/tree/checkpoint/ds2-pre-ds3-2026-10-20), commit `4cbd206cc3739355a9d375a0752a6a840e35caa2`. This includes more than UI: a true tracked full-repo Git snapshot. Never move the checkpoint. DS2 remains the supported visual baseline on unconverted scenes; DS3 is introduced as **opt-in per-screen** styling, not a global destructive palette/style rewrite. All concepts drawn in the DS3 exploration (3-card deal, manual combat abilities, invented rewards) are **mood/UX mockups**, not game-design approvals. Actual 2-card Table, existing tactical autobattler and data-bound interface semantics are fixed. For rollback prefer normal revert commits on `main`, never unconditional force-reset. See `docs/DS2_CHECKPOINT.md` and `docs/DS3_FOUNDATION.md`.
+
+
 ## D287 — Final richer Squad Dossier art accepted as direction (2026-10-20)
 
 User explicitly liked the final high-detail gothic dossier painting after D285/D286 screenshot review. **Lock the selected third-layout silhouette** and approved DS2 copper/crimson/blue-gold palette: tall cropped protagonist painting, elegant ruby metal crest, corner filigree, genuine dark stone relief in development, three understated tracked advancement diamonds and three empty/occupied relic medallions. Implement those as independent layers **behind or around live Godot UI**, never the generated full mockup with printed stats and hero labels baked into bitmap. The three exact artwork excerpts are in `assets/pixel/ui/squad_dossier_d287/`. Text, upgrade completions, relic contents, companion availability and solo/duo/trio summary must keep reading real RunState. User approval is for visual concept; **new actual Godot screenshot acceptance remains pending**.

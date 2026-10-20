@@ -1,5 +1,13 @@
 ## 2026-10-20 — D287 Approved third dossier art refinement
 
+## 2026-10-20 — D288 DS2 checkpoint and opt-in DS3 foundation
+
+- Created and verified `checkpoint/ds2-pre-ds3-2026-10-20` at exact pre-migration Git HEAD `4cbd206` (full tracked project rollback; branch is isolated from future `main`).
+- Added opt-in DS3 color/material/component kit, preserving accepted DS2 runtime screens and D287 dossier visuals.
+- Migrated only the live D287 dossier panel factory to an identical DS3 shared style helper, and extended its official Godot native test. No changes to gameplay/card counts/arena/combat/RunState.
+- Documented safe rollback instructions and staggered one-screen-at-a-time DS3 acceptance with native screenshots.
+
+
 - User approved the richer last painting of the third dossier layout. Extracted only its transparent ruby crest, gold filigree corners and near-black Gothic bas-relief into three compact source-derived WebP decorative assets; no baked-screen data.
 - Layered decor into actual Godot `squad_dossier_v3.gd` panels and portrait, gave upgrade badges bronze diamonds with real completion colors, made relic slots bronze medallions with real occupancy status and kept original V7 hero paintings and D286 full-height cropping.
 - Upgraded native smoke to verify the art fragments decode and real 0/3 state remains unchanged. Native base integration and extended D287 visual-component smoke PASS ([run 39390304778](https://github.com/zampolit73/Misdeal/actions/runs/39390304778)); actual user screenshot still pending. No gameplay or RunState changes.

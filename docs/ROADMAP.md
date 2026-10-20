@@ -1,5 +1,16 @@
 # Misdeal — Active Roadmap
 
+## D288 — DS2 safe checkpoint, staged DS3 rollout (2026-10-20)
+
+- [x] Record entire pre-DS3 `main` as verified immutable `checkpoint/ds2-pre-ds3-2026-10-20`, commit `4cbd206`, plus safe restoration instructions.
+- [x] Introduce `scripts/ui/misdeal_ds3.gd` opt-in tokens/surfaces/action styles. Retain DS2 UIKit and all locked artwork as they were.
+- [x] Exercise DS3's visually neutral, exact D287 panel style implementation on the live Squad Dossier; extend Godot headless regression checks.
+- [ ] Confirm D288 official native regression, then request screenshots only for **visible** changes later; no visual shift claimed from foundation.
+- [ ] DS3 pilot on one selected real screen (prefer Table, not generated three-offer concept), preserve actual two-offer UX, card data, fate spread and callbacks; real screenshot before rollout.
+- [ ] Battle DS3 chrome pilot later, preserving autobattler behavior, enemy art and arena space; separate screenshot + fight→reward→table QA.
+- [ ] Rewards, shop and secondary UI migrate only when previous screens and UX are accepted.
+
+
 ## D287 — Approved Squad Dossier final art direction (2026-10-20)
 
 - [x] User approved the final richer third-layout dossier artwork.
