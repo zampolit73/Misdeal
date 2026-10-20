@@ -1,3 +1,15 @@
+## D298 — Editable Battle DS3 reference-inspired ornamental art (2026-10-20)
+
+Selected user visual direction = **second restrained Gothic Battle HUD reference** (first ornament-heavy concept is not approved). Runtime now imports **six new manually authored SVG assets**, not a screenshot pasted over the battle:
+- `assets/pixel/ui/battle_ds3_d298/battle_banner.svg` — 92×155, transparent textile/bronze banner at upper-left header.
+- `assets/pixel/ui/battle_ds3_d298/battle_progress_seal.svg` — 78×99 bronze progress compass with short red ribbons, rendered off the left edge of actual RunHudPanel.
+- `assets/pixel/ui/battle_ds3_d298/battle_filigree.svg` — 72×41 gilded finial reused twice on command board.
+- `assets/pixel/ui/battle_ds3_d298/battle_fight_ribbon.svg` — 89×131 separate crimson silk hanging beside real Fight.
+- `assets/pixel/ui/battle_ds3_d298/battle_command_plate.svg` — 692×134 empty engraved bronze-and-wood Command backdrop under TRUE 3–5 tactical Buttons and live description.
+- `assets/pixel/ui/battle_ds3_d298/battle_fight_plate.svg` — 294×134 blank crimson-and-brass Fight holder under the TRUE Fight/Continue and target preview.
+
+These asset drawings contain no Cyrillic, hero/enemy actors, card numbers, fake stats, baked selectable commands or fake Click targets. Source SVGs are still editable. `scripts/battle/battle_ds3_pass.gd` imports them with `TextureRect` and `mouse_filter=IGNORE`, retaining approved D287 gilt fragments for existing residual trim. **Not a literal pixel extraction or proof of fidelity**; user-local 1280×720 artistic QA and native 4.7.2 import/test are still required. Keep other arena and UI source assets intact.
+
 ## D287 — Isolated painted approved dossier decoration
 
 The user approved the enriched squad-dossier variant 3 source art. Cropped *only source decoration*, cleaned mattes to transparent and committed **three native, small lossless WebP** pieces (not a whole composite mock with printed gameplay UI):
