@@ -1,3 +1,11 @@
+## D295 — User approved Battle DS3 concept 2; live native layout implemented (2026-10-20)
+
+User supplied a genuine D293 Godot screenshot of **Могильный перекрёсток** and judged the UI improved but still cheap. We reviewed two rendered alternatives; user chose **the SECOND concept**: restrained minimal Gothic overlay, not the first heavy physical table full of candles/skulls. D293 is NOT artistically approved.
+
+D295 actual integration on `main`: `scripts/battle/battle_ds3_pass.gd` now arranges slim top encounter/progress ledger plates, a **centered lower tactical command board** (x251–942, y575–708), separated crimson real Fight action (right, x949–1242) and the independently conditional side-objective panel moved to x22–238 so it does not cover Fight. Tightened material opacity, bronze outlines, genuine reused D287 small gilt/ruby fragments, and inset alignment. `scripts/battle/battle.gd` calls `BATTLE_DS3_PASS.layout_tactics(self)` just after its ORIGINAL 3/4/5 unlocked-tactic button configuration. Tactics preserve text, selection signals, buffs/debuffs, unlock rules, 38px height and tooltip data. Updated native smoke checks new coordinates and click/state contracts.
+
+This is a **functional Godot translation of the selected art direction, not a claim of exact pixel reproduction of the illustrative flattened mockup**. No fake buttons or figures from the concept art were baked into runtime. All D283/D284 and other approved arenas, original UnitData / placements / combat floor (Arena x20/y96, 1240x478), HP, enemy AI and Reward route unchanged. DS2 rollback branch SHA `4cbd206` remains intact. **Gates:** CI/native Godot 4.7.2 run and user-local 1280x720 screenshot of the new actual Battle, including 3/4/5 tactics and special objective case; do not mark artistic QA PASSED yet.
+
 # Misdeal — Current Project State
 
 ## D294 — New-chat handoff / D293 art QA still open (2026-10-20)
