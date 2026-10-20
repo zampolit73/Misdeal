@@ -1,6 +1,6 @@
 # Misdeal Design System 3 — Safe Rollout Foundation (D288)
 
-**Status 2026-10-20:** DS3 is **opt-in**, not a global reskin. Keep the original DS2/Variant C behavior and styling for unreviewed screens.
+**Status 2026-10-20:** DS3 is **opt-in**, not a global reskin. Initial D288 native Godot 4.7.2 regression **PASS** ([run 39392900520](https://github.com/zampolit73/Misdeal/actions/runs/39392900520)). Keep the original DS2/Variant C behavior and styling for unreviewed screens.
 
 ## Immutable rollback checkpoint
 

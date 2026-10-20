@@ -4,7 +4,7 @@
 
 - Created and verified `checkpoint/ds2-pre-ds3-2026-10-20` at exact pre-migration Git HEAD `4cbd206` (full tracked project rollback; branch is isolated from future `main`).
 - Added opt-in DS3 color/material/component kit, preserving accepted DS2 runtime screens and D287 dossier visuals.
-- Migrated only the live D287 dossier panel factory to an identical DS3 shared style helper, and extended its official Godot native test. No changes to gameplay/card counts/arena/combat/RunState.
+- Migrated only the live D287 dossier panel factory to an identical DS3 shared style helper, and extended its official Godot native test — **PASS** ([run 39392900520](https://github.com/zampolit73/Misdeal/actions/runs/39392900520)). No changes to gameplay/card counts/arena/combat/RunState.
 - Documented safe rollback instructions and staggered one-screen-at-a-time DS3 acceptance with native screenshots.
 
 
