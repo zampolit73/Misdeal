@@ -1,3 +1,7 @@
+## D300 image-quality correction (2026-10-20)
+
+Following two real D299 user Godot screenshots, the D299 source crop compression was found too aggressive (74×127 banner; 44×135 candles, upscaled). D300 retains the original reference-art intent with a new higher-resolution packed WebP in `assets/pixel/ui/battle_ds3_d300/reference_fragments_hq.webp.pack.b64`; decoder in `scripts/ui/battle_reference_fragments.gd` now points there. D299's original byte spans recorded below remain accurate only for rollback to that pack. Current production pack: 23,510 binary bytes / 31,348 encoded chars; `banner` 0–7454 (111×189), `medallion` 7454–12862 (88×113), `candles` 12862–17566 (57×172), `wax_ribbon` 17566–23510 (84×178). Native smoke asserts exact dimensions and transparent corners. No new painted words or fake UI. Artistic acceptance requires post-D300 actual Godot screenshot.
+
 # D299 — Approved Battle reference: source-painted runtime decoration
 
 Date: 2026-10-20. User approved continuing after a new richly illustrated **second Gothic DS3 Battle composition**. The design's displayed words/buttons/hero/enemy characters are **reference-only**, never to be pasted into the game.
