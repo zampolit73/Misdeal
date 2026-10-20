@@ -7,7 +7,7 @@ const DS3 := preload("res://scripts/battle/battle_ds3_pass.gd")
 const BATTLE_SCENE := "res://scenes/battle/battle.tscn"
 const GRAVE_BELL := "res://resources/encounters/grave_bell.tres"
 
-const RULES := [
+const RULES = [
 	["Звонарь первым", "УСЛОВИЕ ВОЛШЕБНИКА\nЗвонарь должен пасть первым • +15 золота"],
 	["Сохранить отряд", "УСЛОВИЕ ВОЛШЕБНИКА\nНикто не ниже 25% HP • +15 золота"],
 	["Победить вовремя", "УСЛОВИЕ ВОЛШЕБНИКА\nПобедить за 16 сек • +15 золота"]
