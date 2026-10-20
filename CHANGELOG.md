@@ -1,3 +1,9 @@
+## 2026-10-20 — D303: user art approval of five modular Gothic Battle UI source images
+
+- User signed off five independent artistically rich, transparent, empty Battle UI skins: command cabinet, Fight cabinet, tactic idle, tactic selected, crimson Fight action.
+- Archived source PNGs in conversation-generated ZIP with native dimensions and SHA256 manifest; recorded scope, implementation rules and status in `docs/D303_BATTLE_MODULES_APPROVED.md`, PROJECT_STATE, ROADMAP, DECISIONS and HANDOFF.
+- No runtime code or PNG binaries committed in this documentation pass, and no Godot visual/technical approval asserted. Next integration must preserve actual controls, dynamic 3–5 tactical states, existing arenas, user screenshot gate and DS2 rollback.
+
 ## 2026-10-20 — D301 Live Battle: in-panel order descriptions instead of overlapping native tooltips
 
 - User's actual D300 `КОСТЯНОЙ ДОЗОР` screenshot confirms painted DS3 Battle ornaments render, but the default Godot tooltip covers the lower tactical description and repeats the same data.
