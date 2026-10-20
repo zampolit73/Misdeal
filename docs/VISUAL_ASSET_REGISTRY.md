@@ -1,3 +1,10 @@
+## D311 — Selected THIRD Wizard objective art (2026-10-21)
+
+- `assets/pixel/ui/battle_ds3_d311/wizard_variant3_isolated.png`: transparent, text-free original-reference-derived material module: medallion with hooded Wizard portrait, horizontal blackwood inset wells, gold/brass framing and hanging crimson cloth. Derived from **third user-selected** Battle UI concept; 347×185 source crop preserved in isolation.
+- `assets/pixel/ui/battle_ds3_d311/wizard_variant3_game.webp`: 286×153 transparent optimized raster; actual native Godot draw rect is fixed at 258×138 with `battle_wizard_plaque_canvas.gd`, to match 1280×720 interface scale.
+- Text headings and rule/bonus/fail descriptions are **real GDScript-derived Godot Labels**. No static Russian labels baked into the art. Active in `battle_ds3_pass.gd`. Old D307 art preserved in repo for historical rollback, no longer selected.
+- Selected **art direction approved**, real native UI screenshot/visual signoff still open. See `docs/D311_WIZARD_VARIANT3.md`.
+
 ## D307 — Optional Wizard objective Gothic module, visual QA pending (2026-10-20)
 
 - `assets/pixel/ui/battle_ds3_d307/wizard_condition_game.webp`: 756×472, source-derived transparent illustrated panel with separate header/body wells, used by live optional `SideObjectivePanel` only when imported.
