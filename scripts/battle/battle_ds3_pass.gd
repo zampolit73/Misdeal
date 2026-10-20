@@ -280,9 +280,9 @@ static func style_tactic(button: Button, selected: bool, accent: Color) -> void:
 		wax = ColorRect.new()
 		wax.name = "DS3OrderMark"
 		wax.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		wax.position = Vector2(12, 15)
-		wax.size = Vector2(6, 6)
-		wax.pivot_offset = Vector2(3, 3)
+		wax.position = Vector2(15, 16)
+		wax.size = Vector2(8, 8)
+		wax.pivot_offset = Vector2(4, 4)
 		wax.rotation = PI / 4.0
 		button.add_child(wax)
 	wax.color = PARCHMENT_BRIGHT
