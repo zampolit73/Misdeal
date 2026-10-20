@@ -56,33 +56,39 @@ func _check() -> void:
 	if not (scene.get_node("FightButton") as Button).has_theme_font_override("font"):
 		_fail("D296 primary serif typography missing")
 		return
-	if scene.get_node_or_null("RunHudPanel/DS3ProgressMedallion") == null:
-		_fail("D298 real progress heraldic medallion missing")
-		return
-	if scene.get_node_or_null("RunHudPanel/DS3ProgressSeal") != null:
-		_fail("D298 legacy + new progress emblems overlap")
-		return
-	# D298 decorative assets are transparent empty holder surfaces, loaded
-	# as independent Godot textures. They must never capture native input.
+	# D299 accepts the exact rendered material decorations isolated from the
+	# second approved image. Vector-only D298 pieces remain in Git for rollback
+	# but MUST NOT appear over the painted counterparts in production.
+	for old_path in ["TopHudPanel/DS3Banner", "RunHudPanel/DS3ProgressMedallion", "RunHudPanel/DS3ProgressSeal", "FightHudPanel/DS3FightRibbon"]:
+		if scene.get_node_or_null(old_path) != null:
+			_fail("D299 stale vector artwork overlaps approved painted fragment: " + old_path)
+			return
 	var painted := {
-		"TopHudPanel/DS3Banner": Vector2(87, 147),
-		"RunHudPanel/DS3ProgressMedallion": Vector2(58, 73),
+		"TopHudPanel/DS3PaintedBanner": Vector2(96, 165),
+		"RunHudPanel/DS3PaintedMedallion": Vector2(74, 98),
+		"BottomHudPanel/DS3PaintedCandles": Vector2(51, 150),
+		"FightHudPanel/DS3PaintedWaxRibbon": Vector2(73, 157),
 		"BottomHudPanel/DS3CommandPlate": Vector2(691, 133),
 		"BottomHudPanel/DS3LeftFinial": Vector2(66, 37),
 		"BottomHudPanel/DS3RightFinial": Vector2(66, 37),
 		"FightHudPanel/DS3FightPlate": Vector2(293, 133),
-		"FightHudPanel/DS3FightRibbon": Vector2(68, 108),
 	}
 	for art_path in painted:
 		var ornament := scene.get_node_or_null(art_path) as TextureRect
 		if ornament == null or ornament.texture == null:
-			_fail("D298 Gothic real-art import/decode missing: " + str(art_path))
+			_fail("D299 approved or supporting Battle art failed to decode: " + str(art_path))
 			return
 		if ornament.mouse_filter != Control.MOUSE_FILTER_IGNORE:
-			_fail("D298 painted-only asset intercepts Battle input: " + str(art_path))
+			_fail("D299 art intercepts a real Battle button or tooltip: " + str(art_path))
 			return
 		if ornament.size != painted[art_path]:
-			_fail("D298 painted asset violates authored HUD geometry: " + str(art_path))
+			_fail("D299 artwork outside authored screen dimensions: " + str(art_path))
+			return
+	var pack := load("res://scripts/ui/battle_reference_fragments.gd") as Script
+	for id in ["banner", "medallion", "candles", "wax_ribbon"]:
+		var tex := pack.call("get_fragment", id) as Texture2D
+		if tex == null or tex.get_image() == null or tex.get_image().is_empty():
+			_fail("D299 source alpha WebP not really decoded: " + id)
 			return
 	var header := scene.get_node("Title") as Label
 	if header.position.x < 100.0 or header.size.x < 800.0:
