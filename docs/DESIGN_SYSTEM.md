@@ -1,3 +1,7 @@
+## D290 — Real source-art vs live-control collision rule
+
+Screenshot revealed native approved Table art has a permanently painted left deck numeral 22. Real live DeckCount is authoritative: mask the baked numeral only, preserve the caption, never force source numbers. For migrated panels, do not layer old DS2 _MisdealChrome brackets over new DS3 borderlines; hide only that former component's decoration. Design fidelity is checked in actual Godot screenshots, code contracts in CI. Applies specifically to D290 Table.
+
 ## D289 — The Table uses DS3 as physical chrome, not a painted mockup
 
 Adopt DS3 on the real table only at the edges: aged bronze/obsidian for live HUD, Wizard speech plate, Squad/Fate Spread buttons, counters and existing Wager. The central two authored parchment encounter cards, physical backs/hold, in-world table paint and 12-step Fate Spread must retain original content and spacing. No 3-card concept art overlay, no new painted HUD text, no repeated bright gold ornament covering hand-painted scenes. Existing `scripts/ui/misdeal_ui_kit.gd` remains intact. Apply `scripts/table/table_ds3_pass.gd` after the older scoped DS2 `table()` call. Screenshots, not green Godot tests, determine visual acceptance. See `docs/DS3_FOUNDATION.md`.

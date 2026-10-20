@@ -1,5 +1,10 @@
 # Misdeal — Current Project State
 
+## D290 — Screenshot repair of first DS3 Table pass (2026-10-20)
+
+After D289 user submitted actual in-game Table screenshot. Two concrete flaws: approved static table_exact.webp already contains baked "КОЛОДА 22" while true live counter showed 37 next to it; old DS2 heavy corner-bracket overlays doubled the new DS3 top HUD/Wizard bar chrome. D290 fix ed300119 changes ONLY scripts/table/table_ds3_pass.gd: deck number mask enlarged to x148–218 while preserving caption КОЛОДА and real live RunState DeckCount, legacy DS2 corner visuals hidden on these two panels only, DS3 inner trim made subtle (no extra side bars). All real 2 offer cards, hold, wager, fate spread, card art, party data, gameplay remain unchanged. Native Godot 4.7.2 D289/D290 extended smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39396611590 . Fresh user-local screenshot after pull still required before declaring visual approval. DS2 checkpoint remains immutable at 4cbd206.
+
+
 ## D289 — First DS3 visible pilot: live two-card Table (2026-10-20)
 
 After user said **«продолжай»** from D288 foundation, implemented DS3 **only for the real Table's peripheral controls**, not for generated mockups. Runtime commit `bd56af7` adds `scripts/table/table_ds3_pass.gd` and invokes it AFTER `MISDEAL_DS2_ROLLOUT.table(self)` from `scripts/table/table.gd::_apply_ui_kit()`. Uses DS3 aged bronze/obsidian thin panel chrome on live `HudPanel`, `WizardLinePanel`, `SquadButton`, `FateSpreadButton`, real Deck/Discard labels, and the actual existing Wager popup; adds restrained mouse-ignoring metal edge details. NO card art, parchment/frame sprites, normal **two-offer** layout (272×338 at authored coordinates), hold, inspect-RMB, Fate Spread history, Wizard dialogue logic, RunState, balance, combat, party or art assets changed.

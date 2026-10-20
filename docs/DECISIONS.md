@@ -1,5 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D290 — One real counter, no doubled DS2/DS3 ornament (2026-10-20)
+
+A screenshot of the actual Table showed the painterly backdrop already contains a fixed deck label and number "КОЛОДА 22". Mask ONLY the stale baked number (x148–218 in 1280×720 coordinates), keep the caption and the true RunState DeckCount. When an opt-in DS3 panel replaces older DS2 styling, suppress that specific panel's old _MisdealChrome corner overlay instead of stacking two sets. Applies to top HUD and Wizard speech only; does not authorize reskinning all other gameplay/screens. Native test passes; post-fix screenshot still pending.
+
+
 ## D289 — DS3 is a chrome migration, NOT Table redesign or three-card mechanic (2026-10-20)
 
 The first visible DS3 trial targets the authentic **two-card** in-world Table. Its original D274/D278 illustrated parchment cards and D167 scene-based artwork remain frozen; no new cards, CTA behavior, timed choices, order systems, party mechanics or third center card from the DS3 concept imagery are introduced. DS3 operates as a last-applied **opt-in** peripheral styling layer `scripts/table/table_ds3_pass.gd` after DS2, including real Wager; mouse interactions remain on original Buttons, all ornament is noninteractive. Official headless Godot has passed, but actual screenshot approval is still pending. Keep `checkpoint/ds2-pre-ds3-2026-10-20` untouched.

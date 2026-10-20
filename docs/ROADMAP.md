@@ -1,5 +1,13 @@
 # Misdeal — Active Roadmap
 
+## D290 — DS3 screenshot-backed corrections (2026-10-20)
+
+- [x] Real D289 Table screenshot found baked-static 22 beside live deck count 37, and two layers of metal corner decoration DS2 + DS3.
+- [x] Patch only D290 Table DS3: extend number mask and hide old two-panel corner overlay while keeping single thin DS3 outlines, all original artwork and real 2-card actions.
+- [x] Native Godot 4.7.2 extended real two-offer Table smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39396611590
+- [ ] Compare D290 in fresh native Godot Table screenshot after pull; ensure single deck counter, preserved caption and calmer top chrome before moving to Battle HUD.
+
+
 ## D289 — DS3 Table-only live visual pilot (2026-10-20)
 
 - [x] Apply DS3 copper/obsidian low-density chrome to peripheral live table HUD, Wizard line, Squad/Fate Spread buttons, actual Deck/Discard labels and Wizard Wager action panel, **after** existing DS2 styles.

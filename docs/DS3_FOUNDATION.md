@@ -73,3 +73,8 @@ See also `docs/DESIGN_SYSTEM.md` for approved historical DS2 decisions and `docs
 - Native test `scripts/dev/d289_table_ds3_smoke.gd` bootstraps `RunState` and the **real** Table and checks exactly two `get_offer_cards()`, original card art/size, connected callbacks, Wager and DS3 panels. [Godot 4.7.2 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39393893259). Original D274 regression PASS.
 - **Open:** actual 1280×720 user screenshot of two-card Table D289. Do not claim pixel-perfect equivalence or final artistic signoff. Next Battle HUD pass only after assessing this visual gate.
 
+
+## D290 — Post-first-screenshot fixes
+
+First actual D289 Table screenshot exposed fixed deck text and heavy doubled chrome. D290 scopes masking and thinner decoration to the actual Table without touching other screens/gameplay. Native two-card QA PASS: https://github.com/zampolit73/Misdeal/actions/runs/39396611590 . Await screenshot to approve.
+

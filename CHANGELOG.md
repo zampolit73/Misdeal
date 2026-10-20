@@ -1,5 +1,13 @@
 ## 2026-10-20 — D287 Approved third dossier art refinement
 
+## 2026-10-20 — D290 first native DS3 Table screenshot polish
+
+- Corrected doubled baked/live left deck count ("КОЛОДА 22" plus true 37) using localized number matte while preserving all data-backed counts and art.
+- Removed extra DS2 corner brackets from DS3-styled Table top bars only; now thinner single-bronze edges.
+- Expanded D289 Table Godot QA to assert these fixes and unchanged two-card callbacks; official Godot 4.7.2 PASS: https://github.com/zampolit73/Misdeal/actions/runs/39396611590 .
+- Await actual user D290 screenshot to approve visuals. Full DS2 backup branch still untouched.
+
+
 ## 2026-10-20 — D289 First DS3 real Table pilot
 
 - Added per-screen `table_ds3_pass.gd` for thinner aged-bronze DS3 plates, warm live text and subtle control chrome on the actual HUD, Wizard, Squad, Fate Spread and Wager; original two painted encounter card Buttons untouched.
