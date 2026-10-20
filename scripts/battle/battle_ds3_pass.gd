@@ -1,6 +1,6 @@
 extends RefCounted
 
-# D296: Screenshot-led material/typography finish of selected DS3 Gothic concept.
+# D297: Screenshot-led Battle DS3 status legibility and individual engraved order tokens.
 # Preserve real data-backed UI, tactics and the authored battle arena.
 # Gameplay, tactical data, unit positions, scene geometry and arena images
 # stay in the production Battle. The ornate fragments are already approved
@@ -34,7 +34,7 @@ static func apply(scene: Control) -> void:
 	_style_label(scene, "OrderLabel", PARCHMENT_BRIGHT, 16)
 	_style_label(scene, "OrderDescription", SECONDARY, 13)
 	_style_label(scene, "DealLabel", PARCHMENT_BRIGHT, 19)
-	_style_label(scene, "RunConditionLabel", SECONDARY, 11)
+	_style_label(scene, "RunConditionLabel", SECONDARY, 12)
 	_style_label(scene, "WizardCommentary", PARCHMENT, 13)
 	_apply_typography(scene)
 	_ornament(scene.get_node("RunHudPanel") as Panel, "DS3ProgressSeal", "ruby_crest.webp", Vector2(7, 9), Vector2(30, 30), Vector2i(103, 103), Color(0.90, 0.76, 0.62, 0.72))
@@ -66,11 +66,11 @@ static func apply(scene: Control) -> void:
 # concern pre-existing actual Control nodes, never simulated painted controls.
 static func _layout_panels(scene: Control) -> void:
 	_place(scene.get_node("TopHudPanel") as Control, Vector2(22, 14), Vector2(902, 72))
-	_place(scene.get_node("RunHudPanel") as Control, Vector2(988, 14), Vector2(270, 72))
+	_place(scene.get_node("RunHudPanel") as Control, Vector2(959, 14), Vector2(299, 78))
 	_place(scene.get_node("Title") as Control, Vector2(48, 19), Vector2(864, 32))
 	_place(scene.get_node("Status") as Control, Vector2(49, 50), Vector2(861, 30))
-	_place(scene.get_node("DealLabel") as Control, Vector2(1003, 19), Vector2(241, 29))
-	_place(scene.get_node("RunConditionLabel") as Control, Vector2(1002, 48), Vector2(242, 31))
+	_place(scene.get_node("DealLabel") as Control, Vector2(1004, 19), Vector2(236, 29))
+	_place(scene.get_node("RunConditionLabel") as Control, Vector2(967, 49), Vector2(280, 38))
 	_place(scene.get_node("PartyLabel") as Control, Vector2(32, 106), Vector2(166, 25))
 	_place(scene.get_node("EnemyLabel") as Control, Vector2(1096, 106), Vector2(152, 25))
 	_place(scene.get_node("BottomHudPanel") as Control, Vector2(251, 575), Vector2(691, 133))
@@ -88,12 +88,47 @@ static func _layout_panels(scene: Control) -> void:
 	var caption := scene.get_node("OrderLabel") as Label
 	caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	(scene.get_node("Status") as Label).clip_text = true
+	var condition := scene.get_node("RunConditionLabel") as Label
+	condition.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	condition.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	condition.clip_text = true
+	# Readable two-row summary; full RunState modifiers remain in a native tooltip.
+	condition.mouse_filter = Control.MOUSE_FILTER_STOP
+	(scene.get_node("RunHudPanel") as Panel).mouse_filter = Control.MOUSE_FILTER_STOP
 	(scene.get_node("OrderDescription") as Label).vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	(scene.get_node("SideObjectivePanel/ObjectiveLabel") as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	for name in ["PartyLabel", "EnemyLabel"]:
 		var side := scene.get_node(name) as Label
 		side.add_theme_color_override("font_color", PARCHMENT)
 		side.add_theme_font_size_override("font_size", 13)
+
+
+# The actual RunState status string can have 1-6 rows. The upper-right badge
+# has room for two lines; compact only the visible summary and keep the
+# complete original Russian text on hover. No game bonuses are recomputed.
+static func present_run_conditions(scene: Control) -> void:
+	var condition := scene.get_node("RunConditionLabel") as Label
+	var full_text := condition.text
+	if full_text.is_empty():
+		return
+	condition.text = compact_run_conditions(full_text)
+	condition.tooltip_text = full_text
+	(scene.get_node("RunHudPanel") as Control).tooltip_text = full_text
+	(scene.get_node("DealLabel") as Control).tooltip_text = full_text
+
+
+static func compact_run_conditions(full_text: String) -> String:
+	var rows := full_text.split("\n", false)
+	if rows.is_empty():
+		return ""
+	var first := rows[0].replace(" • ", " · ").replace("УРОН", "УР").replace("АТАКИ", "АТК").replace("HP ", "HP").replace("УР ", "УР").replace("АТК ", "АТК")
+	var summary: Array[String] = [first]
+	if rows.size() > 1:
+		var second := rows[1].replace("ДАВЛЕНИЕ ВРАГОВ", "ВРАГИ").replace(" • ", " · ").replace("УРОН", "УР").replace("HP ", "HP").replace("УР ", "УР")
+		if rows.size() > 2:
+			second += " · +%d" % (rows.size() - 2)
+		summary.append(second)
+	return "\n".join(summary)
 
 
 static func _place(control: Control, at: Vector2, dimensions: Vector2) -> void:
