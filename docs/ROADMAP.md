@@ -1,3 +1,12 @@
+## D309 — Correct oversized Wizard frame (blocking actual Godot screenshots)
+
+- [x] Review real user shots: D307 imported image fills huge area, HUD labels don't align, prep leaks below screen and combat blocks arena/actors.
+- [x] Replace default TextureRect-based artwork with a fixed-size CanvasItem draw in `battle_wizard_plaque_canvas.gd` at 252×158; no source-resolution-based size expansion.
+- [x] Keep same pre/combat panel locations, canonical text, two labels, success/fail callbacks, approved D303 battle command/fight skins and rules.
+- [x] Add pixel-bound assertions in real Battle and F6 previews, native workflow trigger for renderer source.
+- [ ] Verify Godot 4.7.x native pipeline + real 1280×720 F6 and actual `Могильный звон` screenshots; correct text inset alignment only if evidence warrants.
+- [ ] User signoff of D307 candidate art in actual battle is **not obtained**. Don't declare Battle DS3 finished.
+
 ## D308 — Test D307 candidate in Godot without playing a run (2026-10-20)
 
 - [x] Add standalone test scene `scenes/dev/d308_wizard_panel_preview.tscn` for user direct F6 launch (normal `project.godot` unchanged).
