@@ -1,3 +1,10 @@
+## 2026-10-20 — D296 Battle DS3: engraved material and serif UI after native screenshot
+
+- User shared actual D295 `Костяной рой` preparation. Geometry/units/tactics readable, but top ledger and lower command bar still flat and typography plain, so screenshot is **not** artistic approval.
+- Added native vector relief/patina/cut-corner chrome `battle_engraved_frame.gd`, attached as mouse-ignoring child Controls to real Battle plates and taktics; made upper inset plates translucent instead of drawing doubled black rectangles.
+- Applied OS serif font with Cyrillic fallbacks only to key battle headings/order buttons and Fight, kept gameplay text/controls data-backed; retained D287 decorative image fragments and increased the single selected token mark.
+- Extended real Battle native regression for etched pieces/fonts/mouse behavior. Official CI and native user screenshot still pending. Original combat, arena, motion, tactics, rewards and DS2 restore unaffected.
+
 ## 2026-10-20 — D295 Approved second DS3 Battle design direction, native Godot cosmetic layout
 
 - After screenshot critique of D293, presented two Battle DS3 art concepts. User chose the second minimal Gothic overlay, *not* the ornate first one.
