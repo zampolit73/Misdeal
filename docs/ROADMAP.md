@@ -1,3 +1,13 @@
+## D303 — Approved modular Battle illustrations → next actual integration (2026-10-20)
+
+- [x] Author and present isolated, transparent, text-free illustrated command base, right Fight base, tactic idle, tactic selected and crimson Fight button.
+- [x] **User APPROVED all five art modules** («отлично утвердили»), unlike the earlier rejected real Battle screen.
+- [x] Package original PNGs + exact manifest in conversation as `Misdeal_Battle_DS3_D303_approved_modules.zip`; record complete specifications in `docs/D303_BATTLE_MODULES_APPROVED.md`.
+- [ ] Transfer original generated PNG or appropriately high-quality WebP into **GitHub** through a suitable binary asset upload; text-only GitHub file writes alone do not transfer local PNG bytes.
+- [ ] Integrate genuine skins into `battle_ds3_pass.gd` without duplicate D298/D299 frames, preserving D301 dynamic tooltip, 3–5 tactics and underlying real controls.
+- [ ] Native Godot 4.7.x test and new 1280×720 user screenshot of art + buttons in actual game; get explicit acceptance of **runtime Battle DS3**.
+- [ ] Do not mark Battle polished or start other screen migration until this art gate closes.
+
 ## D302 — REOPEN Battle DS3 against actual accepted art reference (2026-10-20)
 
 - [x] User explicitly rejected D301 fidelity: `«Все еще не похоже на референс»`; cancel proposed Battle 1.0 signoff and next-screen migration.
