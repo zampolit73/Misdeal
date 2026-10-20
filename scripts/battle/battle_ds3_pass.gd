@@ -1,12 +1,13 @@
 extends RefCounted
 
-# D295: User-selected second concept -- restrained Gothic DS3 battle chrome.
+# D296: Screenshot-led material/typography finish of selected DS3 Gothic concept.
 # Preserve real data-backed UI, tactics and the authored battle arena.
 # Gameplay, tactical data, unit positions, scene geometry and arena images
 # stay in the production Battle. The ornate fragments are already approved
 # D287 dossier art, never a baked picture of fake buttons or stats.
 const DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
 const WEBP_TEXTURE := preload("res://scripts/ui/runtime_webp_texture.gd")
+const ENGRAVED_FRAME := preload("res://scripts/ui/battle_engraved_frame.gd")
 const ORNAMENT_DIR := "res://assets/pixel/ui/squad_dossier_d287/"
 
 const BRONZE := Color("#a66636")
@@ -30,11 +31,16 @@ static func apply(scene: Control) -> void:
 
 	_style_label(scene, "Title", PARCHMENT_BRIGHT, 23)
 	_style_label(scene, "Status", SECONDARY, 12)
-	_style_label(scene, "OrderLabel", PARCHMENT_BRIGHT, 14)
-	_style_label(scene, "OrderDescription", SECONDARY, 12)
-	_style_label(scene, "DealLabel", PARCHMENT_BRIGHT, 18)
+	_style_label(scene, "OrderLabel", PARCHMENT_BRIGHT, 16)
+	_style_label(scene, "OrderDescription", SECONDARY, 13)
+	_style_label(scene, "DealLabel", PARCHMENT_BRIGHT, 19)
 	_style_label(scene, "RunConditionLabel", SECONDARY, 11)
 	_style_label(scene, "WizardCommentary", PARCHMENT, 13)
+	_apply_typography(scene)
+	_ornament(scene.get_node("RunHudPanel") as Panel, "DS3ProgressSeal", "ruby_crest.webp", Vector2(7, 9), Vector2(30, 30), Vector2i(103, 103), Color(0.90, 0.76, 0.62, 0.72))
+	for name in ["PartyLabel", "EnemyLabel"]:
+		var side := scene.get_node(name) as Label
+		_strip(side, "DS3SideDivider", Vector2(19, 23), Vector2(side.size.x - 38.0, 1), Color(0.79, 0.57, 0.36, 0.56))
 	# The hint remains on the *real* preparation floor, not on the panel.
 	var hint := scene.get_node("PlacementHint") as Label
 	hint.modulate = Color(1.0, 1.0, 1.0, 0.91)
@@ -46,6 +52,7 @@ static func apply(scene: Control) -> void:
 	style_secondary(scene.get_node("TargetPreviewButton") as Button, MOONSTEEL)
 	style_secondary(scene.get_node("RestartButton") as Button, MOONSTEEL)
 	style_primary(scene.get_node("FightButton") as Button, CRIMSON)
+	(scene.get_node("FightButton") as Button).add_theme_font_size_override("font_size", 27)
 	style_primary(scene.get_node("ContinueButton") as Button, BRONZE)
 	# This seal belongs only to the existing real primary action, never to
 	# the battle background or a second floating fake button.
@@ -113,6 +120,17 @@ static func layout_tactics(scene: Control) -> void:
 		active[i].size = Vector2(cell_width, 38)
 
 
+static func _apply_typography(scene: Control) -> void:
+	# System serif is available on Windows (Georgia/Cambria) with cross-platform
+	# Cyrillic fallbacks. No external font bytes or baked language in the art.
+	var serif := SystemFont.new()
+	serif.font_names = PackedStringArray(["Georgia", "Cambria", "Noto Serif", "DejaVu Serif", "Times New Roman"])
+	for name in ["Title", "DealLabel", "OrderLabel", "PartyLabel", "EnemyLabel"]:
+		(scene.get_node(name) as Label).add_theme_font_override("font", serif)
+	for name in ["AssaultOrderButton", "HuntOrderButton", "FormationOrderButton", "SacrificeOrderButton", "DefianceOrderButton", "FightButton", "ContinueButton"]:
+		(scene.get_node(name) as Button).add_theme_font_override("font", serif)
+
+
 static func _material(material: String) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
 	match material:
@@ -146,6 +164,17 @@ static func _material(material: String) -> StyleBoxFlat:
 static func _draw_hardware(panel: Panel, prefix: String, material: String) -> void:
 	if panel.has_node("DS3MaterialUpper"):
 		return
+	# An authored geometric relief sits below the existing live labels.
+	# This is a real independent Control, never a flattened HUD mockup.
+	var relief := ENGRAVED_FRAME.new() as Control
+	relief.name = "DS3EngravedRelief"
+	relief.set("kind", material)
+	relief.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	relief.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	panel.add_child(relief)
+	# The panel is already laid out before the decoration is created.
+	relief.position = Vector2.ZERO
+	relief.size = panel.size
 	var w := panel.size.x
 	var h := panel.size.y
 	var warm := material != "steel"
@@ -257,6 +286,18 @@ static func style_tactic(button: Button, selected: bool, accent: Color) -> void:
 		button.add_child(wax)
 	wax.color = PARCHMENT_BRIGHT
 	wax.visible = selected
+	var relief := button.get_node_or_null("DS3EtchedToken") as Control
+	if relief == null:
+		relief = ENGRAVED_FRAME.new() as Control
+		relief.name = "DS3EtchedToken"
+		relief.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		relief.anchor_right = 1.0
+		relief.anchor_bottom = 1.0
+		button.add_child(relief)
+		relief.position = Vector2.ZERO
+		relief.size = button.size
+	relief.set("kind", "order_selected" if selected else "order")
+	relief.queue_redraw()
 	button.add_theme_color_override("font_color", PARCHMENT_BRIGHT if selected else Color(0.82, 0.73, 0.61))
 	button.add_theme_color_override("font_pressed_color", PARCHMENT_BRIGHT)
 	button.add_theme_color_override("font_hover_color", PARCHMENT_BRIGHT)
