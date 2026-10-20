@@ -34,8 +34,9 @@ func _check() -> void:
 	for path in panels:
 		var plate := scene.get_node(path) as Panel
 		var style := plate.get_theme_stylebox("panel") as StyleBoxFlat
-		if style == null or style.border_width_left != 1 or style.shadow_size != 3:
-			_fail("Battle DS3 light material not loaded: " + path)
+		var physical: bool = path == "BottomHudPanel" or path == "FightHudPanel"
+		if style == null or style.border_width_left != (2 if physical else 1) or style.shadow_size != (6 if physical else 3):
+			_fail("D293 Battle physical DS3 material not loaded: " + path)
 			return
 		if plate.mouse_filter != Control.MOUSE_FILTER_IGNORE and plate.mouse_filter != Control.MOUSE_FILTER_PASS:
 			_fail("battle panel mouse interception changed: " + path)
@@ -60,15 +61,30 @@ func _check() -> void:
 				_fail("DS3 tactical state missing: " + path + " " + style_name)
 				return
 	var hint := scene.get_node("PlacementHint") as Label
-	if hint.modulate.a < 0.87:
-		_fail("D292 placement hint contrast regressed")
+	if hint.modulate.a < 0.90:
+		_fail("D293 placement hint contrast regressed")
 		return
+	# These are genuine authored webp pieces, not a drawn image of the HUD.
 	for path in ["BottomHudPanel", "FightHudPanel"]:
-		var bottom := scene.get_node(path) as Panel
-		var material := bottom.get_theme_stylebox("panel") as StyleBoxFlat
-		if bottom.get_node_or_null("DS3UpperHairline") == null or material.bg_color.a > 0.84:
-			_fail("D292 bottom combat island must have a light panel and top hairline")
+		var tray := scene.get_node(path) as Panel
+		if tray.get_node_or_null("DS3MaterialUpper") == null or tray.get_node_or_null("DS3CapInset") == null:
+			_fail("D293 physical battle command tray missing")
 			return
+		for name in ["DS3GiltLeft", "DS3GiltRight"]:
+			var fragment := tray.get_node_or_null(name) as TextureRect
+			if fragment == null or fragment.texture == null or fragment.texture.get_size() != Vector2(53, 53):
+				_fail("D293 genuine bronze ornament missing from " + path)
+				return
+	if scene.get_node_or_null("BottomHudPanel/DS3CommandHolder") == null or scene.get_node_or_null("BottomHudPanel/DS3OrderScroll") == null:
+		_fail("D293 tactical order holder/scroll hierarchy missing")
+		return
+	if scene.get_node_or_null("FightHudPanel/DS3StrikeHolder") == null:
+		_fail("D293 primary action lacquer holder missing")
+		return
+	var ruby := scene.get_node_or_null("FightButton/DS3FightRubySeal") as TextureRect
+	if ruby == null or ruby.texture == null or ruby.texture.get_size() != Vector2(103, 103):
+		_fail("D293 physical painted ruby crest missing from real Fight Button")
+		return
 	var hunt := scene.get_node("HuntOrderButton") as Button
 	scene.call("_select_tactical_order", "hunt", false)
 	if scene.get("tactical_order") != "hunt" or not hunt.button_pressed:
@@ -83,7 +99,11 @@ func _check() -> void:
 	var hunt_inlay := hunt.get_node_or_null("DS3SelectedInlay") as ColorRect
 	var assault_inlay := assault.get_node_or_null("DS3SelectedInlay") as ColorRect
 	if hunt_inlay == null or assault_inlay == null or not hunt_inlay.visible or assault_inlay.visible:
-		_fail("D292 strong selected Hunt inlay / idle Assault visibility wrong")
+		_fail("D293 selected Hunt token / idle Assault visibility wrong")
+		return
+	var token := hunt.get_node_or_null("DS3OrderMark") as ColorRect
+	if token == null or not token.visible:
+		_fail("D293 selected Tactic heraldic mark missing")
 		return
 	if hunt_style.bg_color.r <= assault_style.bg_color.r + 0.10:
 		_fail("D292 selected tactical fill lacks contrast")
@@ -93,7 +113,10 @@ func _check() -> void:
 		_fail("real Formation action or UI state not preserved")
 		return
 	if hunt_inlay.visible or not (scene.get_node("FormationOrderButton/DS3SelectedInlay") as ColorRect).visible:
-		_fail("D292 selected inlay did not follow Formation")
+		_fail("D293 selected token did not follow Formation")
+		return
+	if token.visible:
+		_fail("D293 selected Hunt icon stayed visible after switching to Formation")
 		return
 
 	for btn in ["TargetPreviewButton", "FightButton", "ContinueButton", "RestartButton"]:
