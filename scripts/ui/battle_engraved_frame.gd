@@ -17,6 +17,11 @@ func _ready() -> void:
 func _draw() -> void:
 	var w := size.x
 	var h := size.y
+	if kind == "order_symbol_only":
+		# D304: approved art already draws the token frame; render only the
+		# authentic order-specific swords/bow/shield on top of the real Button.
+		_draw_order_symbol(Vector2(29, h * 0.5), Color(0.91, 0.69, 0.41, 0.90))
+		return
 	if kind == "order" or kind == "order_selected":
 		_draw_order(w, h, kind == "order_selected")
 		return
