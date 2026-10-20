@@ -54,6 +54,8 @@ static func apply(scene: Control) -> void:
 	_style_label(scene, "DealLabel", PARCHMENT_BRIGHT, 19)
 	_style_label(scene, "RunConditionLabel", SECONDARY, 12)
 	_style_label(scene, "WizardCommentary", PARCHMENT, 13)
+	# D306: make the real, optional Wizard challenge legible alongside D303 art.
+	_style_side_objective(scene)
 	_apply_typography(scene)
 	# The D287 ruby progress stamp is superseded here by one purpose-made
 	# Gothic bronze medallion; never stack two heraldic marks.
@@ -208,6 +210,46 @@ static func _apply_typography(scene: Control) -> void:
 		(scene.get_node(name) as Label).add_theme_font_override("font", serif)
 	for name in ["AssaultOrderButton", "HuntOrderButton", "FormationOrderButton", "SacrificeOrderButton", "DefianceOrderButton", "FightButton", "ContinueButton"]:
 		(scene.get_node(name) as Button).add_theme_font_override("font", serif)
+
+
+# D306: a small but readable secondary objective is NOT a disabled UI item.
+# Preserve all authored challenge text/reward values and outcome callbacks.
+static func _style_side_objective(scene: Control) -> void:
+	var panel := scene.get_node("SideObjectivePanel") as Panel
+	var label := scene.get_node("SideObjectivePanel/ObjectiveLabel") as Label
+	var metal := StyleBoxFlat.new()
+	metal.bg_color = Color(0.052, 0.035, 0.039, 0.96)
+	metal.border_color = Color(0.65, 0.44, 0.28, 0.86)
+	metal.border_width_top = 2
+	metal.border_width_left = 2
+	metal.border_width_right = 1
+	metal.border_width_bottom = 1
+	metal.set_corner_radius_all(2)
+	metal.shadow_color = Color(0, 0, 0, 0.77)
+	metal.shadow_size = 5
+	metal.shadow_offset = Vector2(0, 3)
+	panel.add_theme_stylebox_override("panel", metal)
+	label.modulate = Color.WHITE
+	label.add_theme_color_override("font_color", PARCHMENT_BRIGHT)
+	label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 1))
+	label.add_theme_constant_override("shadow_offset_x", 1)
+	label.add_theme_constant_override("shadow_offset_y", 1)
+	label.add_theme_font_size_override("font_size", 13)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+# Keep the challenge below the lower-left deployment margin during setup,
+# but move it away from the bottom screenshot crop once combat begins.
+# Gameplay status and its native Label remain unchanged.
+static func position_side_objective(scene: Control, combat_active: bool) -> void:
+	var panel := scene.get_node("SideObjectivePanel") as Panel
+	if combat_active:
+		_place(panel, Vector2(98, 165), Vector2(216, 133))
+	else:
+		_place(panel, Vector2(22, 575), Vector2(216, 133))
 
 
 static func _material(material: String) -> StyleBoxFlat:
