@@ -1,5 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D287 — Final richer Squad Dossier art accepted as direction (2026-10-20)
+
+User explicitly liked the final high-detail gothic dossier painting after D285/D286 screenshot review. **Lock the selected third-layout silhouette** and approved DS2 copper/crimson/blue-gold palette: tall cropped protagonist painting, elegant ruby metal crest, corner filigree, genuine dark stone relief in development, three understated tracked advancement diamonds and three empty/occupied relic medallions. Implement those as independent layers **behind or around live Godot UI**, never the generated full mockup with printed stats and hero labels baked into bitmap. The three exact artwork excerpts are in `assets/pixel/ui/squad_dossier_d287/`. Text, upgrade completions, relic contents, companion availability and solo/duo/trio summary must keep reading real RunState. User approval is for visual concept; **new actual Godot screenshot acceptance remains pending**.
+
+
 ## D285 — Squad Dossier third visual option integrated (2026-10-20)
 
 User selected **third** of three rendered dossier design concepts (hybrid: left portrait roster, tall central hero card, clear middle stats and role text, right progression/relic panels, segmented party footer). Implementation is in `scripts/ui/squad_dossier_v3.gd`, wired to actual `scenes/table/squad_status.tscn` and `scripts/table/squad_status.gd`; real RunState data/role switching, upgrade counts, relics, solo modifiers and close preserved. Native Godot 4.7.2 regression initially failed due inferred `selected` boolean type; fixed in commit `2b9e2c5`. Native D285 Actions **PASS**: https://github.com/zampolit73/Misdeal/actions/runs/39386342756. **User screenshot visual validation still OPEN**: ask for one 1280×720 screenshot of real dossier and address only observed differences. This is not a pixel-perfect reproduction claim. No combat/balance changes.

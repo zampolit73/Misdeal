@@ -1,3 +1,12 @@
+## D287 — Isolated painted approved dossier decoration
+
+The user approved the enriched squad-dossier variant 3 source art. Cropped *only source decoration*, cleaned mattes to transparent and committed **three native, small lossless WebP** pieces (not a whole composite mock with printed gameplay UI):
+- `assets/pixel/ui/squad_dossier_d287/gilt_corner.webp` — 53×53 real gold filigree corner (2,528 bytes);
+- `assets/pixel/ui/squad_dossier_d287/ruby_crest.webp` — 103×103 red-gold heraldic crest (13,418 bytes);
+- `assets/pixel/ui/squad_dossier_d287/carved_knight_relief.webp` — 138×91 faint cathedral stone bas-relief (20,896 bytes).
+
+Actual runtime visual layering: `scripts/ui/squad_dossier_v3.gd`. All source hero character art remains `assets/pixel/class_select/v7/`, no stat numbers/relic titles or progress icons are in these three files. D287 base native CI PASS ([run 39390179653](https://github.com/zampolit73/Misdeal/actions/runs/39390179653)). Local user screenshot is the remaining visual gate.
+
 ## D283 — Approved active battle arena art: ritual + execution courtyard
 
 **Both production backgrounds live** in `assets/pixel/battle/arenas/approved_d283/` as native 1280×720 WebP, sourced from precisely approved PNGs (not re-generated): `bone_ritual.webp` = moonlit ruined cathedral/sparse bone altar, `firing_square.webp` = first approved walled execution courtyard. SHA256/size/image sourcing: [D283 manifest](D283_APPROVED_ARENA_REPLACEMENT.md). Old `arena_redraw_v1` remains for rollback; other 14 existing arenas unchanged. Native Godot runtime and artistic screenshot QA not yet confirmed.

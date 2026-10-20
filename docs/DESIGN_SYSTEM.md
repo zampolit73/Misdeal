@@ -1,3 +1,7 @@
+## D287 — Approved dossier art should be layered, not baked (2026-10-20)
+
+The user's final accepted (richer third-variant) visual target has muted dark-Gothic bronze cornerwork, a small ruby/bronze Knight crest above a **full-height readable portrait**, a dark sculptural relief behind development, three clear stateful upgrade diamonds and medallion-style relic holders. Exact visual fragments were isolated from the user's chosen concept into `assets/pixel/ui/squad_dossier_d287/{ruby_crest,gilt_corner,carved_knight_relief}.webp`. Use them as non-interactive `TextureRect` adornments of **separate Godot panels**, with `mouse_filter=IGNORE`. They never contain painted-on status, item slots, values, hero portraits or text. Dynamic `RunState` counts and item details override every decorative state. Preserve D286 `STRETCH_KEEP_ASPECT_COVERED`; no re-render or scaling from low-res mockup. Native CI passing checks programmatic health, not appearance; request real 1280×720 user screenshot before final art approval.
+
 ## D282 — Final ClassSelect chrome principles
 
 ## D286 — Full-height dossier portraits must use COVERED, not CENTERED

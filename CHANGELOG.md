@@ -1,3 +1,9 @@
+## 2026-10-20 — D287 Approved third dossier art refinement
+
+- User approved the richer last painting of the third dossier layout. Extracted only its transparent ruby crest, gold filigree corners and near-black Gothic bas-relief into three compact source-derived WebP decorative assets; no baked-screen data.
+- Layered decor into actual Godot `squad_dossier_v3.gd` panels and portrait, gave upgrade badges bronze diamonds with real completion colors, made relic slots bronze medallions with real occupancy status and kept original V7 hero paintings and D286 full-height cropping.
+- Upgraded native smoke to verify the art fragments decode and real 0/3 state remains unchanged. Native base integration PASS; extended test and actual user screenshot pending. No gameplay or RunState changes.
+
 ## 2026-10-20 — D283 Approved Bone Ritual + Firing Square production art
 
 ## 2026-10-20 — D286 Squad dossier real-screenshot polish

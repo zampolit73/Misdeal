@@ -1,5 +1,14 @@
 # Misdeal — Active Roadmap
 
+## D287 — Approved Squad Dossier final art direction (2026-10-20)
+
+- [x] User approved the final richer third-layout dossier artwork.
+- [x] Integrate UI-free genuine painted ornament from that source as small independent transparent WebPs, leaving real hero portraits, labels, stats, party effects, upgrade and relic data live.
+- [x] Add ornamental crests and corners, dark medieval relief, progress diamonds, medallion relic holders; improve panel hierarchy with unchanged Battle/RunState.
+- [x] Official native Godot 4.7.2 D287 base art CI PASS ([run 39390179653](https://github.com/zampolit73/Misdeal/actions/runs/39390179653)).
+- [ ] Extended D287 test and native 1280×720 user's final screenshot for how the UI looks with real fonts, progress 0/3 and 1–3 party members; correct only actual observed discrepancies.
+
+
 ## D286 — Dossier screenshot correction (2026-10-20)
 
 - [x] Real D285 screenshot diagnosed: tall hero card had severe vertical black bands; stats too tiny and footer crowded.
