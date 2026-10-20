@@ -1,3 +1,13 @@
+## D307 — Candidate painted Wizard condition module (2026-10-20)
+
+- [x] Reuse the new text-free, alpha-painted Wizard panel rendered in the conversation; create game-quality and full-resolution WebP source assets.
+- [x] Commit **both actual binaries directly into GitHub main**, byte-verify through raw blob SHA; no user upload.
+- [x] Integrate under original live `SideObjectivePanel` with two real presentation Labels for separate painted header/body wells; original full text stays canonical for gameplay.
+- [x] Update real Battle condition callbacks to synchronize initial, failed, timed and bellkeeper-success states. Preserve all mechanics, bonus +15 gold, 3–5 tactical buttons, artwork, positioning and original combat.
+- [x] Extend `grave_bell` native smoke / CI triggers and keep D306 readable fallback if D307 binary missing.
+- [ ] Confirm official Godot 4.7.x import/native test on D307 and user screenshots of both phases at 1280×720; ensure body text fits both panels.
+- [ ] Receive explicit user acceptance of the full Battle DS3 (D303 main modules already approved), then move to next UI screen.
+
 ## D306 — Real Grave Bell Battle screen QA (2026-10-20)
 
 - [x] User screenshots confirm D303 approved modular command and Fight art is actually imported/rendered in Godot with 4 unlocked tactics and true animated combat.
