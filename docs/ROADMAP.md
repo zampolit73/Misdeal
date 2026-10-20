@@ -1,3 +1,13 @@
+## D299 — Replace vector-only HUD ornament with approved reference painting (2026-10-20)
+
+- [x] User authorized implementation after receiving the new reference-quality second Gothic Battle concept.
+- [x] Extract four independent real pixel-art painted fragments (banner, medallion, candlesticks, red ribbon), with transparent masks and **no baked label, stats, fake Button or actor**.
+- [x] Save exact binary assets as a 10,084-byte text-backed WebP pack + GDScript decoder and cache in `main`; preserved D298 fallback SVGs.
+- [x] Replace overlapping D298 vector ornaments with only D299 source-paint children, keep four other D298 empty panel/final pieces, preserve all click and unit/arena geometry.
+- [x] Expand native Battle regression for source texture decode, no doubled heraldry, and mouse-ignoring overlays; record exact source metadata in [D299 doc](D299_REFERENCE_ART_IMPLEMENTATION.md).
+- [ ] **Confirm native Godot 4.7.2 workflow PASS**; only structural/source integrity currently verified.
+- [ ] User `git pull`, open `Могильный перекрёсток`, visually assess source art overlap/legibility and click Hunt, Formation, Fight. D299 NOT yet artistically approved.
+
 ## D298 — Rebuild Battle DS3 material fidelity toward selected second reference (2026-10-20)
 
 - [x] User says second reference looks considerably richer than actual D297; user explicitly requests matching its artistic level, **not a new layout or combat rework**.
