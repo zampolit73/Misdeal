@@ -1,5 +1,12 @@
 ## 2026-10-20 — D287 Approved third dossier art refinement
 
+## 2026-10-20 — D292 screenshot-led DS3 Battle readability
+
+- Real Battle prep screenshot confirmed painted stone floor and correct actor/HP placement, but bottom UI too slab-like and selected tactic nearly indistinguishable.
+- Changed scoped `battle_ds3_pass.gd` to give **only** selected tactic a warmer fill plus live state-synced bottom inlay; make tactical/fight lower panels lighter with single upper hairlines, increase placement hint contrast. No gameplay, arena or layout changes.
+- Native Godot 4.7.2 D292 real Battle and Hunt→Formation visual-state QA **PASS** ([run 39398661063](https://github.com/zampolit73/Misdeal/actions/runs/39398661063)). Fresh user screenshot pending.
+
+
 ## 2026-10-20 — D291 DS3 Battle HUD pilot
 
 - D290 real Table screenshot confirmed the single live deck numeral and slimmer header chrome; no changes to cards or Table needed.

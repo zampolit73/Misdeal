@@ -1,5 +1,12 @@
 # Misdeal — Canonical Working Handoff
 
+## D292 — Actual DS3 Battle screenshot review and restrained UI polish (2026-10-20)
+
+User provided the first actual native D291 Battle preparation screenshot (Bone Patrol, Knight + Ranger versus undead): painted stone arena, readable hero/enemy sprites and planted feet, readable HP bars and intact bottom tactic controls. **Observation, not final visual approval:** battle floor is unobstructed, but selected "НАТИСК" barely differs from idle buttons; bottom DS3 panels look like heavy black slabs; deployment hint on stone is faint.
+
+Screenshot-driven D292 commit `735c40d` changes ONLY `scripts/battle/battle_ds3_pass.gd` and the existing real-scene QA. Selected order now uses warmer copper fill plus a thin mouse-ignoring active inlay, which follows the actual order when switching Hunt/Formation; all five tactic unlock states and mechanics remain unmodified. Bottom tactical and Fight islands use less-opaque DS3 surfaces (0.79/0.83 alpha), a restrained native metal hairline and restored legibility for the existing placement hint. No arena art, unit feet/AI, map geometry, victory route, data, button sizes or class artwork changed. [Native Godot 4.7.2 smoke D292 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39398661063), checking real Battle startup, units, exact arena bounds, switching highlighted tactics and UI. The immutable DS2 restore branch remains `checkpoint/ds2-pre-ds3-2026-10-20` (SHA `4cbd206`). **Next user gate:** `git pull`, capture refreshed preparation screenshot to assess highlighted tactic and translucent lower chrome; only then consider Battle DS3 art final. No automatic reward/shop migration yet.
+
+
 ## D291 — DS3 live Battle HUD pilot / native PASS (2026-10-20)
 
 User D290 Table screenshot verified the intended single live `КОЛОДА 37` and non-doubled top borders; **no explicit all-screen visual signoff** assumed. D291 adds isolated `scripts/battle/battle_ds3_pass.gd` applied after DS2 to real Battle panels and all five stateful tactical Buttons; combatants, arena art, layout, order mechanics, RunState, card rewards and effects untouched. New native Godot 4.7.2 real-scene smoke **PASS**: [run 39397929958](https://github.com/zampolit73/Misdeal/actions/runs/39397929958). **New in-game Battle screenshot is still required**; no claims of finished battle-route QA. Detail: [D291_DS3_BATTLE_PILOT.md](D291_DS3_BATTLE_PILOT.md). DS2 rollback snapshot remains `checkpoint/ds2-pre-ds3-2026-10-20` at `4cbd206`.

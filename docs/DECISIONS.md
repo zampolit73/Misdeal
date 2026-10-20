@@ -1,5 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D292 — DS3 tactical state must be visually obvious without clutter (2026-10-20)
+
+The real D291 Battle screenshot proved correct arena/actor placement but the selected command could barely be distinguished from inactive options. DS3 combat buttons retain all five original real `tactical_order` / unlock / AI contracts, plus a single warm active style and a small bottom inlay `DS3SelectedInlay` tied to `_select_tactical_order()`. Never convey an unearned/unlocked tactic with an always-on marker. Combat panels must stay more translucent than dossier/table panels and use minimal one-line metallic detail; all decoration is mouse-ignoring. Local user D292 art screenshot remains pending; original D288 DS2 checkpoint immutable.
+
+
 ## D291 — DS3 battle remains compact tactical autobattler (2026-10-20)
 
 Following successful D290 Table screenshot correction, D291 is intentionally **a scoped UI-material pass on existing Battle controls only**, not implementation of the illustrative turn-based DS3 mockup. Keep all five **actual** tactics, optional unlock states, real ability-less autobattler, unit HP bars, arena art/geometry and pre-fight deployment. DS3-selected tactical buttons must be updated after legacy `apply_battle_order_choice` on every `_select_tactical_order` call. Results require a real Godot screenshot; passing static/native checks alone is not aesthetic user approval. The DS2 snapshot branch `checkpoint/ds2-pre-ds3-2026-10-20` is immutable.

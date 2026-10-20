@@ -1,5 +1,14 @@
 # Misdeal — Active Roadmap
 
+## D292 — Screenshot-driven battle DS3 tuning (2026-10-20)
+
+- [x] First live D291 Battle prep screenshot received: arena/sprites/feet/HP readable, tactical bar visually plain and chosen button weakly differentiated.
+- [x] Refine just Battle DS3 skin: selected tactic with warm contrast and synced 2px inlay; subtle less-opaque bottom plates and single metal hairline; improve placement hint contrast.
+- [x] Actual native Godot 4.7.2 Battle smoke PASS ([run 39398661063](https://github.com/zampolit73/Misdeal/actions/runs/39398661063)), preserving five tactic controls, Hunt→Formation highlighting, real units and existing arena coordinates.
+- [ ] User refreshed screenshot after `git pull`: check selection readability on actual art and confirm bottom HUD does not obscure actors. This remains an aesthetic gate, not an automated one.
+- [ ] After visual signoff only, continue DS3 on rewards/shop or other screens, without altering combat or approved arenas.
+
+
 ## D291 — Next DS3 pilot: combat HUD (2026-10-20)
 
 - [x] User posted new D290 Table screenshot: baked deck count collision eliminated; top header/Wizard bar less cluttered; two painted offer cards preserved.
