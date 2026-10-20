@@ -1,3 +1,7 @@
+## D301 — The lower tactical description is the ONLY tooltip surface for Battle tactics (2026-10-20)
+
+D300 user screenshot exposed **two simultaneously visible descriptions**: persistent selected order plus Godot's default floating tooltip, which clips the premium Gothic UI. Since the live `OrderDescription` always exists during tactical prep, do not use redundant `Button.tooltip_text` on five Battle tactic controls. Instead, on hover display `ПРОСМОТР: {real tactic description}` inside the same existing strip, with the selected order unchanged, and restore it on exit. Do not suppress informative tooltips for other controls such as RunState modifier details/target preview. Not a combat/balance or layout change; DS2 rollback remains.
+
 ## D300 — Native-resolution material fragments, not enlarging tiny art (2026-10-20)
 
 Actual user Godot D299 Battle screenshots show good structure but degraded raster decoration on embroidered fabric/candles. **Keep the approved second Gothic reference and source-pixel ornaments**, but store art at **at least the intended on-screen pixel size**, with appropriate alpha matting and less destructive WebP compression. Never compensate for low-res source with extra decorative vector borders. D300 only swaps image bytes through the D299 loader; coordinates/real UI data, toggles, arena/floor/units unchanged. Keep D299 pack available for regression and DS2 frozen checkpoint unchanged. Runtime art quality is judged from next user screenshot, not static source checks.
