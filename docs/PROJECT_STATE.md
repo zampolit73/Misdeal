@@ -1,5 +1,10 @@
 # Misdeal — Current Project State
 
+## D286 — First native screenshot after portrait-cover correction (2026-10-20)
+
+User submitted an actual in-game screenshot after `f6e5039`. **Observed visual check:** Knight artwork now covers the entire 283×455 portrait frame; previously blocking top/bottom black bands are gone, face, sword grip and shield remain recognizable, and main stats and segmented footer are appreciably more legible. **Not a final user art approval:** the right-side progress/relic areas and large undecorated dark sections remain noticeably plainer than the selected third concept. Don't discard the approved third layout or replace characters; any next pass should prioritize restrained panel identity and empty-state readability without inventing unlocked upgrades/relics, and should validate real Godot output. No new game-code change is justified solely by this checkpoint.
+
+
 ## D286 — Screenshot-driven D285 squad dossier polish (2026-10-20)
 
 **Evidence:** user's actual 1280×720-equivalent Godot screenshot after D285. Significant visual defect: 640×480 source portrait rendered by `TextureRect.STRETCH_KEEP_ASPECT_CENTERED` inside the tall 273×445 view, producing ~120px empty black bands above and below the active Knight portrait. Other evidence: cramped 12pt stat text, weak small upgrade marks/relic slots, lengthy party modifiers in a compressed footer.

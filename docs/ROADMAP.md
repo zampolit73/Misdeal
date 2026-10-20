@@ -5,7 +5,8 @@
 - [x] Real D285 screenshot diagnosed: tall hero card had severe vertical black bands; stats too tiny and footer crowded.
 - [x] D286 screenshot-directed UI-only correction committed `f6e5039`: cover-mode portrait, stronger stat hierarchy, larger progress/relic markers, multi-row footer; real RunState unchanged.
 - [x] Official native Godot 4.7.2 smoke PASS ([Actions 39387267091](https://github.com/zampolit73/Misdeal/actions/runs/39387267091)).
-- [ ] Real new 1280×720 Godot screenshot of D286 dossier: verify cropped source portrait is not too zoomed, title/stats/empty panels look harmonious; only make screenshot-evidenced adjustments.
+- [x] D286 screenshot received: top/bottom voids removed; Knight face, sword and shield readable; stats and footer improved. This is a visual checkpoint, **not explicit user final approval**.
+- [ ] Optional restrained art/UX pass on the sparse right progression/relic panels and empty states to better match approved third concept; avoid fictional perks or arbitrary decorations. Keep role/RunState logic unchanged.
 
 
 ## D285 — Squad Dossier third visual option integrated (2026-10-20)
