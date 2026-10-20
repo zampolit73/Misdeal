@@ -3,6 +3,7 @@ extends RefCounted
 # D285: variant 3 ("dossier/card hybrid") is a layout/style overlay only.
 # All displayed game values still originate from RunState / existing dossier.
 const WEBP_TEXTURE := preload("res://scripts/ui/runtime_webp_texture.gd")
+const MISDEAL_DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
 const PORTRAITS := {
 	"knight": "res://assets/pixel/class_select/v7/knight.webp",
 	"ranger": "res://assets/pixel/class_select/v7/ranger.webp",
@@ -75,16 +76,8 @@ static func apply(scene: Control) -> void:
 	close_button.add_theme_stylebox_override("hover", _plate(Color(0.12, 0.065, 0.058, 1), BRONZE_LIGHT, 2, 3))
 
 static func _plate(fill: Color, outline: Color, thickness: int, shadow: int) -> StyleBoxFlat:
-	var style := StyleBoxFlat.new()
-	style.bg_color = fill
-	style.border_color = outline
-	style.set_border_width_all(thickness)
-	style.shadow_color = Color(0, 0, 0, 0.78)
-	style.shadow_size = shadow
-	style.shadow_offset = Vector2(0, 3)
-	style.content_margin_left = 5.0
-	style.content_margin_right = 5.0
-	return style
+	# D288: shared DS3 component, identical styling on D287's approved layout.
+	return MISDEAL_DS3.make_plate(fill, outline, thickness, shadow)
 
 static func _make_label(parent: Control, node_name: String, where: Vector2, dimensions: Vector2, font_size: int, color: Color, wrap: bool) -> Label:
 	var label := Label.new()

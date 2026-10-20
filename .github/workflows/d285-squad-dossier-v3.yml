@@ -8,6 +8,7 @@ on:
       - 'scenes/table/squad_status.tscn'
       - 'scripts/table/squad_status.gd'
       - 'scripts/ui/squad_dossier_v3.gd'
+      - 'scripts/ui/misdeal_ds3.gd'
       - 'scripts/dev/d285_squad_dossier_smoke.gd'
   workflow_dispatch:
 

@@ -17,6 +17,23 @@ func _verify() -> void:
 	if not state.call("choose_protagonist", "knight"):
 		_fail("cannot choose starting Knight")
 		return
+	# D288 opt-in style contract: DS3 is usable but does not globally override DS2.
+	var kit := load("res://scripts/ui/misdeal_ds3.gd") as Script
+	var reference_plate := kit.make_plate(Color(0.1, 0.2, 0.3, 0.9), Color(0.8, 0.6, 0.4, 1), 2, 7) as StyleBoxFlat
+	if reference_plate == null or reference_plate.border_width_left != 2 or reference_plate.shadow_size != 7 or reference_plate.content_margin_left != 5.0:
+		_fail("D288 native DS3 style helper contract invalid")
+		return
+	for surface in ["table", "dossier", "battle"]:
+		var surface_plate := kit.make_surface(surface) as StyleBoxFlat
+		if surface_plate == null or surface_plate.border_width_left < 1:
+			_fail("D288 DS3 surface material missing: " + surface)
+			return
+	var test_button := Button.new()
+	kit.apply_action(test_button, true)
+	if test_button.get_theme_stylebox("normal") == null or test_button.get_theme_stylebox("disabled") == null:
+		_fail("D288 DS3 button states missing")
+		return
+	test_button.free()
 	var packed := load("res://scenes/table/squad_status.tscn") as PackedScene
 	var dossier := packed.instantiate() as Control
 	if dossier == null:
