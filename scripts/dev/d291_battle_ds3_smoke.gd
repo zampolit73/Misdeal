@@ -39,7 +39,8 @@ func _check() -> void:
 		if style == null or style.border_width_left != 1 or style.shadow_size != expected_shadow:
 			_fail("D295 selected minimal Gothic material not loaded: " + path)
 			return
-		if plate.mouse_filter != Control.MOUSE_FILTER_IGNORE and plate.mouse_filter != Control.MOUSE_FILTER_PASS:
+		var expected_mouse: int = Control.MOUSE_FILTER_STOP if path == "RunHudPanel" else Control.MOUSE_FILTER_IGNORE
+		if plate.mouse_filter != expected_mouse and (path == "RunHudPanel" or plate.mouse_filter != Control.MOUSE_FILTER_PASS):
 			_fail("battle panel mouse interception changed: " + path)
 			return
 		var relief := plate.get_node_or_null("DS3EngravedRelief") as Control
@@ -57,6 +58,23 @@ func _check() -> void:
 		return
 	if scene.get_node_or_null("RunHudPanel/DS3ProgressSeal") == null:
 		_fail("D296 progress heraldic fragment missing")
+		return
+	var run_plate := scene.get_node("RunHudPanel") as Panel
+	var run_modifiers := scene.get_node("RunConditionLabel") as Label
+	if run_plate.position != Vector2(959, 14) or run_plate.size != Vector2(299, 78):
+		_fail("D297 right progress panel does not leave room for modifiers")
+		return
+	if run_modifiers.get_theme_font_size("font_size") < 12 or run_modifiers.get_line_count() != 2:
+		_fail("D297 compact 2-row status is too small or wrapped")
+		return
+	if not run_modifiers.text.contains("СОЛО") or not run_modifiers.text.contains("АТК×1.25"):
+		_fail("D297 visible solo modifiers are not the authentic RunState values")
+		return
+	if not run_modifiers.tooltip_text.contains("ДАВЛЕНИЕ ВРАГОВ") or not run_modifiers.tooltip_text.contains("АТАКИ ×1.25"):
+		_fail("D297 full run modifiers were lost instead of remaining inspectable")
+		return
+	if run_modifiers.mouse_filter != Control.MOUSE_FILTER_STOP:
+		_fail("D297 status tooltip cannot receive hover input")
 		return
 	var top := scene.get_node("TopHudPanel") as Panel
 	var commands := scene.get_node("BottomHudPanel") as Panel
@@ -97,6 +115,9 @@ func _check() -> void:
 		var engraving := button.get_node_or_null("DS3EtchedToken") as Control
 		if engraving == null or engraving.get_script() == null or engraving.mouse_filter != Control.MOUSE_FILTER_IGNORE:
 			_fail("D296 tactic plaque decoration is absent or intercepts press: " + path)
+			return
+		if str(engraving.get("order_symbol")) != path:
+			_fail("D297 tactic heraldry not tied to its real order: " + path)
 			return
 		for style_name in ["normal", "hover", "pressed", "disabled", "hover_pressed"]:
 			if not button.has_theme_stylebox_override(style_name):
