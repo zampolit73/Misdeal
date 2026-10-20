@@ -13,6 +13,7 @@ const PAINTED_ART := preload("res://scripts/ui/battle_reference_fragments.gd")
 const D303_APPROVED := preload("res://scripts/ui/battle_approved_modules.gd")
 const ORNAMENT_DIR := "res://assets/pixel/ui/squad_dossier_d287/"
 const GOTHIC_ART_DIR := "res://assets/pixel/ui/battle_ds3_d298/"
+const WIZARD_PLAQUE := "res://assets/pixel/ui/battle_ds3_d307/wizard_condition_game.webp"
 
 const BRONZE := Color("#a66636")
 const MOONSTEEL := Color("#526477")
@@ -84,6 +85,8 @@ static func apply(scene: Control) -> void:
 	# D304: replace the old paint-on-flat-rectangles when all five approved
 	# modules are installed. Fallback to D301 chrome on a code-only checkout.
 	D303_APPROVED.apply(scene)
+	# D307: optional painted two-well objective module; original challenge text is source truth.
+	_install_wizard_plaque(scene)
 
 
 # Native 1280x720 D295 composition from approved concept 2. All positions
@@ -242,6 +245,92 @@ static func _style_side_objective(scene: Control) -> void:
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+# D307: The painted asset has distinct header/body wells. Two decorative
+# presentation Labels mirror the original text, without owning gameplay data.
+# On an art-less checkout retain the existing readable D306 Panel + Label.
+static func _install_wizard_plaque(scene: Control) -> void:
+	if not ResourceLoader.exists(WIZARD_PLAQUE):
+		return
+	var texture := load(WIZARD_PLAQUE) as Texture2D
+	if texture == null:
+		push_warning("D307: approved Wizard plaque could not be imported")
+		return
+	var panel := scene.get_node("SideObjectivePanel") as Panel
+	var source := scene.get_node("SideObjectivePanel/ObjectiveLabel") as Label
+	for child in panel.get_children():
+		if child.name.begins_with("DS3"):
+			(child as CanvasItem).hide()
+	panel.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+	var art := TextureRect.new()
+	art.name = "D307WizardArt"
+	art.texture = texture
+	art.position = Vector2(-17, -20)
+	art.size = Vector2(252, 158)
+	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	art.stretch_mode = TextureRect.STRETCH_SCALE
+	art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.add_child(art)
+	var headline := Label.new()
+	headline.name = "D307WizardHeading"
+	headline.position = Vector2(55, 22)
+	headline.size = Vector2(158, 29)
+	headline.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	headline.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	headline.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	headline.add_theme_font_size_override("font_size", 11)
+	headline.add_theme_color_override("font_color", PARCHMENT_BRIGHT)
+	headline.add_theme_color_override("font_shadow_color", Color.BLACK)
+	headline.add_theme_constant_override("shadow_offset_x", 1)
+	headline.add_theme_constant_override("shadow_offset_y", 1)
+	headline.z_index = 2
+	headline.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.add_child(headline)
+	var body := Label.new()
+	body.name = "D307WizardBody"
+	body.position = Vector2(47, 58)
+	body.size = Vector2(170, 49)
+	body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	body.add_theme_font_size_override("font_size", 11)
+	body.add_theme_color_override("font_color", PARCHMENT_BRIGHT)
+	body.add_theme_color_override("font_shadow_color", Color.BLACK)
+	body.add_theme_constant_override("shadow_offset_x", 1)
+	body.add_theme_constant_override("shadow_offset_y", 1)
+	body.z_index = 2
+	body.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.add_child(body)
+	# Hidden visually, but still canonical for rewards, failures and tests.
+	source.visible = false
+	sync_side_objective(scene)
+
+
+static func sync_side_objective(scene: Control) -> void:
+	var panel := scene.get_node("SideObjectivePanel") as Panel
+	var headline := panel.get_node_or_null("D307WizardHeading") as Label
+	var body := panel.get_node_or_null("D307WizardBody") as Label
+	if headline == null or body == null:
+		return
+	var source := scene.get_node("SideObjectivePanel/ObjectiveLabel") as Label
+	var whole := source.text
+	var first_divider := whole.find("\n")
+	if first_divider < 0:
+		first_divider = whole.find(" • ")
+		if first_divider >= 0:
+			headline.text = whole.substr(0, first_divider)
+			body.text = whole.substr(first_divider + 3)
+		else:
+			headline.text = whole
+			body.text = ""
+	else:
+		headline.text = whole.substr(0, first_divider)
+		body.text = whole.substr(first_divider + 1)
+	var failed := whole.contains("ПРОВАЛЕНО")
+	headline.add_theme_color_override("font_color", Color(1.0, 0.57, 0.47) if failed else PARCHMENT_BRIGHT)
+	body.add_theme_color_override("font_color", Color(1.0, 0.57, 0.47) if failed else PARCHMENT_BRIGHT)
 
 
 # Keep the challenge below the lower-left deployment margin during setup,
