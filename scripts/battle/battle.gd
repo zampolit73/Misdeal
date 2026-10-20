@@ -730,6 +730,8 @@ func _begin_preparation_phase() -> void:
 	var placement_regions: Array[Rect2] = _get_placement_regions()
 	_configure_deployment_zones(placement_regions)
 	run_condition_label.text = _build_battle_condition_text()
+	# D297: compact presentation only. Complete authentic modifiers stay in tooltip.
+	BATTLE_DS3_PASS.present_run_conditions(self)
 	run_condition_label.visible = not run_condition_label.text.is_empty()
 	var authored_hint: String = encounter.get_formation_hint(enemy_formation_variant)
 	placement_hint.text = authored_hint if not authored_hint.is_empty() else _get_placement_hint_text()
