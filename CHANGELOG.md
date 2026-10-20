@@ -1,3 +1,9 @@
+## 2026-10-21 — D310 real Godot screenshots confirm D309 layout repair
+
+- Inspected fresh user preparation and live-combat screenshots of `Могильный звон`: approved Battle modules unchanged, Wizard decorative panel now remains compact in both locations, no longer covers combatants or overflows screen.
+- Live condition failure displays the correct text and state color within the artwork's header/body wells.
+- Visual bug verified fixed from screenshots; no additional gameplay or asset change. Wizard/full Battle final artistic acceptance still pending, automated CI result not independently confirmed.
+
 ## 2026-10-21 — D309 Wizard art display-size regression fixed
 
 - Diagnosed two real user Godot screenshots: oversized D307 Wizard decoration hid action HUD in prep and much of the battlefield during combat, with text left outside artwork.
