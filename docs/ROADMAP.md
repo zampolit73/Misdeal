@@ -1,3 +1,13 @@
+## D304 — Implement five user-approved Battle UI module illustrations (2026-10-20)
+
+- [x] Verify D303 approved source ZIP: five independent genuine RGBA originals, no baked dynamic text.
+- [x] Prepare 5 quality game-ready WebPs, source-preserving original optimized WebPs and hash-verified manifest in `Misdeal_D303_Godot_final_art_bundle.zip`; preview placement against real 1280×720 Battle.
+- [x] Implement `battle_approved_modules.gd`: replace old bottom rectangular chrome with whole carved/painted command and Fight art, real button idle/selected art, actual Fight red material. If missing, old UI remains operable.
+- [x] Wire styles into original production selector and preserve D301 hover, targeting and 3–5 tactic unlocks.
+- [x] Add hash-checked Windows installer/publisher, scoped git commit/push only of approved asset files; expand real-Battle smoke checks and CI file-change triggers.
+- [ ] **One-time binary publication** from downloaded art pack by running the GitHub-committed `tools/install_d303_battle_art.ps1 -Publish`. Never assert binaries are already on GitHub until this succeeds.
+- [ ] Confirm official Godot 4.7.x import + smoke on binary-installed commit; request user real Battle screenshot and compare reference. Only then lock actual DS3 Battle.
+
 ## D303 — Approved modular Battle illustrations → next actual integration (2026-10-20)
 
 - [x] Author and present isolated, transparent, text-free illustrated command base, right Fight base, tactic idle, tactic selected and crimson Fight button.
