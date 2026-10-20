@@ -1,3 +1,7 @@
+## D297 — Compact live Battle condition design after real screenshot
+
+Real D296 screenshot shows the selected minimal Gothic Battle still has cramped solo modifiers. D297 uses an opt-in two-line readable **presentation** of authentic `_build_battle_condition_text()`, retaining all original condition lines in tooltip and a count of extras beyond two. Every Battle modifier is still computed solely by `RunState` and the actual encounter. `battle_engraved_frame.gd` adds independent vector order-specific insignia to genuine 3–5 unlocked Button controls only when wide enough. No rasterized/AI-baked HUD, no new combat mechanic, no background edits. D297 official CI and user-local new screenshot pending.
+
 ## D296 — User Godot screenshot of D295 is the material quality gate
 
 D295 user screenshot of `Костяной рой` (second Gothic Battle concept) exposed visually flat dark boxes and generic typography despite successfully reorganized HUD. D296 adds opt-in Battle-only vector etched chrome (`scripts/ui/battle_engraved_frame.gd`), aged bronze highlights, native Cyrillic-capable OS serif fallback font for titles/tactics/Fight, transparent top title/progress insets and selected token detail. Decorative Controls ignore mouse and cannot replace live labels/toggles. **Post-D296 local screenshot and native CI pending**, no global DS3 rollout, no new gameplay or background edits.
