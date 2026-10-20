@@ -747,6 +747,7 @@ func _begin_preparation_phase() -> void:
 	placement_hint.text = authored_hint if not authored_hint.is_empty() else _get_placement_hint_text()
 	placement_hint.visible = true
 	side_objective_panel.visible = not side_objective_id.is_empty()
+	BATTLE_DS3_PASS.position_side_objective(self, false)
 	# D298: avoid the live side objective and keep hero feet unobscured.
 	BATTLE_DS3_PASS.position_placement_hint(self)
 
@@ -1055,6 +1056,8 @@ func _on_fight_pressed() -> void:
 	placement_hint.visible = false
 	_lock_tactical_orders()
 	_hide_preparation_hud()
+	# D306: keep the optional bonus rule fully readable once prep art hides.
+	BATTLE_DS3_PASS.position_side_objective(self, true)
 	side_objective_panel.visible = not side_objective_id.is_empty()
 
 	if sacrifice_order_unlocked:
