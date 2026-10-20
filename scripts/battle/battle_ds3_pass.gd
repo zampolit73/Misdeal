@@ -39,7 +39,7 @@ static func apply(scene: Control) -> void:
 	# Art panels are actual independent transparent assets, not a full
 	# screenshot. Their alpha never interferes with live Title/Status/Buttons.
 	_svg_decor(scene.get_node("TopHudPanel") as Panel, "DS3Banner", "battle_banner.svg", Vector2(-18, -14), Vector2(87, 147), Color(1, 1, 1, 0.91))
-	_svg_decor(scene.get_node("RunHudPanel") as Panel, "DS3ProgressMedallion", "battle_progress_seal.svg", Vector2(-15, -10), Vector2(67, 85), Color(1, 1, 1, 0.90))
+	_svg_decor(scene.get_node("RunHudPanel") as Panel, "DS3ProgressMedallion", "battle_progress_seal.svg", Vector2(-28, -7), Vector2(58, 73), Color(1, 1, 1, 0.90))
 	_svg_decor(scene.get_node("BottomHudPanel") as Panel, "DS3LeftFinial", "battle_filigree.svg", Vector2(8, -11), Vector2(66, 37), Color(1, 1, 1, 0.80))
 	_svg_decor(scene.get_node("BottomHudPanel") as Panel, "DS3RightFinial", "battle_filigree.svg", Vector2(615, -11), Vector2(66, 37), Color(1, 1, 1, 0.80))
 	_svg_decor(scene.get_node("FightHudPanel") as Panel, "DS3FightRibbon", "battle_fight_ribbon.svg", Vector2(-20, 12), Vector2(68, 108), Color(1, 1, 1, 0.74))
@@ -52,7 +52,8 @@ static func apply(scene: Control) -> void:
 	_style_label(scene, "RunConditionLabel", SECONDARY, 12)
 	_style_label(scene, "WizardCommentary", PARCHMENT, 13)
 	_apply_typography(scene)
-	_ornament(scene.get_node("RunHudPanel") as Panel, "DS3ProgressSeal", "ruby_crest.webp", Vector2(7, 9), Vector2(30, 30), Vector2i(103, 103), Color(0.90, 0.76, 0.62, 0.72))
+	# The D287 ruby progress stamp is superseded here by one purpose-made
+	# Gothic bronze medallion; never stack two heraldic marks.
 	for name in ["PartyLabel", "EnemyLabel"]:
 		var side := scene.get_node(name) as Label
 		_strip(side, "DS3SideDivider", Vector2(19, 23), Vector2(side.size.x - 38.0, 1), Color(0.79, 0.57, 0.36, 0.56))
