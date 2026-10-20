@@ -1,4 +1,9 @@
-## 2026-10-20 — D287 Approved third dossier art refinement
+## 2026-10-20 — D295 Approved second DS3 Battle design direction, native Godot cosmetic layout
+
+- After screenshot critique of D293, presented two Battle DS3 art concepts. User chose the second minimal Gothic overlay, *not* the ornate first one.
+- Rebuilt runtime placement of real encounter/progress labels, centered the command tray, kept live 3–5 tactical Buttons aligned, separated the actual Fight/target-preview island, and moved optional side-objective left to avoid overlapping right action.
+- Refined bronze/wood/steel overlays and aligned inset/description without baking mockup text or characters; reused accepted D287 small filigree and heraldic fragments.
+- Added native scene smoke geometry assertions; official Godot 4.7.2 result and user-local visual approval are pending. No combat, arena, actor/HP, AI or RunState changes.
 
 ## 2026-10-20 — D293 Full material direction for DS3 Battle HUD
 
