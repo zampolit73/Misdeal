@@ -43,6 +43,27 @@ func _verify() -> void:
 	if stats.get_theme_font_size("normal_font_size") < 14 or stats.size.y < 210:
 		_fail("D286 screenshot legibility regression: small or cramped stats")
 		return
+	# D287 visual-art contract: isolated ornamental images and interactive
+	# real-state widgets. Full poster with baked statistics must never be used.
+	for art_name in ["PortraitRubyCrest"]:
+		var art := dossier.get_node_or_null("Frame/" + art_name) as TextureRect
+		if art == null or art.texture == null or art.texture.get_size() != Vector2(103, 103):
+			_fail("D287 approved hero crest absent or not decoded")
+			return
+	var relief := dossier.get_node_or_null("Frame/BuildPanel/DevelopmentStoneRelief") as TextureRect
+	var filigree := dossier.get_node_or_null("Frame/BuildPanel/DevelopmentFiligree0") as TextureRect
+	if relief == null or relief.texture == null or relief.texture.get_size() != Vector2(138, 91) or filigree == null or filigree.texture == null or filigree.texture.get_size() != Vector2(53, 53):
+		_fail("D287 relief/filigree are missing or wrong size")
+		return
+	for idx in 3:
+		var gem := dossier.get_node_or_null("Frame/UpgradeGem%d" % (idx + 1)) as Panel
+		var slot := dossier.get_node_or_null("Frame/RelicSlot%d" % (idx + 1)) as Panel
+		if gem == null or slot == null or slot.get_node_or_null("Medallion") == null:
+			_fail("D287 decorated progression/relic slot hierarchy missing")
+			return
+	if not (dossier.get_node("Frame/UpgradeCount") as Label).text == "0 / 3":
+		_fail("D287 decorative progression falsely unlocked a perk")
+		return
 	var relic_slot := dossier.get_node("Frame/RelicSlot1") as Panel
 	if relic_slot.size.y < 70 or dossier.get_node_or_null("Frame/HeroInfoRule") == null:
 		_fail("D286 screenshot panel hierarchy regression")
