@@ -737,6 +737,8 @@ func _begin_preparation_phase() -> void:
 	placement_hint.text = authored_hint if not authored_hint.is_empty() else _get_placement_hint_text()
 	placement_hint.visible = true
 	side_objective_panel.visible = not side_objective_id.is_empty()
+	# D298: avoid the live side objective and keep hero feet unobscured.
+	BATTLE_DS3_PASS.position_placement_hint(self)
 
 	for unit in units:
 		if unit.team == 0:
