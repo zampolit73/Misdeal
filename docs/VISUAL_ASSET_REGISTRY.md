@@ -1,3 +1,10 @@
+## D307 — Optional Wizard objective Gothic module, visual QA pending (2026-10-20)
+
+- `assets/pixel/ui/battle_ds3_d307/wizard_condition_game.webp`: 756×472, source-derived transparent illustrated panel with separate header/body wells, used by live optional `SideObjectivePanel` only when imported.
+- `assets/pixel/ui/battle_ds3_d307/wizard_condition_source.webp`: 1586×992, high-resolution master illustration.
+- `scripts/battle/battle_ds3_pass.gd` creates the image as mouse-ignoring child of the original Panel; visible text remains real Godot labels sourced from the original full rule text (success, failure and bonus). D306 D303 stage unchanged if texture unavailable.
+- **Candidate art, not yet visually accepted in actual Godot.** No engraved text, fake reward or baked values.
+
 ## D300 — High-quality source-pixel Battle ornament pack (2026-10-20)
 
 `assets/pixel/ui/battle_ds3_d300/reference_fragments_hq.webp.pack.b64` is the D300 production source for four independent non-UI alpha-matted WebPs cut from the same user-selected *second rich Gothic Battle reference* (NOT an image of fake cards/units/buttons). Encoded base64 char count **31,348**, decoded bytes **23,510**, FNV1a32 of encoded text **`1a64608f`**. Slices: `banner` 0:7454 (111×189), `medallion` 7454:5408 (88×113), `candles` 12862:4704 (57×172), `wax_ribbon` 17566:5944 (84×178). Renderer/decoder: `scripts/ui/battle_reference_fragments.gd`. At native 1280×720 these assets are now *downscaled or near-native*, not stretched up from previous 44–74px thumbnails. Old D299 art pack remains in Git for rollback. No other artwork or mechanics changed. D300 Godot UI screenshot acceptance pending.
