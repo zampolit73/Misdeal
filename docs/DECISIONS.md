@@ -1,3 +1,9 @@
+## D298 — Second Battle DS3 reference is an ART direction, not a flat screen to paste (2026-10-20)
+
+User says the **second selected reference** is prettier than the real in-game Battle and asks to bring real UI to its level. Accept that D297 is **still not art-approved**. Preserve its light Gothic/cinematic battlefield composition and invest in carefully illustrated physical material, red torn banners, metal progress medallion, etched finials, textured red/black command and Fight foundations. All art must be **decoration-only transparent/empty assets**; never paste rendered mock's fake labels, troops, tactics or static values. Real Godot `Button`, `Label`, tooltip, RunState and combat spawn remain sole source for interaction and truth.
+
+For D298, six original SVG artworks are separately imported and composited behind the existing UI. Avoid busy AI clutter and double heraldic emblems; keep long placement instructions out of the unit lane and optional objective. This is a fidelity-directed art pass, **not permission for arena/gameplay redesign**. Review true Godot screenshot before claiming aesthetic acceptance; DS2 checkpoint immutable.
+
 ## D297 — Dense Battle conditions must remain inspectable without crowding the scene (2026-10-20)
 
 Real D296 Godot `ЗАСАДА НА КЛАДБИЩЕ` screenshot shows solo conditions crammed under `КАРТА 2/12`. Freeze arena geometry and 3–5 tactical mechanics. **Presentation rule:** in the slim DS3 run plate show a compact maximum-two-row summary with precise underlying values; when there are more rows, indicate `+N` and expose **all original RunState conditions unedited on hover**. Never silently erase debt, enemy buffs or unlock notifications from the inspectable content. Retain second, light Gothic design direction, no flat painted UI art. Tiny tactic engravings remain real button decoration and must not cover the labels or capture clicks. Real user aesthetic signoff remains open.
