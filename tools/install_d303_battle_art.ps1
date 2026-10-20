@@ -35,7 +35,7 @@ if ([string]::IsNullOrWhiteSpace($ArchivePath)) {
         if (Test-Path $candidate) { $ArchivePath = $candidate; break }
     }
 }
-if (-not (Test-Path $ArchivePath -PathType Leaf)) {
+if ([string]::IsNullOrWhiteSpace($ArchivePath) -or -not (Test-Path -LiteralPath $ArchivePath -PathType Leaf)) {
     throw "Cannot locate $archiveName. Download the archive from the ChatGPT D304 message to Downloads, or pass -ArchivePath 'C:\path\$archiveName'."
 }
 $ArchivePath = (Resolve-Path $ArchivePath).Path
