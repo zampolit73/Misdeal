@@ -31,6 +31,11 @@ static func apply(scene: Control) -> void:
 			legacy.visible = false
 		_draw_hardware(panel, name, material)
 
+	# Two full-sized EMPTY, illustrated holder plates from the approved
+	# material vocabulary. Labels, all three-to-five live tactics, preview,
+	# Fight and optional objectives render separately on top.
+	_svg_decor(scene.get_node("BottomHudPanel") as Panel, "DS3CommandPlate", "battle_command_plate.svg", Vector2.ZERO, Vector2(691, 133), Color(1, 1, 1, 0.93))
+	_svg_decor(scene.get_node("FightHudPanel") as Panel, "DS3FightPlate", "battle_fight_plate.svg", Vector2.ZERO, Vector2(293, 133), Color(1, 1, 1, 0.86))
 	# Art panels are actual independent transparent assets, not a full
 	# screenshot. Their alpha never interferes with live Title/Status/Buttons.
 	_svg_decor(scene.get_node("TopHudPanel") as Panel, "DS3Banner", "battle_banner.svg", Vector2(-18, -14), Vector2(87, 147), Color(1, 1, 1, 0.91))
