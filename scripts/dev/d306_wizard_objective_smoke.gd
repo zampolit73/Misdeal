@@ -39,16 +39,37 @@ func _check() -> void:
 	if panel.position != Vector2(22, 575) or panel.size != Vector2(216, 133):
 		_fail("preparation challenge displaced from left command margin")
 		return
-	var style := panel.get_theme_stylebox("panel") as StyleBoxFlat
-	if style == null or style.bg_color.a < 0.9 or style.border_width_top < 2:
-		_fail("D306 challenge lacks legible ink and aged bronze frame")
-		return
-	if objective.z_index <= (panel.get_node("DS3EngravedRelief") as CanvasItem).z_index:
-		_fail("D306 objective text is still hidden under late-appended relief")
-		return
-	if objective.get_theme_font_size("font_size") < 13 or objective.get_theme_color("font_color").r < 0.8:
-		_fail("D306 Wizard text contrast/font too weak")
-		return
+	var artwork := panel.get_node_or_null("D307WizardArt") as TextureRect
+	if artwork != null:
+		if artwork.texture == null or artwork.mouse_filter != Control.MOUSE_FILTER_IGNORE:
+			_fail("D307 painted Wizard module missing or intercepts controls")
+			return
+		if artwork.size != Vector2(252, 158) or not (panel.get_theme_stylebox("panel") is StyleBoxEmpty):
+			_fail("D307 Wizard art still sits on duplicate black software plaque")
+			return
+		var heading := panel.get_node("D307WizardHeading") as Label
+		var body := panel.get_node("D307WizardBody") as Label
+		if heading.text != "УСЛОВИЕ ВОЛШЕБНИКА" or not body.text.contains("Звонарь должен пасть"):
+			_fail("D307 illustrated label wells do not reflect authentic live objective")
+			return
+		if heading.get_theme_font_size("font_size") < 11 or body.get_theme_font_size("font_size") < 11 or objective.visible:
+			_fail("D307 original text overlaps painted module or derived copy is too small")
+			return
+		if heading.z_index <= artwork.z_index or body.z_index <= artwork.z_index:
+			_fail("D307 painted frame overlays live Wizard text")
+			return
+	else:
+		# Safe readable fallback if the binary art has not imported yet.
+		var style := panel.get_theme_stylebox("panel") as StyleBoxFlat
+		if style == null or style.bg_color.a < 0.9 or style.border_width_top < 2:
+			_fail("D306 fallback Wizard plaque missing")
+			return
+		if objective.z_index <= (panel.get_node("DS3EngravedRelief") as CanvasItem).z_index:
+			_fail("D306 fallback text hidden by engraved overlay")
+			return
+		if objective.get_theme_font_size("font_size") < 13:
+			_fail("D306 fallback Wizard text too small")
+			return
 	var original_text := objective.text
 	var fight := scene.get_node("FightButton") as Button
 	if fight.pressed.get_connections().is_empty():
@@ -65,13 +86,26 @@ func _check() -> void:
 	if objective.text != original_text:
 		_fail("D306 movement mutated the reward rule")
 		return
+	if artwork != null:
+		var body_after := panel.get_node("D307WizardBody") as Label
+		if not body_after.text.contains("+15 золота"):
+			_fail("D307 painted challenge lost its real gold reward")
+			return
+		# A failed side wager must update both visible derived Labels.
+		scene.call("_fail_side_objective", "УСЛОВИЕ ПРОВАЛЕНО • первым пал не звонарь")
+		if (panel.get_node("D307WizardHeading") as Label).text != "УСЛОВИЕ ПРОВАЛЕНО":
+			_fail("D307 failure title not reflected in painted module")
+			return
+		if not (panel.get_node("D307WizardBody") as Label).text.contains("первым пал не звонарь"):
+			_fail("D307 failure explanation not reflected")
+			return
 	if (scene.get_node("BottomHudPanel") as Panel).visible or (scene.get_node("FightHudPanel") as Panel).visible:
 		_fail("preparation-only panels remain over combat")
 		return
 	if (scene.get_node("FightButton") as Button).visible:
 		_fail("Fight button remains visible after combat start")
 		return
-	print("D306_WIZARD_OBJECTIVE_NATIVE_PASS: live Grave Bell challenge, contrast and combat positioning")
+	print("D306_WIZARD_OBJECTIVE_NATIVE_PASS: D307 painted/fallback Wizard challenge, real rule and Fight transition")
 	scene.queue_free()
 	await process_frame
 	quit(0)
