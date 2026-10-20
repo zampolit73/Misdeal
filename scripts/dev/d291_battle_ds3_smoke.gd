@@ -59,6 +59,16 @@ func _check() -> void:
 			if not button.has_theme_stylebox_override(style_name):
 				_fail("DS3 tactical state missing: " + path + " " + style_name)
 				return
+	var hint := scene.get_node("PlacementHint") as Label
+	if hint.modulate.a < 0.87:
+		_fail("D292 placement hint contrast regressed")
+		return
+	for path in ["BottomHudPanel", "FightHudPanel"]:
+		var bottom := scene.get_node(path) as Panel
+		var material := bottom.get_theme_stylebox("panel") as StyleBoxFlat
+		if bottom.get_node_or_null("DS3UpperHairline") == null or material.bg_color.a > 0.84:
+			_fail("D292 bottom combat island must have a light panel and top hairline")
+			return
 	var hunt := scene.get_node("HuntOrderButton") as Button
 	scene.call("_select_tactical_order", "hunt", false)
 	if scene.get("tactical_order") != "hunt" or not hunt.button_pressed:
@@ -70,9 +80,20 @@ func _check() -> void:
 	if hunt_style == null or assault_style == null or hunt_style.border_width_left <= assault_style.border_width_left:
 		_fail("DS3 selected order highlight not reapplied after original selector")
 		return
+	var hunt_inlay := hunt.get_node_or_null("DS3SelectedInlay") as ColorRect
+	var assault_inlay := assault.get_node_or_null("DS3SelectedInlay") as ColorRect
+	if hunt_inlay == null or assault_inlay == null or not hunt_inlay.visible or assault_inlay.visible:
+		_fail("D292 strong selected Hunt inlay / idle Assault visibility wrong")
+		return
+	if hunt_style.bg_color.r <= assault_style.bg_color.r + 0.10:
+		_fail("D292 selected tactical fill lacks contrast")
+		return
 	scene.call("_select_tactical_order", "formation", false)
 	if scene.get("tactical_order") != "formation" or not (scene.get_node("FormationOrderButton") as Button).button_pressed:
 		_fail("real Formation action or UI state not preserved")
+		return
+	if hunt_inlay.visible or not (scene.get_node("FormationOrderButton/DS3SelectedInlay") as ColorRect).visible:
+		_fail("D292 selected inlay did not follow Formation")
 		return
 
 	for btn in ["TargetPreviewButton", "FightButton", "ContinueButton", "RestartButton"]:
