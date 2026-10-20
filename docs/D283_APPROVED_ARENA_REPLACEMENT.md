@@ -1,6 +1,6 @@
 # D283 — Two user-approved full-resolution battle arena replacements
 
-2026-10-20. **Runtime art integrated; user-native screenshot QA still open.**
+2026-10-20. **Runtime art integrated; official native CI PASS; user reports no blockers («Все ок)»).**
 
 ## Accepted originals (DO NOT substitute different generated versions)
 
@@ -25,5 +25,6 @@ The original `assets/pixel/battle/arenas/arena_redraw_v1/{bone_ritual,firing_squ
 ## Gates
 
 - Native regression job: `.github/workflows/d283-two-approved-arenas.yml` uses official Godot 4.7.2 to import/parse the project and instantiate the **real production `AuthoredBattleBackdrop`** for both IDs, verifying runtime image sizes, opaque combat floor and immutable SHA256 against source WebP.
-- Automated green **is not** proof of user visual acceptance, party animation/foot placement, or completed Battle→Reward→Table. These remain user-native QA gates.
-- Next action for user: `git pull`, launch Godot at 1280×720, play `bone_ritual` and `firing_square` encounters, verify readable dynamic units are planted on the visual combat floor, appropriate active environment, and normal reward return. Send screenshot only if a concrete visual issue appears. Do not start further re-generation of these locked images without new direction.
+- Official native run [D283 #39374993074](https://github.com/zampolit73/Misdeal/actions/runs/39374993074) completed **SUCCESS**, checking selected WebP file integrity and real backdrop loading. No fake native screenshot claim.
+- After being asked to check both battles in local Godot, the user replied **«Все ок)»** on 2026-10-20. Close D283 as a **no-blocker user-accepted arena artwork pass**. This response does not independently prove frame-perfect unit placement or a formally logged full Fight→Reward→Table regression.
+- Both exact production images remain fixed; no more review required unless future local screenshots reveal a specific issue. For further variety proceed to **`grave_crossfire` options-first**; this is a new task, not permission to replace anything yet.

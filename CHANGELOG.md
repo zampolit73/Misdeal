@@ -2,7 +2,7 @@
 
 - Integrated two explicitly selected **1280×720** painted arena illustrations from original 1672×941 PNGs, without new image generation or gameplay code changes.
 - `bone_ritual` now uses sparse-bone moonlit ruined chapel; `firing_square` uses approved first execution-yard variant. Preserved old v1 files for rollback; other 14 arenas unaffected.
-- Added native Godot 4.7.2 source/texture smoke; updated live gallery. CI and user battle screenshot review are separate gates, not presumed passed.
+- Official D283 native Godot 4.7.2 texture smoke PASS ([run 39374993074](https://github.com/zampolit73/Misdeal/actions/runs/39374993074)); user subsequently confirmed **«Все ок)»**. D283 art pass accepted with no blockers; no separate screenshot or full-route QA claimed.
 
 ## 2026-10-20 — D282 Final ClassSelect UI chrome polish
 

@@ -4,8 +4,8 @@
 
 - [x] Integrate exactly chosen Bone Ritual and Firing Square 1280×720 scene art into the existing two `AuthoredBattleBackdrop` production mappings, with unchanged gameplay and rollback.
 - [x] Provide native Godot 4.7.2 image decode/texture sanity smoke and update art gallery, source-hash notes and handoff.
-- [ ] Wait for official D283 Actions result and actual user Godot 1280×720 screenshots: inspect unit HP visibility, planted feet on stone floor, room for tactical HUD, scene readability, and fight→reward→table.
-- [ ] Only then continue new arena passes; `grave_crossfire` remains a separate candidate, not approved for automatic redraw.
+- [x] Native Godot 4.7.2 D283 workflow **PASS** ([Actions 39374993074](https://github.com/zampolit73/Misdeal/actions/runs/39374993074)); user subsequently answered **«Все ок)»** to the requested local test. Treat this as no-blocker acceptance of both replaced arena artworks; no screenshot independently attached or full-route metrics claimed.
+- [ ] Next optional art pass: show 2–3 actually distinct `grave_crossfire` concepts with a believable muddy rural battlefield, retain existing floor/nav until deliberate user approval. Do NOT auto-repaint or replace.
 
 
 ## D282 — Final ClassSelect chrome polish (2026-10-20)
