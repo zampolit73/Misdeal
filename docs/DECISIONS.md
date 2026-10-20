@@ -1,3 +1,9 @@
+## D295 — Battle DS3: user chose second, light Gothic command overlay (2026-10-20)
+
+**Approved direction, not yet approved runtime result.** After a real D293 Grave Crossfire screenshot the user said UI still feels cheap. Of two genuinely rendered designs, the user chose the **second**: thin engraved top plates; center-bottom compact tactical board with its own light title, three-to-five actual selected commands and readable description; a separated crimson/bronze Fight; strong arena visibility. **Do not switch to the first, overloaded foreground arrangement with skulls, candles and large wood beams.**
+
+Implementation uses live Godot Controls and D287 approved tiny ornaments; no flattened image with fake heroes/buttons/health. Move conditional side objective to left of the tactical board to avoid the new Fight action. Preserve all battle mechanics, existing arena/units/HP and Fate Spread, rollback D288 DS2 checkpoint. Runtime visual signoff requires screenshot.
+
 # Misdeal — Active Design & Technical Decisions
 
 ## D293 — Battle DS3 must be a real designed physical UI, not simple dark rectangles (2026-10-20)
