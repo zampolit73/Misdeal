@@ -1,3 +1,10 @@
+## D310 — Actual post-D309 screenshot QA (2026-10-21)
+
+- [x] User screenshots in **preparation** and **live combat** confirm that the fixed-size painted Wizard plaque remains compact, texts are inside artistic wells, and the combat placement no longer covers combatants.
+- [x] Failed-state example `УСЛОВИЕ ПРОВАЛЕНО — первым пал не звонарь` visually renders in its red variant.
+- [ ] Native automated Godot CI result not independently confirmed; retain headless regression guards.
+- [ ] Await user artistic signoff of the **Wizard panel and complete Battle DS3** (source-art approval of D303 does not automatically cover final live screen); only then progress to next UI screen.
+
 ## D309 — Correct oversized Wizard frame (blocking actual Godot screenshots)
 
 - [x] Review real user shots: D307 imported image fills huge area, HUD labels don't align, prep leaks below screen and combat blocks arena/actors.
