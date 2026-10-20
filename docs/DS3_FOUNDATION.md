@@ -1,3 +1,7 @@
+## D295 — Approved second Battle design direction, visual QA pending
+
+User chose the second of two rendered replacement compositions after a real D293 Battle screenshot remained too cheap. Selected look is a **lighter minimal Gothic overlay**, NOT maximal prop ornament: slim upper inscriptions; center-bottom inlaid order board with live 3–5 tactical Buttons and copy; separated crimson action at right; no large dark slabs. Scope: real `scripts/battle/battle_ds3_pass.gd`, a UI-layout hook in `battle.gd`, and native `d291_battle_ds3_smoke.gd`. Original Arena scene x20/y96, unit positions/feet, all 3–5 unlocked tactics, mechanics and Battle→Reward untouched. D295 new actual screenshot and CI are required before runtime art signoff. DS2 frozen branch still available.
+
 # Misdeal Design System 3 — Safe Rollout Foundation (D288)
 
 **Status 2026-10-20:** DS3 is **opt-in**, not a global reskin. Initial D288 native Godot 4.7.2 regression **PASS** ([run 39392900520](https://github.com/zampolit73/Misdeal/actions/runs/39392900520)). Keep the original DS2/Variant C behavior and styling for unreviewed screens.
