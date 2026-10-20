@@ -1,3 +1,10 @@
+## 2026-10-20 — D297 Battle DS3: readable run modifiers and genuine order heraldry
+
+- Reviewed user's actual D296 `ЗАСАДА НА КЛАДБИЩЕ` screenshot: material/typography now visible and battlefield unobstructed; right solo status copy still too dense.
+- Expanded only the right progress plaque to 299×78, set status to 12px with two compact rows, left all original modifier text in a real hover tooltip and counted extra condition rows instead of overflowing onto the arena. `RunState`, solo/duo/trio tuning, Wizard modifiers and combat untouched.
+- Added small individually authored vector insignia to existing Battle tactical Buttons when enough width exists (no fake baked UI/click overlays).
+- Extended native real-scene smoke contract for actual solo modifiers, full tooltip, plaque geometry and input-safe engravings. Official native Godot result and user artistic QA are still open; DS2 rollback unchanged.
+
 ## 2026-10-20 — D296 Battle DS3: engraved material and serif UI after native screenshot
 
 - User shared actual D295 `Костяной рой` preparation. Geometry/units/tactics readable, but top ledger and lower command bar still flat and typography plain, so screenshot is **not** artistic approval.
