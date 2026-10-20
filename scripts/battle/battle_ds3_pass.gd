@@ -229,6 +229,9 @@ static func _style_side_objective(scene: Control) -> void:
 	metal.shadow_size = 5
 	metal.shadow_offset = Vector2(0, 3)
 	panel.add_theme_stylebox_override("panel", metal)
+	# D296 relief was appended AFTER this scene-authored child Label; without
+	# a higher local z_index its dark painted face obscures the challenge text.
+	label.z_index = 1
 	label.modulate = Color.WHITE
 	label.add_theme_color_override("font_color", PARCHMENT_BRIGHT)
 	label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 1))
