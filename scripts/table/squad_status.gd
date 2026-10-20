@@ -2,6 +2,7 @@ extends Control
 
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
+const SQUAD_DOSSIER_V3 := preload("res://scripts/ui/squad_dossier_v3.gd")
 
 const ROLE_PORTRAIT_PATHS := {
 	"knight": "res://assets/pixel/class_select/v7/knight.webp",
@@ -29,6 +30,7 @@ var current_role := "knight"
 func _ready() -> void:
 	_apply_ui_kit()
 	MISDEAL_DS2_ROLLOUT.squad(self)
+	SQUAD_DOSSIER_V3.apply(self)
 	if RunState.has_chosen_protagonist():
 		current_role = RunState.protagonist_role
 
@@ -165,6 +167,8 @@ func _refresh_role_buttons() -> void:
 			_get_role_color(role).lightened(0.12)
 		)
 
+	SQUAD_DOSSIER_V3.refresh_role_cards(self, current_role)
+
 func _refresh_hero() -> void:
 	hero_name.text = _get_role_label(current_role).capitalize()
 	var portrait_path := String(ROLE_PORTRAIT_PATHS.get(current_role, ""))
@@ -184,6 +188,7 @@ func _refresh_hero() -> void:
 		stats_label.text = "[color=#8f8583]%s[/color]" % RunState.get_companion_fate_note(current_role)
 		build_label.text = "[color=#756b68]Этот путь развития недоступен, пока герой не вошёл в отряд.[/color]"
 		relics_label.text = "[color=#756b68]Реликвии не назначаются героям вне отряда.[/color]"
+		SQUAD_DOSSIER_V3.refresh_details(self, current_role, false)
 		return
 
 	portrait.modulate = Color.WHITE
@@ -197,6 +202,7 @@ func _refresh_hero() -> void:
 	stats_label.text = _build_stats_text(stats, current_role)
 	build_label.text = _build_upgrades_text(current_role)
 	relics_label.text = _build_relics_text(current_role)
+	SQUAD_DOSSIER_V3.refresh_details(self, current_role, true)
 
 func _build_stats_text(stats: Dictionary, role: String) -> String:
 	var lines: Array[String] = []

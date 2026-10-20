@@ -86,31 +86,31 @@ offset_bottom = 686.0
 theme_override_styles/panel = SubResource("FrameStyle")
 
 [node name="Title" type="Label" parent="Frame"]
-offset_left = 28.0
-offset_top = 18.0
-offset_right = 800.0
-offset_bottom = 54.0
+offset_left = 27.0
+offset_top = 16.0
+offset_right = 740.0
+offset_bottom = 58.0
 theme_override_colors/font_color = Color(0.96, 0.82, 0.62, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 29
 text = "ДОСЬЕ ОТРЯДА"
 
 [node name="Hint" type="Label" parent="Frame"]
-offset_left = 30.0
-offset_top = 58.0
-offset_right = 850.0
-offset_bottom = 82.0
+offset_left = 28.0
+offset_top = 65.0
+offset_right = 770.0
+offset_bottom = 89.0
 theme_override_colors/font_color = Color(0.48, 0.44, 0.45, 1)
 theme_override_font_sizes/font_size = 13
 text = "1 / 2 / 3 — выбрать героя     TAB — закрыть"
 
 [node name="CloseButton" type="Button" parent="Frame"]
-offset_left = 1060.0
+offset_left = 1100.0
 offset_top = 18.0
-offset_right = 1126.0
-offset_bottom = 58.0
+offset_right = 1158.0
+offset_bottom = 63.0
 theme_override_colors/font_color = Color(0.92, 0.72, 0.64, 1)
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("CloseNormal")
@@ -119,10 +119,10 @@ theme_override_styles/pressed = SubResource("CloseHover")
 text = "X"
 
 [node name="KnightButton" type="Button" parent="Frame"]
-offset_left = 28.0
-offset_top = 112.0
-offset_right = 246.0
-offset_bottom = 174.0
+offset_left = 26.0
+offset_top = 114.0
+offset_right = 276.0
+offset_bottom = 214.0
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("TabNormal")
 theme_override_styles/hover = SubResource("TabHover")
@@ -130,10 +130,10 @@ theme_override_styles/pressed = SubResource("TabHover")
 text = "◆ РЫЦАРЬ   0/3"
 
 [node name="RangerButton" type="Button" parent="Frame"]
-offset_left = 28.0
-offset_top = 186.0
-offset_right = 246.0
-offset_bottom = 248.0
+offset_left = 26.0
+offset_top = 227.0
+offset_right = 276.0
+offset_bottom = 327.0
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("TabNormal")
 theme_override_styles/hover = SubResource("TabHover")
@@ -141,10 +141,10 @@ theme_override_styles/pressed = SubResource("TabHover")
 text = "СЛЕДОПЫТ   0/3"
 
 [node name="MageButton" type="Button" parent="Frame"]
-offset_left = 28.0
-offset_top = 260.0
-offset_right = 246.0
-offset_bottom = 322.0
+offset_left = 26.0
+offset_top = 340.0
+offset_right = 276.0
+offset_bottom = 440.0
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("TabNormal")
 theme_override_styles/hover = SubResource("TabHover")
@@ -152,53 +152,53 @@ theme_override_styles/pressed = SubResource("TabHover")
 text = "МАГ   0/3"
 
 [node name="PortraitFrame" type="Panel" parent="Frame"]
-offset_left = 268.0
-offset_top = 106.0
-offset_right = 588.0
-offset_bottom = 346.0
+offset_left = 284.0
+offset_top = 111.0
+offset_right = 567.0
+offset_bottom = 566.0
 theme_override_styles/panel = SubResource("SectionStyle")
 
 [node name="Portrait" type="TextureRect" parent="Frame/PortraitFrame"]
 script = ExtResource("2_runtime_webp")
-offset_left = 34.0
-offset_top = 4.0
-offset_right = 286.0
-offset_bottom = 236.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 278.0
+offset_bottom = 450.0
 texture_filter = 1
 expand_mode = 1
 stretch_mode = 5
 
 [node name="HeroName" type="Label" parent="Frame"]
-offset_left = 610.0
-offset_top = 112.0
-offset_right = 792.0
-offset_bottom = 150.0
+offset_left = 582.0
+offset_top = 120.0
+offset_right = 801.0
+offset_bottom = 165.0
 theme_override_colors/font_color = Color(0.96, 0.88, 0.76, 1)
 theme_override_font_sizes/font_size = 25
 text = "Рыцарь"
 
 [node name="Specialization" type="Label" parent="Frame"]
-offset_left = 610.0
-offset_top = 154.0
-offset_right = 792.0
-offset_bottom = 186.0
+offset_left = 582.0
+offset_top = 166.0
+offset_right = 801.0
+offset_bottom = 192.0
 theme_override_font_sizes/font_size = 16
 text = "ПЕРЕДНЯЯ ЛИНИЯ"
 
 [node name="StatsTitle" type="Label" parent="Frame"]
-offset_left = 268.0
-offset_top = 358.0
-offset_right = 792.0
-offset_bottom = 382.0
+offset_left = 582.0
+offset_top = 314.0
+offset_right = 799.0
+offset_bottom = 338.0
 theme_override_colors/font_color = Color(0.78, 0.67, 0.57, 1)
 theme_override_font_sizes/font_size = 14
-text = "ИТОГОВЫЕ ХАРАКТЕРИСТИКИ"
+text = "ХАРАКТЕРИСТИКИ"
 
 [node name="Stats" type="RichTextLabel" parent="Frame"]
-offset_left = 268.0
-offset_top = 388.0
-offset_right = 792.0
-offset_bottom = 566.0
+offset_left = 580.0
+offset_top = 361.0
+offset_right = 801.0
+offset_bottom = 565.0
 bbcode_enabled = true
 fit_content = false
 scroll_active = false
@@ -207,10 +207,10 @@ theme_override_font_sizes/normal_font_size = 14
 text = ""
 
 [node name="BuildPanel" type="Panel" parent="Frame"]
-offset_left = 812.0
-offset_top = 106.0
-offset_right = 1154.0
-offset_bottom = 386.0
+offset_left = 810.0
+offset_top = 111.0
+offset_right = 1159.0
+offset_bottom = 380.0
 theme_override_styles/panel = SubResource("SectionStyle")
 
 [node name="BuildTitle" type="Label" parent="Frame/BuildPanel"]
@@ -223,10 +223,10 @@ theme_override_font_sizes/font_size = 15
 text = "РАЗВИТИЕ"
 
 [node name="BuildList" type="RichTextLabel" parent="Frame"]
-offset_left = 828.0
-offset_top = 154.0
-offset_right = 1138.0
-offset_bottom = 372.0
+offset_left = 825.0
+offset_top = 259.0
+offset_right = 1144.0
+offset_bottom = 371.0
 bbcode_enabled = true
 fit_content = false
 scroll_active = true
@@ -235,10 +235,10 @@ theme_override_font_sizes/normal_font_size = 13
 text = ""
 
 [node name="RelicsPanel" type="Panel" parent="Frame"]
-offset_left = 812.0
-offset_top = 400.0
-offset_right = 1154.0
-offset_bottom = 566.0
+offset_left = 810.0
+offset_top = 393.0
+offset_right = 1159.0
+offset_bottom = 565.0
 theme_override_styles/panel = SubResource("SectionStyle")
 
 [node name="RelicsTitle" type="Label" parent="Frame/RelicsPanel"]
@@ -252,9 +252,9 @@ text = "РЕЛИКВИИ"
 
 [node name="RelicsList" type="RichTextLabel" parent="Frame"]
 offset_left = 828.0
-offset_top = 448.0
-offset_right = 1138.0
-offset_bottom = 552.0
+offset_top = 521.0
+offset_right = 1142.0
+offset_bottom = 557.0
 bbcode_enabled = true
 fit_content = false
 scroll_active = true
@@ -263,10 +263,10 @@ theme_override_font_sizes/normal_font_size = 13
 text = ""
 
 [node name="CommonPanel" type="Panel" parent="Frame"]
-offset_left = 28.0
-offset_top = 584.0
-offset_right = 1154.0
-offset_bottom = 628.0
+offset_left = 26.0
+offset_top = 575.0
+offset_right = 1159.0
+offset_bottom = 634.0
 theme_override_styles/panel = SubResource("SectionStyle")
 
 [node name="Common" type="Label" parent="Frame/CommonPanel"]
