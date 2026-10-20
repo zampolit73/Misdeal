@@ -141,6 +141,8 @@ func _ready() -> void:
 	sacrifice_order_unlocked = RunState.has_sacrifice_order_for_next_battle()
 	defiance_order_unlocked = RunState.has_defiance_order_for_next_battle()
 	_configure_tactical_order_buttons()
+	# D295 user-approved minimal Gothic DS3: reflow all real unlocked order buttons.
+	BATTLE_DS3_PASS.layout_tactics(self)
 	restart_button.disabled = true
 	continue_button.visible = false
 	continue_button.disabled = true
