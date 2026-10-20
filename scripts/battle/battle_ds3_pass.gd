@@ -110,6 +110,14 @@ static func _draw_hardware(panel: Panel, prefix: String, material: String) -> vo
 		corner.pivot_offset = Vector2(13, 13)
 		corner.rotation = PI
 	else:
+		# Physical ledger fields in the header, not a flat slab with two
+		# isolated white text rows. These are behind existing live Labels.
+		if prefix == "TopHudPanel":
+			_inset(panel, "DS3EncounterTitleInset", Vector2(13, 8), Vector2(w - 26, 37), true)
+			_strip(panel, "DS3EncounterDivider", Vector2(22, 49), Vector2(w - 44, 1), Color(0.65, 0.43, 0.27, 0.68))
+		elif prefix == "RunHudPanel":
+			_inset(panel, "DS3CardProgressPlaque", Vector2(8, 7), Vector2(w - 16, 34), true)
+			_strip(panel, "DS3ProgressDivider", Vector2(18, 46), Vector2(w - 36, 1), Color(0.65, 0.43, 0.27, 0.65))
 		# Small top panels stay readable, no fiddly symbols over long text.
 		_strip(panel, "DS3SteelRivet", Vector2(11, h - 13), Vector2(17, 2), Color(0.71, 0.48, 0.32, 0.40))
 

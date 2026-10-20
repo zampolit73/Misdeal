@@ -60,6 +60,9 @@ func _check() -> void:
 			if not button.has_theme_stylebox_override(style_name):
 				_fail("DS3 tactical state missing: " + path + " " + style_name)
 				return
+	if scene.get_node_or_null("TopHudPanel/DS3EncounterTitleInset") == null or scene.get_node_or_null("RunHudPanel/DS3CardProgressPlaque") == null:
+		_fail("D293 top ledger title/stage physical inlays are missing")
+		return
 	var hint := scene.get_node("PlacementHint") as Label
 	if hint.modulate.a < 0.90:
 		_fail("D293 placement hint contrast regressed")
