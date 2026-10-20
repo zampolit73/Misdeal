@@ -1,3 +1,7 @@
+## D296 — Fix material authenticity of approved light Gothic Battle chrome (2026-10-20)
+
+A screenshot of actual D295 `Костяной рой` proves reorganizing boxes does **not** yet reproduce selected second DS3 concept. User has **not** approved the screenshot. Keep compact arena-first composition, but use **subtly etched physical shapes and gothic/serif typography** rather than adding more flat borders or switching to the unselected busy first concept. Native-drawn `battle_engraved_frame.gd` is decorative only, no UI data, no input events; optional local OS serif can fall back for Cyrillic. Preserve core real `Button`s, source `RunState`, tactical toggles and arena. Official native/art tests still required.
+
 ## D295 — Battle DS3: user chose second, light Gothic command overlay (2026-10-20)
 
 **Approved direction, not yet approved runtime result.** After a real D293 Grave Crossfire screenshot the user said UI still feels cheap. Of two genuinely rendered designs, the user chose the **second**: thin engraved top plates; center-bottom compact tactical board with its own light title, three-to-five actual selected commands and readable description; a separated crimson/bronze Fight; strong arena visibility. **Do not switch to the first, overloaded foreground arrangement with skulls, candles and large wood beams.**
