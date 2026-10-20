@@ -56,14 +56,17 @@ func _check() -> void:
 	if not (scene.get_node("FightButton") as Button).has_theme_font_override("font"):
 		_fail("D296 primary serif typography missing")
 		return
-	if scene.get_node_or_null("RunHudPanel/DS3ProgressSeal") == null:
-		_fail("D296 progress heraldic fragment missing")
+	if scene.get_node_or_null("RunHudPanel/DS3ProgressMedallion") == null:
+		_fail("D298 real progress heraldic medallion missing")
+		return
+	if scene.get_node_or_null("RunHudPanel/DS3ProgressSeal") != null:
+		_fail("D298 legacy + new progress emblems overlap")
 		return
 	# D298 decorative assets are transparent empty holder surfaces, loaded
 	# as independent Godot textures. They must never capture native input.
 	var painted := {
 		"TopHudPanel/DS3Banner": Vector2(87, 147),
-		"RunHudPanel/DS3ProgressMedallion": Vector2(67, 85),
+		"RunHudPanel/DS3ProgressMedallion": Vector2(58, 73),
 		"BottomHudPanel/DS3CommandPlate": Vector2(691, 133),
 		"BottomHudPanel/DS3LeftFinial": Vector2(66, 37),
 		"BottomHudPanel/DS3RightFinial": Vector2(66, 37),
