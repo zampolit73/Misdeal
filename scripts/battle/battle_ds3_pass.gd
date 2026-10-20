@@ -13,7 +13,7 @@ const PAINTED_ART := preload("res://scripts/ui/battle_reference_fragments.gd")
 const D303_APPROVED := preload("res://scripts/ui/battle_approved_modules.gd")
 const ORNAMENT_DIR := "res://assets/pixel/ui/squad_dossier_d287/"
 const GOTHIC_ART_DIR := "res://assets/pixel/ui/battle_ds3_d298/"
-const WIZARD_PLAQUE := "res://assets/pixel/ui/battle_ds3_d307/wizard_condition_game.webp"
+const WIZARD_PLAQUE := "res://assets/pixel/ui/battle_ds3_d311/wizard_variant3_game.webp"
 
 const BRONZE := Color("#a66636")
 const MOONSTEEL := Color("#526477")
@@ -247,7 +247,7 @@ static func _style_side_objective(scene: Control) -> void:
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
-# D307: The painted asset has distinct header/body wells. Two decorative
+# D311: Approved third variant has restrained bronze framing and a Wizard\n# medallion at left; two live labels still occupy independent wells.
 # presentation Labels mirror the original text, without owning gameplay data.
 # On an art-less checkout retain the existing readable D306 Panel + Label.
 static func _install_wizard_plaque(scene: Control) -> void:
@@ -263,7 +263,7 @@ static func _install_wizard_plaque(scene: Control) -> void:
 		if child.name.begins_with("DS3"):
 			(child as CanvasItem).hide()
 	panel.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
-	# D309: avoid TextureRect's imported-image minimum size, which expanded
+	# D311: Keep the D309 fixed-size drawing guard, and avoid the old\n	# texture-dependent TextureRect enlargement that expanded
 	# this 252x158 ornament to the native 756x472 image in the real Godot
 	# screenshots. A Control with explicit draw_texture_rect is size-invariant.
 	var art := Control.new()
@@ -275,13 +275,13 @@ static func _install_wizard_plaque(scene: Control) -> void:
 	art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	panel.add_child(art)
 	art.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
-	art.position = Vector2(-17, -20)
-	art.size = Vector2(252, 158)
+	art.position = Vector2(-15, -12)
+	art.size = Vector2(286, 153)
 	art.queue_redraw()
 	var headline := Label.new()
 	headline.name = "D307WizardHeading"
-	headline.position = Vector2(55, 22)
-	headline.size = Vector2(158, 29)
+	headline.position = Vector2(62, 13)
+	headline.size = Vector2(204, 34)
 	headline.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	headline.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	headline.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -295,8 +295,8 @@ static func _install_wizard_plaque(scene: Control) -> void:
 	panel.add_child(headline)
 	var body := Label.new()
 	body.name = "D307WizardBody"
-	body.position = Vector2(47, 58)
-	body.size = Vector2(170, 49)
+	body.position = Vector2(65, 57)
+	body.size = Vector2(190, 65)
 	body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
