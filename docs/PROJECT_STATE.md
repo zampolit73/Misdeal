@@ -1,5 +1,10 @@
 # Misdeal — Current Project State
 
+## D291 — DS3 live Battle HUD pilot / native PASS (2026-10-20)
+
+User D290 Table screenshot verified the intended single live `КОЛОДА 37` and non-doubled top borders; **no explicit all-screen visual signoff** assumed. D291 adds isolated `scripts/battle/battle_ds3_pass.gd` applied after DS2 to real Battle panels and all five stateful tactical Buttons; combatants, arena art, layout, order mechanics, RunState, card rewards and effects untouched. New native Godot 4.7.2 real-scene smoke **PASS**: [run 39397929958](https://github.com/zampolit73/Misdeal/actions/runs/39397929958). **New in-game Battle screenshot is still required**; no claims of finished battle-route QA. Detail: [D291_DS3_BATTLE_PILOT.md](D291_DS3_BATTLE_PILOT.md). DS2 rollback snapshot remains `checkpoint/ds2-pre-ds3-2026-10-20` at `4cbd206`.
+
+
 ## D290 — Screenshot repair of first DS3 Table pass (2026-10-20)
 
 After D289 user submitted actual in-game Table screenshot. Two concrete flaws: approved static table_exact.webp already contains baked "КОЛОДА 22" while true live counter showed 37 next to it; old DS2 heavy corner-bracket overlays doubled the new DS3 top HUD/Wizard bar chrome. D290 fix ed300119 changes ONLY scripts/table/table_ds3_pass.gd: deck number mask enlarged to x148–218 while preserving caption КОЛОДА and real live RunState DeckCount, legacy DS2 corner visuals hidden on these two panels only, DS3 inner trim made subtle (no extra side bars). All real 2 offer cards, hold, wager, fate spread, card art, party data, gameplay remain unchanged. Native Godot 4.7.2 D289/D290 extended smoke PASS: https://github.com/zampolit73/Misdeal/actions/runs/39396611590 . Fresh user-local screenshot after pull still required before declaring visual approval. DS2 checkpoint remains immutable at 4cbd206.

@@ -1,5 +1,13 @@
 ## 2026-10-20 — D287 Approved third dossier art refinement
 
+## 2026-10-20 — D291 DS3 Battle HUD pilot
+
+- D290 real Table screenshot confirmed the single live deck numeral and slimmer header chrome; no changes to cards or Table needed.
+- Added opt-in subdued DS3 battle chrome on existing six HUD panels and 5 actual tactical buttons, with dynamic selected states; styled Fight/Continue/Restart/Target Preview without changing active mechanics, UI geometry or arena art.
+- Added actual Godot Battle-native smoke. After correcting headless test registration order and GDScript typing, official **Godot 4.7.2 PASS** ([run 39397929958](https://github.com/zampolit73/Misdeal/actions/runs/39397929958)). Battle visual screenshot and route QA not yet signed off.
+- Preserved original DS2 restore point and unchanged other game screens.
+
+
 ## 2026-10-20 — D290 first native DS3 Table screenshot polish
 
 - Corrected doubled baked/live left deck count ("КОЛОДА 22" plus true 37) using localized number matte while preserving all data-backed counts and art.

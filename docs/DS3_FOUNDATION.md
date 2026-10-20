@@ -78,3 +78,8 @@ See also `docs/DESIGN_SYSTEM.md` for approved historical DS2 decisions and `docs
 
 First actual D289 Table screenshot exposed fixed deck text and heavy doubled chrome. D290 scopes masking and thinner decoration to the actual Table without touching other screens/gameplay. Native two-card QA PASS: https://github.com/zampolit73/Misdeal/actions/runs/39396611590 . Await screenshot to approve.
 
+
+## D291 — Battle HUD DS3 first real trial
+
+Actual Battle now uses opt-in low-profile UI style `scripts/battle/battle_ds3_pass.gd` for 6 existing HUD panels, 5 live tactical buttons and actual Fight/Continue/Preview controls. The original stage and all sprite/AI/unit/placement mechanics are untouched, as is original Table. Dynamic order highlighting must be re-applied after the old DS2 selection skin to avoid stale state. Native Godot 4.7.2 actual Battle smoke PASS: [run 39397929958](https://github.com/zampolit73/Misdeal/actions/runs/39397929958). **Open gate:** fresh user screenshot of pre-fight HUD with visible unit feet, tactical choices and narrow chrome. The concept battle screen with manual skill hotkeys/turn queue remains non-canonical.
+

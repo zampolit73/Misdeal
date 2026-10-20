@@ -1,5 +1,14 @@
 # Misdeal — Active Roadmap
 
+## D291 — Next DS3 pilot: combat HUD (2026-10-20)
+
+- [x] User posted new D290 Table screenshot: baked deck count collision eliminated; top header/Wizard bar less cluttered; two painted offer cards preserved.
+- [x] Add scope-limited DS3 panels and original 5 dynamic tactic-button skins to production Battle, without changing battle geometry/actors/AI/RunState, at `scripts/battle/battle_ds3_pass.gd`.
+- [x] Native official Godot 4.7.2 real Battle boot and tactic toggle/arena geometry smoke **PASS** ([run 39397929958](https://github.com/zampolit73/Misdeal/actions/runs/39397929958)).
+- [ ] User native 1280×720 screenshot of actual pre-fight Battle and, if useful, during combat. Review overlap/contrast/hero feet/tactic selection. Fix only screenshot-evidenced issues before wider DS3 rollout.
+- [ ] Continue reward/shop DS3 only after visual acceptance of Battle; no wholesale scene replacement.
+
+
 ## D290 — DS3 screenshot-backed corrections (2026-10-20)
 
 - [x] Real D289 Table screenshot found baked-static 22 beside live deck count 37, and two layers of metal corner decoration DS2 + DS3.

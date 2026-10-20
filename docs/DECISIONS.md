@@ -1,5 +1,10 @@
 # Misdeal — Active Design & Technical Decisions
 
+## D291 — DS3 battle remains compact tactical autobattler (2026-10-20)
+
+Following successful D290 Table screenshot correction, D291 is intentionally **a scoped UI-material pass on existing Battle controls only**, not implementation of the illustrative turn-based DS3 mockup. Keep all five **actual** tactics, optional unlock states, real ability-less autobattler, unit HP bars, arena art/geometry and pre-fight deployment. DS3-selected tactical buttons must be updated after legacy `apply_battle_order_choice` on every `_select_tactical_order` call. Results require a real Godot screenshot; passing static/native checks alone is not aesthetic user approval. The DS2 snapshot branch `checkpoint/ds2-pre-ds3-2026-10-20` is immutable.
+
+
 ## D290 — One real counter, no doubled DS2/DS3 ornament (2026-10-20)
 
 A screenshot of the actual Table showed the painterly backdrop already contains a fixed deck label and number "КОЛОДА 22". Mask ONLY the stale baked number (x148–218 in 1280×720 coordinates), keep the caption and the true RunState DeckCount. When an opt-in DS3 panel replaces older DS2 styling, suppress that specific panel's old _MisdealChrome corner overlay instead of stacking two sets. Applies to top HUD and Wizard speech only; does not authorize reskinning all other gameplay/screens. Native test passes; post-fix screenshot still pending.
