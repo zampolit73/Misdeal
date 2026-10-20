@@ -1,6 +1,6 @@
 extends RefCounted
 
-# D298: Visual fidelity pass to the selected second Gothic battle reference.
+# D299: Install true alpha-matted material art from selected second Gothic battle reference.
 # Four separate hand-authored ornament illustrations carry zero baked UI data.
 # Preserve real data-backed UI, tactics and the authored battle arena.
 # Gameplay, tactical data, unit positions, scene geometry and arena images
@@ -9,6 +9,7 @@ extends RefCounted
 const DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
 const WEBP_TEXTURE := preload("res://scripts/ui/runtime_webp_texture.gd")
 const ENGRAVED_FRAME := preload("res://scripts/ui/battle_engraved_frame.gd")
+const PAINTED_ART := preload("res://scripts/ui/battle_reference_fragments.gd")
 const ORNAMENT_DIR := "res://assets/pixel/ui/squad_dossier_d287/"
 const GOTHIC_ART_DIR := "res://assets/pixel/ui/battle_ds3_d298/"
 
@@ -38,11 +39,12 @@ static func apply(scene: Control) -> void:
 	_svg_decor(scene.get_node("FightHudPanel") as Panel, "DS3FightPlate", "battle_fight_plate.svg", Vector2.ZERO, Vector2(293, 133), Color(1, 1, 1, 0.86))
 	# Art panels are actual independent transparent assets, not a full
 	# screenshot. Their alpha never interferes with live Title/Status/Buttons.
-	_svg_decor(scene.get_node("TopHudPanel") as Panel, "DS3Banner", "battle_banner.svg", Vector2(-18, -14), Vector2(87, 147), Color(1, 1, 1, 0.91))
-	_svg_decor(scene.get_node("RunHudPanel") as Panel, "DS3ProgressMedallion", "battle_progress_seal.svg", Vector2(-28, -7), Vector2(58, 73), Color(1, 1, 1, 0.90))
+	_painted_decor(scene.get_node("TopHudPanel") as Panel, "DS3PaintedBanner", "banner", Vector2(-23, -17), Vector2(96, 165))
+	_painted_decor(scene.get_node("RunHudPanel") as Panel, "DS3PaintedMedallion", "medallion", Vector2(-35, -13), Vector2(74, 98))
 	_svg_decor(scene.get_node("BottomHudPanel") as Panel, "DS3LeftFinial", "battle_filigree.svg", Vector2(8, -11), Vector2(66, 37), Color(1, 1, 1, 0.80))
 	_svg_decor(scene.get_node("BottomHudPanel") as Panel, "DS3RightFinial", "battle_filigree.svg", Vector2(615, -11), Vector2(66, 37), Color(1, 1, 1, 0.80))
-	_svg_decor(scene.get_node("FightHudPanel") as Panel, "DS3FightRibbon", "battle_fight_ribbon.svg", Vector2(-20, 12), Vector2(68, 108), Color(1, 1, 1, 0.74))
+	_painted_decor(scene.get_node("BottomHudPanel") as Panel, "DS3PaintedCandles", "candles", Vector2(-7, -23), Vector2(51, 150))
+	_painted_decor(scene.get_node("FightHudPanel") as Panel, "DS3PaintedWaxRibbon", "wax_ribbon", Vector2(-25, -31), Vector2(73, 157))
 
 	_style_label(scene, "Title", PARCHMENT_BRIGHT, 23)
 	_style_label(scene, "Status", SECONDARY, 12)
@@ -100,7 +102,7 @@ static func _layout_panels(scene: Control) -> void:
 	# The former 660px single-line hint could cover the Ranger/other units.
 	# Put the real hint in the unused left command margin, and wrap long
 	# encounter-specific instructions instead of drawing over combatant feet.
-	_place(scene.get_node("PlacementHint") as Control, Vector2(30, 580), Vector2(211, 114))
+	_place(scene.get_node("PlacementHint") as Control, Vector2(30, 580), Vector2(185, 114))
 	var hint_copy := scene.get_node("PlacementHint") as Label
 	hint_copy.add_theme_font_size_override("font_size", 12)
 	hint_copy.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -165,7 +167,7 @@ static func position_placement_hint(scene: Control) -> void:
 		_place(hint, Vector2(298, 138), Vector2(676, 39))
 		hint.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	else:
-		_place(hint, Vector2(30, 580), Vector2(211, 114))
+		_place(hint, Vector2(30, 580), Vector2(185, 114))
 		hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 
 
@@ -307,6 +309,28 @@ static func _strip(parent: Control, name: String, at: Vector2, dimensions: Vecto
 # A separate high-quality vector painting is imported by Godot as a genuine
 # Texture2D (SVG source remains editable in Git). No copy of the conceptual
 # screenshot and no painted text, counter, unit, button or health indicator.
+# Approved pixel source, not a redrawn approximation. Only this separate
+# mouse-ignoring visual child uses the painted fragment, and the complete
+# original control hierarchy remains clickable and data-backed.
+static func _painted_decor(parent: Control, name: String, asset_id: String, at: Vector2, dimensions: Vector2) -> TextureRect:
+	var existing := parent.get_node_or_null(name) as TextureRect
+	if existing != null:
+		return existing
+	var decoration := TextureRect.new()
+	decoration.name = name
+	decoration.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	decoration.position = at
+	decoration.size = dimensions
+	decoration.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	decoration.stretch_mode = TextureRect.STRETCH_SCALE
+	decoration.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	decoration.texture = PAINTED_ART.get_fragment(asset_id)
+	if decoration.texture == null:
+		push_error("D299: Could not load approved Battle art fragment: " + asset_id)
+	parent.add_child(decoration)
+	return decoration
+
+
 static func _svg_decor(parent: Control, name: String, asset_name: String, at: Vector2, dimensions: Vector2, tint: Color) -> TextureRect:
 	var existing := parent.get_node_or_null(name) as TextureRect
 	if existing != null:
