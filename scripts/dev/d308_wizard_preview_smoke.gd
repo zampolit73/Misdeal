@@ -22,7 +22,7 @@ func _verify() -> void:
 	if art == null or art.get("art_texture") == null:
 		_fail("approved D307 binary art did not load in the F6 scene")
 		return
-	if art.size != Vector2(286, 153) or art.position != Vector2(-15, -12):
+	if art.size != Vector2(258, 138) or art.position != Vector2(-16, -14):
 		_fail("D311 F6 art failed to stay inside a compact fixed-size canvas")
 		return
 	var initial_bounds := Rect2(panel.position + art.position, art.size)
@@ -52,7 +52,7 @@ func _verify() -> void:
 		_fail("combat preview does not use original D306 geometry")
 		return
 	var combat_bounds := Rect2(panel.position + art.position, art.size)
-	if combat_bounds.end.x > 380 or combat_bounds.end.y > 320:
+	if combat_bounds.end.x > 345 or combat_bounds.end.y > 320:
 		_fail("D311 F6 combat artwork grew past its designated corner")
 		return
 	scene.call("_set_outcome", 1)
