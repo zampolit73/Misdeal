@@ -1,3 +1,13 @@
+## D297 — Screenshot-driven Battle HUD final readability (2026-10-20)
+
+- [x] Review real D296 native user screenshot of solo Knight vs three undead at Graveyard Ambush.
+- [x] Keep accepted second *direction* / all approved arena art; don't add more black slabs or a different UI composition.
+- [x] Improve cramped real solo modifiers using 299×78 progress plaque, 12px two-line compact copy, full unchanged status on hover and `+N` for further conditions; preserve all numeric source data.
+- [x] Add small distinct vector-etched tactic stamps to authentic 3/4/5 order Buttons without changing signals, selection or sizing.
+- [x] Extend actual Battle native smoke for the compact data, tooltip, symbols and real control callback geometry.
+- [ ] Confirm official Godot 4.7.2 Actions smoke D297 and request local screenshot of long run conditions/hover plus tactic switching. Do not claim QA PASS until evidenced.
+- [ ] User visual acceptance still OPEN; then proceed to other DS3 screens only by consent.
+
 ## D296 — Screenshot-driven second Battle DS3 finish (2026-10-20)
 
 - [x] Review actual user native screenshot of D295 `Костяной рой`: **layout functional, visuals still too flat**. No visual signoff.
