@@ -1,3 +1,9 @@
+## D314 — Battle DS3 accepted, future DS3 migrations must be opt-in (2026-10-21)
+
+User explicitly said **«закончим. утверждаем»** regarding the finished D313 Battle interface. Mark the combined D303 command/fight painting, selected D311 third Wizard condition and D312–D313 text layout as **artistically accepted production baseline**, with exact rollback branch `checkpoint/battle-ds3-approved-2026-10-21` at `25878ca`. Do not keep opening cosmetic review rounds absent real defects. This is an artistic approval, not fabricated Godot CI certification.
+
+Next proposed UI pass is Reward DS3. Current Reward DS2 is *functional* with real 3-choice cards and multiple different reward modes; a new illustrated screen must preserve the actual `Reward.gd` gameplay and approved Fate Spread table asset. Follow art-options-first for this new screen, then source-driven, text-free modular physical panel skins under real controls. Do not apply DS3 globally.
+
 ## D313 — Native label rectangles must respect illustrated inset walls (2026-10-21)
 
 A concept image accepting separate reward typography does not imply the actual Godot Labels fit the physical carved skin. Real D312 screenshot proved the reward line collided with the lower filigree because the rule rect ended y93, reward began y91 and ended y109. On compact D311 Wizard panels reserve a **non-overlapping rule and bonus pair**; with this art the readable inner gold label must end at local y96 or earlier, not cross the ornament. Render authentic dynamic `+15 золота` from original objective text without baking numbers into graphics or changing payout code. Continue native screenshot and geometric smoke gates. Retain D309 fixed source-independent renderer and option-three medallion.
