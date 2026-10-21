@@ -161,7 +161,9 @@ func _card_widget(title: String, type_name: String, full_text: String,
     # Alphabetical catalogue order is NOT the 12-step Fate order.
     # Real Fate/held/discard numbering is owned by live gameplay.
     (button.get_node("DS3Roman") as Label).hide()
-    button.tooltip_text = title + " — " + type_name + "\nНажмите для полного описания"
+    # D319: Godot native tooltip floated across other cards in the real F6 screenshot.
+    # The in-card Hint and explicit click-to-read modal already explain the action.
+    button.tooltip_text = ""
     button.pressed.connect(_show_full_copy.bind(title, type_name, full_text, art))
 
 func _label(parent: Control, node_name: String, pos: Vector2, extent: Vector2,

@@ -80,7 +80,11 @@ static func apply_table(button: Button) -> bool:
     title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     title.add_theme_font_size_override("font_size", 14)
-    title.add_theme_color_override("font_color", INK_TEXT)
+    # The actual F6 card frame has a DARK title recess, not a light parchment.
+    # Black ink-on-black was invisible in the user screenshot.
+    title.add_theme_color_override("font_color", BONE)
+    title.add_theme_color_override("font_outline_color", Color("#130b0b"))
+    title.add_theme_constant_override("outline_size", 1)
     title.clip_text = true
     title.max_lines_visible = 2
 

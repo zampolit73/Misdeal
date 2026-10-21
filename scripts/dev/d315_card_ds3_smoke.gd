@@ -54,6 +54,9 @@ func _verify() -> void:
         if (card.get_node("Art") as TextureRect).material == null:
             _fail("D315 red/black tone-mapping missing: " + card.name)
             return
+        if not card.tooltip_text.is_empty():
+            _fail("native tooltip blocks neighboring cards in gallery")
+            return
         if card.pressed.get_connections().is_empty():
             _fail("visual gallery card lost its inspector control")
             return
