@@ -1,3 +1,9 @@
+## D332 — Native QA result (2026-10-21)
+
+- [x] D315 native Godot **PASS** including gallery 55 cards, dynamic `BloodCoin` Reward card and D331 art mapping: [run 39658979922](https://github.com/zampolit73/Misdeal/actions/runs/39658979922).
+- [x] D316 card-surface checks also completed inside the successful CI workflow.
+- [x] No further repair of Reward cropping currently needed; proceed with new D168 card art options. Final full-resolution scene swaps optional quality improvement, not a functionality bug.
+
 ## D332 — Fix actual Reward photo crop, same DS3 approved visual (2026-10-21)
 
 - [x] Find native failure `BloodCoin` in dynamic Reward update code (not in `CardDS3Skin.apply_reward`).

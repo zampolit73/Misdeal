@@ -1,3 +1,8 @@
+## 2026-10-21 — D332 native regression green
+
+- [D315/D316 Godot smoke success](https://github.com/zampolit73/Misdeal/actions/runs/39658979922) after the D332 fix for runtime Reward `Portrait.stretch_mode` reversion. Previous BloodCoin failure no longer reproduces.
+- No live DS3 frame/layout/text/art mechanics changes. Card art D331 stays published for Bone Crush/Blood Ledger.
+
 ## 2026-10-21 — D332: Correct runtime Reward portrait cropping
 
 - Real Godot CI `BloodCoin` false-color/crop regression traced to unconditional `TextureRect.STRETCH_KEEP_ASPECT_COVERED` in reward card texture refresh paths.
