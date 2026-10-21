@@ -16,6 +16,8 @@ on:
       - 'scripts/dev/d315_card_ds3_gallery.gd'
       - 'scenes/dev/d315_card_ds3_gallery.tscn'
       - 'scripts/dev/d315_card_ds3_smoke.gd'
+      - 'scripts/table/card_lore_inspect.gd'
+      - 'scripts/dev/d316_card_surfaces_smoke.gd'
   workflow_dispatch:
 
 permissions:
@@ -48,9 +50,18 @@ jobs:
           timeout 110s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --script res://scripts/dev/d315_card_ds3_smoke.gd 2>&1 | tee /tmp/d315-native.log
           grep -q 'D315_CARD_DS3_NATIVE_PASS' /tmp/d315-native.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D315_CARD_DS3_FAIL' /tmp/d315-native.log; then exit 1; fi
+      - name: Test DS3 full-card reader and all Fate Spread physical slots
+        shell: bash
+        run: |
+          set -o pipefail
+          timeout 110s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --script res://scripts/dev/d316_card_surfaces_smoke.gd 2>&1 | tee /tmp/d316-native.log
+          grep -q 'D316_CARD_SURFACES_NATIVE_PASS' /tmp/d316-native.log
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D316_CARD_SURFACES_FAIL' /tmp/d316-native.log; then exit 1; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: d315-card-ds3-native
-          path: /tmp/d315-*.log
+          path: |
+            /tmp/d315-*.log
+            /tmp/d316-*.log
           retention-days: 14
