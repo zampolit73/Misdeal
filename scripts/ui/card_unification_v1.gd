@@ -20,6 +20,9 @@ const D200_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/black_la
 const D261_COURT_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/court_of_the_mute_selected_v1.webp.b64"
 
 const RUN_CARDS := {
+	# D331 user-approved individual card scene compositions.
+	"bone_crush": "run/bone_crush_d331_approved_option2.webp",
+	"blood_ledger": "run/blood_ledger_d331_approved_scribe.webp",
 	# D319 user-picked third Black Altar painting, derived from approved triptych.
 	"black_altar": "run/black_altar_d319_option3.webp",
 	"bone_patrol": "run/bone_patrol.webp",
