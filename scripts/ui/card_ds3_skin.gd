@@ -145,6 +145,10 @@ static func apply_table(button: Button) -> bool:
     category.clip_text = true
 
     var body := button.get_node("Description") as Label
+    # D326: keep the live two-offer description at the same physical center.
+    # It must not retain offsets/anchors from the old DS2 layout.
+    body.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+    body.custom_minimum_size = Vector2.ZERO
     _at(body, Vector2(43, 263), Vector2(186, 39))
     body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER

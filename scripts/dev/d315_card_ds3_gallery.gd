@@ -154,13 +154,18 @@ func _card_widget(title: String, type_name: String, full_text: String,
     well.mouse_filter = Control.MOUSE_FILTER_IGNORE
     button.add_child(well)
     var body := button.get_node("Description") as Label
-    body.reparent(well)
-    body.position = Vector2.ZERO
-    body.size = well.size
+    # D326: reparent without preserving the old global rect. Make the Label
+    # fill its own clipped description well so wrapped lines center reliably,
+    # even when Godot updates the control layout after setting card text.
+    body.reparent(well, false)
+    body.custom_minimum_size = Vector2.ZERO
+    body.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    body.add_theme_font_size_override("font_size", 10)
+    body.clip_text = true
     body.max_lines_visible = 2
+    body.add_theme_font_size_override("font_size", 10)
     body.text = _short_copy(full_text)
 
     var hint := button.get_node("Hint") as Label

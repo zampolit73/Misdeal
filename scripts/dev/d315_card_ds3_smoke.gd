@@ -186,6 +186,25 @@ func _verify() -> void:
         if body.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER or body.vertical_alignment != VERTICAL_ALIGNMENT_CENTER:
             _fail("D325 description text is not centered: " + card.name)
             return
+        # D326: test the *rendered* child rect, not only parent geometry and
+        # alignment enum. An obsolete reparent transform can shift the text.
+        if body.get_parent() != well:
+            _fail("D326 description is no longer attached to its clip well: " + card.name)
+            return
+        if not body.position.is_equal_approx(Vector2.ZERO):
+            _fail("D326 description retains an offset after reparent: " + card.name)
+            return
+        if not body.size.is_equal_approx(well.size):
+            _fail("D326 description size does not match its text well: " + card.name)
+            return
+        if not is_equal_approx(body.anchor_left, 0.0) or not is_equal_approx(body.anchor_top, 0.0) or not is_equal_approx(body.anchor_right, 1.0) or not is_equal_approx(body.anchor_bottom, 1.0):
+            _fail("D326 description is not anchored to the well: " + card.name)
+            return
+        var actual_center := (body.global_position.x + body.size.x * 0.5)
+        var card_center := (card.global_position.x + card.size.x * 0.5)
+        if absf(actual_center - card_center) > 0.5:
+            _fail("D326 rendered description center differs from card: " + card.name)
+            return
         if category.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER:
             _fail("D325 type text is not centered in its physical tab: " + card.name)
             return
