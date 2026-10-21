@@ -4,10 +4,15 @@ extends RefCounted
 const PAPER_SHADER: Shader = preload("res://shaders/table_offer_parchment.gdshader")
 const ENGRAVING_SCRIPT: Script = preload("res://scripts/table/table_offer_engraving.gd")
 const ART_FRAME_ASSET := preload("res://scripts/table/table_offer_frame_asset.gd")
+const DS3_CARD := preload("res://scripts/ui/card_ds3_skin.gd")
 const CARD_SIZE := Vector2(272.0, 338.0)
 const BRONZE := Color("#a66b3d")
 
 static func prepare(button: Button) -> void:
+	# D315: visual source of truth is the user-approved DS3 card sheet.
+	# DS2 is a safe fallback only when optional binaries fail to import.
+	if DS3_CARD.apply_table(button):
+		return
 	button.custom_minimum_size = CARD_SIZE
 	button.size = CARD_SIZE
 	button.clip_contents = true
