@@ -246,15 +246,17 @@ func _verify() -> void:
             _fail("D322 reward portrait still crops its illustration: " + name)
             return
         # D325: Reward titles/effects/descriptions center at card x=146.
-        for path in ["Role", "Title", "Effect", "Description"]:
+        for path in ["Role", "UpgradeTitle", "QuickEffect", "UpgradeDescription"]:
             var text_node := card.get_node_or_null(path) as Label
-            if text_node != null:
-                if text_node.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER:
-                    _fail("D325 Reward text alignment is not centered: " + name + "/" + path)
-                    return
-                if absf(text_node.position.x + text_node.size.x * 0.5 - 146.0) > 1.0:
-                    _fail("D325 Reward text box is off-center: " + name + "/" + path)
-                    return
+            if text_node == null:
+                _fail("D325 Reward label is missing: " + name + "/" + path)
+                return
+            if text_node.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER:
+                _fail("D325 Reward text alignment is not centered: " + name + "/" + path)
+                return
+            if absf(text_node.position.x + text_node.size.x * 0.5 - 146.0) > 1.0:
+                _fail("D325 Reward text box is off-center: " + name + "/" + path)
+                return
         var matte := art_well.get_theme_stylebox("panel") as StyleBoxFlat
         if matte == null or matte.border_width_left != 0 or matte.border_width_top != 0 or matte.border_width_right != 0 or matte.border_width_bottom != 0:
             _fail("D324 Reward contains a duplicate inset outline: " + name)
