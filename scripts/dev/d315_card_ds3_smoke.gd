@@ -5,6 +5,7 @@ extends SceneTree
 const GALLERY := "res://scenes/dev/d315_card_ds3_gallery.tscn"
 const REWARD := "res://scenes/reward/reward.tscn"
 const SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
+const CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 
 func _initialize() -> void:
     call_deferred("_verify")
@@ -23,6 +24,18 @@ func _verify() -> void:
         _fail("D315 card front contains flattened illustration instead of live art")
         return
 
+    # D319: the exact option-three scene must win over older Black Altar art.
+    const ALTAR_ART := "res://assets/pixel/card_unification_v1/run/black_altar_d319_option3.webp"
+    if not FileAccess.file_exists(ALTAR_ART):
+        _fail("D319 selected Black Altar image not tracked")
+        return
+    if FileAccess.get_sha256(ALTAR_ART) != "3e873813db79ba9f67df9de00be07e80e177ad1f6429af36d6592f13ac6bde0e":
+        _fail("D319 Black Altar art is not the approved option-three crop")
+        return
+    var selected_altar := CATALOG.get_run_card_texture("black_altar")
+    if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
+        _fail("D319 selected art did not override Black Altar catalog")
+        return
     var preview := (load(GALLERY) as PackedScene).instantiate() as Control
     if preview == null:
         _fail("cannot instantiate complete card gallery")

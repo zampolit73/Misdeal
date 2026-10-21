@@ -20,6 +20,8 @@ const D200_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/black_la
 const D261_COURT_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/court_of_the_mute_selected_v1.webp.b64"
 
 const RUN_CARDS := {
+	# D319 user-picked third Black Altar painting, derived from approved triptych.
+	"black_altar": "run/black_altar_d319_option3.webp",
 	"bone_patrol": "run/bone_patrol.webp",
 	"bone_shepherd": "run/bone_shepherd.webp",
 	# D151 candidate; not dealt until both original enemy atlases pass native F6 review.
