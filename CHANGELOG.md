@@ -1,3 +1,8 @@
+## 2026-10-21 — D331: Publish two approved scene-specific card WebPs in main
+
+- Actually committed chosen `bone_crush` ("Прорыв ворот" variant 2) and `blood_ledger` (final skeletal scribe) images as 448×274 WebPs to `assets/pixel/card_unification_v1/run/`; `CardUnificationV1.RUN_CARDS` picks these for real game and QA gallery instead of old atlas. Successful binary [import workflow](https://github.com/zampolit73/Misdeal/actions/runs/39657041960) created `cb03e65`.
+- Image-source caveat: from Canva resized thumbnail previews, NOT original full-res approved master pixels. The authored 448×274 WebPs remain available in conversation for later lossless asset replacement. No unrelated DS3/encounter modification. D315 smoke now verifies exact mapping and expected dimensions; native Godot F6 review pending.
+
 ## 2026-10-21 — D330: Log two confirmed individual card-art choices for direct integration
 
 - User approved the middle “Прорыв ворот” rendered Bone Crush composition; exact triptych file ID and game-sized crop recorded in project handoff/registry.

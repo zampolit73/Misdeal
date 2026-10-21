@@ -52,6 +52,31 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
+    # D331: confirm both *published* hand-picked scenes are selected in the
+    # real CardArtCatalog, rather than falling back to a legacy atlas cell.
+    for approved in [
+        {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
+        {"id": "blood_ledger", "file": "blood_ledger_d331_approved_scribe.webp"},
+    ]:
+        var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
+        if not FileAccess.file_exists(asset_path):
+            _fail("D331 user-approved card scene missing: " + asset_path)
+            return
+        var decoded := Image.new()
+        if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:
+            _fail("D331 card scene is not a decodable WebP: " + asset_path)
+            return
+        if decoded.get_size() != Vector2i(448, 274):
+            _fail("D331 approved card scene has wrong 448x274 dimensions: " + asset_path)
+            return
+        var selected := CATALOG.get_run_card_texture(String(approved["id"]))
+        if selected == null or selected.get_size() != Vector2(448, 274):
+            _fail("D331 selected asset did not override card catalog: " + str(approved["id"]))
+            return
+        if selected.get_image().get_data() != decoded.get_data():
+            _fail("D331 card still uses an older fallback illustration: " + str(approved["id"]))
+            return
+
     var preview := (load(GALLERY) as PackedScene).instantiate() as Control
     if preview == null:
         _fail("cannot instantiate complete card gallery")

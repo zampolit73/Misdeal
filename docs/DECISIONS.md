@@ -1,3 +1,7 @@
+## D331 — Exact selected compositions now used by card IDs (2026-10-21)
+
+The user approved `blood_ledger` skeletal scribe (last revised image) and `bone_crush` option 2 ("Прорыв ворот"), not variants 1 or 3. D331 binds these **same selected compositions** to their own real runtime files, not to arbitrary atlas cells. The original DS3 D328 visual layout and all combat/event rules stay locked. Current export used low-resolution Canva previews upscaled to the 448×274 game-contract; this is an acknowledged image-quality gap, not a design approval gap. Original authored high-res crops can replace files in a separate quality-only pass without new conceptual selection.
+
 ## D330 — Approved explicit card-art selections: `blood_ledger` and `bone_crush` (2026-10-21)
 
 D168 option protocol completed: user explicitly selected `blood_ledger` final revised piece (red-robed skeleton writing in bloody open ledger; restrained candle clusters, hourglass), and `bone_crush` option **2 “Прорыв ворот”**, the middle illustration in a 3-scene triptych (skeletons smash a castle's wooden gate). Future sessions MUST use these exact user-approved visual compositions; no substitutions or fresh generated art without request. Export-only crops may adapt to required WebP 448×274 game asset ratio. The Card DS3 visual frame remains approved and unchanged. Selections recorded but exact images still need binary publication into GitHub.

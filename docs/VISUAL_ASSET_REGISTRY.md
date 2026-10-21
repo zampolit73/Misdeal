@@ -1,3 +1,9 @@
+## D331 — Card image registry: 2 selected scenes LIVE (2026-10-21)
+
+- `bone_crush` — `assets/pixel/card_unification_v1/run/bone_crush_d331_approved_option2.webp` (**448×274**). User-selected **middle "Прорыв ворот"** concept: lead armored skeleton shatters gate, undead behind. Runtime override in `CardUnificationV1.RUN_CARDS`, original fallback remains untouched. From authorized 199×122 CDN image scaled to 448×274; high-quality original selection available in conversation source `file_00000000e41c82468809214f2612a364` and original local WebP crop `d330_bone_crush_option2.webp`.
+- `blood_ledger` — `assets/pixel/card_unification_v1/run/blood_ledger_d331_approved_scribe.webp` (**448×274**). User-approved skeleton scribe at bloodstained grimoire; runtime override as above. CDN source 200×133 upscaled after corresponding crop; original source `file_00000000a30c824683e1cace3f690672` and `d329_blood_ledger_scribe.webp`.
+- GitHub Actions [D331 successful](https://github.com/zampolit73/Misdeal/actions/runs/39657041960). Preview-source upscaling should be upgraded when exact user-approved WebPs can be transferred in full resolution; selection itself is FINAL. D328 DS3 unchanged. No F6 visual acceptance after this binary export yet.
+
 ## D330 — Selections archived from chat for future shipping
 
 - `bone_crush`: user selected variant 2 **“Прорыв ворот”**, middle panel of rendered triptych `a_wide_cinematic_triptych_fantasy_illustration_in.png` (conversation image file id `file_00000000e41c82468809214f2612a364`, 2048×768). Local cropped export 448×274 `d330_bone_crush_option2.webp`. Visual: skeleton bursts through splintering wooden gate with backup skeletons against blue moonlit castle. Source/master metadata preserved in `docs/HANDOFF.md`. **Asset not yet published to GitHub**.

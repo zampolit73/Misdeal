@@ -1,3 +1,11 @@
+## D331 — Selected Bone Crush / Blood Ledger illustrations published (2026-10-21)
+
+- [x] Real WebPs in GitHub: `bone_crush_d331_approved_option2.webp`, `blood_ledger_d331_approved_scribe.webp`; validated engine geometry 448×274 by successful CI import workflow.
+- [x] Bind `bone_crush` and `blood_ledger` RUN_CARDS IDs to unique illustrations; originals preserved as fallback/rollback.
+- [x] Add D315 smoke to assert both files decode and actual catalog pixels match individually selected WebPs.
+- [ ] Visually inspect in Godot F6 (native QA not claimed).
+- [ ] When binary transport supports it, replace current upscaled ~200px Canva thumbnail exports with exact original approved 448px local crops; **do not regenerate or re-approve**.
+
 ## D330 — Card illustration approval and binary publication (2026-10-21)
 
 - [x] User selected `bone_crush` option 2 “Прорыв ворот” (middle composition) from the rendered three-part concept image; previously also approved the final `blood_ledger` skeleton-scribe piece.
