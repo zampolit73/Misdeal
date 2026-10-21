@@ -11,6 +11,10 @@
 3. `d6b2eda` — original `scripts/dev/d315_card_ds3_smoke.gd` now asserts all gallery preview containment (card bounds / title-vs-body / category-vs-art / hint-vs-body), no fake Fate numerals, a genuinely shorter preview, exact original `black_altar.tres.card_text` in the reader and working close, in addition to all original 55-gallery/Reward checks. D316 Spread/inspector smoke was preserved.
 4. `61ca941` — common **live** Table style `scripts/ui/card_ds3_skin.gd::apply_table` also moves Type to existing top-right black tab and sets title/body max 2 lines (not a gallery-only illusion). `scripts/table/table_offer_skin.gd::short_description` now takes a defaulted optional length preserving DS2; `scripts/table/table.gd` limits DS3 live offer body to 56 chars but retains raw full text in RunCardData and live RMB reader. Two offers, actual I–XII/XIII numbering, hold/discard, reward effects and routing preserved.
 
+## D318 first individual-art concept checkpoint (pending user choice)
+
+After D318 gallery fixes, three **visually distinct Black Altar candidate scene compositions** were generated in the current chat as one triptych (top/middle/bottom), no baked card UI or text. This is an **art-direction candidate sheet only**, NOT published to game asset catalog and NOT user-approved. User must pick option 1, 2 or 3 under D168 before the selected exact image is cropped/exported per-ID and installed as a new `black_altar` scene texture. The image is in the current conversation, not yet archived as a new GitHub raster. Future chats must not falsely claim an approved or integrated replacement. Keep the original scene until selection.
+
 ## QA honesty
 - **Code pushed; native Godot 4.7.x import and real F6 screenshot remain UNVERIFIED.** In this environment Godot executable not installed, and GitHub Actions connector enumerated neither push jobs nor status checks (empty result). Do not convert static review to QA PASS.
 - Screenshot the user sent is D317 BEFORE changes. Do not claim new implementation visually accepted. Strong red palette reference remains approved, not finished.
