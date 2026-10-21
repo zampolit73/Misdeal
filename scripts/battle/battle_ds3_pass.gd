@@ -280,8 +280,9 @@ static func _install_wizard_plaque(scene: Control) -> void:
 	art.queue_redraw()
 	var headline := Label.new()
 	headline.name = "D307WizardHeading"
-	headline.position = Vector2(66, 8)
-	headline.size = Vector2(166, 33)
+	# D312: center the live title within the narrow upper inset.
+	headline.position = Vector2(63, 9)
+	headline.size = Vector2(172, 29)
 	headline.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	headline.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	headline.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -295,8 +296,10 @@ static func _install_wizard_plaque(scene: Control) -> void:
 	panel.add_child(headline)
 	var body := Label.new()
 	body.name = "D307WizardBody"
-	body.position = Vector2(54, 47)
-	body.size = Vector2(177, 56)
+	# D312: separate the actual rule from its optional gold reward.
+	# The remaining lower inset stays legible at 1280x720 without a second panel.
+	body.position = Vector2(56, 45)
+	body.size = Vector2(173, 48)
 	body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -308,6 +311,27 @@ static func _install_wizard_plaque(scene: Control) -> void:
 	body.z_index = 2
 	body.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	panel.add_child(body)
+	# D312: subordinate reward line is a live Label derived from the same
+	# canonical objective, not baked art or a second gameplay payout.
+	var reward := Label.new()
+	reward.name = "D312WizardReward"
+	reward.position = Vector2(65, 91)
+	reward.size = Vector2(165, 18)
+	reward.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	reward.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	reward.autowrap_mode = TextServer.AUTOWRAP_OFF
+	reward.add_theme_font_size_override("font_size", 11)
+	reward.add_theme_color_override("font_color", Color(0.83, 0.66, 0.43, 1.0))
+	reward.add_theme_color_override("font_outline_color", Color(0.025, 0.015, 0.014, 0.92))
+	reward.add_theme_constant_override("outline_size", 1)
+	reward.z_index = 2
+	reward.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.add_child(reward)
+	# Keep existing text styles restrained; a one-pixel dark edge is
+	# preferable to bright outline neon or additional brass decorations.
+	for field in [headline, body]:
+		field.add_theme_color_override("font_outline_color", Color(0.020, 0.014, 0.015, 0.94))
+		field.add_theme_constant_override("outline_size", 1)
 	# Hidden visually, but still canonical for rewards, failures and tests.
 	source.visible = false
 	sync_side_objective(scene)
@@ -333,9 +357,21 @@ static func sync_side_objective(scene: Control) -> void:
 	else:
 		headline.text = whole.substr(0, first_divider)
 		body.text = whole.substr(first_divider + 1)
+	# The challenge owns the value. A suffix such as " • +15 золота" is
+	# separated purely for presentation; real RunState payout is unchanged.
+	var reward := panel.get_node_or_null("D312WizardReward") as Label
+	if reward != null:
+		var separator := body.text.rfind(" • +")
+		if separator >= 0:
+			reward.text = body.text.substr(separator + 3)
+			body.text = body.text.substr(0, separator)
+			reward.visible = true
+		else:
+			reward.text = ""
+			reward.visible = false
 	var failed := whole.contains("ПРОВАЛЕНО")
 	headline.add_theme_color_override("font_color", Color(1.0, 0.57, 0.47) if failed else PARCHMENT_BRIGHT)
-	body.add_theme_color_override("font_color", Color(1.0, 0.57, 0.47) if failed else PARCHMENT_BRIGHT)
+	body.add_theme_color_override("font_color", Color(1.0, 0.64, 0.55) if failed else PARCHMENT_BRIGHT)
 
 
 # Keep the challenge below the lower-left deployment margin during setup,
@@ -346,7 +382,8 @@ static func position_side_objective(scene: Control, combat_active: bool) -> void
 	if combat_active:
 		_place(panel, Vector2(98, 165), Vector2(216, 133))
 	else:
-		_place(panel, Vector2(22, 575), Vector2(216, 133))
+		# D312: four pixels of breathing room above the viewport edge.
+		_place(panel, Vector2(22, 571), Vector2(216, 133))
 
 
 static func _material(material: String) -> StyleBoxFlat:
