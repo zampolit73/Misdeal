@@ -1,3 +1,10 @@
+## 2026-10-21 — D314: Battle DS3 artistically accepted and release checkpoint preserved
+
+- User explicitly approved ending the Battle DS3 visual iterations after D313. Accepted combined D303 carved command/Fight, D311 third Wizard portrait and D312–D313 corrected native labeling. Do not require a further Battle screenshot for aesthetic signoff.
+- Created permanent checkpoint branch `checkpoint/battle-ds3-approved-2026-10-21` at D313 code commit `25878ca7023874e9ca96f412470241cc5496b775` alongside existing DS2 restore point.
+- Reviewed current working Reward DS2 code; recommended new Reward DS3 art-first exploration (2–3 selectable concepts). No Reward code, event rules, combat balance or Fate Spread artwork changed. Native automated D313 certification remains separately unconfirmed.
+- Recorded complete next-screen scope/guardrails in `docs/D314_NEXT_VISUAL_PASS.md`.
+
 ## 2026-10-21 — D313: Fix real Godot Wizard gold label crossing ornate lower border
 
 - Reviewed user-provided actual D312 prep and live-combat screenshots; discovered `+15 золота` visually crosses the bottom bronze ornament, while failure text is correctly visible.
