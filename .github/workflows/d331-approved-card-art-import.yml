@@ -1,4 +1,5 @@
 name: D331 Approved Card Art Binary Import
+# Rerun after normalizing CDN metadata's rounded 199px image size.
 on:
   push:
     branches: [main]
