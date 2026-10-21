@@ -1,3 +1,9 @@
+## 2026-10-21 — D317: Save first real Card DS3 gallery screenshot and defect handoff
+
+- Archived the user's real 1630×886 Godot full-gallery screenshot in `docs/qa/D317_card_ds3_gallery_user_screenshot.webp`, with 40 loaded cards, 15 additional images and 0 lookup gaps.
+- Inspected real D315 gallery source and observed blockers: full multiline card text overflows adjacent cards, title/type panel conflicts, misleading modulo-12 Roman numerals, over-dark artwork and a tiny full-copy viewer.
+- Added comprehensive new-chat handoff `docs/D317_CARD_DS3_GALLERY_SCREENSHOT_HANDOFF.md` and updated PROJECT_STATE, ROADMAP, DECISIONS and HANDOFF. Approved richer DS3 palette remains unchanged; actual gallery not accepted. No art, GDScript, mechanics or UI fixes made yet; next chat starts with the screenshot-grounded UI repair.
+
 ## 2026-10-21 — D316: Resume real GitHub Card DS3 implementation in small verified stages
 
 - Compared current GitHub HEAD with promised work: existing D315 was **already substantial**, including 3 DS3 assets, red/black shader, original Table + Spread (12/XIII/held/discard) + Reward integrations, full 40-card + upgrade/reward F6 gallery and native regression definition. Did not duplicate this code.
