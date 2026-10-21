@@ -309,7 +309,8 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 
 	button.set_meta("card_id", card.card_id)
 	title_label.text = card.title
-	type_label.text = _get_card_type_line(card)
+	# Full combat subtype remains available in the RMB lore reader.
+	type_label.text = card.type_label if button.has_node("DS3CardFrame") else _get_card_type_line(card)
 	# DS3's small ink well allows two lines only. The authoritative
 	# unabridged text stays in RunCardData and the real RMB reader.
 	description_label.text = TABLE_OFFER_SKIN.short_description(

@@ -95,7 +95,7 @@ static func apply_table(button: Button) -> bool:
     category.clip_text = true
 
     var body := button.get_node("Description") as Label
-    _at(body, Vector2(43, 263), Vector2(186, 45))
+    _at(body, Vector2(43, 263), Vector2(186, 39))
     body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

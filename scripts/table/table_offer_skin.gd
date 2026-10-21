@@ -155,7 +155,7 @@ static func short_description(original: String, max_copy: int = 100) -> String:
 		return plain
 	var clipped := plain.substr(0, max_copy)
 	var word_end := clipped.rfind(" ")
-	if word_end >= maxi(12, max_copy / 2):
+	if word_end >= maxi(12, int(max_copy * 0.5)):
 		clipped = clipped.substr(0, word_end)
 	return clipped.strip_edges() + "…"
 
