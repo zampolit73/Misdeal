@@ -1,3 +1,7 @@
+## D330 — Approved explicit card-art selections: `blood_ledger` and `bone_crush` (2026-10-21)
+
+D168 option protocol completed: user explicitly selected `blood_ledger` final revised piece (red-robed skeleton writing in bloody open ledger; restrained candle clusters, hourglass), and `bone_crush` option **2 “Прорыв ворот”**, the middle illustration in a 3-scene triptych (skeletons smash a castle's wooden gate). Future sessions MUST use these exact user-approved visual compositions; no substitutions or fresh generated art without request. Export-only crops may adapt to required WebP 448×274 game asset ratio. The Card DS3 visual frame remains approved and unchanged. Selections recorded but exact images still need binary publication into GitHub.
+
 ## D328 — Approved card DS3 layout baseline (2026-10-21)
 
 User explicitly approved D327 («утверждаю»). The approved card front is the single complete D320/D323 Gothic frame, D321 true artwork colors, D324 borderless art matte, D327 actual painted optical text axes (Table x147, category tab x150, Reward x158) and true Fate Roman slot. This approval locks the PRESENTATION, not individual replacement art for the full 55-image catalogue and not Godot CI results. Preserve this layout unless user reopens it.

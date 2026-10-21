@@ -1,3 +1,11 @@
+## D330 — Card illustration approval and binary publication (2026-10-21)
+
+- [x] User selected `bone_crush` option 2 “Прорыв ворот” (middle composition) from the rendered three-part concept image; previously also approved the final `blood_ledger` skeleton-scribe piece.
+- [x] Confirm both actual image files in current conversation container, prepare cropped 448×274 WebP previews (no baked interface, images maintain exact selected scenes).
+- [x] Record precise conversation file IDs, crop coords, selected image identities and required mapping in repo for recovery.
+- [ ] **Binary upload of both approved images** into GitHub (not accomplished by current connector/container transfer). Do not mark complete or replace mapping until uploaded.
+- [ ] Test approved source art through live Godot F6 gallery and Table; keep frozen Card DS3 layout and gameplay untouched.
+
 ## D328 — D327 визуально утверждён пользователем (2026-10-21)
 
 - [x] User signoff: «утверждаю» после D327 по оптическому центрированию текста и типовым плашкам в DS3; текущая раскладка зафиксирована как эталон.

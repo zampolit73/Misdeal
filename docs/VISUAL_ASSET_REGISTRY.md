@@ -1,3 +1,9 @@
+## D330 — Selections archived from chat for future shipping
+
+- `bone_crush`: user selected variant 2 **“Прорыв ворот”**, middle panel of rendered triptych `a_wide_cinematic_triptych_fantasy_illustration_in.png` (conversation image file id `file_00000000e41c82468809214f2612a364`, 2048×768). Local cropped export 448×274 `d330_bone_crush_option2.webp`. Visual: skeleton bursts through splintering wooden gate with backup skeletons against blue moonlit castle. Source/master metadata preserved in `docs/HANDOFF.md`. **Asset not yet published to GitHub**.
+- `blood_ledger`: user approved final authored skeleton scribe artwork `a_dark_cinematic_gothic_fantasy_interior_scene_in.png` (conversation file id `file_00000000a30c824683e1cace3f690672`). Local crop 448×274 `d329_blood_ledger_scribe.webp`. **Asset not yet published to GitHub**.
+- D328 live physical card UI remains frozen. Both mappings in `scripts/ui/card_unification_v1.gd` intentionally unchanged pending real binaries.
+
 ## D319 — User-selected Black Altar card illustration option 3 (2026-10-21)
 
 - `assets/pixel/card_unification_v1/run/black_altar_d319_option3.webp`: real approved third/bottom Black Altar temple-scene crop, 448×274 RGB WebP, 7,648 bytes, SHA256 `3e873813db79ba9f67df9de00be07e80e177ad1f6429af36d6592f13ac6bde0e`. Crop of original generated triptych source (1604×981), center of bottom panel: (510,650)-(1057,981), Lanczos downsample; no baked UI text. Unique `black_altar` card override in `scripts/ui/card_unification_v1.gd`; gallery and runtime Table use `CardArtCatalog` as before, independently from unmodified event background. Preserve legacy source as rollback.

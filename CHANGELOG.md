@@ -1,3 +1,9 @@
+## 2026-10-21 — D330: Log two confirmed individual card-art choices for direct integration
+
+- User approved the middle “Прорыв ворот” rendered Bone Crush composition; exact triptych file ID and game-sized crop recorded in project handoff/registry.
+- Preserved the earlier selected final skeleton-scribe Blood Ledger image in the same art handoff, with exact file ID and game-ratio crop.
+- No runtime art/code modification in this doc-only commit: approved WebPs were prepared locally but not transferred to GitHub due to binary transport gap. Remaining to ship via `CardUnificationV1.RUN_CARDS`; don't claim playable completion prematurely.
+
 ## 2026-10-21 — D328: Card DS3 visual baseline approved by user
 
 - User explicitly accepted D327 layout («утверждаю»). Freeze current full-frame, true-color, no-inner-outline, optically centered Card DS3 visual design as approved baseline.
