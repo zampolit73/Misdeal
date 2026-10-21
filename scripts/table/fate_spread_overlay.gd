@@ -65,6 +65,16 @@ func _ready() -> void:
 	z_index = 4095
 	close_button.pressed.connect(close)
 	_build_slots()
+	# D315: same engraved-card material on held and discarded real cards.
+	CARD_DS3_SKIN.apply_sidebar_card($Frame/HeldPanel, held_art, held_title_plate,
+		held_title, Vector2(45, 65), Vector2(145, 206))
+	CARD_DS3_SKIN.apply_sidebar_card(discard_card_layer, discard_art,
+		discard_title_plate, discard_title, Vector2(44, 110), Vector2(161, 222))
+	var legacy_back := discard_card_layer.get_node_or_null("StackBack") as TextureRect
+	if legacy_back != null:
+		var card_back := load(CARD_DS3_SKIN.BACK) as Texture2D
+		if card_back != null:
+			legacy_back.texture = card_back
 	refresh()
 	_animate_in()
 
@@ -456,6 +466,8 @@ func _refresh_held() -> void:
 		held_title_plate.visible = true
 		held_title_plate.color = Color(0.80, 0.70, 0.55, 0.98)
 		held_title.add_theme_color_override("font_color", Color(0.20, 0.12, 0.08, 1.0))
+		if $Frame/HeldPanel.has_node("DS3SidebarFrame"):
+			held_title.add_theme_color_override("font_color", CARD_DS3_SKIN.INK_TEXT)
 		held_status.text = "1/1 • ВЕРНЁТСЯ"
 	else:
 		held_art.texture = null
@@ -487,6 +499,8 @@ func _refresh_discard() -> void:
 	discard_title_plate.visible = true
 	discard_title_plate.color = Color(0.80, 0.70, 0.55, 0.98)
 	discard_title.add_theme_color_override("font_color", Color(0.20, 0.12, 0.08, 1.0))
+	if discard_card_layer.has_node("DS3SidebarFrame"):
+		discard_title.add_theme_color_override("font_color", CARD_DS3_SKIN.INK_TEXT)
 
 
 func _animate_in() -> void:
