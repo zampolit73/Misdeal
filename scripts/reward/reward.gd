@@ -4,6 +4,7 @@ const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
+const CARD_DS3_SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
 const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const ROLE_FALLBACK_ART := {
@@ -111,6 +112,9 @@ func _apply_ui_kit() -> void:
 
 func _build_v2_card_chrome(index: int) -> void:
 	var button := reward_buttons[index]
+	if CARD_DS3_SKIN.apply_reward(button, upgrade_portraits[index], upgrade_role_labels[index], upgrade_title_labels[index], upgrade_quick_labels[index], upgrade_description_labels[index]):
+		upgrade_choose_bars[index].visible = false
+		return
 	button.custom_minimum_size = Vector2(292.0, 410.0)
 	button.focus_mode = Control.FOCUS_ALL
 	MISDEAL_UI_KIT.apply_v2_reward_card(button, false)
@@ -221,6 +225,7 @@ func _style_v2_reward_copy(index: int, effect_text: String = "") -> void:
 	reward_buttons[index].tooltip_text = "%s\n\n%s\n%s" % [
 		heading.text, effect_text, description.text
 	]
+	CARD_DS3_SKIN.style_reward_copy(reward_buttons[index], role, heading, effect, description)
 	call_deferred("_fit_v2_reward_copy", index)
 
 
