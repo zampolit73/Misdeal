@@ -26,33 +26,18 @@ func _verify() -> void:
 	SKIN.prepare(b)
 	SKIN.style_hold_button(ha)
 	SKIN.style_hold_button(hb)
-	UI.apply_parchment_offer_card_frame(a)
-	UI.apply_parchment_offer_card_frame(b, false, true, false)
-	var valid := a.has_node("ParchmentFace") and b.has_node("ParchmentFace")
-	valid = valid and a.size == Vector2(272.0, 338.0)
-	valid = valid and b.size == Vector2(272.0, 338.0)
-	valid = valid and a.has_node("ChooseFace") and b.has_node("ChooseFace")
-	valid = valid and a.has_node("InnerEngravedFrame") and b.has_node("InnerEngravedFrame")
-	valid = valid and a.has_node("OfferEngraving") and b.has_node("OfferEngraving")
-	valid = valid and a.has_node("ChooseGleam") and b.has_node("ChooseGleam")
-	var art_frame_a := a.get_node_or_null("IllustratedFrame") as TextureRect
-	var art_frame_b := b.get_node_or_null("IllustratedFrame") as TextureRect
-	valid = valid and art_frame_a != null and art_frame_b != null
-	if art_frame_a != null and art_frame_b != null:
-		valid = valid and art_frame_a.texture != null and art_frame_b.texture != null
-		valid = valid and art_frame_a.size == Vector2(272.0, 338.0)
-		valid = valid and art_frame_a.mouse_filter == Control.MOUSE_FILTER_IGNORE
-		if art_frame_a.texture != null:
-			var actual_frame: Image = art_frame_a.texture.get_image()
-			valid = valid and actual_frame.get_size() == Vector2i(272, 338)
-			valid = valid and actual_frame.get_pixel(136, 169).a < 0.05
-		valid = valid and not (a.get_node("OfferEngraving") as Control).visible
-		valid = valid and not (b.get_node("CornerTL") as Control).visible
-	var choose_face := a.get_node("ChooseFace") as ColorRect
-	a.mouse_entered.emit()
-	valid = valid and choose_face.color == Color("#8b3025")
-	a.mouse_exited.emit()
-	valid = valid and choose_face.color == Color("#66231d")
+	# D315: approval superseded the historical DS2 parchment art.
+	var valid := a.has_node("DS3CardFrame") and b.has_node("DS3CardFrame")
+	valid = valid and a.size == Vector2(272, 338) and b.size == Vector2(272, 338)
+	for card in [a, b]:
+		var skin := card.get_node_or_null("DS3CardFrame") as TextureRect
+		valid = valid and skin != null and skin.texture != null
+		if skin != null and skin.texture != null:
+			var pixels: Image = skin.texture.get_image()
+			valid = valid and pixels.get_size() == Vector2i(375, 509)
+			valid = valid and pixels.get_pixel(200, 200).a < 0.05
+			valid = valid and skin.mouse_filter == Control.MOUSE_FILTER_IGNORE
+		valid = valid and card.get_node_or_null("DS3Roman") != null
 	valid = valid and a.get_node("Art") is TextureRect and a.get_node("Hint") is Label
 	valid = valid and ha.position.y == 295.0 and hb.position.y == 295.0
 	valid = valid and SKIN.short_description("Длинное описание должно быть доступно для просмотра на карте.") != ""
