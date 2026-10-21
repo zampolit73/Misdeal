@@ -1,3 +1,9 @@
+## 2026-10-21 — D331 verification/cleanup
+
+- Real two card assets uploaded and bound; temporary signed-CDN import workflow removed after successful export.
+- D315 engine QA reached old Reward crop failure on BloodCoin (D322), matching failure from before D331: new image files and catalog mapping were not the blocker. Full native QA remains red.
+- 448×274 engine images are derived from authorized Canva ~200px previews; full-resolution original authored crops remain available in current conversation and should supersede when possible.
+
 ## 2026-10-21 — D331: Publish two approved scene-specific card WebPs in main
 
 - Actually committed chosen `bone_crush` ("Прорыв ворот" variant 2) and `blood_ledger` (final skeletal scribe) images as 448×274 WebPs to `assets/pixel/card_unification_v1/run/`; `CardUnificationV1.RUN_CARDS` picks these for real game and QA gallery instead of old atlas. Successful binary [import workflow](https://github.com/zampolit73/Misdeal/actions/runs/39657041960) created `cb03e65`.

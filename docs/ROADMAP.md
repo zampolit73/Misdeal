@@ -1,3 +1,10 @@
+## D331 follow-up (2026-10-21)
+
+- [x] Successful real WebP binary publish in GitHub and `RUN_CARDS` mapping for both approved user-selected artworks.
+- [x] D315 native check reaches later Reward checks after validating the new D331 art pair.
+- [ ] Pre-existing D322 Reward portrait crop smoke issue remains (BloodCoin), confirmed both before and after D331; fix separately if requested, preserving locked DS3 UI.
+- [ ] User F6 image-quality review pending. Current 448×274 files originated from lower-resolution Canva thumbnails; full-res local crops remain the desired future quality upgrade.
+
 ## D331 — Selected Bone Crush / Blood Ledger illustrations published (2026-10-21)
 
 - [x] Real WebPs in GitHub: `bone_crush_d331_approved_option2.webp`, `blood_ledger_d331_approved_scribe.webp`; validated engine geometry 448×274 by successful CI import workflow.
