@@ -1,3 +1,7 @@
+## D313 — Native label rectangles must respect illustrated inset walls (2026-10-21)
+
+A concept image accepting separate reward typography does not imply the actual Godot Labels fit the physical carved skin. Real D312 screenshot proved the reward line collided with the lower filigree because the rule rect ended y93, reward began y91 and ended y109. On compact D311 Wizard panels reserve a **non-overlapping rule and bonus pair**; with this art the readable inner gold label must end at local y96 or earlier, not cross the ornament. Render authentic dynamic `+15 золота` from original objective text without baking numbers into graphics or changing payout code. Continue native screenshot and geometric smoke gates. Retain D309 fixed source-independent renderer and option-three medallion.
+
 ## D312 — Distinguish optional reward from Wizard objective without changing the game rule (2026-10-21)
 
 Last user-approved D312 visual pass calls for *clearer information hierarchy* rather than new borders: title in narrow upper inset, live rule centered in body inset, `+15 золота` rendered in quieter ochre as a separate derived Label when currently present, and absent on victory/failure messages. The sole authoritative objective string remains `SideObjectivePanel/ObjectiveLabel.text`; the new `D312WizardReward` is presentation only. Keep D311 portrait/art, all real encounter payouts, D309 fixed-size renderer, upper-left combat placement, and F6 preview. A user approving a composited concept image does NOT automatically approve untested runtime typography.
