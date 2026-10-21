@@ -202,6 +202,54 @@ static func style_reward_copy(button: Button, role: Label, heading: Label,
     effect.add_theme_font_size_override("font_size", 11)
     # Long effect texts remain available in the original complete tooltip.
 
+# D316: physical DS3 card inside the already existing non-destructive
+# full-text inspection panel. This is a true card illustration, not a separate
+# menu control; detailed lore stays in its original scrollable right column.
+static func apply_inspection(host: Control, illustration: TextureRect) -> bool:
+    var frame := _texture(FRONT)
+    var ink := _texture(INK)
+    if frame == null or ink == null:
+        return false
+    if host.has_node("DS3InspectFrame"):
+        return true
+    const CARD_AT := Vector2(38, 51)
+    const CARD_EXTENT := Vector2(225, 306)
+    var stone := _new_art(host, "DS3InspectStone", ink, CARD_EXTENT)
+    stone.position = CARD_AT
+    # Draw behind the real original illustration, not over the black title well.
+    host.move_child(stone, illustration.get_index())
+    _at(illustration, CARD_AT + Vector2(24, 32), Vector2(177, 179))
+    illustration.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+    grade(illustration)
+    var gilt := _new_art(host, "DS3InspectFrame", frame, CARD_EXTENT)
+    gilt.position = CARD_AT
+    host.move_child(gilt, illustration.get_index() + 1)
+    var plate_title := Label.new()
+    plate_title.name = "DS3InspectCardTitle"
+    plate_title.position = CARD_AT + Vector2(26, 216)
+    plate_title.size = Vector2(174, 31)
+    plate_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    plate_title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+    plate_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    plate_title.add_theme_font_size_override("font_size", 12)
+    plate_title.add_theme_color_override("font_color", INK_TEXT)
+    plate_title.clip_text = true
+    plate_title.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    host.add_child(plate_title)
+    var reading_mark := Label.new()
+    reading_mark.name = "DS3InspectCardHint"
+    reading_mark.text = "ИЗ КНИГИ СУДЬБЫ"
+    reading_mark.position = CARD_AT + Vector2(29, 265)
+    reading_mark.size = Vector2(167, 19)
+    reading_mark.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    reading_mark.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+    reading_mark.add_theme_font_size_override("font_size", 10)
+    reading_mark.add_theme_color_override("font_color", BONE)
+    reading_mark.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    host.add_child(reading_mark)
+    return true
+
+
 static func apply_spread_slot(panel: Panel, art: TextureRect, title_plate: ColorRect,
         title: Label, dimensions: Vector2) -> void:
     var frame := _texture(FRONT)
