@@ -1,3 +1,9 @@
+## 2026-10-21 — D326: Keep gallery descriptions fully centered after parenting
+
+- Fixed DS3 full-gallery `Description` labels that retained an obsolete/global rect during reparenting: now reparent without old global transform, anchor each body to its full clipped centered CardTextClip and reapply horizontal/vertical centering.
+- Normalize live Table description anchors before authored x43 centered placement. Preserve two-line previews and unchanged complete lore in reader.
+- Native D315 smoke now asserts ALL 55 actual description text-box centers relative to the card, parent, anchors and dimensions, rather than only settings. Committed `895fc731`; native F6 acceptance pending.
+
 ## 2026-10-21 — D325: Align DS3 card copy on a consistent centerline
 
 - Fixed mismatch between shared Table label boxes and F6 gallery overrides: title, short copy and action hint now share exact card x136 centerline with explicit horizontal/vertical centered typesetting.

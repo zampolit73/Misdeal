@@ -1,3 +1,10 @@
+## D326 — Center descriptions below card titles (2026-10-21)
+
+- [x] Anchor F6 gallery Description directly to full clipped `CardTextClip` rect (186px, centered x136), reparent without preserving original global transform and reapply CENTER/CENTER after reparent.
+- [x] In shared live Table reset obsolete DS2 anchors before centering body text to its authored physical card rect.
+- [x] D315 smoke verifies true after-layout global center and full-size anchors for all 55 images, not just enum values.
+- [ ] Visual acceptance in user Godot F6 after `git pull` (native CI/visual result not available here).
+
 ## D325 — Card typography centered within actual physical frame (2026-10-21)
 
 - [x] Use consistent card centerline (x136 for 272px Table/gallery) for Title, description and "ЧИТАТЬ КАРТУ" on all 55 art entries.
