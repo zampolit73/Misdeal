@@ -296,10 +296,10 @@ static func _install_wizard_plaque(scene: Control) -> void:
 	panel.add_child(headline)
 	var body := Label.new()
 	body.name = "D307WizardBody"
-	# D312: separate the actual rule from its optional gold reward.
-	# The remaining lower inset stays legible at 1280x720 without a second panel.
-	body.position = Vector2(56, 45)
-	body.size = Vector2(173, 48)
+	# D313: screenshots showed the separate reward was sitting on the carved
+	# bottom border. Reserve a compact two-line rule zone above its own slot.
+	body.position = Vector2(56, 44)
+	body.size = Vector2(173, 34)
 	body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -315,13 +315,15 @@ static func _install_wizard_plaque(scene: Control) -> void:
 	# canonical objective, not baked art or a second gameplay payout.
 	var reward := Label.new()
 	reward.name = "D312WizardReward"
-	reward.position = Vector2(65, 91)
-	reward.size = Vector2(165, 18)
+	# Entire reward rect sits ABOVE the lower engraved rim (at most local y=96).
+	# Never overlap the main rule rect, even when it wraps into two lines.
+	reward.position = Vector2(65, 80)
+	reward.size = Vector2(165, 16)
 	reward.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	reward.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	reward.autowrap_mode = TextServer.AUTOWRAP_OFF
 	reward.add_theme_font_size_override("font_size", 11)
-	reward.add_theme_color_override("font_color", Color(0.83, 0.66, 0.43, 1.0))
+	reward.add_theme_color_override("font_color", Color(0.87, 0.72, 0.50, 1.0))
 	reward.add_theme_color_override("font_outline_color", Color(0.025, 0.015, 0.014, 0.92))
 	reward.add_theme_constant_override("outline_size", 1)
 	reward.z_index = 2
