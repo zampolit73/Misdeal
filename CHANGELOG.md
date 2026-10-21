@@ -1,3 +1,11 @@
+## 2026-10-21 — D318: Real DS3 card gallery readability and shared artwork contrast repair
+
+- Reproduced D317 issues from the actual saved native Godot screenshot; source fixed in main \`d6b2eda\`: compact strictly bounded gallery preview, title/type dedicated niches, no fake I–XII enumeration, original unmodified full lore in a large scrollable click-to-read modal, ESC/close, independent illustration.
+- Replaced black-crushing D315 shared color grade with warmer readable midtone lifting, maintaining approved crimson/aged bronze on actual Table/Reward/Spread/inspector/gallery art (new F6 visual validation required).
+- Extended D315 F6 gallery native smoke with geometry, all 55 card slots, lore exactness, reader close, native Reward regression.
+- Follow-up \`61ca941\` corrects actual live Table DS3 category into top-right tab and limits its two-line preview without changing original RunCardData, RMB lore, real I–XIII or any run interaction. DS2 text fallback retains old max length.
+- Updated project handoff, roadmap, DS3 design rules and decision record. Native CI/screenshots not yet verified; **55 bespoke illustration repaints are still pending**, to follow D168 options-first after real screenshot.
+
 ## 2026-10-21 — D317: Save first real Card DS3 gallery screenshot and defect handoff
 
 - Archived the user's real 1630×886 Godot full-gallery screenshot in `docs/qa/D317_card_ds3_gallery_user_screenshot.webp`, with 40 loaded cards, 15 additional images and 0 lookup gaps.
