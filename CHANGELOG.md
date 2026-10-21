@@ -1,3 +1,10 @@
+## 2026-10-21 — D319: Accept and integrate Black Altar third scene; fix actual gallery screenshot defects
+
+- Reviewed user's two actual F6 D318 screenshots. Confirmed major text containment/reader improvement; diagnosed tooltip hovering across cards and barely-visible black-on-black titles.
+- Commit `4831b93`: clear F6 gallery mouseover tooltip, brighten DS3 physical card title to ivory with fine outline and prevent tooltip regression in native smoke.
+- User selected third/bottom Black Altar painting. Commit `a5cb905`: exact selected vignette crop 448×274 registered as a unique `black_altar` card image via `card_unification_v1.gd` (asset checksum validated in native smoke). Source event backdrop/legacy art preserved; no gameplay code changed.
+- Record active art/regression progress in `docs/D319_BLACK_ALTAR_OPTION3.md` and handoff. Native D319 screenshots/CI still pending; only 1/55 individually repainted card images so far.
+
 ## 2026-10-21 — D318: Real DS3 card gallery readability and shared artwork contrast repair
 
 - Reproduced D317 issues from the actual saved native Godot screenshot; source fixed in main `d6b2eda`: compact strictly bounded gallery preview, title/type dedicated niches, no fake I–XII enumeration, original unmodified full lore in a large scrollable click-to-read modal, ESC/close, independent illustration.

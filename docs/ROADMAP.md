@@ -1,3 +1,11 @@
+## D319 — Black Altar #3 integrated; gallery visual regression retest (2026-10-21)
+
+- [x] User D318 real Godot screenshots: 55 loaded entries, body snippets contained, long copy opens fully; observed **new floating tooltip and near-invisible titles**.
+- [x] Remove gallery-only hover tooltip; increase shared DS3 Table-title contrast; D315 smoke guards tooltip regression (`4831b93`).
+- [x] User chose Black Altar illustration **option 3 / bottom scene**; crop the selected original and integrate actual independent WebP 448×274 as `black_altar` Catalog texture (`a5cb905`), with bytes SHA256 check.
+- [ ] Actual native Godot F6 screenshot **after D319 commits**, including new Black Altar on gallery and reader; verify real Table same chosen image, usable title, no tooltip, Reward/Spread/RMB unchanged. CI PASS not asserted.
+- [ ] Continue genuinely individual artistic DS3 redraws for remaining 54 catalog entries through D168 2–3 rendered options and exact chosen image, without overriding already approved art silently.
+
 ## D318 — Repair applied, native/visual approval pending (2026-10-21)
 
 - [x] Inspect the ACTUAL D317 archived native screenshot; trace cross-card text, category on painting and fake Roman ordinals to gallery/skin.

@@ -1,3 +1,8 @@
+## D319 — User-selected Black Altar card illustration option 3 (2026-10-21)
+
+- `assets/pixel/card_unification_v1/run/black_altar_d319_option3.webp`: real approved third/bottom Black Altar temple-scene crop, 448×274 RGB WebP, 7,648 bytes, SHA256 `3e873813db79ba9f67df9de00be07e80e177ad1f6429af36d6592f13ac6bde0e`. Crop of original generated triptych source (1604×981), center of bottom panel: (510,650)-(1057,981), Lanczos downsample; no baked UI text. Unique `black_altar` card override in `scripts/ui/card_unification_v1.gd`; gallery and runtime Table use `CardArtCatalog` as before, independently from unmodified event background. Preserve legacy source as rollback.
+- D319 supplemental UI: remove gallery native tooltip overlay and render real Table-style dark-card title in readable bone/ivory; no art changes to other cards. Real F6 screenshot after D319 is pending; scene skin remains DS3.
+
 ## D311 — Selected THIRD Wizard objective art (2026-10-21)
 
 - `assets/pixel/ui/battle_ds3_d311/wizard_variant3_isolated.png`: transparent, text-free original-reference-derived material module: medallion with hooded Wizard portrait, horizontal blackwood inset wells, gold/brass framing and hanging crimson cloth. Derived from **third user-selected** Battle UI concept; 347×185 source crop preserved in isolation.
