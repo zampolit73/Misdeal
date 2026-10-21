@@ -1,14 +1,22 @@
 shader_type canvas_item;
 
-// D315: unified colors, NOT a replacement for each card's unique painting.
-// Desaturates cold scene highlights while respecting original silhouettes.
+// D318: retain the approved scarlet/black warmth WITHOUT crushing the
+// original scene silhouette, masonry and characters into near-black.
+// Shared between live Table, Reward, Fate Spread and the F6 gallery.
+uniform float grade_mix : hint_range(0.0, 1.0) = 0.30;
+uniform float midtone_lift : hint_range(0.0, 0.25) = 0.085;
+uniform float ember_strength : hint_range(0.0, 0.7) = 0.32;
+
 void fragment() {
-    vec4 tex = texture(TEXTURE, UV);
-    float lum = dot(tex.rgb, vec3(0.299, 0.587, 0.114));
-    float warmth = clamp(tex.r - tex.b * 0.65, 0.0, 1.0);
-    vec3 ink = vec3(lum * 0.64, lum * 0.44, lum * 0.42);
-    vec3 crimson = vec3(0.81, 0.09, 0.09) * pow(max(warmth, lum * 0.40), 1.20);
-    vec3 graded = mix(tex.rgb, ink + crimson * 0.55, 0.54);
-    graded = clamp((graded - 0.5) * 1.12 + 0.5, 0.0, 1.0);
-    COLOR = vec4(graded, tex.a) * COLOR;
+    vec4 original = texture(TEXTURE, UV);
+    float lum = dot(original.rgb, vec3(0.299, 0.587, 0.114));
+    float warmth = clamp(original.r - original.b * 0.65, 0.0, 1.0);
+    vec3 readable = pow(max(original.rgb, vec3(0.0)), vec3(0.82));
+    vec3 bronze = vec3(lum * 1.02, lum * 0.78, lum * 0.67);
+    bronze += vec3(1.0, 0.06, 0.06) * ember_strength * pow(warmth, 0.85);
+    vec3 graded = mix(readable, bronze, grade_mix);
+    float detail_mask = smoothstep(0.012, 0.18, lum) *
+        (1.0 - smoothstep(0.35, 0.85, lum));
+    graded += midtone_lift * (vec3(1.0) - graded) * detail_mask;
+    COLOR = vec4(clamp(graded, 0.0, 1.0), original.a) * COLOR;
 }

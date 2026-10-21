@@ -57,6 +57,63 @@ func _verify() -> void:
         if card.pressed.get_connections().is_empty():
             _fail("visual gallery card lost its inspector control")
             return
+    # D318: native geometry and click contract for all 55 entries.
+    for child in grid.get_children():
+        var card := child as Button
+        var well := card.get_node_or_null("CardTextClip") as Control
+        if well == null or not well.clip_contents:
+            _fail("description has no vertically clipped card text well: " + card.name)
+            return
+        var body := well.get_node_or_null("Description") as Label
+        var heading := card.get_node_or_null("Title") as Label
+        var category := card.get_node_or_null("Type") as Label
+        var hint := card.get_node_or_null("Hint") as Label
+        var roman := card.get_node_or_null("DS3Roman") as Label
+        if body == null or heading == null or category == null or hint == null:
+            _fail("card missing live geometry: " + card.name)
+            return
+        if roman == null or roman.visible:
+            _fail("gallery is showing a fake Fate numeral: " + card.name)
+            return
+        if category.position.y > 38 or category.position.y + category.size.y >= heading.position.y:
+            _fail("type label intrudes into the artwork or title: " + card.name)
+            return
+        if heading.position.y + heading.size.y > well.position.y:
+            _fail("title overlaps the body text well: " + card.name)
+            return
+        if well.position.y + well.size.y > hint.position.y:
+            _fail("description overlaps the click hint: " + card.name)
+            return
+        if well.position.x < 0 or well.position.x + well.size.x > SKIN.TABLE_SIZE.x:
+            _fail("description escapes card horizontal bounds: " + card.name)
+            return
+        if body.max_lines_visible > 2 or body.text.length() > 59:
+            _fail("gallery preview exceeds two-line budget: " + card.name)
+            return
+    var altar := grid.get_node_or_null("Card_black_altar") as Button
+    if altar == null:
+        _fail("original Black Altar missing from gallery")
+        return
+    var source := load("res://resources/cards/black_altar.tres") as Resource
+    var full_copy := String(source.get("card_text"))
+    var short_body := altar.get_node("CardTextClip/Description") as Label
+    if short_body.text == full_copy or full_copy.length() <= short_body.text.length():
+        _fail("gallery exposed full narrative copy instead of a preview")
+        return
+    altar.pressed.emit()
+    var reader := preview.get_node_or_null("DS3FullTextOverlay") as Control
+    var reader_copy := preview.get("detail_copy") as RichTextLabel
+    if reader == null or not reader.visible or reader_copy == null or reader_copy.text != full_copy:
+        _fail("full-text scrolling reader did not preserve source copy")
+        return
+    var board := reader.get_node("ReaderBoard") as Panel
+    if not (board.get_node("ReaderFullCopy") as RichTextLabel).scroll_active:
+        _fail("full copy is not scrollable")
+        return
+    (board.get_node("ReaderClose") as Button).pressed.emit()
+    if reader.visible:
+        _fail("reader close action is broken")
+        return
     preview.queue_free()
     await process_frame
 
