@@ -1,3 +1,11 @@
+## D334 — Next-chat task agreed (2026-10-21)
+
+- [x] Preserve complete GitHub-context checkpoint `docs/D334_NEW_CHAT_HANDOFF.md` and link from INDEX, with native QA and all approved art selections.
+- [x] D333 Bone Patrol, D331 Blood Ledger/Bone Crush, D319 Black Altar still mapped and DS3 D328 still frozen; last native D315/D316 SUCCESS.
+- [ ] **Next new chat:** produce and visibly present 3 real D168 options for `bone_ritual` («КОСТЯНОЙ РИТУАЛ»), not only descriptions or links to missing preview.
+- [ ] After user approves one: export chosen standalone art 448×274, commit WebP + RUN_CARDS override + regression and updated docs; Godot native QA.
+- [ ] Optional later: fidelity-only swaps of 200px-upscaled D331/D333 assets using original exact approved source; do not change composition.
+
 ## D333 — Approved Bone Patrol artwork and next Bone Ritual vote (2026-10-21)
 
 - [x] `bone_patrol` now points to separately published approved final moonlit watchtower painting `run/bone_patrol_d333_approved_tower.webp` (448×274).

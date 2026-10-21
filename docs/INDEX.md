@@ -1,5 +1,6 @@
 # Misdeal Documentation Index
 
+**D334 CURRENT · 2026-10-21:** [D334 consolidated new-chat handoff](D334_NEW_CHAT_HANDOFF.md). D333 approved `bone_patrol` FINAL cleaned watchtower scene SHIPPED, D331 approved `blood_ledger` + `bone_crush` shipped, Card DS3 D328 frozen; latest real [D315/D316 Godot native PASS](https://github.com/zampolit73/Misdeal/actions/runs/39662338488). Next new chat: visibly render and show three **Bone Ritual** (`bone_ritual`) candidate illustrations; no choice yet. The D333 older claim that ritual triptych already appeared is unverified.\n\n
 **D294 CURRENT · 2026-10-20:** Start from [D294 new-chat handoff](D294_NEW_CHAT_HANDOFF.md). D293 material-based Battle DS3 has native [Godot 4.7.2 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39399922113) but **requires user's first D293 visual screenshot** (D292 flat-black UI rejected). [Full DS2 restore point](DS2_CHECKPOINT.md) unchanged. The older “CURRENT” entries below are historical.
 
 

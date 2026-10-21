@@ -1,3 +1,10 @@
+## D334 — Card art handoff audit: approved vs pending (2026-10-21)
+
+- Confirmed runtime mapped in `CardUnificationV1.RUN_CARDS`: `blood_ledger` (bone scribe, D331), `bone_crush` (gate breach option 2, D331), `bone_patrol` (final cleaned valley/watchtower scene, D333), plus `black_altar` (option 3, D319). Native D315/D316 CI green [run 39662338488](https://github.com/zampolit73/Misdeal/actions/runs/39662338488).
+- `bone_ritual` has **NO approved new art** or new override. Original `resources/cards/bone_ritual.tres` still references `assets/pixel/ui/combat_expansion_v1/cards/bone_ritual_card.webp`. Only conceptual directions defined, not accepted. Prior D333 claim a specific ritual triptych was shown is unverified; do not present the old Bone Patrol triptych as ritual options. Next step physically render and display ritual variants.
+- D331/D333 high-res originals exist in previous chat files, but current real GitHub runtime images were transported via authorized ~200px Canva-preview URLs upscaled to 448×274. Fidelity-only replacement is separate and must match exact approved scenes; no arbitrary substitutions.
+- Full latest current state and next-chat brief: `docs/D334_NEW_CHAT_HANDOFF.md`.
+
 ## D333 — Bone Patrol (Костяной дозор): approved and live (2026-10-21)
 
 - Original final source: `file_0000000084148246b7d6f138f8600dee`, `a_dramatic_dark_fantasy_night_scene_a_cinematic.png`, 1604×981, scene with redundant middle fortifications removed per user red-outline feedback.

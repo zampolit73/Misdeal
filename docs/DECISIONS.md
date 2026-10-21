@@ -1,3 +1,7 @@
+## D334 — No new Bone Ritual art approved; preserve previous visual decisions (2026-10-21)
+
+D333 approved final Bone Patrol #3 (edited simple valley), D331 Blood Ledger and Bone Crush #2, D319 Black Altar #3 and D328 Card DS3 remain **LOCKED**. The next card `bone_ritual` is NOT approved. Earlier D333 documentation refers to an alleged shown concept triptych, but that file cannot currently be verified; *do not treat it as a rendered, user-viewed design*. Render visibly accessible 2–3 real options, seek explicit selection, then publish that exact art. No fundamental gameplay/DS3 changes approved in D334. See `docs/D334_NEW_CHAT_HANDOFF.md`.
+
 ## D333 — Bone Patrol artwork approval (2026-10-21)
 
 User explicitly approved the last **reduced-midground** revision of concept 3 “С дозорной башни” for `bone_patrol`: skeletal sentinel and torn banner in rough wooden tower at left, moon and distant castle at right, middle-distance excessive fortification mass removed leaving a blue misty valley. The accepted artwork is a **single full-bleed landscape scene without UI**, NOT the earlier triptych and NOT the earlier revision with cluttered bridges. Last image generated `file_0000000084148246b7d6f138f8600dee`. Published separate WebP `bone_patrol_d333_approved_tower.webp`; keep same composition on future quality refinements. D328 DS3 remains frozen. `bone_ritual` candidates (1 altar invocation / 2 bone relic sacrifice / 3 panoramic ritual circle) are **not approved** merely because they were displayed.

@@ -1,3 +1,9 @@
+## 2026-10-21 — D334: Consolidated new-chat handoff after successful D333 rollout
+
+- Confirmed latest GitHub `main` state, active 4 approved scene-art mappings, and native D315/D316 [SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39662338488).
+- Authored `docs/D334_NEW_CHAT_HANDOFF.md`, indexed and synchronized Project State, Roadmap, Decisions, Visual Asset Registry and HANDOFF. Documentation only; **no art or gameplay code change**.
+- Clarified that a purportedly shown `bone_ritual` option sheet was not verified; in new chat render and visibly show 3 fresh options before seeking approval. User's last request is to switch chats with zero context loss.
+
 ## 2026-10-21 — D333: User-approved Bone Patrol watchtower art live and native verified
 
 - Published `bone_patrol_d333_approved_tower.webp` 448×274 from accepted last version of lookout-tower composition #3 and mapped `bone_patrol` card ID; previous fallback kept. GitHub Actions D333 import [success](https://github.com/zampolit73/Misdeal/actions/runs/39662185041).
