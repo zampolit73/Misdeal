@@ -222,4 +222,5 @@ static func apply_spread_slot(panel: Panel, art: TextureRect, title_plate: Color
         Vector2(dimensions.x * 0.80, dimensions.y * 0.14))
     title.add_theme_color_override("font_color", INK_TEXT)
     title.add_theme_font_size_override("font_size", 8 if dimensions.x < 110 else 11)
-    panel.clip_contents = true
+    # Fate Roman tabs deliberately protrude above the original slot bounds.
+    panel.clip_contents = false
