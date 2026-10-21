@@ -1,3 +1,9 @@
+## 2026-10-21 — D313: Fix real Godot Wizard gold label crossing ornate lower border
+
+- Reviewed user-provided actual D312 prep and live-combat screenshots; discovered `+15 золота` visually crosses the bottom bronze ornament, while failure text is correctly visible.
+- Adjusted the genuine Battle Wizard rule to (56,44) 173×34, its gold reward to (65,80) 165×16 with slightly clearer muted ochre. Inset rectangles do not overlap and stay above lower finial. No changes to gameplay, reward payout, Battle art, actors or 3–5 tactics.
+- Updated both native Battle and F6 smoke tests to assert new coordinates, non-overlap and reward bottom bound. Native engine/CI and post-fix user visual approval still pending.
+
 ## 2026-10-21 — D312 Wizard panel readability and reward hierarchy
 
 - User approved the direction of a final restrained polish on selected third Wizard plaque in two concept images. Applied the adjustments to **real Godot UI code**, not just the illustrations.
