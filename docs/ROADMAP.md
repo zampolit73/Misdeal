@@ -1,3 +1,12 @@
+## D313 — Fix D312 gold reward overlapping the bottom carved frame (2026-10-21)
+
+- [x] User's real D312 preparation screenshot shows `+15 золота` on the bottom bronze border, overlapping its own rule Label bounding box; combat failure screenshot is readable.
+- [x] Move rule to local (56,44) 173×34 and reward to (65,80) 165×16, keeping both within the *existing* D311 text well and preserving the chosen art.
+- [x] Slightly boost subdued reward contrast; zero balance, enemy, state, artwork or command changes.
+- [x] Strengthen real-Battle and F6 native smokes with rectangle nonintersection and reward lower limit y96, while retaining dynamic rule/outcome tests.
+- [ ] Confirm official native Godot result and a post-D313 user screenshot with reward visibly above border (both prep and combat if possible).
+- [ ] Obtain explicit final Battle DS3 screen approval before migrating the Reward screen.
+
 ## D312 — Final micro-pass on approved third Wizard panel direction (2026-10-21)
 
 - [x] User positively accepted two D312 visual preview images (`«отлично»`) after requesting last cosmetic Wizard-panel polish.
