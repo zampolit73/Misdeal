@@ -123,8 +123,8 @@ func _card_widget(title: String, type_name: String, full_text: String,
         return
     (button.get_node("Art") as TextureRect).texture = art
 
-    # The original frame already has an empty black category tab at top right.
-    # Never let category prose float across the painted encounter scene.
+    # D327: the ornate frame's real black category tab is at TOP-CENTER.
+    # Never float the label over the upper-right filigree or the painting.
     var category := button.get_node("Type") as Label
     category.position = Vector2(SKIN.TABLE_TAB_CENTER_X - 27.0, 16)
     category.size = Vector2(54, 20)
