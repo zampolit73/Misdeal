@@ -37,11 +37,18 @@ func _verify() -> void:
 	if not original.text.contains("Звонарь должен пасть первым") or header.text != "УСЛОВИЕ ВОЛШЕБНИКА":
 		_fail("native default Grave Bell wording missing")
 		return
-	if not body.text.contains("+15 золота") or original.visible:
-		_fail("real quest reward missing or duplicated label visible")
+	var reward := panel.get_node_or_null("D312WizardReward") as Label
+	if reward == null or not reward.visible or reward.text != "+15 золота" or original.visible:
+		_fail("D312 live reward inset missing or old source Label visible")
 		return
-	if panel.position != Vector2(22, 575):
-		_fail("default preparation location differs from production D306")
+	if body.text.contains("+15 золота") or body.position != Vector2(56, 45) or reward.position != Vector2(65, 91):
+		_fail("D312 reward overlaps original rule body")
+		return
+	if header.position != Vector2(63, 9):
+		_fail("D312 title inset no longer aligned with approved medallion")
+		return
+	if panel.position != Vector2(22, 571):
+		_fail("D312 preview preparation position differs from live Battle")
 		return
 	var picker := scene.get_node("PreviewTools/RulePicker") as OptionButton
 	if picker.item_count != 3:
@@ -59,26 +66,38 @@ func _verify() -> void:
 	if header.text != "УСЛОВИЕ ВЫПОЛНЕНО" or not body.text.contains("Звонарь пал первым"):
 		_fail("success is not reflected in both live art wells")
 		return
+	if reward.visible:
+		_fail("D312 success description should not duplicate a floating reward")
+		return
 	scene.call("_set_outcome", 2)
 	if header.text != "УСЛОВИЕ ПРОВАЛЕНО" or not body.text.contains("первым пал не звонарь"):
 		_fail("failure is not reflected in both live art wells")
+		return
+	if reward.visible:
+		_fail("D312 failed condition incorrectly shows gold")
 		return
 	scene.call("_on_rule_selected", 1)
 	if header.text != "УСЛОВИЕ ВОЛШЕБНИКА" or not body.text.contains("25% HP"):
 		_fail("the health limit preview was not restored")
 		return
+	if not reward.visible or reward.text != "+15 золота":
+		_fail("D312 reward did not return for the health objective")
+		return
 	scene.call("_on_rule_selected", 2)
 	if not body.text.contains("16 сек"):
 		_fail("the production fast-crush condition was not restored")
 		return
+	if not reward.visible or reward.text != "+15 золота":
+		_fail("D312 gold reward lost on timed condition")
+		return
 	scene.call("_set_phase", false)
-	if panel.position != Vector2(22, 575):
-		_fail("preparation location did not restore")
+	if panel.position != Vector2(22, 571):
+		_fail("D312 preparation location did not restore")
 		return
 	if (scene.get_node("PreviewTools/RealBattleButton") as Button).pressed.get_connections().is_empty():
 		_fail("real Battle launch has no connected button")
 		return
-	print("D308_WIZARD_PREVIEW_NATIVE_PASS: D309 fixed-art bounds in F6 preview, 3 rules, phases and outcomes")
+	print("D308_WIZARD_PREVIEW_NATIVE_PASS: D312 typography and live reward, 3 rules, all phases and outcomes")
 	scene.queue_free()
 	await process_frame
 	quit(0)
