@@ -1,3 +1,15 @@
+## D317 — Card DS3 first real F6 gallery screenshot: required fixes BEFORE acceptance (2026-10-21)
+
+- [x] User supplied first real full gallery screenshot: **40 run cards + 15 supplemental artwork keys + 0 lookup gaps**, image archived `docs/qa/D317_card_ds3_gallery_user_screenshot.webp`.
+- [x] Trace gallery to `scripts/dev/d315_card_ds3_gallery.gd` and shared `scripts/ui/card_ds3_skin.gd`. Record screenshot observations, reproduction and code-sensitive next tasks in `docs/D317_CARD_DS3_GALLERY_SCREENSHOT_HANDOFF.md`.
+- [ ] **BLOCKER**: physically constrain long card text/title/type into readable per-card text wells, avoiding spill across neighbor cards; keep authoritative full `card_text` untouched.
+- [ ] Replace gallery's one-line global full-copy label with a readable scrolling detail/inspection interface; keep F6 scene quick.
+- [ ] Remove or correct gallery-only fake I–XII numbering derived from alphabetical resource iteration; preserve actual Fate Spread I–XII and XIII.
+- [ ] Review extreme blackening of illustrations and tone-map saturation versus user's approved **richer scarlet** DS3 reference; preserve scene-first art.
+- [ ] Add visual/geometric native tests and confirm a real F6 screenshot. Also test REAL Table, Reward, Spread and RMB reader since shared `apply_table` is live game code.
+- [ ] Complete actual individual illustration redraw where source images fail DS3, in art-specific batches across 40 + 15 keys. Shared red tint alone is not full repaint.
+- [ ] Card DS3 **visual implementation acceptance remains OPEN**. The style direction itself is already approved; do not ask to choose it again.
+
 ## D316 — Approved DS3 across all true card surfaces: progress vs QA (2026-10-21)
 
 - [x] Check `main` first: existing **D315** common front, back, ink, shader, active tabletop cards, Fate Spread I–XIII, held/discard, Reward and complete F6 gallery already wired. **40 RunCardData resources + 9 upgrade + 6 reward art keys** accounted for.
