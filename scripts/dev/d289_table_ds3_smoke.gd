@@ -73,7 +73,7 @@ func _verify() -> void:
 		_fail("two-offer Fate Spread deal contract changed")
 		return
 	for card in cards:
-		if not card.has_node("IllustratedFrame") or not card.has_node("ParchmentFace") or card.get_node("Art").texture == null:
+		if not card.has_node("DS3CardFrame") or not card.has_node("DS3Roman") or card.get_node("Art").texture == null:
 			_fail("approved painted encounter card art/paratext missing")
 			return
 		if card.size != Vector2(272, 338):
