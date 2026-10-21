@@ -41,11 +41,19 @@ func _verify() -> void:
 	if reward == null or not reward.visible or reward.text != "+15 золота" or original.visible:
 		_fail("D312 live reward inset missing or old source Label visible")
 		return
-	if body.text.contains("+15 золота") or body.position != Vector2(56, 45) or reward.position != Vector2(65, 91):
+	if body.text.contains("+15 золота") or body.position != Vector2(56, 44) or reward.position != Vector2(65, 80):
 		_fail("D312 reward overlaps original rule body")
 		return
 	if header.position != Vector2(63, 9):
 		_fail("D312 title inset no longer aligned with approved medallion")
+		return
+	var rule_rect := Rect2(body.position, body.size)
+	var bonus_rect := Rect2(reward.position, reward.size)
+	if rule_rect.intersects(bonus_rect) or bonus_rect.end.y > 96.0:
+		_fail("D313 bonus still crosses main rule or bottom ornament")
+		return
+	if reward.size.y < 15 or body.size.y < 32:
+		_fail("D313 live two-line rule or reward has insufficient label space")
 		return
 	if panel.position != Vector2(22, 571):
 		_fail("D312 preview preparation position differs from live Battle")
