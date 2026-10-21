@@ -1,5 +1,7 @@
 extends Control
 
+const CARD_DS3_SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
+
 # Deliberate non-destructive reading surface. RMB opens the complete original
 # card text, while the two offer cards and their action buttons remain clean.
 signal closed
@@ -148,9 +150,21 @@ func _ready() -> void:
 	close_button.pressed.connect(close)
 	frame.add_child(close_button)
 
+	# D316: show this *physical card* with the same real DS3 frame and
+	# red/black painting treatment as Table, Spread and Reward. The scrollable
+	# full story at right and the original ESC/close click behavior stay intact.
+	if CARD_DS3_SKIN.apply_inspection(frame, lore_art):
+		for old_name in ["ArtBorder", "ArtGildingTop", "ArtGildingBottom", "ArtRule", "ArtEmblem"]:
+			var old_detail := frame.get_node_or_null(old_name) as CanvasItem
+			if old_detail != null:
+				old_detail.visible = false
+
 
 func present(card_title: String, card_type: String, full_text: String, card_art: Texture2D, extra: String = "") -> void:
 	lore_title.text = card_title
+	var physical_title := frame.get_node_or_null("DS3InspectCardTitle") as Label
+	if physical_title != null:
+		physical_title.text = card_title
 	lore_kind.text = card_type
 	lore_body.text = full_text
 	lore_art.texture = card_art
