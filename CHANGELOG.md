@@ -1,3 +1,8 @@
+## 2026-10-21 — D332: Correct runtime Reward portrait cropping
+
+- Real Godot CI `BloodCoin` false-color/crop regression traced to unconditional `TextureRect.STRETCH_KEEP_ASPECT_COVERED` in reward card texture refresh paths.
+- Both normal loot and hero upgrade update functions now preserve DS3 CENTERED mode after new textures; fallback DS2 flow unchanged. Source commit `08085a8`.
+- D315 smoke asserts this contract; [run 39658979922](https://github.com/zampolit73/Misdeal/actions/runs/39658979922) initially pending. No DS3 design or gameplay modification.
 ## 2026-10-21 — D331 verification/cleanup
 
 - Real two card assets uploaded and bound; temporary signed-CDN import workflow removed after successful export.

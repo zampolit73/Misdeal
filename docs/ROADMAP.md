@@ -1,3 +1,11 @@
+## D332 — Fix actual Reward photo crop, same DS3 approved visual (2026-10-21)
+
+- [x] Find native failure `BloodCoin` in dynamic Reward update code (not in `CardDS3Skin.apply_reward`).
+- [x] Keep 1:1 live DS3 illustration fitting with CENTERED after loot and upgrade refresh, retain legacy COVERED if DS3 is absent.
+- [x] Commit direct to GitHub `08085a8`, no changes to DS3 layout, gameplay, card images or UI texts.
+- [ ] Native CI [D315 run 39658979922](https://github.com/zampolit73/Misdeal/actions/runs/39658979922) completion / gallery reward QA; log exact next blocker if any.
+- [ ] Art catalogue: user accepted both D331 cards as visible; continue options-first for next cards only on explicit next-art direction.
+
 ## D331 follow-up (2026-10-21)
 
 - [x] Successful real WebP binary publish in GitHub and `RUN_CARDS` mapping for both approved user-selected artworks.
