@@ -1,3 +1,11 @@
+## D333 — Approved Bone Patrol artwork and next Bone Ritual vote (2026-10-21)
+
+- [x] `bone_patrol` now points to separately published approved final moonlit watchtower painting `run/bone_patrol_d333_approved_tower.webp` (448×274).
+- [x] [D333 binary import](https://github.com/zampolit73/Misdeal/actions/runs/39662185041) succeeded and real gallery/Reward/Fate [D315/D316 native QA](https://github.com/zampolit73/Misdeal/actions/runs/39662338488) PASS.
+- [x] Save approved user reference/image ID and append catalog QA; preserve frozen D328 DS3 card skin and card gameplay.
+- [ ] Fidelity pass if desired: replace upscaled Canva preview with exact 1604×981 approved source resized 448×274 via binary-safe transfer, no reapproval needed.
+- [ ] New `bone_ritual` card: 3 concept variations shown; awaiting user selection 1/2/3 before committing any artwork.
+ 
 ## D332 — Native QA result (2026-10-21)
 
 - [x] D315 native Godot **PASS** including gallery 55 cards, dynamic `BloodCoin` Reward card and D331 art mapping: [run 39658979922](https://github.com/zampolit73/Misdeal/actions/runs/39658979922).

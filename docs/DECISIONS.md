@@ -1,3 +1,7 @@
+## D333 — Bone Patrol artwork approval (2026-10-21)
+
+User explicitly approved the last **reduced-midground** revision of concept 3 “С дозорной башни” for `bone_patrol`: skeletal sentinel and torn banner in rough wooden tower at left, moon and distant castle at right, middle-distance excessive fortification mass removed leaving a blue misty valley. The accepted artwork is a **single full-bleed landscape scene without UI**, NOT the earlier triptych and NOT the earlier revision with cluttered bridges. Last image generated `file_0000000084148246b7d6f138f8600dee`. Published separate WebP `bone_patrol_d333_approved_tower.webp`; keep same composition on future quality refinements. D328 DS3 remains frozen. `bone_ritual` candidates (1 altar invocation / 2 bone relic sacrifice / 3 panoramic ritual circle) are **not approved** merely because they were displayed.
+
 ## D331 — Exact selected compositions now used by card IDs (2026-10-21)
 
 The user approved `blood_ledger` skeletal scribe (last revised image) and `bone_crush` option 2 ("Прорыв ворот"), not variants 1 or 3. D331 binds these **same selected compositions** to their own real runtime files, not to arbitrary atlas cells. The original DS3 D328 visual layout and all combat/event rules stay locked. Current export used low-resolution Canva previews upscaled to the 448×274 game-contract; this is an acknowledged image-quality gap, not a design approval gap. Original authored high-res crops can replace files in a separate quality-only pass without new conceptual selection.

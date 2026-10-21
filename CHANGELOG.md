@@ -1,3 +1,10 @@
+## 2026-10-21 — D333: User-approved Bone Patrol watchtower art live and native verified
+
+- Published `bone_patrol_d333_approved_tower.webp` 448×274 from accepted last version of lookout-tower composition #3 and mapped `bone_patrol` card ID; previous fallback kept. GitHub Actions D333 import [success](https://github.com/zampolit73/Misdeal/actions/runs/39662185041).
+- Extended D315 card-art integrity checks to third selected illustration; [D315/D316 native CI successful](https://github.com/zampolit73/Misdeal/actions/runs/39662338488).
+- Runtime image uses lower-resolution signed Canva preview upscaled; preserve original high-quality approved PNG for future replacement; no gameplay changes.
+- Showed 3 Bone Ritual art concepts (Invocation/Sacrifice/Circle); selection pending, no runtime `bone_ritual` art changed.
+
 ## 2026-10-21 — D332 native regression green
 
 - [D315/D316 Godot smoke success](https://github.com/zampolit73/Misdeal/actions/runs/39658979922) after the D332 fix for runtime Reward `Portrait.stretch_mode` reversion. Previous BloodCoin failure no longer reproduces.

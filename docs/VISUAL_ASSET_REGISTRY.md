@@ -1,3 +1,10 @@
+## D333 — Bone Patrol (Костяной дозор): approved and live (2026-10-21)
+
+- Original final source: `file_0000000084148246b7d6f138f8600dee`, `a_dramatic_dark_fantasy_night_scene_a_cinematic.png`, 1604×981, scene with redundant middle fortifications removed per user red-outline feedback.
+- Runtime file: `assets/pixel/card_unification_v1/run/bone_patrol_d333_approved_tower.webp` (448×274) and `CardUnificationV1.RUN_CARDS["bone_patrol"]`. Real source-of-truth GitHub Actions successful [D333 run 39662185041](https://github.com/zampolit73/Misdeal/actions/runs/39662185041).
+- Caveat: runtime export is 200px Canva preview scaled to 448px; high-quality original exists for future fidelity-only replacement. Do not substitute different art.
+- [D315/D316 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39662338488) verifies gallery/card surfaces, selected WebP pixel mapping. Next `bone_ritual` three-image option sheet `file_000000002c888246b968180b5e2f339c`, user selection PENDING.
+
 ## D331 — Card image registry: 2 selected scenes LIVE (2026-10-21)
 
 - `bone_crush` — `assets/pixel/card_unification_v1/run/bone_crush_d331_approved_option2.webp` (**448×274**). User-selected **middle "Прорыв ворот"** concept: lead armored skeleton shatters gate, undead behind. Runtime override in `CardUnificationV1.RUN_CARDS`, original fallback remains untouched. From authorized 199×122 CDN image scaled to 448×274; high-quality original selection available in conversation source `file_00000000e41c82468809214f2612a364` and original local WebP crop `d330_bone_crush_option2.webp`.
