@@ -1,3 +1,11 @@
+## D324 — Inner bronze art-well border removal (2026-10-21)
+
+- [x] User's real D323 F6 screenshot: outer frames complete; internal rectangular gold line floats around image, especially around landscape Reward/Upgrade paintings.
+- [x] Set shared `ArtWell` to borderless `FACE_STONE` (0px trim), preserving only the approved original DS3 Gothic external ornament.
+- [x] Keep source scenes whole/aspect-preserved and D321 colors; remove visual mismatch of inner panel vs exposed image.
+- [x] Update D315/D316 tests to assert no second border on gallery, live Reward, inspector and Fate slots.
+- [ ] Confirm result in live F6, then real Table/reward; Godot CI and new screenshot pending.
+
 ## D323 — Restore complete DS3 border at native size (2026-10-21)
 
 - [x] Compare latest user screenshot with original `front_frame.webp` 375×509 and physical Table 272×338: ornate frame is visibly clipped along right/bottom.

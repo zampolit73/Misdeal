@@ -1,3 +1,9 @@
+## 2026-10-21 — D324: Fix visibly crooked inner frames around DS3 card artwork
+
+- Reviewed actual user F6 screenshot of reward/upgrade cards after D323; decorative external frame now complete but separate gold 1px art-well outlines float crookedly around aspect-fitted scene.
+- Shared card skin `_new_art_well` now draws borderless flat `FACE_STONE` matte, retaining original one physical Gothic frame and unmodified full-source illustration. Affects gallery, Table, Reward, reader and Fate surfaces; no gameplay edits.
+- D315/D316 native smokes now assert zero inner panel border on actual gallery, Reward, RMB inspector and Fate slot. Source code commit `8f07dad`. Runtime Godot F6 and CI post-fix not independently confirmed.
+
 ## 2026-10-21 — D323: Correct clipped right/bottom DS3 card borders
 
 - Real user Godot F6 screenshot confirms missing right/bottom portions of the frame after D322: NOT approved. Fixed `CardDS3Skin._new_art` order so Godot ignores original frame 375×509 minimum before sizing to physical 272×338, preventing parent clipping.

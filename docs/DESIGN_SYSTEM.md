@@ -1,3 +1,7 @@
+## D324 — Flat inset art matte for every DS3 face (2026-10-21)
+
+Remove the extra bronze outline applied to `ArtWell` in D322. A filled background `FACE_STONE` matching the main card is still useful behind letterboxed landscape paintings, but should have NO visible second rectangle. Retain `front_frame.webp` as the one original decorated frame, accurate full aspect art and true red/blue illustration colors. Applies to all real DS3 card types; native F6 confirmation pending.
+
 ## D323 — Actual frame rectangle must match physical DS3 card size (2026-10-21)
 
 The front decoration is not a natural-size image pasted inside `Button.clip_contents`. Original `front_frame.webp` is 375×509. Disable `TextureRect` intrinsic texture-size constraints BEFORE setting `size` to the card's actual pixel dimensions, and set size AFTER parenting; keep `STRETCH_SCALE` for frame, `STRETCH_KEEP_ASPECT_CENTERED` for artwork. All four sides of ONE bronze frame must remain visible; a truncated right/bottom edge is a bug. D315/D316 native tests assert sizes on gallery, Reward, Fate and held/discard.

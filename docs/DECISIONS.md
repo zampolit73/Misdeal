@@ -1,3 +1,7 @@
+## D324 — No second outlined rectangle around a fitted DS3 illustration (2026-10-21)
+
+The DS3 card has ONE original ornate full-card front frame. Scene illustration is aspect-preserving in a uniform `FACE_STONE` matte. An inset may exist structurally for draw-order, but its `StyleBoxFlat` border widths must all be **zero** and background must exactly match `FACE_STONE`, otherwise the 1px border visibly detaches from a fitted landscape scene and looks like a crooked second frame. Preserve source artwork, D321 color and D323 original outer frame intact. Do not add new external framing/baked card UI to art.
+
 ## D323 — Set TextureRect minimum-size behavior BEFORE dimensions (2026-10-21)
 
 DS3 approved frame is ONE complete Gothic `front_frame.webp` (native 375×509) rendered *scaled to the physical card* (272×338 Table, 292×410 Reward, relevant Fate/inspection sizes). When creating `TextureRect`, set `expand_mode = EXPAND_IGNORE_SIZE` before supplying source `texture`, and size it **after** adding as child. Otherwise native texture minimum clamps `size`, and a clipping physical card loses right and lower frame edges, as explicitly rejected in D322 user screenshot. For already populated painting TextureRects, set IGNORE_SIZE before calling `_at` to size into D322 art well. Keep D320 one frame and D321 restored colors.
