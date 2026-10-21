@@ -1,3 +1,7 @@
+## D323 — Set TextureRect minimum-size behavior BEFORE dimensions (2026-10-21)
+
+DS3 approved frame is ONE complete Gothic `front_frame.webp` (native 375×509) rendered *scaled to the physical card* (272×338 Table, 292×410 Reward, relevant Fate/inspection sizes). When creating `TextureRect`, set `expand_mode = EXPAND_IGNORE_SIZE` before supplying source `texture`, and size it **after** adding as child. Otherwise native texture minimum clamps `size`, and a clipping physical card loses right and lower frame edges, as explicitly rejected in D322 user screenshot. For already populated painting TextureRects, set IGNORE_SIZE before calling `_at` to size into D322 art well. Keep D320 one frame and D321 restored colors.
+
 ## D322 — Original card painting belongs in a recessed art well, never atop the title / frame (2026-10-21)
 
 A front-face card has ONE D320 approved exterior frame, with a subdued inset scene mount under the illustration. Do not overlay large COVERED artwork or allow it to spill onto real title/effect wells; `STRETCH_KEEP_ASPECT_CENTERED` shows the authored landscape uncropped. Keep `Art` and `Portrait` as direct children where production Table/Reward currently expect them. Ornament remains mouse-ignoring. The tiny inner bronze inset trim is distinct from (and must never duplicate) the full-card decorative border. Approved art files and original run mechanics stay authoritative.

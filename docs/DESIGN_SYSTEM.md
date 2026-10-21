@@ -1,3 +1,7 @@
+## D323 — Actual frame rectangle must match physical DS3 card size (2026-10-21)
+
+The front decoration is not a natural-size image pasted inside `Button.clip_contents`. Original `front_frame.webp` is 375×509. Disable `TextureRect` intrinsic texture-size constraints BEFORE setting `size` to the card's actual pixel dimensions, and set size AFTER parenting; keep `STRETCH_SCALE` for frame, `STRETCH_KEEP_ASPECT_CENTERED` for artwork. All four sides of ONE bronze frame must remain visible; a truncated right/bottom edge is a bug. D315/D316 native tests assert sizes on gallery, Reward, Fate and held/discard.
+
 ## D322 — Inset DS3 illustrations (2026-10-21)
 
 Keep a single external `front_frame.webp` and an unframed dark stone substrate (D320). Insert a subdued dark `ArtWell` with 1px bronze inner edge **behind** real scene art (not a second full ornamental outer frame), and show full original aspect via `KEEP_ASPECT_CENTERED` (not destructive COVERED crop). Preserve original `Art`/`Portrait` node paths, D321 authentic scene colors, independent text/UI controls and all gameplay input. Shared across gallery, actual Table/Reward, inspector, I–XIII Fate Spread and held/discard; native screenshot validation pending.

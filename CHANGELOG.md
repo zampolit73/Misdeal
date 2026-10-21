@@ -1,3 +1,9 @@
+## 2026-10-21 — D323: Correct clipped right/bottom DS3 card borders
+
+- Real user Godot F6 screenshot confirms missing right/bottom portions of the frame after D322: NOT approved. Fixed `CardDS3Skin._new_art` order so Godot ignores original frame 375×509 minimum before sizing to physical 272×338, preventing parent clipping.
+- Applied same minimum-size correction to `_fit_art_in_well` for existing already textured Art, preserving D321 colors and D322 inset without cropping.
+- Added explicit native size assertions to D315 55-card gallery/Reward and D316 Fate/held/discard smoke tests. Source commit `fcf5a099`; native post-fix screenshot remains pending. Existing gameplay untouched.
+
 ## 2026-10-21 — D322: Physically mount full scene illustrations inside DS3 card wells
 
 - User requested implementation in GitHub, not another generated UI preview. Real `CardDS3Skin` now inserts a restrained dark/bronze art well behind the existing direct-child illustration; retains one D320 front frame.

@@ -1,3 +1,11 @@
+## D323 — Restore complete DS3 border at native size (2026-10-21)
+
+- [x] Compare latest user screenshot with original `front_frame.webp` 375×509 and physical Table 272×338: ornate frame is visibly clipped along right/bottom.
+- [x] Fix `_new_art` to set `EXPAND_IGNORE_SIZE` **before** assigning a texture and size (after add_child), preventing Godot intrinsic minimum size from keeping the frame at 375×509.
+- [x] Fix `_fit_art_in_well` likewise for original existing `Art` TextureRects whose source image is already loaded.
+- [x] Extend gallery, real Reward, Fate Spread and held/discard native smokes to assert rendered frame rects precisely cover physical cards.
+- [ ] Confirm post-D323 live Godot F6 screenshot: all four bronze edges visible (plus two-offer Table), no new truncation or visual regressions. Native CI not available in current environment.
+
 ## D322 — DS3 cards have inset scene windows, not painted-on image overlays (2026-10-21)
 
 - [x] Shared `CardDS3Skin` creates a restrained dark art well with one thin INNER trim behind existing `Art`/`Portrait`, retains exactly one D320 outer frame.
