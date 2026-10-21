@@ -1,3 +1,13 @@
+## D312 — Final micro-pass on approved third Wizard panel direction (2026-10-21)
+
+- [x] User positively accepted two D312 visual preview images (`«отлично»`) after requesting last cosmetic Wizard-panel polish.
+- [x] Keep D311 third illustrated artwork and D309 fixed drawing; change only live Godot typography and command-margin geometry.
+- [x] Center title in its recess, separate real `+15 золота` into a subdued small lower reward label, reinforce text edge contrast, and raise preparation plaque 4px.
+- [x] Update `sync_side_objective` to hide reward on success/failure and recompute it from the actual current objective string (not baked values).
+- [x] Extend both native Battle + F6 scene smokes to verify all three objective types, reward vs failure, and correct inset/placement.
+- [ ] Native Godot 4.7.x CI result and D312 user screenshot from the **actual live Battle**.
+- [ ] Explicit final artistic signoff of integrated Battle DS3 required before starting Reward DS3 screen.
+
 ## D311 — Implement selected third Wizard plaque option (2026-10-21)
 
 - [x] User approved visual direction **option 3**: small horizontal blackwood/bronze plaque with hooded portrait medallion and crimson cloth, calmer ornament density.
