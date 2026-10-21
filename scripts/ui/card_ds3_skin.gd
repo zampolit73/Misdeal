@@ -56,6 +56,30 @@ static func _new_face_stone(host: Control, node_name: String, dimensions: Vector
     host.add_child(stone)
     return stone
 
+# D322: a restrained recessed mount, never a second OUTER card frame.
+# Original Art/Portrait nodes remain direct children for all live game updates.
+static func _new_art_well(host: Control, node_name: String,
+        at: Vector2, dimensions: Vector2) -> Panel:
+    var well := Panel.new()
+    well.name = node_name
+    well.position = at
+    well.size = dimensions
+    well.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    var style := StyleBoxFlat.new()
+    style.bg_color = Color("#0f090e")
+    style.border_color = Color("#65412c")
+    style.set_border_width_all(1)
+    style.set_corner_radius_all(1)
+    well.add_theme_stylebox_override("panel", style)
+    host.add_child(well)
+    return well
+
+static func _fit_art_in_well(art: TextureRect, at: Vector2, dimensions: Vector2) -> void:
+    _at(art, at, dimensions)
+    art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+    # Fit the ENTIRE scene inside the well; never crop it into the text area.
+    art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+
 static func _at(control: Control, at: Vector2, dimensions: Vector2) -> void:
     control.position = at
     control.size = dimensions
@@ -79,13 +103,15 @@ static func apply_table(button: Button) -> bool:
     _empty_button(button)
     var substrate := _new_face_stone(button, "DS3CardStone", TABLE_SIZE)
     button.move_child(substrate, 0)
+    var art_well := _new_art_well(button, "DS3ArtWell",
+        Vector2(27, 33), Vector2(219, 196))
+    button.move_child(art_well, 1)
     var painting := button.get_node("Art") as TextureRect
-    _at(painting, Vector2(30, 36), Vector2(213, 190))
-    painting.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+    _fit_art_in_well(painting, Vector2(31, 37), Vector2(211, 188))
     grade(painting)
-    button.move_child(painting, 1)
+    button.move_child(painting, 2)
     var overlay := _new_art(button, "DS3CardFrame", frame, TABLE_SIZE)
-    button.move_child(overlay, 2)
+    button.move_child(overlay, 3)
 
     var title := button.get_node("Title") as Label
     _at(title, Vector2(47, 232), Vector2(180, 28))
@@ -179,12 +205,14 @@ static func apply_reward(button: Button, portrait: TextureRect,
     button.clip_contents = true
     var bottom := _new_face_stone(button, "DS3CardStone", Vector2(292, 410))
     button.move_child(bottom, 0)
-    _at(portrait, Vector2(27, 41), Vector2(238, 234))
-    portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+    var art_well := _new_art_well(button, "DS3ArtWell",
+        Vector2(24, 38), Vector2(244, 240))
+    button.move_child(art_well, 1)
+    _fit_art_in_well(portrait, Vector2(28, 42), Vector2(236, 232))
     grade(portrait)
-    button.move_child(portrait, 1)
+    button.move_child(portrait, 2)
     var face := _new_art(button, "DS3CardFrame", frame, Vector2(292, 410))
-    button.move_child(face, 2)
+    button.move_child(face, 3)
     _at(role, Vector2(38, 8), Vector2(216, 23))
     role.add_theme_color_override("font_color", GOLD)
     role.add_theme_font_size_override("font_size", 12)
@@ -238,8 +266,10 @@ static func apply_inspection(host: Control, illustration: TextureRect) -> bool:
     stone.position = CARD_AT
     # Draw behind the real original illustration, not over the black title well.
     host.move_child(stone, illustration.get_index())
-    _at(illustration, CARD_AT + Vector2(24, 32), Vector2(177, 179))
-    illustration.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+    var art_well := _new_art_well(host, "DS3InspectArtWell",
+        CARD_AT + Vector2(20, 28), Vector2(185, 187))
+    host.move_child(art_well, illustration.get_index())
+    _fit_art_in_well(illustration, CARD_AT + Vector2(24, 32), Vector2(177, 179))
     grade(illustration)
     var gilt := _new_art(host, "DS3InspectFrame", frame, CARD_EXTENT)
     gilt.position = CARD_AT
@@ -277,13 +307,18 @@ static func apply_spread_slot(panel: Panel, art: TextureRect, title_plate: Color
         return
     var bg := _new_face_stone(panel, "DS3CardStone", dimensions)
     panel.move_child(bg, 0)
-    var artwork_height := dimensions.y * 0.61
-    _at(art, Vector2(dimensions.x * 0.13, dimensions.y * 0.10),
-        Vector2(dimensions.x * 0.74, artwork_height))
+    var artwork_height := dimensions.y * 0.57
+    var art_pos := Vector2(dimensions.x * 0.13, dimensions.y * 0.10)
+    var art_size := Vector2(dimensions.x * 0.74, artwork_height)
+    var rim := maxf(1.0, dimensions.x * 0.013)
+    var art_well := _new_art_well(panel, "DS3ArtWell",
+        art_pos - Vector2.ONE * rim, art_size + Vector2.ONE * (rim * 2.0))
+    panel.move_child(art_well, 1)
+    _fit_art_in_well(art, art_pos, art_size)
     grade(art)
-    panel.move_child(art, 1)
+    panel.move_child(art, 2)
     var face := _new_art(panel, "DS3CardFrame", frame, dimensions)
-    panel.move_child(face, 2)
+    panel.move_child(face, 3)
     title_plate.modulate.a = 0.0
     _at(title, Vector2(dimensions.x * 0.10, dimensions.y * 0.72),
         Vector2(dimensions.x * 0.80, dimensions.y * 0.14))
@@ -300,9 +335,13 @@ static func apply_sidebar_card(host: Control, art: TextureRect,
     var bg := _new_face_stone(host, "DS3SidebarStone", dimensions)
     bg.position = at
     host.move_child(bg, art.get_index())
-    _at(art, at + Vector2(dimensions.x * 0.11, dimensions.y * 0.12),
-        Vector2(dimensions.x * 0.78, dimensions.y * 0.57))
-    art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+    var art_pos := at + Vector2(dimensions.x * 0.11, dimensions.y * 0.12)
+    var art_size := Vector2(dimensions.x * 0.78, dimensions.y * 0.57)
+    var rim := maxf(1.0, dimensions.x * 0.013)
+    var art_well := _new_art_well(host, "DS3SidebarArtWell",
+        art_pos - Vector2.ONE * rim, art_size + Vector2.ONE * (rim * 2.0))
+    host.move_child(art_well, art.get_index())
+    _fit_art_in_well(art, art_pos, art_size)
     grade(art)
     var frame_node := _new_art(host, "DS3SidebarFrame", frame, dimensions)
     frame_node.position = at
