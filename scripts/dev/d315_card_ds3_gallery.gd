@@ -130,11 +130,16 @@ func _card_widget(title: String, type_name: String, full_text: String,
     category.size = Vector2(78, 20)
     category.add_theme_font_size_override("font_size", 9)
     category.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+    # Category is intentionally centered in its TOP-RIGHT TAB, not card body.
+    category.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     category.text = type_name
 
     var heading := button.get_node("Title") as Label
-    heading.position = Vector2(44, 231)
-    heading.size = Vector2(184, 30)
+    # D325: all front-facing gallery copy shares the 136px card center.
+    heading.position = Vector2(43, 231)
+    heading.size = Vector2(186, 30)
+    heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     heading.add_theme_font_size_override("font_size", 12 if title.length() > 22 else 14)
     heading.max_lines_visible = 2
     heading.text = title
@@ -152,11 +157,18 @@ func _card_widget(title: String, type_name: String, full_text: String,
     body.reparent(well)
     body.position = Vector2.ZERO
     body.size = well.size
+    body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     body.add_theme_font_size_override("font_size", 10)
     body.max_lines_visible = 2
     body.text = _short_copy(full_text)
 
-    (button.get_node("Hint") as Label).text = "ЧИТАТЬ КАРТУ"
+    var hint := button.get_node("Hint") as Label
+    hint.position = Vector2(43, 305)
+    hint.size = Vector2(186, 21)
+    hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+    hint.text = "ЧИТАТЬ КАРТУ"
     (button.get_node("Mark") as Label).hide()
     # Alphabetical catalogue order is NOT the 12-step Fate order.
     # Real Fate/held/discard numbering is owned by live gameplay.

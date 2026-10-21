@@ -171,6 +171,24 @@ func _verify() -> void:
         if well.position.x < 0 or well.position.x + well.size.x > SKIN.TABLE_SIZE.x:
             _fail("description escapes card horizontal bounds: " + card.name)
             return
+        # D325: true centering across all 55 cards, even after layout override.
+        var expected_center := SKIN.TABLE_SIZE.x * 0.5
+        for line in [heading, hint]:
+            if line.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER or line.vertical_alignment != VERTICAL_ALIGNMENT_CENTER:
+                _fail("D325 card line is not centered: " + card.name + "/" + line.name)
+                return
+            if absf(line.position.x + line.size.x * 0.5 - expected_center) > 0.5:
+                _fail("D325 card text box is off-center: " + card.name + "/" + line.name)
+                return
+        if absf(well.position.x + well.size.x * 0.5 - expected_center) > 0.5:
+            _fail("D325 description box shifted off card center: " + card.name)
+            return
+        if body.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER or body.vertical_alignment != VERTICAL_ALIGNMENT_CENTER:
+            _fail("D325 description text is not centered: " + card.name)
+            return
+        if category.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER:
+            _fail("D325 type text is not centered in its physical tab: " + card.name)
+            return
         if body.max_lines_visible > 2 or body.text.length() > 59:
             _fail("gallery preview exceeds two-line budget: " + card.name)
             return
@@ -227,6 +245,16 @@ func _verify() -> void:
         if portrait.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
             _fail("D322 reward portrait still crops its illustration: " + name)
             return
+        # D325: Reward titles/effects/descriptions center at card x=146.
+        for path in ["Role", "Title", "Effect", "Description"]:
+            var text_node := card.get_node_or_null(path) as Label
+            if text_node != null:
+                if text_node.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER:
+                    _fail("D325 Reward text alignment is not centered: " + name + "/" + path)
+                    return
+                if absf(text_node.position.x + text_node.size.x * 0.5 - 146.0) > 1.0:
+                    _fail("D325 Reward text box is off-center: " + name + "/" + path)
+                    return
         var matte := art_well.get_theme_stylebox("panel") as StyleBoxFlat
         if matte == null or matte.border_width_left != 0 or matte.border_width_top != 0 or matte.border_width_right != 0 or matte.border_width_bottom != 0:
             _fail("D324 Reward contains a duplicate inset outline: " + name)

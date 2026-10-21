@@ -120,7 +120,8 @@ static func apply_table(button: Button) -> bool:
     button.move_child(overlay, 3)
 
     var title := button.get_node("Title") as Label
-    _at(title, Vector2(47, 232), Vector2(180, 28))
+    # D325: shared optical center x=136; do not offset title from prose.
+    _at(title, Vector2(43, 232), Vector2(186, 28))
     title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -154,7 +155,7 @@ static func apply_table(button: Button) -> bool:
     body.max_lines_visible = 2
 
     var hint := button.get_node("Hint") as Label
-    _at(hint, Vector2(52, 305), Vector2(169, 21))
+    _at(hint, Vector2(43, 305), Vector2(186, 21))
     hint.add_theme_font_size_override("font_size", 11)
     hint.add_theme_color_override("font_color", GOLD)
     hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -232,6 +233,7 @@ static func apply_reward(button: Button, portrait: TextureRect,
     _at(effect, Vector2(36, 328), Vector2(220, 27))
     effect.add_theme_color_override("font_color", GOLD)
     effect.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    effect.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     _at(description, Vector2(35, 355), Vector2(222, 45))
     description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     description.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -249,6 +251,10 @@ static func style_reward_copy(button: Button, role: Label, heading: Label,
     heading.add_theme_color_override("font_color", INK_TEXT)
     effect.add_theme_color_override("font_color", GOLD)
     description.add_theme_color_override("font_color", BONE)
+    # D325: Reward updates re-style these labels; keep all live text centered.
+    for label in [role, heading, effect, description]:
+        label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+        label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     var has_effect := effect.visible
     _at(effect, Vector2(36, 325), Vector2(220, 36 if has_effect else 0))
     _at(description, Vector2(35, 360 if has_effect else 325),
@@ -329,6 +335,8 @@ static func apply_spread_slot(panel: Panel, art: TextureRect, title_plate: Color
     _at(title, Vector2(dimensions.x * 0.10, dimensions.y * 0.72),
         Vector2(dimensions.x * 0.80, dimensions.y * 0.14))
     title.add_theme_color_override("font_color", INK_TEXT)
+    title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     title.add_theme_font_size_override("font_size", 8 if dimensions.x < 110 else 11)
     # Fate Roman tabs deliberately protrude above the original slot bounds.
     panel.clip_contents = false
