@@ -224,3 +224,28 @@ static func apply_spread_slot(panel: Panel, art: TextureRect, title_plate: Color
     title.add_theme_font_size_override("font_size", 8 if dimensions.x < 110 else 11)
     # Fate Roman tabs deliberately protrude above the original slot bounds.
     panel.clip_contents = false
+
+static func apply_sidebar_card(host: Control, art: TextureRect,
+        title_plate: ColorRect, title: Label, at: Vector2, dimensions: Vector2) -> void:
+    var frame := _texture(FRONT)
+    var ink := _texture(INK)
+    if frame == null or ink == null or host.has_node("DS3SidebarFrame"):
+        return
+    var bg := _new_art(host, "DS3SidebarStone", ink, dimensions)
+    bg.position = at
+    host.move_child(bg, art.get_index())
+    _at(art, at + Vector2(dimensions.x * 0.11, dimensions.y * 0.12),
+        Vector2(dimensions.x * 0.78, dimensions.y * 0.57))
+    art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+    grade(art)
+    var frame_node := _new_art(host, "DS3SidebarFrame", frame, dimensions)
+    frame_node.position = at
+    host.move_child(frame_node, art.get_index() + 1)
+    title_plate.modulate.a = 0.0
+    _at(title, at + Vector2(dimensions.x * 0.09, dimensions.y * 0.72),
+        Vector2(dimensions.x * 0.82, dimensions.y * 0.13))
+    title.add_theme_color_override("font_color", INK_TEXT)
+    title.add_theme_font_size_override("font_size", 10)
+    title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+    title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
