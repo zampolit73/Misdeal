@@ -1,3 +1,14 @@
+## D314 — Battle DS3 approved; next optional UI screen (2026-10-21)
+
+- [x] User **explicitly approved** Battle DS3 after D313 and requested to move on to other visual improvements; freeze visual review rather than demand more micro-screenshots.
+- [x] Create dedicated Battle checkpoint `checkpoint/battle-ds3-approved-2026-10-21` at `25878ca` (old DS2 checkpoint `4cbd206` unchanged).
+- [x] Review actual Reward scene/GDScript: DS2 tabletop, three functioning reward cards, procedural panel visuals, five distinct reward modes.
+- [x] Select **Reward DS3** as recommended next *proposal*, based on immediate Battle->Reward transition.
+- [ ] Present 2–3 different scene-first Reward DS3 artistic concepts and get user selection; do not implement unapproved new Reward layout yet.
+- [ ] Isolate approved text-free module artworks, stage opt-in Reward DS3 and dedicated native F6 preview; preserve all 5 modes and original award handlers.
+- [ ] Test native Godot 4.7.x Battle->Reward->Table and seek genuine new Reward screenshot approval.
+- [ ] Battle's native CI and specific post-D313 screenshot were not independently confirmed, but the **user's artistic signoff is final**.
+
 ## D313 — Fix D312 gold reward overlapping the bottom carved frame (2026-10-21)
 
 - [x] User's real D312 preparation screenshot shows `+15 золота` on the bottom bronze border, overlapping its own rule Label bounding box; combat failure screenshot is readable.
