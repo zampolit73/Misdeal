@@ -25,7 +25,7 @@ func _verify() -> void:
         return
 
     # D319: the exact option-three scene must win over older Black Altar art.
-    const ALTAR_ART := "res://assets/pixel/card_unification_v1/run/black_altar_d319_option3.webp"
+    const ALTAR_ART = "res://assets/pixel/card_unification_v1/run/black_altar_d319_option3.webp"
     if not FileAccess.file_exists(ALTAR_ART):
         _fail("D319 selected Black Altar image not tracked")
         return
