@@ -40,6 +40,13 @@ func _verify() -> void:
     if card_frame == null or card_frame.texture == null or card_frame.mouse_filter != Control.MOUSE_FILTER_IGNORE:
         _fail("inspector lacks the real DS3 frame or blocks input")
         return
+    var inspect_well := reader.get_node_or_null("Frame/DS3InspectArtWell") as Panel
+    if inspect_well == null or card_art == null or inspect_well.get_index() >= card_art.get_index():
+        _fail("D322 full-card inspector has no recessed art well")
+        return
+    if card_art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
+        _fail("D322 full-card inspector crops the source illustration")
+        return
     if not (reader.get_node_or_null("Frame/DS3InspectStone") is ColorRect):
         _fail("inspector still double-stacks back border under front frame")
         return
@@ -66,6 +73,14 @@ func _verify() -> void:
         if slot == null or not slot.has_node("DS3CardFrame"):
             _fail("Fate Spread slot %d has no physical DS3 frame" % number)
             return
+        var art := slot.get_node_or_null("Art") as TextureRect
+        var art_well := slot.get_node_or_null("DS3ArtWell") as Panel
+        if art_well == null or art == null or art_well.get_index() >= art.get_index():
+            _fail("D322 Fate slot %d lacks inset art well" % number)
+            return
+        if art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
+            _fail("D322 Fate slot %d still crops the scene" % number)
+            return
         if not (slot.get_node_or_null("DS3CardStone") is ColorRect):
             _fail("Spread slot %d still has the duplicate back border" % number)
             return
@@ -80,6 +95,12 @@ func _verify() -> void:
         if spread.get_node_or_null(path) == null:
             _fail("DS3 spread boss/held/discard visual missing at " + path)
             return
+    if not (spread.get_node_or_null("Frame/HeldPanel/DS3SidebarArtWell") is Panel):
+        _fail("D322 held Fate card lacks illustration inset")
+        return
+    if not (spread.get_node_or_null("Frame/DiscardPanel/CardLayer/DS3SidebarArtWell") is Panel):
+        _fail("D322 discard card lacks illustration inset")
+        return
     if not (spread.get_node_or_null("Frame/HeldPanel/DS3SidebarStone") is ColorRect):
         _fail("held card has duplicate border substrate")
         return

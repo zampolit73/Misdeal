@@ -99,6 +99,25 @@ func _verify() -> void:
         if front_layers != 1:
             _fail("DS3 gallery has more than one front frame: " + card.name)
             return
+        # D322: the real illustration remains inside a separate art mount,
+        # underneath the ONE exterior frame and above the unframed stone.
+        var art := card.get_node("Art") as TextureRect
+        var art_well := card.get_node_or_null("DS3ArtWell") as Panel
+        if art_well == null or art_well.get_index() >= art.get_index():
+            _fail("D322 gallery art is not recessed: " + card.name)
+            return
+        if art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
+            _fail("D322 gallery art still crops its scene: " + card.name)
+            return
+        if art.position.x <= art_well.position.x or art.position.y <= art_well.position.y:
+            _fail("D322 gallery art has no matte inset: " + card.name)
+            return
+        if art.position.x + art.size.x >= art_well.position.x + art_well.size.x or art.position.y + art.size.y >= art_well.position.y + art_well.size.y:
+            _fail("D322 gallery art escapes its mount: " + card.name)
+            return
+        if art_well.position.y + art_well.size.y >= (card.get_node("Title") as Label).position.y:
+            _fail("D322 gallery art mount overlaps title text: " + card.name)
+            return
         if not card.tooltip_text.is_empty():
             _fail("native tooltip blocks neighboring cards in gallery")
             return
@@ -182,6 +201,14 @@ func _verify() -> void:
         var card := reward_scene.get_node("Rewards/" + name) as Button
         if card == null or not card.has_node("DS3CardFrame"):
             _fail("real Reward did not use DS3 physical painted card " + name)
+            return
+        var portrait := card.get_node_or_null("Portrait") as TextureRect
+        var art_well := card.get_node_or_null("DS3ArtWell") as Panel
+        if portrait == null or art_well == null or art_well.get_index() >= portrait.get_index():
+            _fail("D322 reward art well missing or above portrait: " + name)
+            return
+        if portrait.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
+            _fail("D322 reward portrait still crops its illustration: " + name)
             return
         if not (card.get_node_or_null("DS3CardStone") is ColorRect):
             _fail("DS3 reward card still stacks a second bordered back: " + name)
