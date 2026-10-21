@@ -36,8 +36,8 @@ func _check() -> void:
 	if not panel.visible or not objective.text.contains("Звонарь должен пасть первым"):
 		_fail("authentic Wizard challenge is not present")
 		return
-	if panel.position != Vector2(22, 575) or panel.size != Vector2(216, 133):
-		_fail("preparation challenge displaced from left command margin")
+	if panel.position != Vector2(22, 571) or panel.size != Vector2(216, 133):
+		_fail("D312 preparation challenge displaced from left command margin")
 		return
 	var artwork := panel.get_node_or_null("D307WizardArt") as Control
 	if artwork != null:
@@ -68,6 +68,19 @@ func _check() -> void:
 			return
 		if heading.get_theme_font_size("font_size") < 11 or body.get_theme_font_size("font_size") < 11 or objective.visible:
 			_fail("D307 original text overlaps painted module or derived copy is too small")
+			return
+		var reward := panel.get_node_or_null("D312WizardReward") as Label
+		if reward == null or not reward.visible or reward.text != "+15 золота":
+			_fail("D312 dynamic reward must be visible only in the lower inset")
+			return
+		if body.text.contains("+15 золота") or body.position != Vector2(56, 45) or reward.position != Vector2(65, 91):
+			_fail("D312 Wizard rule/reward overlap or insets were lost")
+			return
+		if heading.position != Vector2(63, 9) or heading.size != Vector2(172, 29):
+			_fail("D312 heading no longer centered in approved art")
+			return
+		if not reward.get_theme_color("font_color").r < heading.get_theme_color("font_color").r:
+			_fail("D312 reward hierarchy is too prominent")
 			return
 		if heading.z_index <= artwork.z_index or body.z_index <= artwork.z_index:
 			_fail("D307 painted frame overlays live Wizard text")
@@ -106,9 +119,10 @@ func _check() -> void:
 		_fail("D306 movement mutated the reward rule")
 		return
 	if artwork != null:
+		var reward_after := panel.get_node("D312WizardReward") as Label
 		var body_after := panel.get_node("D307WizardBody") as Label
-		if not body_after.text.contains("+15 золота"):
-			_fail("D307 painted challenge lost its real gold reward")
+		if not reward_after.visible or reward_after.text != "+15 золота" or body_after.text.contains("+15 золота"):
+			_fail("D312 combat no longer separates authentic gold reward from rule")
 			return
 		# A failed side wager must update both visible derived Labels.
 		scene.call("_fail_side_objective", "УСЛОВИЕ ПРОВАЛЕНО • первым пал не звонарь")
@@ -118,13 +132,16 @@ func _check() -> void:
 		if not (panel.get_node("D307WizardBody") as Label).text.contains("первым пал не звонарь"):
 			_fail("D307 failure explanation not reflected")
 			return
+		if reward_after.visible:
+			_fail("D312 failed condition should not show a reward")
+			return
 	if (scene.get_node("BottomHudPanel") as Panel).visible or (scene.get_node("FightHudPanel") as Panel).visible:
 		_fail("preparation-only panels remain over combat")
 		return
 	if (scene.get_node("FightButton") as Button).visible:
 		_fail("Fight button remains visible after combat start")
 		return
-	print("D306_WIZARD_OBJECTIVE_NATIVE_PASS: D307 painted/fallback Wizard challenge, real rule and Fight transition")
+	print("D306_WIZARD_OBJECTIVE_NATIVE_PASS: D312 Wizard text hierarchy, dynamic reward, failure and Fight transition")
 	scene.queue_free()
 	await process_frame
 	quit(0)
