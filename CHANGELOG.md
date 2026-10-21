@@ -1,3 +1,10 @@
+## 2026-10-21 — D325: Align DS3 card copy on a consistent centerline
+
+- Fixed mismatch between shared Table label boxes and F6 gallery overrides: title, short copy and action hint now share exact card x136 centerline with explicit horizontal/vertical centered typesetting.
+- Kept category within upper-right tab; Reward live role/heading/effect/description forced centered x146; Fate title centered.
+- Extended native D315 smoke on 55 gallery entries and all three real Reward cards; follow-up `e906827` fixed the actual node names so no checks silently skip.
+- Art, shaders, single original frame, card data and mechanics preserved. User Godot F6 screenshot/CI not yet confirmed.
+
 ## 2026-10-21 — D324: Fix visibly crooked inner frames around DS3 card artwork
 
 - Reviewed actual user F6 screenshot of reward/upgrade cards after D323; decorative external frame now complete but separate gold 1px art-well outlines float crookedly around aspect-fitted scene.

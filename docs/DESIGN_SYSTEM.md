@@ -1,3 +1,7 @@
+## D325 — Unified DS3 text alignment (2026-10-21)
+
+Table/gallery: all physical Title/Description/CTA labels geometrically centered to x136 at 272px card width with explicit horizontal and vertical alignment. Long English upgrade/reward names still fit via original gallery font selection; short preview remains max 2 lines in clipped well. Type has its own little top-right tab center. Real Reward at width292 uses x146 for role/title/quick effect/description and forces centered alignment after restyling. Fate titles center. Original D319 art, D320 single frame, D321 corrected colors, D323 full frame and D324 borderless well unaffected. Native Godot review remains pending.
+
 ## D324 — Flat inset art matte for every DS3 face (2026-10-21)
 
 Remove the extra bronze outline applied to `ArtWell` in D322. A filled background `FACE_STONE` matching the main card is still useful behind letterboxed landscape paintings, but should have NO visible second rectangle. Retain `front_frame.webp` as the one original decorated frame, accurate full aspect art and true red/blue illustration colors. Applies to all real DS3 card types; native F6 confirmation pending.

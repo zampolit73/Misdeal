@@ -1,3 +1,11 @@
+## D325 — Card typography centered within actual physical frame (2026-10-21)
+
+- [x] Use consistent card centerline (x136 for 272px Table/gallery) for Title, description and "ЧИТАТЬ КАРТУ" on all 55 art entries.
+- [x] Explicitly set horizontal and vertical alignment, including gallery overrides and real Reward UI updates (Reward center x146).
+- [x] Preserve top-right Type tab alignment independently, keep full lore readable in original modal, art/frame/colors unchanged.
+- [x] Extend D315 smoke geometry to confirm actual centered positions and real Reward label paths (no silent skips).
+- [ ] Post-D325 Godot F6 gallery and live Reward screenshot / native CI approval pending.
+
 ## D324 — Inner bronze art-well border removal (2026-10-21)
 
 - [x] User's real D323 F6 screenshot: outer frames complete; internal rectangular gold line floats around image, especially around landscape Reward/Upgrade paintings.

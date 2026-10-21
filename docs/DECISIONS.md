@@ -1,3 +1,7 @@
+## D325 — Physical card copy has one common typographic centerline (2026-10-21)
+
+On 272×338 DS3 Table/gallery face, Title, two-line Description and action hint must share visual center x=136; use x43, width186 for their boxes, and explicitly set both horizontal/vertical CENTER. Original Type is a **top-right category tab** and must be centered inside its own tab, never moved to global card center. Real 292×410 Reward role/heading/effect/body share x146 and current original functional label paths; Fate title center remains explicit. Retain original full-detail lore text as natural readable prose, do not force paragraph centering. No change to original art/frame/flow/gameplay.
+
 ## D324 — No second outlined rectangle around a fitted DS3 illustration (2026-10-21)
 
 The DS3 card has ONE original ornate full-card front frame. Scene illustration is aspect-preserving in a uniform `FACE_STONE` matte. An inset may exist structurally for draw-order, but its `StyleBoxFlat` border widths must all be **zero** and background must exactly match `FACE_STONE`, otherwise the 1px border visibly detaches from a fitted landscape scene and looks like a crooked second frame. Preserve source artwork, D321 color and D323 original outer frame intact. Do not add new external framing/baked card UI to art.
