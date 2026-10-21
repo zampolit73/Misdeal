@@ -1,3 +1,11 @@
+## 2026-10-21 — D316: Resume real GitHub Card DS3 implementation in small verified stages
+
+- Compared current GitHub HEAD with promised work: existing D315 was **already substantial**, including 3 DS3 assets, red/black shader, original Table + Spread (12/XIII/held/discard) + Reward integrations, full 40-card + upgrade/reward F6 gallery and native regression definition. Did not duplicate this code.
+- Locked user's first bright crimson/aged-bronze/parchment reference as Card DS3 in DESIGN_SYSTEM / DECISIONS; recorded exact implementation-vs-artwork audit in `docs/D315_CARD_DS3_AUDIT.md`, created `checkpoint/card-ds3-d315-audited-2026-10-21`.
+- Added true DS3 physical card inside original right-click full-description/inspection reader; real card art/title/long scrolling copy and close remain interactive.
+- Added real Spread and inspector native smoke `scripts/dev/d316_card_surfaces_smoke.gd` with D315 CI coverage. **No confirmed native Godot PASS or post-change user screenshot** yet.
+- Shared style/shader is not the same as hand-authoring 55 new scene illustrations. Further illustration-specific redrawing will be guided by actual F6 visual QA; gameplay unaffected.
+
 ## 2026-10-21 — D314: Battle DS3 artistically accepted and release checkpoint preserved
 
 - User explicitly approved ending the Battle DS3 visual iterations after D313. Accepted combined D303 carved command/Fight, D311 third Wizard portrait and D312–D313 corrected native labeling. Do not require a further Battle screenshot for aesthetic signoff.
