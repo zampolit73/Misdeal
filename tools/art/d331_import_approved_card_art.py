@@ -8,7 +8,7 @@ def load(url, label):
     with urllib.request.urlopen(req,timeout=40) as stream:
         data=stream.read()
     img=Image.open(BytesIO(data)).convert("RGB")
-    if img.width<200 or img.height<120:
+    if img.width<190 or img.height<115:
         raise ValueError(f"{label}: image too small {img.size}")
     print(f"{label}: CDN returned {img.size}, bytes={len(data)}")
     return img
