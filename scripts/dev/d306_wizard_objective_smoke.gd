@@ -73,11 +73,21 @@ func _check() -> void:
 		if reward == null or not reward.visible or reward.text != "+15 золота":
 			_fail("D312 dynamic reward must be visible only in the lower inset")
 			return
-		if body.text.contains("+15 золота") or body.position != Vector2(56, 45) or reward.position != Vector2(65, 91):
+		if body.text.contains("+15 золота") or body.position != Vector2(56, 44) or reward.position != Vector2(65, 80):
 			_fail("D312 Wizard rule/reward overlap or insets were lost")
 			return
 		if heading.position != Vector2(63, 9) or heading.size != Vector2(172, 29):
 			_fail("D312 heading no longer centered in approved art")
+			return
+		# D313: pixel-bound checks complement state logic. The reward must be
+		# INSIDE the black inset, not on the lower golden filigree.
+		var rule_rect := Rect2(body.position, body.size)
+		var reward_rect := Rect2(reward.position, reward.size)
+		if rule_rect.intersects(reward_rect) or reward_rect.end.y > 96.0:
+			_fail("D313 bonus overlaps the rule or engraved lower border")
+			return
+		if body.size.y < 32.0 or reward.size.y < 15.0:
+			_fail("D313 rule or gold reward is too small for live readable text")
 			return
 		if reward.get_theme_color("font_color").r >= heading.get_theme_color("font_color").r:
 			_fail("D312 reward hierarchy is too prominent")
