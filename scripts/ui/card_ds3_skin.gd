@@ -9,6 +9,7 @@ const INK := "res://assets/pixel/ui/card_ds3_locked/ink_substrate.webp"
 const CARD_SHADER: Shader = preload("res://shaders/card_ds3_ink.gdshader")
 const GOLD := Color("#e4b46c")
 const INK_TEXT := Color("#251610")
+const FACE_STONE := Color("#150d11")
 const BONE := Color("#eddbbd")
 const TABLE_SIZE := Vector2(272, 338)
 
@@ -42,6 +43,19 @@ static func _new_art(host: Control, node_name: String, texture: Texture2D, dimen
     host.add_child(layer)
     return layer
 
+# D320: the old INK bitmap is a complete card back with its OWN gilt
+# border and large compass. Under FRONT it created TWO frames and ghost
+# ornament in every face. Front cards use borderless stone; backs unchanged.
+static func _new_face_stone(host: Control, node_name: String, dimensions: Vector2) -> ColorRect:
+    var stone := ColorRect.new()
+    stone.name = node_name
+    stone.color = FACE_STONE
+    stone.position = Vector2.ZERO
+    stone.size = dimensions
+    stone.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    host.add_child(stone)
+    return stone
+
 static func _at(control: Control, at: Vector2, dimensions: Vector2) -> void:
     control.position = at
     control.size = dimensions
@@ -55,8 +69,7 @@ static func grade(art: TextureRect) -> void:
 
 static func apply_table(button: Button) -> bool:
     var frame := _texture(FRONT)
-    var ink := _texture(INK)
-    if frame == null or ink == null:
+    if frame == null:
         return false
     if button.has_node("DS3CardFrame"):
         return true
@@ -64,7 +77,7 @@ static func apply_table(button: Button) -> bool:
     button.size = TABLE_SIZE
     button.clip_contents = true
     _empty_button(button)
-    var substrate := _new_art(button, "DS3CardStone", ink, TABLE_SIZE)
+    var substrate := _new_face_stone(button, "DS3CardStone", TABLE_SIZE)
     button.move_child(substrate, 0)
     var painting := button.get_node("Art") as TextureRect
     _at(painting, Vector2(30, 36), Vector2(213, 190))
@@ -156,8 +169,7 @@ static func apply_table_backs(scene: Control) -> void:
 static func apply_reward(button: Button, portrait: TextureRect,
         role: Label, heading: Label, effect: Label, description: Label) -> bool:
     var frame := _texture(FRONT)
-    var ink := _texture(INK)
-    if frame == null or ink == null:
+    if frame == null:
         return false
     if button.has_node("DS3CardFrame"):
         return true
@@ -165,7 +177,7 @@ static func apply_reward(button: Button, portrait: TextureRect,
     button.custom_minimum_size = Vector2(292, 410)
     button.focus_mode = Control.FOCUS_ALL
     button.clip_contents = true
-    var bottom := _new_art(button, "DS3CardStone", ink, Vector2(292, 410))
+    var bottom := _new_face_stone(button, "DS3CardStone", Vector2(292, 410))
     button.move_child(bottom, 0)
     _at(portrait, Vector2(27, 41), Vector2(238, 234))
     portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
@@ -216,14 +228,13 @@ static func style_reward_copy(button: Button, role: Label, heading: Label,
 # menu control; detailed lore stays in its original scrollable right column.
 static func apply_inspection(host: Control, illustration: TextureRect) -> bool:
     var frame := _texture(FRONT)
-    var ink := _texture(INK)
-    if frame == null or ink == null:
+    if frame == null:
         return false
     if host.has_node("DS3InspectFrame"):
         return true
     const CARD_AT := Vector2(38, 51)
     const CARD_EXTENT := Vector2(225, 306)
-    var stone := _new_art(host, "DS3InspectStone", ink, CARD_EXTENT)
+    var stone := _new_face_stone(host, "DS3InspectStone", CARD_EXTENT)
     stone.position = CARD_AT
     # Draw behind the real original illustration, not over the black title well.
     host.move_child(stone, illustration.get_index())
@@ -262,10 +273,9 @@ static func apply_inspection(host: Control, illustration: TextureRect) -> bool:
 static func apply_spread_slot(panel: Panel, art: TextureRect, title_plate: ColorRect,
         title: Label, dimensions: Vector2) -> void:
     var frame := _texture(FRONT)
-    var ink := _texture(INK)
-    if frame == null or ink == null or panel.has_node("DS3CardFrame"):
+    if frame == null or panel.has_node("DS3CardFrame"):
         return
-    var bg := _new_art(panel, "DS3CardStone", ink, dimensions)
+    var bg := _new_face_stone(panel, "DS3CardStone", dimensions)
     panel.move_child(bg, 0)
     var artwork_height := dimensions.y * 0.61
     _at(art, Vector2(dimensions.x * 0.13, dimensions.y * 0.10),
@@ -285,10 +295,9 @@ static func apply_spread_slot(panel: Panel, art: TextureRect, title_plate: Color
 static func apply_sidebar_card(host: Control, art: TextureRect,
         title_plate: ColorRect, title: Label, at: Vector2, dimensions: Vector2) -> void:
     var frame := _texture(FRONT)
-    var ink := _texture(INK)
-    if frame == null or ink == null or host.has_node("DS3SidebarFrame"):
+    if frame == null or host.has_node("DS3SidebarFrame"):
         return
-    var bg := _new_art(host, "DS3SidebarStone", ink, dimensions)
+    var bg := _new_face_stone(host, "DS3SidebarStone", dimensions)
     bg.position = at
     host.move_child(bg, art.get_index())
     _at(art, at + Vector2(dimensions.x * 0.11, dimensions.y * 0.12),

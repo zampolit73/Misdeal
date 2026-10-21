@@ -1,3 +1,9 @@
+## 2026-10-21 — D320: Fix double ornamental frame on actual DS3 cards
+
+- Inspected original GitHub front and ink WebPs; found duplicate full gilded card-back border beneath the front face. Replaced face stone with non-ornamental deep background ColorRect throughout Table/gallery, Reward, full-card inspection, Fate Spread and held/discard, retaining exactly one painted front `DS3CardFrame`.
+- Preserved the source framed back WebPs, original artwork, text, 12+XIII, all live buttons and game logic. No regenerated concept images or art replacements.
+- Expanded D315/D316 native smoke coverage to guard against framed back under front across all major surfaces. Actual Godot 4.7.x F6/CI confirmation pending.
+
 ## 2026-10-21 — D319: Accept and integrate Black Altar third scene; fix actual gallery screenshot defects
 
 - Reviewed user's two actual F6 D318 screenshots. Confirmed major text containment/reader improvement; diagnosed tooltip hovering across cards and barely-visible black-on-black titles.

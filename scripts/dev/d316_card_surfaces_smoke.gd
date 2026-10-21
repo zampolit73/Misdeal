@@ -40,6 +40,9 @@ func _verify() -> void:
     if card_frame == null or card_frame.texture == null or card_frame.mouse_filter != Control.MOUSE_FILTER_IGNORE:
         _fail("inspector lacks the real DS3 frame or blocks input")
         return
+    if not (reader.get_node_or_null("Frame/DS3InspectStone") is ColorRect):
+        _fail("inspector still double-stacks back border under front frame")
+        return
     if card_frame.size != Vector2(225, 306) or card_art == null or card_art.material == null:
         _fail("full-card inspector dimensions/DS3 grade are incorrect")
         return
@@ -63,6 +66,9 @@ func _verify() -> void:
         if slot == null or not slot.has_node("DS3CardFrame"):
             _fail("Fate Spread slot %d has no physical DS3 frame" % number)
             return
+        if not (slot.get_node_or_null("DS3CardStone") is ColorRect):
+            _fail("Spread slot %d still has the duplicate back border" % number)
+            return
         if (slot.get_node("DS3CardFrame") as TextureRect).mouse_filter != Control.MOUSE_FILTER_IGNORE:
             _fail("DS3 ornament blocks I-XII slot hover")
             return
@@ -74,6 +80,12 @@ func _verify() -> void:
         if spread.get_node_or_null(path) == null:
             _fail("DS3 spread boss/held/discard visual missing at " + path)
             return
+    if not (spread.get_node_or_null("Frame/HeldPanel/DS3SidebarStone") is ColorRect):
+        _fail("held card has duplicate border substrate")
+        return
+    if not (spread.get_node_or_null("Frame/DiscardPanel/CardLayer/DS3SidebarStone") is ColorRect):
+        _fail("discarded card has duplicate border substrate")
+        return
     print("D316_CARD_SURFACES_NATIVE_PASS: complete-card reader, I-XIII, held/discard, live texts and controls")
     spread.queue_free()
     await process_frame

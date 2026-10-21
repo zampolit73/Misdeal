@@ -67,6 +67,22 @@ func _verify() -> void:
         if (card.get_node("Art") as TextureRect).material == null:
             _fail("D315 red/black tone-mapping missing: " + card.name)
             return
+        # D320 single-frame contract: a front must have ONE framed overlay
+        # and an unframed opaque stone surface, never the framed card-back art.
+        var base := card.get_node_or_null("DS3CardStone") as ColorRect
+        if base == null or base.color != SKIN.FACE_STONE:
+            _fail("DS3 gallery face still stacks a second bordered card texture: " + card.name)
+            return
+        if card.get_node("DS3CardFrame") is not TextureRect:
+            _fail("DS3 gallery has no original painted FRONT frame: " + card.name)
+            return
+        var front_layers := 0
+        for layer in card.get_children():
+            if layer.name == "DS3CardFrame":
+                front_layers += 1
+        if front_layers != 1:
+            _fail("DS3 gallery has more than one front frame: " + card.name)
+            return
         if not card.tooltip_text.is_empty():
             _fail("native tooltip blocks neighboring cards in gallery")
             return
@@ -150,6 +166,9 @@ func _verify() -> void:
         var card := reward_scene.get_node("Rewards/" + name) as Button
         if card == null or not card.has_node("DS3CardFrame"):
             _fail("real Reward did not use DS3 physical painted card " + name)
+            return
+        if not (card.get_node_or_null("DS3CardStone") is ColorRect):
+            _fail("DS3 reward card still stacks a second bordered back: " + name)
             return
         if (card.get_node("DS3CardFrame") as TextureRect).mouse_filter != Control.MOUSE_FILTER_IGNORE:
             _fail("card ornament intercepts real Reward input")

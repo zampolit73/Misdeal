@@ -1,3 +1,7 @@
+## D320 — Never use an already framed card back as the front-card substrate (2026-10-21)
+
+Locked rule: `front_frame.webp` provides the ONE complete handpainted golden outline for each physical front face. `ink_substrate.webp` already contains another complete border and compass; it must NOT be layered behind the front. For front cards, use a truly frame-free deep stone base under actual unique illustrations and live text. Preserve the original framed art for true backs and frozen DS2 checkpoint. This is a corrective implementation of the approved DS3 look and makes no gameplay changes.
+
 ## D319 — User selects third Black Altar illustration; keep labels separate (2026-10-21)
 
 The user selected **3 (bottom)** of three distinctly rendered Black Altar scene candidates. The exact selected vignette is canon for `black_altar` CARD illustration only, exported as text-free 448×274 WebP and registered as a per-ID override. Do not replace the existing event's independently illustrated 1280×720 backdrop or alter event effects. Native D318 screenshot demonstrates tooltip obstruction and dark-on-dark card title: gallery buttons do **not** need native mouseover tooltip because the full text opens by click; physical Table DS3 title requires bright ivory against the actual black recess. Continue unchanged 12+XIII, two-offer and three-Reward mechanics. See `docs/D319_BLACK_ALTAR_OPTION3.md`.

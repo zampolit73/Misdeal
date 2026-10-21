@@ -1,3 +1,11 @@
+## D320 — Physical DS3 faces have ONE border only (2026-10-21)
+
+- [x] Open actual GitHub `front_frame.webp` and `ink_substrate.webp`: the latter duplicates the whole front frame border and adds unwanted compass decoration under all cards.
+- [x] Replace all **front-side** framed `INK` substrate calls in shared `CardDS3Skin` with a borderless `ColorRect` stone, while retaining exactly the selected FRONT art, text/live controls and original card backs.
+- [x] Add native source regression checks for 55 gallery cards, Reward, RMB reader, all I–XII spread slots and held/discard substrates.
+- [ ] One actual 1280×720 Godot F6 screenshot after D320; check single gilt outline in gallery and real two-offer Table. No CI/runtime PASS claimed yet.
+- [ ] Continue per-scene art revisions after confirming this real bug fix; no more repeated concept screenshots for the same defect.
+
 ## D319 — Black Altar #3 integrated; gallery visual regression retest (2026-10-21)
 
 - [x] User D318 real Godot screenshots: 55 loaded entries, body snippets contained, long copy opens fully; observed **new floating tooltip and near-invisible titles**.
