@@ -1,6 +1,7 @@
 extends Control
 
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
+const CARD_DS3_SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
 const BOSS_SEAL_SCRIPT := preload("res://scripts/table/fate_boss_seal_visual.gd")
 
 signal closed
@@ -180,6 +181,7 @@ func _build_slots() -> void:
 		title.add_theme_color_override("font_color", Color(0.20, 0.12, 0.09, 0.98))
 		title.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		panel.add_child(title)
+		CARD_DS3_SKIN.apply_spread_slot(panel, art, title_plate, title, SLOT_SIZE)
 
 		slot_panels.append(panel)
 
@@ -215,6 +217,12 @@ func _build_slots() -> void:
 	boss_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	boss_title.add_theme_font_size_override("font_size", 10)
 	boss_panel.add_child(boss_title)
+	var boss_title_plate := ColorRect.new()
+	boss_title_plate.name = "DS3BossTitlePlate"
+	boss_title_plate.color = Color(0, 0, 0, 0)
+	boss_title_plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	boss_panel.add_child(boss_title_plate)
+	CARD_DS3_SKIN.apply_spread_slot(boss_panel, boss_art, boss_title_plate, boss_title, BOSS_SIZE)
 
 	boss_seal_visual = BOSS_SEAL_SCRIPT.new() as Control
 	if boss_seal_visual != null:
@@ -406,6 +414,10 @@ func _refresh_slots() -> void:
 			title.visible = false
 
 		_apply_panel_style(panel, accent, state == "current", state)
+		if panel.has_node("DS3CardFrame") and state == "done":
+			title.add_theme_color_override("font_color", CARD_DS3_SKIN.INK_TEXT)
+		if panel.has_node("DS3CardFrame") and state == "current":
+			title.add_theme_color_override("font_color", CARD_DS3_SKIN.INK_TEXT)
 
 
 func _refresh_boss() -> void:
@@ -427,7 +439,7 @@ func _refresh_boss() -> void:
 		if boss_seal_visual.has_method("configure"):
 			boss_seal_visual.call("configure", RunState.cards_resolved, true)
 
-	boss_title.add_theme_color_override("font_color", Color(1.0, 0.72, 0.48, 1.0))
+	boss_title.add_theme_color_override("font_color", CARD_DS3_SKIN.INK_TEXT if boss_panel.has_node("DS3CardFrame") else Color(1.0, 0.72, 0.48, 1.0))
 	boss_art.texture = CARD_ART_CATALOG.get_run_card_texture(RunState.BOSS_CARD_ID)
 	boss_art.visible = boss_art.texture != null
 	boss_title.text = "КОСТЯНОЙ\nНАДЗИРАТЕЛЬ"
