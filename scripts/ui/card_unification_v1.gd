@@ -25,7 +25,7 @@ const RUN_CARDS := {
 	"blood_ledger": "run/blood_ledger_d331_approved_scribe.webp",
 	# D319 user-picked third Black Altar painting, derived from approved triptych.
 	"black_altar": "run/black_altar_d319_option3.webp",
-	"bone_patrol": "run/bone_patrol.webp",
+	"bone_patrol": "run/bone_patrol_d333_approved_tower.webp",
 	"bone_shepherd": "run/bone_shepherd.webp",
 	# D151 candidate; not dealt until both original enemy atlases pass native F6 review.
 	"funeral_procession": "run/funeral_procession.webp",
