@@ -1,3 +1,11 @@
+## D322 — DS3 cards have inset scene windows, not painted-on image overlays (2026-10-21)
+
+- [x] Shared `CardDS3Skin` creates a restrained dark art well with one thin INNER trim behind existing `Art`/`Portrait`, retains exactly one D320 outer frame.
+- [x] Fit full scene using `TextureRect.STRETCH_KEEP_ASPECT_CENTERED` on gallery/real Table, Reward, RMB inspection, Fate Spread I–XIII, held/discard instead of cropping.
+- [x] Preserve card source IDs, exact approved D319 altar art, D321 uncrushed colors, original card node paths and gameplay.
+- [x] D315/D316 smokes check gallery 55 card mounts, Reward, true 12-card Spread, held/discard and inspector draw ordering and aspect.
+- [ ] Confirm Godot 4.7 native CI and *actual* F6 appearance (not yet independently verified). Check gallery and the real Table before completing visual acceptance.
+
 ## D321 — Card DS3 illustration colors (2026-10-21)
 
 - [x] Real post-D320 Godot screenshot confirms single-border correction but highly crushed colors/shadows.

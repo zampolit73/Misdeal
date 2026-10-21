@@ -1,3 +1,7 @@
+## D322 — Original card painting belongs in a recessed art well, never atop the title / frame (2026-10-21)
+
+A front-face card has ONE D320 approved exterior frame, with a subdued inset scene mount under the illustration. Do not overlay large COVERED artwork or allow it to spill onto real title/effect wells; `STRETCH_KEEP_ASPECT_CENTERED` shows the authored landscape uncropped. Keep `Art` and `Portrait` as direct children where production Table/Reward currently expect them. Ornament remains mouse-ignoring. The tiny inner bronze inset trim is distinct from (and must never duplicate) the full-card decorative border. Approved art files and original run mechanics stay authoritative.
+
 ## D321 — Preserve authored card colors and correct Godot CanvasItem fragment arithmetic (2026-10-21)
 
 Card DS3 must never darken illustrations by multiplying a sampled `TEXTURE` by fragment built-in `COLOR`: Godot already multiplies TEXTURE into COLOR before `fragment()`. Retain vertex tint separately and apply to the graded source sample once. The user-approved scene palette includes legible moonlit blues and saturated crimson, not a globally dark-brown wash. Use restrained 10% shared warm grading and preserve source artwork as supplied; artistic redraw requires separate explicit selection. D320 single-front-frame contract remains unchanged.

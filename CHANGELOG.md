@@ -1,3 +1,9 @@
+## 2026-10-21 — D322: Physically mount full scene illustrations inside DS3 card wells
+
+- User requested implementation in GitHub, not another generated UI preview. Real `CardDS3Skin` now inserts a restrained dark/bronze art well behind the existing direct-child illustration; retains one D320 front frame.
+- `STRETCH_KEEP_ASPECT_CENTERED` preserves each authored scene's full composition instead of cropped/overdrawn COVERED, applied to Table, Reward, real RMB inspector, Fate Spread and the 55-image QA gallery.
+- Native D315/D316 regression smoke expanded for well/Art layering, full-aspect fit and separation from live title. Card IDs, mechanics, real description text, D319 selected Black Altar and D321 true colors preserved. Actual post-fix Godot screenshot/CI not yet confirmed.
+
 ## 2026-10-21 — D321: Restore approved original card colors in actual Godot shader
 
 - Diagnosed severe darkness visible in real post-D320 F6 gallery as **double multiplication of the illustration texture** in shared CanvasItem fragment shader.

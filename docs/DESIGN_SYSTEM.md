@@ -1,3 +1,7 @@
+## D322 — Inset DS3 illustrations (2026-10-21)
+
+Keep a single external `front_frame.webp` and an unframed dark stone substrate (D320). Insert a subdued dark `ArtWell` with 1px bronze inner edge **behind** real scene art (not a second full ornamental outer frame), and show full original aspect via `KEEP_ASPECT_CENTERED` (not destructive COVERED crop). Preserve original `Art`/`Portrait` node paths, D321 authentic scene colors, independent text/UI controls and all gameplay input. Shared across gallery, actual Table/Reward, inspector, I–XIII Fate Spread and held/discard; native screenshot validation pending.
+
 ## D321 — True-color DS3 illustration rendering (2026-10-21)
 
 Original scene pixels are visually authoritative. In `card_ds3_ink.gdshader`, Godot fragment `COLOR` already contains `TEXTURE` — never multiply a second manual `texture(TEXTURE, UV)` sample against fragment `COLOR`. Preserve vertex tint in a varying if respecting actual button modulation, apply only one texel color and alpha, and keep warm unification **subtle (10%)** rather than darkening moonlight and bone. This fixes source color loss on all real DS3 card surfaces while preserving the D320 one-frame geometry and all real card content.
