@@ -24,6 +24,22 @@ func _verify() -> void:
         _fail("D315 card front contains flattened illustration instead of live art")
         return
 
+    # D321: avoid the real-Godot regression where fragment COLOR was already
+    # multiplied by TEXTURE, then multiplied by the sampled illustration again.
+    # Shader parsing/compilation is validated by the normal native CI import.
+    var grade_source := FileAccess.get_file_as_string(
+        "res://shaders/card_ds3_ink.gdshader"
+    )
+    if not grade_source.contains("card_vertex_tint = COLOR;"):
+        _fail("DS3 card shader does not preserve vertex tint")
+        return
+    if not grade_source.contains("original.a) * card_vertex_tint;"):
+        _fail("DS3 card shader may darken textures by multiplying COLOR twice")
+        return
+    if grade_source.contains("original.a) * COLOR;"):
+        _fail("DS3 card shader repeats the texture multiplication")
+        return
+
     # D319: the exact option-three scene must win over older Black Altar art.
     const ALTAR_ART = "res://assets/pixel/card_unification_v1/run/black_altar_d319_option3.webp"
     if not FileAccess.file_exists(ALTAR_ART):

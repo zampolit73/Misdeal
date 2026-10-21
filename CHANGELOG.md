@@ -1,3 +1,10 @@
+## 2026-10-21 — D321: Restore approved original card colors in actual Godot shader
+
+- Diagnosed severe darkness visible in real post-D320 F6 gallery as **double multiplication of the illustration texture** in shared CanvasItem fragment shader.
+- Captured original vertex tint before Godot applies texture internally, then emitted a single source-grade multiplication, retaining alpha and live hover/selection tint.
+- Reduced shared sepia/bronze grade from 30% to 10%, warmed without crushing cold moonlight or red altar light; preserved all 55 original texture mappings and D319 approved third Black Altar artwork.
+- Added native D315 regression checks; original D320 single-front-frame structure, real two-offer Table, rewards, Fate I–XIII and combat code unchanged. Native F6/CI confirmation still pending.
+
 ## 2026-10-21 — D320: Fix double ornamental frame on actual DS3 cards
 
 - Inspected original GitHub front and ink WebPs; found duplicate full gilded card-back border beneath the front face. Replaced face stone with non-ornamental deep background ColorRect throughout Table/gallery, Reward, full-card inspection, Fate Spread and held/discard, retaining exactly one painted front `DS3CardFrame`.

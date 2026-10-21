@@ -1,3 +1,12 @@
+## D321 — Card DS3 illustration colors (2026-10-21)
+
+- [x] Real post-D320 Godot screenshot confirms single-border correction but highly crushed colors/shadows.
+- [x] Find root shader defect: multiplying manual texture sample by fragment `COLOR` applies source texture a second time in Godot CanvasItem.
+- [x] Fix shader to preserve vertex tint separately; use one sample exactly once; reduce heavy bronze desaturation to 10%.
+- [x] Add native smoke guard for shader double-multiplication; same corrected shader is shared by gallery, Table, Reward, Fate Spread and card inspection.
+- [ ] Native F6 screenshot at 1280×720 of cards after D321 + short real Table sanity check (CI not yet verified).
+- [ ] Continue individually approved source-art adjustments only after correct true-color preview, no more picture mockups for shader bugs.
+
 ## D320 — Physical DS3 faces have ONE border only (2026-10-21)
 
 - [x] Open actual GitHub `front_frame.webp` and `ink_substrate.webp`: the latter duplicates the whole front frame border and adds unwanted compass decoration under all cards.

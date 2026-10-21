@@ -1,3 +1,7 @@
+## D321 — True-color DS3 illustration rendering (2026-10-21)
+
+Original scene pixels are visually authoritative. In `card_ds3_ink.gdshader`, Godot fragment `COLOR` already contains `TEXTURE` — never multiply a second manual `texture(TEXTURE, UV)` sample against fragment `COLOR`. Preserve vertex tint in a varying if respecting actual button modulation, apply only one texel color and alpha, and keep warm unification **subtle (10%)** rather than darkening moonlight and bone. This fixes source color loss on all real DS3 card surfaces while preserving the D320 one-frame geometry and all real card content.
+
 ## D319 — Card DS3 native screenshot follow-up and approved per-card art (2026-10-21)
 
 Actual D318 Godot screenshot validates shorter gallery preview and functioning independent full reader. Native default tooltip covering multiple cards and nearly-black title on the actual dark frame are **not part of design system**: disable gallery hover tooltip and render front-face title in warm bone/ivory with subtle dark outline. Original illustration area must remain free of UI text. User locked **third/bottom Black Altar** scene and approved direct implementation; `black_altar_d319_option3.webp` is the first individual replacement in card unification. Keep every other card's existing approved scene pending its own distinct options-first replacement. Color system remains scarlet, obsidian, warm bronze and ivory, no new 3-card gameplay or combat changes.

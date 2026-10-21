@@ -1,3 +1,7 @@
+## D321 — Preserve authored card colors and correct Godot CanvasItem fragment arithmetic (2026-10-21)
+
+Card DS3 must never darken illustrations by multiplying a sampled `TEXTURE` by fragment built-in `COLOR`: Godot already multiplies TEXTURE into COLOR before `fragment()`. Retain vertex tint separately and apply to the graded source sample once. The user-approved scene palette includes legible moonlit blues and saturated crimson, not a globally dark-brown wash. Use restrained 10% shared warm grading and preserve source artwork as supplied; artistic redraw requires separate explicit selection. D320 single-front-frame contract remains unchanged.
+
 ## D320 — Never use an already framed card back as the front-card substrate (2026-10-21)
 
 Locked rule: `front_frame.webp` provides the ONE complete handpainted golden outline for each physical front face. `ink_substrate.webp` already contains another complete border and compass; it must NOT be layered behind the front. For front cards, use a truly frame-free deep stone base under actual unique illustrations and live text. Preserve the original framed art for true backs and frozen DS2 checkpoint. This is a corrective implementation of the approved DS3 look and makes no gameplay changes.
