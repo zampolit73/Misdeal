@@ -1,3 +1,7 @@
+## D327 — Optical centers of real DS3 painted frame (2026-10-21)
+
+**Do not equate Button center with visual center of illustrated `front_frame.webp`.** The card front has asymmetric transparent gutters/ornament. At 272×338 Table/gallery dimensions the common visible Title/Description/CTA axis is x=147; the existing black top category tab is visually x=150 (Type label box x=123..177). Put Russian type words inside that tab, not at x174 outside it. Live numbered Fate Roman stays visible in a separate adjacent field left of the tab. At 292px Reward front title/effect/description center x158; other physical card titles similarly use the painted optical center rather than 50% width. Never change card effects, textual content, selected illustrations or D321 color shader as an alignment workaround. Native screenshot review still needed.
+
 ## D325 — Unified DS3 text alignment (2026-10-21)
 
 Table/gallery: all physical Title/Description/CTA labels geometrically centered to x136 at 272px card width with explicit horizontal and vertical alignment. Long English upgrade/reward names still fit via original gallery font selection; short preview remains max 2 lines in clipped well. Type has its own little top-right tab center. Real Reward at width292 uses x146 for role/title/quick effect/description and forces centered alignment after restyling. Fate titles center. Original D319 art, D320 single frame, D321 corrected colors, D323 full frame and D324 borderless well unaffected. Native Godot review remains pending.

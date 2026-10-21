@@ -1,3 +1,9 @@
+## 2026-10-21 — D327: Real painted-frame optical centering and actual top tab
+
+- User's enlarged real Godot F6 screenshot revealed a prior false assumption: `Button` math x136 center differs from physical asymmetrical `front_frame.webp` art center, so descriptions/title/CTA remained visibly left of printed art after D326.
+- Shared + gallery copies now use x147; actual black category tab x150 instead of category drawn outside at x174. True Fate Roman numeral kept next to tab, no overlap; Reward x158 and inspected/Fate title art axes adjusted without changing functionality.
+- Updated smoke assertions on 55 actual gallery text positions, upper tab, numeral and 3 Reward cards. Code commits `90aee64`, `094c15b`; actual new Godot screenshot/native CI status pending. Originals/card IDs/art palette preserved.
+
 ## 2026-10-21 — D326: Keep gallery descriptions fully centered after parenting
 
 - Fixed DS3 full-gallery `Description` labels that retained an obsolete/global rect during reparenting: now reparent without old global transform, anchor each body to its full clipped centered CardTextClip and reapply horizontal/vertical centering.

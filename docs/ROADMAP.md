@@ -1,3 +1,12 @@
+## D327 — True visual center in physical DS3 art, not Button rect (2026-10-21)
+
+- [x] Verify from real F6 enlarged card screenshot that both name/description/CTA sit left of the artwork's printed parchment center, while Type is completely RIGHT of its actual empty top-center tab.
+- [x] Align title/description/CTA to actual visual x147 of 272px frame, not geometrical x136; gallery & real Table use same constants.
+- [x] Place Type inside existing top-middle black plaque (x123..177, center 150), make longer labels fit 8px if needed; retain true Fate numerals in their own left slot so they do not overlap.
+- [x] Apply optical alignment to 292px Reward title/effect/body (center x158) and smaller Inspector/Fate physical printed title fields.
+- [x] Extend 55-gallery/native Reward smoke assertions against printed optical positions, category tab, non-overlapping live Roman and actual global body center.
+- [ ] Native Godot F6 visual validation and actual real Table confirmation **pending**, not PASS.
+
 ## D326 — Center descriptions below card titles (2026-10-21)
 
 - [x] Anchor F6 gallery Description directly to full clipped `CardTextClip` rect (186px, centered x136), reparent without preserving original global transform and reapply CENTER/CENTER after reparent.

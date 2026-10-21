@@ -1,3 +1,7 @@
+## D327 — DS3 physical face is not mathematically centered inside its Button (2026-10-21)
+
+Critical corrective decision after user's real D326 screenshot: `front_frame.webp` is not visually symmetrical about technical Button x=136 at Table size272. The painted parchment inscription and lower black text well share **optical x≈147**, and existing top centered inscription tab uses **x≈150**. Therefore center Type within actual black tab (not x174 right-hand filigree!), and all body/title/hint labels on x147, preserving their own paragraph centering and clipping. Keep true Fate Roman I–XIII visible but place just left of the top tab (x88–122) to prevent type overlap. Corresponding 292px Reward copy center x158. Text layout geometry is a design-system rule derived from observed in-game screenshot; no changes to card logic, event lore or visual artwork.
+
 ## D325 — Physical card copy has one common typographic centerline (2026-10-21)
 
 On 272×338 DS3 Table/gallery face, Title, two-line Description and action hint must share visual center x=136; use x43, width186 for their boxes, and explicitly set both horizontal/vertical CENTER. Original Type is a **top-right category tab** and must be centered inside its own tab, never moved to global card center. Real 292×410 Reward role/heading/effect/body share x146 and current original functional label paths; Fate title center remains explicit. Retain original full-detail lore text as natural readable prose, do not force paragraph centering. No change to original art/frame/flow/gameplay.
