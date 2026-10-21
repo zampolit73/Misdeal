@@ -47,6 +47,10 @@ func _verify() -> void:
     if card_art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
         _fail("D322 full-card inspector crops the source illustration")
         return
+    var inspect_matte := inspect_well.get_theme_stylebox("panel") as StyleBoxFlat
+    if inspect_matte == null or inspect_matte.border_width_left != 0 or inspect_matte.border_width_right != 0:
+        _fail("D324 inspector still renders a stray inner art rectangle")
+        return
     if not (reader.get_node_or_null("Frame/DS3InspectStone") is ColorRect):
         _fail("inspector still double-stacks back border under front frame")
         return
@@ -80,6 +84,10 @@ func _verify() -> void:
             return
         if art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
             _fail("D322 Fate slot %d still crops the scene" % number)
+            return
+        var matte := art_well.get_theme_stylebox("panel") as StyleBoxFlat
+        if matte == null or matte.border_width_left != 0 or matte.border_width_right != 0:
+            _fail("D324 Fate slot %d still has a second inset frame" % number)
             return
         if not (slot.get_node_or_null("DS3CardStone") is ColorRect):
             _fail("Spread slot %d still has the duplicate back border" % number)

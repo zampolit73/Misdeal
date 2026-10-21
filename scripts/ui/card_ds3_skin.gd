@@ -68,11 +68,13 @@ static func _new_art_well(host: Control, node_name: String,
     well.position = at
     well.size = dimensions
     well.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    # D324: native QA showed the visible 1px rectangle floating around
+    # letterboxed landscape art. That is NOT the approved frame.
+    # A seamless mount shares the stone color and has NO second outline.
     var style := StyleBoxFlat.new()
-    style.bg_color = Color("#0f090e")
-    style.border_color = Color("#65412c")
-    style.set_border_width_all(1)
-    style.set_corner_radius_all(1)
+    style.bg_color = FACE_STONE
+    style.draw_center = true
+    style.set_border_width_all(0)
     well.add_theme_stylebox_override("panel", style)
     host.add_child(well)
     return well

@@ -115,6 +115,14 @@ func _verify() -> void:
         if art_well == null or art_well.get_index() >= art.get_index():
             _fail("D322 gallery art is not recessed: " + card.name)
             return
+        # D324: no stray second rectangular gilding around the landscape.
+        var matte := art_well.get_theme_stylebox("panel") as StyleBoxFlat
+        if matte == null or matte.border_width_left != 0 or matte.border_width_top != 0 or matte.border_width_right != 0 or matte.border_width_bottom != 0:
+            _fail("D324 gallery has an unintended inset ornamental frame: " + card.name)
+            return
+        if matte.bg_color != SKIN.FACE_STONE:
+            _fail("D324 art well has a visible mismatched matte: " + card.name)
+            return
         if art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
             _fail("D322 gallery art still crops its scene: " + card.name)
             return
@@ -218,6 +226,10 @@ func _verify() -> void:
             return
         if portrait.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
             _fail("D322 reward portrait still crops its illustration: " + name)
+            return
+        var matte := art_well.get_theme_stylebox("panel") as StyleBoxFlat
+        if matte == null or matte.border_width_left != 0 or matte.border_width_top != 0 or matte.border_width_right != 0 or matte.border_width_bottom != 0:
+            _fail("D324 Reward contains a duplicate inset outline: " + name)
             return
         var physical_frame := card.get_node("DS3CardFrame") as TextureRect
         if not physical_frame.size.is_equal_approx(Vector2(292, 410)):
