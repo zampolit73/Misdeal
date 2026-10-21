@@ -1,0 +1,33 @@
+name: D331 Approved Card Art Binary Import
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/d331-approved-card-art-import.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'Pillow>=10,<12'
+      - name: Retrieve selected scene artwork and build runtime WebPs
+        env:
+          BONE_URL: "https://media.canva.com/v2/image-resize/format:PNG/height:274/quality:100/uri:ifs%3A%2F%2FM%2Fe25e8924-78b4-4aa5-abf8-c8117dfd31de/watermark:F/width:448?csig=AAAAAAAAAAAAAAAAAAAAANY_yoGgTty6R9lVBrlyYZvjipnG-OLJoQ0doL0_-Za5&exp=1792626291&osig=AAAAAAAAAAAAAAAAAAAAANg2moK_iH5iINxqg30vPoxHMmDBrcCONwM9uVTTRyNX&signer=media-rpc&token=AAIAAU0AJGUyNWU4OTI0LTc4YjQtNGFhNS1hYmY4LWM4MTE3ZGZkMzFkZQAAAAABoWDacTidgXd1xNhaSYunq_044HGXhWOmx_otpmGlRns1RVtEpQ"
+          BLOOD_URL: "https://media.canva.com/v2/image-resize/format:PNG/height:1024/quality:100/uri:ifs%3A%2F%2FM%2F1fc088f6-de84-4cab-8f44-3c6e5cc15d69/watermark:F/width:1536?csig=AAAAAAAAAAAAAAAAAAAAAKjwJakbESAoE6tAhIQ03z6MFjhmDas8ffUp78up3gbG&exp=1792624914&osig=AAAAAAAAAAAAAAAAAAAAAG4B2bMc9qQPeFNZ3zJdkOgU5iIgucmLClDd437AyKY8&signer=media-rpc&token=AAIAAU0AJDFmYzA4OGY2LWRlODQtNGNhYi04ZjQ0LTNjNmU1Y2MxNWQ2OQAAAAABoWDFblD5j34vjfWPcjWXRyzE0kBNPGsyxOkvecR-ORbwZY_HQA"
+        run: python tools/art/d331_import_approved_card_art.py
+      - name: Commit actual art and catalog mapping
+        run: |
+          git add assets/pixel/card_unification_v1/run/bone_crush_d331_approved_option2.webp
+          git add assets/pixel/card_unification_v1/run/blood_ledger_d331_approved_scribe.webp
+          git add scripts/ui/card_unification_v1.gd
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git diff --cached --quiet && exit 1
+          git commit -m "D331: Publish approved Bone Crush and Blood Ledger scene art"
+          git push origin HEAD:main
