@@ -1,3 +1,14 @@
+## D316 — Approved DS3 across all true card surfaces: progress vs QA (2026-10-21)
+
+- [x] Check `main` first: existing **D315** common front, back, ink, shader, active tabletop cards, Fate Spread I–XIII, held/discard, Reward and complete F6 gallery already wired. **40 RunCardData resources + 9 upgrade + 6 reward art keys** accounted for.
+- [x] Lock the user's actual chosen red/black/bronze/parchment first reference as Card DS3 in `docs/DESIGN_SYSTEM.md` and Decisions.
+- [x] Create rollback checkpoint at D315 audited state (`checkpoint/card-ds3-d315-audited-2026-10-21`).
+- [x] Complete missing **actual physical full-text/RMB inspector**: shared DS3 face around unchanged source artwork, live heading and scrollable original text, original ESC/close.
+- [x] Add second native smoke + CI trigger for right-click card detail, 12 Fate slots, XIII, held and discarded; D315 already covers gallery/Reward.
+- [ ] Native Godot 4.7.x CI/final F6 screenshot and visual fit of all 40 + 9 + 6; check card title/effect legibility and input during Table→Battle→Reward→Table.
+- [ ] Identify and individually redraw illustration outliers if the currently applied shared grade is insufficient to match approved reference; **do not equate procedural grading with hand-repainting every separate artwork**.
+- [ ] Final in-game art acceptance after actual 1280×720 screenshots; card direction already approved—avoid demanding approval of each unchanged card.
+
 ## D314 — Battle DS3 approved; next optional UI screen (2026-10-21)
 
 - [x] User **explicitly approved** Battle DS3 after D313 and requested to move on to other visual improvements; freeze visual review rather than demand more micro-screenshots.
