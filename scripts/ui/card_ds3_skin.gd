@@ -12,6 +12,12 @@ const INK_TEXT := Color("#251610")
 const FACE_STONE := Color("#150d11")
 const BONE := Color("#eddbbd")
 const TABLE_SIZE := Vector2(272, 338)
+# D327: front_frame.webp has asymmetrical transparent gutters. The visible
+# parchment/title/footprint center is x=147, NOT the Button's x=136.
+# The separate top inscription tab is centered at x=150.
+const TABLE_COPY_CENTER_X := 147.0
+const TABLE_TAB_CENTER_X := 150.0
+const REWARD_COPY_CENTER_X := 158.0
 
 static var _textures: Dictionary = {}
 
@@ -121,7 +127,7 @@ static func apply_table(button: Button) -> bool:
 
     var title := button.get_node("Title") as Label
     # D325: shared optical center x=136; do not offset title from prose.
-    _at(title, Vector2(43, 232), Vector2(186, 28))
+    _at(title, Vector2(TABLE_COPY_CENTER_X - 93.0, 232), Vector2(186, 28))
     title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -135,9 +141,9 @@ static func apply_table(button: Button) -> bool:
     title.max_lines_visible = 2
 
     var category := button.get_node("Type") as Label
-    # D318: category belongs in the physical frame's top-right blank tab;
-    # it must never obscure the unique encounter painting.
-    _at(category, Vector2(174, 16), Vector2(78, 20))
+    # D327: the painted black tab is central, not on the right.
+    # Keep category inside it (and the live Roman number just to its left).
+    _at(category, Vector2(TABLE_TAB_CENTER_X - 27.0, 16), Vector2(54, 20))
     category.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     category.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     category.add_theme_font_size_override("font_size", 9)
@@ -149,7 +155,7 @@ static func apply_table(button: Button) -> bool:
     # It must not retain offsets/anchors from the old DS2 layout.
     body.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
     body.custom_minimum_size = Vector2.ZERO
-    _at(body, Vector2(43, 263), Vector2(186, 39))
+    _at(body, Vector2(TABLE_COPY_CENTER_X - 93.0, 263), Vector2(186, 39))
     body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -159,7 +165,7 @@ static func apply_table(button: Button) -> bool:
     body.max_lines_visible = 2
 
     var hint := button.get_node("Hint") as Label
-    _at(hint, Vector2(43, 305), Vector2(186, 21))
+    _at(hint, Vector2(TABLE_COPY_CENTER_X - 93.0, 305), Vector2(186, 21))
     hint.add_theme_font_size_override("font_size", 11)
     hint.add_theme_color_override("font_color", GOLD)
     hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -172,12 +178,13 @@ static func apply_table(button: Button) -> bool:
 
     var roman := Label.new()
     roman.name = "DS3Roman"
-    roman.position = Vector2(114, 11)
-    roman.size = Vector2(49, 20)
+    # Distinct from the category tab; keeps authentic Fate I-XIII legible.
+    roman.position = Vector2(88, 16)
+    roman.size = Vector2(34, 19)
     roman.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     roman.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     roman.add_theme_color_override("font_color", GOLD)
-    roman.add_theme_font_size_override("font_size", 14)
+    roman.add_theme_font_size_override("font_size", 12)
     roman.mouse_filter = Control.MOUSE_FILTER_IGNORE
     button.add_child(roman)
     return true
@@ -224,21 +231,21 @@ static func apply_reward(button: Button, portrait: TextureRect,
     button.move_child(portrait, 2)
     var face := _new_art(button, "DS3CardFrame", frame, Vector2(292, 410))
     button.move_child(face, 3)
-    _at(role, Vector2(38, 8), Vector2(216, 23))
+    _at(role, Vector2(REWARD_COPY_CENTER_X - 108.0, 8), Vector2(216, 23))
     role.add_theme_color_override("font_color", GOLD)
     role.add_theme_font_size_override("font_size", 12)
     role.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    _at(heading, Vector2(38, 285), Vector2(216, 31))
+    _at(heading, Vector2(REWARD_COPY_CENTER_X - 108.0, 285), Vector2(216, 31))
     heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     heading.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     heading.add_theme_color_override("font_color", INK_TEXT)
     heading.add_theme_font_size_override("font_size", 15)
-    _at(effect, Vector2(36, 328), Vector2(220, 27))
+    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 328), Vector2(220, 27))
     effect.add_theme_color_override("font_color", GOLD)
     effect.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     effect.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    _at(description, Vector2(35, 355), Vector2(222, 45))
+    _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 355), Vector2(222, 45))
     description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     description.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -260,8 +267,8 @@ static func style_reward_copy(button: Button, role: Label, heading: Label,
         label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
         label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     var has_effect := effect.visible
-    _at(effect, Vector2(36, 325), Vector2(220, 36 if has_effect else 0))
-    _at(description, Vector2(35, 360 if has_effect else 325),
+    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 325), Vector2(220, 36 if has_effect else 0))
+    _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 360 if has_effect else 325),
         Vector2(222, 40 if has_effect else 75))
     description.add_theme_font_size_override("font_size", 11)
     effect.add_theme_font_size_override("font_size", 11)
@@ -292,7 +299,7 @@ static func apply_inspection(host: Control, illustration: TextureRect) -> bool:
     host.move_child(gilt, illustration.get_index() + 1)
     var plate_title := Label.new()
     plate_title.name = "DS3InspectCardTitle"
-    plate_title.position = CARD_AT + Vector2(26, 216)
+    plate_title.position = CARD_AT + Vector2(35, 216)
     plate_title.size = Vector2(174, 31)
     plate_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     plate_title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -336,7 +343,7 @@ static func apply_spread_slot(panel: Panel, art: TextureRect, title_plate: Color
     var face := _new_art(panel, "DS3CardFrame", frame, dimensions)
     panel.move_child(face, 3)
     title_plate.modulate.a = 0.0
-    _at(title, Vector2(dimensions.x * 0.10, dimensions.y * 0.72),
+    _at(title, Vector2(dimensions.x * 0.14, dimensions.y * 0.72),
         Vector2(dimensions.x * 0.80, dimensions.y * 0.14))
     title.add_theme_color_override("font_color", INK_TEXT)
     title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -365,7 +372,7 @@ static func apply_sidebar_card(host: Control, art: TextureRect,
     frame_node.position = at
     host.move_child(frame_node, art.get_index() + 1)
     title_plate.modulate.a = 0.0
-    _at(title, at + Vector2(dimensions.x * 0.09, dimensions.y * 0.72),
+    _at(title, at + Vector2(dimensions.x * 0.13, dimensions.y * 0.72),
         Vector2(dimensions.x * 0.82, dimensions.y * 0.13))
     title.add_theme_color_override("font_color", INK_TEXT)
     title.add_theme_font_size_override("font_size", 10)

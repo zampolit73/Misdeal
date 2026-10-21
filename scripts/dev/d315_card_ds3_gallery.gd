@@ -126,17 +126,19 @@ func _card_widget(title: String, type_name: String, full_text: String,
     # The original frame already has an empty black category tab at top right.
     # Never let category prose float across the painted encounter scene.
     var category := button.get_node("Type") as Label
-    category.position = Vector2(174, 16)
-    category.size = Vector2(78, 20)
-    category.add_theme_font_size_override("font_size", 9)
+    category.position = Vector2(SKIN.TABLE_TAB_CENTER_X - 27.0, 16)
+    category.size = Vector2(54, 20)
+    category.add_theme_font_size_override(
+        "font_size", 8 if type_name.length() > 8 else 9
+    )
     category.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     # Category is intentionally centered in its TOP-RIGHT TAB, not card body.
     category.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     category.text = type_name
 
     var heading := button.get_node("Title") as Label
-    # D325: all front-facing gallery copy shares the 136px card center.
-    heading.position = Vector2(43, 231)
+    # D327: align to painted frame's optical axis rather than Button center.
+    heading.position = Vector2(SKIN.TABLE_COPY_CENTER_X - 93.0, 231)
     heading.size = Vector2(186, 30)
     heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -148,7 +150,7 @@ func _card_widget(title: String, type_name: String, full_text: String,
     # vertical drawing. This explicit nested clipping well does both.
     var well := Control.new()
     well.name = "CardTextClip"
-    well.position = Vector2(43, 264)
+    well.position = Vector2(SKIN.TABLE_COPY_CENTER_X - 93.0, 264)
     well.size = Vector2(186, 36)
     well.clip_contents = true
     well.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -169,7 +171,7 @@ func _card_widget(title: String, type_name: String, full_text: String,
     body.text = _short_copy(full_text)
 
     var hint := button.get_node("Hint") as Label
-    hint.position = Vector2(43, 305)
+    hint.position = Vector2(SKIN.TABLE_COPY_CENTER_X - 93.0, 305)
     hint.size = Vector2(186, 21)
     hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER

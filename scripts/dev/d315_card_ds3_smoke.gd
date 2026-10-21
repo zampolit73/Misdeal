@@ -172,7 +172,9 @@ func _verify() -> void:
             _fail("description escapes card horizontal bounds: " + card.name)
             return
         # D325: true centering across all 55 cards, even after layout override.
-        var expected_center := SKIN.TABLE_SIZE.x * 0.5
+        # D327: front_frame.webp art is asymmetrical: body optical center
+        # is x147 and header tab center is x150, not Button center x136.
+        var expected_center := SKIN.TABLE_COPY_CENTER_X
         for line in [heading, hint]:
             if line.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER or line.vertical_alignment != VERTICAL_ALIGNMENT_CENTER:
                 _fail("D325 card line is not centered: " + card.name + "/" + line.name)
@@ -201,12 +203,22 @@ func _verify() -> void:
             _fail("D326 description is not anchored to the well: " + card.name)
             return
         var actual_center := (body.global_position.x + body.size.x * 0.5)
-        var card_center := (card.global_position.x + card.size.x * 0.5)
-        if absf(actual_center - card_center) > 0.5:
-            _fail("D326 rendered description center differs from card: " + card.name)
+        var face_copy_center := card.global_position.x + SKIN.TABLE_COPY_CENTER_X
+        if absf(actual_center - face_copy_center) > 0.5:
+            _fail("D327 rendered description center differs from FRONT art: " + card.name)
             return
         if category.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER:
             _fail("D325 type text is not centered in its physical tab: " + card.name)
+            return
+        if absf(category.position.x + category.size.x * 0.5 - SKIN.TABLE_TAB_CENTER_X) > 0.5:
+            _fail("D327 category text is outside the black top inscription tab: " + card.name)
+            return
+        if category.size.x > 56.0:
+            _fail("D327 category tab label is wider than approved ornate inset: " + card.name)
+            return
+        var roman_rect := card.get_node("DS3Roman") as Label
+        if roman_rect.position.x + roman_rect.size.x > category.position.x:
+            _fail("D327 true Fate numeral overlaps the category label: " + card.name)
             return
         if body.max_lines_visible > 2 or body.text.length() > 59:
             _fail("gallery preview exceeds two-line budget: " + card.name)
@@ -273,7 +285,7 @@ func _verify() -> void:
             if text_node.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER:
                 _fail("D325 Reward text alignment is not centered: " + name + "/" + path)
                 return
-            if absf(text_node.position.x + text_node.size.x * 0.5 - 146.0) > 1.0:
+            if absf(text_node.position.x + text_node.size.x * 0.5 - SKIN.REWARD_COPY_CENTER_X) > 1.0:
                 _fail("D325 Reward text box is off-center: " + name + "/" + path)
                 return
         var matte := art_well.get_theme_stylebox("panel") as StyleBoxFlat
