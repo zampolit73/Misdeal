@@ -521,7 +521,13 @@ func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData)
 		approved_art = ROLE_FALLBACK_ART.get(upgrade.target_role) as Texture2D
 	upgrade_portraits[index].texture = approved_art
 	upgrade_portraits[index].texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	upgrade_portraits[index].stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	# D332: live DS3's recessed painted scene must NEVER return to COVERED
+	# when the selected loot/upgrade swaps its texture at runtime.
+	upgrade_portraits[index].stretch_mode = (
+		TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		if reward_buttons[index].has_node("DS3CardFrame")
+		else TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	)
 	upgrade_portraits[index].visible = approved_art != null
 	upgrade_choose_bars[index].visible = false
 	_apply_upgrade_text_layout(index, approved_art != null)
@@ -542,7 +548,13 @@ func _set_reward_card(index: int, art_key: String, kicker: String, title: String
 		texture = CARD_ART_CATALOG.get_reward_texture(art_key)
 	upgrade_portraits[index].texture = texture
 	upgrade_portraits[index].texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	upgrade_portraits[index].stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	# D332: live DS3's recessed painted scene must NEVER return to COVERED
+	# when the selected loot/upgrade swaps its texture at runtime.
+	upgrade_portraits[index].stretch_mode = (
+		TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		if reward_buttons[index].has_node("DS3CardFrame")
+		else TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	)
 	upgrade_portraits[index].visible = texture != null
 
 	var accent := Color(0.96, 0.72, 0.42, 1.0)
