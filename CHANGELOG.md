@@ -1,3 +1,10 @@
+## 2026-10-21 — D312 Wizard panel readability and reward hierarchy
+
+- User approved the direction of a final restrained polish on selected third Wizard plaque in two concept images. Applied the adjustments to **real Godot UI code**, not just the illustrations.
+- Recentered live title/condition text inside their corresponding D311 artistic wells, gave glyphs a minimal dark edge, and moved the preparation panel upward 4px.
+- Added a quiet dynamic `D312WizardReward` label that extracts `+15 золота` from canonical objective text; hides on success/failure and does not alter reward calculation or side-objective rules.
+- Expanded D306 genuine Battle and D308 direct F6 smoke checks. Native runtime D312 and final Battle visual approval remain pending. Source images, animations, AI, tactics, DS2 checkpoint unaffected.
+
 ## 2026-10-21 — D311: integrate user's selected third Wizard art module
 
 - User selected third illustrated Battle Wizard plaque concept with hooded character medallion and restrained bronze/wood, replacing previous D307 ornate silhouette art direction.
