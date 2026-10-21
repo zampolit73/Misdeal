@@ -1,13 +1,13 @@
 ## D318 — Repair applied, native/visual approval pending (2026-10-21)
 
 - [x] Inspect the ACTUAL D317 archived native screenshot; trace cross-card text, category on painting and fake Roman ordinals to gallery/skin.
-- [x] In main \`d6b2eda\`: add clipped 56-character gallery preview, correct Title/Type placement, hide non-semantic Fate numbers, add fully scrollable modal showing original full copy and individual art (ESC/close).
-- [x] In main \`61ca941\`: restrict live Table DS3 preview to 56 characters / max 2 lines while retaining canonical RMB full text; shift Type to top-right physical tab.
+- [x] In main `d6b2eda`: add clipped 56-character gallery preview, correct Title/Type placement, hide non-semantic Fate numbers, add fully scrollable modal showing original full copy and individual art (ESC/close).
+- [x] In main `61ca941`: restrict live Table DS3 preview to 56 characters / max 2 lines while retaining canonical RMB full text; shift Type to top-right physical tab.
 - [x] D318 shader preserves the approved warmer scarlet grade without crushing most dark-scene midtones; applies on all shared card surfaces.
 - [x] Expand D315 native source smoke for all 55 cards, bounds, no misleading numerals, original Black Altar full narrative and close.
 - [ ] **Native CI / F6 user screenshot of D318**, focus the first row with Black Altar and modal, plus actual two-offer Table, real Reward, Spread I–XIII, existing RMB reader; no visual PASS yet.
 - [ ] Audit contrast/scene quality of the full 40+15 illustration set after runtime screenshot. First bespoke scene batch in D168 options-first mode; selected per-ID art can be committed only after rendering options and user choosing.
-- [ ] Final all-55 individual redraw and user signoff **OPEN** (common frame/grade is not 55 unique repaint approvals). Details \`docs/D318_CARD_DS3_GALLERY_FIX_HANDOFF.md\`.
+- [ ] Final all-55 individual redraw and user signoff **OPEN** (common frame/grade is not 55 unique repaint approvals). Details `docs/D318_CARD_DS3_GALLERY_FIX_HANDOFF.md`.
 
 ## D317 — Card DS3 first real F6 gallery screenshot: required fixes BEFORE acceptance (2026-10-21)
 
