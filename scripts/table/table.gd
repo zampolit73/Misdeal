@@ -9,6 +9,7 @@ const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 const TABLE_DS3_PASS := preload("res://scripts/table/table_ds3_pass.gd")
 const TABLE_OFFER_SKIN := preload("res://scripts/table/table_offer_skin.gd")
+const CARD_DS3_SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
 const CARD_LORE_INSPECT_SCENE := preload("res://scenes/table/card_lore_inspect.tscn")
 
 const LEFT_CARD_POSITION := Vector2(349.0, 329.0)
@@ -121,6 +122,7 @@ func _apply_ui_kit() -> void:
 	MISDEAL_DS2_ROLLOUT.table(self)
 	# D289: opt-in visual pass AFTER DS2; gameplay and 2-offer card layout untouched.
 	TABLE_DS3_PASS.apply(self)
+	CARD_DS3_SKIN.apply_table_backs(self)
 
 
 func _input(event: InputEvent) -> void:
@@ -333,6 +335,7 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 			art.texture = texture
 
 	_apply_card_style(button, card)
+	CARD_DS3_SKIN.update_table_roman(button, 13 if card.card_id == RunState.BOSS_CARD_ID else RunState.cards_resolved + 1)
 
 func _refresh_hold_buttons(offers: Array[RunCardData]) -> void:
 	var hold_buttons: Array[Button] = [hold_a_button, hold_b_button]
@@ -738,6 +741,10 @@ func _get_hint_text(card: RunCardData) -> String:
 
 
 func _apply_card_style(button: Button, card: RunCardData) -> void:
+	if button.has_node("DS3CardFrame"):
+		CARD_DS3_SKIN._empty_button(button)
+		CARD_DS3_SKIN.grade(button.get_node("Art") as TextureRect)
+		return
 	var combat_like := card.type_label == "БОЙ" or card.type_label == "ЭЛИТА" or card.type_label == "БОСС"
 	var event_like := not combat_like
 
