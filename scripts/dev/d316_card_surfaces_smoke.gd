@@ -84,6 +84,9 @@ func _verify() -> void:
         if not (slot.get_node_or_null("DS3CardStone") is ColorRect):
             _fail("Spread slot %d still has the duplicate back border" % number)
             return
+        if not (slot.get_node("DS3CardFrame") as TextureRect).size.is_equal_approx(slot.size):
+            _fail("D323 Fate frame is clipped instead of covering slot %d" % number)
+            return
         if (slot.get_node("DS3CardFrame") as TextureRect).mouse_filter != Control.MOUSE_FILTER_IGNORE:
             _fail("DS3 ornament blocks I-XII slot hover")
             return
@@ -107,6 +110,12 @@ func _verify() -> void:
     if not (spread.get_node_or_null("Frame/DiscardPanel/CardLayer/DS3SidebarStone") is ColorRect):
         _fail("discarded card has duplicate border substrate")
         return
+    for area in ["Frame/HeldPanel", "Frame/DiscardPanel/CardLayer"]:
+        var frame_node := spread.get_node_or_null(area + "/DS3SidebarFrame") as TextureRect
+        var base_node := spread.get_node_or_null(area + "/DS3SidebarStone") as ColorRect
+        if frame_node == null or base_node == null or not frame_node.size.is_equal_approx(base_node.size):
+            _fail("D323 sidebar frame does not cover full underlying card: " + area)
+            return
     print("D316_CARD_SURFACES_NATIVE_PASS: complete-card reader, I-XIII, held/discard, live texts and controls")
     spread.queue_free()
     await process_frame

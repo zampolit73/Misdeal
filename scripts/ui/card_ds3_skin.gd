@@ -33,14 +33,17 @@ static func _empty_button(button: Button) -> void:
 static func _new_art(host: Control, node_name: String, texture: Texture2D, dimensions: Vector2) -> TextureRect:
     var layer := TextureRect.new()
     layer.name = node_name
-    layer.texture = texture
-    layer.position = Vector2.ZERO
-    layer.size = dimensions
+    # D323: assigning the texture FIRST activates its intrinsic 375x509
+    # minimum size. Setting size before IGNORE_SIZE clamps the frame to that
+    # native size, and the 272x338 Button clips its right/bottom edges.
     layer.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
     layer.stretch_mode = TextureRect.STRETCH_SCALE
     layer.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
     layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    layer.texture = texture
     host.add_child(layer)
+    layer.position = Vector2.ZERO
+    layer.size = dimensions
     return layer
 
 # D320: the old INK bitmap is a complete card back with its OWN gilt
@@ -75,10 +78,11 @@ static func _new_art_well(host: Control, node_name: String,
     return well
 
 static func _fit_art_in_well(art: TextureRect, at: Vector2, dimensions: Vector2) -> void:
-    _at(art, at, dimensions)
+    # Order matters here too: live Table Art may already hold a 448x274
+    # texture when we apply its 211x188 authored inner rectangle.
     art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-    # Fit the ENTIRE scene inside the well; never crop it into the text area.
     art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+    _at(art, at, dimensions)
 
 static func _at(control: Control, at: Vector2, dimensions: Vector2) -> void:
     control.position = at

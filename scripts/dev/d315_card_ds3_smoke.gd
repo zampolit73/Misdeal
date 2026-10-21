@@ -99,6 +99,15 @@ func _verify() -> void:
         if front_layers != 1:
             _fail("DS3 gallery has more than one front frame: " + card.name)
             return
+        # D323: catches native-size 375x509 frame clipping at the card edge.
+        var physical_frame := card.get_node("DS3CardFrame") as TextureRect
+        if not physical_frame.size.is_equal_approx(SKIN.TABLE_SIZE):
+            _fail("D323 gallery frame is native-size/clipped, not card-size: " + card.name +
+                " " + str(physical_frame.size))
+            return
+        if not (card.get_node("DS3CardStone") as ColorRect).size.is_equal_approx(SKIN.TABLE_SIZE):
+            _fail("D323 gallery stone bounds differ from physical card: " + card.name)
+            return
         # D322: the real illustration remains inside a separate art mount,
         # underneath the ONE exterior frame and above the unframed stone.
         var art := card.get_node("Art") as TextureRect
@@ -209,6 +218,10 @@ func _verify() -> void:
             return
         if portrait.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
             _fail("D322 reward portrait still crops its illustration: " + name)
+            return
+        var physical_frame := card.get_node("DS3CardFrame") as TextureRect
+        if not physical_frame.size.is_equal_approx(Vector2(292, 410)):
+            _fail("D323 Reward physical frame clipped to native texture dimensions: " + name)
             return
         if not (card.get_node_or_null("DS3CardStone") is ColorRect):
             _fail("DS3 reward card still stacks a second bordered back: " + name)
