@@ -310,7 +310,11 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	button.set_meta("card_id", card.card_id)
 	title_label.text = card.title
 	type_label.text = _get_card_type_line(card)
-	description_label.text = TABLE_OFFER_SKIN.short_description(card.card_text)
+	# DS3's small ink well allows two lines only. The authoritative
+	# unabridged text stays in RunCardData and the real RMB reader.
+	description_label.text = TABLE_OFFER_SKIN.short_description(
+		card.card_text, 56 if button.has_node("DS3CardFrame") else 100
+	)
 	hint_label.text = _get_hint_text(card)
 	# Full lore is opened deliberately with RMB; no automatic popup may hide cards.
 	button.tooltip_text = ""

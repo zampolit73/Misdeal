@@ -149,14 +149,13 @@ static func _set_hover_visual(button: Button, hovering: bool) -> void:
 		frame_art.modulate = Color(1.0, 0.99, 0.93) if hovering and not button.disabled else Color(0.95, 0.93, 0.87)
 
 
-static func short_description(original: String) -> String:
+static func short_description(original: String, max_copy: int = 100) -> String:
 	var plain := original.replace("\n", " ").strip_edges()
-	const MAX_COPY := 100
-	if plain.length() <= MAX_COPY:
+	if plain.length() <= max_copy:
 		return plain
-	var clipped := plain.substr(0, MAX_COPY)
+	var clipped := plain.substr(0, max_copy)
 	var word_end := clipped.rfind(" ")
-	if word_end >= 55:
+	if word_end >= maxi(12, max_copy / 2):
 		clipped = clipped.substr(0, word_end)
 	return clipped.strip_edges() + "…"
 

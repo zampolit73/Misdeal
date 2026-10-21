@@ -82,11 +82,15 @@ static func apply_table(button: Button) -> bool:
     title.add_theme_font_size_override("font_size", 14)
     title.add_theme_color_override("font_color", INK_TEXT)
     title.clip_text = true
+    title.max_lines_visible = 2
 
     var category := button.get_node("Type") as Label
-    _at(category, Vector2(47, 207), Vector2(180, 16))
+    # D318: category belongs in the physical frame's top-right blank tab;
+    # it must never obscure the unique encounter painting.
+    _at(category, Vector2(174, 16), Vector2(78, 20))
     category.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    category.add_theme_font_size_override("font_size", 10)
+    category.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+    category.add_theme_font_size_override("font_size", 9)
     category.add_theme_color_override("font_color", GOLD)
     category.clip_text = true
 
@@ -98,6 +102,7 @@ static func apply_table(button: Button) -> bool:
     body.add_theme_font_size_override("font_size", 11)
     body.add_theme_color_override("font_color", BONE)
     body.clip_text = true
+    body.max_lines_visible = 2
 
     var hint := button.get_node("Hint") as Label
     _at(hint, Vector2(52, 305), Vector2(169, 21))
