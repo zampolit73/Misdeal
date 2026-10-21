@@ -1,3 +1,10 @@
+## D328 — D327 визуально утверждён пользователем (2026-10-21)
+
+- [x] User signoff: «утверждаю» после D327 по оптическому центрированию текста и типовым плашкам в DS3; текущая раскладка зафиксирована как эталон.
+- [x] Заморозить Card DS3 frame / palette / типографику как базу последующих художественных партий; не начинать новый раунд переделки интерфейса самовольно.
+- [ ] Новые самостоятельные арты оставшихся карт: каждый пакет согласовать 2–3 композициями до замены файлов по ID (D168). 55 индивидуальных перерисовок НЕ завершены.
+- [ ] Native Godot smoke/CI отдельно не подтверждён: визуальное согласование не приравнивать к техническому PASS.
+
 ## D327 — True visual center in physical DS3 art, not Button rect (2026-10-21)
 
 - [x] Verify from real F6 enlarged card screenshot that both name/description/CTA sit left of the artwork's printed parchment center, while Type is completely RIGHT of its actual empty top-center tab.

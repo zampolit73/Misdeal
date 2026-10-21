@@ -1,3 +1,7 @@
+## D328 — Card DS3 APPROVED baseline (2026-10-21)
+
+Following D327 the user wrote «утверждаю» and accepted its visible card layout. Official visual baseline: complete ONE outer ornate frame; source-color artwork in seamless unoutlined recess; titles, snippets and CTA centered to frame's optical x147 rather than Button center; type at top tab x150; real Fate numerals in adjacent slot; Reward body x158. **No autonomous changes to this baseline.** New per-card scene artwork must follow established approval workflow and fit the frame without baking UI into the illustration. Technical smoke/CI remains a separate validation axis.
+
 ## D327 — Optical centers of real DS3 painted frame (2026-10-21)
 
 **Do not equate Button center with visual center of illustrated `front_frame.webp`.** The card front has asymmetric transparent gutters/ornament. At 272×338 Table/gallery dimensions the common visible Title/Description/CTA axis is x=147; the existing black top category tab is visually x=150 (Type label box x=123..177). Put Russian type words inside that tab, not at x174 outside it. Live numbered Fate Roman stays visible in a separate adjacent field left of the tab. At 292px Reward front title/effect/description center x158; other physical card titles similarly use the painted optical center rather than 50% width. Never change card effects, textual content, selected illustrations or D321 color shader as an alignment workaround. Native screenshot review still needed.

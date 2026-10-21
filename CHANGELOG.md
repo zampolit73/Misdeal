@@ -1,3 +1,9 @@
+## 2026-10-21 — D328: Card DS3 visual baseline approved by user
+
+- User explicitly accepted D327 layout («утверждаю»). Freeze current full-frame, true-color, no-inner-outline, optically centered Card DS3 visual design as approved baseline.
+- This is a design approval, not a native CI result or 55-card individual-art completion. Keep progressing through separately approved image batches, preserving current UI mechanics and source assets.
+- Synced project state, roadmap, visual design system, decision log and next-chat handoff; no gameplay/code change in this documentation commit.
+
 ## 2026-10-21 — D327: Real painted-frame optical centering and actual top tab
 
 - User's enlarged real Godot F6 screenshot revealed a prior false assumption: `Button` math x136 center differs from physical asymmetrical `front_frame.webp` art center, so descriptions/title/CTA remained visibly left of printed art after D326.

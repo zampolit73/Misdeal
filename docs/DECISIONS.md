@@ -1,3 +1,7 @@
+## D328 — Approved card DS3 layout baseline (2026-10-21)
+
+User explicitly approved D327 («утверждаю»). The approved card front is the single complete D320/D323 Gothic frame, D321 true artwork colors, D324 borderless art matte, D327 actual painted optical text axes (Table x147, category tab x150, Reward x158) and true Fate Roman slot. This approval locks the PRESENTATION, not individual replacement art for the full 55-image catalogue and not Godot CI results. Preserve this layout unless user reopens it.
+
 ## D327 — DS3 physical face is not mathematically centered inside its Button (2026-10-21)
 
 Critical corrective decision after user's real D326 screenshot: `front_frame.webp` is not visually symmetrical about technical Button x=136 at Table size272. The painted parchment inscription and lower black text well share **optical x≈147**, and existing top centered inscription tab uses **x≈150**. Therefore center Type within actual black tab (not x174 right-hand filigree!), and all body/title/hint labels on x147, preserving their own paragraph centering and clipping. Keep true Fate Roman I–XIII visible but place just left of the top tab (x88–122) to prevent type overlap. Corresponding 292px Reward copy center x158. Text layout geometry is a design-system rule derived from observed in-game screenshot; no changes to card logic, event lore or visual artwork.
