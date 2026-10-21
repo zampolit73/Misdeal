@@ -79,7 +79,7 @@ func _check() -> void:
 		if heading.position != Vector2(63, 9) or heading.size != Vector2(172, 29):
 			_fail("D312 heading no longer centered in approved art")
 			return
-		if not reward.get_theme_color("font_color").r < heading.get_theme_color("font_color").r:
+		if reward.get_theme_color("font_color").r >= heading.get_theme_color("font_color").r:
 			_fail("D312 reward hierarchy is too prominent")
 			return
 		if heading.z_index <= artwork.z_index or body.z_index <= artwork.z_index:
