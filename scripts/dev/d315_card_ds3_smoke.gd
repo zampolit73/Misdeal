@@ -30,14 +30,14 @@ func _verify() -> void:
     root.add_child(preview)
     await process_frame
     var grid := preview.get_node("CardScroll/CardGrid") as GridContainer
-    if grid == null or preview.get("card_count") < 39:
+    if grid == null or preview.get("card_count") < 40:
         _fail("the full card resource registry was not enumerated")
         return
     if not (preview.get("missing_art") as Array).is_empty():
         _fail("one or more original RunCardData illustrations unavailable: " +
             str(preview.get("missing_art")))
         return
-    if grid.get_child_count() < 52:
+    if grid.get_child_count() < 55:
         _fail("gallery is missing reward/upgrade card illustrations")
         return
     for child in grid.get_children():
