@@ -1,3 +1,9 @@
+## 2026-10-22 — D340: Whispering Well first ghost reflection shipped
+
+- Corrected previous local-file-only response by pushing user's approved FIRST full-size reflection well painting into GitHub (real 448×274 WebP, original composition retained).
+- Updated `RUN_CARDS["whispering_well"]` only; old WebP remains as rollback, event content and D328 Card DS3 unaffected.
+- Added D315 image-integrity/hash/decode/dimension/catalog protection, handoff, registry, state, roadmap and decision record. Native Godot verification is separate.
+
 ## 2026-10-22 — D339: Grave Crossfire option 3 published
 
 - Locked user's THIRD image of final Grave Crossfire triptych: crossfire flanks each have a skeletal bowman and the middle is blocked by a sword/shield skeleton.

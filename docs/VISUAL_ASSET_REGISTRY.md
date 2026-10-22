@@ -1,3 +1,9 @@
+## D340 — Approved Whispering Well #1 full painting (2026-10-22)
+
+- **Exact chosen original:** `призрачное_лицо_в_старом_колодце.png` 1604×981 (file `file_00000000cb28824699f21a53bbd69375`); FIRST of last finished three-image set, no skeletons. Round ancient stone well under cloudy night in courtyard, face beneath ripples, bucket/rope at lower left, single warm lantern left background. The well fills the image.
+- **Live WebP:** `assets/pixel/card_unification_v1/run/whispering_well_d340_approved_option1.webp`, 448×274 full-frame (uncropped) from original, quality 86, SHA256 `a6ee36b5c25c5fdc59937085921ed102cfcd8fa2d7be3e8e84b5ba36dfd64d8e`. `RUN_CARDS["whispering_well"]` mapped to it, legacy `run/whispering_well.webp` retained for rollback. D315 protects SHA and pixel rendering.
+- **Do not substitute:** rough D340 sketch triptych, the two different finished `призрачное_отражение_в_старом_колодце.png` candidates, or repeated D339 skeletal crossfire scenes.
+
 ## D339 — Approved Grave Crossfire card artwork #3 (2026-10-22)
 
 - **User selection:** third of last three new «Могильный перекрёсток» images, original `перекрёсток_костяных_стрелков_в_тумане.png` 1604×981, file ID `file_0000000016e08246bbd9378f0d47fd23`; two opposing hooded skeletal bowmen on left and right flank a single shield-and-sword guard on a misty cemetery crossroads.

@@ -38,7 +38,8 @@ const RUN_CARDS := {
 	"graveyard_ambush": "run/graveyard_ambush_d336_approved_option1.webp",
 	# D337: approved FIRST Gallows Volley concept; crop keeps all 3 skeletons + gallows.
 	"gallows_volley": "run/gallows_volley_d337_approved_option1.webp",
-	"whispering_well": "run/whispering_well.webp",
+	# D340: FIRST of the final three ghost-reflection wells: face in black water.
+	"whispering_well": "run/whispering_well_d340_approved_option1.webp",
 	"gravedigger_shop": "run/gravedigger_shop.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",

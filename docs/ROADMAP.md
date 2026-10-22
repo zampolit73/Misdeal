@@ -1,3 +1,13 @@
+## D340 — Whispering Well, approved first ghost-face image (2026-10-22)
+
+- [x] Respect first of final three **finished** full-size well paintings, `призрачное_лицо_в_старом_колодце.png`, not the earlier sketch, second or third reflection.
+- [x] Publish full-frame 448×274 WebP from original; route `whispering_well` in live catalog, leave previous art intact.
+- [x] Add exact SHA256 and WebP decode/size/catalog regression to D315; preserve event logic, gameplay, DS3 D328.
+- [x] Save D340 handoff and current project docs; user previously reviewed D339 successfully.
+- [ ] Validate **actual** GitHub Actions Godot D315/D316 for D340 SHA; static checks alone are not runtime PASS.
+- [ ] User `git pull` + gallery F6 review of «ШЕПЧУЩИЙ КОЛОДЕЦ».
+- [ ] D341: create and **show** 2–3 artistic options for next unapproved card; do not implement them without selection.
+
 ## D339 — Grave Crossfire third scene (2026-10-22)
 
 - [x] User picked THIRD, from the final three visible paintings: road-crossfire with an archer at each side and one center guard.
