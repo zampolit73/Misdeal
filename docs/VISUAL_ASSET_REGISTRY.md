@@ -1,3 +1,9 @@
+## D343 — Approved Lost Purse, dead head outside frame (2026-10-22)
+
+- **Source chosen:** `закатная_добыча_на_кладбище.png`, 1536×1024 RGB, `file_00000000aed08246a94af27a36d8b769` (the user reposted and approved this identical illustration at `file_00000000f2a08246ac84200514e0813a`). HEAD OUT OF FRAME on lying dead body behind, close foreground rotted fingers draped from leather pouch with gold coins and one small medallion; red-orange cemetery sunset. No UI baked in.
+- **Runtime:** `assets/pixel/card_unification_v1/run/lost_purse_d343_approved_headless_corpse.webp`, 448×274 from vertical crop (0,42)-(1536,981), quality 86, SHA256 `59337fc8570cbfdb34fd23f522b9714e7aa8d5f9cfdbbcf0123f4743e1dcbc97`; `RUN_CARDS["lost_purse"]` and native D315 SHA/decode/dimensions/catalog-pixel checks. Prior resources unchanged.
+- **Avoid wrong variants:** `золотая_добыча_на_закате_мертвецов.png`, `золотая_добыча_среди_могил.png`, other earlier D343 drafts.
+
 ## D342 — Approved Ash Rest camp with cleaned distant horizon (2026-10-22)
 
 - **Approved:** `wide_cinematic_fantasy_dark_medieval_landscape_sce.png` (1536×1024, file `file_0000000017d08246b3f51d01a0b20241`) — final image after removing **marked distant ruined towers/arches** from the right-side landscape; **not** the unedited user red markup preview or any initial D342 camp option.

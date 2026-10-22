@@ -44,6 +44,8 @@ const RUN_CARDS := {
 	"gravedigger_shop": "run/gravedigger_shop_d341_approved_cleansed_scene.webp",
 	# D342: approved Ash Rest sunset camp after removing the distant valley ruins.
 	"ash_rest": "run/ash_rest_d342_approved_clean_horizon.webp",
+	# D343: user-approved close-up of a dead hand, gold purse, HEAD OUT OF FRAME.
+	"lost_purse": "run/lost_purse_d343_approved_headless_corpse.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).

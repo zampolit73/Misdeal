@@ -1,0 +1,19 @@
+# Misdeal D343 — new chat handoff (2026-10-22)
+
+Technical source of truth: connected GitHub `zampolit73/Misdeal`, branch `main`. Read at new chat start: `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. This handoff supersedes D342 for work continuation. GitHub connector is connected and has read/write; no need to ask permission repeatedly.
+
+## Latest approved artwork D343
+
+Card `lost_purse`, title «КОШЕЛЬ МЕРТВЕЦА», event, current original text «Кошель мертвеца набит монетами. Чем глубже лезешь, тем крепче сжимается мёртвая рука.» User requested a blend of previous options 2/3 or full reclining corpse with a close-up purse and hand. Then requested edit to **hide the corpse HEAD OUTSIDE THE FRAME**. Three generated variants after this. The user quoted/reposted ONE image and explicitly said «утверждаю этот вариант»: `/mnt/data/закатная_добыча_на_кладбище.png` (1536×1024, source artifact `file_00000000aed08246a94af27a36d8b769`; repost image `file_00000000f2a08246ac84200514e0813a`). Visual: open red-brown leather purse fills left foreground, gold piles, a skeletal right hand extends across gold. A headless shrouded dead body lies long into the right rear; no skull/head visible. Celtic graves/crosses, muted background red sunset and wet reflective path. **This is NOT** `золотая_добыча_на_закате_мертвецов.png` nor `золотая_добыча_среди_могил.png`, earlier triptych, initial D343 options, or any future regenerated image. Previous assistant replied only local path and didn't commit. D343 implementation fixes that.
+
+Approved original converted to runtime `assets/pixel/card_unification_v1/run/lost_purse_d343_approved_headless_corpse.webp`: crop **x=0..1536, y=42..981** (no lateral crop), Lanczos downsample to 448×274, WebP quality 86, SHA256 `59337fc8570cbfdb34fd23f522b9714e7aa8d5f9cfdbbcf0123f4743e1dcbc97`, GitHub blob SHA `3576079f2d340c50aa0a9e495cc6fcd76b8e0ff2`. `scripts/ui/card_unification_v1.gd` maps `RUN_CARDS["lost_purse"]` to it; other existing assets retain rollback; `scripts/dev/d315_card_ds3_smoke.gd` includes exact SHA guard plus correct WebP decode/size and real catalog image pixel comparison for 12 locked artworks. No changes to `resources/cards/lost_purse.tres`, `scenes/event/act_choice.tscn`, or any game economy/balance/UI/DS3 layout.
+
+## Frozen earlier art
+
+D342 `ash_rest` cleaned distant horizon (left stone wall and campfire still present). D341 `gravedigger_shop` live elderly white-bearded merchant at sunset stall, minimal noise. D340 `whispering_well` first ghost face in water. D339 `grave_crossfire` last third 2 archers and guard. D338 `bone_swarm` second swamp 4 melee. D337 `gallows_volley` first. D336 `graveyard_ambush` first. D335 `bone_ritual` third. D333 `bone_patrol` watchtower. D331 `blood_ledger` scribe, `bone_crush` breach. D319 `black_altar` third. Locked Card DS3 D328 painted frame, optical text centers. The cursed two-offer tabletop, 12 Fate slots + XIII Bone Warden, solo/duo/trio tactical autobattler, Godot 4.7.x GDScript architecture remain.
+
+## User local follow-up & next card
+
+Check actual Godot native post-D343 CI if available (static GitHub verification alone is NOT runtime PASS). User should `git pull`, open `scenes/dev/d315_card_ds3_gallery.tscn` with F6, inspect «КОШЕЛЬ МЕРТВЕЦА» for framed image and visual read at native card size.
+
+Then next D344 pick currently unapproved visual such as `candle_seller` (three upgrade-path candles), `chained_prisoner` or `rattling_bridge`. Read actual resource and registry/previous approvals first. Always show **2–3 actual image renders** with different scene compositions in chat, await user choice, then commit ONLY selected art and update project docs. Avoid generic castle under oversized sunset, needless repeating red banners, skull clusters, huge full moons; distinct scenes, restrained detail.

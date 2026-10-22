@@ -1,3 +1,13 @@
+## D343 — Lost Purse approved no-visible-head artwork (2026-10-22)
+
+- [x] Identify exact user-reposted and approved `закатная_добыча_на_кладбище.png` with corpse's head outside the frame, oversized purse and skeletal hand.
+- [x] Prepare native 448×274 WebP preserving full horizontal scene/colors; publish through GitHub.
+- [x] Map `lost_purse` in live `RUN_CARDS`; preserve preexisting/other visuals, event Resource and Card DS3.
+- [x] Add D315 exact asset SHA/decode/size/catalog regression, update decisions, state and next-chat handoff.
+- [ ] Native Godot D315/D316 post-D343 CI still needs confirmation from actual runner; static test changes ≠ PASS.
+- [ ] User local F6 gallery review of «КОШЕЛЬ МЕРТВЕЦА» after `git pull`.
+- [ ] D344: inspect next not-yet-approved card's content, show real distinct images and wait for choice.
+
 ## D342 — Ash Rest clean-horizon image (2026-10-22)
 
 - [x] Publish exact user-approved EDITED «Пепельный привал» image with distant valley ruins **removed**, not the red-marked reference.

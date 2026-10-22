@@ -1,3 +1,9 @@
+## 2026-10-22 — D343: Lost Purse approved cropped-head corpse artwork shipped
+
+- Replaced path-only response with real GitHub publication of user-reposted `закатная_добыча_на_кладбище.png` (gold purse, dead hand, reclining body with skull out of frame), converted to native 448×274 WebP.
+- Bound `RUN_CARDS["lost_purse"]`; unchanged event gameplay/Resource, D328 Card DS3 frame/text and other approved assets.
+- Extended D315 exact SHA/decode/native dimensions/live catalog verification; updated decisions, registry, state, roadmap and current new-chat handoff. Native CI separately pending.
+
 ## 2026-10-22 — D342: Publish edited Ash Rest sunset camp, no distant ruins
 
 - Corrected previous path-only response by committing user-approved revised campfire scene: right-side distant ruined arches removed, left ruined shelter wall and empty bedrolls retained.
