@@ -1,3 +1,9 @@
+## 2026-10-23 — D344: Candle Seller approved thin tapers and arched candle cabinet
+
+- Committed user-approved final `candle_seller` painting: dark hooded trader, THREE slender muted candles and the final replacement candle-filled Gothic cabinet on right, no distant outdoor sunset.
+- Published 448×274 WebP, wired live Card DS3 catalog override; old event Resource, mechanics, layout and earlier approved art unchanged.
+- Extended D315 native art integrity smoke with exact SHA/decode/dimensions/live catalog check; wrote D344 project/decision/roadmap/registry/handoff history. Native CI still requires real runner verification.
+
 ## 2026-10-22 — D343: Lost Purse approved cropped-head corpse artwork shipped
 
 - Replaced path-only response with real GitHub publication of user-reposted `закатная_добыча_на_кладбище.png` (gold purse, dead hand, reclining body with skull out of frame), converted to native 448×274 WebP.

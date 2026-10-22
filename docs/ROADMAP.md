@@ -1,3 +1,14 @@
+## D344 — Candle Seller approved final Gothic cabinet (2026-10-23)
+
+- [x] Select exact final user-approved `тайный_ритуал_в_свете_свечей.png` after replacing cabinet in third THIN candle variant; do not substitute earlier vibrant fat-candle arts.
+- [x] Convert cropped 1536×939 master to 448×274 WebP without altering the palette, trade pose, candles or replacement arched cabinet.
+- [x] Map `candle_seller` into live `RUN_CARDS`; leave other cards, DS3, resources and mechanics alone.
+- [x] Add D315 strict SHA-256, decode, 448×274 dimensions and catalog rendering regression.
+- [x] Update decision, registry, handoff, project state and changelog.
+- [ ] Independently confirm native Godot D315/D316 CI on D344 commit; no static PASS claims.
+- [ ] User F6 gallery verification after `git pull`.
+- [ ] D345: select next card without an approved painting, review game resource, show 2–3 **visibly distinct** full images first, await selection.
+
 ## D343 — Lost Purse approved no-visible-head artwork (2026-10-22)
 
 - [x] Identify exact user-reposted and approved `закатная_добыча_на_кладбище.png` with corpse's head outside the frame, oversized purse and skeletal hand.

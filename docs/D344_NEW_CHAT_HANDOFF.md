@@ -1,0 +1,19 @@
+# Misdeal D344 — New-chat handoff (2026-10-23)
+
+Github `zampolit73/Misdeal` branch `main` is source of truth. Read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md` in each new chat before planning changes. Connected GitHub access is enabled; no need to repeatedly ask. This supersedes D343 for most recent art checkpoint.
+
+## Latest approved artwork — candle_seller D344
+
+Card resource `resources/cards/candle_seller.tres` says «ТОРГОВЕЦ СВЕЧАМИ», a merchant who offers three different growth paths, each equally costly. The user requested very different images after early repetitive sunset stall variants. We explored dark scenes where the three candles give nearly all the light, iterated changing outdoor ruins to backgrounds with cabinets. Specifically the user said **«3 вариант но замени на другой шкаф»** after showing THREE new designs with thinner, less saturated candles, and then **«утверждаю это вариант»** for the final edited `тайный_ритуал_в_свете_свечей.png` (1536×1024 RGB, file ID `file_000000005e748246bfbc4621fe0bc667`). The response back then was path-only, and D344 actually integrates the exact file to GitHub. The image: anonymous hooded seller occupies LEFT half, bandaged hand reaching over THREE candles, tall thin ivory (sun medallion), scarlet (crescent), dark slate-blue (star) with ordinary warm / softly cold flames; red brocade cloth on front; RIGHT half contains a DIFFERENT Gothic arched wooden cabinet with orderly candle inventory in recesses, some sealed bundles and instruments, all extremely dark; no background outdoor skyline. This specific cabinet is approved, do not restore any prior furniture or fat neon candle versions. Dark fantasy painterly pixel style.
+
+Runtime `assets/pixel/card_unification_v1/run/candle_seller_d344_approved_slim_candles_new_cabinet.webp` native 448×274 WebP quality 86 from central vertical crop x0..1536, y42..981 of approved PNG. Exact SHA256 `20f4c492dfb1068d2474741eabf790efda45347dc6d582c4954f0136fb3a630b`; GitHub blob SHA `7c93ff83703ee928219a4353825020afa4e4e568`. Added `RUN_CARDS["candle_seller"]` to `scripts/ui/card_unification_v1.gd` without overwriting legacy. D315 smoke checks binary SHA plus WebP decode/dimensions and actual catalog texture comparison. Game shop reward/path logic, original .tres, Card DS3 D328 and other graphics unaffected.
+
+## Previous locked visual approvals
+
+D343 `lost_purse`: large golden purse with dead hand, corpse head outside frame; D342 `ash_rest` campsite with clean distant horizon and left ruined wall; D341 `gravedigger_shop` living old man in crimson dusk stall; D340 `whispering_well` ghost face in black well; D339 `grave_crossfire` flanking bowmen; D338 `bone_swarm` second swamp art; D337 `gallows_volley` first; D336 `graveyard_ambush` first; D335 `bone_ritual` third; D333 `bone_patrol` watchtower; D331 `blood_ledger` scribe and `bone_crush` breach; D319 `black_altar` third. Do not change these without the user asking. UI Card DS3 D328 approved/frozen. Godot 4.7.x GDScript. Misdeal dark-fantasy cursed 2-choice tabletop and 12 Fate resolutions plus XIII boss, tactical autobattler, solo/duo/trio.
+
+## Next process stage
+
+1. Validate D344 GitHub commit and the native Godot D315/D316 workflow independently if accessible (never claim native PASS on static review).
+2. User only needs `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn` and inspect «ТОРГОВЕЦ СВЕЧАМИ» at actual scale.
+3. D345: choose a **new unapproved** event card, e.g. `chained_prisoner` («ЗАКОВАННЫЙ ПЛЕННИК») after inspecting .tres and history. MUST show 2–3 real unique visual candidates in chat before GitHub modification. Avoid repetitive candle stalls, sunsets/huge moons, castles, clutter, small-detail AI noise. Await chosen exact art, then write to GitHub and update docs.

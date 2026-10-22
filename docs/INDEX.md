@@ -1,3 +1,5 @@
+**Latest handoff:** [D344 approved Candle Seller](D344_NEW_CHAT_HANDOFF.md) (2026-10-23).
+
 **Latest handoff:** [D343 approved Lost Purse](D343_NEW_CHAT_HANDOFF.md) (2026-10-22).
 
 **Latest handoff:** [D342 approved Ash Rest edited horizon](D342_NEW_CHAT_HANDOFF.md) (2026-10-22).

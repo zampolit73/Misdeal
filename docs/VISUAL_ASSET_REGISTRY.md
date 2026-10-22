@@ -1,3 +1,8 @@
+## D344 — Approved Candle Seller thin taper candles, new Gothic cabinet (2026-10-23)
+
+- **Exact approved original:** `тайный_ритуал_в_свете_свечей.png` 1536×1024 RGB, source `file_000000005e748246bfbc4621fe0bc667` (user said «утверждаю это вариант»). Candle merchant in shaded hood on left, three thin ivory/red/blue-gray candles with predominantly amber flames on red cloth, one hand extended, dark carved Gothic cabinet of stocked candles right, no outside horizon. This is the final cabinet replacement after user picked third slim-candle concept.
+- **Live:** `assets/pixel/card_unification_v1/run/candle_seller_d344_approved_slim_candles_new_cabinet.webp` 448×274 WebP Q86 from vertical (0,42)-(1536,981) crop, SHA256 `20f4c492dfb1068d2474741eabf790efda45347dc6d582c4954f0136fb3a630b`. `RUN_CARDS["candle_seller"]` and exact-image D315 hash/decode/dimensions/catalog check. No changes to `resources/cards/candle_seller.tres` or previous approved assets.
+
 ## D343 — Approved Lost Purse, dead head outside frame (2026-10-22)
 
 - **Source chosen:** `закатная_добыча_на_кладбище.png`, 1536×1024 RGB, `file_00000000aed08246a94af27a36d8b769` (the user reposted and approved this identical illustration at `file_00000000f2a08246ac84200514e0813a`). HEAD OUT OF FRAME on lying dead body behind, close foreground rotted fingers draped from leather pouch with gold coins and one small medallion; red-orange cemetery sunset. No UI baked in.

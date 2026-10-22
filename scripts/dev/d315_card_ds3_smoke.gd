@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D343: verify twelve published, user-approved individual paintings
+    # D344: verify thirteen published, user-approved individual paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -67,6 +67,7 @@ func _verify() -> void:
         {"id": "gravedigger_shop", "file": "gravedigger_shop_d341_approved_cleansed_scene.webp"},
         {"id": "ash_rest", "file": "ash_rest_d342_approved_clean_horizon.webp"},
         {"id": "lost_purse", "file": "lost_purse_d343_approved_headless_corpse.webp"},
+        {"id": "candle_seller", "file": "candle_seller_d344_approved_slim_candles_new_cabinet.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -105,6 +106,10 @@ func _verify() -> void:
         # D343: exactly the user-approved cropped-head corpse, not earlier versions.
         if String(approved["id"]) == "lost_purse" and FileAccess.get_sha256(asset_path) != "59337fc8570cbfdb34fd23f522b9714e7aa8d5f9cfdbbcf0123f4743e1dcbc97":
             _fail("D343 Lost Purse is not the user-approved headless composition")
+            return
+        # D344: ensure this remains the approved muted thin candles and NEW gothic cabinet.
+        if String(approved["id"]) == "candle_seller" and FileAccess.get_sha256(asset_path) != "20f4c492dfb1068d2474741eabf790efda45347dc6d582c4954f0136fb3a630b":
+            _fail("D344 Candle Seller scene differs from approved final gothic cabinet illustration")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:
