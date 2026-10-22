@@ -1,3 +1,9 @@
+## 2026-10-22 — D335: User-selected pixelated Bone Ritual #3 shipped
+
+- Selected exact third of the latest three more-pixelated ritual images; exported a real 448×274 WebP directly from 1604×981 approved original, not Canva thumbnail upscaling.
+- Mapped `bone_ritual` by exact RunCardData ID to unique image; added D315 SHA/decode/dimensions/catalog regression and preserved old source.
+- Updated project state, decision, registry, roadmap, handoff. Frozen Card DS3, Table mechanics and battle encounter unchanged; native CI result is a separate check.
+
 ## 2026-10-21 — D334: Consolidated new-chat handoff after successful D333 rollout
 
 - Confirmed latest GitHub `main` state, active 4 approved scene-art mappings, and native D315/D316 [SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39662338488).

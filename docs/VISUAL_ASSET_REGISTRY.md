@@ -1,3 +1,9 @@
+## D335 — Approved Bone Ritual card art (2026-10-22)
+
+- **Approved third** of latest pixelated horizontal options (NOT earlier vertical/dense concepts): `file_000000008e1c82468d5abc5d04c95cfa`, source `лунный_ритуал_некроманта_в_руинах.png` 1604×981.
+- Scene: bone priest standing with staff and raised hand, three kneeling skeletons, single brazier on left, ruined courtyard, distant moonlit castle right. One story, fewer details, readable at small size; no baked DS3 frame/text.
+- **Shipped game WebP**: `assets/pixel/card_unification_v1/run/bone_ritual_d335_approved_option3.webp` (448×274), from full-size original, NOT upscaled thumbnail; SHA-256 `2ba5743f2a49a961e6fa05e663fafe7359838c1c9b53e608fb63bf7eea04ac93`, plus `CardUnificationV1.RUN_CARDS["bone_ritual"]`. D315 native integrity contract updated; Godot result must be checked separately.
+
 ## D334 — Card art handoff audit: approved vs pending (2026-10-21)
 
 - Confirmed runtime mapped in `CardUnificationV1.RUN_CARDS`: `blood_ledger` (bone scribe, D331), `bone_crush` (gate breach option 2, D331), `bone_patrol` (final cleaned valley/watchtower scene, D333), plus `black_altar` (option 3, D319). Native D315/D316 CI green [run 39662338488](https://github.com/zampolit73/Misdeal/actions/runs/39662338488).

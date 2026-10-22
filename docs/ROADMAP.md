@@ -1,3 +1,12 @@
+## D335 — Bone Ritual approved pixel-art option 3 (2026-10-22)
+
+- [x] User selected third variant of the latest more-pixelated triptych, not the earlier dense concepts.
+- [x] Export full-resolution approved source to **448×274 WebP**, map `bone_ritual` in `RUN_CARDS`; preserve previous art/DS3/gameplay.
+- [x] D315 assert exact asset SHA-256, WebP decode, size and real catalog pixel mapping.
+- [ ] Confirm actual D315/D316 native GitHub CI after D335 commit; log any failure.
+- [ ] User-local F6 review of `bone_ritual` at actual card size (not a promise of native artistic signoff).
+- [ ] Next card: show 2–3 new D168 options while respecting unified, restrained pixel-art visual language.
+
 ## D334 — Next-chat task agreed (2026-10-21)
 
 - [x] Preserve complete GitHub-context checkpoint `docs/D334_NEW_CHAT_HANDOFF.md` and link from INDEX, with native QA and all approved art selections.

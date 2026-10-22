@@ -26,6 +26,8 @@ const RUN_CARDS := {
 	# D319 user-picked third Black Altar painting, derived from approved triptych.
 	"black_altar": "run/black_altar_d319_option3.webp",
 	"bone_patrol": "run/bone_patrol_d333_approved_tower.webp",
+	# D335: user-approved third, restrained pixel-art necromancer courtyard ritual.
+	"bone_ritual": "run/bone_ritual_d335_approved_option3.webp",
 	"bone_shepherd": "run/bone_shepherd.webp",
 	# D151 candidate; not dealt until both original enemy atlases pass native F6 review.
 	"funeral_procession": "run/funeral_procession.webp",

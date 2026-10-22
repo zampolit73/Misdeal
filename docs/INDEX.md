@@ -1,3 +1,5 @@
+**Latest handoff:** [D335 approved Bone Ritual](D335_NEW_CHAT_HANDOFF.md) (2026-10-22).
+
 # Misdeal Documentation Index
 
 **D334 CURRENT · 2026-10-21:** [D334 consolidated new-chat handoff](D334_NEW_CHAT_HANDOFF.md). D333 approved `bone_patrol` FINAL cleaned watchtower scene SHIPPED, D331 approved `blood_ledger` + `bone_crush` shipped, Card DS3 D328 frozen; latest real [D315/D316 Godot native PASS](https://github.com/zampolit73/Misdeal/actions/runs/39662338488). Next new chat: visibly render and show three **Bone Ritual** (`bone_ritual`) candidate illustrations; no choice yet. The D333 older claim that ritual triptych already appeared is unverified.\n\n

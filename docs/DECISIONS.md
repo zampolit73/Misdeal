@@ -1,3 +1,7 @@
+## D335 — Lock Bone Ritual composition #3 (2026-10-22)
+
+User explicitly chose **third** of three newer, noticeably pixelated, horizontal Bone Ritual illustrations. Immutable image subject: skeletal priest at center holding staff/raising arm; three kneeling skeleton acolytes; one left fire source; ancient ruined courtyard, moonlit distant castle at right, limited red banners and decorations. Slightly pixelated art style, blue-gray nights and warm ember accents in harmony with D333 Bone Patrol, D331 Blood Ledger and Bone Crush. Source original `лунный_ритуал_некроманта_в_руинах.png` (1604×981), game WebP SHA-256 `2ba5743f2a49a961e6fa05e663fafe7359838c1c9b53e608fb63bf7eea04ac93`. No additional option approval needed for the same composition. DS3 D328 and combat/enemies remain locked.
+
 ## D334 — No new Bone Ritual art approved; preserve previous visual decisions (2026-10-21)
 
 D333 approved final Bone Patrol #3 (edited simple valley), D331 Blood Ledger and Bone Crush #2, D319 Black Altar #3 and D328 Card DS3 remain **LOCKED**. The next card `bone_ritual` is NOT approved. Earlier D333 documentation refers to an alleged shown concept triptych, but that file cannot currently be verified; *do not treat it as a rendered, user-viewed design*. Render visibly accessible 2–3 real options, seek explicit selection, then publish that exact art. No fundamental gameplay/DS3 changes approved in D334. See `docs/D334_NEW_CHAT_HANDOFF.md`.
