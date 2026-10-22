@@ -1,3 +1,13 @@
+## D338 — Bone Swarm second swamp image (2026-10-22)
+
+- [x] Respect final user choice: **second** of the last pair, source `скелетный_рейд_в_туманном_болоте.png`; do not confuse with older attempts or `натиск_скелетов_в_лунном_погосте.png`.
+- [x] Prepare 448×274 WebP from exact full-res source, top-anchored crop preserves four raiders and raised weapons.
+- [x] Replace only `RUN_CARDS["bone_swarm"]` visual override; keep older asset, encounter, Card DS3 and all other approved art.
+- [x] Add D315 art SHA/decode/size/catalog assertions and full next-chat handoff.
+- [ ] Check **actual native** D315/D316 CI after commit; never infer PASS from static file checks.
+- [ ] User F6 gallery review of new «КОСТЯНОЙ РОЙ» art.
+- [ ] Next unapproved card: show genuinely distinct in-chat artwork choices, then commit selected exact image.
+
 ## D337 — Publish previously selected Gallows Volley option 1 (2026-10-22)
 
 - [x] GitHub access verified; preserve explicit user-selected **option 1** rather than repeating incorrect refusal about connector.

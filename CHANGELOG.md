@@ -1,3 +1,9 @@
+## 2026-10-22 — D338: Bone Swarm second swamp artwork approved and shipped
+
+- User picked exact second final swamp-swarm artwork (`скелетный_рейд_в_туманном_болоте.png`), four melee raiders in blue-gray marsh with hanging lamps.
+- Published native 448×274 WebP from original 1536×1024 source with top-anchored composition crop; linked to `bone_swarm`, original legacy WebP retained.
+- D315 regression enforces file SHA, WebP decode/size and catalog texture consistency; documented final visual approval. Card DS3 D328, combat and encounter definitions unchanged; native CI review is separate.
+
 ## 2026-10-22 — D337: Gallows Volley approved option 1 shipped
 
 - Confirmed connected GitHub write access and published user-approved first (upper wide scene) Gallows Volley image as a unique 448×274 WebP; used a focal crop to preserve gallows, BOTH bowmen and shield fighter.

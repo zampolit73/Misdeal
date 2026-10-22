@@ -40,7 +40,8 @@ const RUN_CARDS := {
 	"gallows_volley": "run/gallows_volley_d337_approved_option1.webp",
 	"whispering_well": "run/whispering_well.webp",
 	"gravedigger_shop": "run/gravedigger_shop.webp",
-	"bone_swarm": "run/bone_swarm.webp",
+	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
+	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	"grave_crossfire": "run/grave_crossfire.webp",
 }
 

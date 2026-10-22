@@ -1,3 +1,9 @@
+## D338 — Approved Bone Swarm swarm-in-swamp option 2 (2026-10-22)
+
+- **Selected source:** second image of final side-by-side two output images; `скелетный_рейд_в_туманном_болоте.png`, 1536×1024, file ID `file_000000001a848246bde220ade4d36923` (user explicit «2 вариант утверждаем»). Four skeletal melee raiders in shallow foggy swamp, ragged cloaks and varied melee weapons; grounded orange lanterns and pale blue fog. Distinct from earlier castle charge cards.
+- **Runtime:** `assets/pixel/card_unification_v1/run/bone_swarm_d338_approved_option2.webp` 448×274 WebP Q84 from source top-aligned crop (0,0)-(1536,939), preserving all four and raised weapons. SHA-256 `6100162c8d1cab6e1a9d7131c0f856180fff3f36008e45c16755ab191eeb8592`. Live `CardUnificationV1.RUN_CARDS["bone_swarm"]`; previous `run/bone_swarm.webp` unmodified.
+- **Protection:** D315 native smoke hash + decodability + exact catalog pixel equivalence. Scene changes only after user asks; Card DS3 D328 and authored fight untouched.
+
 ## D337 — Approved Gallows Volley option 1 (2026-10-22)
 
 - **Approved**: first of three shown «ЗАЛП С ВИСЕЛИЦЫ» concepts (wide **top** scene). Source `/mnt/data/gallows_volley_option_1.png`, 1535×473 RGB, file ID `file_00000000e9388246b9c97ecfcda8ec39`. Two skeleton archers flanking one shield warrior by wooden gallows; original panorama also shows the castle and torch-lit walls. **No newly-generated replacement art allowed without request**.

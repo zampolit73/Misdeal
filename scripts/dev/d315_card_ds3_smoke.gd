@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D337: verify six published, user-approved individual paintings
+    # D338: verify seven published, user-approved individual paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -61,6 +61,7 @@ func _verify() -> void:
         {"id": "bone_ritual", "file": "bone_ritual_d335_approved_option3.webp"},
         {"id": "graveyard_ambush", "file": "graveyard_ambush_d336_approved_option1.webp"},
         {"id": "gallows_volley", "file": "gallows_volley_d337_approved_option1.webp"},
+        {"id": "bone_swarm", "file": "bone_swarm_d338_approved_option2.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -75,6 +76,10 @@ func _verify() -> void:
             return
         if String(approved["id"]) == "gallows_volley" and FileAccess.get_sha256(asset_path) != "b273fce130e5ed7425bafff525972e1959f65387765f7fa26da4a6822b48550e":
             _fail("D337 Gallows Volley is not the approved FIRST illustration")
+            return
+        # D338: guard the final, user-approved SECOND swamp swarm, not an earlier concept.
+        if String(approved["id"]) == "bone_swarm" and FileAccess.get_sha256(asset_path) != "6100162c8d1cab6e1a9d7131c0f856180fff3f36008e45c16755ab191eeb8592":
+            _fail("D338 Bone Swarm is not the approved second swamp scene")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:
