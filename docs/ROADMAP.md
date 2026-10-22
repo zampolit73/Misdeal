@@ -1,3 +1,13 @@
+## D337 — Publish previously selected Gallows Volley option 1 (2026-10-22)
+
+- [x] GitHub access verified; preserve explicit user-selected **option 1** rather than repeating incorrect refusal about connector.
+- [x] Source `gallows_volley_option_1.png` cropped at (320,0)-(1093,473) for 448×274 WebP, retaining one shield fighter, two skeletal bowmen and simple wooden gallows.
+- [x] Publish the exact approved image, update `CardUnificationV1.RUN_CARDS["gallows_volley"]`, preserve old WebP and gameplay.
+- [x] D315 smoke enforce SHA-256, WebP decode/size and live catalog pixel mapping; update handoff and history.
+- [ ] Native Godot D315/D316 CI **post-D337** to confirm; do not claim success until observed.
+- [ ] User F6 gallery check of «ЗАЛП С ВИСЕЛИЦЫ» crop at actual card size; minor focal crop is adjustable only on user request, no new concept approval needed.
+- [ ] Next **unapproved** card: display three actual images before user selection.
+
 ## D336 — Graveyard Ambush approved first scene (2026-10-22)
 
 - [x] Respect user's confirmed ORIGINAL first image (two melee skeletons, one elevated archer), not the three later irrelevant images.

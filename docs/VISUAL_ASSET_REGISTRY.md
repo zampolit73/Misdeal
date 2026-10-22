@@ -1,3 +1,9 @@
+## D337 — Approved Gallows Volley option 1 (2026-10-22)
+
+- **Approved**: first of three shown «ЗАЛП С ВИСЕЛИЦЫ» concepts (wide **top** scene). Source `/mnt/data/gallows_volley_option_1.png`, 1535×473 RGB, file ID `file_00000000e9388246b9c97ecfcda8ec39`. Two skeleton archers flanking one shield warrior by wooden gallows; original panorama also shows the castle and torch-lit walls. **No newly-generated replacement art allowed without request**.
+- **Shipped native art**: `assets/pixel/card_unification_v1/run/gallows_volley_d337_approved_option1.webp` 448×274, WebP Q85 from focus crop original (x320 to x1093, entire height). SHA256: `b273fce130e5ed7425bafff525972e1959f65387765f7fa26da4a6822b48550e`. This necessary DS3 fitting crop cuts distant side architecture; all three skeletons, bows, shield and gallows retained.
+- **Actual runtime mapping**: `CardUnificationV1.RUN_CARDS["gallows_volley"]`. Previous `run/gallows_volley.webp` untouched for rollback; D315 native texture and SHA assertions. No Card DS3 nor encounter changes.
+
 ## D336 — Graveyard Ambush, approved image 1 (2026-10-22)
 
 - **Selection:** first of THREE original “ЗАСАДА НА КЛАДБИЩЕ” scenes shown in chat, then explicitly reattached by the user as exact image. Original `/mnt/data/image.png` (`file_00000000741082469e2501e8e688e34a`), 1604×981 RGBA.

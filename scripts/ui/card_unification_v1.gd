@@ -36,7 +36,8 @@ const RUN_CARDS := {
 	"echo_crypt": "run/echo_crypt.webp",
 	# D336 user-confirmed FIRST Graveyard Ambush image; preserve old WebP as fallback.
 	"graveyard_ambush": "run/graveyard_ambush_d336_approved_option1.webp",
-	"gallows_volley": "run/gallows_volley.webp",
+	# D337: approved FIRST Gallows Volley concept; crop keeps all 3 skeletons + gallows.
+	"gallows_volley": "run/gallows_volley_d337_approved_option1.webp",
 	"whispering_well": "run/whispering_well.webp",
 	"gravedigger_shop": "run/gravedigger_shop.webp",
 	"bone_swarm": "run/bone_swarm.webp",

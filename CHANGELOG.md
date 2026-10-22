@@ -1,3 +1,9 @@
+## 2026-10-22 — D337: Gallows Volley approved option 1 shipped
+
+- Confirmed connected GitHub write access and published user-approved first (upper wide scene) Gallows Volley image as a unique 448×274 WebP; used a focal crop to preserve gallows, BOTH bowmen and shield fighter.
+- Switched `gallows_volley` asset override only, without changing DS3 frame, UI text, combat mechanics or encounters; previous WebP retained.
+- D315 integrity guard now verifies approved SHA, decode/dimensions and catalog pixel match. Saved current state, design decision, asset registry and new-chat handoff; native Godot run outcome requires separate verification.
+
 ## 2026-10-22 — D336: Ship exact already-approved Graveyard Ambush option 1
 
 - Corrected unnecessary extra art exploration after user's prior approval and used the **exact PNG reattached by the user**.

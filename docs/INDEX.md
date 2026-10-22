@@ -1,3 +1,5 @@
+**Latest handoff:** [D337 approved Gallows Volley](D337_NEW_CHAT_HANDOFF.md) (2026-10-22).
+
 **Latest handoff:** [D336 approved Graveyard Ambush](D336_NEW_CHAT_HANDOFF.md) (2026-10-22).
 
 **Latest handoff:** [D335 approved Bone Ritual](D335_NEW_CHAT_HANDOFF.md) (2026-10-22).
