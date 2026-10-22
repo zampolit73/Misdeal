@@ -1,3 +1,12 @@
+## D336 — Graveyard Ambush approved first scene (2026-10-22)
+
+- [x] Respect user's confirmed ORIGINAL first image (two melee skeletons, one elevated archer), not the three later irrelevant images.
+- [x] Exact user-attached 1604×981 source prepared as native 448×274 WebP; live `graveyard_ambush` catalog mapping updated; old art retained.
+- [x] Native D315 integrity regression covers file SHA, decode, dimensions and catalog pixels.
+- [ ] Verify new GitHub Actions native Godot D315/D316 result; no premature PASS claim.
+- [ ] User F6 view of “ЗАСАДА НА КЛАДБИЩЕ” in `scenes/dev/d315_card_ds3_gallery.tscn`.
+- [ ] Next card not yet chosen; user chooses between **real visible** artist options before any new illustration is shipped.
+
 ## D335 — Bone Ritual approved pixel-art option 3 (2026-10-22)
 
 - [x] User selected third variant of the latest more-pixelated triptych, not the earlier dense concepts.

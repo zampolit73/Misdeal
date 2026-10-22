@@ -34,7 +34,8 @@ const RUN_CARDS := {
 	# D150: two original painterly 448x274 scene illustrations.
 	"moon_seal": "run/moon_seal.webp",
 	"echo_crypt": "run/echo_crypt.webp",
-	"graveyard_ambush": "run/graveyard_ambush.webp",
+	# D336 user-confirmed FIRST Graveyard Ambush image; preserve old WebP as fallback.
+	"graveyard_ambush": "run/graveyard_ambush_d336_approved_option1.webp",
 	"gallows_volley": "run/gallows_volley.webp",
 	"whispering_well": "run/whispering_well.webp",
 	"gravedigger_shop": "run/gravedigger_shop.webp",

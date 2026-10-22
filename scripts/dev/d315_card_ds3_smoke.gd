@@ -52,13 +52,14 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D335: verify the four published, user-approved individual paintings
+    # D336: verify five published, user-approved individual paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
         {"id": "blood_ledger", "file": "blood_ledger_d331_approved_scribe.webp"},
         {"id": "bone_patrol", "file": "bone_patrol_d333_approved_tower.webp"},
         {"id": "bone_ritual", "file": "bone_ritual_d335_approved_option3.webp"},
+        {"id": "graveyard_ambush", "file": "graveyard_ambush_d336_approved_option1.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -67,6 +68,9 @@ func _verify() -> void:
         # D335 exact-binary regression: guard the specifically selected third scene.
         if String(approved["id"]) == "bone_ritual" and FileAccess.get_sha256(asset_path) != "2ba5743f2a49a961e6fa05e663fafe7359838c1c9b53e608fb63bf7eea04ac93":
             _fail("D335 Bone Ritual is not the approved option-three illustration")
+            return
+        if String(approved["id"]) == "graveyard_ambush" and FileAccess.get_sha256(asset_path) != "834248781820752530662925c47569dd36ae67c0fdff115db0a9822f6b558ea3":
+            _fail("D336 Graveyard Ambush is not the user-approved FIRST illustration")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:

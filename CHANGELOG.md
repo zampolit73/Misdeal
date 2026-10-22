@@ -1,3 +1,10 @@
+## 2026-10-22 — D336: Ship exact already-approved Graveyard Ambush option 1
+
+- Corrected unnecessary extra art exploration after user's prior approval and used the **exact PNG reattached by the user**.
+- Added full-original 448×274 game WebP, bound `graveyard_ambush` to its own selected image, preserved old fallback for rollback.
+- Extended native D315 QA with SHA-256, decoding, expected dimensions and catalog pixel comparison; no encounter, UI or gameplay changes.
+- Updated current handoff, project state, roadmap, decisions and visual asset registry. Native Godot CI verification separate.
+
 ## 2026-10-22 — D335: User-selected pixelated Bone Ritual #3 shipped
 
 - Selected exact third of the latest three more-pixelated ritual images; exported a real 448×274 WebP directly from 1604×981 approved original, not Canva thumbnail upscaling.

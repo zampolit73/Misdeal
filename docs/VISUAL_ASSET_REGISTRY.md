@@ -1,3 +1,10 @@
+## D336 — Graveyard Ambush, approved image 1 (2026-10-22)
+
+- **Selection:** first of THREE original “ЗАСАДА НА КЛАДБИЩЕ” scenes shown in chat, then explicitly reattached by the user as exact image. Original `/mnt/data/image.png` (`file_00000000741082469e2501e8e688e34a`), 1604×981 RGBA.
+- Distinctive scene: two foreground skeletal sword/shield fighters leap from among grave markers, bone archer standing on stone tomb at right draws bow, large moon behind, dark tree left, cinematic medium pixel detail, blue-gray and quiet amber.
+- **Active** `assets/pixel/card_unification_v1/run/graveyard_ambush_d336_approved_option1.webp` 448×274, original-source downscale WebP quality 82, SHA-256 `834248781820752530662925c47569dd36ae67c0fdff115db0a9822f6b558ea3`. `CardUnificationV1.RUN_CARDS["graveyard_ambush"]` exact override, former `run/graveyard_ambush.webp` retained, D315 smoke protects approved pixels.
+- **Not approved:** subsequent three art suggestions/renderings depicting four rushing swordsmen with no archer, and any later remakes. No further D168 choice needed for this card.
+
 ## D335 — Approved Bone Ritual card art (2026-10-22)
 
 - **Approved third** of latest pixelated horizontal options (NOT earlier vertical/dense concepts): `file_000000008e1c82468d5abc5d04c95cfa`, source `лунный_ритуал_некроманта_в_руинах.png` 1604×981.

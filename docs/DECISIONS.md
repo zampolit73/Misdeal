@@ -1,3 +1,7 @@
+## D336 — User-locked Graveyard Ambush option 1 (2026-10-22)
+
+User confirmed `graveyard_ambush` **first** option from the originally rendered Graveyard Ambush trio and directly reattached exact PNG. Preserve its **two sword-and-shield skeletons and one raised bone archer** against a moonlit graveyard. Additional art generated after the user had already picked #1 is **not** approved and must not supplant it. The original user-supplied PNG is 1604×981; runtime `assets/pixel/card_unification_v1/run/graveyard_ambush_d336_approved_option1.webp` is full-frame 448×274 WebP, SHA-256 `834248781820752530662925c47569dd36ae67c0fdff115db0a9822f6b558ea3`. This approval concerns only card illustration. Card DS3 D328, encounter enemies and balance unchanged.
+
 ## D335 — Lock Bone Ritual composition #3 (2026-10-22)
 
 User explicitly chose **third** of three newer, noticeably pixelated, horizontal Bone Ritual illustrations. Immutable image subject: skeletal priest at center holding staff/raising arm; three kneeling skeleton acolytes; one left fire source; ancient ruined courtyard, moonlit distant castle at right, limited red banners and decorations. Slightly pixelated art style, blue-gray nights and warm ember accents in harmony with D333 Bone Patrol, D331 Blood Ledger and Bone Crush. Source original `лунный_ритуал_некроманта_в_руинах.png` (1604×981), game WebP SHA-256 `2ba5743f2a49a961e6fa05e663fafe7359838c1c9b53e608fb63bf7eea04ac93`. No additional option approval needed for the same composition. DS3 D328 and combat/enemies remain locked.
