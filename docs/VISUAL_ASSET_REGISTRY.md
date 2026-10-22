@@ -1,3 +1,9 @@
+## D339 — Approved Grave Crossfire card artwork #3 (2026-10-22)
+
+- **User selection:** third of last three new «Могильный перекрёсток» images, original `перекрёсток_костяных_стрелков_в_тумане.png` 1604×981, file ID `file_0000000016e08246bbd9378f0d47fd23`; two opposing hooded skeletal bowmen on left and right flank a single shield-and-sword guard on a misty cemetery crossroads.
+- **Runtime:** `assets/pixel/card_unification_v1/run/grave_crossfire_d339_approved_option3.webp` native 448×274 WebP Q86, scaled from **entire original** (no crop); SHA256 `d5c98787d6240aa84a0a6a19bcb18d34c0ab5f3a30ce7c7e3b94eb764fe2576b`. Exact `CardUnificationV1.RUN_CARDS["grave_crossfire"]` override and native D315 SHA/decode/catalog check; legacy `run/grave_crossfire.webp` preserved for fallback.
+- **Frozen:** other approved illustrations D319–D338, Card DS3 D328, original encounter compositions.
+
 ## D338 — Approved Bone Swarm swarm-in-swamp option 2 (2026-10-22)
 
 - **Selected source:** second image of final side-by-side two output images; `скелетный_рейд_в_туманном_болоте.png`, 1536×1024, file ID `file_000000001a848246bde220ade4d36923` (user explicit «2 вариант утверждаем»). Four skeletal melee raiders in shallow foggy swamp, ragged cloaks and varied melee weapons; grounded orange lanterns and pale blue fog. Distinct from earlier castle charge cards.

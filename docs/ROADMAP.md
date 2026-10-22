@@ -1,3 +1,13 @@
+## D339 — Grave Crossfire third scene (2026-10-22)
+
+- [x] User picked THIRD, from the final three visible paintings: road-crossfire with an archer at each side and one center guard.
+- [x] Export exact approved 1604×981 source to **uncropped 448×274** WebP and bind `grave_crossfire` in live `RUN_CARDS`.
+- [x] Preserve legacy card art/other approvals, D328 DS3 and authored encounter.
+- [x] Extend D315 smoke with SHA-256 + WebP decode/size + true card catalog texture check; update project context.
+- [ ] Verify GitHub Actions Godot D315/D316 after D339 (no premature PASS claim).
+- [ ] User F6 gallery: confirm «МОГИЛЬНЫЙ ПЕРЕКРЁСТОК» appearance in DS3 at real size.
+- [ ] Choose next non-approved illustration; show 2–3 actual rendered images before implementation.
+
 ## D338 — Bone Swarm second swamp image (2026-10-22)
 
 - [x] Respect final user choice: **second** of the last pair, source `скелетный_рейд_в_туманном_болоте.png`; do not confuse with older attempts or `натиск_скелетов_в_лунном_погосте.png`.

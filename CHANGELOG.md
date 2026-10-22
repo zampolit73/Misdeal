@@ -1,3 +1,9 @@
+## 2026-10-22 — D339: Grave Crossfire option 3 published
+
+- Locked user's THIRD image of final Grave Crossfire triptych: crossfire flanks each have a skeletal bowman and the middle is blocked by a sword/shield skeleton.
+- Exported original 1604×981 illustration without crop at 448×274 WebP; mapped `grave_crossfire` in live catalog while preserving legacy image.
+- Extended D315 smoke to check exact SHA-256, decoding, native dimensions and catalog pixel match; documented locked art. D328 DS3, fight enemies, balance and gameplay untouched; post-commit native CI not yet verified.
+
 ## 2026-10-22 — D338: Bone Swarm second swamp artwork approved and shipped
 
 - User picked exact second final swamp-swarm artwork (`скелетный_рейд_в_туманном_болоте.png`), four melee raiders in blue-gray marsh with hanging lamps.

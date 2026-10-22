@@ -42,7 +42,8 @@ const RUN_CARDS := {
 	"gravedigger_shop": "run/gravedigger_shop.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
-	"grave_crossfire": "run/grave_crossfire.webp",
+	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).
+	"grave_crossfire": "run/grave_crossfire_d339_approved_option3.webp",
 }
 
 const EVENTS := {
