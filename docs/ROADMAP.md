@@ -1,3 +1,14 @@
+## D342 — Ash Rest clean-horizon image (2026-10-22)
+
+- [x] Publish exact user-approved EDITED «Пепельный привал» image with distant valley ruins **removed**, not the red-marked reference.
+- [x] Resize minimally cropped original into 448×274 WebP for Card DS3; keep original palette, camp, fire and bedrolls.
+- [x] Bind `RUN_CARDS["ash_rest"]` without changing original event Resource, gameplay, frame or other approved art.
+- [x] Add D315 exact SHA-256, decode, dimensions and catalog texture check.
+- [x] Update visual registry, decision, state, changelog and next-chat handoff.
+- [ ] Verify actual post-D342 native Godot D315/D316 CI; static existence does not count as test PASS.
+- [ ] User check via `git pull` + F6 `scenes/dev/d315_card_ds3_gallery.tscn`.
+- [ ] D343 next as-yet-unapproved card: show 2–3 actual distinct scene illustrations first, then selected image to GitHub.
+
 ## D341 — Gravedigger Shop selected cleansed art (2026-10-22)
 
 - [x] User approved **last edited** old-man shop scene `мрачный_торговец_на_кладбищенской_заставе.png` with near-identical palette and slightly quieter landscape, NOT earlier skeleton-merchant alternatives.

@@ -1,3 +1,9 @@
+## 2026-10-22 — D342: Publish edited Ash Rest sunset camp, no distant ruins
+
+- Corrected previous path-only response by committing user-approved revised campfire scene: right-side distant ruined arches removed, left ruined shelter wall and empty bedrolls retained.
+- Exported selected full-resolution PNG into native 448×274 WebP; mapped `ash_rest` in live `RUN_CARDS` catalog. Event Resource, mechanics, DS3 frame and earlier art unchanged.
+- Added exact binary SHA-256 + WebP decode/dimensions/live catalog regression to D315; refreshed project state, decision, roadmap, visual asset registry and new-chat handoff. Native CI result to be confirmed.
+
 ## 2026-10-22 — D341: Gravedigger Shop approved old-man illustration shipped
 
 - Honored approval of final color-preserving, slightly decluttered living elderly gravedigger artwork; previous assistant only sent a local source path.

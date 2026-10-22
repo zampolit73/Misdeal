@@ -42,6 +42,8 @@ const RUN_CARDS := {
 	"whispering_well": "run/whispering_well_d340_approved_option1.webp",
 	# D341: user-approved live elderly gravedigger, minimally cleaned background, original colors.
 	"gravedigger_shop": "run/gravedigger_shop_d341_approved_cleansed_scene.webp",
+	# D342: approved Ash Rest sunset camp after removing the distant valley ruins.
+	"ash_rest": "run/ash_rest_d342_approved_clean_horizon.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).

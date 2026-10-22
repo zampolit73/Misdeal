@@ -1,3 +1,9 @@
+## D342 — Approved Ash Rest camp with cleaned distant horizon (2026-10-22)
+
+- **Approved:** `wide_cinematic_fantasy_dark_medieval_landscape_sce.png` (1536×1024, file `file_0000000017d08246b3f51d01a0b20241`) — final image after removing **marked distant ruined towers/arches** from the right-side landscape; **not** the unedited user red markup preview or any initial D342 camp option.
+- Image: foreground campfire with sword/backpack against OLD STONE WALL left, two empty bedrolls, kettle and mugs, delicate smoke; open hazy woods and winding sunlit lake, muted amber/cold blue dusk to right. The remaining close wall ruins are intentional.
+- **Live runtime:** `assets/pixel/card_unification_v1/run/ash_rest_d342_approved_clean_horizon.webp`, WebP Q86 448×274 cropped from (0,35)-(1536,974), SHA256 `d09b1dcaf027b9eb06f9d9affb8d5ec163340cb5c5fc89e3627d1ff4bd735f7b`, `RUN_CARDS["ash_rest"]`. Native D315 SHA/decode/dimensions/catalog equality. Other approved images and DS3 D328 unchanged.
+
 ## D341 — Approved Gravedigger Shop cleaned final scene (2026-10-22)
 
 - **Source:** `мрачный_торговец_на_кладбищенской_заставе.png`, 1619×971, `file_0000000054dc822fa7cb5f1e9c664c4b`. Last cleaned illustration, explicitly approved after user requested preserving warm/sunset cool/slate palette, slightly reducing AI landscape noise. **Living hooded white-bearded man** at crimson-stall selling medallion/scrolls under single lantern, graveyard and remote castle.

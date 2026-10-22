@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D341: verify ten published, user-approved individual paintings
+    # D342: verify eleven published, user-approved individual paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -65,6 +65,7 @@ func _verify() -> void:
         {"id": "grave_crossfire", "file": "grave_crossfire_d339_approved_option3.webp"},
         {"id": "whispering_well", "file": "whispering_well_d340_approved_option1.webp"},
         {"id": "gravedigger_shop", "file": "gravedigger_shop_d341_approved_cleansed_scene.webp"},
+        {"id": "ash_rest", "file": "ash_rest_d342_approved_clean_horizon.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -95,6 +96,10 @@ func _verify() -> void:
         # D341: live old gravedigger from approved minimally cleaned scene, NOT a skeleton merchant.
         if String(approved["id"]) == "gravedigger_shop" and FileAccess.get_sha256(asset_path) != "94350b57bb999906664680a3b7cc7709b91b58817e07107b0636952de68b66b0":
             _fail("D341 Gravedigger Shop is not the approved cleaned old-man illustration")
+            return
+        # D342: exact chosen campfire scene with background valley ruins removed.
+        if String(approved["id"]) == "ash_rest" and FileAccess.get_sha256(asset_path) != "d09b1dcaf027b9eb06f9d9affb8d5ec163340cb5c5fc89e3627d1ff4bd735f7b":
+            _fail("D342 Ash Rest does not match the approved CLEAN distant landscape")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:
