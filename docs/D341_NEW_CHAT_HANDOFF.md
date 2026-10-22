@@ -1,0 +1,17 @@
+# D341 — Misdeal new-chat handoff (2026-10-22)
+
+Source of truth: GitHub `zampolit73/Misdeal` branch `main`. Read first `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. This file supersedes D340 for current task. Github connector read/write works; do not ask user for access again.
+
+## Latest approval: D341 Gravedigger Shop exact cleaned painting
+
+User reviewed D341 options and said **living elderly man** instead of skeleton. They specifically liked the LAST original busy stall composition, reattached it and instructed **keep its colors exactly, edit only distant background landscape to slightly reduce AI noise**. Assistant generated refined art `мрачный_торговец_на_кладбищенской_заставе.png` (1619×971 RGB, `file_0000000054dc822fa7cb5f1e9c664c4b`). **This final image was explicitly approved** with «слушай а давай утвердим этот арт. заливай его сразу в гит». Previous assistant sent ONLY its local path and never committed: D341 fixes that now. Do not use prior cluttered art, skeleton vendor or change painterly colors. Composition: gray-bearded LIVE merchant under faded wine-red canvas stall, holding a round bronze medallion with raised right hand; old books, parchments, a skull prop, chests; one large hanging lantern, dim orange candles; cold blue graveyard with orange setting sun and distant fortified castle, a few fallen stone arches. Stable painterly pixel style with no UI baked in.
+
+Shipped `assets/pixel/card_unification_v1/run/gravedigger_shop_d341_approved_cleansed_scene.webp` 448×274 WebP Q86 Lanczos from the approved PNG, only approximately 15px cropped from each side (crop x15..1603), keeping every named subject and the original colors. SHA256 `94350b57bb999906664680a3b7cc7709b91b58817e07107b0636952de68b66b0`. `scripts/ui/card_unification_v1.gd` `RUN_CARDS["gravedigger_shop"]` now overrides `run/gravedigger_shop.webp` while old generic art is retained for rollback. `scripts/dev/d315_card_ds3_smoke.gd` SHA/decode/dimensions/live catalogue pixel asserts prevent fallback or wrong variant. Resource `resources/cards/gravedigger_shop.tres`, `scenes/event/act_choice.tscn`, upgrades/shop mechanics, entire Card DS3 D328 frozen.
+
+## Frozen history
+
+D340 `whispering_well` first woman-face in stone well painting (user confirmed F6 OK). D339 `grave_crossfire` third flanking-bowmen painting; D338 `bone_swarm` second final swamp image; D337 `gallows_volley` first wide gallows; D336 `graveyard_ambush` first two-fighters archer scene; D335 `bone_ritual` third; D333 `bone_patrol` watchtower; D331 `blood_ledger` scribe, `bone_crush` breach; D319 `black_altar` third. Preserve all and DS3 D328 UI optical text centers. Core game Godot 4.7.x GDScript, 2 offered cards on cursed table, 12 Fate resolutions + XIII sealed Bone Warden, compact autobattler solo/duo/trio.
+
+## Immediate next actions
+
+Verify D341 commit in GitHub and CI where available (never claim native Godot PASS from static review). User: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn`, inspect «ЛАВКА МОГИЛЬЩИКА» in Card DS3. Then start D342 on another unapproved card event (e.g. `candle_seller`, `grave_bell`, `ash_rest` — inspect actual game data FIRST). Follow D168: **show real in-chat 2–3 visibly different generated candidate paintings** and WAIT for user's pick before publishing. No repeated giant moon, generic ruins, extra candles/amulets or dense machine-looking ornaments.

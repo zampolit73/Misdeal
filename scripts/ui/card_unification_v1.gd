@@ -40,7 +40,8 @@ const RUN_CARDS := {
 	"gallows_volley": "run/gallows_volley_d337_approved_option1.webp",
 	# D340: FIRST of the final three ghost-reflection wells: face in black water.
 	"whispering_well": "run/whispering_well_d340_approved_option1.webp",
-	"gravedigger_shop": "run/gravedigger_shop.webp",
+	# D341: user-approved live elderly gravedigger, minimally cleaned background, original colors.
+	"gravedigger_shop": "run/gravedigger_shop_d341_approved_cleansed_scene.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).

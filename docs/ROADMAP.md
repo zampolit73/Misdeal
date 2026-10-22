@@ -1,3 +1,13 @@
+## D341 — Gravedigger Shop selected cleansed art (2026-10-22)
+
+- [x] User approved **last edited** old-man shop scene `мрачный_торговец_на_кладбищенской_заставе.png` with near-identical palette and slightly quieter landscape, NOT earlier skeleton-merchant alternatives.
+- [x] Export almost uncropped 448×274 WebP from 1619×971 user-approved PNG; preserve live elderly vendor, medal, stall and dusk colors.
+- [x] Bind `RUN_CARDS["gravedigger_shop"]`; retain original art and unchanged .tres/event/DS3/gameplay.
+- [x] D315 exact SHA-256 + decode/native dimensions/catalogue regression; record D341 checkpoint, changelog and new-chat handoff.
+- [ ] Confirm native Godot CI for D341 via actual runner; static review does not count.
+- [ ] User F6 `scenes/dev/d315_card_ds3_gallery.tscn` visually check «ЛАВКА МОГИЛЬЩИКА».
+- [ ] D342 identify next unapproved **event** card, show 2–3 real independent images; get selection before committing artwork.
+
 ## D340 — Whispering Well, approved first ghost-face image (2026-10-22)
 
 - [x] Respect first of final three **finished** full-size well paintings, `призрачное_лицо_в_старом_колодце.png`, not the earlier sketch, second or third reflection.

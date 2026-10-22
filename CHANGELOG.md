@@ -1,3 +1,10 @@
+## 2026-10-22 — D341: Gravedigger Shop approved old-man illustration shipped
+
+- Honored approval of final color-preserving, slightly decluttered living elderly gravedigger artwork; previous assistant only sent a local source path.
+- Exported selected 1619×971 PNG to 448×274 WebP with minimal side crop; mapped `gravedigger_shop` in live Card DS3 catalog, retained previous art.
+- D315 regression now checks exact D341 SHA/decode/size/catalog pixels. Shop encounter/resources, game mechanics and D328 UI unchanged; refreshed project state, design decision, roadmap, registry, handoff and changelog.
+- Native Godot CI outcome is separate, not presumed green.
+
 ## 2026-10-22 — D340: Whispering Well first ghost reflection shipped
 
 - Corrected previous local-file-only response by pushing user's approved FIRST full-size reflection well painting into GitHub (real 448×274 WebP, original composition retained).

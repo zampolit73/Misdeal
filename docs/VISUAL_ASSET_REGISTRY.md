@@ -1,3 +1,9 @@
+## D341 — Approved Gravedigger Shop cleaned final scene (2026-10-22)
+
+- **Source:** `мрачный_торговец_на_кладбищенской_заставе.png`, 1619×971, `file_0000000054dc822fa7cb5f1e9c664c4b`. Last cleaned illustration, explicitly approved after user requested preserving warm/sunset cool/slate palette, slightly reducing AI landscape noise. **Living hooded white-bearded man** at crimson-stall selling medallion/scrolls under single lantern, graveyard and remote castle.
+- **Runtime:** `assets/pixel/card_unification_v1/run/gravedigger_shop_d341_approved_cleansed_scene.webp` 448×274 WebP Q86, sides trimmed 15px/16px (crop (15,0)-(1603,971)), Lanczos. SHA-256 `94350b57bb999906664680a3b7cc7709b91b58817e07107b0636952de68b66b0`. Live `RUN_CARDS["gravedigger_shop"]`, legacy `run/gravedigger_shop.webp` kept. D315 exact binary/decode/dimensions/catalog pixel contract.
+- **Excluded:** previous denser or skeletal stall versions, earlier D341 candidate renderings, future style changes without user permission.
+
 ## D340 — Approved Whispering Well #1 full painting (2026-10-22)
 
 - **Exact chosen original:** `призрачное_лицо_в_старом_колодце.png` 1604×981 (file `file_00000000cb28824699f21a53bbd69375`); FIRST of last finished three-image set, no skeletons. Round ancient stone well under cloudy night in courtyard, face beneath ripples, bucket/rope at lower left, single warm lantern left background. The well fills the image.

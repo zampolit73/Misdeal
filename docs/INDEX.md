@@ -1,3 +1,5 @@
+**Latest handoff:** [D341 approved Gravedigger Shop](D341_NEW_CHAT_HANDOFF.md) (2026-10-22).
+
 **Latest handoff:** [D340 approved Whispering Well](D340_NEW_CHAT_HANDOFF.md) (2026-10-22).
 
 **Latest handoff:** [D339 approved Grave Crossfire](D339_NEW_CHAT_HANDOFF.md) (2026-10-22).
