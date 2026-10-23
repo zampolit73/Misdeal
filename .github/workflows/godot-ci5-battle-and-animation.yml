@@ -1,11 +1,6 @@
 name: CI5 battle matrix and authored sprite frame QA
 
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/godot-ci5-battle-and-animation.yml'
-      - 'scripts/dev/ci5_capture_multi_battle.gd'
-      - 'scripts/dev/ci5_animation_frame_audit.gd'
   workflow_dispatch:
 
 concurrency:

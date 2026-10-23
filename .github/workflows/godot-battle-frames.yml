@@ -1,10 +1,6 @@
 name: CI4 native Battle motion frames
 
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/godot-battle-frames.yml'
-      - 'scripts/dev/ci4_capture_real_battle.gd'
   workflow_dispatch:
 
 concurrency:
