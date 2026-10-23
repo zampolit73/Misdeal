@@ -1,3 +1,5 @@
+**CI5 (2026-10-23):** [Live Court trio / Grave Bell duo and three original 25-pose animation atlases](CI_AUTOMATION.md) — [8 original Battle frames + 75 frame audit PASS](https://github.com/zampolit73/Misdeal/actions/runs/39939170351). Existing game graphics unchanged.
+
 **CI4 (2026-10-23):** [Native Godot Battle motion frames and review artifacts](CI_AUTOMATION.md) — original production combat PNG + motion CSV, real [CI4 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39937515858), [PR #5](https://github.com/zampolit73/Misdeal/pull/5).
 
 **CI3 (2026-10-23):** [Native Godot 4.7.2 visual QA capture setup](CI_AUTOMATION.md) — [4 real screenshots artifact, SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39934851995); manual rerun after merge; no game-art approvals changed.

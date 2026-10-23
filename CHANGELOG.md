@@ -1,3 +1,9 @@
+## 2026-10-23 — CI5 real Battle matrix and original animation-frame audit
+
+- Added opt-in Godot 4.7.2 Xvfb QA for genuine Court of the Mute trio and Grave Bell duo production fights: 8 full native 1280×720 images, correct rosters/encounter rules, observed movement 123.37/124.61px, motion CSVs.
+- Validated and exported original authored Court Magistrate/Scrivener/Bailiff runtime SpriteFrames: 3 atlases of 25 distinct 96px poses, correct 5 unused alpha-clear cells, no missing/cropped poses; 75-row pixel-foot/edge CSV. No game artwork changes.
+- [PR #6 merged](https://github.com/zampolit73/Misdeal/pull/6) `b3a5699`; native [CI5 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39939170351) and [7/7 smoke PASS](https://github.com/zampolit73/Misdeal/actions/runs/39939170283).
+
 ## 2026-10-23 — CI4 real Battle movement capture
 
 - Added opt-in GitHub Actions capture of production Graveyard Ambush: genuine Knight and 3 authored skeleton enemies, native prep/intro plus five timed live frames (Godot 4.7.2 Xvfb/Mesa).

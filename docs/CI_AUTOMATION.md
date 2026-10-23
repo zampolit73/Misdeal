@@ -69,3 +69,12 @@ Add opt-in coverage for representative arena/party combinations (including Court
 
 
 Add an **opt-in visual preview** workflow on Linux with a virtual display (or a Godot scripted Viewport render), producing labeled PNG artifacts from **specified stable dev scenes**. Do not use headless logs as evidence that sprites look correct. Validate any preview against a real Godot session before calling it an approved visual checkpoint.
+
+## CI5 — Two additional live Battle scenes and authored source-frame audit
+
+`.github/workflows/godot-ci5-battle-and-animation.yml` is a no-secrets, **workflow_dispatch** or own-code-PR triggered Godot 4.7.2 QA, preserving the usual seven core PR smokes. It renders actual production `scenes/battle/battle.tscn` using original resources under Xvfb/Mesa. Scenario `court-trio` starts a real Knight/Ranger/Mage trio versus Magistrate, Scrivener and two Bailiffs and checks the real Court verdict controller. Scenario `grave-bell-duo` uses Knight/Ranger versus two Skeletons and Bellkeeper, validating `bell_first` side objective. Original full 1280×720 frames are captured at preparation and 0/600/1200ms after genuine battle intro for each scene (8 PNGs total), with measured unit motion in scenario CSVs.
+
+Separate native Godot `scripts/dev/ci5_animation_frame_audit.gd` loads **original runtime** `SpriteFrames` of `mute_magistrate`, `ash_scrivener`, `bone_bailiff` from `MisdealUnitAnimationLibrary` and validates the authored 25-pose per-role contract: idle4/walk6/attack6/hit3/death6, exactly 96×96, no empty/repeated/cropped active frames, five transparent unused atlas cells. It exports the **actual original** 576×480 atlas PNGs and `pose-foot-and-edge-audit.csv` (75 frames) without regenerating any art or switching any runtime sprite. Legacy fallback/static roles are deliberately outside this 25-frame strict validation, not called broken.
+
+Observed [CI5 native **PASS**](https://github.com/zampolit73/Misdeal/actions/runs/39939170351) and [seven core smoke **PASS**](https://github.com/zampolit73/Misdeal/actions/runs/39939170283); attached artifact `misdeal-ci5-battle-matrix-and-poses` (ID `12495301677`, retained 14 days) was downloaded and reviewed. Screenshots/alpha metrics reveal some technical problems but cannot prove artistic quality, true 60fps smoothness or correct facing in every dynamic case. This extends, not replaces, CI3 four UI screenshots or CI4 Graveyard Ambush motion. Run manually from GitHub Actions → `CI5 battle matrix and authored sprite frame QA` → Run workflow on main.
+

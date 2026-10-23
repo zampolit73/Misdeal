@@ -1,3 +1,13 @@
+## CI5 — Expanded live Battle + 25-frame native QA COMPLETE (2026-10-23)
+
+- [x] Build original Court of the Mute trio and Grave Bell duo 1280×720 scene capture (8 genuine screenshots total).
+- [x] Assert real teams, encounter-specific Court verdict/Bell Wizard condition, active movement (Court 123.37px; Bell 124.61px), and actual renderer frame output.
+- [x] Validate Court Magistrate/Scrivener/Bailiff `SpriteFrames`: **75 unique nonempty, padded poses**, authentic 6×5 atlases, unused cells transparent; export original PNGs + per-pose foot/edge data.
+- [x] [CI5 native run **PASS**](https://github.com/zampolit73/Misdeal/actions/runs/39939170351), [seven core Godot smokes **PASS**](https://github.com/zampolit73/Misdeal/actions/runs/39939170283); artifact downloaded and visually inspected.
+- [x] Merge [PR #6](https://github.com/zampolit73/Misdeal/pull/6) as `b3a5699`, scripts and CI only, no gameplay/art changes.
+- [ ] Optional next automation: sample additional approved animation roles for 1× scale, direction, floor contact and walking frames, with strict explicit exceptions for legacy static/fallback roles. Never automatically swap approved sprites.
+- [ ] Creative handoff still D345 `chained_prisoner` visible 2–3 artwork proposals first; approved D344R2 Candle Seller unchanged.
+
 ## CI4 — Native actual Battle motion QA RELEASED (2026-10-23)
 
 - [x] Real production Graveyard Ambush Battle preparation, intro and five live 1280×720 motion samples from actual Godot 4.7.2 software OpenGL.
