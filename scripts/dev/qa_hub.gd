@@ -195,12 +195,19 @@ func _launch_selected() -> void:
 		return
 	var prep: String = entry["prep"]
 	if prep != "":
-		RunState.reset_run()
-		if not RunState.choose_protagonist("knight"):
+		# QA Hub must compile both as a normal F6 scene (with autoloads) and
+		# in a standalone --script SceneTree smoke (autoloads aren't injected).
+		var state := get_node_or_null("/root/RunState")
+		if state == null:
+			state = (load("res://scripts/core/run_state.gd") as Script).new() as Node
+			state.name = "RunState"
+			get_tree().root.add_child(state)
+		state.call("reset_run")
+		if not state.call("choose_protagonist", "knight"):
 			_status.text = "Не удалось подготовить Рыцаря для QA."
 			return
 		if prep == "graveyard":
-			RunState.select_encounter("res://resources/encounters/graveyard_ambush.tres")
+			state.call("select_encounter", "res://resources/encounters/graveyard_ambush.tres")
 	get_tree().change_scene_to_file(path)
 
 func _add_text(value: String, pos: Vector2, dimensions: Vector2, font: int, color: Color) -> void:
