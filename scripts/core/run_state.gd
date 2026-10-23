@@ -1189,10 +1189,17 @@ func _ensure_current_offers() -> void:
 
 	var returning_held_id: String = ""
 	if not held_card_id.is_empty() and held_card_return_at >= 0 and cards_resolved >= held_card_return_at:
-		returning_held_id = held_card_id
-		held_card_id = ""
-		held_card_return_at = -1
-		record_wizard_memory("held_card_return", returning_held_id)
+		var held_card := get_card(held_card_id)
+		# The Fate Hold can never replace a mandatory combat choice with
+		# an event. Keep the actual held card for the very next deal instead;
+		# this is an exceptional +1 delay, not a discarded or new card.
+		if slot_in_tier == forced_slot and held_card != null and held_card.resolution_type != "combat":
+			held_card_return_at = cards_resolved + 1
+		else:
+			returning_held_id = held_card_id
+			held_card_id = ""
+			held_card_return_at = -1
+			record_wizard_memory("held_card_return", returning_held_id)
 
 	if not returning_held_id.is_empty():
 		# A Fate-held card must return, even if it is outside the current tier.
