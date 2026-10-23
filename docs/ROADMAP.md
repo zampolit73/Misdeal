@@ -1,3 +1,13 @@
+## A1P2 — Act I 12+XIII progression audit and mandatory combat integrity (2026-10-23)
+
+- [x] Audit 36 seeded 12+XIII **structural RunState routes** (12 solo, 12 duo, 12 trio) over 432 card decisions, with correct live resources and selected-encounter bindings.
+- [x] Record real offered/selected type distribution: 177 combats, 255 events, 201 mixed-type pairs, 177 adjacent same-type pairs, 108 mandatory combat windows.
+- [x] Prove old Fate Hold bypass with red native test, then fix the exception: defer held noncombat by one offer only when return collides with mandatory combat; clarify Hold tooltip.
+- [x] Confirm normal Fate Hold two-deal timing unchanged, and observe [43/43 native GUT PASS + all selected native/visual CI](https://github.com/zampolit73/Misdeal/actions/runs/39960631781).
+- [x] Merge [PR #12](https://github.com/zampolit73/Misdeal/pull/12) to `main` as `c4501ee`.
+- [ ] Separately perform 1–3 **actual user-played runs**, evaluating encounter rhythm, event/reward decisions, real battle outcomes and boss difficulty. The 36 structural simulations are *not* a real-playthrough verdict.
+- [ ] Review 44.7% adjacent same-type sequences *as a possible pacing lead*, not a confirmed balance defect. Do not redesign deck without data and approval.
+
 ## A1P1 — First-act pacing: Wizard acknowledges rejected cards (2026-10-23)
 
 - [x] Review actual tabletop/card flow and existing deterministic 48-run F6 simulation; confirm original 12+boss, tier offers and locked original art preserved.

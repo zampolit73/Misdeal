@@ -1,3 +1,10 @@
+## 2026-10-23 — A1P2 first-act route audit and Fate Hold combat invariant
+
+- Audited 36 deterministic solo/duo/trio 12+XIII Fate Spread **state routes** on original Godot resources (432 choices); documented encounter rhythm and limitations in `docs/A1P2_ACT1_ROUTE_AUDIT.md`.
+- Fixed a confirmed bug where a held noncombat event returning at the mandatory combat slot could let a player skip the fight. It now returns immediately after the forced combat; ordinary two-deal Hold remains unchanged, and the tooltip explains the exception.
+- Added two original GUT suites for end-to-end state progression and held-card gate; [43/43 GUT tests, 5,752 assertions and original native/visual smoke PASS](https://github.com/zampolit73/Misdeal/actions/runs/39960631781). [PR #12 merged](https://github.com/zampolit73/Misdeal/pull/12) `c4501ee`.
+- No new mechanics, combat/enemy tuning, card weighting, rewards or approved imagery modified.
+
 ## 2026-10-23 — A1P1 Wizard discard-memory beats
 
 - The Wizard now reacts with three distinct short context lines to the last actually rejected Fate Spread card after resolutions 3, 7 and 11, enhancing continuity in Act I without a new mechanic.
