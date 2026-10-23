@@ -6,7 +6,7 @@ extends SceneTree
 const SIZE := Vector2i(1280, 720)
 const BATTLE_SCENE := "res://scenes/battle/battle.tscn"
 const ENCOUNTER := "res://resources/encounters/graveyard_ambush.tres"
-const SAMPLE_TIMES := PackedFloat32Array([0.0, 0.30, 0.65, 1.05, 1.60])
+const SAMPLE_TIMES := [0.0, 0.30, 0.65, 1.05, 1.60]
 
 var _battle: Control
 var _output: String
