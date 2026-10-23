@@ -1,3 +1,12 @@
+## CI1 — Free, browser-led automated Godot QA (2026-10-23)
+
+- [x] Confirm access to GitHub and inventory 29 existing specialist Godot Actions; preserve all.
+- [x] Add a **pull_request** workflow with pinned, SHA-verified Godot 4.7.2, project-wide import/parse and 5 existing functional native smoke tests.
+- [x] Collect PASS/FAIL job summary and download-ready error logs on success/failure, no paid Codex/API or local self-hosted runner.
+- [ ] Verify actual run on the CI1 pull request, diagnose any native failures, then merge validated workflow into `main`.
+- [ ] Separate follow-up: opt-in **real rendered** labeled dev-scene screenshot artifacts. Native/headless success alone cannot approve art/animation.
+- [ ] Keep D345 prisoner art option review distinct; never touch accepted D344R2 candle illustration without user request.
+
 ## D344R2 — Replace Candle Seller with user's later occult ritual (2026-10-23)
 
 - [x] Follow newest user art approval (later than D344): exact `оккультный_ритуал_при_свечах.png`, not older thin taper artwork.
