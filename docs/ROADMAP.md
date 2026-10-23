@@ -1,11 +1,12 @@
-## CI1 — Free, browser-led automated Godot QA (2026-10-23)
+## CI1 — Free browser-led automated Godot QA (2026-10-23)
 
-- [x] Confirm access to GitHub and inventory 29 existing specialist Godot Actions; preserve all.
-- [x] Add a **pull_request** workflow with pinned, SHA-verified Godot 4.7.2, project-wide import/parse and 5 existing functional native smoke tests.
-- [x] Collect PASS/FAIL job summary and download-ready error logs on success/failure, no paid Codex/API or local self-hosted runner.
-- [ ] Verify actual run on the CI1 pull request, diagnose any native failures, then merge validated workflow into `main`.
-- [ ] Separate follow-up: opt-in **real rendered** labeled dev-scene screenshot artifacts. Native/headless success alone cannot approve art/animation.
-- [ ] Keep D345 prisoner art option review distinct; never touch accepted D344R2 candle illustration without user request.
+- [x] Confirm connected GitHub and inventory 29 original Godot CI workflows; preserve them.
+- [x] Add pinned Godot 4.7.2 **pull_request** native import/parse and 5 core smokes, summary and log artifacts, no paid local AI or runner.
+- [x] Reconcile stale D291 smoke with approved D311 wizard plaque rather than changing approved Battle UI.
+- [x] Observe real **5/5 PASS** on [PR #2 native workflow run 39932846031](https://github.com/zampolit73/Misdeal/actions/runs/39932846031).
+- [x] Merge [PR #2](https://github.com/zampolit73/Misdeal/pull/2) to `main` as `d65e118`.
+- [ ] Next step: opt-in **real rendered screenshot artifacts** from selected stable dev scenes; these must be reviewed at game scale and not represented as native smoke visual approval.
+- [ ] D345 prisoner artwork still needs visible 2–3 options; D344R2 candle art remains locked.
 
 ## D344R2 — Replace Candle Seller with user's later occult ritual (2026-10-23)
 
