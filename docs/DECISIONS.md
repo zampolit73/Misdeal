@@ -1,6 +1,6 @@
-## CI1 — Keep ChatGPT Web + GitHub as default, add read-only PR smoke (2026-10-23)
+## CI1 — Browser-led development with native pre-merge QA (2026-10-23)
 
-User wants to develop Misdeal from this ChatGPT project without paying for a second agent subscription. Keep connected GitHub as the delivery surface and official Godot 4.7.2 on GitHub-hosted Actions as the native **pre-merge** check. New `godot-pr-smoke.yml` is read-only, uses existing Godot scripts/known PASS sentinels and publishes logs. No Windows self-hosted Actions runner in the public repository, no direct browser-to-local Godot claim. **Visual art review still requires actual scene screenshots/F6** and does not become an automated approval. Keep all existing stage-specialist CI workflows and all locked D328/D344R2 visual decisions unchanged. See [CI automation](CI_AUTOMATION.md).
+Keep connected ChatGPT Web + GitHub as the default Misdeal implementation flow, without requiring an extra AI subscription or pretending a browser session can operate the user's local Godot Editor. **Merged [PR #2](https://github.com/zampolit73/Misdeal/pull/2)** adds read-only native Godot 4.7.2 PR validation; [observed 5/5 green](https://github.com/zampolit73/Misdeal/actions/runs/39932846031), with error logs and summary. Approved D311 Wizard plaque intentionally has `StyleBoxEmpty` instead of the old D295 border; smoke contract was repaired rather than reverting approved art. GitHub-hosted Actions avoid risky Windows self-hosted runners for a public repository. **Visual QA remains manual/evidence-led** via actual Godot capture/F6, stage-specific older CI retained. See [CI automation](CI_AUTOMATION.md); D328/D344R2 remain locked.
 
 ## D344R2 — User explicitly superseded D344 Candle Seller art (2026-10-23)
 
