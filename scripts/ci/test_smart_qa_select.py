@@ -37,6 +37,12 @@ class SelectorTests(unittest.TestCase):
         self.assertEqual(plan["mode"], "fast")
         self.assertFalse(plan["scenes"])
 
+    def test_gut_unit_tests_are_fast_without_extra_screenshots(self):
+        plan = classify(["tests/unit/test_battle_unit.gd"])
+        self.assertEqual(plan["mode"], "fast")
+        self.assertEqual(plan["scenes"], [])
+        self.assertEqual(len(plan["tests"]), 8)
+
     def test_ui_is_visual(self):
         plan = classify(["scripts/ui/card_ds3_skin.gd"])
         self.assertEqual(plan["mode"], "visual")

@@ -1,3 +1,9 @@
+## 2026-10-23 — GUT1 unit testing pilot
+
+- Vendored original MIT GUT 9.7.1 (Godot 4.7 compatible) under `addons/gut`; editor plugin enabled without modifying game start scene.
+- Added 13 executable unit tests for real BattleUnit and independent RunState scaling/recruitment; integrated into existing GitHub smart PR QA with nonempty test discovery enforcement.
+- Initial official Godot 4.7.2 [GUT run 39951474299](https://github.com/zampolit73/Misdeal/actions/runs/39951474299): **13/13 tests, 51 assertions PASS**. Normal native smokes and visual CI preserved. No gameplay tuning/art changes.
+
 ## 2026-10-23 — OPT1 + OPT4 smart Godot QA and F6 launcher
 
 - Upgraded existing required GitHub PR smoke to safely select docs-only, FAST or VISUAL scopes by changed paths, with manual full RELEASE. Added eight selector unit tests and original Godot screenshot evidence collection; no new paid plugins.

@@ -75,6 +75,34 @@ jobs:
           fi
           echo '✅ Godot project import and GDScript parsing passed' >> "$GITHUB_STEP_SUMMARY"
 
+      - name: GUT 9.7.1 real GDScript unit tests
+        if: steps.scope.outputs.mode != 'docs'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f addons/gut/plugin.cfg
+          mkdir -p "$RUNNER_TEMP/misdeal-smart-qa"
+          timeout 120s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path . -s res://addons/gut/gut_cmdln.gd \
+            -gdir=res://tests/unit -gconfig= -gexit -glog=1 \
+            2>&1 | tee "$RUNNER_TEMP/misdeal-smart-qa/gut-unit.log"
+          python3 - <<'PY'
+          from pathlib import Path
+          import os, re
+          raw = (Path(os.environ["RUNNER_TEMP"]) / "misdeal-smart-qa/gut-unit.log").read_text(errors="replace")
+          text = re.sub(r"\x1b\[[0-9;]*m", "", raw)
+          runs = re.search(r"(?m)^Tests\s+(\d+)\s*$", text)
+          passes = re.search(r"(?m)^Passing Tests\s+(\d+)\s*$", text)
+          assert runs and passes, "GUT test summary missing: likely failed to discover tests"
+          count = int(runs.group(1))
+          assert count >= 13 and int(passes.group(1)) == count, (
+              f"expected at least 13 GUT cases, saw {count} / {passes.group(1)} passed"
+          )
+          assert "All tests passed!" in text, "GUT reported an incomplete run"
+          print(f"GUT_VERIFIED_PASS: {count}/{count} real tests")
+          PY
+          echo '✅ GUT 9.7.1: at least 13 real BattleUnit/RunState tests executed and passed.' >> "$GITHUB_STEP_SUMMARY"
+
       - name: Relevant native Godot smoke tests
         if: steps.scope.outputs.mode != 'docs'
         shell: bash

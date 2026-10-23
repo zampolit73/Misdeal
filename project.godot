@@ -32,3 +32,7 @@ window/stretch/mode="canvas_items"
 environment/defaults/default_clear_color=Color(0.006, 0.004, 0.009, 1)
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")

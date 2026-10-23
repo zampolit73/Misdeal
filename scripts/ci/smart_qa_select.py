@@ -44,7 +44,9 @@ def classify(paths, request="auto"):
     for p in paths:
         if p.startswith("docs/") or p in ("README.md", "CHANGELOG.md", "AGENTS.md"):
             continue
-        if p in ("scripts/dev/qa_hub.gd", "scripts/dev/qa_hub_smoke.gd",
+        if p.startswith(("tests/unit/", "addons/gut/")) or p == ".gutconfig.json":
+            tests.update(ALL_TESTS)  # GUT/update test infrastructure requires whole native suite
+        elif p in ("scripts/dev/qa_hub.gd", "scripts/dev/qa_hub_smoke.gd",
                  "scenes/dev/qa_hub.tscn"):
             tests.add("qa-hub")
             scenes.add("qa-hub")
