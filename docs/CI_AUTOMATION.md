@@ -49,6 +49,23 @@ The run checks each source PNG for dimensions, nonblank buffer and unique conten
 
 Keep these shots clearly labeled **Linux software OpenGL**; text rasterization, font differences and contrast may differ slightly from the user's Windows GPU/editor. When objective text positioning or sprite motion matters, corroborate with local Godot F6.
 
+## CI4 — Genuine production Battle screenshots and motion evidence
+
+`.github/workflows/godot-battle-frames.yml` runs only on changes to its own script/workflow in a PR, or manually from **Actions → CI4 native Battle motion frames → Run workflow** on `main`. It downloads verified official Godot 4.7.2 and uses Xvfb + Mesa to **actually render** the original shipped `graveyard_ambush` encounter using `scenes/battle/battle.tscn`: a Knight versus two skeletons and one bone archer. No reauthored UI/sprites, no gameplay mutation.
+
+`scripts/dev/ci4_capture_real_battle.gd` checks original `BattleUnit.sprite_frames`, the authentic Fight-button signal, then captures seven complete 1280×720 framebuffers after `RenderingServer.frame_post_draw`:
+
+- `00-preparation.png`: live preparation/tactics, before fight
+- `01-intro.png`: production battle intro
+- `02-live-0000ms.png`, `03-live-0300ms.png`, `04-live-0650ms.png`, `05-live-1050ms.png`, `06-live-1600ms.png`: timed live autobattle frames
+
+Each run validates count, PNG signature/resolution/nonblank images and frame distinction, checks the actual unit displacement (must exceed 2px), logs the original `battle-frame-metadata.csv` and records images in `misdeal-ci4-real-battle-motion` for **14 days**. It also uses ffmpeg (installs if absent) to create `battle-review-flipbook.mp4` at **3 fps** from *these exact seven frames*. The flipbook is a review aid for spatial changes and is **not** continuous gameplay footage or evidence that all individual 25-frame animations are smooth.
+
+The GitHub connector lets ChatGPT retrieve artifact ZIPs and inspect original PNG frames directly. The first [native 7-frame CI4 run](https://github.com/zampolit73/Misdeal/actions/runs/39937515858) passed and reported ~183.6px original BattleUnit movement; the images were retrieved and visually inspected. [Original seven native functional smoke tests](https://github.com/zampolit73/Misdeal/actions/runs/39937515794) also passed. Visual opinions are still separate from CI PASS, and Linux Mesa/OpenGL screenshots can differ from Windows hardware. 
+
 ## Next safe enhancement
+
+Add opt-in coverage for representative arena/party combinations (including Court and Black Lantern) and sampled animation states/frames, validating authored actor bounds and soles. Do not switch approved gameplay sprites or reinterpret a slideshow as accepted 25-frame motion.
+
 
 Add an **opt-in visual preview** workflow on Linux with a virtual display (or a Godot scripted Viewport render), producing labeled PNG artifacts from **specified stable dev scenes**. Do not use headless logs as evidence that sprites look correct. Validate any preview against a real Godot session before calling it an approved visual checkpoint.
