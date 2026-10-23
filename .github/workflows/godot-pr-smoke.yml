@@ -75,6 +75,19 @@ jobs:
           fi
           echo '✅ Godot project import and GDScript parsing passed' >> "$GITHUB_STEP_SUMMARY"
 
+      - name: GUT 9.7.1 real GDScript unit tests
+        if: steps.scope.outputs.mode != 'docs'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f addons/gut/plugin.cfg
+          mkdir -p "$RUNNER_TEMP/misdeal-smart-qa"
+          timeout 120s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path . -s res://addons/gut/gut_cmdln.gd \
+            -gdir=res://tests/unit -gconfig= -gexit -glog=1 \
+            2>&1 | tee "$RUNNER_TEMP/misdeal-smart-qa/gut-unit.log"
+          echo '✅ GUT 9.7.1 unit suite passed (real BattleUnit and party scaling).' >> "$GITHUB_STEP_SUMMARY"
+
       - name: Relevant native Godot smoke tests
         if: steps.scope.outputs.mode != 'docs'
         shell: bash
