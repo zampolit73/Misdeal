@@ -41,7 +41,7 @@ func _verify() -> void:
 	if reward == null or not reward.visible or reward.text != "+15 золота" or original.visible:
 		_fail("D312 live reward inset missing or old source Label visible")
 		return
-	if body.text.contains("+15 золота") or body.position != Vector2(56, 44) or reward.position != Vector2(65, 80):
+	if body.text.contains("+15 золота") or body.position != Vector2(56, 38) or reward.position != Vector2(65, 73):
 		_fail("D312 reward overlaps original rule body")
 		return
 	if header.position != Vector2(63, 9):
