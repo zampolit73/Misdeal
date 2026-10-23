@@ -1,4 +1,4 @@
-**GUT1 (2026-10-23):** [Godot 4.7.2 GUT 9.7.1 module tests and local/GitHub usage](GUT_TESTING.md). [13/13 real tests initial PASS](https://github.com/zampolit73/Misdeal/actions/runs/39951474299) in [PR #8](https://github.com/zampolit73/Misdeal/pull/8).
+**CURRENT HANDOFF (2026-10-23):** [A1P2 — verified state and next real Act-I playtesting steps](A1P2_NEW_CHAT_HANDOFF.md). A1P2 was **merged** as [PR #12](https://github.com/zampolit73/Misdeal/pull/12); [43/43 Godot GUT native PASS](https://github.com/zampolit73/Misdeal/actions/runs/39960631781). Older handoffs below are historical.\n\n**GUT1 (2026-10-23):** [Godot 4.7.2 GUT 9.7.1 module tests and local/GitHub usage](GUT_TESTING.md). [13/13 real tests initial PASS](https://github.com/zampolit73/Misdeal/actions/runs/39951474299) in [PR #8](https://github.com/zampolit73/Misdeal/pull/8).
 
 **OPT1 + OPT4 (2026-10-23):** [Smart QA modes and F6 QA Hub](QA_HUB.md): [PR #7 merged](https://github.com/zampolit73/Misdeal/pull/7), [8/8 native + 5/5 real screenshots PASS](https://github.com/zampolit73/Misdeal/actions/runs/39944961444). No main game/menu changes.
 
