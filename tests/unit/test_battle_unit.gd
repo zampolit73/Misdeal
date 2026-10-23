@@ -5,9 +5,13 @@ const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const KNIGHT: UnitData = preload("res://resources/units/knight.tres")
 
 func _knight() -> BattleUnit:
+	# Unit effects (damage text/sparks) are created as siblings of the actor.
+	# Own the complete battle-test subtree, not just the original Unit node.
+	var arena := Node2D.new()
+	add_child_autofree(arena)
 	var unit := UNIT_SCENE.instantiate() as BattleUnit
 	unit.configure(KNIGHT, 0, Vector2(260, 350))
-	add_child_autofree(unit)
+	arena.add_child(unit)
 	unit.set_process(false)
 	unit.set_process_input(false)
 	return unit
