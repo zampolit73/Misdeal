@@ -73,7 +73,7 @@ func _check() -> void:
 		if reward == null or not reward.visible or reward.text != "+15 золота":
 			_fail("D312 dynamic reward must be visible only in the lower inset")
 			return
-		if body.text.contains("+15 золота") or body.position != Vector2(56, 44) or reward.position != Vector2(65, 80):
+		if body.text.contains("+15 золота") or body.position != Vector2(56, 38) or reward.position != Vector2(65, 73):
 			_fail("D312 Wizard rule/reward overlap or insets were lost")
 			return
 		if heading.position != Vector2(63, 9) or heading.size != Vector2(172, 29):
