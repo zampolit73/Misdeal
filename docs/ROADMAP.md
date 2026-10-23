@@ -1,3 +1,13 @@
+## GUT1 — Godot 4.7.x unit test pilot (2026-10-23)
+
+- [x] Pin original MIT GUT 9.7.1 in `addons/gut`, enable editor plugin and retain upstream license (no manual ZIP).
+- [x] Add 13 first GDScript tests against real BattleUnit and independent RunState: Knight damage/heal/death, tactical order validation, combat start, solo/duo/trio pressure, recruitment invariants.
+- [x] Add GUT CLI execution and nonzero discovery / passing-count guard in the existing impact-aware PR Action.
+- [x] Observe first actual native GUT run [13/13 tests, 51 assertions PASS](https://github.com/zampolit73/Misdeal/actions/runs/39951474299).
+- [ ] Observe final latest PR #8 check including transient VFX cleanup / nonempty test guard, then merge; only mark done when verified.
+- [ ] Later expand coverage to targeted AI selection, resurrection, boss enrage and encounter-specific mechanics if useful; do not slow ordinary FAST CI by running every cinematic scene.
+- [ ] Continue approved Act 1 art and vertical-slice work unchanged; GUT is only a dev dependency.
+
 ## OPT1 + OPT4 — QA workflow simplification and in-editor QA Hub (2026-10-23)
 
 - [x] Upgrade the **existing** required PR Action with docs-only, impact-aware FAST, affected-scene VISUAL, and manual RELEASE modes instead of adding another mandatory Action.
