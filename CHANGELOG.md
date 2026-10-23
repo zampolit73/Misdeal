@@ -1,3 +1,9 @@
+## 2026-10-23 — CI2 Wizard objective native smoke and D313 live bounds
+
+- Extended general read-only PR gate to seven native Godot 4.7.2 functional scripts by adding D306 Wizard side objective and D308 F6 preview.
+- Fixed actual Godot Label min-height overlap between D311 Wizard objective rule and reward: y38/y73 keeps readable font/approved plaque and stays above carved border. No game balance, art assets, reward mechanics or controls changed.
+- [PR #3](https://github.com/zampolit73/Misdeal/pull/3) merged, [7/7 native PASS](https://github.com/zampolit73/Misdeal/actions/runs/39933674652), separate [D291 push-to-main PASS](https://github.com/zampolit73/Misdeal/actions/runs/39933807515).
+
 ## 2026-10-23 — CI1 GitHub Actions pull request smoke
 
 - Added read-only cross-project Godot **4.7.2** PR smoke: verified official runtime, native import/parse and D279/D289/D291/D315/D316 regression suites with PASS sentinel validation.
