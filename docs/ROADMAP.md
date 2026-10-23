@@ -1,3 +1,14 @@
+## D345 — Approved «Старый знакомый» / Chained Prisoner integrated (2026-10-23)
+
+- [x] User chose image #2 (direct recognition gaze); later explicitly approved finalized rendition shown in chat.
+- [x] Export exact `a_cinematic_dark_medieval_dungeon_interior_scene.png` to 448×274 WebP with only ~4–5px side crop and no added detail.
+- [x] Route `RUN_CARDS["chained_prisoner"]` to approved runtime image; leave older assets and event Resources intact.
+- [x] Add D315 SHA256 guard + decode/dimensions/live catalog regression (14 approved unique paintings).
+- [x] Update state, roadmap, locked visual decision, changelog, registry and handoff.
+- [ ] Confirm *actual* Godot D315 post-D345 native CI when possible (no inferred PASS).
+- [ ] User local `git pull` + F6 Gallery inspection of «ЗАКОВАННЫЙ ПЛЕННИК».
+- [ ] D346: inspect a different as-yet-unapproved card, present 2–3 truly distinct full-scale images before another art commit.
+
 ## CI5 — Expanded live Battle + 25-frame native QA COMPLETE (2026-10-23)
 
 - [x] Build original Court of the Mute trio and Grave Bell duo 1280×720 scene capture (8 genuine screenshots total).

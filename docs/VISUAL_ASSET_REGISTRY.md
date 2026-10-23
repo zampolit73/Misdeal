@@ -1,3 +1,9 @@
+## D345 — Chained Prisoner SECOND «Старый знакомый», user-approved refined render (2026-10-23)
+
+- **Approved original:** `a_cinematic_dark_medieval_dungeon_interior_scene.png` 1608×978 RGB (the final generated post-selection image), approved via «утверждаем и внедряем». Living man behind iron bars with old lion crest, chains, direct gaze, cold window upper left, single torch and old banner. Real scene, no title/UI/text embedded.
+- **Live game asset:** `assets/pixel/card_unification_v1/run/chained_prisoner_d345_approved_old_acquaintance.webp` WebP 448×274 Q86, source crop (4,0)–(1603,978), SHA256 `ae8141e234c7a791fd9f2eb5780198cdf33eda3977177a1d4c302dfb2c4ef64a`. `RUN_CARDS["chained_prisoner"]` overrides legacy `event/chained_prisoner.webp`, exact D315 SHA/decode/dimensions/catalog equality prevents silent fallback.
+- **Not approved:** other two earlier D345 prisoner options or the mistaken Candle Seller repeats.
+
 ## D344R2 — LIVE Candle Seller, last approved occult ritual revision (2026-10-23)
 
 - **Source (LATEST):** `оккультный_ритуал_при_свечах.png`, 1536×1024, user approved after image-to-image revision of posted cabinet/candles screenshot. LEFT merchant in hood, outstretched hand; FRONT three compact dripping ivory, red and dusty-indigo candles lit amber above deep-red fabric; RIGHT wooden Gothic cabinet with vials, books, brass instruments and a skull. This is **not** the first D344 accepted thin-taper art and not the subsequent erroneous D345 prisoner generator output.

@@ -49,6 +49,8 @@ const RUN_CARDS := {
 	# D344R2: user replaced the candle merchant scene with the later occult ritual art.
 	# Keep prior D344 WebP tracked as a rollback, but only the new scene is active.
 	"candle_seller": "run/candle_seller_d344_rev2_approved_occult_ritual.webp",
+	# D345: second user-chosen living prisoner scene, familiar eyes and old garrison crest.
+	"chained_prisoner": "run/chained_prisoner_d345_approved_old_acquaintance.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).

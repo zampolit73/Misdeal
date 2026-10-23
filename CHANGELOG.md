@@ -1,3 +1,9 @@
+## 2026-10-23 — D345: Ship approved Chained Prisoner «Old Acquaintance» image #2
+
+- Real GitHub publication of the final user-approved prisoner illustration (shackled living former soldier with recognizing gaze behind prison bars). Resized original 1608×978 directly to 448×274 WebP.
+- Added `chained_prisoner` live catalog override and native D315 strict SHA-256/image decode/size/live texture regression; original event card file, mechanics and DS3 unaffected.
+- Updated current state/roadmap/visual decisions/registry/handoff after previously incorrect no-GitHub-access replies; preserved CI5 and all earlier approved painting assets. Native post-D345 test outcome separate.
+
 ## 2026-10-23 — CI5 real Battle matrix and original animation-frame audit
 
 - Added opt-in Godot 4.7.2 Xvfb QA for genuine Court of the Mute trio and Grave Bell duo production fights: 8 full native 1280×720 images, correct rosters/encounter rules, observed movement 123.37/124.61px, motion CSVs.

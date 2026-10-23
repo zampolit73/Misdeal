@@ -1,3 +1,5 @@
+**Latest art handoff:** [D345 approved Chained Prisoner](D345_NEW_CHAT_HANDOFF.md) (2026-10-23). Existing CI5 Battle and native QA history remain valid.
+
 **CI5 (2026-10-23):** [Live Court trio / Grave Bell duo and three original 25-pose animation atlases](CI_AUTOMATION.md) — [8 original Battle frames + 75 frame audit PASS](https://github.com/zampolit73/Misdeal/actions/runs/39939170351). Existing game graphics unchanged.
 
 **CI4 (2026-10-23):** [Native Godot Battle motion frames and review artifacts](CI_AUTOMATION.md) — original production combat PNG + motion CSV, real [CI4 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39937515858), [PR #5](https://github.com/zampolit73/Misdeal/pull/5).

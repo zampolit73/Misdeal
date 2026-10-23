@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D344: verify thirteen published, user-approved individual paintings
+    # D345: verify fourteen published, user-approved individual paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -68,6 +68,7 @@ func _verify() -> void:
         {"id": "ash_rest", "file": "ash_rest_d342_approved_clean_horizon.webp"},
         {"id": "lost_purse", "file": "lost_purse_d343_approved_headless_corpse.webp"},
         {"id": "candle_seller", "file": "candle_seller_d344_rev2_approved_occult_ritual.webp"},
+        {"id": "chained_prisoner", "file": "chained_prisoner_d345_approved_old_acquaintance.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -110,6 +111,10 @@ func _verify() -> void:
         # D344R2: user replaced the D344 original with this exact new ritual painting.
         if String(approved["id"]) == "candle_seller" and FileAccess.get_sha256(asset_path) != "75ce3cef0f956666089ff9423c8b9ec16b7e6738e22f728a89f240de45a396ec":
             _fail("D344R2 Candle Seller is not the user-selected occult ritual illustration")
+            return
+        # D345: protect the user's SECOND prisoner artwork, not an earlier bowed pose.
+        if String(approved["id"]) == "chained_prisoner" and FileAccess.get_sha256(asset_path) != "ae8141e234c7a791fd9f2eb5780198cdf33eda3977177a1d4c302dfb2c4ef64a":
+            _fail("D345 Chained Prisoner differs from the approved familiar-gaze illustration")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:
