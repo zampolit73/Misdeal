@@ -1,3 +1,11 @@
+## A1P3 — Live first-act screen handoffs and player playtest (2026-10-23)
+
+- [x] Inspect real Table → ActChoice → Battle → Reward → RunEnd scripts and A1P2 state routes, including defeat/Last Deal and companion recruitment.
+- [x] Add **five real Godot GUT scene-handoff tests** (event resolution/next deal, selected-encounter battle victory and tier-major upgrade/loot, XII→XIII→RunEnd, defeat→Last Deal refusal→RunEnd, chained-prisoner recruitment/scar). Combat outcomes are injected at production Battle result handlers; this is NOT a win-rate/balance test.
+- [x] Use first failing native PR run to diagnose 11 existing opposing-anchor/size warnings from Battle DS3 relief decorations; remove redundant explicit size writes rather than hiding Godot warnings. Preserve approved painted assets and live controls.
+- [ ] Verify final [A1P3 PR #13](https://github.com/zampolit73/Misdeal/pull/13) Godot 4.7.2 GUT, native smoke and visual CI, then merge.
+- [ ] **Real human F5 12+XIII playthrough** as Knight, plus defeat/Last Deal and optional companion duo/trio when organically available; [local playtest checklist](A1P3_LOCAL_PLAYTEST.md). Get specific evidence on reward clarity, event choice consequences, encounter rhythm, boss phase/ending. Do not mark this as completed by automated tests.
+
 ## A1P2 — Act I 12+XIII progression audit and mandatory combat integrity (2026-10-23)
 
 - [x] Audit 36 seeded 12+XIII **structural RunState routes** (12 solo, 12 duo, 12 trio) over 432 card decisions, with correct live resources and selected-encounter bindings.
