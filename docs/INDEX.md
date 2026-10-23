@@ -1,3 +1,5 @@
+**CI3 (2026-10-23):** [Native Godot 4.7.2 visual QA capture setup](CI_AUTOMATION.md) — [4 real screenshots artifact, SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39934851995); manual rerun after merge; no game-art approvals changed.
+
 **CI2 (2026-10-23):** [Seven-scenario Godot 4.7.2 PR validation and Wizard art text geometry fix](CI_AUTOMATION.md) — [7/7 native PASS](https://github.com/zampolit73/Misdeal/actions/runs/39933674652) and [D291 main PASS](https://github.com/zampolit73/Misdeal/actions/runs/39933807515). Visual F6 remains separate.
 
 **CI1 (2026-10-23):** [Browser-led GitHub + Godot native PR automation](CI_AUTOMATION.md) — project-wide Godot 4.7.2 gate, original class/table/battle/card smokes, retained logs. This is technical QA, **not** visual approval. D344R2 and D345 art context below remains authoritative.

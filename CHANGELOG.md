@@ -1,3 +1,9 @@
+## 2026-10-23 — CI3 actual Godot screenshot automation
+
+- Added GitHub Actions optional actual rendered frame capture (Godot 4.7.2 Xvfb/Mesa) for real ClassSelect, Table, D308 Wizard panel and D315 gallery scenes.
+- Saved nonblank original native 1280×720 PNGs + import/capture logs as GitHub artifact; first verified [run 39934851995](https://github.com/zampolit73/Misdeal/actions/runs/39934851995) SUCCESS, parallel full 7/7 native smoke PASS.
+- No gameplay, approved painting, design-system, balance or animation edits; screenshots are Linux software-rendered references, not final visual approvals.
+
 ## 2026-10-23 — CI2 Wizard objective native smoke and D313 live bounds
 
 - Extended general read-only PR gate to seven native Godot 4.7.2 functional scripts by adding D306 Wizard side objective and D308 F6 preview.
