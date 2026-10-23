@@ -1,3 +1,7 @@
+## A1P1 — Rejected-card memory is voice-only and milestone-limited (2026-10-23)
+
+Keep the Fate Spread 12+XIII, original deck/discard/hold probabilities and card consequences unchanged. Only at three existing act milestones (3, 7, 11 resolved cards) the Wizard may remark on the last genuinely rejected card title already recorded in Fate history; no extra scene, invented return, mechanical penalty, hidden choice or art edit. Wizard Mark danger and boss lines retain priority. [PR #11](https://github.com/zampolit73/Misdeal/pull/11), verified [40/40 native GUT pass](https://github.com/zampolit73/Misdeal/actions/runs/39957116934). More substantive story or pacing mechanics need separate discussion.
+
 ## GUT2 — Preserve custom editor settings, seed only a blank install (2026-10-23)
 
 The editor's private GUT settings are distinct from project CLI `.gutconfig.json`. For a fresh GUT editor installation, initialize missing test directories from project's existing tracked test suite so **Run All** works without manual configuration. Do not overwrite any active or disabled custom test directories or touch the player's stash/project.godot. Keep the one-time integration patch in the upstream-vendored `addons/gut/gui/GutBottomPanel.gd` documented and test its project-owned implementation in native GUT. [PR #9](https://github.com/zampolit73/Misdeal/pull/9) and [Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39954278962) (16/16). No new dependency.

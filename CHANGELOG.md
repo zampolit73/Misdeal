@@ -1,3 +1,9 @@
+## 2026-10-23 — A1P1 Wizard discard-memory beats
+
+- The Wizard now reacts with three distinct short context lines to the last actually rejected Fate Spread card after resolutions 3, 7 and 11, enhancing continuity in Act I without a new mechanic.
+- Eight GUT tests verify source of discarded name, timeline, priority, missing rejection and authentic three-choice flow; [Godot CI 40/40 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39957116934), 141 assertions.
+- [PR #11 merged](https://github.com/zampolit73/Misdeal/pull/11) `63e6d7d`; no card probabilities, graphics, balance or progress changes.
+
 ## 2026-10-23 — GUT3 additional combat rules regression coverage
 
 - Added 16 real-unit Godot GUT tests for target-selection tactics, Bone Warden 50% enrage, and Pallbearer Last Rite resurrection/cancellation in 3 new GDScript test files.

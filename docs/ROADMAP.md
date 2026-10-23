@@ -1,3 +1,12 @@
+## A1P1 — First-act pacing: Wizard acknowledges rejected cards (2026-10-23)
+
+- [x] Review actual tabletop/card flow and existing deterministic 48-run F6 simulation; confirm original 12+boss, tier offers and locked original art preserved.
+- [x] Make three different short Wizard reactions after 3/7/11 resolved cards using genuinely rejected Fate Spread history; no hidden consequence or extra action.
+- [x] Add 8 GUT regression cases, including a real 3-card deal lifecycle, and verify [40/40 Godot GUT PASS](https://github.com/zampolit73/Misdeal/actions/runs/39957116934).
+- [x] Merge [PR #11](https://github.com/zampolit73/Misdeal/pull/11) `63e6d7d`.
+- [ ] Play through Act I as a player to assess encounter repetition, reward clarity and narrative cadence; automated GUT/native smoke is not subjective pacing validation.
+- [ ] Investigate separately the nonfatal import message concerning `assets/concepts/approved_battle_direction.jpg`; do not change approved live artwork based only on a CI import warning.
+
 ## GUT3 — Deeper core combat regressions SHIPPED (2026-10-23)
 
 - [x] Add 6 authentic target-priority cases: Assault, Hunt melee/ranged, wounded support, Formation, dead-target filtering.
