@@ -1,3 +1,14 @@
+## OPT1 + OPT4 — QA workflow simplification and in-editor QA Hub (2026-10-23)
+
+- [x] Upgrade the **existing** required PR Action with docs-only, impact-aware FAST, affected-scene VISUAL, and manual RELEASE modes instead of adding another mandatory Action.
+- [x] Add 8 pure-Python conservative impact selector tests; unknown changes fall back to full native suite.
+- [x] Render current Godot scenes to actual 1280×720 PNG evidence; reuse existing CI3 screenshot helper, add QA Hub capture.
+- [x] Add a categorized **F6 QA Hub** linking original game, card gallery, arena/battle launchers, animation previews and UI; preserve original main menu and player flow.
+- [x] Preserve CI3–CI5 as manual on-demand deep checks, avoiding double work on PR changes.
+- [x] Merge [PR #7](https://github.com/zampolit73/Misdeal/pull/7) `7c39854` after native [8/8 smokes + 5/5 screenshots PASS](https://github.com/zampolit73/Misdeal/actions/runs/39944961444).
+- [ ] Optional: manually run combined RELEASE once from GitHub Actions; constituent CI4/CI5 scripts already passed their dedicated jobs, but combined mode has not been separately verified.
+- [ ] Artistic continuation: D345 `chained_prisoner` requires user selection of truly approved living-prisoner art; D344R2 art stays unchanged. No extra OPT2/3/5 work authorized.
+
 ## D345 — Approved «Старый знакомый» / Chained Prisoner integrated (2026-10-23)
 
 - [x] User chose image #2 (direct recognition gaze); later explicitly approved finalized rendition shown in chat.

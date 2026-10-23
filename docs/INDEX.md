@@ -1,3 +1,5 @@
+**OPT1 + OPT4 (2026-10-23):** [Smart QA modes and F6 QA Hub](QA_HUB.md): [PR #7 merged](https://github.com/zampolit73/Misdeal/pull/7), [8/8 native + 5/5 real screenshots PASS](https://github.com/zampolit73/Misdeal/actions/runs/39944961444). No main game/menu changes.
+
 **Latest art handoff:** [D345 approved Chained Prisoner](D345_NEW_CHAT_HANDOFF.md) (2026-10-23). Existing CI5 Battle and native QA history remain valid.
 
 **CI5 (2026-10-23):** [Live Court trio / Grave Bell duo and three original 25-pose animation atlases](CI_AUTOMATION.md) — [8 original Battle frames + 75 frame audit PASS](https://github.com/zampolit73/Misdeal/actions/runs/39939170351). Existing game graphics unchanged.

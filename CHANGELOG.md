@@ -1,3 +1,10 @@
+## 2026-10-23 — OPT1 + OPT4 smart Godot QA and F6 launcher
+
+- Upgraded existing required GitHub PR smoke to safely select docs-only, FAST or VISUAL scopes by changed paths, with manual full RELEASE. Added eight selector unit tests and original Godot screenshot evidence collection; no new paid plugins.
+- Added DS3-styled categorized F6-only `qa_hub.tscn` linking existing scene QA and actual game screens, plus native QA Hub smoke. Ordinary F5 main game unaffected.
+- Kept specialist CI3/4/5 available via manual dispatch to avoid redundant PR execution; [PR #7](https://github.com/zampolit73/Misdeal/pull/7) merged after [8/8 native checks and five authentic screenshots PASS](https://github.com/zampolit73/Misdeal/actions/runs/39944961444).
+- Preserved all approved card illustrations, sprites, game mechanics and current D345 art approval gate.
+
 ## 2026-10-23 — D345: Ship approved Chained Prisoner «Old Acquaintance» image #2
 
 - Real GitHub publication of the final user-approved prisoner illustration (shackled living former soldier with recognizing gaze behind prison bars). Resized original 1608×978 directly to 448×274 WebP.
