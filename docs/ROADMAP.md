@@ -1,3 +1,13 @@
+## CI3 — Real screenshots DONE (2026-10-23)
+
+- [x] Create native 1280×720 Xvfb/Mesa Godot 4.7.2 screenshot job for ClassSelect, Table, D308 Wizard and D315 DS3 Card Gallery.
+- [x] Validate real nonblank images and inspect downloaded screenshot artifact via connected GitHub in ChatGPT.
+- [x] Observe final [CI3 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39935347302) and [7/7 native smoke PASS](https://github.com/zampolit73/Misdeal/actions/runs/39935347266).
+- [x] Merge [PR #4](https://github.com/zampolit73/Misdeal/pull/4) to `main` as `b1fd357` and enable opt-in workflow_dispatch from Actions.
+- [x] Cancel redundant in-progress CI for outdated PR commits using GitHub Actions concurrency.
+- [ ] CI4 candidate: capture **actual deterministic Battle** with real units in frame plus representative motion samples. Do not equate screenshots with fully validated animation.
+- [ ] Resume D345 `chained_prisoner` only after 2–3 real, visible art proposals; keep D344R2 Candle Seller approved art intact.
+
 ## CI3 — Real scene capture as reviewable GitHub artifacts (2026-10-23)
 
 - [x] Create read-only manual + CI-script-PR only workflow for true Godot 4.7.2 1280×720 Viewport screenshots under Xvfb/Mesa.
