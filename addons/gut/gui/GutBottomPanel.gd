@@ -81,6 +81,12 @@ func _ready():
 	hide_settings(!_ctrls.settings_button.button_pressed)
 
 	_gut_config.load_options(GutEditorGlobals.editor_run_gut_config_path)
+	# Misdeal GUT integration: the editor keeps a separate user:// config.
+	# Seed a fresh panel from the project's already-tested CLI suite instead
+	# of silently rejecting Run All with "You do not have any directories set".
+	# A user's existing configured test directories always take precedence.
+	var project_defaults = load("res://scripts/dev/gut_editor_defaults.gd")
+	_gut_config.options = project_defaults.ensure_editor_test_dirs(_gut_config.options)
 	_gut_config_gui.set_options(_gut_config.options)
 
 	_ctrls.shortcuts_button.icon = get_theme_icon('Shortcut', 'EditorIcons')
