@@ -1,3 +1,9 @@
+## 2026-10-23 — GUT editor Run All first-install fix
+
+- Seed new GUT editor panel's test folders from tracked `.gutconfig.json`; keep custom user GUT settings intact, no manual settings edits required on fresh install.
+- Add three regression tests for empty/configured/disabled editor directories; [real Godot 4.7.2 GUT 16/16 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39954278962), ordinary smoke and visual QA green.
+- [PR #9 merged](https://github.com/zampolit73/Misdeal/pull/9) as `6320585`. Gameplay/graphics unaffected.
+
 ## 2026-10-23 — GUT1 released with real native unit coverage
 
 - [PR #8 merged](https://github.com/zampolit73/Misdeal/pull/8), main commit `7290f35`: pinned GUT 9.7.1 (MIT) under `addons/gut`, enabled plugin in Godot 4.7.2.

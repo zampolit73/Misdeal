@@ -1,3 +1,9 @@
+## Windows editor Run All — fixed by GUT2 (2026-10-23)
+
+**Status:** [PR #9 merged](https://github.com/zampolit73/Misdeal/pull/9); native GUT **16/16 PASS** in [GitHub run 39954278962](https://github.com/zampolit73/Misdeal/actions/runs/39954278962). For Godot 4.7.2 on Windows, run `git pull`, then **fully close and restart Godot**. Open bottom GUT tab, drag its top border upward, press **Run All**; expect 16 passing tests. If the editor previously lacked configured test directories, project-owned `scripts/dev/gut_editor_defaults.gd` now seeds `res://tests/unit/` from the tracked CLI `.gutconfig.json`. It does **not** override any existing custom GUT test-directory choices (including disabled paths). This fixes the likely first-install "nothing happens" behavior; an actual local GUI click must still be confirmed by the user.
+
+If it still does nothing, press the GUT settings/tools icon, check **Test Directories** includes `res://tests/unit/`, and expand GUT Output / Godot Output and Debugger to inspect the actual error before modifying code. No need to `git stash pop` old `project.godot`.
+
 # Misdeal — GUT 9.7.1 unit testing (installed)
 
 Merged in [PR #8](https://github.com/zampolit73/Misdeal/pull/8), commit `7290f35`; official [native PASS run 39952061209](https://github.com/zampolit73/Misdeal/actions/runs/39952061209), **13/13 GUT cases, 51 assertions**.
