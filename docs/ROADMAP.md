@@ -1,12 +1,12 @@
-## CI4 — Native real Battle frame-sequence QA (2026-10-23)
+## CI4 — Native actual Battle motion QA RELEASED (2026-10-23)
 
-- [x] Capture original Graveyard Ambush from production Battle scene, initial preparation, genuine combat intro and five active frames from 0–1.6s.
-- [x] Verify one live Knight + three authored skeleton enemies, original SpriteFrames, Fight activation, nonblank distinct 1280×720 PNGs and real movement.
-- [x] Observe [first CI4 native seven-frame PASS](https://github.com/zampolit73/Misdeal/actions/runs/39937515858) and [7/7 native smoke PASS](https://github.com/zampolit73/Misdeal/actions/runs/39937515794), download frames and inspect actual Godot images; max movement 183.61px.
-- [x] Archive raw PNGs/CSV/logs for 14 days; include 3fps comparison MP4 via CI-installed ffmpeg.
-- [ ] Confirm complete CI run including MP4 output and merge [PR #5](https://github.com/zampolit73/Misdeal/pull/5) to main, then verify main.
-- [ ] Later: multiple battle types/parties, per-role original animation pose/frame sampling and movement collision checks; avoid interpreting a 3fps slideshow as verified smooth 25-frame animation.
-- [ ] Return to D345 `chained_prisoner` with D168 2–3 actual distinct art choices; preserve locked D344R2 Candle Seller painting.
+- [x] Real production Graveyard Ambush Battle preparation, intro and five live 1280×720 motion samples from actual Godot 4.7.2 software OpenGL.
+- [x] Verify original Knight + 3 enemy BattleUnits, actual SpriteFrames, native Fight signal, 7 distinct nonblank images and observable movement (first run **183.61px**).
+- [x] Generate mandatory 3fps `battle-review-flipbook.mp4`, archive seven original PNGs, motion CSV and logs for 14 days.
+- [x] Observe final [CI4 visual/video PASS](https://github.com/zampolit73/Misdeal/actions/runs/39938133079) and [7/7 native functional smoke PASS](https://github.com/zampolit73/Misdeal/actions/runs/39938133050).
+- [x] Merge [PR #5](https://github.com/zampolit73/Misdeal/pull/5) into `main` as `516971e`; no gameplay or approved image modifications.
+- [ ] CI5 candidate: more authored encounters/party layouts, 25-frame source animation integrity and individual original sprite motion verification — do not conflate 3fps flipbook with genuine full-speed playback.
+- [ ] D345 `chained_prisoner`: show 2–3 genuinely different complete illustrations for approval; D344R2 Candle Seller remains visually frozen.
 
 ## CI3 — Real screenshots DONE (2026-10-23)
 
