@@ -127,8 +127,9 @@ func test_real_battle_victory_opens_major_upgrade_then_loot() -> void:
 	reward.call("_setup_card_reward")
 	assert_eq(str(reward.get("reward_mode")), "normal_loot")
 	var old_gold: int = RunState.gold
+	var expected_loot: int = 25 * RunState.get_reward_multiplier()
 	RunState.apply_reward("blood_coin")
-	assert_eq(RunState.gold, old_gold + 25 * RunState.get_reward_multiplier())
+	assert_eq(RunState.gold, old_gold + expected_loot)
 	RunState.complete_active_card()
 	assert_eq(RunState.deals_survived, 1)
 	assert_false(RunState.has_active_card())
@@ -173,7 +174,7 @@ func test_boss_xiii_reward_reaches_real_run_end_screen() -> void:
 	assert_eq(RunState.cards_resolved, 12, "Boss is XIII, not a thirteenth pre-boss card")
 	var ending := _scene(RUN_END)
 	if ending != null:
-		assert_eq((ending.get_node("SummaryPanel/Title") as Label).text, "ЗАБЕГ ЗАВЕРШЁН")
+		assert_eq((ending.get_node("Title") as Label).text, "ЗАБЕГ ЗАВЕРШЁН")
 
 
 func test_first_battle_defeat_offers_last_deal_then_refusal_ends_run() -> void:
@@ -192,8 +193,8 @@ func test_first_battle_defeat_offers_last_deal_then_refusal_ends_run() -> void:
 	assert_false(RunState.last_deal_pending)
 	var ending := _scene(RUN_END)
 	if ending != null:
-		assert_eq((ending.get_node("SummaryPanel/Title") as Label).text, "ПАРТИЯ ПРОИГРАНА")
-		assert_true((ending.get_node("SummaryPanel/WizardLine") as Label).text.contains("A1P3"))
+		assert_eq((ending.get_node("Title") as Label).text, "ПАРТИЯ ПРОИГРАНА")
+		assert_true((ending.get_node("WizardLine") as Label).text.contains("A1P3"))
 
 
 func test_chained_prisoner_recruitment_resolves_into_party_and_scar() -> void:
