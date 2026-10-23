@@ -69,7 +69,7 @@ func _ready() -> void:
 	_apply_ui_kit()
 	hold_a_button.pressed.connect(_on_hold_button_pressed.bind(0))
 	hold_b_button.pressed.connect(_on_hold_button_pressed.bind(1))
-	hold_a_button.tooltip_text = "Один раз за Act 1: придержать эту карту и вернуть её через две раздачи."
+	hold_a_button.tooltip_text = "Один раз за Act 1: карта вернётся через две раздачи. Если срок придётся на обязательный бой, она вернётся сразу после него."
 	hold_b_button.tooltip_text = hold_a_button.tooltip_text
 	for button in offer_buttons:
 		button.pressed.connect(_on_offer_button_pressed.bind(button))
