@@ -430,10 +430,10 @@ static func _draw_hardware(panel: Panel, prefix: String, material: String) -> vo
 	relief.set("kind", material)
 	relief.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	panel.add_child(relief)
+	# Full-rect anchors compute the correct size from the parent panel.
+	# Assigning size a second time with opposing anchors triggers Godot 4.7
+	# layout warnings during real Battle initialization.
 	relief.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	# The panel is already laid out before the decoration is created.
-	relief.position = Vector2.ZERO
-	relief.size = panel.size
 	var w := panel.size.x
 	var h := panel.size.y
 	var warm := material != "steel"
@@ -597,9 +597,9 @@ static func style_tactic(button: Button, selected: bool, accent: Color) -> void:
 		relief.name = "DS3EtchedToken"
 		relief.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		button.add_child(relief)
+		# No direct size assignment after opposing full-rect anchors: the
+		# parent Button owns the rectangle and native layout stays warning-free.
 		relief.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		relief.position = Vector2.ZERO
-		relief.size = button.size
 	relief.set("kind", "order_selected" if selected else "order")
 	relief.set("order_symbol", button.name)
 	relief.queue_redraw()
