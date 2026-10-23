@@ -43,7 +43,7 @@ func _check() -> void:
 		# D311 replaced the SideObjectivePanel's background with a real Wizard
 		# plaque. Its transparent panel is intentional: a D295 border would
 		# duplicate the approved painted frame. Verify the artwork nodes too.
-		var wizard_plaque := plate.get_node_or_null("D307WizardArt") as Control if path == "SideObjectivePanel" else null
+		var wizard_plaque := plate.get_node_or_null("D307WizardArt") as Control
 		var plate_style := plate.get_theme_stylebox("panel")
 		if wizard_plaque != null:
 			if not (plate_style is StyleBoxEmpty):
