@@ -40,8 +40,19 @@ func _check() -> void:
 	for path in panels:
 		var plate := scene.get_node(path) as Panel
 		var full_paint: bool = approved_art and (path == "BottomHudPanel" or path == "FightHudPanel")
+		# D311 replaced the SideObjectivePanel's background with a real Wizard
+		# plaque. Its transparent panel is intentional: a D295 border would
+		# duplicate the approved painted frame. Verify the artwork nodes too.
+		var wizard_plaque := plate.get_node_or_null("D307WizardArt") as Control
 		var plate_style := plate.get_theme_stylebox("panel")
-		if full_paint:
+		if wizard_plaque != null:
+			if not (plate_style is StyleBoxEmpty):
+				_fail("D311 Wizard plaque must not have a second panel border")
+				return
+			if plate.get_node_or_null("D307WizardHeading") == null or plate.get_node_or_null("D307WizardBody") == null or plate.get_node_or_null("D312WizardReward") == null:
+				_fail("D311 Wizard plaque is missing live objective text nodes")
+				return
+		elif full_paint:
 			if not (plate_style is StyleBoxEmpty):
 				_fail("D304 original frame still visible behind painted material: " + path)
 				return

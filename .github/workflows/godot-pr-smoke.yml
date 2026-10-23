@@ -1,0 +1,86 @@
+name: Misdeal Godot PR smoke
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  godot-pr-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install verified Godot 4.7.2
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --retry 3 -L https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o /tmp/godot.zip
+          echo 'cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  /tmp/godot.zip' | sha256sum -c -
+          unzip -q /tmp/godot.zip -d /tmp/godot-bin
+          chmod +x /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+
+      - name: Import resources and parse all GDScript
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/misdeal-pr-qa"
+          godot=/tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+          if ! timeout 300s "$godot" --headless --path . --editor --import --quit 2>&1 | tee "$RUNNER_TEMP/misdeal-pr-qa/import.log"; then
+            echo '❌ Godot editor import failed (see import.log)' >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script' "$RUNNER_TEMP/misdeal-pr-qa/import.log"; then
+            echo '❌ Godot reported a GDScript or resource parse error' >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          echo '✅ Godot 4.7.2 resource import and GDScript parse passed' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Core game flow smoke tests
+        shell: bash
+        run: |
+          set -uo pipefail
+          godot=/tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+          mkdir -p "$RUNNER_TEMP/misdeal-pr-qa"
+          echo '## Native Godot smoke tests' >> "$GITHUB_STEP_SUMMARY"
+          tests=(
+            'class-select|res://scripts/dev/d279_class_select_smoke.gd|D282_CLASS_SELECT_PASS'
+            'table|res://scripts/dev/d289_table_ds3_smoke.gd|D289_DS3_TABLE_NATIVE_PASS'
+            'battle|res://scripts/dev/d291_battle_ds3_smoke.gd|D291_BATTLE_DS3_NATIVE_PASS'
+            'cards|res://scripts/dev/d315_card_ds3_smoke.gd|D315_CARD_DS3_NATIVE_PASS'
+            'card-surfaces|res://scripts/dev/d316_card_surfaces_smoke.gd|D316_CARD_SURFACES_NATIVE_PASS'
+          )
+          failures=0
+          for spec in "${tests[@]}"; do
+            IFS='|' read -r name script expected <<< "$spec"
+            log="$RUNNER_TEMP/misdeal-pr-qa/$name.log"
+            echo "::group::Godot smoke: $name"
+            if timeout 110s "$godot" --headless --path . --script "$script" 2>&1 | tee "$log"; then
+              status=0
+            else
+              status=$?
+            fi
+            if [ "$status" -eq 0 ] && grep -Fq "$expected" "$log" && ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script|[A-Z0-9_]+_FAIL' "$log"; then
+              echo "- ✅ $name: $expected" >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "- ❌ $name: exit=$status, expected $expected (download $name.log)" >> "$GITHUB_STEP_SUMMARY"
+              failures=$((failures + 1))
+            fi
+            echo "::endgroup::"
+          done
+          if [ "$failures" -ne 0 ]; then
+            echo "Failed smoke tests: $failures" >&2
+            exit 1
+          fi
+
+      - name: Save Godot logs for ChatGPT QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: misdeal-pr-godot-logs
+          path: ${{ runner.temp }}/misdeal-pr-qa/*.log
+          if-no-files-found: warn
+          retention-days: 14

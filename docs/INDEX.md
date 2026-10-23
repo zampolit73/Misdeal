@@ -1,3 +1,5 @@
+**CI1 (2026-10-23):** [Browser-led GitHub + Godot native PR automation](CI_AUTOMATION.md) — project-wide Godot 4.7.2 gate, original class/table/battle/card smokes, retained logs. This is technical QA, **not** visual approval. D344R2 and D345 art context below remains authoritative.
+
 **Latest handoff:** [D344R2 replacement Candle Seller](D344R2_NEW_CHAT_HANDOFF.md) (2026-10-23).
 
 **Latest handoff:** [D344 approved Candle Seller](D344_NEW_CHAT_HANDOFF.md) (2026-10-23).

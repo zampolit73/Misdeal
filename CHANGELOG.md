@@ -1,3 +1,9 @@
+## 2026-10-23 — CI1 GitHub Actions pull request smoke
+
+- Added read-only cross-project Godot **4.7.2** PR smoke: verified official runtime, native import/parse and D279/D289/D291/D315/D316 regression suites with PASS sentinel validation.
+- Added GitHub Job Summary and attached logs for failure diagnosis, and `docs/CI_AUTOMATION.md` describing web ChatGPT + GitHub workflow.
+- No game code, art, animation, balance or locked visual approvals modified. Visual preview automation is a separate planned follow-up.
+
 ## 2026-10-23 — D344R2: Candle Seller replacement per newest user-approved image
 
 - Replaced earlier D344 thin-taper candle scene with user-selected revised `оккультный_ритуал_при_свечах.png` (hooded merchant, ivory/red/indigo candles, Gothic cabinet). Converted to 448×274 WebP and wired to live catalog.
