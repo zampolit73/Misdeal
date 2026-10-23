@@ -32,6 +32,23 @@ Notes:
 - Independent [D291 specialized main-branch native run](https://github.com/zampolit73/Misdeal/actions/runs/39933807515): **PASS**, including D306/D308.
 - D306 logs exposed a real UI layout issue: Godot's Label intrinsic minimum heights were greater than authored sizes, so the painted Wizard plaque's reward crossed the D313 limit. See `scripts/battle/battle_ds3_pass.gd` y38/y73 and the D306/D308 `Rect2` checks. The user's Godot F6 visual judgment is still needed for subjective typography.
 
+
+## CI3 — Real rendered scene previews (opt-in)
+
+`.github/workflows/godot-render-previews.yml` renders **actual** Godot 4.7.2 frames with Ubuntu + Xvfb + Mesa software OpenGL and the real Misdeal game/QA scene scripts. A native `SceneTree` helper `scripts/dev/ci3_capture_rendered_scene.gd` waits for `RenderingServer.frame_post_draw` before reading the root `Viewport` and writing 1280×720 PNG files.
+
+Scenes included:
+- `01-class-select.png`: production class choice, Knight selected
+- `02-table.png`: production cursed table with real game state and cards
+- `03-wizard-prep.png`: original D308 Wizard optional objective preview in preparation phase, with D311 painted plaque
+- `04-card-gallery.png`: production D315 Card DS3 gallery (first visible row)
+
+The run checks each source PNG for dimensions, nonblank buffer and unique contents, archives individual diagnostic logs + PNGs in `misdeal-ci3-real-rendered-scenes` for **14 days**, and prints their file paths in GitHub Actions. Screenshot inspection is a visual review aid, not a license to overwrite user-approved artwork or proof of perceptual perfection.
+
+**How to use:** GitHub → Actions → **CI3 real Godot scene screenshots** → **Run workflow** on `main` (after this workflow has been merged); open completed run → Artifacts → `misdeal-ci3-real-rendered-scenes` to view PNGs. The workflow also runs on PRs that modify its own capture script/workflow; it does not consume compute on every card-art commit. ChatGPT can inspect run status/logs via the connected GitHub app, but a screenshot saved as a ZIP artifact is not automatically visible inside this chat. Display/review of the actual PNG still needs readable downloaded image access or user sharing.
+
+Keep these shots clearly labeled **Linux software OpenGL**; text rasterization, font differences and contrast may differ slightly from the user's Windows GPU/editor. When objective text positioning or sprite motion matters, corroborate with local Godot F6.
+
 ## Next safe enhancement
 
 Add an **opt-in visual preview** workflow on Linux with a virtual display (or a Godot scripted Viewport render), producing labeled PNG artifacts from **specified stable dev scenes**. Do not use headless logs as evidence that sprites look correct. Validate any preview against a real Godot session before calling it an approved visual checkpoint.
