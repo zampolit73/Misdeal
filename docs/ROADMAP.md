@@ -1,3 +1,12 @@
+## GUT3 — Deeper core combat regressions SHIPPED (2026-10-23)
+
+- [x] Add 6 authentic target-priority cases: Assault, Hunt melee/ranged, wounded support, Formation, dead-target filtering.
+- [x] Add 5 original Bone Warden enrage cases: boundary, single application, lethal hit, non-boss exclusion.
+- [x] Add 5 Last Rite / Pallbearer revival cases including once-per-encounter and priest-death cancellation.
+- [x] Verify [Godot 4.7.2 32/32 GUT tests, 110 asserts PASS](https://github.com/zampolit73/Misdeal/actions/runs/39955690331), existing core smoke PASS.
+- [x] Merge [PR #10](https://github.com/zampolit73/Misdeal/pull/10) as `394b0d9`; no gameplay or art changes.
+- [ ] Optional later only: improve encounter integration and actual first-act playthrough coverage; don't expand test framework instead of playable vertical slice.
+
 ## GUT2 — restore Windows editor Run All (2026-10-23)
 
 - [x] Find discrepancy between `.gutconfig.json` CLI and GUT's private `user://gut_temp_directory/gut_editor_config.json` editor settings.

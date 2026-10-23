@@ -1,3 +1,9 @@
+## 2026-10-23 — GUT3 additional combat rules regression coverage
+
+- Added 16 real-unit Godot GUT tests for target-selection tactics, Bone Warden 50% enrage, and Pallbearer Last Rite resurrection/cancellation in 3 new GDScript test files.
+- Official Godot 4.7.2 native [PR CI](https://github.com/zampolit73/Misdeal/actions/runs/39955690331): **32/32 tests PASS, 110 asserts**, previous native smokes PASS; [PR #10](https://github.com/zampolit73/Misdeal/pull/10) merged `394b0d9`.
+- No changes to gameplay rules, resources, sprite atlases, approved card art or runtime scenes.
+
 ## 2026-10-23 — GUT editor Run All first-install fix
 
 - Seed new GUT editor panel's test folders from tracked `.gutconfig.json`; keep custom user GUT settings intact, no manual settings edits required on fresh install.
