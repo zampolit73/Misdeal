@@ -1,3 +1,13 @@
+## CI4 — Native real Battle frame-sequence QA (2026-10-23)
+
+- [x] Capture original Graveyard Ambush from production Battle scene, initial preparation, genuine combat intro and five active frames from 0–1.6s.
+- [x] Verify one live Knight + three authored skeleton enemies, original SpriteFrames, Fight activation, nonblank distinct 1280×720 PNGs and real movement.
+- [x] Observe [first CI4 native seven-frame PASS](https://github.com/zampolit73/Misdeal/actions/runs/39937515858) and [7/7 native smoke PASS](https://github.com/zampolit73/Misdeal/actions/runs/39937515794), download frames and inspect actual Godot images; max movement 183.61px.
+- [x] Archive raw PNGs/CSV/logs for 14 days; include 3fps comparison MP4 via CI-installed ffmpeg.
+- [ ] Confirm complete CI run including MP4 output and merge [PR #5](https://github.com/zampolit73/Misdeal/pull/5) to main, then verify main.
+- [ ] Later: multiple battle types/parties, per-role original animation pose/frame sampling and movement collision checks; avoid interpreting a 3fps slideshow as verified smooth 25-frame animation.
+- [ ] Return to D345 `chained_prisoner` with D168 2–3 actual distinct art choices; preserve locked D344R2 Candle Seller painting.
+
 ## CI3 — Real screenshots DONE (2026-10-23)
 
 - [x] Create native 1280×720 Xvfb/Mesa Godot 4.7.2 screenshot job for ClassSelect, Table, D308 Wizard and D315 DS3 Card Gallery.

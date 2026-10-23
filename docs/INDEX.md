@@ -1,3 +1,5 @@
+**CI4 (2026-10-23):** [Native Godot Battle motion frames and review artifacts](CI_AUTOMATION.md) — original production combat PNG + motion CSV, real [CI4 PASS](https://github.com/zampolit73/Misdeal/actions/runs/39937515858), [PR #5](https://github.com/zampolit73/Misdeal/pull/5).
+
 **CI3 (2026-10-23):** [Native Godot 4.7.2 visual QA capture setup](CI_AUTOMATION.md) — [4 real screenshots artifact, SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39934851995); manual rerun after merge; no game-art approvals changed.
 
 **CI2 (2026-10-23):** [Seven-scenario Godot 4.7.2 PR validation and Wizard art text geometry fix](CI_AUTOMATION.md) — [7/7 native PASS](https://github.com/zampolit73/Misdeal/actions/runs/39933674652) and [D291 main PASS](https://github.com/zampolit73/Misdeal/actions/runs/39933807515). Visual F6 remains separate.

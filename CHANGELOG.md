@@ -1,3 +1,9 @@
+## 2026-10-23 — CI4 real Battle movement capture
+
+- Added opt-in GitHub Actions capture of production Graveyard Ambush: genuine Knight and 3 authored skeleton enemies, native prep/intro plus five timed live frames (Godot 4.7.2 Xvfb/Mesa).
+- Enforced 1280×720 PNG integrity and frame uniqueness, runtime Fight start and unit movement; saved PNGs, motion CSV and logs for ChatGPT QA. Included 3fps MP4 review flipbook (not continuous native 60fps gameplay).
+- [CI4 seven-frame actual PASS](https://github.com/zampolit73/Misdeal/actions/runs/39937515858), [7/7 native smoke PASS](https://github.com/zampolit73/Misdeal/actions/runs/39937515794); no approved image, combat, animation sheet or gameplay changes.
+
 ## 2026-10-23 — CI3 actual Godot screenshot automation
 
 - Added GitHub Actions optional actual rendered frame capture (Godot 4.7.2 Xvfb/Mesa) for real ClassSelect, Table, D308 Wizard panel and D315 gallery scenes.
