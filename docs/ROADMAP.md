@@ -1,3 +1,13 @@
+## CI3 — Real scene capture as reviewable GitHub artifacts (2026-10-23)
+
+- [x] Create read-only manual + CI-script-PR only workflow for true Godot 4.7.2 1280×720 Viewport screenshots under Xvfb/Mesa.
+- [x] Capture four existing scenes unchanged: ClassSelect, Table, D308 Wizard preparation, D315 Card DS3 gallery.
+- [x] Validate nonblank and unique native PNG output, upload with diagnostic logs for 14 days, and inspect actual downloaded screenshots.
+- [x] Observe [CI3 native screenshot SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/39934851995) with artifact id `12493421005` and [7/7 PR smoke PASS](https://github.com/zampolit73/Misdeal/actions/runs/39934851988).
+- [ ] Merge [PR #4](https://github.com/zampolit73/Misdeal/pull/4) after documentation synchronization; verify main state.
+- [ ] Later extend capture coverage to deterministic actual Battle scene and sprite movement sequences only after dedicated QA design, avoiding fake static motion approval.
+- [ ] D345 prisoner card still needs 2–3 visibly distinct approved visual proposals before game art change; D344R2 remains frozen.
+
 ## CI2 — Wizard QA coverage + live label geometry fix (2026-10-23)
 
 - [x] Add existing D306 Wizard objective + D308 F6 preview to the general GitHub PR smoke (now **7 scenarios**).
