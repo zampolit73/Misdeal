@@ -8,6 +8,7 @@ const SCENES := {
 	"table": "res://scenes/table/table.tscn",
 	"wizard-prep": "res://scenes/dev/d308_wizard_panel_preview.tscn",
 	"card-gallery": "res://scenes/dev/d315_card_ds3_gallery.tscn",
+	"qa-hub": "res://scenes/dev/qa_hub.tscn",
 }
 
 func _initialize() -> void:
@@ -65,6 +66,10 @@ func _capture() -> void:
 	elif scene_key == "card-gallery":
 		if scene.get_node_or_null("CardScroll/CardGrid") == null:
 			_fail("card DS3 gallery did not populate")
+			return
+	elif scene_key == "qa-hub":
+		if scene.get_node_or_null("Categories") == null or scene.get_node_or_null("DetailPanel/LaunchButton") == null:
+			_fail("OPT4 QA Hub categories or scene launcher missing")
 			return
 
 	# Godot docs: wait until rendering has finished; captures from _ready()
