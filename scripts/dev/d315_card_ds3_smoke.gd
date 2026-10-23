@@ -67,7 +67,7 @@ func _verify() -> void:
         {"id": "gravedigger_shop", "file": "gravedigger_shop_d341_approved_cleansed_scene.webp"},
         {"id": "ash_rest", "file": "ash_rest_d342_approved_clean_horizon.webp"},
         {"id": "lost_purse", "file": "lost_purse_d343_approved_headless_corpse.webp"},
-        {"id": "candle_seller", "file": "candle_seller_d344_approved_slim_candles_new_cabinet.webp"},
+        {"id": "candle_seller", "file": "candle_seller_d344_rev2_approved_occult_ritual.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -107,9 +107,9 @@ func _verify() -> void:
         if String(approved["id"]) == "lost_purse" and FileAccess.get_sha256(asset_path) != "59337fc8570cbfdb34fd23f522b9714e7aa8d5f9cfdbbcf0123f4743e1dcbc97":
             _fail("D343 Lost Purse is not the user-approved headless composition")
             return
-        # D344: ensure this remains the approved muted thin candles and NEW gothic cabinet.
-        if String(approved["id"]) == "candle_seller" and FileAccess.get_sha256(asset_path) != "20f4c492dfb1068d2474741eabf790efda45347dc6d582c4954f0136fb3a630b":
-            _fail("D344 Candle Seller scene differs from approved final gothic cabinet illustration")
+        # D344R2: user replaced the D344 original with this exact new ritual painting.
+        if String(approved["id"]) == "candle_seller" and FileAccess.get_sha256(asset_path) != "75ce3cef0f956666089ff9423c8b9ec16b7e6738e22f728a89f240de45a396ec":
+            _fail("D344R2 Candle Seller is not the user-selected occult ritual illustration")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:

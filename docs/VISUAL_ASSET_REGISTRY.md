@@ -1,3 +1,8 @@
+## D344R2 — LIVE Candle Seller, last approved occult ritual revision (2026-10-23)
+
+- **Source (LATEST):** `оккультный_ритуал_при_свечах.png`, 1536×1024, user approved after image-to-image revision of posted cabinet/candles screenshot. LEFT merchant in hood, outstretched hand; FRONT three compact dripping ivory, red and dusty-indigo candles lit amber above deep-red fabric; RIGHT wooden Gothic cabinet with vials, books, brass instruments and a skull. This is **not** the first D344 accepted thin-taper art and not the subsequent erroneous D345 prisoner generator output.
+- **Runtime:** `assets/pixel/card_unification_v1/run/candle_seller_d344_rev2_approved_occult_ritual.webp`, 448×274 WebP Q86 center vertical crop (0,42)–(1536,981), SHA256 `75ce3cef0f956666089ff9423c8b9ec16b7e6738e22f728a89f240de45a396ec`, active `RUN_CARDS["candle_seller"]`, D315 strict hash + real catalog checks. Old D344 live WebP retained but superseded.
+
 ## D344 — Approved Candle Seller thin taper candles, new Gothic cabinet (2026-10-23)
 
 - **Exact approved original:** `тайный_ритуал_в_свете_свечей.png` 1536×1024 RGB, source `file_000000005e748246bfbc4621fe0bc667` (user said «утверждаю это вариант»). Candle merchant in shaded hood on left, three thin ivory/red/blue-gray candles with predominantly amber flames on red cloth, one hand extended, dark carved Gothic cabinet of stocked candles right, no outside horizon. This is the final cabinet replacement after user picked third slim-candle concept.

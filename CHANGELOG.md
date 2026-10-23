@@ -1,3 +1,8 @@
+## 2026-10-23 — D344R2: Candle Seller replacement per newest user-approved image
+
+- Replaced earlier D344 thin-taper candle scene with user-selected revised `оккультный_ритуал_при_свечах.png` (hooded merchant, ivory/red/indigo candles, Gothic cabinet). Converted to 448×274 WebP and wired to live catalog.
+- Kept old D344 painting for rollback; corrected D315 exact SHA-256/regression asset selection and updated documentation/handoff. No event mechanics or Card DS3 changes. Native Godot CI requires independent check.
+
 ## 2026-10-23 — D344: Candle Seller approved thin tapers and arched candle cabinet
 
 - Committed user-approved final `candle_seller` painting: dark hooded trader, THREE slender muted candles and the final replacement candle-filled Gothic cabinet on right, no distant outdoor sunset.

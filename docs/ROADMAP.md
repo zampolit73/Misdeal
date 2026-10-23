@@ -1,3 +1,14 @@
+## D344R2 — Replace Candle Seller with user's later occult ritual (2026-10-23)
+
+- [x] Follow newest user art approval (later than D344): exact `оккультный_ритуал_при_свечах.png`, not older thin taper artwork.
+- [x] Export 1536×1024 source to 448×274 WebP with minimal vertical crop, preserving palette and composition.
+- [x] Commit new WebP and map `RUN_CARDS["candle_seller"]` to it; keep old D344 image tracked for rollback.
+- [x] Update native D315 exact SHA, WebP decode/native-size/catalog render checks without changing event/DS3/gameplay.
+- [x] Sync PROJECT_STATE, DECISIONS, ROADMAP, CHANGELOG, VISUAL_ASSET_REGISTRY and D344R2 handoff.
+- [ ] Confirm native Godot test run separately; not assumed from static checks.
+- [ ] User `git pull` + F6 gallery confirms actual D344R2 painting.
+- [ ] D345 `chained_prisoner`: supply **real prisoner illustrations**, not repeated candle image; user approval required before adding.
+
 ## D344 — Candle Seller approved final Gothic cabinet (2026-10-23)
 
 - [x] Select exact final user-approved `тайный_ритуал_в_свете_свечей.png` after replacing cabinet in third THIN candle variant; do not substitute earlier vibrant fat-candle arts.
