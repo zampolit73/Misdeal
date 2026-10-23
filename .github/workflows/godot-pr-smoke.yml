@@ -50,6 +50,8 @@ jobs:
             'class-select|res://scripts/dev/d279_class_select_smoke.gd|D282_CLASS_SELECT_PASS'
             'table|res://scripts/dev/d289_table_ds3_smoke.gd|D289_DS3_TABLE_NATIVE_PASS'
             'battle|res://scripts/dev/d291_battle_ds3_smoke.gd|D291_BATTLE_DS3_NATIVE_PASS'
+            'wizard-objective|res://scripts/dev/d306_wizard_objective_smoke.gd|D306_WIZARD_OBJECTIVE_NATIVE_PASS'
+            'wizard-preview|res://scripts/dev/d308_wizard_preview_smoke.gd|D308_WIZARD_PREVIEW_NATIVE_PASS'
             'cards|res://scripts/dev/d315_card_ds3_smoke.gd|D315_CARD_DS3_NATIVE_PASS'
             'card-surfaces|res://scripts/dev/d316_card_surfaces_smoke.gd|D316_CARD_SURFACES_NATIVE_PASS'
           )
