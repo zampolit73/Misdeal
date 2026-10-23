@@ -84,20 +84,21 @@ jobs:
           print("CI4_NATIVE_FRAMES_PASS: 7 real unique captures with moving combatants")
           PY
           echo '✅ Godot rendered real Battle preparation, intro and 5 live-motion samples (1280×720); native units moved.' >> "$GITHUB_STEP_SUMMARY"
-      - name: Optional low-framerate motion-review MP4
+      - name: Produce a reviewable 3fps MP4 flipbook from native frames
         shell: bash
         run: |
           set -euo pipefail
-          if command -v ffmpeg >/dev/null 2>&1; then
-            # Comparison flipbook, NOT original real-time game playback.
-            ffmpeg -loglevel error -y -framerate 3 -pattern_type glob \
-              -i "$RUNNER_TEMP/misdeal-ci4/*.png" \
-              -vf 'format=yuv420p' -c:v libx264 -movflags +faststart \
-              "$RUNNER_TEMP/misdeal-ci4/battle-review-flipbook.mp4"
-            echo '✅ Optional 3fps flipbook created from the *captured* frames; not full-speed animation proof.' >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo '⚠️ ffmpeg unavailable; original PNG sequence preserved.' >> "$GITHUB_STEP_SUMMARY"
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg
           fi
+          # Comparison flipbook, NOT full-speed real-time game footage.
+          ffmpeg -loglevel error -y -framerate 3 -pattern_type glob \
+            -i "$RUNNER_TEMP/misdeal-ci4/*.png" \
+            -vf 'format=yuv420p' -c:v libx264 -movflags +faststart \
+            "$RUNNER_TEMP/misdeal-ci4/battle-review-flipbook.mp4"
+          test -s "$RUNNER_TEMP/misdeal-ci4/battle-review-flipbook.mp4"
+          echo '✅ Real Godot PNGs packaged as a 3fps MP4 comparison flipbook, not full-speed animation footage.' >> "$GITHUB_STEP_SUMMARY"
       - name: Upload original battle frames and QA diagnostics
         if: always()
         uses: actions/upload-artifact@v4
