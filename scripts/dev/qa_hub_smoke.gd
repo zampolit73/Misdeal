@@ -14,6 +14,9 @@ func _run() -> void:
 		return
 	root.add_child(hub)
 	await process_frame
+	if not hub.has_method("get_entries"):
+		_fail("QA Hub script did not compile/load; check GDScript errors")
+		return
 	var entries: Array = hub.get_entries()
 	if entries.size() < 10:
 		_fail("QA Hub lost its authored preview entries")
