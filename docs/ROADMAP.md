@@ -1,3 +1,14 @@
+## CI2 — Wizard QA coverage + live label geometry fix (2026-10-23)
+
+- [x] Add existing D306 Wizard objective + D308 F6 preview to the general GitHub PR smoke (now **7 scenarios**).
+- [x] Diagnose real runtime Label min-height via logs: two-line rule 35px, gold reward 23px.
+- [x] Reposition live text boxes within approved D311 art only (body y38 / reward y73) and maintain true D313 no-overlap assertions in both tests.
+- [x] Observe [PR #3 7/7 Godot native PASS](https://github.com/zampolit73/Misdeal/actions/runs/39933674652), merge to `main` `2fb6483`.
+- [x] Verify original specialized [D291 main-branch workflow PASS](https://github.com/zampolit73/Misdeal/actions/runs/39933807515) including objective, live Fight and preview.
+- [ ] Optional user Godot F6 `scenes/dev/d308_wizard_panel_preview.tscn` for **visual** typography verdict; native tests alone are technical QA.
+- [ ] Next automation work: an opt-in labeled real-rendered scene PNG artifact pipeline.
+- [ ] Continue D345 `chained_prisoner` only after 2–3 real user-viewed art alternatives; preserve D344R2.
+
 ## CI1 — Free browser-led automated Godot QA (2026-10-23)
 
 - [x] Confirm connected GitHub and inventory 29 original Godot CI workflows; preserve them.
