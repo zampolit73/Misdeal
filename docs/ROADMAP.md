@@ -4,7 +4,7 @@
 - [x] Seed only missing editor test directories from the project file; preserve personal GUT directory preferences.
 - [x] Add 3 dedicated GUT bootstrap regression cases (16 total) and verify [real Godot 4.7.2 native CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/39954278962).
 - [x] Merge [PR #9](https://github.com/zampolit73/Misdeal/pull/9) `6320585`; no gameplay changes.
-- [ ] Confirm local Windows Godot Run All after user `git pull` and full editor restart.
+- [x] Confirm **actual local Windows Godot 4.7.2 GUT Run All success** from user screenshot: 3 scripts, 16/16 passing, 60 assertions in 0.267s.
 
 ## GUT1 — MIT GUT 9.7.1 implementation COMPLETE (2026-10-23)
 
