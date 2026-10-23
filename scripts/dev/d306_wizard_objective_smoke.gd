@@ -84,7 +84,7 @@ func _check() -> void:
 		var rule_rect := Rect2(body.position, body.size)
 		var reward_rect := Rect2(reward.position, reward.size)
 		if rule_rect.intersects(reward_rect) or reward_rect.end.y > 96.0:
-			_fail("D313 bonus overlaps the rule or engraved lower border")
+			_fail("D313 bonus overlaps the rule or engraved lower border: rule=" + str(rule_rect) + " reward=" + str(reward_rect))
 			return
 		if body.size.y < 32.0 or reward.size.y < 15.0:
 			_fail("D313 rule or gold reward is too small for live readable text")
