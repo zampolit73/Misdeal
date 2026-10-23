@@ -1,0 +1,112 @@
+name: CI4 native Battle motion frames
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/godot-battle-frames.yml'
+      - 'scripts/dev/ci4_capture_real_battle.gd'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  real-battle-capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install checksum-verified official Godot 4.7.2
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --retry 3 -L https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o /tmp/godot.zip
+          echo 'cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  /tmp/godot.zip' | sha256sum -c -
+          unzip -q /tmp/godot.zip -d /tmp/godot-bin
+          chmod +x /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+      - name: Prepare real software OpenGL renderer
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v xvfb-run >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq xvfb libgl1-mesa-dri
+          fi
+          mkdir -p "$RUNNER_TEMP/misdeal-ci4"
+      - name: Import original resources and parse GDScript
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 300s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --editor --import --quit 2>&1 | tee "$RUNNER_TEMP/misdeal-ci4/import.log"
+          if grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script' "$RUNNER_TEMP/misdeal-ci4/import.log"; then exit 1; fi
+      - name: Render real Graveyard Ambush preparation and moving combat
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 110s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 \
+            /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --path . --windowed --resolution 1280x720 \
+            --rendering-method gl_compatibility \
+            --script res://scripts/dev/ci4_capture_real_battle.gd \
+            -- "$RUNNER_TEMP/misdeal-ci4" 2>&1 | tee "$RUNNER_TEMP/misdeal-ci4/battle.log"
+          grep -Fq 'CI4_BATTLE_CAPTURE_PASS' "$RUNNER_TEMP/misdeal-ci4/battle.log"
+          if grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|CI4_BATTLE_CAPTURE_FAIL' "$RUNNER_TEMP/misdeal-ci4/battle.log"; then exit 1; fi
+      - name: Verify seven genuine distinct 1280x720 PNGs and movement
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import csv, hashlib, os, pathlib, struct
+          root = pathlib.Path(os.environ["RUNNER_TEMP"]) / "misdeal-ci4"
+          images = sorted(root.glob("*.png"))
+          assert len(images) == 7, f"expected 7 original frames, got {len(images)}"
+          hashes = set()
+          for image in images:
+              data = image.read_bytes()
+              assert data[:8] == b"\x89PNG\r\n\x1a\n" and data[12:16] == b"IHDR", f"invalid PNG {image.name}"
+              assert struct.unpack(">II", data[16:24]) == (1280, 720), f"wrong size {image.name}"
+              assert len(data) > 10000, f"near-empty PNG {image.name}"
+              digest = hashlib.sha256(data).hexdigest()
+              assert digest not in hashes, f"duplicate video frame {image.name}"
+              hashes.add(digest)
+              print(f"CI4_PNG_PASS: {image.name} {len(data)} bytes")
+          with (root / "battle-frame-metadata.csv").open(newline="") as stream:
+              rows = list(csv.DictReader(stream))
+          assert len(rows) == 7, f"expected metadata for 7 frames, got {len(rows)}"
+          assert rows[0]["phase"] == "preparation" and rows[1]["phase"] == "intro"
+          assert all(row["phase"] == "combat" for row in rows[2:])
+          assert all(int(row["units_alive"]) >= 1 for row in rows)
+          assert float(rows[-1]["max_movement_px"]) >= 2.0, "units never moved"
+          print("CI4_NATIVE_FRAMES_PASS: 7 real unique captures with moving combatants")
+          PY
+          echo '✅ Godot rendered real Battle preparation, intro and 5 live-motion samples (1280×720); native units moved.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Optional low-framerate motion-review MP4
+        shell: bash
+        run: |
+          set -euo pipefail
+          if command -v ffmpeg >/dev/null 2>&1; then
+            # Comparison flipbook, NOT original real-time game playback.
+            ffmpeg -loglevel error -y -framerate 3 -pattern_type glob \
+              -i "$RUNNER_TEMP/misdeal-ci4/*.png" \
+              -vf 'format=yuv420p' -c:v libx264 -movflags +faststart \
+              "$RUNNER_TEMP/misdeal-ci4/battle-review-flipbook.mp4"
+            echo '✅ Optional 3fps flipbook created from the *captured* frames; not full-speed animation proof.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo '⚠️ ffmpeg unavailable; original PNG sequence preserved.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Upload original battle frames and QA diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: misdeal-ci4-real-battle-motion
+          path: |
+            ${{ runner.temp }}/misdeal-ci4/*.png
+            ${{ runner.temp }}/misdeal-ci4/*.csv
+            ${{ runner.temp }}/misdeal-ci4/*.mp4
+            ${{ runner.temp }}/misdeal-ci4/*.log
+          if-no-files-found: warn
+          retention-days: 14
