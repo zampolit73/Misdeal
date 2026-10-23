@@ -298,7 +298,7 @@ static func _install_wizard_plaque(scene: Control) -> void:
 	body.name = "D307WizardBody"
 	# D313: screenshots showed the separate reward was sitting on the carved
 	# bottom border. Reserve a compact two-line rule zone above its own slot.
-	body.position = Vector2(56, 44)
+	body.position = Vector2(56, 38)
 	body.size = Vector2(173, 34)
 	body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -315,9 +315,11 @@ static func _install_wizard_plaque(scene: Control) -> void:
 	# canonical objective, not baked art or a second gameplay payout.
 	var reward := Label.new()
 	reward.name = "D312WizardReward"
-	# Entire reward rect sits ABOVE the lower engraved rim (at most local y=96).
-	# Never overlap the main rule rect, even when it wraps into two lines.
-	reward.position = Vector2(65, 80)
+	# Account for Godot Label minimum heights at 11px: the two-line rule
+	# occupies 35px and the reward occupies 23px at runtime, not the smaller
+	# requested sizes. Keep the real rects contiguous (y38..73, y73..96),
+	# above the lower engraved rim, without changing text or source art.
+	reward.position = Vector2(65, 73)
 	reward.size = Vector2(165, 16)
 	reward.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	reward.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
