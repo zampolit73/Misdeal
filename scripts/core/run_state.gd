@@ -1616,6 +1616,23 @@ func get_wizard_deal_line() -> String:
 		return ""
 	if wizard_mark_danger_active:
 		return "Моя печать всё ещё на тебе. Следующий бой это почувствует."
+	# Three discreet callbacks during Act 1: the Wizard recognizes the
+	# *actually rejected* card from the Fate Spread, never a future/hidden card.
+	# Flavor only: no card returns to the deck and no mechanical debt is added.
+	if cards_resolved == 3 or cards_resolved == 7 or cards_resolved == 11:
+		if not fate_choice_history.is_empty():
+			var latest_choice: Dictionary = fate_choice_history.back()
+			var rejected_id: String = str(latest_choice.get("rejected", ""))
+			if not rejected_id.is_empty():
+				var rejected_card := get_card(rejected_id)
+				if rejected_card != null:
+					match cards_resolved:
+						3:
+							return "«%s» ушла в сброс. В этом замке ничего не забывают." % rejected_card.title
+						7:
+							return "Ты прошёл мимо «%s». Мои карты помнят и отказы." % rejected_card.title
+						11:
+							return "«%s» тоже могла стать твоей судьбой. Уже близко к концу." % rejected_card.title
 	if resolved_card_ids.size() >= 2:
 		var latest := get_card(resolved_card_ids[resolved_card_ids.size() - 1])
 		var before := get_card(resolved_card_ids[resolved_card_ids.size() - 2])
