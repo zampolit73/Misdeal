@@ -1,3 +1,7 @@
+## D350 — RELEASE VERIFIED (2026-10-26)
+
+[PR #17](https://github.com/zampolit73/Misdeal/pull/17) squash-merged to `main` as `fa03cbfe0f19b45a500365cd8a6dbc7c02439e45` after [native Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40232179481): **GUT 48/48**, D289 Table/D315 Gallery (including exact approved 19th card image)/D316 Surfaces PASS, authentic native 1280×720 Table + Card Gallery screenshot captures. User-approved `debtor_bones` bone hand/three dice scene is shipped as WebP bytes stored in `.webp.b64` and decoded by live Godot. Gameplay unchanged. Only remaining local art check: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn`, inspect «КОСТИ ДОЛЖНИКА». A1P3 genuine F5 12+XIII playthrough still outstanding. Next D351 art options first.
+
 ## D350 — Debtor Bones approved dice artwork (2026-10-26)
 
 D350 user selected **option 3** in the four-option follow-up board («кости/три броска»), then explicitly approved its SINGLE standalone generated illustration `кости_судьбы_в_замке_мертвых.png` with «отлично внедряй». Exact source: 1536×1024 PNG SHA256 `abf7c86352afa5c294b573a171b34ca0b567518f5a8a0d1a23239fdadb1f5cd1`. Visual LOCK: an oversized skeletal hand reaching from a dark burgundy sleeve to three decorative bone dice on a worn oak tabletop; a few bronze coins left, simple candle and sealed book right, distant blue-gray castle through an arch. No legible UI text or card border. Preserve this final close-up, NOT the earlier person-at-ledger image nor any Broken Crown repeat.
