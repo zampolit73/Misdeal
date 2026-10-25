@@ -1,3 +1,10 @@
+## D350 — VERIFIED release (2026-10-26)
+
+- [x] [PR #17](https://github.com/zampolit73/Misdeal/pull/17) merged to main as `fa03cbf` after [real Godot 4.7.2 native CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40232179481): 48/48 GUT, D289/D315/D316 smokes, 2 actual native screenshots.
+- [x] Approved `debtor_bones` WebP embedded as exact UTF-8 Base64 (no user transfers) and visible through production CardArtCatalog.
+- [ ] User F6 review of «КОСТИ ДОЛЖНИКА»; independent full F5 12+XIII human playtest.
+- [ ] D351 artistic choices first; no autonomous repaint of locked art.
+
 ## D350 — Debtor Bones approved scene (2026-10-26)
 
 - [x] User selected #3 skeletal hand / three bone dice and approved standalone image.
