@@ -1,3 +1,8 @@
+## D349 — LIVE Broken Crown third «Цена короны» (2026-10-25)
+
+- User selected option #3 and accepted standalone `разбитая_корона_в_руинах_трона.png` (1536×1024, SHA256 `8c02a841513c21637754fda0acdba2035602f8ad73b559c6fc81886fa1dee095`): fractured golden crown with red stones over dark burgundy cloth; damaged helmet/sword on right, two candles on left, cold gothic ruins beyond. No UI/text.
+- Runtime `assets/pixel/card_unification_v1/run/broken_crown_d349_approved_last_relic.webp`, WebP 448×274 Q86, crop (0,42)-(1536,981), SHA256 `f6a7a41f5af91ea0fef62df4526dc64cfc457dd84cfc5d74beac30d378af164c`. `RUN_CARDS["broken_crown"]` overrides original gallery/atlas; D315 18-art authenticity SHA/decode/dimensions/catalog equality. Earlier approved art and card mechanics remain untouched.
+
 ## D348 — LIVE Curse Forge original half-skeletal smith (2026-10-25)
 
 - Approved **user-reposted image.png** (not subsequent re-render), source 1536×1024 SHA256 `6a806375c96420519b161a331e5d91f88cd0d901e4b0e74294f8a3be7a3746b9`. Foreground half-human half-skeleton blacksmith with forge left, glowing sword on anvil, cold castle at right.

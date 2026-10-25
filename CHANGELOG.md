@@ -1,3 +1,7 @@
+## 2026-10-25 — D349: Broken Crown chosen third artwork
+
+- Integrate user-approved shattered crown/helmet/sword image as live `broken_crown` card at 448×274; exact D315 SHA/decode/size/catalog regression now covers 18 scenes. Retain original fallback, DS3, gameplay and prior art. Native PR CI + user F6 approval are separate follow-ups.
+
 ## 2026-10-25 — D348 CI verified and merged
 
 - [PR #15](https://github.com/zampolit73/Misdeal/pull/15) merged at `69e8f3e`; [Godot 4.7.2 run 40223519538](https://github.com/zampolit73/Misdeal/actions/runs/40223519538) passed 48 GUT tests, three relevant native smokes, two real rendered screenshots. D348 user F6 review remains pending.
