@@ -1,3 +1,7 @@
+## 2026-10-26 — D350 Godot release verified
+
+- [PR #17](https://github.com/zampolit73/Misdeal/pull/17) squash-merged `fa03cbf` to `main`; [Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40232179481) passed 48/48 GUT plus D289/D315/D316 native smokes and captured 2 actual 1280×720 screenshots. D350 image and native card pixel/decoded SHA guard shipped; local F6 player review remains separate. Gameplay and DS3 unaffected.
+
 ## 2026-10-26 — D350 approved Debtor Bones illustration
 
 - User-approved standalone skeletal hand rolling three bone dice is integrated as the 19th user-locked card illustration. Exact WebP bytes are tracked in a Base64 source file (448×274 SHA256 `8b08781cb21c56bbef50b01b3fda0d0de02248f0ecd22256d5761a31c3be8113`) and decoded by existing card-art class. D315 validates original decoded checksum and live pixels. No gameplay, event effects, DS3 or previous approved art changes. Native CI and local Godot F6 visual check pending.
