@@ -5,7 +5,7 @@
 - [x] Map `RUN_CARDS["last_camp"]` to approved runtime image while keeping older `EVENTS` fallback and card Resource.
 - [x] Expand D315 to 16 approved illustrations, with exact hash, WebP decode, dimensions and visible catalog pixel equality.
 - [x] Preserve approved D346 bridge, earlier images, DS3 and all gameplay rules.
-- [ ] Confirm post-D347 official Godot 4.7.x CI on this commit; no inferred PASS.
+- [x] Actual [Godot 4.7.2 native PR #14 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40194579988): 48/48 GUT, D289/D315/D316 smokes and 2 real Godot screenshots; merged to `main` as `85ffbda`.
 - [ ] User F6 gallery review of «ПОСЛЕДНИЙ ПРИВАЛ» and separate A1P3 normal-game F5 12+XIII run.
 - [ ] D348: select next unapproved event; show 2–3 actual different artworks before replacement.
 
