@@ -1,3 +1,12 @@
+## D349 — Broken Crown approved artwork (2026-10-25)
+
+- [x] User selected third composition and approved standalone clean shattered-crown painting.
+- [x] Upload 448×274 WebP, wire `RUN_CARDS["broken_crown"]` and keep original atlas fallback and `.tres` unchanged.
+- [x] Update D315 18-art exact SHA/decode/dimensions/catalog pixels smoke test; preserve earlier assets/DS3/game mechanics.
+- [ ] Independently verify PR-head native Godot 4.7.x CI before merge; user F6 inspect «СЛОМАННАЯ КОРОНА».
+- [ ] A1P3 full normal-game human F5 12+XIII playtest still required.
+- [ ] D350 next illustration — only after new 2–3 actual art choices.
+
 ## D348 — CI result and merge (2026-10-25)
 
 - [x] Official PR #15 native Godot 4.7.2 CI **PASS** — GUT 48/48, D289/D315/D316 smokes, 2 original Godot screenshots; merged `69e8f3e`.

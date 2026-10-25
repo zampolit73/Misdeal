@@ -57,6 +57,8 @@ const RUN_CARDS := {
 	"last_camp": "run/last_camp_d347_approved_last_witness.webp",
 	# D348: exact user-reposted, half-human / half-skeletal blacksmith painting.
 	"curse_forge": "run/curse_forge_d348_approved_half_skeletal_smith.webp",
+	# D349: approved clean Broken Crown painting, split gold crown with armor and sword.
+	"broken_crown": "run/broken_crown_d349_approved_last_relic.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).

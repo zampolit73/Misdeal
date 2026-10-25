@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D348: verify seventeen published, user-approved individual paintings
+    # D349: verify eighteen published, user-approved individual paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -72,6 +72,7 @@ func _verify() -> void:
         {"id": "rattling_bridge", "file": "rattling_bridge_d346_approved_continuous_castle.webp"},
         {"id": "last_camp", "file": "last_camp_d347_approved_last_witness.webp"},
         {"id": "curse_forge", "file": "curse_forge_d348_approved_half_skeletal_smith.webp"},
+        {"id": "broken_crown", "file": "broken_crown_d349_approved_last_relic.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -130,6 +131,10 @@ func _verify() -> void:
         # D348 exact approved user-reposted smith; never accept generated alternate.
         if String(approved["id"]) == "curse_forge" and FileAccess.get_sha256(asset_path) != "e49331f0cd7ce658a4390c2f9c1c95e04717c0435b70d9160cb1662812b90b24":
             _fail("D348 Curse Forge is not the approved half-skeletal smith")
+            return
+        # D349: user selected third Broken Crown illustration and approved the clean standalone scene.
+        if String(approved["id"]) == "broken_crown" and FileAccess.get_sha256(asset_path) != "f6a7a41f5af91ea0fef62df4526dc64cfc457dd84cfc5d74beac30d378af164c":
+            _fail("D349 Broken Crown is not the approved third composition")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:
