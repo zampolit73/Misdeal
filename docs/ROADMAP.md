@@ -1,3 +1,8 @@
+## D349 — verified native release and follow-up (2026-10-25)
+
+- [x] [PR #16](https://github.com/zampolit73/Misdeal/pull/16) merged `c227621` to `main` after [Godot 4.7.2 PR CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40227525071): GUT 48/48, D289/D315/D316 native smokes, 2 actual 1280×720 screenshots.
+- [ ] User F6 gallery visual review «СЛОМАННАЯ КОРОНА»; separate A1P3 human F5 12+XIII playtest.
+
 ## D349 — Broken Crown approved artwork (2026-10-25)
 
 - [x] User selected third composition and approved standalone clean shattered-crown painting.

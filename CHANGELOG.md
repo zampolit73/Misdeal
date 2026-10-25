@@ -1,3 +1,7 @@
+## 2026-10-25 — D349 verified release
+
+- [PR #16](https://github.com/zampolit73/Misdeal/pull/16) merged `c227621`; [native Godot CI](https://github.com/zampolit73/Misdeal/actions/runs/40227525071) passed 48/48 GUT, D289/D315/D316 smokes and produced 2 genuine Godot screenshots. Local F6 art approval and full A1P3 F5 player run remain pending.
+
 ## 2026-10-25 — D349: Broken Crown chosen third artwork
 
 - Integrate user-approved shattered crown/helmet/sword image as live `broken_crown` card at 448×274; exact D315 SHA/decode/size/catalog regression now covers 18 scenes. Retain original fallback, DS3, gameplay and prior art. Native PR CI + user F6 approval are separate follow-ups.
