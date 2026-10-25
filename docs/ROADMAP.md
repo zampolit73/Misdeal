@@ -1,3 +1,10 @@
+## D351 — VERIFIED release (2026-10-26)
+
+- [x] [PR #18](https://github.com/zampolit73/Misdeal/pull/18) merged `968fd0f` after [native Godot 4.7.2 CI green](https://github.com/zampolit73/Misdeal/actions/runs/40234667983): 48/48 GUT, D289/D315/D316 native smokes, screenshot steps PASS.
+- [x] Binary approved `bone_tax` image guarded as 20th scene; original fallback, events and older art untouched.
+- [ ] User F6 gallery art check, A1P3 human F5 12+XIII full playtest.
+- [ ] D352 next card unapproved artwork options-first.
+
 ## D351 — Bone Tax portcullis artwork (2026-10-26)
 
 - [x] User selected option 1; preserve subsequent single standalone skeleton tollkeeper scene.
