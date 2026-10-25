@@ -1,3 +1,11 @@
+## D350 — Debtor Bones selected option #3: skeletal hand, three bone dice (2026-10-26)
+
+D350 user selected **option 3** in the four-option follow-up board («кости/три броска»), then explicitly approved its SINGLE standalone generated illustration `кости_судьбы_в_замке_мертвых.png` with «отлично внедряй». Exact source: 1536×1024 PNG SHA256 `abf7c86352afa5c294b573a171b34ca0b567518f5a8a0d1a23239fdadb1f5cd1`. Visual LOCK: an oversized skeletal hand reaching from a dark burgundy sleeve to three decorative bone dice on a worn oak tabletop; a few bronze coins left, simple candle and sealed book right, distant blue-gray castle through an arch. No legible UI text or card border. Preserve this final close-up, NOT the earlier person-at-ledger image nor any Broken Crown repeat.
+
+448×274 game derivative: full width center crop (0,42)–(1536,981), WebP Q86 source bytes SHA256 `8b08781cb21c56bbef50b01b3fda0d0de02248f0ecd22256d5761a31c3be8113`, Git blob content available as UTF-8 Base64 at `assets/pixel/card_unification_v1/run/debtor_bones_d350_approved_bone_dice.webp.b64`. The decoded bytes are the *exact original exported WebP*, packaged this way because the GitHub contents uploader accepts UTF-8 files; no manual transfer needed. The image is decoded at runtime by `CardUnificationV1.get_run_texture("debtor_bones")`, and native D315 guards true decoded SHA256, WebP 448×274 and live CardArtCatalog exact pixel equality. Original `resources/cards/debtor_bones.tres`, chance/rewards/event consequences, DS3 layout and previously locked arts unchanged.
+
+A1P3 full manually played F5 12+XIII first-act run remains pending. User after release: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn`, inspect «КОСТИ ДОЛЖНИКА». Next D351: select another card with unapproved placeholder and show 2–3 new actual art options before implementation.
+
 ## D349 — LIVE Broken Crown third «Цена короны» (2026-10-25)
 
 - User selected option #3 and accepted standalone `разбитая_корона_в_руинах_трона.png` (1536×1024, SHA256 `8c02a841513c21637754fda0acdba2035602f8ad73b559c6fc81886fa1dee095`): fractured golden crown with red stones over dark burgundy cloth; damaged helmet/sword on right, two candles on left, cold gothic ruins beyond. No UI/text.

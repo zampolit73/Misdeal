@@ -19,6 +19,9 @@ const D200_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/black_la
 # D261: user explicitly selected SECOND Court of the Mute art, QA only. No #39 release.
 const D261_COURT_CARD_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/court_of_the_mute_selected_v1.webp.b64"
 
+# D350: source-preserving Base64 of the exact approved 448x274 WebP; decoded at runtime.
+const D350_DEBTOR_BONES_WEBP_B64 := "res://assets/pixel/card_unification_v1/run/debtor_bones_d350_approved_bone_dice.webp.b64"
+
 const RUN_CARDS := {
 	# D331 user-approved individual card scene compositions.
 	"bone_crush": "run/bone_crush_d331_approved_option2.webp",
@@ -88,6 +91,8 @@ const REWARDS := {
 static var _texture_cache: Dictionary = {}
 
 static func get_run_texture(card_id: String) -> Texture2D:
+	if card_id == "debtor_bones":
+		return _get_d350_debtor_bones_texture()
 	if card_id == "court_of_the_mute":
 		return _get_d261_selected_texture()
 	if card_id == "black_lantern_road":
@@ -123,6 +128,29 @@ static func get_run_texture(card_id: String) -> Texture2D:
 	# Keep the legacy atlas as fallback if the new image is absent or invalid.
 	# A missing/invalid event image falls through to CardArtCatalog's fallback.
 	return _get_event_card_texture(card_id)
+
+
+# D350: original user-approved bone-hand/dice composition stored as plain-text
+# Base64 so the approved WebP can ship through the GitHub Contents API.
+static func _get_d350_debtor_bones_texture() -> Texture2D:
+	if _texture_cache.has(D350_DEBTOR_BONES_WEBP_B64):
+		return _texture_cache[D350_DEBTOR_BONES_WEBP_B64] as Texture2D
+	if not FileAccess.file_exists(D350_DEBTOR_BONES_WEBP_B64):
+		push_error("D350 approved Debtor Bones artwork missing.")
+		return null
+	var encoded := FileAccess.get_file_as_string(D350_DEBTOR_BONES_WEBP_B64).strip_edges()
+	var bytes := Marshalls.base64_to_raw(encoded)
+	if bytes.is_empty():
+		push_error("D350 approved Debtor Bones WebP could not be decoded from Base64.")
+		return null
+	var img := Image.new()
+	if img.load_webp_from_buffer(bytes) != OK or img.get_size() != Vector2i(448, 274):
+		push_error("D350 approved Debtor Bones artwork must be WebP 448x274.")
+		return null
+	var texture := ImageTexture.create_from_image(img)
+	if texture != null:
+		_texture_cache[D350_DEBTOR_BONES_WEBP_B64] = texture
+	return texture
 
 
 # One original 448x274 D152 card image; never fall back to a different battle card.
