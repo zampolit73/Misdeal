@@ -1,3 +1,13 @@
+## D351 — Bone Tax portcullis artwork (2026-10-26)
+
+- [x] User selected option 1; preserve subsequent single standalone skeleton tollkeeper scene.
+- [x] Commit binary 448×274 WebP directly to GitHub with native `RUN_CARDS["bone_tax"]` mapping, keep previous fallback.
+- [x] Add 20th exact approved card image SHA256/WebP decode/dimensions/catalog pixel equality to D315.
+- [x] Record visual lock, design state, changelog and handoff.
+- [ ] Verify actual post-D351 Godot 4.7.x CI before merge; do not infer results from D350.
+- [ ] User F6 gallery review of «КОСТЯНАЯ ПОШЛИНА» and A1P3 full F5 12+XIII human playtest.
+- [ ] D352 next unapproved card image, 2–3 actual rendered choices before integration.
+
 ## D350 — VERIFIED release (2026-10-26)
 
 - [x] [PR #17](https://github.com/zampolit73/Misdeal/pull/17) merged to main as `fa03cbf` after [real Godot 4.7.2 native CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40232179481): 48/48 GUT, D289/D315/D316 smokes, 2 actual native screenshots.
