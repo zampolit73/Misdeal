@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D352: verify twenty native-file approved paintings
+    # D353: verify twenty-one native-file approved paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -75,6 +75,7 @@ func _verify() -> void:
         {"id": "broken_crown", "file": "broken_crown_d349_approved_last_relic.webp"},
         {"id": "bone_tax", "file": "bone_tax_d351_approved_gatekeeper.webp"},
         {"id": "wizard_tithe", "file": "wizard_tithe_d352_approved_hooded_ritual.webp"},
+        {"id": "crypt_guard", "file": "crypt_guard_d353_approved_option2.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -145,6 +146,10 @@ func _verify() -> void:
         # D352: exact second composition, further refined to remove the wizard crown.
         if String(approved["id"]) == "wizard_tithe" and FileAccess.get_sha256(asset_path) != "3a7e29e7c519f2b3411afa552b725f51731cd08909f83912172c718c6affa746":
             _fail("D352 Wizard Tithe differs from approved hooded, crownless ritual painting")
+            return
+        # D353: exact standalone variant two, one heavy guard and two skeletal thralls.
+        if String(approved["id"]) == "crypt_guard" and FileAccess.get_sha256(asset_path) != "134f34e9dc515e258e210b8bda04258ac3581da8933714b5e0a312ec24b02740":
+            _fail("D353 Crypt Guard is not the approved second composition")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:

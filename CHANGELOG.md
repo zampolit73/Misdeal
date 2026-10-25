@@ -1,3 +1,7 @@
+## 2026-10-26 — D353: approved Crypt Guard second painting
+
+- Connected user-approved standalone armored crypt sentinel plus two bone thralls as 448×274 WebP `crypt_guard_d353_approved_option2.webp`. Card catalog overrides old Bone Patrol placeholder while keeping legacy fallback. D315 now protects 22 distinct approved paintings by exact D353 SHA256/WebP decode/dimensions/live pixels. No encounter/balance/DS3/previous artwork edits. Native CI and user F6 acceptance are separate steps.
+
 ## 2026-10-26 — D352 released and Godot 4.7.2 verified
 
 - [PR #19](https://github.com/zampolit73/Misdeal/pull/19) merged `a5290fa`; [CI](https://github.com/zampolit73/Misdeal/actions/runs/40237209321) passed 48/48 GUT, D289/D315/D316 and native Table/Gallery screenshot captures. Final Wizard Tithe **without crown** live, 21st strict gallery art lock. Player F6 and A1P3 full first-act F5 playthrough still open.

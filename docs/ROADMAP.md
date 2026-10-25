@@ -1,3 +1,13 @@
+## D353 — Crypt Guard visual release gates (2026-10-26)
+
+- [x] User picked second composition and approved standalone armoured crypt elite with exactly two bone thralls.
+- [x] Export locked 448×274 WebP, connect live `RUN_CARDS["crypt_guard"]` with old atlas fallback unchanged.
+- [x] Extend D315 artwork regression to 22 scenes with D353 SHA/decode/size/catalog pixel guard.
+- [x] Record decision, registry, state, changelog and new-chat handoff.
+- [ ] Observe actual PR native Godot 4.7.x CI; merge only after PASS (48 GUT, D289/D315/D316 plus screenshot capture).
+- [ ] Local user F6 check «СТРАЖ СКЛЕПА»; full A1P3 F5 12+XIII human run remains open.
+- [ ] D354 next unapproved card art options-first.
+
 ## D352 — Verified main release (2026-10-26)
 
 - [x] https://github.com/zampolit73/Misdeal/pull/19 merged `a5290fa` after [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40237209321): 48/48 GUT, D289/D315/D316 native PASS, 2 authentic screenshots.

@@ -66,6 +66,8 @@ const RUN_CARDS := {
 	"bone_tax": "run/bone_tax_d351_approved_gatekeeper.webp",
 	# D352: user-approved wizard tithe ritual altar, WIZARD HOODED, NO CROWN.
 	"wizard_tithe": "run/wizard_tithe_d352_approved_hooded_ritual.webp",
+	# D353: final approved option 2: armored crypt guardian and TWO bone thralls.
+	"crypt_guard": "run/crypt_guard_d353_approved_option2.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).
