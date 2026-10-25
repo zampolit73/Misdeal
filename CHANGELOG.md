@@ -1,3 +1,7 @@
+## 2026-10-26 — D352: Wizard Tithe final crownless ritual image
+
+- Installed the explicitly approved #2 altar scene revised to remove the wizard crown (`wizard_tithe_d352_approved_hooded_ritual.webp`, 448×274), reusing full original art colors and composition. Retained legacy fallback; extended D315 to 21 exact-art checks (SHA/WebP decode/size/live gallery pixels). No event mechanic, DS3 or older asset changes. Native Godot PR CI and user F6 check remain separate gates.
+
 ## 2026-10-26 — D351 verified native Godot release
 
 - [PR #18](https://github.com/zampolit73/Misdeal/pull/18) merged to main at `968fd0f`; [CI](https://github.com/zampolit73/Misdeal/actions/runs/40234667983) native Godot 4.7.2 PASS: 48/48 GUT, D289/D315/D316 and screenshot steps. D351 Bone Tax standalone art shipped with 20th image exact hash/decode/pixel validation. Player F6 and A1P3 full F5 still outstanding.
