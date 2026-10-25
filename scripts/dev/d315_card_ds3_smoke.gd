@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D346: verify fifteen published, user-approved individual paintings
+    # D347: verify sixteen published, user-approved individual paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -70,6 +70,7 @@ func _verify() -> void:
         {"id": "candle_seller", "file": "candle_seller_d344_rev2_approved_occult_ritual.webp"},
         {"id": "chained_prisoner", "file": "chained_prisoner_d345_approved_old_acquaintance.webp"},
         {"id": "rattling_bridge", "file": "rattling_bridge_d346_approved_continuous_castle.webp"},
+        {"id": "last_camp", "file": "last_camp_d347_approved_last_witness.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -120,6 +121,10 @@ func _verify() -> void:
         # D346: final version must have ONE continuous castle wall on the left skyline.
         if String(approved["id"]) == "rattling_bridge" and FileAccess.get_sha256(asset_path) != "bbc2fe880a837f022ec01e1473380c2dae98e11de3a6062dfd205030d18e491c":
             _fail("D346 Rattling Bridge differs from the approved continuous-wall painting")
+            return
+        # D347: preserve the exact approved standalone Last Camp image.
+        if String(approved["id"]) == "last_camp" and FileAccess.get_sha256(asset_path) != "8a0be7170685a0db870c8f6bbaaf64675efed21413e4e3ec3950eed0a8f16243":
+            _fail("D347 Last Camp differs from the approved Last Witness artwork")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:

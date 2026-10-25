@@ -1,3 +1,10 @@
+## 2026-10-25 — D347: Approved Last Camp art integrated
+
+- Shipped original user-approved third «Последний свидетель» standalone veteran beside the castle outpost campfire as 448×274 WebP (`assets/pixel/card_unification_v1/run/last_camp_d347_approved_last_witness.webp`).
+- `last_camp` now resolves via live card catalog override; original card resource, event gameplay and old fallback remain unchanged.
+- Extended D315 authenticity/decode/448×274/pixel-check coverage to 16 locked artworks with exact D347 SHA256; native CI and F6 user signoff must be observed separately.
+- Updated design decision, state, roadmap, registry and next-chat context, preserving A1P3 outstanding F5 human playthrough.
+
 ## 2026-10-25 — D346: Rattling Bridge final continuous-castle art
 
 - Implemented exact user-approved **third** «Гремучий мост» scene after marked sky replacement and extending one uninterrupted castle wall instead of another distant bridge.
