@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D345: verify fourteen published, user-approved individual paintings
+    # D346: verify fifteen published, user-approved individual paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -69,6 +69,7 @@ func _verify() -> void:
         {"id": "lost_purse", "file": "lost_purse_d343_approved_headless_corpse.webp"},
         {"id": "candle_seller", "file": "candle_seller_d344_rev2_approved_occult_ritual.webp"},
         {"id": "chained_prisoner", "file": "chained_prisoner_d345_approved_old_acquaintance.webp"},
+        {"id": "rattling_bridge", "file": "rattling_bridge_d346_approved_continuous_castle.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -115,6 +116,10 @@ func _verify() -> void:
         # D345: protect the user's SECOND prisoner artwork, not an earlier bowed pose.
         if String(approved["id"]) == "chained_prisoner" and FileAccess.get_sha256(asset_path) != "ae8141e234c7a791fd9f2eb5780198cdf33eda3977177a1d4c302dfb2c4ef64a":
             _fail("D345 Chained Prisoner differs from the approved familiar-gaze illustration")
+            return
+        # D346: final version must have ONE continuous castle wall on the left skyline.
+        if String(approved["id"]) == "rattling_bridge" and FileAccess.get_sha256(asset_path) != "bbc2fe880a837f022ec01e1473380c2dae98e11de3a6062dfd205030d18e491c":
+            _fail("D346 Rattling Bridge differs from the approved continuous-wall painting")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:

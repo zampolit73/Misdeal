@@ -1,3 +1,15 @@
+## D346 — Rattling Bridge approved third image, seamless castle wall (2026-10-25)
+
+- [x] Publish user-approved **last** art `a_dark_atmospheric_high_detail_gothic_fantasy_sc.png`, not previous versions showing distant second bridge or separate towers.
+- [x] Crop minimally only x4..1603 and export original scene at DS3-native 448×274 WebP Q86, no repaint.
+- [x] Add live `RUN_CARDS["rattling_bridge"]` override, retaining existing event fallback and all earlier visual approvals.
+- [x] Guard D315 exact SHA/decode/size/selected texture; 15 approved individual images.
+- [x] Sync registry, decisions, state, changelog and new-chat handoff without reverting A1P3.
+- [ ] Confirm actual Godot D315 native job on post-D346 commit, not inferred from earlier green A1P3 CI.
+- [ ] User local `git pull` and F6 card-gallery visual check.
+- [ ] Real user A1P3 full F5 12+XIII playtest remains outstanding.
+- [ ] D347: next as-yet-unapproved card: inspect resource, show 2–3 unique real rendered artworks, choose one before any replacement.
+
 ## A1P3 — Live first-act screen handoffs and player playtest (2026-10-23)
 
 - [x] Inspect real Table → ActChoice → Battle → Reward → RunEnd scripts and A1P2 state routes, including defeat/Last Deal and companion recruitment.

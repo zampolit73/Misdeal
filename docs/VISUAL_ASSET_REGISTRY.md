@@ -1,3 +1,8 @@
+## D346 — LIVE Rattling Bridge last image: one continuous fortress wall (2026-10-25)
+
+- **Exact source approved:** `a_dark_atmospheric_high_detail_gothic_fantasy_sc.png` 1608×978 RGB, SHA256 `5caa7ed39672acffed934106b16a11c4cf6f7095196672f65fe1569cf4b1d719`. Third scene evolved from shattered foreground bridge to castle with contiguous left/center curtain wall. Do not restore a distant second bridge or extra castle exit; foreground broken bridge with skulls, chains, red banners, torches, deep chasm and mist remains.
+- **Runtime:** `assets/pixel/card_unification_v1/run/rattling_bridge_d346_approved_continuous_castle.webp`, 448×274 Q86, crop (4,0)-(1603,978), SHA256 `bbc2fe880a837f022ec01e1473380c2dae98e11de3a6062dfd205030d18e491c`. Live `RUN_CARDS["rattling_bridge"]`, D315 original SHA + decodability/dimensions/catalog validation. Game event mechanics and previous images unchanged.
+
 ## D345 — Chained Prisoner SECOND «Старый знакомый», user-approved refined render (2026-10-23)
 
 - **Approved original:** `a_cinematic_dark_medieval_dungeon_interior_scene.png` 1608×978 RGB (the final generated post-selection image), approved via «утверждаем и внедряем». Living man behind iron bars with old lion crest, chains, direct gaze, cold window upper left, single torch and old banner. Real scene, no title/UI/text embedded.

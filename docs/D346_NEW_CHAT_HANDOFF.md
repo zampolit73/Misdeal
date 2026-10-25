@@ -1,0 +1,17 @@
+# D346 — Misdeal handoff (2026-10-25)
+
+## Source of truth and priorities
+
+Connected GitHub repo `zampolit73/Misdeal` `main` (READ/WRITE available; do not ask user again). Before architectural tasks read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`. Project Godot 4.7.x GDScript and D328 Card DS3 locked layout. The earlier A1P3 48/48 native GUT PASS and 8 smoke tests (https://github.com/zampolit73/Misdeal/actions/runs/39964999071) have already been merged; real complete F5 12+XIII playthrough is still pending. Preserve these files and never revert current QA work when editing art.
+
+## Final approved D346 exact visual
+
+Card `rattling_bridge`, title «ГРЕМУЧИЙ МОСТ», text «Костяной мост трещит под ногами. На другой стороне может ждать не только добыча.» User chose rendered option **3** «Последний шаг», showing broken wooden-bone bridge over deep abyss to castle gate. User drew red region and asked (1) DELETE second far-off bridge/ruins in upper middle-left, (2) EXTEND existing fortress from the right, (3) specifically make left background a seamless continuation of the SAME main castle instead of another second bridge or exit. Last finished painting `/mnt/data/a_dark_atmospheric_high_detail_gothic_fantasy_sc.png`, 1608×978 RGB, original SHA256 `5caa7ed39672acffed934106b16a11c4cf6f7095196672f65fe1569cf4b1d719`, is the **ONLY APPROVED VERSION**. User said «отлично. утверждаем и заливаем в гит» and then «отлично, продолжай»; previous assistant returned only a path. THIS D346 commit fixes that by uploading native art and source-of-truth documentation.
+
+Visual: broken wood planks and bone ornaments/large skull to front left/right, chains and dark-red banners, orange fire from braziers against misty slate-blue chasm; main Gothic portcullis at upper right and uninterrupted long castellated fortress wall stretching to mid-left. NO second distant viaduct/bridge, NO separate secondary castle entry. Do not use earlier `проклятый_мост_к_крепости.png`, `wide_cinematic_dark_fantasy_scene_a_gloomy_atmos.png`, or the annotated red screenshots as final images.
+
+Game file `assets/pixel/card_unification_v1/run/rattling_bridge_d346_approved_continuous_castle.webp` DS3-native 448×274 WebP, Lanczos from (4,0)-(1603,978) crop, quality 86, SHA256 `bbc2fe880a837f022ec01e1473380c2dae98e11de3a6062dfd205030d18e491c` Git blob `ef1a3c1656df6a3f2bde531a5ad46ea4b25c297c`. `scripts/ui/card_unification_v1.gd` maps `RUN_CARDS["rattling_bridge"]` to it. `scripts/dev/d315_card_ds3_smoke.gd` verifies exact SHA and decodable 448×274 catalog texture identical to approved bytes, now 15 artworks. Legacy `EVENTS` fallback, `resources/cards/rattling_bridge.tres`, event behavior and game mechanics untouched. D345 `chained_prisoner`, D344R2 `candle_seller`, D343 `lost_purse`, D342 `ash_rest` and all earlier art remain locked.
+
+## Next
+
+Check post-D346 native Godot smoke via actual CI if possible; static GitHub readback alone ≠ native PASS. User: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn`, inspect «ГРЕМУЧИЙ МОСТ» at intended card size. A1P3 local human 12+XIII playtest remains priority (see `docs/A1P3_LOCAL_PLAYTEST.md`). If user continues visual process, D347 select a fresh unapproved event (possible `last_camp` / `curse_forge`), check actual resource and registry, show 2–3 *actually generated distinct* dark-fantasy paintings in chat, user selects, then commit. Preserve user's palette, reduce AI-detail noise and avoid redundant castles/long horizons.
