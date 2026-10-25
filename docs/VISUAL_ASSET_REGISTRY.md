@@ -1,3 +1,9 @@
+## D353 — Approved variant 2, Crypt Guard with two bone thralls (2026-10-26)
+
+- Locked last standalone `a_dramatic_cinematic_high_detail_dark_fantasy_sc.png` 1536×1024 SHA256 `18ea3a8c2625c0ce99eab6618306cef3cb98af440e498b49c56fbb47ff45e0f5` (NOT prior 3-option collage). Heavy armored undead giant with axe front/center; two smaller skeleton thralls at left and right; dark crimson strips, cold slate crypt with warm torchlight. No baked text/UI.
+- Runtime exact user-approved derivative: `assets/pixel/card_unification_v1/run/crypt_guard_d353_approved_option2.webp` 448×274 WebP Q86 crop y42..981 SHA256 `134f34e9dc515e258e210b8bda04258ac3581da8933714b5e0a312ec24b02740`. Live `RUN_CARDS["crypt_guard"]` override; previous `.tres` fallback untouched. D315 validates 22nd approved image SHA/decode/dimensions/catalog pixels. Gameplay and DS3 remain unchanged.
+- Real native Godot CI and local F6 signoff are separate release gates; A1P3 full manual F5 12+XIII still open.
+
 ## D352 — VERIFIED live on main (2026-10-26)
 
 - [PR #19](https://github.com/zampolit73/Misdeal/pull/19) shipped exact approved hooded, uncrowned Wizard Tithe illustration; [Godot CI](https://github.com/zampolit73/Misdeal/actions/runs/40237209321) passed all 48 GUT tests and D289/D315/D316. The original crownless image is protected by SHA/decoded pixels. No previously approved assets changed.
