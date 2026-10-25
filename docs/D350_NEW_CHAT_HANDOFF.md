@@ -7,3 +7,7 @@ D350 user selected **option 3** in the four-option follow-up board («кости
 A1P3 full manually played F5 12+XIII first-act run remains pending. User after release: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn`, inspect «КОСТИ ДОЛЖНИКА». Next D351: select another card with unapproved placeholder and show 2–3 new actual art options before implementation.
 
 Staged branch `art/d350-debtor-bones-approved-20261026`. Before release check native CI with actual D315 test plus 48/48 GUT baseline and merge only when green. Source WebP local for cross-session: `/mnt/data/debtor_bones_d350_approved_bone_dice.webp` (this local path may not survive new chat; GitHub tracked `.webp.b64` IS source of truth). Native decode SHA guard + pixels test authored, not presumed green. Update docs to release-verified after merge. D351 separate options-first.
+
+## D350 final release verification (2026-10-26)
+
+[PR #17](https://github.com/zampolit73/Misdeal/pull/17) merged to main at `fa03cbfe0f19b45a500365cd8a6dbc7c02439e45`. Native [Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40232179481) **PASS**: GUT 48/48, D289/D315/D316 smokes, two actual 1280×720 screenshots. All previous notes saying "CI pending" refer to pre-release and are superseded. The image's raw SHA256, WebP 448×274 and live pixels are checked natively by D315. User local F6 review and A1P3 human F5 12+XIII run remain pending. Next: D351 artwork selection (options-first).
