@@ -53,6 +53,8 @@ const RUN_CARDS := {
 	"chained_prisoner": "run/chained_prisoner_d345_approved_old_acquaintance.webp",
 	# D346 approved option 3: broken bone-trimmed bridge, castle wall CONTINUOUS at left.
 	"rattling_bridge": "run/rattling_bridge_d346_approved_continuous_castle.webp",
+	# D347: approved third Last Camp scene, living castle veteran beside the final fire.
+	"last_camp": "run/last_camp_d347_approved_last_witness.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).

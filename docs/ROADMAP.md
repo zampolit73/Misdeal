@@ -1,3 +1,14 @@
+## D347 — Last Camp approved artwork integration (2026-10-25)
+
+- [x] User selected option #3 «Последний свидетель» and approved full clean veteran/fire composition.
+- [x] Upload exact 448×274 WebP at `assets/pixel/card_unification_v1/run/last_camp_d347_approved_last_witness.webp` SHA256 `8a0be7170685a0db870c8f6bbaaf64675efed21413e4e3ec3950eed0a8f16243`.
+- [x] Map `RUN_CARDS["last_camp"]` to approved runtime image while keeping older `EVENTS` fallback and card Resource.
+- [x] Expand D315 to 16 approved illustrations, with exact hash, WebP decode, dimensions and visible catalog pixel equality.
+- [x] Preserve approved D346 bridge, earlier images, DS3 and all gameplay rules.
+- [ ] Confirm post-D347 official Godot 4.7.x CI on this commit; no inferred PASS.
+- [ ] User F6 gallery review of «ПОСЛЕДНИЙ ПРИВАЛ» and separate A1P3 normal-game F5 12+XIII run.
+- [ ] D348: select next unapproved event; show 2–3 actual different artworks before replacement.
+
 ## D346 — Rattling Bridge approved third image, seamless castle wall (2026-10-25)
 
 - [x] Publish user-approved **last** art `a_dark_atmospheric_high_detail_gothic_fantasy_sc.png`, not previous versions showing distant second bridge or separate towers.

@@ -1,3 +1,8 @@
+## D347 — LIVE Last Camp third «Последний свидетель» (2026-10-25)
+
+- **Exact user approval:** option 3 from proposed triptych followed by standalone clean painting `одинокий_ветеран_у_костра_у_замка.png` (1608×978). Living elder castle defender beside one small orange fire; aged crimson standard, shields and two helmets, one lantern, cold blue fortress beyond. No UI/text baked in. Distinct from `ash_rest`.
+- **Game asset:** `assets/pixel/card_unification_v1/run/last_camp_d347_approved_last_witness.webp`, 448×274 WebP Q86 from original crop (4,0)-(1604,978), SHA256 `8a0be7170685a0db870c8f6bbaaf64675efed21413e4e3ec3950eed0a8f16243`. Live `CardUnificationV1.RUN_CARDS["last_camp"]`; original `event/last_camp.webp` fallback retained. Native D315 hash/decode/dimensions/catalog-pixel guard. No changes to event behavior, `last_camp.tres` or previous approved compositions.
+
 ## D346 — LIVE Rattling Bridge last image: one continuous fortress wall (2026-10-25)
 
 - **Exact source approved:** `a_dark_atmospheric_high_detail_gothic_fantasy_sc.png` 1608×978 RGB, SHA256 `5caa7ed39672acffed934106b16a11c4cf6f7095196672f65fe1569cf4b1d719`. Third scene evolved from shattered foreground bridge to castle with contiguous left/center curtain wall. Do not restore a distant second bridge or extra castle exit; foreground broken bridge with skulls, chains, red banners, torches, deep chasm and mist remains.
