@@ -1,3 +1,9 @@
+## 2026-10-25 — D347: Official Godot CI green and merged
+
+- [PR #14](https://github.com/zampolit73/Misdeal/pull/14) merged to main as `85ffbda`, carrying exact D347 approved WebP and native 16-art integrity guard.
+- [Godot 4.7.2 Actions https://github.com/zampolit73/Misdeal/actions/runs/40194579988](https://github.com/zampolit73/Misdeal/actions/runs/40194579988) verified **48/48 GUT PASS**, D289 Table, D315 Card DS3 and D316 card surfaces PASS; rendered authentic Table and gallery screenshot evidence.
+- F6 human visual inspection and A1P3 normal F5 12+XIII full run are still open acceptance gates.
+
 ## 2026-10-25 — D347: Approved Last Camp art integrated
 
 - Shipped original user-approved third «Последний свидетель» standalone veteran beside the castle outpost campfire as 448×274 WebP (`assets/pixel/card_unification_v1/run/last_camp_d347_approved_last_witness.webp`).
