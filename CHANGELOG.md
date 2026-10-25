@@ -1,3 +1,7 @@
+## 2026-10-25 — D348: Curse Forge user-approved image
+
+- Add exact user-reposted 50% human / 50% skeletal blacksmith to live Curse Forge card as 448×274 WebP with 17-image D315 SHA/decode/texture guard. Existing card mechanics and all earlier visual decisions unchanged; native CI/hand-playtest verdict pending.
+
 ## 2026-10-25 — D347: Official Godot CI green and merged
 
 - [PR #14](https://github.com/zampolit73/Misdeal/pull/14) merged to main as `85ffbda`, carrying exact D347 approved WebP and native 16-art integrity guard.

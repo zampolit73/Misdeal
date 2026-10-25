@@ -1,3 +1,11 @@
+## D348 — Curse Forge artwork (2026-10-25)
+
+- [x] User-approved exact half-human/half-skeleton smith original preserved (not subsequent art).
+- [x] Export native 448×274 WebP; attach as live curse_forge run-card painting with original event fallback.
+- [x] Add seventeenth scene to D315 exact SHA/decode/dimensions/catalog-pixel checks.
+- [ ] Independently verify new Godot 4.7.x PR native CI.
+- [ ] User F6 gallery review of «КУЗНИЦА ПРОКЛЯТИЙ»; actual A1P3 F5 12+XIII first-act playtest pending.
+
 ## D347 — Last Camp approved artwork integration (2026-10-25)
 
 - [x] User selected option #3 «Последний свидетель» and approved full clean veteran/fire composition.

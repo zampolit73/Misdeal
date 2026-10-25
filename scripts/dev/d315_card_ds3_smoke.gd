@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D347: verify sixteen published, user-approved individual paintings
+    # D348: verify seventeen published, user-approved individual paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -71,6 +71,7 @@ func _verify() -> void:
         {"id": "chained_prisoner", "file": "chained_prisoner_d345_approved_old_acquaintance.webp"},
         {"id": "rattling_bridge", "file": "rattling_bridge_d346_approved_continuous_castle.webp"},
         {"id": "last_camp", "file": "last_camp_d347_approved_last_witness.webp"},
+        {"id": "curse_forge", "file": "curse_forge_d348_approved_half_skeletal_smith.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -125,6 +126,10 @@ func _verify() -> void:
         # D347: preserve the exact approved standalone Last Camp image.
         if String(approved["id"]) == "last_camp" and FileAccess.get_sha256(asset_path) != "8a0be7170685a0db870c8f6bbaaf64675efed21413e4e3ec3950eed0a8f16243":
             _fail("D347 Last Camp differs from the approved Last Witness artwork")
+            return
+        # D348 exact approved user-reposted smith; never accept generated alternate.
+        if String(approved["id"]) == "curse_forge" and FileAccess.get_sha256(asset_path) != "e49331f0cd7ce658a4390c2f9c1c95e04717c0435b70d9160cb1662812b90b24":
+            _fail("D348 Curse Forge is not the approved half-skeletal smith")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:
