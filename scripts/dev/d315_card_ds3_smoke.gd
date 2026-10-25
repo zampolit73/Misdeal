@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D349: verify eighteen published, user-approved individual paintings
+    # D350: verify eighteen earlier native-file approved paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -150,6 +150,36 @@ func _verify() -> void:
         if selected.get_image().get_data() != decoded.get_data():
             _fail("D333 card still uses an older fallback illustration: " + str(approved["id"]))
             return
+
+    # D350: the 19th user-approved scene is the exact chosen bone-hand dice painting.
+    # The WebP is packaged as UTF-8 Base64, decoded by production CardUnificationV1.
+    const DEBTOR_BONES_DATA := "res://assets/pixel/card_unification_v1/run/debtor_bones_d350_approved_bone_dice.webp.b64"
+    if not FileAccess.file_exists(DEBTOR_BONES_DATA):
+        _fail("D350 approved bone-dice painting not tracked")
+        return
+    var debtor_raw := Marshalls.base64_to_raw(FileAccess.get_file_as_string(DEBTOR_BONES_DATA).strip_edges())
+    if debtor_raw.is_empty():
+        _fail("D350 approved bone-dice WebP Base64 is empty or invalid")
+        return
+    var hash_ctx := HashingContext.new()
+    if hash_ctx.start(HashingContext.HASH_SHA256) != OK:
+        _fail("D350 hashing context failed to initialize")
+        return
+    hash_ctx.update(debtor_raw)
+    if hash_ctx.finish().hex_encode() != "8b08781cb21c56bbef50b01b3fda0d0de02248f0ecd22256d5761a31c3be8113":
+        _fail("D350 Debtor Bones image is not the exact approved crop")
+        return
+    var debtor_image := Image.new()
+    if debtor_image.load_webp_from_buffer(debtor_raw) != OK or debtor_image.get_size() != Vector2i(448, 274):
+        _fail("D350 approved Debtor Bones WebP decode/dimensions failed")
+        return
+    var live_debtor := CATALOG.get_run_card_texture("debtor_bones")
+    if live_debtor == null or live_debtor.get_size() != Vector2(448, 274):
+        _fail("D350 Debtor Bones art did not reach the live card gallery")
+        return
+    if live_debtor.get_image().get_data() != debtor_image.get_data():
+        _fail("D350 card still shows legacy Bone Patrol instead of approved dice")
+        return
 
     var preview := (load(GALLERY) as PackedScene).instantiate() as Control
     if preview == null:
