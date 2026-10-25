@@ -1,3 +1,8 @@
+## D348 — CI result and merge (2026-10-25)
+
+- [x] Official PR #15 native Godot 4.7.2 CI **PASS** — GUT 48/48, D289/D315/D316 smokes, 2 original Godot screenshots; merged `69e8f3e`.
+- [ ] User F6 «КУЗНИЦА ПРОКЛЯТИЙ» visual check and A1P3 F5 full playable act remain pending.
+
 ## D348 — Curse Forge artwork (2026-10-25)
 
 - [x] User-approved exact half-human/half-skeleton smith original preserved (not subsequent art).

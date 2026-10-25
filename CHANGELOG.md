@@ -1,3 +1,7 @@
+## 2026-10-25 — D348 CI verified and merged
+
+- [PR #15](https://github.com/zampolit73/Misdeal/pull/15) merged at `69e8f3e`; [Godot 4.7.2 run 40223519538](https://github.com/zampolit73/Misdeal/actions/runs/40223519538) passed 48 GUT tests, three relevant native smokes, two real rendered screenshots. D348 user F6 review remains pending.
+
 ## 2026-10-25 — D348: Curse Forge user-approved image
 
 - Add exact user-reposted 50% human / 50% skeletal blacksmith to live Curse Forge card as 448×274 WebP with 17-image D315 SHA/decode/texture guard. Existing card mechanics and all earlier visual decisions unchanged; native CI/hand-playtest verdict pending.

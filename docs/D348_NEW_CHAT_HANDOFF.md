@@ -5,3 +5,7 @@ D348 user-approved the EXACT image they reposted ("вот этот вариан�
 ## Integration and QA
 
 Files: `assets/pixel/card_unification_v1/run/curse_forge_d348_approved_half_skeletal_smith.webp`, `scripts/ui/card_unification_v1.gd`, `scripts/dev/d315_card_ds3_smoke.gd`. D315 count 17 with exact WebP matching guard. No gameplay or layout changes. Before declaring PASS: check Godot native PR CI on the actual D348 head. Local: git pull then F6 `scenes/dev/d315_card_ds3_gallery.tscn` and inspect «КУЗНИЦА ПРОКЛЯТИЙ». Full actual 12+XIII F5 experiential playtest pending. D349 artwork remains unapproved and requires options-first.
+
+## Post-merge native evidence
+
+D348 actual release verified: [PR #15](https://github.com/zampolit73/Misdeal/pull/15) merged to `main` at `69e8f3ef17f2ce9251d60862b0fbb51ce75ca089`. [Godot 4.7.2 CI run 40223519538](https://github.com/zampolit73/Misdeal/actions/runs/40223519538) **PASS** on the actual PR head: **48/48 GUT cases**, D289 Table, D315 Card Gallery including exact 17th WebP SHA/decode/size/catalog pixels, D316 surfaces, and two authentic 1280×720 Godot captures (table/gallery). Technical CI is green; user's local F6 visual review and actual 12+XIII F5 playthrough remain separate.
