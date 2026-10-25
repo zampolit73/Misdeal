@@ -1,3 +1,10 @@
+## D353 — VERIFIED shipped (2026-10-26)
+
+- [x] [PR #20](https://github.com/zampolit73/Misdeal/pull/20) merged `3144899a` after [native Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40239294144): GUT 48/48, D289/D315/D316, native screenshot capture and artifact upload.
+- [x] User-locked Crypt Guard option 2 WebP displayed in card catalog and protected as approved scene #22.
+- [ ] User F6 review «СТРАЖ СКЛЕПА»; A1P3 human F5 full Fate Spread I–XII + XIII playthrough.
+- [ ] D354 next unapproved art, offer real render choices before installing.
+
 ## D353 — Crypt Guard visual release gates (2026-10-26)
 
 - [x] User picked second composition and approved standalone armoured crypt elite with exactly two bone thralls.

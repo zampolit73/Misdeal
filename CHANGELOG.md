@@ -1,3 +1,7 @@
+## 2026-10-26 — D353 verified Godot release
+
+- [PR #20](https://github.com/zampolit73/Misdeal/pull/20) merged `3144899a`; [native Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40239294144) PASS: 48/48 GUT, D289/D315 (22nd exact visual guard)/D316, screenshot/evidence steps successful. Approved crypt elite plus two thralls live; player F6 and A1P3 human F5 still pending.
+
 ## 2026-10-26 — D353: approved Crypt Guard second painting
 
 - Connected user-approved standalone armored crypt sentinel plus two bone thralls as 448×274 WebP `crypt_guard_d353_approved_option2.webp`. Card catalog overrides old Bone Patrol placeholder while keeping legacy fallback. D315 now protects 22 distinct approved paintings by exact D353 SHA256/WebP decode/dimensions/live pixels. No encounter/balance/DS3/previous artwork edits. Native CI and user F6 acceptance are separate steps.

@@ -1,3 +1,7 @@
+## D353 — LIVE on main; Crypt Guard variant two (2026-10-26)
+
+- User-approved second composition is shipped by [PR #20](https://github.com/zampolit73/Misdeal/pull/20), [Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40239294144). Exact binary WebP SHA256 `134f34e9dc515e258e210b8bda04258ac3581da8933714b5e0a312ec24b02740`, card catalog correct; 22 scene locks. Player F6 artistic review is separate. No prior asset, DS3 or encounter changes.
+
 ## D353 — Approved variant 2, Crypt Guard with two bone thralls (2026-10-26)
 
 - Locked last standalone `a_dramatic_cinematic_high_detail_dark_fantasy_sc.png` 1536×1024 SHA256 `18ea3a8c2625c0ce99eab6618306cef3cb98af440e498b49c56fbb47ff45e0f5` (NOT prior 3-option collage). Heavy armored undead giant with axe front/center; two smaller skeleton thralls at left and right; dark crimson strips, cold slate crypt with warm torchlight. No baked text/UI.

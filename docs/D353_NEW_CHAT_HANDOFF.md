@@ -1,3 +1,7 @@
+# Verified release addendum — D353 (2026-10-26)
+
+[PR #20](https://github.com/zampolit73/Misdeal/pull/20) merged into main as `3144899a9700fe76a573f079ac3308f08f60aacc`. [Real CI 40239294144](https://github.com/zampolit73/Misdeal/actions/runs/40239294144) PASS: GUT 48/48, D289/D315/D316, native screenshots and evidence. All following older 'pending' statements are historical, overridden by this status. User local: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn` inspect «СТРАЖ СКЛЕПА». A1P3 F5 I–XII + XIII still pending; D354 options-first next.
+
 # D353_NEW_CHAT_HANDOFF — Crypt Guard visual lock (2026-10-26)
 
 Status: user approved D353 option 2 standalone painting, **implementation committed to art branch; Godot CI/merge must be independently verified**. GitHub main is the technical source of truth. Next when resuming: read AGENTS.md, docs/CONCEPT.md, docs/PROJECT_STATE.md, docs/ROADMAP.md, docs/DECISIONS.md; inspect active PR and CI before saying merged.
