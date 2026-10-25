@@ -1,3 +1,7 @@
+## D347 — RELEASE VERIFIED on main (2026-10-25)
+
+[PR #14](https://github.com/zampolit73/Misdeal/pull/14) merged as `85ffbdab4495ebca33427fa237bdb9b5faff3632`. Original approved `last_camp` veteran WebP is installed, with intact 16-image D315 exact hash/pixel checks. [Godot 4.7.2 PR CI https://github.com/zampolit73/Misdeal/actions/runs/40194579988](https://github.com/zampolit73/Misdeal/actions/runs/40194579988) PASS: 48/48 GUT tests, selected D289/D315/D316 native smokes and 2 native 1280×720 screenshots. User action: `git pull`; F6 `scenes/dev/d315_card_ds3_gallery.tscn` to inspect «ПОСЛЕДНИЙ ПРИВАЛ». A1P3 full human F5 run still pending; D348 next artistic item (options first). [Handoff](D347_NEW_CHAT_HANDOFF.md).
+
 ## D347 — CURRENT: Last Camp approved veteran art integrated (2026-10-25)
 
 Exact user-approved option #3 «Последний свидетель» standalone art is now `assets/pixel/card_unification_v1/run/last_camp_d347_approved_last_witness.webp` 448×274 SHA256 `8a0be7170685a0db870c8f6bbaaf64675efed21413e4e3ec3950eed0a8f16243`, mapped in `scripts/ui/card_unification_v1.gd` to `RUN_CARDS["last_camp"]`, preserving fallback, D328 DS3 and gameplay. D315 tests exact image hash, image decode/dimensions and catalog pixels (16 live paintings). [D347 complete handoff](D347_NEW_CHAT_HANDOFF.md). Native post-D347 CI/F6 not yet independently signed off; request real Godot proof. Next unapproved art D348 only after new options-first review. A1P3 complete real F5 12+XIII playtest still pending.
