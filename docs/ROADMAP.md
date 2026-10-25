@@ -1,3 +1,10 @@
+## D352 — Verified main release (2026-10-26)
+
+- [x] https://github.com/zampolit73/Misdeal/pull/19 merged `a5290fa` after [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40237209321): 48/48 GUT, D289/D315/D316 native PASS, 2 authentic screenshots.
+- [x] Exact revised hooded/no-crown Wizard Tithe artwork installed as 21st D315-guarded scene, with legacy fallback and gameplay preserved.
+- [ ] User F6 visual review of «ДЕСЯТИНА ВОЛШЕБНИКА»; A1P3 human F5 12+XIII full playthrough.
+- [ ] D353 next scene, options-first and no autonomous replacement of approved art.
+
 ## D352 — Wizard Tithe final approved artwork (2026-10-26)
 
 - [x] User selected option #2 «Алтарь десятины» and approved final revised render with the wizard's crown REMOVED.

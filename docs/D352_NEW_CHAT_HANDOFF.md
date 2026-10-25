@@ -1,3 +1,7 @@
+## D352 — VERIFIED released to main; native Godot 4.7.2 CI PASS (2026-10-26)
+
+[PR #19](https://github.com/zampolit73/Misdeal/pull/19) squash-merged to `main` at `a5290fae6dd33f37b715b74aeeb13eadfaf7e4b9` after [real GitHub Actions run 40237209321](https://github.com/zampolit73/Misdeal/actions/runs/40237209321) **PASS** on PR head `6796e8e`: 48/48 authentic GUT tests, D289 Table, D315 21-image Gallery exact SHA/decode/size/pixel check, D316 Card Surfaces, and two genuine 1280×720 Godot screenshots (Table and Gallery). Installed final user-approved `wizard_tithe` hooded altar artwork without any crown, not the prior crowned concept, as 448×274 WebP SHA256 `3a7e29e7c519f2b3411afa552b725f51731cd08909f83912172c718c6affa746`. No gameplay/DS3/previous art changes. User: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn`, inspect «ДЕСЯТИНА ВОЛШЕБНИКА» (local visual review not substituted by CI). A1P3 full normal F5 12+XIII human playtest remains pending. Next artistic task D353: 2–3 different actual scene images BEFORE any artwork replacement.
+
 # D352 — Wizard Tithe final approved art — release gate (2026-10-26)
 
 ## D352 — Wizard Tithe approved crownless ritual integrated; native CI pending (2026-10-26)

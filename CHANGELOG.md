@@ -1,3 +1,7 @@
+## 2026-10-26 — D352 released and Godot 4.7.2 verified
+
+- [PR #19](https://github.com/zampolit73/Misdeal/pull/19) merged `a5290fa`; [CI](https://github.com/zampolit73/Misdeal/actions/runs/40237209321) passed 48/48 GUT, D289/D315/D316 and native Table/Gallery screenshot captures. Final Wizard Tithe **without crown** live, 21st strict gallery art lock. Player F6 and A1P3 full first-act F5 playthrough still open.
+
 ## 2026-10-26 — D352: Wizard Tithe final crownless ritual image
 
 - Installed the explicitly approved #2 altar scene revised to remove the wizard crown (`wizard_tithe_d352_approved_hooded_ritual.webp`, 448×274), reusing full original art colors and composition. Retained legacy fallback; extended D315 to 21 exact-art checks (SHA/WebP decode/size/live gallery pixels). No event mechanic, DS3 or older asset changes. Native Godot PR CI and user F6 check remain separate gates.

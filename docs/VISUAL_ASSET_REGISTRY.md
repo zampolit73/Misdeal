@@ -1,3 +1,7 @@
+## D352 — VERIFIED live on main (2026-10-26)
+
+- [PR #19](https://github.com/zampolit73/Misdeal/pull/19) shipped exact approved hooded, uncrowned Wizard Tithe illustration; [Godot CI](https://github.com/zampolit73/Misdeal/actions/runs/40237209321) passed all 48 GUT tests and D289/D315/D316. The original crownless image is protected by SHA/decoded pixels. No previously approved assets changed.
+
 ## D352 — LIVE candidate: approved hooded Wizard Tithe ritual, NO crown (2026-10-26)
 
 - Final selected and approved image: `мрачный_ритуал_под_готическими_сводами.png` 1536×1024 PNG SHA256 `6f35ec7ccf215085d75aec08e5481e8a1ba7fe88df8ae3a2878797460c7adca6`: cloaked wizard with hood **without a crown**, hands apart behind blood chalice, gold coins, sealed contract; ruined gothic hall, burgundy banners and candlelight. Replaces only `wizard_tithe` card art, NOT the former crowned version.
