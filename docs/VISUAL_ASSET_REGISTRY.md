@@ -1,3 +1,8 @@
+## D352 — LIVE candidate: approved hooded Wizard Tithe ritual, NO crown (2026-10-26)
+
+- Final selected and approved image: `мрачный_ритуал_под_готическими_сводами.png` 1536×1024 PNG SHA256 `6f35ec7ccf215085d75aec08e5481e8a1ba7fe88df8ae3a2878797460c7adca6`: cloaked wizard with hood **without a crown**, hands apart behind blood chalice, gold coins, sealed contract; ruined gothic hall, burgundy banners and candlelight. Replaces only `wizard_tithe` card art, NOT the former crowned version.
+- Game binary `assets/pixel/card_unification_v1/run/wizard_tithe_d352_approved_hooded_ritual.webp`, 448×274 WebP (full-width crop y42…981, Q86) SHA256 `3a7e29e7c519f2b3411afa552b725f51731cd08909f83912172c718c6affa746`. Native D315 image/pixel guard will cover the 21st accepted painting. Original `.tres`, event balance, DS3 and other art are unchanged; native CI pending.
+
 ## D351 — Bone Tax first portcullis guard (2026-10-26)
 
 - **Approval:** first independently rendered bone tollkeeper; final standalone `скелет_страж_у_ворот_замка.png` 1536×1024 SHA256 `babeb15689f4b2a3c9d658f5eaec8440ac44e191b4f9c6e04878eb8b53ab65bf`. An armored skeletal gatekeeper with extended empty hand and poleaxe, a small shallow metal coin plate at lower left, iron castle portcullis, two torch sconces, burgundy tabard, slate blue castle ruins in distance. No UI/text. **Not** a dice scene, skeletal window clerk, or crosswise blocking halberd variant.

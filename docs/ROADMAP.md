@@ -1,3 +1,11 @@
+## D352 — Wizard Tithe final approved artwork (2026-10-26)
+
+- [x] User selected option #2 «Алтарь десятины» and approved final revised render with the wizard's crown REMOVED.
+- [x] Original approval preserved, WebP 448×274 uploaded as binary; `RUN_CARDS["wizard_tithe"]` uses it and retains previous fallback.
+- [x] D315 regression extended to 21 accepted scenes with exact D352 SHA256/decode/dimensions/catalog pixel guard.
+- [ ] Review real Godot 4.7.x PR CI before merging; local F6 inspect «ДЕСЯТИНА ВОЛШЕБНИКА» after `git pull`.
+- [ ] A1P3 full 12+XIII normal F5 human playthrough still needed; next D353 art options only after D352 verified.
+
 ## D351 — VERIFIED release (2026-10-26)
 
 - [x] [PR #18](https://github.com/zampolit73/Misdeal/pull/18) merged `968fd0f` after [native Godot 4.7.2 CI green](https://github.com/zampolit73/Misdeal/actions/runs/40234667983): 48/48 GUT, D289/D315/D316 native smokes, screenshot steps PASS.

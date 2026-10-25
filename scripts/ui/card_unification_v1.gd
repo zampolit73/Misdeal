@@ -64,6 +64,8 @@ const RUN_CARDS := {
 	"broken_crown": "run/broken_crown_d349_approved_last_relic.webp",
 	# D351: user-selected first gateway collector; final clean standalone artwork.
 	"bone_tax": "run/bone_tax_d351_approved_gatekeeper.webp",
+	# D352: user-approved wizard tithe ritual altar, WIZARD HOODED, NO CROWN.
+	"wizard_tithe": "run/wizard_tithe_d352_approved_hooded_ritual.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).
