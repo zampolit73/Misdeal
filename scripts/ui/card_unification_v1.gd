@@ -62,6 +62,8 @@ const RUN_CARDS := {
 	"curse_forge": "run/curse_forge_d348_approved_half_skeletal_smith.webp",
 	# D349: approved clean Broken Crown painting, split gold crown with armor and sword.
 	"broken_crown": "run/broken_crown_d349_approved_last_relic.webp",
+	# D351: user-selected first gateway collector; final clean standalone artwork.
+	"bone_tax": "run/bone_tax_d351_approved_gatekeeper.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).

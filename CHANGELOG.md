@@ -1,3 +1,7 @@
+## 2026-10-26 — D351: Bone Tax skeletal gatekeeper illustration
+
+- Added exact user-chosen first `bone_tax` portcullis/toll-guard scene at 448×274 as native binary WebP, connected to `CardUnificationV1` with fallback retained. D315 now checks 20 approved unique scene paintings (binary hash/decode/size/catalog pixel equality). Updated current decision, visual registry and handoff without gameplay or DS3 modification. Native CI and local F6 review still need separate verification.
+
 ## 2026-10-26 — D350 Godot release verified
 
 - [PR #17](https://github.com/zampolit73/Misdeal/pull/17) squash-merged `fa03cbf` to `main`; [Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40232179481) passed 48/48 GUT plus D289/D315/D316 native smokes and captured 2 actual 1280×720 screenshots. D350 image and native card pixel/decoded SHA guard shipped; local F6 player review remains separate. Gameplay and DS3 unaffected.
