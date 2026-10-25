@@ -1,3 +1,8 @@
+## D348 — LIVE Curse Forge original half-skeletal smith (2026-10-25)
+
+- Approved **user-reposted image.png** (not subsequent re-render), source 1536×1024 SHA256 `6a806375c96420519b161a331e5d91f88cd0d901e4b0e74294f8a3be7a3746b9`. Foreground half-human half-skeleton blacksmith with forge left, glowing sword on anvil, cold castle at right.
+- assets/pixel/card_unification_v1/run/curse_forge_d348_approved_half_skeletal_smith.webp, 448×274 WebP Q86 crop y42–981, SHA256 `e49331f0cd7ce658a4390c2f9c1c95e04717c0435b70d9160cb1662812b90b24`. CardUnificationV1.RUN_CARDS["curse_forge"] takes priority over old event fallback. D315 exact hash/decode/size/catalog equality, game rules and previous art untouched.
+
 ## D347 — LIVE Last Camp third «Последний свидетель» (2026-10-25)
 
 - **Exact user approval:** option 3 from proposed triptych followed by standalone clean painting `одинокий_ветеран_у_костра_у_замка.png` (1608×978). Living elder castle defender beside one small orange fire; aged crimson standard, shields and two helmets, one lantern, cold blue fortress beyond. No UI/text baked in. Distinct from `ash_rest`.

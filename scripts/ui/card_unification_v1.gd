@@ -55,6 +55,8 @@ const RUN_CARDS := {
 	"rattling_bridge": "run/rattling_bridge_d346_approved_continuous_castle.webp",
 	# D347: approved third Last Camp scene, living castle veteran beside the final fire.
 	"last_camp": "run/last_camp_d347_approved_last_witness.webp",
+	# D348: exact user-reposted, half-human / half-skeletal blacksmith painting.
+	"curse_forge": "run/curse_forge_d348_approved_half_skeletal_smith.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).
