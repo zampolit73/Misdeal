@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D353: verify twenty-one native-file approved paintings
+    # D354: verify twenty-two native-file approved paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -76,6 +76,7 @@ func _verify() -> void:
         {"id": "bone_tax", "file": "bone_tax_d351_approved_gatekeeper.webp"},
         {"id": "wizard_tithe", "file": "wizard_tithe_d352_approved_hooded_ritual.webp"},
         {"id": "crypt_guard", "file": "crypt_guard_d353_approved_option2.webp"},
+        {"id": "grave_bell", "file": "grave_bell_d354_approved_tower.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -150,6 +151,10 @@ func _verify() -> void:
         # D353: exact standalone variant two, one heavy guard and two skeletal thralls.
         if String(approved["id"]) == "crypt_guard" and FileAccess.get_sha256(asset_path) != "134f34e9dc515e258e210b8bda04258ac3581da8933714b5e0a312ec24b02740":
             _fail("D353 Crypt Guard is not the approved second composition")
+            return
+        # D354: LOCK selected SECOND standalone bell-tower image against accidental replacement.
+        if String(approved["id"]) == "grave_bell" and FileAccess.get_sha256(asset_path) != "9eb40f8db8cb734a1283a90fc746d1b4d358f28ab27824394d803cb3a1c9cbef":
+            _fail("D354 Grave Bell is not the approved cracked bell / rope-pulling ringer")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:

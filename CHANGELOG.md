@@ -1,3 +1,7 @@
+## D354 — Grave Bell artwork (2026-10-26)
+
+Added approved standalone second Grave Bell depiction (graveyard's cracked bronze bell, robed skeletal ringer, two risen skeletons) as `grave_bell_d354_approved_tower.webp` 448×274 WebP. Connected `RUN_CARDS["grave_bell"]` with existing Resource fallback, extended D315 strict artwork check to 23 approved card arts. No gameplay, unit, boss, healing, DS3 or other art modifications. Native CI and player F6 check remain separate.
+
 ## 2026-10-26 — D353 verified Godot release
 
 - [PR #20](https://github.com/zampolit73/Misdeal/pull/20) merged `3144899a`; [native Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40239294144) PASS: 48/48 GUT, D289/D315 (22nd exact visual guard)/D316, screenshot/evidence steps successful. Approved crypt elite plus two thralls live; player F6 and A1P3 human F5 still pending.

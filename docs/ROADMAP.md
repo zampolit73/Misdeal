@@ -1,3 +1,12 @@
+## D354 — Grave Bell visual gates (2026-10-26)
+
+- [x] Approved second cracked-bell tower scene and captured precise original hash.
+- [x] Save original approved 448×274 WebP in GitHub and map grave_bell without changing old Resource.
+- [x] D315 strict SHA/size/WebP/pixel protection, now 23 illustrations.
+- [x] Update state, registry, decision, changelog and handoff.
+- [ ] Real native Godot CI PASS required before PR merge; local F6 gallery acceptance separate.
+- [ ] A1P3 full F5 12+XIII run still open; D355 next card art options-first.
+
 ## D353 — VERIFIED shipped (2026-10-26)
 
 - [x] [PR #20](https://github.com/zampolit73/Misdeal/pull/20) merged `3144899a` after [native Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40239294144): GUT 48/48, D289/D315/D316, native screenshot capture and artifact upload.

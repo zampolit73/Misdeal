@@ -68,6 +68,8 @@ const RUN_CARDS := {
 	"wizard_tithe": "run/wizard_tithe_d352_approved_hooded_ritual.webp",
 	# D353: final approved option 2: armored crypt guardian and TWO bone thralls.
 	"crypt_guard": "run/crypt_guard_d353_approved_option2.webp",
+	# D354: user-approved SECOND standalone bell tower; huge cracked bell, skeletal ringer and two risen dead.
+	"grave_bell": "run/grave_bell_d354_approved_tower.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).
