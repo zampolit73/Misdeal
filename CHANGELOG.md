@@ -1,3 +1,7 @@
+## 2026-10-27 — D357 «Врата оссуария» art integration candidate
+
+- Added exact user-approved third final Ossuary Gate painting as binary 448×274 WebP SHA256 `24e7fec8df8ac4f4b4610eb4032b6066d1d50b1dcff89a17d10cb4959d339645`, 4 authentic enemy roles and defended gate. Switched only `CardUnificationV1.RUN_CARDS["ossuary_gate"]` art override, kept legacy resource fallback. Expanded D315 strict hash/image/pixel coverage to 26 selected illustration locks. Updated project context and rollback identity; no combat, balance, DS3, other art changes. Native Godot PR CI pending.
+
 ## 2026-10-26 — D356 release verified
 
 - D356 artwork user-selected FIFTH round-table composition shipped with [PR #23](https://github.com/zampolit73/Misdeal/pull/23), squash d9727dcc6ecf5b360f25cd926f2e6ee921842c16 and [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40338354135). The file assets/pixel/card_unification_v1/run/faceless_card_d356_approved_option5.webp is present in main, binary Git blob 9bf6b31e3cd315ad1d27e1001adbb4770ab9bf36, 448x274, SHA256 7f811babefa69692614db472be8233ec70112551324e7774600b74bdc47f925c. Godot import, GUT, D289/D315/D316 and real screenshot capture/evidence passed. D315 protects 25 selected card illustrations. Choices, prices, DS3, balance and previous art unchanged. User git pull, F6 scenes/dev/d315_card_ds3_gallery.tscn, inspect 'КАРТА БЕЗ ЛИЦА'. D357 next: guard + bell ringer + archer + thrall at actual Ossuary Gate (reject old empty-gate triptych). Full Act1 12+XIII F5 human playtest is not yet done.
