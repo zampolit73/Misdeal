@@ -1,3 +1,9 @@
+## D356 — Faceless Card handoff; CI pending (2026-10-26)
+
+D356 «КАРТА БЕЗ ЛИЦА» approved option #5 ('готический_ритуал_с_чёрной_картой.png'): exactly one blank black card held over the ROUND Fate Spread Misdeal gaming table with red occult markings, brass rim, burgundy cloth, candles and gothic interior. Source 1536x1024 PNG SHA256 94e3f8d6d6471fd3e232b94be5c55b735043670aac3832138b34d532a23b64bb. Runtime res://assets/pixel/card_unification_v1/run/faceless_card_d356_approved_option5.webp = crop (0,42)-(1536,981), 448x274 WebP Q86, SHA256 7f811babefa69692614db472be8233ec70112551324e7774600b74bdc47f925c. Only CardUnificationV1.RUN_CARDS['faceless_card'] points to approved art; .tres fallback stays intact. Native D315 list has 24 native WebPs plus D350 separately, 25 exact approved illustration locks total. No event choices, costs, gameplay, balance, DS3 or previous illustrations changed. Native PR Godot CI and local F6 review pending. The old D357 three-door-only options were rejected as not depicting the actual encounter.
+
+Read [D356_NEW_CHAT_HANDOFF.md](D356_NEW_CHAT_HANDOFF.md). After CI PASS and merge, user runs git pull, F6 scenes/dev/d315_card_ds3_gallery.tscn, checks «КАРТА БЕЗ ЛИЦА». Next: D357 «Врата оссуария» options-first with real enemy lineup. Full A1P3 human F5 run I–XII+XIII remains open.
+
 ## D355 — VERIFIED release; proceed to D356 (2026-10-26)
 
 [PR #22](https://github.com/zampolit73/Misdeal/pull/22) merged `0304f634c434c3ae6c6836b0a17c8344f990a52e` following [native Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40325370134). Exact selected third 448×274 `death_wager` scene is live, D315 24-art SHA/decode/size/pixel guard passed with GUT/D289/D316 and screenshot artifacts. No gameplay changes. Full decision and exact hashes: [D355_NEW_CHAT_HANDOFF.md](D355_NEW_CHAT_HANDOFF.md). Local F6 review needed, and first-act full F5 12+XIII run remains pending. Next D356 options-first.

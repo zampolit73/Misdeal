@@ -1,3 +1,13 @@
+## D356 — Art integration gates (2026-10-26)
+
+- [x] User chose option #5 on the real round Misdeal table.
+- [x] Exact WebP uploaded and runtime map selected, legacy .tres fallback preserved.
+- [x] D315 expanded to 25 exact approved images with hash/size/decoded-pixel tests.
+- [x] Project documentation and handoff updated.
+- [ ] Native Godot 4.7.2 PR CI PASS (GUT, D289, D315, D316, screenshots) REQUIRED before merge.
+- [ ] User F6 review after merge and A1P3 F5 12+XIII full run.
+- [ ] D357 Ossuary Gate next, three more current-style art passes after it.
+
 ## D355 — VERIFIED released (2026-10-26)
 
 - [x] [PR #22](https://github.com/zampolit73/Misdeal/pull/22) squash-merged to main `0304f634` after [native Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40325370134); GUT and D289/D315/D316 and real screenshot artifact upload green.

@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D355: verify twenty-three native-file approved paintings
+    # D356: verify twenty-four native-file approved paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -78,6 +78,7 @@ func _verify() -> void:
         {"id": "crypt_guard", "file": "crypt_guard_d353_approved_option2.webp"},
         {"id": "grave_bell", "file": "grave_bell_d354_approved_tower.webp"},
         {"id": "death_wager", "file": "death_wager_d355_approved_option3.webp"},
+        {"id": "faceless_card", "file": "faceless_card_d356_approved_option5.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -160,6 +161,10 @@ func _verify() -> void:
         # D355: exact selected third standalone, five undead in sealed ossuary.
         if String(approved["id"]) == "death_wager" and FileAccess.get_sha256(asset_path) != "4ee5865a55d8dc0ebc35eb49b6572901dbeec24cf1878efbcf199a4add85ba7b":
             _fail("D355 Death Wager is not the approved third ossuary painting")
+            return
+        # D356: lock the exact selected fifth art (round Fate Spread and black card).
+        if String(approved["id"]) == "faceless_card" and FileAccess.get_sha256(asset_path) != "7f811babefa69692614db472be8233ec70112551324e7774600b74bdc47f925c":
+            _fail("D356 Faceless Card differs from selected fifth round-table artwork")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:

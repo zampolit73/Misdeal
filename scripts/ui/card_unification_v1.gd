@@ -72,6 +72,8 @@ const RUN_CARDS := {
 	"grave_bell": "run/grave_bell_d354_approved_tower.webp",
 	# D355: approved option 3, five-undead death wager at ossuary vault.
 	"death_wager": "run/death_wager_d355_approved_option3.webp",
+	# D356: approved fifth Faceless Card painting, round Misdeal Fate Spread and blank card.
+	"faceless_card": "run/faceless_card_d356_approved_option5.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).

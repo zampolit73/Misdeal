@@ -1,3 +1,7 @@
+## 2026-10-26 — D356 Faceless Card approved fifth image
+
+Exact fifth round Misdeal table composition installed as faceless_card_d356_approved_option5.webp (448x274, SHA256 7f811babefa69692614db472be8233ec70112551324e7774600b74bdc47f925c). CardUnificationV1 mapping + D315 strict 25-approved-image checks. Old .tres fallback, event, balance, DS3 and prior artwork unchanged. Native Godot 4.7.2 CI pending; full F5 Act1 manual playtest still needed.
+
 ## 2026-10-26 — D355 verified Godot release
 
 - [PR #22](https://github.com/zampolit73/Misdeal/pull/22) merged `0304f634` after [Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40325370134): GUT, D289, D315 (24 approved images), D316 and authentic screenshot artifact upload. Installed exact approved third Death Wager scene (448×274 WebP `4ee5865a55d8dc0ebc35eb49b6572901dbeec24cf1878efbcf199a4add85ba7b`) without gameplay, reward, layout or earlier art changes. Local F6 and full A1P3 F5 playtest still pending.

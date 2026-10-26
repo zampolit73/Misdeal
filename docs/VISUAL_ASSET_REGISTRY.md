@@ -1,3 +1,7 @@
+## D356 — approved fifth Faceless Card art lock (2026-10-26)
+
+D356 «КАРТА БЕЗ ЛИЦА» approved option #5 ('готический_ритуал_с_чёрной_картой.png'): exactly one blank black card held over the ROUND Fate Spread Misdeal gaming table with red occult markings, brass rim, burgundy cloth, candles and gothic interior. Source 1536x1024 PNG SHA256 94e3f8d6d6471fd3e232b94be5c55b735043670aac3832138b34d532a23b64bb. Runtime res://assets/pixel/card_unification_v1/run/faceless_card_d356_approved_option5.webp = crop (0,42)-(1536,981), 448x274 WebP Q86, SHA256 7f811babefa69692614db472be8233ec70112551324e7774600b74bdc47f925c. Only CardUnificationV1.RUN_CARDS['faceless_card'] points to approved art; .tres fallback stays intact. Native D315 list has 24 native WebPs plus D350 separately, 25 exact approved illustration locks total. No event choices, costs, gameplay, balance, DS3 or previous illustrations changed. Native PR Godot CI and local F6 review pending. The old D357 three-door-only options were rejected as not depicting the actual encounter.
+
 ## D355 — VERIFIED live in main (2026-10-26)
 
 [PR #22](https://github.com/zampolit73/Misdeal/pull/22) merged `0304f634`; [native CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40325370134). Selected THIRD Death Wager ossuary image `assets/pixel/card_unification_v1/run/death_wager_d355_approved_option3.webp` SHA256 `4ee5865a55d8dc0ebc35eb49b6572901dbeec24cf1878efbcf199a4add85ba7b` protected by D315 as 24th approved painting. No preceding locked art changed.
