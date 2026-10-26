@@ -1,3 +1,9 @@
+## D354 — VERIFIED released to main (2026-10-26)
+
+- [x] [PR #21](https://github.com/zampolit73/Misdeal/pull/21) squash-merged `631e16a142b863e19e4be82a37aa284119c8470d` after [native Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40315124428) on head `0ba96e9da94995d6efa27a48aab5827a0c713314`: **48/48 GUT**, D289 Table, **D315 Gallery including exact user-approved 23rd `grave_bell` image**, D316 Card Surfaces and authentic 1280×720 Table/Gallery screenshot captures, evidence uploaded. Live WebP `assets/pixel/card_unification_v1/run/grave_bell_d354_approved_tower.webp` SHA256 `9eb40f8db8cb734a1283a90fc746d1b4d358f28ab27824394d803cb3a1c9cbef`. User-chosen standalone #2 (skeletal ringer pulling rope of giant cracked hanging bell); no change to Grave Bell fight/healing, DS3 or other locked paintings.
+- [ ] User local F6 artistic review «МОГИЛЬНЫЙ ЗВОН»; A1P3 normal F5 I–XII+XIII full human run.
+- [ ] D355: next unapproved card, 2–3 independently rendered options before implementation.
+
 ## D354 — Grave Bell visual gates (2026-10-26)
 
 - [x] Approved second cracked-bell tower scene and captured precise original hash.
