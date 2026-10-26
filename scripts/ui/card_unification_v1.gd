@@ -70,6 +70,8 @@ const RUN_CARDS := {
 	"crypt_guard": "run/crypt_guard_d353_approved_option2.webp",
 	# D354: user-approved SECOND standalone bell tower; huge cracked bell, skeletal ringer and two risen dead.
 	"grave_bell": "run/grave_bell_d354_approved_tower.webp",
+	# D355: approved option 3, five-undead death wager at ossuary vault.
+	"death_wager": "run/death_wager_d355_approved_option3.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).

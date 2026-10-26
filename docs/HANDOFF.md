@@ -1,3 +1,13 @@
+## D355 — final Death Wager option 3 integrated, awaiting native CI (2026-10-26)
+
+Final user-selected D355 standalone option #3 `стражи_проклятой_крипты.png`: five undead before sealed ossuary doors — an armored skeletal captain with heavy axe, two hooded skeletal archers on raised flanks, and two weaker skeletal fighters at front. Original 1604×981 PNG SHA256 `0e0283c8c94c6f9e708110b3968c7c8d341de3463d14b8122977488bc69a8472`. Exact resized 448×274 WebP quality 86 at `assets/pixel/card_unification_v1/run/death_wager_d355_approved_option3.webp`, SHA256 `4ee5865a55d8dc0ebc35eb49b6572901dbeec24cf1878efbcf199a4add85ba7b`. No crowns, bells, wizards or UI inside painting.
+
+`CardUnificationV1.RUN_CARDS["death_wager"]` selects this approved art; prior Bone Patrol path in `.tres` stays as fallback. D315 native-file approved gallery list is extended to **24** entries and checks strict SHA256, WebP decoding, dimensions 448×274 and catalog pixel equality. No changes to the five-enemy encounter, elite rewards (gold/relic/extra upgrade), balance, DS3, or already approved art.
+
+Native Godot 4.7.2 PR CI **PENDING**: require 48/48 GUT, D289 Table, D315 Gallery, D316 Card Surfaces and screenshot capture before merge. Local review after merge: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn`, inspect «СТАВКА НА СМЕРТЬ». Full A1P3 F5 12+XIII manual run still pending. Next D356: new art options-first.
+
+Source of truth: [D355_NEW_CHAT_HANDOFF.md](D355_NEW_CHAT_HANDOFF.md).
+
 ## D354 — VERIFIED: handoff to D355 (2026-10-26)
 
 [PR #21](https://github.com/zampolit73/Misdeal/pull/21) squash-merged `631e16a142b863e19e4be82a37aa284119c8470d` after [native Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40315124428) on head `0ba96e9da94995d6efa27a48aab5827a0c713314`: **48/48 GUT**, D289 Table, **D315 Gallery including exact user-approved 23rd `grave_bell` image**, D316 Card Surfaces and authentic 1280×720 Table/Gallery screenshot captures, evidence uploaded. Live WebP `assets/pixel/card_unification_v1/run/grave_bell_d354_approved_tower.webp` SHA256 `9eb40f8db8cb734a1283a90fc746d1b4d358f28ab27824394d803cb3a1c9cbef`. User-chosen standalone #2 (skeletal ringer pulling rope of giant cracked hanging bell); no change to Grave Bell fight/healing, DS3 or other locked paintings. User after `git pull`: F6 `scenes/dev/d315_card_ds3_gallery.tscn`, inspect «МОГИЛЬНЫЙ ЗВОН». Full A1P3 F5 I–XII+XIII manual player run still outstanding. Next D355 art options-first.
