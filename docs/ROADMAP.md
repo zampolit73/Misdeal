@@ -1,3 +1,10 @@
+## D357 — Released and verified (2026-10-27)
+
+- [x] [PR #24](https://github.com/zampolit73/Misdeal/pull/24) merged `578502b2` after [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40398849776): GUT, D289/D315/D316, screenshot captures.
+- [x] Exact standalone user-chosen third Ossuary Gate painting live and guarded as the 26th approved artwork.
+- [ ] User local `git pull`, F6 gallery, check «ВРАТА ОССУАРИЯ».
+- [ ] D358 «Железная стена», then «Последний звон», «Расстрельная площадь» (3 remaining visual passes); full A1P3 F5 12+XIII playtest outstanding.
+
 ## D357 — remaining release gates (2026-10-27)
 
 - [x] Approved final user-selected THIRD standalone artwork identified by source SHA256.
