@@ -1,3 +1,8 @@
+## D356 — VERIFIED completed (2026-10-26)
+
+- [x] D356 «КАРТА БЕЗ ЛИЦА» user-selected option #5 (round Misdeal Fate Spread with one blank black card) merged in [PR #23](https://github.com/zampolit73/Misdeal/pull/23), squash commit d9727dcc6ecf5b360f25cd926f2e6ee921842c16, after [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/40338354135). Verified actual WebP present in main: assets/pixel/card_unification_v1/run/faceless_card_d356_approved_option5.webp, Git blob 9bf6b31e3cd315ad1d27e1001adbb4770ab9bf36, exact SHA256 7f811babefa69692614db472be8233ec70112551324e7774600b74bdc47f925c. CI steps PASS: Godot import/GDScript, GUT, D289/D315/D316 smoke, real screenshot captures, evidence upload. D315 now guards 25 selected illustrations. No gameplay, DS3 or prior imagery modified. Player: git pull, F6 scenes/dev/d315_card_ds3_gallery.tscn and inspect «КАРТА БЕЗ ЛИЦА». Next D357 «Врата оссуария», ART OPTIONS FIRST with guard + bell keeper + archer + thrall; prior doorway-only triptych rejected. Full A1P3 F5 12+XIII local human run still outstanding.
+- [ ] D357 Ossuary Gate image options first; further three visual passes; full A1P3 F5 12+XIII playtest.
+
 ## D356 — Art integration gates (2026-10-26)
 
 - [x] User chose option #5 on the real round Misdeal table.
