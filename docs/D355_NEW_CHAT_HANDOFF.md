@@ -4,6 +4,6 @@ Final user-selected D355 standalone option #3 `стражи_проклятой_�
 
 `CardUnificationV1.RUN_CARDS["death_wager"]` selects this approved art; prior Bone Patrol path in `.tres` stays as fallback. D315 native-file approved gallery list is extended to **24** entries and checks strict SHA256, WebP decoding, dimensions 448×274 and catalog pixel equality. No changes to the five-enemy encounter, elite rewards (gold/relic/extra upgrade), balance, DS3, or already approved art.
 
-Native Godot 4.7.2 PR CI **PENDING**: require 48/48 GUT, D289 Table, D315 Gallery, D316 Card Surfaces and screenshot capture before merge. Local review after merge: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn`, inspect «СТАВКА НА СМЕРТЬ». Full A1P3 F5 12+XIII manual run still pending. Next D356: new art options-first.
+Native Godot 4.7.2 PR CI **PASS**: [workflow 40325370134](https://github.com/zampolit73/Misdeal/actions/runs/40325370134) includes GUT/D289/D315/D316 and successful Godot screenshot capture and evidence upload. [PR #22](https://github.com/zampolit73/Misdeal/pull/22) merged as `0304f634c434c3ae6c6836b0a17c8344f990a52e`. Local review after merge: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn`, inspect «СТАВКА НА СМЕРТЬ». Full A1P3 F5 12+XIII manual run still pending. Next D356: new art options-first.
 
 Main before implementation: `065944c95a1086c51a2fdbcd8876f04b378c0409`; branch `art/d355-death-wager-approved-option3`. Merge only with successful native Godot CI. Next D356 options-first. Do not change game design without discussing it.

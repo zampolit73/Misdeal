@@ -1,3 +1,7 @@
+## D355 — VERIFIED release; proceed to D356 (2026-10-26)
+
+[PR #22](https://github.com/zampolit73/Misdeal/pull/22) merged `0304f634c434c3ae6c6836b0a17c8344f990a52e` following [native Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40325370134). Exact selected third 448×274 `death_wager` scene is live, D315 24-art SHA/decode/size/pixel guard passed with GUT/D289/D316 and screenshot artifacts. No gameplay changes. Full decision and exact hashes: [D355_NEW_CHAT_HANDOFF.md](D355_NEW_CHAT_HANDOFF.md). Local F6 review needed, and first-act full F5 12+XIII run remains pending. Next D356 options-first.
+
 ## D355 — final Death Wager option 3 integrated, awaiting native CI (2026-10-26)
 
 Final user-selected D355 standalone option #3 `стражи_проклятой_крипты.png`: five undead before sealed ossuary doors — an armored skeletal captain with heavy axe, two hooded skeletal archers on raised flanks, and two weaker skeletal fighters at front. Original 1604×981 PNG SHA256 `0e0283c8c94c6f9e708110b3968c7c8d341de3463d14b8122977488bc69a8472`. Exact resized 448×274 WebP quality 86 at `assets/pixel/card_unification_v1/run/death_wager_d355_approved_option3.webp`, SHA256 `4ee5865a55d8dc0ebc35eb49b6572901dbeec24cf1878efbcf199a4add85ba7b`. No crowns, bells, wizards or UI inside painting.

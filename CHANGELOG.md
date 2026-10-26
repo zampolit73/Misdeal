@@ -1,3 +1,7 @@
+## 2026-10-26 — D355 verified Godot release
+
+- [PR #22](https://github.com/zampolit73/Misdeal/pull/22) merged `0304f634` after [Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40325370134): GUT, D289, D315 (24 approved images), D316 and authentic screenshot artifact upload. Installed exact approved third Death Wager scene (448×274 WebP `4ee5865a55d8dc0ebc35eb49b6572901dbeec24cf1878efbcf199a4add85ba7b`) without gameplay, reward, layout or earlier art changes. Local F6 and full A1P3 F5 playtest still pending.
+
 ## D355 — Death Wager new approved art (2026-10-26)
 
 Final user-selected D355 standalone option #3 `стражи_проклятой_крипты.png`: five undead before sealed ossuary doors — an armored skeletal captain with heavy axe, two hooded skeletal archers on raised flanks, and two weaker skeletal fighters at front. Original 1604×981 PNG SHA256 `0e0283c8c94c6f9e708110b3968c7c8d341de3463d14b8122977488bc69a8472`. Exact resized 448×274 WebP quality 86 at `assets/pixel/card_unification_v1/run/death_wager_d355_approved_option3.webp`, SHA256 `4ee5865a55d8dc0ebc35eb49b6572901dbeec24cf1878efbcf199a4add85ba7b`. No crowns, bells, wizards or UI inside painting.

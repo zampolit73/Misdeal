@@ -1,3 +1,7 @@
+## D355 — VERIFIED release note (2026-10-26)
+
+The user-selected THIRD standalone D355 Death Wager illustration is the locked final art. https://github.com/zampolit73/Misdeal/pull/22 merged as `0304f634`, [CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40325370134); SHA256 `4ee5865a55d8dc0ebc35eb49b6572901dbeec24cf1878efbcf199a4add85ba7b`. Keep the five-enemy encounter, rewards and prior approvals unchanged.
+
 ## D355 — LOCK third Death Wager ossuary ambush painting (2026-10-26)
 
 Final user-selected D355 standalone option #3 `стражи_проклятой_крипты.png`: five undead before sealed ossuary doors — an armored skeletal captain with heavy axe, two hooded skeletal archers on raised flanks, and two weaker skeletal fighters at front. Original 1604×981 PNG SHA256 `0e0283c8c94c6f9e708110b3968c7c8d341de3463d14b8122977488bc69a8472`. Exact resized 448×274 WebP quality 86 at `assets/pixel/card_unification_v1/run/death_wager_d355_approved_option3.webp`, SHA256 `4ee5865a55d8dc0ebc35eb49b6572901dbeec24cf1878efbcf199a4add85ba7b`. No crowns, bells, wizards or UI inside painting.

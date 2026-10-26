@@ -1,3 +1,10 @@
+## D355 — VERIFIED released (2026-10-26)
+
+- [x] [PR #22](https://github.com/zampolit73/Misdeal/pull/22) squash-merged to main `0304f634` after [native Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40325370134); GUT and D289/D315/D316 and real screenshot artifact upload green.
+- [x] User-approved third Death Wager scene is live and D315-protected as the 24th native-file approved illustration; earlier cards and gameplay preserved.
+- [ ] Local F6 «СТАВКА НА СМЕРТЬ» user review; A1P3 full F5 12+XIII playtest.
+- [ ] D356 next art, 2–3 actual alternatives before replacement.
+
 ## D355 — Death Wager art release gates (2026-10-26)
 
 - [x] User chose third final standalone after comparing new DS3-aligned ossuary illustrations.
