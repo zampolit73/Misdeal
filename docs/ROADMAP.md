@@ -1,3 +1,12 @@
+## ACTIVE NEXT STEP — D367 audio audition and sound-selection gate (2026-10-27)
+
+- [x] GitHub Audio 1 D366 mixer and D367 A/B/C audition release; native Godot 4.7.2 CI 56/56 PASS in PR #31.
+- [ ] User listens in F6 `scenes/dev/d367_audio_audition.tscn` and chooses A/B/C or requests more natural options; **no choice recorded yet**.
+- [ ] Only after approval, implement live D367 full table SFX, then D368 battle sounds and D369 gentle ambience, preserving D365 visual quietness.
+- [ ] Human F5 12+XIII and separate RELEASE battle/animation matrix remain unfinished.
+
+Current full handoff: [D367_NEW_CHAT_HANDOFF.md](D367_NEW_CHAT_HANDOFF.md). Dated roadmap entries below are historical.
+
 ## D366–D369 — Audio 1 status after PR #31 (2026-10-27)
 
 - [x] D366 sound buses UI/Combat/Ambience, SoundDirector mixer, existing voices routed with unchanged procedural content.

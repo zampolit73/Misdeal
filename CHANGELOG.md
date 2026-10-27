@@ -1,3 +1,7 @@
+## 2026-10-27 — D367 consolidated new-chat handoff
+
+Added [D367_NEW_CHAT_HANDOFF.md](docs/D367_NEW_CHAT_HANDOFF.md) and current pointers in the documentation index/state/roadmap/handoff. No additional gameplay or audio features. Recorded shipped PR #31/CI 56/56, unresolved audio A/B/C audition, approved DS3/Fate Spread/D365 boundaries and independent A1P3 release gates for the next chat.
+
 ## 2026-10-27 — D366–D367 Audio 1 pilot released
 
 [PR #31](https://github.com/zampolit73/Misdeal/pull/31) merged `cd487890` with [Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40527079810) **SUCCESS**, 56/56 GUT and native smokes PASS. Introduces UI/Combat/Ambience sound buses, SoundDirector, three 24kHz mono WAV card-deal prototypes and F6 sound audition with channel sliders. Existing live procedural cues stay in place; prototypes need human listening approval before replacing sound events. Game mechanics, DS3 and Fate Spread unchanged.
