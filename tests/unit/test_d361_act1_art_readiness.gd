@@ -28,7 +28,9 @@ func test_all_first_act_cards_and_boss_have_loadable_art_and_targets() -> void:
     var displayed := 0
     for id in cards:
         var card_path := String(STATE.CARD_PATHS.get(id, ""))
-        var card := load(card_path) as RunCardData if not card_path.is_empty() else null
+        var card: RunCardData = null
+        if not card_path.is_empty():
+            card = load(card_path) as RunCardData
         if card == null or card.card_id != id:
             missing_cards.append(id)
             continue
@@ -60,10 +62,10 @@ func test_all_first_act_cards_and_boss_have_loadable_art_and_targets() -> void:
             continue
         displayed += 1
 
-    assert_true(missing_cards.is_empty(), "Missing/malformed card resource: " + ", ".join(missing_cards))
-    assert_true(invalid_targets.is_empty(), "Invalid card target: " + ", ".join(invalid_targets))
-    assert_true(missing_art.is_empty(), "Missing/unreadable card art: " + ", ".join(missing_art))
-    assert_true(wrong_sizes.is_empty(), "Too-small card art: " + ", ".join(wrong_sizes))
+    assert_true(missing_cards.is_empty(), "Missing/malformed card resource: " + ", ".join(PackedStringArray(missing_cards)))
+    assert_true(invalid_targets.is_empty(), "Invalid card target: " + ", ".join(PackedStringArray(invalid_targets)))
+    assert_true(missing_art.is_empty(), "Missing/unreadable card art: " + ", ".join(PackedStringArray(missing_art)))
+    assert_true(wrong_sizes.is_empty(), "Too-small card art: " + ", ".join(PackedStringArray(wrong_sizes)))
     assert_eq(displayed, EXPECTED_ACT1_CARDS + 1, "All 39 card illustrations plus boss XIII must display")
     print("D361_ART_READINESS_PASS: %d/%d Act I cards + XIII, live catalog/fallback pixels and targets" % [
         displayed, EXPECTED_ACT1_CARDS + 1])
