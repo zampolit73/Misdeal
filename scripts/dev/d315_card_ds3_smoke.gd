@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D359: verify twenty-seven native-file approved paintings
+    # D360: verify twenty-eight native-file approved paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -82,6 +82,7 @@ func _verify() -> void:
         {"id": "ossuary_gate", "file": "ossuary_gate_d357_approved_option3.webp"},
         {"id": "iron_wall", "file": "iron_wall_d358_approved_option3.webp"},
         {"id": "last_bell", "file": "last_bell_d359_approved_option3.webp"},
+        {"id": "firing_square", "file": "firing_square_d360_approved_straight_arrows.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -180,6 +181,10 @@ func _verify() -> void:
         # D359: exact user-approved THIRD standalone with TWO bellkeepers and TWO raiders.
         if String(approved["id"]) == "last_bell" and FileAccess.get_sha256(asset_path) != "d8ceeaf98209dc097ee8f291b44c81702091f5fb0b2bd54d16291766ed254bc1":
             _fail("D359 Last Bell differs from approved two-bellkeeper final art")
+            return
+        # D360: approved final third scene with straight arrow shafts shooting at fallen skeletons.
+        if String(approved["id"]) == "firing_square" and FileAccess.get_sha256(asset_path) != "2d156da95541f8c31131581bb0a986384744c5b8fb1b49482aca745bd4cb6c72":
+            _fail("D360 Firing Square differs from approved straight-arrow final art")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:
