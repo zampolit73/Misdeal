@@ -1,3 +1,7 @@
+## D367B — approved Oak palette shipped (2026-10-27)
+
+The user's **B — Oak** choice is production-locked. Live integration shipped through [PR #32](https://github.com/zampolit73/Misdeal/pull/32) squash `6d39c4e` after Godot 4.7.2 [CI 60/60 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40532236638). Preserve original B deal sample, 4 short dry wooden/paper variants and procedural fallback; do not silently replace with A/C or add loud arcade cues. Subjective F5 mix check remains open; this does not approve combat foley or ambient music.
+
 ## D367B — user sound approval: Oak / дубовый стол (2026-10-27)
 
 User explicitly selected **B** from the audible D367 A/B/C prototypes. Lock the worn oak tabletop / dry card friction timbre as the table sound identity, and play the **exact `d367_deal_b_oak.wav`** on normal live card deals. A parchment / C cursed remain archived comparisons, not production choices. Other table cues should be tactile, restrained and short. Keep a procedural fallback; avoid hover beeps, arcade chimes, constant music and noise accumulation. This auditory approval does not automatically approve new battle foley or ambient music. Implementation candidate and validation gates: [D367B_OAK_TABLE_RELEASE.md](D367B_OAK_TABLE_RELEASE.md).
