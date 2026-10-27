@@ -1,3 +1,7 @@
+## 2026-10-27 — D362–D364 released to main
+
+[PR #29](https://github.com/zampolit73/Misdeal/pull/29), `00294879`; [native Godot CI](https://github.com/zampolit73/Misdeal/actions/runs/40516027761) SUCCESS: **51/51 GUT**, D291 Battle native smoke and other core checks. Hero vs enemy damage colors, short straight arrowheads, hover actual target during real fights, and successful bellkeeper healing connection. Existing combat timing/gameplay and DS3 unchanged. Human three-fight F5 quality review pending.
+
 ## 2026-10-27 — D362–D364 battle legibility
 
 - Added hover-only real combat target focus alongside existing precombat full intent preview. Does not alter AI.

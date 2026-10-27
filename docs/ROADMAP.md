@@ -1,3 +1,10 @@
+## D362–D364 — released; visual playtest pending (2026-10-27)
+
+- [x] PR #29 merged to main `00294879`, [Godot CI](https://github.com/zampolit73/Misdeal/actions/runs/40516027761) **SUCCESS** (51/51 GUT; native Battle D291 smoke PASS).
+- [x] D362 live hover real target; D363 ally/enemy received damage + straight ranged trace; D364 positive-heal link/ring.
+- [ ] **Human F5**: Iron Wall targets, Last Bell double bellkeeper healing, Firing Square simultaneous archer effects and scene transitions, inspect at 1280×720.
+- [ ] Separate `release` authored battle/animation matrix and the full A1P3 12+XIII human run still open.
+
 ## D362–D364 — combat readability (pilot 2026-10-27)
 
 - [x] Scoped implementation: hovered current enemy target during prep/live combat, clear ally-vs-enemy damage numbers and straight shot accent, real support healing connector.

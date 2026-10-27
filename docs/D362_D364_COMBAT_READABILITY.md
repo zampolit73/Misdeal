@@ -1,3 +1,5 @@
+> **Release status:** [PR #29](https://github.com/zampolit73/Misdeal/pull/29) merged as `002948799d4662053701c85b8e217f4e13924c79`. [Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40516027761) **SUCCESS**, 51/51 GUT, native Battle D291 smoke PASS. Manual F5 subjective quality acceptance, 12+XIII and separate RELEASE matrix **not completed**.
+
 # D362–D364 — combat readability pilot (2026-10-27)
 
 **Scope:** targeted presentation pass on the existing `Battle` / `BattleUnit` world; tactics, battle timings, encounters, enemy target AI, arena paintings, DS3 layout, 12+XIII and Fate Spread all remain unchanged. This pack is not a new combat system.
