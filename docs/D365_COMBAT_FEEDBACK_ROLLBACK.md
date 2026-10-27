@@ -1,3 +1,5 @@
+> **Release verified:** [PR #30](https://github.com/zampolit73/Misdeal/pull/30) merged as `67d5c8525634648bf658e1fae182c76d19074482`. [Native Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40523091071) **SUCCESS**, 51/51 GUT and D291 Battle smoke. Player F5 confirmation still outstanding.
+
 # D365 — combat feedback declutter after local player review
 
 Date: 2026-10-27. User tested D362–D364 and approved everything except hover target display and shooting display, which cluttered the arena.

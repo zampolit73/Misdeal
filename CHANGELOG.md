@@ -1,3 +1,7 @@
+## 2026-10-27 — D365 combat feedback cleanup released
+
+User local review led to [PR #30](https://github.com/zampolit73/Misdeal/pull/30) squash `67d5c852`. [Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40523091071) SUCCESS: 51/51 GUT, native Battle scene smoke PASS. Remove automatic mouse-hover target rays and long Ranger/Bone Archer shot tracers/arrowheads; preserve chosen `ЦЕЛИ` pre-combat preview, short contact effects, damage/healing numbers and genuine heal links. Balance/AI/DS3 untouched. Human F5 recheck still pending.
+
 ## 2026-10-27 — D365 quiet-combat visual rollback
 
 - After user’s local test, removed **unwanted** cursor-hover target line/rings and long archer/Ranger straight-arrow overlays. Restored explicit-only precombat `ЦЕЛИ` toggle and the earlier lightweight magic trace.

@@ -1,3 +1,10 @@
+## D365 — merged and CI verified (2026-10-27)
+
+- [x] [PR #30](https://github.com/zampolit73/Misdeal/pull/30) merged `67d5c852`, [CI](https://github.com/zampolit73/Misdeal/actions/runs/40523091071) SUCCESS (51/51 GUT and D291 real Battle native smoke).
+- [x] Remove mouse-hover target overlays and ranger/bone-archer long streaks; keep explicit optional pre-fight `ЦЕЛИ` toggle, typed damage and positive-heal links.
+- [ ] Human F5: confirm cleaner cursor/archers in Iron Wall/Firing Square, plus genuine bellkeeper heals in Last Bell.
+- [ ] Complete separate A1P3 human 12+XIII and authored RELEASE battle/animation matrix.
+
 ## D365 — focus on quiet combat readability (2026-10-27)
 
 - [x] Respect user feedback: no hover-drawn targeting arrows/rings, no full-width ranger/archer shot traces; retain explicit pre-fight target toggle, damage indicators and heal connections.
