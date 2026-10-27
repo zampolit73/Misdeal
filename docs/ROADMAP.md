@@ -1,3 +1,8 @@
+## D359 — VERIFIED: «Последний звон» released to main (2026-10-27)
+
+- [x] User-approved FINAL third D359 Last Bell illustration (two skeletal bellkeepers, central bronze bell, two skeletal sword raiders) was released in [PR #26](https://github.com/zampolit73/Misdeal/pull/26), squash merged `ee0982a98d022779f233f8572ba7f2f875feeb1b` after [real Godot 4.7.2 Actions run 40455007006](https://github.com/zampolit73/Misdeal/actions/runs/40455007006) **SUCCESS** (project import/GDScript, GUT, D289/D315/D316, real scene screenshots and artifact upload). Runtime 448×274 WebP `assets/pixel/card_unification_v1/run/last_bell_d359_approved_option3.webp` verified present on `main`, Git blob `801c513160358a23e9ecce101eee41c8a387f281`, SHA256 `d8ceeaf98209dc097ee8f291b44c81702091f5fb0b2bd54d16291766ed254bc1`. Exact original SHA256 `584ada89fe9f9c280ed6dd1ba0bb921ecda4d04f1f2f002271bc8bef3ef0c9ea`. D315 protects 28 individually selected paintings. No gameplay / DS3 / preceding art changed. Full RELEASE battle-animation matrix NOT run; A1P3 F5 human 12+XIII playtest remains outstanding. User: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn`, check «ПОСЛЕДНИЙ ЗВОН». Next D360 `firing_square` options-first.
+- [ ] User F6 review; D360 art options; A1P3 F5 local run.
+
 ## D359 — Last Bell final art release gates (2026-10-27)
 
 - [x] Third option polished and approved by user; preserved exact original and WebP hashes.
