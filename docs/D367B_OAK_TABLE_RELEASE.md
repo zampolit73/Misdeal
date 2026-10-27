@@ -1,3 +1,5 @@
+> **Release verified 2026-10-27:** [PR #32](https://github.com/zampolit73/Misdeal/pull/32) merged squash `6d39c4e49c1fbe7cae93c5e2d62d53c9cf68432c`; [Godot 4.7.2 Actions 40532236638](https://github.com/zampolit73/Misdeal/actions/runs/40532236638) **SUCCESS, GUT 60/60**, project import, native smokes and screenshots passed. The following implementation notes were written while feature-branch CI was pending; the live code is now on `main`. Final **human F5 listening** is still pending, and the tests do not validate acoustic quality.
+
 # D367B — approved Oak table sound, live cue pack candidate
 
 Date: 2026-10-27. The user listened to the D367 audio audition and explicitly selected **B — Oak / дубовый стол**. This is the accepted sound direction for the cursed table. Do not reopen A/B/C approval without new user feedback.
