@@ -1,3 +1,7 @@
+## 2026-10-27 — D367B Oak table audio shipped
+
+[PR #32](https://github.com/zampolit73/Misdeal/pull/32), squash `6d39c4e`, was merged after [Godot 4.7.2 Actions SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/40532236638), **60/60 GUT** and native scene/import checks. User-approved B WAV now plays on actual table deals; select/discard/meddle/milestone have four quieter synthesized oak/paper cues with procedural fallback and per-event anti-spam. F6 pilot marks B approved. No changes to combat sounds, ambience/music, UI or rules. **Local F5 listening still required**.
+
 ## 2026-10-27 — D367B approved Oak table audio pack (release candidate)
 
 User chose **B — Oak** from the actual F6 audition. D367B feature branch now plays the original approved B WAV on real card deals, authors four short dry-oak/paper cues for select/discard/meddle/milestone, retains the original procedural soundbank as import fallback, and adds event-specific anti-spam and native GUT regressions. Audition scene now identifies the locked B sample. **CI/PR merge and F5 ear check still pending**; no actual recorded foley, combat sound changes, ambience/music or gameplay changes in this candidate. See [D367B release notes](docs/D367B_OAK_TABLE_RELEASE.md).
