@@ -1,3 +1,7 @@
+## CURRENT — D367B Oak approved, implemented in PR candidate (2026-10-27)
+
+User selected **B — Oak** from shipped D367 A/B/C listening scene. Do **not** ask them to choose again. `feature/d367-oak-live-table-pack` wires exact approved B WAV to live card deals, creates four distinct short oak/paper-style table cues, retains original procedural fallback, adds anti-spam and new GUT tests. Await GitHub Godot CI and F5 user listening before claiming a final shipped/ear-approved pack. Detailed scope and acceptance: [D367B_OAK_TABLE_RELEASE.md](D367B_OAK_TABLE_RELEASE.md). After verified merge, the user should only need `git pull` and F5 live table. Next D368 battle foley, then D369 ambience; preserve quiet D365 battle visuals. Earlier D367 choose-A/B/C checkpoints below are superseded.
+
 ## CURRENT — D367 dedicated new-chat checkpoint (2026-10-27)
 
 **Read [docs/D367_NEW_CHAT_HANDOFF.md](D367_NEW_CHAT_HANDOFF.md) before resuming.** Full consolidated game context, latest GitHub/CI release, locked Fate Spread/DS3/combat/story rules and AUDIO 1 next steps are in that file. Prior dated sections below remain historical. **Next: user hears A/B/C (F6 `scenes/dev/d367_audio_audition.tscn`), then build selected live table SFX; no audio choice/recording has been approved yet.**
