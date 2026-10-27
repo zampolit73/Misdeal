@@ -80,6 +80,8 @@ const RUN_CARDS := {
 	"iron_wall": "run/iron_wall_d358_approved_option3.webp",
 	# D359: two mutually healing undead bellkeepers over two melee raiders at a broken bell tower.
 	"last_bell": "run/last_bell_d359_approved_option3.webp",
+	# D360: approved corrected straight-arrow volley over fallen skeletons.
+	"firing_square": "run/firing_square_d360_approved_straight_arrows.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).
