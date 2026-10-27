@@ -52,7 +52,7 @@ func _verify() -> void:
     if selected_altar == null or selected_altar.get_size() != Vector2(448, 274):
         _fail("D319 selected art did not override Black Altar catalog")
         return
-    # D358: verify twenty-six native-file approved paintings
+    # D359: verify twenty-seven native-file approved paintings
     # override the prior atlas and are valid 448x274 WebPs.
     for approved in [
         {"id": "bone_crush", "file": "bone_crush_d331_approved_option2.webp"},
@@ -81,6 +81,7 @@ func _verify() -> void:
         {"id": "faceless_card", "file": "faceless_card_d356_approved_option5.webp"},
         {"id": "ossuary_gate", "file": "ossuary_gate_d357_approved_option3.webp"},
         {"id": "iron_wall", "file": "iron_wall_d358_approved_option3.webp"},
+        {"id": "last_bell", "file": "last_bell_d359_approved_option3.webp"},
     ]:
         var asset_path := "res://assets/pixel/card_unification_v1/run/" + String(approved["file"])
         if not FileAccess.file_exists(asset_path):
@@ -175,6 +176,10 @@ func _verify() -> void:
         # D358: lock the exact user-approved third standalone Iron Wall image.
         if String(approved["id"]) == "iron_wall" and FileAccess.get_sha256(asset_path) != "2d5ece6be4f3c4e4e695ea91899ce92aa6fd83f9d5b5ecd2a749ead91f2e3d99":
             _fail("D358 Iron Wall differs from the approved third shield-guard painting")
+            return
+        # D359: exact user-approved THIRD standalone with TWO bellkeepers and TWO raiders.
+        if String(approved["id"]) == "last_bell" and FileAccess.get_sha256(asset_path) != "d8ceeaf98209dc097ee8f291b44c81702091f5fb0b2bd54d16291766ed254bc1":
+            _fail("D359 Last Bell differs from approved two-bellkeeper final art")
             return
         var decoded := Image.new()
         if decoded.load_webp_from_buffer(FileAccess.get_file_as_bytes(asset_path)) != OK:

@@ -78,6 +78,8 @@ const RUN_CARDS := {
 	"ossuary_gate": "run/ossuary_gate_d357_approved_option3.webp",
 	# D358 locked: two skeletal shield guards with a skeletal archer behind.
 	"iron_wall": "run/iron_wall_d358_approved_option3.webp",
+	# D359: two mutually healing undead bellkeepers over two melee raiders at a broken bell tower.
+	"last_bell": "run/last_bell_d359_approved_option3.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).

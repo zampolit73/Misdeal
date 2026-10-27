@@ -1,3 +1,11 @@
+## D359 — Last Bell final art release gates (2026-10-27)
+
+- [x] Third option polished and approved by user; preserved exact original and WebP hashes.
+- [x] `last_bell` runtime override and D315 28th approved-art guard created; all prior art unchanged.
+- [ ] Native Godot 4.7.2 CI, GUT, D289/D315/D316, screenshots green; only then merge PR.
+- [ ] Player `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn` inspect «ПОСЛЕДНИЙ ЗВОН».
+- [ ] D360 «Расстрельная площадь» options-first, then A1P3 F5 run 12+XIII.
+
 ## D358 — RELEASE VERIFIED (2026-10-27)
 
 - [x] PR #25 merged with native Godot CI PASS, D315 now guards 27 selected illustrations.

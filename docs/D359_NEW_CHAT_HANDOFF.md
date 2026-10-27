@@ -1,0 +1,10 @@
+# D359 — handoff after final option 3 approval (2026-10-27)
+
+- GitHub main before D359: `4bf20c2b018421099c2d876257dd5017349a2e15` (D358 verified).
+- User approved third standalone artwork for D359 `last_bell`: `колокольня_четырех_костяных_стражей.png`, 1536×1024, SHA256 `584ada89fe9f9c280ed6dd1ba0bb921ecda4d04f1f2f002271bc8bef3ef0c9ea`. Scene: two hooded bone bellkeepers wield their ritual bells above a massive central bell; exactly two bone raiders defend stairs; moonlight, aged tower stone and burgundy fabrics.
+- Approved game WebP: `assets/pixel/card_unification_v1/run/last_bell_d359_approved_option3.webp`, 448×274, center-crop (0,42)-(1536,981), quality 86, SHA256 `d8ceeaf98209dc097ee8f291b44c81702091f5fb0b2bd54d16291766ed254bc1`. Git blob `801c513160358a23e9ecce101eee41c8a387f281`.
+- Code: ONLY new `CardUnificationV1.RUN_CARDS["last_bell"]` art override. Existing `resources/cards/last_bell.tres` fallback remains; existing `resources/encounters/last_bell.tres` four enemies unchanged (two mutual healers and two melee raiders).
+- D315 checks exact WebP hash, successful image decoding, 448×274 and per-pixel equality against live catalog. Now 27 native approved images + D350 encoded = 28.
+- Release gate: Run native Godot 4.7.2 PR Actions CI (GUT, D289/D315/D316, screenshot evidence); do not merge on static review alone. After merging verify asset in `main`, record PR/CI/commit here and in top of PROJECT_STATE/HANDOFF/ROADMAP/CHANGELOG.
+- Player when merged: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn`, inspect `ПОСЛЕДНИЙ ЗВОН`.
+- Next D360 `firing_square`: four bone archers and one sentinel, new art options FIRST. Full A1P3 human F5 12 cards + XIII Bone Warden run still outstanding. Keep prior 28 art locks, DS3 and gameplay untouched.
