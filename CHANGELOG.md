@@ -1,3 +1,8 @@
+## 2026-10-27 — D359 approved «Последний звон» art integration
+
+- User-approved third standalone art: two bellkeepers, large bell, two raiders in ruined tower; SHA256 `d8ceeaf98209dc097ee8f291b44c81702091f5fb0b2bd54d16291766ed254bc1` (448×274 WebP), original SHA256 `584ada89fe9f9c280ed6dd1ba0bb921ecda4d04f1f2f002271bc8bef3ef0c9ea`.
+- Only `last_bell` run-card art override; D315 adds 28th guarded artwork. Combat and DS3 unchanged; CI pending.
+
 ## 2026-10-27 — D358 released with native Godot CI PASS
 
 PR [#25](https://github.com/zampolit73/Misdeal/pull/25) squash-merged to main at `ac0a52180ed98a068334b5f4940d126f6eaff1b2` after [real Godot 4.7.2 Actions PASS](https://github.com/zampolit73/Misdeal/actions/runs/40451151255) (project import/GDScript, GUT, native smoke D289/D315/D316, GPU screenshot capture and evidence upload successful). Full authored RELEASE battle/animation matrix skipped; human A1P3 F5 12+XIII run still pending. Exact selected third `iron_wall` scene `assets/pixel/card_unification_v1/run/iron_wall_d358_approved_option3.webp` verified present in main: binary Git blob `b621374d1523ab8cef9040b94ca0cebfb90c023e`, 448×274 WebP, SHA256 `2d5ece6be4f3c4e4e695ea91899ce92aa6fd83f9d5b5ecd2a749ead91f2e3d99`. TWO armored skeleton guards with iron shields, ONE rear archer. D315 safeguards **27 approved images** (26 native WebP files and D350 encoded). No game mechanics, prior arts, or DS3 changed. Player: `git pull`, F6 `scenes/dev/d315_card_ds3_gallery.tscn`, inspect «ЖЕЛЕЗНАЯ СТЕНА». Next D359 `last_bell` and D360 `firing_square` (two remaining card art passes).
