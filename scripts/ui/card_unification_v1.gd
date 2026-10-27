@@ -76,6 +76,8 @@ const RUN_CARDS := {
 	"faceless_card": "run/faceless_card_d356_approved_option5.webp",
 	# D357 approved third standalone: Ossuary Gate defended by guard, bell keeper, archer, thrall.
 	"ossuary_gate": "run/ossuary_gate_d357_approved_option3.webp",
+	# D358 locked: two skeletal shield guards with a skeletal archer behind.
+	"iron_wall": "run/iron_wall_d358_approved_option3.webp",
 	# D338: user-selected SECOND of the final swamp-swarm pair; four melee raiders.
 	"bone_swarm": "run/bone_swarm_d338_approved_option2.webp",
 	# D339: user-approved THIRD Grave Crossfire scene (2 flanking archers, 1 guard).

@@ -1,3 +1,11 @@
+## D358 — Iron Wall release gates (2026-10-27)
+
+- [x] User-selected final third standalone verified SHA256 `c29623adbe26853c81bd59191cbda467e33e6ca809bb52e3b9eda39a3bf39a71`.
+- [x] Upload binary WebP SHA256 `2d5ece6be4f3c4e4e695ea91899ce92aa6fd83f9d5b5ecd2a749ead91f2e3d99`, map only `iron_wall`, preserve legacy fallback.
+- [x] Extend D315 to 27 locked art assets and update handoff/project docs.
+- [ ] Native Godot CI green before merge; local F6 gallery review after merge.
+- [ ] D359 Last Bell, D360 Firing Square, A1P3 full F5 12+XIII human run.
+
 ## D357 — Released and verified (2026-10-27)
 
 - [x] [PR #24](https://github.com/zampolit73/Misdeal/pull/24) merged `578502b2` after [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40398849776): GUT, D289/D315/D316, screenshot captures.
