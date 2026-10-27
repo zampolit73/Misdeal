@@ -1,3 +1,7 @@
+## D362–D364 — Combat readability work in progress (2026-10-27)
+
+Changes drafted in `feature/d362-d364-combat-readability`: `scripts/battle/target_preview.gd`, `scripts/battle/unit.gd`, `tests/unit/test_d362_combat_target_focus.gd`. Work is isolated from mechanics, DS3, arenas, art and Fate Spread. For exact instructions and limitations read `docs/D362_D364_COMBAT_READABILITY.md`. **Verify current PR CI and merge before telling player to git pull.** Human F5 Iron Wall, Last Bell and Firing Square effects still need subjective signoff; A1P3 12+XIII and separate RELEASE suite still pending.
+
 ## D361 — VERIFIED new-chat handoff (2026-10-27)
 
 ## D361 — VERIFIED shipped to main (2026-10-27)

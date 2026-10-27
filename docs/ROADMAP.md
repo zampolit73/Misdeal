@@ -1,3 +1,11 @@
+## D362–D364 — combat readability (pilot 2026-10-27)
+
+- [x] Scoped implementation: hovered current enemy target during prep/live combat, clear ally-vs-enemy damage numbers and straight shot accent, real support healing connector.
+- [x] Add 2 GUT regression cases for hover-only / live-target lookup.
+- [ ] Godot PR CI checks and main merge.
+- [ ] Human F5 verify Iron Wall, Last Bell, Firing Square; verify Battle→Reward→Table with leg/floor and no visual clutter. See `docs/D362_D364_COMBAT_READABILITY.md`.
+- [ ] Human A1P3 full first-act 12+XIII and standalone RELEASE matrix still pending.
+
 ## D361 — released card-art readiness audit; experiential gate open (2026-10-27)
 
 - [x] [PR #28](https://github.com/zampolit73/Misdeal/pull/28) merged `6c61fa2`; [Godot CI](https://github.com/zampolit73/Misdeal/actions/runs/40508157201) SUCCESS: 49/49 GUT, all 40 card/boss images and targets valid.
