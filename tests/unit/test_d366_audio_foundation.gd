@@ -36,12 +36,23 @@ func test_real_existing_scene_voices_use_independent_buses() -> void:
 	assert_not_null(table)
 	assert_not_null(battle)
 	# Test the authored scripts' configuration without loading complete run scenes.
-	var table_audio := load("res://scripts/table/table_audio.gd").new()
-	var battle_audio := load("res://scripts/battle/combat_audio.gd").new()
+	var table_script: GDScript = load("res://scripts/table/table_audio.gd") as GDScript
+	var battle_script: GDScript = load("res://scripts/battle/combat_audio.gd") as GDScript
+	assert_not_null(table_script)
+	assert_not_null(battle_script)
+	if table_script == null or battle_script == null:
+		return
+	var table_audio: Node = table_script.new() as Node
+	var battle_audio: Node = battle_script.new() as Node
 	add_child_autofree(table_audio)
 	add_child_autofree(battle_audio)
-	assert_eq(table_audio.get_child(0).bus, "UI")
-	assert_eq(battle_audio.get_child(0).bus, "Combat")
+	var table_voice: AudioStreamPlayer = table_audio.get_child(0) as AudioStreamPlayer
+	var battle_voice: AudioStreamPlayer = battle_audio.get_child(0) as AudioStreamPlayer
+	assert_not_null(table_voice)
+	assert_not_null(battle_voice)
+	if table_voice != null and battle_voice != null:
+		assert_eq(table_voice.bus, "UI")
+		assert_eq(battle_voice.bus, "Combat")
 
 
 func test_audition_scene_has_three_real_audio_buttons() -> void:
