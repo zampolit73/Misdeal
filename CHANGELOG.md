@@ -1,3 +1,9 @@
+## 2026-10-27 — D361 complete-deck readiness regression
+
+- Added GUT verification for **39 dealt Act I cards + Bone Warden XIII**, using shipped `RunCardData`, real EncounterData/event targets, the runtime `CardArtCatalog` first and the original `.tres` fallback when applicable. CI initial PR check **49/49 GUT**, all 40 card records; no gameplay/UI/asset alterations.
+- Added scoped A1P3 final local QA checklist and evidence guidelines. This is **not** a human-playtested 12+XIII win or the standalone RELEASE animation matrix.
+
+
 ## 2026-10-27 — D360 final artwork released
 
 D360 FINAL release verified: [PR #27](https://github.com/zampolit73/Misdeal/pull/27), squash main `6ee01f606d283e2f36823360ebc0178f134b4b34`, native [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/40501281488) (import, GUT, D289/D315/D316, screenshots and evidence PASS; standalone RELEASE animation/battle matrix skipped). Exact approved final `firing_square_d360_approved_straight_arrows.webp` WebP 448×274 SHA256 `2d156da95541f8c31131581bb0a986384744c5b8fb1b49482aca745bd4cb6c72` / blob `0865337d3b76e8db5e744e4b4582b083d5eeeea3` present in main. User-approved third scene, revised to show bone archers shooting fallen skeletal bodies and straight shafts. D315 now guards 29 exact user-approved illustrations. No combat, DS3 or earlier art changed. Local gallery F6 + full A1P3 human F5 12 resolutions + XIII still pending. Planned art passes D356–D360 now complete.

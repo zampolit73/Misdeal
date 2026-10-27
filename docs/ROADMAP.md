@@ -1,3 +1,13 @@
+## D361 — Act I readiness (2026-10-27)
+
+- [x] PR #28: cover **all 39 dealt cards + XIII** in a GUT catalog/target integrity test; initial official Godot 4.7.2 CI **49/49 tests PASS**, 40/40 art/target records pass.
+- [x] D356–D360 final approved art in main; D315 protects 29 exact images.
+- [ ] Final PR #28 post-documentation CI and merge to main.
+- [ ] Separate manual RELEASE workflow (battle/animation matrix): not yet observed.
+- [ ] Human F6 gallery visual review, then **F5 Knight** full I–XII + XIII through RunEnd, real combat and reward choices, report friction points.
+- [ ] If practical, separate real defeat / one Last Deal and organic duo/trio recruitment runs. See [D361_ACT1_FINAL_QA.md](D361_ACT1_FINAL_QA.md).
+
+
 ## D360 — FINISHED approved card-art passes (2026-10-27)
 
 - [x] D360 exact approved final released to main, PR #27 and Godot native CI PASS.
