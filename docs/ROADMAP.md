@@ -1,3 +1,9 @@
+## D358 — RELEASE VERIFIED (2026-10-27)
+
+- [x] PR #25 merged with native Godot CI PASS, D315 now guards 27 selected illustrations.
+- [x] Exact user-approved third Iron Wall painting confirmed in main; no gameplay changes.
+- [ ] Local F6 user check; D359 Last Bell, D360 Firing Square; full A1P3 F5 12+XIII manual playtest.
+
 ## D358 — Iron Wall release gates (2026-10-27)
 
 - [x] User-selected final third standalone verified SHA256 `c29623adbe26853c81bd59191cbda467e33e6ca809bb52e3b9eda39a3bf39a71`.
