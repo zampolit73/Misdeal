@@ -1,3 +1,9 @@
+## 2026-10-27 — D365 quiet-combat visual rollback
+
+- After user’s local test, removed **unwanted** cursor-hover target line/rings and long archer/Ranger straight-arrow overlays. Restored explicit-only precombat `ЦЕЛИ` toggle and the earlier lightweight magic trace.
+- Retained successful ally/enemy damage color distinction, combat numbers, true support-heal links, original hit reaction, targeting AI, timing and DS3. Replaced obsolete GUT hover-target tests with two opt-in-only checks.
+- CI and user acceptance must be checked before declaring final release.
+
 ## 2026-10-27 — D362–D364 released to main
 
 [PR #29](https://github.com/zampolit73/Misdeal/pull/29), `00294879`; [native Godot CI](https://github.com/zampolit73/Misdeal/actions/runs/40516027761) SUCCESS: **51/51 GUT**, D291 Battle native smoke and other core checks. Hero vs enemy damage colors, short straight arrowheads, hover actual target during real fights, and successful bellkeeper healing connection. Existing combat timing/gameplay and DS3 unchanged. Human three-fight F5 quality review pending.

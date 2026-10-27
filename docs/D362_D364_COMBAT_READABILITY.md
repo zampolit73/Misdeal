@@ -1,3 +1,5 @@
+> **D365 correction (2026-10-27):** the player tested this pack in local Godot and rejected the automatic hover-to-target lines/rings and conspicuous archer shooting streaks. These two features were rolled back as visual clutter, while D363 team-colored damage numbers and D364 real heal link remain. Below documents the originally shipped D362–D364 pilot, **not** the final target/shooting behavior. Current expectations: [D365_COMBAT_FEEDBACK_ROLLBACK.md](D365_COMBAT_FEEDBACK_ROLLBACK.md).
+
 > **Release status:** [PR #29](https://github.com/zampolit73/Misdeal/pull/29) merged as `002948799d4662053701c85b8e217f4e13924c79`. [Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40516027761) **SUCCESS**, 51/51 GUT, native Battle D291 smoke PASS. Manual F5 subjective quality acceptance, 12+XIII and separate RELEASE matrix **not completed**.
 
 # D362–D364 — combat readability pilot (2026-10-27)

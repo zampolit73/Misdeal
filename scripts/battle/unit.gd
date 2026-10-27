@@ -1138,7 +1138,7 @@ func _play_attack_feedback(primary_target: BattleUnit) -> void:
 			art_sprite.position = rest_position - direction * 5.0
 			art_sprite.rotation = -direction.x * 0.055
 			art_sprite.scale = Vector2(base_sprite_scale.x * 0.96, base_sprite_scale.y * 1.04)
-			_spawn_attack_trace(primary_target, Color(1.0, 0.76, 0.38, 0.94), 2.0)
+			# D365: no across-arena projectile streak; existing hit response remains.
 		"magic":
 			art_sprite.position = rest_position - direction * 2.0
 			art_sprite.rotation = direction.x * 0.035
@@ -1176,36 +1176,23 @@ func _get_attack_style() -> String:
 			return "melee"
 
 func _spawn_attack_trace(primary_target: BattleUnit, color: Color, width: float) -> void:
+	# Retained only for the existing magic attack. D365 disables long
+	# arrows from Rangers and Bone Archers at their original call site.
 	if get_parent() == null or not is_instance_valid(primary_target):
 		return
 
-	var start_point := position + Vector2(0.0, -18.0)
-	var end_point := primary_target.position + Vector2(0.0, -18.0)
 	var trace := Line2D.new()
 	trace.width = width
 	trace.default_color = color
-	trace.points = PackedVector2Array([start_point, end_point])
+	trace.points = PackedVector2Array([
+		position + Vector2(0.0, -18.0),
+		primary_target.position + Vector2(0.0, -18.0),
+	])
 	trace.z_index = 1900
 	get_parent().add_child(trace)
 
-	# D363: a straight, correctly aimed arrowhead makes a distant shot
-	# legible without inventing projectile travel/delaying instant damage.
-	if _get_attack_style() == "ranged":
-		var backward := end_point.direction_to(start_point)
-		if backward.length_squared() > 0.001:
-			var sideways := Vector2(-backward.y, backward.x)
-			var arrowhead := Line2D.new()
-			arrowhead.width = 1.7
-			arrowhead.default_color = color
-			arrowhead.points = PackedVector2Array([
-				end_point + backward * 11.0 + sideways * 4.0,
-				end_point,
-				end_point + backward * 11.0 - sideways * 4.0,
-			])
-			trace.add_child(arrowhead)
-
 	var trace_tween := trace.create_tween()
-	trace_tween.tween_property(trace, "modulate:a", 0.0, 0.21)
+	trace_tween.tween_property(trace, "modulate:a", 0.0, 0.14)
 	trace_tween.tween_callback(trace.queue_free)
 
 func take_attrition_damage(amount: float) -> void:
