@@ -19,6 +19,7 @@ func _ready() -> void:
 	for _index in range(VOICE_COUNT):
 		var voice := AudioStreamPlayer.new()
 		voice.volume_db = output_volume_db
+		voice.bus = "Combat"
 		add_child(voice)
 		_voices.append(voice)
 

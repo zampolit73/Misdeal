@@ -18,6 +18,11 @@ config/features=PackedStringArray("4.7")
 
 RunState="*res://scripts/core/run_state.gd"
 SceneTransition="*res://scripts/core/scene_transition.gd"
+SoundDirector="*res://scripts/audio/sound_director.gd"
+
+[audio]
+
+buses/default_bus_layout="res://default_bus_layout.tres"
 
 [display]
 

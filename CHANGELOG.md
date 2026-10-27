@@ -1,3 +1,9 @@
+## 2026-10-27 — D366–D367 audio audition pilot
+
+- Introduced native UI/Combat/Ambience bus layout and a small persistent SoundDirector API for independent volume and future crossfades; existing table/combat synthesizer events unchanged in timing and type.
+- Created three 24 kHz WAV prototypes for the card-deal sound, plus F6 sound audition with three buttons and three gain sliders. **These samples are demo-only** until heard and approved; no new live sound bank, ambient loops or music claimed.
+- Added GUT tests of bus routing, WAV import, volume/mute and audition scene. Main release gated by Godot CI; subjective timbre by player ear.
+
 ## 2026-10-27 — D365 combat feedback cleanup released
 
 User local review led to [PR #30](https://github.com/zampolit73/Misdeal/pull/30) squash `67d5c852`. [Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40523091071) SUCCESS: 51/51 GUT, native Battle scene smoke PASS. Remove automatic mouse-hover target rays and long Ranger/Bone Archer shot tracers/arrowheads; preserve chosen `ЦЕЛИ` pre-combat preview, short contact effects, damage/healing numbers and genuine heal links. Balance/AI/DS3 untouched. Human F5 recheck still pending.

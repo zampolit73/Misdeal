@@ -1,3 +1,12 @@
+## D366–D369 — Dark Forge Audio 1 (2026-10-27)
+
+- [x] D366: native 3-group audio mixer UI/Combat/Ambience, redirect existing procedural TableAudio and CombatAudio, persistent silent ambience crossfade support.
+- [x] D367 pilot: three actually importable WAV samples for a single card-deal cue, auditionable via F6 with a 3-channel gain test.
+- [ ] PR native Godot 4.7.2 import/GUT smoke, merge and user audition `A / B / C` choice.
+- [ ] D367 final after auditory approval: record/author chosen real tactile 4–5 table cues, then connect runtime with procedural fallback.
+- [ ] D368 actual combat foley pack; design polyphony/cooldown; D369 three very low atmospheric environments and correct transition routing; validate F5.
+- [ ] Separate A1P3 full human 12+XIII and RELEASE battle/animation matrix remain open.
+
 ## D365 — merged and CI verified (2026-10-27)
 
 - [x] [PR #30](https://github.com/zampolit73/Misdeal/pull/30) merged `67d5c852`, [CI](https://github.com/zampolit73/Misdeal/actions/runs/40523091071) SUCCESS (51/51 GUT and D291 real Battle native smoke).
