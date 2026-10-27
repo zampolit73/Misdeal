@@ -1,3 +1,12 @@
+## D366–D369 — Audio 1 status after PR #31 (2026-10-27)
+
+- [x] D366 sound buses UI/Combat/Ambience, SoundDirector mixer, existing voices routed with unchanged procedural content.
+- [x] D367 **prototype only**: A/B/C original WAV samples and F6 scene, [CI](https://github.com/zampolit73/Misdeal/actions/runs/40527079810) **56/56 GUT PASS**; merged in `cd487890`.
+- [ ] **User listen and select** audio direction after `git pull`, F6 `scenes/dev/d367_audio_audition.tscn`.
+- [ ] After selection, make and wire actual table audio bank with procedural fallback, test quiet overlapping effects.
+- [ ] D368 combat foley + D369 atmospheric layers and local audio mix listening test. No new music at this stage.
+- [ ] Full player 12+XIII run and authored RELEASE animation/battle matrix still open.
+
 ## D366–D369 — Dark Forge Audio 1 (2026-10-27)
 
 - [x] D366: native 3-group audio mixer UI/Combat/Ambience, redirect existing procedural TableAudio and CombatAudio, persistent silent ambience crossfade support.

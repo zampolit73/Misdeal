@@ -1,3 +1,7 @@
+## 2026-10-27 — D366–D367 Audio 1 pilot released
+
+[PR #31](https://github.com/zampolit73/Misdeal/pull/31) merged `cd487890` with [Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40527079810) **SUCCESS**, 56/56 GUT and native smokes PASS. Introduces UI/Combat/Ambience sound buses, SoundDirector, three 24kHz mono WAV card-deal prototypes and F6 sound audition with channel sliders. Existing live procedural cues stay in place; prototypes need human listening approval before replacing sound events. Game mechanics, DS3 and Fate Spread unchanged.
+
 ## 2026-10-27 — D366–D367 audio audition pilot
 
 - Introduced native UI/Combat/Ambience bus layout and a small persistent SoundDirector API for independent volume and future crossfades; existing table/combat synthesizer events unchanged in timing and type.
