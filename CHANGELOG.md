@@ -1,3 +1,7 @@
+## 2026-10-27 — D367B approved Oak table audio pack (release candidate)
+
+User chose **B — Oak** from the actual F6 audition. D367B feature branch now plays the original approved B WAV on real card deals, authors four short dry-oak/paper cues for select/discard/meddle/milestone, retains the original procedural soundbank as import fallback, and adds event-specific anti-spam and native GUT regressions. Audition scene now identifies the locked B sample. **CI/PR merge and F5 ear check still pending**; no actual recorded foley, combat sound changes, ambience/music or gameplay changes in this candidate. See [D367B release notes](docs/D367B_OAK_TABLE_RELEASE.md).
+
 ## 2026-10-27 — D367 consolidated new-chat handoff
 
 Added [D367_NEW_CHAT_HANDOFF.md](docs/D367_NEW_CHAT_HANDOFF.md) and current pointers in the documentation index/state/roadmap/handoff. No additional gameplay or audio features. Recorded shipped PR #31/CI 56/56, unresolved audio A/B/C audition, approved DS3/Fate Spread/D365 boundaries and independent A1P3 release gates for the next chat.

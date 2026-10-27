@@ -1,3 +1,7 @@
+## CURRENT — D367B Oak selected and live-table implementation candidate (2026-10-27)
+
+User listened to D367 A/B/C and **selected B — Oak**. The approval gate is closed. Implementation on `feature/d367-oak-live-table-pack` connects exact D367 B WAV to live card deals and creates four new short wood/paper-style `select/discard/meddle/milestone` PCM cues, with full procedural fallback and per-event anti-spam throttle. Original F6 audition marks B approved. New GUT regression tests added; **CI, PR release and F5 human ear check not yet verified**. No D368 combat audio, D369 ambience/music, art, gameplay or DS3 changes. See [D367B_OAK_TABLE_RELEASE.md](D367B_OAK_TABLE_RELEASE.md). Earlier D367 text below is historical.
+
 ## CURRENT CHECKPOINT — D367 new chat (2026-10-27)
 
 Canonical consolidated state and latest runnable Audio 1 prototype handoff: **[D367_NEW_CHAT_HANDOFF.md](D367_NEW_CHAT_HANDOFF.md)**. D366–D367 mixer+three WAV proposals shipped and final CI 56/56 PASS; the user has **not chosen A/B/C yet**. No live table sample replacement/ambient loops/music. All prior DS3, Fate Spread and restrained D365 battle visual decisions stand. Details below are dated history.

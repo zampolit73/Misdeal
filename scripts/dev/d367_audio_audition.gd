@@ -1,7 +1,7 @@
 extends Control
 
-# D367: audition the three UNAPPROVED authored synthetic foley prototypes.
-# No live gameplay SFX has been replaced by these samples.
+# D367B: compare the three original synthesized candidates. B is now approved
+# and used by the live TableAudio deal event; A/C remain archival options.
 const SAMPLE_FILES := [
 	"res://assets/audio/pilot/d367_deal_a_parchment.wav",
 	"res://assets/audio/pilot/d367_deal_b_oak.wav",
@@ -22,7 +22,7 @@ func _ready() -> void:
 		var slider := get_node("Volume%s" % bus_name) as HSlider
 		slider.value = SoundDirector.get_channel_volume(bus_name) * 100.0
 		slider.value_changed.connect(_change_volume.bind(bus_name))
-	feedback.text = "Выбери характер звука выкладывания карты. Это тестовые образцы."
+	feedback.text = "Утверждён B — дубовый стол. В игре используется звук B для раздачи."
 
 
 func _play_sample(index: int) -> void:
@@ -35,7 +35,7 @@ func _play_sample(index: int) -> void:
 	preview_player.stop()
 	preview_player.stream = stream
 	preview_player.play()
-	feedback.text = NAMES[index] + "  •  прослушивание"
+	feedback.text = NAMES[index] + ("  •  УТВЕРЖДЁН" if index == 1 else "  •  архивный вариант")
 
 
 func _change_volume(value: float, bus_name: String) -> void:

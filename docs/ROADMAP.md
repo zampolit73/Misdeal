@@ -1,3 +1,13 @@
+## ACTIVE — D367B approved Oak sound and live table pack (2026-10-27)
+
+- [x] User chose **B — Oak** after D367 F6 audition; choice is locked.
+- [x] Build release **candidate**: exact approved B WAV on live deal, four separate oak/paper table cues with procedural fallback and UI anti-spam; add GUT and F6 labels.
+- [ ] Verify Godot 4.7.x CI for D367B PR, merge only after green, then F5 live-table auditory acceptance.
+- [ ] D368 sparse battle foley, then D369 subtle ambience (no always-on score).
+- [ ] Independent A1P3 human 12+XIII, authored RELEASE combat/animation matrix.
+
+Full current scope: [D367B_OAK_TABLE_RELEASE.md](D367B_OAK_TABLE_RELEASE.md). Earlier D367 A/B/C selection requests below are historical.
+
 ## ACTIVE NEXT STEP — D367 audio audition and sound-selection gate (2026-10-27)
 
 - [x] GitHub Audio 1 D366 mixer and D367 A/B/C audition release; native Godot 4.7.2 CI 56/56 PASS in PR #31.

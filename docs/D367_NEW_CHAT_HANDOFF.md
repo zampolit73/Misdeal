@@ -1,3 +1,5 @@
+> **LATEST UPDATE — D367B, 2026-10-27:** The user has now selected **B — Oak**. Previous passages below saying “await A/B/C choice” are frozen historical D367 state and **no longer active**. Development branch `feature/d367-oak-live-table-pack` connects the exact approved B WAV to live deal, authors four distinct short oak/paper table cues, retains original fallback and adds test/anti-spam; awaiting Godot CI + local F5 listening. See [D367B_OAK_TABLE_RELEASE.md](D367B_OAK_TABLE_RELEASE.md). No D368 or D369 work yet. Do not reopen selection, redesign DS3/Fate Spread or claim the full Act1 player run is verified.
+
 # D367 — Current Misdeal new-chat handoff (2026-10-27)
 
 > **START HERE IN A NEW CHAT.** Canonical current working context for the end of the D366–D367 Audio 1 pilot. It supersedes outdated "pending" statements in earlier dated entries of `docs/HANDOFF.md` / `docs/ROADMAP.md`, but never supersedes the actual GitHub code on `main`. Last verified source before this handoff: **`main` at `c9f73cf52fe3a410545229f6f67ca2888446905c`**. The handoff-only commit follows that snapshot.
