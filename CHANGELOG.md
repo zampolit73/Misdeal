@@ -1,3 +1,10 @@
+## 2026-10-27 — D362–D364 battle legibility
+
+- Added hover-only real combat target focus alongside existing precombat full intent preview. Does not alter AI.
+- Clarified which side lost HP, with red hero damage numbers vs bronze enemy damage and straight-headed ranged traces.
+- Linked source and healed ally on successful bellkeeper support heals using brief nonintrusive visual lines and rings.
+- Added GUT regressions for hover focus / live target. No balance, encounters, approved artwork or DS3 changes; native Godot user acceptance pending.
+
 ## 2026-10-27 — D361 Act I readiness test released
 
 - [PR #28](https://github.com/zampolit73/Misdeal/pull/28) merged `6c61fa2` after [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40508157201): 49/49 GUT, new 40/40 current Act I card/boss visual-resource/target integrity checks PASS and native core smokes PASS.

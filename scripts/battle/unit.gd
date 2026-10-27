@@ -652,11 +652,50 @@ func _process_support(delta: float) -> void:
 		if real_healing > 0.0:
 			if diagnostic_heal.has_connections():
 				diagnostic_heal.emit(self, unit, real_healing)
+			# D364: the healer/recipient relationship is now visible to the player.
+			# It does not affect the actual healing or its cooldown.
+			_show_support_link(unit)
 			healed_any = true
 
 	if healed_any:
 		_show_status_text("ЗВОН!", Color(0.52, 1.0, 0.68, 1.0))
 		_play_combat_audio("heal")
+
+func _show_support_link(recipient: BattleUnit) -> void:
+	if get_parent() == null or recipient == null or not is_instance_valid(recipient):
+		return
+	# Deliberately restrained bronze-green thread and a ring at the recipient's
+	# boots. The existing +HP number remains the exact healing value.
+	var link := Line2D.new()
+	link.width = 1.8
+	link.default_color = Color(0.58, 0.86, 0.62, 0.74)
+	link.points = PackedVector2Array([
+		position + Vector2(0.0, -18.0),
+		recipient.position + Vector2(0.0, -18.0),
+	])
+	link.z_index = 1900
+	get_parent().add_child(link)
+	var link_tween := link.create_tween()
+	link_tween.tween_property(link, "modulate:a", 0.0, 0.40)
+	link_tween.tween_callback(link.queue_free)
+
+	var halo := Line2D.new()
+	halo.width = 1.8
+	halo.default_color = Color(0.70, 0.91, 0.59, 0.80)
+	halo.position = recipient.position + Vector2(0.0, 36.0)
+	halo.z_index = 1900
+	var points := PackedVector2Array()
+	for step in range(33):
+		var angle := TAU * float(step) / 32.0
+		points.append(Vector2(cos(angle) * 26.0, sin(angle) * 9.0))
+	halo.points = points
+	get_parent().add_child(halo)
+	var ring_tween := halo.create_tween()
+	ring_tween.set_parallel(true)
+	ring_tween.tween_property(halo, "scale", Vector2(1.25, 1.25), 0.42)
+	ring_tween.tween_property(halo, "modulate:a", 0.0, 0.42)
+	ring_tween.chain().tween_callback(halo.queue_free)
+
 
 func heal(amount: float) -> void:
 	if not alive or amount <= 0.0:
@@ -1140,18 +1179,33 @@ func _spawn_attack_trace(primary_target: BattleUnit, color: Color, width: float)
 	if get_parent() == null or not is_instance_valid(primary_target):
 		return
 
+	var start_point := position + Vector2(0.0, -18.0)
+	var end_point := primary_target.position + Vector2(0.0, -18.0)
 	var trace := Line2D.new()
 	trace.width = width
 	trace.default_color = color
-	trace.points = PackedVector2Array([
-		position + Vector2(0.0, -18.0),
-		primary_target.position + Vector2(0.0, -18.0),
-	])
+	trace.points = PackedVector2Array([start_point, end_point])
 	trace.z_index = 1900
 	get_parent().add_child(trace)
 
+	# D363: a straight, correctly aimed arrowhead makes a distant shot
+	# legible without inventing projectile travel/delaying instant damage.
+	if _get_attack_style() == "ranged":
+		var backward := end_point.direction_to(start_point)
+		if backward.length_squared() > 0.001:
+			var sideways := Vector2(-backward.y, backward.x)
+			var arrowhead := Line2D.new()
+			arrowhead.width = 1.7
+			arrowhead.default_color = color
+			arrowhead.points = PackedVector2Array([
+				end_point + backward * 11.0 + sideways * 4.0,
+				end_point,
+				end_point + backward * 11.0 - sideways * 4.0,
+			])
+			trace.add_child(arrowhead)
+
 	var trace_tween := trace.create_tween()
-	trace_tween.tween_property(trace, "modulate:a", 0.0, 0.14)
+	trace_tween.tween_property(trace, "modulate:a", 0.0, 0.21)
 	trace_tween.tween_callback(trace.queue_free)
 
 func take_attrition_damage(amount: float) -> void:
@@ -1314,10 +1368,14 @@ func _show_damage_number(amount: float, strong_hit: bool = false) -> void:
 	damage_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	damage_label.z_index = 2000
 	damage_label.add_theme_font_size_override("font_size", 17 if strong_hit else 14)
-	damage_label.add_theme_color_override(
-		"font_color",
-		Color(1.0, 0.58, 0.34, 1.0) if strong_hit else Color(1.0, 0.78, 0.58, 1.0)
+	# D363: visually distinguish damage TO heroes (red) from damage TO
+	# enemies (bronze); green stays reserved for genuine healing.
+	var number_color := (
+		Color(1.0, 0.36, 0.31, 1.0) if strong_hit else Color(1.0, 0.61, 0.50, 1.0)
+	) if team == 0 else (
+		Color(1.0, 0.67, 0.34, 1.0) if strong_hit else Color(0.98, 0.82, 0.60, 1.0)
 	)
+	damage_label.add_theme_color_override("font_color", number_color)
 	get_parent().add_child(damage_label)
 
 	var float_tween := damage_label.create_tween()
