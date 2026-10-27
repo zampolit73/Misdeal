@@ -1,3 +1,5 @@
+> **Approval update (2026-10-27):** User chose **B — Oak**. D367 A/B/C audition is no longer awaiting selection. The exact B WAV is connected to live card-deal events in the D367B feature branch, with four additional short oak/paper cues and procedural fallback. CI and human F5 acceptance pending. See [D367B_OAK_TABLE_RELEASE.md](D367B_OAK_TABLE_RELEASE.md). The original pilot text below remains as historical implementation record.
+
 > **Release verified:** [PR #31](https://github.com/zampolit73/Misdeal/pull/31) merged to main as `cd487890d75fbf62336112a2cb254f8cffd3dc92`. [Native Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40527079810) **SUCCESS**: 56/56 GUT, native smoke and current-scene screenshots. Existing procedural table/battle audio is preserved; A/B/C WAVs are **audition-only** awaiting user choice. No real field recordings, no ambient loops/music yet.
 
 # D366–D367 — Dark Forge Audio 1, mixer foundation and card dealing audition
