@@ -1,3 +1,11 @@
+## D365 — focus on quiet combat readability (2026-10-27)
+
+- [x] Respect user feedback: no hover-drawn targeting arrows/rings, no full-width ranger/archer shot traces; retain explicit pre-fight target toggle, damage indicators and heal connections.
+- [x] Replace outdated two hover-only regression tests with D365 opt-in-preview tests.
+- [ ] Verify native Godot 4.7.2 CI and merge correction PR into main.
+- [ ] User `git pull`, F5: move cursor over fighting actors (no arrows appear), four archers in `firing_square` (no long shot lines), and check heal/HP readability unaffected.
+- [ ] Independent A1P3 full F5 12+XIII and standalone RELEASE animation matrix still open.
+
 ## D362–D364 — released; visual playtest pending (2026-10-27)
 
 - [x] PR #29 merged to main `00294879`, [Godot CI](https://github.com/zampolit73/Misdeal/actions/runs/40516027761) **SUCCESS** (51/51 GUT; native Battle D291 smoke PASS).
