@@ -1,3 +1,7 @@
+# Verified D360 release
+
+PR #27 merged into main at `6ee01f606d283e2f36823360ebc0178f134b4b34` after [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/40501281488): import, GUT, D289/D315/D316 smoke, native screenshots PASS; full authored RELEASE matrix skipped. GitHub verified approved binary WebP is present on main with blob `0865337d3b76e8db5e744e4b4582b083d5eeeea3`. D315 now 29 approved arts. Next: player `git pull`/F6 gallery and final Act1 A1P3 **human F5 12 cards + XIII** playtest; do not claim human playtest done.
+
 # D360 — «РАССТРЕЛЬНАЯ ПЛОЩАДЬ» handoff (2026-10-27)
 
 ## Approved artwork and exact identity

@@ -1,3 +1,11 @@
+## D360 — FINISHED approved card-art passes (2026-10-27)
+
+- [x] D360 exact approved final released to main, PR #27 and Godot native CI PASS.
+- [x] D315 29 locked art images, older art preserved, DS3 and mechanics unaffected.
+- [ ] Human local F6 gallery review of D360.
+- [ ] Full Act1 final visual audit and A1P3 F5 12+XIII human playtest.
+- [ ] Standalone authored RELEASE battle/animation matrix not yet executed.
+
 ## D360 — final planned card-art pass (2026-10-27)
 
 - [x] Approve option #3, skeletal corpses under fire and final straight-arrow correction.
