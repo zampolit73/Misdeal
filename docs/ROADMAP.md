@@ -1,3 +1,14 @@
+## ACTIVE NEXT — D367B released; F5 ear check then D368 (2026-10-27)
+
+- [x] User selected **B — Oak**.
+- [x] D367B live table pack merged via [PR #32](https://github.com/zampolit73/Misdeal/pull/32), [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40532236638) **60/60 GUT**; selected B WAV on deal + four tactile table cues, fallback, cooldown.
+- [ ] Human local F5 listen and assess live volume/repetition of card deal, select, discard, wizard meddling and Fate milestones.
+- [ ] D368 sparse layered combat foley, especially Iron Wall / Firing Square / Last Bell, with priorities/cooldowns and no D365 visual clutter.
+- [ ] D369 restrained ambience; no constant score.
+- [ ] A1P3 human I–XII+XIII and independent RELEASE animation/battle matrix.
+
+[Implementation and check notes](D367B_OAK_TABLE_RELEASE.md). Earlier D367B pending-release entries are dated history.
+
 ## ACTIVE — D367B approved Oak sound and live table pack (2026-10-27)
 
 - [x] User chose **B — Oak** after D367 F6 audition; choice is locked.
