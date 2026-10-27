@@ -1,3 +1,5 @@
+> **Release verification:** [PR #28](https://github.com/zampolit73/Misdeal/pull/28) merged `6c61fa2be4898009bc47d5dada05aa6abc008823`. [Final official Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40508157201) SUCCESS: 49/49 GUT, 40/40 card+boss art/target checks. This does NOT complete the full human F5 run or standalone RELEASE matrix.
+
 # D361 — Act I final card-art readiness and real F5 playtest
 
 Date: 2026-10-27. Source: `main` and PR [#28](https://github.com/zampolit73/Misdeal/pull/28).

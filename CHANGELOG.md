@@ -1,3 +1,8 @@
+## 2026-10-27 — D361 Act I readiness test released
+
+- [PR #28](https://github.com/zampolit73/Misdeal/pull/28) merged `6c61fa2` after [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/40508157201): 49/49 GUT, new 40/40 current Act I card/boss visual-resource/target integrity checks PASS and native core smokes PASS.
+- No changes to authored art, DS3, enemy compositions, rewards or game rules. Full human 12+XIII F5 playtest and separate RELEASE animation/Battle matrix remain outstanding; `docs/D361_ACT1_FINAL_QA.md` records procedure.
+
 ## 2026-10-27 — D361 complete-deck readiness regression
 
 - Added GUT verification for **39 dealt Act I cards + Bone Warden XIII**, using shipped `RunCardData`, real EncounterData/event targets, the runtime `CardArtCatalog` first and the original `.tres` fallback when applicable. CI initial PR check **49/49 GUT**, all 40 card records; no gameplay/UI/asset alterations.

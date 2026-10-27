@@ -1,3 +1,11 @@
+## D361 — released card-art readiness audit; experiential gate open (2026-10-27)
+
+- [x] [PR #28](https://github.com/zampolit73/Misdeal/pull/28) merged `6c61fa2`; [Godot CI](https://github.com/zampolit73/Misdeal/actions/runs/40508157201) SUCCESS: 49/49 GUT, all 40 card/boss images and targets valid.
+- [x] 29 specific user-approved card illustrations remain D315-protected; previous gameplay and DS3 unchanged.
+- [ ] Human F6 gallery review and complete F5 Knight 12+XIII real playtest through RunEnd.
+- [ ] Standalone `release` workflow_dispatch authored Battle/animation matrix remains unrun in D361.
+- [ ] Fix reproducible P0/P1 playtest problems before starting A1P4 pacing changes. See `docs/D361_ACT1_FINAL_QA.md`.
+
 ## D361 — Act I readiness (2026-10-27)
 
 - [x] PR #28: cover **all 39 dealt cards + XIII** in a GUT catalog/target integrity test; initial official Godot 4.7.2 CI **49/49 tests PASS**, 40/40 art/target records pass.
