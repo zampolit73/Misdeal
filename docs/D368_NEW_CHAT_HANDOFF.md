@@ -1,3 +1,5 @@
+> **D368 UPDATE — VERIFIED 2026-10-28:** Combat pack now merged to `main` via [PR #33](https://github.com/zampolit73/Misdeal/pull/33) `20368dd` after [Godot CI 65/65 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40705404555). This file originally described the work *before* implementation. Read [D369_NEW_CHAT_HANDOFF.md](D369_NEW_CHAT_HANDOFF.md) for the latest release and listening gate, and [D368_COMBAT_FOLEY.md](D368_COMBAT_FOLEY.md) for implementation.
+
 > **D368 work started 2026-10-28:** This pre-implementation checkpoint remains relevant for locked game/visual/Oak decisions, but the more recent **combat foley candidate** is documented in [D368_COMBAT_FOLEY.md](D368_COMBAT_FOLEY.md). Check branch/CI and human ear gate before calling D368 released.
 
 # Misdeal — CURRENT NEW CHAT HANDOFF (2026-10-28)

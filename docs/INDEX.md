@@ -1,3 +1,7 @@
+## Latest audio release (2026-10-28)
+
+[D368 combat sound QA / implementation](D368_COMBAT_FOLEY.md) and [D369 current new-chat handoff](D369_NEW_CHAT_HANDOFF.md). D368 merged to main via [PR #33](https://github.com/zampolit73/Misdeal/pull/33), [Godot CI 65/65 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40705404555); F6/F5 ear acceptance still pending.
+
 **CURRENT NEW-CHAT HANDOFF (2026-10-27):** [D367 — Audio 1 pilot, current exact release and next auditory approval](D367_NEW_CHAT_HANDOFF.md). PR #31 merged; Godot 4.7.2 CI 56/56 PASS; three A/B/C WAV samples await user audition in F6. Older "CURRENT" handoffs below are historic.
 
 **Latest visual handoff (2026-10-25):** [D346 «Гремучий мост» final approved scene](D346_NEW_CHAT_HANDOFF.md). A1P3 live F5 playtest still pending.

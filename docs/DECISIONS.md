@@ -1,3 +1,7 @@
+## D368 — implementation verified, audio aesthetic still provisional (2026-10-28)
+
+[D368 PR #33](https://github.com/zampolit73/Misdeal/pull/33) has landed on `main` (`20368dd`, [Godot 4.7.2 CI 65/65 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40705404555)). The approved design constraint is **quiet/low-density combat sound**: sparse, short metal/bone/bow/bell/boss accents, six prioritized voices, family cooldown and no gameplay/VFX changes; Oak B preserved. The eight current samples are authored **synthetic Foley-style prototypes** that passed engineering checks **but are not yet ear-approved**. Local F6/F5 listening can trigger a focused retune without altering game rules.
+
 ## D368 — sparse combat audio, no new combat VFX (2026-10-28)
 
 Implement a **candidate**, not yet an approved acoustic palette: 8 short original synthesized PCM foley-style cues, two alternating shared-family bow variants with 155ms cooldown, six capped voices, priority protection for real healing/boss/outcome events and per-event volume shaping. Keep existing `play_event` hooks, complete per-cue procedural fallback, independent Combat bus and user-approved **B — Oak** tabletop SFX. No hover effects, arrows, timing/AI changes, soundtrack or ambient bed. Subjective player F6/F5 review is a separate gate. [Detailed scope and checks](D368_COMBAT_FOLEY.md).

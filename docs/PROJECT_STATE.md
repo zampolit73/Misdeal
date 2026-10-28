@@ -1,3 +1,7 @@
+## RELEASED 2026-10-28 — D368 restrained combat audio
+
+**MERGED main:** [D368 PR #33](https://github.com/zampolit73/Misdeal/pull/33) squash `20368dd822a06e234c9a5c23235c36744f01bba2`; [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/40705404555) **65/65 GUT**, import/GDScript, native smokes and screenshot capture PASS. Eight short synthetic dry combat WAVs, 6 priority-safe voices, ranged 155 ms cooldown / two alternating bow sounds and per-event procedural fallback are **live**. **F6/F5 human sound/mix acceptance remains OPEN**; CI cannot judge timbre. B Oak table unchanged and approved, D365 quiet visuals untouched, no D369 ambience/music. [Technical and listening notes](D368_COMBAT_FOLEY.md); [next-chat checkpoint](D369_NEW_CHAT_HANDOFF.md). A1P3 12+XIII and independent RELEASE battle/animation matrix still open.
+
 ## LATEST 2026-10-28 — D368 combat audio pilot
 
 [Current D368 sound pack and test plan](D368_COMBAT_FOLEY.md). Eight original, clearly **synthetic** dry battle WAV prototypes (steel, 2 bow plucks, magic, bone hit/death, healing bell, boss), six priority-aware voices, category cooldowns and complete legacy procedural fallback are staged on `feature/d368-restrained-combat-foley`. **CI/merge and human F6/F5 sound approval pending** — do not mistake code work for an acoustically accepted release. Oak B remains locked and shipped. No combat visuals, AI, damage, DS3/Fate changes.

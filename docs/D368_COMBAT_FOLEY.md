@@ -1,3 +1,5 @@
+> **RELEASED 2026-10-28:** [D368 PR #33](https://github.com/zampolit73/Misdeal/pull/33) merged `20368dd` into `main`; [Godot 4.7.2 Actions 40705404555](https://github.com/zampolit73/Misdeal/actions/runs/40705404555) **SUCCESS 65/65 GUT**, import/GDScript, native smoke, screenshot capture. The following initial *candidate* language is historical. **Human listening remains pending; no subjective sound approval is implied.** Standalone RELEASE matrix not run.
+
 # D368 — restrained combat Foley pilot (2026-10-28)
 
 ## Scope

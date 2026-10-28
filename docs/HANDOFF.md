@@ -1,3 +1,7 @@
+## LATEST 2026-10-28 — D368 shipped; human listening gate, then D369
+
+Read [D369_NEW_CHAT_HANDOFF.md](D369_NEW_CHAT_HANDOFF.md). [D368 PR #33](https://github.com/zampolit73/Misdeal/pull/33) merged `20368dd` after [Godot 4.7.2 Actions SUCCESS 65/65](https://github.com/zampolit73/Misdeal/actions/runs/40705404555). Eight dry synthetic combat WAVs with archer anti-spam, 6 priority-aware voices, fallback and F6 audition now live. **The player's ear has not approved this timbre/mix yet.** After `git pull`, F6 D368 audio room, F5 Firing Square / Iron Wall / Last Bell. B Oak remains untouched, D365 no-hover/no-arrow VFX rules locked. Next D369 gentle ambience (not music), pending review. A1P3 player full 12+XIII and independent RELEASE matrix still pending.
+
 ## LATEST 2026-10-28 — D368 combat sound candidate
 
 [Read D368 combat audio handoff](D368_COMBAT_FOLEY.md) and [D368 project handoff](D368_NEW_CHAT_HANDOFF.md). Feature `feature/d368-restrained-combat-foley` stages eight short synthetic combat WAVs, six priority-aware voices with archer anti-spam and GUT/F6 audition. **CI and real local ear quality unverified until checked.** B Oak remains user-approved and shipped; D365 quiet visual rules unchanged. D369 ambience only after hearing the D368 pilot.

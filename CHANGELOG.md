@@ -1,3 +1,7 @@
+## 2026-10-28 — D368 battle sound release verified
+
+[PR #33](https://github.com/zampolit73/Misdeal/pull/33) merged to `main` as `20368dd822a06e234c9a5c23235c36744f01bba2`, [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/40705404555): **65/65 GUT**, import, smoke and screenshots passed. Eight short original synthetic Foley-style WAVs are live, with procedural fallbacks, 6 priority-capped Combat voices, separate bow variants and shared 155ms volley throttle; dedicated F6 scene available. D365 visuals, damage, balance, DS3/Fate and Oak B unchanged. **Real local acoustic review still open; not recorded field Foley.** Standalone RELEASE battle/animation matrix skipped.
+
 ## 2026-10-28 — D368 restrained combat sound pilot (candidate)
 
 Staged 8 short 24 kHz mono PCM **synthetic** steel/bow(×2)/magic/bone impact/death/heal bell/boss samples, direct live CombatAudio integration with procedural fallback, a maximum of six priority-aware voices and family-level anti-machinegun throttles. Added F6 `scenes/dev/d368_combat_audio_audition.tscn`, 5 GUT checks and [auditory QA handoff](docs/D368_COMBAT_FOLEY.md). **Native CI and F5 ear acceptance pending**; B Oak and all mechanics/visuals unchanged.

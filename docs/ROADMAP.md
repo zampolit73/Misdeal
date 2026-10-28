@@ -1,3 +1,12 @@
+## ACTIVE 2026-10-28 — D368 merged, audio listening next
+
+- [x] D368 8 synthesized battle SFX, priority-safe anti-machinegun bow mix, F6 audition, 5 GUT regressions; [PR #33](https://github.com/zampolit73/Misdeal/pull/33) and [native CI SUCCESS 65/65](https://github.com/zampolit73/Misdeal/actions/runs/40705404555).
+- [ ] **Local ear QA:** `git pull`, F6 `scenes/dev/d368_combat_audio_audition.tscn`, then F5 Firing Square, Iron Wall and Last Bell; assess relative loudness and electronic artifacts. Oak B F5 mix acceptance also remains open.
+- [ ] D369 understated castle/courtyard/ossuary ambience after ear check, no constant score.
+- [ ] Full human 12+XIII A1P3 and independently dispatched RELEASE combat/animation matrix.
+
+[Current handoff](D369_NEW_CHAT_HANDOFF.md). Older `candidate` headings below are historical.
+
 ## LATEST 2026-10-28 — D368 battle sound pilot
 
 - [x] Implement eight dry synthesized combat WAV variants, shared archer throttle, priority-aware six-voice mix, fallbacks, audition scene and GUT regressions on `feature/d368-restrained-combat-foley`.
