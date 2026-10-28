@@ -94,24 +94,13 @@ func _get_ambience_stream(location_id: String) -> AudioStreamWAV:
 	if _ambience_streams.has(location_id):
 		return _ambience_streams[location_id] as AudioStreamWAV
 	var path: String = LOCATION_PATHS.get(location_id, "")
-	# Godot's default WAV importer trims low-amplitude tails. That is fine for
-	# one-shots, but creates audible joins in intentionally quiet ambient loops.
-	# Our authored WAVs have a fixed 44-byte RIFF/PCM header; load their exact
-	# source frames when available, with the imported resource as export fallback.
-	var stream: AudioStreamWAV = null
-	var source := FileAccess.get_file_as_bytes(path)
-	if source.size() == 256044 and source.slice(0, 4).get_string_from_ascii() == "RIFF" and source.slice(8, 12).get_string_from_ascii() == "WAVE" and source.slice(36, 40).get_string_from_ascii() == "data":
-		stream = AudioStreamWAV.new()
-		stream.format = AudioStreamWAV.FORMAT_16_BITS
-		stream.mix_rate = 16000
-		stream.stereo = false
-		stream.data = source.slice(44)
-	else:
-		stream = load(path) as AudioStreamWAV
+	# The authored WAV is exactly eight seconds; use Godot's imported stream.
+	# Its source RIFF length is verified by GUT before shipping.
+	var stream := load(path) as AudioStreamWAV
 	if stream == null:
 		return null
 	stream.loop_begin = 0
-	stream.loop_end = maxi(1, int(stream.data.size() / 2)) if stream.format == AudioStreamWAV.FORMAT_16_BITS else maxi(1, int(round(stream.get_length() * float(stream.mix_rate))))
+	stream.loop_end = maxi(1, int(round(stream.get_length() * float(stream.mix_rate))))
 	stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
 	_ambience_streams[location_id] = stream
 	return stream
