@@ -73,8 +73,12 @@ func get_current_location() -> String:
 
 
 func set_location(location_id: String, fade_seconds: float = 1.6) -> void:
+	# Reopen a location if the old source was stopped by a prior preview.
 	if location_id == _current_location:
-		return
+		if location_id == "silence":
+			return
+		if _ambience_players.size() == 2 and _ambience_players[_ambience_slot].playing:
+			return
 	if location_id == "silence":
 		_current_location = "silence"
 		transition_ambience(null, fade_seconds)
@@ -90,6 +94,30 @@ func set_location(location_id: String, fade_seconds: float = 1.6) -> void:
 		return
 	_current_location = location_id
 	transition_ambience(stream, fade_seconds)
+
+
+func get_ambience_debug_info() -> Dictionary:
+	# Dev-only diagnostic readout; never changes the mix or gameplay.
+	var idx := AudioServer.get_bus_index(BUS_AMBIENCE)
+	var players: Array[Dictionary] = []
+	var loaded := false
+	for player in _ambience_players:
+		var has_stream := player.stream != null
+		loaded = loaded or has_stream
+		players.append({
+			"playing": player.playing,
+			"gain_db": player.volume_db,
+			"stream_loaded": has_stream,
+			"bus": String(player.bus),
+		})
+	return {
+		"location": _current_location,
+		"bus_exists": idx >= 0,
+		"bus_db": AudioServer.get_bus_volume_db(idx) if idx >= 0 else -80.0,
+		"bus_muted": AudioServer.is_bus_mute(idx) if idx >= 0 else true,
+		"stream_loaded": loaded,
+		"players": players,
+	}
 
 
 func _get_ambience_stream(location_id: String) -> AudioStreamWAV:
