@@ -59,7 +59,7 @@ func test_location_streams_loop_and_same_location_does_not_restart() -> void:
 	if stream != null:
 		assert_eq(stream.loop_mode, AudioStreamWAV.LOOP_FORWARD)
 		assert_true(stream.loop_end >= 252800 and stream.loop_end <= 259200)
-		assert_true(stream.get_length() >= 7.8 and stream.get_length() <= 8.2)
+		assert_true(stream.get_length() >= 15.8 and stream.get_length() <= 16.2)
 	director.call("set_location", "castle")
 	assert_eq(int(director.get("_ambience_slot")), slot)
 	assert_same(voice.stream, stream)
