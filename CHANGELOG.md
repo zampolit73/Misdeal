@@ -1,3 +1,7 @@
+## 2026-10-29 — D372 replacing white-noise atmosphere (candidate)
+
+After player confirmed audio playback works but feels like white noise, built three new sparse 16-second 16kHz mono synthetic environment scenes (castle timber/stone/iron, courtyard shaped wind/gate, ossuary bones/drips), replacing existing D369 WAV paths without changing audio bus routing. F6 D372 screen describes each scene's cue times and shows playback position; QA adds loud-event vs quiet-gap assertions and tests longer WAV imports. **Awaiting native CI and subjective user review.** Oak B, D368 combat and gameplay/visual art unchanged.
+
 ## 2026-10-29 — D371 audio presence and version diagnostics
 
 [PR #36](https://github.com/zampolit73/Misdeal/pull/36) squash `ba1ff4fa6b770f3ff24cf52a747a642695751060`; [native Godot 4.7.2 CI SUCCESS 78/78 GUT](https://github.com/zampolit73/Misdeal/actions/runs/40767000965), import/parse, smoke and screenshots. Re-authored three existing castle, courtyard and ossuary original synthesized PCM WAVs at measurable audible-level RMS; F6 diagnostic scene now shows D371 build ID and Master/Ambience output-probe buttons, current location, bus dB/mute/stream/voice playing state and peak meters. F6 audition bus level is restored after exit. SoundDirector same-location restarts if the voice was stopped. **Live speaker verification pending**, approved Oak and D368 and normal game visuals/logic untouched.

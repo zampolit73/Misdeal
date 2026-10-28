@@ -1,9 +1,16 @@
 extends Control
 
-# D371: intentionally visible native Godot audio diagnostics.
+# D372: sparse spatial sound scenes (creaks, distant stone/metal, bones).
 # This is a developer-only F6 scene, not a game HUD migration.
-const BUILD_LABEL := "D371 / AUDIO-CHECK / 2026-10-29"
+const BUILD_LABEL := "D372 / SPATIAL-AMBIENCE / 2026-10-29"
 const TEST_TONE_RATE := 22050
+const SCENE_NOTES := {
+	"castle": "Скрип балок (2–4 и 10–12 с), тяжёлый стук двери и металла. Между событиями — тишина.",
+	"courtyard": "Порывы ветра (1–4 и 8–12 с), скрип ворот и удар железной защёлки.",
+	"ossuary": "Костяные щелчки (2–3 и 10–11 с), капли воды и далёкий скрип камня.",
+	"silence": "Полная тишина: сравни её с остальными средами.",
+}
+var _scene_description: Label
 const LOCATIONS := [
 	["castle", "ЗАМОК — каменные залы"],
 	["courtyard", "ДВОР — ветер и камень"],
@@ -33,9 +40,9 @@ func _ready() -> void:
 	root.add_theme_constant_override("separation", 12)
 	add_child(root)
 
-	_add_label(root, "D371  •  АУДИО-ДИАГНОСТИКА", 29, Color("#f2c17a"))
-	_add_label(root, BUILD_LABEL + "  •  Если видишь D369, обновление не попало в Godot.", 16, Color("#d8b19b"))
-	_add_label(root, "ВЕРСИЯ D371: заметные фоновые звуки и ДВА независимых теста звука.", 17, Color("#e3d7c2"))
+	_add_label(root, "D372  •  ЗВУКОВЫЕ СЦЕНЫ", 29, Color("#f2c17a"))
+	_add_label(root, BUILD_LABEL + "  •  Если на экране D371, локальный проект ещё не обновлён.", 16, Color("#d8b19b"))
+	_add_label(root, "НОВЫЙ ЗВУК: больше никакого постоянного белого шума. Слушай отдельные события.", 17, Color("#e3d7c2"))
 
 	var choices := GridContainer.new()
 	choices.name = "LocationChoices"
@@ -43,6 +50,7 @@ func _ready() -> void:
 	choices.add_theme_constant_override("h_separation", 18)
 	choices.add_theme_constant_override("v_separation", 8)
 	root.add_child(choices)
+	_scene_description = _add_label(root, "Выбери звуковую сцену", 15, Color("#d8ba9a"))
 	for entry in LOCATIONS:
 		var id := String(entry[0])
 		var button := Button.new()
@@ -119,6 +127,8 @@ func _add_label(parent: Node, content: String, size: int, color: Color) -> Label
 
 func _select_location(location_id: String) -> void:
 	SoundDirector.set_location(location_id, 0.65)
+	if _scene_description != null:
+		_scene_description.text = String(SCENE_NOTES.get(location_id, ""))
 	if _status != null:
 		_status.text = "ВЫБРАНО: " + location_id + ". Подожди секунду, затем сравни другую локацию."
 
@@ -151,9 +161,9 @@ func _process(delta: float) -> void:
 	var active := ""
 	for i in range(players.size()):
 		var info: Dictionary = players[i]
-		active += "  [%d %s / %.1f dB]" % [i, "PLAY" if bool(info.get("playing", false)) else "STOP", float(info.get("gain_db", -60.0))]
+		active += "  [%d %s / %.1f dB / %.1f c]" % [i, "PLAY" if bool(info.get("playing", false)) else "STOP", float(info.get("gain_db", -60.0)), float(info.get("position_s", 0.0))]
 	var current_id: String = String(data.get("location", "unknown"))
-	_routing.text = "D371 / Location: %s  | Ambience bus: %s / %.1f dB  | WAV: %s" % [
+	_routing.text = "D372 / Location: %s  | Ambience bus: %s / %.1f dB  | WAV: %s" % [
 		current_id,
 		"OK" if bool(data.get("bus_exists", false)) else "MISSING",
 		float(data.get("bus_db", -80.0)),

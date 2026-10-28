@@ -1,3 +1,7 @@
+## ACTIVE — D372 audio texture repair (2026-10-29)
+
+Player has heard D371 but explicitly disliked it as **white noise**. Prior output device/volume diagnosis is resolved; new target is musical/sound-material **character**, not more loudness. Three original 16-second sparse environmental synthetic WAVs plus F6 D372 cue descriptions and silence/foreground contrast regressions are a **candidate** in `feature/d372-diegetic-spatial-ambience`. Do not call released until native CI and main merge. [D372 spec](D372_SPATIAL_AUDIO_SCENES.md). Oak B & D368 unchanged, user human F6 review open, A1P3 and independent RELEASE matrix pending.
+
 ## LATEST 2026-10-29 — D371 two-bus playback diagnostics
 
 [Current handoff](D372_NEW_CHAT_HANDOFF.md). User said D370 seemed unchanged; [D371 PR #36](https://github.com/zampolit73/Misdeal/pull/36) is now **merged main**, [Godot 4.7.2 native CI 78/78 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40767000965). Regenerated audible original roomtone PCM, explicit visible D371 version header in F6 `scenes/dev/d369_ambience_audition.tscn`, Master vs Ambience beep buttons, active playing/stream/meter status and preview mixer restore. **Real PC sound still unconfirmed**. Next: `git pull`, F6 scene, is **D371** header shown and which of the two tones are audible? If not D371, investigate local `git pull`/checkout instead of changing sound again. No changes to B Oak/D368/combat visuals/gameplay; A1P3 player 12+XIII and independent RELEASE matrix open.

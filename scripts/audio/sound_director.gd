@@ -107,6 +107,7 @@ func get_ambience_debug_info() -> Dictionary:
 		players.append({
 			"playing": player.playing,
 			"gain_db": player.volume_db,
+			"position_s": player.get_playback_position() if player.playing else 0.0,
 			"stream_loaded": has_stream,
 			"bus": String(player.bus),
 		})
