@@ -1,3 +1,12 @@
+## ACTIVE AFTER D371 — verify local code and sound output (2026-10-29)
+
+- [x] Reworked three synthetic 8s location ambiences to audible non-silent RMS and gave F6 scene a visibly distinct D371 version, two routed probe tones, live speaker/bus meter/player status. [PR #36](https://github.com/zampolit73/Misdeal/pull/36) merged, [native Godot 4.7.2 CI 78/78 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40767000965).
+- [ ] Player `git pull` in correct Misdeal repo. F6 `scenes/dev/d369_ambience_audition.tscn`: if large **D371** title is not there, confirm Git update/local working tree; if title is present, press **ТЕСТ 1 — MASTER**, then **ТЕСТ 2 — AMBIENCE**, and compare castle/courtyard/ossuary.
+- [ ] Real F5 sound/mix acceptance pending. Preserve B Oak and D368 combat and avoid starting soundtrack/visual redesign until the audibility issue is understood.
+- [ ] Independently full A1P3 12+XIII and RELEASE authored combat/animation matrix.
+
+[New-chat handoff](D372_NEW_CHAT_HANDOFF.md).
+
 ## ACTIVE AFTER D370 — verify sound on actual device (2026-10-28)
 
 - [x] Hotfix for D369 effectively inaudible environment, native PR [#35](https://github.com/zampolit73/Misdeal/pull/35) merged, [Godot 4.7.2 CI PASS 75/75](https://github.com/zampolit73/Misdeal/actions/runs/40732846429): -26 dB to -5 dB combined voice + bus attenuation; audible preview signal and auto-start.

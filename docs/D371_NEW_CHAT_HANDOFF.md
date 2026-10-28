@@ -1,3 +1,5 @@
+> **UPDATED BY D371 AUDIO DIAGNOSTICS (2026-10-29):** After user said prior update appeared to change nothing, [PR #36](https://github.com/zampolit73/Misdeal/pull/36) merged into main, [Godot 4.7.2 CI 78/78 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40767000965), stronger 3 roomtone WAVs and a clearly marked D371 F6 scene with two output probes and live status. This D371_NEW_CHAT_HANDOFF.md documents the earlier D370 situation. Newest checkpoint: [D372_NEW_CHAT_HANDOFF.md](D372_NEW_CHAT_HANDOFF.md). User PC audibility remains unconfirmed.
+
 # Misdeal — CURRENT NEW CHAT HANDOFF (D370 audio audibility fix, 2026-10-28)
 
 Repo `zampolit73/Misdeal` `main`; connected GitHub source of truth. Begin with `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`, `docs/HANDOFF.md` and this handoff. Relevant details: [D370_AUDIO_AUDIBILITY_FIX.md](D370_AUDIO_AUDIBILITY_FIX.md), [D369_AMBIENCE_PILOT.md](D369_AMBIENCE_PILOT.md) and [D368_COMBAT_FOLEY.md](D368_COMBAT_FOLEY.md).

@@ -1,3 +1,7 @@
+## D371 — visible audio verification required before another acoustic pass (2026-10-29)
+
+[D371 PR #36](https://github.com/zampolit73/Misdeal/pull/36) ([Godot native CI 78/78 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40767000965)) addresses the second report that *nothing seemed to change*: new stronger distinguishable synthetic roomtones (RMS ~0.078–0.100), explicit D371 diagnostic build header, independent Master/Ambience sine checks and live panner/voice/bus status. Do **not** treat a passing native Godot CI as proof of sound on the user's Windows output or infer that `git pull` succeeded. Determine installed build and whether Master, Ambience, or actual roomtones are audible. Keep production game UI and B Oak/D368 quiet sound and D365 VFX unchanged; no music.
+
 ## D370 — audible ambience is a functional requirement (2026-10-28)
 
 User correctly flagged no discernible D369 sound: default -26dB gain stacking on low-level PCM was too quiet. [PR #35](https://github.com/zampolit73/Misdeal/pull/35), [native CI 75/75](https://github.com/zampolit73/Misdeal/actions/runs/40732846429), sets ambience voice -2dB and bus -3dB (still lower than most UI/Combat). **No change** to approved Oak B and restrained D368, no added score or visual clutter. For ambient sound changes, test both *waveform non-silence and mixer headroom*, and provide a same-bus F6 audible calibration signal; do not claim Godot headless tests certify speakers or subjective timbre. Human ear check remains necessary.

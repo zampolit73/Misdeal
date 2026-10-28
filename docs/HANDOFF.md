@@ -1,3 +1,7 @@
+## LATEST 2026-10-29 — D371 two-bus playback diagnostics
+
+[Current handoff](D372_NEW_CHAT_HANDOFF.md). User said D370 seemed unchanged; [D371 PR #36](https://github.com/zampolit73/Misdeal/pull/36) is now **merged main**, [Godot 4.7.2 native CI 78/78 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40767000965). Regenerated audible original roomtone PCM, explicit visible D371 version header in F6 `scenes/dev/d369_ambience_audition.tscn`, Master vs Ambience beep buttons, active playing/stream/meter status and preview mixer restore. **Real PC sound still unconfirmed**. Next: `git pull`, F6 scene, is **D371** header shown and which of the two tones are audible? If not D371, investigate local `git pull`/checkout instead of changing sound again. No changes to B Oak/D368/combat visuals/gameplay; A1P3 player 12+XIII and independent RELEASE matrix open.
+
 ## LATEST 2026-10-28 — D370 ambience-audibility fix in main
 
 [New-chat handoff](D371_NEW_CHAT_HANDOFF.md). After user reported no D369 sound, [PR #35](https://github.com/zampolit73/Misdeal/pull/35) fixed -26dB combined ambience attenuations to -5dB, added F6 auto-start, explicit same-bus diagnostic tone and gain status. [Godot 4.7.2 CI SUCCESS 75/75](https://github.com/zampolit73/Misdeal/actions/runs/40732846429). **User has not confirmed audibility**: next action local `git pull`, F6 `scenes/dev/d369_ambience_audition.tscn` and press **ПРОВЕРИТЬ ЗВУК**, report whether tone is heard and whether the three ambient soundbeds are heard. Keep B Oak and D368 separate. 12+XIII and RELEASE matrix still open.

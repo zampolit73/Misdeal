@@ -1,3 +1,7 @@
+## D371 audio verification (2026-10-29)
+
+[Audio diagnostics and player test](D371_SOUND_DIAGNOSTICS.md) / [latest project handoff](D372_NEW_CHAT_HANDOFF.md). [PR #36](https://github.com/zampolit73/Misdeal/pull/36) / [Godot 4.7.2 CI 78/78](https://github.com/zampolit73/Misdeal/actions/runs/40767000965); no human audibility approval yet.
+
 ## D370 sound-audibility hotfix — current (2026-10-28)
 
 [Audibility root cause and test steps](D370_AUDIO_AUDIBILITY_FIX.md) / [current handoff](D371_NEW_CHAT_HANDOFF.md). [PR #35](https://github.com/zampolit73/Misdeal/pull/35) native [CI 75/75](https://github.com/zampolit73/Misdeal/actions/runs/40732846429). D369 had inaudible mixing; F6 now autoplays ambience and offers a diagnostic tone, acoustic confirmation still open.
