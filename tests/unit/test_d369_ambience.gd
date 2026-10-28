@@ -93,7 +93,7 @@ func test_audio_audition_is_real_f6_scene() -> void:
 	if scene != null:
 		var preview := scene.instantiate()
 		add_child_autofree(preview)
-		for name in ["SelectCastle", "SelectCourtyard", "SelectOssuary", "SelectSilence", "AmbienceVolume"]:
+		for name in ["SelectCastle", "SelectCourtyard", "SelectOssuary", "SelectSilence", "AmbienceVolume", "AudioChannelTestButton", "AudioChannelTest"]:
 			assert_true(preview.has_node("Background") if name == "Background" else _has_node_recursive(preview, name), "No audition UI: " + name)
 
 
@@ -104,3 +104,45 @@ func _has_node_recursive(root: Node, target_name: String) -> bool:
 		if _has_node_recursive(child, target_name):
 			return true
 	return false
+
+
+func test_ambience_mix_has_audible_headroom_without_replacing_ui_combat() -> void:
+	# D369 first release was -16 dB on the voice and -10 dB on the bus
+	# *before* multiplying by already soft PCM. That is inaudible on speakers.
+	assert_true(DIRECTOR_SCRIPT.AMBIENCE_VOICE_DB >= -5.0)
+	var ambience_bus := AudioServer.get_bus_index("Ambience")
+	assert_true(ambience_bus >= 0)
+	if ambience_bus >= 0:
+		assert_true(AudioServer.get_bus_volume_db(ambience_bus) >= -5.0)
+	assert_true(AudioServer.get_bus_index("UI") >= 0)
+	assert_true(AudioServer.get_bus_index("Combat") >= 0)
+
+
+func test_roomtone_pcm_is_non_silent_and_reaches_usable_sample_peaks() -> void:
+	for location in SAMPLES:
+		var data := FileAccess.get_file_as_bytes(SAMPLES[location])
+		var peak := 0
+		for sample_id in range(0, 128000, 256):
+			peak = maxi(peak, absi(int(data.decode_s16(44 + sample_id * 2))))
+		assert_true(peak >= 500, "Roomtone %s must not be a silent file" % location)
+
+
+func test_f6_probe_is_real_pcm_and_starts_with_castle_roomtone() -> void:
+	var scene := load("res://scenes/dev/d369_ambience_audition.tscn") as PackedScene
+	assert_not_null(scene)
+	if scene == null:
+		return
+	var booth := scene.instantiate()
+	add_child_autofree(booth)
+	var probe := booth.get_node_or_null("AudioChannelTest") as AudioStreamPlayer
+	assert_not_null(probe)
+	if probe == null:
+		return
+	assert_eq(probe.bus, "Ambience")
+	assert_true((probe.stream as AudioStreamWAV).get_length() >= 0.3)
+	var peak := 0
+	var bytes := (probe.stream as AudioStreamWAV).data
+	for sample_id in range(0, int(bytes.size() / 2), 64):
+		peak = maxi(peak, absi(int(bytes.decode_s16(sample_id * 2))))
+	assert_true(peak >= 6000, "Audition tone must be diagnostic, not inaudibly weak")
+	assert_eq(SoundDirector.get_current_location(), "castle")

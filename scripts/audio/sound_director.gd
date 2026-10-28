@@ -1,12 +1,14 @@
 extends Node
 
 # Audio 1: quiet independent UI/Combat/Ambience buses.
-# D369: optional low-level environment roomtones, never background music.
+# D369: subtle environment roomtones, never background music.
+# D369 hotfix: -26 dB of staging on already quiet PCM was near-inaudible.
+# Keep ambience below combat/UI without hiding it in the noise floor.
 const BUS_UI := "UI"
 const BUS_COMBAT := "Combat"
 const BUS_AMBIENCE := "Ambience"
 const SILENCE_DB := -60.0
-const AMBIENCE_VOICE_DB := -16.0
+const AMBIENCE_VOICE_DB := -2.0
 const LOCATION_PATHS := {
 	"castle": "res://assets/audio/ambience/d369_castle_roomtone.wav",
 	"courtyard": "res://assets/audio/ambience/d369_courtyard_roomtone.wav",
