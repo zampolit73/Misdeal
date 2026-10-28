@@ -1,3 +1,7 @@
+## D370 sound-audibility hotfix — current (2026-10-28)
+
+[Audibility root cause and test steps](D370_AUDIO_AUDIBILITY_FIX.md) / [current handoff](D371_NEW_CHAT_HANDOFF.md). [PR #35](https://github.com/zampolit73/Misdeal/pull/35) native [CI 75/75](https://github.com/zampolit73/Misdeal/actions/runs/40732846429). D369 had inaudible mixing; F6 now autoplays ambience and offers a diagnostic tone, acoustic confirmation still open.
+
 ## Latest audio handoff — D369 released (2026-10-28)
 
 [Current D370 continuation](D370_NEW_CHAT_HANDOFF.md) / [D369 location ambience QA](D369_AMBIENCE_PILOT.md). [PR #34](https://github.com/zampolit73/Misdeal/pull/34) and [Godot native CI 72/72 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40711701797); human audio F6/F5 review open. D368 battle SFX and approved B Oak remain unchanged.

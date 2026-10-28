@@ -1,3 +1,7 @@
+## LATEST 2026-10-28 — D370 ambience-audibility fix in main
+
+[New-chat handoff](D371_NEW_CHAT_HANDOFF.md). After user reported no D369 sound, [PR #35](https://github.com/zampolit73/Misdeal/pull/35) fixed -26dB combined ambience attenuations to -5dB, added F6 auto-start, explicit same-bus diagnostic tone and gain status. [Godot 4.7.2 CI SUCCESS 75/75](https://github.com/zampolit73/Misdeal/actions/runs/40732846429). **User has not confirmed audibility**: next action local `git pull`, F6 `scenes/dev/d369_ambience_audition.tscn` and press **ПРОВЕРИТЬ ЗВУК**, report whether tone is heard and whether the three ambient soundbeds are heard. Keep B Oak and D368 separate. 12+XIII and RELEASE matrix still open.
+
 ## LATEST 2026-10-28 — D369 ambience merged and verified
 
 [Current new-chat handoff](D370_NEW_CHAT_HANDOFF.md). [D369 PR #34](https://github.com/zampolit73/Misdeal/pull/34) merged as `44f2e0b`; [Godot 4.7.2 Actions SUCCESS 72/72 GUT](https://github.com/zampolit73/Misdeal/actions/runs/40711701797), import/parse/native smokes/screenshots. Three distinct synthesized castle/courtyard/ossuary eight-second roomtones and scene-context crossfade shipped; no music. Three correct `256044` byte RIFF files verified and tested after replacing malformed base64 candidates. **Human F6/F5 auditory approval not implied**; local `git pull`, F6 `scenes/dev/d369_ambience_audition.tscn`, then F5 table/open courtyard/ossuary. Oak B and D368 combat unchanged. A1P3 full human 12+XIII and independent RELEASE matrix still outstanding.

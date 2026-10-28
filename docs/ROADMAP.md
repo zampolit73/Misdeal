@@ -1,3 +1,12 @@
+## ACTIVE AFTER D370 — verify sound on actual device (2026-10-28)
+
+- [x] Hotfix for D369 effectively inaudible environment, native PR [#35](https://github.com/zampolit73/Misdeal/pull/35) merged, [Godot 4.7.2 CI PASS 75/75](https://github.com/zampolit73/Misdeal/actions/runs/40732846429): -26 dB to -5 dB combined voice + bus attenuation; audible preview signal and auto-start.
+- [ ] **User playback:** `git pull` and F6 `scenes/dev/d369_ambience_audition.tscn`; listen to automatically started castle, press **ПРОВЕРИТЬ ЗВУК**. If tone is inaudible, inspect device/master/Godot routing next. If tone audible but ambience not, revise the synth WAVs and mix from evidence.
+- [ ] F5 normal table / outdoor fight / ossuary, compare to B Oak and D368 combat; confirm human listening, not only CI.
+- [ ] A1P3 full human 12 Fate resolutions + XIII and independent RELEASE combat/animation matrix.
+
+[Continuation](D371_NEW_CHAT_HANDOFF.md).
+
 ## ACTIVE AFTER D369 RELEASE — sound listening and full Act I QA (2026-10-28)
 
 - [x] D369 muted castle / courtyard / ossuary synthetic loops and 1.6s real-context crossfades merged via [PR #34](https://github.com/zampolit73/Misdeal/pull/34); [native Godot CI 72/72 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40711701797), binary WAV validation.

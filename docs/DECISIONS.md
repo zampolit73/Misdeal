@@ -1,3 +1,7 @@
+## D370 — audible ambience is a functional requirement (2026-10-28)
+
+User correctly flagged no discernible D369 sound: default -26dB gain stacking on low-level PCM was too quiet. [PR #35](https://github.com/zampolit73/Misdeal/pull/35), [native CI 75/75](https://github.com/zampolit73/Misdeal/actions/runs/40732846429), sets ambience voice -2dB and bus -3dB (still lower than most UI/Combat). **No change** to approved Oak B and restrained D368, no added score or visual clutter. For ambient sound changes, test both *waveform non-silence and mixer headroom*, and provide a same-bus F6 audible calibration signal; do not claim Godot headless tests certify speakers or subjective timbre. Human ear check remains necessary.
+
 ## D369 — low-roomtone production implementation, acoustic approval separate (2026-10-28)
 
 [D369 PR #34](https://github.com/zampolit73/Misdeal/pull/34) merged `44f2e0b` after [Godot 4.7.2 CI 72/72 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40711701797). Scoped constant **environmental air**, *not* music: three distinct authored synthetic `castle/courtyard/ossuary` 8-second loops, default ~-26dB combined voice/bus level, 1.6s persistent crossfades, real encounter arena IDs, silence for menus and end. Preserve D368 foley, B Oak tabletop and all approved DS3/Fate/D365 quiet visuals. A technically valid mix **does not mean the player has liked its sound**; human native F6/F5 quality acceptance remains an explicit gate. No new music direction approved.

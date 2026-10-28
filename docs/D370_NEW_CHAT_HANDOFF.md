@@ -1,3 +1,5 @@
+> **SUPERSEDED BY D370 AUDIBILITY FIX (2026-10-28):** User reported no audible D369 ambient sound despite CI. [PR #35](https://github.com/zampolit73/Misdeal/pull/35) merged, [75/75 native Godot CI](https://github.com/zampolit73/Misdeal/actions/runs/40732846429); first fix was gain stacking (-26dB to -5dB), plus auto-start and an explicit Ambience-bus diagnostic tone in F6. Real listening still pending. **Current checkpoint is [D371_NEW_CHAT_HANDOFF.md](D371_NEW_CHAT_HANDOFF.md).**
+
 # Misdeal — CURRENT NEW CHAT HANDOFF (D369 release; 2026-10-28)
 
 ## First reads
