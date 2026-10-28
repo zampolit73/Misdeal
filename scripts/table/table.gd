@@ -65,6 +65,7 @@ func _ready() -> void:
 		SCENE_ROUTER.change_to(self, "res://scenes/run_end/run_end.tscn")
 		return
 
+	SoundDirector.set_location("castle")
 	offer_buttons = [offer_a_button, offer_b_button]
 	_apply_ui_kit()
 	hold_a_button.pressed.connect(_on_hold_button_pressed.bind(0))

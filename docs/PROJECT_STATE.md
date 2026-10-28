@@ -1,3 +1,7 @@
+## ACTIVE 2026-10-28 — D369 restrained ambient sound candidate
+
+[D369 audio spec](D369_AMBIENCE_PILOT.md): three 8s original synthesized `castle/courtyard/ossuary` location loops and smooth 1.6s crossfades through existing `SoundDirector` are staged in `feature/d369-subtle-ambient-spaces`. Table, actual encounter arena routing, event/reward and menu-silence hooks added; separate 0–100% Ambience control and F6 audition; 7 GUT tests. **Godot CI and human acoustic acceptance pending**. The already shipped D368 combat sound and B — Oak are unchanged; D368 F5 listening still open. No constant music, DS3/Fate/visual/gameplay changes.
+
 ## RELEASED 2026-10-28 — D368 restrained combat audio
 
 **MERGED main:** [D368 PR #33](https://github.com/zampolit73/Misdeal/pull/33) squash `20368dd822a06e234c9a5c23235c36744f01bba2`; [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/40705404555) **65/65 GUT**, import/GDScript, native smokes and screenshot capture PASS. Eight short synthetic dry combat WAVs, 6 priority-safe voices, ranged 155 ms cooldown / two alternating bow sounds and per-event procedural fallback are **live**. **F6/F5 human sound/mix acceptance remains OPEN**; CI cannot judge timbre. B Oak table unchanged and approved, D365 quiet visuals untouched, no D369 ambience/music. [Technical and listening notes](D368_COMBAT_FOLEY.md); [next-chat checkpoint](D369_NEW_CHAT_HANDOFF.md). A1P3 12+XIII and independent RELEASE battle/animation matrix still open.

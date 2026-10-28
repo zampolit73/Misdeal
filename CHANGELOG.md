@@ -1,3 +1,7 @@
+## 2026-10-28 — D369 subdued Act I ambience candidate
+
+Staged 3 separate 8-second original digitally synthesized `castle/courtyard/ossuary` roomtones (16kHz mono WAV), persistent 1.6s low-volume crossfade, battle arena-based selector, table/event/reward/intro/end routing, live Ambience mixer slider in F6 audition and 7 GUT regressions. No new music, no visual/gameplay changes, D368 combat and approved B Oak untouched. **CI/merge and human acoustic quality pending**, subject to listening. [Pilot notes](docs/D369_AMBIENCE_PILOT.md).
+
 ## 2026-10-28 — D368 battle sound release verified
 
 [PR #33](https://github.com/zampolit73/Misdeal/pull/33) merged to `main` as `20368dd822a06e234c9a5c23235c36744f01bba2`, [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/40705404555): **65/65 GUT**, import, smoke and screenshots passed. Eight short original synthetic Foley-style WAVs are live, with procedural fallbacks, 6 priority-capped Combat voices, separate bow variants and shared 155ms volley throttle; dedicated F6 scene available. D365 visuals, damage, balance, DS3/Fate and Oak B unchanged. **Real local acoustic review still open; not recorded field Foley.** Standalone RELEASE battle/animation matrix skipped.

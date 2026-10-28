@@ -157,6 +157,7 @@ func _ready() -> void:
 	continue_button.visible = false
 	continue_button.disabled = true
 	encounter = _load_selected_encounter()
+	SoundDirector.set_location(SoundDirector.location_for_arena(encounter.arena_id))
 	enemy_formation_variant = RunState.get_combat_formation_variant(
 		encounter.encounter_id, encounter.get_formation_count()
 	)

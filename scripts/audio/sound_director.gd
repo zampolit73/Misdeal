@@ -1,15 +1,31 @@
 extends Node
 
-# D366: three independent native buses. Existing procedural one-shots keep
-# working while the D367 audition bank is awaiting a sound-style approval.
+# Audio 1: quiet independent UI/Combat/Ambience buses.
+# D369: optional low-level environment roomtones, never background music.
 const BUS_UI := "UI"
 const BUS_COMBAT := "Combat"
 const BUS_AMBIENCE := "Ambience"
 const SILENCE_DB := -60.0
+const AMBIENCE_VOICE_DB := -16.0
+const LOCATION_PATHS := {
+	"castle": "res://assets/audio/ambience/d369_castle_roomtone.wav",
+	"courtyard": "res://assets/audio/ambience/d369_courtyard_roomtone.wav",
+	"ossuary": "res://assets/audio/ambience/d369_ossuary_roomtone.wav",
+}
+const OUTDOOR_ARENAS := [
+	"graveyard", "gallows", "grave_crossfire", "firing_square",
+	"black_lantern_road", "black_crossing",
+]
+const OSSUARY_ARENAS := [
+	"crypt", "ossuary", "warden", "bone_crush", "bone_swarm",
+	"bone_ritual", "defiled_laboratory",
+]
 
 var _ambience_players: Array[AudioStreamPlayer] = []
 var _ambience_slot := 0
 var _transition: Tween
+var _ambience_streams: Dictionary = {}
+var _current_location := "silence"
 
 
 func _ready() -> void:
@@ -42,25 +58,83 @@ func get_channel_volume(bus_name: String) -> float:
 	return clampf(db_to_linear(AudioServer.get_bus_volume_db(idx)), 0.0, 1.0)
 
 
-func transition_ambience(stream: AudioStream, fade_seconds: float = 0.8) -> void:
-	# Prepared for D369. Silent until a real approved ambient recording is supplied.
-	# Keeping these voices under a persistent autoload avoids cuts during scene swap.
+static func location_for_arena(arena_id: String) -> String:
+	if arena_id in OUTDOOR_ARENAS:
+		return "courtyard"
+	if arena_id in OSSUARY_ARENAS:
+		return "ossuary"
+	return "castle"
+
+
+func get_current_location() -> String:
+	return _current_location
+
+
+func set_location(location_id: String, fade_seconds: float = 1.6) -> void:
+	if location_id == _current_location:
+		return
+	if location_id == "silence":
+		_current_location = "silence"
+		transition_ambience(null, fade_seconds)
+		return
+	if not LOCATION_PATHS.has(location_id):
+		push_warning("SoundDirector: unknown ambience " + location_id)
+		return
+
+	var stream := _get_ambience_stream(location_id)
+	if stream == null:
+		# Failed asset imports should not silence the entire audio bus.
+		push_warning("SoundDirector: missing ambience for " + location_id)
+		return
+	_current_location = location_id
+	transition_ambience(stream, fade_seconds)
+
+
+func _get_ambience_stream(location_id: String) -> AudioStreamWAV:
+	if _ambience_streams.has(location_id):
+		return _ambience_streams[location_id] as AudioStreamWAV
+	var path: String = LOCATION_PATHS.get(location_id, "")
+	# The authored WAV is exactly eight seconds; use Godot's imported stream.
+	# Its source RIFF length is verified by GUT before shipping.
+	var stream := load(path) as AudioStreamWAV
+	if stream == null:
+		return null
+	stream.loop_begin = 0
+	stream.loop_end = maxi(1, int(round(stream.get_length() * float(stream.mix_rate))))
+	stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+	_ambience_streams[location_id] = stream
+	return stream
+
+
+func transition_ambience(stream: AudioStream, fade_seconds: float = 1.6) -> void:
 	if _ambience_players.size() != 2:
 		return
 	if _transition != null and _transition.is_valid():
 		_transition.kill()
-	var current := _ambience_players[_ambience_slot]
-	var next_slot := 1 - _ambience_slot
-	var incoming := _ambience_players[next_slot]
-	incoming.stop()
-	if stream != null:
-		incoming.stream = stream
-		incoming.volume_db = SILENCE_DB
-		incoming.play()
+
+	var duration := maxf(0.05, fade_seconds)
 	_transition = create_tween()
 	_transition.set_parallel(true)
-	_transition.tween_property(current, "volume_db", SILENCE_DB, maxf(0.05, fade_seconds))
-	if stream != null:
-		_transition.tween_property(incoming, "volume_db", 0.0, maxf(0.05, fade_seconds))
-	_transition.chain().tween_callback(current.stop)
-	_ambience_slot = next_slot
+	if stream == null:
+		# Fade any partially crossfaded voices too, not just the current slot.
+		for player in _ambience_players:
+			_transition.tween_property(player, "volume_db", SILENCE_DB, duration)
+		_transition.chain().tween_callback(_stop_ambience_voices)
+		return
+
+	var outgoing := _ambience_players[_ambience_slot]
+	var incoming_slot := 1 - _ambience_slot
+	var incoming := _ambience_players[incoming_slot]
+	incoming.stop()
+	incoming.stream = stream
+	incoming.volume_db = SILENCE_DB
+	incoming.play()
+	_transition.tween_property(outgoing, "volume_db", SILENCE_DB, duration)
+	_transition.tween_property(incoming, "volume_db", AMBIENCE_VOICE_DB, duration)
+	_transition.chain().tween_callback(outgoing.stop)
+	_ambience_slot = incoming_slot
+
+
+func _stop_ambience_voices() -> void:
+	for player in _ambience_players:
+		player.stop()

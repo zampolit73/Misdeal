@@ -1,3 +1,5 @@
+> **D369 IMPLEMENTATION STARTED 2026-10-28:** This prior handoff captures the D368 release baseline. Newer ambient-audio candidate and validation gates: [D369_AMBIENCE_PILOT.md](D369_AMBIENCE_PILOT.md) on `feature/d369-subtle-ambient-spaces`. Once released, check the latest top-level PROJECT_STATE.md for final commit and CI. Do not infer player auditory approval.
+
 # Misdeal — CURRENT NEW CHAT HANDOFF (2026-10-28 / D368 release)
 
 ## Source of truth

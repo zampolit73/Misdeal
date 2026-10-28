@@ -1,3 +1,12 @@
+## ACTIVE 2026-10-28 — D369 atmospheric audio
+
+- [x] D369 three short seamless synthesized roomtones (castle, courtyard, ossuary), venue-driven `SoundDirector` crossfade, F6 preview and regression tests staged on `feature/d369-subtle-ambient-spaces`.
+- [ ] Native Godot 4.7.x CI and PR merge after PASS; do not call a prototype acoustically approved without real listening.
+- [ ] Local `git pull`, F6 `scenes/dev/d369_ambience_audition.tscn`, F5 table / Firing Square / ossuary battle. Listen for loop seams, mix masking, ambient fatigue; keep table Oak B intact.
+- [ ] Finish player D368 combat/ Oak live-table sound QA, A1P3 full 12+XIII run and standalone RELEASE battle/animation matrix.
+
+[Full notes](D369_AMBIENCE_PILOT.md).
+
 ## ACTIVE 2026-10-28 — D368 merged, audio listening next
 
 - [x] D368 8 synthesized battle SFX, priority-safe anti-machinegun bow mix, F6 audition, 5 GUT regressions; [PR #33](https://github.com/zampolit73/Misdeal/pull/33) and [native CI SUCCESS 65/65](https://github.com/zampolit73/Misdeal/actions/runs/40705404555).
