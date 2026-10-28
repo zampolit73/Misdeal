@@ -1,3 +1,7 @@
+## LATEST 2026-10-29 — D372 sparse ambiance in main
+
+[Newest new-chat checkpoint](D373_NEW_CHAT_HANDOFF.md). Player confirmed D371 audio output but called it **white noise**. D372 [PR #37](https://github.com/zampolit73/Misdeal/pull/37) merged `68223fa`, [Godot native 79/79 GUT SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/40769450969), WAV source lengths 16s, dynamic sparse creaks/gate/bone/drips and quiet gaps, F6 D372 cue timeline. **Native CI is not artistic ear approval.** Ask user to `git pull`, F6 `scenes/dev/d369_ambience_audition.tscn`, listen full 16s for all three and say whether they now sound like a place. If still synthetic: stop iterating noise and propose true recorded CC0/licensed Foley. Keep B Oak/D368 and all mechanics/visuals unchanged. A1P3 player 12+XIII and independent RELEASE matrix open.
+
 ## ACTIVE — D372 audio texture repair (2026-10-29)
 
 Player has heard D371 but explicitly disliked it as **white noise**. Prior output device/volume diagnosis is resolved; new target is musical/sound-material **character**, not more loudness. Three original 16-second sparse environmental synthetic WAVs plus F6 D372 cue descriptions and silence/foreground contrast regressions are a **candidate** in `feature/d372-diegetic-spatial-ambience`. Do not call released until native CI and main merge. [D372 spec](D372_SPATIAL_AUDIO_SCENES.md). Oak B & D368 unchanged, user human F6 review open, A1P3 and independent RELEASE matrix pending.

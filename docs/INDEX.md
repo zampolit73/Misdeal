@@ -1,3 +1,7 @@
+## Current — D372 environmental audio redesign (2026-10-29)
+
+[New-chat handoff](D373_NEW_CHAT_HANDOFF.md) / [D372 audio spec and F6 QA](D372_SPATIAL_AUDIO_SCENES.md). [PR #37](https://github.com/zampolit73/Misdeal/pull/37), [Godot CI 79/79](https://github.com/zampolit73/Misdeal/actions/runs/40769450969). Acoustic naturalness **awaits player listening**; no automatically assumed acceptance.
+
 ## D371 audio verification (2026-10-29)
 
 [Audio diagnostics and player test](D371_SOUND_DIAGNOSTICS.md) / [latest project handoff](D372_NEW_CHAT_HANDOFF.md). [PR #36](https://github.com/zampolit73/Misdeal/pull/36) / [Godot 4.7.2 CI 78/78](https://github.com/zampolit73/Misdeal/actions/runs/40767000965); no human audibility approval yet.

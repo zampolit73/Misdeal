@@ -1,3 +1,5 @@
+> **RELEASE STATUS 2026-10-29:** [D372 PR #37](https://github.com/zampolit73/Misdeal/pull/37) merged `68223fa00dfcbde7e9f6196298ed12062017affe`, [native Godot 4.7.2 CI SUCCESS 79/79](https://github.com/zampolit73/Misdeal/actions/runs/40769450969), WAV import/source-duration/dynamic-contrast regressions, native smokes/screenshots. Initial candidate language below is historical. **Player ear acceptance OPEN; no claim of recorded Foley or confirmed naturalness.**
+
 # D372 — sparse atmospheric sound scenes, not continuous hiss
 
 ## User feedback that drove this change

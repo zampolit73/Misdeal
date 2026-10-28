@@ -1,3 +1,7 @@
+## D372 — production rule: discrete environmental sounds over endless broadband noise (2026-10-29)
+
+The user's "just white noise" report led to [PR #37](https://github.com/zampolit73/Misdeal/pull/37), [Godot 4.7.2 CI 79/79 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40769450969). Ship **sparse 16s material events** (castle timber and stone/iron, courtyard intermittent wind+metal gate, ossuary separate dry bones and water drips), with verifiable near-silent gaps and limited delay tails. No generic hiss bed, no music. The current audio is **synthesized**, not recorded realism; quality approval is *not* implied by passing technical tests and may require later CC0/licensed authentic Foley. Preserve approved B Oak, restrained D368, D365 declutter and all game systems.
+
 ## D372 — reject constant noise as Misdeal environmental audio (2026-10-29)
 
 Player directly rejected D371's clearly audible *white-noise* environment. Direction: low information density must mean **near-silent gaps plus diegetic audible material cues**, not constant broadband noise whose volume has been turned down. Initial 16s synth prototype makes wood, iron, stones, gusts and bones distinct via isolated events and timed preview; **real field recordings remain a possible future artistic quality pass if synthetic results are unsatisfactory**. Approval pending. Preserve user-approved B Oak, existing quiet D368 combat and D365 non-intrusive visuals; no soundtrack.

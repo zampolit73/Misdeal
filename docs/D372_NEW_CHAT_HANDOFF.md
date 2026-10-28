@@ -1,3 +1,5 @@
+> **D372 RELEASED after user feedback (2026-10-29):** [PR #37](https://github.com/zampolit73/Misdeal/pull/37) merged after [native Godot 4.7.2 CI 79/79 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40769450969), three 16-second sparse sound scenes and F6 D372 listening notes. This previous D371-release handoff is historical. Read [D373_NEW_CHAT_HANDOFF.md](D373_NEW_CHAT_HANDOFF.md) for up-to-date state. User subjective approval still missing.
+
 # Misdeal — CURRENT NEW CHAT HANDOFF (D371 audio diagnostics release, 2026-10-29)
 
 **GitHub technical source of truth:** `zampolit73/Misdeal`, `main`. Start with `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`, `docs/HANDOFF.md`, this file and `docs/D371_SOUND_DIAGNOSTICS.md`. Do not infer that locally installed changes match GitHub without the user's observed version.

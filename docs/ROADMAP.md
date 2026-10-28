@@ -1,3 +1,12 @@
+## ACTIVE 2026-10-29 — D372 shipped; player acoustic review next
+
+- [x] Replaced white-noise D371 ambience with three sparse 16-second event-led original synthetic location scenes; [D372 PR #37](https://github.com/zampolit73/Misdeal/pull/37) merged, [native Godot 4.7.2 CI SUCCESS 79/79](https://github.com/zampolit73/Misdeal/actions/runs/40769450969), import/parse/smokes/screenshots.
+- [ ] User `git pull`, F6 `scenes/dev/d369_ambience_audition.tscn`. Confirm header **D372**; listen to full 16s for castle (wood, stone, iron), courtyard (wind gust and gate) and ossuary (bone click, drip), comparing against silence. **Is it identifiable atmosphere or still synthetic/noise?** Real ears required.
+- [ ] If still artificial, prioritize properly licensed/recorded acoustic Foley; do not endlessly amplify noise or add music without approval. F5 live table / Firing Square / ossuary relative mix after F6.
+- [ ] A1P3 actual 12+XIII full player run and separately dispatched full RELEASE authored battle/animation matrix.
+
+[Current continuation](D373_NEW_CHAT_HANDOFF.md).
+
 ## ACTIVE — D372 replace noise with sparse sound events (2026-10-29)
 
 - [x] After user confirmed "звук появился — но это просто белый шум", build 3 **non-continuous** original synthetic 16s candidate sound scenes with quiet spaces, identifiable creaks/gate/stone/bones/drips; D372 F6 cue descriptions and contrast GUT.
