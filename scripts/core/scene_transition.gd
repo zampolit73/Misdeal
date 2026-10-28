@@ -75,6 +75,12 @@ func change_to(scene_path: String) -> void:
 	# where the viewport has no scene beneath the persistent autoload layer.
 	tree.root.add_child(next_scene)
 	tree.current_scene = next_scene
+	# D369: chapter transitions retain the same persistent ambience mixer.
+	# Table and Battle select their precise location in their own _ready().
+	if scene_path.contains("/event/") or scene_path.contains("/reward/"):
+		SoundDirector.set_location("castle")
+	elif scene_path.contains("/run_end/") or scene_path.contains("/intro/") or scene_path.contains("/class_select/") or scene_path.contains("/main/"):
+		SoundDirector.set_location("silence")
 
 	if old_scene != null and old_scene != next_scene:
 		old_scene.queue_free()

@@ -1,3 +1,7 @@
+## D369 — low-level location roomtone, not soundtrack (2026-10-28)
+
+D369 pilot scope: three original **synthetic** short ambient loops, specific to interior castle, open courtyard and ossuary, default ~-26dB combined level via native Ambience bus, gentle 1.6-second fades in persistent SoundDirector, and explicit silence on menus/final screen. No compulsory score, hero/encounter gameplay changes, visual effects or alteration to D368 foley and approved B — Oak. Native technical CI and human subjective audio approval are separate gates. [Design/test contract](D369_AMBIENCE_PILOT.md).
+
 ## D368 — implementation verified, audio aesthetic still provisional (2026-10-28)
 
 [D368 PR #33](https://github.com/zampolit73/Misdeal/pull/33) has landed on `main` (`20368dd`, [Godot 4.7.2 CI 65/65 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40705404555)). The approved design constraint is **quiet/low-density combat sound**: sparse, short metal/bone/bow/bell/boss accents, six prioritized voices, family cooldown and no gameplay/VFX changes; Oak B preserved. The eight current samples are authored **synthetic Foley-style prototypes** that passed engineering checks **but are not yet ear-approved**. Local F6/F5 listening can trigger a focused retune without altering game rules.

@@ -1,3 +1,7 @@
+## LATEST 2026-10-28 — D369 ambient candidate
+
+[D369_AMBIENCE_PILOT.md](D369_AMBIENCE_PILOT.md) describes three separate low-level synthetic ambience environments and persistent crossfade, staged in `feature/d369-subtle-ambient-spaces`, with F6 listening scene and GUT. **Check PR CI/merge before asking local git pull; ear acceptance is separate.** D368 shipped as PR #33 / 65 GUT, still unapproved on listening; selected Oak B unchanged. Fate Spread/DS3/D365 quiet-combat visuals unchanged. A1P3 player full 12+XIII and independent RELEASE combat/animation matrix open.
+
 ## LATEST 2026-10-28 — D368 shipped; human listening gate, then D369
 
 Read [D369_NEW_CHAT_HANDOFF.md](D369_NEW_CHAT_HANDOFF.md). [D368 PR #33](https://github.com/zampolit73/Misdeal/pull/33) merged `20368dd` after [Godot 4.7.2 Actions SUCCESS 65/65](https://github.com/zampolit73/Misdeal/actions/runs/40705404555). Eight dry synthetic combat WAVs with archer anti-spam, 6 priority-aware voices, fallback and F6 audition now live. **The player's ear has not approved this timbre/mix yet.** After `git pull`, F6 D368 audio room, F5 Firing Square / Iron Wall / Last Bell. B Oak remains untouched, D365 no-hover/no-arrow VFX rules locked. Next D369 gentle ambience (not music), pending review. A1P3 player full 12+XIII and independent RELEASE matrix still pending.
