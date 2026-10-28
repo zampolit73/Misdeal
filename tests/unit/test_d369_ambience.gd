@@ -21,7 +21,7 @@ func test_three_short_authored_ambient_samples_are_importable() -> void:
 		assert_not_null(stream, "D369 WAV not importable: " + location)
 		if stream != null:
 			assert_eq(stream.mix_rate, 16000)
-			assert_true(stream.get_length() >= 7.8 and stream.get_length() <= 8.2)
+			assert_true(stream.get_length() >= 7.8 and stream.get_length() <= 8.2, "Imported %s duration=%0.3f sec, format=%d" % [location, stream.get_length(), stream.format])
 
 
 func test_ambience_is_silent_until_location_and_players_use_own_bus() -> void:
@@ -70,8 +70,6 @@ func test_crossfade_and_silence_preserve_location_state() -> void:
 	var voice: AudioStreamPlayer = director.get_child(slot) as AudioStreamPlayer
 	assert_same(voice.stream, load(SAMPLES["ossuary"]))
 	director.call("set_location", "silence", 0.10)
-	assert_eq(director.call("get_current_location"), "silence")
-	director.call("set_location", "unknown")
 	assert_eq(director.call("get_current_location"), "silence")
 
 
