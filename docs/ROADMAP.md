@@ -1,3 +1,13 @@
+## ACTIVE AFTER D369 RELEASE — sound listening and full Act I QA (2026-10-28)
+
+- [x] D369 muted castle / courtyard / ossuary synthetic loops and 1.6s real-context crossfades merged via [PR #34](https://github.com/zampolit73/Misdeal/pull/34); [native Godot CI 72/72 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40711701797), binary WAV validation.
+- [ ] **Human F6** `scenes/dev/d369_ambience_audition.tscn`: three roomtones, silence, smooth transitions and volume over full loop. **F5** table, open courtyard battle and ossuary/boss; listen for masking and artificial repetition.
+- [ ] Human D368 battle foley and approved B Oak live-table mix recheck remains open; retune only from actual sound feedback.
+- [ ] Independently perform full A1P3 F5 12 resolutions + XIII and the authored RELEASE combat/animation matrix (CI PR smoke does not satisfy these).
+- [ ] No new soundtrack/music is approved or queued by default.
+
+[Current continuation](D370_NEW_CHAT_HANDOFF.md). Earlier candidate entries are historical.
+
 ## ACTIVE 2026-10-28 — D369 atmospheric audio
 
 - [x] D369 three short seamless synthesized roomtones (castle, courtyard, ossuary), venue-driven `SoundDirector` crossfade, F6 preview and regression tests staged on `feature/d369-subtle-ambient-spaces`.

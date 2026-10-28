@@ -1,3 +1,7 @@
+## 2026-10-28 — D369 subdued roomtone released
+
+[PR #34](https://github.com/zampolit73/Misdeal/pull/34) squash `44f2e0b75df9861d820e36589c8cdc66d5a79596`; [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/40711701797) **72/72 GUT**, imports, native smokes and screenshots. Added three original correctly encoded (256044-byte each) 8-second synthetic `castle/courtyard/ossuary` WAVs, dedicated persistent Ambience crossfade at 1.6s, arena/table/reward/event/menu routing, adjustable separate bus and F6 audition scene. A failed first candidate's malformed Base64 WAV files were replaced and checked by Git tree before successful CI. No music, gameplay/visual changes, Oak B or D368 modifications. **F6/F5 actual acoustic review open; standalone RELEASE matrix skipped.**
+
 ## 2026-10-28 — D369 subdued Act I ambience candidate
 
 Staged 3 separate 8-second original digitally synthesized `castle/courtyard/ossuary` roomtones (16kHz mono WAV), persistent 1.6s low-volume crossfade, battle arena-based selector, table/event/reward/intro/end routing, live Ambience mixer slider in F6 audition and 7 GUT regressions. No new music, no visual/gameplay changes, D368 combat and approved B Oak untouched. **CI/merge and human acoustic quality pending**, subject to listening. [Pilot notes](docs/D369_AMBIENCE_PILOT.md).

@@ -1,3 +1,7 @@
+## LATEST 2026-10-28 — D369 ambience merged and verified
+
+[Current new-chat handoff](D370_NEW_CHAT_HANDOFF.md). [D369 PR #34](https://github.com/zampolit73/Misdeal/pull/34) merged as `44f2e0b`; [Godot 4.7.2 Actions SUCCESS 72/72 GUT](https://github.com/zampolit73/Misdeal/actions/runs/40711701797), import/parse/native smokes/screenshots. Three distinct synthesized castle/courtyard/ossuary eight-second roomtones and scene-context crossfade shipped; no music. Three correct `256044` byte RIFF files verified and tested after replacing malformed base64 candidates. **Human F6/F5 auditory approval not implied**; local `git pull`, F6 `scenes/dev/d369_ambience_audition.tscn`, then F5 table/open courtyard/ossuary. Oak B and D368 combat unchanged. A1P3 full human 12+XIII and independent RELEASE matrix still outstanding.
+
 ## LATEST 2026-10-28 — D369 ambient candidate
 
 [D369_AMBIENCE_PILOT.md](D369_AMBIENCE_PILOT.md) describes three separate low-level synthetic ambience environments and persistent crossfade, staged in `feature/d369-subtle-ambient-spaces`, with F6 listening scene and GUT. **Check PR CI/merge before asking local git pull; ear acceptance is separate.** D368 shipped as PR #33 / 65 GUT, still unapproved on listening; selected Oak B unchanged. Fate Spread/DS3/D365 quiet-combat visuals unchanged. A1P3 player full 12+XIII and independent RELEASE combat/animation matrix open.

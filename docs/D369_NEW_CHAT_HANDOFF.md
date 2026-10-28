@@ -1,3 +1,5 @@
+> **D369 FINAL RELEASE 2026-10-28:** [PR #34](https://github.com/zampolit73/Misdeal/pull/34) merged `44f2e0b75df9861d820e36589c8cdc66d5a79596`, [native CI 72/72 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40711701797), 3 verified correctly encoded source WAVs and native Godot scene checks. This file describes the earlier D368 checkpoint and D369 candidate stage. New source of truth: [D370_NEW_CHAT_HANDOFF.md](D370_NEW_CHAT_HANDOFF.md). **Auditory quality still needs local F6/F5 review.**
+
 > **D369 IMPLEMENTATION STARTED 2026-10-28:** This prior handoff captures the D368 release baseline. Newer ambient-audio candidate and validation gates: [D369_AMBIENCE_PILOT.md](D369_AMBIENCE_PILOT.md) on `feature/d369-subtle-ambient-spaces`. Once released, check the latest top-level PROJECT_STATE.md for final commit and CI. Do not infer player auditory approval.
 
 # Misdeal — CURRENT NEW CHAT HANDOFF (2026-10-28 / D368 release)

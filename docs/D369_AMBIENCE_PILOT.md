@@ -1,3 +1,5 @@
+> **RELEASE VERIFIED 2026-10-28:** [D369 PR #34](https://github.com/zampolit73/Misdeal/pull/34) merged `44f2e0b` into `main`; [Godot 4.7.2 CI 72/72 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40711701797) after checking **256044-byte** valid source RIFF/WAV for each of the three 8s loops. Import/parse, GUT, native smoke and screenshots PASS. Historical candidate/CI-pending text below is superseded. **Local sound-quality approval remains OPEN.** No music and no separate full RELEASE combat matrix.
+
 # D369 — quiet environmental audio for Act I (2026-10-28)
 
 ## Creative direction and scope

@@ -1,3 +1,7 @@
+## Latest audio handoff — D369 released (2026-10-28)
+
+[Current D370 continuation](D370_NEW_CHAT_HANDOFF.md) / [D369 location ambience QA](D369_AMBIENCE_PILOT.md). [PR #34](https://github.com/zampolit73/Misdeal/pull/34) and [Godot native CI 72/72 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40711701797); human audio F6/F5 review open. D368 battle SFX and approved B Oak remain unchanged.
+
 ## Latest audio release (2026-10-28)
 
 [D368 combat sound QA / implementation](D368_COMBAT_FOLEY.md) and [D369 current new-chat handoff](D369_NEW_CHAT_HANDOFF.md). D368 merged to main via [PR #33](https://github.com/zampolit73/Misdeal/pull/33), [Godot CI 65/65 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40705404555); F6/F5 ear acceptance still pending.
