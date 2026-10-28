@@ -1,3 +1,7 @@
+## 2026-10-28 — D368 restrained combat sound pilot (candidate)
+
+Staged 8 short 24 kHz mono PCM **synthetic** steel/bow(×2)/magic/bone impact/death/heal bell/boss samples, direct live CombatAudio integration with procedural fallback, a maximum of six priority-aware voices and family-level anti-machinegun throttles. Added F6 `scenes/dev/d368_combat_audio_audition.tscn`, 5 GUT checks and [auditory QA handoff](docs/D368_COMBAT_FOLEY.md). **Native CI and F5 ear acceptance pending**; B Oak and all mechanics/visuals unchanged.
+
 ## LATEST 2026-10-28 — Definitive Audio 1 handoff
 
 [Current concise handoff](D368_NEW_CHAT_HANDOFF.md). **B — Oak already selected and live in main** via [PR #32](https://github.com/zampolit73/Misdeal/pull/32) `6d39c4e`, [CI success 60/60](https://github.com/zampolit73/Misdeal/actions/runs/40532236638). F5 live audio mix check pending. Next **D368** dry combat sound pilot then **D369** restrained ambient audio. Fate Spread untouched; D365 quiet-combat visual rule locked. Older notes below are historical.

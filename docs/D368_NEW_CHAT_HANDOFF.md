@@ -1,3 +1,5 @@
+> **D368 work started 2026-10-28:** This pre-implementation checkpoint remains relevant for locked game/visual/Oak decisions, but the more recent **combat foley candidate** is documented in [D368_COMBAT_FOLEY.md](D368_COMBAT_FOLEY.md). Check branch/CI and human ear gate before calling D368 released.
+
 # Misdeal — CURRENT NEW CHAT HANDOFF (2026-10-28)
 
 This is the **latest concise checkpoint**. Current technical truth: `zampolit73/Misdeal`, branch `main`; read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`, and this file first. Historical stale sections under later headers must not override the latest release.
