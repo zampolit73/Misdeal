@@ -93,7 +93,7 @@ func test_audio_audition_is_real_f6_scene() -> void:
 	if scene != null:
 		var preview := scene.instantiate()
 		add_child_autofree(preview)
-		for name in ["SelectCastle", "SelectCourtyard", "SelectOssuary", "SelectSilence", "AmbienceVolume", "AudioChannelTestButton", "AudioChannelTest"]:
+		for name in ["SelectCastle", "SelectCourtyard", "SelectOssuary", "SelectSilence", "AmbienceVolume", "MasterTestButton", "AudioChannelMaster", "AudioChannelTestButton", "AudioChannelTest", "AudioCheckContent"]:
 			assert_true(preview.has_node("Background") if name == "Background" else _has_node_recursive(preview, name), "No audition UI: " + name)
 
 
@@ -146,3 +146,49 @@ func test_f6_probe_is_real_pcm_and_starts_with_castle_roomtone() -> void:
 		peak = maxi(peak, absi(int(bytes.decode_s16(sample_id * 2))))
 	assert_true(peak >= 6000, "Audition tone must be diagnostic, not inaudibly weak")
 	assert_eq(SoundDirector.get_current_location(), "castle")
+
+
+func test_d371_audible_roomtones_are_not_near_silent() -> void:
+	# User reported no audible effect; assert actual RMS energy, not just a
+	# single clipped peak at one offset or that WAV imported successfully.
+	for location in SAMPLES:
+		var wav := FileAccess.get_file_as_bytes(SAMPLES[location])
+		var sum_sq := 0.0
+		var samples := 0
+		for frame in range(0, 128000, 16):
+			var value := float(wav.decode_s16(44 + frame * 2)) / 32768.0
+			sum_sq += value * value
+			samples += 1
+		var rms := sqrt(sum_sq / float(maxi(1, samples)))
+		assert_true(rms >= 0.055 and rms <= 0.22, "%s RMS %.3f should be audible but restrained" % [location, rms])
+
+
+func test_d371_debug_exposes_native_bus_and_player_status() -> void:
+	var director := _new_director()
+	var before: Dictionary = director.call("get_ambience_debug_info")
+	assert_eq(before.get("location"), "silence")
+	assert_true(bool(before.get("bus_exists", false)))
+	assert_eq((before.get("players") as Array).size(), 2)
+	director.call("set_location", "castle", 0.05)
+	var after: Dictionary = director.call("get_ambience_debug_info")
+	assert_eq(after.get("location"), "castle")
+	assert_true(bool(after.get("stream_loaded", false)))
+
+
+func test_d371_preview_version_and_two_bus_probes() -> void:
+	var scene := load("res://scenes/dev/d369_ambience_audition.tscn") as PackedScene
+	assert_not_null(scene)
+	if scene == null:
+		return
+	var preview := scene.instantiate()
+	add_child_autofree(preview)
+	assert_eq(preview.get("BUILD_LABEL"), "D371 / AUDIO-CHECK / 2026-10-29")
+	var master := preview.get_node_or_null("AudioChannelMaster") as AudioStreamPlayer
+	var ambience := preview.get_node_or_null("AudioChannelTest") as AudioStreamPlayer
+	assert_not_null(master)
+	assert_not_null(ambience)
+	if master != null and ambience != null:
+		assert_eq(master.bus, "Master")
+		assert_eq(ambience.bus, "Ambience")
+		assert_same(master.stream, ambience.stream)
+		assert_true(master.stream.get_length() >= 0.45)
