@@ -15,16 +15,16 @@ func _new_director() -> Node:
 	return director
 
 
-func test_three_short_authored_ambient_samples_are_importable() -> void:
+func test_three_authored_environment_scenes_are_importable() -> void:
 	for location in SAMPLES:
 		var stream := load(SAMPLES[location]) as AudioStreamWAV
 		assert_not_null(stream, "D369 WAV not importable: " + location)
 		if stream != null:
 			assert_eq(stream.mix_rate, 16000)
 			# Verify Godot imports the intact authored eight-second WAV source.
-			assert_true(stream.get_length() >= 7.8 and stream.get_length() <= 8.2)
+			assert_true(stream.get_length() >= 15.8 and stream.get_length() <= 16.2)
 			var source := FileAccess.get_file_as_bytes(SAMPLES[location])
-			assert_eq(source.size(), 256044, "The original 8-second PCM source must be complete")
+			assert_eq(source.size(), 512044, "The original 16-second PCM scene must be complete")
 
 
 func test_ambience_is_silent_until_location_and_players_use_own_bus() -> void:
@@ -58,8 +58,8 @@ func test_location_streams_loop_and_same_location_does_not_restart() -> void:
 	assert_not_null(stream)
 	if stream != null:
 		assert_eq(stream.loop_mode, AudioStreamWAV.LOOP_FORWARD)
-		assert_true(stream.loop_end >= 124800 and stream.loop_end <= 131200)
-		assert_true(stream.get_length() >= 7.8 and stream.get_length() <= 8.2)
+		assert_true(stream.loop_end >= 252800 and stream.loop_end <= 259200)
+		assert_true(stream.get_length() >= 15.8 and stream.get_length() <= 16.2)
 	director.call("set_location", "castle")
 	assert_eq(int(director.get("_ambience_slot")), slot)
 	assert_same(voice.stream, stream)
@@ -73,7 +73,7 @@ func test_crossfade_and_silence_preserve_location_state() -> void:
 	var slot := int(director.get("_ambience_slot"))
 	var voice: AudioStreamPlayer = director.get_child(slot) as AudioStreamPlayer
 	assert_same(voice.stream, load(SAMPLES["ossuary"]))
-	assert_true((voice.stream as AudioStreamWAV).loop_end >= 124800)
+	assert_true((voice.stream as AudioStreamWAV).loop_end >= 252800)
 	director.call("set_location", "silence", 0.10)
 	assert_eq(director.call("get_current_location"), "silence")
 
@@ -122,7 +122,7 @@ func test_roomtone_pcm_is_non_silent_and_reaches_usable_sample_peaks() -> void:
 	for location in SAMPLES:
 		var data := FileAccess.get_file_as_bytes(SAMPLES[location])
 		var peak := 0
-		for sample_id in range(0, 128000, 256):
+		for sample_id in range(0, 256000, 256):
 			peak = maxi(peak, absi(int(data.decode_s16(44 + sample_id * 2))))
 		assert_true(peak >= 500, "Roomtone %s must not be a silent file" % location)
 
@@ -148,19 +148,37 @@ func test_f6_probe_is_real_pcm_and_starts_with_castle_roomtone() -> void:
 	assert_eq(SoundDirector.get_current_location(), "castle")
 
 
-func test_d371_audible_roomtones_are_not_near_silent() -> void:
-	# User reported no audible effect; assert actual RMS energy, not just a
-	# single clipped peak at one offset or that WAV imported successfully.
+func test_d372_sparse_scenes_have_silence_and_distinct_local_events() -> void:
+	# A noise-only soundtrack can pass 'not silent' and RMS tests while sounding
+	# like a continuous hiss. Assert dynamic contrast: mostly quiet, localized
+	# events with audible foreground. These tests do not replace human listening.
 	for location in SAMPLES:
-		var wav := FileAccess.get_file_as_bytes(SAMPLES[location])
-		var sum_sq := 0.0
-		var samples := 0
-		for frame in range(0, 128000, 16):
-			var value := float(wav.decode_s16(44 + frame * 2)) / 32768.0
-			sum_sq += value * value
-			samples += 1
-		var rms := sqrt(sum_sq / float(maxi(1, samples)))
-		assert_true(rms >= 0.055 and rms <= 0.22, "%s RMS %.3f should be audible but restrained" % [location, rms])
+		var raw := FileAccess.get_file_as_bytes(SAMPLES[location])
+		assert_eq(raw.size(), 512044)
+		var first_second := _window_rms(raw, 0.0, 1.0)
+		var active_second := _max_window_rms(raw)
+		assert_true(first_second < 0.016, "%s must have a near-silent entrance (%.3f)" % [location, first_second])
+		assert_true(active_second > first_second * 4.0, "%s must have distinct audible events (%.3f)" % [location, active_second])
+		assert_true(active_second >= 0.025, "%s foreground must be loud enough" % location)
+
+
+func _window_rms(raw: PackedByteArray, start_s: float, length_s: float) -> float:
+	var begin := roundi(start_s * 16000.0)
+	var end := roundi((start_s + length_s) * 16000.0)
+	var total := 0.0
+	var n := 0
+	for frame in range(begin, mini(end, 256000), 20):
+		var sample := float(raw.decode_s16(44 + frame * 2)) / 32768.0
+		total += sample * sample
+		n += 1
+	return sqrt(total / float(maxi(n, 1)))
+
+
+func _max_window_rms(raw: PackedByteArray) -> float:
+	var loudest := 0.0
+	for sec in range(0, 16):
+		loudest = maxf(loudest, _window_rms(raw, float(sec), 1.0))
+	return loudest
 
 
 func test_d371_debug_exposes_native_bus_and_player_status() -> void:
@@ -182,7 +200,7 @@ func test_d371_preview_version_and_two_bus_probes() -> void:
 		return
 	var preview := scene.instantiate()
 	add_child_autofree(preview)
-	assert_eq(preview.get("BUILD_LABEL"), "D371 / AUDIO-CHECK / 2026-10-29")
+	assert_eq(preview.get("BUILD_LABEL"), "D372 / SPATIAL-AMBIENCE / 2026-10-29")
 	var master := preview.get_node_or_null("AudioChannelMaster") as AudioStreamPlayer
 	var ambience := preview.get_node_or_null("AudioChannelTest") as AudioStreamPlayer
 	assert_not_null(master)
@@ -192,3 +210,11 @@ func test_d371_preview_version_and_two_bus_probes() -> void:
 		assert_eq(ambience.bus, "Ambience")
 		assert_same(master.stream, ambience.stream)
 		assert_true(master.stream.get_length() >= 0.45)
+
+
+func test_d372_routed_audition_explains_nonwhite_noise_story() -> void:
+	var text := FileAccess.get_file_as_string("res://scripts/dev/d369_ambience_audition.gd")
+	assert_true(text.contains("Скрип балок"))
+	assert_true(text.contains("Порывы ветра"))
+	assert_true(text.contains("Костяные щелчки"))
+	assert_true(text.contains("D372"))

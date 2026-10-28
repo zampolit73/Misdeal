@@ -1,3 +1,7 @@
+## D372 — reject constant noise as Misdeal environmental audio (2026-10-29)
+
+Player directly rejected D371's clearly audible *white-noise* environment. Direction: low information density must mean **near-silent gaps plus diegetic audible material cues**, not constant broadband noise whose volume has been turned down. Initial 16s synth prototype makes wood, iron, stones, gusts and bones distinct via isolated events and timed preview; **real field recordings remain a possible future artistic quality pass if synthetic results are unsatisfactory**. Approval pending. Preserve user-approved B Oak, existing quiet D368 combat and D365 non-intrusive visuals; no soundtrack.
+
 ## D371 — visible audio verification required before another acoustic pass (2026-10-29)
 
 [D371 PR #36](https://github.com/zampolit73/Misdeal/pull/36) ([Godot native CI 78/78 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40767000965)) addresses the second report that *nothing seemed to change*: new stronger distinguishable synthetic roomtones (RMS ~0.078–0.100), explicit D371 diagnostic build header, independent Master/Ambience sine checks and live panner/voice/bus status. Do **not** treat a passing native Godot CI as proof of sound on the user's Windows output or infer that `git pull` succeeded. Determine installed build and whether Master, Ambience, or actual roomtones are audible. Keep production game UI and B Oak/D368 quiet sound and D365 VFX unchanged; no music.

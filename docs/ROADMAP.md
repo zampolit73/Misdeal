@@ -1,3 +1,11 @@
+## ACTIVE — D372 replace noise with sparse sound events (2026-10-29)
+
+- [x] After user confirmed "звук появился — но это просто белый шум", build 3 **non-continuous** original synthetic 16s candidate sound scenes with quiet spaces, identifiable creaks/gate/stone/bones/drips; D372 F6 cue descriptions and contrast GUT.
+- [ ] **Godot 4.7.2 native CI before merge;** then F6 human full 16s ×3, verify isolated events rather than hiss. Player may reasonably reject still-synthetic timbre.
+- [ ] After acoustic sign-off, F5 battle/table subjective check and A1P3 full human Act I 12+XIII and separate RELEASE matrix.
+
+[D372 design](D372_SPATIAL_AUDIO_SCENES.md).
+
 ## ACTIVE AFTER D371 — verify local code and sound output (2026-10-29)
 
 - [x] Reworked three synthetic 8s location ambiences to audible non-silent RMS and gave F6 scene a visibly distinct D371 version, two routed probe tones, live speaker/bus meter/player status. [PR #36](https://github.com/zampolit73/Misdeal/pull/36) merged, [native Godot 4.7.2 CI 78/78 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40767000965).
