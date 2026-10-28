@@ -1,3 +1,7 @@
+## LATEST 2026-10-28 — Definitive Audio 1 handoff
+
+[Current concise handoff](D368_NEW_CHAT_HANDOFF.md). **B — Oak already selected and live in main** via [PR #32](https://github.com/zampolit73/Misdeal/pull/32) `6d39c4e`, [CI success 60/60](https://github.com/zampolit73/Misdeal/actions/runs/40532236638). F5 live audio mix check pending. Next **D368** dry combat sound pilot then **D369** restrained ambient audio. Fate Spread untouched; D365 quiet-combat visual rule locked. Older notes below are historical.
+
 ## CURRENT — D367B production release and next ear check (2026-10-27)
 
 **B — Oak is selected, no re-approval needed.** [PR #32](https://github.com/zampolit73/Misdeal/pull/32) squash `6d39c4e` is merged to `main`; [Godot 4.7.2 CI](https://github.com/zampolit73/Misdeal/actions/runs/40532236638) passed **60/60 GUT**, native imports/smokes/screenshots. Deal is the exact B WAV and four additional wooden/paper UI cues are live, with procedural fallback and cooldown. User needs only `git pull` + **F5 normal game** to judge auditory mix and feel; no actual listening can be claimed from dummy-driver CI. Next D368 sparse combat foley, then D369 muted ambience; keep visuals/DS3/Fate unchanged. A1P3 12+XIII and authored RELEASE matrix still incomplete. See [D367B_OAK_TABLE_RELEASE.md](D367B_OAK_TABLE_RELEASE.md).

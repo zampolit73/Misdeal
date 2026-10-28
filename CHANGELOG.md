@@ -1,3 +1,7 @@
+## LATEST 2026-10-28 — Definitive Audio 1 handoff
+
+[Current concise handoff](D368_NEW_CHAT_HANDOFF.md). **B — Oak already selected and live in main** via [PR #32](https://github.com/zampolit73/Misdeal/pull/32) `6d39c4e`, [CI success 60/60](https://github.com/zampolit73/Misdeal/actions/runs/40532236638). F5 live audio mix check pending. Next **D368** dry combat sound pilot then **D369** restrained ambient audio. Fate Spread untouched; D365 quiet-combat visual rule locked. Older notes below are historical.
+
 ## 2026-10-27 — D367B Oak table audio shipped
 
 [PR #32](https://github.com/zampolit73/Misdeal/pull/32), squash `6d39c4e`, was merged after [Godot 4.7.2 Actions SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/40532236638), **60/60 GUT** and native scene/import checks. User-approved B WAV now plays on actual table deals; select/discard/meddle/milestone have four quieter synthesized oak/paper cues with procedural fallback and per-event anti-spam. F6 pilot marks B approved. No changes to combat sounds, ambience/music, UI or rules. **Local F5 listening still required**.
