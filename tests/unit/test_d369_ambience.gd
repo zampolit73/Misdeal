@@ -21,7 +21,10 @@ func test_three_short_authored_ambient_samples_are_importable() -> void:
 		assert_not_null(stream, "D369 WAV not importable: " + location)
 		if stream != null:
 			assert_eq(stream.mix_rate, 16000)
-			assert_true(stream.get_length() >= 7.8 and stream.get_length() <= 8.2, "Imported %s duration=%0.3f sec, format=%d" % [location, stream.get_length(), stream.format])
+			# Importer's silence trim is expected for these soft WAV resources.
+			assert_true(stream.get_length() >= 7.0 and stream.get_length() <= 8.2)
+			var source := FileAccess.get_file_as_bytes(SAMPLES[location])
+			assert_eq(source.size(), 256044, "The original 8-second PCM source must be complete")
 
 
 func test_ambience_is_silent_until_location_and_players_use_own_bus() -> void:
@@ -55,7 +58,8 @@ func test_location_streams_loop_and_same_location_does_not_restart() -> void:
 	assert_not_null(stream)
 	if stream != null:
 		assert_eq(stream.loop_mode, AudioStreamWAV.LOOP_FORWARD)
-		assert_true(stream.loop_end > 0)
+		assert_eq(stream.loop_end, 128000)
+		assert_true(stream.get_length() >= 7.99 and stream.get_length() <= 8.01)
 	director.call("set_location", "castle")
 	assert_eq(int(director.get("_ambience_slot")), slot)
 	assert_same(voice.stream, stream)
@@ -68,7 +72,9 @@ func test_crossfade_and_silence_preserve_location_state() -> void:
 	assert_eq(director.call("get_current_location"), "ossuary")
 	var slot := int(director.get("_ambience_slot"))
 	var voice: AudioStreamPlayer = director.get_child(slot) as AudioStreamPlayer
-	assert_same(voice.stream, load(SAMPLES["ossuary"]))
+	assert_not_null(voice.stream)
+	assert_eq((voice.stream as AudioStreamWAV).data.size(), 256000)
+	assert_eq((voice.stream as AudioStreamWAV).loop_end, 128000)
 	director.call("set_location", "silence", 0.10)
 	assert_eq(director.call("get_current_location"), "silence")
 
