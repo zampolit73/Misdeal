@@ -1,3 +1,7 @@
+## D368 — sparse combat audio, no new combat VFX (2026-10-28)
+
+Implement a **candidate**, not yet an approved acoustic palette: 8 short original synthesized PCM foley-style cues, two alternating shared-family bow variants with 155ms cooldown, six capped voices, priority protection for real healing/boss/outcome events and per-event volume shaping. Keep existing `play_event` hooks, complete per-cue procedural fallback, independent Combat bus and user-approved **B — Oak** tabletop SFX. No hover effects, arrows, timing/AI changes, soundtrack or ambient bed. Subjective player F6/F5 review is a separate gate. [Detailed scope and checks](D368_COMBAT_FOLEY.md).
+
 ## D367B — approved Oak palette shipped (2026-10-27)
 
 The user's **B — Oak** choice is production-locked. Live integration shipped through [PR #32](https://github.com/zampolit73/Misdeal/pull/32) squash `6d39c4e` after Godot 4.7.2 [CI 60/60 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40532236638). Preserve original B deal sample, 4 short dry wooden/paper variants and procedural fallback; do not silently replace with A/C or add loud arcade cues. Subjective F5 mix check remains open; this does not approve combat foley or ambient music.

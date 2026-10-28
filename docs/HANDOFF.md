@@ -1,3 +1,7 @@
+## LATEST 2026-10-28 — D368 combat sound candidate
+
+[Read D368 combat audio handoff](D368_COMBAT_FOLEY.md) and [D368 project handoff](D368_NEW_CHAT_HANDOFF.md). Feature `feature/d368-restrained-combat-foley` stages eight short synthetic combat WAVs, six priority-aware voices with archer anti-spam and GUT/F6 audition. **CI and real local ear quality unverified until checked.** B Oak remains user-approved and shipped; D365 quiet visual rules unchanged. D369 ambience only after hearing the D368 pilot.
+
 ## LATEST 2026-10-28 — Definitive Audio 1 handoff
 
 [Current concise handoff](D368_NEW_CHAT_HANDOFF.md). **B — Oak already selected and live in main** via [PR #32](https://github.com/zampolit73/Misdeal/pull/32) `6d39c4e`, [CI success 60/60](https://github.com/zampolit73/Misdeal/actions/runs/40532236638). F5 live audio mix check pending. Next **D368** dry combat sound pilot then **D369** restrained ambient audio. Fate Spread untouched; D365 quiet-combat visual rule locked. Older notes below are historical.

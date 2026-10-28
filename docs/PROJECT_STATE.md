@@ -1,3 +1,7 @@
+## LATEST 2026-10-28 — D368 combat audio pilot
+
+[Current D368 sound pack and test plan](D368_COMBAT_FOLEY.md). Eight original, clearly **synthetic** dry battle WAV prototypes (steel, 2 bow plucks, magic, bone hit/death, healing bell, boss), six priority-aware voices, category cooldowns and complete legacy procedural fallback are staged on `feature/d368-restrained-combat-foley`. **CI/merge and human F6/F5 sound approval pending** — do not mistake code work for an acoustically accepted release. Oak B remains locked and shipped. No combat visuals, AI, damage, DS3/Fate changes.
+
 ## LATEST 2026-10-28 — Definitive Audio 1 handoff
 
 [Current concise handoff](D368_NEW_CHAT_HANDOFF.md). **B — Oak already selected and live in main** via [PR #32](https://github.com/zampolit73/Misdeal/pull/32) `6d39c4e`, [CI success 60/60](https://github.com/zampolit73/Misdeal/actions/runs/40532236638). F5 live audio mix check pending. Next **D368** dry combat sound pilot then **D369** restrained ambient audio. Fate Spread untouched; D365 quiet-combat visual rule locked. Older notes below are historical.

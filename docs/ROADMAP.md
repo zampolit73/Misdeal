@@ -1,3 +1,12 @@
+## LATEST 2026-10-28 — D368 battle sound pilot
+
+- [x] Implement eight dry synthesized combat WAV variants, shared archer throttle, priority-aware six-voice mix, fallbacks, audition scene and GUT regressions on `feature/d368-restrained-combat-foley`.
+- [ ] **Verify native Godot CI**, merge only after PASS, then perform player **F6 D368 sample listening + F5** Firing Square / Iron Wall / Last Bell and real boss if reached.
+- [ ] After real ear approval, D369 low castle/courtyard/ossuary ambience and optional crossfade; no mandatory score.
+- [ ] A1P3 human 12+XIII full playthrough and independent RELEASE animation/battle matrix remain open.
+
+[D368 package detail](D368_COMBAT_FOLEY.md). B — Oak already shipped, unchanged. D365 battle visual declutter remains locked.
+
 ## LATEST 2026-10-28 — Definitive Audio 1 handoff
 
 [Current concise handoff](D368_NEW_CHAT_HANDOFF.md). **B — Oak already selected and live in main** via [PR #32](https://github.com/zampolit73/Misdeal/pull/32) `6d39c4e`, [CI success 60/60](https://github.com/zampolit73/Misdeal/actions/runs/40532236638). F5 live audio mix check pending. Next **D368** dry combat sound pilot then **D369** restrained ambient audio. Fate Spread untouched; D365 quiet-combat visual rule locked. Older notes below are historical.

@@ -1,52 +1,97 @@
 extends Node
 
+# D368: sparse authored PCM combat palette with deterministic procedural fallback.
+# This is a mix-only change; hits, AI, combat timing and animations stay unchanged.
 const SAMPLE_RATE := 22050
-const VOICE_COUNT := 10
+const VOICE_COUNT := 6
+const SAMPLE_PATHS := {
+	"attack_melee": "res://assets/audio/combat/d368_attack_melee.wav",
+	"attack_ranged_a": "res://assets/audio/combat/d368_attack_ranged_a.wav",
+	"attack_ranged_b": "res://assets/audio/combat/d368_attack_ranged_b.wav",
+	"attack_magic": "res://assets/audio/combat/d368_attack_magic.wav",
+	"hit": "res://assets/audio/combat/d368_hit.wav",
+	"death": "res://assets/audio/combat/d368_death.wav",
+	"heal": "res://assets/audio/combat/d368_heal.wav",
+	"boss": "res://assets/audio/combat/d368_boss.wav",
+}
 
 @export var output_volume_db: float = -10.0
 
 var _streams: Dictionary = {}
+var _fallback_streams: Dictionary = {}
 var _voices: Array[AudioStreamPlayer] = []
+var _voice_priorities: Array[int] = []
+var _voice_started_ms: Array[int] = []
 var _voice_index := 0
+var _ranged_accepted := 0
 var _last_played_ms: Dictionary = {}
 var _pitch_rng := RandomNumberGenerator.new()
+
 
 func _ready() -> void:
 	add_to_group("combat_audio")
 	_pitch_rng.seed = 0x5A17C0DE
 	_build_streams()
-
 	for _index in range(VOICE_COUNT):
 		var voice := AudioStreamPlayer.new()
 		voice.volume_db = output_volume_db
 		voice.bus = "Combat"
 		add_child(voice)
 		_voices.append(voice)
+		_voice_priorities.append(0)
+		_voice_started_ms.append(0)
+
 
 func play_event(event_name: String, role: String = "") -> void:
-	var stream_key := event_name
+	var family := event_name
 	if event_name == "attack":
-		stream_key = _get_attack_stream_key(role)
-
-	var cooldown_key := event_name if event_name != "attack" else stream_key
+		family = _get_attack_stream_key(role)
 	var now := Time.get_ticks_msec()
-	var cooldown := _get_cooldown_ms(event_name)
-	var last_played := int(_last_played_ms.get(cooldown_key, -100000))
-	if cooldown > 0 and now - last_played < cooldown:
+	var cooldown := _get_cooldown_ms(family)
+	if cooldown > 0 and now - int(_last_played_ms.get(family, -100000)) < cooldown:
 		return
-	_last_played_ms[cooldown_key] = now
 
-	var stream := _streams.get(stream_key) as AudioStreamWAV
+	var key := family
+	if family == "attack_ranged":
+		key = "attack_ranged_a" if _ranged_accepted % 2 == 0 else "attack_ranged_b"
+	var stream := _streams.get(key) as AudioStreamWAV
 	if stream == null or _voices.is_empty():
 		return
 
-	var voice := _voices[_voice_index]
-	_voice_index = (_voice_index + 1) % _voices.size()
+	var priority := _get_priority(event_name, role)
+	var chosen := _choose_voice(priority)
+	if chosen < 0:
+		return # Protect an important cue already sounding instead of stacking attacks.
+	var voice := _voices[chosen]
 	voice.stop()
 	voice.stream = stream
-	voice.volume_db = output_volume_db + _get_volume_offset_db(event_name)
+	voice.volume_db = output_volume_db + _get_volume_offset_db(event_name, family)
 	voice.pitch_scale = _get_pitch_scale(event_name, role)
 	voice.play()
+	_voice_started_ms[chosen] = now
+	_voice_priorities[chosen] = priority
+	_voice_index = (chosen + 1) % _voices.size()
+	_last_played_ms[family] = now
+	if family == "attack_ranged":
+		_ranged_accepted += 1
+
+
+func _choose_voice(incoming_priority: int) -> int:
+	for offset in range(_voices.size()):
+		var index := (_voice_index + offset) % _voices.size()
+		if not _voices[index].playing:
+			return index
+	# When saturated, replace the oldest *no higher priority* active voice.
+	var oldest := 9223372036854775807
+	var candidate := -1
+	for index in range(_voices.size()):
+		if _voice_priorities[index] > incoming_priority:
+			continue
+		if _voice_started_ms[index] < oldest:
+			oldest = _voice_started_ms[index]
+			candidate = index
+	return candidate
+
 
 func _get_attack_stream_key(role: String) -> String:
 	match role:
@@ -57,43 +102,88 @@ func _get_attack_stream_key(role: String) -> String:
 		_:
 			return "attack_melee"
 
-func _get_cooldown_ms(event_name: String) -> int:
-	match event_name:
-		"attack":
-			return 28
+
+func _get_cooldown_ms(family: String) -> int:
+	match family:
+		"attack_ranged":
+			return 155
+		"attack_melee":
+			return 72
+		"attack_magic":
+			return 130
 		"hit":
-			return 42
+			return 110
+		"death":
+			return 160
+		"heal":
+			return 360
+		"boss":
+			return 750
 		"order":
-			return 85
+			return 105
 		_:
 			return 0
 
-func _get_volume_offset_db(event_name: String) -> float:
+
+func _get_priority(event_name: String, role: String) -> int:
+	match event_name:
+		"victory", "defeat":
+			return 6
+		"boss", "heal":
+			return 5
+		"death":
+			return 5 if role == "bone_warden" else 4
+		"start":
+			return 4
+		"attack":
+			return 2
+		_:
+			return 1
+
+
+func _get_volume_offset_db(event_name: String, family: String) -> float:
+	match family:
+		"attack_ranged":
+			return -4.5
+		"attack_magic":
+			return -5.0
+		"attack_melee":
+			return -2.5
 	match event_name:
 		"hit":
-			return -2.0
-		"order":
-			return -3.0
+			return -7.0
+		"death":
+			return -5.0
 		"heal":
-			return -2.0
+			return -4.0
 		"boss":
-			return 2.0
+			return -1.0
+		"order":
+			return -5.0
+		"start":
+			return -3.0
 		"victory", "defeat":
-			return 1.0
+			return -1.0
 		_:
 			return 0.0
 
+
 func _get_pitch_scale(event_name: String, role: String) -> float:
 	if event_name == "death" and role == "bone_warden":
-		return 0.72
+		return 0.76
 	if event_name == "boss":
-		return 0.78
-	return _pitch_rng.randf_range(0.96, 1.04)
+		return 0.88
+	if event_name == "heal":
+		return 1.0 # Preserve the bell's stable resonance.
+	return _pitch_rng.randf_range(0.97, 1.03)
+
 
 func _build_streams() -> void:
-	_streams = {
+	# Legacy stream shapes remain available when WAV import/load fails.
+	_fallback_streams = {
 		"attack_melee": _make_stream("attack_melee", 0.11),
-		"attack_ranged": _make_stream("attack_ranged", 0.13),
+		"attack_ranged_a": _make_stream("attack_ranged", 0.13),
+		"attack_ranged_b": _make_stream("attack_ranged", 0.13),
 		"attack_magic": _make_stream("attack_magic", 0.18),
 		"hit": _make_stream("hit", 0.085),
 		"death": _make_stream("death", 0.28),
@@ -104,6 +194,12 @@ func _build_streams() -> void:
 		"victory": _make_stream("victory", 0.42),
 		"defeat": _make_stream("defeat", 0.46),
 	}
+	_streams = _fallback_streams.duplicate()
+	for key in SAMPLE_PATHS:
+		var sample := load(SAMPLE_PATHS[key]) as AudioStreamWAV
+		if sample != null:
+			_streams[key] = sample
+
 
 func _make_stream(kind: String, duration: float) -> AudioStreamWAV:
 	var sample_count := maxi(1, int(round(float(SAMPLE_RATE) * duration)))
