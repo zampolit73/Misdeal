@@ -1,3 +1,11 @@
+## ACTIVE — D373 Castle/Ossuary real recorded Foley pilot (2026-10-29)
+
+- [x] User ear feedback D372: **only Courtyard sounds more or less suitable**; do not modify that waveform. Licensed CC BY / CC0 recorded door, water drips and bone-like rattles sourced and normalized for Castle and Ossuary; exact source checksums + credit documentation.
+- [ ] Finish D373 F6 preview version, provenance GUT, Godot CI, merge only after technical pass. Subjective realism/timbre still open; user full 16s F6 Castle + Ossuary versus unmodified Courtyard.
+- [ ] Final ear approval, actual F5 mix, A1P3 human full Act I 12+XIII and independent RELEASE authored matrix.
+
+[Provenance](D373_RECORDED_FOLEY_CREDITS.md).
+
 ## ACTIVE 2026-10-29 — D372 shipped; player acoustic review next
 
 - [x] Replaced white-noise D371 ambience with three sparse 16-second event-led original synthetic location scenes; [D372 PR #37](https://github.com/zampolit73/Misdeal/pull/37) merged, [native Godot 4.7.2 CI SUCCESS 79/79](https://github.com/zampolit73/Misdeal/actions/runs/40769450969), import/parse/smokes/screenshots.

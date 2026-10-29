@@ -28,6 +28,11 @@ SOURCE_URLS = {
     "ossuary_bones": "https://opengameart.org/sites/default/files/bones-2.wav",
     "ossuary_drips": "https://opengameart.org/sites/default/files/amb_waterdrip_1.flac",
 }
+SOURCE_SHA256 = {
+    "castle_door": "9b0a91420015c2ae080ef6fd9a3bf8141dc897b4d05aa6488d4e23c13bae8335",
+    "ossuary_bones": "5022acbf2c075a20e293fed359324492224c79e65d38ca3427176ca8b3774c68",
+    "ossuary_drips": "c19f99a1a9a6a2aecf294e3cdea87b223a4b165e3e23df9cea2985ab20a907d0",
+}
 LICENSE_PAGES = {
     "castle_door": "https://opengameart.org/content/creaky-light-wooden-door",
     "ossuary_bones": "https://opengameart.org/content/bones-2",
@@ -47,6 +52,9 @@ def download(name: str, url: str, folder: pathlib.Path) -> pathlib.Path:
         raise RuntimeError(f"Source {name}: invalid audio magic, starts with {data[:12]!r}")
     if len(data) >= 12_000_000:
         raise RuntimeError(f"Source {name}: source exceeded size cap")
+    actual_sha = hashlib.sha256(data).hexdigest()
+    if actual_sha != SOURCE_SHA256[name]:
+        raise RuntimeError(f"Source {name} SHA mismatch: {actual_sha}")
     filename.write_bytes(data)
     print(f"SOURCE {name} bytes={len(data)} sha256={hashlib.sha256(data).hexdigest()} license={LICENSE_PAGES[name]}")
     return filename
