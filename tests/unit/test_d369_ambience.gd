@@ -9,9 +9,11 @@ const SAMPLES := {
 }
 
 
-func _new_director() -> Node:
+func _new_director(allow_preview: bool = true) -> Node:
 	var director := DIRECTOR_SCRIPT.new() as Node
 	add_child_autofree(director)
+	if allow_preview:
+		director.call("set_location_ambience_enabled", true)
 	return director
 
 
@@ -127,7 +129,7 @@ func test_roomtone_pcm_is_non_silent_and_reaches_usable_sample_peaks() -> void:
 		assert_true(peak >= 500, "Roomtone %s must not be a silent file" % location)
 
 
-func test_f6_probe_is_real_pcm_and_starts_with_castle_roomtone() -> void:
+func test_f6_probe_is_real_pcm_but_old_ambience_does_not_autoplay() -> void:
 	var scene := load("res://scenes/dev/d369_ambience_audition.tscn") as PackedScene
 	assert_not_null(scene)
 	if scene == null:
@@ -145,7 +147,8 @@ func test_f6_probe_is_real_pcm_and_starts_with_castle_roomtone() -> void:
 	for sample_id in range(0, int(bytes.size() / 2), 64):
 		peak = maxi(peak, absi(int(bytes.decode_s16(sample_id * 2))))
 	assert_true(peak >= 6000, "Audition tone must be diagnostic, not inaudibly weak")
-	assert_eq(SoundDirector.get_current_location(), "castle")
+	assert_eq(SoundDirector.get_current_location(), "silence")
+	assert_true(SoundDirector.is_location_ambience_enabled())
 
 
 func test_d372_sparse_scenes_have_silence_and_distinct_local_events() -> void:
@@ -200,7 +203,7 @@ func test_d371_preview_version_and_two_bus_probes() -> void:
 		return
 	var preview := scene.instantiate()
 	add_child_autofree(preview)
-	assert_eq(preview.get("BUILD_LABEL"), "D373 / RECORDED-FOLEY / 2026-10-29")
+	assert_eq(preview.get("BUILD_LABEL"), "D374 / SILENT-FIRST / 2026-10-29")
 	var master := preview.get_node_or_null("AudioChannelMaster") as AudioStreamPlayer
 	var ambience := preview.get_node_or_null("AudioChannelTest") as AudioStreamPlayer
 	assert_not_null(master)
@@ -217,7 +220,7 @@ func test_d372_routed_audition_explains_nonwhite_noise_story() -> void:
 	assert_true(text.contains("Запись старой деревянной двери"))
 	assert_true(text.contains("Порывы ветра"))
 	assert_true(text.contains("Записанный стук"))
-	assert_true(text.contains("D373"))
+	assert_true(text.contains("D374"))
 
 
 func test_d373_preserves_selected_courtyard_and_ships_two_recorded_cc_audio_mixes() -> void:
@@ -239,3 +242,38 @@ func test_d373_recorded_candidates_keep_long_silence_between_events() -> void:
 		var active := _max_window_rms(raw)
 		assert_true(initial < 0.002, location + " has no constant synthetic noise")
 		assert_true(active > 0.035, location + " has an audible recorded sound cue")
+
+
+func test_d374_location_sounds_are_off_by_default_even_when_scenes_request_them() -> void:
+	var director := _new_director(false)
+	assert_false(bool(director.call("is_location_ambience_enabled")))
+	director.call("set_location", "castle")
+	director.call("set_location", "courtyard")
+	director.call("set_location", "ossuary")
+	assert_eq(director.call("get_current_location"), "silence")
+	var info: Dictionary = director.call("get_ambience_debug_info")
+	assert_false(bool(info.get("enabled", true)))
+	for player in director.get_children():
+		assert_false((player as AudioStreamPlayer).playing)
+		assert_null((player as AudioStreamPlayer).stream)
+
+
+func test_d374_preview_opt_in_is_reversible_and_runtime_requests_stay_silent() -> void:
+	var director := _new_director(false)
+	director.call("set_location_ambience_enabled", true)
+	director.call("set_location", "castle", 0.10)
+	assert_eq(director.call("get_current_location"), "castle")
+	assert_true(bool(director.call("is_location_ambience_enabled")))
+	director.call("set_location_ambience_enabled", false)
+	assert_eq(director.call("get_current_location"), "silence")
+	director.call("set_location", "castle")
+	assert_eq(director.call("get_current_location"), "silence")
+
+
+func test_d374_f6_scene_is_explicitly_archived_not_approved_audio() -> void:
+	var script := FileAccess.get_file_as_string("res://scripts/dev/d369_ambience_audition.gd")
+	assert_true(script.contains("D374  •  БЕЗ НАВЯЗЧИВОГО ФОНА"))
+	assert_true(script.contains("старые") or script.contains("старых"))
+	assert_true(script.contains("set_location_ambience_enabled(true)"))
+	assert_true(script.contains("set_location_ambience_enabled(_original_ambience_mode)"))
+	assert_true(script.contains("_select_location(\"silence\")"))

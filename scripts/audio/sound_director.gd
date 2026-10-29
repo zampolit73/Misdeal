@@ -2,8 +2,9 @@ extends Node
 
 # Audio 1: quiet independent UI/Combat/Ambience buses.
 # D369: subtle environment roomtones, never background music.
-# D369 hotfix: -26 dB of staging on already quiet PCM was near-inaudible.
-# Keep ambience below combat/UI without hiding it in the noise floor.
+# D374: user rejected all location ambience in real gameplay.
+# Default to silent-first runtime. The former loops remain for explicit F6 audition.
+# Preserve approved tabletop Oak and existing combat cues.
 const BUS_UI := "UI"
 const BUS_COMBAT := "Combat"
 const BUS_AMBIENCE := "Ambience"
@@ -28,6 +29,7 @@ var _ambience_slot := 0
 var _transition: Tween
 var _ambience_streams: Dictionary = {}
 var _current_location := "silence"
+var _location_ambience_enabled := false
 
 
 func _ready() -> void:
@@ -60,6 +62,22 @@ func get_channel_volume(bus_name: String) -> float:
 	return clampf(db_to_linear(AudioServer.get_bus_volume_db(idx)), 0.0, 1.0)
 
 
+func is_location_ambience_enabled() -> bool:
+	return _location_ambience_enabled
+
+
+func set_location_ambience_enabled(enabled: bool) -> void:
+	# An explicit opt-in is reserved for isolated QA audition scenes, not F5.
+	# Disabling cuts both crossfade voices and prevents a cached location
+	# from restarting when Table/Battle/SceneTransition request it again.
+	if _location_ambience_enabled == enabled:
+		return
+	_location_ambience_enabled = enabled
+	if not enabled:
+		_current_location = "silence"
+		transition_ambience(null, 0.12)
+
+
 static func location_for_arena(arena_id: String) -> String:
 	if arena_id in OUTDOOR_ARENAS:
 		return "courtyard"
@@ -73,6 +91,8 @@ func get_current_location() -> String:
 
 
 func set_location(location_id: String, fade_seconds: float = 1.6) -> void:
+	if not _location_ambience_enabled and location_id != "silence":
+		return # D374: never play ambient loops automatically during the game.
 	# Reopen a location if the old source was stopped by a prior preview.
 	if location_id == _current_location:
 		if location_id == "silence":
@@ -113,6 +133,7 @@ func get_ambience_debug_info() -> Dictionary:
 		})
 	return {
 		"location": _current_location,
+		"enabled": _location_ambience_enabled,
 		"bus_exists": idx >= 0,
 		"bus_db": AudioServer.get_bus_volume_db(idx) if idx >= 0 else -80.0,
 		"bus_muted": AudioServer.is_bus_mute(idx) if idx >= 0 else true,
