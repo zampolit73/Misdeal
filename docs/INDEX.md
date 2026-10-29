@@ -1,3 +1,7 @@
+## Latest 2026-10-29 — D374 silent-first audio release
+
+[Current continuation](D376_NEW_CHAT_HANDOFF.md), [reason and QA](D374_SILENT_FIRST_AUDIO.md). [D374 PR #39](https://github.com/zampolit73/Misdeal/pull/39) and [Godot 4.7.2 native CI 84/84](https://github.com/zampolit73/Misdeal/actions/runs/40854842019). The user rejected prior audible location loops in real gameplay; new default is silent, human F5 confirmation pending.
+
 ## Current 2026-10-29 — D373 real recorded location audio
 
 [Current handoff](D374_NEW_CHAT_HANDOFF.md) / [D373 attribution, original source SHA and acoustic test](D373_RECORDED_FOLEY_CREDITS.md). [PR #38](https://github.com/zampolit73/Misdeal/pull/38) / [Godot CI SUCCESS 81/81](https://github.com/zampolit73/Misdeal/actions/runs/40823152431). The Courtyard preference is preserved; new Castle/Ossuary user listening NOT YET APPROVED.

@@ -1,3 +1,7 @@
+## 2026-10-29 — D374 live-play ambience removal shipped
+
+[PR #39](https://github.com/zampolit73/Misdeal/pull/39) squash `7305e85958c571119c961f75dd929c369b88d361`; [native Godot 4.7.2 CI SUCCESS 84/84 GUT](https://github.com/zampolit73/Misdeal/actions/runs/40854842019), project parse, native scene smoke/screenshots. User reported D373 environment loops break atmosphere in actual gameplay. Location ambience is now disabled by default through persistent SoundDirector, so scene requests do not play unwanted castle/courtyard/ossuary recordings; F6 diagnostic remains an explicitly enabled archived test that starts silent and restores prior channel/mode. B Oak card UI, D368 combat cues, all visuals and mechanics unchanged. User F5 acoustic check required; no new replacement approved.
+
 ## 2026-10-29 — D374 silent-first sound redesign baseline (candidate)
 
 User's full in-game D373 feedback rejects all environmental loops as loud, distracting and atmosphere-breaking. Added central SoundDirector default **ambient playback disabled** to stop automatic castle/courtyard/ossuary loops in table, battle and transitions without disrupting Oak B (UI bus) and D368 (Combat bus). Existing WAV assets remain for attribution and manual F6 archival comparison, which begins silent and restores runtime mode on exit. Added default-off and reversible-preview GUT regressions and obvious D374 test-scene label. **This is removal of the failed sound design, not approval of new music or cues.** Native CI/release pending.

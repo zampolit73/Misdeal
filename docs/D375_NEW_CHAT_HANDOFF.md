@@ -1,3 +1,5 @@
+> **D374 RELEASED AFTER PREVIOUS CANDIDATE (2026-10-29):** [PR #39](https://github.com/zampolit73/Misdeal/pull/39) merged, [Godot 4.7.2 native CI SUCCESS 84/84 GUT](https://github.com/zampolit73/Misdeal/actions/runs/40854842019); automatic location ambience disabled in real gameplay; F6 archived audition only. Latest continuation is now [D376_NEW_CHAT_HANDOFF.md](D376_NEW_CHAT_HANDOFF.md). Human F5 quiet-baseline acceptance still pending.
+
 # Misdeal — D375 CURRENT NEW CHAT HANDOFF (D374 silent-first audio correction)
 
 Repo `zampolit73/Misdeal` `main`, connected GitHub available. Read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`, `docs/HANDOFF.md`, this handoff and `docs/D374_SILENT_FIRST_AUDIO.md`. Godot 4.7.x GDScript, GitHub is code truth and user listening is design truth.

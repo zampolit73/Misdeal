@@ -1,0 +1,17 @@
+# Misdeal — CURRENT NEW CHAT HANDOFF: D374 silent-first sound rollback (2026-10-29)
+
+## Technical source of truth
+GitHub `zampolit73/Misdeal` `main`; connected GitHub tools are available. Read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`, `docs/HANDOFF.md` and this file. Godot 4.7.x GDScript, no C#. Never ask the user to reconnect GitHub before checking tools.
+
+## Most recent sound decision and shipped code
+- Previous sound history D367B Oak user-selected table gestures, D368 restrained combat foley, D369–D373 increasingly audible castle/courtyard/ossuary environment loops.
+- D373 used properly licensed and credited real recordings of wooden creak, drips and bone-like material ([sources/CC license credits](D373_RECORDED_FOLEY_CREDITS.md)); passed technical CI 81/81. User **tested them in normal F5 gameplay** and said **"звуки не подходят. нужно менять. они отвлекают и ломают атмосферу"**. **All three location ambiences rejected**. Earlier partial preference for Courtyard only applied to isolated F6 booth, not actual game.
+- **D374 [PR #39](https://github.com/zampolit73/Misdeal/pull/39) MERGED main squash `7305e85958c571119c961f75dd929c369b88d361`**, [Godot native 4.7.2 CI 84/84 GUT PASS](https://github.com/zampolit73/Misdeal/actions/runs/40854842019), native import/parse/smokes/screenshots. `scripts/audio/sound_director.gd`: `_location_ambience_enabled := false` default; normal Table/Battle/Event/Reward/SceneTransition requests don't load or play recorded loops. `set_location_ambience_enabled(true)` reserved for explicitly enabled F6 auditory QA. `get_ambience_debug_info()["enabled"]` available. All existing original and third-party WAVs and license docs retained for archival provenance; only game playback changed. B Oak table UI and D368 Combat mixing, game visuals, DS3 and gameplay unchanged.
+- F6 `scenes/dev/d369_ambience_audition.tscn`: visible **D374 — БЕЗ НАВЯЗЧИВОГО ФОНА**; starts SILENT, rejected clips manually selectable only, previous preview/bus state restored on exit. New GUT tests default non-play, reversible preview mode and booth signature. No new music, no synthetic white noise or replacement foley.
+- User **has NOT YET tested D374 in F5** and thus silent-baseline acceptance remains OPEN; CI checks code not subjective atmosphere.
+
+## Next immediate action and approach
+Tell user: `git pull`, **F5 main game**, listen at cursed card table and one/boss battle then return; verify no unwanted repeated ambience, and Oak/UI and Combat active cues remain. If user reports that game is still distracting, investigate specific sound source (combat vs wizard vs UI) from actual code before changing. Do not regenerate backgrounds. If quiet baseline helps, propose separate small *event-specific* accents that are triggered deliberately and can be auditioned/approved in real battle, or keep no ambience. No unapproved soundtrack.
+
+## Project invariants and continuing QA
+Misdeal dark fantasy cursed-table card roguelike; malicious Wizard dealer, compact tactical autobattler, approved DS3 card art, D365 no intrusive automatic targeting visuals; Fate Spread exactly 12 I–XII plus sealed Warden XIII; Knight/Ranger/Mage solo/duo/trio. Preserve B Oak and D368 until feedback; A1P3 player entire 12+XIII and independent full RELEASE battle/animation matrix still OPEN. Write meaningful commits and update PROJECT_STATE/ROADMAP/DECISIONS/CHANGELOG/HANDOFF and latest handoff after substantial work.

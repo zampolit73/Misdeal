@@ -1,3 +1,12 @@
+## ACTIVE AFTER D374 RELEASE — restore focus before redesign (2026-10-29)
+
+- [x] Remove rejected location loops from ordinary F5 game: [PR #39](https://github.com/zampolit73/Misdeal/pull/39) **merged**, [Godot 4.7.2 CI 84/84 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40854842019). Keep B Oak and D368 combat; F6 preserved for archive comparison.
+- [ ] Local `git pull`, **F5 actual game**: cursed table, encounter, return and ossuary/boss. Confirm no ambient loop is heard and active card/combat cues are intact. The earlier Courtyard F6 partial approval does NOT supersede the in-game rejection.
+- [ ] Only after confirming the quiet baseline, sketch **a few brief event-bound audio accents** in isolation and let user choose without affecting the game by default; no new endless recordings, white noise or unapproved soundtrack.
+- [ ] A1P3 complete human 12+XIII Act I run and separate full authored RELEASE battle/animation matrix.
+
+[Current handoff](D376_NEW_CHAT_HANDOFF.md).
+
 ## ACTIVE 2026-10-29 — D374 remove rejected location ambience from gameplay
 
 - [x] User's in-game listening verdict: **all three D373 location loops distract and break atmosphere**; do not rely on earlier Courtyard booth preference or retune recordings blindly.
