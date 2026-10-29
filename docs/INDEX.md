@@ -1,3 +1,7 @@
+## Current 2026-10-29 — D373 real recorded location audio
+
+[Current handoff](D374_NEW_CHAT_HANDOFF.md) / [D373 attribution, original source SHA and acoustic test](D373_RECORDED_FOLEY_CREDITS.md). [PR #38](https://github.com/zampolit73/Misdeal/pull/38) / [Godot CI SUCCESS 81/81](https://github.com/zampolit73/Misdeal/actions/runs/40823152431). The Courtyard preference is preserved; new Castle/Ossuary user listening NOT YET APPROVED.
+
 ## Current — D372 environmental audio redesign (2026-10-29)
 
 [New-chat handoff](D373_NEW_CHAT_HANDOFF.md) / [D372 audio spec and F6 QA](D372_SPATIAL_AUDIO_SCENES.md). [PR #37](https://github.com/zampolit73/Misdeal/pull/37), [Godot CI 79/79](https://github.com/zampolit73/Misdeal/actions/runs/40769450969). Acoustic naturalness **awaits player listening**; no automatically assumed acceptance.

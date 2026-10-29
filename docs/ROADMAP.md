@@ -1,3 +1,12 @@
+## ACTIVE AFTER D373 SHIPPED — human sound taste gate (2026-10-29)
+
+- [x] Preserve user's **only partly accepted Courtyard** byte-for-byte; replace previously rejected Castle/Ossuary synthesis using properly credited recorded CC BY 3.0/CC0 Foley, [PR #38](https://github.com/zampolit73/Misdeal/pull/38) merged, [Godot 4.7.2 CI 81/81 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40823152431).
+- [ ] After `git pull` F6 `scenes/dev/d369_ambience_audition.tscn`, confirm **D373** title; listen full 16 seconds to Castle and Ossuary and compare to **unchanged Courtyard**. Record user ear verdict; do **not** claim acceptance based on native CI.
+- [ ] If recorded door sounds too household-like or bone rattle too mechanical, source *different actual recorded material* rather than synthesizing noise; preserve CC attribution and Court.
+- [ ] Once approved, F5 real table / courtyard battle / ossuary/boss and B Oak/D368 mix validation; still separately complete human A1P3 12+XIII and independent RELEASE battle/animation matrix.
+
+[Latest handoff](D374_NEW_CHAT_HANDOFF.md).
+
 ## ACTIVE — D373 Castle/Ossuary real recorded Foley pilot (2026-10-29)
 
 - [x] User ear feedback D372: **only Courtyard sounds more or less suitable**; do not modify that waveform. Licensed CC BY / CC0 recorded door, water drips and bone-like rattles sourced and normalized for Castle and Ossuary; exact source checksums + credit documentation.

@@ -1,3 +1,5 @@
+> **SUPERSEDED BY D373 RECORDED FOLEY RELEASE (2026-10-29):** After user preferred only Courtyard, [PR #38](https://github.com/zampolit73/Misdeal/pull/38) replaced Castle/Ossuary with credited recorded material, preserving Courtyard source bytes, [Godot 4.7.2 native CI 81/81 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40823152431). Human ear review still open. **Most current checkpoint: [D374_NEW_CHAT_HANDOFF.md](D374_NEW_CHAT_HANDOFF.md).**
+
 # Misdeal — CURRENT NEW CHAT HANDOFF (D372 sparse audio release, 2026-10-29)
 
 ## Start and source of truth

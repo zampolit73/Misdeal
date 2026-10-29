@@ -1,0 +1,19 @@
+# Misdeal — CURRENT NEW CHAT HANDOFF (D373 recorded Foley release, 2026-10-29)
+
+## Project bootstrap
+
+Repo `zampolit73/Misdeal` branch `main`, connected GitHub tools already work and must be used. Godot 4.7.x GDScript. At next chat start read `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`, `docs/HANDOFF.md` and this file; for assets see `docs/D373_RECORDED_FOLEY_CREDITS.md`. For technical current status trust live GitHub, for artistic choices user listening wins.
+
+## Recent acoustic progression
+- D367B user chose **B — Oak** card gestures (PR #32), still pending F5 final live mix listening.
+- D368 sparse synthetic battle foley shipped PR #33, pending human timbre approval.
+- D369 original 8s Castle/Courtyard/Ossuary very quiet/noisy; D370 +21dB gain and F6 tone; D371 explicit audible Master/Ambience test and 8s white-noise roomtone — user confirmed sound exists but called it *white noise*.
+- D372 16s synthetic sparse events shipped [PR #37](https://github.com/zampolit73/Misdeal/pull/37); user supplied actual F6 D372 screenshot and feedback: **"из этого всего подходит только более или менее Двор — ветер и камень"**. This means native audio/scene is functional, but **Castle and Ossuary are rejected on acoustic taste, Courtyard is partly acceptable — DO NOT MODIFY Courtyard without new approval**.
+- **D373 released [PR #38](https://github.com/zampolit73/Misdeal/pull/38) squash `192c20049665aad98d38d0943f0959c58b8748e3`, [Godot 4.7.2 CI SUCCESS 81/81 GUT](https://github.com/zampolit73/Misdeal/actions/runs/40823152431)**. Courtyard `assets/audio/ambience/d369_courtyard_roomtone.wav` untouched, SHA256 `b88ee52f8673b43a20a15cfa88cfd77ac60ad4c49c7bcb87a0dc4c9e5a50c4e6`. Castle at same old `d369_castle_roomtone.wav` path is edited genuine wooden cabinet door by fractilegames (CC BY 3.0). Ossuary at `d369_ossuary_roomtone.wav` uses bone-like recorded bicycle-spoke rattle by AntumDeluge (CC0) + real water drips by Blender Foundation (CC BY 3.0). All three 16s mono PCM16 16kHz, pinned upstream SHA256 in reproducible Python import tool, full author/source/license/change log `docs/D373_RECORDED_FOLEY_CREDITS.md`. The one-time import GH Actions workflow was **removed from final PR** so main has only finished WAV files and source rebuild tool. No runtime network access or third-party native dependency.
+- F6 `scenes/dev/d369_ambience_audition.tscn` now has **D373 — ЗАПИСАННЫЕ ЗВУКИ**, accurate recorded-Castle/Ossuary and unchanged-Courtyard labels. Master/Ambience calibrations work, live player/meter. 81/81 technical PASS but **human D373 ear approval PENDING**.
+
+## Next required action
+Only tell user to `git pull`, F6 above audition. Confirm D373 title. Listen full 16s **Castle** and **Ossuary** versus the unchanged Courtyard. Ask whether physically recorded creak and drops feel more natural and whether the bone-like effect sounds too mechanical. If still wrong, adjust *choice of real recording* and levels rather than synthesizing periodic sine/white noise. If accepted, F5 table/courtyard/ossuary real gameplay audio; B Oak/D368 judgment open.
+
+## Product locks / continuing work
+Misdeal dark-fantasy cursed tabletop roguelike, evil Wizard host, card-driven exploration, tactical autobattler; Fate Spread exactly 12 resolutions I–XII and sealed Warden XIII. Knight/Ranger/Mage and conditional solo/duo/trio. Preserve DS3 approved colors/card paintings, D365 no intrusive targeting rays/tracers; no unsolicited music and keep gameplay/hero rules. A1P3 full human 12+XIII run and independent authored RELEASE battle/animation matrix are still open; ordinary PR CI not a replacement. Maintain `PROJECT_STATE`, `ROADMAP`, `DECISIONS`, `CHANGELOG`, `HANDOFF` and latest handoff after material changes. Don't repeatedly ask for GitHub access.
