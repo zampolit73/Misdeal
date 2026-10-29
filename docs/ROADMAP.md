@@ -1,3 +1,13 @@
+## ACTIVE 2026-10-29 — D374 remove rejected location ambience from gameplay
+
+- [x] User's in-game listening verdict: **all three D373 location loops distract and break atmosphere**; do not rely on earlier Courtyard booth preference or retune recordings blindly.
+- [x] Implement a **silent-first production baseline**: default SoundDirector refuses location playback from table, battle or scene transitions, preserving B Oak and D368 discrete cues. F6 archived clips require explicit manual selection and auto-restore original runtime mode.
+- [ ] Native Godot CI + PR merge and then user `git pull` and **F5** to check clear cursed-table/card sounds, natural combat focus and no repeating environmental audio.
+- [ ] Redesign atmosphere **after confirming quiet baseline**, using 2–3 separately presented *short, contextual, meaningful* non-looping alternatives for explicit user selection; silence is acceptable. Do not ship ambient beds on speculation or add unrequested music.
+- [ ] A1P3 human 12+XIII run and independent full RELEASE battle/animation matrix after approved audio direction.
+
+[Sound-design correction](D374_SILENT_FIRST_AUDIO.md).
+
 ## ACTIVE AFTER D373 SHIPPED — human sound taste gate (2026-10-29)
 
 - [x] Preserve user's **only partly accepted Courtyard** byte-for-byte; replace previously rejected Castle/Ossuary synthesis using properly credited recorded CC BY 3.0/CC0 Foley, [PR #38](https://github.com/zampolit73/Misdeal/pull/38) merged, [Godot 4.7.2 CI 81/81 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40823152431).
