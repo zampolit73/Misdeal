@@ -200,7 +200,7 @@ func test_d371_preview_version_and_two_bus_probes() -> void:
 		return
 	var preview := scene.instantiate()
 	add_child_autofree(preview)
-	assert_eq(preview.get("BUILD_LABEL"), "D372 / SPATIAL-AMBIENCE / 2026-10-29")
+	assert_eq(preview.get("BUILD_LABEL"), "D373 / RECORDED-FOLEY / 2026-10-29")
 	var master := preview.get_node_or_null("AudioChannelMaster") as AudioStreamPlayer
 	var ambience := preview.get_node_or_null("AudioChannelTest") as AudioStreamPlayer
 	assert_not_null(master)
@@ -214,7 +214,28 @@ func test_d371_preview_version_and_two_bus_probes() -> void:
 
 func test_d372_routed_audition_explains_nonwhite_noise_story() -> void:
 	var text := FileAccess.get_file_as_string("res://scripts/dev/d369_ambience_audition.gd")
-	assert_true(text.contains("Скрип балок"))
+	assert_true(text.contains("Запись старой деревянной двери"))
 	assert_true(text.contains("Порывы ветра"))
-	assert_true(text.contains("Костяные щелчки"))
-	assert_true(text.contains("D372"))
+	assert_true(text.contains("Записанный стук"))
+	assert_true(text.contains("D373"))
+
+
+func test_d373_preserves_selected_courtyard_and_ships_two_recorded_cc_audio_mixes() -> void:
+	# Golden source hashes from the provenance-verified CC Foley import build.
+	var expected := {
+		"castle": "e246e807528d32db9b7b32ec178fe1b135eb0f65978e88e00beb8467b818bd94",
+		"courtyard": "b88ee52f8673b43a20a15cfa88cfd77ac60ad4c49c7bcb87a0dc4c9e5a50c4e6",
+		"ossuary": "09f7f774e8988d2dde984d0b048cfb665e07b851fe0224dae5846c042fff7113",
+	}
+	for location in expected:
+		var sha := FileAccess.get_sha256(SAMPLES[location])
+		assert_eq(sha, String(expected[location]), location + " audio fingerprint changed")
+
+
+func test_d373_recorded_candidates_keep_long_silence_between_events() -> void:
+	for location in ["castle", "ossuary"]:
+		var raw := FileAccess.get_file_as_bytes(SAMPLES[location])
+		var initial := _window_rms(raw, 0.0, 1.0)
+		var active := _max_window_rms(raw)
+		assert_true(initial < 0.002, location + " has no constant synthetic noise")
+		assert_true(active > 0.035, location + " has an audible recorded sound cue")

@@ -1,13 +1,13 @@
 extends Control
 
-# D372: sparse spatial sound scenes (creaks, distant stone/metal, bones).
+# D373: human-recorded Foley candidate for castle & ossuary; courtyard unchanged.
 # This is a developer-only F6 scene, not a game HUD migration.
-const BUILD_LABEL := "D372 / SPATIAL-AMBIENCE / 2026-10-29"
+const BUILD_LABEL := "D373 / RECORDED-FOLEY / 2026-10-29"
 const TEST_TONE_RATE := 22050
 const SCENE_NOTES := {
-	"castle": "Скрип балок (2–4 и 10–12 с), тяжёлый стук двери и металла. Между событиями — тишина.",
+	"castle": "Запись старой деревянной двери: скрип около 2–7 и 10–14 с; без синтетического фона.",
 	"courtyard": "Порывы ветра (1–4 и 8–12 с), скрип ворот и удар железной защёлки.",
-	"ossuary": "Костяные щелчки (2–3 и 10–11 с), капли воды и далёкий скрип камня.",
+	"ossuary": "Записанный стук, похожий на кости (2 и 10 с), настоящие капли воды (5 и 13 с).",
 	"silence": "Полная тишина: сравни её с остальными средами.",
 }
 var _scene_description: Label
@@ -40,9 +40,9 @@ func _ready() -> void:
 	root.add_theme_constant_override("separation", 12)
 	add_child(root)
 
-	_add_label(root, "D372  •  ЗВУКОВЫЕ СЦЕНЫ", 29, Color("#f2c17a"))
-	_add_label(root, BUILD_LABEL + "  •  Если на экране D371, локальный проект ещё не обновлён.", 16, Color("#d8b19b"))
-	_add_label(root, "НОВЫЙ ЗВУК: больше никакого постоянного белого шума. Слушай отдельные события.", 17, Color("#e3d7c2"))
+	_add_label(root, "D373  •  ЗАПИСАННЫЕ ЗВУКИ", 29, Color("#f2c17a"))
+	_add_label(root, BUILD_LABEL + "  •  Если видишь D372, значит ещё не подтянул D373.", 16, Color("#d8b19b"))
+	_add_label(root, "ЗАМОК и КОСТНИЦА: лицензированные записи. ДВОР оставлен прежним по твоему выбору.", 17, Color("#e3d7c2"))
 
 	var choices := GridContainer.new()
 	choices.name = "LocationChoices"
@@ -163,7 +163,7 @@ func _process(delta: float) -> void:
 		var info: Dictionary = players[i]
 		active += "  [%d %s / %.1f dB / %.1f c]" % [i, "PLAY" if bool(info.get("playing", false)) else "STOP", float(info.get("gain_db", -60.0)), float(info.get("position_s", 0.0))]
 	var current_id: String = String(data.get("location", "unknown"))
-	_routing.text = "D372 / Location: %s  | Ambience bus: %s / %.1f dB  | WAV: %s" % [
+	_routing.text = "D373 / Location: %s  | Ambience bus: %s / %.1f dB  | WAV: %s" % [
 		current_id,
 		"OK" if bool(data.get("bus_exists", false)) else "MISSING",
 		float(data.get("bus_db", -80.0)),

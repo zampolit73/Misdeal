@@ -1,3 +1,7 @@
+## D373 — retain partial player-approved Courtyard, use recordings for remaining locations (2026-10-29)
+
+The player gave an explicit comparative listening verdict on D372: **Courtyard / Wind and Stone is the only more-or-less suitable option**. Castle/Ossuary synthetic sound objects did not sound like a physical place. **Courtyard WAV SHA is locked** `b88ee52f8673b43a20a15cfa88cfd77ac60ad4c49c7bcb87a0dc4c9e5a50c4e6`; don't retune it in this pass. D373 candidates for Castle and Ossuary are composites of real CC BY 3.0 and CC0 recordings sourced from OpenGameArt, with complete author/license/change credits [here](D373_RECORDED_FOLEY_CREDITS.md). No constant noise/music, no falsified sound realism, no approval until human listening. B Oak/D368/DS3/Fate unaffected.
+
 ## D372 — production rule: discrete environmental sounds over endless broadband noise (2026-10-29)
 
 The user's "just white noise" report led to [PR #37](https://github.com/zampolit73/Misdeal/pull/37), [Godot 4.7.2 CI 79/79 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40769450969). Ship **sparse 16s material events** (castle timber and stone/iron, courtyard intermittent wind+metal gate, ossuary separate dry bones and water drips), with verifiable near-silent gaps and limited delay tails. No generic hiss bed, no music. The current audio is **synthesized**, not recorded realism; quality approval is *not* implied by passing technical tests and may require later CC0/licensed authentic Foley. Preserve approved B Oak, restrained D368, D365 declutter and all game systems.
