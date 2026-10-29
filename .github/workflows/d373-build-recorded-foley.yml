@@ -20,11 +20,22 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned portable audio decoder
+        run: python -m pip install 'imageio-ffmpeg==0.6.0'
+      - name: Locate portable ffmpeg
+        id: ffmpeg_path
+        shell: bash
+        run: echo "executable=$(python -c 'import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())')" >> "$GITHUB_OUTPUT"
       - name: Decode and master CC-licensed real Foley (castle and ossuary only)
+        env:
+          FFMPEG_EXE: ${{ steps.ffmpeg_path.outputs.executable }}
         shell: bash
         run: |
           set -euo pipefail
-          ffmpeg -version | head -n 1
+          "$FFMPEG_EXE" -version | head -n 1
           python3 tools/audio/build_d373_recorded_ambience.py
           git diff --stat -- assets/audio/ambience/
           test ! -z "$(git status --short -- assets/audio/ambience/)"
