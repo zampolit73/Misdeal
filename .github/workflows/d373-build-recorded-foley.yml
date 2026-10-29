@@ -1,0 +1,39 @@
+name: D373 Import licensed recorded castle and ossuary Foley
+
+on:
+  push:
+    branches:
+      - feature/d373-recorded-foley-castle-ossuary
+    paths:
+      - .github/workflows/d373-build-recorded-foley.yml
+      - tools/audio/build_d373_recorded_ambience.py
+
+permissions:
+  contents: write
+
+jobs:
+  import-foley:
+    if: github.repository == 'zampolit73/Misdeal'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Decode and master CC-licensed real Foley (castle and ossuary only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          ffmpeg -version | head -n 1
+          python3 tools/audio/build_d373_recorded_ambience.py
+          git diff --stat -- assets/audio/ambience/
+          test ! -z "$(git status --short -- assets/audio/ambience/)"
+      - name: Commit sound sources directly to work branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add assets/audio/ambience/d369_castle_roomtone.wav assets/audio/ambience/d369_ossuary_roomtone.wav
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'audio(d373): replace synthetic castle and ossuary with attributed real CC Foley'
+          git push origin HEAD:feature/d373-recorded-foley-castle-ossuary
