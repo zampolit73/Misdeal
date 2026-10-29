@@ -10,6 +10,7 @@ from __future__ import annotations
 import array
 import hashlib
 import math
+import os
 import pathlib
 import shutil
 import subprocess
@@ -52,7 +53,7 @@ def download(name: str, url: str, folder: pathlib.Path) -> pathlib.Path:
 
 
 def decode(source: pathlib.Path) -> list[float]:
-    ffmpeg = shutil.which("ffmpeg")
+    ffmpeg = os.environ.get("FFMPEG_EXE") or shutil.which("ffmpeg")
     if not ffmpeg:
         raise RuntimeError("ffmpeg required to decode licensed recordings")
     result = subprocess.run(
