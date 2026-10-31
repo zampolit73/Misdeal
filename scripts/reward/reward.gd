@@ -121,6 +121,18 @@ func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_screen_copy(hint_label, MISDEAL_UI_KIT.PARCHMENT_WARM)
 	hover_summary_label.visible = false
 
+	# The approved table background includes old tiny words that peek through
+	# the gaps directly beneath the Reward actions. Mask only this 22px strip;
+	# do not cover the actual table painting or add a second card frame.
+	var action_backing := ColorRect.new()
+	action_backing.name = "RewardActionBacking"
+	action_backing.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	action_backing.color = Color(0.045, 0.022, 0.026, 0.97)
+	action_backing.position = Vector2(174.0, 601.0)
+	action_backing.size = Vector2(932.0, 22.0)
+	add_child(action_backing)
+	move_child(action_backing, rewards_root.get_index())
+
 	for index in range(reward_buttons.size()):
 		_build_v2_card_chrome(index)
 
