@@ -5,6 +5,7 @@ extends Node
 # D374: user rejected all location ambience in real gameplay.
 # Default to silent-first runtime. The former loops remain for explicit F6 audition.
 # Preserve approved tabletop Oak and existing combat cues.
+const DEBUG_AUDIO_PROBE := preload("res://scripts/dev/d377_live_audio_probe.gd")
 const BUS_UI := "UI"
 const BUS_COMBAT := "Combat"
 const BUS_AMBIENCE := "Ambience"
@@ -40,6 +41,12 @@ func _ready() -> void:
 		player.volume_db = SILENCE_DB
 		add_child(player)
 		_ambience_players.append(player)
+	# Developer-visible only on request; overlay remains hidden in normal F5.
+	# Never ship a diagnostic UI in release builds or alter normal mixer levels.
+	if OS.is_debug_build() and get_path() == NodePath("/root/SoundDirector"):
+		var probe := DEBUG_AUDIO_PROBE.new()
+		probe.name = "D377AudioProbe"
+		add_child(probe)
 
 
 func set_channel_volume(bus_name: String, linear: float) -> void:
