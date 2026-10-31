@@ -237,7 +237,7 @@ static func apply_reward(button: Button, portrait: TextureRect,
     role.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     # D379: Reward-only layout. Preserve the original 292x410 ornate frame;
     # its painted dark title recess requires pale ink, not black type.
-    # The parchment inset carries an actual modifier instead of remaining blank.
+    # The parchment inset carries at most two lines of readable shorthand.
     _at(heading, Vector2(REWARD_COPY_CENTER_X - 108.0, 230), Vector2(216, 34))
     heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -248,21 +248,21 @@ static func apply_reward(button: Button, portrait: TextureRect,
     heading.add_theme_font_size_override("font_size", 15)
     heading.clip_text = true
     heading.max_lines_visible = 2
-    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 270), Vector2(220, 41))
+    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 273), Vector2(220, 36))
     effect.add_theme_color_override("font_color", INK_TEXT)
     effect.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     effect.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     effect.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     effect.clip_text = true
-    effect.max_lines_visible = 3
-    _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 317), Vector2(222, 79))
+    effect.max_lines_visible = 2
+    _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 320), Vector2(222, 60))
     description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     description.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     description.add_theme_color_override("font_color", BONE)
     description.add_theme_font_size_override("font_size", 12)
     description.clip_text = true
-    description.max_lines_visible = 5
+    description.max_lines_visible = 4
     return true
 
 
@@ -280,8 +280,8 @@ static func style_reward_copy(button: Button, role: Label, heading: Label,
         label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
         label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     _at(heading, Vector2(REWARD_COPY_CENTER_X - 108.0, 230), Vector2(216, 34))
-    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 270), Vector2(220, 41))
-    _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 317), Vector2(222, 79))
+    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 273), Vector2(220, 36))
+    _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 320), Vector2(222, 60))
 
 
 # D316: physical DS3 card inside the already existing non-destructive
