@@ -13,6 +13,21 @@ const ROLE_FALLBACK_ART := {
 	"mage": preload("res://assets/art/units/mage.webp"),
 }
 
+# D380: concise card-face copy only. The exact authored modifier from
+# _get_upgrade_quick_effect() remains unchanged in the tooltip and gameplay.
+# A physical DS3 parchment strip is only tall enough for TWO compact lines.
+const UPGRADE_EFFECT_CARD_COPY := {
+	"knight_iron_oath": "+65 HP\n−15% СК. АТАКИ",
+	"knight_executioner": "+45% УРОН\n−30 HP",
+	"knight_cleaver": "45% СПЛЭШ\n−12% СК. АТАКИ",
+	"ranger_longshot": "+30% УРОН · +ДАЛЬНОСТЬ\n−18% ТЕМП",
+	"ranger_arrowstorm": "+38% ТЕМП\n−22% УРОН СТРЕЛЫ",
+	"ranger_beast_trail": "+35% ДВИЖ. · +10% ТЕМП\n−15 HP",
+	"mage_glass_heart": "+65% УРОН\n−35 HP",
+	"mage_overload": "+35% ТЕМП · −12% УРОН\n−15% ДВИЖ.",
+	"mage_wildfire": "+ШИР. ВЗРЫВ · +ПОБОЧ. УРОН\n−18% ОСН. УРОН",
+}
+
 @onready var title_label: Label = $Title
 @onready var summary_label: Label = $Summary
 @onready var hint_label: Label = $Hint
@@ -211,45 +226,48 @@ func _style_reward_choose_bar(index: int) -> void:
 	caption.add_theme_font_size_override("font_size", 14)
 
 
-func _style_v2_reward_copy(index: int, effect_text: String = "") -> void:
+func _style_v2_reward_copy(index: int, effect_text: String = "", card_effect: String = "") -> void:
 	var role := upgrade_role_labels[index]
 	var heading := upgrade_title_labels[index]
 	var effect := upgrade_quick_labels[index]
 	var description := upgrade_description_labels[index]
 
 	role.add_theme_color_override("font_color", MISDEAL_UI_KIT.PARCHMENT_WARM)
-	var long_effect := effect_text.length() > 38
-	# Use the previously blank light inset for a readable modifier.
-	# Relics without a modifier receive an honest "Description" label.
-	effect.text = (effect_text.replace("  •  ", "\n") if long_effect else effect_text) if not effect_text.is_empty() else "ОПИСАНИЕ"
+	# Keep the original mechanic text in the tooltip. Card-face shorthand
+	# never creates three clipped lines across the pale painted strip.
+	effect.text = (card_effect if not card_effect.is_empty() else effect_text.replace("  •  ", " · ")) if not effect_text.is_empty() else "ОПИСАНИЕ"
 	effect.visible = true
-	effect.add_theme_font_size_override("font_size", 10 if long_effect else 12)
-
+	effect.add_theme_font_size_override("font_size", 11 if effect.text.contains("\n") else 12)
 	var length := description.text.length()
 	var font_size := 12
 	if length > 125:
 		font_size = 10
-	elif length > 95:
+	elif length > 85:
 		font_size = 11
 	description.add_theme_font_size_override("font_size", font_size)
-	# Full unmodified text remains available from the original tooltip.
 	reward_buttons[index].tooltip_text = "%s\n\n%s\n%s" % [
 		heading.text, effect_text, description.text
 	]
 	CARD_DS3_SKIN.style_reward_copy(reward_buttons[index], role, heading, effect, description)
 	call_deferred("_fit_v2_reward_copy", index)
 
+
 func _fit_v2_reward_copy(index: int) -> void:
 	if index < 0 or index >= reward_buttons.size():
 		return
+	var effect := upgrade_quick_labels[index]
 	var description := upgrade_description_labels[index]
 	if not description.visible:
 		return
-	# Auto-fit after Control's final width has been established. This
-	# prevents future longer role/artifact descriptions from clipping.
+	# Native Label wrapping is known only after the actual card width settles.
+	# Both areas have fixed safe bounds inside the approved painted DS3 frame.
+	for point_size in range(effect.get_theme_font_size("font_size"), 8, -1):
+		effect.add_theme_font_size_override("font_size", point_size)
+		if effect.get_line_count() <= 2 and effect.get_line_count() * (point_size + 3) <= effect.size.y:
+			break
 	for point_size in range(description.get_theme_font_size("font_size"), 9, -1):
 		description.add_theme_font_size_override("font_size", point_size)
-		if description.get_line_count() * (point_size + 3) <= description.size.y:
+		if description.get_line_count() <= 4 and description.get_line_count() * (point_size + 3) <= description.size.y:
 			break
 
 
@@ -545,7 +563,7 @@ func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData)
 	upgrade_title_labels[index].text = upgrade.title
 	upgrade_title_labels[index].add_theme_color_override("font_color", _get_role_color(upgrade.target_role).lightened(0.12))
 	upgrade_description_labels[index].text = upgrade.description
-	_style_v2_reward_copy(index, _get_upgrade_quick_effect(upgrade_id))
+	_style_v2_reward_copy(index, _get_upgrade_quick_effect(upgrade_id), UPGRADE_EFFECT_CARD_COPY.get(upgrade_id, ""))
 
 func _set_reward_card(index: int, art_key: String, kicker: String, title: String, description: String) -> void:
 	var button := reward_buttons[index]
