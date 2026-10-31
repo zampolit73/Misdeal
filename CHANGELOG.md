@@ -1,8 +1,8 @@
-## Unreleased — D379: reward/upgrade DS3 clarity (2026-10-31)
+## Released — D379: reward/upgrade DS3 clarity (2026-10-31)
 
 - Fixed the three-choice Reward screen at 1280×720: compact header/footer, no overlay on actions, visible bronze-accented «ВЫБРАТЬ» within each clickable card, readable ivory titles and on-parchment modifiers.
 - Expanded reward descriptions and preserved complete original tooltip text; all approved artwork and physical card-frame assets unchanged.
-- Added native triple-Knight layout regression and the real `reward-upgrade` Godot screenshot to visual PR QA. CI / player acceptance pending.
+- Added native triple-Knight layout regression and the real `reward-upgrade` Godot screenshot to visual PR QA. [PR #42](https://github.com/zampolit73/Misdeal/pull/42) merged `304d866` after [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41194050519); user F5 visual acceptance pending.
 
 ## 2026-10-31 — D377 source-isolation panel after unchanged player experience
 
