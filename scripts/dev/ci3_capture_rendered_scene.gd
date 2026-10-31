@@ -8,6 +8,7 @@ const SCENES := {
 	"table": "res://scenes/table/table.tscn",
 	"wizard-prep": "res://scenes/dev/d308_wizard_panel_preview.tscn",
 	"card-gallery": "res://scenes/dev/d315_card_ds3_gallery.tscn",
+	"reward-upgrade": "res://scenes/reward/reward.tscn",
 	"qa-hub": "res://scenes/dev/qa_hub.tscn",
 }
 
@@ -26,7 +27,7 @@ func _capture() -> void:
 		return
 
 	root.size = SIZE
-	if scene_key == "table" or scene_key == "class-select":
+	if scene_key == "table" or scene_key == "class-select" or scene_key == "reward-upgrade":
 		# --script does not always inject project autoloads in all execution
 		# modes; register the real RunState the same way native smoke tests do.
 		var state := root.get_node_or_null("RunState")
@@ -67,6 +68,22 @@ func _capture() -> void:
 		if scene.get_node_or_null("CardScroll/CardGrid") == null:
 			_fail("card DS3 gallery did not populate")
 			return
+	elif scene_key == "reward-upgrade":
+		# Deterministic three-Knight preview of the reported F5 reward layout.
+		# The scene and actual card data are used; no rewards are granted.
+		scene.get_node("Title").text = "РАЗВИТИЕ ОТРЯДА"
+		scene.get_node("Summary").text = "Вы пока один. Выберите, какой версией себя станете дальше."
+		scene.get_node("Hint").text = "Этап 1/3. Все доступные пути принадлежат вашему герою."
+		var ids := ["knight_iron_oath", "knight_executioner", "knight_cleaver"]
+		var buttons := ["BloodCoin", "IronWard", "TemperedSteel"]
+		for index in range(ids.size()):
+			var upgrade = root.get_node("RunState").call("get_hero_upgrade", ids[index])
+			if upgrade == null:
+				_fail("missing Knight reward upgrade: " + ids[index])
+				return
+			var card := scene.get_node("Rewards/" + buttons[index]) as Button
+			card.visible = true
+			scene.call("_set_upgrade_card", index, ids[index], upgrade)
 	elif scene_key == "qa-hub":
 		if scene.get_node_or_null("Categories") == null or scene.get_node_or_null("DetailPanel/LaunchButton") == null:
 			_fail("OPT4 QA Hub categories or scene launcher missing")

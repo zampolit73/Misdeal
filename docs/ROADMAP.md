@@ -1,3 +1,11 @@
+## D379 — urgent Reward/upgrade screen visual repair (2026-10-31)
+
+- [x] Inspect user's actual 1280×720 Godot screenshot and current Reward/DS3 code; root causes are dark reward title ink, hidden ChooseBars, narrow text wells and oversized header/footer.
+- [x] Stage Reward-only geometry/contrast/CTA fix without repainting art, changing user-approved DS3 card frame or gameplay selection.
+- [x] Add deterministic triple-Knight native layout assertions and a CI3 1280×720 screenshot key `reward-upgrade`.
+- [ ] Verify PR Godot 4.7.2 import, GUT, D315 native checks, real reward screenshot and merge to main.
+- [ ] User F5 regression: all three Knight cards, readable text, unobstructed «ВЫБРАТЬ», correct click; also test one-card loot and a relic/wager reward.
+
 ## ACTIVE AFTER D377 (2026-10-31) — identify what the player actually hears
 
 - [x] Code inspection: D374 already disables all environmental location-loop playback by default. Other distinct audio emitters remain active: TableAudio on UI, CombatAudio on Combat; local `git pull` cannot be verified from GitHub alone.

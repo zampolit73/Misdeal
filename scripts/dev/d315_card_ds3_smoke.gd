@@ -484,6 +484,51 @@ func _verify() -> void:
         if card.pressed.get_connections().is_empty():
             _fail("original reward action lost " + name)
             return
+    # D379: reproduce the player's actual three-upgrade state, then assert
+    # bounded geometry and readable copy instead of trusting a mocked image.
+    var knight_choices := ["knight_iron_oath", "knight_executioner", "knight_cleaver"]
+    var reward_names := ["BloodCoin", "IronWard", "TemperedSteel"]
+    for index in range(knight_choices.size()):
+        var upgrade = state.call("get_hero_upgrade", knight_choices[index])
+        if upgrade == null:
+            _fail("D379 Knight upgrade data unavailable")
+            return
+        var card := reward_scene.get_node("Rewards/" + reward_names[index]) as Button
+        card.visible = true
+        reward_scene.call("_set_upgrade_card", index, knight_choices[index], upgrade)
+    await process_frame
+    var cards_row := reward_scene.get_node("Rewards") as HBoxContainer
+    var footer := reward_scene.get_node("DS2RewardFooter") as Panel
+    if cards_row.position.y < 146.0 or cards_row.position.y + cards_row.size.y + 8.0 > footer.position.y:
+        _fail("D379 reward cards collide with the instruction footer")
+        return
+    for name in reward_names:
+        var card := reward_scene.get_node("Rewards/" + name) as Button
+        var choice := card.get_node("ChooseBar") as Panel
+        var caption := choice.get_node("ChooseText") as Label
+        var heading := card.get_node("UpgradeTitle") as Label
+        var effect := card.get_node("QuickEffect") as Label
+        var body := card.get_node("UpgradeDescription") as Label
+        var frame := card.get_node("DS3CardFrame") as TextureRect
+        if not card.visible or not choice.visible or caption.text != "ВЫБРАТЬ":
+            _fail("D379 selectable reward has no visible action: " + name)
+            return
+        if choice.position.y < frame.size.y or choice.position.y + choice.size.y > card.size.y - 3.0:
+            _fail("D379 CTA is clipped or overlays the framed description: " + name)
+            return
+        if heading.get_theme_color("font_color").get_luminance() < 0.48:
+            _fail("D379 heading remains dark ink on a black title plate: " + name)
+            return
+        if effect.text.is_empty() or effect.get_theme_color("font_color").get_luminance() > 0.25:
+            _fail("D379 parchment modifier is empty or lacks contrast: " + name)
+            return
+        if effect.position.y < heading.position.y + heading.size.y or body.position.y < effect.position.y + effect.size.y:
+            _fail("D379 title, modifier and description overlap: " + name)
+            return
+        if body.position.y + body.size.y > frame.size.y - 10.0:
+            _fail("D379 description ends under the frame ornament: " + name)
+            return
+    print("D379_REWARD_LAYOUT_PASS: three cards readable, CTA visible and footer clear")
     print("D315_CARD_DS3_NATIVE_PASS: full card atlas, reward UI, source art and preserved click handlers")
     reward_scene.queue_free()
     await process_frame

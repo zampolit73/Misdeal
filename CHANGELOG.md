@@ -1,3 +1,9 @@
+## Unreleased — D379: reward/upgrade DS3 clarity (2026-10-31)
+
+- Fixed the three-choice Reward screen at 1280×720: compact header/footer, no overlay on actions, visible bronze-accented «ВЫБРАТЬ» within each clickable card, readable ivory titles and on-parchment modifiers.
+- Expanded reward descriptions and preserved complete original tooltip text; all approved artwork and physical card-frame assets unchanged.
+- Added native triple-Knight layout regression and the real `reward-upgrade` Godot screenshot to visual PR QA. CI / player acceptance pending.
+
 ## 2026-10-31 — D377 source-isolation panel after unchanged player experience
 
 [PR #40](https://github.com/zampolit73/Misdeal/pull/40) squash `c9d60fc825d39b37d8302aeed14bb3c9a945dbc4`, [Godot 4.7.2 native CI SUCCESS 86/86 GUT](https://github.com/zampolit73/Misdeal/actions/runs/41191238662), import/parse/smokes/screenshots. Added a hidden debug-only `Ctrl+Shift+M` audio diagnostic in real F5 gameplay. Shows build version D377, default-off Ambience state, active UI/Combat/Ambience playing voice counts; controlled reversible bus isolation Original / UI only / Combat only / Ambience only / Silence. Closing restores prior mute states. Investigation only: no new sound, no audio retuning, Oak B and D368 unchanged, 3 rejected loop beds remain disabled. User PC sound feedback needed.

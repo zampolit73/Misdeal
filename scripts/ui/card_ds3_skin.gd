@@ -218,10 +218,10 @@ static func apply_reward(button: Button, portrait: TextureRect,
     if button.has_node("DS3CardFrame"):
         return true
     _empty_button(button)
-    button.custom_minimum_size = Vector2(292, 410)
+    button.custom_minimum_size = Vector2(292, 456)
     button.focus_mode = Control.FOCUS_ALL
     button.clip_contents = true
-    var bottom := _new_face_stone(button, "DS3CardStone", Vector2(292, 410))
+    var bottom := _new_face_stone(button, "DS3CardStone", Vector2(292, 456))
     button.move_child(bottom, 0)
     var art_well := _new_art_well(button, "DS3ArtWell",
         Vector2(24, 38), Vector2(244, 240))
@@ -235,44 +235,54 @@ static func apply_reward(button: Button, portrait: TextureRect,
     role.add_theme_color_override("font_color", GOLD)
     role.add_theme_font_size_override("font_size", 12)
     role.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    _at(heading, Vector2(REWARD_COPY_CENTER_X - 108.0, 285), Vector2(216, 31))
+    # D379: Reward-only layout. Preserve the original 292x410 ornate frame;
+    # its painted dark title recess requires pale ink, not black type.
+    # The parchment inset carries an actual modifier instead of remaining blank.
+    _at(heading, Vector2(REWARD_COPY_CENTER_X - 108.0, 230), Vector2(216, 34))
     heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     heading.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    heading.add_theme_color_override("font_color", INK_TEXT)
+    heading.add_theme_color_override("font_color", BONE)
+    heading.add_theme_color_override("font_outline_color", Color("#10090d"))
+    heading.add_theme_constant_override("outline_size", 1)
     heading.add_theme_font_size_override("font_size", 15)
-    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 328), Vector2(220, 27))
-    effect.add_theme_color_override("font_color", GOLD)
+    heading.clip_text = true
+    heading.max_lines_visible = 2
+    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 270), Vector2(220, 41))
+    effect.add_theme_color_override("font_color", INK_TEXT)
     effect.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     effect.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 355), Vector2(222, 45))
+    effect.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    effect.clip_text = true
+    effect.max_lines_visible = 3
+    _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 317), Vector2(222, 79))
     description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     description.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     description.add_theme_color_override("font_color", BONE)
-    description.add_theme_font_size_override("font_size", 11)
+    description.add_theme_font_size_override("font_size", 12)
     description.clip_text = true
+    description.max_lines_visible = 5
     return true
+
 
 static func style_reward_copy(button: Button, role: Label, heading: Label,
         effect: Label, description: Label) -> void:
     if not button.has_node("DS3CardFrame"):
         return
     role.add_theme_color_override("font_color", GOLD)
-    heading.add_theme_color_override("font_color", INK_TEXT)
-    effect.add_theme_color_override("font_color", GOLD)
+    heading.add_theme_color_override("font_color", BONE)
+    effect.add_theme_color_override("font_color", INK_TEXT)
     description.add_theme_color_override("font_color", BONE)
-    # D325: Reward updates re-style these labels; keep all live text centered.
+    # Live changes to reward modes must not reintroduce the old dark title
+    # or squash descriptions into the bottom 40 px of the frame.
     for label in [role, heading, effect, description]:
         label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
         label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    var has_effect := effect.visible
-    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 325), Vector2(220, 36 if has_effect else 0))
-    _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 360 if has_effect else 325),
-        Vector2(222, 40 if has_effect else 75))
-    description.add_theme_font_size_override("font_size", 11)
-    effect.add_theme_font_size_override("font_size", 11)
-    # Long effect texts remain available in the original complete tooltip.
+    _at(heading, Vector2(REWARD_COPY_CENTER_X - 108.0, 230), Vector2(216, 34))
+    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 270), Vector2(220, 41))
+    _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 317), Vector2(222, 79))
+
 
 # D316: physical DS3 card inside the already existing non-destructive
 # full-text inspection panel. This is a true card illustration, not a separate
