@@ -277,3 +277,57 @@ func test_d374_f6_scene_is_explicitly_archived_not_approved_audio() -> void:
 	assert_true(script.contains("set_location_ambience_enabled(true)"))
 	assert_true(script.contains("set_location_ambience_enabled(_original_ambience_mode)"))
 	assert_true(script.contains("_select_location(\"silence\")"))
+
+
+func test_d377_f5_audio_isolation_probe_is_hidden_and_can_restore_bus_mutes() -> void:
+	var probe_script := load("res://scripts/dev/d377_live_audio_probe.gd") as GDScript
+	assert_not_null(probe_script)
+	if probe_script == null:
+		return
+	var original: Dictionary = {}
+	for bus_name in ["UI", "Combat", "Ambience"]:
+		var index := AudioServer.get_bus_index(bus_name)
+		assert_true(index >= 0)
+		if index >= 0:
+			original[bus_name] = AudioServer.is_bus_mute(index)
+	var probe := probe_script.new() as CanvasLayer
+	add_child(probe)
+	var panel := probe.get_node_or_null("AudioProbeRoot/AudioProbePanel") as PanelContainer
+	assert_not_null(panel)
+	if panel != null:
+		assert_false(panel.visible)
+	assert_eq(probe.get("BUILD_LABEL"), "D377 / LIVE AUDIO / 2026-10-31")
+	probe.call("_set_mode", "silence")
+	for bus_name in original:
+		assert_true(AudioServer.is_bus_mute(AudioServer.get_bus_index(bus_name)), "Missing silence: " + bus_name)
+	probe.call("_set_mode", "ui")
+	assert_false(AudioServer.is_bus_mute(AudioServer.get_bus_index("UI")))
+	assert_true(AudioServer.is_bus_mute(AudioServer.get_bus_index("Combat")))
+	assert_true(AudioServer.is_bus_mute(AudioServer.get_bus_index("Ambience")))
+	probe.call("_set_mode", "combat")
+	assert_true(AudioServer.is_bus_mute(AudioServer.get_bus_index("UI")))
+	assert_false(AudioServer.is_bus_mute(AudioServer.get_bus_index("Combat")))
+	assert_true(AudioServer.is_bus_mute(AudioServer.get_bus_index("Ambience")))
+	probe.call("_set_mode", "ambience")
+	assert_true(AudioServer.is_bus_mute(AudioServer.get_bus_index("UI")))
+	assert_true(AudioServer.is_bus_mute(AudioServer.get_bus_index("Combat")))
+	assert_false(AudioServer.is_bus_mute(AudioServer.get_bus_index("Ambience")))
+	probe.call("_set_mode", "normal")
+	for bus_name in original:
+		assert_eq(AudioServer.is_bus_mute(AudioServer.get_bus_index(bus_name)), bool(original[bus_name]))
+	probe.free()
+
+
+func test_d377_visible_version_and_real_audio_sources_are_verified_on_live_f5() -> void:
+	var director_source := FileAccess.get_file_as_string("res://scripts/audio/sound_director.gd")
+	var probe_source := FileAccess.get_file_as_string("res://scripts/dev/d377_live_audio_probe.gd")
+	assert_true(director_source.contains("OS.is_debug_build()"))
+	assert_true(director_source.contains("NodePath(\"/root/SoundDirector\")"))
+	assert_true(director_source.contains("D377AudioProbe"))
+	assert_true(probe_source.contains("KEY_M"))
+	assert_true(probe_source.contains("ctrl_pressed"))
+	assert_true(probe_source.contains("shift_pressed"))
+	assert_true(probe_source.contains("get_ambience_debug_info"))
+	assert_true(probe_source.contains("_count_active_voices"))
+	assert_true(probe_source.contains("MODE_LABELS"))
+	assert_true(probe_source.contains("ПОЛНАЯ ТИШИНА"))
