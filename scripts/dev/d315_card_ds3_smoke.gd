@@ -489,7 +489,7 @@ func _verify() -> void:
     var knight_choices := ["knight_iron_oath", "knight_executioner", "knight_cleaver"]
     var reward_names := ["BloodCoin", "IronWard", "TemperedSteel"]
     for index in range(knight_choices.size()):
-        var upgrade := state.call("get_hero_upgrade", knight_choices[index])
+        var upgrade = state.call("get_hero_upgrade", knight_choices[index])
         if upgrade == null:
             _fail("D379 Knight upgrade data unavailable")
             return
