@@ -77,7 +77,7 @@ func _capture() -> void:
 		var ids := ["knight_iron_oath", "knight_executioner", "knight_cleaver"]
 		var buttons := ["BloodCoin", "IronWard", "TemperedSteel"]
 		for index in range(ids.size()):
-			var upgrade := root.get_node("RunState").call("get_hero_upgrade", ids[index])
+			var upgrade = root.get_node("RunState").call("get_hero_upgrade", ids[index])
 			if upgrade == null:
 				_fail("missing Knight reward upgrade: " + ids[index])
 				return
