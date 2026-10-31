@@ -63,28 +63,28 @@ func _apply_ui_kit() -> void:
 	$WizardBackdrop.modulate = Color.WHITE
 	$BackdropShade.color = Color(0.030, 0.013, 0.014, 0.53)
 	MISDEAL_UI_KIT.apply_v2_material_plate(header_panel, true)
-	header_panel.position = Vector2(167.0, 20.0)
-	header_panel.size = Vector2(946.0, 151.0)
+	header_panel.position = Vector2(167.0, 16.0)
+	header_panel.size = Vector2(946.0, 109.0)
 
-	title_label.position = Vector2(211.0, 61.0)
-	title_label.size = Vector2(858.0, 43.0)
-	title_label.add_theme_font_size_override("font_size", 30)
+	title_label.position = Vector2(211.0, 32.0)
+	title_label.size = Vector2(858.0, 40.0)
+	title_label.add_theme_font_size_override("font_size", 28)
 	MISDEAL_UI_KIT.apply_screen_copy(title_label, MISDEAL_UI_KIT.PARCHMENT_WARM, true)
 
-	summary_label.position = Vector2(211.0, 105.0)
-	summary_label.size = Vector2(858.0, 37.0)
+	summary_label.position = Vector2(211.0, 76.0)
+	summary_label.size = Vector2(858.0, 32.0)
 	summary_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	summary_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	summary_label.add_theme_font_size_override("font_size", 15)
 	MISDEAL_UI_KIT.apply_screen_copy(summary_label, MISDEAL_UI_KIT.TEXT, false)
 
-	run_stats_label.position = Vector2(211.0, 146.0)
-	run_stats_label.size = Vector2(858.0, 22.0)
-	run_stats_label.add_theme_font_size_override("font_size", 12)
+	run_stats_label.position = Vector2(189.0, 128.0)
+	run_stats_label.size = Vector2(902.0, 18.0)
+	run_stats_label.add_theme_font_size_override("font_size", 11)
 	MISDEAL_UI_KIT.apply_screen_copy(run_stats_label, MISDEAL_UI_KIT.AGED_BRONZE)
 
-	rewards_root.position = Vector2(174.0, 184.0)
-	rewards_root.size = Vector2(932.0, 412.0)
+	rewards_root.position = Vector2(174.0, 150.0)
+	rewards_root.size = Vector2(932.0, 456.0)
 	rewards_root.add_theme_constant_override("separation", 26)
 
 	# This plate uses the unchanged Hint label; dynamic reward-mode advice
@@ -92,14 +92,14 @@ func _apply_ui_kit() -> void:
 	var footer := Panel.new()
 	footer.name = "DS2RewardFooter"
 	footer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	footer.position = Vector2(174.0, 608.0)
-	footer.size = Vector2(932.0, 87.0)
+	footer.position = Vector2(174.0, 620.0)
+	footer.size = Vector2(932.0, 75.0)
 	add_child(footer)
 	MISDEAL_UI_KIT.apply_v2_material_plate(footer, false)
 	move_child(footer, hint_label.get_index())
 
-	hint_label.position = Vector2(198.0, 627.0)
-	hint_label.size = Vector2(882.0, 48.0)
+	hint_label.position = Vector2(198.0, 635.0)
+	hint_label.size = Vector2(882.0, 45.0)
 	hint_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	hint_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	hint_label.add_theme_font_size_override("font_size", 14)
@@ -113,9 +113,9 @@ func _apply_ui_kit() -> void:
 func _build_v2_card_chrome(index: int) -> void:
 	var button := reward_buttons[index]
 	if CARD_DS3_SKIN.apply_reward(button, upgrade_portraits[index], upgrade_role_labels[index], upgrade_title_labels[index], upgrade_quick_labels[index], upgrade_description_labels[index]):
-		upgrade_choose_bars[index].visible = false
+		_style_reward_choose_bar(index)
 		return
-	button.custom_minimum_size = Vector2(292.0, 410.0)
+	button.custom_minimum_size = Vector2(292.0, 456.0)
 	button.focus_mode = Control.FOCUS_ALL
 	MISDEAL_UI_KIT.apply_v2_reward_card(button, false)
 	# Parent Button remains the sole input target; sub-controls ignore mouse.
@@ -188,8 +188,27 @@ func _build_v2_card_chrome(index: int) -> void:
 	description.position = Vector2(29.0, 323.0)
 	description.size = Vector2(234.0, 63.0)
 
-	# Selection is communicated by the entire antique card border.
-	upgrade_choose_bars[index].visible = false
+	# A real CTA sits below the ornate face, within the original Button.
+	_style_reward_choose_bar(index)
+
+
+func _style_reward_choose_bar(index: int) -> void:
+	# D379: the original ChooseBar was permanently hidden under DS3.
+	# Reuse the existing full-card Button and pressed signal.
+	var choice := upgrade_choose_bars[index]
+	choice.position = Vector2(41.0, 415.0)
+	choice.size = Vector2(234.0, 35.0)
+	choice.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var plate := StyleBoxFlat.new()
+	plate.bg_color = Color("#211318")
+	plate.border_color = Color("#986c43")
+	plate.set_border_width_all(1)
+	plate.set_corner_radius_all(2)
+	choice.add_theme_stylebox_override("panel", plate)
+	var caption := choice.get_node("ChooseText") as Label
+	caption.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	caption.add_theme_color_override("font_color", CARD_DS3_SKIN.GOLD)
+	caption.add_theme_font_size_override("font_size", 14)
 
 
 func _style_v2_reward_copy(index: int, effect_text: String = "") -> void:
@@ -199,35 +218,26 @@ func _style_v2_reward_copy(index: int, effect_text: String = "") -> void:
 	var description := upgrade_description_labels[index]
 
 	role.add_theme_color_override("font_color", MISDEAL_UI_KIT.PARCHMENT_WARM)
-	heading.add_theme_color_override("font_color", Color(0.18, 0.09, 0.07))
 	var long_effect := effect_text.length() > 38
-	effect.text = effect_text.replace("  •  ", "\n") if long_effect else effect_text
-	effect.visible = not effect_text.is_empty()
-	effect.position.y = 281.0 if long_effect else 287.0
-	effect.size.y = 48.0 if long_effect else 34.0
-	effect.add_theme_font_size_override("font_size", 11 if long_effect else 12)
-	effect.add_theme_color_override("font_color", Color(0.43, 0.18, 0.10))
-	description.add_theme_color_override("font_color", Color(0.22, 0.16, 0.13))
+	# Use the previously blank light inset for a readable modifier.
+	# Relics without a modifier receive an honest "Description" label.
+	effect.text = (effect_text.replace("  •  ", "\n") if long_effect else effect_text) if not effect_text.is_empty() else "ОПИСАНИЕ"
+	effect.visible = true
+	effect.add_theme_font_size_override("font_size", 10 if long_effect else 12)
 
-	# Long upgrades get a three-line effect area, short rewards a
-	# larger descriptive area, and relics without an effect get most.
-	var has_effect := effect.visible
-	description.position.y = 337.0 if long_effect else (323.0 if has_effect else 290.0)
-	description.size.y = 50.0 if long_effect else (63.0 if has_effect else 96.0)
 	var length := description.text.length()
-	var font_size := 13
+	var font_size := 12
 	if length > 125:
+		font_size = 10
+	elif length > 95:
 		font_size = 11
-	elif length > 90:
-		font_size = 12
 	description.add_theme_font_size_override("font_size", font_size)
-	# Tooltip keeps every character accessible even if translation grows.
+	# Full unmodified text remains available from the original tooltip.
 	reward_buttons[index].tooltip_text = "%s\n\n%s\n%s" % [
 		heading.text, effect_text, description.text
 	]
 	CARD_DS3_SKIN.style_reward_copy(reward_buttons[index], role, heading, effect, description)
 	call_deferred("_fit_v2_reward_copy", index)
-
 
 func _fit_v2_reward_copy(index: int) -> void:
 	if index < 0 or index >= reward_buttons.size():
@@ -529,7 +539,6 @@ func _set_upgrade_card(index: int, upgrade_id: String, upgrade: HeroUpgradeData)
 		else TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	)
 	upgrade_portraits[index].visible = approved_art != null
-	upgrade_choose_bars[index].visible = false
 	_apply_upgrade_text_layout(index, approved_art != null)
 	upgrade_role_labels[index].text = _get_role_label(upgrade.target_role)
 	upgrade_role_labels[index].add_theme_color_override("font_color", _get_role_color(upgrade.target_role))
@@ -570,7 +579,6 @@ func _set_reward_card(index: int, art_key: String, kicker: String, title: String
 		detail = description.substr(separator + 1).strip_edges()
 	upgrade_description_labels[index].text = detail
 	_style_v2_reward_copy(index, effect)
-	upgrade_choose_bars[index].visible = false
 
 func _set_upgrade_nodes_visible(index: int, visible: bool) -> void:
 	upgrade_portraits[index].visible = visible
