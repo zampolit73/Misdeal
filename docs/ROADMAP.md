@@ -1,3 +1,13 @@
+## ACTIVE AFTER D377 (2026-10-31) — identify what the player actually hears
+
+- [x] Code inspection: D374 already disables all environmental location-loop playback by default. Other distinct audio emitters remain active: TableAudio on UI, CombatAudio on Combat; local `git pull` cannot be verified from GitHub alone.
+- [x] Ship F5 debug-only channel comparison and visible D377 build ID: [PR #40](https://github.com/zampolit73/Misdeal/pull/40) in main, [Godot native CI 86/86 PASS](https://github.com/zampolit73/Misdeal/actions/runs/41191238662). No unapproved new sound.
+- [ ] `git pull`, F5, **Ctrl+Shift+M**; confirm D377 header; compare Original, UI only, Combat only, Ambience only and Silence in the SAME scene. Send which specific sound/channel is irritating; if D377 does not appear, inspect `git pull` and `git log -1 --oneline` before changing audio again.
+- [ ] Only after source identification, propose focused adjustment for user approval in F5. Do not resurrect repetitive Castle/Courtyard/Ossuary WAVs.
+- [ ] A1P3 real human full 12+XIII and separate RELEASE authored battle/animation matrix.
+
+[Next-chat context](D378_NEW_CHAT_HANDOFF.md).
+
 ## ACTIVE AFTER D374 RELEASE — restore focus before redesign (2026-10-29)
 
 - [x] Remove rejected location loops from ordinary F5 game: [PR #39](https://github.com/zampolit73/Misdeal/pull/39) **merged**, [Godot 4.7.2 CI 84/84 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40854842019). Keep B Oak and D368 combat; F6 preserved for archive comparison.

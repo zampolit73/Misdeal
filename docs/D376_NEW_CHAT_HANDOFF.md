@@ -1,3 +1,5 @@
+> **SUPERSEDED BY D377 LIVE AUDIO SOURCE DIAGNOSIS (2026-10-31):** Player reported no audible difference after D374. [PR #40](https://github.com/zampolit73/Misdeal/pull/40) added a F5 debug-only build ID and Ctrl+Shift+M UI/Combat/Ambience isolation, [Godot 4.7.2 CI 86/86 PASS](https://github.com/zampolit73/Misdeal/actions/runs/41191238662). Current handoff: [D378_NEW_CHAT_HANDOFF.md](D378_NEW_CHAT_HANDOFF.md). No further audio sound design decisions before user identifies channel.
+
 # Misdeal — CURRENT NEW CHAT HANDOFF: D374 silent-first sound rollback (2026-10-29)
 
 ## Technical source of truth

@@ -1,3 +1,7 @@
+## CURRENT (2026-10-31) — live F5 audio source inspection
+
+[D377 audio isolation steps](D377_LIVE_AUDIO_SOURCE_DIAGNOSTICS.md) / [D378 next-chat checkpoint](D378_NEW_CHAT_HANDOFF.md). [PR #40](https://github.com/zampolit73/Misdeal/pull/40), [Godot 4.7.2 native CI 86/86 PASS](https://github.com/zampolit73/Misdeal/actions/runs/41191238662). User heard no difference after ambience rollback; source/channel and local build version still require player verification.
+
 ## Latest 2026-10-29 — D374 silent-first audio release
 
 [Current continuation](D376_NEW_CHAT_HANDOFF.md), [reason and QA](D374_SILENT_FIRST_AUDIO.md). [D374 PR #39](https://github.com/zampolit73/Misdeal/pull/39) and [Godot 4.7.2 native CI 84/84](https://github.com/zampolit73/Misdeal/actions/runs/40854842019). The user rejected prior audible location loops in real gameplay; new default is silent, human F5 confirmation pending.

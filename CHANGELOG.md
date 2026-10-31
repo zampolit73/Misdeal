@@ -1,3 +1,7 @@
+## 2026-10-31 — D377 source-isolation panel after unchanged player experience
+
+[PR #40](https://github.com/zampolit73/Misdeal/pull/40) squash `c9d60fc825d39b37d8302aeed14bb3c9a945dbc4`, [Godot 4.7.2 native CI SUCCESS 86/86 GUT](https://github.com/zampolit73/Misdeal/actions/runs/41191238662), import/parse/smokes/screenshots. Added a hidden debug-only `Ctrl+Shift+M` audio diagnostic in real F5 gameplay. Shows build version D377, default-off Ambience state, active UI/Combat/Ambience playing voice counts; controlled reversible bus isolation Original / UI only / Combat only / Ambience only / Silence. Closing restores prior mute states. Investigation only: no new sound, no audio retuning, Oak B and D368 unchanged, 3 rejected loop beds remain disabled. User PC sound feedback needed.
+
 ## 2026-10-29 — D374 live-play ambience removal shipped
 
 [PR #39](https://github.com/zampolit73/Misdeal/pull/39) squash `7305e85958c571119c961f75dd929c369b88d361`; [native Godot 4.7.2 CI SUCCESS 84/84 GUT](https://github.com/zampolit73/Misdeal/actions/runs/40854842019), project parse, native scene smoke/screenshots. User reported D373 environment loops break atmosphere in actual gameplay. Location ambience is now disabled by default through persistent SoundDirector, so scene requests do not play unwanted castle/courtyard/ossuary recordings; F6 diagnostic remains an explicitly enabled archived test that starts silent and restores prior channel/mode. B Oak card UI, D368 combat cues, all visuals and mechanics unchanged. User F5 acoustic check required; no new replacement approved.
