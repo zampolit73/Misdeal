@@ -3,7 +3,7 @@
 - [x] Real F5 screenshot confirms D379 action and title improvements; identifies overflow on three-part Ranger Beast Trail modifier and prose near lower frame.
 - [x] Keep exact DS3 art and full effect data; show two-line shorthand inside parchment, constrain prose inside ornament-safe area, mask stray background labels beneath CTAs.
 - [x] Extend D315 native layout tests to Knight/Ranger/Mage plus exact two-person screenshot combination, and update real 1280×720 capture.
-- [ ] Review GitHub Actions Godot 4.7.2 parser, GUT, D315 layout cases and screenshot, correct any failures and merge PR.
+- [x] [PR #43](https://github.com/zampolit73/Misdeal/pull/43) squash-merged `9b7ee44`; [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41194678163): import, 86/86 GUT, D315 real mixed-party checks, 1280×720 Reward screenshot.
 - [ ] Local F5 acceptance: mixed Knight + Ranger + Ranger, legible modifiers including −15 HP, no text over bronze ornaments, visible buttons, selections unchanged.
 
 ## D379 — urgent Reward/upgrade screen visual repair (2026-10-31)
