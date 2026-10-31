@@ -1,3 +1,9 @@
+## Unreleased — D380: mixed-party Reward card copy fitting (2026-10-31)
+
+- Constrained upgrade modifier summaries to at most two lines within the approved DS3 parchment strip; preserved all numeric effects and complete original tooltips.
+- Rebalanced description text within the lower dark recess without painting over gilt ornaments; added narrow table-lettering mask behind the choice-button row.
+- Expanded native Reward QA to Knight/Ranger/Mage combinations and updated the CI3 1280×720 screenshot to reproduce the user's Knight + two Rangers state. Native CI and human F5 review pending.
+
 ## Released — D379: reward/upgrade DS3 clarity (2026-10-31)
 
 - Fixed the three-choice Reward screen at 1280×720: compact header/footer, no overlay on actions, visible bronze-accented «ВЫБРАТЬ» within each clickable card, readable ivory titles and on-parchment modifiers.

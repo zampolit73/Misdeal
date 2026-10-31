@@ -69,12 +69,12 @@ func _capture() -> void:
 			_fail("card DS3 gallery did not populate")
 			return
 	elif scene_key == "reward-upgrade":
-		# Deterministic three-Knight preview of the reported F5 reward layout.
-		# The scene and actual card data are used; no rewards are granted.
+		# Reproduce the second *actual* F5 screenshot: Knight + two Rangers.
+		# Render the real scene and exact approved cards; no reward is granted.
 		scene.get_node("Title").text = "РАЗВИТИЕ ОТРЯДА"
-		scene.get_node("Summary").text = "Вы пока один. Выберите, какой версией себя станете дальше."
-		scene.get_node("Hint").text = "Этап 1/3. Все доступные пути принадлежат вашему герою."
-		var ids := ["knight_iron_oath", "knight_executioner", "knight_cleaver"]
+		scene.get_node("Summary").text = "Двое пережили этот этап. Выберите, чью судьбу переписать сильнее."
+		scene.get_node("Hint").text = "Этап 1/3. Награда предлагает только тех, кто уже в отряде."
+		var ids := ["knight_iron_oath", "ranger_arrowstorm", "ranger_beast_trail"]
 		var buttons := ["BloodCoin", "IronWard", "TemperedSteel"]
 		for index in range(ids.size()):
 			var upgrade = root.get_node("RunState").call("get_hero_upgrade", ids[index])
