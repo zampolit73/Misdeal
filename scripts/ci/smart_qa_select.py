@@ -14,7 +14,7 @@ from pathlib import Path
 CORE = ("class-select", "table", "battle", "wizard-objective",
         "wizard-preview", "cards", "card-surfaces")
 ALL_TESTS = CORE + ("qa-hub",)
-SCREENS = ("class-select", "table", "wizard-prep", "card-gallery", "qa-hub")
+SCREENS = ("class-select", "table", "wizard-prep", "card-gallery", "reward-upgrade", "qa-hub")
 DOC_SUFFIXES = (".md", ".txt")
 
 def classify(paths, request="auto"):
@@ -73,7 +73,7 @@ def classify(paths, request="auto"):
         elif p.startswith(("scripts/ui/", "scenes/reward/", "scripts/reward/")):
             want_visual = True
             tests.update(("table", "cards", "card-surfaces"))
-            scenes.update(("table", "card-gallery"))
+            scenes.update(("table", "card-gallery", "reward-upgrade"))
         elif p.startswith(("scenes/dev/d308_", "scripts/dev/d308_")):
             want_visual = True
             tests.update(("wizard-preview", "wizard-objective"))
@@ -81,7 +81,7 @@ def classify(paths, request="auto"):
         elif p.startswith(("scenes/dev/d315_", "scripts/dev/d315_")):
             want_visual = True
             tests.update(("cards", "card-surfaces"))
-            scenes.add("card-gallery")
+            scenes.update(("card-gallery", "reward-upgrade"))
         elif p.startswith(("resources/cards/", "scripts/data/", "scripts/event/",
                            "scenes/event/")):
             tests.update(("table", "cards", "card-surfaces"))
