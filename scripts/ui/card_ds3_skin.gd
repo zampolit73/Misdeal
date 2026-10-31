@@ -224,9 +224,9 @@ static func apply_reward(button: Button, portrait: TextureRect,
     var bottom := _new_face_stone(button, "DS3CardStone", Vector2(292, 456))
     button.move_child(bottom, 0)
     var art_well := _new_art_well(button, "DS3ArtWell",
-        Vector2(24, 38), Vector2(244, 188))
+        Vector2(24, 38), Vector2(244, 240))
     button.move_child(art_well, 1)
-    _fit_art_in_well(portrait, Vector2(28, 42), Vector2(236, 180))
+    _fit_art_in_well(portrait, Vector2(28, 42), Vector2(236, 232))
     grade(portrait)
     button.move_child(portrait, 2)
     var face := _new_art(button, "DS3CardFrame", frame, Vector2(292, 410))
