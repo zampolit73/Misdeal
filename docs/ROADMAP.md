@@ -3,7 +3,7 @@
 - [x] Inspect user's actual 1280×720 Godot screenshot and current Reward/DS3 code; root causes are dark reward title ink, hidden ChooseBars, narrow text wells and oversized header/footer.
 - [x] Stage Reward-only geometry/contrast/CTA fix without repainting art, changing user-approved DS3 card frame or gameplay selection.
 - [x] Add deterministic triple-Knight native layout assertions and a CI3 1280×720 screenshot key `reward-upgrade`.
-- [ ] Verify PR Godot 4.7.2 import, GUT, D315 native checks, real reward screenshot and merge to main.
+- [x] [PR #42](https://github.com/zampolit73/Misdeal/pull/42) merged `304d866`: [Godot 4.7.2 native CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41194050519), 86/86 GUT (6205 assertions), D315 native triple-Knight pass, real 1280×720 Reward screenshot.
 - [ ] User F5 regression: all three Knight cards, readable text, unobstructed «ВЫБРАТЬ», correct click; also test one-card loot and a relic/wager reward.
 
 ## ACTIVE AFTER D377 (2026-10-31) — identify what the player actually hears
