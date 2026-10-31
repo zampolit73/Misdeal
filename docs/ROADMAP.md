@@ -1,3 +1,11 @@
+## D380 — polish Reward modifier fitting after mixed-party F5 review (2026-10-31)
+
+- [x] Real F5 screenshot confirms D379 action and title improvements; identifies overflow on three-part Ranger Beast Trail modifier and prose near lower frame.
+- [x] Keep exact DS3 art and full effect data; show two-line shorthand inside parchment, constrain prose inside ornament-safe area, mask stray background labels beneath CTAs.
+- [x] Extend D315 native layout tests to Knight/Ranger/Mage plus exact two-person screenshot combination, and update real 1280×720 capture.
+- [ ] Review GitHub Actions Godot 4.7.2 parser, GUT, D315 layout cases and screenshot, correct any failures and merge PR.
+- [ ] Local F5 acceptance: mixed Knight + Ranger + Ranger, legible modifiers including −15 HP, no text over bronze ornaments, visible buttons, selections unchanged.
+
 ## D379 — urgent Reward/upgrade screen visual repair (2026-10-31)
 
 - [x] Inspect user's actual 1280×720 Godot screenshot and current Reward/DS3 code; root causes are dark reward title ink, hidden ChooseBars, narrow text wells and oversized header/footer.
