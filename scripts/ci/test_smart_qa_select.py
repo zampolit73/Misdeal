@@ -30,7 +30,7 @@ class SelectorTests(unittest.TestCase):
     def test_release_is_always_full(self):
         plan = classify(["docs/ROADMAP.md"], "release")
         self.assertEqual(len(plan["tests"]), 8)
-        self.assertEqual(len(plan["scenes"]), 5)
+        self.assertEqual(len(plan["scenes"]), 6)
 
     def test_explicit_fast_skips_render(self):
         plan = classify(["assets/pixel/new_card.webp"], "fast")
@@ -46,6 +46,12 @@ class SelectorTests(unittest.TestCase):
     def test_ui_is_visual(self):
         plan = classify(["scripts/ui/card_ds3_skin.gd"])
         self.assertEqual(plan["mode"], "visual")
+        self.assertIn("reward-upgrade", plan["scenes"])
+
+    def test_reward_layout_gets_real_native_screenshot(self):
+        plan = classify(["scripts/reward/reward.gd"])
+        self.assertEqual(plan["mode"], "visual")
+        self.assertIn("reward-upgrade", plan["scenes"])
 
 if __name__ == "__main__":
     unittest.main()
