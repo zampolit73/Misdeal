@@ -1,3 +1,11 @@
+## ACTIVE 2026-10-31 — D377 verify the real source of unwanted sound
+
+- [x] Repo code audit after D374 user noted no difference: location ambience disabled in normal gameplay; Oak/UI and Combat/D368 remain independent active sources.
+- [x] Added hidden-on-demand Godot F5 A/B inspection: **Ctrl+Shift+F10**, version D377, current bus/scene status and reversible **Normal / UI only / Combat only / Silence**.
+- [ ] Godot 4.7.2 CI and merge, then player local `git pull`, **F5** press Ctrl+Shift+F10 and report exactly which mode differs from normal (and whether D377 marker appears). If not: inspect local SHA rather than make sound changes again.
+- [ ] Only then modify the **identified** offensive UI/Combat cue or propose independently testable short event accents; no automatic soundbeds or soundtrack.
+- [ ] A1P3 full human 12+XIII and standalone RELEASE authored battle/animation matrix still open.
+
 ## ACTIVE AFTER D374 RELEASE — restore focus before redesign (2026-10-29)
 
 - [x] Remove rejected location loops from ordinary F5 game: [PR #39](https://github.com/zampolit73/Misdeal/pull/39) **merged**, [Godot 4.7.2 CI 84/84 PASS](https://github.com/zampolit73/Misdeal/actions/runs/40854842019). Keep B Oak and D368 combat; F6 preserved for archive comparison.

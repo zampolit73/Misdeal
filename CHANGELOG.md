@@ -1,3 +1,7 @@
+## 2026-10-31 — D377 in-game audio A/B diagnosis (candidate)
+
+Player did not perceive D374 silent-first change. Added a debug-only `Ctrl+Shift+F10` F5 mixer inspector with a visible D377 build marker, active stream/bus status and reversible independent A/B mute modes (normal, only UI/Oak, only Combat, full Master silence). Hidden unless requested; no existing audio samples/gains/music changed. New Godot GUT tests cover isolation and restoration. **CI, merge and the user's actual A/B result pending.**
+
 ## 2026-10-29 — D374 live-play ambience removal shipped
 
 [PR #39](https://github.com/zampolit73/Misdeal/pull/39) squash `7305e85958c571119c961f75dd929c369b88d361`; [native Godot 4.7.2 CI SUCCESS 84/84 GUT](https://github.com/zampolit73/Misdeal/actions/runs/40854842019), project parse, native scene smoke/screenshots. User reported D373 environment loops break atmosphere in actual gameplay. Location ambience is now disabled by default through persistent SoundDirector, so scene requests do not play unwanted castle/courtyard/ossuary recordings; F6 diagnostic remains an explicitly enabled archived test that starts silent and restores prior channel/mode. B Oak card UI, D368 combat cues, all visuals and mechanics unchanged. User F5 acoustic check required; no new replacement approved.

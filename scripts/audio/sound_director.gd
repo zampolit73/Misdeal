@@ -5,6 +5,7 @@ extends Node
 # D374: user rejected all location ambience in real gameplay.
 # Default to silent-first runtime. The former loops remain for explicit F6 audition.
 # Preserve approved tabletop Oak and existing combat cues.
+const LIVE_AUDIT_SCRIPT := preload("res://scripts/audio/live_audio_audit.gd")
 const BUS_UI := "UI"
 const BUS_COMBAT := "Combat"
 const BUS_AMBIENCE := "Ambience"
@@ -30,6 +31,7 @@ var _transition: Tween
 var _ambience_streams: Dictionary = {}
 var _current_location := "silence"
 var _location_ambience_enabled := false
+var _live_audio_audit: CanvasLayer
 
 
 func _ready() -> void:
@@ -40,6 +42,22 @@ func _ready() -> void:
 		player.volume_db = SILENCE_DB
 		add_child(player)
 		_ambience_players.append(player)
+
+
+func _input(event: InputEvent) -> void:
+	# D377 diagnostic: never visible unless deliberately opened in local debug.
+	if not OS.is_debug_build() or not event is InputEventKey:
+		return
+	var key := event as InputEventKey
+	if not key.pressed or key.echo or not key.ctrl_pressed or not key.shift_pressed or key.keycode != KEY_F10:
+		return
+	if _live_audio_audit != null and is_instance_valid(_live_audio_audit):
+		_live_audio_audit.queue_free()
+		_live_audio_audit = null
+	else:
+		_live_audio_audit = LIVE_AUDIT_SCRIPT.new() as CanvasLayer
+		get_tree().root.add_child(_live_audio_audit)
+	get_viewport().set_input_as_handled()
 
 
 func set_channel_volume(bus_name: String, linear: float) -> void:

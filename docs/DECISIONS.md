@@ -1,3 +1,7 @@
+## D377 — diagnose user-reported lack of audible change with live A/B first (2026-10-31)
+
+D374 disabled ambient loops but user perceived no difference. Code audit proves three bus groups: approved B Oak `UI`, unapproved human combat timbre D368 `Combat`, rejected loop bank `Ambience` disabled by default. **Do not treat no difference as approval** or blindly generate more Foley. Implement debug-only, restorable **F5 audio isolation** with explicit version marker and separate UI/Combat/Master mute modes; no default mix, art, scene or encounter changes. Use user live A/B evidence before making the next artistic decision. [Plan](D377_LIVE_AUDIO_AB.md).
+
 ## D374 FINAL IMPLEMENTATION DECISION (2026-10-29)
 
 [PR #39](https://github.com/zampolit73/Misdeal/pull/39) released after [Godot 4.7.2 CI 84/84](https://github.com/zampolit73/Misdeal/actions/runs/40854842019). Explicit user verdict after actual in-game listening overrides earlier partial F6 Courtyard preference: **NO automatic location ambience in production F5**. Retain old samples and attribution only for reference, use a default-off guard on SoundDirector, and allow F6 preview opt-in with state restoration. Preserve B Oak and D368. New atmosphere must be independently demonstrated within the real sound mix and approved before adding to production; clean silence is a valid design choice.
