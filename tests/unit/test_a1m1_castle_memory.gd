@@ -52,6 +52,16 @@ func test_facts_are_unique_and_remember_first_real_source() -> void:
 	assert_eq(state.consume_castle_memory_line(), "")
 
 
+func test_castle_line_waits_without_overwriting_existing_wizard_memory() -> void:
+	var state := _state()
+	assert_true(state.record_castle_fact("orders_conflict", "echo_crypt"))
+	state.record_wizard_memory("greed", "moon_seal")
+	assert_eq(state.wizard_memory_pending_event, "greed")
+	assert_false(state.consume_wizard_memory_line().is_empty())
+	assert_eq(state.consume_castle_memory_line(), MEMORY_TEXT.wizard_line_for_fact("orders_conflict"))
+	assert_eq(state.consume_castle_memory_line(), "")
+
+
 func test_reset_run_clears_evidence_and_unread_wizard_line() -> void:
 	var state := _state()
 	assert_true(state.record_castle_fact("orders_conflict", "echo_crypt"))
@@ -159,7 +169,7 @@ func test_ledger_gold_path_applies_conditional_price_with_real_upgrade() -> void
 	RunState.gold = 35
 	var event := _event("blood_ledger")
 	var button := event.get_node("Panel/Choices/ChoiceA") as Button
-	assert_true(button.text.contains("35"))
+	assert_true(button.tooltip_text.contains("35"))
 	assert_false(button.disabled)
 	event.call("_resolve_blood_ledger", "gold")
 	assert_eq(RunState.gold, 0)
@@ -171,7 +181,7 @@ func test_ledger_price_and_affordability_match_without_evidence() -> void:
 	RunState.gold = 39
 	var event := _event("blood_ledger")
 	var button := event.get_node("Panel/Choices/ChoiceA") as Button
-	assert_true(button.text.contains("40"))
+	assert_true(button.tooltip_text.contains("40"))
 	assert_true(button.disabled)
 	event.call("_resolve_blood_ledger", "gold")
 	assert_eq(RunState.gold, 39)
