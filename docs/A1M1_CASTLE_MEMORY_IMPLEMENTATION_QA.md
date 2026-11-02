@@ -1,6 +1,6 @@
 # A1M1 — Castle Memory implementation and playtest
 
-**2026-11-02. Scope:** implementation in `feature/a1m1-castle-memory-pilot`, [PR #45](https://github.com/zampolit73/Misdeal/pull/45); **technical release and player's visual approval require native CI and F5 review**. This document describes the implemented behavior on the PR branch; do not mistake the plan for a user-tested release.
+**Released 2026-11-02 in main** via [PR #45](https://github.com/zampolit73/Misdeal/pull/45), squash `503f21f6609fd57878f8a87d50feead1ea1e3ae2`, after [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41512223357): **103/103 GUT (6314 assertions)**, import, smokes and native 1280×720 screenshots. **Actual player F5 story/legibility acceptance is still OPEN**. This document describes real shipped behavior, not a conceptual-only plan.
 
 ## Concrete card triggers and existing mechanics
 
