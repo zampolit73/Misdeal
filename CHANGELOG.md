@@ -1,3 +1,9 @@
+## 2026-11-03 — Local Git hygiene after A1M2 (non-gameplay)
+
+- [PR #47](https://github.com/zampolit73/Misdeal/pull/47) merged `2844ec5309faf9207f00b312bfa707806eabe20b`: added safe, read-only `scripts/dev/local_git_hygiene.ps1` for Windows Godot local state classification and exact diff of project.godot / GUT theme. Optional `-RestoreGutImports` backs up modified tracked GUT import metadata externally before restoring only those files.
+- Documented correct Godot 4.7.x version-control rule: track `*.import` and `*.uid` where needed; neither blanket-ignore nor bulk-delete them. See [local guidance](docs/LOCAL_GIT_HYGIENE.md) and updated AGENTS.md.
+- [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41523136441): 124/124 GUT, 6475 assertions and scene smokes/screenshots. Script has **not been executed on player's Windows machine**; all actual local worktree changes and F5 acceptance remain pending. No gameplay or art changes.
+
 ## Released — A1M2 Castle Memory expansion (2026-11-03)
 
 - Added three deduplicated run-local evidence threads across existing Act I actions and victorious combats: hidden ration records, southern march, silenced testimony; existing promise clues gain alternate battle sources.
