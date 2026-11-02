@@ -8,6 +8,12 @@ Read in order: `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/RO
 
 **Do not embed dated session history inside AGENTS.md.** Its historical pre-cleanup version is preserved at `docs/archive/2026-10-15-pre-cleanup/AGENTS.md`. The current project-specific status belongs in `docs/PROJECT_STATE.md`, not here.
 
+## Local Godot import metadata and Git hygiene
+
+- **Do not blanket-ignore or delete `*.import`, `*.gd.uid` or `*.gdshader.uid`.** In Godot 4.7 they can hold persistent import settings and resource/script UIDs. Upstream Godot documentation recommends tracking them. The transient `.godot/` cache is already correctly ignored.
+- On Windows, local Godot may modify already-tracked `addons/gut/**/*.import`, `project.godot` and GUT Theme; `.gitignore` never hides changes to tracked files. Do not automatically restore `project.godot` or authored `.tres`, reset the whole worktree, or clean untracked files.
+- For local diagnostics, use [`scripts/dev/local_git_hygiene.ps1`](scripts/dev/local_git_hygiene.ps1) and [`docs/LOCAL_GIT_HYGIENE.md`](docs/LOCAL_GIT_HYGIENE.md). Its read-only default is safe; `-RestoreGutImports` is opt-in and backs up only tracked GUT imports outside the repo first. This tool cannot modify the player's local worktree from GitHub; the user runs it locally.
+
 ## Product and gameplay constraints
 
 Misdeal is a dark-fantasy card-driven roguelike with an evil wizard presiding over a cursed table and a compact tactical autobattler. The Fate Spread has exactly **12 resolutions (I–XII)** plus the sealed Bone Warden **XIII**. Parties may be solo, duo or trio; do not change the fundamental design without consulting the user. Priority: a playable vertical slice, not speculative architecture. New fight-bearing Act 1 cards require **genuinely new enemies** with original identities, combat sprites and a meaningful mechanic (D143).
