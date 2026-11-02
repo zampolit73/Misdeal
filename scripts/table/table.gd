@@ -278,6 +278,13 @@ func _refresh_table(show_memory: bool = true) -> void:
 			default_wizard_line = memory_line
 			wizard_line.text = default_wizard_line
 			call_deferred("_play_wizard_memory_tell", memory_event)
+		elif not RunState.wizard_debt_active and not [3, 7, 11].has(RunState.cards_resolved):
+			# Castle evidence waits behind live Wizard interventions and the
+			# existing Fate/rejected-card milestone commentary.
+			var castle_line: String = RunState.consume_castle_memory_line()
+			if not castle_line.is_empty():
+				default_wizard_line = castle_line
+				wizard_line.text = default_wizard_line
 
 func _play_wizard_memory_tell(event_id: String) -> void:
 	if event_id.is_empty() or not is_inside_tree():
