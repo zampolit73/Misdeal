@@ -58,6 +58,10 @@ static func offer(state: Dictionary) -> Array[Dictionary]:
 		choices[0] = CARDS[6].duplicate(true)
 		if str(choices[1]["id"]) == "ransom":
 			choices[1] = CARDS[1].duplicate(true)
+	# Four authored battle gates: the safest possible path still has combat.
+	if int(state["stage"]) in [1, 4, 8, 11]:
+		choices[0] = CARDS[0].duplicate(true)
+		choices[1] = CARDS[1 if int(state["stage"]) < 8 else 2].duplicate(true)
 	return choices
 
 
@@ -169,6 +173,14 @@ static func _start_fight(state: Dictionary, title: String, danger: int, boss: bo
 static func start_boss(state: Dictionary) -> void:
 	if str(state["phase"]) == "boss_gate":
 		_start_fight(state, "КОСТЯНОЙ СТРАЖ XIII", 3, true)
+
+
+static func rotate_front(state: Dictionary) -> void:
+	if str(state.get("phase", "")) != "prep":
+		return
+	var party: Array = state["party"]
+	if party.size() > 1:
+		party.append(party.pop_front())
 
 
 static func begin_combat(state: Dictionary, stance: String) -> void:
