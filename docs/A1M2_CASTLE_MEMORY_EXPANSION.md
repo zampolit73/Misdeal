@@ -1,6 +1,6 @@
 # A1M2 — «Память замка»: расширение существующих событий
 
-**Дата:** 2026-11-03. **Статус:** реализовано в feature-ветке; выпуск зависит от Godot 4.7.x CI, затем локальной F5 оценки. Пользователь попросил расширить A1M1 («давай расширять»). **Не меняем тайну и фундаментальный сюжет**: герой честно пожертвовал замком, Канцлер подделал обещание, Комендант продолжил обман и является XIII. Ни одна из новых строк не называет виновного до финала.
+**Дата:** 2026-11-03. **Статус: RELEASED в `main`** через [PR #46](https://github.com/zampolit73/Misdeal/pull/46), squash `2c12e5cb373f7d7126bad93da35e9c937c894efa`; [native Godot 4.7.2 CI SUCCESS: 124/124 GUT, 6475 assertions, import/smokes/native screenshots](https://github.com/zampolit73/Misdeal/actions/runs/41518216229). **Локальное F5 визуальное/сюжетное согласование ещё открыто.** Пользователь попросил расширить A1M1 («давай расширять»). **Не меняем тайну и фундаментальный сюжет**: герой честно пожертвовал замком, Канцлер подделал обещание, Комендант продолжил обман и является XIII. Ни одна из новых строк не называет виновного до финала.
 
 ## Результат: больше независимых источников, не обязательная цепочка
 
@@ -38,6 +38,6 @@
 
 ## Выпуск
 
-1. CI: Godot 4.7.x native import/parse, все GUT, Table/Battle/Event/Reward smoke и 1280×720 QA-capture. Не заменяет живой F5.
-2. После зелёного CI — PR merge в `main` и обновление docs/PROJECT_STATE.md, docs/ROADMAP.md, docs/DECISIONS.md, docs/HANDOFF.md, CHANGELOG.md.
+1. **Пройдено:** Godot 4.7.2 native import/parse, 124/124 GUT, relevant Table/Battle/native scene smoke и 1280×720 QA-capture. Не заменяет живой F5.
+2. **Выполнено:** PR #46 merged в `main`, контекст записан в PROJECT_STATE, ROADMAP, DECISIONS, HANDOFF и CHANGELOG.
 3. Пользователю достаточно `git pull` и **F5**: сравнить Bone Tax 25/20 после `debtor_bones` safe/не safe или `candle_seller` buy; Last Camp 35/30 после маршрута из `ash_rest`/`rattling_bridge` или выигранного `black_crossing`; убедиться в отсутствии скидки без сведений. Оценить краткость текста и неповторяемость реплик.
