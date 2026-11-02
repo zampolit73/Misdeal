@@ -28,6 +28,7 @@ var offer_buttons: Array[Button] = []
 var role_buttons: Array[Button] = []
 var pledge_button: Button
 var stance_buttons: Array[Button] = []
+var rotate_button: Button
 var fight_button: Button
 var boss_button: Button
 var restart_button: Button
@@ -136,7 +137,8 @@ func _build() -> void:
 	stance_buttons.append(_button("ЩИТ\nМеньше урона", 333, 341, 190, 102, _set_stance.bind("shield"), 17))
 	stance_buttons.append(_button("КЛИНОК\nУдар сильнее", 541, 341, 190, 102, _set_stance.bind("blade"), 17))
 	stance_buttons.append(_button("РИТУАЛ\nПотратить печать", 749, 341, 190, 102, _set_stance.bind("ritual"), 17))
-	fight_button = _button("НАЧАТЬ АВТОБОЙ", 490, 475, 294, 57, _begin_fight, 19)
+	rotate_button = _button("ПОМЕНЯТЬ ПЕРЕДНИЙ РЯД", 456, 449, 364, 42, _rotate_front, 16)
+	fight_button = _button("НАЧАТЬ АВТОБОЙ", 490, 497, 294, 52, _begin_fight, 19)
 	boss_button = _button("ОТКРЫТЬ ПЕЧАТЬ XIII", 458, 371, 340, 69, _start_boss, 19)
 	restart_button = _button("НОВАЯ ПАРТИЯ", 470, 385, 320, 65, _restart, 21)
 
@@ -167,6 +169,7 @@ func _hide_actions() -> void:
 	for b in stance_buttons:
 		b.visible = false
 	pledge_button.visible = false
+	rotate_button.visible = false
 	fight_button.visible = false
 	boss_button.visible = false
 	restart_button.visible = false
@@ -216,7 +219,8 @@ func _refresh() -> void:
 			for i in range(3):
 				stance_buttons[i].visible = true
 				stance_buttons[i].disabled = false
-			fight_button.visible = true
+			rotate_button.visible = (game["party"] as Array).size() > 1
+		fight_button.visible = true
 			health_bar.visible = true
 			_update_enemy_bar()
 			detail.text = _stance_hint()
@@ -240,9 +244,11 @@ func _refresh() -> void:
 
 func _party_text() -> String:
 	var lines: Array[String] = []
+	var idx := 0
 	for hero in game["party"]:
-		lines.append("%s  %d/%d HP\n   Атака %d" % [
-			str(hero["name"]), int(hero["hp"]), int(hero["max_hp"]), int(hero["attack"])])
+		lines.append("%s%s  %d/%d HP\n   Атака %d" % [
+			"→ " if idx == 0 else "   ", str(hero["name"]), int(hero["hp"]), int(hero["max_hp"]), int(hero["attack"])])
+		idx += 1
 	return "\n".join(lines)
 
 
@@ -302,6 +308,11 @@ func _choose_card(index: int) -> void:
 
 func _set_stance(next: String) -> void:
 	stance = next
+	_refresh()
+
+
+func _rotate_front() -> void:
+	RULES.rotate_front(game)
 	_refresh()
 
 
