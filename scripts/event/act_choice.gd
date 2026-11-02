@@ -1613,12 +1613,13 @@ func _resolve_echo_crypt(choice: String) -> void:
 				RunState.record_castle_fact(RunState.CASTLE_FACT_CONFLICT, "echo_crypt")
 			if artifact_id.is_empty():
 				RunState.gold += 35
-				_finish("Реликварий пуст. Вы находите 35 золота, и склеп отпускает вас.")
+				var clue_text := "Под печатью — два несовместимых приказа. " if remembered else ""
+				_finish("%sРеликварий пуст. Получено 35 золота." % clue_text)
 			else:
 				if not remembered:
 					RunState.party_hp_bonus -= 15.0
 				var artifact := RunState.get_artifact(artifact_id)
-				var cost_text := "Печать открыла дверь без крови." if remembered else "Открытие стоило 15 здоровья."
+				var cost_text := "Под печатью найдены два несовместимых приказа. Дверь открылась без крови." if remembered else "Открытие стоило 15 здоровья."
 				_finish("%s Получена реликвия: %s." % [cost_text, artifact.title])
 		"gold":
 			var gain: int = 40 if remembered else 25
