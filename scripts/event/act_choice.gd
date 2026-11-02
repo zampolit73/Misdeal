@@ -1,6 +1,7 @@
 extends Control
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+const CASTLE_MEMORY_TEXT := preload("res://scripts/story/act1_castle_memory_text.gd")
 
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
 const APPROVED_EVENT_DECOR := preload("res://scripts/ui/approved_event_decor.gd")
@@ -808,6 +809,9 @@ func _configure_card() -> void:
 # D149: two stand-alone noncombat choices with a conditional event-outcome echo.
 # They share the established DS2 event cards; no enemy rosters or combat here.
 func _configure_moon_seal() -> void:
+	var observation: String = CASTLE_MEMORY_TEXT.moon_seal_observation(RunState.protagonist_role)
+	if not observation.is_empty():
+		description_label.text += "\n" + observation
 	choice_a.text = "СОХРАНИТЬ ПЕЧАТЬ\n\n+10 золота\nСклеп запомнит знак"
 	choice_b.text = "ПРОДАТЬ ПЕЧАТЬ\n\n+30 золота"
 	choice_c.text = "СЖЕЧЬ СИГИЛ\n\nУрон отряда +1\nЗдоровье отряда -10"
@@ -1024,8 +1028,11 @@ func _configure_faceless_card() -> void:
 	choice_c.pressed.connect(_resolve_faceless_card.bind("burn"))
 
 func _configure_blood_ledger() -> void:
-	_set_least_developed_upgrade_button(choice_a, "ПОДПИСАТЬ ЗОЛОТОМ — 40", "Книга усилит самого отстающего героя.")
-	choice_a.disabled = choice_a.disabled or RunState.gold < 40
+	var gold_price: int = RunState.get_blood_ledger_gold_price()
+	if RunState.has_castle_fact(RunState.CASTLE_FACT_CONFLICT):
+		description_label.text += "\n" + CASTLE_MEMORY_TEXT.blood_ledger_observation(RunState.protagonist_role)
+	_set_least_developed_upgrade_button(choice_a, "ПОДПИСАТЬ ЗОЛОТОМ — %d" % gold_price, "Книга усилит самого отстающего героя.")
+	choice_a.disabled = choice_a.disabled or RunState.gold < gold_price
 
 	var blood_cost: int = 10 if RunState.has_rescue_scar("mage") else 25
 	if RunState.get_available_artifact_ids().is_empty():
@@ -1446,14 +1453,16 @@ func _resolve_blood_ledger(choice: String) -> void:
 
 	match choice:
 		"gold":
-			if RunState.gold < 40:
+			var gold_price: int = RunState.get_blood_ledger_gold_price()
+			if RunState.gold < gold_price:
 				return
 			var upgrade_id := _grant_least_developed_upgrade()
 			if upgrade_id.is_empty():
 				return
-			RunState.gold -= 40
+			RunState.gold -= gold_price
 			RunState.set_event_outcome("blood_ledger", "gold")
-			_finish("Книга принимает сорок монет и вписывает новый исход. %s" % _format_upgrade_gain(upgrade_id))
+			var reason := " по оспоренной записи" if RunState.has_castle_fact(RunState.CASTLE_FACT_CONFLICT) else ""
+			_finish("Книга принимает %d монет%s. %s" % [gold_price, reason, _format_upgrade_gain(upgrade_id)])
 		"blood":
 			var blood_cost: float = 10.0 if RunState.has_rescue_scar("mage") else 25.0
 			RunState.party_hp_bonus -= blood_cost
@@ -1576,16 +1585,19 @@ func _resolve_moon_seal(choice: String) -> void:
 		"keep":
 			RunState.gold += 10
 			RunState.set_event_outcome("moon_seal", "kept")
+			RunState.record_castle_fact(RunState.CASTLE_FACT_PROMISE, "moon_seal")
 			_finish("Вы прячете серебряную печать и находите под ней 10 золотых. Камень запомнит ваш выбор.")
 		"sell":
 			RunState.gold += 30
 			RunState.set_event_outcome("moon_seal", "sold")
+			RunState.record_castle_fact(RunState.CASTLE_FACT_PROMISE, "moon_seal")
 			RunState.record_wizard_memory("greed", "moon_seal")
 			_finish("Монета исчезает в руке Волшебника. Получено 30 золота.")
 		"burn":
 			RunState.party_hp_bonus -= 10.0
 			RunState.party_damage_bonus += 1.0
 			RunState.set_event_outcome("moon_seal", "burned")
+			RunState.record_castle_fact(RunState.CASTLE_FACT_PROMISE, "moon_seal")
 			_finish("Печать становится пеплом: урон отряда +1, здоровье отряда -10.")
 
 
@@ -1597,14 +1609,17 @@ func _resolve_echo_crypt(choice: String) -> void:
 		"relic":
 			var artifact_id: String = RunState.add_random_available_artifact()
 			RunState.set_event_outcome("echo_crypt", "opened")
+			if remembered:
+				RunState.record_castle_fact(RunState.CASTLE_FACT_CONFLICT, "echo_crypt")
 			if artifact_id.is_empty():
 				RunState.gold += 35
-				_finish("Реликварий пуст. Вы находите 35 золота, и склеп отпускает вас.")
+				var clue_text := "Под печатью — два несовместимых приказа. " if remembered else ""
+				_finish("%sРеликварий пуст. Получено 35 золота." % clue_text)
 			else:
 				if not remembered:
 					RunState.party_hp_bonus -= 15.0
 				var artifact := RunState.get_artifact(artifact_id)
-				var cost_text := "Печать открыла дверь без крови." if remembered else "Открытие стоило 15 здоровья."
+				var cost_text := "Под печатью найдены два несовместимых приказа. Дверь открылась без крови." if remembered else "Открытие стоило 15 здоровья."
 				_finish("%s Получена реликвия: %s." % [cost_text, artifact.title])
 		"gold":
 			var gain: int = 40 if remembered else 25
@@ -1616,7 +1631,8 @@ func _resolve_echo_crypt(choice: String) -> void:
 			RunState.party_hp_bonus -= hp_cost
 			RunState.party_damage_bonus += 1.5
 			RunState.set_event_outcome("echo_crypt", "listened")
-			_finish("Шёпот учит наносить удар: урон отряда +1.5, здоровье отряда -%d." % int(hp_cost))
+			RunState.record_castle_fact(RunState.CASTLE_FACT_CONFLICT, "echo_crypt")
+			_finish("Шёпот выдаёт два противоречивых приказа. Урон отряда +1.5, здоровье отряда -%d." % int(hp_cost))
 
 
 func _resolve_lost_purse(choice: String) -> void:

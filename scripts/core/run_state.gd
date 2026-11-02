@@ -12,6 +12,9 @@ const WIZARD_MARK_GOLD_REWARD := 20
 const WIZARD_MARK_GOLD_PER_TIER := 10
 const WIZARD_MARK_ENEMY_DAMAGE_BONUS := 0.15
 const RECENT_DEAL_MEMORY := 2
+const CASTLE_MEMORY_TEXT := preload("res://scripts/story/act1_castle_memory_text.gd")
+const CASTLE_FACT_PROMISE := "promise_heard"
+const CASTLE_FACT_CONFLICT := "orders_conflict"
 
 # Party-size pressure compensation. Trio is the encounter-authoring baseline.
 # Solo/duo keep their hero-side bonuses, but enemy durability/damage also step
@@ -206,6 +209,9 @@ var hero_fates: Dictionary = {}
 var hero_fate_notes: Dictionary = {}
 var rescue_scar_roles: Array[String] = []
 var event_outcomes: Dictionary = {}
+# Facts are per run. The value is the first real source card id.
+var castle_memory_facts: Dictionary = {}
+var castle_memory_pending_facts: Array[String] = []
 var hero_upgrade_ids: Array[String] = []
 var extra_hero_upgrade_ids: Array[String] = []
 var claimed_upgrade_tiers: Array[int] = []
@@ -273,6 +279,8 @@ func reset_run() -> void:
 	hero_fate_notes.clear()
 	rescue_scar_roles.clear()
 	event_outcomes.clear()
+	castle_memory_facts.clear()
+	castle_memory_pending_facts.clear()
 	for role in HERO_ROLES:
 		hero_fates[role] = FATE_UNKNOWN
 		hero_fate_notes[role] = "Судьба ещё не разыграна."
@@ -492,6 +500,37 @@ func get_event_outcome(card_id: String) -> String:
 
 func has_event_outcome(card_id: String) -> bool:
 	return event_outcomes.has(card_id)
+
+# Only committed outcomes may record facts; merely seeing a deal or opening
+# the inspect window cannot create evidence.
+func record_castle_fact(fact_id: String, source_card_id: String) -> bool:
+	if source_card_id.is_empty() or not [CASTLE_FACT_PROMISE, CASTLE_FACT_CONFLICT].has(fact_id):
+		return false
+	if castle_memory_facts.has(fact_id):
+		return false
+	castle_memory_facts[fact_id] = source_card_id
+	castle_memory_pending_facts.append(fact_id)
+	return true
+
+
+func has_castle_fact(fact_id: String) -> bool:
+	return castle_memory_facts.has(fact_id)
+
+
+func get_castle_fact_source(fact_id: String) -> String:
+	return String(castle_memory_facts.get(fact_id, ""))
+
+
+func consume_castle_memory_line() -> String:
+	if castle_memory_pending_facts.is_empty():
+		return ""
+	var fact_id: String = castle_memory_pending_facts.pop_front()
+	return CASTLE_MEMORY_TEXT.wizard_line_for_fact(fact_id)
+
+
+func get_blood_ledger_gold_price() -> int:
+	return 35 if has_castle_fact(CASTLE_FACT_CONFLICT) else 40
+
 
 func get_gravedigger_shop_price() -> int:
 	match get_event_outcome("lost_purse"):
@@ -1484,6 +1523,10 @@ func complete_active_card() -> void:
 		return
 
 	resolved_card_ids.append(card.card_id)
+	# The Court is an independent source of the same disputed-order evidence.
+	# It is earned only after a genuine victory and never by a failed fight.
+	if card.card_id == "court_of_the_mute" and last_battle_won:
+		record_castle_fact(CASTLE_FACT_CONFLICT, card.card_id)
 	if card.card_id != BOSS_CARD_ID:
 		fate_choice_history.append({
 			"chosen": card.card_id,

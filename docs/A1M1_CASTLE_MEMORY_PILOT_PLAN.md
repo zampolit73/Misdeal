@@ -1,6 +1,6 @@
 # A1M1 — «Память замка» / Castle Memory pilot
 
-**Status: DESIGN PROPOSAL ONLY — NOT IMPLEMENTED.** Direction C (story + real mechanical consequences) was chosen by the player on 2026-11-02. The detailed card effects and numbers below are proposed for review, not approved production balance. Do not treat this file as permission to change the final XIII ending, add cards, retcon the story, or change DS3 art.
+**Status: IMPLEMENTED IN PR #45, awaiting latest native CI and local F5 review.** Direction C (story + real mechanical consequences) was chosen by the player on 2026-11-02; the player subsequently authorized implementation with «давай». This is the original pilot specification; actual branch implementation and test gates are in [A1M1 implementation and QA](A1M1_CASTLE_MEMORY_IMPLEMENTATION_QA.md). This does not authorize changes to XIII, more cards, canonical history or approved DS3 art.
 
 ## Source of truth and current foundation
 
@@ -41,7 +41,7 @@ Use **one short local variant** on the same card/event (not three new scenes or 
 
 **Mage C:** no `moon_seal` drawn -> win `court_of_the_mute` -> `orders_conflict` available -> `blood_ledger` has contextual 35-gold option. Existing Mage rescue scar blood-cost behavior is unchanged.
 
-## Implementation sketch (only after separate go-ahead)
+## Implementation contract (approved and staged in PR #45)
 
 1. Add a **small run-local** `castle_memory_facts: Dictionary` (or a typed equivalent) to `RunState`, with `record_castle_fact(fact_id, source_card_id)`, `has_castle_fact(fact_id)` and a safe one-time notification guard. Reset with `reset_run()`. Keep source id for deterministic QA; don't introduce a global singleton, metaprogression save or an elaborate narrative engine.
 2. Record facts strictly from **committed outcomes** in `scripts/event/act_choice.gd` or from successful `court_of_the_mute` completion in `scripts/core/run_state.gd`. Never record from merely hovering/dealing/rejecting the card, losing combat, or opening inspector.
@@ -65,7 +65,7 @@ Use **one short local variant** on the same card/event (not three new scenes or 
 
 No new enemies, scenes, card drawings or 13th preboss choice; no shuffled weights/forced narrative path; no bonus permanent stats, changes to equipment, rebalanced battles or redesigned XIII; no new sounds. Existing QA/audio tasks the player has already deemed closed are not prerequisites to this pilot.
 
-## Delivery slices after approval
+## Delivery components
 
 - **A1M1a**: run-local fact tracking + alternative Echo/Court sources + GUT.
 - **A1M1b**: Ledger conditional price and readable cause/result + full economics regression.
