@@ -1,3 +1,11 @@
+## A1M1 — Castle Memory replay pilot (2026-11-02, PR review)
+
+- Added run-local clue memory with actual resolved source and one-time Wizard commentary, resetting on new run.
+- Expanded two existing event sources (Moon Seal/Echo Crypt) and introduced independent successful Court of the Mute evidence; unchanged original event gold/HP/relic and battle outcomes.
+- Added fact-dependent Blood Ledger gold upgrade option: **35 gold with proof**, **40 gold without**, one central getter for real UI/charge and unchanged blood/erase choices.
+- Knight/Ranger/Mage see concise, distinct details of the same historical event; no early Chancellor/Commandant reveal.
+- Added Godot native GUT regressions for actual ActChoice scene branches, ledger economics and state resets. [PR #45](https://github.com/zampolit73/Misdeal/pull/45) / [QA](docs/A1M1_CASTLE_MEMORY_IMPLEMENTATION_QA.md); native CI and local F5 are release gates. No new art/audio, card slots or changes to XIII.
+
 ## Released — D380: mixed-party Reward card copy fitting (2026-10-31)
 
 - Constrained upgrade modifier summaries to at most two lines within the approved DS3 parchment strip; preserved all numeric effects and complete original tooltips.
