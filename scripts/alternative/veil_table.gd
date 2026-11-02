@@ -220,7 +220,7 @@ func _refresh() -> void:
 				stance_buttons[i].visible = true
 				stance_buttons[i].disabled = false
 			rotate_button.visible = (game["party"] as Array).size() > 1
-		fight_button.visible = true
+			fight_button.visible = true
 			health_bar.visible = true
 			_update_enemy_bar()
 			detail.text = _stance_hint()
