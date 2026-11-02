@@ -1,3 +1,11 @@
+## PROPOSED A1M1 — «Память замка»: narrative + mechanical replay variation (2026-11-02)
+
+- [x] Player selected direction C (story consequences + gameplay consequences); prior independent tasks 1 and 3 are considered closed in this discussion.
+- [x] Inspect current GitHub `RunState` and `act_choice`; document existing Moon Seal→Echo Crypt, Lost Purse→Gravedigger and Debtor Bones→Wizard Tithe interactions so the pilot does not duplicate them.
+- [x] Draft [A1M1 pilot](A1M1_CASTLE_MEMORY_PILOT_PLAN.md): existing Moon Seal / Echo Crypt / Court of the Mute / Blood Ledger, alternative evidence sources, class-sensitive memories, one proposed small ledger-gold discount, no forced draws or extra art.
+- [ ] Confirm A1M1 specific proposed costs/trigger rules before implementation. **No code or game content has been changed by this design step.**
+- [ ] After approval: implement run-local facts and tests, contextual economic outcome and Wizard lines, Godot CI and real F5 review. Keep 12+XIII, approved UI/assets, encounter balance and final boss untouched.
+
 ## D380 — polish Reward modifier fitting after mixed-party F5 review (2026-10-31)
 
 - [x] Real F5 screenshot confirms D379 action and title improvements; identifies overflow on three-part Ranger Beast Trail modifier and prose near lower frame.
