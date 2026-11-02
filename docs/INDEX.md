@@ -1,3 +1,7 @@
+## Windows Godot import / Git status recovery (2026-11-03)
+
+[Local Git hygiene guide](LOCAL_GIT_HYGIENE.md) · [PR #47](https://github.com/zampolit73/Misdeal/pull/47) · [read-only local audit PowerShell script](../scripts/dev/local_git_hygiene.ps1). Avoid ignoring Godot .import/.uid metadata or bulk cleaning; A1M2 F5 acceptance still open. [Current handoff](HANDOFF.md).
+
 ## CURRENT 2026-11-03 — A1M2 Castle Memory expanded
 
 [Actual clue sources and F5 QA](A1M2_CASTLE_MEMORY_EXPANSION.md) · [PR #46](https://github.com/zampolit73/Misdeal/pull/46) / [native Godot 4.7.2 CI SUCCESS, 124/124 GUT](https://github.com/zampolit73/Misdeal/actions/runs/41518216229). Ration, southern march and silenced witness clues on existing Act I events; Bone Tax 20/25, Last Camp healer 30/35. Player's local F5 story/legibility review remains open. Next-chat instructions: [HANDOFF](HANDOFF.md).
