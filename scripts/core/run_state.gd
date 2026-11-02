@@ -15,6 +15,22 @@ const RECENT_DEAL_MEMORY := 2
 const CASTLE_MEMORY_TEXT := preload("res://scripts/story/act1_castle_memory_text.gd")
 const CASTLE_FACT_PROMISE := "promise_heard"
 const CASTLE_FACT_CONFLICT := "orders_conflict"
+const CASTLE_FACT_RATIONS := "rations_hidden"
+const CASTLE_FACT_MARCH := "southern_march"
+const CASTLE_FACT_SILENCED := "silenced_witness"
+
+# Independently obtainable evidence from existing, victorious combats.
+# Never grant evidence for seeing/rejecting a card or losing the encounter.
+const CASTLE_COMBAT_FACTS := {
+	"bone_patrol": ["promise_heard"],
+	"graveyard_ambush": ["promise_heard"],
+	"grave_crossfire": ["promise_heard"],
+	"black_crossing": ["southern_march"],
+	"black_lantern_road": ["southern_march"],
+	"court_of_the_mute": ["orders_conflict", "silenced_witness"],
+	"crypt_guard": ["silenced_witness"],
+	"gallows_volley": ["silenced_witness"]
+}
 
 # Party-size pressure compensation. Trio is the encounter-authoring baseline.
 # Solo/duo keep their hero-side bonuses, but enemy durability/damage also step
@@ -504,7 +520,10 @@ func has_event_outcome(card_id: String) -> bool:
 # Only committed outcomes may record facts; merely seeing a deal or opening
 # the inspect window cannot create evidence.
 func record_castle_fact(fact_id: String, source_card_id: String) -> bool:
-	if source_card_id.is_empty() or not [CASTLE_FACT_PROMISE, CASTLE_FACT_CONFLICT].has(fact_id):
+	if source_card_id.is_empty() or not [
+		CASTLE_FACT_PROMISE, CASTLE_FACT_CONFLICT, CASTLE_FACT_RATIONS,
+		CASTLE_FACT_MARCH, CASTLE_FACT_SILENCED
+	].has(fact_id):
 		return false
 	if castle_memory_facts.has(fact_id):
 		return false
@@ -530,6 +549,14 @@ func consume_castle_memory_line() -> String:
 
 func get_blood_ledger_gold_price() -> int:
 	return 35 if has_castle_fact(CASTLE_FACT_CONFLICT) else 40
+
+
+func get_bone_tax_gold_price() -> int:
+	return 20 if has_castle_fact(CASTLE_FACT_RATIONS) else 25
+
+
+func get_last_camp_healer_price() -> int:
+	return 30 if has_castle_fact(CASTLE_FACT_MARCH) else 35
 
 
 func get_gravedigger_shop_price() -> int:
@@ -1523,10 +1550,11 @@ func complete_active_card() -> void:
 		return
 
 	resolved_card_ids.append(card.card_id)
-	# The Court is an independent source of the same disputed-order evidence.
-	# It is earned only after a genuine victory and never by a failed fight.
-	if card.card_id == "court_of_the_mute" and last_battle_won:
-		record_castle_fact(CASTLE_FACT_CONFLICT, card.card_id)
+	# Only a resolved victorious battle may yield a witness or document.
+	# All card identities, encounter rewards and forced combat windows stay intact.
+	if card.resolution_type == "combat" and last_battle_won:
+		for fact_id in CASTLE_COMBAT_FACTS.get(card.card_id, []):
+			record_castle_fact(String(fact_id), card.card_id)
 	if card.card_id != BOSS_CARD_ID:
 		fate_choice_history.append({
 			"chosen": card.card_id,

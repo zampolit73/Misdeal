@@ -65,6 +65,7 @@ const EVENT_SCENE_ART_PATHS := {
 
 var active_card: RunCardData
 var resolved := false
+var resolving_leave := false
 
 func _ready() -> void:
 	active_card = RunState.get_active_card()
@@ -82,6 +83,7 @@ func _ready() -> void:
 	wizard_line.text = active_card.wizard_line
 	_refresh_run_labels()
 	_configure_card()
+	_apply_castle_memory_hint()
 	_apply_ui_kit()
 	_apply_approved_choice_art()
 	_apply_event_theme()
@@ -763,6 +765,16 @@ func _animate_choice_cards_in() -> void:
 		card_tween.tween_property(button, "modulate:a", 1.0, 0.14).set_delay(delay)
 		visible_index += 1
 
+# Keep the physical DS2 event cards; append only a short hint to existing
+# authored prose. Knowledge arrives later, once a real outcome succeeds.
+func _apply_castle_memory_hint() -> void:
+	if active_card == null:
+		return
+	var hint: String = CASTLE_MEMORY_TEXT.event_memory_hint(active_card.card_id, RunState.castle_memory_facts)
+	if not hint.is_empty():
+		description_label.text += "\n" + hint
+
+
 func _configure_card() -> void:
 	match active_card.card_id:
 		"moon_seal":
@@ -1078,8 +1090,9 @@ func _configure_last_camp() -> void:
 		description_label.text = "У последнего костра лежит раненый рыцарь. Это поздняя версия встречи, которую судьба почти вычеркнула."
 		wizard_line.text = "— Всё ещё хочешь тащить чужую жизнь до самого конца?"
 		choice_a.text = "ПОДНЯТЬ ЕГО\n\nШРАМ ЦЕПЕЙ • -10 макс. HP\nРЫЦАРЬ ПРИСОЕДИНИТСЯ"
-		choice_b.text = "ОПЛАТИТЬ ЛЕКАРЯ — 35\n\nРЫЦАРЬ ПРИСОЕДИНИТСЯ"
-		choice_b.disabled = RunState.gold < 35
+		var healer_price: int = RunState.get_last_camp_healer_price()
+		choice_b.text = "ОПЛАТИТЬ ЛЕКАРЯ — %d\n\nРЫЦАРЬ ПРИСОЕДИНИТСЯ" % healer_price
+		choice_b.disabled = RunState.gold < healer_price
 		choice_c.text = "ЗАБРАТЬ СНАРЯЖЕНИЕ\n\n+40 золота\nРЫЦАРЬ БУДЕТ ПОТЕРЯН"
 		leave_button.visible = false
 		choice_a.pressed.connect(_resolve_last_camp.bind("recruit_blood"))
@@ -1143,8 +1156,9 @@ func _configure_candle_seller() -> void:
 
 
 func _configure_bone_tax() -> void:
-	choice_a.text = "ЗАПЛАТИТЬ 25 ЗОЛОТА\n\nПройти без последствий"
-	choice_a.disabled = RunState.gold < 25
+	var gold_price: int = RunState.get_bone_tax_gold_price()
+	choice_a.text = "ЗАПЛАТИТЬ %d ЗОЛОТА\n\nПройти без последствий" % gold_price
+	choice_a.disabled = RunState.gold < gold_price
 	if RunState.has_rescue_scar("knight"):
 		choice_b.text = "ПОКАЗАТЬ ШРАМ ЦЕПЕЙ\n\nСтраж узнаёт метку\nПройти бесплатно"
 		wizard_line.text = "— Некоторые цепи всё-таки открывают двери."
@@ -1321,6 +1335,7 @@ func _resolve_chained_prisoner(choice: String) -> void:
 			"recruit":
 				RunState.recruit_companion("knight", "Вы снова разбили его цепи и приняли его в отряд. На протагонисте остался Шрам цепей.")
 				RunState.add_rescue_scar("knight")
+				RunState.record_castle_fact(RunState.CASTLE_FACT_SILENCED, "chained_prisoner")
 				_finish("Цепи падают на камень. Рыцарь встаёт рядом с вами. ШРАМ ЦЕПЕЙ: -10 макс. HP.")
 			"loot_recruitment":
 				RunState.gold += 25
@@ -1339,9 +1354,11 @@ func _resolve_chained_prisoner(choice: String) -> void:
 			if upgrade_id.is_empty():
 				return
 			RunState.gold -= 25
+			RunState.record_castle_fact(RunState.CASTLE_FACT_SILENCED, "chained_prisoner")
 			_finish("Пленник покупает свободу знанием. %s" % _format_upgrade_gain(upgrade_id))
 		"chains":
 			RunState.party_hp_bonus -= 15.0
+			RunState.record_castle_fact(RunState.CASTLE_FACT_SILENCED, "chained_prisoner")
 			var artifact_id := RunState.add_random_available_artifact()
 			if artifact_id.is_empty():
 				RunState.gold += 35
@@ -1526,11 +1543,12 @@ func _resolve_last_camp(choice: String) -> void:
 				RunState.add_rescue_scar("knight")
 				_finish("Вы помогаете ему встать. До надзирателя теперь идёте вместе. ШРАМ ЦЕПЕЙ: -10 макс. HP.")
 			"recruit_gold":
-				if RunState.gold < 35:
+				var healer_price: int = RunState.get_last_camp_healer_price()
+				if RunState.gold < healer_price:
 					return
-				RunState.gold -= 35
+				RunState.gold -= healer_price
 				RunState.recruit_companion("knight", "Вы оплатили лечение и вернули рыцаря в эту версию пути.")
-				_finish("Лекарь забирает монеты. Рыцарь снова может держать меч.")
+				_finish("Лекарь забирает %d монет. Рыцарь снова может держать меч." % healer_price)
 			"abandon_loot":
 				RunState.gold += 40
 				RunState.lose_companion("knight", "Вы забрали его снаряжение у последнего костра.")
@@ -1675,10 +1693,11 @@ func _resolve_bone_tax(choice: String) -> void:
 
 	match choice:
 		"gold":
-			if RunState.gold < 25:
+			var gold_price: int = RunState.get_bone_tax_gold_price()
+			if RunState.gold < gold_price:
 				return
-			RunState.gold -= 25
-			_finish("Пошлина уплачена. Страж даже не притворяется благодарным.")
+			RunState.gold -= gold_price
+			_finish("Пошлина уплачена: %d золота. Страж отводит взгляд." % gold_price)
 		"blood":
 			if RunState.has_rescue_scar("knight"):
 				_finish("Страж видит ШРАМ ЦЕПЕЙ и отступает. Сегодня уже было заплачено достаточно.")
@@ -1696,6 +1715,7 @@ func _resolve_bone_tax(choice: String) -> void:
 func _resolve_leave() -> void:
 	if resolved:
 		return
+	resolving_leave = true
 
 	match active_card.card_id:
 		"moon_seal":
@@ -1804,9 +1824,28 @@ func _apply_resolved_layout() -> void:
 		continue_button.size = Vector2(200.0, 38.0)
 
 
+# Sources are actual successful choices, not deals, abandoned events or
+# failed transactions. A repeated source never requeues the same clue.
+func _record_castle_memory_for_event() -> void:
+	if resolving_leave or active_card == null:
+		return
+	match active_card.card_id:
+		"ash_rest", "rattling_bridge":
+			RunState.record_castle_fact(RunState.CASTLE_FACT_MARCH, active_card.card_id)
+		"debtor_bones":
+			if RunState.get_event_outcome("debtor_bones") == "safe":
+				RunState.record_castle_fact(RunState.CASTLE_FACT_RATIONS, active_card.card_id)
+		"candle_seller":
+			RunState.record_castle_fact(RunState.CASTLE_FACT_RATIONS, active_card.card_id)
+		"gravedigger_shop":
+			if RunState.get_event_outcome("gravedigger_shop") == "bought":
+				RunState.record_castle_fact(RunState.CASTLE_FACT_RATIONS, active_card.card_id)
+
+
 func _finish(message: String) -> void:
 	resolved = true
 	_disable_choices()
+	_record_castle_memory_for_event()
 	RunState.complete_active_card()
 	result_label.text = message
 	_apply_resolved_layout()
