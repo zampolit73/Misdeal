@@ -1,12 +1,12 @@
-## A1M1 — Castle Memory story and mechanical pilot (2026-11-02)
+## RELEASED A1M1 — Castle Memory story + mechanical pilot (2026-11-02)
 
-- [x] Player chose C and authorized implementation via «давай» after scope review; keep closed earlier tasks 1 and 3 out of this workstream.
-- [x] Implement two per-run facts and first-source idempotence in `RunState`; preserve 12+XIII, 2-card real offers, forced fights, Hold, normal companions and combat.
-- [x] Hook `moon_seal`, `echo_crypt` and successful `court_of_the_mute` into investigation; preserve existing event rewards and penalties.
-- [x] Add Blood Ledger 35-gold clue-aware option (40 without proof), short role-based memory copy and Wizard responses with higher-priority events preserved.
-- [x] Add full GUT regression tests and [F5 playtest contract](A1M1_CASTLE_MEMORY_IMPLEMENTATION_QA.md).
-- [ ] Verify [PR #45](https://github.com/zampolit73/Misdeal/pull/45) native Godot import/GUT/smokes, merge only if green; then human F5 verify card copy and outcomes.
-- [ ] Later, separately discuss expansion to remaining Act I cards and XIII ending; **not part of A1M1**.
+- [x] Player selected direction C and authorized implementation. Previous unrelated tasks 1 and 3 treated as closed.
+- [x] Implement per-run clues (deduplicated) and two independent order-conflict routes: Echo Crypt after Seal or costly listening, or successful Court of the Mute.
+- [x] Conditional Blood Ledger Gold price 35 with evidence / 40 baseline using shared UI+transaction getter; Knight/Ranger/Mage text and low-priority Wizard replies.
+- [x] No new cards/encounters/art/sound, no changes to rewards other than 5-gold Ledger cost, hero-party rules, two offers or I–XIII.
+- [x] [PR #45](https://github.com/zampolit73/Misdeal/pull/45) squash-merged `503f21f6609fd57878f8a87d50feead1ea1e3ae2` after [Godot CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41512223357), **103/103 GUT, 6314 assertions**, import/smokes/1280×720 screenshot capture.
+- [ ] Player F5 story/UX review: see [A1M1 exact scenario checklist](A1M1_CASTLE_MEMORY_IMPLEMENTATION_QA.md), especially role observations, found-order proof, 35/40 Ledger card and no text overflow.
+- [ ] If pilot is artistically successful, discuss additional cards or the XIII choice **separately**, without prematurely changing the canonical ending.
 
 ## PROPOSED A1M1 — «Память замка»: narrative + mechanical replay variation (2026-11-02)
 
