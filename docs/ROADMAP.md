@@ -1,3 +1,11 @@
+## RELEASED — Windows Git hygiene helper after A1M2 (2026-11-03)
+
+- [x] Confirm user's A1M2 fast-forward succeeded, but local tracked GUT import and project settings modifications + untracked Godot .import/.uid remain; avoid destructive cleanup.
+- [x] [PR #47](https://github.com/zampolit73/Misdeal/pull/47) merged `2844ec5309faf9207f00b312bfa707806eabe20b`: read-only audit and explicit backup-before-restore of tracked GUT .import only; Godot metadata tracking rules in AGENTS.md and [local guide](LOCAL_GIT_HYGIENE.md).
+- [x] [Godot 4.7.2 native CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/41523136441): 124/124 GUT (6475 assertions), import, smoke, screenshots; no gameplay changes.
+- [ ] User Windows PowerShell read-only audit / review exact project.godot and theme changes. Opt-in GUT import restore only after local inspection and backup; **do not ignore `*.uid` or blindly clean `*.import`**.
+- [ ] A1M1/A1M2 live F5 narrative/readability acceptance still pending before further story or XIII expansion.
+
 ## RELEASED A1M2 — Castle Memory expansion (2026-11-03)
 
 - [x] Player requested more linked Act I events. Implement three run-local first-source memories: hidden rations, southern army march, silenced witnesses, from independent successful decisions/battle wins; old A1M1 clues unchanged.
