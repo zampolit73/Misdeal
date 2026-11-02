@@ -13,6 +13,24 @@ func test_fate_deal_is_deterministic_and_offers_two_different_cards() -> void:
 	assert_ne(str(first[0]["id"]), str(first[1]["id"]))
 
 
+func test_four_fate_slots_force_distinct_combat_offers() -> void:
+	var s: Dictionary = RULES.new_run("knight", 71)
+	for stage in [1, 4, 8, 11]:
+		s["stage"] = stage
+		var cards: Array[Dictionary] = RULES.offer(s)
+		assert_eq(str(cards[0]["kind"]), "fight")
+		assert_eq(str(cards[1]["kind"]), "fight")
+		assert_ne(str(cards[0]["id"]), str(cards[1]["id"]))
+
+
+func test_frontline_rotation_is_a_real_combat_preparation_choice() -> void:
+	var s: Dictionary = RULES.new_run("knight", 11)
+	s["party"].append(RULES.make_hero("ranger"))
+	RULES.choose(s, {"title":"ПАТРУЛЬ","kind":"fight","danger":1})
+	RULES.rotate_front(s)
+	assert_eq(str(s["party"][0]["id"]), "ranger")
+
+
 func test_pledge_trades_permanent_health_for_debt_and_seal() -> void:
 	var s: Dictionary = RULES.new_run("knight", 12)
 	assert_true(RULES.pledge(s))
