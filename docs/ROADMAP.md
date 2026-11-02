@@ -1,3 +1,11 @@
+## RELEASED A1M2 — Castle Memory expansion (2026-11-03)
+
+- [x] Player requested more linked Act I events. Implement three run-local first-source memories: hidden rations, southern army march, silenced witnesses, from independent successful decisions/battle wins; old A1M1 clues unchanged.
+- [x] Bone Tax gold costs 20 with ration proof (25 normal); Last Camp healer costs 30 with march route (35 normal); one getter for UI/affordability/payment, no other choices or enemy/battle changes.
+- [x] [PR #46](https://github.com/zampolit73/Misdeal/pull/46) merged `2c12e5cb`, [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41518216229): **124/124 GUT, 6475 assertions**, import, relevant scene smokes and screenshots.
+- [ ] User F5: compare both new price outcomes and contextual prose; assess that Wizard comments remain restrained. [Details](A1M2_CASTLE_MEMORY_EXPANSION.md).
+- [ ] Future deeper lore, XIII decisions and cross-run archive require separate design discussion.
+
 ## RELEASED A1M1 — Castle Memory story + mechanical pilot (2026-11-02)
 
 - [x] Player selected direction C and authorized implementation. Previous unrelated tasks 1 and 3 treated as closed.
