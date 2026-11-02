@@ -1,3 +1,9 @@
+## Released — A1M2 Castle Memory expansion (2026-11-03)
+
+- Added three deduplicated run-local evidence threads across existing Act I actions and victorious combats: hidden ration records, southern march, silenced testimony; existing promise clues gain alternate battle sources.
+- Consequences: Bone Tax gold is 20 with ration proof (25 usual); Last Camp Knight healer is 30 with route proof (35 usual). Both real charges and physical choice labels are consistent. Existing cards, combat, party rescue/scars, DS3, sound and Fate Spread unchanged.
+- Contextual short hints and restrained Wizard callbacks, no early story spoilers or cross-run metaprogression. [PR #46](https://github.com/zampolit73/Misdeal/pull/46) merged `2c12e5cb` after [Godot 4.7.2 CI SUCCESS, 124/124 GUT and 6475 assertions](https://github.com/zampolit73/Misdeal/actions/runs/41518216229), relevant scene smokes and screenshot capture. User F5 text/UX check remains pending. [QA](docs/A1M2_CASTLE_MEMORY_EXPANSION.md).
+
 ## Released — A1M1 «Память замка» / Castle Memory (2026-11-02)
 
 - Run-local first-source evidence from Moon Seal, Echo Crypt and real victorious Court of the Mute; duplicate clues never grant repeated benefits or speech.
