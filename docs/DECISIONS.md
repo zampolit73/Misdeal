@@ -1,3 +1,7 @@
+## A1M1 — C direction chosen, detailed pilot remains proposed (2026-11-02)
+
+Player chose **C: combine story and mechanical replay variation** for «Память замка», and considers the prior unrelated tasks 1 and 3 closed for this planning discussion. Direction is agreed; individual economic numbers, text and implementation scope are **not yet approved or shipped**. Keep the established Act I truth (hero honestly sacrificed castle; Chancellor forged promise; Commandant continued lying and is XIII), 12+XIII, existing two-offer deal, solo/duo/trio, current event mechanics and approved DS3 visuals. Pilot proposal, verified existing code links and QA: [A1M1 Castle Memory pilot](A1M1_CASTLE_MEMORY_PILOT_PLAN.md). Do not infer a gameplay release from this documentation commit.
+
 ## D380 — parchment modifier is a two-line card-face summary (2026-10-31)
 
 Player's real F5 screenshot shows that D379's free-form modifier wrapping cannot respect the narrow parchment strip, especially when three trade-offs appear. Preserve the full authored modifier string in the tooltip and all underlying upgrade mechanics; on the card face use a dedicated short, truthful maximum-two-line expression for each of the nine current upgrade IDs. Never compress away a negative cost or change numeric values to make it fit. Restrict Reward-only description copy to the central dark well, above the lower painted ornament, leaving the approved DS3 art/frame and table card surfaces untouched. Native mixed-party previews are required; an all-Knight-only QA screenshot was insufficient.
