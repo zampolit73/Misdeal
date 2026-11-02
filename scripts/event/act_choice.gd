@@ -1335,6 +1335,7 @@ func _resolve_chained_prisoner(choice: String) -> void:
 			"recruit":
 				RunState.recruit_companion("knight", "Вы снова разбили его цепи и приняли его в отряд. На протагонисте остался Шрам цепей.")
 				RunState.add_rescue_scar("knight")
+				RunState.record_castle_fact(RunState.CASTLE_FACT_SILENCED, "chained_prisoner")
 				_finish("Цепи падают на камень. Рыцарь встаёт рядом с вами. ШРАМ ЦЕПЕЙ: -10 макс. HP.")
 			"loot_recruitment":
 				RunState.gold += 25
@@ -1353,9 +1354,11 @@ func _resolve_chained_prisoner(choice: String) -> void:
 			if upgrade_id.is_empty():
 				return
 			RunState.gold -= 25
+			RunState.record_castle_fact(RunState.CASTLE_FACT_SILENCED, "chained_prisoner")
 			_finish("Пленник покупает свободу знанием. %s" % _format_upgrade_gain(upgrade_id))
 		"chains":
 			RunState.party_hp_bonus -= 15.0
+			RunState.record_castle_fact(RunState.CASTLE_FACT_SILENCED, "chained_prisoner")
 			var artifact_id := RunState.add_random_available_artifact()
 			if artifact_id.is_empty():
 				RunState.gold += 35
