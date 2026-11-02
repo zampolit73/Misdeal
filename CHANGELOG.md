@@ -1,10 +1,9 @@
-## A1M1 — Castle Memory replay pilot (2026-11-02, PR review)
+## Released — A1M1 «Память замка» / Castle Memory (2026-11-02)
 
-- Added run-local clue memory with actual resolved source and one-time Wizard commentary, resetting on new run.
-- Expanded two existing event sources (Moon Seal/Echo Crypt) and introduced independent successful Court of the Mute evidence; unchanged original event gold/HP/relic and battle outcomes.
-- Added fact-dependent Blood Ledger gold upgrade option: **35 gold with proof**, **40 gold without**, one central getter for real UI/charge and unchanged blood/erase choices.
-- Knight/Ranger/Mage see concise, distinct details of the same historical event; no early Chancellor/Commandant reveal.
-- Added Godot native GUT regressions for actual ActChoice scene branches, ledger economics and state resets. [PR #45](https://github.com/zampolit73/Misdeal/pull/45) / [QA](docs/A1M1_CASTLE_MEMORY_IMPLEMENTATION_QA.md); native CI and local F5 are release gates. No new art/audio, card slots or changes to XIII.
+- Run-local first-source evidence from Moon Seal, Echo Crypt and real victorious Court of the Mute; duplicate clues never grant repeated benefits or speech.
+- Conditional Blood Ledger gold option: 35 with disputed-order evidence, standard 40 without. Unified displayed price, affordability and real charge; original rewards, events, combat and other cross-card pricing unchanged.
+- Short Knight/Ranger/Mage-specific observations and contextual Wizard callbacks that respect existing major events, with no premature reveal of Chancellor or Commandant.
+- [PR #45](https://github.com/zampolit73/Misdeal/pull/45) merged as `503f21f6609fd57878f8a87d50feead1ea1e3ae2` after [Godot 4.7.2 native CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41512223357): **103/103 GUT, 6314 assertions**, import, live scene smokes and 1280×720 screenshot capture. User F5 story/UX acceptance remains open. [QA instructions](docs/A1M1_CASTLE_MEMORY_IMPLEMENTATION_QA.md).
 
 ## Released — D380: mixed-party Reward card copy fitting (2026-10-31)
 
