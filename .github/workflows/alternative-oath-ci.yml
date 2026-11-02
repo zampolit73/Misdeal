@@ -1,0 +1,52 @@
+name: Misdeal Alternative Oath native QA
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/alternative/**'
+      - 'scenes/alternative/**'
+      - 'scripts/dev/alternative_oath_smoke.gd'
+      - 'tests/unit/test_alternative_oath_table.gd'
+      - '.github/workflows/alternative-oath-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  alternative-oath:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install checksum-verified Godot 4.7.2
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --retry 3 -L https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o /tmp/godot.zip
+          echo 'cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  /tmp/godot.zip' | sha256sum -c -
+          unzip -q /tmp/godot.zip -d /tmp/godot-bin
+          chmod +x /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+      - name: Godot import and GDScript validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          godot=/tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+          timeout 180s "$godot" --headless --path . --editor --import --quit 2>&1 | tee /tmp/alt-import.log
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script' /tmp/alt-import.log
+      - name: Alternative table live scene smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          godot=/tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+          timeout 45s "$godot" --headless --path . --script res://scripts/dev/alternative_oath_smoke.gd 2>&1 | tee /tmp/alt-scene.log
+          grep -Fq 'ALTERNATIVE_OATH_SMOKE_PASS' /tmp/alt-scene.log
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script|ALTERNATIVE_OATH_SMOKE_FAIL' /tmp/alt-scene.log
+      - name: Real GUT unit tests including alternative rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          godot=/tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+          timeout 180s "$godot" --headless --path . -s res://addons/gut/gut_cmdln.gd -gdir=res://tests/unit -gconfig= -gexit -glog=1 2>&1 | tee /tmp/alt-gut.log
+          grep -Fq 'All tests passed!' /tmp/alt-gut.log
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script' /tmp/alt-gut.log
