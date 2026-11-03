@@ -1,3 +1,7 @@
+## ART PROPOSAL 2026-11-03 — unified three-hero miniature standard
+
+User selected Option B for Knight/Ranger/male Mage. Created [HERO_MINIATURES_DESIGN_SYSTEM.md](HERO_MINIATURES_DESIGN_SYSTEM.md) as a draft creative production standard, not approval of new art or replacement of runtime assets. Reuses Misdeal restrained tabletop materials, readable battle-scale silhouettes, role-specific muted accents and the existing 25-frame/96px authored animation standard; retains approved static v4 Knight and animated Mage/Ranger. Next: show three distinct *trio* directions against an arena before locking designs. D386 waves balance work remains separate. No Godot source/assets changed and no new CI pass claimed.
+
 ## D385 — player feedback accepted; D386 balance evaluation next (2026-11-03)
 
 After the screenshot-led D385 corrections, player replied «все ок, давай продолжим». Record this as positive overall feedback on the current two-wave gameplay/UI, **not** as a measured solo/duo/trio fairness matrix or separate verification of every F6 scene. Next D386 is a **bounded evaluation** of wave pacing, hero survivability, repositioning value and one-reward semantics in existing D382 Iron Wall and D383 Firing Square. Do not introduce a third wave encounter or rewrite global AI without new player agreement. Existing last green Godot CI is D385 145/145 GUT, 6749 assertions; no new runtime validation implied.
