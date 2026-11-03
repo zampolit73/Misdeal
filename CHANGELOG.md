@@ -1,3 +1,10 @@
+## 2026-11-03 — D382 optional wave-combat Iron Wall pilot
+
+- [PR #49](https://github.com/zampolit73/Misdeal/pull/49) squash-merged `6cf25e09`: added **two waves to existing Iron Wall only**, no new Act I card/arena, no overwriting accepted art. Wave I two original Crypt Sentinels; when cleared with a living hero, **intermission** with surviving-unit drag-reposition and basic tactical order changes. Wave II upper Bone Archer + lower Skeleton, launched manually. HP and lost companions persist, special one-use orders are not reissued. One win/reward or existing Last Deal if the whole fight is lost.
+- Optional `EncounterData.second_wave_*` fields preserve old single-wave semantics everywhere else. Added corrected two-wave encounter/card text, adapted existing original tactical smoke to split wave roster, and added `tests/unit/test_d382_iron_wall_waves.gd` real Battle/RunState unit tests.
+- F6 solo/duo/trio testing through `res://scenes/dev/d382_iron_wall_wave_playtest.tscn`; design and full QA at [D382](docs/D382_IRON_WALL_WAVES_PILOT.md).
+- [Godot 4.7.2 native PR CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41602412061): **133/133 GUT, 6584 assertions**, source/import, smokes and standard scene captures. **Player F6 wave balance/fun/visual signoff still pending.** No XIII, music, storyline, visual design system or unrelated combat changes.
+
 ## 2026-11-03 — D381 Fate Spread F5 visual repair
 
 - [PR #48](https://github.com/zampolit73/Misdeal/pull/48) merged `08ccde4d`: repaired double-drawn example counters/card edges on the actual 12-position **Расклад судьбы** screen by sharing live, mask and ritual-thread layout and making the header example mask opaque.
