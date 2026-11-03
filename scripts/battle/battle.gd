@@ -97,6 +97,10 @@ var units: Array[BattleUnit] = []
 var combat_started := false
 var combat_live := false
 var battle_finished := false
+# D382 — only resources with a complete second-wave plan enter intermission.
+var battle_wave_index := 1
+var wave_intermission := false
+
 var boss_reinforcements_spawned := false
 var tactical_order := TACTICAL_ORDER_ASSAULT
 var wizard_critical_line_shown := false
@@ -177,7 +181,7 @@ func _ready() -> void:
 	elif _is_elite_encounter():
 		enemy_label.text = "ЭЛИТА"
 	else:
-		enemy_label.text = "НЕЖИТЬ"
+		enemy_label.text = "ВОЛНА I / II" if encounter.has_second_wave() else "НЕЖИТЬ"
 	result_scrim.visible = false
 	result_backdrop.visible = false
 	last_deal_price_label.visible = false
@@ -206,7 +210,7 @@ func _setup_target_preview() -> void:
 func _on_target_preview_toggled(enabled: bool) -> void:
 	RunState.battle_target_preview_enabled = enabled
 	_sync_target_preview_button()
-	if target_preview != null and not combat_started and not battle_finished:
+	if target_preview != null and (not combat_started or wave_intermission) and not battle_finished:
 		target_preview.set_active(enabled)
 
 
@@ -602,7 +606,7 @@ func _spawn_unit(
 	units_layer.add_child(unit)
 	units.append(unit)
 
-	if combat_started:
+	if combat_started and combat_live:
 		unit.start_combat()
 
 func _project_spawn_on_floor(source_position: Vector2) -> Vector2:
@@ -706,7 +710,9 @@ func _claim_side_objective_reward() -> String:
 
 
 func _begin_preparation_phase() -> void:
-	if _is_boss_encounter():
+	if encounter.has_second_wave():
+		status_label.text = "ВОЛНА I / II — часовые перекрывают проход. После первой атаки будет передышка."
+	elif _is_boss_encounter():
 		status_label.text = "НАДЗИРАТЕЛЬ — удары по площади. На 50% HP: ярость и подкрепление."
 		var verdict := RunState.get_act1_reckoning_label()
 		if not verdict.is_empty():
@@ -786,7 +792,7 @@ func _on_defiance_order_pressed() -> void:
 	_select_tactical_order(TACTICAL_ORDER_DEFIANCE)
 
 func _select_tactical_order(order_id: String, announce: bool = true) -> void:
-	if combat_started or battle_finished:
+	if (combat_started and not wave_intermission) or battle_finished:
 		return
 	if order_id == TACTICAL_ORDER_SACRIFICE and not sacrifice_order_unlocked:
 		return
@@ -833,13 +839,13 @@ func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 # Nothing about combat order, stats, unlocks or the selected button changes.
 # The same text strip owns the preview, so no native tooltip overlaps the HUD.
 func _on_tactic_preview_entered(order_id: String) -> void:
-	if combat_started or battle_finished or order_id == tactical_order:
+	if (combat_started and not wave_intermission) or battle_finished or order_id == tactical_order:
 		return
 	order_description_label.text = "ПРОСМОТР: " + _get_tactical_order_description(order_id)
 
 
 func _on_tactic_preview_exited() -> void:
-	if combat_started or battle_finished:
+	if (combat_started and not wave_intermission) or battle_finished:
 		return
 	order_description_label.text = _get_tactical_order_description(tactical_order)
 
@@ -1047,6 +1053,9 @@ func _on_placement_rejected(unit: BattleUnit) -> void:
 
 
 func _on_fight_pressed() -> void:
+	if wave_intermission:
+		_start_second_wave()
+		return
 	if combat_started or battle_finished:
 		return
 
@@ -1128,11 +1137,11 @@ func _hide_preparation_hud() -> void:
 	fight_button.visible = false
 	restart_button.visible = false
 
-func _play_combat_intro() -> void:
+func _play_combat_intro(caption: String = "СХВАТКА") -> void:
 	intro_scrim.visible = true
 	intro_title.visible = true
 	intro_encounter.visible = true
-	intro_title.text = "СХВАТКА"
+	intro_title.text = caption
 	intro_encounter.text = encounter.title
 	intro_scrim.modulate.a = 0.0
 	intro_title.modulate.a = 0.0
@@ -1278,11 +1287,101 @@ func _on_unit_died(dead_unit: BattleUnit) -> void:
 			enemies_alive += 1
 
 	if enemies_alive == 0:
-		_finish_battle(true)
+		if encounter.has_second_wave() and battle_wave_index == 1:
+			# A simultaneous last-stand kill is NOT a wave-clear victory.
+			if heroes_alive > 0:
+				_begin_wave_intermission()
+			else:
+				_finish_battle(false)
+		else:
+			_finish_battle(true)
 	elif heroes_alive == 0:
 		_finish_battle(false)
 	elif dead_unit.team == 0:
 		_show_wizard_line("Один уже понял правила. Остальные — следом.", true)
+
+# D382: First wave ends without issuing a result or touching the run card,
+# earned rewards, HP, limited orders, or the Last Deal state. Reuse only
+# existing physical placement controls. No waves are activated globally.
+func _begin_wave_intermission() -> void:
+	if wave_intermission or battle_finished or not encounter.has_second_wave():
+		return
+	if battle_wave_index != 1:
+		return
+
+	wave_intermission = true
+	combat_live = false
+	for unit in units:
+		if not unit.alive:
+			continue
+		unit.combat_started = false
+		unit.target = null
+		if unit.team == 0:
+			unit.enable_placement_regions(_get_placement_regions())
+
+	enemy_label.text = "ВОЛНА I / II — ОТБИТА"
+	status_label.text = "ПЕРЕДЫШКА — герои сохранили здоровье. Новая атака с фланга."
+	placement_hint.text = encounter.second_wave_hint
+	placement_hint.visible = true
+	side_objective_panel.visible = not side_objective_id.is_empty()
+	BATTLE_DS3_PASS.position_placement_hint(self)
+	bottom_hud_panel.visible = true
+	fight_hud_panel.visible = true
+	order_label.visible = true
+	order_label.text = "ПЕРЕСТРОЕНИЕ — ВОЛНА II"
+	order_description_label.visible = true
+	assault_order_button.visible = true
+	hunt_order_button.visible = true
+	formation_order_button.visible = true
+	for button in [assault_order_button, hunt_order_button, formation_order_button]:
+		button.disabled = false
+	# Rare one-use orders remain spent: they are NOT granted a second time.
+	# If the player used one in wave I it persists until voluntarily changed.
+	sacrifice_order_button.visible = false
+	defiance_order_button.visible = false
+	BATTLE_DS3_PASS.layout_tactics(self)
+	target_preview_button.visible = false
+	if target_preview != null:
+		target_preview.set_active(false)
+	fight_button.text = "ВОЛНА II"
+	fight_button.disabled = false
+	fight_button.visible = true
+	order_description_label.text = _get_tactical_order_description(tactical_order)
+	_show_wizard_line("Они ещё не кончились. Поправь своих бойцов, пока я тасую остальных.")
+
+
+func _start_second_wave() -> void:
+	if not wave_intermission or battle_finished or battle_wave_index != 1:
+		return
+	wave_intermission = false
+	battle_wave_index = 2
+	combat_live = false
+	fight_button.disabled = true
+	_hide_preparation_hud()
+	side_objective_panel.visible = not side_objective_id.is_empty()
+	BATTLE_DS3_PASS.position_side_objective(self, true)
+	# Enemy formation appears in plain sight while the short wave intro plays.
+	for index in range(encounter.second_wave_unit_paths.size()):
+		var enemy_data := load(encounter.second_wave_unit_paths[index]) as UnitData
+		if enemy_data == null:
+			push_error("D382 missing second-wave UnitData: " + encounter.second_wave_unit_paths[index])
+			continue
+		var enemy_name := enemy_data.unit_name
+		if index < encounter.second_wave_names.size() and not encounter.second_wave_names[index].is_empty():
+			enemy_name = encounter.second_wave_names[index]
+		_spawn_unit(enemy_data, 1, encounter.second_wave_positions[index], enemy_name)
+
+	enemy_label.text = "ВОЛНА II / II"
+	status_label.text = "ВОЛНА II — стрелы с верхнего фланга, пехота снизу."
+	await _play_combat_intro("ВОЛНА II")
+	if battle_finished:
+		return
+	for unit in units:
+		if unit.alive:
+			unit.start_combat()
+	combat_live = true
+	_show_wizard_line("Вторую стену я строю не из камня. Из вас.", true)
+
 
 func _show_last_deal_offer() -> void:
 	result_label.text = "ПОСЛЕДНЯЯ СДЕЛКА"
