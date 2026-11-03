@@ -1,3 +1,10 @@
+## D383 — Shipped to main, awaiting F6 player feedback (2026-11-03)
+
+- [x] User approved left/right crossfire on Firing Square, keeping five original foes across waves 3+2. [PR #50](https://github.com/zampolit73/Misdeal/pull/50) merged, `721ff1f9`.
+- [x] Godot 4.7.2 CI PASS: 139/139 GUT, 6667 assertions, 2 real screenshot captures. [Evidence](https://github.com/zampolit73/Misdeal/actions/runs/41680950521).
+- [ ] Play in Godot F6 via `scenes/dev/d383_firing_square_crossfire_playtest.tscn`; check left and right archers, reposition, solo/duo/trio, one final reward.
+- [ ] Await F6 verdict before changes to another wave arena.
+
 ## PROPOSED D383 — Firing Square two-wave crossfire design (2026-11-03)
 
 - [x] User requested designing a distinctive second selective wave arena after positively accepting D382 Iron Wall. Read live Firing Square EncounterData, existing 5 foes (1 Crypt Sentinel, 4 Bone Archers), actual walkable/deployment bounds and tactical orders.
