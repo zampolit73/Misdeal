@@ -1,3 +1,11 @@
+## D388 SHIPPED — Same-floor C3 lookdev QA (2026-11-04)
+
+- [x] Player native screenshot confirmed two different vertical placements (current heroes hovering above actual terrain).
+- [x] [PR #54](https://github.com/zampolit73/Misdeal/pull/54) merged `3260d09f`: pair current/C3 hero on the same real stone floor, align contact footprints at y455, offer explicit ×3/×2 nearest-neighbor scale switch. Only QA scene changed.
+- [x] [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/41719054033): **148/148 GUT, 6792 assertions**, parse/smokes and routine captures (no D388-specific capture).
+- [ ] Player local F6 inspection of D388 pair alignment, C3 readability and new scale toggle.
+- [ ] Replace unusable 48px extracted samples with genuinely authored C3 transparent 96px art; 25 independently authored animation frames per hero only after visual signoff. Do not deploy the 48px placeholders in live Battle.
+
 ## D388 — Fix real screenshot defects of C3 QA preview (2026-11-04)
 
 - [x] Inspect actual F6 screenshot: current fighters hover over walls and C3 appears tiny/washed out; D387 art review FAIL.
