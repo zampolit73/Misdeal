@@ -1,3 +1,12 @@
+## RELEASED PILOT D382 — rare two-wave Iron Wall battle (2026-11-03)
+
+- [x] User greenlit trying wave battles on selective arenas, with between-wave unit redeployment. Implement existing **Iron Wall** only as optional `EncounterData.second_wave_*` contract, no global change/no extra card.
+- [x] Split two Crypt Sentinels into Wave I; Wave II upper Bone Archer plus lower Skeleton. After Wave I, only living heroes can drag to legal placement region and change **basic** order. One-use orders are not reissued; existing HP/deaths persist. One true victory/reward/Last Deal after the whole fight.
+- [x] F6 actual production Battle picker: `scenes/dev/d382_iron_wall_wave_playtest.tscn` for solo/duo/trio, 2 authored enemy formations, battle→reward→table. Complete design and QA notes: [D382](D382_IRON_WALL_WAVES_PILOT.md).
+- [x] [PR #49](https://github.com/zampolit73/Misdeal/pull/49) merged `6cf25e09`; [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41602412061): **133/133 real GUT, 6584 assertions**, import/parse, smokes, existing UI captures. Gameplay regression tests cover no premature victory, HP, reordering, second-wave spawn, single reward transition.
+- [ ] **Required human F6**: 1, 2, 3 party members. Do waves make reposition valuable rather than obligatory busywork? Check time to finish, difficulty, HP carryover, one reward/Last Deal. **Do not roll waves out to other encounters yet.**
+- [ ] If F6 approved, consider a second strategically distinct arena later, preserving fast ordinary fights and act XII+XIII. If not, revert Iron Wall's second-wave data only, no global engine rewrite.
+
 ## RELEASED D381 — Fate Spread screenshot layering pass (2026-11-03)
 
 - [x] Reproduce user's 4/12 F5 card-circle screenshot. Root causes: 96%-opaque header over baked sample counters; independently defined real card positions/masks/thread; original bitmap misprints VI as V; new mini titles wrap below parchment; Roman V crowds IV.
