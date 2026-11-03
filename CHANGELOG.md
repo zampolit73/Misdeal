@@ -1,3 +1,8 @@
+## 2026-11-04 — D387 isolated C3 key-pose preview (QA only)
+
+- Added 3 alpha-masked **concept-derived static key poses** for C3 Knight/Ranger/male Mage as a text-backed 144×48 WebP (three 48px cells), displayed at 96px study scale over the actual painted Firing Square backdrop in new F6 scene res://scenes/dev/d387_hero_c3_keypose_preview.tscn.
+- Preview compares current actual BattleUnit hero sprites with C3 stills; GUT checks image size/transparency and separate QA routing. **No live hero art, genuine 25-pose animation sheets, gameplay stats, waves or approved UI were changed.** Native Godot/F6 acceptance still pending. [D387 QA](docs/D387_HERO_C3_KEYPOSE_QA.md).
+
 ## 2026-11-04 — C3 chosen for hero-art lookdev (no runtime change)
 
 - Player selected **C3 «Тёмный орден»** from the C1/C3 combat miniature concepts. Extended [hero miniature design system](docs/HERO_MINIATURES_DESIGN_SYSTEM.md) with distressed C3 Knight, Ranger and male Mage art contracts and strict distinction between mockup and true 25-frame animation assets.
