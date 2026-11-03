@@ -1,3 +1,8 @@
+## D388 (2026-11-04) — C3 QA scene now grounds both art versions on one floor
+
+- Native player F6 screenshot found a misleading comparison: actual current hero sprites hovered at sky/wall level due to `y=296`, while 48px C3 storyboard cutouts stood near floor at `y=454`.
+- Fixed **only** independent C3 F6 preview: horizontal current-vs-concept pairs per class on identical visible stone floor, anchored to original BattleUnit floor-contact offset and each concept's bottom opaque pixel; optional labeled ×3 comparable-height / ×2 exact pixel-size control. Added regression tests. Low-resolution extracted key poses are STILL not release-quality or 25-frame animation atlases. Production art and combat unaffected; native CI/F6 check separate.
+
 ## 2026-11-04 — D387 isolated C3 key-pose preview (QA only)
 
 - Added 3 alpha-masked **concept-derived static key poses** for C3 Knight/Ranger/male Mage as a text-backed 144×48 WebP (three 48px cells), displayed at 96px study scale over the actual painted Firing Square backdrop in new F6 scene res://scenes/dev/d387_hero_c3_keypose_preview.tscn.
