@@ -916,18 +916,18 @@ func _get_wave_target_readout() -> String:
 func _refresh_wave_briefing() -> void:
 	if order_description_label == null:
 		return
-	var preview := wave_intermission and not wave_preview_hover_order.is_empty()
-	var order_id := wave_preview_hover_order if preview else tactical_order
-	var description := _get_tactical_order_description(order_id)
-	if preview:
-		description = "ПРОСМОТР: " + description
+	# Keep this existing DS3 plate to one row; a second row spills across
+	# the painted bottom border. Show actionable targeting, not both rows.
+	var description := _get_tactical_order_description(tactical_order)
 	if wave_intermission:
-		var readout := _get_wave_target_readout()
-		if not readout.is_empty():
-			description += "\n" + readout
+		if not wave_preview_hover_order.is_empty():
+			description = "ПРОСМОТР: " + _get_tactical_order_description(wave_preview_hover_order)
+		else:
+			var prediction := _get_wave_target_readout()
+			if not prediction.is_empty():
+				description = prediction
 	if order_description_label.text != description:
 		order_description_label.text = description
-
 
 func _configure_tactical_order_buttons() -> void:
 	sacrifice_order_button.visible = sacrifice_order_unlocked
@@ -1382,7 +1382,7 @@ func _separate_wave_survivors() -> void:
 			continue
 		var collides := false
 		for previous in placed:
-			var clearance := maxf(72.0, hero.body_radius + previous.body_radius + 10.0)
+			var clearance := maxf(112.0, hero.body_radius + previous.body_radius + 10.0)
 			if hero.position.distance_to(previous.position) < clearance:
 				collides = true
 				break
@@ -1397,7 +1397,7 @@ func _separate_wave_survivors() -> void:
 						var candidate := Vector2(x, y)
 						var is_free := true
 						for previous in placed:
-							var clearance := maxf(72.0, hero.body_radius + previous.body_radius + 10.0)
+							var clearance := maxf(112.0, hero.body_radius + previous.body_radius + 10.0)
 							if candidate.distance_to(previous.position) < clearance:
 								is_free = false
 								break
