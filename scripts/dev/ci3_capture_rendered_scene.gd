@@ -6,6 +6,8 @@ const SIZE := Vector2i(1280, 720)
 const SCENES := {
 	"class-select": "res://scenes/class_select/class_select.tscn",
 	"table": "res://scenes/table/table.tscn",
+	"fate-spread-four": "res://scenes/table/fate_spread_overlay.tscn",
+	"fate-spread-eight": "res://scenes/table/fate_spread_overlay.tscn",
 	"wizard-prep": "res://scenes/dev/d308_wizard_panel_preview.tscn",
 	"card-gallery": "res://scenes/dev/d315_card_ds3_gallery.tscn",
 	"reward-upgrade": "res://scenes/reward/reward.tscn",
@@ -27,7 +29,7 @@ func _capture() -> void:
 		return
 
 	root.size = SIZE
-	if scene_key == "table" or scene_key == "class-select" or scene_key == "reward-upgrade":
+	if scene_key == "table" or scene_key == "class-select" or scene_key == "reward-upgrade" or scene_key.begins_with("fate-spread-"):
 		# --script does not always inject project autoloads in all execution
 		# modes; register the real RunState the same way native smoke tests do.
 		var state := root.get_node_or_null("RunState")
@@ -39,6 +41,25 @@ func _capture() -> void:
 		if not state.call("choose_protagonist", "knight"):
 			_fail("RunState failed to prepare a Knight")
 			return
+		if scene_key.begins_with("fate-spread-"):
+			# Render the actual production overlay in the exact four-card
+			# screenshot state and in a later chapter. No fabricated UI scene.
+			var completed_ids: Array[String] = [
+				"moon_seal", "whispering_well", "bone_patrol", "bone_tax",
+			]
+			var discarded_ids: Array[String] = [
+				"graveyard_ambush", "gallows_volley", "last_camp", "rattling_bridge",
+			]
+			if scene_key == "fate-spread-eight":
+				completed_ids.append_array([
+				"ash_rest", "grave_crossfire", "gravedigger_shop", "crypt_guard",
+				])
+				discarded_ids.append_array([
+				"lost_purse", "echo_crypt", "black_altar", "curse_forge",
+				])
+			state.set("cards_resolved", completed_ids.size())
+			state.set("resolved_card_ids", completed_ids)
+			state.set("rejected_card_ids", discarded_ids)
 
 	var packed := load(SCENES[scene_key]) as PackedScene
 	if packed == null:
@@ -58,6 +79,15 @@ func _capture() -> void:
 		var offer := scene.get_node_or_null("Cards/BonePatrolCard") as Button
 		if offer == null or not offer.visible:
 			_fail("live Table produced no visible first card")
+			return
+	elif scene_key.begins_with("fate-spread-"):
+		var corrected := scene.get_node_or_null("Frame/SpreadArea/CorrectedSixthRoman") as Label
+		var mask := scene.get_node_or_null("Frame/HeaderMask") as ColorRect
+		if corrected == null or mask == null or mask.color.a < 0.999:
+			_fail("Fate Spread correction label/fully opaque header missing")
+			return
+		if corrected.visible != (scene_key == "fate-spread-four"):
+			_fail("sixth Roman must be corrected only while VI is a future card")
 			return
 	elif scene_key == "wizard-prep":
 		var plaque := scene.get_node_or_null("SideObjectivePanel/D307WizardArt") as Control
