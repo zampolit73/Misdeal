@@ -111,6 +111,13 @@ func _capture() -> void:
 		if first_foes.size() != 3:
 			_fail("Firing Square wave I must have three real enemies")
 			return
+		if scene_key == "firing-square-break":
+			# D385: reproduce the player's ACTUAL crowded live pause. The
+			# previous screenshot manually fanned out heroes AFTER clamping
+			# and therefore failed to reveal overlapping full-size miniatures.
+			for actor in scene.get("units"):
+				if actor.team == 0 and actor.alive:
+					actor.position = Vector2(475.0, 355.0)
 		for foe in first_foes:
 			foe.take_damage(foe.max_hp + 10000.0)
 		if not scene.get("wave_intermission"):
@@ -120,29 +127,39 @@ func _capture() -> void:
 			if not scene.get_node("PlacementHint").text.contains("СЛЕВА"):
 				_fail("no left-rear telegraph on Firing Square intermission")
 				return
-			# D384: actually reposition two living heroes in the legal floor
-			# strip and capture the SAME production intermission HUD; the
-			# forecast must now name the corresponding nearest first targets.
+			# Inspect the REAL regrouping, not manually arranged test art.
 			var survivors: Array[BattleUnit] = []
 			for actor in scene.get("units"):
 				if actor.team == 0 and actor.alive:
 					survivors.append(actor)
-			if survivors.size() < 2:
-				_fail("D384 needs two surviving heroes for a real reposition capture")
+			if survivors.size() != 3:
+				_fail("D385: full three-hero wave-break capture is required")
 				return
-			survivors[0].position = Vector2(170.0, 355.0)
-			survivors[1].position = Vector2(340.0, 355.0)
-			if survivors.size() >= 3:
-				survivors[2].position = Vector2(495.0, 355.0)
+			for index in range(survivors.size()):
+				for earlier in range(index):
+					if absf(survivors[index].position.x - survivors[earlier].position.x) < 139.9:
+						_fail("D385: automatic live regrouping still overlaps miniatures")
+						return
 			scene.call("_refresh_wave_briefing")
+			var header := scene.get_node("OrderLabel") as Label
 			var description := scene.get_node("OrderDescription") as Label
-			if not description.text.contains("ПЕРВЫЕ ЦЕЛИ: слева"):
-				_fail("D384 missing future-target readout after hero reposition")
+			if not header.text.contains("ПЕРВЫЕ ЦЕЛИ: слева") or description.text.contains("\n"):
+				_fail("D385: first targets belong in existing command header, not below scroll")
 				return
-			var left_expected := "слева — %s" % survivors[0].display_name
-			var right_expected := "справа — %s" % survivors[survivors.size() - 1].display_name
-			if not description.text.contains(left_expected) or not description.text.contains(right_expected):
-				_fail("D384 readout does not match living heroes on left/right")
+			var left_target := scene.call("_nearest_hero_to_second_wave_spawn", 0) as BattleUnit
+			var right_target := scene.call("_nearest_hero_to_second_wave_spawn", 1) as BattleUnit
+			if left_target == null or right_target == null:
+				_fail("D385: wave-break readout has no real living targets")
+				return
+			if not header.text.contains("слева — %s" % left_target.display_name):
+				_fail("D385: left-hand first target text mismatches actual deployment")
+				return
+			if not header.text.contains("справа — %s" % right_target.display_name):
+				_fail("D385: right-hand first target text mismatches actual deployment")
+				return
+			var warning := scene.get_node("PlacementHint") as Label
+			if warning.position.x < 40.0 or warning.position.x + warning.size.x > 238.0:
+				_fail("D385: left flank warning outside screen-safe command margin")
 				return
 		else:
 			await scene._start_second_wave()
