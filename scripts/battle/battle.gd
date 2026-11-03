@@ -50,6 +50,8 @@ const SIDE_OBJECTIVE_GOLD := 15
 const BONE_CRUSH_TIME_LIMIT := 16.0
 # D384: read-only positional briefing updates only during optional wave breaks.
 const WAVE_BRIEFING_REFRESH_SECONDS := 0.12
+# D385: wide illustrated miniatures need more horizontal air than body_radius.
+const WAVE_REDEPLOY_MIN_X_SPACING := 140.0
 
 @onready var title_label: Label = $Title
 @onready var deal_label: Label = $DealLabel
@@ -921,12 +923,14 @@ func _refresh_wave_briefing() -> void:
 	var description := _get_tactical_order_description(order_id)
 	if preview:
 		description = "ПРОСМОТР: " + description
-	if wave_intermission:
-		var readout := _get_wave_target_readout()
-		if not readout.is_empty():
-			description += "\n" + readout
+	# D385: never draw a second row below the approved command scroll.
+	# The existing heading above the three tactics has plenty of width,
+	# and the selected/previewed order stays in its own single-line strip.
 	if order_description_label.text != description:
 		order_description_label.text = description
+	if wave_intermission and order_label != null:
+		var readout := _get_wave_target_readout()
+		order_label.text = readout if not readout.is_empty() else "ПЕРЕСТРОЕНИЕ — ВОЛНА II"
 
 
 func _configure_tactical_order_buttons() -> void:
@@ -1369,46 +1373,49 @@ func _on_unit_died(dead_unit: BattleUnit) -> void:
 	elif dead_unit.team == 0:
 		_show_wizard_line("Один уже понял правила. Остальные — следом.", true)
 
-# When a combat chase ends, several survivors may be outside the narrow
-# original deployment strip. Clamping every hero independently can stack
-# their sprites on top of each other and make the next drag difficult.
-# Solve ONLY conflicts on the actual legal floor; never move an already
-# separated hero. No health/order/AI change, no visible formation grid.
+# D385: after wave I, narrow preparation-floor clamping can pile large
+# illustrated heroes into one clickable silhouette. Separate overlapping
+# SURVIVORS horizontally, so robes/arms stay selectable even at different
+# depths. Reuse the exact legal regions; preserve all already-separated
+# positions and never change the underlying formation, stats or HP.
 func _separate_wave_survivors() -> void:
 	var placed: Array[BattleUnit] = []
 	var regions := _get_placement_regions()
 	for hero in units:
 		if hero.team != 0 or not hero.alive:
 			continue
-		var collides := false
+		var needs_space := false
 		for previous in placed:
-			var clearance := maxf(72.0, hero.body_radius + previous.body_radius + 10.0)
-			if hero.position.distance_to(previous.position) < clearance:
-				collides = true
+			if absf(hero.position.x - previous.position.x) < WAVE_REDEPLOY_MIN_X_SPACING:
+				needs_space = true
 				break
-		if collides:
-			var closest := hero.position
-			var best_sq := INF
+		if needs_space:
+			var best_position := hero.position
+			var best_distance_sq := INF
 			for region in regions:
-				var x := region.position.x + hero.body_radius
-				while x <= region.end.x - hero.body_radius + 0.1:
-					var y := region.position.y + hero.body_radius
-					while y <= region.end.y - hero.body_radius + 0.1:
-						var candidate := Vector2(x, y)
-						var is_free := true
-						for previous in placed:
-							var clearance := maxf(72.0, hero.body_radius + previous.body_radius + 10.0)
-							if candidate.distance_to(previous.position) < clearance:
-								is_free = false
-								break
-						var travel_sq := hero.position.distance_squared_to(candidate)
-						if is_free and travel_sq < best_sq:
-							best_sq = travel_sq
-							closest = candidate
-						y += 16.0
-					x += 16.0
-			if best_sq < INF:
-				hero.position = closest
+				var min_x := region.position.x + hero.body_radius
+				var max_x := region.end.x - hero.body_radius
+				var free_y := clampf(
+					hero.position.y,
+					region.position.y + hero.body_radius,
+					region.end.y - hero.body_radius
+				)
+				var slot_x := min_x
+				while slot_x <= max_x + 0.01:
+					var clear := true
+					for previous in placed:
+						if absf(slot_x - previous.position.x) < WAVE_REDEPLOY_MIN_X_SPACING:
+							clear = false
+							break
+					if clear:
+						var candidate := Vector2(slot_x, free_y)
+						var distance_sq := hero.position.distance_squared_to(candidate)
+						if distance_sq < best_distance_sq:
+							best_distance_sq = distance_sq
+							best_position = candidate
+					slot_x += 4.0
+			if best_distance_sq < INF:
+				hero.position = best_position
 				hero.z_index = int(hero.position.y)
 				hero.queue_redraw()
 		placed.append(hero)
@@ -1434,6 +1441,8 @@ func _begin_wave_intermission() -> void:
 		unit.target = null
 		if unit.team == 0:
 			unit.enable_placement_regions(_get_placement_regions())
+			# This is visual drag clearance, not collision/AI or attack range.
+			unit.intermission_min_horizontal_gap = WAVE_REDEPLOY_MIN_X_SPACING
 	_separate_wave_survivors()
 
 	enemy_label.text = "ВОЛНА I / II — ОТБИТА"
@@ -1446,6 +1455,8 @@ func _begin_wave_intermission() -> void:
 	fight_hud_panel.visible = true
 	order_label.visible = true
 	order_label.text = "ПЕРЕСТРОЕНИЕ — ВОЛНА II"
+	# The real enemy first-target readout moves into this existing header.
+	order_label.add_theme_font_size_override("font_size", 13)
 	order_description_label.visible = true
 	assault_order_button.visible = true
 	hunt_order_button.visible = true

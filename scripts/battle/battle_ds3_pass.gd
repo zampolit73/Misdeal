@@ -175,6 +175,16 @@ static func position_placement_hint(scene: Control) -> void:
 	if active_objective.visible:
 		_place(hint, Vector2(298, 138), Vector2(676, 39))
 		hint.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	elif scene.get("wave_intermission"):
+		# D385: the warning is now two SHORT authored lines. Keep both
+		# entirely inside the approved lower-left free margin; the old long
+		# sentence overflowed off the window in the player's screenshot.
+		_place(hint, Vector2(49, 584), Vector2(170, 100))
+		hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+		hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		hint.add_theme_font_size_override("font_size", 11)
+		hint.clip_text = true
 	else:
 		_place(hint, Vector2(30, 580), Vector2(185, 114))
 		hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
