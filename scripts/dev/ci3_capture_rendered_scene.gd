@@ -120,6 +120,13 @@ func _capture() -> void:
 			if not scene.get_node("PlacementHint").text.contains("СЛЕВА"):
 				_fail("no left-rear telegraph on Firing Square intermission")
 				return
+			var warning := scene.get_node("PlacementHint") as Label
+			if warning.position.x < 40.0 or warning.position.x + warning.size.x > 1280.0:
+				_fail("D385 wave hint is horizontally outside the viewport")
+				return
+			if warning.position.y + warning.size.y > 300.0:
+				_fail("D385 wave hint overlaps the fighter floor") 
+				return
 			# D384: actually reposition two living heroes in the legal floor
 			# strip and capture the SAME production intermission HUD; the
 			# forecast must now name the corresponding nearest first targets.
@@ -138,6 +145,9 @@ func _capture() -> void:
 			var description := scene.get_node("OrderDescription") as Label
 			if not description.text.contains("ПЕРВЫЕ ЦЕЛИ: слева"):
 				_fail("D384 missing future-target readout after hero reposition")
+				return
+			if description.text.contains("\\n"):
+				_fail("D385 target readout spills onto a second line in DS3")
 				return
 			var left_expected := "слева — %s" % survivors[0].display_name
 			var right_expected := "справа — %s" % survivors[survivors.size() - 1].display_name
