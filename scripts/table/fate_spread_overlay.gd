@@ -422,10 +422,23 @@ func _refresh_slots() -> void:
 			title.visible = false
 
 		_apply_panel_style(panel, accent, state == "current", state)
+		_fit_spread_title(title)
 		if panel.has_node("DS3CardFrame") and state == "done":
 			title.add_theme_color_override("font_color", CARD_DS3_SKIN.INK_TEXT)
 		if panel.has_node("DS3CardFrame") and state == "current":
 			title.add_theme_color_override("font_color", CARD_DS3_SKIN.INK_TEXT)
+
+
+func _fit_spread_title(title: Label) -> void:
+	# A single short ink line must remain inside the tiny physical parchment
+	# stripe. Avoid clipping a second black-ink line onto the black footer.
+	var font := title.get_theme_font("font")
+	if font == null:
+		return
+	for font_size in [8, 7, 6]:
+		title.add_theme_font_size_override("font_size", font_size)
+		if font.get_string_size(title.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x <= title.size.x - 3.0:
+			break
 
 
 func _refresh_boss() -> void:
