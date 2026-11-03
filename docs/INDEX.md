@@ -1,3 +1,7 @@
+## Hero miniatures design system — visual proposal (2026-11-03)
+
+[Hero Miniatures Design System v0.1](HERO_MINIATURES_DESIGN_SYSTEM.md): unified art grammar, palette chips and animation review gates for Knight, Ranger and male Mage. Draft only; no sprite changes. [Current handoff](HANDOFF.md).
+
 ## D385 — Screenshot-driven wave break UI fix (2026-11-03)
 
 [PR #53](https://github.com/zampolit73/Misdeal/pull/53) · [native Godot 145/145 and screenshot evidence](https://github.com/zampolit73/Misdeal/actions/runs/41693963970) · [current handoff](HANDOFF.md). D384 first-target prediction now stays in its one-line DS3 plate, authored wave warning no longer clips from left, and survivor sprites separate after wave-I clamp. Live on main; awaiting user's F6 review.
