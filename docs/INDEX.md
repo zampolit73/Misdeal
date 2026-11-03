@@ -1,3 +1,7 @@
+## D385 — Screenshot-driven wave break UI fix (2026-11-03)
+
+[PR #53](https://github.com/zampolit73/Misdeal/pull/53) · [native Godot 145/145 and screenshot evidence](https://github.com/zampolit73/Misdeal/actions/runs/41693963970) · [current handoff](HANDOFF.md). D384 first-target prediction now stays in its one-line DS3 plate, authored wave warning no longer clips from left, and survivor sprites separate after wave-I clamp. Live on main; awaiting user's F6 review.
+
 ## D384 — Wave intermission briefing & collision-free redeployment (2026-11-03)
 
 [Implementation & F6 acceptance](D384_WAVE_TACTICAL_BRIEFING_QA.md) · [PR #51](https://github.com/zampolit73/Misdeal/pull/51) · [Godot 144/144 tests and native screenshots](https://github.com/zampolit73/Misdeal/actions/runs/41684975966). Existing Iron Wall/Firing Square only: read-only predicted first targets update as heroes move and orders are previewed; intersecting survivors separated on legal prep floor. **Human F6 signoff pending.** [Current handoff](HANDOFF.md).
