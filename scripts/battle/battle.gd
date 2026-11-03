@@ -711,7 +711,7 @@ func _claim_side_objective_reward() -> String:
 
 func _begin_preparation_phase() -> void:
 	if encounter.has_second_wave():
-		status_label.text = "ВОЛНА I / II — часовые перекрывают проход. После первой атаки будет передышка."
+		status_label.text = encounter.wave_one_status
 	elif _is_boss_encounter():
 		status_label.text = "НАДЗИРАТЕЛЬ — удары по площади. На 50% HP: ярость и подкрепление."
 		var verdict := RunState.get_act1_reckoning_label()
@@ -736,11 +736,11 @@ func _begin_preparation_phase() -> void:
 	elif encounter.encounter_id == "grave_crossfire":
 		status_label.text = "МОГИЛЬНЫЙ ПЕРЕКРЁСТОК — два лучника держат разные углы. Не собирайте отряд в одну точку."
 	elif encounter.encounter_id == "iron_wall":
-		status_label.text = "ЖЕЛЕЗНАЯ СТЕНА — два часовых держат фронт, лучник прячется за ними. «ОХОТА» помогает сменить приоритет."
+		status_label.text = "ЖЕЛЕЗНАЯ СТЕНА — часовые держат узкий проход. Приказ «ОХОТА» помогает добраться до стрелков."
 	elif encounter.encounter_id == "last_bell":
 		status_label.text = "ПОСЛЕДНИЙ ЗВОН — два звонаря лечат друг друга. Затянутый бой работает против вас."
 	elif encounter.encounter_id == "firing_square":
-		status_label.text = "РАССТРЕЛЬНАЯ ПЛОЩАДЬ — четыре лучника и часовой. Глубокая расстановка и быстрый доступ к тылу решают бой."
+		status_label.text = "РАССТРЕЛЬНАЯ ПЛОЩАДЬ — часовой прикрывает дальних стрелков. Разведите героев по полу."
 	elif encounter.encounter_id == "bone_ritual":
 		status_label.text = "КОСТЯНОЙ РИТУАЛ — часовой, лечение и быстрый натиск одновременно. Выберите главную угрозу до старта."
 	else:
@@ -1320,7 +1320,7 @@ func _begin_wave_intermission() -> void:
 			unit.enable_placement_regions(_get_placement_regions())
 
 	enemy_label.text = "ВОЛНА I / II — ОТБИТА"
-	status_label.text = "ПЕРЕДЫШКА — герои сохранили здоровье. Новая атака с фланга."
+	status_label.text = encounter.wave_intermission_status
 	placement_hint.text = encounter.second_wave_hint
 	placement_hint.visible = true
 	side_objective_panel.visible = not side_objective_id.is_empty()
@@ -1347,7 +1347,7 @@ func _begin_wave_intermission() -> void:
 	fight_button.disabled = false
 	fight_button.visible = true
 	order_description_label.text = _get_tactical_order_description(tactical_order)
-	_show_wizard_line("Они ещё не кончились. Поправь своих бойцов, пока я тасую остальных.")
+	_show_wizard_line(encounter.wave_intermission_wizard_line)
 
 
 func _start_second_wave() -> void:
@@ -1364,7 +1364,7 @@ func _start_second_wave() -> void:
 	for index in range(encounter.second_wave_unit_paths.size()):
 		var enemy_data := load(encounter.second_wave_unit_paths[index]) as UnitData
 		if enemy_data == null:
-			push_error("D382 missing second-wave UnitData: " + encounter.second_wave_unit_paths[index])
+			push_error("Missing authored second-wave UnitData: " + encounter.second_wave_unit_paths[index])
 			continue
 		var enemy_name := enemy_data.unit_name
 		if index < encounter.second_wave_names.size() and not encounter.second_wave_names[index].is_empty():
@@ -1372,7 +1372,7 @@ func _start_second_wave() -> void:
 		_spawn_unit(enemy_data, 1, encounter.second_wave_positions[index], enemy_name)
 
 	enemy_label.text = "ВОЛНА II / II"
-	status_label.text = "ВОЛНА II — стрелы с верхнего фланга, пехота снизу."
+	status_label.text = encounter.wave_two_status
 	await _play_combat_intro("ВОЛНА II")
 	if battle_finished:
 		return
@@ -1380,7 +1380,7 @@ func _start_second_wave() -> void:
 		if unit.alive:
 			unit.start_combat()
 	combat_live = true
-	_show_wizard_line("Вторую стену я строю не из камня. Из вас.", true)
+	_show_wizard_line(encounter.wave_two_wizard_line, true)
 
 
 func _show_last_deal_offer() -> void:
