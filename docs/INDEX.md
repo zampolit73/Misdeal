@@ -1,3 +1,7 @@
+## D381 Fate Spread native visual fix (2026-11-03)
+
+[User screenshot bug, implementation and F5 QA](D381_FATE_SPREAD_QA.md) · [PR #48](https://github.com/zampolit73/Misdeal/pull/48) · [Godot 128/128 tests + 4/8 real screenshots](https://github.com/zampolit73/Misdeal/actions/runs/41593955768). Baked-reference duplicate counters, wrongly printed VI, Roman V overlap and miniature parchment title wraps corrected; **approved artwork unchanged, human F5 signoff open**. [Current handoff](HANDOFF.md).
+
 ## Windows Godot import / Git status recovery (2026-11-03)
 
 [Local Git hygiene guide](LOCAL_GIT_HYGIENE.md) · [PR #47](https://github.com/zampolit73/Misdeal/pull/47) · [read-only local audit PowerShell script](../scripts/dev/local_git_hygiene.ps1). Avoid ignoring Godot .import/.uid metadata or bulk cleaning; A1M2 F5 acceptance still open. [Current handoff](HANDOFF.md).
