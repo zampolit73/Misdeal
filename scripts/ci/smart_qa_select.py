@@ -14,7 +14,8 @@ from pathlib import Path
 CORE = ("class-select", "table", "battle", "wizard-objective",
         "wizard-preview", "cards", "card-surfaces")
 ALL_TESTS = CORE + ("qa-hub",)
-SCREENS = ("class-select", "table", "wizard-prep", "card-gallery", "reward-upgrade", "qa-hub")
+SCREENS = ("class-select", "table", "fate-spread-four", "fate-spread-eight",
+           "wizard-prep", "card-gallery", "reward-upgrade", "qa-hub")
 DOC_SUFFIXES = (".md", ".txt")
 
 def classify(paths, request="auto"):
@@ -57,7 +58,7 @@ def classify(paths, request="auto"):
             want_visual = True
         elif p.startswith(("scripts/table/", "scenes/table/")):
             tests.update(("table", "cards", "card-surfaces"))
-            scenes.update(("table", "card-gallery"))
+            scenes.update(("table", "card-gallery", "fate-spread-four", "fate-spread-eight"))
             want_visual = True
         elif p.startswith(("scripts/battle/", "scenes/battle/", "resources/encounters/",
                            "resources/units/", "scripts/core/")):
