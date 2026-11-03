@@ -120,6 +120,30 @@ func _capture() -> void:
 			if not scene.get_node("PlacementHint").text.contains("СЛЕВА"):
 				_fail("no left-rear telegraph on Firing Square intermission")
 				return
+			# D384: actually reposition two living heroes in the legal floor
+			# strip and capture the SAME production intermission HUD; the
+			# forecast must now name the corresponding nearest first targets.
+			var survivors: Array[BattleUnit] = []
+			for actor in scene.get("units"):
+				if actor.team == 0 and actor.alive:
+					survivors.append(actor)
+			if survivors.size() < 2:
+				_fail("D384 needs two surviving heroes for a real reposition capture")
+				return
+			survivors[0].position = Vector2(170.0, 355.0)
+			survivors[1].position = Vector2(340.0, 355.0)
+			if survivors.size() >= 3:
+				survivors[2].position = Vector2(495.0, 355.0)
+			scene.call("_refresh_wave_briefing")
+			var description := scene.get_node("OrderDescription") as Label
+			if not description.text.contains("ПЕРВЫЕ ЦЕЛИ: слева"):
+				_fail("D384 missing future-target readout after hero reposition")
+				return
+			var left_expected := "слева — %s" % survivors[0].display_name
+			var right_expected := "справа — %s" % survivors[survivors.size() - 1].display_name
+			if not description.text.contains(left_expected) or not description.text.contains(right_expected):
+				_fail("D384 readout does not match living heroes on left/right")
+				return
 		else:
 			await scene._start_second_wave()
 			var live_foes: Array[BattleUnit] = []
