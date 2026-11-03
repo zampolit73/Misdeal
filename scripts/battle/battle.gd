@@ -48,6 +48,8 @@ const DEFIANCE_INCOMING_DAMAGE_MULTIPLIER := 0.80
 const SOLO_FORMATION_INCOMING_DAMAGE_MULTIPLIER := 0.90
 const SIDE_OBJECTIVE_GOLD := 15
 const BONE_CRUSH_TIME_LIMIT := 16.0
+# D384: read-only positional briefing updates only during optional wave breaks.
+const WAVE_BRIEFING_REFRESH_SECONDS := 0.12
 
 @onready var title_label: Label = $Title
 @onready var deal_label: Label = $DealLabel
@@ -100,6 +102,8 @@ var battle_finished := false
 # D382 — only resources with a complete second-wave plan enter intermission.
 var battle_wave_index := 1
 var wave_intermission := false
+var wave_briefing_elapsed := 0.0
+var wave_preview_hover_order := ""
 
 var boss_reinforcements_spawned := false
 var tactical_order := TACTICAL_ORDER_ASSAULT
@@ -819,7 +823,8 @@ func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 		MISDEAL_UI_KIT.apply_battle_order_choice(choice_button, tactical_order == choice_order, choice_accent)
 		# Reapply DS3 selected/hover visuals after each real tactic change.
 		BATTLE_DS3_PASS.style_tactic(choice_button, tactical_order == choice_order, BATTLE_DS3_PASS._accent_for(choice_button.name))
-	order_description_label.text = _get_tactical_order_description(tactical_order)
+	wave_preview_hover_order = ""
+	_refresh_wave_briefing()
 	_apply_tactical_order_stats()
 
 	for unit in units:
@@ -841,13 +846,17 @@ func _select_tactical_order(order_id: String, announce: bool = true) -> void:
 func _on_tactic_preview_entered(order_id: String) -> void:
 	if (combat_started and not wave_intermission) or battle_finished or order_id == tactical_order:
 		return
+	wave_preview_hover_order = order_id if wave_intermission else ""
 	order_description_label.text = "ПРОСМОТР: " + _get_tactical_order_description(order_id)
+	if wave_intermission:
+		_refresh_wave_briefing()
 
 
 func _on_tactic_preview_exited() -> void:
 	if (combat_started and not wave_intermission) or battle_finished:
 		return
-	order_description_label.text = _get_tactical_order_description(tactical_order)
+	wave_preview_hover_order = ""
+	_refresh_wave_briefing()
 
 
 func _get_tactical_order_description(order_id: String) -> String:
@@ -864,6 +873,61 @@ func _get_tactical_order_description(order_id: String) -> String:
 			return "НЕПОВИНОВЕНИЕ — -20% входящего урона, но -15% собственного."
 		_:
 			return "НАТИСК — ближайшая цель, +15% скорость движения."
+
+# D384: Concise, read-only projection of the *real enemy AI's* opening
+# nearest-target choice. Enemy _find_nearest_enemy() evaluates squared
+# distance; Battle's _project_spawn_on_floor() maps the same authored wave
+# positions as the real second-wave spawn. Moving a hero therefore changes
+# this text without creating targeting rays or changing combat outcomes.
+func _nearest_hero_to_second_wave_spawn(spawn_index: int) -> BattleUnit:
+	if encounter == null or not encounter.has_second_wave():
+		return null
+	if spawn_index < 0 or spawn_index >= encounter.second_wave_positions.size():
+		return null
+	var spawn_point := _project_spawn_on_floor(encounter.second_wave_positions[spawn_index])
+	var nearest: BattleUnit = null
+	var nearest_distance := INF
+	for candidate in units:
+		if candidate.team != 0 or not candidate.alive:
+			continue
+		var distance := spawn_point.distance_squared_to(candidate.position)
+		if distance < nearest_distance:
+			nearest_distance = distance
+			nearest = candidate
+	return nearest
+
+
+func _get_wave_target_readout() -> String:
+	if not wave_intermission or encounter == null or not encounter.has_second_wave():
+		return ""
+	var first := _nearest_hero_to_second_wave_spawn(0)
+	var second := _nearest_hero_to_second_wave_spawn(1)
+	if first == null or second == null:
+		return ""
+	match encounter.encounter_id:
+		"firing_square":
+			return "ПЕРВЫЕ ЦЕЛИ: слева — %s · справа — %s" % [first.display_name, second.display_name]
+		"iron_wall":
+			return "ПЕРВЫЕ ЦЕЛИ: стрелок — %s · пехотинец — %s" % [first.display_name, second.display_name]
+		_:
+			return "ПЕРВЫЕ ЦЕЛИ: I — %s · II — %s" % [first.display_name, second.display_name]
+
+
+func _refresh_wave_briefing() -> void:
+	if order_description_label == null:
+		return
+	var preview := wave_intermission and not wave_preview_hover_order.is_empty()
+	var order_id := wave_preview_hover_order if preview else tactical_order
+	var description := _get_tactical_order_description(order_id)
+	if preview:
+		description = "ПРОСМОТР: " + description
+	if wave_intermission:
+		var readout := _get_wave_target_readout()
+		if not readout.is_empty():
+			description += "\n" + readout
+	if order_description_label.text != description:
+		order_description_label.text = description
+
 
 func _configure_tactical_order_buttons() -> void:
 	sacrifice_order_button.visible = sacrifice_order_unlocked
@@ -1237,6 +1301,11 @@ func _on_unit_health_critical(unit: BattleUnit) -> void:
 
 
 func _process(delta: float) -> void:
+	if wave_intermission and not battle_finished:
+		wave_briefing_elapsed += delta
+		if wave_briefing_elapsed >= WAVE_BRIEFING_REFRESH_SECONDS:
+			wave_briefing_elapsed = 0.0
+			_refresh_wave_briefing()
 	if not combat_started or not combat_live or battle_finished:
 		return
 
@@ -1310,6 +1379,8 @@ func _begin_wave_intermission() -> void:
 		return
 
 	wave_intermission = true
+	wave_briefing_elapsed = 0.0
+	wave_preview_hover_order = ""
 	combat_live = false
 	for unit in units:
 		if not unit.alive:
@@ -1346,7 +1417,7 @@ func _begin_wave_intermission() -> void:
 	fight_button.text = "ВОЛНА II"
 	fight_button.disabled = false
 	fight_button.visible = true
-	order_description_label.text = _get_tactical_order_description(tactical_order)
+	_refresh_wave_briefing()
 	_show_wizard_line(encounter.wave_intermission_wizard_line)
 
 
@@ -1354,6 +1425,7 @@ func _start_second_wave() -> void:
 	if not wave_intermission or battle_finished or battle_wave_index != 1:
 		return
 	wave_intermission = false
+	wave_preview_hover_order = ""
 	battle_wave_index = 2
 	combat_live = false
 	fight_button.disabled = true
