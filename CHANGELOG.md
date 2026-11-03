@@ -1,3 +1,9 @@
+## 2026-11-03 — D383 Firing Square left-right crossfire waves
+
+- [PR #50](https://github.com/zampolit73/Misdeal/pull/50) squash-merged `721ff1f9`: player-approved **«Расстрельная площадь»** now uses two attacks (1 Crypt Sentinel + 2 Bone Archers, then 2 Bone Archers on opposite **left-rear/right** flanks), while keeping the original five foes and one result/reward. An explicit warning appears before Wave II; surviving heroes may reposition and change basic tactics, retaining HP/losses and with no renewed one-use orders.
+- Added optional `EncounterData` wave-specific status/Wizard dialogue and preserved D382 **«Железная стена»** wording via its own Resource. Other encounters and XIII remain unchanged; no new art/audio/projectile effects.
+- Added real F6 solo/duo/trio scene `scenes/dev/d383_firing_square_crossfire_playtest.tscn`, six actual Battle GUT tests (3+2 enemy roles, telegraph, regroup, HP, real left/right walkable floor and facing, one final win), and authentic 1280×720 native intermission/crossfire screenshots via Smart QA. [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41680950521): **139/139 tests, 6667 assertions**. Human F6 balance/visual/pacing review remains open. [Acceptance guide](docs/D383_FIRING_SQUARE_WAVE_DESIGN.md).
+
 ## 2026-11-03 — D382 optional wave-combat Iron Wall pilot
 
 - [PR #49](https://github.com/zampolit73/Misdeal/pull/49) squash-merged `6cf25e09`: added **two waves to existing Iron Wall only**, no new Act I card/arena, no overwriting accepted art. Wave I two original Crypt Sentinels; when cleared with a living hero, **intermission** with surviving-unit drag-reposition and basic tactical order changes. Wave II upper Bone Archer + lower Skeleton, launched manually. HP and lost companions persist, special one-use orders are not reissued. One win/reward or existing Last Deal if the whole fight is lost.
