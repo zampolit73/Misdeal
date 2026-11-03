@@ -1369,6 +1369,51 @@ func _on_unit_died(dead_unit: BattleUnit) -> void:
 	elif dead_unit.team == 0:
 		_show_wizard_line("Один уже понял правила. Остальные — следом.", true)
 
+# When a combat chase ends, several survivors may be outside the narrow
+# original deployment strip. Clamping every hero independently can stack
+# their sprites on top of each other and make the next drag difficult.
+# Solve ONLY conflicts on the actual legal floor; never move an already
+# separated hero. No health/order/AI change, no visible formation grid.
+func _separate_wave_survivors() -> void:
+	var placed: Array[BattleUnit] = []
+	var regions := _get_placement_regions()
+	for hero in units:
+		if hero.team != 0 or not hero.alive:
+			continue
+		var collides := false
+		for previous in placed:
+			var clearance := maxf(72.0, hero.body_radius + previous.body_radius + 10.0)
+			if hero.position.distance_to(previous.position) < clearance:
+				collides = true
+				break
+		if collides:
+			var closest := hero.position
+			var best_sq := INF
+			for region in regions:
+				var x := region.position.x + hero.body_radius
+				while x <= region.end.x - hero.body_radius + 0.1:
+					var y := region.position.y + hero.body_radius
+					while y <= region.end.y - hero.body_radius + 0.1:
+						var candidate := Vector2(x, y)
+						var is_free := true
+						for previous in placed:
+							var clearance := maxf(72.0, hero.body_radius + previous.body_radius + 10.0)
+							if candidate.distance_to(previous.position) < clearance:
+								is_free = false
+								break
+						var travel_sq := hero.position.distance_squared_to(candidate)
+						if is_free and travel_sq < best_sq:
+							best_sq = travel_sq
+							closest = candidate
+						y += 16.0
+					x += 16.0
+			if best_sq < INF:
+				hero.position = closest
+				hero.z_index = int(hero.position.y)
+				hero.queue_redraw()
+		placed.append(hero)
+
+
 # D382: First wave ends without issuing a result or touching the run card,
 # earned rewards, HP, limited orders, or the Last Deal state. Reuse only
 # existing physical placement controls. No waves are activated globally.
@@ -1389,6 +1434,7 @@ func _begin_wave_intermission() -> void:
 		unit.target = null
 		if unit.team == 0:
 			unit.enable_placement_regions(_get_placement_regions())
+	_separate_wave_survivors()
 
 	enemy_label.text = "ВОЛНА I / II — ОТБИТА"
 	status_label.text = encounter.wave_intermission_status
