@@ -23,6 +23,24 @@ extends Resource
 @export var reinforcement_names: PackedStringArray = PackedStringArray()
 @export var reinforcement_positions: PackedVector2Array = PackedVector2Array()
 
+# D382: strictly optional second attack group. A wave encounter stays ONE
+# resolved run card, ONE battle result, ONE reward, and ONE Last Deal.
+# All unrelated encounters use the existing single-group flow unchanged.
+@export_group("Two-Wave Pilot")
+@export var second_wave_unit_paths: PackedStringArray = PackedStringArray()
+@export var second_wave_names: PackedStringArray = PackedStringArray()
+@export var second_wave_positions: PackedVector2Array = PackedVector2Array()
+@export var second_wave_hint: String = ""
+
+
+func has_second_wave() -> bool:
+	return (
+		not enemy_unit_paths.is_empty()
+		and enemy_unit_paths.size() == enemy_positions.size()
+		and not second_wave_unit_paths.is_empty()
+		and second_wave_unit_paths.size() == second_wave_positions.size()
+	)
+
 
 func get_formation_count() -> int:
 	if not enemy_unit_paths.is_empty() and alternate_enemy_positions.size() == enemy_unit_paths.size():
