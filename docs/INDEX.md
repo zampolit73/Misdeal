@@ -1,3 +1,7 @@
+## D387 — C3 hero miniature isolated key-pose QA (2026-11-04)
+
+[D387 preview and constraints](D387_HERO_C3_KEYPOSE_QA.md) · F6 res://scenes/dev/d387_hero_c3_keypose_preview.tscn. Three static alpha concept poses beside real current heroes over approved Firing Square arena. **Not 25-frame atlases, not production replacement.** [Current handoff](HANDOFF.md).
+
 ## Hero miniatures design system — visual proposal (2026-11-03)
 
 [Hero Miniatures Design System v0.1](HERO_MINIATURES_DESIGN_SYSTEM.md): unified art grammar, palette chips and animation review gates for Knight, Ranger and male Mage. Draft only; no sprite changes. [Current handoff](HANDOFF.md).
