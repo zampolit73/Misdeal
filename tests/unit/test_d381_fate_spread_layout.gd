@@ -31,6 +31,24 @@ func test_all_twelve_cards_share_layout_with_reference_masks() -> void:
 			"Live panel %d must align with its approved painted slot" % (index + 1))
 
 
+func test_fifth_roman_clears_fourth_card_and_tiny_titles_do_not_wrap() -> void:
+	var overlay := OVERLAY.instantiate() as Control
+	add_child_autofree(overlay)
+	await get_tree().process_frame
+	var panels: Array = overlay.get("slot_panels")
+	var fifth := panels[4] as Panel
+	var marker := fifth.get_node("Roman") as Label
+	assert_lte(marker.position.x + marker.size.x, 0.0,
+		"Roman V must stand LEFT of its card rather than on top of IV's title")
+	var title := fifth.get_node("CardTitle") as Label
+	assert_eq(title.autowrap_mode, TextServer.AUTOWRAP_OFF,
+		"Tiny Fate names must not spill onto the dark footer as two lines")
+	assert_lt(title.position.y + title.size.y, GEOMETRY.SLOT_SIZE.y * 0.80,
+		"The text rectangle must fit the physical parchment band")
+	var boss := overlay.get("boss_panel") as Panel
+	assert_true(boss != null, "XIII boss card remains present")
+
+
 func test_header_is_opaque_and_phase_clears_first_roman() -> void:
 	var overlay := OVERLAY.instantiate() as Control
 	add_child_autofree(overlay)
