@@ -1,3 +1,7 @@
+## D382 optional Iron Wall two-wave pilot — 2026-11-03
+
+[Full design and F6 acceptance](D382_IRON_WALL_WAVES_PILOT.md) · [PR #49](https://github.com/zampolit73/Misdeal/pull/49) · [Godot 133/133 native GUT](https://github.com/zampolit73/Misdeal/actions/runs/41602412061). Scoped only to Iron Wall, one intermission with survival HP and redeployment, ordinary tactic changes, one final Reward. Open `res://scenes/dev/d382_iron_wall_wave_playtest.tscn` (F6) for solo/duo/trio. **Human evaluation still pending; do not expand waves to other arenas without feedback.** [Current handoff](HANDOFF.md).
+
 ## D381 Fate Spread native visual fix (2026-11-03)
 
 [User screenshot bug, implementation and F5 QA](D381_FATE_SPREAD_QA.md) · [PR #48](https://github.com/zampolit73/Misdeal/pull/48) · [Godot 128/128 tests + 4/8 real screenshots](https://github.com/zampolit73/Misdeal/actions/runs/41593955768). Baked-reference duplicate counters, wrongly printed VI, Roman V overlap and miniature parchment title wraps corrected; **approved artwork unchanged, human F5 signoff open**. [Current handoff](HANDOFF.md).
