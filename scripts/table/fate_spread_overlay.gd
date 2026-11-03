@@ -136,6 +136,12 @@ func _build_slots() -> void:
 		roman.name = "Roman"
 		roman.position = Vector2(-4.0, -14.0)
 		roman.size = Vector2(SLOT_SIZE.x + 8.0, 18.0)
+		if index == 4:
+			# The fifth card sits directly below IV in the painted stack.
+			# Its old centered Roman landed ON IV's title plate. Set the
+			# V marker just outside the card's left edge on the ritual cloth.
+			roman.position = Vector2(-55.0, 18.0)
+			roman.size = Vector2(52.0, 20.0)
 		roman.text = _roman(index + 1)
 		roman.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		roman.add_theme_font_size_override("font_size", 12)
