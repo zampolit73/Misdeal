@@ -1,3 +1,11 @@
+## RELEASED D381 — Fate Spread screenshot layering pass (2026-11-03)
+
+- [x] Reproduce user's 4/12 F5 card-circle screenshot. Root causes: 96%-opaque header over baked sample counters; independently defined real card positions/masks/thread; original bitmap misprints VI as V; new mini titles wrap below parchment; Roman V crowds IV.
+- [x] Keep **approved** `fate_spread_exact.webp` unchanged; central I–XII geometry, correctly sized baked masking, corrected Roman V/VI, opaque compact header, single-line title fit on miniature DS3 cards while XIII keeps original multiline.
+- [x] Add **real Godot capture** of 4- and 8-card Fate Spread scenes to Smart QA + new GUT regressions. [PR #48](https://github.com/zampolit73/Misdeal/pull/48) squash-merged `08ccde4d` after [Godot CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41593955768): **128/128 GUT, 6529 assertions**, import/smokes/two rendered Fate Spread screenshots PASS.
+- [ ] Player `git pull`, Godot F5 → press `R` at 4 and 8 resolved; confirm no baked ghost counters, V off IV title, VI printed once, card labels inside gold strip, hover/Close/Hold/XIII intact. [QA details](D381_FATE_SPREAD_QA.md).
+- [ ] Keep A1M2 memory narrative visual acceptance open; after F5, resume game development with player feedback.
+
 ## RELEASED — Windows Git hygiene helper after A1M2 (2026-11-03)
 
 - [x] Confirm user's A1M2 fast-forward succeeded, but local tracked GUT import and project settings modifications + untracked Godot .import/.uid remain; avoid destructive cleanup.
