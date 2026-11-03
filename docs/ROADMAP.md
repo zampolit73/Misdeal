@@ -1,3 +1,10 @@
+## ACCEPTED D382 — player confirms wave pilot works (2026-11-03)
+
+- [x] D382 Iron Wall optional two waves shipped via PR #49, Godot 4.7.2 CI 133/133 GUT.
+- [x] **User F6 feedback: «все ок»** — pilot accepted. No detailed quantified solo/duo/trio playtest metrics were reported.
+- [ ] **Next design gate:** propose a *different* arena with a distinctive tactical reason to move surviving units (not simply more of the same Skeletons); agree on scope before expanding beyond Iron Wall. Maintain short single-wave battles elsewhere.
+- [ ] Later tune balancing if real-play feedback reveals a solo/duo/trio outlier; preserve hero HP carryover, special-order single use, and one reward per card.
+
 ## RELEASED PILOT D382 — rare two-wave Iron Wall battle (2026-11-03)
 
 - [x] User greenlit trying wave battles on selective arenas, with between-wave unit redeployment. Implement existing **Iron Wall** only as optional `EncounterData.second_wave_*` contract, no global change/no extra card.
