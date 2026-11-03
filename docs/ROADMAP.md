@@ -1,3 +1,11 @@
+## D386 — Two-wave combat fairness and pacing (2026-11-03)
+
+- [x] D385 wave-break UX received positive player feedback («все ок, давай продолжим»); does not imply a measured multi-party balance matrix.
+- [ ] Review actual D382 Iron Wall and D383 Firing Square encounter rosters, authored wave spawn points and combat AI; define repeatable solo/duo/trio QA cases and intervention scenarios.
+- [ ] Validate carried-over HP/deaths, tactical re-placement, enemy-first-target behavior, no special-order refresh and exactly one final reward through native Godot/GUT where possible.
+- [ ] Tune **only** encounters with demonstrated pacing/fairness defects; compare player F6 feel before calling the two-wave experiment balanced.
+- [ ] No new wave arena, global AI rewrite or Bone Warden XIII wave expansion without user approval.
+
 ## D385 — user screenshot-led intermission readability repair (2026-11-03)
 
 - [x] Player F6 screenshot surfaced clipped left-edge `PlacementHint`, 2-row `OrderDescription` crossing DS3 lower frame and visually stacked trio on Firing Square.
