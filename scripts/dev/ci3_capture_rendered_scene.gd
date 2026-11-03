@@ -8,6 +8,8 @@ const SCENES := {
 	"table": "res://scenes/table/table.tscn",
 	"fate-spread-four": "res://scenes/table/fate_spread_overlay.tscn",
 	"fate-spread-eight": "res://scenes/table/fate_spread_overlay.tscn",
+	"firing-square-break": "res://scenes/battle/battle.tscn",
+	"firing-square-crossfire": "res://scenes/battle/battle.tscn",
 	"wizard-prep": "res://scenes/dev/d308_wizard_panel_preview.tscn",
 	"card-gallery": "res://scenes/dev/d315_card_ds3_gallery.tscn",
 	"reward-upgrade": "res://scenes/reward/reward.tscn",
@@ -29,7 +31,7 @@ func _capture() -> void:
 		return
 
 	root.size = SIZE
-	if scene_key == "table" or scene_key == "class-select" or scene_key == "reward-upgrade" or scene_key.begins_with("fate-spread-"):
+	if scene_key == "table" or scene_key == "class-select" or scene_key == "reward-upgrade" or scene_key.begins_with("fate-spread-") or scene_key.begins_with("firing-square-"):
 		# --script does not always inject project autoloads in all execution
 		# modes; register the real RunState the same way native smoke tests do.
 		var state := root.get_node_or_null("RunState")
@@ -41,6 +43,13 @@ func _capture() -> void:
 		if not state.call("choose_protagonist", "knight"):
 			_fail("RunState failed to prepare a Knight")
 			return
+		if scene_key.begins_with("firing-square-"):
+			# Exact RunState selection for a live D383 Battle, trio for visuals.
+			state.call("recruit_companion", "ranger", "D383 native capture")
+			state.call("recruit_companion", "mage", "D383 native capture")
+			state.set("active_card_id", "firing_square")
+			state.call("select_encounter", "res://resources/encounters/firing_square.tres")
+			state.set("combat_formation_by_card", {"firing_square": 0})
 		if scene_key.begins_with("fate-spread-"):
 			# Render the actual production overlay in the exact four-card
 			# screenshot state and in a later chapter. No fabricated UI scene.
@@ -89,6 +98,42 @@ func _capture() -> void:
 		if corrected.visible != (scene_key == "fate-spread-four"):
 			_fail("sixth Roman must be corrected only while VI is a future card")
 			return
+	elif scene_key.begins_with("firing-square-"):
+		# Real enemy death signals trigger the production intermission.
+		# Capture the warning BEFORE wave II, then the true opposite-flank
+		# enemy positions AFTER the intro; no mock sprites are constructed.
+		scene.set("combat_started", true)
+		scene.set("combat_live", true)
+		var first_foes: Array[BattleUnit] = []
+		for unit in scene.get("units"):
+			if unit.team == 1 and unit.alive:
+				first_foes.append(unit)
+		if first_foes.size() != 3:
+			_fail("Firing Square wave I must have three real enemies")
+			return
+		for foe in first_foes:
+			foe.take_damage(foe.max_hp + 10000.0)
+		if not scene.get("wave_intermission"):
+			_fail("real Firing Square did not enter one intermission")
+			return
+		if scene_key == "firing-square-break":
+			if not scene.get_node("PlacementHint").text.contains("СЛЕВА"):
+				_fail("no left-rear telegraph on Firing Square intermission")
+				return
+		else:
+			await scene._start_second_wave()
+			var live_foes: Array[BattleUnit] = []
+			for unit in scene.get("units"):
+				if unit.team == 1 and unit.alive:
+					live_foes.append(unit)
+			if live_foes.size() != 2 or live_foes[0].position.x >= 145.0 or live_foes[1].position.x <= 530.0:
+				_fail("real left/right archers not on opposite flanks")
+				return
+			# Freeze the true post-intro positions for deterministic art QA.
+			scene.set("combat_live", false)
+			for unit in scene.get("units"):
+				if unit.alive:
+					unit.combat_started = false
 	elif scene_key == "wizard-prep":
 		var plaque := scene.get_node_or_null("SideObjectivePanel/D307WizardArt") as Control
 		if plaque == null:
