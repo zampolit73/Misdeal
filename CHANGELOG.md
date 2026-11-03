@@ -1,3 +1,8 @@
+## D388 (2026-11-04) — Grounded C3 concept QA preview, production art unchanged
+
+- [PR #54](https://github.com/zampolit73/Misdeal/pull/54) squash-merged `3260d09f` after [Godot CI SUCCESS 148/148 GUT, 6792 assertions](https://github.com/zampolit73/Misdeal/actions/runs/41719054033). Player's F6 screenshot showed current heroes floating on wall while tiny C3 samples stood on floor; QA-only preview now aligns all 6 figures by actual foot contact on the real Firing Square floor, pairs per role and provides labeled ×3/×2 nearest scale toggle. No production gameplay sprite or mechanics altered.
+- CI did not capture D388 specifically and user F6 signoff still pending. 48px C3 concept cutouts are not release-quality animation sprites.
+
 ## D388 (2026-11-04) — C3 QA scene now grounds both art versions on one floor
 
 - Native player F6 screenshot found a misleading comparison: actual current hero sprites hovered at sky/wall level due to `y=296`, while 48px C3 storyboard cutouts stood near floor at `y=454`.
