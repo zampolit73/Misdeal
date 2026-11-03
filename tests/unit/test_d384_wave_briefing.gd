@@ -69,6 +69,26 @@ func test_crossfire_readout_shows_nearest_initial_targets_and_changes_with_place
 	assert_false(battle.get("battle_finished"))
 
 
+func test_wave_break_unstacks_surviving_heroes_in_legal_strip() -> void:
+	var battle := _boot("firing_square", 3)
+	var heroes := _get_team(battle, 0)
+	var hp_before: Array[float] = []
+	for hero in heroes:
+		hp_before.append(hero.hp)
+		# Simulate three wounded survivors converging on the same floor tile.
+		hero.position = Vector2(475.0, 355.0)
+	_reach_break(battle)
+	for index in range(heroes.size()):
+		var hero := heroes[index]
+		assert_true(hero.placement_enabled)
+		assert_eq(hero.hp, hp_before[index], "Regrouping cannot grant healing")
+		assert_true(hero.placement_regions[0].has_point(hero.position))
+		for earlier in range(index):
+			assert_gte(hero.position.distance_to(heroes[earlier].position), 71.9,
+				"Auto-clamping survivors must not stack their clickable silhouettes")
+	assert_false(battle.get("battle_finished"))
+
+
 func test_iron_wall_readout_uses_actual_archer_and_skeleton_not_left_right() -> void:
 	var battle := _boot("iron_wall", 3)
 	_reach_break(battle)
