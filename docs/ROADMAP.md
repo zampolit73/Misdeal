@@ -1,3 +1,10 @@
+## D385 — user screenshot-led intermission readability repair (2026-11-03)
+
+- [x] Player F6 screenshot surfaced clipped left-edge `PlacementHint`, 2-row `OrderDescription` crossing DS3 lower frame and visually stacked trio on Firing Square.
+- [x] [PR #53](https://github.com/zampolit73/Misdeal/pull/53) merged `37bfb48c`: move **only wave-break** direction hint to quiet safe upper-left arena sky; show **one row at a time** in existing DS3 command plaque (live first-target projection by default, order explanation on hovered tactic); separate only overlapping living heroes to ≥112 units on legal prep floor.
+- [x] [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/41693963970): **145/145 GUT and 6749 assertions**, native scene smokes and both real 1280×720 Firing Square captures. Final intermission screenshot visually inspected: warning readable on screen, command row fits, 3 miniatures distinguishable.
+- [ ] User F6 local final review of screenshot fix for Firing Square and Iron Wall; no change to existing encounter rosters, visuals, HP or global wave scope.
+
 ## RELEASED D384 — Make between-wave positioning readable, no new arenas (2026-11-03)
 
 - [x] [PR #51](https://github.com/zampolit73/Misdeal/pull/51) merged `76fb0a73`: update the already-approved DS3 lower order description during **wave intermissions only** with nearest-first-target estimates using authentic future enemy floor spawns. Show **left/right** on Firing Square and **archer/infantry** on Iron Wall; re-evaluate during hero dragging, preserve order hover and real tactic selection. No new UI/FX, enemies, waves or combat buffs.
