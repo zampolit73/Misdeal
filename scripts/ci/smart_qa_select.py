@@ -15,6 +15,7 @@ CORE = ("class-select", "table", "battle", "wizard-objective",
         "wizard-preview", "cards", "card-surfaces")
 ALL_TESTS = CORE + ("qa-hub",)
 SCREENS = ("class-select", "table", "fate-spread-four", "fate-spread-eight",
+           "firing-square-break", "firing-square-crossfire",
            "wizard-prep", "card-gallery", "reward-upgrade", "qa-hub")
 DOC_SUFFIXES = (".md", ".txt")
 
@@ -64,6 +65,9 @@ def classify(paths, request="auto"):
                            "resources/units/", "scripts/core/")):
             tests.update(CORE)  # potentially shared game rules
             scenes.update(("table", "wizard-prep"))
+            if "firing_square" in p or p == "scripts/battle/battle.gd" or p == "scripts/data/encounter_data.gd":
+                scenes.update(("firing-square-break", "firing-square-crossfire"))
+                want_visual = True
         elif p.startswith(("assets/", "shaders/")):
             want_visual = True
             tests.update(("cards", "card-surfaces"))
@@ -88,6 +92,9 @@ def classify(paths, request="auto"):
             tests.update(("table", "cards", "card-surfaces"))
             scenes.add("table")
             want_visual = p.startswith("scenes/event/")
+            if p == "resources/cards/firing_square.tres" or p == "scripts/data/encounter_data.gd":
+                scenes.update(("firing-square-break", "firing-square-crossfire"))
+                want_visual = True
         elif p.startswith(("scripts/dev/ci3_", ".github/workflows/godot-render-previews.yml")):
             want_visual = True
             tests.add("qa-hub")
