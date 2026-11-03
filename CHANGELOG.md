@@ -1,3 +1,8 @@
+## 2026-11-03 — D385 player feedback and D386 planning
+
+- Player replied «все ок, давай продолжим» after D385 visual corrections; recorded positive feedback without claiming an exhaustive 1/2/3-hero F6 balance pass.
+- Next scoped D386 evaluation targets fairness, tactical intermission usefulness and pacing of the existing Iron Wall/Firing Square wave pilots only. No gameplay code or third arena changed in this documentation update.
+
 ## D385 (2026-11-03) — Wave-break screenshot UI correction
 
 - [PR #53](https://github.com/zampolit73/Misdeal/pull/53) merged, commit `37bfb48c`. User F6 screenshot showed clipped left-wave instructions, overflowing two-line forecast under DS3 border, and cramped survivor sprites. During intermission only: move threat hint to upper-left visible sky, keep command prediction one line (hover shows tactic details instead), separate overlapping living survivors by ≥112 units inside legal floor. No new content, waves, buffs or artwork changes.
