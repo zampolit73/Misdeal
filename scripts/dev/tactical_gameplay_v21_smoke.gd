@@ -11,11 +11,10 @@ const ENCOUNTER_PATHS: Array[String] = [
 ]
 const EXPECTED_ROLES := {
 	"bone_swarm": ["bone_thrall", "bone_thrall", "bone_thrall", "bone_thrall"],
-	"iron_wall": ["crypt_guard", "crypt_guard", "bone_archer"],
+	"iron_wall": ["crypt_guard", "crypt_guard"],
 	"grave_bell": ["skeleton", "skeleton", "grave_bellkeeper"]
 }
 const HUNT_PRIORITY := {
-	"iron_wall": "bone_archer",
 	"grave_bell": "grave_bellkeeper"
 }
 const ORDER_IDS: Array[String] = ["assault", "hunt", "formation"]
@@ -80,6 +79,26 @@ func _run_suite() -> void:
 			if enemy_data == null or enemy_data.visual_role != String(expected[i]):
 				problems.append("%s: enemy %d no longer matches its card" % [encounter.encounter_id, i])
 				return
+
+		if encounter.encounter_id == "iron_wall":
+			# D382: the original archer moves into wave II with a flanking
+			# skeleton. Targeting tests below exercise the live first wave.
+			if not encounter.has_second_wave():
+				problems.append("Iron Wall lost its data-driven wave II")
+				return
+			if encounter.second_wave_unit_paths.size() != 2 or encounter.second_wave_positions.size() != 2:
+				problems.append("Iron Wall wave II is missing authored foes")
+				return
+			var expected_second: Array[String] = ["bone_archer", "skeleton"]
+			for index in range(2):
+				var data := load(encounter.second_wave_unit_paths[index]) as UnitData
+				if data == null or data.visual_role != expected_second[index]:
+					problems.append("Iron Wall wave II role mismatch at %d" % index)
+					return
+				var spawn := encounter.second_wave_positions[index]
+				if spawn.x < 760.0 or spawn.x > 1150.0 or spawn.y < 125.0 or spawn.y > 405.0:
+					problems.append("Iron Wall wave II spawn outside valid arena")
+					return
 
 		for variant in range(2):
 			var positions: PackedVector2Array = encounter.get_enemy_positions_for_formation(variant)
