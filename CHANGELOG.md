@@ -1,3 +1,8 @@
+## D385 (2026-11-03) — Wave-break screenshot UI correction
+
+- [PR #53](https://github.com/zampolit73/Misdeal/pull/53) merged, commit `37bfb48c`. User F6 screenshot showed clipped left-wave instructions, overflowing two-line forecast under DS3 border, and cramped survivor sprites. During intermission only: move threat hint to upper-left visible sky, keep command prediction one line (hover shows tactic details instead), separate overlapping living survivors by ≥112 units inside legal floor. No new content, waves, buffs or artwork changes.
+- [Native Godot CI successful: 145/145 GUT, 6749 assertions, 1280×720 real Battle screenshots](https://github.com/zampolit73/Misdeal/actions/runs/41693963970). Final screenshot reviewed, user F6 acceptance remains open.
+
 ## 2026-11-03 — D384 Two-wave tactical positioning readout
 
 - [PR #51](https://github.com/zampolit73/Misdeal/pull/51) merged `76fb0a73`: in the existing Battle order-description plaque during **between-wave preparation only**, show a short dynamically recalculated first-target prediction for each incoming wave-II opponent based on real spawned-floor distance and the live survivor positions. The predicted names switch when the player moves a hero; Iron Wall refers to archer/infantry, Firing Square refers to left/right. Normal and pre-wave fights remain unchanged; order hovers and switches still use real AI.
