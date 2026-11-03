@@ -1,3 +1,7 @@
+## D383 shipped Firing Square two-sided wave combat — 2026-11-03
+
+[Approved and implemented crossfire design + solo/duo/trio F6 QA](D383_FIRING_SQUARE_WAVE_DESIGN.md) · [PR #50](https://github.com/zampolit73/Misdeal/pull/50) · [Godot 139/139 GUT plus two real 1280×720 Battle images](https://github.com/zampolit73/Misdeal/actions/runs/41680950521). Firing Square joins Iron Wall as the **second selective** two-wave arena; Wave II attacks from left-rear and right after a visible telegraph. No new art or enemies. **Human F6 review still pending.** [Current handoff](HANDOFF.md).
+
 ## D383 proposed Firing Square crossfire (2026-11-03)
 
 [Proposed second selective wave arena design, **NOT live**](D383_FIRING_SQUARE_WAVE_DESIGN.md): preserve all five original enemies, first right-side line → second **left-rear/right** crossfire with explicit warning and reposition; distinct from accepted D382 Iron Wall. Pending user approval prior to coding. [Current handoff](HANDOFF.md).
