@@ -146,7 +146,7 @@ func _capture() -> void:
 			if not description.text.contains("ПЕРВЫЕ ЦЕЛИ: слева"):
 				_fail("D384 missing future-target readout after hero reposition")
 				return
-			if description.text.contains("\\n"):
+			if description.text.contains("\n"):
 				_fail("D385 target readout spills onto a second line in DS3")
 				return
 			var left_expected := "слева — %s" % survivors[0].display_name
