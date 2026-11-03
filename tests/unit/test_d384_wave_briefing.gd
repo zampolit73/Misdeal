@@ -84,7 +84,7 @@ func test_wave_break_unstacks_surviving_heroes_in_legal_strip() -> void:
 		assert_eq(hero.hp, hp_before[index], "Regrouping cannot grant healing")
 		assert_true(hero.placement_regions[0].has_point(hero.position))
 		for earlier in range(index):
-			assert_gte(hero.position.distance_to(heroes[earlier].position), 71.9,
+			assert_gte(hero.position.distance_to(heroes[earlier].position), 111.9,
 				"Auto-clamping survivors must not stack their clickable silhouettes")
 	assert_false(battle.get("battle_finished"))
 
@@ -107,15 +107,16 @@ func test_hover_and_committed_order_change_keep_the_position_pressure_visible() 
 	var before: String = battle.get("tactical_order")
 	battle.call("_on_tactic_preview_entered", "hunt")
 	assert_true(description.text.contains("ПРОСМОТР: ОХОТА"))
-	assert_true(description.text.contains("ПЕРВЫЕ ЦЕЛИ: слева"))
+	assert_false(description.text.contains("ПЕРВЫЕ ЦЕЛИ: слева"), "One-row tactic preview should not clash with the ornate frame")
 	assert_eq(battle.get("tactical_order"), before, "Hover previews never change the actual AI")
 	battle.call("_on_tactic_preview_exited")
 	assert_false(description.text.contains("ПРОСМОТР"))
 	assert_true(description.text.contains("ПЕРВЫЕ ЦЕЛИ:"))
 	battle.call("_select_tactical_order", "formation")
 	assert_eq(battle.get("tactical_order"), "formation")
-	assert_true(description.text.contains("СТРОЙ"))
+	assert_true(battle.get_node("FormationOrderButton").button_pressed)
 	assert_true(description.text.contains("ПЕРВЫЕ ЦЕЛИ:"))
+	assert_false(description.text.contains("\\n"), "Only one line fits under command buttons")
 	for hero in _get_team(battle, 0):
 		assert_eq(hero.tactical_order, "formation")
 
@@ -128,3 +129,22 @@ func test_no_future_wave_targets_leak_into_single_wave_or_before_break() -> void
 	assert_eq(wave.call("_get_wave_target_readout"), "")
 	assert_false(wave.get_node("OrderDescription").text.contains("ПЕРВЫЕ ЦЕЛИ"))
 	assert_false(wave.get("wave_intermission"))
+
+func test_wave_break_warning_stays_onscreen_and_prediction_does_not_overflow() -> void:
+	var battle := _boot("firing_square", 3)
+	_reach_break(battle)
+	var warning := battle.get_node("PlacementHint") as Label
+	var order_info := battle.get_node("OrderDescription") as Label
+	assert_true(warning.visible)
+	assert_true(warning.text.contains("СЛЕВА"))
+	assert_true(warning.text.contains("СПРАВА"))
+	assert_gte(warning.position.x, 40.0)
+	assert_lte(warning.position.x + warning.size.x, 1280.0)
+	assert_gte(warning.position.y, 170.0)
+	assert_lt(warning.position.y + warning.size.y, 300.0,
+		"Wave warning belongs above the fighter floor, not over their boots")
+	assert_eq(warning.horizontal_alignment, HORIZONTAL_ALIGNMENT_LEFT)
+	assert_true(warning.clip_text)
+	assert_false(order_info.text.contains("\\n"), "D385 preview must be one line")
+	assert_true(order_info.clip_text)
+	assert_true(order_info.text.contains("ПЕРВЫЕ ЦЕЛИ:"))
