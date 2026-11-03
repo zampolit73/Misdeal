@@ -130,7 +130,10 @@ static func _layout_panels(scene: Control) -> void:
 	# Readable two-row summary; full RunState modifiers remain in a native tooltip.
 	condition.mouse_filter = Control.MOUSE_FILTER_STOP
 	(scene.get_node("RunHudPanel") as Panel).mouse_filter = Control.MOUSE_FILTER_STOP
-	(scene.get_node("OrderDescription") as Label).vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	var description := scene.get_node("OrderDescription") as Label
+	description.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	description.autowrap_mode = TextServer.AUTOWRAP_OFF
+	description.clip_text = true
 	(scene.get_node("SideObjectivePanel/ObjectiveLabel") as Label).autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	for name in ["PartyLabel", "EnemyLabel"]:
 		var side := scene.get_node(name) as Label
@@ -171,6 +174,15 @@ static func compact_run_conditions(full_text: String) -> String:
 # a meaningful live objective or a character's lower combat floor.
 static func position_placement_hint(scene: Control) -> void:
 	var hint := scene.get_node("PlacementHint") as Label
+	# Wave warnings live above the arena, not in the clipped narrow lower margin.
+	if scene.get("wave_intermission"):
+		_place(hint, Vector2(88, 183), Vector2(560, 68))
+		hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+		hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		hint.clip_text = true
+		return
+	hint.clip_text = false
 	var active_objective := scene.get_node("SideObjectivePanel") as Panel
 	if active_objective.visible:
 		_place(hint, Vector2(298, 138), Vector2(676, 39))
