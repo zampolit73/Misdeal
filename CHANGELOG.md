@@ -1,3 +1,9 @@
+## 2026-11-03 — D381 Fate Spread F5 visual repair
+
+- [PR #48](https://github.com/zampolit73/Misdeal/pull/48) merged `08ccde4d`: repaired double-drawn example counters/card edges on the actual 12-position **Расклад судьбы** screen by sharing live, mask and ritual-thread layout and making the header example mask opaque.
+- Corrected a prepainted **V** misprint on future position **VI** without modifying the approved table artwork. Moved current Roman **V** away from IV's text, kept small DS3 titles on one parchment line, full names on hover, and preserved XIII two-line title.
+- Expanded native Smart QA with actual Fate Spread screenshot captures after 4 and 8 resolutions; added three new GUT visual/layout regression tests plus a fourth test for title strip and V marker. [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41593955768): **128/128 GUT, 6529 assertions**, scene import/smokes and screenshots. Human F5 visual signoff pending. No combat, game-state, audio or A1M2 narrative changes.
+
 ## 2026-11-03 — Local Git hygiene after A1M2 (non-gameplay)
 
 - [PR #47](https://github.com/zampolit73/Misdeal/pull/47) merged `2844ec5309faf9207f00b312bfa707806eabe20b`: added safe, read-only `scripts/dev/local_git_hygiene.ps1` for Windows Godot local state classification and exact diff of project.godot / GUT theme. Optional `-RestoreGutImports` backs up modified tracked GUT import metadata externally before restoring only those files.
