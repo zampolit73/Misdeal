@@ -1,3 +1,7 @@
+## D384 — Wave intermission briefing & collision-free redeployment (2026-11-03)
+
+[Implementation & F6 acceptance](D384_WAVE_TACTICAL_BRIEFING_QA.md) · [PR #51](https://github.com/zampolit73/Misdeal/pull/51) · [Godot 144/144 tests and native screenshots](https://github.com/zampolit73/Misdeal/actions/runs/41684975966). Existing Iron Wall/Firing Square only: read-only predicted first targets update as heroes move and orders are previewed; intersecting survivors separated on legal prep floor. **Human F6 signoff pending.** [Current handoff](HANDOFF.md).
+
 ## D383 shipped Firing Square two-sided wave combat — 2026-11-03
 
 [Approved and implemented crossfire design + solo/duo/trio F6 QA](D383_FIRING_SQUARE_WAVE_DESIGN.md) · [PR #50](https://github.com/zampolit73/Misdeal/pull/50) · [Godot 139/139 GUT plus two real 1280×720 Battle images](https://github.com/zampolit73/Misdeal/actions/runs/41680950521). Firing Square joins Iron Wall as the **second selective** two-wave arena; Wave II attacks from left-rear and right after a visible telegraph. No new art or enemies. **Human F6 review still pending.** [Current handoff](HANDOFF.md).
