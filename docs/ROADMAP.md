@@ -1,3 +1,12 @@
+## HERO-C3 — Approved direction / production pending (2026-11-04)
+
+- [x] User compared C1 and C3 combat concepts and chose **C3 — «Тёмный орден»** for all three player heroes.
+- [x] Update [Hero Miniatures Design System](HERO_MINIATURES_DESIGN_SYSTEM.md) and design decision, clearly distinguishing concept image from actual transparent 25-frame sprite atlas.
+- [ ] Produce clean standalone transparent C3 key pose for Knight/Ranger/Mage with original body proportions, visible separate boots, correct prop grip, **no environmental backplate or display pedestal**.
+- [ ] Verify native 96px readability in actual Battle scene; original static Knight v4 and animated Ranger/Mage remain production baseline.
+- [ ] Produce full 25 genuinely distinct frames per hero (three 576×480 atlases) in one batch, validate alpha/pivots/leg consistency, preview all states in Godot F6, and only then consider opt-in runtime replacement.
+- [ ] Native CI/art screenshot review + explicit human F6 approval required; C3 generated storyboard sheets do not count as frame assets.
+
 ## D386 — Two-wave combat fairness and pacing (2026-11-03)
 
 - [x] D385 wave-break UX received positive player feedback («все ок, давай продолжим»); does not imply a measured multi-party balance matrix.
