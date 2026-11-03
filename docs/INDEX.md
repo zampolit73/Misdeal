@@ -1,3 +1,7 @@
+## D383 proposed Firing Square crossfire (2026-11-03)
+
+[Proposed second selective wave arena design, **NOT live**](D383_FIRING_SQUARE_WAVE_DESIGN.md): preserve all five original enemies, first right-side line → second **left-rear/right** crossfire with explicit warning and reposition; distinct from accepted D382 Iron Wall. Pending user approval prior to coding. [Current handoff](HANDOFF.md).
+
 ## D382 optional Iron Wall two-wave pilot — 2026-11-03
 
 [Full design and F6 acceptance](D382_IRON_WALL_WAVES_PILOT.md) · [PR #49](https://github.com/zampolit73/Misdeal/pull/49) · [Godot 133/133 native GUT](https://github.com/zampolit73/Misdeal/actions/runs/41602412061). Scoped only to Iron Wall, one intermission with survival HP and redeployment, ordinary tactic changes, one final Reward. Open `res://scenes/dev/d382_iron_wall_wave_playtest.tscn` (F6) for solo/duo/trio. **Human evaluation still pending; do not expand waves to other arenas without feedback.** [Current handoff](HANDOFF.md).
