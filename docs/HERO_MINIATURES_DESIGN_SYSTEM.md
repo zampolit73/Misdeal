@@ -1,6 +1,16 @@
+## Selected art direction — C3 «Тёмный орден» (2026-11-04)
+
+Player explicitly selected **C3** from the playable-style C1/C3 comparison, following earlier selection of the broader C direction. **C3 is the chosen aesthetic direction for a reversible hero-art pilot, not acceptance of a finished animation pack or permission to silently replace production artwork.**
+
+C3 identity: wounded heavy Knight with scarred steel and desaturated burgundy rag-cloth, rugged Ranger with frayed moss/olive hood and clear bow profile, male Mage in ripped ash-violet layered robe with a low-intensity cold-blue staff tip. Shared charcoal, dead bronze, weathered fabrics, top-left soft cold moonlight; characters must still read at approximately 96px cell/native battlefield scale. Darker and rougher than C1, but NOT so underlit that Knight boots merge, Ranger bow vanishes or Mage's free hand/feet disappear.
+
+**Critical reference limitation:** AI-generated C3 **comparison boards**, including pictures labeled “25 frames,” are *illustrations*, **not valid 576×480 transparent RGBA atlases or 25 genuinely authored frames**. Their background, podiums, typography and varied frame spacing cannot be sliced directly into live textures. A local 1280×720 96px reduction mockup was prepared for visual legibility only; it is not a Godot F6 screenshot or a final sprite. Never assert C3 is already implemented/animated on main.
+
+**Next production step:** independently author three clean transparent still key poses (no podium, background or text); test leg separation, prop grip, silhouette and correct scale on a real arena. Then create **all 25 distinct frames for each approved hero in one work batch** (idle4 / walk6 / attack6 / hit3 / death6), 576×480 (6×5 at 96px), validate and view true F6 playback before changing the live loader. If art generation cannot produce valid distinct poses/alpha, stop at art-preview stage and report the blocker rather than invent frames with transformations or copies. Preserve current live animated Ranger/Mage and static v4 Knight throughout candidate development.
+
 # Misdeal — Hero Miniatures Design System (proposal v0.1)
 
-Status: **art direction proposed for Knight, Ranger and male Mage; user approved creating this design-system document, NOT any new sprite or replacement**.
+Status: **C3 «Тёмный орден» selected for all three heroes as the art direction; actual sprites/animation and live replacement NOT approved or implemented**.
 Date: 2026-11-03
 
 ## Purpose and compatibility
