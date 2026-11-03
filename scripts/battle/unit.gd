@@ -129,6 +129,8 @@ var placement_bounds := Rect2()
 var placement_regions: Array[Rect2] = []
 var combat_bounds := Rect2()
 var dragging := false
+# D385: only wave-break dragging needs wider clearances for full-size sprites.
+var intermission_min_horizontal_gap := 0.0
 var drag_offset := Vector2.ZERO
 var drag_origin := Vector2.ZERO
 
@@ -491,6 +493,7 @@ func _clamp_to_placement_regions(desired_position: Vector2) -> Vector2:
 func disable_placement() -> void:
 	placement_enabled = false
 	dragging = false
+	intermission_min_horizontal_gap = 0.0
 	z_index = int(position.y)
 	queue_redraw()
 
@@ -550,6 +553,13 @@ func _overlaps_friendly_unit() -> bool:
 		var unit := node as BattleUnit
 		if unit == self or not unit.alive or unit.team != team:
 			continue
+
+		# Wave re-deployment: preserve an entire miniature's readable width,
+		# not only its small combat collision circle. Existing normal combat
+		# preparation keeps the approved original drag rules.
+		if intermission_min_horizontal_gap > 0.0:
+			if absf(position.x - unit.position.x) < intermission_min_horizontal_gap:
+				return true
 
 		var minimum_distance := body_radius + unit.body_radius + 10.0
 		if position.distance_to(unit.position) < minimum_distance:
