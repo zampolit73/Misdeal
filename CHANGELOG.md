@@ -1,3 +1,7 @@
+## 2026-11-03 — Hero Miniatures art system proposal
+
+- Added [three-hero miniature design-system draft](docs/HERO_MINIATURES_DESIGN_SYSTEM.md) after user selected Option B: shared restrained Misdeal palette, distinct Knight/Ranger/male Mage silhouettes, materials, 1× readability, original full 25-pose animation constraints, and explicit art review gates. No runtime asset/code replacements; requires user visual selection before production.
+
 ## 2026-11-03 — D385 player feedback and D386 planning
 
 - Player replied «все ок, давай продолжим» after D385 visual corrections; recorded positive feedback without claiming an exhaustive 1/2/3-hero F6 balance pass.
