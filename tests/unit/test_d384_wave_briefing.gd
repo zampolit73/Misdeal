@@ -116,7 +116,7 @@ func test_hover_and_committed_order_change_keep_the_position_pressure_visible() 
 	assert_eq(battle.get("tactical_order"), "formation")
 	assert_true(battle.get_node("FormationOrderButton").button_pressed)
 	assert_true(description.text.contains("ПЕРВЫЕ ЦЕЛИ:"))
-	assert_false(description.text.contains("\\n"), "Only one line fits under command buttons")
+	assert_false(description.text.contains("\n"), "Only one line fits under command buttons")
 	for hero in _get_team(battle, 0):
 		assert_eq(hero.tactical_order, "formation")
 
@@ -145,6 +145,6 @@ func test_wave_break_warning_stays_onscreen_and_prediction_does_not_overflow() -
 		"Wave warning belongs above the fighter floor, not over their boots")
 	assert_eq(warning.horizontal_alignment, HORIZONTAL_ALIGNMENT_LEFT)
 	assert_true(warning.clip_text)
-	assert_false(order_info.text.contains("\\n"), "D385 preview must be one line")
+	assert_false(order_info.text.contains("\n"), "D385 preview must be one line")
 	assert_true(order_info.clip_text)
 	assert_true(order_info.text.contains("ПЕРВЫЕ ЦЕЛИ:"))
