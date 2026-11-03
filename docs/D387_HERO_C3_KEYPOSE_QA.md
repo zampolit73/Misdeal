@@ -1,3 +1,9 @@
+## D388 — Real F6 screenshot fix / C3 lookdev still NOT APPROVED (2026-11-04)
+
+Player F6 screenshot of the initial scene exposed a misleading visual comparison: existing heroes at y=296 appear to float over the fortress, while tiny dim C3 concept cutouts sit at floor y≈454. The new preview places each existing/current hero and its C3 concept **side by side on the same authored stone floor**, with BattleUnit's genuine sole/contact ring y+36 matched by the candidate's last opaque image pixel at y=455. A labeled toggle swaps C3 ×3 *size-comparison* with ×2 source-to-96px *pixel reference*. Nearest-pixel sampling remains; no details are fabricated by resizing.
+
+**Acceptance gate:** press F6 and inspect the shared foot line, left/right per-class pairing, C3 visibility and original unchanged colors. The C3 concept is **not approved for gameplay**, even if the layout is corrected: it lacks independent authored 96px poses, its hands/legs are soft and tiny, and no actual 25-frame pack exists. Reject a pretty but false “25-frame” image board as an animation atlas. Do not modify battle source until standalone art is genuinely usable.
+
 # D387 — C3 Dark Order hero key-pose QA (preview-only)
 
 Date: 2026-11-04

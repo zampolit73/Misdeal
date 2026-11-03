@@ -1,3 +1,11 @@
+## D388 — Fix real screenshot defects of C3 QA preview (2026-11-04)
+
+- [x] Inspect actual F6 screenshot: current fighters hover over walls and C3 appears tiny/washed out; D387 art review FAIL.
+- [x] Change only standalone C3 QA layout to real floor-aligned side-by-side role pairs; toggle ×3 visual height vs ×2 source-size reference; never affect production sprites.
+- [x] Add GUT assertions for common visible foot line, scale toggling and current art preservation.
+- [ ] Run native Godot GUT and inspect real screenshot of D388 after PR merge; player F6 subjective review remains separate.
+- [ ] Reject 48px extracted storyboards as final art and commission/author clean **original** full-scale 96px C3 sprites before 25-frame animation batch.
+
 ## D387 — C3 first playable-size isolated-pose review (2026-11-04)
 
 - [x] Produce three **exploratory alpha-isolated C3 key poses** from selected storyboard; 144×48 strip of 3×48 cells, NOT final hand-authored sprite art.

@@ -27,3 +27,33 @@ func test_c3_preview_scene_is_separate_from_production_battle() -> void:
 	add_child_autofree(scene)
 	assert_true(scene.get_node_or_null("BattleBackdrop") == null)
 	assert_eq(scene.call("_decode_keyposes").get_size(), Vector2i(144, 48))
+
+
+func test_d388_both_studies_stand_on_the_same_physical_stone_floor() -> void:
+	var scene := PREVIEW.instantiate()
+	add_child_autofree(scene)
+	var image: Image = scene.call("_decode_keyposes")
+	var roles := ["knight", "ranger", "mage"]
+	for index in range(roles.size()):
+		var original := scene.get_node("Current_%s" % roles[index]) as BattleUnit
+		var candidate := scene.get_node("C3_%s" % roles[index]) as Sprite2D
+		assert_not_null(original)
+		assert_not_null(candidate)
+		assert_gte(original.position.y, 390.0, "Current fighters must not hover at the old y=296")
+		assert_almost_eq(original.position.y + BattleUnit.FLOOR_CONTACT_Y, 455.0, 0.01)
+		var sole_offset: float = scene.call("_candidate_sole_offset", image, index)
+		assert_almost_eq(candidate.position.y + sole_offset * candidate.scale.y, 455.0, 0.01,
+			"C3 visible feet must share the current hero floor")
+		assert_eq(candidate.texture_filter, CanvasItem.TEXTURE_FILTER_NEAREST)
+		assert_eq(candidate.scale, Vector2.ONE * 3.0, "Default comparison scale is clearly marked")
+		assert_eq(original.visual_role, roles[index])
+
+	# Scale comparison must change only the concept stills and NOT move their feet.
+	scene.call("_toggle_candidate_scale")
+	for index in range(roles.size()):
+		var candidate := scene.get_node("C3_%s" % roles[index]) as Sprite2D
+		var sole_offset: float = scene.call("_candidate_sole_offset", image, index)
+		assert_eq(candidate.scale, Vector2.ONE * 2.0)
+		assert_almost_eq(candidate.position.y + sole_offset * candidate.scale.y, 455.0, 0.01)
+	assert_eq((scene.get_node("CandidateScaleButton") as Button).text, "C3: ×2 (96px)")
+
