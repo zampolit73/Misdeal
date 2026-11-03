@@ -1,3 +1,11 @@
+## RELEASED D384 — Make between-wave positioning readable, no new arenas (2026-11-03)
+
+- [x] [PR #51](https://github.com/zampolit73/Misdeal/pull/51) merged `76fb0a73`: update the already-approved DS3 lower order description during **wave intermissions only** with nearest-first-target estimates using authentic future enemy floor spawns. Show **left/right** on Firing Square and **archer/infantry** on Iron Wall; re-evaluate during hero dragging, preserve order hover and real tactic selection. No new UI/FX, enemies, waves or combat buffs.
+- [x] Stop overlapping living hero miniatures after separate clamping into the narrow legal wave-intermission placement strip; keep healthy/dead state untouched and only move intersecting survivors.
+- [x] [Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/41684975966): 144/144 GUT, 6732 asserts, native smokes and actual Firing Square screenshot captured after moving the three real heroes; image inspected for clean spacing and readable two-line label.
+- [ ] User F6 acceptance: `scenes/dev/d383_firing_square_crossfire_playtest.tscn` and D382 Iron Wall, move heroes left/right, verify the predicted first targets switch and order hover remains clear. Fine-tune label only if too small. [Exact checks](D384_WAVE_TACTICAL_BRIEFING_QA.md).
+- [ ] Keep all other fights single-wave and XIII unchanged. D383 native GUT is released but full human solo/duo/trio fairness matrix is still unmeasured.
+
 ## D383 — Shipped to main, awaiting F6 player feedback (2026-11-03)
 
 - [x] User approved left/right crossfire on Firing Square, keeping five original foes across waves 3+2. [PR #50](https://github.com/zampolit73/Misdeal/pull/50) merged, `721ff1f9`.
