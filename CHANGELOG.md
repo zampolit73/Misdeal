@@ -1,3 +1,9 @@
+## 2026-11-03 — D384 Two-wave tactical positioning readout
+
+- [PR #51](https://github.com/zampolit73/Misdeal/pull/51) merged `76fb0a73`: in the existing Battle order-description plaque during **between-wave preparation only**, show a short dynamically recalculated first-target prediction for each incoming wave-II opponent based on real spawned-floor distance and the live survivor positions. The predicted names switch when the player moves a hero; Iron Wall refers to archer/infantry, Firing Square refers to left/right. Normal and pre-wave fights remain unchanged; order hovers and switches still use real AI.
+- Fixed **intermission overlap** when multiple survivors return from battle to the same narrow legal placement pocket. Only colliding live hero positions are separated; no healing, buff, additional waves, new HUD or effects.
+- Extended real Battle GUT tests for prediction updates, order hover and actual selection, no leaks and three-survivor unsticking; updated real native 1280×720 Firing Square break capture. [Godot 4.7.2 native CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/41684975966): **144/144 GUT, 6732 assertions**, import, smokes and visuals. Inspected rendered image: clean trio, subdued two-line DS3 command strip. [Player F6 QA](docs/D384_WAVE_TACTICAL_BRIEFING_QA.md) remains open.
+
 ## 2026-11-03 — D383 Firing Square left-right crossfire waves
 
 - [PR #50](https://github.com/zampolit73/Misdeal/pull/50) squash-merged `721ff1f9`: player-approved **«Расстрельная площадь»** now uses two attacks (1 Crypt Sentinel + 2 Bone Archers, then 2 Bone Archers on opposite **left-rear/right** flanks), while keeping the original five foes and one result/reward. An explicit warning appears before Wave II; surviving heroes may reposition and change basic tactics, retaining HP/losses and with no renewed one-use orders.
