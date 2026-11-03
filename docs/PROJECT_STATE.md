@@ -1,3 +1,7 @@
+## ACCEPTED 2026-11-03 — D382 Iron Wall two-wave pilot: player F6 feedback
+
+Player reported **«все ок»** after receiving D382 merged code and F6 playtest instructions. Record this as **positive local acceptance of the Iron Wall two-wave experiment**, superseding the earlier generic "human F6 signoff pending" status for D382. No detailed solo/duo/trio timing matrix was supplied, so do not claim measured balance or all party configurations formally verified. Keep **waves exclusive to Iron Wall** until a distinct second encounter's tactical design is evaluated; preserve fast single-wave battles and XIII. Existing PR #49, CI (133/133 GUT) and rollback documentation remain valid. **Next:** evaluate a second candidate (e.g. Firing Square) for meaningful enemy-direction/priority changes before authorizing implementation; no automatic rollout.
+
 ## RELEASED PILOT 2026-11-03 — D382 two-wave Iron Wall with between-wave redeployment
 
 The user requested testing **selective wave battles** (not on every arena) with the opportunity to move surviving heroes and adjust tactics between attacks. [PR #49](https://github.com/zampolit73/Misdeal/pull/49) **squash-merged main** `6cf25e09ef6604b132dff2cec9225de14225e0ee` after [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41602412061): **133/133 GUT tests, 6584 assertions**, imported project/GDScript, relevant smokes and existing visual captures. **Actual player F6 wave pacing/visual/balance acceptance remains OPEN**; no automatic two-wave visual capture claim.
