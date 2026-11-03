@@ -30,7 +30,7 @@ class SelectorTests(unittest.TestCase):
     def test_release_is_always_full(self):
         plan = classify(["docs/ROADMAP.md"], "release")
         self.assertEqual(len(plan["tests"]), 8)
-        self.assertEqual(len(plan["scenes"]), 6)
+        self.assertEqual(len(plan["scenes"]), 8)
 
     def test_explicit_fast_skips_render(self):
         plan = classify(["assets/pixel/new_card.webp"], "fast")
@@ -42,6 +42,12 @@ class SelectorTests(unittest.TestCase):
         self.assertEqual(plan["mode"], "fast")
         self.assertEqual(plan["scenes"], [])
         self.assertEqual(len(plan["tests"]), 8)
+
+    def test_fate_spread_changes_capture_four_and_eight_card_states(self):
+        plan = classify(["scripts/table/fate_spread_overlay.gd"])
+        self.assertEqual(plan["mode"], "visual")
+        self.assertIn("fate-spread-four", plan["scenes"])
+        self.assertIn("fate-spread-eight", plan["scenes"])
 
     def test_ui_is_visual(self):
         plan = classify(["scripts/ui/card_ds3_skin.gd"])
