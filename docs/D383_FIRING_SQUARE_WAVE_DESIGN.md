@@ -1,6 +1,6 @@
-# D383 — «Расстрельная площадь»: проект второй волновой арены (НЕ ВНЕДРЕНО)
+# D383 — «Расстрельная площадь»: второй волновой бой (RELEASED — player F6 acceptance pending)
 
-**Статус:** design proposal after user «давай» to discussing the next selective wave arena. This is not approved code or a new encounter release. Do not add `second_wave_*` to Firing Square until design has been reviewed.
+**Статус:** user explicitly approved **option A**, the left/rear + right crossfire. Released to `main` via [PR #50](https://github.com/zampolit73/Misdeal/pull/50), squash `721ff1f954c932ec94d75d54f466de4d111a49e9`, [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41680950521): **139/139 GUT tests, 6667 assertions**, GDScript parse, native smoke, and **two live 1280×720 screenshots** (intermission and crossfire). **Human F6 pacing/visual/balance signoff is still OPEN**; do not globally activate waves.
 
 ## Why it must differ from D382 Iron Wall
 
@@ -10,7 +10,7 @@ The *live* Tier 2 Firing Square encounter already has **1 Crypt Sentinel and 4 B
 - Hero placement is **`Rect2((145,305),(385,122))`**. The player cannot meaningfully move units behind the far-right archers or far above the walkable area; claims of freely moving across the entire courtyard would be false.
 - Current `assault` focuses nearest threat, `hunt` prefers ranged/support, `formation` defends the most vulnerable ally. D382 Iron Wall tests changing frontline into one ranged flank plus skeleton. Firing Square should test **reversing the direction of danger**, not repeating upper/lower foes appearing only on the right.
 
-## Recommended option A — «Перекрёстный залп / Удар из тыла» (designed, NOT implemented)
+## Released option A — «Перекрёстный залп / Удар из тыла» (implemented)
 
 Keep all **five pre-existing enemies** across **two waves**; no new card, enemy archetype, effect, screen or art.
 
@@ -36,8 +36,18 @@ Wave I Sentinel + 2 Archers; Wave II the remaining 2 Archers positioned top-righ
 - **Wave II should be telegraphed** from the left/right via one short DS3 line and still preview direction/identity before the confirmation button. No projectile streaks, bright arrows, grids or intrusive sounds.
 - F6 playtest should use the real `Battle` screen at 1280×720 and permit party sizes 1/2/3 and two authored first formations. Check the left archer's feet on stone, correct facing and AI retreat at arena edge; no overlay/hero/archer overlap; meaningful Knight protection and Hunt/Formation targeting. Real GUT tests for precisely **3 first wave + 2 second wave**, enemy Y floor, no premature reward, carried HP, no extra Last Deal, and optional wave contract disabled for unrelated encounters.
 - **Acceptance test:** two people playing the same encounter with one left-facing Knight deployment and one right-facing Knight deployment should have a noticeably different result or target behavior. If not, reposition is cosmetic; revise/reject.
-- If approved and F6 pass: release by PR, native Godot 4.7.2 GUT+scene capture, then explicit player feedback before enabling waves on a third arena.
+- Already merged with native parse, smoke, GUT and two genuine screen captures. **Next:** obtain local F6 feedback on tempo/balance/floor-facings before selecting another arena.
 
 ## Scope
 
-This remains a **design draft**, not a player-approved finalized rule. D382 Iron Wall stays accepted and unchanged in main; no Firing Square gameplay or art files modified as part of D383 design.
+This is a **shipped, player-approved design implemented as a scoped gameplay pilot**, but not yet player-accepted in F6. D382 Iron Wall stays accepted and unchanged in main, including its original Wizard lines, now serialized in the encounter Resource. Original Firing Square card/arena bitmap unchanged; only its card text, encounter Resource, optional wave dialogue/CI tests and new F6 QA scene were changed.
+
+## F6 real-play acceptance (after `git pull`)
+
+1. Open `res://scenes/dev/d383_firing_square_crossfire_playtest.tscn` in Godot 4.7.x, press **F6**. Choose 1, 2 or 3 heroes and either **«Линия огня»** or **«Шахматный залп»**.
+2. In **Wave I**, confirm right-side Crypt Sentinel + **two** Bone Archers; fight normally.
+3. After clearing Wave I, confirm **no premature victory/reward**, exact pre-spawn clue **«СЛЕВА — стрелок у тыла. СПРАВА — дальний залп»**, and **ВОЛНА II** button. Move remaining heroes inside the original narrow legal strip and switch **Assault / Hunt / Formation**. HP persists and fallen heroes stay down; rare one-use orders stay unavailable.
+4. Start **Wave II**: **two** Bone Archers appear at **left x~115** and **far right x~1075** within actual walkable stone, face their targets naturally, then fight. Confirm one normal victory/reward after defeating both or one Last Deal on defeat. No new UI/FX/noise.
+5. Compare **solo/duo/trio**: check whether the left-side ranged threat is unfairly close, whether different Knight placement makes a visible tactical difference, and whether two waves are still quick. If the left archer is obscured by scenery or easily pinned at the boundary, adjust just the Firing Square authored wave positions rather than changing global AI.
+
+**Regression gate already passed:** `tests/unit/test_d383_firing_square_crossfire.gd` verified all 3+2 roles, authored formations, honest warning, solo HP carryover, trio redeployment, actual left/right stone-floor spawns and facing, one final victory, and skipping the wave disabled. [CI full summary](https://github.com/zampolit73/Misdeal/actions/runs/41680950521); real native screenshots are inside the workflow's evidence artifact. Existing D382 GUT tests still pass.
