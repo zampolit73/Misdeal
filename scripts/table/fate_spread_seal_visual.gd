@@ -4,8 +4,8 @@ extends Control
 # the FateSpreadOverlay slot layout so the path reads like a physical ritual
 # laid onto the Wizard's table rather than a generic progress bar.
 
-const CENTER := Vector2(390.0, 260.0)
-const RADIUS := Vector2(300.0, 210.0)
+const FATE_GEOMETRY := preload("res://scripts/table/fate_spread_geometry.gd")
+const CENTER := FATE_GEOMETRY.CENTER
 const SLOT_COUNT := 12
 
 const DIM_LINE := Color(0.30, 0.11, 0.10, 0.24)
@@ -134,5 +134,4 @@ func _draw_inward_threads(resolved: int) -> void:
 
 
 func _slot_center(index: int) -> Vector2:
-	var angle := deg_to_rad(-90.0 + float(index) * 30.0)
-	return CENTER + Vector2(cos(angle) * RADIUS.x, sin(angle) * RADIUS.y)
+	return FATE_GEOMETRY.SLOT_CENTERS[index]

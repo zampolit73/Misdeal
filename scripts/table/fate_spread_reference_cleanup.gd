@@ -5,24 +5,11 @@ extends Control
 
 const CLOTH := Color(0.022, 0.010, 0.014, 0.965)
 const CLOTH_EDGE := Color(0.16, 0.045, 0.040, 0.34)
-const CARD_MASK_SIZE := Vector2(96.0, 138.0)
-const NUMERAL_MASK_SIZE := Vector2(52.0, 24.0)
-const SLOT_CENTERS := [
-	Vector2(383.0, 51.0),
-	Vector2(506.0, 84.0),
-	Vector2(613.0, 146.0),
-	Vector2(690.0, 244.0),
-	Vector2(632.0, 358.0),
-	Vector2(520.0, 430.0),
-	Vector2(390.0, 470.0),
-	Vector2(243.0, 448.0),
-	Vector2(142.0, 352.0),
-	Vector2(90.0, 250.0),
-	Vector2(170.0, 134.0),
-	Vector2(278.0, 82.0),
-]
-const SLOT_ROTATIONS_DEG := [0.0, 7.0, 10.0, 11.0, 9.0, 6.0, 0.0, -7.0, -10.0, -11.0, -9.0, -6.0]
-
+const FATE_GEOMETRY := preload("res://scripts/table/fate_spread_geometry.gd")
+const CARD_MASK_SIZE := FATE_GEOMETRY.CARD_MASK_SIZE
+const NUMERAL_MASK_SIZE := FATE_GEOMETRY.NUMERAL_MASK_SIZE
+const SLOT_CENTERS := FATE_GEOMETRY.SLOT_CENTERS
+const SLOT_ROTATIONS_DEG := FATE_GEOMETRY.SLOT_ROTATIONS_DEG
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -38,6 +25,13 @@ func _draw() -> void:
 		if not _slot_needs_live_cover(index):
 			continue
 		_draw_slot_mask(index)
+
+	# The fixed painting calls the sixth position "V". While its generic
+	# future card is visible, cover ONLY that numeral for the live "VI" label.
+	# From step VI onward, the regular full-card mask includes its numeral.
+	if not _slot_needs_live_cover(5):
+		draw_rect(FATE_GEOMETRY.PRINTED_SIXTH_ROMAN_MASK,
+			Color(CLOTH.r, CLOTH.g, CLOTH.b, 1.0))
 
 	if RunState.is_boss_due() or RunState.active_card_id == RunState.BOSS_CARD_ID or RunState.boss_defeated:
 		draw_rect(Rect2(312.0, 154.0, 156.0, 214.0), Color(0.026, 0.010, 0.014, 0.96))
@@ -65,7 +59,7 @@ func _draw_slot_mask(index: int) -> void:
 
 	# Cover only the baked Roman numeral immediately above a replaced card.
 	var numeral_rect := Rect2(
-		Vector2(-NUMERAL_MASK_SIZE.x * 0.5, -CARD_MASK_SIZE.y * 0.5 - 22.0),
+		Vector2(-NUMERAL_MASK_SIZE.x * 0.5, -CARD_MASK_SIZE.y * 0.5 - 13.0),
 		NUMERAL_MASK_SIZE
 	)
 	draw_rect(numeral_rect, Color(CLOTH.r, CLOTH.g, CLOTH.b, 0.94))

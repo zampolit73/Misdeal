@@ -3,27 +3,15 @@ extends Control
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const CARD_DS3_SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
 const BOSS_SEAL_SCRIPT := preload("res://scripts/table/fate_boss_seal_visual.gd")
+const FATE_GEOMETRY := preload("res://scripts/table/fate_spread_geometry.gd")
 
 signal closed
 
-const SLOT_SIZE := Vector2(88.0, 126.0)
-const SLOT_CENTER := Vector2(390.0, 260.0)
+const SLOT_SIZE := FATE_GEOMETRY.SLOT_SIZE
+const SLOT_CENTER := FATE_GEOMETRY.CENTER
 const BOSS_SIZE := Vector2(142.0, 194.0)
-const SLOT_CENTERS := [
-	Vector2(383.0, 51.0),
-	Vector2(506.0, 84.0),
-	Vector2(613.0, 146.0),
-	Vector2(690.0, 244.0),
-	Vector2(632.0, 358.0),
-	Vector2(520.0, 430.0),
-	Vector2(390.0, 470.0),
-	Vector2(243.0, 448.0),
-	Vector2(142.0, 352.0),
-	Vector2(90.0, 250.0),
-	Vector2(170.0, 134.0),
-	Vector2(278.0, 82.0),
-]
-const SLOT_ROTATIONS_DEG := [0.0, 7.0, 10.0, 11.0, 9.0, 6.0, 0.0, -7.0, -10.0, -11.0, -9.0, -6.0]
+const SLOT_CENTERS := FATE_GEOMETRY.SLOT_CENTERS
+const SLOT_ROTATIONS_DEG := FATE_GEOMETRY.SLOT_ROTATIONS_DEG
 
 const SLOT_FILL := Color(0.030, 0.020, 0.026, 0.96)
 const SLOT_BORDER := Color(0.34, 0.22, 0.19, 0.78)
@@ -39,6 +27,7 @@ const BOSS_BORDER := Color(0.92, 0.18, 0.10, 1.0)
 @onready var spread_area: Control = $Frame/SpreadArea
 @onready var reference_cleanup: Control = $Frame/SpreadArea/ReferenceCleanup
 @onready var seal_visual: Control = $Frame/SpreadArea/SealVisual
+@onready var corrected_sixth_roman: Label = $Frame/SpreadArea/CorrectedSixthRoman
 @onready var close_button: Button = $Frame/Close
 @onready var held_art: TextureRect = $Frame/HeldPanel/Art
 @onready var held_title: Label = $Frame/HeldPanel/CardTitle
@@ -98,6 +87,9 @@ func refresh() -> void:
 		reference_cleanup.call("refresh")
 	if seal_visual != null and seal_visual.has_method("refresh"):
 		seal_visual.call("refresh")
+	# The approved reference bitmap accidentally paints V above position VI.
+	# Show the corrected label only while the printed sixth card is still future.
+	corrected_sixth_roman.visible = RunState.cards_resolved < 5
 	_refresh_slots()
 	_refresh_boss()
 	_refresh_held()
@@ -142,8 +134,14 @@ func _build_slots() -> void:
 
 		var roman := Label.new()
 		roman.name = "Roman"
-		roman.position = Vector2(-4.0, -20.0)
+		roman.position = Vector2(-4.0, -14.0)
 		roman.size = Vector2(SLOT_SIZE.x + 8.0, 18.0)
+		if index == 4:
+			# The fifth card sits directly below IV in the painted stack.
+			# Its old centered Roman landed ON IV's title plate. Set the
+			# V marker just outside the card's left edge on the ritual cloth.
+			roman.position = Vector2(-55.0, 18.0)
+			roman.size = Vector2(52.0, 20.0)
 		roman.text = _roman(index + 1)
 		roman.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		roman.add_theme_font_size_override("font_size", 12)
@@ -424,10 +422,23 @@ func _refresh_slots() -> void:
 			title.visible = false
 
 		_apply_panel_style(panel, accent, state == "current", state)
+		_fit_spread_title(title)
 		if panel.has_node("DS3CardFrame") and state == "done":
 			title.add_theme_color_override("font_color", CARD_DS3_SKIN.INK_TEXT)
 		if panel.has_node("DS3CardFrame") and state == "current":
 			title.add_theme_color_override("font_color", CARD_DS3_SKIN.INK_TEXT)
+
+
+func _fit_spread_title(title: Label) -> void:
+	# A single short ink line must remain inside the tiny physical parchment
+	# stripe. Avoid clipping a second black-ink line onto the black footer.
+	var font := title.get_theme_font("font")
+	if font == null:
+		return
+	for font_size in [8, 7, 6]:
+		title.add_theme_font_size_override("font_size", font_size)
+		if font.get_string_size(title.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x <= title.size.x - 3.0:
+			break
 
 
 func _refresh_boss() -> void:

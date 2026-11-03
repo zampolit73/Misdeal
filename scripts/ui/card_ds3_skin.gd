@@ -353,8 +353,20 @@ static func apply_spread_slot(panel: Panel, art: TextureRect, title_plate: Color
     var face := _new_art(panel, "DS3CardFrame", frame, dimensions)
     panel.move_child(face, 3)
     title_plate.modulate.a = 0.0
-    _at(title, Vector2(dimensions.x * 0.14, dimensions.y * 0.72),
-        Vector2(dimensions.x * 0.80, dimensions.y * 0.14))
+    if dimensions.x < 110:
+        # 100px physical fate cards have room for ONE line of ink on the
+        # parchment band (approximately y=0.68..0.78). The older two-line
+        # label at y=0.72 spilled into the nearly black ornamental footer.
+        # Full event names remain readable in the existing hover history.
+        _at(title, Vector2(dimensions.x * 0.14, dimensions.y * 0.68),
+            Vector2(dimensions.x * 0.80, dimensions.y * 0.10))
+        title.autowrap_mode = TextServer.AUTOWRAP_OFF
+        title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+        title.clip_text = true
+    else:
+        # XIII keeps its explicit two-line title and larger plaque.
+        _at(title, Vector2(dimensions.x * 0.14, dimensions.y * 0.72),
+            Vector2(dimensions.x * 0.80, dimensions.y * 0.14))
     title.add_theme_color_override("font_color", INK_TEXT)
     title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
