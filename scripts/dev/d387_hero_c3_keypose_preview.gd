@@ -14,7 +14,7 @@ const PALE := Color(0.88, 0.85, 0.81)
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
-	var arena: TextureRect = BACKDROP.new()
+	var arena = BACKDROP.new()
 	arena.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(arena)
 	arena.set_arena_id("firing_square")
