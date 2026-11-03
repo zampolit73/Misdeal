@@ -1,3 +1,8 @@
+## 2026-11-04 — C3 chosen for hero-art lookdev (no runtime change)
+
+- Player selected **C3 «Тёмный орден»** from the C1/C3 combat miniature concepts. Extended [hero miniature design system](docs/HERO_MINIATURES_DESIGN_SYSTEM.md) with distressed C3 Knight, Ranger and male Mage art contracts and strict distinction between mockup and true 25-frame animation assets.
+- Produced a local 1280×720 96px visual reduction reference; current C3 concept sheets contain decorative boards/backgrounds and are **not** valid transparent animation atlases. Existing production sprites untouched, no new Godot CI claimed.
+
 ## 2026-11-03 — Hero Miniatures art system proposal
 
 - Added [three-hero miniature design-system draft](docs/HERO_MINIATURES_DESIGN_SYSTEM.md) after user selected Option B: shared restrained Misdeal palette, distinct Knight/Ranger/male Mage silhouettes, materials, 1× readability, original full 25-pose animation constraints, and explicit art review gates. No runtime asset/code replacements; requires user visual selection before production.
