@@ -32,6 +32,14 @@ extends Resource
 @export var second_wave_positions: PackedVector2Array = PackedVector2Array()
 @export var second_wave_hint: String = ""
 
+# D383: authored words for any optional wave encounter. Keep the D382 Iron
+# Wall script generic: its original cues now live in iron_wall.tres.
+@export var wave_one_status: String = "ВОЛНА I / II — расставьте бойцов перед первой атакой."
+@export var wave_intermission_status: String = "ПЕРЕДЫШКА — новая атака. Перестройте выживших."
+@export var wave_two_status: String = "ВОЛНА II / II — новый натиск."
+@export var wave_intermission_wizard_line: String = "Поправь своих бойцов. Я ещё не закончил."
+@export var wave_two_wizard_line: String = "Продолжим игру."
+
 
 func has_second_wave() -> bool:
 	return (
