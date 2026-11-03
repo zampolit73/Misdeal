@@ -20,7 +20,15 @@ class SelectorTests(unittest.TestCase):
     def test_deep_battle_run_core_suite(self):
         plan = classify(["scripts/battle/battle.gd"])
         self.assertEqual(len(plan["tests"]), 7)
-        self.assertEqual(plan["mode"], "fast")
+        self.assertEqual(plan["mode"], "visual")
+        self.assertIn("firing-square-break", plan["scenes"])
+        self.assertIn("firing-square-crossfire", plan["scenes"])
+
+    def test_crossfire_resource_triggers_two_real_screenshots(self):
+        plan = classify(["resources/encounters/firing_square.tres"])
+        self.assertEqual(plan["mode"], "visual")
+        self.assertIn("firing-square-break", plan["scenes"])
+        self.assertIn("firing-square-crossfire", plan["scenes"])
 
     def test_unknown_change_cannot_escape_qa(self):
         plan = classify(["some/unclassified/thing.foo"])
@@ -30,7 +38,7 @@ class SelectorTests(unittest.TestCase):
     def test_release_is_always_full(self):
         plan = classify(["docs/ROADMAP.md"], "release")
         self.assertEqual(len(plan["tests"]), 8)
-        self.assertEqual(len(plan["scenes"]), 8)
+        self.assertEqual(len(plan["scenes"]), 10)
 
     def test_explicit_fast_skips_render(self):
         plan = classify(["assets/pixel/new_card.webp"], "fast")
