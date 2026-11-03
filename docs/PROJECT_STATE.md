@@ -1,3 +1,7 @@
+## ART SELECTED 2026-11-04 — C3 «Тёмный орден» for the three heroes
+
+The player preferred the darker, distressed C3 over C1 for Knight/Ranger/male Mage; the selected C3 direction now appears in [Hero Miniatures Design System](HERO_MINIATURES_DESIGN_SYSTEM.md) and [Decisions](DECISIONS.md). Existing generated displays (even when captioned “25 frames”) are **concept art, not transparent 96×96 cell gameplay frames**. A local concept-only 1280×720 readability mockup at approximately 96px was made; no native F6 capture, no genuine 25-frame hero atlases and no runtime art changes have been made. Production gate is clean standalone poses → real full 25-pose hero packs → native Godot/GUT + human screenshot playback → replacement of existing hero graphics, with rollback. Existing live v4 Knight and animated Ranger/Mage are protected.
+
 ## ART PROPOSAL 2026-11-03 — unified three-hero miniature standard
 
 User selected Option B for Knight/Ranger/male Mage. Created [HERO_MINIATURES_DESIGN_SYSTEM.md](HERO_MINIATURES_DESIGN_SYSTEM.md) as a draft creative production standard, not approval of new art or replacement of runtime assets. Reuses Misdeal restrained tabletop materials, readable battle-scale silhouettes, role-specific muted accents and the existing 25-frame/96px authored animation standard; retains approved static v4 Knight and animated Mage/Ranger. Next: show three distinct *trio* directions against an arena before locking designs. D386 waves balance work remains separate. No Godot source/assets changed and no new CI pass claimed.
