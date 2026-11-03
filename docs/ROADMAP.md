@@ -1,3 +1,10 @@
+## PROPOSED D383 — Firing Square two-wave crossfire design (2026-11-03)
+
+- [x] User requested designing a distinctive second selective wave arena after positively accepting D382 Iron Wall. Read live Firing Square EncounterData, existing 5 foes (1 Crypt Sentinel, 4 Bone Archers), actual walkable/deployment bounds and tactical orders.
+- [x] [D383 concept proposal](D383_FIRING_SQUARE_WAVE_DESIGN.md) documented: **3 foes** (Sentinel + 2 Archers) in first right-side firing line; one intermission with telegraphed danger; remaining **2 Archers** on **left and right opposite horizontal flanks**, a real reversal of the front rather than D382's upper/lower counterattack. Same 5 foes, same one reward and persistent HP, no new sprites or UI.
+- [ ] **Design approval pending.** Before implementing, confirm rear-left Archer on real floor (x~115, source y~385) and readable two-direction telegraph are wanted. Do not claim D383 shipped or alter Iron Wall.
+- [ ] After approval implement data-driven per-encounter wave labels (D382 UI dialogue currently hardcodes Iron Wall), scoped F6 solo/duo/trio playtest, floor/facing/AI checks, native Godot GUT and PR CI, only then merge and request user F6 acceptance.
+
 ## ACCEPTED D382 — player confirms wave pilot works (2026-11-03)
 
 - [x] D382 Iron Wall optional two waves shipped via PR #49, Godot 4.7.2 CI 133/133 GUT.
