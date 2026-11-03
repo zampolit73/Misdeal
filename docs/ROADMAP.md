@@ -1,3 +1,13 @@
+## D387 — C3 first playable-size isolated-pose review (2026-11-04)
+
+- [x] Produce three **exploratory alpha-isolated C3 key poses** from selected storyboard; 144×48 strip of 3×48 cells, NOT final hand-authored sprite art.
+- [x] Stage WebP in GitHub and add safe independent F6 scene comparing current heroes over real Firing Square artwork; unchanged production renderer.
+- [x] Add GUT image decoder/alpha QA; source/Pillow checks pass, **native Godot F6/CI not verified**.
+- [ ] F6 assess Knight legs/shield, Ranger bow/feet, Mage staff/grip; reject if dark details vanish.
+- [ ] Produce new independent authored 96×96 key poses and complete 75 unique frames (25 per hero), not cropped/duplicated storyboard cells.
+- [ ] Native CI/art screenshot review + human F6 approval before opt-in battle replacement with rollback.
+- [D387 test guide](D387_HERO_C3_KEYPOSE_QA.md).
+
 ## HERO-C3 — Approved direction / production pending (2026-11-04)
 
 - [x] User compared C1 and C3 combat concepts and chose **C3 — «Тёмный орден»** for all three player heroes.
