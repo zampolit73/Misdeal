@@ -1,3 +1,7 @@
+## D388 — C3 preview grounded after real F6 screenshot (2026-11-04)
+
+[QA and local F6 checks](D387_HERO_C3_KEYPOSE_QA.md) · [merged PR #54](https://github.com/zampolit73/Misdeal/pull/54) · [Godot 148/148 PASS](https://github.com/zampolit73/Misdeal/actions/runs/41719054033). Same-floor current/C3 pairs, labeled two-scale toggle, no live hero replacement. Further C3 sprite production requires original 96px art rather than 48px extracted concept cutouts.
+
 ## D387 — C3 hero miniature isolated key-pose QA (2026-11-04)
 
 [D387 preview and constraints](D387_HERO_C3_KEYPOSE_QA.md) · F6 res://scenes/dev/d387_hero_c3_keypose_preview.tscn. Three static alpha concept poses beside real current heroes over approved Firing Square arena. **Not 25-frame atlases, not production replacement.** [Current handoff](HANDOFF.md).
