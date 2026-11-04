@@ -1,3 +1,8 @@
+## 2026-11-04 — D389 concept-derived 96px C3 keypose QA stage
+
+- Added isolated 96×96 RGBA transparent WebP candidates for Knight, Ranger and male Mage under the QA-only hero_c3_keyposes_qa directory; pixel-processed from the selected full-body C3 concept with hard alpha, palette reduction and small prop/contact cleanup.
+- Added separate F6 comparison scene and GUT contract checks. **No live Battle art or gameplay changed.** Candidates are static and concept-derived, not fully hand-pixel-authored final sprites or 25-frame atlases. Native CI/F6 review pending. [D389 QA](docs/D389_C3_96PX_KEYPOSE_QA.md).
+
 ## 2026-11-04 — D388 player F6 visual review and C3 art-quality gate
 
 - Actual F6 screenshot confirms D388 comparison is physically grounded and correctly paired on the current Firing Square stage. C3 48px alpha cutouts remain far below existing hero image quality; rejected as source for gameplay sprite replacement or animation frames, **not** a reversal of selected C3 artistic direction.
