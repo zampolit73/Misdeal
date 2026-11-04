@@ -1,3 +1,12 @@
+## D389 — New native-cell 96px C3 still review (2026-11-04)
+
+- [x] Produce new still trio from fresh high-resolution C3 lookdev, background masked and reduced to **true 96×96 RGBA cells** (288×96 strip, 3 hero key poses). **Downsampled concept art, not hand-authored pixel frames.**
+- [x] Keep old D387 48px samples archived; add opt-in standalone D389 F6 comparison with current Knight/Ranger/Mage on common Firing Square floor, ×1 native / ×1.3 height study.
+- [x] Add GUT validating alpha occupancy, atlas dimensions, floor/scale; **not proof of visual quality**.
+- [ ] Run Godot native CI and get player's F6 verdict at 1280×720; reject any insufficiently legible equipment or flat/dark limbs.
+- [ ] If quality approved, draw all 25 **distinct** frames per hero (75 total), strict 576×480 transparent atlases, independent native unit animation pack preview, native motion/GUT and player test before live rollout.
+- [ ] Do not automatically replace live sprites or combat mechanics from a static screenshot candidate.
+
 ## HERO-C3 D388 player verdict — 2026-11-04
 
 - [x] User's real F6 screenshot verifies D388 side-by-side **same-floor comparison and scale toggle** work.
