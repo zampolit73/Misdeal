@@ -1,3 +1,12 @@
+## D392 RELEASED — rich C3 look 128px / simulated 96px F6 checkpoint (2026-11-04)
+
+- [x] User approved chosen first D391 rich C3 look, damaged cape only on Knight, Ranger and Mage robes intact.
+- [x] [PR #59](https://github.com/zampolit73/Misdeal/pull/59) merged `01c2123d` with 3 alpha key poses and independent F6 preview; existing 96px BattleUnit animation source/loader untouched.
+- [x] [Native Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/41826827622): **152/152 GUT, 8408 assertions**, import and smoke; not an art aesthetic pass.
+- [ ] Real player F6 inspect `res://scenes/dev/d392_c3_hero_art_preview.tscn` at both 128 native-source and scaled ~96, compare to current hero art, check alpha/boots/shield/bow/staff.
+- [ ] If acceptable, prepare real hand-authored 25-pose character animations (three sets), maintain rollback and only then enable live graphics after native motion/visual QA. Cutouts of concept art are not animation frames.
+- [ ] Do not replace combat art or alter gameplay/DS3/waves based on concept stills.
+
 ## D392 — Character art approval carried into comparative scale QA (2026-11-04)
 
 - [x] Player accepted rich C3 hero designs with **only Knight's cape torn**; Ranger cloak and male Mage robe intact.
