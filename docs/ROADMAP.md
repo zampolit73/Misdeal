@@ -1,3 +1,12 @@
+## D390 RELEASED — Native pixel stills, artistic F6 next (2026-11-04)
+
+- [x] Three truly directly authored 96×96 pixel stills Knight/Ranger/male Mage, merged as lossless 288×96 WebP without generated-concept downsampling. C3 weathered style plus readable shield/bow/staff/boots, no baked scenery.
+- [x] [PR #57](https://github.com/zampolit73/Misdeal/pull/57) merged `82630737`; dedicated `d390_hero_c3_native_preview.tscn` F6 compares current and C3 on original Firing Square floor at **native ×1 by default**, with optional ×1.3.
+- [x] [Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/41813137412): **152/152 GUT, 8026 assertions**, import/smokes and routine captures; QA is geometric/technical, not a style approval.
+- [ ] Receive real user D390 1280×720 F6 screenshot and judge C3 art vs current detail. Tune directly authored pixels if too flat/gamey; preserve selected C3 dark-fantasy look.
+- [ ] Only with user art acceptance create 25 distinct authored 96×96 frames for EACH of 3 heroes (three 576×480 6×5 RGBA atlases); view native motion/QA and CI, preserve production rollback.
+- [ ] No production sprite/AI/HP/wave change from D390.
+
 ## D390 — original native 96px hero key-pose experiment (2026-11-04)
 
 - [x] Create three **direct pixel-authored** 96×96 C3 stills (Knight/Ranger/male Mage), **lossless** 288×96 alpha WebP; no reduced concept art or old 48px cutout reused.
