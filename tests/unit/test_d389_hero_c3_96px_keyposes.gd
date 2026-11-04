@@ -47,6 +47,8 @@ func test_d389_preview_keeps_candidates_out_of_production_battle() -> void:
 		assert_eq(candidate.texture.get_size(), Vector2i(96, 96))
 		assert_eq(candidate.texture_filter, CanvasItem.TEXTURE_FILTER_NEAREST)
 		assert_eq(candidate.scale, Vector2.ONE * 0.85)
-		assert_almost_eq(candidate.position.y + float(scene.call("_alpha_bounds", candidate.texture.get_image()).position.y + scene.call("_alpha_bounds", candidate.texture.get_image()).size.y) - 0.5 - 48.0 * candidate.scale.y, 455.0, 0.02)
+		var bounds: Rect2i = scene.call("_alpha_bounds", candidate.texture.get_image())
+		var sole_offset := float(bounds.position.y + bounds.size.y) - 0.5 - 48.0
+		assert_almost_eq(candidate.position.y + sole_offset * candidate.scale.y, 455.0, 0.02)
 		assert_eq(original.visual_role, role)
 		assert_true(original.alive)
