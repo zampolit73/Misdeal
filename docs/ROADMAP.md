@@ -1,3 +1,12 @@
+## D391 — D390 rejected by player; stop flat 96px art route (2026-11-04)
+
+- [x] Real player F6 screenshot of D390 received; player **explicitly rejected** artistic quality; code-drawn flat primitives are not Misdeal art.
+- [x] Remove obsolete D390 pilot asset/scene/script/test; preserve history via Git and record aesthetic failure. Existing production BattleUnit art remains in place.
+- [x] Retain C3 «Тёмный орден» chosen direction and older D389 reference **only as a lookdev comparison**, not an approved sprite pack.
+- [ ] Restore visual richness first: painterly dark-fantasy pixel art with real form, realistic hands/legs, steel/leather/fabric material identity and silhouettes that beat **existing** hero minis at 1× on current arena; no geometric toy-icons or fake AI storyboard animation.
+- [ ] Show improved THREE-hero options for player artistic verdict, then source clean transparent full-size figures; choose an actual appropriate source resolution/scale without replacing live art prematurely.
+- [ ] Only after real in-arena player art approval create *genuinely distinct* 25-frame animation atlases for all 3 heroes and run native motion QA/CI; no 75-frame work from rejected art.
+
 ## D390 RELEASED — Native pixel stills, artistic F6 next (2026-11-04)
 
 - [x] Three truly directly authored 96×96 pixel stills Knight/Ranger/male Mage, merged as lossless 288×96 WebP without generated-concept downsampling. C3 weathered style plus readable shield/bow/staff/boots, no baked scenery.
