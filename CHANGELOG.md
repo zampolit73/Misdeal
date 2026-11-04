@@ -1,3 +1,8 @@
+## D390 (2026-11-04) — Native 96px C3 hero miniatures in F6 art preview, not live Battle
+
+- [PR #57](https://github.com/zampolit73/Misdeal/pull/57) merged `82630737`; [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41813137412) **152 GUT / 152 passed, 8026 assertions**. Three newly authored at-source 96px static Knight/Ranger/male Mage art candidates (lossless RGBA 288×96) replace the *art-authoring approach*, not production images or animations. New F6 compare scene defaults to real ×1 source pixels on Firing Square; alpha/padding/grounding tested.
+- A genuine 75-frame animation pack was **not** produced, current hero sprites and combat mechanics unchanged. Player must review how these more graphic pixel silhouettes actually fit the existing painted arena before animation production. [D390 guide](docs/D390_HERO_C3_NATIVE_PIXEL_QA.md).
+
 ## 2026-11-04 — D390 directly authored C3 96×96 hero stills (QA stage)
 
 - Replaced the *approach*, not the live game sprites: three original native-pixel standalone Knight/Ranger/male Mage static key poses with readable old steel/burgundy shield, ranger bow/olive cape and ash-violet Mage staff; no resized concept source. Published as a separate **lossless 288×96 alpha WebP** QA asset and original-vs-D390 F6 comparison scene with default ×1.
