@@ -1,3 +1,12 @@
+## D390 — original native 96px hero key-pose experiment (2026-11-04)
+
+- [x] Create three **direct pixel-authored** 96×96 C3 stills (Knight/Ranger/male Mage), **lossless** 288×96 alpha WebP; no reduced concept art or old 48px cutout reused.
+- [x] Standalone original-versus-D390 F6 scene on approved Firing Square with shared foot contact, **×1 native** default and optional ×1.3; production BattleUnit untouched.
+- [x] Source-size/alpha/edge/distinctness/Godot floor GUT tests staged, plus precise [D390 artist QA guide](D390_HERO_C3_NATIVE_PIXEL_QA.md).
+- [ ] Complete GitHub PR native Godot 4.7 CI, inspect/test actual D390 F6 at 1280×720 with player art verdict; no claim of production art acceptance.
+- [ ] Iterate native 96px artwork if needed for world-consistent materials, weapon legibility and non-cartoon dark fantasy; only after player approval create full 25 genuinely distinct frame atlas per hero.
+- [ ] Keep live sprites, wave combat, UI, XP, sound, XIII unchanged and retain easy art rollback.
+
 ## D390 — Art-quality recovery after actual D389 F6 (2026-11-04)
 
 - [x] Real player F6 D389 screenshot received (1280×720, ×1.3); current/C3 paired positioning, floor and alpha successful.

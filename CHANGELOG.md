@@ -1,3 +1,8 @@
+## 2026-11-04 — D390 directly authored C3 96×96 hero stills (QA stage)
+
+- Replaced the *approach*, not the live game sprites: three original native-pixel standalone Knight/Ranger/male Mage static key poses with readable old steel/burgundy shield, ranger bow/olive cape and ash-violet Mage staff; no resized concept source. Published as a separate **lossless 288×96 alpha WebP** QA asset and original-vs-D390 F6 comparison scene with default ×1.
+- Added GUT checks for transparent padding, original three-image distinctness, feet at the same actual floor and optional height toggle. This is **not** a 75-frame animation batch or approval of its visual style; game animations and combat remain untouched. [QA](docs/D390_HERO_C3_NATIVE_PIXEL_QA.md).
+
 ## 2026-11-04 — D389 actual F6 art inspection (no runtime change)
 
 - Player provided real D389 1280×720 ×1.3 screenshot: D389 independent art-loading, alpha and floor alignment render correctly. Visual review shows **concept-downsample stills are not suitable as final art** despite the technical pass: Knight loses shield/body mass, Ranger bow/hands are dim and blend into floor, Mage staff/robes lose form. No explicit user visual approval of these candidates.

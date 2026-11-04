@@ -1,3 +1,7 @@
+## D390 — native C3 pixel-art miniature QA (2026-11-04)
+
+[D390 QA / art provenance and F6](D390_HERO_C3_NATIVE_PIXEL_QA.md) — three original 96px **static** transparent Knight/Ranger/male Mage poses, source `assets/pixel/units/hero_c3_keyposes_qa/c3_native_d390_96.webp.b64`, F6 `res://scenes/dev/d390_hero_c3_native_preview.tscn`. Production sprites unchanged; art approval and animation still pending.
+
 ## D389 — C3 three-hero 96px art trial (2026-11-04)
 
 [Full QA and provenance](D389_HERO_C3_96_STILL_QA.md) · `res://scenes/dev/d389_hero_c3_96_preview.tscn` F6. New concept-derived 96px alpha stills beside actual production heroes; previous 48px samples preserved, live game unchanged. Native and player art signoff pending.
