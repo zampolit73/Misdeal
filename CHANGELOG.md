@@ -1,3 +1,8 @@
+## 2026-11-04 — D392 approved-style three-hero alpha F6 study
+
+- [PR #59](https://github.com/zampolit73/Misdeal/pull/59) merged `01c2123d` after [native CI 152/152 GUT, 8408 assertions](https://github.com/zampolit73/Misdeal/actions/runs/41826827622). User-approved C3 wardrobe: ONLY Knight cape torn, Ranger olive cloak/Mage violet robes intact. Three rich concept-derived isolated alpha 128px stills staged in opt-in F6 with real-arena baseline and 96px approximation toggle.
+- No animated sprite assets, production hero replacement or gameplay changes. Next gate is user F6 visual comparison; existing 96px animation contract remains.
+
 ## D392 (2026-11-04) — Approved rich C3 look staged as isolated art/scale study only
 
 - User accepted rich first D391 C3 trio after wardrobe correction: **torn cape only Knight**, intact Ranger/Mage garments.
