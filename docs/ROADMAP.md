@@ -1,3 +1,12 @@
+## D389 — 96px C3 hero keypose preview
+
+- [x] Create separate 96×96 RGBA C3 Knight/Ranger/male Mage keypose candidates from the selected full-body concept; hard alpha, palette reduction, nearest-friendly pixel edges, limited prop/foot cleanup.
+- [x] Add separate F6 comparison over real Firing Square: current BattleUnit left / C3 candidate right, common foot-contact line, no production art switch.
+- [x] Add GUT contract for decode, 96×96 size, alpha, silhouette occupancy, distinct role assets, floor alignment and preview-only isolation.
+- [ ] Native Godot CI / GUT and F6 scene import/playback verification.
+- [ ] User F6 visual review at 1280×720. Reject any unclear feet, shield/sword, bow/string/quiver or male Mage staff grip.
+- [ ] If keyposes pass, produce all 25 distinct authored poses per hero (idle4/walk6/attack6/hit3/death6), then F6 playback. These current candidates are concept-derived static studies, not final hand-pixel-authored atlases.
+
 ## HERO-C3 D388 player verdict — 2026-11-04
 
 - [x] User's real F6 screenshot verifies D388 side-by-side **same-floor comparison and scale toggle** work.
