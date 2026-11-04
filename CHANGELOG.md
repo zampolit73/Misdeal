@@ -1,3 +1,7 @@
+## 2026-11-04 — D391 art lookdev, visual proposals only
+
+- After D390 player rejection, generated two richer C3 trio comparison concept boards for discussion, explicitly **not** real 96px source sprites, even where the artwork includes pixel-count and version labels. No code, production sprite textures or animation atlas changed. Await visual selection before asset production.
+
 ## 2026-11-04 — D391: rejected flat D390 hero-art trial removed
 
 - After viewing the genuine D390 F6 screenshot, player explicitly rejected its flat, icon-like Knight/Ranger/Mage artwork as much worse than earlier painted art. Technical GUT PASS is NOT an art-quality pass.
