@@ -1,3 +1,11 @@
+## D394 — art-only C3 concept exploration; do not confuse render labels with proof (2026-11-04)
+
+- [x] Show more substantial C3 Knight, Ranger and male Mage illustration concepts in chat after real D392 small-scale readability failure.
+- [x] Record that all new comparisons are background/UI-baked concept boards and contain unverified “96px / approved / animation-ready” render labels.
+- [ ] Create/obtain actual three separate RGBA alpha hero source sprites with original anatomical detail, readable hands/weapon and accurately intact Ranger/Mage hems; no UI, castle, baked labels or base. Better silhouettes must survive true F6 comparison at intended size.
+- [ ] Only after actual sprite F6 acceptance, hand-author real 25 DISTINCT frames for each role, validate native movement and enable production with rollback.
+- [ ] Do not repeat D390 flat polygons or build pretend atlas frames by slicing these concept boards.
+
 ## D393 — D392 real F6 verdict / source art correction before animation (2026-11-04)
 
 - [x] Inspect real user 1280×720-ish F6 screenshots at C3 128 source and reduced ~96 display: same floor, good role pairing, source silhouette remains imperfect.
