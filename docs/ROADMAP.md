@@ -1,3 +1,11 @@
+## D389 SHIPPED — 96px C3 hero stills ready for local review (2026-11-04)
+
+- [x] New 288×96 transparent concept-derived WebP with 96×96 Knight, Ranger and male Mage still cells; no old 48px art reuse.
+- [x] [PR #56](https://github.com/zampolit73/Misdeal/pull/56) merged `3bc1dfcd`: independent same-floor F6 D389 current/C3 comparison plus 1× native / 1.3× height toggle, original live BattleUnit unchanged.
+- [x] [Native Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/41810323619): editor import, GUT, scene smoke and standard real screenshots. Full 25-frame animation matrix not run.
+- [ ] Player F6 visual acceptance on `res://scenes/dev/d389_hero_c3_96_preview.tscn`; reject any fuzzy, matte, limb or weapon issues before animation production.
+- [ ] Independently AUTHOR 25 real sprite frames for each approved hero; test every animation and battle scale before replacing live graphics. Concept-derived stills are not proof of complete production sprite assets.
+
 ## D389 — New native-cell 96px C3 still review (2026-11-04)
 
 - [x] Produce new still trio from fresh high-resolution C3 lookdev, background masked and reduced to **true 96×96 RGBA cells** (288×96 strip, 3 hero key poses). **Downsampled concept art, not hand-authored pixel frames.**
