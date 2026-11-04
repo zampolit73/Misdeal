@@ -1,3 +1,11 @@
+## D390 — Art-quality recovery after actual D389 F6 (2026-11-04)
+
+- [x] Real player F6 D389 screenshot received (1280×720, ×1.3); current/C3 paired positioning, floor and alpha successful.
+- [x] C3 **concept-downsample stills fail production art gate** on actual Firing Square: weak Knight shield/body mass, low-value Ranger hands/bow/cloak, thin muted Mage staff and cloak.
+- [ ] Author, do not simply resize/recolor, fresh per-hero native 96px full-body idle key pose with readable silhouette/prop grip and intentional pixel clusters. Match C3 worn-metal/olive/ash-violet art, but restore important value separation.
+- [ ] Compare native ×1 against current hero sprites and background, then get visual confirmation before producing the 75 distinct 96px frames.
+- [ ] Existing D389 sample remains optional QA baseline, not runtime or animation input. Do not change live Battle, UI, waves or combat stats.
+
 ## D389 SHIPPED — 96px C3 hero stills ready for local review (2026-11-04)
 
 - [x] New 288×96 transparent concept-derived WebP with 96×96 Knight, Ranger and male Mage still cells; no old 48px art reuse.
