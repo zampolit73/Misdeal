@@ -1,3 +1,10 @@
+## D391 art lookdev after rollback — actual production gate remains open (2026-11-04)
+
+- [x] Show two new richer visual concept comparison boards in chat after player rejected flat D390 art. They are **not** Godot runtime screenshots or isolated 96×96 source sprites regardless of baked captions.
+- [ ] Player visually evaluates whether either painted C3 concept points in the right direction; do not infer approval.
+- [ ] Produce clean stand-alone **transparent** source sprite art for Knight/Ranger/male Mage with material detail that survives 1× actual Firing Square display. Verify image alpha and dimensions from real files; never infer technical readiness from labels baked into AI concept art.
+- [ ] Only after player F6 visual approval author all 25 distinct frames per class (75 total); existing hero sprite packs and combat remain unchanged.
+
 ## D391 — D390 rejected by player; stop flat 96px art route (2026-11-04)
 
 - [x] Real player F6 screenshot of D390 received; player **explicitly rejected** artistic quality; code-drawn flat primitives are not Misdeal art.
