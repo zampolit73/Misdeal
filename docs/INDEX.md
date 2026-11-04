@@ -1,3 +1,7 @@
+## D389 — C3 three-hero 96px art trial (2026-11-04)
+
+[Full QA and provenance](D389_HERO_C3_96_STILL_QA.md) · `res://scenes/dev/d389_hero_c3_96_preview.tscn` F6. New concept-derived 96px alpha stills beside actual production heroes; previous 48px samples preserved, live game unchanged. Native and player art signoff pending.
+
 ## D388 — C3 preview grounded after real F6 screenshot (2026-11-04)
 
 [QA and local F6 checks](D387_HERO_C3_KEYPOSE_QA.md) · [merged PR #54](https://github.com/zampolit73/Misdeal/pull/54) · [Godot 148/148 PASS](https://github.com/zampolit73/Misdeal/actions/runs/41719054033). Same-floor current/C3 pairs, labeled two-scale toggle, no live hero replacement. Further C3 sprite production requires original 96px art rather than 48px extracted concept cutouts.
