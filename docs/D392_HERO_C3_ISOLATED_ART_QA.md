@@ -1,3 +1,9 @@
+## Real player F6 outcome (D393, 2026-11-04)
+
+The player supplied actual screenshots at both 128px source display and 0.75× simulated ~96px. Pairing, shared painted stone and foot contact appear correctly composed. At 128px, worn Knight materials and shield work better than D390; Ranger is thin and his bow loses readable separation, and Mage is much smaller/less imposing than the existing live Mage. In the ~96px mode, all three look undersized relative to existing heroes and details degrade; this **does not establish** a valid production 96px sprite style. The 128px cells are extracted concept stills, not authored animation sources. There is no explicit user approval of these F6 sprites; do not promote them to live combat or start fake 25-frame sheets.
+
+D392's original per-character captions were incorrectly static "C3 / 128px" even after toggling the screen to simulated ~96px. D393 updates them with the button and labels the reduced mode as derived from 128px; tested via GUT, no art bytes/gameplay changes. Next step is new genuinely detailed source art with class-scale and bow/staff/legs/boots readability, retaining wardrobe constraints; no need to request the same screenshots again.
+
 # D392 — Approved C3 hero art: isolated pose and scale QA
 
 Date: 2026-11-04
