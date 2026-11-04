@@ -1,3 +1,9 @@
+## D392 (2026-11-04) — Approved rich C3 look staged as isolated art/scale study only
+
+- User accepted rich first D391 C3 trio after wardrobe correction: **torn cape only Knight**, intact Ranger/Mage garments.
+- Extracted 3 transparent 128px reference stills from the most recent richly rendered trio; added WebP/base64 art file, opt-in real-arena 128px/0.75× scale comparison and technical GUT alpha/dimension/floor tests. Source is concept-art cutout, **not** three true native 96px production sprites or 75 animation frames. Existing real combat sprite loading and balance untouched.
+- [D392 art QA](docs/D392_HERO_C3_ISOLATED_ART_QA.md).
+
 ## 2026-11-04 — D391 art lookdev, visual proposals only
 
 - After D390 player rejection, generated two richer C3 trio comparison concept boards for discussion, explicitly **not** real 96px source sprites, even where the artwork includes pixel-count and version labels. No code, production sprite textures or animation atlas changed. Await visual selection before asset production.
