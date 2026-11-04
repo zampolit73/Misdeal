@@ -14,6 +14,7 @@ const SCENES := {
 	"card-gallery": "res://scenes/dev/d315_card_ds3_gallery.tscn",
 	"reward-upgrade": "res://scenes/reward/reward.tscn",
 	"qa-hub": "res://scenes/dev/qa_hub.tscn",
+	"d389-c3": "res://scenes/dev/d389_hero_c3_96px_preview.tscn",
 }
 
 func _initialize() -> void:
@@ -31,7 +32,7 @@ func _capture() -> void:
 		return
 
 	root.size = SIZE
-	if scene_key == "table" or scene_key == "class-select" or scene_key == "reward-upgrade" or scene_key.begins_with("fate-spread-") or scene_key.begins_with("firing-square-"):
+	if scene_key == "table" or scene_key == "class-select" or scene_key == "reward-upgrade" or scene_key.begins_with("fate-spread-") or scene_key.begins_with("firing-square-") or scene_key == "d389-c3":
 		# --script does not always inject project autoloads in all execution
 		# modes; register the real RunState the same way native smoke tests do.
 		var state := root.get_node_or_null("RunState")
@@ -197,6 +198,11 @@ func _capture() -> void:
 		if scene.get_node_or_null("Categories") == null or scene.get_node_or_null("DetailPanel/LaunchButton") == null:
 			_fail("OPT4 QA Hub categories or scene launcher missing")
 			return
+	elif scene_key == "d389-c3":
+		for role in ["knight", "ranger", "mage"]:
+			if scene.get_node_or_null("Current_%s" % role) == null or scene.get_node_or_null("C3_%s" % role) == null:
+				_fail("D389 missing current/C3 pair: " + role)
+				return
 
 	# Godot docs: wait until rendering has finished; captures from _ready()
 	# can be blank. Allow live cards, layout, GPU textures and tweens to settle.

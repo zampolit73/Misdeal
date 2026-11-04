@@ -35,10 +35,16 @@ class SelectorTests(unittest.TestCase):
         self.assertEqual(plan["mode"], "visual")
         self.assertEqual(len(plan["tests"]), 8)
 
+    def test_d389_c3_keyposes_get_native_preview(self):
+        plan = classify(["scripts/dev/d389_hero_c3_96px_preview.gd", "assets/pixel/units/hero_c3_keyposes_qa/mage_96.webp.b64"])
+        self.assertEqual(plan["mode"], "visual")
+        self.assertIn("d389-c3", plan["scenes"])
+        self.assertIn("battle", plan["tests"])
+
     def test_release_is_always_full(self):
         plan = classify(["docs/ROADMAP.md"], "release")
         self.assertEqual(len(plan["tests"]), 8)
-        self.assertEqual(len(plan["scenes"]), 10)
+        self.assertEqual(len(plan["scenes"]), 11)
 
     def test_explicit_fast_skips_render(self):
         plan = classify(["assets/pixel/new_card.webp"], "fast")

@@ -1,3 +1,7 @@
+## D389 — C3 96px keypose review
+
+[D389 F6 QA guide](D389_C3_96PX_KEYPOSE_QA.md) · scene `res://scenes/dev/d389_hero_c3_96px_preview.tscn`. Three concept-derived static 96px candidates beside current heroes; no live replacement, no finished animation atlases. [Current handoff](HANDOFF.md).
+
 ## D388 — C3 preview grounded after real F6 screenshot (2026-11-04)
 
 [QA and local F6 checks](D387_HERO_C3_KEYPOSE_QA.md) · [merged PR #54](https://github.com/zampolit73/Misdeal/pull/54) · [Godot 148/148 PASS](https://github.com/zampolit73/Misdeal/actions/runs/41719054033). Same-floor current/C3 pairs, labeled two-scale toggle, no live hero replacement. Further C3 sprite production requires original 96px art rather than 48px extracted concept cutouts.
