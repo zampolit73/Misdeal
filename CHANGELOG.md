@@ -1,3 +1,9 @@
+## 2026-11-04 — D394: C3 richer character concept exploration (no game asset changes)
+
+- Produced four new comparative art concept boards in the project conversation, retaining richer metal/leather/cloth and C3 class design while seeking improved Ranger bow and Mage silhouette.
+- Their labels and illustrations are NOT measured 128/96px sprites, F6 screenshots, alpha exports, player approval or completed animation. The transparent original-sprite quality gate remains open.
+- Documented next production step and locked wardrobe constraints; no runtime graphics, QA sprites, code, scenes, combat, UI, waves or XIII changed.
+
 ## 2026-11-04 — D393: real C3 art-scale review and truthful preview labels
 
 - Inspected player's two real D392 F6 screenshots: shared ground/alignment works; 128px source Knight is more plausible, but thin Ranger and undersized Mage have insufficient class readability, and downscaled ~96px stills lose essential detail. These are screenshot-led observations, not player sign-off of runtime art.
