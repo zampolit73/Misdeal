@@ -1,3 +1,8 @@
+## 2026-11-04 — D388 player F6 visual review and C3 art-quality gate
+
+- Actual F6 screenshot confirms D388 comparison is physically grounded and correctly paired on the current Firing Square stage. C3 48px alpha cutouts remain far below existing hero image quality; rejected as source for gameplay sprite replacement or animation frames, **not** a reversal of selected C3 artistic direction.
+- Future C3 art must be independently authored in true 96×96 RGBA pose cells, with correct anatomy, boots and weapons. A newly generated presentation/reference image is not a valid animation atlas. No gameplay or repository sprite assets changed in this QA review.
+
 ## D388 (2026-11-04) — Grounded C3 concept QA preview, production art unchanged
 
 - [PR #54](https://github.com/zampolit73/Misdeal/pull/54) squash-merged `3260d09f` after [Godot CI SUCCESS 148/148 GUT, 6792 assertions](https://github.com/zampolit73/Misdeal/actions/runs/41719054033). Player's F6 screenshot showed current heroes floating on wall while tiny C3 samples stood on floor; QA-only preview now aligns all 6 figures by actual foot contact on the real Firing Square floor, pairs per role and provides labeled ×3/×2 nearest scale toggle. No production gameplay sprite or mechanics altered.
