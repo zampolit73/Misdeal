@@ -1,3 +1,8 @@
+## 2026-11-04 — D389 actual F6 art inspection (no runtime change)
+
+- Player provided real D389 1280×720 ×1.3 screenshot: D389 independent art-loading, alpha and floor alignment render correctly. Visual review shows **concept-downsample stills are not suitable as final art** despite the technical pass: Knight loses shield/body mass, Ranger bow/hands are dim and blend into floor, Mage staff/robes lose form. No explicit user visual approval of these candidates.
+- Next D390 is *fresh native pixel-authored 96px single poses*, retaining chosen C3 art direction but improving role/weapon and material-value readability. Do not create 25-frame animation packs from the current downsample or touch existing production sprites.
+
 ## 2026-11-04 — D389 C3 hero still comparison released to main
 
 - [PR #56](https://github.com/zampolit73/Misdeal/pull/56) merged `3bc1dfcd` after [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41810323619). Added three alpha-isolated concept-derived 96×96 hero stills packed in a 288×96 WebP and an independent F6 comparison with existing BattleUnit actors and optional 1×/1.3× viewing. Current combat art/animations remain untouched.
