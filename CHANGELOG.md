@@ -1,3 +1,9 @@
+## D389 — Candidate native-cell C3 still artwork, QA only (2026-11-04)
+
+- New alpha-isolated 288×96 WebP keypose strip (Knight, Ranger, male Mage) from latest 1672×941 C3 concept, with each role cropped/downsampled directly onto a 96×96 cell; previous rejected 48px cutouts left intact for reference.
+- Added opt-in `res://scenes/dev/d389_hero_c3_96_preview.tscn` with same-floor existing-versus-C3 comparison, ×1 native and ×1.3 size toggle; GUT asset/grounding checks.
+- This is a **static art quality trial**, not 75 original animation poses, not pixel-perfect hand-painted production art, and not replacement of current hero sprites; actual F6 acceptance pending.
+
 ## 2026-11-04 — D388 player F6 visual review and C3 art-quality gate
 
 - Actual F6 screenshot confirms D388 comparison is physically grounded and correctly paired on the current Firing Square stage. C3 48px alpha cutouts remain far below existing hero image quality; rejected as source for gameplay sprite replacement or animation frames, **not** a reversal of selected C3 artistic direction.
