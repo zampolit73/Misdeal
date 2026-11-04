@@ -1,3 +1,5 @@
+> **D391 UPDATE — REJECTED, historical QA only (2026-11-04).** After the player's genuine F6 review, all D390 flat polygon-style hero figures are rejected as too primitive and distinctly worse than previous rendered C3 studies. D391 deleted D390's 96px WebP, preview scene/script and dependent test from main; source remains in [historical PR #57](https://github.com/zampolit73/Misdeal/pull/57). **Do not attempt to run the deleted D390 F6 scene or animate those poses.** C3 art direction remains selected and live BattleUnit assets unchanged. Use D389 only as a comparative reference, not as an approved production sprite pack.
+
 # D390 — Direct-pixel C3 hero stills for native F6 art review
 
 Date: 2026-11-04  

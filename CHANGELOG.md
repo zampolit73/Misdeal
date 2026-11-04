@@ -1,3 +1,9 @@
+## 2026-11-04 — D391: rejected flat D390 hero-art trial removed
+
+- After viewing the genuine D390 F6 screenshot, player explicitly rejected its flat, icon-like Knight/Ranger/Mage artwork as much worse than earlier painted art. Technical GUT PASS is NOT an art-quality pass.
+- Removed the D390 experimental static WebP, QA preview scene/script and dependent GUT; history remains available in [PR #57](https://github.com/zampolit73/Misdeal/pull/57). D389 earlier art remains viewable as an unapproved reference. Existing production sprites, animation, cards, waves and UI untouched.
+- Keep selected C3 «Тёмный орден» direction; next art iteration must recover rich detailed pixel treatment at battle scale, not code-drawn polygons, before any animation production.
+
 ## D390 (2026-11-04) — Native 96px C3 hero miniatures in F6 art preview, not live Battle
 
 - [PR #57](https://github.com/zampolit73/Misdeal/pull/57) merged `82630737`; [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41813137412) **152 GUT / 152 passed, 8026 assertions**. Three newly authored at-source 96px static Knight/Ranger/male Mage art candidates (lossless RGBA 288×96) replace the *art-authoring approach*, not production images or animations. New F6 compare scene defaults to real ×1 source pixels on Firing Square; alpha/padding/grounding tested.

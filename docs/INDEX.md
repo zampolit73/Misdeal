@@ -1,3 +1,7 @@
+## D391 — D390 pixel figures rejected; source-pixel QA pilot removed (2026-11-04)
+
+[Historical D390 QA](D390_HERO_C3_NATIVE_PIXEL_QA.md) is rejected by player after actual F6; D390 asset, scene and test have been removed from main. Previous [D389 C3 still comparison](D389_HERO_C3_96_STILL_QA.md), `res://scenes/dev/d389_hero_c3_96_preview.tscn`, remains an **unapproved** art reference. No gameplay art changed. [Current handoff](HANDOFF.md).
+
 ## D390 — native C3 pixel-art miniature QA (2026-11-04)
 
 [D390 QA / art provenance and F6](D390_HERO_C3_NATIVE_PIXEL_QA.md) — three original 96px **static** transparent Knight/Ranger/male Mage poses, source `assets/pixel/units/hero_c3_keyposes_qa/c3_native_d390_96.webp.b64`, F6 `res://scenes/dev/d390_hero_c3_native_preview.tscn`. Production sprites unchanged; art approval and animation still pending.
