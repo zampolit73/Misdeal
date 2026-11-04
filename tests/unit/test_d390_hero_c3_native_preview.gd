@@ -29,8 +29,8 @@ func test_three_native_96px_poses_are_distinct_transparent_and_padded() -> void:
 					bottom = y
 		assert_gt(visible, 2400, "Hero must not be a small cutout")
 		assert_lt(visible, 5000, "Hero must retain transparent negative space")
-		assert_gte(bottom, 87, "Boots need real floor contact")
-		assert_lte(bottom, 92, "Keep 3px of lower sprite padding")
+		assert_true(bottom >= 87, "Boots need real floor contact")
+		assert_true(bottom <= 92, "Keep 3px of lower sprite padding")
 		for x in range(96):
 			assert_lt(cell.get_pixel(x, 0).a, 0.5, "Clear top edge")
 			assert_lt(cell.get_pixel(x, 95).a, 0.5, "Clear lower edge")
