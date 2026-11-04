@@ -9,7 +9,7 @@ const TITLES: Array[String] = ["РЫЦАРЬ", "СЛЕДОПЫТ", "МАГ"]
 const GROUP_CENTERS := [255.0, 640.0, 1025.0]
 const PAIR_SPACING := 73.0
 const SOLE_CONTACT_Y := 455.0
-const CANDIDATE_SCALE := 0.85
+const CANDIDATE_SCALES := {"knight": 1.10, "ranger": 1.10, "mage": 1.30}
 const GOLD := Color(0.85, 0.73, 0.57)
 const PALE := Color(0.88, 0.85, 0.81)
 const MUTED := Color(0.68, 0.68, 0.68)
@@ -55,14 +55,15 @@ func _ready() -> void:
 		candidate.name = "C3_%s" % role
 		candidate.texture = texture
 		candidate.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		candidate.scale = Vector2.ONE * CANDIDATE_SCALE
+		var candidate_scale: float = float(CANDIDATE_SCALES[role])
+		candidate.scale = Vector2.ONE * candidate_scale
 		add_child(candidate)
 		candidate_sprites.append(candidate)
 		var sole_offset := float(bounds.position.y + bounds.size.y) - 0.5 - 48.0
 		candidate_sole_offsets.append(sole_offset)
 		candidate.position = Vector2(
 			x_pos + PAIR_SPACING,
-			SOLE_CONTACT_Y - sole_offset * CANDIDATE_SCALE
+			SOLE_CONTACT_Y - sole_offset * candidate_scale
 		)
 
 		_add_text("СЕЙЧАС", Vector2(x_pos - PAIR_SPACING - 66, 490), Vector2(132, 29), 15, PALE, HORIZONTAL_ALIGNMENT_CENTER)
