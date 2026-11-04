@@ -4,6 +4,7 @@ extends GutTest
 const PREVIEW := preload("res://scenes/dev/d389_hero_c3_96px_preview.tscn")
 const ASSET_DIR := "res://assets/pixel/units/hero_c3_keyposes_qa/"
 const ROLES: Array[String] = ["knight", "ranger", "mage"]
+const CANDIDATE_SCALES := {"knight": 1.10, "ranger": 1.10, "mage": 1.30}
 
 func test_d389_three_candidates_decode_as_transparent_96px_cells() -> void:
 	var fingerprints: Array[int] = []
@@ -46,7 +47,7 @@ func test_d389_preview_keeps_candidates_out_of_production_battle() -> void:
 		assert_not_null(candidate)
 		assert_eq(candidate.texture.get_size(), Vector2i(96, 96))
 		assert_eq(candidate.texture_filter, CanvasItem.TEXTURE_FILTER_NEAREST)
-		assert_eq(candidate.scale, Vector2.ONE * 0.85)
+		assert_eq(candidate.scale, Vector2.ONE * float(CANDIDATE_SCALES[role]))
 		var bounds: Rect2i = scene.call("_alpha_bounds", candidate.texture.get_image())
 		var sole_offset := float(bounds.position.y + bounds.size.y) - 0.5 - 48.0
 		assert_almost_eq(candidate.position.y + sole_offset * candidate.scale.y, 455.0, 0.02)
