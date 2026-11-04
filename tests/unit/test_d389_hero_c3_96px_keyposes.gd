@@ -45,7 +45,9 @@ func test_d389_preview_keeps_candidates_out_of_production_battle() -> void:
 		var candidate := scene.get_node_or_null("C3_%s" % role) as Sprite2D
 		assert_not_null(original)
 		assert_not_null(candidate)
-		assert_eq(candidate.texture.get_size(), Vector2i(96, 96))
+		if candidate == null:
+			continue
+		assert_eq(candidate.texture.get_size(), Vector2(96, 96))
 		assert_eq(candidate.texture_filter, CanvasItem.TEXTURE_FILTER_NEAREST)
 		assert_eq(candidate.scale, Vector2.ONE * float(CANDIDATE_SCALES[role]))
 		var bounds: Rect2i = scene.call("_alpha_bounds", candidate.texture.get_image())
