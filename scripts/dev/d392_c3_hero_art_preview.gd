@@ -19,6 +19,7 @@ const PALE := Color(0.88, 0.85, 0.81)
 const MUTED := Color(0.65, 0.67, 0.69)
 
 var candidate_sprites: Array[Sprite2D] = []
+var candidate_labels: Array[Label] = []
 var candidate_sole_offsets: Array[float] = []
 var candidate_scale := COMPARE_SCALE
 var scale_button: Button
@@ -70,7 +71,9 @@ func _ready() -> void:
 		_position_candidate(index)
 
 		_add_text("СЕЙЧАС", Vector2(x_pos - PAIR_SPACING - 66, 490), Vector2(132, 29), 15, PALE, HORIZONTAL_ALIGNMENT_CENTER)
-		_add_text("C3 / 128px", Vector2(x_pos + PAIR_SPACING - 66, 490), Vector2(132, 29), 15, MUTED, HORIZONTAL_ALIGNMENT_CENTER)
+		var candidate_label := _add_text("C3 / 128px", Vector2(x_pos + PAIR_SPACING - 66, 490), Vector2(132, 29), 15, MUTED, HORIZONTAL_ALIGNMENT_CENTER)
+		candidate_label.name = "CandidateLabel_%s" % ROLES[index]
+		candidate_labels.append(candidate_label)
 
 	_add_text("D392 / ПРОВЕРКА ДЕТАЛИЗАЦИИ — БЕЗ АНИМАЦИИ", Vector2(36, 558), Vector2(1040, 32), 20, GOLD)
 	_add_text("C3: рваный плащ только у рыцаря. Следопыт и маг — цельная одежда.", Vector2(36, 603), Vector2(1200, 25), 17, PALE)
@@ -103,7 +106,10 @@ func _toggle_candidate_scale() -> void:
 
 
 func _update_scale_button() -> void:
-	scale_button.text = "C3: 96px (проба)" if is_equal_approx(candidate_scale, CELL_SCALE) else "C3: 128px (источник)"
+	var simulated_96 := is_equal_approx(candidate_scale, CELL_SCALE)
+	scale_button.text = "C3: ~96px (из 128)" if simulated_96 else "C3: 128px (источник)"
+	for label in candidate_labels:
+		label.text = "C3 / ~96px" if simulated_96 else "C3 / 128px"
 
 
 func _candidate_sole_offset(image: Image, index: int) -> float:
@@ -140,7 +146,7 @@ func _add_scrim(at: Vector2, dimensions: Vector2, tint: Color) -> void:
 	add_child(node)
 
 
-func _add_text(value: String, at: Vector2, dimensions: Vector2, point_size: int, tint: Color, alignment: HorizontalAlignment = HORIZONTAL_ALIGNMENT_LEFT) -> void:
+func _add_text(value: String, at: Vector2, dimensions: Vector2, point_size: int, tint: Color, alignment: HorizontalAlignment = HORIZONTAL_ALIGNMENT_LEFT) -> Label:
 	var label := Label.new()
 	label.text = value
 	label.position = at
@@ -151,3 +157,4 @@ func _add_text(value: String, at: Vector2, dimensions: Vector2, point_size: int,
 	label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.95))
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(label)
+	return label
