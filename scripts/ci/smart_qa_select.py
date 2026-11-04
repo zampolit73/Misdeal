@@ -16,7 +16,7 @@ CORE = ("class-select", "table", "battle", "wizard-objective",
 ALL_TESTS = CORE + ("qa-hub",)
 SCREENS = ("class-select", "table", "fate-spread-four", "fate-spread-eight",
            "firing-square-break", "firing-square-crossfire",
-           "wizard-prep", "card-gallery", "reward-upgrade", "qa-hub")
+           "wizard-prep", "card-gallery", "reward-upgrade", "qa-hub", "d389-c3")
 DOC_SUFFIXES = (".md", ".txt")
 
 def classify(paths, request="auto"):
@@ -79,6 +79,10 @@ def classify(paths, request="auto"):
             want_visual = True
             tests.update(("table", "cards", "card-surfaces"))
             scenes.update(("table", "card-gallery", "reward-upgrade"))
+        elif p.startswith(("scenes/dev/d389_", "scripts/dev/d389_")) or p.startswith("assets/pixel/units/hero_c3_keyposes_qa/"):
+            tests.add("battle")
+            scenes.add("d389-c3")
+            want_visual = True
         elif p.startswith(("scenes/dev/d308_", "scripts/dev/d308_")):
             want_visual = True
             tests.update(("wizard-preview", "wizard-objective"))
