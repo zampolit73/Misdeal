@@ -1,3 +1,13 @@
+## D392 — Character art approval carried into comparative scale QA (2026-11-04)
+
+- [x] Player accepted rich C3 hero designs with **only Knight's cape torn**; Ranger cloak and male Mage robe intact.
+- [x] Isolate standalone alpha pose per approved role from latest high-resolution illustration, **128×128 source-cells**, in a separate text-backed WebP (384×128) for TEST ONLY.
+- [x] Stage same-floor F6 comparison against actual current Knight/Ranger/Mage and 128px vs simulated ~96px toggle, preserving all live assets and existing 96px animation contract.
+- [x] Add tests for image dimensions/alpha/clean padding/feet and F6 layout. Technical tests do not confer visual approval.
+- [ ] Run Godot CI, then actual F6 screenshot at 1280×720 to judge 128px vs ~96px readability, halo artifacts, grounded weapons/legs. If only 128px succeeds, discuss source/renderer scale approach rather than silently change 96px production atlases.
+- [ ] After the *actual* sprite style holds up in-game and user signs off, produce unique 25 distinct pose frames for each hero (idle4/walk6/attack6/hit3/death6), independent alpha/motion QA, then opt-in production replacement with rollback.
+- [ ] No fake animated storyboard frames, no D390 polygon miniatures, no premature battle renderer changes.
+
 ## D391 art lookdev after rollback — actual production gate remains open (2026-11-04)
 
 - [x] Show two new richer visual concept comparison boards in chat after player rejected flat D390 art. They are **not** Godot runtime screenshots or isolated 96×96 source sprites regardless of baked captions.
