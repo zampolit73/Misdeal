@@ -1,3 +1,7 @@
+## D389 — 96px C3 keypose lookdev (2026-11-04)
+
+Three 96×96 transparent WebP static candidates now exist under `assets/pixel/units/hero_c3_keyposes_qa/`, with a dedicated current-vs-C3 F6 scene at `res://scenes/dev/d389_hero_c3_96px_preview.tscn`. These are **concept-derived pixel-processed keyposes**, not fully hand-pixel-authored final assets and not 25-frame atlases. They use hard alpha, palette reduction and nearest-neighbor display; props/feet received limited cleanup. They are isolated from production. Evaluate at actual arena scale before deciding whether to redraw; no automatic promotion. [D389 QA](D389_C3_96PX_KEYPOSE_QA.md).
+
 ## D387 experimental QA artwork — not final hero sprites (2026-11-04)
 
 C3 trial now has 3 isolated *single* reference key poses (Knight, Ranger, male Mage) in assets/pixel/units/hero_c3_keyposes_qa/c3_keyposes_48.webp.b64, with a **preview-only** F6 scene res://scenes/dev/d387_hero_c3_keypose_preview.tscn. Each 48×48 alpha cell is displayed at 2× against current Firing Square and existing BattleUnit sprites. These are manually segmented reference-board samples with low-resolution limits, **not** newly authored final sprites or 25-frame animations. This early lookdev tests scale/color/silhouettes and rejects weak ideas early. Real sprites require clean original 96px frames and genuine 25 distinct pose sequences per hero. Current runtime graphics and game state untouched. [D387 QA](D387_HERO_C3_KEYPOSE_QA.md).
