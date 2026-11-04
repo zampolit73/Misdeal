@@ -1,3 +1,12 @@
+## D393 — D392 real F6 verdict / source art correction before animation (2026-11-04)
+
+- [x] Inspect real user 1280×720-ish F6 screenshots at C3 128 source and reduced ~96 display: same floor, good role pairing, source silhouette remains imperfect.
+- [x] Identify role-specific art defects: only Knight is nearing parity at 128; Ranger has thin/low-contrast bow and legs, Mage undersized and understated; ~96 display loses quality for all three.
+- [x] Correct QA-only candidate label that remained "128px" after switching the button to ~96; assert source→simulated→source captions in GUT.
+- [ ] Improve actual C3 hero sprite art source for Ranger/Mage and Knight edge quality; compare at intended target in native game, not just as generated concept boards. Respect approved intact Ranger/Mage wardrobe.
+- [ ] Preserve 96px production animation contract until an explicit format decision. NO live sprites or 25×3 animation authoring from present cutouts.
+- [ ] Once art really passes the target-scale visual gate, create 25 authored distinct poses for each of three heroes and run native motion QA.
+
 ## D392 RELEASED — rich C3 look 128px / simulated 96px F6 checkpoint (2026-11-04)
 
 - [x] User approved chosen first D391 rich C3 look, damaged cape only on Knight, Ranger and Mage robes intact.

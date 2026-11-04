@@ -51,6 +51,8 @@ func test_d392_uses_same_floor_and_switches_real_128_to_simulated_96() -> void:
 		assert_almost_eq(candidate.position.y + sole * candidate.scale.y, 455.0, 0.01)
 		assert_eq(candidate.scale, Vector2.ONE)
 	assert_eq((preview.get_node("CandidateScaleButton") as Button).text, "C3: 128px (источник)")
+	for role in ["knight", "ranger", "mage"]:
+		assert_eq((preview.get_node("CandidateLabel_%s" % role) as Label).text, "C3 / 128px")
 	preview.call("_toggle_candidate_scale")
 	for index in range(3):
 		var role: String = ["knight", "ranger", "mage"][index]
@@ -58,4 +60,10 @@ func test_d392_uses_same_floor_and_switches_real_128_to_simulated_96() -> void:
 		var sole: float = preview.call("_candidate_sole_offset", source, index)
 		assert_almost_eq(candidate.scale.x, 0.75, 0.01)
 		assert_almost_eq(candidate.position.y + sole * candidate.scale.y, 455.0, 0.01)
-	assert_eq((preview.get_node("CandidateScaleButton") as Button).text, "C3: 96px (проба)")
+	assert_eq((preview.get_node("CandidateScaleButton") as Button).text, "C3: ~96px (из 128)")
+	for role in ["knight", "ranger", "mage"]:
+		assert_eq((preview.get_node("CandidateLabel_%s" % role) as Label).text, "C3 / ~96px")
+	preview.call("_toggle_candidate_scale")
+	assert_eq((preview.get_node("CandidateScaleButton") as Button).text, "C3: 128px (источник)")
+	for role in ["knight", "ranger", "mage"]:
+		assert_eq((preview.get_node("CandidateLabel_%s" % role) as Label).text, "C3 / 128px")

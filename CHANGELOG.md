@@ -1,3 +1,9 @@
+## 2026-11-04 — D393: real C3 art-scale review and truthful preview labels
+
+- Inspected player's two real D392 F6 screenshots: shared ground/alignment works; 128px source Knight is more plausible, but thin Ranger and undersized Mage have insufficient class readability, and downscaled ~96px stills lose essential detail. These are screenshot-led observations, not player sign-off of runtime art.
+- Fixed QA-only D392 preview lower labels so simulated ~96px no longer falsely displays "C3 / 128px"; state explicitly says ~96px is derived from 128px source. Added GUT regression for two transitions.
+- No changes to source C3 image, approved hero designs, live unit sprites/96px atlas contract, battle, DS3, waves, XIII or audio. Real 25-frame original motion remains pending a better art source.
+
 ## 2026-11-04 — D392 approved-style three-hero alpha F6 study
 
 - [PR #59](https://github.com/zampolit73/Misdeal/pull/59) merged `01c2123d` after [native CI 152/152 GUT, 8408 assertions](https://github.com/zampolit73/Misdeal/actions/runs/41826827622). User-approved C3 wardrobe: ONLY Knight cape torn, Ranger olive cloak/Mage violet robes intact. Three rich concept-derived isolated alpha 128px stills staged in opt-in F6 with real-arena baseline and 96px approximation toggle.
