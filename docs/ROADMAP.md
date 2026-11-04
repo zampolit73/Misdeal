@@ -1,3 +1,11 @@
+## HERO-C3 D388 player verdict — 2026-11-04
+
+- [x] User's real F6 screenshot verifies D388 side-by-side **same-floor comparison and scale toggle** work.
+- [x] Evaluate C3 48px pose samples: **NOT acceptable for production** (poor Knight armor/shield, Ranger bow and legs, Mage cloak and grip). Keep only as diagnostic art reference.
+- [ ] Author **new original transparent 96px sprite stills** for each role, one consistent style/lighting and readable weapon/boots at native 1x. No enlargement of 48px cutouts or sheet mockup crops.
+- [ ] Review three genuinely new stills on the real arena, then make all 25 original frames per role as three valid 576×480 atlases with safe fallback and native GUT / visual QA. 
+- [ ] No production hero sprite change until art works at real scale; no need for further QA scene positioning revisions.
+
 ## D388 SHIPPED — Same-floor C3 lookdev QA (2026-11-04)
 
 - [x] Player native screenshot confirmed two different vertical placements (current heroes hovering above actual terrain).
