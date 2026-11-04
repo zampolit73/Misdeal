@@ -1,3 +1,8 @@
+## 2026-11-04 — D389 C3 hero still comparison released to main
+
+- [PR #56](https://github.com/zampolit73/Misdeal/pull/56) merged `3bc1dfcd` after [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/41810323619). Added three alpha-isolated concept-derived 96×96 hero stills packed in a 288×96 WebP and an independent F6 comparison with existing BattleUnit actors and optional 1×/1.3× viewing. Current combat art/animations remain untouched.
+- Real user F6 art review pending; stills are not hand-drawn production animation atlases or 75 authored poses.
+
 ## D389 — Candidate native-cell C3 still artwork, QA only (2026-11-04)
 
 - New alpha-isolated 288×96 WebP keypose strip (Knight, Ranger, male Mage) from latest 1672×941 C3 concept, with each role cropped/downsampled directly onto a 96×96 cell; previous rejected 48px cutouts left intact for reference.
