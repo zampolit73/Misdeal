@@ -63,6 +63,10 @@ Each run validates count, PNG signature/resolution/nonblank images and frame dis
 
 The GitHub connector lets ChatGPT retrieve artifact ZIPs and inspect original PNG frames directly. The first [native 7-frame CI4 run](https://github.com/zampolit73/Misdeal/actions/runs/39937515858) passed and reported ~183.6px original BattleUnit movement; the images were retrieved and visually inspected. [Original seven native functional smoke tests](https://github.com/zampolit73/Misdeal/actions/runs/39937515794) also passed. Visual opinions are still separate from CI PASS, and Linux Mesa/OpenGL screenshots can differ from Windows hardware. 
 
+## D389 — C3 96px keypose preview capture
+
+The Smart QA selector now routes changes under `scripts/dev/d389_*`, `scenes/dev/d389_*`, or `assets/pixel/units/hero_c3_keyposes_qa/` to an actual Godot 4.7.2 screenshot of `res://scenes/dev/d389_hero_c3_96px_preview.tscn` (`d389-c3`). The capture registers a real RunState, instantiates the existing BattleUnit scenes, checks all three current/C3 pairs, and saves the actual 1280×720 framebuffer. This is a visual aid for the concept-derived static candidates, not final-art approval or animation evidence.
+
 ## Next safe enhancement
 
 Add opt-in coverage for representative arena/party combinations (including Court and Black Lantern) and sampled animation states/frames, validating authored actor bounds and soles. Do not switch approved gameplay sprites or reinterpret a slideshow as accepted 25-frame motion.
