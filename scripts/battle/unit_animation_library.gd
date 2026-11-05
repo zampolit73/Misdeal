@@ -8,6 +8,12 @@ const CELL_SIZE := 96
 const COLUMNS := 6
 const ROWS := 5
 const BASE_DIR := "res://assets/pixel/units/combat_units_anim_v2/"
+# D398: opt-in art pilot promoted to the three live player heroes.
+# All legacy v2 source atlases remain in BASE_DIR for instant rollback.
+# To revert the rollout in Git, set this single flag false.
+const C3_HERO_PILOT_ENABLED := true
+const C3_HERO_ROLES := ["knight", "ranger", "mage"]
+const C3_HERO_PILOT_DIR := "res://assets/pixel/units/hero_c3_d398/"
 const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/"
 const DECK_EXPANSION_DIR := "res://assets/pixel/units/deck_expansion_v1/"
 const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus"]
@@ -39,6 +45,14 @@ static func get_frames(role: String) -> SpriteFrames:
 		return _frames_cache[role] as SpriteFrames
 	if _unavailable.has(role):
 		return null
+
+	# D398: real, distinct C3 illustration-derived frame imagery replaces the
+	# old BLUE Knight and previous Ranger/Mage visuals only for the three heroes.
+	# If a packed image is unreadable, silently prefer the already-shipped v2.
+	if C3_HERO_PILOT_ENABLED and C3_HERO_ROLES.has(role):
+		var c3_tex: Texture2D = _get_c3_hero_texture(role)
+		if c3_tex != null:
+			return _create_frames(role, c3_tex, true)
 
 	if COURT_STAGED_ROLES.has(role):
 		var court_path: String = "%s%s_d267_rich_qa.webp.b64" % [COURT_ATLAS_DIR, role]
@@ -232,6 +246,37 @@ static func get_frames(role: String) -> SpriteFrames:
 	return _create_frames(role, atlas)
 
 
+# The D398 pilot is a transparent illustration-derived atlas, not one of
+# the old recolor-only C3 experiments. The five unused grid cells stay alpha.
+static func _get_c3_hero_texture(role: String) -> Texture2D:
+	if not C3_HERO_ROLES.has(role):
+		return null
+	var path := "%s%s.webp.b64" % [C3_HERO_PILOT_DIR, role]
+	if not FileAccess.file_exists(path):
+		push_warning("C3 hero pilot asset missing (legacy fallback): " + path)
+		return null
+	var encoded := FileAccess.get_file_as_string(path).strip_edges()
+	var raw := Marshalls.base64_to_raw(encoded)
+	if raw.is_empty():
+		push_warning("C3 hero pilot encoded asset empty: " + path)
+		return null
+	var img := Image.new()
+	if img.load_webp_from_buffer(raw) != OK:
+		push_warning("C3 hero pilot image decode failed: " + path)
+		return null
+	img.convert(Image.FORMAT_RGBA8)
+	if not _valid_c3_hero_atlas(img):
+		push_warning("C3 hero pilot rejected by frame QA (legacy fallback): " + path)
+		return null
+	return ImageTexture.create_from_image(img)
+
+
+static func _valid_c3_hero_atlas(img: Image) -> bool:
+	if img == null or img.get_size() != Vector2i(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
+		return false
+	return _all_authored_deck_frames_visible(img) and _all_authored_deck_frames_padded(img) and _all_authored_deck_frames_distinct(img) and _unused_deck_cells_clear(img)
+
+
 # Only the explicitly authored (4/6/6/3/6) cells should be checked.
 # WebP can leave alpha=1 compression noise in otherwise transparent cells;
 # sample against a real visibility threshold, not alpha != 0.
@@ -336,7 +381,7 @@ static func get_static_texture(role: String) -> Texture2D:
 		return null
 	return frames.get_frame_texture("idle", 0)
 
-static func _create_frames(role: String, atlas: Texture2D) -> SpriteFrames:
+static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = false) -> SpriteFrames:
 	var frames := SpriteFrames.new()
 	if frames.has_animation("default"):
 		frames.remove_animation("default")
@@ -345,7 +390,10 @@ static func _create_frames(role: String, atlas: Texture2D) -> SpriteFrames:
 	# Pack1 Mage has a projectile-only source tile at row 2, column 4.
 	# Playing that tile makes the character disappear for one attack frame.
 	# The combat projectile is rendered independently by unit attack visuals.
-	_add_row(frames, atlas, "attack", 2, 5 if role == "mage" else 6, 14.0 if role == "mage" else 16.0, false, role)
+	# The new C3 Mage actually has six visible body/weapon poses, unlike the
+	# archived v2 Mage whose fourth attack tile was a detached projectile.
+	var attack_count := 6 if is_c3_pilot else (5 if role == "mage" else 6)
+	_add_row(frames, atlas, "attack", 2, attack_count, 14.0 if role == "mage" else 16.0, false, "" if is_c3_pilot else role)
 	_add_row(frames, atlas, "hit", 3, 3, 12.0, false)
 	_add_row(frames, atlas, "death", 4, 6, 10.0, false)
 	_frames_cache[role] = frames

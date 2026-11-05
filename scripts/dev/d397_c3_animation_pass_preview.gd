@@ -1,6 +1,6 @@
 extends Control
 
-# D397: old real combat atlas versus revised C3-palette/matte visual candidate.
+# D397 archival comparison. Since D398, the left side loads LIVE C3, while right remains the archived D397 v2 recolor.
 # Both columns use genuine older illustrated poses, NOT D395 still warps.
 # This scene never switches production BattleUnit sprites or core combat.
 const LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
@@ -33,7 +33,7 @@ func _ready() -> void:
 	_scrim(Vector2(0, 0), Vector2(1280, 151), Color(0.013, 0.013, 0.02, 0.94))
 	_scrim(Vector2(0, 544), Vector2(1280, 176), Color(0.013, 0.013, 0.02, 0.94))
 	_label("MISDEAL / C3 — D397: ПРАВКА БОЕВОЙ АНИМАЦИИ", Vector2(30, 9), Vector2(1220, 36), 23, Color(0.89, 0.75, 0.56))
-	_label("Слева — текущие отрисованные кадры. Справа — обработка C3: фактура, контраст и края без мнимых новых поз.", Vector2(30, 47), Vector2(1210, 27), 15, Color(0.87, 0.84, 0.80))
+	_label("АРХИВ D397: слева теперь живой C3 D398, справа старая проба перекраски v2. Используй сцену D398 для честного сравнения.", Vector2(30, 47), Vector2(1210, 27), 15, Color(0.87, 0.84, 0.80))
 	for index in range(STATES.size()):
 		var state: String = STATES[index]
 		var button := Button.new()
@@ -111,7 +111,7 @@ func _play(state: String) -> void:
 		if sprite.sprite_frames != null and sprite.sprite_frames.has_animation(state):
 			sprite.play(state)
 			valid += 1
-	status_label.text = "D397 / %s — %d/6 персонажей, у мага 5 полных кадров атаки" % [state.to_upper(), valid]
+	status_label.text = "D397 АРХИВ / %s — %d/6. Маг: слева 6 кадров C3, справа 5 старых v2" % [state.to_upper(), valid]
 
 
 func _scrim(at: Vector2, size: Vector2, tint: Color) -> void:

@@ -1,3 +1,9 @@
+## 2026-11-05 — D398: player-directed new C3 hero visual source LIVE pilot
+
+- Added genuinely new source illustrations for Knight/Ranger/male Mage animation, isolated from a 3-hero multi-pose concept layout into three 576×480 alpha-clear atlases with 25 distinct pictured poses per hero. Source composition kept in repo. This is image-derived extraction (NOT independently hand-painted native pixel animation).
+- Enabled new C3 art in the existing battle `SpriteFrames` loader for the three playable hero roles only, with strict atlas checks, original v2 fallback, and six full-bodied C3 Mage attack drawings. All existing mechanics unaffected.
+- Added F6 old-v2 versus actually-live C3 full-clip comparison and comprehensive GUT for alpha, frames, real BattleUnit and rollback validation. Rollout remains visual-pilot quality until actual F6/F5 human review.
+
 ## 2026-11-05 — D397: fix live Mage attack sprite disappearance, stage C3 cel retouch
 
 - Real combat: skip projectile-only Pack1 Mage attack column 4; use original five full-body cels in columns 0,1,2,3,5, keeping independent impact FX and unchanged balance/cooldowns.

@@ -68,7 +68,9 @@ func test_d397_can_switch_states_and_run_auto_with_full_actor_attacks() -> void:
 		var sprite := preview.get_node(name) as AnimatedSprite2D
 		assert_not_null(sprite)
 		if sprite != null:
-			assert_eq(sprite.sprite_frames.get_frame_count("attack"), 5)
+			# D398 live "Current" Mage now uses six new C3 body cels;
+			# the old D397 retouch candidate still has five v2 body poses.
+			assert_eq(sprite.sprite_frames.get_frame_count("attack"), 6 if name == "Current_mage" else 5)
 	preview.call("_toggle_auto")
 	assert_true(preview.autoplay)
 	preview.call("_process", 1.4)
