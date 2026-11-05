@@ -1,3 +1,13 @@
+## D400 — specific player-video animation-art defects (2026-11-06)
+
+- [x] Inspect user `23-58-12.mp4` F6 video; D399 framing successful, 3 classes all visible, real F5 gameplay still unverified.
+- [x] Audit C3 atlases beyond frame counts; discover secondary orphan cape/weapon/robe components in some attack/death tiles (8–38% of pixels).
+- [x] Version and commit three isolated corrected C3 atlases in `hero_c3_d400/`, preserving D398 source and C3 approved costumes; salvage Ranger final death head/body.
+- [x] Point live role-limited C3 loader at D400; retain automatic original-v2 fallback and easy D398 art rollback.
+- [x] Add alpha connectivity GUT for defect cells and full-state count checks.
+- [ ] Native CI import/GUT + actual F6/F5 user inspection to assess motion pacing, feet planting, grip, cloth continuity.
+- [ ] Later real hand-drawn pose improvements if dynamics still read poorly; don't mistake a cleaned alpha atlas for a final 75-frame original animation set.
+
 ## D399 — real player F6 recording and preview fit (2026-11-05)
 
 - [x] Inspect user-supplied 11.13s/952×596 F6 video of D398 state cycling; C3 Knight/Ranger appear, Mage far right cropped by the recorded viewport (not evidence of Mage animation missing).

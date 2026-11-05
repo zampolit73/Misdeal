@@ -43,8 +43,8 @@ func _ready() -> void:
 	arena.set_arena_id("firing_square")
 	_scrim(Vector2.ZERO, Vector2(1280, 151), Color(0.015, 0.013, 0.018, 0.94))
 	_scrim(Vector2(0, 544), Vector2(1280, 176), Color(0.015, 0.013, 0.018, 0.94))
-	_label("MISDEAL / C3 — D398: НОВЫЕ АНИМАЦИОННЫЕ ФИГУРКИ В БОЮ", Vector2(28, 8), Vector2(1220, 34), 22, Color(0.89, 0.74, 0.56))
-	_label("Слева — исходные v2 позы. Справа — отдельные C3-кадры из художественного листа, уже подключённые в бою.", Vector2(28, 44), Vector2(1220, 27), 15, Color(0.88, 0.84, 0.80))
+	_label("MISDEAL / C3 — D400: ЧИСТЫЕ АНИМАЦИОННЫЕ ФИГУРКИ", Vector2(28, 8), Vector2(1220, 34), 22, Color(0.89, 0.74, 0.56))
+	_label("Слева — прежние v2. Справа — C3 с исправленными краями плаща, оружия и финальными позами смерти.", Vector2(28, 44), Vector2(1220, 27), 15, Color(0.88, 0.84, 0.80))
 	for i in range(STATES.size()):
 		var state: String = STATES[i]
 		var button := Button.new()
@@ -76,7 +76,7 @@ func _ready() -> void:
 		_label("C3 / В БОЮ", Vector2(center + 6, 490), Vector2(144, 25), 14, Color(0.93, 0.79, 0.57), HORIZONTAL_ALIGNMENT_CENTER)
 
 	status_label = _label("", Vector2(28, 559), Vector2(1200, 28), 18, Color(0.90, 0.77, 0.58))
-	_label("C3: 25 разных поз на героя; атласы 96px. Исходник — иллюстрированная раскадровка, не вручную пиксельно нарисованный atlas.", Vector2(28, 603), Vector2(1230, 24), 14, Color(0.87, 0.85, 0.81))
+	_label("C3: 25 поз/герой, 96px. В D400 удалены отсоединённые фрагменты; это всё ещё иллюстрационный источник, не ручной пиксель-арт.", Vector2(28, 603), Vector2(1230, 24), 14, Color(0.87, 0.85, 0.81))
 	_label("Проверка движения обязательна: плавность, контакты стоп, лук, меч, посох, падение. Старая v2-графика сохранена для отката.", Vector2(28, 647), Vector2(1230, 24), 14, Color(0.74, 0.76, 0.79))
 	_play("idle")
 
@@ -164,7 +164,7 @@ func _play(state: String) -> void:
 			continue
 		sprite.play(state)
 		played += 1
-	status_label.text = "D398 / %s — %d/6 персонажей, C3 активен в BattleUnit" % [state.to_upper(), played]
+	status_label.text = "D400 / %s — %d/6 персонажей, исправленный C3 активен в BattleUnit" % [state.to_upper(), played]
 
 
 func _scrim(at: Vector2, size: Vector2, tint: Color) -> void:

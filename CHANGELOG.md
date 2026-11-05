@@ -1,3 +1,10 @@
+## 2026-11-06 — D400: C3 sprite-frame artifact repair from real player F6 video
+
+- Reviewed 11.5-second D399 real recording: all three class pairs visible; responsive preview fix confirmed.
+- Inspected D398 RGB/alpha tile anatomy and found detached extra cape, cloth, magic prop and Ranger head fragments in several attack/death frames, unseen by earlier frame-count tests.
+- Added corrected versioned C3 Knight/Ranger/Mage 96px alpha art in `hero_c3_d400/`; preserve all approved silhouettes and archival D398 + v2 for rollback. Targeted image cleanup only; no new fake duplicate/recolored poses.
+- Add stricter 8-connected sprite-mask GUT and point live C3 pilot to corrected D400 source. No combat balance, mechanics, DS3, waves or XIII changes. Native user motion QA remains open.
+
 ## 2026-11-05 — D399: actual player video prompted C3 F6 viewport letterboxing
 
 - Inspected 952×596 F6 recording of live D398 C3 preview; the fixed 1280px scene cut off Mage, AUTO and lower labels. This was scene framing, not a proven sprite-loading failure.
