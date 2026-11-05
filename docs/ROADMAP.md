@@ -5,7 +5,8 @@
 - [x] Make surgical C3 source corrections: steel sword/hilt for the two Knight attacks and Ranger original C3 bow restored near hand; Mage asset stays byte-identical.
 - [x] Keep D401 image assets in new versioned 576×480 WebP text files; active live C3 loader points D401, retains D400, D398 and v2 fallback.
 - [x] Add dedicated Knight blade silhouette / Ranger bow-present regression and keep archived D400 alpha tests independent of live path.
-- [ ] Godot 4.7 native CI GUT + scene checks; after success, F6 ATTACK/AUTO and real F5 Knight/Ranger/Mage art QA.
+- [x] [PR #68 merged](https://github.com/zampolit73/Misdeal/pull/68), [Godot 4.7 native CI 176/176 GUT PASS](https://github.com/zampolit73/Misdeal/actions/runs/42107654330), import + scene checks green.
+- [ ] Player native F6 ATTACK/AUTO and real F5 Knight/Ranger/Mage art QA.
 - [ ] Remaining genuinely authored C3 motion: Knight off-hand shield consistency, Mage staff/glow continuity, grounded foot cycles, and 25 independently hand-drawn frame polish. Do not mark entire C3 set production-final on weapon-only fix.
 
 ## D400 — specific player-video animation-art defects (2026-11-06)
