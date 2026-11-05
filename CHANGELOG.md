@@ -1,3 +1,9 @@
+## 2026-11-05 — D396: genuine legacy animation poses as C3 art-motion benchmark (QA only)
+
+- Surfaced existing old 576×480 Knight/Ranger/Mage authored animation frames as a better motion baseline than D395 one-pose warps; added separate three-pair comparison with five playable states on Firing Square.
+- Added isolated optional blue→burgundy Knight palette trial; kept the old image bytes unchanged. Mage projectile-only attack cell excluded from actor playback (24 valid source poses, not misrepresented as 25).
+- Added new GUT for source/frame counts, Knight regrade and preview playback. Not a new original C3 animation pack, not approved production costume/silhouette art. Live gameplay and old art pipeline untouched.
+
 ## 2026-11-05 — D395: C3 3-hero motion blocking on Firing Square, QA-only
 
 - Created independent five-state AnimatedSprite2D preview for Knight, Ranger and male Mage (idle4/walk6/attack6/hit3/death6).

@@ -1,3 +1,12 @@
+## D396 — actual existing illustrated movement baseline (2026-11-05)
+
+- [x] Audit original Pack1 v2 Knight/Ranger/Mage animated sheets; actual previous poses outperform one-still D395 procedural motion in anatomical intent.
+- [x] Stage separate native F6 comparison showing D395 blocking beside original full-body pose sequences with opt-in Knight burgundy regrade.
+- [x] Use **five** Mage attack frames that contain the body, excluding old projectile-only column rather than manufacturing a duplicate or falsely counting it as a C3 pose.
+- [x] GUT checks native loading, frame counts, palette change and playback without editing production.
+- [ ] CI, native F6 quality inspection and fix any crop/foot-contact/weapon grip problems in original pose sources.
+- [ ] **New original C3 art remains necessary:** Knight damaged cape and new metal/helmet, Ranger intact cloak/clear bow, Mage intact robe/size; genuinely authored 25 poses each, including Mage sixth attack, before any BattleUnit switch.
+
 ## D395 — actual playback of five-state C3 motion BLOCKING (2026-11-05)
 
 - [x] User instructed start animation now, without repeating concept/review gates.
