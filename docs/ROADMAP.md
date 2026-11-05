@@ -4,7 +4,8 @@
 - [x] Source a genuinely separate C3 multi-pose illustration; isolate and pack three new 576×480 transparent WebP atlases with 25 different pose images per hero and five zero-alpha spare cells.
 - [x] Hook C3 visual pilot into real hero animation loader (enabled; role-limited), retain previous v2 for automatic fallback; six C3 Mage body frames vs old v2 five-body-frame skip.
 - [x] Provide F6 old-v2 vs current-live-C3 five-state AUTO comparison and GUT guarding alpha, original identity, BattleUnit and playback.
-- [ ] Verify native Godot CI parsing, GUT, import and scene smoke; then F6 / F5 human art check at gameplay scale.
+- [x] [PR #65 merged](https://github.com/zampolit73/Misdeal/pull/65) `8c513f03` after [Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/42050260167): **168/168 GUT, 9402 assertions**, import and scene smokes.
+- [ ] Player F6/F5 motion-art QA at gameplay scale after git pull.
 - [ ] Fix any extraction halos, weapon/hand grip errors, feet-height jitter or inconsistent class scale from actual native motion; do NOT call the illustration-derived frames 75 hand-pixel-painted final art.
 - [ ] Only after art QA confirm permanent visual replacement, preserve rollback switch in loader.
 
