@@ -3,7 +3,8 @@
 - [x] Inspect current v2 animation loader and genuine Mage attack tiles; identify the projectile-only body-frame regression.
 - [x] Change production Mage playback to original full-body columns 0,1,2,3,5 (five actor frames); preserve separate existing projectile FX.
 - [x] Add BattleUnit GUT regression and independent real-posed C3 retouch (3 roles; contrast/material/alpha edge) with AUTO and five-state F6 preview.
-- [ ] Native CI parse/GUT/smokes, then actual F6 scrutiny at gameplay scale, especially feet, cloak hems, bow/staff grips and death.
+- [x] [PR #64 native Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/42043287389) (parse/GUT/smokes) and merged `4c07bef1`.
+- [ ] Actual F6 scrutiny at gameplay scale: feet, cloak hems, bow/staff grips and death, plus F5 Mage casting.
 - [ ] **Create genuinely new pose artwork** for full accepted C3 look (only Knight cape torn; Ranger and Mage intact), including original sixth Mage attack body cel. D397 retouch is NOT a 75-frame new-animation release.
 - [ ] After original art acceptance, reversible pilot replacement of live hero art; protect rollback and combat balance.
 
