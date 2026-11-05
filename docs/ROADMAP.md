@@ -1,3 +1,13 @@
+## D398 — C3 genuine new image-source hero animation PILOT (2026-11-05)
+
+- [x] Player explicitly rejected D397 old-v2 recolor and asked to deploy visually different approved C3 Knight/Ranger/Mage.
+- [x] Source a genuinely separate C3 multi-pose illustration; isolate and pack three new 576×480 transparent WebP atlases with 25 different pose images per hero and five zero-alpha spare cells.
+- [x] Hook C3 visual pilot into real hero animation loader (enabled; role-limited), retain previous v2 for automatic fallback; six C3 Mage body frames vs old v2 five-body-frame skip.
+- [x] Provide F6 old-v2 vs current-live-C3 five-state AUTO comparison and GUT guarding alpha, original identity, BattleUnit and playback.
+- [ ] Verify native Godot CI parsing, GUT, import and scene smoke; then F6 / F5 human art check at gameplay scale.
+- [ ] Fix any extraction halos, weapon/hand grip errors, feet-height jitter or inconsistent class scale from actual native motion; do NOT call the illustration-derived frames 75 hand-pixel-painted final art.
+- [ ] Only after art QA confirm permanent visual replacement, preserve rollback switch in loader.
+
 ## D397 — C3 animation retouch / production Mage casting frame (2026-11-05)
 
 - [x] Inspect current v2 animation loader and genuine Mage attack tiles; identify the projectile-only body-frame regression.
