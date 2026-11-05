@@ -5,7 +5,8 @@
 - [x] Version and commit three isolated corrected C3 atlases in `hero_c3_d400/`, preserving D398 source and C3 approved costumes; salvage Ranger final death head/body.
 - [x] Point live role-limited C3 loader at D400; retain automatic original-v2 fallback and easy D398 art rollback.
 - [x] Add alpha connectivity GUT for defect cells and full-state count checks.
-- [ ] Native CI import/GUT + actual F6/F5 user inspection to assess motion pacing, feet planting, grip, cloth continuity.
+- [x] [PR #67 merged](https://github.com/zampolit73/Misdeal/pull/67), [native Godot 4.7 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/42101777782), 172/172 GUT and scene smokes.
+- [ ] Actual F6/F5 user inspection to assess motion pacing, feet planting, grip, cloth continuity.
 - [ ] Later real hand-drawn pose improvements if dynamics still read poorly; don't mistake a cleaned alpha atlas for a final 75-frame original animation set.
 
 ## D399 — real player F6 recording and preview fit (2026-11-05)
