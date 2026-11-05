@@ -4,7 +4,8 @@
 - [x] Stage separate native F6 comparison showing D395 blocking beside original full-body pose sequences with opt-in Knight burgundy regrade.
 - [x] Use **five** Mage attack frames that contain the body, excluding old projectile-only column rather than manufacturing a duplicate or falsely counting it as a C3 pose.
 - [x] GUT checks native loading, frame counts, palette change and playback without editing production.
-- [ ] CI, native F6 quality inspection and fix any crop/foot-contact/weapon grip problems in original pose sources.
+- [x] [PR #63 native Godot CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/42038536533) for import/GUT/routine smokes; NOT a human art pass.
+- [ ] Native F6 visual/motion review and fix any crop/foot-contact/weapon grip problems in original pose sources.
 - [ ] **New original C3 art remains necessary:** Knight damaged cape and new metal/helmet, Ranger intact cloak/clear bow, Mage intact robe/size; genuinely authored 25 poses each, including Mage sixth attack, before any BattleUnit switch.
 
 ## D395 — actual playback of five-state C3 motion BLOCKING (2026-11-05)
