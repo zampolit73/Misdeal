@@ -1,3 +1,7 @@
+## D402 — Knight attack shield continuity from in-game-scale F6 video (2026-11-06)
+
+Added `hero_c3_d402/knight.webp.b64` (576×480, 6×5, 25 unique 96px illustrated frames), restoring Knight's sword-and-shield identity through all attack cels. Only attack row2 cols2–5 altered: shield mask is from D401 Knight's own WALK drawing. Ranger and Mage continue using `hero_c3_d401/`; D401 Knight is auto-backup for D402 data failure, then old v2. The Knight's torn burgundy cape remains unchanged; no other original costume changed. This is real alpha sprite editing, not an independent hand-pixel-painted 25-frame atlas. See [D402 QA](D402_C3_KNIGHT_SHIELD_QA.md).
+
 ## D401 — C3 weapon continuity polish after native 00-33-27 footage (2026-11-06)
 
 Versioned currently staged `hero_c3_d401/{knight,ranger,mage}.webp.b64`, 576×480 25 distinct C3 visual frame images per class, source copied from D400 with **surgical Knight sword** corrections in attack row2 cols2/3 and restored original C3 **Ranger bow** in final attack col5. Mage D401 text asset is byte-for-byte the D400 image. No v2 recoloring and no replacement with decorative generated concept-board images; all earlier D400/D398 source assets remain for rollback. New GUT checks weapon silhouettes/visibility on exact pose cells. [D401 QA](D401_C3_WEAPON_CONTINUITY_QA.md). Full hand-painted source rework remains pending.
