@@ -20,6 +20,10 @@ const C3_HERO_ROLES := ["knight", "ranger", "mage"]
 # Knight has a sword (not a sudden axe) and Ranger always has a bow.
 # D400 and D398 atlases remain available for file-level rollback.
 const C3_HERO_PILOT_DIR := "res://assets/pixel/units/hero_c3_d401/"
+# D402: only the Knight changes. Ranger and Mage retain verified D401 art.
+# If this local attack-shield repair fails validation, try the D401 Knight
+# atlas before falling back to the much older v2 identity.
+const C3_KNIGHT_D402_PATH := "res://assets/pixel/units/hero_c3_d402/knight.webp.b64"
 const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/"
 const DECK_EXPANSION_DIR := "res://assets/pixel/units/deck_expansion_v1/"
 const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus"]
@@ -257,25 +261,32 @@ static func get_frames(role: String) -> SpriteFrames:
 static func _get_c3_hero_texture(role: String) -> Texture2D:
 	if not C3_HERO_ROLES.has(role):
 		return null
-	var path := "%s%s.webp.b64" % [C3_HERO_PILOT_DIR, role]
-	if not FileAccess.file_exists(path):
-		push_warning("C3 hero pilot asset missing (legacy fallback): " + path)
-		return null
-	var encoded := FileAccess.get_file_as_string(path).strip_edges()
-	var raw := Marshalls.base64_to_raw(encoded)
-	if raw.is_empty():
-		push_warning("C3 hero pilot encoded asset empty: " + path)
-		return null
-	var img := Image.new()
-	if img.load_webp_from_buffer(raw) != OK:
-		push_warning("C3 hero pilot image decode failed: " + path)
-		return null
-	img.convert(Image.FORMAT_RGBA8)
-	if not _valid_c3_hero_atlas(img):
-		push_warning("C3 hero pilot rejected by frame QA (legacy fallback): " + path)
-		return null
-	return ImageTexture.create_from_image(img)
-
+	var paths: Array[String] = []
+	if role == "knight":
+		paths.append(C3_KNIGHT_D402_PATH)
+	paths.append("%s%s.webp.b64" % [C3_HERO_PILOT_DIR, role])
+	for path in paths:
+		if not FileAccess.file_exists(path):
+			push_warning("C3 hero pilot asset missing: " + path)
+			continue
+		var encoded := FileAccess.get_file_as_string(path).strip_edges()
+		var raw := Marshalls.base64_to_raw(encoded)
+		if raw.is_empty():
+			push_warning("C3 hero pilot encoded asset empty: " + path)
+			continue
+		var img := Image.new()
+		if img.load_webp_from_buffer(raw) != OK:
+			push_warning("C3 hero pilot image decode failed: " + path)
+			continue
+		img.convert(Image.FORMAT_RGBA8)
+		if not _valid_c3_hero_atlas(img):
+			push_warning("C3 hero pilot rejected by frame QA: " + path)
+			continue
+		var tex := ImageTexture.create_from_image(img)
+		if tex != null:
+			return tex
+	# Preserve original v2 fallback if ALL C3 sources fail validation.
+	return null
 
 static func _valid_c3_hero_atlas(img: Image) -> bool:
 	if img == null or img.get_size() != Vector2i(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
