@@ -1,3 +1,12 @@
+## D402 — Knight attack-shield continuity from player video (2026-11-06)
+
+- [x] Review `01-07-47.mp4`: 18.63s F6 video, 3 heroes visible, D401 swords/bows corrected, but Knight shield disappears in four attack poses; video is not F5 combat.
+- [x] Restore the exact approved Knight's shield from his existing C3 WALK art into four missing ATTACK cels, preserve sword/cape/body and all untouched cels.
+- [x] Version one D402 Knight-only alpha atlas; keep D401 Ranger/Mage and all earlier art as rollback. Fall back from invalid D402 Knight to D401 before older v2.
+- [x] Add regression verifying 25 unique 96px pose cels / 5 transparent spares, ONLY four changed atlas cells, non-erasing shield alpha and live SpriteFrames source.
+- [ ] Native Godot CI and F6/F5 quality verification, especially shield offhand grip, cadence, Mage staff, feet and death.
+- [ ] Complete true individually painted C3 character animation refinement later; D402 is a targeted art repair, not final animation acceptance.
+
 ## D401 — address class-weapon identity errors exposed by player F6 (2026-11-06)
 
 - [x] Inspect real 14.37s `00-33-27.mp4` clip; 3 C3 classes show all five states in a cropped desktop recording but the Godot viewport and pairs are fully visible; F5 is not shown.
