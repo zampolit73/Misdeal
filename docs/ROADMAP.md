@@ -1,3 +1,12 @@
+## D395 — actual playback of five-state C3 motion BLOCKING (2026-11-05)
+
+- [x] User instructed start animation now, without repeating concept/review gates.
+- [x] Implement QA-only 3-hero five-state playback with standard 96px 6×5 frame layout and 25 different rendered draft images per role.
+- [x] Add GUT verification of frame counts, raster uniqueness, transparent spare cells and clip playback.
+- [ ] CI native Godot parsing/tests and real F6 motion review; compare stride/weapon hand/foot contact, especially Mage and Ranger.
+- [ ] **Replace procedural warped stills with genuinely authored 25 separate drawn poses per hero** before production; D395 is timing/blocking, not a game-ready animated sprite pack.
+- [ ] After passing F6 art and QA, integrate an opt-in reversible BattleUnit art rollout; until then gameplay uses the old art.
+
 ## D394 — art-only C3 concept exploration; do not confuse render labels with proof (2026-11-04)
 
 - [x] Show more substantial C3 Knight, Ranger and male Mage illustration concepts in chat after real D392 small-scale readability failure.
