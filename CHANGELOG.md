@@ -1,3 +1,10 @@
+## 2026-11-06 — D401: repair C3 Knight sword + Ranger bow continuity in attack
+
+- Real player `00-33-27.mp4` 14.37s Godot F6 reveals that D400's otherwise clear frames accidentally transform Knight's sword into an axe/halberd in two attacks and omit the Ranger bow in the last released shot. Mage currently has no comparable verified sprite loss.
+- Added versioned lossless RGBA C3 D401 atlases with original Knight body/cape and Ranger body retained, a tapered Knight sword in offending attack poses, Ranger bow restored from his own C3 previous pose, and Mage art unchanged from D400.
+- Routed only hero C3 images to D401 with existing validation/legacy fallback and kept D400/D398/v2 for rollback. Added semantic-region GUT guards and an honest F6 label. No gameplay/stat/weapon mechanics, DS3, waves, sound or XIII changes.
+- This is a localized pixel-art edit to already illustrated frames, **not** 75 new hand-painted pose images; real F5 and overall motion quality remain open.
+
 ## 2026-11-06 — D400: C3 sprite-frame artifact repair from real player F6 video
 
 - Reviewed 11.5-second D399 real recording: all three class pairs visible; responsive preview fix confirmed.
