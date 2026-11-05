@@ -43,7 +43,7 @@ func test_knight_palette_study_changes_blue_without_touching_archived_file() -> 
 		for x in range(0, 576, 3):
 			var before: Color = reference.get_pixel(x, y)
 			var after: Color = tinted.get_pixel(x, y)
-			if before.distance_to(after) > 0.08 and before.a > 0.3:
+			if (absf(before.r - after.r) + absf(before.g - after.g) + absf(before.b - after.b)) > 0.08 and before.a > 0.3:
 				changed += 1
 	assert_gt(changed, 30, "The optional Knight study must be visibly different from blue v2")
 	assert_eq(reference.get_size(), tinted.get_size())
