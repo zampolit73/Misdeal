@@ -1,3 +1,10 @@
+## 2026-11-06 — D402: Knight shield returns in 4 middle C3 attack poses
+
+- Inspected actual user `01-07-47.mp4` 18.63s native F6: D401 swords and Ranger bow show correctly, but Knight's red/gold shield vanishes in attack cels2–5.
+- Added **one** versioned C3 Knight atlas with shield from the Knight's own established WALK appearance composited into those four poses; sword, body and torn cape unchanged. Ranger/Mage keep D401 art.
+- Knight-only loader override with D401 fallback on corrupt/missing D402 and old-v2 fallback after that. GUT adds actual atlas-selection, zero-cross-cell regression and real alpha-shield recovery coverage.
+- Not final independently hand-painted animation; actual F5, articulation and motion polish still pending. No combat/gameplay/DS3/waves/XIII changes.
+
 ## 2026-11-06 — D401: repair C3 Knight sword + Ranger bow continuity in attack
 
 - Real player `00-33-27.mp4` 14.37s Godot F6 reveals that D400's otherwise clear frames accidentally transform Knight's sword into an axe/halberd in two attacks and omit the Ranger bow in the last released shot. Mage currently has no comparable verified sprite loss.
