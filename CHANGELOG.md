@@ -1,3 +1,9 @@
+## 2026-11-05 — D395: C3 3-hero motion blocking on Firing Square, QA-only
+
+- Created independent five-state AnimatedSprite2D preview for Knight, Ranger and male Mage (idle4/walk6/attack6/hit3/death6).
+- Runtime pose-study generator creates 96px 6×5 alpha atlases with 25 differently warped frames per role, originating from D392 static references; strict technical GUT for counts, uniqueness and transparent unused cells.
+- **Not new hand-authored animation art.** Source is single-pose painted references; final frame drawing and motion polish remain required before production. No runtime battle units, original hero animation assets, gameplay, waves, DS3 or XIII changed.
+
 ## 2026-11-04 — D394: C3 richer character concept exploration (no game asset changes)
 
 - Produced four new comparative art concept boards in the project conversation, retaining richer metal/leather/cloth and C3 class design while seeking improved Ranger bow and Mage silhouette.
