@@ -1,3 +1,13 @@
+## D401 — address class-weapon identity errors exposed by player F6 (2026-11-06)
+
+- [x] Inspect real 14.37s `00-33-27.mp4` clip; 3 C3 classes show all five states in a cropped desktop recording but the Godot viewport and pairs are fully visible; F5 is not shown.
+- [x] Identify a C3 Knight axe/halberd appearing in attack frame2/3 despite sword+shield identity; Ranger final release pose loses his bow.
+- [x] Make surgical C3 source corrections: steel sword/hilt for the two Knight attacks and Ranger original C3 bow restored near hand; Mage asset stays byte-identical.
+- [x] Keep D401 image assets in new versioned 576×480 WebP text files; active live C3 loader points D401, retains D400, D398 and v2 fallback.
+- [x] Add dedicated Knight blade silhouette / Ranger bow-present regression and keep archived D400 alpha tests independent of live path.
+- [ ] Godot 4.7 native CI GUT + scene checks; after success, F6 ATTACK/AUTO and real F5 Knight/Ranger/Mage art QA.
+- [ ] Remaining genuinely authored C3 motion: Knight off-hand shield consistency, Mage staff/glow continuity, grounded foot cycles, and 25 independently hand-drawn frame polish. Do not mark entire C3 set production-final on weapon-only fix.
+
 ## D400 — specific player-video animation-art defects (2026-11-06)
 
 - [x] Inspect user `23-58-12.mp4` F6 video; D399 framing successful, 3 classes all visible, real F5 gameplay still unverified.
