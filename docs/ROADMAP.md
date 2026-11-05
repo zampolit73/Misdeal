@@ -4,7 +4,8 @@
 - [x] Restore the exact approved Knight's shield from his existing C3 WALK art into four missing ATTACK cels, preserve sword/cape/body and all untouched cels.
 - [x] Version one D402 Knight-only alpha atlas; keep D401 Ranger/Mage and all earlier art as rollback. Fall back from invalid D402 Knight to D401 before older v2.
 - [x] Add regression verifying 25 unique 96px pose cels / 5 transparent spares, ONLY four changed atlas cells, non-erasing shield alpha and live SpriteFrames source.
-- [ ] Native Godot CI and F6/F5 quality verification, especially shield offhand grip, cadence, Mage staff, feet and death.
+- [x] [PR #69 merged](https://github.com/zampolit73/Misdeal/pull/69), [Godot native CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42113254466), 178/178 GUT, 9599 assertions and scene smokes.
+- [ ] Player native F6/F5 quality verification, especially shield offhand grip, cadence, Mage staff, feet and death.
 - [ ] Complete true individually painted C3 character animation refinement later; D402 is a targeted art repair, not final animation acceptance.
 
 ## D401 — address class-weapon identity errors exposed by player F6 (2026-11-06)
