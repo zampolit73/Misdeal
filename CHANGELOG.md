@@ -1,3 +1,9 @@
+## 2026-11-05 — D397: fix live Mage attack sprite disappearance, stage C3 cel retouch
+
+- Real combat: skip projectile-only Pack1 Mage attack column 4; use original five full-body cels in columns 0,1,2,3,5, keeping independent impact FX and unchanged balance/cooldowns.
+- QA: retouch existing individually illustrated Knight/Ranger/Mage animation cels for approved C3 material palette and transparency; preview old/new side-by-side with AUTO complete five-state playback; add GUT tests for role frame counts, alpha spares, changed color samples and actual BattleUnit Mage.
+- The generated in-chat infographic is not a game atlas and was not imported. No new hand-authored 75-frame C3 set is claimed. Current hero live sprites, waves, UI and XIII unchanged, aside from Mage clip correction.
+
 ## 2026-11-05 — D396: genuine legacy animation poses as C3 art-motion benchmark (QA only)
 
 - Surfaced existing old 576×480 Knight/Ranger/Mage authored animation frames as a better motion baseline than D395 one-pose warps; added separate three-pair comparison with five playable states on Firing Square.
