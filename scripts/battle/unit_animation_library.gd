@@ -342,7 +342,10 @@ static func _create_frames(role: String, atlas: Texture2D) -> SpriteFrames:
 		frames.remove_animation("default")
 	_add_row(frames, atlas, "idle", 0, 4, 2.7, true)
 	_add_row(frames, atlas, "walk", 1, 6, 7.0, true)
-	_add_row(frames, atlas, "attack", 2, 6, 14.0 if role == "mage" else 16.0, false, role)
+	# Pack1 Mage has a projectile-only source tile at row 2, column 4.
+	# Playing that tile makes the character disappear for one attack frame.
+	# The combat projectile is rendered independently by unit attack visuals.
+	_add_row(frames, atlas, "attack", 2, 5 if role == "mage" else 6, 14.0 if role == "mage" else 16.0, false, role)
 	_add_row(frames, atlas, "hit", 3, 3, 12.0, false)
 	_add_row(frames, atlas, "death", 4, 6, 10.0, false)
 	_frames_cache[role] = frames
@@ -354,7 +357,9 @@ static func _add_row(frames: SpriteFrames, atlas: Texture2D, name: String, row: 
 	frames.set_animation_speed(name, fps)
 	frames.set_animation_loop(name, looping)
 	for x in range(count):
-		var frame_column := x
+		# Only the Mage attack uses a non-contiguous full-body column map.
+		# Source col 4 is an isolated spell projectile; col 5 has the actor.
+		var frame_column := x + 1 if role == "mage" and name == "attack" and x == 4 else x
 		var tile := AtlasTexture.new()
 		tile.atlas = atlas
 		tile.region = Rect2(float(frame_column * CELL_SIZE), float(row * CELL_SIZE), float(CELL_SIZE), float(CELL_SIZE))
