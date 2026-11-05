@@ -4,7 +4,8 @@
 - [x] Identify D398 preview's fixed 1280×720 layout as the source of clipping for both Mage pairs, AUTO and bottom caption.
 - [x] Uniformly letterbox/scale the WHOLE 1280×720 preview stage for smaller window sizes, not per-actor scaling that changes feet or class proportions; 1× native composition remains unchanged.
 - [x] Add Godot GUT viewport regression at 952×596 and 1280×720.
-- [ ] Native Godot CI and recheck D398 F6 on narrow window with all 3 heroes visible; human F5 battle + art motion QA remains open.
+- [x] [PR #66 merged](https://github.com/zampolit73/Misdeal/pull/66), [Godot native CI 170/170 PASS](https://github.com/zampolit73/Misdeal/actions/runs/42095189147); preview scaling validated at captured 952×596 and 1280×720.
+- [ ] Human F6 recheck narrow-window with whole Mage+AUTO visible; F5 battle and final motion-art QA remain open.
 - [ ] Prioritize real sprite-art fixes only after whole-character Mage actions and normalized body/weapon contact can be viewed; do not mistake a video crop for a missing sprite.
 
 ## D398 — C3 genuine new image-source hero animation PILOT (2026-11-05)
