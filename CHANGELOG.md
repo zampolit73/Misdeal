@@ -1,3 +1,9 @@
+## 2026-11-05 — D399: actual player video prompted C3 F6 viewport letterboxing
+
+- Inspected 952×596 F6 recording of live D398 C3 preview; the fixed 1280px scene cut off Mage, AUTO and lower labels. This was scene framing, not a proven sprite-loading failure.
+- Nest QA scene in a uniformly scaled/centered 1280×720 `Stage`, preserving original 1× appearance and feet/weapon motion. Add GUT checks of exactly 952×596 as recorded and 1280×720 native.
+- No changes to actual C3 hero atlas images, live battle presentation, mechanics, AI, stats, DS3, waves or XIII. Native Mage motion and F5 art review remain open.
+
 ## 2026-11-05 — D398: player-directed new C3 hero visual source LIVE pilot
 
 - Added genuinely new source illustrations for Knight/Ranger/male Mage animation, isolated from a 3-hero multi-pose concept layout into three 576×480 alpha-clear atlases with 25 distinct pictured poses per hero. Source composition kept in repo. This is image-derived extraction (NOT independently hand-painted native pixel animation).

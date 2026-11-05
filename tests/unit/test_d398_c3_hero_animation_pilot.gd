@@ -81,8 +81,8 @@ func test_d398_f6_has_current_and_c3_full_playback() -> void:
 	assert_eq(preview.original_actors.size(), 3)
 	assert_eq(preview.c3_actors.size(), 3)
 	for role in ROLES:
-		var original := preview.get_node("Original_%s" % role) as AnimatedSprite2D
-		var c3 := preview.get_node("C3_%s" % role) as AnimatedSprite2D
+		var original := preview.get_node("Stage/Original_%s" % role) as AnimatedSprite2D
+		var c3 := preview.get_node("Stage/C3_%s" % role) as AnimatedSprite2D
 		assert_not_null(original)
 		assert_not_null(c3)
 		if c3 != null:
@@ -98,3 +98,36 @@ func test_d398_f6_has_current_and_c3_full_playback() -> void:
 	preview.call("_play_manual", "death")
 	assert_false(preview.autoplay)
 	assert_eq(preview.active_state, "death")
+
+
+func test_d398_preview_fits_recorded_952x596_window_without_cutting_off_mage() -> void:
+	var preview := PREVIEW.instantiate()
+	add_child_autofree(preview)
+	var stage := preview.get_node("Stage") as Control
+	assert_not_null(stage)
+	if stage == null:
+		return
+	assert_eq(stage.size, Vector2(1280.0, 720.0))
+	preview.call("_fit_stage_size", Vector2(952.0, 596.0))
+	assert_almost_eq(stage.scale.x, 952.0 / 1280.0, 0.0001)
+	assert_almost_eq(stage.scale.y, 952.0 / 1280.0, 0.0001)
+	assert_almost_eq(stage.position.x, 0.0, 0.001)
+	assert_almost_eq(stage.position.y, (596.0 - 720.0 * 952.0 / 1280.0) * 0.5, 0.001)
+	for name in ["Original_knight", "C3_knight", "Original_ranger", "C3_ranger", "Original_mage", "C3_mage", "AutoPlayback"]:
+		var node := stage.get_node(name) as CanvasItem
+		assert_not_null(node, "%s must remain inside scaled stage" % name)
+	var auto := stage.get_node("AutoPlayback") as Button
+	var auto_right: float = stage.position.x + (auto.position.x + auto.size.x) * stage.scale.x
+	assert_lte(auto_right, 952.0)
+	var mage := stage.get_node("C3_mage") as AnimatedSprite2D
+	var mage_right: float = stage.position.x + (mage.position.x + 96.0 * mage.scale.x * 0.5) * stage.scale.x
+	assert_lte(mage_right, 952.0, "Mage fully fits the 952px capture window")
+
+
+func test_d398_preview_keeps_one_to_one_presentation_in_native_1280x720() -> void:
+	var preview := PREVIEW.instantiate()
+	add_child_autofree(preview)
+	preview.call("_fit_stage_size", Vector2(1280.0, 720.0))
+	var stage := preview.get_node("Stage") as Control
+	assert_eq(stage.scale, Vector2.ONE)
+	assert_eq(stage.position, Vector2.ZERO)

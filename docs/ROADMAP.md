@@ -1,3 +1,12 @@
+## D399 — real player F6 recording and preview fit (2026-11-05)
+
+- [x] Inspect user-supplied 11.13s/952×596 F6 video of D398 state cycling; C3 Knight/Ranger appear, Mage far right cropped by the recorded viewport (not evidence of Mage animation missing).
+- [x] Identify D398 preview's fixed 1280×720 layout as the source of clipping for both Mage pairs, AUTO and bottom caption.
+- [x] Uniformly letterbox/scale the WHOLE 1280×720 preview stage for smaller window sizes, not per-actor scaling that changes feet or class proportions; 1× native composition remains unchanged.
+- [x] Add Godot GUT viewport regression at 952×596 and 1280×720.
+- [ ] Native Godot CI and recheck D398 F6 on narrow window with all 3 heroes visible; human F5 battle + art motion QA remains open.
+- [ ] Prioritize real sprite-art fixes only after whole-character Mage actions and normalized body/weapon contact can be viewed; do not mistake a video crop for a missing sprite.
+
 ## D398 — C3 genuine new image-source hero animation PILOT (2026-11-05)
 
 - [x] Player explicitly rejected D397 old-v2 recolor and asked to deploy visually different approved C3 Knight/Ranger/Mage.

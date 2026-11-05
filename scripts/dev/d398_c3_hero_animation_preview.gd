@@ -14,7 +14,9 @@ const GAP := 77.0
 const SCALE := [1.15, 1.28, 1.60]
 const AUTO_DURATIONS := [1.3, 1.6, 0.9, 0.6, 1.2]
 const FPS := [2.7, 7.0, 14.0, 12.0, 10.0]
+const STAGE_SIZE := Vector2(1280.0, 720.0)
 
+var stage: Control
 var original_actors: Array[AnimatedSprite2D] = []
 var c3_actors: Array[AnimatedSprite2D] = []
 var active_state := "idle"
@@ -26,8 +28,17 @@ var auto_button: Button
 
 
 func _ready() -> void:
+	# The player recorded F6 at 952x596; the old fixed-1280 layout cropped
+	# the Mage pair and AUTO button. Scale the COMPLETE stage, not each actor.
+	stage = Control.new()
+	stage.name = "Stage"
+	stage.size = STAGE_SIZE
+	stage.mouse_filter = Control.MOUSE_FILTER_PASS
+	add_child(stage)
+	get_viewport().size_changed.connect(_fit_stage)
+	_fit_stage()
 	var arena := BACKDROP.new()
-	add_child(arena)
+	stage.add_child(arena)
 	arena.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	arena.set_arena_id("firing_square")
 	_scrim(Vector2.ZERO, Vector2(1280, 151), Color(0.015, 0.013, 0.018, 0.94))
@@ -43,7 +54,7 @@ func _ready() -> void:
 		button.size = Vector2(167, 34)
 		button.focus_mode = Control.FOCUS_NONE
 		button.pressed.connect(_play_manual.bind(state))
-		add_child(button)
+		stage.add_child(button)
 	auto_button = Button.new()
 	auto_button.name = "AutoPlayback"
 	auto_button.text = "AUTO ▶"
@@ -51,7 +62,7 @@ func _ready() -> void:
 	auto_button.size = Vector2(180, 34)
 	auto_button.focus_mode = Control.FOCUS_NONE
 	auto_button.pressed.connect(_toggle_auto)
-	add_child(auto_button)
+	stage.add_child(auto_button)
 
 	for i in range(ROLES.size()):
 		var role: String = ROLES[i]
@@ -68,6 +79,21 @@ func _ready() -> void:
 	_label("C3: 25 разных поз на героя; атласы 96px. Исходник — иллюстрированная раскадровка, не вручную пиксельно нарисованный atlas.", Vector2(28, 603), Vector2(1230, 24), 14, Color(0.87, 0.85, 0.81))
 	_label("Проверка движения обязательна: плавность, контакты стоп, лук, меч, посох, падение. Старая v2-графика сохранена для отката.", Vector2(28, 647), Vector2(1230, 24), 14, Color(0.74, 0.76, 0.79))
 	_play("idle")
+
+
+# Keeps the original 1280x720 authored composition and preserves relative
+# boots/ground offsets. Letterbox the whole F6 preview on narrower windows.
+func _fit_stage() -> void:
+	_fit_stage_size(get_viewport_rect().size)
+
+
+func _fit_stage_size(window_size: Vector2) -> void:
+	if stage == null:
+		return
+	var factor := minf(window_size.x / STAGE_SIZE.x, window_size.y / STAGE_SIZE.y)
+	factor = maxf(0.01, factor)
+	stage.scale = Vector2.ONE * factor
+	stage.position = (window_size - STAGE_SIZE * factor) * 0.5
 
 
 func _load_old_frames(role: String) -> SpriteFrames:
@@ -101,7 +127,7 @@ func _actor(value: String, at: Vector2, magnification: float, frames: SpriteFram
 	sprite.scale = Vector2.ONE * magnification
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.sprite_frames = frames
-	add_child(sprite)
+	stage.add_child(sprite)
 	return sprite
 
 
@@ -147,7 +173,7 @@ func _scrim(at: Vector2, size: Vector2, tint: Color) -> void:
 	shape.size = size
 	shape.color = tint
 	shape.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(shape)
+	stage.add_child(shape)
 
 
 func _label(value: String, at: Vector2, size: Vector2, font_size: int, tint: Color, alignment: HorizontalAlignment = HORIZONTAL_ALIGNMENT_LEFT) -> Label:
@@ -160,5 +186,5 @@ func _label(value: String, at: Vector2, size: Vector2, font_size: int, tint: Col
 	label.add_theme_color_override("font_color", tint)
 	label.add_theme_color_override("font_shadow_color", Color.BLACK)
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(label)
+	stage.add_child(label)
 	return label
