@@ -13,7 +13,10 @@ const BASE_DIR := "res://assets/pixel/units/combat_units_anim_v2/"
 # To revert the rollout in Git, set this single flag false.
 const C3_HERO_PILOT_ENABLED := true
 const C3_HERO_ROLES := ["knight", "ranger", "mage"]
-const C3_HERO_PILOT_DIR := "res://assets/pixel/units/hero_c3_d398/"
+# D400 video-led art polish: new alpha atlases remove orphan cape/cloth
+# fragments and join Ranger's disconnected final death silhouette.
+# The exact D398 art files remain versioned for immediate rollback.
+const C3_HERO_PILOT_DIR := "res://assets/pixel/units/hero_c3_d400/"
 const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/"
 const DECK_EXPANSION_DIR := "res://assets/pixel/units/deck_expansion_v1/"
 const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus"]
