@@ -16,7 +16,10 @@ const C3_HERO_ROLES := ["knight", "ranger", "mage"]
 # D400 video-led art polish: new alpha atlases remove orphan cape/cloth
 # fragments and join Ranger's disconnected final death silhouette.
 # The exact D398 art files remain versioned for immediate rollback.
-const C3_HERO_PILOT_DIR := "res://assets/pixel/units/hero_c3_d400/"
+# D401: preserve C3-class weapon identity across attack cells:
+# Knight has a sword (not a sudden axe) and Ranger always has a bow.
+# D400 and D398 atlases remain available for file-level rollback.
+const C3_HERO_PILOT_DIR := "res://assets/pixel/units/hero_c3_d401/"
 const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/"
 const DECK_EXPANSION_DIR := "res://assets/pixel/units/deck_expansion_v1/"
 const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus"]
