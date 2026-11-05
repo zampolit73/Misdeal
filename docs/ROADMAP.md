@@ -1,3 +1,12 @@
+## D397 — C3 animation retouch / production Mage casting frame (2026-11-05)
+
+- [x] Inspect current v2 animation loader and genuine Mage attack tiles; identify the projectile-only body-frame regression.
+- [x] Change production Mage playback to original full-body columns 0,1,2,3,5 (five actor frames); preserve separate existing projectile FX.
+- [x] Add BattleUnit GUT regression and independent real-posed C3 retouch (3 roles; contrast/material/alpha edge) with AUTO and five-state F6 preview.
+- [ ] Native CI parse/GUT/smokes, then actual F6 scrutiny at gameplay scale, especially feet, cloak hems, bow/staff grips and death.
+- [ ] **Create genuinely new pose artwork** for full accepted C3 look (only Knight cape torn; Ranger and Mage intact), including original sixth Mage attack body cel. D397 retouch is NOT a 75-frame new-animation release.
+- [ ] After original art acceptance, reversible pilot replacement of live hero art; protect rollback and combat balance.
+
 ## D396 — actual existing illustrated movement baseline (2026-11-05)
 
 - [x] Audit original Pack1 v2 Knight/Ranger/Mage animated sheets; actual previous poses outperform one-still D395 procedural motion in anatomical intent.
