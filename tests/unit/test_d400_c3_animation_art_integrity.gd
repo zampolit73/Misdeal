@@ -74,9 +74,9 @@ static func _filled_pixels(image: Image, row: int, col: int) -> int:
 
 
 func test_d400_repairs_detected_disconnected_cape_and_body_cells() -> void:
-	assert_eq(LIBRARY.C3_HERO_PILOT_DIR, "res://assets/pixel/units/hero_c3_d400/")
+	# Verify the archived D400 fix without hardcoding it as the LIVE version.
 	for role in REPAIRS.keys():
-		var current_path: String = "%s%s.webp.b64" % [LIBRARY.C3_HERO_PILOT_DIR, role]
+		var current_path: String = "res://assets/pixel/units/hero_c3_d400/%s.webp.b64" % role
 		var archived_path: String = "res://assets/pixel/units/hero_c3_d398/%s.webp.b64" % role
 		assert_true(FileAccess.file_exists(current_path))
 		assert_true(FileAccess.file_exists(archived_path), "D398 must remain for rollback")
