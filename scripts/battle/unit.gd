@@ -15,6 +15,10 @@ const HUNT_MELEE_RANGE_CUTOFF := 100.0
 const ART_BASE_POSITION := Vector2(0.0, -16.0)
 const ANIM_CELL_HEIGHT := 96.0
 const ANIM_SOLE_Y := 92.5
+# D404: six C3 WALK poses advance with actual travelled distance, not idle
+# wall-clock time. ~84px/s still plays at the authored 7fps cadence.
+const C3_WALK_PIXELS_PER_FRAME := 12.0
+const C3_WALK_MAX_PIXELS_PER_SAMPLE := 18.0
 const FLOOR_CONTACT_Y := 36.0
 # Art-only, local pixel offsets: negative values raise boots above the ring.
 # These are visual corrections, not unit position or movement modifiers.
@@ -154,6 +158,8 @@ var frame_time := 0.0
 var frame_one_shot_time := 0.0
 var visual_moving := false
 var walk_hold_timer := 0.0
+var c3_walk_last_position := Vector2.ZERO
+var c3_walk_has_sample := false
 
 @onready var rim_sprite: Sprite2D = $RimSprite
 @onready var art_sprite: Sprite2D = $ArtSprite
@@ -1003,6 +1009,15 @@ func _update_frame_animation(delta: float) -> void:
 	if sprite_frames == null:
 		return
 
+	# The actor moves later in _process(), so sample the distance travelled
+	# since the previous animation update. Sampling while idle/attacking also
+	# prevents a first-step jump when WALK begins after a long stationary spell.
+	var travel_pixels := 0.0
+	if c3_walk_has_sample:
+		travel_pixels = position.distance_to(c3_walk_last_position)
+	c3_walk_last_position = position
+	c3_walk_has_sample = true
+
 	if alive and frame_one_shot_time > 0.0:
 		frame_one_shot_time = maxf(0.0, frame_one_shot_time - delta)
 	else:
@@ -1019,7 +1034,15 @@ func _update_frame_animation(delta: float) -> void:
 
 	if sprite_frames.get_frame_count(frame_state) == 0:
 		return
-	frame_time += delta
+	# D404: an authored walk footfall is a distance event. A C3 hero who
+	# cannot actually move (body separation / arena boundary) should not
+	# play running feet during the 0.18s walk hysteresis. No other animation
+	# state or non-C3 actor changes its original timing.
+	if frame_state == "walk" and ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
+		var sampled_pixels := minf(travel_pixels, C3_WALK_MAX_PIXELS_PER_SAMPLE)
+		frame_time += sampled_pixels / (C3_WALK_PIXELS_PER_FRAME * sprite_frames.get_animation_speed("walk"))
+	else:
+		frame_time += delta
 	var count: int = sprite_frames.get_frame_count(frame_state)
 	var index: int = int(frame_time * sprite_frames.get_animation_speed(frame_state))
 	if sprite_frames.get_animation_loop(frame_state):
@@ -1425,6 +1448,7 @@ func revive_from_last_rite(hp_fraction: float) -> bool:
 	frame_time = 0.0
 	frame_one_shot_time = 0.0
 	walk_hold_timer = 0.0
+	c3_walk_has_sample = false
 	visual_moving = false
 	hit_flash_time = 0.0
 	hit_stop_time = 0.0
