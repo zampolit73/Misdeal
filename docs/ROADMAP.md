@@ -1,3 +1,10 @@
+## D408 released — 2026-11-06
+
+- [x] [PR #75 merged](https://github.com/zampolit73/Misdeal/pull/75), [native Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/42231056235), **200/200** real GUT + import/scene smoke.
+- [x] Ranger 3 HIT bow restores, Mage 2 HIT staff restores; Knight already keeps sword+shield. Source C3 art style and accepted motion remain.
+- [x] C3-only HIT no rubbery zoom/full costume recolor; lethal HIT to DEATH transition resets leftover pose transforms.
+- [ ] User single F6 HIT/DEATH art review and F5 real encounter check. D409: fix remaining real-battle visual issues only, then return to vertical slice.
+
 ## D408: [x] all three HIT/DEATH source sequences audited; [x] 3 Ranger bow + 2 Mage staff HIT frames restored as actual 96px source images; [x] C3 HIT/death transitions no longer magnify/recolour sprites; [x] GUT for live frames and old-enemy behavior; [ ] Godot native CI and merge; [ ] single F6 HIT/DEATH and F5 battle QA.
 
 ## D407 — death-state light consistency based on native 17-13-13.mp4 (2026-11-06)
