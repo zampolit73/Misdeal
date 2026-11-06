@@ -17,7 +17,7 @@ Interpretation (visual only): Knight's guarded windup gets a little more readabi
 - Native F6: `res://scenes/dev/d405_c3_attack_timing_preview.tscn`. Real `BattleUnit` nodes and the painted Firing Square backdrop. Three 2-up comparisons at original battlefield scale: **left = old uniform clip**, **right = D405 held key poses** using exact same C3 SpriteFrames atlas. PAUSE / 0.5× / STEP / RESTART controls, stage fits 952×596 and 1280×720. This compares sprite playback; it is not a full F5 attack-damage simulation.
 - `tests/unit/test_d405_c3_attack_pose_timing.gd`: six distinct source cells reachable per role; positive hold durations total exactly six nominal frames; live actual BattleUnit samples correct third pose; verified D404 distance-WALK and enemy v2-like timing unaffected.
 - `tests/unit/test_d405_c3_attack_timing_preview.gd`: real C3 paired actors, source texture identity, key-pose difference, pause/step/restart and narrow-window fit.
-- Require native Godot 4.7.2 import/GUT/smoke **and** verify new tests weren't silently skipped before merge.
+- [PR #72](https://github.com/zampolit73/Misdeal/pull/72) squash-merged `dae09d71b733739c58dc1347a0874380f1ed4c43` after [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42218204484), **193/193 GUT**, no missing/skipped test scripts, import and relevant scene smokes green. Actual human F6/F5 visual acceptance remains open.
 
 ## Visual acceptance and next art work
 
