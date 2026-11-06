@@ -1,5 +1,7 @@
 ## 2026-11-06 — D405: differentiated C3 attack pose holds, native comparison
 
+[PR #72 merged](https://github.com/zampolit73/Misdeal/pull/72) `dae09d71`, [native Godot CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42218204484), **193/193 GUT** and relevant scene smokes.
+
 - Only active C3 Knight/Ranger/Mage use source-image key-pose-specific ATTACK frame holds (guarded windup, bow draw, staff channel), with each 6-weight array normalized to the prior total clip duration.
 - Original D402 Knight and D401 Ranger/Mage source graphics and Mage spell color remain **byte unchanged**; no new artwork or deceptive synthetic between-frames. D404 user-accepted walking remains identical.
 - Added native F6 real six-BattleUnit paired old/eased key-pose preview at normal and half speed with frame step. GUT checks precise source frames, 6/fps duration, preserved WALK and enemy timing.
