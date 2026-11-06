@@ -1,3 +1,7 @@
+## D407 — C3 Mage dormant crystal in final DEATH pose (2026-11-06)
+
+The real `17-13-13.mp4` F6 recording exposed an active-looking purple glow at the end of Mage's collapse. New isolated `assets/pixel/units/hero_c3_d407/mage_death_final.webp.b64` is a lossless 96×96 image derived from D401 Mage DEATH row4 col5 with localized reduced glowing crystal highlights. C3 Mage DEATH frame index5 uses this standalone `ImageTexture`; all other 29 source-cels remain the exact D401 atlas (untouched lossy WebP), avoiding global re-encoding. The dead body, staff and original costume identity persist. D406 Knight, D401 Ranger, D404 walk and D405 attack are unchanged. [D407 QA](D407_MAGE_DEATH_CRYSTAL_QA.md). F6 human approval open.
+
 ## D406 — Knight sword-to-gauntlet art join (2026-11-06)
 
 Versioned active Knight source `assets/pixel/units/hero_c3_d406/knight.webp.b64` preserves the full actual D402 illustration-derived 576×480 RGBA atlas except one 96px ATTACK row2 col3: 125 native RGBA pixels at x48..63/y40..51 build a steel/brass gauntlet-to-sword-hilt bridge. The previous D402 red/gold shield, approved burgundy torn cape and remaining 29 pose tiles are pixel-identical to D402; D401 Ranger and Mage untouched. Loader falls back D406 → D402 → D401 → old-v2, with native test. This is narrow real pixel-source art retouch, **not** a repainted 75-frame pack or finished full art approval. [D406 QA](D406_C3_KNIGHT_GRIP_ART_QA.md).
