@@ -57,8 +57,10 @@ func test_d402_knight_shield_restored_in_four_mid_attack_cels_only() -> void:
 			assert_lte(removed, 5, "Sword/body/cape must not be erased on attack %d" % col)
 
 
-func test_d402_live_knight_uses_new_art_without_changing_other_hero_roles() -> void:
-	var image := _decode(NEW_KNIGHT)
+func test_d402_live_knight_retains_shield_after_d406_source_update() -> void:
+	# The D402 specific 4-cel repair stays versioned; live Knight now
+	# receives its sword-grip retouch from D406 without losing that shield.
+	var image := _decode(LIBRARY.C3_KNIGHT_D406_PATH)
 	assert_not_null(image)
 	var frames: SpriteFrames = LIBRARY.get_frames("knight")
 	assert_not_null(frames)
@@ -74,7 +76,7 @@ func test_d402_live_knight_uses_new_art_without_changing_other_hero_roles() -> v
 	if atlas_image != null:
 		atlas_image.convert(Image.FORMAT_RGBA8)
 		assert_eq(hash(atlas_image.get_data()), hash(image.get_data()),
-			"Live Knight SpriteFrames must load the D402 atlas, not D401 or old v2")
+			"Live Knight must load D406 with the D402 shield retained, not old v2")
 	for role in ["ranger", "mage"]:
 		var hero_frames: SpriteFrames = LIBRARY.get_frames(role)
 		assert_not_null(hero_frames)
