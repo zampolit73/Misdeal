@@ -49,4 +49,4 @@ func test_f6_d404_pause_restart_and_scaled_capture() -> void:
 	for hero in preview.heroes:
 		assert_false(hero.visual_moving)
 		assert_eq(hero.frame_state, "idle")
-		assert_false(hero.c3_walk_has_sample == false, "Restart primes the animation sample safely")
+		assert_true(hero.c3_walk_has_sample, "Restart primes the animation sample safely")
