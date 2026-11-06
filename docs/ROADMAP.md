@@ -1,3 +1,13 @@
+## D403 — align actual C3 battle motion with authored poses (2026-11-06)
+
+- [x] Find live F5 vs F6 foot baseline discrepancy: old v2 offsets lift Knight 8px, Ranger 6px, Mage 4px despite C3 source sole Y92.5.
+- [x] Gate removal of those offsets on the actual live C3 SpriteFrames (not role alone), leaving v2 and enemies unchanged.
+- [x] Stop extra whole-body C3 attack stretching/rotation and Mage robe tint, retain attack Fx/trace and same hit timing; older animations unchanged.
+- [x] Add native BattleUnit test for 3 hero sole shadows, 3 fallback offsets, enemy, 3 attack poses.
+- [ ] Native Godot 4.7 CI import/GUT/scene-smoke and merge.
+- [ ] User F5 real-arena Knight/Ranger/Mage visual playtest: feet, attack cadence, shield-hand and Mage staff/glow.
+- [ ] Finish 75 independently authored C3 source poses later; D403 addresses **presentation**, not sprite-art quality.
+
 ## D402 — Knight attack-shield continuity from player video (2026-11-06)
 
 - [x] Review `01-07-47.mp4`: 18.63s F6 video, 3 heroes visible, D401 swords/bows corrected, but Knight shield disappears in four attack poses; video is not F5 combat.
