@@ -1,3 +1,7 @@
+## D406 — targeted C3 Knight sword-to-gauntlet source-art retouch (2026-11-06)
+
+User accepted D405 attack staging («все ок. продолжаем дальше») following explicit D404 WALK approval. No retiming or walking changes. Source inspection exposed Knight D402 ATTACK row2 col3 sword hilt visually disconnected from the gauntlet; new versioned `assets/pixel/units/hero_c3_d406/knight.webp.b64` locally reconnects the steel/brass hilt to the wrist without changing the shield, body or torn cape. **Exactly 125 RGBA pixels changed in a 16×12 region of one 96px attack cel; all other 29 cels pixel-identical** after WebP decoding, including all approved D404 WALK. Strict library loads D406 Knight with D402/D401/v2 fallback. D401 Ranger and Mage atlas bytes unchanged; D405 attack holds, mechanics and F5 damage unaffected. Native GUT regression verifies the actual 576×480 image and live SpriteFrames. Existing D398 F6 preview exposes new Knight art in ATTACK/AUTO. [D406 QA](D406_C3_KNIGHT_GRIP_ART_QA.md). CI and F6/F5 human aesthetic review still pending; this is one verified source-art repair, not 75 repainted frames.
+
 ## D405 RELEASED — staged C3 attack key-pose holds, native F6 comparison (2026-11-06)
 
 [PR #72](https://github.com/zampolit73/Misdeal/pull/72) squash-merged `dae09d71b733739c58dc1347a0874380f1ed4c43` after [Godot 4.7.2 native CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42218204484): **193/193 GUT**, import and relevant scene smokes green.
