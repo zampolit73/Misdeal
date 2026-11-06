@@ -1,0 +1,15 @@
+# D406 — Knight C3 sword-to-gauntlet image retouch (2026-11-06)
+
+## Starting point
+
+D404 WALK movement was explicitly approved by the player. D405 ATTACK key-pose hold timing was reported «все ок» and is accepted. Neither gait nor timing, combat damage, cooldown, DS3 or the 12+XIII fate structure may change. The active C3 sources were inspected in GitHub: D402 Knight and D401 Ranger/Mage. Native attack-frame crops at 96px showed that **Knight ATTACK row 2, col 3** had a sword/hilt extending toward—but not visibly connected to—the wrist behind its shield. D402 had already restored that burgundy shield. Ranger's bow remained visible through ATTACK, and the Mage kept his staff/glow. Do not invent damage for those roles without actual evidence.
+
+## Actual source-art change
+
+New versioned `assets/pixel/units/hero_c3_d406/knight.webp.b64` (WebP alpha RGBA 576×480, six columns × five rows), based on the **real decoded D402 Knight pixel bitmap**. A localized 16×12 source-pixel gauntlet/steel/brass bridge connects Knight's sword grip to the existing metal wrist in **only ATTACK row2 col3**. It is tonal/pixel-aligned, not a new sword, shield, robe, background or synthetic generated frames. Exact native pixel comparison after WebP decode shows **125 changed RGBA pixels** inside x48–63, y40–51 of that one cel, including 19 pixels gaining meaningful visible alpha. All remaining 29 cells are RGBA pixel-identical to D402, and no other player character atlas is modified. The approved sword/shield and Knight's torn burgundy cape are retained. No aesthetic claim that every Knight/Ranger/Mage attack hand is now perfect; this is a focused, verifiable defect fix.
+
+`MisdealUnitAnimationLibrary` tries D406 Knight first, falls back to D402 Knight, then D401 Knight and finally v2. Ranger and Mage still load their original D401 sources. Existing D402 historical shield regression remains intact and now checks that the live D406 choice does not undo the older shield. New D406 native GUT verifies one changed cel, 29 byte-decoded identical cells (including all approved WALK), C3 25-frame validity, color/alpha localization, actual live C3 SpriteFrames atlas and unchanged 16fps attack. The existing D398 F6 preview title/caption now identifies D406 but displays the same current native hero atlases, no generated concept board.
+
+## Release and next
+
+Require Godot 4.7.2 native import / GUT / scene smoke before merge; inspect CI logs for silently skipped test scripts (guard added in D404). After merge the user should `git -c gc.auto=0 pull --ff-only origin main`, open F6 `res://scenes/dev/d398_c3_hero_animation_preview.tscn` and select ATTACK/AUTO (Knight sword grip), then F5 a real Knight attack. This is a local source-art retouch. **Remaining D407 work**: full six-frame hand/weapon articulation QA for Ranger/Mage and genuine anatomy/transitions/hit/death art as needed; avoid further cosmetic timing tweaks when original source graphics need real improvements. Preserve previously approved WALK and D405 attack pacing.
