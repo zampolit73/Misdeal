@@ -5,7 +5,7 @@
 - [x] New versioned D406 Knight RGBA WebP with 125 edited pixels, only ATTACK row2 col3 inside native gauntlet/hilt 16×12 box. All other 29 cels unchanged, including approved walk.
 - [x] Live C3 Knight loader prioritizes D406 with D402 fallback; Ranger/Mage and combat mechanics untouched.
 - [x] Add live atlas and pixel-scope GUT, preserve historical D402 shield regression; F6 D398 shows D406 Knight.
-- [ ] Native Godot 4.7.2 CI and merge if green.
+- [x] [PR #73 merged](https://github.com/zampolit73/Misdeal/pull/73) with [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42223188259): 195/195 real GUT, import and scene smokes.
 - [ ] User F6 Knight ATTACK/AUTO and real F5 fight inspection; further original source-artist work Ranger/Mage hand/prop animation, hit/death remains.
 
 ## D405 — attack key-pose timing, preserve approved D404 gait (2026-11-06)
