@@ -1,3 +1,10 @@
+## 2026-11-06 — D406: Knight C3 sword grip pixel-art correction
+
+- The player accepted D405 attack timing after D404 walking; preserve both.
+- New versioned `hero_c3_d406/knight.webp.b64` updates only Knight ATTACK 3 wrist/hilt join: 125 changed RGBA pixels in a small 16×12 localized region, rest of 29 sprite cells identical to D402 (including all six WALK).
+- Live Knight uses D406 first, D402 immediately available for rollback, D401/v2 remain. Ranger and Mage C3 source atlases unchanged; existing six attack key poses and total timing untouched.
+- Add native source-pixel, alpha, 25-frame, active SpriteFrames regression; update historical D402 live texture expectation and original C3 F6 preview title. No damage, party, movement, sound, DS3 or Fate Spread changes.
+
 ## 2026-11-06 — D405: differentiated C3 attack pose holds, native comparison
 
 [PR #72 merged](https://github.com/zampolit73/Misdeal/pull/72) `dae09d71`, [native Godot CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42218204484), **193/193 GUT** and relevant scene smokes.
