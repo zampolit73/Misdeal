@@ -81,10 +81,10 @@ func test_d407_only_final_mage_death_frame_is_overridden_in_real_battle_unit() -
 	for state in ["idle", "walk", "attack", "hit", "death"]:
 		var source_row: int = ["idle", "walk", "attack", "hit", "death"].find(state)
 		for i in range(mage_frames.get_frame_count(state)):
-			if state == "death" and i == 5:
+			if (state == "death" and i == 5) or (state == "hit" and i >= 1):
 				continue
 			var current: Texture2D = mage_frames.get_frame_texture(state, i)
-			assert_true(current is AtlasTexture, "All 29 untouched Mage poses keep D401 atlas references")
+			assert_true(current is AtlasTexture, "All unchanged Mage poses keep D401 atlas references")
 			if current is AtlasTexture:
 				var current_tile := current as AtlasTexture
 				assert_eq(current_tile.region.position, Vector2(i * 96, source_row * 96))

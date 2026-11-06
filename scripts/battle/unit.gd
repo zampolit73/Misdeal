@@ -1346,14 +1346,19 @@ func _play_hit_feedback(
 
 	var punch_scale := 1.16 if strong_hit else 1.10
 	var kick_distance := 7.0 if strong_hit else 4.5
-	scale = Vector2(punch_scale, punch_scale)
-	hit_kick_offset = kick_direction.normalized() * kick_distance + Vector2(0.0, -1.0)
-	art_sprite.modulate = hit_tint
+	var c3_authored_hit := ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames)
+	# D408: the new C3 HIT rows already contain full-body authored recoil.
+	# Do not magnify the entire actor or recolour the approved clothes on
+	# top of those poses. Retain only the small preexisting impact response.
+	scale = Vector2.ONE if c3_authored_hit else Vector2(punch_scale, punch_scale)
+	hit_kick_offset = kick_direction.normalized() * (kick_distance * (0.4 if c3_authored_hit else 1.0)) + Vector2(0.0, -1.0)
+	art_sprite.modulate = base_art_modulate if c3_authored_hit else hit_tint
 
 	hit_pulse_tween = create_tween()
 	hit_pulse_tween.set_parallel(true)
-	hit_pulse_tween.tween_property(self, "scale", Vector2.ONE, 0.16 if strong_hit else 0.13).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	hit_pulse_tween.tween_property(art_sprite, "modulate", base_art_modulate, 0.15)
+	if not c3_authored_hit:
+		hit_pulse_tween.tween_property(self, "scale", Vector2.ONE, 0.16 if strong_hit else 0.13).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		hit_pulse_tween.tween_property(art_sprite, "modulate", base_art_modulate, 0.15)
 	hit_pulse_tween.tween_property(self, "hit_kick_offset", Vector2.ZERO, 0.16 if strong_hit else 0.13).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 
@@ -1491,6 +1496,16 @@ func _die() -> void:
 	hit_kick_offset = Vector2.ZERO
 
 	if sprite_frames != null:
+		# D408: a lethal hit kills the hit tween before its restoration.
+		# Reset the transient hit sprite coloration/size AND any interrupted
+		# attack offset so the first hand-painted DEATH pose never jumps.
+		if ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
+			scale = Vector2.ONE
+			art_sprite.position = _art_rest_position()
+			art_sprite.rotation = 0.0
+			art_sprite.scale = base_sprite_scale
+			art_sprite.modulate = base_art_modulate
+			hit_flash_time = 0.0
 		# Frame-authored collapse replaces the static v4 shrink/tilt.
 		death_tween = create_tween()
 		death_tween.tween_interval(0.30)

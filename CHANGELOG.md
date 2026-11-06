@@ -1,3 +1,5 @@
+## 2026-11-06 D408: Restored approved bow on three Ranger HIT source poses and approved staff on two Mage HIT poses using five 96px alpha assets. Knight's sword/shield and all original atlas body art untouched. C3 HIT no longer zooms/recolours body and lethal HIT-to-DEATH reset avoids transform pop. Enemy/v2 and gameplay untouched. Added actual BattleUnit GUT and updated original frame-type regressions.
+
 ## 2026-11-06 — D407: inert Mage staff crystal in final death cel
 
 [PR #74 merged](https://github.com/zampolit73/Misdeal/pull/74), `fbe9a59e`, [native Godot CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42227335330): **197/197 GUT**, import and scene smoke green.

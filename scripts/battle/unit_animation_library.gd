@@ -29,6 +29,21 @@ const C3_KNIGHT_D402_PATH := "res://assets/pixel/units/hero_c3_d402/knight.webp.
 const C3_KNIGHT_D406_PATH := "res://assets/pixel/units/hero_c3_d406/knight.webp.b64"
 # D407: use one standalone death cel so D401 Mage lossy WebP is not re-encoded.
 const C3_MAGE_D407_DEATH_FINAL_PATH := "res://assets/pixel/units/hero_c3_d407/mage_death_final.webp.b64"
+# D408: restore APPROVED source bow/staff identity during the original HIT
+# poses, not a new procedural prop. Every override is an independent 96px
+# source-cel image; the original D401 atlas remains byte-for-byte intact.
+const C3_HIT_PROP_PATHS := {
+	"ranger": [
+		"res://assets/pixel/units/hero_c3_d408/ranger_hit_0.webp.b64",
+		"res://assets/pixel/units/hero_c3_d408/ranger_hit_1.webp.b64",
+		"res://assets/pixel/units/hero_c3_d408/ranger_hit_2.webp.b64",
+	],
+	"mage": [
+		"",
+		"res://assets/pixel/units/hero_c3_d408/mage_hit_1.webp.b64",
+		"res://assets/pixel/units/hero_c3_d408/mage_hit_2.webp.b64",
+	],
+}
 const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/"
 const DECK_EXPANSION_DIR := "res://assets/pixel/units/deck_expansion_v1/"
 const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus"]
@@ -459,6 +474,17 @@ static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = f
 	var attack_count := 6 if is_c3_pilot else (5 if role == "mage" else 6)
 	_add_row(frames, atlas, "attack", 2, attack_count, 14.0 if role == "mage" else 16.0, false, "" if is_c3_pilot else role)
 	_add_row(frames, atlas, "hit", 3, 3, 12.0, false)
+	# D408: five genuine painted HIT-cel corrections restored the bow/staff
+	# that source storyboards omitted. Keep approved Knight poses untouched.
+	if is_c3_pilot and C3_HIT_PROP_PATHS.has(role):
+		var replacement_paths: Array = C3_HIT_PROP_PATHS[role]
+		for hit_index in range(replacement_paths.size()):
+			var replacement_path: String = str(replacement_paths[hit_index])
+			if replacement_path.is_empty():
+				continue
+			var replacement: Texture2D = _load_c3_hero_cel(replacement_path)
+			if replacement != null:
+				frames.set_frame("hit", hit_index, replacement)
 	_add_row(frames, atlas, "death", 4, 6, 10.0, false)
 	# D407: the D401 C3 Mage has a bright active spell at the end of death.
 	# Replace just that cell using a separately encoded 96px RGBA image,
@@ -474,9 +500,13 @@ static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = f
 # A missing or invalid isolated D407 death cel falls back to the intact
 # D401 Mage AtlasTexture; never block the three hero roles from loading.
 static func _load_c3_mage_death_final() -> Texture2D:
-	if not FileAccess.file_exists(C3_MAGE_D407_DEATH_FINAL_PATH):
+	return _load_c3_hero_cel(C3_MAGE_D407_DEATH_FINAL_PATH)
+
+
+static func _load_c3_hero_cel(path: String) -> Texture2D:
+	if not FileAccess.file_exists(path):
 		return null
-	var encoded := FileAccess.get_file_as_string(C3_MAGE_D407_DEATH_FINAL_PATH).strip_edges()
+	var encoded := FileAccess.get_file_as_string(path).strip_edges()
 	if encoded.is_empty():
 		return null
 	var bytes := Marshalls.base64_to_raw(encoded)
@@ -484,7 +514,7 @@ static func _load_c3_mage_death_final() -> Texture2D:
 		return null
 	var image := Image.new()
 	if image.load_webp_from_buffer(bytes) != OK or image.get_size() != Vector2i(CELL_SIZE, CELL_SIZE):
-		push_warning("D407 Mage death final has invalid size or WebP data")
+		push_warning("C3 hero single-cel override has invalid size or WebP data: " + path)
 		return null
 	image.convert(Image.FORMAT_RGBA8)
 	return ImageTexture.create_from_image(image)
