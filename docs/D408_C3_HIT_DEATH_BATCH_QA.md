@@ -1,3 +1,7 @@
+## D408 release evidence (2026-11-06)
+
+[PR #75](https://github.com/zampolit73/Misdeal/pull/75) squash merged `f572cb06e7d94e7a690c6fc07b9e244acaeb2e3a` after [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42231056235): **200/200 real GUT** (new tests collected), import and scene smoke passed. Initial attempt exposed a GDScript type-inference parse error in historical D398 test, fixed and full suite rerun clean. Human F6/F5 art approval remains open.
+
 # D408 — C3 hero HIT and DEATH continuity batch (2026-11-06)
 
 ## Source and constraints
