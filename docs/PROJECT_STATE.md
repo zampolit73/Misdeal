@@ -1,3 +1,5 @@
+## D408: Ranger HIT0-2 source bow and Mage HIT1-2 source staff restored using five separate 96px lossless alpha frames; Knight already retained sword and shield. Original D401/D406 full atlases, D407 Mage final death, approved D404 walking/D405 attacks unchanged. Live C3 hit feedback now preserves source scale/colour; lethal hit-to-death resets transient sprite transforms. Enemy/v2 and combat damage unchanged. Tests: tests/unit/test_d408_c3_hit_death_continuity.gd. See docs/D408_C3_HIT_DEATH_BATCH_QA.md. Native CI and F5 aesthetic judgment pending.
+
 ## D407 RELEASED — Mage final death sprite crystal dimmed (2026-11-06)
 
 [PR #74](https://github.com/zampolit73/Misdeal/pull/74) squash-merged `fbe9a59eeba4b1d2e5f0d814b27e8a55c3ddd428` after [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42227335330): **197/197 GUT**, original GUT collector includes D407 test, clean import and native scene smoke.
