@@ -44,6 +44,35 @@ const COURT_ATLAS_DIR := "res://assets/pixel/units/court_of_the_mute_qa/"
 const D151_ROLES := ["funeral_priest", "pallbearer"]
 const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus", "threadbare_puppeteer", "bone_marionette", "drowned_ferryman", "drowned_hand", "road_sentinel", "lantern_bearer", "extinguished_guide", "oil_acolyte", "lantern_archer", "mute_magistrate", "ash_scrivener", "bone_bailiff"]
 
+# D405: authored *presentation* holds for the existing six C3 attack cels.
+# Each role totals six nominal frames so the 6/16s or 6/14s visual clip
+# remains exactly the same duration and gameplay timing is untouched.
+# Drawings are NOT generated here: only their time-on-screen is staged.
+# Knight: readable guarded anticipation; Ranger: extended bow draw;
+# Mage: channel/crest holds without an added screen-space explosion.
+const C3_ATTACK_POSE_WEIGHTS := {
+	"knight": [1.25, 1.15, 0.90, 0.80, 1.05, 0.85],
+	"ranger": [0.85, 1.05, 1.30, 1.25, 0.80, 0.75],
+	"mage": [0.80, 0.95, 1.20, 1.25, 1.10, 0.70],
+}
+
+
+# Return a real SOURCE frame index, not a generated/interpolated pose.
+# Unlike setting global fps, this preserves the full clip duration and
+# the original 25 independent C3 image cells per character.
+static func c3_attack_frame_index(role: String, elapsed_seconds: float, fps: float) -> int:
+	var weights: Array = C3_ATTACK_POSE_WEIGHTS.get(role, [])
+	if weights.size() != 6 or fps <= 0.0:
+		return maxi(0, mini(int(maxf(0.0, elapsed_seconds) * maxf(0.0, fps)), 5))
+	var position_in_frames: float = maxf(0.0, elapsed_seconds) * fps
+	var end_frame_time := 0.0
+	for i in range(weights.size()):
+		end_frame_time += float(weights[i])
+		if position_in_frames < end_frame_time:
+			return i
+	return weights.size() - 1
+
+
 static var _frames_cache: Dictionary = {}
 static var _unavailable: Dictionary = {}
 # D403: bind the C3 source identity to the actual SpriteFrames resource.
