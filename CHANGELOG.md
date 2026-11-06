@@ -1,5 +1,7 @@
 ## 2026-11-06 — D403: C3 feet meet combat floor and attack art no longer rubber-stretches
 
+[PR #70 merged](https://github.com/zampolit73/Misdeal/pull/70), `76b122c9`, [native Godot CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42199566582), **180/180 GUT**; actual F5 hero-motion aesthetic check still open.
+
 - Real source inspection found a live-F5 vs F6 mismatch: legacy -8/-6/-4 hero floor adjustments were still applied to C3 character sprites, leaving boots above their arena contact ring. Apply zero legacy offset only when actual decoded live C3 SpriteFrames is in use; preserve old-v2 and enemy placements.
 - C3 Knight/Ranger/Mage now use their existing six illustrated attack frames without additional whole-body stretch/tilt or Mage robe flash-tint. Keep very small horizontal recoil, actual Mage spell trace, hit event timing, FX, sound and old hero/enemy behavior.
 - Added GUT on real unit instances for 3-role foot baseline, v2 fallback offsets and source-identity-preserving attack poses; amended F6 caption to distinguish raw atlas vs actual F5 animation. No new sprites, combat stats, DS3, waves or XIII changes. Human F5 motion quality remains open.
