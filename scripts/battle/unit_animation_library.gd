@@ -46,6 +46,9 @@ const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thr
 
 static var _frames_cache: Dictionary = {}
 static var _unavailable: Dictionary = {}
+# D403: bind the C3 source identity to the actual SpriteFrames resource.
+# The legacy v2 fallback must retain its own authored floor offsets.
+static var _live_c3_frames: Dictionary = {}
 
 
 static func get_frames(role: String) -> SpriteFrames:
@@ -62,7 +65,10 @@ static func get_frames(role: String) -> SpriteFrames:
 	if C3_HERO_PILOT_ENABLED and C3_HERO_ROLES.has(role):
 		var c3_tex: Texture2D = _get_c3_hero_texture(role)
 		if c3_tex != null:
-			return _create_frames(role, c3_tex, true)
+			var c3_frames := _create_frames(role, c3_tex, true)
+			_live_c3_frames[role] = c3_frames
+			return c3_frames
+		_live_c3_frames.erase(role)
 
 	if COURT_STAGED_ROLES.has(role):
 		var court_path: String = "%s%s_d267_rich_qa.webp.b64" % [COURT_ATLAS_DIR, role]
@@ -287,6 +293,12 @@ static func _get_c3_hero_texture(role: String) -> Texture2D:
 			return tex
 	# Preserve original v2 fallback if ALL C3 sources fail validation.
 	return null
+
+# Only C3's live 96px artwork uses D403 pose grounding. If a C3 file
+# fails to decode, the old v2 actor still receives its old floor correction.
+static func is_live_c3_hero_frames(role: String, frames: SpriteFrames) -> bool:
+	return frames != null and C3_HERO_PILOT_ENABLED and C3_HERO_ROLES.has(role) and _live_c3_frames.get(role) == frames
+
 
 static func _valid_c3_hero_atlas(img: Image) -> bool:
 	if img == null or img.get_size() != Vector2i(CELL_SIZE * COLUMNS, CELL_SIZE * ROWS):
