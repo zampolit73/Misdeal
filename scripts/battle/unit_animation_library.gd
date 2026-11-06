@@ -27,6 +27,8 @@ const C3_KNIGHT_D402_PATH := "res://assets/pixel/units/hero_c3_d402/knight.webp.
 # D406: local gauntlet-to-sword contact correction in one ATTACK cel.
 # D402 remains the immediate rollback if D406 art fails strict validation.
 const C3_KNIGHT_D406_PATH := "res://assets/pixel/units/hero_c3_d406/knight.webp.b64"
+# D407: use one standalone death cel so D401 Mage lossy WebP is not re-encoded.
+const C3_MAGE_D407_DEATH_FINAL_PATH := "res://assets/pixel/units/hero_c3_d407/mage_death_final.webp.b64"
 const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/"
 const DECK_EXPANSION_DIR := "res://assets/pixel/units/deck_expansion_v1/"
 const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus"]
@@ -458,8 +460,34 @@ static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = f
 	_add_row(frames, atlas, "attack", 2, attack_count, 14.0 if role == "mage" else 16.0, false, "" if is_c3_pilot else role)
 	_add_row(frames, atlas, "hit", 3, 3, 12.0, false)
 	_add_row(frames, atlas, "death", 4, 6, 10.0, false)
+	# D407: the D401 C3 Mage has a bright active spell at the end of death.
+	# Replace just that cell using a separately encoded 96px RGBA image,
+	# leaving the original 29 approved atlas cells and source WebP untouched.
+	if is_c3_pilot and role == "mage":
+		var resting_crystal: Texture2D = _load_c3_mage_death_final()
+		if resting_crystal != null:
+			frames.set_frame("death", 5, resting_crystal)
 	_frames_cache[role] = frames
 	return frames
+
+
+# A missing or invalid isolated D407 death cel falls back to the intact
+# D401 Mage AtlasTexture; never block the three hero roles from loading.
+static func _load_c3_mage_death_final() -> Texture2D:
+	if not FileAccess.file_exists(C3_MAGE_D407_DEATH_FINAL_PATH):
+		return null
+	var encoded := FileAccess.get_file_as_string(C3_MAGE_D407_DEATH_FINAL_PATH).strip_edges()
+	if encoded.is_empty():
+		return null
+	var bytes := Marshalls.base64_to_raw(encoded)
+	if bytes.is_empty():
+		return null
+	var image := Image.new()
+	if image.load_webp_from_buffer(bytes) != OK or image.get_size() != Vector2i(CELL_SIZE, CELL_SIZE):
+		push_warning("D407 Mage death final has invalid size or WebP data")
+		return null
+	image.convert(Image.FORMAT_RGBA8)
+	return ImageTexture.create_from_image(image)
 
 
 static func _add_row(frames: SpriteFrames, atlas: Texture2D, name: String, row: int, count: int, fps: float, looping: bool, role: String = "") -> void:

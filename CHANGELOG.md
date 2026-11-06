@@ -1,3 +1,10 @@
+## 2026-11-06 — D407: inert Mage staff crystal in final death cel
+
+- Reviewed real 22.53s F6 video `17-13-13.mp4`: dead Mage still had bright active violet orb; Knight and Ranger weapon continuity otherwise visually present.
+- Added isolated C3 Mage final DEATH 96px lossless WebP source with subdued crystal emissive highlight; staff, corpse and alpha silhouette retained.
+- C3 Mage `SpriteFrames` overrides only DEATH index5; original 29 Mage D401 AtlasTextures unchanged (no whole-atlas lossy re-encode). Knight D406, Ranger D401, approved D404 WALK and D405 ATTACK untouched. Malformed/missing isolated art auto-falls back.
+- New targeted Mage source GUT and updated original C3 frame-region assumption. No combat/AI/DS3/Fate Spread modifications.
+
 ## 2026-11-06 — D406: Knight C3 sword grip pixel-art correction
 
 [PR #73](https://github.com/zampolit73/Misdeal/pull/73) merged `0c825fe9` following [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42223188259): **195/195 GUT**, Godot import and scenes.

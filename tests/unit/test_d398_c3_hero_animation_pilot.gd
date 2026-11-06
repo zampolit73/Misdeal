@@ -57,7 +57,16 @@ func test_live_battle_uses_d398_c3_for_heroes_and_keeps_other_roles() -> void:
 			assert_eq(frames.get_frame_count(state), COUNTS[row], role + " " + state)
 			assert_eq(frames.get_animation_loop(state), row < 2)
 			for col in range(COUNTS[row]):
-				var tile := frames.get_frame_texture(state, col) as AtlasTexture
+				var texture: Texture2D = frames.get_frame_texture(state, col)
+				assert_not_null(texture)
+				# D407: only the Mage's last death cel is a standalone
+				# source-art ImageTexture. All other 29 source cells remain
+				# the original C3 AtlasTexture regions.
+				if role == "mage" and state == "death" and col == 5:
+					assert_true(texture is ImageTexture)
+					assert_eq(texture.get_size(), Vector2(96, 96))
+					continue
+				var tile := texture as AtlasTexture
 				assert_not_null(tile)
 				if tile != null:
 					assert_eq(tile.region.position, Vector2(col * 96, row * 96))
