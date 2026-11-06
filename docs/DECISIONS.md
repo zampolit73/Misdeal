@@ -1,3 +1,7 @@
+## D404 — Actual hero C3 walk cadence may be displacement-driven, not new combat mechanics (2026-11-06)
+
+The approved C3 six-pose WALK cycle should be sampled from **travelled distance** (nominal 12 pixels/source frame) in real `BattleUnit`, avoiding foot cycling when the unit is blocked or stopped during transition hysteresis. This is visual presentation only: no changes to party movement speed, tactical orders, collision, AI, combat timing, or source art; all original/v2 and enemy walk clocks must remain unchanged. Use native pixel alpha (not hidden RGB under zero-alpha) for sprite-matte QA. Do not call improved gait timing a substitute for the remaining 25 authored frame quality/polish per character.
+
 ## D401 — C3 weapon identity must stay continuous through animation (2026-11-06)
 
 Player video exposed generated-source pose errors that previous alpha/uniqueness gates missed: the Knight's sword became a large halberd in mid-attack, and the Ranger's bow disappeared in final release. These are **not acceptable temporary costume changes**. The approved C3 Knight must retain **sword and shield** across all states, Ranger must retain **bow/quiver**, and male Mage **staff**; attack FX may separate, but character weapons do not arbitrarily mutate/vanish. D401 is a targeted artwork recovery and does not redefine combat mechanics or approve all animation frames. Keep earlier wardrobe lock: only Knight cape torn; Ranger/Mage clothes whole.
