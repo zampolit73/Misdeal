@@ -23,7 +23,7 @@ func test_f6_d404_uses_three_live_c3_battle_units_with_true_walk_frames() -> voi
 	preview._process(0.16)
 	preview._process(0.16)
 	preview._process(0.16)
-	var knight := preview.heroes[0]
+	var knight: BattleUnit = preview.heroes[0]
 	assert_eq(knight.frame_state, "walk")
 	assert_gt(knight.frame_time, 0.1, "Knight animation uses actual traveled distance")
 
