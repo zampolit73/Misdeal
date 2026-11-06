@@ -1,3 +1,7 @@
+## D408 RELEASED — three-hero C3 HIT/DEATH continuity (2026-11-06)
+
+[PR #75](https://github.com/zampolit73/Misdeal/pull/75) squash merged `f572cb06e7d94e7a690c6fc07b9e244acaeb2e3a`. [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42231056235): **200/200 real GUT**, import and scene smokes green. Five lossless 96px sourced HIT overrides restore Ranger bow (3 frames) and Mage staff (2 frames); Knight already retained weapons. C3 hit feedback now preserves original size/colour and lethal collapse resets transient transforms. Approved D404 walk, D405 attacks, D407 final Mage death crystal, all original full atlases and gameplay remain intact. Human F6 and F5 visual acceptance still open. [Full D408 QA](D408_C3_HIT_DEATH_BATCH_QA.md).
+
 ## D408: Ranger HIT0-2 source bow and Mage HIT1-2 source staff restored using five separate 96px lossless alpha frames; Knight already retained sword and shield. Original D401/D406 full atlases, D407 Mage final death, approved D404 walking/D405 attacks unchanged. Live C3 hit feedback now preserves source scale/colour; lethal hit-to-death resets transient sprite transforms. Enemy/v2 and combat damage unchanged. Tests: tests/unit/test_d408_c3_hit_death_continuity.gd. See docs/D408_C3_HIT_DEATH_BATCH_QA.md. Native CI and F5 aesthetic judgment pending.
 
 ## D407 RELEASED — Mage final death sprite crystal dimmed (2026-11-06)
