@@ -1,3 +1,10 @@
+## 2026-11-06 — D404: C3 distance-paced WALK motion and live stride preview
+
+- Measured current approved C3 hero alpha at 75 source cells: 18 WALK soles remain near Y87–90. Raw saturated bitmap RGB under zero alpha is not painted opaque matte; no destructive image cleanup was performed.
+- Only true live C3 Knight/Ranger/Mage now advance six WALK cels according to real displacement (~12px/frame, capped at 18px per tick), freezing feet when stationary during the existing 0.18s transition. Preserves gameplay physics, attack/damage, idle/hit/death clocks and v2/enemy animation timing.
+- Added F6 real BattleUnit Firing Square motion QA at three speeds with pause/restart and responsive window; new native GUT for walk distance/stop/teleport, fallback enemy/attack, six-pose sole contact and F6 behavior.
+- No new WebP animation poses or artistic acceptance claim. Genuine 75-frame repaint and prop/hand consistency still outstanding.
+
 ## 2026-11-06 — D403: C3 feet meet combat floor and attack art no longer rubber-stretches
 
 [PR #70 merged](https://github.com/zampolit73/Misdeal/pull/70), `76b122c9`, [native Godot CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42199566582), **180/180 GUT**; actual F5 hero-motion aesthetic check still open.

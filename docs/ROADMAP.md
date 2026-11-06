@@ -1,3 +1,13 @@
+## D404 — C3 actual distance-driven walk footfalls (2026-11-06)
+
+- [x] Inspect live D402 Knight, D401 Ranger/Mage native 75-pose image data; verify 18 WALK alpha soles at Y87–90, no indiscriminate removal of transparent RGB matte.
+- [x] Drive ONLY active C3 hero WALK cels by travelled distance (~12px/frame), cap displacement spikes; no extra footsteps while blocked or standing during the existing 0.18s hysteresis.
+- [x] Preserve old v2 fallback/enemy clock, attack/hit/death timings, physics and author-approved style untouched.
+- [x] Add genuine 3× BattleUnit F6 motion preview at 72/84/108px/s and GUT for gait, restart, teleport cap, attack and enemy regression.
+- [ ] GitHub native Godot 4.7 CI; squash merge after green.
+- [ ] Local F6 motion + F5 combat subjective review.
+- [ ] True high-quality independent 75-pose C3 source repaint, shield-hand articulation, Ranger bow release, Mage staff/glow and death anatomy. D404 is motion cadence, **not** a fully repainted art batch.
+
 ## D403 — align actual C3 battle motion with authored poses (2026-11-06)
 
 - [x] Find live F5 vs F6 foot baseline discrepancy: old v2 offsets lift Knight 8px, Ranger 6px, Mage 4px despite C3 source sole Y92.5.

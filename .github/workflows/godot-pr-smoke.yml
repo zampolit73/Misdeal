@@ -91,6 +91,15 @@ jobs:
           import os, re
           raw = (Path(os.environ["RUNNER_TEMP"]) / "misdeal-smart-qa/gut-unit.log").read_text(errors="replace")
           text = re.sub(r"\x1b\[[0-9;]*m", "", raw)
+          # GUT can report "All tests passed" while silently ignoring a
+          # newly added test file with a GDScript parse error. Treat failed
+          # test collection as a hard CI failure, not a reduced test count.
+          collection_failure = re.search(
+              r'SCRIPT ERROR: Parse Error|ERROR: Failed to load script "res://tests/|'
+              r'Ignoring script res://tests/unit/test_[^ ]+ because it does not extend GutTest',
+              text,
+          )
+          assert collection_failure is None, f"GUT failed to collect a test: {collection_failure.group(0) if collection_failure else ''}"
           runs = re.search(r"(?m)^Tests\s+(\d+)\s*$", text)
           passes = re.search(r"(?m)^Passing Tests\s+(\d+)\s*$", text)
           assert runs and passes, "GUT test summary missing: likely failed to discover tests"
