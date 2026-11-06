@@ -1,3 +1,7 @@
+## D404 PLAYER ACCEPTED — C3 walking motion (2026-11-06)
+
+Player explicitly confirmed «по ходьбе все ок» after the D404 release. Treat the six-frame distance-paced C3 WALK / stop / reversal presentation as **accepted**; do not rework its cadence, source art or foot-placement gratuitously. This feedback is about **walking**, not an approval of Knight/Ranger/Mage attack, staff glows or death, nor proof of full F5 game-loop acceptance. **Next D405**: attack and character-prop articulation/motion art, starting with Knight sword-and-shield, then Ranger bow and Mage staff; keep the C3 silhouettes and costume integrity. Existing D401/D402 rollback remains.
+
 ## D404 RELEASED — C3 WALK footfalls follow actual travel (2026-11-06)
 
 [PR #71](https://github.com/zampolit73/Misdeal/pull/71) squash-merged `36583e0637bda5f31bfa4eb1106d67acc071f5e7` after [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42202540394): **186/186 GUT** tests, clean import, native scene smokes. In the previous CI attempt a new GUT test was silently skipped due GDScript type inference; D404 also hardens the PR gate against collector parse errors and verifies the test is now included.
