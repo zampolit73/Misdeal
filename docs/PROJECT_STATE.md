@@ -1,4 +1,6 @@
-## D407 — Mage final death sprite crystal dimmed (2026-11-06)
+## D407 RELEASED — Mage final death sprite crystal dimmed (2026-11-06)
+
+[PR #74](https://github.com/zampolit73/Misdeal/pull/74) squash-merged `fbe9a59eeba4b1d2e5f0d814b27e8a55c3ddd428` after [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42227335330): **197/197 GUT**, original GUT collector includes D407 test, clean import and native scene smoke.
 
 Player's native `17-13-13.mp4` F6 capture (22.53s, five animation states) shows acceptable weapon continuity in Knight/Ranger/Mage attack, but the **dead Mage's staff crystal still shines as if casting** in DEATH col5. D407 adds ONE lossless 96px source-art override `hero_c3_d407/mage_death_final.webp.b64`, darkening the crystal emission but keeping body, staff, costume and alpha silhouette. C3 `SpriteFrames` uses this only for Mage DEATH 5; the 29 other Mage frames still reference the **untouched D401 lossy 576×480 source** (whole-atlas re-encode would damage neighboring pixels). D406 Knight, D401 Ranger, approved D404 WALK and D405 ATTACK unchanged. New actual BattleUnit + scoped pixel GUT test; `test_d398_c3_hero_animation_pilot.gd` updated to allow single override. [D407 QA](D407_MAGE_DEATH_CRYSTAL_QA.md). CI and human visual approval remain separate. No claim of 75 new hand-painted images.
 
