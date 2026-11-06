@@ -4,7 +4,7 @@
 - [x] Darken only C3 Mage DEATH final 96px crystal material, leave its alpha, staff, robe and entire 29-cel D401 Mage source unchanged.
 - [x] Load one image override in C3 Mage SpriteFrames with fallback and no change to Knight D406, Ranger D401, accepted D404 walk or D405 attack pace.
 - [x] Add scoped pixel/brightness and real BattleUnit GUT, amend historical type assumption on one Mage DEATH cel.
-- [ ] Native Godot CI and PR squash merge.
+- [x] [PR #74 merged](https://github.com/zampolit73/Misdeal/pull/74) after [Godot CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42227335330): **197/197 real GUT**, import and scene smokes.
 - [ ] Local F6 DEATH Mage visual approval, then continue actual source-art review of hit/death/hand continuity where evidence warrants.
 
 ## D406 — focused Knight ATTACK grip source correction (2026-11-06)
