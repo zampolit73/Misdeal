@@ -5,7 +5,7 @@
 - [x] Keep exactly 6/fps total visual attack duration, existing instant damage/attack cooldown/FX/one-shots, original enemy/legacy-v2 animation and all other state timing.
 - [x] Add native real BattleUnit F6 two-up uniform-vs-staged comparison for all three heroes with pause/slow/step/restart and small viewport fit.
 - [x] Native GUT for exact six source cels, total duration, live texture mapping, accepted gait and preview behavior.
-- [ ] Green Godot 4.7.2 CI and merge.
+- [x] [PR #72 merged](https://github.com/zampolit73/Misdeal/pull/72) after [Godot native CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42218204484): 193/193 GUT, import/scene smokes.
 - [ ] Player native F6 attack visual and real F5 battle aesthetic acceptance; genuine hand/weapon/staff source-pose retouch still open.
 
 ## D404 walking acceptance and D405 next gate (2026-11-06)
