@@ -1,3 +1,9 @@
+## D404 walking acceptance and D405 next gate (2026-11-06)
+
+- [x] Player directly accepted D404 character walking («по ходьбе все ок»). Freeze WALK cadence/stop/reversal behavior; no unnecessary redrawing.
+- [ ] D405: inspect C3 Knight sword+shield attack continuity, Ranger draw/release and Mage staff/glow through **real** six-frame attack sequences; prioritize gameplay-scale quality over procedural re-colors.
+- [ ] Ensure animated attacks/deaths are artistically coherent at 1× without altering damage, weapons, DS3 or waves. Do not claim unfinished 75-cel original repaint complete.
+
 ## D404 — C3 actual distance-driven walk footfalls (2026-11-06)
 
 - [x] Inspect live D402 Knight, D401 Ranger/Mage native 75-pose image data; verify 18 WALK alpha soles at Y87–90, no indiscriminate removal of transparent RGB matte.
