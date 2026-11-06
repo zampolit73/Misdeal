@@ -4,7 +4,7 @@
 - [x] Gate removal of those offsets on the actual live C3 SpriteFrames (not role alone), leaving v2 and enemies unchanged.
 - [x] Stop extra whole-body C3 attack stretching/rotation and Mage robe tint, retain attack Fx/trace and same hit timing; older animations unchanged.
 - [x] Add native BattleUnit test for 3 hero sole shadows, 3 fallback offsets, enemy, 3 attack poses.
-- [ ] Native Godot 4.7 CI import/GUT/scene-smoke and merge.
+- [x] [PR #70 merged](https://github.com/zampolit73/Misdeal/pull/70); [Godot 4.7.2 native CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/42199566582): 180/180 GUT, import and scene smoke green.
 - [ ] User F5 real-arena Knight/Ranger/Mage visual playtest: feet, attack cadence, shield-hand and Mage staff/glow.
 - [ ] Finish 75 independently authored C3 source poses later; D403 addresses **presentation**, not sprite-art quality.
 
