@@ -1,3 +1,7 @@
+## D408 — preserve authored C3 HIT silhouettes and props via isolated cel edits (2026-11-06)
+
+Knight, Ranger and Mage HIT/DEATH must read as distinct painted 96px source poses rather than whole-unit scaling/recolor feedback. Preserve existing C3 576×480 lossy original atlases byte-for-byte and introduce isolated 96px lossless source cel overrides for true weapon/grip corrections (with image validation/fallback); never re-encode full source to fix a single missing prop. On lethal C3 hits, clear transient hit scale/color/offset before authored DEATH0. Freeze user-accepted D404 WALK and D405 ATTACK, preserve enemy/v2 behavior and actual combat hit timing. [D408 QA](D408_C3_HIT_DEATH_BATCH_QA.md).
+
 ## D404 — Actual hero C3 walk cadence may be displacement-driven, not new combat mechanics (2026-11-06)
 
 The approved C3 six-pose WALK cycle should be sampled from **travelled distance** (nominal 12 pixels/source frame) in real `BattleUnit`, avoiding foot cycling when the unit is blocked or stopped during transition hysteresis. This is visual presentation only: no changes to party movement speed, tactical orders, collision, AI, combat timing, or source art; all original/v2 and enemy walk clocks must remain unchanged. Use native pixel alpha (not hidden RGB under zero-alpha) for sprite-matte QA. Do not call improved gait timing a substitute for the remaining 25 authored frame quality/polish per character.
