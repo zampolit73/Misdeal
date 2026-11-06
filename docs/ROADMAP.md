@@ -1,3 +1,5 @@
+## D408: [x] all three HIT/DEATH source sequences audited; [x] 3 Ranger bow + 2 Mage staff HIT frames restored as actual 96px source images; [x] C3 HIT/death transitions no longer magnify/recolour sprites; [x] GUT for live frames and old-enemy behavior; [ ] Godot native CI and merge; [ ] single F6 HIT/DEATH and F5 battle QA.
+
 ## D407 — death-state light consistency based on native 17-13-13.mp4 (2026-11-06)
 
 - [x] Inspect user's full 22.53s real F6 recording; identify dormant Mage corpse with anomalously bright live spell glow at staff tip.
