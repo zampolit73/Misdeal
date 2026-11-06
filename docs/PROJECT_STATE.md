@@ -1,4 +1,6 @@
-## D405 — staged C3 attack key-pose holds, native F6 comparison (2026-11-06)
+## D405 RELEASED — staged C3 attack key-pose holds, native F6 comparison (2026-11-06)
+
+[PR #72](https://github.com/zampolit73/Misdeal/pull/72) squash-merged `dae09d71b733739c58dc1347a0874380f1ed4c43` after [Godot 4.7.2 native CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42218204484): **193/193 GUT**, import and relevant scene smokes green.
 
 D404 C3 walking/stop/reversal is **accepted by player** and untouched. D405 maps live Knight/Ranger/Mage ATTACK elapsed time to their six existing source cels using role-authored positive duration weights summing to 6. Guarded Knight anticipation, Ranger drawn bow and Mage channel/crest gain different readable onscreen holds, but source image bytes, original 6/16s or 6/14s clip duration, instant damage/attack cooldown, attack traces and all non-C3 playback remain unchanged. The comparison scene `res://scenes/dev/d405_c3_attack_timing_preview.tscn` uses six **actual BattleUnit** nodes on Firing Square and exact same active SpriteFrames on both sides (uniform LEFT vs D405 RIGHT) with pause/0.5×/step/reset at 1280 and 952px. Native GUT checks six reachable real attack cels per role, role-specific timing, D404 WALK intact, old enemy timing and F6 controls. **This is motion-pacing polish, not newly painted 18/75 source poses or subjective F5 attack signoff.** [D405 QA](D405_C3_ATTACK_KEYPOSE_QA.md). CI and actual F5 combat/art review pending.
 
