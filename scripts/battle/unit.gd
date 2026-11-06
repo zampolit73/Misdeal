@@ -1045,6 +1045,13 @@ func _update_frame_animation(delta: float) -> void:
 		frame_time += delta
 	var count: int = sprite_frames.get_frame_count(frame_state)
 	var index: int = int(frame_time * sprite_frames.get_animation_speed(frame_state))
+	# D405: source-art key poses get readable role-specific holds, not
+	# a second tween, frame duplication or a change in attack cadence.
+	# Only the existing live C3 ATTACK plays through this visual mapping.
+	if frame_state == "attack" and ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
+		index = ANIMATION_LIBRARY.c3_attack_frame_index(
+			visual_role, frame_time, sprite_frames.get_animation_speed("attack")
+		)
 	if sprite_frames.get_animation_loop(frame_state):
 		index = index % count
 	else:
