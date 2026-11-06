@@ -1,3 +1,5 @@
+## D408: Five standalone 96px lossless alpha source cels hero_c3_d408 (ranger_hit_0/1/2, mage_hit_1/2) retain C3 bodies and restore source-art bow/staff silhouettes. Knight D406 untouched; D401 Ranger/Mage originals untouched; D407 Mage final death remains. See docs/D408_C3_HIT_DEATH_BATCH_QA.md.
+
 ## D407 — C3 Mage dormant crystal in final DEATH pose (2026-11-06)
 
 The real `17-13-13.mp4` F6 recording exposed an active-looking purple glow at the end of Mage's collapse. New isolated `assets/pixel/units/hero_c3_d407/mage_death_final.webp.b64` is a lossless 96×96 image derived from D401 Mage DEATH row4 col5 with localized reduced glowing crystal highlights. C3 Mage DEATH frame index5 uses this standalone `ImageTexture`; all other 29 source-cels remain the exact D401 atlas (untouched lossy WebP), avoiding global re-encoding. The dead body, staff and original costume identity persist. D406 Knight, D401 Ranger, D404 walk and D405 attack are unchanged. [D407 QA](D407_MAGE_DEATH_CRYSTAL_QA.md). F6 human approval open.
