@@ -4,7 +4,7 @@
 - [x] Drive ONLY active C3 hero WALK cels by travelled distance (~12px/frame), cap displacement spikes; no extra footsteps while blocked or standing during the existing 0.18s hysteresis.
 - [x] Preserve old v2 fallback/enemy clock, attack/hit/death timings, physics and author-approved style untouched.
 - [x] Add genuine 3× BattleUnit F6 motion preview at 72/84/108px/s and GUT for gait, restart, teleport cap, attack and enemy regression.
-- [ ] GitHub native Godot 4.7 CI; squash merge after green.
+- [x] [PR #71 merged](https://github.com/zampolit73/Misdeal/pull/71), [native Godot 4.7.2 CI PASS](https://github.com/zampolit73/Misdeal/actions/runs/42202540394): 186/186 real GUT, GDScript import and scene smokes. The new test collection parse guard also passed.
 - [ ] Local F6 motion + F5 combat subjective review.
 - [ ] True high-quality independent 75-pose C3 source repaint, shield-hand articulation, Ranger bow release, Mage staff/glow and death anatomy. D404 is motion cadence, **not** a fully repainted art batch.
 
