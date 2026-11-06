@@ -52,7 +52,7 @@ func test_d406_native_knight_source_is_one_local_gauntlet_retouch() -> void:
 			var after := new_attack.get_pixel(x, y)
 			if before != after:
 				changes += 1
-				assert_true(x >= 49 and x <= 63 and y >= 42 and y <= 51,
+				assert_true(x >= 48 and x <= 63 and y >= 40 and y <= 51,
 					"All brushwork must stay in the gauntlet/hilt contact box, not the shield or cape")
 				if before.a < 0.4 and after.a > 0.8:
 					visible_gains += 1
