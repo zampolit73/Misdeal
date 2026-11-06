@@ -24,6 +24,9 @@ const C3_HERO_PILOT_DIR := "res://assets/pixel/units/hero_c3_d401/"
 # If this local attack-shield repair fails validation, try the D401 Knight
 # atlas before falling back to the much older v2 identity.
 const C3_KNIGHT_D402_PATH := "res://assets/pixel/units/hero_c3_d402/knight.webp.b64"
+# D406: local gauntlet-to-sword contact correction in one ATTACK cel.
+# D402 remains the immediate rollback if D406 art fails strict validation.
+const C3_KNIGHT_D406_PATH := "res://assets/pixel/units/hero_c3_d406/knight.webp.b64"
 const PACK2_DIR := "res://assets/pixel/units/combat_units_anim_pack2_candidates/"
 const DECK_EXPANSION_DIR := "res://assets/pixel/units/deck_expansion_v1/"
 const NEW_ENEMY_ROLES := ["bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus"]
@@ -298,6 +301,7 @@ static func _get_c3_hero_texture(role: String) -> Texture2D:
 		return null
 	var paths: Array[String] = []
 	if role == "knight":
+		paths.append(C3_KNIGHT_D406_PATH)
 		paths.append(C3_KNIGHT_D402_PATH)
 	paths.append("%s%s.webp.b64" % [C3_HERO_PILOT_DIR, role])
 	for path in paths:
