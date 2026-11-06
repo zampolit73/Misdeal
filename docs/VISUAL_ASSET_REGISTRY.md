@@ -1,3 +1,7 @@
+## D406 — Knight sword-to-gauntlet art join (2026-11-06)
+
+Versioned active Knight source `assets/pixel/units/hero_c3_d406/knight.webp.b64` preserves the full actual D402 illustration-derived 576×480 RGBA atlas except one 96px ATTACK row2 col3: 125 native RGBA pixels at x48..63/y40..51 build a steel/brass gauntlet-to-sword-hilt bridge. The previous D402 red/gold shield, approved burgundy torn cape and remaining 29 pose tiles are pixel-identical to D402; D401 Ranger and Mage untouched. Loader falls back D406 → D402 → D401 → old-v2, with native test. This is narrow real pixel-source art retouch, **not** a repainted 75-frame pack or finished full art approval. [D406 QA](D406_C3_KNIGHT_GRIP_ART_QA.md).
+
 ## D402 — Knight attack shield continuity from in-game-scale F6 video (2026-11-06)
 
 Added `hero_c3_d402/knight.webp.b64` (576×480, 6×5, 25 unique 96px illustrated frames), restoring Knight's sword-and-shield identity through all attack cels. Only attack row2 cols2–5 altered: shield mask is from D401 Knight's own WALK drawing. Ranger and Mage continue using `hero_c3_d401/`; D401 Knight is auto-backup for D402 data failure, then old v2. The Knight's torn burgundy cape remains unchanged; no other original costume changed. This is real alpha sprite editing, not an independent hand-pixel-painted 25-frame atlas. See [D402 QA](D402_C3_KNIGHT_SHIELD_QA.md).
