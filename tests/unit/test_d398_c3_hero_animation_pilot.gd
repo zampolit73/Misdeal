@@ -59,10 +59,14 @@ func test_live_battle_uses_d398_c3_for_heroes_and_keeps_other_roles() -> void:
 			for col in range(COUNTS[row]):
 				var texture: Texture2D = frames.get_frame_texture(state, col)
 				assert_not_null(texture)
-				# D407: only the Mage's last death cel is a standalone
-				# source-art ImageTexture. All other 29 source cells remain
-				# the original C3 AtlasTexture regions.
-				if role == "mage" and state == "death" and col == 5:
+				# D408: Ranger HIT 0-2 and Mage HIT 1-2 are real
+				# 96px weapon-corrected art, alongside D407 Mage DEATH 5.
+				# Original AtlasTexture regions are retained for every
+				# other accepted, unchanged C3 source cell.
+				var has_hit_override := state == "hit" and (
+					(role == "ranger") or (role == "mage" and col > 0)
+				)
+				if has_hit_override or (role == "mage" and state == "death" and col == 5):
 					assert_true(texture is ImageTexture)
 					assert_eq(texture.get_size(), Vector2(96, 96))
 					continue
