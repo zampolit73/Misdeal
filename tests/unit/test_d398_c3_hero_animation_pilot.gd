@@ -63,7 +63,7 @@ func test_live_battle_uses_d398_c3_for_heroes_and_keeps_other_roles() -> void:
 				# 96px weapon-corrected art, alongside D407 Mage DEATH 5.
 				# Original AtlasTexture regions are retained for every
 				# other accepted, unchanged C3 source cell.
-				var has_hit_override := state == "hit" and (
+				var has_hit_override: bool = state == "hit" and (
 					(role == "ranger") or (role == "mage" and col > 0)
 				)
 				if has_hit_override or (role == "mage" and state == "death" and col == 5):
