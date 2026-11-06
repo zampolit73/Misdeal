@@ -968,6 +968,11 @@ func _get_current_move_speed() -> float:
 # V2 cells have their actual boot/robe contact pixel at y=92.
 # Match the existing floor ring at +36, including role visual_scale.
 func _get_role_floor_offset() -> float:
+	# D403: v2-specific negative offsets were lifting the new C3 heroes
+	# above the combat ground shadow, unlike the grounded F6 C3 preview.
+	# Never apply this to the legacy v2 fallback or other enemy sprites.
+	if ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
+		return 0.0
 	return float(ROLE_FLOOR_OFFSETS.get(visual_role, 0.0))
 
 
@@ -1132,24 +1137,39 @@ func _play_attack_feedback(primary_target: BattleUnit) -> void:
 	var direction := global_position.direction_to(primary_target.global_position)
 	var style := _get_attack_style()
 	var rest_position := _art_rest_position()
+	var c3_motion := ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames)
 
-	match style:
-		"ranged":
-			art_sprite.position = rest_position - direction * 5.0
-			art_sprite.rotation = -direction.x * 0.055
-			art_sprite.scale = Vector2(base_sprite_scale.x * 0.96, base_sprite_scale.y * 1.04)
-			# D365: no across-arena projectile streak; existing hit response remains.
-		"magic":
-			art_sprite.position = rest_position - direction * 2.0
-			art_sprite.rotation = direction.x * 0.035
-			art_sprite.scale = base_sprite_scale * 1.12
-			art_sprite.modulate = Color(0.90, 0.72, 1.0, 1.0) if visual_role == "mage" else Color(0.60, 1.0, 0.72, 1.0)
-			var trace_color := Color(0.72, 0.44, 1.0, 0.95) if visual_role == "mage" else Color(0.50, 1.0, 0.70, 0.92)
-			_spawn_attack_trace(primary_target, trace_color, 3.4)
-		_:
-			art_sprite.position = rest_position + direction * 9.0
-			art_sprite.rotation = direction.x * 0.08
-			art_sprite.scale = Vector2(base_sprite_scale.x * 1.06, base_sprite_scale.y * 0.96)
+	if c3_motion:
+		# D403: the C3 atlas already contains its own sword swing, bow draw
+		# and full-body spell poses. Keep the feet planted and the source
+		# costume intact instead of additionally rubber-scaling/rotating it.
+		var recoil_x := 2.0 if style == "melee" else (-2.0 if style == "ranged" else -1.0)
+		art_sprite.position = rest_position + Vector2(direction.x * recoil_x, 0.0)
+		art_sprite.rotation = 0.0
+		art_sprite.scale = base_sprite_scale
+		# Preserve the existing Mage hit trace without recolouring the
+		# illustration-derived violet robe every time an attack starts.
+		if style == "magic":
+			_spawn_attack_trace(primary_target, Color(0.72, 0.44, 1.0, 0.95), 3.4)
+	else:
+		# All archived v2 heroes and enemies retain established feedback.
+		match style:
+			"ranged":
+				art_sprite.position = rest_position - direction * 5.0
+				art_sprite.rotation = -direction.x * 0.055
+				art_sprite.scale = Vector2(base_sprite_scale.x * 0.96, base_sprite_scale.y * 1.04)
+				# D365: no across-arena projectile streak; existing hit response remains.
+			"magic":
+				art_sprite.position = rest_position - direction * 2.0
+				art_sprite.rotation = direction.x * 0.035
+				art_sprite.scale = base_sprite_scale * 1.12
+				art_sprite.modulate = Color(0.90, 0.72, 1.0, 1.0) if visual_role == "mage" else Color(0.60, 1.0, 0.72, 1.0)
+				var trace_color := Color(0.72, 0.44, 1.0, 0.95) if visual_role == "mage" else Color(0.50, 1.0, 0.70, 0.92)
+				_spawn_attack_trace(primary_target, trace_color, 3.4)
+			_:
+				art_sprite.position = rest_position + direction * 9.0
+				art_sprite.rotation = direction.x * 0.08
+				art_sprite.scale = Vector2(base_sprite_scale.x * 1.06, base_sprite_scale.y * 0.96)
 
 	# Role-specific contact flashes for static Pack-2 undead. Called only
 	# when an attack actually happens; no change to instant damage timing.
