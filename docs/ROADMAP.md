@@ -3,7 +3,8 @@
 - [x] Native 1280×720 D398/D404 and production Battle captures; source sprites audited; preserve D409 and accepted D404/D405 timing.
 - [x] Reproduce and fix one-frame wrong-facing target acquisition and stale C3 rim pose; four real BattleUnit regression tests.
 - [x] Local 206/206 GUT; 8/8 real solo/trio × normal/left launcher/Battle smoke; dedicated F6 scene and repeatable framebuffer capture.
-- [ ] PR CI/review and player F6/F5 sustained Knight posture/perspective, Ranger/Mage motion/props and Reward→Table acceptance. No source redraw or artistic PASS claimed. [D410 QA](D410_C3_COMBAT_ANIMATION_QA.md).
+- [x] [PR #78](https://github.com/zampolit73/Misdeal/pull/78) opened; [native Godot CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42508837142): 206/206, D410 8 fixtures, scene smokes and GPU captures; full RELEASE matrix skipped.
+- [ ] PR review and player F6/F5 sustained Knight posture/perspective, Ranger/Mage motion/props and Reward→Table acceptance. No source redraw or artistic PASS claimed. [D410 QA](D410_C3_COMBAT_ANIMATION_QA.md).
 
 ## D409 — fix Knight C3 forward-hunched WALK artwork (2026-11-08)
 

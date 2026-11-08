@@ -1,6 +1,6 @@
 # D410 — C3 real-combat facing and silhouette continuity
 
-Status: implemented on `fix/d410-c3-combat-animation-final-qa`; player artistic acceptance remains OPEN. Implements [issue #77](https://github.com/zampolit73/Misdeal/issues/77). Native local Godot **4.7.2.stable.official.ed1daf0bf**, NVIDIA OpenGL renderer, 1280×720. CI link is recorded below when verified.
+Status: [PR #78](https://github.com/zampolit73/Misdeal/pull/78) OPEN on `fix/d410-c3-combat-animation-final-qa`; player artistic acceptance remains OPEN. Implements [issue #77](https://github.com/zampolit73/Misdeal/issues/77). Native local Godot **4.7.2.stable.official.ed1daf0bf**, NVIDIA OpenGL renderer, 1280×720. [Godot PR CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42508837142), tested code `a7cd830b`: **206/206 GUT**, 44 scripts, 46,487 assertions; eight D410 fixtures and relevant scene smokes passed, GPU screenshots uploaded. Full authored RELEASE matrix was skipped.
 
 ## Evidence and scope
 
@@ -33,9 +33,9 @@ Rollback: revert this PR's `unit.gd` additions. Source atlases, D409 poses and t
 - New regressions before fix: **3 failing / 4 tests**; after fix: **4/4, 88 assertions**.
 - Full local GUT: **206/206, 44 scripts, 46,487 assertions**, no skipped parse-error test. Existing 19 warnings retained.
 - Native new scene smoke: **8/8 real launcher/Battle fixtures PASS**, all three solo roles + trio, both sides. Real D398/D404 galleries and Bone Patrol were rendered by GPU.
-- Clean tracked snapshot import: exit 0, **no GDScript parse/collection errors**. Windows logs still contain pre-existing root certificate-store failure and failed import of `assets/concepts/approved_battle_direction.jpg` (also present in baseline). These are reported separately; no claim of a completely warning-free import. The player's existing reopened local obsolete D390 scene and Bone Shepherd dev-smoke diagnostics were preserved and excluded from the clean tracked snapshot.
+- Clean tracked snapshot import: exit 0, **no GDScript parse/collection errors**. Windows logs still contain pre-existing root certificate-store failure and failed import of `assets/concepts/approved_battle_direction.jpg` (also present in baseline). The same JPEG error is present in the successful Linux CI import log. These are reported separately; no claim of a completely warning-free import. The player's existing reopened local obsolete D390 scene and Bone Shepherd dev-smoke diagnostics were preserved and excluded from the clean tracked snapshot.
 - D404 12px/pose gait and stop hold, six distinct Knight WALK cels, D405 attack weights/instant damage, D406–D408 art/props, old enemy/v2 behavior are covered by the passing existing suite. No sprites or combat resources were edited.
-- Native D291 battle and QA-hub smoke: **PASS** (`D291_BATTLE_DS3_NATIVE_PASS`, `OPT4_QA_HUB_PASS`). PR CI: pending verification.
+- Native D291 battle and QA-hub smoke: **PASS** (`D291_BATTLE_DS3_NATIVE_PASS`, `OPT4_QA_HUB_PASS`). [PR CI](https://github.com/zampolit73/Misdeal/actions/runs/42508837142): **SUCCESS**, verified log `GUT_VERIFIED_PASS: 206/206 real tests`, D410 8-fixture marker, all relevant native smokes and GPU captures.
 
 ## One player review
 

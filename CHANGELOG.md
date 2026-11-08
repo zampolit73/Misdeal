@@ -1,8 +1,9 @@
-## 2026-11-08 — D410: C3 real-combat facing and pose continuity (PR pending)
+## 2026-11-08 — D410: C3 real-combat facing and pose continuity (PR #78 open)
 
 - C3 heroes face a newly acquired opponent before that frame's movement/instant attack; eliminate one-frame backwards swings on retarget/rear entry.
 - Synchronize C3 rim texture/mirror and terminal pose transforms immediately, including externally triggered HIT/DEATH. No sprite, gameplay, D404 gait or D405 attack timing edits.
 - Add real Battle F6 launcher for each solo hero/trio and left-flank fixture, native capture evidence, 4 regressions and 8-case launcher smoke in PR CI. Local Godot 4.7.2: **206/206 GUT**. [D410 QA](docs/D410_C3_COMBAT_ANIMATION_QA.md); sustained posture/perspective still needs player visual acceptance.
+- [PR #78](https://github.com/zampolit73/Misdeal/pull/78), [native CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42508837142): 206/206 GUT, eight real D410 fixtures, relevant smokes and GPU captures. Full RELEASE matrix skipped; main not changed.
 
 ## 2026-11-08 — D409 RELEASED: correct Knight C3 walk body lean while keeping feet planted
 
