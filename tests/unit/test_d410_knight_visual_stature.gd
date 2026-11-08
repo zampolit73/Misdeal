@@ -47,13 +47,13 @@ func test_knight_has_balanced_live_c3_stature_and_original_five_states() -> void
 		for state in ["idle", "walk", "attack", "hit", "death"]:
 			assert_gt(hero.sprite_frames.get_frame_count(state), 0)
 			assert_not_null(hero.sprite_frames.get_frame_texture(state, 0))
-	assert_almost_eq(knight.base_sprite_scale.x, 1.28 * 1.25, 0.001)
+	assert_almost_eq(knight.base_sprite_scale.x, 1.28 * 1.05, 0.001)
 	assert_almost_eq(ranger.base_sprite_scale.x, 1.28, 0.001)
-	assert_almost_eq(mage.base_sprite_scale.x, 1.28 * 1.25, 0.001)
+	assert_almost_eq(mage.base_sprite_scale.x, 1.28, 0.001)
 	# D411: Knight and Mage share the same scale; broad armor/shield, not
 	# artificial giant height, carry Knight\'s heavier silhouette.
-	assert_almost_eq(knight.base_sprite_scale.x, mage.base_sprite_scale.x, 0.001)
-	assert_gt(knight.base_sprite_scale.x, ranger.base_sprite_scale.x * 1.20)
+	assert_almost_eq(mage.base_sprite_scale.x, ranger.base_sprite_scale.x, 0.001)
+	assert_almost_eq(knight.base_sprite_scale.x, ranger.base_sprite_scale.x * 1.05, 0.001)
 	var knight_height := _visible_idle_height(knight)
 	var mage_height := _visible_idle_height(mage)
 	assert_gt(knight_height, mage_height * 0.90,

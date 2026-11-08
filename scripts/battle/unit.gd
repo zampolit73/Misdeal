@@ -47,12 +47,11 @@ const HERO_DISPLAY_SCALE := 1.28
 # Art-only normalization of the three player silhouettes against Ranger.
 # These factors never affect hitboxes, movement or enemy scale.
 const HERO_ROLE_VISUAL_SCALES := {
-	# D411: user F5 review found D410 Knight (1.38) oversized. Keep his
-	# armor broad and legible at Mage-scale (1.25), without giant proportions.
-	# This changes only player art/rim, never gameplay, physics or C3 frames.
-	"knight": 1.25,
+	# D412: Mage/Ranger equal body scale; Knight only five percent larger.
+	# Only art/rim, never physics, damage or animation cadence.
+	"knight": 1.05,
 	"ranger": 1.00,
-	"mage": 1.25,
+	"mage": 1.00,
 }
 const ENEMY_DISPLAY_SCALE := 1.25
 const BOSS_DISPLAY_SCALE := 1.24

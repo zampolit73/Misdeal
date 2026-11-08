@@ -1,3 +1,9 @@
+## D412 — hero animation batch (2026-11-09)
+
+- [x] Live Mage/Ranger equal art scale; Knight +5%, preserved mechanics/grounding.
+- [x] Three newly generated full 25-pose sheets, packed 576x480, 75 unique padded cells, native F6 five states/both directions, GUT205/205.
+- [ ] Artistic/native full-motion acceptance and production registration of new pack; QA candidates only. See D412_THREE_HERO_PACK_QA.md.
+
 ## D411 — Moderate oversized Knight after real F5 feedback (2026-11-09)
 
 - [x] Accept player's F5 «МОГИЛЬНЫЙ ПЕРЕКРЁСТОК» rejection of D410 1.38 giant Knight scale.

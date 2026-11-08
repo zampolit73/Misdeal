@@ -1,3 +1,8 @@
+## 2026-11-09 — D412 hero animation candidates and relative size
+
+- Live Mage/Ranger art factors1.00, Knight1.05; no gameplay/timing changes.
+- New full generated 75-pose QA pack and native F6 review; original runtime art retained until candidate visual QA. GUT205/205. See docs/D412_THREE_HERO_PACK_QA.md.
+
 ## 2026-11-09 — D411 RELEASED: correct oversized Knight in real F5 combat
 
 - Respond to player's native «МОГИЛЬНЫЙ ПЕРЕКРЁСТОК» screenshot: D410 Knight was too large; tune player Knight-only art multiplier `1.38 → 1.25` (effective `1.7664 → 1.60`, ~9.4% smaller), keeping Mage 1.60 and Ranger 1.28.

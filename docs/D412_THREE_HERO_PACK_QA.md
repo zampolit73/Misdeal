@@ -1,0 +1,23 @@
+# D412 — three complete hero animation candidates
+
+Player request: Ranger quality reference; Mage same body height as Ranger, Knight slightly taller; complete animations for all three without repeated per-state approvals.
+
+## Delivered and limits
+
+Three **new image-generated** sheets, 25 distinct source poses each (idle4/walk6/attack6/hit3/death6), plus 5 empty cells each. Sources, native packed PNG and lossless WebP/Base64 stored in `assets/pixel/units/hero_c3_d412/`. These are generated pose artwork, **not 75 independently hand-pixel-painted cels**. First Mage generation contained a sword and was rejected. Final Mage uses only staff. The old runtime art is preserved; new pack is staged QA-only until full motion/prop/fidelity review. Do not call this production registration or final artistic acceptance.
+
+Built-in imagegen used with gameplay screenshot as reference. Prompt set: six equal columns/five rows, transparent RGBA, upright right-facing front-three-quarter human, exact 4/6/6/3/6 distinct motion sequence, retained weapons, safe margins, no UI/background; Knight worn steel/sword/burgundy shield/torn cape; Ranger intact olive hood/bow/quiver; male Mage intact violet robe/silver beard/staff, no sword/shield, dormant final crystal. Generated source files preserved unchanged. Repacking does nearest filtering, low-alpha haze removal and largest connected character component; this can lose detached projectile/spark pixels and requires visual QA of thin props. It does not invent or repeat poses. Lossless format preserves packed pixel data.
+
+`scripts/dev/d412_pack_hero_sources.gd` reproduces the packed outputs. Every source pose is independently packed to 96px, standing baseline90, 2px minimum padding. A wide/deep pose may be fitted smaller; investigate visible scale pumping before live integration.
+
+## Runtime size and tests
+
+Live role factors: Ranger1.00, Mage1.00, Knight1.05. Stats, collision, AI, accepted D404 distance sampling and D405 attack holds unchanged. Original D410/D411 stature test updated to the player's new size contract, preserving mechanics/grounding assertions.
+
+Local Godot4.7.2: **205/205 GUT**, 45 collected scripts, 46,939 assertions. New test decodes all three final atlases: 75 unique nonempty poses, 15 empty cells, padded bounds. Native GPU1280x720 F6 captures performed for all five states; no GDScript errors. Windows certificate-store diagnostic persists. Artistic judgment is separate from these structural tests.
+
+## Review
+
+F6 `res://scenes/dev/d412_three_hero_animation_preview.tscn`: right=new pack, left=archive v2; AUTO cycles five states; arrow button mirrors both directions. Inspect exact native scale, stance, genuine stride, grips, intact Mage/Ranger clothes, final corpses and scale changes. [Native walk capture](qa/d412/native_walk.png).
+
+Remaining: refine any pose/fidelity problems found in complete-pack motion review, then register complete accepted pack in production with real BattleUnit motion and Battle→Reward→Table checks. Existing live sprites were deliberately not silently replaced with technically passing but unapproved generated pose sheets.

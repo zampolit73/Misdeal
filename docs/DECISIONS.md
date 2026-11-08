@@ -1,3 +1,7 @@
+## D412 — player-locked relative hero size (2026-11-09)
+
+Player screenshot feedback: Ranger is the quality reference; Mage and Ranger should have the same body height, Knight only slightly taller. Supersedes D410/D411 relative size targets. Keep wardrobes, body-foot contact, equipment and accepted combat timing. New full animation production is one batch, not per-state micro-approvals.
+
 ## D411 — Armor mass over giant height for Knight (2026-11-09)
 
 **New F5 native screenshot overrides the unapproved D410 visual factor.** The user's view of «МОГИЛЬНЫЙ ПЕРЕКРЁСТОК» shows player Knight at `1.38` too large. Reduce to `1.25`, matching Mage's visual factor; Knight should read as heavier through shield/plate/cape silhouette rather than being a giant. Ranger stays `1.00`, Mage `1.25`. Move Knight HP bar down for his reduced height without changing actual HP, hitbox, physical unit root or grounded foot position. Keep all approved C3 source character art and animation pacing. D410 visual height was **rejected**, D411 new look still awaits player F5 acceptance. [QA](D411_KNIGHT_BALANCED_STATURE_QA.md).
