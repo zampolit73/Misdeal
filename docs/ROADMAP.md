@@ -4,7 +4,7 @@
 - [x] Create six real 96px lossless source walk-cel corrections, gently move shoulders back with identical soles/boots from rows67–95 and original cape/shield/sword source identity.
 - [x] Use only live C3 Knight WALK overrides with per-cel original D406 fallback; D404 12px-per-frame gait/stopping, other roles, attack states and combat mechanics remain unchanged.
 - [x] Add actual C3 texture and BattleUnit GUT; native D398 F6 WALK preview updated.
-- [ ] Godot 4.7.2 CI green and PR squash merge.
+- [x] [PR #76 merged](https://github.com/zampolit73/Misdeal/pull/76) after [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42464688752): 202/202 GUT, import and scene smokes.
 - [ ] User native F6 WALK and F5 actual Knight combat posture acceptance; if he still looks back-turned, artwork perspective retouch (not global sprite offsets).
 
 ## D408 released — 2026-11-06
