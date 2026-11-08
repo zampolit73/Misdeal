@@ -595,6 +595,11 @@ func _process(delta: float) -> void:
 	if should_refresh_target:
 		target = _find_preferred_enemy()
 		target_refresh_cooldown = 0.35
+		# D410: C3 may acquire an enemy behind it (first frame, a fallen
+		# target, or a wave flank). Turn BEFORE moving/instant damage, rather
+		# than rendering one backwards stride/swing until the next _process.
+		if ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
+			_update_unit_facing()
 
 	var movement_speed := _get_current_move_speed()
 	var velocity := _get_separation_velocity()
@@ -627,6 +632,8 @@ func _process(delta: float) -> void:
 	# Do not play walking frames while pinned against the arena boundary.
 	visual_moving = position.distance_squared_to(prior_position) > 0.20
 	z_index = int(position.y)
+	if ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
+		_sync_rim_visual()
 	queue_redraw()
 
 func _process_support(delta: float) -> void:
@@ -1003,6 +1010,10 @@ func _play_frame_one_shot(name: String) -> void:
 	else:
 		var count := sprite_frames.get_frame_count(name)
 		frame_one_shot_time = float(count) / sprite_frames.get_animation_speed(name)
+	# Hits/deaths can be requested by another actor AFTER our _process.
+	# Never leave an old idle/walk silhouette behind the new C3 pose.
+	if ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
+		_sync_rim_visual()
 
 
 func _update_frame_animation(delta: float) -> void:
@@ -1087,6 +1098,8 @@ func _set_facing_left(face_left: bool) -> void:
 	# Visual-only: most actors face right at source; D151 and D230 Sentinel face left.
 	# XOR keeps combat targeting unchanged while honoring original atlas orientation.
 	art_sprite.flip_h = face_left != SOURCE_FACES_LEFT_ROLES.has(visual_role)
+	if ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
+		rim_sprite.flip_h = art_sprite.flip_h
 
 
 func _update_unit_facing() -> void:
@@ -1506,6 +1519,7 @@ func _die() -> void:
 			art_sprite.scale = base_sprite_scale
 			art_sprite.modulate = base_art_modulate
 			hit_flash_time = 0.0
+			_sync_rim_visual()
 		# Frame-authored collapse replaces the static v4 shrink/tilt.
 		death_tween = create_tween()
 		death_tween.tween_interval(0.30)

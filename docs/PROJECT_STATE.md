@@ -1,3 +1,7 @@
+## D410 — C3 same-frame combat facing and silhouette continuity (2026-11-08)
+
+On `fix/d410-c3-combat-animation-final-qa`, [PR #78 OPEN](https://github.com/zampolit73/Misdeal/pull/78), not released to main. [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42508837142): **206/206 GUT**, 44 scripts, D410 8-fixture smoke, scene smokes/GPU captures; full RELEASE matrix skipped. Native rendered D398/D404 + real Battle audit confirmed one-frame backwards target acquisition and stale rim silhouette; C3-only rendering fixes preserve every sprite byte, D409 boots/posture, D404 gait and D405 attacks. Local same 206/206 plus 8/8 actual launcher/Battle fixtures PASS. New F6 `res://scenes/dev/d410_c3_combat_playtest.tscn` offers each solo hero/trio and left-flank fixture. [QA and native before/after](D410_C3_COMBAT_ANIMATION_QA.md). Player sustained Knight posture/perspective approval remains OPEN; this is not a source-art redraw or manual F5 signoff. Next: PR review, player F6 and normal F5 combat→Reward→Table, then vertical slice; repair source perspective only if still visibly unacceptable.
+
 ## D409 RELEASED — Knight live C3 walk posture source correction (2026-11-08)
 
 [PR #76](https://github.com/zampolit73/Misdeal/pull/76) squash merged `caf2e4e6ce44c12378522218fe22a9266c5bb44d` after [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42464688752): **202/202 real GUT**, import and scene smokes green. Native F5 visual acceptance still open.

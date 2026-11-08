@@ -159,6 +159,17 @@ jobs:
             exit 1
           fi
 
+      - name: C3 real combat animation launcher smoke
+        if: steps.scope.outputs.mode != 'docs' && contains(steps.scope.outputs.tests, 'battle')
+        shell: bash
+        run: |
+          set -euo pipefail
+          log="$RUNNER_TEMP/misdeal-smart-qa/d410-combat.log"
+          timeout 60s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path . --script res://scripts/dev/d410_c3_combat_smoke.gd 2>&1 | tee "$log"
+          grep -Fq 'D410_C3_COMBAT_SMOKE_PASS: 8 real launcher/Battle fixtures' "$log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script|D410_C3_COMBAT_SMOKE_FAIL' "$log"
+
       - name: Prepare GPU for requested VISUAL/RELEASE previews
         if: steps.scope.outputs.mode == 'visual' || steps.scope.outputs.mode == 'release'
         shell: bash
