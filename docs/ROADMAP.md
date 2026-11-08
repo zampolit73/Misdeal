@@ -1,3 +1,11 @@
+## D411 — Moderate oversized Knight after real F5 feedback (2026-11-09)
+
+- [x] Accept player's F5 «МОГИЛЬНЫЙ ПЕРЕКРЁСТОК» rejection of D410 1.38 giant Knight scale.
+- [x] Use player Knight-only `1.25` visual factor and health bar y -112..-105; leave Ranger/Mage and mechanics/animated source assets untouched.
+- [x] Adjust live three-hero GUT to demand same painted height class as Mage, not dominant Knight height, while preserving floor sole and role comparisons.
+- [ ] Native Godot 4.7.x CI, then merge.
+- [ ] Player F5 review of Knight size and HP/head/feet relative to both other heroes. [QA](D411_KNIGHT_BALANCED_STATURE_QA.md).
+
 ## D410 — Restore the Knight as the largest live battle hero (2026-11-08)
 
 - [x] Inspect native F5 screenshot and actual runtime C3 BattleUnit/UnitData scale path; root cause: Knight art multiplier 0.90 vs Ranger 1.00 / Mage 1.25.
