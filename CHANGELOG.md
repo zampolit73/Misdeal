@@ -1,4 +1,6 @@
-## 2026-11-08 — D409: correct Knight C3 walk body lean while keeping feet planted
+## 2026-11-08 — D409 RELEASED: correct Knight C3 walk body lean while keeping feet planted
+
+[PR #76 merged](https://github.com/zampolit73/Misdeal/pull/76), `caf2e4e6`, [native Godot CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42464688752): **202/202 GUT** plus import and scenes.
 
 - Six individually lossless 96px WALK cels shift Knight's shoulder/head silhouette back 4–5px, fading to zero before the boot/ground region. Native original D406 atlas and all six boot contact rows y67–95 unchanged.
 - Only live C3 Knight WALK samples use new artwork; per-pose D406 fallback. Preserves accepted D404 distance-based gait and combat positioning, D405 attacks, all remaining C3 poses, Ranger and Mage.
