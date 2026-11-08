@@ -47,10 +47,10 @@ const HERO_DISPLAY_SCALE := 1.28
 # Art-only normalization of the three player silhouettes against Ranger.
 # These factors never affect hitboxes, movement or enemy scale.
 const HERO_ROLE_VISUAL_SCALES := {
-	# D410: the frontline Knight must read as the heaviest hero in real F5
-	# combat. The previous 0.90 factor made his approved C3 art tiny next
-	# to Ranger 1.00 and Mage 1.25. This scales only the sprite and its rim.
-	"knight": 1.38,
+	# D411: user F5 review found D410 Knight (1.38) oversized. Keep his
+	# armor broad and legible at Mage-scale (1.25), without giant proportions.
+	# This changes only player art/rim, never gameplay, physics or C3 frames.
+	"knight": 1.25,
 	"ranger": 1.00,
 	"mage": 1.25,
 }
@@ -257,11 +257,11 @@ func _ready() -> void:
 		health_bar.offset_right = 29.0
 		health_bar.offset_top = -90.0
 		health_bar.offset_bottom = -83.0
-		# D410: keep the health bar above the taller Knight helmet/shield,
-		# rather than slicing across his art. Other heroes/enemies unchanged.
+		# D411: align Knight HP with his moderated silhouette without
+		# covering the helmet. Other heroes/enemies retain their original bars.
 		if team == 0 and visual_role == "knight":
-			health_bar.offset_top = -126.0
-			health_bar.offset_bottom = -119.0
+			health_bar.offset_top = -112.0
+			health_bar.offset_bottom = -105.0
 		name_label.offset_top = 48.0
 		name_label.offset_bottom = 70.0
 	base_sprite_scale = art_sprite.scale

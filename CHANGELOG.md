@@ -1,3 +1,9 @@
+## 2026-11-09 — D411 candidate: correct oversized Knight in real F5 combat
+
+- Respond to player's native «МОГИЛЬНЫЙ ПЕРЕКРЁСТОК» screenshot: D410 Knight was too large; tune player Knight-only art multiplier `1.38 → 1.25` (effective `1.7664 → 1.60`, ~9.4% smaller), keeping Mage 1.60 and Ranger 1.28.
+- Reposition only Knight HP bar `-126..-119 → -112..-105`; existing boot-ground y36 normalization, approved C3 frames/gait, effects and gameplay remain intact.
+- Adapt actual three-hero native GUT to demand proportional opaque artwork silhouette instead of a larger-than-Mage Knight. [D411 QA](docs/D411_KNIGHT_BALANCED_STATURE_QA.md). **CI and local F5 aesthetics pending.**
+
 ## 2026-11-08 — D410 RELEASED: make Knight visually dominant in live C3 combat
 
 - Correct the accidental player Knight sprite size downgrade: role art multiplier `0.90 → 1.38` (shared `1.28` hero base), leaving Ranger `1.00` and Mage `1.25` unchanged.
