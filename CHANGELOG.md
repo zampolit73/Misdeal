@@ -1,3 +1,9 @@
+## 2026-11-08 — D409: correct Knight C3 walk body lean while keeping feet planted
+
+- Six individually lossless 96px WALK cels shift Knight's shoulder/head silhouette back 4–5px, fading to zero before the boot/ground region. Native original D406 atlas and all six boot contact rows y67–95 unchanged.
+- Only live C3 Knight WALK samples use new artwork; per-pose D406 fallback. Preserves accepted D404 distance-based gait and combat positioning, D405 attacks, all remaining C3 poses, Ranger and Mage.
+- New native-source image centroid/boot pixel regression and real BattleUnit walk check; F6 comparison text updated. Real F5 human visual check remains open.
+
 ## 2026-11-06 — D408 RELEASED: three-hero HIT/DEATH continuity
 
 [PR #75](https://github.com/zampolit73/Misdeal/pull/75) merged as `f572cb06`; [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42231056235), **200/200 real GUT**. Restored approved Ranger bow to HIT0–2 and Mage staff to HIT1–2 using five 96px source-image overrides; C3 HIT no longer deforms/recolours actors, lethal transition no longer inherits punch zoom/tint. Original full C3 atlases, D404/D405 accepted motion, D407 final crystal, all enemies and mechanics unchanged. Awaiting human F6/F5 visual review.

@@ -66,7 +66,10 @@ func test_live_battle_uses_d398_c3_for_heroes_and_keeps_other_roles() -> void:
 				var has_hit_override: bool = state == "hit" and (
 					(role == "ranger") or (role == "mage" and col > 0)
 				)
-				if has_hit_override or (role == "mage" and state == "death" and col == 5):
+				# D409: only the six Knight WALK cels use individual
+				# image-corrected posture sources, not a full atlas rewrite.
+				var has_knight_walk_fix: bool = role == "knight" and state == "walk"
+				if has_knight_walk_fix or has_hit_override or (role == "mage" and state == "death" and col == 5):
 					assert_true(texture is ImageTexture)
 					assert_eq(texture.get_size(), Vector2(96, 96))
 					continue

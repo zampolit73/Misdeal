@@ -43,7 +43,7 @@ func _ready() -> void:
 	arena.set_arena_id("firing_square")
 	_scrim(Vector2.ZERO, Vector2(1280, 151), Color(0.015, 0.013, 0.018, 0.94))
 	_scrim(Vector2(0, 544), Vector2(1280, 176), Color(0.015, 0.013, 0.018, 0.94))
-	_label("MISDEAL / C3 — D406: РУКА РЫЦАРЯ И МЕЧ", Vector2(28, 8), Vector2(1220, 34), 22, Color(0.89, 0.74, 0.56))
+	_label("MISDEAL / C3 — D409: ОСАНКА РЫЦАРЯ ПРИ ХОДЬБЕ", Vector2(28, 8), Vector2(1220, 34), 22, Color(0.89, 0.74, 0.56))
 	_label("Слева — архив v2. Справа — C3: рыцарь сохраняет меч и щит, следопыт — лук, маг — посох.", Vector2(28, 44), Vector2(1220, 27), 15, Color(0.88, 0.84, 0.80))
 	for i in range(STATES.size()):
 		var state: String = STATES[i]
@@ -76,8 +76,8 @@ func _ready() -> void:
 		_label("C3 / В БОЮ", Vector2(center + 6, 490), Vector2(144, 25), 14, Color(0.93, 0.79, 0.57), HORIZONTAL_ALIGNMENT_CENTER)
 
 	status_label = _label("", Vector2(28, 559), Vector2(1200, 28), 18, Color(0.90, 0.77, 0.58))
-	_label("D406: в одном кадре атаки рыцаря рукоять меча соединена с латной перчаткой; ходьба и ритм D405 сохранены.", Vector2(28, 603), Vector2(1230, 24), 14, Color(0.87, 0.85, 0.81))
-	_label("F6 ATTACK/AUTO показывает актуальные C3-атласы. F5 — реальный удар. Остальные художественные доработки ещё открыты.", Vector2(28, 647), Vector2(1230, 24), 14, Color(0.74, 0.76, 0.79))
+	_label("D409: все шесть кадров ходьбы C3-рыцаря выпрямлены; стопы и ритм D404 сохранены.", Vector2(28, 603), Vector2(1230, 24), 14, Color(0.87, 0.85, 0.81))
+	_label("Нажмите WALK для проверки силуэта рыцаря. F5 — реальная проверка передвижения в бою.", Vector2(28, 647), Vector2(1230, 24), 14, Color(0.74, 0.76, 0.79))
 	_play("idle")
 
 

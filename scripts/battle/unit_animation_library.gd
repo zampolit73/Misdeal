@@ -27,6 +27,10 @@ const C3_KNIGHT_D402_PATH := "res://assets/pixel/units/hero_c3_d402/knight.webp.
 # D406: local gauntlet-to-sword contact correction in one ATTACK cel.
 # D402 remains the immediate rollback if D406 art fails strict validation.
 const C3_KNIGHT_D406_PATH := "res://assets/pixel/units/hero_c3_d406/knight.webp.b64"
+# D409: source-pose correction, not a global Sprite2D runtime offset.
+# These six lossless walk cells preserve the approved source boots/footfall
+# rows. D406 full atlas stays intact for art fallback and all other states.
+const C3_KNIGHT_D409_WALK_DIR := "res://assets/pixel/units/hero_c3_d409/"
 # D407: use one standalone death cel so D401 Mage lossy WebP is not re-encoded.
 const C3_MAGE_D407_DEATH_FINAL_PATH := "res://assets/pixel/units/hero_c3_d407/mage_death_final.webp.b64"
 # D408: restore APPROVED source bow/staff identity during the original HIT
@@ -466,6 +470,16 @@ static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = f
 		frames.remove_animation("default")
 	_add_row(frames, atlas, "idle", 0, 4, 2.7, true)
 	_add_row(frames, atlas, "walk", 1, 6, 7.0, true)
+	# D409: the C3 Knight WALK upper body leans too far forward in the
+	# battle-scale player screenshot. Load six individually corrected 96px
+	# art cells; original D404 cadence, collision and floor soles untouched.
+	# Fall back to the matching D406 atlas tile if a file is absent/broken.
+	if is_c3_pilot and role == "knight":
+		for walk_index in range(6):
+			var pose_path := "%sknight_walk_%d.webp.b64" % [C3_KNIGHT_D409_WALK_DIR, walk_index]
+			var corrected_pose: Texture2D = _load_c3_hero_cel(pose_path)
+			if corrected_pose != null:
+				frames.set_frame("walk", walk_index, corrected_pose)
 	# Pack1 Mage has a projectile-only source tile at row 2, column 4.
 	# Playing that tile makes the character disappear for one attack frame.
 	# The combat projectile is rendered independently by unit attack visuals.
