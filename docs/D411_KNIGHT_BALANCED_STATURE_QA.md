@@ -11,6 +11,10 @@ After D410 released, the player supplied a native F5 screenshot of «МОГИЛ�
 - Preserve `_art_rest_position()` sole-to-ring y36 anchoring automatically after adjusting `base_sprite_scale`. No `Node2D.scale`, collision, HP/damage, movement, target acquisition, attack timing, visual poses, authored atlas pixels, DS3 or arena layout changes.
 - Preserve D409 source WALK posture, user-accepted D404 WALK displacement cadence and D405 ATTACK presentation, D406 sword grip and cape, D407 Mage crystal, D408 HIT props.
 
+## Release verification
+
+[PR #80](https://github.com/zampolit73/Misdeal/pull/80) squash-merged to `main` (`9be4dcb692f64f578581f3a90e4e781cfb258bea`) after [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42518826899): **204/204 real GUT**, import and scene smoke checks passed. Final in-game visual feel remains for player F5 approval.
+
 ## Verification
 
 Existing `tests/unit/test_d410_knight_visual_stature.gd` now guards the **D411** intended hierarchy instead of insisting Knight scales larger than Mage: actual C3 opaque Knight idle art should remain taller than Ranger, comparable to Mage (90–122% of visible height), and be grounded with Knight HP at new offsets. It still checks all five real C3 animation states, unaffected Ranger/Mage art scales, real scene contact geometry and critical combat stats. Godot CI must pass before merging.
