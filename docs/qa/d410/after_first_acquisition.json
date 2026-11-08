@@ -1,0 +1,20 @@
+[
+	{
+		"flip_h": true,
+		"rim_matches": true,
+		"role": "knight",
+		"target_left": true
+	},
+	{
+		"flip_h": true,
+		"rim_matches": true,
+		"role": "ranger",
+		"target_left": true
+	},
+	{
+		"flip_h": true,
+		"rim_matches": true,
+		"role": "mage",
+		"target_left": true
+	}
+]
