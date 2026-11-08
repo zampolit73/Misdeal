@@ -250,6 +250,10 @@ func _ready() -> void:
 	# Preserve pixel silhouettes; scale only the art, not physics or hitboxes.
 	var sprite_scale: float = BOSS_DISPLAY_SCALE if is_boss else (HERO_DISPLAY_SCALE if team == 0 else ENEMY_DISPLAY_SCALE)
 	var role_art_scale: float = float(HERO_ROLE_VISUAL_SCALES.get(visual_role, 1.0)) if team == 0 else 1.0
+	# Match the exact accepted D412 preview body proportions, including
+	# Mage's lower source head relative to the staff tip.
+	if team == 0 and visual_role == "mage" and ANIMATION_LIBRARY.is_approved_hero_frames(visual_role, sprite_frames):
+		role_art_scale *= 1.05
 	art_sprite.scale = Vector2.ONE * (sprite_scale * visual_scale * role_art_scale)
 	if not is_boss:
 		health_bar.offset_left = -29.0
@@ -602,6 +606,10 @@ func _process(delta: float) -> void:
 	if should_refresh_target:
 		target = _find_preferred_enemy()
 		target_refresh_cooldown = 0.35
+		# Face the acquired enemy before this frame's movement/instant attack.
+		if ANIMATION_LIBRARY.is_approved_hero_frames(visual_role, sprite_frames):
+			_update_unit_facing()
+			_sync_rim_visual()
 
 	var movement_speed := _get_current_move_speed()
 	var velocity := _get_separation_velocity()
@@ -989,13 +997,17 @@ func _get_role_floor_offset() -> float:
 	return float(ROLE_FLOOR_OFFSETS.get(visual_role, 0.0))
 
 
+func get_animation_sole_y() -> float:
+	return 90.0 if ANIMATION_LIBRARY.is_approved_hero_frames(visual_role, sprite_frames) else ANIM_SOLE_Y
+
 func _art_rest_position() -> Vector2:
 	var correction := _get_role_floor_offset()
 	if sprite_frames == null:
 		# Preserve existing static v4 art positions apart from the chosen
 		# visual correction; no scene coordinates or battle logic change.
 		return ART_BASE_POSITION + Vector2(0.0, correction)
-	var baseline: float = FLOOR_CONTACT_Y - (ANIM_SOLE_Y - ANIM_CELL_HEIGHT * 0.5) * base_sprite_scale.y
+	var sole_y := get_animation_sole_y()
+	var baseline: float = FLOOR_CONTACT_Y - (sole_y - ANIM_CELL_HEIGHT * 0.5) * base_sprite_scale.y
 	return Vector2(ART_BASE_POSITION.x, roundf(baseline + correction))
 
 
@@ -1010,6 +1022,8 @@ func _play_frame_one_shot(name: String) -> void:
 	else:
 		var count := sprite_frames.get_frame_count(name)
 		frame_one_shot_time = float(count) / sprite_frames.get_animation_speed(name)
+	if ANIMATION_LIBRARY.is_approved_hero_frames(visual_role, sprite_frames):
+		_sync_rim_visual()
 
 
 func _update_frame_animation(delta: float) -> void:

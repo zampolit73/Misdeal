@@ -65,7 +65,7 @@ func test_d407_only_final_mage_death_frame_is_overridden_in_real_battle_unit() -
 	var actor := UNIT_SCENE.instantiate() as BattleUnit
 	actor.visual_role = "mage"
 	add_child_autofree(actor)
-	var mage_frames: SpriteFrames = actor.sprite_frames
+	var mage_frames: SpriteFrames = LIBRARY.get_frames("mage", false) # Archived D407 fallback
 	assert_not_null(mage_frames)
 	if mage_frames == null:
 		return

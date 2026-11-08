@@ -1,3 +1,7 @@
+## D412 — approved full pack integrated in production Battle (2026-11-09)
+
+Player approved quality, scale and all three animations («отлично», then «продолжай»). Production now loads the exact `hero_c3_d412_polish` 75 poses, with a single rollback flag and validated archived C3 fallback. Old D407–D409 single-frame patches do not overwrite new artwork. D404 travelled-distance gait and D405 attack timing remain. Correct source sole Y90, exact accepted preview scaling (Ranger1.40, Knight/Mage1.47), immediate first-target facing. Local Godot4.7.2 **208/208 GUT**, 45 scripts, 47,059 assertions. Actual Court trio win→Reward→Table route PASS; native GPU real Battle captured. No human F5 navigation PASS claimed. See [D412 QA](D412_THREE_HERO_PACK_QA.md). PR81 pending CI/review; no merge to main.
+
 ## D412 follow-up — motion accepted, detail and size polish (2026-11-09)
 
 Player explicitly accepts all three animations. Preserve poses, order and timing; no new animation approval gate. Increase displayed size ~9–10% (live common hero scale1.40; role ratios unchanged; new-pack preview Ranger1.40/Knight1.47/Mage1.47). Recover source material detail with premultiplied Lanczos colour sampling while retaining exact accepted nearest-sampled alpha for every pose. New version in `assets/pixel/units/hero_c3_d412_polish/`; baseline source/packed files retained. This is resampling/detail polish, not newly painted models. Full new pack remains QA-only, production uses prior atlases.

@@ -1,3 +1,17 @@
+## D412 — approved full pack integrated in production Battle (2026-11-09)
+
+Player approved quality, scale and all three animations («отлично», then «продолжай»). Production now loads the exact `hero_c3_d412_polish` 75 poses, with a single rollback flag and validated archived C3 fallback. Old D407–D409 single-frame patches do not overwrite new artwork. D404 travelled-distance gait and D405 attack timing remain. Correct source sole Y90, exact accepted preview scaling (Ranger1.40, Knight/Mage1.47), immediate first-target facing. Local Godot4.7.2 **208/208 GUT**, 45 scripts, 47,059 assertions. Actual Court trio win→Reward→Table route PASS; native GPU real Battle captured. No human F5 navigation PASS claimed. See [D412 QA](D412_THREE_HERO_PACK_QA.md). PR81 pending CI/review; no merge to main.
+
+## Integration verification
+
+All 75 live BattleUnit frame images are tested pixel-identical to the approved polished atlas; independent archive lookups cannot corrupt the live frame cache. Source-specific D398/D402/D406–D409 tests explicitly verify the old fallback resources rather than demanding them in new live art. Actual live motion/grounding/attack/HIT/DEATH regressions remain on the new pack. Every approved character has six attack/death and six walk frames, original frame rates and D405 weighted holds. The first left-target attack faces its opponent in the same frame.
+
+Native existing D273 Court ordinary-deal runner: actual trio combat victory→Continue→Reward choice→Table PASS, run at4x simulation speed; not a manual F5 playthrough. Existing runner reports shutdown ObjectDB/resource-use diagnostics after PASS; Windows also reports certificate-store error. Route is added to battle-relevant PR CI.
+
+[Native first acquisition](qa/d412/live_first_acquisition.png) · [Native actual combat](qa/d412/live_combat.png). Automated captures use production battle.tscn, exact live sprites, real AI and GPU1280x720. Frame acquisition is frozen for diagnosis; continuous combat resumes for capture sequence.
+
+Rollback flag: `MisdealUnitAnimationLibrary.D412_APPROVED_ENABLED`; archived loader also remains available as `get_frames(role,false)`. Invalid/missing approved files fall back through existing C3/v2. No combat resources, cards, waves, AI or damage altered.
+
 ## D412 follow-up — motion accepted, detail and size polish (2026-11-09)
 
 Player explicitly accepts all three animations. Preserve poses, order and timing; no new animation approval gate. Increase displayed size ~9–10% (live common hero scale1.40; role ratios unchanged; new-pack preview Ranger1.40/Knight1.47/Mage1.47). Recover source material detail with premultiplied Lanczos colour sampling while retaining exact accepted nearest-sampled alpha for every pose. New version in `assets/pixel/units/hero_c3_d412_polish/`; baseline source/packed files retained. This is resampling/detail polish, not newly painted models. Full new pack remains QA-only, production uses prior atlases.

@@ -1,5 +1,8 @@
 extends GutTest
 
+# D412: source-image assertions below guard ARCHIVED C3 fallback art.
+# Active approved D412 BattleUnit coverage is in test_d412_full_hero_pack.gd.
+
 # D409: fix the visible C3 Knight forward-hunched WALK silhouette
 # using SIX source-art cel changes; the approved D404 distance cadence and
 # all foot-contact pixels are identical to D406.
@@ -40,7 +43,7 @@ func test_d409_all_six_knight_walk_poses_stand_upright_with_original_boot_positi
 	if atlas == null:
 		return
 	assert_eq(atlas.get_size(), Vector2i(576, 480))
-	var frames: SpriteFrames = LIBRARY.get_frames("knight")
+	var frames: SpriteFrames = LIBRARY.get_frames("knight", false)
 	assert_not_null(frames)
 	assert_true(LIBRARY.is_live_c3_hero_frames("knight", frames))
 	if frames == null:
@@ -96,6 +99,6 @@ func test_d409_actual_battle_unit_retains_d404_stride_and_other_c3_heroes() -> v
 	assert_eq(unit.art_sprite.texture, unit.sprite_frames.get_frame_texture("walk", 1),
 		"Knight's accepted stop/hold behavior must remain unchanged")
 	for role in ["ranger", "mage"]:
-		var other_frames: SpriteFrames = LIBRARY.get_frames(role)
+		var other_frames: SpriteFrames = LIBRARY.get_frames(role, false)
 		assert_true(other_frames.get_frame_texture("walk", 0) is AtlasTexture,
 			role + " retains original D401 source and cadence")

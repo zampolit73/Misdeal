@@ -1,3 +1,7 @@
+## D412 full artwork approved for production (2026-11-09)
+
+Following explicit approval of animation, refined quality and larger display, user requested integration. Activate the EXACT polished 75-pose package, preserve original sources and old C3 fallback. No new art direction, pose regeneration or timing changes.
+
 ## D412 motion acceptance (2026-11-09)
 
 Player: «по самой анимации все ок». Lock all three 25-pose motion sequences. Requested follow-up is modest visual detail improvement and ~10% larger display; preserve relative stature, poses and timing.

@@ -1,5 +1,8 @@
 extends GutTest
 
+# D412: source-image assertions below guard ARCHIVED C3 fallback art.
+# Active approved D412 BattleUnit coverage is in test_d412_full_hero_pack.gd.
+
 # D406 changes ONE image-derived C3 Knight ATTACK cel at native 96px:
 # reconnect the sword hilt to the gauntlet without damaging the D402 shield.
 const LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
@@ -64,7 +67,7 @@ func test_d406_native_knight_source_is_one_local_gauntlet_retouch() -> void:
 func test_d406_live_knight_uses_corrected_source_and_unchanged_attack_clock() -> void:
 	var current := _image(UPDATED)
 	assert_not_null(current)
-	var frames: SpriteFrames = LIBRARY.get_frames("knight")
+	var frames: SpriteFrames = LIBRARY.get_frames("knight", false)
 	assert_not_null(frames)
 	if current == null or frames == null:
 		return
@@ -79,7 +82,7 @@ func test_d406_live_knight_uses_corrected_source_and_unchanged_attack_clock() ->
 	assert_eq(frames.get_frame_count("walk"), 6)
 	assert_eq(frames.get_animation_speed("attack"), 16.0)
 	for role in ["ranger", "mage"]:
-		var other: SpriteFrames = LIBRARY.get_frames(role)
+		var other: SpriteFrames = LIBRARY.get_frames(role, false)
 		assert_not_null(other)
 		if other != null:
 			assert_eq(other.get_frame_count("attack"), 6)
