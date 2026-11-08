@@ -1,4 +1,6 @@
-## D409 — Knight live C3 walk posture source correction (2026-11-08)
+## D409 RELEASED — Knight live C3 walk posture source correction (2026-11-08)
+
+[PR #76](https://github.com/zampolit73/Misdeal/pull/76) squash merged `caf2e4e6ce44c12378522218fe22a9266c5bb44d` after [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42464688752): **202/202 real GUT**, import and scene smokes green. Native F5 visual acceptance still open.
 
 The user's real F6 Knight-v2/C3 comparison showed the C3 Knight stooped during WALK. Inspection of all six D406 source walk cels confirmed tilted shoulders rather than an engine offset; moving the *whole* Sprite2D would displace grounded feet. D409 adds six lossless 96px C3 Knight WALK cels moving upper silhouette ~4–5px back while every original y67–95 boot pixel and source sole row90 stays unchanged. Live library loads these cels with per-frame D406 fallback. D404 accepted walking **distance cadence**, 7fps source animation, all combat speed/physics, D405 attack, Ranger/Mage and other Knight states untouched. GUT covers actual image centroid, exact boot pixel preservation and BattleUnit gait. [D409 QA](D409_KNIGHT_WALK_POSTURE_QA.md). Pending native CI and human F6/F5 aesthetic check; no false claim of full authored 25-pose redesign.
 
