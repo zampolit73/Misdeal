@@ -12,6 +12,10 @@ The native F5 screenshot of Bone Patrol shows the approved C3 Knight notably sho
 ## Test gate
 `tests/unit/test_d410_knight_visual_stature.gd` instantiates the real three player BattleUnit scenes using shipped UnitData resources. It checks C3 SpriteFrames across all five states, literal display scales, actual opaque idle art stature, all three soles meeting the floor ring, the lifted Knight health bar, unchanged Ranger/Mage bar offsets and critical Knight mechanics. Existing D403, D404, D405 and D409 tests remain regression gates.
 
+## Release verification
+
+[PR #79](https://github.com/zampolit73/Misdeal/pull/79) squash merged into `main` (`a0f6f865e2961f561dfc3c9497473d2ae0e08b15`) after [Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42516842764). All **204/204 real GUT tests**, including both new D410 tests, project import and native scene smokes passed. Subjective F5 size/health-bar/leg contact remains to be reviewed by the user.
+
 ## Player native acceptance
 After CI/merge: `git -c gc.auto=0 pull --ff-only origin main`, F5 real encounter `КОСТЯНОЙ ДОЗОР`. Confirm Knight is visibly the heaviest/largest hero, head and shield are not hidden behind HP, boots touch the blue contact ring during walking and attack, and Mage/Ranger remain unchanged. If the painted C3 art still feels too slight despite greater display scale, discuss an art-only armor/silhouette pass separately; do not alter approved walk/attack timing or mechanics blindly.
 
