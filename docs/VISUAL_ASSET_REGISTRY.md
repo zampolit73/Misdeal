@@ -1,3 +1,7 @@
+## D409 — improved Knight walk posture, unchanged boots (2026-11-08)
+
+Six 96px `assets/pixel/units/hero_c3_d409/knight_walk_{0..5}.webp.b64` isolated source cel corrections re-center upper-body shoulder/head silhouette by ~4–5px toward the grounded hips. Their rows67–95 are exactly identical to the original D406 Knight WALK cells, with sole row90 unchanged. Live C3 Knight WALK uses them with per-frame fallback, source D406 atlas untouched, accepted D404 frame timing untouched. This is an authored-pixel posture adjustment, not a new knight costume or full 25-frame illustration redraw. [D409 QA](D409_KNIGHT_WALK_POSTURE_QA.md).
+
 ## D408: Five standalone 96px lossless alpha source cels hero_c3_d408 (ranger_hit_0/1/2, mage_hit_1/2) retain C3 bodies and restore source-art bow/staff silhouettes. Knight D406 untouched; D401 Ranger/Mage originals untouched; D407 Mage final death remains. See docs/D408_C3_HIT_DEATH_BATCH_QA.md.
 
 ## D407 — C3 Mage dormant crystal in final DEATH pose (2026-11-06)
