@@ -1,3 +1,7 @@
+## D410 CANDIDATE — Knight combat silhouette hierarchy (2026-11-08)
+
+Player native F5 screenshot of «КОСТЯНОЙ ДОЗОР» confirms the approved C3 Knight is inappropriately smaller than Ranger and Mage despite being the armored frontline protagonist. Root cause in actual `BattleUnit` display multipliers: Knight `0.90`, Ranger `1.00`, Mage `1.25` (all after shared hero `1.28`); not a missing animation or authored art defect. In `fix/d410-knight-combat-visual-stature`, raise only the player Knight art factor to `1.38` (effective `1.7664`), leave Ranger/Mage, physics, tactics and all C3 source atlases and accepted D404/D405 motion unchanged. Shift only Knight HP bar from y -90..-83 to -126..-119; `_art_rest_position()` automatically preserves the native y36 sole contact. Add real 3-hero BattleUnit and opaque image stature GUT `test_d410_knight_visual_stature.gd`. [Scope / QA](D410_KNIGHT_COMBAT_STATURE_QA.md). **CI and F5 human visual acceptance still pending**; do not claim release before merge.
+
 ## D409 RELEASED — Knight live C3 walk posture source correction (2026-11-08)
 
 [PR #76](https://github.com/zampolit73/Misdeal/pull/76) squash merged `caf2e4e6ce44c12378522218fe22a9266c5bb44d` after [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42464688752): **202/202 real GUT**, import and scene smokes green. Native F5 visual acceptance still open.
