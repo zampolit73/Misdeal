@@ -8,7 +8,7 @@ Three **new image-generated** sheets, 25 distinct source poses each (idle4/walk6
 
 Built-in imagegen used with gameplay screenshot as reference. Prompt set: six equal columns/five rows, transparent RGBA, upright right-facing front-three-quarter human, exact 4/6/6/3/6 distinct motion sequence, retained weapons, safe margins, no UI/background; Knight worn steel/sword/burgundy shield/torn cape; Ranger intact olive hood/bow/quiver; male Mage intact violet robe/silver beard/staff, no sword/shield, dormant final crystal. Generated source files preserved unchanged. Repacking does nearest filtering, low-alpha haze removal and largest connected character component; this can lose detached projectile/spark pixels and requires visual QA of thin props. It does not invent or repeat poses. Lossless format preserves packed pixel data.
 
-`scripts/dev/d412_pack_hero_sources.gd` reproduces the packed outputs. Every source pose is independently packed to 96px, standing baseline90, 2px minimum padding. A wide/deep pose may be fitted smaller; investigate visible scale pumping before live integration.
+`scripts/dev/d412_pack_hero_sources.gd` reproduces the packed outputs. Every source pose is packed to 96px, standing baseline90, 2px minimum padding. A single source-to-runtime scale per character is calculated across ALL 25 poses, so wide/deep poses do not shrink independently during playback. Source anatomy and motion quality still require visual judgment.
 
 ## Runtime size and tests
 

@@ -9,6 +9,7 @@ func _initialize() -> void:
 		var factor := 0.38
 		if role == "mage":
 			factor = 0.41
+		var poses: Array[Dictionary] = []
 		for row in range(5):
 			var count: int = [4, 6, 6, 3, 6][row]
 			for col in range(count):
@@ -21,9 +22,14 @@ func _initialize() -> void:
 				_keep_character(cell)
 				var bounds := cell.get_used_rect()
 				cell = cell.get_region(bounds)
-				var fit := minf(factor, minf(90.0 / cell.get_width(), 86.0 / cell.get_height()))
-				cell.resize(maxi(1, roundi(cell.get_width() * fit)), maxi(1, roundi(cell.get_height() * fit)), Image.INTERPOLATE_NEAREST)
-				atlas.blit_rect(cell, Rect2i(Vector2i.ZERO, cell.get_size()), Vector2i(col * 96 + (96 - cell.get_width()) / 2, row * 96 + 90 - cell.get_height()))
+				factor = minf(factor, minf(90.0 / cell.get_width(), 86.0 / cell.get_height()))
+				poses.append({"image": cell, "row": row, "col": col})
+		# ONE source-to-runtime scale for all 25 poses; never fit each pose
+		# independently and cause visible height pumping during a stride.
+		for pose in poses:
+			var cell: Image = pose.image
+			cell.resize(maxi(1, roundi(cell.get_width() * factor)), maxi(1, roundi(cell.get_height() * factor)), Image.INTERPOLATE_NEAREST)
+			atlas.blit_rect(cell, Rect2i(Vector2i.ZERO, cell.get_size()), Vector2i(pose.col * 96 + (96 - cell.get_width()) / 2, pose.row * 96 + 90 - cell.get_height()))
 		print(role, " source=", source.get_size())
 		atlas.save_png(DIR + role + "_packed.png")
 		var file := FileAccess.open(DIR + role + ".webp.b64", FileAccess.WRITE)
