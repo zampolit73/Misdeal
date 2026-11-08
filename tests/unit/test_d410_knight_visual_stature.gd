@@ -1,7 +1,7 @@
 extends GutTest
 
-# D410: use actual shipped C3 BattleUnit scenes and runtime SpriteFrames.
-# The Knight must dominate the three-hero formation without changing physics,
+# D410/D411: use actual shipped C3 BattleUnit scenes and runtime SpriteFrames.
+# The Knight must remain substantial but not tower over his companions;
 # accepted D404 walk cadence, D405 attack staging, or the other hero art.
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
@@ -38,7 +38,7 @@ func _visible_idle_height(hero: BattleUnit) -> float:
 	return float(last_y - first_y + 1) * hero.base_sprite_scale.y
 
 
-func test_knight_is_visually_largest_live_c3_hero_with_original_five_states() -> void:
+func test_knight_has_balanced_live_c3_stature_and_original_five_states() -> void:
 	var knight := _create_hero(KNIGHT)
 	var ranger := _create_hero(RANGER)
 	var mage := _create_hero(MAGE)
@@ -47,18 +47,24 @@ func test_knight_is_visually_largest_live_c3_hero_with_original_five_states() ->
 		for state in ["idle", "walk", "attack", "hit", "death"]:
 			assert_gt(hero.sprite_frames.get_frame_count(state), 0)
 			assert_not_null(hero.sprite_frames.get_frame_texture(state, 0))
-	assert_almost_eq(knight.base_sprite_scale.x, 1.28 * 1.38, 0.001)
+	assert_almost_eq(knight.base_sprite_scale.x, 1.28 * 1.25, 0.001)
 	assert_almost_eq(ranger.base_sprite_scale.x, 1.28, 0.001)
 	assert_almost_eq(mage.base_sprite_scale.x, 1.28 * 1.25, 0.001)
-	assert_gt(knight.base_sprite_scale.x, mage.base_sprite_scale.x * 1.09)
-	assert_gt(knight.base_sprite_scale.x, ranger.base_sprite_scale.x * 1.35)
-	assert_gt(_visible_idle_height(knight), _visible_idle_height(mage),
-		"Actual opaque C3 Knight IDLE should be taller on screen than Mage, not just use a bigger scalar")
-	assert_gt(_visible_idle_height(knight), _visible_idle_height(ranger),
-		"Actual opaque C3 Knight IDLE should be taller on screen than Ranger")
+	# D411: Knight and Mage share the same scale; broad armor/shield, not
+	# artificial giant height, carry Knight\'s heavier silhouette.
+	assert_almost_eq(knight.base_sprite_scale.x, mage.base_sprite_scale.x, 0.001)
+	assert_gt(knight.base_sprite_scale.x, ranger.base_sprite_scale.x * 1.20)
+	var knight_height := _visible_idle_height(knight)
+	var mage_height := _visible_idle_height(mage)
+	assert_gt(knight_height, mage_height * 0.90,
+		"Actual painted Knight should have comparable screen height to Mage")
+	assert_lt(knight_height, mage_height * 1.22,
+		"Knight must not tower over the rest of the C3 party again")
+	assert_gt(knight_height, _visible_idle_height(ranger),
+		"Knight should remain taller than the Ranger in the actual painted frame")
 
 
-func test_taller_knight_stays_grounded_with_clear_hp_bar_and_unchanged_mechanics() -> void:
+func test_balanced_knight_stays_grounded_with_clear_hp_bar_and_unchanged_mechanics() -> void:
 	var knight := _create_hero(KNIGHT)
 	var ranger := _create_hero(RANGER)
 	var mage := _create_hero(MAGE)
@@ -70,8 +76,8 @@ func test_taller_knight_stays_grounded_with_clear_hp_bar_and_unchanged_mechanics
 		assert_eq(hero.art_sprite.scale, hero.base_sprite_scale)
 		assert_eq(hero.position, Vector2(300.0, 380.0))
 		assert_eq(hero.body_radius, 22.0)
-	assert_eq(knight.health_bar.offset_top, -126.0)
-	assert_eq(knight.health_bar.offset_bottom, -119.0)
+	assert_eq(knight.health_bar.offset_top, -112.0)
+	assert_eq(knight.health_bar.offset_bottom, -105.0)
 	assert_eq(ranger.health_bar.offset_top, -90.0)
 	assert_eq(mage.health_bar.offset_top, -90.0)
 	assert_eq(knight.name_label.offset_top, ranger.name_label.offset_top)
