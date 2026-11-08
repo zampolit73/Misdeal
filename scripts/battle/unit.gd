@@ -43,7 +43,7 @@ const ROLE_FLOOR_OFFSETS := {
 	"bone_shepherd": -5.0,
 	"ossuary_lamb": -5.0,
 }
-const HERO_DISPLAY_SCALE := 1.28
+const HERO_DISPLAY_SCALE := 1.40
 # Art-only normalization of the three player silhouettes against Ranger.
 # These factors never affect hitboxes, movement or enemy scale.
 const HERO_ROLE_VISUAL_SCALES := {

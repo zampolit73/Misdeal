@@ -1,3 +1,7 @@
+## D412 motion acceptance (2026-11-09)
+
+Player: «по самой анимации все ок». Lock all three 25-pose motion sequences. Requested follow-up is modest visual detail improvement and ~10% larger display; preserve relative stature, poses and timing.
+
 ## D412 — player-locked relative hero size (2026-11-09)
 
 Player screenshot feedback: Ranger is the quality reference; Mage and Ranger should have the same body height, Knight only slightly taller. Supersedes D410/D411 relative size targets. Keep wardrobes, body-foot contact, equipment and accepted combat timing. New full animation production is one batch, not per-state micro-approvals.

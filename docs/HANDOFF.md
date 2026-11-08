@@ -1,3 +1,7 @@
+## D412 follow-up — motion accepted, detail and size polish (2026-11-09)
+
+Player explicitly accepts all three animations. Preserve poses, order and timing; no new animation approval gate. Increase displayed size ~9–10% (live common hero scale1.40; role ratios unchanged; new-pack preview Ranger1.40/Knight1.47/Mage1.47). Recover source material detail with premultiplied Lanczos colour sampling while retaining exact accepted nearest-sampled alpha for every pose. New version in `assets/pixel/units/hero_c3_d412_polish/`; baseline source/packed files retained. This is resampling/detail polish, not newly painted models. Full new pack remains QA-only, production uses prior atlases.
+
 ## CURRENT D412 — complete candidate pack, native visual review (2026-11-09)
 
 Branch `fix/d412-three-hero-animation-pack`. Player says only Ranger quality acceptable; Mage should match Ranger height and Knight slightly taller. Live art factors set Ranger/Mage1.00, Knight1.05; mechanics/accepted timings unchanged. New generated 25-pose-per-role pack is staged in F6 `scenes/dev/d412_three_hero_animation_preview.tscn`, 75 unique poses/15 clear cells, both directions. Local 205/205 GUT. [QA and limitations](D412_THREE_HERO_PACK_QA.md). NEXT: verify complete new artwork at native scale and transitions; fix candidate defects before production registration. Do not claim final hand-painted art or live replacement; old C3 art remains runtime.

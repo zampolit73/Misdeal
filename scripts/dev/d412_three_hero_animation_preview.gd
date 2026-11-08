@@ -16,7 +16,7 @@ func _ready() -> void:
 		var frames := SpriteFrames.new()
 		frames.remove_animation("default")
 		var img := Image.new()
-		img.load_webp_from_buffer(Marshalls.base64_to_raw(FileAccess.get_file_as_string("res://assets/pixel/units/hero_c3_d412/%s.webp.b64" % ROLES[i])))
+		img.load_webp_from_buffer(Marshalls.base64_to_raw(FileAccess.get_file_as_string("res://assets/pixel/units/hero_c3_d412_polish/%s.webp.b64" % ROLES[i])))
 		var tex := ImageTexture.create_from_image(img)
 		for row in range(5):
 			var state: String = STATES[row]
@@ -29,7 +29,7 @@ func _ready() -> void:
 				tile.region = Rect2(col * 96, row * 96, 96, 96)
 				frames.add_frame(state, tile)
 		c3_actors[i].sprite_frames = frames
-		var factor := 1.34 if i == 0 or i == 2 else 1.28
+		var factor := 1.47 if i == 0 or i == 2 else 1.40
 		c3_actors[i].scale = Vector2.ONE * factor
 		c3_actors[i].position.y = SOLE_Y - (90.0 - 48.0) * factor
 	_play("walk")

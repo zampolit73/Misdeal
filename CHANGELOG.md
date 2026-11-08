@@ -1,3 +1,7 @@
+## D412 follow-up — motion accepted, detail and size polish (2026-11-09)
+
+Player explicitly accepts all three animations. Preserve poses, order and timing; no new animation approval gate. Increase displayed size ~9–10% (live common hero scale1.40; role ratios unchanged; new-pack preview Ranger1.40/Knight1.47/Mage1.47). Recover source material detail with premultiplied Lanczos colour sampling while retaining exact accepted nearest-sampled alpha for every pose. New version in `assets/pixel/units/hero_c3_d412_polish/`; baseline source/packed files retained. This is resampling/detail polish, not newly painted models. Full new pack remains QA-only, production uses prior atlases.
+
 ## 2026-11-09 — D412 hero animation candidates and relative size
 
 - Live Mage/Ranger art factors1.00, Knight1.05; no gameplay/timing changes.

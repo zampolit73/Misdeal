@@ -2,6 +2,7 @@ extends SceneTree
 
 # Deterministic packing of NEW generated poses; no procedural pose synthesis.
 const DIR := "res://assets/pixel/units/hero_c3_d412/"
+const OUTPUT := "res://assets/pixel/units/hero_c3_d412_polish/"
 func _initialize() -> void:
 	for role in ["knight", "ranger", "mage"]:
 		var source := Image.load_from_file(DIR + role + "_source.png")
@@ -28,11 +29,27 @@ func _initialize() -> void:
 		# independently and cause visible height pumping during a stride.
 		for pose in poses:
 			var cell: Image = pose.image
-			cell.resize(maxi(1, roundi(cell.get_width() * factor)), maxi(1, roundi(cell.get_height() * factor)), Image.INTERPOLATE_NEAREST)
+			var target := Vector2i(maxi(1, roundi(cell.get_width() * factor)), maxi(1, roundi(cell.get_height() * factor)))
+			var silhouette := cell.duplicate() as Image
+			silhouette.resize(target.x, target.y, Image.INTERPOLATE_NEAREST)
+			# Recover source material detail lost by nearest downsampling. Use
+			# premultiplied colour to avoid light transparent-RGB edge halos;
+			# retain the EXACT already accepted nearest silhouette and pose.
+			cell.premultiply_alpha()
+			cell.resize(target.x, target.y, Image.INTERPOLATE_LANCZOS)
+			for y in range(target.y):
+				for x in range(target.x):
+					var color := cell.get_pixel(x, y)
+					var alpha := silhouette.get_pixel(x, y).a
+					if alpha > 0.0 and color.a > 0.001:
+						color = Color(clampf(color.r / color.a, 0, 1), clampf(color.g / color.a, 0, 1), clampf(color.b / color.a, 0, 1), alpha)
+					else:
+						color = Color.TRANSPARENT
+					cell.set_pixel(x, y, color)
 			atlas.blit_rect(cell, Rect2i(Vector2i.ZERO, cell.get_size()), Vector2i(pose.col * 96 + (96 - cell.get_width()) / 2, pose.row * 96 + 90 - cell.get_height()))
 		print(role, " source=", source.get_size())
-		atlas.save_png(DIR + role + "_packed.png")
-		var file := FileAccess.open(DIR + role + ".webp.b64", FileAccess.WRITE)
+		atlas.save_png(OUTPUT + role + "_packed.png")
+		var file := FileAccess.open(OUTPUT + role + ".webp.b64", FileAccess.WRITE)
 		file.store_string(Marshalls.raw_to_base64(atlas.save_webp_to_buffer(false)))
 	quit()
 
