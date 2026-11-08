@@ -1,3 +1,7 @@
+## D410 — Player Knight must read as an armored frontline anchor (2026-11-08)
+
+User native F5 feedback: Knight must not be the smallest member of the approved C3 three-hero cast; prioritize an imposing, broad armored silhouette over arbitrary uniform image scale. Correct the actual `BattleUnit` Knight-only visual factor (0.90 → 1.38), leaving Ranger (1.00), Mage (1.25), their approved art and all gameplay unchanged. Health bar must rise clear of the enlarged helmet, while ground contact remains fixed by sole-based Sprite2D origin calculation. Preserve source-painted Knight sword/shield/torn burgundy cape, accepted D404 WALK and D405 ATTACK and retain rollback. Native F5 final quality remains a separate user decision. [D410 QA](D410_KNIGHT_COMBAT_STATURE_QA.md).
+
 ## D408 — preserve authored C3 HIT silhouettes and props via isolated cel edits (2026-11-06)
 
 Knight, Ranger and Mage HIT/DEATH must read as distinct painted 96px source poses rather than whole-unit scaling/recolor feedback. Preserve existing C3 576×480 lossy original atlases byte-for-byte and introduce isolated 96px lossless source cel overrides for true weapon/grip corrections (with image validation/fallback); never re-encode full source to fix a single missing prop. On lethal C3 hits, clear transient hit scale/color/offset before authored DEATH0. Freeze user-accepted D404 WALK and D405 ATTACK, preserve enemy/v2 behavior and actual combat hit timing. [D408 QA](D408_C3_HIT_DEATH_BATCH_QA.md).

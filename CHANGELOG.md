@@ -1,3 +1,9 @@
+## 2026-11-08 — D410 candidate: make Knight visually dominant in live C3 combat
+
+- Correct the accidental player Knight sprite size downgrade: role art multiplier `0.90 → 1.38` (shared `1.28` hero base), leaving Ranger `1.00` and Mage `1.25` unchanged.
+- Raise only Knight health bar from -90..-83 to -126..-119 so the larger armored sprite remains unobscured. No modifications to Godot unit/hitbox scale, feet/ground ring, enemy actors, combat stats, gameplay or 25-pose C3 source artwork and accepted animations.
+- Add actual three-hero BattleUnit source-image geometry, soles, health-bar and mechanics GUT: `test_d410_knight_visual_stature.gd`. [D410 QA](docs/D410_KNIGHT_COMBAT_STATURE_QA.md). **Native CI and user F5 acceptance pending.**
+
 ## 2026-11-08 — D409 RELEASED: correct Knight C3 walk body lean while keeping feet planted
 
 [PR #76 merged](https://github.com/zampolit73/Misdeal/pull/76), `caf2e4e6`, [native Godot CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42464688752): **202/202 GUT** plus import and scenes.

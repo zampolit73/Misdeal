@@ -1,3 +1,11 @@
+## D410 — Restore the Knight as the largest live battle hero (2026-11-08)
+
+- [x] Inspect native F5 screenshot and actual runtime C3 BattleUnit/UnitData scale path; root cause: Knight art multiplier 0.90 vs Ranger 1.00 / Mage 1.25.
+- [x] Change only player Knight art multiplier to 1.38 and lift his HP bar; keep visual sole alignment via existing baseline, physics, source art, D404 walk and D405 attack unchanged.
+- [x] Add GUT validating actual C3 opaque idle image heights, all five states, hero art scales, fixed ground feet and no mechanics/UI changes to other roles.
+- [ ] Verify native Godot 4.7.x CI; merge passing PR into main.
+- [ ] Obtain user native F5 «КОСТЯНОЙ ДОЗОР» acceptance (largest imposing Knight, HP bar clear, feet planted during movement and attack). [QA](D410_KNIGHT_COMBAT_STATURE_QA.md).
+
 ## D409 — fix Knight C3 forward-hunched WALK artwork (2026-11-08)
 
 - [x] Inspect user F6 screenshot and actual six D406 Knight walk poses; forward lean is source pose, not merely world-space y offset.
