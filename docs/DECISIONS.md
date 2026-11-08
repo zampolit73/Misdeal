@@ -1,3 +1,7 @@
+## D411 — Armor mass over giant height for Knight (2026-11-09)
+
+**New F5 native screenshot overrides the unapproved D410 visual factor.** The user's view of «МОГИЛЬНЫЙ ПЕРЕКРЁСТОК» shows player Knight at `1.38` too large. Reduce to `1.25`, matching Mage's visual factor; Knight should read as heavier through shield/plate/cape silhouette rather than being a giant. Ranger stays `1.00`, Mage `1.25`. Move Knight HP bar down for his reduced height without changing actual HP, hitbox, physical unit root or grounded foot position. Keep all approved C3 source character art and animation pacing. D410 visual height was **rejected**, D411 new look still awaits player F5 acceptance. [QA](D411_KNIGHT_BALANCED_STATURE_QA.md).
+
 ## D410 — Player Knight must read as an armored frontline anchor (2026-11-08)
 
 User native F5 feedback: Knight must not be the smallest member of the approved C3 three-hero cast; prioritize an imposing, broad armored silhouette over arbitrary uniform image scale. Correct the actual `BattleUnit` Knight-only visual factor (0.90 → 1.38), leaving Ranger (1.00), Mage (1.25), their approved art and all gameplay unchanged. Health bar must rise clear of the enlarged helmet, while ground contact remains fixed by sole-based Sprite2D origin calculation. Preserve source-painted Knight sword/shield/torn burgundy cape, accepted D404 WALK and D405 ATTACK and retain rollback. Native F5 final quality remains a separate user decision. [D410 QA](D410_KNIGHT_COMBAT_STATURE_QA.md).
