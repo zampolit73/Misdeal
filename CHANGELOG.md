@@ -1,3 +1,9 @@
+## Autonomous visual polish — VP1–VP7 (2026-11-09)
+
+D414–D417 safely merged with green CI. Native audit found and repaired clipped Reward effects, obsolete painted offers/readouts on Reward/Shop, mismatched merchant upgrade pictures and stale availability, clipped event penalties, long RunEnd overlap, and the enabled victory action drawing under its scrim. Complete Reward reader supports keyboard scrolling/focus restoration. Approved art, hero animations, timings and mechanics preserved.
+
+Local Godot4.7.2: **224/224 GUT**, **52 native states**, real Battle→Reward→Table, solo/duo/trio movement and 75 Court poses; selector13/13. Full RELEASE required for integration. [Delivery, native comparison and limits](docs/VISUAL_POLISH_RELEASE_QA.md). Older pending integration notes below are historical.
+
 ## D414–D417 integration checkpoint (2026-11-09)
 
 User authorized full autonomous visual-polish delivery. PR84/D415, PR85/D416 and PR86/D417 merged sequentially into main using merge commits, preserving dependency ancestry (latest `6c467d5f`). D414/PR83 now merges this exact main; conflicts were documentation-only, dossier helper and motion hooks combined. Fresh final-head CI required before PR83 merge. Prior phase-specific pending text below is historical. Integration order avoids repeatedly resolving the same document headers; reviewed PR diffs contain only each phase's changes.

@@ -22,3 +22,9 @@ Baseline [manifest](qa/visual_polish/before/manifest.json) includes scene, exact
 | Motion | D417 interruptible hover and prepared entrance validated; no need for more effects. | Keep timing, limit new hooks to focused views. | Existing3 motion regressions/native intermediate-opacity record. |
 
 All fixes require same-fixture after renders and real tests; test success alone is not artistic acceptance. Deferred artwork follow-up: older skeletons are a different pixel package but currently readable; repaint is outside scope. No new gold/red glows, particles, sounds, debug overlays or mechanics.
+
+## Delivered resolution
+
+All listed P1 repairs are implemented and re-rendered. Additional native inspection found clipped Blood Ledger attack penalties, overlapping deck-number matte on the merchant, and the enabled Battle victory action below the result scrim. Full original event/shop paragraphs now fit; the matte covers only painted numerals; the same Battle button belongs to ResultOverlay at unchanged coordinates and callback. Reward/Shop show real passive counters instead of obsolete painted values/actions. No arena or actor redesign.
+
+Final **52/52 native states**, **224/224 GUT** and actual Battle→Reward→Table pass. [Release QA](VISUAL_POLISH_RELEASE_QA.md) contains after frames, regression evidence and environment limits. Original48-frame matrix above is the baseline, expanded by reader/resolved/scroll/result states for final validation. Windows external-capture path checks are corrected using is_absolute_path(). No confirmed in-scope P0/P1 remains in inspected states; legacy-enemy art and existing diagnostics remain P2.

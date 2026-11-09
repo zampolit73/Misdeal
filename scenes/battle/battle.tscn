@@ -714,4 +714,3 @@ theme_override_styles/hover = SubResource("FightHover")
 theme_override_styles/pressed = SubResource("FightHover")
 theme_override_styles/disabled = SubResource("ButtonDisabled")
 text = "ПРОДОЛЖИТЬ"
-
