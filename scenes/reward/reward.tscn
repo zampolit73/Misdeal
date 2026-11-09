@@ -105,7 +105,7 @@ color = Color(0.020, 0.016, 0.024, 1)
 [node name="WizardBackdrop" type="TextureRect" parent="."]
 mouse_filter = 2
 script = ExtResource("5_table")
-webp_path = "res://assets/pixel/table/approved_variant_c/table_exact.webp"
+webp_path = "res://assets/pixel/table/d416_clean_center/table_clean.webp"
 expected_size = Vector2i(1280, 720)
 use_nearest_filter = false
 offset_right = 1280.0
