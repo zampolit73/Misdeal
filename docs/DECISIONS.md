@@ -1,3 +1,7 @@
+## D414 — approved dossier integration and reference polish (2026-11-09)
+
+User approved D413 and authorized integration followed by interface refinement. Preserve those exact hero portraits and D412 combat figures; use the supplied reference for the specialization ribbon, stat symbols, selected/filled-state emphasis, actual relic illustrations and full-width party summary. All values and availability still come from existing RunState logic; do not copy mockup numbers or invent clickable upgrades/relic actions.
+
 ## D413 — dossier art follows current combat identity (2026-11-09)
 
 User requested squad UI matching their Gothic reference and portraits matching actual figures. Preserve closed helmet/steel/burgundy sword-shield Knight, intact olive hood/bow Ranger and silver-haired violet-robed male Mage/staff from D412. UI reference supplies materials/layout, not a blue Knight redesign or new game rules. Keep dynamic stats/upgrades/relics/party state in native Controls.

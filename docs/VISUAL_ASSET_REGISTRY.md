@@ -1,3 +1,7 @@
+## D414 — native dossier symbols (2026-11-09)
+
+Seven authored 24x24 SVGs in `assets/pixel/ui/squad_dossier_d414/`: heart, swords, cadence, range, speed, burst and party. Warm bronze vector strokes; no generated artwork or baked text. Used only in dossier stat rows/footer. Filled relics reuse `ArtifactArtCatalog` artwork; D413 approved portraits and original item sources unchanged. [Native QA](D414_DOSSIER_REFERENCE_QA.md).
+
 ## D413 — dossier-only character portraits and panel material (2026-11-09)
 
 `assets/pixel/ui/squad_dossier_d413/`: generated full-body Knight/Ranger/Mage portraits1024x1536 WebP, matching640x480 mini crops, blank768x512 obsidian/bronze panel and original PNG sources. Mapped only into squad dossier; class-select art, D412 combat sprites and original D287/v7 assets preserved. No text/counts baked into bitmaps. See [QA/provenance](D413_SQUAD_DOSSIER_QA.md).

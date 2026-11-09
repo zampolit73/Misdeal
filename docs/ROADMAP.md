@@ -1,6 +1,8 @@
-## D413 — squad dossier visual upgrade (2026-11-09)
+## D414 — dossier reference polish (2026-11-09)
 
-Implemented on `fix/d413-squad-dossier`, stacked on D412 PR81; not merged to main. New portraits match approved D412 figurines, painted obsidian/bronze panel materials, serif type and aligned live stats; development/relic/party logic preserved. Local Godot4.7.2 GUT211/211; existing D285 native dossier smoke PASS. New state-invariance/filled-build/fate/close regressions and native1280x720 portraits captured. F6 `scenes/dev/d413_squad_dossier_preview.tscn`, normal F5 Table→TAB. [Full QA/art provenance](D413_SQUAD_DOSSIER_QA.md). New dossier aesthetic acceptance remains pending.
+Approved D412 animations/editor fix [PR81](https://github.com/zampolit73/Misdeal/pull/81) and D413 dossier [PR82](https://github.com/zampolit73/Misdeal/pull/82) are merged into main (merge heads `54621b70`, `3c364bb4`). User approved the dossier and requested integration followed by reference polish.
+
+D414 adds a specialization ribbon, selected-hero marker, warm completed-development glow, actual existing artifact artwork/full effect tooltips, stat symbols and an evenly spaced four-part footer. Approved portraits retained. UI-only branch `codex/d414-dossier-reference-polish`; no gameplay/state/timing changes. Native Godot4.7.2: **212/212 GUT**,48 scripts,47,121 assertions; D285 actual dossier smoke PASS; three actual 1280x720 dossier renders inspected. [D414 QA](D414_DOSSIER_REFERENCE_QA.md). Next: review/CI for D414, then F5 Table→TAB and inspect roles1/2/3, upgraded Knight and filled/empty relic slots; TAB/Escape/X close. Historical pending notes below are superseded by this release status.
 
 ## Editor diagnostics follow-up (2026-11-09)
 
@@ -8,7 +10,7 @@ Implemented on `fix/d413-squad-dossier`, stacked on D412 PR81; not merged to mai
 
 ## D412 — approved full pack integrated in production Battle (2026-11-09)
 
-Player approved quality, scale and all three animations («отлично», then «продолжай»). Production now loads the exact `hero_c3_d412_polish` 75 poses, with a single rollback flag and validated archived C3 fallback. Old D407–D409 single-frame patches do not overwrite new artwork. D404 travelled-distance gait and D405 attack timing remain. Correct source sole Y90, exact accepted preview scaling (Ranger1.40, Knight/Mage1.47), immediate first-target facing. Local Godot4.7.2 **208/208 GUT**, 45 scripts, 47,059 assertions. Actual Court trio win→Reward→Table route PASS; native GPU real Battle captured. No human F5 navigation PASS claimed. See [D412 QA](D412_THREE_HERO_PACK_QA.md). PR81 pending CI/review; no merge to main.
+Player approved quality, scale and all three animations («отлично», then «продолжай»). Production now loads the exact `hero_c3_d412_polish` 75 poses, with a single rollback flag and validated archived C3 fallback. Old D407–D409 single-frame patches do not overwrite new artwork. D404 travelled-distance gait and D405 attack timing remain. Correct source sole Y90, exact accepted preview scaling (Ranger1.40, Knight/Mage1.47), immediate first-target facing. Local Godot4.7.2 **208/208 GUT**, 45 scripts, 47,059 assertions. Actual Court trio win→Reward→Table route PASS; native GPU real Battle captured. No human F5 navigation PASS claimed. See [D412 QA](D412_THREE_HERO_PACK_QA.md). PR81 merged; see current release status above.
 
 ## D412 follow-up — motion accepted, detail and size polish (2026-11-09)
 
