@@ -8,7 +8,7 @@ The reference supplies visual hierarchy: blue specialization ribbon, selected-ch
 
 ## Verification
 
-- Local native Godot4.7.2 full GUT: **212/212**,48 scripts,47,121 assertions,29.221s. Existing19 GUT warnings; no test failures. Includes real dossier state-invariance, role/fate/build/relic/close regressions and new equipped→unavailable→equipped artifact transition test.
+- Local native Godot4.7.2 full GUT: **212/212**,48 scripts,47,123 assertions. Existing19 GUT warnings; no test failures. Includes real dossier state-invariance, role/fate/build/relic/close regressions and new equipped→unavailable→equipped artifact transition test.
 - Existing `scripts/dev/d285_squad_dossier_smoke.gd`: **D285_SQUAD_DOSSIER_NATIVE_PASS** (real dossier, solo stats, live upgrades/relics, segmented footer, close).
 - Headless editor import: no script parse/load errors. Local certificate-store access warning and user-log filesystem errors are environmental, not fixed by this UI change.
 - GUI/native `scripts/dev/d413_capture_dossier.gd`: **D413_DOSSIER_CAPTURE_PASS:3**. Real Table fixture and actual squad overlay at1280x720, all three roles inspected; stats fit without label/value wrapping. Knight fixture has executioner upgrade and Dead Man’s Shield. Long relic lists remain scrollable and full effect is available on hover.

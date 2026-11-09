@@ -65,6 +65,10 @@ static func refresh(scene: Control, role: String, available: bool) -> void:
 	for candidate in ["knight", "ranger", "mage"]:
 		scene.get_node("Frame/" + candidate.capitalize() + "Button/D414SelectedBar").visible = candidate == role
 	var artifacts: Array = RunState.get_artifacts_for_role(role) if available else []
+	var relic_count := scene.get_node("Frame/RelicCount") as Label
+	relic_count.text = "%d / 3" % artifacts.size() if available else "—"
+	relic_count.add_theme_color_override("font_color", Color("d9b27a"))
+	relic_count.add_theme_font_size_override("font_size", 14)
 	for i in range(3):
 		var slot := scene.get_node("Frame/RelicSlot%d" % (i + 1)) as Panel
 		var picture := slot.get_node("D414ArtifactImage") as TextureRect
