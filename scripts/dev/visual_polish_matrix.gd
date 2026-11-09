@@ -14,7 +14,7 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var args := OS.get_cmdline_user_args()
-	if args.size() != 2 or not args[0].is_absolute_path():
+	if args.size() < 2 or args.size() > 3 or not args[0].is_absolute_path():
 		quit(1)
 		return
 	destination = args[0]
@@ -22,9 +22,13 @@ func _run() -> void:
 	DirAccess.make_dir_recursive_absolute(destination)
 	root.size = Vector2i(1280,720)
 	state = root.get_node("RunState")
+	var planned := 0
 	for kind in ["main", "intro_open", "intro_end", "class_idle", "class_knight", "class_ranger", "class_mage", "table_two", "table_hover", "table_one", "table_held", "dossier_knight", "dossier_ranger", "dossier_mage", "dossier_lost", "fate_0", "fate_4", "fate_8", "fate_12", "fate_final", "reward_major_upgrade", "reward_bonus_upgrade", "reward_normal_loot", "reward_death_wager", "reward_elite_artifact", "reward_details", "upgrade_knight", "upgrade_ranger", "upgrade_mage", "event_moon_seal", "event_resolved", "event_blood_ledger", "event_chained_prisoner", "shop_poor", "shop_rich", "shop_bought", "well_poor", "well_rich", "end_victory", "end_defeat", "end_full", "battle_solo", "battle_duo", "battle_trio", "battle_orders4", "battle_orders5", "battle_wave"]:
+		if args.size() == 3 and kind not in args[2].split(","):
+			continue
+		planned += 1 + (4 if kind == "battle_trio" else (1 if kind == "end_full" else 0))
 		await _fixture(kind)
-	if manifest.size() != 51:
+	if manifest.size() != planned:
 		push_error("Visual matrix incomplete: " + str(manifest.size()))
 		quit(1)
 		return
@@ -150,6 +154,10 @@ func _fixture(kind: String) -> void:
 				await create_timer(0.3).timeout
 				await _save("battle_death", path)
 				break
+		for actor in units:
+			if actor.team == 1 and actor.alive: actor.take_damage(actor.max_hp + 10000.0)
+		await create_timer(0.9).timeout
+		await _save("battle_result", path)
 	scene.queue_free()
 	await process_frame
 	await process_frame

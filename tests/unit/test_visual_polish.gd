@@ -62,6 +62,13 @@ func test_reward_full_reader_preserves_state_owns_keyboard_focus_and_blocks_choi
 	assert_not_null(reader)
 	assert_eq(reader.get_node("Frame/FullDescription").text,button.tooltip_text)
 	assert_eq(get_viewport().gui_get_focus_owner(),reader.get_node("Frame/CloseButton"))
+	await get_tree().process_frame
+	var bottom := InputEventKey.new()
+	bottom.pressed = true
+	bottom.keycode = KEY_END
+	reader.call("_input", bottom)
+	var bar := (reader.get_node("Frame/FullDescription") as RichTextLabel).get_v_scroll_bar()
+	assert_almost_eq(bar.value,maxf(bar.min_value,bar.max_value-bar.page),0.1)
 	reward.call("_on_reward_button_pressed",0)
 	assert_eq(_snapshot(),before)
 	reader.call("close")
