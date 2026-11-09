@@ -13,15 +13,19 @@ var _output: String
 var _lines: Array[String] = []
 var _initial_positions: Dictionary = {}
 var _max_movement := 0.0
+var _extended_capture := false
+var _enemy_attack_samples := 0
+var _attack_capture_started := false
 
 func _initialize() -> void:
 	call_deferred("_run")
 
 func _run() -> void:
 	var args := OS.get_cmdline_user_args()
-	if args.size() != 1 or not args[0].is_absolute_path():
-		_fail("use -- <absolute output directory>")
+	if args.size() < 1 or args.size() > 2 or not args[0].is_absolute_path():
+		_fail("use -- <absolute output directory> [extended]")
 		return
+	_extended_capture = args.size() == 2 and args[1] == "extended"
 	_output = args[0]
 	root.size = SIZE
 	DirAccess.make_dir_recursive_absolute(_output)
@@ -99,7 +103,10 @@ func _run() -> void:
 
 	var previous := 0.0
 	var index := 2
-	for elapsed in SAMPLE_TIMES:
+	var sample_times: Array = SAMPLE_TIMES.duplicate()
+	if _extended_capture:
+		sample_times.append_array([2.6,3.6,4.6,5.6,6.6])
+	for elapsed in sample_times:
 		if elapsed > previous:
 			await create_timer(elapsed - previous).timeout
 		if not await _save_frame("%02d-live-%04dms" % [index, int(elapsed * 1000.0)], "combat"):
@@ -112,6 +119,9 @@ func _run() -> void:
 	if _max_movement < 2.0:
 		_fail("no native unit movement observed, max displacement=" + str(_max_movement))
 		return
+	if _extended_capture and _enemy_attack_samples == 0:
+		_fail("extended fight never observed a natural enemy attack")
+		return
 	var log_file := FileAccess.open(_output.path_join("battle-frame-metadata.csv"), FileAccess.WRITE)
 	if log_file == null:
 		_fail("cannot write frame motion metadata")
@@ -119,7 +129,7 @@ func _run() -> void:
 	for line in _lines:
 		log_file.store_line(line)
 	log_file.close()
-	print("CI4_BATTLE_CAPTURE_PASS: 7 original 1280x720 frames, units=1 hero+3 enemies, movement_px=", snappedf(_max_movement, 0.1))
+	print("CI4_BATTLE_CAPTURE_PASS: ", _lines.size()-1, " native 1280x720 frames, units=1 hero+3 enemies, movement_px=", snappedf(_max_movement, 0.1), " enemy_attack_samples=",_enemy_attack_samples)
 	_battle.queue_free()
 	await process_frame
 	quit(0)
@@ -158,6 +168,30 @@ func _save_frame(label: String, phase: String) -> bool:
 	print("CI4_FRAME_PASS: ", label, " live=", _battle.get("combat_live"),
 		" alive=", active, " max_movement_px=", snappedf(_max_movement, 0.1), " path=", path)
 	return true
+
+func _process(_delta: float) -> bool:
+	if not _extended_capture or not is_instance_valid(_battle):
+		return false
+	for candidate in _battle.get("units"):
+		var unit := candidate as BattleUnit
+		if unit == null or unit.team != 1 or not unit.alive or unit.frame_state != "attack":
+			continue
+		_enemy_attack_samples += 1
+		if not unit.art_sprite.scale.is_equal_approx(unit.base_sprite_scale) or absf(unit.art_sprite.rotation)>0.001:
+			_extended_capture=false
+			_fail("authored enemy attack was additionally warped in actual combat")
+			return false
+		if not _attack_capture_started:
+			_attack_capture_started=true
+			call_deferred("_capture_natural_attack")
+	return false
+
+func _capture_natural_attack() -> void:
+	for index in range(3):
+		if not is_instance_valid(_battle):
+			return
+		await _save_frame("natural-attack-%d" % index,"natural enemy attack")
+		await create_timer(0.08).timeout
 
 func _fail(message: String) -> void:
 	push_error("CI4_BATTLE_CAPTURE_FAIL: " + message)

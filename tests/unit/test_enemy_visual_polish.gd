@@ -28,6 +28,16 @@ func test_every_enemy_walk_uses_distance_and_authored_hit_keeps_root_and_death_g
 		assert_almost_eq(actor.frame_time,1.0/7.0,0.001,role)
 		assert_eq(actor.damage,data.damage)
 		assert_eq(actor.move_speed,data.move_speed)
+		var opponent := UNIT.instantiate() as BattleUnit
+		opponent.visual_role="knight"
+		opponent.team=0
+		opponent.position=Vector2(-100,0)
+		stage.add_child(opponent)
+		opponent.set_process(false)
+		actor._play_attack_feedback(opponent)
+		assert_eq(actor.art_sprite.scale,actor.base_sprite_scale,role+": authored ATTACK must not stretch")
+		assert_eq(actor.art_sprite.rotation,0.0,role+": source attack pose owns orientation")
+		assert_eq(actor.art_sprite.modulate,actor.base_art_modulate,role+": preserve source attack colors")
 		actor._play_hit_feedback(Vector2(-100,0),"knight",true)
 		assert_eq(actor.scale,Vector2.ONE,role)
 		actor.scale=Vector2(1.16,1.16)

@@ -2,7 +2,7 @@
 
 ## Completed checkpoint
 
-- D420 user-authorized all24 enemy visual roles/600 new poses, individual stature and authored motion feedback. [Native QA and F6](ENEMY_VISUAL_POLISH.md); final RELEASE CI/player review pending.
+- D420 user-authorized all24 enemy visual roles/600 new poses, individual stature and authored motion feedback. [Native QA and F6](ENEMY_VISUAL_POLISH.md); RELEASE/player review tracked in [PR90](https://github.com/zampolit73/Misdeal/pull/90).
 
 - D418 Ranger-only Jack event with three choices and complete animal combat pack; [QA and local F6](D418_JACK_EVENT.md).
 

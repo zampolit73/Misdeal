@@ -1232,10 +1232,10 @@ func _play_attack_feedback(primary_target: BattleUnit) -> void:
 	var direction := global_position.direction_to(primary_target.global_position)
 	var style := _get_attack_style()
 	var rest_position := _art_rest_position()
-	var c3_motion := ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames)
+	var c3_motion := (team == 1 and sprite_frames != null) or ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames)
 
 	if c3_motion:
-		# D403: the C3 atlas already contains its own sword swing, bow draw
+		# D403/D420: authored atlases contain their own sword swing, bow draw
 		# and full-body spell poses. Keep the feet planted and the source
 		# costume intact instead of additionally rubber-scaling/rotating it.
 		var recoil_x := 2.0 if style == "melee" else (-2.0 if style == "ranged" else -1.0)
@@ -1245,9 +1245,10 @@ func _play_attack_feedback(primary_target: BattleUnit) -> void:
 		# Preserve the existing Mage hit trace without recolouring the
 		# illustration-derived violet robe every time an attack starts.
 		if style == "magic":
-			_spawn_attack_trace(primary_target, Color(0.72, 0.44, 1.0, 0.95), 3.4)
+			var trace_color := Color(0.72, 0.44, 1.0, 0.95) if team == 0 else Color(0.50, 1.0, 0.70, 0.92)
+			_spawn_attack_trace(primary_target, trace_color, 3.4)
 	else:
-		# All archived v2 heroes and enemies retain established feedback.
+		# Static enemy fallbacks and archived v2 heroes retain their feedback.
 		match style:
 			"ranged":
 				art_sprite.position = rest_position - direction * 5.0

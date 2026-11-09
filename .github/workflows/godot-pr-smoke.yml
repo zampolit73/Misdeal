@@ -336,6 +336,13 @@ jobs:
               test -s "$out/page_${page}_${clip}.png"
             done
           done
+          timeout 60s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility \
+            --script res://scripts/dev/ci4_capture_real_battle.gd -- "$out/actual-battle" extended \
+            2>&1 | tee "$out/actual-battle.log"
+          grep -Fq 'CI4_BATTLE_CAPTURE_PASS' "$out/actual-battle.log"
+          test -s "$out/actual-battle/natural-attack-2.png"
 
       - name: RELEASE — complete production visual audit matrix
         if: steps.scope.outputs.mode == 'release'
