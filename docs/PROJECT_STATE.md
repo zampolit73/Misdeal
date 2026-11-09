@@ -1,5 +1,7 @@
 ## D413 — squad dossier visual upgrade (2026-11-09)
 
+[PR82](https://github.com/zampolit73/Misdeal/pull/82), stacked on PR81; [Godot4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42571523455) for code `778c7796`:211/211 GUT,47 scripts,47,106 assertions; D285 real dossier smoke, actual three-role GPU dossier captures and Battle→Reward→Table route passed. Full RELEASE matrix skipped. Main remains unmerged.
+
 Implemented on `fix/d413-squad-dossier`, stacked on D412 PR81; not merged to main. New portraits match approved D412 figurines, painted obsidian/bronze panel materials, serif type and aligned live stats; development/relic/party logic preserved. Local Godot4.7.2 GUT211/211; existing D285 native dossier smoke PASS. New state-invariance/filled-build/fate/close regressions and native1280x720 portraits captured. F6 `scenes/dev/d413_squad_dossier_preview.tscn`, normal F5 Table→TAB. [Full QA/art provenance](D413_SQUAD_DOSSIER_QA.md). New dossier aesthetic acceptance remains pending.
 
 ## Editor fix — Bone Shepherd smoke parses again (2026-11-09)

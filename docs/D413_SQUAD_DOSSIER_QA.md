@@ -1,5 +1,7 @@
 # D413 — squad dossier visual upgrade
 
+[PR82](https://github.com/zampolit73/Misdeal/pull/82), stacked on PR81; [Godot4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42571523455) for code `778c7796`:211/211 GUT,47 scripts,47,106 assertions; D285 real dossier smoke, actual three-role GPU dossier captures and Battle→Reward→Table route passed. Full RELEASE matrix skipped. Main remains unmerged.
+
 User requested a richer dossier matching their reference, portraits consistent with the approved D412 figurines, and preserved game logic. Implemented on `fix/d413-squad-dossier`, based on the D412 PR branch; main remains unchanged until review/merge. Native player aesthetic acceptance of this newly rendered dossier is pending.
 
 ## Visual result
@@ -28,7 +30,7 @@ Native production Table/dossier captures (trio, Executioner upgrade and Dead Man
 - Full local GUT **211/211**,47 scripts,47,106 assertions; no skipped parse-error test. Two added dossier tests cover populated real upgrades/artifacts, all role switches, exact RunState snapshot stability, new portraits/material, unavailable/lost roles and TAB close while roster focus is present.
 - Existing `D285_SQUAD_DOSSIER_NATIVE_PASS`: actual solo330HP, role fates, real upgrade/relic widgets, footer and close button passed after the changes.
 - Windows certificate-store diagnostic remains environmental; no claim of a warning-free engine startup. Existing19 GUT warnings retained.
-- PR CI now includes the dossier smoke and actual GPU capture of all three selected heroes. CI result/link will be recorded after verification.
+- PR CI now includes the dossier smoke and actual GPU capture of all three selected heroes. CI result verified above. Native viewport keyboard injection also confirmed `D413_FOCUSED_TAB_CLOSE=true` while a real roster button had focus.
 
 ## Art provenance and rollback
 
