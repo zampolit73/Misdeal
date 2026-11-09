@@ -35,7 +35,7 @@ static func apply(scene: Control) -> void:
 
 	var background := WEBP.new() as TextureRect
 	background.name = "ShopDS2Backdrop"
-	background.set("webp_path", "res://assets/pixel/table/approved_variant_c/table_exact.webp")
+	background.set("webp_path", "res://assets/pixel/table/d416_clean_center/table_clean.webp")
 	background.set("expected_size", Vector2i(1280, 720))
 	background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	background.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
@@ -120,7 +120,8 @@ static func _style_card(button: Button, data: Dictionary, index: int, price: int
 	var art := button.get_node("ChoiceArt") as TextureRect
 	# The frame draws behind the original real ChoiceArt node.
 	button.move_child(art_frame, art.get_index())
-	art.texture = ART.get_upgrade_texture(String(data["art"]))
+	var offered_upgrade := String(button.get_meta("choice_upgrade_id", ""))
+	art.texture = ART.get_upgrade_texture(offered_upgrade if not offered_upgrade.is_empty() else String(data["art"]))
 	art.visible = art.texture != null
 	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -161,8 +162,9 @@ static func _style_card(button: Button, data: Dictionary, index: int, price: int
 		warning = "НЕ ХВАТАЕТ ЗОЛОТА"
 	else:
 		warning = "ДОСТУПНО К ПОКУПКЕ"
-	_label(parchment, warning, Vector2(10, 123), Vector2(244, 30), 12,
+	var availability := _label(parchment, warning, Vector2(10, 123), Vector2(244, 30), 12,
 		Color(0.38, 0.28, 0.15) if not button.disabled else Color(0.57, 0.16, 0.11))
+	availability.name = "PurchaseStatus"
 	button.tooltip_text = "%s\n\n%s\n%s" % [original_offer, detail.text, full_upgrade_text]
 
 
@@ -187,6 +189,11 @@ static func show_result(scene: Control) -> void:
 	for path in ["Panel/Choices/ChoiceA", "Panel/Choices/ChoiceB", "Panel/Choices/ChoiceC"]:
 		var card := scene.get_node(path) as Button
 		card.modulate = Color(0.78, 0.77, 0.75)
+		var availability := card.get_node_or_null("DS2Parchment/PurchaseStatus") as Label
+		if availability != null:
+			var upgrade := String(card.get_meta("choice_upgrade_id", ""))
+			availability.text = "ВЫБРАНО" if not upgrade.is_empty() and RunState.has_hero_upgrade(upgrade) else "ВИЗИТ ЗАВЕРШЁН"
+			availability.add_theme_color_override("font_color", Color(0.38, 0.28, 0.15))
 	refresh_gold(scene)
 
 
