@@ -1,3 +1,20 @@
+## Editor fix — Bone Shepherd smoke parses again (2026-11-09)
+
+Screenshot error at `scripts/dev/bone_shepherd_smoke.gd:114` fixed: resource is a typed runtime member rather than a constant, avoiding Godot4.7 exported-empty-array constant evaluation as null. Restore current deck guard39 (was37). No EncounterData/resource/combat/art changes. Native original scene54/54 completed,14 whistle activations,errors=[]; new dynamic scene-load/validator GUT regression passes. Full local Godot4.7.2 GUT209/209,46 scripts,47,064 assertions. Existing transparent Shepherd idle-cel repair warning remains unrelated.
+
+## D412 — approved full pack integrated in production Battle (2026-11-09)
+
+Player approved quality, scale and all three animations («отлично», then «продолжай»). Production now loads the exact `hero_c3_d412_polish` 75 poses, with a single rollback flag and validated archived C3 fallback. Old D407–D409 single-frame patches do not overwrite new artwork. D404 travelled-distance gait and D405 attack timing remain. Correct source sole Y90, exact accepted preview scaling (Ranger1.40, Knight/Mage1.47), immediate first-target facing. Local Godot4.7.2 **208/208 GUT**, 45 scripts, 47,059 assertions. Actual Court trio win→Reward→Table route PASS; native GPU real Battle captured. No human F5 navigation PASS claimed. See [D412 QA](D412_THREE_HERO_PACK_QA.md). PR81 pending CI/review; no merge to main.
+
+## D412 follow-up — motion accepted, detail and size polish (2026-11-09)
+
+Player explicitly accepts all three animations. Preserve poses, order and timing; no new animation approval gate. Increase displayed size ~9–10% (live common hero scale1.40; role ratios unchanged; new-pack preview Ranger1.40/Knight1.47/Mage1.47). Recover source material detail with premultiplied Lanczos colour sampling while retaining exact accepted nearest-sampled alpha for every pose. New version in `assets/pixel/units/hero_c3_d412_polish/`; baseline source/packed files retained. This is resampling/detail polish, not newly painted models. Full new pack remains QA-only, production uses prior atlases.
+
+## 2026-11-09 — D412 hero animation candidates and relative size
+
+- Live Mage/Ranger art factors1.00, Knight1.05; no gameplay/timing changes.
+- New full generated 75-pose QA pack and native F6 review; original runtime art retained until candidate visual QA. GUT205/205. See docs/D412_THREE_HERO_PACK_QA.md.
+
 ## 2026-11-09 — D411 RELEASED: correct oversized Knight in real F5 combat
 
 - Respond to player's native «МОГИЛЬНЫЙ ПЕРЕКРЁСТОК» screenshot: D410 Knight was too large; tune player Knight-only art multiplier `1.38 → 1.25` (effective `1.7664 → 1.60`, ~9.4% smaller), keeping Mage 1.60 and Ranger 1.28.

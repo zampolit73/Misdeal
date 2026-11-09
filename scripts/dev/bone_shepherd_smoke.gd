@@ -3,7 +3,9 @@ extends Control
 # F6-only authentic Bone Shepherd art/ability/combat verification.
 # Does NOT alter production run history or certify real Act 1 balance.
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
-const ENCOUNTER: EncounterData = preload("res://resources/encounters/bone_shepherd.tres")
+# Read exported array defaults at runtime: Godot 4.7 constant folding can
+# incorrectly treat an omitted empty PackedStringArray as null.
+var encounter: EncounterData = preload("res://resources/encounters/bone_shepherd.tres")
 const WHISTLE_DATA: BoneShepherdWhistleData = preload("res://resources/encounters/bone_shepherd_whistle.tres")
 const CONTROLLER := preload("res://scripts/battle/bone_shepherd_whistle.gd")
 const ART_LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
@@ -111,12 +113,12 @@ func _validate_resources() -> void:
 		return
 	if card.resolution_type != "combat" or card.target_path != "res://resources/encounters/bone_shepherd.tres":
 		errors.append("New card must refer to original Shepherd encounter")
-	if ENCOUNTER.enemy_unit_paths != PackedStringArray(EXPECTED_PATHS) or ENCOUNTER.reinforcement_unit_paths.size() != 0:
+	if encounter.enemy_unit_paths != PackedStringArray(EXPECTED_PATHS) or encounter.reinforcement_unit_paths.size() != 0:
 		errors.append("Original 1+2 roster is not preserved")
-	if ENCOUNTER.get_formation_count() != 2 or ENCOUNTER.alternate_enemy_positions.size() != 3:
+	if encounter.get_formation_count() != 2 or encounter.alternate_enemy_positions.size() != 3:
 		errors.append("Expected two authored formations with the same roster")
-	if RunState.ACT1_CARD_IDS.size() != 37 or not RunState.ACT1_CARD_IDS.has("bone_shepherd") or not RunState.ACT1_CARD_IDS.has("funeral_procession") or not RunState.ACT1_CARD_IDS.has("defiled_laboratory") or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
-		errors.append("Act 1 must include 37 unique cards, preserving Bone Shepherd and D151–D153")
+	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has("bone_shepherd") or not RunState.ACT1_CARD_IDS.has("funeral_procession") or not RunState.ACT1_CARD_IDS.has("defiled_laboratory") or not RunState.ACT1_CARD_IDS.has("threadbare_theatre"):
+		errors.append("Act 1 must include 39 unique cards, preserving Bone Shepherd and D151–D153")
 	var art := ART_CATALOG.get_run_card_texture("bone_shepherd")
 	if art == null or art.get_size() != Vector2(448, 274):
 		errors.append("Original card illustration is missing/incorrect")
@@ -162,9 +164,9 @@ func _setup_fixture(formation: int, protagonist_idx: int, size: int, order_id: S
 	for i in range(RunState.party_roles.size()):
 		var hero_data := RunState.get_hero_unit_data(RunState.party_roles[i])
 		heroes.append(_make_unit(arena, hero_data, 0, player_spawns[i], order_id))
-	var positions := ENCOUNTER.get_enemy_positions_for_formation(formation)
+	var positions := encounter.get_enemy_positions_for_formation(formation)
 	for i in range(3):
-		var enemy_data := load(ENCOUNTER.enemy_unit_paths[i]) as UnitData
+		var enemy_data := load(encounter.enemy_unit_paths[i]) as UnitData
 		var depth: float = clampf((positions[i].y - 130.0) / 275.0, 0.0, 1.0)
 		var projected := Vector2(positions[i].x, lerpf(316.0, 410.0, depth))
 		enemies.append(_make_unit(arena, enemy_data, 1, projected, order_id))

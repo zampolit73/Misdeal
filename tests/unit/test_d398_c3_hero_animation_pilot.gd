@@ -1,5 +1,8 @@
 extends GutTest
 
+# D412: source-image assertions below guard ARCHIVED C3 fallback art.
+# Active approved D412 BattleUnit coverage is in test_d412_full_hero_pack.gd.
+
 const LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
 const PREVIEW := preload("res://scenes/dev/d398_c3_hero_animation_preview.tscn")
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
@@ -48,7 +51,7 @@ func test_invalid_pilot_image_rejected_before_live_use() -> void:
 
 func test_live_battle_uses_d398_c3_for_heroes_and_keeps_other_roles() -> void:
 	for role in ROLES:
-		var frames: SpriteFrames = LIBRARY.get_frames(role)
+		var frames: SpriteFrames = LIBRARY.get_frames(role, false)
 		assert_not_null(frames)
 		if frames == null:
 			continue
@@ -85,7 +88,7 @@ func test_live_battle_uses_d398_c3_for_heroes_and_keeps_other_roles() -> void:
 		if actor.sprite_frames != null:
 			assert_eq(actor.sprite_frames.get_frame_count("attack"), 6)
 	for role in ["skeleton", "bone_archer"]:
-		var frames: SpriteFrames = LIBRARY.get_frames(role)
+		var frames: SpriteFrames = LIBRARY.get_frames(role, false)
 		assert_not_null(frames)
 		if frames != null:
 			assert_eq(frames.get_frame_count("attack"), 6)

@@ -27,7 +27,7 @@ func test_live_c3_heroes_use_preview_sole_baseline_and_v2_fallback_keeps_old_off
 		assert_not_null(hero.sprite_frames)
 		assert_true(LIBRARY.is_live_c3_hero_frames(role, hero.sprite_frames), role + " must be genuine live C3")
 		assert_eq(hero._get_role_floor_offset(), 0.0, role + " must not inherit the old floating v2 floor offset")
-		var sole_y: float = hero.art_sprite.position.y + (hero.ANIM_SOLE_Y - hero.ANIM_CELL_HEIGHT * 0.5) * hero.base_sprite_scale.y
+		var sole_y: float = hero.art_sprite.position.y + (hero.get_animation_sole_y() - hero.ANIM_CELL_HEIGHT * 0.5) * hero.base_sprite_scale.y
 		assert_almost_eq(sole_y, hero.FLOOR_CONTACT_Y, 0.55, role + " boots should meet their combat floor ring")
 		# A missing/invalid C3 atlas must still use v2's established placement.
 		var actual_frames: SpriteFrames = hero.sprite_frames

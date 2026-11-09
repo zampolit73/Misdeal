@@ -47,13 +47,13 @@ func test_knight_has_balanced_live_c3_stature_and_original_five_states() -> void
 		for state in ["idle", "walk", "attack", "hit", "death"]:
 			assert_gt(hero.sprite_frames.get_frame_count(state), 0)
 			assert_not_null(hero.sprite_frames.get_frame_texture(state, 0))
-	assert_almost_eq(knight.base_sprite_scale.x, 1.28 * 1.25, 0.001)
-	assert_almost_eq(ranger.base_sprite_scale.x, 1.28, 0.001)
-	assert_almost_eq(mage.base_sprite_scale.x, 1.28 * 1.25, 0.001)
+	assert_almost_eq(knight.base_sprite_scale.x, 1.40 * 1.05, 0.001)
+	assert_almost_eq(ranger.base_sprite_scale.x, 1.40, 0.001)
+	assert_almost_eq(mage.base_sprite_scale.x, 1.47, 0.001)
 	# D411: Knight and Mage share the same scale; broad armor/shield, not
 	# artificial giant height, carry Knight\'s heavier silhouette.
-	assert_almost_eq(knight.base_sprite_scale.x, mage.base_sprite_scale.x, 0.001)
-	assert_gt(knight.base_sprite_scale.x, ranger.base_sprite_scale.x * 1.20)
+	assert_almost_eq(mage.base_sprite_scale.x, ranger.base_sprite_scale.x * 1.05, 0.001)
+	assert_almost_eq(knight.base_sprite_scale.x, ranger.base_sprite_scale.x * 1.05, 0.001)
 	var knight_height := _visible_idle_height(knight)
 	var mage_height := _visible_idle_height(mage)
 	assert_gt(knight_height, mage_height * 0.90,
@@ -69,7 +69,7 @@ func test_balanced_knight_stays_grounded_with_clear_hp_bar_and_unchanged_mechani
 	var ranger := _create_hero(RANGER)
 	var mage := _create_hero(MAGE)
 	for hero in [knight, ranger, mage]:
-		var foot_y: float = hero.art_sprite.position.y + (hero.ANIM_SOLE_Y - hero.ANIM_CELL_HEIGHT * 0.5) * hero.base_sprite_scale.y
+		var foot_y: float = hero.art_sprite.position.y + (hero.get_animation_sole_y() - hero.ANIM_CELL_HEIGHT * 0.5) * hero.base_sprite_scale.y
 		assert_almost_eq(foot_y, hero.FLOOR_CONTACT_Y, 0.55,
 			hero.visual_role + " boots must still land on the original combat floor ring")
 		assert_eq(hero.scale, Vector2.ONE, "No whole-unit scaling or collision change")

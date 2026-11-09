@@ -1,5 +1,8 @@
 extends GutTest
 
+# D412: source-image assertions below guard ARCHIVED C3 fallback art.
+# Active approved D412 BattleUnit coverage is in test_d412_full_hero_pack.gd.
+
 # D402: D401 fixed a sword→axe substitution but the Knight still lost the
 # approved shield in four attack cels. This test checks the actual alpha art,
 # not just that there are 25 non-empty distinct images.
@@ -62,7 +65,7 @@ func test_d402_live_knight_retains_shield_after_d406_source_update() -> void:
 	# receives its sword-grip retouch from D406 without losing that shield.
 	var image := _decode(LIBRARY.C3_KNIGHT_D406_PATH)
 	assert_not_null(image)
-	var frames: SpriteFrames = LIBRARY.get_frames("knight")
+	var frames: SpriteFrames = LIBRARY.get_frames("knight", false)
 	assert_not_null(frames)
 	if image == null or frames == null:
 		return
@@ -78,7 +81,7 @@ func test_d402_live_knight_retains_shield_after_d406_source_update() -> void:
 		assert_eq(hash(atlas_image.get_data()), hash(image.get_data()),
 			"Live Knight must load D406 with the D402 shield retained, not old v2")
 	for role in ["ranger", "mage"]:
-		var hero_frames: SpriteFrames = LIBRARY.get_frames(role)
+		var hero_frames: SpriteFrames = LIBRARY.get_frames(role, false)
 		assert_not_null(hero_frames)
 		if hero_frames != null:
 			assert_eq(hero_frames.get_frame_count("attack"), 6)

@@ -1,3 +1,7 @@
+## D412 — approved LIVE hero animation source (2026-11-09)
+
+`assets/pixel/units/hero_c3_d412_polish/{knight,ranger,mage}.webp.b64` is now the active full 25-pose per-role source. Original D412 PNG sources and prior atlases remain for rollback. No D407/D408/D409 cel overlays apply to new source. `D412_APPROVED_ENABLED=false` restores the previous C3 stack. Source soleY90; accepted preview body normalization preserved.
+
 ## D409 — improved Knight walk posture, unchanged boots (2026-11-08)
 
 Six 96px `assets/pixel/units/hero_c3_d409/knight_walk_{0..5}.webp.b64` isolated source cel corrections re-center upper-body shoulder/head silhouette by ~4–5px toward the grounded hips. Their rows67–95 are exactly identical to the original D406 Knight WALK cells, with sole row90 unchanged. Live C3 Knight WALK uses them with per-frame fallback, source D406 atlas untouched, accepted D404 frame timing untouched. This is an authored-pixel posture adjustment, not a new knight costume or full 25-frame illustration redraw. [D409 QA](D409_KNIGHT_WALK_POSTURE_QA.md).

@@ -1,3 +1,21 @@
+## Editor fix — Bone Shepherd smoke parses again (2026-11-09)
+
+Screenshot error at `scripts/dev/bone_shepherd_smoke.gd:114` fixed: resource is a typed runtime member rather than a constant, avoiding Godot4.7 exported-empty-array constant evaluation as null. Restore current deck guard39 (was37). No EncounterData/resource/combat/art changes. Native original scene54/54 completed,14 whistle activations,errors=[]; new dynamic scene-load/validator GUT regression passes. Full local Godot4.7.2 GUT209/209,46 scripts,47,064 assertions. Existing transparent Shepherd idle-cel repair warning remains unrelated.
+
+## D412 — approved full pack integrated in production Battle (2026-11-09)
+
+Verified [Godot4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42526508093) for integration commit `41aedac7`: 208/208 real GUT, actual Battle→Reward→Table route, relevant scene smokes and GPU screenshot capture passed. Full authored RELEASE matrix skipped. PR81 is ready for review; main unmerged.
+
+Player approved quality, scale and all three animations («отлично», then «продолжай»). Production now loads the exact `hero_c3_d412_polish` 75 poses, with a single rollback flag and validated archived C3 fallback. Old D407–D409 single-frame patches do not overwrite new artwork. D404 travelled-distance gait and D405 attack timing remain. Correct source sole Y90, exact accepted preview scaling (Ranger1.40, Knight/Mage1.47), immediate first-target facing. Local Godot4.7.2 **208/208 GUT**, 45 scripts, 47,059 assertions. Actual Court trio win→Reward→Table route PASS; native GPU real Battle captured. No human F5 navigation PASS claimed. See [D412 QA](D412_THREE_HERO_PACK_QA.md). PR81 pending CI/review; no merge to main.
+
+## D412 follow-up — motion accepted, detail and size polish (2026-11-09)
+
+Player explicitly accepts all three animations. Preserve poses, order and timing; no new animation approval gate. Increase displayed size ~9–10% (live common hero scale1.40; role ratios unchanged; new-pack preview Ranger1.40/Knight1.47/Mage1.47). Recover source material detail with premultiplied Lanczos colour sampling while retaining exact accepted nearest-sampled alpha for every pose. New version in `assets/pixel/units/hero_c3_d412_polish/`; baseline source/packed files retained. This is resampling/detail polish, not newly painted models. Full new pack remains QA-only, production uses prior atlases.
+
+## D412 — three-hero full animation candidates and party size (2026-11-09)
+
+New 75-pose image-generated pack, 25 unique padded poses per role, staged in native F6 `scenes/dev/d412_three_hero_animation_preview.tscn`. Live Mage/Ranger art scales now equal 1.00; Knight 1.05 (five percent taller art scale), per player request. Source-frame body height still varies slightly; crystal/weapon excluded from artistic height judgment. Original production atlases retained. Native local GUT 205/205; new 75-pose image checks collected. New artwork is QA-only, NOT yet registered in live encounters. See [D412 QA](D412_THREE_HERO_PACK_QA.md).
+
 ## D411 RELEASED — Knight C3 combat size rebalanced after F5 rejection (2026-11-09)
 
 Player native F5 screenshot of «МОГИЛЬНЫЙ ПЕРЕКРЁСТОК» shows D410's Knight `1.38` role factor **too large**. Adjust only the player Knight's visual multiplier to `1.25` (net `1.60` after shared `1.28`, ~9.4% smaller than D410) and its HP bar from y -126..-119 to y -112..-105, following the existing y36 sole-contact formula. Mage stays at `1.25`, Ranger at `1.00`; art pixels and accepted D404/D405 motion, D409 posture, all gameplay and physics unchanged. Rework original `test_d410_knight_visual_stature.gd` regression for an actual painted height comparable with Mage rather than forcing Knight to tower above him. [D411 QA](D411_KNIGHT_BALANCED_STATURE_QA.md). [PR #80](https://github.com/zampolit73/Misdeal/pull/80) squash-merged into `main` (`9be4dcb692f64f578581f3a90e4e781cfb258bea`) after [native Godot 4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42518826899): **204/204 GUT**, project import and scene smokes passed. **Human F5 visual acceptance still pending.**

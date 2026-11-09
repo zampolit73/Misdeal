@@ -102,9 +102,16 @@ static var _unavailable: Dictionary = {}
 # D403: bind the C3 source identity to the actual SpriteFrames resource.
 # The legacy v2 fallback must retain its own authored floor offsets.
 static var _live_c3_frames: Dictionary = {}
+const D412_APPROVED_ENABLED := true
+const D412_APPROVED_DIR := "res://assets/pixel/units/hero_c3_d412_polish/"
+static var _approved_frames: Dictionary = {}
 
 
-static func get_frames(role: String) -> SpriteFrames:
+static func get_frames(role: String, use_approved: bool = true) -> SpriteFrames:
+	if use_approved and D412_APPROVED_ENABLED and C3_HERO_ROLES.has(role):
+		var approved := _get_approved_frames(role)
+		if approved != null:
+			return approved
 	if not ROLES.has(role):
 		return null
 	if _frames_cache.has(role):
@@ -351,7 +358,29 @@ static func _get_c3_hero_texture(role: String) -> Texture2D:
 # Only C3's live 96px artwork uses D403 pose grounding. If a C3 file
 # fails to decode, the old v2 actor still receives its old floor correction.
 static func is_live_c3_hero_frames(role: String, frames: SpriteFrames) -> bool:
-	return frames != null and C3_HERO_PILOT_ENABLED and C3_HERO_ROLES.has(role) and _live_c3_frames.get(role) == frames
+	return frames != null and C3_HERO_PILOT_ENABLED and C3_HERO_ROLES.has(role) and (_live_c3_frames.get(role) == frames or is_approved_hero_frames(role, frames))
+
+static func is_approved_hero_frames(role: String, frames: SpriteFrames) -> bool:
+	return frames != null and _approved_frames.get(role) == frames
+
+static func _get_approved_frames(role: String) -> SpriteFrames:
+	if _approved_frames.has(role):
+		return _approved_frames[role]
+	var path := D412_APPROVED_DIR + role + ".webp.b64"
+	if not FileAccess.file_exists(path):
+		return null
+	var img := Image.new()
+	if img.load_webp_from_buffer(Marshalls.base64_to_raw(FileAccess.get_file_as_string(path))) != OK or not _valid_c3_hero_atlas(img):
+		push_warning("D412 invalid approved atlas; using archived C3: " + role)
+		return null
+	var previous: SpriteFrames = _frames_cache.get(role)
+	var frames := _create_frames(role, ImageTexture.create_from_image(img), true, false)
+	if previous != null:
+		_frames_cache[role] = previous
+	else:
+		_frames_cache.erase(role)
+	_approved_frames[role] = frames
+	return frames
 
 
 static func _valid_c3_hero_atlas(img: Image) -> bool:
@@ -464,7 +493,7 @@ static func get_static_texture(role: String) -> Texture2D:
 		return null
 	return frames.get_frame_texture("idle", 0)
 
-static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = false) -> SpriteFrames:
+static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = false, apply_archived_cels: bool = true) -> SpriteFrames:
 	var frames := SpriteFrames.new()
 	if frames.has_animation("default"):
 		frames.remove_animation("default")
@@ -474,7 +503,7 @@ static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = f
 	# battle-scale player screenshot. Load six individually corrected 96px
 	# art cells; original D404 cadence, collision and floor soles untouched.
 	# Fall back to the matching D406 atlas tile if a file is absent/broken.
-	if is_c3_pilot and role == "knight":
+	if is_c3_pilot and apply_archived_cels and role == "knight":
 		for walk_index in range(6):
 			var pose_path := "%sknight_walk_%d.webp.b64" % [C3_KNIGHT_D409_WALK_DIR, walk_index]
 			var corrected_pose: Texture2D = _load_c3_hero_cel(pose_path)
@@ -490,7 +519,7 @@ static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = f
 	_add_row(frames, atlas, "hit", 3, 3, 12.0, false)
 	# D408: five genuine painted HIT-cel corrections restored the bow/staff
 	# that source storyboards omitted. Keep approved Knight poses untouched.
-	if is_c3_pilot and C3_HIT_PROP_PATHS.has(role):
+	if is_c3_pilot and apply_archived_cels and C3_HIT_PROP_PATHS.has(role):
 		var replacement_paths: Array = C3_HIT_PROP_PATHS[role]
 		for hit_index in range(replacement_paths.size()):
 			var replacement_path: String = str(replacement_paths[hit_index])
@@ -503,7 +532,7 @@ static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = f
 	# D407: the D401 C3 Mage has a bright active spell at the end of death.
 	# Replace just that cell using a separately encoded 96px RGBA image,
 	# leaving the original 29 approved atlas cells and source WebP untouched.
-	if is_c3_pilot and role == "mage":
+	if is_c3_pilot and apply_archived_cels and role == "mage":
 		var resting_crystal: Texture2D = _load_c3_mage_death_final()
 		if resting_crystal != null:
 			frames.set_frame("death", 5, resting_crystal)

@@ -1,5 +1,8 @@
 extends GutTest
 
+# D412: source-image assertions below guard ARCHIVED C3 fallback art.
+# Active approved D412 BattleUnit coverage is in test_d412_full_hero_pack.gd.
+
 # D408: verify real original C3 body paintings + recovered existing
 # source-weapon artwork during HIT, and an unwarped death transition.
 const LIBRARY := preload("res://scripts/battle/unit_animation_library.gd")
@@ -32,7 +35,7 @@ func _image_from_b64(path: String) -> Image:
 
 func test_d408_ranger_and_mage_hit_art_uses_real_96px_weapon_corrections() -> void:
 	for role in ["ranger", "mage"]:
-		var frames: SpriteFrames = LIBRARY.get_frames(role)
+		var frames: SpriteFrames = LIBRARY.get_frames(role, false)
 		assert_true(LIBRARY.is_live_c3_hero_frames(role, frames))
 		assert_eq(frames.get_frame_count("hit"), 3)
 		assert_eq(frames.get_animation_speed("hit"), 12.0)
@@ -66,7 +69,7 @@ func test_d408_ranger_and_mage_hit_art_uses_real_96px_weapon_corrections() -> vo
 			else:
 				assert_true(current is AtlasTexture, role + " original unedited HIT cel should be untouched")
 	for role in ["knight", "ranger", "mage"]:
-		var hero: SpriteFrames = LIBRARY.get_frames(role)
+		var hero: SpriteFrames = LIBRARY.get_frames(role, false)
 		assert_eq(hero.get_frame_count("death"), 6)
 		assert_eq(hero.get_animation_speed("death"), 10.0)
 		assert_eq(hero.get_frame_count("walk"), 6)
