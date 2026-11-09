@@ -85,8 +85,8 @@ func resolved(role: String, stage: int, facts: Dictionary, boss: bool, key: Stri
 		if stage >= int(item.unlock_rules.stage) or facts.has(item.unlock_rules.clue):
 			candidates.append(item)
 	candidates.sort_custom(func(a,b):
-		var pa: int = (100 if a.spoiler_gate == "boss_victory" else 0) + (50 if a.group == role else 0)
-		var pb: int = (100 if b.spoiler_gate == "boss_victory" else 0) + (50 if b.group == role else 0)
+		var pa: int = (100 if a.spoiler_gate == "boss_victory" else 0) + (50 if a.group == role else 0) + (25 if facts.has(a.unlock_rules.clue) else 0)
+		var pb: int = (100 if b.spoiler_gate == "boss_victory" else 0) + (50 if b.group == role else 0) + (25 if facts.has(b.unlock_rules.clue) else 0)
 		return pa > pb if pa != pb else a.id < b.id)
 	for item in candidates:
 		if earned >= limit or added.size() >= (2 if boss else 1):

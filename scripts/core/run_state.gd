@@ -1586,18 +1586,18 @@ func complete_active_card() -> void:
 		push_warning("No active run card to complete.")
 		return
 
-	# A1V2 only observes confirmed outcomes; failed combat earns no memory.
-	if card.resolution_type != "combat" or last_battle_won:
-		preload("res://scripts/memory/memory_profile.gd").instance().resolved(
-			protagonist_role, 13 if card.card_id == BOSS_CARD_ID else cards_resolved + 1,
-			castle_memory_facts, card.card_id == BOSS_CARD_ID and last_battle_won,
-			str(cards_resolved) + ":" + card.card_id)
 	resolved_card_ids.append(card.card_id)
 	# Only a resolved victorious battle may yield a witness or document.
 	# All card identities, encounter rewards and forced combat windows stay intact.
 	if card.resolution_type == "combat" and last_battle_won:
 		for fact_id in CASTLE_COMBAT_FACTS.get(card.card_id, []):
 			record_castle_fact(String(fact_id), card.card_id)
+	# A1V2 only observes confirmed outcomes; failed combat earns no memory.
+	if card.resolution_type != "combat" or last_battle_won:
+		preload("res://scripts/memory/memory_profile.gd").instance().resolved(
+			protagonist_role, 13 if card.card_id == BOSS_CARD_ID else cards_resolved + 1,
+			castle_memory_facts, card.card_id == BOSS_CARD_ID and last_battle_won,
+			str(cards_resolved) + ":" + card.card_id)
 	if card.card_id != BOSS_CARD_ID:
 		fate_choice_history.append({
 			"chosen": card.card_id,

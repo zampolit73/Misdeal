@@ -64,3 +64,26 @@ func test_live_completion_does_not_award_failed_battle_or_reset_clues() -> void:
 	assert_eq(P.instance().unlocked.size(),count)
 	assert_true(RunState.castle_memory_facts.is_empty())
 	P.shared=null
+
+func test_actual_event_resolution_and_unavailable_purchase() -> void:
+	P.shared=P.new()
+	RunState.reset_run()
+	RunState.choose_protagonist("mage")
+	RunState.active_card_id="moon_seal"
+	var event := load("res://scenes/event/act_choice.tscn").instantiate() as Control
+	add_child_autofree(event)
+	assert_eq(P.instance().unlocked.size(),0)
+	event.call("_resolve_moon_seal","keep")
+	assert_eq(P.instance().unlocked.size(),1)
+	assert_true(P.instance().unlocked.has("SG21"))
+	var count: int=P.instance().unlocked.size()
+	event.call("_resolve_moon_seal","keep")
+	assert_eq(P.instance().unlocked.size(),count)
+	RunState.active_card_id="blood_ledger"
+	RunState.gold=0
+	var shop := load("res://scenes/event/act_choice.tscn").instantiate() as Control
+	add_child_autofree(shop)
+	shop.call("_resolve_blood_ledger","gold")
+	assert_eq(P.instance().unlocked.size(),count)
+	RunState.reset_run()
+	P.shared=null
