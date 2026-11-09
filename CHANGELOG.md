@@ -1,3 +1,7 @@
+## D419 — пользовательская рамка для всех карт (2026-11-09)
+
+Единый DS3-фронт заменён точной пустой рамкой пользователя; реальные иллюстрации, живой текст и действия размещаются отдельными слоями. Обновлены стол, награды, Расклад Судьбы, удержанная/сброшенная и инспекционная карточки. Правила карты, награды и темп партии сохранены. Godot4.7.2 native capture 1280×720, D315 smoke, GUT 231/231 (47 439 assertions) и selector 14/14 подтверждены локально. [QA и F6](docs/D419_CARD_FRAME_QA.md); GitHub PR/CI — текущий источник итогового статуса.
+
 ## D418 — Jack event and Ranger animal companion (2026-11-09)
 
 New Ranger-gated Tier1 event: rescue Jack for25 gold, pass unchanged, or take hunting token for+10% Ranger damage this run. Exact user-selected first gateway painting; three truthful choice pictures, complete25-pose dog, ordinary Battle integration, pet-only deployment spacing, dossier/summary. Hero count/solo-duo scaling and all approved art/timings preserved.40/45 pool; local231 GUT and native16-frame route. [QA/F6](docs/D418_JACK_EVENT.md); full RELEASE CI required before merge.

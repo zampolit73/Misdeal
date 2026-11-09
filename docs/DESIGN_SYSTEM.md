@@ -1,3 +1,7 @@
+## D419 — shared physical-card frame (2026-11-09)
+
+The user's new blank bronze frame + parchment ribbon supersede the former DS3 front image while leaving its dark fantasy materials/color language intact. Use `card_ds3_skin.gd` on all real physical faces. Exact source dimensions 1086×1448, portrait ratio ~0.75; fit to each existing physical card geometry. The opaque frame is the textural backplate; the independent, full-aspect original illustration fills the upper recess, live title sits on the pale ribbon in dark ink, and short effect/copy remains readable on the burgundy/obsidian lower field. Category is a small live gold label below the top compass; Fate I–XIII uses the corresponding live ordinal only. Keep hint/actions clear of the lower compass. Do not bake text/art, alter gameplay controls or card backs. QA: [D419 captures/F6](D419_CARD_FRAME_QA.md).
+
 ## D417 — interface motion (2026-11-09)
 
 Modal entrance: cubic ease-out10px rise in220ms, opacity180ms. Table offer hover:8px/1.018× over160ms; ClassSelect hover7px/1.022×, selected3px/1.012×, no accumulating transforms. Action feedback: press0.975×/70ms, return130ms, focused/hovered1.012×. Explicit `ui_motion.gd` adoption only; no global UI-kit replacement. Real-time feedback ignores gameplay time scale; original action callbacks execute immediately. Existing scene transitions and deal/choice choreography preserved. [Native QA](D417_UI_MOTION_QA.md).

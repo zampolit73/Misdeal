@@ -1,3 +1,7 @@
+## D419 — user-provided card frame replaces prior DS3 front (2026-11-09)
+
+The user's supplied blank frame and «Гремучий мост» example supersede D316/D328 frame artwork/layout locks. Use the exact supplied frame as the shared textured base for every physical card front (Table, Reward, Fate I–XIII, held/discard, inspector, gallery). Put all existing art, title, prose, type, real Fate ordinal and actions in live controls. Keep full source art aspect and all card/party/game mechanics. Preserve old frame and card backs for rollback. Choice buttons that are not physical cards are unchanged.
+
 ## D418 — selected Jack gateway illustration (2026-11-09)
 
 User selected **first, ruined gateway** from three rendered dog-event paintings. Integrate exactly that original scene in existing card/event materials, without baked UI/text or repainting other cards. User request authorizes Ranger-gated event and three outcomes (recruit for a loss, pass, take something for enhancement). Jack is an animal bound to Ranger, not a new fourth hero class or a change to solo/duo/trio compensation. Pricing/stats are documented implementation defaults, subject to feedback.

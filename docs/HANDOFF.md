@@ -1,6 +1,10 @@
 # Misdeal — current handoff
 
-Delivery: [PR88](https://github.com/zampolit73/Misdeal/pull/88) · [final-head RELEASE checks](https://github.com/zampolit73/Misdeal/pull/88/checks).
+Delivery: D418 [PR88](https://github.com/zampolit73/Misdeal/pull/88) merged. D419 remains in review on `codex/card-frame-reference`; local GUT and native card smoke pass. Add the D419 PR/final-head CI links after publishing.
+
+## D419 — all physical cards use the user's new frame
+
+Active branch `codex/card-frame-reference`; source, exact hashes, native 1280×720 screenshots, D315 and F6 steps: [D419 QA](D419_CARD_FRAME_QA.md). Reuses one exact opaque frame as the backplate while preserving each original scene art, title, description, type/Fate metadata, and click/action handler. Old frame retained as rollback. Local native smoke, four real production captures, and full GUT 231/231 (47,439 assertions) pass; publish PR and wait for final RELEASE CI.
 
 ## D418 — Jack event
 

@@ -1,6 +1,10 @@
 # Misdeal — current project state
 
-Delivery: [PR88](https://github.com/zampolit73/Misdeal/pull/88) · [final-head RELEASE checks](https://github.com/zampolit73/Misdeal/pull/88/checks).
+Delivery: D418 [PR88](https://github.com/zampolit73/Misdeal/pull/88) merged. D419 is under local final review on `codex/card-frame-reference`; its PR/CI link will be added after publication.
+
+## D419 — shared user-provided card frame
+
+Current work: [D419 QA, source art and captures](D419_CARD_FRAME_QA.md). User's exact blank frame replaces the active DS3 front across Table, Reward, Fate/held/discard, full-text inspection and gallery; real scene art, title, prose, Fate numbers and buttons remain live. Old front retained for rollback. Four local Godot4.7.2 1280×720 surfaces and D315 native smoke pass; complete GUT 231/231 (47,439 assertions) passes. PR/CI status will be added after publication.
 
 ## D418 — Jack event
 

@@ -1,3 +1,7 @@
+## D419 — user-selected all-card frame (2026-11-09)
+
+`assets/source_archive/card_frame_d419/approved_blank_frame.png` is the exact user-supplied blank frame 1086×1448 (SHA256 `ff752c8128f098bd36ff48ef3128491fa57ffbe41ab5f96b7a801e354a67b8d6`). Lossless runtime `assets/pixel/ui/card_ds3_locked/front_frame_d419.webp` is SHA256 `2146fe6e3ed711d6f56595f740a3f06e8cc4e6d627b1bebeb9bf778eeeca8d8d`. It replaces only the active card-front material across shared DS3 physical-card surfaces; existing independent illustrations, back art, live controls, and old `front_frame.webp` rollback remain.
+
 ## D418 — Jack, selected option1 and complete canine pack (2026-11-09)
 
 Exact approved source `assets/pixel/events/jack/approved_source.png`; full-composition card448×274 and backdrop1280×720 with dark fit margins, road/token crops from same painting. New separate dog source/strict25-pose576×480 lossless alpha atlas in `assets/pixel/units/jack/`; existing heroes untouched. Generated illustration batch, not hand-pixel-authored. [Prompts, hashes, provenance, native QA](D418_JACK_EVENT.md).

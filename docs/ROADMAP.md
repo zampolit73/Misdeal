@@ -2,6 +2,7 @@
 
 ## Completed checkpoint
 
+- D419 user-provided blank frame applied to all physical card faces; real illustrations/text/actions remain live. [QA, screenshots and F6](D419_CARD_FRAME_QA.md).
 - D418 Ranger-only Jack event with three choices and complete animal combat pack; [QA and local F6](D418_JACK_EVENT.md).
 
 - D412 approved hero animation pack and D413 dossier live; D414–D417 safely integrated.

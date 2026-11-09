@@ -17,11 +17,25 @@ func _verify() -> void:
             _fail("missing approved DS3 art " + path)
             return
     var front := load(SKIN.FRONT) as Texture2D
-    if front.get_image().get_size() != Vector2i(375, 509):
+    if front.get_image().get_size() != Vector2i(1086, 1448):
         _fail("front art wrong native dimensions")
         return
-    if front.get_image().get_pixel(200, 200).a > 0.05:
-        _fail("D315 card front contains flattened illustration instead of live art")
+    if FileAccess.get_sha256(SKIN.FRONT_SOURCE) != "ff752c8128f098bd36ff48ef3128491fa57ffbe41ab5f96b7a801e354a67b8d6":
+        _fail("D419 approved blank-frame source has changed")
+        return
+    if FileAccess.get_sha256(SKIN.FRONT) != "2146fe6e3ed711d6f56595f740a3f06e8cc4e6d627b1bebeb9bf778eeeca8d8d":
+        _fail("D419 runtime frame is not the lossless packed approved image")
+        return
+    var source_frame := Image.load_from_file(ProjectSettings.globalize_path(SKIN.FRONT_SOURCE))
+    if source_frame.is_empty():
+        _fail("D419 source frame could not be decoded")
+        return
+    for point in [Vector2i(0, 0), Vector2i(543, 724), Vector2i(500, 930), Vector2i(543, 1400)]:
+        if not front.get_image().get_pixelv(point).is_equal_approx(source_frame.get_pixelv(point)):
+            _fail("D419 WebP frame differs from the approved PNG at %s" % point)
+            return
+    if front.get_image().get_pixel(200, 200).a < 0.99:
+        _fail("D419 blank frame lost its dark background texture")
         return
 
     # D321: avoid the real-Godot regression where fragment COLOR was already
@@ -262,8 +276,8 @@ func _verify() -> void:
         if (card.get_node("Art") as TextureRect).material == null:
             _fail("D315 red/black tone-mapping missing: " + card.name)
             return
-        # D320 single-frame contract: a front must have ONE framed overlay
-        # and an unframed opaque stone surface, never the framed card-back art.
+        # D419: one approved opaque frame sits behind live art; do not stack
+        # the card-back artwork or a second front frame.
         var base := card.get_node_or_null("DS3CardStone") as ColorRect
         if base == null or base.color != SKIN.FACE_STONE:
             _fail("DS3 gallery face still stacks a second bordered card texture: " + card.name)
@@ -278,7 +292,7 @@ func _verify() -> void:
         if front_layers != 1:
             _fail("DS3 gallery has more than one front frame: " + card.name)
             return
-        # D323: catches native-size 375x509 frame clipping at the card edge.
+        # D323: catches a frame that does not cover the complete card face.
         var physical_frame := card.get_node("DS3CardFrame") as TextureRect
         if not physical_frame.size.is_equal_approx(SKIN.TABLE_SIZE):
             _fail("D323 gallery frame is native-size/clipped, not card-size: " + card.name +
@@ -287,8 +301,7 @@ func _verify() -> void:
         if not (card.get_node("DS3CardStone") as ColorRect).size.is_equal_approx(SKIN.TABLE_SIZE):
             _fail("D323 gallery stone bounds differ from physical card: " + card.name)
             return
-        # D322: the real illustration remains inside a separate art mount,
-        # underneath the ONE exterior frame and above the unframed stone.
+        # D419: the real scene remains inside the new frame's art bounds.
         var art := card.get_node("Art") as TextureRect
         var art_well := card.get_node_or_null("DS3ArtWell") as Panel
         if art_well == null or art_well.get_index() >= art.get_index():
@@ -299,8 +312,8 @@ func _verify() -> void:
         if matte == null or matte.border_width_left != 0 or matte.border_width_top != 0 or matte.border_width_right != 0 or matte.border_width_bottom != 0:
             _fail("D324 gallery has an unintended inset ornamental frame: " + card.name)
             return
-        if matte.bg_color != SKIN.FACE_STONE:
-            _fail("D324 art well has a visible mismatched matte: " + card.name)
+        if matte.bg_color != Color.TRANSPARENT or matte.draw_center:
+            _fail("D419 art bounds add an unwanted second matte: " + card.name)
             return
         if art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
             _fail("D322 gallery art still crops its scene: " + card.name)
@@ -311,8 +324,11 @@ func _verify() -> void:
         if art.position.x + art.size.x >= art_well.position.x + art_well.size.x or art.position.y + art.size.y >= art_well.position.y + art_well.size.y:
             _fail("D322 gallery art escapes its mount: " + card.name)
             return
-        if art_well.position.y + art_well.size.y >= (card.get_node("Title") as Label).position.y:
-            _fail("D322 gallery art mount overlaps title text: " + card.name)
+        if art_well.position.y + art_well.size.y > (card.get_node("Title") as Label).position.y:
+            _fail("D419 gallery art bounds overlap the title ribbon: " + card.name)
+            return
+        if physical_frame.get_index() >= art.get_index():
+            _fail("D419 frame must remain below its live scene illustration: " + card.name)
             return
         if not card.tooltip_text.is_empty():
             _fail("native tooltip blocks neighboring cards in gallery")
@@ -351,8 +367,7 @@ func _verify() -> void:
             _fail("description escapes card horizontal bounds: " + card.name)
             return
         # D325: true centering across all 55 cards, even after layout override.
-        # D327: front_frame.webp art is asymmetrical: body optical center
-        # is x147 and header tab center is x150, not Button center x136.
+        # D419: the supplied card face is symmetrical and uses the Button center.
         var expected_center := SKIN.TABLE_COPY_CENTER_X
         for line in [heading, hint]:
             if line.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER or line.vertical_alignment != VERTICAL_ALIGNMENT_CENTER:
@@ -390,10 +405,10 @@ func _verify() -> void:
             _fail("D325 type text is not centered in its physical tab: " + card.name)
             return
         if absf(category.position.x + category.size.x * 0.5 - SKIN.TABLE_TAB_CENTER_X) > 0.5:
-            _fail("D327 category text is outside the black top inscription tab: " + card.name)
+            _fail("D419 card type label is no longer centered: " + card.name)
             return
-        if category.size.x > 56.0:
-            _fail("D327 category tab label is wider than approved ornate inset: " + card.name)
+        if category.size.x > 104.0:
+            _fail("D419 card type label exceeds its upper frame area: " + card.name)
             return
         var roman_rect := card.get_node("DS3Roman") as Label
         if roman_rect.position.x + roman_rect.size.x > category.position.x:
@@ -429,6 +444,26 @@ func _verify() -> void:
     preview.queue_free()
     await process_frame
 
+    # Exercise the production tabletop lore reader (the card is a physical
+    # front there); the gallery's independent prose panel is not card chrome.
+    var lore_script := load("res://scripts/table/card_lore_inspect.gd") as Script
+    var lore_view := lore_script.new() as Control
+    root.add_child(lore_view)
+    await process_frame
+    lore_view.call("present", "КРОВАВАЯ КНИГА", "СОБЫТИЕ", full_copy,
+        CATALOG.get_run_card_texture("black_altar"))
+    await process_frame
+    var inspect_frame := lore_view.get_node_or_null("Frame/DS3InspectFrame") as TextureRect
+    var inspect_art := lore_view.get_node_or_null("Frame/LoreArt") as TextureRect
+    if inspect_frame == null or inspect_art == null or inspect_frame.get_index() >= inspect_art.get_index():
+        _fail("D419 production inspection frame does not sit behind its authored illustration")
+        return
+    if not inspect_frame.size.is_equal_approx(Vector2(225, 306)) or inspect_art.texture != CATALOG.get_run_card_texture("black_altar"):
+        _fail("D419 production inspection does not preserve its actual card art")
+        return
+    lore_view.call("close")
+    await process_frame
+
     # Test Reward using the normal project autoload, but do not click rewards.
     var state := root.get_node_or_null("RunState")
     if state == null:
@@ -455,7 +490,7 @@ func _verify() -> void:
         if portrait.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
             _fail("D322 reward portrait still crops its illustration: " + name)
             return
-        # D325: Reward titles/effects/descriptions center at card x=146.
+        # D327/D419: Reward copy retains its accepted optical center at x=158.
         for path in ["Role", "UpgradeTitle", "QuickEffect", "UpgradeDescription"]:
             var text_node := card.get_node_or_null(path) as Label
             if text_node == null:
@@ -463,6 +498,9 @@ func _verify() -> void:
                 return
             if text_node.horizontal_alignment != HORIZONTAL_ALIGNMENT_CENTER:
                 _fail("D325 Reward text alignment is not centered: " + name + "/" + path)
+                return
+            if path == "Role" and text_node.position.y < 40.0:
+                _fail("D419 Reward role overlaps the top compass ornament: " + name)
                 return
             if absf(text_node.position.x + text_node.size.x * 0.5 - SKIN.REWARD_COPY_CENTER_X) > 1.0:
                 _fail("D325 Reward text box is off-center: " + name + "/" + path)
@@ -529,24 +567,29 @@ func _verify() -> void:
             if choice.position.y < frame.size.y or choice.position.y + choice.size.y > card.size.y - 3.0:
                 _fail("D380 CTA is clipped or overlaps description: " + name)
                 return
-            if heading.get_theme_color("font_color").get_luminance() < 0.48:
-                _fail("D380 heading is dark on the dark painted title: " + name)
+            if heading.get_theme_color("font_color").get_luminance() > 0.25:
+                _fail("D419 heading lacks dark ink contrast on the parchment banner: " + name)
                 return
-            if effect.text.is_empty() or effect.get_theme_color("font_color").get_luminance() > 0.25:
-                _fail("D380 modifier is empty or lacks parchment contrast: " + name)
+            if effect.text.is_empty() or effect.get_theme_color("font_color").get_luminance() < 0.48:
+                _fail("D419 modifier is empty or lacks light-on-dark contrast: " + name)
                 return
             if effect.position.y < heading.position.y + heading.size.y or body.position.y < effect.position.y + effect.size.y:
                 _fail("D380 modifier and body areas overlap: " + name)
                 return
-            # Native VP audit: the actual pale strip begins at y282; retain strict containment.
-            if not Rect2(48, 282, 220, 32).encloses(effect.get_rect()):
-                _fail("D380 modifier box leaves the illustrated parchment: " + name)
+            # D419: live modifier text stays below the parchment ribbon,
+            # inside the lower dark description field.
+            if not Rect2(40, 300, 232, 34).encloses(effect.get_rect()):
+                _fail("D419 modifier box leaves the lower card text well: " + name)
                 return
             if effect.get_line_count() > 2 or not effect.clip_text or effect.max_lines_visible != 2:
                 _fail("D380 modifier wraps beyond two printed lines: " + case[index])
                 return
-            if body.position.y + body.size.y > 382.0 or body.get_line_count() > 4:
-                _fail("D380 description reaches bottom frame ornament: " + case[index])
+            if body.position.y + body.size.y > 370.0 or body.get_line_count() > 4:
+                _fail("D419 description reaches bottom frame ornament: " + case[index])
+                return
+            var body_text_height := body.get_line_count() * body.get_theme_font("font").get_height(body.get_theme_font_size("font_size"))
+            if body_text_height > body.size.y + 0.1:
+                _fail("D419 reward description is vertically clipped: " + case[index])
                 return
     print("D380_REWARD_COPY_PASS: Knight/Ranger/Mage modifiers and descriptions fit")
     print("D379_REWARD_LAYOUT_PASS: selectable cards and footer remain separated")
