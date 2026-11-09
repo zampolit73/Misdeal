@@ -1,5 +1,6 @@
 extends Control
 
+const BACKDROP_READOUTS := preload("res://scripts/ui/table_backdrop_readouts.gd")
 const DETAIL_SCENE := preload("res://scenes/table/card_lore_inspect.tscn")
 var _details: Control
 
@@ -72,6 +73,7 @@ func _ready() -> void:
 
 	_refresh_run_stats()
 	_setup_initial_reward()
+	BACKDROP_READOUTS.apply(self,"НАГРАДА")
 	call_deferred("_animate_reward_screen_in")
 
 func _apply_ui_kit() -> void:

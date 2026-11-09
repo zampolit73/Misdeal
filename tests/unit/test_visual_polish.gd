@@ -44,6 +44,8 @@ func test_all_nine_reward_effects_fit_both_lines_inside_actual_painted_strip() -
 		assert_lte(label.get_line_count(),2,id)
 		assert_lte(label.get_line_count() * label.get_theme_font("font").get_height(label.get_theme_font_size("font_size")),label.size.y + 0.1,id)
 		assert_gte(label.get_theme_font_size("font_size"),10)
+	assert_eq(reward.get_node("BackdropReadouts/Deck").text,"%02d" % RunState.remaining_card_ids.size())
+	assert_eq(reward.get_node("BackdropReadouts/Context").mouse_filter,Control.MOUSE_FILTER_IGNORE)
 	assert_eq(reward.get_node("WizardBackdrop").get("webp_path"),"res://assets/pixel/table/d416_clean_center/table_clean.webp")
 
 func test_reward_full_reader_preserves_state_owns_keyboard_focus_and_blocks_choice_behind_it() -> void:
@@ -99,6 +101,7 @@ func test_shop_uses_real_offer_art_and_resolved_states_match_a_real_purchase() -
 	preload("res://scripts/event/gravedigger_shop_ds2.gd").show_result(shop)
 	assert_eq(_snapshot(),after)
 	assert_ne(before,after)
+	assert_eq(shop.get_node("BackdropReadouts/Deck").text,"%02d" % maxi(0,RunState.remaining_card_ids.size()-RunState.current_offer_ids.size()))
 	assert_eq(shop.get_node("ShopDS2Backdrop").get("webp_path"),"res://assets/pixel/table/d416_clean_center/table_clean.webp")
 
 func test_resolved_story_choices_do_not_advertise_available_actions() -> void:

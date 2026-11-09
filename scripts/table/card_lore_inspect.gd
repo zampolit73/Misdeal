@@ -154,6 +154,10 @@ func _ready() -> void:
 	close_hover.bg_color = Color("#883025")
 	close_button.add_theme_stylebox_override("hover", close_hover)
 	close_button.add_theme_stylebox_override("pressed", close_hover)
+	var close_focus := close_style.duplicate() as StyleBoxFlat
+	close_focus.draw_center = false
+	close_focus.border_color = Color("#d3a16c")
+	close_button.add_theme_stylebox_override("focus", close_focus)
 	close_button.pressed.connect(close)
 	frame.add_child(close_button)
 	UI_MOTION.bind_button(close_button)

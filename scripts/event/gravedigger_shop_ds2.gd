@@ -2,6 +2,7 @@ extends RefCounted
 
 # Scoped production DS2 skin. The existing ActChoice Buttons keep their
 # original RunState checks, purchase signals, and resolve/leave handlers.
+const BACKDROP_READOUTS := preload("res://scripts/ui/table_backdrop_readouts.gd")
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const WEBP := preload("res://scripts/ui/runtime_webp_texture.gd")
 const ART := preload("res://scripts/ui/card_art_catalog.gd")
@@ -43,6 +44,7 @@ static func apply(scene: Control) -> void:
 	scene.add_child(background)
 	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	scene.move_child(background, panel.get_index())
+	BACKDROP_READOUTS.apply(scene,"ТОРГОВЕЦ")
 
 	var shade := ColorRect.new()
 	shade.name = "ShopDS2Shade"
@@ -172,6 +174,7 @@ static func refresh_gold(scene: Control) -> void:
 	var label := scene.get_node_or_null("Panel/ShopDS2Header/CurrentGold") as Label
 	if label == null:
 		return
+	BACKDROP_READOUTS.refresh(scene)
 	label.text = "ЗОЛОТО: %d     •     ЦЕНА: %d     •     ОТРЯД: %d/3" % [
 		RunState.gold,
 		RunState.get_gravedigger_shop_price(),
