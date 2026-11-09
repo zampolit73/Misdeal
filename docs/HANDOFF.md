@@ -1,3 +1,9 @@
+## D414–D417 integration checkpoint (2026-11-09)
+
+User authorized full autonomous visual-polish delivery. PR84/D415, PR85/D416 and PR86/D417 merged sequentially into main using merge commits, preserving dependency ancestry (latest `6c467d5f`). D414/PR83 now merges this exact main; conflicts were documentation-only, dossier helper and motion hooks combined. Fresh final-head CI required before PR83 merge. Prior phase-specific pending text below is historical. Integration order avoids repeatedly resolving the same document headers; reviewed PR diffs contain only each phase's changes.
+
+Next: complete PR83 green CI, then broad native visual matrix/audit and conservative VP1–VP7 polish. Preserve all approved source art, D412 frames, mechanics and player-local metadata/project.godot changes. See user brief `Misdeal_Codex_Visual_Polish_Autonomous_Plan.md` and forthcoming `VISUAL_POLISH_AUDIT.md`.
+
 ## D417 — restrained UI motion (2026-11-09)
 
 User requests smooth window entrances, slight card hover lift and pleasant button press feedback. Branch `codex/d417-ui-motion-polish` follows D416/PR85. Adds opt-in presentation helper, smooth/interruptible ClassSelect and Reward hover, gentler Table hover, fade/10px entrance for dossier/Fate/lore, and subtle press/release on primary Table actions and popup/confirm buttons. No gameplay, art, transition/deal/choice timing changes. Opening/closing races guarded.

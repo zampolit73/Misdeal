@@ -1,3 +1,7 @@
+## D414 — native dossier symbols (2026-11-09)
+
+Seven authored 24x24 SVGs in `assets/pixel/ui/squad_dossier_d414/`: heart, swords, cadence, range, speed, burst and party. Warm bronze vector strokes; no generated artwork or baked text. Used only in dossier stat rows/footer. Filled relics reuse `ArtifactArtCatalog` artwork; D413 approved portraits and original item sources unchanged. [Native QA](D414_DOSSIER_REFERENCE_QA.md).
+
 ## D416 — clean central Table surface (2026-11-09)
 
 `assets/pixel/table/d416_clean_center/table_clean.webp` is the native1280x720 lossless runtime backdrop, replacing only the central Rect(380,316,520,340) of original Variant C. Built-in imagegen removes obsolete painted encounter cards/Hold/+ markers; generated `source.png` retained. Godot pack recipe feathers8px at the patch boundary and keeps all decoded surrounding pixels exact. Original `approved_variant_c/table_exact.webp` unchanged. [Prompt, recipe and QA](D416_CLEAN_TABLE_QA.md).

@@ -1,3 +1,7 @@
+## D414 — approved dossier integration and reference polish (2026-11-09)
+
+User approved D413 and authorized integration followed by interface refinement. Preserve those exact hero portraits and D412 combat figures; use the supplied reference for the specialization ribbon, stat symbols, selected/filled-state emphasis, actual relic illustrations and full-width party summary. All values and availability still come from existing RunState logic; do not copy mockup numbers or invent clickable upgrades/relic actions.
+
 ## D417 — UI feedback may not own game actions (2026-11-09)
 
 User requests restrained UI motion. Use opt-in presentation tweens: modal alpha/10px slide, subtle hover lift and button compression; cancel superseded tweens. Never delay/emit pressed actions, change stats or transition/deal/choice timing. Card controllers retain ownership of selection transforms; button feedback is attached only to explicit action controls. Disabled buttons restore baseline; opening animations cancel on close. Keep artwork/layout/style intact.

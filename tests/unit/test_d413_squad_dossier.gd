@@ -34,7 +34,7 @@ func test_real_dossier_switching_preserves_stats_upgrades_relics_and_run() -> vo
 		assert_eq(portrait.texture.get_size(), Vector2(640, 960))
 		assert_true(str(portrait.get("webp_path")).contains("squad_dossier_d413/" + role))
 		assert_eq(scene.get_node("Frame/UpgradeCount").text, "%d / 3" % RunState.get_role_upgrade_count(role))
-		assert_eq(scene.get_node("Frame/RelicCount").text, str(RunState.get_artifacts_for_role(role).size()))
+		assert_eq(scene.get_node("Frame/RelicCount").text, "%d / 3" % RunState.get_artifacts_for_role(role).size())
 		assert_eq(_snapshot(), before, "Viewing/switching must never modify the game")
 	assert_true(scene.get_node("Frame/Stats").text.contains("[table=3]"))
 	assert_true((scene.get_node("Frame") as Panel).get_theme_stylebox("panel") is StyleBoxTexture)

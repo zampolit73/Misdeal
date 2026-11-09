@@ -1,3 +1,7 @@
+## Release update — 2026-11-09
+
+User approved D413 and requested integration. PR81 and PR82 are merged; main head after D413 is `3c364bb4bbb108a5b2a8ce6e1cba18e782b487c2`. Subsequent reference polish is documented in [D414 QA](D414_DOSSIER_REFERENCE_QA.md). Original pre-release QA below is historical.
+
 # D413 — squad dossier visual upgrade
 
 [PR82](https://github.com/zampolit73/Misdeal/pull/82), stacked on PR81; [Godot4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42571523455) for code `778c7796`:211/211 GUT,47 scripts,47,106 assertions; D285 real dossier smoke, actual three-role GPU dossier captures and Battle→Reward→Table route passed. Full RELEASE matrix skipped. Main remains unmerged.
