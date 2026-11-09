@@ -1,5 +1,9 @@
 # Misdeal — current project state
 
+## A1V1 — «Витраж Памяти» (2026-11-10, narrative design only)
+
+Пользователь положительно принял концепт постоянного сюжетного витража на **24** фрагмента: 12 общих, по4 Knight/Ranger/Mage; не все за один заход, история замка через противоречивые свидетельства. Полный список/гейты/границы: [концепт](ACT1_MEMORY_STAINED_GLASS_CONCEPT.md). **Нет изменений gameplay, сцены, 24 картинок, save-слоя, UI или подтверждённого места за спиной Волшебника**. Предложение пользователя «за спиной» пока визуальный кандидат, требует макета на реальном утверждённом фоне и согласования. Основной текущий технический baseline — D418 ниже, 40/45 карт.
+
 Delivery: [PR88](https://github.com/zampolit73/Misdeal/pull/88) · [final-head RELEASE checks](https://github.com/zampolit73/Misdeal/pull/88/checks).
 
 ## D418 — Jack event
