@@ -22,9 +22,9 @@ func _run() -> void:
 	DirAccess.make_dir_recursive_absolute(destination)
 	root.size = Vector2i(1280,720)
 	state = root.get_node("RunState")
-	for kind in ["main", "intro_open", "intro_end", "class_idle", "class_knight", "class_ranger", "class_mage", "table_two", "table_hover", "table_one", "table_held", "dossier_knight", "dossier_ranger", "dossier_mage", "dossier_lost", "fate_0", "fate_4", "fate_8", "fate_12", "fate_final", "reward_major_upgrade", "reward_bonus_upgrade", "reward_normal_loot", "reward_death_wager", "reward_elite_artifact", "upgrade_knight", "upgrade_ranger", "upgrade_mage", "event_moon_seal", "event_blood_ledger", "event_chained_prisoner", "shop_poor", "shop_rich", "shop_bought", "well_poor", "well_rich", "end_victory", "end_defeat", "end_full", "battle_solo", "battle_duo", "battle_trio", "battle_orders4", "battle_orders5", "battle_wave"]:
+	for kind in ["main", "intro_open", "intro_end", "class_idle", "class_knight", "class_ranger", "class_mage", "table_two", "table_hover", "table_one", "table_held", "dossier_knight", "dossier_ranger", "dossier_mage", "dossier_lost", "fate_0", "fate_4", "fate_8", "fate_12", "fate_final", "reward_major_upgrade", "reward_bonus_upgrade", "reward_normal_loot", "reward_death_wager", "reward_elite_artifact", "reward_details", "upgrade_knight", "upgrade_ranger", "upgrade_mage", "event_moon_seal", "event_resolved", "event_blood_ledger", "event_chained_prisoner", "shop_poor", "shop_rich", "shop_bought", "well_poor", "well_rich", "end_victory", "end_defeat", "end_full", "battle_solo", "battle_duo", "battle_trio", "battle_orders4", "battle_orders5", "battle_wave"]:
 		await _fixture(kind)
-	if manifest.size() != 48:
+	if manifest.size() != 51:
 		push_error("Visual matrix incomplete: " + str(manifest.size()))
 		quit(1)
 		return
@@ -69,12 +69,12 @@ func _fixture(kind: String) -> void:
 	elif kind.begins_with("reward_") or kind.begins_with("upgrade_"):
 		path = "reward/reward.tscn"
 		state.set("active_card_id", "death_wager" if kind == "reward_death_wager" else ("crypt_guard" if kind == "reward_elite_artifact" else "bone_patrol"))
-		if kind != "reward_major_upgrade" and not kind.begins_with("upgrade_"):
+		if kind not in ["reward_major_upgrade", "reward_details"] and not kind.begins_with("upgrade_"):
 			var claimed: Array[int] = [0,1,2]
 			state.set("claimed_upgrade_tiers", claimed)
 	elif kind.begins_with("event_") or kind.begins_with("shop_"):
 		path = "event/act_choice.tscn"
-		state.set("active_card_id", "gravedigger_shop" if kind.begins_with("shop_") else kind.trim_prefix("event_"))
+		state.set("active_card_id", "gravedigger_shop" if kind.begins_with("shop_") else ("moon_seal" if kind == "event_resolved" else kind.trim_prefix("event_")))
 		state.set("gold", 0 if kind == "shop_poor" else 100)
 	elif kind.begins_with("well_"):
 		path = "event/whispering_well.tscn"
@@ -100,6 +100,10 @@ func _fixture(kind: String) -> void:
 		state.set("current_offer_ids", offers)
 		if kind == "table_one": state.call("choose_card", "lost_purse")
 	scene = (load(ROOT + path) as PackedScene).instantiate() as Control
+	if scene.get_script() == null:
+		push_error("Matrix production script failed to load: " + path)
+		quit(1)
+		return
 	root.add_child(scene)
 	current_scene = scene
 	await create_timer(0.8).timeout
@@ -111,6 +115,13 @@ func _fixture(kind: String) -> void:
 		scene.call("_select_role", "mage" if kind == "dossier_lost" else kind.trim_prefix("dossier_"), false)
 	elif kind == "table_hover": scene.get_node("Cards/BonePatrolCard").mouse_entered.emit()
 	elif kind == "table_held": scene.get_node("Cards/HoldAButton").pressed.emit()
+	elif kind == "event_resolved": scene.get_node("Panel/Choices/ChoiceA").pressed.emit()
+	elif kind == "reward_details":
+		var input := InputEventMouseButton.new()
+		input.pressed = true
+		input.button_index = MOUSE_BUTTON_RIGHT
+		scene.get_node("Rewards/BloodCoin").grab_focus()
+		scene.get_node("Rewards/BloodCoin").gui_input.emit(input)
 	elif kind == "shop_bought": scene.get_node("Panel/Choices/ChoiceA").pressed.emit()
 	elif kind == "reward_bonus_upgrade": scene.call("_setup_bonus_upgrade_reward")
 	elif kind.begins_with("upgrade_"):
@@ -121,6 +132,10 @@ func _fixture(kind: String) -> void:
 		scene.call("_setup_upgrade_buttons", ids)
 	await create_timer(0.35).timeout
 	await _save(kind, path)
+	if kind == "end_full":
+		scene.get_node("SummaryScroll").scroll_vertical = 100000
+		await process_frame
+		await _save("end_full_scrolled", path)
 	if kind == "battle_trio":
 		scene.get_node("FightButton").pressed.emit()
 		await create_timer(1.0).timeout

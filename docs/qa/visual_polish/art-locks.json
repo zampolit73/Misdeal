@@ -1,22 +1,82 @@
 {
-  "assets/pixel/units/hero_c3_d412_polish/knight.webp.b64": "c5b6c6f671aefbdca320b51711d3895e5f124fa14d87fbe650aa415ca0ab627e",
-  "assets/pixel/units/hero_c3_d412_polish/mage.webp.b64": "0ae9fc22aac79054da0ed639cfe18cab74b10ae5fb9f858208bfc5864ce3f558",
-  "assets/pixel/units/hero_c3_d412_polish/ranger.webp.b64": "a58a2f7f308485d28739e1805a0ecad528b4d02ceed1e78b5d12fe2d095156ee",
-  "assets/pixel/ui/card_ds3_locked/card_back.webp": "de26e9c90e162d2660ba9bd99cadae7b312ae41677914cbe2c75a8b5588c4d4b",
-  "assets/pixel/ui/card_ds3_locked/front_frame.webp": "e75a8e86b9649ecddfb3d3cf2de8a99c21140d652c4b320b9f7b152a5ad53c07",
-  "assets/pixel/ui/card_ds3_locked/ink_substrate.webp": "6b1f0917f24bf5f9546fc3f94491f605bbec6e15e52d99f94969eae8dd852c25",
-  "assets/pixel/table/d416_clean_center/table_clean.webp": "4f1268722e90a077235b0a06bdd0924e1dfd1af4ca6673ffe9e318c714fd5f23",
-  "assets/pixel/ui/squad_dossier_d413/knight.webp": "6e32838681c8b4d663c90985dfcad093e083fb79be342b34801d113e60602c0e",
-  "assets/pixel/ui/squad_dossier_d413/knight_thumb.webp": "477362278bc0fcf91101581bfbae1b6636e5ea0f22987c714e509cc9826799e4",
-  "assets/pixel/ui/squad_dossier_d413/mage.webp": "adfd753477d885a7784604ea1efa96582593cd920737e2db915669d343aefc88",
-  "assets/pixel/ui/squad_dossier_d413/mage_thumb.webp": "3fcc584f76ca6956f5284c950f0e773817b8fa3848c553e6dafbac19d930e7a9",
-  "assets/pixel/ui/squad_dossier_d413/panel.webp": "52d4a7104749148554424dc5b10fe319638896b570073027f7928e6f8bbc20bd",
-  "assets/pixel/ui/squad_dossier_d413/ranger.webp": "74f3a17ffb10675cf9b9345eb1dc6f1d01158692af45b2e966f725eff1ff5cf4",
-  "assets/pixel/ui/squad_dossier_d413/ranger_thumb.webp": "5d5ca29b4bbbfaafbaf61b34aac4cf1da1c0ae94f6b13f54b8d98f9c64f6b2a7",
-  "assets/pixel/class_select/d281_clean_table_hd.webp": "7464edde5990b53a6d1ec8d1646e96080c9944be0a4a79e04bdba6689d5f28e1",
-  "assets/pixel/intro/frame_01.webp": "19169dea97ebeeb472ec6e6888c0d6a9ab20f76d035e53a10b8500d530f084ff",
-  "assets/pixel/intro/frame_02.webp": "5c7206a695b8873ad8a28592440a358923b5ce886c008db57fb65e3f4ca84ea4",
-  "assets/pixel/intro/frame_03.webp": "24cf49037c0c1ee552a5ee9559f1c20873e4d4d397faa8b5bf6fcf73086d4b72",
-  "assets/pixel/intro/frame_04.webp": "91de5260e0eb0dd4fad96f52dd7793f9a32b17338ae70a8acf65b892aad56333",
-  "assets/pixel/intro/frame_05.webp": "686c76405fdbeb91ed5d642aae22c659543208c8e4db1ff7b532f498f6a8eed8"
+  "assets/pixel/units/hero_c3_d412_polish/knight.webp.b64": {
+    "sha256": "6825678516564971e62ef26cfa3a3f3c56a9b2d6bc5c98473729af47779fba99",
+    "base64": true
+  },
+  "assets/pixel/units/hero_c3_d412_polish/mage.webp.b64": {
+    "sha256": "40799773fe029b5db1196ee0edb53b6335744a9237c8619c2bcdb2361cd5ee4c",
+    "base64": true
+  },
+  "assets/pixel/units/hero_c3_d412_polish/ranger.webp.b64": {
+    "sha256": "b54d97589312edbfdd1dd3044b7d875535daf4883e855c1476d58ab5e2e1ba4e",
+    "base64": true
+  },
+  "assets/pixel/ui/card_ds3_locked/card_back.webp": {
+    "sha256": "de26e9c90e162d2660ba9bd99cadae7b312ae41677914cbe2c75a8b5588c4d4b",
+    "base64": false
+  },
+  "assets/pixel/ui/card_ds3_locked/front_frame.webp": {
+    "sha256": "e75a8e86b9649ecddfb3d3cf2de8a99c21140d652c4b320b9f7b152a5ad53c07",
+    "base64": false
+  },
+  "assets/pixel/ui/card_ds3_locked/ink_substrate.webp": {
+    "sha256": "6b1f0917f24bf5f9546fc3f94491f605bbec6e15e52d99f94969eae8dd852c25",
+    "base64": false
+  },
+  "assets/pixel/table/d416_clean_center/table_clean.webp": {
+    "sha256": "4f1268722e90a077235b0a06bdd0924e1dfd1af4ca6673ffe9e318c714fd5f23",
+    "base64": false
+  },
+  "assets/pixel/ui/squad_dossier_d413/knight.webp": {
+    "sha256": "6e32838681c8b4d663c90985dfcad093e083fb79be342b34801d113e60602c0e",
+    "base64": false
+  },
+  "assets/pixel/ui/squad_dossier_d413/knight_thumb.webp": {
+    "sha256": "477362278bc0fcf91101581bfbae1b6636e5ea0f22987c714e509cc9826799e4",
+    "base64": false
+  },
+  "assets/pixel/ui/squad_dossier_d413/mage.webp": {
+    "sha256": "adfd753477d885a7784604ea1efa96582593cd920737e2db915669d343aefc88",
+    "base64": false
+  },
+  "assets/pixel/ui/squad_dossier_d413/mage_thumb.webp": {
+    "sha256": "3fcc584f76ca6956f5284c950f0e773817b8fa3848c553e6dafbac19d930e7a9",
+    "base64": false
+  },
+  "assets/pixel/ui/squad_dossier_d413/panel.webp": {
+    "sha256": "52d4a7104749148554424dc5b10fe319638896b570073027f7928e6f8bbc20bd",
+    "base64": false
+  },
+  "assets/pixel/ui/squad_dossier_d413/ranger.webp": {
+    "sha256": "74f3a17ffb10675cf9b9345eb1dc6f1d01158692af45b2e966f725eff1ff5cf4",
+    "base64": false
+  },
+  "assets/pixel/ui/squad_dossier_d413/ranger_thumb.webp": {
+    "sha256": "5d5ca29b4bbbfaafbaf61b34aac4cf1da1c0ae94f6b13f54b8d98f9c64f6b2a7",
+    "base64": false
+  },
+  "assets/pixel/class_select/d281_clean_table_hd.webp": {
+    "sha256": "7464edde5990b53a6d1ec8d1646e96080c9944be0a4a79e04bdba6689d5f28e1",
+    "base64": false
+  },
+  "assets/pixel/intro/frame_01.webp": {
+    "sha256": "19169dea97ebeeb472ec6e6888c0d6a9ab20f76d035e53a10b8500d530f084ff",
+    "base64": false
+  },
+  "assets/pixel/intro/frame_02.webp": {
+    "sha256": "5c7206a695b8873ad8a28592440a358923b5ce886c008db57fb65e3f4ca84ea4",
+    "base64": false
+  },
+  "assets/pixel/intro/frame_03.webp": {
+    "sha256": "24cf49037c0c1ee552a5ee9559f1c20873e4d4d397faa8b5bf6fcf73086d4b72",
+    "base64": false
+  },
+  "assets/pixel/intro/frame_04.webp": {
+    "sha256": "91de5260e0eb0dd4fad96f52dd7793f9a32b17338ae70a8acf65b892aad56333",
+    "base64": false
+  },
+  "assets/pixel/intro/frame_05.webp": {
+    "sha256": "686c76405fdbeb91ed5d642aae22c659543208c8e4db1ff7b532f498f6a8eed8",
+    "base64": false
+  }
 }

@@ -19,7 +19,7 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var args := OS.get_cmdline_user_args()
-	if args.size() != 1 or not args[0].begins_with("/"):
+	if args.size() != 1 or not args[0].is_absolute_path():
 		_fail("use -- <absolute output directory>")
 		return
 	_output = args[0]

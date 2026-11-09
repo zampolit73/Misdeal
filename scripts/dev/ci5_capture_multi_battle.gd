@@ -32,7 +32,7 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var args := OS.get_cmdline_user_args()
-	if args.size() != 2 or not SCENARIOS.has(args[0]) or not args[1].begins_with("/"):
+	if args.size() != 2 or not SCENARIOS.has(args[0]) or not args[1].is_absolute_path():
 		_fail("expected: -- court-trio|grave-bell-duo /absolute/output/directory")
 		return
 	var name: String = args[0]

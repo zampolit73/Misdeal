@@ -57,6 +57,12 @@ class SelectorTests(unittest.TestCase):
         self.assertIn("fate-spread-four", plan["scenes"])
         self.assertIn("fate-spread-eight", plan["scenes"])
 
+    def test_visual_audit_fixture_requires_release_matrix(self):
+        plan = classify(["scripts/dev/visual_polish_matrix.gd"])
+        self.assertEqual(plan["mode"], "release")
+        self.assertIn("battle", plan["tests"])
+        self.assertIn("firing-square-crossfire", plan["scenes"])
+
     def test_ui_is_visual(self):
         plan = classify(["scripts/ui/card_ds3_skin.gd"])
         self.assertEqual(plan["mode"], "visual")
