@@ -28,6 +28,8 @@ User-authorized implementation: [brief](requests/2026-11-09-visual-polish-plan.m
 - D412 original75-pose source/grounding/facing/weapon tests intact; decoded SHA256 protects20 critical approved sources. No runtime asset files changed in this program. Fate0/4/8/12/XIII, I–XII geometry and real39-card gallery/readiness contracts remain tested.
 - Final PR CI includes import/GUT/native smokes, D413–D417 sequences,52-frame matrix and full authored RELEASE, including special-wave break/crossfire and gallery. Final verified run/merge links are in the PR and handoff completion note.
 
+CI42610788058 passed import and all224 GUT but exposed an obsolete D315 reward bound (old y272–310). Updated it to the stricter native parchment rectangle (48,282,220,32), matching reviewed render and new regression; standalone D315/D379/D380 local PASS. This changes QA only; final-head RELEASE rerun required.
+
 ## Limits / P2
 
 No manual human full F5 playthrough is claimed. Existing Windows certificate-store/log environment diagnostics,19 GUT type warnings and D273 shutdown10 ObjectDB/1 resource diagnostics remain; route PASS precedes shutdown diagnostics. They were not hidden or claimed fixed. Older skeleton/Court art can differ from D412 hero detail but remains readable; automatic repaint is explicitly out of scope. Large dynamic paragraphs may shrink to10pt to retain every modifier; full original tooltip/read-only reader remains where applicable. No new approved-art/design direction was needed, and no fundamental mechanism changed.

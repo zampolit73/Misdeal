@@ -538,7 +538,8 @@ func _verify() -> void:
             if effect.position.y < heading.position.y + heading.size.y or body.position.y < effect.position.y + effect.size.y:
                 _fail("D380 modifier and body areas overlap: " + name)
                 return
-            if effect.position.y < 272.0 or effect.position.y + effect.size.y > 310.0:
+            # Native VP audit: the actual pale strip begins at y282; retain strict containment.
+            if not Rect2(48, 282, 220, 32).encloses(effect.get_rect()):
                 _fail("D380 modifier box leaves the illustrated parchment: " + name)
                 return
             if effect.get_line_count() > 2 or not effect.clip_text or effect.max_lines_visible != 2:
