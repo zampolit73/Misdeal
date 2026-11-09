@@ -1,3 +1,5 @@
+> A1V2 implementation supersedes the earlier concept-only status: final user-approved source, viewer, persistence and gameplay hooks. See [A1V2 QA](A1V2_MEMORY_STAINED_GLASS_QA.md).
+
 # Misdeal Act I — «Витраж Памяти» / Memory Stained Glass
 
 **Статус на 2026-11-10: пользователь одобрил КОНЦЕПТ и направление списка 24 осколков. НЕТ реализации в Godot, арт не утверждён, конкретная интеграция в фон не утверждена.** Этим файлом мы сохраняем сценарный контекст между чатами; это не заявка на немедленную реализацию. Прежде чем писать код или менять существующий UI, согласовать визуал и небольшой обратимый прототип.

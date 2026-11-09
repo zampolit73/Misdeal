@@ -1,5 +1,10 @@
 # Misdeal — current project state
 
+## A1V2 — «Витраж Памяти»
+
+24 persistent narrative fragments, approved immutable art, real completion hooks, cap8/run, protagonist gates, modal viewer and restrained Table apertures implemented. No combat/economy/clue carryover. Local234 GUT tests and native0/7/24/ESC/pixel-preservation/restart checks pass. RELEASE CI required before merge. [Contract, trigger matrix, evidence and F6](A1V2_MEMORY_STAINED_GLASS_QA.md).
+
+
 ## A1V1 — «Витраж Памяти» (2026-11-10, narrative design only)
 
 Пользователь положительно принял концепт постоянного сюжетного витража на **24** фрагмента: 12 общих, по4 Knight/Ranger/Mage; не все за один заход, история замка через противоречивые свидетельства. Полный список/гейты/границы: [концепт](ACT1_MEMORY_STAINED_GLASS_CONCEPT.md). **Нет изменений gameplay, сцены, 24 картинок, save-слоя, UI или подтверждённого места за спиной Волшебника**. Предложение пользователя «за спиной» пока визуальный кандидат, требует макета на реальном утверждённом фоне и согласования. Основной текущий технический baseline — D418 ниже, 40/45 карт.
