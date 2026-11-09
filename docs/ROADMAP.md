@@ -1,5 +1,10 @@
 # Misdeal — current roadmap
 
+## A1V2 — «Витраж Памяти»
+
+24 persistent narrative fragments, approved immutable art, real completion hooks, cap8/run, protagonist gates, modal viewer and restrained Table apertures implemented. No combat/economy/clue carryover. Local234 GUT tests and native0/7/24/ESC/pixel-preservation/restart checks pass. RELEASE CI required before merge. [Contract, trigger matrix, evidence and F6](A1V2_MEMORY_STAINED_GLASS_QA.md).
+
+
 ## A1V1 — следующая художественная/сюжетная проверка (НЕ реализовано)
 
 - [x] Одобрено направление «Витраж Памяти» и рабочая структура 24 (12 общих + 4×3 личных); сохранён [список 24 осколков](ACT1_MEMORY_STAINED_GLASS_CONCEPT.md).

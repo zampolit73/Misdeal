@@ -271,6 +271,7 @@ func _ready() -> void:
 		reset_run()
 
 func reset_run() -> void:
+	preload("res://scripts/memory/memory_profile.gd").instance().begin_run()
 	gold = 0
 	deals_survived = 0
 	cards_resolved = 0
@@ -1591,6 +1592,12 @@ func complete_active_card() -> void:
 	if card.resolution_type == "combat" and last_battle_won:
 		for fact_id in CASTLE_COMBAT_FACTS.get(card.card_id, []):
 			record_castle_fact(String(fact_id), card.card_id)
+	# A1V2 only observes confirmed outcomes; failed combat earns no memory.
+	if card.resolution_type != "combat" or last_battle_won:
+		preload("res://scripts/memory/memory_profile.gd").instance().resolved(
+			protagonist_role, 13 if card.card_id == BOSS_CARD_ID else cards_resolved + 1,
+			castle_memory_facts, card.card_id == BOSS_CARD_ID and last_battle_won,
+			str(cards_resolved) + ":" + card.card_id)
 	if card.card_id != BOSS_CARD_ID:
 		fate_choice_history.append({
 			"chosen": card.card_id,

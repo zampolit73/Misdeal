@@ -1,5 +1,10 @@
 # Misdeal — current handoff
 
+## A1V2 — «Витраж Памяти»
+
+24 persistent narrative fragments, approved immutable art, real completion hooks, cap8/run, protagonist gates, modal viewer and restrained Table apertures implemented. No combat/economy/clue carryover. Local234 GUT tests and native0/7/24/ESC/pixel-preservation/restart checks pass. RELEASE CI required before merge. [Contract, trigger matrix, evidence and F6](A1V2_MEMORY_STAINED_GLASS_QA.md).
+
+
 ## A1V1 — «Витраж Памяти» — КОНЦЕПТ, не реализация (2026-11-10)
 
 Пользователь одобрил направление: **24 постоянных между забегами сюжетных осколка** (12 хроника + по 4 Knight/Ranger/Mage), сбор не за один проход, разные взгляды на осаду. Полный 24-пунктный сценарный черновик и границы: [ACT1_MEMORY_STAINED_GLASS_CONCEPT.md](ACT1_MEMORY_STAINED_GLASS_CONCEPT.md). Не создавались Godot-код, сохранение, 24 арта и новая UI-сцена. Последний пользовательский запрос — сохранить весь контекст и продолжить творческий процесс, **следующий шаг: визуально оценить место витража на реальном утверждённом фоне, не переделывая его**. Идея размещения за спиной Волшебника — лишь кандидат; центр фона перекрыт его силуэтом. Сравнить с необязательным увеличенным осмотром и маленьким предметом на столе. Не считать окончательно утверждённым внешний вид, расположение, триггеры, сюжетные тексты или награды. Канон Герой/Канцлер/Комендант/XIII и отсутствие ранних спойлеров в сюжетной библии. D418/PR88 merged, 40/45 карт. Остальные активные ограничения ниже.

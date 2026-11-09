@@ -95,6 +95,7 @@ func _ready() -> void:
 
 	_configure_card_pivots()
 	_refresh_table()
+	add_child(preload("res://scripts/memory/memory_table.gd").new())
 
 func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_panel($HudPanel, MISDEAL_UI_KIT.BRONZE, false)

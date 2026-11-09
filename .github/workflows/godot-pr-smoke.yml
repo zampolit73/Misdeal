@@ -318,6 +318,26 @@ jobs:
           ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script|JACK_CAPTURE_FAIL' "$dest/capture.log"
           grep -Fq 'JACK_EVENT_NATIVE_PASS: 16' "$dest/capture.log"
 
+      - name: A1V2 native memory collection and preserved Table
+        if: steps.scope.outputs.mode == 'release'
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/misdeal-smart-qa/visual/a1v2"
+          mkdir -p "$out"
+          timeout 120s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --script res://scripts/dev/a1v2_capture.gd -- "$out" 2>&1 | tee "$out/capture.log"
+          python -m pip install Pillow==13.0.0
+          python scripts/dev/verify_memory_glass.py
+          for phase in write read; do
+            /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . \
+              --script res://scripts/dev/a1v2_profile_restart.gd -- "$phase" "$out/profile.json" 2>&1 | tee "$out/profile-$phase.log"
+            grep -Fq 'A1V2_RESTART_PASS' "$out/profile-$phase.log"
+          done
+          grep -Fq 'A1V2_NATIVE_PASS' "$out/capture.log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed' "$out/capture.log"
+
       - name: RELEASE — complete production visual audit matrix
         if: steps.scope.outputs.mode == 'release'
         shell: bash

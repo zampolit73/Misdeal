@@ -1,5 +1,10 @@
 ## A1V1 — Memory Stained Glass concept direction (2026-11-10)
 
+## A1V2 — «Витраж Памяти»
+
+24 persistent narrative fragments, approved immutable art, real completion hooks, cap8/run, protagonist gates, modal viewer and restrained Table apertures implemented. No combat/economy/clue carryover. Local234 GUT tests and native0/7/24/ESC/pixel-preservation/restart checks pass. RELEASE CI required before merge. [Contract, trigger matrix, evidence and F6](A1V2_MEMORY_STAINED_GLASS_QA.md).
+
+
 User liked and asked to preserve the stained-glass Act I storytelling concept: **24 recoverable shards (12 castle chronicle + 4 memories per Knight/Ranger/Mage), acquired over several runs**, partial discoveries per run and no need to finish in one. Restore the castle's past and conflicting viewpoints rather than merely collect art. The main Act I truth must still be intelligible during the first successful run; no permanent combat-stat power via collection. Keep current 12+XIII Fate Spread, two offers, fixed approved tabletop/wizard/art, class-variable protagonist and existing run-local A1M1/A1M2 facts. Full candidate 24 narratives, non-spoiler constraints, approximate pacing and open questions: [ACT1_MEMORY_STAINED_GLASS_CONCEPT.md](ACT1_MEMORY_STAINED_GLASS_CONCEPT.md).
 
 User floated placing the stained glass **behind the Wizard** as an *idea to consider*, NOT a locked art/layout decision. Actual approved background places Wizard over the center; inspect visual alternatives before changing it. No meta-save, shard gameplay, illustrations, exact unlock rules, or visuals were authorized/implemented by this narrative discussion. Future major design/visual work needs separate approval. Canon: hero consciously sacrificed castle, Chancellor forged promised rescue, Commandant continued deceit and IS Warden XIII; don't spoil boss identity early; undead cause undecided.

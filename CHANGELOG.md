@@ -1,5 +1,10 @@
 ## A1V1 — Memory Stained Glass narrative handoff (2026-11-10)
 
+## A1V2 — «Витраж Памяти»
+
+24 persistent narrative fragments, approved immutable art, real completion hooks, cap8/run, protagonist gates, modal viewer and restrained Table apertures implemented. No combat/economy/clue carryover. Local234 GUT tests and native0/7/24/ESC/pixel-preservation/restart checks pass. RELEASE CI required before merge. [Contract, trigger matrix, evidence and F6](docs/A1V2_MEMORY_STAINED_GLASS_QA.md).
+
+
 **Documentation/design only**, no runtime change. Preserved approved direction for a 24-shard, multi-run, class-perspective memory stained glass, an ID-stable table of all 24 working narratives, canon and spoiler constraints, replay/anti-duplicate goals, and the tentative placement behind the Wizard as a visual hypothesis. Future visual comparison required before changes to approved table. See [concept and next steps](docs/ACT1_MEMORY_STAINED_GLASS_CONCEPT.md).
 
 ## D418 — Jack event and Ranger animal companion (2026-11-09)
