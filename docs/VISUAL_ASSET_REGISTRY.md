@@ -1,3 +1,7 @@
+## D420 — complete enemy source batch (2026-11-09)
+
+24 complete25-pose sheets in `assets/source_archive/enemy_visual_polish/generated/`; exact prior gameplay poses in `baseline/`; isolated lantern-archer bow correction in `repairs/`. Built-in image_gen with existing identity/D412 material references, not hand-pixel-authored. RGBA96px packing and lossless WebP/Base64 in `assets/pixel/units/enemy_visual_polish/`; source/runtime SHA256 and uniform factors in `manifest.json`. All old role assets retained. [Prompts, native QA and F6](ENEMY_VISUAL_POLISH.md).
+
 ## D418 — Jack, selected option1 and complete canine pack (2026-11-09)
 
 Exact approved source `assets/pixel/events/jack/approved_source.png`; full-composition card448×274 and backdrop1280×720 with dark fit margins, road/token crops from same painting. New separate dog source/strict25-pose576×480 lossless alpha atlas in `assets/pixel/units/jack/`; existing heroes untouched. Generated illustration batch, not hand-pixel-authored. [Prompts, hashes, provenance, native QA](D418_JACK_EVENT.md).

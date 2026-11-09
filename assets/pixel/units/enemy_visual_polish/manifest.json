@@ -1,0 +1,218 @@
+[
+  {
+    "count": 25,
+    "role": "ash_scrivener",
+    "runtime_sha256": "d5a1db7871eaede48ca020d1117326eeac1352d857d5c46643f800946e3601a3",
+    "sole_y": 92,
+    "source_sha256": "a34871355566eea015ca3c7de70484d027611ebf42c05802423e9d869dfaf48b",
+    "uniform_scale": 0.413461538461538,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "bone_archer",
+    "runtime_sha256": "f16bf8af624b183f18204dc397b498b2caf26e0ef5539d3a727088a60a7fd2b5",
+    "sole_y": 92,
+    "source_sha256": "a71cbb1b31e84adc0a0208fa16eedfea152160cd8bc6039646f162e4f3c9d194",
+    "uniform_scale": 0.4,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "bone_bailiff",
+    "runtime_sha256": "8b6a1a6387e8ce1213c9d1b81e9e26e1157646369acf33f64320d9bab6b3af0c",
+    "sole_y": 92,
+    "source_sha256": "7076d84184b94f255a19f0b836c110227f285c51de6c28f5124742c80b6f5bb0",
+    "uniform_scale": 0.4,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "bone_marionette",
+    "runtime_sha256": "5b761c59bebf2c453e886c66da6616592660f0a889f4a7e5f64d962a555dd9f4",
+    "sole_y": 92,
+    "source_sha256": "28cf02b3dc4c601e5d1de6a6a7b52660024b5a20d64b6ff61ab495e6f5444a77",
+    "uniform_scale": 0.430622009569378,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "bone_shepherd",
+    "runtime_sha256": "c285009d64a2d7b0b28bd49a2fd4c1abf1bf6b59f4a66f038b19dba2f4d64ea5",
+    "sole_y": 92,
+    "source_sha256": "cbaa77822699cc6e28f6b0a730e498ba741c57d49d735f0b829708a135d056b4",
+    "uniform_scale": 0.411483253588517,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "bone_thrall",
+    "runtime_sha256": "5715e255002433bf05bb54a566823e2f30d5d7e48bba22954df09f433ceb96e0",
+    "sole_y": 92,
+    "source_sha256": "a70985d544e17e127505b06ff55a11df50b62e98840928f2500407bb2f1c793e",
+    "uniform_scale": 0.450261780104712,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "bone_warden",
+    "runtime_sha256": "e9750ca054b8cd29bf1c58e2182b99cd5022fd3620779ccb95708a0fa1f32b10",
+    "sole_y": 92,
+    "source_sha256": "3a1a2f0e62c5a30f1f13e4653c2c59d9e91c0880bd0a933e981211e1886dfdc1",
+    "uniform_scale": 0.42156862745098,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "crypt_guard",
+    "runtime_sha256": "98b350fe79aff97f03b6b2aa3353495599a9eebf5c4ca151c16978501bc37d6d",
+    "sole_y": 92,
+    "source_sha256": "881227cc50716af90e3d79f0f7ead1aa0a68bc5cff035dc453364f674d160993",
+    "uniform_scale": 0.428571428571429,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "drowned_ferryman",
+    "runtime_sha256": "acc824e7be3eaae74737f3e219e85082da09f5d3c10b988618e611812f56ca22",
+    "sole_y": 92,
+    "source_sha256": "9b1fd7bd053182419b43bc7104d42543f5ede2e0d54140cd3df839b9bbb1e91e",
+    "uniform_scale": 0.430622009569378,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "drowned_hand",
+    "runtime_sha256": "24506be9ab64e6a319ce7b89928ab621b65ac4cd60f77311296d694d5609ba99",
+    "sole_y": 92,
+    "source_sha256": "6c87ce6274a610efc62d6630897c91e6820c91fd3b7eddbee855b527f80be930",
+    "uniform_scale": 0.424528301886792,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "extinguished_guide",
+    "runtime_sha256": "1e1d6fa433e219ab94192c79ae0aeead7cbcb80158d18787b6476647047bea07",
+    "sole_y": 92,
+    "source_sha256": "fca1515853bc7f4f8c09355efb986a0c9d45e632ee958f98b54455d2d582b314",
+    "uniform_scale": 0.436893203883495,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "funeral_priest",
+    "runtime_sha256": "7e2fc774f9e9f21908e2e504547b197cf2fe794a00eb94d23616cc64ca8e0fbe",
+    "sole_y": 92,
+    "source_sha256": "e6685a8dbb98ef4c8bb6c4fe02a38c746c6c01533744f2b41fc11e8741545d9c",
+    "uniform_scale": 0.447916666666667,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "grave_bellkeeper",
+    "runtime_sha256": "49c38e64ddf9ea0466167d0fd1eab93dba3143dfa680359b5d25b6eb87caca6d",
+    "sole_y": 92,
+    "source_sha256": "f76de56b5480ce0528eb2591b8f90702c45e6b28b2922cf974a7199283020476",
+    "uniform_scale": 0.430622009569378,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "lantern_archer",
+    "runtime_sha256": "b5bb77f14cbc91f91812d4c162c5ffa1b955c54ebb555c937d72598e7be090c7",
+    "sole_y": 92,
+    "source_sha256": "e6438f63e7ed32eb7aa1fc8331f7dee82a4fb571b6573d902f59660b10403d32",
+    "uniform_scale": 0.414746543778802,
+    "repair_sha256": "8a7caa082716e4ff25711ae184e22ad7f39b19b02c2685f88ff4a9944cee0e8c"
+  },
+  {
+    "count": 25,
+    "role": "lantern_bearer",
+    "runtime_sha256": "509c40f5a73eb21af8abb96115f3ef043fa736ea3dc452e41f7c442899e1fb13",
+    "sole_y": 92,
+    "source_sha256": "12405139fcae9fcc8b776e5581c75d4e10006ba0fb4b8b4b52739b4c6e6266c4",
+    "uniform_scale": 0.422535211267606,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "mute_magistrate",
+    "runtime_sha256": "0792191acec115cce1f3b3cd76f0f60e6f81ce6752aba9bcc6e949561490240b",
+    "sole_y": 92,
+    "source_sha256": "ddedbac1309f5a76f44c53504dadee0677c0f54ad78cd9e44acc9af02a0d5246",
+    "uniform_scale": 0.418604651162791,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "oil_acolyte",
+    "runtime_sha256": "58331e1f4d48cb3e4b991e8e4ffbcf1e25cb4ecc0e3c63311463141debbb49c8",
+    "sole_y": 92,
+    "source_sha256": "be358c9d1945b309ff74004f58039d02feebd464a674258e41c69fd66211d45e",
+    "uniform_scale": 0.409090909090909,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "ossuary_lamb",
+    "runtime_sha256": "18ef3a9497e00b5613e9e8e73610cc548511561e6794a95e266161bb9eae574d",
+    "sole_y": 92,
+    "source_sha256": "efc817695459156f424d6328f44931be5ac3709ee6d0f899d865901cb9f782e6",
+    "uniform_scale": 0.407239819004525,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "pallbearer",
+    "runtime_sha256": "fc22f9189eba6799d9f21007194d96a583b59da980de77a31ad3514d254dfa98",
+    "sole_y": 92,
+    "source_sha256": "431b267519192f59696e976cc585b1a033e6271ea3169ba518a3934e6c4224ec",
+    "uniform_scale": 0.447761194029851,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "plague_alchemist",
+    "runtime_sha256": "c1a9bfdb260a7345cea5d226a91098dbfb3f1564ce4457bc07e236b2694a7788",
+    "sole_y": 92,
+    "source_sha256": "f80b8f056e2aaefceba4d6ae337a69876a8b477a2885888ca348a90b251826b1",
+    "uniform_scale": 0.428571428571429,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "road_sentinel",
+    "runtime_sha256": "c17b5b64acc6465dde16f9d4bf6bc3a127ef4ce74db6c2ff280d455b241f3e3a",
+    "sole_y": 92,
+    "source_sha256": "331bb6aa6becd74c6a6a36bec0b452d20479e6b8e9fe2848026fc1a1c19d2bae",
+    "uniform_scale": 0.418604651162791,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "skeleton",
+    "runtime_sha256": "bf296db5845df97fe808ee775534b229f4a26b6afe6cee3b1335dc48db681575",
+    "sole_y": 92,
+    "source_sha256": "9de73d5114abfd148311cbeec608e80a67abfbb08c575c06c75187c350b33301",
+    "uniform_scale": 0.532544378698225,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "threadbare_puppeteer",
+    "runtime_sha256": "0d05e8f258670025184092702e5eb0aa54ce4bde24ce44eb5418ec02cd42bef8",
+    "sole_y": 92,
+    "source_sha256": "a78b5ff4238570f7a5e8a6b538a99ed6408294156931482d397d41507e8c20fb",
+    "uniform_scale": 0.416666666666667,
+    "repair_sha256": ""
+  },
+  {
+    "count": 25,
+    "role": "unstable_homunculus",
+    "runtime_sha256": "93088c467389b84a193db9de4eb73301cfd6aece98bf69b8b49bd69f1606d98b",
+    "sole_y": 92,
+    "source_sha256": "3ddee6f9b4dc6fa52162a1d6b717452d0c9f87f3b04449bcb230f6f5d658bbeb",
+    "uniform_scale": 0.409090909090909,
+    "repair_sha256": ""
+  }
+]

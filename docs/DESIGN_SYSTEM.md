@@ -1,3 +1,7 @@
+## D420 — richer enemy miniatures (2026-11-09)
+
+All24 enemy roles use detailed96px whole-body miniatures aligned to D412 material richness. Preserve individual skeletal/robed/armored/animal identity and real held props. Complete25-pose sets, one source-to-runtime scale per role, calibrated stature and head-clear HP. WALK follows travel; authored HIT uses no rubber actor/UI magnification. [Source, prompts and native roster](ENEMY_VISUAL_POLISH.md).
+
 ## D417 — interface motion (2026-11-09)
 
 Modal entrance: cubic ease-out10px rise in220ms, opacity180ms. Table offer hover:8px/1.018× over160ms; ClassSelect hover7px/1.022×, selected3px/1.012×, no accumulating transforms. Action feedback: press0.975×/70ms, return130ms, focused/hovered1.012×. Explicit `ui_motion.gd` adoption only; no global UI-kit replacement. Real-time feedback ignores gameplay time scale; original action callbacks execute immediately. Existing scene transitions and deal/choice choreography preserved. [Native QA](D417_UI_MOTION_QA.md).

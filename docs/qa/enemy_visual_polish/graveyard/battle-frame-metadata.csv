@@ -1,0 +1,8 @@
+frame,phase,live,finished,units_alive,max_movement_px
+00-preparation,preparation,false,false,4,0.00
+01-intro,intro,false,false,4,0.00
+02-live-0000ms,combat,true,false,4,5.98
+03-live-0300ms,combat,true,false,4,39.14
+04-live-0650ms,combat,true,false,4,76.97
+05-live-1050ms,combat,true,false,4,120.02
+06-live-1600ms,combat,true,false,4,178.57

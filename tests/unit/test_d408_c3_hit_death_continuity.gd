@@ -99,8 +99,8 @@ func test_d408_c3_hit_keeps_source_scale_color_and_preserves_authored_death() ->
 		assert_eq(hero.art_sprite.texture, hero.sprite_frames.get_frame_texture("death", 0))
 
 
-func test_d408_enemy_hit_feedback_remains_original() -> void:
+func test_enemy_authored_hit_uses_pose_without_root_zoom() -> void:
 	var enemy := _actor("skeleton", 1)
 	enemy._play_hit_feedback(Vector2(-100.0, 0.0), "knight", true)
-	assert_gt(enemy.scale.x, 1.10, "Enemy retains previously authored hit response")
+	assert_eq(enemy.scale, Vector2.ONE, "D420: enemy HIT artwork replaces root/UI magnification")
 	assert_eq(enemy.frame_state, "hit")

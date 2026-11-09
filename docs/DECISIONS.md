@@ -1,3 +1,7 @@
+## D420 — user-authorized complete enemy visual upgrade (2026-11-09)
+
+User explicitly requests better artwork/animation for all enemies and individual stature corrections. Enemy repainting is authorized while retaining each identity, equipment and palette. Deliver complete25-pose96px packs, retain originals and validate in Godot. Distance-sampled WALK, authored HIT without actor/UI zoom, resetting impact transforms before DEATH and full collapse before visual fade are presentation changes; attack/damage/cooldown/AI/physics remain unchanged. D412 heroes/Jack stay exact; card approvals remain separate.
+
 ## D418 — selected Jack gateway illustration (2026-11-09)
 
 User selected **first, ruined gateway** from three rendered dog-event paintings. Integrate exactly that original scene in existing card/event materials, without baked UI/text or repainting other cards. User request authorizes Ranger-gated event and three outcomes (recruit for a loss, pass, take something for enhancement). Jack is an animal bound to Ranger, not a new fourth hero class or a change to solo/duo/trio compensation. Pricing/stats are documented implementation defaults, subject to feedback.

@@ -1,5 +1,9 @@
 # Misdeal — current handoff
 
+## D420 — enemy art and animation delivery
+
+Current branch `codex/enemy-visual-polish`: all24 enemy roles/600 new poses, calibrated art stature, grounded WALK/HIT/DEATH and head-clear HP. Original atlases retained. [Source/prompts, local evidence and F6](ENEMY_VISUAL_POLISH.md). Local233/233 GUT,15 selector tests,20 roster captures, real solo/duo/trio combat motion and ordinary Black Lantern Battle→Reward→Table pass. Finish final RELEASE CI before integration. Player-local project.godot/import changes preserved. D419 card-frame PR89 is separate.
+
 Delivery: [PR88](https://github.com/zampolit73/Misdeal/pull/88) · [final-head RELEASE checks](https://github.com/zampolit73/Misdeal/pull/88/checks).
 
 ## D418 — Jack event
