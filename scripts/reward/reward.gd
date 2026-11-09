@@ -1,5 +1,9 @@
 extends Control
 
+const BACKDROP_READOUTS := preload("res://scripts/ui/table_backdrop_readouts.gd")
+const DETAIL_SCENE := preload("res://scenes/table/card_lore_inspect.tscn")
+var _details: Control
+
 const UI_MOTION := preload("res://scripts/ui/ui_motion.gd")
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
@@ -63,11 +67,13 @@ func _ready() -> void:
 	_apply_ui_kit()
 	for index in range(reward_buttons.size()):
 		reward_buttons[index].pressed.connect(_on_reward_button_pressed.bind(index))
+		reward_buttons[index].gui_input.connect(_on_reward_detail_input.bind(index))
 		reward_buttons[index].mouse_entered.connect(_on_reward_hover.bind(reward_buttons[index], true))
 		reward_buttons[index].mouse_exited.connect(_on_reward_hover.bind(reward_buttons[index], false))
 
 	_refresh_run_stats()
 	_setup_initial_reward()
+	BACKDROP_READOUTS.apply(self,"НАГРАДА")
 	call_deferred("_animate_reward_screen_in")
 
 func _apply_ui_kit() -> void:
@@ -251,6 +257,8 @@ func _style_v2_reward_copy(index: int, effect_text: String = "", card_effect: St
 	# never creates three clipped lines across the pale painted strip.
 	effect.text = (card_effect if not card_effect.is_empty() else effect_text.replace("  •  ", " · ")) if not effect_text.is_empty() else "ОПИСАНИЕ"
 	effect.visible = true
+	if not hint_label.text.contains("ПКМ / F"):
+		hint_label.text += "\nПКМ / F — полное описание награды."
 	effect.add_theme_font_size_override("font_size", 11 if effect.text.contains("\n") else 12)
 	var length := description.text.length()
 	var font_size := 12
@@ -277,7 +285,7 @@ func _fit_v2_reward_copy(index: int) -> void:
 	# Both areas have fixed safe bounds inside the approved painted DS3 frame.
 	for point_size in range(effect.get_theme_font_size("font_size"), 8, -1):
 		effect.add_theme_font_size_override("font_size", point_size)
-		if effect.get_line_count() <= 2 and effect.get_line_count() * (point_size + 3) <= effect.size.y:
+		if effect.get_line_count() <= 2 and effect.get_line_count() * effect.get_theme_font("font").get_height(point_size) <= effect.size.y:
 			break
 	for point_size in range(description.get_theme_font_size("font_size"), 9, -1):
 		description.add_theme_font_size_override("font_size", point_size)
@@ -465,6 +473,8 @@ func _setup_elite_reward() -> void:
 		_set_reward_card(index, artifact_id, "ЭЛИТНАЯ РЕЛИКВИЯ", artifact.title, artifact.description)
 
 func _on_reward_button_pressed(index: int) -> void:
+	if is_instance_valid(_details):
+		return
 	if index < 0 or index >= reward_buttons.size():
 		return
 	if not reward_buttons[index].visible or option_ids[index].is_empty():
@@ -794,3 +804,21 @@ func _finish_reward(message: String) -> void:
 		SCENE_ROUTER.change_to(self, "res://scenes/run_end/run_end.tscn")
 	else:
 		SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
+
+# Read-only access to full original copy. Choice callbacks remain separate.
+func _on_reward_detail_input(event: InputEvent, index: int) -> void:
+	var inspect: bool = event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT
+	inspect = inspect or (event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F)
+	if not inspect or index < 0 or index >= reward_buttons.size() or reward_buttons[index].disabled or not reward_buttons[index].visible:
+		return
+	accept_event()
+	if is_instance_valid(_details):
+		return
+	_details = DETAIL_SCENE.instantiate() as Control
+	_details.z_index = 300
+	add_child(_details)
+	_details.call("present", upgrade_title_labels[index].text, upgrade_role_labels[index].text, reward_buttons[index].tooltip_text, upgrade_portraits[index].texture)
+	_details.closed.connect(_on_reward_details_closed)
+
+func _on_reward_details_closed() -> void:
+	_details = null

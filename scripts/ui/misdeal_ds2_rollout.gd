@@ -68,7 +68,7 @@ static func battle(scene: Control) -> void:
 	for name in ["AssaultOrderButton", "HuntOrderButton", "FormationOrderButton"]:
 		UI.apply_battle_button(scene.get_node(name) as Button, UI.AGED_BRONZE)
 	UI.apply_battle_button(scene.get_node("FightButton") as Button, UI.RITUAL_CRIMSON.lightened(0.28), true)
-	UI.apply_battle_button(scene.get_node("ContinueButton") as Button, UI.AGED_BRONZE, true)
+	UI.apply_battle_button(scene.get_node("ResultOverlay/ContinueButton") as Button, UI.AGED_BRONZE, true)
 	UI.apply_action_button(scene.get_node("ResultOverlay/LastDealAccept") as Button, UI.RITUAL_CRIMSON.lightened(0.28), true)
 	UI.apply_action_button(scene.get_node("ResultOverlay/LastDealRefuse") as Button, UI.MOONLIT_STEEL, false)
 

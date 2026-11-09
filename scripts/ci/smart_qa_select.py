@@ -23,6 +23,8 @@ def classify(paths, request="auto"):
     paths = [p.replace("\\", "/") for p in paths if p]
     if request not in ("auto", "fast", "visual", "release"):
         raise ValueError("Unknown QA mode: " + request)
+    if request == "auto" and "scripts/dev/visual_polish_matrix.gd" in paths:
+        request = "release"
     if request == "release":
         return dict(mode="release", tests=list(ALL_TESTS),
                     scenes=list(SCREENS), reason="manual full release review")

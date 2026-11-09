@@ -1,3 +1,7 @@
+## Current visual-polish delivery (2026-11-09)
+
+[Release QA and local launch](VISUAL_POLISH_RELEASE_QA.md) · [native audit](VISUAL_POLISH_AUDIT.md) · [interactive before/after](qa/visual_polish/compare.html) · [user brief](requests/2026-11-09-visual-polish-plan.md) · [current handoff](HANDOFF.md). D414–D417 are merged; historical pending notes below are superseded by current state.
+
 ## D391 — D390 pixel figures rejected; source-pixel QA pilot removed (2026-11-04)
 
 [Historical D390 QA](D390_HERO_C3_NATIVE_PIXEL_QA.md) is rejected by player after actual F6; D390 asset, scene and test have been removed from main. Previous [D389 C3 still comparison](D389_HERO_C3_96_STILL_QA.md), `res://scenes/dev/d389_hero_c3_96_preview.tscn`, remains an **unapproved** art reference. No gameplay art changed. [Current handoff](HANDOFF.md).

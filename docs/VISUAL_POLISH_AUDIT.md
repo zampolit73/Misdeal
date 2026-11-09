@@ -1,0 +1,30 @@
+# Visual polish audit — native baseline
+
+Scope: [user brief](requests/2026-11-09-visual-polish-plan.md). Approved artwork, mechanics, sound and D412 frames are locked. Technical baseline main `d9613298242c877a5f7fb655e74c7ecfc056473b` includes safely merged PR84→85→86 then integrated PR83 (216/216 local GUT; final-head PR83 CI42596022608 green). Merge commits:84 `8b56d484`,85 `8bb2eaee`,86 `6c467d5f`,83 `d9613298`. No force push/reset; local project.godot/import changes preserved.
+
+## Native matrix and findings
+
+`visual_polish_matrix.gd` renders production scenes at1280×720 with seeded real RunState fixtures.48 frames: main, Intro first/last, four ClassSelect states, two/one/held/hover Table, four dossiers including lost Mage, five Fate states0/4/8/12/final XIII, five real Reward modes and all9 upgrades, normal/complex story choices, merchant poor/rich/resolved, Well poor/rich, three run summaries, solo/duo/trio battles, live/hit/death,3/4/5 tactics and wave preparation. Original external source script path checks are Windows-incompatible and will be corrected for equivalent local RELEASE execution. Matrix must fail if any variant is missing; initial fixture typing error was fixed and all48 were re-rendered before acceptance. These are automated native renders, not a claimed manual F5 playthrough.
+
+Baseline [manifest](qa/visual_polish/before/manifest.json) includes scene, exact SHA/party/card/gold, visible labels/control bounds. Contact sheets: [0](qa/visual_polish/before/sheet_00.png),[1](qa/visual_polish/before/sheet_01.png),[2](qa/visual_polish/before/sheet_02.png),[3](qa/visual_polish/before/sheet_03.png). Full native frames retained in local/CI matrix evidence; focused before/after images tracked only for changed views.
+
+| Screen / severity | Verified issue | Lock / conservative treatment | Evidence / regression |
+|---|---|---|---|
+| Reward / P1 | First line of two-line QuickEffect starts above painted parchment; dark positive text disappears against black while negative line remains. | Keep D328 frame/image/optical center and truthful D380 copy; move only label fully inside its actual parchment region. | [Knight baseline](qa/visual_polish/before/upgrade_knight.png); all9 real upgrade label bounds/line fit. |
+| Reward, Shop / P1 | Legacy table bitmap still depicts obsolete offer cards behind live choices. | Reuse exact already-approved D416 localized cleanup; no new table/Wizard art. | [Loot baseline](qa/visual_polish/before/reward_normal_loot.png); backdrop-path and locked-art hashes. |
+| RunEnd / P1 | Full9-upgrade/4-relic summary grows outside panel and overlaps New Run; bottom information can no longer be read. | Preserve art/text/stats; confine original label in scrollable readout with separate CTA. | [Full summary baseline](qa/visual_polish/before/end_full.png); scroll containment/full-text and state snapshots. |
+| Event/Shop / P1 | Resolved choices retain static ДОСТУПНО/ДОСТУПНО К ПОКУПКЕ caption despite disabled controls. | Keep all costs/art/handlers; update visible state-only captions on resolution. | [Purchased baseline](qa/visual_polish/before/shop_bought.png); real purchase/leave/resolution regressions. |
+| Reward / P2 | Full effect is tooltip-only; keyboard needs a deliberate complete readout for long descriptions. | Reuse existing read-only card reader, RMB/F hint, retain choice handlers; focus modal Close to avoid behind-window Enter. | Long effects + UI-state invariants; native readout. |
+| Main/Intro/ClassSelect | No new confirmed P0/P1 after D415/D417. | Preserve approved splash/paintings/hotspots and animations. | Native matrix first7 frames, D282 smoke. |
+| Dossier/relics | D414+D417 combined; actual equipped/empty/lost states truthful and controls fit. | No additional redraw/reskin. | Native four roles/build states; D285 and D413/D414 regressions. |
+| Battle | Approved D412 roles/feet/weapon silhouettes/HP fit at actual scale; tactics3/4/5 visible. | No combat HUD/arena/sprite changes. Record legacy-enemy stylistic differences as P2 follow-up only. | Native solo/duo/trio/live/hit/death/wave; full GUT and RELEASE route. |
+| Fate Spread |0/4/8/12/final captures show true counts and I–XII/XIII. Native unknown placeholders are generic and remain identity-free. | Preserve accepted background and D381 masking/geometry. | Five matrix frames; D381/Act1 contracts. |
+| Motion | D417 interruptible hover and prepared entrance validated; no need for more effects. | Keep timing, limit new hooks to focused views. | Existing3 motion regressions/native intermediate-opacity record. |
+
+All fixes require same-fixture after renders and real tests; test success alone is not artistic acceptance. Deferred artwork follow-up: older skeletons are a different pixel package but currently readable; repaint is outside scope. No new gold/red glows, particles, sounds, debug overlays or mechanics.
+
+## Delivered resolution
+
+All listed P1 repairs are implemented and re-rendered. Additional native inspection found clipped Blood Ledger attack penalties, overlapping deck-number matte on the merchant, and the enabled Battle victory action below the result scrim. Full original event/shop paragraphs now fit; the matte covers only painted numerals; the same Battle button belongs to ResultOverlay at unchanged coordinates and callback. Reward/Shop show real passive counters instead of obsolete painted values/actions. No arena or actor redesign.
+
+Final **52/52 native states**, **224/224 GUT** and actual Battle→Reward→Table pass. [Release QA](VISUAL_POLISH_RELEASE_QA.md) contains after frames, regression evidence and environment limits. Original48-frame matrix above is the baseline, expanded by reader/resolved/scroll/result states for final validation. Windows external-capture path checks are corrected using is_absolute_path(). No confirmed in-scope P0/P1 remains in inspected states; legacy-enemy art and existing diagnostics remain P2.

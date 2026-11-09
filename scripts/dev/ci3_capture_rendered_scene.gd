@@ -26,7 +26,7 @@ func _capture() -> void:
 		return
 	var scene_key := args[0]
 	var output_path := args[1]
-	if not SCENES.has(scene_key) or not output_path.begins_with("/"):
+	if not SCENES.has(scene_key) or not output_path.is_absolute_path():
 		_fail("unsupported key or non-absolute output path: " + scene_key)
 		return
 

@@ -8,6 +8,8 @@ const CARD_DS3_SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
 # card text, while the two offer cards and their action buttons remain clean.
 signal closed
 
+var _previous_focus: WeakRef
+
 var frame: Panel
 var lore_title: Label
 var lore_kind: Label
@@ -16,6 +18,9 @@ var lore_art: TextureRect
 var annotation: Label
 
 func _ready() -> void:
+	var previous := get_viewport().gui_get_focus_owner()
+	if previous != null:
+		_previous_focus = weakref(previous)
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	z_index = 300
@@ -149,10 +154,15 @@ func _ready() -> void:
 	close_hover.bg_color = Color("#883025")
 	close_button.add_theme_stylebox_override("hover", close_hover)
 	close_button.add_theme_stylebox_override("pressed", close_hover)
+	var close_focus := close_style.duplicate() as StyleBoxFlat
+	close_focus.draw_center = false
+	close_focus.border_color = Color("#d3a16c")
+	close_button.add_theme_stylebox_override("focus", close_focus)
 	close_button.pressed.connect(close)
 	frame.add_child(close_button)
 	UI_MOTION.bind_button(close_button)
 	UI_MOTION.reveal(frame, scrim)
+	close_button.grab_focus()
 
 	# D316: show this *physical card* with the same real DS3 frame and
 	# red/black painting treatment as Table, Spread and Reward. The scrollable
@@ -178,6 +188,10 @@ func present(card_title: String, card_type: String, full_text: String, card_art:
 
 func close() -> void:
 	UI_MOTION.stop(frame)
+	if _previous_focus != null:
+		var previous = _previous_focus.get_ref()
+		if is_instance_valid(previous) and previous.is_inside_tree():
+			previous.grab_focus()
 	closed.emit()
 	queue_free()
 
@@ -186,6 +200,16 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_ESCAPE:
 		get_viewport().set_input_as_handled()
 		close()
+	elif event is InputEventKey and event.pressed and event.keycode in [KEY_UP, KEY_DOWN, KEY_PAGEUP, KEY_PAGEDOWN, KEY_HOME, KEY_END]:
+		var scroll := lore_body.get_v_scroll_bar()
+		match event.keycode:
+			KEY_UP: scroll.value -= 28.0
+			KEY_DOWN: scroll.value += 28.0
+			KEY_PAGEUP: scroll.value -= scroll.page
+			KEY_PAGEDOWN: scroll.value += scroll.page
+			KEY_HOME: scroll.value = scroll.min_value
+			KEY_END: scroll.value = scroll.max_value - scroll.page
+		get_viewport().set_input_as_handled()
 
 
 func _on_scrim_input(event: InputEvent) -> void:

@@ -75,7 +75,7 @@ static func apply(scene: Control) -> void:
 	style_secondary(scene.get_node("RestartButton") as Button, MOONSTEEL)
 	style_primary(scene.get_node("FightButton") as Button, CRIMSON)
 	(scene.get_node("FightButton") as Button).add_theme_font_size_override("font_size", 27)
-	style_primary(scene.get_node("ContinueButton") as Button, BRONZE)
+	style_primary(scene.get_node("ResultOverlay/ContinueButton") as Button, BRONZE)
 	# This seal belongs only to the existing real primary action, never to
 	# the battle background or a second floating fake button.
 	_ornament(scene.get_node("FightButton") as Button, "DS3FightRubySeal", "ruby_crest.webp", Vector2(10, 11), Vector2(45, 45), Vector2i(103, 103), Color(1, 1, 1, 0.91))
@@ -118,7 +118,7 @@ static func _layout_panels(scene: Control) -> void:
 	hint_copy.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_place(scene.get_node("TargetPreviewButton") as Control, Vector2(965, 582), Vector2(259, 30))
 	_place(scene.get_node("FightButton") as Control, Vector2(964, 619), Vector2(262, 77))
-	_place(scene.get_node("ContinueButton") as Control, Vector2(964, 619), Vector2(262, 77))
+	_place(scene.get_node("ResultOverlay/ContinueButton") as Control, Vector2(964, 619), Vector2(262, 77))
 	_place(scene.get_node("RestartButton") as Control, Vector2(964, 619), Vector2(262, 77))
 	var caption := scene.get_node("OrderLabel") as Label
 	caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -223,7 +223,7 @@ static func _apply_typography(scene: Control) -> void:
 	serif.font_names = PackedStringArray(["Georgia", "Cambria", "Noto Serif", "DejaVu Serif", "Times New Roman"])
 	for name in ["Title", "DealLabel", "OrderLabel", "PartyLabel", "EnemyLabel"]:
 		(scene.get_node(name) as Label).add_theme_font_override("font", serif)
-	for name in ["AssaultOrderButton", "HuntOrderButton", "FormationOrderButton", "SacrificeOrderButton", "DefianceOrderButton", "FightButton", "ContinueButton"]:
+	for name in ["AssaultOrderButton", "HuntOrderButton", "FormationOrderButton", "SacrificeOrderButton", "DefianceOrderButton", "FightButton", "ResultOverlay/ContinueButton"]:
 		(scene.get_node(name) as Button).add_theme_font_override("font", serif)
 
 

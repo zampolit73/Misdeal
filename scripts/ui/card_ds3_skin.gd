@@ -248,8 +248,9 @@ static func apply_reward(button: Button, portrait: TextureRect,
     heading.add_theme_font_size_override("font_size", 15)
     heading.clip_text = true
     heading.max_lines_visible = 2
-    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 273), Vector2(220, 36))
+    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 282), Vector2(220, 30))
     effect.add_theme_color_override("font_color", INK_TEXT)
+    effect.add_theme_constant_override("line_spacing", 0)
     effect.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     effect.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     effect.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -273,6 +274,7 @@ static func style_reward_copy(button: Button, role: Label, heading: Label,
     role.add_theme_color_override("font_color", GOLD)
     heading.add_theme_color_override("font_color", BONE)
     effect.add_theme_color_override("font_color", INK_TEXT)
+    effect.add_theme_constant_override("line_spacing", 0)
     description.add_theme_color_override("font_color", BONE)
     # Live changes to reward modes must not reintroduce the old dark title
     # or squash descriptions into the bottom 40 px of the frame.
@@ -280,7 +282,7 @@ static func style_reward_copy(button: Button, role: Label, heading: Label,
         label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
         label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     _at(heading, Vector2(REWARD_COPY_CENTER_X - 108.0, 230), Vector2(216, 34))
-    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 273), Vector2(220, 36))
+    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 282), Vector2(220, 30))
     _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 320), Vector2(222, 60))
 
 

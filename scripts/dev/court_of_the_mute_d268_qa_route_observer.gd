@@ -87,7 +87,7 @@ func _exercise() -> void:
 	fight.emit_signal("pressed")
 	if not await _battle_result(battle):
 		return
-	var advance := battle.get_node_or_null("ContinueButton") as Button
+	var advance := battle.get_node_or_null("ResultOverlay/ContinueButton") as Button
 	if advance == null or not advance.visible:
 		_fail("Battle win did not expose Continue")
 		return

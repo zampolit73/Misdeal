@@ -335,7 +335,7 @@ func _check() -> void:
 			_fail("D293 fallback selected Hunt icon stayed visible after switching to Formation")
 			return
 
-	for btn in ["TargetPreviewButton", "FightButton", "ContinueButton", "RestartButton"]:
+	for btn in ["TargetPreviewButton", "FightButton", "ResultOverlay/ContinueButton", "RestartButton"]:
 		var control := scene.get_node(btn) as Button
 		if control.get_theme_stylebox("hover") == null:
 			_fail("real Battle control missing DS3 visual state: " + btn)
