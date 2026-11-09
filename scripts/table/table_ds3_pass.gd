@@ -1,5 +1,7 @@
 extends RefCounted
 
+const UI_MOTION := preload("res://scripts/ui/ui_motion.gd")
+
 # D289: staged Design System 3 pilot for the REAL two-offer cursed table.
 # Peripheral UI chrome ONLY. Never mutate cards, their positions, Fate Spread,
 # offer state, saved run logic, battlefield controls, or user interactions.
@@ -13,6 +15,8 @@ const PARCHMENT := Color("#dfb77e")
 const TEXT_WARM := Color(0.87, 0.78, 0.67, 1.0)
 
 static func apply(scene: Control) -> void:
+	for path in ["SquadButton", "FateSpreadButton", "Cards/HoldAButton", "Cards/HoldBButton", "WagerOverlay/Root/WagerPanel/AcceptButton", "WagerOverlay/Root/WagerPanel/RefuseButton"]:
+		UI_MOTION.bind_button(scene.get_node(path) as Button)
 	# The DS2 system and scene nodes run first. This one screen opts in last.
 	# Existing authored geometry (including two 272x338 offer cards) remains.
 	var hud := scene.get_node("HudPanel") as Panel

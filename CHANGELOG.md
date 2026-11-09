@@ -1,3 +1,9 @@
+## D417 — restrained UI motion (2026-11-09)
+
+User requests smooth window entrances, slight card hover lift and pleasant button press feedback. Branch `codex/d417-ui-motion-polish` follows D416/PR85. Adds opt-in presentation helper, smooth/interruptible ClassSelect and Reward hover, gentler Table hover, fade/10px entrance for dossier/Fate/lore, and subtle press/release on primary Table actions and popup/confirm buttons. No gameplay, art, transition/deal/choice timing changes. Opening/closing races guarded.
+
+Local Godot4.7.2 **215/215 GUT**,49 scripts,47,138 assertions; new stress/disabled-button/modal-close checks. Native20fps frame sequence covers real Table hover, press, dossier/Fate/lore; offer IDs unchanged. [QA and native motion review](docs/D417_UI_MOTION_QA.md). Next: CI, then F5 check hover/click/TAB/R/RMB and new-run choice; prior PR83/84/85 remain separately reviewable.
+
 ## D416 — remove baked encounter cards from Table background (2026-11-09)
 
 User screenshot shows two obsolete cards visible underneath live offer selection. Root cause: they are painted into `approved_variant_c/table_exact.webp`, not extra gameplay offers. Production Table now loads `assets/pixel/table/d416_clean_center/table_clean.webp`; restores only central tabletop and erases baked cards/Hold/+ labels. Original source retained; all decoded pixels outside Rect(380,316,520,340) match exactly. No gameplay/card/timing changes.

@@ -1,3 +1,7 @@
+## D417 — UI feedback may not own game actions (2026-11-09)
+
+User requests restrained UI motion. Use opt-in presentation tweens: modal alpha/10px slide, subtle hover lift and button compression; cancel superseded tweens. Never delay/emit pressed actions, change stats or transition/deal/choice timing. Card controllers retain ownership of selection transforms; button feedback is attached only to explicit action controls. Disabled buttons restore baseline; opening animations cancel on close. Keep artwork/layout/style intact.
+
 ## D416 — Table backdrop must not depict playable offers (2026-11-09)
 
 User explicitly requests an empty table behind live cards. Remove two obsolete baked encounter cards and their Hold/+ markers from the background only; keep actual two-offer dealing, hover/choice/discard animations and timings. Preserve the approved surrounding artwork exactly and the original bitmap for rollback. Existing static peripheral HUD/counter masks are outside this bug fix.
