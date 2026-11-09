@@ -4,7 +4,7 @@
 
 - D412 approved hero animation pack and D413 dossier live; D414–D417 safely integrated.
 - Autonomous visual VP1–VP7: native baseline/audit, Reward modifier/readout fixes, truthful merchant/event states and full effects, RunEnd scroll containment, result-button canvas ordering, approved-art guards and complete RELEASE QA.
--224/224 GUT,13 selector tests,52 native states, Battle→Reward→Table and solo/duo/trio motion. [Release evidence](VISUAL_POLISH_RELEASE_QA.md), [audit](VISUAL_POLISH_AUDIT.md).
+- 224/224 GUT,13 selector tests,52 native states, Battle→Reward→Table and solo/duo/trio motion. [Release evidence](VISUAL_POLISH_RELEASE_QA.md), [audit](VISUAL_POLISH_AUDIT.md).
 
 ## Priorities after this delivery
 

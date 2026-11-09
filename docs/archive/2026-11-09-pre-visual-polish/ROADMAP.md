@@ -315,7 +315,7 @@ Player explicitly accepts all three animations. Preserve poses, order and timing
 - [x] User's real F6 screenshot verifies D388 side-by-side **same-floor comparison and scale toggle** work.
 - [x] Evaluate C3 48px pose samples: **NOT acceptable for production** (poor Knight armor/shield, Ranger bow and legs, Mage cloak and grip). Keep only as diagnostic art reference.
 - [ ] Author **new original transparent 96px sprite stills** for each role, one consistent style/lighting and readable weapon/boots at native 1x. No enlargement of 48px cutouts or sheet mockup crops.
-- [ ] Review three genuinely new stills on the real arena, then make all 25 original frames per role as three valid 576×480 atlases with safe fallback and native GUT / visual QA. 
+- [ ] Review three genuinely new stills on the real arena, then make all 25 original frames per role as three valid 576×480 atlases with safe fallback and native GUT / visual QA.
 - [ ] No production hero sprite change until art works at real scale; no need for further QA scene positioning revisions.
 
 ## D388 SHIPPED — Same-floor C3 lookdev QA (2026-11-04)
@@ -1160,7 +1160,7 @@ Current full handoff: [D367_NEW_CHAT_HANDOFF.md](D367_NEW_CHAT_HANDOFF.md). Date
 - [x] Save approved user reference/image ID and append catalog QA; preserve frozen D328 DS3 card skin and card gameplay.
 - [ ] Fidelity pass if desired: replace upscaled Canva preview with exact 1604×981 approved source resized 448×274 via binary-safe transfer, no reapproval needed.
 - [ ] New `bone_ritual` card: 3 concept variations shown; awaiting user selection 1/2/3 before committing any artwork.
- 
+
 ## D332 — Native QA result (2026-10-21)
 
 - [x] D315 native Godot **PASS** including gallery 55 cards, dynamic `BloodCoin` Reward card and D331 art mapping: [run 39658979922](https://github.com/zampolit73/Misdeal/actions/runs/39658979922).
