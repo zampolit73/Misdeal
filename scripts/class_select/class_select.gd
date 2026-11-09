@@ -42,6 +42,7 @@ var card_buttons: Dictionary = {}
 
 
 func _ready() -> void:
+	CARD_SKIN.prepare_screen(self)
 	card_buttons = {
 		"knight": knight_button,
 		"ranger": ranger_button,
@@ -152,6 +153,7 @@ func _confirm_choice() -> void:
 	var chosen_button: Button = card_buttons[selected_role]
 	for role in HERO_ROLES:
 		var button: Button = card_buttons[role]
+		CARD_SKIN.UI_MOTION.stop(button, &"d417_card_hover")
 		var tween := create_tween()
 		if button == chosen_button:
 			button.z_index = 25

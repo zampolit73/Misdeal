@@ -2,6 +2,18 @@
 
 User approved D413 and authorized integration followed by interface refinement. Preserve those exact hero portraits and D412 combat figures; use the supplied reference for the specialization ribbon, stat symbols, selected/filled-state emphasis, actual relic illustrations and full-width party summary. All values and availability still come from existing RunState logic; do not copy mockup numbers or invent clickable upgrades/relic actions.
 
+## D417 — UI feedback may not own game actions (2026-11-09)
+
+User requests restrained UI motion. Use opt-in presentation tweens: modal alpha/10px slide, subtle hover lift and button compression; cancel superseded tweens. Never delay/emit pressed actions, change stats or transition/deal/choice timing. Card controllers retain ownership of selection transforms; button feedback is attached only to explicit action controls. Disabled buttons restore baseline; opening animations cancel on close. Keep artwork/layout/style intact.
+
+## D416 — Table backdrop must not depict playable offers (2026-11-09)
+
+User explicitly requests an empty table behind live cards. Remove two obsolete baked encounter cards and their Hold/+ markers from the background only; keep actual two-offer dealing, hover/choice/discard animations and timings. Preserve the approved surrounding artwork exactly and the original bitmap for rollback. Existing static peripheral HUD/counter masks are outside this bug fix.
+
+## D415 — shared approved hero identity on protagonist choice (2026-11-09)
+
+User explicitly requests reusing the squad-dossier hero paintings on ClassSelect and allows cohesive UI refinement. Use the exact D413 thumbnails and bronze panel border, dark caption wells and serif hierarchy. Preserve existing tabletop Wizard/background, logo, all class copy and source stats,272x338 choice geometry, hover preview and two-step confirmation. No new art direction, companion grants or combat changes. D282's old D278-frame lock is superseded for this screen only by this explicit user request; original materials remain for rollback.
+
 ## D413 — dossier art follows current combat identity (2026-11-09)
 
 User requested squad UI matching their Gothic reference and portraits matching actual figures. Preserve closed helmet/steel/burgundy sword-shield Knight, intact olive hood/bow Ranger and silver-haired violet-robed male Mage/staff from D412. UI reference supplies materials/layout, not a blue Knight redesign or new game rules. Keep dynamic stats/upgrades/relics/party state in native Controls.

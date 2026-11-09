@@ -1,8 +1,30 @@
-## D414 — dossier reference polish (2026-11-09)
+## D414–D417 integration checkpoint (2026-11-09)
 
-Approved D412 animations/editor fix [PR81](https://github.com/zampolit73/Misdeal/pull/81) and D413 dossier [PR82](https://github.com/zampolit73/Misdeal/pull/82) are merged into main (merge heads `54621b70`, `3c364bb4`). User approved the dossier and requested integration followed by reference polish.
+User authorized full autonomous visual-polish delivery. PR84/D415, PR85/D416 and PR86/D417 merged sequentially into main using merge commits, preserving dependency ancestry (latest `6c467d5f`). D414/PR83 now merges this exact main; conflicts were documentation-only, dossier helper and motion hooks combined. Fresh final-head CI required before PR83 merge. Prior phase-specific pending text below is historical. Integration order avoids repeatedly resolving the same document headers; reviewed PR diffs contain only each phase's changes.
 
-D414 adds a specialization ribbon, selected-hero marker, warm completed-development glow, actual existing artifact artwork/full effect tooltips, stat symbols and an evenly spaced four-part footer. Approved portraits retained. UI-only branch `codex/d414-dossier-reference-polish`; no gameplay/state/timing changes. Native Godot4.7.2: **212/212 GUT**,48 scripts,47,123 assertions; D285 actual dossier smoke PASS; three actual 1280x720 dossier renders inspected. [D414 QA](D414_DOSSIER_REFERENCE_QA.md). Next: review/CI for D414, then F5 Table→TAB and inspect roles1/2/3, upgraded Knight and filled/empty relic slots; TAB/Escape/X close. Historical pending notes below are superseded by this release status.
+Next: complete PR83 green CI, then broad native visual matrix/audit and conservative VP1–VP7 polish. Preserve all approved source art, D412 frames, mechanics and player-local metadata/project.godot changes. See user brief `Misdeal_Codex_Visual_Polish_Autonomous_Plan.md` and forthcoming `VISUAL_POLISH_AUDIT.md`.
+
+## D417 — restrained UI motion (2026-11-09)
+
+User requests smooth window entrances, slight card hover lift and pleasant button press feedback. Branch `codex/d417-ui-motion-polish` follows D416/PR85. Adds opt-in presentation helper, smooth/interruptible ClassSelect and Reward hover, gentler Table hover, fade/10px entrance for dossier/Fate/lore, and subtle press/release on primary Table actions and popup/confirm buttons. No gameplay, art, transition/deal/choice timing changes. Opening/closing races guarded.
+
+Local Godot4.7.2 **215/215 GUT**,49 scripts,47,138 assertions; new stress/disabled-button/modal-close checks. Native20fps frame sequence covers real Table hover, press, dossier/Fate/lore; offer IDs unchanged. [QA and native motion review](D417_UI_MOTION_QA.md). Next: CI, then F5 check hover/click/TAB/R/RMB and new-run choice; prior PR83/84/85 remain separately reviewable.
+
+## D416 — remove baked encounter cards from Table background (2026-11-09)
+
+User screenshot shows two obsolete cards visible underneath live offer selection. Root cause: they are painted into `approved_variant_c/table_exact.webp`, not extra gameplay offers. Production Table now loads `assets/pixel/table/d416_clean_center/table_clean.webp`; restores only central tabletop and erases baked cards/Hold/+ labels. Original source retained; all decoded pixels outside Rect(380,316,520,340) match exactly. No gameplay/card/timing changes.
+
+Branch `codex/d416-clean-table-backdrop` follows D415/PR84 to keep the current selection-screen work. Native capture checks exposed tabletop, two offers, hover, choice motion and actual event navigation. SHA256-region regression guards the live asset path and untouched surroundings. Full native Godot4.7.2 GUT212/212,48 scripts,47,116 assertions; D289 Table smoke PASS. [D416 QA and prompt](D416_CLEAN_TABLE_QA.md). Next: CI and player F5 offer selection; no obsolete painted cards should remain behind moving live offers. D415 PR84 and D414 PR83 remain separately reviewable.
+
+## D415 — protagonist choice matches squad dossier (2026-11-09)
+
+User requested the same approved dossier portraits on the protagonist-choice screen and a cohesive UI refresh. Branch `codex/d415-class-select-dossier-art` starts from main after merged PR81/82 (`3c364bb4`). Reuses exact D413 portrait thumbnails and panel artwork: no new character art generated. Dark obsidian cards, bronze dossier border, serif hierarchy, larger portrait windows, persistent selected seal, modest dimming and keyboard hint. Selection/confirmation, source unit stats, solo party and routing remain unchanged.
+
+Local native Godot4.7.2: **211/211 GUT**,47 scripts,47,106 assertions; expanded D282 real choice smoke PASS (exact decoded portraits, hover, persistent selection, arrows, solo confirmation). Five native1280x720 frames include actual confirmed Mage→Table. [D415 QA](D415_CLASS_SELECT_DOSSIER_QA.md). Next: CI/visual review; F6 actual `scenes/class_select/class_select.tscn`, inspect hover and all three choices, use arrows and confirm, verify solo Table entry. D414 dossier refinements remain in independent open [PR83](https://github.com/zampolit73/Misdeal/pull/83), with green CI; D413 dossier and D412 animations are already merged and approved. Older pre-merge/pending notes below are historical.
+
+## D413 — squad dossier visual upgrade (2026-11-09)
+
+Implemented on `fix/d413-squad-dossier`, stacked on D412 PR81; not merged to main. New portraits match approved D412 figurines, painted obsidian/bronze panel materials, serif type and aligned live stats; development/relic/party logic preserved. Local Godot4.7.2 GUT211/211; existing D285 native dossier smoke PASS. New state-invariance/filled-build/fate/close regressions and native1280x720 portraits captured. F6 `scenes/dev/d413_squad_dossier_preview.tscn`, normal F5 Table→TAB. [Full QA/art provenance](D413_SQUAD_DOSSIER_QA.md). New dossier aesthetic acceptance remains pending.
 
 ## Editor diagnostics follow-up (2026-11-09)
 
@@ -10,7 +32,7 @@ D414 adds a specialization ribbon, selected-hero marker, warm completed-developm
 
 ## D412 — approved full pack integrated in production Battle (2026-11-09)
 
-Player approved quality, scale and all three animations («отлично», then «продолжай»). Production now loads the exact `hero_c3_d412_polish` 75 poses, with a single rollback flag and validated archived C3 fallback. Old D407–D409 single-frame patches do not overwrite new artwork. D404 travelled-distance gait and D405 attack timing remain. Correct source sole Y90, exact accepted preview scaling (Ranger1.40, Knight/Mage1.47), immediate first-target facing. Local Godot4.7.2 **208/208 GUT**, 45 scripts, 47,059 assertions. Actual Court trio win→Reward→Table route PASS; native GPU real Battle captured. No human F5 navigation PASS claimed. See [D412 QA](D412_THREE_HERO_PACK_QA.md). PR81 merged; see current release status above.
+Player approved quality, scale and all three animations («отлично», then «продолжай»). Production now loads the exact `hero_c3_d412_polish` 75 poses, with a single rollback flag and validated archived C3 fallback. Old D407–D409 single-frame patches do not overwrite new artwork. D404 travelled-distance gait and D405 attack timing remain. Correct source sole Y90, exact accepted preview scaling (Ranger1.40, Knight/Mage1.47), immediate first-target facing. Local Godot4.7.2 **208/208 GUT**, 45 scripts, 47,059 assertions. Actual Court trio win→Reward→Table route PASS; native GPU real Battle captured. No human F5 navigation PASS claimed. See [D412 QA](D412_THREE_HERO_PACK_QA.md). PR81 pending CI/review; no merge to main.
 
 ## D412 follow-up — motion accepted, detail and size polish (2026-11-09)
 

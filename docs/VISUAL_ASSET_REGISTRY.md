@@ -2,6 +2,14 @@
 
 Seven authored 24x24 SVGs in `assets/pixel/ui/squad_dossier_d414/`: heart, swords, cadence, range, speed, burst and party. Warm bronze vector strokes; no generated artwork or baked text. Used only in dossier stat rows/footer. Filled relics reuse `ArtifactArtCatalog` artwork; D413 approved portraits and original item sources unchanged. [Native QA](D414_DOSSIER_REFERENCE_QA.md).
 
+## D416 — clean central Table surface (2026-11-09)
+
+`assets/pixel/table/d416_clean_center/table_clean.webp` is the native1280x720 lossless runtime backdrop, replacing only the central Rect(380,316,520,340) of original Variant C. Built-in imagegen removes obsolete painted encounter cards/Hold/+ markers; generated `source.png` retained. Godot pack recipe feathers8px at the patch boundary and keeps all decoded surrounding pixels exact. Original `approved_variant_c/table_exact.webp` unchanged. [Prompt, recipe and QA](D416_CLEAN_TABLE_QA.md).
+
+## D415 — reuse dossier portraits/material on ClassSelect (2026-11-09)
+
+The three `assets/pixel/ui/squad_dossier_d413/{knight,ranger,mage}_thumb.webp`640x480 portraits now also supply protagonist-choice illustrations, decoded at native size with linear display filtering. Same approved D413 `panel.webp` feeds a center-transparent NinePatchRect bronze border. No source images changed or regenerated; old ClassSelect v7 portraits, D278 frame source and parchment shader preserved. [Native screenshots/QA](D415_CLASS_SELECT_DOSSIER_QA.md).
+
 ## D413 — dossier-only character portraits and panel material (2026-11-09)
 
 `assets/pixel/ui/squad_dossier_d413/`: generated full-body Knight/Ranger/Mage portraits1024x1536 WebP, matching640x480 mini crops, blank768x512 obsidian/bronze panel and original PNG sources. Mapped only into squad dossier; class-select art, D412 combat sprites and original D287/v7 assets preserved. No text/counts baked into bitmaps. See [QA/provenance](D413_SQUAD_DOSSIER_QA.md).

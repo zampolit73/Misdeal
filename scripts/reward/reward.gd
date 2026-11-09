@@ -1,5 +1,7 @@
 extends Control
 
+const UI_MOTION := preload("res://scripts/ui/ui_motion.gd")
+
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 
 const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
@@ -696,7 +698,7 @@ func _animate_reward_screen_in() -> void:
 		button.scale = Vector2(0.975, 0.975)
 		button.modulate.a = 0.0
 
-		var card_tween := button.create_tween()
+		var card_tween := UI_MOTION.replace_tween(button, &"d417_reward_hover")
 		card_tween.set_parallel(true)
 		var delay := 0.06 + float(visible_index) * 0.06
 		card_tween.tween_property(button, "scale", Vector2.ONE, 0.20).set_delay(delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -717,6 +719,7 @@ func _animate_reward_commit(selected_index: int) -> void:
 		if not button.visible:
 			continue
 		button.pivot_offset = button.size * 0.5
+		UI_MOTION.stop(button, &"d417_reward_hover")
 		var tween := button.create_tween()
 		tween.set_parallel(true)
 		if index == selected_index:
@@ -748,8 +751,9 @@ func _on_reward_hover(button: Button, hovered: bool) -> void:
 		return
 
 	button.pivot_offset = button.size * 0.5
-	var tween := button.create_tween()
-	tween.tween_property(button, "scale", Vector2(1.025, 1.025) if hovered else Vector2.ONE, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	button.modulate.a = 1.0
+	var tween := UI_MOTION.replace_tween(button, &"d417_reward_hover")
+	tween.tween_property(button, "scale", Vector2(1.018, 1.018) if hovered else Vector2.ONE, 0.16).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 	hover_summary_label.visible = false
 
@@ -758,6 +762,7 @@ func _reset_buttons() -> void:
 	hover_summary_label.visible = false
 	for index in range(reward_buttons.size()):
 		var button := reward_buttons[index]
+		UI_MOTION.stop(button, &"d417_reward_hover")
 		button.visible = true
 		button.disabled = false
 		button.scale = Vector2.ONE

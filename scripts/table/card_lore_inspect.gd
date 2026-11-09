@@ -1,5 +1,7 @@
 extends Control
 
+const UI_MOTION := preload("res://scripts/ui/ui_motion.gd")
+
 const CARD_DS3_SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
 
 # Deliberate non-destructive reading surface. RMB opens the complete original
@@ -149,6 +151,8 @@ func _ready() -> void:
 	close_button.add_theme_stylebox_override("pressed", close_hover)
 	close_button.pressed.connect(close)
 	frame.add_child(close_button)
+	UI_MOTION.bind_button(close_button)
+	UI_MOTION.reveal(frame, scrim)
 
 	# D316: show this *physical card* with the same real DS3 frame and
 	# red/black painting treatment as Table, Spread and Reward. The scrollable
@@ -173,6 +177,7 @@ func present(card_title: String, card_type: String, full_text: String, card_art:
 
 
 func close() -> void:
+	UI_MOTION.stop(frame)
 	closed.emit()
 	queue_free()
 

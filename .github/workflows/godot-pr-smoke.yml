@@ -206,6 +206,64 @@ jobs:
           test -s "$out/ranger.png"
           test -s "$out/mage.png"
 
+      - name: D415 class choice portraits and actual confirmation route
+        if: (steps.scope.outputs.mode == 'visual' || steps.scope.outputs.mode == 'release') && contains(steps.scope.outputs.scenes, 'class-select')
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/misdeal-smart-qa/visual/d415"
+          log="$RUNNER_TEMP/misdeal-smart-qa/d415-choice.log"
+          timeout 45s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility \
+            --script res://scripts/dev/d415_capture_class_select.gd -- "$out" 2>&1 | tee "$log"
+          grep -Fq 'D415_CLASS_SELECT_CAPTURE_PASS' "$log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script' "$log"
+          for frame in initial knight ranger mage confirmed_table; do
+            test -s "$out/$frame.png"
+          done
+
+      - name: D416 exposed tabletop and actual card choice route
+        if: (steps.scope.outputs.mode == 'visual' || steps.scope.outputs.mode == 'release') && contains(steps.scope.outputs.scenes, 'table')
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/misdeal-smart-qa/visual/d416"
+          log="$RUNNER_TEMP/misdeal-smart-qa/d416-table.log"
+          timeout 45s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility \
+            --script res://scripts/dev/d416_capture_clean_table.gd -- "$out" 2>&1 | tee "$log"
+          grep -Fq 'D416_CLEAN_TABLE_CAPTURE_PASS' "$log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script' "$log"
+          for frame in two_offers exposed_table hover choice_motion selected_event; do
+            test -s "$out/$frame.png"
+          done
+
+      - name: D417 native UI motion and unchanged offers
+        if: steps.scope.outputs.mode == 'visual' || steps.scope.outputs.mode == 'release'
+        shell: bash
+        run: |
+          set -euo pipefail
+          frames="$RUNNER_TEMP/d417-recording"
+          out="$RUNNER_TEMP/misdeal-smart-qa/visual/d417"
+          log="$RUNNER_TEMP/misdeal-smart-qa/d417-motion.log"
+          timeout 60s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility \
+            --script res://scripts/dev/d417_capture_ui_motion.gd -- "$frames" 2>&1 | tee "$log"
+          grep -Fq 'D417_UI_MOTION_CAPTURE_PASS' "$log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script' "$log"
+          /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . \
+            --script res://scripts/dev/d417_pack_motion_review.gd -- "$frames"
+          mkdir -p "$out"
+          cp docs/qa/d417/motion-preview.html "$out/"
+          cp "$frames/timings.json" "$out/"
+          cp "$frames/modal-samples.json" "$out/"
+          for index in 005 014 017 023 030 044; do
+            cp "$frames/$index.png" "$out/"
+          done
+
       - name: Capture actual current Godot scene screenshots
         if: steps.scope.outputs.mode == 'visual' || steps.scope.outputs.mode == 'release'
         shell: bash

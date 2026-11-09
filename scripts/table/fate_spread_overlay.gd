@@ -1,5 +1,7 @@
 extends Control
 
+const UI_MOTION := preload("res://scripts/ui/ui_motion.gd")
+
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const CARD_DS3_SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
 const BOSS_SEAL_SCRIPT := preload("res://scripts/table/fate_boss_seal_visual.gd")
@@ -42,6 +44,7 @@ const BOSS_BORDER := Color(0.92, 0.18, 0.10, 1.0)
 @onready var detail_title: Label = $Frame/DetailPanel/Title
 @onready var detail_body: Label = $Frame/DetailPanel/Body
 
+var _closing := false
 var slot_panels: Array[Panel] = []
 var boss_panel: Panel
 var boss_art: TextureRect
@@ -53,6 +56,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	z_index = 4095
 	close_button.pressed.connect(close)
+	UI_MOTION.bind_button(close_button)
 	_build_slots()
 	# D315: same engraved-card material on held and discarded real cards.
 	CARD_DS3_SKIN.apply_sidebar_card($Frame/HeldPanel, held_art, held_title_plate,
@@ -97,8 +101,10 @@ func refresh() -> void:
 
 
 func close() -> void:
-	if not is_inside_tree():
+	if not is_inside_tree() or _closing:
 		return
+	_closing = true
+	UI_MOTION.stop(frame)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var tween := create_tween()
 	tween.set_parallel(true)
@@ -522,7 +528,8 @@ func _animate_in() -> void:
 	var tween := create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(self, "modulate:a", 1.0, 0.14)
-	tween.tween_property(frame, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	frame.scale = Vector2.ONE
+	UI_MOTION.reveal(frame)
 
 	var reveal_index := 0
 	for panel in slot_panels:
