@@ -152,7 +152,14 @@ static func _style_card(button: Button, data: Dictionary, index: int, price: int
 		if upgrade != null:
 			upgrade_title = String(upgrade.title)
 			full_upgrade_text = String(upgrade.description)
-	var detail := _label(parchment, upgrade_title, Vector2(13, 88), Vector2(238, 31), 13, Color(0.22, 0.15, 0.12))
+	var copy := upgrade_title + (". " + full_upgrade_text if not full_upgrade_text.is_empty() else "")
+	var detail := _label(parchment, copy, Vector2(13, 87), Vector2(238, 48), 11, Color(0.22, 0.15, 0.12))
+	detail.name = "UpgradeDetail"
+	detail.add_theme_constant_override("line_spacing",0)
+	for point in range(11,9,-1):
+		detail.add_theme_font_size_override("font_size",point)
+		if detail.get_line_count() * detail.get_theme_font("font").get_height(point) <= detail.size.y:
+			break
 	var warning := ""
 	if not RunState.is_role_in_party(role):
 		warning = "ГЕРОЙ НЕ В ОТРЯДЕ"
@@ -164,7 +171,7 @@ static func _style_card(button: Button, data: Dictionary, index: int, price: int
 		warning = "НЕ ХВАТАЕТ ЗОЛОТА"
 	else:
 		warning = "ДОСТУПНО К ПОКУПКЕ"
-	var availability := _label(parchment, warning, Vector2(10, 123), Vector2(244, 30), 12,
+	var availability := _label(parchment, warning, Vector2(10, 137), Vector2(244, 20), 12,
 		Color(0.38, 0.28, 0.15) if not button.disabled else Color(0.57, 0.16, 0.11))
 	availability.name = "PurchaseStatus"
 	button.tooltip_text = "%s\n\n%s\n%s" % [original_offer, detail.text, full_upgrade_text]

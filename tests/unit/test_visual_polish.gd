@@ -101,6 +101,7 @@ func test_shop_uses_real_offer_art_and_resolved_states_match_a_real_purchase() -
 	preload("res://scripts/event/gravedigger_shop_ds2.gd").show_result(shop)
 	assert_eq(_snapshot(),after)
 	assert_ne(before,after)
+	assert_false((shop.get_node("BackdropReadouts/Deck") as Control).get_global_rect().intersects((shop.get_node("Panel/Choices/ChoiceA") as Control).get_global_rect()))
 	assert_eq(shop.get_node("BackdropReadouts/Deck").text,"%02d" % maxi(0,RunState.remaining_card_ids.size()-RunState.current_offer_ids.size()))
 	assert_eq(shop.get_node("ShopDS2Backdrop").get("webp_path"),"res://assets/pixel/table/d416_clean_center/table_clean.webp")
 
@@ -131,3 +132,24 @@ func test_full_run_summary_scrolls_inside_its_panel_and_leaves_new_run_clear() -
 	assert_gt(scroll.scroll_vertical,0)
 	assert_true(label.text.contains("Последняя сделка"))
 	assert_eq(_snapshot(),before)
+
+func test_story_and_merchant_effect_paragraphs_keep_the_entire_real_modifier_visible() -> void:
+	_party()
+	RunState.gold = 100
+	RunState.active_card_id = "blood_ledger"
+	var event := _open("res://scenes/event/act_choice.tscn")
+	await get_tree().process_frame
+	var button := event.get_node("Panel/Choices/ChoiceA") as Button
+	var id := String(button.get_meta("choice_upgrade_id",""))
+	assert_false(id.is_empty())
+	var detail := button.get_node("DS2EventParchment/ChoiceDetail") as Label
+	assert_true(detail.text.contains(RunState.get_hero_upgrade(id).description))
+	assert_lte(detail.get_line_count() * detail.get_theme_font("font").get_height(detail.get_theme_font_size("font_size")),detail.size.y)
+	RunState.active_card_id = "gravedigger_shop"
+	var shop := _open("res://scenes/event/act_choice.tscn")
+	await get_tree().process_frame
+	var offer := shop.get_node("Panel/Choices/ChoiceA") as Button
+	var upgrade := RunState.get_hero_upgrade(String(offer.get_meta("choice_upgrade_id","")))
+	var body := offer.get_node("DS2Parchment/UpgradeDetail") as Label
+	assert_true(body.text.contains(upgrade.description))
+	assert_lte(body.get_line_count() * body.get_theme_font("font").get_height(body.get_theme_font_size("font_size")),body.size.y)

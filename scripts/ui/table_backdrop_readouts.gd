@@ -12,7 +12,7 @@ static func apply(scene: Control, context: String) -> void:
 	scene.add_child(host)
 	var at := Vector2(1113,25) if context == "НАГРАДА" else Vector2(1108,25)
 	_label(host,"Context",context,at,Vector2(1240-at.x,37))
-	_label(host,"Deck","",Vector2(148,539),Vector2(72,25))
+	_label(host,"Deck","",Vector2(148,539),Vector2(28,25))
 	_label(host,"Discard","",Vector2(1168,539),Vector2(52,25))
 	refresh(scene)
 

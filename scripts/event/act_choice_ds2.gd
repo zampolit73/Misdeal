@@ -143,6 +143,8 @@ static func _style_card(button: Button, index: int) -> void:
 	rule.size = Vector2(218, 1)
 	var detail := _text(parchment, remaining, Vector2(12, 55), Vector2(240, 75), 12, Color(0.22, 0.15, 0.12))
 	detail.tooltip_text = full_text
+	detail.name = "ChoiceDetail"
+	_fit_detail(detail,12)
 	var status: String = "ДОСТУПНО" if not button.disabled else "НЕДОСТУПНО"
 	var availability := _text(parchment, status, Vector2(10, 134), Vector2(244, 22), 12,
 		Color(0.38, 0.28, 0.15) if not button.disabled else Color(0.57, 0.16, 0.11))
@@ -191,3 +193,10 @@ static func _text(parent: Control, value: String, pos: Vector2, dimensions: Vect
 	label.size = dimensions
 	label.text = value
 	return label
+
+static func _fit_detail(label: Label, maximum: int) -> void:
+	label.add_theme_constant_override("line_spacing",0)
+	for point in range(maximum,9,-1):
+		label.add_theme_font_size_override("font_size",point)
+		if label.get_line_count() * label.get_theme_font("font").get_height(point) <= label.size.y:
+			break
