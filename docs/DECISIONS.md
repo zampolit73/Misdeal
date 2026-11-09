@@ -1,3 +1,7 @@
+## D416 — Table backdrop must not depict playable offers (2026-11-09)
+
+User explicitly requests an empty table behind live cards. Remove two obsolete baked encounter cards and their Hold/+ markers from the background only; keep actual two-offer dealing, hover/choice/discard animations and timings. Preserve the approved surrounding artwork exactly and the original bitmap for rollback. Existing static peripheral HUD/counter masks are outside this bug fix.
+
 ## D415 — shared approved hero identity on protagonist choice (2026-11-09)
 
 User explicitly requests reusing the squad-dossier hero paintings on ClassSelect and allows cohesive UI refinement. Use the exact D413 thumbnails and bronze panel border, dark caption wells and serif hierarchy. Preserve existing tabletop Wizard/background, logo, all class copy and source stats,272x338 choice geometry, hover preview and two-step confirmation. No new art direction, companion grants or combat changes. D282's old D278-frame lock is superseded for this screen only by this explicit user request; original materials remain for rollback.
