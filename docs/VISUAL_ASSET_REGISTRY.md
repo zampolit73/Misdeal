@@ -1,3 +1,7 @@
+## D418 — Jack, selected option1 and complete canine pack (2026-11-09)
+
+Exact approved source `assets/pixel/events/jack/approved_source.png`; full-composition card448×274 and backdrop1280×720 with dark fit margins, road/token crops from same painting. New separate dog source/strict25-pose576×480 lossless alpha atlas in `assets/pixel/units/jack/`; existing heroes untouched. Generated illustration batch, not hand-pixel-authored. [Prompts, hashes, provenance, native QA](D418_JACK_EVENT.md).
+
 ## D414 — native dossier symbols (2026-11-09)
 
 Seven authored 24x24 SVGs in `assets/pixel/ui/squad_dossier_d414/`: heart, swords, cadence, range, speed, burst and party. Warm bronze vector strokes; no generated artwork or baked text. Used only in dossier stat rows/footer. Filled relics reuse `ArtifactArtCatalog` artwork; D413 approved portraits and original item sources unchanged. [Native QA](D414_DOSSIER_REFERENCE_QA.md).

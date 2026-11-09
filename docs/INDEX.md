@@ -1,3 +1,7 @@
+## D418 — latest event
+
+[Jack: selected art, three choices, canine animation, native QA and F6](D418_JACK_EVENT.md).40/45 ordinary Act1 cards; event requires Ranger.
+
 ## Current visual-polish delivery (2026-11-09)
 
 [Release QA and local launch](VISUAL_POLISH_RELEASE_QA.md) · [native audit](VISUAL_POLISH_AUDIT.md) · [interactive before/after](qa/visual_polish/compare.html) · [user brief](requests/2026-11-09-visual-polish-plan.md) · [current handoff](HANDOFF.md). D414–D417 are merged; historical pending notes below are superseded by current state.
