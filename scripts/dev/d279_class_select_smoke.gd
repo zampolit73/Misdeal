@@ -42,7 +42,7 @@ func _verify() -> void:
 	valid = valid and not selection.has_node("FateTitle")
 	valid = valid and selection.has_node("TitleVeil") and selection.has_node("Logo")
 	# D282 native chrome acceptance: restrained header/caption, readable footer
-	# and a real active gold rim above the D278 illustrated card frame.
+	# and a real active gold rim above the dossier bronze card frame.
 	var title_veil := selection.get_node("TitleVeil") as Panel
 	var title_style := title_veil.get_theme_stylebox("panel") as StyleBoxFlat
 	valid = valid and title_style.bg_color.a < 0.40
@@ -58,12 +58,23 @@ func _verify() -> void:
 	valid = valid and selection.get_node("Frame") is Control
 	for i in range(buttons.size()):
 		var b: Button = buttons[i]
+		var portrait := b.get_node("Portrait") as TextureRect
+		var expected_path := "res://assets/pixel/ui/squad_dossier_d413/%s_thumb.webp" % ["knight", "ranger", "mage"][i]
+		valid = valid and portrait.get("webp_path") == expected_path
+		valid = valid and portrait.texture != null and portrait.texture.get_size() == Vector2(640, 480)
+		valid = valid and portrait.texture_filter == CanvasItem.TEXTURE_FILTER_LINEAR
+		if portrait.texture != null:
+			var source := Image.new()
+			source.load_webp_from_buffer(FileAccess.get_file_as_bytes(expected_path))
+			valid = valid and portrait.texture.get_image().get_data() == source.get_data()
+		valid = valid and b.has_node("ChosenSeal") and not b.get_node("ChosenSeal").visible
 		var stats := b.get_node("Stats") as Label
 		var unit: Resource = load(["res://resources/units/knight.tres", "res://resources/units/ranger.tres", "res://resources/units/mage.tres"][i]) as Resource
 		valid = valid and b.size == Vector2(272.0, 338.0)
 		valid = valid and b.has_node("Parchment") and b.has_node("IllustratedFrame")
 		valid = valid and b.has_node("SelectionRim") and not (b.get_node("SelectionRim") as Panel).visible
-		var overlay := b.get_node("IllustratedFrame") as TextureRect
+		var overlay := b.get_node("IllustratedFrame") as NinePatchRect
+		valid = valid and not overlay.draw_center
 		valid = valid and overlay.texture != null and overlay.mouse_filter == Control.MOUSE_FILTER_IGNORE
 		valid = valid and stats.text.contains(str(roundi(float(unit.get("max_hp")))))
 		valid = valid and stats.text.contains(str(roundi(float(unit.get("damage")))))
@@ -85,11 +96,22 @@ func _verify() -> void:
 	valid = valid and (buttons[1].get_node("Stats") as Label).visible
 	valid = valid and not bool(game_state.call("has_chosen_protagonist"))
 	# Switching to a different choice must still be reversible.
+	buttons[1].mouse_exited.emit()
+	valid = valid and buttons[1].get_node("ChosenSeal").visible
 	buttons[2].pressed.emit()
 	valid = valid and not (buttons[1].get_node("SelectionRim") as Panel).visible
 	valid = valid and (buttons[2].get_node("SelectionRim") as Panel).visible
 	valid = valid and selection.get("selected_role") == "mage"
+	valid = valid and buttons[2].get_node("ChosenSeal").visible and not buttons[1].get_node("ChosenSeal").visible
 	valid = valid and not bool(game_state.call("has_chosen_protagonist"))
+	var arrow := InputEventKey.new()
+	arrow.pressed = true
+	arrow.keycode = KEY_LEFT
+	selection.call("_input", arrow)
+	valid = valid and selection.get("selected_role") == "ranger" and not bool(game_state.call("has_chosen_protagonist"))
+	arrow.keycode = KEY_RIGHT
+	selection.call("_input", arrow)
+	valid = valid and selection.get("selected_role") == "mage" and buttons[2].get_node("ChosenSeal").visible
 	# ONLY explicit confirmation mutates the run and retains a SOLO hero.
 	confirm.pressed.emit()
 	valid = valid and bool(game_state.call("has_chosen_protagonist"))

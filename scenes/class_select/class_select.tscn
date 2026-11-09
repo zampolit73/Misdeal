@@ -137,8 +137,9 @@ text = ""
 [node name="Portrait" type="TextureRect" parent="Frame/Cards/Knight"]
 mouse_filter = 2
 script = ExtResource("2_runtime")
-webp_path = "res://assets/pixel/class_select/v7/knight.webp"
+webp_path = "res://assets/pixel/ui/squad_dossier_d413/knight_thumb.webp"
 expected_size = Vector2i(640, 480)
+use_nearest_filter = false
 offset_left = 12.0
 offset_top = 12.0
 offset_right = 260.0
@@ -205,8 +206,9 @@ text = ""
 [node name="Portrait" type="TextureRect" parent="Frame/Cards/Ranger"]
 mouse_filter = 2
 script = ExtResource("2_runtime")
-webp_path = "res://assets/pixel/class_select/v7/ranger.webp"
+webp_path = "res://assets/pixel/ui/squad_dossier_d413/ranger_thumb.webp"
 expected_size = Vector2i(640, 480)
+use_nearest_filter = false
 offset_left = 12.0
 offset_top = 12.0
 offset_right = 260.0
@@ -273,8 +275,9 @@ text = ""
 [node name="Portrait" type="TextureRect" parent="Frame/Cards/Mage"]
 mouse_filter = 2
 script = ExtResource("2_runtime")
-webp_path = "res://assets/pixel/class_select/v7/mage.webp"
+webp_path = "res://assets/pixel/ui/squad_dossier_d413/mage_thumb.webp"
 expected_size = Vector2i(640, 480)
+use_nearest_filter = false
 offset_left = 12.0
 offset_top = 12.0
 offset_right = 260.0
