@@ -295,6 +295,13 @@ func _spawn_encounter() -> void:
 		var spawn_position: Vector2 = party_positions[position_index]
 		_spawn_unit(hero_data, 0, spawn_position)
 
+	if RunState.has_jack_companion():
+		for unit in units:
+			if unit.visual_role == "ranger":
+				_spawn_unit(preload("res://resources/units/jack.tres"), 0, unit.position + Vector2(85,35))
+				break
+		_separate_jack_from_heroes()
+
 	var enemy_spawn_positions: PackedVector2Array = encounter.get_enemy_positions_for_formation(enemy_formation_variant)
 	var enemy_count: int = mini(encounter.enemy_unit_paths.size(), enemy_spawn_positions.size())
 
@@ -578,9 +585,10 @@ func _spawn_unit(
 	unit.configure(data, team, _project_spawn_on_floor(spawn_position), name_override)
 	unit.set_arena_presentation(encounter.arena_id)
 
-	if team == 0:
+	if team == 0 and unit.visual_role != "jack":
 		unit.max_hp += RunState.party_hp_bonus
 		unit.damage += RunState.party_damage_bonus
+		unit.damage *= RunState.get_jack_damage_multiplier(unit.visual_role)
 		_apply_hero_upgrades_to_unit(unit)
 		_apply_artifacts_to_unit(unit)
 		unit.max_hp *= RunState.get_party_hp_multiplier()
@@ -591,14 +599,15 @@ func _spawn_unit(
 			unit.max_hp -= RunState.get_total_protagonist_hp_penalty()
 		unit.max_hp = maxf(20.0, unit.max_hp)
 		unit.damage = maxf(1.0, unit.damage)
-		unit.set_meta("order_base_damage", unit.damage)
-		unit.set_meta("order_base_attack_interval", unit.attack_interval)
-	else:
+	elif team == 1:
 		unit.max_hp *= RunState.get_enemy_hp_multiplier()
 		unit.damage *= RunState.get_enemy_damage_multiplier()
 		unit.support_heal_amount *= RunState.get_enemy_hp_multiplier()
 
 	if team == 0:
+		# Fixed pet stats, ordinary orders: no hero compensation/upgrades/relics.
+		unit.set_meta("order_base_damage", unit.damage)
+		unit.set_meta("order_base_attack_interval", unit.attack_interval)
 		unit.set_tactical_order(tactical_order)
 
 	unit.set_combat_bounds(_get_combat_bounds())
@@ -1287,7 +1296,7 @@ func _show_wizard_line(message: String, urgent: bool = false) -> void:
 
 
 func _on_unit_health_critical(unit: BattleUnit) -> void:
-	if battle_finished or unit.team != 0:
+	if battle_finished or unit.team != 0 or unit.visual_role == "jack":
 		return
 
 	if side_objective_id == "no_critical" and not side_objective_failed:
@@ -1341,7 +1350,7 @@ func _on_unit_died(dead_unit: BattleUnit) -> void:
 			BATTLE_DS3_PASS.sync_side_objective(self)
 		else:
 			_fail_side_objective("УСЛОВИЕ ПРОВАЛЕНО • первым пал не звонарь")
-	elif dead_unit.team == 0 and side_objective_id == "no_critical" and not side_objective_failed:
+	elif dead_unit.team == 0 and dead_unit.visual_role != "jack" and side_objective_id == "no_critical" and not side_objective_failed:
 		_fail_side_objective("УСЛОВИЕ ПРОВАЛЕНО • герой погиб")
 
 	var heroes_alive := 0
@@ -1351,11 +1360,15 @@ func _on_unit_died(dead_unit: BattleUnit) -> void:
 		if not unit.alive:
 			continue
 		if unit.team == 0:
-			heroes_alive += 1
+			if unit.visual_role != "jack":
+				heroes_alive += 1
 		else:
 			enemies_alive += 1
 
-	if enemies_alive == 0:
+	if RunState.has_jack_companion() and heroes_alive == 0:
+		# An animal cannot keep a defeated hero party in combat or win alone.
+		_finish_battle(false)
+	elif enemies_alive == 0:
 		if encounter.has_second_wave() and battle_wave_index == 1:
 			# A simultaneous last-stand kill is NOT a wave-clear victory.
 			if heroes_alive > 0:
@@ -1366,7 +1379,7 @@ func _on_unit_died(dead_unit: BattleUnit) -> void:
 			_finish_battle(true)
 	elif heroes_alive == 0:
 		_finish_battle(false)
-	elif dead_unit.team == 0:
+	elif dead_unit.team == 0 and dead_unit.visual_role != "jack":
 		_show_wizard_line("Один уже понял правила. Остальные — следом.", true)
 
 # When a combat chase ends, several survivors may be outside the narrow
@@ -1414,9 +1427,36 @@ func _separate_wave_survivors() -> void:
 		placed.append(hero)
 
 
-# D382: First wave ends without issuing a result or touching the run card,
-# earned rewards, HP, limited orders, or the Last Deal state. Reuse only
-# existing physical placement controls. No waves are activated globally.
+# D418: place only the smaller extra animal, preserving hero deployment.
+func _separate_jack_from_heroes() -> void:
+	var pet: BattleUnit
+	var heroes: Array[BattleUnit] = []
+	for unit in units:
+		if unit.team != 0 or not unit.alive: continue
+		if unit.visual_role == "jack": pet = unit
+		else: heroes.append(unit)
+	if pet == null: return
+	var nearest := pet.position
+	var best := INF
+	for region in _get_placement_regions():
+		for x in range(int(region.position.x+pet.body_radius),int(region.end.x-pet.body_radius)+1,8):
+			for y in range(int(region.position.y+pet.body_radius),int(region.end.y-pet.body_radius)+1,8):
+				var candidate := Vector2(x,y)
+				var clear := true
+				for hero in heroes:
+					var gap := candidate-hero.position
+					if absf(gap.x) < 95.0 and absf(gap.y) < 60.0:
+						clear = false
+						break
+				var distance := candidate.distance_squared_to(pet.position)
+				if clear and distance < best:
+					best = distance
+					nearest = candidate
+	pet.position = nearest
+	pet.z_index = int(nearest.y)
+	pet.queue_redraw()
+
+# D382: first wave does not issue a result, reward or another Last Deal.
 func _begin_wave_intermission() -> void:
 	if wave_intermission or battle_finished or not encounter.has_second_wave():
 		return
@@ -1435,6 +1475,7 @@ func _begin_wave_intermission() -> void:
 		if unit.team == 0:
 			unit.enable_placement_regions(_get_placement_regions())
 	_separate_wave_survivors()
+	_separate_jack_from_heroes()
 
 	enemy_label.text = "ВОЛНА I / II — ОТБИТА"
 	status_label.text = encounter.wave_intermission_status

@@ -1,5 +1,11 @@
 # Misdeal — current project state
 
+Delivery: [PR88](https://github.com/zampolit73/Misdeal/pull/88) · [final-head RELEASE checks](https://github.com/zampolit73/Misdeal/pull/88/checks).
+
+## D418 — Jack event
+
+User chose gateway art option1. Added Ranger-only Tier1 event with exactly three outcomes:25 gold → real animal companion, pass unchanged, or token → Ranger damage+10% for this run.40/45 ordinary cards; hero count/compensation,12+XIII, approved heroes and old mechanics preserved. Complete25-pose dog, actual native event/combat/choice/wave evidence and regression tests. [Behavior, assets, QA and F6](D418_JACK_EVENT.md). Final PR RELEASE CI must pass before merge; native F6 launcher `scenes/dev/jack_event_playtest.tscn`. Earlier VP1–VP7 release below remains merged at d49d51a1.
+
 Delivery: [PR87](https://github.com/zampolit73/Misdeal/pull/87) · [final-head CI checks](https://github.com/zampolit73/Misdeal/pull/87/checks). Merge requires successful full RELEASE; current check conclusion is authoritative.
 
 ## Visual polish delivery — 2026-11-09
@@ -14,6 +20,6 @@ Validation: Godot4.7.2 **224/224 GUT**,51 scripts,47,268 assertions;13/13 QA-sel
 
 ## Product baseline
 
-Godot4.7.x/GDScript;39 implemented Act1 cards toward45, two normal offers, I–XII resolutions plus sealed Bone Warden XIII. Solo/duo/trio contracts and compensation, authored encounters/waves, nine hero upgrades and original relic catalog remain authoritative. D412 accepted full75-pose hero pack is live; prior art/fallback/checkpoints retained. D314 Battle, D328 card DS3 and Fate Spread art locks remain. Silent-first production audio unchanged.
+Godot4.7.x/GDScript;40 implemented Act1 cards toward45, two normal offers, I–XII resolutions plus sealed Bone Warden XIII. Solo/duo/trio contracts and compensation, authored encounters/waves, nine hero upgrades and original relic catalog remain authoritative. D412 accepted full75-pose hero pack is live; prior art/fallback/checkpoints retained. D314 Battle, D328 card DS3 and Fate Spread art locks remain. Silent-first production audio unchanged.
 
 Long prior session logs and older backlog context: [archived state](archive/2026-11-09-pre-visual-polish/PROJECT_STATE.md), [archived roadmap](archive/2026-11-09-pre-visual-polish/ROADMAP.md). Historical pending flags there are superseded by current GitHub/this release; do not repeat old D153/D410 redraw work.

@@ -48,6 +48,10 @@ func _ready() -> void:
 		last_deal_text
 	]
 
+	if RunState.has_jack_companion():
+		summary_label.text += "\nСпутник следопыта: Джек"
+	elif RunState.get_event_outcome("jack") == "token":
+		summary_label.text += "\nОхотничий жетон: урон следопыта +10%"
 	_bound_summary()
 
 	if RunState.run_failed:

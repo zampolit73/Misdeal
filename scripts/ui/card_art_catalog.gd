@@ -126,6 +126,10 @@ static var bone_warden_card_texture: Texture2D
 static var combat_expansion_card_textures: Dictionary = {}
 
 static func get_run_card_texture(card_id: String) -> Texture2D:
+	if card_id == "jack":
+		var jack_image := Image.new()
+		var bytes := Marshalls.base64_to_raw(FileAccess.get_file_as_string("res://assets/pixel/events/jack/card.webp.b64").strip_edges())
+		return ImageTexture.create_from_image(jack_image) if jack_image.load_webp_from_buffer(bytes) == OK else null
 	var unified := CARD_UNIFICATION_V1.get_run_texture(card_id)
 	if unified != null:
 		return unified

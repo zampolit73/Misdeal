@@ -1,3 +1,7 @@
+## D418 — Jack event and Ranger animal companion (2026-11-09)
+
+New Ranger-gated Tier1 event: rescue Jack for25 gold, pass unchanged, or take hunting token for+10% Ranger damage this run. Exact user-selected first gateway painting; three truthful choice pictures, complete25-pose dog, ordinary Battle integration, pet-only deployment spacing, dossier/summary. Hero count/solo-duo scaling and all approved art/timings preserved.40/45 pool; local231 GUT and native16-frame route. [QA/F6](docs/D418_JACK_EVENT.md); full RELEASE CI required before merge.
+
 ## Autonomous visual polish — VP1–VP7 (2026-11-09)
 
 D414–D417 safely merged with green CI. Native audit found and repaired clipped Reward effects, obsolete painted offers/readouts on Reward/Shop, mismatched merchant upgrade pictures and stale availability, clipped event penalties, long RunEnd overlap, and the enabled victory action drawing under its scrim. Complete Reward reader supports keyboard scrolling/focus restoration. Approved art, hero animations, timings and mechanics preserved.

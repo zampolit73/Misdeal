@@ -108,6 +108,17 @@ static var _approved_frames: Dictionary = {}
 
 
 static func get_frames(role: String, use_approved: bool = true) -> SpriteFrames:
+	if role == "jack":
+		if _frames_cache.has(role):
+			return _frames_cache[role] as SpriteFrames
+		var jack_image := Image.new()
+		var jack_bytes := Marshalls.base64_to_raw(FileAccess.get_file_as_string("res://assets/pixel/units/jack/atlas.webp.b64").strip_edges())
+		if jack_image.load_webp_from_buffer(jack_bytes) != OK or jack_image.get_size() != Vector2i(576,480):
+			return null
+		jack_image.convert(Image.FORMAT_RGBA8)
+		if not _all_authored_deck_frames_visible(jack_image) or not _all_authored_deck_frames_padded(jack_image) or not _all_authored_deck_frames_distinct(jack_image) or not _unused_deck_cells_clear(jack_image):
+			return null
+		return _create_frames(role, ImageTexture.create_from_image(jack_image))
 	if use_approved and D412_APPROVED_ENABLED and C3_HERO_ROLES.has(role):
 		var approved := _get_approved_frames(role)
 		if approved != null:

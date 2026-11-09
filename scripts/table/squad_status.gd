@@ -295,6 +295,10 @@ func _format_number(value: float, decimals: int) -> String:
 func _build_upgrades_text(role: String) -> String:
 	var upgrades := RunState.get_hero_upgrades_for_role(role)
 	var chunks: Array[String] = []
+	if role == "ranger" and RunState.has_jack_companion():
+		chunks.append("[color=#d3a16c][b]ВЕРНЫЙ ДЖЕК[/b][/color]\n[color=#bcae9e]Боевой пёс: 45 HP, урон 6. Место героя не занимает.[/color]")
+	elif role == "ranger" and RunState.get_event_outcome("jack") == "token":
+		chunks.append("[color=#d3a16c][b]ОХОТНИЧИЙ ЖЕТОН[/b][/color]\n[color=#bcae9e]Урон следопыта +10% до конца забега.[/color]")
 	for upgrade in upgrades:
 		chunks.append("[color=%s][b]%s[/b][/color]\n[color=#bcae9e]%s[/color]" % [
 			_get_role_color_hex(role),

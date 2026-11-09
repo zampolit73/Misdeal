@@ -96,6 +96,7 @@ const HERO_UPGRADE_PATHS := {
 }
 
 const CARD_PATHS := {
+	"jack": "res://resources/cards/jack.tres",
 	"bone_patrol": "res://resources/cards/bone_patrol.tres",
 	"bone_shepherd": "res://resources/cards/bone_shepherd.tres",
 	# D151: original Tier1 Funeral Procession encounter.
@@ -145,6 +146,7 @@ const CARD_PATHS := {
 }
 
 const ACT1_CARD_IDS := [
+	"jack", # Ranger-only event; one animal bond or a lasting keepsake.
 	"bone_patrol",
 	"bone_shepherd",
 	"moon_seal",
@@ -380,6 +382,34 @@ func is_role_in_party(role: String) -> bool:
 
 func get_party_size() -> int:
 	return party_roles.size()
+
+# Jack is a Ranger-bound animal, never a fourth hero or compensation tier.
+const JACK_RESCUE_PRICE := 25
+const JACK_TOKEN_DAMAGE_MULTIPLIER := 1.10
+
+func has_jack_companion() -> bool:
+	return is_role_in_party("ranger") and get_event_outcome("jack") == "recruited"
+
+func get_jack_damage_multiplier(role: String) -> float:
+	return JACK_TOKEN_DAMAGE_MULTIPLIER if role == "ranger" and get_event_outcome("jack") == "token" else 1.0
+
+func is_card_eligible(card_id: String) -> bool:
+	return card_id != "jack" or (is_role_in_party("ranger") and not has_event_outcome("jack"))
+
+func resolve_jack_event(choice: String) -> bool:
+	if active_card_id != "jack" or not is_card_eligible("jack"):
+		return false
+	match choice:
+		"recruited":
+			if gold < JACK_RESCUE_PRICE:
+				return false
+			gold -= JACK_RESCUE_PRICE
+		"passed", "token":
+			pass
+		_:
+			return false
+	set_event_outcome("jack", choice)
+	return true
 
 
 func get_combat_formation_variant(card_id: String, variant_count: int) -> int:
@@ -807,6 +837,7 @@ func get_effective_hero_stats(role: String) -> Dictionary:
 	var splash_radius := base_splash_radius
 	var splash_damage := base_splash_damage
 	var move_speed := base_move_speed
+	damage *= get_jack_damage_multiplier(role)
 
 	for upgrade in get_hero_upgrades_for_role(role):
 		hp += upgrade.hp_bonus
@@ -1226,7 +1257,7 @@ func _ensure_current_offers() -> void:
 
 	for card_id in remaining_card_ids:
 		var card := get_card(card_id)
-		if card != null and card.tier == tier:
+		if card != null and card.tier == tier and is_card_eligible(card_id):
 			tier_candidates.append(card_id)
 
 	var candidates: Array[String] = []
@@ -1249,7 +1280,8 @@ func _ensure_current_offers() -> void:
 	if candidates.size() < 2:
 		candidates.clear()
 		for card_id in remaining_card_ids:
-			candidates.append(card_id)
+			if is_card_eligible(card_id):
+				candidates.append(card_id)
 
 	candidates.shuffle()
 
@@ -1389,6 +1421,8 @@ func _prepare_wizard_meddling_if_due() -> void:
 
 		var replacements: Array[String] = []
 		for candidate_id in remaining_card_ids:
+			if not is_card_eligible(candidate_id):
+				continue
 			if current_offer_ids.has(candidate_id):
 				continue
 
@@ -1494,6 +1528,8 @@ func _is_combat_card_id(card_id: String) -> bool:
 
 
 func choose_card(card_id: String) -> bool:
+	if not is_card_eligible(card_id):
+		return false
 	if active_card_id == card_id:
 		if not last_battle_won:
 			record_wizard_memory("battle_retry", card_id)

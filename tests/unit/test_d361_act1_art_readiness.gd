@@ -5,7 +5,7 @@ extends GutTest
 # It does not render the final UI, play fights or replace human F5 acceptance.
 const STATE := preload("res://scripts/core/run_state.gd")
 const CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
-const EXPECTED_ACT1_CARDS := 39
+const EXPECTED_ACT1_CARDS := 40
 const MIN_ART_SIZE := Vector2i(200, 120)
 
 
@@ -66,6 +66,6 @@ func test_all_first_act_cards_and_boss_have_loadable_art_and_targets() -> void:
     assert_true(invalid_targets.is_empty(), "Invalid card target: " + ", ".join(PackedStringArray(invalid_targets)))
     assert_true(missing_art.is_empty(), "Missing/unreadable card art: " + ", ".join(PackedStringArray(missing_art)))
     assert_true(wrong_sizes.is_empty(), "Too-small card art: " + ", ".join(PackedStringArray(wrong_sizes)))
-    assert_eq(displayed, EXPECTED_ACT1_CARDS + 1, "All 39 card illustrations plus boss XIII must display")
-    print("D361_ART_READINESS_PASS: %d/%d card records (39 Act I + XIII), live catalog/fallback pixels and targets" % [
+    assert_eq(displayed, EXPECTED_ACT1_CARDS + 1, "All 40 card illustrations plus boss XIII must display")
+    print("D361_ART_READINESS_PASS: %d/%d card records (40 Act I + XIII), live catalog/fallback pixels and targets" % [
         displayed, EXPECTED_ACT1_CARDS + 1])

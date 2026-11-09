@@ -1,0 +1,582 @@
+{
+  "frames": [
+    {
+      "actors": [],
+      "gold": 50,
+      "name": "table_offer",
+      "outcome": "",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/table/table.tscn"
+    },
+    {
+      "actors": [],
+      "gold": 50,
+      "name": "event_rich",
+      "outcome": "",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/event/act_choice.tscn"
+    },
+    {
+      "actors": [],
+      "gold": 25,
+      "name": "recruited",
+      "outcome": "recruited",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/event/act_choice.tscn"
+    },
+    {
+      "actors": [
+        {
+          "alive": true,
+          "position": [
+            300.0,
+            355.30908203125
+          ],
+          "role": "ranger",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            396.0,
+            408.0
+          ],
+          "role": "jack",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            940.0,
+            321.127258300781
+          ],
+          "role": "skeleton",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            1020.0,
+            355.30908203125
+          ],
+          "role": "skeleton",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            940.0,
+            389.490905761719
+          ],
+          "role": "skeleton",
+          "state": "idle"
+        }
+      ],
+      "gold": 25,
+      "name": "battle_preparation",
+      "outcome": "recruited",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/battle/battle.tscn"
+    },
+    {
+      "actors": [
+        {
+          "alive": true,
+          "position": [
+            373.605865478516,
+            351.833038330078
+          ],
+          "role": "ranger",
+          "state": "walk"
+        },
+        {
+          "alive": true,
+          "position": [
+            493.63671875,
+            404.678192138672
+          ],
+          "role": "jack",
+          "state": "walk"
+        },
+        {
+          "alive": true,
+          "position": [
+            877.823486328125,
+            331.906524658203
+          ],
+          "role": "skeleton",
+          "state": "walk"
+        },
+        {
+          "alive": true,
+          "position": [
+            957.143310546875,
+            360.910003662109
+          ],
+          "role": "skeleton",
+          "state": "walk"
+        },
+        {
+          "alive": true,
+          "position": [
+            876.929870605469,
+            391.63671875
+          ],
+          "role": "skeleton",
+          "state": "walk"
+        }
+      ],
+      "gold": 25,
+      "name": "battle_live",
+      "outcome": "recruited",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/battle/battle.tscn"
+    },
+    {
+      "actors": [
+        {
+          "alive": true,
+          "position": [
+            538.553894042969,
+            350.700164794922
+          ],
+          "role": "ranger",
+          "state": "walk"
+        },
+        {
+          "alive": true,
+          "position": [
+            693.865417480469,
+            401.283477783203
+          ],
+          "role": "jack",
+          "state": "attack"
+        },
+        {
+          "alive": true,
+          "position": [
+            750.100769042969,
+            359.949920654297
+          ],
+          "role": "skeleton",
+          "state": "walk"
+        },
+        {
+          "alive": true,
+          "position": [
+            817.531005859375,
+            378.465179443359
+          ],
+          "role": "skeleton",
+          "state": "walk"
+        },
+        {
+          "alive": true,
+          "position": [
+            753.332641601563,
+            407.330078125
+          ],
+          "role": "skeleton",
+          "state": "hit"
+        }
+      ],
+      "gold": 25,
+      "name": "pet_attack",
+      "outcome": "recruited",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/battle/battle.tscn"
+    },
+    {
+      "actors": [
+        {
+          "alive": true,
+          "position": [
+            538.553894042969,
+            350.700164794922
+          ],
+          "role": "ranger",
+          "state": "walk"
+        },
+        {
+          "alive": true,
+          "position": [
+            693.865417480469,
+            401.283477783203
+          ],
+          "role": "jack",
+          "state": "hit"
+        },
+        {
+          "alive": true,
+          "position": [
+            750.100769042969,
+            359.949920654297
+          ],
+          "role": "skeleton",
+          "state": "walk"
+        },
+        {
+          "alive": true,
+          "position": [
+            817.531005859375,
+            378.465179443359
+          ],
+          "role": "skeleton",
+          "state": "walk"
+        },
+        {
+          "alive": true,
+          "position": [
+            753.332641601563,
+            407.330078125
+          ],
+          "role": "skeleton",
+          "state": "hit"
+        }
+      ],
+      "gold": 25,
+      "name": "pet_hit",
+      "outcome": "recruited",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/battle/battle.tscn"
+    },
+    {
+      "actors": [
+        {
+          "alive": true,
+          "position": [
+            550.216186523438,
+            351.210083007813
+          ],
+          "role": "ranger",
+          "state": "attack"
+        },
+        {
+          "alive": false,
+          "position": [
+            693.865417480469,
+            401.283477783203
+          ],
+          "role": "jack",
+          "state": "death"
+        },
+        {
+          "alive": true,
+          "position": [
+            696.279907226563,
+            350.718597412109
+          ],
+          "role": "skeleton",
+          "state": "walk"
+        },
+        {
+          "alive": true,
+          "position": [
+            764.782592773438,
+            373.0869140625
+          ],
+          "role": "skeleton",
+          "state": "walk"
+        },
+        {
+          "alive": true,
+          "position": [
+            703.372009277344,
+            399.224670410156
+          ],
+          "role": "skeleton",
+          "state": "walk"
+        }
+      ],
+      "gold": 25,
+      "name": "pet_death",
+      "outcome": "recruited",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/battle/battle.tscn"
+    },
+    {
+      "actors": [
+        {
+          "alive": true,
+          "position": [
+            550.216186523438,
+            351.210083007813
+          ],
+          "role": "ranger",
+          "state": "idle"
+        },
+        {
+          "alive": false,
+          "position": [
+            693.865417480469,
+            401.283477783203
+          ],
+          "role": "jack",
+          "state": "death"
+        },
+        {
+          "alive": false,
+          "position": [
+            696.279907226563,
+            350.718597412109
+          ],
+          "role": "skeleton",
+          "state": "death"
+        },
+        {
+          "alive": false,
+          "position": [
+            764.782592773438,
+            373.0869140625
+          ],
+          "role": "skeleton",
+          "state": "death"
+        },
+        {
+          "alive": false,
+          "position": [
+            703.372009277344,
+            399.224670410156
+          ],
+          "role": "skeleton",
+          "state": "death"
+        }
+      ],
+      "gold": 25,
+      "name": "battle_victory",
+      "outcome": "recruited",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/battle/battle.tscn"
+    },
+    {
+      "actors": [],
+      "gold": 25,
+      "name": "reward",
+      "outcome": "recruited",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/reward/reward.tscn"
+    },
+    {
+      "actors": [],
+      "gold": 50,
+      "name": "passed",
+      "outcome": "passed",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/event/act_choice.tscn"
+    },
+    {
+      "actors": [],
+      "gold": 50,
+      "name": "token",
+      "outcome": "token",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/event/act_choice.tscn"
+    },
+    {
+      "actors": [],
+      "gold": 24,
+      "name": "poor",
+      "outcome": "",
+      "party": [
+        "ranger"
+      ],
+      "scene": "res://scenes/event/act_choice.tscn"
+    },
+    {
+      "actors": [
+        {
+          "alive": true,
+          "position": [
+            185.0,
+            345.200012207031
+          ],
+          "role": "ranger",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            330.0,
+            374.0
+          ],
+          "role": "knight",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            480.0,
+            402.799987792969
+          ],
+          "role": "mage",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            233.0,
+            409.0
+          ],
+          "role": "jack",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            890.0,
+            352.399993896484
+          ],
+          "role": "crypt_guard",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            1020.0,
+            318.200012207031
+          ],
+          "role": "bone_archer",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            1110.0,
+            406.399993896484
+          ],
+          "role": "bone_archer",
+          "state": "idle"
+        }
+      ],
+      "gold": 50,
+      "name": "trio_wave_preparation",
+      "outcome": "recruited",
+      "party": [
+        "ranger",
+        "knight",
+        "mage"
+      ],
+      "scene": "res://scenes/battle/battle.tscn"
+    },
+    {
+      "actors": [
+        {
+          "alive": true,
+          "position": [
+            185.0,
+            345.200012207031
+          ],
+          "role": "ranger",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            330.0,
+            374.0
+          ],
+          "role": "knight",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            480.0,
+            402.799987792969
+          ],
+          "role": "mage",
+          "state": "idle"
+        },
+        {
+          "alive": true,
+          "position": [
+            233.0,
+            409.0
+          ],
+          "role": "jack",
+          "state": "idle"
+        },
+        {
+          "alive": false,
+          "position": [
+            890.0,
+            352.399993896484
+          ],
+          "role": "crypt_guard",
+          "state": "death"
+        },
+        {
+          "alive": false,
+          "position": [
+            1020.0,
+            318.200012207031
+          ],
+          "role": "bone_archer",
+          "state": "death"
+        },
+        {
+          "alive": false,
+          "position": [
+            1110.0,
+            406.399993896484
+          ],
+          "role": "bone_archer",
+          "state": "death"
+        }
+      ],
+      "gold": 50,
+      "name": "trio_wave_break",
+      "outcome": "recruited",
+      "party": [
+        "ranger",
+        "knight",
+        "mage"
+      ],
+      "scene": "res://scenes/battle/battle.tscn"
+    },
+    {
+      "actors": [],
+      "gold": 50,
+      "name": "dossier",
+      "outcome": "recruited",
+      "party": [
+        "ranger",
+        "knight",
+        "mage"
+      ],
+      "scene": "res://scenes/table/squad_status.tscn"
+    }
+  ],
+  "runtime_commit": "15723fd5ec6d57807694471736ed67a6980081bc",
+  "runtime_sha256": {
+    "scripts/core/run_state.gd": "7c52eb4b5960e74b077a8505bdbbc24801c5c937002627c38c0dd6a190f25faa",
+    "scripts/battle/battle.gd": "053f3963a74317905f50aa7312abf1b9e6a0f4bbbb471f6c57f13e59c91cf75c",
+    "scripts/battle/unit.gd": "8a9763e2cef7f6c60bcd31f5c7bfbfa4202db814cc97ffba19ef16dca7707974",
+    "scripts/battle/unit_animation_library.gd": "2aa9bdfeebb973a1376838632f426872fb9c748bfd31d878e1097be2d0c74bc4",
+    "scripts/event/act_choice.gd": "7cef5b30134a6176b6587f2dfca73336453ae7d61205ac35b502e97be7c2795f"
+  }
+}

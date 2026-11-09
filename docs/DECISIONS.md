@@ -1,3 +1,7 @@
+## D418 — selected Jack gateway illustration (2026-11-09)
+
+User selected **first, ruined gateway** from three rendered dog-event paintings. Integrate exactly that original scene in existing card/event materials, without baked UI/text or repainting other cards. User request authorizes Ranger-gated event and three outcomes (recruit for a loss, pass, take something for enhancement). Jack is an animal bound to Ranger, not a new fourth hero class or a change to solo/duo/trio compensation. Pricing/stats are documented implementation defaults, subject to feedback.
+
 ## D414 — approved dossier integration and reference polish (2026-11-09)
 
 User approved D413 and authorized integration followed by interface refinement. Preserve those exact hero portraits and D412 combat figures; use the supplied reference for the specialization ribbon, stat symbols, selected/filled-state emphasis, actual relic illustrations and full-width party summary. All values and availability still come from existing RunState logic; do not copy mockup numbers or invent clickable upgrades/relic actions.

@@ -116,6 +116,12 @@ func _apply_ui_kit() -> void:
 func _apply_approved_choice_art() -> void:
 	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
 	var arts: Array[TextureRect] = [choice_art_a, choice_art_b, choice_art_c]
+	if active_card.card_id == "jack":
+		_apply_choice_texture_set(buttons, arts, [
+			CARD_ART_CATALOG.get_run_card_texture("jack"),
+			_jack_detail_texture("pass"),
+			_jack_detail_texture("token")])
+		return
 
 	if active_card.card_id == "moon_seal":
 		_apply_choice_texture_set(
@@ -393,6 +399,12 @@ func _apply_event_layout() -> void:
 	_restore_generic_panel_shell()
 
 	match active_card.card_id:
+		"jack":
+			_apply_feature_panel_shell()
+			feature_scene_art.call("load_webp_path", "res://assets/pixel/events/jack/backdrop.webp", Vector2i(1280,720))
+			feature_scene_art.visible = true
+			feature_scene_art.position = Vector2.ZERO
+			feature_scene_art.size = Vector2(1280,720)
 		"curse_forge":
 			_apply_feature_panel_shell()
 			backdrop.modulate = Color(0.28, 0.20, 0.18, 0.24)
@@ -777,6 +789,8 @@ func _apply_castle_memory_hint() -> void:
 
 func _configure_card() -> void:
 	match active_card.card_id:
+		"jack":
+			_configure_jack()
 		"moon_seal":
 			_configure_moon_seal()
 		"echo_crypt":
@@ -943,6 +957,35 @@ func _configure_black_altar() -> void:
 	choice_a.pressed.connect(_resolve_black_altar.bind("knight"))
 	choice_b.pressed.connect(_resolve_black_altar.bind("ranger"))
 	choice_c.pressed.connect(_resolve_black_altar.bind("mage"))
+
+func _jack_detail_texture(detail: String) -> Texture2D:
+	var image := Image.new()
+	var bytes := FileAccess.get_file_as_bytes("res://assets/pixel/events/jack/"+detail+".webp")
+	return ImageTexture.create_from_image(image) if image.load_webp_from_buffer(bytes) == OK else null
+
+func _configure_jack() -> void:
+	choice_a.text = "ВЗЯТЬ ДЖЕКА\n\n-25 золота на лечение.\nПёс поможет следопыту в боях."
+	choice_b.text = "ПРОЙТИ МИМО\n\nБез изменений.\nДжек останется у развалин."
+	choice_c.text = "ВЗЯТЬ ЖЕТОН\n\nУрон следопыта +10% до конца забега.\nДжек не присоединится."
+	var eligible := RunState.is_card_eligible("jack")
+	choice_a.disabled = not eligible or RunState.gold < RunState.JACK_RESCUE_PRICE
+	choice_b.disabled = not eligible
+	choice_c.disabled = not eligible
+	leave_button.visible = false
+	choice_a.pressed.connect(_resolve_jack.bind("recruited"))
+	choice_b.pressed.connect(_resolve_jack.bind("passed"))
+	choice_c.pressed.connect(_resolve_jack.bind("token"))
+
+func _resolve_jack(choice: String) -> void:
+	if resolved or not RunState.resolve_jack_event(choice):
+		return
+	match choice:
+		"recruited":
+			_finish("Следопыт перевязывает лапу Джека. -25 золота. Пёс будет сражаться рядом с ним; место героя не занято.")
+		"passed":
+			_finish("Вы проходите мимо. Пёс остаётся у развалин. Ничего не получено и не потеряно.")
+		"token":
+			_finish("Следопыт снимает охотничий жетон. Его урон +10% до конца забега. Джек остаётся у развалин.")
 
 func _configure_chained_prisoner() -> void:
 	if RunState.can_recruit_companion("knight"):
@@ -1718,6 +1761,8 @@ func _resolve_leave() -> void:
 	resolving_leave = true
 
 	match active_card.card_id:
+		"jack":
+			_resolve_jack("passed")
 		"moon_seal":
 			RunState.set_event_outcome("moon_seal", "left")
 			_finish("Лунная печать остаётся в чаше. Вы ничего не берёте.")

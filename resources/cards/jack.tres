@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "jack"
+title = "ДЖЕК"
+card_text = "У развалин следопыт находит хромого пса. На ошейнике — старый охотничий жетон. Пёс смотрит без страха, будто уже сделал выбор."
+wizard_line = "— Ещё один голодный рот. Или первая верная душа?"
+type_label = "СОБЫТИЕ"
+tier = 1
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
+art_path = "res://assets/pixel/events/jack/card.webp"
