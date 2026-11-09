@@ -1,5 +1,7 @@
 # Visual polish — delivered result and release QA
 
+Delivery: [PR87](https://github.com/zampolit73/Misdeal/pull/87) · [final-head CI checks](https://github.com/zampolit73/Misdeal/pull/87/checks). Merge requires successful full RELEASE; current check conclusion is authoritative.
+
 User-authorized implementation: [brief](requests/2026-11-09-visual-polish-plan.md). [Audit](VISUAL_POLISH_AUDIT.md) separates evidence from approved no-change decisions. Original D414–D417 are merged; baseline main `d9613298`. Product fixes are separate reversible commits: `5b853875` Reward/canonical reader, `ddd7625f` merchant/state, `4093217c` RunEnd, `df4d131b` passive truthful backdrop readouts, `2dca35fc` full event tradeoffs, `1edd3cf7` Battle result canvas ordering. No new runtime artwork, sound or third-party dependency.
 
 ## Visible changes

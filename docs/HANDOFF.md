@@ -1,5 +1,7 @@
 # Misdeal — current handoff
 
+Delivery: [PR87](https://github.com/zampolit73/Misdeal/pull/87) · [final-head CI checks](https://github.com/zampolit73/Misdeal/pull/87/checks). Merge requires successful full RELEASE; current check conclusion is authoritative.
+
 ## Completed autonomous visual program
 
 D414–D417 merged safely; native audit and conservative VP1–VP7 repairs delivered. Read [release QA](VISUAL_POLISH_RELEASE_QA.md), [audit](VISUAL_POLISH_AUDIT.md), [current state](PROJECT_STATE.md). User request is preserved at [original brief](requests/2026-11-09-visual-polish-plan.md). All approved artwork, Wizard/table/Fate backgrounds, D412 animations, combat/data/economy/silent-first audio preserved. Do not reopen old art approval gates for already accepted work.

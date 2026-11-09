@@ -1,5 +1,7 @@
 # Misdeal — current project state
 
+Delivery: [PR87](https://github.com/zampolit73/Misdeal/pull/87) · [final-head CI checks](https://github.com/zampolit73/Misdeal/pull/87/checks). Merge requires successful full RELEASE; current check conclusion is authoritative.
+
 ## Visual polish delivery — 2026-11-09
 
 D414–D417 are merged: [#83](https://github.com/zampolit73/Misdeal/pull/83),[#84](https://github.com/zampolit73/Misdeal/pull/84),[#85](https://github.com/zampolit73/Misdeal/pull/85),[#86](https://github.com/zampolit73/Misdeal/pull/86). Integration baseline `d9613298` includes all four; final-head CI for integrated D414: [42596022608](https://github.com/zampolit73/Misdeal/actions/runs/42596022608). Merge order84→85→86→83 preserved ancestry and combined dossier/motion hooks; documentation conflicts resolved, no force push/reset.
