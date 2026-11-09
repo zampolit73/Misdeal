@@ -1,0 +1,509 @@
+ERROR: Failed to open 'user://logs/godot2026-11-10T00.16.50.log'.
+   at: copy (core/io/dir_access.cpp:429)
+ERROR: Failed to open log file for writing: user://logs/godot.log
+   at: rotate_file (core/io/logger.cpp:169)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+---  GUT  ---
+[1m[INFO]:  [0musing [C:/Users/irlix/AppData/Roaming/Godot/app_userdata/Misdeal] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+[4m
+
+res://tests/unit/test_a1m1_castle_memory.gd
+[0m* test_empty_run_has_normal_ledger_price_and_no_evidence
+* test_facts_are_unique_and_remember_first_real_source
+* test_castle_line_waits_without_overwriting_existing_wizard_memory
+* test_reset_run_clears_evidence_and_unread_wizard_line
+* test_court_of_the_mute_win_is_independent_conflict_source
+* test_court_of_the_mute_defeat_does_not_create_evidence
+* test_role_observations_are_different_and_do_not_spoil_culprit
+* test_moon_seal_keep_records_promise_and_original_gold
+* test_moon_seal_sale_preserves_immediate_gain_without_false_proof
+* test_moon_seal_abandoned_grants_no_fact
+* test_echo_crypt_listen_without_seal_grants_proof_at_original_cost
+* test_echo_crypt_gold_without_seal_has_no_proof
+* test_echo_crypt_opened_with_kept_seal_grants_proof
+* test_echo_crypt_opened_without_seal_does_not_grant_proof
+* test_ledger_gold_path_applies_conditional_price_with_real_upgrade
+* test_ledger_price_and_affordability_match_without_evidence
+* test_ledger_rejects_insufficient_gold_even_with_evidence
+[1m17/17 passed.
+[0m[4m
+
+res://tests/unit/test_a1m2_castle_memory.gd
+[0m* test_extended_facts_reject_unknown_and_reset_cleanly
+* test_victorious_existing_battles_expose_independent_sources
+* test_failed_battle_never_grants_clues
+* test_court_win_grants_both_truth_and_silenced_witness_once
+* test_sparing_debtor_bones_exposes_hidden_supply_record
+* test_debtor_bones_risk_does_not_promise_a_ledger_clue
+* test_debtor_bones_leave_does_not_grant_evidence
+* test_candle_seller_purchase_exposes_alternative_supply_record
+* test_candle_seller_leave_and_unaffordable_purchase_do_not_grant_clue
+* test_gravedigger_paid_upgrade_is_another_supply_record_source
+* test_ash_rest_recruitment_grants_march_without_changing_scar
+* test_ash_rest_leave_grants_no_march_fact
+* test_rattling_bridge_abandon_is_still_a_road_witness
+* test_chained_prisoner_rescue_reveals_suppressed_testimony
+* test_chained_prisoner_loot_does_not_grant_suppressed_testimony
+* test_bone_tax_gold_price_matches_physical_card_and_payment
+* test_bone_tax_without_evidence_stays_25_and_blood_is_unchanged
+* test_last_camp_discount_recruits_knight_without_new_scar
+* test_last_camp_without_route_preserves_healer_35_and_threshold
+* test_three_new_memory_lines_are_distinct_and_do_not_spoil_xiii
+* test_a1m1_ledger_price_remains_unchanged_by_other_clues
+[1m21/21 passed.
+[0m[4m
+
+res://tests/unit/test_act1_discard_memory.gd
+[0m* test_first_tier_references_actual_discarded_card
+* test_second_tier_has_its_own_rejection_line
+* test_third_tier_has_its_own_rejection_line
+* test_other_turns_do_not_force_discard_dialogue
+* test_held_or_missing_discard_gets_no_invented_card
+* test_wizard_mark_danger_keeps_higher_priority
+* test_boss_seal_is_not_replaced_by_discard_commentary
+* test_real_three_card_route_records_rejected_id_used_by_wizard
+[1m8/8 passed.
+[0m[4m
+
+res://tests/unit/test_act1_fate_hold_gate.gd
+[0m* test_noncombat_fate_hold_never_overrides_forced_tier_battle
+* test_normal_fate_hold_still_returns_after_exactly_two_deals
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_act1_full_route_audit.gd
+[0m* test_36_real_deal_routes_reach_boss_and_run_end
+A1P2_AUDIT_PASS: 36/36 real Fate Spread routes, 12+XIII every run
+A1P2_AUDIT_METRICS: combat=177 events=255 mixed_offers=201 adjacent_same_kind=177 forced_windows=108 (out of 432 nonboss choices)
+A1P2_PARTY_1: average chosen combats/run 5.00; sample knight: 5 combat, 7 events
+A1P2_PARTY_2: average chosen combats/run 4.58; sample knight: 5 combat, 7 events
+A1P2_PARTY_3: average chosen combats/run 5.17; sample knight: 5 combat, 7 events
+[1m1/1 passed.
+[0m[4m
+
+res://tests/unit/test_act1_player_handoffs.gd
+[0m* test_real_event_scene_resolves_and_next_table_deals
+* test_real_battle_victory_opens_major_upgrade_then_loot
+* test_boss_xiii_reward_reaches_real_run_end_screen
+* test_first_battle_defeat_offers_last_deal_then_refusal_ends_run
+* test_chained_prisoner_recruitment_resolves_into_party_and_scar
+[1m5/5 passed.
+[0m[4m
+
+res://tests/unit/test_battle_unit.gd
+[0m* test_shipped_knight_stats_are_loaded_from_resource
+* test_tactical_orders_accept_valid_and_reject_unknown
+* test_damage_respects_incoming_damage_multiplier
+* test_heal_caps_at_maximum_health
+* test_negative_or_zero_heal_does_not_restore_health
+* test_lethal_damage_clamps_hp_and_ends_unit_life
+* test_dead_unit_cannot_receive_healing
+* test_start_combat_transitions_from_preparation
+[1m8/8 passed.
+[0m[4m
+
+res://tests/unit/test_bone_shepherd_smoke_loading.gd
+[0m* test_original_shepherd_smoke_loads_and_validates_current_deck_and_default_arrays
+[1m1/1 passed.
+[0m[4m
+
+res://tests/unit/test_boss_enrage.gd
+[0m* test_bone_warden_stays_calm_above_half_hp
+* test_bone_warden_enrages_exactly_at_half_health
+* test_enrage_multipliers_apply_only_once_across_extra_hits
+* test_lethal_blow_does_not_activate_boss_enrage
+* test_non_boss_with_configured_threshold_never_enrages
+[1m5/5 passed.
+[0m[4m
+
+res://tests/unit/test_d361_act1_art_readiness.gd
+[0m* test_all_first_act_cards_and_boss_have_loadable_art_and_targets
+D361_ART_READINESS_PASS: 41/41 card records (40 Act I + XIII), live catalog/fallback pixels and targets
+[1m1/1 passed.
+[0m[4m
+
+res://tests/unit/test_d365_quiet_combat_feedback.gd
+[0m* test_preview_is_hidden_without_explicit_opt_in
+* test_preview_does_not_enable_hover_only_lines
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d366_audio_foundation.gd
+[0m* test_separate_audio_bus_layout_loaded
+* test_three_audio_pilot_samples_are_real_imported_streams
+* test_sound_director_handles_mute_and_restore_per_bus
+* test_real_existing_scene_voices_use_independent_buses
+* test_audition_scene_has_three_real_audio_buttons
+[1m5/5 passed.
+[0m[4m
+
+res://tests/unit/test_d367_oak_table_pack.gd
+[0m* test_oak_deal_is_live_sample_and_all_five_cues_exist
+* test_non_deal_oak_cues_are_distinct_short_pcm_streams
+* test_procedural_fallback_bank_preserved_for_every_event
+* test_live_table_cues_play_on_ui_bus_and_repeat_cooldown_is_scoped
+[1m4/4 passed.
+[0m[4m
+
+res://tests/unit/test_d368_combat_foley.gd
+[0m* test_eight_authored_combat_wavs_are_live_and_short
+* test_all_events_keep_procedural_fallback_and_combat_bus
+* test_four_fast_archers_are_throttled_but_bow_uses_two_variants
+* test_healing_and_boss_have_higher_priority_than_attack_spam
+* test_d368_audition_is_a_real_f6_scene
+[1m5/5 passed.
+[0m[4m
+
+res://tests/unit/test_d369_ambience.gd
+[0m* test_three_authored_environment_scenes_are_importable
+* test_ambience_is_silent_until_location_and_players_use_own_bus
+* test_context_mapping_follows_existing_arena_ids
+* test_location_streams_loop_and_same_location_does_not_restart
+* test_crossfade_and_silence_preserve_location_state
+* test_table_battle_and_scene_exit_have_scoped_location_hooks
+* test_audio_audition_is_real_f6_scene
+* test_ambience_mix_has_audible_headroom_without_replacing_ui_combat
+* test_roomtone_pcm_is_non_silent_and_reaches_usable_sample_peaks
+* test_f6_probe_is_real_pcm_but_old_ambience_does_not_autoplay
+* test_d372_sparse_scenes_have_silence_and_distinct_local_events
+* test_d371_debug_exposes_native_bus_and_player_status
+* test_d371_preview_version_and_two_bus_probes
+* test_d372_routed_audition_explains_nonwhite_noise_story
+* test_d373_preserves_selected_courtyard_and_ships_two_recorded_cc_audio_mixes
+* test_d373_recorded_candidates_keep_long_silence_between_events
+* test_d374_location_sounds_are_off_by_default_even_when_scenes_request_them
+* test_d374_preview_opt_in_is_reversible_and_runtime_requests_stay_silent
+* test_d374_f6_scene_is_explicitly_archived_not_approved_audio
+* test_d377_f5_audio_isolation_probe_is_hidden_and_can_restore_bus_mutes
+* test_d377_visible_version_and_real_audio_sources_are_verified_on_live_f5
+[1m21/21 passed.
+[0m[4m
+
+res://tests/unit/test_d381_fate_spread_layout.gd
+[0m* test_all_twelve_cards_share_layout_with_reference_masks
+* test_fifth_roman_clears_fourth_card_and_tiny_titles_do_not_wrap
+* test_header_is_opaque_and_phase_clears_first_roman
+* test_printed_sixth_slot_gets_correct_vi_until_it_becomes_live
+[1m4/4 passed.
+[0m[4m
+
+res://tests/unit/test_d382_iron_wall_waves.gd
+[0m* test_only_iron_wall_has_an_authored_second_wave
+* test_first_wave_death_triggers_intermission_not_victory
+* test_basic_tactic_can_change_between_waves
+* test_second_wave_spawns_and_waits_for_actual_final_victory
+* test_second_wave_cannot_be_started_outside_intermission
+[1m5/5 passed.
+[0m[4m
+
+res://tests/unit/test_d383_firing_square_crossfire.gd
+[0m* test_only_two_opt_in_waves_and_five_total_original_enemies
+* test_firing_square_telegraph_is_honest_and_not_iron_wall_dialogue
+* test_solo_wave_clear_has_a_fair_announced_break_and_no_heal
+* test_trio_repositions_and_switches_order_for_two_sided_attack
+* test_duo_real_wave_two_has_left_and_right_archers_on_real_floor
+* test_wave_two_cannot_be_skipped_before_first_wave_victory
+[1m6/6 passed.
+[0m[4m
+
+res://tests/unit/test_d384_wave_briefing.gd
+[0m* test_crossfire_readout_shows_nearest_initial_targets_and_changes_with_placement
+* test_wave_break_unstacks_surviving_heroes_in_legal_strip
+* test_iron_wall_readout_uses_actual_archer_and_skeleton_not_left_right
+* test_hover_and_committed_order_change_keep_the_position_pressure_visible
+* test_no_future_wave_targets_leak_into_single_wave_or_before_break
+* test_wave_break_warning_stays_onscreen_and_prediction_does_not_overflow
+[1m6/6 passed.
+[0m[4m
+
+res://tests/unit/test_d387_hero_c3_keyposes.gd
+[0m* test_c3_qa_asset_has_three_transparent_isolated_cells
+* test_c3_preview_scene_is_separate_from_production_battle
+* test_d388_both_studies_stand_on_the_same_physical_stone_floor
+[1m3/3 passed.
+[0m[4m
+
+res://tests/unit/test_d389_hero_c3_96_preview.gd
+[0m* test_d389_alpha_keyposes_are_three_valid_96px_cells
+* test_d389_still_comparison_uses_the_real_floor_and_native_scale
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d392_c3_hero_art_preview.gd
+[0m* test_approved_style_trio_is_real_alpha_and_separate_128px_stills
+* test_d392_uses_same_floor_and_switches_real_128_to_simulated_96
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d395_c3_motion_blocking.gd
+[0m* test_three_draft_atlases_have_25_distinct_frames_and_clear_spares
+* test_all_clips_play_in_qa_scene_without_live_unit_changes
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d396_c3_authored_pose_reference.gd
+[0m* test_real_v2_animation_pose_contract_is_read_without_production_mutation
+* test_mage_source_drops_projectile_only_attack_cell
+* test_knight_palette_study_changes_blue_without_touching_archived_file
+* test_d396_preview_can_play_five_states_for_six_qa_miniatures
+[1m4/4 passed.
+[0m[4m
+
+res://tests/unit/test_d397_c3_frame_finish.gd
+[0m* test_original_pose_retouch_has_valid_alpha_cells_and_original_frame_counts
+* test_c3_frame_pass_is_distinct_from_source_without_mutating_source
+* test_d397_can_switch_states_and_run_auto_with_full_actor_attacks
+[1m3/3 passed.
+[0m[4m
+
+res://tests/unit/test_d397_mage_attack_frame_integrity.gd
+[0m* test_live_c3_mage_has_six_body_attack_frames_without_old_projectile
+* test_non_mage_roles_keep_existing_animation_contract
+* test_real_battle_mage_uses_same_six_frame_c3_library
+[1m3/3 passed.
+[0m[4m
+
+res://tests/unit/test_d398_c3_hero_animation_pilot.gd
+[0m* test_d398_hero_atlases_are_rgba_valid_and_use_25_distinct_cels
+* test_invalid_pilot_image_rejected_before_live_use
+* test_live_battle_uses_d398_c3_for_heroes_and_keeps_other_roles
+* test_d398_f6_has_current_and_c3_full_playback
+* test_d398_preview_fits_recorded_952x596_window_without_cutting_off_mage
+* test_d398_preview_keeps_one_to_one_presentation_in_native_1280x720
+[1m6/6 passed.
+[0m[4m
+
+res://tests/unit/test_d400_c3_animation_art_integrity.gd
+[0m* test_d400_repairs_detected_disconnected_cape_and_body_cells
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+[33m    [GUT WARNING]:  [0mWarn:  Float/Int comparison.  Got INT but expected FLOAT
+* test_unaffected_five_state_hero_contract_still_plays_unchanged
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d401_c3_weapon_identity.gd
+[0m* test_d401_stages_three_valid_25_pose_c3_atlases_with_legacy_rollback
+* test_knight_mid_swing_is_a_tapered_sword_not_an_axe_head
+* test_ranger_bow_is_present_in_final_attack_release_pose
+* test_mage_animation_pixels_are_unchanged_in_d401
+[1m4/4 passed.
+[0m[4m
+
+res://tests/unit/test_d402_c3_knight_shield_continuity.gd
+[0m* test_d402_knight_shield_restored_in_four_mid_attack_cels_only
+* test_d402_live_knight_retains_shield_after_d406_source_update
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d403_c3_combat_grounding.gd
+[0m* test_live_c3_heroes_use_preview_sole_baseline_and_v2_fallback_keeps_old_offset
+* test_live_c3_attacks_preserve_source_scale_orientation_color_and_floor
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d404_c3_raster_audit.gd
+[0m* test_all_eighteen_approved_c3_walk_poses_have_grounded_sole_pixels
+[1m1/1 passed.
+[0m[4m
+
+res://tests/unit/test_d404_c3_stride_contact.gd
+[0m* test_walk_cels_advance_only_on_real_travel_for_each_live_c3_hero
+* test_c3_teleport_is_clamped_and_attack_one_shot_is_time_driven
+* test_enemy_walk_now_uses_distance_without_changing_attack_clock
+[1m3/3 passed.
+[0m[4m
+
+res://tests/unit/test_d404_c3_walk_preview.gd
+[0m* test_f6_d404_uses_three_live_c3_battle_units_with_true_walk_frames
+* test_f6_d404_pause_restart_and_scaled_capture
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d405_c3_attack_pose_timing.gd
+[0m* test_d405_source_attack_hold_weights_cover_each_cel_once_and_keep_clip_duration
+* test_d405_in_game_unit_uses_actual_key_pose_not_duplicate_or_tweened_art
+* test_d405_has_no_effect_on_accepted_d404_walk_or_legacy_enemies
+[1m3/3 passed.
+[0m[4m
+
+res://tests/unit/test_d405_c3_attack_timing_preview.gd
+[0m* test_preview_has_three_live_c3_pairs_with_unchanged_source_texture
+* test_knight_anticipation_key_pose_gets_hold_without_replacing_image
+* test_preview_pause_step_restart_and_narrow_player_viewport
+* test_preview_resets_to_idle_only_after_the_real_attack_clip_duration
+[1m4/4 passed.
+[0m[4m
+
+res://tests/unit/test_d406_c3_knight_sword_grip.gd
+[0m* test_d406_native_knight_source_is_one_local_gauntlet_retouch
+* test_d406_live_knight_uses_corrected_source_and_unchanged_attack_clock
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d407_mage_death_crystal.gd
+[0m* test_d407_dormant_crystal_keeps_death_body_and_staff_source_pixels
+* test_d407_only_final_mage_death_frame_is_overridden_in_real_battle_unit
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d408_c3_hit_death_continuity.gd
+[0m* test_d408_ranger_and_mage_hit_art_uses_real_96px_weapon_corrections
+* test_d408_c3_hit_keeps_source_scale_color_and_preserves_authored_death
+* test_enemy_authored_hit_uses_pose_without_root_zoom
+[1m3/3 passed.
+[0m[4m
+
+res://tests/unit/test_d409_knight_walk_posture.gd
+[0m* test_d409_all_six_knight_walk_poses_stand_upright_with_original_boot_positions
+* test_d409_actual_battle_unit_retains_d404_stride_and_other_c3_heroes
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d410_knight_visual_stature.gd
+[0m* test_knight_has_balanced_live_c3_stature_and_original_five_states
+* test_balanced_knight_stays_grounded_with_clear_hp_bar_and_unchanged_mechanics
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d412_full_hero_pack.gd
+[0m* test_approved_heroes_face_new_left_target_before_first_real_attack
+* test_real_battle_units_use_exact_approved_75_frames_without_old_overrides
+* test_three_complete_atlases_have_75_distinct_padded_poses_and_clear_spares
+* test_polish_keeps_every_accepted_pose_alpha_pixel_and_source_layout
+[1m4/4 passed.
+[0m[4m
+
+res://tests/unit/test_d413_squad_dossier.gd
+[0m* test_real_dossier_switching_preserves_stats_upgrades_relics_and_run
+* test_unavailable_and_lost_companions_remain_unavailable_and_tab_closes
+[1m2/2 passed.
+[0m[4m
+
+res://tests/unit/test_d414_dossier_reference.gd
+[0m* test_real_relic_art_tracks_selected_role_without_stale_icons_or_inventory_changes
+[1m1/1 passed.
+[0m[4m
+
+res://tests/unit/test_d416_clean_table_background.gd
+[0m* test_live_table_uses_clean_center_without_redrawing_approved_surroundings
+[1m1/1 passed.
+[0m[4m
+
+res://tests/unit/test_d417_ui_motion.gd
+[0m* test_button_feedback_is_idempotent_visual_only_and_resets_when_disabled
+* test_close_during_window_entrance_cancels_animation_and_repeated_close_is_safe
+* test_rapid_card_hover_returns_to_rest_without_selecting_or_drifting
+[1m3/3 passed.
+[0m[4m
+
+res://tests/unit/test_enemy_visual_polish.gd
+[0m* test_every_enemy_walk_uses_distance_and_authored_hit_keeps_root_and_death_grounded
+* test_new_enemy_packs_are_complete_distinct_and_are_the_live_textures
+* test_legacy_asset_fallback_retains_original_stature
+[1m3/3 passed.
+[0m[4m
+
+res://tests/unit/test_gut_editor_defaults.gd
+[0m* test_fresh_editor_configuration_finds_our_real_unit_tests
+* test_existing_editor_directories_are_never_overwritten
+* test_disabled_custom_directories_are_preserved
+[1m3/3 passed.
+[0m[4m
+
+res://tests/unit/test_jack_event.gd
+[0m* test_normal_deals_and_wizard_replacements_never_offer_jack_without_ranger
+* test_all_three_real_choices_resolve_once_and_reset_between_runs
+* test_insufficient_gold_cannot_charge_or_resolve_and_other_choices_stay_available
+* test_fixed_pet_stats_preserve_solo_and_trio_hero_compensation
+* test_token_is_ranger_only_and_matches_real_battle_and_dossier_stats
+* test_pet_death_does_not_fail_hero_objective_but_pet_cannot_replace_dead_party
+* test_complete_original_dog_animation_pack_has_all_states_and_clear_spares
+[1m7/7 passed.
+[0m[4m
+
+res://tests/unit/test_laboratory_arena.gd
+[0m* test_laboratory_has_its_own_authored_plate_and_original_roster
+[1m1/1 passed.
+[0m[4m
+
+res://tests/unit/test_last_rite.gd
+[0m* test_last_rite_rejects_living_bearer_or_wrong_identity
+* test_dead_pallbearer_revives_with_authored_health_fraction
+* test_revival_fraction_is_clamped_to_supported_range
+* test_controller_spends_only_one_revival_per_encounter
+* test_priest_death_cancels_pending_last_rite
+[1m5/5 passed.
+[0m[4m
+
+res://tests/unit/test_party_scaling.gd
+[0m* test_solo_party_scales_both_hero_and_enemy_pressure
+* test_duo_party_uses_intermediate_scaling
+* test_trio_uses_authored_encounter_baseline
+* test_protagonist_cannot_be_recruited_twice
+* test_joined_companion_cannot_be_recruited_twice
+[1m5/5 passed.
+[0m[4m
+
+res://tests/unit/test_target_priorities.gd
+[0m* test_assault_targets_nearest_living_enemy_not_distant_support
+* test_hunt_ranged_unit_prioritizes_support_over_nearest_melee
+* test_hunt_melee_intercepts_near_frontline_threat
+* test_hunt_prefers_wounded_healer_over_healthy_healer
+* test_formation_targets_threat_nearest_weakest_ally
+* test_dead_targets_are_excluded_and_no_target_if_none_alive
+[1m6/6 passed.
+[0m[4m
+
+res://tests/unit/test_visual_polish.gd
+[0m* test_approved_artwork_is_unchanged_including_all_three_live_hero_sources
+* test_all_nine_reward_effects_fit_both_lines_inside_actual_painted_strip
+* test_reward_full_reader_preserves_state_owns_keyboard_focus_and_blocks_choice_behind_it
+* test_shop_uses_real_offer_art_and_resolved_states_match_a_real_purchase
+* test_resolved_story_choices_do_not_advertise_available_actions
+* test_full_run_summary_scrolls_inside_its_panel_and_leaves_new_run_clear
+* test_story_and_merchant_effect_paragraphs_keep_the_entire_real_modifier_visible
+* test_victory_action_draws_in_front_of_its_result_scrim
+[1m8/8 passed.
+[0m
+
+
+
+[33m==============================================
+[0m[33m= Run Summary
+[0m[33m==============================================
+[0m
+Totals
+------
+Warnings             19
+
+Scripts              54
+Tests               235
+Passing Tests       235
+Asserts           47882
+Time              82.641s
+
+
+[32m---- All tests passed! ----
+[0m

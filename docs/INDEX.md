@@ -1,5 +1,8 @@
 ## D420 — all-enemy visual polish
 
+- [D421 laboratory arena: source, QA and F6](D421_LABORATORY_ARENA.md)
+
+
 [24 complete packs/600 poses, actual Godot evidence, prompts and F6](ENEMY_VISUAL_POLISH.md).
 
 ## D418 — latest event

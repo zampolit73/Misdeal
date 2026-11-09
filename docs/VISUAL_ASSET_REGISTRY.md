@@ -1,5 +1,10 @@
 ## D420 — complete enemy source batch (2026-11-09)
 
+## D421 — laboratory arena
+
+`assets/pixel/battle/arenas/defiled_laboratory_d421/source.png` → lossless1280×720 `arena.webp.b64`; runtime ID `defiled_laboratory`. User-authorized arena, imagegen reference-guided production; native Battle reviewed. [Source/prompt/QA](D421_LABORATORY_ARENA.md).
+
+
 24 complete25-pose sheets in `assets/source_archive/enemy_visual_polish/generated/`; exact prior gameplay poses in `baseline/`; isolated lantern-archer bow correction in `repairs/`. Built-in image_gen with existing identity/D412 material references, not hand-pixel-authored. RGBA96px packing and lossless WebP/Base64 in `assets/pixel/units/enemy_visual_polish/`; source/runtime SHA256 and uniform factors in `manifest.json`. All old role assets retained. [Prompts, native QA and F6](ENEMY_VISUAL_POLISH.md).
 
 ## D418 — Jack, selected option1 and complete canine pack (2026-11-09)

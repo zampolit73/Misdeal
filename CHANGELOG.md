@@ -1,5 +1,11 @@
 ## D420 — качество и анимации всех врагов (2026-11-09)
 
+## D421 — Осквернённая лаборатория
+
+- Added a dedicated Gothic alchemy battle arena with open fighting floor and localized chemical lighting.
+- Preserved encounter mechanics and added decoded-background regression/native CI capture. Local235 GUT tests pass.
+
+
 24 полных набора/600 новых поз с исходными образами и реквизитом; индивидуальный рост, HP над силуэтом, шаг по перемещению, ATTACK/HIT без лишней деформации, полное падение до исчезновения. Исправлен исчезавший лук Фонарного лучника. Герои, Джек и боевые параметры сохранены. Локальные234 GUT,15 selector,20 кадров состава, три реальные боевые выборки и маршрут Чёрного Фонаря проходят. [Источники, QA и F6](docs/ENEMY_VISUAL_POLISH.md).
 
 ## D418 — Jack event and Ranger animal companion (2026-11-09)

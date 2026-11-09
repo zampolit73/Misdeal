@@ -1,0 +1,25 @@
+ERROR: Failed to open 'user://logs/godot2026-11-10T00.18.18.log'.
+   at: copy (core/io/dir_access.cpp:429)
+ERROR: Failed to open log file for writing: user://logs/godot.log
+   at: rotate_file (core/io/logger.cpp:169)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 610.74 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3050 Laptop GPU
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+CI4_FRAME_PASS: 00-preparation live=false alive=4 max_movement_px=0.0 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/00-preparation.png
+CI4_FRAME_PASS: 01-intro live=false alive=4 max_movement_px=0.0 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/01-intro.png
+CI4_FRAME_PASS: 02-live-0000ms live=true alive=4 max_movement_px=1.8 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/02-live-0000ms.png
+CI4_FRAME_PASS: 03-live-0300ms live=true alive=4 max_movement_px=33.7 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/03-live-0300ms.png
+CI4_FRAME_PASS: 04-live-0650ms live=true alive=4 max_movement_px=71.5 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/04-live-0650ms.png
+CI4_FRAME_PASS: 05-live-1050ms live=true alive=4 max_movement_px=114.7 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/05-live-1050ms.png
+CI4_FRAME_PASS: 06-live-1600ms live=true alive=4 max_movement_px=173.2 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/06-live-1600ms.png
+CI4_FRAME_PASS: 07-live-2600ms live=true alive=4 max_movement_px=279.7 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/07-live-2600ms.png
+CI4_FRAME_PASS: natural-attack-0 live=true alive=4 max_movement_px=294.7 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/natural-attack-0.png
+CI4_FRAME_PASS: natural-attack-1 live=true alive=4 max_movement_px=294.7 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/natural-attack-1.png
+CI4_FRAME_PASS: natural-attack-2 live=true alive=4 max_movement_px=294.7 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/natural-attack-2.png
+CI4_FRAME_PASS: 08-live-3600ms live=true alive=4 max_movement_px=294.7 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/08-live-3600ms.png
+CI4_FRAME_PASS: 09-live-4600ms live=true alive=4 max_movement_px=294.7 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/09-live-4600ms.png
+CI4_FRAME_PASS: 10-live-5600ms live=true alive=3 max_movement_px=294.7 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/10-live-5600ms.png
+CI4_FRAME_PASS: 11-live-6600ms live=true alive=3 max_movement_px=299.2 path=C:/Users/irlix/GodotProjects/Misdeal/docs/qa/d421/11-live-6600ms.png
+CI4_BATTLE_CAPTURE_PASS: 15 native 1280x720 frames, units=1 hero+3 enemies, movement_px=299.2 enemy_attack_samples=112

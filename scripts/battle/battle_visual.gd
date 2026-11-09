@@ -1,6 +1,7 @@
 extends Control
 
 const ARENA_CRYPT := "crypt"
+const ARENA_LABORATORY := "defiled_laboratory"
 const ARENA_GRAVEYARD := "graveyard"
 const ARENA_GALLOWS := "gallows"
 const ARENA_OSSUARY := "ossuary"
@@ -26,6 +27,8 @@ var court_ambience_enabled := true
 
 func set_arena_id(value: String) -> void:
 	match value:
+		ARENA_LABORATORY:
+			arena_id = value
 		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH, ARENA_BONE_SWARM, ARENA_GRAVE_CROSSFIRE, ARENA_IRON_WALL, ARENA_LAST_BELL, ARENA_FIRING_SQUARE, ARENA_BONE_RITUAL, ARENA_THREADBARE_THEATRE, ARENA_BLACK_CROSSING, ARENA_COURT_OF_THE_MUTE:
 			arena_id = value
 		_:
@@ -59,6 +62,9 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	match arena_id:
+		ARENA_LABORATORY:
+			# Chemical warnings belong to the existing hazard controller.
+			pass
 		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_GRAVE_CROSSFIRE, ARENA_LAST_BELL, ARENA_FIRING_SQUARE:
 			_draw_graveyard_atmosphere()
 		ARENA_OSSUARY, ARENA_BONE_RITUAL:
