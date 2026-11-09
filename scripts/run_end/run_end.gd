@@ -48,6 +48,8 @@ func _ready() -> void:
 		last_deal_text
 	]
 
+	_bound_summary()
+
 	if RunState.run_failed:
 		title_label.text = "ПАРТИЯ ПРОИГРАНА"
 		title_label.add_theme_color_override("font_color", Color(0.86, 0.34, 0.28, 1.0))
@@ -114,3 +116,21 @@ func _animate_new_run_commit() -> void:
 	tween.tween_property(new_run_button, "scale", Vector2(1.035, 1.035), 0.075).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(new_run_button, "scale", Vector2.ONE, 0.055)
 	await tween.finished
+
+# Preserve the full original summary, with native scrolling for long builds.
+func _bound_summary() -> void:
+	var scroll := ScrollContainer.new()
+	scroll.name = "SummaryScroll"
+	scroll.position = Vector2(350, 248)
+	scroll.size = Vector2(580, 236)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	add_child(scroll)
+	summary_label.reparent(scroll)
+	summary_label.position = Vector2.ZERO
+	summary_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	summary_label.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	summary_label.custom_minimum_size = Vector2.ZERO
+	summary_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	summary_label.add_theme_font_size_override("font_size", 16)
+	summary_label.mouse_filter = Control.MOUSE_FILTER_PASS
