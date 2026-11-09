@@ -153,3 +153,18 @@ func test_story_and_merchant_effect_paragraphs_keep_the_entire_real_modifier_vis
 	var body := offer.get_node("DS2Parchment/UpgradeDetail") as Label
 	assert_true(body.text.contains(upgrade.description))
 	assert_lte(body.get_line_count() * body.get_theme_font("font").get_height(body.get_theme_font_size("font_size")),body.size.y)
+
+func test_victory_action_draws_in_front_of_its_result_scrim() -> void:
+	_party()
+	RunState.active_card_id = "bone_patrol"
+	RunState.select_encounter("res://resources/encounters/bone_patrol.tres")
+	var battle := _open("res://scenes/battle/battle.tscn")
+	battle.call("_finish_battle",true)
+	var button := battle.get_node("ResultOverlay/ContinueButton") as Button
+	var scrim := battle.get_node("ResultOverlay/ResultScrim") as Control
+	assert_true(button.visible)
+	assert_false(button.disabled)
+	assert_true(button.get_canvas() == scrim.get_canvas())
+	assert_gt(button.z_index,scrim.z_index)
+	assert_eq(button.position,Vector2(964,619))
+	assert_false(button.pressed.get_connections().is_empty())

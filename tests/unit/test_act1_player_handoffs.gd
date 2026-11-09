@@ -114,7 +114,7 @@ func test_real_battle_victory_opens_major_upgrade_then_loot() -> void:
 	# reward navigation contract, not whether the autobattler wins.
 	battle.call("_finish_battle", true)
 	assert_true(RunState.last_battle_won)
-	assert_true((battle.get_node("ContinueButton") as Button).visible)
+	assert_true((battle.get_node("ResultOverlay/ContinueButton") as Button).visible)
 	var reward := _scene(REWARD)
 	if reward == null:
 		return

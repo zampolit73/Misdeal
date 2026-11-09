@@ -121,7 +121,7 @@ func _exercise() -> void:
 	start_button.emit_signal("pressed")
 	if not await _battle_result(battle):
 		return
-	var continue_button := battle.get_node_or_null("ContinueButton") as Button
+	var continue_button := battle.get_node_or_null("ResultOverlay/ContinueButton") as Button
 	if continue_button == null or not continue_button.visible:
 		_fail("real battle did not expose ContinueButton after win")
 		return
