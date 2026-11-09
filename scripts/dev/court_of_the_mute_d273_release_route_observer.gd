@@ -22,8 +22,8 @@ func _ready() -> void:
 
 func _exercise() -> void:
 	# Check the released ACT1 catalog, not the old unreleased QA registry.
-	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD):
-		_fail("card #39 is not in the regular 39-card pool")
+	if RunState.ACT1_CARD_IDS.size() != 40 or not RunState.ACT1_CARD_IDS.has(CARD):
+		_fail("card #39 is not in the regular 40-card pool")
 		return
 	var card := RunState.get_card(CARD)
 	if card == null or card.resolution_type != "combat" or card.tier != 1:
@@ -129,7 +129,7 @@ func _exercise() -> void:
 	if enemy_roles != expected:
 		_fail("expected Magistrate, Scrivener and two Bailiffs; got: %s" % [enemy_roles])
 		return
-	print("D273_COURT_REAL_DEAL_PASS: 39/45, normal Tier1 RunState offer+choose, four authentic D267 actors, red verdict, approved D271 painting and D264 floor")
+	print("D273_COURT_REAL_DEAL_PASS: 40/45, normal Tier1 RunState offer+choose, four authentic D267 actors, red verdict, approved D271 painting and D264 floor")
 	var start_button := battle.get_node_or_null("FightButton") as Button
 	if start_button == null:
 		_fail("real fight button absent")
@@ -177,10 +177,10 @@ func _exercise() -> void:
 	if not RunState.resolved_card_ids.has(CARD):
 		_fail("Reward-to-Table did not resolve released card #39")
 		return
-	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD):
+	if RunState.ACT1_CARD_IDS.size() != 40 or not RunState.ACT1_CARD_IDS.has(CARD):
 		_fail("release disappeared from ordinary draw pool")
 		return
-	print("D273_COURT_RELEASE_ROUTE_PASS: released ordinary deal → original Battle Fight → win → Reward → Table, 39/45 LIVE")
+	print("D273_COURT_RELEASE_ROUTE_PASS: released ordinary deal → original Battle Fight → win → Reward → Table, 40/45 LIVE")
 	get_tree().quit(0)
 
 func _battle_result(battle: Control) -> bool:

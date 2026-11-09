@@ -303,6 +303,21 @@ jobs:
               assert len(content) > 10000, image.name
           PY
 
+      - name: D418 Jack event and real companion native route
+        if: steps.scope.outputs.mode == 'release'
+        shell: bash
+        run: |
+          set -euo pipefail
+          godot=/tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64
+          dest="$RUNNER_TEMP/misdeal-smart-qa/jack"
+          mkdir -p "$dest"
+          timeout 160s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 "$godot" --path . --windowed \
+            --resolution 1280x720 --rendering-method gl_compatibility \
+            --script res://scripts/dev/jack_event_capture.gd -- "$dest" 2>&1 | tee "$dest/capture.log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script|JACK_CAPTURE_FAIL' "$dest/capture.log"
+          grep -Fq 'JACK_EVENT_NATIVE_PASS: 16' "$dest/capture.log"
+
       - name: RELEASE — complete production visual audit matrix
         if: steps.scope.outputs.mode == 'release'
         shell: bash

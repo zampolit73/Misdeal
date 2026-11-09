@@ -2,6 +2,10 @@ import unittest
 from smart_qa_select import classify
 
 class SelectorTests(unittest.TestCase):
+    def test_jack_event_requires_complete_native_release(self):
+        self.assertEqual(classify(["resources/cards/jack.tres"])["mode"], "release")
+        self.assertEqual(classify(["scripts/dev/jack_event_capture.gd"])["mode"], "release")
+
     def test_docs_do_not_boot_godot(self):
         self.assertEqual(classify(["docs/HANDOFF.md", "CHANGELOG.md"])["mode"], "docs")
         self.assertEqual(classify(["docs/HANDOFF.md"])["tests"], [])

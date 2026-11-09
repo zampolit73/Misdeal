@@ -265,6 +265,9 @@ func _ready() -> void:
 		if team == 0 and visual_role == "knight":
 			health_bar.offset_top = -112.0
 			health_bar.offset_bottom = -105.0
+		if visual_role == "jack":
+			health_bar.offset_top = -46.0
+			health_bar.offset_bottom = -40.0
 		name_label.offset_top = 48.0
 		name_label.offset_bottom = 70.0
 	base_sprite_scale = art_sprite.scale
@@ -998,7 +1001,7 @@ func _get_role_floor_offset() -> float:
 
 
 func get_animation_sole_y() -> float:
-	return 90.0 if ANIMATION_LIBRARY.is_approved_hero_frames(visual_role, sprite_frames) else ANIM_SOLE_Y
+	return 90.0 if visual_role == "jack" or ANIMATION_LIBRARY.is_approved_hero_frames(visual_role, sprite_frames) else ANIM_SOLE_Y
 
 func _art_rest_position() -> Vector2:
 	var correction := _get_role_floor_offset()
