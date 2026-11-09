@@ -3,12 +3,9 @@ extends Control
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 const SQUAD_DOSSIER_V3 := preload("res://scripts/ui/squad_dossier_v3.gd")
+const DOSSIER_ART := preload("res://scripts/ui/squad_dossier_d413.gd")
 
-const ROLE_PORTRAIT_PATHS := {
-	"knight": "res://assets/pixel/class_select/v7/knight.webp",
-	"ranger": "res://assets/pixel/class_select/v7/ranger.webp",
-	"mage": "res://assets/pixel/class_select/v7/mage.webp",
-}
+const ROLE_PORTRAIT_PATHS := SQUAD_DOSSIER_V3.PORTRAITS
 
 @onready var dim: ColorRect = $Dim
 @onready var frame: Panel = $Frame
@@ -31,6 +28,7 @@ func _ready() -> void:
 	_apply_ui_kit()
 	MISDEAL_DS2_ROLLOUT.squad(self)
 	SQUAD_DOSSIER_V3.apply(self)
+	DOSSIER_ART.apply(self)
 	if RunState.has_chosen_protagonist():
 		current_role = RunState.protagonist_role
 
@@ -54,10 +52,16 @@ func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_action_button(mage_button, MISDEAL_UI_KIT.MAGE, false)
 
 
+func _input(event: InputEvent) -> void:
+	# TAB is the advertised close shortcut even when a roster button has
+	# keyboard focus; handle it before Control's built-in focus traversal.
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_TAB:
+		_unhandled_input(event)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
-			KEY_ESCAPE:
+			KEY_ESCAPE, KEY_TAB:
 				get_viewport().set_input_as_handled()
 				_close()
 			KEY_1:
@@ -71,6 +75,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				_select_role("mage")
 
 func _close() -> void:
+	set_process_input(false)
 	set_process_unhandled_input(false)
 	close_button.disabled = true
 	var tween := create_tween()
@@ -168,12 +173,13 @@ func _refresh_role_buttons() -> void:
 		)
 
 	SQUAD_DOSSIER_V3.refresh_role_cards(self, current_role)
+	DOSSIER_ART.refresh_selection(self, current_role)
 
 func _refresh_hero() -> void:
 	hero_name.text = _get_role_label(current_role).capitalize()
 	var portrait_path := String(ROLE_PORTRAIT_PATHS.get(current_role, ""))
 	if not portrait_path.is_empty():
-		portrait.call("load_webp_path", portrait_path, Vector2i(640, 480))
+		portrait.call("load_webp_path", portrait_path, Vector2i(640, 960))
 	common_label.text = _build_common_text()
 
 	if not RunState.is_role_in_party(current_role):

@@ -1,3 +1,7 @@
+## D413 — dossier-only character portraits and panel material (2026-11-09)
+
+`assets/pixel/ui/squad_dossier_d413/`: generated full-body Knight/Ranger/Mage portraits1024x1536 WebP, matching640x480 mini crops, blank768x512 obsidian/bronze panel and original PNG sources. Mapped only into squad dossier; class-select art, D412 combat sprites and original D287/v7 assets preserved. No text/counts baked into bitmaps. See [QA/provenance](D413_SQUAD_DOSSIER_QA.md).
+
 ## D412 — approved LIVE hero animation source (2026-11-09)
 
 `assets/pixel/units/hero_c3_d412_polish/{knight,ranger,mage}.webp.b64` is now the active full 25-pose per-role source. Original D412 PNG sources and prior atlases remain for rollback. No D407/D408/D409 cel overlays apply to new source. `D412_APPROVED_ENABLED=false` restores the previous C3 stack. Source soleY90; accepted preview body normalization preserved.

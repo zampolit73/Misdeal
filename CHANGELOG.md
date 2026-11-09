@@ -1,3 +1,7 @@
+## D413 — squad dossier visual upgrade (2026-11-09)
+
+Implemented on `fix/d413-squad-dossier`, stacked on D412 PR81; not merged to main. New portraits match approved D412 figurines, painted obsidian/bronze panel materials, serif type and aligned live stats; development/relic/party logic preserved. Local Godot4.7.2 GUT211/211; existing D285 native dossier smoke PASS. New state-invariance/filled-build/fate/close regressions and native1280x720 portraits captured. F6 `scenes/dev/d413_squad_dossier_preview.tscn`, normal F5 Table→TAB. [Full QA/art provenance](docs/D413_SQUAD_DOSSIER_QA.md). New dossier aesthetic acceptance remains pending.
+
 ## Editor fix — Bone Shepherd smoke parses again (2026-11-09)
 
 Screenshot error at `scripts/dev/bone_shepherd_smoke.gd:114` fixed: resource is a typed runtime member rather than a constant, avoiding Godot4.7 exported-empty-array constant evaluation as null. Restore current deck guard39 (was37). No EncounterData/resource/combat/art changes. Native original scene54/54 completed,14 whistle activations,errors=[]; new dynamic scene-load/validator GUT regression passes. Full local Godot4.7.2 GUT209/209,46 scripts,47,064 assertions. Existing transparent Shepherd idle-cel repair warning remains unrelated.

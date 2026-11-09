@@ -1,3 +1,7 @@
+## D413 — dossier art follows current combat identity (2026-11-09)
+
+User requested squad UI matching their Gothic reference and portraits matching actual figures. Preserve closed helmet/steel/burgundy sword-shield Knight, intact olive hood/bow Ranger and silver-haired violet-robed male Mage/staff from D412. UI reference supplies materials/layout, not a blue Knight redesign or new game rules. Keep dynamic stats/upgrades/relics/party state in native Controls.
+
 ## D412 full artwork approved for production (2026-11-09)
 
 Following explicit approval of animation, refined quality and larger display, user requested integration. Activate the EXACT polished 75-pose package, preserve original sources and old C3 fallback. No new art direction, pose regeneration or timing changes.

@@ -5,9 +5,9 @@ extends RefCounted
 const WEBP_TEXTURE := preload("res://scripts/ui/runtime_webp_texture.gd")
 const MISDEAL_DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
 const PORTRAITS := {
-	"knight": "res://assets/pixel/class_select/v7/knight.webp",
-	"ranger": "res://assets/pixel/class_select/v7/ranger.webp",
-	"mage": "res://assets/pixel/class_select/v7/mage.webp",
+	"knight": "res://assets/pixel/ui/squad_dossier_d413/knight.webp",
+	"ranger": "res://assets/pixel/ui/squad_dossier_d413/ranger.webp",
+	"mage": "res://assets/pixel/ui/squad_dossier_d413/mage.webp",
 }
 const NAMES := {"knight": "РЫЦАРЬ", "ranger": "СЛЕДОПЫТ", "mage": "МАГ"}
 const ROLE_NOTES := {
@@ -178,7 +178,8 @@ static func _build_role_card(scene: Control, role: String) -> void:
 	mini.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	mini.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	button.add_child(mini)
-	mini.call("load_webp_path", PORTRAITS[role], Vector2i(640, 480))
+	mini.call("load_webp_path", str(PORTRAITS[role]).replace(".webp", "_thumb.webp"), Vector2i(640, 480))
+	mini.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	_make_label(button, "RoleTitle", Vector2(106, 14), Vector2(131, 28), 17, PARCHMENT, false)
 	_make_label(button, "RoleStatus", Vector2(106, 47), Vector2(137, 38), 11, FADED, true)
 
@@ -327,7 +328,7 @@ static func _compact_stats(stats: Dictionary) -> String:
 	if float(stats.get("splash_radius", 0.0)) > 0.01:
 		specs.append(["РАДИУС", "splash_radius", "base_splash_radius", 0])
 		specs.append(["ПОБОЧН. %", "splash_damage", "base_splash_damage", 0])
-	var lines: Array[String] = []
+	var lines: Array[String] = ["[table=3]"]
 	for spec in specs:
 		var value := float(stats.get(spec[1], 0.0))
 		var base := float(stats.get(spec[2], 0.0))
@@ -337,8 +338,9 @@ static func _compact_stats(stats: Dictionary) -> String:
 		var original := _number(base * 100.0 if spec[1] == "splash_damage" else base, decimals)
 		var color := "#91d795" if value > base else "#ec897c"
 		var value_text := "[color=%s]%s%s[/color]" % [color, current, "▲" if value > base else "▼"] if modified else "[color=#f0e2ce]%s[/color]" % current
-		lines.append("[color=#d0bfa4]%s[/color]  %s [color=#81746c](%s)[/color]" % [str(spec[0]), value_text, original])
-	return "\n".join(lines)
+		lines.append("[cell][color=#d0bfa4]%s[/color][/cell][cell]%s[/cell][cell][color=#81746c](%s)[/color][/cell]" % [str(spec[0]), value_text, original])
+	lines.append("[/table]")
+	return "".join(lines)
 static func _number(v: float, d: int) -> String:
 	match d:
 		0:

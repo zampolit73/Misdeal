@@ -170,6 +170,17 @@ jobs:
           grep -Fq 'D273_COURT_RELEASE_ROUTE_PASS' "$log"
           ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script|D273_COURT_RELEASE_ROUTE_FAIL' "$log"
 
+      - name: D413 production squad dossier state and close smoke
+        if: steps.scope.outputs.mode != 'docs'
+        shell: bash
+        run: |
+          set -euo pipefail
+          log="$RUNNER_TEMP/misdeal-smart-qa/d413-dossier.log"
+          timeout 40s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path . --script res://scripts/dev/d285_squad_dossier_smoke.gd 2>&1 | tee "$log"
+          grep -Fq 'D285_SQUAD_DOSSIER_NATIVE_PASS' "$log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|D285_SQUAD_DOSSIER_FAIL' "$log"
+
       - name: Prepare GPU for requested VISUAL/RELEASE previews
         if: steps.scope.outputs.mode == 'visual' || steps.scope.outputs.mode == 'release'
         shell: bash
@@ -180,6 +191,20 @@ jobs:
             sudo apt-get install -y -qq xvfb libgl1-mesa-dri
           fi
           mkdir -p "$RUNNER_TEMP/misdeal-smart-qa/visual"
+
+      - name: Capture D413 real squad dossier for all heroes
+        if: steps.scope.outputs.mode == 'visual' || steps.scope.outputs.mode == 'release'
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/misdeal-smart-qa/visual/d413"
+          timeout 45s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility \
+            --script res://scripts/dev/d413_capture_dossier.gd -- "$out"
+          test -s "$out/knight.png"
+          test -s "$out/ranger.png"
+          test -s "$out/mage.png"
 
       - name: Capture actual current Godot scene screenshots
         if: steps.scope.outputs.mode == 'visual' || steps.scope.outputs.mode == 'release'
