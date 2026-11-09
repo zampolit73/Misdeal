@@ -1,0 +1,5 @@
+frame,phase,combat_live,battle_finished,alive,max_displacement_px
+00-preparation,preparation,false,false,7,0.00
+01-combat-0000ms,combat,true,false,7,2.02
+02-combat-0600ms,combat,true,false,7,60.22
+03-combat-1200ms,combat,true,false,7,118.32

@@ -2,6 +2,10 @@ import unittest
 from smart_qa_select import classify
 
 class SelectorTests(unittest.TestCase):
+    def test_enemy_roster_requires_complete_native_release(self):
+        self.assertEqual(classify(["assets/pixel/units/enemy_visual_polish/skeleton.webp.b64"])["mode"], "release")
+        self.assertEqual(classify(["scripts/dev/enemy_visual_review.gd"])["mode"], "release")
+
     def test_jack_event_requires_complete_native_release(self):
         self.assertEqual(classify(["resources/cards/jack.tres"])["mode"], "release")
         self.assertEqual(classify(["scripts/dev/jack_event_capture.gd"])["mode"], "release")

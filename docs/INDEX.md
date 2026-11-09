@@ -1,3 +1,7 @@
+## D420 — all-enemy visual polish
+
+[24 complete packs/600 poses, actual Godot evidence, prompts and F6](ENEMY_VISUAL_POLISH.md).
+
 ## D418 — latest event
 
 [Jack: selected art, three choices, canine animation, native QA and F6](D418_JACK_EVENT.md).40/45 ordinary Act1 cards; event requires Ranger.

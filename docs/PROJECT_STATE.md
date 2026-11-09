@@ -1,5 +1,11 @@
 # Misdeal — current project state
 
+## D420 — complete enemy visual polish
+
+Delivery: [PR90](https://github.com/zampolit73/Misdeal/pull/90) · [final-head RELEASE checks](https://github.com/zampolit73/Misdeal/pull/90/checks).
+
+User authorized quality/animation/stature work for every enemy. Branch `codex/enemy-visual-polish`:24 complete new25-pose packs/600 poses, original identities/props and preserved fallback atlases. Art-only stature, head-clear HP, distance-sampled enemy WALK, authored HIT without root zoom and complete collapse before fading. D412 heroes/Jack, stats, AI and attack clocks remain intact. Local Godot4.7.2:234/234 GUT,15 selector tests,20 roster captures, three real combat captures and Black Lantern ordinary Battle→Reward→Table pass. [Sources, prompts, QA and F6](ENEMY_VISUAL_POLISH.md). Final PR RELEASE CI required.
+
 Delivery: [PR88](https://github.com/zampolit73/Misdeal/pull/88) · [final-head RELEASE checks](https://github.com/zampolit73/Misdeal/pull/88/checks).
 
 ## D418 — Jack event

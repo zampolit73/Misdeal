@@ -1,0 +1,16 @@
+frame,phase,live,finished,units_alive,max_movement_px
+00-preparation,preparation,false,false,4,0.00
+01-intro,intro,false,false,4,0.00
+02-live-0000ms,combat,true,false,4,0.99
+03-live-0300ms,combat,true,false,4,33.11
+04-live-0650ms,combat,true,false,4,70.47
+05-live-1050ms,combat,true,false,4,113.66
+06-live-1600ms,combat,true,false,4,172.23
+07-live-2600ms,combat,true,false,4,279.63
+natural-attack-0,natural enemy attack,true,false,4,302.18
+natural-attack-1,natural enemy attack,true,false,4,302.18
+natural-attack-2,natural enemy attack,true,false,4,316.35
+08-live-3600ms,combat,true,false,4,338.27
+09-live-4600ms,combat,true,false,4,338.27
+10-live-5600ms,combat,true,false,3,338.27
+11-live-6600ms,combat,true,false,3,338.27

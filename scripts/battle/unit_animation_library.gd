@@ -7,6 +7,12 @@ extends RefCounted
 const CELL_SIZE := 96
 const COLUMNS := 6
 const ROWS := 5
+const POLISHED_ENEMY_ROLES := ["skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus", "threadbare_puppeteer", "bone_marionette", "drowned_ferryman", "drowned_hand", "road_sentinel", "lantern_bearer", "extinguished_guide", "oil_acolyte", "lantern_archer", "mute_magistrate", "ash_scrivener", "bone_bailiff"]
+const POLISHED_ENEMY_DIR := "res://assets/pixel/units/enemy_visual_polish/"
+static var _polished_enemy_frames: Dictionary = {}
+
+static func is_polished_enemy_frames(role: String, frames: SpriteFrames) -> bool:
+	return frames != null and _polished_enemy_frames.get(role) == frames
 const BASE_DIR := "res://assets/pixel/units/combat_units_anim_v2/"
 # D398: opt-in art pilot promoted to the three live player heroes.
 # All legacy v2 source atlases remain in BASE_DIR for instant rollback.
@@ -125,6 +131,17 @@ static func get_frames(role: String, use_approved: bool = true) -> SpriteFrames:
 			return approved
 	if not ROLES.has(role):
 		return null
+	if POLISHED_ENEMY_ROLES.has(role) and not _frames_cache.has(role):
+		var polished_image := Image.new()
+		var polished_path := POLISHED_ENEMY_DIR + role + ".webp.b64"
+		var polished_bytes := Marshalls.base64_to_raw(FileAccess.get_file_as_string(polished_path).strip_edges())
+		if polished_image.load_webp_from_buffer(polished_bytes) == OK and polished_image.get_size() == Vector2i(576,480):
+			polished_image.convert(Image.FORMAT_RGBA8)
+			if _all_authored_deck_frames_visible(polished_image) and _all_authored_deck_frames_padded(polished_image) and _all_authored_deck_frames_distinct(polished_image) and _unused_deck_cells_clear(polished_image):
+				var polished_frames := _create_frames(role, ImageTexture.create_from_image(polished_image))
+				_polished_enemy_frames[role] = polished_frames
+				return polished_frames
+		push_warning("Polished enemy atlas rejected; preserved original fallback: " + role)
 	if _frames_cache.has(role):
 		return _frames_cache[role] as SpriteFrames
 	if _unavailable.has(role):

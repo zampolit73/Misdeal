@@ -61,12 +61,12 @@ func test_c3_teleport_is_clamped_and_attack_one_shot_is_time_driven() -> void:
 	assert_eq(hero.art_sprite.texture, hero.sprite_frames.get_frame_texture("attack", 1))
 
 
-func test_non_c3_walk_is_still_wall_clock_driven() -> void:
+func test_enemy_walk_now_uses_distance_without_changing_attack_clock() -> void:
 	var skeleton := _actor("skeleton", 1)
 	assert_false(LIBRARY.is_live_c3_hero_frames("skeleton", skeleton.sprite_frames))
 	skeleton.combat_started = true
 	skeleton.visual_moving = true
 	skeleton._update_frame_animation(0.18)
 	assert_eq(skeleton.frame_state, "walk")
-	assert_eq(skeleton.art_sprite.texture, skeleton.sprite_frames.get_frame_texture("walk", 1),
-		"All enemies and archived v2 sprites retain their old walk cadence")
+	assert_eq(skeleton.art_sprite.texture, skeleton.sprite_frames.get_frame_texture("walk", 0),
+		"D420 extends planted distance sampling to enemies")

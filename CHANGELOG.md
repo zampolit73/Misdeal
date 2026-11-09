@@ -1,3 +1,7 @@
+## D420 — качество и анимации всех врагов (2026-11-09)
+
+24 полных набора/600 новых поз с исходными образами и реквизитом; индивидуальный рост, HP над силуэтом, шаг по перемещению, ATTACK/HIT без лишней деформации, полное падение до исчезновения. Исправлен исчезавший лук Фонарного лучника. Герои, Джек и боевые параметры сохранены. Локальные234 GUT,15 selector,20 кадров состава, три реальные боевые выборки и маршрут Чёрного Фонаря проходят. [Источники, QA и F6](docs/ENEMY_VISUAL_POLISH.md).
+
 ## D418 — Jack event and Ranger animal companion (2026-11-09)
 
 New Ranger-gated Tier1 event: rescue Jack for25 gold, pass unchanged, or take hunting token for+10% Ranger damage this run. Exact user-selected first gateway painting; three truthful choice pictures, complete25-pose dog, ordinary Battle integration, pet-only deployment spacing, dossier/summary. Hero count/solo-duo scaling and all approved art/timings preserved.40/45 pool; local231 GUT and native16-frame route. [QA/F6](docs/D418_JACK_EVENT.md); full RELEASE CI required before merge.

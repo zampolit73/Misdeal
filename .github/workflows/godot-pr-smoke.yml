@@ -318,6 +318,32 @@ jobs:
           ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script|JACK_CAPTURE_FAIL' "$dest/capture.log"
           grep -Fq 'JACK_EVENT_NATIVE_PASS: 16' "$dest/capture.log"
 
+      - name: D420 native 24-enemy visual roster
+        if: steps.scope.outputs.mode == 'release'
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/misdeal-smart-qa/visual/enemy-roster"
+          mkdir -p "$out"
+          timeout 60s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility \
+            res://scenes/dev/enemy_visual_review.tscn -- "$out" 2>&1 | tee "$out/capture.log"
+          grep -Fq 'ENEMY_REVIEW_CAPTURE_PASS: 24' "$out/capture.log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script' "$out/capture.log"
+          for page in 0 1 2 3; do
+            for clip in idle walk attack hit death; do
+              test -s "$out/page_${page}_${clip}.png"
+            done
+          done
+          timeout 60s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility \
+            --script res://scripts/dev/ci4_capture_real_battle.gd -- "$out/actual-battle" extended \
+            2>&1 | tee "$out/actual-battle.log"
+          grep -Fq 'CI4_BATTLE_CAPTURE_PASS' "$out/actual-battle.log"
+          test -s "$out/actual-battle/natural-attack-2.png"
+
       - name: RELEASE — complete production visual audit matrix
         if: steps.scope.outputs.mode == 'release'
         shell: bash
