@@ -45,7 +45,7 @@ Table button «ПАМЯТЬ [M]»; modal ESC/close restores focus and the existi
 
 Godot4.7.2: full GUT234/234,47633 assertions;19 existing warnings. Native production Table/viewer0/7/24 plus selected text and ESC: `docs/qa/a1v2/`. Pixel comparison against the same Table with memory node hidden finds zero differences outside the two apertures and button rectangle. Offers identical after close. Separate Godot processes write/read an isolated profile, both pass. Source unchanged by packing. Windows certificate-store/user-log sandbox diagnostics remain unrelated to GDScript/test results.
 
-CI selector forces RELEASE for this feature; full existing release matrices plus A1V2 native captures must pass before merge. CI outcome/link is authoritative in PR; no release claim until green.
+CI selector forces RELEASE for this feature; full existing release matrices plus A1V2 native captures must pass before merge. Delivery: [PR93](https://github.com/zampolit73/Misdeal/pull/93); [current-head checks](https://github.com/zampolit73/Misdeal/pull/93/checks). CI outcome is authoritative; no release claim until green. Final targeted suite additionally checks real event success, repeat callback, failed purchase, legacy data/duplicate/unknown ID filtering.
 
 ## Local check
 

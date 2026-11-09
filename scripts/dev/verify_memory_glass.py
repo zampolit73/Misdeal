@@ -11,5 +11,5 @@ for n in range(1,25):
  fragment=Image.open(p/f'SG{n:02}.png').convert('RGBA');mask=regions.point(lambda x:255 if x==n else 0)
  assert ImageChops.difference(fragment.getchannel('A'),mask).getbbox() is None
  reconstructed.paste(fragment,(0,0),mask)
-assert ImageChops.difference(reconstructed,source).getbbox() is None
+assert ImageChops.difference(reconstructed,source).getbbox(alpha_only=False) is None
 print('A1V2_MASK_PASS:24 nonempty disjoint complete regions, exact source reconstruction')
