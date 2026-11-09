@@ -42,6 +42,7 @@ var card_buttons: Dictionary = {}
 
 
 func _ready() -> void:
+	CARD_SKIN.prepare_screen(self)
 	card_buttons = {
 		"knight": knight_button,
 		"ranger": ranger_button,

@@ -1,3 +1,9 @@
+## D415 — protagonist choice matches squad dossier (2026-11-09)
+
+User requested the same approved dossier portraits on the protagonist-choice screen and a cohesive UI refresh. Branch `codex/d415-class-select-dossier-art` starts from main after merged PR81/82 (`3c364bb4`). Reuses exact D413 portrait thumbnails and panel artwork: no new character art generated. Dark obsidian cards, bronze dossier border, serif hierarchy, larger portrait windows, persistent selected seal, modest dimming and keyboard hint. Selection/confirmation, source unit stats, solo party and routing remain unchanged.
+
+Local native Godot4.7.2: **211/211 GUT**,47 scripts,47,106 assertions; expanded D282 real choice smoke PASS (exact decoded portraits, hover, persistent selection, arrows, solo confirmation). Five native1280x720 frames include actual confirmed Mage→Table. [D415 QA](D415_CLASS_SELECT_DOSSIER_QA.md). Next: CI/visual review; F6 actual `scenes/class_select/class_select.tscn`, inspect hover and all three choices, use arrows and confirm, verify solo Table entry. D414 dossier refinements remain in independent open [PR83](https://github.com/zampolit73/Misdeal/pull/83), with green CI; D413 dossier and D412 animations are already merged and approved. Older pre-merge/pending notes below are historical.
+
 ## D413 — squad dossier visual upgrade (2026-11-09)
 
 [PR82](https://github.com/zampolit73/Misdeal/pull/82), stacked on PR81; [Godot4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42571523455) for code `778c7796`:211/211 GUT,47 scripts,47,106 assertions; D285 real dossier smoke, actual three-role GPU dossier captures and Battle→Reward→Table route passed. Full RELEASE matrix skipped. Main remains unmerged.

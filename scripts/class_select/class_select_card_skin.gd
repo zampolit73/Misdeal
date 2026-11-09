@@ -1,10 +1,43 @@
 extends RefCounted
 
-# D279: applies already-approved D278 card materials to protagonist choice.
+# D415: dossier artwork/material language on the production protagonist choice.
 # All portraits, copy and choice buttons remain real interactive Godot nodes.
-const FRAME_ASSET := preload("res://scripts/table/table_offer_frame_asset.gd")
-const PAPER_SHADER: Shader = preload("res://shaders/table_offer_parchment.gdshader")
+const FRAME_PATH := "res://assets/pixel/ui/squad_dossier_d413/panel.webp"
 const CARD_SIZE := Vector2(272.0, 338.0)
+static var _frame: Texture2D
+static var _heading: SystemFont
+
+static func _frame_texture() -> Texture2D:
+	if _frame == null:
+		var image := Image.new()
+		image.load_webp_from_buffer(FileAccess.get_file_as_bytes(FRAME_PATH))
+		image.resize(384, 256, Image.INTERPOLATE_LANCZOS)
+		_frame = ImageTexture.create_from_image(image)
+	return _frame
+
+static func heading_font() -> Font:
+	if _heading == null:
+		_heading = SystemFont.new()
+		_heading.font_names = PackedStringArray(["Georgia", "Liberation Serif", "DejaVu Serif", "Times New Roman"])
+	return _heading
+
+static func prepare_screen(scene: Control) -> void:
+	var title := scene.get_node("Frame/Title") as Label
+	title.add_theme_font_override("font", heading_font())
+	title.add_theme_font_size_override("font_size", 26)
+	var help := Label.new()
+	help.name = "ChoiceKeys"
+	help.text = "← →  — выбрать героя     ENTER — принять судьбу"
+	help.position = Vector2(340, 148)
+	help.size = Vector2(600, 26)
+	help.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	help.add_theme_font_size_override("font_size", 13)
+	help.add_theme_color_override("font_color", Color("d9bf96"))
+	help.add_theme_color_override("font_shadow_color", Color.BLACK)
+	help.add_theme_constant_override("shadow_offset_y", 2)
+	help.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	scene.get_node("Frame").add_child(help)
+
 
 static func prepare(button: Button) -> void:
 	button.custom_minimum_size = CARD_SIZE
@@ -17,75 +50,78 @@ static func prepare(button: Button) -> void:
 	paper.position = Vector2(4.0, 4.0)
 	paper.size = CARD_SIZE - Vector2(8.0, 8.0)
 	paper.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var material := ShaderMaterial.new()
-	material.shader = PAPER_SHADER
-	paper.material = material
+	paper.color = Color("141115")
 	button.add_child(paper)
 	button.move_child(paper, 0)
 
 	var art_mat := ColorRect.new()
 	art_mat.name = "ArtMount"
 	art_mat.position = Vector2(8.0, 8.0)
-	art_mat.size = Vector2(256.0, 169.0)
+	art_mat.size = Vector2(256.0, 189.0)
 	art_mat.color = Color("#37231b")
 	art_mat.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	button.add_child(art_mat)
 	button.move_child(art_mat, 1)
 
 	var portrait := button.get_node("Portrait") as TextureRect
-	_rect(portrait, Vector2(12.0, 12.0), Vector2(248.0, 160.0))
+	_rect(portrait, Vector2(12.0, 12.0), Vector2(248.0, 180.0))
 	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	var name := button.get_node("ClassTitle") as Label
-	_rect(name, Vector2(17.0, 180.0), Vector2(238.0, 35.0))
-	name.add_theme_font_size_override("font_size", 20)
-	name.add_theme_color_override("font_color", Color("#3c2016"))
+	_rect(name, Vector2(17.0, 197.0), Vector2(238.0, 30.0))
+	name.add_theme_font_size_override("font_size", 22)
+	name.add_theme_font_override("font", heading_font())
+	name.add_theme_color_override("font_color", Color("#ebcd9f"))
 	name.clip_text = true
 
 	var role := button.get_node("Role") as Label
-	_rect(role, Vector2(18.0, 220.0), Vector2(236.0, 24.0))
+	_rect(role, Vector2(18.0, 230.0), Vector2(236.0, 20.0))
 	role.add_theme_font_size_override("font_size", 12)
-	role.add_theme_color_override("font_color", Color("#654331"))
+	role.add_theme_color_override("font_color", Color("#bb9b77"))
 	role.clip_text = true
 
 	var divider := ColorRect.new()
 	divider.name = "CaptionRule"
-	divider.position = Vector2(42.0, 250.0)
+	divider.position = Vector2(42.0, 254.0)
 	divider.size = Vector2(188.0, 1.0)
 	divider.color = Color("#936748")
 	divider.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	button.add_child(divider)
 
 	var desc := button.get_node("Description") as Label
-	_rect(desc, Vector2(23.0, 263.0), Vector2(226.0, 56.0))
+	_rect(desc, Vector2(23.0, 260.0), Vector2(226.0, 52.0))
 	desc.add_theme_font_size_override("font_size", 14)
-	desc.add_theme_color_override("font_color", Color("#4b3427"))
+	desc.add_theme_font_override("font", heading_font())
+	desc.add_theme_color_override("font_color", Color("#d6c5b0"))
 	desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	desc.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	desc.clip_text = true
 
 	var plate := button.get_node("StatsPlate") as ColorRect
-	_rect(plate, Vector2(22.0, 265.0), Vector2(228.0, 47.0))
-	plate.color = Color(0.31, 0.20, 0.15, 0.10)
+	_rect(plate, Vector2(22.0, 265.0), Vector2(228.0, 42.0))
+	plate.color = Color(0.42, 0.22, 0.12, 0.17)
 	plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	plate.visible = false
 
 	var stats := button.get_node("Stats") as Label
-	_rect(stats, Vector2(21.0, 267.0), Vector2(230.0, 42.0))
+	_rect(stats, Vector2(21.0, 265.0), Vector2(230.0, 42.0))
 	stats.add_theme_font_size_override("font_size", 17)
-	stats.add_theme_color_override("font_color", Color("#40231a"))
+	stats.add_theme_color_override("font_color", Color("#f0ce97"))
 	stats.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	stats.clip_text = true
 	stats.visible = false
 
-	var frame_art := TextureRect.new()
+	var frame_art := NinePatchRect.new()
 	frame_art.name = "IllustratedFrame"
 	frame_art.position = Vector2.ZERO
 	frame_art.size = CARD_SIZE
-	frame_art.texture = FRAME_ASSET.get_texture()
-	frame_art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	frame_art.stretch_mode = TextureRect.STRETCH_SCALE
+	frame_art.texture = _frame_texture()
+	frame_art.draw_center = false
+	frame_art.patch_margin_left = 30
+	frame_art.patch_margin_right = 30
+	frame_art.patch_margin_top = 24
+	frame_art.patch_margin_bottom = 24
 	frame_art.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	button.add_child(frame_art)
 
@@ -98,9 +134,27 @@ static func prepare(button: Button) -> void:
 	selection_rim.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	selection_rim.visible = false
 	button.add_child(selection_rim)
+	var chosen := Label.new()
+	chosen.name = "ChosenSeal"
+	chosen.text = "ВЫБРАН"
+	chosen.position = Vector2(163, 19)
+	chosen.size = Vector2(87, 24)
+	chosen.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	chosen.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	chosen.add_theme_font_size_override("font_size", 12)
+	chosen.add_theme_color_override("font_color", Color("ffe0a8"))
+	var seal := StyleBoxFlat.new()
+	seal.bg_color = Color("541b1c")
+	seal.border_color = Color("bf915a")
+	seal.set_border_width_all(1)
+	chosen.add_theme_stylebox_override("normal", seal)
+	chosen.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	chosen.visible = false
+	button.add_child(chosen)
 
 
 static func set_state(button: Button, selected: bool, hovered: bool, dimmed: bool) -> void:
+	(button.get_node("ChosenSeal") as Label).visible = selected
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color(0.06, 0.04, 0.04, 0.93)
 	style.border_width_left = 3
@@ -133,12 +187,12 @@ static func set_state(button: Button, selected: bool, hovered: bool, dimmed: boo
 	button.add_theme_stylebox_override("hover", style)
 	button.add_theme_stylebox_override("pressed", style)
 	button.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
-	var art := button.get_node_or_null("IllustratedFrame") as TextureRect
+	var art := button.get_node_or_null("IllustratedFrame") as NinePatchRect
 	if art != null:
 		art.modulate = Color(1, 0.99, 0.96) if (hovered or selected) else Color(0.94, 0.91, 0.86)
 	# The choice card remains a single focus/hit target.
 	if dimmed:
-		button.modulate = Color(0.65, 0.62, 0.60, 0.76)
+		button.modulate = Color(0.82, 0.79, 0.77, 0.94)
 	else:
 		button.modulate = Color.WHITE
 	var target_scale := Vector2(1.035, 1.035) if (hovered or selected) else Vector2.ONE
@@ -148,7 +202,8 @@ static func set_state(button: Button, selected: bool, hovered: bool, dimmed: boo
 
 
 static func prepare_confirm(button: Button) -> void:
-	button.add_theme_font_size_override("font_size", 21)
+	button.add_theme_font_size_override("font_size", 20)
+	button.add_theme_font_override("font", heading_font())
 	# A restrained metal inset gives the CTA a physical crimson enamel edge.
 	var gleam := ColorRect.new()
 	gleam.name = "GildedTopEdge"

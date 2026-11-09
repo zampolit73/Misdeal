@@ -1,3 +1,7 @@
+## D415 — protagonist-choice dossier consistency (2026-11-09)
+
+ClassSelect opts into D413 portrait identity, obsidian caption wells and bronze nine-slice borders. Serif title/class names/confirm, bone/gold text and a persistent burgundy selected seal distinguish committed selection from temporary hover. Keep the approved Wizard tabletop visible; no full-screen panel. All content and controls remain live, existing two-step confirmation/solo rules unchanged. Native1280x720 QA: [D415](D415_CLASS_SELECT_DOSSIER_QA.md).
+
 ## D328 — Card DS3 APPROVED baseline (2026-10-21)
 
 Following D327 the user wrote «утверждаю» and accepted its visible card layout. Official visual baseline: complete ONE outer ornate frame; source-color artwork in seamless unoutlined recess; titles, snippets and CTA centered to frame's optical x147 rather than Button center; type at top tab x150; real Fate numerals in adjacent slot; Reward body x158. **No autonomous changes to this baseline.** New per-card scene artwork must follow established approval workflow and fit the frame without baking UI into the illustration. Technical smoke/CI remains a separate validation axis.
