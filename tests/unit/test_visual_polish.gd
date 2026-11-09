@@ -40,7 +40,8 @@ func test_all_nine_reward_effects_fit_both_lines_inside_actual_painted_strip() -
 		await get_tree().process_frame
 		await get_tree().process_frame
 		var label := reward.get_node("Rewards/BloodCoin/QuickEffect") as Label
-		assert_true(Rect2(48,282,220,32).encloses(label.get_rect()),id)
+		# D419 places effect copy in the dark prose well below the parchment title.
+		assert_true(Rect2(48,300,220,34).encloses(label.get_rect()),id)
 		assert_lte(label.get_line_count(),2,id)
 		assert_lte(label.get_line_count() * label.get_theme_font("font").get_height(label.get_theme_font_size("font_size")),label.size.y + 0.1,id)
 		assert_gte(label.get_theme_font_size("font_size"),10)

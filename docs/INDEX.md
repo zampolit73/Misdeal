@@ -1,3 +1,7 @@
+## D419 — current physical-card frame
+
+[User's new shared card frame, source hashes, native captures and F6](D419_CARD_FRAME_QA.md). Applied to all physical card faces; existing illustrations, live text and actions are retained.
+
 ## D418 — latest event
 
 [Jack: selected art, three choices, canine animation, native QA and F6](D418_JACK_EVENT.md).40/45 ordinary Act1 cards; event requires Ranger.

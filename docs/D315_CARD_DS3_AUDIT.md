@@ -1,5 +1,7 @@
 # D315 — Card DS3 actual repository audit (2026-10-21)
 
+> **Current visual follow-up:** D419's 2026-11-09 user-supplied frame replaces the former front material and its old optical coordinates. See [D419](D419_CARD_FRAME_QA.md) for the current runtime, source hashes and visual evidence. Historical D315/D316 style text below records the original DS3 approval; D419 supersedes the front-frame drawing/layout only.
+
 ## Art direction: USER APPROVED (not a generated mockup gameplay specification)
 
 The user explicitly selected the **first brighter black / vermilion / antique-gold DS3 Card Design System image**, requested **all** cards use it, and authorized direct GitHub implementation. Approved appearance:

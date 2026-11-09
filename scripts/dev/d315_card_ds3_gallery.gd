@@ -123,23 +123,23 @@ func _card_widget(title: String, type_name: String, full_text: String,
         return
     (button.get_node("Art") as TextureRect).texture = art
 
-    # D327: the ornate frame's real black category tab is at TOP-CENTER.
-    # Never float the label over the upper-right filigree or the painting.
+    # D419: the selected frame has a small dark upper field instead of the
+    # old black category tab. Keep the live card type below its top compass.
     var category := button.get_node("Type") as Label
-    category.position = Vector2(SKIN.TABLE_TAB_CENTER_X - 27.0, 16)
-    category.size = Vector2(54, 20)
+    category.position = Vector2(SKIN.TABLE_TAB_CENTER_X - 51.0, 25)
+    category.size = Vector2(102, 16)
     category.add_theme_font_size_override(
         "font_size", 8 if type_name.length() > 8 else 9
     )
     category.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    # Category is intentionally centered in its TOP-RIGHT TAB, not card body.
+    # Category remains live and visually secondary to the illustration.
     category.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     category.text = type_name
 
     var heading := button.get_node("Title") as Label
-    # D327: align to painted frame's optical axis rather than Button center.
-    heading.position = Vector2(SKIN.TABLE_COPY_CENTER_X - 93.0, 231)
-    heading.size = Vector2(186, 30)
+    # D419: center the title over the supplied parchment ribbon.
+    heading.position = Vector2(SKIN.TABLE_COPY_CENTER_X - 114.0, 213)
+    heading.size = Vector2(228, 34)
     heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     heading.add_theme_font_size_override("font_size", 12 if title.length() > 22 else 14)
@@ -150,8 +150,8 @@ func _card_widget(title: String, type_name: String, full_text: String,
     # vertical drawing. This explicit nested clipping well does both.
     var well := Control.new()
     well.name = "CardTextClip"
-    well.position = Vector2(SKIN.TABLE_COPY_CENTER_X - 93.0, 264)
-    well.size = Vector2(186, 36)
+    well.position = Vector2(SKIN.TABLE_COPY_CENTER_X - 108.0, 252)
+    well.size = Vector2(216, 34)
     well.clip_contents = true
     well.mouse_filter = Control.MOUSE_FILTER_IGNORE
     button.add_child(well)
@@ -171,8 +171,9 @@ func _card_widget(title: String, type_name: String, full_text: String,
     body.text = _short_copy(full_text)
 
     var hint := button.get_node("Hint") as Label
-    hint.position = Vector2(SKIN.TABLE_COPY_CENTER_X - 93.0, 305)
-    hint.size = Vector2(186, 21)
+    hint.position = Vector2(SKIN.TABLE_COPY_CENTER_X - 104.0, 288)
+    hint.size = Vector2(208, 14)
+    hint.add_theme_font_size_override("font_size", 9)
     hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     hint.text = "ЧИТАТЬ КАРТУ"

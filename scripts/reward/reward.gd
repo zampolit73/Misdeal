@@ -283,13 +283,16 @@ func _fit_v2_reward_copy(index: int) -> void:
 		return
 	# Native Label wrapping is known only after the actual card width settles.
 	# Both areas have fixed safe bounds inside the approved painted DS3 frame.
-	for point_size in range(effect.get_theme_font_size("font_size"), 8, -1):
+	# D419 preserves the minimum readable modifier size on the new lower
+	# description field; the card frame reserves this two-line box for it.
+	for point_size in range(effect.get_theme_font_size("font_size"), 9, -1):
 		effect.add_theme_font_size_override("font_size", point_size)
 		if effect.get_line_count() <= 2 and effect.get_line_count() * effect.get_theme_font("font").get_height(point_size) <= effect.size.y:
 			break
-	for point_size in range(description.get_theme_font_size("font_size"), 9, -1):
+	for point_size in range(description.get_theme_font_size("font_size"), 8, -1):
 		description.add_theme_font_size_override("font_size", point_size)
-		if description.get_line_count() <= 4 and description.get_line_count() * (point_size + 3) <= description.size.y:
+		var line_height := description.get_theme_font("font").get_height(point_size)
+		if description.get_line_count() <= 4 and description.get_line_count() * line_height <= description.size.y:
 			break
 
 
