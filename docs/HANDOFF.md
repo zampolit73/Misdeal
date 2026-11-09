@@ -1,3 +1,9 @@
+## D416 — remove baked encounter cards from Table background (2026-11-09)
+
+User screenshot shows two obsolete cards visible underneath live offer selection. Root cause: they are painted into `approved_variant_c/table_exact.webp`, not extra gameplay offers. Production Table now loads `assets/pixel/table/d416_clean_center/table_clean.webp`; restores only central tabletop and erases baked cards/Hold/+ labels. Original source retained; all decoded pixels outside Rect(380,316,520,340) match exactly. No gameplay/card/timing changes.
+
+Branch `codex/d416-clean-table-backdrop` follows D415/PR84 to keep the current selection-screen work. Native capture checks exposed tabletop, two offers, hover, choice motion and actual event navigation. SHA256-region regression guards the live asset path and untouched surroundings. Full native Godot4.7.2 GUT212/212,48 scripts,47,116 assertions; D289 Table smoke PASS. [D416 QA and prompt](D416_CLEAN_TABLE_QA.md). Next: CI and player F5 offer selection; no obsolete painted cards should remain behind moving live offers. D415 PR84 and D414 PR83 remain separately reviewable.
+
 ## D415 — protagonist choice matches squad dossier (2026-11-09)
 
 User requested the same approved dossier portraits on the protagonist-choice screen and a cohesive UI refresh. Branch `codex/d415-class-select-dossier-art` starts from main after merged PR81/82 (`3c364bb4`). Reuses exact D413 portrait thumbnails and panel artwork: no new character art generated. Dark obsidian cards, bronze dossier border, serif hierarchy, larger portrait windows, persistent selected seal, modest dimming and keyboard hint. Selection/confirmation, source unit stats, solo party and routing remain unchanged.

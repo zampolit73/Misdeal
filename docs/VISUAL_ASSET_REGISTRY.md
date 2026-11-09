@@ -1,3 +1,7 @@
+## D416 — clean central Table surface (2026-11-09)
+
+`assets/pixel/table/d416_clean_center/table_clean.webp` is the native1280x720 lossless runtime backdrop, replacing only the central Rect(380,316,520,340) of original Variant C. Built-in imagegen removes obsolete painted encounter cards/Hold/+ markers; generated `source.png` retained. Godot pack recipe feathers8px at the patch boundary and keeps all decoded surrounding pixels exact. Original `approved_variant_c/table_exact.webp` unchanged. [Prompt, recipe and QA](D416_CLEAN_TABLE_QA.md).
+
 ## D415 — reuse dossier portraits/material on ClassSelect (2026-11-09)
 
 The three `assets/pixel/ui/squad_dossier_d413/{knight,ranger,mage}_thumb.webp`640x480 portraits now also supply protagonist-choice illustrations, decoded at native size with linear display filtering. Same approved D413 `panel.webp` feeds a center-transparent NinePatchRect bronze border. No source images changed or regenerated; old ClassSelect v7 portraits, D278 frame source and parchment shader preserved. [Native screenshots/QA](D415_CLASS_SELECT_DOSSIER_QA.md).
