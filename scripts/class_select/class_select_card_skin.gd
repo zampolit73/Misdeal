@@ -1,5 +1,7 @@
 extends RefCounted
 
+const UI_MOTION := preload("res://scripts/ui/ui_motion.gd")
+
 # D415: dossier artwork/material language on the production protagonist choice.
 # All portraits, copy and choice buttons remain real interactive Godot nodes.
 const FRAME_PATH := "res://assets/pixel/ui/squad_dossier_d413/panel.webp"
@@ -195,13 +197,17 @@ static func set_state(button: Button, selected: bool, hovered: bool, dimmed: boo
 		button.modulate = Color(0.82, 0.79, 0.77, 0.94)
 	else:
 		button.modulate = Color.WHITE
-	var target_scale := Vector2(1.035, 1.035) if (hovered or selected) else Vector2.ONE
-	# Do not stack new tweens on pointer jitter.
-	if not button.scale.is_equal_approx(target_scale):
-		button.scale = target_scale
+	var target_scale := Vector2(1.022, 1.022) if hovered else Vector2(1.012, 1.012) if selected else Vector2.ONE
+	if not button.has_meta("d417_card_home_y"):
+		button.set_meta("d417_card_home_y", button.position.y)
+	var tween := UI_MOTION.replace_tween(button, &"d417_card_hover")
+	tween.set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(button, "scale", target_scale, 0.16)
+	tween.tween_property(button, "position:y", float(button.get_meta("d417_card_home_y")) - (7.0 if hovered else (3.0 if selected else 0.0)), 0.16)
 
 
 static func prepare_confirm(button: Button) -> void:
+	UI_MOTION.bind_button(button)
 	button.add_theme_font_size_override("font_size", 20)
 	button.add_theme_font_override("font", heading_font())
 	# A restrained metal inset gives the CTA a physical crimson enamel edge.

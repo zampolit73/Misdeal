@@ -648,14 +648,14 @@ func _animate_card_hover(button: Button, raised: bool) -> void:
 
 	if raised:
 		button.z_index = 20
-		tween.tween_property(button, "position", rest_position + Vector2(0.0, -14.0), 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		tween.tween_property(button, "rotation", rest_rotation * 0.24, 0.12)
-		tween.tween_property(button, "scale", Vector2(1.03, 1.03), 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "position", rest_position + Vector2(0.0, -8.0), 0.16).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "rotation", rest_rotation * 0.24, 0.16)
+		tween.tween_property(button, "scale", Vector2(1.018, 1.018), 0.16).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	else:
 		button.z_index = 2
-		tween.tween_property(button, "position", rest_position, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		tween.tween_property(button, "rotation", rest_rotation, 0.12)
-		tween.tween_property(button, "scale", Vector2.ONE, 0.12)
+		tween.tween_property(button, "position", rest_position, 0.16).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "rotation", rest_rotation, 0.16)
+		tween.tween_property(button, "scale", Vector2.ONE, 0.16)
 
 func _restore_card_pose_immediate(button: Button) -> void:
 	_kill_card_motion(button)

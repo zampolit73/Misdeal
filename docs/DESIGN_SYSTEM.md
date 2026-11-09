@@ -1,3 +1,7 @@
+## D417 — interface motion (2026-11-09)
+
+Modal entrance: cubic ease-out10px rise in220ms, opacity180ms. Table offer hover:8px/1.018× over160ms; ClassSelect hover7px/1.022×, selected3px/1.012×, no accumulating transforms. Action feedback: press0.975×/70ms, return130ms, focused/hovered1.012×. Explicit `ui_motion.gd` adoption only; no global UI-kit replacement. Real-time feedback ignores gameplay time scale; original action callbacks execute immediately. Existing scene transitions and deal/choice choreography preserved. [Native QA](D417_UI_MOTION_QA.md).
+
 ## D415 — protagonist-choice dossier consistency (2026-11-09)
 
 ClassSelect opts into D413 portrait identity, obsidian caption wells and bronze nine-slice borders. Serif title/class names/confirm, bone/gold text and a persistent burgundy selected seal distinguish committed selection from temporary hover. Keep the approved Wizard tabletop visible; no full-screen panel. All content and controls remain live, existing two-step confirmation/solo rules unchanged. Native1280x720 QA: [D415](D415_CLASS_SELECT_DOSSIER_QA.md).

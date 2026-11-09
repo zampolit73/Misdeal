@@ -1,5 +1,7 @@
 extends Control
 
+const UI_MOTION := preload("res://scripts/ui/ui_motion.gd")
+
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 const SQUAD_DOSSIER_V3 := preload("res://scripts/ui/squad_dossier_v3.gd")
@@ -75,6 +77,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				_select_role("mage")
 
 func _close() -> void:
+	if close_button.disabled:
+		return
+	UI_MOTION.stop(frame)
 	set_process_input(false)
 	set_process_unhandled_input(false)
 	close_button.disabled = true
@@ -95,16 +100,10 @@ func _select_role(role: String, animate: bool = true) -> void:
 		_animate_role_switch(role)
 
 func _animate_open() -> void:
-	dim.modulate.a = 0.0
-	frame.pivot_offset = frame.size * 0.5
-	frame.scale = Vector2(0.985, 0.985)
-	frame.modulate.a = 0.0
-
-	var tween := create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(dim, "modulate:a", 1.0, 0.14)
-	tween.tween_property(frame, "modulate:a", 1.0, 0.16).set_delay(0.02)
-	tween.tween_property(frame, "scale", Vector2.ONE, 0.20).set_delay(0.02).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	if close_button.disabled:
+		return
+	UI_MOTION.bind_button(close_button)
+	UI_MOTION.reveal(frame, dim)
 
 
 func _animate_role_switch(role: String) -> void:
