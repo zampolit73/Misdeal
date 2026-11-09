@@ -1,3 +1,7 @@
+## Editor diagnostics follow-up (2026-11-09)
+
+- [x] Bone Shepherd smoke null-array parser error and stale37-card guard fixed;54/54 native scene completion; regression included in GUT.
+
 ## D412 — approved full pack integrated in production Battle (2026-11-09)
 
 Player approved quality, scale and all three animations («отлично», then «продолжай»). Production now loads the exact `hero_c3_d412_polish` 75 poses, with a single rollback flag and validated archived C3 fallback. Old D407–D409 single-frame patches do not overwrite new artwork. D404 travelled-distance gait and D405 attack timing remain. Correct source sole Y90, exact accepted preview scaling (Ranger1.40, Knight/Mage1.47), immediate first-target facing. Local Godot4.7.2 **208/208 GUT**, 45 scripts, 47,059 assertions. Actual Court trio win→Reward→Table route PASS; native GPU real Battle captured. No human F5 navigation PASS claimed. See [D412 QA](D412_THREE_HERO_PACK_QA.md). PR81 pending CI/review; no merge to main.

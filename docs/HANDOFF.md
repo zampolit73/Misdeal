@@ -1,3 +1,7 @@
+## Editor fix — Bone Shepherd smoke parses again (2026-11-09)
+
+Screenshot error at `scripts/dev/bone_shepherd_smoke.gd:114` fixed: resource is a typed runtime member rather than a constant, avoiding Godot4.7 exported-empty-array constant evaluation as null. Restore current deck guard39 (was37). No EncounterData/resource/combat/art changes. Native original scene54/54 completed,14 whistle activations,errors=[]; new dynamic scene-load/validator GUT regression passes. Full local Godot4.7.2 GUT209/209,46 scripts,47,064 assertions. Existing transparent Shepherd idle-cel repair warning remains unrelated.
+
 ## D412 — approved full pack integrated in production Battle (2026-11-09)
 
 Verified [Godot4.7.2 CI SUCCESS](https://github.com/zampolit73/Misdeal/actions/runs/42526508093) for integration commit `41aedac7`: 208/208 real GUT, actual Battle→Reward→Table route, relevant scene smokes and GPU screenshot capture passed. Full authored RELEASE matrix skipped. PR81 is ready for review; main unmerged.

@@ -1,3 +1,7 @@
+## Editor fix — Bone Shepherd smoke parses again (2026-11-09)
+
+Screenshot error at `scripts/dev/bone_shepherd_smoke.gd:114` fixed: resource is a typed runtime member rather than a constant, avoiding Godot4.7 exported-empty-array constant evaluation as null. Restore current deck guard39 (was37). No EncounterData/resource/combat/art changes. Native original scene54/54 completed,14 whistle activations,errors=[]; new dynamic scene-load/validator GUT regression passes. Full local Godot4.7.2 GUT209/209,46 scripts,47,064 assertions. Existing transparent Shepherd idle-cel repair warning remains unrelated.
+
 ## D412 — approved full pack integrated in production Battle (2026-11-09)
 
 Player approved quality, scale and all three animations («отлично», then «продолжай»). Production now loads the exact `hero_c3_d412_polish` 75 poses, with a single rollback flag and validated archived C3 fallback. Old D407–D409 single-frame patches do not overwrite new artwork. D404 travelled-distance gait and D405 attack timing remain. Correct source sole Y90, exact accepted preview scaling (Ranger1.40, Knight/Mage1.47), immediate first-target facing. Local Godot4.7.2 **208/208 GUT**, 45 scripts, 47,059 assertions. Actual Court trio win→Reward→Table route PASS; native GPU real Battle captured. No human F5 navigation PASS claimed. See [D412 QA](D412_THREE_HERO_PACK_QA.md). PR81 pending CI/review; no merge to main.
