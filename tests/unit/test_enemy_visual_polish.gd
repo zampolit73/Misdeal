@@ -50,3 +50,20 @@ func test_new_enemy_packs_are_complete_distinct_and_are_the_live_textures() -> v
 		var frames: SpriteFrames=LIB.get_frames(role)
 		var tile := frames.get_frame_texture("idle",0) as AtlasTexture
 		assert_eq(tile.atlas.get_image().get_data(),image.get_data(),role+": no silent legacy fallback")
+
+func test_legacy_asset_fallback_retains_original_stature() -> void:
+	var approved: SpriteFrames = LIB.get_frames("skeleton")
+	var original := Image.new()
+	var raw := Marshalls.base64_to_raw(FileAccess.get_file_as_string(LIB.BASE_DIR+"skeleton.webp.b64").strip_edges())
+	assert_eq(original.load_webp_from_buffer(raw),OK)
+	var fallback: SpriteFrames = LIB._create_frames("skeleton",ImageTexture.create_from_image(original))
+	var stage := Node2D.new()
+	add_child_autofree(stage)
+	var actor := UNIT.instantiate() as BattleUnit
+	actor.configure(load("res://resources/units/skeleton.tres"),1,Vector2.ZERO)
+	stage.add_child(actor)
+	actor.set_process(false)
+	assert_eq(actor.sprite_frames,fallback)
+	assert_false(LIB.is_polished_enemy_frames("skeleton",fallback))
+	assert_eq(actor.base_sprite_scale,Vector2.ONE*1.25)
+	LIB._frames_cache["skeleton"]=approved

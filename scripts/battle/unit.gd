@@ -276,7 +276,11 @@ func _ready() -> void:
 	rim_sprite.flip_h = art_sprite.flip_h
 	# Preserve pixel silhouettes; scale only the art, not physics or hitboxes.
 	var sprite_scale: float = BOSS_DISPLAY_SCALE if is_boss else (HERO_DISPLAY_SCALE if team == 0 else ENEMY_DISPLAY_SCALE)
-	var role_art_scale: float = float(HERO_ROLE_VISUAL_SCALES.get(visual_role, 1.0)) if team == 0 else float(ENEMY_ROLE_VISUAL_SCALES.get(visual_role, 1.0))
+	var role_art_scale := 1.0
+	if team == 0:
+		role_art_scale = float(HERO_ROLE_VISUAL_SCALES.get(visual_role, 1.0))
+	elif ANIMATION_LIBRARY.is_polished_enemy_frames(visual_role, sprite_frames):
+		role_art_scale = float(ENEMY_ROLE_VISUAL_SCALES.get(visual_role, 1.0))
 	# Match the exact accepted D412 preview body proportions, including
 	# Mage's lower source head relative to the staff tip.
 	if team == 0 and visual_role == "mage" and ANIMATION_LIBRARY.is_approved_hero_frames(visual_role, sprite_frames):
