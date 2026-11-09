@@ -1,5 +1,7 @@
 ## D418 — latest event
 
+- **A1V1 concept, pending visual review:** [Act I Memory Stained Glass — 24 narrative shards](ACT1_MEMORY_STAINED_GLASS_CONCEPT.md). Design/handoff only, not yet a Godot feature.
+
 [Jack: selected art, three choices, canine animation, native QA and F6](D418_JACK_EVENT.md).40/45 ordinary Act1 cards; event requires Ranger.
 
 ## Current visual-polish delivery (2026-11-09)

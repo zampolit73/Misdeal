@@ -1,3 +1,7 @@
+## A1V1 — Memory Stained Glass narrative handoff (2026-11-10)
+
+**Documentation/design only**, no runtime change. Preserved approved direction for a 24-shard, multi-run, class-perspective memory stained glass, an ID-stable table of all 24 working narratives, canon and spoiler constraints, replay/anti-duplicate goals, and the tentative placement behind the Wizard as a visual hypothesis. Future visual comparison required before changes to approved table. See [concept and next steps](docs/ACT1_MEMORY_STAINED_GLASS_CONCEPT.md).
+
 ## D418 — Jack event and Ranger animal companion (2026-11-09)
 
 New Ranger-gated Tier1 event: rescue Jack for25 gold, pass unchanged, or take hunting token for+10% Ranger damage this run. Exact user-selected first gateway painting; three truthful choice pictures, complete25-pose dog, ordinary Battle integration, pet-only deployment spacing, dossier/summary. Hero count/solo-duo scaling and all approved art/timings preserved.40/45 pool; local231 GUT and native16-frame route. [QA/F6](docs/D418_JACK_EVENT.md); full RELEASE CI required before merge.
