@@ -1,5 +1,10 @@
 # Misdeal — current handoff
 
+## D421 — dedicated laboratory arena
+
+New laboratory plate is live; clear central floor, chemical equipment at edges, original hazards/roster/timing preserved. Local235/235 GUT and native real-battle captures. [Production notes and F6](D421_LABORATORY_ARENA.md). Branch `codex/defiled-laboratory-arena` stacks on PR90; require green CI before integration.
+
+
 ## D420 — enemy art and animation delivery
 
 [PR90](https://github.com/zampolit73/Misdeal/pull/90) · [final-head RELEASE checks](https://github.com/zampolit73/Misdeal/pull/90/checks). Keep open for review; no merge claimed.

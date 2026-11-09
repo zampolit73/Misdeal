@@ -1,5 +1,10 @@
 # Misdeal — current roadmap
 
+## D421 — laboratory environment
+
+Implemented dedicated laboratory arena and native regression capture. Review real battle evidence; merge after dependency PR90 and successful CI. [Delivery](D421_LABORATORY_ARENA.md).
+
+
 ## Completed checkpoint
 
 - D420 user-authorized all24 enemy visual roles/600 new poses, individual stature and authored motion feedback. [Native QA and F6](ENEMY_VISUAL_POLISH.md); RELEASE/player review tracked in [PR90](https://github.com/zampolit73/Misdeal/pull/90).

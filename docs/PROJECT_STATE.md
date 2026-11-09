@@ -1,5 +1,10 @@
 # Misdeal — current project state
 
+## D421 — laboratory arena
+
+Dedicated alchemy workshop connected only to the laboratory encounter; original combat data preserved. Native Godot battle evidence and235/235 GUT pass. [Assets, QA and F6](D421_LABORATORY_ARENA.md). Stacked on D420/PR90; CI required before merge.
+
+
 ## D420 — complete enemy visual polish
 
 Delivery: [PR90](https://github.com/zampolit73/Misdeal/pull/90) · [final-head RELEASE checks](https://github.com/zampolit73/Misdeal/pull/90/checks).

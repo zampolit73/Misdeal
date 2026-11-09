@@ -1,6 +1,7 @@
 extends TextureRect
 
 const ARENA_CRYPT := "crypt"
+const ARENA_LABORATORY := "defiled_laboratory"
 const ARENA_GRAVEYARD := "graveyard"
 const ARENA_GALLOWS := "gallows"
 const ARENA_OSSUARY := "ossuary"
@@ -22,6 +23,7 @@ const COURT_QA_LEGACY_PATH := "res://assets/pixel/battle/arenas/court_of_the_mut
 const BACKDROP_SIZE := Vector2i(1280, 720)
 
 const ARENA_PATHS := {
+	ARENA_LABORATORY: "res://assets/pixel/battle/arenas/defiled_laboratory_d421/arena.webp.b64",
 	ARENA_CRYPT: "res://assets/pixel/battle/arenas/arena_redraw_v2/crypt.webp",
 	ARENA_GRAVEYARD: "res://assets/pixel/battle/arenas/arena_redraw_v2/graveyard.webp",
 	ARENA_GALLOWS: "res://assets/pixel/battle/arenas/arena_redraw_v2/gallows.webp",
@@ -55,6 +57,8 @@ func _ready() -> void:
 
 func set_arena_id(value: String) -> void:
 	match value:
+		ARENA_LABORATORY:
+			arena_id = value
 		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH, ARENA_BONE_SWARM, ARENA_GRAVE_CROSSFIRE, ARENA_IRON_WALL, ARENA_LAST_BELL, ARENA_FIRING_SQUARE, ARENA_BONE_RITUAL, ARENA_THREADBARE_THEATRE, ARENA_BLACK_CROSSING, ARENA_BLACK_LANTERN_ROAD, ARENA_COURT_OF_THE_MUTE:
 			arena_id = value
 		_:

@@ -41,7 +41,7 @@ func _run() -> void:
 		return
 	# Use an existing shipped encounter with actual Knight vs two skeletons
 	# and bone archer; no artificial enemies or fallback unit art.
-	state.call("select_encounter", ENCOUNTER)
+	state.call("select_encounter", _encounter_path())
 
 	var packed := load(BATTLE_SCENE) as PackedScene
 	if packed == null:
@@ -55,7 +55,7 @@ func _run() -> void:
 	await process_frame
 	var encounter := _battle.get("encounter") as EncounterData
 	var units: Array = _battle.get("units")
-	if encounter == null or encounter.encounter_id != "graveyard_ambush":
+	if encounter == null or encounter.encounter_id != _encounter_id():
 		_fail("wrong live encounter selected")
 		return
 	var heroes := 0
@@ -196,3 +196,9 @@ func _capture_natural_attack() -> void:
 func _fail(message: String) -> void:
 	push_error("CI4_BATTLE_CAPTURE_FAIL: " + message)
 	quit(1)
+
+func _encounter_path() -> String:
+	return ENCOUNTER
+
+func _encounter_id() -> String:
+	return "graveyard_ambush"

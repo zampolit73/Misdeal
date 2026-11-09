@@ -1,5 +1,10 @@
 ## D420 — user-authorized complete enemy visual upgrade (2026-11-09)
 
+## D421 — dedicated laboratory backdrop
+
+User requested an arena in the established visual language. Use an independent authored1280×720 plate and arena ID; preserve the existing encounter and hazard controller. D168 card-art choice gates do not apply to combat backgrounds. Original crypt remains available. [Details](D421_LABORATORY_ARENA.md).
+
+
 User explicitly requests better artwork/animation for all enemies and individual stature corrections. Enemy repainting is authorized while retaining each identity, equipment and palette. Deliver complete25-pose96px packs, retain originals and validate in Godot. Distance-sampled WALK, authored HIT without actor/UI zoom, resetting impact transforms before DEATH and full collapse before visual fade are presentation changes; attack/damage/cooldown/AI/physics remain unchanged. D412 heroes/Jack stay exact; card approvals remain separate.
 
 ## D418 — selected Jack gateway illustration (2026-11-09)
