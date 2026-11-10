@@ -1,11 +1,8 @@
 ## A1V1 — Memory Stained Glass narrative handoff (2026-11-10)
 
-## New Game means a clean collection — user correction
+## New Game — clean memory (user correction)
 
-Main-menu «Новая игра» now starts both run and Memory Glass at0/24, after an explicit confirmation. The dialog separately offers «Новый забег — сохранить витраж»; RunEnd's existing new-run action still preserves collection. This supersedes earlier text saying main New Game always preserves glass. Continue/load never reset collection. Merely opening/canceling the dialog leaves both files untouched. No automatic migration/reset is run on launch/update.
-
-Before clearing, the memory source is retained as a unique `memory_glass.json.before_new_game_<token>` and `.bak`; previous run remains `.previous`. Failed reset restores the run slot and does not clear the in-memory collection. Real Godot confirmation→Intro→Knight→Table→viewer verifies0/24 without resolving a card; the empty profile is also re-read from disk. First resolved card can legitimately open a new fragment. All QA uses injected paths; the player's current profile is not touched by agent testing.
-
+Confirmed main «Новая игра» starts at0/24 with archived prior data. The separate dialog action «Новый забег — сохранить витраж» and RunEnd preserve collection. Cancel/load/startup never clear it. Local245 GUT tests and native confirmation→Intro→Table0/24 pass; RELEASE required before merge. [Reset contract and QA](docs/RUN_SAVE_SYSTEM.md).
 
 ## Run save system
 
