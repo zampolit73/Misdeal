@@ -38,7 +38,7 @@ func run() -> void:
 		var table: Control=load(SAVE.TABLE).instantiate()
 		root.add_child(table)
 		current_scene=table
-		await create_timer(1.5).timeout
+		await wait_table_ready()
 		table.get_node("MemoryTable").open_viewer()
 		await create_timer(0.3).timeout
 		await snap("new_game_memory_zero")
@@ -52,7 +52,7 @@ func run() -> void:
 		root.add_child(screen)
 		current_scene=screen
 		screen.get_node("ContinueButton").pressed.emit()
-		await create_timer(1.5).timeout
+		await wait_table_ready()
 		assert(current_scene.scene_file_path==SAVE.TABLE)
 		assert(state.current_offer_ids==loaded.state.current_offer_ids)
 		assert(state.gold==123)
@@ -93,7 +93,7 @@ func run() -> void:
 	var table: Control=load("res://scenes/table/table.tscn").instantiate()
 	root.add_child(table)
 	current_scene=table
-	await create_timer(2.0).timeout
+	await wait_table_ready()
 	var offers: Array=state.current_offer_ids.duplicate()
 	assert(SAVE.shared.write_slot(state))
 	await snap("table_saved")
@@ -116,7 +116,7 @@ func run() -> void:
 	table=load("res://scenes/table/table.tscn").instantiate()
 	root.add_child(table)
 	current_scene=table
-	await create_timer(1.5).timeout
+	await wait_table_ready()
 	print("RUN_SAVE_NATIVE_PASS")
 	menu.open_menu()
 	menu.save_exit()
@@ -124,3 +124,13 @@ func snap(label: String) -> void:
 	await RenderingServer.frame_post_draw
 	root.get_texture().get_image().save_png(output.path_join(label+".png"))
 
+
+func wait_table_ready() -> void:
+	var deadline := Time.get_ticks_msec()+15000
+	while Time.get_ticks_msec()<deadline:
+		var screen := current_scene
+		if screen != null and screen.scene_file_path==SAVE.TABLE and not screen.get("selection_locked") and not screen.get("deal_in_progress"):
+			return
+		await create_timer(0.05).timeout
+	push_error("RUN_SAVE_CAPTURE_FAIL: Table did not reach a safe checkpoint")
+	quit(1)
