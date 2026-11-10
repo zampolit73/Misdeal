@@ -1,5 +1,10 @@
 ## Cinematic Travel V1 — Тропа вдоль мёртвых стен
 
+## Travel panorama — mountain valley correction
+
+User-requested art correction removes repetitive bridge-like ruins from the left/central middle distance and replaces them with distinct natural ridges and mist. Main castle, close right wall/banner, walking road and separate foreground retain the same composition. Cloth animation now masks only the remaining close banner; mountains stay rigid. Travel routing, duration, party sprites and game logic are unchanged. Original background remains recoverable in PR #103 / d4fead3f. Native verification uses the existing travel capture and F6 preview.
+
+
 Presentation-only, skippable4s travel overlay through the existing SceneRouter after the five Siege Echo outcomes and completed victory rewards. Explicit pre-completion context; no RunState mutation/save stage/deal management. Real D412 walk sprites retain actual party roles, two original parallax layers, soft mist and restrained cloth motion. Space/Enter/ESC/button skip, pause, disabled-feature fallback, single-navigation guard. [Contract, QA and F6](docs/CINEMATIC_TRAVEL_V1.md). Full RELEASE required before merge; update user's main project after green checks.
 
 ## Echo of the Siege — fifteen decision-specific illustrations

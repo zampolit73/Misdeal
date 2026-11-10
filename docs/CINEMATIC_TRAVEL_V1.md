@@ -23,3 +23,7 @@ New GUT checks all15 context texts, party snapshot isolation, disabled flag, def
 F6: `scenes/dev/travel_transition_playtest.tscn`. It loops an explicit QA trio without touching run/save; Space/Enter/ESC/button skips. F5: complete any Echo event, inspect result, press К СТОЛУ;4s travel or skip. Verify solo/duo/trio, role order, readable caption, footsteps/contact, foreground depth, pause/resume, one completion, save/continue no old travel. After victory claim upgrade AND loot first, then travel. Defeat/XIII/menu/load bypass. Main project is updated only after green required checks, preserving local settings.
 
 Native reproduction: `godot --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility --audio-driver Dummy --script res://scripts/dev/travel_capture.gd -- <absolute-output-dir>`. Representative frames: docs/qa/travel_v1. Required final PR CI is authoritative.
+
+## Mountain valley art correction
+
+The user rejected repeated distant bridge arches. The revised source replaces the left/central middle-distance architecture with irregular mountain ridges and mist, preserving the near road/wall and main castle. Only the remaining right banner receives cloth distortion. Original source is retained in Git history (PR #103); provenance records the revised source hash. Native evidence: `docs/qa/travel_mountains/`.
