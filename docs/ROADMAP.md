@@ -1,5 +1,17 @@
 # Misdeal вЂ” current roadmap
 
+## Echo of the Siege — artwork deployed; native QA still pending (2026-11-10)
+
+- [x] User approved five Siege Echo paintings; current `borrowed_boots` is **new squire v2**.
+- [x] Commit five source PNGs, ten card/backdrop WebPs and their hashes to main: `56c7a70d`.
+- [x] Replace **only** `borrowed_boots` approved PNG and two WebPs, update manifest: `3ce01ac1`.
+- [x] Confirm via GitHub commit diff that the other four event paintings were not touched by the v2 replacement.
+- [ ] Actual Godot 4.7.x F6 verification of all five cards and their event backdrops.
+- [ ] Validate gameplay choice/return paths and RELEASE CI for the final binary head.
+
+Prior unchecked "binary deployment" roadmap entries below are historical and superseded. [Rollout details](ECHO_SIEGE_ART_ROLLOUT.md).
+
+
 ## Echo of the Siege — boots-only revision (2026-11-10)
 
 - [x] Preserve newly user-approved `borrowed_boots` art (young half-undead squire) as immutable PNG and two size-checked WebPs.
