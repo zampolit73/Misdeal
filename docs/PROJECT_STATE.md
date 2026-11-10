@@ -1,5 +1,10 @@
 # Misdeal вЂ” current project state
 
+## Echo of the Siege — visual approval status (2026-11-10)
+
+**4/5 new illustrations explicitly approved; not yet integrated into runtime WebP.** Confirmed final sources for `banner_seamstress`, `unsent_letters`, `borrowed_boots`, `false_weights` in user's Library at `/Misdeal/approved_art/` and exact SHA256/compositions in [DECISIONS.md](DECISIONS.md). Most recent `false_weights`: undead keeper deceitfully weighs stones against grain before **empty-headed soldier scarecrows**, with exact gold ring/cross shaft on burgundy banner. Last illustration awaiting approval: `last_signal` («Погасший сигнал»). Once approved, batch-integration of all five should preserve existing events, choices, balance, DS3, rollback assets and native F6 QA. See [HANDOFF.md](HANDOFF.md).
+
+
 ## Final five Act I stories вЂ” 45 ordinary cards
 
 Five new original noncombat events, fifteen art candidates with selected finals, existing DS3 and actual choices/ordinary tier dealing. Godot 4.7.2: 260/260 Linux GUT tests (48,919 assertions), 45 native frames on Windows and Linux. [PR #98](https://github.com/zampolit73/Misdeal/pull/98) carries the required full RELEASE checks. [Effects, sources, QA and F6](ACT1_FINAL_FIVE_CARDS.md). This task explicitly delegates art selection; PR89/90/92 remain independent.
