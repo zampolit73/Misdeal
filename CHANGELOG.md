@@ -1,3 +1,7 @@
+# Final five Act I cards
+
+Added Знамя на бинты, Запертая почта, Чужие сапоги, Неверные гири and Погасший сигнал:45 ordinary cards, fifteen real event outcomes, original artwork, save-safe one-time consequences and native QA. See docs/ACT1_FINAL_FIVE_CARDS.md.
+
 ## A1V1 — Memory Stained Glass narrative handoff (2026-11-10)
 
 ## Memory Glass — enlarged inspection

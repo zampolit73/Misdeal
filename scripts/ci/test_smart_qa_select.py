@@ -2,6 +2,10 @@ import unittest
 from smart_qa_select import classify
 
 class SelectorTests(unittest.TestCase):
+    def test_final_five_requires_full_release(self):
+        for path in ("scripts/event/final_five_events.gd", "scripts/dev/final_five_capture.gd"):
+            self.assertEqual(classify([path])["mode"], "release")
+
     def test_jack_event_requires_complete_native_release(self):
         self.assertEqual(classify(["resources/cards/jack.tres"])["mode"], "release")
         self.assertEqual(classify(["scripts/dev/jack_event_capture.gd"])["mode"], "release")
