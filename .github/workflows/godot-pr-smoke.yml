@@ -408,7 +408,7 @@ jobs:
           timeout 240s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
             env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
             --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility \
-            --script res://scripts/dev/final_five_capture.gd -- "$dest" 2>&1 | tee "$dest/capture.log"
+            --audio-driver Dummy --script res://scripts/dev/final_five_capture.gd -- "$dest" 2>&1 | tee "$dest/capture.log"
           grep -Fq 'FINAL_FIVE_NATIVE_PASS: 45' "$dest/capture.log"
           ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed|Condition.*true' "$dest/capture.log"
 
