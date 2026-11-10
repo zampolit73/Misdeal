@@ -1,3 +1,7 @@
+## Echo of Siege — prepared art delivery guard (2026-11-10)
+
+Five approved source PNGs and their ten card/backdrop WebPs exist in the conversation ZIP, **not in the GitHub runtime yet**. A GitHub installer `scripts/dev/install_echo_siege_art.ps1` performs exact hash validation, copies only those files and updates the approved source manifest; `scripts/dev/pack_final_five_assets.gd` now respects the explicit approved source paths after import and refuses silent fallback. Full provenance in [ECHO_SIEGE_ART_ROLLOUT.md](ECHO_SIEGE_ART_ROLLOUT.md). Native QA is pending the binary import.
+
 > A1V2 implementation supersedes the earlier concept-only status: final user-approved source, viewer, persistence and gameplay hooks. See [A1V2 QA](A1V2_MEMORY_STAINED_GLASS_QA.md).
 
 ## Memory viewer — approved Variant3
