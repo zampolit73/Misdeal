@@ -1,5 +1,10 @@
 # Final five Act I cards
 
+## Echo of Siege — final Borrowed Boots squire art (approval/package, 2026-11-10)
+
+User replaced earlier quartermaster artwork for `borrowed_boots` with exact user-supplied image of a half-undead young squire pulling on oversized boots in a ruined camp. Verified 1280×853 PNG and prepared lossless contain-fit WebP card 448×274 and backdrop 1280×720; safe ZIP importer pushes only the three boots assets plus source/output hashes in the manifest. Preserves the other four approved events and all gameplay. **Art v2 awaits GitHub binary push and native F6 QA**. [Full rollout](docs/ECHO_SIEGE_BOOTS_V2.md).
+
+
 ## Echo of Siege — safe installer branch and staging guards (2026-11-10)
 
 Diagnosed missing local `install_echo_siege_art.ps1` as a likely checkout branch mismatch: GitHub `main` contains the file; other work branches do not. Hardened the guarded install script to refuse `-Push` on a non-main local checkout, avoid clobbering an edited asset manifest, and commit only the exact five images and manifest paths instead of unrelated staged Godot files. Verified all 5 PNG and 10 WebP checksums in prepared ZIP. Binary runtime integration and Godot F6 QA have **not** yet happened.
