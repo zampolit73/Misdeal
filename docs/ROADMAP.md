@@ -1,5 +1,15 @@
 # Misdeal вЂ” current roadmap
 
+## Echo of the Siege — boots-only revision (2026-11-10)
+
+- [x] Preserve newly user-approved `borrowed_boots` art (young half-undead squire) as immutable PNG and two size-checked WebPs.
+- [x] Prepare a self-contained, checksum-verified ZIP/installer that changes only the boots image and its manifest hashes.
+- [ ] Push `borrowed_boots` v2 files to `main` and verify source/output hashes; four other cards must be unchanged.
+- [ ] Run updated Godot F6 card/event visual check and CI; no success claim before evidence.
+
+[Full handoff and safe import](ECHO_SIEGE_BOOTS_V2.md).
+
+
 ## Echo of the Siege — art selection complete, deployment outstanding (2026-11-10)
 
 - [x] Approve all five final event paintings, including `last_signal` option 1.
