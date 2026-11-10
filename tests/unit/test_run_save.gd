@@ -132,3 +132,55 @@ func test_pause_cannot_interrupt_scene_swap() -> void:
 	assert_false(is_instance_valid(menu.get("menu")))
 	assert_false(get_tree().paused)
 	transition.set("_busy",false)
+
+func test_explicit_new_game_clears_memory_and_archives_it() -> void:
+	var memory:=MEMORY.instance()
+	memory.path="res://.tmp/new_game_memory.json"
+	memory.unlocked.assign(["SG01","SG13"])
+	memory.run_ledger["old"]={"earned":2,"seen":{"0:bone_patrol":true}}
+	assert_true(memory.save_profile())
+	service.path="res://.tmp/new_game_run.json"
+	if FileAccess.file_exists(service.path): DirAccess.remove_absolute(service.path)
+	assert_true(service.write_slot(RunState))
+	assert_true(service.prepare_new_game())
+	assert_true(memory.unlocked.is_empty())
+	assert_true(memory.run_ledger.is_empty())
+	assert_eq(memory.pending,0)
+	assert_false(FileAccess.file_exists(service.path))
+	assert_true(FileAccess.file_exists(service.path+".previous"))
+	var reopened:=MEMORY.new()
+	reopened.open_profile(memory.path)
+	assert_true(reopened.unlocked.is_empty())
+	var previous:=MEMORY.new()
+	previous.open_profile(memory.path+".bak")
+	assert_eq(previous.unlocked,["SG01","SG13"])
+
+func test_memory_only_new_game_still_asks_and_cancel_keeps_memory() -> void:
+	MEMORY.instance().unlocked.assign(["SG13"])
+	var screen:=load("res://scenes/main/main.tscn").instantiate() as Control
+	add_child_autofree(screen)
+	screen.call("_on_start_button_pressed")
+	var found:=false
+	for child in screen.get_children():
+		if child is ConfirmationDialog:
+			found=true
+			assert_true(child.dialog_text.contains("0/24"))
+			child.canceled.emit()
+			child.hide()
+	assert_true(found)
+	assert_eq(MEMORY.instance().unlocked,["SG13"])
+
+func test_next_run_keeps_collection_and_failed_reset_keeps_run() -> void:
+	MEMORY.instance().unlocked.assign(["SG13"])
+	assert_true(service.prepare_new_game(false))
+	RunState.reset_run()
+	assert_eq(MEMORY.instance().unlocked,["SG13"])
+	RunState.choose_protagonist("knight")
+	service.path="res://.tmp/blocked_new_game.json"
+	if FileAccess.file_exists(service.path): DirAccess.remove_absolute(service.path)
+	assert_true(service.write_slot(RunState))
+	var previous:=FileAccess.get_file_as_bytes(service.path)
+	MEMORY.instance().error_message="Проверочный отказ записи профиля"
+	assert_false(service.prepare_new_game())
+	assert_eq(FileAccess.get_file_as_bytes(service.path),previous)
+	assert_eq(MEMORY.instance().unlocked,["SG13"])

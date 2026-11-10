@@ -32,21 +32,30 @@ func _animate_main_in() -> void:
 
 func _on_start_button_pressed() -> void:
 	var service := preload("res://scripts/core/run_save_service.gd").instance()
-	if not service.path.is_empty() and FileAccess.file_exists(service.path):
+	if (not service.path.is_empty() and FileAccess.file_exists(service.path)) or not preload("res://scripts/memory/memory_profile.gd").instance().unlocked.is_empty():
 		var dialog := ConfirmationDialog.new()
-		dialog.dialog_text = "Начать новую игру? Текущее прохождение будет заменено. Витраж Памяти сохранится."
+		dialog.title = "Новая игра"
+		dialog.cancel_button_text = "Отмена"
+		dialog.dialog_text = "Начать новую игру с нуля?\nПрохождение и Витраж Памяти начнутся с 0/24.\nПрежние данные сохранятся в резервной копии."
 		add_child(dialog)
+		dialog.ok_button_text = "Начать с нуля"
+		dialog.add_button("Новый забег — сохранить витраж",true,"next_run")
+		dialog.custom_action.connect(func(action: String):
+			if action == "next_run":
+				dialog.hide()
+				_begin_new_run(false))
+		for button in [dialog.get_ok_button(),dialog.get_cancel_button()]:
+			MISDEAL_UI_KIT.apply_action_button(button,MISDEAL_UI_KIT.BRONZE,false)
 		dialog.confirmed.connect(_begin_new_run)
 		dialog.popup_centered()
 	else:
 		_begin_new_run()
 
-func _begin_new_run() -> void:
+func _begin_new_run(reset_memory: bool = true) -> void:
 	var service := preload("res://scripts/core/run_save_service.gd").instance()
-	if not service.path.is_empty() and FileAccess.file_exists(service.path):
-		if DirAccess.copy_absolute(service.path,service.path+".previous") != OK or DirAccess.remove_absolute(service.path) != OK:
-			status_label.text="Не удалось сохранить прежний файл. Новая игра не начата."
-			return
+	if not service.prepare_new_game(reset_memory):
+		status_label.text=service.error_message
+		return
 	RunState.reset_run()
 	SCENE_ROUTER.change_to(self,"res://scenes/intro/intro.tscn")
 

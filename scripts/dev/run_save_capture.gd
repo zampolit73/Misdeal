@@ -16,6 +16,36 @@ func run() -> void:
 	MEMORY.shared.open_profile(memory_path)
 	root.size=Vector2i(1280,720)
 	var state:=root.get_node("RunState")
+	if args.size()>1 and args[1]=="new-game":
+		MEMORY.shared.unlocked.assign(["SG13"])
+		assert(MEMORY.shared.save_profile())
+		var screen: Control=load("res://scenes/main/main.tscn").instantiate()
+		root.add_child(screen)
+		current_scene=screen
+		screen.call("_on_start_button_pressed")
+		await create_timer(0.4).timeout
+		await snap("new_game_confirmation")
+		for child in screen.get_children():
+			if child is ConfirmationDialog: child.confirmed.emit()
+		await create_timer(0.8).timeout
+		assert(current_scene.scene_file_path=="res://scenes/intro/intro.tscn")
+		assert(MEMORY.shared.unlocked.is_empty())
+		var reread:=MEMORY.new()
+		reread.open_profile(memory_path)
+		assert(reread.unlocked.is_empty())
+		current_scene.free()
+		state.choose_protagonist("knight")
+		var table: Control=load(SAVE.TABLE).instantiate()
+		root.add_child(table)
+		current_scene=table
+		await create_timer(1.5).timeout
+		table.get_node("MemoryTable").open_viewer()
+		await create_timer(0.3).timeout
+		await snap("new_game_memory_zero")
+		assert(MEMORY.shared.unlocked.is_empty())
+		print("NEW_GAME_MEMORY_RESET_PASS")
+		quit()
+		return
 	if args.size()>1 and args[1]=="read":
 		var loaded: Dictionary=SAVE.shared.read_slot(state)
 		var screen: Control=load("res://scenes/main/main.tscn").instantiate()

@@ -144,3 +144,17 @@ func apply_slot(state: Node, data: Dictionary) -> bool:
 	loading = true
 	return true
 
+
+# Called only after the main-menu reset confirmation.
+func prepare_new_game(reset_memory: bool = true) -> bool:
+	var had_run := not path.is_empty() and FileAccess.file_exists(path)
+	if had_run:
+		if DirAccess.copy_absolute(path,path+".previous") != OK or DirAccess.remove_absolute(path) != OK:
+			error_message = "Не удалось сохранить прежнее прохождение. Новая игра не начата."
+			return false
+	if reset_memory and not MEMORY.instance().reset_collection():
+		error_message = MEMORY.instance().error_message
+		if had_run and DirAccess.copy_absolute(path+".previous",path) != OK:
+			error_message += " Предыдущее прохождение доступно в резервной копии .previous."
+		return false
+	return true

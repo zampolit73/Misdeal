@@ -1,5 +1,12 @@
 # A1V2 — Memory Stained Glass implementation and QA
 
+## New Game means a clean collection — user correction
+
+Main-menu «Новая игра» now starts both run and Memory Glass at0/24, after an explicit confirmation. The dialog separately offers «Новый забег — сохранить витраж»; RunEnd's existing new-run action still preserves collection. This supersedes earlier text saying main New Game always preserves glass. Continue/load never reset collection. Merely opening/canceling the dialog leaves both files untouched. No automatic migration/reset is run on launch/update.
+
+Before clearing, the memory source is retained as a unique `memory_glass.json.before_new_game_<token>` and `.bak`; previous run remains `.previous`. Failed reset restores the run slot and does not clear the in-memory collection. Real Godot confirmation→Intro→Knight→Table→viewer verifies0/24 without resolving a card; the empty profile is also re-read from disk. First resolved card can legitimately open a new fragment. All QA uses injected paths; the player's current profile is not touched by agent testing.
+
+
 User-authorized final source SHA256 `b9bc84cde40956182ad22e049c56f1db034c95d8c6ab02b8ba9c12888a0e1f27`,1122×1402. Source and full task archived at `assets/story/a1v2/`. No image generation/repainting. Reproduce masks with `python scripts/dev/pack_memory_glass.py` (offline Pillow13). Authored narrative seed coordinates, deterministic luminance-barrier watershed,24 exhaustive disjoint alpha masks. Original pixels retained;24/24 draws the original single texture. `provenance.json` records source and coordinates. Binary watershed boundaries are approximate to the painted lead, not hand-traced vector contours; human visual acceptance remains separate from technical QA.
 
 ## Unlock contract

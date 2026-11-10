@@ -113,3 +113,25 @@ func restore_run(uid: String) -> void:
 	earned = clampi(int(count),0,8) if count is int or count is float else 0
 	var actions: Variant = record.get("seen",{})
 	seen = actions.duplicate() if actions is Dictionary else {}
+
+# Explicit main-menu New Game only. Ordinary begin_run never clears memory.
+func reset_collection() -> bool:
+	if not error_message.is_empty():
+		return false
+	if not path.is_empty() and FileAccess.file_exists(path):
+		var archive := path + ".before_new_game_" + Crypto.new().generate_random_bytes(8).hex_encode()
+		if DirAccess.copy_absolute(path,archive) != OK:
+			error_message = "Не удалось сохранить прежний витраж. Новая игра не начата."
+			return false
+	var fresh := load("res://scripts/memory/memory_profile.gd").new() as RefCounted
+	fresh.path = path
+	if not fresh.save_profile():
+		error_message = fresh.error_message
+		return false
+	unlocked.clear()
+	run_ledger.clear()
+	seen.clear()
+	earned = 0
+	pending = 0
+	run_uid = ""
+	return true
