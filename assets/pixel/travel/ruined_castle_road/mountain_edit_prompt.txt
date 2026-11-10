@@ -1,0 +1,3 @@
+Tool: built-in image_gen; precise-object-edit.
+Target: source.png from PR #103 / d4fead3f.
+Remove the repetitive bridge-like architecture in the left/central middle distance: repeated gothic arches, duplicated towers and middle horizontal walls. Replace that valley with natural irregular mountain ridges, rocky slopes and a deep cold mist-filled ravine. No bridges, aqueducts, repeated towers or distant banners in the edited valley. Preserve the painterly game art, muted slate blue/grey dusk palette and cloudy sky. Keep the main castle on the upper-right hill, close right wall and its burgundy banner with aged-gold ring-cross emblem, paved walking road and bottom foreground stones in the same composition. No people, props, text, UI or red annotation.
