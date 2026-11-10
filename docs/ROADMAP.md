@@ -1,5 +1,9 @@
 # Misdeal вЂ” current roadmap
 
+## Echo of the Siege — fifteen decision-specific illustrations
+
+Player correction: each of the three choices in each of the five events now has a distinct illustration depicting its action. The prior shared image across three slots is superseded. `choices/<choice_key>.webp` maps through the existing stable choice key; 15 PNG originals/prompts and source/runtime hashes are retained. Approved cards and the five event backdrops stay intact. [Action matrix, QA and local F6](ECHO_SIEGE_CHOICE_ACTION_ART.md). Delivery [PR #102](https://github.com/zampolit73/Misdeal/pull/102), [required checks](https://github.com/zampolit73/Misdeal/pull/102/checks). Update the main user project after green RELEASE without resetting local files.
+
 ## Echo of the Siege — event choice illustration pass
 
 Five dedicated event paintings extend the exact approved card references: bandaging seamstress, chest-closing postmaster with one skeletal pigeon, young half-undead squire fastening oversized boots, cheating quartermaster before straw soldiers, skeleton raising a cold signal basket. Source PNGs/prompts under `assets/pixel/events/final_five/sources/event_choice_v1/`; `event.webp` (448×274) appears in choices and `backdrop.webp` (1280×720) behind the existing UI. Approved `card.webp` and card source PNGs remain unchanged. Packer/manifest track separate event sources and prevent reverting backgrounds to the card scene. [Production/QA contract](ECHO_SIEGE_EVENT_ART.md). Delivery: [PR #101](https://github.com/zampolit73/Misdeal/pull/101); [required RELEASE checks](https://github.com/zampolit73/Misdeal/pull/101/checks).

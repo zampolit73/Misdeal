@@ -6,6 +6,33 @@
         "last_signal": "2a53828e4fec3105605502fe5a4aa05610c5af46f5f8d61e35fc79cde7854026",
         "unsent_letters": "3e84b66a1109af5867126e6a3d87dd480d28f6fe3641fef137ef8becfabb5e0f"
     },
+    "choice_sources": {
+        "banner_seamstress": {
+            "bandages": "392fd599ac3186517308ee895c68d26d13d588ed3ffa25183f0355007c44180d",
+            "passed": "54763098eb9ca5759172483fa018b6d151d363d62ce6a2af8e32fd5b2b618f77",
+            "standard": "e93129b3c52f8eff90605036ac81a459120da1d8566c8d2fefe1c2023d7c0949"
+        },
+        "borrowed_boots": {
+            "hobnails": "e99bacff2ddadf4a7101ffceacdafae41f4ee186763dea98fba563866f8a4065",
+            "passed": "3622c9b6c9227f04e48f988dde1902b9759d384bbe77e3f298c9e1df641f36e5",
+            "repair": "1a3680941cd3568a2806889c82a56b4160f7132241f57a7adfbfaee505da0e32"
+        },
+        "false_weights": {
+            "fair": "1328fa8fe2bf067417615308c95d65109d1f6c222d24a0ecf64d14406c839064",
+            "passed": "93e38d89ba753edeb5085a2d93a02543bae539dbe385add44bbc632f63515e03",
+            "silence": "310865ced5c7f5c7c5ac5e710d41751a1a520d9e5c6886836d285f76899c4abe"
+        },
+        "last_signal": {
+            "passed": "4bf46e489748a66aba42355553d8fbadefa81fb4ea17f8578282341bf8f0130e",
+            "salvage": "90dd51672e35ca7a95df2c8c8001e7c62c5b0b8290158c0c98ed74386067a8f6",
+            "truth": "72f53efcb336ff595ea7485189b176d3ae04673b4e7b0b7f57506fce0ee00dc4"
+        },
+        "unsent_letters": {
+            "passed": "b1ec4ac3d6048251f7c7b29d2c0df8ea9bc04791387a02b5ae05dd151c76e57f",
+            "read": "bb1a50ff1e6d38fdb36bb2cdd1eec9b5384210d9cf6028907e94abb2399fa6ff",
+            "release": "056a20baeec4e75ce243b0bb54d7c3712be2da7f0a82fceb263917e4cf0a9c35"
+        }
+    },
     "event_sources": {
         "banner_seamstress": "33950bfa97f4e59f8394534a247dcf333278f667d911102e2264df0d71ca8aa1",
         "borrowed_boots": "541b7b44affb24db94054de93655db992f05a4a37dec576d25b733f509cd11e5",
@@ -16,15 +43,27 @@
     "files": {
         "banner_seamstress\\backdrop.webp": "0192f0e167809d36215ebd9e7478894204566155b2eff8e1380818c08454c6bf",
         "banner_seamstress\\card.webp": "a513a14fe7b881e01c3740827496d024ce9c2473e052becfa7de09946dc67635",
+        "banner_seamstress\\choices\\bandages.webp": "44afc802a358776f8f08e66804fd282fbbd7ea9df9f3000c7df90454e58cc5e1",
+        "banner_seamstress\\choices\\passed.webp": "e8c48f7ade647b166c87a686610d7a12429771dd7041be00b61499f296758417",
+        "banner_seamstress\\choices\\standard.webp": "cf849ff47a56c9dee1180f5c5ad32e35446ac3071ee73255b88daeef60b17ac2",
         "banner_seamstress\\event.webp": "3f243f2333c20f52b2944333fe2ad1d268ae856849208c1482678483c4f5e608",
         "borrowed_boots\\backdrop.webp": "ef6d42fcb33c1c3315fc79e982207728fd77361c37efc40bf6eb91e4825303a5",
         "borrowed_boots\\card.webp": "50905e5c52a61a3d2c6328715dbf5fb9fcce3927a67f5c84cf6df92a7e3c2944",
+        "borrowed_boots\\choices\\hobnails.webp": "c71cfcbe4ac212989bbd9d3526bc92519f8aa658877c095bbce8186c6418f8be",
+        "borrowed_boots\\choices\\passed.webp": "3aa20bdd39a13084471ff73cfec6f2bbe6d43963284e641498ab81d19e50d144",
+        "borrowed_boots\\choices\\repair.webp": "5cc091152c18eae9bee3f0fbdf5e543686de86911204f0592acf8079f246b79b",
         "borrowed_boots\\event.webp": "25bb56296eba1783096d716c088de35f2d8ba99bcaaf23043c990618c95f8220",
         "false_weights\\backdrop.webp": "04998753b6a049abea934677daf02651a4c2ef0afa835f9c0692fb97139441ee",
         "false_weights\\card.webp": "19dbb06940083ef3aafa7b42eee6ac7b2a2fdc5d46ce0fa1a2d348fbb5a47df5",
+        "false_weights\\choices\\fair.webp": "aae5973fef8fa8110837618bdb11ed5eb73a260b41ad8791eed89fb3992753cc",
+        "false_weights\\choices\\passed.webp": "b32d01c1bdcdcbff9934322ec5b7acbc450efdc205866bfdf644d9ff8df689d7",
+        "false_weights\\choices\\silence.webp": "62c35d8bb67fbc86426bfff68608448164516517cae78a106925938c22502f8c",
         "false_weights\\event.webp": "99ce709754402282649e2d273531a9b958a9f19fd697b30e5fa57d17fd30bfe2",
         "last_signal\\backdrop.webp": "5c9f756657546d5942db268c4fa3df9ae83f1c5d1062f32939be672ffd5e0eab",
         "last_signal\\card.webp": "7a01efe5c0885ef5fae909f7f07e6998428bff87c5f240bf7e3a61ac4d0d7c1f",
+        "last_signal\\choices\\passed.webp": "381ccbfb2048452ebccc7465145250c94136ad24fd5fa13ee8bacceadefab20f",
+        "last_signal\\choices\\salvage.webp": "c7646722a8a9626a324d6f1792b3c8b752dfc32523a19d830e6c26480e2ec217",
+        "last_signal\\choices\\truth.webp": "978f1e46aefe723b2d7e0ab1bdf258704e498f07d0a106511cf1ae3c1649ac16",
         "last_signal\\event.webp": "0892f7b61022589580a7ab027976fd41cf0aa5414331a56bbb3e401c0bbb98bf",
         "sources\\banner_seamstress\\option_1.png": "5cdf2febe7ea20810e32ba4b40203e338b6bf153f57630a15f5b9140a9415f34",
         "sources\\banner_seamstress\\option_2.png": "53861417abb8b6a06fad74e9dfdec6f788a2a404a06db92f7b84a7787bb6d169",
@@ -43,6 +82,9 @@
         "sources\\unsent_letters\\option_3.png": "a4ab9d1e12465932395f39eed8969bb33bae0e17f849753c71169ed654de648c",
         "unsent_letters\\backdrop.webp": "fda124aa685017d8f08e18987f404f8721f592600b05f79f9a371fd809b99ac9",
         "unsent_letters\\card.webp": "c2188d3e9e789bb45eb0f63406a4b17eff664191f0e090645c263d48e051745c",
+        "unsent_letters\\choices\\passed.webp": "d2a977634e87d1c8cb366144772fb267a22635757deaf6c418f92948fb0cb273",
+        "unsent_letters\\choices\\read.webp": "142692603d56af5fed35fead5280b569a78dfc83cd2e0eda7e79c7d7d27dcda7",
+        "unsent_letters\\choices\\release.webp": "a7fdc9818121be0d78721acbbc3bd477e85507c85634f465d741123f826a7484",
         "unsent_letters\\event.webp": "d65cfe0c90fa8dcbc7001b87155392e34b04576acb307f56f7bc542c39ef4ce4"
     },
     "selection": {

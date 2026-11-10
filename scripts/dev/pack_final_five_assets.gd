@@ -11,6 +11,8 @@ func _initialize() -> void:
     var selection: Dictionary = manifest.get("selection", {})
     var approved_sources: Dictionary = manifest.get("approved_sources", {})
     var event_sources: Dictionary = manifest.get("event_sources", {})
+    var choices_only: bool = OS.get_cmdline_user_args().has("--choices-only")
+    var choice_sources: Dictionary = manifest.get("choice_sources", {})
     var event_only: bool = OS.get_cmdline_user_args().has("--event-only")
     for id in selection:
         var event_id: String = str(id)
@@ -30,6 +32,7 @@ func _initialize() -> void:
             return
         DirAccess.make_dir_recursive_absolute(base)
         for spec in [["card", 448, 274], ["backdrop", 1280, 720], ["event", 448, 274]]:
+            if choices_only: break
             if spec[0] == "card" and (event_only or event_sources.has(event_id)): continue
             if spec[0] == "event" and not event_sources.has(event_id): continue
             var selected_source: Image = source
@@ -50,6 +53,21 @@ func _initialize() -> void:
                 quit(1)
                 return
             manifest.files[event_id+"\\"+str(spec[0])+".webp"] = FileAccess.get_sha256(base+str(spec[0])+".webp")
+        if choice_sources.has(event_id):
+            DirAccess.make_dir_recursive_absolute(base+"choices")
+            for key: String in choice_sources[event_id]:
+                var choice_path: String = "res://assets/pixel/events/final_five/sources/choice_actions_v1/"+event_id+"/"+key+".png"
+                assert(FileAccess.get_sha256(choice_path) == choice_sources[event_id][key], "Choice source hash mismatch")
+                var picture := Image.new()
+                assert(picture.load_png_from_buffer(FileAccess.get_file_as_bytes(choice_path)) == OK)
+                var ratio: float = minf(448.0/picture.get_width(),274.0/picture.get_height())
+                picture.resize(roundi(picture.get_width()*ratio),roundi(picture.get_height()*ratio),Image.INTERPOLATE_LANCZOS)
+                var canvas := Image.create(448,274,false,Image.FORMAT_RGB8)
+                canvas.fill(Color("100e0e"))
+                canvas.blit_rect(picture,Rect2i(Vector2i.ZERO,picture.get_size()),(canvas.get_size()-picture.get_size())/2)
+                var path: String = base+"choices/"+key+".webp"
+                assert(canvas.save_webp(path,false) == OK)
+                manifest.files[event_id+"\\choices\\"+key+".webp"] = FileAccess.get_sha256(path)
     var output := FileAccess.open("res://assets/pixel/events/final_five/manifest.json",FileAccess.WRITE)
     output.store_string(JSON.stringify(manifest,"    "))
     quit()

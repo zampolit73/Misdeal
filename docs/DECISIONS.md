@@ -1,3 +1,7 @@
+## Choice art correction — one image per decision
+
+The player explicitly corrected the shared-picture interpretation with the actual three-choice screen. Deliver 15 distinct, action-specific paintings, three per event, preserving approved identities/style and mechanics. This supersedes the earlier "same event picture across three choices" decision. No new card art, background replacement, NPC subsystem or gameplay branch. [Action matrix](ECHO_SIEGE_CHOICE_ACTION_ART.md).
+
 ## Event scene art — autonomous five-image commission
 
 The user's Event Choice Art Pass explicitly delegates creation, final selection and integration of ONE finished scene per event, rather than stopping at an options review. This overrides options-first only for this commissioned five-event pass. Card art/source identities, palette, heraldry and mechanics remain locked. Use a distinct event illustration derived from each exact approved card source, with the same event picture across its three choices (not three invented branches). Full source/prompts/manifest and real Godot QA required. [Contract](ECHO_SIEGE_EVENT_ART.md).

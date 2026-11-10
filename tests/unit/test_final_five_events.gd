@@ -214,10 +214,28 @@ func test_event_illustrations_use_distinct_scene_sources_and_correct_routes() ->
 		fixture(id)
 		var event := load("res://scenes/event/act_choice.tscn").instantiate() as Control
 		add_child(event)
-		var expected := Image.new()
-		expected.load_webp_from_buffer(FileAccess.get_file_as_bytes(base+id+"/event.webp"))
-		for button in [event.choice_a,event.choice_b,event.choice_c]:
-			var texture: Texture2D = button.get_node("ChoiceArt").texture
-			assert_eq(texture.get_image().get_data(),expected.get_data(),"Correct event illustration")
+		var buttons: Array = [event.choice_a,event.choice_b,event.choice_c]
+		var seen := {}
+		assert_eq(manifest.choice_sources[id].size(),3)
+		for index in range(3):
+			var key: String = EVENTS.CHOICES[id][index][0]
+			var source_path: String = base+"sources/choice_actions_v1/"+id+"/"+key+".png"
+			assert_eq(FileAccess.get_sha256(source_path),manifest.choice_sources[id][key])
+			var path: String = id+"/choices/"+key+".webp"
+			var digest := FileAccess.get_sha256(base+path)
+			assert_eq(digest,manifest.files[path.replace("/","\\")])
+			assert_false(seen.has(digest),"Each decision must have distinct artwork")
+			seen[digest] = true
+			var expected := Image.new()
+			assert_eq(expected.load_webp_from_buffer(FileAccess.get_file_as_bytes(base+path)),OK)
+			assert_eq(expected.get_size(),Vector2i(448,274))
+			var texture: Texture2D = buttons[index].get_node("ChoiceArt").texture
+			assert_eq(texture.get_image().get_data(),expected.get_data(),"Art matches exact choice key: "+key)
 		assert_ne(FileAccess.get_sha256(base+id+"/event.webp"),FileAccess.get_sha256(base+id+"/card.webp"))
 		event.free()
+
+func test_choice_art_pass_preserves_all_card_and_scene_images() -> void:
+	var hashes: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://docs/qa/choice_actions/immutable_scene_hashes.json"))
+	assert_eq(hashes.size(),15)
+	for path in hashes:
+		assert_eq(FileAccess.get_sha256("res://"+path),hashes[path],"Existing card/backdrop/event image stays intact")
