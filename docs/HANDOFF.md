@@ -1,5 +1,10 @@
 # Misdeal — current handoff
 
+## Echo of the Siege — critical updated Borrowed Boots approval (2026-11-10)
+
+User supplied and approved a **new final image** for `borrowed_boots`: *young partly skeletal squire fitting oversized boots*, campfire, ruined castle, canonical banner. SHA256 exact 1280×853 PNG `2ec39769890b2229255b62d46e7585186cf23b31b1c63a1da0c064c39f66d519`. It **supersedes** the older quartermaster/boot inspector picture described in historical handoff sections. Source and self-contained exact single-card installation ZIP persisted in Library `/Misdeal/approved_art/`; see [ECHO_SIEGE_BOOTS_V2.md](ECHO_SIEGE_BOOTS_V2.md). Four other approved images are already in GitHub and **must not be changed**. New `borrowed_boots` v2 PNG and 448×274/1280×720 WebPs are packaged and checksum-tested but **not yet pushed**. The ZIP contains `install.ps1` that uses a temporary detached worktree, pushes only three boots image files and `manifest.json` to `main`, protecting user's messy `codex/living-arenas-pilot` worktree. Once user runs it and reports success, verify latest GitHub `manifest.approved_sources.borrowed_boots` equals `2ec39769890b2229255b62d46e7585186cf23b31b1c63a1da0c064c39f66d519`; then request F6 in a clean updated main worktree. Never claim native QA has passed in advance.
+
+
 ## Local Git: dirty living arenas branch — use isolated worktree (2026-11-10)
 
 User's PowerShell log confirms **active local branch `codex/living-arenas-pilot`** tracking `origin/codex/living-arenas-pilot`, with MANY staged additions/modifications for the living-arenas pilot and separate Godot import metadata changes. `git switch main` failed because local `docs/DECISIONS.md` and `docs/HANDOFF.md` changes would be overwritten; `git pull --ff-only origin main` also failed on modified `CHANGELOG.md`, `docs/PROJECT_STATE.md`, `docs/ROADMAP.md`, etc. **DO NOT reset, clean, blanket-restore or stash their current worktree.** New approved-siege art ZIP remains available in project conversation but binary asset push has not happened.
