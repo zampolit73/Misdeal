@@ -119,12 +119,14 @@ func _apply_approved_choice_art() -> void:
 	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
 	var arts: Array[TextureRect] = [choice_art_a, choice_art_b, choice_art_c]
 	if FINAL_FIVE.IDS.has(active_card.card_id):
-		var image := Image.new()
-		var path := "res://assets/pixel/events/final_five/"+active_card.card_id+"/event.webp"
-		var error := image.load_webp_from_buffer(FileAccess.get_file_as_bytes(path))
-		assert(error == OK, "Missing final-five event illustration: "+path)
-		var picture := ImageTexture.create_from_image(image)
-		_apply_choice_texture_set(buttons, arts, [picture, picture, picture])
+		var pictures: Array[Texture2D] = []
+		for entry: Array in FINAL_FIVE.CHOICES[active_card.card_id]:
+			var image := Image.new()
+			var path := "res://assets/pixel/events/final_five/"+active_card.card_id+"/choices/"+str(entry[0])+".webp"
+			var error := image.load_webp_from_buffer(FileAccess.get_file_as_bytes(path))
+			assert(error == OK, "Missing final-five choice illustration: "+path)
+			pictures.append(ImageTexture.create_from_image(image))
+		_apply_choice_texture_set(buttons, arts, pictures)
 		return
 	if active_card.card_id == "jack":
 		_apply_choice_texture_set(buttons, arts, [

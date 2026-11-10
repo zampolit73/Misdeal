@@ -1,3 +1,5 @@
+> **Choice-slot correction:** the player rejected repeating one scene across all three decisions. Current choice slots use fifteen separate action illustrations; see [current contract](ECHO_SIEGE_CHOICE_ACTION_ART.md). This document remains the provenance record for the five retained backgrounds/event reference images.
+
 # Echo of the Siege — event illustrations
 
 ## Assets and scope
