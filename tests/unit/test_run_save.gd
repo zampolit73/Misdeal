@@ -120,3 +120,15 @@ func test_cancel_new_game_confirmation_changes_nothing() -> void:
 	assert_true(found)
 	assert_eq(FileAccess.get_file_as_bytes(service.path),original)
 	assert_eq(RunState.gold,gold)
+
+func test_pause_cannot_interrupt_scene_swap() -> void:
+	var menu := get_tree().root.get_node("RunMenu")
+	var transition := get_tree().root.get_node("SceneTransition")
+	transition.set("_busy",true)
+	var event := InputEventKey.new()
+	event.keycode=KEY_ESCAPE
+	event.pressed=true
+	menu.call("_unhandled_key_input",event)
+	assert_false(is_instance_valid(menu.get("menu")))
+	assert_false(get_tree().paused)
+	transition.set("_busy",false)

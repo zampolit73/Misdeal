@@ -6,6 +6,7 @@ var menu: Control
 var timer := 0.0
 var last_signature := ""
 var status: Label
+var previous_focus: Control
 
 func _ready() -> void:
 	layer=100
@@ -52,6 +53,8 @@ func _process(delta: float) -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not(event is InputEventKey and event.pressed and not event.echo and event.keycode==KEY_ESCAPE): return
+	var transition := get_tree().root.get_node_or_null("SceneTransition")
+	if transition != null and transition.get("_busy"): return
 	var scene:=get_tree().current_scene
 	if scene==null or scene.scene_file_path.contains("/main/") or scene.scene_file_path.contains("/intro/"): return
 	if is_instance_valid(menu):
@@ -69,6 +72,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 
 func open_menu() -> void:
+	previous_focus = get_viewport().gui_get_focus_owner()
 	menu=Control.new()
 	menu.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(menu)
@@ -98,6 +102,7 @@ func open_menu() -> void:
 		column.add_child(button)
 		KIT.apply_action_button(button,KIT.BRONZE,false)
 		button.pressed.connect(entry[1])
+		if entry[0] == "Продолжить игру": button.grab_focus()
 		if entry[0] in ["Сохранить","Сохранить и выйти"]: button.disabled=safe_scene().is_empty()
 	get_tree().paused=true
 
@@ -105,6 +110,8 @@ func close_menu() -> void:
 	get_tree().paused=false
 	if is_instance_valid(menu): menu.queue_free()
 	menu=null
+	if is_instance_valid(previous_focus): previous_focus.grab_focus()
+	previous_focus=null
 
 func save_now() -> void:
 	status.text="Сохранено." if checkpoint() else SAVE.instance().error_message
