@@ -1,5 +1,9 @@
 ## A1V1 — Memory Stained Glass narrative handoff (2026-11-10)
 
+## New Game — clean memory (user correction)
+
+Confirmed main «Новая игра» starts at0/24 with archived prior data. The separate dialog action «Новый забег — сохранить витраж» and RunEnd preserve collection. Cancel/load/startup never clear it. Local245 GUT tests and native confirmation→Intro→Table0/24 pass; RELEASE required before merge. [Reset contract and QA](docs/RUN_SAVE_SYSTEM.md).
+
 ## Run save system
 
 New Game/Continue/Exit and ESC Save/Load/Save & Exit/Main Menu; validated versioned slot plus backup,67-field audit, safe Table/Reward checkpoints and permanent-memory rewind protection. [Architecture, field inventory and QA](docs/RUN_SAVE_SYSTEM.md). RELEASE checks required before merge; native screenshots under docs/qa/run_save. Local user settings preserved.
