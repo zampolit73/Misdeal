@@ -61,9 +61,14 @@ func save_profile() -> bool:
 	if file == null:
 		error_message = "Не удалось сохранить память."
 		return false
-	file.store_string(JSON.stringify({"schema_version":1,"unlocked":unlocked,"run_ledger":run_ledger}))
+	var content := JSON.stringify({"schema_version":1,"unlocked":unlocked,"run_ledger":run_ledger})
+	file.store_string(content)
 	file.flush()
+	var write_error := file.get_error()
 	file.close()
+	if write_error != OK or FileAccess.get_file_as_string(temp) != content:
+		error_message = "Не удалось проверить запись профиля памяти. Прежний файл сохранён."
+		return false
 	# Keep the previous valid generation until the replacement succeeds.
 	if FileAccess.file_exists(path):
 		if DirAccess.copy_absolute(path,path + ".bak") != OK:
