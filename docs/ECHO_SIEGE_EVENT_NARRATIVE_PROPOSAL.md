@@ -1,6 +1,6 @@
 # Echo of the Siege — event narrative revision proposal
 
-**Status: DRAFT FOR USER REVIEW, NOT APPROVED, NOT IMPLEMENTED.** Prepared 2026-11-10 in response to user request to invent new event content matching all five already-approved illustrations. This is an editorial proposal only. Godot card resources and scripts are unchanged. Narrative constraints: [ACT1_PROMISED_DAWN_STORY_BIBLE.md](ACT1_PROMISED_DAWN_STORY_BIBLE.md) and [ACT1_SIEGE_MYSTERY_DIRECTION.md](ACT1_SIEGE_MYSTERY_DIRECTION.md).
+**Status: Narrative V2 approved by the user and implemented in game.** Prepared 2026-11-10 in response to user request to invent new event content matching all five already-approved illustrations. This is an editorial proposal only. Godot card resources and scripts are unchanged. Narrative constraints: [ACT1_PROMISED_DAWN_STORY_BIBLE.md](ACT1_PROMISED_DAWN_STORY_BIBLE.md) and [ACT1_SIEGE_MYSTERY_DIRECTION.md](ACT1_SIEGE_MYSTERY_DIRECTION.md).
 
 ## Design principles
 
@@ -86,4 +86,4 @@
 
 The real UI currently uses `RunCardData.card_text`, `wizard_line` (five `resources/cards/<id>.tres`) and `final_five_events.gd::CHOICES` entries [choice key, button label, resolution prose]. Keep each card_text concise enough for the actual Godot event Description label (various layouts use ~40–54px height) and offer card constraints; the longer drafts above may need careful editing without removing the twist. Do not set permanent flags or a new global time loop; the undead routine is **narrative**. If a text-only implementation is later approved, preserve numeric logic, keep current case-sensitive choice keys and gating, and run existing `tests/unit/test_final_five_events.gd` with native F6 QA.
 
-**Await user review of this draft before changing in-game text or making new gameplay effects.**
+**Implementation:** user task approves this direction. Runtime uses short `card_text` hooks and separate `FINAL_FIVE.SCENES` compact dialogue scenes; all 15 choices have revised labels and literary conclusions. Numbers, IDs, gates, facts and saves are unchanged. Longer paragraphs below are editorial background; the runtime version is shortened for the existing 611×50 footer. Art remains immutable. F6: `scenes/dev/final_five_playtest.tscn`; native capture: `scripts/dev/final_five_capture.gd`.

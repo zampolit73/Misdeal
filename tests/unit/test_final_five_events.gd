@@ -184,3 +184,16 @@ func test_new_cards_can_be_held_then_resolved_at_the_original_delay() -> void:
 		assert_true(EVENTS.resolve(RunState,id,"passed"))
 		RunState.complete_active_card()
 		assert_eq(RunState.held_card_id,"")
+
+func test_narrative_v2_art_lock_and_separate_story_levels() -> void:
+	var hashes: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://docs/qa/echo_narrative_v2/art_hashes.json"))
+	assert_eq(hashes.size(),10)
+	for path in hashes:
+		assert_eq(FileAccess.get_sha256("res://"+path),hashes[path],"Approved painting preserved")
+	for id in EVENTS.IDS:
+		fixture(id)
+		var event := load("res://scenes/event/act_choice.tscn").instantiate() as Control
+		add_child(event)
+		assert_eq(event.description_label.text,EVENTS.SCENES[id])
+		assert_ne(event.description_label.text,RunState.get_card(id).card_text)
+		event.free()

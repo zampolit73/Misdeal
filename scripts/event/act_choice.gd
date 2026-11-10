@@ -81,7 +81,7 @@ func _ready() -> void:
 
 	title_label.text = active_card.title
 	type_label.text = active_card.type_label
-	description_label.text = active_card.card_text
+	description_label.text = FINAL_FIVE.SCENES.get(active_card.card_id, active_card.card_text)
 	wizard_line.text = active_card.wizard_line
 	_refresh_run_labels()
 	_configure_card()

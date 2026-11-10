@@ -1,3 +1,7 @@
+## Echo of the Siege — Narrative V2
+
+User-approved narrative implemented for all five events: undead seamstress tending a skeleton, postal clerk and one skeletal pigeon, young squire in oversized boots, quartermaster cheating straw soldiers, skeletal signal watchman. Short card hooks, compact event scenes with resident dialogue, exact Wizard lines and fifteen literary resolutions now match the approved paintings. All choice keys, numbers, gating, clues, debt and save contracts retained. Art hashes guarded; actual QA uses `scenes/dev/final_five_playtest.tscn` (F6), plus full GUT and native 45-frame capture. Final CI results belong to the delivery PR; do not infer PASS before its completion.
+
 # Living Arenas — three pilots
 
 Added restrained region-masked background motion to the castle courtyard (`firing_square`), storm pier (`black_crossing`) and old theatre (`threadbare_theatre`). Immutable approved art; original combat, tide hazards, UI and audio retained. Added F6 A/B scenes, pause/end/toggle handling, deterministic combat regression, native capture/pixel audits and RELEASE evidence. See [pilot QA and controls](docs/LIVING_ARENAS_PILOT.md).
