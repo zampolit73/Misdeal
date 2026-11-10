@@ -23,6 +23,8 @@ func run() -> void:
 		assert(current_scene.scene_file_path==SAVE.TABLE)
 		assert(state.current_offer_ids==loaded.state.current_offer_ids)
 		assert(state.gold==123)
+		assert(state.cards_resolved==2)
+		assert(state.has_castle_fact("orders_conflict"))
 		assert(state.party_roles.size()==3)
 		assert(state.event_outcomes.get("jack")=="companion")
 		print("RUN_SAVE_RESTART_PASS")
@@ -41,6 +43,16 @@ func run() -> void:
 	state.recruit_companion("knight","QA")
 	state.recruit_companion("mage","QA")
 	state.event_outcomes["jack"]="companion"
+	for entry in [["moon_seal","_resolve_moon_seal","keep"],["echo_crypt","_resolve_echo_crypt","listen"]]:
+		state.current_offer_ids.assign([entry[0],"bone_patrol"])
+		assert(state.choose_card(entry[0]))
+		var event_scene: Control=load("res://scenes/event/act_choice.tscn").instantiate()
+		root.add_child(event_scene)
+		current_scene=event_scene
+		event_scene.call(entry[1],entry[2])
+		await create_timer(0.3).timeout
+		event_scene.free()
+	assert(state.cards_resolved==2)
 	state.gold=123
 	var table: Control=load("res://scenes/table/table.tscn").instantiate()
 	root.add_child(table)
