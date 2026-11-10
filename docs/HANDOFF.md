@@ -1,5 +1,9 @@
 # Misdeal — current handoff
 
+## Echo of the Siege — user-approved «Знамя на бинты» scene (2026-11-10)
+
+User approved the **exact** half-undead seamstress illustration with gold ring-cross banner sigil (not castle). 1536×1024 PNG SHA256 `be70f5375c703fc9ad4c5a1f5cfb57eea5f499ac849526348fa842ee483e39b2`; durable full-resolution source in the user's Library: `/Misdeal/approved_art/banner_seamstress_echo_siege_approved_2026-11-10.png`. Details and visual locks: [DECISIONS](DECISIONS.md#echo-of-the-siege--approved-art-direction-2026-11-10). Current GitHub card/backdrop remain **old artwork**, not yet replaced by this newly approved image. Integrate approved source (card 448×274; event backdrop 1280×720) while preserving existing 45-card mechanics, original DS3 skin and source rollback; verify actual native F6. Continue visually reviewing the other four «Эхо осады» event illustrations, with distinct options-first artworks.
+
 ## Final five Act I stories — 45 ordinary cards
 
 Five new original noncombat events, fifteen art candidates with selected finals, existing DS3 and actual choices/ordinary tier dealing. Godot 4.7.2: 260/260 Linux GUT tests (48,919 assertions), 45 native frames on Windows and Linux. [PR #98](https://github.com/zampolit73/Misdeal/pull/98) carries the required full RELEASE checks. [Effects, sources, QA and F6](ACT1_FINAL_FIVE_CARDS.md). This task explicitly delegates art selection; PR89/90/92 remain independent.
