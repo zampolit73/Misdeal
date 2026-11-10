@@ -25,6 +25,14 @@ var closure_button: Button
 var full_button: Button
 var serif: SystemFont
 var body: SystemFont
+var zoom_button: Button
+var zoom_layer: Control
+var zoom_clip: Control
+var zoom_image: Control
+var zoom_percent: Label
+var zoom_factor := 1.0
+var zoom_pan := Vector2.ZERO
+var zoom_dragging := false
 
 func _ready() -> void:
 	if profile == null: profile = PROFILE.instance()
@@ -54,6 +62,7 @@ func _ready() -> void:
 	art.size=Vector2(385,481)
 	canvas.add_child(art)
 	art.gui_input.connect(_art_input)
+	zoom_button=_button("УВЕЛИЧИТЬ ВИТРАЖ",Rect2(72,618,385,24),_open_zoom)
 	for index in range(4):
 		var pair: Array=GROUPS[index]
 		var count:=_count(pair[0])
@@ -105,7 +114,7 @@ func _layout_canvas() -> void:
 	canvas.scale=Vector2.ONE*factor
 	canvas.position=(size-Vector2(1280,720)*factor)*0.5
 
-func _frame(rect: Rect2) -> void:
+func _frame(rect: Rect2) -> NinePatchRect:
 	var node:=NinePatchRect.new()
 	node.texture=FRAME
 	node.position=rect.position
@@ -116,6 +125,7 @@ func _frame(rect: Rect2) -> void:
 	node.patch_margin_bottom=36
 	node.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	canvas.add_child(node)
+	return node
 
 func _label(text: String, rect: Rect2, point: int, color: Color, title: bool=false) -> Label:
 	var node:=Label.new()
@@ -237,12 +247,15 @@ func _select(item: Dictionary) -> void:
 	reader.scroll_to_line(0)
 
 func _render_art() -> void:
-	for child in art.get_children():
+	_populate_art(art)
+
+func _populate_art(target: Control) -> void:
+	for child in target.get_children():
 		child.queue_free()
 	var dimensions := Vector2(1122,1402)
-	var factor := minf(art.size.x/dimensions.x,art.size.y/dimensions.y)
+	var factor := minf(target.size.x/dimensions.x,target.size.y/dimensions.y)
 	var display := dimensions*factor
-	var origin := (art.size-display)*0.5
+	var origin := (target.size-display)*0.5
 	var ids: Array[String] = ["approved_vitrazh_memory"]
 	if profile.unlocked.size() < 24:
 		ids.append_array(profile.unlocked)
@@ -256,7 +269,7 @@ func _render_art() -> void:
 		texture.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		if id == "approved_vitrazh_memory" and profile.unlocked.size() < 24:
 			texture.modulate = Color(0.045,0.045,0.045)
-		art.add_child(texture)
+		target.add_child(texture)
 
 func _closure() -> void:
 	if _count(group)!=_entries().size(): return
@@ -282,7 +295,7 @@ func _focusables(node: Node, result: Array[Control]) -> void:
 
 func _update_focus_chain() -> void:
 	var controls: Array[Control]=[]
-	_focusables(canvas,controls)
+	_focusables(zoom_layer if is_instance_valid(zoom_layer) else canvas,controls)
 	for index in range(controls.size()):
 		var before:=controls[index].get_path_to(controls[(index-1+controls.size())%controls.size()])
 		var after:=controls[index].get_path_to(controls[(index+1)%controls.size()])
@@ -294,14 +307,37 @@ func _update_focus_chain() -> void:
 		controls[index].focus_neighbor_bottom=after
 
 func _input(event: InputEvent) -> void:
+	if is_instance_valid(zoom_layer):
+		if event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and not event.pressed:
+			zoom_dragging=false
+		if event is InputEventMouseMotion and zoom_dragging:
+			zoom_pan+=event.relative/canvas.scale
+			_layout_zoom()
+			get_viewport().set_input_as_handled()
+			return
+		if event is InputEventKey and event.pressed:
+			if event.keycode==KEY_ESCAPE and not event.echo:
+				_close_zoom()
+			elif event.keycode in [KEY_PLUS,KEY_EQUAL,KEY_KP_ADD]: _set_zoom(zoom_factor*1.25)
+			elif event.keycode in [KEY_MINUS,KEY_KP_SUBTRACT]: _set_zoom(zoom_factor/1.25)
+			elif event.keycode==KEY_0: _fit_zoom()
+			elif event.keycode==KEY_1: _native_zoom()
+			elif event.keycode in [KEY_LEFT,KEY_RIGHT,KEY_UP,KEY_DOWN]:
+				zoom_pan+=Vector2(40 if event.keycode==KEY_LEFT else (-40 if event.keycode==KEY_RIGHT else 0),40 if event.keycode==KEY_UP else (-40 if event.keycode==KEY_DOWN else 0))
+				_layout_zoom()
+			elif event.keycode==KEY_TAB: pass
+			else: return
+			if event.keycode!=KEY_TAB:
+				get_viewport().set_input_as_handled()
+				return
 	if event is InputEventKey and event.pressed and event.keycode==KEY_TAB:
 		var controls: Array[Control]=[]
-		_focusables(canvas,controls)
+		_focusables(zoom_layer if is_instance_valid(zoom_layer) else canvas,controls)
 		var index:=controls.find(get_viewport().gui_get_focus_owner())
 		if not controls.is_empty(): controls[posmod(index+(-1 if event.shift_pressed else 1),controls.size())].grab_focus()
 		get_viewport().set_input_as_handled()
 		return
-	if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
+	if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE and not event.echo:
 		get_viewport().set_input_as_handled()
 		close()
 
@@ -320,3 +356,85 @@ func _art_input(event: InputEvent) -> void:
 			var id := roundi(regions.get_pixel(int(point.x),int(point.y)).r*255)
 			if id >= 1 and id <= 24:
 				_select(PROFILE.catalog()[id-1])
+
+func _open_zoom() -> void:
+	if is_instance_valid(zoom_layer): return
+	zoom_layer=Control.new()
+	zoom_layer.size=Vector2(1280,720)
+	zoom_layer.z_index=10
+	canvas.add_child(zoom_layer)
+	var shade:=ColorRect.new()
+	shade.color=Color("080707")
+	shade.size=zoom_layer.size
+	zoom_layer.add_child(shade)
+	_frame(Rect2(20,16,1240,688)).reparent(zoom_layer,false)
+	_label("ВИТРАЖ ПАМЯТИ · %d/24"%profile.unlocked.size(),Rect2(60,40,470,40),28,BONE,true).reparent(zoom_layer,false)
+	zoom_percent=_label("",Rect2(546,49,82,28),16,GOLD)
+	zoom_percent.reparent(zoom_layer,false)
+	_button("−",Rect2(636,44,44,36),func():_set_zoom(zoom_factor/1.25)).reparent(zoom_layer,false)
+	_button("+",Rect2(688,44,44,36),func():_set_zoom(zoom_factor*1.25)).reparent(zoom_layer,false)
+	_button("ЦЕЛИКОМ",Rect2(752,44,114,36),_fit_zoom).reparent(zoom_layer,false)
+	_button("100%",Rect2(876,44,114,36),_native_zoom).reparent(zoom_layer,false)
+	var back:=_button("НАЗАД · ESC",Rect2(1020,44,198,36),_close_zoom)
+	back.reparent(zoom_layer,false)
+	_label("Колесо — масштаб · ЛКМ — перемещение · Стрелки — сдвиг · 0 — целиком · 1 — 100%",Rect2(60,84,1158,24),14,MUTED).reparent(zoom_layer,false)
+	zoom_clip=Control.new()
+	zoom_clip.position=Vector2(44,112)
+	zoom_clip.size=Vector2(1192,560)
+	zoom_clip.clip_contents=true
+	zoom_clip.mouse_default_cursor_shape=Control.CURSOR_DRAG
+	zoom_layer.add_child(zoom_clip)
+	zoom_clip.gui_input.connect(_zoom_gui_input)
+	zoom_image=Control.new()
+	zoom_image.size=Vector2(1122,1402)
+	zoom_image.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	zoom_clip.add_child(zoom_image)
+	_populate_art(zoom_image)
+	_fit_zoom()
+	_update_focus_chain()
+	back.grab_focus()
+
+func _zoom_fit_scale() -> float:
+	return minf(zoom_clip.size.x/1122.0,zoom_clip.size.y/1402.0)
+
+func _layout_zoom() -> void:
+	var factor:=_zoom_fit_scale()*zoom_factor
+	var display:=Vector2(1122,1402)*factor
+	var bounds:=((display-zoom_clip.size)*0.5).max(Vector2.ZERO)
+	zoom_pan=zoom_pan.clamp(-bounds,bounds)
+	zoom_image.scale=Vector2.ONE*factor
+	zoom_image.position=(zoom_clip.size-display)*0.5+zoom_pan
+	zoom_percent.text="%d%%"%roundi(factor*100)
+
+func _set_zoom(value: float, anchor: Vector2=Vector2(-1,-1)) -> void:
+	if not is_instance_valid(zoom_layer): return
+	if anchor.x<0: anchor=zoom_clip.size*0.5
+	var source_point: Vector2=(anchor-zoom_image.position)/zoom_image.scale
+	zoom_factor=clampf(value,1.0,4.0)
+	var factor:=_zoom_fit_scale()*zoom_factor
+	zoom_pan=anchor-source_point*factor-(zoom_clip.size-Vector2(1122,1402)*factor)*0.5
+	_layout_zoom()
+
+func _fit_zoom() -> void:
+	zoom_factor=1.0
+	zoom_pan=Vector2.ZERO
+	_layout_zoom()
+
+func _native_zoom() -> void:
+	_set_zoom(1.0/_zoom_fit_scale())
+
+func _zoom_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index==MOUSE_BUTTON_LEFT: zoom_dragging=event.pressed
+		elif event.pressed and event.button_index in [MOUSE_BUTTON_WHEEL_UP,MOUSE_BUTTON_WHEEL_DOWN]:
+			_set_zoom(zoom_factor*(1.15 if event.button_index==MOUSE_BUTTON_WHEEL_UP else 1.0/1.15),event.position)
+		zoom_clip.accept_event()
+
+func _close_zoom() -> void:
+	if not is_instance_valid(zoom_layer): return
+	zoom_layer.hide()
+	zoom_layer.queue_free()
+	zoom_layer=null
+	zoom_dragging=false
+	_update_focus_chain()
+	zoom_button.grab_focus()

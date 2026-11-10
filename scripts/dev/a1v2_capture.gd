@@ -41,6 +41,21 @@ func run() -> void:
 		await snap(out,"viewer_%d"%count)
 		memory.viewer._select(P.catalog()[0])
 		await snap(out,"selected_%d"%count)
+		var selected: String=memory.viewer.selected_id
+		var selected_page: int=memory.viewer.page
+		memory.viewer.zoom_button.pressed.emit()
+		await snap(out,"zoom_fit_%d"%count)
+		memory.viewer._native_zoom()
+		await snap(out,"zoom_native_%d"%count)
+		assert(is_equal_approx(memory.viewer.zoom_image.scale.x,1.0))
+		var zoom_escape:=InputEventKey.new()
+		zoom_escape.keycode=KEY_ESCAPE
+		zoom_escape.pressed=true
+		Input.parse_input_event(zoom_escape)
+		await process_frame
+		assert(not is_instance_valid(memory.viewer.zoom_layer))
+		assert(memory.viewer.selected_id==selected)
+		assert(memory.viewer.page==selected_page)
 		if count==24:
 			memory.viewer._select(P.catalog()[12])
 			await snap(out,"knight_variant3")
