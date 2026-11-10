@@ -1,5 +1,10 @@
 > A1V2 implementation supersedes the earlier concept-only status: final user-approved source, viewer, persistence and gameplay hooks. See [A1V2 QA](A1V2_MEMORY_STAINED_GLASS_QA.md).
 
+## Memory viewer — approved Variant3
+
+«Хроника осколков» integrated in production: original glass left, framed scrolling reader right, group tabs above, four fragment buttons/page below. Reuses dossier frame; all24 unlock/mask/save/reset rules retained. [Layout, native QA and F5/F6](MEMORY_VIEWER_CHRONICLE.md). RELEASE required before merge.
+
+
 ## D418 — Jack, selected option1 and complete canine pack (2026-11-09)
 
 Exact approved source `assets/pixel/events/jack/approved_source.png`; full-composition card448×274 and backdrop1280×720 with dark fit margins, road/token crops from same painting. New separate dog source/strict25-pose576×480 lossless alpha atlas in `assets/pixel/units/jack/`; existing heroes untouched. Generated illustration batch, not hand-pixel-authored. [Prompts, hashes, provenance, native QA](D418_JACK_EVENT.md).

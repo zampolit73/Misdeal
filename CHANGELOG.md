@@ -1,5 +1,10 @@
 ## A1V1 — Memory Stained Glass narrative handoff (2026-11-10)
 
+## Memory viewer — approved Variant3
+
+«Хроника осколков» integrated in production: original glass left, framed scrolling reader right, group tabs above, four fragment buttons/page below. Reuses dossier frame; all24 unlock/mask/save/reset rules retained. [Layout, native QA and F5/F6](docs/MEMORY_VIEWER_CHRONICLE.md). RELEASE required before merge.
+
+
 ## New Game — clean memory (user correction)
 
 Confirmed main «Новая игра» starts at0/24 with archived prior data. The separate dialog action «Новый забег — сохранить витраж» and RunEnd preserve collection. Cancel/load/startup never clear it. Local245 GUT tests and native confirmation→Intro→Table0/24 pass; RELEASE required before merge. [Reset contract and QA](docs/RUN_SAVE_SYSTEM.md).
