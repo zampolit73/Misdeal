@@ -41,6 +41,7 @@ func reset(id: String, poor: bool = false) -> void:
 	state.wizard_meddling_slots.clear()
 
 func run() -> void:
+	preload("res://scripts/travel/travel_catalog.gd").enabled = false
 	var args := OS.get_cmdline_user_args()
 	assert(args.size()==1)
 	destination = args[0]

@@ -2,6 +2,10 @@ import unittest
 from smart_qa_select import classify
 
 class SelectorTests(unittest.TestCase):
+    def test_travel_requires_release(self):
+        for path in ("scripts/travel/travel_catalog.gd", "scenes/travel/travel_transition.tscn", "scripts/core/scene_router.gd"):
+            self.assertEqual(classify([path])["mode"], "release")
+
     def test_final_five_requires_full_release(self):
         for path in ("scripts/event/final_five_events.gd", "scripts/dev/final_five_capture.gd", "scripts/dev/pack_final_five_assets.gd", "assets/pixel/events/final_five/banner_seamstress/event.webp", "assets/pixel/events/final_five/manifest.json"):
             self.assertEqual(classify([path])["mode"], "release")

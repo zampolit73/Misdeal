@@ -43,3 +43,26 @@ static func _get_transition(context: Node) -> Node:
 	transition.name = "SceneTransitionRuntime"
 	root.add_child(transition)
 	return transition
+
+
+static func after_resolution(context: Node, travel_context: Dictionary) -> void:
+	const CATALOG = preload("res://scripts/travel/travel_catalog.gd")
+	if context.has_meta("travel_navigation_started"): return
+	context.set_meta("travel_navigation_started",true)
+	if travel_context.is_empty() or not CATALOG.is_enabled():
+		change_to(context,"res://scenes/table/table.tscn")
+		return
+	var tree := context.get_tree()
+	var packed := load("res://scenes/travel/travel_transition.tscn") as PackedScene
+	if packed == null:
+		change_to(context,"res://scenes/table/table.tscn")
+		return
+	var view := packed.instantiate()
+	view.context = travel_context.duplicate(true)
+	tree.root.add_child(view)
+	if view.available: await view.finished
+	change_to(context,"res://scenes/table/table.tscn")
+	var transition := _get_transition(context)
+	while is_instance_valid(transition) and transition.get("_busy"):
+		await tree.process_frame
+	if is_instance_valid(view): view.queue_free()
