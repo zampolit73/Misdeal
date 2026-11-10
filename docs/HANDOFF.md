@@ -1,5 +1,10 @@
 # Misdeal — current handoff
 
+## Echo of the Siege — safe importer and asset pipeline prepared (2026-11-10)
+
+`scripts/dev/install_echo_siege_art.ps1` now validates user-approved source PNG SHA256 and WebP SHA256 against the packaged manifest, copies exactly five approved sources and ten derived runtime assets, and records `manifest.approved_sources` during import. `scripts/dev/pack_final_five_assets.gd` recognizes those approved originals and never reverts them to previous option numbers once installed. **Files have not yet been imported to GitHub and Godot native QA remains pending.** The conversation ZIP is downloadable, and importing requires a local invocation because the connected GitHub text/object actions do not accept these binary files directly. See [ECHO_SIEGE_ART_ROLLOUT.md](ECHO_SIEGE_ART_ROLLOUT.md).
+
+
 ## Echo of the Siege — 5 of 5 arts selected, integration outstanding (2026-11-10)
 
 Fifth user-approved `last_signal` = **OPTION 1**: solitary skeletal sentry on a ruined moonlit battlement holding an extinguished brazier on a pole, gold ring-cross on crimson banner; not spyglass or handheld lantern. SHA256 of 1536x1024 original `2a53828e4fec3105605502fe5a4aa05610c5af46f5f8d61e35fc79cde7854026`; persistent Library location `/Misdeal/approved_art/last_signal_echo_siege_approved_2026-11-10.png`. All five approved originals are in that Library directory; a ready-to-integrate ZIP containing all five PNGs, ten WebPs and checksums was generated and linked in the current project chat. **Only documentation has been committed to GitHub; new art is not deployed to runtime.** Important: old `manifest.json`/packer still reference old selected options; fix source-packing reproducibility during the actual asset PR. Do not claim CI/native pass until run. Exact five art identities and workflow: [ECHO_SIEGE_ART_ROLLOUT.md](ECHO_SIEGE_ART_ROLLOUT.md), [DECISIONS.md](DECISIONS.md). User only needs `git pull` AFTER image bytes have actually landed in a GitHub commit.
