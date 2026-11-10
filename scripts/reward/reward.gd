@@ -3,6 +3,8 @@ extends Control
 const BACKDROP_READOUTS := preload("res://scripts/ui/table_backdrop_readouts.gd")
 const DETAIL_SCENE := preload("res://scenes/table/card_lore_inspect.tscn")
 var _details: Control
+var reward_input_locked := false
+var reward_completed := false
 
 const UI_MOTION := preload("res://scripts/ui/ui_motion.gd")
 
@@ -484,6 +486,7 @@ func _setup_elite_reward() -> void:
 		_set_reward_card(index, artifact_id, "ЭЛИТНАЯ РЕЛИКВИЯ", artifact.title, artifact.description)
 
 func _on_reward_button_pressed(index: int) -> void:
+	if reward_input_locked or reward_completed: return
 	if is_instance_valid(_details):
 		return
 	if index < 0 or index >= reward_buttons.size():
@@ -491,6 +494,7 @@ func _on_reward_button_pressed(index: int) -> void:
 	if not reward_buttons[index].visible or option_ids[index].is_empty():
 		return
 
+	reward_input_locked = true
 	_disable_reward_buttons()
 	await _animate_reward_commit(index)
 	var option_id := option_ids[index]
@@ -779,6 +783,7 @@ func _on_reward_hover(button: Button, hovered: bool) -> void:
 	hover_summary_label.visible = false
 
 func _reset_buttons() -> void:
+	reward_input_locked = false
 	option_ids = ["", "", ""]
 	hover_summary_label.visible = false
 	for index in range(reward_buttons.size()):
@@ -797,6 +802,7 @@ func _reset_buttons() -> void:
 		_set_upgrade_nodes_visible(index, false)
 
 func _enable_reward_buttons() -> void:
+	reward_input_locked = false
 	for button in reward_buttons:
 		if button.visible:
 			button.disabled = false
@@ -806,6 +812,11 @@ func _disable_reward_buttons() -> void:
 		button.disabled = true
 
 func _finish_reward(message: String) -> void:
+	if reward_completed: return
+	reward_completed = true
+	var resolved_id: String = RunState.active_card_id
+	var resolved_card: RunCardData = RunState.get_active_card()
+	var travel_context: Dictionary = preload("res://scripts/travel/travel_catalog.gd").context_for(resolved_id,"victory",RunState.party_roles,"",RunState.last_battle_won and resolved_card != null and resolved_card.resolution_type == "combat")
 	_refresh_run_stats()
 	RunState.complete_active_card()
 	preload("res://scripts/core/run_save_service.gd").instance().write_slot(RunState)
@@ -815,7 +826,7 @@ func _finish_reward(message: String) -> void:
 	if RunState.is_run_complete():
 		SCENE_ROUTER.change_to(self, "res://scenes/run_end/run_end.tscn")
 	else:
-		SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
+		SCENE_ROUTER.after_resolution(self, travel_context)
 
 # Read-only access to full original copy. Choice callbacks remain separate.
 func _on_reward_detail_input(event: InputEvent, index: int) -> void:

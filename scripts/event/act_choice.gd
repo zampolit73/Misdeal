@@ -67,13 +67,14 @@ const EVENT_SCENE_ART_PATHS := {
 
 var active_card: RunCardData
 var resolved := false
+var travel_context: Dictionary = {}
 var resolving_leave := false
 
 func _ready() -> void:
 	active_card = RunState.get_active_card()
 	if active_card == null:
 		push_warning("Act choice scene opened without an active run card.")
-		SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
+		SCENE_ROUTER.after_resolution(self, travel_context)
 		return
 
 	continue_button.pressed.connect(_return_to_table)
@@ -1910,6 +1911,7 @@ func _record_castle_memory_for_event() -> void:
 
 
 func _finish(message: String) -> void:
+	travel_context = preload("res://scripts/travel/travel_catalog.gd").context_for(active_card.card_id,RunState.get_event_outcome(active_card.card_id),RunState.party_roles,active_card.wizard_line)
 	resolved = true
 	_disable_choices()
 	_record_castle_memory_for_event()
@@ -1955,7 +1957,7 @@ func _refresh_run_labels() -> void:
 
 func _return_to_table() -> void:
 	continue_button.disabled = true
-	SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
+	SCENE_ROUTER.after_resolution(self, travel_context)
 
 func _configure_final_five() -> void:
 	leave_button.hide()

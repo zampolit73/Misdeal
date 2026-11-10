@@ -430,6 +430,20 @@ jobs:
             grep -Fq 'LIVING_PIXEL_AUDIT_PASS' "$dest/pixel-audit.log"
             ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed' "$dest/pixel-audit.log"
 
+      - name: Cinematic travel native routes and skip
+        if: steps.scope.outputs.mode == 'release'
+        shell: bash
+        run: |
+          set -euo pipefail
+          dest="$RUNNER_TEMP/misdeal-smart-qa/visual/travel"
+          mkdir -p "$dest"
+          timeout 120s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility --audio-driver Dummy \
+            --script res://scripts/dev/travel_capture.gd -- "$dest" 2>&1 | tee "$dest/capture.log"
+          grep -Fq 'TRAVEL_NATIVE_PASS' "$dest/capture.log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed' "$dest/capture.log"
+
       - name: Docs-only change (no Godot boot)
         if: steps.scope.outputs.mode == 'docs'
         shell: bash

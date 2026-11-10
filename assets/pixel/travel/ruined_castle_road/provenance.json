@@ -1,0 +1,10 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "assets/pixel/battle/arenas/approved_d283/firing_square.webp",
+  "background": "Original wide ruined castle outskirts, coherent cold stone, muted burgundy/gold ring-cross standards, side-on empty road, no people/text/UI; same Misdeal painterly pixel texture.",
+  "foreground": "Transparent lower-edge rubble/weeds overlay matching background, upper88percent clear.",
+  "sha256": {
+    "foreground.png": "18ff6e4e5353def629b8a3ba20034b9366891e3987ef9c167fd29eb9a987ebd7",
+    "source.png": "bc02eb87be2762bcd6c1f7a9f91f057cd9f67d7fd722a3d6611cb88addbb0c1b"
+  }
+}

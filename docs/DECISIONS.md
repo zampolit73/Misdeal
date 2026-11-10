@@ -1,3 +1,7 @@
+## Cinematic travel — presentation, never progression
+
+Travel V1 is a temporary CanvasLayer owned by the existing SceneRouter, not a new router/autoload or saved scene. Capture resolved_card_id/outcome/party/narration/Wizard/duration before complete_active_card clears the ID. Existing completion and save happen first; visual layer emits finish once and existing SceneTransition opens Table. Loading uses the saved Table/Reward directly. First art scene only; exact D412 battle atlases unchanged, reused walk frames are prototype travel presentation. [Contract](CINEMATIC_TRAVEL_V1.md).
+
 ## Choice art correction — one image per decision
 
 The player explicitly corrected the shared-picture interpretation with the actual three-choice screen. Deliver 15 distinct, action-specific paintings, three per event, preserving approved identities/style and mechanics. This supersedes the earlier "same event picture across three choices" decision. No new card art, background replacement, NPC subsystem or gameplay branch. [Action matrix](ECHO_SIEGE_CHOICE_ACTION_ART.md).
