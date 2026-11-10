@@ -41,6 +41,25 @@ func run() -> void:
 		await snap(out,"viewer_%d"%count)
 		memory.viewer._select(P.catalog()[0])
 		await snap(out,"selected_%d"%count)
+		if count==24:
+			memory.viewer._select(P.catalog()[12])
+			await snap(out,"knight_variant3")
+			assert(memory.viewer.group=="knight")
+			memory.viewer._group("chronicle")
+			memory.viewer._turn_page(1)
+			memory.viewer._turn_page(1)
+			assert(memory.viewer.fragments.has("SG12"))
+			memory.viewer.fragments["SG12"].pressed.emit()
+			await snap(out,"chronicle_last_page")
+			memory.viewer._closure()
+			await snap(out,"chronicle_complete")
+			memory.viewer._full_closure()
+			await snap(out,"full_realization")
+		if count==0:
+			memory.viewer._select(P.catalog()[11])
+			assert(memory.viewer.title_label.text=="Нераскрытая память")
+			assert(not memory.viewer.reader.text.contains("Канцлер"))
+			assert(not memory.viewer.full_button.visible)
 		var escape := InputEventKey.new()
 		escape.keycode=KEY_ESCAPE
 		escape.pressed=true

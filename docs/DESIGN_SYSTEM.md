@@ -1,5 +1,10 @@
 ## D417 — interface motion (2026-11-09)
 
+## Memory viewer — approved Variant3
+
+«Хроника осколков» integrated in production: original glass left, framed scrolling reader right, group tabs above, four fragment buttons/page below. Reuses dossier frame; all24 unlock/mask/save/reset rules retained. [Layout, native QA and F5/F6](MEMORY_VIEWER_CHRONICLE.md). RELEASE required before merge.
+
+
 Modal entrance: cubic ease-out10px rise in220ms, opacity180ms. Table offer hover:8px/1.018× over160ms; ClassSelect hover7px/1.022×, selected3px/1.012×, no accumulating transforms. Action feedback: press0.975×/70ms, return130ms, focused/hovered1.012×. Explicit `ui_motion.gd` adoption only; no global UI-kit replacement. Real-time feedback ignores gameplay time scale; original action callbacks execute immediately. Existing scene transitions and deal/choice choreography preserved. [Native QA](D417_UI_MOTION_QA.md).
 
 ## D415 — protagonist-choice dossier consistency (2026-11-09)
