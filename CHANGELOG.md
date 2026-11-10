@@ -1,5 +1,10 @@
 # Final five Act I cards
 
+## Echo of the Siege — approved visual package (2026-11-10)
+
+All five Act I event redraws were individually approved. A full-res five-PNG / ten-WebP integration pack has been prepared in the project conversation, retaining the existing DS3 card proportions and containing the exact selected scenes. This is a documentation/art-preparation milestone, **not yet a runtime asset deployment or native QA pass**. Integration safety and all SHA256 hashes: [docs/ECHO_SIEGE_ART_ROLLOUT.md](docs/ECHO_SIEGE_ART_ROLLOUT.md).
+
+
 Added Знамя на бинты, Запертая почта, Чужие сапоги, Неверные гири and Погасший сигнал:45 ordinary cards, fifteen real event outcomes, original artwork, save-safe one-time consequences and native QA. See docs/ACT1_FINAL_FIVE_CARDS.md.
 
 ## A1V1 — Memory Stained Glass narrative handoff (2026-11-10)
