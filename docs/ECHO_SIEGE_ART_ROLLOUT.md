@@ -6,9 +6,13 @@ Five artistic options are now user-approved. **This is a planning/handoff record
 | --- | --- | --- | --- |
 | banner_seamstress | Знамя на бинты | banner_seamstress_echo_siege_approved_2026-11-10.png | be70f5375c703fc9ad4c5a1f5cfb57eea5f499ac849526348fa842ee483e39b2 |
 | unsent_letters | Запертая почта | unsent_letters_echo_siege_approved_2026-11-10.png | 3e84b66a1109af5867126e6a3d87dd480d28f6fe3641fef137ef8becfabb5e0f |
-| borrowed_boots | Чужие сапоги | borrowed_boots_echo_siege_approved_2026-11-10.png | 7cf1d2d0fa0cd813bdc0017b49d920f0fbd5692b0013f6d90cc716cb0120e88b |
+| borrowed_boots | Чужие сапоги | borrowed_boots_echo_siege_squire_v2_2026-11-10.png | 2ec39769890b2229255b62d46e7585186cf23b31b1c63a1da0c064c39f66d519 |
 | false_weights | Неверные гири | false_weights_echo_siege_approved_2026-11-10.png | 6d1c166f5587a68f366f68b210e3f6cae748d8a35a77cadc2bab605d399e95d6 |
 | last_signal | Погасший сигнал | last_signal_echo_siege_approved_2026-11-10.png | 2a53828e4fec3105605502fe5a4aa05610c5af46f5f8d61e35fc79cde7854026 |
+
+## UPDATED 2026-11-10 — Borrowed Boots superseded
+
+The older boot-depot-keeper image and its `7cf1d2...` SHA256 are **no longer approved**. The user supplied a *new exact image* of a young half-undead squire pulling on oversized boots. The updated approval and the one-card-only package are fully documented in [ECHO_SIEGE_BOOTS_V2.md](ECHO_SIEGE_BOOTS_V2.md). **The boots v2 binary replacement is pending push to main; the other four paintings are already in main and must stay exactly as they are.** The earlier ZIP `misdeal_echo_siege_approved_pack.zip` is obsolete for further deployments because its boots art is the superseded version.
 
 ## Fifth selected composition
 
