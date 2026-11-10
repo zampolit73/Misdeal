@@ -1,5 +1,10 @@
 # Final five Act I cards
 
+## Echo of Siege — safe installer branch and staging guards (2026-11-10)
+
+Diagnosed missing local `install_echo_siege_art.ps1` as a likely checkout branch mismatch: GitHub `main` contains the file; other work branches do not. Hardened the guarded install script to refuse `-Push` on a non-main local checkout, avoid clobbering an edited asset manifest, and commit only the exact five images and manifest paths instead of unrelated staged Godot files. Verified all 5 PNG and 10 WebP checksums in prepared ZIP. Binary runtime integration and Godot F6 QA have **not** yet happened.
+
+
 ## Echo of the Siege — safe importer and asset pipeline prepared (2026-11-10)
 
 `scripts/dev/install_echo_siege_art.ps1` now validates user-approved source PNG SHA256 and WebP SHA256 against the packaged manifest, copies exactly five approved sources and ten derived runtime assets, and records `manifest.approved_sources` during import. `scripts/dev/pack_final_five_assets.gd` recognizes those approved originals and never reverts them to previous option numbers once installed. **Files have not yet been imported to GitHub and Godot native QA remains pending.** The conversation ZIP is downloadable, and importing requires a local invocation because the connected GitHub text/object actions do not accept these binary files directly. See [ECHO_SIEGE_ART_ROLLOUT.md](ECHO_SIEGE_ART_ROLLOUT.md).
