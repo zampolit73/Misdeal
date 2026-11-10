@@ -1,5 +1,10 @@
 ## A1V1 — Memory Stained Glass narrative handoff (2026-11-10)
 
+## Run save system
+
+New Game/Continue/Exit and ESC Save/Load/Save & Exit/Main Menu; validated versioned slot plus backup,67-field audit, safe Table/Reward checkpoints and permanent-memory rewind protection. [Architecture, field inventory and QA](docs/RUN_SAVE_SYSTEM.md). RELEASE checks required before merge; native screenshots under docs/qa/run_save. Local user settings preserved.
+
+
 ## A1V2 — «Витраж Памяти»
 
 24 persistent narrative fragments, approved immutable art, real completion hooks, cap8/run, protagonist gates, modal viewer and restrained Table apertures implemented. No combat/economy/clue carryover. Local234 GUT tests and native0/7/24/ESC/pixel-preservation/restart checks pass. RELEASE CI required before merge. [Contract, trigger matrix, evidence and F6](docs/A1V2_MEMORY_STAINED_GLASS_QA.md).

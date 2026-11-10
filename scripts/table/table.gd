@@ -940,6 +940,7 @@ func _choose_card(card: RunCardData) -> void:
 	if selection_locked or deal_in_progress:
 		return
 
+	preload("res://scripts/core/run_save_service.gd").instance().write_slot(RunState)
 	var was_marked: bool = RunState.is_wizard_marked_card(card.card_id)
 	if not RunState.choose_card(card.card_id):
 		return
