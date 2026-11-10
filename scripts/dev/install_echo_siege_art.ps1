@@ -23,6 +23,7 @@ $expectedSources = @{
 }
 
 Add-Type -AssemblyName System.IO.Compression
+Add-Type -AssemblyName System.IO.Compression.FileSystem
 $stage = Join-Path ([System.IO.Path]::GetTempPath()) ("misdeal-echo-siege-" + [guid]::NewGuid().ToString("N"))
 New-Item -ItemType Directory -Path $stage -Force | Out-Null
 try {
@@ -85,7 +86,8 @@ try {
                 $gameManifest.files.PSObject.Properties[$key].Value = [string]$e.output.$kind.sha256
             }
         }
-        $gameManifest | ConvertTo-Json -Depth 30 | Set-Content -Encoding UTF8 $gameManifestFile
+        $json = $gameManifest | ConvertTo-Json -Depth 30
+        [System.IO.File]::WriteAllText($gameManifestFile, $json + [Environment]::NewLine, (New-Object System.Text.UTF8Encoding($false)))
         Write-Host "Installed and hash-verified all 5 approved PNGs + 10 WebPs."
         Write-Host "Rebuilt manifest approved_sources and output hashes. Existing old candidate sources retained."
         if ($Commit) {
