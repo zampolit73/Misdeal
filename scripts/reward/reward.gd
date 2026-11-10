@@ -294,6 +294,12 @@ func _fit_v2_reward_copy(index: int) -> void:
 
 
 func _setup_initial_reward() -> void:
+	var save := preload("res://scripts/core/run_save_service.gd").instance()
+	if save.loading:
+		save.loading = false
+		if save.resume_phase == "bonus_upgrade":
+			_setup_bonus_upgrade_reward()
+			return
 	_refresh_run_stats()
 	if RunState.is_major_upgrade_due_for_active_card():
 		_setup_major_upgrade_reward()
@@ -410,7 +416,12 @@ func _setup_death_wager_reward() -> void:
 	_set_reward_card(0, "gold_windfall", "ВЫИГРЫШ", "ЗОЛОТОЙ КУШ", "+60 золота\nСамый безопасный способ забрать выигрыш.")
 
 	var artifacts := RunState.get_available_artifact_ids()
-	artifacts.shuffle()
+	if RunState.pending_wager_artifact_id.is_empty():
+		artifacts.shuffle()
+		if not artifacts.is_empty(): RunState.pending_wager_artifact_id = artifacts[0]
+	elif artifacts.has(RunState.pending_wager_artifact_id):
+		artifacts.erase(RunState.pending_wager_artifact_id)
+		artifacts.push_front(RunState.pending_wager_artifact_id)
 	if artifacts.is_empty():
 		option_ids[1] = "fallback_gold"
 		_set_reward_card(1, "empty_cache", "СТАВКА", "ПУСТОЙ ТАЙНИК", "+50 золота\nВсе известные реликвии уже у вас.")
@@ -797,6 +808,7 @@ func _disable_reward_buttons() -> void:
 func _finish_reward(message: String) -> void:
 	_refresh_run_stats()
 	RunState.complete_active_card()
+	preload("res://scripts/core/run_save_service.gd").instance().write_slot(RunState)
 	summary_label.text = message
 	await get_tree().create_timer(0.22).timeout
 

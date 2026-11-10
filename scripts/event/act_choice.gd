@@ -1892,6 +1892,7 @@ func _finish(message: String) -> void:
 	_disable_choices()
 	_record_castle_memory_for_event()
 	RunState.complete_active_card()
+	preload("res://scripts/core/run_save_service.gd").instance().write_slot(RunState)
 	result_label.text = message
 	_apply_resolved_layout()
 	result_label.visible = true

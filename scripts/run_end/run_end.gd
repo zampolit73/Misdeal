@@ -13,6 +13,7 @@ const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 @onready var new_run_button: Button = $NewRunButton
 
 func _ready() -> void:
+	preload("res://scripts/core/run_save_service.gd").instance().write_slot(RunState)
 	MISDEAL_UI_KIT.apply_panel($SummaryPanel, MISDEAL_UI_KIT.BRONZE, true)
 	MISDEAL_UI_KIT.apply_title(title_label, MISDEAL_UI_KIT.GOLD)
 	MISDEAL_UI_KIT.apply_subtitle(wizard_line, MISDEAL_UI_KIT.BRONZE)

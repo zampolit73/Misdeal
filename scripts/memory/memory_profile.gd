@@ -9,13 +9,15 @@ var seen: Dictionary = {}
 var path := ""
 var error_message := ""
 var pending := 0
+var run_uid := ""
+var run_ledger: Dictionary = {}
 
 static func instance() -> RefCounted:
 	if shared == null:
 		shared = load("res://scripts/memory/memory_profile.gd").new()
 		# Development scripts and GUT must never touch a player's profile.
 		var args := " ".join(OS.get_cmdline_args())
-		if not args.contains("--script") and not args.contains("-s ") and not Engine.is_editor_hint():
+		if not args.contains("--script") and not args.contains("-s ") and not args.replace("\\", "/").contains("/dev/") and not Engine.is_editor_hint():
 			shared.open_profile(SAVE_PATH)
 	return shared
 
@@ -23,6 +25,7 @@ static func catalog() -> Array:
 	return JSON.parse_string(FileAccess.get_file_as_string(CATALOG_PATH)) as Array
 
 func begin_run() -> void:
+	run_uid = Crypto.new().generate_random_bytes(16).hex_encode()
 	earned = 0
 	seen.clear()
 
@@ -38,6 +41,8 @@ func open_profile(save_path: String) -> void:
 		error_message = "Профиль памяти повреждён или создан более новой версией. Исходный файл сохранён."
 		path = ""
 		return
+	if data.get("run_ledger") is Dictionary:
+		run_ledger = data.run_ledger
 	for id in data.unlocked:
 		if valid_id(str(id)) and not unlocked.has(str(id)):
 			unlocked.append(str(id))
@@ -56,7 +61,7 @@ func save_profile() -> bool:
 	if file == null:
 		error_message = "Не удалось сохранить память."
 		return false
-	file.store_string(JSON.stringify({"schema_version":1,"unlocked":unlocked}))
+	file.store_string(JSON.stringify({"schema_version":1,"unlocked":unlocked,"run_ledger":run_ledger}))
 	file.flush()
 	file.close()
 	# Keep the previous valid generation until the replacement succeeds.
@@ -95,6 +100,16 @@ func resolved(role: String, stage: int, facts: Dictionary, boss: bool, key: Stri
 		added.append(item.id)
 		earned += 1
 	if not added.is_empty():
+		run_ledger[run_uid] = {"earned":earned,"seen":seen.duplicate()}
 		pending += added.size()
 		save_profile()
 	return added
+
+func restore_run(uid: String) -> void:
+	run_uid = uid
+	var raw: Variant = run_ledger.get(uid,{})
+	var record: Dictionary = raw if raw is Dictionary else {}
+	var count: Variant = record.get("earned",0)
+	earned = clampi(int(count),0,8) if count is int or count is float else 0
+	var actions: Variant = record.get("seen",{})
+	seen = actions.duplicate() if actions is Dictionary else {}

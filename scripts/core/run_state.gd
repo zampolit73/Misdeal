@@ -188,6 +188,7 @@ const ACT1_CARD_IDS := [
 	"court_of_the_mute" # D273: released card #39, painted D271 arena, D267 original undead trio + Verdict
 ]
 
+var pending_wager_artifact_id := ""
 var gold: int = 0
 var deals_survived: int = 0
 var cards_resolved: int = 0
@@ -267,10 +268,12 @@ var wizard_memory_pending_event := ""
 var wizard_memory_pending_detail := ""
 
 func _ready() -> void:
+	call_deferred("_install_run_menu")
 	if remaining_card_ids.is_empty() and resolved_card_ids.is_empty() and active_card_id.is_empty():
 		reset_run()
 
 func reset_run() -> void:
+	pending_wager_artifact_id = ""
 	preload("res://scripts/memory/memory_profile.gd").instance().begin_run()
 	gold = 0
 	deals_survived = 0
@@ -373,6 +376,7 @@ func choose_protagonist(role: String) -> bool:
 	hero_fate_notes[role] = "Это вы. С этой версии прошлого начинается партия."
 	current_major_upgrade_offer_ids.clear()
 	current_bonus_upgrade_offer_ids.clear()
+	preload("res://scripts/core/run_save_service.gd").instance().write_slot(self)
 	return true
 
 func has_chosen_protagonist() -> bool:
@@ -1615,6 +1619,7 @@ func complete_active_card() -> void:
 		deals_survived += 1
 		wizard_mark_danger_active = false
 
+	pending_wager_artifact_id = ""
 	active_card_id = ""
 	active_rejected_card_id = ""
 	current_offer_ids.clear()
@@ -1706,6 +1711,7 @@ func end_run_in_defeat(reason: String) -> void:
 	run_failed = true
 	run_end_reason = reason
 	record_wizard_memory("run_defeat", active_card_id)
+	preload("res://scripts/core/run_save_service.gd").instance().write_slot(self)
 
 func refuse_last_deal(reason: String) -> void:
 	record_wizard_memory("last_deal_refuse", active_card_id)
@@ -1943,3 +1949,9 @@ func apply_reward(reward_id: String) -> void:
 
 	if wizard_debt_active:
 		wizard_debt_active = false
+
+func _install_run_menu() -> void:
+	if get_tree() != null and get_tree().root.get_node_or_null("RunMenu") == null:
+		var menu := preload("res://scripts/core/run_menu.gd").new()
+		menu.name = "RunMenu"
+		get_tree().root.add_child(menu)
