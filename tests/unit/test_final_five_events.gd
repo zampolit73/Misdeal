@@ -189,11 +189,35 @@ func test_narrative_v2_art_lock_and_separate_story_levels() -> void:
 	var hashes: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://docs/qa/echo_narrative_v2/art_hashes.json"))
 	assert_eq(hashes.size(),10)
 	for path in hashes:
-		assert_eq(FileAccess.get_sha256("res://"+path),hashes[path],"Approved painting preserved")
+		if path.ends_with("/card.webp"):
+			assert_eq(FileAccess.get_sha256("res://"+path),hashes[path],"Approved card painting preserved")
 	for id in EVENTS.IDS:
 		fixture(id)
 		var event := load("res://scenes/event/act_choice.tscn").instantiate() as Control
 		add_child(event)
 		assert_eq(event.description_label.text,EVENTS.SCENES[id])
 		assert_ne(event.description_label.text,RunState.get_card(id).card_text)
+		event.free()
+
+func test_event_illustrations_use_distinct_scene_sources_and_correct_routes() -> void:
+	var base := "res://assets/pixel/events/final_five/"
+	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(base+"manifest.json"))
+	assert_eq(manifest.event_sources.size(),5)
+	for id in EVENTS.IDS:
+		assert_eq(FileAccess.get_sha256(base+"sources/event_choice_v1/"+id+"/source.png"),manifest.event_sources[id])
+		for spec in [["event",Vector2i(448,274)],["backdrop",Vector2i(1280,720)]]:
+			var path: String = id+"/"+spec[0]+".webp"
+			assert_eq(FileAccess.get_sha256(base+path),manifest.files[path.replace("/","\\")])
+			var image := Image.new()
+			assert_eq(image.load_webp_from_buffer(FileAccess.get_file_as_bytes(base+path)),OK)
+			assert_eq(image.get_size(),spec[1])
+		fixture(id)
+		var event := load("res://scenes/event/act_choice.tscn").instantiate() as Control
+		add_child(event)
+		var expected := Image.new()
+		expected.load_webp_from_buffer(FileAccess.get_file_as_bytes(base+id+"/event.webp"))
+		for button in [event.choice_a,event.choice_b,event.choice_c]:
+			var texture: Texture2D = button.get_node("ChoiceArt").texture
+			assert_eq(texture.get_image().get_data(),expected.get_data(),"Correct event illustration")
+		assert_ne(FileAccess.get_sha256(base+id+"/event.webp"),FileAccess.get_sha256(base+id+"/card.webp"))
 		event.free()

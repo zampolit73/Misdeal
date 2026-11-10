@@ -1,5 +1,9 @@
 # Misdeal — current handoff
 
+## Echo of the Siege — event choice illustration pass
+
+Five dedicated event paintings extend the exact approved card references: bandaging seamstress, chest-closing postmaster with one skeletal pigeon, young half-undead squire fastening oversized boots, cheating quartermaster before straw soldiers, skeleton raising a cold signal basket. Source PNGs/prompts under `assets/pixel/events/final_five/sources/event_choice_v1/`; `event.webp` (448×274) appears in choices and `backdrop.webp` (1280×720) behind the existing UI. Approved `card.webp` and card source PNGs remain unchanged. Packer/manifest track separate event sources and prevent reverting backgrounds to the card scene. [Production/QA contract](ECHO_SIEGE_EVENT_ART.md). Full RELEASE required before merge; final result recorded by the delivery PR.
+
 ## Echo of the Siege — Narrative V2
 
 User-approved narrative implemented for all five events: undead seamstress tending a skeleton, postal clerk and one skeletal pigeon, young squire in oversized boots, quartermaster cheating straw soldiers, skeletal signal watchman. Short card hooks, compact event scenes with resident dialogue, exact Wizard lines and fifteen literary resolutions now match the approved paintings. All choice keys, numbers, gating, clues, debt and save contracts retained. Art hashes guarded; actual QA uses `scenes/dev/final_five_playtest.tscn` (F6), plus full GUT and native 45-frame capture. Delivery: [PR #100](https://github.com/zampolit73/Misdeal/pull/100); [native QA and F6](qa/echo_narrative_v2/README.md). Final-head CI is authoritative.
