@@ -1,5 +1,10 @@
 # Misdeal — current handoff
 
+## Echo of Siege ZIP import — branch mismatch diagnosed (2026-11-10)
+
+Windows user ran `git pull` and `powershell -File .\scripts\dev\install_echo_siege_art.ps1 ...` from their local checkout; PowerShell responded that the script file did not exist. Live GitHub inspection confirms `scripts/dev/install_echo_siege_art.ps1` exists on `main` but not on remote `feature/echo-siege-approved-art-20261110` (nor the `design/a1v1-memory-stained-glass-20261110` branch). The pull fetched `origin/main` 78ead0ad..165af9f8 but reported `Already up to date`, suggesting the current local checkout tracks some other branch. **Next user action:** `git status -sb`, `git switch main` (if no blocking local changes), `git pull --ff-only origin main`, then `Test-Path .\scripts\dev\install_echo_siege_art.ps1` must output `True`; only after that run archive importer. Never reset/clean worktree to solve this. This turn also hardened importer commit isolation: it checks manifest edits, refuses `-Push` from a non-main branch, and uses `git commit --only` to avoid unrelated pre-staged changes. Verified conversation ZIP contains 5 exact SHA256 PNGs and 10 corresponding WebPs (448x274, 1280x720). **Asset binary integration and native QA remain pending.**
+
+
 ## Echo of the Siege — safe importer and asset pipeline prepared (2026-11-10)
 
 `scripts/dev/install_echo_siege_art.ps1` now validates user-approved source PNG SHA256 and WebP SHA256 against the packaged manifest, copies exactly five approved sources and ten derived runtime assets, and records `manifest.approved_sources` during import. `scripts/dev/pack_final_five_assets.gd` recognizes those approved originals and never reverts them to previous option numbers once installed. **Files have not yet been imported to GitHub and Godot native QA remains pending.** The conversation ZIP is downloadable, and importing requires a local invocation because the connected GitHub text/object actions do not accept these binary files directly. See [ECHO_SIEGE_ART_ROLLOUT.md](ECHO_SIEGE_ART_ROLLOUT.md).
