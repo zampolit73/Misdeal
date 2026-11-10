@@ -1,0 +1,4 @@
+# Full 96-frame native sequences are generated locally and attached by RELEASE CI.
+*_motion_*.webp
+!*_motion_000.webp
+!*_motion_095.webp

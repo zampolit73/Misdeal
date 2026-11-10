@@ -1,5 +1,13 @@
 extends TextureRect
 
+const LIVING_PROFILE := preload("res://scripts/battle/living_arena_profile.gd")
+const LIVING_SHADER := preload("res://shaders/living_arena.gdshader")
+var living_enabled := true
+var living_paused := false
+var living_finished := false
+var living_elapsed := 0.0
+var living_material: ShaderMaterial
+
 const ARENA_CRYPT := "crypt"
 const ARENA_GRAVEYARD := "graveyard"
 const ARENA_GALLOWS := "gallows"
@@ -62,6 +70,41 @@ func set_arena_id(value: String) -> void:
 
 	material = null
 	texture = _get_runtime_texture(arena_id)
+	_configure_living_arena()
+
+func _configure_living_arena() -> void:
+	living_elapsed = 0.0
+	living_finished = false
+	living_paused = false
+	living_material = null
+	if LIVING_PROFILE.supports(arena_id):
+		living_material = ShaderMaterial.new()
+		living_material.shader = LIVING_SHADER
+		living_material.set_shader_parameter("source_plate", texture)
+		living_material.set_shader_parameter("region_mask", LIVING_PROFILE.mask_for(arena_id))
+		living_material.set_shader_parameter("arena_mode", LIVING_PROFILE.PROFILES[arena_id].mode)
+	set_living_enabled(living_enabled)
+
+func set_living_enabled(enabled: bool) -> void:
+	living_enabled = enabled
+	material = living_material if enabled else null
+	set_process(enabled and living_material != null and not living_finished and not living_paused)
+
+func set_living_paused(paused: bool) -> void:
+	living_paused = paused
+	set_living_enabled(living_enabled)
+
+func finish_living_arena() -> void:
+	living_finished = true
+	set_process(false)
+
+func advance_living(delta: float) -> void:
+	if not living_enabled or living_paused or living_finished or living_material == null: return
+	living_elapsed += maxf(0.0, delta)
+	living_material.set_shader_parameter("elapsed", living_elapsed)
+
+func _process(delta: float) -> void:
+	advance_living(delta)
 
 # D271 QA-only visual comparison: switch between D265 rollback and the
 # actual D271 painted tribunal in the exact same real Battle.

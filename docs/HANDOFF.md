@@ -1,5 +1,9 @@
 # Misdeal — current handoff
 
+## Living Arenas — three production pilots
+
+Implemented in [PR #99](https://github.com/zampolit73/Misdeal/pull/99): `firing_square` (castle courtyard), `black_crossing`, `threadbare_theatre`. Local masks animate existing light, distant haze/water and heavy curtain folds behind the unchanged combat actors/HUD. Original art hashes, source geometry, tide hazards, balance and silent audio are preserved. Godot 4.7.2: 265/265 full GUT tests; final focused 5/5 (22,365 assertions), 327 native frames plus three resize captures; protected-floor pixel audit passes. [Implementation, measurements and F6](LIVING_ARENAS_PILOT.md). [Required RELEASE checks](https://github.com/zampolit73/Misdeal/pull/99/checks) must pass before merge. Arena changes are committed; remaining unrelated local settings/imports are preserved. **Do not expand to other arenas before the user's artistic review of these three pilots.**
+
 ## Echo of Siege — DEPLOYED to main, native QA pending (2026-11-10)
 
 **Authoritative latest state:** user successfully pushed base five-approved-event art commit [56c7a70d](https://github.com/zampolit73/Misdeal/commit/56c7a70d), then pushed final **Borrowed Boots v2** image in [3ce01ac1](https://github.com/zampolit73/Misdeal/commit/3ce01ac1). Connector verified the latter commit modifies **only** `assets/pixel/events/final_five/borrowed_boots/{card,backdrop}.webp`, `assets/pixel/events/final_five/sources/echo_siege_approved/borrowed_boots/approved_source.png`, and `assets/pixel/events/final_five/manifest.json`. The other four approved scenes were not modified in the v2 commit. Manifest source SHA256 for boots v2 is `2ec39769890b2229255b62d46e7585186cf23b31b1c63a1da0c064c39f66d519`, card WebP `50905e5c52a61a3d2c6328715dbf5fb9fcce3927a67f5c84cf6df92a7e3c2944`, backdrop WebP `beaff13743e4a2f58cf45a56121c1823ff171fd8ddca57fd5ea390a9e3bc1e4e`. No event effects or DS3 scripts changed.

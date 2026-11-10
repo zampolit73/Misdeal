@@ -1,6 +1,7 @@
 extends Control
 
 const ARENA_CRYPT := "crypt"
+const LIVING_PROFILE := preload("res://scripts/battle/living_arena_profile.gd")
 const ARENA_GRAVEYARD := "graveyard"
 const ARENA_GALLOWS := "gallows"
 const ARENA_OSSUARY := "ossuary"
@@ -51,6 +52,7 @@ func _ready() -> void:
 	queue_redraw()
 
 func _process(delta: float) -> void:
+	if LIVING_PROFILE.supports(arena_id): return
 	pulse += delta
 	redraw_cooldown -= delta
 	if redraw_cooldown <= 0.0:
@@ -58,6 +60,9 @@ func _process(delta: float) -> void:
 		queue_redraw()
 
 func _draw() -> void:
+	# Pilot atmosphere is now masked in the existing backdrop, behind all actors.
+	# Avoid stacking the legacy fog discs/bird or free-floating theatre dust.
+	if LIVING_PROFILE.supports(arena_id): return
 	match arena_id:
 		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_GRAVE_CROSSFIRE, ARENA_LAST_BELL, ARENA_FIRING_SQUARE:
 			_draw_graveyard_atmosphere()

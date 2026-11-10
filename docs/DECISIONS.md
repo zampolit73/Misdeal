@@ -1,3 +1,7 @@
+## Living Arenas — bounded pilot and immutable paintings
+
+The requested castle courtyard maps to approved `firing_square` (Расстрельная площадь). Extend `authored_backdrop.gd` with one local ShaderMaterial and three cached region masks; retire only the duplicate legacy atmosphere on these pilots. No new parallel scene hierarchy, combat random draws, objects per frame, sound or global TIME shader clock. Effect time follows delta, pause and battle completion; QA/accessibility can restore the exact original texture by disabling the material. No other arena opts in until the user approves the three real Godot pilots. [Technical contract](LIVING_ARENAS_PILOT.md).
+
 ## Echo of the Siege — «Погасший сигнал» approved; series complete (2026-11-10)
 
 ## Echo of the Siege — Borrowed Boots user art supersedes quartermaster (2026-11-10)

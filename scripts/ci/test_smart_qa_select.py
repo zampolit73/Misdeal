@@ -48,6 +48,10 @@ class SelectorTests(unittest.TestCase):
         self.assertEqual(len(plan["tests"]), 8)
         self.assertEqual(len(plan["scenes"]), 10)
 
+    def test_living_arenas_requires_full_release(self):
+        for path in ("scripts/battle/living_arena_profile.gd", "shaders/living_arena.gdshader", "scripts/dev/living_arenas_capture.gd"):
+            self.assertEqual(classify([path])["mode"], "release")
+
     def test_explicit_fast_skips_render(self):
         plan = classify(["assets/pixel/new_card.webp"], "fast")
         self.assertEqual(plan["mode"], "fast")
