@@ -2,7 +2,7 @@
 
 ## Living Arenas — three production pilots
 
-Local implementation: `firing_square` (castle courtyard), `black_crossing`, `threadbare_theatre`. Local masks animate existing light, distant haze/water and heavy curtain folds behind the unchanged combat actors/HUD. Original art hashes, source geometry, tide hazards, balance and silent audio are preserved. Godot 4.7.2: 265/265 GUT tests (71,284 assertions), 327 native frames plus three resize captures; protected-floor pixel audit passes. [Implementation, measurements and F6](LIVING_ARENAS_PILOT.md). Full RELEASE is required before merge. **Do not expand to other arenas before the user's artistic review of these three pilots.**
+Implemented in [PR #99](https://github.com/zampolit73/Misdeal/pull/99): `firing_square` (castle courtyard), `black_crossing`, `threadbare_theatre`. Local masks animate existing light, distant haze/water and heavy curtain folds behind the unchanged combat actors/HUD. Original art hashes, source geometry, tide hazards, balance and silent audio are preserved. Godot 4.7.2: 265/265 full GUT tests; final focused 5/5 (22,365 assertions), 327 native frames plus three resize captures; protected-floor pixel audit passes. [Implementation, measurements and F6](LIVING_ARENAS_PILOT.md). [Required RELEASE checks](https://github.com/zampolit73/Misdeal/pull/99/checks) must pass before merge. Arena changes are committed; remaining unrelated local settings/imports are preserved. **Do not expand to other arenas before the user's artistic review of these three pilots.**
 
 ## Echo of Siege — DEPLOYED to main, native QA pending (2026-11-10)
 
