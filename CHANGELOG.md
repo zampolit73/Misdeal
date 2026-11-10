@@ -4,6 +4,26 @@ Added restrained region-masked background motion to the castle courtyard (`firin
 
 # Final five Act I cards
 
+## Echo of Siege — final Borrowed Boots squire art (approval/package, 2026-11-10)
+
+User replaced earlier quartermaster artwork for `borrowed_boots` with exact user-supplied image of a half-undead young squire pulling on oversized boots in a ruined camp. Verified 1280×853 PNG and prepared lossless contain-fit WebP card 448×274 and backdrop 1280×720; safe ZIP importer pushes only the three boots assets plus source/output hashes in the manifest. Preserves the other four approved events and all gameplay. **Art v2 awaits GitHub binary push and native F6 QA**. [Full rollout](docs/ECHO_SIEGE_BOOTS_V2.md).
+
+
+## Echo of Siege — safe installer branch and staging guards (2026-11-10)
+
+Diagnosed missing local `install_echo_siege_art.ps1` as a likely checkout branch mismatch: GitHub `main` contains the file; other work branches do not. Hardened the guarded install script to refuse `-Push` on a non-main local checkout, avoid clobbering an edited asset manifest, and commit only the exact five images and manifest paths instead of unrelated staged Godot files. Verified all 5 PNG and 10 WebP checksums in prepared ZIP. Binary runtime integration and Godot F6 QA have **not** yet happened.
+
+
+## Echo of the Siege — safe importer and asset pipeline prepared (2026-11-10)
+
+`scripts/dev/install_echo_siege_art.ps1` now validates user-approved source PNG SHA256 and WebP SHA256 against the packaged manifest, copies exactly five approved sources and ten derived runtime assets, and records `manifest.approved_sources` during import. `scripts/dev/pack_final_five_assets.gd` recognizes those approved originals and never reverts them to previous option numbers once installed. **Files have not yet been imported to GitHub and Godot native QA remains pending.** The conversation ZIP is downloadable, and importing requires a local invocation because the connected GitHub text/object actions do not accept these binary files directly. See [ECHO_SIEGE_ART_ROLLOUT.md](ECHO_SIEGE_ART_ROLLOUT.md).
+
+
+## Echo of the Siege — approved visual package (2026-11-10)
+
+All five Act I event redraws were individually approved. A full-res five-PNG / ten-WebP integration pack has been prepared in the project conversation, retaining the existing DS3 card proportions and containing the exact selected scenes. This is a documentation/art-preparation milestone, **not yet a runtime asset deployment or native QA pass**. Integration safety and all SHA256 hashes: [docs/ECHO_SIEGE_ART_ROLLOUT.md](docs/ECHO_SIEGE_ART_ROLLOUT.md).
+
+
 Added Знамя на бинты, Запертая почта, Чужие сапоги, Неверные гири and Погасший сигнал:45 ordinary cards, fifteen real event outcomes, original artwork, save-safe one-time consequences and native QA. See docs/ACT1_FINAL_FIVE_CARDS.md.
 
 ## A1V1 — Memory Stained Glass narrative handoff (2026-11-10)

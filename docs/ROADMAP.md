@@ -4,6 +4,26 @@
 
 Local implementation: `firing_square` (castle courtyard), `black_crossing`, `threadbare_theatre`. Local masks animate existing light, distant haze/water and heavy curtain folds behind the unchanged combat actors/HUD. Original art hashes, source geometry, tide hazards, balance and silent audio are preserved. Godot 4.7.2: 265/265 GUT tests (71,284 assertions), 327 native frames plus three resize captures; protected-floor pixel audit passes. [Implementation, measurements and F6](LIVING_ARENAS_PILOT.md). Full RELEASE is required before merge. **Do not expand to other arenas before the user's artistic review of these three pilots.**
 
+## Echo of the Siege — boots-only revision (2026-11-10)
+
+- [x] Preserve newly user-approved `borrowed_boots` art (young half-undead squire) as immutable PNG and two size-checked WebPs.
+- [x] Prepare a self-contained, checksum-verified ZIP/installer that changes only the boots image and its manifest hashes.
+- [ ] Push `borrowed_boots` v2 files to `main` and verify source/output hashes; four other cards must be unchanged.
+- [ ] Run updated Godot F6 card/event visual check and CI; no success claim before evidence.
+
+[Full handoff and safe import](ECHO_SIEGE_BOOTS_V2.md).
+
+
+## Echo of the Siege — art selection complete, deployment outstanding (2026-11-10)
+
+- [x] Approve all five final event paintings, including `last_signal` option 1.
+- [x] Preserve full-resolution PNG sources in Library and produce five-card WebP integration ZIP.
+- [ ] Commit all five approved source PNGs, ten runtime WebPs and reproducible packer/manifest updates in GitHub.
+- [ ] Run 4.7.x GUT + actual F6/natural deal UI verification; only then declare runtime released.
+
+See [art rollout](ECHO_SIEGE_ART_ROLLOUT.md).
+
+
 ## Final five Act I stories вЂ” 45 ordinary cards
 
 Five new original noncombat events, fifteen art candidates with selected finals, existing DS3 and actual choices/ordinary tier dealing. Godot 4.7.2: 260/260 Linux GUT tests (48,919 assertions), 45 native frames on Windows and Linux. [PR #98](https://github.com/zampolit73/Misdeal/pull/98) carries the required full RELEASE checks. [Effects, sources, QA and F6](ACT1_FINAL_FIVE_CARDS.md). This task explicitly delegates art selection; PR89/90/92 remain independent.

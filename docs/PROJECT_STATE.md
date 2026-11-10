@@ -4,6 +4,26 @@
 
 Local implementation: `firing_square` (castle courtyard), `black_crossing`, `threadbare_theatre`. Local masks animate existing light, distant haze/water and heavy curtain folds behind the unchanged combat actors/HUD. Original art hashes, source geometry, tide hazards, balance and silent audio are preserved. Godot 4.7.2: 265/265 GUT tests (71,284 assertions), 327 native frames plus three resize captures; protected-floor pixel audit passes. [Implementation, measurements and F6](LIVING_ARENAS_PILOT.md). Full RELEASE is required before merge. **Do not expand to other arenas before the user's artistic review of these three pilots.**
 
+## Echo of the Siege — new final Borrowed Boots v2, rollout pending (2026-11-10)
+
+Live GitHub `main` now already contains the prior first batch of five Echo of the Siege illustrations. User has **replaced only `borrowed_boots`** with a 1280×853 illustration of a young partly undead squire dressing in oversized boots. Full-resolution image and derived 448×274/1280×720 game WebPs are verified and persisted with a safe single-card patch ZIP. **This replacement has not yet been pushed to `main`**, whereas the other four already-approved scenes remain in place. Updated art source SHA256 `2ec39769890b2229255b62d46e7585186cf23b31b1c63a1da0c064c39f66d519`. See [ECHO_SIEGE_BOOTS_V2.md](ECHO_SIEGE_BOOTS_V2.md). Other effects, DS3 and save contracts are unchanged.
+
+
+## Echo of the Siege — safe importer and asset pipeline prepared (2026-11-10)
+
+`scripts/dev/install_echo_siege_art.ps1` now validates user-approved source PNG SHA256 and WebP SHA256 against the packaged manifest, copies exactly five approved sources and ten derived runtime assets, and records `manifest.approved_sources` during import. `scripts/dev/pack_final_five_assets.gd` recognizes those approved originals and never reverts them to previous option numbers once installed. **Files have not yet been imported to GitHub and Godot native QA remains pending.** The conversation ZIP is downloadable, and importing requires a local invocation because the connected GitHub text/object actions do not accept these binary files directly. See [ECHO_SIEGE_ART_ROLLOUT.md](ECHO_SIEGE_ART_ROLLOUT.md).
+
+
+## Echo of the Siege — all five visuals approved; integration pending (2026-11-10)
+
+Five user-approved art sources are preserved in Library /Misdeal/approved_art/; final `last_signal` option 1 has an undead watchman with an unlit signal brazier on a moonlit battlement. A five-PNG / ten-WebP 448x274 + 1280x720 ready-to-integrate ZIP has been produced in the project conversation. **These runtime images have NOT been committed to GitHub or verified in native Godot.** The old event candidate selection manifest/packer would overwrite new artwork if run unchanged. Exact SHA256/image constraints and safe integration checklist: [ECHO_SIEGE_ART_ROLLOUT.md](ECHO_SIEGE_ART_ROLLOUT.md). Keep gameplay effects/DS3/save unchanged.
+
+
+## Echo of the Siege — visual approval status (2026-11-10)
+
+**4/5 new illustrations explicitly approved; not yet integrated into runtime WebP.** Confirmed final sources for `banner_seamstress`, `unsent_letters`, `borrowed_boots`, `false_weights` in user's Library at `/Misdeal/approved_art/` and exact SHA256/compositions in [DECISIONS.md](DECISIONS.md). Most recent `false_weights`: undead keeper deceitfully weighs stones against grain before **empty-headed soldier scarecrows**, with exact gold ring/cross shaft on burgundy banner. Last illustration awaiting approval: `last_signal` («Погасший сигнал»). Once approved, batch-integration of all five should preserve existing events, choices, balance, DS3, rollback assets and native F6 QA. See [HANDOFF.md](HANDOFF.md).
+
+
 ## Final five Act I stories вЂ” 45 ordinary cards
 
 Five new original noncombat events, fifteen art candidates with selected finals, existing DS3 and actual choices/ordinary tier dealing. Godot 4.7.2: 260/260 Linux GUT tests (48,919 assertions), 45 native frames on Windows and Linux. [PR #98](https://github.com/zampolit73/Misdeal/pull/98) carries the required full RELEASE checks. [Effects, sources, QA and F6](ACT1_FINAL_FIVE_CARDS.md). This task explicitly delegates art selection; PR89/90/92 remain independent.
