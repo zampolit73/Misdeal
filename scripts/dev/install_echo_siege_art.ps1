@@ -22,6 +22,15 @@ $expectedSources = @{
     last_signal = "2a53828e4fec3105605502fe5a4aa05610c5af46f5f8d61e35fc79cde7854026"
 }
 
+# Never allow the original five-card ZIP to undo the later user-approved Boots v2 art.
+$existingManifestPath = Join-Path $repo "$assetRoot/manifest.json"
+if (Test-Path -LiteralPath $existingManifestPath) {
+    $existingManifest = Get-Content -LiteralPath $existingManifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    if ($existingManifest.PSObject.Properties["approved_sources"] -and
+        [string]$existingManifest.approved_sources.borrowed_boots -eq "2ec39769890b2229255b62d46e7585186cf23b31b1c63a1da0c064c39f66d519") {
+        throw "This original five-card pack is obsolete for Borrowed Boots. Use the 2026-11-10 boots-v2 one-card patch."
+    }
+}
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 $stage = Join-Path ([System.IO.Path]::GetTempPath()) ("misdeal-echo-siege-" + [guid]::NewGuid().ToString("N"))
