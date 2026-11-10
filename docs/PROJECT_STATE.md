@@ -1,5 +1,10 @@
 # Misdeal вЂ” current project state
 
+## Echo of the Siege — new final Borrowed Boots v2, rollout pending (2026-11-10)
+
+Live GitHub `main` now already contains the prior first batch of five Echo of the Siege illustrations. User has **replaced only `borrowed_boots`** with a 1280×853 illustration of a young partly undead squire dressing in oversized boots. Full-resolution image and derived 448×274/1280×720 game WebPs are verified and persisted with a safe single-card patch ZIP. **This replacement has not yet been pushed to `main`**, whereas the other four already-approved scenes remain in place. Updated art source SHA256 `2ec39769890b2229255b62d46e7585186cf23b31b1c63a1da0c064c39f66d519`. See [ECHO_SIEGE_BOOTS_V2.md](ECHO_SIEGE_BOOTS_V2.md). Other effects, DS3 and save contracts are unchanged.
+
+
 ## Echo of the Siege — safe importer and asset pipeline prepared (2026-11-10)
 
 `scripts/dev/install_echo_siege_art.ps1` now validates user-approved source PNG SHA256 and WebP SHA256 against the packaged manifest, copies exactly five approved sources and ten derived runtime assets, and records `manifest.approved_sources` during import. `scripts/dev/pack_final_five_assets.gd` recognizes those approved originals and never reverts them to previous option numbers once installed. **Files have not yet been imported to GitHub and Godot native QA remains pending.** The conversation ZIP is downloadable, and importing requires a local invocation because the connected GitHub text/object actions do not accept these binary files directly. See [ECHO_SIEGE_ART_ROLLOUT.md](ECHO_SIEGE_ART_ROLLOUT.md).
