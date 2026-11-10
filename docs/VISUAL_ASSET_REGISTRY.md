@@ -1,5 +1,9 @@
 ## Echo of Siege — prepared art delivery guard (2026-11-10)
 
+## Echo of the Siege — event choice illustration pass
+
+Five dedicated event paintings extend the exact approved card references: bandaging seamstress, chest-closing postmaster with one skeletal pigeon, young half-undead squire fastening oversized boots, cheating quartermaster before straw soldiers, skeleton raising a cold signal basket. Source PNGs/prompts under `assets/pixel/events/final_five/sources/event_choice_v1/`; `event.webp` (448×274) appears in choices and `backdrop.webp` (1280×720) behind the existing UI. Approved `card.webp` and card source PNGs remain unchanged. Packer/manifest track separate event sources and prevent reverting backgrounds to the card scene. [Production/QA contract](ECHO_SIEGE_EVENT_ART.md). Delivery: [PR #101](https://github.com/zampolit73/Misdeal/pull/101); [required RELEASE checks](https://github.com/zampolit73/Misdeal/pull/101/checks).
+
 ## Echo of the Siege — five live paintings, final squire v2 (2026-11-10)
 
 Five originally approved Siege Echo images are now GitHub runtime assets in `main` ([56c7a70d](https://github.com/zampolit73/Misdeal/commit/56c7a70d)). The only superseding painting is `borrowed_boots`: exact user-supplied young half-undead squire in camp, committed in [3ce01ac1](https://github.com/zampolit73/Misdeal/commit/3ce01ac1) with unchanged other 4 paintings. Immutable source PNG SHA256 `2ec39769890b2229255b62d46e7585186cf23b31b1c63a1da0c064c39f66d519`; derived card448x274 and backdrop1280x720 hashes are stored in `assets/pixel/events/final_five/manifest.json`. Earlier "pending visual delivery" registry entries below are historical. No native F6 visual acceptance has been recorded for the final revision. [Detailed QA and provenance](ECHO_SIEGE_BOOTS_V2.md).

@@ -1,3 +1,7 @@
+## Event scene art — autonomous five-image commission
+
+The user's Event Choice Art Pass explicitly delegates creation, final selection and integration of ONE finished scene per event, rather than stopping at an options review. This overrides options-first only for this commissioned five-event pass. Card art/source identities, palette, heraldry and mechanics remain locked. Use a distinct event illustration derived from each exact approved card source, with the same event picture across its three choices (not three invented branches). Full source/prompts/manifest and real Godot QA required. [Contract](ECHO_SIEGE_EVENT_ART.md).
+
 ## Echo of the Siege — Narrative V2
 
 User-approved narrative implemented for all five events: undead seamstress tending a skeleton, postal clerk and one skeletal pigeon, young squire in oversized boots, quartermaster cheating straw soldiers, skeletal signal watchman. Short card hooks, compact event scenes with resident dialogue, exact Wizard lines and fifteen literary resolutions now match the approved paintings. All choice keys, numbers, gating, clues, debt and save contracts retained. Art hashes guarded; actual QA uses `scenes/dev/final_five_playtest.tscn` (F6), plus full GUT and native 45-frame capture. Delivery: [PR #100](https://github.com/zampolit73/Misdeal/pull/100); [native QA and F6](qa/echo_narrative_v2/README.md). Final-head CI is authoritative.
