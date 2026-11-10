@@ -214,6 +214,7 @@ func _refresh_choices() -> void:
 	page_label.text="%d / %d"%[page+1,ceili(entries.size()/4.0)]
 	closure_button.visible=_count(group)==entries.size()
 	full_button.visible=profile.unlocked.size()==24
+	_update_focus_chain()
 
 func _turn_page(direction: int) -> void:
 	page=clampi(page+direction,0,ceili(_entries().size()/4.0)-1)
@@ -273,7 +274,33 @@ func _full_closure() -> void:
 	reader.text="Ты видишь целую картину. Твой честный приказ обрёк замок; Канцлер подменил его обещанием помощи, а Комендант продолжил ложь, узнав правду. Ни один восстановленный осколок не возвращает погибших. Но теперь ты не можешь сказать, что видел лишь свою часть.\n\nВолшебник: «Вот и всё стекло. Прощения в нём нет — только лица»."
 	reader.scroll_to_line(0)
 
+func _focusables(node: Node, result: Array[Control]) -> void:
+	for child in node.get_children():
+		if child is Control and child.is_visible_in_tree() and child.focus_mode==Control.FOCUS_ALL:
+			if not child is Button or not child.disabled: result.append(child)
+		_focusables(child,result)
+
+func _update_focus_chain() -> void:
+	var controls: Array[Control]=[]
+	_focusables(canvas,controls)
+	for index in range(controls.size()):
+		var before:=controls[index].get_path_to(controls[(index-1+controls.size())%controls.size()])
+		var after:=controls[index].get_path_to(controls[(index+1)%controls.size()])
+		controls[index].focus_previous=before
+		controls[index].focus_next=after
+		controls[index].focus_neighbor_left=before
+		controls[index].focus_neighbor_right=after
+		controls[index].focus_neighbor_top=before
+		controls[index].focus_neighbor_bottom=after
+
 func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and event.keycode==KEY_TAB:
+		var controls: Array[Control]=[]
+		_focusables(canvas,controls)
+		var index:=controls.find(get_viewport().gui_get_focus_owner())
+		if not controls.is_empty(): controls[posmod(index+(-1 if event.shift_pressed else 1),controls.size())].grab_focus()
+		get_viewport().set_input_as_handled()
+		return
 	if event is InputEventKey and event.pressed and event.keycode==KEY_ESCAPE:
 		get_viewport().set_input_as_handled()
 		close()

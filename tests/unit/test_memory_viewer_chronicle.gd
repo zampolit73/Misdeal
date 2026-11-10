@@ -60,3 +60,11 @@ func test_art_selection_and_scaled_layout_keep_the_same_fragment_mapping() -> vo
 	assert_eq(node.canvas.scale,Vector2(0.75,0.75))
 	assert_false(node.reader.get_global_rect().intersects(node.list.get_global_rect()))
 
+func test_keyboard_focus_cycles_inside_modal() -> void:
+	var node:=viewer(24)
+	var event:=InputEventKey.new()
+	event.keycode=KEY_TAB
+	event.pressed=true
+	for index in range(40):
+		node._input(event)
+		assert_true(node.is_ancestor_of(get_viewport().gui_get_focus_owner()))
