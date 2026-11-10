@@ -31,3 +31,5 @@ After required checks pass, merge and update `C:/Users/irlix/GodotProjects/Misde
 ## Local verified result
 
 Godot4.7.2: **268/268 full GUT**, **71,452 assertions**, 19 existing warnings. Native **45-state capture PASS** at1280×720; all five three-image event screens inspected directly. All15 old card/backdrop/event hashes retained; all15 decision routes/hash/dimension checks pass. Import/parse check and required RELEASE are verified separately before merge.
+
+Delivery: [PR #102](https://github.com/zampolit73/Misdeal/pull/102), [final-head checks](https://github.com/zampolit73/Misdeal/pull/102/checks).
