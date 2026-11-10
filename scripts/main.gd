@@ -83,7 +83,7 @@ func _setup_save_menu() -> void:
 	status_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	status_label.text=service.error_message
 	if not data.is_empty() and not data.finished:
-		status_label.text="%s · Этап %d/12 · %s" % [{"knight":"Рыцарь","ranger":"Следопыт","mage":"Маг"}[data.state.protagonist_role],data.state.cards_resolved,data.saved_at.replace("T"," ")]
+		status_label.text="%s · Пройдено %d/12 · %s" % [{"knight":"Рыцарь","ranger":"Следопыт","mage":"Маг"}[data.state.protagonist_role],data.state.cards_resolved,data.saved_at.replace("T"," ")]
 
 
 func _animate_start_commit() -> void:

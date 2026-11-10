@@ -17,7 +17,7 @@ static func instance() -> RefCounted:
 		shared = load("res://scripts/memory/memory_profile.gd").new()
 		# Development scripts and GUT must never touch a player's profile.
 		var args := " ".join(OS.get_cmdline_args())
-		if not args.contains("--script") and not args.contains("-s ") and not Engine.is_editor_hint():
+		if not args.contains("--script") and not args.contains("-s ") and not args.replace("\\", "/").contains("/dev/") and not Engine.is_editor_hint():
 			shared.open_profile(SAVE_PATH)
 	return shared
 
@@ -107,6 +107,9 @@ func resolved(role: String, stage: int, facts: Dictionary, boss: bool, key: Stri
 
 func restore_run(uid: String) -> void:
 	run_uid = uid
-	var record: Dictionary = run_ledger.get(uid,{})
-	earned = int(record.get("earned",0))
-	seen = record.get("seen",{}).duplicate()
+	var raw: Variant = run_ledger.get(uid,{})
+	var record: Dictionary = raw if raw is Dictionary else {}
+	var count: Variant = record.get("earned",0)
+	earned = clampi(int(count),0,8) if count is int or count is float else 0
+	var actions: Variant = record.get("seen",{})
+	seen = actions.duplicate() if actions is Dictionary else {}

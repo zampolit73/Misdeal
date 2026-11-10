@@ -13,7 +13,7 @@ static func instance() -> RefCounted:
 	if shared == null:
 		shared = load("res://scripts/core/run_save_service.gd").new()
 		var args := " ".join(OS.get_cmdline_args())
-		if not args.contains("--script") and not args.contains("-s ") and not Engine.is_editor_hint():
+		if not args.contains("--script") and not args.contains("-s ") and not args.replace("\\", "/").contains("/dev/") and not Engine.is_editor_hint():
 			shared.path = "user://current_run.json"
 	return shared
 
