@@ -43,6 +43,9 @@ func run() -> void:
 		await create_timer(0.3).timeout
 		await snap("new_game_memory_zero")
 		assert(MEMORY.shared.unlocked.is_empty())
+		table.get_node("MemoryTable").viewer.close()
+		await process_frame
+		await process_frame
 		print("NEW_GAME_MEMORY_RESET_PASS")
 		quit()
 		return
