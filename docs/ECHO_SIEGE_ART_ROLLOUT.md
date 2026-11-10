@@ -30,3 +30,16 @@ CRITICAL: The original assets/pixel/events/final_five/manifest.json still select
 - Run GUT / Godot 4.7.x and F6 scenes/dev/final_five_playtest.tscn; inspect all five card front frames, event backdrops and outcome/return paths on native 1280x720.
 - After binary integration, update PROJECT_STATE, HANDOFF, VISUAL_ASSET_REGISTRY, CHANGELOG and GitHub CI evidence. Never mark the rollout implemented before this has happened.
 
+
+## Safe Windows import helper (2026-11-10)
+
+To bridge the approved conversation ZIP (binary artifacts are not yet in the repository), the repository now includes `scripts/dev/install_echo_siege_art.ps1`. It accepts the exact `misdeal_echo_siege_approved_pack.zip`, checks the hardcoded SHA256 of every source PNG and package SHA256 of every WebP **before modifying a file**, refuses collisions with locally edited target art, installs exactly the 5 approved PNGs and 10 WebPs, and adds an `approved_sources` mapping and revised output hashes to the existing manifest. The updated `scripts/dev/pack_final_five_assets.gd` respects `approved_sources` when present and **fails explicitly** if those sources are missing, instead of silently falling back to old options; before import it still supports legacy selections.
+
+Once the user has downloaded the ZIP into their normal Downloads directory and pulled this commit locally, a single Windows PowerShell command from the repository root can install, commit and push the exact images without hand-copying files:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\dev\install_echo_siege_art.ps1 -Archive "$env:USERPROFILE\Downloads\misdeal_echo_siege_approved_pack.zip" -Commit -Push
+```
+
+This is **an explicit deferred local binary-push step**, not a completed GitHub asset release. The script leaves unrelated working files (including `project.godot`, Godot import metadata and saves) untouched. Do not rerun the old manifest's source-selection assumptions. Need native Godot F6 check once the WebPs are in the real repository.
+
