@@ -1,5 +1,10 @@
 # Final five Act I cards
 
+## Echo of the Siege — safe importer and asset pipeline prepared (2026-11-10)
+
+`scripts/dev/install_echo_siege_art.ps1` now validates user-approved source PNG SHA256 and WebP SHA256 against the packaged manifest, copies exactly five approved sources and ten derived runtime assets, and records `manifest.approved_sources` during import. `scripts/dev/pack_final_five_assets.gd` recognizes those approved originals and never reverts them to previous option numbers once installed. **Files have not yet been imported to GitHub and Godot native QA remains pending.** The conversation ZIP is downloadable, and importing requires a local invocation because the connected GitHub text/object actions do not accept these binary files directly. See [ECHO_SIEGE_ART_ROLLOUT.md](ECHO_SIEGE_ART_ROLLOUT.md).
+
+
 ## Echo of the Siege — approved visual package (2026-11-10)
 
 All five Act I event redraws were individually approved. A full-res five-PNG / ten-WebP integration pack has been prepared in the project conversation, retaining the existing DS3 card proportions and containing the exact selected scenes. This is a documentation/art-preparation milestone, **not yet a runtime asset deployment or native QA pass**. Integration safety and all SHA256 hashes: [docs/ECHO_SIEGE_ART_ROLLOUT.md](docs/ECHO_SIEGE_ART_ROLLOUT.md).
