@@ -1,0 +1,377 @@
+[
+	{
+		"frame": "banner_seamstress_table",
+		"gold": 50,
+		"outcomes": {},
+		"resolved": 0,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "banner_seamstress_event",
+		"gold": 50,
+		"outcomes": {},
+		"resolved": 0,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "banner_seamstress_choice_1",
+		"gold": 50,
+		"outcomes": {
+			"banner_seamstress": "bandages"
+		},
+		"resolved": 1,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "banner_seamstress_return_1",
+		"gold": 50,
+		"outcomes": {
+			"banner_seamstress": "bandages"
+		},
+		"resolved": 1,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "banner_seamstress_choice_2",
+		"gold": 50,
+		"outcomes": {
+			"banner_seamstress": "standard"
+		},
+		"resolved": 1,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "banner_seamstress_return_2",
+		"gold": 50,
+		"outcomes": {
+			"banner_seamstress": "standard"
+		},
+		"resolved": 1,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "banner_seamstress_choice_3",
+		"gold": 50,
+		"outcomes": {
+			"banner_seamstress": "passed"
+		},
+		"resolved": 1,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "banner_seamstress_return_3",
+		"gold": 50,
+		"outcomes": {
+			"banner_seamstress": "passed"
+		},
+		"resolved": 1,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "banner_seamstress_unavailable",
+		"gold": 0,
+		"outcomes": {},
+		"resolved": 0,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "unsent_letters_table",
+		"gold": 50,
+		"outcomes": {},
+		"resolved": 5,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "unsent_letters_event",
+		"gold": 50,
+		"outcomes": {},
+		"resolved": 5,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "unsent_letters_choice_1",
+		"gold": 40,
+		"outcomes": {
+			"unsent_letters": "release"
+		},
+		"resolved": 6,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "unsent_letters_return_1",
+		"gold": 40,
+		"outcomes": {
+			"unsent_letters": "release"
+		},
+		"resolved": 6,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "unsent_letters_choice_2",
+		"gold": 50,
+		"outcomes": {
+			"unsent_letters": "read"
+		},
+		"resolved": 6,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "unsent_letters_return_2",
+		"gold": 50,
+		"outcomes": {
+			"unsent_letters": "read"
+		},
+		"resolved": 6,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "unsent_letters_choice_3",
+		"gold": 50,
+		"outcomes": {
+			"unsent_letters": "passed"
+		},
+		"resolved": 5,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "unsent_letters_return_3",
+		"gold": 50,
+		"outcomes": {
+			"unsent_letters": "passed"
+		},
+		"resolved": 5,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "unsent_letters_unavailable",
+		"gold": 0,
+		"outcomes": {},
+		"resolved": 4,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "borrowed_boots_table",
+		"gold": 50,
+		"outcomes": {},
+		"resolved": 0,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "borrowed_boots_event",
+		"gold": 50,
+		"outcomes": {},
+		"resolved": 0,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "borrowed_boots_choice_1",
+		"gold": 32,
+		"outcomes": {
+			"borrowed_boots": "repair"
+		},
+		"resolved": 1,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "borrowed_boots_return_1",
+		"gold": 32,
+		"outcomes": {
+			"borrowed_boots": "repair"
+		},
+		"resolved": 1,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "borrowed_boots_choice_2",
+		"gold": 50,
+		"outcomes": {
+			"borrowed_boots": "hobnails"
+		},
+		"resolved": 1,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "borrowed_boots_return_2",
+		"gold": 50,
+		"outcomes": {
+			"borrowed_boots": "hobnails"
+		},
+		"resolved": 1,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "borrowed_boots_choice_3",
+		"gold": 50,
+		"outcomes": {
+			"borrowed_boots": "passed"
+		},
+		"resolved": 1,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "borrowed_boots_return_3",
+		"gold": 50,
+		"outcomes": {
+			"borrowed_boots": "passed"
+		},
+		"resolved": 1,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "borrowed_boots_unavailable",
+		"gold": 0,
+		"outcomes": {},
+		"resolved": 0,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "false_weights_table",
+		"gold": 50,
+		"outcomes": {},
+		"resolved": 5,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "false_weights_event",
+		"gold": 50,
+		"outcomes": {},
+		"resolved": 5,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "false_weights_choice_1",
+		"gold": 38,
+		"outcomes": {
+			"false_weights": "fair"
+		},
+		"resolved": 6,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "false_weights_return_1",
+		"gold": 38,
+		"outcomes": {
+			"false_weights": "fair"
+		},
+		"resolved": 6,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "false_weights_choice_2",
+		"gold": 68,
+		"outcomes": {
+			"false_weights": "silence"
+		},
+		"resolved": 6,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "false_weights_return_2",
+		"gold": 68,
+		"outcomes": {
+			"false_weights": "silence"
+		},
+		"resolved": 6,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "false_weights_choice_3",
+		"gold": 50,
+		"outcomes": {
+			"false_weights": "passed"
+		},
+		"resolved": 5,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "false_weights_return_3",
+		"gold": 50,
+		"outcomes": {
+			"false_weights": "passed"
+		},
+		"resolved": 5,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "false_weights_unavailable",
+		"gold": 0,
+		"outcomes": {},
+		"resolved": 4,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "last_signal_table",
+		"gold": 50,
+		"outcomes": {},
+		"resolved": 8,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "last_signal_event",
+		"gold": 50,
+		"outcomes": {},
+		"resolved": 8,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "last_signal_choice_1",
+		"gold": 30,
+		"outcomes": {
+			"last_signal": "truth"
+		},
+		"resolved": 9,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "last_signal_return_1",
+		"gold": 30,
+		"outcomes": {
+			"last_signal": "truth"
+		},
+		"resolved": 9,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "last_signal_choice_2",
+		"gold": 72,
+		"outcomes": {
+			"last_signal": "salvage"
+		},
+		"resolved": 9,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "last_signal_return_2",
+		"gold": 72,
+		"outcomes": {
+			"last_signal": "salvage"
+		},
+		"resolved": 9,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "last_signal_choice_3",
+		"gold": 50,
+		"outcomes": {
+			"last_signal": "passed"
+		},
+		"resolved": 9,
+		"scene": "res://scenes/event/act_choice.tscn"
+	},
+	{
+		"frame": "last_signal_return_3",
+		"gold": 50,
+		"outcomes": {
+			"last_signal": "passed"
+		},
+		"resolved": 9,
+		"scene": "res://scenes/table/table.tscn"
+	},
+	{
+		"frame": "last_signal_unavailable",
+		"gold": 0,
+		"outcomes": {},
+		"resolved": 8,
+		"scene": "res://scenes/event/act_choice.tscn"
+	}
+]

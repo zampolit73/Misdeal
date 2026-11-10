@@ -1,5 +1,10 @@
 # Misdeal — current handoff
 
+## Final five Act I stories — 45 ordinary cards
+
+Five new original noncombat events, fifteen art candidates with selected finals, existing DS3 and actual choices/ordinary tier dealing. Local Godot4.7.2:259 GUT tests,45 native frames; final RELEASE CI required before merge. [Effects, sources, QA and F6](ACT1_FINAL_FIVE_CARDS.md). This task explicitly delegates art selection; PR89/90/92 remain independent.
+
+
 ## Memory Glass — enlarged inspection
 
 Enlarge button opens fit/native zoom with wheel, LMB drag and bounded pan. Same original art/unlocked masks; ESC returns to the unchanged memory selection before closing Table overlay. [Controls and native QA](MEMORY_VIEWER_CHRONICLE.md). RELEASE required before merge.

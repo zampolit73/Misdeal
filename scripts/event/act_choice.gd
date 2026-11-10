@@ -1,5 +1,7 @@
 extends Control
 
+const FINAL_FIVE := preload("res://scripts/event/final_five_events.gd")
+
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 const CASTLE_MEMORY_TEXT := preload("res://scripts/story/act1_castle_memory_text.gd")
 
@@ -116,6 +118,10 @@ func _apply_ui_kit() -> void:
 func _apply_approved_choice_art() -> void:
 	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
 	var arts: Array[TextureRect] = [choice_art_a, choice_art_b, choice_art_c]
+	if FINAL_FIVE.IDS.has(active_card.card_id):
+		var picture := CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
+		_apply_choice_texture_set(buttons, arts, [picture, picture, picture])
+		return
 	if active_card.card_id == "jack":
 		_apply_choice_texture_set(buttons, arts, [
 			CARD_ART_CATALOG.get_run_card_texture("jack"),
@@ -397,6 +403,13 @@ func _apply_event_layout() -> void:
 	gold_chip.visible = false
 	state_chip.visible = false
 	_restore_generic_panel_shell()
+	if FINAL_FIVE.IDS.has(active_card.card_id):
+		_apply_feature_panel_shell()
+		feature_scene_art.call("load_webp_path", "res://assets/pixel/events/final_five/"+active_card.card_id+"/backdrop.webp", Vector2i(1280,720))
+		feature_scene_art.visible = true
+		feature_scene_art.position = Vector2.ZERO
+		feature_scene_art.size = Vector2(1280,720)
+		return
 
 	match active_card.card_id:
 		"jack":
@@ -788,6 +801,9 @@ func _apply_castle_memory_hint() -> void:
 
 
 func _configure_card() -> void:
+	if FINAL_FIVE.IDS.has(active_card.card_id):
+		_configure_final_five()
+		return
 	match active_card.card_id:
 		"jack":
 			_configure_jack()
@@ -1934,3 +1950,23 @@ func _refresh_run_labels() -> void:
 func _return_to_table() -> void:
 	continue_button.disabled = true
 	SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
+
+func _configure_final_five() -> void:
+	leave_button.hide()
+	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
+	var entries: Array = FINAL_FIVE.CHOICES[active_card.card_id]
+	for index in range(3):
+		var entry: Array = entries[index]
+		buttons[index].text = entry[1]
+		buttons[index].disabled = not FINAL_FIVE.available(RunState, active_card.card_id, entry[0])
+		if active_card.card_id == "unsent_letters" and index == 0 and RunState.defiance_order_ready:
+			buttons[index].text += "\nПриказ уже подготовлен."
+		if active_card.card_id == "last_signal" and index == 0 and not RunState.wizard_debt_active:
+			buttons[index].text += "\nУ вас нет долга."
+		buttons[index].pressed.connect(_resolve_final_five.bind(index))
+
+func _resolve_final_five(index: int) -> void:
+	if resolved or index < 0 or index > 2: return
+	var entry: Array = FINAL_FIVE.CHOICES[active_card.card_id][index]
+	if not FINAL_FIVE.resolve(RunState, active_card.card_id, entry[0]): return
+	_finish(entry[2])

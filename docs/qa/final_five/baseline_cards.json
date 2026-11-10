@@ -1,0 +1,405 @@
+{
+  "baseline": "5e12bf17cea54660b2568073f97fcfa0b92dc308",
+  "cards": [
+    {
+      "id": "jack",
+      "path": "resources/cards/jack.tres",
+      "sha256_lf": "b1a32e67b17f66dc2ea9cb975d4aaa0051c6025b5d8136a3e0afc3c42b88a47d",
+      "title": "ДЖЕК",
+      "card_text": "У развалин следопыт находит хромого пса. На ошейнике — старый охотничий жетон. Пёс смотрит без страха, будто уже сделал выбор.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/events/jack/card.webp"
+    },
+    {
+      "id": "bone_patrol",
+      "path": "resources/cards/bone_patrol.tres",
+      "sha256_lf": "746d11d5a7f005c5dde8d5d361eb8782cbfba26abb2dcb7683a10675011755b7",
+      "title": "КОСТЯНОЙ ДОЗОР",
+      "card_text": "Три скелета идут плотным строем.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/bone_patrol.tres",
+      "art_path": "res://assets/pixel/table/cards/bone_patrol.png"
+    },
+    {
+      "id": "bone_shepherd",
+      "path": "resources/cards/bone_shepherd.tres",
+      "sha256_lf": "fe7d1a7d1dccb1a4b06dc909ed4d0fe5e608ada64ce1f9ea87678770bbe3997d",
+      "title": "КОСТЯНОЙ ПАСТУХ",
+      "card_text": "Из тумана выходит костяной пастух. Его стадо давно не дышит — но всё ещё слушается свиста.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/bone_shepherd.tres",
+      "art_path": "res://assets/pixel/card_unification_v1/run/bone_shepherd.webp"
+    },
+    {
+      "id": "moon_seal",
+      "path": "resources/cards/moon_seal.tres",
+      "sha256_lf": "2de2d29dc68d3be59df038bd7a2c291d90471ba39b7956db7e9daab81cd49265",
+      "title": "ЛУННАЯ ПЕЧАТЬ",
+      "card_text": "В погребальной чаше лежит серебряная печать. Она ещё помнит, кому должны были открыть склеп.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/card_unification_v1/run/moon_seal.webp"
+    },
+    {
+      "id": "graveyard_ambush",
+      "path": "resources/cards/graveyard_ambush.tres",
+      "sha256_lf": "0d552d0d2977314021d7e0150d0c84e1f3eef626599124606216d3e0395fb04d",
+      "title": "ЗАСАДА НА КЛАДБИЩЕ",
+      "card_text": "Два скелета прикрывают костяного лучника.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/graveyard_ambush.tres",
+      "art_path": "res://assets/pixel/table/cards/graveyard_ambush.png"
+    },
+    {
+      "id": "whispering_well",
+      "path": "resources/cards/whispering_well.tres",
+      "sha256_lf": "7685dc7869c35415cdcab734193279d9a61a5297dd39a9d670b9326f0a0e8927",
+      "title": "ШЕПЧУЩИЙ КОЛОДЕЦ",
+      "card_text": "Из чёрной воды шепчут не только обещания. Иногда — знакомые голоса.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/whispering_well.tscn",
+      "art_path": "res://assets/pixel/table/cards/whispering_well.png"
+    },
+    {
+      "id": "ash_rest",
+      "path": "resources/cards/ash_rest.tres",
+      "sha256_lf": "96b1a632c22abdc855858866f293ee127110a083c551d4a66039828d01549c36",
+      "title": "ПЕПЕЛЬНЫЙ ПРИВАЛ",
+      "card_text": "Тёплый пепел хранит следы тех, кто однажды шёл рядом с вами.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/whispering_well.png"
+    },
+    {
+      "id": "debtor_bones",
+      "path": "resources/cards/debtor_bones.tres",
+      "sha256_lf": "04878c54e31ead163f542d98235aef12565e04e03de5b6255930d9044f3ef12d",
+      "title": "КОСТИ ДОЛЖНИКА",
+      "card_text": "Кости предлагают рискнуть: большой куш, безопасная мелочь или гарантированная цена.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/bone_patrol.png"
+    },
+    {
+      "id": "rattling_bridge",
+      "path": "resources/cards/rattling_bridge.tres",
+      "sha256_lf": "c324e709d0e6fd0fa55e487dc9a8dbce55d859a70e97a63c33f83c1cdb7d0d36",
+      "title": "ГРЕМУЧИЙ МОСТ",
+      "card_text": "Костяной мост трещит под ногами. На другой стороне может ждать не только добыча.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/graveyard_ambush.png"
+    },
+    {
+      "id": "lost_purse",
+      "path": "resources/cards/lost_purse.tres",
+      "sha256_lf": "d2e7b24bccf926b2b5e3f3ad917f86ccf3a5a1959a9a36d4b5ea74a0191e4fab",
+      "title": "КОШЕЛЬ МЕРТВЕЦА",
+      "card_text": "Кошель мертвеца набит монетами. Чем глубже лезешь, тем крепче сжимается мёртвая рука.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/gallows_volley.png"
+    },
+    {
+      "id": "candle_seller",
+      "path": "resources/cards/candle_seller.tres",
+      "sha256_lf": "97deb2eba3c19ff2efef1da13cb56235409100cd3d17c3ec535765a6f930d413",
+      "title": "ТОРГОВЕЦ СВЕЧАМИ",
+      "card_text": "Три свечи хранят три разных пути развития. Каждая стоит одинаково дорого.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/whispering_well.png"
+    },
+    {
+      "id": "gallows_volley",
+      "path": "resources/cards/gallows_volley.tres",
+      "sha256_lf": "b64e8dd6aec30e654a29ffe7ce60439d643b3662b902ee9ad1819f87436018de",
+      "title": "ЗАЛП С ВИСЕЛИЦЫ",
+      "card_text": "Два костяных лучника прячутся за одним скелетом.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/gallows_volley.tres",
+      "art_path": "res://assets/pixel/table/cards/gallows_volley.png"
+    },
+    {
+      "id": "grave_bell",
+      "path": "resources/cards/grave_bell.tres",
+      "sha256_lf": "a89d8c82071b5c4c82d372d17a29315d6ceaea334a5d67d2b7f56bf78099d24f",
+      "title": "МОГИЛЬНЫЙ ЗВОН",
+      "card_text": "Могильный звонарь лечит ближайшую нежить. Заставь колокол замолчать.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/grave_bell.tres",
+      "art_path": "res://assets/pixel/table/cards/graveyard_ambush.png"
+    },
+    {
+      "id": "funeral_procession",
+      "path": "resources/cards/funeral_procession.tres",
+      "sha256_lf": "137b831fdedb5f2246c7a5d3c746dd9f88b43f894e4dd2ac972d419136f87e0f",
+      "title": "ПОГРЕБАЛЬНАЯ ПРОЦЕССИЯ",
+      "card_text": "В грязи вязнет гроб, а за ним тянется служитель запретного обряда. Его молитва обещает мёртвым вторую попытку.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/funeral_procession.tres",
+      "art_path": "res://assets/pixel/card_unification_v1/run/funeral_procession.webp"
+    },
+    {
+      "id": "defiled_laboratory",
+      "path": "resources/cards/defiled_laboratory.tres",
+      "sha256_lf": "c6a80df3b594d620228c1436a18079ddc63be9d10020dc741d258c772966982e",
+      "title": "ОСКВЕРНЁННАЯ ЛАБОРАТОРИЯ",
+      "card_text": "Внутри алхимической мастерской не осталось живых. Но опыты всё ещё движутся.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/defiled_laboratory.tres",
+      "art_path": ""
+    },
+    {
+      "id": "threadbare_theatre",
+      "path": "resources/cards/threadbare_theatre.tres",
+      "sha256_lf": "d7e5fcdd3f36c66c9011a3332710eba1219a70f8f91b2f7005a1c31621f1b164",
+      "title": "ТЕАТР ОБОРВАННЫХ НИТЕЙ",
+      "card_text": "Костяные актёры танцуют на оборванных нитях. Над ними возвышается неживой хозяин сцены.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/threadbare_theatre.tres",
+      "art_path": ""
+    },
+    {
+      "id": "black_crossing",
+      "path": "resources/cards/black_crossing.tres",
+      "sha256_lf": "81fb9a9bc278de51b4fafc310d7eaa3ff58307f40fec4d6fce440cf905f0ce6b",
+      "title": "ЧЁРНАЯ ПЕРЕПРАВА",
+      "card_text": "Утонувшие тянутся из-под разбитых мостков. Мёртвый перевозчик требует плату за переход.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/black_crossing.tres",
+      "art_path": ""
+    },
+    {
+      "id": "echo_crypt",
+      "path": "resources/cards/echo_crypt.tres",
+      "sha256_lf": "212d01bdc20b8da6b9e515c0697ce3d263e1572cb94d30a8b931169cf3d38e39",
+      "title": "СКЛЕП ОТЗВУКОВ",
+      "card_text": "На двери склепа темнеет знак: такой же, как на Лунной печати. Внутри кто-то оставил выбор.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/card_unification_v1/run/echo_crypt.webp"
+    },
+    {
+      "id": "bone_crush",
+      "path": "resources/cards/bone_crush.tres",
+      "sha256_lf": "1c05b3dffa54d8ff94b92e67c76d161a96e58bd35a08cd7e4f7d020225a98809",
+      "title": "КОСТЯНАЯ ДАВКА",
+      "card_text": "Пять хрупких костяных рабов давят числом. Толпа особенно не любит взрывы.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/bone_crush.tres",
+      "art_path": "res://assets/pixel/table/cards/bone_patrol.png"
+    },
+    {
+      "id": "black_altar",
+      "path": "resources/cards/black_altar.tres",
+      "sha256_lf": "cc0e75e5f8b87c69f32c24610ebd7f98c834fe4936b2f1ba88fc50941db880d8",
+      "title": "ЧЁРНЫЙ АЛТАРЬ",
+      "card_text": "Алтарь принимает кровь, переписывает судьбы и иногда возвращает тех, кого вы уже теряли.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/whispering_well.png"
+    },
+    {
+      "id": "chained_prisoner",
+      "path": "resources/cards/chained_prisoner.tres",
+      "sha256_lf": "3543145d1aaf3a06266235572cfbe47b97c2d6223b9defb818efee92b631314c",
+      "title": "ЗАКОВАННЫЙ ПЛЕННИК",
+      "card_text": "В цепях сидит человек, которого память почему-то отказывается называть незнакомцем.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/graveyard_ambush.png"
+    },
+    {
+      "id": "gravedigger_shop",
+      "path": "resources/cards/gravedigger_shop.tres",
+      "sha256_lf": "bac601da284fb3a06ad21b19f29a828c6296e63f122f5809b5ee79d478815fc1",
+      "title": "ЛАВКА МОГИЛЬЩИКА",
+      "card_text": "Могильщик продаёт чужие боевые секреты — по одному для каждого героя.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/gallows_volley.png"
+    },
+    {
+      "id": "curse_forge",
+      "path": "resources/cards/curse_forge.tres",
+      "sha256_lf": "070a84289d4f13b8d7c4e114955bc71230e2e233777b015fa4ce51da39b430e2",
+      "title": "КУЗНИЦА ПРОКЛЯТИЙ",
+      "card_text": "Кузнец обещает силу. Молот обещает последствия.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/gallows_volley.png"
+    },
+    {
+      "id": "bone_tax",
+      "path": "resources/cards/bone_tax.tres",
+      "sha256_lf": "590d4da8d6626423d3aef104ff123c4cbfb7494350ad5c8c9f76b277dc30a95c",
+      "title": "КОСТЯНАЯ ПОШЛИНА",
+      "card_text": "Страж требует плату: золото, кровь или короткую и очень неприятную драку.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/bone_patrol.png"
+    },
+    {
+      "id": "crypt_guard",
+      "path": "resources/cards/crypt_guard.tres",
+      "sha256_lf": "950518be6cc9138eaa0281ea475da58cdfc1608e3462388911aa2ee904f544dd",
+      "title": "СТРАЖ СКЛЕПА",
+      "card_text": "Тяжёлый страж бьёт по площади. За победу — гарантированный артефакт.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/crypt_guard.tres",
+      "art_path": "res://assets/pixel/table/cards/bone_patrol.png"
+    },
+    {
+      "id": "faceless_card",
+      "path": "resources/cards/faceless_card.tres",
+      "sha256_lf": "17d78ae1495446c7b64a17034fad50da3e253c45849098af59979f9ae6f4a5d1",
+      "title": "КАРТА БЕЗ ЛИЦА",
+      "card_text": "Карта скрывает исход до последнего. Можно рискнуть, купить уверенность или сжечь её.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/whispering_well.png"
+    },
+    {
+      "id": "wizard_tithe",
+      "path": "resources/cards/wizard_tithe.tres",
+      "sha256_lf": "8e772479912c61b8211dd9fdc20bf6f0e3f623aa0643c0ec2b105b9f9a660270",
+      "title": "ДЕСЯТИНА ВОЛШЕБНИКА",
+      "card_text": "Заплатить золотом, кровью или отказаться и принять долг волшебнику.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/gallows_volley.png"
+    },
+    {
+      "id": "ossuary_gate",
+      "path": "resources/cards/ossuary_gate.tres",
+      "sha256_lf": "ea3c1636e8e4de558f9c79a6742d0d8f488db7dcb2acdd65f756a87d4e0c2954",
+      "title": "ВРАТА ОССУАРИЯ",
+      "card_text": "Страж, звонарь, лучник и костяной раб держат последний проход к надзирателю.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/ossuary_gate.tres",
+      "art_path": "res://assets/pixel/table/cards/graveyard_ambush.png"
+    },
+    {
+      "id": "blood_ledger",
+      "path": "resources/cards/blood_ledger.tres",
+      "sha256_lf": "d2272d0b624568c62bf9208ce8a13e007f90d478971851286e722b0a55f7079f",
+      "title": "КРОВАВАЯ КНИГА",
+      "card_text": "Книга принимает золото, кровь или уже выученный приём — и переписывает билд.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/whispering_well.png"
+    },
+    {
+      "id": "broken_crown",
+      "path": "resources/cards/broken_crown.tres",
+      "sha256_lf": "eb7e009a879eb228d5b387c2361bed3391d5a9fe1b48c28e4b3cd2389462f472",
+      "title": "СЛОМАННАЯ КОРОНА",
+      "card_text": "Сломанная корона обещает власть всей партии, но отнимает часть выносливости.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/gallows_volley.png"
+    },
+    {
+      "id": "last_camp",
+      "path": "resources/cards/last_camp.tres",
+      "sha256_lf": "74c3c467e1818d3599e6a95dfc21cbaebc1c6fef844e5a9aeb6db1300d23d1fd",
+      "title": "ПОСЛЕДНИЙ ПРИВАЛ",
+      "card_text": "Последний костёр перед надзирателем. Иногда у него ждёт тот, кого судьба почти вычеркнула.",
+      "resolution_type": "event",
+      "target_path": "res://scenes/event/act_choice.tscn",
+      "art_path": "res://assets/pixel/table/cards/whispering_well.png"
+    },
+    {
+      "id": "death_wager",
+      "path": "resources/cards/death_wager.tres",
+      "sha256_lf": "2436ccea1e909a4917b06fcfab58ae0843b055da3db751b74329d6baa02bd69e",
+      "title": "СТАВКА НА СМЕРТЬ",
+      "card_text": "Поздняя элитная ставка: тяжёлый бой против пяти врагов в обмен на усиленную награду.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/death_wager.tres",
+      "art_path": "res://assets/pixel/table/cards/bone_patrol.png"
+    },
+    {
+      "id": "bone_swarm",
+      "path": "resources/cards/bone_swarm.tres",
+      "sha256_lf": "0f37edfa10a88393b3b7b0a63d0efaafaa53fb412537fb3a01eaff7e6e710672",
+      "title": "КОСТЯНОЙ РОЙ",
+      "card_text": "Четыре быстрых налётчика бросаются вперёд без строя.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/bone_swarm.tres",
+      "art_path": "res://assets/pixel/ui/combat_expansion_v1/cards/bone_swarm_card.webp"
+    },
+    {
+      "id": "grave_crossfire",
+      "path": "resources/cards/grave_crossfire.tres",
+      "sha256_lf": "f8e7653a10cf19f08afb04ab37f29171556825d47be63e095a81f0eac517736c",
+      "title": "МОГИЛЬНЫЙ ПЕРЕКРЁСТОК",
+      "card_text": "Два лучника держат разные углы, пока скелет перекрывает центр.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/grave_crossfire.tres",
+      "art_path": "res://assets/pixel/ui/combat_expansion_v1/cards/grave_crossfire_card.webp"
+    },
+    {
+      "id": "iron_wall",
+      "path": "resources/cards/iron_wall.tres",
+      "sha256_lf": "2567c76dec6d0d55153a5de1dfa095b7d8a334a21d9ebf800bb3ef0b65a58278",
+      "title": "ЖЕЛЕЗНАЯ СТЕНА",
+      "card_text": "Сначала часовые перекроют проход. За ними движется второй отряд.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/iron_wall.tres",
+      "art_path": "res://assets/pixel/ui/combat_expansion_v1/cards/iron_wall_card.webp"
+    },
+    {
+      "id": "last_bell",
+      "path": "resources/cards/last_bell.tres",
+      "sha256_lf": "be83c538190780e91d21e9d08397efc57d1c317ab0565756cd4e489159b5b8db",
+      "title": "ПОСЛЕДНИЙ ЗВОН",
+      "card_text": "Два звонаря лечат друг друга, пока налётчики связывают отряд.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/last_bell.tres",
+      "art_path": "res://assets/pixel/ui/combat_expansion_v1/cards/last_bell_card.webp"
+    },
+    {
+      "id": "firing_square",
+      "path": "resources/cards/firing_square.tres",
+      "sha256_lf": "2ccfcd2850abd998a8f67869687fd4a8c70a996bede260e24fdbac1907d7a9ea",
+      "title": "РАССТРЕЛЬНАЯ ПЛОЩАДЬ",
+      "card_text": "Часовой прикрывает первую линию лучников. Из темноты готовится перекрёстный залп.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/firing_square.tres",
+      "art_path": "res://assets/pixel/ui/combat_expansion_v1/cards/firing_square_card.webp"
+    },
+    {
+      "id": "bone_ritual",
+      "path": "resources/cards/bone_ritual.tres",
+      "sha256_lf": "cd6e7bc40303279cc84c4d51a3178f5e4f588363701d697130eb98fee89a346d",
+      "title": "КОСТЯНОЙ РИТУАЛ",
+      "card_text": "Часовой, звонарь и быстрые налётчики действуют как одна группа.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/bone_ritual.tres",
+      "art_path": "res://assets/pixel/ui/combat_expansion_v1/cards/bone_ritual_card.webp"
+    },
+    {
+      "id": "black_lantern_road",
+      "path": "resources/cards/black_lantern_road.tres",
+      "sha256_lf": "59166c62cef2104dcaa1c2acd0d80d22a797ccc03256c7dff33385078d7c0b13",
+      "title": "ДОРОГА ЧЁРНЫХ ФОНАРЕЙ",
+      "card_text": "По забытой дороге идёт костяной дозор. Там, где загораются фонари, мертвецы становятся сильнее.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/black_lantern_road.tres",
+      "art_path": ""
+    },
+    {
+      "id": "court_of_the_mute",
+      "path": "resources/cards/court_of_the_mute.tres",
+      "sha256_lf": "c050191a2cb6e96480beae8720b6a4fee17e720906554cc5c5915db7221100de",
+      "title": "СУД БЕЗМОЛВНЫХ",
+      "card_text": "Мёртвый судья поднимает печать. Писарь заносит в книгу имя того, кого приставы настигнут первым.",
+      "resolution_type": "combat",
+      "target_path": "res://resources/encounters/court_of_the_mute.tres",
+      "art_path": ""
+    }
+  ]
+}

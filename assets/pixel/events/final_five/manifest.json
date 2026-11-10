@@ -1,0 +1,36 @@
+{
+  "selection": {
+    "banner_seamstress": 2,
+    "unsent_letters": 3,
+    "borrowed_boots": 2,
+    "false_weights": 3,
+    "last_signal": 3
+  },
+  "files": {
+    "banner_seamstress\\backdrop.webp": "9bc4ecf48d2bf60de4440b9276ad946f498a7d7541686e0d29ecedb6c1eb5f39",
+    "banner_seamstress\\card.webp": "2c40f925bd26637cbf3dcac8f991c65b5b525d9d9d456909b1d69288496dc819",
+    "borrowed_boots\\backdrop.webp": "20c2ac21c5229bf52a05f5a8c1fd35bacf396af91cc53cf5fd256308fa372769",
+    "borrowed_boots\\card.webp": "165c4e79560dbaa51f2b5a77aa358911239dea018a28940e042d26b8ed6fce2c",
+    "false_weights\\backdrop.webp": "acc4319891491ee1d64c1040c7837552631a11baf1eb2fbea9900ccd34ca084e",
+    "false_weights\\card.webp": "6c60e036dabbc345dfdcb8b085dabc6a36871ff9df73a2b155b0f152db2daa0b",
+    "last_signal\\backdrop.webp": "b33f9996c46658ba54dd452cee85b08fb03988eb6f16f7edd4562e1671019398",
+    "last_signal\\card.webp": "8e1ce03852f50d609c5a0bb745967688d2d64afb9cff442af21cb1b2821714ec",
+    "unsent_letters\\backdrop.webp": "d76a516fea41b5dc657e5bd1a6394705e46504c87f6798b911bdcf2caa73109b",
+    "unsent_letters\\card.webp": "717aff462f342b6677517669854b199dd2c53f4a202769422e87e35411fc36e2",
+    "sources\\banner_seamstress\\option_1.png": "5cdf2febe7ea20810e32ba4b40203e338b6bf153f57630a15f5b9140a9415f34",
+    "sources\\banner_seamstress\\option_2.png": "53861417abb8b6a06fad74e9dfdec6f788a2a404a06db92f7b84a7787bb6d169",
+    "sources\\banner_seamstress\\option_3.png": "8231216d5e6d1ea4ae4076366252cb6bcd91390b14e76c4d8fb890a9e94d8b36",
+    "sources\\borrowed_boots\\option_1.png": "77680c1adc00eacf86c35004098451b779acd218e451ac30681a54822ca6ad21",
+    "sources\\borrowed_boots\\option_2.png": "833b1e5a306faf68d80d0b7e39c9417a705049cbe7f4390c75e3729e946db966",
+    "sources\\borrowed_boots\\option_3.png": "8e96c181948894751e11d3a0dac0846a397fef7bc5e1ab441ac62386517f3f41",
+    "sources\\false_weights\\option_1.png": "07cb48a72cdab04bdcec12f95ef94358c2e0f9e56c8fe82ff99dcf9fb4e6cbc8",
+    "sources\\false_weights\\option_2.png": "5dd7d3c332a7664d8866388a15d5ca7cdf39431256993d00e3d55b9ae49524b0",
+    "sources\\false_weights\\option_3.png": "65fc710c7c90fbc8ff00ca43d508351c4784edebe030d0a97c9fe0b8e78ee9e0",
+    "sources\\last_signal\\option_1.png": "2522fbe7b8e120c8b22a06e639e0b9e7424c2f4527924656796fc4dbcf2985f4",
+    "sources\\last_signal\\option_2.png": "cd0c4d81263d92730439572a74a32d4f8b753efd40e375a5abb42a63a8923bc4",
+    "sources\\last_signal\\option_3.png": "688ef4bb952f7a5f89e19f97736806aa76d85056ab2535257b6b081dc7b0f390",
+    "sources\\unsent_letters\\option_1.png": "acdbd69c585dd7c865e0f9d568142b6f9704f578d70b1e65584e4ebecce7f005",
+    "sources\\unsent_letters\\option_2.png": "f2386e2b0c31df5a6d4efd39c7eb0888a14a336b61fc7e8c4b5f5f5881ed0f1c",
+    "sources\\unsent_letters\\option_3.png": "a4ab9d1e12465932395f39eed8969bb33bae0e17f849753c71169ed654de648c"
+  }
+}

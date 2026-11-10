@@ -126,6 +126,10 @@ static var bone_warden_card_texture: Texture2D
 static var combat_expansion_card_textures: Dictionary = {}
 
 static func get_run_card_texture(card_id: String) -> Texture2D:
+	if preload("res://scripts/event/final_five_events.gd").IDS.has(card_id):
+		var image := Image.new()
+		var bytes := FileAccess.get_file_as_bytes("res://assets/pixel/events/final_five/"+card_id+"/card.webp")
+		return ImageTexture.create_from_image(image) if image.load_webp_from_buffer(bytes) == OK else null
 	if card_id == "jack":
 		var jack_image := Image.new()
 		var bytes := Marshalls.base64_to_raw(FileAccess.get_file_as_string("res://assets/pixel/events/jack/card.webp.b64").strip_edges())

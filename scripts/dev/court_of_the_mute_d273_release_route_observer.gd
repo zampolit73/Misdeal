@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func _exercise() -> void:
 	# Check the released ACT1 catalog, not the old unreleased QA registry.
-	if RunState.ACT1_CARD_IDS.size() != 40 or not RunState.ACT1_CARD_IDS.has(CARD):
+	if RunState.ACT1_CARD_IDS.size() != 45 or not RunState.ACT1_CARD_IDS.has(CARD):
 		_fail("card #39 is not in the regular 40-card pool")
 		return
 	var card := RunState.get_card(CARD)
@@ -177,7 +177,7 @@ func _exercise() -> void:
 	if not RunState.resolved_card_ids.has(CARD):
 		_fail("Reward-to-Table did not resolve released card #39")
 		return
-	if RunState.ACT1_CARD_IDS.size() != 40 or not RunState.ACT1_CARD_IDS.has(CARD):
+	if RunState.ACT1_CARD_IDS.size() != 45 or not RunState.ACT1_CARD_IDS.has(CARD):
 		_fail("release disappeared from ordinary draw pool")
 		return
 	print("D273_COURT_RELEASE_ROUTE_PASS: released ordinary deal → original Battle Fight → win → Reward → Table, 40/45 LIVE")

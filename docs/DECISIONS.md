@@ -1,3 +1,7 @@
+## Final five — autonomous art selection and run-local event outcomes
+
+User explicitly delegates selecting three rendered candidates per new card for this batch. Five independent events use existing outcome/save/fact contracts; footwear movement multiplier is shared by Battle and dossier. No new hero/enemy, permanent stat power or altered 24-fragment requirement. Existing two offers and12+XIII retained. [Details](ACT1_FINAL_FIVE_CARDS.md).
+
 ## A1V1 — Memory Stained Glass concept direction (2026-11-10)
 
 ## Memory Glass — enlarged inspection

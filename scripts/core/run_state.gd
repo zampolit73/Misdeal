@@ -96,6 +96,12 @@ const HERO_UPGRADE_PATHS := {
 }
 
 const CARD_PATHS := {
+	"banner_seamstress": "res://resources/cards/banner_seamstress.tres",
+	"unsent_letters": "res://resources/cards/unsent_letters.tres",
+	"borrowed_boots": "res://resources/cards/borrowed_boots.tres",
+	"false_weights": "res://resources/cards/false_weights.tres",
+	"last_signal": "res://resources/cards/last_signal.tres",
+
 	"jack": "res://resources/cards/jack.tres",
 	"bone_patrol": "res://resources/cards/bone_patrol.tres",
 	"bone_shepherd": "res://resources/cards/bone_shepherd.tres",
@@ -146,6 +152,12 @@ const CARD_PATHS := {
 }
 
 const ACT1_CARD_IDS := [
+	"banner_seamstress",
+	"unsent_letters",
+	"borrowed_boots",
+	"false_weights",
+	"last_signal",
+
 	"jack", # Ranger-only event; one animal bond or a lasting keepsake.
 	"bone_patrol",
 	"bone_shepherd",
@@ -399,6 +411,8 @@ func get_jack_damage_multiplier(role: String) -> float:
 	return JACK_TOKEN_DAMAGE_MULTIPLIER if role == "ranger" and get_event_outcome("jack") == "token" else 1.0
 
 func is_card_eligible(card_id: String) -> bool:
+	if preload("res://scripts/event/final_five_events.gd").IDS.has(card_id):
+		return not has_event_outcome(card_id)
 	return card_id != "jack" or (is_role_in_party("ranger") and not has_event_outcome("jack"))
 
 func resolve_jack_event(choice: String) -> bool:
@@ -642,11 +656,8 @@ func get_party_attack_interval_multiplier() -> float:
 			return 1.0
 
 func get_party_move_speed_multiplier() -> float:
-	match get_party_size():
-		1:
-			return SOLO_PARTY_MOVE_SPEED_MULTIPLIER
-		_:
-			return 1.0
+	var footwear := preload("res://scripts/event/final_five_events.gd").movement_multiplier(self)
+	return footwear * (SOLO_PARTY_MOVE_SPEED_MULTIPLIER if get_party_size() == 1 else 1.0)
 
 func get_enemy_hp_multiplier() -> float:
 	match get_party_size():

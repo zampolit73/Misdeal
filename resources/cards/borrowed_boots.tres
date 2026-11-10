@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "borrowed_boots"
+title = "ЧУЖИЕ САПОГИ"
+card_text = "Мастер починил обувь тех, кто обещал зайти после смены. Никто не пришёл. Он предлагает подогнать пару вам — или взять тяжёлые подмётки со склада."
+wizard_line = "— Им тоже казалось, что впереди долгая дорога."
+type_label = "СОБЫТИЕ"
+tier = 0
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
+art_path = "res://assets/pixel/events/final_five/borrowed_boots/card.webp"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RunCardData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_card_data.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "banner_seamstress"
+title = "ЗНАМЯ НА БИНТЫ"
+card_text = "Швея прижимает ножницы к гарнизонному знамени. Раненым нужна ткань, а тем, кто ещё на стене, — знак, что оборона продолжается."
+wizard_line = "— Герб или бинты. Удивительно, как мало ткани остаётся на оба решения."
+type_label = "СОБЫТИЕ"
+tier = 0
+resolution_type = "event"
+target_path = "res://scenes/event/act_choice.tscn"
+art_path = "res://assets/pixel/events/final_five/banner_seamstress/card.webp"
