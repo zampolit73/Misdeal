@@ -1,3 +1,7 @@
+# Echo of the Siege — Narrative V2 implementation
+
+User task approved and implemented this direction. Runtime wording is shortened for the existing UI; the read-mail button is «Прочитать письма» to fit its title strip. Historical proposal below retains the full editorial rationale and is superseded on approval/implementation status by this note.
+
 # Echo of the Siege — event narrative revision proposal
 
 **Status: Narrative V2 approved by the user and implemented in game.** Prepared 2026-11-10 in response to user request to invent new event content matching all five already-approved illustrations. This is an editorial proposal only. Godot card resources and scripts are unchanged. Narrative constraints: [ACT1_PROMISED_DAWN_STORY_BIBLE.md](ACT1_PROMISED_DAWN_STORY_BIBLE.md) and [ACT1_SIEGE_MYSTERY_DIRECTION.md](ACT1_SIEGE_MYSTERY_DIRECTION.md).
