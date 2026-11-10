@@ -1,5 +1,8 @@
 # Echo of the Siege — approved art rollout (2026-11-10)
 
+> **DEPLOYMENT VERIFIED (2026-11-10):** all five approved Siege Echo paintings were committed to `main` in [56c7a70d](https://github.com/zampolit73/Misdeal/commit/56c7a70d); after the user supplied an updated final `borrowed_boots` illustration, the game source/card/backdrop and manifest were updated in [3ce01ac1](https://github.com/zampolit73/Misdeal/commit/3ce01ac1). Current approval is the half-undead young squire putting on huge boots, not the former quartermaster. **All runtime artworks are on GitHub.** Earlier paragraphs referring to "pending upload" or separate installer steps are historical. Godot F6 and RELEASE CI for the final binary head are still pending. See [Borrowed Boots v2](ECHO_SIEGE_BOOTS_V2.md).
+
+
 Five artistic options are now user-approved. **This is a planning/handoff record, not a claim that new images are in GitHub.** Exact originals are in the user's ChatGPT Library folder /Misdeal/approved_art/. A downloadable package was created in the project conversation (misdeal_echo_siege_approved_pack.zip) containing exact 5 PNG sources and 10 converted game WebPs, with a checksummed manifest.
 
 | Event ID | Event | Source PNG in Library | SHA256 |
