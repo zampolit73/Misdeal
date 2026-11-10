@@ -31,3 +31,5 @@ Production source files/prompts and runtime outputs live in the project, never o
 ## Verified local evidence
 
 Godot 4.7.2 GL Compatibility: **267/267 GUT, 71,356 assertions**, 19 pre-existing warnings; native **45/45 states** captured and all five event screens visually inspected at 1280×720. Card WebP resource diffs are empty. Representative actual frames in [qa/echo_event_art](qa/echo_event_art/). Import/parse check passed. Complete manual randomized F5 run is not claimed. Full RELEASE CI and PR link are authoritative for delivery.
+
+Delivery: [PR #101](https://github.com/zampolit73/Misdeal/pull/101), [final-head checks](https://github.com/zampolit73/Misdeal/pull/101/checks).
