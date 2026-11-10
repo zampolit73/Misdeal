@@ -1,5 +1,10 @@
 # Misdeal вЂ” current project state
 
+## Echo of the Siege — all five visuals approved; integration pending (2026-11-10)
+
+Five user-approved art sources are preserved in Library /Misdeal/approved_art/; final `last_signal` option 1 has an undead watchman with an unlit signal brazier on a moonlit battlement. A five-PNG / ten-WebP 448x274 + 1280x720 ready-to-integrate ZIP has been produced in the project conversation. **These runtime images have NOT been committed to GitHub or verified in native Godot.** The old event candidate selection manifest/packer would overwrite new artwork if run unchanged. Exact SHA256/image constraints and safe integration checklist: [ECHO_SIEGE_ART_ROLLOUT.md](ECHO_SIEGE_ART_ROLLOUT.md). Keep gameplay effects/DS3/save unchanged.
+
+
 ## Echo of the Siege — visual approval status (2026-11-10)
 
 **4/5 new illustrations explicitly approved; not yet integrated into runtime WebP.** Confirmed final sources for `banner_seamstress`, `unsent_letters`, `borrowed_boots`, `false_weights` in user's Library at `/Misdeal/approved_art/` and exact SHA256/compositions in [DECISIONS.md](DECISIONS.md). Most recent `false_weights`: undead keeper deceitfully weighs stones against grain before **empty-headed soldier scarecrows**, with exact gold ring/cross shaft on burgundy banner. Last illustration awaiting approval: `last_signal` («Погасший сигнал»). Once approved, batch-integration of all five should preserve existing events, choices, balance, DS3, rollback assets and native F6 QA. See [HANDOFF.md](HANDOFF.md).
