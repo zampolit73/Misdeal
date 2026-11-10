@@ -1,5 +1,10 @@
 # Misdeal — current handoff
 
+## Echo of the Siege — 5 of 5 arts selected, integration outstanding (2026-11-10)
+
+Fifth user-approved `last_signal` = **OPTION 1**: solitary skeletal sentry on a ruined moonlit battlement holding an extinguished brazier on a pole, gold ring-cross on crimson banner; not spyglass or handheld lantern. SHA256 of 1536x1024 original `2a53828e4fec3105605502fe5a4aa05610c5af46f5f8d61e35fc79cde7854026`; persistent Library location `/Misdeal/approved_art/last_signal_echo_siege_approved_2026-11-10.png`. All five approved originals are in that Library directory; a ready-to-integrate ZIP containing all five PNGs, ten WebPs and checksums was generated and linked in the current project chat. **Only documentation has been committed to GitHub; new art is not deployed to runtime.** Important: old `manifest.json`/packer still reference old selected options; fix source-packing reproducibility during the actual asset PR. Do not claim CI/native pass until run. Exact five art identities and workflow: [ECHO_SIEGE_ART_ROLLOUT.md](ECHO_SIEGE_ART_ROLLOUT.md), [DECISIONS.md](DECISIONS.md). User only needs `git pull` AFTER image bytes have actually landed in a GitHub commit.
+
+
 ## Echo of the Siege — 4/5 approved scenes, 1 remaining (2026-11-10)
 
 NEW: User approved **`false_weights` / «Неверные гири»** after fixing heraldry to the exact Misdeal worn-gold crosswheel with extended vertical shaft. This is the version with a skull-faced quartermaster **cheating helmeted scarecrow dummies (NOT living soldiers)** by adding stones to the left side of a brass balance against a small pile of grain on the right. Original 1536×1024 PNG SHA256 `6d1c166f5587a68f366f68b210e3f6cae748d8a35a77cadc2bab605d399e95d6` saved to user's Library `/Misdeal/approved_art/false_weights_echo_siege_approved_2026-11-10.png` (`libfile_65edaaee10448191860c137b40fa1234`). Full immutable visual requirements and prior 3 approvals: [DECISIONS.md](DECISIONS.md).
