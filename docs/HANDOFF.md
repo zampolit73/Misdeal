@@ -1,5 +1,9 @@
 # Misdeal — current handoff
 
+## Living Arenas — three production pilots
+
+Local implementation: `firing_square` (castle courtyard), `black_crossing`, `threadbare_theatre`. Local masks animate existing light, distant haze/water and heavy curtain folds behind the unchanged combat actors/HUD. Original art hashes, source geometry, tide hazards, balance and silent audio are preserved. Godot 4.7.2: 265/265 GUT tests (71,284 assertions), 327 native frames plus three resize captures; protected-floor pixel audit passes. [Implementation, measurements and F6](LIVING_ARENAS_PILOT.md). Full RELEASE is required before merge. **Do not expand to other arenas before the user's artistic review of these three pilots.**
+
 ## Echo of the Siege — two art approvals; gameplay unchanged (2026-11-10)
 
 Approved, not yet integrated: (1) `banner_seamstress` / «Знамя на бинты»; (2) `unsent_letters` / «Запертая почта». Second final image: an undead postmaster sealing a letter into an open chest, **one skeletal pigeon** on the chest lid, and the exact crimson/gold ring-and-cross castle banner; everything else as generated in user's chosen third variant. The 1535×1024 approved source PNG is stored in user's Library `/Misdeal/approved_art/unsent_letters_echo_siege_approved_2026-11-10.png`, SHA256 `3e84b66a1109af5867126e6a3d87dd480d28f6fe3641fef137ef8becfabb5e0f`. Source of truth for both visual approvals is [DECISIONS.md](DECISIONS.md), which includes exact provenance and constraints. **Runtime assets in GitHub are still the pre-existing original illustrations**; approval does not mean deployed. For integration use existing `assets/pixel/events/final_five/<card_id>/{card,backdrop}.webp` paths and `scripts/dev/pack_final_five_assets.gd` fit rules (448×274/1280×720), preserve originals, verify actual Godot F6 and tests. No changes to event mechanics, effects, DS3, choices or save contracts. Remaining review order: «Чужие сапоги», «Неверные гири», «Погасший сигнал».

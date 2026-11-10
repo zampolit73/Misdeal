@@ -1,3 +1,7 @@
+# Living Arenas — three pilots
+
+Added restrained region-masked background motion to the castle courtyard (`firing_square`), storm pier (`black_crossing`) and old theatre (`threadbare_theatre`). Immutable approved art; original combat, tide hazards, UI and audio retained. Added F6 A/B scenes, pause/end/toggle handling, deterministic combat regression, native capture/pixel audits and RELEASE evidence. See [pilot QA and controls](docs/LIVING_ARENAS_PILOT.md).
+
 # Final five Act I cards
 
 Added Знамя на бинты, Запертая почта, Чужие сапоги, Неверные гири and Погасший сигнал:45 ordinary cards, fifteen real event outcomes, original artwork, save-safe one-time consequences and native QA. See docs/ACT1_FINAL_FIVE_CARDS.md.

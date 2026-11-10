@@ -1607,6 +1607,7 @@ func _finish_battle(player_won: bool) -> void:
 	if court_verdict_controller != null:
 		court_verdict_controller.stop_verdict()
 	battle_finished = true
+	battle_backdrop.call("finish_living_arena")
 	combat_live = false
 	if target_preview != null:
 		target_preview.set_active(false)
