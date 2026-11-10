@@ -1,3 +1,7 @@
+## Echo of the Siege — Narrative V2
+
+User-approved narrative implemented for all five events: undead seamstress tending a skeleton, postal clerk and one skeletal pigeon, young squire in oversized boots, quartermaster cheating straw soldiers, skeletal signal watchman. Short card hooks, compact event scenes with resident dialogue, exact Wizard lines and fifteen literary resolutions now match the approved paintings. All choice keys, numbers, gating, clues, debt and save contracts retained. Art hashes guarded; actual QA uses `scenes/dev/final_five_playtest.tscn` (F6), plus full GUT and native 45-frame capture. Delivery: [PR #100](https://github.com/zampolit73/Misdeal/pull/100); [native QA and F6](qa/echo_narrative_v2/README.md). Final-head CI is authoritative.
+
 ## Living Arenas — bounded pilot and immutable paintings
 
 The requested castle courtyard maps to approved `firing_square` (Расстрельная площадь). Extend `authored_backdrop.gd` with one local ShaderMaterial and three cached region masks; retire only the duplicate legacy atmosphere on these pilots. No new parallel scene hierarchy, combat random draws, objects per frame, sound or global TIME shader clock. Effect time follows delta, pause and battle completion; QA/accessibility can restore the exact original texture by disabling the material. No other arena opts in until the user approves the three real Godot pilots. [Technical contract](LIVING_ARENAS_PILOT.md).

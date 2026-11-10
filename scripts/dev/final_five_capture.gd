@@ -8,6 +8,10 @@ var comparison: Image
 func _initialize() -> void: call_deferred("run")
 
 func capture(label: String) -> void:
+	var transition := root.get_node_or_null("SceneTransition")
+	if transition == null: transition = root.get_node_or_null("SceneTransitionRuntime")
+	while transition != null and transition.get("_busy"): await process_frame
+	for settle in range(30): await process_frame
 	await process_frame
 	await RenderingServer.frame_post_draw
 	var image := root.get_texture().get_image()
@@ -19,7 +23,7 @@ func capture(label: String) -> void:
 func open_scene(path: String) -> void:
 	change_scene_to_file("res://scenes/"+path+".tscn")
 	await process_frame
-	await create_timer(0.8).timeout
+	await create_timer(1.8).timeout
 
 func reset(id: String, poor: bool = false) -> void:
 	state.reset_run()

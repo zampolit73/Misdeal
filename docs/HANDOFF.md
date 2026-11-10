@@ -1,5 +1,9 @@
 # Misdeal — current handoff
 
+## Echo of the Siege — Narrative V2
+
+User-approved narrative implemented for all five events: undead seamstress tending a skeleton, postal clerk and one skeletal pigeon, young squire in oversized boots, quartermaster cheating straw soldiers, skeletal signal watchman. Short card hooks, compact event scenes with resident dialogue, exact Wizard lines and fifteen literary resolutions now match the approved paintings. All choice keys, numbers, gating, clues, debt and save contracts retained. Art hashes guarded; actual QA uses `scenes/dev/final_five_playtest.tscn` (F6), plus full GUT and native 45-frame capture. Delivery: [PR #100](https://github.com/zampolit73/Misdeal/pull/100); [native QA and F6](qa/echo_narrative_v2/README.md). Final-head CI is authoritative.
+
 ## Echo of the Siege — five event text concepts drafted, NOT approved (2026-11-10)
 
 The user requested fresh narrative/choice content for the five already-approved event cards: all scene participants are undead and unconsciously repeating daily duties from the fallen castle's siege. Consult [draft narrative and choice treatments](ECHO_SIEGE_EVENT_NARRATIVE_PROPOSAL.md) for exact vignettes, NPC/host lines, and 3 option scripts per event. The proposal aligns with actual `resources/cards/{banner_seamstress,unsent_letters,borrowed_boots,false_weights,last_signal}.tres`, `scripts/event/final_five_events.gd`, existing option keys and economy/stats, plus canon in `ACT1_PROMISED_DAWN_STORY_BIBLE.md`. **NO in-game text or gameplay was modified; the user has not yet approved the drafts.** If approval arrives, compress card_text to actual Godot 40–54px description layout and implement narrative strings only, preserving DS3, immutable art, run-state effects, evidence gates and independent event order. Verify F6 and focused tests after implementation.
