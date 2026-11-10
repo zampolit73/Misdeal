@@ -1711,6 +1711,7 @@ func end_run_in_defeat(reason: String) -> void:
 	run_failed = true
 	run_end_reason = reason
 	record_wizard_memory("run_defeat", active_card_id)
+	preload("res://scripts/core/run_save_service.gd").instance().write_slot(self)
 
 func refuse_last_deal(reason: String) -> void:
 	record_wizard_memory("last_deal_refuse", active_card_id)

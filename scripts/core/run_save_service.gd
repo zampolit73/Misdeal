@@ -65,6 +65,7 @@ func validate(data: Variant, state: Node) -> bool:
 		if not state.CARD_PATHS.has(key) or not values.combat_formation_by_card[key] is int: return false
 	for key in values.hero_fates:
 		if key not in state.HERO_ROLES or values.hero_fates[key] not in [state.FATE_UNKNOWN,state.FATE_PROTAGONIST,state.FATE_JOINED,state.FATE_LOST]: return false
+	if data.scene == REWARD and (values.active_card_id.is_empty() or not values.last_battle_won): return false
 	if data.finished != (values.boss_defeated or values.run_failed): return false
 	if data.scene == TABLE and not data.finished and not values.active_card_id.is_empty(): return false
 	return true
