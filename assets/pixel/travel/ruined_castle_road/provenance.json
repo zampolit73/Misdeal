@@ -5,8 +5,18 @@
   "foreground": "Transparent lower-edge rubble/weeds overlay matching background, upper88percent clear.",
   "sha256": {
     "foreground.png": "18ff6e4e5353def629b8a3ba20034b9366891e3987ef9c167fd29eb9a987ebd7",
-    "source.png": "17dfbcf2bc97045483c1ec03b92317d2feaefc43fe3f6b6ca750c75963f2f035"
+    "source.png": "17dfbcf2bc97045483c1ec03b92317d2feaefc43fe3f6b6ca750c75963f2f035",
+    "underpaint.png": "0f640301fb0ae255e37c6850940cdd20b80b151e02375f7543905aac1095a0fa",
+    "sky.png": "3d022693c2229061e6312bdb2cf250dd2d7c760e7ba704ab77c3e26274ba3764"
   },
   "revision": "User correction: replace repeated bridge-like middle-distance ruins with natural mountain valley; retain close right wall, main castle, walking road and foreground.",
-  "edit_target_commit": "d4fead3f85d53bd35ecdd4f9fa122cce42b11eed"
+  "edit_target_commit": "d4fead3f85d53bd35ecdd4f9fa122cce42b11eed",
+  "v2": {
+    "tool": "built-in image_gen",
+    "original_source_preserved": true,
+    "original_sha256": "17dfbcf2bc97045483c1ec03b92317d2feaefc43fe3f6b6ca750c75963f2f035",
+    "underpaint": "Occlusion reconstruction only: remove castle, close wall, road and foreground; continue original mountain valley and mist. Original castle/wall/road pixels are restored as independent GPU cutouts.",
+    "sky": "Isolated sky reconstruction from the original image, continuing its original clouds behind the original landscape cutouts.",
+    "geometry": "scripts/travel/travel_panorama.gd; original-pixel UVs; six independent planes, no tiling."
+  }
 }

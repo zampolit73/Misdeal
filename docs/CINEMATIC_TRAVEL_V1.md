@@ -1,5 +1,7 @@
 # Cinematic Travel V1
 
+V2 supersedes the V1 presentation details below; routing/data contracts remain. See [Cinematic Travel V2](CINEMATIC_TRAVEL_V2.md).
+
 ## Production route
 
 One4-second scene: «Тропа вдоль мёртвых стен». `SceneRouter.after_resolution` places a temporary TravelTransition CanvasLayer127 above the completed Event/Reward, below existing transition veil128. It guards repeated requests, snapshots explicit context, waits for finish then calls the original SceneTransition to Table, retaining the travel picture until its swap completes. No second router/manager, no travel state in RunState/save, no award/completion/deal inside the viewer. Skip starts existing navigation immediately, with no remaining travel timer wait. Ordinary navigation/loading/menu/defeat/XIII never calls this entry point.

@@ -1,5 +1,10 @@
 # Misdeal — current handoff
 
+## Cinematic Travel V2 - parallax and visual polish
+
+Six independent depth planes retain PR #104 source pixels for the castle, close wall, valley and road over reconstructed occlusion plates. Local-clock gait/contact shadows/step dust, valley fog and cloth, compact serif narration, 360ms entrance and removal under the existing SceneTransition veil. No changes to story outcomes, rewards, saves, party balance or D412 atlases. Local full GUT279/279,71,900 assertions; native26-frame solo/duo/trio/pause/resize matrix and20 replay/free cycles. Final required CI and local artistic review remain authoritative. [V2 contract, evidence and F6](CINEMATIC_TRAVEL_V2.md).
+
+
 ## Travel panorama — mountain valley correction
 
 User-requested art correction removes repetitive bridge-like ruins from the left/central middle distance and replaces them with distinct natural ridges and mist. Main castle, close right wall/banner, walking road and separate foreground retain the same composition. Cloth animation now masks only the remaining close banner; mountains stay rigid. Travel routing, duration, party sprites and game logic are unchanged. Original background remains recoverable in PR #103 / d4fead3f. Native verification uses the existing travel capture and F6 preview.

@@ -59,10 +59,15 @@ static func after_resolution(context: Node, travel_context: Dictionary) -> void:
 		return
 	var view := packed.instantiate()
 	view.context = travel_context.duplicate(true)
-	tree.root.add_child(view)
-	if view.available: await view.finished
-	change_to(context,"res://scenes/table/table.tscn")
 	var transition := _get_transition(context)
+	if transition.has_method("present_overlay"):
+		await transition.call("present_overlay",view)
+	else:
+		tree.root.add_child(view)
+	if view.available: await view.finished
+	if transition.has_method("dismiss_presentation_on_swap"):
+		transition.call("dismiss_presentation_on_swap",view)
+	change_to(context,"res://scenes/table/table.tscn")
 	while is_instance_valid(transition) and transition.get("_busy"):
 		await tree.process_frame
 	if is_instance_valid(view): view.queue_free()

@@ -11,6 +11,19 @@ const FADE_IN_TIME := 0.16
 
 var _veil: ColorRect
 var _busy := false
+var _presentation_to_dismiss: WeakRef
+
+
+func present_overlay(presentation: CanvasLayer) -> void:
+	# Travel's local clock cross-dissolves the incoming world over the result;
+	# do not overlap an already active scene swap or insert a black hold.
+	while _busy: await get_tree().process_frame
+	get_tree().root.add_child(presentation)
+
+
+func dismiss_presentation_on_swap(presentation: CanvasLayer) -> void:
+	# Remove the overlay under the existing opaque veil, BEFORE Table fades in.
+	_presentation_to_dismiss = weakref(presentation)
 
 
 func _ready() -> void:
@@ -84,6 +97,10 @@ func change_to(scene_path: String) -> void:
 
 	if old_scene != null and old_scene != next_scene:
 		old_scene.queue_free()
+	if _presentation_to_dismiss != null:
+		var presentation: Node = _presentation_to_dismiss.get_ref()
+		if is_instance_valid(presentation): presentation.queue_free()
+		_presentation_to_dismiss = null
 
 	# Incoming _ready() work (including FileAccess/WebP decoding) runs while the
 	# veil is fully opaque. Give layout/runtime art another frame to settle,
@@ -170,6 +187,7 @@ func _get_veil_color(scene_path: String) -> Color:
 
 
 func _reset_veil() -> void:
+	_presentation_to_dismiss = null
 	_veil.color = VEIL_COLOR
 	_veil.modulate.a = 0.0
 	_veil.visible = false

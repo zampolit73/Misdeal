@@ -1,5 +1,10 @@
 ## Echo of Siege — prepared art delivery guard (2026-11-10)
 
+## Cinematic Travel V2 - parallax and visual polish
+
+Six independent depth planes retain PR #104 source pixels for the castle, close wall, valley and road over reconstructed occlusion plates. Local-clock gait/contact shadows/step dust, valley fog and cloth, compact serif narration, 360ms entrance and removal under the existing SceneTransition veil. No changes to story outcomes, rewards, saves, party balance or D412 atlases. Local full GUT279/279,71,900 assertions; native26-frame solo/duo/trio/pause/resize matrix and20 replay/free cycles. Final required CI and local artistic review remain authoritative. [V2 contract, evidence and F6](CINEMATIC_TRAVEL_V2.md).
+
+
 ## Echo of the Siege — fifteen decision-specific illustrations
 
 Player correction: each of the three choices in each of the five events now has a distinct illustration depicting its action. The prior shared image across three slots is superseded. `choices/<choice_key>.webp` maps through the existing stable choice key; 15 PNG originals/prompts and source/runtime hashes are retained. Approved cards and the five event backdrops stay intact. [Action matrix, QA and local F6](ECHO_SIEGE_CHOICE_ACTION_ART.md). Delivery [PR #102](https://github.com/zampolit73/Misdeal/pull/102), [required checks](https://github.com/zampolit73/Misdeal/pull/102/checks). Update the main user project after green RELEASE without resetting local files.
