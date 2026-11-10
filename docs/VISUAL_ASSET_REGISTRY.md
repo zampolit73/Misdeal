@@ -1,5 +1,10 @@
 ## Echo of Siege — prepared art delivery guard (2026-11-10)
 
+## Echo of the Siege — five live paintings, final squire v2 (2026-11-10)
+
+Five originally approved Siege Echo images are now GitHub runtime assets in `main` ([56c7a70d](https://github.com/zampolit73/Misdeal/commit/56c7a70d)). The only superseding painting is `borrowed_boots`: exact user-supplied young half-undead squire in camp, committed in [3ce01ac1](https://github.com/zampolit73/Misdeal/commit/3ce01ac1) with unchanged other 4 paintings. Immutable source PNG SHA256 `2ec39769890b2229255b62d46e7585186cf23b31b1c63a1da0c064c39f66d519`; derived card448x274 and backdrop1280x720 hashes are stored in `assets/pixel/events/final_five/manifest.json`. Earlier "pending visual delivery" registry entries below are historical. No native F6 visual acceptance has been recorded for the final revision. [Detailed QA and provenance](ECHO_SIEGE_BOOTS_V2.md).
+
+
 ## Echo of the Siege — Borrowed Boots v2 (2026-11-10)
 
 Only `borrowed_boots` has a new user-approved illustration (young half-skeletal squire fitting enormous boots, not the previously approved boot-depot keeper). Exact source SHA256 `2ec39769890b2229255b62d46e7585186cf23b31b1c63a1da0c064c39f66d519` and image format/crop/manifest/push contract in [ECHO_SIEGE_BOOTS_V2.md](ECHO_SIEGE_BOOTS_V2.md). **V2 is packaged, not yet deployed**. Do not repaint, regenerate or touch the other four card illustrations.

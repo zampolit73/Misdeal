@@ -1,5 +1,8 @@
 # Echo of the Siege — «Чужие сапоги» updated final art (2026-11-10)
 
+> **DEPLOYED UPDATE (2026-11-10).** The user pushed the exact approved boots v2 binary patch to `main`: [commit 3ce01ac1](https://github.com/zampolit73/Misdeal/commit/3ce01ac1). Connected GitHub inspection confirms only PNG source, boots card/backdrop WebPs and `manifest.json` changed. Source SHA256 in the live manifest = `2ec39769890b2229255b62d46e7585186cf23b31b1c63a1da0c064c39f66d519`; card = `50905e5c52a61a3d2c6328715dbf5fb9fcce3927a67f5c84cf6df92a7e3c2944`, backdrop = `beaff13743e4a2f58cf45a56121c1823ff171fd8ddca57fd5ea390a9e3bc1e4e`. All four other event paintings retained. The "not yet committed" instructions and status below are historical preparation notes. Godot native QA for this exact commit **has not yet been run/confirmed**.
+
+
 ## Locked approval — latest user-supplied source
 
 The user replaced the previous approved `borrowed_boots` (skeletal quartermaster examining footwear at a workbench) with **the exact image attached in the latest conversation**: a curly-haired *young half-undead squire* sitting on a broken bench in a ruined castle military encampment, pulling on an oversized pair of muddy armored leather boots. Left arm is partly skeletal, right hand is human; a lantern hangs at upper left, discarded helmet/shield in the near left foreground, kettle over a fire and ruined fortress in the right distance. Burgundy flags bear the canonical aged-gold ring-and-cross sigil. **Do not redraw, change the character, crop, add UI, or replace the heraldry.** This approval supersedes ONLY the earlier `borrowed_boots` image; all other four Echo of the Siege paintings and five event mechanics are unchanged.
