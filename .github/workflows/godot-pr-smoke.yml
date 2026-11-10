@@ -443,6 +443,13 @@ jobs:
             --script res://scripts/dev/travel_capture.gd -- "$dest" 2>&1 | tee "$dest/capture.log"
           grep -Fq 'TRAVEL_NATIVE_PASS' "$dest/capture.log"
           ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed' "$dest/capture.log"
+            mkdir -p "$dest/v2"
+            timeout 120s xvfb-run -a -s '-screen 0 1600x1000x24 +extension GLX +render -noreset' \
+              env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+              --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility --audio-driver Dummy \
+              --script res://scripts/dev/travel_v2_capture.gd -- "$dest/v2" 2>&1 | tee "$dest/v2/capture.log"
+            grep -Fq 'TRAVEL_V2_VISUAL_PASS' "$dest/v2/capture.log"
+            ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed|ObjectDB instances were leaked|resources still in use' "$dest/v2/capture.log"
 
       - name: Docs-only change (no Godot boot)
         if: steps.scope.outputs.mode == 'docs'

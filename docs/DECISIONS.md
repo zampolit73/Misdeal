@@ -1,3 +1,7 @@
+## Travel V2 - preserve art and transition ownership
+
+Original PR104 background and D412 atlases remain immutable. GPU cutouts and small occlusion reconstructions supply six depth planes; frame/sole adjustments apply only to travel sprites. Existing SceneTransition owns overlay admission and dismissal under its opaque veil; no second manager or saved stage. Every effect uses the presentation clock. Artistic acceptance is pending user F6 review. [V2](CINEMATIC_TRAVEL_V2.md).
+
 ## Cinematic travel — presentation, never progression
 
 Travel V1 is a temporary CanvasLayer owned by the existing SceneRouter, not a new router/autoload or saved scene. Capture resolved_card_id/outcome/party/narration/Wizard/duration before complete_active_card clears the ID. Existing completion and save happen first; visual layer emits finish once and existing SceneTransition opens Table. Loading uses the saved Table/Reward directly. First art scene only; exact D412 battle atlases unchanged, reused walk frames are prototype travel presentation. [Contract](CINEMATIC_TRAVEL_V1.md).

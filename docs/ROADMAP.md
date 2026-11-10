@@ -1,5 +1,10 @@
 # Misdeal вЂ” current roadmap
 
+## Cinematic Travel V2 - parallax and visual polish
+
+Six independent depth planes retain PR #104 source pixels for the castle, close wall, valley and road over reconstructed occlusion plates. Local-clock gait/contact shadows/step dust, valley fog and cloth, compact serif narration, 360ms entrance and removal under the existing SceneTransition veil. No changes to story outcomes, rewards, saves, party balance or D412 atlases. Local full GUT279/279,71,900 assertions; native26-frame solo/duo/trio/pause/resize matrix and20 replay/free cycles. Final required CI and local artistic review remain authoritative. [V2 contract, evidence and F6](CINEMATIC_TRAVEL_V2.md).
+
+
 ## Cinematic Travel V1 — Тропа вдоль мёртвых стен
 
 Presentation-only, skippable4s travel overlay through the existing SceneRouter after the five Siege Echo outcomes and completed victory rewards. Explicit pre-completion context; no RunState mutation/save stage/deal management. Real D412 walk sprites retain actual party roles, two original parallax layers, soft mist and restrained cloth motion. Space/Enter/ESC/button skip, pause, disabled-feature fallback, single-navigation guard. [Contract, QA and F6](CINEMATIC_TRAVEL_V1.md). Full RELEASE required before merge; update user's main project after green checks.

@@ -22,8 +22,17 @@ func run() -> void:
 	current_scene.continue_button.pressed.emit()
 	await process_frame
 	assert(root.has_node("TravelTransition"))
+	var veil_at_dismiss: Array[float] = []
+	root.get_node("TravelTransition").tree_exiting.connect(func(): veil_at_dismiss.append(root.get_node("SceneTransition").get("_veil").modulate.a))
+	await create_timer(0.10).timeout
+	await RenderingServer.frame_post_draw
+	root.get_texture().get_image().save_png(dest.path_join("event_entrance.png"))
+	await create_timer(0.55).timeout
+	await RenderingServer.frame_post_draw
+	root.get_texture().get_image().save_png(dest.path_join("event_revealed.png"))
 	root.get_node("TravelTransition").finish()
 	await wait_scene("res://scenes/table/table.tscn")
+	assert(veil_at_dismiss.size()==1 and veil_at_dismiss[0]==1.0,"Travel popped above Table reveal")
 	assert(state.cards_resolved==1 and state.party_hp_bonus==12.0)
 	state.reset_run()
 	state.choose_protagonist("knight")
@@ -43,8 +52,13 @@ func run() -> void:
 	while not root.has_node("TravelTransition"): await process_frame
 	assert(state.cards_resolved==1 and state.gold>before_gold)
 	var paid_gold: int=state.gold
-	root.get_node("TravelTransition").finish()
+	# Natural ending as well as Event's immediate skip, through the real veil.
+	root.get_node("TravelTransition").tree_exiting.connect(func(): veil_at_dismiss.append(root.get_node("SceneTransition").get("_veil").modulate.a))
+	await create_timer(3.65).timeout
+	await RenderingServer.frame_post_draw
+	root.get_texture().get_image().save_png(dest.path_join("reward_departure.png"))
 	await wait_scene("res://scenes/table/table.tscn")
+	assert(veil_at_dismiss.size()==2 and veil_at_dismiss[1]==1.0)
 	assert(state.cards_resolved==1 and state.gold==paid_gold)
 	# Saved Table loads directly through existing router, no presentation replay.
 	var service := preload("res://scripts/core/run_save_service.gd").new()
@@ -53,6 +67,12 @@ func run() -> void:
 	assert(service.apply_slot(state,slot))
 	await open_scene(slot.scene)
 	assert(not root.has_node("TravelTransition"))
+	# Let existing table entrance tweens settle, then free the scene while the
+	# tree is alive. Abrupt quit used to strand pending layout callbacks.
+	await create_timer(0.8).timeout
+	current_scene.queue_free()
+	await process_frame
+	await process_frame
 	print("TRAVEL_NATIVE_PASS: frames; Event -> Travel -> Table; Battle(result) -> Reward -> Travel -> Table; direct load")
 	quit()
 func open_scene(path: String) -> void:
@@ -64,3 +84,5 @@ func wait_scene(path: String) -> void:
 	while current_scene==null or current_scene.scene_file_path!=path or root.has_node("TravelTransition"):
 		assert(Time.get_ticks_msec()<deadline,"Travel route timeout: "+path)
 		await process_frame
+	var transition := root.get_node_or_null("SceneTransition")
+	while transition != null and transition.get("_busy"): await process_frame

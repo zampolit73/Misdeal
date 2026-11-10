@@ -1,0 +1,5 @@
+Tool: built-in image_gen, precise-object-edit. Target: exact source.png from PR104.
+
+Underpaint: Production occlusion reconstruction only. Preserve the original cloudy sky, left/central natural mountain valley, outlines, ridges, mist, muted cold palette and dusk lighting. Remove only the upper-right castle, close right ruined gothic wall/flag, paved road and foreground boulders. Continue the same natural valley/mist behind these occluded regions for exact original cutouts to cover. No new focal points, architecture, people, flags, roads, text or UI; same wide framing and perspective.
+
+Sky: Keep the existing cloudy sky in the upper ~30% in the same palette, composition, dusk light and framing. Remove all landscape/architecture and extend the same slate-blue cloudy dusk sky downward. No bright sun disk, new dramatic features, land, buildings, people, text or UI. Hidden isolated sky plate behind original landscape cutouts, not a new panorama.
