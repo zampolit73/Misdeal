@@ -38,7 +38,7 @@ func run() -> void:
 		var table: Control=load(SAVE.TABLE).instantiate()
 		root.add_child(table)
 		current_scene=table
-		await wait_table_ready()
+		if not await wait_table_ready(): return
 		table.get_node("MemoryTable").open_viewer()
 		await create_timer(0.3).timeout
 		await snap("new_game_memory_zero")
@@ -55,7 +55,7 @@ func run() -> void:
 		root.add_child(screen)
 		current_scene=screen
 		screen.get_node("ContinueButton").pressed.emit()
-		await wait_table_ready()
+		if not await wait_table_ready(): return
 		assert(current_scene.scene_file_path==SAVE.TABLE)
 		assert(state.current_offer_ids==loaded.state.current_offer_ids)
 		assert(state.gold==123)
@@ -96,7 +96,7 @@ func run() -> void:
 	var table: Control=load("res://scenes/table/table.tscn").instantiate()
 	root.add_child(table)
 	current_scene=table
-	await wait_table_ready()
+	if not await wait_table_ready(): return
 	var offers: Array=state.current_offer_ids.duplicate()
 	assert(SAVE.shared.write_slot(state))
 	await snap("table_saved")
@@ -119,7 +119,7 @@ func run() -> void:
 	table=load("res://scenes/table/table.tscn").instantiate()
 	root.add_child(table)
 	current_scene=table
-	await wait_table_ready()
+	if not await wait_table_ready(): return
 	print("RUN_SAVE_NATIVE_PASS")
 	menu.open_menu()
 	menu.save_exit()
@@ -128,12 +128,17 @@ func snap(label: String) -> void:
 	root.get_texture().get_image().save_png(output.path_join(label+".png"))
 
 
-func wait_table_ready() -> void:
+func wait_table_ready() -> bool:
 	var deadline := Time.get_ticks_msec()+15000
 	while Time.get_ticks_msec()<deadline:
 		var screen := current_scene
 		if screen != null and screen.scene_file_path==SAVE.TABLE and not screen.get("selection_locked") and not screen.get("deal_in_progress"):
-			return
+			return true
+		# A real Table can require a wager decision, not just animation time.
+		# Resolve it through the same live button as a player before saving.
+		if screen != null and screen.scene_file_path==SAVE.TABLE and screen.get_node("WagerOverlay/Root").visible:
+			screen.get_node("WagerOverlay/Root/WagerPanel/RefuseButton").pressed.emit()
 		await create_timer(0.05).timeout
 	push_error("RUN_SAVE_CAPTURE_FAIL: Table did not reach a safe checkpoint")
 	quit(1)
+	return false
