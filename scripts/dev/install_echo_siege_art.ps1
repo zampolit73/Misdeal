@@ -59,7 +59,12 @@ try {
     # Only touch known image paths. Reject local edits to these exact target paths.
     Push-Location $repo
     try {
-        $dirty = @(& git status --porcelain -- @($validated.ToArray()))
+        if ($Push) {
+            $branch = (& git branch --show-current).Trim()
+            if ($LASTEXITCODE -ne 0) { throw "git branch failed." }
+            if ($branch -ne "main") { throw "-Push requires local main; currently on '$branch'. Switch to main before running this installer." }
+        }
+        $dirty = @(& git status --porcelain -- @($validated.ToArray()) "$assetRoot/manifest.json")
         if ($LASTEXITCODE -ne 0) { throw "git status failed." }
         if ($dirty.Count -gt 0) {
             throw ("There are pre-existing local edits on approved target paths. Resolve first: " + ($dirty -join "; "))
@@ -93,7 +98,8 @@ try {
         if ($Commit) {
             & git add -- @($validated.ToArray()) "$assetRoot/manifest.json"
             if ($LASTEXITCODE -ne 0) { throw "git add failed." }
-            & git commit -m "art: ship five approved Echo of Siege event illustrations"
+            # --only is important: unrelated files may already be staged in a local Godot checkout.
+            & git commit --only -m "art: ship five approved Echo of Siege event illustrations" -- @($validated.ToArray()) "$assetRoot/manifest.json"
             if ($LASTEXITCODE -ne 0) { throw "git commit failed." }
             if ($Push) {
                 & git push origin HEAD
