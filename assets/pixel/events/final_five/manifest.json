@@ -9,8 +9,8 @@
     "files":  {
                   "banner_seamstress\\backdrop.webp":  "6c34765f45d12bdf384f094f2099c048a68ef347ebbe9e652dd3e837573253a1",
                   "banner_seamstress\\card.webp":  "a513a14fe7b881e01c3740827496d024ce9c2473e052becfa7de09946dc67635",
-                  "borrowed_boots\\backdrop.webp":  "75847597a672e12b9f74ad5099799aee556b33ba85e4ec4ef709471d772007ec",
-                  "borrowed_boots\\card.webp":  "c631b6ee9940bc9ed938d521d2199870bf4ab869f605271717ae7bcd5305d2ca",
+                  "borrowed_boots\\backdrop.webp":  "beaff13743e4a2f58cf45a56121c1823ff171fd8ddca57fd5ea390a9e3bc1e4e",
+                  "borrowed_boots\\card.webp":  "50905e5c52a61a3d2c6328715dbf5fb9fcce3927a67f5c84cf6df92a7e3c2944",
                   "false_weights\\backdrop.webp":  "376ad039109427f7f3f5556bc542cdcc816292e8d7389aa2879b636f9cfa16b0",
                   "false_weights\\card.webp":  "19dbb06940083ef3aafa7b42eee6ac7b2a2fdc5d46ce0fa1a2d348fbb5a47df5",
                   "last_signal\\backdrop.webp":  "50e33644f78394523dc412e26ac4c003c589f1a46eea9f8758686c96de3d753d",
@@ -36,7 +36,7 @@
     "approved_sources":  {
                              "banner_seamstress":  "be70f5375c703fc9ad4c5a1f5cfb57eea5f499ac849526348fa842ee483e39b2",
                              "unsent_letters":  "3e84b66a1109af5867126e6a3d87dd480d28f6fe3641fef137ef8becfabb5e0f",
-                             "borrowed_boots":  "7cf1d2d0fa0cd813bdc0017b49d920f0fbd5692b0013f6d90cc716cb0120e88b",
+                             "borrowed_boots":  "2ec39769890b2229255b62d46e7585186cf23b31b1c63a1da0c064c39f66d519",
                              "false_weights":  "6d1c166f5587a68f366f68b210e3f6cae748d8a35a77cadc2bab605d399e95d6",
                              "last_signal":  "2a53828e4fec3105605502fe5a4aa05610c5af46f5f8d61e35fc79cde7854026"
                          }
