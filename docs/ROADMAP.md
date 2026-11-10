@@ -1,5 +1,15 @@
 # Misdeal вЂ” current roadmap
 
+## Echo of the Siege — art selection complete, deployment outstanding (2026-11-10)
+
+- [x] Approve all five final event paintings, including `last_signal` option 1.
+- [x] Preserve full-resolution PNG sources in Library and produce five-card WebP integration ZIP.
+- [ ] Commit all five approved source PNGs, ten runtime WebPs and reproducible packer/manifest updates in GitHub.
+- [ ] Run 4.7.x GUT + actual F6/natural deal UI verification; only then declare runtime released.
+
+See [art rollout](ECHO_SIEGE_ART_ROLLOUT.md).
+
+
 ## Final five Act I stories вЂ” 45 ordinary cards
 
 Five new original noncombat events, fifteen art candidates with selected finals, existing DS3 and actual choices/ordinary tier dealing. Godot 4.7.2: 260/260 Linux GUT tests (48,919 assertions), 45 native frames on Windows and Linux. [PR #98](https://github.com/zampolit73/Misdeal/pull/98) carries the required full RELEASE checks. [Effects, sources, QA and F6](ACT1_FINAL_FIVE_CARDS.md). This task explicitly delegates art selection; PR89/90/92 remain independent.
