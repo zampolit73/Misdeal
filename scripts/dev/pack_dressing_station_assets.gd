@@ -66,13 +66,16 @@ func run() -> void:
 	layer("sky",source,[skyline], [shell])
 	layer("sky_openings",source,holes)
 	layer("distant_battlefield",source,["1020,318 1672,239 1672,738 971,770 810,682"])
-	layer("fortifications",source,["712,373 755,329 801,311 830,293 855,282 864,271 876,268 883,241 894,238 906,257 916,261 918,279 947,284 969,274 989,271 1008,296 1020,309 1059,310 1083,338 1111,356 1090,472 1014,537 890,567 770,585"])
+	var connected_stone := "712,373 755,329 801,311 830,293 855,282 864,271 876,268 883,241 894,238 906,257 916,261 918,279 947,284 969,274 989,271 1008,296 1020,309 1059,310 1083,338 1111,356 1090,472 1014,537 890,567 770,585"
+	layer("fortifications",source,[connected_stone])
 	for variant in ["passed","bandages","standard"]:
 		var image: Image = cut if variant=="bandages" else (saved if variant=="standard" else source)
 		layer("arches_"+variant,image,[shell],["0,562 1672,562 1672,941 0,941"]+holes)
-		layer("station_"+variant,image,[shell],["0,0 1672,0 1672,558 0,558"])
+		# One watertight original-pixel plate: the opening masks contain linen
+		# and stone too, and must not drift independently of their arch frame.
+		layer("station_"+variant,image,[shell,connected_stone])
 	layer("road",source,["0,941 646,841 751,773 854,729 1006,689 1110,645 1200,596 1319,567 1461,555 1672,564 1672,941"])
 	layer("foreground",source,["1236,941 1291,879 1373,809 1433,775 1442,726 1459,673 1473,627 1505,590 1550,554 1582,538 1629,521 1672,519 1672,941", "0,779 78,831 149,868 183,941 0,941"])
 	FileAccess.open(DIR+"layers.json",FileAccess.WRITE).store_string(JSON.stringify(rectangles,"  "))
-	print("DRESSING_STATION_PACK_PASS: immutable source, local cloth repairs, 7 depth planes")
+	print("DRESSING_STATION_PACK_PASS: immutable source, local cloth repairs, unified station/arches plate")
 	quit()

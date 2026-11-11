@@ -26,9 +26,10 @@ func test_outcomes_are_distinct_and_presentation_never_grants_effects() -> void:
 		add_child(view)
 		view.set_process(false)
 		assert_true(view.available)
-		assert_eq(view.panorama.planes.size(),7)
+		assert_eq(view.panorama.planes.size(),5)
+		assert_eq(view.panorama.station.texture.get_height(),941,"Connected arches, linen and station must share one full-height plate")
 		assert_eq(view.panorama.outcome,outcome)
-		variants[hash(view.panorama.arches.texture.get_image().get_data())] = true
+		variants[hash(view.panorama.station.texture.get_image().get_data())] = true
 		view.elapsed = 3.1
 		view.update_frame()
 		assert_eq(view.panorama.reactions.scrap.visible,outcome=="bandages")
@@ -37,8 +38,8 @@ func test_outcomes_are_distinct_and_presentation_never_grants_effects() -> void:
 		assert_eq(view.panorama.reactions.scrap.position,Vector2(858,804))
 		assert_eq(SAVE.new().snapshot(RunState).state,before)
 		view.free()
-	# Passed and standard retain the same intact upper banner; bandages differs.
-	assert_eq(variants.size(),2)
+	# Each unified plate includes the upper banner and the lower scissors state.
+	assert_eq(variants.size(),3)
 
 func test_party_soles_pause_and_skip_keep_existing_contract() -> void:
 	for roles in [["knight"],["ranger","mage"],["knight","ranger","mage"]]:

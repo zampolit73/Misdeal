@@ -1,3 +1,7 @@
+## Scene03 — layer-integrity correction
+
+Station/arches/linen/opening pixels now form one full-height plate at the same4px/s; five runtime planes remain. Separate opening/stone fragments caused the moving seam and are no longer rendered. Former cutouts kept for rollback. Original source, unit route and reactions unchanged; native F6 checked, focused Scene03 GUT pass. Continue user artistic review via the same F6 scene.
+
 ## Scene03 correction — rear perspective route (PR #108)
 
 User correction supersedes both older horizontal calibrations below. The party now leaves the camera up-left along the marked road, with shrinking three-quarter rear poses/intervals, road-aligned contacts and subtle colour haze. Original D412 combat art and all backgrounds/reactions stay unchanged. Review F6 `scenes/dev/dressing_station_playtest.tscn` (trio/solo); native pass and existing travel GUT20/20,801 assertions. New strips/provenance: `assets/pixel/travel/last_dressing_station/rear_walk/`. Final CI is authoritative; don't claim user artistic approval.

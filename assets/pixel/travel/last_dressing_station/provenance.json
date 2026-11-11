@@ -34,11 +34,12 @@
     "scrap.png": "84ba19d7a8bd529e95d53e0df119f099d5e81fe501d8a8a82a7b30bf3b6f544e",
     "sky.png": "f9401cf6def3ab2674487bbc2334b1efe28396f4687dd9c62082fab7cb8810e8",
     "sky_openings.png": "1f24d088aac32405df12a2002d95e9a7d2321f73a1226746628e265709c31eba",
-    "station_bandages.png": "a27e9d52ad6deeaa871a804e26983b29adde910fdb32ebf8de48a0f8746fecf7",
-    "station_passed.png": "a27e9d52ad6deeaa871a804e26983b29adde910fdb32ebf8de48a0f8746fecf7",
-    "station_standard.png": "dcd1856d1f1552de773ab3ebe67d670a12776d3594876188a96f3dd78273ce21",
+    "station_bandages.png": "2440891d624378935c1b94d22165e422c0fdadfd7c8426bc41ba868229de3c91",
+    "station_passed.png": "5612fe58c802fdb504e62c2168d09d060beaa535696289b730cabecbc6cca848",
+    "station_standard.png": "19643a320e9dbda5314ecc2be850a4bf0b50165f98ec1ab842c982cf08c9e4c3",
     "underpaint.png": "2644e26b0b7c54521fa42d7db418ead26037c6594005533065de3c3530f37557"
   },
   "prompts": "prompts.md",
-  "artistic_acceptance": "approved source; in-game staging awaits user F6 review"
+  "artistic_acceptance": "approved source; in-game staging awaits user F6 review",
+  "layer_integrity": "Connected station/arches/linen and their inner apertures are one original-pixel plate per outcome; former separate cutouts retained only for rollback. No original artwork or character-route changes."
 }

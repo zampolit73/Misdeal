@@ -16,7 +16,7 @@ Repack from committed inputs:
 godot --headless --path . --script res://scripts/dev/pack_dressing_station_assets.gd
 ```
 
-Seven planes: Sky, DistantBattlefield, RuinedFortifications, GothicArches, Midground/DressingStation, Road and Foreground. Speeds are 0.2 / 0.8 / 1.4 / 4 / 4 / 10 / 14 screen px/s. Connected arches and station deliberately move together, preserving stone/bed seams. Original sky apertures sit over the hidden reconstruction. Finite overscan, no wrapping or new battle activity. Existing restrained V2 fog lies behind the station; lamp modulation is about 1.5%. No new audio.
+Five planes: Sky, DistantBattlefield, unified Midground/DressingStation, Road and Foreground, at0.2 /0.8 /4 /10 /14 screen px/s. The station, connected arches, linen and inner apertures are one full-height original-pixel plate per outcome. The former opening mask contained real cloth/stone pixels; moving it at sky speed tore them from the arch. It and the split fortification/arch cutouts are retained for rollback but no longer rendered separately. Both cloth/prop shader regions run on the unified texture. Finite overscan, hidden underpaint, restrained V2 fog and lamp modulation remain; no new audio, artwork, character route or outcome logic.
 
 ## Reactions and integration
 

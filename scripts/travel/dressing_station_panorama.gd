@@ -7,10 +7,9 @@ const REACTIONS := preload("res://scripts/travel/dressing_station_reactions.gd")
 static var _textures: Dictionary = {}
 var available := false
 var planes: Dictionary = {}
-var speeds := {"Sky":0.2,"DistantBattlefield":0.8,"RuinedFortifications":1.4,"GothicArches":4.0,"Midground":4.0,"Road":10.0,"Foreground":14.0}
+var speeds := {"Sky":0.2,"DistantBattlefield":0.8,"Midground":4.0,"Road":10.0,"Foreground":14.0}
 var rectangles: Dictionary = {}
 var materials: Array[ShaderMaterial] = []
-var arches: Sprite2D
 var station: Sprite2D
 var reactions: Node2D
 var outcome := "passed"
@@ -26,9 +25,8 @@ static func texture_at(path: String) -> Texture2D:
 	return texture
 
 func build(background: String, foreground: String, underpaint: String, sky: String) -> void:
-	var required := [background,foreground,underpaint,sky,DIR+"sky_openings.png",DIR+"distant_battlefield.png",DIR+"fortifications.png",DIR+"road.png",DIR+"scissors.png",DIR+"scrap.png",DIR+"bandage_rolls.png"]
+	var required := [background,foreground,underpaint,sky,DIR+"distant_battlefield.png",DIR+"road.png",DIR+"scissors.png",DIR+"scrap.png",DIR+"bandage_rolls.png"]
 	for variant in ["passed","standard","bandages"]:
-		required.append(DIR+"arches_"+variant+".png")
 		required.append(DIR+"station_"+variant+".png")
 	for path in required:
 		if texture_at(path)==null: return
@@ -36,7 +34,7 @@ func build(background: String, foreground: String, underpaint: String, sky: Stri
 	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(DIR+"layers.json"))
 	if not parsed is Dictionary: return
 	rectangles = parsed
-	for id in ["sky","sky_openings","distant_battlefield","fortifications","road","foreground","scissors","scrap","bandage_rolls","arches_passed","arches_standard","arches_bandages","station_passed","station_standard","station_bandages"]:
+	for id in ["sky","distant_battlefield","road","foreground","scissors","scrap","bandage_rolls","station_passed","station_standard","station_bandages"]:
 		if not rectangles.get(id) is Array or rectangles[id].size()!=4: return
 	for id in speeds:
 		var plane := Node2D.new()
@@ -45,14 +43,13 @@ func build(background: String, foreground: String, underpaint: String, sky: Stri
 		planes[id] = plane
 	_add("Sky",texture_at(underpaint),Rect2(0,0,1672,941))
 	_piece("Sky","sky")
-	_piece("Sky","sky_openings")
 	_piece("DistantBattlefield","distant_battlefield")
-	_piece("RuinedFortifications","fortifications")
 	# The road is behind the connected station/arches, not painted over the beds.
 	_piece("Road","road")
-	move_child(planes.Road,planes.GothicArches.get_index())
-	arches = _piece("GothicArches","arches_passed",1)
-	station = _piece("Midground","station_passed",2)
+	move_child(planes.Road,planes.Midground.get_index())
+	# Cloth, stone, openings and the dressing station share one texture and
+	# transform. Keep the former cutouts on disk only as rollback inputs.
+	station = _piece("Midground","station_passed",3)
 	_piece("Foreground","foreground")
 	reactions = REACTIONS.new()
 	reactions.scale = PROJECTION
@@ -90,7 +87,6 @@ func _add(plane: String, texture: Texture2D, rect: Rect2) -> Sprite2D:
 func configure(context: Dictionary) -> void:
 	outcome = str(context.get("outcome_id","passed"))
 	if outcome not in ["bandages","standard","passed"]: outcome = "passed"
-	arches.texture = texture_at(DIR+"arches_"+outcome+".png")
 	station.texture = texture_at(DIR+"station_"+outcome+".png")
 	reactions.outcome = outcome
 	for material in materials:

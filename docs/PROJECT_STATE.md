@@ -6,7 +6,7 @@ User correction supersedes both older horizontal calibrations below. The party n
 
 ## Cinematic Travel Scene03 — The Last Dressing Station
 
-Own authored aftermath for `banner_seamstress`: exact approved PNG, seven depth planes, intact/stripped/ritual cloth states and one falling scrap. Real D412 party calibrated against the cot/seamstress; solo offset keeps clear of the wheel. Existing effects, saves, narration, Posthouse and original road unchanged. Native three-outcome/solo/trio/pause/skip and real Event → Travel → Table pass; full GUT288/288,72,235 assertions (19 existing warnings), selector18/18. Required final PR CI and user F6 artistic review remain authoritative. [Contract, sources and preview](TRAVEL_LAST_DRESSING_STATION.md).
+Own authored aftermath for `banner_seamstress`: exact approved PNG, five planes with unified station/arches/linen, intact/stripped/ritual cloth states and one falling scrap. Real D412 party calibrated against the cot/seamstress; solo offset keeps clear of the wheel. Existing effects, saves, narration, Posthouse and original road unchanged. Native three-outcome/solo/trio/pause/skip and real Event → Travel → Table pass; full GUT288/288,72,235 assertions (19 existing warnings), selector18/18. Required final PR CI and user F6 artistic review remain authoritative. [Contract, sources and preview](TRAVEL_LAST_DRESSING_STATION.md).
 
 ## Cinematic Travel Scene02 - The Last Dawn Posthouse
 

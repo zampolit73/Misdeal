@@ -1,3 +1,7 @@
+## Scene03 — connected-layer seam
+
+Merge the dressing station, central arches, hanging linen and their inner openings into one plate per outcome. The old opening mask contained cloth/stone pixels moving at sky speed and caused tearing. Native F6 motion checked; approved art, perspective walk and outcomes unchanged.
+
 ## Scene03 — perspective walk away from camera
 
 Replace the superseded horizontal staging with a Scene03-only up-left perspective route and18 authored three-quarter rear walk poses. Depth shrinks actors, spacing, contact shadows and dust, with restrained colour haze and no blur. Approved panorama, D412 battle atlases, other scenes and outcomes unchanged. Native F6 trio/solo pass; existing travel GUT20/20,801 assertions. Updated within PR #108.
