@@ -12,6 +12,13 @@ The supplied `MISDEAL_TRAVEL_SCENE03_CODEX_PACKAGE.zip` supersedes the older art
 
 # Misdeal — current handoff
 
+## 2026-11-12 — Travel Scene03 ACCEPTED, PR #108 merged; next art: Borrowed Boots
+
+User explicitly **approved** the in-game final Scene03 staging after viewing F6 video: perspective three-quarter REAR walking group travels away from camera toward battlefield, original seamstress/captain remain focus; unified station/arches/cloth no longer visibly tear during pan. [PR #108](https://github.com/zampolit73/Misdeal/pull/108) merged to `main` at `5731faa1b913ae29dc1cd3da164021f5850d4dca`; required `godot-pr-smoke` on final PR head passed. Approved source image is immutable, exact original recorded in `docs/TRAVEL_LAST_DRESSING_STATION.md`. The **optional** earlier critique of path endpoint was superseded by user's explicit approval: **do not iterate Scene03 further** without a new request.
+
+**Next candidate card:** `borrowed_boots` / «ЧУЖИЕ САПОГИ». Check the existing, specifically **approved** young half-undead squire art (not the superseded keeper), `docs/ECHO_SIEGE_BOOTS_V2.md`, `resources/cards/borrowed_boots.tres`, and `scripts/event/final_five_events.gd`. Existing outcomes: `repair` (light pair, 18 gold, +8% move speed), `hobnails` (heavy pair, +8 HP, −4% movement), `passed` (leave boots for absent master). Stage a new visually distinctive journey tied to an extinguished campfire/abandoned sentry yard, NOT a reuse of posthouse, dressing station or rejected generic village. **No new Scene04 art is yet approved.** Show the image for user artistic review before writing a Codex implementation request. Future travel scenes remain card-linked and choice-specific; game effects and saves untouched.
+
+
 ## 2026-11-11 — Posthouse scale APPROVED; next card travel art selection
 
 User explicitly approved the **enlarged Posthouse party scale** from the latest local F6 video. [PR #107](https://github.com/zampolit73/Misdeal/pull/107) is now **merged to main** (`fd1660b642a04d7ccbd6e95ef87f1ce11ee450b6`): scene-only `party_scale 1.55`, `party_spacing 185`, `party_origin.x 890`. Leave the original posthouse painting, skeletal pigeon, choices, and the first travel road untouched. The accepted figure-scale calibration is **specific to Posthouse**; check human proportions independently against near architecture in every new scene.
