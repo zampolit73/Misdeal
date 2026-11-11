@@ -1,0 +1,44 @@
+{
+  "approved_source": {
+    "file": "approved_reference.png",
+    "sha256": "3c7b2626b2028b156cc6556a8ab148721e2987763ceda451e5d38a28ca47a34d",
+    "size": [
+      1672,
+      941
+    ],
+    "immutable": true,
+    "origin": "User MISDEAL_TRAVEL_SCENE03_CODEX_PACKAGE.zip"
+  },
+  "production": "Built-in image_gen repair inputs; deterministic Godot source-space alpha/crop packing. Exact masks in pack_dressing_station_assets.gd.",
+  "rebuild": "godot --headless --path . --script res://scripts/dev/pack_dressing_station_assets.gd",
+  "generations": {
+    "plain_cloth_edit.png": "exec-f2a64000-2948-45b2-b1c4-9b822dde93c4",
+    "cut_banner_edit.png": "exec-554a9e2e-a4b2-4e30-827a-05859eba4389",
+    "underpaint.png": "exec-0b283849-0af5-4255-88a4-051eda07304e",
+    "scissors_rest_edit.png": "exec-8f19a27d-f0bf-4d19-8c12-604899855acb"
+  },
+  "files": {
+    "approved_reference.png": "3c7b2626b2028b156cc6556a8ab148721e2987763ceda451e5d38a28ca47a34d",
+    "arches_bandages.png": "6ba760611f67b575ee08f0f51481b98012c62b745e95ccf7273636ed6d96c247",
+    "arches_passed.png": "bbf0456a3ce4532a95c29c1fed65651e13aaac63ddd7a1e920921e4735f79fc8",
+    "arches_standard.png": "bbf0456a3ce4532a95c29c1fed65651e13aaac63ddd7a1e920921e4735f79fc8",
+    "bandage_rolls.png": "b25d7d677af8d314ebc2d4714322f0731f1660721b3512501cb87defc952f460",
+    "cut_banner_edit.png": "1e8a78d9ff23a5212057f826320d16a177cbcb46e1d7d133250a1c479c389917",
+    "distant_battlefield.png": "31cf91fde52bf87f27b99850795316a5d953e7e1ce155394701936322ae152b6",
+    "foreground.png": "05da56864ef1d8937e7694ae18d4187a673378f8fe2f647fc782e253762761e0",
+    "fortifications.png": "18391cbc38201cece90f384b021fa12bf10edd329e6a97a22830a539f6d299d3",
+    "plain_cloth_edit.png": "438dc1002fe84e9906cea43be75ef34e6642165f4882608f7837bdd2c52ae8ee",
+    "road.png": "7f0686408b82b434a4b6349aedd8b2579549838760d895ed04e79580233162d9",
+    "scissors.png": "07f6b8fe87d6db5e52c1bbaeea1379e1a56c6da44a9e09a794797e8ff6863933",
+    "scissors_rest_edit.png": "2f28ace513b746cfd235ef79ddc76c8b50d6da99ae58b8d62176b983a6d0afae",
+    "scrap.png": "84ba19d7a8bd529e95d53e0df119f099d5e81fe501d8a8a82a7b30bf3b6f544e",
+    "sky.png": "f9401cf6def3ab2674487bbc2334b1efe28396f4687dd9c62082fab7cb8810e8",
+    "sky_openings.png": "1f24d088aac32405df12a2002d95e9a7d2321f73a1226746628e265709c31eba",
+    "station_bandages.png": "a27e9d52ad6deeaa871a804e26983b29adde910fdb32ebf8de48a0f8746fecf7",
+    "station_passed.png": "a27e9d52ad6deeaa871a804e26983b29adde910fdb32ebf8de48a0f8746fecf7",
+    "station_standard.png": "dcd1856d1f1552de773ab3ebe67d670a12776d3594876188a96f3dd78273ce21",
+    "underpaint.png": "2644e26b0b7c54521fa42d7db418ead26037c6594005533065de3c3530f37557"
+  },
+  "prompts": "prompts.md",
+  "artistic_acceptance": "approved source; in-game staging awaits user F6 review"
+}

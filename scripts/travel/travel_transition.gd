@@ -192,7 +192,7 @@ func update_frame() -> void:
 		# Held support poses follow the road; advance on the next authored pose.
 		var plant := (BODY_SPEED + float(panorama.speeds.Road)) * fposmod(phase,1.0) / WALK_FPS
 		var foot := Vector2(data.party_origin.x + time * BODY_SPEED - i * data.party_spacing - plant,data.party_origin.y + i * data.party_depth_step)
-		if actors.size() == 1: foot.x += 60
+		if actors.size() == 1: foot.x += data.party_solo_offset
 		sprite.position = foot - Vector2(0,(_soles[role_ids[i]][sprite.frame]-48)*sprite.scale.y)
 		contacts[i] = foot
 	ground_fx.update_contacts(contacts,time)

@@ -1,3 +1,7 @@
+## Scene03 — one canonical standard; immutable original
+
+Retain the exact user-approved dressing-station PNG. Source-space cloth-only repairs remove the duplicated lower emblem and depict the three existing aftermaths; do not animate/deform either figure or add another gameplay effect. Reuse Travel V2 and D412, with an optional data-driven solo offset whose default preserves all older scenes. Final animated staging needs user F6 review. [Contract/provenance](TRAVEL_LAST_DRESSING_STATION.md).
+
 ## Travel location selection - explicit authored resource per card
 
 CATALOG.LOCATIONS maps resolved card ID to a TravelTransitionData resource; outcomes control local reactions/text, never progression. Existing road remains the default for other supported cards, not a random replacement for an authored location. Scene02 uses the exact approved posthouse PNG, independent bones-only bird animation and point-corrected distant heraldry; no second router/manager or saved travel state. [Scene02 contract](TRAVEL_LAST_DAWN_POSTHOUSE.md).

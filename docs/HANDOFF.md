@@ -1,3 +1,7 @@
+## 2026-11-11 — Scene03 implemented; native artistic review next
+
+The supplied `MISDEAL_TRAVEL_SCENE03_CODEX_PACKAGE.zip` supersedes the older art-not-approved note below: exact dressing-station reference SHA256 `3c7b2626...47a34d` is now preserved and integrated. `banner_seamstress` → Scene03, `unsent_letters` → Posthouse, other routes unchanged. See [Scene03 contract](TRAVEL_LAST_DRESSING_STATION.md), [five native frames](qa/dressing_station/README.md) and F6 `scenes/dev/dressing_station_playtest.tscn` (Q/W/E outcomes;1/2/3 party;P/R;normal skip). Full local GUT288/288 and native production Event → Travel → Table pass; final required PR CI remains authoritative. Existing production-fixture shutdown diagnostics remain documented. **Do not claim final artistic acceptance**; next review is actual scale, cloth reactions and road composition. Do not redraw source characters, reuse this location for unrelated cards or change the event effects.
+
 # Misdeal — current handoff
 
 ## 2026-11-11 — Posthouse scale APPROVED; next card travel art selection

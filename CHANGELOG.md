@@ -1,3 +1,7 @@
+## Cinematic Travel Scene03 — Последний перевязочный пункт
+
+Add the exact approved `banner_seamstress` aftermath with seven depth planes, three cloth states, one falling scrap, calibrated D412 party and F6 preview. Reuse Travel V2 timing/router/pause/skip; existing event effects, art choices, saves and other locations unchanged. Native real route and full GUT288/288 pass; final CI and artistic review are tracked in the PR.
+
 ## Posthouse — character scale
 
 Increase only the Posthouse party scale from0.9 to1.55, widen spacing112→185px and move the origin805→890px. Road contact/depth, D412 poses and all other scenes remain unchanged. Native F6 trio/solo preview verified at1×.
