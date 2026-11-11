@@ -1,3 +1,7 @@
+## Scene03 — user-directed rear presentation walk
+
+For the explicitly requested away-from-camera route, use a separate short three-quarter rear walk per hero, never rotate/mirror the original side-view D412 poses or modify their combat atlases. Perspective staging/colour haze opts in only through this panorama; existing Travel V2 navigation and other scenes remain unchanged. This supersedes horizontal Scene03 staging, not the approved backdrop or reactions.
+
 ## Scene03 — one canonical standard; immutable original
 
 Retain the exact user-approved dressing-station PNG. Source-space cloth-only repairs remove the duplicated lower emblem and depict the three existing aftermaths; do not animate/deform either figure or add another gameplay effect. Reuse Travel V2 and D412, with an optional data-driven solo offset whose default preserves all older scenes. Final animated staging needs user F6 review. [Contract/provenance](TRAVEL_LAST_DRESSING_STATION.md).

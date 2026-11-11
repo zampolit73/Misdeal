@@ -30,7 +30,12 @@ This is presentation only. The existing `final_five_events.gd` continues to appl
 
 ## Party calibration
 
-Unchanged D412 atlases/walk poses and existing sole measurements, contact shadows and dust. Resource-local scale1.85, origin(1015,610), spacing175 and depth step4 place the actual solo/duo/trio on the right foreground road. Scale was chosen against the seated seamstress/captain and near cot, not copied from Posthouse. A small optional `party_solo_offset` parameter replaces the previous hardcoded60px; its default remains60 for all old resources, while this scene uses−25 to keep a solo hero clear of the close wheel. No old scene's placement changes.
+The user superseded the horizontal staging: Scene03 now uses a three-quarter REAR walk along the marked road, away from the camera/up-left. The battle D412 atlases remain byte-identical; separate six-pose96px strips for Knight/Ranger/Mage live in `rear_walk/`, with the exact generation prompt, input hashes and reproducible packer. No fake rotation/mirroring of side-view sprites.
+
+One Scene03-only `stage_party` hook supplies the existing actors/contacts from the existing V2 local clock. Projection is `vanishing + (near - vanishing)/depth`, near(1140,486) from the resource, vanishing(850,360), depth advancing1.12 over the four-second presentation and0.32 intervals between members. Small lane offsets shrink with the same reciprocal depth. Sprite scale1.5/depth, actual rear-pose boot soles, shrinking shadows/dust and at most28% colour haze share that depth; alpha stays opaque and texture filtering stays nearest, without blur. Road-plane displacement is included in foot contacts. Nearer feet draw in front while the original foreground remains above them. Solo starts slightly farther down the same route.
+
+The optional hook is absent from both older panoramas, whose horizontal movement and D412 frame/sole caches stay unchanged. Contact FX defaults remain scale1 and leftward dust, reproducing old scenes. No new router/manager, timing, event state, panorama plane or game effect.
+
 
 ## Verification and limits
 

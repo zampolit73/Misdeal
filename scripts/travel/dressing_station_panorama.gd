@@ -14,6 +14,7 @@ var arches: Sprite2D
 var station: Sprite2D
 var reactions: Node2D
 var outcome := "passed"
+var walk := preload("res://scripts/travel/dressing_station_walk.gd").new()
 
 static func texture_at(path: String) -> Texture2D:
 	if _textures.has(path): return _textures[path]
@@ -57,7 +58,7 @@ func build(background: String, foreground: String, underpaint: String, sky: Stri
 	reactions.scale = PROJECTION
 	planes.Midground.add_child(reactions)
 	reactions.build(texture_at(DIR+"scrap.png"),texture_at(DIR+"scissors.png"),texture_at(DIR+"bandage_rolls.png"))
-	available = true
+	available = walk.build()
 	update_time(0,4)
 
 func _rect(id: String) -> Rect2:
@@ -99,3 +100,6 @@ func update_time(time: float, duration: float) -> void:
 	for id in planes: planes[id].position = ORIGIN-Vector2(float(speeds[id])*(time-duration*0.5),0)
 	for material in materials: material.set_shader_parameter("elapsed",time)
 	if reactions!=null: reactions.update_time(time)
+
+func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Array[Vector2], ground: Node2D, time: float, duration: float, layout: Resource) -> void:
+	walk.stage(actors,roles,contacts,ground,time,duration,planes.Road.position-ORIGIN,layout)

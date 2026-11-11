@@ -1,3 +1,7 @@
+## Scene03 — perspective walk away from camera
+
+Replace the superseded horizontal staging with a Scene03-only up-left perspective route and18 authored three-quarter rear walk poses. Depth shrinks actors, spacing, contact shadows and dust, with restrained colour haze and no blur. Approved panorama, D412 battle atlases, other scenes and outcomes unchanged. Native F6 trio/solo pass; existing travel GUT20/20,801 assertions. Updated within PR #108.
+
 ## Scene03 — deeper party staging
 
 Move only the dressing-station party onto the right mid-distance road: origin(1050,510), spacing75, depth step−6, scale1.0 and a restrained opaque tint. Original artwork, D412 sprites, reactions and other travel scenes stay unchanged. Native F6 trio/solo checked at1×; existing Scene03 GUT3/3 pass.

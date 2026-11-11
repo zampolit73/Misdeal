@@ -50,12 +50,21 @@ func test_party_soles_pause_and_skip_keep_existing_contract() -> void:
 		assert_eq(view.actors.size(),roles.size())
 		for i in range(roles.size()):
 			var actor: AnimatedSprite2D = view.actors[i]
-			assert_almost_eq(actor.position.y+(view._soles[roles[i]][actor.frame]-48)*actor.scale.y,view.contacts[i].y,0.001)
+			assert_almost_eq(actor.position.y+(view.panorama.walk.soles[roles[i]][actor.frame]-48)*actor.scale.y,view.contacts[i].y,0.001)
 			assert_gt(view.contacts[i].x,650.0)
 			assert_lt(view.contacts[i].x,1100.0)
+		var before: Array = view.contacts.duplicate()
+		var old_scale: float = view.actors[0].scale.x
+		view.elapsed=3.1
+		view.update_frame()
+		for i in range(roles.size()):
+			assert_lt(view.contacts[i].x,before[i].x,"Walk must retreat left, not keep moving horizontally right")
+			assert_lt(view.contacts[i].y,before[i].y,"Walk must enter the battlefield in depth")
+		assert_lt(view.actors[0].scale.x,old_scale)
+		assert_gt(view.ground_fx.dust_direction.x,0.0,"Dust trails toward the camera")
 		get_tree().paused = true
 		await get_tree().create_timer(0.03,true).timeout
-		assert_eq(view.elapsed,1.8)
+		assert_eq(view.elapsed,3.1)
 		var finished := [0]
 		view.finished.connect(func(): finished[0]+=1)
 		view.finish()
