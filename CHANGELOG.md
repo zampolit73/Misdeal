@@ -1,3 +1,7 @@
+## Scene03 — deeper party staging
+
+Move only the dressing-station party onto the right mid-distance road: origin(1050,510), spacing75, depth step−6, scale1.0 and a restrained opaque tint. Original artwork, D412 sprites, reactions and other travel scenes stay unchanged. Native F6 trio/solo checked at1×; existing Scene03 GUT3/3 pass.
+
 ## Cinematic Travel Scene03 — Последний перевязочный пункт
 
 Add the exact approved `banner_seamstress` aftermath with seven depth planes, three cloth states, one falling scrap, calibrated D412 party and F6 preview. Reuse Travel V2 timing/router/pause/skip; existing event effects, art choices, saves and other locations unchanged. Native real route and full GUT288/288 pass; final CI and artistic review are tracked in the PR.
