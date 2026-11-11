@@ -1,3 +1,7 @@
+## Posthouse — character scale
+
+Increase only the Posthouse party scale from0.9 to1.55, widen spacing112→185px and move the origin805→890px. Road contact/depth, D412 poses and all other scenes remain unchanged. Native F6 trio/solo preview verified at1×.
+
 ## Cinematic Travel V1 — Тропа вдоль мёртвых стен
 
 ## Cinematic Travel Scene02 - The Last Dawn Posthouse
