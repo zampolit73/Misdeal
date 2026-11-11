@@ -1,5 +1,11 @@
 # Misdeal — current handoff
 
+## 2026-11-11 — Posthouse scale APPROVED; next card travel art selection
+
+User explicitly approved the **enlarged Posthouse party scale** from the latest local F6 video. [PR #107](https://github.com/zampolit73/Misdeal/pull/107) is now **merged to main** (`fd1660b642a04d7ccbd6e95ef87f1ce11ee450b6`): scene-only `party_scale 1.55`, `party_spacing 185`, `party_origin.x 890`. Leave the original posthouse painting, skeletal pigeon, choices, and the first travel road untouched. The accepted figure-scale calibration is **specific to Posthouse**; check human proportions independently against near architecture in every new scene.
+
+**Next candidate card:** `banner_seamstress` / «ЗНАМЯ НА БИНТЫ». The existing event is an undead seamstress who keeps bandaging a skeletal captain while awaiting false-promised reinforcements. Its choices are `bandages`, `standard`, and `passed`, whose effects are already implemented. New authored travel artwork must represent the aftermath of this event, e.g. a deserted field hospital / medical outpost alongside a traversable road. Keep approved in-game heraldry, no embedded protagonists or UI, and preserve scene-specific choice reactions (strips of cloth / saved standard / uninterrupted ritual). **No new artwork has been approved yet**; show 2–3 genuinely distinct rendered compositions and wait for user selection before integration. Do not repurpose the previously rejected generic village, do not replace the Posthouse art.
+
 ## 2026-11-11 — VERIFIED NEXT CHAT START: Posthouse Scene02 merged, art review pending
 
 **Read [the current Travel/Posthouse handoff](SESSION_HANDOFF_2026_11_11_TRAVEL_POSTHOUSE.md) first.** PR [#106](https://github.com/zampolit73/Misdeal/pull/106) is already **merged**; [RELEASE CI](https://github.com/zampolit73/Misdeal/actions/runs/43002837989) **PASS (285/285 GUT, 72,176 assertions)**. Exact user-approved `last_dawn_posthouse/approved_reference.png` is already tracked by GitHub; **no new attachment or implementation is needed**. The source has an ordinary perched bird, but the scene uses one separate **skeletal** pigeon. `unsent_letters` has three existing outcome-specific travel reactions; the user's artistic evaluation of the implemented scene **is not yet recorded**.
