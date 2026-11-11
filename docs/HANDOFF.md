@@ -1,5 +1,12 @@
 # Misdeal — current handoff
 
+## 2026-11-11 — VERIFIED NEXT CHAT START: Posthouse Scene02 merged, art review pending
+
+**Read [the current Travel/Posthouse handoff](SESSION_HANDOFF_2026_11_11_TRAVEL_POSTHOUSE.md) first.** PR [#106](https://github.com/zampolit73/Misdeal/pull/106) is already **merged**; [RELEASE CI](https://github.com/zampolit73/Misdeal/actions/runs/43002837989) **PASS (285/285 GUT, 72,176 assertions)**. Exact user-approved `last_dawn_posthouse/approved_reference.png` is already tracked by GitHub; **no new attachment or implementation is needed**. The source has an ordinary perched bird, but the scene uses one separate **skeletal** pigeon. `unsent_letters` has three existing outcome-specific travel reactions; the user's artistic evaluation of the implemented scene **is not yet recorded**.
+
+**Next:** inspect F6 `scenes/dev/posthouse_playtest.tscn` (Q release/W read/E passed; 1/2/3 party; P/R pause/replay), get user feedback, fix any visible issues, then design the next **unique card-linked** travel art after explicit approval. **Never reuse the rejected generic village**. Don't modify the approved posthouse original, event effects, existing road, game saves, or Fate Spread. Protect the user's potentially dirty original Windows checkout before local Git operations.
+
+
 ## Cinematic Travel Scene02 - The Last Dawn Posthouse
 
 Own authored location for unsent_letters, selected by a small card-to-resource catalog map. Exact approved PNG retained; only ordinary-bird removal and two distant heraldry corrections in derived layers. One skeletal pigeon with20 distinct poses; release carries one envelope and flies, read animates opened paper, passed keeps the bird with subtle shutter/lantern motion. Seven depth planes reuse V2 UI, party gait, pause, skip and router. No event effects, save fields, D412 or original road artwork changed. Native43-frame matrix,20 clean replay/free cycles and actual three-choice/save/old-route checks pass locally; final CI and user artistic review remain authoritative. [Contract and F6](TRAVEL_LAST_DAWN_POSTHOUSE.md).
