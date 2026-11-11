@@ -8,7 +8,8 @@ const WALK_FPS := 6.5
 const BODY_SPEED := 20.0
 static var _soles: Dictionary = {}
 var context: Dictionary = {}
-var data_path := "res://resources/travel/ruined_castle_road.tres"
+var data_path := ""
+var data: Resource
 var elapsed := 0.0
 var done := false
 var available := false
@@ -29,7 +30,8 @@ var skip_button: Button
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	var data := load(data_path) as Resource if ResourceLoader.exists(data_path) else null
+	if data_path.is_empty(): data_path = preload("res://scripts/travel/travel_catalog.gd").resource_for(context)
+	data = load(data_path) as Resource if ResourceLoader.exists(data_path) else null
 	if data == null: return
 	matte = ColorRect.new()
 	matte.color = Color.BLACK
@@ -43,16 +45,19 @@ func _ready() -> void:
 	# Fade the flattened painting ONCE. Per-child inherited alpha exposes
 	# overlapping cutout boundaries during a cross-dissolve over Event/Reward.
 	composition = CanvasGroup.new()
+	composition.self_modulate.a = 0.0
 	composition.fit_margin = 2.0
 	composition.clear_margin = 2.0
 	stage.add_child(composition)
-	panorama = PANORAMA.new()
+	if data.panorama_script == null: return
+	panorama = data.panorama_script.new()
 	composition.add_child(panorama)
 	panorama.build(data.background_path,data.foreground_path,data.underpaint_path,data.sky_path)
 	if not panorama.available: return
+	if panorama.has_method("configure"): panorama.call("configure",context)
 	fog = ColorRect.new()
-	fog.position = Vector2(0,260)
-	fog.size = Vector2(1280,205)
+	fog.position = data.fog_rect.position
+	fog.size = data.fog_rect.size
 	fog.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var mist := ShaderMaterial.new()
 	mist.shader = preload("res://shaders/travel_fog.gdshader")
@@ -69,15 +74,15 @@ func _ready() -> void:
 		sprite.sprite_frames = frames
 		sprite.animation = "walk"
 		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		sprite.scale = Vector2.ONE * (1.80 if role == "knight" else 1.72)
-		sprite.modulate = Color(0.86,0.89,0.94)
+		sprite.scale = Vector2.ONE * (1.80 if role == "knight" else 1.72) * float(data.party_scale)
+		sprite.modulate = data.party_tint
 		composition.add_child(sprite)
 		actors.append(sprite)
 		role_ids.append(role)
 		contacts.append(Vector2.ZERO)
 		_measure_soles(role,frames)
 	if actors.is_empty(): return
-	var foreground: Polygon2D = panorama.planes.Foreground
+	var foreground: Node2D = panorama.planes.Foreground
 	foreground.reparent(composition,false)
 	foreground.visible = true
 	exit_shade = ColorRect.new()
@@ -185,8 +190,8 @@ func update_frame() -> void:
 		var phase := time * WALK_FPS + i * 1.1
 		sprite.frame = int(phase) % sprite.sprite_frames.get_frame_count("walk")
 		# Held support poses follow the road; advance on the next authored pose.
-		var plant := (BODY_SPEED + PANORAMA.ROAD_SPEED) * fposmod(phase,1.0) / WALK_FPS
-		var foot := Vector2(420 + time * BODY_SPEED - i * 120 - plant,604 - i * 3)
+		var plant := (BODY_SPEED + float(panorama.speeds.Road)) * fposmod(phase,1.0) / WALK_FPS
+		var foot := Vector2(data.party_origin.x + time * BODY_SPEED - i * data.party_spacing - plant,data.party_origin.y + i * data.party_depth_step)
 		if actors.size() == 1: foot.x += 60
 		sprite.position = foot - Vector2(0,(_soles[role_ids[i]][sprite.frame]-48)*sprite.scale.y)
 		contacts[i] = foot

@@ -1,5 +1,10 @@
 # Misdeal вЂ” current roadmap
 
+## Cinematic Travel Scene02 - The Last Dawn Posthouse
+
+Own authored location for unsent_letters, selected by a small card-to-resource catalog map. Exact approved PNG retained; only ordinary-bird removal and two distant heraldry corrections in derived layers. One skeletal pigeon with20 distinct poses; release carries one envelope and flies, read animates opened paper, passed keeps the bird with subtle shutter/lantern motion. Seven depth planes reuse V2 UI, party gait, pause, skip and router. No event effects, save fields, D412 or original road artwork changed. Native43-frame matrix,20 clean replay/free cycles and actual three-choice/save/old-route checks pass locally; final CI and user artistic review remain authoritative. [Contract and F6](TRAVEL_LAST_DAWN_POSTHOUSE.md).
+
+
 ## Cinematic Travel V2 - parallax and visual polish
 
 Six independent depth planes retain PR #104 source pixels for the castle, close wall, valley and road over reconstructed occlusion plates. Local-clock gait/contact shadows/step dust, valley fog and cloth, compact serif narration, 360ms entrance and removal under the existing SceneTransition veil. No changes to story outcomes, rewards, saves, party balance or D412 atlases. Local full GUT279/279,71,900 assertions; native26-frame solo/duo/trio/pause/resize matrix and20 replay/free cycles. Final required CI and local artistic review remain authoritative. [V2 contract, evidence and F6](CINEMATIC_TRAVEL_V2.md).

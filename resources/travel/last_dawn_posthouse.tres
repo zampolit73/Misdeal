@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TravelTransitionData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/travel_transition_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/travel/posthouse_panorama.gd" id="2"]
+[resource]
+script = ExtResource("1")
+title = "ПОЧТА ПОСЛЕДНЕГО РАССВЕТА"
+panorama_script = ExtResource("2")
+background_path = "res://assets/pixel/travel/last_dawn_posthouse/approved_reference.png"
+foreground_path = "res://assets/pixel/travel/last_dawn_posthouse/foreground.png"
+underpaint_path = "res://assets/pixel/travel/last_dawn_posthouse/underpaint.png"
+sky_path = "res://assets/pixel/travel/last_dawn_posthouse/sky.png"
+party_origin = Vector2(805,616)
+party_spacing = 112.0
+party_depth_step = 4.0
+party_scale = 0.9
+party_tint = Color(0.93,0.92,0.91,1)
+fog_rect = Rect2(550,290,730,200)
