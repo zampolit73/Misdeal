@@ -464,6 +464,14 @@ jobs:
               --script res://scripts/dev/posthouse_route_smoke.gd -- "$post/routes" 2>&1 | tee "$post/routes/capture.log"
             grep -Fq 'POSTHOUSE_ROUTES_PASS' "$post/routes/capture.log"
             ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed' "$post/routes/capture.log"
+            dressing="$RUNNER_TEMP/misdeal-smart-qa/visual/dressing_station"
+            mkdir -p "$dressing"
+            timeout 60s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+              env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+              --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility --audio-driver Dummy \
+              --script res://scripts/dev/dressing_station_smoke.gd -- "$dressing" 2>&1 | tee "$dressing/capture.log"
+            grep -Fq 'DRESSING_STATION_NATIVE_PASS' "$dressing/capture.log"
+            ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed' "$dressing/capture.log"
 
       - name: Docs-only change (no Godot boot)
         if: steps.scope.outputs.mode == 'docs'

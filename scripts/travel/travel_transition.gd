@@ -185,16 +185,20 @@ func update_frame() -> void:
 	panorama.update_time(time,duration())
 	composition.self_modulate.a = smoothstep(0.0,0.36,time)
 	matte.modulate.a = composition.self_modulate.a
-	for i in range(actors.size()):
-		var sprite := actors[i]
-		var phase := time * WALK_FPS + i * 1.1
-		sprite.frame = int(phase) % sprite.sprite_frames.get_frame_count("walk")
-		# Held support poses follow the road; advance on the next authored pose.
-		var plant := (BODY_SPEED + float(panorama.speeds.Road)) * fposmod(phase,1.0) / WALK_FPS
-		var foot := Vector2(data.party_origin.x + time * BODY_SPEED - i * data.party_spacing - plant,data.party_origin.y + i * data.party_depth_step)
-		if actors.size() == 1: foot.x += 60
-		sprite.position = foot - Vector2(0,(_soles[role_ids[i]][sprite.frame]-48)*sprite.scale.y)
-		contacts[i] = foot
+	if panorama.has_method("stage_party"):
+		# Scene-local presentation, using the existing clock/actors/contact FX.
+		panorama.stage_party(actors,role_ids,contacts,ground_fx,time,duration(),data)
+	else:
+		for i in range(actors.size()):
+			var sprite := actors[i]
+			var phase := time * WALK_FPS + i * 1.1
+			sprite.frame = int(phase) % sprite.sprite_frames.get_frame_count("walk")
+			# Held support poses follow the road; advance on the next authored pose.
+			var plant := (BODY_SPEED + float(panorama.speeds.Road)) * fposmod(phase,1.0) / WALK_FPS
+			var foot := Vector2(data.party_origin.x + time * BODY_SPEED - i * data.party_spacing - plant,data.party_origin.y + i * data.party_depth_step)
+			if actors.size() == 1: foot.x += data.party_solo_offset
+			sprite.position = foot - Vector2(0,(_soles[role_ids[i]][sprite.frame]-48)*sprite.scale.y)
+			contacts[i] = foot
 	ground_fx.update_contacts(contacts,time)
 	(fog.material as ShaderMaterial).set_shader_parameter("elapsed",time)
 	var leave := smoothstep(duration()-0.60,duration()-0.15,time)

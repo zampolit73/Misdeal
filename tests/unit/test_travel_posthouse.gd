@@ -18,7 +18,7 @@ func test_exact_approved_source_and_card_to_resource_selection() -> void:
 	for outcome in ["release","read","passed"]:
 		var context := CATALOG.context_for("unsent_letters",outcome,["ranger"])
 		assert_eq(CATALOG.resource_for(context),"res://resources/travel/last_dawn_posthouse.tres")
-	for id in ["banner_seamstress","borrowed_boots","false_weights","last_signal","graveyard_ambush"]:
+	for id in ["borrowed_boots","false_weights","last_signal","graveyard_ambush"]:
 		assert_eq(CATALOG.resource_for({"resolved_card_id":id}),CATALOG.DEFAULT_LOCATION)
 	assert_true(CATALOG.context_for("unsent_letters","wrong",["knight"]).is_empty())
 func test_twenty_real_bone_poses_with_distinct_flight_and_clear_margins() -> void:

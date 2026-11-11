@@ -1,0 +1,24 @@
+{
+  "purpose": "Scene03-only six-pose three-quarter rear walk per role; immutable D412 battle identities",
+  "generator": "built-in image_gen / exec-bd5f5f48-ca6f-497a-901c-7ce511ab0dac",
+  "prompt": "prompts.md",
+  "source_size": [
+    1774,
+    887
+  ],
+  "source_layout": "6 columns x 3 rows: Knight, Ranger, Mage",
+  "runtime_layout": "three 576x96 RGBA strips, six 96x96 cells each",
+  "references_sha256": {
+    "assets/pixel/units/hero_c3_d412_polish/knight_packed.png": "3122a2ab6cf781712679177bf206cad3b8c5419ee60e330803d5857f247d7287",
+    "assets/pixel/units/hero_c3_d412_polish/ranger_packed.png": "ffe2fc55a032288fd1a76db1677f4c5192cacb66df234577edda364659811b83",
+    "assets/pixel/units/hero_c3_d412_polish/mage_packed.png": "d906171ed4947dcd9f1850ba7750e8d594ac09bb7dbce3f38aaf898c973779db"
+  },
+  "files_sha256": {
+    "knight.png": "a50f6209288a13e219c7269e4da0f18aa11e468791f7a6e98077a0fdf97b0e73",
+    "mage.png": "4f7e7bb0cbc566e5e8e5cf2ad7d6f30f19515d6c50c952d961d56b8520a16241",
+    "ranger.png": "f3f70e097935ba1c339358ba4e453896c75bfedd657053edcdbabbc396e94632",
+    "source.png": "0558c019770c0841752081f37f305727fd14027a2da51616cb1b8c90ba299714"
+  },
+  "packer": "scripts/dev/pack_dressing_station_walk.gd",
+  "source_art_changes": "No background or D412 files modified. Original rear poses are packed only for Scene03."
+}

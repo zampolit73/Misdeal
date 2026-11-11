@@ -1,3 +1,19 @@
+## Scene03 — connected-layer seam
+
+Merge the dressing station, central arches, hanging linen and their inner openings into one plate per outcome. The old opening mask contained cloth/stone pixels moving at sky speed and caused tearing. Native F6 motion checked; approved art, perspective walk and outcomes unchanged.
+
+## Scene03 — perspective walk away from camera
+
+Replace the superseded horizontal staging with a Scene03-only up-left perspective route and18 authored three-quarter rear walk poses. Depth shrinks actors, spacing, contact shadows and dust, with restrained colour haze and no blur. Approved panorama, D412 battle atlases, other scenes and outcomes unchanged. Native F6 trio/solo pass; existing travel GUT20/20,801 assertions. Updated within PR #108.
+
+## Scene03 — deeper party staging
+
+Move only the dressing-station party onto the right mid-distance road: origin(1050,510), spacing75, depth step−6, scale1.0 and a restrained opaque tint. Original artwork, D412 sprites, reactions and other travel scenes stay unchanged. Native F6 trio/solo checked at1×; existing Scene03 GUT3/3 pass.
+
+## Cinematic Travel Scene03 — Последний перевязочный пункт
+
+Add the exact approved `banner_seamstress` aftermath with seven depth planes, three cloth states, one falling scrap, calibrated D412 party and F6 preview. Reuse Travel V2 timing/router/pause/skip; existing event effects, art choices, saves and other locations unchanged. Native real route and full GUT288/288 pass; final CI and artistic review are tracked in the PR.
+
 ## Posthouse — character scale
 
 Increase only the Posthouse party scale from0.9 to1.55, widen spacing112→185px and move the origin805→890px. Road contact/depth, D412 poses and all other scenes remain unchanged. Native F6 trio/solo preview verified at1×.

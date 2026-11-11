@@ -11,5 +11,6 @@ class_name TravelTransitionData
 @export var party_spacing := 120.0
 @export var party_depth_step := -3.0
 @export var party_scale := 1.0
+@export var party_solo_offset := 60.0
 @export var party_tint := Color(0.86,0.89,0.94)
 @export var fog_rect := Rect2(0,260,1280,205)

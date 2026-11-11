@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TravelTransitionData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/travel_transition_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/travel/dressing_station_panorama.gd" id="2"]
+[resource]
+script = ExtResource("1")
+title = "ПОСЛЕДНИЙ ПЕРЕВЯЗОЧНЫЙ ПУНКТ"
+panorama_script = ExtResource("2")
+background_path = "res://assets/pixel/travel/last_dressing_station/approved_reference.png"
+foreground_path = "res://assets/pixel/travel/last_dressing_station/foreground.png"
+underpaint_path = "res://assets/pixel/travel/last_dressing_station/underpaint.png"
+sky_path = "res://assets/pixel/travel/last_dressing_station/sky.png"
+party_origin = Vector2(1140,486)
+party_scale = 1.5
+fog_rect = Rect2(855,300,425,110)

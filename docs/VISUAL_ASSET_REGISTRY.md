@@ -1,3 +1,11 @@
+## Scene03 rear-walk presentation pack
+
+`assets/pixel/travel/last_dressing_station/rear_walk/`:18 authored poses, six per Knight/Ranger/Mage, three-quarter rear/NW. Source PNG, exact built-in image_gen prompt, D412 reference hashes, runtime strips and measured soles retained. Scene03-only; no D412 or approved panorama edits. [Perspective contract](TRAVEL_LAST_DRESSING_STATION.md#party-calibration).
+
+## Cinematic Travel Scene03 — The Last Dressing Station
+
+Own authored aftermath for `banner_seamstress`: exact approved PNG, five planes with unified station/arches/linen, intact/stripped/ritual cloth states and one falling scrap. Real D412 party calibrated against the cot/seamstress; solo offset keeps clear of the wheel. Existing effects, saves, narration, Posthouse and original road unchanged. Native three-outcome/solo/trio/pause/skip and real Event → Travel → Table pass; full GUT288/288,72,235 assertions (19 existing warnings), selector18/18. Required final PR CI and user F6 artistic review remain authoritative. [Contract, sources and preview](TRAVEL_LAST_DRESSING_STATION.md).
+
 ## Echo of Siege — prepared art delivery guard (2026-11-10)
 
 ## Cinematic Travel Scene02 - The Last Dawn Posthouse

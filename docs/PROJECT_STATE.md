@@ -1,5 +1,13 @@
 # Misdeal вЂ” current project state
 
+## Scene03 correction — rear perspective route (PR #108)
+
+User correction supersedes both older horizontal calibrations below. The party now leaves the camera up-left along the marked road, with shrinking three-quarter rear poses/intervals, road-aligned contacts and subtle colour haze. Original D412 combat art and all backgrounds/reactions stay unchanged. Review F6 `scenes/dev/dressing_station_playtest.tscn` (trio/solo); native pass and existing travel GUT20/20,801 assertions. New strips/provenance: `assets/pixel/travel/last_dressing_station/rear_walk/`. Final CI is authoritative; don't claim user artistic approval.
+
+## Cinematic Travel Scene03 — The Last Dressing Station
+
+Own authored aftermath for `banner_seamstress`: exact approved PNG, five planes with unified station/arches/linen, intact/stripped/ritual cloth states and one falling scrap. Real D412 party calibrated against the cot/seamstress; solo offset keeps clear of the wheel. Existing effects, saves, narration, Posthouse and original road unchanged. Native three-outcome/solo/trio/pause/skip and real Event → Travel → Table pass; full GUT288/288,72,235 assertions (19 existing warnings), selector18/18. Required final PR CI and user F6 artistic review remain authoritative. [Contract, sources and preview](TRAVEL_LAST_DRESSING_STATION.md).
+
 ## Cinematic Travel Scene02 - The Last Dawn Posthouse
 
 Own authored location for unsent_letters, selected by a small card-to-resource catalog map. Exact approved PNG retained; only ordinary-bird removal and two distant heraldry corrections in derived layers. One skeletal pigeon with20 distinct poses; release carries one envelope and flies, read animates opened paper, passed keeps the bird with subtle shutter/lantern motion. Seven depth planes reuse V2 UI, party gait, pause, skip and router. No event effects, save fields, D412 or original road artwork changed. Native43-frame matrix,20 clean replay/free cycles and actual three-choice/save/old-route checks pass locally; final CI and user artistic review remain authoritative. [Contract and F6](TRAVEL_LAST_DAWN_POSTHOUSE.md).
