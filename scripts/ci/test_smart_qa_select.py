@@ -2,6 +2,10 @@ import unittest
 from smart_qa_select import classify
 
 class SelectorTests(unittest.TestCase):
+    def test_posthouse_capture_and_preview_require_release(self):
+        for path in ("scripts/dev/posthouse_capture.gd", "scripts/dev/posthouse_route_smoke.gd", "scenes/dev/posthouse_playtest.tscn"):
+            self.assertEqual(classify([path])["mode"], "release")
+
     def test_travel_requires_release(self):
         for path in ("scripts/travel/travel_catalog.gd", "scenes/travel/travel_transition.tscn", "scripts/core/scene_router.gd"):
             self.assertEqual(classify([path])["mode"], "release")

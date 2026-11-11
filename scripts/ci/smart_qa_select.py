@@ -23,7 +23,7 @@ def classify(paths, request="auto"):
     paths = [p.replace("\\", "/") for p in paths if p]
     if request not in ("auto", "fast", "visual", "release"):
         raise ValueError("Unknown QA mode: " + request)
-    if request == "auto" and any("living_arena" in p or "travel" in p or p == "scripts/core/scene_router.gd" or p.startswith("assets/pixel/events/final_five/") or p == "scripts/dev/pack_final_five_assets.gd" for p in paths):
+    if request == "auto" and any("living_arena" in p or "travel" in p or "posthouse" in p or p == "scripts/core/scene_router.gd" or p.startswith("assets/pixel/events/final_five/") or p == "scripts/dev/pack_final_five_assets.gd" for p in paths):
         request = "release"
     if request == "auto" and any(p in ("scripts/memory/memory_viewer.gd", "scripts/core/run_save_service.gd", "scripts/dev/run_save_capture.gd", "scripts/dev/a1v2_capture.gd", "scripts/memory/memory_profile.gd", "scripts/dev/visual_polish_matrix.gd", "scripts/event/final_five_events.gd", "scripts/dev/final_five_capture.gd", "resources/cards/jack.tres", "scripts/dev/jack_event_capture.gd") for p in paths):
         request = "release"

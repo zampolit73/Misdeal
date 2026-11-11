@@ -1,0 +1,46 @@
+{
+  "original_filename": "misdeal_posthouse_approved_reference.png",
+  "original_sha256": "e4a3f62457071e431e7d01b739925db44a3ae9c8da4a13d51928e2f790d10bf5",
+  "original_immutable": true,
+  "art_tool": "built-in image_gen",
+  "basis": "Only the exact user-approved posthouse; no rejected generic village artwork.",
+  "heraldry_reference": "assets/pixel/battle/arenas/approved_d283/firing_square.webp on main, traced through its live travel provenance",
+  "edits": [
+    "Ordinary pigeon removed only in source rectangle(710,140,110,110), repaired patch baked into posthouse.png.",
+    "Two incorrect distant castle star emblems corrected to canonical ring/cross/long shaft in rectangles(1117,199,34,74) and(1253,180,36,72). Close correct emblems unchanged.",
+    "Sky/occlusion reconstruction only; original architecture/props copied to independent transparent layers."
+  ],
+  "animation_contract": "Presentation-only20 distinct192x192 poses in5x4 atlas: perched4+anticipation1+launch5+flight10. No combat unit or D412 changes. Four authored open-paper poses.",
+  "packer": "scripts/dev/pack_posthouse_assets.gd; alpha spill/island cleanup, crop/resize/packing and original-pixel masks; optional bird-removal full generation input, otherwise committed patches reused.",
+  "generations": {
+    "perch_patch": "exec-f2b50823-ec8c-4a15-b7fe-4b516c1e39a1",
+    "bird_initial": "exec-b862bec7-76ee-427e-8dac-cf71a886aadd",
+    "bird_refinement": "exec-e0644fb1-e87d-4fcd-a467-4318606ff16d",
+    "underpaint": "exec-5b878d0b-efa3-4f61-8863-e620fa554139",
+    "sky": "exec-c3cfc4c8-e7b6-4530-a427-bc0a40ebb9cd",
+    "paper": "exec-446d975e-d36d-42fd-b0ea-bd9e791a6841",
+    "heraldry_right": "exec-2687c82e-be37-4c78-b329-de874e4653b9",
+    "heraldry_left_refined": "exec-a6cbccef-a972-4310-9472-a0b00b7c1e5e"
+  },
+  "sha256": {
+    "approved_reference.png": "e4a3f62457071e431e7d01b739925db44a3ae9c8da4a13d51928e2f790d10bf5",
+    "beaks.json": "561f5be260c6501f404253b1d4451b2b9d63890cde851fcc4487691de4b1d282",
+    "bone_pigeon.png": "8ed191cdccdbffeae50fee1652776f91024765c192717f96ac60393b6be89eed",
+    "bone_pigeon_source.png": "f227bdfa73cac215caf5a8af9f17e20aa2e45cf6a8d57959816784dd0e048784",
+    "castle.png": "135ee007eaadf6f08d3f521e4bad373f731a27d67163ba83e8beb38dd454d05e",
+    "foreground.png": "1d136e7d9d2f84c36642e093b410317a73fc0900729a7a05331c219cd693f43d",
+    "heraldry_left.png": "ef7113bd0d169be8451a418e6036015efdf5bb91757492b7a2fe0a85fb40db70",
+    "heraldry_right.png": "54d5742df2cc3bd06a2278ae0431b8561ceec76f59d4c66a463f3d0238695756",
+    "layers.json": "59cf27c7de149314f75e60ff83ca1336bdd86ac3d2946bd3ee696f406d894b89",
+    "mountain_original.png": "d7f3b59561b604b48a5ca099925b9f1ed53727611476275ae52d5156c8c1faaf",
+    "open_paper.png": "3767fdb3e3d49b4311bdee10f967bda211cdfa1c214586ffe4d681043275ab0d",
+    "paper_source.png": "294b622dbfc984c8881dab3b7e78f715ba3f3be7748c97d2fdf975cdcacf723d",
+    "perch_patch.png": "56d1524003d95cc3d367315679b9385c2c8a1ddc67cbe7dc75125cccdf0b40ba",
+    "posthouse.png": "9c3d16af8ef8687313e6b2670e73debacb2077834b471a9823efbb42c9d6c262",
+    "road.png": "04e01fac30dfbbac5c59287824c48b99dd6c8891bfeabde4fca49b59fd6c9f68",
+    "sky.png": "df5d4a1603c2df9d0b6357f3ae7001d9b041c7da217740c81202f759d62e5c66",
+    "underpaint.png": "eee1996756101c25cf60fb3eb3b994f639b5a6ee59c43e40b51a71a3175a77a7",
+    "village.png": "5cf1a66e6d4f74ae158c36300de3b493ebe842a5a9f045119fe0e2ca69320f7b"
+  },
+  "heraldry_reference_git_blob": "a6b279e57d784033f015a5a729806bb3c045d306 (local hash-object equals origin/main blob)"
+}

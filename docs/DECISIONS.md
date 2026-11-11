@@ -1,3 +1,7 @@
+## Travel location selection - explicit authored resource per card
+
+CATALOG.LOCATIONS maps resolved card ID to a TravelTransitionData resource; outcomes control local reactions/text, never progression. Existing road remains the default for other supported cards, not a random replacement for an authored location. Scene02 uses the exact approved posthouse PNG, independent bones-only bird animation and point-corrected distant heraldry; no second router/manager or saved travel state. [Scene02 contract](TRAVEL_LAST_DAWN_POSTHOUSE.md).
+
 ## Travel V2 - preserve art and transition ownership
 
 Original PR104 background and D412 atlases remain immutable. GPU cutouts and small occlusion reconstructions supply six depth planes; frame/sole adjustments apply only to travel sprites. Existing SceneTransition owns overlay admission and dismissal under its opaque veil; no second manager or saved stage. Every effect uses the presentation clock. Artistic acceptance is pending user F6 review. [V2](CINEMATIC_TRAVEL_V2.md).

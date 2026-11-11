@@ -1,0 +1,11 @@
+Built-in image_gen only. All landscape edit targets are the exact user-approved misdeal_posthouse_approved_reference.png; no rejected generic village reference.
+
+Bird-removal repair: remove only the ordinary pigeon at x770,y190, retain the wooden perch, reconstruct original sky/mountain behind it. Everything else unchanged. Only the110x110 area at710,140 is retained as a patch; the full edit is not used as the game panorama.
+
+Bone pigeon:20 genuinely distinct poses of one same small skeletal carrier pigeon,5x4 transparent grid. Bare beaked skull/dark eye sockets, exposed ribs, articulated bone wing fingers, sparse ragged feather remnants only. Consistent right-facing anatomy, no cartoon/glow/perch/letters/background/text. Perched/head turns4, anticipation1, takeoff5, complete ten-pose natural flap cycle. Refinement strips broad feather membranes, clears air between bones and removes coloured matte/halos; technical packer further cleans spill/islands and fits192px cells.
+
+Occlusion reconstruction: preserve original cloudy grey sky, snowy mountain peak, mist and palette; remove architecture, posthouse/tree/cart/flags/fences/road objects and continue the same natural terrain behind them. Exact original cutouts cover this hidden plate. Sky extraction removes all objects/land and continues only the same original overcast clouds, no sunset or added focal points.
+
+Paper: four distinct gently wind-bent poses of one opened aged parchment sheet in a transparent horizontal strip; textured dull beige/frayed edges/fold creases, no text, writing, symbols, grid, hands or background. Same centred scale, restrained corner lift/bow/recovery.
+
+Heraldry: use approved_d283/firing_square.webp as the exact ring/cross/long pointed shaft reference. Correct only the two tiny distant castle star marks, preserving cloth, fog, positions and all already-correct emblems. Right patch extracted from the full precise edit; left additionally refined as a magnified local edit using the corrected right ring as the explicit shape reference. Only34x74 and36x72 source-space patches are retained, not the full regenerated scene.
