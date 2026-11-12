@@ -27,6 +27,11 @@ Misdeal is a dark-fantasy card-driven roguelike with an evil wizard presiding ov
 - Preserve existing working combat flows, progression and DS2 while touching individual encounters. Treat native Godot user screenshots as evidence; never claim runtime PASS from static review alone.
 - After meaningful work update `docs/PROJECT_STATE.md`, `docs/ROADMAP.md` when needed, `docs/DECISIONS.md` for new locked decisions, `CHANGELOG.md` and `docs/HANDOFF.md`. Keep current documents short; put lengthy historical notes in dated archives.
 
+## Reusable VFX / PixelFX skill
+
+- For requests involving **pixel-art VFX, impacts, spells, particles, status feedback, ambient FX or effect sprite sheets**, use the repository skill `.agents/skills/misdeal-vfx/SKILL.md` and workflow `docs/PIXELFX_WORKFLOW.md`. Start by inspecting existing Misdeal visuals: PixelFX is an optional offline source of effects, **not** a runtime dependency or an automatic replacement.
+- Any future PixelFX use must preserve approved art and character animation packs, current combat timing and hit-stop, Godot 4.7/GDScript architecture, layer/coordinate conventions, audio/UI/readability, and the art direction. Reuse/recolor selectively; test in an isolated F6 preview before proposing live integration.
+- **This registration does not authorize changes to battle scenes, sprites, gameplay or the installed toolchain.** Keep third-party MIT attribution and NOTICE obligations when actually shipping source/effects; the upstream gallery font is excluded. Do not install Claude/Patch CLI plugins as part of this workflow.
 ## Locked visual rules
 
 - **D167 scene-first:** every card illustration portrays a convincing dark-fantasy place/event, not isolated sprites over a generic background; lighting, scale, contact, purposeful props and atmosphere must fit. Avoid repetitive generated artifacts and meaningless tiny decoration. Art bitmaps have **no baked UI/text**.
