@@ -1,7 +1,8 @@
 ## Cinematic Travel Scene05 — The Granary of Dead Rations
 
 - [x] Scene05 exact-source granary and real-event integration, local native/GUT checks.
-- [ ] Required final-head CI and user artistic approval; no automatic merge.
+- [x] Final-head CI passed and the user artistically approved Scene05; PR #112 merged to main.
+- [ ] Scene06 `last_signal`: design and approve unique travel art before Codex implementation.
 
 # Misdeal вЂ” current roadmap
 
