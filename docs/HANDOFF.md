@@ -1,3 +1,7 @@
+## Scene04 correction — curved road (PR #110, open)
+
+Party now follows the camp road bend from(1130,610) into the open gate, retaining perspective shrink and road-aligned soles/shadows/dust. Native full trio/solo preview checked; existing Scene04 GUT2/2,105 assertions. Review F6 `scenes/dev/campfire_playtest.tscn`. No source art/outcome/other-scene changes. Keep PR open for user artistic approval.
+
 ## 2026-11-12 — Scene04 implemented; F6 approval required
 
 Exact supplied Campfire source is now tracked; `borrowed_boots` routes to its three `repair`/`hobnails`/`passed` aftermaths. NE rear party enters the right gate with perspective; source figure/worn boots, event effects, texts, Posthouse and Dressing Station are untouched. See [contract/provenance](TRAVEL_CAMPFIRE_WITHOUT_MASTER.md) and [five native frames](qa/campfire/README.md). F6 `scenes/dev/campfire_playtest.tscn`:Q/W/E outcomes,1/2/3 party,P/R pause/replay,normal skip. Full local GUT290/290, focused travel22/22 and actual Event → Scene04 → Table pass; final required CI is authoritative. Source painting is approved; **runtime staging/animation are NOT yet approved. Do not merge without explicit user instruction.** Existing production-route shutdown diagnostics remain documented. Other old-road QA now uses explicit default resources because boots owns Scene04.

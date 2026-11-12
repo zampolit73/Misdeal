@@ -1,3 +1,7 @@
+## Scene04 — follow the curved camp road
+
+Replace the straight party ray with a smooth scene-only road curve from the near right lane into the gate. Perspective spacing, soles, contact shadows and trailing dust follow the curve; existing art, rear walk, outcomes and other scenes unchanged. Native full trio/solo preview and existing Scene04 GUT2/2 (105 assertions) pass.
+
 ## Cinematic Travel Scene04 — Костёр без хозяина
 
 Add exact approved campfire source for `borrowed_boots`, three spare-footwear aftermaths and18 NE rear walk poses, grounded perspective through the gate, connected source plates and F6 preview. Preserve original figure/worn boots, narration, effects, existing scenes, D412 and saves. Local full GUT290/290 and native real route pass; required CI/user artistic approval before merge.

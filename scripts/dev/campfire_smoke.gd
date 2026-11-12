@@ -21,7 +21,9 @@ func run() -> void:
 		var scale_before: float=view.actors[0].scale.x
 		await create_timer(1.2).timeout
 		await shot(outcome)
-		for i in range(3): assert(view.contacts[i].x>feet[i].x and view.contacts[i].y<feet[i].y,"Party must walk NE into the gate")
+		for i in range(3):
+			assert(view.contacts[i].y<feet[i].y,"Party must follow the road into depth")
+			assert(view.contacts[i].distance_to(view.panorama.walk.GATE_EXIT)<feet[i].distance_to(view.panorama.walk.GATE_EXIT),"Party must approach the open gate through the bend")
 		assert(view.actors[0].scale.x<scale_before)
 		if outcome=="passed":
 			paused=true

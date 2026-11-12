@@ -34,6 +34,7 @@ func test_outcomes_and_parties_are_read_only_grounded_and_enter_gate() -> void:
 			assert_eq(view.panorama.outcome,outcome)
 			assert_eq(view.panorama.speeds.Gate,view.panorama.speeds.Midground)
 			assert_eq(view.panorama.speeds.Foreground,view.panorama.speeds.Midground)
+			assert_gt(view.panorama.walk.road_length,view.data.party_origin.distance_to(view.panorama.walk.GATE_EXIT)+4.0,"The route must follow a real bend rather than a straight line")
 			var feet: Array=view.contacts.duplicate()
 			var scale_before: float=view.actors[0].scale.x
 			view.elapsed=3.1
@@ -41,7 +42,7 @@ func test_outcomes_and_parties_are_read_only_grounded_and_enter_gate() -> void:
 			for i in range(roles.size()):
 				var actor: AnimatedSprite2D=view.actors[i]
 				assert_almost_eq(actor.position.y+(view.panorama.walk.soles[roles[i]][actor.frame]-48)*actor.scale.y,view.contacts[i].y,0.001)
-				assert_gt(view.contacts[i].x,feet[i].x)
+				assert_lt(view.contacts[i].distance_to(view.panorama.walk.GATE_EXIT),feet[i].distance_to(view.panorama.walk.GATE_EXIT))
 				assert_lt(view.contacts[i].y,feet[i].y)
 			assert_lt(view.actors[0].scale.x,scale_before)
 			assert_eq(view.panorama.reactions.strap.visible,outcome=="repair")
