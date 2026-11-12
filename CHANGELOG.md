@@ -1,3 +1,7 @@
+## Scene05 — readable outcome states
+
+Make fair visibly reveal grain stocks with torn sack, spill trail and ledger leaf; show hush-money pile only in silence; retain closed routine without a bribe in passed. Fix desk-prop occlusion by the foreground. Base art/NPC/straw/party movement/texts/gameplay unchanged. Three native state renders and existing Scene05 GUT2/2 pass.
+
 ## Cinematic Travel Scene05 — Склад мёртвых пайков
 
 Add exact approved indoor granary for false_weights, three prop-only aftermaths, coherent restrained parallax, rear-perspective party and F6 preview. Existing event effects, narration, saves, D412 and older scenes unchanged. Native real route/all outcomes/solo/trio pass; full GUT292/292. Keep PR open for user artistic review.

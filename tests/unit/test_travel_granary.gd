@@ -22,6 +22,8 @@ func test_outcomes_grounded_party_and_no_replayed_effects() -> void:
 			view.set_process(false)
 			assert_true(view.available)
 			assert_eq(view.panorama.storage.visible,outcome=="fair")
+			assert_eq(view.panorama.spilled_grain.visible,outcome=="fair")
+			assert_eq(view.panorama.ledger.visible,outcome=="fair")
 			assert_eq(view.panorama.reactions.coins.visible,outcome=="silence")
 			assert_eq(view.panorama.speeds.Foreground,view.panorama.speeds.Midground)
 			assert_eq(view.panorama.speeds.Storage,view.panorama.speeds.Midground)

@@ -30,9 +30,58 @@
     "floor.png": "9a0edaa6cd8cd13ae73a0e4773b5467ea15d00094e8b8bed20b877f8f7e3acbc",
     "foreground.png": "b889296434d570ff588c5f9fc0a9c41f9943ffc952000a33f518c1810cb77b6b",
     "ledger_edge.png": "e978a8aa31b175707208b43bf15b2f950e4c9d043c93c43c9e62d24c489df97e",
-    "storage_fair.png": "0025cc0f2260ad7011f8623174ee13d093d008727883c098ede95758cbb8b652",
-    "storage_patch_source.png": "e69c28ceb8d14502ff940f8ed619e063a1e143c875a61e6e2c09b211a506f8f9"
+    "storage_fair.png": "bacc81775a8d25d1283551f2b9b0a01f3249f7226aef24db4bc9563500ddfc25",
+    "storage_patch_source.png": "e69c28ceb8d14502ff940f8ed619e063a1e143c875a61e6e2c09b211a506f8f9",
+    "bribe_silence.png": "7d15fa132db57cbe28e68aaf41792083adae6edb8d733bca922ad04e6f933fed",
+    "clean_coins.png": "bf642938565ef8bb289e24203fe9c69cc873eeda40e11a41755c1ea785443d58",
+    "clean_coins_source.png": "9ca582495b40c5ea0b9d3c28da0b15be4eecdd5fe168b5f6bae0bf3b28e363a9",
+    "fair_floor_source.png": "23a5c5b1fa92ed6e4fb0dae586f64bde798e1176f45626dd1b41085b1f208f51",
+    "fair_ledger_source.png": "77eb113a7f3b8e6f42d206f9a2fe4e6e18ff0764dd27de9993a789363243fb52",
+    "fair_storage_source.png": "1d6244a167c8fd28b1bf389ec35ae97dc7fd9b08b3b59471ef58e7fabf156cc7",
+    "floor_fair.png": "14852c52152c0991adea13bd547bf9216ca7ec37f81a23dd6c780b5d41654ab1",
+    "ledger_fair.png": "69b8de63c7d1f24d1719fa37b8f6458dd4d98d0b18d249682f8508701591b362",
+    "silence_bribe_source.png": "3e941a69ddf6759a5415e651015c3af4a0189fe89b97ccac9ab5e708b8ca71e2"
   },
   "rear_walk": "Reuse existing Scene04 six-pose NE rear presentation pack/soles unchanged; no D412 edits",
-  "packer": "res://scripts/dev/pack_granary_assets.gd"
+  "packer": "res://scripts/dev/pack_granary_assets.gd",
+  "outcome_readability_pass": {
+    "tool": "built-in image_gen; local masked crops only",
+    "fair_generation": "exec-976d0cc9-7548-4075-ad58-e69e653727e9",
+    "silence_generation": "exec-7e66faa0-2c84-4528-8dd5-8c22822b45b8",
+    "fair_source_crops": {
+      "fair_storage_source.png": [
+        530,
+        230,
+        215,
+        390
+      ],
+      "fair_ledger_source.png": [
+        310,
+        655,
+        185,
+        125
+      ],
+      "fair_floor_source.png": [
+        935,
+        660,
+        280,
+        265
+      ]
+    },
+    "silence_source_crops": {
+      "silence_bribe_source.png": [
+        365,
+        733,
+        135,
+        60
+      ],
+      "clean_coins_source.png": [
+        796,
+        727,
+        60,
+        35
+      ]
+    },
+    "invariants": "Original NPC/stone/straw/heraldry retained outside masks; no party path/scale, timing, text or effects change. Original incidental loose coins locally cleared in all states. Desk props draw after original foreground."
+  }
 }

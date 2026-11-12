@@ -4,15 +4,17 @@
 
 ## Source and planes
 
-Exact user ZIP1672×941 RGB PNG saved byte-for-byte under `assets/pixel/travel/dead_rations_granary/approved_reference.png`; SHA256 `53322f3f1608f3988d91e48f9253c79dc97e70287234f1611d7fc9b87a545b91`. Full task retained in [requests](requests/2026-11-12-scene05-granary.md). Only one built-in image_gen restoration crop is retained for the grain store, feathered inside a strict frame-local polygon. Original quartermaster, bone hands, rock, straw queue, heraldry and hall remain original pixels. Provenance/hashes/prompt and source masks live beside the assets.
+Exact user ZIP1672×941 RGB PNG saved byte-for-byte under `assets/pixel/travel/dead_rations_granary/approved_reference.png`; SHA256 `53322f3f1608f3988d91e48f9253c79dc97e70287234f1611d7fc9b87a545b91`. Full task retained in [requests](requests/2026-11-12-scene05-granary.md). Small built-in image_gen outcome crops are retained for the grain store, spilled grain, ledger leaf, bribe and incidental-coin cleanup, feathered inside strict source-local masks. Original quartermaster, bone hands, rock, straw queue, heraldry and hall remain original pixels. Provenance/hashes/prompt and source masks live beside the assets.
 
 Five V2 plane nodes: Sky contract reserve, unified Midground/hall, Road/aisle, Storage reaction, Foreground. Connected architecture/desk/figures/banners/grille frame and nearer original props move together at1.4px/s; an interior floor mask feathers26 source px over intact backing and drifts2.8px/s. No independent column/banner strips or holes; finite1344×757 overscan at(−32,−18). Sparse cold-beam dust and restrained lamp brightness follow local time; no sound or living straw figures.
 
 ## Aftermaths
 
-- `fair`: narrowly ajar grille reveals sacks, existing open ledger gets restrained light. Existing−12gold/+16HP/ration clue applied by event only.
-- `silence`: two original-source brass coins slip partially under the original ledger edge; the rock and starving straw queue remain unchanged. Existing+18gold/−6HP applied by event only.
-- `passed`: closest to immutable painting, tiny chain/pan and rock settling motion, lamp/dust. Hands and face never deform.
+- `fair`: visibly open stock bay with a torn grain sack, spilled grain trail around the desk onto the floor and an unfolded accounting leaf over the ledger. Existing−12gold/+16HP/ration clue applied by event only.
+- `silence`: a readable dull-gold bribe pile sits partly under the ledger; grille stays closed and the rock/straw queue remain unchanged. Existing+18gold/−6HP applied by event only.
+- `passed`: closed stock bay without a bribe; tiny chain/pan and rock settling motion, lamp/dust. Hands and face never deform.
+
+Original incidental coins near the scoop are locally cleared in every state so they cannot imply a bribe in passed. Desk state props now draw after the original foreground plate (which previously hid the coins); grain trail shares the floor displacement, with no structural cutouts. [Three same-time native state frames](qa/granary/outcomes/README.md), existing Scene05 GUT2/2,102 assertions.
 
 Existing three narration strings remain byte-identical in catalog. No new notices, clue UI, font changes or market scene.
 

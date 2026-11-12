@@ -11,17 +11,19 @@ var speeds := {"Sky":1.4,"Midground":1.4,"Road":2.8,"Storage":1.4,"Foreground":1
 var rectangles: Dictionary = {}
 var hall_material: ShaderMaterial
 var storage: Sprite2D
+var spilled_grain: Sprite2D
+var ledger: Sprite2D
 var reactions: Node2D
 var outcome := "passed"
 var walk := preload("res://scripts/travel/granary_walk.gd").new()
 func build(background: String, foreground: String, _underpaint: String, _sky: String) -> void:
-	for file in [background,foreground,DIR+"floor.png",DIR+"storage_fair.png",DIR+"coins.png",DIR+"ledger_edge.png"]:
+	for file in [background,foreground,DIR+"floor.png",DIR+"storage_fair.png",DIR+"bribe_silence.png",DIR+"floor_fair.png",DIR+"ledger_fair.png",DIR+"clean_coins.png"]:
 		if TEXTURES.texture_at(file)==null: return
 	if not FileAccess.file_exists(DIR+"layers.json"): return
 	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(DIR+"layers.json"))
 	if not parsed is Dictionary: return
 	rectangles=parsed
-	for id in ["floor","storage_fair","coins","ledger_edge","foreground"]:
+	for id in ["floor","storage_fair","bribe_silence","ledger_fair","floor_fair","clean_coins","foreground"]:
 		if not rectangles.get(id) is Array or rectangles[id].size()!=4: return
 	for id in speeds:
 		var plane := Node2D.new()
@@ -33,12 +35,15 @@ func build(background: String, foreground: String, _underpaint: String, _sky: St
 	hall_material.shader=preload("res://shaders/granary_layer.gdshader")
 	hall.material=hall_material
 	_piece("Road","floor")
+	spilled_grain=_piece("Road","floor_fair")
 	storage=_piece("Storage","storage_fair")
 	_piece("Foreground","foreground")
+	_piece("Foreground","clean_coins")
+	ledger=_piece("Foreground","ledger_fair")
 	reactions=preload("res://scripts/travel/granary_reactions.gd").new()
 	reactions.scale=PROJECTION
-	planes.Storage.add_child(reactions)
-	reactions.build(TEXTURES.texture_at(DIR+"coins.png"),TEXTURES.texture_at(DIR+"ledger_edge.png"),rectangles.ledger_edge)
+	planes.Foreground.add_child(reactions)
+	reactions.build(TEXTURES.texture_at(DIR+"bribe_silence.png"),rectangles.bribe_silence)
 	available=walk.build()
 	update_time(0,4)
 func _add(plane: String, texture: Texture2D, source_pos: Vector2) -> Sprite2D:
@@ -56,6 +61,8 @@ func configure(context: Dictionary) -> void:
 	outcome=str(context.get("outcome_id","passed"))
 	if outcome not in ["fair","silence","passed"]: outcome="passed"
 	storage.visible=outcome=="fair"
+	spilled_grain.visible=storage.visible
+	ledger.visible=storage.visible
 	reactions.outcome=outcome
 	hall_material.set_shader_parameter("passed",outcome=="passed")
 	hall_material.set_shader_parameter("fair",outcome=="fair")

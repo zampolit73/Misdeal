@@ -46,17 +46,31 @@ func layer(id: String, source: Image, polygons: Array, feather: float = 0.0) -> 
 	assert(bounds.has_area())
 	image.get_region(bounds).save_png(DIR+id+".png")
 	rectangles[id]=[bounds.position.x,bounds.position.y,bounds.size.x,bounds.size.y]
+func source_patch(id: String, rect: Rect2i) -> Image:
+	var image := Image.new()
+	assert(image.load_png_from_buffer(FileAccess.get_file_as_bytes(DIR+id+"_source.png"))==OK)
+	assert(image.get_size()==rect.size)
+	image.convert(Image.FORMAT_RGBA8)
+	var canvas := Image.create(SIZE.x,SIZE.y,false,Image.FORMAT_RGBA8)
+	canvas.blit_rect(image,Rect2i(Vector2i.ZERO,rect.size),rect.position)
+	return canvas
 func run() -> void:
 	assert(FileAccess.get_sha256(DIR+"approved_reference.png")=="53322f3f1608f3988d91e48f9253c79dc97e70287234f1611d7fc9b87a545b91")
 	var original := read_image("approved_reference.png")
-	# The opening is contained inside the existing frame, above both bone hands.
-	var patch := Image.new()
-	assert(patch.load_png_from_buffer(FileAccess.get_file_as_bytes(DIR+"storage_patch_source.png"))==OK)
-	assert(patch.get_size()==Vector2i(166,180))
-	patch.convert(Image.FORMAT_RGBA8)
-	var storage := Image.create(1672,941,false,Image.FORMAT_RGBA8)
-	storage.blit_rect(patch,Rect2i(0,0,166,180),Vector2i(570,260))
-	layer("storage_fair",storage,["578,275 724,268 729,431 609,433 578,405"],3.0)
+	# Storage upper opening and lower stock gap exclude hands, balance and straw.
+	layer("storage_fair",source_patch("fair_storage",Rect2i(530,230,215,390)),[
+		"557,256 731,244 733,455 710,453 620,416 607,390 580,390 560,400 542,391",
+		"625,467 682,490 654,572 624,584"],3.0)
+	layer("floor_fair",source_patch("fair_floor",Rect2i(935,660,280,265)),[
+		"938,670 1003,687 1042,714 1085,739 1148,774 1202,793 1200,830 1148,851 1098,814 1054,779 1025,750 997,720 937,699"],6.0)
+	layer("ledger_fair",source_patch("fair_ledger",Rect2i(310,655,185,125)),[
+		"320,676 389,668 413,702 479,748 469,767 385,766 346,726"],2.0)
+	layer("bribe_silence",source_patch("silence_bribe",Rect2i(365,733,135,60)),[
+		"374,752 414,745 445,747 485,744 490,770 468,785 411,788 372,783"],3.0)
+	# Remove the source's incidental loose coins in ALL states so only silence
+	# shows a deliberate bribe; neither scoop nor weights is repainted.
+	layer("clean_coins",source_patch("clean_coins",Rect2i(796,727,60,35)),[
+		"800,739 827,729 850,732 851,748 838,758 804,756"],3.0)
 	# Keep arches, banners, desk, quartermaster and all dummies on one plate.
 	# Only featureless floor inside the aisle has a tiny relative displacement.
 	layer("floor",original,["1095,941 1100,790 1190,660 1320,535 1407,484 1466,484 1500,521 1482,580 1450,670 1455,745 1530,941"],26.0)
