@@ -1,3 +1,7 @@
+## 2026-11-12 — Scene05 artistic acceptance
+
+User approved the final `false_weights` travel outcomes; PR #112 merged to `main` with passing required CI. All three readable states and approved source are locked. Next art-first travel location is `last_signal`.
+
 ## Scene05 — readable outcome states
 
 Make fair visibly reveal grain stocks with torn sack, spill trail and ledger leaf; show hush-money pile only in silence; retain closed routine without a bribe in passed. Fix desk-prop occlusion by the foreground. Base art/NPC/straw/party movement/texts/gameplay unchanged. Three native state renders and existing Scene05 GUT2/2 pass.
