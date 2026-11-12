@@ -12,7 +12,7 @@ func test_source_and_location_routing() -> void:
 	for outcome in ["bandages","standard","passed"]:
 		assert_eq(CATALOG.resource_for(CATALOG.context_for("banner_seamstress",outcome,["knight"])),"res://resources/travel/last_dressing_station.tres")
 	assert_eq(CATALOG.resource_for({"resolved_card_id":"unsent_letters"}),"res://resources/travel/last_dawn_posthouse.tres")
-	assert_eq(CATALOG.resource_for({"resolved_card_id":"false_weights"}),CATALOG.DEFAULT_LOCATION)
+	assert_eq(CATALOG.resource_for({"resolved_card_id":"last_signal"}),CATALOG.DEFAULT_LOCATION)
 	assert_eq(load(CATALOG.DEFAULT_LOCATION).party_solo_offset,60.0)
 	assert_eq(load(CATALOG.LOCATIONS.unsent_letters).party_solo_offset,60.0)
 

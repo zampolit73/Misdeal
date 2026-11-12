@@ -1,3 +1,8 @@
+## Cinematic Travel Scene05 — The Granary of Dead Rations
+
+- [x] Scene05 exact-source granary and real-event integration, local native/GUT checks.
+- [ ] Required final-head CI and user artistic approval; no automatic merge.
+
 # Misdeal вЂ” current roadmap
 
 ## Cinematic Travel Scene04 — The Campfire Without Its Master

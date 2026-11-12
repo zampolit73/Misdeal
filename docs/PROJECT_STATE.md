@@ -1,3 +1,11 @@
+## Scene05 — readable outcome states
+
+Scene05 outcome readability: fair now has an open stock bay, torn grain sack, floor spill trail and loose ledger leaf; silence has a clear dull-gold bribe at the book, passed has no bribe and a closed bay. Fixed foreground occlusion of desk props. Same-time native three-state frames: [QA](qa/granary/outcomes/README.md); existing Scene05 GUT2/2,102 assertions PASS. Approved base/NPC/straw/party route and scale/texts/effects/other scenes unchanged. PR #112 stays open for user artistic approval.
+
+## Scene05 — implemented, native artistic review next
+
+`false_weights` now routes to its exact approved granary PNG, three restrained fair/silence/passed aftermaths and scene-local rear-perspective aisle staging. Original source SHA256 `53322f3f...a545b91`; connected architecture/quartermaster/straw figures/heraldry remain intact, existing effects/texts/saves and approved older scenes unchanged. Native trio/solo/all outcomes/pause/skip and real Event→Scene05→Table pass; full GUT292/292,72,455 assertions,19 existing warnings. [Contract, provenance and F6](TRAVEL_DEAD_RATIONS_GRANARY.md), [five native frames](qa/granary/README.md). Required final CI/user artistic review pending; **do not auto-merge**.
+
 ## Scene04 — final ground-plane perspective
 
 Scene04 final perspective calibration replaces the earlier percentage-only size tweaks. Near-road adult scale is3.4 after user review (previous2.3 still read too small beside the squire), projected from sole height over the same road horizon; a wider105px staggered group walks a shorter believable stretch of the same curved road. Road/architectural art, V2 timing, rear atlases and all outcomes unchanged. Native full trio/solo and existing GUT2/2,111 assertions pass. Three current frames: [calibration](qa/campfire/calibration/README.md). PR #110 stays open for user artistic review.

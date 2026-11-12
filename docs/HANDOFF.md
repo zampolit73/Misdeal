@@ -1,3 +1,11 @@
+## Scene05 — readable outcome states
+
+Scene05 outcome readability: fair now has an open stock bay, torn grain sack, floor spill trail and loose ledger leaf; silence has a clear dull-gold bribe at the book, passed has no bribe and a closed bay. Fixed foreground occlusion of desk props. Same-time native three-state frames: [QA](qa/granary/outcomes/README.md); existing Scene05 GUT2/2,102 assertions PASS. Approved base/NPC/straw/party route and scale/texts/effects/other scenes unchanged. PR #112 stays open for user artistic approval.
+
+## Scene05 — implemented, native artistic review next
+
+`false_weights` now routes to its exact approved granary PNG, three restrained fair/silence/passed aftermaths and scene-local rear-perspective aisle staging. Original source SHA256 `53322f3f...a545b91`; connected architecture/quartermaster/straw figures/heraldry remain intact, existing effects/texts/saves and approved older scenes unchanged. Native trio/solo/all outcomes/pause/skip and real Event→Scene05→Table pass; full GUT292/292,72,455 assertions,19 existing warnings. [Contract, provenance and F6](TRAVEL_DEAD_RATIONS_GRANARY.md), [five native frames](qa/granary/README.md). Required final CI/user artistic review pending; **do not auto-merge**.
+
 ## 2026-11-12 — Scene05 False Weights art APPROVED; implementation not started
 
 The user explicitly approved the **second/last granary illustration revision** for Scene05 `false_weights` / «НЕВЕРНЫЕ ГИРИ». Use exactly `мисдейл_мрачный_квартмейстер_в_зернохранилище.png` from this conversation, **1672×941 RGB PNG**, SHA256 **`53322f3f1608f3988d91e48f9253c79dc97e70287234f1611d7fc9b87a545b91`**. **The approved image has not yet been committed to GitHub.** Provide it as a real PNG input to Codex; do not infer that its binary is present in the repo. Never substitute any earlier sketch; the previous roadside/toll-booth and earlier granary images were not accepted.

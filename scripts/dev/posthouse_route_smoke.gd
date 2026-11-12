@@ -53,7 +53,7 @@ func run() -> void:
 	# Another real event still selects the original authored road.
 	state.reset_run()
 	state.choose_protagonist("knight")
-	state.active_card_id="false_weights"
+	state.active_card_id="last_signal"
 	await open("res://scenes/event/act_choice.tscn")
 	current_scene.choice_c.pressed.emit()
 	current_scene.continue_button.pressed.emit()

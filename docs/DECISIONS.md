@@ -1,3 +1,7 @@
+## Cinematic Travel Scene05 — The Granary of Dead Rations
+
+Scene05 is an indoor grain-store aftermath, not a toll booth. Exact approved source is immutable; only bounded grain-store restoration and original-source prop animation are allowed. Straw soldiers stay inert. Scene04 and D412 unchanged; user artistic approval remains mandatory before merge.
+
 ## Scene04 — exact source, intact camp/gate, NE presentation
 
 User-supplied Campfire PNG is immutable; only separate spare-gear storage patches express existing outcomes. Squire/worn boots stay untouched. Connected camp/gate/near props share source coordinates and displacement; avoid portal/rope cutouts. Use newly drawn NE rear poses, not mirrored Scene03 or changed D412 atlases. Existing V2 optional staging hook suffices. No merge or claim of runtime artistic approval before user native review. [Contract](TRAVEL_CAMPFIRE_WITHOUT_MASTER.md).
