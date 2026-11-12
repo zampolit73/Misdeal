@@ -1,3 +1,7 @@
+## Scene04 — perspective integration correction
+
+Scene04 party integration: base scale1.5→1.32 (−12%), additional0.96 size multiplier per farther formation rank, and depth haze0.04→0.34 without blur. Curved route/contacts, timing, source art, atlases and outcomes unchanged. Native full trio/solo preview and existing Scene04 GUT2/2,111 assertions pass.
+
 # Misdeal вЂ” current project state
 
 ## Cinematic Travel Scene04 — The Campfire Without Its Master

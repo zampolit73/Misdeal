@@ -45,6 +45,8 @@ func test_outcomes_and_parties_are_read_only_grounded_and_enter_gate() -> void:
 				assert_lt(view.contacts[i].distance_to(view.panorama.walk.GATE_EXIT),feet[i].distance_to(view.panorama.walk.GATE_EXIT))
 				assert_lt(view.contacts[i].y,feet[i].y)
 			assert_lt(view.actors[0].scale.x,scale_before)
+			for i in range(1,roles.size()):
+				assert_lt(view.actors[i-1].scale.x,view.actors[i].scale.x,"Farther heroes must be smaller than nearer heroes")
 			assert_eq(view.panorama.reactions.strap.visible,outcome=="repair")
 			assert_eq(view.caption.text,CATALOG.TEXT.borrowed_boots[outcome])
 			assert_eq(SAVE.new().snapshot(RunState).state,before)

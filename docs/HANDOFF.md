@@ -1,3 +1,7 @@
+## Scene04 — smaller party, same road (PR #110)
+
+Scene04 party integration: base scale1.5→1.32 (−12%), additional0.96 size multiplier per farther formation rank, and depth haze0.04→0.34 without blur. Curved route/contacts, timing, source art, atlases and outcomes unchanged. Native full trio/solo preview and existing Scene04 GUT2/2,111 assertions pass.
+
 ## Scene04 correction — curved road (PR #110, open)
 
 Party now follows the camp road bend from(1130,610) into the open gate, retaining perspective shrink and road-aligned soles/shadows/dust. Native full trio/solo preview checked; existing Scene04 GUT2/2,105 assertions. Review F6 `scenes/dev/campfire_playtest.tscn`. No source art/outcome/other-scene changes. Keep PR open for user artistic approval.

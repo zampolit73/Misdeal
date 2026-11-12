@@ -83,12 +83,14 @@ func stage(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Arra
 		trail-=tangent
 		var phase := time*6.5+i*1.1
 		actor.frame=int(phase)%6
-		actor.scale=Vector2.ONE*float(layout.party_scale)*factor
+		# Strengthen size falloff within the formation without moving road contacts.
+		var rank_scale := pow(0.96,actors.size()-1-i)
+		actor.scale=Vector2.ONE*float(layout.party_scale)*factor*rank_scale
 		actor.flip_h=false
 		actor.position=foot-Vector2(0,(float(soles[role][actor.frame])-48.0)*actor.scale.y)
 		contacts[i]=foot
 		ground.contact_scales[i]=actor.scale.x*0.65
-		(actor.material as ShaderMaterial).set_shader_parameter("haze_amount",clampf((depth-1.0)*0.14,0.0,0.28))
+		(actor.material as ShaderMaterial).set_shader_parameter("haze_amount",clampf(0.04+(depth-1.0)*0.19,0.04,0.34))
 	ground.dust_direction=trail.normalized()
 	# Keep nearer feet in front, while leaving the foreground/caption above all.
 	var order: Array[int] = []

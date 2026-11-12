@@ -1,3 +1,7 @@
+## Scene04 — party scale and atmospheric integration
+
+Scene04 party integration: base scale1.5→1.32 (−12%), additional0.96 size multiplier per farther formation rank, and depth haze0.04→0.34 without blur. Curved route/contacts, timing, source art, atlases and outcomes unchanged. Native full trio/solo preview and existing Scene04 GUT2/2,111 assertions pass.
+
 ## Scene04 — follow the curved camp road
 
 Replace the straight party ray with a smooth scene-only road curve from the near right lane into the gate. Perspective spacing, soles, contact shadows and trailing dust follow the curve; existing art, rear walk, outcomes and other scenes unchanged. Native full trio/solo preview and existing Scene04 GUT2/2 (105 assertions) pass.
