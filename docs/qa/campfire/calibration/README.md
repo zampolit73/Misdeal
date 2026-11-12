@@ -6,4 +6,6 @@ Actual unedited Godot4.7.2 GL Compatibility screenshots at1280×720, F6 scene `s
 - [Middle](middle.png): readable separate bodies following the road bend.
 - [End](end.png): smaller, depth-integrated party still on the road approaching the gate; the shot deliberately does not traverse the entire painting in four seconds.
 
+Current near baseline3.4 and105px side lanes address the user's feedback that the prior2.3 still looked too small beside the near road/squire.
+
 These frames supersede the earlier straight-file/percentage-only staging. Source/outcome art, shared V2 timing and other scenes are unchanged. Artistic acceptance remains with the user; PR #110 must stay open.

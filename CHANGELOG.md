@@ -1,3 +1,7 @@
+## Scene04 — adult scale beside the near road
+
+Increase near baseline2.3→3.4 after user review; preserve sole-height perspective projection and the road route. Widen side lanes70→105px to separate the larger silhouettes. Native full trio/solo and existing GUT2/2,111 assertions pass; update three real Godot frames. Source, timing, outcomes and other scenes unchanged.
+
 ## Scene04 — ground-plane scale and group staging
 
 Calibrate adult height to road depth and architecture; replace the vertical file with a wider staggered group and slower, shorter travel along the retained curve. Sole contacts, shadows, dust and haze follow the same depth. Art, atlases, V2 duration, outcomes and other scenes unchanged. Native trio/solo and existing GUT2/2,111 assertions pass; three native review frames retained.

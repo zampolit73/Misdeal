@@ -1,6 +1,6 @@
 ## Scene04 — final ground-plane perspective
 
-Scene04 final perspective calibration replaces the earlier percentage-only size tweaks. Adult scale follows sole height over a scene-local road horizon; a wider staggered group walks a shorter believable stretch of the same curved road. Road/architectural art, V2 timing, rear atlases and all outcomes unchanged. Native full trio/solo and existing GUT2/2,111 assertions pass. Three current frames: [calibration](qa/campfire/calibration/README.md). PR #110 stays open for user artistic review.
+Scene04 final perspective calibration replaces the earlier percentage-only size tweaks. Near-road adult scale is3.4 after user review (previous2.3 still read too small beside the squire), projected from sole height over the same road horizon; a wider105px staggered group walks a shorter believable stretch of the same curved road. Road/architectural art, V2 timing, rear atlases and all outcomes unchanged. Native full trio/solo and existing GUT2/2,111 assertions pass. Three current frames: [calibration](qa/campfire/calibration/README.md). PR #110 stays open for user artistic review.
 
 ## Scene04 — smaller party, same road (PR #110)
 

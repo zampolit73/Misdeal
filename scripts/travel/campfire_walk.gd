@@ -77,7 +77,7 @@ func stage(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Arra
 		var factor := 1.0/depth
 		var distance := clampf((1.0-factor)/DEPTH_TRAVEL,0.0,1.0)*road_length
 		var tangent := _road_tangent(distance)
-		var lane := 0.0 if actors.size()==1 or i==actors.size()-1 else (-70.0 if i%2==0 else 70.0)
+		var lane := 0.0 if actors.size()==1 or i==actors.size()-1 else (-105.0 if i%2==0 else 105.0)
 		var normal := Vector2(-tangent.y,tangent.x)
 		var foot := _road_sample(distance)+normal*lane*factor+road_offset
 		trail-=tangent
