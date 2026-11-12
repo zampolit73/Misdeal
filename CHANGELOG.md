@@ -1,3 +1,7 @@
+## Scene04 — final party size calibration
+
+Increase only resource party_scale1.32→1.452 (+10%, below the old1.5). Preserve road curve, formation perspective, haze and all other scene settings. Native full trio/solo and existing Scene04 GUT2/2,111 assertions pass.
+
 ## Scene04 — party scale and atmospheric integration
 
 Scene04 party integration: base scale1.5→1.32 (−12%), additional0.96 size multiplier per farther formation rank, and depth haze0.04→0.34 without blur. Curved route/contacts, timing, source art, atlases and outcomes unchanged. Native full trio/solo preview and existing Scene04 GUT2/2,111 assertions pass.
