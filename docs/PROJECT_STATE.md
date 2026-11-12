@@ -1,4 +1,16 @@
+## Scene04 — final ground-plane perspective
+
+Scene04 final perspective calibration replaces the earlier percentage-only size tweaks. Near-road adult scale is3.4 after user review (previous2.3 still read too small beside the squire), projected from sole height over the same road horizon; a wider105px staggered group walks a shorter believable stretch of the same curved road. Road/architectural art, V2 timing, rear atlases and all outcomes unchanged. Native full trio/solo and existing GUT2/2,111 assertions pass. Three current frames: [calibration](qa/campfire/calibration/README.md). PR #110 stays open for user artistic review.
+
+## Scene04 — perspective integration correction
+
+Scene04 party integration: base scale1.452 (1.32→1.452, +10%; still below the old1.5), additional0.96 size multiplier per farther formation rank, and depth haze0.04→0.34 without blur. Curved route/contacts, timing, source art, atlases and outcomes unchanged. Native full trio/solo preview and existing Scene04 GUT2/2,111 assertions pass.
+
 # Misdeal вЂ” current project state
+
+## Cinematic Travel Scene04 — The Campfire Without Its Master
+
+`borrowed_boots` now has its own approved-source sentry camp: three distinct spare-footwear aftermaths and18 separate NE rear-walk poses, with grounded perspective through the broken gate. Original source SHA256 `ea21184b...38d94a53a`; worn boots/figure and heraldry unchanged. Camp/gate/near props share displacement; only feathered ground has relative drift. Existing V2/router/effects/saves and approved older scenes preserved. Local Godot4.7.2 full GUT290/290,72,354 assertions (19 existing warnings), travel22/22 and native five-frame/real Event → Travel → Table pass. **PR stays open for user artistic approval; no auto-merge.** [Source, path, outcomes, F6 and evidence](TRAVEL_CAMPFIRE_WITHOUT_MASTER.md).
 
 ## Scene03 correction — rear perspective route (PR #108)
 

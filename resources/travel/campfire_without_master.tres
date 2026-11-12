@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TravelTransitionData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/travel_transition_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/travel/campfire_panorama.gd" id="2"]
+[resource]
+script = ExtResource("1")
+title = "КОСТЁР БЕЗ ХОЗЯИНА"
+panorama_script = ExtResource("2")
+background_path = "res://assets/pixel/travel/campfire_without_master/approved_reference.png"
+foreground_path = "res://assets/pixel/travel/campfire_without_master/foreground.png"
+underpaint_path = "res://assets/pixel/travel/campfire_without_master/underpaint.png"
+sky_path = "res://assets/pixel/travel/campfire_without_master/underpaint.png"
+party_origin = Vector2(1130,610)
+party_spacing = 52.0
+party_scale = 3.4
+fog_rect = Rect2(1030,216,250,116)

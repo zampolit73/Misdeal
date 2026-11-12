@@ -1,3 +1,7 @@
+## Scene04 — exact source, intact camp/gate, NE presentation
+
+User-supplied Campfire PNG is immutable; only separate spare-gear storage patches express existing outcomes. Squire/worn boots stay untouched. Connected camp/gate/near props share source coordinates and displacement; avoid portal/rope cutouts. Use newly drawn NE rear poses, not mirrored Scene03 or changed D412 atlases. Existing V2 optional staging hook suffices. No merge or claim of runtime artistic approval before user native review. [Contract](TRAVEL_CAMPFIRE_WITHOUT_MASTER.md).
+
 ## Scene03 — user-directed rear presentation walk
 
 For the explicitly requested away-from-camera route, use a separate short three-quarter rear walk per hero, never rotate/mirror the original side-view D412 poses or modify their combat atlases. Perspective staging/colour haze opts in only through this panorama; existing Travel V2 navigation and other scenes remain unchanged. This supersedes horizontal Scene03 staging, not the approved backdrop or reactions.

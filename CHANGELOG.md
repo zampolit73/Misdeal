@@ -1,3 +1,27 @@
+## Scene04 — adult scale beside the near road
+
+Increase near baseline2.3→3.4 after user review; preserve sole-height perspective projection and the road route. Widen side lanes70→105px to separate the larger silhouettes. Native full trio/solo and existing GUT2/2,111 assertions pass; update three real Godot frames. Source, timing, outcomes and other scenes unchanged.
+
+## Scene04 — ground-plane scale and group staging
+
+Calibrate adult height to road depth and architecture; replace the vertical file with a wider staggered group and slower, shorter travel along the retained curve. Sole contacts, shadows, dust and haze follow the same depth. Art, atlases, V2 duration, outcomes and other scenes unchanged. Native trio/solo and existing GUT2/2,111 assertions pass; three native review frames retained.
+
+## Scene04 — final party size calibration
+
+Increase only resource party_scale1.32→1.452 (+10%, below the old1.5). Preserve road curve, formation perspective, haze and all other scene settings. Native full trio/solo and existing Scene04 GUT2/2,111 assertions pass.
+
+## Scene04 — party scale and atmospheric integration
+
+Scene04 party integration: base scale1.5→1.32 (−12%), additional0.96 size multiplier per farther formation rank, and depth haze0.04→0.34 without blur. Curved route/contacts, timing, source art, atlases and outcomes unchanged. Native full trio/solo preview and existing Scene04 GUT2/2,111 assertions pass.
+
+## Scene04 — follow the curved camp road
+
+Replace the straight party ray with a smooth scene-only road curve from the near right lane into the gate. Perspective spacing, soles, contact shadows and trailing dust follow the curve; existing art, rear walk, outcomes and other scenes unchanged. Native full trio/solo preview and existing Scene04 GUT2/2 (105 assertions) pass.
+
+## Cinematic Travel Scene04 — Костёр без хозяина
+
+Add exact approved campfire source for `borrowed_boots`, three spare-footwear aftermaths and18 NE rear walk poses, grounded perspective through the gate, connected source plates and F6 preview. Preserve original figure/worn boots, narration, effects, existing scenes, D412 and saves. Local full GUT290/290 and native real route pass; required CI/user artistic approval before merge.
+
 ## Scene03 — connected-layer seam
 
 Merge the dressing station, central arches, hanging linen and their inner openings into one plate per outcome. The old opening mask contained cloth/stone pixels moving at sky speed and caused tearing. Native F6 motion checked; approved art, perspective walk and outcomes unchanged.

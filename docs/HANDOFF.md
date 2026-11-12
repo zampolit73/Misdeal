@@ -1,3 +1,19 @@
+## Scene04 — final ground-plane perspective
+
+Scene04 final perspective calibration replaces the earlier percentage-only size tweaks. Near-road adult scale is3.4 after user review (previous2.3 still read too small beside the squire), projected from sole height over the same road horizon; a wider105px staggered group walks a shorter believable stretch of the same curved road. Road/architectural art, V2 timing, rear atlases and all outcomes unchanged. Native full trio/solo and existing GUT2/2,111 assertions pass. Three current frames: [calibration](qa/campfire/calibration/README.md). PR #110 stays open for user artistic review.
+
+## Scene04 — smaller party, same road (PR #110)
+
+Scene04 party integration: base scale1.452 (1.32→1.452, +10%; still below the old1.5), additional0.96 size multiplier per farther formation rank, and depth haze0.04→0.34 without blur. Curved route/contacts, timing, source art, atlases and outcomes unchanged. Native full trio/solo preview and existing Scene04 GUT2/2,111 assertions pass.
+
+## Scene04 correction — curved road (PR #110, open)
+
+Party now follows the camp road bend from(1130,610) into the open gate, retaining perspective shrink and road-aligned soles/shadows/dust. Native full trio/solo preview checked; existing Scene04 GUT2/2,105 assertions. Review F6 `scenes/dev/campfire_playtest.tscn`. No source art/outcome/other-scene changes. Keep PR open for user artistic approval.
+
+## 2026-11-12 — Scene04 implemented; F6 approval required
+
+Exact supplied Campfire source is now tracked; `borrowed_boots` routes to its three `repair`/`hobnails`/`passed` aftermaths. NE rear party enters the right gate with perspective; source figure/worn boots, event effects, texts, Posthouse and Dressing Station are untouched. See [contract/provenance](TRAVEL_CAMPFIRE_WITHOUT_MASTER.md) and [five native frames](qa/campfire/README.md). F6 `scenes/dev/campfire_playtest.tscn`:Q/W/E outcomes,1/2/3 party,P/R pause/replay,normal skip. Full local GUT290/290, focused travel22/22 and actual Event → Scene04 → Table pass; final required CI is authoritative. Source painting is approved; **runtime staging/animation are NOT yet approved. Do not merge without explicit user instruction.** Existing production-route shutdown diagnostics remain documented. Other old-road QA now uses explicit default resources because boots owns Scene04.
+
 ## 2026-11-12 — Borrowed Boots Scene04 art APPROVED; Codex implementation pending
 
 User explicitly approved **the exact new authored painting** of the young half-undead squire in a deserted sentry camp beside a dying fire, oversized boots, aged burgundy-and-gold heraldry and broken gate with a road leading **right/up into depth**. This scene belongs ONLY to `borrowed_boots` («ЧУЖИЕ САПОГИ»), not to `last_signal` or any reused generic location. Its supplied binary is named `scene04_borrowed_boots_approved_reference.png`, **1672×941 RGB**, SHA256 **`ea21184b5a2792ce5ac3d4226f95656a5b812caab6bd345d19ef6d138d94a53a`**. The attachment is in the user's Codex package, **NOT YET IN GITHUB**; when implementing, the Codex agent must receive the PNG, commit immutable source and derive only separate production layers.

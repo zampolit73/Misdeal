@@ -18,6 +18,7 @@ func _replay() -> void:
 	if is_instance_valid(view): view.queue_free()
 	view = load("res://scenes/travel/travel_transition.tscn").instantiate()
 	view.context = CATALOG.context_for("borrowed_boots","passed",roles)
+	view.data_path = CATALOG.DEFAULT_LOCATION # This F6 fixture previews Scene01.
 	add_child(view)
 	view.finished.connect(func(): _replay.call_deferred())
 	_update_help()

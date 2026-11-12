@@ -1,0 +1,62 @@
+{
+  "approved_source": {
+    "file": "approved_reference.png",
+    "sha256": "ea21184b5a2792ce5ac3d4226f95656a5b812caab6bd345d19ef6d138d94a53a",
+    "size": [
+      1672,
+      941
+    ],
+    "immutable": true,
+    "origin": "MISDEAL_SCENE04_BORROWED_BOOTS_CODEX_PACKAGE.zip"
+  },
+  "generations": {
+    "spares_edit.png": "exec-368f6a3e-c4e7-4b1e-b396-c4497fb84df8",
+    "hobnails_edit.png": "exec-af3d15ba-345b-4f62-98d4-a181713a20d4",
+    "underpaint.png": "exec-2ba9a61a-9573-4393-b21f-3e399ccb2b24",
+    "rear_walk/source.png": "exec-53a14528-e96b-48d9-a83a-15cd3eddc108"
+  },
+  "production": "Built-in image_gen inputs with original-pixel Godot mask/crop packing; generated RGB used only within the spare-equipment shelf patch. Original shelf restores light/heavy pair absence, hobnails edit adds wood marks. Rejected shoe-last edit unused.",
+  "prompts": "prompts.md",
+  "rebuild": [
+    "godot --headless --path . --script res://scripts/dev/pack_campfire_assets.gd",
+    "godot --headless --path . --script res://scripts/dev/pack_campfire_walk.gd"
+  ],
+  "runtime_layers": [
+    "gate",
+    "road",
+    "camp_repair",
+    "camp_hobnails",
+    "camp_passed",
+    "foreground",
+    "strap"
+  ],
+  "layer_integrity": "Full original backing, connected camp and foreground share1.6px/s. Ground3px/s has22px feather. Underpaint is reserve behind intact painting; sky_original is retained authoring extraction, not a runtime draw.",
+  "files": {
+    "approved_reference.png": "ea21184b5a2792ce5ac3d4226f95656a5b812caab6bd345d19ef6d138d94a53a",
+    "camp_hobnails.png": "7e62b728d35958d8d41f500113ad7d71bb30c325ddfd4a4c5c65f19ee50a316c",
+    "camp_passed.png": "593ea5b429ca4fc2dfcda71e947aeb9d8c959e2a4eff695bbeaf1f33f3d1d6a2",
+    "camp_repair.png": "c0673b85243d2c15771494796c01ae88f828585ca2c54cb4edec730700defb28",
+    "foreground.png": "b08fe98d80bb070a4a8e5bec31f52ed910e28013d6a697c4c20707dcd5756a4b",
+    "gate.png": "7ab360167dab50409e5b76485111ea2ac91b4b87b2c2bf4742074e42c73aeaf5",
+    "hobnails_edit.png": "8cc33865e4f775b513eacace6218ca0017c25997e6af720b48e1d18805ab3512",
+    "rear_walk/knight.png": "258c93ab3aea305963e85491546ed46a479a0e8ef4147d28a54e70e20643fba3",
+    "rear_walk/mage.png": "3bc5ff719ba5e8ab8add8c01de5cc80f1bd3ee0b0504e235ec7f6fa5a2b5c5d4",
+    "rear_walk/ranger.png": "6dd62f82d68a5bfd230bff120906c7c8c8a8ada7fac33c60e72ee59f7bfd84be",
+    "rear_walk/source.png": "9b533ea2f499e18a3c21c10844e332cb54e92d6bd2abc339d89c5a6da8c19d27",
+    "road.png": "8472f1c8ba5bcff2e7bd47d5fdbc7e301907f11a3168a26d9ce6707d34496d2e",
+    "sky_original.png": "e44495406f6c66a0dbb048c015c6e3e4e853d15c304565bb7bb668655a0105d4",
+    "spares_edit.png": "b38680b5731d9ada5c30488b129ee47cae69192ebf4405e640acc374b80cc560",
+    "strap.png": "cf03f8622cf6506ecb5b5a11a815d09f5749b4bc11a0a280eb7bf66ea063cb42",
+    "underpaint.png": "3ee83ee1153051f3ce310969c1d234d4854ed70e0a09c13bce738bb1373f6d39"
+  },
+  "rear_reference_hashes": {
+    "assets/pixel/units/hero_c3_d412_polish/knight_packed.png": "3122a2ab6cf781712679177bf206cad3b8c5419ee60e330803d5857f247d7287",
+    "assets/pixel/units/hero_c3_d412_polish/ranger_packed.png": "ffe2fc55a032288fd1a76db1677f4c5192cacb66df234577edda364659811b83",
+    "assets/pixel/units/hero_c3_d412_polish/mage_packed.png": "d906171ed4947dcd9f1850ba7750e8d594ac09bb7dbce3f38aaf898c973779db"
+  },
+  "rear_source_size": [
+    1774,
+    887
+  ],
+  "artistic_acceptance": "Source approved by user; runtime animation/staging await native F6 review. No automatic merge."
+}

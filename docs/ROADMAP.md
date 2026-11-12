@@ -1,5 +1,9 @@
 # Misdeal вЂ” current roadmap
 
+## Cinematic Travel Scene04 — The Campfire Without Its Master
+
+`borrowed_boots` now has its own approved-source sentry camp: three distinct spare-footwear aftermaths and18 separate NE rear-walk poses, with grounded perspective through the broken gate. Original source SHA256 `ea21184b...38d94a53a`; worn boots/figure and heraldry unchanged. Camp/gate/near props share displacement; only feathered ground has relative drift. Existing V2/router/effects/saves and approved older scenes preserved. Local Godot4.7.2 full GUT290/290,72,354 assertions (19 existing warnings), travel22/22 and native five-frame/real Event → Travel → Table pass. **PR stays open for user artistic approval; no auto-merge.** [Source, path, outcomes, F6 and evidence](TRAVEL_CAMPFIRE_WITHOUT_MASTER.md).
+
 ## Cinematic Travel Scene03 — The Last Dressing Station
 
 Own authored aftermath for `banner_seamstress`: exact approved PNG, five planes with unified station/arches/linen, intact/stripped/ritual cloth states and one falling scrap. Real D412 party calibrated against the cot/seamstress; solo offset keeps clear of the wheel. Existing effects, saves, narration, Posthouse and original road unchanged. Native three-outcome/solo/trio/pause/skip and real Event → Travel → Table pass; full GUT288/288,72,235 assertions (19 existing warnings), selector18/18. Required final PR CI and user F6 artistic review remain authoritative. [Contract, sources and preview](TRAVEL_LAST_DRESSING_STATION.md).

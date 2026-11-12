@@ -4,7 +4,8 @@ static var enabled := true
 const DEFAULT_LOCATION := "res://resources/travel/ruined_castle_road.tres"
 const LOCATIONS := {
 	"unsent_letters":"res://resources/travel/last_dawn_posthouse.tres",
-	"banner_seamstress":"res://resources/travel/last_dressing_station.tres"}
+	"banner_seamstress":"res://resources/travel/last_dressing_station.tres",
+	"borrowed_boots":"res://resources/travel/campfire_without_master.tres"}
 static func resource_for(context: Dictionary) -> String:
 	return str(LOCATIONS.get(str(context.get("resolved_card_id","")),DEFAULT_LOCATION))
 const TEXT := {
