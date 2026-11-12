@@ -1,3 +1,7 @@
+## 2026-11-12 — Scene05 user artistic acceptance
+
+`false_weights` Scene05 is accepted with all three visible outcome states. PR #112 merged (`e2b62829dd565cde10453fc4a22e50835c69751e`); [final-head CI](https://github.com/zampolit73/Misdeal/actions/runs/43224087326) PASS. See [Scene05 contract](TRAVEL_DEAD_RATIONS_GRANARY.md). Do not change approved source, figures, scene staging or outcome work without a new request. Next authored location: `last_signal` art, **not yet approved**.
+
 ## Scene05 — readable outcome states
 
 Scene05 outcome readability: fair now has an open stock bay, torn grain sack, floor spill trail and loose ledger leaf; silence has a clear dull-gold bribe at the book, passed has no bribe and a closed bay. Fixed foreground occlusion of desk props. Same-time native three-state frames: [QA](qa/granary/outcomes/README.md); existing Scene05 GUT2/2,102 assertions PASS. Approved base/NPC/straw/party route and scale/texts/effects/other scenes unchanged. PR #112 stays open for user artistic approval.
