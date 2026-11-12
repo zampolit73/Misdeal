@@ -1,3 +1,7 @@
+## Scene05 — final outcome readability ACCEPTED (2026-11-12)
+
+The approved granary scene is finalized with clearly distinguished `fair` (open hidden stock/torn bag/spill), `silence` (closed stock and under-ledger gold) and `passed` (closed stock, no bribe) outcomes. PR #112 is merged and CI green. Do not repaint or restage without a new user request. Scene06 `last_signal` needs separately approved artwork.
+
 ## Cinematic Travel Scene05 — The Granary of Dead Rations
 
 Scene05 is an indoor grain-store aftermath, not a toll booth. Exact approved source is immutable; only bounded grain-store restoration and original-source prop animation are allowed. Straw soldiers stay inert. Scene04 and D412 unchanged; user artistic approval remains mandatory before merge.
