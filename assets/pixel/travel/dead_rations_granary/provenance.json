@@ -1,0 +1,38 @@
+{
+  "approved_source": {
+    "path": "approved_reference.png",
+    "sha256": "53322f3f1608f3988d91e48f9253c79dc97e70287234f1611d7fc9b87a545b91",
+    "size": [
+      1672,
+      941
+    ],
+    "mode": "RGB",
+    "origin": "User ZIP MISDEAL_SCENE05_FALSE_WEIGHTS_CODEX_PACKAGE.zip"
+  },
+  "local_edit": {
+    "tool": "built-in image_gen",
+    "generation_id": "exec-4c040bcd-94ee-4339-8d81-1c0fdcfbc020",
+    "purpose": "slightly ajar grain-store grille; ONLY source-space polygon inside existing frame is composited",
+    "retained_source": "storage_patch_source.png",
+    "source_rect": [
+      570,
+      260,
+      166,
+      180
+    ],
+    "mask": "578,275 724,268 729,431 609,433 578,405",
+    "feather": 3,
+    "full_generated_image_sha256": "1205413152b47e923e8a44570d2c1dd888a109a1255f180b2226ef159e4be538"
+  },
+  "derivatives": {
+    "approved_reference.png": "53322f3f1608f3988d91e48f9253c79dc97e70287234f1611d7fc9b87a545b91",
+    "coins.png": "0fc712f8f3f39fed27dc7f9337cceeb57634283eeefedceebe66181f2c42e3ef",
+    "floor.png": "9a0edaa6cd8cd13ae73a0e4773b5467ea15d00094e8b8bed20b877f8f7e3acbc",
+    "foreground.png": "b889296434d570ff588c5f9fc0a9c41f9943ffc952000a33f518c1810cb77b6b",
+    "ledger_edge.png": "e978a8aa31b175707208b43bf15b2f950e4c9d043c93c43c9e62d24c489df97e",
+    "storage_fair.png": "0025cc0f2260ad7011f8623174ee13d093d008727883c098ede95758cbb8b652",
+    "storage_patch_source.png": "e69c28ceb8d14502ff940f8ed619e063a1e143c875a61e6e2c09b211a506f8f9"
+  },
+  "rear_walk": "Reuse existing Scene04 six-pose NE rear presentation pack/soles unchanged; no D412 edits",
+  "packer": "res://scripts/dev/pack_granary_assets.gd"
+}

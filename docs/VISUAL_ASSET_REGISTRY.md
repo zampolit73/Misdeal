@@ -1,3 +1,7 @@
+## Cinematic Travel Scene05 — The Granary of Dead Rations
+
+`assets/pixel/travel/dead_rations_granary/`: exact approved1672×941 RGB source SHA256 `53322f3f1608f3988d91e48f9253c79dc97e70287234f1611d7fc9b87a545b91`, one bounded storage restoration crop, source-pixel aisle/props/coins cutouts, reproducible packer/provenance. [Contract](TRAVEL_DEAD_RATIONS_GRANARY.md).
+
 ## Scene04 — Campfire approved source and presentation pack
 
 `assets/pixel/travel/campfire_without_master/`: exact1672×941 PNG SHA256 `ea21184b5a2792ce5ac3d4226f95656a5b812caab6bd345d19ef6d138d94a53a`, shelf-only state patches, original-pixel plates/overlap, provenance/prompts and18 NE rear-walk poses. Existing D412 and Scene03 packs unchanged. Source approval does not approve runtime animation/staging. [Contract/F6](TRAVEL_CAMPFIRE_WITHOUT_MASTER.md).

@@ -1,3 +1,7 @@
+## Cinematic Travel Scene05 — Склад мёртвых пайков
+
+Add exact approved indoor granary for false_weights, three prop-only aftermaths, coherent restrained parallax, rear-perspective party and F6 preview. Existing event effects, narration, saves, D412 and older scenes unchanged. Native real route/all outcomes/solo/trio pass; full GUT292/292. Keep PR open for user artistic review.
+
 ## Scene04 — adult scale beside the near road
 
 Increase near baseline2.3→3.4 after user review; preserve sole-height perspective projection and the road route. Widen side lanes70→105px to separate the larger silhouettes. Native full trio/solo and existing GUT2/2,111 assertions pass; update three real Godot frames. Source, timing, outcomes and other scenes unchanged.

@@ -10,7 +10,7 @@ func test_immutable_source_routes_and_connected_art() -> void:
 	assert_eq(CATALOG.resource_for({"resolved_card_id":"borrowed_boots"}),"res://resources/travel/campfire_without_master.tres")
 	assert_eq(CATALOG.resource_for({"resolved_card_id":"unsent_letters"}),"res://resources/travel/last_dawn_posthouse.tres")
 	assert_eq(CATALOG.resource_for({"resolved_card_id":"banner_seamstress"}),"res://resources/travel/last_dressing_station.tres")
-	assert_eq(CATALOG.resource_for({"resolved_card_id":"false_weights"}),CATALOG.DEFAULT_LOCATION)
+	assert_eq(CATALOG.resource_for({"resolved_card_id":"last_signal"}),CATALOG.DEFAULT_LOCATION)
 	var original := Image.new()
 	original.load_png_from_buffer(FileAccess.get_file_as_bytes(DIR+"approved_reference.png"))
 	var distinct: Dictionary = {}
