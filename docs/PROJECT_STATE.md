@@ -1,5 +1,9 @@
 # Misdeal вЂ” current project state
 
+## Cinematic Travel Scene04 — The Campfire Without Its Master
+
+`borrowed_boots` now has its own approved-source sentry camp: three distinct spare-footwear aftermaths and18 separate NE rear-walk poses, with grounded perspective through the broken gate. Original source SHA256 `ea21184b...38d94a53a`; worn boots/figure and heraldry unchanged. Camp/gate/near props share displacement; only feathered ground has relative drift. Existing V2/router/effects/saves and approved older scenes preserved. Local Godot4.7.2 full GUT290/290,72,354 assertions (19 existing warnings), travel22/22 and native five-frame/real Event → Travel → Table pass. **PR stays open for user artistic approval; no auto-merge.** [Source, path, outcomes, F6 and evidence](TRAVEL_CAMPFIRE_WITHOUT_MASTER.md).
+
 ## Scene03 correction — rear perspective route (PR #108)
 
 User correction supersedes both older horizontal calibrations below. The party now leaves the camera up-left along the marked road, with shrinking three-quarter rear poses/intervals, road-aligned contacts and subtle colour haze. Original D412 combat art and all backgrounds/reactions stay unchanged. Review F6 `scenes/dev/dressing_station_playtest.tscn` (trio/solo); native pass and existing travel GUT20/20,801 assertions. New strips/provenance: `assets/pixel/travel/last_dressing_station/rear_walk/`. Final CI is authoritative; don't claim user artistic approval.

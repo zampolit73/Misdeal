@@ -6,6 +6,7 @@ func after_each() -> void: get_tree().paused = false
 func make_view(roles: Array) -> CanvasLayer:
 	var view: CanvasLayer = VIEW.instantiate()
 	view.context = CATALOG.context_for("borrowed_boots","passed",roles)
+	view.data_path = CATALOG.DEFAULT_LOCATION
 	add_child(view)
 	view.set_process(false)
 	return view

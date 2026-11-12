@@ -1,3 +1,7 @@
+## Cinematic Travel Scene04 — Костёр без хозяина
+
+Add exact approved campfire source for `borrowed_boots`, three spare-footwear aftermaths and18 NE rear walk poses, grounded perspective through the gate, connected source plates and F6 preview. Preserve original figure/worn boots, narration, effects, existing scenes, D412 and saves. Local full GUT290/290 and native real route pass; required CI/user artistic approval before merge.
+
 ## Scene03 — connected-layer seam
 
 Merge the dressing station, central arches, hanging linen and their inner openings into one plate per outcome. The old opening mask contained cloth/stone pixels moving at sky speed and caused tearing. Native F6 motion checked; approved art, perspective walk and outcomes unchanged.

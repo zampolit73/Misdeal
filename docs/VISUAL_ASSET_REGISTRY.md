@@ -1,3 +1,7 @@
+## Scene04 — Campfire approved source and presentation pack
+
+`assets/pixel/travel/campfire_without_master/`: exact1672×941 PNG SHA256 `ea21184b5a2792ce5ac3d4226f95656a5b812caab6bd345d19ef6d138d94a53a`, shelf-only state patches, original-pixel plates/overlap, provenance/prompts and18 NE rear-walk poses. Existing D412 and Scene03 packs unchanged. Source approval does not approve runtime animation/staging. [Contract/F6](TRAVEL_CAMPFIRE_WITHOUT_MASTER.md).
+
 ## Scene03 rear-walk presentation pack
 
 `assets/pixel/travel/last_dressing_station/rear_walk/`:18 authored poses, six per Knight/Ranger/Mage, three-quarter rear/NW. Source PNG, exact built-in image_gen prompt, D412 reference hashes, runtime strips and measured soles retained. Scene03-only; no D412 or approved panorama edits. [Perspective contract](TRAVEL_LAST_DRESSING_STATION.md#party-calibration).

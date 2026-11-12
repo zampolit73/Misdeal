@@ -3,6 +3,7 @@ func _initialize() -> void: call_deferred("run")
 func run() -> void:
 	var view: CanvasLayer = load("res://scenes/travel/travel_transition.tscn").instantiate()
 	view.context = preload("res://scripts/travel/travel_catalog.gd").context_for("borrowed_boots","passed",["knight","ranger","mage"])
+	view.data_path = preload("res://scripts/travel/travel_catalog.gd").DEFAULT_LOCATION
 	view.context.duration_sec = 30.0
 	root.add_child(view)
 	var dest := OS.get_cmdline_user_args()[0]

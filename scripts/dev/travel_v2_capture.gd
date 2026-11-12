@@ -12,6 +12,7 @@ func run() -> void:
 	for roles in matrix:
 		var view: CanvasLayer = VIEW.instantiate()
 		view.context = CATALOG.context_for("borrowed_boots","passed",roles)
+		view.data_path = CATALOG.DEFAULT_LOCATION
 		root.add_child(view)
 		assert(view.available)
 		view.set_process(false)
