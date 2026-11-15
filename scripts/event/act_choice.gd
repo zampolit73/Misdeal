@@ -68,6 +68,7 @@ const EVENT_SCENE_ART_PATHS := {
 var active_card: RunCardData
 var resolved := false
 var travel_context: Dictionary = {}
+var presentation_choice_role := ""
 var resolving_leave := false
 
 func _ready() -> void:
@@ -1349,6 +1350,7 @@ func _resolve_shop(role: String) -> void:
 
 	RunState.gold -= price
 	RunState.set_event_outcome("gravedigger_shop", "bought")
+	presentation_choice_role = role
 	_finish("Могильщик берёт %d монет и передаёт чужой секрет. %s" % [price, _format_upgrade_gain(upgrade_id)])
 
 func _resolve_forge(artifact_id: String) -> void:
@@ -1795,6 +1797,7 @@ func _resolve_leave() -> void:
 		"ash_rest":
 			_finish("Вы оставляете пепел остывать. Волшебник выглядит разочарованным.")
 		"gravedigger_shop":
+			presentation_choice_role = "leave"
 			_finish("Монеты остаются при вас. Могильщик пожимает плечами.")
 		"curse_forge":
 			_finish("Вы уходите без артефакта. Молот за спиной ударяет сам собой.")
@@ -1911,7 +1914,8 @@ func _record_castle_memory_for_event() -> void:
 
 
 func _finish(message: String) -> void:
-	travel_context = preload("res://scripts/travel/travel_catalog.gd").context_for(active_card.card_id,RunState.get_event_outcome(active_card.card_id),RunState.party_roles,active_card.wizard_line)
+	if resolved: return
+	travel_context = preload("res://scripts/travel/travel_catalog.gd").context_for(active_card.card_id,RunState.get_event_outcome(active_card.card_id),RunState.party_roles,active_card.wizard_line,false,{"choice_role":presentation_choice_role})
 	resolved = true
 	_disable_choices()
 	_record_castle_memory_for_event()

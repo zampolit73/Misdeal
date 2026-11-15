@@ -10,17 +10,20 @@ func after_each() -> void:
 	CATALOG.enabled = true
 	get_tree().paused = false
 	RunState.reset_run()
-func test_context_matches_all_fifteen_past_outcomes_and_party() -> void:
+func test_context_matches_all_catalog_outcomes_and_party() -> void:
 	for id in CATALOG.TEXT:
 		for key in CATALOG.TEXT[id]:
 			var roles := ["mage","ranger"]
-			var ctx := CATALOG.context_for(id,key,roles)
+			if id=="gravedigger_shop": roles=["knight","ranger","mage"]
+			var count := roles.size()
+			var saved_outcome: String=("bought" if key!="leave" else "") if id=="gravedigger_shop" else key
+			var ctx := CATALOG.context_for(id,saved_outcome,roles,"",false,{"choice_role":key})
 			assert_eq(ctx.resolved_card_id,id)
-			assert_eq(ctx.outcome_id,key)
+			assert_eq(ctx.outcome_id,saved_outcome)
 			assert_eq(ctx.narration_text,CATALOG.TEXT[id][key])
 			assert_eq(ctx.party_roles,roles)
 			roles.clear()
-			assert_eq(ctx.party_roles.size(),2)
+			assert_eq(ctx.party_roles.size(),count)
 			assert_false(ctx.has("next_card_id"))
 	assert_true(CATALOG.context_for("bone_warden","victory",["knight"],"",true).is_empty())
 	assert_true(CATALOG.context_for("graveyard_ambush","defeat",["knight"]).is_empty())

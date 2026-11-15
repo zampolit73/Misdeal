@@ -1,3 +1,8 @@
+## Cinematic Travel Pilot Batch01 V3
+
+- [x] Candidate batch01V3:3scenes/11outcomes, transient-role integration, local full GUT/native batch.
+- [ ] Final required CI and one unified user artistic review; no automatic merge.
+
 ## Cinematic Travel Scene05 — The Granary of Dead Rations
 
 - [x] Scene05 exact-source granary and real-event integration, local native/GUT checks.

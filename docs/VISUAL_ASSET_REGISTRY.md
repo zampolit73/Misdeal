@@ -1,3 +1,7 @@
+## Cinematic Travel Pilot Batch01 V3
+
+assets/pixel/travel/pilot_01 retains exact V3masters,11RGBfinals, RGBAaction poses/masks and provenance; ZIP SHA256178ce003...a2358e45. No duplicate hero pack or browser/APNG runtime. [Contract](TRAVEL_PILOT_BATCH01_V3.md).
+
 ## Cinematic Travel Scene05 — The Granary of Dead Rations
 
 `assets/pixel/travel/dead_rations_granary/`: exact approved1672×941 RGB source SHA256 `53322f3f1608f3988d91e48f9253c79dc97e70287234f1611d7fc9b87a545b91`, one bounded storage restoration crop, source-pixel aisle/props/coins cutouts, reproducible packer/provenance. [Contract](TRAVEL_DEAD_RATIONS_GRANARY.md).

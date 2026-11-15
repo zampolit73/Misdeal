@@ -1,0 +1,51 @@
+{
+  "revision": 3,
+  "scene": "03_gravedigger_shop",
+  "duration_sec": 4,
+  "states": {
+    "knight": {
+      "source_rect": [
+        365,
+        383,
+        220,
+        112
+      ],
+      "work": "animation/knight_work.png",
+      "final": "layers/knight_patch.png",
+      "mask": "layers/knight_mask.png",
+      "work_at": 0.4,
+      "final_at": 1.2,
+      "no_generated_character_pixels": true
+    },
+    "ranger": {
+      "source_rect": [
+        490,
+        330,
+        225,
+        165
+      ],
+      "work": "animation/ranger_work.png",
+      "final": "layers/ranger_patch.png",
+      "mask": "layers/ranger_mask.png",
+      "work_at": 0.4,
+      "final_at": 1.2,
+      "no_generated_character_pixels": true
+    },
+    "mage": {
+      "source_rect": [
+        700,
+        340,
+        140,
+        145
+      ],
+      "work": "animation/mage_work.png",
+      "final": "layers/mage_patch.png",
+      "mask": "layers/mage_mask.png",
+      "work_at": 0.4,
+      "final_at": 1.2,
+      "no_generated_character_pixels": true
+    }
+  },
+  "leave": "unmodified V2/source",
+  "principle": "object-only bounded patches, original character pixels restored/protected; no posters, no generated actor"
+}

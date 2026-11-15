@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TravelTransitionData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/travel_transition_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/travel/pilot_01/last_signal_panorama.gd" id="2"]
+[resource]
+script = ExtResource("1")
+title = "ПОГАСШИЙ СИГНАЛ"
+panorama_script = ExtResource("2")
+background_path = "res://assets/pixel/travel/pilot_01/last_signal/source/original_master.png"
+foreground_path = "res://assets/pixel/travel/pilot_01/last_signal/layers/foreground_occluder.png"
+underpaint_path = "res://assets/pixel/travel/pilot_01/last_signal/source/original_master.png"
+sky_path = "res://assets/pixel/travel/pilot_01/last_signal/source/original_master.png"
+fog_rect = Rect2(0,0,0,0)

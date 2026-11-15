@@ -10,7 +10,7 @@ func test_exact_source_and_card_route() -> void:
 	assert_eq(CATALOG.resource_for({"resolved_card_id":"false_weights"}),"res://resources/travel/dead_rations_granary.tres")
 	for pair in [["borrowed_boots","campfire_without_master"],["banner_seamstress","last_dressing_station"],["unsent_letters","last_dawn_posthouse"]]:
 		assert_eq(CATALOG.resource_for({"resolved_card_id":pair[0]}),"res://resources/travel/"+pair[1]+".tres")
-	assert_eq(CATALOG.resource_for({"resolved_card_id":"last_signal"}),CATALOG.DEFAULT_LOCATION)
+	assert_eq(CATALOG.resource_for({"resolved_card_id":"graveyard_ambush"}),CATALOG.DEFAULT_LOCATION)
 func test_outcomes_grounded_party_and_no_replayed_effects() -> void:
 	RunState.choose_protagonist("knight")
 	var before: Dictionary=SAVE.new().snapshot(RunState).state

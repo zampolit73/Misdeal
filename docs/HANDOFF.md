@@ -1,3 +1,7 @@
+## Pilot Batch01 V3 — three scenes, eleven outcomes
+
+Candidate batch01V3: last_signal3, gravedigger_shop4, lost_purse4 through existing V2, exact assets and authored action poses. Purchase role is transient; saved bought unchanged. Full GUT294/294,73,983 assertions; native11/11 real routes with effects once. [Contract/F6](TRAVEL_PILOT_BATCH01_V3.md), [unified evidence](qa/travel_pilot_batch01/README.md). Approved old scenes/core/save/balance unchanged. all_in intact-hand/text discrepancy retained. Required CI and ONE final user artistic review before merge; no auto-merge.
+
 ## 2026-11-12 — Scene05 APPROVED; Scene06 art selection next
 
 The user confirmed the implemented `false_weights` / «СКЛАД МЁРТВЫХ ПАЙКОВ» result is good and **approved the three outcome visuals** after the stronger reveal: `fair` shows the open secret grain stock, torn sack, spill and ledger; `silence` shows hush money with closed stock; `passed` retains the closed store and rigged ration routine without bribe coins. [PR #112](https://github.com/zampolit73/Misdeal/pull/112) is **merged into main** at `e2b62829dd565cde10453fc4a22e50835c69751e`, with [green required final-head CI](https://github.com/zampolit73/Misdeal/actions/runs/43224087326). The exact approved granary source PNG and the NPC, heraldry, straw queue and party staging are locked; **do not reopen Scene05 without a new user request**. Older notes saying the PR is open or user review pending are historical.

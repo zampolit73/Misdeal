@@ -1,0 +1,181 @@
+{
+  "version": 2,
+  "clock_sec": 4,
+  "coordinates": "source 1672x941, project once to viewport1280x720",
+  "scenes": {
+    "01_last_signal": {
+      "salvage": {
+        "poses": [
+          {
+            "at": 0.32,
+            "path": "animation/salvage_action_0.png",
+            "source_rect": [
+              930,
+              160,
+              460,
+              630
+            ],
+            "contact": "both hands: shaft and attached basket"
+          },
+          {
+            "at": 0.6,
+            "path": "animation/salvage_action_1.png",
+            "source_rect": [
+              930,
+              160,
+              460,
+              630
+            ],
+            "contact": "basket supported by rim grip"
+          },
+          {
+            "at": 0.87,
+            "path": "animation/salvage_action_2.png",
+            "source_rect": [
+              930,
+              160,
+              460,
+              630
+            ],
+            "contact": "rim grip, basket occluded behind original parapet"
+          }
+        ],
+        "final_at": 1.2,
+        "final_patch": "layers/salvage_patch.png",
+        "final_rect": [
+          1090,
+          160,
+          220,
+          230
+        ],
+        "independent_basket_tween": false
+      },
+      "truth": {
+        "entry": [
+          [
+            600,
+            1020
+          ],
+          [
+            710,
+            720
+          ]
+        ],
+        "entry_interval": [
+          0.08,
+          0.4
+        ],
+        "poses_at": [
+          0.08,
+          0.54,
+          0.76,
+          1.02
+        ],
+        "final_at": 1.22,
+        "paper_size": [
+          230,
+          175
+        ],
+        "wind_settle": true
+      }
+    },
+    "03_gravedigger_shop": {
+      "knight": {
+        "source_rect": [
+          365,
+          383,
+          220,
+          112
+        ],
+        "work": "animation/knight_work.png",
+        "final": "layers/knight_patch.png",
+        "mask": "layers/knight_mask.png",
+        "work_at": 0.4,
+        "final_at": 1.2,
+        "no_generated_character_pixels": true
+      },
+      "ranger": {
+        "source_rect": [
+          490,
+          330,
+          225,
+          165
+        ],
+        "work": "animation/ranger_work.png",
+        "final": "layers/ranger_patch.png",
+        "mask": "layers/ranger_mask.png",
+        "work_at": 0.4,
+        "final_at": 1.2,
+        "no_generated_character_pixels": true
+      },
+      "mage": {
+        "source_rect": [
+          700,
+          340,
+          140,
+          145
+        ],
+        "work": "animation/mage_work.png",
+        "final": "layers/mage_patch.png",
+        "mask": "layers/mage_mask.png",
+        "work_at": 0.4,
+        "final_at": 1.2,
+        "no_generated_character_pixels": true
+      }
+    },
+    "05_lost_purse": {
+      "safe": {
+        "patch": "layers/safe_patch.png",
+        "source_rect": [
+          160,
+          490,
+          480,
+          290
+        ],
+        "grip": "animation/safe_grip.png",
+        "contact_at": 0.42,
+        "withdraw": [
+          0.72,
+          1.2
+        ],
+        "grip_origin_source": [
+          330,
+          490
+        ],
+        "grip_canvas": [
+          330,
+          451
+        ],
+        "withdraw_offset": [
+          420,
+          560
+        ],
+        "coins_supported_by": "off-camera traveller plain glove; not a redesigned hero sprite"
+      },
+      "all_in": {
+        "art": "retained V1 accepted final, intact corpse hand",
+        "narrative_conflict": "Existing text mentions piece of hand. No gore or mechanics rewritten; remains a separate art decision.",
+        "lift": "animation/purse_lift_grip.png",
+        "canvas": [
+          640,
+          500
+        ],
+        "origin_source": [
+          160,
+          490
+        ],
+        "interval": [
+          0.44,
+          1.18
+        ],
+        "offset": [
+          420,
+          560
+        ],
+        "corpse_parts_in_lift_sprite": false,
+        "stone_or_medallion_in_lift_sprite": false
+      }
+    }
+  },
+  "shop_revision": 3
+}

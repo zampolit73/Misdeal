@@ -1,0 +1,1061 @@
+{
+  "clips": [
+    {
+      "card_id": "last_signal",
+      "visual_action": "truth",
+      "persisted_outcome_id": "truth",
+      "duration_sec": 4,
+      "keyframes": [
+        {
+          "time_ms": 400,
+          "path": "animation/truth_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 750,
+          "path": "animation/truth_full_0750.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 1250,
+          "path": "animation/truth_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 2500,
+          "path": "animation/truth_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        }
+      ],
+      "full_preview": "animation/truth_full_preview.apng.png",
+      "production_clock": "Travel V2 local time; no game effects",
+      "loop": false
+    },
+    {
+      "card_id": "last_signal",
+      "visual_action": "salvage",
+      "persisted_outcome_id": "salvage",
+      "duration_sec": 4,
+      "keyframes": [
+        {
+          "time_ms": 400,
+          "path": "animation/salvage_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 750,
+          "path": "animation/salvage_full_0750.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 1250,
+          "path": "animation/salvage_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 2500,
+          "path": "animation/salvage_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        }
+      ],
+      "full_preview": "animation/salvage_full_preview.apng.png",
+      "production_clock": "Travel V2 local time; no game effects",
+      "loop": false
+    },
+    {
+      "card_id": "last_signal",
+      "visual_action": "passed",
+      "persisted_outcome_id": "passed",
+      "duration_sec": 4,
+      "keyframes": [
+        {
+          "time_ms": 400,
+          "path": "animation/passed_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 750,
+          "path": "animation/passed_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 1250,
+          "path": "animation/passed_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 2500,
+          "path": "animation/passed_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        }
+      ],
+      "full_preview": "animation/passed_full_preview.apng.png",
+      "production_clock": "Travel V2 local time; no game effects",
+      "loop": false
+    },
+    {
+      "card_id": "gravedigger_shop",
+      "visual_action": "knight",
+      "persisted_outcome_id": "bought",
+      "duration_sec": 4,
+      "keyframes": [
+        {
+          "time_ms": 400,
+          "path": "animation/knight_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "native full-frame review, indexed256; source object RGBA and RGB finals separate"
+        },
+        {
+          "time_ms": 750,
+          "path": "animation/knight_full_0750.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "native full-frame review, indexed256; source object RGBA and RGB finals separate"
+        },
+        {
+          "time_ms": 1250,
+          "path": "animation/knight_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "native full-frame review, indexed256; source object RGBA and RGB finals separate"
+        },
+        {
+          "time_ms": 2500,
+          "path": "animation/knight_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "native full-frame review, indexed256; source object RGBA and RGB finals separate"
+        }
+      ],
+      "full_preview": "animation/knight_full_preview.apng.png",
+      "production_clock": "Travel V2 local time; no game effects",
+      "loop": false,
+      "revision": 3,
+      "authored_object_poses": 2,
+      "generated_character_poses": 0
+    },
+    {
+      "card_id": "gravedigger_shop",
+      "visual_action": "ranger",
+      "persisted_outcome_id": "bought",
+      "duration_sec": 4,
+      "keyframes": [
+        {
+          "time_ms": 400,
+          "path": "animation/ranger_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "native full-frame review, indexed256; source object RGBA and RGB finals separate"
+        },
+        {
+          "time_ms": 750,
+          "path": "animation/ranger_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "native full-frame review, indexed256; source object RGBA and RGB finals separate"
+        },
+        {
+          "time_ms": 1250,
+          "path": "animation/ranger_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "native full-frame review, indexed256; source object RGBA and RGB finals separate"
+        },
+        {
+          "time_ms": 2500,
+          "path": "animation/ranger_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "native full-frame review, indexed256; source object RGBA and RGB finals separate"
+        }
+      ],
+      "full_preview": "animation/ranger_full_preview.apng.png",
+      "production_clock": "Travel V2 local time; no game effects",
+      "loop": false,
+      "revision": 3,
+      "authored_object_poses": 2,
+      "generated_character_poses": 0
+    },
+    {
+      "card_id": "gravedigger_shop",
+      "visual_action": "mage",
+      "persisted_outcome_id": "bought",
+      "duration_sec": 4,
+      "keyframes": [
+        {
+          "time_ms": 400,
+          "path": "animation/mage_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "native full-frame review, indexed256; source object RGBA and RGB finals separate"
+        },
+        {
+          "time_ms": 750,
+          "path": "animation/mage_full_0750.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "native full-frame review, indexed256; source object RGBA and RGB finals separate"
+        },
+        {
+          "time_ms": 1250,
+          "path": "animation/mage_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "native full-frame review, indexed256; source object RGBA and RGB finals separate"
+        },
+        {
+          "time_ms": 2500,
+          "path": "animation/mage_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "native full-frame review, indexed256; source object RGBA and RGB finals separate"
+        }
+      ],
+      "full_preview": "animation/mage_full_preview.apng.png",
+      "production_clock": "Travel V2 local time; no game effects",
+      "loop": false,
+      "revision": 3,
+      "authored_object_poses": 2,
+      "generated_character_poses": 0
+    },
+    {
+      "card_id": "gravedigger_shop",
+      "visual_action": "leave",
+      "persisted_outcome_id": "",
+      "duration_sec": 4,
+      "keyframes": [
+        {
+          "time_ms": 400,
+          "path": "animation/leave_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 750,
+          "path": "animation/leave_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 1250,
+          "path": "animation/leave_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 2500,
+          "path": "animation/leave_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        }
+      ],
+      "full_preview": "animation/leave_full_preview.apng.png",
+      "production_clock": "Travel V2 local time; no game effects",
+      "loop": false
+    },
+    {
+      "card_id": "lost_purse",
+      "visual_action": "safe",
+      "persisted_outcome_id": "safe",
+      "duration_sec": 4,
+      "keyframes": [
+        {
+          "time_ms": 400,
+          "path": "animation/safe_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 750,
+          "path": "animation/safe_full_0750.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 1250,
+          "path": "animation/safe_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 2500,
+          "path": "animation/safe_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        }
+      ],
+      "full_preview": "animation/safe_full_preview.apng.png",
+      "production_clock": "Travel V2 local time; no game effects",
+      "loop": false
+    },
+    {
+      "card_id": "lost_purse",
+      "visual_action": "greedy",
+      "persisted_outcome_id": "greedy",
+      "duration_sec": 4,
+      "keyframes": [
+        {
+          "time_ms": 400,
+          "path": "animation/greedy_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 750,
+          "path": "animation/greedy_full_0750.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 1250,
+          "path": "animation/greedy_full_0750.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 2500,
+          "path": "animation/greedy_full_0750.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        }
+      ],
+      "full_preview": "animation/greedy_full_preview.apng.png",
+      "production_clock": "Travel V2 local time; no game effects",
+      "loop": false
+    },
+    {
+      "card_id": "lost_purse",
+      "visual_action": "all_in",
+      "persisted_outcome_id": "all_in",
+      "duration_sec": 4,
+      "keyframes": [
+        {
+          "time_ms": 400,
+          "path": "animation/all_in_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 750,
+          "path": "animation/all_in_full_0750.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 1250,
+          "path": "animation/all_in_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 2500,
+          "path": "animation/all_in_full_1250.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        }
+      ],
+      "full_preview": "animation/all_in_full_preview.apng.png",
+      "production_clock": "Travel V2 local time; no game effects",
+      "loop": false
+    },
+    {
+      "card_id": "lost_purse",
+      "visual_action": "untouched",
+      "persisted_outcome_id": "untouched",
+      "duration_sec": 4,
+      "keyframes": [
+        {
+          "time_ms": 400,
+          "path": "animation/untouched_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 750,
+          "path": "animation/untouched_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 1250,
+          "path": "animation/untouched_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        },
+        {
+          "time_ms": 2500,
+          "path": "animation/untouched_full_0400.png",
+          "viewport_rect": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "kind": "full1280 review frame, indexed256; RGB final and RGBA inputs separate"
+        }
+      ],
+      "full_preview": "animation/untouched_full_preview.apng.png",
+      "production_clock": "Travel V2 local time; no game effects",
+      "loop": false
+    }
+  ],
+  "hero_reference": {
+    "nw": {
+      "knight": {
+        "source": "REFERENCE_HERO_ANIMATIONS/nw/knight.png",
+        "row": 0,
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 6,
+        "fps": 6.5,
+        "soles": [
+          84,
+          83,
+          85,
+          84,
+          82,
+          84
+        ],
+        "max_visible_height": 76,
+        "frame_heights": [
+          75,
+          74,
+          76,
+          75,
+          73,
+          75
+        ]
+      },
+      "ranger": {
+        "source": "REFERENCE_HERO_ANIMATIONS/nw/ranger.png",
+        "row": 0,
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 6,
+        "fps": 6.5,
+        "soles": [
+          83,
+          81,
+          82,
+          81,
+          79,
+          82
+        ],
+        "max_visible_height": 73,
+        "frame_heights": [
+          73,
+          72,
+          73,
+          72,
+          70,
+          72
+        ]
+      },
+      "mage": {
+        "source": "REFERENCE_HERO_ANIMATIONS/nw/mage.png",
+        "row": 0,
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 6,
+        "fps": 6.5,
+        "soles": [
+          81,
+          81,
+          83,
+          83,
+          80,
+          82
+        ],
+        "max_visible_height": 74,
+        "frame_heights": [
+          72,
+          72,
+          74,
+          74,
+          70,
+          72
+        ]
+      }
+    },
+    "side": {
+      "knight": {
+        "source": "REFERENCE_HERO_ANIMATIONS/side/knight_packed.png",
+        "row": 1,
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 6,
+        "fps": 6.5,
+        "soles": [
+          89,
+          89,
+          89,
+          89,
+          89,
+          89
+        ],
+        "max_visible_height": 73,
+        "frame_heights": [
+          72,
+          71,
+          71,
+          71,
+          73,
+          72
+        ]
+      },
+      "ranger": {
+        "source": "REFERENCE_HERO_ANIMATIONS/side/ranger_packed.png",
+        "row": 1,
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 6,
+        "fps": 6.5,
+        "soles": [
+          89,
+          89,
+          89,
+          89,
+          89,
+          89
+        ],
+        "max_visible_height": 71,
+        "frame_heights": [
+          71,
+          71,
+          71,
+          71,
+          71,
+          71
+        ]
+      },
+      "mage": {
+        "source": "REFERENCE_HERO_ANIMATIONS/side/mage_packed.png",
+        "row": 1,
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 6,
+        "fps": 6.5,
+        "soles": [
+          89,
+          89,
+          89,
+          89,
+          89,
+          89
+        ],
+        "max_visible_height": 77,
+        "frame_heights": [
+          77,
+          77,
+          76,
+          75,
+          75,
+          76
+        ]
+      }
+    }
+  },
+  "staging": [
+    {
+      "folder": "01_last_signal",
+      "id": "last_signal",
+      "title": "РџРѕРіР°СЃС€РёР№ СЃРёРіРЅР°Р»",
+      "base": "passed",
+      "facing": "nw",
+      "route": [
+        [
+          360,
+          615
+        ],
+        [
+          315,
+          590
+        ],
+        [
+          270,
+          570
+        ]
+      ],
+      "horizon": 300,
+      "party_height": 300,
+      "focus": [
+        1030,
+        145,
+        330,
+        420
+      ],
+      "paper": [
+        710,
+        720,
+        230,
+        175
+      ],
+      "states": [
+        [
+          "truth",
+          "truth",
+          "Р Р°Р·РѕСЂРІР°С‚СЊ РѕР±РµС‰Р°РЅРёРµ",
+          "в€’20 Р·РѕР»РѕС‚Р° РїСЂРё Р°РєС‚РёРІРЅРѕРј РґРѕР»РіРµ Рё РґРѕСЃС‚Р°С‚РѕС‡РЅРѕРј Р·РѕР»РѕС‚Рµ; РґРѕР»Рі Рё Р±СѓРґСѓС‰Р°СЏ РґРІРѕР№РЅР°СЏ РЅР°РіСЂР°РґР° РѕС‚РјРµРЅРµРЅС‹.",
+          "Р РµР°Р»СЊРЅР°СЏ С‡РµС‚С‹СЂС‘С…С„Р°Р·РЅР°СЏ СЂР°СЃРїРёСЃРєР° СЂРІС‘С‚СЃСЏ, РґРІРµ РїРѕР»РѕРІРёРЅС‹ Рё СЃР»РѕРјР°РЅРЅР°СЏ РїРµС‡Р°С‚СЊ Р»РѕР¶Р°С‚СЃСЏ РЅР° РєР°РјРµРЅСЊ. Р§Р°С€Р° РѕСЃС‚Р°С‘С‚СЃСЏ."
+        ],
+        [
+          "salvage",
+          "salvage",
+          "Р—Р°Р±СЂР°С‚СЊ СЃРёРіРЅР°Р»СЊРЅСѓСЋ С‡Р°С€Сѓ",
+          "+22 Р·РѕР»РѕС‚Р°.",
+          "Р§Р°С€Р° РѕС‚РґРµР»СЏРµС‚СЃСЏ РѕС‚ С€РµСЃС‚Р°, СѓС…РѕРґРёС‚ Р·Р° РїСЂР°РІС‹Р№ РЅРёР¶РЅРёР№ РєСЂР°Р№, РѕСЃС‚Р°С‘С‚СЃСЏ РѕС‚РєСЂС‹С‚РѕРµ РєСЂРµРїР»РµРЅРёРµ. РћС‚РІРµС‚РЅС‹С… РѕРіРЅРµР№ РЅРµС‚."
+        ],
+        [
+          "passed",
+          "passed",
+          "РћСЃС‚Р°РІРёС‚СЊ РґРѕР·РѕСЂРЅРѕРіРѕ",
+          "Р‘РµР· РёР·РјРµРЅРµРЅРёР№.",
+          "Р§Р°С€Р° Рё РґРѕР·РѕСЂРЅС‹Р№ РЅРµРёР·РјРµРЅРЅС‹; С‚РѕР»СЊРєРѕ С‚РёС…РѕРµ РґРІРёР¶РµРЅРёРµ РѕР±Р»Р°РєРѕРІ Рё СЃРІРѕР±РѕРґРЅС‹С… РєСЂР°С‘РІ РїР»Р°С‰Р°."
+        ]
+      ],
+      "formation": {
+        "solo": [
+          [
+            0,
+            0
+          ]
+        ],
+        "duo": [
+          [
+            -60,
+            -8
+          ],
+          [
+            60,
+            12
+          ]
+        ],
+        "trio": [
+          [
+            -100,
+            -15
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            100,
+            25
+          ]
+        ]
+      }
+    },
+    {
+      "folder": "03_gravedigger_shop",
+      "id": "gravedigger_shop",
+      "title": "Р›Р°РІРєР° РјРѕРіРёР»СЊС‰РёРєР°",
+      "base": "leave",
+      "facing": "side",
+      "route": [
+        [
+          855,
+          605
+        ],
+        [
+          900,
+          598
+        ],
+        [
+          945,
+          590
+        ]
+      ],
+      "horizon": 300,
+      "party_height": 300,
+      "focus": [
+        320,
+        350,
+        570,
+        220
+      ],
+      "states": [
+        [
+          "knight",
+          "bought",
+          "РњРѕРіРёР»СЊРЅС‹Р№ СѓСЂРѕРє",
+          "30/35/45 Р·РѕР»РѕС‚Р° РїРѕ get_gravedigger_shop_price; СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ СЂР°Р·РІРёС‚РёРµ knight Рё С„Р°РєС‚ CASTLE_FACT_RATIONS.",
+          "РџРµСЂРІС‹Р№ РїРѕРґРЅРѕСЃ: СЂР°Р·Р»РѕР¶РµРЅР° СЃРІРµС‚Р»Р°СЏ СЃС…РµРјР° С…РІР°С‚Р°, СЂРµРјРµРЅСЊ СЂР°СЃРєСЂС‹С‚, РёРЅСЃС‚СЂСѓРјРµРЅС‚ РїРѕР»РѕР¶РµРЅ. РџР»Р°С‚Р° СѓР»РµС‚Р°РµС‚ РІ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ СЃСѓРЅРґСѓРє."
+        ],
+        [
+          "ranger",
+          "bought",
+          "РћС…РѕС‚РЅРёС‡СЊСЏ СЃС…РµРјР°",
+          "РўР° Р¶Рµ РґРёРЅР°РјРёС‡РµСЃРєР°СЏ С†РµРЅР°; СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ СЂР°Р·РІРёС‚РёРµ ranger Рё С„Р°РєС‚.",
+          "Р’С‚РѕСЂРѕР№ РїРѕРґРЅРѕСЃ: РєРѕР»С‡Р°РЅ СЂР°СЃРєСЂС‹С‚, СЃС‚СЂРµР»С‹ СЂР°Р·Р»РѕР¶РµРЅС‹ Рё РІРёРґРЅР° СЃС…РµРјР° Р»СѓРєР°/С‚РµС‚РёРІС‹. РџР»Р°С‚Р° РїСЂРёРЅСЏС‚Р°."
+        ],
+        [
+          "mage",
+          "bought",
+          "Р—Р°РїСЂРµС‚РЅР°СЏ Р·Р°РїРёСЃРєР°",
+          "РўР° Р¶Рµ РґРёРЅР°РјРёС‡РµСЃРєР°СЏ С†РµРЅР°; СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРµ СЂР°Р·РІРёС‚РёРµ mage Рё С„Р°РєС‚.",
+          "РўСЂРµС‚РёР№ РїРѕРґРЅРѕСЃ: СЂР°Р·РІС‘СЂРЅСѓС‚Р° Р·Р°РїРёСЃРєР° РїРѕРґ С‚РµРј Р¶Рµ РєР°РјРЅРµРј. Р‘РµР· РЅРѕРІРѕРіРѕ СЃРІРµС‡РµРЅРёСЏ/РјР°РіРёС‡РµСЃРєРѕР№ РјРµС…Р°РЅРёРєРё. РџР»Р°С‚Р° РїСЂРёРЅСЏС‚Р°."
+        ],
+        [
+          "leave",
+          "",
+          "РќРёС‡РµРіРѕ РЅРµ РїРѕРєСѓРїР°С‚СЊ",
+          "Р‘РµР· РѕРїР»Р°С‚С‹, СЂР°Р·РІРёС‚РёСЏ Рё РЅРѕРІРѕРіРѕ outcome_id.",
+          "РўСЂРё РёСЃС…РѕРґРЅС‹С… РїРѕРґРЅРѕСЃР°, РЅРёРєР°РєРёС… РїР»Р°С‚С‘Р¶РЅС‹С… РјРѕРЅРµС‚; С„РѕРЅР°СЂСЊ Рё РґРѕР¶РґСЊ СЃРѕС…СЂР°РЅСЏСЋС‚ Р°С‚РјРѕСЃС„РµСЂСѓ."
+        ]
+      ],
+      "formation": {
+        "solo": [
+          [
+            0,
+            0
+          ]
+        ],
+        "duo": [
+          [
+            -60,
+            -8
+          ],
+          [
+            60,
+            12
+          ]
+        ],
+        "trio": [
+          [
+            -100,
+            -15
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            100,
+            25
+          ]
+        ]
+      }
+    },
+    {
+      "folder": "05_lost_purse",
+      "id": "lost_purse",
+      "title": "РљРѕС€РµР»СЊ РјРµСЂС‚РІРµС†Р°",
+      "base": "untouched",
+      "facing": "nw",
+      "route": [
+        [
+          1120,
+          630
+        ],
+        [
+          1070,
+          605
+        ],
+        [
+          1020,
+          580
+        ]
+      ],
+      "horizon": 300,
+      "party_height": 300,
+      "focus": [
+        135,
+        475,
+        535,
+        320
+      ],
+      "states": [
+        [
+          "safe",
+          "safe",
+          "Р’Р·СЏС‚СЊ РІРµСЂС…РЅРёРµ РјРѕРЅРµС‚С‹",
+          "+15 Р·РѕР»РѕС‚Р°.",
+          "РЎРЅСЏС‚С‹ РІРµСЂС…РЅРёРµ РјРѕРЅРµС‚С‹; РѕСЃС‚Р°С‘С‚СЃСЏ РЅР°РїРѕР»РЅРµРЅРЅС‹Р№ РєРѕС€РµР»СЊ, РєРёСЃС‚СЊ СЃРїРѕРєРѕР№РЅР°. РњРµРґР°Р»СЊРѕРЅ РЅР° РёСЃС…РѕРґРЅРѕРј РјРµСЃС‚Рµ."
+        ],
+        [
+          "greedy",
+          "greedy",
+          "Р—Р°РїСѓСЃС‚РёС‚СЊ СЂСѓРєСѓ РіР»СѓР±Р¶Рµ",
+          "+35 Р·РѕР»РѕС‚Р°, в€’10 HP; РїР°РјСЏС‚СЊ greed.",
+          "РЎР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ РЅР°СЂРёСЃРѕРІР°РЅРЅР°СЏ СЃР¶Р°С‚Р°СЏ РєРёСЃС‚СЊ, РЅР°С‚СЏРЅСѓС‚С‹Р№ СЂРµРјРµРЅСЊ Рё СЃРјСЏС‚Р°СЏ РґРёР°РіРѕРЅР°Р»СЊ РєРѕС€РµР»СЏ. РњРµРґР°Р»СЊРѕРЅ СЃРѕС…СЂР°РЅСЏРµС‚СЃСЏ."
+        ],
+        [
+          "all_in",
+          "all_in",
+          "Р’С‹СЂРІР°С‚СЊ РєРѕС€РµР»СЊ С†РµР»РёРєРѕРј",
+          "+55 Р·РѕР»РѕС‚Р°, в€’25 HP; РїР°РјСЏС‚СЊ greed.",
+          "РљРѕС€РµР»СЊ СЃ СЃРѕРґРµСЂР¶РёРјС‹Рј СѓС…РѕРґРёС‚ Р·Р° РєР°РґСЂ. РќР° РїР»РёС‚Рµ СЃСѓС…РѕР№ РѕС‚РїРµС‡Р°С‚РѕРє, РѕР±СЂС‹РІРѕРє СЂРµРјРЅСЏ Рё С‚РѕС‚ Р¶Рµ РјРµРґР°Р»СЊРѕРЅ; РґСѓР±Р»РёРєР°С‚Р° РєРѕС€РµР»СЏ РЅРµС‚."
+        ],
+        [
+          "untouched",
+          "untouched",
+          "РћСЃС‚Р°РІРёС‚СЊ РјРµСЂС‚РІРµС†Сѓ",
+          "Р‘РµР· РёР·РјРµРЅРµРЅРёР№.",
+          "РџРѕР»РЅС‹Р№ РёСЃС…РѕРґРЅС‹Р№ РєРѕС€РµР»СЊ СЃ РёСЃС…РѕРґРЅС‹РјРё РјРѕРЅРµС‚Р°РјРё, РЅРµС‚ СЃР»РµРґРѕРІ РІРјРµС€Р°С‚РµР»СЊСЃС‚РІР°; РІРѕРґР° РґРІРёР¶РµС‚СЃСЏ СЃРґРµСЂР¶Р°РЅРЅРѕ."
+        ]
+      ],
+      "formation": {
+        "solo": [
+          [
+            0,
+            0
+          ]
+        ],
+        "duo": [
+          [
+            -60,
+            -8
+          ],
+          [
+            60,
+            12
+          ]
+        ],
+        "trio": [
+          [
+            -85,
+            -15
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            80,
+            22
+          ]
+        ]
+      }
+    }
+  ],
+  "revision": 3
+}

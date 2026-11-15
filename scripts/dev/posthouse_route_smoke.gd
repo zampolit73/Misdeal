@@ -50,7 +50,7 @@ func run() -> void:
 		assert(SAVE.new().apply_slot(state,saved))
 		await open(saved.scene)
 		assert(not root.has_node("TravelTransition"))
-	# Another real event still selects the original authored road.
+	# The new signal mapping must not redirect a Posthouse outcome.
 	state.reset_run()
 	state.choose_protagonist("knight")
 	state.active_card_id="last_signal"
@@ -58,7 +58,7 @@ func run() -> void:
 	current_scene.choice_c.pressed.emit()
 	current_scene.continue_button.pressed.emit()
 	await process_frame
-	assert(root.get_node("TravelTransition").data_path==CATALOG.DEFAULT_LOCATION)
+	assert(root.get_node("TravelTransition").data_path==CATALOG.LOCATIONS.last_signal)
 	root.get_node("TravelTransition").finish()
 	await wait_table()
 	assert(state.cards_resolved==1)
@@ -66,7 +66,7 @@ func run() -> void:
 	current_scene.queue_free()
 	await process_frame
 	await process_frame
-	print("POSTHOUSE_ROUTES_PASS: release/read/passed Event -> own Travel -> Table; one launch; skip; unchanged costs/facts; Save/Load; other event -> original road")
+	print("POSTHOUSE_ROUTES_PASS: release/read/passed Event -> own Travel -> Table; one launch; skip; unchanged costs/facts; Save/Load; other event -> own signal scene")
 	quit()
 func on_exit(reference: WeakRef) -> void:
 	var view: Node=reference.get_ref()
