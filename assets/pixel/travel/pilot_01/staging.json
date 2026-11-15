@@ -1,0 +1,355 @@
+{
+  "scenes": {
+    "last_signal": {
+      "id": "last_signal",
+      "base": "passed",
+      "facing": "nw",
+      "route": [
+        [
+          360,
+          615
+        ],
+        [
+          315,
+          590
+        ],
+        [
+          270,
+          570
+        ]
+      ],
+      "horizon": 300,
+      "party_height": 300,
+      "focus": [
+        1030,
+        145,
+        330,
+        420
+      ],
+      "paper": [
+        710,
+        720,
+        230,
+        175
+      ],
+      "formation": {
+        "solo": [
+          [
+            0,
+            0
+          ]
+        ],
+        "duo": [
+          [
+            -60,
+            -8
+          ],
+          [
+            60,
+            12
+          ]
+        ],
+        "trio": [
+          [
+            -100,
+            -15
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            100,
+            25
+          ]
+        ]
+      }
+    },
+    "gravedigger_shop": {
+      "id": "gravedigger_shop",
+      "base": "leave",
+      "facing": "side",
+      "route": [
+        [
+          855,
+          605
+        ],
+        [
+          900,
+          598
+        ],
+        [
+          945,
+          590
+        ]
+      ],
+      "horizon": 300,
+      "party_height": 300,
+      "focus": [
+        320,
+        350,
+        570,
+        220
+      ],
+      "formation": {
+        "solo": [
+          [
+            0,
+            0
+          ]
+        ],
+        "duo": [
+          [
+            -60,
+            -8
+          ],
+          [
+            60,
+            12
+          ]
+        ],
+        "trio": [
+          [
+            -100,
+            -15
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            100,
+            25
+          ]
+        ]
+      }
+    },
+    "lost_purse": {
+      "id": "lost_purse",
+      "base": "untouched",
+      "facing": "nw",
+      "route": [
+        [
+          1120,
+          630
+        ],
+        [
+          1070,
+          605
+        ],
+        [
+          1020,
+          580
+        ]
+      ],
+      "horizon": 300,
+      "party_height": 300,
+      "focus": [
+        135,
+        475,
+        535,
+        320
+      ],
+      "formation": {
+        "solo": [
+          [
+            0,
+            0
+          ]
+        ],
+        "duo": [
+          [
+            -60,
+            -8
+          ],
+          [
+            60,
+            12
+          ]
+        ],
+        "trio": [
+          [
+            -85,
+            -15
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            80,
+            22
+          ]
+        ]
+      }
+    }
+  },
+  "hero_reference": {
+    "nw": {
+      "knight": {
+        "source": "REFERENCE_HERO_ANIMATIONS/nw/knight.png",
+        "row": 0,
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 6,
+        "fps": 6.5,
+        "soles": [
+          84,
+          83,
+          85,
+          84,
+          82,
+          84
+        ],
+        "max_visible_height": 76,
+        "frame_heights": [
+          75,
+          74,
+          76,
+          75,
+          73,
+          75
+        ]
+      },
+      "ranger": {
+        "source": "REFERENCE_HERO_ANIMATIONS/nw/ranger.png",
+        "row": 0,
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 6,
+        "fps": 6.5,
+        "soles": [
+          83,
+          81,
+          82,
+          81,
+          79,
+          82
+        ],
+        "max_visible_height": 73,
+        "frame_heights": [
+          73,
+          72,
+          73,
+          72,
+          70,
+          72
+        ]
+      },
+      "mage": {
+        "source": "REFERENCE_HERO_ANIMATIONS/nw/mage.png",
+        "row": 0,
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 6,
+        "fps": 6.5,
+        "soles": [
+          81,
+          81,
+          83,
+          83,
+          80,
+          82
+        ],
+        "max_visible_height": 74,
+        "frame_heights": [
+          72,
+          72,
+          74,
+          74,
+          70,
+          72
+        ]
+      }
+    },
+    "side": {
+      "knight": {
+        "source": "REFERENCE_HERO_ANIMATIONS/side/knight_packed.png",
+        "row": 1,
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 6,
+        "fps": 6.5,
+        "soles": [
+          89,
+          89,
+          89,
+          89,
+          89,
+          89
+        ],
+        "max_visible_height": 73,
+        "frame_heights": [
+          72,
+          71,
+          71,
+          71,
+          73,
+          72
+        ]
+      },
+      "ranger": {
+        "source": "REFERENCE_HERO_ANIMATIONS/side/ranger_packed.png",
+        "row": 1,
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 6,
+        "fps": 6.5,
+        "soles": [
+          89,
+          89,
+          89,
+          89,
+          89,
+          89
+        ],
+        "max_visible_height": 71,
+        "frame_heights": [
+          71,
+          71,
+          71,
+          71,
+          71,
+          71
+        ]
+      },
+      "mage": {
+        "source": "REFERENCE_HERO_ANIMATIONS/side/mage_packed.png",
+        "row": 1,
+        "cell": [
+          96,
+          96
+        ],
+        "frames": 6,
+        "fps": 6.5,
+        "soles": [
+          89,
+          89,
+          89,
+          89,
+          89,
+          89
+        ],
+        "max_visible_height": 77,
+        "frame_heights": [
+          77,
+          77,
+          76,
+          75,
+          75,
+          76
+        ]
+      }
+    }
+  }
+}

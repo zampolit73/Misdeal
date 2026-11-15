@@ -42,6 +42,7 @@ func run() -> void:
 		await process_frame
 	var resize_view: CanvasLayer = VIEW.instantiate()
 	resize_view.context = CATALOG.context_for("last_signal","passed",matrix[1])
+	resize_view.data_path = CATALOG.DEFAULT_LOCATION
 	root.add_child(resize_view)
 	resize_view.set_process(false)
 	resize_view.elapsed = 1.8
@@ -61,6 +62,7 @@ func run() -> void:
 	for i in range(20):
 		var view: CanvasLayer = VIEW.instantiate()
 		view.context = CATALOG.context_for("last_signal","passed",matrix[i%3])
+		view.data_path = CATALOG.DEFAULT_LOCATION
 		root.add_child(view)
 		view.finish()
 		var reference: WeakRef = weakref(view)

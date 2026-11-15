@@ -1,0 +1,24 @@
+{
+  "revision": 3,
+  "base_package_sha256": "6ea0481378a0b784441dc097e11e1b13c5be0b9d72a8ba1302713d4823e9bc68",
+  "scope": "only shop assets + aggregate reviews/metadata",
+  "source_masters": [
+    {
+      "path": "01_last_signal\\source\\original_master.png",
+      "sha256": "0c67d8da93ff53ebd0c6f0bcef578554ba4c0d9a3c54dc1eab61f3833d0168a6"
+    },
+    {
+      "path": "03_gravedigger_shop\\source\\original_master.png",
+      "sha256": "42c91a57b54fb24b9c5a2360ec47628b28675977f41fbb6740b8af5cad08d739"
+    },
+    {
+      "path": "05_lost_purse\\source\\original_master.png",
+      "sha256": "af4f03e69c781841b12ae4792f0021aae3c397864ce47a8871ebea9708785dd6"
+    }
+  ],
+  "unchanged_scenes": [
+    "01_last_signal",
+    "05_lost_purse"
+  ],
+  "input_pose_policy": "generated object-only local crops; all generated skin/body excluded; upright stone variant discarded"
+}

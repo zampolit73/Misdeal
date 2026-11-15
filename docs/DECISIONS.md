@@ -1,3 +1,7 @@
+## Cinematic Travel Pilot Batch01 V3
+
+Batch01 visual purchase role is transient only. Saved gravedigger_shop outcome remains bought; missing legacy role never invents a role-specific purchase. Exact prepared V3 assets await one unified native review. Old accepted scenes, mechanics and atlases unchanged.
+
 ## Scene05 — final outcome readability ACCEPTED (2026-11-12)
 
 The approved granary scene is finalized with clearly distinguished `fair` (open hidden stock/torn bag/spill), `silence` (closed stock and under-ledger gold) and `passed` (closed stock, no bribe) outcomes. PR #112 is merged and CI green. Do not repaint or restage without a new user request. Scene06 `last_signal` needs separately approved artwork.

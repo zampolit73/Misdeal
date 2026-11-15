@@ -1,3 +1,7 @@
+## Cinematic Travel Pilot Batch01 V3
+
+Add3candidate scenes/11aftermaths for last_signal, gravedigger_shop and lost_purse using exact V3art/poses. Purchase role transient, saved bought and existing effects intact. Unified F6 and real11-route native QA; full GUT294/294. Approved old scenes/combat/balance/saves unchanged. No auto-merge; all_in hand/text discrepancy retained.
+
 ## 2026-11-12 — Scene05 artistic acceptance
 
 User approved the final `false_weights` travel outcomes; PR #112 merged to `main` with passing required CI. All three readable states and approved source are locked. Next art-first travel location is `last_signal`.

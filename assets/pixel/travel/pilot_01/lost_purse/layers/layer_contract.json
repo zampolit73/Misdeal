@@ -1,0 +1,101 @@
+{
+  "source_size": [
+    1672,
+    941
+  ],
+  "viewport": [
+    1280,
+    720
+  ],
+  "coordinates": "master source pixels; apply projection once",
+  "states": [
+    {
+      "id": "safe",
+      "patch": "layers/safe_patch.png",
+      "mask": "layers/safe_mask.png",
+      "source_rect": [
+        160,
+        490,
+        480,
+        290
+      ],
+      "unchanged_outside_mask": true
+    },
+    {
+      "id": "greedy",
+      "patch": "layers/greedy_patch.png",
+      "mask": "layers/greedy_mask.png",
+      "source_rect": [
+        160,
+        490,
+        480,
+        290
+      ],
+      "unchanged_outside_mask": true
+    },
+    {
+      "id": "all_in",
+      "patch": "layers/all_in_patch.png",
+      "mask": "layers/all_in_mask.png",
+      "source_rect": [
+        160,
+        490,
+        480,
+        290
+      ],
+      "unchanged_outside_mask": true
+    },
+    {
+      "id": "untouched",
+      "patch": null,
+      "source_rect": null
+    }
+  ],
+  "alpha": "straight RGBA; transparent RGB zero",
+  "structural_displacement": "one shared rigid plane; keep floors/walls/NPC connected",
+  "base_texture": "source/original_master.png",
+  "final_control_frames": "outcomes/<visual_action>.png at1280x720",
+  "planes": [
+    {
+      "name": "Midground",
+      "texture": "source/original_master.png",
+      "speed_px_sec": 1.2,
+      "rigid_group": "structure"
+    },
+    {
+      "name": "Road",
+      "texture": "layers/ground_plane.png",
+      "speed_px_sec": 1.2,
+      "rigid_group": "structure"
+    },
+    {
+      "name": "Atmosphere",
+      "texture": "layers/atmosphere_plane.png",
+      "speed_px_sec": 1.2,
+      "shader": "layers/quiet_atmosphere.gdshader",
+      "mask": "layers/motion_mask.png"
+    },
+    {
+      "name": "Foreground",
+      "texture": "layers/foreground_occluder.png",
+      "speed_px_sec": 1.2,
+      "rigid_group": "structure",
+      "draw": "above actors"
+    }
+  ],
+  "overscan_virtual": [
+    -32,
+    -18,
+    1344,
+    757
+  ],
+  "mask_channels": {
+    "R": "cloud/water interior only",
+    "G": "existing motivated lantern/reflection",
+    "B": "free cloth edge, no hands or emblem"
+  },
+  "relative_structural_parallax": 0,
+  "shader_clock": "elapsed from V2; never TIME",
+  "revision": 2,
+  "action_contract": "../../V2_ACTION_CONTRACT.json"
+}

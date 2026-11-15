@@ -1,3 +1,7 @@
+## Pilot Batch01 V3 — three scenes, eleven outcomes
+
+Candidate batch01V3: last_signal3, gravedigger_shop4, lost_purse4 through existing V2, exact assets and authored action poses. Purchase role is transient; saved bought unchanged. Full GUT294/294,73,983 assertions; native11/11 real routes with effects once. [Contract/F6](TRAVEL_PILOT_BATCH01_V3.md), [unified evidence](qa/travel_pilot_batch01/README.md). Approved old scenes/core/save/balance unchanged. all_in intact-hand/text discrepancy retained. Required CI and ONE final user artistic review before merge; no auto-merge.
+
 ## 2026-11-12 — Scene05 user artistic acceptance
 
 `false_weights` Scene05 is accepted with all three visible outcome states. PR #112 merged (`e2b62829dd565cde10453fc4a22e50835c69751e`); [final-head CI](https://github.com/zampolit73/Misdeal/actions/runs/43224087326) PASS. See [Scene05 contract](TRAVEL_DEAD_RATIONS_GRANARY.md). Do not change approved source, figures, scene staging or outcome work without a new request. Next authored location: `last_signal` art, **not yet approved**.
