@@ -1,0 +1,2 @@
+# Preserve the exact approved animation metadata bytes (including CRLF).
+*/animation/*/*.json -text

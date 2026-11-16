@@ -1,3 +1,7 @@
+## Cinematic Travel Batch 02 V2
+
+Integrate seven new locations and31 decision-specific aftermaths from exact V2 art through existing Travel V2. Preserve corrected actor scale and foot projection; selected forge item only, no detached-hand animation; one bridge Ranger. Capture actual random/purchase/recruit outcomes transiently, retaining all effects, balance and save fields. Unified31-case F6, real31-route native regression/save-load coverage, full GUT298/298; old scenes intact. [Details](docs/TRAVEL_BATCH02_V2.md). Candidate PR only; no automatic merge.
+
 ## Cinematic Travel Pilot Batch01 V3
 
 Add3candidate scenes/11aftermaths for last_signal, gravedigger_shop and lost_purse using exact V3art/poses. Purchase role transient, saved bought and existing effects intact. Unified F6 and real11-route native QA; full GUT294/294. Approved old scenes/combat/balance/saves unchanged. No auto-merge; all_in hand/text discrepancy retained.

@@ -1,0 +1,1403 @@
+{
+  "package": "MISDEAL_TRAVEL_PRODUCTION_BATCH_02_V2",
+  "zip_sha256": "59069da6d72dd088def9774395ccafdce776f3e51975239cd6d28e4394a36e14",
+  "retained_files": [
+    {
+      "path": "candle_seller/animation/knight/pose_00.png",
+      "sha256": "6b098f13358dc5dfc3d9f4ffb3e6f32e3873c048e14f89a72f831c6807e5f88b",
+      "v2_archive_path": "02_candle_seller/animation/knight/pose_00.png"
+    },
+    {
+      "path": "candle_seller/animation/knight/pose_01.png",
+      "sha256": "9233a1605aabb459247322abb2293052cfa3d13e7cba278c95f1796a48a0bd58",
+      "v2_archive_path": "02_candle_seller/animation/knight/pose_01.png"
+    },
+    {
+      "path": "candle_seller/animation/knight/pose_02.png",
+      "sha256": "5a27a654986edb64bb0bd2e00f3bd5ec5361398eba5c1dff96f17eef9d206a1a",
+      "v2_archive_path": "02_candle_seller/animation/knight/pose_02.png"
+    },
+    {
+      "path": "candle_seller/animation/knight/pose_03.png",
+      "sha256": "0949fcc84cd098986d01babfb7e9446ad18afe453b34b372279f4da67d270c23",
+      "v2_archive_path": "02_candle_seller/animation/knight/pose_03.png"
+    },
+    {
+      "path": "candle_seller/animation/knight/pose_04.png",
+      "sha256": "93241fb1819f73926225a257d97889ed41f6415230372890b4c38ab8d3b162c5",
+      "v2_archive_path": "02_candle_seller/animation/knight/pose_04.png"
+    },
+    {
+      "path": "candle_seller/animation/knight/pose_05.png",
+      "sha256": "a1d11af48a94e833abb80ca72a48c7523117e433ff0ed2d4db1bf5f5843e0764",
+      "v2_archive_path": "02_candle_seller/animation/knight/pose_05.png"
+    },
+    {
+      "path": "candle_seller/animation/knight/pose_06.png",
+      "sha256": "99caeba22014b2b761a7761c77a0171e8521a609ba99f1cc4564c3ba79fff812",
+      "v2_archive_path": "02_candle_seller/animation/knight/pose_06.png"
+    },
+    {
+      "path": "candle_seller/animation/knight/poses.json",
+      "sha256": "ae44a01609cd3b760d8cbbc7e961e7ceac4af56dc7bf26b847f4dd24cb32190e",
+      "v2_archive_path": "02_candle_seller/animation/knight/poses.json"
+    },
+    {
+      "path": "candle_seller/animation/knight/state_mask.png",
+      "sha256": "138fe57972c746dc02927a16029364d6d10b5700abd6d691af4aab6775c883ef",
+      "v2_archive_path": "02_candle_seller/animation/knight/state_mask.png"
+    },
+    {
+      "path": "candle_seller/animation/knight/timeline.json",
+      "sha256": "5032bacc5bc7f9e83ec46ad765b610c90bcf01f7f68331a21c816db4fc63db79",
+      "v2_archive_path": "02_candle_seller/animation/knight/timeline.json"
+    },
+    {
+      "path": "candle_seller/animation/leave/timeline.json",
+      "sha256": "308aa1d9911ed6ac0d8dad4ecbfb45fb09bf8780189026d9409d58bbe0014244",
+      "v2_archive_path": "02_candle_seller/animation/leave/timeline.json"
+    },
+    {
+      "path": "candle_seller/animation/mage/pose_00.png",
+      "sha256": "aee76bcd1bac029dcb7207a48ff4399490738278c753cc372bc485324ea5d934",
+      "v2_archive_path": "02_candle_seller/animation/mage/pose_00.png"
+    },
+    {
+      "path": "candle_seller/animation/mage/pose_01.png",
+      "sha256": "79c1545da4bbd64441468c9b36ce285120d6a4f4613e8e03f55d9a7522ebe1c2",
+      "v2_archive_path": "02_candle_seller/animation/mage/pose_01.png"
+    },
+    {
+      "path": "candle_seller/animation/mage/pose_02.png",
+      "sha256": "bc5b34963344adda226d1e44ece8d0a65506cd53c0c05fe4b53565438d898cb1",
+      "v2_archive_path": "02_candle_seller/animation/mage/pose_02.png"
+    },
+    {
+      "path": "candle_seller/animation/mage/pose_03.png",
+      "sha256": "f4c69338b7cea80611440e6d7ea38e0585d482cea883ac392c4e680c92d05d97",
+      "v2_archive_path": "02_candle_seller/animation/mage/pose_03.png"
+    },
+    {
+      "path": "candle_seller/animation/mage/pose_04.png",
+      "sha256": "1a08dfb47be7d84bca42c7c468244f912f2f4486ec5d96da759fee1893377a54",
+      "v2_archive_path": "02_candle_seller/animation/mage/pose_04.png"
+    },
+    {
+      "path": "candle_seller/animation/mage/pose_05.png",
+      "sha256": "91d4bc3350a32a0818a9a8941c458e06cc09aae440106d2e2d7aa95d54c077e1",
+      "v2_archive_path": "02_candle_seller/animation/mage/pose_05.png"
+    },
+    {
+      "path": "candle_seller/animation/mage/pose_06.png",
+      "sha256": "d06099e813f94457ea0004123fe1daedfe697fa872759f9e8f013767311ff513",
+      "v2_archive_path": "02_candle_seller/animation/mage/pose_06.png"
+    },
+    {
+      "path": "candle_seller/animation/mage/poses.json",
+      "sha256": "bd99df753667f1045ef01ac6b89d3f58eb4cf204358bcf6acadd012d44bf3157",
+      "v2_archive_path": "02_candle_seller/animation/mage/poses.json"
+    },
+    {
+      "path": "candle_seller/animation/mage/state_mask.png",
+      "sha256": "c9b7f1b3ac93ba04987b1b4b5be5108518e0c428c3ea0ac97a855b9340f87066",
+      "v2_archive_path": "02_candle_seller/animation/mage/state_mask.png"
+    },
+    {
+      "path": "candle_seller/animation/mage/timeline.json",
+      "sha256": "60f878171f2ca6266e1b2b55493cb59c8b07f02d72c6842b1e8de2da75538fb1",
+      "v2_archive_path": "02_candle_seller/animation/mage/timeline.json"
+    },
+    {
+      "path": "candle_seller/animation/ranger/pose_00.png",
+      "sha256": "77edc59834f78c09feedc18277e7af39253b988d70b319f09e0ddae7f6e92445",
+      "v2_archive_path": "02_candle_seller/animation/ranger/pose_00.png"
+    },
+    {
+      "path": "candle_seller/animation/ranger/pose_01.png",
+      "sha256": "56147d5196225944fd335c3ff54c22d2ed24baa8e1d840ac037893f5beb16ae7",
+      "v2_archive_path": "02_candle_seller/animation/ranger/pose_01.png"
+    },
+    {
+      "path": "candle_seller/animation/ranger/pose_02.png",
+      "sha256": "da3654ba91c2538605b5af64d47f79e48bb43ba1e96f4dfb492d88aa626e32d5",
+      "v2_archive_path": "02_candle_seller/animation/ranger/pose_02.png"
+    },
+    {
+      "path": "candle_seller/animation/ranger/pose_03.png",
+      "sha256": "2e76479f02b90c24c39ba0324be646412cbb1f981f0b42e899b679b12a23149e",
+      "v2_archive_path": "02_candle_seller/animation/ranger/pose_03.png"
+    },
+    {
+      "path": "candle_seller/animation/ranger/pose_04.png",
+      "sha256": "13fc961d1e57956b8e305fe4f88672d8bca3c1863ae17e679ead256f44c74f4e",
+      "v2_archive_path": "02_candle_seller/animation/ranger/pose_04.png"
+    },
+    {
+      "path": "candle_seller/animation/ranger/pose_05.png",
+      "sha256": "970fa7df4b3f10a119a0da880312af215c3ad4df5a4464e9e85b54ca12bc2418",
+      "v2_archive_path": "02_candle_seller/animation/ranger/pose_05.png"
+    },
+    {
+      "path": "candle_seller/animation/ranger/pose_06.png",
+      "sha256": "b81bdcae510b29cc9cfc95b8ed6cba5d26fe15a64d07d114812b128b69b38f0e",
+      "v2_archive_path": "02_candle_seller/animation/ranger/pose_06.png"
+    },
+    {
+      "path": "candle_seller/animation/ranger/poses.json",
+      "sha256": "91f1848aa9ef545fa22a35ff9cd32db2c5d23b3aef5ab64ffc2ff101bb8b0be9",
+      "v2_archive_path": "02_candle_seller/animation/ranger/poses.json"
+    },
+    {
+      "path": "candle_seller/animation/ranger/state_mask.png",
+      "sha256": "ae5b3df248ac9036f57d18ea1ba2ea04f6bb936684f7a8472cea755f212ec31a",
+      "v2_archive_path": "02_candle_seller/animation/ranger/state_mask.png"
+    },
+    {
+      "path": "candle_seller/animation/ranger/timeline.json",
+      "sha256": "a0763ba956dedd27c21f3dbc363613947995dbc149fc4f9fdb4e638ca4d49755",
+      "v2_archive_path": "02_candle_seller/animation/ranger/timeline.json"
+    },
+    {
+      "path": "candle_seller/layers/bandaged_palm.png",
+      "sha256": "d8c1f915fbbfabd5d9b0b25c2bcaf87366e61920d560152c8fb0bf7730c5f801",
+      "v2_archive_path": "02_candle_seller/layers/bandaged_palm.png"
+    },
+    {
+      "path": "candle_seller/layers/base_1280.png",
+      "sha256": "cb25ebbbde70352508bff32c545819c3f8f3cca286e3d8e368dc155b6fe35fab",
+      "v2_archive_path": "02_candle_seller/layers/base_1280.png"
+    },
+    {
+      "path": "candle_seller/layers/haze_strip.png",
+      "sha256": "b2d102404197ba5797ef005663af99def9744ac413c876efd3c9c722728d6735",
+      "v2_archive_path": "02_candle_seller/layers/haze_strip.png"
+    },
+    {
+      "path": "candle_seller/layers/knight_state.png",
+      "sha256": "1299c190cda38016cc33c1cb5444b6757a9261a570c7bc366d2eb8c3a372736d",
+      "v2_archive_path": "02_candle_seller/layers/knight_state.png"
+    },
+    {
+      "path": "candle_seller/layers/mage_state.png",
+      "sha256": "caab309530fd00f0d2706e57e0fe57f074ab91f21356040f19d9ac486fcb1d16",
+      "v2_archive_path": "02_candle_seller/layers/mage_state.png"
+    },
+    {
+      "path": "candle_seller/layers/ranger_state.png",
+      "sha256": "86a167f82f7c1e091f7dfefaaab004e0cbf92b80a7c3406d89a227161389090b",
+      "v2_archive_path": "02_candle_seller/layers/ranger_state.png"
+    },
+    {
+      "path": "candle_seller/outcomes/knight/final.png",
+      "sha256": "9ef098f964bcb138c59d9ca9ee5cf4a09947489de1e87763c0938e9ec7ba8f3d",
+      "v2_archive_path": "02_candle_seller/outcomes/knight/final.png"
+    },
+    {
+      "path": "candle_seller/outcomes/leave/final.png",
+      "sha256": "cb25ebbbde70352508bff32c545819c3f8f3cca286e3d8e368dc155b6fe35fab",
+      "v2_archive_path": "02_candle_seller/outcomes/leave/final.png"
+    },
+    {
+      "path": "candle_seller/outcomes/mage/final.png",
+      "sha256": "8d331cbd04a343f3b8de77f2dd49f3f4638dbff1fd55de5c24888a22797935fb",
+      "v2_archive_path": "02_candle_seller/outcomes/mage/final.png"
+    },
+    {
+      "path": "candle_seller/outcomes/ranger/final.png",
+      "sha256": "43fbf5025fddab2220249cd9a4c1fea2e62187af5b79da1f5e34e3f9a9d4316b",
+      "v2_archive_path": "02_candle_seller/outcomes/ranger/final.png"
+    },
+    {
+      "path": "candle_seller/source/original_master.png",
+      "sha256": "4ddb04d68e982cb06df5506e8b6292bb52aa8b7ef525f9c18e71173491badea7",
+      "v2_archive_path": "02_candle_seller/source/original_master.png"
+    },
+    {
+      "path": "blood_ledger/animation/blood/pose_00.png",
+      "sha256": "ecc256e2cd6ba665c326796fb48cb3b0d691a01f1425b0e37b5458df6b9eab3a",
+      "v2_archive_path": "04_blood_ledger/animation/blood/pose_00.png"
+    },
+    {
+      "path": "blood_ledger/animation/blood/poses.json",
+      "sha256": "9b9c7b756346b4eb21559b3b8c283b5a877723dbb7ed1a3028051acdb72fafcf",
+      "v2_archive_path": "04_blood_ledger/animation/blood/poses.json"
+    },
+    {
+      "path": "blood_ledger/animation/blood/state_mask.png",
+      "sha256": "15ea04a73901b776d53609b831c6c039dda16846b106a6c7240eb1044fcb9c6d",
+      "v2_archive_path": "04_blood_ledger/animation/blood/state_mask.png"
+    },
+    {
+      "path": "blood_ledger/animation/blood/timeline.json",
+      "sha256": "d8e965e079f6f8b90569db8a002be660873626d31cde927447db02af392dc6ad",
+      "v2_archive_path": "04_blood_ledger/animation/blood/timeline.json"
+    },
+    {
+      "path": "blood_ledger/animation/erase/pose_00.png",
+      "sha256": "024dd76022dc63d1f9568eacd5d950a7bfc364368bc1050e6044947f252b1ec7",
+      "v2_archive_path": "04_blood_ledger/animation/erase/pose_00.png"
+    },
+    {
+      "path": "blood_ledger/animation/erase/pose_01.png",
+      "sha256": "fa7839cd90c7b03d47c253b10fff0741856fb7ef01935296ab05fe79d8b69358",
+      "v2_archive_path": "04_blood_ledger/animation/erase/pose_01.png"
+    },
+    {
+      "path": "blood_ledger/animation/erase/pose_02.png",
+      "sha256": "3d90e5b38f8c2ec35ac612b73bf8c1293a3e8247c7536e3e10064e0cad19ce47",
+      "v2_archive_path": "04_blood_ledger/animation/erase/pose_02.png"
+    },
+    {
+      "path": "blood_ledger/animation/erase/poses.json",
+      "sha256": "f45f86c5fd36ea375b6e6cab9c336a7cb43433dd9e5a1dd7d87ba0f5c672f2c5",
+      "v2_archive_path": "04_blood_ledger/animation/erase/poses.json"
+    },
+    {
+      "path": "blood_ledger/animation/erase/state_mask.png",
+      "sha256": "edb655aa5aff5bc76da6b912caeb91132eb0297a331e0bfc59d968c0e81c92a9",
+      "v2_archive_path": "04_blood_ledger/animation/erase/state_mask.png"
+    },
+    {
+      "path": "blood_ledger/animation/erase/timeline.json",
+      "sha256": "7e798a9e584d46795dd7659d7de83a643eae8247d3ab26ed1aa677cc65f63152",
+      "v2_archive_path": "04_blood_ledger/animation/erase/timeline.json"
+    },
+    {
+      "path": "blood_ledger/animation/gold/pose_00.png",
+      "sha256": "d6d26ec2a8a4dbf1b20243807f0165495c56808189437110b07005f5a942d16c",
+      "v2_archive_path": "04_blood_ledger/animation/gold/pose_00.png"
+    },
+    {
+      "path": "blood_ledger/animation/gold/pose_01.png",
+      "sha256": "fe3a9cbffc51c7b6968007593e8c01c3d0e8bd9fc238b7a710174a78ed53717c",
+      "v2_archive_path": "04_blood_ledger/animation/gold/pose_01.png"
+    },
+    {
+      "path": "blood_ledger/animation/gold/poses.json",
+      "sha256": "60cc31e5b07fbd5cbd1204ef1407a5334d4f72d96c3be76bb7bc3760057baaf5",
+      "v2_archive_path": "04_blood_ledger/animation/gold/poses.json"
+    },
+    {
+      "path": "blood_ledger/animation/gold/state_mask.png",
+      "sha256": "37826d62fbe254ab361e400c0275a1df9757503352fe859d6f09762d92f636b7",
+      "v2_archive_path": "04_blood_ledger/animation/gold/state_mask.png"
+    },
+    {
+      "path": "blood_ledger/animation/gold/timeline.json",
+      "sha256": "4eaec1d21efa8497a561c09920cc1433ee93bbd8886bc668041b1dbb1c048e54",
+      "v2_archive_path": "04_blood_ledger/animation/gold/timeline.json"
+    },
+    {
+      "path": "blood_ledger/animation/leave/pose_00.png",
+      "sha256": "d0961ff1b79e0cd9a6dc33c72b971b37240e0850d3555e64bbbaa9c117a5298c",
+      "v2_archive_path": "04_blood_ledger/animation/leave/pose_00.png"
+    },
+    {
+      "path": "blood_ledger/animation/leave/pose_01.png",
+      "sha256": "b0768879c1e11327ad1224c71aad4731d7ed43cf23f0b830625f2be0ab6203c7",
+      "v2_archive_path": "04_blood_ledger/animation/leave/pose_01.png"
+    },
+    {
+      "path": "blood_ledger/animation/leave/poses.json",
+      "sha256": "c53d90fb384dd01252895bbee7a8cb412708df81f6929d6c4f1bcc78cdd54b42",
+      "v2_archive_path": "04_blood_ledger/animation/leave/poses.json"
+    },
+    {
+      "path": "blood_ledger/animation/leave/state_mask.png",
+      "sha256": "ec075bd70f6d78b0a1a2e567c8a8f279262e2d29d753f0d44827bec66eb1e6f0",
+      "v2_archive_path": "04_blood_ledger/animation/leave/state_mask.png"
+    },
+    {
+      "path": "blood_ledger/animation/leave/timeline.json",
+      "sha256": "59f0568964b03edc87102957476ad5212fd9308873ab692a58d062dffec2b577",
+      "v2_archive_path": "04_blood_ledger/animation/leave/timeline.json"
+    },
+    {
+      "path": "blood_ledger/layers/base_1280.png",
+      "sha256": "717a252f57108f93a4e5e831309df8484242a6149b2b9276df637162ef951cd9",
+      "v2_archive_path": "04_blood_ledger/layers/base_1280.png"
+    },
+    {
+      "path": "blood_ledger/layers/blood_state.png",
+      "sha256": "31557e2c8c612b199d07ef2808765fcafe0184f957f6c7f53e48d1a322e5f4ce",
+      "v2_archive_path": "04_blood_ledger/layers/blood_state.png"
+    },
+    {
+      "path": "blood_ledger/layers/book_half_closed.png",
+      "sha256": "da9e197a63dba3388423377fcf94cef433d37e19a229870d35ce4f24e262cfee",
+      "v2_archive_path": "04_blood_ledger/layers/book_half_closed.png"
+    },
+    {
+      "path": "blood_ledger/layers/erase_state.png",
+      "sha256": "b61f8b760b36b7fa8f3d5a48de9c00485c8fc58aa3d4763a1f3d02fdf0d350b0",
+      "v2_archive_path": "04_blood_ledger/layers/erase_state.png"
+    },
+    {
+      "path": "blood_ledger/layers/gold_state.png",
+      "sha256": "571e04c4d9ab2216e66dedf3099a1a71bc8bf5c9896adb2ba7d2c2e937c776b9",
+      "v2_archive_path": "04_blood_ledger/layers/gold_state.png"
+    },
+    {
+      "path": "blood_ledger/layers/haze_strip.png",
+      "sha256": "b2d102404197ba5797ef005663af99def9744ac413c876efd3c9c722728d6735",
+      "v2_archive_path": "04_blood_ledger/layers/haze_strip.png"
+    },
+    {
+      "path": "blood_ledger/layers/leave_state.png",
+      "sha256": "2f4d1f0e430cef7c80dc50687b22c54663dd0544cdfcedbdf6a9b5fdf4c83b65",
+      "v2_archive_path": "04_blood_ledger/layers/leave_state.png"
+    },
+    {
+      "path": "blood_ledger/outcomes/blood/final.png",
+      "sha256": "3f36ce381dd96bb535a8cb719664c5f54b6d0a432c616bb6d6868909713951b9",
+      "v2_archive_path": "04_blood_ledger/outcomes/blood/final.png"
+    },
+    {
+      "path": "blood_ledger/outcomes/erase/final.png",
+      "sha256": "a05f343ec4f70094f24416b12df88fe4b041a3fa17497732ae781bbd915daf39",
+      "v2_archive_path": "04_blood_ledger/outcomes/erase/final.png"
+    },
+    {
+      "path": "blood_ledger/outcomes/gold/final.png",
+      "sha256": "e229f785342d06d88029413c910e173e7879334ceb08d324caef442899b3c666",
+      "v2_archive_path": "04_blood_ledger/outcomes/gold/final.png"
+    },
+    {
+      "path": "blood_ledger/outcomes/leave/final.png",
+      "sha256": "7a937f3dfb348cb909d04e672d211729cdd1c3307a121261041fb791aefa805e",
+      "v2_archive_path": "04_blood_ledger/outcomes/leave/final.png"
+    },
+    {
+      "path": "blood_ledger/source/original_master.png",
+      "sha256": "6b1a55345f363e3d19ae629a5aaa29a6aa2193c90da41cdf8082ed4d7b24c86f",
+      "v2_archive_path": "04_blood_ledger/source/original_master.png"
+    },
+    {
+      "path": "debtor_bones/animation/break/pose_00.png",
+      "sha256": "20afb86f3a3e322ac239174d070ffa8e54441db75a862c005cf45dd81319fe5d",
+      "v2_archive_path": "06_debtor_bones/animation/break/pose_00.png"
+    },
+    {
+      "path": "debtor_bones/animation/break/poses.json",
+      "sha256": "e2dee90ac92d77cbfbb88f18ce04c2f598e3368da4115ebd8b11fdd97255ce89",
+      "v2_archive_path": "06_debtor_bones/animation/break/poses.json"
+    },
+    {
+      "path": "debtor_bones/animation/break/state_mask.png",
+      "sha256": "d828f60293354c5e88ee00ff7e3950aab9ba4cb3e4ac3b787b2f8f9965eee9d9",
+      "v2_archive_path": "06_debtor_bones/animation/break/state_mask.png"
+    },
+    {
+      "path": "debtor_bones/animation/break/timeline.json",
+      "sha256": "63469d51ce2c3b0d9acf3c3c4e36e8f9de73dfd6c9d671d178fd27f729159b3f",
+      "v2_archive_path": "06_debtor_bones/animation/break/timeline.json"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_failure/pose_00.png",
+      "sha256": "30cf538951f4f038276b38287c0982ea2891bbac9580c2f82cb41b1d01a3fe4f",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_failure/pose_00.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_failure/pose_01.png",
+      "sha256": "5615cd5e5769ade7485310719a47065388ad8be07aefe0cb6f2882136ba42806",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_failure/pose_01.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_failure/pose_02.png",
+      "sha256": "34fde375e9f0550abdcc6280446a6e7c4e05d948f43399d650aaf478322c5489",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_failure/pose_02.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_failure/pose_03.png",
+      "sha256": "63f2735dfa2b65e93cdcc0fe4098d5a4be447a7081041a2f7fd86e990234c192",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_failure/pose_03.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_failure/pose_04.png",
+      "sha256": "96b695d56633bd2c6d03fa54affe6beb3ba74faf14c5eb461a2277e8ed7fa9a6",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_failure/pose_04.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_failure/pose_05.png",
+      "sha256": "5da92022567917caab54d311a9076efe9c3c27e879539cc7977799a3b652012b",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_failure/pose_05.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_failure/poses.json",
+      "sha256": "aaaff8a3143fc2c4420a44ced1bb9fb37474e35e427b9843d707cc54fc5bf864",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_failure/poses.json"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_failure/state_mask.png",
+      "sha256": "1a212c2c1483a8a68eef3af05952395603cb96fbc5896603360820a306ec505f",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_failure/state_mask.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_failure/timeline.json",
+      "sha256": "044453683d6fa3ceafe25ab5f1fa1d6ffdce53f382ce37b34788ee76fe4ee89a",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_failure/timeline.json"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_success/pose_00.png",
+      "sha256": "5b0d8b67e6576c7097d38eea5d776f9edec697e1326a6f299f10a1446e564cdf",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_success/pose_00.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_success/pose_01.png",
+      "sha256": "6922eaa2704396efdd5365229e580a4dffe09e386619b233b01ba49adebfb2c6",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_success/pose_01.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_success/pose_02.png",
+      "sha256": "021c93ec614cd8629bf12e2b082b374aad2307808190991b7087598e8f3d2fc2",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_success/pose_02.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_success/pose_03.png",
+      "sha256": "695ac62583025cd6079b85e1fd97475c2f90f97358aeefb2db82567fdf615564",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_success/pose_03.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_success/pose_04.png",
+      "sha256": "7a1d800756db36ee157eec24768339c2797c2326e87a46953c5377c1d28e3212",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_success/pose_04.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_success/pose_05.png",
+      "sha256": "4183d01f38de044ef4fc720e0a7fbc5148ee5d9bfd0cf0f80fb8b44d21544fc8",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_success/pose_05.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_success/poses.json",
+      "sha256": "0e7edf2c0b1fbc9a758dee871808c992ac8912acf0a1398b6075e53b5450caa8",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_success/poses.json"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_success/state_mask.png",
+      "sha256": "bf3f3e40d73b2e3ddb08d33a0742a74d7e9a29a6cb85347cff2c18e6d114e38b",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_success/state_mask.png"
+    },
+    {
+      "path": "debtor_bones/animation/gamble_success/timeline.json",
+      "sha256": "5d9f860f455cfe38a925b0b486ee3d8634c9e86a420fa50508bae9f0fabfa72d",
+      "v2_archive_path": "06_debtor_bones/animation/gamble_success/timeline.json"
+    },
+    {
+      "path": "debtor_bones/animation/leave/timeline.json",
+      "sha256": "34789b5ba85462e81b0ec98aff381680b4cd08da70660cb671d87847a7048344",
+      "v2_archive_path": "06_debtor_bones/animation/leave/timeline.json"
+    },
+    {
+      "path": "debtor_bones/animation/safe/pose_00.png",
+      "sha256": "a83ad141306b50f1c4e2779053f440531d499a81990bae29f481c36f3ece4096",
+      "v2_archive_path": "06_debtor_bones/animation/safe/pose_00.png"
+    },
+    {
+      "path": "debtor_bones/animation/safe/pose_01.png",
+      "sha256": "92c1a4ababa5a93621bf31bedd78b3d0e5d47fc9690eb57c70d51b306d07f0c6",
+      "v2_archive_path": "06_debtor_bones/animation/safe/pose_01.png"
+    },
+    {
+      "path": "debtor_bones/animation/safe/pose_02.png",
+      "sha256": "654f4b322d1e4189618ed24e5430dd110f27a04764d0422c7c39ffe743ab6cf2",
+      "v2_archive_path": "06_debtor_bones/animation/safe/pose_02.png"
+    },
+    {
+      "path": "debtor_bones/animation/safe/poses.json",
+      "sha256": "f70d5c296a9a35f32404af7bbfa5b98d67c06329b4d8602f7dcc6a2176784d6f",
+      "v2_archive_path": "06_debtor_bones/animation/safe/poses.json"
+    },
+    {
+      "path": "debtor_bones/animation/safe/state_mask.png",
+      "sha256": "d7f2cc8502462ca8e9e36146030ad315fe1cfb8c311d68c4b127f751dbf4d590",
+      "v2_archive_path": "06_debtor_bones/animation/safe/state_mask.png"
+    },
+    {
+      "path": "debtor_bones/animation/safe/timeline.json",
+      "sha256": "b86c5816deb2e428206d578dfa5e28a97d5837af1d944b21ad8433f85ae21676",
+      "v2_archive_path": "06_debtor_bones/animation/safe/timeline.json"
+    },
+    {
+      "path": "debtor_bones/layers/base_1280.png",
+      "sha256": "ab96a52555a77260a48b478f4786fb52e6e29258d6b492d161d2e125117d978a",
+      "v2_archive_path": "06_debtor_bones/layers/base_1280.png"
+    },
+    {
+      "path": "debtor_bones/layers/break_state.png",
+      "sha256": "857367986b8c9e3a44dc05bd409a6b2125ffccfc49b1bb93999c8b8a5bfaee39",
+      "v2_archive_path": "06_debtor_bones/layers/break_state.png"
+    },
+    {
+      "path": "debtor_bones/layers/dice_clean.png",
+      "sha256": "d9fdbd4a2336a653ac9036b48d819c77a6d266d11fff03dd5b2c1d45bd10852c",
+      "v2_archive_path": "06_debtor_bones/layers/dice_clean.png"
+    },
+    {
+      "path": "debtor_bones/layers/gamble_failure_state.png",
+      "sha256": "b46951186dfaa0c9795e41bcb41a7d57015216e4def50704d3e973989fb9e56f",
+      "v2_archive_path": "06_debtor_bones/layers/gamble_failure_state.png"
+    },
+    {
+      "path": "debtor_bones/layers/gamble_success_state.png",
+      "sha256": "c3c457c32ae0e2c94bfd173201c9e915de1754dfbde875abf4cb9cc913589b60",
+      "v2_archive_path": "06_debtor_bones/layers/gamble_success_state.png"
+    },
+    {
+      "path": "debtor_bones/layers/haze_strip.png",
+      "sha256": "b2d102404197ba5797ef005663af99def9744ac413c876efd3c9c722728d6735",
+      "v2_archive_path": "06_debtor_bones/layers/haze_strip.png"
+    },
+    {
+      "path": "debtor_bones/layers/safe_state.png",
+      "sha256": "c68e95b1d8362282f917c5c2a732f1c3b09dd227632813b817a972858c3ea1e3",
+      "v2_archive_path": "06_debtor_bones/layers/safe_state.png"
+    },
+    {
+      "path": "debtor_bones/outcomes/break/final.png",
+      "sha256": "c8c0932e65afc2b3a17268ab5b4b0a094f1971aed829d82331362f6948c6ab75",
+      "v2_archive_path": "06_debtor_bones/outcomes/break/final.png"
+    },
+    {
+      "path": "debtor_bones/outcomes/gamble_failure/final.png",
+      "sha256": "defbd890384048282873d54d93254e55f72b6aafefc18861033b32eafc1b917f",
+      "v2_archive_path": "06_debtor_bones/outcomes/gamble_failure/final.png"
+    },
+    {
+      "path": "debtor_bones/outcomes/gamble_success/final.png",
+      "sha256": "2c0f9a2bb6d788c98e436be6a85d942565f60e709440ad374cfc0de3532d6523",
+      "v2_archive_path": "06_debtor_bones/outcomes/gamble_success/final.png"
+    },
+    {
+      "path": "debtor_bones/outcomes/leave/final.png",
+      "sha256": "ab96a52555a77260a48b478f4786fb52e6e29258d6b492d161d2e125117d978a",
+      "v2_archive_path": "06_debtor_bones/outcomes/leave/final.png"
+    },
+    {
+      "path": "debtor_bones/outcomes/safe/final.png",
+      "sha256": "6b803700932c6145a4bf475148dce15132c3adb3d6a04d0a09e3c8179e1b84ba",
+      "v2_archive_path": "06_debtor_bones/outcomes/safe/final.png"
+    },
+    {
+      "path": "debtor_bones/source/original_master.png",
+      "sha256": "b021d97d28fed81d5a51cf4843e5b971b8b7dd058cd996317c85f8406bec3346",
+      "v2_archive_path": "06_debtor_bones/source/original_master.png"
+    },
+    {
+      "path": "wizard_tithe/animation/blood/pose_00.png",
+      "sha256": "c3a9d98fc54319e5b565a43f8d75ee1ff04cf5d08ba0036101c373a851fa0691",
+      "v2_archive_path": "07_wizard_tithe/animation/blood/pose_00.png"
+    },
+    {
+      "path": "wizard_tithe/animation/blood/pose_01.png",
+      "sha256": "4ed09f7ef83eb72e9746fe08cc1bef462272026834e2321d2756a0fea77fddec",
+      "v2_archive_path": "07_wizard_tithe/animation/blood/pose_01.png"
+    },
+    {
+      "path": "wizard_tithe/animation/blood/pose_02.png",
+      "sha256": "b1e010c338e1c1434a9eccbee4f7b3f97422e7fb921a7c6ba36b59921476d7a5",
+      "v2_archive_path": "07_wizard_tithe/animation/blood/pose_02.png"
+    },
+    {
+      "path": "wizard_tithe/animation/blood/pose_03.png",
+      "sha256": "6fe88ee5ec5b69a9f2aaba7ba589a7829fda6a073c60c11b1d017db6f5aadeaa",
+      "v2_archive_path": "07_wizard_tithe/animation/blood/pose_03.png"
+    },
+    {
+      "path": "wizard_tithe/animation/blood/pose_04.png",
+      "sha256": "151d8724babac7853e1ecd9cda7818a59b1021a20cea9931777bc50d47859bdb",
+      "v2_archive_path": "07_wizard_tithe/animation/blood/pose_04.png"
+    },
+    {
+      "path": "wizard_tithe/animation/blood/pose_05.png",
+      "sha256": "b87daa7148d939349227b5b8ff61da67f81943b53ae8e0a532976177d0d51196",
+      "v2_archive_path": "07_wizard_tithe/animation/blood/pose_05.png"
+    },
+    {
+      "path": "wizard_tithe/animation/blood/pose_06.png",
+      "sha256": "f43d4efb13923416428aa048650f48e274ebea8284ede4972293e2f967aec4d7",
+      "v2_archive_path": "07_wizard_tithe/animation/blood/pose_06.png"
+    },
+    {
+      "path": "wizard_tithe/animation/blood/poses.json",
+      "sha256": "bbb987b3064f5239c8e30969a59a868c10ee138717368495f4af8479f555c535",
+      "v2_archive_path": "07_wizard_tithe/animation/blood/poses.json"
+    },
+    {
+      "path": "wizard_tithe/animation/blood/state_mask.png",
+      "sha256": "5011fae5fb363107f971491e16df7c7b31087778f89b23b46b621bfc5864c5ad",
+      "v2_archive_path": "07_wizard_tithe/animation/blood/state_mask.png"
+    },
+    {
+      "path": "wizard_tithe/animation/blood/timeline.json",
+      "sha256": "f08e4349374c3681b233c93940fdc4566475d59c2c73d31aeb39611eb8235458",
+      "v2_archive_path": "07_wizard_tithe/animation/blood/timeline.json"
+    },
+    {
+      "path": "wizard_tithe/animation/gold/pose_00.png",
+      "sha256": "4434e2ed15985146ec9fc058d0e8527ce281c90c83785e7b18fc57de200f24a9",
+      "v2_archive_path": "07_wizard_tithe/animation/gold/pose_00.png"
+    },
+    {
+      "path": "wizard_tithe/animation/gold/pose_01.png",
+      "sha256": "46ae4afc68db74e90b1670dd54b4e63525426927bdadc305429105ba26105f3a",
+      "v2_archive_path": "07_wizard_tithe/animation/gold/pose_01.png"
+    },
+    {
+      "path": "wizard_tithe/animation/gold/pose_02.png",
+      "sha256": "e4ffe810eb5ff8095a7ccc3c685e61f466bb3d5237fc35d14c38a1a09738cd8e",
+      "v2_archive_path": "07_wizard_tithe/animation/gold/pose_02.png"
+    },
+    {
+      "path": "wizard_tithe/animation/gold/pose_03.png",
+      "sha256": "60ce303f3f3af1b63963932fdcf688c213ae74cd16d64b1c34eddca1aa165ca3",
+      "v2_archive_path": "07_wizard_tithe/animation/gold/pose_03.png"
+    },
+    {
+      "path": "wizard_tithe/animation/gold/pose_04.png",
+      "sha256": "899e19f7d20301f8287689f2ff00352b09f9ad7097a892b5832b077101c46980",
+      "v2_archive_path": "07_wizard_tithe/animation/gold/pose_04.png"
+    },
+    {
+      "path": "wizard_tithe/animation/gold/pose_05.png",
+      "sha256": "1a76007d12527f0d2f3effba57b5ab7f0cd9d391f5b04484b57ed10c0832628f",
+      "v2_archive_path": "07_wizard_tithe/animation/gold/pose_05.png"
+    },
+    {
+      "path": "wizard_tithe/animation/gold/poses.json",
+      "sha256": "d2d9ad22f780536de29ffa13b612560980be1af0afad46885db1d42b46d15d02",
+      "v2_archive_path": "07_wizard_tithe/animation/gold/poses.json"
+    },
+    {
+      "path": "wizard_tithe/animation/gold/state_mask.png",
+      "sha256": "c1f42a398a189e0cf27ffd87076091e5c7b083aaff40ff4219264b12dcc5c661",
+      "v2_archive_path": "07_wizard_tithe/animation/gold/state_mask.png"
+    },
+    {
+      "path": "wizard_tithe/animation/gold/timeline.json",
+      "sha256": "b77c05db97b27f0299a5e0519c78bd21677d03ade3ed8412ca04dd40016282c7",
+      "v2_archive_path": "07_wizard_tithe/animation/gold/timeline.json"
+    },
+    {
+      "path": "wizard_tithe/animation/refuse/pose_00.png",
+      "sha256": "889a63012287b188507734bad9eb653f427c75718edd2b35e3dfd1db0c86c87a",
+      "v2_archive_path": "07_wizard_tithe/animation/refuse/pose_00.png"
+    },
+    {
+      "path": "wizard_tithe/animation/refuse/pose_01.png",
+      "sha256": "97975f45f7477e6ad681876f3513d32a21789bcfdc25f5a9e1bd2b6a0d692333",
+      "v2_archive_path": "07_wizard_tithe/animation/refuse/pose_01.png"
+    },
+    {
+      "path": "wizard_tithe/animation/refuse/poses.json",
+      "sha256": "0c04d56af8e7aa738725763198f692f37995e6c399efe5c6ad97662a8aa2506e",
+      "v2_archive_path": "07_wizard_tithe/animation/refuse/poses.json"
+    },
+    {
+      "path": "wizard_tithe/animation/refuse/state_mask.png",
+      "sha256": "ea04401e7bd46151d1a6de27a29720838981f1beb8341bd02024df83512a5390",
+      "v2_archive_path": "07_wizard_tithe/animation/refuse/state_mask.png"
+    },
+    {
+      "path": "wizard_tithe/animation/refuse/timeline.json",
+      "sha256": "5a6891c0fca72c04c4799d92ea9d5550a25d9dc8a91c582701e14bf20963c75c",
+      "v2_archive_path": "07_wizard_tithe/animation/refuse/timeline.json"
+    },
+    {
+      "path": "wizard_tithe/layers/base_1280.png",
+      "sha256": "f568ee9aef9509002ef6374a965e6326933a6d0b31e05dfcc02fd970e379e1d2",
+      "v2_archive_path": "07_wizard_tithe/layers/base_1280.png"
+    },
+    {
+      "path": "wizard_tithe/layers/blood_state.png",
+      "sha256": "7ea5806a63c807c1d48e43e9e6336187a536164c52ea5767015c6e8eeb312e49",
+      "v2_archive_path": "07_wizard_tithe/layers/blood_state.png"
+    },
+    {
+      "path": "wizard_tithe/layers/gold_state.png",
+      "sha256": "7d0e0b71cd0d6dd32cd4b3132d7f7f31c91524ff25cdec19e6c26b98cf817827",
+      "v2_archive_path": "07_wizard_tithe/layers/gold_state.png"
+    },
+    {
+      "path": "wizard_tithe/layers/haze_strip.png",
+      "sha256": "b2d102404197ba5797ef005663af99def9744ac413c876efd3c9c722728d6735",
+      "v2_archive_path": "07_wizard_tithe/layers/haze_strip.png"
+    },
+    {
+      "path": "wizard_tithe/layers/refuse_half_tipped.png",
+      "sha256": "ffac13521fd4d163e35798ca4fc9afb8e4fc2da0fbb00ec42e64ef9e22267470",
+      "v2_archive_path": "07_wizard_tithe/layers/refuse_half_tipped.png"
+    },
+    {
+      "path": "wizard_tithe/layers/refuse_state.png",
+      "sha256": "69fa8308eb4513e9a2e8eeece21046991c00de31a2c5e9cf5dd404a2440c99ca",
+      "v2_archive_path": "07_wizard_tithe/layers/refuse_state.png"
+    },
+    {
+      "path": "wizard_tithe/outcomes/blood/final.png",
+      "sha256": "2410ccb7a60f700d07bc081c11291d113490ea18fcb0e897127039dadc424a97",
+      "v2_archive_path": "07_wizard_tithe/outcomes/blood/final.png"
+    },
+    {
+      "path": "wizard_tithe/outcomes/gold/final.png",
+      "sha256": "0214cbf2e43f879f0b7b3d2742d8a84946ee5b32166b3834c7dbc3192a4908ae",
+      "v2_archive_path": "07_wizard_tithe/outcomes/gold/final.png"
+    },
+    {
+      "path": "wizard_tithe/outcomes/refuse/final.png",
+      "sha256": "04b4577fa3743cef389fc220d7f624c764ae01476ec398a30b1d2c011670d22b",
+      "v2_archive_path": "07_wizard_tithe/outcomes/refuse/final.png"
+    },
+    {
+      "path": "wizard_tithe/source/original_master.png",
+      "sha256": "a488969998cea7e6c94be2f77d08b4acf9dd3fc645bc7609cdda37dd73a0d518",
+      "v2_archive_path": "07_wizard_tithe/source/original_master.png"
+    },
+    {
+      "path": "broken_crown/animation/break/pose_00.png",
+      "sha256": "9229952735dddf7580be64ee3f3bdfa472a22154166edb68cdb5be29b009f7e4",
+      "v2_archive_path": "08_broken_crown/animation/break/pose_00.png"
+    },
+    {
+      "path": "broken_crown/animation/break/pose_01.png",
+      "sha256": "2f554e9d5f015286f3bb4ab724bca97fbb3552f3b9e7d3e24850d8680639fb19",
+      "v2_archive_path": "08_broken_crown/animation/break/pose_01.png"
+    },
+    {
+      "path": "broken_crown/animation/break/pose_02.png",
+      "sha256": "a79553c9f602066c2cbc8cd2c12ef8c932ad4d65eee05fb22cc6ade7d30763cc",
+      "v2_archive_path": "08_broken_crown/animation/break/pose_02.png"
+    },
+    {
+      "path": "broken_crown/animation/break/pose_03.png",
+      "sha256": "ae2caef52c7ab85ad6cb296295454b8e9d6f869709074fc8c56a042a760726b4",
+      "v2_archive_path": "08_broken_crown/animation/break/pose_03.png"
+    },
+    {
+      "path": "broken_crown/animation/break/pose_04.png",
+      "sha256": "1b979e78b34f35a216dc816ddaab6dfcea3aff7a606e26429f10b0fa2dadeafb",
+      "v2_archive_path": "08_broken_crown/animation/break/pose_04.png"
+    },
+    {
+      "path": "broken_crown/animation/break/pose_05.png",
+      "sha256": "e499cddf728c1a58f53fe2d8541e85479c2706d9c76f22f10343b81da0a9086c",
+      "v2_archive_path": "08_broken_crown/animation/break/pose_05.png"
+    },
+    {
+      "path": "broken_crown/animation/break/poses.json",
+      "sha256": "e08b793f0c169ae4591cba0a4359b904cb5423e86e1f348589be7b113ae5d50f",
+      "v2_archive_path": "08_broken_crown/animation/break/poses.json"
+    },
+    {
+      "path": "broken_crown/animation/break/state_mask.png",
+      "sha256": "cb67d60427f6cda1b613dad6764c7b219d633acd37c9c7a054f5ab7c2e2f4d76",
+      "v2_archive_path": "08_broken_crown/animation/break/state_mask.png"
+    },
+    {
+      "path": "broken_crown/animation/break/timeline.json",
+      "sha256": "aeab1687ee963c08de2165b51d78c231a4a87e019dfc4117cfad0239349d1fbf",
+      "v2_archive_path": "08_broken_crown/animation/break/timeline.json"
+    },
+    {
+      "path": "broken_crown/animation/leave/timeline.json",
+      "sha256": "cce0be2f60015015e1a8180a7730bf5050c062add7dd2af2d17fbd2d41d436ac",
+      "v2_archive_path": "08_broken_crown/animation/leave/timeline.json"
+    },
+    {
+      "path": "broken_crown/animation/melt/pose_00.png",
+      "sha256": "58555f29b96a4343e3912ae7db99cced9d00bd0867a0ce51509106ca54d93f92",
+      "v2_archive_path": "08_broken_crown/animation/melt/pose_00.png"
+    },
+    {
+      "path": "broken_crown/animation/melt/pose_01.png",
+      "sha256": "286114646c1d0cc8c9216db994af5c4ea32f98c6b139cd12c0b74c90dec2b910",
+      "v2_archive_path": "08_broken_crown/animation/melt/pose_01.png"
+    },
+    {
+      "path": "broken_crown/animation/melt/pose_02.png",
+      "sha256": "a6c91108d45081100a2f3d948e251b1d61d6ef7e5003f2cb5ecd18a7eb238b6b",
+      "v2_archive_path": "08_broken_crown/animation/melt/pose_02.png"
+    },
+    {
+      "path": "broken_crown/animation/melt/pose_03.png",
+      "sha256": "9f3b5134da2de7e9f992b57e64ee69bf09895ac096736399557e04d933903a19",
+      "v2_archive_path": "08_broken_crown/animation/melt/pose_03.png"
+    },
+    {
+      "path": "broken_crown/animation/melt/pose_04.png",
+      "sha256": "0f2f951358077aeb53536b74e7e1fe8145a8afcf5672dcf5ceb8392b6281936c",
+      "v2_archive_path": "08_broken_crown/animation/melt/pose_04.png"
+    },
+    {
+      "path": "broken_crown/animation/melt/pose_05.png",
+      "sha256": "2bba32f3119c28d7a7afb9f39aab67c2b88b58814f5fb296ed8352343c775f37",
+      "v2_archive_path": "08_broken_crown/animation/melt/pose_05.png"
+    },
+    {
+      "path": "broken_crown/animation/melt/poses.json",
+      "sha256": "e08b793f0c169ae4591cba0a4359b904cb5423e86e1f348589be7b113ae5d50f",
+      "v2_archive_path": "08_broken_crown/animation/melt/poses.json"
+    },
+    {
+      "path": "broken_crown/animation/melt/state_mask.png",
+      "sha256": "cb67d60427f6cda1b613dad6764c7b219d633acd37c9c7a054f5ab7c2e2f4d76",
+      "v2_archive_path": "08_broken_crown/animation/melt/state_mask.png"
+    },
+    {
+      "path": "broken_crown/animation/melt/timeline.json",
+      "sha256": "df9d69fc687a6eb4c36c15f4217e8d951ecdceac7f79c1a207f070c511dfdcac",
+      "v2_archive_path": "08_broken_crown/animation/melt/timeline.json"
+    },
+    {
+      "path": "broken_crown/animation/wear/pose_00.png",
+      "sha256": "bba1d80d8d98651bef5d710c1476033f15a36a3906fa3de6d7d8b8bda4a01620",
+      "v2_archive_path": "08_broken_crown/animation/wear/pose_00.png"
+    },
+    {
+      "path": "broken_crown/animation/wear/pose_01.png",
+      "sha256": "c1427e8d2bf186a31da44697deef8b217a314e11953e919501c5ae1c6907d41a",
+      "v2_archive_path": "08_broken_crown/animation/wear/pose_01.png"
+    },
+    {
+      "path": "broken_crown/animation/wear/pose_02.png",
+      "sha256": "528b10bb396ca011998a1033e084d7ea0be14420e569388eb91fa101d1e68663",
+      "v2_archive_path": "08_broken_crown/animation/wear/pose_02.png"
+    },
+    {
+      "path": "broken_crown/animation/wear/pose_03.png",
+      "sha256": "bf4ae863347d25d91f30f3f901b72d0f6493d27e026d4f026abb932715bc9416",
+      "v2_archive_path": "08_broken_crown/animation/wear/pose_03.png"
+    },
+    {
+      "path": "broken_crown/animation/wear/pose_04.png",
+      "sha256": "31ee895454da8a29b251a009463d2f61b4d2ede76956d505a3d55e74916273c3",
+      "v2_archive_path": "08_broken_crown/animation/wear/pose_04.png"
+    },
+    {
+      "path": "broken_crown/animation/wear/poses.json",
+      "sha256": "ae49949a665225d31ed3cfe47c83d63ee130015a7a0f8cb070b8866c009c41b4",
+      "v2_archive_path": "08_broken_crown/animation/wear/poses.json"
+    },
+    {
+      "path": "broken_crown/animation/wear/state_mask.png",
+      "sha256": "cb67d60427f6cda1b613dad6764c7b219d633acd37c9c7a054f5ab7c2e2f4d76",
+      "v2_archive_path": "08_broken_crown/animation/wear/state_mask.png"
+    },
+    {
+      "path": "broken_crown/animation/wear/timeline.json",
+      "sha256": "e4cbf05d9a26dfcfed154a60863654f67ba4ce718f11d1f9b54429ed920b0169",
+      "v2_archive_path": "08_broken_crown/animation/wear/timeline.json"
+    },
+    {
+      "path": "broken_crown/layers/base_1280.png",
+      "sha256": "bf961a8a118f8036a3b9c7ada6208490a116a8ee819ed0d30162a317f9301672",
+      "v2_archive_path": "08_broken_crown/layers/base_1280.png"
+    },
+    {
+      "path": "broken_crown/layers/break_state.png",
+      "sha256": "2df89268db81b159c79d60e15bedb7b07e5a11a9179f9d37083d04829b2ae5c0",
+      "v2_archive_path": "08_broken_crown/layers/break_state.png"
+    },
+    {
+      "path": "broken_crown/layers/haze_strip.png",
+      "sha256": "b2d102404197ba5797ef005663af99def9744ac413c876efd3c9c722728d6735",
+      "v2_archive_path": "08_broken_crown/layers/haze_strip.png"
+    },
+    {
+      "path": "broken_crown/layers/melt_state.png",
+      "sha256": "e6a4825103af634cddebd685b1a4cd2e2c7fd2418e2c55f45f3f463a4bd3ae95",
+      "v2_archive_path": "08_broken_crown/layers/melt_state.png"
+    },
+    {
+      "path": "broken_crown/layers/wear_state.png",
+      "sha256": "a9db79e7baf5b745f4a1b7da4dd29990830a0072da34788db3454236e9f73984",
+      "v2_archive_path": "08_broken_crown/layers/wear_state.png"
+    },
+    {
+      "path": "broken_crown/outcomes/break/final.png",
+      "sha256": "c5a2803acbd045e427edc2b0af5cb5eb5059bf12b9b9aec1dd78582e05e7f35f",
+      "v2_archive_path": "08_broken_crown/outcomes/break/final.png"
+    },
+    {
+      "path": "broken_crown/outcomes/leave/final.png",
+      "sha256": "bf961a8a118f8036a3b9c7ada6208490a116a8ee819ed0d30162a317f9301672",
+      "v2_archive_path": "08_broken_crown/outcomes/leave/final.png"
+    },
+    {
+      "path": "broken_crown/outcomes/melt/final.png",
+      "sha256": "41d1f5e98fd495993141b6afa20f43c5d747e4b32fa074a5f317f59d766593f0",
+      "v2_archive_path": "08_broken_crown/outcomes/melt/final.png"
+    },
+    {
+      "path": "broken_crown/outcomes/wear/final.png",
+      "sha256": "0aef9d0613c27651a8b944a122209e3f8715bd4c944a97c5b35a5add9ef83703",
+      "v2_archive_path": "08_broken_crown/outcomes/wear/final.png"
+    },
+    {
+      "path": "broken_crown/source/original_master.png",
+      "sha256": "ff92ec9f6d57938e09c96496b2fa14358d308920fc391520b126e9e07ec79293",
+      "v2_archive_path": "08_broken_crown/source/original_master.png"
+    },
+    {
+      "path": "curse_forge/animation/blind_quiver/pose_00.png",
+      "sha256": "8ae4e404201e87ffa124c2cd6399af153d91fc8969cba73780cfd14fc7accf2f",
+      "v2_archive_path": "09_curse_forge/animation/blind_quiver/pose_00.png"
+    },
+    {
+      "path": "curse_forge/animation/blind_quiver/pose_01.png",
+      "sha256": "1976c258ba3f8e7ad39e230e7c35974e29add4733a9921e4036c678e2b87cf2f",
+      "v2_archive_path": "09_curse_forge/animation/blind_quiver/pose_01.png"
+    },
+    {
+      "path": "curse_forge/animation/blind_quiver/pose_02.png",
+      "sha256": "158a97dff5d8b68ad53ffd4db52f46c44e8c0aec52b09ca17bd8f6b45d481b73",
+      "v2_archive_path": "09_curse_forge/animation/blind_quiver/pose_02.png"
+    },
+    {
+      "path": "curse_forge/animation/blind_quiver/pose_03.png",
+      "sha256": "7916c021eb19f67415a28f2cca3f8775ffbe0d23d851ee5f6211c1310e3aaca4",
+      "v2_archive_path": "09_curse_forge/animation/blind_quiver/pose_03.png"
+    },
+    {
+      "path": "curse_forge/animation/blind_quiver/pose_04.png",
+      "sha256": "836b6e9e4f8c2583cb29af6e238fc77f5513fd044b15bc256f64e561d764d780",
+      "v2_archive_path": "09_curse_forge/animation/blind_quiver/pose_04.png"
+    },
+    {
+      "path": "curse_forge/animation/blind_quiver/poses.json",
+      "sha256": "931389a58c9b9b28033b6c3ac1a75714435b427848181dfc7c36ef525a2cd2f4",
+      "v2_archive_path": "09_curse_forge/animation/blind_quiver/poses.json"
+    },
+    {
+      "path": "curse_forge/animation/blind_quiver/state_mask.png",
+      "sha256": "55e34c0442db2707fd72a194cf4a4d86308d2df5db05ff0768c17a7b6364de3a",
+      "v2_archive_path": "09_curse_forge/animation/blind_quiver/state_mask.png"
+    },
+    {
+      "path": "curse_forge/animation/blind_quiver/timeline.json",
+      "sha256": "0f3a254bf75ef34806b6cf2a125f28f45fb5a86689df56c82efd72aba1210e00",
+      "v2_archive_path": "09_curse_forge/animation/blind_quiver/timeline.json"
+    },
+    {
+      "path": "curse_forge/animation/cracked_focus/pose_00.png",
+      "sha256": "3a0014fbd774d684eb8150e803d6212099294e6c18ab1270b5e3464ffe82afb1",
+      "v2_archive_path": "09_curse_forge/animation/cracked_focus/pose_00.png"
+    },
+    {
+      "path": "curse_forge/animation/cracked_focus/pose_01.png",
+      "sha256": "a752ab05df831af0e4ab812c88dd492aa7a1321ffba4660eaf0466a872935713",
+      "v2_archive_path": "09_curse_forge/animation/cracked_focus/pose_01.png"
+    },
+    {
+      "path": "curse_forge/animation/cracked_focus/pose_02.png",
+      "sha256": "9b47a6708ecc1dcdf12deca0f3e468b1dc8422c1e970506a3cec1c0d89d73281",
+      "v2_archive_path": "09_curse_forge/animation/cracked_focus/pose_02.png"
+    },
+    {
+      "path": "curse_forge/animation/cracked_focus/pose_03.png",
+      "sha256": "0e5a4756560365b9ae1d068c6ddc6ed65336539690dafc828ff2829130303e78",
+      "v2_archive_path": "09_curse_forge/animation/cracked_focus/pose_03.png"
+    },
+    {
+      "path": "curse_forge/animation/cracked_focus/pose_04.png",
+      "sha256": "213f986c45ad21947b134ee0d64cb85c045c609cdc290ef268053478e749df5c",
+      "v2_archive_path": "09_curse_forge/animation/cracked_focus/pose_04.png"
+    },
+    {
+      "path": "curse_forge/animation/cracked_focus/poses.json",
+      "sha256": "24ffe644d110c1e9e08f2cbb2a822dccc30b7d3c75c2e0474eb8613258f1cb75",
+      "v2_archive_path": "09_curse_forge/animation/cracked_focus/poses.json"
+    },
+    {
+      "path": "curse_forge/animation/cracked_focus/state_mask.png",
+      "sha256": "11b727b08bdbb97a88dae44be31e57494f585ed70d9a853744daa0c9903ff337",
+      "v2_archive_path": "09_curse_forge/animation/cracked_focus/state_mask.png"
+    },
+    {
+      "path": "curse_forge/animation/cracked_focus/timeline.json",
+      "sha256": "5e292e6ece4c1061cbc2ae056beb76e489f5ebbda7a78cb2f587f6369c2cd132",
+      "v2_archive_path": "09_curse_forge/animation/cracked_focus/timeline.json"
+    },
+    {
+      "path": "curse_forge/animation/dead_mans_shield/pose_00.png",
+      "sha256": "0fef1f206dd3bc26ec8e46d00f707c1c9cbcafc176d33c54983a8de228135140",
+      "v2_archive_path": "09_curse_forge/animation/dead_mans_shield/pose_00.png"
+    },
+    {
+      "path": "curse_forge/animation/dead_mans_shield/pose_01.png",
+      "sha256": "fcf1b76587fda7f7dd964c0c1ae5cd343afd9b5de0d82fe44fd3d8a34b13c53f",
+      "v2_archive_path": "09_curse_forge/animation/dead_mans_shield/pose_01.png"
+    },
+    {
+      "path": "curse_forge/animation/dead_mans_shield/pose_02.png",
+      "sha256": "7c3d5a35fe5969d31181dbb935cbe64a1298acd4174b0aea2085cc5ff6dbbae0",
+      "v2_archive_path": "09_curse_forge/animation/dead_mans_shield/pose_02.png"
+    },
+    {
+      "path": "curse_forge/animation/dead_mans_shield/pose_03.png",
+      "sha256": "b9dd5da2277ecb2fb323544fbd417a459d3984e792bfbe09a09f3bfdd51adf22",
+      "v2_archive_path": "09_curse_forge/animation/dead_mans_shield/pose_03.png"
+    },
+    {
+      "path": "curse_forge/animation/dead_mans_shield/pose_04.png",
+      "sha256": "4d91659aa766cac665b1846af22154d68e17e97d74c2b8f2d965d7b979245589",
+      "v2_archive_path": "09_curse_forge/animation/dead_mans_shield/pose_04.png"
+    },
+    {
+      "path": "curse_forge/animation/dead_mans_shield/poses.json",
+      "sha256": "048cac3e8ab109610ea0fe93f1a8f8efd772353ced0571fd0deff4fd771a3319",
+      "v2_archive_path": "09_curse_forge/animation/dead_mans_shield/poses.json"
+    },
+    {
+      "path": "curse_forge/animation/dead_mans_shield/state_mask.png",
+      "sha256": "de10ebf8aff78dc172584bc0ab2d706de3b13e61e2771d4aa892b95e2e5a0744",
+      "v2_archive_path": "09_curse_forge/animation/dead_mans_shield/state_mask.png"
+    },
+    {
+      "path": "curse_forge/animation/dead_mans_shield/timeline.json",
+      "sha256": "9c489c1fa0fef1c6790ea80b17938976ca9fe122fa1e9d7fc991cedc30ded413",
+      "v2_archive_path": "09_curse_forge/animation/dead_mans_shield/timeline.json"
+    },
+    {
+      "path": "curse_forge/animation/leave/timeline.json",
+      "sha256": "ea06ed16a1d0b1d1c64c02a2e709ad9a687575ce95186ee965f7061e6b0e0ca5",
+      "v2_archive_path": "09_curse_forge/animation/leave/timeline.json"
+    },
+    {
+      "path": "curse_forge/layers/base_1280.png",
+      "sha256": "3710731c375a7ecc0e7d54ebe2e88ba178860b9f2b4d2fd8d5a5b223dd38cf15",
+      "v2_archive_path": "09_curse_forge/layers/base_1280.png"
+    },
+    {
+      "path": "curse_forge/layers/blind_quiver_state.png",
+      "sha256": "e11ecf87681460a21164cc5b30235bcc40170c2991c5663e5b01318e1d1b6faa",
+      "v2_archive_path": "09_curse_forge/layers/blind_quiver_state.png"
+    },
+    {
+      "path": "curse_forge/layers/canonical_artifacts.png",
+      "sha256": "ef7ad584314b46ea7971b9e00f7c452d37befb1fec4669d4c3b0eb67f00d5609",
+      "v2_archive_path": "09_curse_forge/layers/canonical_artifacts.png"
+    },
+    {
+      "path": "curse_forge/layers/cracked_focus_state.png",
+      "sha256": "38119150ffddfb2b5f0b7e327b5641f18e4396ce3ad29cc736972a0906905ebc",
+      "v2_archive_path": "09_curse_forge/layers/cracked_focus_state.png"
+    },
+    {
+      "path": "curse_forge/layers/dead_mans_shield_state.png",
+      "sha256": "b170610893926f9ed2cb26c4323d0987886b22fe652b81b8a969185d424ccd8e",
+      "v2_archive_path": "09_curse_forge/layers/dead_mans_shield_state.png"
+    },
+    {
+      "path": "curse_forge/layers/ember_furnace.png",
+      "sha256": "85692dd8fcc0b2a0577fea5fe11e7550767b9fc7fb35d63ecc5bcdaca1b97270",
+      "v2_archive_path": "09_curse_forge/layers/ember_furnace.png"
+    },
+    {
+      "path": "curse_forge/layers/half_skeletal_face.png",
+      "sha256": "962faf03e8b81dec625f8b3806e22db62ac624a11d79df601a1e8dca62a5c5dd",
+      "v2_archive_path": "09_curse_forge/layers/half_skeletal_face.png"
+    },
+    {
+      "path": "curse_forge/layers/haze_strip.png",
+      "sha256": "b2d102404197ba5797ef005663af99def9744ac413c876efd3c9c722728d6735",
+      "v2_archive_path": "09_curse_forge/layers/haze_strip.png"
+    },
+    {
+      "path": "curse_forge/layers/release_focus.png",
+      "sha256": "82b203d3953ceadd707ff481175aeed08fde2e3ae20ed5965645a5801302ca78",
+      "v2_archive_path": "09_curse_forge/layers/release_focus.png"
+    },
+    {
+      "path": "curse_forge/layers/release_quiver.png",
+      "sha256": "3c0c4180934d03b21a51d17143a9f4cdeb071d85fb30008c89ba767b32be8ff5",
+      "v2_archive_path": "09_curse_forge/layers/release_quiver.png"
+    },
+    {
+      "path": "curse_forge/layers/release_shield.png",
+      "sha256": "5873f1a8fb5a43569926fe98225294b2de61a1a3149c2ec1e8bbd05c15d07172",
+      "v2_archive_path": "09_curse_forge/layers/release_shield.png"
+    },
+    {
+      "path": "curse_forge/outcomes/blind_quiver/final.png",
+      "sha256": "71ef64cfb798183f882ae32adca03b0effb164285f1e18a2a70ece04bb37736a",
+      "v2_archive_path": "09_curse_forge/outcomes/blind_quiver/final.png"
+    },
+    {
+      "path": "curse_forge/outcomes/cracked_focus/final.png",
+      "sha256": "eaae871b3ff7fe9e16ccb07aedb76c3f2691f5d7d1f3d845f78f408da8a1ce30",
+      "v2_archive_path": "09_curse_forge/outcomes/cracked_focus/final.png"
+    },
+    {
+      "path": "curse_forge/outcomes/dead_mans_shield/final.png",
+      "sha256": "f5e2ea63fa8c6090921938aad3bd2df91888b117236207a49cfc6660138bd0b1",
+      "v2_archive_path": "09_curse_forge/outcomes/dead_mans_shield/final.png"
+    },
+    {
+      "path": "curse_forge/outcomes/leave/final.png",
+      "sha256": "3710731c375a7ecc0e7d54ebe2e88ba178860b9f2b4d2fd8d5a5b223dd38cf15",
+      "v2_archive_path": "09_curse_forge/outcomes/leave/final.png"
+    },
+    {
+      "path": "curse_forge/source/original_master.png",
+      "sha256": "af31104a4e2b9ce6e9586f075f23f1988fc67ac94a5af547d8c7de9ad402c55a",
+      "v2_archive_path": "09_curse_forge/source/original_master.png"
+    },
+    {
+      "path": "rattling_bridge/animation/abandon/pose_00.png",
+      "sha256": "efefc370590bba3ee91516879f6179887cd4d94a035d9e8b858eaec22864dab8",
+      "v2_archive_path": "10_rattling_bridge/animation/abandon/pose_00.png"
+    },
+    {
+      "path": "rattling_bridge/animation/abandon/poses.json",
+      "sha256": "a44004d42853e2273e562207e96e9e0be07ef32e1c48cfbcb99606609a695e42",
+      "v2_archive_path": "10_rattling_bridge/animation/abandon/poses.json"
+    },
+    {
+      "path": "rattling_bridge/animation/abandon/timeline.json",
+      "sha256": "e317e91ee70fe31ac0467a499ad8399e5f61e00e404b436c523218064fd1af79",
+      "v2_archive_path": "10_rattling_bridge/animation/abandon/timeline.json"
+    },
+    {
+      "path": "rattling_bridge/animation/careful/timeline.json",
+      "sha256": "587cac22e6a2e017565605f18cdf2e50a5f51c90df84ebf2b91913620cab5a03",
+      "v2_archive_path": "10_rattling_bridge/animation/careful/timeline.json"
+    },
+    {
+      "path": "rattling_bridge/animation/loot_recruitment/pose_00.png",
+      "sha256": "efefc370590bba3ee91516879f6179887cd4d94a035d9e8b858eaec22864dab8",
+      "v2_archive_path": "10_rattling_bridge/animation/loot_recruitment/pose_00.png"
+    },
+    {
+      "path": "rattling_bridge/animation/loot_recruitment/pose_01.png",
+      "sha256": "f1e8d70f17609774cd51afa023dd38c8ded4855d6601c8046702ac6231cedfe4",
+      "v2_archive_path": "10_rattling_bridge/animation/loot_recruitment/pose_01.png"
+    },
+    {
+      "path": "rattling_bridge/animation/loot_recruitment/pose_02.png",
+      "sha256": "171a1e4f2b1f7b0b89f45d4aac111876eb23583a7b97457695bfd18d2575c231",
+      "v2_archive_path": "10_rattling_bridge/animation/loot_recruitment/pose_02.png"
+    },
+    {
+      "path": "rattling_bridge/animation/loot_recruitment/pose_03.png",
+      "sha256": "901201e804f59265a7d74adea47e2527c075c3d7f9d7893166c8952a717ad6c0",
+      "v2_archive_path": "10_rattling_bridge/animation/loot_recruitment/pose_03.png"
+    },
+    {
+      "path": "rattling_bridge/animation/loot_recruitment/pose_04.png",
+      "sha256": "84ffc258f14e6f9363f97357dd4184caad190295aa50a3e9b1f17553cbad0bee",
+      "v2_archive_path": "10_rattling_bridge/animation/loot_recruitment/pose_04.png"
+    },
+    {
+      "path": "rattling_bridge/animation/loot_recruitment/pose_05.png",
+      "sha256": "81b5fd523d00eaa2574fa877b438787a897e46699a9a3582d6b6993be0ea76ed",
+      "v2_archive_path": "10_rattling_bridge/animation/loot_recruitment/pose_05.png"
+    },
+    {
+      "path": "rattling_bridge/animation/loot_recruitment/poses.json",
+      "sha256": "381d5b37051f6b94ffbcdd7fa07a44b70630a856ae3667c48a5853ee171b91a5",
+      "v2_archive_path": "10_rattling_bridge/animation/loot_recruitment/poses.json"
+    },
+    {
+      "path": "rattling_bridge/animation/loot_recruitment/state_mask.png",
+      "sha256": "85eabec4e9b605ab3ab33e947ce10410aaf305bbe6bd018a326e615ec2c4f24d",
+      "v2_archive_path": "10_rattling_bridge/animation/loot_recruitment/state_mask.png"
+    },
+    {
+      "path": "rattling_bridge/animation/loot_recruitment/timeline.json",
+      "sha256": "b77a135c7441322eda760f5510efd24ebc645e7158aa9d8447cb1372bbbb5ed7",
+      "v2_archive_path": "10_rattling_bridge/animation/loot_recruitment/timeline.json"
+    },
+    {
+      "path": "rattling_bridge/animation/recruit/pose_00.png",
+      "sha256": "efefc370590bba3ee91516879f6179887cd4d94a035d9e8b858eaec22864dab8",
+      "v2_archive_path": "10_rattling_bridge/animation/recruit/pose_00.png"
+    },
+    {
+      "path": "rattling_bridge/animation/recruit/pose_01.png",
+      "sha256": "773279edbb8e51d26f9d08fbb022578d511bad7b9e8d32ee92b5b88e1f2c41d1",
+      "v2_archive_path": "10_rattling_bridge/animation/recruit/pose_01.png"
+    },
+    {
+      "path": "rattling_bridge/animation/recruit/pose_02.png",
+      "sha256": "a4a9bb5c2705fdd1fd6b2b059ffc8103303a4de7fd152a4494089389291c56b2",
+      "v2_archive_path": "10_rattling_bridge/animation/recruit/pose_02.png"
+    },
+    {
+      "path": "rattling_bridge/animation/recruit/pose_03.png",
+      "sha256": "c6124c52e615dec3f6a903f56ac9c2126bc9210fbf1760eaa20a9f89d0fd2e6b",
+      "v2_archive_path": "10_rattling_bridge/animation/recruit/pose_03.png"
+    },
+    {
+      "path": "rattling_bridge/animation/recruit/pose_04.png",
+      "sha256": "1ca564b1091a441a8aee6a783f1607a5589d22040d12af993edb3a3ec46cc54c",
+      "v2_archive_path": "10_rattling_bridge/animation/recruit/pose_04.png"
+    },
+    {
+      "path": "rattling_bridge/animation/recruit/pose_05.png",
+      "sha256": "6951f64cf787beab5677ffa56845c1c9f546a07fe11a4f9d136a9aa8edfca786",
+      "v2_archive_path": "10_rattling_bridge/animation/recruit/pose_05.png"
+    },
+    {
+      "path": "rattling_bridge/animation/recruit/poses.json",
+      "sha256": "ec23cdce9970d1b9dc6d4e80e17d5f30bf47c30feac8c5e8e5ba37681c108a5a",
+      "v2_archive_path": "10_rattling_bridge/animation/recruit/poses.json"
+    },
+    {
+      "path": "rattling_bridge/animation/recruit/state_mask.png",
+      "sha256": "85eabec4e9b605ab3ab33e947ce10410aaf305bbe6bd018a326e615ec2c4f24d",
+      "v2_archive_path": "10_rattling_bridge/animation/recruit/state_mask.png"
+    },
+    {
+      "path": "rattling_bridge/animation/recruit/timeline.json",
+      "sha256": "1e3b64cb456764fcc88cd366f8ba9fc9c2211ffdc59c3c4e20f951ee53e52272",
+      "v2_archive_path": "10_rattling_bridge/animation/recruit/timeline.json"
+    },
+    {
+      "path": "rattling_bridge/animation/rush_failure/pose_00.png",
+      "sha256": "d3c1a3ca93ee67b5fe1a4bc210af2cb0f4826038f165abaf70f4ea8c11c69450",
+      "v2_archive_path": "10_rattling_bridge/animation/rush_failure/pose_00.png"
+    },
+    {
+      "path": "rattling_bridge/animation/rush_failure/poses.json",
+      "sha256": "9ec1d73ec939b697b44d09c21fd88a0b1224cbffc91ec90eef62ce8894fcea0c",
+      "v2_archive_path": "10_rattling_bridge/animation/rush_failure/poses.json"
+    },
+    {
+      "path": "rattling_bridge/animation/rush_failure/state_mask.png",
+      "sha256": "e187ec2f6b8116c83ff2181a17e2cda275577ccff88a07ccf5fbe506335a1e0e",
+      "v2_archive_path": "10_rattling_bridge/animation/rush_failure/state_mask.png"
+    },
+    {
+      "path": "rattling_bridge/animation/rush_failure/timeline.json",
+      "sha256": "372d115434a0e8f5ec9b6d633cb1f430fc978ea9229440220eb2cb97a8d9e46f",
+      "v2_archive_path": "10_rattling_bridge/animation/rush_failure/timeline.json"
+    },
+    {
+      "path": "rattling_bridge/animation/rush_success/pose_00.png",
+      "sha256": "05b2934d1ba6c996035a2d1f36dc767af713cf82333e31cf6c01b1a0aa339045",
+      "v2_archive_path": "10_rattling_bridge/animation/rush_success/pose_00.png"
+    },
+    {
+      "path": "rattling_bridge/animation/rush_success/poses.json",
+      "sha256": "7b929f974167c7b254475195a59efc7fc9ff80ad51b75618505be38a5e76bc93",
+      "v2_archive_path": "10_rattling_bridge/animation/rush_success/poses.json"
+    },
+    {
+      "path": "rattling_bridge/animation/rush_success/state_mask.png",
+      "sha256": "33207a316163daea82a56f135a2170b5608e453ccd1baa5655f0a64542f58c60",
+      "v2_archive_path": "10_rattling_bridge/animation/rush_success/state_mask.png"
+    },
+    {
+      "path": "rattling_bridge/animation/rush_success/timeline.json",
+      "sha256": "e45f4bd8c584f44e6dc24b6f6b1b6f95313db52ee4b7d0ec2e85ee3237ff2de5",
+      "v2_archive_path": "10_rattling_bridge/animation/rush_success/timeline.json"
+    },
+    {
+      "path": "rattling_bridge/animation/scavenge/pose_00.png",
+      "sha256": "bcf4a047f512c9169ad1dfd1bbcd536d4094f4bd4dda41a0bd306f0a554083ec",
+      "v2_archive_path": "10_rattling_bridge/animation/scavenge/pose_00.png"
+    },
+    {
+      "path": "rattling_bridge/animation/scavenge/poses.json",
+      "sha256": "7b929f974167c7b254475195a59efc7fc9ff80ad51b75618505be38a5e76bc93",
+      "v2_archive_path": "10_rattling_bridge/animation/scavenge/poses.json"
+    },
+    {
+      "path": "rattling_bridge/animation/scavenge/state_mask.png",
+      "sha256": "33207a316163daea82a56f135a2170b5608e453ccd1baa5655f0a64542f58c60",
+      "v2_archive_path": "10_rattling_bridge/animation/scavenge/state_mask.png"
+    },
+    {
+      "path": "rattling_bridge/animation/scavenge/timeline.json",
+      "sha256": "099989e197696c9477be8c048ef3f18c67a53c5721a95b5475dd239d5e537326",
+      "v2_archive_path": "10_rattling_bridge/animation/scavenge/timeline.json"
+    },
+    {
+      "path": "rattling_bridge/layers/base_1280.png",
+      "sha256": "f2888d4bbcb72c32384133a0e937c39e004d0745c1e1c49ea32b5ca3bcd1a308",
+      "v2_archive_path": "10_rattling_bridge/layers/base_1280.png"
+    },
+    {
+      "path": "rattling_bridge/layers/haze_strip.png",
+      "sha256": "b2d102404197ba5797ef005663af99def9744ac413c876efd3c9c722728d6735",
+      "v2_archive_path": "10_rattling_bridge/layers/haze_strip.png"
+    },
+    {
+      "path": "rattling_bridge/layers/loot_recruitment_state.png",
+      "sha256": "b2f079362fb38fa95738dbec2d2bf548c09eab6523c9404521a5fcf9de2f2a60",
+      "v2_archive_path": "10_rattling_bridge/layers/loot_recruitment_state.png"
+    },
+    {
+      "path": "rattling_bridge/layers/ranger_seated.png",
+      "sha256": "86b50e6adaed1cee67062f065b049937a499372585c65d8482ccbd9c7110fefc",
+      "v2_archive_path": "10_rattling_bridge/layers/ranger_seated.png"
+    },
+    {
+      "path": "rattling_bridge/layers/recruit_state.png",
+      "sha256": "d9e56851f340ca84da17b60925d975c66a7e44dad8d1a0c04fa2b051031373d0",
+      "v2_archive_path": "10_rattling_bridge/layers/recruit_state.png"
+    },
+    {
+      "path": "rattling_bridge/layers/rush_failure_state.png",
+      "sha256": "f85f58c8817d06947bd6bb97f1fb78a2eb010b0007ac09f915565e097508eba3",
+      "v2_archive_path": "10_rattling_bridge/layers/rush_failure_state.png"
+    },
+    {
+      "path": "rattling_bridge/layers/rush_success_state.png",
+      "sha256": "8832d643c76027666497a495faa5e030a920a2479290383e68d4bba773be9bbd",
+      "v2_archive_path": "10_rattling_bridge/layers/rush_success_state.png"
+    },
+    {
+      "path": "rattling_bridge/layers/scavenge_state.png",
+      "sha256": "b366a6f1282b34c1cb211c1aeb48d8c6463b94832d843d017ef3054cbbc6d25d",
+      "v2_archive_path": "10_rattling_bridge/layers/scavenge_state.png"
+    },
+    {
+      "path": "rattling_bridge/layers/visible_coin_pouch.png",
+      "sha256": "438b75fa47639c137bd398fec673a733fb97708f955814c6b8203f6ee4560fce",
+      "v2_archive_path": "10_rattling_bridge/layers/visible_coin_pouch.png"
+    },
+    {
+      "path": "rattling_bridge/outcomes/abandon/final.png",
+      "sha256": "ed042471b3b71ba51525ec7e558dae3fa79e4d260ed91c3b8c7342c86475f823",
+      "v2_archive_path": "10_rattling_bridge/outcomes/abandon/final.png"
+    },
+    {
+      "path": "rattling_bridge/outcomes/careful/final.png",
+      "sha256": "f2888d4bbcb72c32384133a0e937c39e004d0745c1e1c49ea32b5ca3bcd1a308",
+      "v2_archive_path": "10_rattling_bridge/outcomes/careful/final.png"
+    },
+    {
+      "path": "rattling_bridge/outcomes/loot_recruitment/final.png",
+      "sha256": "dd95a59be42c47bf1ce6ba74419e02b89cbf9e27cc4cc1672e2c32a5012240d1",
+      "v2_archive_path": "10_rattling_bridge/outcomes/loot_recruitment/final.png"
+    },
+    {
+      "path": "rattling_bridge/outcomes/recruit/final.png",
+      "sha256": "de24e3b12b39c02676be2140ff44233f8fe4e2f35095fd4594d2691e93f42b5d",
+      "v2_archive_path": "10_rattling_bridge/outcomes/recruit/final.png"
+    },
+    {
+      "path": "rattling_bridge/outcomes/rush_failure/final.png",
+      "sha256": "108297b350b8ec812b90c3ed01816e41743c65ed453e1d2fad3047e0b4851069",
+      "v2_archive_path": "10_rattling_bridge/outcomes/rush_failure/final.png"
+    },
+    {
+      "path": "rattling_bridge/outcomes/rush_success/final.png",
+      "sha256": "d42d4a5c6b6249a59bb64d18ab5b0fce0c5295d255f82671d5841de8313d7066",
+      "v2_archive_path": "10_rattling_bridge/outcomes/rush_success/final.png"
+    },
+    {
+      "path": "rattling_bridge/outcomes/scavenge/final.png",
+      "sha256": "c55b3b526c626fdb70394a22e24542142d96059625cf0d00ef015b0aab654f54",
+      "v2_archive_path": "10_rattling_bridge/outcomes/scavenge/final.png"
+    },
+    {
+      "path": "rattling_bridge/source/original_master.png",
+      "sha256": "19417ab166324a08e54a70d6d7370c2be50c3e4eb2c4578c55f92f8058f14d0b",
+      "v2_archive_path": "10_rattling_bridge/source/original_master.png"
+    }
+  ],
+  "excluded": "videos, generation candidates, ZIPs, offline viewer and duplicate hero atlases",
+  "runtime": "existing Travel V2 panorama hook; no gameplay writes"
+}

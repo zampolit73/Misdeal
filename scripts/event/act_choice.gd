@@ -69,6 +69,9 @@ var active_card: RunCardData
 var resolved := false
 var travel_context: Dictionary = {}
 var presentation_choice_role := ""
+var presentation_action := ""
+var presentation_roll_success: Variant = null
+var presentation_recruitment := false
 var resolving_leave := false
 
 func _ready() -> void:
@@ -1360,6 +1363,7 @@ func _resolve_forge(artifact_id: String) -> void:
 	if not RunState.add_artifact(artifact_id):
 		return
 
+	presentation_action = artifact_id
 	var artifact := RunState.get_artifact(artifact_id)
 	_finish("Кузница принимает выбор. Получен артефакт: %s." % artifact.title)
 
@@ -1446,7 +1450,8 @@ func _resolve_debtor_bones(choice: String) -> void:
 	match choice:
 		"gamble":
 			RunState.set_event_outcome("debtor_bones", "gamble")
-			if randf() < 0.5:
+			presentation_roll_success = randf() < 0.5
+			if presentation_roll_success:
 				RunState.gold += 45
 				_finish("Кости падают удачно. Получено 45 золота.")
 			else:
@@ -1633,7 +1638,9 @@ func _resolve_rattling_bridge(choice: String) -> void:
 	if resolved:
 		return
 
-	if RunState.can_recruit_companion("ranger"):
+	presentation_action = choice
+	presentation_recruitment = RunState.can_recruit_companion("ranger")
+	if presentation_recruitment:
 		match choice:
 			"recruit":
 				RunState.recruit_companion("ranger", "Вы вернулись за ним на гремучем мосту. Падение оставило на протагонисте Шрам дороги.")
@@ -1650,7 +1657,8 @@ func _resolve_rattling_bridge(choice: String) -> void:
 
 	match choice:
 		"rush":
-			if randf() < 0.5:
+			presentation_roll_success = randf() < 0.5
+			if presentation_roll_success:
 				RunState.gold += 25
 				_finish("Мост выдерживает. Между костями нашлось 25 золота.")
 			else:
@@ -1751,6 +1759,7 @@ func _resolve_candle_seller(role: String) -> void:
 	if upgrade_id.is_empty():
 		return
 
+	presentation_choice_role = role
 	RunState.gold -= 25
 	_finish("Свеча сгорает за секунду, оставляя знание вместо воска. %s" % _format_upgrade_gain(upgrade_id))
 
@@ -1800,12 +1809,14 @@ func _resolve_leave() -> void:
 			presentation_choice_role = "leave"
 			_finish("Монеты остаются при вас. Могильщик пожимает плечами.")
 		"curse_forge":
+			presentation_action = "leave"
 			_finish("Вы уходите без артефакта. Молот за спиной ударяет сам собой.")
 		"black_altar":
 			_finish("Вы не касаетесь камня. Алтарь продолжает ждать следующего.")
 		"chained_prisoner":
 			_finish("Цепи звенят за спиной. Волшебник ничего не комментирует — и это хуже.")
 		"debtor_bones":
+			presentation_action = "leave"
 			_finish("Вы оставляете чужой долг лежать в пыли.")
 		"faceless_card":
 			var reckoning_profile: String = RunState.get_act1_reckoning_profile()
@@ -1834,8 +1845,10 @@ func _resolve_leave() -> void:
 				_:
 					_finish("Карта остаётся лежать лицом вниз. Волшебник явно считает это скучным.")
 		"blood_ledger":
+			presentation_action = "leave"
 			_finish("Книга закрывается сама. Вашего имени внутри пока нет.")
 		"broken_crown":
+			presentation_action = "leave"
 			_finish("Корона остаётся без хозяина. Возможно, это самый разумный исход.")
 		"last_camp":
 			_finish("Вы не задерживаетесь. До надзирателя остаётся совсем немного.")
@@ -1843,6 +1856,8 @@ func _resolve_leave() -> void:
 			RunState.set_event_outcome("lost_purse", "untouched")
 			_finish("Вы оставляете кошель мертвецу. Волшебник разочарован вашей сдержанностью.")
 		"candle_seller":
+			presentation_action = "leave"
+			presentation_choice_role = "leave"
 			_finish("Свечи остаются у торговца. Темнота — у вас.")
 		_:
 			_finish("Вы возвращаетесь к столу.")
@@ -1915,7 +1930,7 @@ func _record_castle_memory_for_event() -> void:
 
 func _finish(message: String) -> void:
 	if resolved: return
-	travel_context = preload("res://scripts/travel/travel_catalog.gd").context_for(active_card.card_id,RunState.get_event_outcome(active_card.card_id),RunState.party_roles,active_card.wizard_line,false,{"choice_role":presentation_choice_role})
+	travel_context = preload("res://scripts/travel/travel_catalog.gd").context_for(active_card.card_id,RunState.get_event_outcome(active_card.card_id),RunState.party_roles,active_card.wizard_line,false,{"choice_role":presentation_choice_role,"visual_action":presentation_action,"roll_success":presentation_roll_success,"recruitment":presentation_recruitment})
 	resolved = true
 	_disable_choices()
 	_record_castle_memory_for_event()

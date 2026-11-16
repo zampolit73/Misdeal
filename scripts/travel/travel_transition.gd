@@ -55,6 +55,7 @@ func _ready() -> void:
 	panorama.build(data.background_path,data.foreground_path,data.underpaint_path,data.sky_path)
 	if not panorama.available: return
 	if panorama.has_method("configure"): panorama.call("configure",context)
+	if not panorama.available: return
 	fog = ColorRect.new()
 	fog.position = data.fog_rect.position
 	fog.size = data.fog_rect.size

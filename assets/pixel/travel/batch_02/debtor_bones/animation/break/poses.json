@@ -1,0 +1,26 @@
+{
+	"duration": 4.0,
+	"poses": [
+		{
+			"path": "pose_00.png",
+			"rect": [
+				785,
+				379,
+				248,
+				99
+			],
+			"time": 1.26
+		},
+		{
+			"path": "pose_00.png",
+			"rect": [
+				785,
+				379,
+				248,
+				99
+			],
+			"time": 1.46
+		}
+	],
+	"source": "native layered renderer"
+}

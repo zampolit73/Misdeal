@@ -1,0 +1,36 @@
+{
+  "duration_seconds": 4.0,
+  "clock": "existing presentation elapsed; frozen by pause; finish once on skip",
+  "visual_action": "knight",
+  "coordinate_space": [
+    1280,
+    720
+  ],
+  "entry": [
+    0,
+    0.36
+  ],
+  "action": [
+    0.36,
+    1.46
+  ],
+  "hold": [
+    1.46,
+    3.35
+  ],
+  "exit": [
+    3.35,
+    4.0
+  ],
+  "base": "../../layers/base_1280.png",
+  "state_layer": "../../layers/knight_state.png",
+  "final": "../../outcomes/knight/final.png",
+  "preview": "preview.mp4",
+  "poses": "poses.json",
+  "meaning": "Левая свеча почти полностью выгорела: широкий светлый восковой след, короткий фитиль и слабый дым; две другие целые.",
+  "motion": "Дымок до 1 s, без активного пламени на сгоревшей свече.",
+  "narration_from_input": "На левом подносе остыл воск. Торговец уже ждёт следующего покупателя.",
+  "saved_outcome": "—",
+  "saved_outcome_note": "An em dash means no NEW persisted outcome; never serialize art keys.",
+  "unchanged_props": false
+}

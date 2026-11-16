@@ -1,0 +1,84 @@
+{
+  "duration_seconds": 4.0,
+  "clock": "existing presentation elapsed; frozen by pause; finish once on skip",
+  "visual_action": "dead_mans_shield",
+  "coordinate_space": [
+    1280,
+    720
+  ],
+  "entry": [
+    0,
+    0.36
+  ],
+  "action": [
+    0.36,
+    1.46
+  ],
+  "hold": [
+    1.46,
+    3.35
+  ],
+  "exit": [
+    3.35,
+    4.0
+  ],
+  "base": "../../layers/base_1280.png",
+  "state_layer": "../../layers/dead_mans_shield_state.png",
+  "final": "../../outcomes/dead_mans_shield/final.png",
+  "preview": "preview.mp4",
+  "poses": "poses.json",
+  "meaning": "Щит исчез с левого крепления; остались открытые ремни и светлый щитовидный отпечаток. Колчан/фокус остаются.",
+  "motion": "Выбранный предмет слегка поднимается с крепления, затем локально исчезает; остальные два неподвижны.",
+  "narration_from_input": "Пустое крепление ещё качается. Цена щита проявится в дороге.",
+  "saved_outcome": "—",
+  "saved_outcome_note": "An em dash means no NEW persisted outcome; never serialize art keys.",
+  "unchanged_props": false,
+  "revision": "V2: hand-free local prop animation; outcome-specific actor stage",
+  "actor_stage": {
+    "near_height": 330,
+    "route": [
+      [
+        900,
+        685
+      ],
+      [
+        1000,
+        682
+      ],
+      [
+        1100,
+        678
+      ]
+    ],
+    "formation_lanes": [
+      20,
+      -145,
+      -330
+    ],
+    "progress_span": 0.65
+  },
+  "control_times_seconds": [
+    0.45,
+    0.65,
+    0.85,
+    1.15,
+    1.5,
+    2.5
+  ],
+  "object_release": {
+    "source": "../../layers/release_shield.png",
+    "start": 0.44,
+    "lift_end": 0.84,
+    "fade": [
+      0.7,
+      1.06
+    ],
+    "translation_px": [
+      5,
+      -7
+    ],
+    "rotation_degrees": 1.6,
+    "hands": false,
+    "others_remain_mounted": true
+  }
+}

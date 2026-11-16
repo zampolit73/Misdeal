@@ -1,0 +1,36 @@
+{
+  "duration_seconds": 4.0,
+  "clock": "existing presentation elapsed; frozen by pause; finish once on skip",
+  "visual_action": "gamble_success",
+  "coordinate_space": [
+    1280,
+    720
+  ],
+  "entry": [
+    0,
+    0.36
+  ],
+  "action": [
+    0.36,
+    1.46
+  ],
+  "hold": [
+    1.46,
+    3.35
+  ],
+  "exit": [
+    3.35,
+    4.0
+  ],
+  "base": "../../layers/base_1280.png",
+  "state_layer": "../../layers/gamble_success_state.png",
+  "final": "../../outcomes/gamble_success/final.png",
+  "preview": "preview.mp4",
+  "poses": "poses.json",
+  "meaning": "Три кости разошлись по столу; блюдо со ставкой пусто, открытая коробочка с заметной пустой выемкой выплаты; свеча цела.",
+  "motion": "Кости один раз коротко докатываются до конечной позы.",
+  "narration_from_input": "Кости остановились. На месте ставки осталось пустое блюдо.",
+  "saved_outcome": "gamble",
+  "saved_outcome_note": "An em dash means no NEW persisted outcome; never serialize art keys.",
+  "unchanged_props": false
+}

@@ -1,0 +1,36 @@
+{
+  "duration_seconds": 4.0,
+  "clock": "existing presentation elapsed; frozen by pause; finish once on skip",
+  "visual_action": "ranger",
+  "coordinate_space": [
+    1280,
+    720
+  ],
+  "entry": [
+    0,
+    0.36
+  ],
+  "action": [
+    0.36,
+    1.46
+  ],
+  "hold": [
+    1.46,
+    3.35
+  ],
+  "exit": [
+    3.35,
+    4.0
+  ],
+  "base": "../../layers/base_1280.png",
+  "state_layer": "../../layers/ranger_state.png",
+  "final": "../../outcomes/ranger/final.png",
+  "preview": "preview.mp4",
+  "poses": "poses.json",
+  "meaning": "Средняя красная свеча выгорела до заметной лужи красного воска; левая и правая целы.",
+  "motion": "Один дымовой завиток от среднего фитиля.",
+  "narration_from_input": "Средний огонь погас. Плата за него уже исчезла под столом.",
+  "saved_outcome": "—",
+  "saved_outcome_note": "An em dash means no NEW persisted outcome; never serialize art keys.",
+  "unchanged_props": false
+}

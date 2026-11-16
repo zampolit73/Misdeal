@@ -1,3 +1,7 @@
+## Travel Batch02 V2 — explicit transient action context
+
+The seven new locations map to the31 exact approved visual actions. Actual RNG result, purchased candle role/artifact and bridge recruitment mode are captured by the existing successful event handler and used only by presentation. Never reroll or infer them from final stats, persist no new save keys, and retain each corrected V2 actor_stage independently. Existing seven locations and mechanics remain locked. [Contract](TRAVEL_BATCH02_V2.md).
+
 ## Cinematic Travel Pilot Batch01 V3
 
 Batch01 visual purchase role is transient only. Saved gravedigger_shop outcome remains bought; missing legacy role never invents a role-specific purchase. Exact prepared V3 assets await one unified native review. Old accepted scenes, mechanics and atlases unchanged.

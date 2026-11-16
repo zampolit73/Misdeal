@@ -1,3 +1,10 @@
+## Cinematic Travel Batch 02 V2
+
+- [x] Seven new locations / 31 actual choices and V2 state-local actor scale integrated.
+- [x] Full local GUT298/298; actual31-route save/pause/skip/load checks; native full-party review; old Pilot11/11 regression.
+- [ ] Required final-head CI and one player artistic review before merging the unified PR.
+- [Contract / F6 / evidence](TRAVEL_BATCH02_V2.md).
+
 ## Cinematic Travel Pilot Batch01 V3
 
 - [x] Candidate batch01V3:3scenes/11outcomes, transient-role integration, local full GUT/native batch.

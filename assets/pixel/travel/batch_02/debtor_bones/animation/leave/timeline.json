@@ -1,0 +1,36 @@
+{
+  "duration_seconds": 4.0,
+  "clock": "existing presentation elapsed; frozen by pause; finish once on skip",
+  "visual_action": "leave",
+  "coordinate_space": [
+    1280,
+    720
+  ],
+  "entry": [
+    0,
+    0.36
+  ],
+  "action": [
+    0.36,
+    1.46
+  ],
+  "hold": [
+    1.46,
+    3.35
+  ],
+  "exit": [
+    3.35,
+    4.0
+  ],
+  "base": "../../layers/base_1280.png",
+  "state_layer": null,
+  "final": "../../outcomes/leave/final.png",
+  "preview": "preview.mp4",
+  "poses": null,
+  "meaning": "Три целых кубика в первоначальном положении, монеты на месте, ладонь поднята.",
+  "motion": "Огонёк единственной свечи.",
+  "narration_from_input": "Кости ждут следующую ладонь. Старый долг никуда не ушёл.",
+  "saved_outcome": "—",
+  "saved_outcome_note": "An em dash means no NEW persisted outcome; never serialize art keys.",
+  "unchanged_props": true
+}

@@ -1,0 +1,627 @@
+[
+	{
+		"action": "knight",
+		"card": "candle_seller",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 175,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"ranger",
+			"mage"
+		]
+	},
+	{
+		"action": "ranger",
+		"card": "candle_seller",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 175,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"mage",
+			"ranger"
+		]
+	},
+	{
+		"action": "mage",
+		"card": "candle_seller",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 175,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"mage"
+		]
+	},
+	{
+		"action": "leave",
+		"card": "candle_seller",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"ranger",
+			"mage"
+		]
+	},
+	{
+		"action": "gold",
+		"card": "blood_ledger",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 160,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"mage"
+		]
+	},
+	{
+		"action": "blood",
+		"card": "blood_ledger",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": -25.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight"
+		]
+	},
+	{
+		"action": "erase",
+		"card": "blood_ledger",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 270,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"ranger",
+			"mage"
+		]
+	},
+	{
+		"action": "leave",
+		"card": "blood_ledger",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"mage"
+		]
+	},
+	{
+		"action": "gamble_success",
+		"card": "debtor_bones",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 245,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight"
+		]
+	},
+	{
+		"action": "gamble_failure",
+		"card": "debtor_bones",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": -15.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"ranger",
+			"mage"
+		]
+	},
+	{
+		"action": "safe",
+		"card": "debtor_bones",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 215,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"mage"
+		]
+	},
+	{
+		"action": "break",
+		"card": "debtor_bones",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 225,
+		"hp_bonus": -10.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight"
+		]
+	},
+	{
+		"action": "leave",
+		"card": "debtor_bones",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"ranger",
+			"mage"
+		]
+	},
+	{
+		"action": "gold",
+		"card": "wizard_tithe",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 170,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"mage"
+		]
+	},
+	{
+		"action": "blood",
+		"card": "wizard_tithe",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": -20.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight"
+		]
+	},
+	{
+		"action": "refuse",
+		"card": "wizard_tithe",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"ranger",
+			"mage"
+		]
+	},
+	{
+		"action": "wear",
+		"card": "broken_crown",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"mage"
+		]
+	},
+	{
+		"action": "break",
+		"card": "broken_crown",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 240,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight"
+		]
+	},
+	{
+		"action": "melt",
+		"card": "broken_crown",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"ranger",
+			"mage"
+		]
+	},
+	{
+		"action": "leave",
+		"card": "broken_crown",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"mage"
+		]
+	},
+	{
+		"action": "dead_mans_shield",
+		"card": "curse_forge",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight"
+		]
+	},
+	{
+		"action": "blind_quiver",
+		"card": "curse_forge",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"ranger",
+			"mage"
+		]
+	},
+	{
+		"action": "cracked_focus",
+		"card": "curse_forge",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"mage"
+		]
+	},
+	{
+		"action": "leave",
+		"card": "curse_forge",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight"
+		]
+	},
+	{
+		"action": "rush_success",
+		"card": "rattling_bridge",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 225,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"ranger",
+			"mage"
+		]
+	},
+	{
+		"action": "rush_failure",
+		"card": "rattling_bridge",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": -20.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"ranger",
+			"mage"
+		]
+	},
+	{
+		"action": "scavenge",
+		"card": "rattling_bridge",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 215,
+		"hp_bonus": -5.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"ranger",
+			"mage"
+		]
+	},
+	{
+		"action": "careful",
+		"card": "rattling_bridge",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"ranger",
+			"mage"
+		]
+	},
+	{
+		"action": "recruit",
+		"card": "rattling_bridge",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"mage",
+			"ranger"
+		]
+	},
+	{
+		"action": "loot_recruitment",
+		"card": "rattling_bridge",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 220,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight"
+		]
+	},
+	{
+		"action": "abandon",
+		"card": "rattling_bridge",
+		"completed_once": true,
+		"control_times": [
+			0.45,
+			0.65,
+			0.85,
+			1.15,
+			1.5,
+			2.5
+		],
+		"gold": 200,
+		"hp_bonus": 0.0,
+		"load_bypasses_travel": true,
+		"party": [
+			"knight",
+			"mage"
+		]
+	}
+]

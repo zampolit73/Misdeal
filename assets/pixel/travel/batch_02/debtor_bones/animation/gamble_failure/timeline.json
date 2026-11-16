@@ -1,0 +1,36 @@
+{
+  "duration_seconds": 4.0,
+  "clock": "existing presentation elapsed; frozen by pause; finish once on skip",
+  "visual_action": "gamble_failure",
+  "coordinate_space": [
+    1280,
+    720
+  ],
+  "entry": [
+    0,
+    0.36
+  ],
+  "action": [
+    0.36,
+    1.46
+  ],
+  "hold": [
+    1.46,
+    3.35
+  ],
+  "exit": [
+    3.35,
+    4.0
+  ],
+  "base": "../../layers/base_1280.png",
+  "state_layer": "../../layers/gamble_failure_state.png",
+  "final": "../../outcomes/gamble_failure/final.png",
+  "preview": "preview.mp4",
+  "poses": "poses.json",
+  "meaning": "Те же три кубика в ином конечном раскладе; ладонь должника прижала блюдо к себе, тёмная ткань стянута под костями. Никакой придуманной руны/магического облака.",
+  "motion": "Кисть неподвижна, короткое качание чашки.",
+  "narration_from_input": "Костяная ладонь закрыла ставку. Долг снова оказался чужим.",
+  "saved_outcome": "gamble",
+  "saved_outcome_note": "An em dash means no NEW persisted outcome; never serialize art keys.",
+  "unchanged_props": false
+}

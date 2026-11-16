@@ -1,3 +1,7 @@
+## Cinematic Travel Batch 02 V2 — integrated candidate
+
+Seven new locations / 31 actual outcome presentations, exact V2 assets and per-action large-party staging through existing Travel V2. Temporary real roll/role/artifact/recruitment context; effects and saves unchanged. Full GUT298/298,77,300 assertions; native31/31 actual event routes +31 full-party overlays; old Pilot11/11 rechecked. [Implementation, limitations and F6](TRAVEL_BATCH02_V2.md), [native evidence](qa/travel_batch02/README.md). One PR; final CI and user artistic review required, **no auto-merge**.
+
 ## Pilot Batch01 V3 — three scenes, eleven outcomes
 
 Candidate batch01V3: last_signal3, gravedigger_shop4, lost_purse4 through existing V2, exact assets and authored action poses. Purchase role is transient; saved bought unchanged. Full GUT294/294,73,983 assertions; native11/11 real routes with effects once. [Contract/F6](TRAVEL_PILOT_BATCH01_V3.md), [unified evidence](qa/travel_pilot_batch01/README.md). Approved old scenes/core/save/balance unchanged. all_in intact-hand/text discrepancy retained. Required CI and ONE final user artistic review before merge; no auto-merge.

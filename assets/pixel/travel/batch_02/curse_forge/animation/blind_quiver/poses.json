@@ -1,0 +1,76 @@
+{
+	"duration": 4.0,
+	"poses": [
+		{
+			"path": "pose_00.png",
+			"rect": [
+				869,
+				199,
+				114,
+				174
+			],
+			"time": 0.48
+		},
+		{
+			"path": "pose_01.png",
+			"rect": [
+				869,
+				199,
+				114,
+				174
+			],
+			"time": 0.62
+		},
+		{
+			"path": "pose_02.png",
+			"rect": [
+				869,
+				199,
+				114,
+				174
+			],
+			"time": 0.78
+		},
+		{
+			"path": "pose_03.png",
+			"rect": [
+				869,
+				199,
+				114,
+				174
+			],
+			"time": 0.94
+		},
+		{
+			"path": "pose_04.png",
+			"rect": [
+				869,
+				199,
+				114,
+				174
+			],
+			"time": 1.1
+		},
+		{
+			"path": "pose_04.png",
+			"rect": [
+				869,
+				199,
+				114,
+				174
+			],
+			"time": 1.26
+		},
+		{
+			"path": "pose_04.png",
+			"rect": [
+				869,
+				199,
+				114,
+				174
+			],
+			"time": 1.46
+		}
+	],
+	"source": "native layered renderer"
+}
