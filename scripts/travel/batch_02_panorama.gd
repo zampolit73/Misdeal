@@ -110,27 +110,39 @@ func update_time(time: float, _duration: float) -> void:
 		npc.position=world*(Vector2(1005,500)-Vector2(size.x*0.5,size.y)*scale_factor)
 	queue_redraw()
 
-func route(u: float) -> Vector2:
-	var a:=Vector2(scene.route[0][0],scene.route[0][1])
-	var b:=Vector2(scene.route[1][0],scene.route[1][1])
-	var c:=Vector2(scene.route[2][0],scene.route[2][1])
+func route(u: float, path: PackedVector2Array = PackedVector2Array()) -> Vector2:
+	var a:=path[0] if path.size()==3 else Vector2(scene.route[0][0],scene.route[0][1])
+	var b:=path[1] if path.size()==3 else Vector2(scene.route[1][0],scene.route[1][1])
+	var c:=path[2] if path.size()==3 else Vector2(scene.route[2][0],scene.route[2][1])
 	return (1-u)*(1-u)*a+2*(1-u)*u*b+u*u*c
 
 func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Array[Vector2], ground: Node2D, time: float, _duration: float, _layout: Resource) -> void:
 	actor_metrics.clear()
 	ground.contact_scales.resize(actors.size())
 	var rank := 0
-	var near_y := float(scene.route[0][1])
+	var path: PackedVector2Array=_layout.get_meta("party_route",PackedVector2Array())
+	var near_y := path[0].y if path.size()==3 else float(scene.route[0][1])
 	var near_height := float(_layout.get_meta("party_near_height",scene.near_height))
+	var lanes: Variant=_layout.get_meta("party_formation_lanes",scene.formation_lanes)
 	var passage_count := roles.size()-(1 if scene.id=="rattling_bridge" and key=="recruit" and roles.has("ranger") else 0)
+	var start_progress := 0.08
+	var progress_span := float(scene.get("progress_span",0.80))
+	if path.size()==3:
+		# Keep every member moving: the rear starts near the camera while the
+		# leader has enough road left for the entire four-second presentation.
+		start_progress=0.02+maxi(passage_count-1,0)*0.20
+		progress_span=0.98-start_progress
 	for i in range(actors.size()):
 		var actor := actors[i]
 		var role := roles[i]
 		var joining: bool=scene.id=="rattling_bridge" and key=="recruit" and role=="ranger"
 		actor.visible=not joining or time>=0.90
-		var u:=clampf(0.08+time/4.0*float(scene.get("progress_span",0.80))-rank*0.20,0.0,1.0)
-		var lane: float=float(scene.formation_lanes[rank]) if passage_count>1 else 0.0
-		var foot:=route(u)+Vector2(lane,rank*8)
+		var u:=clampf(start_progress+time/4.0*progress_span-rank*0.20,0.0,1.0)
+		var lane: float=float(lanes[rank]) if passage_count>1 else 0.0
+		var center:=route(u,path)
+		if bool(_layout.get_meta("party_perspective_lanes",false)):
+			lane*=clampf((center.y-float(scene.horizon))/(near_y-float(scene.horizon)),0.0,1.0)
+		var foot:=center+Vector2(lane,rank*8)
 		var phase:=float(rank)*1.1
 		if joining:
 			foot=Vector2(1005,500).lerp(Vector2(1020,425),smoothstep(0.90,2.90,time))

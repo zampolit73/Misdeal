@@ -9,3 +9,6 @@ background_path = "res://assets/pixel/travel/batch_02/broken_crown/small_props/l
 foreground_path = "res://assets/pixel/travel/batch_02/broken_crown/small_props/layers/base_1280.png"
 fog_rect = Rect2(0,0,0,0)
 metadata/party_near_height = 330.0
+metadata/party_route = PackedVector2Array(230, 680, 305, 505, 345, 385)
+metadata/party_formation_lanes = PackedFloat32Array(45, -45, 0)
+metadata/party_perspective_lanes = true

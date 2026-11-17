@@ -1,3 +1,7 @@
+## Broken Crown — walk into the garden
+
+Follow the user-marked up-right road from the lower paving into the gap between raised beds. Resource-local curved route and depth-scaled lanes apply to all four crown outcomes; all party members keep moving throughout the presentation. Preserve approved artwork, near scale, rear walk, outcomes, timing and other scenes.
+
 ## Broken Crown: approved smaller props across every outcome
 
 Integrate the exact approved small-prop master and three localized imagegen outcome edits. Taking leaves empty cloth; breaking leaves flat shards; remelting leaves a matte gold trace; passing retains the small broken crown. Preserve actor scale, route, contact FX, timing, gameplay and original V2 assets.

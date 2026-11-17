@@ -1,3 +1,7 @@
+## Review only the crown walking direction
+
+Approved smaller props and all outcome states stay locked. Crown party now walks from lower paving up-right into the garden opening along the user arrow. Same four outcomes, no timing/gameplay changes. F8 → F6 QA Hub → Travel → «Пустое место последнего властителя», arrows cycle outcomes. Check solo/trio and feet on the road. Other Travel locations unchanged.
+
 ## Current review — crown small props installed
 
 New approved background is now used by all four broken_crown outcomes. In the main local project: restart F6, QA Hub → Travel → «Пустое место последнего властителя», ←/→ cycles wear/break/melt/leave. Confirm small props remain stable and each consequence reads. Six other Batch02 scenes are accepted and unchanged. No automatic PR merge.

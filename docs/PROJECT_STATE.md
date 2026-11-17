@@ -1,3 +1,7 @@
+## Crown route — garden path
+
+User accepted the full smaller-prop scene and requested only a new party route. All four outcomes now follow the indicated up-right path into the gap between garden beds; the Resource supplies the path and perspective lanes. Near-height330 and approved scene/state pixels remain unchanged. Native four-outcome solo/trio movement/sole checks pass.
+
 ## Broken Crown — approved small props in all four outcomes
 
 User approved the smaller crown, armour, sword and candles. The exact approved master now drives leave/wear/break/melt through versioned small_props assets; only a bounded alpha patch changes at the crown. Existing actor near-height330, routes, timing, text and consequences preserved. Original V2 retained for rollback. Native four outcomes/solo+trio/six intermediate times and all31 real routes pass; full GUT301/301,77,821 assertions.
