@@ -1,3 +1,7 @@
+## QA Hub — следующий пользовательский просмотр
+
+Открыть `scenes/dev/qa_hub.tscn`, F6. Проверить поиск по Card ID, категории Travel/События/Бой/Интерфейс; выбрать состав и золото, запустить сцену, F9 повтор, F10 обратно. F11 убирает QA-панель. Все 46 карт и 17 Travel-маршрутов доступны через один экран; игровые save+memory изолированы. [Подробности](QA_HUB.md). Ветка `codex/qa-hub-complete` основана на открытом PR #114; хаб и Travel-кандидаты не сливать без итогового просмотра.
+
 ## Cinematic Travel Batch 02 V2 — current candidate
 
 All seven new scenes and31 outcomes now use production Travel V2 after real choices. Exact V2large-party overrides retained; no separate hand cutouts, repeated rewards/RNG or new save fields. Full local GUT298/298 (77,300 assertions); native31/31 event→travel→table + save/load,31 full-party overlays, old Pilot11/11. [Contract and F6](TRAVEL_BATCH02_V2.md), [native frames](qa/travel_batch02/README.md). Branch `codex/cinematic-travel-batch02-v2`; one PR, **do not merge before user artistic review**. Preserve player-local import/settings edits, excluded from commits. Next: verify required final-head CI, then player F6 at1280×720 for all31, especially forge/crown and Ranger hire/loot; F5 actual choices/Continue/load.

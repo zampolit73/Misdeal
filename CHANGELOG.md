@@ -1,3 +1,7 @@
+## QA Hub — полный каталог проверки
+
+Expand developer F6 hub to all 46 live cards, 17 Travel launchers, combat/animation/UI tools and a separate historical archive. Add search, party/gold/recruitment/upgrade setup, F9 replay, F10 return (including pause/Travel), F11 clean captures, and isolated QA run/memory services. Preserve player saves, game menus, artwork and mechanics. Add catalog/isolation tests and native launch/return CI coverage. See [QA Hub](docs/QA_HUB.md).
+
 ## Cinematic Travel Batch 02 V2
 
 Integrate seven new locations and31 decision-specific aftermaths from exact V2 art through existing Travel V2. Preserve corrected actor scale and foot projection; selected forge item only, no detached-hand animation; one bridge Ranger. Capture actual random/purchase/recruit outcomes transiently, retaining all effects, balance and save fields. Unified31-case F6, real31-route native regression/save-load coverage, full GUT298/298; old scenes intact. [Details](docs/TRAVEL_BATCH02_V2.md). Candidate PR only; no automatic merge.

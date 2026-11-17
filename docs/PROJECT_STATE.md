@@ -1,3 +1,7 @@
+## QA Hub — единый F6-навигатор
+
+196 маршрутов: 46 реальных карт, 17 Travel-запусков, бой, анимации, награды, досье/витраж и отдельный архив. Поиск, solo/duo/trio, золото, найм, развитие; F9 повтор / F10 возврат / F11 скрыть панель. Отдельные QA save+memory, обычный прогресс не затрагивается. [Запуск и проверки](QA_HUB.md). Основан на кандидате Batch02 V2 (PR #114), без автоматического слияния.
+
 ## Cinematic Travel Batch 02 V2 — integrated candidate
 
 Seven new locations / 31 actual outcome presentations, exact V2 assets and per-action large-party staging through existing Travel V2. Temporary real roll/role/artifact/recruitment context; effects and saves unchanged. Full GUT298/298,77,300 assertions; native31/31 actual event routes +31 full-party overlays; old Pilot11/11 rechecked. [Implementation, limitations and F6](TRAVEL_BATCH02_V2.md), [native evidence](qa/travel_batch02/README.md). One PR; final CI and user artistic review required, **no auto-merge**.

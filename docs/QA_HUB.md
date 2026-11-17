@@ -1,32 +1,31 @@
-# OPT1 + OPT4 — Smart CI and Godot QA Hub
+# QA Hub — единая проверка Misdeal
 
-Shipped [PR #7](https://github.com/zampolit73/Misdeal/pull/7) to main (2026-10-23). **Godot 4.7.2**, GDScript, no Codex/API purchase or new Godot add-on.
+Открой `scenes/dev/qa_hub.tscn` и нажми **F6**. F5 по-прежнему запускает обычную игру. Хаб доступен только разработчику; главный экран игры не изменён.
 
-## Open the QA Hub in Godot (OPT4)
+## Что доступно
 
-1. Open `scenes/dev/qa_hub.tscn` from Godot FileSystem.
-2. Press **F6** to run this scene only. **F5** still starts Misdeal's original main menu; `project.godot` is unchanged.
-3. Select a category: `ВСЁ / ИГРА / КАРТЫ / БОЙ / АНИМАЦИИ / ИНТЕРФЕЙС`.
-4. Select a live scene or existing authored test launcher, read the right-hand description, press **ЗАПУСТИТЬ СЦЕНУ**.
-5. To return, select `qa_hub.tscn` in the editor and press **F6** again. This is a test-only process, not a user-facing menu. The hub prepares a fresh Knight/encounter only when needed for Table/Graveyard Battle.
+Каталог автоматически собирает **196 маршрутов** на текущем срезе: актуальные инструменты, все **46 игровых карт** и отдельный архив старых превью. Категории: Всё, Игра, Карты, События, Travel, Бой, Анимации, Интерфейс, Архив. Поиск работает по названию, Card ID, описанию и пути сцены. Архив скрыт из «Всё»: исторические кандидаты не означают утверждённый дизайн.
 
-The hub points to existing live F6 scenes: main menu, class select, tabletop, D315 DS3 gallery, D149 event preview, original Graveyard Battle, existing Court and Black Lantern Battle launchers, existing Court/Pack2 animation previews, Wizard panel, and UI component preview. **Nothing is imported into ordinary player gameplay or changed in approved card art.**
+- Настоящие игровые события и бои, галерея карточек, последние пять событий и Джек.
+- 17 запусков Travel: первоначальная дорога, Posthouse, Dressing Station, Campfire, Granary, общие браузеры Pilot 01 / Batch 02 и десять прямых запусков их локаций. В прямом превью стрелки влево/вправо переключают исходы выбранной локации; общие браузеры содержат все 11 + 31 исход.
+- D412 герои, анимации врагов и прежние пакеты; досье, витраж, награды, Расклад Судьбы, победа/поражение и UI-компоненты.
 
-Native smoke `scripts/dev/qa_hub_smoke.gd` validates categories, every referenced PackedScene, list navigation and launch control. `ci3_capture_rendered_scene.gd` now accepts key `qa-hub` for a genuine 1280×720 screenshot.
+Выбери отряд solo/duo/trio, золото, доступность отсутствующих спутников для найма и при необходимости одну ступень развития каждого героя. Эти параметры применяются к реальным игровым маршрутам; специализированные старые превью сохраняют собственную подготовку. Джек требует Следопыта. У условий событий сохраняются настоящие ограничения и стоимость решений.
 
-## One impact-aware PR gate (OPT1)
+## Управление и безопасность
 
-The existing `.github/workflows/godot-pr-smoke.yml` is still the single required PR check. `scripts/ci/smart_qa_select.py` selects conservatively by **actual PR changed file paths** and has eight Python unit cases:
+**F9** — перезапустить выбранную проверку с исходными параметрами; **F10** — вернуться в хаб, в том числе из паузы или активного Travel; **F11** — скрыть нижнюю QA-панель для чистого кадра (горячие клавиши продолжают работать). Фильтр и выбранный сценарий сохраняются при возврате. Внутри превью действуют его собственные подсказки.
 
-- **Documentation-only:** selector tests + Actions summary; skip Godot download/import/render entirely.
-- **AUTO / FAST:** Godot editor import, strict PASS markers from relevant native smokes; shared combat, unknown files, and high-risk changes fall back to the full core suite.
-- **AUTO / VISUAL:** above plus software-OpenGL screenshots of touched existing scenes (ClassSelect, Table, Wizard, DS3 Card Gallery, QA Hub). Original PNGs/logs are uploaded.
-- **RELEASE:** manually choose `release` under GitHub → Actions → **Misdeal Godot PR smoke** → **Run workflow**. Executes all 7 old native smokes + QA Hub, all 5 real screenshot cases, and invokes original CI4 Graveyard Battle / CI5 Court trio + Grave Bell duo / 75 Court animation poses. Release aggregation is configured; **the first combined RELEASE mode has not yet been separately dispatched/observed**, whereas its CI4/CI5 constituent scripts had independently passed prior runs.
+Сессия использует отдельные `user://qa_hub/session_<pid>_<ticks>/current_run.json` и `memory_glass.json`. Обычный забег и Витраж не перезаписываются. При завершении QA-сессии исходные ссылки сервисов и состояние RunState восстанавливаются. Сессия создаётся только из хаба: нет нового autoload, изменений формата сохранений или игровых последствий. QA-файлы не являются обычным сохранением игрока.
 
-Manual `fast` or `visual` selections are also available; `auto` with no scope runs full native checks. Unknown paths are **never** treated as docs-only. Existing specialist stage-specific workflows remain intact. CI3/CI4/CI5 are preserved for `workflow_dispatch` instead of duplicating PR validation on each commit. Errors and original rendered artifacts are retained for 14 days.
+## Проверка
 
-### Verified rollout
+`qa_hub_smoke.gd` проверяет каталог и элементы управления. GUT проверяет поиск, все пути, полный набор игровых карт, архив, отдельные сервисы сохранения/памяти и восстановление состояния. `qa_hub_capture.gd` запускает все 17 Travel-превью, перебирает 42 прямых исхода, готовит все 46 настоящих карт и проверяет запуск/повтор/возврат для события, боя, наград, Расклада и итогового экрана. Включён возврат из паузы и активного event→Travel. Native-кадры: [Travel](qa/qa_hub/travel.jpg), [игровое превью](qa/qa_hub/in_preview.jpg), [поиск](qa/qa_hub/search.jpg).
 
-[PR #7](https://github.com/zampolit73/Misdeal/pull/7) **merged** after official [native Smart QA PASS](https://github.com/zampolit73/Misdeal/actions/runs/39944961444): selector Python tests, Godot import, **8/8** strict native smokes and **5/5** original 1280×720 screenshots, including real QA Hub PNG. Original Hub screenshot downloaded and inspected in chat: complete visible categories, scroll list, details, launch control without clipping. Regular game art, balance, run data and UI screens unchanged.
+Каталог подтверждает доступность маршрутов, а не художественное одобрение каждого архивного экрана. Проверки не подменяют ручную оценку анимации. Новые Travel-материалы остаются кандидатами до пользовательского просмотра.
 
-The old CI3/CI4/CI5 jobs are still individually reproducible on-demand; native screenshot evidence is **not** proof of subjective art/animation quality.
+## CI
+
+Существующий Smart QA выбирает проверки по изменённым путям. Документация не запускает Godot; Visual проверяет затронутые экраны; Release сохраняет полный набор native/GUT/игровых маршрутов. При Visual/Release с `qa-hub` дополнительно запускается реальный `qa_hub_capture.gd`; PNG и логи публикуются в Actions artifacts. Единственный обязательный PR-check и прежние stage-specific проверки сохранены.
+
+Локальная проверка 2026-11-17: Godot 4.7.2, **300/300 GUT, 77 804 assertions**, native **196 / 17 / 46 PASS**. Три кадра получены из настоящего окна Godot 1280×720. При завершении native-игровых сценариев остаются известные 6 ObjectDB shutdown diagnostics и предупреждение системного сертификата Windows; ошибок GDScript/импорта/утверждений в запуске нет. Это не заявление об отсутствии всех утечек в существующей игре.

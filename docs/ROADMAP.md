@@ -1,3 +1,9 @@
+## QA Hub
+
+- [x] Единый поиск/категории, все игровые карты, актуальные Travel и архив превью.
+- [x] Параметры отряда/золота, повтор/возврат, отдельные QA save+memory.
+- [ ] Пользовательский просмотр хаба и художественных кандидатов Batch02 до слияния.
+
 ## Cinematic Travel Batch 02 V2
 
 - [x] Seven new locations / 31 actual choices and V2 state-local actor scale integrated.
