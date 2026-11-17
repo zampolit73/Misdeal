@@ -1,3 +1,7 @@
+## QA Hub — исправление прямого запуска F6
+
+Defer hub initialization until the initial SceneTree root finishes attaching children. Fix inactive launch buttons on every entry during F6; keep QA save isolation. Add direct scene startup CI regression in addition to scripted navigation tests.
+
 ## QA Hub — полный каталог проверки
 
 Expand developer F6 hub to all 46 live cards, 17 Travel launchers, combat/animation/UI tools and a separate historical archive. Add search, party/gold/recruitment/upgrade setup, F9 replay, F10 return (including pause/Travel), F11 clean captures, and isolated QA run/memory services. Preserve player saves, game menus, artwork and mechanics. Add catalog/isolation tests and native launch/return CI coverage. See [QA Hub](docs/QA_HUB.md).

@@ -1,3 +1,7 @@
+## QA Hub: F6 startup fix
+
+User F6 log confirmed root.add_child was rejected during initial scene setup, leaving the session unavailable and every launch disabled. Hub initialization is now deferred; direct initial-scene startup explicitly verifies the session and enabled Launch in CI. Scripted navigation tests wait for initialization. Ordinary saves and routes are unchanged.
+
 ## QA Hub — следующий пользовательский просмотр
 
 Открыть `scenes/dev/qa_hub.tscn`, F6. Проверить поиск по Card ID, категории Travel/События/Бой/Интерфейс; выбрать состав и золото, запустить сцену, F9 повтор, F10 обратно. F11 убирает QA-панель. Все 46 карт и 17 Travel-маршрутов доступны через один экран; игровые save+memory изолированы. [Подробности](QA_HUB.md). Ветка `codex/qa-hub-complete` основана на открытом PR #114; хаб и Travel-кандидаты не сливать без итогового просмотра.

@@ -11,6 +11,7 @@ func after_each() -> void:
 func test_complete_catalog_search_archive_and_current_travel() -> void:
 	var hub:=HUB.instantiate()
 	add_child_autofree(hub)
+	await hub.initialized
 	var entries: Array=hub.get_entries()
 	var live_cards := {}
 	var ids := {}
@@ -46,6 +47,7 @@ func test_session_isolates_save_memory_and_restores_original_state_and_services(
 	var before: Dictionary=SAVE.new().snapshot(RunState).state
 	var hub:=HUB.instantiate()
 	add_child_autofree(hub)
+	await hub.initialized
 	var session: Node=get_tree().root.get_node("QAHubSession")
 	assert_true(session.available)
 	assert_ne(SAVE.shared,previous_save)

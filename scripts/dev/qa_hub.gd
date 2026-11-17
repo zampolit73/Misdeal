@@ -1,4 +1,5 @@
 extends Control
+signal initialized
 ## Unified F6 navigator. The shipped game's main scene and menus stay unchanged.
 const DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
 const CATALOG := preload("res://scripts/dev/qa_hub_catalog.gd")
@@ -24,6 +25,10 @@ var _visible_indices: Array[int] = []
 var session: Node
 
 func _ready() -> void:
+	# F6 loads this as the initial scene while SceneTree.root is still busy.
+	_initialize_hub.call_deferred()
+
+func _initialize_hub() -> void:
 	name="QAHub"
 	process_mode=Node.PROCESS_MODE_ALWAYS
 	session=SESSION.ensure(self)
@@ -40,6 +45,14 @@ func _ready() -> void:
 	_show_group(_active_group)
 	get_viewport().size_changed.connect(_fit)
 	_fit()
+	initialized.emit()
+	if OS.get_cmdline_user_args().has("--qa-hub-startup-check"):
+		assert(session.is_inside_tree() and session.available)
+		assert(not _launch.disabled)
+		for entry in _entries:
+			assert(ResourceLoader.exists(entry.scene,"PackedScene"))
+		print("QA_HUB_DIRECT_START_PASS: session ready; launch enabled; ",_entries.size()," routes")
+		get_tree().quit()
 
 func _fit() -> void:
 	var screen:=get_viewport_rect().size

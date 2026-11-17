@@ -6,7 +6,7 @@ func _initialize() -> void: call_deferred("run")
 func wait_hub() -> Node:
 	for _frame in range(600):
 		await process_frame
-		if current_scene!=null and current_scene.scene_file_path=="res://scenes/dev/qa_hub.tscn": return current_scene
+		if current_scene!=null and current_scene.scene_file_path=="res://scenes/dev/qa_hub.tscn" and not current_scene.get_entries().is_empty(): return current_scene
 	assert(false,"F10 must return to hub")
 	return null
 func run() -> void:
