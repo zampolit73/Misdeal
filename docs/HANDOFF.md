@@ -1,3 +1,7 @@
+## Next review: Combat Planning 1.0 pilot
+
+Open `scenes/dev/combat_planning_pilot.tscn`, F6 (also QA Hub → Бой). Select old/planning, party and seed; prepare positions, individual orders and a real enemy target. Start, observe, read actual journal, compare/replay. See [rules/results](COMBAT_PLANNING_PILOT.md). Production Travel/QA release below remains accepted. This new pilot is isolated and **not authorized for merge to main** before user gameplay review.
+
 # Misdeal — current handoff
 
 ## Released and approved

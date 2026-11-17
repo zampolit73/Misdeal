@@ -1,3 +1,10 @@
+## Experimental Combat Planning 1.0
+
+- [x] Independent per-hero plans, real engine execution, editable preparation and journal.
+- [x] Solo/duo/trio old/new controlled comparison and native wave intermission replanning.
+- [ ] User gameplay review; no campaign rollout or main merge yet.
+- [Contract and launch](COMBAT_PLANNING_PILOT.md).
+
 # Misdeal — current roadmap
 
 ## Released checkpoint

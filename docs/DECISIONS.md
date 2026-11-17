@@ -1,3 +1,7 @@
+## Combat Planning 1.0 — approved pilot rules, not production rollout
+
+Implement up to3 independent non-looping orders per hero: assault/defense/hunt; separate priority/optional encounter-local target; time/dealt/taken/personal-kill/HP50 conditions and mandatory2–12s event fallback. Final order persists. Real combat governs outcomes; no stat compensation or forced results. Preserve Jack, special one-use orders, balance, saves and approved art. Use only a null-by-default policy on existing BattleUnit and a dedicated QA scene; no second engine/router/autoload. Player gameplay approval is required before main merge.
+
 ## Production authorization — Batch02 / QA Hub
 
 After accepting the final crown walk along the marked garden path, the user explicitly requested production merge. PR #114 and #115 are released to main after green mandatory checks. Prior review-only restrictions for this delivery are satisfied; the accepted art, smaller props, staging and gameplay remain locked for subsequent work.

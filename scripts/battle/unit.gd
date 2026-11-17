@@ -80,11 +80,12 @@ signal health_critical(unit: BattleUnit)
 signal boss_enraged(unit: BattleUnit)
 signal placement_rejected(unit: BattleUnit)
 
-# Optional observability only. No game behavior or stats depend on these
-# signals; dev benchmark scenes subscribe to count actual attacks/damage/heals.
+# Optional in production; benchmarks observe actual attacks/damage/heals.
+# The opt-in planning fixture also subscribes for personal event conditions.
 signal diagnostic_attack(attacker: BattleUnit, victim: BattleUnit)
 signal diagnostic_damage(attacker: BattleUnit, victim: BattleUnit, amount: float)
 signal diagnostic_heal(healer: BattleUnit, recipient: BattleUnit, amount: float)
+signal damage_received(victim: BattleUnit, amount: float)
 
 @export var team: int = 0
 @export var display_name: String = "Unit"
@@ -116,6 +117,8 @@ var hp: float
 var combat_started := false
 var alive := true
 var target: BattleUnit
+# Null in every production battle; only the isolated planning fixture attaches it.
+var plan_executor: RefCounted
 var attack_cooldown := 0.0
 var support_cooldown := 0.0
 var enraged := false
@@ -592,6 +595,10 @@ func _process(delta: float) -> void:
 		hit_flash_time = maxf(0.0, hit_flash_time - delta)
 		queue_redraw()
 
+	if plan_executor!=null and combat_started and alive:
+		if not plan_executor.active: plan_executor.begin()
+		plan_executor.tick(delta)
+
 	if hit_stop_time > 0.0:
 		hit_stop_time = maxf(0.0, hit_stop_time - delta)
 		return
@@ -603,11 +610,11 @@ func _process(delta: float) -> void:
 
 	target_refresh_cooldown = maxf(0.0, target_refresh_cooldown - delta)
 	var should_refresh_target := not _is_valid_target(target)
-	if team == 0 and tactical_order != TACTICAL_ORDER_ASSAULT and target_refresh_cooldown <= 0.0:
+	if plan_executor==null and team == 0 and tactical_order != TACTICAL_ORDER_ASSAULT and target_refresh_cooldown <= 0.0:
 		should_refresh_target = true
 
 	if should_refresh_target:
-		target = _find_preferred_enemy()
+		target = plan_executor.choose_target(target) if plan_executor!=null else _find_preferred_enemy()
 		target_refresh_cooldown = 0.35
 		# Face the acquired enemy before this frame's movement/instant attack.
 		if ANIMATION_LIBRARY.is_approved_hero_frames(visual_role, sprite_frames):
@@ -639,6 +646,10 @@ func _process(delta: float) -> void:
 			if attack_cooldown <= 0.0:
 				_attack_target()
 
+	if plan_executor!=null:
+		# Defense also invalidates a target that has left its reachable hold area.
+		target=plan_executor.choose_target(target)
+		velocity=plan_executor.constrain_velocity(velocity,delta)
 	var prior_position := position
 	position += velocity.limit_length(movement_speed * 1.35) * delta
 	_clamp_to_combat_bounds()
@@ -1273,8 +1284,10 @@ func take_attrition_damage(amount: float) -> void:
 	if not alive or amount <= 0.0:
 		return
 
+	var before_hp := hp
 	hp = maxf(0.0, hp - amount)
 	health_bar.value = hp
+	if damage_received.has_connections() and before_hp>hp: damage_received.emit(self,before_hp-hp)
 
 	if team == 0 and not critical_announced and hp > 0.0 and hp / maxf(1.0, max_hp) <= 0.25:
 		critical_announced = true
@@ -1290,6 +1303,7 @@ func take_damage(amount: float, source_role: String = "", source_position: Vecto
 	if not alive:
 		return
 
+	var before_hp := hp
 	var applied_amount := maxf(0.0, amount * damage_taken_multiplier)
 	var strong_hit := applied_amount >= maxf(18.0, max_hp * 0.18)
 	_show_damage_number(applied_amount, strong_hit)
@@ -1299,6 +1313,7 @@ func take_damage(amount: float, source_role: String = "", source_position: Vecto
 
 	hp = maxf(0.0, hp - applied_amount)
 	health_bar.value = hp
+	if damage_received.has_connections() and before_hp>hp: damage_received.emit(self,before_hp-hp)
 
 	if team == 0 and not critical_announced and hp > 0.0 and hp / maxf(1.0, max_hp) <= 0.25:
 		critical_announced = true

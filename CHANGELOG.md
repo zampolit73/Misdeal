@@ -1,3 +1,7 @@
+## Combat Planning 1.0 — isolated playable QA pilot
+
+Add Grave Bell legacy/planning comparison, independent1–3 orders, real enemy selection, stable priorities, bounded defense, local hunt detours, actual damage/kill conditions, timers and factual reports. Existing Battle/Unit simulation and one-use rules remain; ordinary battles have no executor. Add seed-controlled solo/duo/trio comparisons, real pause/input and wave replanning QA. Not production-enabled; user gameplay review required.
+
 ## 2026-11-17 — production: Cinematic Travel Batch02 and QA Hub
 
 Release approved by the user and merged through [PR #114](https://github.com/zampolit73/Misdeal/pull/114) / [PR #115](https://github.com/zampolit73/Misdeal/pull/115), runtime `c1bba400`. Seven locations /31 actual outcomes, final approved smaller crown props and garden path, unified isolated F6 QA hub. Full [RELEASE CI](https://github.com/zampolit73/Misdeal/actions/runs/44058109794) passed; local301/301 GUT and31 real routes. Existing mechanics, saves and approved old scenes preserved. Consolidate current state/handoff/roadmap; retain prior session notes in the dated archive. This release supersedes earlier pending-approval notes below.

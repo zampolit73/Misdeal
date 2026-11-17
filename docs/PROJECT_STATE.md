@@ -1,3 +1,7 @@
+## Combat Planning 1.0 — isolated QA candidate
+
+Grave Bell old/planning comparison, independent per-hero1–3 orders, real target picking, bounded defense/local hunt steering, event/time conditions and factual journal. Null-by-default shared hooks; ordinary battles remain unchanged. Native solo/duo/trio comparisons show real outcome differences and exact legacy assault parity; actual wave-break replanning verified. [Contract, launch, results and limits](COMBAT_PLANNING_PILOT.md). Separate PR only; **do not merge before user gameplay review**.
+
 # Misdeal — current project state
 
 ## Production release: 2026-11-17

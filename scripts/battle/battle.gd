@@ -1,4 +1,5 @@
 extends Control
+signal combat_beginning
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 
@@ -1171,6 +1172,7 @@ func _on_fight_pressed() -> void:
 		_show_wizard_line(_get_combat_start_wizard_line())
 	_play_battle_audio("start")
 
+	combat_beginning.emit()
 	for unit in units:
 		if unit.alive:
 			unit.start_combat()
@@ -1535,6 +1537,7 @@ func _start_second_wave() -> void:
 	await _play_combat_intro("ВОЛНА II")
 	if battle_finished:
 		return
+	combat_beginning.emit()
 	for unit in units:
 		if unit.alive:
 			unit.start_combat()
