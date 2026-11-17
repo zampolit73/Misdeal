@@ -1,0 +1,36 @@
+{
+  "duration_seconds": 4.0,
+  "clock": "existing presentation elapsed; frozen by pause; finish once on skip",
+  "visual_action": "blood",
+  "coordinate_space": [
+    1280,
+    720
+  ],
+  "entry": [
+    0,
+    0.36
+  ],
+  "action": [
+    0.36,
+    1.46
+  ],
+  "hold": [
+    1.46,
+    3.35
+  ],
+  "exit": [
+    3.35,
+    4.0
+  ],
+  "base": "../../layers/base_1280.png",
+  "state_layer": "../../layers/blood_state.png",
+  "final": "../../outcomes/blood/final.png",
+  "preview": "preview.mp4",
+  "poses": "poses.json",
+  "meaning": "Тёмно-красная жидкость в чаше с видимой линией уровня и окрашенный край ткани, золота в чаше нет.",
+  "motion": "Одна затухающая круговая рябь.",
+  "narration_from_input": "Чаша потемнела. Волшебник принял другую плату.",
+  "saved_outcome": "blood",
+  "saved_outcome_note": "An em dash means no NEW persisted outcome; never serialize art keys.",
+  "unchanged_props": false
+}

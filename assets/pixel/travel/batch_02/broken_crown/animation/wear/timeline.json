@@ -1,0 +1,68 @@
+{
+  "duration_seconds": 4.0,
+  "clock": "existing presentation elapsed; frozen by pause; finish once on skip",
+  "visual_action": "wear",
+  "coordinate_space": [
+    1280,
+    720
+  ],
+  "entry": [
+    0,
+    0.36
+  ],
+  "action": [
+    0.36,
+    1.46
+  ],
+  "hold": [
+    1.46,
+    3.35
+  ],
+  "exit": [
+    3.35,
+    4.0
+  ],
+  "base": "../../layers/base_1280.png",
+  "state_layer": "../../layers/wear_state.png",
+  "final": "../../outcomes/wear/final.png",
+  "preview": "preview.mp4",
+  "poses": "poses.json",
+  "meaning": "Крупная корона отсутствует на складке ткани; остался чистый выцветший контур и примятая подкладка. На спрайты героев корону не дорисовывать.",
+  "motion": "Короткий локальный переход предметного состояния без отдельной руки и без перелёта предмета через кадр.",
+  "narration_from_input": "На ткани остался светлый след. Корона снова нашла носителя.",
+  "saved_outcome": "wear",
+  "saved_outcome_note": "An em dash means no NEW persisted outcome; never serialize art keys.",
+  "unchanged_props": false,
+  "revision": "V2: hand-free local prop animation; outcome-specific actor stage",
+  "actor_stage": {
+    "near_height": 310,
+    "route": [
+      [
+        280,
+        640
+      ],
+      [
+        335,
+        580
+      ],
+      [
+        380,
+        520
+      ]
+    ],
+    "formation_lanes": [
+      110,
+      -20,
+      -140
+    ],
+    "progress_span": 0.6
+  },
+  "control_times_seconds": [
+    0.45,
+    0.65,
+    0.85,
+    1.15,
+    1.5,
+    2.5
+  ]
+}

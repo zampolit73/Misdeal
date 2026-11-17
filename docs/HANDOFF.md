@@ -1,3 +1,7 @@
+## Cinematic Travel Batch 02 V2 — current candidate
+
+All seven new scenes and31 outcomes now use production Travel V2 after real choices. Exact V2large-party overrides retained; no separate hand cutouts, repeated rewards/RNG or new save fields. Full local GUT298/298 (77,300 assertions); native31/31 event→travel→table + save/load,31 full-party overlays, old Pilot11/11. [Contract and F6](TRAVEL_BATCH02_V2.md), [native frames](qa/travel_batch02/README.md). Branch `codex/cinematic-travel-batch02-v2`; one PR, **do not merge before user artistic review**. Preserve player-local import/settings edits, excluded from commits. Next: verify required final-head CI, then player F6 at1280×720 for all31, especially forge/crown and Ranger hire/loot; F5 actual choices/Continue/load.
+
 ## Pilot Batch01 V3 — three scenes, eleven outcomes
 
 Candidate batch01V3: last_signal3, gravedigger_shop4, lost_purse4 through existing V2, exact assets and authored action poses. Purchase role is transient; saved bought unchanged. Full GUT294/294,73,983 assertions; native11/11 real routes with effects once. [Contract/F6](TRAVEL_PILOT_BATCH01_V3.md), [unified evidence](qa/travel_pilot_batch01/README.md). Approved old scenes/core/save/balance unchanged. all_in intact-hand/text discrepancy retained. Required CI and ONE final user artistic review before merge; no auto-merge.

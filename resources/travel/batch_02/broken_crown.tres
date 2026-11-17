@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TravelTransitionData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/travel_transition_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/travel/batch_02_panorama.gd" id="2"]
+[resource]
+script = ExtResource("1")
+title = "ПУСТОЕ МЕСТО ПОСЛЕДНЕГО ВЛАСТИТЕЛЯ"
+panorama_script = ExtResource("2")
+background_path = "res://assets/pixel/travel/batch_02/broken_crown/layers/base_1280.png"
+foreground_path = "res://assets/pixel/travel/batch_02/broken_crown/layers/base_1280.png"
+fog_rect = Rect2(0,0,0,0)

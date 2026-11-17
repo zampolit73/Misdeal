@@ -1,8 +1,17 @@
 extends RefCounted
 ## Session-only presentation switch; never serialized into a run save.
 static var enabled := true
+const BATCH02 := preload("res://scripts/travel/batch_02_catalog.gd")
 const DEFAULT_LOCATION := "res://resources/travel/ruined_castle_road.tres"
 const LOCATIONS := {
+	"candle_seller":"res://resources/travel/batch_02/candle_seller.tres",
+	"blood_ledger":"res://resources/travel/batch_02/blood_ledger.tres",
+	"debtor_bones":"res://resources/travel/batch_02/debtor_bones.tres",
+	"wizard_tithe":"res://resources/travel/batch_02/wizard_tithe.tres",
+	"broken_crown":"res://resources/travel/batch_02/broken_crown.tres",
+	"curse_forge":"res://resources/travel/batch_02/curse_forge.tres",
+	"rattling_bridge":"res://resources/travel/batch_02/rattling_bridge.tres",
+
 	"unsent_letters":"res://resources/travel/last_dawn_posthouse.tres",
 	"banner_seamstress":"res://resources/travel/last_dressing_station.tres",
 	"borrowed_boots":"res://resources/travel/campfire_without_master.tres",
@@ -22,6 +31,10 @@ const TEXT := {
 	"last_signal": {"truth":"Ваше обещание разорвано. На башне по-прежнему ждут ответного огня.","salvage":"Сигнальная чаша снята. Дозорный поднимает пустой шест.","passed":"Жаровня давно остыла. Дозорный продолжает ждать ответного сигнала."}}
 static func context_for(id: String, outcome: String, roles: Array, wizard: String = "", victory: bool = false, presentation: Dictionary = {}) -> Dictionary:
 	if not is_enabled() or roles.is_empty() or id == "bone_warden": return {}
+	if BATCH02.ACTIONS.has(id):
+		var visual := BATCH02.action_for(id,outcome,roles,presentation)
+		if visual.is_empty(): return {}
+		return {"resolved_card_id":id,"outcome_id":outcome,"visual_action":visual,"party_roles":roles.duplicate(),"narration_text":BATCH02.narration(id,visual),"wizard_line":wizard,"duration_sec":4.0}
 	var action := outcome
 	if id=="gravedigger_shop":
 		var role := str(presentation.get("choice_role",""))

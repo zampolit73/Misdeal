@@ -1,0 +1,36 @@
+{
+  "duration_seconds": 4.0,
+  "clock": "existing presentation elapsed; frozen by pause; finish once on skip",
+  "visual_action": "break",
+  "coordinate_space": [
+    1280,
+    720
+  ],
+  "entry": [
+    0,
+    0.36
+  ],
+  "action": [
+    0.36,
+    1.46
+  ],
+  "hold": [
+    1.46,
+    3.35
+  ],
+  "exit": [
+    3.35,
+    4.0
+  ],
+  "base": "../../layers/base_1280.png",
+  "state_layer": "../../layers/break_state.png",
+  "final": "../../outcomes/break/final.png",
+  "preview": "preview.mp4",
+  "poses": "poses.json",
+  "meaning": "Корона разобрана на несколько узнаваемых крупных зубцов и золотых дуг; красные камни отсутствуют в гнёздах. Не добавлять выдаваемые монеты на пол.",
+  "motion": "Последний зубец оседает.",
+  "narration_from_input": "От короны остались дуги и пустые оправы. Цена власти стала проще.",
+  "saved_outcome": "break",
+  "saved_outcome_note": "An em dash means no NEW persisted outcome; never serialize art keys.",
+  "unchanged_props": false
+}

@@ -1,0 +1,56 @@
+{
+	"duration": 4.0,
+	"poses": [
+		{
+			"path": "pose_00.png",
+			"rect": [
+				230,
+				364,
+				286,
+				106
+			],
+			"time": 0.78
+		},
+		{
+			"path": "pose_00.png",
+			"rect": [
+				230,
+				364,
+				286,
+				106
+			],
+			"time": 0.94
+		},
+		{
+			"path": "pose_00.png",
+			"rect": [
+				230,
+				364,
+				286,
+				106
+			],
+			"time": 1.1
+		},
+		{
+			"path": "pose_00.png",
+			"rect": [
+				230,
+				364,
+				286,
+				106
+			],
+			"time": 1.26
+		},
+		{
+			"path": "pose_00.png",
+			"rect": [
+				230,
+				364,
+				286,
+				106
+			],
+			"time": 1.46
+		}
+	],
+	"source": "native layered renderer"
+}

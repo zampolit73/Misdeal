@@ -1,0 +1,36 @@
+{
+  "duration_seconds": 4.0,
+  "clock": "existing presentation elapsed; frozen by pause; finish once on skip",
+  "visual_action": "rush_failure",
+  "coordinate_space": [
+    1280,
+    720
+  ],
+  "entry": [
+    0,
+    0.36
+  ],
+  "action": [
+    0.36,
+    1.46
+  ],
+  "hold": [
+    1.46,
+    3.35
+  ],
+  "exit": [
+    3.35,
+    4.0
+  ],
+  "base": "../../layers/base_1280.png",
+  "state_layer": "../../layers/rush_failure_state.png",
+  "final": "../../outcomes/rush_failure/final.png",
+  "preview": "preview.mp4",
+  "poses": "poses.json",
+  "meaning": "Сбоку от маршрута свежая отщеплённая доска и тянущийся обрывок старой обвязки, след соскальзывания на целой части. Не разрывать полосу, по которой идёт отряд.",
+  "motion": "Один свободный обрывок.",
+  "narration_from_input": "На краю настила свежий скол. Мост всё-таки потребовал своё.",
+  "saved_outcome": "—",
+  "saved_outcome_note": "An em dash means no NEW persisted outcome; never serialize art keys.",
+  "unchanged_props": false
+}
