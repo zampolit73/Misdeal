@@ -89,6 +89,7 @@ func _input(event: InputEvent) -> void:
 func prepare(entry: Dictionary, options: Dictionary) -> bool:
 	error_message=""
 	if not sandbox.is_empty() and SAVE.shared!=null: SAVE.shared.path=sandbox+"/current_run.json"
+	if not sandbox.is_empty() and MEMORY.shared!=null: MEMORY.shared.path=sandbox+"/memory_glass.json"
 	var prep: String=entry.get("prep","")
 	if prep.is_empty(): return true
 	var roles: Array=options.get("roles",["knight","ranger","mage"])
@@ -143,6 +144,8 @@ func _settle_transition() -> bool:
 	var run_menu := get_tree().root.get_node_or_null("RunMenu")
 	if run_menu!=null and run_menu.has_method("close_menu"): run_menu.close_menu()
 	get_tree().paused=false
+	# Let newly opened previews flush their deferred _ready work before removal.
+	await get_tree().process_frame
 	var travel := get_tree().root.get_node_or_null("TravelTransition")
 	if travel!=null and travel.has_method("finish"): travel.finish()
 	var deadline := Time.get_ticks_msec()+10000

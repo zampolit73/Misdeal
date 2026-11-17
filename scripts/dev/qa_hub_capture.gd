@@ -88,6 +88,14 @@ func run() -> void:
 		assert(current_scene.scene_file_path==entry.scene)
 		session.return_to_hub()
 		hub=await wait_hub()
+	assert(session.launch_entry({"scene":"res://scenes/dev/a1v2_memory_preview.tscn","prep":""},{}))
+	await process_frame
+	await process_frame
+	current_scene.show_count(7)
+	assert(MEMORY.shared.path.begins_with("user://qa_hub/"))
+	assert(MEMORY.shared.save_profile())
+	session.return_to_hub()
+	hub=await wait_hub()
 	hub.get_node("Search").text="книга"
 	hub._show_group("СОБЫТИЯ")
 	await RenderingServer.frame_post_draw

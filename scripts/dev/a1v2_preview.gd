@@ -3,10 +3,12 @@ const P := preload("res://scripts/memory/memory_profile.gd")
 var table: Control
 func _ready() -> void:
 	P.shared=P.new()
+	var qa := get_node_or_null("/root/QAHubSession")
+	if qa!=null: P.shared.path=qa.sandbox+"/memory_glass.json"
 	show_count(0)
 func show_count(count: int) -> void:
 	if is_instance_valid(table):
-		table.free()
+		table.queue_free()
 	RunState.reset_run()
 	RunState.choose_protagonist("knight")
 	P.shared.unlocked.clear()
