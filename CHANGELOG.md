@@ -1,3 +1,7 @@
+## Travel: crown party scale calibration
+
+Increase and unify broken_crown party near-height to 330 px across all four outcomes through a resource-local presentation override. Preserve route, grounded soles, contact FX, source art and every other scene. User approved the other six Batch02 locations / 27 outcomes; crown scale remains for review.
+
 ## QA Hub — исправление прямого запуска F6
 
 Defer hub initialization until the initial SceneTree root finishes attaching children. Fix inactive launch buttons on every entry during F6; keep QA save isolation. Add direct scene startup CI regression in addition to scripted navigation tests.

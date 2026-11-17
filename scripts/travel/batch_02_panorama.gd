@@ -119,6 +119,7 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 	ground.contact_scales.resize(actors.size())
 	var rank := 0
 	var near_y := float(scene.route[0][1])
+	var near_height := float(_layout.get_meta("party_near_height",scene.near_height))
 	var passage_count := roles.size()-(1 if scene.id=="rattling_bridge" and key=="recruit" and roles.has("ranger") else 0)
 	for i in range(actors.size()):
 		var actor := actors[i]
@@ -133,7 +134,7 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 			foot=Vector2(1005,500).lerp(Vector2(1020,425),smoothstep(0.90,2.90,time))
 			phase=1.1
 		else: rank+=1
-		var height:=float(scene.near_height)*(foot.y-float(scene.horizon))/(near_y-float(scene.horizon))
+		var height:=near_height*(foot.y-float(scene.horizon))/(near_y-float(scene.horizon))
 		actor.sprite_frames=role_frames[role]
 		actor.animation="walk"
 		actor.frame=int(time*6.5+phase)%6

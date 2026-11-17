@@ -12,6 +12,10 @@ Seven new locations / 31 visual actions integrated through the existing Travel V
 | curse_forge | dead_mans_shield, blind_quiver, cracked_focus, leave |
 | rattling_bridge | rush_success, rush_failure, scavenge, careful, recruit, loot_recruitment, abandon |
 
+## Current artistic review
+
+User approved all six other locations / 27 outcomes. Only broken_crown party scale was rejected as too small against foreground crown and armour. Its Resource now overrides near-height to 330 px for all four actions (was 205 for break/melt/leave, 310 for wear); original routes, foot projection and V2 masters are intact. Scale propagates to contact shadows/dust through the existing actor scale. Other resources have no override and retain their exact prior staging. Native before/after: [leave](qa/crown_scale/leave_after.jpg), [wear](qa/crown_scale/wear_after.jpg), [previous leave](qa/crown_scale/leave_before.jpg). Crown adjustment awaits user review.
+
 ## Source and staging
 
 Exact archive `MISDEAL_TRAVEL_PRODUCTION_BATCH_02_V2.zip`, SHA-256 `59069da6d72dd088def9774395ccafdce776f3e51975239cd6d28e4394a36e14`. `assets/pixel/travel/batch_02/provenance.json` records 279 retained original masters, runtime bases/state/release/haze layers, 31 final references and authored cropped phases/metadata. No ZIP, generation candidates, duplicate hero atlas or video is shipped. `scripts/ci/verify_travel_batch02.py` verifies every retained byte, outcome count and animation references.

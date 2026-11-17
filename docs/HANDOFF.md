@@ -1,3 +1,7 @@
+## Следующая проверка: только broken_crown
+
+Все остальные сцены Batch02 визуально утверждены пользователем; не менять их. Корона: единый увеличенный near-height 330 px во всех четырёх исходах, прежние ступни/маршрут/перспективное уменьшение. В QA-хабе открыть «Пустое место последнего властителя», проверить trio и solo, особенно leave и wear. Не сливать PR автоматически до просмотра исправления.
+
 ## QA Hub: F6 startup fix
 
 User F6 log confirmed root.add_child was rejected during initial scene setup, leaving the session unavailable and every launch disabled. Hub initialization is now deferred; direct initial-scene startup explicitly verifies the session and enabled Launch in CI. Scripted navigation tests wait for initialization. Ordinary saves and routes are unchanged.
