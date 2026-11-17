@@ -1,3 +1,15 @@
+## Broken Crown approved small props
+
+- [x] Exact approved smaller background, all four visible outcomes, local alpha transitions and original-art rollback.
+- [x] Native solo/trio and actual31-route regression.
+- [ ] Final user playback check / required latest-head CI before any merge.
+
+## QA Hub
+
+- [x] Единый поиск/категории, все игровые карты, актуальные Travel и архив превью.
+- [x] Параметры отряда/золота, повтор/возврат, отдельные QA save+memory.
+- [ ] Пользовательский просмотр хаба и художественных кандидатов Batch02 до слияния.
+
 ## Cinematic Travel Batch 02 V2
 
 - [x] Seven new locations / 31 actual choices and V2 state-local actor scale integrated.

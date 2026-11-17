@@ -2,7 +2,7 @@ extends SceneTree
 
 # OPT4 native self-test: scene launcher is still completely outside the game flow.
 const HUB := preload("res://scenes/dev/qa_hub.tscn")
-const REQUIRED_GROUPS := ["ИГРА", "КАРТЫ", "БОЙ", "АНИМАЦИИ", "ИНТЕРФЕЙС"]
+const REQUIRED_GROUPS := ["ИГРА", "КАРТЫ", "СОБЫТИЯ", "TRAVEL", "БОЙ", "АНИМАЦИИ", "ИНТЕРФЕЙС", "АРХИВ"]
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -18,7 +18,7 @@ func _run() -> void:
 		_fail("QA Hub script did not compile/load; check GDScript errors")
 		return
 	var entries: Array = hub.get_entries()
-	if entries.size() < 10:
+	if entries.size() < 70:
 		_fail("QA Hub lost its authored preview entries")
 		return
 	var groups: Dictionary = {}
@@ -43,8 +43,14 @@ func _run() -> void:
 		return
 	hub.call("_show_group", "ВСЁ")
 	await process_frame
-	if list.get_child_count() != entries.size():
-		_fail("QA Hub All category does not include each preview")
+	if list.get_child_count() != hub.get_visible_entries().size():
+		_fail("QA Hub current list does not match filtered entries")
+		return
+	hub.get_node("Search").text="Batch 02"
+	hub.call("_show_group","ВСЁ")
+	await process_frame
+	if hub.get_visible_entries().size()!=1:
+		_fail("QA Hub search must find the complete Batch02 preview")
 		return
 	print("OPT4_QA_HUB_PASS: ", entries.size(), " live F6 routes; all categories, paths and controls valid")
 	hub.queue_free()

@@ -1,3 +1,5 @@
+**QA Hub:** [единый F6-каталог, карты, Travel и управление проверкой](QA_HUB.md).
+
 ## Cinematic Travel Batch 02 V2
 
 [Seven locations /31 outcomes: implementation, verification and F6](TRAVEL_BATCH02_V2.md) · [native31-state contact sheet and corrected frames](qa/travel_batch02/README.md).

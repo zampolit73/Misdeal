@@ -303,6 +303,24 @@ jobs:
               assert len(content) > 10000, image.name
           PY
 
+      - name: QA Hub real launch return and isolated profile
+        if: (steps.scope.outputs.mode == 'visual' || steps.scope.outputs.mode == 'release') && contains(steps.scope.outputs.scenes, 'qa-hub')
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/misdeal-smart-qa/visual/qa_hub"
+          mkdir -p "$out"
+          timeout 60s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . \
+            res://scenes/dev/qa_hub.tscn -- --qa-hub-startup-check 2>&1 | tee "$out/direct-start.log"
+          grep -Fq 'QA_HUB_DIRECT_START_PASS' "$out/direct-start.log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed|add_child.*failed' "$out/direct-start.log"
+          timeout 180s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility --audio-driver Dummy \
+            --script res://scripts/dev/qa_hub_capture.gd -- "$out" 2>&1 | tee "$out/capture.log"
+          grep -Fq 'QA_HUB_NATIVE_PASS' "$out/capture.log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed|Failed to load script' "$out/capture.log"
+
       - name: D418 Jack event and real companion native route
         if: steps.scope.outputs.mode == 'release'
         shell: bash

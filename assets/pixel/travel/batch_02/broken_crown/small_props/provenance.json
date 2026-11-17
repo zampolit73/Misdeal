@@ -1,0 +1,61 @@
+{
+  "approval": "User approved the small crown/armour/sword/candles image and requested all four outcomes use it.",
+  "approved_master_sha256": "a9128b4a0920ccf0f1aa8f11d56595c614ad1a30aff1118645b20720906f4a09",
+  "base": "layers/base_1280.png",
+  "outcomes": {
+    "leave": "layers/base_1280.png",
+    "wear": "layers/wear_state.png",
+    "break": "layers/break_state.png",
+    "melt": "layers/melt_state.png"
+  },
+  "state_patch_rect": [
+    704,
+    316,
+    210,
+    126
+  ],
+  "feather_px": 12,
+  "packing": "scripts/dev/pack_crown_small_props.gd",
+  "files": [
+    {
+      "path": "layers/base_1280.png",
+      "sha256": "e9cc1f36a41c004775edd44307773dc6d2d1b1d8f4a712eaa8bf8adb4d9eff3c"
+    },
+    {
+      "path": "layers/break_state.png",
+      "sha256": "e86008326dbce746f880cd110959ae660b7b320e103997986cf03d0cc353df8f"
+    },
+    {
+      "path": "layers/haze_strip.png",
+      "sha256": "b2d102404197ba5797ef005663af99def9744ac413c876efd3c9c722728d6735"
+    },
+    {
+      "path": "layers/melt_state.png",
+      "sha256": "267f535cd8ec17dc74554a791b0ceab35b0483ebe37a35c841378b28eeca7f7c"
+    },
+    {
+      "path": "layers/wear_state.png",
+      "sha256": "73b9cb47d8f996bbf56e6cbe6c150cf26d296edfff35b60459b8f742d05f8a17"
+    },
+    {
+      "path": "source/approved_master.png",
+      "sha256": "a9128b4a0920ccf0f1aa8f11d56595c614ad1a30aff1118645b20720906f4a09"
+    },
+    {
+      "path": "source/break_edit.png",
+      "sha256": "c663f3080753a9d24e8aa6b1bf1401eca7dcb9a76f5eca6c93044fc7dd347391"
+    },
+    {
+      "path": "source/melt_edit.png",
+      "sha256": "b6cc969a2267c6504f06608473b9c0dd8b36720680d0e7dfcb1477d58a12b318"
+    },
+    {
+      "path": "source/prompts.json",
+      "sha256": "5401fe162a6929bf54bd40aed62eb43a22e6d62ab96574da3d410c1b5286f12a"
+    },
+    {
+      "path": "source/wear_edit.png",
+      "sha256": "a046d3aa2c4c557d91f823aa7cbe17dcccc5ff60408231e25eb06647110563ce"
+    }
+  ]
+}

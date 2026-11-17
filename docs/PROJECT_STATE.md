@@ -1,3 +1,23 @@
+## Crown route — garden path
+
+User accepted the full smaller-prop scene and requested only a new party route. All four outcomes now follow the indicated up-right path into the gap between garden beds; the Resource supplies the path and perspective lanes. Near-height330 and approved scene/state pixels remain unchanged. Native four-outcome solo/trio movement/sole checks pass.
+
+## Broken Crown — approved small props in all four outcomes
+
+User approved the smaller crown, armour, sword and candles. The exact approved master now drives leave/wear/break/melt through versioned small_props assets; only a bounded alpha patch changes at the crown. Existing actor near-height330, routes, timing, text and consequences preserved. Original V2 retained for rollback. Native four outcomes/solo+trio/six intermediate times and all31 real routes pass; full GUT301/301,77,821 assertions.
+
+## Batch02: принято, кроме масштаба broken_crown
+
+Пользователь утвердил остальные шесть сцен и их 27 исходов. Для broken_crown повышен и выровнен масштаб отряда во всех четырёх исходах: near-height 330 px вместо 205 px у break/melt/leave и 310 px у wear. Маршрут, перспектива, исходный арт и игровые эффекты сохранены; ресурсная настройка применяется только к короне. Нужен повторный пользовательский просмотр этой сцены.
+
+## QA Hub: прямой F6
+
+Исправлена блокировка всех запусков при F6: создание сессии перенесено после начальной сборки SceneTree. Добавлена отдельная проверка прямого старта сцены, ранее не покрытого сценарным переключением.
+
+## QA Hub — единый F6-навигатор
+
+196 маршрутов: 46 реальных карт, 17 Travel-запусков, бой, анимации, награды, досье/витраж и отдельный архив. Поиск, solo/duo/trio, золото, найм, развитие; F9 повтор / F10 возврат / F11 скрыть панель. Отдельные QA save+memory, обычный прогресс не затрагивается. [Запуск и проверки](QA_HUB.md). Основан на кандидате Batch02 V2 (PR #114), без автоматического слияния.
+
 ## Cinematic Travel Batch 02 V2 — integrated candidate
 
 Seven new locations / 31 actual outcome presentations, exact V2 assets and per-action large-party staging through existing Travel V2. Temporary real roll/role/artifact/recruitment context; effects and saves unchanged. Full GUT298/298,77,300 assertions; native31/31 actual event routes +31 full-party overlays; old Pilot11/11 rechecked. [Implementation, limitations and F6](TRAVEL_BATCH02_V2.md), [native evidence](qa/travel_batch02/README.md). One PR; final CI and user artistic review required, **no auto-merge**.

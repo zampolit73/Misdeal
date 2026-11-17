@@ -1,3 +1,23 @@
+## Review only the crown walking direction
+
+Approved smaller props and all outcome states stay locked. Crown party now walks from lower paving up-right into the garden opening along the user arrow. Same four outcomes, no timing/gameplay changes. F8 → F6 QA Hub → Travel → «Пустое место последнего властителя», arrows cycle outcomes. Check solo/trio and feet on the road. Other Travel locations unchanged.
+
+## Current review — crown small props installed
+
+New approved background is now used by all four broken_crown outcomes. In the main local project: restart F6, QA Hub → Travel → «Пустое место последнего властителя», ←/→ cycles wear/break/melt/leave. Confirm small props remain stable and each consequence reads. Six other Batch02 scenes are accepted and unchanged. No automatic PR merge.
+
+## Следующая проверка: только broken_crown
+
+Все остальные сцены Batch02 визуально утверждены пользователем; не менять их. Корона: единый увеличенный near-height 330 px во всех четырёх исходах, прежние ступни/маршрут/перспективное уменьшение. В QA-хабе открыть «Пустое место последнего властителя», проверить trio и solo, особенно leave и wear. Не сливать PR автоматически до просмотра исправления.
+
+## QA Hub: F6 startup fix
+
+User F6 log confirmed root.add_child was rejected during initial scene setup, leaving the session unavailable and every launch disabled. Hub initialization is now deferred; direct initial-scene startup explicitly verifies the session and enabled Launch in CI. Scripted navigation tests wait for initialization. Ordinary saves and routes are unchanged.
+
+## QA Hub — следующий пользовательский просмотр
+
+Открыть `scenes/dev/qa_hub.tscn`, F6. Проверить поиск по Card ID, категории Travel/События/Бой/Интерфейс; выбрать состав и золото, запустить сцену, F9 повтор, F10 обратно. F11 убирает QA-панель. Все 46 карт и 17 Travel-маршрутов доступны через один экран; игровые save+memory изолированы. [Подробности](QA_HUB.md). Ветка `codex/qa-hub-complete` основана на открытом PR #114; хаб и Travel-кандидаты не сливать без итогового просмотра.
+
 ## Cinematic Travel Batch 02 V2 — current candidate
 
 All seven new scenes and31 outcomes now use production Travel V2 after real choices. Exact V2large-party overrides retained; no separate hand cutouts, repeated rewards/RNG or new save fields. Full local GUT298/298 (77,300 assertions); native31/31 event→travel→table + save/load,31 full-party overlays, old Pilot11/11. [Contract and F6](TRAVEL_BATCH02_V2.md), [native frames](qa/travel_batch02/README.md). Branch `codex/cinematic-travel-batch02-v2`; one PR, **do not merge before user artistic review**. Preserve player-local import/settings edits, excluded from commits. Next: verify required final-head CI, then player F6 at1280×720 for all31, especially forge/crown and Ranger hire/loot; F5 actual choices/Continue/load.

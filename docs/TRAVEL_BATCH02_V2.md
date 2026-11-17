@@ -12,6 +12,16 @@ Seven new locations / 31 visual actions integrated through the existing Travel V
 | curse_forge | dead_mans_shield, blind_quiver, cracked_focus, leave |
 | rattling_bridge | rush_success, rush_failure, scavenge, careful, recruit, loot_recruitment, abandon |
 
+## Current artistic review
+
+All six other locations / 27 outcomes are approved. The user then approved a redrawn smaller crown/armour/sword/candles background and requested its use for all four crown outcomes. The exact image is retained in `broken_crown/small_props/source/approved_master.png` with SHA256 `a9128b4a0920ccf0f1aa8f11d56595c614ad1a30aff1118645b20720906f4a09`. Resource paths select its versioned folder; the compositor derives that folder from the supplied background path. Original V2 assets/provenance remain unchanged.
+
+Taking removes the small crown; breaking leaves flat fragments; remelting leaves a matte gold trace; passing preserves the base. Generated edits are packed as local RGBA layers inside Rect2i(704,316,210,126), with a12px edge feather; no changes to walls, armour, sword, candles or garden between outcomes. Existing fades, actor near-height330, route, sole projection and mechanics are preserved. Rebuild with `scripts/dev/pack_crown_small_props.gd`; sources, prompts and checked hashes are included. [Native four-outcome evidence](qa/crown_small_props/README.md).
+
+## Crown road adjustment
+
+After approving the full smaller-prop result, the user requested only the marked route: lower paving → up-right into the garden gap. The crown Resource overrides the quadratic route with (230,680), (305,505), (345,385), formation lanes +45/-45/0, projected with depth. Solo/trio starting offsets leave enough path for every member to keep walking for the full duration; no stationary walking at clamped endpoints. Existing rear NE frames, near-height330, soles/contact effects, approved pixels, states and other six locations stay unchanged. [Midway](qa/crown_road/midway.jpg), [near the garden](qa/crown_road/far.jpg).
+
 ## Source and staging
 
 Exact archive `MISDEAL_TRAVEL_PRODUCTION_BATCH_02_V2.zip`, SHA-256 `59069da6d72dd088def9774395ccafdce776f3e51975239cd6d28e4394a36e14`. `assets/pixel/travel/batch_02/provenance.json` records 279 retained original masters, runtime bases/state/release/haze layers, 31 final references and authored cropped phases/metadata. No ZIP, generation candidates, duplicate hero atlas or video is shipped. `scripts/ci/verify_travel_batch02.py` verifies every retained byte, outcome count and animation references.

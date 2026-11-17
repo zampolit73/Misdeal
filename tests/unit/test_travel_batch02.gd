@@ -80,3 +80,22 @@ func test_invalid_batch_action_uses_existing_unavailable_fallback() -> void:
 	assert_false(view.available)
 	view._process(1.0)
 	view.free()
+
+func test_small_crown_uses_approved_base_and_confines_changes_to_crown() -> void:
+	var data: Resource=load("res://resources/travel/batch_02/broken_crown.tres")
+	assert_true(data.background_path.contains("broken_crown/small_props/"))
+	var folder: String=str(data.background_path).get_base_dir()+"/"
+	var hashes := {}
+	for key in ["wear","break","melt"]:
+		var image := Image.new()
+		assert_eq(image.load_png_from_buffer(FileAccess.get_file_as_bytes(folder+key+"_state.png")),OK)
+		assert_eq(image.get_size(),Vector2i(1280,720))
+		var bounds := image.get_used_rect()
+		assert_true(Rect2i(704,316,210,126).encloses(bounds),key)
+		assert_gt(bounds.get_area(),10000,key)
+		assert_almost_eq(image.get_pixel(790,375).a,1.0,0.001,key)
+		var digest := HashingContext.new()
+		digest.start(HashingContext.HASH_SHA256)
+		digest.update(image.get_data())
+		hashes[digest.finish().hex_encode()]=true
+	assert_eq(hashes.size(),3,"Taking, breaking and melting have distinct visible states")

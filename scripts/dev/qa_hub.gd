@@ -1,225 +1,244 @@
 extends Control
-
-# OPT4: F6-only test navigator. Never added to the normal game's main scene.
-# Existing authored previews keep responsibility for their own Battle setups.
+signal initialized
+## Unified F6 navigator. The shipped game's main scene and menus stay unchanged.
 const DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
-const CATEGORIES := ["ВСЁ", "ИГРА", "КАРТЫ", "БОЙ", "АНИМАЦИИ", "ИНТЕРФЕЙС"]
-const ENTRIES := [
-	{"group": "ИГРА", "title": "Начало партии", "scene": "res://scenes/main/main.tscn",
-	 "desc": "Полный игровой маршрут: начало → выбор героя → проклятый стол.",
-	 "prep": ""},
-	{"group": "ИГРА", "title": "Выбор героя", "scene": "res://scenes/class_select/class_select.tscn",
-	 "desc": "Проверка трёх персонажей и начального интерфейса.", "prep": ""},
-	{"group": "ИГРА", "title": "Стол с картами", "scene": "res://scenes/table/table.tscn",
-	 "desc": "Настоящий стол с подготовленным Рыцарем и текущей раздачей.",
-	 "prep": "knight"},
-	{"group": "КАРТЫ", "title": "Галерея Card DS3", "scene": "res://scenes/dev/d315_card_ds3_gallery.tscn",
-	 "desc": "Все карточные изображения, подписи, оптические центры и полный просмотр.", "prep": ""},
-	{"group": "КАРТЫ", "title": "Карточные события", "scene": "res://scenes/dev/deck_expansion_d149_event_preview.tscn",
-	 "desc": "Проверка событий без изменения утверждённых иллюстраций.", "prep": ""},
-	{"group": "БОЙ", "title": "Засада на кладбище", "scene": "res://scenes/battle/battle.tscn",
-	 "desc": "Настоящий бой: Рыцарь против скелетов; перед боем можно настроить расстановку.",
-	 "prep": "graveyard"},
-	{"group": "БОЙ", "title": "Суд Безмолвных", "scene": "res://scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn",
-	 "desc": "Авторский QA-пускатель: 1–3 героя, реальные враги и две расстановки.", "prep": ""},
-	{"group": "БОЙ", "title": "Дорога чёрных фонарей", "scene": "res://scenes/dev/black_lantern_d260_released_battle_preview.tscn",
-	 "desc": "Пять оригинальных врагов, варианты отряда и настоящий маршрут Battle → Reward → Table.",
-	 "prep": ""},
-	{"group": "АНИМАЦИИ", "title": "Персонажи Суда — 25 кадров",
-	 "scene": "res://scenes/dev/court_of_the_mute_d267_three_animation_preview.tscn",
-	 "desc": "Три оригинальных атласа с Idle, Walk, Attack, Hit и Death.", "prep": ""},
-	{"group": "АНИМАЦИИ", "title": "Нежить: Pack 2",
-	 "scene": "res://scenes/dev/unit_animation_pack2_preview.tscn",
-	 "desc": "Сравнение игровых спрайтов и неутверждённых кандидатов; оригиналы не заменяются.",
-	 "prep": ""},
-	{"group": "ИНТЕРФЕЙС", "title": "Панель волшебника",
-	 "scene": "res://scenes/dev/d308_wizard_panel_preview.tscn",
-	 "desc": "Условие звонаря, награда и рисованная табличка волшебника.", "prep": ""},
-	{"group": "ИНТЕРФЕЙС", "title": "Досье отряда",
-	 "scene": "res://scenes/dev/design_system_components_preview.tscn",
-	 "desc": "Элементы интерфейса и существующая дизайн-система.", "prep": ""}
-]
-
+const CATALOG := preload("res://scripts/dev/qa_hub_catalog.gd")
+const SESSION := preload("res://scripts/dev/qa_hub_session.gd")
+const CATEGORIES := CATALOG.GROUPS
+const PARTIES := [["knight"],["ranger"],["mage"],["knight","ranger"],["knight","mage"],["ranger","mage"],["knight","ranger","mage"]]
+var _entries: Array[Dictionary] = []
 var _active_group := "ВСЁ"
-var _selected := 0
+var _selected := -1
 var _list: VBoxContainer
 var _detail_title: Label
 var _detail_description: Label
 var _detail_path: Label
 var _status: Label
 var _launch: Button
+var _search: LineEdit
+var _count: Label
+var _party: OptionButton
+var _gold: SpinBox
+var _recruitment: CheckBox
+var _upgrades: CheckBox
+var _visible_indices: Array[int] = []
+var session: Node
 
 func _ready() -> void:
-	name = "QAHub"
+	# F6 loads this as the initial scene while SceneTree.root is still busy.
+	_initialize_hub.call_deferred()
+
+func _initialize_hub() -> void:
+	name="QAHub"
+	process_mode=Node.PROCESS_MODE_ALWAYS
+	session=SESSION.ensure(self)
+	_entries=CATALOG.entries()
 	_build()
-	_show_group("ВСЁ")
-	_select(0)
+	_active_group=session.hub_group
+	_search.text=session.hub_query
+	if not session.last_options.is_empty():
+		var party_index: int=PARTIES.find(session.last_options.get("roles",[]))
+		if party_index>=0: _party.select(party_index)
+		_gold.value=session.last_options.get("gold",200)
+		_recruitment.button_pressed=session.last_options.get("recruitment",true)
+		_upgrades.button_pressed=session.last_options.get("upgrades",false)
+	_show_group(_active_group)
+	get_viewport().size_changed.connect(_fit)
+	_fit()
+	initialized.emit()
+	if OS.get_cmdline_user_args().has("--qa-hub-startup-check"):
+		assert(session.is_inside_tree() and session.available)
+		assert(not _launch.disabled)
+		for entry in _entries:
+			assert(ResourceLoader.exists(entry.scene,"PackedScene"))
+		print("QA_HUB_DIRECT_START_PASS: session ready; launch enabled; ",_entries.size()," routes")
+		get_tree().quit()
+
+func _fit() -> void:
+	var screen:=get_viewport_rect().size
+	var fit:=minf(screen.x/1280.0,screen.y/720.0)
+	scale=Vector2.ONE*fit
+	position=(screen-Vector2(1280,720)*fit)*0.5
 
 func get_entries() -> Array:
-	return ENTRIES.duplicate(true)
+	return _entries.duplicate(true)
+
+func get_visible_entries() -> Array:
+	var rows: Array=[]
+	for index in _visible_indices: rows.append(_entries[index].duplicate(true))
+	return rows
 
 func _build() -> void:
-	var background := ColorRect.new()
-	background.color = DS3.OBSIDIAN
-	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var background:=ColorRect.new()
+	background.color=DS3.OBSIDIAN
+	background.size=Vector2(1280,720)
+	background.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	add_child(background)
-
-	var glow := ColorRect.new()
-	glow.color = Color(0.19, 0.038, 0.038, 0.18)
-	glow.position = Vector2(0, 0)
-	glow.size = Vector2(1280, 155)
-	glow.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(glow)
-	_add_text("MISDEAL / QA HUB", Vector2(39, 23), Vector2(850, 48), 32, DS3.PARCHMENT)
-	_add_text("БЫСТРЫЙ ДОСТУП К РЕАЛЬНЫМ СЦЕНАМ  ·  ТОЛЬКО РЕЖИМ F6", Vector2(42, 79),
-		Vector2(1120, 27), 15, DS3.MUTED)
-
-	var category_row := HBoxContainer.new()
-	category_row.name = "Categories"
-	category_row.position = Vector2(35, 125)
-	category_row.size = Vector2(1208, 46)
-	category_row.add_theme_constant_override("separation", 7)
-	add_child(category_row)
+	_add_text("MISDEAL / QA HUB",Vector2(38,20),Vector2(1000,48),32,DS3.PARCHMENT)
+	_add_text("КАРТЫ · СОБЫТИЯ · БОИ · TRAVEL · ГЕРОИ · ИНТЕРФЕЙС",Vector2(40,73),Vector2(1180,26),15,DS3.MUTED)
+	var categories:=HBoxContainer.new()
+	categories.name="Categories"
+	categories.position=Vector2(36,112)
+	categories.add_theme_constant_override("separation",6)
+	add_child(categories)
 	for group in CATEGORIES:
-		var button := Button.new()
-		button.name = "Category" + str(CATEGORIES.find(group))
-		button.text = group
-		button.custom_minimum_size = Vector2(185, 43)
-		DS3.apply_action(button, group == _active_group)
+		var button:=Button.new()
+		button.text=group
+		button.custom_minimum_size=Vector2(128,36)
+		button.add_theme_font_size_override("font_size",13)
+		DS3.apply_action(button,false)
 		button.pressed.connect(_show_group.bind(group))
-		category_row.add_child(button)
-
-	var left := Panel.new()
-	left.name = "ScenePanel"
-	left.position = Vector2(36, 195)
-	left.size = Vector2(495, 460)
-	DS3.apply_surface(left, "dossier")
+		categories.add_child(button)
+	_search=LineEdit.new()
+	_search.name="Search"
+	_search.placeholder_text="Поиск: название, ID карты или путь сцены…"
+	_search.position=Vector2(36,158)
+	_search.size=Vector2(492,34)
+	_search.text_changed.connect(func(_text: String):_show_group(_active_group))
+	add_child(_search)
+	_count=_text_node("",Vector2(550,163),Vector2(690,26),14,DS3.MUTED)
+	add_child(_count)
+	var left:=Panel.new()
+	left.name="ScenePanel"
+	left.position=Vector2(36,204)
+	left.size=Vector2(492,450)
+	DS3.apply_surface(left,"dossier")
 	add_child(left)
-
-	var scroll := ScrollContainer.new()
-	scroll.name = "SceneScroll"
-	scroll.position = Vector2(17, 16)
-	scroll.size = Vector2(461, 430)
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	var scroll:=ScrollContainer.new()
+	scroll.name="SceneScroll"
+	scroll.position=Vector2(14,14)
+	scroll.size=Vector2(464,422)
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
 	left.add_child(scroll)
-	_list = VBoxContainer.new()
-	_list.name = "SceneList"
-	_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_list.add_theme_constant_override("separation", 8)
+	_list=VBoxContainer.new()
+	_list.name="SceneList"
+	_list.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	_list.add_theme_constant_override("separation",6)
 	scroll.add_child(_list)
-
-	var right := Panel.new()
-	right.name = "DetailPanel"
-	right.position = Vector2(549, 195)
-	right.size = Vector2(691, 460)
-	DS3.apply_surface(right, "dossier")
+	var right:=Panel.new()
+	right.name="DetailPanel"
+	right.position=Vector2(546,204)
+	right.size=Vector2(696,450)
+	DS3.apply_surface(right,"dossier")
 	add_child(right)
-
-	_detail_title = _text_node("Выберите сцену", Vector2(26, 30), Vector2(635, 74), 25, DS3.PARCHMENT)
-	_detail_title.name = "DetailTitle"
+	_detail_title=_text_node("Выберите сцену",Vector2(26,24),Vector2(644,62),24,DS3.PARCHMENT)
+	_detail_title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	right.add_child(_detail_title)
-	_detail_description = _text_node("", Vector2(28, 118), Vector2(628, 117), 17, DS3.TEXT)
-	_detail_description.name = "DetailDescription"
-	_detail_description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_detail_description=_text_node("",Vector2(26,95),Vector2(642,82),16,DS3.TEXT)
+	_detail_description.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	right.add_child(_detail_description)
-	_detail_path = _text_node("", Vector2(28, 255), Vector2(621, 58), 12, DS3.MUTED)
-	_detail_path.name = "DetailPath"
-	_detail_path.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_detail_path=_text_node("",Vector2(26,181),Vector2(642,36),11,DS3.MUTED)
+	_detail_path.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	right.add_child(_detail_path)
-
-	_launch = Button.new()
-	_launch.name = "LaunchButton"
-	_launch.text = "ЗАПУСТИТЬ СЦЕНУ"
-	_launch.position = Vector2(26, 340)
-	_launch.size = Vector2(639, 54)
-	DS3.apply_action(_launch, true)
+	_party=OptionButton.new()
+	_party.name="Party"
+	for label in ["Рыцарь — solo","Следопыт — solo","Маг — solo","Рыцарь + Следопыт","Рыцарь + Маг","Следопыт + Маг","Все герои — trio"]:_party.add_item(label)
+	_party.select(6)
+	_party.position=Vector2(26,228)
+	_party.size=Vector2(355,34)
+	right.add_child(_party)
+	_gold=SpinBox.new()
+	_gold.name="Gold"
+	_gold.prefix="Золото: "
+	_gold.max_value=999
+	_gold.value=200
+	_gold.position=Vector2(400,228)
+	_gold.size=Vector2(266,34)
+	right.add_child(_gold)
+	_recruitment=CheckBox.new()
+	_recruitment.text="Спутники доступны для найма"
+	_recruitment.button_pressed=true
+	_recruitment.position=Vector2(26,275)
+	_recruitment.add_theme_font_size_override("font_size",13)
+	right.add_child(_recruitment)
+	_upgrades=CheckBox.new()
+	_upgrades.text="Дать по 1 развитию"
+	_upgrades.position=Vector2(390,275)
+	_upgrades.add_theme_font_size_override("font_size",13)
+	right.add_child(_upgrades)
+	right.add_child(_text_node("Параметры — для реальных карт; авторские превью имеют свои настройки.",Vector2(28,314),Vector2(640,23),11,DS3.MUTED))
+	_launch=Button.new()
+	_launch.name="LaunchButton"
+	_launch.text="ЗАПУСТИТЬ ПРОВЕРКУ"
+	_launch.position=Vector2(26,348)
+	_launch.size=Vector2(642,48)
+	DS3.apply_action(_launch,true)
 	_launch.pressed.connect(_launch_selected)
 	right.add_child(_launch)
-	_status = _text_node("", Vector2(28, 409), Vector2(629, 37), 13, DS3.NEGATIVE)
-	_status.name = "Status"
+	_status=_text_node("",Vector2(28,405),Vector2(640,34),12,DS3.NEGATIVE)
+	_status.name="Status"
+	_status.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	right.add_child(_status)
-
-	_add_text("Открытие: F6 на qa_hub.tscn  ·  Вернуться: снова F6  ·  Проверки не сохраняют прогресс.",
-		Vector2(38, 670), Vector2(1190, 35), 14, DS3.MUTED)
+	_add_text("F10 — вернуться в хаб · F9 — повторить запуск · F11 — скрыть QA-панель",Vector2(38,667),Vector2(1200,24),14,DS3.PARCHMENT)
+	_add_text("Отдельные QA-сохранение и витраж. Обычный прогресс не перезаписывается.",Vector2(38,693),Vector2(1200,22),12,DS3.MUTED)
 
 func _show_group(group: String) -> void:
-	_active_group = group
-	if _list == null:
-		return
+	_active_group=group
+	session.hub_group=group
+	session.hub_query=_search.text
 	for child in _list.get_children():
 		_list.remove_child(child)
 		child.queue_free()
-	var first := -1
-	for index in range(ENTRIES.size()):
-		var entry: Dictionary = ENTRIES[index]
-		if group != "ВСЁ" and entry["group"] != group:
-			continue
-		if first < 0:
-			first = index
-		var button := Button.new()
-		button.name = "Scene" + str(index)
-		button.text = str(entry["title"])
-		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		button.custom_minimum_size = Vector2(433, 42)
-		DS3.apply_action(button, index == _selected)
+	_visible_indices.clear()
+	var query:=_search.text.strip_edges().to_lower()
+	for index in range(_entries.size()):
+		var entry: Dictionary=_entries[index]
+		if group=="ВСЁ" and entry.group=="АРХИВ": continue
+		if group!="ВСЁ" and entry.group!=group: continue
+		var haystack: String=(str(entry.title)+" "+str(entry.scene)+" "+str(entry.get("search",""))+" "+str(entry.desc)).to_lower()
+		if not query.is_empty() and not haystack.contains(query): continue
+		_visible_indices.append(index)
+		var button:=Button.new()
+		button.name="Scene"+str(index)
+		button.text=str(entry.title)
+		button.tooltip_text=str(entry.get("card_id",entry.scene))
+		button.alignment=HORIZONTAL_ALIGNMENT_LEFT
+		button.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+		button.custom_minimum_size=Vector2(430,40)
+		button.add_theme_font_size_override("font_size",15)
+		DS3.apply_action(button,false)
 		button.pressed.connect(_select.bind(index))
 		_list.add_child(button)
-	for child in $Categories.get_children():
-		var button := child as Button
-		DS3.apply_action(button, button.text == group)
-	if first >= 0:
-		_select(first)
+	for button in $Categories.get_children():DS3.apply_action(button,button.text==group)
+	_count.text="Найдено: %d · Актуальные сцены и карты; старые кандидаты — в «Архиве»." % _visible_indices.size()
+	var chosen: int=_visible_indices[0] if not _visible_indices.is_empty() else -1
+	for index in _visible_indices:
+		if _entries[index].id==session.hub_selected: chosen=index
+	_select(chosen)
 
 func _select(index: int) -> void:
-	if index < 0 or index >= ENTRIES.size():
+	_selected=index
+	if index<0:
+		_detail_title.text="Ничего не найдено"
+		_detail_description.text="Измените запрос или раздел. Поиск работает также по ID карты и имени файла."
+		_detail_path.text=""
+		_status.text=""
+		_launch.disabled=true
 		return
-	_selected = index
-	var entry: Dictionary = ENTRIES[index]
-	_detail_title.text = str(entry["title"])
-	_detail_description.text = str(entry["desc"])
-	_detail_path.text = str(entry["scene"])
-	_status.text = ""
-	_launch.disabled = not ResourceLoader.exists(str(entry["scene"]), "PackedScene")
-	if _launch.disabled:
-		_status.text = "Не найдена игровая сцена — запуск запрещён."
-	for node in _list.get_children():
-		var button := node as Button
-		DS3.apply_action(button, button.name == "Scene" + str(index))
+	var entry: Dictionary=_entries[index]
+	session.hub_selected=entry.id
+	_detail_title.text=entry.title
+	_detail_description.text=entry.desc
+	_detail_path.text=str(entry.get("card_id",""))+"  "+str(entry.scene)
+	_status.text=session.error_message
+	_launch.disabled=not ResourceLoader.exists(entry.scene,"PackedScene") or not session.available
+	for button in _list.get_children():DS3.apply_action(button,button.name=="Scene"+str(index))
 
 func _launch_selected() -> void:
-	var entry: Dictionary = ENTRIES[_selected]
-	var path: String = entry["scene"]
-	if not ResourceLoader.exists(path, "PackedScene"):
-		_status.text = "Сцена не найдена: " + path
-		return
-	var prep: String = entry["prep"]
-	if prep != "":
-		# QA Hub must compile both as a normal F6 scene (with autoloads) and
-		# in a standalone --script SceneTree smoke (autoloads aren't injected).
-		var state := get_node_or_null("/root/RunState")
-		if state == null:
-			state = (load("res://scripts/core/run_state.gd") as Script).new() as Node
-			state.name = "RunState"
-			get_tree().root.add_child(state)
-		state.call("reset_run")
-		if not state.call("choose_protagonist", "knight"):
-			_status.text = "Не удалось подготовить Рыцаря для QA."
-			return
-		if prep == "graveyard":
-			state.call("select_encounter", "res://resources/encounters/graveyard_ambush.tres")
-	get_tree().change_scene_to_file(path)
+	if _selected<0:return
+	var options: Dictionary={"roles":PARTIES[_party.selected].duplicate(),"gold":int(_gold.value),"recruitment":_recruitment.button_pressed,"upgrades":_upgrades.button_pressed}
+	if not session.launch_entry(_entries[_selected],options):
+		_status.text=session.error_message if not session.error_message.is_empty() else "Не удалось открыть сцену."
 
-func _add_text(value: String, pos: Vector2, dimensions: Vector2, font: int, color: Color) -> void:
-	add_child(_text_node(value, pos, dimensions, font, color))
+func _add_text(value: String,pos: Vector2,dimensions: Vector2,font: int,color: Color) -> void:
+	add_child(_text_node(value,pos,dimensions,font,color))
 
-func _text_node(value: String, pos: Vector2, dimensions: Vector2, font: int, color: Color) -> Label:
-	var label := Label.new()
-	label.text = value
-	label.position = pos
-	label.size = dimensions
-	label.add_theme_font_size_override("font_size", font)
-	label.add_theme_color_override("font_color", color)
-	label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.85))
-	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+func _text_node(value: String,pos: Vector2,dimensions: Vector2,font: int,color: Color) -> Label:
+	var label:=Label.new()
+	label.text=value
+	label.position=pos
+	label.size=dimensions
+	label.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	label.add_theme_font_size_override("font_size",font)
+	label.add_theme_color_override("font_color",color)
 	return label

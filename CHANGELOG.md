@@ -1,3 +1,23 @@
+## Broken Crown — walk into the garden
+
+Follow the user-marked up-right road from the lower paving into the gap between raised beds. Resource-local curved route and depth-scaled lanes apply to all four crown outcomes; all party members keep moving throughout the presentation. Preserve approved artwork, near scale, rear walk, outcomes, timing and other scenes.
+
+## Broken Crown: approved smaller props across every outcome
+
+Integrate the exact approved small-prop master and three localized imagegen outcome edits. Taking leaves empty cloth; breaking leaves flat shards; remelting leaves a matte gold trace; passing retains the small broken crown. Preserve actor scale, route, contact FX, timing, gameplay and original V2 assets.
+
+## Travel: crown party scale calibration
+
+Increase and unify broken_crown party near-height to 330 px across all four outcomes through a resource-local presentation override. Preserve route, grounded soles, contact FX, source art and every other scene. User approved the other six Batch02 locations / 27 outcomes; crown scale remains for review.
+
+## QA Hub — исправление прямого запуска F6
+
+Defer hub initialization until the initial SceneTree root finishes attaching children. Fix inactive launch buttons on every entry during F6; keep QA save isolation. Add direct scene startup CI regression in addition to scripted navigation tests.
+
+## QA Hub — полный каталог проверки
+
+Expand developer F6 hub to all 46 live cards, 17 Travel launchers, combat/animation/UI tools and a separate historical archive. Add search, party/gold/recruitment/upgrade setup, F9 replay, F10 return (including pause/Travel), F11 clean captures, and isolated QA run/memory services. Preserve player saves, game menus, artwork and mechanics. Add catalog/isolation tests and native launch/return CI coverage. See [QA Hub](docs/QA_HUB.md).
+
 ## Cinematic Travel Batch 02 V2
 
 Integrate seven new locations and31 decision-specific aftermaths from exact V2 art through existing Travel V2. Preserve corrected actor scale and foot projection; selected forge item only, no detached-hand animation; one bridge Ranger. Capture actual random/purchase/recruit outcomes transiently, retaining all effects, balance and save fields. Unified31-case F6, real31-route native regression/save-load coverage, full GUT298/298; old scenes intact. [Details](docs/TRAVEL_BATCH02_V2.md). Candidate PR only; no automatic merge.
