@@ -17,4 +17,4 @@
 - Keep known type/shutdown diagnostics visible; a broader technical cleanup is a separate task.
 - Reconcile any historical content backlog against live GitHub before implementation; do not treat archived candidates or old PRs as current release approval.
 
-[Current state](PROJECT_STATE.md) · [Handoff](HANDOFF.md) · [QA Hub](QA_HUB.md) · [Travel contract](TRAVEL_BATCH02_V2.md). Superseded milestone/session entries are preserved in [the release archive](archive/2026-11-17-travel-release/ROADMAP.md).
+[Current state](PROJECT_STATE.md) · [Handoff](HANDOFF.md) · [QA Hub](QA_HUB.md) · [Travel contract](TRAVEL_BATCH02_V2.md). Superseded milestone/session entries are preserved in [the release archive](archive/2026-11-17-production-release/ROADMAP.md).
