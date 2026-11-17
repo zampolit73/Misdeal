@@ -1,3 +1,7 @@
+## Broken Crown small props — approved replacement
+
+`assets/pixel/travel/batch_02/broken_crown/small_props/source/approved_master.png` is the user-approved smaller-prop scene. Runtime base and wear/break/melt alpha layers are under `small_props/layers`; leave uses the base. `provenance.json` records hashes and `source/prompts.json` records built-in imagegen edits. Original package remains untouched.
+
 ## Cinematic Travel Pilot Batch01 V3
 
 assets/pixel/travel/pilot_01 retains exact V3masters,11RGBfinals, RGBAaction poses/masks and provenance; ZIP SHA256178ce003...a2358e45. No duplicate hero pack or browser/APNG runtime. [Contract](TRAVEL_PILOT_BATCH01_V3.md).

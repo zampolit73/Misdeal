@@ -1,3 +1,7 @@
+## Broken Crown: approved smaller props across every outcome
+
+Integrate the exact approved small-prop master and three localized imagegen outcome edits. Taking leaves empty cloth; breaking leaves flat shards; remelting leaves a matte gold trace; passing retains the small broken crown. Preserve actor scale, route, contact FX, timing, gameplay and original V2 assets.
+
 ## Travel: crown party scale calibration
 
 Increase and unify broken_crown party near-height to 330 px across all four outcomes through a resource-local presentation override. Preserve route, grounded soles, contact FX, source art and every other scene. User approved the other six Batch02 locations / 27 outcomes; crown scale remains for review.

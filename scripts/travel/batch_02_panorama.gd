@@ -44,10 +44,12 @@ func build(background: String, _foreground: String, _underpaint: String, _sky: S
 	for entry in all.scenes:
 		if str(entry.id)==id: original=entry.duplicate(true)
 	if original.is_empty(): return
+	# Versioned presentations keep the original package intact for rollback.
+	original.folder=background.trim_prefix(ROOT).get_base_dir().get_base_dir()
 	scene=original.duplicate(true)
-	if texture_at(id+"/layers/base_1280.png")==null: return
+	if texture_at(str(original.folder)+"/layers/base_1280.png")==null: return
 	for entry in original.states:
-		if entry.key not in ["leave","careful","abandon"] and not FileAccess.file_exists(ROOT+id+"/layers/"+str(entry.key)+"_state.png"): return
+		if entry.key not in ["leave","careful","abandon"] and not FileAccess.file_exists(ROOT+str(original.folder)+"/layers/"+str(entry.key)+"_state.png"): return
 	var rear := REAR.new()
 	if scene.facing=="ne" and not rear.build(): return
 	var metadata: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(ROOT+"soles.json"))

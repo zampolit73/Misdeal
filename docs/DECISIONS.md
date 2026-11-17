@@ -1,3 +1,7 @@
+## Broken Crown — locked small-prop presentation
+
+User approved approved_master.png SHA256 a9128b4a0920ccf0f1aa8f11d56595c614ad1a30aff1118645b20720906f4a09 and requested every outcome use its smaller crown/armour/sword/candles. Keep this exact master as the shared scene base. Consequence changes are limited to the crown patch, preserving all surrounding pixels between actions. Keep original V2 assets unchanged for provenance/rollback.
+
 ## Travel Batch02 V2 — explicit transient action context
 
 The seven new locations map to the31 exact approved visual actions. Actual RNG result, purchased candle role/artifact and bridge recruitment mode are captured by the existing successful event handler and used only by presentation. Never reroll or infer them from final stats, persist no new save keys, and retain each corrected V2 actor_stage independently. Existing seven locations and mechanics remain locked. [Contract](TRAVEL_BATCH02_V2.md).

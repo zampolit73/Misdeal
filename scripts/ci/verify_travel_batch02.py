@@ -34,6 +34,14 @@ def verify():
                     assert 0 <= x < x + width <= 1280 and 0 <= y < y + height <= 720
     assert count == 31 and revised == 11
     assert not list(root.rglob("*.zip")) and not list(root.rglob("*.mp4"))
+    revised_root = root / "broken_crown/small_props"
+    approved = json.loads((revised_root / "provenance.json").read_text(encoding="utf-8"))
+    assert set(approved["outcomes"]) == {"wear", "break", "melt", "leave"}
+    for record in approved["files"]:
+        file = revised_root / record["path"]
+        assert hashlib.sha256(file.read_bytes()).hexdigest() == record["sha256"], file
+    assert hashlib.sha256((revised_root / "source/approved_master.png").read_bytes()).hexdigest() == approved["approved_master_sha256"]
+    print("CROWN_SMALL_ASSETS_PASS: approved master and all four outcomes; original V2 retained")
     print(f"BATCH02_ASSETS_PASS: 7 scenes / 31 outcomes / 11 V2 corrections / {len(provenance['retained_files'])} exact asset hashes")
 
 

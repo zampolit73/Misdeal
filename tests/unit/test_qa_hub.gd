@@ -12,6 +12,7 @@ func test_complete_catalog_search_archive_and_current_travel() -> void:
 	var hub:=HUB.instantiate()
 	add_child_autofree(hub)
 	await hub.initialized
+	await get_tree().process_frame
 	var entries: Array=hub.get_entries()
 	var live_cards := {}
 	var ids := {}
@@ -48,6 +49,7 @@ func test_session_isolates_save_memory_and_restores_original_state_and_services(
 	var hub:=HUB.instantiate()
 	add_child_autofree(hub)
 	await hub.initialized
+	await get_tree().process_frame
 	var session: Node=get_tree().root.get_node("QAHubSession")
 	assert_true(session.available)
 	assert_ne(SAVE.shared,previous_save)

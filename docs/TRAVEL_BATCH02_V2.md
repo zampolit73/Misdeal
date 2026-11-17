@@ -14,7 +14,9 @@ Seven new locations / 31 visual actions integrated through the existing Travel V
 
 ## Current artistic review
 
-User approved all six other locations / 27 outcomes. Only broken_crown party scale was rejected as too small against foreground crown and armour. Its Resource now overrides near-height to 330 px for all four actions (was 205 for break/melt/leave, 310 for wear); original routes, foot projection and V2 masters are intact. Scale propagates to contact shadows/dust through the existing actor scale. Other resources have no override and retain their exact prior staging. Native before/after: [leave](qa/crown_scale/leave_after.jpg), [wear](qa/crown_scale/wear_after.jpg), [previous leave](qa/crown_scale/leave_before.jpg). Crown adjustment awaits user review.
+All six other locations / 27 outcomes are approved. The user then approved a redrawn smaller crown/armour/sword/candles background and requested its use for all four crown outcomes. The exact image is retained in `broken_crown/small_props/source/approved_master.png` with SHA256 `a9128b4a0920ccf0f1aa8f11d56595c614ad1a30aff1118645b20720906f4a09`. Resource paths select its versioned folder; the compositor derives that folder from the supplied background path. Original V2 assets/provenance remain unchanged.
+
+Taking removes the small crown; breaking leaves flat fragments; remelting leaves a matte gold trace; passing preserves the base. Generated edits are packed as local RGBA layers inside Rect2i(704,316,210,126), with a12px edge feather; no changes to walls, armour, sword, candles or garden between outcomes. Existing fades, actor near-height330, route, sole projection and mechanics are preserved. Rebuild with `scripts/dev/pack_crown_small_props.gd`; sources, prompts and checked hashes are included. [Native four-outcome evidence](qa/crown_small_props/README.md).
 
 ## Source and staging
 

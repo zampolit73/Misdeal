@@ -1,3 +1,7 @@
+## Current review — crown small props installed
+
+New approved background is now used by all four broken_crown outcomes. In the main local project: restart F6, QA Hub → Travel → «Пустое место последнего властителя», ←/→ cycles wear/break/melt/leave. Confirm small props remain stable and each consequence reads. Six other Batch02 scenes are accepted and unchanged. No automatic PR merge.
+
 ## Следующая проверка: только broken_crown
 
 Все остальные сцены Batch02 визуально утверждены пользователем; не менять их. Корона: единый увеличенный near-height 330 px во всех четырёх исходах, прежние ступни/маршрут/перспективное уменьшение. В QA-хабе открыть «Пустое место последнего властителя», проверить trio и solo, особенно leave и wear. Не сливать PR автоматически до просмотра исправления.

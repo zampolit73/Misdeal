@@ -1,3 +1,7 @@
+## Broken Crown — approved small props in all four outcomes
+
+User approved the smaller crown, armour, sword and candles. The exact approved master now drives leave/wear/break/melt through versioned small_props assets; only a bounded alpha patch changes at the crown. Existing actor near-height330, routes, timing, text and consequences preserved. Original V2 retained for rollback. Native four outcomes/solo+trio/six intermediate times and all31 real routes pass; full GUT301/301,77,821 assertions.
+
 ## Batch02: принято, кроме масштаба broken_crown
 
 Пользователь утвердил остальные шесть сцен и их 27 исходов. Для broken_crown повышен и выровнен масштаб отряда во всех четырёх исходах: near-height 330 px вместо 205 px у break/melt/leave и 310 px у wear. Маршрут, перспектива, исходный арт и игровые эффекты сохранены; ресурсная настройка применяется только к короне. Нужен повторный пользовательский просмотр этой сцены.
