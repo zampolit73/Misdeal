@@ -1,3 +1,7 @@
+## 2026-11-17 — production: Cinematic Travel Batch02 and QA Hub
+
+Release approved by the user and merged through [PR #114](https://github.com/zampolit73/Misdeal/pull/114) / [PR #115](https://github.com/zampolit73/Misdeal/pull/115), runtime `c1bba400`. Seven locations /31 actual outcomes, final approved smaller crown props and garden path, unified isolated F6 QA hub. Full [RELEASE CI](https://github.com/zampolit73/Misdeal/actions/runs/44058109794) passed; local301/301 GUT and31 real routes. Existing mechanics, saves and approved old scenes preserved. Consolidate current state/handoff/roadmap; retain prior session notes in the dated archive. This release supersedes earlier pending-approval notes below.
+
 ## Broken Crown — walk into the garden
 
 Follow the user-marked up-right road from the lower paving into the gap between raised beds. Resource-local curved route and depth-scaled lanes apply to all four crown outcomes; all party members keep moving throughout the presentation. Preserve approved artwork, near scale, rear walk, outcomes, timing and other scenes.

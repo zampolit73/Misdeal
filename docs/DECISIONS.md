@@ -1,3 +1,7 @@
+## Production authorization — Batch02 / QA Hub
+
+After accepting the final crown walk along the marked garden path, the user explicitly requested production merge. PR #114 and #115 are released to main after green mandatory checks. Prior review-only restrictions for this delivery are satisfied; the accepted art, smaller props, staging and gameplay remain locked for subsequent work.
+
 ## Broken Crown — locked small-prop presentation
 
 User approved approved_master.png SHA256 a9128b4a0920ccf0f1aa8f11d56595c614ad1a30aff1118645b20720906f4a09 and requested every outcome use its smaller crown/armour/sword/candles. Keep this exact master as the shared scene base. Consequence changes are limited to the crown patch, preserving all surrounding pixels between actions. Keep original V2 assets unchanged for provenance/rollback.
