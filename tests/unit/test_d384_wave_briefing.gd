@@ -18,6 +18,9 @@ func _boot(card_id: String, party_size: int = 2) -> Control:
 	RunState.active_card_id = card_id
 	RunState.select_encounter("res://resources/encounters/%s.tres" % card_id)
 	var battle := BATTLE.instantiate() as Control
+	# D384 validates the *classic* wave readout controls, not the new V4 dock.
+	# The separate campaign smoke verifies the new planning intermission.
+	battle.combat_planning_disabled = true
 	add_child_autofree(battle)
 	return battle
 
