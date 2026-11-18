@@ -24,15 +24,15 @@
     1.12,
     [
       488,
-      363
+      395
     ],
     [
-      588,
-      525
+      488,
+      392
     ],
     [
-      848,
-      557
+      675,
+      532
     ]
   ],
   "foreground": [
@@ -152,10 +152,65 @@
       "preview": "preview/leave.jpg"
     }
   ],
+  "occlusion": [
+    [
+      267,
+      326
+    ],
+    [
+      282,
+      346
+    ],
+    [
+      330,
+      365
+    ],
+    [
+      385,
+      377
+    ],
+    [
+      432,
+      381
+    ],
+    [
+      512,
+      376
+    ],
+    [
+      558,
+      370
+    ],
+    [
+      603,
+      360
+    ],
+    [
+      644,
+      331
+    ],
+    [
+      681,
+      314
+    ],
+    [
+      683,
+      515
+    ],
+    [
+      350,
+      542
+    ],
+    [
+      268,
+      512
+    ]
+  ],
   "master": "master/scene.webp",
   "planes": {
     "architecture": "master/scene.webp",
-    "foreground": "layers/foreground.png"
+    "foreground": "layers/foreground.png",
+    "handoff_occlusion": "layers/handoff_occlusion.png"
   },
   "phase_assets": {
     "entry": "layers/entry.png",
