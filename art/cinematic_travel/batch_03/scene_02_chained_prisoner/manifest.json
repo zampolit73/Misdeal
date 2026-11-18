@@ -1,0 +1,163 @@
+{
+  "id": "chained_prisoner",
+  "title": "Закованный пленник",
+  "route": [
+    [
+      96,
+      625
+    ],
+    [
+      694,
+      658
+    ],
+    [
+      1172,
+      657
+    ]
+  ],
+  "horizon": 271,
+  "height": 194,
+  "facing": "side",
+  "art": "Холодный коридор слева, тёплый свет из камеры справа. Перекрытие решёткой сохраняется до открытия.",
+  "handoff": [
+    "knight",
+    1.04,
+    [
+      877,
+      546
+    ],
+    [
+      881,
+      571
+    ],
+    [
+      1053,
+      651
+    ]
+  ],
+  "foreground": [
+    [
+      0,
+      441
+    ],
+    [
+      30,
+      437
+    ],
+    [
+      32,
+      566
+    ],
+    [
+      84,
+      612
+    ],
+    [
+      96,
+      720
+    ],
+    [
+      0,
+      720
+    ]
+  ],
+  "folder": "scene_02_chained_prisoner",
+  "states": [
+    {
+      "choice": "recruit",
+      "action": "recruit",
+      "condition": "Рыцарь доступен для найма.",
+      "effect": "Присоединение рыцаря. Шрам цепей, −10 макс. HP протагониста. Факт silenced.",
+      "party": "+knight",
+      "visual": "Открыта решётка, разомкнуты кандалы, пустая камера.",
+      "narration": "Цепи падают. Рыцарь встаёт рядом с вами.",
+      "overlay": "outcomes/recruit.png",
+      "preview": "preview/recruit.jpg"
+    },
+    {
+      "choice": "loot_recruitment",
+      "action": "loot_recruitment",
+      "condition": "Рыцарь доступен для найма.",
+      "effect": "+25 золота, судьба рыцаря lost.",
+      "party": "knight lost",
+      "visual": "Пленник за решёткой, вывернутый кошель.",
+      "narration": "Звон цепей остаётся за спиной.",
+      "overlay": "outcomes/loot_recruitment.png",
+      "preview": "preview/loot_recruitment.jpg"
+    },
+    {
+      "choice": "abandon",
+      "action": "abandon",
+      "condition": "Рыцарь доступен для найма.",
+      "effect": "Судьба рыцаря lost, без награды.",
+      "party": "knight lost",
+      "visual": "Пленник за решёткой, кошель нетронут.",
+      "narration": "Цепи остаются натянутыми.",
+      "overlay": "outcomes/abandon.png",
+      "preview": "preview/abandon.jpg"
+    },
+    {
+      "choice": "mentor",
+      "action": "mentor",
+      "condition": "Найм недоступен, золото ≥25 и есть доп. развитие.",
+      "effect": "−25 золота, наименее развитый доступный герой получает развитие. Факт silenced.",
+      "party": "same",
+      "visual": "Открытые кандалы и оплата. Пленник уходит отдельно.",
+      "narration": "Пленник расплачивается за свободу знанием.",
+      "overlay": "outcomes/mentor.png",
+      "preview": "preview/mentor.jpg"
+    },
+    {
+      "choice": "chains",
+      "action": "chains_relic",
+      "condition": "Найм недоступен, получена случайная реликвия.",
+      "effect": "−15 HP отряда, фактическая реликвия. Факт silenced.",
+      "party": "same",
+      "visual": "Разорванные цепи, открытый тайник и закрытая упаковка находки.",
+      "narration": "За разбитыми цепями открывается тайник.",
+      "overlay": "outcomes/chains_relic.png",
+      "preview": "preview/chains_relic.jpg"
+    },
+    {
+      "choice": "chains",
+      "action": "chains_empty",
+      "condition": "Найм недоступен, пул реликвий пуст.",
+      "effect": "−15 HP отряда, +35 золота. Факт silenced.",
+      "party": "same",
+      "visual": "Открытый пустой тайник и монеты рядом.",
+      "narration": "В тайнике пусто. Остались монеты.",
+      "overlay": "outcomes/chains_empty.png",
+      "preview": "preview/chains_empty.jpg"
+    },
+    {
+      "choice": "loot",
+      "action": "loot",
+      "condition": "Найм недоступен.",
+      "effect": "+25 золота, −10 HP отряда.",
+      "party": "same",
+      "visual": "Целые кандалы, вывернутый кошель и повязка.",
+      "narration": "Монеты у вас. Цепи оставили след.",
+      "overlay": "outcomes/loot.png",
+      "preview": "preview/loot.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "leave",
+      "condition": "Найм недоступен, кнопка видна.",
+      "effect": "Без награды.",
+      "party": "same",
+      "visual": "Решётка закрыта, кошель нетронут.",
+      "narration": "Цепи звенят позади. Волшебник молчит.",
+      "overlay": "outcomes/leave.png",
+      "preview": "preview/leave.jpg"
+    }
+  ],
+  "master": "master/scene.webp",
+  "planes": {
+    "architecture": "master/scene.webp",
+    "foreground": "layers/foreground.png"
+  },
+  "phase_assets": {
+    "entry": "layers/entry.png"
+  }
+}

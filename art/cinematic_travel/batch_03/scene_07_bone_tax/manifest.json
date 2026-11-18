@@ -1,0 +1,96 @@
+{
+  "id": "bone_tax",
+  "title": "Костяная пошлина",
+  "route": [
+    [
+      125,
+      653
+    ],
+    [
+      357,
+      599
+    ],
+    [
+      549,
+      500
+    ]
+  ],
+  "horizon": 224,
+  "height": 180,
+  "facing": "ne",
+  "art": "Тяжёлый ворот над заставой, проезд слева, стол пошлин и страж справа.",
+  "handoff": null,
+  "foreground": [
+    [
+      1243,
+      564
+    ],
+    [
+      1280,
+      535
+    ],
+    [
+      1280,
+      720
+    ],
+    [
+      1187,
+      720
+    ]
+  ],
+  "folder": "scene_07_bone_tax",
+  "states": [
+    {
+      "choice": "gold",
+      "action": "gold",
+      "condition": "Золото ≥20 с фактом rations, иначе ≥25.",
+      "effect": "−20/25 золота.",
+      "party": "same",
+      "visual": "Монеты в плошке, страж отводит копьё.",
+      "narration": "Плошка звенит. Страж освобождает проход.",
+      "overlay": "outcomes/gold.png",
+      "preview": "preview/gold.jpg"
+    },
+    {
+      "choice": "blood",
+      "action": "scar",
+      "condition": "Есть Шрам цепей.",
+      "effect": "Бесплатный проход, без штрафа HP.",
+      "party": "same",
+      "visual": "Пустая плошка, страж узнаёт след цепей.",
+      "narration": "Страж узнаёт старый след и отступает.",
+      "overlay": "outcomes/scar.png",
+      "preview": "preview/scar.jpg"
+    },
+    {
+      "choice": "blood",
+      "action": "blood",
+      "condition": "Шрама цепей нет.",
+      "effect": "−15 HP отряда.",
+      "party": "same",
+      "visual": "След крови в плошке, повязка, страж отступает.",
+      "narration": "Плошка принимает кровь.",
+      "overlay": "outcomes/blood.png",
+      "preview": "preview/blood.jpg"
+    },
+    {
+      "choice": "force",
+      "action": "force",
+      "condition": "Доступно доп. развитие наименее развитому.",
+      "effect": "−25 HP отряда, фактическое доп. развитие.",
+      "party": "same",
+      "visual": "Страж и копьё на камне, плошка сбита.",
+      "narration": "Копьё ударяется о камень. Путь свободен.",
+      "overlay": "outcomes/force.png",
+      "preview": "preview/force.jpg"
+    }
+  ],
+  "master": "master/scene.webp",
+  "planes": {
+    "architecture": "master/scene.webp",
+    "foreground": "layers/foreground.png"
+  },
+  "phase_assets": {
+    "entry": "layers/entry.png"
+  }
+}

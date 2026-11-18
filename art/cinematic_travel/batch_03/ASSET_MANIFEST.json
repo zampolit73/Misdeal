@@ -1,0 +1,1969 @@
+{
+  "source_sha": "5b6454b10325cc35bacc2754da8a84338040ffab",
+  "files": {
+    ".gdignore": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "BATCH_03_HANDOFF.md": {
+      "size": 4347,
+      "sha256": "dcdbe28b27806944e7f21fb1527e861dfb1536bda633b2e327ea7438d14d62b3"
+    },
+    "CODEX_BATCH_03.md": {
+      "size": 7855,
+      "sha256": "89e9ff77cbc25cac149750860b1aae7529dbc540c6c93ff1501af94141868ec3"
+    },
+    "MISDEAL_BATCH_03_CONTACT.jpg": {
+      "size": 724347,
+      "sha256": "29036db5f9e2fff3312ebd60bc83b89900495138b78fa425a8b2fd1251d426eb",
+      "width": 1268,
+      "height": 1930,
+      "mode": "RGB"
+    },
+    "MISDEAL_BATCH_03_GALLERY.html": {
+      "size": 56702,
+      "sha256": "7d33606d2003de78d5f589632ead43ff102ddb677dca988c94919d2b46306d90"
+    },
+    "OUTCOME_MATRIX.md": {
+      "size": 24219,
+      "sha256": "d3003dd912dbf55c7b37b0a8c2c42773a218b593a30fe46cf597f649f51e7d05"
+    },
+    "README.md": {
+      "size": 327,
+      "sha256": "2fc49fea1693c84ba3f674100d38051791b2b389ce1538a634cce92f7aeb5024"
+    },
+    "preview_actors/frames.json": {
+      "size": 1000,
+      "sha256": "99e13f0b4c3a0578010587d1e80c80dc4bd71672c3923f0582d02d1b32644333"
+    },
+    "preview_actors/ne_knight.png": {
+      "size": 45278,
+      "sha256": "9c775598bb010dc778b71e0cfedcc7dcc9e3bf0a8ef1b323ae0027b8e4a70dbb",
+      "width": 576,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    "preview_actors/ne_mage.png": {
+      "size": 40470,
+      "sha256": "15c60cf872ef4ab986f9bc32dc96189343288e5235ce5f9c552df6b3463d0272",
+      "width": 576,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    "preview_actors/ne_ranger.png": {
+      "size": 41508,
+      "sha256": "2f9e6d01d022128e4b0b07e85f6e21d5a2c90b1f10191a0def383ad43bcb4dce",
+      "width": 576,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    "preview_actors/side_jack.png": {
+      "size": 40416,
+      "sha256": "aeb02f47f5285d749d254e5e262aacae60860d87a671a0f868a1a849ff5d86bf",
+      "width": 576,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    "preview_actors/side_knight.png": {
+      "size": 47257,
+      "sha256": "040f1b38bb2bc270bd48b20efcce7da13d23f0c67007c23e6fabe37705bbb78c",
+      "width": 576,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    "preview_actors/side_mage.png": {
+      "size": 43967,
+      "sha256": "28ff9a2772dd03128473c3f1b6f398c831ca4fe484d820096f8a03a6fe832e1d",
+      "width": 576,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    "preview_actors/side_ranger.png": {
+      "size": 36146,
+      "sha256": "f7e5f8840caf1f45cfba902dcd9eca2debe5ba172c79c43f4ffb5632dde5b224",
+      "width": 576,
+      "height": 96,
+      "mode": "RGBA"
+    },
+    "production/gallery_template.html": {
+      "size": 11698,
+      "sha256": "0179cc43fa1fa4e1dfb336452119f1eec91d5b9bd3f034f7f313e7a2a2e18267"
+    },
+    "render_package.py": {
+      "size": 11220,
+      "sha256": "bbd5a3e66ed525799b3bf1b71c870d5282e2567951b5194ab900986b70f68537"
+    },
+    "scene_01_black_altar/ART_SPEC.md": {
+      "size": 2818,
+      "sha256": "44844e1d0ff625db3e789e046db0487bebe9a73437656e054f27546dbeadff39"
+    },
+    "scene_01_black_altar/CODEX_TASK.md": {
+      "size": 1199,
+      "sha256": "ca63c6eb173e752b8908f2f0a4952665c173d205f40ee36125697f85a84fc653"
+    },
+    "scene_01_black_altar/GODOT_SPEC.md": {
+      "size": 1794,
+      "sha256": "cb073f71432ed5cab1d80df9e9e2f936f3d425d68bacdee9aa0e3e9d3deae8af"
+    },
+    "scene_01_black_altar/layers/entry.png": {
+      "size": 48728,
+      "sha256": "10b0a096b669e1799cd033ebd965f28ab8c3d00a298882fe7ce4735326b4baf8",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_01_black_altar/layers/foreground.png": {
+      "size": 22317,
+      "sha256": "62f22530af17aa5620b38f7bd513ed6c0b5f54ebe474ce4036d42e3d04484f3d",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_01_black_altar/manifest.json": {
+      "size": 4424,
+      "sha256": "bf74469ebb7546665b6692bbb8446d9f3855545508e73f52b47f540d7e49e5cb"
+    },
+    "scene_01_black_altar/master/scene.webp": {
+      "size": 1053330,
+      "sha256": "742a0fa6df0ad1a045827d24b0bca0f7fa4fa10678a515505be62330b63b1984",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_01_black_altar/outcomes/abandon_loot.png": {
+      "size": 55670,
+      "sha256": "930012e19866f49193b6b909217fc6ca7009b09add70872879850e247514a3a1",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_01_black_altar/outcomes/knight.png": {
+      "size": 26940,
+      "sha256": "3b5d8214e8be616f5a9a602cff4e3260636b5e35a7bc3ed563d95d4fe5e648d0",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_01_black_altar/outcomes/mage.png": {
+      "size": 28715,
+      "sha256": "996c07fb60d01fc1108745362929f81af7b6304bff5f66a9ad8408109b9ad663",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_01_black_altar/outcomes/ranger.png": {
+      "size": 25365,
+      "sha256": "9078b260ff77904a2c8374615e852c65c5e12d3e8869289db107f98bd8fa3801",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_01_black_altar/outcomes/rescue_blood.png": {
+      "size": 10992,
+      "sha256": "c1b8c285088e958a4e898858c06f4f0c4c2c7eca8cccb70d88d7198dc468d680",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_01_black_altar/outcomes/rescue_gold.png": {
+      "size": 15435,
+      "sha256": "b1f1d52e25143b11ad6ed304bffb12114f6fb899100d73e3b6cd46796a62cf9e",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_01_black_altar/preview/abandon_loot.jpg": {
+      "size": 307978,
+      "sha256": "2bb5f3c53461d4d573685acd54d028f11e1597f74d5a3b1aac72dce3d6bad397",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_01_black_altar/preview/compare.jpg": {
+      "size": 207836,
+      "sha256": "00681f74f3518736425f237128c384410c771918291dffbca631b0452e65d91e",
+      "width": 1260,
+      "height": 798,
+      "mode": "RGB"
+    },
+    "scene_01_black_altar/preview/knight.jpg": {
+      "size": 304832,
+      "sha256": "2a5eac5a7c122392b4bf9a7cd558c90e257cf7fb5f0a26cf646e80b33542a079",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_01_black_altar/preview/leave.jpg": {
+      "size": 300739,
+      "sha256": "a32fb8d2c774293f1c217eeec48517940e1e31f5b1c5608f8967f1ce194a52fb",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_01_black_altar/preview/mage.jpg": {
+      "size": 305062,
+      "sha256": "dd3e4f2ffc68a74a1e311bc7cbdf6efd0e7e3c6ebf6ae9ab17c1cabdf43e13d1",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_01_black_altar/preview/ranger.jpg": {
+      "size": 304136,
+      "sha256": "32ad06e71b0a3db890298f0b66d1d22d3379321ace939d1ce3f2909ed93628ab",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_01_black_altar/preview/rescue_blood.jpg": {
+      "size": 301614,
+      "sha256": "31acec833846c8ff61e4432a59abee108eb3cba7b9408f5c335a498fec344854",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_01_black_altar/preview/rescue_gold.jpg": {
+      "size": 301994,
+      "sha256": "5d13a567b97e7ef8ec2fc7e99c5d4030a07d0b1afe32d7a1f910a9471b62166c",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_02_chained_prisoner/ART_SPEC.md": {
+      "size": 3786,
+      "sha256": "c401fa3c854b1d617d8eb73874d1183b33c592d6cdb38e32e7bb9f369c8c7524"
+    },
+    "scene_02_chained_prisoner/CODEX_TASK.md": {
+      "size": 1522,
+      "sha256": "bee6427df710cee5f71cbd3f753c11229abad0067b8518f0edccd345cc20c5c5"
+    },
+    "scene_02_chained_prisoner/GODOT_SPEC.md": {
+      "size": 2084,
+      "sha256": "622eb59f62650681395b937752080611930fef36ee8d192d89bbd9c229dc90ce"
+    },
+    "scene_02_chained_prisoner/layers/entry.png": {
+      "size": 73350,
+      "sha256": "82f4fceb22f89e6f3ea237d62dc6f234243942ca4dc08fad9d8daacbb55d396d",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_02_chained_prisoner/layers/foreground.png": {
+      "size": 35142,
+      "sha256": "204050d20c02c6b373a1191c64d53c53cb67ec8cf4661344095718415aabebfe",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_02_chained_prisoner/manifest.json": {
+      "size": 5367,
+      "sha256": "8ce575bf033ae1ecae9b8cf0af69eaa0ed3a9f2f91413f2bd6c88c082c6043b0"
+    },
+    "scene_02_chained_prisoner/master/scene.webp": {
+      "size": 1006544,
+      "sha256": "de98827fc9eb4f1bf7863c9977ee00216734208ff59cd64837f951b28325121c",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_02_chained_prisoner/outcomes/abandon.png": {
+      "size": 84679,
+      "sha256": "3abe324104d21b450f27a93c083c14fc0d166b8d7522e99f0f8f20ab9a27c94e",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_02_chained_prisoner/outcomes/chains_empty.png": {
+      "size": 499420,
+      "sha256": "6f1818cc29e9ccf12da9a1ed423d35aec5ec161bb134bf44b503806abcdc0333",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_02_chained_prisoner/outcomes/chains_relic.png": {
+      "size": 493238,
+      "sha256": "e7769a5689fe0c4f1a436848e89b15117b0ee5b14f3a355316a43a4dfbe9d513",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_02_chained_prisoner/outcomes/leave.png": {
+      "size": 43409,
+      "sha256": "717dafee17c48143be551455a513840ab352c01f08b67ab01920a49faca3f7c1",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_02_chained_prisoner/outcomes/loot.png": {
+      "size": 46882,
+      "sha256": "e4af73ea8d6c48aa46ca3c48aeb02be12298e9b72ee48781eb5ee615ef31d92c",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_02_chained_prisoner/outcomes/loot_recruitment.png": {
+      "size": 84809,
+      "sha256": "05aa9a7faea75692c4dc1a9148c5a5c9e9efae4102ecfc9c71ac83a362588d58",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_02_chained_prisoner/outcomes/mentor.png": {
+      "size": 502511,
+      "sha256": "5cc29698009685a68acd2d5c5dbec9035e9c7d4a68ab15426b2c43d418838543",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_02_chained_prisoner/outcomes/recruit.png": {
+      "size": 488204,
+      "sha256": "116057906cecf95906749d23f95a98ccea41d7be528b483e9db7b7ccca292117",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_02_chained_prisoner/preview/abandon.jpg": {
+      "size": 323619,
+      "sha256": "f2910849aa226567bc3bccdb4aa4b5a35ec868e7ea1264e9d811534c8456f029",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_02_chained_prisoner/preview/chains_empty.jpg": {
+      "size": 311413,
+      "sha256": "e151764bb9f7642afe14c7626220365bcb91f9426b278a5357b7a3ef820b878e",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_02_chained_prisoner/preview/chains_relic.jpg": {
+      "size": 308404,
+      "sha256": "9e600197632105c946968f8e7c9db5f91c28167ec98a884474ca1e3c40f60395",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_02_chained_prisoner/preview/compare.jpg": {
+      "size": 268806,
+      "sha256": "b82a7b28e9ad10c7f2684d18eb374a5e2a7523ba56a818675a93e81815b681d5",
+      "width": 1260,
+      "height": 798,
+      "mode": "RGB"
+    },
+    "scene_02_chained_prisoner/preview/leave.jpg": {
+      "size": 319719,
+      "sha256": "cf7bc8dc00a6c10c51780536de7fd4d133aa4f6ab0ee7b4f7c76a7982c6e7dae",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_02_chained_prisoner/preview/loot.jpg": {
+      "size": 319721,
+      "sha256": "5442a9b99bb594560ef6f892db47b660672e0b15fdef82b17231c7a0d7f3b605",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_02_chained_prisoner/preview/loot_recruitment.jpg": {
+      "size": 323452,
+      "sha256": "684f446deb8b9df1700fe5eb70d51c288616b2f04fbc5830ba530f4eefa92d0b",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_02_chained_prisoner/preview/mentor.jpg": {
+      "size": 310276,
+      "sha256": "7845393d25e7b028a8064912f3c6847c1d8beb1c79dd6bc87b4fcfc9785626fc",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_02_chained_prisoner/preview/recruit.jpg": {
+      "size": 307478,
+      "sha256": "6ea9b061df2b3556e9bf1cb3e47c444660543a467ecce46d1ab7c1ddc5d5266b",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_03_jack/ART_SPEC.md": {
+      "size": 1865,
+      "sha256": "6801b4de25845fff9f6b00d5205034b3bb3879a2448f317ef446ac31810f13ca"
+    },
+    "scene_03_jack/CODEX_TASK.md": {
+      "size": 1161,
+      "sha256": "cee36e7f703c8ef242c244bc71f7c417fdd20d1f2de988ff7a5f8a731b544d2a"
+    },
+    "scene_03_jack/GODOT_SPEC.md": {
+      "size": 1842,
+      "sha256": "07566e3b9928323af5f3fad3fd8c4fd48cc0fe41fc9f24d4f9229728b3fbed85"
+    },
+    "scene_03_jack/layers/entry.png": {
+      "size": 48669,
+      "sha256": "18023f172ed0aba92546777e4442fdac4b3c3864dda76322689d34ee67192fbd",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_03_jack/layers/foreground.png": {
+      "size": 35529,
+      "sha256": "ba44da101d2e4718b699392069ff4615be56515745a97de05f2fd970a205c36e",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_03_jack/layers/treatment.png": {
+      "size": 48315,
+      "sha256": "cb35b5f85fdd937c524ef468ef55e332877d56484bee5d8c54fb4300628c03be",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_03_jack/manifest.json": {
+      "size": 2731,
+      "sha256": "c0fc49d14e3f1c6bfcc5e415d8c93d675d2d53d76b1c82c9e66f0e1010f5078a"
+    },
+    "scene_03_jack/master/scene.webp": {
+      "size": 1159720,
+      "sha256": "471f4383debd829c51334e4588d0ab803156ab0100a83fdb4a086da0c6a74ce8",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_03_jack/outcomes/passed.png": {
+      "size": 48669,
+      "sha256": "18023f172ed0aba92546777e4442fdac4b3c3864dda76322689d34ee67192fbd",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_03_jack/outcomes/recruited.png": {
+      "size": 17722,
+      "sha256": "9076b3a3af6873e2bb1bf973afa520ba4b3accb310facd5de560f1ca4c2ab098",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_03_jack/outcomes/token.png": {
+      "size": 55471,
+      "sha256": "b777ca6973c777c042b562dd69161324679bc898e70822449faf7395b43fbeb9",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_03_jack/preview/compare.jpg": {
+      "size": 120205,
+      "sha256": "ab4ed7cdfc63b1f3f1ed8ec7363df3eeb39eadebf77ef6bb5b754656cd901399",
+      "width": 1260,
+      "height": 266,
+      "mode": "RGB"
+    },
+    "scene_03_jack/preview/passed.jpg": {
+      "size": 397825,
+      "sha256": "9e7c14ffda4e205ccb0df37ac7141249d785c526ce42b5c16f42b29778fee066",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_03_jack/preview/recruited.jpg": {
+      "size": 394830,
+      "sha256": "b458e833d15c5025e39591dee9bee0fc0614dc785956b66e7715cff396b4f899",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_03_jack/preview/token.jpg": {
+      "size": 397891,
+      "sha256": "8122632de700a017f8c00ed810daa3af688cbde80abbe1dbd2f8438fdd785b32",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_04_whispering_well/ART_SPEC.md": {
+      "size": 3617,
+      "sha256": "59206cc1909cb6ae1ac9f6931de65928972076d8968384bd67ff40d63450b716"
+    },
+    "scene_04_whispering_well/CODEX_TASK.md": {
+      "size": 1385,
+      "sha256": "ff19e03276752887b05532f78dafaabedc244f2a8228b1459203695c66f5d456"
+    },
+    "scene_04_whispering_well/GODOT_SPEC.md": {
+      "size": 1829,
+      "sha256": "eb1fa7092971279c2650c85cf250fa4861c54e9dfb37774b28c9444e25923057"
+    },
+    "scene_04_whispering_well/layers/entry.png": {
+      "size": 43522,
+      "sha256": "56e68cc7b328512c76a127fcdbec49762a918c6b66ef660a62b442e0cfec950b",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_04_whispering_well/layers/foreground.png": {
+      "size": 153565,
+      "sha256": "51c8ff1863ace9b6fc495968388526c310cb14838a7a1741df102abbfe423a99",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_04_whispering_well/layers/sink.png": {
+      "size": 27640,
+      "sha256": "6338a9cfafe2e483f0ba8ba234d79478911f224f299d795c9ab92d4c7a3d403e",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_04_whispering_well/manifest.json": {
+      "size": 5515,
+      "sha256": "213340c46b82f3a2c9f8a9ad44fdc9cd5f95d880c7ccacd418fe8a5a955f6564"
+    },
+    "scene_04_whispering_well/master/scene.webp": {
+      "size": 1271656,
+      "sha256": "1150680292fbf2a529299c964d673c5db9734d4f8b0b8064b44363d01bea30fb",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_04_whispering_well/outcomes/gift_upgrade.png": {
+      "size": 15394,
+      "sha256": "4e14f01bc649bebc4e4a1c1952eb18cf5e18cc990a789bb248a3469b01deac84",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_04_whispering_well/outcomes/leave_lost.png": {
+      "size": 43522,
+      "sha256": "56e68cc7b328512c76a127fcdbec49762a918c6b66ef660a62b442e0cfec950b",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_04_whispering_well/outcomes/pay_refund.png": {
+      "size": 10699,
+      "sha256": "423a67ec0318512f3916ee0f9cf7d6dc0a85c7f01e7a86c5a73050bb230a6c2e",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_04_whispering_well/outcomes/pay_relic.png": {
+      "size": 23948,
+      "sha256": "282baa2801be23233c277d442eb385e2edb4642c6881db878ed1fa13a9b1ffdd",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_04_whispering_well/outcomes/pay_upgrade.png": {
+      "size": 15600,
+      "sha256": "fe992218a8a9bb5eb5056ab46d1a6d36307af3b68a92e4e63e92ca8a8a48fd1a",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_04_whispering_well/outcomes/rescue_blood.png": {
+      "size": 12884,
+      "sha256": "30668092378001b14de0f4a3c2485f0fb78d226d7e7249bca4fef6512c633052",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_04_whispering_well/outcomes/rescue_gold.png": {
+      "size": 10800,
+      "sha256": "53fbac3892bfe6a27f03498ccf51dffb51db727d2e41cfe337866fdc108db257",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_04_whispering_well/preview/compare.jpg": {
+      "size": 316499,
+      "sha256": "0c3b401dab56cb3603cc49f987adbc5fd74ff99c87851e9a6e4f93864f853372",
+      "width": 1260,
+      "height": 798,
+      "mode": "RGB"
+    },
+    "scene_04_whispering_well/preview/gift_upgrade.jpg": {
+      "size": 432684,
+      "sha256": "c1379f3bda772b56f4bc05f7abf9dc609d1eda8c9f1ba6d1a25808b0239b7d56",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_04_whispering_well/preview/leave.jpg": {
+      "size": 431972,
+      "sha256": "27d3f33bb331c90870afcde65d4499271404ad0083c0ddddbe3b9f22476239a9",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_04_whispering_well/preview/leave_lost.jpg": {
+      "size": 437795,
+      "sha256": "bcb97a1d3231d38f9ef3023e32a31fa0a7b9805f5966f954d41f2cdf33faba02",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_04_whispering_well/preview/pay_refund.jpg": {
+      "size": 433492,
+      "sha256": "ab22f6c79ddc02838a2feddb959751f7afb884fad35f73be8f10e8ccb22bfbff",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_04_whispering_well/preview/pay_relic.jpg": {
+      "size": 434963,
+      "sha256": "b9f839acbd721a67ef347c993170289025e1fbfd251ee5bc00bc8807a556c66f",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_04_whispering_well/preview/pay_upgrade.jpg": {
+      "size": 434394,
+      "sha256": "ed95b92af43e32d22570a3744fc678ad589eeda115c9192e31180d43d84efbd0",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_04_whispering_well/preview/rescue_blood.jpg": {
+      "size": 433084,
+      "sha256": "e5ca9f93f99ff49f42c1bc9cb7562b7db7ed51ddb03cc75e6c95f97b8687a1b8",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_04_whispering_well/preview/rescue_gold.jpg": {
+      "size": 433502,
+      "sha256": "8ef7fd4bb1f1af29417b5325f67d8097ca25e1a8675aab6721ff6ceac1338572",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_05_last_camp/ART_SPEC.md": {
+      "size": 2985,
+      "sha256": "ddfe6b5738dcd021276d779b9faca558286706b28ba7e0dcab9626fa5d33d431"
+    },
+    "scene_05_last_camp/CODEX_TASK.md": {
+      "size": 1149,
+      "sha256": "55c76cc662769bea1fe7e11fef54751e04958c8faf3cbcc79a6400d181362d89"
+    },
+    "scene_05_last_camp/GODOT_SPEC.md": {
+      "size": 1766,
+      "sha256": "07002497543c3e761910edd4743e8cb0b236493493a9ac60f95895e018d8c1da"
+    },
+    "scene_05_last_camp/layers/entry.png": {
+      "size": 71593,
+      "sha256": "35716d0b294dd60062b658adc861e94a478d56a1a82e8beabb479645a9907d7a",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_05_last_camp/layers/foreground.png": {
+      "size": 32709,
+      "sha256": "c73211848d99a94116f13ce5c25800286634ef40a428903e6d6ba649d0c544cf",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_05_last_camp/manifest.json": {
+      "size": 4631,
+      "sha256": "2d08c06bc98e420c85f055b786b9f72cf354846c6a5005f690f020f749ad60f8"
+    },
+    "scene_05_last_camp/master/scene.webp": {
+      "size": 1089600,
+      "sha256": "327a4061836675a0a150b614762e8815775f4b5d03365d2876c3231143a3fa16",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_05_last_camp/outcomes/abandon_loot.png": {
+      "size": 79336,
+      "sha256": "caa029e65af69fa870f60158b930ce51ac4b17c82e0fade61f9459b622a0b606",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_05_last_camp/outcomes/knight.png": {
+      "size": 19847,
+      "sha256": "69ba407d0d0064440ef2f65be9485cb6e8cfc706903618980b8855e9341b9eb6",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_05_last_camp/outcomes/mage.png": {
+      "size": 23875,
+      "sha256": "649db763d4bb9f7c17c121a953e527890ef1d7d54ecfdd5b9fac45b5017b7980",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_05_last_camp/outcomes/ranger.png": {
+      "size": 20668,
+      "sha256": "40f08dd242ca7189796ff8aa774851c2464254fb1c43672d0e4a0e974424611c",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_05_last_camp/outcomes/rescue_blood.png": {
+      "size": 19738,
+      "sha256": "5b337b44bd4a3dc78ac02c86d60d245abe0b79b58cc483afe59ff3cff317cb41",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_05_last_camp/outcomes/rescue_gold.png": {
+      "size": 20202,
+      "sha256": "e1b787c4ec81f226d4ef6d4e3765646380964d859057d8ecd20595abc2bc9d7f",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_05_last_camp/preview/abandon_loot.jpg": {
+      "size": 372421,
+      "sha256": "e797a36a058a074eb80dd40ab9e426f6bc3b1ffebd07179e42d1ce99a739b690",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_05_last_camp/preview/compare.jpg": {
+      "size": 264491,
+      "sha256": "88fb7a923895a667b30a869df7b7cdfed6b8221ab4e5a2ee17a542da231675aa",
+      "width": 1260,
+      "height": 798,
+      "mode": "RGB"
+    },
+    "scene_05_last_camp/preview/knight.jpg": {
+      "size": 369360,
+      "sha256": "82d7154252e5e94a87e52a91b2d41f8fc265b11c2528c2a0867f519bdde86a26",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_05_last_camp/preview/leave.jpg": {
+      "size": 368112,
+      "sha256": "f6cab6cf531aed6988f261f1dc256bbb7ece33f8ef05b889da2334c6f93075a1",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_05_last_camp/preview/mage.jpg": {
+      "size": 369646,
+      "sha256": "f379712373c366f8a52d98549c2efc207364f712ed83eb3df381fbf19d4e335f",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_05_last_camp/preview/ranger.jpg": {
+      "size": 368997,
+      "sha256": "fe3b373f7ce4e9bb66264b5de47c46b850161314c68c8615f4e412ae7cde650f",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_05_last_camp/preview/rescue_blood.jpg": {
+      "size": 368790,
+      "sha256": "bc99e62b1fe36b2bfccdd0616d138e597993d69af4b8b2e76ad8663fc6058eee",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_05_last_camp/preview/rescue_gold.jpg": {
+      "size": 369444,
+      "sha256": "717a9d21b499cf61fcf791044724bb731331132c621a4a7db029050bd95c09f4",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_06_ash_rest/ART_SPEC.md": {
+      "size": 2717,
+      "sha256": "ac124e911703b8cecda0658200d8f868a0ee9408288f240e13f2f3a4328709c0"
+    },
+    "scene_06_ash_rest/CODEX_TASK.md": {
+      "size": 1156,
+      "sha256": "557a26eaabe483b8bbe2d5898192d591ff55ae322c9e067d5316333cdc4b4682"
+    },
+    "scene_06_ash_rest/GODOT_SPEC.md": {
+      "size": 1760,
+      "sha256": "5060c54e021c11888a4ec0bf9f2ea7bca6f86adab49c2d851186950c76b972b6"
+    },
+    "scene_06_ash_rest/layers/entry.png": {
+      "size": 68415,
+      "sha256": "085e12f85da5d4a6780c556c955b1ae3e61107e2a928c3f0e7df3eb0ad0e317b",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_06_ash_rest/layers/foreground.png": {
+      "size": 17684,
+      "sha256": "ed918e6cedd1f2d95217194fc6e9f12d76c5e5d74c80fe856fe6bf47b88cf0ac",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_06_ash_rest/manifest.json": {
+      "size": 4339,
+      "sha256": "1873684727d27333822431f62b5c0625b1f0d689a48d8a1738c0a758fdbf3e79"
+    },
+    "scene_06_ash_rest/master/scene.webp": {
+      "size": 942912,
+      "sha256": "a6d9178cb5d6c3cf98b1ef0148ee34a9104aa43d4f04b632377fc2d6c66e9327",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_06_ash_rest/outcomes/abandon.png": {
+      "size": 68415,
+      "sha256": "085e12f85da5d4a6780c556c955b1ae3e61107e2a928c3f0e7df3eb0ad0e317b",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_06_ash_rest/outcomes/knight.png": {
+      "size": 28720,
+      "sha256": "cafa9742ca4ccb19bd69ce76f61696d4955f95c2356ecadf972e461a145073db",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_06_ash_rest/outcomes/loot.png": {
+      "size": 55889,
+      "sha256": "6562b0fe56386a4626812081949e77ca7d5ab1342ae546d729893b39f52d8cee",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_06_ash_rest/outcomes/mage.png": {
+      "size": 34574,
+      "sha256": "51a7b9e329189632d5dc8d7893545d74d1e5b8ef3cbeaffad1aeadbafbc9d045",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_06_ash_rest/outcomes/ranger.png": {
+      "size": 28447,
+      "sha256": "629d48f9d741b346282a7629be276e4ffce89b4bd0aad724ff7b8933deb622a9",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_06_ash_rest/outcomes/recruit.png": {
+      "size": 47170,
+      "sha256": "e8c8b9f98c018def38f840f32c6f66cc05f60875adfc3ef2a348c69e4fff1be7",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_06_ash_rest/preview/abandon.jpg": {
+      "size": 256466,
+      "sha256": "98fb3aea7e006ca2fe6f4e9e7a264f2be169d6f6aef4445fa91d7305f7ca0960",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_06_ash_rest/preview/compare.jpg": {
+      "size": 209494,
+      "sha256": "542615bedb047da6a8f77a3c009ddc10002a1997eafd0ebe500f9a63e031af2d",
+      "width": 1260,
+      "height": 798,
+      "mode": "RGB"
+    },
+    "scene_06_ash_rest/preview/knight.jpg": {
+      "size": 251833,
+      "sha256": "7935e805af56267b5e9cb0b24c2a2e5f315472686b2411c18a699dc28b598c9e",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_06_ash_rest/preview/leave.jpg": {
+      "size": 249755,
+      "sha256": "3b971ffa96c813469e71176b38cf643b3a82c6e7645101c88bd40e7f70161110",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_06_ash_rest/preview/loot.jpg": {
+      "size": 255330,
+      "sha256": "b4cd83bbeceebcdb8d8f717407144a58bd809cab345fd39004ad58272e27a498",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_06_ash_rest/preview/mage.jpg": {
+      "size": 252499,
+      "sha256": "55b6275d619344cbb3804634d79cc878018a04c330566021eceef4cc204ff691",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_06_ash_rest/preview/ranger.jpg": {
+      "size": 252066,
+      "sha256": "373050ce92c46726776acf14d5ce64e08593949b54d9c5009acc0f95ff32ee2a",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_06_ash_rest/preview/recruit.jpg": {
+      "size": 253357,
+      "sha256": "6f5bfdc1a811feec3521d1eb7cded389ca60ceefb8df5f860e88dba5d57a28ce",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_07_bone_tax/ART_SPEC.md": {
+      "size": 1793,
+      "sha256": "77d3602dbd196e21331118cf7b1d49d4fe96ba8a67198989887ef8756ac79469"
+    },
+    "scene_07_bone_tax/CODEX_TASK.md": {
+      "size": 1125,
+      "sha256": "bf75c197f24ba3fa8d4f0067f4e249260fc6074aea2f0a3624f081d3aa27c694"
+    },
+    "scene_07_bone_tax/GODOT_SPEC.md": {
+      "size": 1552,
+      "sha256": "4a3e2d46033e0733a9b9b90ff46e070896a6e99f192181f33f8ea88e40ae765d"
+    },
+    "scene_07_bone_tax/layers/entry.png": {
+      "size": 90194,
+      "sha256": "3c1b95f04b0ec5cbdc9c678b174afe14dbf8a317670c6444f14a242e17e41fbc",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_07_bone_tax/layers/foreground.png": {
+      "size": 25561,
+      "sha256": "fe8ae48731d001cb40e59d0eca339857e4d2b5ae35efe0c6e6d1184c918abcd8",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_07_bone_tax/manifest.json": {
+      "size": 2703,
+      "sha256": "4196202bfa201decb0e74e075f959a14d6f7626837e1507dd18bd610302762e0"
+    },
+    "scene_07_bone_tax/master/scene.webp": {
+      "size": 1040322,
+      "sha256": "4803ada668e292325fc7134f6f47e603c03252de47550a872e3f4d77693abe5d",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_07_bone_tax/outcomes/blood.png": {
+      "size": 84307,
+      "sha256": "ed01aeadb8832708557b07e00617e7cf82528eb163030eb4079a4233283a02a4",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_07_bone_tax/outcomes/force.png": {
+      "size": 71366,
+      "sha256": "a90f773edab80f548bba74ea9015b705645c6063c721d4cb9fcd4c0c86267632",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_07_bone_tax/outcomes/gold.png": {
+      "size": 75610,
+      "sha256": "aeea19203778060bf798beab63766aac0418f47e730387d8282246f2e3b4f614",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_07_bone_tax/outcomes/scar.png": {
+      "size": 90962,
+      "sha256": "170546c400d2820c73bbe2cf5e3ee74b09bd6b60ce6ae49fde5c71dafb31d2e4",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_07_bone_tax/preview/blood.jpg": {
+      "size": 351869,
+      "sha256": "b637d6aceffff654638f0b5b50fd9638ddcb34e1ca7f31347d078146def93e19",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_07_bone_tax/preview/compare.jpg": {
+      "size": 148291,
+      "sha256": "6dbc9662d7776a1d34e2f8ed7a44daa5f8ebfb8f5288d29b89f86040d2af7cad",
+      "width": 1260,
+      "height": 532,
+      "mode": "RGB"
+    },
+    "scene_07_bone_tax/preview/force.jpg": {
+      "size": 348464,
+      "sha256": "eaa9aeaf835a28ce15c29f858b11703afd662eb3f7c1b7ec63e6adc5f3a50166",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_07_bone_tax/preview/gold.jpg": {
+      "size": 352693,
+      "sha256": "1e1096e3d582bb03cf0b6b499fa6873e77a066bf48cc9c2f799adeafc3de81e7",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_07_bone_tax/preview/scar.jpg": {
+      "size": 352432,
+      "sha256": "946a5da18c73168b82e398cbddf68975db388db50f594d7af76427677c9ed666",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/ART_SPEC.md": {
+      "size": 5311,
+      "sha256": "e0fbe4984f58672d980ad72d4e23f1b1b3055ee88a8b726a54e30f4aee2796aa"
+    },
+    "scene_08_faceless_card/CODEX_TASK.md": {
+      "size": 1518,
+      "sha256": "066d6f92843da93b2500138c000517c8b42d5ab3d5cecfdc7f0470d2d56d9c5e"
+    },
+    "scene_08_faceless_card/GODOT_SPEC.md": {
+      "size": 1655,
+      "sha256": "a408c958f68ee918aa843227db85dc33cec04496c62d9c85976381341a64c44e"
+    },
+    "scene_08_faceless_card/layers/foreground.png": {
+      "size": 59798,
+      "sha256": "48f97b172b7182bdceccd3253c2dd61c4534aa2ec832849dfca80b0f6a921ff4",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/manifest.json": {
+      "size": 8399,
+      "sha256": "4df4a79362e33cc1ac10038802f1ec82ed44ff23d8bad30228d0b4e25b019869"
+    },
+    "scene_08_faceless_card/master/scene.webp": {
+      "size": 872084,
+      "sha256": "63291ed3bdce3b07e0c0f1fb0a88182ff5e799c0c4654f13212c10689b45b938",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/outcomes/bribe.png": {
+      "size": 44197,
+      "sha256": "c9420d2bdc10b6d36374470e41947c1fc47f3f10d072f7a0be0a9facbc4b28da",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/bribe_scar.png": {
+      "size": 45747,
+      "sha256": "654c99b5761ea9aeca1f172daac673239e2153627023f6a3f0b39bca80d7709e",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/burn_debt.png": {
+      "size": 44001,
+      "sha256": "3ced7fb5f5914e56073f99697161119e38e5a480c9250a8efaa81dd271c844a1",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/burn_gold.png": {
+      "size": 46022,
+      "sha256": "696e53a38db8e2b853c9fd7bb9ca99a4c865a354e3466977d3afaddea50e7a29",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/reveal_gold.png": {
+      "size": 52341,
+      "sha256": "66936657085cc515f4a5f084e574aba4107c7ba19b48de57ec9a436737fdb0fa",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/reveal_relic.png": {
+      "size": 57969,
+      "sha256": "2a4b7cb760cb150299c3d23ba545051139d1512efeb802d1c4e69c514518baf9",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/reveal_relic_empty.png": {
+      "size": 43393,
+      "sha256": "e49b633d0e8d01556f695770d254909736987d8c50e17a12407594c217dca490",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/reveal_upgrade.png": {
+      "size": 49846,
+      "sha256": "955011db2064a3346cda8fae8d2ef8c9d4b55d0e9975358097b3182f73722a7f",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/reveal_upgrade_empty.png": {
+      "size": 51083,
+      "sha256": "0c23698b77b21dd3a0533c5df72f61bdba662048e425c628c94febabd46bebbb",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/riskbound_empty.png": {
+      "size": 56296,
+      "sha256": "eb1e7ecdc401853e8c0f74c44c4b5619c15ccf3a2ae5d42051ac2e02a9f5a9f7",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/riskbound_upgrade.png": {
+      "size": 52142,
+      "sha256": "cf8d66203015df28b7161f7079e4a51f2e27a00742aeb82747ffb8db59f369e9",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/scarred_empty.png": {
+      "size": 51116,
+      "sha256": "4570030f42603595ec0c3cd70271bab86feec3d01d81fb547b8a557114b5965d",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/scarred_relic.png": {
+      "size": 56216,
+      "sha256": "da1c87f9e93180d13847b044742ce7aaae9802fd29fc3c62e50fce3ed112eeaf",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/outcomes/witnessless.png": {
+      "size": 51589,
+      "sha256": "6c30a880f4e25b3f60df494ca1bf3cdddc2b76382aa144240eb773a74552f754",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_08_faceless_card/preview/bribe.jpg": {
+      "size": 244257,
+      "sha256": "8871bb0fe2e3b2b32d9c5d9ba75457b24806a55e799d1e7c462d250cfd4bf14b",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/bribe_scar.jpg": {
+      "size": 244475,
+      "sha256": "1c93fee87d046ca7de69a0de201a5842e3cbca38893ccb463375d1c79b3677f3",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/burn_debt.jpg": {
+      "size": 245252,
+      "sha256": "d2b43a7c85ecec1967861aa164cd552eacc4c946a2903c9c0b42613a557b5c44",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/burn_gold.jpg": {
+      "size": 244901,
+      "sha256": "83335f992ca078370c21cb8ef4a073bec04166735eae7014804087396ca7fed3",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/compare.jpg": {
+      "size": 392440,
+      "sha256": "5bacf200812e904d9064a20f2043b6d042db27b2365f8dfecbeadd7ab8c30ca0",
+      "width": 1260,
+      "height": 1330,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/leave.jpg": {
+      "size": 239083,
+      "sha256": "0c9406eee8b8c70ae539f4f09ca98bb004d7342bf9c8100e587e8c66f34ca1c0",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/reveal_gold.jpg": {
+      "size": 248383,
+      "sha256": "94fca961bdb259b88a7c159ad6b01abbacc37d2966e3c67c54eccf1efdfbc61e",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/reveal_relic.jpg": {
+      "size": 247137,
+      "sha256": "8e5a98d68db4e98ae97c466f294b5fdf936a13e8249af732f7999c2dda2d068b",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/reveal_relic_empty.jpg": {
+      "size": 244014,
+      "sha256": "a82ca373d5dde39062decadc33c9be98f6506de7e93375b692b8637dd4216555",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/reveal_upgrade.jpg": {
+      "size": 245331,
+      "sha256": "c21248f83b0751f006270987962e5107c535fed1af4d8c814a10bade775795e3",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/reveal_upgrade_empty.jpg": {
+      "size": 246269,
+      "sha256": "a6d0f3ac550fe2c32eb04f9d7ab71959ecda5847490a7968d338e3cb5f24ca3b",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/riskbound_empty.jpg": {
+      "size": 247239,
+      "sha256": "f19c2a461b32c31b25031c0287a75dbf15c5e11d3591687e2aba78bfe44160c5",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/riskbound_upgrade.jpg": {
+      "size": 245944,
+      "sha256": "f45d1866e0fddf8ece002d07f98171c192f4cfff364c7c58ba2922bfaa16b205",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/scarred_empty.jpg": {
+      "size": 246155,
+      "sha256": "b5c282c693e3a241a0dbfc290e1b20303d442fd4fcb2490b61cc2aa1021d5458",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/scarred_relic.jpg": {
+      "size": 246470,
+      "sha256": "dc522adb7632f75f350597c002c79ca8d4f31fa7d94eb300ed78b3575af628d4",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_08_faceless_card/preview/witnessless.jpg": {
+      "size": 246591,
+      "sha256": "0359977016dbccbd09ba08e7d48d437f4c7c55b1d3303f9fe2d12d5cfa6ab38d",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_09_moon_seal/ART_SPEC.md": {
+      "size": 1855,
+      "sha256": "9902c5c0418757a2f1839ff8cfe81946f2101d169225291bd658fb8e019b9730"
+    },
+    "scene_09_moon_seal/CODEX_TASK.md": {
+      "size": 1069,
+      "sha256": "9e17f78c0d688584e57f3481e07fdcd7210049d5f93c4508ee852355614e4cb3"
+    },
+    "scene_09_moon_seal/GODOT_SPEC.md": {
+      "size": 1549,
+      "sha256": "0d139fbe9b31d85db3799777ada074419c7f6439fee1b7bac2ba6671610bcdef"
+    },
+    "scene_09_moon_seal/layers/entry.png": {
+      "size": 13117,
+      "sha256": "40e4b96f35149db92428d504b5b89f2effa084bdd194edfb3b5d4e2a8e4ddbe7",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_09_moon_seal/layers/foreground.png": {
+      "size": 13120,
+      "sha256": "e755bfe5d771f01aeabbb27b10ee2e61e5272444b9c7435eaafd6f7697ffc445",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_09_moon_seal/manifest.json": {
+      "size": 2754,
+      "sha256": "26c44afa2a7f06467509f62e513e667b54b4d8a68d9b4d47202ba0744b2f8335"
+    },
+    "scene_09_moon_seal/master/scene.webp": {
+      "size": 1074096,
+      "sha256": "4159b05e92b1bc64dd4535b2dd849a513fe1a9586b45fa406606ff56c864a84e",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_09_moon_seal/outcomes/burn.png": {
+      "size": 33831,
+      "sha256": "3086e65b1cfb77b5324bc46bb624378a59f2e3314c67f2b3a338dbbd72cb78e6",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_09_moon_seal/outcomes/keep.png": {
+      "size": 30902,
+      "sha256": "9139f8445f7e1e7b358cc6d2e55081b645b78ab8fbb2cba5e24430920d24663a",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_09_moon_seal/outcomes/leave.png": {
+      "size": 13117,
+      "sha256": "40e4b96f35149db92428d504b5b89f2effa084bdd194edfb3b5d4e2a8e4ddbe7",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_09_moon_seal/outcomes/sell.png": {
+      "size": 28150,
+      "sha256": "3325d1c3262c748dc952250e33f4230ab4f7d4ad013cb7c8e3980f8efe9df24f",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_09_moon_seal/preview/burn.jpg": {
+      "size": 330901,
+      "sha256": "7aac5c0aa983661ea2a47b7a459485c93a0827eae9af37b9310b43eff7dadcb2",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_09_moon_seal/preview/compare.jpg": {
+      "size": 139396,
+      "sha256": "cca7003ac569d2fe6c1ec999df38e316a09b5384a0feb82938554bc30ece5331",
+      "width": 1260,
+      "height": 532,
+      "mode": "RGB"
+    },
+    "scene_09_moon_seal/preview/keep.jpg": {
+      "size": 329289,
+      "sha256": "ae7ba2dae4fc34d23a16d0982ab2ee8f6ba9254bf46bfaaec2a1792667c3ef7e",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_09_moon_seal/preview/leave.jpg": {
+      "size": 327877,
+      "sha256": "d0f15dbf642b7a876a374c0a713c64223afe53444e0fd7458f107ce1c59d0097",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_09_moon_seal/preview/sell.jpg": {
+      "size": 330753,
+      "sha256": "ea6def278ce886761d35d47fb56f4f7d4e5d68b4e257990cc27604b4a63ab62f",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_10_echo_crypt/ART_SPEC.md": {
+      "size": 3390,
+      "sha256": "cf6b6ba408ae575909f79c4c63f46526fd9567e1db5b1c21df53932e8aed63ed"
+    },
+    "scene_10_echo_crypt/CODEX_TASK.md": {
+      "size": 1258,
+      "sha256": "7815bed2aa2fbc4bff7bf4ec4509f046a7a56f519a6b3d314f9bf8cb6ff67794"
+    },
+    "scene_10_echo_crypt/GODOT_SPEC.md": {
+      "size": 1602,
+      "sha256": "d554f42919e981843eba36233736b67f56f1d73a6ad8859bfbeed54af3b3097c"
+    },
+    "scene_10_echo_crypt/layers/foreground.png": {
+      "size": 117920,
+      "sha256": "39abd56cc9e2adc0625c58e09d9cc35129068c7e9bac4d646c4cef9e7f80652d",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_10_echo_crypt/manifest.json": {
+      "size": 5329,
+      "sha256": "29df20a3907988dc0b60977801041b968be151db622ebfc1c0fbea4add099549"
+    },
+    "scene_10_echo_crypt/master/scene.webp": {
+      "size": 986778,
+      "sha256": "db24bf1a544faf08114da1574d0d9bbad19558818731ff8cfc35ad3377357d08",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_10_echo_crypt/outcomes/empty_kept.png": {
+      "size": 231005,
+      "sha256": "3f396394d28635619c8a56824e2383bca19e12da875067d6791177fd67362d92",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_10_echo_crypt/outcomes/empty_plain.png": {
+      "size": 228207,
+      "sha256": "8ec78be354d596d0244b40f8d1c65328e5b015ef24e88fc83162e55cff07ce52",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_10_echo_crypt/outcomes/gold_kept.png": {
+      "size": 41746,
+      "sha256": "b83cd5449a5a57680df5ba4bc83a7ead655163f16ba743d9fa9eff803ef8bb45",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_10_echo_crypt/outcomes/gold_plain.png": {
+      "size": 15965,
+      "sha256": "a5a1fc5e9735faa051114d72f1ecd0e7c753cff382a29612a1f0b75657c4f100",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_10_echo_crypt/outcomes/listen_kept.png": {
+      "size": 30390,
+      "sha256": "27bb111b9230ce8bf94126077aff40c73ae972e246558e292c3e310aeeed8995",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_10_echo_crypt/outcomes/listen_plain.png": {
+      "size": 32917,
+      "sha256": "57f1586866dee7265a5904002cf0a37baf9f0909abf4b8b54746ac9be5217b17",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_10_echo_crypt/outcomes/relic_forced.png": {
+      "size": 215616,
+      "sha256": "cd41896672e2e6f9ceca170994446d34f023fef21503ed0408acb798184b65b4",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_10_echo_crypt/outcomes/relic_kept.png": {
+      "size": 218433,
+      "sha256": "64d0fd0bfcc0c4bd3ed004aa2c2ed9fdb00e1d54af255f4ffa78c6926844662d",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGBA"
+    },
+    "scene_10_echo_crypt/preview/compare.jpg": {
+      "size": 324677,
+      "sha256": "9be38f5f34fc2cc695c80ced46369d67d5db708a10256a3225ca8f9d5915f8c1",
+      "width": 1260,
+      "height": 798,
+      "mode": "RGB"
+    },
+    "scene_10_echo_crypt/preview/empty_kept.jpg": {
+      "size": 316175,
+      "sha256": "875394ff355700eecea4bae717a418c55e913f8587a1cc460d85b9eafebb01bc",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_10_echo_crypt/preview/empty_plain.jpg": {
+      "size": 316326,
+      "sha256": "71bf2f31671f45b2f8da6cf42efa544fbe0707f8c69a537e8d262af8170dfc2f",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_10_echo_crypt/preview/gold_kept.jpg": {
+      "size": 322240,
+      "sha256": "8c565a623fa23e3239b2e74cff0e20adb7329bc9b96f7aefb396bda73049bf5f",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_10_echo_crypt/preview/gold_plain.jpg": {
+      "size": 317559,
+      "sha256": "a45f021daec0074023899aa88a78a470105326c650059350e23e3d1436ff15d3",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_10_echo_crypt/preview/leave.jpg": {
+      "size": 315246,
+      "sha256": "3f0a9a9ff0b127e78454ed90a1476ba5cff5e93a762ceb8f1520b5a846c0f33f",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_10_echo_crypt/preview/listen_kept.jpg": {
+      "size": 318389,
+      "sha256": "b7e906c455b7a4bd649d466870861a5bf686c508caa5bdda459a574122e8e606",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_10_echo_crypt/preview/listen_plain.jpg": {
+      "size": 318550,
+      "sha256": "21e511f74bad485d3b805b70caae7cb46f3b4562a5d56943c39b39f1039c234b",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_10_echo_crypt/preview/relic_forced.jpg": {
+      "size": 312804,
+      "sha256": "99e6f37bc1d4ffe02f7e363de7478f977dc6faef2f531a4f861ce15cdb8e10c9",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "scene_10_echo_crypt/preview/relic_kept.jpg": {
+      "size": 314001,
+      "sha256": "38cd00fad11aa94e048e5fe9c76e9afaa22a5a76d64b7dadf815595db6734437",
+      "width": 1280,
+      "height": 720,
+      "mode": "RGB"
+    },
+    "shared_sprites/armor_wrap.png": {
+      "size": 194616,
+      "sha256": "afffe858e150943fa9822aa41fab60a7d705d1e547e87ae78af2efcf2c34b011",
+      "width": 364,
+      "height": 289,
+      "mode": "RGBA"
+    },
+    "shared_sprites/bow_pack.png": {
+      "size": 178134,
+      "sha256": "7d2566abadcdb89fd73ff43ebaaece11a430c4c83284d3c44090cbe57910916b",
+      "width": 316,
+      "height": 364,
+      "mode": "RGBA"
+    },
+    "shared_sprites/broken_latch.png": {
+      "size": 206212,
+      "sha256": "9b995bd91e8191502add2a05ec2dc0203fcca480e1f8d1b5e0cf3791b8dc6771",
+      "width": 315,
+      "height": 364,
+      "mode": "RGBA"
+    },
+    "shared_sprites/buckler.png": {
+      "size": 212221,
+      "sha256": "4c1e3a706b6ef8197f94c05788c891bac59fce90c1bf0e830c5ce55360614ff9",
+      "width": 364,
+      "height": 313,
+      "mode": "RGBA"
+    },
+    "shared_sprites/cache.png": {
+      "size": 222019,
+      "sha256": "03be5a57d62127bb5a8ce8bbdf0e9c5696855fe7f4794ed100762c96d6bb01eb",
+      "width": 343,
+      "height": 364,
+      "mode": "RGBA"
+    },
+    "shared_sprites/chains_closed.png": {
+      "size": 177830,
+      "sha256": "91abaf7ba723cc5eb02ad2aae46335df6ab38a031c11ad2575a3e716be2fa483",
+      "width": 343,
+      "height": 308,
+      "mode": "RGBA"
+    },
+    "shared_sprites/chains_open.png": {
+      "size": 150680,
+      "sha256": "5af6c4c1c1ff0b9e78fa28717eca6b2b15149c886a3737536b7e1d8af35989f8",
+      "width": 346,
+      "height": 290,
+      "mode": "RGBA"
+    },
+    "shared_sprites/coins.png": {
+      "size": 190467,
+      "sha256": "7124924d0b2d961fd94036aceb6648cdd05f74c79bd5183023574cadb20bd17d",
+      "width": 364,
+      "height": 289,
+      "mode": "RGBA"
+    },
+    "shared_sprites/collar_bare.png": {
+      "size": 111742,
+      "sha256": "d9946a3b5d63f774316380ddfc685af0b2448aa799949185e6e46fae100a4ad0",
+      "width": 339,
+      "height": 208,
+      "mode": "RGBA"
+    },
+    "shared_sprites/collar_tag.png": {
+      "size": 139813,
+      "sha256": "051d4309b3e2ae3b8e75290a57c482a19c9809b053775b6e116b3b99f2562cbd",
+      "width": 314,
+      "height": 287,
+      "mode": "RGBA"
+    },
+    "shared_sprites/crypt_cache.png": {
+      "size": 198120,
+      "sha256": "b3e21fa0446597af3bbadf5696be785c67ae22ae4cef2d8f3b9e42259633ebb9",
+      "width": 322,
+      "height": 364,
+      "mode": "RGBA"
+    },
+    "shared_sprites/embers.png": {
+      "size": 153067,
+      "sha256": "d07b55a4f4ed870f906c221bf6475c56d16d2a068cde177dcf54db009152b55a",
+      "width": 360,
+      "height": 246,
+      "mode": "RGBA"
+    },
+    "shared_sprites/empty_strap.png": {
+      "size": 114141,
+      "sha256": "91be282c680c02886d9d5663bd0a5bbfb5b55e30317e8c1afc1fffb2d7ae1e0c",
+      "width": 338,
+      "height": 266,
+      "mode": "RGBA"
+    },
+    "shared_sprites/face_blank.png": {
+      "size": 233187,
+      "sha256": "80d8374443918d21929b449b1a059d84b1dd06cc2b9ed9346cbdb8a1d87ae702",
+      "width": 364,
+      "height": 352,
+      "mode": "RGBA"
+    },
+    "shared_sprites/face_burn_gold.png": {
+      "size": 153515,
+      "sha256": "e1db6af3b8cac49cca4fc958a0b5dee1728bbb5b5b68b464e91d98e27d1b8a6f",
+      "width": 364,
+      "height": 239,
+      "mode": "RGBA"
+    },
+    "shared_sprites/face_ember.png": {
+      "size": 185746,
+      "sha256": "620ce4f14c1c93168bc3754b4839244fe0a0129517fdc2af30ce365835754eac",
+      "width": 347,
+      "height": 364,
+      "mode": "RGBA"
+    },
+    "shared_sprites/face_gold.png": {
+      "size": 231225,
+      "sha256": "85f93c0ddaa175f81d0ab3a8ff7d799f51819693f474124bfc680fa3b853afb2",
+      "width": 363,
+      "height": 362,
+      "mode": "RGBA"
+    },
+    "shared_sprites/face_risks.png": {
+      "size": 214928,
+      "sha256": "a40f43c54c432bc28a1f87a85f14d431a59241a8f3b5938b38a409353b69b2ae",
+      "width": 358,
+      "height": 363,
+      "mode": "RGBA"
+    },
+    "shared_sprites/face_scar.png": {
+      "size": 215535,
+      "sha256": "cf785ffcd3cfbab20fa09f073c0866b67f32d65a9237c85634a749bb98ea4dbe",
+      "width": 362,
+      "height": 357,
+      "mode": "RGBA"
+    },
+    "shared_sprites/face_witness.png": {
+      "size": 213272,
+      "sha256": "4c1881240f4294e9ab6753dc46830092d47a8773d69fcbeb7139cffda8c4b246",
+      "width": 362,
+      "height": 357,
+      "mode": "RGBA"
+    },
+    "shared_sprites/flask.png": {
+      "size": 137125,
+      "sha256": "de0920c78d810a1681aeffd240c24d9fe576bb0b509389ddbd62ba7d554660d0",
+      "width": 364,
+      "height": 215,
+      "mode": "RGBA"
+    },
+    "shared_sprites/jack_bandaged.png": {
+      "size": 166807,
+      "sha256": "a5d7fca68f4e69cb1948dd65e2d6bcac2faf58aef579acecc1ef6d32d87fc452",
+      "width": 364,
+      "height": 293,
+      "mode": "RGBA"
+    },
+    "shared_sprites/jack_laying.png": {
+      "size": 166448,
+      "sha256": "5113fb4ecfd14e1b6b64d28ede0fa884bf050f11c0e0f53fdb967cde6e83b442",
+      "width": 364,
+      "height": 294,
+      "mode": "RGBA"
+    },
+    "shared_sprites/knight_bound.png": {
+      "size": 195324,
+      "sha256": "d022edbb032bfd5297d69357138514e34fb7a0c2faf77966b79766baa20610a6",
+      "width": 364,
+      "height": 347,
+      "mode": "RGBA"
+    },
+    "shared_sprites/knight_freed.png": {
+      "size": 197340,
+      "sha256": "d817d7baad4cd5e4eea58795b8b1e9a42b97ca14f71e2971ce85a828edaa0c02",
+      "width": 364,
+      "height": 353,
+      "mode": "RGBA"
+    },
+    "shared_sprites/knight_wounded.png": {
+      "size": 237737,
+      "sha256": "3e3772f478c47c3abeb57386b035729ac8cf223496b0c9e80f955ba6a572e5ce",
+      "width": 364,
+      "height": 363,
+      "mode": "RGBA"
+    },
+    "shared_sprites/mage_altar.png": {
+      "size": 160481,
+      "sha256": "d818ed7794f55fa1263402f51c98ebe76b3fb4aac8c182f61ecceb672f4b95aa",
+      "width": 364,
+      "height": 216,
+      "mode": "RGBA"
+    },
+    "shared_sprites/mage_well.png": {
+      "size": 174809,
+      "sha256": "2c1302e976b09e5ab97dd53577620fe946403bbd295a01227c6725461b4d405a",
+      "width": 364,
+      "height": 253,
+      "mode": "RGBA"
+    },
+    "shared_sprites/medic_linen.png": {
+      "size": 179340,
+      "sha256": "a33537fae3204fe102ffaec1e4f0322f74cfe31e316501a0a6e4196ec1505778",
+      "width": 362,
+      "height": 267,
+      "mode": "RGBA"
+    },
+    "shared_sprites/medicine.png": {
+      "size": 165628,
+      "sha256": "cb286a48d3c7fee71bb9cb57e56b32c6e81d807fa991a2c26946593a80a5b6c0",
+      "width": 330,
+      "height": 300,
+      "mode": "RGBA"
+    },
+    "shared_sprites/orders.png": {
+      "size": 181161,
+      "sha256": "543d9be2c143cc82dc1e1a73fe43b767aaa1c9665180421b603ced87aedc19d9",
+      "width": 325,
+      "height": 364,
+      "mode": "RGBA"
+    },
+    "shared_sprites/orders_wrapped.png": {
+      "size": 190163,
+      "sha256": "22e5cea10e9dc503dc6cc59965bc65e1296c26661a28dfa10504277079068c55",
+      "width": 345,
+      "height": 346,
+      "mode": "RGBA"
+    },
+    "shared_sprites/pouch.png": {
+      "size": 186899,
+      "sha256": "e5d686efd37fd3fe32ef3f5e5e7d6409a5960305482db867efe0ae4af5467668",
+      "width": 349,
+      "height": 304,
+      "mode": "RGBA"
+    },
+    "shared_sprites/pouch_open.png": {
+      "size": 162541,
+      "sha256": "2d6109f4ffcf0753fdbd9b46aa97cda8e6144bf3ed8006f7461916d6b736a73a",
+      "width": 364,
+      "height": 272,
+      "mode": "RGBA"
+    },
+    "shared_sprites/ranger_seated.png": {
+      "size": 182775,
+      "sha256": "92c94d81ce246dfb3fc034b5be9685abc69e3b8669fea6c4c94852244b56588c",
+      "width": 338,
+      "height": 364,
+      "mode": "RGBA"
+    },
+    "shared_sprites/red_wrap.png": {
+      "size": 210192,
+      "sha256": "c8aa32ba0de0ce1267c93dadf297858cec77cf2eded137ef0e414092e7f1fdba",
+      "width": 357,
+      "height": 331,
+      "mode": "RGBA"
+    },
+    "shared_sprites/ritual_tools.png": {
+      "size": 80861,
+      "sha256": "d266a09cc793ade03709f4cfa0b58b0a2a9514acca91b5cf5f45667ddd7a76a8",
+      "width": 313,
+      "height": 281,
+      "mode": "RGBA"
+    },
+    "shared_sprites/seal.png": {
+      "size": 121460,
+      "sha256": "da5941387e8c8a87ad621d2e7776ead3b3f9c16a34a36d5e7933887bfeb51540",
+      "width": 253,
+      "height": 251,
+      "mode": "RGBA"
+    },
+    "shared_sprites/seal_burn.png": {
+      "size": 148975,
+      "sha256": "1f95fbeb12411295f6479d5b5d433064ef459d9719f7d686751f88110a52acc2",
+      "width": 318,
+      "height": 335,
+      "mode": "RGBA"
+    },
+    "shared_sprites/seal_wrapped.png": {
+      "size": 157786,
+      "sha256": "dd5041c687acf9f68cd729501e83e40c7d18938f4f3f6c059d8ac2f2c113587c",
+      "width": 296,
+      "height": 329,
+      "mode": "RGBA"
+    },
+    "shared_sprites/sealed_pack.png": {
+      "size": 229341,
+      "sha256": "74a8e237fab83cc630c066848941889a146ae7095bc8048cfca90c6efc6d5e13",
+      "width": 364,
+      "height": 285,
+      "mode": "RGBA"
+    },
+    "shared_sprites/staff_wrap.png": {
+      "size": 266144,
+      "sha256": "a8eae6a5154cc36b1999c3c67ee656bb383c44afd513ec94facf52a35f389441",
+      "width": 363,
+      "height": 364,
+      "mode": "RGBA"
+    },
+    "shared_sprites/supplies.png": {
+      "size": 233045,
+      "sha256": "f8606570a0781f3ae54d03e5c828d1891d6ee24ead73b46501f59ffeff71e454",
+      "width": 364,
+      "height": 302,
+      "mode": "RGBA"
+    },
+    "shared_sprites/toll_blood.png": {
+      "size": 138293,
+      "sha256": "2ca643a9f8ff9fa534ea3b7796aa5990561cb98810ae4fe6fae256512521b1d9",
+      "width": 339,
+      "height": 225,
+      "mode": "RGBA"
+    },
+    "shared_sprites/toll_down.png": {
+      "size": 110769,
+      "sha256": "3aba0f4ab7aafcf811c10e89a953b3f94a1e0a2241f13844ca2d4e75e8db1a77",
+      "width": 364,
+      "height": 201,
+      "mode": "RGBA"
+    },
+    "shared_sprites/toll_empty.png": {
+      "size": 140814,
+      "sha256": "149f63c5f06f7e23e21acc548088eca660f02d9cf9f6e01615acb0aed5b52ec5",
+      "width": 342,
+      "height": 230,
+      "mode": "RGBA"
+    },
+    "shared_sprites/toll_gold.png": {
+      "size": 146658,
+      "sha256": "29a55e5c090ecf7069bbb7b77f1ceb14bc6ae0ff3f34b5d579efba4d983f82ad",
+      "width": 339,
+      "height": 225,
+      "mode": "RGBA"
+    },
+    "shared_sprites/toll_guard.png": {
+      "size": 96139,
+      "sha256": "ee408d101bdeda603be73c69121a41ccbff4fafda6f04b0d2c3420619acd6c04",
+      "width": 156,
+      "height": 364,
+      "mode": "RGBA"
+    },
+    "shared_sprites/toll_kneel.png": {
+      "size": 128833,
+      "sha256": "4ffcec07b5c1dc1c0d40bec1e76e807245736eb4a3aa20b31c50cb3e1457107c",
+      "width": 355,
+      "height": 328,
+      "mode": "RGBA"
+    },
+    "source/ash_rest.png": {
+      "size": 2167488,
+      "sha256": "18907211879a2ee9ee54232096db9d1228e034c3227494760f7b91d49047ac8c",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/black_altar.png": {
+      "size": 2384524,
+      "sha256": "ca3d0ae1c6d907d180bc09f3d35f43118b68b605e0a478962fe61d37f2179f72",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/bone_tax.png": {
+      "size": 2122410,
+      "sha256": "d5c24c2cb48751b0ea646297dc6cc4ee1bcbccae94147d26b0ed8bb9cc642a61",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/chained_prisoner.png": {
+      "size": 2087282,
+      "sha256": "95a218ffb7daba9df0ef020fa4ce37f4d436f3603e1282600c8a6bfbd28d7beb",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/echo_crypt.png": {
+      "size": 2031226,
+      "sha256": "87f94fd356401182ec5543ad00043e644772eccc829d83d376d3d0079bf7f852",
+      "width": 2172,
+      "height": 724,
+      "mode": "RGB"
+    },
+    "source/faceless_card.png": {
+      "size": 1818682,
+      "sha256": "da9e5d686b1f19a25082924f64184763134b091271f01fb77de65bccdba49899",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/jack.png": {
+      "size": 2519526,
+      "sha256": "fe9e02c2ccd9eb5ef337647a732b844478fadef1464853b29a762ac5d630761f",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/last_camp.png": {
+      "size": 2214804,
+      "sha256": "051a221747838a79ff02ce423d34166568db9a1a1d8ea31cdeafc7f5f1fe4d77",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/moon_seal.png": {
+      "size": 2275734,
+      "sha256": "5ebf5eab0761715be4fabc58cf6fdd4f12231276a1ec1b7618f101fc390ea8ef",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/props01.png": {
+      "size": 2112997,
+      "sha256": "4bf8c087f2896b41f82dd5f30296099b38e5b2bd710ed930a6d032479f4bab12",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/props02.png": {
+      "size": 2240111,
+      "sha256": "822df89d8488aebdf0e92cc205cafd424adf808d8403df6bc9e5f91b213981af",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/props03.png": {
+      "size": 1992696,
+      "sha256": "28a6fa8c89ce6fafe8f4345c93e3a8cddea9d4da7262939ed6fe5cf259e6db2b",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/props04.png": {
+      "size": 2339602,
+      "sha256": "947ed5426e784b37d96c859af7ed7f73fe077069a47bebd02c4c5c14c5b251b2",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/props05.png": {
+      "size": 2196599,
+      "sha256": "87315b1b8dda31a5ead3feca45b99b3b4eb35243722a044e88bd749f5b77b5e1",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/props06.png": {
+      "size": 2196214,
+      "sha256": "a008254eb4ac08440f6a0cccf33233c602a5e25ae6e5d33d8aa809e2804a40c4",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "source/props07.png": {
+      "size": 1635382,
+      "sha256": "f94034f60e0cda73c3c545ab9aadecdc592244a9e0dfa8fd81665726af63cebc",
+      "width": 2172,
+      "height": 724,
+      "mode": "RGB"
+    },
+    "source/whispering_well.png": {
+      "size": 2731524,
+      "sha256": "175d0714d5662ff22244ea5eca30e292e13c02a8814a466a9c057b489f2016f8",
+      "width": 1672,
+      "height": 941,
+      "mode": "RGB"
+    },
+    "staging.json": {
+      "size": 52668,
+      "sha256": "85c5fdb321c1489e9084432f06b7385aa6dc9214cf98210d0d3e5b2d1b76bb2f"
+    }
+  }
+}
