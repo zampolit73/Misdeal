@@ -251,6 +251,11 @@ func on_wave_intermission() -> void:
 	for role in executors:
 		var executor: RefCounted = executors[role]
 		histories[role] = executor.journal.duplicate(true)
+		# Wave II may use classic orders instead. Never leave the old
+		# per-hero planner policy attached after detaching its signals.
+		var hero: BattleUnit = executor.unit()
+		if is_instance_valid(hero) and hero.plan_executor == executor:
+			hero.plan_executor = null
 		executor.disconnect_unit()
 	executors.clear()
 	for plan in plans.values():
