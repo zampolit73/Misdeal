@@ -111,6 +111,8 @@ func open_battle(keep_placement: bool=false) -> void:
 	RunState.wizard_meddling_slots.clear()
 	seed(run_seed)
 	battle=load(BATTLE).instantiate()
+	# This QA fixture supplies its own planning driver.
+	battle.combat_planning_disabled = true
 	add_child(battle)
 	first_wave_enemies.clear()
 	var roster: Array = []
