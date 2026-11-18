@@ -75,6 +75,18 @@ jobs:
           fi
           echo '✅ Godot project import and GDScript parsing passed' >> "$GITHUB_STEP_SUMMARY"
 
+      - name: "Campaign Combat Planning rollout — every encounter and wave"
+        if: steps.scope.outputs.mode != 'docs'
+        shell: bash
+        run: |
+          set -euo pipefail
+          log="$RUNNER_TEMP/misdeal-smart-qa/campaign-planning.log"
+          timeout 170s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path . --audio-driver Dummy \
+            --script res://scripts/dev/combat_planning_campaign_smoke.gd 2>&1 | tee "$log"
+          grep -Fq 'COMBAT_PLANNING_CAMPAIGN_NATIVE_PASS' "$log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script|COMBAT_PLANNING_CAMPAIGN_FAIL' "$log"
+
       - name: GUT 9.7.1 real GDScript unit tests
         if: steps.scope.outputs.mode != 'docs'
         shell: bash
@@ -320,18 +332,6 @@ jobs:
             --script res://scripts/dev/qa_hub_capture.gd -- "$out" 2>&1 | tee "$out/capture.log"
           grep -Fq 'QA_HUB_NATIVE_PASS' "$out/capture.log"
           ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed|Failed to load script' "$out/capture.log"
-
-      - name: "Campaign Combat Planning rollout — every encounter and wave"
-        if: steps.scope.outputs.mode != 'docs'
-        shell: bash
-        run: |
-          set -euo pipefail
-          log="$RUNNER_TEMP/misdeal-smart-qa/campaign-planning.log"
-          timeout 170s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
-            --headless --path . --audio-driver Dummy \
-            --script res://scripts/dev/combat_planning_campaign_smoke.gd 2>&1 | tee "$log"
-          grep -Fq 'COMBAT_PLANNING_CAMPAIGN_NATIVE_PASS' "$log"
-          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script|COMBAT_PLANNING_CAMPAIGN_FAIL' "$log"
 
       - name: Combat Planning isolated native pilot
         if: steps.scope.outputs.mode == 'visual' || steps.scope.outputs.mode == 'release'
