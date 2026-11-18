@@ -1,3 +1,9 @@
+## Immediate continuation: Combat Planning rollout PR #117
+
+User approved Visual V4 and requested scaling to every combat. Branch `codex/combat-planning-pilot` now connects `scripts/battle/planning/battle_plan_campaign.gd` to the actual `scripts/battle/battle.gd`, while QA pilot explicitly disables it. Review [rollout contract](COMBAT_PLANNING_ROLLOUT.md) before changing architecture. Latest CI status and full native evidence must be verified; **do not claim production merged until it is**.
+
+Local F5: play a normal combat card (not the QA fixture), check compact V4 plan dock, drag hero, edit/assign orders, start combat, confirm live stage HUD, normal victory → Reward → Table, defeat → Last Deal, optional `РАЗБОР ПРИКАЗОВ`; test a two-wave arena and Bone Warden. The `Классика` button switches to the original command controls for rare Sacrifice/Defiance; `Боевой план` returns before starting. Existing F6 `scenes/dev/combat_planning_pilot.tscn` still compares legacy/pilot behavior.
+
 ## Next review: Combat Planning Visual V4
 
 Open `scenes/dev/combat_planning_pilot.tscn` with F6 (also QA Hub → Бой). Use the default trio, compare the lower panel with the [approved reference](qa/combat-planning-visual-v4/approved_reference.png), open and edit any order, then return and choose a target. After visual review, use the [eight-battle playtest](COMBAT_PLANNING_PLAYTEST.md). User review is the merge gate for [PR #117](https://github.com/zampolit73/Misdeal/pull/117).
