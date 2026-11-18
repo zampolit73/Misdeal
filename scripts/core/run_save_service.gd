@@ -139,6 +139,9 @@ func apply_slot(state: Node, data: Dictionary) -> bool:
 	if not validate(data,state) or data.finished: return false
 	for key in FIELDS:
 		state.set(key,data.state[key].duplicate(true) if data.state[key] is Array or data.state[key] is Dictionary else data.state[key])
+	# Encounter-local tactic drafts must never leak from a previously open run.
+	# This metadata is intentionally excluded from the existing save schema.
+	state.set_meta("battle_plan_drafts", {})
 	MEMORY.instance().restore_run(data.memory_run)
 	resume_phase = data.phase
 	loading = true
