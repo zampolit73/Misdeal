@@ -1,3 +1,7 @@
+## Combat Planning UX V2 — isolated Grave Bell pilot
+
+Show the entire squad plan on the arena, open an individual order with one click and clearly display the event cutoff or final-order duration. Add numbered target picking, scoped assignment restoration on retry, transition notices with reasons and a concise report with expandable chronology. Existing tactics and battle timings are retained.
+
 ## Combat Planning 1.0 — isolated playable QA pilot
 
 Add Grave Bell legacy/planning comparison, independent1–3 orders, real enemy selection, stable priorities, bounded defense, local hunt detours, actual damage/kill conditions, timers and factual reports. Existing Battle/Unit simulation and one-use rules remain; ordinary battles have no executor. Add seed-controlled solo/duo/trio comparisons, real pause/input and wave replanning QA. Not production-enabled; user gameplay review required.

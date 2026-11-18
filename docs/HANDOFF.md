@@ -1,6 +1,6 @@
-## Next review: Combat Planning 1.0 pilot
+## Next review: Combat Planning UX V2
 
-Open `scenes/dev/combat_planning_pilot.tscn`, F6 (also QA Hub → Бой). Select old/planning, party and seed; prepare positions, individual orders and a real enemy target. Start, observe, read actual journal, compare/replay. See [rules/results](COMBAT_PLANNING_PILOT.md). Production Travel/QA release below remains accepted. This new pilot is isolated and **not authorized for merge to main** before user gameplay review.
+Open `scenes/dev/combat_planning_pilot.tscn` with F6 (also QA Hub → Бой). Open the default trio example, click the Ranger's first order, assign the Bellkeeper and change its limit. Start, read the summary, open the chronology and use «Изменить план» to check that the assignment is restored. User review is the merge gate for [PR #117](https://github.com/zampolit73/Misdeal/pull/117). [Pilot guide](COMBAT_PLANNING_PILOT.md).
 
 # Misdeal — current handoff
 

@@ -1,6 +1,13 @@
 extends RefCounted
 const IDS := ["custom","assault","defense","hunt","staged"]
 const NAMES := ["Свой план","Общий натиск","Удерживать позицию","Охота на поддержку","Прикрытие → охота"]
+const DESCRIPTIONS := [
+	"Продолжить свой сценарий. Новые герои начинают с одного приказа «Натиск».",
+	"Все герои сближаются с ближайшими врагами до конца боя.",
+	"Все герои держат свои позиции и атакуют врагов в пределах досягаемости.",
+	"Герои преследуют целителей, затем стрелков. Остальным врагам уделяют внимание по близости.",
+	"Редактируемый пример: рыцарь держит позицию, следопыт ищет поддержку, маг меняет тактику после первого попадания.",
+]
 
 static func step(tactic: String, priority: String="nearest", condition: String="time", limit: int=4) -> Dictionary:
 	return {"tactic":tactic,"priority":priority,"condition":condition,"limit":limit,"target":null}

@@ -2,6 +2,7 @@
 
 - [x] Independent per-hero plans, real engine execution, editable preparation and journal.
 - [x] Solo/duo/trio old/new controlled comparison and native wave intermission replanning.
+- [x] UX V2 squad overview, direct order editing, scoped target replay and readable battle summary.
 - [ ] User gameplay review; no campaign rollout or main merge yet.
 - [Contract and launch](COMBAT_PLANNING_PILOT.md).
 

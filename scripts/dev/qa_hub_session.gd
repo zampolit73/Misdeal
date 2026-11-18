@@ -71,7 +71,10 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if panel!=null:
-		panel.visible=not hidden_panel and get_tree().current_scene!=null and get_tree().current_scene.scene_file_path!=HUB
+		var scene := get_tree().current_scene
+		panel.visible = not hidden_panel and scene != null and scene.scene_file_path != HUB
+		if panel.visible and scene.has_method("qa_toolbar_visible"):
+			panel.visible = scene.qa_toolbar_visible()
 
 func _input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo: return
@@ -164,12 +167,16 @@ func return_to_hub() -> void:
 	navigating=false
 
 func replay() -> void:
-	if navigating or last_entry.is_empty(): return
+	var scene := get_tree().current_scene
+	var has_scene_replay := is_instance_valid(scene) and scene.has_method("replay_qa_battle")
+	if navigating or (last_entry.is_empty() and not has_scene_replay): return
 	navigating=true
 	if not await _settle_transition():
 		navigating=false
 		return
 	navigating=false
+	if has_scene_replay and is_instance_valid(scene) and scene == get_tree().current_scene and scene.replay_qa_battle():
+		return
 	launch_entry(last_entry,last_options)
 
 func _exit_tree() -> void:

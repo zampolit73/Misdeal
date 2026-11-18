@@ -1,4 +1,4 @@
-# Combat Planning 1.0 — isolated playable pilot
+# Combat Planning 1.0 — UX V2 pilot
 
 ## Scope and launch
 
@@ -8,11 +8,13 @@ Every experiment uses the exact existing Grave Bell roster/stats and party multi
 
 ## Editing and observation
 
-Select a hero, choose1/2/3 orders, select I/II/III and edit tactic, priority, condition and2–12 second limit. All three slots are available immediately. Target button → click a real enemy; a brief tint confirms it. Right click/× cancels or clears. Switching heroes preserves all their orders. Plans for all living heroes are summarized below. The last order has no active transition condition or limit.
+The bottom board shows one row per available hero. Each order shows its tactic, assigned enemy or priority, and when it ends. Click any order to open its settings above the arena. Add the next slot with «+ Приказ», remove the last slot with «−», or go straight to another order. Changes appear on the board immediately. The final order always reads «До конца боя». For other orders the editor explains exactly when a timeout advances the plan. Hero placement remains available while the editor is open.
 
-During combat the editor disappears. The small HUD shows hero/stage/tactic/time; notifications announce stage changes. The player only observes. After the actual result, a scrollable journal shows stage starts, actual transition times/reasons, assigned and selected enemy (local spawn index distinguishes equal names), personal kills, deaths and result. There is no generated explanation of defeat. Replay, edit again and compare mode restore the experiment's initial deployment and seed. Concrete enemy instance references are cleared when a new battle is created: select them again, or use the priority fallback. They never enter save files.
+«Выбрать цель» opens arena picking with numbered enemies. Hover shows the name, and either the enemy or its badge can be clicked. Cancel with Escape, right-click or «Отмена». «Снять» removes the current assignment. During combat the HUD shows each living hero's stage, tactic and remaining time, with a brief notice giving the actual transition trigger. After combat, the summary shows HP, kills, stage completions, timeouts and deaths from the existing journal. «Подробная хронология» reveals its full chronology.
 
-A real intermission on a two-wave resource allows new plans for survivors without healing or restoring spent special orders. The shipped player launcher remains Grave Bell; native QA additionally exercises the existing Iron Wall wave lifecycle.
+Replay, F9, «Изменить план» and mode comparison retain the first-wave draft, seed and initial deployment. An explicit enemy is rebound to a fresh weak reference by index in the original spawn list, provided the encounter path, formation, enemy resources and ordered spawn signatures match. A mismatch clears the assignment with a message and uses the chosen priority. These bindings exist in the QA session only. At a wave break, survivor plans can be changed and first-wave assignments are cleared. Next-wave enemies appear after confirmation, so that wave uses the selected priority. A full retry starts again with the first-wave draft.
+
+The default preset is the editable «Прикрытие → охота» example. The setup screen describes each preset and explains that composition and placement affect the outcome. The example loses the reference trio fight at seed 31017. The shipped launcher uses Grave Bell. Native QA also exercises a real Iron Wall intermission.
 
 ## Rules implemented
 
@@ -50,8 +52,8 @@ These are observations, not desired outcomes or universal balance claims. The sa
 
 ## Verification and limits
 
-GUT covers independent timers,1/2/3 slots, every condition/fallback, pause/preparation, no penalties, exact source/AoE kills, target lock/fallback/freed references, defense bounds/no teleport, hunt steering and legacy behavior. Native runner covers real enemy click, tab persistence, real intro/pause/editor lock,15 controlled Grave Bell battles and actual survivor replanning on Iron Wall. Existing full production GUT and normal Battle→Reward→Table smoke remain required. No static review is claimed as runtime PASS.
+GUT covers the original combat contract. The native runner now checks the overview, slot edits, actual arena clicks, cancel and clear, same-encounter replay including the QA toolbar, cross-encounter reset, small-window scaling, the compact report and its chronology. It retains actual intro/pause checks, 15 controlled Grave Bell fights and Iron Wall wave replanning. [UX audit, action counts and before/after captures](qa/combat-planning-ux-v2/README.md).
 
 Run full GUT normally; focused tests: `--script addons/gut/gut_cmdln.gd -gselect=test_combat_planning -gexit`. Native: `--windowed --resolution 1280x720 --rendering-method gl_compatibility --script res://scripts/dev/combat_planning_capture.gd -- <absolute-output-dir>`. Runner writes `comparison.json`, `wave_check.json` and actual setup/editor/live/report PNGs. CI retains them in the standard evidence artifact.
 
-Limits: this is an opt-in QA pilot, not campaign rollout or persistence of plans. It uses the existing compact2D steering rather than guaranteed pathfinding. Enemy references reset across battles. The seed examples demonstrate tactical consequences, not a universal strategy or a full balance study. Further rollout requires the player's review of the actual experience.
+Plans and spawn bindings live only in this launcher session. Hunt still uses the existing local detour. The next gate is player review of the UX on PR #117.

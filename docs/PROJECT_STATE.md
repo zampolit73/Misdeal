@@ -1,6 +1,6 @@
-## Combat Planning 1.0 — isolated QA candidate
+## Combat Planning UX V2 — isolated QA candidate
 
-Grave Bell old/planning comparison, independent per-hero1–3 orders, real target picking, bounded defense/local hunt steering, event/time conditions and factual journal. Null-by-default shared hooks; ordinary battles remain unchanged. Native solo/duo/trio comparisons show real outcome differences and exact legacy assault parity; actual wave-break replanning verified. [Contract, launch, results and limits](COMBAT_PLANNING_PILOT.md). Separate PR only; **do not merge before user gameplay review**.
+PR #117 shows the squad's complete plans on the arena, with one-click order editing, numbered target picking and safe rebinding for an identical QA retry. The live HUD shows actual transition triggers and the result starts with a concise journal summary. Native solo/duo/trio checks retain exact legacy assault parity and cover wave replanning. [Pilot guide and evidence](COMBAT_PLANNING_PILOT.md). User review is required before merging.
 
 # Misdeal — current project state
 

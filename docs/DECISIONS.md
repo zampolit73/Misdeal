@@ -1,3 +1,7 @@
+## Combat Planning UX V2 — overview on the arena
+
+The default view shows the full party plan. Clicking an order opens only that order's controls while placement stays usable. Target picking uses temporary numbered badges. Same-encounter replay resolves weak references from an ordered spawn signature. A different encounter or wave clears the active binding. The first-wave draft is kept for a full retry. The report opens with a factual summary and offers the detailed log on demand. These choices are ready for player review in PR #117.
+
 ## Combat Planning 1.0 — approved pilot rules, not production rollout
 
 Implement up to3 independent non-looping orders per hero: assault/defense/hunt; separate priority/optional encounter-local target; time/dealt/taken/personal-kill/HP50 conditions and mandatory2–12s event fallback. Final order persists. Real combat governs outcomes; no stat compensation or forced results. Preserve Jack, special one-use orders, balance, saves and approved art. Use only a null-by-default policy on existing BattleUnit and a dedicated QA scene; no second engine/router/autoload. Player gameplay approval is required before main merge.

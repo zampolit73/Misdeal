@@ -1,28 +1,46 @@
 extends CanvasLayer
+
 const DATA := preload("res://scripts/battle/planning/hero_battle_plan.gd")
 const DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
+const STAGES := ["I", "II", "III"]
+const PRIORITIES := ["Ближайший", "Слабейший", "Самый дальний", "Поддержка"]
+const CONDITIONS := ["По времени", "После нанесения урона", "После получения урона", "После личного убийства", "При здоровье ≤ 50%"]
+const TACTIC_HINTS := ["Быстро сближается с целью.", "Удерживает позицию, с которой начал приказ.", "Преследует цель и старается обойти врагов."]
+
 var pilot: Node
 var editor: Panel
+var detail: Panel
+var picker: Panel
 var hud: Panel
-var hero_choice: OptionButton
-var count_choice: OptionButton
-var slots: Array[Button]=[]
+var report_panel: Panel
 var tactic: OptionButton
 var priority: OptionButton
 var condition: OptionButton
 var limit: SpinBox
 var target_button: Button
+var clear_button: Button
+var title: Label
 var explanation: Label
-var summary: Label
+var transition_label: Label
+var board_hint: Label
+var notice: Label
 var live_text: Label
-var notification: Label
-var limit_label: Label
-var report_panel: Panel
+var hover_text: Label
+var hero_roles: Array[String] = []
 var slot := 0
+var selected_role := ""
 var refreshing := false
-var hero_roles: Array[String]=[]
-var last_stage_text := ""
+var tiles: Dictionary = {}
+var pick_markers: Dictionary = {}
+var hud_stages: Dictionary = {}
+var hero_caption: Dictionary = {}
+var remove_buttons: Dictionary = {}
+var tile_headings: Dictionary = {}
+var tile_endings: Dictionary = {}
 var notice_time := 0.0
+var fallback_message := ""
+var history_button: Button
+var report_reading: RichTextLabel
 
 func panel(at: Vector2, dimensions: Vector2) -> Panel:
 	var item := Panel.new()
@@ -64,148 +82,314 @@ func option(parent: Node, names: Array, at: Vector2, dimensions: Vector2) -> Opt
 	return item
 
 func build(owner_pilot: Node) -> void:
-	pilot=owner_pilot
-	layer=40
-	editor=panel(Vector2(28,548),Vector2(1224,164))
-	hero_choice=option(editor,[],Vector2(12,8),Vector2(174,32))
-	hero_choice.item_selected.connect(func(_n: int):pilot.picking_target=false;slot=0;refresh())
-	for n in range(3):
-		var b:=button(editor,["I","II","III"][n],Vector2(198+n*54,8),Vector2(48,32),func():pass)
-		b.pressed.connect(_select_slot.bind(n))
-		slots.append(b)
-	label(editor,"Приказов",Vector2(378,12),Vector2(80,26))
-	count_choice=option(editor,["1","2","3"],Vector2(462,8),Vector2(58,32))
-	count_choice.item_selected.connect(_resize)
-	button(editor,"ОПЫТ / РЕЖИМ",Vector2(750,8),Vector2(194,32),pilot.show_setup)
-	button(editor,"НАЧАТЬ БОЙ",Vector2(958,8),Vector2(252,32),pilot.start_planned_battle)
-	tactic=option(editor,DATA.TACTIC_NAMES,Vector2(12,48),Vector2(145,34))
-	priority=option(editor,DATA.PRIORITY_NAMES,Vector2(167,48),Vector2(212,34))
-	target_button=button(editor,"Указать врага на арене",Vector2(389,48),Vector2(258,34),pilot.arm_target)
-	button(editor,"×",Vector2(652,48),Vector2(34,34),_clear_target)
-	condition=option(editor,DATA.CONDITION_NAMES,Vector2(702,48),Vector2(194,34))
-	limit=SpinBox.new()
-	limit.min_value=2
-	limit.max_value=12
-	limit.step=1
-	limit.suffix="с."
-	limit.position=Vector2(908,48)
-	limit.size=Vector2(106,34)
-	editor.add_child(limit)
-	limit_label=label(editor,"Лимит этапа",Vector2(1028,52),Vector2(175,26))
-	for choice in [tactic,priority,condition]: choice.item_selected.connect(func(_n: int):_edited())
-	limit.value_changed.connect(func(_n: float):_edited())
-	explanation=label(editor,"",Vector2(12,87),Vector2(1200,26),13)
-	summary=label(editor,"",Vector2(12,119),Vector2(1200,34),12)
-	summary.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	hud=panel(Vector2(804,178),Vector2(446,108))
-	live_text=label(hud,"",Vector2(12,8),Vector2(420,82),15)
-	notification=label(self,"",Vector2(804,290),Vector2(446,32),13)
-	hud.visible=false
+	pilot = owner_pilot
+	layer = 40
+	editor = panel(Vector2(28, 563), Vector2(1224, 151))
+	label(editor, "Боевой план", Vector2(12, 4), Vector2(135, 24), 19)
+	board_hint = label(editor, "", Vector2(148, 5), Vector2(631, 22), 13)
+	board_hint.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	button(editor, "В хаб · F10", Vector2(786, 3), Vector2(116, 25), pilot.return_to_hub)
+	button(editor, "Настройки", Vector2(910, 3), Vector2(111, 25), pilot.show_setup)
+	var start := button(editor, "Начать бой", Vector2(1030, 3), Vector2(182, 25), pilot.start_planned_battle)
+	DS3.apply_action(start, true)
+	detail = panel(Vector2(293, 145), Vector2(959, 125))
+	title = label(detail, "", Vector2(16, 6), Vector2(790, 26), 19)
+	button(detail, "Готово", Vector2(815, 6), Vector2(128, 26), close_detail)
+	label(detail, "Тактика", Vector2(16, 35), Vector2(125, 17), 13)
+	label(detail, "Приоритет цели", Vector2(145, 35), Vector2(159, 17), 13)
+	label(detail, "Конкретный враг", Vector2(310, 35), Vector2(220, 17), 13)
+	tactic = option(detail, DATA.TACTIC_NAMES, Vector2(16, 54), Vector2(120, 31))
+	priority = option(detail, PRIORITIES, Vector2(145, 54), Vector2(155, 31))
+	priority.tooltip_text = "Поддержка: целитель, затем стрелок, затем ближайший враг. Приоритет действует и при потере назначенной цели."
+	target_button = button(detail, "Выбрать цель", Vector2(310, 54), Vector2(212, 31), pilot.arm_target)
+	clear_button = button(detail, "Снять", Vector2(528, 54), Vector2(58, 31), _clear_target)
+	transition_label = label(detail, "Когда перейти дальше", Vector2(600, 35), Vector2(250, 17), 13)
+	condition = option(detail, CONDITIONS, Vector2(600, 54), Vector2(246, 31))
+	limit = SpinBox.new()
+	limit.min_value = 2
+	limit.max_value = 12
+	limit.step = 1
+	limit.suffix = "с"
+	limit.position = Vector2(855, 54)
+	limit.size = Vector2(88, 31)
+	detail.add_child(limit)
+	for choice in [tactic, priority, condition]:
+		DS3.apply_action(choice)
+		choice.item_selected.connect(func(_n: int): _edited())
+	limit.value_changed.connect(func(_n: float): _edited())
+	explanation = label(detail, "", Vector2(16, 92), Vector2(927, 24))
+	for item in [tactic, priority, condition]:
+		item.fit_to_longest_item = false
+	picker = panel(Vector2(284, 151), Vector2(712, 78))
+	hover_text = label(picker, "", Vector2(14, 8), Vector2(540, 32), 18)
+	label(picker, "Нажмите на врага. Esc / ПКМ — отмена.", Vector2(14, 43), Vector2(674, 25))
+	button(picker, "Отмена", Vector2(563, 9), Vector2(135, 30), pilot.cancel_target)
+	hud = panel(Vector2(838, 160), Vector2(414, 88))
+	DS3.apply_surface(hud, "battle")
+	hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	live_text = label(hud, "", Vector2(12, 9), Vector2(390, 68), 15)
+	notice = label(hud, "", Vector2(12, 89), Vector2(390, 50), 13)
+	notice.add_theme_constant_override("outline_size", 6)
+	notice.add_theme_color_override("font_outline_color", DS3.OBSIDIAN)
+	detail.hide()
+	picker.hide()
+	hud.hide()
 
 func current_role() -> String:
-	return hero_roles[hero_choice.selected] if hero_choice.selected>=0 and not hero_roles.is_empty() else ""
+	return selected_role
 
-func current_plan() -> Resource: return pilot.plans.get(current_role())
+func current_plan() -> Resource:
+	return pilot.plans.get(selected_role)
 
 func set_heroes(roles: Array[String]) -> void:
-	var old := current_role()
-	hero_roles=roles.duplicate()
-	hero_choice.clear()
-	for role in roles: hero_choice.add_item(pilot.role_name(role))
-	if roles.has(old): hero_choice.select(roles.find(old))
-	slot=0
+	hero_roles = roles.duplicate()
+	close_detail()
+	for role in tiles:
+		for tile in tiles[role]:
+			tile.queue_free()
+		hero_caption[role].queue_free()
+		remove_buttons[role].queue_free()
+	tiles.clear()
+	tile_headings.clear()
+	tile_endings.clear()
+	hero_caption.clear()
+	remove_buttons.clear()
+	hud_stages.clear()
+	notice_time = 0.0
+	for row in range(roles.size()):
+		var role := roles[row]
+		var y := 32 + row * 38
+		hero_caption[role] = label(editor, pilot.role_name(role), Vector2(12, y + 3), Vector2(120, 25), 17)
+		var remove := button(editor, "−", Vector2(126, y + 4), Vector2(26, 22), _remove_last.bind(role))
+		remove.tooltip_text = "Убрать последний приказ"
+		remove_buttons[role] = remove
+		var row_tiles: Array[Button] = []
+		var headings: Array[Label] = []
+		var endings: Array[Label] = []
+		for stage in range(3):
+			var tile := button(editor, "", Vector2(164 + stage * 350, y), Vector2(342, 37), select_order.bind(role, stage))
+			var heading := label(tile, "", Vector2(8, 1), Vector2(326, 18), 14)
+			heading.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+			headings.append(heading)
+			endings.append(label(tile, "", Vector2(8, 18), Vector2(326, 17), 12))
+			row_tiles.append(tile)
+		tiles[role] = row_tiles
+		tile_headings[role] = headings
+		tile_endings[role] = endings
+	editor.size.y = 37 + roles.size() * 38
+	editor.position.y = 714 - editor.size.y
 	refresh()
 
-func _select_slot(n: int) -> void:
-	pilot.picking_target=false
-	slot=n
+func select_order(role: String, stage: int) -> void:
+	if not pilot.editable() or role not in hero_roles:
+		return
+	if stage == pilot.plans[role].orders.size():
+		pilot.resize_plan(role, stage + 1)
+	selected_role = role
+	slot = stage
+	detail.show()
 	refresh()
+
+func close_detail() -> void:
+	selected_role = ""
+	detail.hide()
+	refresh_board()
+
+func _remove_last(role: String) -> void:
+	if not pilot.editable():
+		return
+	var count: int = pilot.plans[role].orders.size()
+	if count <= 1:
+		return
+	pilot.resize_plan(role, count - 1)
+	if selected_role == role and slot >= count - 1:
+		close_detail()
+	refresh()
+
+func _summary_end(order: Dictionary, final: bool) -> String:
+	if final:
+		return "До конца боя"
+	if order.condition == "time":
+		return "Через %d с" % order.limit
+	const TRIGGERS := {
+		"damage_dealt": "Нанесёт урон",
+		"damage_taken": "Получит урон",
+		"personal_kill": "Убьёт врага",
+		"hp_below_50": "HP ≤ 50%",
+	}
+	return "%s · до %d с" % [TRIGGERS[order.condition], order.limit]
+
+func refresh_board() -> void:
+	if board_hint == null:
+		return
+	board_hint.text = fallback_message if not fallback_message.is_empty() else "Приказы идут по порядку. Нажмите на приказ, чтобы изменить его."
+	for role in hero_roles:
+		if not tiles.has(role):
+			continue
+		var orders: Array = pilot.plans[role].orders
+		hero_caption[role].add_theme_color_override("font_color", DS3.PARCHMENT if role == selected_role else DS3.TEXT)
+		remove_buttons[role].visible = orders.size() > 1
+		for stage in range(3):
+			var tile: Button = tiles[role][stage]
+			var heading: Label = tile_headings[role][stage]
+			var ending: Label = tile_endings[role][stage]
+			tile.visible = stage <= orders.size()
+			var selected := role == selected_role and stage == slot
+			DS3.apply_action(tile, selected)
+			if stage >= orders.size():
+				heading.text = "+ Приказ " + STAGES[stage]
+				heading.position.y = 9
+				ending.text = ""
+				tile.tooltip_text = "Добавить приказ " + STAGES[stage]
+				tile.accessibility_name = tile.tooltip_text
+				continue
+			var order: Dictionary = orders[stage]
+			var foe := DATA.target_of(order)
+			var target_text: String = pilot.enemy_label(foe) if is_instance_valid(foe) else PRIORITIES[DATA.PRIORITIES.find(order.priority)]
+			var end := _summary_end(order, stage == orders.size() - 1)
+			heading.text = "%s  %s · %s%s" % [STAGES[stage], DATA.TACTIC_NAMES[DATA.TACTICS.find(order.tactic)], "Цель: " if is_instance_valid(foe) else "", target_text]
+			heading.position.y = 1
+			heading.add_theme_color_override("font_color", DS3.PARCHMENT if is_instance_valid(foe) or selected else DS3.TEXT)
+			ending.text = end
+			ending.add_theme_color_override("font_color", DS3.PARCHMENT if stage == orders.size() - 1 else DS3.TEXT.darkened(0.14))
+			tile.tooltip_text = heading.text + "\n" + end
+			tile.accessibility_name = pilot.role_name(role) + " · " + tile.tooltip_text
 
 func refresh() -> void:
+	refresh_board()
 	var plan := current_plan()
-	if plan==null: return
-	refreshing=true
-	slot=mini(slot,plan.orders.size()-1)
-	count_choice.select(plan.orders.size()-1)
-	for n in range(3):
-		slots[n].disabled=n>=plan.orders.size()
-		DS3.apply_action(slots[n],n==slot)
-	var order: Dictionary=plan.orders[slot]
+	if plan == null:
+		return
+	refreshing = true
+	var order: Dictionary = plan.orders[slot]
+	var last: bool = slot == plan.orders.size() - 1
+	title.text = "%s · Приказ %s" % [pilot.role_name(selected_role), STAGES[slot]]
 	tactic.select(DATA.TACTICS.find(order.tactic))
 	priority.select(DATA.PRIORITIES.find(order.priority))
 	condition.select(DATA.CONDITIONS.find(order.condition))
-	limit.value=order.limit
-	var last: bool=slot==plan.orders.size()-1
-	condition.disabled=last
-	limit.editable=not last
-	condition.visible=not last
-	limit.visible=not last
-	limit_label.visible=not last
+	limit.set_value_no_signal(order.limit)
+	transition_label.visible = not last
+	condition.visible = not last
+	limit.visible = not last
 	var foe := DATA.target_of(order)
-	target_button.text="Цель: "+foe.display_name if is_instance_valid(foe) and foe.alive else "Указать врага на арене"
-	explanation.text="Последний приказ действует до конца боя." if last else "Смена по событию или лимиту. Если событие не случилось — переход без дополнительного штрафа."
-	var rows: Array[String]=[]
-	for role in hero_roles:
-		var parts: Array[String]=[]
-		for step in pilot.plans[role].orders: parts.append(DATA.TACTIC_NAMES[DATA.TACTICS.find(step.tactic)])
-		rows.append(pilot.role_name(role)+": "+" → ".join(parts))
-	summary.text="    |    ".join(rows)
-	refreshing=false
-
-func _resize(n: int) -> void:
-	if refreshing or not pilot.editable(): return
-	current_plan().resize_orders(n+1)
-	refresh()
+	var assigned := is_instance_valid(foe) and foe.alive
+	target_button.text = pilot.enemy_label(foe) if assigned else "Выбрать цель"
+	target_button.tooltip_text = "Заменить назначенную цель" if assigned else "Назначить конкретного врага на арене"
+	target_button.disabled = pilot.battle.wave_intermission
+	if target_button.disabled:
+		target_button.text = "Враги ещё не появились"
+		target_button.tooltip_text = "На следующей волне действует приоритет цели."
+	target_button.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	clear_button.visible = assigned
+	var next := "Действует до конца боя." if last else "Следующий приказ через %d с." % order.limit
+	if not last and order.condition != "time":
+		next = "Если условие не выполнено — перейти через %d с." % order.limit
+	explanation.text = TACTIC_HINTS[tactic.selected] + "  " + next
+	refreshing = false
 
 func _edited() -> void:
-	if refreshing or not pilot.editable(): return
-	var order: Dictionary=current_plan().orders[slot]
-	order.tactic=DATA.TACTICS[tactic.selected]
-	order.priority=DATA.PRIORITIES[priority.selected]
-	order.condition=DATA.CONDITIONS[condition.selected]
-	order.limit=int(limit.value)
+	if refreshing or not pilot.editable() or selected_role.is_empty():
+		return
+	var order: Dictionary = current_plan().orders[slot]
+	order.tactic = DATA.TACTICS[tactic.selected]
+	order.priority = DATA.PRIORITIES[priority.selected]
+	order.condition = DATA.CONDITIONS[condition.selected]
+	order.limit = int(limit.value)
 	refresh()
 
 func _clear_target() -> void:
-	if not pilot.editable(): return
-	current_plan().orders[slot].target=null
-	pilot.picking_target=false
-	refresh()
+	if pilot.editable() and not selected_role.is_empty():
+		pilot.clear_assignment(current_plan().orders[slot])
+		refresh()
+
+func set_picking(active: bool) -> void:
+	picker.visible = active
+	editor.visible = not active
+	detail.visible = not active and not selected_role.is_empty()
+	if active:
+		for enemy in pilot.battle.units:
+			if enemy.team == 1 and enemy.alive:
+				var marker := panel(enemy.global_position + Vector2(-13, 4), Vector2(26, 24))
+				marker.mouse_filter = Control.MOUSE_FILTER_IGNORE
+				label(marker, str(pilot.first_wave_enemies.find(enemy) + 1), Vector2.ZERO, Vector2(26, 24), 14).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				pick_markers[enemy] = marker
+		update_hover(null)
+	else:
+		for marker in pick_markers.values():
+			marker.queue_free()
+		pick_markers.clear()
+		refresh()
+
+func update_hover(enemy: BattleUnit) -> void:
+	hover_text.text = "Выбрать цель · " + (pilot.enemy_label(enemy) if enemy != null else pilot.role_name(selected_role))
+	for candidate in pick_markers:
+		var marker: Panel = pick_markers[candidate]
+		marker.modulate = Color.WHITE if candidate == enemy else Color(0.87, 0.79, 0.70)
+		DS3.apply_surface(marker, "dossier" if candidate == enemy else "table")
+		marker.scale = Vector2.ONE * (1.14 if candidate == enemy else 1.0)
 
 func update_live(delta: float) -> void:
-	hud.visible=pilot.battle.combat_live and not pilot.battle.battle_finished
-	var rows: Array[String]=[]
-	var stages := ""
+	hud.visible = pilot.battle.combat_live and not pilot.battle.battle_finished
+	if not hud.visible:
+		return
+	var rows: Array[String] = []
+	var changes: Array[String] = []
 	for role in hero_roles:
-		var executor: RefCounted=pilot.executors.get(role)
-		if executor==null or executor.index<0: continue
-		var state: String="ПАЛ" if not executor.unit().alive else DATA.TACTIC_NAMES[DATA.TACTICS.find(executor.orders[executor.index].tactic)]
-		var remaining: String="до конца" if executor.index==executor.orders.size()-1 else "%.1f с" % maxf(0,float(executor.orders[executor.index].limit)-executor.elapsed)
-		rows.append("%s · %s · %s · %s" % [pilot.role_name(role),["I","II","III"][executor.index],state,remaining])
-		stages+=role+str(executor.index)
-	live_text.text="\n".join(rows)
-	if stages!=last_stage_text:
-		if not last_stage_text.is_empty():
-			notification.text="Боевой план: следующий приказ"
-			notice_time=1.3
-		last_stage_text=stages
-	notice_time=maxf(0,notice_time-delta)
-	notification.visible=notice_time>0 and hud.visible
+		var executor: RefCounted = pilot.executors.get(role)
+		if executor == null or executor.index < 0 or not executor.unit().alive:
+			continue
+		var order: Dictionary = executor.orders[executor.index]
+		var stage: String = STAGES[executor.index]
+		var active_tactic: String = DATA.TACTIC_NAMES[DATA.TACTICS.find(order.tactic)]
+		var remaining := "до конца" if executor.index == executor.orders.size() - 1 else "%.1f с" % maxf(0, float(order.limit) - executor.elapsed)
+		rows.append("%s  ·  %s  %s  ·  %s" % [pilot.role_name(role), stage, active_tactic, remaining])
+		if hud_stages.has(role) and hud_stages[role] != executor.index:
+			var reason := ""
+			for entry in executor.journal.duplicate().slice(-8):
+				if entry.kind == "end" and entry.stage == executor.index:
+					reason = " · лимит истёк" if entry.reason == "timeout" else " · " + CONDITIONS[DATA.CONDITIONS.find(entry.reason)].to_lower()
+			changes.append("%s → %s %s%s" % [pilot.role_name(role), stage, active_tactic, reason])
+		hud_stages[role] = executor.index
+	live_text.text = "\n".join(rows)
+	hud.size.y = 20 + rows.size() * 22
+	notice.position.y = hud.size.y + 4
+	if not changes.is_empty():
+		notice.text = "\n".join(changes)
+		notice_time = 2.7
+	notice_time = maxf(0, notice_time - delta)
+	notice.visible = notice_time > 0
 
-func show_report(text: String) -> void:
-	editor.visible=false
-	hud.visible=false
-	notification.visible=false
-	report_panel=panel(Vector2(54,176),Vector2(1172,476))
-	label(report_panel,"ЖУРНАЛ БОЕВОГО ОПЫТА",Vector2(18,10),Vector2(1100,32),21)
-	var log_view := RichTextLabel.new()
-	log_view.position=Vector2(18,52)
-	log_view.size=Vector2(1136,350)
-	log_view.text=text
-	log_view.selection_enabled=true
-	log_view.add_theme_font_size_override("normal_font_size",14)
-	report_panel.add_child(log_view)
-	button(report_panel,"ПОВТОРИТЬ",Vector2(18,422),Vector2(230,36),pilot.replay)
-	button(report_panel,"ПРАВИТЬ ПЛАН",Vector2(264,422),Vector2(270,36),pilot.edit_again)
-	button(report_panel,"СРАВНИТЬ РЕЖИМ",Vector2(550,422),Vector2(280,36),pilot.compare_mode)
-	button(report_panel,"НАСТРОЙКИ",Vector2(846,422),Vector2(306,36),pilot.show_setup)
+func show_report(heading: String, metadata: String, summary: String, chronology: String) -> void:
+	editor.hide()
+	detail.hide()
+	picker.hide()
+	hud.hide()
+	var scrim := ColorRect.new()
+	scrim.color = Color(0.02, 0.012, 0.014, 0.40)
+	add_child(scrim)
+	scrim.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	report_panel = panel(Vector2(126, 150), Vector2(1028, 508))
+	label(report_panel, heading, Vector2(24, 14), Vector2(978, 40), 27)
+	label(report_panel, metadata, Vector2(24, 55), Vector2(978, 24))
+	var reading := RichTextLabel.new()
+	report_reading = reading
+	reading.position = Vector2(24, 100)
+	reading.size = Vector2(980, 300)
+	reading.text = summary
+	reading.selection_enabled = true
+	reading.add_theme_color_override("default_color", DS3.TEXT)
+	reading.add_theme_font_size_override("normal_font_size", 16)
+	report_panel.add_child(reading)
+	var toggle := button(report_panel, "Подробная хронология", Vector2(24, 408), Vector2(242, 29), func(): pass)
+	history_button = toggle
+	toggle.toggle_mode = true
+	toggle.toggled.connect(func(expanded: bool):
+		reading.text = chronology if expanded else summary
+		reading.scroll_to_line(0)
+		toggle.text = "Вернуться к итогу" if expanded else "Подробная хронология"
+	)
+	button(report_panel, "Повторить бой", Vector2(24, 451), Vector2(215, 39), pilot.replay)
+	DS3.apply_action(button(report_panel, "Изменить план", Vector2(249, 451), Vector2(224, 39), pilot.edit_again), true)
+	var comparison := "Сравнить с автобоем" if pilot.planned else "Сравнить с боевым планом"
+	button(report_panel, comparison, Vector2(483, 451), Vector2(306, 39), pilot.compare_mode)
+	button(report_panel, "Настройки", Vector2(799, 451), Vector2(205, 39), pilot.show_setup)
