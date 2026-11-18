@@ -1,3 +1,27 @@
+## 2026-11-18 — Combat Planning campaign-wide integration (PR #117)
+
+User accepted the selected gothic V4 planning interface and approved rollout to every authored battle. Reuse the isolated BattleUnit plan policy in ordinary Battle, without a second combat engine or altered encounter files; enable the per-hero V4 dock across solo/duo/trio, all authored arenas, Bone Warden and Iron Wall two-wave replanning. Expose an explicit classic tactic fallback preserving rare Sacrifice/Defiance, keep non-persistent drafts between encounters within the current session and never reuse enemy object references across fights. Preserve the original win/reward/Last Deal route and provide optional factual post-fight plan review. Keep QA pilot isolated and add native full-roster/wave smoke to PR CI. Validation and production merge pending.
+
+## Combat Planning Visual V4 — approved command board
+
+Apply DS3 bronze, parchment plates, red cloth, hero medallions and tactical glyphs to the live lower dock. Carry the same materials into the existing order editor and compact target picker. Retain the V3.1 interaction and battle rules.
+
+## Combat Planning UX V3.1 — playtest polish
+
+Distinguish timed duration from event fallback. Link an overview hover to its hero or assigned enemy with a temporary arena marker. Add a trash icon with a stage-specific tooltip and improve order text contrast. Add an eight-battle gameplay playtest guide.
+
+## Combat Planning UX V3 — one preparation panel
+
+Move order editing into the same bottom panel as the squad overview. Keep the arena open while editing or choosing a target. Return to the overview with changes applied and start the battle from the updated plan. Use the same interaction during wave breaks.
+
+## Combat Planning UX V2 — isolated Grave Bell pilot
+
+Show the entire squad plan on the arena, open an individual order with one click and clearly display the event cutoff or final-order duration. Add numbered target picking, scoped assignment restoration on retry, transition notices with reasons and a concise report with expandable chronology. Existing tactics and battle timings are retained.
+
+## Combat Planning 1.0 — isolated playable QA pilot
+
+Add Grave Bell legacy/planning comparison, independent1–3 orders, real enemy selection, stable priorities, bounded defense, local hunt detours, actual damage/kill conditions, timers and factual reports. Existing Battle/Unit simulation and one-use rules remain; ordinary battles have no executor. Add seed-controlled solo/duo/trio comparisons, real pause/input and wave replanning QA. Not production-enabled; user gameplay review required.
+
 ## 2026-11-17 — production: Cinematic Travel Batch02 and QA Hub
 
 Release approved by the user and merged through [PR #114](https://github.com/zampolit73/Misdeal/pull/114) / [PR #115](https://github.com/zampolit73/Misdeal/pull/115), runtime `c1bba400`. Seven locations /31 actual outcomes, final approved smaller crown props and garden path, unified isolated F6 QA hub. Full [RELEASE CI](https://github.com/zampolit73/Misdeal/actions/runs/44058109794) passed; local301/301 GUT and31 real routes. Existing mechanics, saves and approved old scenes preserved. Consolidate current state/handoff/roadmap; retain prior session notes in the dated archive. This release supersedes earlier pending-approval notes below.

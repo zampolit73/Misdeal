@@ -15,6 +15,7 @@ static func entries() -> Array[Dictionary]:
 		["СОБЫТИЯ","Пять историй «Эхо осады»","scenes/dev/final_five_playtest.tscn","Настоящие события, выбор, последствия и продолжение к столу.",""],
 		["СОБЫТИЯ","Джек — событие и спутник","scenes/dev/jack_event_playtest.tscn","Встреча Джека при Следопыте и переход к настоящей игре.",""],
 		["БОЙ","Засада на кладбище","scenes/battle/battle.tscn","Настоящий бой: подготовка, расстановка, награда и стол.","graveyard"],
+		["БОЙ","Боевой план 1.0 — Могильный звон","scenes/dev/combat_planning_pilot.tscn","Изолированный опыт: прежний автобой / индивидуальные планы, solo/duo/trio, seed, журнал и повтор.",""],
 		["БОЙ","Суд Безмолвных — пускатель","scenes/dev/court_of_the_mute_d268_real_battle_preview.tscn","Авторский пускатель настоящего боя и расстановок.",""],
 		["БОЙ","Чёрные фонари — пускатель","scenes/dev/black_lantern_d260_released_battle_preview.tscn","Пять врагов, состав отряда и Battle → Reward → Table.",""],
 		["БОЙ","Костяной пастырь — пускатель","scenes/dev/bone_shepherd_playtest.tscn","Настоящий бой с Костяным пастырем.",""],

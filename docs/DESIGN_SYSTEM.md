@@ -1,3 +1,9 @@
+## Combat Planning Visual V4
+
+The player-approved [command board reference](qa/combat-planning-visual-v4/approved_reference.png) governs the lower Combat Planning panel in the PR #117 pilot. Filled orders use blank parchment sampled from the DS3 card title material, dark serif text, a Roman numeral and an ink glyph. The empty add slot uses dark metal. The frame reuses D413 dossier bronze, D300 red banners and D303 metal and fight plates. Hero medallions and tactic glyphs are drawn by the Godot UI. Their geometry is separate from the original sprites.
+
+Overview and edit occupy the same bottom dock. The picker collapses the dock to one line. The lower controls retain real hover, press, focus, selection and disabled states. The reference is documentation only. [Native comparison and geometry notes](qa/combat-planning-visual-v4/README.md).
+
 ## D417 — interface motion (2026-11-09)
 
 ## Memory viewer — approved Variant3

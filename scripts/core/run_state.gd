@@ -295,6 +295,8 @@ func reset_run() -> void:
 	last_battle_won = false
 	selected_encounter_path = DEFAULT_ENCOUNTER_PATH
 	combat_formation_by_card.clear()
+	# Metadata intentionally stays outside the complete persistent save field list.
+	set_meta("battle_plan_drafts", {})
 	whispering_well_resolved = false
 	wizard_debt_active = false
 	boss_defeated = false

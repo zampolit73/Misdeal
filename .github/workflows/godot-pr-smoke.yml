@@ -2,6 +2,8 @@ name: Misdeal Godot PR smoke
 
 on:
   pull_request:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       mode:
@@ -40,7 +42,7 @@ jobs:
         shell: bash
         env:
           QA_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || 'auto' }}
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           set -euo pipefail
@@ -74,6 +76,18 @@ jobs:
             exit 1
           fi
           echo '✅ Godot project import and GDScript parsing passed' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: "Campaign Combat Planning rollout — every encounter and wave"
+        if: steps.scope.outputs.mode != 'docs'
+        shell: bash
+        run: |
+          set -euo pipefail
+          log="$RUNNER_TEMP/misdeal-smart-qa/campaign-planning.log"
+          timeout 170s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path . --audio-driver Dummy \
+            --script res://scripts/dev/combat_planning_campaign_smoke.gd 2>&1 | tee "$log"
+          grep -Fq 'COMBAT_PLANNING_CAMPAIGN_NATIVE_PASS' "$log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script|COMBAT_PLANNING_CAMPAIGN_FAIL' "$log"
 
       - name: GUT 9.7.1 real GDScript unit tests
         if: steps.scope.outputs.mode != 'docs'
@@ -319,6 +333,27 @@ jobs:
             --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility --audio-driver Dummy \
             --script res://scripts/dev/qa_hub_capture.gd -- "$out" 2>&1 | tee "$out/capture.log"
           grep -Fq 'QA_HUB_NATIVE_PASS' "$out/capture.log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed|Failed to load script' "$out/capture.log"
+
+      - name: Combat Planning isolated native pilot
+        if: steps.scope.outputs.mode == 'visual' || steps.scope.outputs.mode == 'release'
+        shell: bash
+        env:
+          PLANNING_BASE: ${{ github.event.pull_request.base.sha }}
+          PLANNING_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          if [[ -n "$PLANNING_BASE" ]] && ! git diff --name-only "$PLANNING_BASE" "$PLANNING_HEAD" | grep -E '^(scripts/battle/planning/|scripts/dev/combat_planning|scenes/dev/combat_planning|tests/unit/test_combat_planning)' > /dev/null; then
+            echo 'Combat Planning fixture unchanged; existing selected production checks still run.'
+            exit 0
+          fi
+          out="$RUNNER_TEMP/misdeal-smart-qa/visual/combat_planning"
+          mkdir -p "$out"
+          timeout 180s xvfb-run -a -s '-screen 0 1280x720x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility --audio-driver Dummy \
+            --script res://scripts/dev/combat_planning_capture.gd -- "$out" 2>&1 | tee "$out/capture.log"
+          grep -Fq 'COMBAT_PLANNING_NATIVE_PASS' "$out/capture.log"
           ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed|Failed to load script' "$out/capture.log"
 
       - name: D418 Jack event and real companion native route

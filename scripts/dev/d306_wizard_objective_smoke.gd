@@ -26,6 +26,9 @@ func _check() -> void:
 	if scene == null:
 		_fail("cannot instantiate real Battle")
 		return
+	# This regression verifies the original DS3/classic control geometry.
+	# New campaign Combat Planning is tested independently by campaign smoke.
+	scene.combat_planning_disabled = true
 	root.add_child(scene)
 	await process_frame
 	if scene.get("side_objective_id") != "bell_first":
