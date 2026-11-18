@@ -26,88 +26,144 @@ func click_at(point: Vector2) -> void:
 func click_control(control: Control) -> void:
 	await click_at(control.get_global_rect().get_center())
 
+func verify_preparation(pilot: Control, expected: String) -> void:
+	var view: CanvasLayer = pilot.ui
+	var active: Array[String] = []
+	for name in ["overview", "detail", "picker"]:
+		var page: Control = view.get(name)
+		assert(page.get_parent() == view.preparation, "All preparation content shares one panel")
+		if page.is_visible_in_tree():
+			active.append(name)
+	assert(active == ([] if expected.is_empty() else [expected]), "Only the expected preparation mode is visible")
+	assert(view.preparation.visible == not expected.is_empty())
+	if not view.preparation.visible:
+		return
+	var bounds: Rect2 = view.preparation.get_global_rect()
+	assert(bounds.position.y >= 560.0 and bounds.end.y <= 720.0, "Preparation stays in the lower strip")
+	for unit in pilot.battle.units:
+		if unit.alive:
+			assert(unit.global_position.y + 20.0 <= bounds.position.y, "Preparation leaves room below living units")
+
 func verify_editor(pilot: Control) -> void:
 	var view: CanvasLayer = pilot.ui
-	assert(view.tiles.size() == 3 and not view.detail.visible, "Overview shows three independent hero rows")
+	verify_preparation(pilot, "overview")
+	assert(view.tiles.size() == 3, "Overview shows three independent hero rows")
 	for role in view.hero_roles:
 		for index in range(pilot.plans[role].orders.size()):
 			assert(not view.tile_headings[role][index].text.is_empty())
-	await capture("ux_overview")
-	await click_control(view.tiles.ranger[0])
-	assert(view.current_role() == "ranger" and view.slot == 0 and view.detail.visible)
+	await capture("ux_v3_overview")
+	await click_control(view.tiles.ranger[1])
+	verify_preparation(pilot, "detail")
+	assert(view.current_role() == "ranger" and view.slot == 1)
 	for selected in range(3):
 		view.tactic.select(selected)
 		view.tactic.item_selected.emit(selected)
-		assert(pilot.plans.ranger.orders[0].tactic == DATA.TACTICS[selected])
+		assert(pilot.plans.ranger.orders[1].tactic == DATA.TACTICS[selected])
 	for selected in range(4):
 		view.priority.select(selected)
 		view.priority.item_selected.emit(selected)
-		assert(pilot.plans.ranger.orders[0].priority == DATA.PRIORITIES[selected])
+		assert(pilot.plans.ranger.orders[1].priority == DATA.PRIORITIES[selected])
 	for selected in range(5):
 		view.condition.select(selected)
 		view.condition.item_selected.emit(selected)
-		assert(pilot.plans.ranger.orders[0].condition == DATA.CONDITIONS[selected])
-	view.limit.value = 9
-	assert(pilot.plans.ranger.orders[0].limit == 9 and "9 с" in view.tile_endings.ranger[0].text)
-	await capture("ux_order")
+		assert(pilot.plans.ranger.orders[1].condition == DATA.CONDITIONS[selected])
+	# Type without pressing Enter, then return to the plan. The value must commit.
+	var limit_input: LineEdit = view.limit.get_line_edit()
+	limit_input.grab_focus()
+	await frame()
+	limit_input.select_all()
+	var digit := InputEventKey.new()
+	digit.keycode = KEY_9
+	digit.unicode = 57
+	digit.pressed = true
+	root.push_input(digit, true)
+	await frame()
+	assert(limit_input.text == "9", "Numeric input reached the active limit field: %s (focused: %s)" % [limit_input.text, limit_input.has_focus()])
+	await click_control(view.back_button)
+	verify_preparation(pilot, "overview")
+	assert(pilot.plans.ranger.orders[1].limit == 9 and "9 с" in view.tile_endings.ranger[1].text,
+		"Returning saves the typed limit: widget %s, order %s" % [view.limit.value, pilot.plans.ranger.orders[1].limit])
+	assert("Охота" in view.tile_headings.ranger[1].text)
+	await click_control(view.tiles.ranger[1])
+	assert(view.limit.value == 9)
+	await capture("ux_v3_edit_order")
+	await click_control(view.back_button)
+	await click_control(view.tiles.mage[0])
 	await click_control(view.target_button)
-	assert(pilot.picking_target and not view.editor.visible and view.pick_markers.size() == 3)
+	verify_preparation(pilot, "picker")
+	assert(pilot.picking_target and view.pick_markers.size() == 3 and view.preparation.size.y <= 48.0)
 	var enemy: BattleUnit = pilot.battle.units[-1]
 	var motion := InputEventMouseMotion.new()
 	motion.position = enemy.global_position + Vector2(0, -35)
 	Input.parse_input_event(motion)
 	await frame()
 	assert(enemy.display_name in view.hover_text.text)
-	await capture("ux_target")
+	await capture("ux_v3_target_picker")
 	await click_control(view.pick_markers[enemy])
-	assert(not pilot.picking_target and pilot.plans.ranger.orders[0].target.get_ref() == enemy)
-	assert(enemy.display_name in view.tile_headings.ranger[0].text)
+	verify_preparation(pilot, "detail")
+	assert(not pilot.picking_target and pilot.plans.mage.orders[0].target.get_ref() == enemy)
+	assert(view.current_role() == "mage" and view.slot == 0 and enemy.display_name in view.target_button.text)
+	assert(view.pick_markers.is_empty())
 	await click_control(view.target_button)
 	var cancel := InputEventKey.new()
 	cancel.keycode = KEY_ESCAPE
 	cancel.pressed = true
 	Input.parse_input_event(cancel)
 	await frame()
-	assert(not pilot.picking_target and pilot.plans.ranger.orders[0].target.get_ref() == enemy)
-	await click_control(view.tiles.knight[1])
-	assert(view.current_role() == "knight" and pilot.plans.ranger.orders[0].limit == 9)
-	var spawn_index: int = pilot.plans.ranger.orders[0].spawn_slot
+	verify_preparation(pilot, "detail")
+	assert(not pilot.picking_target and pilot.plans.mage.orders[0].target.get_ref() == enemy)
+	await click_control(view.target_button)
+	await click_control(view.cancel_button)
+	verify_preparation(pilot, "detail")
+	assert(pilot.plans.mage.orders[0].target.get_ref() == enemy)
+	await click_control(view.back_button)
+	verify_preparation(pilot, "overview")
+	assert(enemy.display_name in view.tile_headings.mage[0].text and pilot.plans.ranger.orders[1].limit == 9)
+	var spawn_index: int = pilot.plans.mage.orders[0].spawn_slot
 	pilot.edit_again()
 	await frame()
-	var rebound := DATA.target_of(pilot.plans.ranger.orders[0])
+	verify_preparation(pilot, "overview")
+	assert(pilot.ui.current_role() == "mage" and pilot.ui.slot == 0)
+	var rebound := DATA.target_of(pilot.plans.mage.orders[0])
 	assert(is_instance_valid(rebound) and rebound == pilot.first_wave_enemies[spawn_index] and not is_instance_valid(enemy))
-	assert(pilot.plans.ranger.orders[0].limit == 9)
+	assert(pilot.plans.ranger.orders[1].limit == 9)
 	await root.get_node("QAHubSession").replay()
 	await frame()
-	rebound = DATA.target_of(pilot.plans.ranger.orders[0])
+	rebound = DATA.target_of(pilot.plans.mage.orders[0])
 	assert(rebound == pilot.first_wave_enemies[spawn_index], "F9 uses the same scoped retry")
 	view = pilot.ui
-	await click_control(view.tiles.ranger[0])
+	await click_control(view.tiles.mage[0])
 	await click_control(view.clear_button)
-	assert(pilot.plans.ranger.orders[0].target == null and not pilot.plans.ranger.orders[0].has("spawn_slot"))
+	assert(pilot.plans.mage.orders[0].target == null and not pilot.plans.mage.orders[0].has("spawn_slot"))
 	await click_control(view.target_button)
 	pilot.assign_target(rebound)
 	var original_encounter: String = pilot.encounter_path
 	pilot.encounter_path = "res://resources/encounters/iron_wall.tres"
 	pilot.open_battle(true)
 	await frame()
-	assert(pilot.plans.ranger.orders[0].target == null and "сброшено" in pilot.ui.board_hint.text)
+	assert(pilot.plans.mage.orders[0].target == null and "сброшено" in pilot.ui.board_hint.text)
 	pilot.encounter_path = original_encounter
 	pilot.party_choice.select(3)
 	pilot.open_battle()
 	await frame()
+	verify_preparation(pilot, "overview")
 	assert(pilot.ui.tiles.size() == 2 and not pilot.ui.tiles.has("mage"))
+	await capture("ux_v3_duo")
 	pilot.party_choice.select(0)
 	pilot.preset_choice.select(1)
 	pilot.open_battle()
 	await frame()
 	view = pilot.ui
 	assert(view.tiles.size() == 1 and not view.tiles.has("ranger"))
-	await capture("ux_solo")
+	verify_preparation(pilot, "overview")
+	await capture("ux_v3_solo")
 	await click_control(view.tiles.knight[1])
-	assert(pilot.plans.knight.orders.size() == 2 and not view.limit.visible)
+	verify_preparation(pilot, "detail")
+	assert(pilot.plans.knight.orders.size() == 2 and not view.limit.visible and not view.condition.visible)
+	await click_control(view.back_button)
 	await click_control(view.tiles.knight[2])
 	assert(pilot.plans.knight.orders.size() == 3)
+	await click_control(view.back_button)
 	await click_control(view.remove_buttons.knight)
 	assert(pilot.plans.knight.orders.size() == 2 and not view.detail.visible)
 	pilot.party_choice.select(6)
@@ -116,7 +172,7 @@ func verify_editor(pilot: Control) -> void:
 	await frame()
 	root.size = Vector2i(960, 540)
 	await frame()
-	await capture("ux_small_window")
+	await capture("ux_v3_small_window")
 	var small := root.get_texture().get_image()
 	assert(small.get_width() == 960 and small.get_height() == 540)
 	root.size = Vector2i(1280, 720)
@@ -135,12 +191,14 @@ func simulate(pilot: Control, party_index: int, preset: String, planned: bool) -
 		pilot.ui.select_order("knight", 0)
 		pilot.arm_target()
 		pilot.assign_target(pilot.first_wave_enemies[0])
+		pilot.ui.close_detail()
 	battle.set_process(false)
 	for unit in battle.units: unit.set_process(false)
 	var initial: Array=[]
 	for unit in battle.units: initial.append([unit.team,unit.visual_role,unit.position.x,unit.position.y,unit.hp,unit.damage,unit.attack_interval])
 	if planned: pilot.start_planned_battle()
 	else: pilot.start_legacy_battle()
+	verify_preparation(pilot, "")
 	for executor in pilot.executors.values(): assert(executor.clock==0 and executor.index==-1,"No preparation/intro clock")
 	while not battle.combat_live: await process_frame
 	var samples: Array=[]
@@ -152,7 +210,8 @@ func simulate(pilot: Control, party_index: int, preset: String, planned: bool) -
 		for unit in battle.units: unit._process(delta)
 		if battle.wave_intermission:
 			pilot._process(0)
-			assert(pilot.executors.is_empty() and pilot.ui.editor.visible)
+			verify_preparation(pilot, "overview")
+			assert(pilot.executors.is_empty())
 			assert(pilot.plans.knight.orders[0].target == null and not pilot.plans.knight.orders[0].has("spawn_slot"))
 			assert("первой волны" in pilot.ui.board_hint.text)
 			assert(pilot.first_wave_draft.knight[0].spawn_slot == 0, "First-wave assignments remain available for a full retry")
@@ -161,7 +220,17 @@ func simulate(pilot: Control, party_index: int, preset: String, planned: bool) -
 			for unit in battle.units:
 				if unit.team==0: preserved_hp.append(unit.hp)
 			PRESETS.apply(pilot.plans,"assault")
+			RenderingServer.render_loop_enabled = true
+			var survivor: String = pilot.ui.hero_roles[0]
+			await click_control(pilot.ui.tiles[survivor][0])
+			verify_preparation(pilot, "detail")
+			assert(pilot.ui.target_button.disabled)
+			await click_control(pilot.ui.back_button)
+			verify_preparation(pilot, "overview")
+			await capture("ux_v3_intermission")
+			RenderingServer.render_loop_enabled = false
 			pilot.start_planned_battle()
+			verify_preparation(pilot, "")
 			for unit in battle.units: unit.set_process(false)
 			for executor in pilot.executors.values(): assert(executor.clock==0)
 			while not battle.combat_live: await process_frame
@@ -187,6 +256,7 @@ func simulate(pilot: Control, party_index: int, preset: String, planned: bool) -
 	for unit in battle.units:
 		if unit.team==0: result.heroes.append({"role":unit.visual_role,"hp":unit.hp,"kills":int(pilot.legacy_kills.get(unit.visual_role,0))})
 	pilot._show_report()
+	verify_preparation(pilot, "")
 	assert(not battle.get_node("ResultOverlay").visible, "The QA report owns the result controls")
 	for role in pilot.executors: result.journal[role]=pilot.executors[role].journal.duplicate(true)
 	if party_index==6 and planned:
@@ -199,6 +269,16 @@ func simulate(pilot: Control, party_index: int, preset: String, planned: bool) -
 			await capture("ux_chronology")
 			await click_control(pilot.ui.history_button)
 			assert(pilot.ui.report_reading.text == summary)
+			if battle.encounter.encounter_id == "grave_bell" and not result.won:
+				var saved := DATA.describe(pilot.plans.ranger.orders[1])
+				for child in pilot.ui.report_panel.get_children():
+					if child is Button and child.text == "Изменить план":
+						await click_control(child)
+						break
+				verify_preparation(pilot, "overview")
+				assert(DATA.describe(pilot.plans.ranger.orders[1]) == saved)
+				await click_control(pilot.ui.tiles.ranger[1])
+				verify_preparation(pilot, "detail")
 	return result
 func run() -> void:
 	output=OS.get_cmdline_user_args()[0]
@@ -223,7 +303,10 @@ func run() -> void:
 	pilot.plans.knight.orders[1].condition="time"
 	pilot.plans.knight.orders[1].limit=2
 	pilot.ui.refresh()
-	pilot.start_planned_battle()
+	await click_control(pilot.ui.back_button)
+	verify_preparation(pilot, "overview")
+	await click_control(pilot.ui.start_button)
+	verify_preparation(pilot, "")
 	await create_timer(0.15).timeout
 	assert(pilot.executors.knight.clock==0,"Real intro does not run plan timers")
 	while not pilot.battle.combat_live: await process_frame
@@ -242,7 +325,7 @@ func run() -> void:
 	assert(pilot.executors.knight.orders[0].tactic==frozen_order,"Combat editor is locked")
 	await create_timer(2.0).timeout
 	assert(pilot.executors.knight.index==1,"Real engine clock advances the first stage")
-	await capture("real_engine_live")
+	await capture("ux_v3_combat")
 	for party_index in [0,3,6]:
 		var legacy: Dictionary=await simulate(pilot,party_index,"assault",false)
 		comparisons.append(legacy)

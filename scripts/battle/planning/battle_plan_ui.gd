@@ -6,11 +6,19 @@ const STAGES := ["I", "II", "III"]
 const PRIORITIES := ["Ближайший", "Слабейший", "Самый дальний", "Поддержка"]
 const CONDITIONS := ["По времени", "После нанесения урона", "После получения урона", "После личного убийства", "При здоровье ≤ 50%"]
 const TACTIC_HINTS := ["Быстро сближается с целью.", "Удерживает позицию, с которой начал приказ.", "Преследует цель и старается обойти врагов."]
+const PREPARATION_WIDTH := 1224.0
+const PREPARATION_BOTTOM := 714.0
+
+enum PreparationMode { HIDDEN, OVERVIEW, EDIT, PICK_TARGET }
 
 var pilot: Node
-var editor: Panel
-var detail: Panel
-var picker: Panel
+var preparation: Panel
+var overview: Control
+var detail: Control
+var picker: Control
+var start_button: Button
+var back_button: Button
+var cancel_button: Button
 var hud: Panel
 var report_panel: Panel
 var tactic: OptionButton
@@ -22,6 +30,7 @@ var clear_button: Button
 var title: Label
 var explanation: Label
 var transition_label: Label
+var limit_label: Label
 var board_hint: Label
 var notice: Label
 var live_text: Label
@@ -84,46 +93,47 @@ func option(parent: Node, names: Array, at: Vector2, dimensions: Vector2) -> Opt
 func build(owner_pilot: Node) -> void:
 	pilot = owner_pilot
 	layer = 40
-	editor = panel(Vector2(28, 563), Vector2(1224, 151))
-	label(editor, "Боевой план", Vector2(12, 4), Vector2(135, 24), 19)
-	board_hint = label(editor, "", Vector2(148, 5), Vector2(631, 22), 13)
+	preparation = panel(Vector2(28, 563), Vector2(PREPARATION_WIDTH, 151))
+	overview = _preparation_content()
+	detail = _preparation_content()
+	picker = _preparation_content()
+	label(overview, "Боевой план", Vector2(12, 4), Vector2(135, 24), 19)
+	board_hint = label(overview, "", Vector2(148, 5), Vector2(631, 22), 13)
 	board_hint.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	button(editor, "В хаб · F10", Vector2(786, 3), Vector2(116, 25), pilot.return_to_hub)
-	button(editor, "Настройки", Vector2(910, 3), Vector2(111, 25), pilot.show_setup)
-	var start := button(editor, "Начать бой", Vector2(1030, 3), Vector2(182, 25), pilot.start_planned_battle)
-	DS3.apply_action(start, true)
-	detail = panel(Vector2(293, 145), Vector2(959, 125))
-	title = label(detail, "", Vector2(16, 6), Vector2(790, 26), 19)
-	button(detail, "Готово", Vector2(815, 6), Vector2(128, 26), close_detail)
-	label(detail, "Тактика", Vector2(16, 35), Vector2(125, 17), 13)
-	label(detail, "Приоритет цели", Vector2(145, 35), Vector2(159, 17), 13)
-	label(detail, "Конкретный враг", Vector2(310, 35), Vector2(220, 17), 13)
-	tactic = option(detail, DATA.TACTIC_NAMES, Vector2(16, 54), Vector2(120, 31))
-	priority = option(detail, PRIORITIES, Vector2(145, 54), Vector2(155, 31))
+	button(overview, "В хаб · F10", Vector2(786, 3), Vector2(116, 25), pilot.return_to_hub)
+	button(overview, "Настройки", Vector2(910, 3), Vector2(111, 25), pilot.show_setup)
+	start_button = button(overview, "Начать бой", Vector2(1030, 3), Vector2(182, 25), pilot.start_planned_battle)
+	DS3.apply_action(start_button, true)
+	back_button = button(detail, "← К плану", Vector2(12, 8), Vector2(120, 29), close_detail)
+	title = label(detail, "", Vector2(146, 9), Vector2(1035, 28), 19)
+	label(detail, "Тактика", Vector2(12, 43), Vector2(166, 18), 13)
+	label(detail, "Приоритет", Vector2(190, 43), Vector2(174, 18), 13)
+	label(detail, "Конкретная цель", Vector2(378, 43), Vector2(240, 18), 13)
+	tactic = option(detail, DATA.TACTIC_NAMES, Vector2(12, 63), Vector2(166, 32))
+	priority = option(detail, PRIORITIES, Vector2(190, 63), Vector2(174, 32))
 	priority.tooltip_text = "Поддержка: целитель, затем стрелок, затем ближайший враг. Приоритет действует и при потере назначенной цели."
-	target_button = button(detail, "Выбрать цель", Vector2(310, 54), Vector2(212, 31), pilot.arm_target)
-	clear_button = button(detail, "Снять", Vector2(528, 54), Vector2(58, 31), _clear_target)
-	transition_label = label(detail, "Когда перейти дальше", Vector2(600, 35), Vector2(250, 17), 13)
-	condition = option(detail, CONDITIONS, Vector2(600, 54), Vector2(246, 31))
+	target_button = button(detail, "Выбрать цель", Vector2(378, 63), Vector2(236, 32), pilot.arm_target)
+	clear_button = button(detail, "Снять", Vector2(620, 63), Vector2(64, 32), _clear_target)
+	transition_label = label(detail, "Когда перейти дальше", Vector2(698, 43), Vector2(290, 18), 13)
+	condition = option(detail, CONDITIONS, Vector2(698, 63), Vector2(290, 32))
+	limit_label = label(detail, "Максимум, с", Vector2(1002, 43), Vector2(140, 18), 13)
 	limit = SpinBox.new()
 	limit.min_value = 2
 	limit.max_value = 12
 	limit.step = 1
-	limit.suffix = "с"
-	limit.position = Vector2(855, 54)
-	limit.size = Vector2(88, 31)
+	limit.position = Vector2(1002, 63)
+	limit.size = Vector2(104, 32)
 	detail.add_child(limit)
 	for choice in [tactic, priority, condition]:
 		DS3.apply_action(choice)
 		choice.item_selected.connect(func(_n: int): _edited())
 	limit.value_changed.connect(func(_n: float): _edited())
-	explanation = label(detail, "", Vector2(16, 92), Vector2(927, 24))
+	explanation = label(detail, "", Vector2(12, 99), Vector2(1200, 24))
 	for item in [tactic, priority, condition]:
 		item.fit_to_longest_item = false
-	picker = panel(Vector2(284, 151), Vector2(712, 78))
-	hover_text = label(picker, "", Vector2(14, 8), Vector2(540, 32), 18)
-	label(picker, "Нажмите на врага. Esc / ПКМ — отмена.", Vector2(14, 43), Vector2(674, 25))
-	button(picker, "Отмена", Vector2(563, 9), Vector2(135, 30), pilot.cancel_target)
+	hover_text = label(picker, "", Vector2(12, 6), Vector2(665, 30), 16)
+	label(picker, "Клик по врагу · Esc / ПКМ — отмена", Vector2(689, 6), Vector2(376, 30), 14)
+	cancel_button = button(picker, "Отмена", Vector2(1078, 6), Vector2(134, 30), pilot.cancel_target)
 	hud = panel(Vector2(838, 160), Vector2(414, 88))
 	DS3.apply_surface(hud, "battle")
 	hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -131,9 +141,31 @@ func build(owner_pilot: Node) -> void:
 	notice = label(hud, "", Vector2(12, 89), Vector2(390, 50), 13)
 	notice.add_theme_constant_override("outline_size", 6)
 	notice.add_theme_color_override("font_outline_color", DS3.OBSIDIAN)
-	detail.hide()
-	picker.hide()
+	_set_preparation_mode(PreparationMode.HIDDEN)
 	hud.hide()
+
+func _preparation_content() -> Control:
+	var content := Control.new()
+	content.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	preparation.add_child(content)
+	content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	return content
+
+func _set_preparation_mode(mode: PreparationMode) -> void:
+	overview.visible = mode == PreparationMode.OVERVIEW
+	detail.visible = mode == PreparationMode.EDIT
+	picker.visible = mode == PreparationMode.PICK_TARGET
+	preparation.visible = mode != PreparationMode.HIDDEN
+	var height := 37.0 + hero_roles.size() * 38.0
+	if mode == PreparationMode.EDIT:
+		height = 130.0
+	elif mode == PreparationMode.PICK_TARGET:
+		height = 44.0
+	preparation.size.y = height
+	preparation.position.y = PREPARATION_BOTTOM - height
+
+func hide_preparation() -> void:
+	_set_preparation_mode(PreparationMode.HIDDEN)
 
 func current_role() -> String:
 	return selected_role
@@ -143,7 +175,11 @@ func current_plan() -> Resource:
 
 func set_heroes(roles: Array[String]) -> void:
 	hero_roles = roles.duplicate()
-	close_detail()
+	if selected_role not in hero_roles:
+		selected_role = ""
+		slot = 0
+	else:
+		slot = mini(slot, pilot.plans[selected_role].orders.size() - 1)
 	for role in tiles:
 		for tile in tiles[role]:
 			tile.queue_free()
@@ -159,41 +195,46 @@ func set_heroes(roles: Array[String]) -> void:
 	for row in range(roles.size()):
 		var role := roles[row]
 		var y := 32 + row * 38
-		hero_caption[role] = label(editor, pilot.role_name(role), Vector2(12, y + 3), Vector2(120, 25), 17)
-		var remove := button(editor, "−", Vector2(126, y + 4), Vector2(26, 22), _remove_last.bind(role))
+		hero_caption[role] = label(overview, pilot.role_name(role), Vector2(12, y + 3), Vector2(120, 25), 17)
+		var remove := button(overview, "−", Vector2(126, y + 4), Vector2(26, 22), _remove_last.bind(role))
 		remove.tooltip_text = "Убрать последний приказ"
 		remove_buttons[role] = remove
 		var row_tiles: Array[Button] = []
 		var headings: Array[Label] = []
 		var endings: Array[Label] = []
 		for stage in range(3):
-			var tile := button(editor, "", Vector2(164 + stage * 350, y), Vector2(342, 37), select_order.bind(role, stage))
+			var tile := button(overview, "", Vector2(164 + stage * 350, y), Vector2(342, 35), select_order.bind(role, stage))
 			var heading := label(tile, "", Vector2(8, 1), Vector2(326, 18), 14)
 			heading.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 			headings.append(heading)
-			endings.append(label(tile, "", Vector2(8, 18), Vector2(326, 17), 12))
+			endings.append(label(tile, "", Vector2(8, 17), Vector2(326, 17), 13))
 			row_tiles.append(tile)
 		tiles[role] = row_tiles
 		tile_headings[role] = headings
 		tile_endings[role] = endings
-	editor.size.y = 37 + roles.size() * 38
-	editor.position.y = 714 - editor.size.y
-	refresh()
+	if pilot.editable():
+		show_overview()
+
+func show_overview() -> void:
+	_set_preparation_mode(PreparationMode.OVERVIEW)
+	refresh_board()
 
 func select_order(role: String, stage: int) -> void:
 	if not pilot.editable() or role not in hero_roles:
 		return
-	if stage == pilot.plans[role].orders.size():
+	var count: int = pilot.plans[role].orders.size()
+	if stage < 0 or stage >= 3 or stage > count:
+		return
+	if stage == count:
 		pilot.resize_plan(role, stage + 1)
 	selected_role = role
 	slot = stage
-	detail.show()
+	_set_preparation_mode(PreparationMode.EDIT)
 	refresh()
 
 func close_detail() -> void:
-	selected_role = ""
-	detail.hide()
-	refresh_board()
+	limit.apply()
+	show_overview()
 
 func _remove_last(role: String) -> void:
 	if not pilot.editable():
@@ -203,8 +244,8 @@ func _remove_last(role: String) -> void:
 		return
 	pilot.resize_plan(role, count - 1)
 	if selected_role == role and slot >= count - 1:
-		close_detail()
-	refresh()
+		slot = count - 2
+	refresh_board()
 
 func _summary_end(order: Dictionary, final: bool) -> String:
 	if final:
@@ -235,7 +276,8 @@ func refresh_board() -> void:
 			var ending: Label = tile_endings[role][stage]
 			tile.visible = stage <= orders.size()
 			var selected := role == selected_role and stage == slot
-			DS3.apply_action(tile, selected)
+			tile.add_theme_stylebox_override("normal", DS3.make_plate(
+				Color("#251815") if selected else Color("#1b1413"), Color.TRANSPARENT, 0, 0))
 			if stage >= orders.size():
 				heading.text = "+ Приказ " + STAGES[stage]
 				heading.position.y = 9
@@ -258,7 +300,7 @@ func refresh_board() -> void:
 func refresh() -> void:
 	refresh_board()
 	var plan := current_plan()
-	if plan == null:
+	if not detail.visible or plan == null:
 		return
 	refreshing = true
 	var order: Dictionary = plan.orders[slot]
@@ -271,6 +313,7 @@ func refresh() -> void:
 	transition_label.visible = not last
 	condition.visible = not last
 	limit.visible = not last
+	limit_label.visible = not last
 	var foe := DATA.target_of(order)
 	var assigned := is_instance_valid(foe) and foe.alive
 	target_button.text = pilot.enemy_label(foe) if assigned else "Выбрать цель"
@@ -288,7 +331,7 @@ func refresh() -> void:
 	refreshing = false
 
 func _edited() -> void:
-	if refreshing or not pilot.editable() or selected_role.is_empty():
+	if refreshing or not pilot.editable() or not detail.visible or selected_role.is_empty():
 		return
 	var order: Dictionary = current_plan().orders[slot]
 	order.tactic = DATA.TACTICS[tactic.selected]
@@ -303,9 +346,7 @@ func _clear_target() -> void:
 		refresh()
 
 func set_picking(active: bool) -> void:
-	picker.visible = active
-	editor.visible = not active
-	detail.visible = not active and not selected_role.is_empty()
+	_set_preparation_mode(PreparationMode.PICK_TARGET if active else PreparationMode.EDIT)
 	if active:
 		for enemy in pilot.battle.units:
 			if enemy.team == 1 and enemy.alive:
@@ -316,6 +357,7 @@ func set_picking(active: bool) -> void:
 		update_hover(null)
 	else:
 		for marker in pick_markers.values():
+			marker.hide()
 			marker.queue_free()
 		pick_markers.clear()
 		refresh()
@@ -360,9 +402,7 @@ func update_live(delta: float) -> void:
 	notice.visible = notice_time > 0
 
 func show_report(heading: String, metadata: String, summary: String, chronology: String) -> void:
-	editor.hide()
-	detail.hide()
-	picker.hide()
+	hide_preparation()
 	hud.hide()
 	var scrim := ColorRect.new()
 	scrim.color = Color(0.02, 0.012, 0.014, 0.40)

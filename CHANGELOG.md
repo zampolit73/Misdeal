@@ -1,3 +1,7 @@
+## Combat Planning UX V3 — one preparation panel
+
+Move order editing into the same bottom panel as the squad overview. Keep the arena open while editing or choosing a target. Return to the overview with changes applied and start the battle from the updated plan. Use the same interaction during wave breaks.
+
 ## Combat Planning UX V2 — isolated Grave Bell pilot
 
 Show the entire squad plan on the arena, open an individual order with one click and clearly display the event cutoff or final-order duration. Add numbered target picking, scoped assignment restoration on retry, transition notices with reasons and a concise report with expandable chronology. Existing tactics and battle timings are retained.

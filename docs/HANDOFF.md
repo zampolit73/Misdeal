@@ -1,6 +1,6 @@
-## Next review: Combat Planning UX V2
+## Next review: Combat Planning UX V3
 
-Open `scenes/dev/combat_planning_pilot.tscn` with F6 (also QA Hub → Бой). Open the default trio example, click the Ranger's first order, assign the Bellkeeper and change its limit. Start, read the summary, open the chronology and use «Изменить план» to check that the assignment is restored. User review is the merge gate for [PR #117](https://github.com/zampolit73/Misdeal/pull/117). [Pilot guide](COMBAT_PLANNING_PILOT.md).
+Open `scenes/dev/combat_planning_pilot.tscn` with F6 (also QA Hub → Бой). In the default trio, edit Ranger II and return with «К плану». Open Mage I and pick the Bellkeeper. Check that picking leaves only a bottom hint and returns to Mage I. Start from the overview, then use «Изменить план» to verify that the assignment and edited limit remain. User review is the merge gate for [PR #117](https://github.com/zampolit73/Misdeal/pull/117). [Pilot guide](COMBAT_PLANNING_PILOT.md).
 
 # Misdeal — current handoff
 

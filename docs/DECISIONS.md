@@ -1,3 +1,7 @@
+## Combat Planning UX V3 — one bottom panel
+
+Overview and order detail replace each other within the same bottom panel. Target picking temporarily reduces the panel to a single hint and returns to the selected order on confirmation or cancellation. Start is available in the overview. The same layout is used between waves, with rows for survivors. This replaces the V2 screen layout in PR #117.
+
 ## Combat Planning UX V2 — overview on the arena
 
 The default view shows the full party plan. Clicking an order opens only that order's controls while placement stays usable. Target picking uses temporary numbered badges. Same-encounter replay resolves weak references from an ordered spawn signature. A different encounter or wave clears the active binding. The first-wave draft is kept for a full retry. The report opens with a factual summary and offers the detailed log on demand. These choices are ready for player review in PR #117.

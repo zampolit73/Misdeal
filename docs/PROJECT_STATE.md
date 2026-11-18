@@ -1,6 +1,6 @@
-## Combat Planning UX V2 — isolated QA candidate
+## Combat Planning UX V3 — isolated QA candidate
 
-PR #117 shows the squad's complete plans on the arena, with one-click order editing, numbered target picking and safe rebinding for an identical QA retry. The live HUD shows actual transition triggers and the result starts with a concise journal summary. Native solo/duo/trio checks retain exact legacy assault parity and cover wave replanning. [Pilot guide and evidence](COMBAT_PLANNING_PILOT.md). User review is required before merging.
+PR #117 now uses one bottom panel for the squad overview or order editor. Target picking reduces that panel to a single line. Review the free arena and the «К плану» return path. Same-encounter target rebinding, survivor replanning and exact legacy assault parity remain covered by native QA. [Pilot guide and evidence](COMBAT_PLANNING_PILOT.md). User review is required before merging.
 
 # Misdeal — current project state
 

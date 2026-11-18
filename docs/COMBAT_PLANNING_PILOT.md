@@ -1,4 +1,4 @@
-# Combat Planning 1.0 — UX V2 pilot
+# Combat Planning 1.0 — UX V3 pilot
 
 ## Scope and launch
 
@@ -8,9 +8,9 @@ Every experiment uses the exact existing Grave Bell roster/stats and party multi
 
 ## Editing and observation
 
-The bottom board shows one row per available hero. Each order shows its tactic, assigned enemy or priority, and when it ends. Click any order to open its settings above the arena. Add the next slot with «+ Приказ», remove the last slot with «−», or go straight to another order. Changes appear on the board immediately. The final order always reads «До конца боя». For other orders the editor explains exactly when a timeout advances the plan. Hero placement remains available while the editor is open.
+The bottom board shows one row per available hero, with tactic, assigned enemy or priority and a short transition label. Hover for the full order label. Click an order to replace the overview with its settings in the same bottom panel. «К плану» returns to the overview with edits applied, including a typed limit. Use «+ Приказ» to add the next slot and «−» to remove the last one. The final order reads «До конца боя» and its editor omits transition and limit controls. The central arena and normal placement remain available in both modes. Start the battle from the refreshed overview.
 
-«Выбрать цель» opens arena picking with numbered enemies. Hover shows the name, and either the enemy or its badge can be clicked. Cancel with Escape, right-click or «Отмена». «Снять» removes the current assignment. During combat the HUD shows each living hero's stage, tactic and remaining time, with a brief notice giving the actual transition trigger. After combat, the summary shows HP, kills, stage completions, timeouts and deaths from the existing journal. «Подробная хронология» reveals its full chronology.
+«Выбрать цель» collapses the bottom panel to a single hint line and shows numbered enemies. Hover shows the name. Click the enemy or its badge, or cancel with Escape, right-click or «Отмена». Either path reopens the same order. «Снять» removes the assignment. During combat the HUD shows each living hero's stage, tactic and remaining time, with a brief notice giving the actual transition trigger. After combat, the summary shows HP, kills, stage completions, timeouts and deaths from the existing journal. «Подробная хронология» reveals its full chronology.
 
 Replay, F9, «Изменить план» and mode comparison retain the first-wave draft, seed and initial deployment. An explicit enemy is rebound to a fresh weak reference by index in the original spawn list, provided the encounter path, formation, enemy resources and ordered spawn signatures match. A mismatch clears the assignment with a message and uses the chosen priority. These bindings exist in the QA session only. At a wave break, survivor plans can be changed and first-wave assignments are cleared. Next-wave enemies appear after confirmation, so that wave uses the selected priority. A full retry starts again with the first-wave draft.
 
@@ -52,7 +52,7 @@ These are observations, not desired outcomes or universal balance claims. The sa
 
 ## Verification and limits
 
-GUT covers the original combat contract. The native runner now checks the overview, slot edits, actual arena clicks, cancel and clear, same-encounter replay including the QA toolbar, cross-encounter reset, small-window scaling, the compact report and its chronology. It retains actual intro/pause checks, 15 controlled Grave Bell fights and Iron Wall wave replanning. [UX audit, action counts and before/after captures](qa/combat-planning-ux-v2/README.md).
+GUT covers the original combat contract. The native runner checks that the overview, editor and target prompt use the same lower panel and are mutually exclusive. It exercises order editing, typed limit commit, target picking, cross-encounter reset, the Start button, report editing and wave-break preparation. Actual intro and pause checks and 15 controlled Grave Bell fights remain in the runner. [UX V3 and comparison with V2](qa/combat-planning-ux-v3/README.md).
 
 Run full GUT normally; focused tests: `--script addons/gut/gut_cmdln.gd -gselect=test_combat_planning -gexit`. Native: `--windowed --resolution 1280x720 --rendering-method gl_compatibility --script res://scripts/dev/combat_planning_capture.gd -- <absolute-output-dir>`. Runner writes `comparison.json`, `wave_check.json` and actual setup/editor/live/report PNGs. CI retains them in the standard evidence artifact.
 

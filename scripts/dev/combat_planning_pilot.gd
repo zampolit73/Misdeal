@@ -90,6 +90,8 @@ func editable() -> bool:
 
 func open_battle(keep_placement: bool=false) -> void:
 	var previous_scope := encounter_scope
+	var previous_role: String = ui.current_role() if keep_placement and is_instance_valid(ui) else ""
+	var previous_slot: int = ui.slot if keep_placement and is_instance_valid(ui) else 0
 	if keep_placement and intermission_seen:
 		for role in first_wave_draft:
 			plans[role].orders.assign(first_wave_draft[role])
@@ -134,14 +136,17 @@ func open_battle(keep_placement: bool=false) -> void:
 		if keep_placement and initial_positions.has(unit.visual_role): unit.position=initial_positions[unit.visual_role]
 		unit.diagnostic_damage.connect(_legacy_damage)
 	if not keep_placement: PRESETS.apply(plans,PRESETS.IDS[preset_choice.selected])
-	var dropped := _rebind_assignments(keep_placement and previous_scope == encounter_scope)
+	var same_encounter := keep_placement and previous_scope == encounter_scope
+	var dropped := _rebind_assignments(same_encounter)
 	ui=VIEW.new()
 	add_child(ui)
 	ui.build(self)
 	if dropped:
 		ui.fallback_message = "Назначение сброшено: будет использован приоритет цели."
+	if same_encounter:
+		ui.selected_role = previous_role
+		ui.slot = previous_slot
 	ui.set_heroes(heroes)
-	ui.editor.visible=planned
 	if planned: _hide_legacy_preparation()
 	else:
 		ui.button(ui,"ОПЫТ / РЕЖИМ",Vector2(1000,172),Vector2(246,32),show_setup)
@@ -184,7 +189,7 @@ func _hide_legacy_preparation() -> void:
 	battle.side_objective_panel.position = Vector2(44, 145)
 
 func qa_toolbar_visible() -> bool:
-	return not editable() or picking_target
+	return not editable()
 
 func return_to_hub() -> void:
 	get_node("/root/QAHubSession").return_to_hub()
@@ -215,13 +220,13 @@ func start_planned_battle() -> void:
 			var executor := EXECUTOR.new(unit,plans[unit.visual_role],2 if battle.wave_intermission else 1)
 			executors[unit.visual_role]=executor
 			unit.plan_executor=executor
-	ui.editor.visible=false
-	ui.detail.hide()
+	ui.hide_preparation()
 	ui.hud.visible=false
 	battle._on_fight_pressed()
 
 func arm_target() -> void:
-	if not editable() or ui.current_role().is_empty() or battle.wave_intermission: return
+	if not editable() or not ui.detail.visible or ui.current_role().is_empty() or battle.wave_intermission: return
+	ui.limit.apply()
 	picking_target=true
 	pick_role=ui.current_role()
 	pick_slot=ui.slot
@@ -290,7 +295,6 @@ func _process(delta: float) -> void:
 			for unit in battle.units:
 				if unit.team==0 and unit.alive and unit.visual_role!="jack": survivors.append(unit.visual_role)
 			ui.set_heroes(survivors)
-			ui.editor.visible=true
 			ui.hud.visible=false
 			_hide_legacy_preparation()
 	if battle.battle_finished and not reported:
