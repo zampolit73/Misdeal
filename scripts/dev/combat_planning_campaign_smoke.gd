@@ -107,6 +107,13 @@ func _run() -> void:
 		await process_frame
 	if not verify(waves.wave_intermission, "iron wall wave break did not begin"): return
 	if not verify(wave_driver.ui.overview.visible, "wave break did not offer replanning"): return
+	for hero in waves.units:
+		if hero.team == 0 and hero.alive:
+			if not verify(hero.plan_executor == null, "stale wave-I executor blocks classic wave-II orders"): return
+	wave_driver.return_to_hub()
+	if not verify(wave_driver.using_classic, "cannot choose classic commands between waves"): return
+	wave_driver.show_planning()
+	if not verify(not wave_driver.using_classic and wave_driver.ui.overview.visible, "cannot replan after classic wave selection"): return
 	wave_driver.start_planned_battle()
 	await create_timer(1.4).timeout
 	if not verify(waves.battle_wave_index == 2 and waves.combat_live, "wave II did not begin"): return
