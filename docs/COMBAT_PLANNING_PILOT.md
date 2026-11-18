@@ -1,3 +1,5 @@
+> **2026-11-18 update:** The user approved Visual V4 and requested campaign-wide rollout. The QA-only restrictions below describe the historical pilot; the current PR branch additionally enables a production Battle adapter across all encounter resources. The new contract, rare-order fallback and validation gate are in [Combat Planning Rollout](COMBAT_PLANNING_ROLLOUT.md). The F6 pilot remains independently usable with the production adapter disabled. Merge/production claims remain subject to latest CI and live F5 verification.
+
 # Combat Planning 1.0 — Visual V4 pilot
 
 ## Scope and launch
