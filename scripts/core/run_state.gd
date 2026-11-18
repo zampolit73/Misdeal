@@ -210,6 +210,8 @@ var last_battle_won := false
 var selected_encounter_path: String = DEFAULT_ENCOUNTER_PATH
 # Sampled once per encounter/card in a run; the same fight keeps its deployment on retry.
 var combat_formation_by_card: Dictionary = {}
+# Transient per-run tactics; no live target references or save schema changes.
+var battle_plan_drafts: Dictionary = {}
 var whispering_well_resolved := false
 var wizard_debt_active := false
 var boss_defeated := false
@@ -295,6 +297,7 @@ func reset_run() -> void:
 	last_battle_won = false
 	selected_encounter_path = DEFAULT_ENCOUNTER_PATH
 	combat_formation_by_card.clear()
+	battle_plan_drafts.clear()
 	whispering_well_resolved = false
 	wizard_debt_active = false
 	boss_defeated = false
