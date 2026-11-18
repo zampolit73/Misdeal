@@ -1,7 +1,7 @@
 extends SceneTree
 ## Native production-route smoke: full encounter roster, solo/duo/trio,
 ## special-order fallback, real combat startup, wave replanning and result.
-const BATTLE_SCENE := preload("res://scenes/battle/battle.tscn")
+const BATTLE_SCENE := "res://scenes/battle/battle.tscn"
 const ENCOUNTERS := [
 	"black_crossing", "black_lantern_road", "bone_crush", "bone_patrol",
 	"bone_ritual", "bone_shepherd", "bone_swarm", "bone_warden",
@@ -29,7 +29,7 @@ func spawn_battle(encounter_id: String, roles: Array[String]) -> Control:
 	for role in roles.slice(1):
 		state.call("recruit_companion", role, "Campaign Planning QA")
 	state.call("select_encounter", "res://resources/encounters/%s.tres" % encounter_id)
-	var battle := BATTLE_SCENE.instantiate()
+	var battle := (load(BATTLE_SCENE) as PackedScene).instantiate()
 	root.add_child(battle)
 	return battle
 
