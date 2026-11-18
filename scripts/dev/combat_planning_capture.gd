@@ -58,16 +58,40 @@ func verify_editor(pilot: Control) -> void:
 	assert(view.tiles.size() == 3, "Overview shows three independent hero rows")
 	for role in view.hero_roles:
 		for index in range(pilot.plans[role].orders.size()):
+			var tile: Button = view.tiles[role][index]
 			assert(not view.tile_headings[role][index].text.is_empty())
+			assert(tile.get_theme_stylebox("normal") is StyleBoxTexture)
+			assert(view.tile_stages[role][index].is_visible_in_tree())
+	assert(view.tiles.mage[2].get_theme_stylebox("normal").texture.region != view.tiles.mage[0].get_theme_stylebox("normal").texture.region, "Unused slot keeps its own metal material")
+	await capture("visual_v4_overview_trio")
+	var start: Button = view.start_button
+	var idle: StyleBoxTexture = start.get_theme_stylebox("normal")
+	var hover: StyleBoxTexture = start.get_theme_stylebox("hover")
+	var pressed: StyleBoxTexture = start.get_theme_stylebox("pressed")
+	assert(idle.modulate_color != hover.modulate_color and pressed.modulate_color != hover.modulate_color)
 	var knight: BattleUnit = pilot.battle.units[0]
 	var knight_tint := knight.modulate
 	await move_pointer(view.hero_caption.knight.get_global_rect().get_center())
 	assert(view.plan_marker.visible and view.hovered_plan_unit == knight)
 	assert(knight.modulate == knight_tint)
-	await capture("ux_v31_overview")
+	await capture("visual_v4_hero_hover")
 	await move_pointer(Vector2(640, 410))
 	assert(not view.plan_marker.visible)
-	await click_control(view.tiles.ranger[1])
+	var order_button: Button = view.tiles.ranger[1]
+	var order_point := order_button.get_global_rect().get_center()
+	await move_pointer(order_point)
+	assert(order_button.is_hovered())
+	var press := InputEventMouseButton.new()
+	press.button_index = MOUSE_BUTTON_LEFT
+	press.position = order_point
+	press.pressed = true
+	root.push_input(press, true)
+	await frame()
+	assert(order_button.is_pressed())
+	var release := press.duplicate() as InputEventMouseButton
+	release.pressed = false
+	root.push_input(release, true)
+	await frame()
 	verify_preparation(pilot, "detail")
 	assert(view.current_role() == "ranger" and view.slot == 1)
 	for selected in range(3):
@@ -93,7 +117,7 @@ func verify_editor(pilot: Control) -> void:
 	assert("После личного убийства или через 8 секунд" in view.explanation.text)
 	await frame()
 	assert(view.limit.get_line_edit().text == "8 сек.", "Displayed seconds: %s" % view.limit.get_line_edit().text)
-	await capture("ux_v31_edit")
+	await capture("visual_v4_edit_order")
 	# Type without pressing Enter, then return to the plan. The value must commit.
 	var limit_input: LineEdit = view.limit.get_line_edit()
 	limit_input.grab_focus()
@@ -125,7 +149,7 @@ func verify_editor(pilot: Control) -> void:
 	Input.parse_input_event(motion)
 	await frame()
 	assert(enemy.display_name in view.hover_text.text)
-	await capture("ux_v3_target_picker")
+	await capture("visual_v4_target_select")
 	await click_control(view.pick_markers[enemy])
 	verify_preparation(pilot, "detail")
 	assert(not pilot.picking_target and pilot.plans.mage.orders[0].target.get_ref() == enemy)
@@ -145,14 +169,18 @@ func verify_editor(pilot: Control) -> void:
 	assert(pilot.plans.mage.orders[0].target.get_ref() == enemy)
 	await click_control(view.back_button)
 	verify_preparation(pilot, "overview")
-	assert(enemy.display_name in view.tile_headings.mage[0].text and pilot.plans.ranger.orders[1].limit == 9)
+	assert(enemy.display_name in view.tile_endings.mage[0].text and pilot.plans.ranger.orders[1].limit == 9)
 	var enemy_tint := enemy.modulate
 	var sprite_tint := enemy.art_sprite.modulate
 	await move_pointer(view.tiles.mage[0].get_global_rect().get_center())
 	assert(view.plan_marker.visible and view.hovered_plan_unit == enemy)
 	assert(view.plan_marker.position.is_equal_approx(enemy.get_global_transform_with_canvas() * Vector2(0, 36)))
 	assert(enemy.modulate == enemy_tint and enemy.art_sprite.modulate == sprite_tint)
-	await capture("ux_v31_target_highlight")
+	var assigned_label: Label = view.tile_endings.mage[0]
+	var assigned_font := assigned_label.get_theme_font("font")
+	assert(assigned_font.get_string_size(assigned_label.text, HORIZONTAL_ALIGNMENT_LEFT, -1,
+		assigned_label.get_theme_font_size("font_size")).x <= assigned_label.size.x, "Named target remains readable")
+	await capture("visual_v4_target_highlight")
 	await move_pointer(view.tiles.mage[1].get_global_rect().get_center())
 	assert(not view.plan_marker.visible and enemy.modulate == enemy_tint)
 	var spawn_index: int = pilot.plans.mage.orders[0].spawn_slot
@@ -188,7 +216,7 @@ func verify_editor(pilot: Control) -> void:
 	await frame()
 	verify_preparation(pilot, "overview")
 	assert(pilot.ui.tiles.size() == 2 and not pilot.ui.tiles.has("mage"))
-	await capture("ux_v3_duo")
+	await capture("visual_v4_overview_duo")
 	pilot.party_choice.select(0)
 	pilot.preset_choice.select(1)
 	pilot.open_battle()
@@ -197,7 +225,7 @@ func verify_editor(pilot: Control) -> void:
 	assert(view.tiles.size() == 1 and not view.tiles.has("ranger"))
 	assert(not view.remove_buttons.knight.visible and pilot.plans.knight.orders.size() == 1)
 	verify_preparation(pilot, "overview")
-	await capture("ux_v3_solo")
+	await capture("visual_v4_overview_solo")
 	await click_control(view.tiles.knight[1])
 	verify_preparation(pilot, "detail")
 	assert(pilot.plans.knight.orders.size() == 2 and not view.limit.visible and not view.condition.visible)
@@ -373,7 +401,7 @@ func run() -> void:
 	await create_timer(2.0).timeout
 	assert(pilot.executors.knight.index==1,"Real engine clock advances the first stage")
 	assert(not pilot.ui.plan_marker.visible)
-	await capture("ux_v3_combat")
+	await capture("visual_v4_combat")
 	for party_index in [0,3,6]:
 		var legacy: Dictionary=await simulate(pilot,party_index,"assault",false)
 		comparisons.append(legacy)

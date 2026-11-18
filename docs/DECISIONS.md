@@ -1,3 +1,7 @@
+## Combat Planning Visual V4 — approved reference
+
+Use the [approved command board](qa/combat-planning-visual-v4/approved_reference.png) for the PR #117 pilot. Preserve the V3.1 interaction and arena. Use live Godot text and controls over individual DS3 material surfaces and drawn symbols. The current visual review compares the [actual scene capture and reference](qa/combat-planning-visual-v4/README.md).
+
 ## Combat Planning UX V3.1 — gameplay review next
 
 The player approved the V3 two-mode structure. V3.1 completes the interface pass with distinct timed and conditional limit language, a temporary overview hover marker, a last-order remove icon, and clearer row text. The next decision follows the gameplay playtest on PR #117.

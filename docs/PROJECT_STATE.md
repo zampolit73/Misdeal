@@ -1,6 +1,6 @@
-## Combat Planning UX V3.1 — ready for gameplay playtest
+## Combat Planning Visual V4 — ready for visual review
 
-The player approved the V3 two-mode layout. PR #117 adds contextual timer labels, temporary arena markers linked to the overview, an explicit last-order removal control, and stronger text contrast. The next review is the [eight-battle gameplay playtest](COMBAT_PLANNING_PLAYTEST.md). [Pilot guide and evidence](COMBAT_PLANNING_PILOT.md). User review is required before merging.
+PR #117 applies the approved gothic reference to the lower preparation dock with parchment orders, bronze and red cloth, live labels, and hero and tactic glyphs. The V3.1 interactions and the original arena remain in place. Visual review uses the [native comparison](qa/combat-planning-visual-v4/README.md), followed by the [eight-battle gameplay playtest](COMBAT_PLANNING_PLAYTEST.md). User review is required before merging.
 
 # Misdeal — current project state
 

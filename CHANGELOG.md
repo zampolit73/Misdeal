@@ -1,3 +1,7 @@
+## Combat Planning Visual V4 — approved command board
+
+Apply DS3 bronze, parchment plates, red cloth, hero medallions and tactical glyphs to the live lower dock. Carry the same materials into the existing order editor and compact target picker. Retain the V3.1 interaction and battle rules.
+
 ## Combat Planning UX V3.1 — playtest polish
 
 Distinguish timed duration from event fallback. Link an overview hover to its hero or assigned enemy with a temporary arena marker. Add a trash icon with a stage-specific tooltip and improve order text contrast. Add an eight-battle gameplay playtest guide.

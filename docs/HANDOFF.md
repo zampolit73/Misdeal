@@ -1,6 +1,6 @@
-## Next review: Combat Planning gameplay playtest
+## Next review: Combat Planning Visual V4
 
-Open `scenes/dev/combat_planning_pilot.tscn` with F6 (also QA Hub → Бой). Use the [eight-battle playtest](COMBAT_PLANNING_PLAYTEST.md) to compare legacy and planning in solo, duo and trio. The V3.1 interface pass is complete. The player now evaluates decision time, battle variety and the desire to revise a plan. User review is the merge gate for [PR #117](https://github.com/zampolit73/Misdeal/pull/117).
+Open `scenes/dev/combat_planning_pilot.tscn` with F6 (also QA Hub → Бой). Use the default trio, compare the lower panel with the [approved reference](qa/combat-planning-visual-v4/approved_reference.png), open and edit any order, then return and choose a target. After visual review, use the [eight-battle playtest](COMBAT_PLANNING_PLAYTEST.md). User review is the merge gate for [PR #117](https://github.com/zampolit73/Misdeal/pull/117).
 
 # Misdeal — current handoff
 
