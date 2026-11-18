@@ -1,20 +1,19 @@
-## Combat Planning campaign rollout (2026-11-18)
+## Combat Planning 1.0 — released (2026-11-18)
 
 - [x] Player approved the isolated UX V4 pilot and requested campaign-wide deployment.
 - [x] Shared Battle now attaches the real per-hero planning UI and executors across all authored encounters; QA pilot retains an explicit opt-out.
 - [x] Legacy-command path remains available for Sacrifice/Defiance and old order behavior.
-- [x] Add native all-encounter/solo-duo-trio/wave test in CI.
-- [ ] Verify latest CI, full real random-run, save/load and Last Deal/regression acceptance before merging PR #117.
-- [ ] Player F5 confirmation of actual deck → combat → reward → table loop.
+- [x] Native campaign smoke covers all 22 encounters, solo Knight/Ranger/Mage, duo, trio and Iron Wall replanning.
+- [x] Verified prior-save Continue, victory/reward/table, both Last Deal choices and full RELEASE CI. Merged PR #117 into `main`.
 - [Rollout contract](COMBAT_PLANNING_ROLLOUT.md).
 
-## Experimental Combat Planning 1.0
+## Combat Planning pilot milestones
 
 - [x] Independent per-hero plans, real engine execution, editable preparation and journal.
 - [x] Solo/duo/trio old/new controlled comparison and native wave intermission replanning.
 - [x] UX V2 squad overview, direct order editing, scoped target replay and readable battle summary.
 - [x] UX V3 single lower panel for overview, order editing and the transient target prompt.
-- [ ] User gameplay review; no campaign rollout or main merge yet.
+- [x] User approved the V4 interface and the campaign release.
 - [Contract and launch](COMBAT_PLANNING_PILOT.md).
 
 # Misdeal — current roadmap

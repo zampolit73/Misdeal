@@ -1,12 +1,8 @@
-## Immediate continuation: Combat Planning rollout PR #117
+## Combat Planning 1.0 on main
 
-User approved Visual V4 and requested scaling to every combat. Branch `codex/combat-planning-pilot` now connects `scripts/battle/planning/battle_plan_campaign.gd` to the actual `scripts/battle/battle.gd`, while QA pilot explicitly disables it. Review [rollout contract](COMBAT_PLANNING_ROLLOUT.md) before changing architecture. Latest CI status and full native evidence must be verified; **do not claim production merged until it is**.
+PR #117 shipped the approved V4 planner in the shared campaign Battle. `battle_plan_campaign.gd` attaches it by default. The isolated F6 pilot explicitly opts out and remains available for comparison. [Rollout contract and release evidence](COMBAT_PLANNING_ROLLOUT.md)
 
-Local F5: play a normal combat card (not the QA fixture), check compact V4 plan dock, drag hero, edit/assign orders, start combat, confirm live stage HUD, normal victory → Reward → Table, defeat → Last Deal, optional `РАЗБОР ПРИКАЗОВ`; test a two-wave arena and Bone Warden. The `Классика` button switches to the original command controls for rare Sacrifice/Defiance; `Боевой план` returns before starting. Existing F6 `scenes/dev/combat_planning_pilot.tscn` still compares legacy/pilot behavior.
-
-## Next review: Combat Planning Visual V4
-
-Open `scenes/dev/combat_planning_pilot.tscn` with F6 (also QA Hub → Бой). Use the default trio, compare the lower panel with the [approved reference](qa/combat-planning-visual-v4/approved_reference.png), open and edit any order, then return and choose a target. After visual review, use the [eight-battle playtest](COMBAT_PLANNING_PLAYTEST.md). User review is the merge gate for [PR #117](https://github.com/zampolit73/Misdeal/pull/117).
+From `main`, pull with `git pull --ff-only origin main` and start Godot with F5. Use «Новая игра» or «Продолжить», then choose a combat card. Move a hero, edit an order and start the fight. «Классика» restores the original orders before combat, and «Боевой план» reopens V4. In low deployment areas like Court of the Mute, «Открыть боевой план» opens the board and «Поле боя» returns to the floor. [Native captures](qa/combat-planning-release/README.md)
 
 # Misdeal — current handoff
 

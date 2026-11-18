@@ -1,6 +1,6 @@
-## 2026-11-18 — Combat Planning campaign-wide integration (PR #117)
+## 2026-11-18 — Combat Planning 1.0 production release
 
-User accepted the selected gothic V4 planning interface and approved rollout to every authored battle. Reuse the isolated BattleUnit plan policy in ordinary Battle, without a second combat engine or altered encounter files; enable the per-hero V4 dock across solo/duo/trio, all authored arenas, Bone Warden and Iron Wall two-wave replanning. Expose an explicit classic tactic fallback preserving rare Sacrifice/Defiance, keep non-persistent drafts between encounters within the current session and never reuse enemy object references across fights. Preserve the original win/reward/Last Deal route and provide optional factual post-fight plan review. Keep QA pilot isolated and add native full-roster/wave smoke to PR CI. Validation and production merge pending.
+The approved Visual V4 board is the default preparation UI across all 22 combat encounters, including Bone Warden XIII and Iron Wall with orders for surviving heroes between waves. «Классика» keeps the original tactics and rare orders available. Encounter-independent drafts live in the current session and existing save slots remain compatible. Court of the Mute starts in a compact deployment view so the V4 board does not obscure the formation. [Merged PR #117 and release checks](docs/COMBAT_PLANNING_ROLLOUT.md)
 
 ## Combat Planning Visual V4 — approved command board
 
@@ -20,7 +20,7 @@ Show the entire squad plan on the arena, open an individual order with one click
 
 ## Combat Planning 1.0 — isolated playable QA pilot
 
-Add Grave Bell legacy/planning comparison, independent1–3 orders, real enemy selection, stable priorities, bounded defense, local hunt detours, actual damage/kill conditions, timers and factual reports. Existing Battle/Unit simulation and one-use rules remain; ordinary battles have no executor. Add seed-controlled solo/duo/trio comparisons, real pause/input and wave replanning QA. Not production-enabled; user gameplay review required.
+The original Grave Bell pilot introduced the old/new comparison, independent orders, real enemy assignment, stable priorities, bounded defense, local hunt detours, actual damage and kill conditions, timers and factual reports. It added seed-controlled solo/duo/trio comparisons, pause and wave replanning QA.
 
 ## 2026-11-17 — production: Cinematic Travel Batch02 and QA Hub
 

@@ -1,6 +1,6 @@
 # Combat Planning — campaign rollout contract
 
-**Status:** user approved pilot V4 and authorized expansion to all battles on 2026-11-18. This document describes the branch implementation, not a verified production release.
+Combat Planning 1.0 shipped to `main` on 2026-11-18. The approved Visual V4 dock is the default in campaign battles. [PR #117](https://github.com/zampolit73/Misdeal/pull/117) · [Merge commit `8fbadd9404c2a52341f551f93010b3ed48303d74`](https://github.com/zampolit73/Misdeal/commit/8fbadd9404c2a52341f551f93010b3ed48303d74)
 
 ## Scope and ownership
 
@@ -19,20 +19,16 @@
 - During combat the V4 editor disappears and a compact HUD tracks actual stages. At victory or defeat, the original reward / Last Deal screens remain intact. An **optional** `РАЗБОР ПРИКАЗОВ` button opens a factual review based on recorded events.
 - Safe tactic/condition/time drafts are reused during the current running session; encounter-local WeakRefs and spawn slots are never carried to a different encounter. `RunState.reset_run()` clears drafts. No save serialization keys have been added; after app restart older runs use one safe `Натиск` per hero until edited.
 
-## Risks and acceptance
+## Release verification
 
-1. **CI hard gate:** current Godot4.7.x import/parsing, full GUT, original scene/route smokes and the new `scripts/dev/combat_planning_campaign_smoke.gd` pass on the final PR SHA.
-2. **F5 user check:** normal card selection → combat plan → actual battle → reward → table. No QA-only fixture, no free retry of a loss.
-3. **All encounters:** use the native smoke for all22 authored `EncounterData`; inspect living arena mechanics, Wizard challenge, hazards and boss reinforcement without modifying source resources.
-4. **Party states:** solo Knight/Ranger/Mage, duo and trio. No plan assigned to Jack; existing animal behavior persists.
-5. **Multi-wave:** `iron_wall` survivors can replan with carried HP, without duplicated special commands or rewards.
-6. **Rare orders:** the original Sacrifice/Defiance controls can still be selected, and their existing price and memory consumption cannot be bypassed via a script step.
-7. **Defeat:** Last Deal remains functional; the factual plan-review overlay is optional and cannot replace accept/refuse actions.
-8. **Save/load:** old slots load unchanged. Plans are transient, not persistent, until a dedicated save contract is approved.
-9. **Rollback:** PR#117 is the integration review gate; existing main remains the original combat system until merged.
+- The final PR head `52d107f8` passed full RELEASE CI and the merge kept its runtime tree byte-identical. [PR checks](https://github.com/zampolit73/Misdeal/actions/runs/44303696977) · [Merge commit checks](https://github.com/zampolit73/Misdeal/actions/runs/44307630026)
+- Local Godot 4.7.2 passed all 313 GUT tests and 77,895 assertions. The native campaign smoke opened all 22 encounter resources and exercised solo Knight/Ranger/Mage, duo, trio, Classic/Planning switching and the Iron Wall wave handoff for survivors.
+- A separate automated native route entered through New Game, picked Knight and a normal combat card, edited two orders, won the fight, chose a reward and returned to the table. Natural defeats exercised both Last Deal choices, including a later defeat after accepting the one-use deal.
+- Continue opened a version 1 slot written by the previous production serializer. Gold and run progress were restored, and the new fight opened with a single safe Assault order. Enemy assignments remain local to their current encounter and wave.
+- Native checks exercised both rare-order controls, a live Defiled Laboratory hazard and Bone Warden XIII reinforcements after crossing the phase HP threshold. The wave and boss tests exercise the original transitions with controlled HP. The 22-encounter check is an automated smoke, while the end-to-end route covers selected fights. [Native captures](qa/combat-planning-release/README.md)
+
+Five older Court of the Mute workflows on the merge commit still require a 39-card Act I pool. The actual pool had 45 cards and included Court in both the previous and current releases. The archived tests and card are identical across the merge. [Example legacy failure](https://github.com/zampolit73/Misdeal/actions/runs/44307629920)
 
 ## Local testing
 
-Pull the reviewed branch when approved or use the PR review branch. F5, then play any combat card normally. Choose orders and start. For a focused native comparison, open `scenes/dev/combat_planning_pilot.tscn` with F6; it disables the campaign adapter and retains the old-vs-new fixture. Logs and CI evidence are attached to [PR#117](https://github.com/zampolit73/Misdeal/pull/117).
-
-**Do not infer native pass from static code review** or claim a released main before the branch is merged and the user's main-project Godot check is complete.
+On `main`, run `git pull --ff-only origin main`. Start Godot with F5, open «Новая игра» or «Продолжить», then choose a combat card. Drag a hero, edit an order, then use «Начать бой». Try «Классика» and «Боевой план» before starting if you want to compare the two modes. The F6 scene `scenes/dev/combat_planning_pilot.tscn` remains available as a focused comparison.

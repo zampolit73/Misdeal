@@ -1,12 +1,12 @@
-> **2026-11-18 update:** The user approved Visual V4 and requested campaign-wide rollout. The QA-only restrictions below describe the historical pilot; the current PR branch additionally enables a production Battle adapter across all encounter resources. The new contract, rare-order fallback and validation gate are in [Combat Planning Rollout](COMBAT_PLANNING_ROLLOUT.md). The F6 pilot remains independently usable with the production adapter disabled. Merge/production claims remain subject to latest CI and live F5 verification.
+> **2026-11-18:** Visual V4 is live in campaign battles. This guide describes the isolated F6 comparison fixture. See [the production rollout](COMBAT_PLANNING_ROLLOUT.md) for the F5 route, rare orders and release verification.
 
 # Combat Planning 1.0 — Visual V4 pilot
 
 ## Scope and launch
 
-**Not production-enabled; do not merge without user gameplay review.** Open `scenes/dev/combat_planning_pilot.tscn`, F6, or QA Hub → Бой → «Боевой план 1.0 — Могильный звон». Choose one of seven solo/duo/trio compositions, old autobattle or planning, seed and optional starting preset. Open the arena; use ordinary hero dragging. Old mode uses the existing Fight/tactics; planning uses the compact live editor and its Start button.
+Open `scenes/dev/combat_planning_pilot.tscn` with F6 or go to QA Hub → Бой → «Боевой план 1.0 — Могильный звон». Choose one of seven solo/duo/trio compositions, old autobattle or planning, seed and optional starting preset. Open the arena and use ordinary hero dragging. Old mode uses the original tactics and Fight button. Planning uses the V4 editor and its Start button.
 
-Every experiment uses the exact existing Grave Bell roster/stats and party multipliers. It resets only isolated QA run/memory services. Rewards, progression, campaign saves and ordinary encounter routing are not replaced. F5 still starts the existing game with no executor attached. Jack has no editor and no driver; his original behavior is untouched.
+Every experiment uses the existing Grave Bell roster, stats and party multipliers. It resets isolated QA run and memory services. F5 starts the regular campaign with its own planner. Jack retains his original behavior.
 
 ## Editing and observation
 

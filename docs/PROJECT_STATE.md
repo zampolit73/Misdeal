@@ -1,12 +1,10 @@
-## Combat Planning campaign rollout — implementation in PR #117 (2026-11-18)
+## Combat Planning 1.0 — production (2026-11-18)
 
-The player approved the Combat Planning Visual V4 pilot and explicitly requested extending it to **all** battles. The same real Battle scene now attaches a campaign planner by default; the F6 isolated pilot disables the campaign adapter and remains a comparison fixture. All22 authored fight EncounterData resources share this path, including Bone Warden XIII, multi-wave Iron Wall and existing special arena mechanics. Existing BattleUnit movement/attack code and approved V4 dock are reused; no second engine.
+The shared campaign Battle uses the approved Visual V4 dock by default, with one to three independent orders per hero. All 22 authored combat encounters use it, including Iron Wall and Bone Warden XIII. The F6 comparison pilot opts out of the campaign controller. [Merged PR #117](https://github.com/zampolit73/Misdeal/pull/117)
 
-A classic-command fallback remains reachable from the lower planning dock, preserving rare one-use Sacrifice/Defiance and old tactics. Only clean, encounter-independent order drafts carry between fights in the same running session; concrete enemy targets never carry across encounters. This does **not** add persistent save keys. The native campaign smoke enumerates every encounter plus solo/duo/trio, rare fallback and wave replanning. **CI and player F5 campaign acceptance must be checked before production merge**; do not label this branch a shipped release until then. [Rollout contract](COMBAT_PLANNING_ROLLOUT.md).
+«Классика» restores the original orders, including one-use Sacrifice and Defiance. Between fights, the running session can retain encounter-independent drafts. Enemy assignments are local to their encounter and wave. Existing slots load with a safe single Assault order.
 
-## Combat Planning Visual V4 — ready for visual review
-
-PR #117 applies the approved gothic reference to the lower preparation dock with parchment orders, bronze and red cloth, live labels, and hero and tactic glyphs. The V3.1 interactions and the original arena remain in place. Visual review uses the [native comparison](qa/combat-planning-visual-v4/README.md), followed by the [eight-battle gameplay playtest](COMBAT_PLANNING_PLAYTEST.md). User review is required before merging.
+Godot 4.7.2 passed 313 GUT tests and the 22-encounter campaign smoke. Live engine route checks covered victory through reward and table, both Last Deal choices and Continue from a prior-version save. [Release contract and CI](COMBAT_PLANNING_ROLLOUT.md) · [Native captures](qa/combat-planning-release/README.md)
 
 # Misdeal — current project state
 

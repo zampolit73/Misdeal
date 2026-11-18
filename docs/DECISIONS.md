@@ -2,15 +2,17 @@
 
 The player tested the individual tactics and V4 visual dock, accepted the pilot and explicitly requested **all battles**, superseding the earlier QA-only restriction. Integrate the approved planner with the ordinary Battle scene for every authored encounter, solo/duo/trio and Bone Warden XIII. Preserve the same per-hero 1–3 order contract, transient explicit enemy assignments, mandatory event fallback timers, non-looping order flow, DS3/V4 art and real existing BattleUnit combat. Never regenerate another arena or fork the combat simulator.
 
-Do not turn Sacrifice/Defiance into programmable or cyclic steps; the planner provides an explicit switch to the original classic tactic UI when the player wishes to use rare orders. Avoid duplicate consumption or extra free commands in second waves. Preserve the original battle result and Last Deal UI rather than replacing them with a QA report. Drafts are safe per-run transient settings; not new save schema. The isolated F6 pilot remains accessible with its production adapter disabled. The rollout is approved for implementation, **not a claim that CI or F5 full-campaign validation already passed**. [Technical/QA contract](COMBAT_PLANNING_ROLLOUT.md).
+Sacrifice and Defiance remain one-use orders in «Классика». Wave breaks preserve surviving heroes' HP and allow new orders. Campaign drafts are transient. The existing Battle result and Last Deal screens own their routes, and the optional orders report reads the fight log. The F6 pilot opts out of the campaign controller. [Released in PR #117](COMBAT_PLANNING_ROLLOUT.md)
+
+When V4 would cover the initial formation or nameplates, open preparation with a compact field view. «Открыть боевой план» opens V4 and «Поле боя» returns to deployment with the same drafts. This allows Court of the Mute to keep its authored floor and formations.
 
 ## Combat Planning Visual V4 — approved reference
 
-Use the [approved command board](qa/combat-planning-visual-v4/approved_reference.png) for the PR #117 pilot. Preserve the V3.1 interaction and arena. Use live Godot text and controls over individual DS3 material surfaces and drawn symbols. The current visual review compares the [actual scene capture and reference](qa/combat-planning-visual-v4/README.md).
+Use the [approved command board](qa/combat-planning-visual-v4/approved_reference.png) in campaign and pilot. Preserve the V3.1 interaction and arena. Use live Godot text and controls over individual DS3 material surfaces and drawn symbols. See the [native reference comparison](qa/combat-planning-visual-v4/README.md).
 
-## Combat Planning UX V3.1 — gameplay review next
+## Combat Planning UX V3.1 — pilot polish
 
-The player approved the V3 two-mode structure. V3.1 completes the interface pass with distinct timed and conditional limit language, a temporary overview hover marker, a last-order remove icon, and clearer row text. The next decision follows the gameplay playtest on PR #117.
+The player approved the V3 two-mode structure. V3.1 introduced distinct timed and conditional limit language, a temporary overview hover marker, a last-order remove icon, and clearer row text.
 
 ## Combat Planning UX V3 — one bottom panel
 
@@ -20,9 +22,9 @@ Overview and order detail replace each other within the same bottom panel. Targe
 
 The default view shows the full party plan. Clicking an order opens only that order's controls while placement stays usable. Target picking uses temporary numbered badges. Same-encounter replay resolves weak references from an ordered spawn signature. A different encounter or wave clears the active binding. The first-wave draft is kept for a full retry. The report opens with a factual summary and offers the detailed log on demand. These choices are ready for player review in PR #117.
 
-## Combat Planning 1.0 — approved pilot rules, not production rollout
+## Combat Planning 1.0 — original pilot rules
 
-Implement up to3 independent non-looping orders per hero: assault/defense/hunt; separate priority/optional encounter-local target; time/dealt/taken/personal-kill/HP50 conditions and mandatory2–12s event fallback. Final order persists. Real combat governs outcomes; no stat compensation or forced results. Preserve Jack, special one-use orders, balance, saves and approved art. Use only a null-by-default policy on existing BattleUnit and a dedicated QA scene; no second engine/router/autoload. Player gameplay approval is required before main merge.
+Each hero has up to three independent, non-looping orders with Assault, Defense or Hunt, a target priority and an optional enemy from the current encounter. Transition on time, damage dealt, damage taken, personal kill or HP at or below 50%. Event conditions have a mandatory 2–12 second fallback. The final order persists for the fight. Existing BattleUnit resolves combat, including Jack and rare one-use orders.
 
 ## Production authorization — Batch02 / QA Hub
 
