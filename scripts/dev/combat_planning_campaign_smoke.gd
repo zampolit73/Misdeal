@@ -23,11 +23,12 @@ func verify(condition: bool, explanation: String) -> bool:
 	return false
 
 func spawn_battle(encounter_id: String, roles: Array[String]) -> Control:
-	RunState.reset_run()
-	RunState.choose_protagonist(roles[0])
+	var state: Node = root.get_node("RunState")
+	state.call("reset_run")
+	state.call("choose_protagonist", roles[0])
 	for role in roles.slice(1):
-		RunState.recruit_companion(role, "Campaign Planning QA")
-	RunState.select_encounter("res://resources/encounters/%s.tres" % encounter_id)
+		state.call("recruit_companion", role, "Campaign Planning QA")
+	state.call("select_encounter", "res://resources/encounters/%s.tres" % encounter_id)
 	var battle := BATTLE_SCENE.instantiate()
 	root.add_child(battle)
 	return battle
@@ -38,6 +39,12 @@ func cleanup_battle(battle: Control) -> void:
 	await process_frame
 
 func _run() -> void:
+	# Standalone SceneTree scripts register RunState before Battle is loaded.
+	# This mirrors the existing native D291/D306 regression runners.
+	if root.get_node_or_null("RunState") == null:
+		var state := (load("res://scripts/core/run_state.gd") as Script).new() as Node
+		state.name = "RunState"
+		root.add_child(state)
 	# Every authored battle uses one campaign controller, never the QA wrapper.
 	for encounter_id in ENCOUNTERS:
 		var battle := spawn_battle(encounter_id, ["knight"])
@@ -74,7 +81,7 @@ func _run() -> void:
 	var classic := spawn_battle("bone_patrol", ["knight"])
 	await process_frame
 	var classic_driver: Node = classic.combat_plan_controller
-	RunState.sacrifice_order_ready = true
+	root.get_node("RunState").set("sacrifice_order_ready", true)
 	classic.sacrifice_order_unlocked = true
 	classic_driver.return_to_hub()
 	if not verify(classic_driver.using_classic and classic.assault_order_button.visible, "classic fallback inaccessible"): return
