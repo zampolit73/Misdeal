@@ -26,6 +26,12 @@ func click_at(point: Vector2) -> void:
 func click_control(control: Control) -> void:
 	await click_at(control.get_global_rect().get_center())
 
+func move_pointer(point: Vector2) -> void:
+	var motion := InputEventMouseMotion.new()
+	motion.position = point
+	root.push_input(motion, true)
+	await frame()
+
 func verify_preparation(pilot: Control, expected: String) -> void:
 	var view: CanvasLayer = pilot.ui
 	var active: Array[String] = []
@@ -36,6 +42,8 @@ func verify_preparation(pilot: Control, expected: String) -> void:
 			active.append(name)
 	assert(active == ([] if expected.is_empty() else [expected]), "Only the expected preparation mode is visible")
 	assert(view.preparation.visible == not expected.is_empty())
+	if expected != "overview":
+		assert(not view.plan_marker.visible, "The planning hover marker only appears in the overview")
 	if not view.preparation.visible:
 		return
 	var bounds: Rect2 = view.preparation.get_global_rect()
@@ -51,7 +59,14 @@ func verify_editor(pilot: Control) -> void:
 	for role in view.hero_roles:
 		for index in range(pilot.plans[role].orders.size()):
 			assert(not view.tile_headings[role][index].text.is_empty())
-	await capture("ux_v3_overview")
+	var knight: BattleUnit = pilot.battle.units[0]
+	var knight_tint := knight.modulate
+	await move_pointer(view.hero_caption.knight.get_global_rect().get_center())
+	assert(view.plan_marker.visible and view.hovered_plan_unit == knight)
+	assert(knight.modulate == knight_tint)
+	await capture("ux_v31_overview")
+	await move_pointer(Vector2(640, 410))
+	assert(not view.plan_marker.visible)
 	await click_control(view.tiles.ranger[1])
 	verify_preparation(pilot, "detail")
 	assert(view.current_role() == "ranger" and view.slot == 1)
@@ -67,6 +82,18 @@ func verify_editor(pilot: Control) -> void:
 		view.condition.select(selected)
 		view.condition.item_selected.emit(selected)
 		assert(pilot.plans.ranger.orders[1].condition == DATA.CONDITIONS[selected])
+		assert(view.limit_label.text == ("Длительность" if selected == 0 else "Если не выполнено"))
+	view.condition.select(0)
+	view.condition.item_selected.emit(0)
+	view.limit.value = 5
+	assert("Через 5 секунд перейти к следующему приказу" in view.explanation.text)
+	view.condition.select(3)
+	view.condition.item_selected.emit(3)
+	view.limit.value = 8
+	assert("После личного убийства или через 8 секунд" in view.explanation.text)
+	await frame()
+	assert(view.limit.get_line_edit().text == "8 сек.", "Displayed seconds: %s" % view.limit.get_line_edit().text)
+	await capture("ux_v31_edit")
 	# Type without pressing Enter, then return to the plan. The value must commit.
 	var limit_input: LineEdit = view.limit.get_line_edit()
 	limit_input.grab_focus()
@@ -119,6 +146,15 @@ func verify_editor(pilot: Control) -> void:
 	await click_control(view.back_button)
 	verify_preparation(pilot, "overview")
 	assert(enemy.display_name in view.tile_headings.mage[0].text and pilot.plans.ranger.orders[1].limit == 9)
+	var enemy_tint := enemy.modulate
+	var sprite_tint := enemy.art_sprite.modulate
+	await move_pointer(view.tiles.mage[0].get_global_rect().get_center())
+	assert(view.plan_marker.visible and view.hovered_plan_unit == enemy)
+	assert(view.plan_marker.position.is_equal_approx(enemy.get_global_transform_with_canvas() * Vector2(0, 36)))
+	assert(enemy.modulate == enemy_tint and enemy.art_sprite.modulate == sprite_tint)
+	await capture("ux_v31_target_highlight")
+	await move_pointer(view.tiles.mage[1].get_global_rect().get_center())
+	assert(not view.plan_marker.visible and enemy.modulate == enemy_tint)
 	var spawn_index: int = pilot.plans.mage.orders[0].spawn_slot
 	pilot.edit_again()
 	await frame()
@@ -135,6 +171,10 @@ func verify_editor(pilot: Control) -> void:
 	await click_control(view.tiles.mage[0])
 	await click_control(view.clear_button)
 	assert(pilot.plans.mage.orders[0].target == null and not pilot.plans.mage.orders[0].has("spawn_slot"))
+	await click_control(view.back_button)
+	await move_pointer(view.tiles.mage[0].get_global_rect().get_center())
+	assert(not view.plan_marker.visible, "A cleared assignment must not leave a stale hover marker")
+	await click_control(view.tiles.mage[0])
 	await click_control(view.target_button)
 	pilot.assign_target(rebound)
 	var original_encounter: String = pilot.encounter_path
@@ -155,6 +195,7 @@ func verify_editor(pilot: Control) -> void:
 	await frame()
 	view = pilot.ui
 	assert(view.tiles.size() == 1 and not view.tiles.has("ranger"))
+	assert(not view.remove_buttons.knight.visible and pilot.plans.knight.orders.size() == 1)
 	verify_preparation(pilot, "overview")
 	await capture("ux_v3_solo")
 	await click_control(view.tiles.knight[1])
@@ -164,8 +205,12 @@ func verify_editor(pilot: Control) -> void:
 	await click_control(view.tiles.knight[2])
 	assert(pilot.plans.knight.orders.size() == 3)
 	await click_control(view.back_button)
+	assert(view.remove_buttons.knight.tooltip_text == "Убрать приказ III" and view.slot == 2)
 	await click_control(view.remove_buttons.knight)
-	assert(pilot.plans.knight.orders.size() == 2 and not view.detail.visible)
+	assert(pilot.plans.knight.orders.size() == 2 and not view.detail.visible and view.slot == 1)
+	assert(view.remove_buttons.knight.tooltip_text == "Убрать приказ II")
+	await click_control(view.remove_buttons.knight)
+	assert(pilot.plans.knight.orders.size() == 1 and view.slot == 0 and not view.remove_buttons.knight.visible)
 	pilot.party_choice.select(6)
 	pilot.preset_choice.select(4)
 	pilot.open_battle()
@@ -305,6 +350,8 @@ func run() -> void:
 	pilot.ui.refresh()
 	await click_control(pilot.ui.back_button)
 	verify_preparation(pilot, "overview")
+	await move_pointer(pilot.ui.hero_caption.knight.get_global_rect().get_center())
+	assert(pilot.ui.plan_marker.visible)
 	await click_control(pilot.ui.start_button)
 	verify_preparation(pilot, "")
 	await create_timer(0.15).timeout
@@ -325,6 +372,7 @@ func run() -> void:
 	assert(pilot.executors.knight.orders[0].tactic==frozen_order,"Combat editor is locked")
 	await create_timer(2.0).timeout
 	assert(pilot.executors.knight.index==1,"Real engine clock advances the first stage")
+	assert(not pilot.ui.plan_marker.visible)
 	await capture("ux_v3_combat")
 	for party_index in [0,3,6]:
 		var legacy: Dictionary=await simulate(pilot,party_index,"assault",false)

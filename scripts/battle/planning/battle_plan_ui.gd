@@ -50,6 +50,9 @@ var notice_time := 0.0
 var fallback_message := ""
 var history_button: Button
 var report_reading: RichTextLabel
+var plan_marker: Node2D
+var hovered_plan_unit: BattleUnit
+var hover_source: Control
 
 func panel(at: Vector2, dimensions: Vector2) -> Panel:
 	var item := Panel.new()
@@ -93,6 +96,10 @@ func option(parent: Node, names: Array, at: Vector2, dimensions: Vector2) -> Opt
 func build(owner_pilot: Node) -> void:
 	pilot = owner_pilot
 	layer = 40
+	plan_marker = Node2D.new()
+	plan_marker.name = "PlanHoverMarker"
+	add_child(plan_marker)
+	plan_marker.draw.connect(_draw_plan_marker)
 	preparation = panel(Vector2(28, 563), Vector2(PREPARATION_WIDTH, 151))
 	overview = _preparation_content()
 	detail = _preparation_content()
@@ -116,11 +123,12 @@ func build(owner_pilot: Node) -> void:
 	clear_button = button(detail, "Снять", Vector2(620, 63), Vector2(64, 32), _clear_target)
 	transition_label = label(detail, "Когда перейти дальше", Vector2(698, 43), Vector2(290, 18), 13)
 	condition = option(detail, CONDITIONS, Vector2(698, 63), Vector2(290, 32))
-	limit_label = label(detail, "Максимум, с", Vector2(1002, 43), Vector2(140, 18), 13)
+	limit_label = label(detail, "", Vector2(1002, 43), Vector2(150, 18), 14)
 	limit = SpinBox.new()
 	limit.min_value = 2
 	limit.max_value = 12
 	limit.step = 1
+	limit.suffix = "сек."
 	limit.position = Vector2(1002, 63)
 	limit.size = Vector2(104, 32)
 	detail.add_child(limit)
@@ -152,6 +160,7 @@ func _preparation_content() -> Control:
 	return content
 
 func _set_preparation_mode(mode: PreparationMode) -> void:
+	_clear_plan_hover()
 	overview.visible = mode == PreparationMode.OVERVIEW
 	detail.visible = mode == PreparationMode.EDIT
 	picker.visible = mode == PreparationMode.PICK_TARGET
@@ -174,6 +183,7 @@ func current_plan() -> Resource:
 	return pilot.plans.get(selected_role)
 
 func set_heroes(roles: Array[String]) -> void:
+	_clear_plan_hover()
 	hero_roles = roles.duplicate()
 	if selected_role not in hero_roles:
 		selected_role = ""
@@ -195,19 +205,25 @@ func set_heroes(roles: Array[String]) -> void:
 	for row in range(roles.size()):
 		var role := roles[row]
 		var y := 32 + row * 38
-		hero_caption[role] = label(overview, pilot.role_name(role), Vector2(12, y + 3), Vector2(120, 25), 17)
-		var remove := button(overview, "−", Vector2(126, y + 4), Vector2(26, 22), _remove_last.bind(role))
-		remove.tooltip_text = "Убрать последний приказ"
+		var caption := label(overview, pilot.role_name(role), Vector2(12, y + 3), Vector2(111, 25), 17)
+		caption.mouse_filter = Control.MOUSE_FILTER_PASS
+		caption.mouse_entered.connect(_hover_hero.bind(role, caption))
+		caption.mouse_exited.connect(_exit_plan_hover.bind(caption))
+		hero_caption[role] = caption
+		var remove := button(overview, "", Vector2(126, y + 4), Vector2(26, 22), _remove_last.bind(role))
+		remove.draw.connect(_draw_remove_icon.bind(remove))
 		remove_buttons[role] = remove
 		var row_tiles: Array[Button] = []
 		var headings: Array[Label] = []
 		var endings: Array[Label] = []
 		for stage in range(3):
 			var tile := button(overview, "", Vector2(164 + stage * 350, y), Vector2(342, 35), select_order.bind(role, stage))
+			tile.mouse_entered.connect(_hover_order.bind(role, stage, tile))
+			tile.mouse_exited.connect(_exit_plan_hover.bind(tile))
 			var heading := label(tile, "", Vector2(8, 1), Vector2(326, 18), 14)
 			heading.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 			headings.append(heading)
-			endings.append(label(tile, "", Vector2(8, 17), Vector2(326, 17), 13))
+			endings.append(label(tile, "", Vector2(8, 16), Vector2(326, 19), 14))
 			row_tiles.append(tile)
 		tiles[role] = row_tiles
 		tile_headings[role] = headings
@@ -247,6 +263,68 @@ func _remove_last(role: String) -> void:
 		slot = count - 2
 	refresh_board()
 
+func _draw_remove_icon(control: Button) -> void:
+	var color := DS3.PARCHMENT if control.is_hovered() else DS3.TEXT
+	var center := control.size * 0.5
+	control.draw_polyline(PackedVector2Array([
+		center + Vector2(-5, -3), center + Vector2(-4, 6),
+		center + Vector2(4, 6), center + Vector2(5, -3),
+	]), color, 1.5, true)
+	control.draw_line(center + Vector2(-7, -3), center + Vector2(7, -3), color, 1.5, true)
+	control.draw_polyline(PackedVector2Array([
+		center + Vector2(-2, -3), center + Vector2(-2, -6),
+		center + Vector2(2, -6), center + Vector2(2, -3),
+	]), color, 1.5, true)
+
+func _hover_hero(role: String, source: Control) -> void:
+	for unit in pilot.battle.units:
+		if is_instance_valid(unit) and unit.team == 0 and unit.visual_role == role:
+			_set_plan_hover(unit, source)
+			return
+	_clear_plan_hover()
+
+func _hover_order(role: String, stage: int, source: Control) -> void:
+	var orders: Array = pilot.plans[role].orders
+	_set_plan_hover(DATA.target_of(orders[stage]) if stage < orders.size() else null, source)
+
+func _set_plan_hover(unit: BattleUnit, source: Control) -> void:
+	hovered_plan_unit = unit
+	hover_source = source
+	_update_plan_marker()
+	plan_marker.queue_redraw()
+
+func _exit_plan_hover(source: Control) -> void:
+	if hover_source == source:
+		_clear_plan_hover()
+
+func _clear_plan_hover() -> void:
+	hovered_plan_unit = null
+	hover_source = null
+	plan_marker.hide()
+
+func _update_plan_marker() -> void:
+	var unit := hovered_plan_unit
+	if not is_instance_valid(unit) or not unit.alive or not unit.is_visible_in_tree() or unit.dragging \
+			or not is_instance_valid(hover_source) or not hover_source.is_visible_in_tree() \
+			or not overview.is_visible_in_tree() or not pilot.editable() or pilot.battle.combat_live:
+		_clear_plan_hover()
+		return
+	# Follow the existing contact position without changing the unit or its sprites.
+	plan_marker.position = unit.get_global_transform_with_canvas() * Vector2(0, 36)
+	plan_marker.show()
+
+func _draw_plan_marker() -> void:
+	if not is_instance_valid(hovered_plan_unit):
+		return
+	var radius := maxf(22.0, hovered_plan_unit.body_radius * 1.05) + 12.0
+	for offset in [0.0, PI]:
+		var points := PackedVector2Array()
+		for index in range(13):
+			var sample := Vector2.from_angle(offset + lerpf(-0.82, 0.82, index / 12.0)) * radius
+			points.append(Vector2(sample.x, sample.y * 0.32))
+		plan_marker.draw_polyline(points, DS3.OBSIDIAN, 4.0, true)
+		plan_marker.draw_polyline(points, Color(DS3.PARCHMENT, 0.95), 2.0, true)
+
 func _summary_end(order: Dictionary, final: bool) -> String:
 	if final:
 		return "До конца боя"
@@ -269,7 +347,10 @@ func refresh_board() -> void:
 			continue
 		var orders: Array = pilot.plans[role].orders
 		hero_caption[role].add_theme_color_override("font_color", DS3.PARCHMENT if role == selected_role else DS3.TEXT)
-		remove_buttons[role].visible = orders.size() > 1
+		var remove: Button = remove_buttons[role]
+		remove.visible = orders.size() > 1
+		remove.tooltip_text = "Убрать приказ " + STAGES[orders.size() - 1]
+		remove.accessibility_name = pilot.role_name(role) + " · " + remove.tooltip_text
 		for stage in range(3):
 			var tile: Button = tiles[role][stage]
 			var heading: Label = tile_headings[role][stage]
@@ -279,21 +360,24 @@ func refresh_board() -> void:
 			tile.add_theme_stylebox_override("normal", DS3.make_plate(
 				Color("#251815") if selected else Color("#1b1413"), Color.TRANSPARENT, 0, 0))
 			if stage >= orders.size():
+				tile.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
 				heading.text = "+ Приказ " + STAGES[stage]
 				heading.position.y = 9
+				heading.add_theme_color_override("font_color", DS3.PARCHMENT)
 				ending.text = ""
 				tile.tooltip_text = "Добавить приказ " + STAGES[stage]
 				tile.accessibility_name = tile.tooltip_text
 				continue
 			var order: Dictionary = orders[stage]
 			var foe := DATA.target_of(order)
-			var target_text: String = pilot.enemy_label(foe) if is_instance_valid(foe) else PRIORITIES[DATA.PRIORITIES.find(order.priority)]
+			var assigned := is_instance_valid(foe) and foe.alive
+			var target_text: String = pilot.enemy_label(foe) if assigned else PRIORITIES[DATA.PRIORITIES.find(order.priority)]
 			var end := _summary_end(order, stage == orders.size() - 1)
-			heading.text = "%s  %s · %s%s" % [STAGES[stage], DATA.TACTIC_NAMES[DATA.TACTICS.find(order.tactic)], "Цель: " if is_instance_valid(foe) else "", target_text]
-			heading.position.y = 1
-			heading.add_theme_color_override("font_color", DS3.PARCHMENT if is_instance_valid(foe) or selected else DS3.TEXT)
+			heading.text = "%s  %s · %s%s" % [STAGES[stage], DATA.TACTIC_NAMES[DATA.TACTICS.find(order.tactic)], "Цель: " if assigned else "", target_text]
+			heading.position.y = 0
+			heading.add_theme_color_override("font_color", DS3.PARCHMENT.lightened(0.20) if assigned else DS3.TEXT)
 			ending.text = end
-			ending.add_theme_color_override("font_color", DS3.PARCHMENT if stage == orders.size() - 1 else DS3.TEXT.darkened(0.14))
+			ending.add_theme_color_override("font_color", DS3.PARCHMENT.lightened(0.12) if stage == orders.size() - 1 else DS3.TEXT)
 			tile.tooltip_text = heading.text + "\n" + end
 			tile.accessibility_name = pilot.role_name(role) + " · " + tile.tooltip_text
 
@@ -314,6 +398,8 @@ func refresh() -> void:
 	condition.visible = not last
 	limit.visible = not last
 	limit_label.visible = not last
+	var timed: bool = order.condition == "time"
+	limit_label.text = "Длительность" if timed else "Если не выполнено"
 	var foe := DATA.target_of(order)
 	var assigned := is_instance_valid(foe) and foe.alive
 	target_button.text = pilot.enemy_label(foe) if assigned else "Выбрать цель"
@@ -324,9 +410,10 @@ func refresh() -> void:
 		target_button.tooltip_text = "На следующей волне действует приоритет цели."
 	target_button.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	clear_button.visible = assigned
-	var next := "Действует до конца боя." if last else "Следующий приказ через %d с." % order.limit
-	if not last and order.condition != "time":
-		next = "Если условие не выполнено — перейти через %d с." % order.limit
+	var next := "Действует до конца боя."
+	if not last:
+		var seconds := "%d %s" % [order.limit, "секунды" if int(order.limit) in [2, 3, 4] else "секунд"]
+		next = "Через %s перейти к следующему приказу." % seconds if timed else "%s или через %s." % [CONDITIONS[condition.selected], seconds]
 	explanation.text = TACTIC_HINTS[tactic.selected] + "  " + next
 	refreshing = false
 
@@ -371,6 +458,8 @@ func update_hover(enemy: BattleUnit) -> void:
 		marker.scale = Vector2.ONE * (1.14 if candidate == enemy else 1.0)
 
 func update_live(delta: float) -> void:
+	if hover_source != null:
+		_update_plan_marker()
 	hud.visible = pilot.battle.combat_live and not pilot.battle.battle_finished
 	if not hud.visible:
 		return

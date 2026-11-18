@@ -1,3 +1,7 @@
+## Combat Planning UX V3.1 — playtest polish
+
+Distinguish timed duration from event fallback. Link an overview hover to its hero or assigned enemy with a temporary arena marker. Add a trash icon with a stage-specific tooltip and improve order text contrast. Add an eight-battle gameplay playtest guide.
+
 ## Combat Planning UX V3 — one preparation panel
 
 Move order editing into the same bottom panel as the squad overview. Keep the arena open while editing or choosing a target. Return to the overview with changes applied and start the battle from the updated plan. Use the same interaction during wave breaks.

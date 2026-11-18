@@ -1,6 +1,6 @@
-## Combat Planning UX V3 — isolated QA candidate
+## Combat Planning UX V3.1 — ready for gameplay playtest
 
-PR #117 now uses one bottom panel for the squad overview or order editor. Target picking reduces that panel to a single line. Review the free arena and the «К плану» return path. Same-encounter target rebinding, survivor replanning and exact legacy assault parity remain covered by native QA. [Pilot guide and evidence](COMBAT_PLANNING_PILOT.md). User review is required before merging.
+The player approved the V3 two-mode layout. PR #117 adds contextual timer labels, temporary arena markers linked to the overview, an explicit last-order removal control, and stronger text contrast. The next review is the [eight-battle gameplay playtest](COMBAT_PLANNING_PLAYTEST.md). [Pilot guide and evidence](COMBAT_PLANNING_PILOT.md). User review is required before merging.
 
 # Misdeal — current project state
 

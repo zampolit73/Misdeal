@@ -1,3 +1,7 @@
+## Combat Planning UX V3.1 — gameplay review next
+
+The player approved the V3 two-mode structure. V3.1 completes the interface pass with distinct timed and conditional limit language, a temporary overview hover marker, a last-order remove icon, and clearer row text. The next decision follows the gameplay playtest on PR #117.
+
 ## Combat Planning UX V3 — one bottom panel
 
 Overview and order detail replace each other within the same bottom panel. Target picking temporarily reduces the panel to a single hint and returns to the selected order on confirmation or cancellation. Start is available in the overview. The same layout is used between waves, with rows for survivors. This replaces the V2 screen layout in PR #117.

@@ -1,4 +1,4 @@
-# Combat Planning 1.0 — UX V3 pilot
+# Combat Planning 1.0 — UX V3.1 pilot
 
 ## Scope and launch
 
@@ -8,7 +8,7 @@ Every experiment uses the exact existing Grave Bell roster/stats and party multi
 
 ## Editing and observation
 
-The bottom board shows one row per available hero, with tactic, assigned enemy or priority and a short transition label. Hover for the full order label. Click an order to replace the overview with its settings in the same bottom panel. «К плану» returns to the overview with edits applied, including a typed limit. Use «+ Приказ» to add the next slot and «−» to remove the last one. The final order reads «До конца боя» and its editor omits transition and limit controls. The central arena and normal placement remain available in both modes. Start the battle from the refreshed overview.
+The bottom board shows one row per available hero, with tactic, assigned enemy or priority and a short transition label. Hover the hero's name or an order with an explicit enemy to mark that unit's feet in the overview. Click an order to edit it in the same bottom panel. «К плану» returns with changes applied, including a typed limit. «Длительность» is the time before a timed order advances. «Если не выполнено» is the fallback for an event. Use «+ Приказ» to add the next slot and the trash symbol by the hero's name to remove the last one. Its tooltip names the stage. The final order reads «До конца боя» and omits transition controls. Start the battle from the overview.
 
 «Выбрать цель» collapses the bottom panel to a single hint line and shows numbered enemies. Hover shows the name. Click the enemy or its badge, or cancel with Escape, right-click or «Отмена». Either path reopens the same order. «Снять» removes the assignment. During combat the HUD shows each living hero's stage, tactic and remaining time, with a brief notice giving the actual transition trigger. After combat, the summary shows HP, kills, stage completions, timeouts and deaths from the existing journal. «Подробная хронология» reveals its full chronology.
 
@@ -53,6 +53,8 @@ These are observations, not desired outcomes or universal balance claims. The sa
 ## Verification and limits
 
 GUT covers the original combat contract. The native runner checks that the overview, editor and target prompt use the same lower panel and are mutually exclusive. It exercises order editing, typed limit commit, target picking, cross-encounter reset, the Start button, report editing and wave-break preparation. Actual intro and pause checks and 15 controlled Grave Bell fights remain in the runner. [UX V3 and comparison with V2](qa/combat-planning-ux-v3/README.md).
+
+V3.1 native checks also exercise the two timer captions, hero and enemy hover markers, marker removal on exit and combat start, target clearing, and stage removal down to one order. [V3.1 native screenshots](qa/combat-planning-ux-v31/README.md). [Eight-battle gameplay playtest](COMBAT_PLANNING_PLAYTEST.md).
 
 Run full GUT normally; focused tests: `--script addons/gut/gut_cmdln.gd -gselect=test_combat_planning -gexit`. Native: `--windowed --resolution 1280x720 --rendering-method gl_compatibility --script res://scripts/dev/combat_planning_capture.gd -- <absolute-output-dir>`. Runner writes `comparison.json`, `wave_check.json` and actual setup/editor/live/report PNGs. CI retains them in the standard evidence artifact.
 

@@ -1,6 +1,6 @@
-## Next review: Combat Planning UX V3
+## Next review: Combat Planning gameplay playtest
 
-Open `scenes/dev/combat_planning_pilot.tscn` with F6 (also QA Hub → Бой). In the default trio, edit Ranger II and return with «К плану». Open Mage I and pick the Bellkeeper. Check that picking leaves only a bottom hint and returns to Mage I. Start from the overview, then use «Изменить план» to verify that the assignment and edited limit remain. User review is the merge gate for [PR #117](https://github.com/zampolit73/Misdeal/pull/117). [Pilot guide](COMBAT_PLANNING_PILOT.md).
+Open `scenes/dev/combat_planning_pilot.tscn` with F6 (also QA Hub → Бой). Use the [eight-battle playtest](COMBAT_PLANNING_PLAYTEST.md) to compare legacy and planning in solo, duo and trio. The V3.1 interface pass is complete. The player now evaluates decision time, battle variety and the desire to revise a plan. User review is the merge gate for [PR #117](https://github.com/zampolit73/Misdeal/pull/117).
 
 # Misdeal — current handoff
 
