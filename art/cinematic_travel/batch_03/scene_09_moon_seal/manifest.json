@@ -1,0 +1,96 @@
+{
+  "id": "moon_seal",
+  "title": "Лунная печать",
+  "route": [
+    [
+      125,
+      634
+    ],
+    [
+      665,
+      674
+    ],
+    [
+      1168,
+      626
+    ]
+  ],
+  "horizon": 276,
+  "height": 181,
+  "facing": "side",
+  "art": "Круглый погребальный двор под лунным просветом. Чаша на оси света и отдельная низкая полка.",
+  "handoff": null,
+  "foreground": [
+    [
+      0,
+      500
+    ],
+    [
+      65,
+      505
+    ],
+    [
+      76,
+      546
+    ],
+    [
+      0,
+      559
+    ]
+  ],
+  "folder": "scene_09_moon_seal",
+  "states": [
+    {
+      "choice": "keep",
+      "action": "keep",
+      "condition": "Доступно без дополнительных условий.",
+      "effect": "+10 золота, kept, факт promise.",
+      "party": "same",
+      "visual": "Серебро в раскрытом свёртке у чаши, рядом монеты.",
+      "narration": "Под серебром лежат монеты. Камень запоминает знак.",
+      "overlay": "outcomes/keep.png",
+      "preview": "preview/keep.jpg"
+    },
+    {
+      "choice": "sell",
+      "action": "sell",
+      "condition": "Доступно без дополнительных условий.",
+      "effect": "+30 золота, sold, факт promise и память greed.",
+      "party": "same",
+      "visual": "Чаша пуста, на полке плата.",
+      "narration": "Серебро исчезает. Плата остаётся на камне.",
+      "overlay": "outcomes/sell.png",
+      "preview": "preview/sell.jpg"
+    },
+    {
+      "choice": "burn",
+      "action": "burn",
+      "condition": "Доступно без дополнительных условий.",
+      "effect": "−10 HP отряда, +1 урон, burned, факт promise.",
+      "party": "same",
+      "visual": "Обломки печати в жаровне.",
+      "narration": "Печать рассыпается в жаровне.",
+      "overlay": "outcomes/burn.png",
+      "preview": "preview/burn.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "leave",
+      "condition": "Доступно без дополнительных условий.",
+      "effect": "left, без награды.",
+      "party": "same",
+      "visual": "Серебро в чаше.",
+      "narration": "Печать остаётся в чаше.",
+      "overlay": "outcomes/leave.png",
+      "preview": "preview/leave.jpg"
+    }
+  ],
+  "master": "master/scene.webp",
+  "planes": {
+    "architecture": "master/scene.webp",
+    "foreground": "layers/foreground.png"
+  },
+  "phase_assets": {
+    "entry": "layers/entry.png"
+  }
+}

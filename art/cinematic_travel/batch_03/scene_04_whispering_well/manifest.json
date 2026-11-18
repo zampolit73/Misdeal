@@ -1,0 +1,219 @@
+{
+  "id": "whispering_well",
+  "title": "Шепчущий колодец",
+  "route": [
+    [
+      126,
+      659
+    ],
+    [
+      995,
+      591
+    ],
+    [
+      1187,
+      354
+    ]
+  ],
+  "horizon": 223,
+  "height": 179,
+  "facing": "ne",
+  "art": "Каменная чаша под лесными корнями, единственная лампа на кромке и обводящая её каменная тропа.",
+  "handoff": [
+    "mage",
+    1.12,
+    [
+      488,
+      395
+    ],
+    [
+      488,
+      392
+    ],
+    [
+      675,
+      532
+    ]
+  ],
+  "foreground": [
+    [
+      1280,
+      403
+    ],
+    [
+      1215,
+      437
+    ],
+    [
+      1131,
+      525
+    ],
+    [
+      991,
+      600
+    ],
+    [
+      819,
+      720
+    ],
+    [
+      1280,
+      720
+    ]
+  ],
+  "folder": "scene_04_whispering_well",
+  "states": [
+    {
+      "choice": "accept",
+      "action": "rescue_blood",
+      "condition": "Маг доступен для найма.",
+      "effect": "Присоединение мага. Шёпот под кожей, −12 макс. HP протагониста. well_resolved.",
+      "party": "+mage",
+      "visual": "Мокрый маг выбирается, на краю остаётся повязка.",
+      "narration": "Вода чернеет. Маг выбирается на камни.",
+      "overlay": "outcomes/rescue_blood.png",
+      "preview": "preview/rescue_blood.jpg"
+    },
+    {
+      "choice": "accept",
+      "action": "gift_upgrade",
+      "condition": "Найм недоступен, доп. развитие доступно. Приоритет магу, иначе наименее развитому доступному.",
+      "effect": "−15 HP отряда и доп. развитие. well_resolved.",
+      "party": "same",
+      "visual": "Опрокинутая фляга и мокрый край.",
+      "narration": "Глоток воды обжигает горло.",
+      "overlay": "outcomes/gift_upgrade.png",
+      "preview": "preview/gift_upgrade.jpg"
+    },
+    {
+      "choice": "pay",
+      "action": "rescue_gold",
+      "condition": "Найм мага, золото ≥25.",
+      "effect": "−25 золота, присоединение мага. well_resolved.",
+      "party": "+mage",
+      "visual": "Пустой кошель на краю. Маг выходит из колодца.",
+      "narration": "Монеты исчезают. Колодец отпускает мага.",
+      "overlay": "outcomes/rescue_gold.png",
+      "preview": "preview/rescue_gold.jpg"
+    },
+    {
+      "choice": "pay",
+      "action": "pay_relic",
+      "condition": "Найм недоступен, золото ≥25, получена реликвия.",
+      "effect": "−25 золота и фактическая реликвия. well_resolved.",
+      "party": "same",
+      "visual": "Мокрый свёрток у края. Тип реликвии в штатном тексте.",
+      "narration": "Со дна всплывает добытая реликвия.",
+      "overlay": "outcomes/pay_relic.png",
+      "preview": "preview/pay_relic.jpg"
+    },
+    {
+      "choice": "pay",
+      "action": "pay_upgrade",
+      "condition": "Найм недоступен, золото ≥25, реликвий нет, развитие доступно.",
+      "effect": "−25 золота, доп. развитие наименее развитого доступного. well_resolved.",
+      "party": "same",
+      "visual": "Открытый кошель и распахнутая обмотка, без реликвии.",
+      "narration": "Монета уходит под воду. Дар меняет одного из героев.",
+      "overlay": "outcomes/pay_upgrade.png",
+      "preview": "preview/pay_upgrade.jpg"
+    },
+    {
+      "choice": "pay",
+      "action": "pay_refund",
+      "condition": "Защитная ветка обработчика. Кнопка обычно недоступна при отсутствии наград.",
+      "effect": "25 золота возвращаются, well_resolved.",
+      "party": "same",
+      "visual": "Монеты остаются на краю до подбора.",
+      "narration": "Колодец возвращает монету.",
+      "overlay": "outcomes/pay_refund.png",
+      "preview": "preview/pay_refund.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "leave_lost",
+      "condition": "Маг был доступен для найма.",
+      "effect": "Судьба мага lost, well_resolved.",
+      "party": "mage lost",
+      "visual": "Лицо на уровне кромки уходит ниже камня.",
+      "narration": "Голос за спиной стихает.",
+      "overlay": "outcomes/leave_lost.png",
+      "preview": "preview/leave_lost.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "leave",
+      "condition": "Найм недоступен.",
+      "effect": "well_resolved, без награды.",
+      "party": "same",
+      "visual": "Чёрная вода и тихая лампа.",
+      "narration": "Колодец затихает.",
+      "overlay": null,
+      "preview": "preview/leave.jpg"
+    }
+  ],
+  "occlusion": [
+    [
+      267,
+      326
+    ],
+    [
+      282,
+      346
+    ],
+    [
+      330,
+      365
+    ],
+    [
+      385,
+      377
+    ],
+    [
+      432,
+      381
+    ],
+    [
+      512,
+      376
+    ],
+    [
+      558,
+      370
+    ],
+    [
+      603,
+      360
+    ],
+    [
+      644,
+      331
+    ],
+    [
+      681,
+      314
+    ],
+    [
+      683,
+      515
+    ],
+    [
+      350,
+      542
+    ],
+    [
+      268,
+      512
+    ]
+  ],
+  "master": "master/scene.webp",
+  "planes": {
+    "architecture": "master/scene.webp",
+    "foreground": "layers/foreground.png",
+    "handoff_occlusion": "layers/handoff_occlusion.png"
+  },
+  "phase_assets": {
+    "entry": "layers/entry.png",
+    "sink": "layers/sink.png"
+  }
+}

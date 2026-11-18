@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Misdeal · Cinematic Travel Batch 03</title>
+<style>
+:root{color-scheme:dark;--bg:#151217;--panel:#211b22;--line:#49383e;--text:#f1e4d6;--muted:#c5b8ae;--gold:#deb16b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,sans-serif}
+header,main{max-width:1340px;margin:auto;padding:24px}header{border-bottom:1px solid var(--line)}h1,h2{font-family:Georgia,serif;line-height:1.1}h1{font-size:clamp(28px,5vw,52px);margin:0 0 12px}
+h2{font-size:clamp(24px,3vw,36px);margin:15px 0 9px}p{max-width:78ch;margin:8px 0 14px}.muted,small{color:var(--muted)}a{color:var(--gold)}
+nav,.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}nav a,button,select{border:1px solid var(--line);border-radius:5px;padding:7px 12px;background:var(--panel);color:var(--text);font:inherit}nav a{text-decoration:none}
+a:hover,button:hover{border-color:var(--gold);color:var(--gold)}button:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--gold)}
+canvas,img{display:block;width:100%;height:auto}canvas{aspect-ratio:16/9;background:#0e0d11;margin:12px 0 8px;border:1px solid var(--line)}
+.controls{justify-content:flex-start;margin:12px 0;gap:12px}.scrub{flex:1;min-width:150px}input[type=range]{width:100%;accent-color:var(--gold)}.stageinfo{min-height:3.5em}
+details,section{margin:12px 0 20px}summary{cursor:pointer;color:var(--gold)}#covers{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:12px}
+#covers a,.outcome{background:var(--panel);border:1px solid var(--line);border-radius:5px;overflow:hidden}.caption{padding:8px 12px}
+.outcomes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:12px}.outcome p{font-size:14px}
+label{display:inline-flex;align-items:center;gap:6px}output{font-variant-numeric:tabular-nums}#gallery{padding-top:8px}
+</style></head><body>
+<header>
+<h1>Misdeal · Cinematic Travel Batch 03</h1>
+<p>10 локаций, 72 состояния. Выберите событие и исход. Кнопка движения показывает четырёхсекундную постановку с героями Misdeal. Названия и нарратив размещены отдельно от арта.</p>
+<div class="row"><a href="MISDEAL_BATCH_03_CONTACT.jpg">Контактная галерея</a><a href="OUTCOME_MATRIX.md">Матрица исходов</a><a href="BATCH_03_HANDOFF.md">Передача в Codex</a></div>
+</header>
+<main>
+<section id="covers" aria-label="Все локации"></section>
+<section id="gallery" aria-label="Просмотр исходов">
+<h2 id="title"></h2>
+<p id="description"></p>
+<div class="row controls">
+<label>Событие <select id="scene"></select></label>
+<label>Исход <select id="action"></select></label>
+<label>Отряд <select id="party"></select></label>
+</div>
+<canvas id="shot" width="1280" height="720" aria-label="Кадр поставленной сцены"></canvas>
+<div class="row controls">
+<button id="play" type="button">Движение</button>
+<button id="finish" type="button">К последнему кадру</button>
+<label class="scrub"><input id="time" type="range" min="0" max="4" step=".01" value="2.2" aria-label="Время кадра"></label>
+<output id="clock" for="time">2,20 с</output>
+<label><input id="route" type="checkbox">Маршрут</label>
+<label><input id="hideActors" type="checkbox">Только арт</label>
+</div>
+<p class="stageinfo" id="narration" aria-live="polite"></p>
+<div class="row"><a id="master" target="_blank">Мастер 1280×720</a><a id="current" target="_blank">Кадр исхода 1280×720</a><a id="comparison" target="_blank">Сравнение исходов</a></div>
+<details><summary>Все полноразмерные состояния этой сцены</summary><div id="outcomes" class="outcomes"></div></details>
+</section></main>
+<script id="production" type="application/json">__DATA__</script>
+<script>
+"use strict";
+const data = JSON.parse(document.querySelector("#production").textContent);
+const $ = key => document.getElementById(key);
+const canvas = $("shot"), ctx = canvas.getContext("2d");
+const images = new Map();
+let scene, state, party, serial = 0, start = null, time = 2.2;
+const roles = ["knight","ranger","mage"];
+const roleText = {knight:"Рыцарь",ranger:"Следопыт",mage:"Маг"};
+const groups = roles.map(r=>[r]).concat([["knight","ranger"],["knight","mage"],["ranger","mage"],roles]);
+const option = (key, text) => new Option(text,key);
+const local = file => scene.folder+"/"+file;
+const lerp = (a,b,t) => a.map((v,i)=>v+(b[i]-v)*t);
+const clamp = (v,a=0,b=1) => Math.max(a,Math.min(b,v));
+const smooth = (a,b,t) => {let u=clamp((t-a)/(b-a));return u*u*(3-2*u);};
+function resource(path){
+  if(!images.has(path)){
+    const im = new Image();
+    im.src=path;
+    images.set(path,im);
+    im.onload=()=>draw();
+  }
+  const im=images.get(path);
+  return im.complete && im.naturalWidth ? im : null;
+}
+function plane(path, alpha=1){
+  if(!path || alpha<=0)return;
+  const im=resource(local(path));
+  if(!im)return;
+  ctx.globalAlpha=alpha;
+  ctx.drawImage(im,0,0,1280,720);
+  ctx.globalAlpha=1;
+}
+function road(progress){
+  const [a,b,c]=scene.route;
+  return lerp(lerp(a,b,progress),lerp(b,c,progress),progress);
+}
+function actor(role, foot, facing, frame, height, angleScale=1){
+  const im=resource("preview_actors/"+facing+"_"+role+".png");
+  if(!im)return;
+  const meta=data.frames[facing][role], sf=height/meta.height;
+  const [x,y]=foot;
+  ctx.fillStyle="rgba(10,6,8,.35)";
+  ctx.beginPath();ctx.ellipse(x,y,10*sf,2.8*sf,0,0,Math.PI*2);ctx.fill();
+  ctx.imageSmoothingEnabled=false;
+  ctx.drawImage(im,frame*96,0,96,96,x-48*sf*angleScale,y-meta.soles[frame]*sf,96*sf*angleScale,96*sf);
+  ctx.imageSmoothingEnabled=true;
+}
+function artPhase(t){
+  const isJoining = state.party.startsWith("+");
+  const endsWaiting = state.party.endsWith(" lost") || (scene.id==="jack" && !isJoining);
+  const entryForAll = scene.id==="bone_tax" || scene.id==="moon_seal";
+  const change = isJoining ? scene.handoff[1] : .84;
+  if (scene.id==="whispering_well" && state.action==="leave_lost"){
+    if(t<1.38)plane(state.overlay);
+    else if(t<2.45)plane(scene.phase_assets.sink,1-smooth(1.72,2.45,t));
+    return;
+  }
+  if(scene.id==="jack" && isJoining && t>=.63 && t<change){plane(scene.phase_assets.treatment);return;}
+  if((isJoining || endsWaiting || entryForAll) && t<change && scene.phase_assets.entry){
+    plane(scene.phase_assets.entry);
+  }else{plane(state.overlay);}
+}
+function draw(){
+  if(!scene || !state)return;
+  const t=time;
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.fillStyle="#0e0d11";ctx.fillRect(0,0,1280,720);
+  ctx.setTransform(1.009,0,0,1.009,-3.4-t*1.2,-3);
+  plane(scene.master);
+  artPhase(t);
+  const moving=[];
+  const joined=state.party.startsWith("+") ? state.party.split(" ")[0].slice(1) : "";
+  const remaining=party.filter(r=>r!==joined);
+  let rangerFoot;
+  for(let i=0;i<remaining.length;i++){
+    const role=remaining[i], rank=i;
+    const first = .025+.16*(remaining.length-1);
+    const u=first+(.97-first)*t/4-rank*.16;
+    const foot=road(u);
+    foot[1]+=rank*6;
+    if(role==="ranger")rangerFoot=foot;
+    moving.push({role,foot,frame:Math.floor(t*6.5+i*1.1)%6,facing:scene.facing});
+  }
+  if(joined && scene.handoff && t>=scene.handoff[1]){
+    const [_,at,bodyPos,entry,merge]=scene.handoff;
+    const rest=clamp((t-at)/(4-at));
+    const endpoint=joined==="jack" && rangerFoot ? [rangerFoot[0]-30,rangerFoot[1]+15] : road(.88);
+    const foot=lerp(lerp(entry,merge,rest),lerp(merge,endpoint,rest),rest);
+    moving.push({role:joined,foot,frame:Math.floor((t-at)*6.5)%6,facing:joined==="jack"?"side":scene.facing});
+  }
+  if(!$("hideActors").checked){
+    moving.sort((a,b)=>a.foot[1]-b.foot[1]);
+    for(const o of moving){
+      const ratio=clamp((o.foot[1]-scene.horizon)/(scene.route[0][1]-scene.horizon),.30,1.17);
+      actor(o.role,o.foot,o.facing,o.frame,scene.height*ratio*(o.role==="jack"?.47:1));
+    }
+  }
+  if(joined==="mage" && scene.id==="whispering_well" && t<1.93)plane(scene.planes.handoff_occlusion);
+  plane(scene.planes.foreground);
+  if($("route").checked){
+    const [a,b,c]=scene.route;
+    ctx.strokeStyle="#ffd185";ctx.lineWidth=4;ctx.setLineDash([12,8]);
+    ctx.beginPath();ctx.moveTo(...a);ctx.quadraticCurveTo(...b,...c);ctx.stroke();ctx.setLineDash([]);
+    for(const [x,y] of [a,b,c]){ctx.fillStyle="#ffd185";ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fill();}
+  }
+  ctx.setTransform(1,0,0,1,0,0);
+  $("time").value=t;
+  $("clock").textContent=t.toLocaleString("ru-RU",{minimumFractionDigits:2,maximumFractionDigits:2})+" с";
+  $("narration").textContent=t>=.92 ? state.narration : "";
+}
+function stop(){start=null;serial++;$("play").textContent="Движение";}
+function setAction(index){
+  stop();
+  state=scene.states[index];
+  $("current").href=local(state.preview);
+  const allowed = groups.filter(gr=>{
+    if(scene.id==="jack")return gr.includes("ranger");
+    if(state.action==="witnessless")return gr.length===1;
+    if(state.party.startsWith("+"))return gr.length>=2 && gr.includes(state.party.slice(1));
+    if(state.party.endsWith(" lost"))return !gr.includes(state.party.split(" ")[0]);
+    return !roles.includes(state.action) || gr.includes(state.action);
+  });
+  $("party").replaceChildren(...allowed.map((g,i)=>option(i,g.map(r=>roleText[r]).join(" · "))));
+  party=allowed[0];
+  $("party").onchange=()=>{party=allowed[Number($("party").value)];draw();};
+  time=2.2;draw();
+}
+function setScene(index){
+  scene=data.scenes[index];
+  $("scene").value=index;
+  $("title").textContent=scene.title;
+  $("description").textContent=scene.art;
+  $("master").href=local(scene.master);
+  $("comparison").href=local("preview/compare.jpg");
+  $("action").replaceChildren(...scene.states.map((s,i)=>option(i,s.action)));
+  $("outcomes").replaceChildren(...scene.states.map(s=>{
+    const card=document.createElement("article");
+    card.className="outcome";
+    const link=document.createElement("a");link.href=local(s.preview);link.target="_blank";
+    const im=document.createElement("img");im.src=local(s.preview);im.alt=s.visual;im.loading="lazy";link.append(im);
+    const text=document.createElement("p");text.className="caption";text.textContent=s.action+" — "+s.visual+" "+s.narration;
+    card.append(link,text);return card;
+  }));
+  setAction(0);
+}
+$("scene").replaceChildren(...data.scenes.map((s,i)=>option(i,s.title)));
+$("scene").onchange=()=>setScene(Number($("scene").value));
+$("action").onchange=()=>setAction(Number($("action").value));
+$("time").oninput=()=>{stop();time=Number($("time").value);draw();};
+$("route").onchange=draw;
+$("hideActors").onchange=draw;
+$("finish").onclick=()=>{stop();time=4;draw();};
+$("play").onclick=()=>{
+  if(start!==null){stop();return;}
+  if(time>=3.99 || time===2.2)time=0;
+  start=performance.now()-time*1000;
+  const run=++serial;
+  $("play").textContent="Пауза";
+  function frame(now){
+    if(run!==serial || start===null)return;
+    time=clamp((now-start)/1000,0,4);
+    draw();
+    if(time===4){stop();return;}
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+};
+$("covers").append(...data.scenes.map((s,i)=>{
+  const a=document.createElement("a");a.href="#gallery";
+  const im=document.createElement("img");im.src=s.folder+"/"+s.master;im.alt=s.title;im.loading="lazy";
+  const label=document.createElement("div");label.className="caption";label.textContent=s.title;
+  a.append(im,label);a.onclick=()=>setScene(i);return a;
+}));
+setScene(0);
+</script></body></html>

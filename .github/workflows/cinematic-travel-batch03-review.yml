@@ -1,0 +1,43 @@
+name: Build Cinematic Travel Batch 03 review package
+on:
+  push:
+    branches:
+      - art/cinematic-travel-batch-03
+    paths:
+      - '.github/workflows/cinematic-travel-batch03-review.yml'
+      - 'art/cinematic_travel/batch_03/source/**'
+      - 'art/cinematic_travel/batch_03/production/**'
+      - 'art/cinematic_travel/batch_03/staging.json'
+      - 'art/cinematic_travel/batch_03/**/*.md'
+permissions:
+  contents: write
+concurrency:
+  group: cinematic-travel-batch03-review
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: art/cinematic-travel-batch-03
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install Pillow==11.3.0
+      - name: Render and verify image payloads
+        run: python art/cinematic_travel/batch_03/render_package.py "${RUNNER_TEMP}/MISDEAL_CINEMATIC_TRAVEL_BATCH_03.zip"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MISDEAL_CINEMATIC_TRAVEL_BATCH_03
+          path: ${{ runner.temp }}/MISDEAL_CINEMATIC_TRAVEL_BATCH_03.zip
+          compression-level: 0
+          retention-days: 90
+      - name: Publish reviewed-format assets on the art branch
+        run: |
+          git add art/cinematic_travel/batch_03
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'art: render and verify 72 Batch 03 travel outcomes'
+            git push origin HEAD:refs/heads/art/cinematic-travel-batch-03
+          fi

@@ -1,0 +1,144 @@
+{
+  "id": "ash_rest",
+  "title": "Пепельный привал",
+  "route": [
+    [
+      107,
+      628
+    ],
+    [
+      658,
+      617
+    ],
+    [
+      1175,
+      531
+    ]
+  ],
+  "horizon": 221,
+  "height": 176,
+  "facing": "ne",
+  "art": "Холодная низина, сухие берёзы, пепельное кольцо и следы прошлого лагеря.",
+  "handoff": [
+    "ranger",
+    1.03,
+    [
+      515,
+      527
+    ],
+    [
+      535,
+      533
+    ],
+    [
+      759,
+      592
+    ]
+  ],
+  "foreground": [
+    [
+      0,
+      644
+    ],
+    [
+      61,
+      659
+    ],
+    [
+      119,
+      720
+    ],
+    [
+      0,
+      720
+    ]
+  ],
+  "folder": "scene_06_ash_rest",
+  "states": [
+    {
+      "choice": "recruit",
+      "action": "recruit",
+      "condition": "Следопыт доступен для найма.",
+      "effect": "Присоединение следопыта. Шрам дороги, −8 макс. HP протагониста.",
+      "party": "+ranger",
+      "visual": "Сиденье освобождается, угли коротко оживают.",
+      "narration": "Следопыт поднимается и идёт за вами.",
+      "overlay": "outcomes/recruit.png",
+      "preview": "preview/recruit.jpg"
+    },
+    {
+      "choice": "loot",
+      "action": "loot",
+      "condition": "Следопыт доступен для найма.",
+      "effect": "+20 золота, судьба следопыта lost.",
+      "party": "ranger lost",
+      "visual": "Следопыт у пепла, припасов больше нет.",
+      "narration": "Припасы забраны. Следопыт остаётся у пепла.",
+      "overlay": "outcomes/loot.png",
+      "preview": "preview/loot.jpg"
+    },
+    {
+      "choice": "abandon",
+      "action": "abandon",
+      "condition": "Следопыт доступен для найма.",
+      "effect": "Судьба следопыта lost, без награды.",
+      "party": "ranger lost",
+      "visual": "Сидящий следопыт и нетронутые припасы.",
+      "narration": "Рассвет застаёт следопыта у погасшего огня.",
+      "overlay": "outcomes/abandon.png",
+      "preview": "preview/abandon.jpg"
+    },
+    {
+      "choice": "knight",
+      "action": "knight",
+      "condition": "Найм недоступен, развитие рыцаря доступно.",
+      "effect": "Доп. развитие рыцаря.",
+      "party": "same",
+      "visual": "Перевязь и накладка доспеха у камня.",
+      "narration": "Рыцарь подтягивает перевязь.",
+      "overlay": "outcomes/knight.png",
+      "preview": "preview/knight.jpg"
+    },
+    {
+      "choice": "ranger",
+      "action": "ranger",
+      "condition": "Найм недоступен, развитие следопыта доступно.",
+      "effect": "Доп. развитие следопыта.",
+      "party": "same",
+      "visual": "Лук и тетива у холодного пепла.",
+      "narration": "Следопыт проверяет тетиву.",
+      "overlay": "outcomes/ranger.png",
+      "preview": "preview/ranger.jpg"
+    },
+    {
+      "choice": "mage",
+      "action": "mage",
+      "condition": "Найм недоступен, развитие мага доступно.",
+      "effect": "Доп. развитие мага.",
+      "party": "same",
+      "visual": "Угли светятся под хворостом.",
+      "narration": "Маг раздувает угли.",
+      "overlay": "outcomes/mage.png",
+      "preview": "preview/mage.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "leave",
+      "condition": "Найм недоступен.",
+      "effect": "Без награды.",
+      "party": "same",
+      "visual": "Пустое место у камня, холодный пепел.",
+      "narration": "Пепел остаётся остывать.",
+      "overlay": null,
+      "preview": "preview/leave.jpg"
+    }
+  ],
+  "master": "master/scene.webp",
+  "planes": {
+    "architecture": "master/scene.webp",
+    "foreground": "layers/foreground.png"
+  },
+  "phase_assets": {
+    "entry": "layers/entry.png"
+  }
+}

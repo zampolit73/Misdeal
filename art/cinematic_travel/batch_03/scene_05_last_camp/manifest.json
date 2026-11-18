@@ -1,0 +1,144 @@
+{
+  "id": "last_camp",
+  "title": "Последний привал",
+  "route": [
+    [
+      114,
+      611
+    ],
+    [
+      771,
+      614
+    ],
+    [
+      1192,
+      423
+    ]
+  ],
+  "horizon": 238,
+  "height": 172,
+  "facing": "ne",
+  "art": "Медный закат над перевалом. Тёплый костёр, низкий лекарский стол и защищённый навес разнесены.",
+  "handoff": [
+    "knight",
+    1.06,
+    [
+      290,
+      515
+    ],
+    [
+      321,
+      527
+    ],
+    [
+      658,
+      560
+    ]
+  ],
+  "foreground": [
+    [
+      0,
+      617
+    ],
+    [
+      155,
+      642
+    ],
+    [
+      227,
+      720
+    ],
+    [
+      0,
+      720
+    ]
+  ],
+  "folder": "scene_05_last_camp",
+  "states": [
+    {
+      "choice": "recruit_blood",
+      "action": "rescue_blood",
+      "condition": "Рыцарь доступен для найма.",
+      "effect": "Присоединение рыцаря. Шрам цепей, −10 макс. HP протагониста.",
+      "party": "+knight",
+      "visual": "Пустое ложе и красная повязка, рыцарь догоняет отряд.",
+      "narration": "Вы поднимаете рыцаря. Последний огонь остаётся позади.",
+      "overlay": "outcomes/rescue_blood.png",
+      "preview": "preview/rescue_blood.jpg"
+    },
+    {
+      "choice": "recruit_gold",
+      "action": "rescue_gold",
+      "condition": "Найм рыцаря, золото ≥30 с фактом march, иначе ≥35.",
+      "effect": "−30/35 золота, присоединение рыцаря.",
+      "party": "+knight",
+      "visual": "Ложе пусто, у лекарских принадлежностей оплата.",
+      "narration": "Лекарь убирает монеты. Рыцарь снова держит меч.",
+      "overlay": "outcomes/rescue_gold.png",
+      "preview": "preview/rescue_gold.jpg"
+    },
+    {
+      "choice": "abandon_loot",
+      "action": "abandon_loot",
+      "condition": "Рыцарь доступен для найма.",
+      "effect": "+40 золота, судьба рыцаря lost.",
+      "party": "knight lost",
+      "visual": "Раненый у костра, рядом только пустые ремни.",
+      "narration": "Снаряжение забрано. Рыцарь остаётся у огня.",
+      "overlay": "outcomes/abandon_loot.png",
+      "preview": "preview/abandon_loot.jpg"
+    },
+    {
+      "choice": "knight",
+      "action": "knight",
+      "condition": "Найм недоступен, развитие рыцаря доступно.",
+      "effect": "Доп. развитие рыцаря.",
+      "party": "same",
+      "visual": "Щит и перевязь на столе в свете огня.",
+      "narration": "Рыцарь заканчивает подготовку.",
+      "overlay": "outcomes/knight.png",
+      "preview": "preview/knight.jpg"
+    },
+    {
+      "choice": "ranger",
+      "action": "ranger",
+      "condition": "Найм недоступен, развитие следопыта доступно.",
+      "effect": "Доп. развитие следопыта.",
+      "party": "same",
+      "visual": "Натянутый лук на снаряжении.",
+      "narration": "Следопыт проверяет тетиву.",
+      "overlay": "outcomes/ranger.png",
+      "preview": "preview/ranger.jpg"
+    },
+    {
+      "choice": "mage",
+      "action": "mage",
+      "condition": "Найм недоступен, развитие мага доступно.",
+      "effect": "Доп. развитие мага.",
+      "party": "same",
+      "visual": "Посох в развёрнутой обмотке.",
+      "narration": "Маг проверяет последний приём перед дорогой.",
+      "overlay": "outcomes/mage.png",
+      "preview": "preview/mage.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "leave",
+      "condition": "Найм недоступен.",
+      "effect": "Без награды.",
+      "party": "same",
+      "visual": "Снаряжение не раскладывали, огонь продолжает гореть.",
+      "narration": "До надзирателя совсем немного.",
+      "overlay": null,
+      "preview": "preview/leave.jpg"
+    }
+  ],
+  "master": "master/scene.webp",
+  "planes": {
+    "architecture": "master/scene.webp",
+    "foreground": "layers/foreground.png"
+  },
+  "phase_assets": {
+    "entry": "layers/entry.png"
+  }
+}

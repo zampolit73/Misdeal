@@ -1,0 +1,105 @@
+{
+  "id": "jack",
+  "title": "Джек",
+  "route": [
+    [
+      128,
+      659
+    ],
+    [
+      963,
+      630
+    ],
+    [
+      1198,
+      441
+    ]
+  ],
+  "horizon": 264,
+  "height": 171,
+  "facing": "ne",
+  "art": "Низкий ракурс, разрушенный лесной порог, сухое сено и широкая тропа за берёзами.",
+  "handoff": [
+    "jack",
+    1.16,
+    [
+      379,
+      523
+    ],
+    [
+      408,
+      529
+    ],
+    [
+      650,
+      635
+    ]
+  ],
+  "foreground": [
+    [
+      0,
+      652
+    ],
+    [
+      93,
+      631
+    ],
+    [
+      176,
+      663
+    ],
+    [
+      232,
+      720
+    ],
+    [
+      0,
+      720
+    ]
+  ],
+  "folder": "scene_03_jack",
+  "states": [
+    {
+      "choice": "recruited",
+      "action": "recruited",
+      "condition": "В отряде следопыт, событие впервые, золото ≥25.",
+      "effect": "−25 золота. Пёс привязан к следопыту, место героя свободно. Сохраняется recruited.",
+      "party": "+jack animal",
+      "visual": "Лапа перевязана. Джек выходит из укрытия вслед за следопытом.",
+      "narration": "Следопыт затягивает повязку. Джек идёт следом.",
+      "overlay": "outcomes/recruited.png",
+      "preview": "preview/recruited.jpg"
+    },
+    {
+      "choice": "passed",
+      "action": "passed",
+      "condition": "В отряде следопыт, событие впервые.",
+      "effect": "Сохраняется passed, без награды.",
+      "party": "same",
+      "visual": "Пёс остаётся у порога с жетоном.",
+      "narration": "Джек остаётся у развалин.",
+      "overlay": "outcomes/passed.png",
+      "preview": "preview/passed.jpg"
+    },
+    {
+      "choice": "token",
+      "action": "token",
+      "condition": "В отряде следопыт, событие впервые.",
+      "effect": "Сохраняется token. Урон следопыта ×1,10 до конца забега.",
+      "party": "same",
+      "visual": "Пёс остаётся у порога. Медальон снят с ошейника.",
+      "narration": "Следопыт уносит жетон. Джек остаётся у развалин.",
+      "overlay": "outcomes/token.png",
+      "preview": "preview/token.jpg"
+    }
+  ],
+  "master": "master/scene.webp",
+  "planes": {
+    "architecture": "master/scene.webp",
+    "foreground": "layers/foreground.png"
+  },
+  "phase_assets": {
+    "entry": "layers/entry.png",
+    "treatment": "layers/treatment.png"
+  }
+}

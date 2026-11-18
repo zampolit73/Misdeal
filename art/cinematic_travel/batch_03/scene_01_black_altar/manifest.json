@@ -1,0 +1,144 @@
+{
+  "id": "black_altar",
+  "title": "Чёрный алтарь",
+  "route": [
+    [
+      106,
+      643
+    ],
+    [
+      659,
+      638
+    ],
+    [
+      1172,
+      628
+    ]
+  ],
+  "horizon": 293,
+  "height": 184,
+  "facing": "side",
+  "art": "Неф в скальном разломе. Холодный просвет слева, алтарный камень справа, дорога ниже ступеней.",
+  "handoff": [
+    "mage",
+    1.02,
+    [
+      1054,
+      337
+    ],
+    [
+      1065,
+      346
+    ],
+    [
+      1137,
+      578
+    ]
+  ],
+  "foreground": [
+    [
+      0,
+      578
+    ],
+    [
+      60,
+      617
+    ],
+    [
+      87,
+      720
+    ],
+    [
+      0,
+      720
+    ]
+  ],
+  "folder": "scene_01_black_altar",
+  "states": [
+    {
+      "choice": "recruit_blood",
+      "action": "rescue_blood",
+      "condition": "Маг доступен для найма.",
+      "effect": "Присоединение мага. Шёпот под кожей, −12 макс. HP протагониста.",
+      "party": "+mage",
+      "visual": "Круг гаснет, повязка на камне, маг подходит к группе.",
+      "narration": "Круг гаснет. Маг спускается вслед за вами.",
+      "overlay": "outcomes/rescue_blood.png",
+      "preview": "preview/rescue_blood.jpg"
+    },
+    {
+      "choice": "recruit_gold",
+      "action": "rescue_gold",
+      "condition": "Найм мага, золото ≥35.",
+      "effect": "−35 золота, присоединение мага.",
+      "party": "+mage",
+      "visual": "Монеты темнеют в чаше, камень освобождается.",
+      "narration": "Монеты чернеют. Маг выходит из круга.",
+      "overlay": "outcomes/rescue_gold.png",
+      "preview": "preview/rescue_gold.jpg"
+    },
+    {
+      "choice": "abandon_loot",
+      "action": "abandon_loot",
+      "condition": "Маг доступен для найма.",
+      "effect": "+40 золота, судьба мага lost.",
+      "party": "mage lost",
+      "visual": "Маг остаётся на камне, кошель вывернут.",
+      "narration": "Ритуал заканчивается за вашей спиной.",
+      "overlay": "outcomes/abandon_loot.png",
+      "preview": "preview/abandon_loot.jpg"
+    },
+    {
+      "choice": "knight",
+      "action": "knight",
+      "condition": "Найм недоступен, есть доп. развитие рыцаря.",
+      "effect": "−20 HP отряда, развитие рыцаря.",
+      "party": "same",
+      "visual": "Щит и повязка у чаши.",
+      "narration": "Алтарь принимает кровь рыцаря.",
+      "overlay": "outcomes/knight.png",
+      "preview": "preview/knight.jpg"
+    },
+    {
+      "choice": "ranger",
+      "action": "ranger",
+      "condition": "Найм недоступен, есть доп. развитие следопыта.",
+      "effect": "−15 HP отряда, развитие следопыта.",
+      "party": "same",
+      "visual": "Лук и повязка у чаши.",
+      "narration": "Следопыт снова натягивает тетиву.",
+      "overlay": "outcomes/ranger.png",
+      "preview": "preview/ranger.jpg"
+    },
+    {
+      "choice": "mage",
+      "action": "mage",
+      "condition": "Найм недоступен, есть доп. развитие мага.",
+      "effect": "−20 HP отряда, развитие мага.",
+      "party": "same",
+      "visual": "Обмотка посоха и повязка у чаши.",
+      "narration": "Маг берётся за посох.",
+      "overlay": "outcomes/mage.png",
+      "preview": "preview/mage.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "leave",
+      "condition": "Найм недоступен, кнопка видна.",
+      "effect": "Без награды.",
+      "party": "same",
+      "visual": "Нетронутая чаша.",
+      "narration": "Алтарь ждёт следующего путника.",
+      "overlay": null,
+      "preview": "preview/leave.jpg"
+    }
+  ],
+  "master": "master/scene.webp",
+  "planes": {
+    "architecture": "master/scene.webp",
+    "foreground": "layers/foreground.png"
+  },
+  "phase_assets": {
+    "entry": "layers/entry.png"
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "id": "echo_crypt",
+  "title": "Склеп отзвуков",
+  "route": [
+    [
+      112,
+      662
+    ],
+    [
+      670,
+      654
+    ],
+    [
+      1179,
+      635
+    ]
+  ],
+  "horizon": 286,
+  "height": 166,
+  "facing": "side",
+  "art": "Два тяжёлых ряда колонн и узкий оссуарий. На переднем плане отдельный постамент, справа массивный дверной проём. В широком исходнике слева видна вода.",
+  "handoff": null,
+  "foreground": [
+    [
+      0,
+      619
+    ],
+    [
+      1280,
+      696
+    ],
+    [
+      1280,
+      720
+    ],
+    [
+      0,
+      720
+    ]
+  ],
+  "folder": "scene_10_echo_crypt",
+  "crop": [
+    887,
+    0,
+    2167,
+    720
+  ],
+  "states": [
+    {
+      "choice": "relic",
+      "action": "relic_kept",
+      "condition": "moon_seal kept, фактическая реликвия получена.",
+      "effect": "Реликвия, без HP-штрафа, opened, факт conflict.",
+      "party": "same",
+      "visual": "Целый замок открытой двери, два приказа и футляр.",
+      "narration": "Печать открывает дверь. За ней — два приказа.",
+      "overlay": "outcomes/relic_kept.png",
+      "preview": "preview/relic_kept.jpg"
+    },
+    {
+      "choice": "relic",
+      "action": "relic_forced",
+      "condition": "moon_seal не kept, фактическая реликвия получена.",
+      "effect": "−15 HP отряда, реликвия, opened.",
+      "party": "same",
+      "visual": "Открытая дверь с выбитым клином, футляр.",
+      "narration": "Замок поддаётся. За вскрытие пришлось заплатить.",
+      "overlay": "outcomes/relic_forced.png",
+      "preview": "preview/relic_forced.jpg"
+    },
+    {
+      "choice": "relic",
+      "action": "empty_kept",
+      "condition": "moon_seal kept, реликвий нет.",
+      "effect": "+35 золота, без HP-штрафа, opened, факт conflict.",
+      "party": "same",
+      "visual": "Открытый пустой реликварий и два приказа.",
+      "narration": "Под печатью — два приказа. Реликварий пуст.",
+      "overlay": "outcomes/empty_kept.png",
+      "preview": "preview/empty_kept.jpg"
+    },
+    {
+      "choice": "relic",
+      "action": "empty_plain",
+      "condition": "moon_seal не kept, реликвий нет.",
+      "effect": "+35 золота, без HP-штрафа, opened.",
+      "party": "same",
+      "visual": "Пустой реликварий, монеты, без следов взлома.",
+      "narration": "Реликварий пуст. На камне остаются монеты.",
+      "overlay": "outcomes/empty_plain.png",
+      "preview": "preview/empty_plain.jpg"
+    },
+    {
+      "choice": "gold",
+      "action": "gold_kept",
+      "condition": "moon_seal kept.",
+      "effect": "+40 золота, gold.",
+      "party": "same",
+      "visual": "Большое приношение, знак в гнезде.",
+      "narration": "Вы забираете подношения. Камень помнит знак.",
+      "overlay": "outcomes/gold_kept.png",
+      "preview": "preview/gold_kept.jpg"
+    },
+    {
+      "choice": "gold",
+      "action": "gold_plain",
+      "condition": "moon_seal не kept.",
+      "effect": "+25 золота, gold.",
+      "party": "same",
+      "visual": "Малое приношение и пустое гнездо.",
+      "narration": "Подношения убраны с камня.",
+      "overlay": "outcomes/gold_plain.png",
+      "preview": "preview/gold_plain.jpg"
+    },
+    {
+      "choice": "listen",
+      "action": "listen_kept",
+      "condition": "moon_seal kept.",
+      "effect": "−5 HP отряда, +1,5 урона, listened, факт conflict.",
+      "party": "same",
+      "visual": "Дверь закрыта, печать в гнезде, два свитка.",
+      "narration": "Печать приглушает голос. Слышны два приказа.",
+      "overlay": "outcomes/listen_kept.png",
+      "preview": "preview/listen_kept.jpg"
+    },
+    {
+      "choice": "listen",
+      "action": "listen_plain",
+      "condition": "moon_seal не kept.",
+      "effect": "−15 HP отряда, +1,5 урона, listened, факт conflict.",
+      "party": "same",
+      "visual": "Два свитка и перевязь, гнездо пусто.",
+      "narration": "Два приказа звучат один за другим.",
+      "overlay": "outcomes/listen_plain.png",
+      "preview": "preview/listen_plain.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "leave",
+      "condition": "Доступно без дополнительных условий.",
+      "effect": "left, без награды.",
+      "party": "same",
+      "visual": "Нетронутая закрытая дверь и пустой постамент.",
+      "narration": "Дверь закрыта. Склеп затихает.",
+      "overlay": null,
+      "preview": "preview/leave.jpg"
+    }
+  ],
+  "master": "master/scene.webp",
+  "planes": {
+    "architecture": "master/scene.webp",
+    "foreground": "layers/foreground.png"
+  },
+  "phase_assets": {}
+}

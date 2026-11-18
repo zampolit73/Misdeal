@@ -1,0 +1,219 @@
+{
+  "id": "faceless_card",
+  "title": "Карта без лица",
+  "route": [
+    [
+      115,
+      641
+    ],
+    [
+      661,
+      657
+    ],
+    [
+      1160,
+      653
+    ]
+  ],
+  "horizon": 306,
+  "height": 169,
+  "facing": "side",
+  "art": "Бархатный стол на фоне чёрного окна. Карта читается отдельно от свечи и движения отряда.",
+  "handoff": null,
+  "foreground": [
+    [
+      0,
+      153
+    ],
+    [
+      67,
+      182
+    ],
+    [
+      68,
+      405
+    ],
+    [
+      42,
+      592
+    ],
+    [
+      0,
+      614
+    ]
+  ],
+  "folder": "scene_08_faceless_card",
+  "states": [
+    {
+      "choice": "reveal",
+      "action": "reveal_gold",
+      "condition": "Существующий бросок 0.",
+      "effect": "+60 золота.",
+      "party": "same",
+      "visual": "Лицевая сторона с золотой маской и монеты.",
+      "narration": "На карте проступает золотая маска.",
+      "overlay": "outcomes/reveal_gold.png",
+      "preview": "preview/reveal_gold.jpg"
+    },
+    {
+      "choice": "reveal",
+      "action": "reveal_relic",
+      "condition": "Существующий бросок 1, получена реликвия.",
+      "effect": "Фактическая случайная реликвия.",
+      "party": "same",
+      "visual": "Лицевая сторона открыта, рядом футляр полученной находки.",
+      "narration": "Карта открывает реликвию.",
+      "overlay": "outcomes/reveal_relic.png",
+      "preview": "preview/reveal_relic.jpg"
+    },
+    {
+      "choice": "reveal",
+      "action": "reveal_relic_empty",
+      "condition": "Бросок 1, пул пуст.",
+      "effect": "+35 золота.",
+      "party": "same",
+      "visual": "Пустое лицо и монеты у края.",
+      "narration": "Лицо остаётся пустым. На столе лежат монеты.",
+      "overlay": "outcomes/reveal_relic_empty.png",
+      "preview": "preview/reveal_relic_empty.jpg"
+    },
+    {
+      "choice": "reveal",
+      "action": "reveal_upgrade",
+      "condition": "Бросок 2, развитие получено.",
+      "effect": "Доп. развитие наименее развитого доступного.",
+      "party": "same",
+      "visual": "Линии нового приёма и ритуальные принадлежности.",
+      "narration": "Карта показывает возможное будущее.",
+      "overlay": "outcomes/reveal_upgrade.png",
+      "preview": "preview/reveal_upgrade.jpg"
+    },
+    {
+      "choice": "reveal",
+      "action": "reveal_upgrade_empty",
+      "condition": "Бросок 2, развитие недоступно.",
+      "effect": "+35 золота.",
+      "party": "same",
+      "visual": "Незавершённый оттиск, отдельно монеты.",
+      "narration": "Карта не находит, что изменить. Монеты остаются на столе.",
+      "overlay": "outcomes/reveal_upgrade_empty.png",
+      "preview": "preview/reveal_upgrade_empty.jpg"
+    },
+    {
+      "choice": "bribe",
+      "action": "bribe",
+      "condition": "Нет Шрама дороги, золото ≥30, развитие доступно.",
+      "effect": "−30 золота, доп. развитие наименее развитого доступного.",
+      "party": "same",
+      "visual": "Монеты видны под краем карты.",
+      "narration": "Карта принимает плату.",
+      "overlay": "outcomes/bribe.png",
+      "preview": "preview/bribe.jpg"
+    },
+    {
+      "choice": "bribe",
+      "action": "bribe_scar",
+      "condition": "Есть Шрам дороги, золото ≥15, развитие доступно.",
+      "effect": "−15 золота, то же развитие.",
+      "party": "same",
+      "visual": "Рубцы на картоне и меньшая плата.",
+      "narration": "Шрам указывает, где искать.",
+      "overlay": "outcomes/bribe_scar.png",
+      "preview": "preview/bribe_scar.jpg"
+    },
+    {
+      "choice": "burn",
+      "action": "burn_debt",
+      "condition": "Активен долг Волшебнику.",
+      "effect": "Долг снят.",
+      "party": "same",
+      "visual": "Обгоревшая карта, монет нет.",
+      "narration": "Край карты сгорает вместе с долгом.",
+      "overlay": "outcomes/burn_debt.png",
+      "preview": "preview/burn_debt.jpg"
+    },
+    {
+      "choice": "burn",
+      "action": "burn_gold",
+      "condition": "Долга нет.",
+      "effect": "+20 золота.",
+      "party": "same",
+      "visual": "В пепле остаются монеты.",
+      "narration": "Карта сгорает. Монеты остаются в пепле.",
+      "overlay": "outcomes/burn_gold.png",
+      "preview": "preview/burn_gold.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "witnessless",
+      "condition": "Solo и две потерянные судьбы, высший приоритет профиля.",
+      "effect": "+50 золота, outcome witnessless.",
+      "party": "same",
+      "visual": "Два плоских силуэта на карте, монеты.",
+      "narration": "На пустом лице проступают два пустых места.",
+      "overlay": "outcomes/witnessless.png",
+      "preview": "preview/witnessless.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "scarred_relic",
+      "condition": "Не witnessless, ≥2 шрама, реликвия получена.",
+      "effect": "Фактическая реликвия, outcome scarred.",
+      "party": "same",
+      "visual": "Рубцы и закрытый свёрток.",
+      "narration": "Карта читает шрамы и оставляет ответ на столе.",
+      "overlay": "outcomes/scarred_relic.png",
+      "preview": "preview/scarred_relic.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "scarred_empty",
+      "condition": "Не witnessless, ≥2 шрама, пул пуст.",
+      "effect": "+35 золота, outcome scarred.",
+      "party": "same",
+      "visual": "Рубцы и монеты.",
+      "narration": "Карта читает шрамы. Сегодня её ответ — монеты.",
+      "overlay": "outcomes/scarred_empty.png",
+      "preview": "preview/scarred_empty.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "riskbound_upgrade",
+      "condition": "Первые два порога не достигнуты, wagers + wizard_mark_accept ≥2, развитие получено.",
+      "effect": "Фактическое доп. развитие, outcome riskbound.",
+      "party": "same",
+      "visual": "Оттиски принятых условий и свёрнутые записи.",
+      "narration": "Карта узнаёт принятые условия.",
+      "overlay": "outcomes/riskbound_upgrade.png",
+      "preview": "preview/riskbound_upgrade.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "riskbound_empty",
+      "condition": "Тот же профиль, развитие недоступно.",
+      "effect": "+35 золота, outcome riskbound.",
+      "party": "same",
+      "visual": "Оттиски условий, бумаги и монеты.",
+      "narration": "Карта узнаёт условия. Нового приёма у неё больше нет.",
+      "overlay": "outcomes/riskbound_empty.png",
+      "preview": "preview/riskbound_empty.jpg"
+    },
+    {
+      "choice": "leave",
+      "action": "leave",
+      "condition": "Профиль пустой.",
+      "effect": "Без награды и новой записи.",
+      "party": "same",
+      "visual": "Карта лицом вниз.",
+      "narration": "Карта так и не показывает лица.",
+      "overlay": null,
+      "preview": "preview/leave.jpg"
+    }
+  ],
+  "master": "master/scene.webp",
+  "planes": {
+    "architecture": "master/scene.webp",
+    "foreground": "layers/foreground.png"
+  },
+  "phase_assets": {}
+}
