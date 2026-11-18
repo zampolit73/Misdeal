@@ -137,8 +137,8 @@ func build(owner_pilot: Node) -> void:
 		for index in range(4):
 			SKIN.glyph(header_engraving, "end", Vector2(10 + index * 20, 8), 0.65, Color(SKIN.GILT, 0.53))
 	)
-	var hub := button(overview, "В хаб · F10", Vector2(790, 1), Vector2(114, 31), pilot.return_to_hub)
-	var settings := button(overview, "Настройки", Vector2(911, 1), Vector2(118, 31), pilot.show_setup)
+	var hub := button(overview, "Классика" if pilot.has_method("is_production_mode") and pilot.is_production_mode() else "В хаб · F10", Vector2(790, 1), Vector2(114, 31), pilot.return_to_hub)
+	var settings := button(overview, "Сброс плана" if pilot.has_method("is_production_mode") and pilot.is_production_mode() else "Настройки", Vector2(911, 1), Vector2(118, 31), pilot.show_setup)
 	start_button = button(overview, "Начать бой", Vector2(1036, 1), Vector2(164, 31), pilot.start_planned_battle)
 	SKIN.action(hub, panel_font)
 	SKIN.action(settings, panel_font)
