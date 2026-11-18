@@ -1,3 +1,7 @@
+## 2026-11-18 — Combat Planning campaign-wide integration (PR #117)
+
+User accepted the selected gothic V4 planning interface and approved rollout to every authored battle. Reuse the isolated BattleUnit plan policy in ordinary Battle, without a second combat engine or altered encounter files; enable the per-hero V4 dock across solo/duo/trio, all authored arenas, Bone Warden and Iron Wall two-wave replanning. Expose an explicit classic tactic fallback preserving rare Sacrifice/Defiance, keep non-persistent drafts between encounters within the current session and never reuse enemy object references across fights. Preserve the original win/reward/Last Deal route and provide optional factual post-fight plan review. Keep QA pilot isolated and add native full-roster/wave smoke to PR CI. Validation and production merge pending.
+
 ## Combat Planning Visual V4 — approved command board
 
 Apply DS3 bronze, parchment plates, red cloth, hero medallions and tactical glyphs to the live lower dock. Carry the same materials into the existing order editor and compact target picker. Retain the V3.1 interaction and battle rules.
