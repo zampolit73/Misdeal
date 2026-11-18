@@ -29,7 +29,7 @@ func spawn_battle(encounter_id: String, roles: Array[String]) -> Control:
 	for role in roles.slice(1):
 		state.call("recruit_companion", role, "Campaign Planning QA")
 	state.call("select_encounter", "res://resources/encounters/%s.tres" % encounter_id)
-	var battle := (load(BATTLE_SCENE) as PackedScene).instantiate()
+	var battle := (load(BATTLE_SCENE) as PackedScene).instantiate() as Control
 	root.add_child(battle)
 	return battle
 
