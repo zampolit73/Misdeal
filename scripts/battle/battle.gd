@@ -5,6 +5,7 @@ const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
+const CAMPAIGN_PLANNING := preload("res://scripts/battle/planning/battle_plan_campaign.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 const BATTLE_DS3_PASS := preload("res://scripts/battle/battle_ds3_pass.gd")
@@ -124,6 +125,8 @@ var black_lantern_light_controller: BlackLanternLightController
 var court_verdict_controller: CourtVerdictController
 var target_preview: BattleTargetPreview
 var deployment_floor_markers: Node2D
+@export var combat_planning_disabled := false
+var combat_plan_controller: Node
 
 func _ready() -> void:
 	if not RunState.has_chosen_protagonist():
@@ -202,6 +205,10 @@ func _ready() -> void:
 	_spawn_encounter()
 	_setup_target_preview()
 	_begin_preparation_phase()
+	if not combat_planning_disabled:
+		combat_plan_controller = CAMPAIGN_PLANNING.new()
+		add_child(combat_plan_controller)
+		combat_plan_controller.configure(self)
 
 func _setup_target_preview() -> void:
 	target_preview = TARGET_PREVIEW_SCRIPT.new() as BattleTargetPreview
@@ -1508,6 +1515,8 @@ func _begin_wave_intermission() -> void:
 	fight_button.visible = true
 	_refresh_wave_briefing()
 	_show_wizard_line(encounter.wave_intermission_wizard_line)
+	if combat_plan_controller != null:
+		combat_plan_controller.on_wave_intermission()
 
 
 func _start_second_wave() -> void:
@@ -1683,6 +1692,8 @@ func _finish_battle(player_won: bool) -> void:
 	result_subtitle.visible = true
 	fight_button.visible = false
 	fight_button.text = "БОЙ ОКОНЧЕН"
+	if combat_plan_controller != null:
+		combat_plan_controller.on_battle_finished(player_won)
 
 func _play_battle_audio(event_name: String) -> void:
 	if combat_audio != null and combat_audio.has_method("play_event"):
