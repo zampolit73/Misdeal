@@ -76,6 +76,7 @@ func _refresh_heroes() -> void:
 		if hero.team == 0 and hero.alive and hero.visual_role != "jack":
 			living.append(hero.visual_role)
 	ui.set_heroes(living)
+	ui.preserve_deployment_view()
 
 func editable() -> bool:
 	return planned and not using_classic and not battle.battle_finished and (not battle.combat_started or battle.wave_intermission)
@@ -155,6 +156,7 @@ func show_planning() -> void:
 	return_button.visible = false
 	_hide_classic()
 	ui.show_overview()
+	ui.preserve_deployment_view()
 
 func show_setup() -> void:
 	# In campaign, the QA "Settings" action becomes a visible safe reset.

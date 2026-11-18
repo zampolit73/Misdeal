@@ -10,13 +10,17 @@ const TACTIC_HINTS := ["Быстро сближается с целью.", "Уд
 const PREPARATION_WIDTH := 1224.0
 const PREPARATION_BOTTOM := 714.0
 
-enum PreparationMode { HIDDEN, OVERVIEW, EDIT, PICK_TARGET }
+enum PreparationMode { HIDDEN, OVERVIEW, EDIT, PICK_TARGET, FIELD }
 
 var pilot: Node
 var preparation: Panel
 var overview: Control
 var detail: Control
 var picker: Control
+var field: Control
+var field_button: Button
+var open_plan_button: Button
+var header_engraving: Control
 var start_button: Button
 var back_button: Button
 var cancel_button: Button
@@ -118,6 +122,7 @@ func build(owner_pilot: Node) -> void:
 	overview = _preparation_content()
 	detail = _preparation_content()
 	picker = _preparation_content()
+	field = _preparation_content()
 	var title_plate := Panel.new()
 	title_plate.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	title_plate.position = Vector2(22, 0)
@@ -129,7 +134,7 @@ func build(owner_pilot: Node) -> void:
 	board_title.add_theme_color_override("font_color", SKIN.PALE)
 	board_hint = _etched_label(overview, "", Vector2(255, 6), Vector2(437, 24), 13)
 	board_hint.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	var header_engraving := Control.new()
+	header_engraving = Control.new()
 	header_engraving.position = Vector2(698, 8)
 	header_engraving.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	overview.add_child(header_engraving)
@@ -139,6 +144,9 @@ func build(owner_pilot: Node) -> void:
 	)
 	var hub := button(overview, "Классика" if pilot.has_method("is_production_mode") and pilot.is_production_mode() else "В хаб · F10", Vector2(790, 1), Vector2(114, 31), pilot.return_to_hub)
 	var settings := button(overview, "Сброс плана" if pilot.has_method("is_production_mode") and pilot.is_production_mode() else "Настройки", Vector2(911, 1), Vector2(118, 31), pilot.show_setup)
+	field_button = button(overview, "Поле боя", Vector2(695, 1), Vector2(88, 31), show_field)
+	SKIN.action(field_button, panel_font)
+	field_button.hide()
 	start_button = button(overview, "Начать бой", Vector2(1036, 1), Vector2(164, 31), pilot.start_planned_battle)
 	SKIN.action(hub, panel_font)
 	SKIN.action(settings, panel_font)
@@ -183,6 +191,9 @@ func build(owner_pilot: Node) -> void:
 	_etched_label(picker, "Клик по врагу · Esc / ПКМ — отмена", Vector2(689, 6), Vector2(376, 30), 14)
 	cancel_button = button(picker, "Отмена", Vector2(1078, 6), Vector2(134, 30), pilot.cancel_target)
 	SKIN.action(cancel_button, panel_font)
+	_etched_label(field, "Расставьте героев, затем откройте боевой план.", Vector2(25, 6), Vector2(839, 30), 16)
+	open_plan_button = button(field, "Открыть боевой план", Vector2(958, 6), Vector2(237, 30), show_overview)
+	SKIN.action(open_plan_button, panel_font, true)
 	hud = panel(Vector2(838, 160), Vector2(414, 88))
 	DS3.apply_surface(hud, "battle")
 	hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -210,23 +221,42 @@ func _set_preparation_mode(mode: PreparationMode) -> void:
 	overview.visible = mode == PreparationMode.OVERVIEW
 	detail.visible = mode == PreparationMode.EDIT
 	picker.visible = mode == PreparationMode.PICK_TARGET
+	field.visible = mode == PreparationMode.FIELD
 	preparation.visible = mode != PreparationMode.HIDDEN
+	var compact := mode in [PreparationMode.PICK_TARGET, PreparationMode.FIELD]
 	var height := 37.0 + hero_roles.size() * 38.0
 	if mode == PreparationMode.EDIT:
 		height = 130.0
-	elif mode == PreparationMode.PICK_TARGET:
+	elif compact:
 		height = 44.0
 	preparation.size.y = height
 	preparation.position.y = PREPARATION_BOTTOM - height
-	preparation.add_theme_stylebox_override("panel", SKIN.frame(mode == PreparationMode.PICK_TARGET))
+	preparation.add_theme_stylebox_override("panel", SKIN.frame(compact))
 	for banner in banners:
-		banner.visible = mode != PreparationMode.PICK_TARGET and height >= 75
+		banner.visible = not compact and height >= 75
 		banner.size.y = maxf(38.0, height - 26)
 	bottom_seal.visible = mode in [PreparationMode.OVERVIEW, PreparationMode.EDIT]
 	bottom_seal.position.y = height - 20
 
 func hide_preparation() -> void:
 	_set_preparation_mode(PreparationMode.HIDDEN)
+
+func show_field() -> void:
+	_set_preparation_mode(PreparationMode.FIELD)
+
+func preserve_deployment_view() -> void:
+	# The approved frame extends five pixels above the dock. Open compactly if
+	# a living actor's ring/name reaches it on the authored preparation floor.
+	var frame_top := PREPARATION_BOTTOM - (37.0 + hero_roles.size() * 38.0) - 5.0
+	var overlaps := false
+	for unit in pilot.battle.units:
+		if unit.alive and unit.global_position.y + 56.0 > frame_top:
+			overlaps = true
+			break
+	field_button.visible = overlaps
+	header_engraving.visible = not overlaps
+	if overlaps:
+		show_field()
 
 func current_role() -> String:
 	return selected_role

@@ -51,7 +51,17 @@ func _run() -> void:
 		await process_frame
 		var driver: Node = battle.combat_plan_controller
 		if not verify(driver != null, encounter_id + " has no campaign planner"): return
-		if not verify(driver.ui != null and driver.ui.overview.visible, encounter_id + " overview missing"): return
+		if not verify(driver.ui != null, encounter_id + " planner UI missing"): return
+		if driver.ui.field.visible:
+			var frame_top: float = driver.ui.preparation.position.y - 5.0
+			for unit in battle.units:
+				if not verify(unit.global_position.y + 56.0 <= frame_top, encounter_id + " compact view covers a unit"): return
+			driver.ui.open_plan_button.pressed.emit()
+			if not verify(driver.ui.overview.visible and not driver.ui.field.visible, encounter_id + " cannot open plan from field"): return
+			driver.ui.field_button.pressed.emit()
+			if not verify(driver.ui.field.visible and not driver.ui.overview.visible, encounter_id + " cannot clear the deployment view"): return
+			driver.ui.open_plan_button.pressed.emit()
+		if not verify(driver.ui.overview.visible, encounter_id + " overview missing"): return
 		if not verify(driver.plans.has("knight") and driver.plans.size() == 1, encounter_id + " solo roles wrong"): return
 		if not verify(driver.first_wave_enemies.size() >= 1, encounter_id + " enemy roster empty"): return
 		if not verify(driver.ui.preparation.position.y >= 559.0, encounter_id + " panel outside lower strip"): return
@@ -59,7 +69,7 @@ func _run() -> void:
 		await cleanup_battle(battle)
 
 	# Verify all party sizes and live executor ownership against real battle.
-	for party in [["ranger"], ["knight", "mage"], ["knight", "ranger", "mage"]]:
+	for party in [["knight"], ["ranger"], ["mage"], ["knight", "mage"], ["knight", "ranger", "mage"]]:
 		var roles: Array[String] = []
 		roles.assign(party)
 		var battle := spawn_battle("grave_bell", roles)
@@ -89,6 +99,20 @@ func _run() -> void:
 	classic_driver.show_planning()
 	if not verify(not classic_driver.using_classic and classic_driver.ui.overview.visible, "cannot return to planning"): return
 	await cleanup_battle(classic)
+
+	# Actual low-floor trio is the largest V4 footprint.
+	var court := spawn_battle("court_of_the_mute", ["knight", "ranger", "mage"])
+	await process_frame
+	var court_ui: CanvasLayer = court.combat_plan_controller.ui
+	if not verify(court_ui.field.visible and not court_ui.overview.visible, "Court default must expose the low deployment floor"): return
+	var court_top: float = court_ui.preparation.position.y - 5.0
+	for unit in court.units:
+		if not verify(unit.global_position.y + 56.0 <= court_top, "Court player/enemy markers remain visible"): return
+	court_ui.open_plan_button.pressed.emit()
+	if not verify(court_ui.overview.visible and court_ui.tiles.size() == 3, "Court offers the full trio plan"): return
+	court_ui.field_button.pressed.emit()
+	if not verify(court_ui.field.visible and not court_ui.overview.visible, "Court can clear the floor again"): return
+	await cleanup_battle(court)
 
 	# The existing Iron Wall encounter must preserve re-planning for survivors.
 	var waves := spawn_battle("iron_wall", ["knight", "ranger", "mage"])

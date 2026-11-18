@@ -12,6 +12,7 @@
 ## Interaction
 
 - Before the first wave, the **approved V4 bottom dock** shows 1–3 independent commands per living Knight/Ranger/Mage. Dragging deployment and optional explicit enemy assignment remain available. Last stage persists; events have mandatory2–12-second fallbacks.
+- If the full dock would cover the existing deployment rings or nameplates, preparation opens in a compact field view. «Открыть боевой план» opens V4 and «Поле боя» brings the floor back without discarding orders. This keeps the Court of the Mute floor and all actor positions intact.
 - `Начать бой` attaches per-hero executors **before** the original battle start/intro. No policy clock begins until each living unit actually enters combat.
 - The one-time `Классика` link in the planning dock restores the original five-tactic preparation UI. `Боевой план` switches back. Rare `Жертва` / `Неповиновение` are **never** script steps, and the original unlock/consumption conditions remain authoritative.
 - After wave I, freeze and detach each executor; the normal `Battle` controls HP persistence, wave break and enemy spawn. Rebuild the dock for survivors only. New wave assignments to unseen concrete enemies are not offered; priorities still work. Starting wave II attaches fresh executors, does not grant special orders a second time and does not create another reward.

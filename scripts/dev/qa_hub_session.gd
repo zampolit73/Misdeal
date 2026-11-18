@@ -7,6 +7,7 @@ const DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
 var original_save: RefCounted
 var original_memory: RefCounted
 var original_state: Dictionary = {}
+var original_plan_drafts: Dictionary = {}
 var state: Node
 var sandbox := ""
 var last_entry: Dictionary = {}
@@ -39,6 +40,7 @@ func _ready() -> void:
 	for key in SAVE.FIELDS:
 		var value: Variant=state.get(key)
 		original_state[key]=value.duplicate(true) if value is Array or value is Dictionary else value
+	original_plan_drafts = state.get_meta("battle_plan_drafts", {}).duplicate(true)
 	original_save=SAVE.shared
 	original_memory=MEMORY.shared
 	sandbox="user://qa_hub/session_%s_%s" % [OS.get_process_id(),Time.get_ticks_usec()]
@@ -184,3 +186,4 @@ func _exit_tree() -> void:
 	MEMORY.shared=original_memory
 	if is_instance_valid(state):
 		for key in original_state: state.set(key,original_state[key])
+		state.set_meta("battle_plan_drafts", original_plan_drafts)
