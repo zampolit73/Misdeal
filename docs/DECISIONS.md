@@ -1,3 +1,9 @@
+## Combat Planning — user-approved campaign rollout (2026-11-18)
+
+The player tested the individual tactics and V4 visual dock, accepted the pilot and explicitly requested **all battles**, superseding the earlier QA-only restriction. Integrate the approved planner with the ordinary Battle scene for every authored encounter, solo/duo/trio and Bone Warden XIII. Preserve the same per-hero 1–3 order contract, transient explicit enemy assignments, mandatory event fallback timers, non-looping order flow, DS3/V4 art and real existing BattleUnit combat. Never regenerate another arena or fork the combat simulator.
+
+Do not turn Sacrifice/Defiance into programmable or cyclic steps; the planner provides an explicit switch to the original classic tactic UI when the player wishes to use rare orders. Avoid duplicate consumption or extra free commands in second waves. Preserve the original battle result and Last Deal UI rather than replacing them with a QA report. Drafts are safe per-run transient settings; not new save schema. The isolated F6 pilot remains accessible with its production adapter disabled. The rollout is approved for implementation, **not a claim that CI or F5 full-campaign validation already passed**. [Technical/QA contract](COMBAT_PLANNING_ROLLOUT.md).
+
 ## Combat Planning Visual V4 — approved reference
 
 Use the [approved command board](qa/combat-planning-visual-v4/approved_reference.png) for the PR #117 pilot. Preserve the V3.1 interaction and arena. Use live Godot text and controls over individual DS3 material surfaces and drawn symbols. The current visual review compares the [actual scene capture and reference](qa/combat-planning-visual-v4/README.md).
