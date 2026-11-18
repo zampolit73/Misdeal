@@ -28,7 +28,9 @@ func test_roundtrip_all_roles_and_no_partial_corrupt_load() -> void:
 		var data: Dictionary=service.snapshot(RunState)
 		assert_true(service.validate(data,RunState))
 		RunState.gold=999
+		RunState.set_meta("battle_plan_drafts", {"knight": [{"tactic": "hunt"}]})
 		assert_true(service.apply_slot(RunState,data))
+		assert_true(RunState.get_meta("battle_plan_drafts", {}).is_empty(), "Loading a saved run cannot inherit previous unsaved plans")
 		assert_eq(RunState.gold,123)
 		assert_eq(RunState.current_offer_ids,data.state.current_offer_ids)
 		assert_eq(RunState.remaining_card_ids,data.state.remaining_card_ids)
