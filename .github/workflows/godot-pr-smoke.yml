@@ -321,7 +321,7 @@ jobs:
           grep -Fq 'QA_HUB_NATIVE_PASS' "$out/capture.log"
           ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed|Failed to load script' "$out/capture.log"
 
-      - name: Campaign Combat Planning rollout: every encounter and wave
+      - name: "Campaign Combat Planning rollout — every encounter and wave"
         if: steps.scope.outputs.mode != 'docs'
         shell: bash
         run: |
