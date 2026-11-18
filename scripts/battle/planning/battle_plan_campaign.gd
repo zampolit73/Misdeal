@@ -31,8 +31,9 @@ func configure(owner_battle: Control) -> void:
 	for hero in battle.units:
 		if hero.team == 0 and hero.visual_role != "jack" and hero.alive:
 			var plan := PLAN.new()
-			if RunState.battle_plan_drafts.has(hero.visual_role):
-				plan.orders.assign(RunState.battle_plan_drafts[hero.visual_role].duplicate(true))
+			var drafts: Dictionary = RunState.get_meta("battle_plan_drafts", {})
+			if drafts.has(hero.visual_role):
+				plan.orders.assign(drafts[hero.visual_role].duplicate(true))
 				plan.orders = plan.copy_orders()
 			plans[hero.visual_role] = plan
 		elif hero.team == 1:
@@ -93,11 +94,13 @@ func clear_assignment(order: Dictionary) -> void:
 	order.erase("spawn_slot")
 
 func _persist_drafts() -> void:
+	var drafts: Dictionary = RunState.get_meta("battle_plan_drafts", {})
 	for role in plans:
 		var clean: Array[Dictionary] = plans[role].copy_orders()
 		for order in clean:
 			order.target = null
-		RunState.battle_plan_drafts[role] = clean
+		drafts[role] = clean
+	RunState.set_meta("battle_plan_drafts", drafts)
 
 func _hide_classic() -> void:
 	for name in ["BottomHudPanel", "FightHudPanel", "OrderLabel", "OrderDescription",
