@@ -5,9 +5,10 @@ from base64 import b64decode
 from hashlib import sha256
 from io import BytesIO
 import json
+from struct import pack
 from pathlib import Path
 import sys
-from zipfile import ZipFile, ZIP_DEFLATED
+from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 
 from PIL import Image, ImageChops, ImageCms, ImageDraw, ImageFont
 
@@ -15,7 +16,9 @@ ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parents[2]
 DATA = json.loads((ROOT / "staging.json").read_text(encoding="utf-8"))
 CANVAS = (1280, 720)
-PROFILE = ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB")).tobytes()
+PROFILE = bytearray(ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB")).tobytes())
+PROFILE[24:36] = pack(">6H",2026,11,18,0,0,0)
+PROFILE = bytes(PROFILE)
 SPRITES = {}
 CUTS = {}
 RESAMPLE = Image.Resampling.LANCZOS
@@ -90,6 +93,9 @@ def occluder(target, base, key):
     if key == "prison_bars":
         for x in (799,859,923):
             target.alpha_composite(base.crop((x-7,355,x+10,555)), (x-7,355))
+    elif key == "well_rim":
+        scene = next(s for s in DATA["scenes"] if s["id"] == "whispering_well")
+        poly_patch(target,base,(0,0,1280,720),scene["occlusion"])
     elif key == "prison_open":
         poly_patch(target, SPRITES["alcove"], (526,37,1106,582),
             [(526,545),(528,181),(559,153),(674,105),(821,63),(990,39),(1100,55),(1101,577),(915,574),(744,565)], .91)
@@ -148,6 +154,10 @@ def generate(scene):
     save(front,folder/"layers/foreground.png",optimize=True)
     scene["master"] = "master/scene.webp"
     scene["planes"] = {"architecture": "master/scene.webp", "foreground": "layers/foreground.png"}
+    if scene.get("occlusion"):
+        hold = layer(base,["@well_rim"])
+        save(hold,folder/"layers/handoff_occlusion.png",optimize=True)
+        scene["planes"]["handoff_occlusion"] = "layers/handoff_occlusion.png"
     scene["phase_assets"] = {}
     for phase in ("entry","treatment","sink"):
         if phase in scene["paint"]:
@@ -233,7 +243,8 @@ def main():
     output.parent.mkdir(parents=True,exist_ok=True)
     with ZipFile(output,"w",compression=ZIP_DEFLATED,compresslevel=6) as archive:
         for path in [*files,"ASSET_MANIFEST.json"]:
-            archive.write(ROOT/path,"batch_03/"+path)
+            item = ZipInfo("batch_03/"+path,date_time=(2026,11,18,0,0,0))
+            archive.writestr(item,(ROOT/path).read_bytes(),compress_type=ZIP_DEFLATED,compresslevel=6)
     with ZipFile(output) as archive:
         assert archive.testzip() is None
         for name, meta in files.items():

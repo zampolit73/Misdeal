@@ -142,6 +142,7 @@ function draw(){
       actor(o.role,o.foot,o.facing,o.frame,scene.height*ratio*(o.role==="jack"?.47:1));
     }
   }
+  if(joined==="mage" && scene.id==="whispering_well" && t<1.93)plane(scene.planes.handoff_occlusion);
   plane(scene.planes.foreground);
   if($("route").checked){
     const [a,b,c]=scene.route;
