@@ -171,6 +171,9 @@ func start_planned_battle() -> void:
 	if ui.limit != null:
 		ui.limit.apply()
 	cancel_target()
+	# Previous wave may have used an exclusive classic order; clear its global
+	# effects before the per-hero executors start (especially Sacrifice HP drain).
+	battle._select_tactical_order("assault", false)
 	_persist_drafts()
 	for hero in battle.units:
 		if hero.team != 0 or hero.visual_role == "jack" or not hero.alive:
@@ -294,6 +297,8 @@ func _show_review() -> void:
 func _process(delta: float) -> void:
 	if completed or not is_instance_valid(battle):
 		return
+	if using_classic and battle.combat_started and not battle.wave_intermission:
+		return_button.visible = false
 	if not using_classic:
 		ui.update_live(delta)
 
