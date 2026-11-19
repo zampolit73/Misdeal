@@ -1,3 +1,7 @@
+## Cinematic Travel Batch 03 — native review
+
+Continue on `review/cinematic-travel-batch-03`. Art provenance, fixture commands and QA Hub controls are in [the review contract](TRAVEL_BATCH03_REVIEW.md). The review branch uses the live event route. Final art and staging approval are pending.
+
 ## Combat Planning 1.0 on main
 
 PR #117 shipped the approved V4 planner in the shared campaign Battle. `battle_plan_campaign.gd` attaches it by default. The isolated F6 pilot explicitly opts out and remains available for comparison. [Rollout contract and release evidence](COMBAT_PLANNING_ROLLOUT.md)

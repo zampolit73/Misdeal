@@ -30,6 +30,8 @@
 
 ## Next work
 
+- [ ] Review the ten Batch 03 Travel locations in native Godot and record final art feedback before production approval. [Review contract](TRAVEL_BATCH03_REVIEW.md)
+
 - Handle concrete player feedback or separately agreed content tasks.
 - Preserve approved art/staging, current mechanics, balance, saves and existing architecture.
 - Keep known type/shutdown diagnostics visible; a broader technical cleanup is a separate task.

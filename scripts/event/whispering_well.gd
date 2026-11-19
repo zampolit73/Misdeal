@@ -1,6 +1,7 @@
 extends Control
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+const TRAVEL_CATALOG := preload("res://scripts/travel/travel_catalog.gd")
 
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const APPROVED_EVENT_CHOICE_ART := preload("res://scripts/ui/approved_event_choice_art.gd")
@@ -420,7 +421,7 @@ func _on_accept_gift() -> void:
 		RunState.resolve_whispering_well()
 		result_label.text = "Вода становится чёрной. Молодой маг выбирается наружу.\nШЁПОТ ПОД КОЖЕЙ: -12 макс. HP протагониста."
 		await get_tree().create_timer(0.8).timeout
-		_return_to_table()
+		_return_to_table("rescue_blood")
 		return
 
 	var role := ""
@@ -445,7 +446,7 @@ func _on_accept_gift() -> void:
 		upgrade.title
 	]
 	await get_tree().create_timer(0.8).timeout
-	_return_to_table()
+	_return_to_table("gift_upgrade")
 
 func _on_pay_coin() -> void:
 	if pay_button.disabled or RunState.gold < 25:
@@ -458,19 +459,22 @@ func _on_pay_coin() -> void:
 		RunState.resolve_whispering_well()
 		result_label.text = "Монеты исчезают без всплеска. Колодец отпускает молодого мага.\nТеперь он идёт с вами."
 		await get_tree().create_timer(0.8).timeout
-		_return_to_table()
+		_return_to_table("rescue_gold")
 		return
 
 	_disable_choices()
 	RunState.gold -= 25
 
+	var action := "pay_relic"
 	var artifact_id := RunState.add_random_available_artifact()
 	if artifact_id.is_empty():
 		var upgrade_id := RunState.add_extra_upgrade_to_least_developed_role()
 		if upgrade_id.is_empty():
+			action = "pay_refund"
 			RunState.gold += 25
 			result_label.text = "Монета возвращается на край колодца. Ему больше нечего предложить."
 		else:
+			action = "pay_upgrade"
 			var upgrade := RunState.get_hero_upgrade(upgrade_id)
 			result_label.text = "Монета исчезает. Вместо реликвии вода переписывает героя.\n%s получает развитие: %s." % [
 				_get_role_label(upgrade.target_role),
@@ -482,16 +486,19 @@ func _on_pay_coin() -> void:
 
 	RunState.resolve_whispering_well()
 	await get_tree().create_timer(0.8).timeout
-	_return_to_table()
+	_return_to_table(action)
 
 func _on_leave() -> void:
+	if leave_button.disabled:
+		return
 	_disable_choices()
-	if RunState.can_recruit_companion("mage"):
+	var lost_mage := RunState.can_recruit_companion("mage")
+	if lost_mage:
 		RunState.lose_companion("mage", "Вы услышали его голос в колодце и всё равно отошли.")
 	RunState.resolve_whispering_well()
 	result_label.text = "Ты отходишь от края. Волшебник тихо смеётся."
 	await get_tree().create_timer(0.65).timeout
-	_return_to_table()
+	_return_to_table("leave_lost" if lost_mage else "leave")
 
 func _get_role_label(role: String) -> String:
 	match role:
@@ -509,6 +516,8 @@ func _disable_choices() -> void:
 	pay_button.disabled = true
 	leave_button.disabled = true
 
-func _return_to_table() -> void:
+func _return_to_table(action: String) -> void:
+	var travel := TRAVEL_CATALOG.context_for("whispering_well", "", RunState.party_roles,
+		wizard_line.text, false, {"batch_03_action": action, "jack_companion": RunState.has_jack_companion()})
 	RunState.complete_active_card()
-	SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
+	SCENE_ROUTER.after_resolution(self, travel)

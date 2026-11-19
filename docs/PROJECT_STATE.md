@@ -1,3 +1,7 @@
+## Cinematic Travel Batch 03 — review branch
+
+The native review build extends Travel V2 with ten Act 1 locations and 72 committed event outcomes. Open the QA Hub and choose Batch 03 or an individual location. Production approval is pending. [Review contract](TRAVEL_BATCH03_REVIEW.md)
+
 ## Combat Planning 1.0 — production (2026-11-18)
 
 The shared campaign Battle uses the approved Visual V4 dock by default, with one to three independent orders per hero. All 22 authored combat encounters use it, including Iron Wall and Bone Warden XIII. The F6 comparison pilot opts out of the campaign controller. [Merged PR #117](https://github.com/zampolit73/Misdeal/pull/117)

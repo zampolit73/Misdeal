@@ -1,5 +1,7 @@
 extends "res://scripts/dev/travel_transition_playtest.gd"
+const HUB := preload("res://scripts/dev/qa_hub_catalog.gd")
 var driver: Script
+var cases: Array
 var first_case := 0
 var case_count := 1
 var local_case := 0
@@ -7,7 +9,9 @@ var local_case := 0
 func _ready() -> void:
 	var session := get_node_or_null("/root/QAHubSession")
 	var entry: Dictionary=session.last_entry if session!=null else {"batch":2,"case_start":0,"case_count":4}
-	driver=load("res://scripts/dev/travel_pilot_batch01_playtest.gd" if int(entry.get("batch",2))==1 else "res://scripts/dev/travel_batch02_playtest.gd")
+	var batch := clampi(int(entry.get("batch", 2)), 1, HUB.TRAVEL_DRIVERS.size())
+	driver = load(HUB.TRAVEL_DRIVERS[batch - 1])
+	cases = HUB.travel_cases(driver, batch)
 	first_case=int(entry.get("case_start",0))
 	case_count=int(entry.get("case_count",1))
 	if session!=null: roles.assign(session.last_options.get("roles",["knight","ranger","mage"]))
@@ -23,7 +27,7 @@ func _replay() -> void:
 	_update_help()
 
 func _update_help() -> void:
-	var row: Array=driver.get_script_constant_map().CASES[first_case+local_case]
+	var row: Array = cases[first_case + local_case]
 	help_label.text="←/→ — %d/%d · %s:%s · 1/2/3 — отряд · P — пауза · R — повтор" % [local_case+1,case_count,row[0],row[1]]
 
 func _unhandled_key_input(event: InputEvent) -> void:

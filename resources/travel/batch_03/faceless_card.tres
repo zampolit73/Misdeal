@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TravelTransitionData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/travel_transition_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/travel/batch_03_panorama.gd" id="2"]
+
+[resource]
+script = ExtResource("1")
+title = "Карта без лица"
+background_path = "res://assets/pixel/travel/batch_03/scene_08_faceless_card/master/scene.webp"
+panorama_script = ExtResource("2")
+fog_rect = Rect2(0, 0, 0, 0)
