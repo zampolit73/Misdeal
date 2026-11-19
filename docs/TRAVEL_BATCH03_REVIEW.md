@@ -11,7 +11,7 @@ F5 on `main` uses the live Event → Travel → Table path for all ten cards. Ve
 ## Runtime and QA contract
 
 - Events hand the exact committed action to the existing Travel catalog. The normal resolvers remain the authority for prices, artifacts, upgrades, RNG and party recruitment. The Well retains its existing delay and uses the same SceneRouter as the other events.
-- Travel V2 owns the clock, caption, skip, pause and route back. Batch 03 adds manifest-driven scenes and uses existing hero walk frames and the Jack atlas. The handoff, copy of party roles, and Jack display are presentation-only.
+- Travel V2 owns the clock, caption, skip, pause and route back. Batch 03 adds manifest-driven scenes and uses existing hero walk frames and the Jack atlas. The handoff and copy of party roles are presentation-only. `RunState.has_jack_companion()` gates the recruited walk, dossier card and independent battle plan.
 - `python3 scripts/ci/verify_travel_batch03.py` verifies all 98 assets against the frozen artwork and the recorded scale corrections. `scripts/dev/travel_batch03_capture.gd` drives real event buttons for all 72 outcomes and checks rewards, party, saves, skip, pause, reload and transition counts. The graphical CI retains captures at 0.65, 1.15 and 2.50 seconds.
 
 The release tree matches the tested review revision `3558db1`. [RELEASE CI](https://github.com/zampolit73/Misdeal/actions/runs/44551061968) passed the native route and integrity checks for all 72 outcomes and 98 assets. [216 frames on final artwork and route log](https://github.com/zampolit73/Misdeal/actions/runs/44551061968/artifacts/14544286966).
@@ -33,7 +33,7 @@ Adult Travel sprites use the scene-specific ground and architecture reference be
 | Moon Seal | 234 px | Bowl stand and side table |
 | Echo Crypt | 238 px | Sarcophagus lid and doorway |
 
-Jack's walk atlas is staged at 34% of adult height at the same depth. His resting or bandaged plate occupies a 114×64 placement on the shelter floor. The Well handoff uses the height implied by its landing while the front rim conceals the lower body. The scale review also resized seated or fallen NPCs, tabletop cards, the seal and crypt props. The resized art is composited from the original transparent cutouts. All ten master backgrounds and combat atlases retain their original hashes.
+Jack's walk atlas is staged at 45% of adult height at the same depth. After the recruited handoff he closes the distance to Ranger, then follows on the near edge of the path. His resting or bandaged plate occupies a 114×64 placement on the shelter floor. The Well handoff uses the height implied by its landing while the front rim conceals the lower body. The scale review also resized seated or fallen NPCs, tabletop cards, the seal and crypt props. The resized art is composited from the original transparent cutouts. All ten master backgrounds and combat atlases retain their original hashes.
 
 The frozen runtime art hashes remain under `sha256` and revisions are recorded under `scale_review_sha256` in `provenance.json`. The baseline review revision is [574e117](https://github.com/zampolit73/Misdeal/commit/574e11767feddc0a767375cf347d1bcfc0b42084).
 

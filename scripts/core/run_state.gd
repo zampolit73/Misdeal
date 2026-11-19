@@ -701,6 +701,8 @@ func get_party_roles_text() -> String:
 				names.append("Следопыт")
 			"mage":
 				names.append("Маг")
+	if has_jack_companion():
+		names.append("Джек")
 	return ", ".join(names)
 
 func get_artifact(artifact_id: String) -> ArtifactData:

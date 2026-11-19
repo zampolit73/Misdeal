@@ -269,8 +269,8 @@ func _ready() -> void:
 			health_bar.offset_top = -112.0
 			health_bar.offset_bottom = -105.0
 		if visual_role == "jack":
-			health_bar.offset_top = -46.0
-			health_bar.offset_bottom = -40.0
+			health_bar.offset_top = -54.0
+			health_bar.offset_bottom = -48.0
 		name_label.offset_top = 48.0
 		name_label.offset_bottom = 70.0
 	base_sprite_scale = art_sprite.scale

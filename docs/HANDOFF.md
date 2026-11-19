@@ -2,6 +2,8 @@
 
 [PR #119](https://github.com/zampolit73/Misdeal/pull/119) shipped all ten locations and 72 resolved event outcomes at `084c09a`. From `main`, start the campaign with F5 or open `scenes/dev/qa_hub.tscn` with F6 and select **Travel → Batch 03 — 72 исхода**. [Runtime contract, visual evidence and QA controls](TRAVEL_BATCH03_REVIEW.md)
 
+Recruited Jack appears in the Table dossier (key 4) and campaign Battle Planning. Check unseen, passed, token and recruited in `test_jack_event.gd`. `jack_event_capture.gd` covers the real recruit route, a four-member deployment, and the next wave.
+
 ## Combat Planning 1.0 on main
 
 PR #117 shipped the approved V4 planner in the shared campaign Battle. `battle_plan_campaign.gd` attaches it by default. The isolated F6 pilot explicitly opts out and remains available for comparison. [Rollout contract and release evidence](COMBAT_PLANNING_ROLLOUT.md)

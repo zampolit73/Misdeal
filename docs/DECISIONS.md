@@ -1,3 +1,7 @@
+## Jack's squad and battle slot
+
+Derive Jack's presence from the recruited event outcome and Ranger's membership. Build the dossier card and battle order row only when the companion is present. Jack keeps his own combat stats and deployable position alongside the three hero slots. Hero progression, encounter balancing and save fields continue to use the hero party contract.
+
 ## Cinematic Travel Batch 03 — production release (2026-11-19)
 
 The event resolver supplies the exact committed variant to Travel V2. The Well keeps its existing choice timing and joins the shared SceneRouter. Jack is a visual companion when present in the resolved Ranger party and occupies no hero slot. Batch 03 stages adult height against each location's ground plane and keeps walking Jack at 34% of adult stature at matching depth. Resized transparent layers keep original source hashes as the rollback reference. The user authorized the production rollout after the scale correction. [Merged PR #119](https://github.com/zampolit73/Misdeal/pull/119) · [Runtime contract](TRAVEL_BATCH03_REVIEW.md)

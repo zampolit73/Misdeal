@@ -178,3 +178,43 @@ func test_complete_original_dog_animation_pack_has_all_states_and_clear_spares()
 			var b := packed.get_pixel(x,y)
 			if a.a != b.a or (a.a > 0.0 and a != b): identical = false
 	assert_true(identical,"Runtime WebP preserves all visible RGBA pixels of the packed original poses")
+
+func test_jack_has_no_roster_card_or_plan_until_recruited() -> void:
+	for outcome in ["", "passed", "token", "recruited"]:
+		RunState.reset_run()
+		RunState.choose_protagonist("ranger")
+		if not outcome.is_empty():
+			RunState.set_event_outcome("jack", outcome)
+		var recruited: bool = outcome == "recruited"
+		var dossier := preload("res://scenes/table/squad_status.tscn").instantiate() as Control
+		add_child_autofree(dossier)
+		var battle := _battle()
+		var planner: Node = battle.combat_plan_controller
+		assert_eq(dossier.has_node("Frame/JackButton"), recruited)
+		assert_eq(planner.plans.has("jack"), recruited)
+		assert_eq(planner.ui.hero_roles.has("jack"), recruited)
+		assert_eq(RunState.get_party_roles_text().contains("Джек"), recruited)
+		dossier.call("_select_role", "jack", false)
+		assert_eq(dossier.current_role == "jack", recruited)
+		if recruited:
+			assert_not_null(dossier.get_node("Frame/PortraitFrame/Portrait").texture)
+			assert_true(dossier.get_node("Frame/Stats").text.contains("45"))
+			assert_false(dossier.get_node("Frame/UpgradeGem1").visible)
+			assert_false(dossier.get_node("Frame/RelicSlot1").visible)
+			dossier.call("_select_role", "ranger", false)
+			assert_true(dossier.get_node("Frame/UpgradeGem1").visible)
+			assert_true(dossier.get_node("Frame/RelicSlot1").visible)
+			var pet: BattleUnit
+			for unit in battle.units:
+				if unit.visual_role == "jack":
+					pet = unit
+			assert_not_null(pet)
+			assert_true(pet.placement_enabled)
+			planner.resize_plan("jack", 2)
+			assert_eq(planner.plans.jack.orders.size(), 2)
+			planner.start_planned_battle()
+			assert_true(planner.executors.has("jack"))
+			assert_eq(planner.executors.jack.unit().visual_role, "jack")
+		dossier.queue_free()
+		battle.queue_free()
+		await get_tree().process_frame

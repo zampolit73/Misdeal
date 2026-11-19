@@ -26,8 +26,19 @@ const ROLE_PORTRAIT_PATHS := SQUAD_DOSSIER_V3.PORTRAITS
 @onready var common_label: Label = $Frame/CommonPanel/Common
 
 var current_role := "knight"
+var roster_roles: Array[String] = ["knight", "ranger", "mage"]
 
 func _ready() -> void:
+	if RunState.has_jack_companion():
+		var jack_button := Button.new()
+		jack_button.name = "JackButton"
+		frame.add_child(jack_button)
+		jack_button.position = Vector2(26, 451)
+		jack_button.size = knight_button.size
+		jack_button.accessibility_name = "Джек"
+		jack_button.pressed.connect(_select_role.bind("jack"))
+		roster_roles.append("jack")
+		(frame.get_node("Hint") as Label).text = "1 / 2 / 3 / 4 — выбрать бойца     TAB — закрыть"
 	_apply_ui_kit()
 	MISDEAL_DS2_ROLLOUT.squad(self)
 	SQUAD_DOSSIER_V3.apply(self)
@@ -77,6 +88,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_3:
 				get_viewport().set_input_as_handled()
 				_select_role("mage")
+			KEY_4:
+				if "jack" in roster_roles:
+					get_viewport().set_input_as_handled()
+					_select_role("jack")
 
 func _close() -> void:
 	if close_button.disabled:
@@ -95,6 +110,8 @@ func _close() -> void:
 
 
 func _select_role(role: String, animate: bool = true) -> void:
+	if role not in roster_roles:
+		return
 	current_role = role
 	_refresh_role_buttons()
 	_refresh_hero()
@@ -109,12 +126,7 @@ func _animate_open() -> void:
 
 
 func _animate_role_switch(role: String) -> void:
-	var buttons := {
-		"knight": knight_button,
-		"ranger": ranger_button,
-		"mage": mage_button,
-	}
-	var selected_button := buttons.get(role) as Button
+	var selected_button := frame.get_node_or_null(role.capitalize() + "Button") as Button
 	if selected_button != null:
 		selected_button.pivot_offset = selected_button.size * 0.5
 		var button_tween := selected_button.create_tween()
@@ -178,10 +190,28 @@ func _refresh_role_buttons() -> void:
 
 func _refresh_hero() -> void:
 	hero_name.text = _get_role_label(current_role).capitalize()
+	common_label.text = _build_common_text()
+	var showing_jack := current_role == "jack"
+	(frame.get_node("BuildPanel/BuildTitle") as Label).text = "БОЕВАЯ РОЛЬ" if showing_jack else "РАЗВИТИЕ"
+	(frame.get_node("RelicsPanel/RelicsTitle") as Label).text = "СНАРЯЖЕНИЕ" if showing_jack else "РЕЛИКВИИ"
+	build_label.position.y = 178.0 if showing_jack else 265.0
+	build_label.size.y = 146.0 if showing_jack else 76.0
+	relics_label.position.y = 411.0 if showing_jack else 493.0
+	relics_label.size.y = 133.0 if showing_jack else 65.0
+	if showing_jack:
+		portrait.texture = SQUAD_DOSSIER_V3.jack_portrait()
+		portrait.modulate = Color.WHITE
+		hero_name.text = "Джек"
+		specialization.text = "БОЕВОЙ ПЁС"
+		specialization.add_theme_color_override("font_color", _get_role_color(current_role))
+		build_label.text = "Джек сражается в ближнем бою. Его можно расставить на поле и дать ему собственные приказы."
+		relics_label.text = "Джек использует свои боевые характеристики."
+		SQUAD_DOSSIER_V3.refresh_details(self, current_role, true)
+		DOSSIER_REFERENCE.refresh(self, current_role, true)
+		return
 	var portrait_path := String(ROLE_PORTRAIT_PATHS.get(current_role, ""))
 	if not portrait_path.is_empty():
 		portrait.call("load_webp_path", portrait_path, Vector2i(640, 960))
-	common_label.text = _build_common_text()
 
 	if not RunState.is_role_in_party(current_role):
 		var fate := RunState.get_companion_fate(current_role)
@@ -296,7 +326,7 @@ func _build_upgrades_text(role: String) -> String:
 	var upgrades := RunState.get_hero_upgrades_for_role(role)
 	var chunks: Array[String] = []
 	if role == "ranger" and RunState.has_jack_companion():
-		chunks.append("[color=#d3a16c][b]ВЕРНЫЙ ДЖЕК[/b][/color]\n[color=#bcae9e]Боевой пёс: 45 HP, урон 6. Место героя не занимает.[/color]")
+		chunks.append("[color=#d3a16c][b]ВЕРНЫЙ ДЖЕК[/b][/color]\n[color=#bcae9e]У Джека своя карточка, позиция в строю и боевые приказы.[/color]")
 	elif role == "ranger" and RunState.get_event_outcome("jack") == "token":
 		chunks.append("[color=#d3a16c][b]ОХОТНИЧИЙ ЖЕТОН[/b][/color]\n[color=#bcae9e]Урон следопыта +10% до конца забега.[/color]")
 	for upgrade in upgrades:
@@ -412,6 +442,8 @@ func _get_role_label(role: String) -> String:
 			return "СЛЕДОПЫТ"
 		"mage":
 			return "МАГ"
+		"jack":
+			return "ДЖЕК"
 		_:
 			return "ГЕРОЙ"
 

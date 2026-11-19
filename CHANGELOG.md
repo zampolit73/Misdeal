@@ -1,3 +1,7 @@
+## Jack — recruit-only squad and battle slot
+
+Jack gets a fourth dossier card, individual battle orders and a larger Travel and battle silhouette after recruitment. The three hero slots and saved Jack event outcome retain their existing meaning.
+
 ## 2026-11-19 — Cinematic Travel Batch 03 production release
 
 Release ten travel locations and 72 live event outcomes in `main` through [PR #119](https://github.com/zampolit73/Misdeal/pull/119). Add a QA Hub launcher, native event-route and artwork-integrity checks. Calibrate actors against the environment in all ten locations and resize Jack, stationary NPCs and oversized props. [Review contract](docs/TRAVEL_BATCH03_REVIEW.md)

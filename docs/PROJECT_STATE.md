@@ -2,6 +2,8 @@
 
 The user approved production rollout. Ten Act 1 locations and 72 resolved event outcomes now use Travel V2 in `main`, with character, companion, NPC and prop scale calibrated against the environment. Open the QA Hub to preview the batch or follow the normal event route in the campaign. [Merged PR #119](https://github.com/zampolit73/Misdeal/pull/119) · [Runtime and QA contract](TRAVEL_BATCH03_REVIEW.md)
 
+Jack's recruited state unlocks his own dossier card and deployable combatant with independent battle orders. The Travel handoff uses a larger dog sprite and a quicker catch-up. Existing saves derive the roster from the resolved event outcome.
+
 ## Combat Planning 1.0 — production (2026-11-18)
 
 The shared campaign Battle uses the approved Visual V4 dock by default, with one to three independent orders per hero. All 22 authored combat encounters use it, including Iron Wall and Bone Warden XIII. The F6 comparison pilot opts out of the campaign controller. [Merged PR #117](https://github.com/zampolit73/Misdeal/pull/117)
