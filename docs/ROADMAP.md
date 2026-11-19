@@ -1,3 +1,10 @@
+## Act 1 gameplay audit — execution plan ready (2026-11-19)
+
+- [x] Inspect current `main`, real RunState/Battle/planning, historical diagnostics and boss phase variants; record known-versus-untested boundaries.
+- [x] Publish [auditable F5/F6 playtest matrix](ACT1_GAMEPLAY_AUDIT_2026-11-19.md) with recording fields, QA cases, triage and safeguards.
+- [ ] Execute at least three **real** F5 runs (Knight/Ranger/Mage), targeted fixed-condition comparisons and boss XIII route; collect empirical findings.
+- [ ] Review evidence, prioritize reproducible P0/P1/P2 observations and agree on smallest corrections before touching gameplay.
+
 ## Next focus — full Act 1 playability audit (2026-11-19)
 
 - [x] Player accepted **all 24 Act 1 Cinematic Travel event scenes** after the full coverage check; seven earlier, seven Batch 02 and ten Batch 03 are finished.

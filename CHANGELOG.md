@@ -1,3 +1,7 @@
+## 2026-11-19 — Act 1 gameplay audit plan (documentation only)
+
+Review live main progression, combat planning, enemy/wave resources, prior diagnostic data and boss XIII variants. Add [`docs/ACT1_GAMEPLAY_AUDIT_2026-11-19.md`](docs/ACT1_GAMEPLAY_AUDIT_2026-11-19.md) with a concrete real F5 playtest matrix, matched F6 regression comparisons, event/pacing checkpoints and P0/P1/P2 triage. Update project status, roadmap and handoff. **No Godot gameplay, balance, visual assets or save data changed; experiential verification remains pending.**
+
 ## 2026-11-19 — final Act 1 Travel visual acceptance and handoff
 
 The player confirmed that the entire 24-event Cinematic Travel presentation is satisfactory. Mark the already-shipped seven earlier scenes, seven Batch 02 scenes and ten Batch 03 scenes as visually accepted; no further Travel art iteration is requested. Preserve approved assets and animation. Next recommended task is a full Act 1 playability/balance audit, **not performed in this documentation-only checkpoint**. [Next-chat handoff](docs/NEXT_CHAT_HANDOFF_2026-11-19.md)
