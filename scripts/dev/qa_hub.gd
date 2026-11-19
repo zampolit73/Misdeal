@@ -81,13 +81,16 @@ func _build() -> void:
 	categories.position=Vector2(36,112)
 	categories.add_theme_constant_override("separation",6)
 	add_child(categories)
+	var tab_width := floorf((1206.0 - 6.0 * (CATEGORIES.size() - 1)) / CATEGORIES.size())
 	for group in CATEGORIES:
 		var button:=Button.new()
 		button.text=group
-		button.custom_minimum_size=Vector2(128,36)
+		if group == CATALOG.LIVING_ARENAS_GROUP:
+			button.name = "LivingArenas"
+		button.custom_minimum_size=Vector2(tab_width,36)
 		button.add_theme_font_size_override("font_size",13)
 		DS3.apply_action(button,false)
-		button.pressed.connect(_show_group.bind(group))
+		button.pressed.connect(_open_group.bind(group))
 		categories.add_child(button)
 	_search=LineEdit.new()
 	_search.name="Search"
@@ -172,6 +175,13 @@ func _build() -> void:
 	_add_text("F10 — вернуться в хаб · F9 — повторить запуск · F11 — скрыть QA-панель",Vector2(38,667),Vector2(1200,24),14,DS3.PARCHMENT)
 	_add_text("Отдельные QA-сохранение и витраж. Обычный прогресс не перезаписывается.",Vector2(38,693),Vector2(1200,22),12,DS3.MUTED)
 
+func _open_group(group: String) -> void:
+	if group == CATALOG.LIVING_ARENAS_GROUP:
+		_search.clear()
+	var scroll := $ScenePanel/SceneScroll as ScrollContainer
+	scroll.scroll_vertical = 0
+	_show_group(group)
+
 func _show_group(group: String) -> void:
 	_active_group=group
 	session.hub_group=group
@@ -185,7 +195,7 @@ func _show_group(group: String) -> void:
 		var entry: Dictionary=_entries[index]
 		if group=="ВСЁ" and entry.group=="АРХИВ": continue
 		if group!="ВСЁ" and entry.group!=group: continue
-		var haystack: String=(str(entry.title)+" "+str(entry.scene)+" "+str(entry.get("search",""))+" "+str(entry.desc)).to_lower()
+		var haystack: String=(str(entry.title)+" "+str(entry.group)+" "+str(entry.scene)+" "+str(entry.get("search",""))+" "+str(entry.desc)).to_lower()
 		if not query.is_empty() and not haystack.contains(query): continue
 		_visible_indices.append(index)
 		var button:=Button.new()

@@ -1,6 +1,6 @@
 ## Living Arenas V2 — review
 
-Use QA Hub → Бой → Живые арены or the three direct F6 scenes. Compare the animated background in preparation and combat. Warden has a presentation-only phase switch during preparation and uses the real enrage trigger in combat. [Preview, evidence and reproduction](LIVING_ARENAS_V2.md)
+Use the ЖИВЫЕ АРЕНЫ tab in the Living Arenas V2 branch's QA Hub or open the three direct F6 scenes. Compare the animated background in preparation and combat. Warden has a presentation-only phase switch during preparation and uses the real enrage trigger in combat. [Preview, evidence and reproduction](LIVING_ARENAS_V2.md)
 
 ## Act 1 gameplay audit — planned, not played (2026-11-19)
 
