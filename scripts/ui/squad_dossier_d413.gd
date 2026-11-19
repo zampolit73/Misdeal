@@ -84,7 +84,7 @@ static func apply(scene: Control) -> void:
 		number.add_theme_color_override("font_color", Color("c9b28b"))
 	for i in range(4):
 		(frame.get_node("CommonPanel/Summary%d" % i) as Label).add_theme_font_size_override("font_size", 16)
-	for role in ["knight", "ranger", "mage"]:
+	for role: String in scene.get("roster_roles"):
 		var button := scene.get_node("Frame/" + role.capitalize() + "Button") as Button
 		button.add_theme_stylebox_override("hover", _material(true))
 		button.add_theme_stylebox_override("pressed", _material(true))
@@ -118,7 +118,7 @@ static func apply(scene: Control) -> void:
 		text.add_theme_font_size_override("normal_font_size", 15)
 
 static func refresh_selection(scene: Control, selected: String) -> void:
-	for role in ["knight", "ranger", "mage"]:
+	for role: String in scene.get("roster_roles"):
 		var button := scene.get_node("Frame/" + role.capitalize() + "Button") as Button
 		button.add_theme_stylebox_override("normal", _material(role == selected))
 		(button.get_node("RoleTitle") as Label).add_theme_color_override("font_color", Color("f6dbad") if role == selected else Color("cbbba4"))

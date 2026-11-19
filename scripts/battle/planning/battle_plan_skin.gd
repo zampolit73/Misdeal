@@ -133,12 +133,16 @@ static func emblem(canvas: Control, role: String) -> void:
 	for direction in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
 		var tip: Vector2 = at + direction * radius
 		canvas.draw_circle(tip, 1.4, PALE, true, -1.0, true)
-	var shape: String = {"knight": "defense", "ranger": "bow", "mage": "book"}[role]
+	var shape: String = {"knight": "defense", "ranger": "bow", "mage": "book", "jack": "paw"}[role]
 	glyph(canvas, shape, at, 0.83, PALE)
 
 static func glyph(canvas: CanvasItem, kind: String, at: Vector2, scale: float, color: Color) -> void:
 	canvas.draw_set_transform(at, 0.0, Vector2.ONE * scale)
 	match kind:
+		"paw":
+			canvas.draw_circle(Vector2(0, 3), 4.6, color, true, -1.0, true)
+			for toe in [Vector2(-7, -1), Vector2(-3, -6), Vector2(3, -6), Vector2(7, -1)]:
+				canvas.draw_circle(toe, 2.1, color, true, -1.0, true)
 		"defense":
 			_path(canvas, [[-7,-7], [0,-9], [7,-7], [6,2], [3,6], [0,9], [-3,6], [-6,2], [-7,-7]], color)
 			_path(canvas, [[0,-6], [0,6]], color)

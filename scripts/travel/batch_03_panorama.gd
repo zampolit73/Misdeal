@@ -10,7 +10,7 @@ const ROAD_PAN := 1.2
 const SPACING := 0.15
 const WALK_FPS := 6.5
 # Jack's standing silhouette on the same ground plane as an adult hero.
-const JACK_STATURE := 0.34
+const JACK_STATURE := 0.45
 
 var available := false
 var planes: Dictionary = {}
@@ -214,13 +214,14 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 		contacts[i] = _world * foot
 		order.append(actor)
 	if is_instance_valid(_jack):
-		var trailing := ranger_foot + Vector2(-112, 12) * _perspective(ranger_foot.y)
+		var trailing := ranger_foot + Vector2(-128, 28) * _perspective(ranger_foot.y)
 		var phase := time * WALK_FPS
 		_jack.visible = _joining != "jack" or time >= _handoff_time
 		if _jack.visible:
 			if _joining == "jack":
-				trailing = _approach(time, duration, trailing)
-				phase = (time - _handoff_time) * WALK_FPS
+				var catch_up_time := lerpf(_handoff_time, duration, 0.65)
+				trailing = _approach(time, catch_up_time, trailing)
+				phase = (minf(time, catch_up_time) - _handoff_time) * 8.5 + maxf(time - catch_up_time, 0.0) * WALK_FPS
 			_stage_actor(_jack, "jack", trailing, phase)
 		order.append(_jack)
 	var parent := actors[0].get_parent()
@@ -253,7 +254,8 @@ func _stage_actor(actor: AnimatedSprite2D, role: String, foot: Vector2, phase: f
 	actor.frame = frame
 	actor.position = _world * (foot - Vector2(0, (float(soles[role][frame]) - 48.0) * factor))
 	actor.scale = Vector2.ONE * factor * OVERSCAN
-	actor.modulate = Color(0.88, 0.88, 0.91).lerp(Color(0.56, 0.59, 0.64), clampf((1.0 - depth) * 0.42, 0.0, 0.35))
+	var near_tone := Color(1.0, 0.97, 0.94) if role == "jack" else Color(0.88, 0.88, 0.91)
+	actor.modulate = near_tone.lerp(Color(0.56, 0.59, 0.64), clampf((1.0 - depth) * 0.42, 0.0, 0.35))
 	var contact := _world * foot
 	actor.set_meta("sole_y", contact.y)
 	actor_metrics.append({"role": role, "foot": contact, "height": height})

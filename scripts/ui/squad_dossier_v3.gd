@@ -2,6 +2,10 @@ extends RefCounted
 
 # D285: variant 3 ("dossier/card hybrid") is a layout/style overlay only.
 # All displayed game values still originate from RunState / existing dossier.
+const JACK := preload("res://resources/units/jack.tres")
+const CARD_ART := preload("res://scripts/ui/card_art_catalog.gd")
+static var _jack_art: Texture2D
+
 const WEBP_TEXTURE := preload("res://scripts/ui/runtime_webp_texture.gd")
 const MISDEAL_DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
 const PORTRAITS := {
@@ -9,11 +13,12 @@ const PORTRAITS := {
 	"ranger": "res://assets/pixel/ui/squad_dossier_d413/ranger.webp",
 	"mage": "res://assets/pixel/ui/squad_dossier_d413/mage.webp",
 }
-const NAMES := {"knight": "РЫЦАРЬ", "ranger": "СЛЕДОПЫТ", "mage": "МАГ"}
+const NAMES := {"knight": "РЫЦАРЬ", "ranger": "СЛЕДОПЫТ", "mage": "МАГ", "jack": "ДЖЕК"}
 const ROLE_NOTES := {
 	"knight": "Непоколебимая стена между тьмой и теми, кто ещё сражается.",
 	"ranger": "Его путь пролегает там, где враг не ждёт удара.",
 	"mage": "За каждым заклинанием скрыта опасная цена.",
+	"jack": "Охотничий пёс. Держится рядом с отрядом и атакует с близкой дистанции.",
 }
 const BRONZE := Color(0.52, 0.34, 0.21, 1.0)
 const BRONZE_LIGHT := Color(0.81, 0.59, 0.34, 1.0)
@@ -46,7 +51,7 @@ static func apply(scene: Control) -> void:
 	_gilt_corners(frame, "Dossier", Vector2(13, 13), Vector2(1162, 626), 35)
 	_gilt_corners(portrait_frame, "HeroPortrait", Vector2(2, 2), Vector2(244, 417), 35)
 	(scene.get_node("Frame/CommonPanel") as Panel).add_theme_stylebox_override("panel", _plate(Color(0.027, 0.023, 0.028, 0.99), BRONZE, 1, 5))
-	for role in ["knight", "ranger", "mage"]:
+	for role: String in scene.get("roster_roles"):
 		_build_role_card(scene, role)
 	_make_label(frame, "RoleDescription", Vector2(586, 191), Vector2(213, 88), 15, Color(0.69, 0.62, 0.57), true)
 	var rule := ColorRect.new()
@@ -63,6 +68,7 @@ static func apply(scene: Control) -> void:
 	_build_relic_slots(frame)
 	_build_footer(frame)
 	_make_label(frame, "PartyCaption", Vector2(31, 465), Vector2(244, 74), 13, Color(0.64, 0.55, 0.49), true).text = "Три судьбы — одна дорога.\nКого удастся вернуть\nиз прошлого?"
+	frame.get_node("PartyCaption").visible = not RunState.has_jack_companion()
 	(scene.get_node("Frame/Stats") as RichTextLabel).add_theme_font_size_override("normal_font_size", 15)
 	(scene.get_node("Frame/BuildList") as RichTextLabel).add_theme_font_size_override("normal_font_size", 14)
 	(scene.get_node("Frame/RelicsList") as RichTextLabel).add_theme_font_size_override("normal_font_size", 13)
@@ -161,6 +167,32 @@ static func _relic_medallion(rect: Panel) -> void:
 	rect.add_child(medal)
 
 
+static func jack_portrait(thumbnail: bool = false) -> Texture2D:
+	if _jack_art == null:
+		_jack_art = CARD_ART.get_run_card_texture("jack")
+	if _jack_art == null:
+		return null
+	var cropped := AtlasTexture.new()
+	cropped.atlas = _jack_art
+	var source_size := _jack_art.get_size()
+	var area := Rect2(0.095, 0.09, 0.37, 0.61) if thumbnail else Rect2(0.075, 0.0, 0.375, 1.0)
+	cropped.region = Rect2(area.position * source_size, area.size * source_size)
+	cropped.filter_clip = true
+	return cropped
+
+static func _jack_stats() -> Dictionary:
+	var stats := {
+		"hp": JACK.max_hp,
+		"damage": JACK.damage,
+		"attack_rate": 1.0 / JACK.attack_interval,
+		"attack_range": JACK.attack_range,
+		"move_speed": JACK.move_speed,
+		"dps": JACK.damage / JACK.attack_interval,
+	}
+	for key in stats.keys():
+		stats["base_" + key] = stats[key]
+	return stats
+
 static func _build_role_card(scene: Control, role: String) -> void:
 	var button := scene.get_node("Frame/" + role.capitalize() + "Button") as Button
 	button.clip_contents = true
@@ -178,15 +210,18 @@ static func _build_role_card(scene: Control, role: String) -> void:
 	mini.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	mini.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	button.add_child(mini)
-	mini.call("load_webp_path", str(PORTRAITS[role]).replace(".webp", "_thumb.webp"), Vector2i(640, 480))
+	if role == "jack":
+		mini.texture = jack_portrait(true)
+	else:
+		mini.call("load_webp_path", str(PORTRAITS[role]).replace(".webp", "_thumb.webp"), Vector2i(640, 480))
 	mini.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	_make_label(button, "RoleTitle", Vector2(106, 14), Vector2(131, 28), 17, PARCHMENT, false)
 	_make_label(button, "RoleStatus", Vector2(106, 47), Vector2(137, 38), 11, FADED, true)
 
 static func refresh_role_cards(scene: Control, selected_role: String) -> void:
-	for role in ["knight", "ranger", "mage"]:
+	for role: String in scene.get("roster_roles"):
 		var button := scene.get_node("Frame/" + role.capitalize() + "Button") as Button
-		var active: bool = RunState.is_role_in_party(role)
+		var active: bool = role == "jack" or RunState.is_role_in_party(role)
 		var selected: bool = role == selected_role
 		var lost: bool = RunState.get_companion_fate(role) == RunState.FATE_LOST
 		button.text = ""
@@ -198,7 +233,9 @@ static func refresh_role_cards(scene: Control, selected_role: String) -> void:
 		role_title.text = NAMES[role]
 		role_title.add_theme_color_override("font_color", Color(0.69, 0.84, 1.0) if selected else (Color(0.79, 0.71, 0.64) if active else Color(0.53, 0.49, 0.47)))
 		var status := button.get_node("RoleStatus") as Label
-		if active:
+		if role == "jack":
+			status.text = "БОЕВОЙ ПЁС  ·  В ОТРЯДЕ"
+		elif active:
 			status.text = "◆ %d / 3  ·  В ОТРЯДЕ" % RunState.get_role_upgrade_count(role)
 		elif lost:
 			status.text = "ПОТЕРЯН"
@@ -260,11 +297,17 @@ static func refresh_details(scene: Control, role: String, has_role: bool) -> voi
 	if has_role:
 		description.text = ROLE_NOTES[role]
 		description.add_theme_color_override("font_color", Color(0.70, 0.61, 0.55))
-		(scene.get_node("Frame/Stats") as RichTextLabel).text = _compact_stats(RunState.get_effective_hero_stats(role))
+		(scene.get_node("Frame/Stats") as RichTextLabel).text = _compact_stats(_jack_stats() if role == "jack" else RunState.get_effective_hero_stats(role))
 	else:
 		description.text = RunState.get_companion_fate_note(role)
 		description.add_theme_color_override("font_color", FADED)
-	var count := RunState.get_role_upgrade_count(role) if has_role else 0
+	var showing_jack := role == "jack"
+	for count_name in ["UpgradeCount", "RelicCount", "UpgradeConnector1", "UpgradeConnector2"]:
+		frame.get_node(count_name).visible = not showing_jack
+	for i in range(1, 4):
+		for prefix in ["UpgradeGem", "UpgradeMarker", "UpgradeNumber", "RelicSlot"]:
+			frame.get_node(prefix + str(i)).visible = not showing_jack
+	var count := RunState.get_role_upgrade_count(role) if has_role and not showing_jack else 0
 	(frame.get_node("UpgradeCount") as Label).text = "%d / 3" % count if has_role else "—"
 	for i in 3:
 		var completed := has_role and i < count
@@ -274,7 +317,7 @@ static func refresh_details(scene: Control, role: String, has_role: bool) -> voi
 		var gem := frame.get_node("UpgradeGem%d" % (i + 1)) as Panel
 		gem.add_theme_stylebox_override("panel", _plate(Color(0.23, 0.075, 0.062, 1) if completed else Color(0.045, 0.036, 0.04, 1), BRONZE_LIGHT if completed else BRONZE.darkened(0.4), 2, 3))
 		(frame.get_node("UpgradeNumber%d" % (i + 1)) as Label).text = ["I", "II", "III"][i]
-	var artifacts: Array = RunState.get_artifacts_for_role(role) if has_role else []
+	var artifacts: Array = RunState.get_artifacts_for_role(role) if has_role and not showing_jack else []
 	(frame.get_node("RelicCount") as Label).text = "%d" % artifacts.size() if has_role else "—"
 	for i in 3:
 		var slot := frame.get_node("RelicSlot%d" % (i + 1)) as Panel
@@ -292,7 +335,7 @@ static func refresh_details(scene: Control, role: String, has_role: bool) -> voi
 static func refresh_footer(scene: Control) -> void:
 	var footer := scene.get_node("Frame/CommonPanel") as Panel
 	var txts := [
-		"ОТРЯД  %d / 3" % RunState.get_party_size(),
+		"ГЕРОИ %d/3 + ДЖЕК" % RunState.get_party_size() if RunState.has_jack_companion() else "ОТРЯД  %d / 3" % RunState.get_party_size(),
 		"HP  %+d" % int(RunState.party_hp_bonus),
 		"УРОН  %+d" % int(RunState.party_damage_bonus),
 		"ДОП.  %s" % RunState.get_extra_upgrade_progress_text()

@@ -23,7 +23,7 @@ static func apply(scene: Control) -> void:
 	ribbon.set_content_margin(SIDE_TOP, 3)
 	ribbon.set_content_margin(SIDE_BOTTOM, 3)
 	(scene.get_node("Frame/Specialization") as Label).add_theme_stylebox_override("normal", ribbon)
-	for role in ["knight", "ranger", "mage"]:
+	for role: String in scene.get("roster_roles"):
 		var button := scene.get_node("Frame/" + role.capitalize() + "Button") as Button
 		var bar := ColorRect.new()
 		bar.name = "D414SelectedBar"
@@ -62,9 +62,9 @@ static func apply(scene: Control) -> void:
 		slot.add_child(picture)
 
 static func refresh(scene: Control, role: String, available: bool) -> void:
-	for candidate in ["knight", "ranger", "mage"]:
+	for candidate: String in scene.get("roster_roles"):
 		scene.get_node("Frame/" + candidate.capitalize() + "Button/D414SelectedBar").visible = candidate == role
-	var artifacts: Array = RunState.get_artifacts_for_role(role) if available else []
+	var artifacts: Array = RunState.get_artifacts_for_role(role) if available and role != "jack" else []
 	var relic_count := scene.get_node("Frame/RelicCount") as Label
 	relic_count.text = "%d / 3" % artifacts.size() if available else "—"
 	relic_count.add_theme_color_override("font_color", Color("d9b27a"))
@@ -77,7 +77,7 @@ static func refresh(scene: Control, role: String, available: bool) -> void:
 		slot.get_node("Symbol").visible = not picture.visible
 		if i < artifacts.size():
 			slot.tooltip_text = artifacts[i].title + "\n" + artifacts[i].description
-	var upgrades := RunState.get_role_upgrade_count(role) if available else 0
+	var upgrades := RunState.get_role_upgrade_count(role) if available and role != "jack" else 0
 	for i in range(3):
 		var gem := scene.get_node("Frame/UpgradeGem%d" % (i + 1)) as Panel
 		var style := gem.get_theme_stylebox("panel").duplicate() as StyleBoxFlat

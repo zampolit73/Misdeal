@@ -369,7 +369,7 @@ jobs:
             --resolution 1280x720 --rendering-method gl_compatibility \
             --script res://scripts/dev/jack_event_capture.gd -- "$dest" 2>&1 | tee "$dest/capture.log"
           ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error|Failed to load script|JACK_CAPTURE_FAIL' "$dest/capture.log"
-          grep -Fq 'JACK_EVENT_NATIVE_PASS: 16' "$dest/capture.log"
+          grep -Fq 'JACK_EVENT_NATIVE_PASS: 18' "$dest/capture.log"
 
       - name: Run save native menu and separate-process Continue
         if: steps.scope.outputs.mode == 'release'

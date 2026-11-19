@@ -29,7 +29,7 @@ func is_production_mode() -> bool:
 func configure(owner_battle: Control) -> void:
 	battle = owner_battle
 	for hero in battle.units:
-		if hero.team == 0 and hero.visual_role != "jack" and hero.alive:
+		if hero.team == 0 and hero.alive:
 			var plan := PLAN.new()
 			var drafts: Dictionary = RunState.get_meta("battle_plan_drafts", {})
 			if drafts.has(hero.visual_role):
@@ -62,7 +62,7 @@ func configure(owner_battle: Control) -> void:
 	set_process(true)
 
 func role_name(role: String) -> String:
-	return {"knight":"Рыцарь","ranger":"Следопыт","mage":"Маг"}.get(role,role)
+	return {"knight":"Рыцарь","ranger":"Следопыт","mage":"Маг","jack":"Джек"}.get(role,role)
 
 func enemy_label(enemy: BattleUnit) -> String:
 	if not is_instance_valid(enemy):
@@ -73,7 +73,7 @@ func enemy_label(enemy: BattleUnit) -> String:
 func _refresh_heroes() -> void:
 	var living: Array[String] = []
 	for hero in battle.units:
-		if hero.team == 0 and hero.alive and hero.visual_role != "jack":
+		if hero.team == 0 and hero.alive:
 			living.append(hero.visual_role)
 	ui.set_heroes(living)
 	ui.preserve_deployment_view()
@@ -166,7 +166,7 @@ func show_setup() -> void:
 	for plan in plans.values():
 		for order in plan.orders:
 			clear_assignment(order)
-	ui.fallback_message = "План сброшен: один Натиск каждому герою."
+	ui.fallback_message = "План сброшен: один Натиск каждому бойцу."
 	ui.show_overview()
 	_persist_drafts()
 
@@ -181,7 +181,7 @@ func start_planned_battle() -> void:
 	battle._select_tactical_order("assault", false)
 	_persist_drafts()
 	for hero in battle.units:
-		if hero.team != 0 or hero.visual_role == "jack" or not hero.alive:
+		if hero.team != 0 or not hero.alive:
 			continue
 		if executors.has(hero.visual_role):
 			executors[hero.visual_role].disconnect_unit()
@@ -296,7 +296,7 @@ func _show_review() -> void:
 				"start": label = "Начало: " + str(item.order)
 				"end": label = "Переход (%s), %.1f с" % ["лимит" if item.reason == "timeout" else str(item.reason), float(item.elapsed)]
 				"kill": label = "Личное убийство: " + str(item.target)
-				"death": label = "Герой погиб"
+				"death": label = "Боец погиб"
 				"target": label = "Выбрана цель: " + str(item.actual)
 			if not label.is_empty():
 				rows.append("  Волна %d · %.1f с · %s" % [int(item.wave), float(item.time), label])

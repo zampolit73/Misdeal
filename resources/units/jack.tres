@@ -12,4 +12,4 @@ attack_interval = 1.0
 attack_range = 38.0
 move_speed = 105.0
 body_radius = 16.0
-visual_scale = 1.0
+visual_scale = 1.15
