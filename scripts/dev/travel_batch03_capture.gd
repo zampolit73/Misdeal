@@ -144,6 +144,16 @@ func _check_effect(id: String, action: String, before: Array, after: Array) -> v
 	var scars := action == "rescue_blood" or (action == "recruit" and id in ["ash_rest", "chained_prisoner"])
 	assert(after[9].size() == before[9].size() + int(scars))
 
+func _check_jack_plates() -> void:
+	var scene := BATCH.scene_for("jack")
+	for path: String in [scene.phases.entry, scene.phases.treatment, scene.states.passed.overlay, scene.states.token.overlay]:
+		var image: Image = (load(BATCH.ROOT.path_join(scene.folder).path_join(path)) as Texture2D).get_image()
+		if path != scene.states.token.overlay:
+			assert(image.get_used_rect().size.y <= 80, path + " dog exceeds the shelter scale")
+		var body := image.get_region(Rect2i(300, 420, 145, 124)).get_used_rect()
+		assert(body.size.y >= 46 and body.size.y <= 80, path + " incorrect visible dog height")
+		assert(absi(420 + body.end.y - 523) <= 9, path + " dog lost contact with the shelter floor")
+
 func _check_frame(view: CanvasLayer, context: Dictionary, time: float) -> void:
 	view.elapsed = time
 	view.update_frame()
@@ -154,6 +164,20 @@ func _check_frame(view: CanvasLayer, context: Dictionary, time: float) -> void:
 	var expected_count: int = context.party_roles.size() + int(context.jack_companion) - int(waiting)
 	assert(view.role_ids == context.party_roles)
 	assert(view.panorama.actor_metrics.size() == expected_count)
+	var ranger_height := 0.0
+	var jack_height := 0.0
+	for actor: Dictionary in view.panorama.actor_metrics:
+		var height := float(actor.height)
+		if actor.role == "jack":
+			jack_height = height
+		else:
+			assert(height >= 76.0 and height <= 290.0, context.resolved_card_id + " adult outside frame scale")
+			if context.resolved_card_id == "whispering_well" and has_join and is_equal_approx(time, 1.15) and actor.role == "mage":
+				assert(height >= 145.0, "The emerging mage must keep the scale of the well landing")
+			if actor.role == "ranger":
+				ranger_height = height
+	if jack_height > 0.0:
+		assert(ranger_height > 0.0 and jack_height >= ranger_height * 0.20 and jack_height <= ranger_height * 0.42)
 	for i in range(view.actors.size()):
 		var actor: AnimatedSprite2D = view.actors[i]
 		if actor.visible:
@@ -167,6 +191,7 @@ func run() -> void:
 	DirAccess.make_dir_recursive_absolute(_dest)
 	Engine.time_scale = 10.0
 	_state = root.get_node("RunState")
+	_check_jack_plates()
 	var cases := QA.cases()
 	var counted := 0
 	for entry in HUB.entries():

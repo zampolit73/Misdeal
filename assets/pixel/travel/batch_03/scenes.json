@@ -17,7 +17,7 @@
       ]
     ],
     "horizon": 293,
-    "height": 184,
+    "height": 232,
     "facing": "side",
     "handoff": [
       "mage",
@@ -111,7 +111,7 @@
       ]
     ],
     "horizon": 271,
-    "height": 194,
+    "height": 224,
     "facing": "side",
     "handoff": [
       "knight",
@@ -206,7 +206,7 @@
       ]
     ],
     "horizon": 264,
-    "height": 171,
+    "height": 226,
     "facing": "ne",
     "handoff": [
       "jack",
@@ -216,8 +216,8 @@
         523
       ],
       [
-        408,
-        529
+        385,
+        523
       ],
       [
         650,
@@ -272,7 +272,7 @@
       ]
     ],
     "horizon": 223,
-    "height": 179,
+    "height": 228,
     "facing": "ne",
     "handoff": [
       "mage",
@@ -350,7 +350,7 @@
         "overlay": ""
       }
     },
-    "handoff_ground_y": 514
+    "handoff_ground_y": 532
   },
   "last_camp": {
     "title": "Последний привал",
@@ -370,7 +370,7 @@
       ]
     ],
     "horizon": 238,
-    "height": 172,
+    "height": 220,
     "facing": "ne",
     "handoff": [
       "knight",
@@ -459,7 +459,7 @@
       ]
     ],
     "horizon": 221,
-    "height": 176,
+    "height": 216,
     "facing": "ne",
     "handoff": [
       "ranger",
@@ -548,7 +548,7 @@
       ]
     ],
     "horizon": 224,
-    "height": 180,
+    "height": 234,
     "facing": "ne",
     "handoff": null,
     "master": "master/scene.webp",
@@ -604,7 +604,7 @@
       ]
     ],
     "horizon": 306,
-    "height": 169,
+    "height": 246,
     "facing": "side",
     "handoff": null,
     "master": "master/scene.webp",
@@ -702,7 +702,7 @@
         "choice": "leave",
         "narration": "Карта так и не показывает лица.",
         "party": "same",
-        "overlay": ""
+        "overlay": "outcomes/leave.png"
       }
     }
   },
@@ -724,7 +724,7 @@
       ]
     ],
     "horizon": 276,
-    "height": 181,
+    "height": 234,
     "facing": "side",
     "handoff": null,
     "master": "master/scene.webp",
@@ -780,7 +780,7 @@
       ]
     ],
     "horizon": 286,
-    "height": 166,
+    "height": 238,
     "facing": "side",
     "handoff": null,
     "master": "master/scene.webp",

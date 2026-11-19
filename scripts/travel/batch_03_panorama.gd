@@ -9,6 +9,8 @@ const OVERSCAN := 1.009
 const ROAD_PAN := 1.2
 const SPACING := 0.15
 const WALK_FPS := 6.5
+# Jack's standing silhouette on the same ground plane as an adult hero.
+const JACK_STATURE := 0.34
 
 var available := false
 var planes: Dictionary = {}
@@ -212,7 +214,7 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 		contacts[i] = _world * foot
 		order.append(actor)
 	if is_instance_valid(_jack):
-		var trailing := ranger_foot + Vector2(-52, 9)
+		var trailing := ranger_foot + Vector2(-112, 12) * _perspective(ranger_foot.y)
 		var phase := time * WALK_FPS
 		_jack.visible = _joining != "jack" or time >= _handoff_time
 		if _jack.visible:
@@ -236,11 +238,15 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 	for i in range(order.size()):
 		parent.move_child(order[i], ground.get_index() + 1 + i)
 
+func _perspective(ground_y: float) -> float:
+	var horizon := float(_scene.horizon)
+	return clampf((ground_y - horizon) / (_route[0].y - horizon), 0.30, 1.17)
+
 func _stage_actor(actor: AnimatedSprite2D, role: String, foot: Vector2, phase: float, elevation := 0.0) -> float:
 	var frames: SpriteFrames = _frames[role]
 	var frame := int(phase) % frames.get_frame_count("walk")
-	var depth := clampf((foot.y + elevation - float(_scene.horizon)) / (_route[0].y - float(_scene.horizon)), 0.30, 1.17)
-	var height := float(_scene.height) * depth * (0.47 if role == "jack" else 1.0)
+	var depth := _perspective(foot.y + elevation)
+	var height := float(_scene.height) * depth * (JACK_STATURE if role == "jack" else 1.0)
 	var factor := height / float(_heights[role])
 	actor.sprite_frames = frames
 	actor.animation = "walk"

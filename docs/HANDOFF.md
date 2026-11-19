@@ -1,6 +1,6 @@
 ## Cinematic Travel Batch 03 — native review
 
-Continue on `review/cinematic-travel-batch-03`. Art provenance, fixture commands and QA Hub controls are in [the review contract](TRAVEL_BATCH03_REVIEW.md). The review branch uses the live event route. Final art and staging approval are pending.
+Continue on `review/cinematic-travel-batch-03`. Art provenance, fixture commands and QA Hub controls are in [the review contract](TRAVEL_BATCH03_REVIEW.md). The review branch uses the live event route. Scale correction covers every location, including stationary and walking Jack. Review evidence is linked from [PR #119](https://github.com/zampolit73/Misdeal/pull/119). Final art and staging approval are pending.
 
 ## Combat Planning 1.0 on main
 

@@ -1,6 +1,6 @@
 ## 2026-11-19 — Cinematic Travel Batch 03 review
 
-Integrate ten travel locations and 72 live event outcomes on the separate review branch. Add a QA Hub launcher, native event-route and artwork-integrity checks. [Review contract](docs/TRAVEL_BATCH03_REVIEW.md)
+Integrate ten travel locations and 72 live event outcomes on the separate review branch. Add a QA Hub launcher, native event-route and artwork-integrity checks. Calibrate actors against the environment in all ten locations and resize Jack, stationary NPCs and oversized props. [Review contract](docs/TRAVEL_BATCH03_REVIEW.md)
 
 ## 2026-11-18 — Combat Planning 1.0 production release
 
