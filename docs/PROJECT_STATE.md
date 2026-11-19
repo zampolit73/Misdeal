@@ -1,3 +1,8 @@
+## Cinematic Travel Act 1 — final player acceptance (2026-11-19)
+
+The player explicitly confirmed that all Travel scenes are satisfactory after the final 24-event coverage audit. **24/24 unique Act 1 event scenes are accepted and complete**: earlier seven + Batch 02 seven + Batch 03 ten (72 coded Batch 03 outcomes). Do not reopen their visual production unless a new concrete problem is reported. This is distinct from completion of a full human random campaign playtest. The already-released Combat Planning 1.0/Visual V4 across 22 combat encounters is also accepted. The next proposed focus is a full Act 1 gameplay playtest and balance/UX assessment; it is **not yet completed**. [New-chat context](NEXT_CHAT_HANDOFF_2026-11-19.md)
+
+
 ## Cinematic Travel Batch 03 — released (2026-11-19)
 
 The user approved production rollout. Ten Act 1 locations and 72 resolved event outcomes now use Travel V2 in `main`, with character, companion, NPC and prop scale calibrated against the environment. Open the QA Hub to preview the batch or follow the normal event route in the campaign. [Merged PR #119](https://github.com/zampolit73/Misdeal/pull/119) · [Runtime and QA contract](TRAVEL_BATCH03_REVIEW.md)
