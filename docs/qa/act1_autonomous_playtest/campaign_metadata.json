@@ -1,0 +1,13 @@
+{
+  "tested_checkout": "26e2e5312b1987a5353191f6cfc97808df2fc048",
+  "runtime_base": "d33c1ba0e0f98fc4df6474342e214f56ae2fe209",
+  "harness_sha256": {
+    "scripts/dev/act1_autonomous_playtest.gd": "0849012761a3fbdc6d74093f94c6f8d7775eb9667ba51bdf7e785233964b40f4",
+    "scripts/dev/act1_playtest_policy.gd": "6d1fcec0c1a3c0a5f0335ebc8fd0ab14c775bc17ab96d72394eafe05e28269fc",
+    "scripts/ci/act1_autonomous_playtest.py": "82a04d7fefeff824c44b64decd52ea0f4a2129900ee108f987c3943fcf87744d"
+  },
+  "suite": "campaign",
+  "clock": "fixed_60_no_time_scale",
+  "windowed": false,
+  "attempts": 45
+}

@@ -55,6 +55,10 @@ def run_case(args, case):
     env = os.environ.copy()
     for key in ("APPDATA", "XDG_DATA_HOME", "XDG_CONFIG_HOME", "XDG_CACHE_HOME"):
         env[key] = str(folder / "profile" / key)
+    if args.paced:
+        env["MISDEAL_ACT1_QA_PACE"] = "1"
+    else:
+        env.pop("MISDEAL_ACT1_QA_PACE", None)
     rc, timed_out = None, False
     with (folder / "engine.log").open("wb") as log:
         try:
@@ -100,7 +104,8 @@ def export(args, rows):
                                                 text=True).strip(),
         "harness_sha256": {name: hashlib.sha256(Path(name).read_bytes()).hexdigest() for name in files},
         "suite": args.suite,
-        "clock": "realtime" if args.realtime else "fixed_60_no_time_scale",
+        "clock": ("realtime" if args.realtime else
+                  "paced_fixed_60" if args.paced else "fixed_60_no_time_scale"),
         "windowed": args.windowed,
         "attempts": len(rows),
     }
@@ -135,7 +140,9 @@ def main():
     parser.add_argument("--suite", choices=("smoke", "campaign", "fixtures"), default="campaign")
     parser.add_argument("--jobs", type=int, default=3)
     parser.add_argument("--role", choices=ROLES, help="Run only this protagonist for a campaign shard")
-    parser.add_argument("--realtime", action="store_true")
+    clock = parser.add_mutually_exclusive_group()
+    clock.add_argument("--realtime", action="store_true", help="Use the engine's variable frame delta")
+    clock.add_argument("--paced", action="store_true", help="Keep fixed steps and sleep to match real time")
     parser.add_argument("--windowed", action="store_true")
     args = parser.parse_args()
     args.output = args.output.resolve()

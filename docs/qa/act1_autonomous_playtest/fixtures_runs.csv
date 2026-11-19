@@ -1,0 +1,55 @@
+role,strategy,seed,fixture,fixture_size,fixture_verdict,outcome,slots,boss_reached,wall_s,battle_count,reason
+knight,assault,31017,last_bell,1,,victory,1,False,4.413,1,
+knight,assault,31031,last_bell,1,,victory,1,False,3.926,1,
+knight,assault,31039,last_bell,1,,victory,1,False,5.416,1,
+knight,hunt,31017,last_bell,1,,defeat,0,False,3.264,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,hunt,31031,last_bell,1,,defeat,0,False,3.158,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,hunt,31039,last_bell,1,,defeat,0,False,3.496,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,assault,31017,last_bell,2,,defeat,0,False,2.59,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,assault,31031,last_bell,2,,defeat,0,False,2.468,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,assault,31039,last_bell,2,,defeat,0,False,2.321,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,hunt,31017,last_bell,2,,defeat,0,False,2.182,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,hunt,31031,last_bell,2,,defeat,0,False,2.252,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,hunt,31039,last_bell,2,,defeat,0,False,2.131,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,assault,31017,last_bell,3,,defeat,0,False,2.143,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,assault,31031,last_bell,3,,defeat,0,False,2.291,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,assault,31039,last_bell,3,,defeat,0,False,2.15,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,hunt,31017,last_bell,3,,defeat,0,False,2.044,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,hunt,31031,last_bell,3,,defeat,0,False,2.047,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,hunt,31039,last_bell,3,,defeat,0,False,2.074,1,Вы приняли поражение в бою «ПОСЛЕДНИЙ ЗВОН».
+knight,assault,31017,ossuary_gate,1,,victory,1,False,3.403,1,
+knight,assault,31031,ossuary_gate,1,,victory,1,False,3.288,1,
+knight,assault,31039,ossuary_gate,1,,victory,1,False,3.782,1,
+knight,hunt,31017,ossuary_gate,1,,defeat,0,False,2.268,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,hunt,31031,ossuary_gate,1,,defeat,0,False,1.775,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,hunt,31039,ossuary_gate,1,,defeat,0,False,1.864,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,assault,31017,ossuary_gate,2,,defeat,0,False,1.892,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,assault,31031,ossuary_gate,2,,defeat,0,False,1.701,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,assault,31039,ossuary_gate,2,,defeat,0,False,2.027,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,hunt,31017,ossuary_gate,2,,defeat,0,False,1.919,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,hunt,31031,ossuary_gate,2,,defeat,0,False,1.806,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,hunt,31039,ossuary_gate,2,,defeat,0,False,1.878,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,assault,31017,ossuary_gate,3,,defeat,0,False,1.953,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,assault,31031,ossuary_gate,3,,defeat,0,False,1.903,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,assault,31039,ossuary_gate,3,,defeat,0,False,2.095,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,hunt,31017,ossuary_gate,3,,defeat,0,False,2.107,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,hunt,31031,ossuary_gate,3,,defeat,0,False,2.199,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,hunt,31039,ossuary_gate,3,,defeat,0,False,2.561,1,Вы приняли поражение в бою «ВРАТА ОССУАРИЯ».
+knight,adaptive,31017,bone_warden,1,,defeat,12,True,1.483,1,Вы приняли поражение в бою «КОСТЯНОЙ НАДЗИРАТЕЛЬ».
+mage,adaptive,31017,bone_warden,1,,defeat,12,True,1.33,1,Вы приняли поражение в бою «КОСТЯНОЙ НАДЗИРАТЕЛЬ».
+knight,adaptive,31017,bone_warden,2,,defeat,12,True,1.636,1,Вы приняли поражение в бою «КОСТЯНОЙ НАДЗИРАТЕЛЬ».
+mage,adaptive,31017,bone_warden,2,,defeat,12,True,1.693,1,Вы приняли поражение в бою «КОСТЯНОЙ НАДЗИРАТЕЛЬ».
+knight,adaptive,31017,bone_warden,3,,defeat,12,True,1.944,1,Вы приняли поражение в бою «КОСТЯНОЙ НАДЗИРАТЕЛЬ».
+mage,adaptive,31017,bone_warden,3,,defeat,12,True,2.142,1,Вы приняли поражение в бою «КОСТЯНОЙ НАДЗИРАТЕЛЬ».
+knight,adaptive,31017,bone_warden,1,witnessless,defeat,12,True,1.619,1,Вы приняли поражение в бою «КОСТЯНОЙ НАДЗИРАТЕЛЬ».
+mage,adaptive,31017,bone_warden,1,witnessless,defeat,12,True,1.634,1,Вы приняли поражение в бою «КОСТЯНОЙ НАДЗИРАТЕЛЬ».
+knight,adaptive,31017,bone_warden,3,scarred,defeat,12,True,1.035,1,Вы приняли поражение в бою «КОСТЯНОЙ НАДЗИРАТЕЛЬ».
+mage,adaptive,31017,bone_warden,3,scarred,defeat,12,True,1.008,1,Вы приняли поражение в бою «КОСТЯНОЙ НАДЗИРАТЕЛЬ».
+knight,adaptive,31017,bone_warden,3,riskbound,defeat,12,True,0.987,1,Вы приняли поражение в бою «КОСТЯНОЙ НАДЗИРАТЕЛЬ».
+mage,adaptive,31017,bone_warden,3,riskbound,defeat,12,True,1.026,1,Вы приняли поражение в бою «КОСТЯНОЙ НАДЗИРАТЕЛЬ».
+knight,adaptive,31017,iron_wall,1,,victory,1,False,1.482,1,
+knight,adaptive,31017,iron_wall,2,,defeat,0,False,1.13,1,Вы приняли поражение в бою «ЖЕЛЕЗНАЯ СТЕНА».
+knight,adaptive,31017,iron_wall,3,,defeat,0,False,1.059,1,Вы приняли поражение в бою «ЖЕЛЕЗНАЯ СТЕНА».
+knight,adaptive,31017,firing_square,1,,victory,1,False,1.682,1,
+knight,adaptive,31017,firing_square,2,,defeat,0,False,1.017,1,Вы приняли поражение в бою «РАССТРЕЛЬНАЯ ПЛОЩАДЬ».
+knight,adaptive,31017,firing_square,3,,defeat,0,False,0.964,1,Вы приняли поражение в бою «РАССТРЕЛЬНАЯ ПЛОЩАДЬ».

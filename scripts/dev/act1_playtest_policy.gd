@@ -41,6 +41,8 @@ static func event_score(text: String, strategy: String, state: Node) -> int:
 
 
 static func reward_score(id: String, copy: String, strategy: String, state: Node) -> int:
+	if not state.HERO_UPGRADE_PATHS.has(id):
+		return event_score(copy, strategy, state)
 	var upgrade: HeroUpgradeData = state.get_hero_upgrade(id)
 	if upgrade == null:
 		return event_score(copy, strategy, state)

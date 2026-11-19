@@ -1,10 +1,10 @@
-## Act 1 gameplay audit — static risk review and F5 playtest plan (2026-11-19)
+## Act 1 gameplay audit — autonomous native results (2026-11-19)
 
-Inspected live `main` at `28050652` and current encounter/progression/planning resources. A detailed [Act 1 gameplay audit and playtest plan](ACT1_GAMEPLAY_AUDIT_2026-11-19.md) now defines three real protagonist F5 runs, targeted F6 matched comparisons, event-choice/Travel pacing review, and Bone Warden XIII variants. Historic v25 Knight solo/duo/trio and Hunt imbalance are explicitly **unconfirmed on current Combat Planning main**. **No new human full run, balance measurement, gameplay change or art revision was performed.** Next step is evidence collection, not an automatic rebalance.
+Godot 4.7.2 drove production scenes through RunEnd in 45 seeded Act 1 attempts. Five won and 20 reached XIII. There were 260 real campaign battles and 54 separate matched controls. Last Bell reproduced a solo Knight Assault advantage over Hunt at the tested starting positions. Solo Assault also beat Last Bell and Ossuary Gate in cases where the equivalent duo and trio lost. Human playability and matched developed builds remain the next validation. [Report, seeds and raw data](qa/act1_autonomous_playtest/README.md) · [QA PR #123](https://github.com/zampolit73/Misdeal/pull/123)
 
 ## Cinematic Travel Act 1 — final player acceptance (2026-11-19)
 
-The player explicitly confirmed that all Travel scenes are satisfactory after the final 24-event coverage audit. **24/24 unique Act 1 event scenes are accepted and complete**: earlier seven + Batch 02 seven + Batch 03 ten (72 coded Batch 03 outcomes). Do not reopen their visual production unless a new concrete problem is reported. This is distinct from completion of a full human random campaign playtest. The already-released Combat Planning 1.0/Visual V4 across 22 combat encounters is also accepted. The next proposed focus is a full Act 1 gameplay playtest and balance/UX assessment; it is **not yet completed**. [New-chat context](NEXT_CHAT_HANDOFF_2026-11-19.md)
+The player explicitly confirmed that all Travel scenes are satisfactory after the final 24-event coverage audit. **24/24 unique Act 1 event scenes are accepted and complete**: earlier seven + Batch 02 seven + Batch 03 ten (72 coded Batch 03 outcomes). The already-released Combat Planning 1.0/Visual V4 across 22 combat encounters is also accepted. [New-chat context](NEXT_CHAT_HANDOFF_2026-11-19.md)
 
 
 ## Cinematic Travel Batch 03 — released (2026-11-19)

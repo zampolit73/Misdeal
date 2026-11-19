@@ -87,9 +87,15 @@ func _run() -> void:
 		_finish("technical_blocker", "Could not prepare the isolated encounter")
 		return
 
+	var pace := OS.has_environment("MISDEAL_ACT1_QA_PACE")
+	var pace_start := Time.get_ticks_usec()
 	while frame < 60 * 1200 and Time.get_ticks_msec() - started_ms < 240000:
 		await process_frame
 		frame += 1
+		if pace:
+			var remaining := pace_start + int(frame * 1000000.0 / 60.0) - Time.get_ticks_usec()
+			if remaining > 0:
+				OS.delay_usec(remaining)
 		# Headless cannot draw the production veil. Supply only its render acknowledgement.
 		if DisplayServer.get_name() == "headless":
 			RenderingServer.frame_post_draw.emit()
