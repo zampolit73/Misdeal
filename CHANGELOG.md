@@ -1,3 +1,8 @@
+## 2026-11-19 — final Act 1 Travel visual acceptance and handoff
+
+The player confirmed that the entire 24-event Cinematic Travel presentation is satisfactory. Mark the already-shipped seven earlier scenes, seven Batch 02 scenes and ten Batch 03 scenes as visually accepted; no further Travel art iteration is requested. Preserve approved assets and animation. Next recommended task is a full Act 1 playability/balance audit, **not performed in this documentation-only checkpoint**. [Next-chat handoff](docs/NEXT_CHAT_HANDOFF_2026-11-19.md)
+
+
 ## 2026-11-19 — Cinematic Travel Batch 03 production release
 
 Release ten travel locations and 72 live event outcomes in `main` through [PR #119](https://github.com/zampolit73/Misdeal/pull/119). Add a QA Hub launcher, native event-route and artwork-integrity checks. Calibrate actors against the environment in all ten locations and resize Jack, stationary NPCs and oversized props. [Review contract](docs/TRAVEL_BATCH03_REVIEW.md)
