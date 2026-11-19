@@ -1,6 +1,6 @@
 # Cinematic Travel Batch 03 · production and QA
 
-Released in `main` at `084c09a` through [PR #119](https://github.com/zampolit73/Misdeal/pull/119). Art package [PR #118](https://github.com/zampolit73/Misdeal/pull/118), frozen source `6ab57186f12b6550be1fa568ab004162efdb5af7`. The production build uses 10 locations, 72 outcomes and 98 runtime plates derived from that package. The large reference sheets, gallery and production sources remain in the art package.
+Released in `main` at `084c09a` through [PR #119](https://github.com/zampolit73/Misdeal/pull/119). Art package [PR #118](https://github.com/zampolit73/Misdeal/pull/118), frozen source `6ab57186f12b6550be1fa568ab004162efdb5af7`. The production build uses 10 locations, 72 outcomes and 98 runtime plates derived from that package. The large reference sheets and production sources remain in the art package. [Native scale review gallery](qa/travel_batch03_review/README.md) includes ten before-and-after comparisons and 23 outcome frames.
 
 ## Review in Godot 4.7.2
 
