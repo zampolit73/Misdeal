@@ -559,6 +559,15 @@ jobs:
             grep -Fq 'BATCH02_NATIVE_PASS: 31/31' "$batch02/capture.log"
             ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed|Shader compilation failed' "$batch02/capture.log"
 
+      - name: Autonomous Act 1 — one real campaign attempt
+        if: steps.scope.outputs.mode != 'docs'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/ci/act1_autonomous_playtest.py --suite smoke --jobs 1 \
+            --godot /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --output "$RUNNER_TEMP/misdeal-smart-qa/act1_autonomous"
+
       - name: Cinematic Travel Batch 03 — art provenance and real event routes
         if: steps.scope.outputs.mode != 'docs'
         shell: bash

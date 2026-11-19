@@ -1,15 +1,15 @@
-## Act 1 gameplay audit — execution plan ready (2026-11-19)
+## Act 1 gameplay audit — autonomous pass completed (2026-11-19)
 
 - [x] Inspect current `main`, real RunState/Battle/planning, historical diagnostics and boss phase variants; record known-versus-untested boundaries.
 - [x] Publish [auditable F5/F6 playtest matrix](ACT1_GAMEPLAY_AUDIT_2026-11-19.md) with recording fields, QA cases, triage and safeguards.
-- [ ] Execute at least three **real** F5 runs (Knight/Ranger/Mage), targeted fixed-condition comparisons and boss XIII route; collect empirical findings.
-- [ ] Review evidence, prioritize reproducible P0/P1/P2 observations and agree on smallest corrections before touching gameplay.
+- [x] Complete 45 autonomous campaigns and 54 isolated combat controls. Publish results, timings, save checks and all four boss reinforcement variants. [Report](qa/act1_autonomous_playtest/README.md)
+- [ ] Validate tactics and party-size findings with matched developed builds. Review event readability and pacing in human F5 play.
 
 ## Next focus — full Act 1 playability audit (2026-11-19)
 
 - [x] Player accepted **all 24 Act 1 Cinematic Travel event scenes** after the full coverage check; seven earlier, seven Batch 02 and ten Batch 03 are finished.
 - [x] Approved Combat Planning 1.0 / Visual V4 is already in `main` via PR #117, with 22 authored combat encounters.
-- [ ] **Next proposed milestone:** run a genuine full-playthrough gameplay/balance/UX audit: new game → 12 Fate Spread resolutions → Bone Warden XIII. Test solo/duo/trio, plan usefulness, wave breaks, recovery/saves, rewards, Last Deal, and pacing. Do not count prior automation as a full human playthrough or change balance without evidence.
+- [ ] **Next focus:** compare developed parties on Last Bell, Ossuary Gate and XIII using the measured reproduction cases. Review the proposed P1 and P2 items before gameplay changes.
 - [Next-chat handoff](NEXT_CHAT_HANDOFF_2026-11-19.md).
 
 

@@ -1,0 +1,2974 @@
+{
+  "campaign": {
+    "n": 45,
+    "results": {
+      "defeat": 40,
+      "victory": 5
+    },
+    "XIII": 20,
+    "slots": 9.066666666666666
+  },
+  "by_role": {
+    "knight": {
+      "n": 15,
+      "results": {
+        "defeat": 12,
+        "victory": 3
+      },
+      "XIII": 5,
+      "slots": 8.533333333333333
+    },
+    "mage": {
+      "n": 15,
+      "results": {
+        "defeat": 15
+      },
+      "XIII": 7,
+      "slots": 8.733333333333333
+    },
+    "ranger": {
+      "n": 15,
+      "results": {
+        "defeat": 13,
+        "victory": 2
+      },
+      "XIII": 8,
+      "slots": 9.933333333333334
+    }
+  },
+  "by_strategy": {
+    "adaptive": {
+      "n": 15,
+      "results": {
+        "defeat": 15
+      },
+      "XIII": 6,
+      "slots": 9.866666666666667
+    },
+    "aggressive": {
+      "n": 15,
+      "results": {
+        "defeat": 13,
+        "victory": 2
+      },
+      "XIII": 2,
+      "slots": 6.266666666666667
+    },
+    "defensive": {
+      "n": 15,
+      "results": {
+        "victory": 3,
+        "defeat": 12
+      },
+      "XIII": 12,
+      "slots": 11.066666666666666
+    }
+  },
+  "class_strategy": {
+    "('knight', 'adaptive')": {
+      "n": 5,
+      "results": {
+        "defeat": 5
+      },
+      "XIII": 2,
+      "slots": 9.8
+    },
+    "('knight', 'aggressive')": {
+      "n": 5,
+      "results": {
+        "defeat": 5
+      },
+      "XIII": 0,
+      "slots": 6
+    },
+    "('knight', 'defensive')": {
+      "n": 5,
+      "results": {
+        "victory": 3,
+        "defeat": 2
+      },
+      "XIII": 3,
+      "slots": 9.8
+    },
+    "('mage', 'adaptive')": {
+      "n": 5,
+      "results": {
+        "defeat": 5
+      },
+      "XIII": 2,
+      "slots": 10
+    },
+    "('mage', 'aggressive')": {
+      "n": 5,
+      "results": {
+        "defeat": 5
+      },
+      "XIII": 0,
+      "slots": 4.2
+    },
+    "('mage', 'defensive')": {
+      "n": 5,
+      "results": {
+        "defeat": 5
+      },
+      "XIII": 5,
+      "slots": 12
+    },
+    "('ranger', 'adaptive')": {
+      "n": 5,
+      "results": {
+        "defeat": 5
+      },
+      "XIII": 2,
+      "slots": 9.8
+    },
+    "('ranger', 'aggressive')": {
+      "n": 5,
+      "results": {
+        "defeat": 3,
+        "victory": 2
+      },
+      "XIII": 2,
+      "slots": 8.6
+    },
+    "('ranger', 'defensive')": {
+      "n": 5,
+      "results": {
+        "defeat": 5
+      },
+      "XIII": 4,
+      "slots": 11.4
+    }
+  },
+  "battles": 260,
+  "all_combat_win": 192,
+  "avg_combat": 13.498269230769303,
+  "avg_wall": 17.470977777777776,
+  "avg_sim": 138.29333333333332,
+  "by_encounter": {
+    "black_crossing": [
+      6,
+      6,
+      10.15,
+      14.06,
+      {
+        "1": 6
+      }
+    ],
+    "black_lantern_road": [
+      6,
+      6,
+      11.87,
+      35.74,
+      {
+        "1": 6
+      }
+    ],
+    "bone_crush": [
+      4,
+      4,
+      6.78,
+      52.2,
+      {
+        "1": 4
+      }
+    ],
+    "bone_patrol": [
+      12,
+      12,
+      8.92,
+      69.05,
+      {
+        "1": 12
+      }
+    ],
+    "bone_ritual": [
+      16,
+      5,
+      15.42,
+      191.76,
+      {
+        "1": 16
+      }
+    ],
+    "bone_shepherd": [
+      21,
+      21,
+      7.95,
+      21.7,
+      {
+        "1": 21
+      }
+    ],
+    "bone_swarm": [
+      1,
+      1,
+      2.98,
+      10.0,
+      {
+        "1": 1
+      }
+    ],
+    "bone_warden": [
+      26,
+      5,
+      21.23,
+      269.58,
+      {
+        "1": 26
+      }
+    ],
+    "court_of_the_mute": [
+      8,
+      8,
+      10.84,
+      40.93,
+      {
+        "1": 8
+      }
+    ],
+    "crypt_guard": [
+      15,
+      15,
+      9.77,
+      45.09,
+      {
+        "1": 15
+      }
+    ],
+    "death_wager": [
+      11,
+      6,
+      13.13,
+      209.45,
+      {
+        "1": 11
+      }
+    ],
+    "defiled_laboratory": [
+      5,
+      5,
+      7.93,
+      60.16,
+      {
+        "1": 5
+      }
+    ],
+    "firing_square": [
+      11,
+      8,
+      24.08,
+      164.05,
+      {
+        "1": 2,
+        "2": 9
+      }
+    ],
+    "funeral_procession": [
+      12,
+      12,
+      10.0,
+      20.53,
+      {
+        "1": 12
+      }
+    ],
+    "gallows_volley": [
+      10,
+      6,
+      11.09,
+      104.49,
+      {
+        "1": 10
+      }
+    ],
+    "grave_bell": [
+      9,
+      5,
+      13.9,
+      121.54,
+      {
+        "1": 9
+      }
+    ],
+    "grave_crossfire": [
+      31,
+      23,
+      12.85,
+      119.45,
+      {
+        "1": 31
+      }
+    ],
+    "graveyard_ambush": [
+      20,
+      18,
+      11.99,
+      117.48,
+      {
+        "1": 20
+      }
+    ],
+    "iron_wall": [
+      9,
+      4,
+      21.38,
+      175.84,
+      {
+        "2": 9
+      }
+    ],
+    "last_bell": [
+      8,
+      7,
+      17.33,
+      140.13,
+      {
+        "1": 8
+      }
+    ],
+    "ossuary_gate": [
+      11,
+      7,
+      16.15,
+      169.92,
+      {
+        "1": 11
+      }
+    ],
+    "threadbare_theatre": [
+      8,
+      8,
+      11.19,
+      34.9,
+      {
+        "1": 8
+      }
+    ]
+  },
+  "coverage": {
+    "max_party": {
+      "2": 29,
+      "1": 13,
+      "3": 3
+    },
+    "final_party": {
+      "2": 29,
+      "1": 13,
+      "3": 3
+    },
+    "battle_party_wins": {
+      "(1, False)": 12,
+      "(1, True)": 118,
+      "(2, False)": 51,
+      "(2, True)": 71,
+      "(3, False)": 5,
+      "(3, True)": 3
+    },
+    "confirmed_continue": 45,
+    "saved_finished": 45,
+    "hold": 45,
+    "wager": {
+      "False": 52,
+      "True": 24
+    },
+    "mark_selected": 31,
+    "mark_offered": 73,
+    "recruits": {
+      "joined": 35,
+      "unknown": 44,
+      "lost": 11
+    },
+    "jack": 0,
+    "travel": 408,
+    "travel_natural": 314,
+    "result_actions": {
+      "new_game": 45,
+      "intro_skip": 45,
+      "select_class": 45,
+      "confirm_class": 45,
+      "choose_card": 453,
+      "event_choice": 221,
+      "continue_event": 207,
+      "continue": 45,
+      "save_continue_verified": 45,
+      "hold": 45,
+      "battle_reward": 192,
+      "reward_major_upgrade": 96,
+      "reward_normal_loot": 171,
+      "wager": 76,
+      "fate_milestone": 93,
+      "meddling": 71,
+      "last_deal_accept": 28,
+      "last_deal_end": 40,
+      "reward_elite_artifact": 15,
+      "reward_death_wager": 6,
+      "travel_skip": 94
+    },
+    "rewards": {
+      "('reward_normal_loot', 'blood_coin')": 171,
+      "('reward_major_upgrade', 'ranger_longshot')": 17,
+      "('reward_major_upgrade', 'mage_glass_heart')": 17,
+      "('reward_major_upgrade', 'mage_overload')": 15,
+      "('reward_major_upgrade', 'knight_executioner')": 10,
+      "('reward_major_upgrade', 'knight_iron_oath')": 9,
+      "('reward_major_upgrade', 'ranger_arrowstorm')": 8,
+      "('reward_major_upgrade', 'mage_wildfire')": 7,
+      "('reward_major_upgrade', 'ranger_beast_trail')": 7,
+      "('reward_major_upgrade', 'knight_cleaver')": 6,
+      "('reward_elite_artifact', 'cracked_focus')": 6,
+      "('reward_elite_artifact', 'dead_mans_shield')": 4,
+      "('reward_elite_artifact', 'elite_gold')": 4,
+      "('reward_death_wager', 'gold')": 2,
+      "('reward_death_wager', 'artifact:cracked_focus')": 2,
+      "('reward_death_wager', 'fallback_gold')": 2,
+      "('reward_elite_artifact', 'blind_quiver')": 1
+    },
+    "mean_upgrades": 3.3777777777777778,
+    "at_least_one_upgrade": 42,
+    "at_least_one_artifact": 8,
+    "result_slot": {
+      "5": 3,
+      "10": 7,
+      "12": 20,
+      "4": 1,
+      "1": 3,
+      "8": 2,
+      "7": 2,
+      "9": 4,
+      "2": 2,
+      "6": 1
+    },
+    "by_strategy_max_streak": {
+      "adaptive": {
+        "event": 3,
+        "combat": 5
+      },
+      "aggressive": {
+        "event": 2,
+        "combat": 7
+      },
+      "defensive": {
+        "event": 4,
+        "combat": 1
+      }
+    },
+    "same_kind_adjacent": [
+      182,
+      388
+    ],
+    "streaks": {
+      "event/2": 42,
+      "combat/2": 26,
+      "event/1": 71,
+      "combat/1": 67,
+      "combat/4": 3,
+      "combat/3": 17,
+      "combat/5": 2,
+      "combat/6": 1,
+      "event/3": 14,
+      "event/4": 6,
+      "combat/7": 2
+    },
+    "choices": {
+      "('combat', 'grave_crossfire')": 27,
+      "('event', 'ash_rest')": 24,
+      "('event', 'candle_seller')": 23,
+      "('combat', 'bone_shepherd')": 21,
+      "('event', 'last_camp')": 20,
+      "('combat', 'bone_warden')": 20,
+      "('combat', 'graveyard_ambush')": 19,
+      "('combat', 'crypt_guard')": 15,
+      "('event', 'whispering_well')": 14,
+      "('event', 'banner_seamstress')": 13,
+      "('event', 'gravedigger_shop')": 13,
+      "('event', 'curse_forge')": 13,
+      "('combat', 'bone_patrol')": 12,
+      "('combat', 'funeral_procession')": 12,
+      "('combat', 'bone_ritual')": 11,
+      "('event', 'black_altar')": 10,
+      "('event', 'broken_crown')": 10,
+      "('combat', 'firing_square')": 10,
+      "('event', 'wizard_tithe')": 10,
+      "('event', 'moon_seal')": 9,
+      "('event', 'bone_tax')": 9,
+      "('combat', 'death_wager')": 9,
+      "('combat', 'ossuary_gate')": 9,
+      "('combat', 'court_of_the_mute')": 8,
+      "('event', 'chained_prisoner')": 8,
+      "('combat', 'threadbare_theatre')": 8,
+      "('combat', 'gallows_volley')": 8,
+      "('event', 'blood_ledger')": 8,
+      "('combat', 'iron_wall')": 7,
+      "('combat', 'last_bell')": 7,
+      "('event', 'jack')": 7,
+      "('combat', 'grave_bell')": 7,
+      "('combat', 'black_lantern_road')": 6,
+      "('event', 'false_weights')": 6,
+      "('event', 'last_signal')": 6,
+      "('event', 'debtor_bones')": 6,
+      "('combat', 'black_crossing')": 6,
+      "('combat', 'defiled_laboratory')": 5,
+      "('combat', 'bone_crush')": 4,
+      "('event', 'unsent_letters')": 4,
+      "('event', 'faceless_card')": 3,
+      "('event', 'borrowed_boots')": 2,
+      "('event', 'echo_crypt')": 2,
+      "('combat', 'bone_swarm')": 1,
+      "('event', 'lost_purse')": 1
+    }
+  },
+  "objective": {
+    "no_critical:True": 5,
+    "fast_crush:True": 4,
+    "bell_first:False": 9,
+    "no_critical:False": 5
+  },
+  "phase_runs": [
+    [
+      "knight",
+      "adaptive",
+      61153,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 11.1000000000001,
+        "attack_interval": 0.68,
+        "damage": 27.84,
+        "hp_fraction": 0.442760452961673,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 19.2,
+          "hp": 574.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "knight",
+      "adaptive",
+      61153,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 11.0833333333335,
+        "attack_interval": 0.68,
+        "damage": 27.84,
+        "hp_fraction": 0.442760452961673,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 19.2,
+          "hp": 574.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "knight",
+      "adaptive",
+      61169,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 16.7833333333337,
+        "attack_interval": 0.68,
+        "damage": 31.32,
+        "hp_fraction": 0.477657321428571,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 21.6,
+          "hp": 644.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "knight",
+      "adaptive",
+      61169,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 15.766666666667,
+        "attack_interval": 0.68,
+        "damage": 31.32,
+        "hp_fraction": 0.477657321428571,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 21.6,
+          "hp": 644.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "knight",
+      "defensive",
+      61103,
+      true,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 14.816666666667,
+        "attack_interval": 0.68,
+        "damage": 27.84,
+        "hp_fraction": 0.496036585365854,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 19.2,
+          "hp": 574.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "knight",
+      "defensive",
+      61129,
+      true,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 15.0000000000003,
+        "attack_interval": 0.68,
+        "damage": 27.84,
+        "hp_fraction": 0.481637630662021,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 19.2,
+          "hp": 574.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "knight",
+      "defensive",
+      61169,
+      true,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 14.866666666667,
+        "attack_interval": 0.68,
+        "damage": 27.84,
+        "hp_fraction": 0.496036585365854,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 19.2,
+          "hp": 574.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "mage",
+      "adaptive",
+      61129,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 12.4500000000002,
+        "attack_interval": 0.68,
+        "damage": 31.32,
+        "hp_fraction": 0.46724,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 21.6,
+          "hp": 644.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "mage",
+      "adaptive",
+      61129,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 11.1166666666668,
+        "attack_interval": 0.68,
+        "damage": 31.32,
+        "hp_fraction": 0.464128571428572,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 21.6,
+          "hp": 644.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "mage",
+      "adaptive",
+      61169,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 13.4833333333336,
+        "attack_interval": 0.68,
+        "damage": 34.8,
+        "hp_fraction": 0.491785714285714,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 24.0,
+          "hp": 700.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 13.0,
+          "hp": 105.0,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 13.0,
+          "hp": 105.0,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "mage",
+      "adaptive",
+      61169,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 19.5833333333335,
+        "attack_interval": 0.68,
+        "damage": 34.8,
+        "hp_fraction": 0.487308571428571,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 24.0,
+          "hp": 700.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 13.0,
+          "hp": 105.0,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 13.0,
+          "hp": 105.0,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "mage",
+      "defensive",
+      61103,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 12.0666666666668,
+        "attack_interval": 0.68,
+        "damage": 27.84,
+        "hp_fraction": 0.423968327526132,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 19.2,
+          "hp": 574.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "mage",
+      "defensive",
+      61129,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 14.916666666667,
+        "attack_interval": 0.68,
+        "damage": 31.32,
+        "hp_fraction": 0.4495888,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 21.6,
+          "hp": 644.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "mage",
+      "defensive",
+      61141,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 11.3666666666668,
+        "attack_interval": 0.68,
+        "damage": 34.8,
+        "hp_fraction": 0.435263066202091,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 24.0,
+          "hp": 574.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 13.0,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 13.0,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "mage",
+      "defensive",
+      61153,
+      false,
+      "",
+      {},
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 27.0,
+          "hp": 644.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 14.625,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 14.625,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "mage",
+      "defensive",
+      61169,
+      false,
+      "witnessless",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Безымянный раб",
+          "Безымянный раб"
+        ],
+        "at_s": 11.7333333333335,
+        "attack_interval": 0.68,
+        "damage": 27.84,
+        "hp_fraction": 0.444298857142857,
+        "reinforcements": [
+          "Безымянный раб",
+          "Безымянный раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 19.2,
+          "hp": 574.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "ranger",
+      "adaptive",
+      61103,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 11.9333333333335,
+        "attack_interval": 0.68,
+        "damage": 31.32,
+        "hp_fraction": 0.481038571428571,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 21.6,
+          "hp": 644.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "ranger",
+      "adaptive",
+      61103,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 13.6000000000003,
+        "attack_interval": 0.68,
+        "damage": 31.32,
+        "hp_fraction": 0.476780714285714,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 21.6,
+          "hp": 644.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "ranger",
+      "adaptive",
+      61169,
+      false,
+      "riskbound",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Сборщик ставки",
+          "Сборщик ставки"
+        ],
+        "at_s": 10.7166666666668,
+        "attack_interval": 0.68,
+        "damage": 31.32,
+        "hp_fraction": 0.496080714285714,
+        "reinforcements": [
+          "Сборщик ставки",
+          "Сборщик ставки"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 21.6,
+          "hp": 644.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "ranger",
+      "adaptive",
+      61169,
+      false,
+      "riskbound",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Сборщик ставки",
+          "Сборщик ставки"
+        ],
+        "at_s": 12.3833333333335,
+        "attack_interval": 0.68,
+        "damage": 31.32,
+        "hp_fraction": 0.496080714285714,
+        "reinforcements": [
+          "Сборщик ставки",
+          "Сборщик ставки"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 21.6,
+          "hp": 644.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "ranger",
+      "aggressive",
+      61129,
+      true,
+      "riskbound",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Сборщик ставки",
+          "Сборщик ставки"
+        ],
+        "at_s": 11.8333333333335,
+        "attack_interval": 0.68,
+        "damage": 27.84,
+        "hp_fraction": 0.483107317073171,
+        "reinforcements": [
+          "Сборщик ставки",
+          "Сборщик ставки"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 19.2,
+          "hp": 574.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "ranger",
+      "aggressive",
+      61153,
+      true,
+      "riskbound",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Сборщик ставки",
+          "Сборщик ставки"
+        ],
+        "at_s": 11.2666666666668,
+        "attack_interval": 0.68,
+        "damage": 27.84,
+        "hp_fraction": 0.483107317073171,
+        "reinforcements": [
+          "Сборщик ставки",
+          "Сборщик ставки"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 19.2,
+          "hp": 574.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 10.4,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "ranger",
+      "defensive",
+      61103,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 19.5333333333335,
+        "attack_interval": 0.68,
+        "damage": 39.15,
+        "hp_fraction": 0.490691071428572,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 27.0,
+          "hp": 644.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 14.625,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 14.625,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "ranger",
+      "defensive",
+      61129,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 13.0000000000002,
+        "attack_interval": 0.68,
+        "damage": 34.8,
+        "hp_fraction": 0.487634285714286,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 24.0,
+          "hp": 700.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 13.0,
+          "hp": 105.0,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 13.0,
+          "hp": 105.0,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "ranger",
+      "defensive",
+      61153,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 14.9500000000003,
+        "attack_interval": 0.68,
+        "damage": 34.8,
+        "hp_fraction": 0.493951219512195,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 24.0,
+          "hp": 574.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 13.0,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 13.0,
+          "hp": 86.1,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ],
+    [
+      "ranger",
+      "defensive",
+      61169,
+      false,
+      "",
+      {
+        "actors": [
+          "Костяной надзиратель",
+          "Костяной страж",
+          "Костяной страж",
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "at_s": 16.7500000000003,
+        "attack_interval": 0.68,
+        "damage": 31.32,
+        "hp_fraction": 0.494719642857143,
+        "reinforcements": [
+          "Костяной палач",
+          "Костяной раб"
+        ],
+        "speed": 78.0
+      },
+      [
+        {
+          "attack_interval": 1.0,
+          "boss": true,
+          "damage": 21.6,
+          "hp": 644.0,
+          "role": "bone_warden",
+          "speed": 60.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        },
+        {
+          "attack_interval": 0.95,
+          "boss": false,
+          "damage": 11.7,
+          "hp": 96.6,
+          "role": "skeleton",
+          "speed": 78.0
+        }
+      ]
+    ]
+  ],
+  "fixtures": {
+    "bone_warden/1/adaptive//knight": [
+      [
+        31017,
+        "defeat",
+        17.25,
+        1,
+        {
+          "actors": [
+            "Костяной надзиратель",
+            "Костяной страж",
+            "Костяной страж",
+            "Костяной палач",
+            "Костяной раб"
+          ],
+          "at_s": 14.316666666667,
+          "attack_interval": 0.68,
+          "damage": 27.84,
+          "hp_fraction": 0.463763066202091,
+          "reinforcements": [
+            "Костяной палач",
+            "Костяной раб"
+          ],
+          "speed": 78.0
+        },
+        {
+          "knight": [
+            0.0,
+            330.0
+          ]
+        }
+      ]
+    ],
+    "bone_warden/1/adaptive/witnessless/knight": [
+      [
+        31017,
+        "defeat",
+        18.0,
+        1,
+        {
+          "actors": [
+            "Костяной надзиратель",
+            "Костяной страж",
+            "Костяной страж",
+            "Безымянный раб",
+            "Безымянный раб"
+          ],
+          "at_s": 14.316666666667,
+          "attack_interval": 0.68,
+          "damage": 27.84,
+          "hp_fraction": 0.463763066202091,
+          "reinforcements": [
+            "Безымянный раб",
+            "Безымянный раб"
+          ],
+          "speed": 78.0
+        },
+        {
+          "knight": [
+            0.0,
+            330.0
+          ]
+        }
+      ]
+    ],
+    "bone_warden/2/adaptive//knight": [
+      [
+        31017,
+        "defeat",
+        18.02,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ]
+    ],
+    "bone_warden/3/adaptive//knight": [
+      [
+        31017,
+        "defeat",
+        19.13,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ]
+    ],
+    "bone_warden/3/adaptive/riskbound/knight": [
+      [
+        31017,
+        "defeat",
+        19.13,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ]
+    ],
+    "bone_warden/3/adaptive/scarred/knight": [
+      [
+        31017,
+        "defeat",
+        18.0,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            130.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ]
+    ],
+    "firing_square/1/adaptive//knight": [
+      [
+        31017,
+        "victory",
+        31.67,
+        2,
+        {},
+        {
+          "knight": [
+            87.5999999999999,
+            330.0
+          ]
+        }
+      ]
+    ],
+    "firing_square/2/adaptive//knight": [
+      [
+        31017,
+        "defeat",
+        22.37,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ]
+    ],
+    "firing_square/3/adaptive//knight": [
+      [
+        31017,
+        "defeat",
+        18.77,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ]
+    ],
+    "iron_wall/1/adaptive//knight": [
+      [
+        31017,
+        "victory",
+        22.9,
+        2,
+        {},
+        {
+          "knight": [
+            112.4,
+            330.0
+          ]
+        }
+      ]
+    ],
+    "iron_wall/2/adaptive//knight": [
+      [
+        31017,
+        "defeat",
+        24.93,
+        2,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ]
+    ],
+    "iron_wall/3/adaptive//knight": [
+      [
+        31017,
+        "defeat",
+        19.9,
+        2,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ]
+    ],
+    "last_bell/1/assault//knight": [
+      [
+        31017,
+        "victory",
+        25.17,
+        1,
+        {},
+        {
+          "knight": [
+            27.6000000000001,
+            330.0
+          ]
+        }
+      ],
+      [
+        31031,
+        "victory",
+        24.62,
+        1,
+        {},
+        {
+          "knight": [
+            27.6,
+            330.0
+          ]
+        }
+      ],
+      [
+        31039,
+        "victory",
+        24.52,
+        1,
+        {},
+        {
+          "knight": [
+            27.6,
+            330.0
+          ]
+        }
+      ]
+    ],
+    "last_bell/2/assault//knight": [
+      [
+        31017,
+        "defeat",
+        15.37,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ],
+      [
+        31031,
+        "defeat",
+        14.98,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ],
+      [
+        31039,
+        "defeat",
+        15.02,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ]
+    ],
+    "last_bell/3/assault//knight": [
+      [
+        31017,
+        "defeat",
+        15.68,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ],
+      [
+        31031,
+        "defeat",
+        14.08,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ],
+      [
+        31039,
+        "defeat",
+        14.12,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ]
+    ],
+    "ossuary_gate/1/assault//knight": [
+      [
+        31017,
+        "victory",
+        29.02,
+        1,
+        {},
+        {
+          "knight": [
+            50.8,
+            330.0
+          ]
+        }
+      ],
+      [
+        31031,
+        "victory",
+        30.53,
+        1,
+        {},
+        {
+          "knight": [
+            44.3999999999999,
+            330.0
+          ]
+        }
+      ],
+      [
+        31039,
+        "victory",
+        30.33,
+        1,
+        {},
+        {
+          "knight": [
+            44.4,
+            330.0
+          ]
+        }
+      ]
+    ],
+    "ossuary_gate/2/assault//knight": [
+      [
+        31017,
+        "defeat",
+        15.87,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ],
+      [
+        31031,
+        "defeat",
+        14.8,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ],
+      [
+        31039,
+        "defeat",
+        14.8,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ]
+    ],
+    "ossuary_gate/3/assault//knight": [
+      [
+        31017,
+        "defeat",
+        16.7,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ],
+      [
+        31031,
+        "defeat",
+        16.05,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ],
+      [
+        31039,
+        "defeat",
+        16.13,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ]
+    ],
+    "last_bell/1/hunt//knight": [
+      [
+        31017,
+        "defeat",
+        28.3,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            330.0
+          ]
+        }
+      ],
+      [
+        31031,
+        "defeat",
+        25.53,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            330.0
+          ]
+        }
+      ],
+      [
+        31039,
+        "defeat",
+        25.75,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            330.0
+          ]
+        }
+      ]
+    ],
+    "last_bell/2/hunt//knight": [
+      [
+        31017,
+        "defeat",
+        15.55,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ],
+      [
+        31031,
+        "defeat",
+        16.05,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ],
+      [
+        31039,
+        "defeat",
+        16.08,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ]
+    ],
+    "last_bell/3/hunt//knight": [
+      [
+        31017,
+        "defeat",
+        15.58,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ],
+      [
+        31031,
+        "defeat",
+        17.18,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ],
+      [
+        31039,
+        "defeat",
+        17.08,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ]
+    ],
+    "ossuary_gate/1/hunt//knight": [
+      [
+        31017,
+        "defeat",
+        19.42,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            330.0
+          ]
+        }
+      ],
+      [
+        31031,
+        "defeat",
+        19.58,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            330.0
+          ]
+        }
+      ],
+      [
+        31039,
+        "defeat",
+        19.6,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            330.0
+          ]
+        }
+      ]
+    ],
+    "ossuary_gate/2/hunt//knight": [
+      [
+        31017,
+        "defeat",
+        15.93,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ],
+      [
+        31031,
+        "defeat",
+        14.55,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ],
+      [
+        31039,
+        "defeat",
+        14.53,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "ranger": [
+            0.0,
+            108.0
+          ]
+        }
+      ]
+    ],
+    "ossuary_gate/3/hunt//knight": [
+      [
+        31017,
+        "defeat",
+        17.47,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ],
+      [
+        31031,
+        "defeat",
+        15.83,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ],
+      [
+        31039,
+        "defeat",
+        15.68,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ]
+    ],
+    "bone_warden/1/adaptive//mage": [
+      [
+        31017,
+        "defeat",
+        14.65,
+        1,
+        {
+          "actors": [
+            "Костяной надзиратель",
+            "Костяной страж",
+            "Костяной страж",
+            "Костяной палач",
+            "Костяной раб"
+          ],
+          "at_s": 12.9000000000002,
+          "attack_interval": 0.68,
+          "damage": 27.84,
+          "hp_fraction": 0.44390243902439,
+          "reinforcements": [
+            "Костяной палач",
+            "Костяной раб"
+          ],
+          "speed": 78.0
+        },
+        {
+          "mage": [
+            0.0,
+            176.0
+          ]
+        }
+      ]
+    ],
+    "bone_warden/1/adaptive/witnessless/mage": [
+      [
+        31017,
+        "defeat",
+        14.65,
+        1,
+        {
+          "actors": [
+            "Костяной надзиратель",
+            "Костяной страж",
+            "Костяной страж",
+            "Безымянный раб",
+            "Безымянный раб"
+          ],
+          "at_s": 12.9000000000002,
+          "attack_interval": 0.68,
+          "damage": 27.84,
+          "hp_fraction": 0.44390243902439,
+          "reinforcements": [
+            "Безымянный раб",
+            "Безымянный раб"
+          ],
+          "speed": 78.0
+        },
+        {
+          "mage": [
+            0.0,
+            176.0
+          ]
+        }
+      ]
+    ],
+    "bone_warden/2/adaptive//mage": [
+      [
+        31017,
+        "defeat",
+        16.18,
+        1,
+        {},
+        {
+          "knight": [
+            0.0,
+            180.0
+          ],
+          "mage": [
+            0.0,
+            96.0
+          ]
+        }
+      ]
+    ],
+    "bone_warden/3/adaptive//mage": [
+      [
+        31017,
+        "defeat",
+        19.2,
+        1,
+        {
+          "actors": [
+            "Костяной надзиратель",
+            "Костяной страж",
+            "Костяной страж",
+            "Костяной палач",
+            "Костяной раб"
+          ],
+          "at_s": 17.4500000000003,
+          "attack_interval": 0.68,
+          "damage": 34.8,
+          "hp_fraction": 0.482857142857143,
+          "reinforcements": [
+            "Костяной палач",
+            "Костяной раб"
+          ],
+          "speed": 78.0
+        },
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ]
+    ],
+    "bone_warden/3/adaptive/riskbound/mage": [
+      [
+        31017,
+        "defeat",
+        19.2,
+        1,
+        {
+          "actors": [
+            "Костяной надзиратель",
+            "Костяной страж",
+            "Костяной страж",
+            "Сборщик ставки",
+            "Сборщик ставки"
+          ],
+          "at_s": 17.4500000000003,
+          "attack_interval": 0.68,
+          "damage": 34.8,
+          "hp_fraction": 0.482857142857143,
+          "reinforcements": [
+            "Сборщик ставки",
+            "Сборщик ставки"
+          ],
+          "speed": 78.0
+        },
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            80.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ]
+    ],
+    "bone_warden/3/adaptive/scarred/mage": [
+      [
+        31017,
+        "defeat",
+        18.42,
+        1,
+        {
+          "actors": [
+            "Костяной надзиратель",
+            "Костяной страж",
+            "Костяной страж",
+            "Могильный исповедник"
+          ],
+          "at_s": 17.4500000000003,
+          "attack_interval": 0.68,
+          "damage": 34.8,
+          "hp_fraction": 0.482857142857143,
+          "reinforcements": [
+            "Могильный исповедник"
+          ],
+          "speed": 78.0
+        },
+        {
+          "knight": [
+            0.0,
+            150.0
+          ],
+          "mage": [
+            0.0,
+            62.0
+          ],
+          "ranger": [
+            0.0,
+            90.0
+          ]
+        }
+      ]
+    ]
+  },
+  "fixture_total": 54,
+  "tactics": {
+    "assigned": {
+      "assault": 441,
+      "defense": 109,
+      "hunt": 143
+    },
+    "first": {
+      "assault": 323,
+      "defense": 86,
+      "hunt": 9
+    },
+    "started": {
+      "assault": 430,
+      "defense": 109,
+      "hunt": 138
+    },
+    "transitions": {
+      "time": 100,
+      "timeout": 65,
+      "damage_taken": 17,
+      "personal_kill": 77
+    },
+    "records": {
+      "start": 677,
+      "target": 1595,
+      "kill": 795,
+      "end": 259,
+      "death": 152
+    }
+  }
+}

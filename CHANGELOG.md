@@ -1,3 +1,7 @@
+## 2026-11-19 — Autonomous Act 1 playtest
+
+Add an isolated Godot runner through the production campaign scenes with seeded decision policies, real BattleUnit combat, save/Continue checks and structured telemetry. Record 45 completed campaigns and 54 separate combat controls, including all four Bone Warden reinforcement variants. Add a real campaign smoke to PR CI. [Results and logs](docs/qa/act1_autonomous_playtest/README.md)
+
 ## 2026-11-19 — Act 1 gameplay audit plan (documentation only)
 
 Review live main progression, combat planning, enemy/wave resources, prior diagnostic data and boss XIII variants. Add [`docs/ACT1_GAMEPLAY_AUDIT_2026-11-19.md`](docs/ACT1_GAMEPLAY_AUDIT_2026-11-19.md) with a concrete real F5 playtest matrix, matched F6 regression comparisons, event/pacing checkpoints and P0/P1/P2 triage. Update project status, roadmap and handoff. **No Godot gameplay, balance, visual assets or save data changed; experiential verification remains pending.**
