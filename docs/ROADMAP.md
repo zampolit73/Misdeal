@@ -1,3 +1,11 @@
+## Next focus — full Act 1 playability audit (2026-11-19)
+
+- [x] Player accepted **all 24 Act 1 Cinematic Travel event scenes** after the full coverage check; seven earlier, seven Batch 02 and ten Batch 03 are finished.
+- [x] Approved Combat Planning 1.0 / Visual V4 is already in `main` via PR #117, with 22 authored combat encounters.
+- [ ] **Next proposed milestone:** run a genuine full-playthrough gameplay/balance/UX audit: new game → 12 Fate Spread resolutions → Bone Warden XIII. Test solo/duo/trio, plan usefulness, wave breaks, recovery/saves, rewards, Last Deal, and pacing. Do not count prior automation as a full human playthrough or change balance without evidence.
+- [Next-chat handoff](NEXT_CHAT_HANDOFF_2026-11-19.md).
+
+
 ## Combat Planning 1.0 — released (2026-11-18)
 
 - [x] Player approved the isolated UX V4 pilot and requested campaign-wide deployment.
