@@ -1,6 +1,6 @@
 ## Living Arenas V2
 
-Add background motion to Last Bell, Ossuary Gate and Bone Warden XIII using the original arena paintings and shared mask shader. Tie the Warden's restrained phase reaction to the existing enrage event. Add direct F6 scenes, QA Hub entries and native verification. [Details](docs/LIVING_ARENAS_V2.md)
+Add background motion to Last Bell, Ossuary Gate and Bone Warden XIII using the original arena paintings and shared mask shader. Tie the Warden's restrained phase reaction to the existing enrage event. Add direct F6 scenes and a dedicated QA Hub tab. Allow Release CI time to upload all native evidence. [Details](docs/LIVING_ARENAS_V2.md)
 
 ## 2026-11-19 — Act 1 gameplay audit plan (documentation only)
 

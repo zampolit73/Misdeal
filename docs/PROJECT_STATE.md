@@ -1,6 +1,6 @@
-## Living Arenas V2 — three new profiles for review
+## Living Arenas V2 — campaign rollout
 
-Last Bell, Ossuary Gate and Bone Warden XIII use local haze, dust and source lights behind the existing combat layer. The Warden's original phase transition ramps the backdrop effect. The shared Ossuary painting keeps its original presentation in Death Wager. [Implementation and native checks](LIVING_ARENAS_V2.md)
+PR #124 delivers local haze, dust and source lights for Last Bell, Ossuary Gate and Bone Warden XIII. The Warden's original phase transition ramps the backdrop effect. The shared Ossuary painting keeps its original presentation in Death Wager. QA Hub has a dedicated ЖИВЫЕ АРЕНЫ tab. [Implementation and native checks](LIVING_ARENAS_V2.md)
 
 ## Act 1 gameplay audit — static risk review and F5 playtest plan (2026-11-19)
 
