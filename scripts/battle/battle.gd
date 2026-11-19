@@ -174,9 +174,9 @@ func _ready() -> void:
 		encounter.encounter_id, encounter.get_formation_count()
 	)
 	if battle_backdrop.has_method("set_arena_id"):
-		battle_backdrop.call("set_arena_id", encounter.arena_id)
+		battle_backdrop.call("set_arena_id", encounter.arena_id, encounter.encounter_id)
 	if arena_visual.has_method("set_arena_id"):
-		arena_visual.call("set_arena_id", encounter.arena_id)
+		arena_visual.call("set_arena_id", encounter.arena_id, encounter.encounter_id)
 	if arena_visual.has_method("set_boss_mode"):
 		arena_visual.call("set_boss_mode", _is_boss_encounter())
 	title_label.text = "MISDEAL — %s" % encounter.title
@@ -1091,6 +1091,7 @@ func _on_boss_enraged(_unit: BattleUnit) -> void:
 	_show_wizard_line(_get_boss_phase_two_wizard_line(), true)
 	if arena_visual.has_method("set_boss_phase_two"):
 		arena_visual.call("set_boss_phase_two", true)
+	battle_backdrop.call("set_living_phase_two", true)
 
 	_show_boss_phase_flash()
 

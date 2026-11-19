@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://dq7ya0lhjyfix"
+path="res://.godot/imported/last_bell.png-c53a9a4752ecfd668253274481dde7d1.image"
+
+[deps]
+
+source_file="res://assets/pixel/battle/living_masks/last_bell.png"
+dest_files=["res://.godot/imported/last_bell.png-c53a9a4752ecfd668253274481dde7d1.image"]
+
+[params]

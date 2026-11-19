@@ -2,6 +2,7 @@ extends RefCounted
 ## Coordinates traced from the immutable 1280x720 production paintings.
 ## R: local displacement; G: distant atmosphere; B: existing lights; A: dust.
 const PILOTS := ["firing_square", "black_crossing", "threadbare_theatre"]
+const V2_ARENAS := ["last_bell", "ossuary_gate", "warden"]
 const PROFILES := {
 	"firing_square": {
 		"mode": 1,
@@ -24,12 +25,58 @@ const PROFILES := {
 		"atmosphere": [],
 		"dust": [[[556,92],[632,83],[707,303],[613,321],[531,290]], [[512,278],[567,283],[586,339],[502,340]]],
 		"lights": [[69,486,27], [243,395,23], [343,365,22], [537,313,19], [783,334,18], [1107,193,23], [1246,505,30]]
+	},
+	"last_bell": {
+		"mode": 4,
+		"warp": [],
+		# Far valley between the bell tower and the right columns.
+		"atmosphere": [[[642,159],[751,146],[934,149],[1078,156],[1195,166],[1195,235],[1122,285],[981,297],[777,318],[649,282]]],
+		"dust": [[[279,185],[467,177],[488,256],[548,254],[542,317],[289,319]]],
+		"lights": [[87,349,24], [287,338,24], [362,247,31], [529,276,26], [1084,348,24]],
+		"haze": Color(0.49,0.57,0.65,0.13),
+		"motes": Vector4(298,195,222,103),
+		"dust_strength": 0.23
+	},
+	"ossuary_gate": {
+		"mode": 4,
+		"warp": [],
+		# Rear gate and alcoves, above the entrance step.
+		"atmosphere": [[[512,18],[661,6],[789,11],[847,70],[837,241],[793,290],[633,287],[542,259],[521,182]], [[235,99],[284,89],[321,132],[318,236],[301,286],[236,281]]],
+		"dust": [[[302,112],[882,95],[953,160],[975,296],[891,306],[698,282],[390,306],[304,273]]],
+		"lights": [[64,145,31], [357,149,29], [605,261,24], [862,260,24], [1080,124,27], [1140,292,23], [1208,249,29]],
+		"haze": Color(0.32,0.42,0.54,0.13),
+		"motes": Vector4(311,137,634,145),
+		"dust_strength": 0.28
+	},
+	"warden": {
+		"mode": 4,
+		"warp": [],
+		# Existing wall recesses only. The painted floor seal is static.
+		"atmosphere": [[[384,41],[463,26],[525,72],[506,240],[477,307],[357,323],[340,262],[376,191]], [[755,62],[829,30],[895,75],[916,207],[948,306],[843,324],[783,296],[754,235]]],
+		"dust": [[[217,149],[334,123],[466,170],[502,307],[397,318],[226,319]], [[773,139],[927,126],[1050,150],[1071,308],[920,319],[783,294]]],
+		"lights": [[261,282,44], [443,175,61], [496,273,24], [784,272,24], [836,178,63], [1018,283,44]],
+		"haze": Color(0.44,0.35,0.37,0.085),
+		"motes": Vector4(242,163,790,130),
+		"dust_strength": 0.20,
+		"phase_response": true
 	}
 }
 static var masks: Dictionary = {}
 
 static func supports(id: String) -> bool:
 	return PROFILES.has(id)
+
+static func for_encounter(arena_id: String, encounter_id: String = "") -> String:
+	# Death Wager shares the Ossuary painting and retains its own ambience.
+	if arena_id == "ossuary" and encounter_id == "ossuary_gate":
+		return "ossuary_gate"
+	return arena_id if supports(arena_id) else ""
+
+static func encounter_for(id: String) -> String:
+	return "bone_warden" if id == "warden" else id
+
+static func arena_for(id: String) -> String:
+	return "ossuary" if id == "ossuary_gate" else id
 
 static func mask_for(id: String) -> Texture2D:
 	if masks.has(id): return masks[id]
