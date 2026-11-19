@@ -1,3 +1,10 @@
+## 2026-11-19 — final acceptance of all Act 1 Travel scenes
+
+The player explicitly confirmed "там все ок. меня устроило" after a complete 24-event Cinematic Travel coverage review. **All 24 unique event Travel scenes are artistically accepted**, including the seven earlier locations, Batch 02 seven and Batch 03 ten. Retain the approved art, Jack scale/placement, character contact and exact event outcome visual states; no unsolicited rerender or second art pass. This approval does not certify a completed manual full-act run, and does not make every combat victory a unique Travel event.
+
+Combat Planning 1.0 with gothic Visual V4 is already production in `main`, with player-approved battle planning; its actual gameplay balance remains suitable for future playtest. Proposed next focus: a grounded full Act 1 playability audit, not a new game design direction. [Session handoff](NEXT_CHAT_HANDOFF_2026-11-19.md)
+
+
 ## Cinematic Travel Batch 03 — production release (2026-11-19)
 
 The event resolver supplies the exact committed variant to Travel V2. The Well keeps its existing choice timing and joins the shared SceneRouter. Jack is a visual companion when present in the resolved Ranger party and occupies no hero slot. Batch 03 stages adult height against each location's ground plane and keeps walking Jack at 34% of adult stature at matching depth. Resized transparent layers keep original source hashes as the rollback reference. The user authorized the production rollout after the scale correction. [Merged PR #119](https://github.com/zampolit73/Misdeal/pull/119) · [Runtime contract](TRAVEL_BATCH03_REVIEW.md)
