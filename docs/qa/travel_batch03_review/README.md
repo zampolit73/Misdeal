@@ -1,12 +1,97 @@
-# Misdeal · Cinematic Travel Batch 03
+# Misdeal · Batch 03 · Масштаб фигур и окружения
 
-23 кадра из Godot для художественной проверки десяти локаций. Нажмите на кадр, чтобы открыть его в исходном размере **1280 × 720**. Под каждым кадром указаны исход и время с начала Travel.
+Десять сравнений «до и после» и 23 кадра с ключевыми исходами. Откройте любой кадр для просмотра в **1280 × 720**.
 
-[PR №119 с интеграцией](https://github.com/zampolit73/Misdeal/pull/119) · [Исходный арт-пакет №118](https://github.com/zampolit73/Misdeal/pull/118) · [RELEASE CI](https://github.com/zampolit73/Misdeal/actions/runs/44490296417) · [216 кадров и журнал всех исходов](https://github.com/zampolit73/Misdeal/actions/runs/44490296417/artifacts/14513467545)
+[PR №119](https://github.com/zampolit73/Misdeal/pull/119) · [Коммит исправления](https://github.com/zampolit73/Misdeal/commit/3558db137b4e2002cb6b675d7200b7bd3d91dc35) · [GitHub CI](https://github.com/zampolit73/Misdeal/actions/runs/44551061968)
 
-Кадры ниже сняты в Windows / Godot 4.7.2 Compatibility. В этом прогоне пять фонов взяты из более ранних экспортов тех же композиций. Прогон RELEASE CI на коммите `574e117` использовал все 97 финальных файлов из арт-пакета. Полная серия лежит в `visual/travel_batch03` внутри архива CI.
+Повторный прогон в Godot 4.7.2 Compatibility прошёл все 72 исхода и записал 216 кадров. Для пяти фонов в кадрах Windows использованы более ранние экспорты тех же композиций. В коммите сохранены исходные контрольные суммы всех десяти финальных фонов.
 
-В Godot откройте `scenes/dev/qa_hub.tscn` клавишей F6 и выберите **Travel → Batch 03 — 72 исхода**. Стрелки меняют исход, 1/2/3 выбирают доступный состав отряда, P ставит сцену на паузу, R запускает её заново, Esc пропускает переход. [Инструкция и контракт проверки](https://github.com/zampolit73/Misdeal/blob/574e11767feddc0a767375cf347d1bcfc0b42084/docs/TRAVEL_BATCH03_REVIEW.md)
+## Сравнение масштаба в десяти локациях
+
+### Чёрный алтарь
+
+Маг и рыцарь относительно алтаря, площадки и ступеней.
+
+| До исправления | После исправления |
+| :---: | :---: |
+| [![Чёрный алтарь до](before/01_black_altar_rescue_blood_115.jpg)](before/01_black_altar_rescue_blood_115.jpg) | [![Чёрный алтарь после](frames/01_black_altar_rescue_blood_115.jpg)](frames/01_black_altar_rescue_blood_115.jpg) |
+
+### Закованный пленник
+
+Идущий отряд и пленник у решётки.
+
+| До исправления | После исправления |
+| :---: | :---: |
+| [![Закованный пленник до](before/10_chained_prisoner_abandon_250.jpg)](before/10_chained_prisoner_abandon_250.jpg) | [![Закованный пленник после](frames/10_chained_prisoner_abandon_250.jpg)](frames/10_chained_prisoner_abandon_250.jpg) |
+
+### Джек
+
+Лежащий пёс под балкой и следопыт на тропе.
+
+| До исправления | После исправления |
+| :---: | :---: |
+| [![Джек до](before/17_jack_passed_250.jpg)](before/17_jack_passed_250.jpg) | [![Джек после](frames/17_jack_passed_250.jpg)](frames/17_jack_passed_250.jpg) |
+
+### Шепчущий колодец
+
+Маг поднимается в масштабе площадки у колодца. Кладка закрывает нижнюю часть тела.
+
+| До исправления | После исправления |
+| :---: | :---: |
+| [![Шепчущий колодец до](before/19_whispering_well_rescue_blood_115.jpg)](before/19_whispering_well_rescue_blood_115.jpg) | [![Шепчущий колодец после](frames/19_whispering_well_rescue_blood_115.jpg)](frames/19_whispering_well_rescue_blood_115.jpg) |
+
+### Последний привал
+
+Раненый в укрытии и следопыт у скамьи.
+
+| До исправления | После исправления |
+| :---: | :---: |
+| [![Последний привал до](before/29_last_camp_abandon_loot_250.jpg)](before/29_last_camp_abandon_loot_250.jpg) | [![Последний привал после](frames/29_last_camp_abandon_loot_250.jpg)](frames/29_last_camp_abandon_loot_250.jpg) |
+
+### Пепельный привал
+
+Сидящий NPC у камней и идущий персонаж.
+
+| До исправления | После исправления |
+| :---: | :---: |
+| [![Пепельный привал до](before/36_ash_rest_abandon_250.jpg)](before/36_ash_rest_abandon_250.jpg) | [![Пепельный привал после](frames/36_ash_rest_abandon_250.jpg)](frames/36_ash_rest_abandon_250.jpg) |
+
+### Костяная пошлина
+
+Страж у прилавка и отряд в проходе.
+
+| До исправления | После исправления |
+| :---: | :---: |
+| [![Костяная пошлина до](before/41_bone_tax_gold_250.jpg)](before/41_bone_tax_gold_250.jpg) | [![Костяная пошлина после](frames/41_bone_tax_gold_250.jpg)](frames/41_bone_tax_gold_250.jpg) |
+
+### Карта без лица
+
+Высота стола относительно героя и габариты карты на сукне.
+
+| До исправления | После исправления |
+| :---: | :---: |
+| [![Карта без лица до](before/45_faceless_card_reveal_gold_250.jpg)](before/45_faceless_card_reveal_gold_250.jpg) | [![Карта без лица после](frames/45_faceless_card_reveal_gold_250.jpg)](frames/45_faceless_card_reveal_gold_250.jpg) |
+
+### Лунная печать
+
+Высота персонажа относительно постамента и размер печати.
+
+| До исправления | После исправления |
+| :---: | :---: |
+| [![Лунная печать до](before/60_moon_seal_keep_250.jpg)](before/60_moon_seal_keep_250.jpg) | [![Лунная печать после](frames/60_moon_seal_keep_250.jpg)](frames/60_moon_seal_keep_250.jpg) |
+
+### Склеп отзвуков
+
+Высота персонажа у саркофага и дверного проёма.
+
+| До исправления | После исправления |
+| :---: | :---: |
+| [![Склеп отзвуков до](before/64_echo_crypt_relic_kept_250.jpg)](before/64_echo_crypt_relic_kept_250.jpg) | [![Склеп отзвуков после](frames/64_echo_crypt_relic_kept_250.jpg)](frames/64_echo_crypt_relic_kept_250.jpg) |
+
+
+## Исходы после исправления
+
+В каждой подборке указано время с начала перехода. В Godot откройте `scenes/dev/qa_hub.tscn` клавишей F6 → **Travel → Batch 03 — 72 исхода**. [Инструкция](https://github.com/zampolit73/Misdeal/blob/3558db137b4e2002cb6b675d7200b7bd3d91dc35/docs/TRAVEL_BATCH03_REVIEW.md)
 
 ## Чёрный алтарь
 
