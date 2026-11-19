@@ -30,7 +30,7 @@
 
 ## Next work
 
-- [ ] Review the ten Batch 03 Travel locations in native Godot and record final art feedback before production approval. [Review contract](TRAVEL_BATCH03_REVIEW.md)
+- [x] Release all ten Batch 03 locations after the scale corrections, native playback checks and the user's approval. [Merged PR #119](https://github.com/zampolit73/Misdeal/pull/119) [Review contract](TRAVEL_BATCH03_REVIEW.md)
 
 - Handle concrete player feedback or separately agreed content tasks.
 - Preserve approved art/staging, current mechanics, balance, saves and existing architecture.

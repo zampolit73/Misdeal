@@ -1,6 +1,6 @@
-## Cinematic Travel Batch 03 — review branch
+## Cinematic Travel Batch 03 — released (2026-11-19)
 
-The native review build extends Travel V2 with ten Act 1 locations and 72 committed event outcomes. The review branch now calibrates hero, companion and NPC stature against each location and adjusts oversized props. Open the QA Hub and choose Batch 03 or an individual location. Production approval is pending. [Review contract](TRAVEL_BATCH03_REVIEW.md)
+The user approved production rollout. Ten Act 1 locations and 72 resolved event outcomes now use Travel V2 in `main`, with character, companion, NPC and prop scale calibrated against the environment. Open the QA Hub to preview the batch or follow the normal event route in the campaign. [Merged PR #119](https://github.com/zampolit73/Misdeal/pull/119) · [Runtime and QA contract](TRAVEL_BATCH03_REVIEW.md)
 
 ## Combat Planning 1.0 — production (2026-11-18)
 
