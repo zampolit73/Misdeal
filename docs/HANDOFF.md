@@ -1,3 +1,10 @@
+## Next-chat handoff — user-approved Act 1 Travel (2026-11-19)
+
+The player finished reviewing the full Cinematic Travel set and explicitly confirmed: "там все ок. меня устроило". All **24/24 unique Act 1 event Travel scenes** (7 earlier + 7 Batch 02 + 10 Batch 03) are artistically accepted. Do not reopen approved art/scale or commission the same locations again without new concrete feedback. This is user feedback on visuals, not a claim of a complete manual campaign playthrough.
+
+Combat Planning 1.0 and approved gothic Visual V4 are live in `main` via PR #117; the 10-scene Batch 03 package is live via PR #119. **Next recommended task**: full Act 1 gameplay playtest and balance/UX audit (12 Fate resolutions + Bone Warden XIII), not more Travel illustration. Read [complete next-chat handoff](NEXT_CHAT_HANDOFF_2026-11-19.md), [project state](PROJECT_STATE.md), [Travel review](TRAVEL_BATCH03_REVIEW.md) and [combat rollout](COMBAT_PLANNING_ROLLOUT.md). No new gameplay code was requested or changed in this handoff.
+
+
 ## Cinematic Travel Batch 03 on main
 
 [PR #119](https://github.com/zampolit73/Misdeal/pull/119) shipped all ten locations and 72 resolved event outcomes at `084c09a`. From `main`, start the campaign with F5 or open `scenes/dev/qa_hub.tscn` with F6 and select **Travel → Batch 03 — 72 исхода**. [Runtime contract, visual evidence and QA controls](TRAVEL_BATCH03_REVIEW.md)
