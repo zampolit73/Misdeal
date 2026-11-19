@@ -1,3 +1,7 @@
+## 2026-11-19 — Cinematic Travel Batch 03 review
+
+Integrate ten travel locations and 72 live event outcomes on the separate review branch. Add a QA Hub launcher, native event-route and artwork-integrity checks. Calibrate actors against the environment in all ten locations and resize Jack, stationary NPCs and oversized props. [Review contract](docs/TRAVEL_BATCH03_REVIEW.md)
+
 ## 2026-11-18 — Combat Planning 1.0 production release
 
 The approved Visual V4 board is the default preparation UI across all 22 combat encounters, including Bone Warden XIII and Iron Wall with orders for surviving heroes between waves. «Классика» keeps the original tactics and rare orders available. Encounter-independent drafts live in the current session and existing save slots remain compatible. Court of the Mute starts in a compact deployment view so the V4 board does not obscure the formation. [Merged PR #117 and release checks](docs/COMBAT_PLANNING_ROLLOUT.md)

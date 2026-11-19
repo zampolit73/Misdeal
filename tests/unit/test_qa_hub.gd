@@ -17,17 +17,27 @@ func test_complete_catalog_search_archive_and_current_travel() -> void:
 	var live_cards := {}
 	var ids := {}
 	var batch02 := false
+	var batch03 := false
+	var batch03_locations := 0
+	var batch03_outcomes := 0
 	for entry in entries:
 		assert_false(ids.has(entry.id),entry.id)
 		ids[entry.id]=true
 		assert_true(ResourceLoader.exists(entry.scene,"PackedScene"),entry.scene)
 		if entry.has("card_id"): live_cards[entry.card_id]=true
 		if entry.scene.ends_with("travel_batch02_playtest.tscn"): batch02=true
+		if entry.scene.ends_with("travel_batch03_playtest.tscn"): batch03=true
+		if entry.get("batch") == 3:
+			batch03_locations += 1
+			batch03_outcomes += int(entry.case_count)
 	assert_eq(live_cards.size(),RunState.CARD_PATHS.size())
 	assert_true(batch02)
+	assert_true(batch03)
+	assert_eq(batch03_locations, 10)
+	assert_eq(batch03_outcomes, 72)
 	for entry in hub.get_visible_entries(): assert_ne(entry.group,"АРХИВ")
 	hub._show_group("TRAVEL")
-	assert_eq(hub.get_visible_entries().size(),17)
+	assert_eq(hub.get_visible_entries().size(),28)
 	hub.get_node("Search").text="candle_seller"
 	hub._show_group("ВСЁ")
 	assert_eq(hub.get_visible_entries().size(),2)

@@ -1,6 +1,14 @@
 extends RefCounted
 ## F6-only index: current authored tools + every live card + labelled historical previews.
 const GROUPS := ["ВСЁ","ИГРА","КАРТЫ","СОБЫТИЯ","TRAVEL","БОЙ","АНИМАЦИИ","ИНТЕРФЕЙС","АРХИВ"]
+const TRAVEL_DRIVERS := [
+	"res://scripts/dev/travel_pilot_batch01_playtest.gd",
+	"res://scripts/dev/travel_batch02_playtest.gd",
+	"res://scripts/dev/travel_batch03_playtest.gd",
+]
+
+static func travel_cases(driver: Script, batch: int) -> Array:
+	return driver.cases() if batch == 3 else driver.get_script_constant_map().CASES
 
 static func entries() -> Array[Dictionary]:
 	var rows: Array[Dictionary]=[]
@@ -43,7 +51,8 @@ static func entries() -> Array[Dictionary]:
 		["TRAVEL","Костёр без хозяина","scenes/dev/campfire_playtest.tscn","repair / hobnails / passed и движение по дороге.",""],
 		["TRAVEL","Склад мёртвых пайков","scenes/dev/dead_rations_granary_playtest.tscn","fair / silence / passed; раскрытые запасы и откуп.",""],
 		["TRAVEL","Pilot Batch 01 — 11 исходов","scenes/dev/travel_pilot_batch01_playtest.tscn","Сигнал, могильщик и кошель. ←/→ — исход, 1/2/3 — состав.",""],
-		["TRAVEL","Batch 02 V2 — 31 исход","scenes/dev/travel_batch02_playtest.tscn","Все семь новых Travel-сцен. ←/→ — исход, 1/2/3 — состав, P/R — пауза/повтор.",""]]
+		["TRAVEL","Batch 02 V2 — 31 исход","scenes/dev/travel_batch02_playtest.tscn","Все семь новых Travel-сцен. ←/→ — исход, 1/2/3 — состав, P/R — пауза/повтор.",""],
+		["TRAVEL","Batch 03 — 72 исхода","scenes/dev/travel_batch03_playtest.tscn","Десять локаций первого акта. ←/→ — исход, 1/2/3 — состав, P/R — пауза/повтор.",""]]
 	var used := {}
 	for row in tools:
 		var path: String="res://"+row[2]
@@ -52,10 +61,10 @@ static func entries() -> Array[Dictionary]:
 		used[path]=true
 	# Individual authored locations are searchable by their real title, while
 	# the complete batch launchers remain available for sequential review.
-	for batch in [1,2]:
-		var driver_path: String="res://scripts/dev/travel_pilot_batch01_playtest.gd" if batch==1 else "res://scripts/dev/travel_batch02_playtest.gd"
+	for batch in range(1, TRAVEL_DRIVERS.size() + 1):
+		var driver_path: String = TRAVEL_DRIVERS[batch - 1]
 		if not ResourceLoader.exists(driver_path): continue
-		var cases: Array=(load(driver_path) as Script).get_script_constant_map().CASES
+		var cases := travel_cases(load(driver_path) as Script, batch)
 		var start := 0
 		while start<cases.size():
 			var id: String=cases[start][0]

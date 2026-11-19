@@ -2,6 +2,7 @@ extends RefCounted
 ## Session-only presentation switch; never serialized into a run save.
 static var enabled := true
 const BATCH02 := preload("res://scripts/travel/batch_02_catalog.gd")
+const BATCH03 := preload("res://scripts/travel/batch_03_catalog.gd")
 const DEFAULT_LOCATION := "res://resources/travel/ruined_castle_road.tres"
 const LOCATIONS := {
 	"candle_seller":"res://resources/travel/batch_02/candle_seller.tres",
@@ -20,7 +21,10 @@ const LOCATIONS := {
 	"gravedigger_shop":"res://resources/travel/pilot_01/gravedigger_shop.tres",
 	"lost_purse":"res://resources/travel/pilot_01/lost_purse.tres"}
 static func resource_for(context: Dictionary) -> String:
-	return str(LOCATIONS.get(str(context.get("resolved_card_id","")),DEFAULT_LOCATION))
+	var id := str(context.get("resolved_card_id", ""))
+	if not BATCH03.scene_for(id).is_empty():
+		return "res://resources/travel/batch_03/%s.tres" % id
+	return str(LOCATIONS.get(id, DEFAULT_LOCATION))
 const TEXT := {
 	"gravedigger_shop": {"knight":"Могильщик затягивает обмотку. Чужой опыт теперь лежит в вашей ладони.","ranger":"Стрелы снова уложены. Могильщик прячет полученные монеты.","mage":"Камень опускается на поднос. Могильщик уже убирает инструменты.","leave":"Монеты остались при вас. Могильщик продолжает свою работу."},
 	"lost_purse": {"safe":"Верхние монеты сняты. Мёртвая рука по-прежнему держит кошель.","greedy":"Пальцы сжались крепче. За лишние монеты пришлось заплатить.","all_in":"На камне остался след кошеля. Дальше вы идёте с добычей.","untouched":"Мёртвые монеты остались у хозяина. Вода продолжает свой путь."},
@@ -31,6 +35,23 @@ const TEXT := {
 	"last_signal": {"truth":"Ваше обещание разорвано. На башне по-прежнему ждут ответного огня.","salvage":"Сигнальная чаша снята. Дозорный поднимает пустой шест.","passed":"Жаровня давно остыла. Дозорный продолжает ждать ответного сигнала."}}
 static func context_for(id: String, outcome: String, roles: Array, wizard: String = "", victory: bool = false, presentation: Dictionary = {}) -> Dictionary:
 	if not is_enabled() or roles.is_empty() or id == "bone_warden": return {}
+	if not BATCH03.scene_for(id).is_empty():
+		var action := str(presentation.get("batch_03_action", ""))
+		var state := BATCH03.action_for(id, action, roles)
+		if state.is_empty():
+			return {}
+		var jack: bool = (id == "jack" and action == "recruited") or (
+			id != "jack" and "ranger" in roles and bool(presentation.get("jack_companion", false)))
+		return {
+			"resolved_card_id": id,
+			"outcome_id": outcome,
+			"visual_action": action,
+			"party_roles": roles.duplicate(),
+			"jack_companion": jack,
+			"narration_text": state.narration,
+			"wizard_line": wizard,
+			"duration_sec": 4.0,
+		}
 	if BATCH02.ACTIONS.has(id):
 		var visual := BATCH02.action_for(id,outcome,roles,presentation)
 		if visual.is_empty(): return {}

@@ -1,3 +1,7 @@
+## Cinematic Travel Batch 03 review
+
+The event resolver supplies the exact committed variant to Travel V2. The Well keeps its existing choice timing and joins the shared SceneRouter. Jack is a visual companion when present in the resolved Ranger party and occupies no hero slot. Batch 03 stages adult height against each location's ground plane and keeps walking Jack at 34% of adult stature at matching depth. Resized transparent layers keep original source hashes as the rollback reference. [Review contract](TRAVEL_BATCH03_REVIEW.md)
+
 ## Combat Planning — user-approved campaign rollout (2026-11-18)
 
 The player tested the individual tactics and V4 visual dock, accepted the pilot and explicitly requested **all battles**, superseding the earlier QA-only restriction. Integrate the approved planner with the ordinary Battle scene for every authored encounter, solo/duo/trio and Bone Warden XIII. Preserve the same per-hero 1–3 order contract, transient explicit enemy assignments, mandatory event fallback timers, non-looping order flow, DS3/V4 art and real existing BattleUnit combat. Never regenerate another arena or fork the combat simulator.

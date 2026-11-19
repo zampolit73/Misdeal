@@ -75,8 +75,21 @@ func _run() -> void:
 	await create_timer(0.35).timeout
 	await _capture("recruited")
 	current_scene.get_node("Panel/ContinueButton").pressed.emit()
-	await create_timer(0.7).timeout
-	if current_scene.scene_file_path != "res://scenes/table/table.tscn" or not state.call("has_jack_companion"):
+	var deadline := Time.get_ticks_msec() + 8000
+	var travel := root.get_node_or_null("TravelTransition")
+	while travel == null and Time.get_ticks_msec() < deadline:
+		await process_frame
+		travel = root.get_node_or_null("TravelTransition")
+	if travel == null or not travel.available or travel.context.get("visual_action") != "recruited":
+		push_error("JACK_CAPTURE_FAIL: recruited Travel")
+		quit(1)
+		return
+	travel.skip_button.pressed.emit()
+	while Time.get_ticks_msec() < deadline:
+		if current_scene != null and current_scene.scene_file_path == "res://scenes/table/table.tscn" and not is_instance_valid(travel):
+			break
+		await process_frame
+	if current_scene == null or current_scene.scene_file_path != "res://scenes/table/table.tscn" or is_instance_valid(travel) or not state.call("has_jack_companion"):
 		push_error("JACK_CAPTURE_FAIL: resolved return")
 		quit(1)
 		return
