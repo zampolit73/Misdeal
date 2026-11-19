@@ -1,6 +1,6 @@
-## Cinematic Travel Batch 03 — native review
+## Cinematic Travel Batch 03 on main
 
-Continue on `review/cinematic-travel-batch-03`. Art provenance, fixture commands and QA Hub controls are in [the review contract](TRAVEL_BATCH03_REVIEW.md). The review branch uses the live event route. Scale correction covers every location, including stationary and walking Jack. Review evidence is linked from [PR #119](https://github.com/zampolit73/Misdeal/pull/119). Final art and staging approval are pending.
+[PR #119](https://github.com/zampolit73/Misdeal/pull/119) shipped all ten locations and 72 resolved event outcomes at `084c09a`. From `main`, start the campaign with F5 or open `scenes/dev/qa_hub.tscn` with F6 and select **Travel → Batch 03 — 72 исхода**. [Runtime contract, visual evidence and QA controls](TRAVEL_BATCH03_REVIEW.md)
 
 ## Combat Planning 1.0 on main
 
