@@ -1,3 +1,8 @@
+## Living Arenas V2
+
+- [x] Add three focused environment profiles and a backdrop reaction to the Warden's second phase. [V2 contract](LIVING_ARENAS_V2.md)
+- [ ] Review motion on the three new arenas in Godot before expanding further.
+
 ## Act 1 gameplay audit — execution plan ready (2026-11-19)
 
 - [x] Inspect current `main`, real RunState/Battle/planning, historical diagnostics and boss phase variants; record known-versus-untested boundaries.

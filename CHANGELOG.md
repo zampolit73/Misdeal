@@ -1,3 +1,7 @@
+## Living Arenas V2
+
+Add background motion to Last Bell, Ossuary Gate and Bone Warden XIII using the original arena paintings and shared mask shader. Tie the Warden's restrained phase reaction to the existing enrage event. Add direct F6 scenes, QA Hub entries and native verification. [Details](docs/LIVING_ARENAS_V2.md)
+
 ## 2026-11-19 — Act 1 gameplay audit plan (documentation only)
 
 Review live main progression, combat planning, enemy/wave resources, prior diagnostic data and boss XIII variants. Add [`docs/ACT1_GAMEPLAY_AUDIT_2026-11-19.md`](docs/ACT1_GAMEPLAY_AUDIT_2026-11-19.md) with a concrete real F5 playtest matrix, matched F6 regression comparisons, event/pacing checkpoints and P0/P1/P2 triage. Update project status, roadmap and handoff. **No Godot gameplay, balance, visual assets or save data changed; experiential verification remains pending.**
