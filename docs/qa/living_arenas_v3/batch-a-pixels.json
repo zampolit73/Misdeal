@@ -1,0 +1,30 @@
+[
+	{
+		"arena": "crypt",
+		"changed_sample_pixels": 14237,
+		"max_rgb_sum_delta": 0.227450966835022,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "graveyard",
+		"changed_sample_pixels": 10992,
+		"max_rgb_sum_delta": 0.235294129699469,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "gallows",
+		"changed_sample_pixels": 19837,
+		"max_rgb_sum_delta": 1.04313727468252,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "ossuary",
+		"changed_sample_pixels": 9172,
+		"max_rgb_sum_delta": 0.235294103622437,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	}
+]

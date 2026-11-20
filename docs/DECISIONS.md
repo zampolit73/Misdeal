@@ -1,3 +1,7 @@
+## Living Arenas V3 — all Act I combat paintings
+
+Keep one backdrop shader and the shared Image mask cache. V3 profiles reserve the entire lower source band from Y=360 for combat, including an empty mask row before the boundary. Death Wager uses its own mask on the same Ossuary painting as Ossuary Gate. Iron Wall triggers its localized transient from the existing second-wave start. The Court mask is tied to the released D271 painting. [Contract and verification](LIVING_ARENAS_V3.md)
+
 ## Living Arenas V2 — local backdrop phase reaction
 
 Resolve shared artwork by encounter where needed. Ossuary Gate uses a living profile while Death Wager retains its legacy ambience on the same painting. The combat enrage handler tells the backdrop the phase. The backdrop owns the visual ramp and observes its existing pause and finish clock. Keep the combat floor and telegraphs outside the mask. [Contract](LIVING_ARENAS_V2.md)

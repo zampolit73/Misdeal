@@ -1544,6 +1544,7 @@ func _start_second_wave() -> void:
 
 	enemy_label.text = "ВОЛНА II / II"
 	status_label.text = encounter.wave_two_status
+	battle_backdrop.call("start_living_wave_two")
 	await _play_combat_intro("ВОЛНА II")
 	if battle_finished:
 		return

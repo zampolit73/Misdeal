@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://ccn3i787fh4qd"
+path="res://.godot/imported/crypt.png-d194cc02b9d6681055ae9d150eed82d6.image"
+
+[deps]
+
+source_file="res://assets/pixel/battle/living_masks/crypt.png"
+dest_files=["res://.godot/imported/crypt.png-d194cc02b9d6681055ae9d150eed82d6.image"]
+
+[params]

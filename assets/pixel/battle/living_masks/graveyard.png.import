@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://dhqiayxiypju4"
+path="res://.godot/imported/graveyard.png-f470599dfc707b71ce0afdc819962514.image"
+
+[deps]
+
+source_file="res://assets/pixel/battle/living_masks/graveyard.png"
+dest_files=["res://.godot/imported/graveyard.png-f470599dfc707b71ce0afdc819962514.image"]
+
+[params]

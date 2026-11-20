@@ -1,0 +1,30 @@
+[
+	{
+		"arena": "bone_crush",
+		"changed_sample_pixels": 12334,
+		"max_rgb_sum_delta": 0.160784315317869,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "bone_swarm",
+		"changed_sample_pixels": 16736,
+		"max_rgb_sum_delta": 0.172549030743539,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "grave_crossfire",
+		"changed_sample_pixels": 22791,
+		"max_rgb_sum_delta": 0.200000009965152,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "iron_wall",
+		"changed_sample_pixels": 12833,
+		"max_rgb_sum_delta": 0.34509801864624,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	}
+]

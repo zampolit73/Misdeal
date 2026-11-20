@@ -1,0 +1,23 @@
+[
+	{
+		"arena": "bone_ritual",
+		"changed_sample_pixels": 18336,
+		"max_rgb_sum_delta": 0.199999995529652,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "black_lantern_road",
+		"changed_sample_pixels": 12288,
+		"max_rgb_sum_delta": 0.14901961106807,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "court_of_the_mute",
+		"changed_sample_pixels": 7832,
+		"max_rgb_sum_delta": 0.121568629518151,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	}
+]

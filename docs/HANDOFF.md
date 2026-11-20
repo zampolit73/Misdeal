@@ -1,3 +1,7 @@
+## Living Arenas V3
+
+Use F6 on `scenes/dev/qa_hub.tscn`, then **ЖИВЫЕ АРЕНЫ**. The tab exposes all 17 profiles with party selection, original/live comparison, pause and repeat. Use F5 and choose a combat card to review the same renderer in the campaign. The Iron Wall wave-II reaction and Warden enrage require their actual battle events. [Coverage, native evidence and reproduction](LIVING_ARENAS_V3.md)
+
 ## Living Arenas V2
 
 From `main` after PR #124, use the ЖИВЫЕ АРЕНЫ tab in QA Hub or open the three direct F6 scenes. Compare the animated background in preparation and combat. Warden has a presentation-only phase switch during preparation and uses the real enrage trigger in combat. [Preview, evidence and reproduction](LIVING_ARENAS_V2.md)

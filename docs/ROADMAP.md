@@ -1,3 +1,7 @@
+## Living Arenas V3
+
+- [x] Author the remaining 11 profiles for 10 paintings and the Death Wager variant. [Coverage and QA](LIVING_ARENAS_V3.md)
+
 ## Living Arenas V2
 
 - [x] Add three focused environment profiles and a backdrop reaction to the Warden's second phase. [V2 contract](LIVING_ARENAS_V2.md)

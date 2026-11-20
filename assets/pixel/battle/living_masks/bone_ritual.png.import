@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://bmywdsj5mh0h3"
+path="res://.godot/imported/bone_ritual.png-b7544cf4fc1a940c01eef60e62f34948.image"
+
+[deps]
+
+source_file="res://assets/pixel/battle/living_masks/bone_ritual.png"
+dest_files=["res://.godot/imported/bone_ritual.png-b7544cf4fc1a940c01eef60e62f34948.image"]
+
+[params]

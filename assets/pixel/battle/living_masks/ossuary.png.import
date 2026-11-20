@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://chgw27cl2bsy2"
+path="res://.godot/imported/ossuary.png-01eba2c8b4ed2688393c554df00549ec.image"
+
+[deps]
+
+source_file="res://assets/pixel/battle/living_masks/ossuary.png"
+dest_files=["res://.godot/imported/ossuary.png-01eba2c8b4ed2688393c554df00549ec.image"]
+
+[params]

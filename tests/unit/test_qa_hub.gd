@@ -2,6 +2,7 @@ extends GutTest
 const HUB := preload("res://scenes/dev/qa_hub.tscn")
 const SAVE := preload("res://scripts/core/run_save_service.gd")
 const MEMORY := preload("res://scripts/memory/memory_profile.gd")
+const LIVING_PROFILE := preload("res://scripts/battle/living_arena_profile.gd")
 
 func after_each() -> void:
 	get_tree().paused=false
@@ -52,8 +53,8 @@ func test_complete_catalog_search_archive_and_current_travel() -> void:
 	assert_eq(hub.get_node("Search").text, "")
 	var living_previews: Array[String] = []
 	for entry in hub.get_visible_entries():
-		living_previews.append(entry.scene.get_file())
-	assert_eq(living_previews, ["living_last_bell.tscn", "living_ossuary_gate.tscn", "living_warden.tscn"])
+		living_previews.append(entry.living_profile)
+	assert_eq(living_previews, LIVING_PROFILE.ALL_PROFILES)
 	assert_false(hub.get_node("DetailPanel/LaunchButton").disabled)
 	hub.get_node("Search").text=""
 	hub._show_group("АРХИВ")

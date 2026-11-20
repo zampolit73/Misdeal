@@ -1,0 +1,23 @@
+[
+	{
+		"arena": "firing_square",
+		"changed_sample_pixels": 5515,
+		"max_rgb_sum_delta": 0.133333340287209,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "black_crossing",
+		"changed_sample_pixels": 1080,
+		"max_rgb_sum_delta": 1.50588238798082,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "threadbare_theatre",
+		"changed_sample_pixels": 3009,
+		"max_rgb_sum_delta": 0.478431385941803,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	}
+]

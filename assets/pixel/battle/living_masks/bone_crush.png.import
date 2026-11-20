@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://bk5arohn2lga"
+path="res://.godot/imported/bone_crush.png-773f9344670d4d208fac777c62530f94.image"
+
+[deps]
+
+source_file="res://assets/pixel/battle/living_masks/bone_crush.png"
+dest_files=["res://.godot/imported/bone_crush.png-773f9344670d4d208fac777c62530f94.image"]
+
+[params]

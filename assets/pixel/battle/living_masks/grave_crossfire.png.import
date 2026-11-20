@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://b3b8xi7f7c83n"
+path="res://.godot/imported/grave_crossfire.png-e5565b0b3fe09edff74ec0f3f97e49cd.image"
+
+[deps]
+
+source_file="res://assets/pixel/battle/living_masks/grave_crossfire.png"
+dest_files=["res://.godot/imported/grave_crossfire.png-e5565b0b3fe09edff74ec0f3f97e49cd.image"]
+
+[params]

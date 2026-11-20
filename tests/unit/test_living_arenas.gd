@@ -6,9 +6,11 @@ func after_each() -> void:
 	get_tree().paused = false
 	RunState.reset_run()
 
-func test_only_six_profiles_and_original_pixels_survive_toggle() -> void:
+func test_all_arena_profiles_and_original_pixels_survive_toggle() -> void:
 	var hashes: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://docs/qa/living_arenas/source_hashes.json"))
 	hashes.merge(JSON.parse_string(FileAccess.get_file_as_string("res://docs/qa/living_arenas_v2/source_hashes.json")))
+	hashes.merge(JSON.parse_string(FileAccess.get_file_as_string("res://docs/qa/living_arenas_v3/source_hashes.json")))
+	assert_eq(hashes.size(), 16)
 	for path in hashes: assert_eq(FileAccess.get_sha256("res://"+path),hashes[path],"Approved arena bytes are immutable")
 	var node := BACKDROP.new()
 	add_child_autofree(node)
@@ -26,13 +28,29 @@ func test_only_six_profiles_and_original_pixels_survive_toggle() -> void:
 	assert_eq(node.living_profile_id, "ossuary_gate")
 	assert_not_null(node.material)
 	var ossuary: Texture2D = node.texture
+	var gate_mask := PROFILE.mask_for("ossuary_gate")
 	node.set_arena_id("ossuary", "death_wager")
-	assert_null(node.material)
-	assert_same(node.texture, ossuary, "The Death Wager retains the same shared painting")
-	assert_eq(PROFILE.masks.size(),6)
+	assert_eq(node.living_profile_id, "ossuary")
+	assert_not_null(node.material)
+	assert_ne(PROFILE.mask_for("ossuary"), gate_mask)
+	assert_same(node.texture, ossuary, "Death Wager and Gate retain the same painting")
+	assert_eq(PROFILE.masks.size(), PROFILE.ALL_PROFILES.size())
+
+func test_released_court_plate_and_legacy_comparison_remain_distinct() -> void:
+	var node := BACKDROP.new()
+	add_child_autofree(node)
+	node.set_arena_id("court_of_the_mute", "court_of_the_mute")
+	var released := node.texture
+	assert_not_null(node.material)
+	node.set_court_qa_legacy_art(true)
+	assert_ne(node.texture, released)
+	assert_null(node.material, "The released painting's mask is not applied to the legacy image")
+	node.set_court_qa_legacy_art(false)
+	assert_same(node.texture, released)
+	assert_not_null(node.material)
 
 func test_masks_exclude_pier_floor_and_theatre_floor() -> void:
-	for id in PROFILE.PILOTS + PROFILE.V2_ARENAS:
+	for id in PROFILE.ALL_PROFILES:
 		var mask := PROFILE.mask_for(id).get_image()
 		var source := Image.new()
 		source.load_png_from_buffer(FileAccess.get_file_as_bytes("res://assets/pixel/battle/living_masks/"+id+".png"))
@@ -46,6 +64,11 @@ func test_masks_exclude_pier_floor_and_theatre_floor() -> void:
 		if id in PROFILE.V2_ARENAS:
 			var floor := mask.get_region(Rect2i(0, 94, 320, 86))
 			assert_true(_is_zero(floor.get_data()), id+" full lower band is empty")
+		if id in PROFILE.V3_ARENAS:
+			var start_row := PROFILE.V3_FLOOR_Y / 4 - 1
+			var floor := mask.get_region(Rect2i(0, start_row, 320, 180-start_row))
+			assert_true(_is_zero(floor.get_data()), id+" includes a clear row before the protected band")
+			assert_true(mask.get_data() == PROFILE.build_mask(id).get_data(), id+" shipped mask matches its profile")
 
 func _is_zero(bytes: PackedByteArray) -> bool:
 	var zero := PackedByteArray()
@@ -124,33 +147,47 @@ func test_reopen_switch_and_visual_randomness_are_isolated() -> void:
 	for i in range(12):
 		var node := BACKDROP.new()
 		add_child(node)
-		for id in PROFILE.PILOTS + PROFILE.V2_ARENAS:
+		for id in PROFILE.ALL_PROFILES:
 			node.set_arena_id(PROFILE.arena_for(id), PROFILE.encounter_for(id))
 			node.advance_living(10.0)
 			node.set_living_enabled(false)
 			node.set_living_enabled(true)
-		node.set_arena_id("crypt")
-		assert_null(node.material)
-		assert_false(node.is_processing())
 		node.free()
 	assert_eq(randf(),expected,"Atmosphere must never consume combat RNG")
-	assert_eq(PROFILE.masks.size(),6,"Bounded shared mask cache")
+	assert_eq(PROFILE.masks.size(),PROFILE.ALL_PROFILES.size(),"Bounded shared mask cache")
 
 func test_identical_real_battle_results_with_fx_on_and_off() -> void:
-	for id in PROFILE.PILOTS + PROFILE.V2_ARENAS:
-		var baseline: Array = await _battle_result(id,false)
-		var animated: Array = await _battle_result(id,true)
-		assert_eq(animated,baseline,id+" same fixed-step real combat")
+	var encounters := DirAccess.get_files_at("res://resources/encounters")
+	var tested_arenas := {}
+	var tested_encounters := 0
+	for file: String in encounters:
+		if not file.ends_with(".tres"): continue
+		var encounter := load("res://resources/encounters/"+file) as EncounterData
+		# This directory also holds mechanics resources for Last Rite and Whistle.
+		if encounter == null: continue
+		var profile_id := PROFILE.for_encounter(encounter.arena_id, encounter.encounter_id)
+		assert_false(profile_id.is_empty(), encounter.encounter_id)
+		var baseline: Array = await _battle_result(encounter, profile_id, false)
+		var animated: Array = await _battle_result(encounter, profile_id, true)
+		assert_eq(animated,baseline,encounter.encounter_id+" same fixed-step real combat")
+		tested_encounters += 1
+		tested_arenas[encounter.arena_id] = true
+	assert_eq(tested_arenas.size(), 16)
+	assert_eq(tested_encounters, 22)
 
-func _battle_result(id: String, enabled: bool) -> Array:
+func _battle_result(encounter: EncounterData, profile_id: String, enabled: bool) -> Array:
 	RunState.reset_run()
 	RunState.choose_protagonist("knight")
 	RunState.recruit_companion("ranger","QA")
 	RunState.recruit_companion("mage","QA")
-	RunState.select_encounter("res://resources/encounters/"+PROFILE.encounter_for(id)+".tres")
+	RunState.active_card_id = encounter.encounter_id
+	if encounter.arena_id == "warden":
+		RunState.cards_resolved = 12
+	RunState.select_encounter(encounter.resource_path)
 	seed(775)
 	var battle := load("res://scenes/battle/battle.tscn").instantiate() as Control
 	add_child(battle)
+	assert_eq(battle.battle_backdrop.living_profile_id, profile_id, encounter.encounter_id)
 	battle.process_mode = Node.PROCESS_MODE_DISABLED
 	battle.battle_backdrop.set_living_enabled(enabled)
 	battle.combat_started = true
@@ -164,6 +201,9 @@ func _battle_result(id: String, enabled: bool) -> Array:
 			battle.process_mode = Node.PROCESS_MODE_INHERIT
 			await battle._start_second_wave()
 			battle.process_mode = Node.PROCESS_MODE_DISABLED
+			if enabled and profile_id == "iron_wall":
+				battle.battle_backdrop.advance_living(0.5)
+				assert_gt(float(battle.battle_backdrop.living_material.get_shader_parameter("wave_strength")), 0.0)
 		battle._process(1.0/60.0)
 		battle.battle_backdrop.advance_living(1.0/60.0)
 		if battle.black_crossing_surge_controller != null: battle.black_crossing_surge_controller.advance_battle(1.0/60.0)
@@ -173,7 +213,7 @@ func _battle_result(id: String, enabled: bool) -> Array:
 	var result: Array = [battle.battle_finished,RunState.last_battle_won,battle.battle_wave_index,battle.boss_reinforcements_spawned]
 	for unit: BattleUnit in battle.units:
 		result.append([unit.visual_role,snappedf(unit.hp,0.001),unit.alive,unit.position.snapped(Vector2(0.01,0.01))])
-	assert_true(battle.battle_finished,id+" fixed-step battle completed")
+	assert_true(battle.battle_finished,encounter.encounter_id+" fixed-step battle completed")
 	assert_true(battle.battle_backdrop.living_finished)
 	battle.free()
 	await get_tree().process_frame

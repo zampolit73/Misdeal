@@ -1,0 +1,851 @@
+{
+	"frames": [
+		{
+			"frame": "crypt_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_motion_000",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_motion_001",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_motion_002",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_motion_003",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_motion_004",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_motion_005",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_motion_006",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_motion_007",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_motion_008",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_motion_009",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_motion_010",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_motion_011",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_prep_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_prep_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_combat_00",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_combat_01",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_combat_02",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "crypt_finished",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_motion_000",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_motion_001",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_motion_002",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_motion_003",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_motion_004",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_motion_005",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_motion_006",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_motion_007",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_motion_008",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_motion_009",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_motion_010",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_motion_011",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_prep_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_prep_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_combat_00",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_combat_01",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_combat_02",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "graveyard_finished",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_motion_000",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_motion_001",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_motion_002",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_motion_003",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_motion_004",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_motion_005",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_motion_006",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_motion_007",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_motion_008",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_motion_009",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_motion_010",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_motion_011",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_prep_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_prep_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_combat_00",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_combat_01",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_combat_02",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "gallows_finished",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_motion_000",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_motion_001",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_motion_002",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_motion_003",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_motion_004",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_motion_005",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_motion_006",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_motion_007",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_motion_008",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_motion_009",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_motion_010",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_motion_011",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_prep_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_prep_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_combat_00",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_combat_01",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_combat_02",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "ossuary_finished",
+			"native_size": "1280x720"
+		}
+	],
+	"metrics": [
+		{
+			"arena": "crypt",
+			"enabled": false,
+			"frame_median_ms": 1.159,
+			"frame_p95_ms": 1.61,
+			"memory_bytes": 38281516.0,
+			"nodes": 24.0,
+			"objects": 1567.0,
+			"process_median_ms": 8.539,
+			"samples": 1191,
+			"scenario": "empty",
+			"video_memory_bytes": 19935928.0
+		},
+		{
+			"arena": "crypt",
+			"enabled": true,
+			"frame_median_ms": 1.144,
+			"frame_p95_ms": 1.548,
+			"memory_bytes": 38286636.0,
+			"nodes": 24.0,
+			"objects": 1568.0,
+			"process_median_ms": 8.978,
+			"samples": 1216,
+			"scenario": "empty",
+			"video_memory_bytes": 19935928.0
+		},
+		{
+			"arena": "crypt",
+			"boss_phase_two": false,
+			"party_size": 2,
+			"phase_mix": 0.0,
+			"scenario": "result",
+			"wave": 1,
+			"won": true
+		},
+		{
+			"arena": "crypt",
+			"enabled": false,
+			"frame_median_ms": 1.916,
+			"frame_p95_ms": 3.448,
+			"memory_bytes": 54252603.0,
+			"nodes": 316.0,
+			"objects": 2668.0,
+			"party_size": 2,
+			"process_median_ms": 9.738,
+			"samples": 693,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 57767227.0
+		},
+		{
+			"arena": "crypt",
+			"enabled": true,
+			"frame_median_ms": 1.897,
+			"frame_p95_ms": 3.168,
+			"memory_bytes": 54255051.0,
+			"nodes": 316.0,
+			"objects": 2668.0,
+			"party_size": 2,
+			"process_median_ms": 10.357,
+			"samples": 708,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 57767227.0
+		},
+		{
+			"arena": "crypt",
+			"enabled": true,
+			"frame_median_ms": 1.936,
+			"frame_p95_ms": 3.445,
+			"memory_bytes": 54255755.0,
+			"nodes": 316.0,
+			"objects": 2668.0,
+			"party_size": 2,
+			"process_median_ms": 10.026,
+			"samples": 685,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 57767227.0
+		},
+		{
+			"arena": "crypt",
+			"enabled": false,
+			"frame_median_ms": 1.846,
+			"frame_p95_ms": 3.556,
+			"memory_bytes": 54273471.0,
+			"nodes": 316.0,
+			"objects": 2668.0,
+			"party_size": 2,
+			"process_median_ms": 10.401,
+			"samples": 712,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 57767227.0
+		},
+		{
+			"arena": "crypt",
+			"iteration": 0,
+			"memory_bytes": 47793339.0,
+			"nodes": 23.0,
+			"objects": 1760.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "crypt",
+			"iteration": 1,
+			"memory_bytes": 47794127.0,
+			"nodes": 23.0,
+			"objects": 1760.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "crypt",
+			"iteration": 2,
+			"memory_bytes": 47795011.0,
+			"nodes": 23.0,
+			"objects": 1760.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "crypt",
+			"iteration": 3,
+			"memory_bytes": 47795799.0,
+			"nodes": 23.0,
+			"objects": 1760.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "crypt",
+			"iteration": 4,
+			"memory_bytes": 47796587.0,
+			"nodes": 23.0,
+			"objects": 1760.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "graveyard",
+			"enabled": false,
+			"frame_median_ms": 1.168,
+			"frame_p95_ms": 1.642,
+			"memory_bytes": 47891831.0,
+			"nodes": 24.0,
+			"objects": 1768.0,
+			"process_median_ms": 7.266,
+			"samples": 1180,
+			"scenario": "empty",
+			"video_memory_bytes": 61295002.0
+		},
+		{
+			"arena": "graveyard",
+			"enabled": true,
+			"frame_median_ms": 1.229,
+			"frame_p95_ms": 1.966,
+			"memory_bytes": 47896031.0,
+			"nodes": 24.0,
+			"objects": 1769.0,
+			"process_median_ms": 11.29,
+			"samples": 1105,
+			"scenario": "empty",
+			"video_memory_bytes": 61295002.0
+		},
+		{
+			"arena": "graveyard",
+			"boss_phase_two": false,
+			"party_size": 3,
+			"phase_mix": 0.0,
+			"scenario": "result",
+			"wave": 1,
+			"won": true
+		},
+		{
+			"arena": "graveyard",
+			"enabled": false,
+			"frame_median_ms": 2.106,
+			"frame_p95_ms": 3.673,
+			"memory_bytes": 54984283.0,
+			"nodes": 339.0,
+			"objects": 2814.0,
+			"party_size": 3,
+			"process_median_ms": 11.296,
+			"samples": 636,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 64984328.0
+		},
+		{
+			"arena": "graveyard",
+			"enabled": true,
+			"frame_median_ms": 2.105,
+			"frame_p95_ms": 3.897,
+			"memory_bytes": 54986491.0,
+			"nodes": 339.0,
+			"objects": 2814.0,
+			"party_size": 3,
+			"process_median_ms": 9.706,
+			"samples": 634,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 64984328.0
+		},
+		{
+			"arena": "graveyard",
+			"enabled": true,
+			"frame_median_ms": 2.123,
+			"frame_p95_ms": 4.053,
+			"memory_bytes": 54987727.0,
+			"nodes": 339.0,
+			"objects": 2814.0,
+			"party_size": 3,
+			"process_median_ms": 9.927,
+			"samples": 630,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 64984328.0
+		},
+		{
+			"arena": "graveyard",
+			"enabled": false,
+			"frame_median_ms": 2.161,
+			"frame_p95_ms": 3.768,
+			"memory_bytes": 54987863.0,
+			"nodes": 339.0,
+			"objects": 2814.0,
+			"party_size": 3,
+			"process_median_ms": 8.626,
+			"samples": 617,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 64984328.0
+		},
+		{
+			"arena": "graveyard",
+			"iteration": 0,
+			"memory_bytes": 48015455.0,
+			"nodes": 23.0,
+			"objects": 1791.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "graveyard",
+			"iteration": 1,
+			"memory_bytes": 48016243.0,
+			"nodes": 23.0,
+			"objects": 1791.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "graveyard",
+			"iteration": 2,
+			"memory_bytes": 48017031.0,
+			"nodes": 23.0,
+			"objects": 1791.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "graveyard",
+			"iteration": 3,
+			"memory_bytes": 48017819.0,
+			"nodes": 23.0,
+			"objects": 1791.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "graveyard",
+			"iteration": 4,
+			"memory_bytes": 48018607.0,
+			"nodes": 23.0,
+			"objects": 1791.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "gallows",
+			"enabled": false,
+			"frame_median_ms": 1.16,
+			"frame_p95_ms": 1.719,
+			"memory_bytes": 48113835.0,
+			"nodes": 24.0,
+			"objects": 1799.0,
+			"process_median_ms": 7.053,
+			"samples": 1172,
+			"scenario": "empty",
+			"video_memory_bytes": 63338710.0
+		},
+		{
+			"arena": "gallows",
+			"enabled": true,
+			"frame_median_ms": 1.166,
+			"frame_p95_ms": 1.693,
+			"memory_bytes": 48117879.0,
+			"nodes": 24.0,
+			"objects": 1800.0,
+			"process_median_ms": 11.165,
+			"samples": 1180,
+			"scenario": "empty",
+			"video_memory_bytes": 63338710.0
+		},
+		{
+			"arena": "gallows",
+			"boss_phase_two": false,
+			"party_size": 1,
+			"phase_mix": 0.0,
+			"scenario": "result",
+			"wave": 1,
+			"won": true
+		},
+		{
+			"arena": "gallows",
+			"enabled": false,
+			"frame_median_ms": 1.973,
+			"frame_p95_ms": 3.631,
+			"memory_bytes": 54393027.0,
+			"nodes": 294.0,
+			"objects": 2676.0,
+			"party_size": 1,
+			"process_median_ms": 11.113,
+			"samples": 670,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 66742436.0
+		},
+		{
+			"arena": "gallows",
+			"enabled": true,
+			"frame_median_ms": 1.897,
+			"frame_p95_ms": 3.311,
+			"memory_bytes": 54396039.0,
+			"nodes": 294.0,
+			"objects": 2676.0,
+			"party_size": 1,
+			"process_median_ms": 9.334,
+			"samples": 703,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 66742436.0
+		},
+		{
+			"arena": "gallows",
+			"enabled": true,
+			"frame_median_ms": 1.819,
+			"frame_p95_ms": 3.194,
+			"memory_bytes": 54413783.0,
+			"nodes": 294.0,
+			"objects": 2676.0,
+			"party_size": 1,
+			"process_median_ms": 9.625,
+			"samples": 736,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 66742436.0
+		},
+		{
+			"arena": "gallows",
+			"enabled": false,
+			"frame_median_ms": 1.832,
+			"frame_p95_ms": 3.274,
+			"memory_bytes": 54413919.0,
+			"nodes": 294.0,
+			"objects": 2676.0,
+			"party_size": 1,
+			"process_median_ms": 11.381,
+			"samples": 723,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 66742436.0
+		},
+		{
+			"arena": "gallows",
+			"iteration": 0,
+			"memory_bytes": 48087631.0,
+			"nodes": 23.0,
+			"objects": 1819.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "gallows",
+			"iteration": 1,
+			"memory_bytes": 48088419.0,
+			"nodes": 23.0,
+			"objects": 1819.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "gallows",
+			"iteration": 2,
+			"memory_bytes": 48089207.0,
+			"nodes": 23.0,
+			"objects": 1819.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "gallows",
+			"iteration": 3,
+			"memory_bytes": 48089995.0,
+			"nodes": 23.0,
+			"objects": 1819.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "gallows",
+			"iteration": 4,
+			"memory_bytes": 48090783.0,
+			"nodes": 23.0,
+			"objects": 1819.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "ossuary",
+			"enabled": false,
+			"frame_median_ms": 1.162,
+			"frame_p95_ms": 1.752,
+			"memory_bytes": 48186019.0,
+			"nodes": 24.0,
+			"objects": 1827.0,
+			"process_median_ms": 6.624,
+			"samples": 1182,
+			"scenario": "empty",
+			"video_memory_bytes": 65120274.0
+		},
+		{
+			"arena": "ossuary",
+			"enabled": true,
+			"frame_median_ms": 1.26,
+			"frame_p95_ms": 2.088,
+			"memory_bytes": 48190063.0,
+			"nodes": 24.0,
+			"objects": 1828.0,
+			"process_median_ms": 9.049,
+			"samples": 1070,
+			"scenario": "empty",
+			"video_memory_bytes": 65120274.0
+		},
+		{
+			"arena": "ossuary",
+			"boss_phase_two": false,
+			"party_size": 3,
+			"phase_mix": 0.0,
+			"scenario": "result",
+			"wave": 1,
+			"won": false
+		},
+		{
+			"arena": "ossuary",
+			"enabled": false,
+			"frame_median_ms": 2.648,
+			"frame_p95_ms": 4.417,
+			"memory_bytes": 55488041.0,
+			"nodes": 365.0,
+			"objects": 3021.0,
+			"party_size": 3,
+			"process_median_ms": 9.324,
+			"samples": 518,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 70126614.0
+		},
+		{
+			"arena": "ossuary",
+			"enabled": true,
+			"frame_median_ms": 2.404,
+			"frame_p95_ms": 4.207,
+			"memory_bytes": 55490793.0,
+			"nodes": 365.0,
+			"objects": 3021.0,
+			"party_size": 3,
+			"process_median_ms": 9.335,
+			"samples": 561,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 70126614.0
+		},
+		{
+			"arena": "ossuary",
+			"enabled": true,
+			"frame_median_ms": 2.45,
+			"frame_p95_ms": 4.543,
+			"memory_bytes": 55492433.0,
+			"nodes": 365.0,
+			"objects": 3021.0,
+			"party_size": 3,
+			"process_median_ms": 16.457,
+			"samples": 551,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 70126614.0
+		},
+		{
+			"arena": "ossuary",
+			"enabled": false,
+			"frame_median_ms": 2.546,
+			"frame_p95_ms": 4.342,
+			"memory_bytes": 55492533.0,
+			"nodes": 365.0,
+			"objects": 3021.0,
+			"party_size": 3,
+			"process_median_ms": 9.591,
+			"samples": 536,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 70126614.0
+		},
+		{
+			"arena": "ossuary",
+			"iteration": 0,
+			"memory_bytes": 48317463.0,
+			"nodes": 23.0,
+			"objects": 1876.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "ossuary",
+			"iteration": 1,
+			"memory_bytes": 48318251.0,
+			"nodes": 23.0,
+			"objects": 1876.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "ossuary",
+			"iteration": 2,
+			"memory_bytes": 48319039.0,
+			"nodes": 23.0,
+			"objects": 1876.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "ossuary",
+			"iteration": 3,
+			"memory_bytes": 48319827.0,
+			"nodes": 23.0,
+			"objects": 1876.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "ossuary",
+			"iteration": 4,
+			"memory_bytes": 48320615.0,
+			"nodes": 23.0,
+			"objects": 1876.0,
+			"scenario": "reopen"
+		}
+	],
+	"renderer": "NVIDIA GeForce RTX 3050 Laptop GPU"
+}
