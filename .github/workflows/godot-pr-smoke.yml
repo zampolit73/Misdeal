@@ -97,7 +97,8 @@ jobs:
           set -euo pipefail
           test -f addons/gut/plugin.cfg
           mkdir -p "$RUNNER_TEMP/misdeal-smart-qa"
-          timeout 120s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+          # Living Arenas compare 22 complete fights with the effect on and off.
+          timeout 240s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
             --headless --path . -s res://addons/gut/gut_cmdln.gd \
             -gdir=res://tests/unit -gconfig= -gexit -glog=1 \
             2>&1 | tee "$RUNNER_TEMP/misdeal-smart-qa/gut-unit.log"
@@ -483,6 +484,24 @@ jobs:
               --script res://scripts/dev/living_arenas_pixel_audit.gd -- "$dest" 2>&1 | tee "$dest/pixel-audit.log"
             grep -Fq 'LIVING_PIXEL_AUDIT_PASS' "$dest/pixel-audit.log"
             ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed' "$dest/pixel-audit.log"
+
+      - name: Living Arenas V3 — native Gallows motion and protected floor
+        if: steps.scope.outputs.mode == 'release'
+        shell: bash
+        run: |
+          set -euo pipefail
+          dest="$RUNNER_TEMP/misdeal-smart-qa/visual/living-arenas-v3"
+          mkdir -p "$dest"
+          timeout 120s xvfb-run -a -s '-screen 0 1600x1000x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility --audio-driver Dummy \
+            --script res://scripts/dev/living_arenas_capture.gd -- "$dest" gallows --v3 --visual-only 2>&1 | tee "$dest/capture.log"
+          grep -Fq 'LIVING_NATIVE_ARENA_PASS: gallows' "$dest/capture.log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed|Shader compilation failed' "$dest/capture.log"
+          timeout 30s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . \
+            --script res://scripts/dev/living_arenas_pixel_audit.gd -- "$dest" gallows --v3 2>&1 | tee "$dest/pixel-audit.log"
+          grep -Fq 'LIVING_PIXEL_AUDIT_PASS' "$dest/pixel-audit.log"
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed' "$dest/pixel-audit.log"
 
       - name: Cinematic travel native routes and skip
         if: steps.scope.outputs.mode == 'release'

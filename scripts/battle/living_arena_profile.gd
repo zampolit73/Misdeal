@@ -3,6 +3,21 @@ extends RefCounted
 ## R: local displacement; G: distant atmosphere; B: existing lights; A: dust.
 const PILOTS := ["firing_square", "black_crossing", "threadbare_theatre"]
 const V2_ARENAS := ["last_bell", "ossuary_gate", "warden"]
+const V3_BATCHES := [
+	["crypt", "graveyard", "gallows", "ossuary"],
+	["bone_crush", "bone_swarm", "grave_crossfire", "iron_wall"],
+	["bone_ritual", "black_lantern_road", "court_of_the_mute"],
+]
+const V3_ARENAS := V3_BATCHES[0] + V3_BATCHES[1] + V3_BATCHES[2]
+const ALL_PROFILES := PILOTS + V2_ARENAS + V3_ARENAS
+const V3_FLOOR_Y := 360
+const PREVIEW_ENCOUNTERS := {
+	"crypt": "bone_patrol",
+	"graveyard": "grave_bell",
+	"gallows": "gallows_volley",
+	"ossuary": "death_wager",
+	"warden": "bone_warden",
+}
 const PROFILES := {
 	"firing_square": {
 		"mode": 1,
@@ -59,6 +74,116 @@ const PROFILES := {
 		"motes": Vector4(242,163,790,130),
 		"dust_strength": 0.20,
 		"phase_response": true
+	},
+	"crypt": {
+		"mode": 5, "cycle_seconds": 24.0,
+		"warp": [],
+		"atmosphere": [[[119, 109], [167, 92], [268, 151], [358, 209], [346, 278], [288, 296], [177, 267], [134, 209]], [[982, 139], [1075, 104], [1149, 141], [1157, 266], [1106, 309], [1049, 274]]],
+		"dust": [[[266, 90], [908, 108], [973, 248], [927, 298], [359, 298], [271, 250]]],
+		"lights": [[88, 280, 63], [489, 235, 31], [930, 228, 32], [1211, 287, 61]],
+		"haze": Color(0.33, 0.31, 0.3, 0.14),
+		"motes": Vector4(274, 64, 693, 227), "dust_strength": 0.34,
+		"motion": Vector4(0.72, 0.7, 1.3, 0)
+	},
+	"graveyard": {
+		"mode": 5, "cycle_seconds": 32.0,
+		"warp": [],
+		"atmosphere": [[[290, 174], [409, 150], [507, 169], [575, 204], [755, 208], [850, 193], [935, 211], [978, 266], [863, 287], [720, 262], [596, 258], [458, 279], [329, 246]]],
+		"dust": [[[344, 156], [837, 157], [902, 245], [835, 295], [376, 291]]],
+		"lights": [[53, 337, 20], [256, 245, 32], [1234, 333, 24]],
+		"haze": Color(0.43, 0.5, 0.62, 0.2),
+		"motes": Vector4(367, 156, 490, 133), "dust_strength": 0.26,
+		"motion": Vector4(0.62, 0.98, 0.89, 0)
+	},
+	"gallows": {
+		"mode": 5, "cycle_seconds": 22.0,
+		"warp": [[[235, 125], [248, 126], [258, 152], [258, 183], [246, 188], [222, 180], [221, 154]], [[1086, 132], [1101, 131], [1112, 166], [1108, 200], [1088, 205], [1072, 195], [1074, 160]]],
+		"atmosphere": [[[186, 172], [337, 143], [497, 173], [740, 191], [892, 145], [989, 166], [969, 222], [830, 267], [740, 316], [588, 330], [431, 295], [297, 260], [184, 237]]],
+		"dust": [],
+		"lights": [[74, 355, 32], [303, 316, 29], [975, 313, 28], [1204, 357, 38]],
+		"haze": Color(0.4, 0.45, 0.53, 0.14),
+		"motes": Vector4(180, 145, 798, 167), "dust_strength": 0.0,
+		"motion": Vector4(0.92, 0.84, 1.12, 1.35)
+	},
+	"ossuary": {
+		"mode": 5, "cycle_seconds": 26.0,
+		"warp": [],
+		"atmosphere": [[[29, 95], [118, 70], [170, 91], [165, 202], [138, 253], [67, 249], [28, 207]], [[1009, 93], [1097, 74], [1147, 116], [1121, 199], [1055, 232], [1012, 191]]],
+		"dust": [[[58, 89], [1220, 99], [1204, 273], [934, 279], [669, 259], [130, 273]]],
+		"lights": [[67, 176, 42], [360, 164, 33], [1082, 124, 35], [1206, 259, 41], [603, 268, 28], [862, 267, 26]],
+		"haze": Color(0.45, 0.32, 0.28, 0.16),
+		"motes": Vector4(68, 97, 1124, 178), "dust_strength": 0.37,
+		"motion": Vector4(-0.66, 0.94, 1.02, 0)
+	},
+	"bone_crush": {
+		"mode": 5, "cycle_seconds": 19.0,
+		"warp": [],
+		"atmosphere": [[[277, 124], [389, 104], [430, 179], [407, 270], [357, 305], [282, 291]], [[870, 157], [951, 139], [1032, 153], [1116, 206], [1090, 282], [994, 309], [914, 275]]],
+		"dust": [[[352, 137], [875, 101], [971, 137], [1010, 234], [994, 317], [881, 309], [480, 286], [379, 271]]],
+		"lights": [[216, 276, 43], [493, 231, 34], [1179, 299, 44]],
+		"haze": Color(0.56, 0.48, 0.39, 0.18),
+		"motes": Vector4(456, 105, 574, 186), "dust_strength": 0.54,
+		"motion": Vector4(0.43, 1.05, 1.22, 0)
+	},
+	"bone_swarm": {
+		"mode": 5, "cycle_seconds": 36.0,
+		"warp": [],
+		"atmosphere": [[[601, 21], [849, 13], [933, 44], [947, 106], [906, 210], [848, 268], [718, 305], [635, 268], [610, 182]]],
+		"dust": [[[552, 52], [861, 56], [956, 126], [991, 264], [940, 316], [751, 298], [550, 269]]],
+		"lights": [[65, 340, 30], [1231, 323, 38]],
+		"haze": Color(0.41, 0.48, 0.6, 0.15),
+		"motes": Vector4(548, 64, 440, 228), "dust_strength": 0.33,
+		"motion": Vector4(-0.45, 0.63, 0.86, 0)
+	},
+	"grave_crossfire": {
+		"mode": 5, "cycle_seconds": 34.0,
+		"warp": [],
+		"atmosphere": [[[328, 95], [514, 119], [718, 99], [910, 90], [1089, 105], [1098, 173], [1002, 191], [863, 221], [718, 251], [553, 278], [377, 262], [327, 209]]],
+		"dust": [],
+		"lights": [[265, 304, 38], [1067, 320, 43], [171, 72, 32]],
+		"haze": Color(0.4, 0.48, 0.6, 0.17),
+		"motes": Vector4(360, 143, 588, 165), "dust_strength": 0.0,
+		"motion": Vector4(0.96, 0.58, 1.04, 0)
+	},
+	"iron_wall": {
+		"mode": 5, "cycle_seconds": 25.0,
+		"warp": [],
+		"atmosphere": [[[91, 93], [207, 83], [281, 140], [297, 223], [256, 289], [175, 263], [128, 230]], [[445, 83], [518, 48], [578, 86], [615, 156], [604, 216], [521, 232], [453, 213]]],
+		"dust": [[[78, 88], [383, 37], [675, 77], [747, 177], [672, 280], [540, 296], [123, 271]]],
+		"lights": [[124, 290, 36], [203, 284, 42], [568, 270, 40], [989, 271, 38]],
+		"haze": Color(0.42, 0.39, 0.39, 0.19),
+		"motes": Vector4(123, 87, 634, 184), "dust_strength": 0.36,
+		"motion": Vector4(0.56, 0.92, 1.21, 0), "wave_response": true
+	},
+	"bone_ritual": {
+		"mode": 5, "cycle_seconds": 18.0,
+		"warp": [],
+		"atmosphere": [[[171, 209], [273, 181], [364, 202], [441, 208], [432, 285], [384, 327], [276, 346], [203, 329]], [[719, 113], [837, 93], [925, 111], [1004, 138], [1022, 210], [943, 265], [847, 270], [739, 241]]],
+		"dust": [[[720, 98], [1045, 95], [1091, 170], [1073, 293], [762, 297], [706, 258]]],
+		"lights": [[32, 281, 34], [497, 327, 32], [767, 329, 28], [958, 288, 73], [1248, 297, 39]],
+		"haze": Color(0.44, 0.43, 0.51, 0.16),
+		"motes": Vector4(744, 110, 332, 185), "dust_strength": 0.42,
+		"motion": Vector4(-0.6, 0.75, 1.6, 0)
+	},
+	"black_lantern_road": {
+		"mode": 5, "cycle_seconds": 38.0,
+		"warp": [],
+		"atmosphere": [[[101, 248], [243, 230], [369, 238], [556, 215], [750, 213], [932, 233], [1178, 228], [1186, 260], [948, 279], [797, 262], [660, 278], [396, 298], [194, 290], [100, 277]]],
+		"dust": [],
+		"lights": [[126, 276, 36], [1177, 283, 38]],
+		"haze": Color(0.37, 0.45, 0.5, 0.14),
+		"motes": Vector4(245, 243, 800, 52), "dust_strength": 0.0,
+		"motion": Vector4(1, 0.64, 1.57, 0)
+	},
+	"court_of_the_mute": {
+		"mode": 5, "cycle_seconds": 40.0,
+		"warp": [],
+		"atmosphere": [[[537, 33], [640, 11], [727, 36], [709, 103], [690, 169], [661, 207], [596, 211], [557, 158]], [[1018, 100], [1096, 83], [1142, 143], [1112, 213], [1073, 277], [1019, 268]]],
+		"dust": [[[408, 58], [726, 36], [793, 85], [875, 109], [910, 214], [825, 299], [448, 292]]],
+		"lights": [[456, 312, 40], [757, 316, 42], [148, 356, 25], [1067, 355, 24]],
+		"haze": Color(0.43, 0.49, 0.6, 0.11),
+		"motes": Vector4(429, 66, 454, 221), "dust_strength": 0.28,
+		"motion": Vector4(-0.3, 0.51, 0.74, 0)
 	}
 }
 static var masks: Dictionary = {}
@@ -67,13 +192,13 @@ static func supports(id: String) -> bool:
 	return PROFILES.has(id)
 
 static func for_encounter(arena_id: String, encounter_id: String = "") -> String:
-	# Death Wager shares the Ossuary painting and retains its own ambience.
+	# A single source painting, with independently authored lighting and haze.
 	if arena_id == "ossuary" and encounter_id == "ossuary_gate":
 		return "ossuary_gate"
 	return arena_id if supports(arena_id) else ""
 
 static func encounter_for(id: String) -> String:
-	return "bone_warden" if id == "warden" else id
+	return PREVIEW_ENCOUNTERS.get(id, id)
 
 static func arena_for(id: String) -> String:
 	return "ossuary" if id == "ossuary_gate" else id
@@ -101,7 +226,9 @@ static func build_mask(id: String) -> Image:
 			group.append(polygon)
 		regions.append(group)
 	var image := Image.create(320, 180, false, Image.FORMAT_RGBA8)
-	for y in range(180):
+	# Leave an extra mask row clear for linear sampling at the protected band.
+	var mask_rows := V3_FLOOR_Y / 4 - 1 if id in V3_ARENAS else 180
+	for y in range(mask_rows):
 		for x in range(320):
 			var p := Vector2(x * 4 + 2, y * 4 + 2)
 			var light := 0.0

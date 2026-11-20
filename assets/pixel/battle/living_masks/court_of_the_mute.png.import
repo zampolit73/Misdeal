@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://cb7442iioailh"
+path="res://.godot/imported/court_of_the_mute.png-240c7e0a92b4469991b4f12a982ae1e7.image"
+
+[deps]
+
+source_file="res://assets/pixel/battle/living_masks/court_of_the_mute.png"
+dest_files=["res://.godot/imported/court_of_the_mute.png-240c7e0a92b4469991b4f12a982ae1e7.image"]
+
+[params]

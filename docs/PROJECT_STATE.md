@@ -1,3 +1,7 @@
+## Living Arenas V3 — Act I coverage
+
+The shared BattleBackdrop resolves all 22 encounters across 16 original paintings. The Ossuary and Death Wager atmospheres use distinct masks on a shared painting. QA Hub can compare, pause and replay all 17 profiles in the real Battle. [Implementation, coverage and checks](LIVING_ARENAS_V3.md)
+
 ## Living Arenas V2 — campaign rollout
 
 PR #124 delivers local haze, dust and source lights for Last Bell, Ossuary Gate and Bone Warden XIII. The Warden's original phase transition ramps the backdrop effect. The shared Ossuary painting keeps its original presentation in Death Wager. QA Hub has a dedicated ЖИВЫЕ АРЕНЫ tab. [Implementation and native checks](LIVING_ARENAS_V2.md)

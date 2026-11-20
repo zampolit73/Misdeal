@@ -15,7 +15,7 @@ func run() -> void:
 		for enabled in [false,true,true,false]:
 			var battle := fixture(id, party_size)
 			battle.battle_backdrop.set_living_enabled(enabled)
-			start_battle(battle, id in PROFILE.V2_ARENAS)
+			start_battle(battle, id in PROFILE.V2_ARENAS or id in PROFILE.V3_ARENAS)
 			while not battle.combat_live: await process_frame
 			await measure(id, scenario, battle.battle_backdrop, enabled)
 			metrics[-1]["round"] = repeat

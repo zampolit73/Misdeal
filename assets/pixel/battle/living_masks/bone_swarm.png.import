@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://7wf601h4sspa"
+path="res://.godot/imported/bone_swarm.png-9d0cf2f57787665517e20770aec11ec6.image"
+
+[deps]
+
+source_file="res://assets/pixel/battle/living_masks/bone_swarm.png"
+dest_files=["res://.godot/imported/bone_swarm.png-9d0cf2f57787665517e20770aec11ec6.image"]
+
+[params]

@@ -1,0 +1,640 @@
+{
+	"frames": [
+		{
+			"frame": "bone_ritual_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_motion_000",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_motion_001",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_motion_002",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_motion_003",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_motion_004",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_motion_005",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_motion_006",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_motion_007",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_motion_008",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_motion_009",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_motion_010",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_motion_011",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_prep_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_prep_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_combat_00",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_combat_01",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_combat_02",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "bone_ritual_finished",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_motion_000",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_motion_001",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_motion_002",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_motion_003",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_motion_004",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_motion_005",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_motion_006",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_motion_007",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_motion_008",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_motion_009",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_motion_010",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_motion_011",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_prep_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_prep_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_combat_00",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_combat_01",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_combat_02",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "black_lantern_road_finished",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_motion_000",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_motion_001",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_motion_002",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_motion_003",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_motion_004",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_motion_005",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_motion_006",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_motion_007",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_motion_008",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_motion_009",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_motion_010",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_motion_011",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_prep_before",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_prep_after",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_combat_00",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_combat_01",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_combat_02",
+			"native_size": "1280x720"
+		},
+		{
+			"frame": "court_of_the_mute_finished",
+			"native_size": "1280x720"
+		}
+	],
+	"metrics": [
+		{
+			"arena": "bone_ritual",
+			"enabled": false,
+			"frame_median_ms": 1.17,
+			"frame_p95_ms": 1.535,
+			"memory_bytes": 38284628.0,
+			"nodes": 24.0,
+			"objects": 1569.0,
+			"process_median_ms": 7.431,
+			"samples": 1190,
+			"scenario": "empty",
+			"video_memory_bytes": 32450037.0
+		},
+		{
+			"arena": "bone_ritual",
+			"enabled": true,
+			"frame_median_ms": 1.141,
+			"frame_p95_ms": 1.536,
+			"memory_bytes": 38288496.0,
+			"nodes": 24.0,
+			"objects": 1569.0,
+			"process_median_ms": 10.873,
+			"samples": 1225,
+			"scenario": "empty",
+			"video_memory_bytes": 32450037.0
+		},
+		{
+			"arena": "bone_ritual",
+			"boss_phase_two": false,
+			"party_size": 1,
+			"phase_mix": 0.0,
+			"scenario": "result",
+			"wave": 1,
+			"won": true
+		},
+		{
+			"arena": "bone_ritual",
+			"enabled": false,
+			"frame_median_ms": 2.075,
+			"frame_p95_ms": 3.668,
+			"memory_bytes": 54229639.0,
+			"nodes": 316.0,
+			"objects": 2720.0,
+			"party_size": 1,
+			"process_median_ms": 9.629,
+			"samples": 643,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 69640536.0
+		},
+		{
+			"arena": "bone_ritual",
+			"enabled": true,
+			"frame_median_ms": 2.132,
+			"frame_p95_ms": 3.941,
+			"memory_bytes": 54159549.0,
+			"nodes": 310.0,
+			"objects": 2675.0,
+			"party_size": 1,
+			"process_median_ms": 10.885,
+			"samples": 629,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 69640256.0
+		},
+		{
+			"arena": "bone_ritual",
+			"enabled": true,
+			"frame_median_ms": 2.054,
+			"frame_p95_ms": 3.341,
+			"memory_bytes": 54224553.0,
+			"nodes": 316.0,
+			"objects": 2719.0,
+			"party_size": 1,
+			"process_median_ms": 9.233,
+			"samples": 663,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 69640536.0
+		},
+		{
+			"arena": "bone_ritual",
+			"enabled": false,
+			"frame_median_ms": 2.019,
+			"frame_p95_ms": 3.664,
+			"memory_bytes": 54225009.0,
+			"nodes": 316.0,
+			"objects": 2719.0,
+			"party_size": 1,
+			"process_median_ms": 9.294,
+			"samples": 660,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 69640536.0
+		},
+		{
+			"arena": "bone_ritual",
+			"iteration": 0,
+			"memory_bytes": 47843011.0,
+			"nodes": 23.0,
+			"objects": 1815.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "bone_ritual",
+			"iteration": 1,
+			"memory_bytes": 47843799.0,
+			"nodes": 23.0,
+			"objects": 1815.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "bone_ritual",
+			"iteration": 2,
+			"memory_bytes": 47844683.0,
+			"nodes": 23.0,
+			"objects": 1815.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "bone_ritual",
+			"iteration": 3,
+			"memory_bytes": 47845471.0,
+			"nodes": 23.0,
+			"objects": 1815.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "bone_ritual",
+			"iteration": 4,
+			"memory_bytes": 47846259.0,
+			"nodes": 23.0,
+			"objects": 1815.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "black_lantern_road",
+			"enabled": false,
+			"frame_median_ms": 1.207,
+			"frame_p95_ms": 2.081,
+			"memory_bytes": 47941479.0,
+			"nodes": 24.0,
+			"objects": 1823.0,
+			"process_median_ms": 186.526,
+			"samples": 1106,
+			"scenario": "empty",
+			"video_memory_bytes": 70941654.0
+		},
+		{
+			"arena": "black_lantern_road",
+			"enabled": true,
+			"frame_median_ms": 1.226,
+			"frame_p95_ms": 1.749,
+			"memory_bytes": 47944439.0,
+			"nodes": 24.0,
+			"objects": 1823.0,
+			"process_median_ms": 6.145,
+			"samples": 1131,
+			"scenario": "empty",
+			"video_memory_bytes": 70941654.0
+		},
+		{
+			"arena": "black_lantern_road",
+			"boss_phase_two": false,
+			"party_size": 2,
+			"phase_mix": 0.0,
+			"scenario": "result",
+			"wave": 1,
+			"won": true
+		},
+		{
+			"arena": "black_lantern_road",
+			"enabled": false,
+			"frame_median_ms": 2.871,
+			"frame_p95_ms": 5.129,
+			"memory_bytes": 54796035.0,
+			"nodes": 331.0,
+			"objects": 2941.0,
+			"party_size": 2,
+			"process_median_ms": 10.12,
+			"samples": 483,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 80298652.0
+		},
+		{
+			"arena": "black_lantern_road",
+			"enabled": true,
+			"frame_median_ms": 2.424,
+			"frame_p95_ms": 3.995,
+			"memory_bytes": 54798275.0,
+			"nodes": 331.0,
+			"objects": 2941.0,
+			"party_size": 2,
+			"process_median_ms": 8.702,
+			"samples": 561,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 80298652.0
+		},
+		{
+			"arena": "black_lantern_road",
+			"enabled": true,
+			"frame_median_ms": 2.49,
+			"frame_p95_ms": 4.189,
+			"memory_bytes": 54799479.0,
+			"nodes": 331.0,
+			"objects": 2941.0,
+			"party_size": 2,
+			"process_median_ms": 9.783,
+			"samples": 555,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 80298652.0
+		},
+		{
+			"arena": "black_lantern_road",
+			"enabled": false,
+			"frame_median_ms": 2.442,
+			"frame_p95_ms": 3.974,
+			"memory_bytes": 54799615.0,
+			"nodes": 331.0,
+			"objects": 2941.0,
+			"party_size": 2,
+			"process_median_ms": 13.056,
+			"samples": 562,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 80298652.0
+		},
+		{
+			"arena": "black_lantern_road",
+			"iteration": 0,
+			"memory_bytes": 48014551.0,
+			"nodes": 23.0,
+			"objects": 1951.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "black_lantern_road",
+			"iteration": 1,
+			"memory_bytes": 48015339.0,
+			"nodes": 23.0,
+			"objects": 1951.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "black_lantern_road",
+			"iteration": 2,
+			"memory_bytes": 48016127.0,
+			"nodes": 23.0,
+			"objects": 1951.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "black_lantern_road",
+			"iteration": 3,
+			"memory_bytes": 48016915.0,
+			"nodes": 23.0,
+			"objects": 1951.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "black_lantern_road",
+			"iteration": 4,
+			"memory_bytes": 48017703.0,
+			"nodes": 23.0,
+			"objects": 1951.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "court_of_the_mute",
+			"enabled": false,
+			"frame_median_ms": 1.19,
+			"frame_p95_ms": 1.71,
+			"memory_bytes": 48112859.0,
+			"nodes": 24.0,
+			"objects": 1959.0,
+			"process_median_ms": 8.178,
+			"samples": 1159,
+			"scenario": "empty",
+			"video_memory_bytes": 78621266.0
+		},
+		{
+			"arena": "court_of_the_mute",
+			"enabled": true,
+			"frame_median_ms": 1.181,
+			"frame_p95_ms": 1.606,
+			"memory_bytes": 48115675.0,
+			"nodes": 24.0,
+			"objects": 1959.0,
+			"process_median_ms": 7.266,
+			"samples": 1197,
+			"scenario": "empty",
+			"video_memory_bytes": 78621266.0
+		},
+		{
+			"arena": "court_of_the_mute",
+			"boss_phase_two": false,
+			"party_size": 3,
+			"phase_mix": 0.0,
+			"scenario": "result",
+			"wave": 1,
+			"won": true
+		},
+		{
+			"arena": "court_of_the_mute",
+			"enabled": false,
+			"frame_median_ms": 2.39,
+			"frame_p95_ms": 3.909,
+			"memory_bytes": 55146559.0,
+			"nodes": 348.0,
+			"objects": 3092.0,
+			"party_size": 3,
+			"process_median_ms": 10.414,
+			"samples": 569,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 85013256.0
+		},
+		{
+			"arena": "court_of_the_mute",
+			"enabled": true,
+			"frame_median_ms": 2.914,
+			"frame_p95_ms": 4.692,
+			"memory_bytes": 55149103.0,
+			"nodes": 348.0,
+			"objects": 3092.0,
+			"party_size": 3,
+			"process_median_ms": 7.688,
+			"samples": 480,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 85013256.0
+		},
+		{
+			"arena": "court_of_the_mute",
+			"enabled": true,
+			"frame_median_ms": 2.403,
+			"frame_p95_ms": 4.059,
+			"memory_bytes": 55150275.0,
+			"nodes": 348.0,
+			"objects": 3092.0,
+			"party_size": 3,
+			"process_median_ms": 9.145,
+			"samples": 568,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 85013256.0
+		},
+		{
+			"arena": "court_of_the_mute",
+			"enabled": false,
+			"frame_median_ms": 2.368,
+			"frame_p95_ms": 4.019,
+			"memory_bytes": 55150411.0,
+			"nodes": 348.0,
+			"objects": 3092.0,
+			"party_size": 3,
+			"process_median_ms": 8.708,
+			"samples": 570,
+			"scenario": "battle_abba",
+			"video_memory_bytes": 85013256.0
+		},
+		{
+			"arena": "court_of_the_mute",
+			"iteration": 0,
+			"memory_bytes": 48120823.0,
+			"nodes": 23.0,
+			"objects": 2033.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "court_of_the_mute",
+			"iteration": 1,
+			"memory_bytes": 48121611.0,
+			"nodes": 23.0,
+			"objects": 2033.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "court_of_the_mute",
+			"iteration": 2,
+			"memory_bytes": 48122399.0,
+			"nodes": 23.0,
+			"objects": 2033.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "court_of_the_mute",
+			"iteration": 3,
+			"memory_bytes": 48123187.0,
+			"nodes": 23.0,
+			"objects": 2033.0,
+			"scenario": "reopen"
+		},
+		{
+			"arena": "court_of_the_mute",
+			"iteration": 4,
+			"memory_bytes": 48123975.0,
+			"nodes": 23.0,
+			"objects": 2033.0,
+			"scenario": "reopen"
+		}
+	],
+	"renderer": "NVIDIA GeForce RTX 3050 Laptop GPU"
+}

@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://dcrsdgxj2s3ci"
+path="res://.godot/imported/black_lantern_road.png-8eb0f65717455cfb1c09e68db3ddde08.image"
+
+[deps]
+
+source_file="res://assets/pixel/battle/living_masks/black_lantern_road.png"
+dest_files=["res://.godot/imported/black_lantern_road.png-8eb0f65717455cfb1c09e68db3ddde08.image"]
+
+[params]

@@ -11,6 +11,8 @@ var living_profile_id := ""
 var living_phase_mix := 0.0
 var _living_phase_target := 0.0
 var _living_reacts_to_phase := false
+var _living_reacts_to_wave := false
+var _living_wave_age := 3.0
 
 const ARENA_CRYPT := "crypt"
 const ARENA_GRAVEYARD := "graveyard"
@@ -27,7 +29,6 @@ const ARENA_BONE_RITUAL := "bone_ritual"
 const ARENA_THREADBARE_THEATRE := "threadbare_theatre"
 const ARENA_BLACK_CROSSING := "black_crossing"
 const ARENA_BLACK_LANTERN_ROAD := "black_lantern_road"
-# D268: QA battle renders Court geometry, not fallback crypt; #39 remains unreleased.
 const ARENA_COURT_OF_THE_MUTE := "court_of_the_mute"
 
 const COURT_QA_LEGACY_PATH := "res://assets/pixel/battle/arenas/court_of_the_mute_d265_rich_qa.webp.b64"
@@ -49,7 +50,7 @@ const ARENA_PATHS := {
 	ARENA_THREADBARE_THEATRE: "res://assets/pixel/battle/arenas/threadbare_theatre_approved_v1.webp.b64",
 	ARENA_BLACK_CROSSING: "res://assets/pixel/battle/arenas/black_crossing_storm_pier_approved_v1.webp.b64",
 	ARENA_BLACK_LANTERN_ROAD: "res://assets/pixel/battle/arenas/black_lantern_road_arena_selected_v1.webp.b64",
-	# D271: actual painted 1280×720 actor-free Court tribunal; QA only.
+	# D271: the painted tribunal used by the released Court encounter.
 	# Source input verified pixel-identical and encoded to real WebP SHA256
 	# 1eb45164d9c7418fb9c459d18c0640935452266aeecbb04d1e9d7bd527af8784.
 	# D270 rejected SVG and D265 prior QA WebP remain versioned for rollback.
@@ -85,6 +86,8 @@ func _configure_living_arena() -> void:
 	living_phase_mix = 0.0
 	_living_phase_target = 0.0
 	_living_reacts_to_phase = false
+	_living_reacts_to_wave = false
+	_living_wave_age = 3.0
 	if not living_profile_id.is_empty():
 		var profile: Dictionary = LIVING_PROFILE.PROFILES[living_profile_id]
 		living_material = ShaderMaterial.new()
@@ -97,16 +100,25 @@ func _configure_living_arena() -> void:
 			living_material.set_shader_parameter("mote_area", profile.motes)
 			living_material.set_shader_parameter("mote_strength", profile.dust_strength)
 		_living_reacts_to_phase = profile.get("phase_response", false)
+		_living_reacts_to_wave = profile.get("wave_response", false)
+		if profile.has("cycle_seconds"):
+			living_material.set_shader_parameter("cycle_seconds", profile.cycle_seconds)
+			living_material.set_shader_parameter("local_motion", profile.motion)
 	set_living_enabled(living_enabled)
 
 func set_living_phase_two(active: bool) -> void:
 	if _living_reacts_to_phase and not living_finished:
 		_living_phase_target = 1.0 if active else 0.0
 
+func start_living_wave_two() -> void:
+	if _living_reacts_to_wave and not living_finished:
+		_living_wave_age = 0.0
+
 func set_living_enabled(enabled: bool) -> void:
 	living_enabled = enabled
-	material = living_material if enabled else null
-	set_process(enabled and living_material != null and not living_finished and not living_paused)
+	var use_living := enabled and not (arena_id == ARENA_COURT_OF_THE_MUTE and court_qa_show_legacy)
+	material = living_material if use_living else null
+	set_process(material != null and not living_finished and not living_paused)
 
 func set_living_paused(paused: bool) -> void:
 	living_paused = paused
@@ -117,13 +129,17 @@ func finish_living_arena() -> void:
 	set_process(false)
 
 func advance_living(delta: float) -> void:
-	if not living_enabled or living_paused or living_finished or living_material == null: return
+	if not living_enabled or living_paused or living_finished or material == null: return
 	if is_inside_tree() and get_tree().paused: return
 	living_elapsed += maxf(0.0, delta)
 	living_material.set_shader_parameter("elapsed", living_elapsed)
 	if living_phase_mix != _living_phase_target:
 		living_phase_mix = move_toward(living_phase_mix, _living_phase_target, maxf(delta, 0.0) / 1.2)
 		living_material.set_shader_parameter("phase_strength", smoothstep(0.0, 1.0, living_phase_mix))
+	if _living_wave_age < 3.0:
+		_living_wave_age = minf(3.0, _living_wave_age + maxf(0.0, delta))
+		var strength := smoothstep(0.0, 0.5, _living_wave_age) * (1.0 - smoothstep(0.5, 3.0, _living_wave_age))
+		living_material.set_shader_parameter("wave_strength", strength)
 
 func _process(delta: float) -> void:
 	advance_living(delta)
@@ -134,17 +150,16 @@ func set_court_qa_legacy_art(enabled: bool) -> void:
 	if arena_id != ARENA_COURT_OF_THE_MUTE:
 		return
 	court_qa_show_legacy = enabled
-	runtime_textures.erase(ARENA_COURT_OF_THE_MUTE)
 	texture = _get_runtime_texture(ARENA_COURT_OF_THE_MUTE)
+	set_living_enabled(living_enabled)
 
 
 func _get_runtime_texture(value: String) -> Texture2D:
-	if runtime_textures.has(value):
-		return runtime_textures[value] as Texture2D
-
 	var path := str(ARENA_PATHS.get(value, ARENA_PATHS[ARENA_CRYPT]))
 	if value == ARENA_COURT_OF_THE_MUTE and court_qa_show_legacy:
 		path = COURT_QA_LEGACY_PATH
+	if runtime_textures.has(path):
+		return runtime_textures[path] as Texture2D
 	var bytes := PackedByteArray()
 	if path.ends_with(".webp.b64"):
 		var encoded := FileAccess.get_file_as_string(path).strip_edges()
@@ -173,5 +188,5 @@ func _get_runtime_texture(value: String) -> Texture2D:
 		image.resize(BACKDROP_SIZE.x, BACKDROP_SIZE.y, Image.INTERPOLATE_NEAREST)
 
 	var rendered := ImageTexture.create_from_image(image)
-	runtime_textures[value] = rendered
+	runtime_textures[path] = rendered
 	return rendered

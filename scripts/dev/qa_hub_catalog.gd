@@ -1,6 +1,8 @@
 extends RefCounted
 ## F6-only index: current authored tools + every live card + labelled historical previews.
 const LIVING_ARENAS_GROUP := "ЖИВЫЕ АРЕНЫ"
+const LIVING_PROFILE := preload("res://scripts/battle/living_arena_profile.gd")
+const LIVING_PREVIEW := "res://scenes/dev/living_arena_preview.tscn"
 const GROUPS := ["ВСЁ","ИГРА","КАРТЫ","СОБЫТИЯ","TRAVEL","БОЙ",LIVING_ARENAS_GROUP,"АНИМАЦИИ","ИНТЕРФЕЙС","АРХИВ"]
 const TRAVEL_DRIVERS := [
 	"res://scripts/dev/travel_pilot_batch01_playtest.gd",
@@ -31,9 +33,6 @@ static func entries() -> Array[Dictionary]:
 		["БОЙ","Чёрная переправа — пускатель","scenes/dev/black_crossing_playtest.tscn","Арена и реальный бой на переправе.",""],
 		["БОЙ","Изношенный театр — пускатель","scenes/dev/threadbare_theatre_playtest.tscn","Арена, состав и настоящее столкновение.",""],
 		["БОЙ","Погребальная процессия — пускатель","scenes/dev/funeral_procession_playtest.tscn","Постановка и настоящее столкновение процессии.",""],
-		[LIVING_ARENAS_GROUP,"Последний звон","scenes/dev/living_last_bell.tscn","Дальний туман, свет и пыль. Сравнение фона в настоящем бою.",""],
-		[LIVING_ARENAS_GROUP,"Врата оссуария","scenes/dev/living_ossuary_gate.tscn","Холодная дымка и пыль. Сравнение фона в настоящем бою.",""],
-		[LIVING_ARENAS_GROUP,"Костяной надзиратель","scenes/dev/living_warden.tscn","Фон до и после фазы II. Отдельный переключатель для просмотра эффекта.",""],
 		["АНИМАЦИИ","Герои D412 — действующие анимации","scenes/dev/d412_three_hero_animation_preview.tscn","Три принятых героя: позы и ходьба при масштабе 1×.",""],
 		["АНИМАЦИИ","Персонажи Суда — 25 кадров","scenes/dev/court_of_the_mute_d267_three_animation_preview.tscn","Idle, Walk, Attack, Hit и Death авторских персонажей.",""],
 		["АНИМАЦИИ","Pack 1 — анимации юнитов","scenes/dev/unit_animation_pack1_preview.tscn","Сравнение состояний первого набора.",""],
@@ -63,6 +62,18 @@ static func entries() -> Array[Dictionary]:
 		if not ResourceLoader.exists(path,"PackedScene"): continue
 		rows.append({"id":"scene:"+path+":"+str(row[4]),"group":row[0],"title":row[1],"scene":path,"desc":row[3],"prep":row[4]})
 		used[path]=true
+	used[LIVING_PREVIEW] = true
+	for profile_id: String in LIVING_PROFILE.ALL_PROFILES:
+		var encounter_id := LIVING_PROFILE.encounter_for(profile_id)
+		var encounter := load("res://resources/encounters/"+encounter_id+".tres") as EncounterData
+		rows.append({
+			"id": "living:"+profile_id, "group": LIVING_ARENAS_GROUP,
+			"title": encounter.title, "scene": LIVING_PREVIEW, "prep": "",
+			"desc": "Сравнение исходного и живого фона в настоящем бою. Доступны пауза и повтор.",
+			"search": profile_id+" "+encounter_id, "living_profile": profile_id,
+		})
+		# Keep the six direct F6 launchers without duplicating their catalog rows.
+		used["res://scenes/dev/living_"+profile_id+".tscn"] = true
 	# Individual authored locations are searchable by their real title, while
 	# the complete batch launchers remain available for sequential review.
 	for batch in range(1, TRAVEL_DRIVERS.size() + 1):

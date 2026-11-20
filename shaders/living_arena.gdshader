@@ -8,6 +8,10 @@ uniform vec4 haze_style = vec4(0.0);
 uniform vec4 mote_area = vec4(0.0);
 uniform float mote_strength = 0.0;
 uniform float phase_strength = 0.0;
+uniform float cycle_seconds = 24.0;
+// Profile: wind direction, turbulence, source-light strength, local sway (px).
+uniform vec4 local_motion = vec4(0.0);
+uniform float wave_strength = 0.0;
 const vec2 PLATE = vec2(1280.0, 720.0);
 
 // Bounded packets grow, crest and recede in place. No translating water sheet.
@@ -33,9 +37,9 @@ void fragment() {
 		offset.y = sin(elapsed*0.41+p.x*0.02)*0.25*mask.r;
 	}
 	vec4 original = texture(TEXTURE,UV);
-	vec4 color = arena_mode == 4 ? original : texture(source_plate,UV+offset/PLATE);
+	vec4 color = arena_mode >= 4 ? original : texture(source_plate,UV+offset/PLATE);
 	// Modulate existing warm pixels; do not paint new flames or glow discs.
-	if (arena_mode != 4 || mask.b > 0.0) {
+	if (arena_mode < 4 || (arena_mode == 4 && mask.b > 0.0)) {
 		float flicker = sin(elapsed*2.7+p.x*0.034)*0.026+sin(elapsed*4.13+p.y*0.053)*0.014;
 		color.rgb *= 1.0+mask.b*flicker;
 	}
@@ -66,6 +70,25 @@ void fragment() {
 			float ember = 0.62 + 0.38*sin(elapsed*1.4 + p.y*0.019);
 			color.rgb *= 1.0 + phase_strength * mask.b * ember * 0.30;
 		}
+	} else if (arena_mode == 5 && dot(mask, vec4(1.0)) > 0.001) {
+		// Integer harmonics on a local clock close the loop without a dissolve.
+		float cycle = elapsed * TAU / cycle_seconds;
+		if (mask.r > 0.001) {
+			float sway = (sin(cycle*3.0 + p.x*0.013) + 0.24*sin(cycle*7.0)) * local_motion.w;
+			color.rgb = texture(source_plate, UV + vec2(sway * mask.r, 0.0) / PLATE).rgb;
+		}
+		if (mask.g > 0.001) {
+			float wind = local_motion.x;
+			float veil = 0.5 + 0.5*sin(p.x*0.015 + p.y*(0.041+0.026*local_motion.y) - cycle*sign(wind)*2.0);
+			float eddy = 0.5 + 0.5*cos(p.x*0.008 - p.y*0.037 + sin(cycle)*wind);
+			float opacity = mask.g * (0.10 + 0.9*veil*eddy);
+			color.rgb = mix(color.rgb, haze_style.rgb, opacity*haze_style.a*(1.0+0.42*wave_strength));
+		}
+		if (mask.b > 0.001) {
+			// Reveal existing fire and lit stone, with no added glow discs.
+			float breath = 0.056*sin(cycle*5.0 + p.x*0.025) + 0.022*sin(cycle*13.0 + p.y*0.047);
+			color.rgb *= 1.0 + mask.b*local_motion.z*(breath + 0.055*wave_strength);
+		}
 	}
 	if (arena_mode != 2 && mask.a > 0.001) {
 		float dust = 0.0;
@@ -73,13 +96,23 @@ void fragment() {
 			float n = float(i);
 			vec2 center;
 			if (arena_mode == 1) center = vec2(632.0+mod(n*57.0,213.0),287.0+mod(n*29.0,62.0));
-			else if (arena_mode == 4) center = mote_area.xy + mote_area.zw*fract(vec2(0.13+n*0.618,0.24+n*0.381));
+			else if (arena_mode >= 4) center = mote_area.xy + mote_area.zw*fract(vec2(0.13+n*0.618,0.24+n*0.381));
 			else center = vec2(543.0+mod(n*37.0,126.0),169.0+mod(n*43.0,149.0));
-			center += vec2(sin(elapsed*0.19+n)*7.0,sin(elapsed*0.13+n*2.7)*13.0);
+			float drift_clock = arena_mode == 5 ? elapsed*TAU/cycle_seconds : elapsed;
+			vec2 drift;
+			float fade;
+			if (arena_mode == 5) {
+				drift = vec2(sin(drift_clock+n)*local_motion.x*19.0, sin(drift_clock*2.0+n*2.7)*local_motion.y*15.0);
+				fade = 0.5 + 0.5*sin(drift_clock*2.0+n*2.0);
+			} else {
+				drift = vec2(sin(elapsed*0.19+n)*7.0,sin(elapsed*0.13+n*2.7)*13.0);
+				fade = 0.5 + 0.5*sin(elapsed*0.37+n*2.0);
+			}
+			center += drift;
 			vec2 q = (p-center)/vec2(1.05,1.25);
-			dust += exp(-dot(q,q)*2.0)*(0.5+0.5*sin(elapsed*0.37+n*2.0));
+			dust += exp(-dot(q,q)*2.0)*fade;
 		}
-		float strength = arena_mode == 4 ? mote_strength*(1.0 + phase_strength*0.45) : 0.24;
+		float strength = arena_mode >= 4 ? mote_strength*(1.0 + phase_strength*0.45 + wave_strength*0.3) : 0.24;
 		color.rgb += vec3(0.22,0.20,0.15)*dust*mask.a*strength;
 	}
 	COLOR = vec4(color.rgb,original.a);

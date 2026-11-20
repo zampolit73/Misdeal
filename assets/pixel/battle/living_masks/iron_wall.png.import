@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://cvs7mrlrhplf0"
+path="res://.godot/imported/iron_wall.png-d7c498dc4938666c04caebb4877c155a.image"
+
+[deps]
+
+source_file="res://assets/pixel/battle/living_masks/iron_wall.png"
+dest_files=["res://.godot/imported/iron_wall.png-d7c498dc4938666c04caebb4877c155a.image"]
+
+[params]

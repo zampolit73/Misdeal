@@ -197,6 +197,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		if court_atmosphere != null and court_atmosphere.has_method("set_court_ambience_enabled"):
 			d269_ambient_enabled = not d269_ambient_enabled
 			court_atmosphere.call("set_court_ambience_enabled", d269_ambient_enabled)
+			get_node("Battle/BattleBackdrop").set_living_enabled(d269_ambient_enabled)
 			print("D269_COURT_AMBIENCE_AB: ", "ON" if d269_ambient_enabled else "OFF")
 			get_viewport().set_input_as_handled()
 	elif event.keycode == KEY_G:

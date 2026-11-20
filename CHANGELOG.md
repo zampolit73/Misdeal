@@ -1,3 +1,7 @@
+## Living Arenas V3
+
+Extend local background animation to all 16 Act I battle paintings and 22 authored encounters. Add a separate Death Wager profile on the shared Ossuary painting, a brief Iron Wall wave-II reaction and all 17 profiles to the Living Arenas QA tab. [Coverage and native evidence](docs/LIVING_ARENAS_V3.md)
+
 ## Living Arenas V2
 
 Add background motion to Last Bell, Ossuary Gate and Bone Warden XIII using the original arena paintings and shared mask shader. Tie the Warden's restrained phase reaction to the existing enrage event. Add direct F6 scenes and a dedicated QA Hub tab. Allow Release CI time to upload all native evidence. [Details](docs/LIVING_ARENAS_V2.md)
