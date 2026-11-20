@@ -1,6 +1,6 @@
 ## D420 Enemy Visual Polish V2
 
-Stage 24 enemy animation packs for artistic approval. Correct 14 poses across five roles, compare current and candidate art in a shared F6 gallery, and verify equal damage timing and battle outcomes. [Review packet](docs/ENEMY_VISUAL_POLISH_V2_REVIEW.md)
+Release 24 approved enemy animation packs as the default for all 22 Act I encounters. Correct 14 poses across five roles and verify equal damage timing and battle outcomes. Keep the side-by-side F6 gallery for comparison. [Review packet](docs/ENEMY_VISUAL_POLISH_V2_REVIEW.md)
 
 ## Living Arenas V3
 

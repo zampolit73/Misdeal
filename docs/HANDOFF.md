@@ -1,6 +1,6 @@
 ## D420 V2
 
-From the D420 V2 branch open `scenes/dev/enemy_visual_review.tscn` with F6 or select the enemy review under АНИМАЦИИ in QA Hub. Choose a role and play or step each state. The two Battle buttons compare real encounters with the same seed. Keep the branch separate from main until artistic approval. [Review and evidence](ENEMY_VISUAL_POLISH_V2_REVIEW.md)
+From `main`, launch with F5 and enter an ordinary combat encounter to see the new animations. For side-by-side review, open `scenes/dev/enemy_visual_review.tscn` with F6 or choose the enemy review under АНИМАЦИИ in QA Hub. The two Battle buttons compare the same encounter with the same seed. [Review and evidence](ENEMY_VISUAL_POLISH_V2_REVIEW.md)
 
 ## Living Arenas V3
 
