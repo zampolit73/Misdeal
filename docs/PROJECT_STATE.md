@@ -1,3 +1,7 @@
+## Act I sound cues
+
+Live scenes use additional UI, Combat and Ambience cues. Arena openings use short faded excerpts by location family. The old D374 audition loops remain opt-in. [CC0 sources](audio/THIRD_PARTY_AUDIO_LICENSES.md)
+
 ## Event Choice UI VNext
 
 All 24 Act I events use a shared choice presentation in ActChoice and WhisperingWell. Live prices, explicit effects, restriction reasons and the actual result appear in the event. Keyboard and mouse use the same existing handlers. [Coverage, controls and QA](EVENT_CHOICE_UI_VNEXT.md)

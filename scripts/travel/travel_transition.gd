@@ -27,6 +27,7 @@ var title: Label
 var fog: ColorRect
 var exit_shade: ColorRect
 var skip_button: Button
+var _next_audible_step := 0.48
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -169,9 +170,40 @@ static func _measure_soles(role: String, frames: SpriteFrames) -> void:
 
 func _process(delta: float) -> void:
 	if done or not available or get_tree().paused: return
+	var previous := elapsed
 	elapsed += delta
 	update_frame()
-	if elapsed >= duration(): finish()
+	if elapsed >= duration():
+		finish()
+		return
+	_play_travel_cues(previous)
+
+
+func _play_travel_cues(previous: float) -> void:
+	var id := String(context.get("resolved_card_id", ""))
+	if elapsed >= _next_audible_step and elapsed < duration() - 0.65:
+		_next_audible_step = elapsed + 0.61
+		SoundDirector.play_scene_cue(self, "wood-step" if id == "rattling_bridge" else "stone-step",
+			-26.0, 1.03 if int(elapsed * 2) % 2 == 0 else 0.94)
+	if previous < 0.92 and elapsed >= 0.92:
+		var cue := _outcome_cue(id, String(context.get("visual_action", context.get("outcome_id", ""))))
+		if not cue.is_empty():
+			SoundDirector.play_scene_cue(self, cue, -23.0, 0.92)
+
+
+func _outcome_cue(id: String, action: String) -> String:
+	if action in ["passed", "leave", "untouched", "abandon", "careful", "leave_lost"] or action.is_empty():
+		return ""
+	match id:
+		"unsent_letters", "blood_ledger", "banner_seamstress", "faceless_card": return "paper"
+		"lost_purse", "gravedigger_shop", "candle_seller": return "coins"
+		"wizard_tithe": return "coins" if action == "gold" else ""
+		"debtor_bones": return "dice" if action.begins_with("gamble") else "bones"
+		"chained_prisoner", "broken_crown", "curse_forge", "last_signal": return "metal"
+		"rattling_bridge": return "creak"
+		"false_weights": return "stone-door" if action == "fair" else "coins"
+		"echo_crypt", "bone_tax": return "stone-door"
+	return ""
 
 func duration() -> float:
 	return clampf(float(context.get("duration_sec",4.0)),3.0,5.0)
@@ -217,4 +249,7 @@ func _input(event: InputEvent) -> void:
 func finish() -> void:
 	if done: return
 	done = true
+	for child in get_children():
+		if child is AudioStreamPlayer:
+			child.stop()
 	finished.emit()

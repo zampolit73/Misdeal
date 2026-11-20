@@ -1,3 +1,7 @@
+## Act I sound cues
+
+F5 checks use Table → Event → Travel and a regular fight. The original Oak deal and D368 attack palette still anchor the mix. [New sample sources](audio/THIRD_PARTY_AUDIO_LICENSES.md)
+
 ## Event Choice UI VNext
 
 Use the existing event handlers for consequences and pass live prices and restrictions to the shared presentation. In QA Hub, check Whispering Well at 24 and 25 gold. In F5, play from the event through Cinematic Travel back to Table. [Implementation and native gallery](EVENT_CHOICE_UI_VNEXT.md)

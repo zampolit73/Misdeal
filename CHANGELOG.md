@@ -1,3 +1,7 @@
+## Act I sound cues
+
+Add card, event, reward, travel and combat foley with quiet arena openings and dedicated Warden cues. [CC0 sources](docs/audio/THIRD_PARTY_AUDIO_LICENSES.md)
+
 ## Event Choice UI VNext
 
 Unify all 24 Act I event choices. Display current gold, party and development alongside the available decisions, their costs, effects and restriction reasons. Support keyboard navigation, hover feedback and a compact result strip. Use existing artwork and preserve the event, save and Cinematic Travel routes. [Native comparisons](docs/qa/event_choice_vnext/README.md)

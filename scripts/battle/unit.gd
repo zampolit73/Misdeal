@@ -190,6 +190,7 @@ var frame_state := "idle"
 var frame_time := 0.0
 var frame_one_shot_time := 0.0
 var visual_moving := false
+var _bone_step_distance := 0.0
 var walk_hold_timer := 0.0
 var c3_walk_last_position := Vector2.ZERO
 var c3_walk_has_sample := false
@@ -692,6 +693,11 @@ func _process(delta: float) -> void:
 	_clamp_to_combat_bounds()
 	# Do not play walking frames while pinned against the arena boundary.
 	visual_moving = position.distance_squared_to(prior_position) > 0.20
+	if visual_moving and team == 1 and visual_role.begins_with("bone_") and not is_boss:
+		_bone_step_distance += position.distance_to(prior_position)
+		if _bone_step_distance >= 30.0:
+			_bone_step_distance = 0.0
+			_play_combat_audio("enemy_step")
 	z_index = int(position.y)
 	queue_redraw()
 
@@ -1196,7 +1202,15 @@ func _attack_target() -> void:
 		diagnostic_attack.emit(self, primary_target)
 	var impact_position := primary_target.global_position
 	_play_attack_feedback(primary_target)
-	_play_combat_audio("attack")
+	var cue := "attack"
+	if is_boss:
+		cue = "boss_attack"
+	elif team == 1 and _get_attack_style() == "melee":
+		cue = "enemy_attack"
+	elif visual_role == "mage" and unit_data != null and (splash_radius > unit_data.splash_radius
+			or splash_damage_multiplier > unit_data.splash_damage_multiplier):
+		cue = "strong_magic"
+	_play_combat_audio(cue)
 	_apply_combat_hit_stop()
 	var before_damage: float = primary_target.hp
 	primary_target.take_damage(damage, visual_role, global_position)
@@ -1348,7 +1362,11 @@ func take_damage(amount: float, source_role: String = "", source_position: Vecto
 	_show_damage_number(applied_amount, strong_hit)
 	_play_hit_feedback(source_position, source_role, strong_hit)
 	_spawn_impact_sparks(source_role, source_position, strong_hit)
-	_play_combat_audio("hit")
+	if applied_amount > 0.0:
+		var cue := "enemy_hit" if team == 1 else ("hit_armor" if visual_role == "knight" else "hit_cloth")
+		if source_role in ["ranger", "bone_archer", "lantern_archer", "gallows_archer"]:
+			cue = "hit_arrow"
+		_play_combat_audio(cue)
 
 	hp = maxf(0.0, hp - applied_amount)
 	health_bar.value = hp
@@ -1562,7 +1580,10 @@ func _die() -> void:
 	health_bar.value = 0.0
 	health_bar.visible = false
 	name_label.visible = false
-	_play_combat_audio("death")
+	var cue := "enemy_death" if team == 1 else ("death_armor" if visual_role == "knight" else "death_cloth")
+	if is_boss:
+		cue = "boss_death"
+	_play_combat_audio(cue)
 	if team == 1:
 		_spawn_death_fragments()
 

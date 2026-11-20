@@ -57,6 +57,9 @@ var presentation_roll_success: Variant = null
 var presentation_recruitment := false
 var resolving_leave := false
 var returning := false
+var _entry_gold := 0
+var _entry_hp := 0.0
+var _entry_relics := 0
 var choice_view: CHOICE_VIEW
 
 func _ready() -> void:
@@ -75,6 +78,9 @@ func _ready() -> void:
 	title_label.text = active_card.title
 	description_label.text = FINAL_FIVE.SCENES.get(active_card.card_id, active_card.card_text)
 	wizard_line.text = active_card.wizard_line
+	_entry_gold = RunState.gold
+	_entry_hp = RunState.party_hp_bonus - RunState.get_total_rescue_scar_hp_penalty()
+	_entry_relics = RunState.artifact_ids.size()
 	_refresh_run_labels()
 	_configure_card()
 	_apply_castle_memory_hint()
@@ -1569,6 +1575,7 @@ func _finish(message: String, batch_03_action: String = "") -> void:
 	RunState.complete_active_card()
 	preload("res://scripts/core/run_save_service.gd").instance().write_slot(RunState)
 	result_label.text = message
+	SoundDirector.play_event_result(_entry_gold, _entry_hp, _entry_relics)
 	_refresh_run_labels()
 	choice_view.show_result(continue_button)
 

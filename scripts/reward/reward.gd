@@ -505,6 +505,7 @@ func _on_reward_button_pressed(index: int) -> void:
 				_enable_reward_buttons()
 				return
 
+			SoundDirector.play_feedback("paper", 0.88)
 			var upgrade := RunState.get_hero_upgrade(option_id)
 			summary_label.text = "Выбрано: %s." % upgrade.title
 			_refresh_run_stats()
@@ -555,7 +556,7 @@ func _resolve_death_wager_option(option_id: String) -> void:
 				return
 
 			var artifact := RunState.get_artifact(artifact_id)
-			await _finish_reward("Ставка оплачена реликвией: %s." % artifact.title)
+			await _finish_reward("Ставка оплачена реликвией: %s." % artifact.title, true)
 
 func _resolve_elite_option(option_id: String) -> void:
 	if option_id == "elite_gold":
@@ -568,7 +569,7 @@ func _resolve_elite_option(option_id: String) -> void:
 		return
 
 	var artifact := RunState.get_artifact(option_id)
-	await _finish_reward("Трофей ваш: %s." % artifact.title)
+	await _finish_reward("Трофей ваш: %s." % artifact.title, true)
 
 func _set_progress_marks(tier_number: int) -> void:
 	var marks: Array[String] = []
@@ -811,9 +812,10 @@ func _disable_reward_buttons() -> void:
 	for button in reward_buttons:
 		button.disabled = true
 
-func _finish_reward(message: String) -> void:
+func _finish_reward(message: String, relic: bool = false) -> void:
 	if reward_completed: return
 	reward_completed = true
+	SoundDirector.play_feedback("metal" if relic else "coins", 1.18)
 	var resolved_id: String = RunState.active_card_id
 	var resolved_card: RunCardData = RunState.get_active_card()
 	var travel_context: Dictionary = preload("res://scripts/travel/travel_catalog.gd").context_for(resolved_id,"victory",RunState.party_roles,"",RunState.last_battle_won and resolved_card != null and resolved_card.resolution_type == "combat")

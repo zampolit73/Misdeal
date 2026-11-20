@@ -1181,7 +1181,8 @@ func _on_fight_pressed() -> void:
 	else:
 		status_label.text = "Ставка сделана. Назад пути нет."
 		_show_wizard_line(_get_combat_start_wizard_line())
-	_play_battle_audio("start")
+	SoundDirector.play_arena_opening(self, encounter.arena_id)
+	_play_battle_audio("boss_entrance" if _is_boss_encounter() else "start")
 
 	combat_beginning.emit()
 	for unit in units:

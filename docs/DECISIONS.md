@@ -1,3 +1,7 @@
+## Act I audio — short arena openings
+
+Arena atmosphere uses a short tapered opening on the existing Ambience bus. The D374 archival loops remain opt-in. Event, reward and travel cues follow the committed game actions. [Sample sources](audio/THIRD_PARTY_AUDIO_LICENSES.md)
+
 ## Event Choice UI VNext — common presentation
 
 Use one composition for ActChoice and WhisperingWell. The event scenes own availability, costs, resolution and persistence. The presentation uses their live data and existing controls, and displays the committed result. Use the event illustration for an existing fourth action and keep it in the main choice row. [Implementation and coverage](EVENT_CHOICE_UI_VNEXT.md)

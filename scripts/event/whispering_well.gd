@@ -24,6 +24,9 @@ const COIN_PRICE := 25
 @onready var leave_warning: Label = $Choices/Leave/Warning
 @onready var choices: HBoxContainer = $Choices
 
+var _entry_gold := 0
+var _entry_hp := 0.0
+var _entry_relics := 0
 var choice_view := CHOICE_VIEW.new()
 
 
@@ -36,6 +39,9 @@ func _ready() -> void:
 	if RunState.can_recruit_companion("mage"):
 		wizard_line.text = "«Ты слышишь его голос? В прошлый раз ты полез за ним.»"
 		description_label.text = "Из чёрной воды зовёт молодой маг. Это не призрак — это момент, который вы однажды изменили."
+	_entry_gold = RunState.gold
+	_entry_hp = RunState.party_hp_bonus - RunState.get_total_rescue_scar_hp_penalty()
+	_entry_relics = RunState.artifact_ids.size()
 	_refresh_choice_text()
 	_apply_choice_art()
 	for item: CanvasItem in [$Logo, $HudPanel, $HeaderPanel, $ResultPanel]:
@@ -160,6 +166,7 @@ func _apply_choice_art() -> void:
 
 
 func _show_result() -> void:
+	SoundDirector.play_event_result(_entry_gold, _entry_hp, _entry_relics)
 	_refresh_gold()
 	choice_view.show_result()
 

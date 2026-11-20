@@ -15,6 +15,14 @@ const SAMPLE_PATHS := {
 	"boss": "res://assets/audio/combat/d368_boss.wav",
 }
 
+const EXTRA_CUES := {
+	"enemy_attack": "bones", "enemy_step": "bones", "enemy_hit": "metal",
+	"enemy_death": "bones", "hit_arrow": "arrow-hit",
+	"hit_armor": "metal", "hit_cloth": "cloth-hit",
+	"death_armor": "armor-fall", "death_cloth": "cloth-hit",
+	"boss_entrance": "warden-bell", "boss_attack": "metal", "boss_death": "armor-fall",
+}
+
 @export var output_volume_db: float = -10.0
 
 var _streams: Dictionary = {}
@@ -54,7 +62,7 @@ func play_event(event_name: String, role: String = "") -> void:
 	var key := family
 	if family == "attack_ranged":
 		key = "attack_ranged_a" if _ranged_accepted % 2 == 0 else "attack_ranged_b"
-	var stream := _streams.get(key) as AudioStreamWAV
+	var stream := _streams.get(key) as AudioStream
 	if stream == null or _voices.is_empty():
 		return
 
@@ -105,12 +113,22 @@ func _get_attack_stream_key(role: String) -> String:
 
 func _get_cooldown_ms(family: String) -> int:
 	match family:
+		"enemy_step":
+			return 740
+		"enemy_attack", "boss_attack":
+			return 145
+		"hit_arrow", "hit_armor", "hit_cloth", "enemy_hit":
+			return 175
+		"enemy_death", "death_armor", "death_cloth":
+			return 210
 		"attack_ranged":
 			return 155
 		"attack_melee":
 			return 72
 		"attack_magic":
 			return 130
+		"strong_magic":
+			return 180
 		"hit":
 			return 110
 		"death":
@@ -129,11 +147,11 @@ func _get_priority(event_name: String, role: String) -> int:
 	match event_name:
 		"victory", "defeat":
 			return 6
-		"boss", "heal":
+		"boss", "heal", "boss_entrance", "boss_death":
 			return 5
 		"death":
 			return 5 if role == "bone_warden" else 4
-		"start":
+		"start", "enemy_death", "death_armor", "death_cloth", "strong_magic":
 			return 4
 		"attack":
 			return 2
@@ -150,6 +168,14 @@ func _get_volume_offset_db(event_name: String, family: String) -> float:
 		"attack_melee":
 			return -2.5
 	match event_name:
+		"enemy_step":
+			return -21.0
+		"enemy_attack", "enemy_hit", "hit_arrow", "hit_cloth", "hit_armor":
+			return -12.0
+		"enemy_death", "death_armor", "death_cloth", "boss_attack":
+			return -9.0
+		"boss_entrance", "boss_death", "strong_magic":
+			return -5.0
 		"hit":
 			return -7.0
 		"death":
@@ -173,6 +199,14 @@ func _get_pitch_scale(event_name: String, role: String) -> float:
 		return 0.76
 	if event_name == "boss":
 		return 0.88
+	if event_name in ["boss_entrance", "boss_attack", "boss_death"]:
+		return 0.78
+	if event_name == "strong_magic":
+		return 0.80
+	if event_name == "enemy_step":
+		return _pitch_rng.randf_range(1.12, 1.24)
+	if event_name == "death_cloth":
+		return 0.76 if role == "mage" else 0.90
 	if event_name == "heal":
 		return 1.0 # Preserve the bell's stable resonance.
 	return _pitch_rng.randf_range(0.97, 1.03)
@@ -199,6 +233,10 @@ func _build_streams() -> void:
 		var sample := load(SAMPLE_PATHS[key]) as AudioStreamWAV
 		if sample != null:
 			_streams[key] = sample
+
+	for key in EXTRA_CUES:
+		_streams[key] = SoundDirector.act1_sample(EXTRA_CUES[key])
+	_streams["strong_magic"] = _streams["attack_magic"]
 
 
 func _make_stream(kind: String, duration: float) -> AudioStreamWAV:

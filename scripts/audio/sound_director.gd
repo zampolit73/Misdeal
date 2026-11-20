@@ -10,6 +10,7 @@ const BUS_UI := "UI"
 const BUS_COMBAT := "Combat"
 const BUS_AMBIENCE := "Ambience"
 const SILENCE_DB := -60.0
+const ACT1_AUDIO := "res://assets/audio/act1/"
 const AMBIENCE_VOICE_DB := -2.0
 const LOCATION_PATHS := {
 	"castle": "res://assets/audio/ambience/d369_castle_roomtone.wav",
@@ -31,6 +32,8 @@ var _transition: Tween
 var _ambience_streams: Dictionary = {}
 var _current_location := "silence"
 var _location_ambience_enabled := false
+var _act1_streams: Dictionary = {}
+var _feedback: AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -47,6 +50,65 @@ func _ready() -> void:
 		var probe := DEBUG_AUDIO_PROBE.new()
 		probe.name = "D377AudioProbe"
 		add_child(probe)
+
+
+func act1_sample(cue: String) -> AudioStream:
+	if not _act1_streams.has(cue):
+		_act1_streams[cue] = load(ACT1_AUDIO + cue + ".ogg") as AudioStream
+	return _act1_streams[cue]
+
+
+func play_feedback(cue: String, pitch: float = 1.0) -> void:
+	if _feedback == null:
+		_feedback = AudioStreamPlayer.new()
+		_feedback.bus = BUS_UI
+		add_child(_feedback)
+	_feedback.stream = act1_sample(cue)
+	_feedback.volume_db = -19.0
+	_feedback.pitch_scale = pitch
+	_feedback.play()
+
+
+func play_event_result(previous_gold: int, previous_hp: float, previous_relics: int) -> void:
+	if RunState.artifact_ids.size() > previous_relics:
+		play_feedback("metal", 1.23)
+	elif RunState.gold < previous_gold:
+		play_feedback("coins", 0.78)
+	elif RunState.party_hp_bonus - RunState.get_total_rescue_scar_hp_penalty() < previous_hp:
+		play_feedback("cloth-hit", 0.83)
+	elif RunState.gold > previous_gold:
+		play_feedback("coins", 1.13)
+	else:
+		play_feedback("paper", 0.88)
+
+
+func play_scene_cue(owner: Node, cue: String, gain_db: float, pitch: float = 1.0,
+		ambient_seconds: float = 0.0) -> void:
+	var stream := act1_sample(cue)
+	if stream == null:
+		return
+	var voice := AudioStreamPlayer.new()
+	voice.bus = BUS_AMBIENCE
+	voice.stream = stream
+	voice.pitch_scale = pitch
+	voice.volume_db = SILENCE_DB if ambient_seconds > 0.0 else gain_db
+	voice.process_mode = Node.PROCESS_MODE_PAUSABLE
+	owner.add_child(voice)
+	voice.finished.connect(voice.queue_free)
+	voice.play()
+	if ambient_seconds > 0.0:
+		var fade := voice.create_tween()
+		fade.tween_property(voice, "volume_db", gain_db, 1.0)
+		fade.tween_interval(maxf(0.0, ambient_seconds - 2.6))
+		fade.tween_property(voice, "volume_db", SILENCE_DB, 1.6)
+		fade.tween_callback(voice.queue_free)
+
+
+func play_arena_opening(owner: Node, arena_id: String) -> void:
+	match location_for_arena(arena_id):
+		"courtyard": play_scene_cue(owner, "wind", -33.0, 1.0, 7.5)
+		"ossuary": play_scene_cue(owner, "dungeon", -29.0, 1.0, 8.0)
+		_: play_scene_cue(owner, "dungeon", -34.0, 0.88, 6.0)
 
 
 func set_channel_volume(bus_name: String, linear: float) -> void:
