@@ -24,6 +24,7 @@ Total: **24 Act I events, two scene types**. The prototype card scene belongs to
 ## QA
 
 - [Native Godot gallery](qa/event_choice_vnext/README.md) — matched before and after, after-choice results, conditional offers and smaller windows.
+- Godot 4.7.2 on Windows passed the complete 323-test GUT suite, the 45-frame Echo of the Siege smoke and all 72 Batch 03 Event → Travel → Table routes. Native input checks covered the full-text reader, hover motion and repeated Enter on the paid Well rescue.
 - `test_event_choice_vnext.gd` discovers the live event resources, opens solo and trio variants in Godot, and checks illustration availability, text bounds, the Well alternatives and input locking, dynamic Bone Toll, Defiance availability, Wizard debt and both banner effects.
 - Release CI captures both window sizes and activates the Well's paid rescue through real Godot keyboard input. The standard Release steps cover the five ordinary Siege event routes, Cinematic Travel outcomes and save/Continue.
 
