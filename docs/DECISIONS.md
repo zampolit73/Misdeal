@@ -1,6 +1,6 @@
 ## D420 V2 — isolate enemy presentation and rollback
 
-Battle passes its art variant to enemy units before they enter the tree. Legacy and candidate SpriteFrames are cached separately. Actual resource identity enables D420 presentation, and the legacy fallback retains its original scale, facing and motion. The temporary review setting lives on Battle, outside campaign state and saves. [Review contract](ENEMY_VISUAL_POLISH_V2_REVIEW.md)
+The player approved the D420 V2 animations for production in PR #126. Battle defaults to the new art and passes its variant to units before they enter the tree. Legacy and D420 SpriteFrames are cached separately. Actual resource identity enables D420 presentation. The legacy fallback retains its original scale, facing and motion. QA stores its comparison setting on Battle, outside campaign state and saves. [Review contract](ENEMY_VISUAL_POLISH_V2_REVIEW.md)
 
 ## Living Arenas V3 — all Act I combat paintings
 

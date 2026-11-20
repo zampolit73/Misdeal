@@ -1,6 +1,6 @@
-## D420 V2 — artistic review branch
+## D420 V2 — released in campaign
 
-The D420 review branch integrates 24 enemy animation packs with the current Battle. Five packs have local corrections. The side-by-side F6 gallery launches the same real encounter with either visual version. The release depends on the player's artistic approval. [Review and native evidence](ENEMY_VISUAL_POLISH_V2_REVIEW.md)
+The player approved D420 V2, and PR #126 shipped in `d841d089`. All 24 new enemy animation packs are active by default in all 22 Act I encounters. The F6 gallery keeps both versions for comparison. [Review and native evidence](ENEMY_VISUAL_POLISH_V2_REVIEW.md) · [Production CI](https://github.com/zampolit73/Misdeal/actions/runs/44714818399)
 
 ## Living Arenas V3 — Act I coverage
 

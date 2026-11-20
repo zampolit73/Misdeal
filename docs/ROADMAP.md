@@ -1,7 +1,7 @@
 ## D420 V2
 
 - [x] Rebase the enemy art candidate against the current battle runtime and deliver the 24-role comparison.
-- [ ] User artistic approval before production merge. [Review packet](ENEMY_VISUAL_POLISH_V2_REVIEW.md)
+- [x] User artistic approval and production merge through PR #126. [Review packet](ENEMY_VISUAL_POLISH_V2_REVIEW.md)
 
 ## Living Arenas V3
 
