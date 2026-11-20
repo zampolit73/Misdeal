@@ -1,3 +1,7 @@
+## Living Arenas V2 — campaign rollout
+
+PR #124 delivers local haze, dust and source lights for Last Bell, Ossuary Gate and Bone Warden XIII. The Warden's original phase transition ramps the backdrop effect. The shared Ossuary painting keeps its original presentation in Death Wager. QA Hub has a dedicated ЖИВЫЕ АРЕНЫ tab. [Implementation and native checks](LIVING_ARENAS_V2.md)
+
 ## Act 1 gameplay audit — static risk review and F5 playtest plan (2026-11-19)
 
 Inspected live `main` at `28050652` and current encounter/progression/planning resources. A detailed [Act 1 gameplay audit and playtest plan](ACT1_GAMEPLAY_AUDIT_2026-11-19.md) now defines three real protagonist F5 runs, targeted F6 matched comparisons, event-choice/Travel pacing review, and Bone Warden XIII variants. Historic v25 Knight solo/duo/trio and Hunt imbalance are explicitly **unconfirmed on current Combat Planning main**. **No new human full run, balance measurement, gameplay change or art revision was performed.** Next step is evidence collection, not an automatic rebalance.

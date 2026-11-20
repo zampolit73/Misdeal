@@ -1,3 +1,7 @@
+## Living Arenas V2 — local backdrop phase reaction
+
+Resolve shared artwork by encounter where needed. Ossuary Gate uses a living profile while Death Wager retains its legacy ambience on the same painting. The combat enrage handler tells the backdrop the phase. The backdrop owns the visual ramp and observes its existing pause and finish clock. Keep the combat floor and telegraphs outside the mask. [Contract](LIVING_ARENAS_V2.md)
+
 ## 2026-11-19 — final acceptance of all Act 1 Travel scenes
 
 The player explicitly confirmed "там все ок. меня устроило" after a complete 24-event Cinematic Travel coverage review. **All 24 unique event Travel scenes are artistically accepted**, including the seven earlier locations, Batch 02 seven and Batch 03 ten. Retain the approved art, Jack scale/placement, character contact and exact event outcome visual states; no unsolicited rerender or second art pass. This approval does not certify a completed manual full-act run, and does not make every combat victory a unique Travel event.

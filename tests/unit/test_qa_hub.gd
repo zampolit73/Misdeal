@@ -48,9 +48,17 @@ func test_complete_catalog_search_archive_and_current_travel() -> void:
 	hub.get_node("Search").text="no_matching_scene_123"
 	hub._show_group("ВСЁ")
 	assert_true(hub.get_node("DetailPanel/LaunchButton").disabled)
+	hub.get_node("Categories/LivingArenas").pressed.emit()
+	assert_eq(hub.get_node("Search").text, "")
+	var living_previews: Array[String] = []
+	for entry in hub.get_visible_entries():
+		living_previews.append(entry.scene.get_file())
+	assert_eq(living_previews, ["living_last_bell.tscn", "living_ossuary_gate.tscn", "living_warden.tscn"])
+	assert_false(hub.get_node("DetailPanel/LaunchButton").disabled)
 	hub.get_node("Search").text=""
 	hub._show_group("АРХИВ")
 	assert_gt(hub.get_visible_entries().size(),50)
+	await get_tree().process_frame
 
 func test_session_isolates_save_memory_and_restores_original_state_and_services() -> void:
 	var previous_save: RefCounted=SAVE.shared

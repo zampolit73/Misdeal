@@ -1,7 +1,11 @@
 extends "res://scripts/dev/living_arenas_capture.gd"
-## Isolate the noisy solo-pier measurement with balanced A/B/B/A ordering.
+## Repeat capture-free measurements with balanced A/B/B/A ordering.
 func run() -> void:
-	destination = OS.get_cmdline_user_args()[0]
+	var args := OS.get_cmdline_user_args()
+	destination = args[0]
+	var id := args[1] if args.size() > 1 else "black_crossing"
+	var party_size := 3 if args.has("--trio") else 1
+	var scenario := "trio_abba" if party_size == 3 else "solo_abba"
 	DirAccess.make_dir_recursive_absolute(destination)
 	root.size = Vector2i(1280,720)
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
@@ -9,11 +13,11 @@ func run() -> void:
 	state = root.get_node("RunState")
 	for repeat in range(3):
 		for enabled in [false,true,true,false]:
-			var battle := fixture("black_crossing",1)
+			var battle := fixture(id, party_size)
 			battle.battle_backdrop.set_living_enabled(enabled)
-			battle.fight_button.pressed.emit()
+			start_battle(battle, id in PROFILE.V2_ARENAS)
 			while not battle.combat_live: await process_frame
-			await measure("black_crossing","solo_abba",battle.battle_backdrop,enabled)
+			await measure(id, scenario, battle.battle_backdrop, enabled)
 			metrics[-1]["round"] = repeat
 			battle.queue_free()
 			await process_frame

@@ -22,15 +22,17 @@ var redraw_cooldown: float = 0.0
 var boss_mode: bool = false
 var boss_phase_two: bool = false
 var arena_id: String = ARENA_CRYPT
+var _living_backdrop := false
 # D269: encounter-local optional theatrical light. Only the Court actually draws it.
 var court_ambience_enabled := true
 
-func set_arena_id(value: String) -> void:
+func set_arena_id(value: String, encounter_id: String = "") -> void:
 	match value:
 		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH, ARENA_BONE_SWARM, ARENA_GRAVE_CROSSFIRE, ARENA_IRON_WALL, ARENA_LAST_BELL, ARENA_FIRING_SQUARE, ARENA_BONE_RITUAL, ARENA_THREADBARE_THEATRE, ARENA_BLACK_CROSSING, ARENA_COURT_OF_THE_MUTE:
 			arena_id = value
 		_:
 			arena_id = ARENA_CRYPT
+	_living_backdrop = not LIVING_PROFILE.for_encounter(arena_id, encounter_id).is_empty()
 	queue_redraw()
 
 func set_court_ambience_enabled(enabled: bool) -> void:
@@ -52,7 +54,7 @@ func _ready() -> void:
 	queue_redraw()
 
 func _process(delta: float) -> void:
-	if LIVING_PROFILE.supports(arena_id): return
+	if _living_backdrop: return
 	pulse += delta
 	redraw_cooldown -= delta
 	if redraw_cooldown <= 0.0:
@@ -62,7 +64,7 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	# Pilot atmosphere is now masked in the existing backdrop, behind all actors.
 	# Avoid stacking the legacy fog discs/bird or free-floating theatre dust.
-	if LIVING_PROFILE.supports(arena_id): return
+	if _living_backdrop: return
 	match arena_id:
 		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_GRAVE_CROSSFIRE, ARENA_LAST_BELL, ARENA_FIRING_SQUARE:
 			_draw_graveyard_atmosphere()

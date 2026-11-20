@@ -1,3 +1,7 @@
+## Living Arenas V2
+
+From `main` after PR #124, use the ЖИВЫЕ АРЕНЫ tab in QA Hub or open the three direct F6 scenes. Compare the animated background in preparation and combat. Warden has a presentation-only phase switch during preparation and uses the real enrage trigger in combat. [Preview, evidence and reproduction](LIVING_ARENAS_V2.md)
+
 ## Act 1 gameplay audit — planned, not played (2026-11-19)
 
 Live `main` and prior game-balance diagnostics were reviewed. Start the gameplay milestone using [`ACT1_GAMEPLAY_AUDIT_2026-11-19.md`](ACT1_GAMEPLAY_AUDIT_2026-11-19.md): three authentic F5 routes by protagonist, F6 matched tactical comparisons (Last Bell, Ossuary, waves, Court, boss), event interest, pacing, conditional XIII phase and Last Deal. **No manual campaign playtest or post-V4 rebalancing has been performed; do not state otherwise.** Preserve all 24 player-approved Travel scenes and the campaign V4 planner. Follow priority P0→P1→P2, ground fixes in evidence and secure user authorization before altering balance/art.

@@ -7,6 +7,10 @@ var living_paused := false
 var living_finished := false
 var living_elapsed := 0.0
 var living_material: ShaderMaterial
+var living_profile_id := ""
+var living_phase_mix := 0.0
+var _living_phase_target := 0.0
+var _living_reacts_to_phase := false
 
 const ARENA_CRYPT := "crypt"
 const ARENA_GRAVEYARD := "graveyard"
@@ -61,7 +65,7 @@ func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	set_arena_id(arena_id)
 
-func set_arena_id(value: String) -> void:
+func set_arena_id(value: String, encounter_id: String = "") -> void:
 	match value:
 		ARENA_GRAVEYARD, ARENA_GALLOWS, ARENA_OSSUARY, ARENA_WARDEN, ARENA_BONE_CRUSH, ARENA_BONE_SWARM, ARENA_GRAVE_CROSSFIRE, ARENA_IRON_WALL, ARENA_LAST_BELL, ARENA_FIRING_SQUARE, ARENA_BONE_RITUAL, ARENA_THREADBARE_THEATRE, ARENA_BLACK_CROSSING, ARENA_BLACK_LANTERN_ROAD, ARENA_COURT_OF_THE_MUTE:
 			arena_id = value
@@ -70,6 +74,7 @@ func set_arena_id(value: String) -> void:
 
 	material = null
 	texture = _get_runtime_texture(arena_id)
+	living_profile_id = LIVING_PROFILE.for_encounter(arena_id, encounter_id)
 	_configure_living_arena()
 
 func _configure_living_arena() -> void:
@@ -77,13 +82,26 @@ func _configure_living_arena() -> void:
 	living_finished = false
 	living_paused = false
 	living_material = null
-	if LIVING_PROFILE.supports(arena_id):
+	living_phase_mix = 0.0
+	_living_phase_target = 0.0
+	_living_reacts_to_phase = false
+	if not living_profile_id.is_empty():
+		var profile: Dictionary = LIVING_PROFILE.PROFILES[living_profile_id]
 		living_material = ShaderMaterial.new()
 		living_material.shader = LIVING_SHADER
 		living_material.set_shader_parameter("source_plate", texture)
-		living_material.set_shader_parameter("region_mask", LIVING_PROFILE.mask_for(arena_id))
-		living_material.set_shader_parameter("arena_mode", LIVING_PROFILE.PROFILES[arena_id].mode)
+		living_material.set_shader_parameter("region_mask", LIVING_PROFILE.mask_for(living_profile_id))
+		living_material.set_shader_parameter("arena_mode", profile.mode)
+		if profile.has("haze"):
+			living_material.set_shader_parameter("haze_style", profile.haze)
+			living_material.set_shader_parameter("mote_area", profile.motes)
+			living_material.set_shader_parameter("mote_strength", profile.dust_strength)
+		_living_reacts_to_phase = profile.get("phase_response", false)
 	set_living_enabled(living_enabled)
+
+func set_living_phase_two(active: bool) -> void:
+	if _living_reacts_to_phase and not living_finished:
+		_living_phase_target = 1.0 if active else 0.0
 
 func set_living_enabled(enabled: bool) -> void:
 	living_enabled = enabled
@@ -100,8 +118,12 @@ func finish_living_arena() -> void:
 
 func advance_living(delta: float) -> void:
 	if not living_enabled or living_paused or living_finished or living_material == null: return
+	if is_inside_tree() and get_tree().paused: return
 	living_elapsed += maxf(0.0, delta)
 	living_material.set_shader_parameter("elapsed", living_elapsed)
+	if living_phase_mix != _living_phase_target:
+		living_phase_mix = move_toward(living_phase_mix, _living_phase_target, maxf(delta, 0.0) / 1.2)
+		living_material.set_shader_parameter("phase_strength", smoothstep(0.0, 1.0, living_phase_mix))
 
 func _process(delta: float) -> void:
 	advance_living(delta)

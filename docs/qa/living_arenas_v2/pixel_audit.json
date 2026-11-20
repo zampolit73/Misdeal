@@ -1,0 +1,29 @@
+[
+	{
+		"arena": "last_bell",
+		"changed_sample_pixels": 16540,
+		"max_rgb_sum_delta": 0.192156868986785,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "ossuary_gate",
+		"changed_sample_pixels": 21420,
+		"max_rgb_sum_delta": 0.145098043140024,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "warden",
+		"changed_sample_pixels": 16472,
+		"max_rgb_sum_delta": 0.0862745195627213,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	},
+	{
+		"arena": "warden",
+		"phase_two_changed_sample_pixels": 20766,
+		"protected_floor_changes": 0,
+		"sampling_step": 2
+	}
+]
