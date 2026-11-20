@@ -1,3 +1,7 @@
+## Combat Audio V2
+
+In QA Hub compare the open graveyard, a crypt and an enclosed arena. The Warden has separate cues for combat start, attacks, phase two and defeat. [Sources](audio/THIRD_PARTY_AUDIO_LICENSES.md#combat-audio-v2)
+
 ## Act I sound cues
 
 F5 checks use Table → Event → Travel and a regular fight. The original Oak deal and D368 attack palette still anchor the mix. [New sample sources](audio/THIRD_PARTY_AUDIO_LICENSES.md)

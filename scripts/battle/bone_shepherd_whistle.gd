@@ -76,6 +76,7 @@ func _begin_warning() -> void:
 	phase = TELEGRAPH
 	seconds_remaining = data.warning_seconds
 	warning_count += 1
+	get_tree().call_group("combat_audio", "play_event", "whistle", "bone_shepherd")
 	queue_redraw()
 
 func _begin_rush() -> void:

@@ -60,6 +60,7 @@ const WAVE_BRIEFING_REFRESH_SECONDS := 0.12
 @onready var battle_backdrop: TextureRect = $BattleBackdrop
 @onready var arena_visual: Control = $Arena
 @onready var combat_audio: Node = $CombatAudio
+var _arena_ambience: AudioStreamPlayer
 @onready var top_hud_panel: Panel = $TopHudPanel
 @onready var run_hud_panel: Panel = $RunHudPanel
 @onready var bottom_hud_panel: Panel = $BottomHudPanel
@@ -1181,7 +1182,7 @@ func _on_fight_pressed() -> void:
 	else:
 		status_label.text = "Ставка сделана. Назад пути нет."
 		_show_wizard_line(_get_combat_start_wizard_line())
-	SoundDirector.play_arena_opening(self, encounter.arena_id)
+	_arena_ambience = SoundDirector.start_arena_ambience(self, encounter.arena_id)
 	_play_battle_audio("boss_entrance" if _is_boss_encounter() else "start")
 
 	combat_beginning.emit()
@@ -1609,6 +1610,8 @@ func _on_last_deal_refuse_pressed() -> void:
 
 
 func _finish_battle(player_won: bool) -> void:
+	SoundDirector.stop_arena_ambience(_arena_ambience)
+	_arena_ambience = null
 	if shepherd_whistle_controller != null:
 		shepherd_whistle_controller.stop_whistle()
 	if last_rite_controller != null:

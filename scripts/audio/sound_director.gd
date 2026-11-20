@@ -2,9 +2,7 @@ extends Node
 
 # Audio 1: quiet independent UI/Combat/Ambience buses.
 # D369: subtle environment roomtones, never background music.
-# D374: user rejected all location ambience in real gameplay.
-# Default to silent-first runtime. The former loops remain for explicit F6 audition.
-# Preserve approved tabletop Oak and existing combat cues.
+# The old D374 loops remain in the explicit audition. Battle owns its V2 bed.
 const DEBUG_AUDIO_PROBE := preload("res://scripts/dev/d377_live_audio_probe.gd")
 const BUS_UI := "UI"
 const BUS_COMBAT := "Combat"
@@ -104,11 +102,51 @@ func play_scene_cue(owner: Node, cue: String, gain_db: float, pitch: float = 1.0
 		fade.tween_callback(voice.queue_free)
 
 
-func play_arena_opening(owner: Node, arena_id: String) -> void:
-	match location_for_arena(arena_id):
-		"courtyard": play_scene_cue(owner, "wind", -33.0, 1.0, 7.5)
-		"ossuary": play_scene_cue(owner, "dungeon", -29.0, 1.0, 8.0)
-		_: play_scene_cue(owner, "dungeon", -34.0, 0.88, 6.0)
+func start_arena_ambience(owner: Node, arena_id: String) -> AudioStreamPlayer:
+	var location := location_for_arena(arena_id)
+	var stream: AudioStream
+	var level := -29.0
+	if location == "ossuary":
+		var cave_source := act1_sample("dungeon") as AudioStreamOggVorbis
+		if cave_source == null:
+			return null
+		var cave := cave_source.duplicate() as AudioStreamOggVorbis
+		cave.loop = true
+		stream = cave
+		level = -33.0
+	else:
+		var file := "courtyard" if location == "courtyard" else "hall"
+		var room_source := load("res://assets/audio/combat/v2/arena-" + file + ".wav") as AudioStreamWAV
+		if room_source == null:
+			return null
+		var room := room_source.duplicate() as AudioStreamWAV
+		room.loop_end = roundi(room.get_length() * room.mix_rate)
+		room.loop_mode = AudioStreamWAV.LOOP_FORWARD
+		stream = room
+	var voice := AudioStreamPlayer.new()
+	voice.name = "ArenaAmbienceV2"
+	voice.bus = BUS_AMBIENCE
+	voice.process_mode = Node.PROCESS_MODE_PAUSABLE
+	voice.stream = stream
+	voice.volume_db = SILENCE_DB
+	owner.add_child(voice)
+	voice.play()
+	var fade := voice.create_tween()
+	voice.set_meta("arena_fade_in", fade)
+	fade.tween_property(voice, "volume_db", level, 1.7)
+	return voice
+
+
+func stop_arena_ambience(voice: AudioStreamPlayer) -> void:
+	if not is_instance_valid(voice):
+		return
+	var fade_in := voice.get_meta("arena_fade_in") as Tween
+	if fade_in.is_valid():
+		fade_in.kill()
+	voice.remove_meta("arena_fade_in")
+	var fade_out := voice.create_tween()
+	fade_out.tween_property(voice, "volume_db", SILENCE_DB, 0.75)
+	fade_out.tween_callback(voice.queue_free)
 
 
 func set_channel_volume(bus_name: String, linear: float) -> void:

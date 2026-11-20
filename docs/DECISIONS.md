@@ -1,3 +1,7 @@
+## Combat Audio V2 — wind and stone
+
+Act I battles use a low bed for the duration of the fight, with quiet fades on entry and result. The same six-voice Combat pool handles the new material. Keep the approved footstep sample, gain, cooldown and pitch range. [Source register](audio/THIRD_PARTY_AUDIO_LICENSES.md#combat-audio-v2)
+
 ## Act I audio — short arena openings
 
 Arena atmosphere uses a short tapered opening on the existing Ambience bus. The D374 archival loops remain opt-in. Event, reward and travel cues follow the committed game actions. [Sample sources](audio/THIRD_PARTY_AUDIO_LICENSES.md)

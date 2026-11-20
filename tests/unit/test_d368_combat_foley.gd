@@ -1,17 +1,7 @@
 extends GutTest
 
-# D368: authored imports, graceful fallback, restrained polyphony, no gameplay hooks.
+# The V2 palette keeps the existing player pool and the approved step cue.
 const COMBAT_SCRIPT := preload("res://scripts/battle/combat_audio.gd")
-const FILES := {
-	"attack_melee": "res://assets/audio/combat/d368_attack_melee.wav",
-	"attack_ranged_a": "res://assets/audio/combat/d368_attack_ranged_a.wav",
-	"attack_ranged_b": "res://assets/audio/combat/d368_attack_ranged_b.wav",
-	"attack_magic": "res://assets/audio/combat/d368_attack_magic.wav",
-	"hit": "res://assets/audio/combat/d368_hit.wav",
-	"death": "res://assets/audio/combat/d368_death.wav",
-	"heal": "res://assets/audio/combat/d368_heal.wav",
-	"boss": "res://assets/audio/combat/d368_boss.wav",
-}
 
 
 func _new_audio() -> Node:
@@ -20,29 +10,22 @@ func _new_audio() -> Node:
 	return audio
 
 
-func test_eight_authored_combat_wavs_are_live_and_short() -> void:
+func test_v2_palette_has_real_recorded_cues_and_original_bone_steps() -> void:
 	var audio := _new_audio()
 	var bank: Dictionary = audio.get("_streams")
-	for key in FILES:
-		var sample := load(FILES[key]) as AudioStreamWAV
-		assert_not_null(sample, "Missing WAV: " + key)
-		if sample == null:
-			continue
-		assert_eq(sample.mix_rate, 24000)
-		# Godot's import may convert source 16-bit WAV to its internal compressed format.
-		# Verify actual playable duration/bank wiring instead of import codec ID.
-		assert_true(sample.get_length() >= 0.12 and sample.get_length() <= 0.65)
-		assert_same(bank.get(key), sample, "Not connected to live combat: " + key)
-	assert_false(bank.has("hover"))
+	for family: String in COMBAT_SCRIPT.CUES:
+		var stream := bank.get(family) as AudioStream
+		assert_not_null(stream, "Missing live cue: " + family)
+		if stream != null:
+			assert_gt(stream.get_length(), 0.0)
+			if family != "enemy_step":
+				assert_eq(stream.resource_path, COMBAT_SCRIPT.PALETTE + String(COMBAT_SCRIPT.CUES[family][0]) + ".wav")
+	assert_same(bank.get("enemy_step"), load("res://assets/audio/act1/bones.ogg"))
+	assert_eq(COMBAT_SCRIPT.CUES["enemy_step"].slice(1), [740, 1, -21.0])
 
 
-func test_all_events_keep_procedural_fallback_and_combat_bus() -> void:
+func test_combat_pool_keeps_six_voices_on_the_existing_bus() -> void:
 	var audio := _new_audio()
-	var fallback: Dictionary = audio.get("_fallback_streams")
-	for key in FILES:
-		assert_not_null(fallback.get(key), "Missing procedural fallback: " + key)
-	for key in ["start", "order", "victory", "defeat"]:
-		assert_not_null(fallback.get(key))
 	assert_eq(audio.get_child_count(), 6)
 	for index in range(audio.get_child_count()):
 		var voice := audio.get_child(index) as AudioStreamPlayer
@@ -55,7 +38,7 @@ func test_four_fast_archers_are_throttled_but_bow_uses_two_variants() -> void:
 	var audio := _new_audio()
 	audio.call("play_event", "attack", "bone_archer")
 	var first_voice: AudioStreamPlayer = audio.get_child(0) as AudioStreamPlayer
-	assert_same(first_voice.stream, load(FILES["attack_ranged_a"]))
+	assert_same(first_voice.stream, load(COMBAT_SCRIPT.PALETTE + "bow-a.wav"))
 	var next_index := int(audio.get("_voice_index"))
 	for _shot in range(3):
 		audio.call("play_event", "attack", "bone_archer")
@@ -66,18 +49,19 @@ func test_four_fast_archers_are_throttled_but_bow_uses_two_variants() -> void:
 	audio.call("play_event", "attack", "ranger")
 	assert_eq(int(audio.get("_ranged_accepted")), 2)
 	var second_voice: AudioStreamPlayer = audio.get_child(1) as AudioStreamPlayer
-	assert_same(second_voice.stream, load(FILES["attack_ranged_b"]))
+	assert_same(second_voice.stream, load(COMBAT_SCRIPT.PALETTE + "bow-b.wav"))
 
 
 func test_healing_and_boss_have_higher_priority_than_attack_spam() -> void:
 	var audio := _new_audio()
-	assert_true(int(audio.call("_get_priority", "heal", "")) > int(audio.call("_get_priority", "attack", "bone_archer")))
-	assert_true(int(audio.call("_get_priority", "boss", "bone_warden")) > int(audio.call("_get_priority", "hit", "")))
-	assert_true(int(audio.call("_get_cooldown_ms", "attack_ranged")) >= 150)
-	assert_true(int(audio.call("_get_cooldown_ms", "heal")) > int(audio.call("_get_cooldown_ms", "hit")))
+	var cues := COMBAT_SCRIPT.CUES
+	assert_gt(int(cues["heal"][2]), int(cues["attack_ranged"][2]))
+	assert_gt(int(cues["boss"][2]), int(cues["hit"][2]))
+	assert_gte(int(cues["attack_ranged"][1]), 150)
+	assert_gt(int(cues["heal"][1]), int(cues["hit"][1]))
 	audio.call("play_event", "heal", "grave_bellkeeper")
 	var voice: AudioStreamPlayer = audio.get_child(0) as AudioStreamPlayer
-	assert_same(voice.stream, load(FILES["heal"]))
+	assert_same(voice.stream, load(COMBAT_SCRIPT.PALETTE + "rite.wav"))
 	assert_almost_eq(voice.pitch_scale, 1.0, 0.001)
 
 

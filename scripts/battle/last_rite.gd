@@ -86,6 +86,7 @@ func _resolve_rite() -> void:
 		for bearer in bearers:
 			if is_instance_valid(bearer) and not bearer.alive:
 				if bearer.revive_from_last_rite(data.revive_hp_fraction):
+					get_tree().call_group("combat_audio", "play_event", "last_rite", "funeral_priest")
 					revival_spent = true
 					revive_count += 1
 					phase = WAITING
@@ -106,6 +107,7 @@ func _resolve_rite() -> void:
 		queue_redraw()
 		return
 	fury_count += 1
+	get_tree().call_group("combat_audio", "play_event", "last_rite", "funeral_priest")
 	phase = FURY
 	seconds_remaining = data.fury_seconds
 	queue_redraw()

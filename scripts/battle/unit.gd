@@ -1,6 +1,9 @@
 class_name BattleUnit
 extends Node2D
 
+const COMBAT_SOUND := preload("res://scripts/battle/combat_audio.gd")
+const CREATURE_AUDIO_ROLES := ["ossuary_lamb", "drowned_hand", "unstable_homunculus", "jack"]
+
 const UNIT_TILE_SIZE: float = 96.0
 const TACTICAL_ORDER_ASSAULT := "assault"
 const TACTICAL_ORDER_HUNT := "hunt"
@@ -1205,7 +1208,9 @@ func _attack_target() -> void:
 	var cue := "attack"
 	if is_boss:
 		cue = "boss_attack"
-	elif team == 1 and _get_attack_style() == "melee":
+	elif visual_role in CREATURE_AUDIO_ROLES:
+		cue = "creature_attack"
+	elif team == 1 and visual_role not in COMBAT_SOUND.RANGED_ROLES and visual_role not in COMBAT_SOUND.MAGIC_ROLES:
 		cue = "enemy_attack"
 	elif visual_role == "mage" and unit_data != null and (splash_radius > unit_data.splash_radius
 			or splash_damage_multiplier > unit_data.splash_damage_multiplier):
@@ -1363,9 +1368,12 @@ func take_damage(amount: float, source_role: String = "", source_position: Vecto
 	_play_hit_feedback(source_position, source_role, strong_hit)
 	_spawn_impact_sparks(source_role, source_position, strong_hit)
 	if applied_amount > 0.0:
-		var cue := "enemy_hit" if team == 1 else ("hit_armor" if visual_role == "knight" else "hit_cloth")
-		if source_role in ["ranger", "bone_archer", "lantern_archer", "gallows_archer"]:
+		var armor := visual_role in ["knight", "bone_warden", "crypt_guard", "road_sentinel", "bone_bailiff"]
+		var cue := "hit_armor" if armor else ("hit_cloth" if team == 0 or visual_role in CREATURE_AUDIO_ROLES else "enemy_hit")
+		if source_role in COMBAT_SOUND.RANGED_ROLES:
 			cue = "hit_arrow"
+		elif source_role in COMBAT_SOUND.MAGIC_ROLES:
+			cue = "hit_magic"
 		_play_combat_audio(cue)
 
 	hp = maxf(0.0, hp - applied_amount)
@@ -1583,6 +1591,8 @@ func _die() -> void:
 	var cue := "enemy_death" if team == 1 else ("death_armor" if visual_role == "knight" else "death_cloth")
 	if is_boss:
 		cue = "boss_death"
+	elif visual_role in CREATURE_AUDIO_ROLES:
+		cue = "death_cloth"
 	_play_combat_audio(cue)
 	if team == 1:
 		_spawn_death_fragments()

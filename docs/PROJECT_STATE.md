@@ -1,3 +1,7 @@
+## Combat Audio V2
+
+Act I battles use processed CC0 foley and quiet location beds from combat start through the result fade. The approved footsteps and the UI and Travel palette keep their original cues. [Sources](audio/THIRD_PARTY_AUDIO_LICENSES.md#combat-audio-v2)
+
 ## Act I sound cues
 
 Live scenes use additional UI, Combat and Ambience cues. Arena openings use short faded excerpts by location family. The old D374 audition loops remain opt-in. [CC0 sources](audio/THIRD_PARTY_AUDIO_LICENSES.md)

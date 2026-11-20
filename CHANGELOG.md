@@ -1,3 +1,7 @@
+## Combat Audio V2
+
+Use layered weapon, bow, bone and stone recordings for Act I fights, with new casts, impacts, falls, special cues and Warden audio. Add quiet courtyard, crypt and hall beds on the existing Ambience bus. Footsteps retain their previous audio and timing. [CC0 sources](docs/audio/THIRD_PARTY_AUDIO_LICENSES.md#combat-audio-v2)
+
 ## Act I sound cues
 
 Add card, event, reward, travel and combat foley with quiet arena openings and dedicated Warden cues. [CC0 sources](docs/audio/THIRD_PARTY_AUDIO_LICENSES.md)
