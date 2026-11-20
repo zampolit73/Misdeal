@@ -1,3 +1,7 @@
+## D420 V2
+
+From the D420 V2 branch open `scenes/dev/enemy_visual_review.tscn` with F6 or select the enemy review under АНИМАЦИИ in QA Hub. Choose a role and play or step each state. The two Battle buttons compare real encounters with the same seed. Keep the branch separate from main until artistic approval. [Review and evidence](ENEMY_VISUAL_POLISH_V2_REVIEW.md)
+
 ## Living Arenas V3
 
 Use F6 on `scenes/dev/qa_hub.tscn`, then **ЖИВЫЕ АРЕНЫ**. The tab exposes all 17 profiles with party selection, original/live comparison, pause and repeat. Use F5 and choose a combat card to review the same renderer in the campaign. The Iron Wall wave-II reaction and Warden enrage require their actual battle events. [Coverage, native evidence and reproduction](LIVING_ARENAS_V3.md)

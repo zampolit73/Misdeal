@@ -1,0 +1,160 @@
+[
+  {
+    "role": "ash_scrivener",
+    "source_d420_atlas_sha256": "d5a1db7871eaede48ca020d1117326eeac1352d857d5c46643f800946e3601a3",
+    "v2_atlas_sha256": "d5a1db7871eaede48ca020d1117326eeac1352d857d5c46643f800946e3601a3",
+    "changed_cells": []
+  },
+  {
+    "role": "bone_archer",
+    "source_d420_atlas_sha256": "f16bf8af624b183f18204dc397b498b2caf26e0ef5539d3a727088a60a7fd2b5",
+    "v2_atlas_sha256": "c16b92cdf2da64fa5768da23604cb17eee10cb1b27b5ca84ca3f425114642639",
+    "changed_cells": [
+      "hit_0",
+      "hit_1",
+      "hit_2"
+    ]
+  },
+  {
+    "role": "bone_bailiff",
+    "source_d420_atlas_sha256": "8b6a1a6387e8ce1213c9d1b81e9e26e1157646369acf33f64320d9bab6b3af0c",
+    "v2_atlas_sha256": "549bb3314dfc91f91fea8931fa90a0e8e44c1958ccc747e45d743b94deaee9e6",
+    "changed_cells": [
+      "hit_0",
+      "hit_1"
+    ]
+  },
+  {
+    "role": "bone_marionette",
+    "source_d420_atlas_sha256": "5b761c59bebf2c453e886c66da6616592660f0a889f4a7e5f64d962a555dd9f4",
+    "v2_atlas_sha256": "5b761c59bebf2c453e886c66da6616592660f0a889f4a7e5f64d962a555dd9f4",
+    "changed_cells": []
+  },
+  {
+    "role": "bone_shepherd",
+    "source_d420_atlas_sha256": "c285009d64a2d7b0b28bd49a2fd4c1abf1bf6b59f4a66f038b19dba2f4d64ea5",
+    "v2_atlas_sha256": "c285009d64a2d7b0b28bd49a2fd4c1abf1bf6b59f4a66f038b19dba2f4d64ea5",
+    "changed_cells": []
+  },
+  {
+    "role": "bone_thrall",
+    "source_d420_atlas_sha256": "5715e255002433bf05bb54a566823e2f30d5d7e48bba22954df09f433ceb96e0",
+    "v2_atlas_sha256": "5715e255002433bf05bb54a566823e2f30d5d7e48bba22954df09f433ceb96e0",
+    "changed_cells": []
+  },
+  {
+    "role": "bone_warden",
+    "source_d420_atlas_sha256": "e9750ca054b8cd29bf1c58e2182b99cd5022fd3620779ccb95708a0fa1f32b10",
+    "v2_atlas_sha256": "e9750ca054b8cd29bf1c58e2182b99cd5022fd3620779ccb95708a0fa1f32b10",
+    "changed_cells": []
+  },
+  {
+    "role": "crypt_guard",
+    "source_d420_atlas_sha256": "98b350fe79aff97f03b6b2aa3353495599a9eebf5c4ca151c16978501bc37d6d",
+    "v2_atlas_sha256": "98b350fe79aff97f03b6b2aa3353495599a9eebf5c4ca151c16978501bc37d6d",
+    "changed_cells": []
+  },
+  {
+    "role": "drowned_ferryman",
+    "source_d420_atlas_sha256": "acc824e7be3eaae74737f3e219e85082da09f5d3c10b988618e611812f56ca22",
+    "v2_atlas_sha256": "d6361e91585d088234ca53883fcfb0923e98c2f579794324b23c14c9928dbeac",
+    "changed_cells": [
+      "attack_4"
+    ]
+  },
+  {
+    "role": "drowned_hand",
+    "source_d420_atlas_sha256": "24506be9ab64e6a319ce7b89928ab621b65ac4cd60f77311296d694d5609ba99",
+    "v2_atlas_sha256": "24506be9ab64e6a319ce7b89928ab621b65ac4cd60f77311296d694d5609ba99",
+    "changed_cells": []
+  },
+  {
+    "role": "extinguished_guide",
+    "source_d420_atlas_sha256": "1e1d6fa433e219ab94192c79ae0aeead7cbcb80158d18787b6476647047bea07",
+    "v2_atlas_sha256": "1e1d6fa433e219ab94192c79ae0aeead7cbcb80158d18787b6476647047bea07",
+    "changed_cells": []
+  },
+  {
+    "role": "funeral_priest",
+    "source_d420_atlas_sha256": "7e2fc774f9e9f21908e2e504547b197cf2fe794a00eb94d23616cc64ca8e0fbe",
+    "v2_atlas_sha256": "7e2fc774f9e9f21908e2e504547b197cf2fe794a00eb94d23616cc64ca8e0fbe",
+    "changed_cells": []
+  },
+  {
+    "role": "grave_bellkeeper",
+    "source_d420_atlas_sha256": "49c38e64ddf9ea0466167d0fd1eab93dba3143dfa680359b5d25b6eb87caca6d",
+    "v2_atlas_sha256": "33b9ec785a78302731d79813bbb8730e97365599dcdaec480eebe53726f3f3cb",
+    "changed_cells": [
+      "attack_4",
+      "attack_5"
+    ]
+  },
+  {
+    "role": "lantern_archer",
+    "source_d420_atlas_sha256": "b5bb77f14cbc91f91812d4c162c5ffa1b955c54ebb555c937d72598e7be090c7",
+    "v2_atlas_sha256": "b5bb77f14cbc91f91812d4c162c5ffa1b955c54ebb555c937d72598e7be090c7",
+    "changed_cells": []
+  },
+  {
+    "role": "lantern_bearer",
+    "source_d420_atlas_sha256": "509c40f5a73eb21af8abb96115f3ef043fa736ea3dc452e41f7c442899e1fb13",
+    "v2_atlas_sha256": "76c2315363f4d552d3d9f15a0338c5e053eefc41c2ec383571f0869187a69cf3",
+    "changed_cells": [
+      "walk_0-5"
+    ]
+  },
+  {
+    "role": "mute_magistrate",
+    "source_d420_atlas_sha256": "0792191acec115cce1f3b3cd76f0f60e6f81ce6752aba9bcc6e949561490240b",
+    "v2_atlas_sha256": "0792191acec115cce1f3b3cd76f0f60e6f81ce6752aba9bcc6e949561490240b",
+    "changed_cells": []
+  },
+  {
+    "role": "oil_acolyte",
+    "source_d420_atlas_sha256": "58331e1f4d48cb3e4b991e8e4ffbcf1e25cb4ecc0e3c63311463141debbb49c8",
+    "v2_atlas_sha256": "58331e1f4d48cb3e4b991e8e4ffbcf1e25cb4ecc0e3c63311463141debbb49c8",
+    "changed_cells": []
+  },
+  {
+    "role": "ossuary_lamb",
+    "source_d420_atlas_sha256": "18ef3a9497e00b5613e9e8e73610cc548511561e6794a95e266161bb9eae574d",
+    "v2_atlas_sha256": "18ef3a9497e00b5613e9e8e73610cc548511561e6794a95e266161bb9eae574d",
+    "changed_cells": []
+  },
+  {
+    "role": "pallbearer",
+    "source_d420_atlas_sha256": "fc22f9189eba6799d9f21007194d96a583b59da980de77a31ad3514d254dfa98",
+    "v2_atlas_sha256": "fc22f9189eba6799d9f21007194d96a583b59da980de77a31ad3514d254dfa98",
+    "changed_cells": []
+  },
+  {
+    "role": "plague_alchemist",
+    "source_d420_atlas_sha256": "c1a9bfdb260a7345cea5d226a91098dbfb3f1564ce4457bc07e236b2694a7788",
+    "v2_atlas_sha256": "c1a9bfdb260a7345cea5d226a91098dbfb3f1564ce4457bc07e236b2694a7788",
+    "changed_cells": []
+  },
+  {
+    "role": "road_sentinel",
+    "source_d420_atlas_sha256": "c17b5b64acc6465dde16f9d4bf6bc3a127ef4ce74db6c2ff280d455b241f3e3a",
+    "v2_atlas_sha256": "c17b5b64acc6465dde16f9d4bf6bc3a127ef4ce74db6c2ff280d455b241f3e3a",
+    "changed_cells": []
+  },
+  {
+    "role": "skeleton",
+    "source_d420_atlas_sha256": "bf296db5845df97fe808ee775534b229f4a26b6afe6cee3b1335dc48db681575",
+    "v2_atlas_sha256": "bf296db5845df97fe808ee775534b229f4a26b6afe6cee3b1335dc48db681575",
+    "changed_cells": []
+  },
+  {
+    "role": "threadbare_puppeteer",
+    "source_d420_atlas_sha256": "0d05e8f258670025184092702e5eb0aa54ce4bde24ce44eb5418ec02cd42bef8",
+    "v2_atlas_sha256": "0d05e8f258670025184092702e5eb0aa54ce4bde24ce44eb5418ec02cd42bef8",
+    "changed_cells": []
+  },
+  {
+    "role": "unstable_homunculus",
+    "source_d420_atlas_sha256": "93088c467389b84a193db9de4eb73301cfd6aece98bf69b8b49bd69f1606d98b",
+    "v2_atlas_sha256": "93088c467389b84a193db9de4eb73301cfd6aece98bf69b8b49bd69f1606d98b",
+    "changed_cells": []
+  }
+]

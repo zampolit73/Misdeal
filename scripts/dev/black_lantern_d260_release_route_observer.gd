@@ -100,8 +100,11 @@ func _exercise() -> void:
 		if actor.team != 1:
 			continue
 		enemy_roles.append(actor.visual_role)
-		if actor.sprite_frames == null or actor.sprite_frames != LIBRARY.get_frames(actor.visual_role):
-			_fail("enemy not using canonical original art: " + actor.visual_role)
+		if actor.sprite_frames == null or actor.sprite_frames != LIBRARY.get_frames(actor.visual_role,true,battle.use_polished_enemy_art):
+			_fail("enemy not using the configured Black Lantern animation: " + actor.visual_role)
+			return
+		if LIBRARY.is_polished_enemy_frames(actor.visual_role,actor.sprite_frames) != battle.use_polished_enemy_art:
+			_fail("unexpected Black Lantern animation fallback: " + actor.visual_role)
 			return
 		for state in ["idle", "walk", "attack", "hit", "death"]:
 			if not actor.sprite_frames.has_animation(state):

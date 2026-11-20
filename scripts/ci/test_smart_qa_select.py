@@ -60,6 +60,10 @@ class SelectorTests(unittest.TestCase):
         for path in ("scripts/battle/living_arena_profile.gd", "shaders/living_arena.gdshader", "scripts/dev/living_arenas_capture.gd"):
             self.assertEqual(classify([path])["mode"], "release")
 
+    def test_enemy_visual_polish_requires_full_release(self):
+        for path in ("assets/pixel/units/enemy_visual_polish/bone_warden.webp.b64", "scenes/dev/enemy_visual_review.tscn"):
+            self.assertEqual(classify([path])["mode"], "release")
+
     def test_explicit_fast_skips_render(self):
         plan = classify(["assets/pixel/new_card.webp"], "fast")
         self.assertEqual(plan["mode"], "fast")

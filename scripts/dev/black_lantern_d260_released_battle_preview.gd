@@ -140,7 +140,7 @@ func _launch_real_battle() -> void:
 		if not ENEMY_ROLES.has(actor.visual_role) or actor.sprite_frames == null:
 			_fail("Боевой актёр без оригинального игрового атласа: " + actor.visual_role)
 			return
-		if actor.sprite_frames != ANIMATION_LIBRARY.get_frames(actor.visual_role):
+		if actor.sprite_frames != ANIMATION_LIBRARY.get_frames(actor.visual_role,true,battle.use_polished_enemy_art) or not actor.uses_polished_enemy_art:
 			_fail("Неверная библиотека игровых кадров: " + actor.visual_role)
 			return
 		role_seen.append(actor.visual_role)

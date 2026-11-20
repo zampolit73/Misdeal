@@ -67,6 +67,9 @@ const COURT_STAGED_ROLES := ["mute_magistrate", "ash_scrivener", "bone_bailiff"]
 const COURT_ATLAS_DIR := "res://assets/pixel/units/court_of_the_mute_qa/"
 const D151_ROLES := ["funeral_priest", "pallbearer"]
 const ROLES := ["knight", "ranger", "mage", "skeleton", "bone_archer", "bone_thrall", "grave_bellkeeper", "crypt_guard", "bone_warden", "bone_shepherd", "ossuary_lamb", "funeral_priest", "pallbearer", "plague_alchemist", "unstable_homunculus", "threadbare_puppeteer", "bone_marionette", "drowned_ferryman", "drowned_hand", "road_sentinel", "lantern_bearer", "extinguished_guide", "oil_acolyte", "lantern_archer", "mute_magistrate", "ash_scrivener", "bone_bailiff"]
+const POLISHED_ENEMY_DIR := "res://assets/pixel/units/enemy_visual_polish/"
+static var _polished_enemy_frames: Dictionary = {}
+static var _polished_enemy_idle_top: Dictionary = {}
 
 # D405: authored *presentation* holds for the existing six C3 attack cels.
 # Each role totals six nominal frames so the 6/16s or 6/14s visual clip
@@ -107,7 +110,7 @@ const D412_APPROVED_DIR := "res://assets/pixel/units/hero_c3_d412_polish/"
 static var _approved_frames: Dictionary = {}
 
 
-static func get_frames(role: String, use_approved: bool = true) -> SpriteFrames:
+static func get_frames(role: String, use_approved: bool = true, use_enemy_polish: bool = false) -> SpriteFrames:
 	if role == "jack":
 		if _frames_cache.has(role):
 			return _frames_cache[role] as SpriteFrames
@@ -125,6 +128,10 @@ static func get_frames(role: String, use_approved: bool = true) -> SpriteFrames:
 			return approved
 	if not ROLES.has(role):
 		return null
+	if use_enemy_polish and not C3_HERO_ROLES.has(role):
+		var polished := _get_polished_enemy_frames(role)
+		if polished != null:
+			return polished
 	if _frames_cache.has(role):
 		return _frames_cache[role] as SpriteFrames
 	if _unavailable.has(role):
@@ -333,6 +340,32 @@ static func get_frames(role: String, use_approved: bool = true) -> SpriteFrames:
 	return _create_frames(role, atlas)
 
 
+static func is_polished_enemy_frames(role: String, frames: SpriteFrames) -> bool:
+	return frames != null and _polished_enemy_frames.get(role) == frames
+
+static func polished_enemy_idle_top(role: String) -> float:
+	return _polished_enemy_idle_top[role]
+
+static func _get_polished_enemy_frames(role: String) -> SpriteFrames:
+	if _polished_enemy_frames.has(role):
+		return _polished_enemy_frames[role] as SpriteFrames
+	var image := Image.new()
+	var raw := Marshalls.base64_to_raw(FileAccess.get_file_as_string(POLISHED_ENEMY_DIR + role + ".webp.b64").strip_edges())
+	if image.load_webp_from_buffer(raw) == OK and image.get_size() == Vector2i(576, 480):
+		image.convert(Image.FORMAT_RGBA8)
+		if _all_authored_deck_frames_visible(image) and _all_authored_deck_frames_padded(image) and _all_authored_deck_frames_distinct(image) and _unused_deck_cells_clear(image):
+			var top := CELL_SIZE
+			for column in range(4):
+				var cel := image.get_region(Rect2i(column*CELL_SIZE,0,CELL_SIZE,CELL_SIZE))
+				top = mini(top,cel.get_used_rect().position.y)
+			_polished_enemy_idle_top[role] = float(top)
+			var frames := _create_frames(role, ImageTexture.create_from_image(image), false, true, false)
+			_polished_enemy_frames[role] = frames
+			return frames
+	_polished_enemy_frames[role] = null
+	push_warning("D420 invalid atlas; using original enemy art: "+role)
+	return null
+
 # The D398 pilot is a transparent illustration-derived atlas, not one of
 # the old recolor-only C3 experiments. The five unused grid cells stay alpha.
 static func _get_c3_hero_texture(role: String) -> Texture2D:
@@ -504,7 +537,7 @@ static func get_static_texture(role: String) -> Texture2D:
 		return null
 	return frames.get_frame_texture("idle", 0)
 
-static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = false, apply_archived_cels: bool = true) -> SpriteFrames:
+static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = false, apply_archived_cels: bool = true, cache_legacy: bool = true) -> SpriteFrames:
 	var frames := SpriteFrames.new()
 	if frames.has_animation("default"):
 		frames.remove_animation("default")
@@ -547,7 +580,8 @@ static func _create_frames(role: String, atlas: Texture2D, is_c3_pilot: bool = f
 		var resting_crystal: Texture2D = _load_c3_mage_death_final()
 		if resting_crystal != null:
 			frames.set_frame("death", 5, resting_crystal)
-	_frames_cache[role] = frames
+	if cache_legacy:
+		_frames_cache[role] = frames
 	return frames
 
 
