@@ -1,3 +1,7 @@
+## Event Choice UI VNext
+
+All 24 Act I events use a shared choice presentation in ActChoice and WhisperingWell. Live prices, explicit effects, restriction reasons and the actual result appear in the event. Keyboard and mouse use the same existing handlers. [Coverage, controls and QA](EVENT_CHOICE_UI_VNEXT.md)
+
 ## D420 V2 — released in campaign
 
 The player approved D420 V2, and PR #126 shipped in `d841d089`. All 24 new enemy animation packs are active by default in all 22 Act I encounters. The F6 gallery keeps both versions for comparison. [Review and native evidence](ENEMY_VISUAL_POLISH_V2_REVIEW.md) · [Production CI](https://github.com/zampolit73/Misdeal/actions/runs/44714818399)

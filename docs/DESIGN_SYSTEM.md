@@ -1,3 +1,7 @@
+## Event Choice UI VNext
+
+At 1280×720, use a compact obsidian header and an illustrated row of two to four decision cards. Each card uses one bronze contour and a warm parchment reading area for the action, cost and outcome. Put restriction text inside the card and repeat it in the context strip on hover. Use a muted semantic accent in the type row. For available actions, animate a four-pixel lift and keep the art scale stable. Show the committed action and actual outcome while the existing scene handles continuation. The approved Fate Spread card faces remain independent. [Event contract and examples](EVENT_CHOICE_UI_VNEXT.md)
+
 ## Combat Planning Visual V4
 
 The player-approved [command board reference](qa/combat-planning-visual-v4/approved_reference.png) governs the lower Combat Planning panel in the PR #117 pilot. Filled orders use blank parchment sampled from the DS3 card title material, dark serif text, a Roman numeral and an ink glyph. The empty add slot uses dark metal. The frame reuses D413 dossier bronze, D300 red banners and D303 metal and fight plates. Hero medallions and tactic glyphs are drawn by the Godot UI. Their geometry is separate from the original sprites.

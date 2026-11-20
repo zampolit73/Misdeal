@@ -1,3 +1,7 @@
+## Event Choice UI VNext — common presentation
+
+Use one composition for ActChoice and WhisperingWell. The event scenes own availability, costs, resolution and persistence. The presentation uses their live data and existing controls, and displays the committed result. Use the event illustration for an existing fourth action and keep it in the main choice row. [Implementation and coverage](EVENT_CHOICE_UI_VNEXT.md)
+
 ## D420 V2 — isolate enemy presentation and rollback
 
 The player approved the D420 V2 animations for production in PR #126. Battle defaults to the new art and passes its variant to units before they enter the tree. Legacy and D420 SpriteFrames are cached separately. Actual resource identity enables D420 presentation. The legacy fallback retains its original scale, facing and motion. QA stores its comparison setting on Battle, outside campaign state and saves. [Review contract](ENEMY_VISUAL_POLISH_V2_REVIEW.md)

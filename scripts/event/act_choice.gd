@@ -5,16 +5,12 @@ const FINAL_FIVE := preload("res://scripts/event/final_five_events.gd")
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 const CASTLE_MEMORY_TEXT := preload("res://scripts/story/act1_castle_memory_text.gd")
 
-const APPROVED_CHOICE_ART := preload("res://scripts/ui/approved_choice_art.gd")
-const APPROVED_EVENT_DECOR := preload("res://scripts/ui/approved_event_decor.gd")
 const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const CARD_UNIFICATION_V1 := preload("res://scripts/ui/card_unification_v1.gd")
 const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
-const EVENT_POLISH_ART := preload("res://scripts/ui/event_polish_art.gd")
 const APPROVED_EVENT_CHOICE_ART := preload("res://scripts/ui/approved_event_choice_art.gd")
-const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
-const GRAVEDIGGER_SHOP_DS2 := preload("res://scripts/event/gravedigger_shop_ds2.gd")
-const ACT_CHOICE_DS2 := preload("res://scripts/event/act_choice_ds2.gd")
+const CHOICE_VIEW := preload("res://scripts/ui/event_choice_presentation.gd")
+const CHOICE_COPY := preload("res://scripts/event/event_choice_copy.gd")
 const EVENT_SCENE_ART_PATHS := {
 	"curse_forge": "res://assets/pixel/event/v7/curse_forge.webp",
 	"chained_prisoner": "res://assets/pixel/event/v7/chained_prisoner.webp",
@@ -34,7 +30,6 @@ const EVENT_SCENE_ART_PATHS := {
 }
 
 @onready var title_label: Label = $Panel/Title
-@onready var type_label: Label = $Panel/Type
 @onready var description_label: Label = $Panel/Description
 @onready var wizard_line: Label = $Panel/WizardLine
 @onready var gold_label: Label = $Panel/Gold
@@ -49,21 +44,9 @@ const EVENT_SCENE_ART_PATHS := {
 @onready var screen_visual: Control = $Visual
 @onready var backdrop: TextureRect = $WizardBackdrop
 @onready var feature_scene_art: TextureRect = $FeatureSceneArt
-@onready var event_decor: TextureRect = $EventDecor
-@onready var feature_header: Panel = $FeatureHeader
-@onready var event_art_frame: Panel = $Panel/EventArtFrame
-@onready var event_hero_art: TextureRect = $Panel/EventHeroArt
-@onready var gold_chip: Panel = $Panel/GoldChip
-@onready var state_chip: Panel = $Panel/StateChip
 @onready var choice_art_a: TextureRect = $Panel/Choices/ChoiceA/ChoiceArt
 @onready var choice_art_b: TextureRect = $Panel/Choices/ChoiceB/ChoiceArt
 @onready var choice_art_c: TextureRect = $Panel/Choices/ChoiceC/ChoiceArt
-@onready var choice_badge_a: Label = $Panel/Choices/ChoiceA/ChoiceBadge
-@onready var choice_badge_b: Label = $Panel/Choices/ChoiceB/ChoiceBadge
-@onready var choice_badge_c: Label = $Panel/Choices/ChoiceC/ChoiceBadge
-@onready var choice_divider_a: ColorRect = $Panel/Choices/ChoiceA/ChoiceDivider
-@onready var choice_divider_b: ColorRect = $Panel/Choices/ChoiceB/ChoiceDivider
-@onready var choice_divider_c: ColorRect = $Panel/Choices/ChoiceC/ChoiceDivider
 
 var active_card: RunCardData
 var resolved := false
@@ -73,6 +56,8 @@ var presentation_action := ""
 var presentation_roll_success: Variant = null
 var presentation_recruitment := false
 var resolving_leave := false
+var returning := false
+var choice_view: CHOICE_VIEW
 
 func _ready() -> void:
 	active_card = RunState.get_active_card()
@@ -81,43 +66,58 @@ func _ready() -> void:
 		SCENE_ROUTER.after_resolution(self, travel_context)
 		return
 
+	choice_view = CHOICE_VIEW.new()
+	add_child(choice_view)
+	choice_view.track([choice_a, choice_b, choice_c, leave_button])
 	continue_button.pressed.connect(_return_to_table)
 	leave_button.pressed.connect(_resolve_leave)
 
 	title_label.text = active_card.title
-	type_label.text = active_card.type_label
 	description_label.text = FINAL_FIVE.SCENES.get(active_card.card_id, active_card.card_text)
 	wizard_line.text = active_card.wizard_line
 	_refresh_run_labels()
 	_configure_card()
 	_apply_castle_memory_hint()
-	_apply_ui_kit()
 	_apply_approved_choice_art()
-	_apply_event_theme()
-	_apply_event_layout()
-	_apply_choice_semantic_styles()
-	if active_card.card_id == "gravedigger_shop":
-		GRAVEDIGGER_SHOP_DS2.apply(self)
-	else:
-		ACT_CHOICE_DS2.apply(self)
-	_connect_choice_feedback()
-	_animate_screen_in()
+	_apply_event_backdrop()
+	_build_choice_view()
 
-func _apply_ui_kit() -> void:
-	var accent: Color = _get_event_accent()
-	MISDEAL_UI_KIT.apply_panel(panel, accent, true)
-	MISDEAL_UI_KIT.apply_panel(feature_header, accent, false)
-	MISDEAL_UI_KIT.apply_panel(event_art_frame, accent, false)
-	MISDEAL_UI_KIT.apply_chip(gold_chip, MISDEAL_UI_KIT.GOLD)
-	MISDEAL_UI_KIT.apply_chip(state_chip, accent)
-	MISDEAL_UI_KIT.apply_title(title_label, MISDEAL_UI_KIT.GOLD)
-	MISDEAL_UI_KIT.apply_subtitle(wizard_line, accent)
 
-	for button in [choice_a, choice_b, choice_c]:
-		MISDEAL_UI_KIT.apply_card_button(button, accent)
+func _build_choice_view() -> void:
+	panel.position = Vector2.ZERO
+	panel.size = Vector2(1280, 720)
+	panel.add_theme_stylebox_override("panel", StyleBoxEmpty.new())
+	$Logo.hide()
 
-	MISDEAL_UI_KIT.apply_action_button(leave_button, MISDEAL_UI_KIT.STEEL, false)
-	MISDEAL_UI_KIT.apply_action_button(continue_button, MISDEAL_UI_KIT.GOLD, true)
+	var row := $Panel/Choices as HBoxContainer
+	var cards: Array[Button] = [choice_a, choice_b, choice_c]
+	if leave_button.visible:
+		leave_button.reparent(row, false)
+		var art := TextureRect.new()
+		art.name = "ChoiceArt"
+		art.texture = CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
+		leave_button.add_child(art)
+		leave_button.set_meta("event_kind", "ОТКАЗ")
+		var exit_detail := "Без изменений."
+		if active_card.card_id == "lost_purse":
+			exit_detail = "Кошелёк останется у мертвеца."
+		elif active_card.card_id == "faceless_card":
+			match RunState.get_act1_reckoning_profile():
+				"witnessless":
+					exit_detail = "+50 золота."
+				"scarred":
+					exit_detail = "+35 золота: свободных реликвий больше нет." if RunState.get_available_artifact_ids().is_empty() else "Случайная реликвия."
+				"riskbound":
+					exit_detail = "Развитие отстающему герою." if RunState.can_claim_extra_hero_upgrade() and not RunState.get_least_developed_extra_role().is_empty() else "+35 золота: развивать больше некого."
+			if exit_detail != "Без изменений.":
+				leave_button.set_meta("event_kind", "СУДЬБА")
+		leave_button.set_meta("event_outcome", exit_detail)
+		cards.append(leave_button)
+	for button in cards:
+		if button.visible:
+			CHOICE_COPY.prepare(button)
+	choice_view.build(panel, row, title_label, wizard_line, description_label, result_label,
+		[gold_label, artifacts_label], cards)
 
 
 func _apply_approved_choice_art() -> void:
@@ -367,8 +367,7 @@ func _apply_choice_texture_set(
 			else CanvasItem.TEXTURE_FILTER_LINEAR
 		)
 		art.visible = true
-		art.modulate = Color(0.42, 0.42, 0.42, 0.72) if button.disabled else Color.WHITE
-		_apply_choice_art_margins(button)
+		art.modulate = Color.WHITE
 
 func _get_upgrade_choice_art(button: Button) -> Texture2D:
 	var upgrade_id := String(button.get_meta("choice_upgrade_id", ""))
@@ -387,170 +386,28 @@ func _get_upgrade_choice_art(button: Button) -> Texture2D:
 			return CARD_ART_CATALOG.get_upgrade_texture("mage_glass_heart")
 	return null
 
-func _apply_choice_art_margins(button: Button) -> void:
-	var style_names: Array[String] = ["normal", "hover", "pressed", "disabled"]
-	for style_name in style_names:
-		var source: StyleBoxFlat = button.get_theme_stylebox(style_name) as StyleBoxFlat
-		if source == null:
-			continue
-		var styled: StyleBoxFlat = source.duplicate() as StyleBoxFlat
-		styled.content_margin_top = 136.0
-		styled.content_margin_bottom = 10.0
-		button.add_theme_stylebox_override(style_name, styled)
-	button.add_theme_font_size_override("font_size", 13)
+func _apply_event_backdrop() -> void:
+	var card_id := active_card.card_id
+	var accent := _get_event_accent()
+	screen_visual.set("accent", accent)
+	screen_visual.set("secondary", accent.darkened(0.62))
+	screen_visual.set("variant", _get_event_visual_variant())
 
-func _apply_event_layout() -> void:
-	feature_scene_art.visible = false
-	feature_scene_art.texture = null
-	feature_scene_art.modulate = Color.WHITE
-	screen_visual.modulate = Color.WHITE
-	event_decor.visible = false
-	event_decor.texture = null
-	event_decor.modulate = Color.WHITE
-	feature_header.visible = false
-	event_art_frame.visible = false
-	event_hero_art.visible = false
-	event_hero_art.texture = null
-	gold_chip.visible = false
-	state_chip.visible = false
-	_restore_generic_panel_shell()
-	if FINAL_FIVE.IDS.has(active_card.card_id):
-		_apply_feature_panel_shell()
-		feature_scene_art.call("load_webp_path", "res://assets/pixel/events/final_five/"+active_card.card_id+"/backdrop.webp", Vector2i(1280,720))
-		feature_scene_art.visible = true
-		feature_scene_art.position = Vector2.ZERO
-		feature_scene_art.size = Vector2(1280,720)
+	var path := ""
+	if FINAL_FIVE.IDS.has(card_id) or card_id == "jack":
+		path = "res://assets/pixel/events/%s/backdrop.webp" % (card_id if card_id == "jack" else "final_five/" + card_id)
+	elif EVENT_SCENE_ART_PATHS.has(card_id):
+		path = CARD_UNIFICATION_V1.get_event_art_path(card_id, EVENT_SCENE_ART_PATHS[card_id])
+	if path.is_empty():
 		return
 
-	match active_card.card_id:
-		"jack":
-			_apply_feature_panel_shell()
-			feature_scene_art.call("load_webp_path", "res://assets/pixel/events/jack/backdrop.webp", Vector2i(1280,720))
-			feature_scene_art.visible = true
-			feature_scene_art.position = Vector2.ZERO
-			feature_scene_art.size = Vector2(1280,720)
-		"curse_forge":
-			_apply_feature_panel_shell()
-			backdrop.modulate = Color(0.28, 0.20, 0.18, 0.24)
-			feature_scene_art.call("load_webp_path", CARD_UNIFICATION_V1.get_event_art_path("curse_forge", String(EVENT_SCENE_ART_PATHS["curse_forge"])), Vector2i(1280, 720))
-			feature_scene_art.visible = true
-			feature_scene_art.position = Vector2.ZERO
-			feature_scene_art.size = Vector2(1280.0, 720.0)
-			feature_scene_art.modulate = Color(1.0, 0.94, 0.90, 0.82)
-			screen_visual.modulate = Color(1, 1, 1, 0.45)
-			panel.position = Vector2.ZERO
-			panel.size = Vector2(1280.0, 720.0)
-			feature_header.visible = true
-			feature_header.position = Vector2(320.0, 70.0)
-			feature_header.size = Vector2(880.0, 188.0)
-			_apply_forge_reference_layout()
-		"chained_prisoner":
-			_apply_feature_panel_shell()
-			backdrop.modulate = Color(0.24, 0.22, 0.22, 0.22)
-			feature_scene_art.call("load_webp_path", CARD_UNIFICATION_V1.get_event_art_path("chained_prisoner", String(EVENT_SCENE_ART_PATHS["chained_prisoner"])), Vector2i(1280, 720))
-			feature_scene_art.visible = true
-			feature_scene_art.position = Vector2.ZERO
-			feature_scene_art.size = Vector2(1280.0, 720.0)
-			feature_scene_art.modulate = Color(1.0, 0.96, 0.92, 0.80)
-			screen_visual.modulate = Color(1, 1, 1, 0.42)
-			panel.position = Vector2.ZERO
-			panel.size = Vector2(1280.0, 720.0)
-			feature_header.visible = true
-			feature_header.position = Vector2(180.0, 250.0)
-			feature_header.size = Vector2(920.0, 252.0)
-			_apply_prisoner_reference_layout()
-		"black_altar":
-			backdrop.modulate = Color(0.28, 0.18, 0.18, 0.22)
-			feature_scene_art.call("load_webp_path", CARD_UNIFICATION_V1.get_event_art_path("black_altar", String(EVENT_SCENE_ART_PATHS["black_altar"])), Vector2i(1280, 720))
-			feature_scene_art.visible = true
-			feature_scene_art.position = Vector2.ZERO
-			feature_scene_art.size = Vector2(1280.0, 720.0)
-			feature_scene_art.modulate = Color(1.0, 0.92, 0.90, 0.78)
-			screen_visual.modulate = Color(1, 1, 1, 0.45)
-			event_hero_art.texture = CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
-			event_hero_art.visible = event_hero_art.texture != null
-			event_art_frame.visible = event_hero_art.visible
-			gold_chip.visible = true
-			state_chip.visible = true
-			_apply_generic_reference_layout()
-		"candle_seller", "gravedigger_shop", "blood_ledger", "faceless_card":
-			backdrop.modulate = Color(0.24, 0.20, 0.20, 0.18)
-			feature_scene_art.call(
-				"load_webp_path",
-				CARD_UNIFICATION_V1.get_event_art_path(active_card.card_id, String(EVENT_SCENE_ART_PATHS[active_card.card_id])),
-				Vector2i(1280, 720)
-			)
-			feature_scene_art.visible = true
-			feature_scene_art.position = Vector2.ZERO
-			feature_scene_art.size = Vector2(1280.0, 720.0)
-			feature_scene_art.modulate = Color(1.0, 0.96, 0.92, 0.84)
-			screen_visual.modulate = Color(1, 1, 1, 0.30)
-			event_hero_art.texture = CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
-			event_hero_art.visible = event_hero_art.texture != null
-			event_art_frame.visible = event_hero_art.visible
-			gold_chip.visible = true
-			state_chip.visible = true
-			_apply_generic_reference_layout()
-		"rattling_bridge", "lost_purse", "debtor_bones", "bone_tax", "wizard_tithe", "ash_rest", "last_camp", "broken_crown":
-			backdrop.modulate = Color(0.22, 0.19, 0.20, 0.16)
-			feature_scene_art.call(
-				"load_webp_path",
-				CARD_UNIFICATION_V1.get_event_art_path(active_card.card_id, String(EVENT_SCENE_ART_PATHS[active_card.card_id])),
-				Vector2i(1280, 720)
-			)
-			feature_scene_art.visible = true
-			feature_scene_art.position = Vector2.ZERO
-			feature_scene_art.size = Vector2(1280.0, 720.0)
-			feature_scene_art.modulate = Color(1.0, 0.98, 0.94, 0.88)
-			screen_visual.modulate = Color(1, 1, 1, 0.22)
-			event_hero_art.texture = CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
-			event_hero_art.visible = event_hero_art.texture != null
-			event_art_frame.visible = event_hero_art.visible
-			gold_chip.visible = true
-			state_chip.visible = true
-			_apply_generic_reference_layout()
-		_:
-			backdrop.modulate = Color(0.82, 0.68, 0.66, 0.88)
-			event_hero_art.texture = CARD_ART_CATALOG.get_run_card_texture(active_card.card_id)
-			event_hero_art.visible = event_hero_art.texture != null
-			event_art_frame.visible = event_hero_art.visible
-			gold_chip.visible = true
-			state_chip.visible = true
-			_apply_generic_reference_layout()
+	backdrop.hide()
+	feature_scene_art.call("load_webp_path", path, Vector2i(1280, 720))
+	feature_scene_art.size = Vector2(1280, 720)
+	feature_scene_art.modulate = Color(0.91, 0.86, 0.83)
+	feature_scene_art.show()
+	screen_visual.modulate = Color(1, 1, 1, 0.27)
 
-func _apply_generic_reference_layout() -> void:
-	title_label.position = Vector2(48.0, 20.0)
-	title_label.size = Vector2(964.0, 44.0)
-	type_label.position = Vector2(48.0, 66.0)
-	type_label.size = Vector2(964.0, 22.0)
-	event_art_frame.position = Vector2(48.0, 104.0)
-	event_art_frame.size = Vector2(286.0, 126.0)
-	event_hero_art.position = Vector2(56.0, 112.0)
-	event_hero_art.size = Vector2(270.0, 110.0)
-	description_label.position = Vector2(356.0, 106.0)
-	description_label.size = Vector2(654.0, 54.0)
-	wizard_line.position = Vector2(356.0, 164.0)
-	wizard_line.size = Vector2(654.0, 58.0)
-	gold_chip.position = Vector2(48.0, 240.0)
-	gold_chip.size = Vector2(246.0, 32.0)
-	state_chip.position = Vector2(310.0, 240.0)
-	state_chip.size = Vector2(702.0, 32.0)
-	gold_label.position = Vector2(62.0, 246.0)
-	gold_label.size = Vector2(218.0, 22.0)
-	artifacts_label.position = Vector2(324.0, 246.0)
-	artifacts_label.size = Vector2(674.0, 22.0)
-	var choices := $Panel/Choices as HBoxContainer
-	choices.position = Vector2(38.0, 278.0)
-	choices.size = Vector2(984.0, 246.0)
-	for button in [choice_a, choice_b, choice_c]:
-		button.custom_minimum_size = Vector2(314.0, 240.0)
-		_resize_choice_art(button, 104.0)
-	result_label.position = Vector2(138.0, 518.0)
-	result_label.size = Vector2(824.0, 34.0)
-	leave_button.position = Vector2(324.0, 558.0)
-	leave_button.size = Vector2(200.0, 42.0)
-	continue_button.position = Vector2(576.0, 558.0)
-	continue_button.size = Vector2(200.0, 42.0)
 
 func _get_event_accent() -> Color:
 	match active_card.card_id:
@@ -586,223 +443,6 @@ func _get_event_visual_variant() -> String:
 		_:
 			return "generic"
 
-func _apply_event_theme() -> void:
-	var accent := _get_event_accent()
-	type_label.add_theme_color_override("font_color", accent.lightened(0.12))
-	title_label.add_theme_color_override("font_color", Color(0.96, 0.82, 0.62, 1.0))
-	wizard_line.add_theme_color_override("font_color", Color(
-		0.62 + accent.r * 0.18,
-		0.54 + accent.g * 0.12,
-		0.60 + accent.b * 0.12,
-		1.0
-	))
-
-	screen_visual.set("accent", accent)
-	screen_visual.set("secondary", accent.darkened(0.62))
-	screen_visual.set("variant", _get_event_visual_variant())
-
-	for button in [choice_a, choice_b, choice_c]:
-		var normal_source: StyleBoxFlat = button.get_theme_stylebox("normal") as StyleBoxFlat
-		if normal_source != null:
-			var normal: StyleBoxFlat = normal_source.duplicate() as StyleBoxFlat
-			normal.border_color = Color(accent.r, accent.g, accent.b, 0.72)
-			normal.bg_color = Color(
-				0.018 + accent.r * 0.040,
-				0.014 + accent.g * 0.028,
-				0.018 + accent.b * 0.030,
-				0.98
-			)
-			button.add_theme_stylebox_override("normal", normal)
-
-		var hover_source: StyleBoxFlat = button.get_theme_stylebox("hover") as StyleBoxFlat
-		if hover_source != null:
-			var hover: StyleBoxFlat = hover_source.duplicate() as StyleBoxFlat
-			hover.border_color = accent.lightened(0.22)
-			hover.shadow_color = Color(accent.r, accent.g, accent.b, 0.34)
-			button.add_theme_stylebox_override("hover", hover)
-			button.add_theme_stylebox_override("pressed", hover)
-
-func _get_choice_semantic_accent(button: Button, index: int) -> Color:
-	var role := String(button.get_meta("choice_role", ""))
-	match role:
-		"knight":
-			return Color(0.36, 0.58, 0.86, 1.0)
-		"ranger":
-			return Color(0.40, 0.72, 0.38, 1.0)
-		"mage":
-			return Color(0.66, 0.38, 0.84, 1.0)
-
-	match active_card.card_id:
-		"chained_prisoner":
-			return [Color(0.30, 0.60, 0.92, 1.0), Color(0.90, 0.18, 0.16, 1.0), Color(0.96, 0.52, 0.16, 1.0)][index]
-		"lost_purse":
-			return [Color(0.38, 0.64, 0.58, 1.0), Color(0.80, 0.56, 0.20, 1.0), Color(0.88, 0.28, 0.18, 1.0)][index]
-		"debtor_bones":
-			return [Color(0.88, 0.28, 0.18, 1.0), Color(0.38, 0.64, 0.58, 1.0), Color(0.78, 0.52, 0.20, 1.0)][index]
-		"rattling_bridge":
-			return [Color(0.84, 0.30, 0.18, 1.0), Color(0.78, 0.56, 0.22, 1.0), Color(0.36, 0.62, 0.70, 1.0)][index]
-		"wizard_tithe":
-			return [Color(0.78, 0.56, 0.22, 1.0), Color(0.82, 0.30, 0.20, 1.0), Color(0.58, 0.36, 0.72, 1.0)][index]
-		"bone_tax":
-			return [Color(0.78, 0.56, 0.22, 1.0), Color(0.82, 0.30, 0.20, 1.0), Color(0.72, 0.38, 0.24, 1.0)][index]
-	return _get_event_accent()
-
-func _apply_choice_semantic_styles() -> void:
-	var buttons: Array[Button] = [choice_a, choice_b, choice_c]
-	var badges: Array[Label] = [choice_badge_a, choice_badge_b, choice_badge_c]
-	var dividers: Array[ColorRect] = [choice_divider_a, choice_divider_b, choice_divider_c]
-	var style_names: Array[String] = ["normal", "hover", "pressed", "disabled"]
-	for index in range(buttons.size()):
-		var button: Button = buttons[index]
-		var accent: Color = _get_choice_semantic_accent(button, index)
-		badges[index].add_theme_color_override("font_color", accent.lightened(0.18))
-		dividers[index].color = Color(accent.r, accent.g, accent.b, 0.70 if not button.disabled else 0.30)
-
-		for style_name in style_names:
-			var source: StyleBoxFlat = button.get_theme_stylebox(style_name) as StyleBoxFlat
-			if source == null:
-				continue
-			var styled: StyleBoxFlat = source.duplicate() as StyleBoxFlat
-			var is_disabled: bool = style_name == "disabled"
-			var is_active: bool = style_name == "hover" or style_name == "pressed"
-			styled.border_color = Color(accent.r, accent.g, accent.b, 0.28 if is_disabled else (1.0 if is_active else 0.82))
-			styled.shadow_color = Color(accent.r * 0.34, accent.g * 0.24, accent.b * 0.20, 0.30 if is_active else 0.18)
-			styled.shadow_size = 11 if is_active else 7
-			if not is_disabled:
-				styled.bg_color = Color(
-					0.016 + accent.r * (0.075 if is_active else 0.040),
-					0.012 + accent.g * (0.055 if is_active else 0.028),
-					0.016 + accent.b * (0.060 if is_active else 0.030),
-					0.99
-				)
-			button.add_theme_stylebox_override(style_name, styled)
-
-func _restore_generic_panel_shell() -> void:
-	var style := panel.get_theme_stylebox("panel") as StyleBoxFlat
-	if style != null:
-		var restored := style.duplicate() as StyleBoxFlat
-		restored.bg_color = Color(0.024, 0.012, 0.018, 0.92)
-		restored.border_color = Color(0.62, 0.29, 0.18, 0.95)
-		panel.add_theme_stylebox_override("panel", restored)
-
-func _apply_feature_panel_shell() -> void:
-	var style := panel.get_theme_stylebox("panel") as StyleBoxFlat
-	if style != null:
-		var transparent := style.duplicate() as StyleBoxFlat
-		transparent.bg_color = Color(0, 0, 0, 0)
-		transparent.border_color = Color(0, 0, 0, 0)
-		transparent.shadow_color = Color(0, 0, 0, 0)
-		panel.add_theme_stylebox_override("panel", transparent)
-
-func _apply_forge_reference_layout() -> void:
-	title_label.position = Vector2(370.0, 88.0)
-	title_label.size = Vector2(760.0, 44.0)
-	type_label.position = Vector2(370.0, 136.0)
-	type_label.size = Vector2(760.0, 22.0)
-	description_label.position = Vector2(410.0, 168.0)
-	description_label.size = Vector2(680.0, 40.0)
-	wizard_line.position = Vector2(410.0, 210.0)
-	wizard_line.size = Vector2(680.0, 34.0)
-	gold_label.position = Vector2(166.0, 296.0)
-	artifacts_label.position = Vector2(684.0, 296.0)
-	var choices := $Panel/Choices as HBoxContainer
-	choices.position = Vector2(168.0, 336.0)
-	choices.size = Vector2(944.0, 258.0)
-	for button in [choice_a, choice_b, choice_c]:
-		button.custom_minimum_size = Vector2(296.0, 252.0)
-		_resize_choice_art(button, 126.0)
-	result_label.position = Vector2(250.0, 598.0)
-	leave_button.position = Vector2(510.0, 636.0)
-	leave_button.size = Vector2(260.0, 48.0)
-	continue_button.position = Vector2(510.0, 636.0)
-	continue_button.size = Vector2(260.0, 48.0)
-
-func _apply_prisoner_reference_layout() -> void:
-	feature_header.position = Vector2(166.0, 132.0)
-	feature_header.size = Vector2(948.0, 218.0)
-	title_label.position = Vector2(250.0, 154.0)
-	title_label.size = Vector2(780.0, 42.0)
-	type_label.position = Vector2(250.0, 198.0)
-	type_label.size = Vector2(780.0, 22.0)
-	description_label.position = Vector2(300.0, 230.0)
-	description_label.size = Vector2(680.0, 44.0)
-	wizard_line.position = Vector2(300.0, 278.0)
-	wizard_line.size = Vector2(680.0, 32.0)
-	gold_label.position = Vector2(210.0, 322.0)
-	artifacts_label.position = Vector2(690.0, 322.0)
-	var choices := $Panel/Choices as HBoxContainer
-	choices.position = Vector2(192.0, 354.0)
-	choices.size = Vector2(896.0, 268.0)
-	for button in [choice_a, choice_b, choice_c]:
-		button.custom_minimum_size = Vector2(285.0, 258.0)
-		button.add_theme_font_size_override("font_size", 13)
-		_resize_choice_art(button, 114.0)
-	result_label.position = Vector2(260.0, 620.0)
-	result_label.size = Vector2(760.0, 26.0)
-	leave_button.position = Vector2(520.0, 650.0)
-	leave_button.size = Vector2(240.0, 42.0)
-	continue_button.position = Vector2(520.0, 650.0)
-	continue_button.size = Vector2(240.0, 42.0)
-
-func _resize_choice_art(button: Button, art_height: float) -> void:
-	var art := button.get_node("ChoiceArt") as TextureRect
-	if art == null:
-		return
-	art.position = Vector2(10.0, 8.0)
-	art.size = Vector2(button.custom_minimum_size.x - 20.0, art_height)
-	for style_name in ["normal", "hover", "pressed", "disabled"]:
-		var source := button.get_theme_stylebox(style_name) as StyleBoxFlat
-		if source == null:
-			continue
-		var styled := source.duplicate() as StyleBoxFlat
-		styled.content_margin_top = art_height + 18.0
-		styled.content_margin_bottom = 8.0
-		button.add_theme_stylebox_override(style_name, styled)
-
-func _connect_choice_feedback() -> void:
-	for button in [choice_a, choice_b, choice_c]:
-		button.mouse_entered.connect(_on_choice_hover.bind(button, true))
-		button.mouse_exited.connect(_on_choice_hover.bind(button, false))
-
-func _on_choice_hover(button: Button, hovered: bool) -> void:
-	if button.disabled or not button.visible or resolved:
-		return
-	button.pivot_offset = button.size * 0.5
-	var tween := button.create_tween()
-	tween.tween_property(button, "scale", Vector2(1.025, 1.025) if hovered else Vector2.ONE, 0.11).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-
-func _animate_screen_in() -> void:
-	panel.pivot_offset = panel.size * 0.5
-	panel.scale = Vector2(0.985, 0.985)
-	panel.modulate.a = 0.0
-	var tween := panel.create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(panel, "scale", Vector2.ONE, 0.20).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(panel, "modulate:a", 1.0, 0.16)
-
-	call_deferred("_animate_choice_cards_in")
-
-
-func _animate_choice_cards_in() -> void:
-	var cards: Array[Button] = [choice_a, choice_b, choice_c]
-	var visible_index := 0
-	for button in cards:
-		if not button.visible:
-			continue
-
-		button.pivot_offset = button.size * 0.5
-		button.scale = Vector2(0.985, 0.985)
-		button.modulate.a = 0.0
-
-		var card_tween := button.create_tween()
-		card_tween.set_parallel(true)
-		var delay := 0.045 + float(visible_index) * 0.05
-		card_tween.tween_property(button, "scale", Vector2.ONE, 0.17).set_delay(delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		card_tween.tween_property(button, "modulate:a", 1.0, 0.14).set_delay(delay)
-		visible_index += 1
-
-# Keep the physical DS2 event cards; append only a short hint to existing
-# authored prose. Knowledge arrives later, once a real outcome succeeds.
 func _apply_castle_memory_hint() -> void:
 	if active_card == null:
 		return
@@ -860,13 +500,14 @@ func _configure_card() -> void:
 
 
 # D149: two stand-alone noncombat choices with a conditional event-outcome echo.
-# They share the established DS2 event cards; no enemy rosters or combat here.
+# They use the shared event presentation.
 func _configure_moon_seal() -> void:
 	var observation: String = CASTLE_MEMORY_TEXT.moon_seal_observation(RunState.protagonist_role)
 	if not observation.is_empty():
 		description_label.text += "\n" + observation
 	choice_a.text = "СОХРАНИТЬ ПЕЧАТЬ\n\n+10 золота\nСклеп запомнит знак"
 	choice_b.text = "ПРОДАТЬ ПЕЧАТЬ\n\n+30 золота"
+	choice_c.set_meta("event_kind", "РИТУАЛ")
 	choice_c.text = "СЖЕЧЬ СИГИЛ\n\nУрон отряда +1\nЗдоровье отряда -10"
 	leave_button.text = "ОСТАВИТЬ В ЧАШЕ"
 	choice_a.pressed.connect(_resolve_moon_seal.bind("keep"))
@@ -880,8 +521,8 @@ func _configure_echo_crypt() -> void:
 	if not relics_available:
 		choice_a.text = "ПУСТОЙ РЕЛИКВАРИЙ\n\n+35 золота вместо реликвии"
 	else:
-		choice_a.text = ("ОТКРЫТЬ ПЕЧАТЬЮ\n\nРеликвия бесплатно" if remembered
-			else "ВСКРЫТЬ ГРОБ\n\nРеликвия\nЗдоровье отряда -15")
+		choice_a.text = ("ОТКРЫТЬ ПЕЧАТЬЮ\n\nСлучайная реликвия бесплатно" if remembered
+			else "ВСКРЫТЬ ГРОБ\n\nСлучайная реликвия\nЗдоровье отряда -15")
 	choice_b.text = ("ВЗЯТЬ ПОДНОШЕНИЯ\n\n+40 золота" if remembered
 		else "ВЗЯТЬ ПОДНОШЕНИЯ\n\n+25 золота")
 	choice_c.text = ("СЛУШАТЬ ОТЗВУК\n\nУрон отряда +1.5\nЗдоровье отряда -5" if remembered
@@ -934,6 +575,8 @@ func _configure_shop() -> void:
 	choice_a.disabled = choice_a.disabled or RunState.gold < price
 	choice_b.disabled = choice_b.disabled or RunState.gold < price
 	choice_c.disabled = choice_c.disabled or RunState.gold < price
+	for button in [choice_a, choice_b, choice_c]:
+		CHOICE_COPY.gold(button, price)
 
 	choice_a.pressed.connect(_resolve_shop.bind("knight"))
 	choice_b.pressed.connect(_resolve_shop.bind("ranger"))
@@ -957,6 +600,10 @@ func _configure_curse_forge() -> void:
 		if role_missing:
 			button.text += "\n\nГЕРОЙ НЕ В ОТРЯДЕ"
 		button.disabled = RunState.has_artifact(artifact_id) or role_missing
+		button.set_meta("event_kind", "РЕЛИКВИЯ")
+		if button.disabled:
+			CHOICE_COPY.restrict(button, "Герой не в отряде" if role_missing else "Реликвия уже получена")
+			button.set_meta("event_outcome", artifact.description)
 		button.pressed.connect(_resolve_forge.bind(artifact_id))
 
 	leave_button.text = "ОТКАЗАТЬСЯ ОТ КОВКИ"
@@ -969,6 +616,7 @@ func _configure_black_altar() -> void:
 		choice_a.text = "ОТДАТЬ КРОВЬ\n\nШЁПОТ ПОД КОЖЕЙ • -12 макс. HP\nМАГ ПРИСОЕДИНИТСЯ"
 		choice_b.text = "ПОДКУПИТЬ РИТУАЛ — 35\n\nМАГ ПРИСОЕДИНИТСЯ"
 		choice_b.disabled = RunState.gold < 35
+		CHOICE_COPY.gold(choice_b, 35)
 		choice_c.text = "ЗАБРАТЬ ПОДНОШЕНИЕ\n\n+40 золота\nМАГ БУДЕТ ПОТЕРЯН"
 		leave_button.visible = false
 		choice_a.pressed.connect(_resolve_black_altar.bind("recruit_blood"))
@@ -991,13 +639,17 @@ func _jack_detail_texture(detail: String) -> Texture2D:
 	return ImageTexture.create_from_image(image) if image.load_webp_from_buffer(bytes) == OK else null
 
 func _configure_jack() -> void:
-	choice_a.text = "ВЗЯТЬ ДЖЕКА\n\n-25 золота на лечение.\nПёс поможет следопыту в боях."
+	choice_a.text = "ВЗЯТЬ ДЖЕКА\n\nПёс поможет Следопыту в боях. Место героя не занято."
 	choice_b.text = "ПРОЙТИ МИМО\n\nБез изменений.\nДжек останется у развалин."
 	choice_c.text = "ВЗЯТЬ ЖЕТОН\n\nУрон следопыта +10% до конца забега.\nДжек не присоединится."
 	var eligible := RunState.is_card_eligible("jack")
 	choice_a.disabled = not eligible or RunState.gold < RunState.JACK_RESCUE_PRICE
 	choice_b.disabled = not eligible
 	choice_c.disabled = not eligible
+	if not eligible:
+		for button in [choice_a, choice_b, choice_c]:
+			CHOICE_COPY.restrict(button, "Встреча доступна Следопыту с нерешённой судьбой Джека")
+	CHOICE_COPY.gold(choice_a, RunState.JACK_RESCUE_PRICE)
 	leave_button.visible = false
 	choice_a.pressed.connect(_resolve_jack.bind("recruited"))
 	choice_b.pressed.connect(_resolve_jack.bind("passed"))
@@ -1029,6 +681,7 @@ func _configure_chained_prisoner() -> void:
 
 	_set_least_developed_upgrade_button(choice_a, "ОСВОБОДИТЬ — 25", "Пленник обучит самого отстающего героя.")
 	choice_a.disabled = choice_a.disabled or RunState.gold < 25
+	CHOICE_COPY.gold(choice_a, 25)
 
 	if RunState.get_available_artifact_ids().is_empty():
 		choice_b.text = "СОРВАТЬ ЦЕПИ\n\n-15 здоровья отряду\n+35 золота — реликвий больше нет"
@@ -1064,9 +717,10 @@ func _configure_wizard_tithe() -> void:
 		wizard_line.text = "— Долги разговаривают друг с другом. Твой уже успел похвастаться."
 
 	choice_a.text = "ЗАПЛАТИТЬ %d ЗОЛОТА\n\nДолг закрыт сразу" % gold_price
-	choice_b.text = "ЗАПЛАТИТЬ КРОВЬЮ\n\n-20 здоровья отряду"
+	choice_b.text = "ЗАПЛАТИТЬ КРОВЬЮ\n\n-20 здоровья отряду\nДолг закрыт сразу"
 	choice_c.text = "ОТКАЗАТЬ\n\nВраги +25% урона\nСледующая обычная награда x2"
 	choice_a.disabled = RunState.gold < gold_price
+	CHOICE_COPY.gold(choice_a, gold_price)
 	leave_button.visible = false
 
 	choice_a.pressed.connect(_resolve_wizard_tithe.bind("gold"))
@@ -1076,6 +730,7 @@ func _configure_wizard_tithe() -> void:
 
 
 func _configure_faceless_card() -> void:
+	choice_a.set_meta("event_kind", "РИСК")
 	choice_a.text = "ПЕРЕВЕРНУТЬ КАРТУ\n\nИсход неизвестен:\nзолото, реликвия или развитие"
 
 	var fate_price: int = 15 if RunState.has_rescue_scar("ranger") else 30
@@ -1083,6 +738,7 @@ func _configure_faceless_card() -> void:
 	var fate_description: String = "ШРАМ ДОРОГИ показывает короткий путь к гарантированному развитию." if RunState.has_rescue_scar("ranger") else "Гарантированное развитие самого отстающего героя."
 	_set_least_developed_upgrade_button(choice_b, fate_title, fate_description)
 	choice_b.disabled = choice_b.disabled or RunState.gold < fate_price
+	CHOICE_COPY.gold(choice_b, fate_price)
 
 	if RunState.wizard_debt_active:
 		choice_c.text = "СЖЕЧЬ КАРТУ\n\nСнять ДОЛГ ВОЛШЕБНИКУ"
@@ -1115,6 +771,7 @@ func _configure_blood_ledger() -> void:
 		description_label.text += "\n" + CASTLE_MEMORY_TEXT.blood_ledger_observation(RunState.protagonist_role)
 	_set_least_developed_upgrade_button(choice_a, "ПОДПИСАТЬ ЗОЛОТОМ — %d" % gold_price, "Книга усилит самого отстающего героя.")
 	choice_a.disabled = choice_a.disabled or RunState.gold < gold_price
+	CHOICE_COPY.gold(choice_a, gold_price)
 
 	var blood_cost: int = 10 if RunState.has_rescue_scar("mage") else 25
 	if RunState.get_available_artifact_ids().is_empty():
@@ -1126,12 +783,14 @@ func _configure_blood_ledger() -> void:
 		wizard_line.text = "— Книга уже слышит ШЁПОТ ПОД КОЖЕЙ. На этот раз крови ей нужно меньше."
 
 	var last_upgrade_id := RunState.get_last_hero_upgrade_id()
+	choice_c.set_meta("event_cost", "−1 развитие")
 	if last_upgrade_id.is_empty():
-		choice_c.text = "ВЫЧЕРКНУТЬ ИМЯ\n\nНечего стирать"
+		choice_c.text = "ВЫЧЕРКНУТЬ ИМЯ"
 		choice_c.disabled = true
+		CHOICE_COPY.restrict(choice_c, "У отряда пока нет развития")
 	else:
 		var last_upgrade := RunState.get_hero_upgrade(last_upgrade_id)
-		choice_c.text = "ВЫЧЕРКНУТЬ: %s\n\nПотерять последнее развитие\n+70 золота" % last_upgrade.title
+		choice_c.text = "ВЫЧЕРКНУТЬ: %s\n\n+70 золота. Исчезнет последнее развитие." % last_upgrade.title
 
 	leave_button.text = "ЗАКРЫТЬ КНИГУ"
 
@@ -1142,6 +801,8 @@ func _configure_blood_ledger() -> void:
 func _configure_broken_crown() -> void:
 	choice_a.text = "НАДЕТЬ КОРОНУ\n\n+22% урона всей партии\n-10 здоровья каждому герою"
 	choice_a.disabled = RunState.has_artifact("broken_crown")
+	if choice_a.disabled:
+		CHOICE_COPY.restrict(choice_a, "Корона уже получена")
 	choice_b.text = "РАЗЛОМАТЬ КОРОНУ\n\n+40 золота"
 	if RunState.has_blood_ledger_knowledge():
 		wizard_line.text = "— Книга уже показывала тебе, как переписывать вещи. Посмотрим, научился ли ты."
@@ -1163,6 +824,7 @@ func _configure_last_camp() -> void:
 		var healer_price: int = RunState.get_last_camp_healer_price()
 		choice_b.text = "ОПЛАТИТЬ ЛЕКАРЯ — %d\n\nРЫЦАРЬ ПРИСОЕДИНИТСЯ" % healer_price
 		choice_b.disabled = RunState.gold < healer_price
+		CHOICE_COPY.gold(choice_b, healer_price)
 		choice_c.text = "ЗАБРАТЬ СНАРЯЖЕНИЕ\n\n+40 золота\nРЫЦАРЬ БУДЕТ ПОТЕРЯН"
 		leave_button.visible = false
 		choice_a.pressed.connect(_resolve_last_camp.bind("recruit_blood"))
@@ -1218,6 +880,8 @@ func _configure_candle_seller() -> void:
 	choice_a.disabled = choice_a.disabled or RunState.gold < 25
 	choice_b.disabled = choice_b.disabled or RunState.gold < 25
 	choice_c.disabled = choice_c.disabled or RunState.gold < 25
+	for button in [choice_a, choice_b, choice_c]:
+		CHOICE_COPY.gold(button, 25)
 	leave_button.text = "НИЧЕГО НЕ ПОКУПАТЬ"
 
 	choice_a.pressed.connect(_resolve_candle_seller.bind("knight"))
@@ -1229,11 +893,12 @@ func _configure_bone_tax() -> void:
 	var gold_price: int = RunState.get_bone_tax_gold_price()
 	choice_a.text = "ЗАПЛАТИТЬ %d ЗОЛОТА\n\nПройти без последствий" % gold_price
 	choice_a.disabled = RunState.gold < gold_price
+	CHOICE_COPY.gold(choice_a, gold_price)
 	if RunState.has_rescue_scar("knight"):
-		choice_b.text = "ПОКАЗАТЬ ШРАМ ЦЕПЕЙ\n\nСтраж узнаёт метку\nПройти бесплатно"
+		choice_b.text = "ПОКАЗАТЬ ШРАМ ЦЕПЕЙ\n\nСтраж узнаёт Шрам цепей, полученный при спасении рыцаря, и пропустит бесплатно."
 		wizard_line.text = "— Некоторые цепи всё-таки открывают двери."
 	else:
-		choice_b.text = "ЗАПЛАТИТЬ КРОВЬЮ\n\n-15 здоровья отряду"
+		choice_b.text = "ЗАПЛАТИТЬ КРОВЬЮ\n\n-15 здоровья отряду\nСтраж пропустит отряд."
 	_set_least_developed_upgrade_button(choice_c, "ПРОРВАТЬСЯ СИЛОЙ", "-25 здоровья, но драка закалит самого отстающего героя.")
 	leave_button.visible = false
 
@@ -1260,18 +925,21 @@ func _set_role_upgrade_button(button: Button, role: String, heading: String, ext
 		button.set_meta("choice_upgrade_id", preview_upgrade_id)
 
 	if not RunState.is_role_in_party(role):
-		button.text = "%s\n\n%s НЕ В ОТРЯДЕ" % [heading, _get_role_label(role)]
+		button.text = heading
+		CHOICE_COPY.restrict(button, "%s — вне отряда" % _get_role_label(role).capitalize())
 		button.disabled = true
 		return
 
 	if not RunState.can_claim_extra_hero_upgrade():
-		button.text = "%s\n\nПРЕДЕЛ ДОП. РАЗВИТИЯ %s" % [heading, RunState.get_extra_upgrade_progress_text()]
+		button.text = heading
+		CHOICE_COPY.restrict(button, "Предел доп. развития: %s" % RunState.get_extra_upgrade_progress_text())
 		button.disabled = true
 		return
 
 	var upgrade_id := RunState.get_next_extra_hero_upgrade_id(role)
 	if upgrade_id.is_empty():
-		button.text = "%s\n\n%s: все пути развития уже освоены" % [heading, _get_role_label(role)]
+		button.text = heading
+		CHOICE_COPY.restrict(button, "Все пути развития освоены")
 		button.disabled = true
 		return
 
@@ -1290,13 +958,15 @@ func _set_role_upgrade_button(button: Button, role: String, heading: String, ext
 
 func _set_least_developed_upgrade_button(button: Button, heading: String, extra_text: String = "") -> void:
 	if not RunState.can_claim_extra_hero_upgrade():
-		button.text = "%s\n\nПРЕДЕЛ ДОП. РАЗВИТИЯ %s" % [heading, RunState.get_extra_upgrade_progress_text()]
+		button.text = heading
+		CHOICE_COPY.restrict(button, "Предел доп. развития: %s" % RunState.get_extra_upgrade_progress_text())
 		button.disabled = true
 		return
 
 	var role := RunState.get_least_developed_extra_role()
 	if role.is_empty():
-		button.text = "%s\n\nВсе известные пути развития уже освоены" % heading
+		button.text = heading
+		CHOICE_COPY.restrict(button, "Все пути развития освоены")
 		button.disabled = true
 		return
 
@@ -1862,54 +1532,6 @@ func _resolve_leave() -> void:
 		_:
 			_finish("Вы возвращаетесь к столу.")
 
-func _apply_resolved_layout() -> void:
-	# Generic event screens keep the chosen cards visible as context, but the
-	# resolved message owns its own strip and there is only one way back.
-	leave_button.visible = false
-
-	if active_card.card_id != "gravedigger_shop":
-		result_label.position = Vector2(192.0, 606.0)
-		result_label.size = Vector2(597.0, 88.0)
-		result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
-		result_label.add_theme_font_size_override("font_size", 13)
-		continue_button.position = Vector2(826.0, 626.0)
-		continue_button.size = Vector2(256.0, 49.0)
-		ACT_CHOICE_DS2.show_result(self)
-		return
-
-	if active_card.card_id == "gravedigger_shop":
-		# Shop result shares the approved DS2 footer, not the generic 518px strip.
-		result_label.position = Vector2(192.0, 606.0)
-		result_label.size = Vector2(597.0, 88.0)
-		result_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
-		result_label.add_theme_font_size_override("font_size", 13)
-		continue_button.position = Vector2(826.0, 626.0)
-		continue_button.size = Vector2(256.0, 49.0)
-		GRAVEDIGGER_SHOP_DS2.show_result(self)
-		return
-
-	if active_card.card_id in [
-		"black_altar",
-		"candle_seller",
-		"gravedigger_shop",
-		"blood_ledger",
-		"faceless_card",
-		"rattling_bridge",
-		"lost_purse",
-		"debtor_bones",
-		"bone_tax",
-		"wizard_tithe",
-		"ash_rest",
-		"last_camp",
-		"broken_crown",
-	]:
-		result_label.position = Vector2(58.0, 518.0)
-		result_label.size = Vector2(944.0, 42.0)
-		result_label.add_theme_font_size_override("font_size", 13)
-		continue_button.position = Vector2(430.0, 566.0)
-		continue_button.size = Vector2(200.0, 38.0)
-
-
 # Sources are actual successful choices, not deals, abandoned events or
 # failed transactions. A repeated source never requeues the same clue.
 func _record_castle_memory_for_event() -> void:
@@ -1947,17 +1569,9 @@ func _finish(message: String, batch_03_action: String = "") -> void:
 	RunState.complete_active_card()
 	preload("res://scripts/core/run_save_service.gd").instance().write_slot(RunState)
 	result_label.text = message
-	_apply_resolved_layout()
-	result_label.visible = true
-	result_label.modulate.a = 0.0
-	continue_button.visible = true
-	continue_button.modulate.a = 0.0
 	_refresh_run_labels()
+	choice_view.show_result(continue_button)
 
-	var reveal := create_tween()
-	reveal.set_parallel(true)
-	reveal.tween_property(result_label, "modulate:a", 1.0, 0.18)
-	reveal.tween_property(continue_button, "modulate:a", 1.0, 0.22)
 
 func _disable_choices() -> void:
 	choice_a.disabled = true
@@ -1981,10 +1595,13 @@ func _refresh_run_labels() -> void:
 	var condition_text := RunState.get_run_condition_text()
 	if not condition_text.is_empty():
 		artifacts_label.text += "   |   %s" % condition_text
-	if active_card != null and active_card.card_id == "gravedigger_shop":
-		GRAVEDIGGER_SHOP_DS2.refresh_gold(self)
+	gold_label.tooltip_text = gold_label.text
+	artifacts_label.tooltip_text = artifacts_label.text
 
 func _return_to_table() -> void:
+	if not resolved or returning:
+		return
+	returning = true
 	continue_button.disabled = true
 	SCENE_ROUTER.after_resolution(self, travel_context)
 
@@ -1996,11 +1613,18 @@ func _configure_final_five() -> void:
 		var entry: Array = entries[index]
 		buttons[index].text = entry[1]
 		buttons[index].disabled = not FINAL_FIVE.available(RunState, active_card.card_id, entry[0])
-		if active_card.card_id == "unsent_letters" and index == 0 and RunState.defiance_order_ready:
-			buttons[index].text += "\nПриказ уже подготовлен."
-		if active_card.card_id == "last_signal" and index == 0 and not RunState.wizard_debt_active:
-			buttons[index].text += "\nУ вас нет долга."
+		if RunState.has_event_outcome(active_card.card_id):
+			CHOICE_COPY.restrict(buttons[index], "Событие уже завершено")
+		if index == 0:
+			if not buttons[index].has_meta("event_restriction"):
+				if active_card.card_id == "unsent_letters" and RunState.defiance_order_ready:
+					CHOICE_COPY.restrict(buttons[index], "«Неповиновение» уже подготовлено")
+				elif active_card.card_id == "last_signal" and not RunState.wizard_debt_active:
+					CHOICE_COPY.restrict(buttons[index], "У вас нет долга Волшебнику")
+			if FINAL_FIVE.GOLD_COSTS.has(active_card.card_id):
+				CHOICE_COPY.gold(buttons[index], FINAL_FIVE.GOLD_COSTS[active_card.card_id])
 		buttons[index].pressed.connect(_resolve_final_five.bind(index))
+
 
 func _resolve_final_five(index: int) -> void:
 	if resolved or index < 0 or index > 2: return

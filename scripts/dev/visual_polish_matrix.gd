@@ -20,10 +20,11 @@ func _run() -> void:
 	destination = args[0]
 	revision = args[1]
 	DirAccess.make_dir_recursive_absolute(destination)
-	root.size = Vector2i(1280,720)
+	var viewport_size := Vector2i(960, 540) if revision.ends_with("-960") else Vector2i(1280, 720)
+	root.size = viewport_size
 	state = root.get_node("RunState")
 	var planned := 0
-	for kind in ["main", "intro_open", "intro_end", "class_idle", "class_knight", "class_ranger", "class_mage", "table_two", "table_hover", "table_one", "table_held", "dossier_knight", "dossier_ranger", "dossier_mage", "dossier_lost", "fate_0", "fate_4", "fate_8", "fate_12", "fate_final", "reward_major_upgrade", "reward_bonus_upgrade", "reward_normal_loot", "reward_death_wager", "reward_elite_artifact", "reward_details", "upgrade_knight", "upgrade_ranger", "upgrade_mage", "event_moon_seal", "event_resolved", "event_blood_ledger", "event_chained_prisoner", "shop_poor", "shop_rich", "shop_bought", "well_poor", "well_rich", "end_victory", "end_defeat", "end_full", "battle_solo", "battle_duo", "battle_trio", "battle_orders4", "battle_orders5", "battle_wave"]:
+	for kind in ["main", "intro_open", "intro_end", "class_idle", "class_knight", "class_ranger", "class_mage", "table_two", "table_hover", "table_one", "table_held", "dossier_knight", "dossier_ranger", "dossier_mage", "dossier_lost", "fate_0", "fate_4", "fate_8", "fate_12", "fate_final", "reward_major_upgrade", "reward_bonus_upgrade", "reward_normal_loot", "reward_death_wager", "reward_elite_artifact", "reward_details", "upgrade_knight", "upgrade_ranger", "upgrade_mage", "event_moon_seal", "event_resolved", "event_blood_ledger", "event_chained_prisoner", "event_bone_tax", "event_unsent_letters", "event_last_signal", "event_banner_seamstress", "event_curse_forge", "shop_poor", "shop_rich", "shop_bought", "well_poor", "well_rich", "well_selected", "well_alternative", "end_victory", "end_defeat", "end_full", "battle_solo", "battle_duo", "battle_trio", "battle_orders4", "battle_orders5", "battle_wave"]:
 		if args.size() == 3 and kind not in args[2].split(","):
 			continue
 		planned += 1 + (4 if kind == "battle_trio" else (1 if kind == "end_full" else 0))
@@ -34,7 +35,7 @@ func _run() -> void:
 		return
 	await _sheets()
 	var output := FileAccess.open(destination.path_join("manifest.json"), FileAccess.WRITE)
-	output.store_string(JSON.stringify({"revision":revision, "viewport":[1280,720], "frames":manifest}, "  "))
+	output.store_string(JSON.stringify({"revision":revision, "viewport":[viewport_size.x,viewport_size.y], "frames":manifest}, "  "))
 	output.close()
 	print("VISUAL_MATRIX_PASS: ", manifest.size(), " real frames at ", revision)
 	quit()
@@ -80,10 +81,21 @@ func _fixture(kind: String) -> void:
 		path = "event/act_choice.tscn"
 		state.set("active_card_id", "gravedigger_shop" if kind.begins_with("shop_") else ("moon_seal" if kind == "event_resolved" else kind.trim_prefix("event_")))
 		state.set("gold", 0 if kind == "shop_poor" else 100)
+		if kind == "event_bone_tax":
+			state.call("choose_protagonist", "mage")
+			state.call("recruit_companion", "knight", "native visual QA")
+			state.call("add_rescue_scar", "knight")
+			state.call("record_castle_fact", state.CASTLE_FACT_RATIONS, "false_weights")
+		elif kind == "event_unsent_letters":
+			state.set("defiance_order_ready", true)
+		elif kind == "event_last_signal":
+			state.call("activate_wizard_debt")
 	elif kind.begins_with("well_"):
 		path = "event/whispering_well.tscn"
 		state.set("active_card_id", "whispering_well")
 		state.set("gold", 0 if kind == "well_poor" else 100)
+		if kind == "well_alternative":
+			state.call("recruit_companion", "mage", "native visual QA")
 	elif kind.begins_with("end_"):
 		path = "run_end/run_end.tscn"
 		state.set("run_failed", kind == "end_defeat")
@@ -127,6 +139,14 @@ func _fixture(kind: String) -> void:
 		scene.get_node("Rewards/BloodCoin").grab_focus()
 		scene.get_node("Rewards/BloodCoin").gui_input.emit(input)
 	elif kind == "shop_bought": scene.get_node("Panel/Choices/ChoiceA").pressed.emit()
+	elif kind == "well_selected":
+		var coin := scene.get_node("Choices/PayCoin") as Button
+		_key(&"ui_right")
+		await process_frame
+		assert(root.gui_get_focus_owner() == coin)
+		_key(&"ui_accept")
+		_key(&"ui_accept")
+		assert(state.gold == 75 and state.is_role_in_party("mage"))
 	elif kind == "reward_bonus_upgrade": scene.call("_setup_bonus_upgrade_reward")
 	elif kind.begins_with("upgrade_"):
 		var role := kind.trim_prefix("upgrade_")
@@ -161,6 +181,15 @@ func _fixture(kind: String) -> void:
 	scene.queue_free()
 	await process_frame
 	await process_frame
+
+func _key(action: StringName) -> void:
+	var input := InputEventAction.new()
+	input.action = action
+	input.pressed = true
+	root.push_input(input)
+	input = input.duplicate()
+	input.pressed = false
+	root.push_input(input)
 
 func _save(label: String, path: String) -> void:
 	await RenderingServer.frame_post_draw
