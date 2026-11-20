@@ -1,3 +1,7 @@
+## Event Choice UI VNext
+
+Unify all 24 Act I event choices. Display current gold, party and development alongside the available decisions, their costs, effects and restriction reasons. Support keyboard navigation, hover feedback and a compact result strip. Use existing artwork and preserve the event, save and Cinematic Travel routes. [Native comparisons](docs/qa/event_choice_vnext/README.md)
+
 ## D420 Enemy Visual Polish V2
 
 Release 24 approved enemy animation packs as the default for all 22 Act I encounters. Correct 14 poses across five roles and verify equal damage timing and battle outcomes. Keep the side-by-side F6 gallery for comparison. [Review packet](docs/ENEMY_VISUAL_POLISH_V2_REVIEW.md)

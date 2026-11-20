@@ -92,26 +92,29 @@ func test_shop_uses_real_offer_art_and_resolved_states_match_a_real_purchase() -
 	button.pressed.emit()
 	assert_eq(RunState.gold,100-price)
 	assert_true(RunState.has_hero_upgrade(id))
-	assert_eq(button.get_node("DS2Parchment/PurchaseStatus").text,"ВЫБРАНО")
+	assert_eq(button.get_node("Copy/Availability").text,"ВЫБРАНО")
 	for name in ["ChoiceA","ChoiceB","ChoiceC"]:
 		var offer := shop.get_node("Panel/Choices/"+name) as Button
 		assert_true(offer.disabled)
-		assert_false(offer.get_node("DS2Parchment/PurchaseStatus").text.contains("ДОСТУПНО"))
+		assert_false(offer.get_node("Copy/Availability").text.contains("ДОСТУПНО"))
 	var after := _snapshot()
-	preload("res://scripts/event/gravedigger_shop_ds2.gd").show_result(shop)
+	shop.get("choice_view").show_result(shop.get_node("Panel/ContinueButton"))
 	assert_eq(_snapshot(),after)
 	assert_ne(before,after)
-	assert_false((shop.get_node("BackdropReadouts/Deck") as Control).get_global_rect().intersects((shop.get_node("Panel/Choices/ChoiceA") as Control).get_global_rect()))
-	assert_eq(shop.get_node("BackdropReadouts/Deck").text,"%02d" % maxi(0,RunState.remaining_card_ids.size()-RunState.current_offer_ids.size()))
-	assert_eq(shop.get_node("ShopDS2Backdrop").get("webp_path"),"res://assets/pixel/table/d416_clean_center/table_clean.webp")
+	var backdrop := shop.get_node("FeatureSceneArt") as TextureRect
+	assert_true(backdrop.visible)
+	assert_not_null(backdrop.texture)
 
 func test_resolved_story_choices_do_not_advertise_available_actions() -> void:
 	_party()
 	RunState.active_card_id = "moon_seal"
 	var event := _open("res://scenes/event/act_choice.tscn")
 	event.get_node("Panel/Choices/ChoiceA").pressed.emit()
-	for name in ["ChoiceA","ChoiceB","ChoiceC"]:
-		assert_eq(event.get_node("Panel/Choices/"+name+"/DS2EventParchment/Availability").text,"ВЫБОР ЗАВЕРШЁН")
+	assert_eq(event.get_node("Panel/Choices/ChoiceA/Copy/Availability").text, "ВЫБРАНО")
+	for name in ["ChoiceB", "ChoiceC", "LeaveButton"]:
+		var card := event.get_node("Panel/Choices/" + name) as Button
+		assert_true(card.disabled)
+		assert_eq(card.get_node("Copy/Availability").text, "")
 	assert_true(event.get_node("Panel/ContinueButton").visible)
 
 func test_full_run_summary_scrolls_inside_its_panel_and_leaves_new_run_clear() -> void:
@@ -142,7 +145,7 @@ func test_story_and_merchant_effect_paragraphs_keep_the_entire_real_modifier_vis
 	var button := event.get_node("Panel/Choices/ChoiceA") as Button
 	var id := String(button.get_meta("choice_upgrade_id",""))
 	assert_false(id.is_empty())
-	var detail := button.get_node("DS2EventParchment/ChoiceDetail") as Label
+	var detail := button.get_node("Copy/Outcome") as Label
 	assert_true(detail.text.contains(RunState.get_hero_upgrade(id).description))
 	assert_lte(detail.get_line_count() * detail.get_theme_font("font").get_height(detail.get_theme_font_size("font_size")),detail.size.y)
 	RunState.active_card_id = "gravedigger_shop"
@@ -150,7 +153,7 @@ func test_story_and_merchant_effect_paragraphs_keep_the_entire_real_modifier_vis
 	await get_tree().process_frame
 	var offer := shop.get_node("Panel/Choices/ChoiceA") as Button
 	var upgrade := RunState.get_hero_upgrade(String(offer.get_meta("choice_upgrade_id","")))
-	var body := offer.get_node("DS2Parchment/UpgradeDetail") as Label
+	var body := offer.get_node("Copy/Outcome") as Label
 	assert_true(body.text.contains(upgrade.description))
 	assert_lte(body.get_line_count() * body.get_theme_font("font").get_height(body.get_theme_font_size("font_size")),body.size.y)
 
