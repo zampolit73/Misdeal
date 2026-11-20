@@ -11,7 +11,13 @@ func test_all_arena_profiles_and_original_pixels_survive_toggle() -> void:
 	hashes.merge(JSON.parse_string(FileAccess.get_file_as_string("res://docs/qa/living_arenas_v2/source_hashes.json")))
 	hashes.merge(JSON.parse_string(FileAccess.get_file_as_string("res://docs/qa/living_arenas_v3/source_hashes.json")))
 	assert_eq(hashes.size(), 16)
-	for path in hashes: assert_eq(FileAccess.get_sha256("res://"+path),hashes[path],"Approved arena bytes are immutable")
+	for path: String in hashes:
+		var source_path := "res://"+path
+		var digest := FileAccess.get_sha256(source_path)
+		if path.ends_with(".b64"):
+			# Git's Windows checkout converts text containers to CRLF.
+			digest = FileAccess.get_file_as_string(source_path).replace("\r\n", "\n").sha256_text()
+		assert_eq(digest,hashes[path],"Approved arena source is immutable: "+path)
 	var node := BACKDROP.new()
 	add_child_autofree(node)
 	for id in BACKDROP.ARENA_PATHS:
