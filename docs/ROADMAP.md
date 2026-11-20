@@ -1,3 +1,8 @@
+## D420 V2
+
+- [x] Rebase the enemy art candidate against the current battle runtime and deliver the 24-role comparison.
+- [ ] User artistic approval before production merge. [Review packet](ENEMY_VISUAL_POLISH_V2_REVIEW.md)
+
 ## Living Arenas V3
 
 - [x] Author the remaining 11 profiles for 10 paintings and the Death Wager variant. [Coverage and QA](LIVING_ARENAS_V3.md)

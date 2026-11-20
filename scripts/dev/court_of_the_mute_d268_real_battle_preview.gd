@@ -126,6 +126,7 @@ func _launch_real_battle() -> void:
 	running = true
 	menu.visible = false
 	var battle := BATTLE_SCENE.instantiate() as Control
+	battle.use_polished_enemy_art = false
 	if battle == null:
 		running = false
 		menu.visible = true

@@ -54,6 +54,32 @@ const HERO_ROLE_VISUAL_SCALES := {
 	"mage": 1.00,
 }
 const ENEMY_DISPLAY_SCALE := 1.25
+const ENEMY_ROLE_VISUAL_SCALES := {
+	"skeleton": 1.081,
+	"bone_archer": 1.005,
+	"bone_thrall": 1.049,
+	"grave_bellkeeper": 1.033,
+	"crypt_guard": 1.043,
+	"bone_warden": 1.061,
+	"bone_shepherd": 1.158,
+	"ossuary_lamb": 1.057,
+	"funeral_priest": 1.114,
+	"pallbearer": 1.176,
+	"plague_alchemist": 1.070,
+	"unstable_homunculus": 1.136,
+	"threadbare_puppeteer": 1.173,
+	"bone_marionette": 0.972,
+	"drowned_ferryman": 1.086,
+	"drowned_hand": 1.159,
+	"road_sentinel": 1.205,
+	"lantern_bearer": 1.195,
+	"extinguished_guide": 0.737,
+	"oil_acolyte": 1.113,
+	"lantern_archer": 1.120,
+	"mute_magistrate": 1.180,
+	"ash_scrivener": 1.143,
+	"bone_bailiff": 1.259,
+}
 const BOSS_DISPLAY_SCALE := 1.24
 
 const V4_UNIT_ATLAS_PATH := "res://assets/pixel/units/combat_units_v4/atlas.webp.b64"
@@ -90,6 +116,8 @@ signal damage_received(victim: BattleUnit, amount: float)
 @export var team: int = 0
 @export var display_name: String = "Unit"
 @export var visual_role: String = "unit"
+var use_polished_enemy_art := false
+var uses_polished_enemy_art := false
 @export var max_hp: float = 100.0
 @export var damage: float = 12.0
 @export var attack_interval: float = 0.8
@@ -238,7 +266,8 @@ func _ready() -> void:
 	name_label.visible = team == 0 or is_boss or show_enemy_name
 	# The redesigned blue Knight atlas is loaded through the animation library.
 	# Retain static v4 fallback for a missing or unreadable file.
-	sprite_frames = null if STATIC_COMBAT_ART_ROLES.has(visual_role) else ANIMATION_LIBRARY.get_frames(visual_role)
+	sprite_frames = null if STATIC_COMBAT_ART_ROLES.has(visual_role) else ANIMATION_LIBRARY.get_frames(visual_role, true, team == 1 and use_polished_enemy_art)
+	uses_polished_enemy_art = team == 1 and ANIMATION_LIBRARY.is_polished_enemy_frames(visual_role, sprite_frames)
 	if sprite_frames != null:
 		# Give each miniature its own quiet idle phase: no synchronized snap.
 		frame_time = randf_range(0.0, 0.70)
@@ -253,6 +282,8 @@ func _ready() -> void:
 	# Preserve pixel silhouettes; scale only the art, not physics or hitboxes.
 	var sprite_scale: float = BOSS_DISPLAY_SCALE if is_boss else (HERO_DISPLAY_SCALE if team == 0 else ENEMY_DISPLAY_SCALE)
 	var role_art_scale: float = float(HERO_ROLE_VISUAL_SCALES.get(visual_role, 1.0)) if team == 0 else 1.0
+	if uses_polished_enemy_art:
+		role_art_scale = ENEMY_ROLE_VISUAL_SCALES.get(visual_role, 1.0)
 	# Match the exact accepted D412 preview body proportions, including
 	# Mage's lower source head relative to the staff tip.
 	if team == 0 and visual_role == "mage" and ANIMATION_LIBRARY.is_approved_hero_frames(visual_role, sprite_frames):
@@ -281,6 +312,12 @@ func _ready() -> void:
 	_apply_arena_presentation()
 	_apply_health_bar_style()
 	_apply_boss_layout()
+	if uses_polished_enemy_art:
+		var idle_top := ANIMATION_LIBRARY.polished_enemy_idle_top(visual_role)
+		var painted_top := art_sprite.position.y + (idle_top - ANIM_CELL_HEIGHT*0.5)*base_sprite_scale.y
+		var bar_bottom := minf(health_bar.offset_bottom, painted_top-6.0)
+		health_bar.offset_top += bar_bottom-health_bar.offset_bottom
+		health_bar.offset_bottom = bar_bottom
 	health_bar.max_value = max_hp
 	health_bar.value = hp
 	queue_redraw()
@@ -1006,7 +1043,7 @@ func _get_role_floor_offset() -> float:
 	# D403: v2-specific negative offsets were lifting the new C3 heroes
 	# above the combat ground shadow, unlike the grounded F6 C3 preview.
 	# Never apply this to the legacy v2 fallback or other enemy sprites.
-	if ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
+	if uses_polished_enemy_art or ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
 		return 0.0
 	return float(ROLE_FLOOR_OFFSETS.get(visual_role, 0.0))
 
@@ -1073,7 +1110,7 @@ func _update_frame_animation(delta: float) -> void:
 	# cannot actually move (body separation / arena boundary) should not
 	# play running feet during the 0.18s walk hysteresis. No other animation
 	# state or non-C3 actor changes its original timing.
-	if frame_state == "walk" and ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
+	if frame_state == "walk" and (uses_polished_enemy_art or ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames)):
 		var sampled_pixels := minf(travel_pixels, C3_WALK_MAX_PIXELS_PER_SAMPLE)
 		frame_time += sampled_pixels / (C3_WALK_PIXELS_PER_FRAME * sprite_frames.get_animation_speed("walk"))
 	else:
@@ -1121,7 +1158,8 @@ func _update_idle_visual(delta: float) -> void:
 func _set_facing_left(face_left: bool) -> void:
 	# Visual-only: most actors face right at source; D151 and D230 Sentinel face left.
 	# XOR keeps combat targeting unchanged while honoring original atlas orientation.
-	art_sprite.flip_h = face_left != SOURCE_FACES_LEFT_ROLES.has(visual_role)
+	var source_left := not uses_polished_enemy_art and SOURCE_FACES_LEFT_ROLES.has(visual_role)
+	art_sprite.flip_h = face_left != source_left
 
 
 func _update_unit_facing() -> void:
@@ -1202,9 +1240,9 @@ func _play_attack_feedback(primary_target: BattleUnit) -> void:
 	var direction := global_position.direction_to(primary_target.global_position)
 	var style := _get_attack_style()
 	var rest_position := _art_rest_position()
-	var c3_motion := ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames)
+	var authored_motion := uses_polished_enemy_art or ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames)
 
-	if c3_motion:
+	if authored_motion:
 		# D403: the C3 atlas already contains its own sword swing, bow draw
 		# and full-body spell poses. Keep the feet planted and the source
 		# costume intact instead of additionally rubber-scaling/rotating it.
@@ -1215,7 +1253,8 @@ func _play_attack_feedback(primary_target: BattleUnit) -> void:
 		# Preserve the existing Mage hit trace without recolouring the
 		# illustration-derived violet robe every time an attack starts.
 		if style == "magic":
-			_spawn_attack_trace(primary_target, Color(0.72, 0.44, 1.0, 0.95), 3.4)
+			var trace_color := Color(0.50, 1.0, 0.70, 0.92) if uses_polished_enemy_art else Color(0.72, 0.44, 1.0, 0.95)
+			_spawn_attack_trace(primary_target, trace_color, 3.4)
 	else:
 		# All archived v2 heroes and enemies retain established feedback.
 		match style:
@@ -1385,17 +1424,17 @@ func _play_hit_feedback(
 
 	var punch_scale := 1.16 if strong_hit else 1.10
 	var kick_distance := 7.0 if strong_hit else 4.5
-	var c3_authored_hit := ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames)
+	var authored_hit := uses_polished_enemy_art or ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames)
 	# D408: the new C3 HIT rows already contain full-body authored recoil.
 	# Do not magnify the entire actor or recolour the approved clothes on
 	# top of those poses. Retain only the small preexisting impact response.
-	scale = Vector2.ONE if c3_authored_hit else Vector2(punch_scale, punch_scale)
-	hit_kick_offset = kick_direction.normalized() * (kick_distance * (0.4 if c3_authored_hit else 1.0)) + Vector2(0.0, -1.0)
-	art_sprite.modulate = base_art_modulate if c3_authored_hit else hit_tint
+	scale = Vector2.ONE if authored_hit else Vector2(punch_scale, punch_scale)
+	hit_kick_offset = kick_direction.normalized() * (kick_distance * (0.4 if authored_hit else 1.0)) + Vector2(0.0, -1.0)
+	art_sprite.modulate = base_art_modulate if authored_hit else hit_tint
 
 	hit_pulse_tween = create_tween()
 	hit_pulse_tween.set_parallel(true)
-	if not c3_authored_hit:
+	if not authored_hit:
 		hit_pulse_tween.tween_property(self, "scale", Vector2.ONE, 0.16 if strong_hit else 0.13).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		hit_pulse_tween.tween_property(art_sprite, "modulate", base_art_modulate, 0.15)
 	hit_pulse_tween.tween_property(self, "hit_kick_offset", Vector2.ZERO, 0.16 if strong_hit else 0.13).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -1538,7 +1577,7 @@ func _die() -> void:
 		# D408: a lethal hit kills the hit tween before its restoration.
 		# Reset the transient hit sprite coloration/size AND any interrupted
 		# attack offset so the first hand-painted DEATH pose never jumps.
-		if ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
+		if uses_polished_enemy_art or ANIMATION_LIBRARY.is_live_c3_hero_frames(visual_role, sprite_frames):
 			scale = Vector2.ONE
 			art_sprite.position = _art_rest_position()
 			art_sprite.rotation = 0.0
@@ -1547,7 +1586,8 @@ func _die() -> void:
 			hit_flash_time = 0.0
 		# Frame-authored collapse replaces the static v4 shrink/tilt.
 		death_tween = create_tween()
-		death_tween.tween_interval(0.30)
+		var death_hold := float(sprite_frames.get_frame_count("death"))/sprite_frames.get_animation_speed("death") if uses_polished_enemy_art else 0.30
+		death_tween.tween_interval(death_hold)
 		death_tween.tween_property(self, "modulate:a", 0.08 if team == 1 else 0.16, 0.30)
 		queue_redraw()
 		died.emit(self)

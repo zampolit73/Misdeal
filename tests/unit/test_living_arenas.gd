@@ -176,12 +176,14 @@ func test_identical_real_battle_results_with_fx_on_and_off() -> void:
 		var baseline: Array = await _battle_result(encounter, profile_id, false)
 		var animated: Array = await _battle_result(encounter, profile_id, true)
 		assert_eq(animated,baseline,encounter.encounter_id+" same fixed-step real combat")
+		var original_art: Array = await _battle_result(encounter, profile_id, true, false)
+		assert_eq(animated,original_art,encounter.encounter_id+" same combat and damage ticks with original/D420 art")
 		tested_encounters += 1
 		tested_arenas[encounter.arena_id] = true
 	assert_eq(tested_arenas.size(), 16)
 	assert_eq(tested_encounters, 22)
 
-func _battle_result(encounter: EncounterData, profile_id: String, enabled: bool) -> Array:
+func _battle_result(encounter: EncounterData, profile_id: String, enabled: bool, polished := true) -> Array:
 	RunState.reset_run()
 	RunState.choose_protagonist("knight")
 	RunState.recruit_companion("ranger","QA")
@@ -192,6 +194,7 @@ func _battle_result(encounter: EncounterData, profile_id: String, enabled: bool)
 	RunState.select_encounter(encounter.resource_path)
 	seed(775)
 	var battle := load("res://scenes/battle/battle.tscn").instantiate() as Control
+	battle.use_polished_enemy_art = polished
 	add_child(battle)
 	assert_eq(battle.battle_backdrop.living_profile_id, profile_id, encounter.encounter_id)
 	battle.process_mode = Node.PROCESS_MODE_DISABLED
@@ -201,6 +204,8 @@ func _battle_result(encounter: EncounterData, profile_id: String, enabled: bool)
 	for unit: BattleUnit in battle.units: unit.start_combat()
 	if battle.black_crossing_surge_controller != null: battle.black_crossing_surge_controller.start_surge()
 	if battle.thread_tether_controller != null: battle.thread_tether_controller.start_threads()
+	var damage_timing := 0
+	var last_hp := PackedInt32Array()
 	for frame in range(3600):
 		if battle.battle_finished: break
 		if battle.wave_intermission:
@@ -216,7 +221,13 @@ func _battle_result(encounter: EncounterData, profile_id: String, enabled: bool)
 		if battle.thread_tether_controller != null: battle.thread_tether_controller._process(1.0/60.0)
 		for unit: BattleUnit in battle.units:
 			if is_instance_valid(unit): unit._process(1.0/60.0)
-	var result: Array = [battle.battle_finished,RunState.last_battle_won,battle.battle_wave_index,battle.boss_reinforcements_spawned]
+		var hp := PackedInt32Array()
+		for unit: BattleUnit in battle.units:
+			hp.append(roundi(unit.hp*1000))
+		if hp != last_hp:
+			damage_timing = hash([damage_timing,frame,hp])
+			last_hp = hp
+	var result: Array = [battle.battle_finished,RunState.last_battle_won,battle.battle_wave_index,battle.boss_reinforcements_spawned,damage_timing]
 	for unit: BattleUnit in battle.units:
 		result.append([unit.visual_role,snappedf(unit.hp,0.001),unit.alive,unit.position.snapped(Vector2(0.01,0.01))])
 	assert_true(battle.battle_finished,encounter.encounter_id+" fixed-step battle completed")

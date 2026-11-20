@@ -97,7 +97,7 @@ jobs:
           set -euo pipefail
           test -f addons/gut/plugin.cfg
           mkdir -p "$RUNNER_TEMP/misdeal-smart-qa"
-          # Living Arenas compare 22 complete fights with the effect on and off.
+          # Compare 22 complete fights across Living Arenas and D420 art variants.
           timeout 240s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
             --headless --path . -s res://addons/gut/gut_cmdln.gd \
             -gdir=res://tests/unit -gconfig= -gexit -glog=1 \
@@ -502,6 +502,21 @@ jobs:
             --script res://scripts/dev/living_arenas_pixel_audit.gd -- "$dest" gallows --v3 2>&1 | tee "$dest/pixel-audit.log"
           grep -Fq 'LIVING_PIXEL_AUDIT_PASS' "$dest/pixel-audit.log"
           ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed' "$dest/pixel-audit.log"
+
+      - name: D420 V2 — all 24 enemies at native battle scale
+        if: steps.scope.outputs.mode == 'release'
+        shell: bash
+        run: |
+          set -euo pipefail
+          dest="$RUNNER_TEMP/misdeal-smart-qa/visual/d420"
+          mkdir -p "$dest"
+          timeout 120s xvfb-run -a -s '-screen 0 1600x1000x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility --audio-driver Dummy \
+            --scene res://scenes/dev/enemy_visual_review.tscn -- "$dest" 2>&1 | tee "$dest/capture.log"
+          grep -Fq 'ENEMY_REVIEW_CAPTURE_PASS: 24' "$dest/capture.log"
+          test "$(find "$dest" -name '*_native.webp' | wc -l)" -eq 24
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Assertion failed' "$dest/capture.log"
 
       - name: Cinematic travel native routes and skip
         if: steps.scope.outputs.mode == 'release'

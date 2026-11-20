@@ -1,3 +1,7 @@
+## D420 V2 — isolate enemy presentation and rollback
+
+Battle passes its art variant to enemy units before they enter the tree. Legacy and candidate SpriteFrames are cached separately. Actual resource identity enables D420 presentation, and the legacy fallback retains its original scale, facing and motion. The temporary review setting lives on Battle, outside campaign state and saves. [Review contract](ENEMY_VISUAL_POLISH_V2_REVIEW.md)
+
 ## Living Arenas V3 — all Act I combat paintings
 
 Keep one backdrop shader and the shared Image mask cache. V3 profiles reserve the entire lower source band from Y=360 for combat, including an empty mask row before the boundary. Death Wager uses its own mask on the same Ossuary painting as Ossuary Gate. Iron Wall triggers its localized transient from the existing second-wave start. The Court mask is tied to the released D271 painting. [Contract and verification](LIVING_ARENAS_V3.md)

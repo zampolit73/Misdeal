@@ -33,6 +33,7 @@ func _run_boot() -> void:
 			RunState.select_encounter(ENCOUNTER)
 			RunState.combat_formation_by_card[CARD_ID] = formation
 			var battle := BATTLE.instantiate() as Control
+			battle.use_polished_enemy_art = false
 			if battle == null:
 				_abort("real Battle PackedScene missing")
 				return

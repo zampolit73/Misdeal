@@ -43,6 +43,7 @@ func _exercise() -> void:
 		_fail("current scene missing")
 		return
 	var battle := BATTLE_SCENE.instantiate() as Control
+	battle.use_polished_enemy_art = false
 	if battle == null:
 		_fail("real Battle packed scene missing")
 		return

@@ -1,3 +1,7 @@
+## D420 Enemy Visual Polish V2
+
+Stage 24 enemy animation packs for artistic approval. Correct 14 poses across five roles, compare current and candidate art in a shared F6 gallery, and verify equal damage timing and battle outcomes. [Review packet](docs/ENEMY_VISUAL_POLISH_V2_REVIEW.md)
+
 ## Living Arenas V3
 
 Extend local background animation to all 16 Act I battle paintings and 22 authored encounters. Add a separate Death Wager profile on the shared Ossuary painting, a brief Iron Wall wave-II reaction and all 17 profiles to the Living Arenas QA tab. [Coverage and native evidence](docs/LIVING_ARENAS_V3.md)

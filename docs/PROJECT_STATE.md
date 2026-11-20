@@ -1,3 +1,7 @@
+## D420 V2 — artistic review branch
+
+The D420 review branch integrates 24 enemy animation packs with the current Battle. Five packs have local corrections. The side-by-side F6 gallery launches the same real encounter with either visual version. The release depends on the player's artistic approval. [Review and native evidence](ENEMY_VISUAL_POLISH_V2_REVIEW.md)
+
 ## Living Arenas V3 — Act I coverage
 
 The shared BattleBackdrop resolves all 22 encounters across 16 original paintings. The Ossuary and Death Wager atmospheres use distinct masks on a shared painting. QA Hub can compare, pause and replay all 17 profiles in the real Battle. [Implementation, coverage and checks](LIVING_ARENAS_V3.md)

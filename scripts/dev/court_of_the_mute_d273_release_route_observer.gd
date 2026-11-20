@@ -117,8 +117,11 @@ func _exercise() -> void:
 		if actor.team != 1:
 			continue
 		enemy_roles.append(actor.visual_role)
-		if actor.sprite_frames == null or actor.sprite_frames != LIBRARY.get_frames(actor.visual_role):
-			_fail("enemy not using approved D267 rich animation: " + actor.visual_role)
+		if actor.sprite_frames == null or actor.sprite_frames != LIBRARY.get_frames(actor.visual_role,true,battle.use_polished_enemy_art):
+			_fail("enemy not using the configured Court animation: " + actor.visual_role)
+			return
+		if LIBRARY.is_polished_enemy_frames(actor.visual_role,actor.sprite_frames) != battle.use_polished_enemy_art:
+			_fail("unexpected Court animation fallback: " + actor.visual_role)
 			return
 		for state in ["idle", "walk", "attack", "hit", "death"]:
 			if not actor.sprite_frames.has_animation(state):
@@ -129,7 +132,7 @@ func _exercise() -> void:
 	if enemy_roles != expected:
 		_fail("expected Magistrate, Scrivener and two Bailiffs; got: %s" % [enemy_roles])
 		return
-	print("D273_COURT_REAL_DEAL_PASS: 40/45, normal Tier1 RunState offer+choose, four authentic D267 actors, red verdict, approved D271 painting and D264 floor")
+	print("D273_COURT_REAL_DEAL_PASS: 40/45, normal Tier1 RunState offer+choose, four Court actors, red verdict, approved D271 painting and D264 floor")
 	var start_button := battle.get_node_or_null("FightButton") as Button
 	if start_button == null:
 		_fail("real fight button absent")

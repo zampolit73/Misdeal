@@ -103,6 +103,8 @@ var combat_live := false
 var battle_finished := false
 # D382 — only resources with a complete second-wave plan enter intermission.
 var battle_wave_index := 1
+## QA can compare the original art with the same battle setup.
+var use_polished_enemy_art := true
 var wave_intermission := false
 var wave_briefing_elapsed := 0.0
 var wave_preview_hover_order := ""
@@ -590,6 +592,7 @@ func _spawn_unit(
 	name_override: String = ""
 ) -> void:
 	var unit := UNIT_SCENE.instantiate() as BattleUnit
+	unit.use_polished_enemy_art = use_polished_enemy_art
 	unit.configure(data, team, _project_spawn_on_floor(spawn_position), name_override)
 	unit.set_arena_presentation(encounter.arena_id)
 
