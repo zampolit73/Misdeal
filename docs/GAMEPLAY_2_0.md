@@ -52,3 +52,33 @@ Reward, the gate merchant and both event choice scenes show changes from the sha
 Godot 4.7.2 checks cover relic loading and save round-trip, actual attack and personal kill handling, stacking two defensive effects, enlarged first-spell radius, the merchant's special price and Combat Planning. The native fixture buys healing and plays the real Grave Bell battle through a marked victory. See [dossier](qa/gameplay_2_builds/blood_build.png), [purchase](qa/gameplay_2_builds/merchant_change.png) and [battle payout](qa/gameplay_2_builds/marked_coin.png). Six Event Choice screens passed at both 1280×720 and 960×540. Long-run win-rate effects still need player runs.
 
 The post-merge D268 workflow on A still required the historical 39-card list. Its repaired fixture checks Court membership in the active deck, then starts the real battle through Combat Planning. Local Godot passed the 54-case Court matrix and the live Court deal, win, Reward and Table route. The Court workflow now runs on relevant PRs.
+
+The matched seed 31017 Iron Wall trio opened wave II at 42 Knight HP with no relics and 116 HP with Shieldbond, the Watch Bell and the Harvest Ring. Both lineups eventually lost. The effect is measurable without establishing overall party balance.
+
+## Package C · Wizard Archive and new runs
+
+Open **Архив Волшебника** from the main menu. Реликварий records the 13 relics found. Бестиарий reveals names and relevant attack, healing and area effects for encountered enemies. Its 26 live unit entries include the skeleton and the distinct Crypt Sentinel resource. Летопись lists the outcome, protagonist, final party, reached card, style, oath and relics for each completed run. Испытания shows the three hero unlocks, the solo and full-party victories, a win without Last Deal and a fifth-oath win.
+
+An actual XIII victory with the protagonist unlocks that hero's alternate style. Class Select offers the style on later runs and explains the trade-off above the cards.
+
+| Style | Rule |
+| --- | --- |
+| Knight · Кровавый обет | In Defense at or below 50% HP, strikes deal 12% less damage to the Knight. Movement speed is 8% lower. |
+| Ranger · Теневой охотник | Hunt strikes against enemies at or below half HP deal 12% more damage. Attack range is 10 lower. |
+| Mage · Пепельный провидец | Splash radius is 18 larger. All attack damage is 8% lower. |
+
+Select one oath for the entire run. A normal victory opens I, and a win at each rank unlocks the next. Ranks I–IV apply individually, and rank V combines them.
+
+| Oath | Rule |
+| --- | --- |
+| I · Жадность | Gate Merchant, Gravedigger, Candle Seller and Last Camp healer prices ×1.25, rounded up. |
+| II · Шрамы | Rest choices restore at most 30% of each hero's maximum HP. The purchased dressing keeps its original healing. |
+| III · Чёрная колода | Enemy strikes deal +10% damage at Grave Bell, Defiled Laboratory, Iron Wall, Firing Square and Court of the Mute. The battle briefing flags affected encounters. |
+| IV · Долг | Wizard Tithe gold prices ×1.25, rounded up. Last Deal without a relic takes 22 maximum HP. |
+| V · Последняя ставка | All four modifiers apply together. |
+
+### Persistence and verification
+
+Run save schema 3 stores the chosen style and oath. Schema 1 and 2 continue with classic settings and retain their original progress, including schema 2 HP and pending stops. The archive has its own `wizard_archive.json`, backup and run ledger keyed by the existing run token. Both New Game choices preserve the archive. Stained glass keeps its original 24 fragments and reset rules. A valid existing terminal slot can contribute the last result once. QA uses explicit temporary files, and damaged archives fall back to a valid backup while preserving the original.
+
+Godot 4.7.2 native QA used a prepared Knight fixture that won Phase II of XIII through actual combat, then completed Reward. A separate Ranger fixture lost and declined Last Deal. The archive reopened both results, unlocked only the Knight style and oath I, and actual Class Select persisted both on the next run. Focused tests cover both legacy save schemas, collections, backup recovery and the oath rules. See the [reliquary](qa/gameplay_2_meta/reliquary.png), [bestiary](qa/gameplay_2_meta/bestiary.png), [chronicle](qa/gameplay_2_meta/chronicle.png), [challenges](qa/gameplay_2_meta/challenges.png) and [start options](qa/gameplay_2_meta/starting_charter.png).

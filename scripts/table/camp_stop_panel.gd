@@ -98,7 +98,7 @@ func _render_choices() -> void:
 		for item: String in RunState.camp_stop.stock:
 			_shop_row(item)
 	else:
-		_add_row("Отдых", "Восстановить до %d%% макс. HP каждому герою." % roundi(STOPS.REST_HEAL * 100), "rest")
+		_add_row("Отдых", "Восстановить до %d%% макс. HP каждому герою." % roundi(STOPS.rest_fraction(RunState) * 100), "rest")
 		_trainee = OptionButton.new()
 		_trainee.custom_minimum_size.y = 34
 		for role in RunState.party_roles:

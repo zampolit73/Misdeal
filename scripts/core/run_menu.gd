@@ -57,7 +57,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	var transition := get_tree().root.get_node_or_null("SceneTransition")
 	if transition != null and transition.get("_busy"): return
 	var scene:=get_tree().current_scene
-	if scene==null or scene.scene_file_path.contains("/main/") or scene.scene_file_path.contains("/intro/"): return
+	if scene==null or scene.scene_file_path.contains("/main/") or scene.scene_file_path.contains("/intro/") or scene.scene_file_path.contains("/archive/"): return
 	if is_instance_valid(menu):
 		close_menu()
 	else:

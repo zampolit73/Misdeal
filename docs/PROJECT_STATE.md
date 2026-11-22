@@ -1,3 +1,7 @@
+## Gameplay 2.0 · Wizard Archive
+
+The main menu opens four archival sections. Each hero unlocks a distinct starting style by winning XIII, and five Wizard oaths form an opt-in difficulty ladder. Run save schema 3 keeps active settings and the independent archive retains long-term progress. [Rules, migration and native QA](GAMEPLAY_2_0.md#package-c--wizard-archive-and-new-runs)
+
 ## Gameplay 2.0 · Builds & Rewards
 
 Act I has 13 relics. Conditional combat effects and the existing upgrades support blood, defense, Mage splash and Wizard economy builds. Dossier, Reward, the merchant and event results expose live effects and stat changes. [Catalog and QA](GAMEPLAY_2_0.md#package-b--builds--rewards)

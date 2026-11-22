@@ -2,10 +2,12 @@ extends RefCounted
 const FIELDS := preload("res://scripts/core/run_save_fields.gd").FIELDS
 const MEMORY := preload("res://scripts/memory/memory_profile.gd")
 const CAMP_STOPS := preload("res://scripts/core/run_camp_stops.gd")
+const ARCHIVE := preload("res://scripts/core/wizard_archive.gd")
+const CHARTER := preload("res://scripts/core/run_charter.gd")
 const TABLE := "res://scenes/table/table.tscn"
 const REWARD := "res://scenes/reward/reward.tscn"
 const BATTLE := "res://scenes/battle/battle.tscn"
-const SCHEMA := 2
+const SCHEMA := 3
 static var shared: RefCounted
 var path := ""
 var error_message := ""
@@ -29,13 +31,18 @@ func snapshot(state: Node, scene: String = TABLE, phase: String = "") -> Diction
 		"memory_run":MEMORY.instance().run_uid}
 
 func _migrate(data: Variant) -> Variant:
-	if data is Dictionary and data.get("version") == 1 and data.get("state") is Dictionary:
-		if data.get("scene") not in [TABLE, REWARD] or data.state.has("hero_current_hp") or data.state.has("camp_stop"):
+	if data is Dictionary and data.get("version") in [1, 2] and data.get("state") is Dictionary:
+		if data.state.has("starting_style") or data.state.has("oath_rank"):
 			return null
 		data = data.duplicate(true)
+		if data.version == 1:
+			if data.get("scene") not in [TABLE, REWARD] or data.state.has("hero_current_hp") or data.state.has("camp_stop"):
+				return null
+			data.state.hero_current_hp = {}
+			data.state.camp_stop = {}
 		data.version = SCHEMA
-		data.state.hero_current_hp = {}
-		data.state.camp_stop = {}
+		data.state.starting_style = ""
+		data.state.oath_rank = 0
 	return data
 
 
@@ -55,6 +62,8 @@ func validate(data: Variant, state: Node) -> bool:
 			if values[key].get_typed_builtin() != state.get(key).get_typed_builtin():
 				return false
 	if values.protagonist_role not in state.HERO_ROLES or not values.party_roles.has(values.protagonist_role) or values.party_roles.size() > 3 or values.cards_resolved < 0 or values.cards_resolved > 12 or values.gold < 0:
+		return false
+	if values.oath_rank < 0 or values.oath_rank >= CHARTER.OATHS.size() or not CHARTER.is_style_for_role(values.starting_style, values.protagonist_role):
 		return false
 	for key in ["party_roles","rescue_scar_roles"]:
 		for id in values[key]:
@@ -156,16 +165,21 @@ func write_slot(state: Node, scene: String = TABLE, phase: String = "") -> bool:
 		error_message = "Не удалось заменить сохранение."
 		return false
 	error_message = ""
+	ARCHIVE.instance().observe_checkpoint(data.state, data.memory_run, data.saved_at)
 	return true
 
 func apply_slot(state: Node, data: Dictionary) -> bool:
-	if not validate(data,state) or data.finished: return false
-	restore_values(state, _migrate(data).state)
+	var current: Variant = _migrate(data)
+	if not validate(current,state) or current.finished: return false
+	restore_values(state, current.state)
 	state.clamp_party_health()
 	# Encounter-local tactic drafts must never leak from a previously open run.
 	# This metadata is intentionally excluded from the existing save schema.
 	state.set_meta("battle_plan_drafts", {})
+	if state.has_meta("build_feedback"):
+		state.remove_meta("build_feedback")
 	MEMORY.instance().restore_run(data.memory_run)
+	ARCHIVE.instance().observe_checkpoint(current.state, current.memory_run, current.saved_at)
 	resume_phase = data.phase
 	loading = true
 	return true

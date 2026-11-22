@@ -884,14 +884,13 @@ func _configure_lost_purse() -> void:
 	choice_c.pressed.connect(_resolve_lost_purse.bind("all_in"))
 
 func _configure_candle_seller() -> void:
-	_set_role_upgrade_button(choice_a, "knight", "СИНЯЯ СВЕЧА — 25")
-	_set_role_upgrade_button(choice_b, "ranger", "ЗЕЛЁНАЯ СВЕЧА — 25")
-	_set_role_upgrade_button(choice_c, "mage", "ФИОЛЕТОВАЯ СВЕЧА — 25")
-	choice_a.disabled = choice_a.disabled or RunState.gold < 25
-	choice_b.disabled = choice_b.disabled or RunState.gold < 25
-	choice_c.disabled = choice_c.disabled or RunState.gold < 25
+	var price := RunState.get_merchant_price(25)
+	_set_role_upgrade_button(choice_a, "knight", "СИНЯЯ СВЕЧА — %d" % price)
+	_set_role_upgrade_button(choice_b, "ranger", "ЗЕЛЁНАЯ СВЕЧА — %d" % price)
+	_set_role_upgrade_button(choice_c, "mage", "ФИОЛЕТОВАЯ СВЕЧА — %d" % price)
 	for button in [choice_a, choice_b, choice_c]:
-		CHOICE_COPY.gold(button, 25)
+		button.disabled = button.disabled or RunState.gold < price
+		CHOICE_COPY.gold(button, price)
 	leave_button.text = "НИЧЕГО НЕ ПОКУПАТЬ"
 
 	choice_a.pressed.connect(_resolve_candle_seller.bind("knight"))
@@ -1432,7 +1431,8 @@ func _resolve_lost_purse(choice: String) -> void:
 			_finish("Кошель ваш. Кусок руки тоже. +55 золота, здоровье -25.")
 
 func _resolve_candle_seller(role: String) -> void:
-	if resolved or RunState.gold < 25:
+	var price := RunState.get_merchant_price(25)
+	if resolved or RunState.gold < price:
 		return
 
 	var upgrade_id := _grant_role_upgrade(role)
@@ -1440,7 +1440,7 @@ func _resolve_candle_seller(role: String) -> void:
 		return
 
 	presentation_choice_role = role
-	RunState.gold -= 25
+	RunState.gold -= price
 	_finish("Свеча сгорает за секунду, оставляя знание вместо воска. %s" % _format_upgrade_gain(upgrade_id))
 
 

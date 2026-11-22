@@ -1,6 +1,7 @@
 extends Control
 
 const RUN_SAVE := preload("res://scripts/core/run_save_service.gd")
+const ARCHIVE := preload("res://scripts/core/wizard_archive.gd")
 signal combat_beginning
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
@@ -613,6 +614,8 @@ func _spawn_unit(
 		unit.move_speed = stats.move_speed
 		unit.relic_effects = RunState.get_relic_effects(unit.visual_role)
 		unit.can_receive_relic_cover = RunState.has_artifact("shieldbond")
+		if unit.visual_role == RunState.protagonist_role:
+			unit.starting_style = RunState.starting_style
 	elif team == 1:
 		unit.max_hp *= RunState.get_enemy_hp_multiplier()
 		unit.damage *= RunState.get_enemy_damage_multiplier()
@@ -638,6 +641,19 @@ func _spawn_unit(
 
 	if combat_started and combat_live:
 		unit.start_combat()
+		if team == 1 and RunState.has_active_card():
+			var arrival: Array[String] = [data.resource_path.get_file().get_basename()]
+			ARCHIVE.instance().record_enemies(arrival)
+
+
+func _archive_enemy_roster() -> void:
+	if not RunState.has_active_card():
+		return
+	var ids: Array[String] = []
+	for unit in units:
+		if unit.team == 1 and unit.alive:
+			ids.append(unit.unit_data.resource_path.get_file().get_basename())
+	ARCHIVE.instance().record_enemies(ids)
 
 func _project_spawn_on_floor(source_position: Vector2) -> Vector2:
 	# Encounter Resources authored for the older high/back-wall planes keep
@@ -1003,6 +1019,8 @@ func _build_battle_condition_text() -> String:
 		lines.append("ДОЛГ • ВРАГИ +25%")
 	if RunState.wizard_mark_danger_active:
 		lines.append("ПЕЧАТЬ • ВРАГИ +15%")
+	if RunState.get_oath_enemy_bonus() > 0.0:
+		lines.append("ЧЁРНАЯ КОЛОДА • УРОН ВРАГОВ +10%")
 	if sacrifice_order_unlocked:
 		lines.append("ЖЕРТВА ДОСТУПНА")
 	if defiance_order_unlocked:
@@ -1171,6 +1189,7 @@ func _on_fight_pressed() -> void:
 		if unit.alive:
 			unit.start_combat()
 	combat_live = true
+	_archive_enemy_roster()
 	if shepherd_whistle_controller != null:
 		shepherd_whistle_controller.start_whistle()
 	if last_rite_controller != null:
@@ -1542,6 +1561,7 @@ func _start_second_wave() -> void:
 		if unit.alive:
 			unit.start_combat()
 	combat_live = true
+	_archive_enemy_roster()
 	_show_wizard_line(encounter.wave_two_wizard_line, true)
 
 

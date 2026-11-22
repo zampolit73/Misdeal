@@ -206,6 +206,11 @@ func _refresh_hero() -> void:
 
 	hero_name.text = str(stats.get("unit_name", _get_role_label(current_role)))
 	specialization.text = _get_specialization(current_role)
+	specialization.tooltip_text = ""
+	if current_role == RunState.protagonist_role and not RunState.starting_style.is_empty():
+		var style: Array = RunState.CHARTER.STYLES[current_role]
+		specialization.text = style[1]
+		specialization.tooltip_text = style[2]
 	specialization.add_theme_color_override("font_color", _get_role_color(current_role))
 	stats_label.text = _build_stats_text(stats, current_role)
 	build_label.text = _build_upgrades_text(current_role)
