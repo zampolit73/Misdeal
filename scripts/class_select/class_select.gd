@@ -2,6 +2,9 @@ extends Control
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 const CARD_SKIN := preload("res://scripts/class_select/class_select_card_skin.gd")
+const CHARTER := preload("res://scripts/core/run_charter.gd")
+const ARCHIVE := preload("res://scripts/core/wizard_archive.gd")
+const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const HERO_ROLES: Array[String] = ["knight", "ranger", "mage"]
 const WIZARD_DEFAULT := "— Начнём с простого. Выбери ту версию себя, которой ещё доверяешь."
 const WIZARD_REACTIONS := {
@@ -39,6 +42,9 @@ var selected_role := ""
 var hovered_role := ""
 var choosing := false
 var card_buttons: Dictionary = {}
+var _style_picker: OptionButton
+var _oath_picker: OptionButton
+var _charter_description: Label
 
 
 func _ready() -> void:
@@ -65,6 +71,7 @@ func _ready() -> void:
 	confirm_button.pressed.connect(_confirm_choice)
 	CARD_SKIN.prepare_confirm(confirm_button)
 	confirm_button.disabled = true
+	_setup_charter()
 	_refresh_cards()
 	call_deferred("_animate_cards_in")
 
@@ -73,10 +80,77 @@ func _select_role(role: String) -> void:
 	if choosing or not card_buttons.has(role):
 		return
 	# A click only marks the card. It must NOT start a run.
-	selected_role = role
+	if selected_role != role:
+		selected_role = role
+		_refresh_style_picker()
 	wizard_line.text = WIZARD_REACTIONS.get(role, WIZARD_DEFAULT)
 	confirm_button.disabled = false
 	_refresh_cards()
+
+
+func _setup_charter() -> void:
+	var archive := ARCHIVE.instance()
+	var highest: int = archive.highest_oath()
+	if highest == 0:
+		return
+	_charter_description = Label.new()
+	_charter_description.position = Vector2(180, 184)
+	_charter_description.size = Vector2(920, 68)
+	_charter_description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_charter_description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_charter_description.add_theme_font_size_override("font_size", 15)
+	$Frame.add_child(_charter_description)
+	UI.apply_screen_copy(_charter_description, UI.PARCHMENT_WARM)
+	_style_picker = _charter_picker("StartingStyle", Vector2(130, 636))
+	_style_picker.item_selected.connect(func(index: int) -> void:
+		_style_picker.tooltip_text = _style_picker.get_popup().get_item_tooltip(index)
+		_refresh_charter_description())
+	_oath_picker = _charter_picker("WizardOath", Vector2(852, 636))
+	for rank in CHARTER.OATHS.size():
+		_oath_picker.add_item(CHARTER.OATHS[rank][0], rank)
+		_oath_picker.get_popup().set_item_tooltip(rank, CHARTER.OATHS[rank][1])
+		_oath_picker.set_item_disabled(rank, rank > highest)
+	_oath_picker.tooltip_text = CHARTER.OATHS[0][1]
+	_oath_picker.item_selected.connect(func(index: int) -> void:
+		_oath_picker.tooltip_text = CHARTER.OATHS[index][1]
+		_refresh_charter_description())
+	_refresh_style_picker()
+
+
+func _charter_picker(picker_name: String, location: Vector2) -> OptionButton:
+	var picker := OptionButton.new()
+	picker.name = picker_name
+	picker.position = location
+	picker.size = Vector2(298, 43)
+	$Frame.add_child(picker)
+	UI.apply_action_button(picker, UI.BRONZE)
+	return picker
+
+
+func _refresh_style_picker() -> void:
+	if _style_picker == null:
+		return
+	_style_picker.clear()
+	_style_picker.add_item("Классический стиль")
+	_style_picker.set_item_metadata(0, "")
+	_style_picker.tooltip_text = "Альтернативный стиль открывается после победы этого героя над XIII."
+	if not selected_role.is_empty():
+		var choice: Array = CHARTER.STYLES[selected_role]
+		_style_picker.add_item(choice[1])
+		_style_picker.set_item_metadata(1, choice[0])
+		_style_picker.get_popup().set_item_tooltip(1, choice[2])
+		_style_picker.set_item_disabled(1, not ARCHIVE.instance().style_unlocked(selected_role))
+	_style_picker.select(0)
+	_refresh_charter_description()
+
+
+func _refresh_charter_description() -> void:
+	var lines := PackedStringArray()
+	if _style_picker.selected > 0:
+		lines.append(String(CHARTER.STYLES[selected_role][2]))
+	if _oath_picker.get_selected_id() > 0:
+		lines.append(String(CHARTER.OATHS[_oath_picker.get_selected_id()][1]))
+	_charter_description.text = "\n".join(lines)
 
 
 func _on_card_hover(role: String, entered: bool) -> void:
@@ -120,6 +194,10 @@ func _animate_cards_in() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if _style_picker != null:
+		var focus := get_viewport().gui_get_focus_owner()
+		if focus in [_style_picker, _oath_picker] or _style_picker.get_popup().visible or _oath_picker.get_popup().visible:
+			return
 	if choosing or not (event is InputEventKey):
 		return
 	var key := event as InputEventKey
@@ -143,7 +221,9 @@ func _confirm_choice() -> void:
 	if choosing or selected_role.is_empty():
 		return
 	# RunState is updated ONLY after explicit confirmation.
-	if not RunState.choose_protagonist(selected_role):
+	var style := String(_style_picker.get_selected_metadata()) if _style_picker != null else ""
+	var oath := _oath_picker.get_selected_id() if _oath_picker != null else 0
+	if not RunState.choose_protagonist(selected_role, style, oath):
 		return
 	choosing = true
 	confirm_button.disabled = true

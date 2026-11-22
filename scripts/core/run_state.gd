@@ -6,6 +6,8 @@ const BOSS_CARD_ID := "bone_warden"
 const DOWNED_HP_FRACTION := 0.20
 const CAMP_STOPS := preload("res://scripts/core/run_camp_stops.gd")
 const RUN_SAVE := preload("res://scripts/core/run_save_service.gd")
+const CHARTER := preload("res://scripts/core/run_charter.gd")
+const ARCHIVE := preload("res://scripts/core/wizard_archive.gd")
 const DEFAULT_ENCOUNTER_PATH := "res://resources/encounters/graveyard_ambush.tres"
 const WIZARD_MEDDLING_PER_RUN := 2
 const WIZARD_WAGERS_PER_RUN := 2
@@ -247,6 +249,8 @@ var fate_spread_last_milestone_shown := 0
 var active_card_id: String = ""
 var artifact_ids: Array[String] = []
 var protagonist_role: String = ""
+var starting_style: String = ""
+var oath_rank: int = 0
 var party_roles: Array[String] = []
 var hero_current_hp: Dictionary = {}
 var camp_stop: Dictionary = {}
@@ -326,6 +330,8 @@ func reset_run() -> void:
 	active_card_id = ""
 	artifact_ids.clear()
 	protagonist_role = ""
+	starting_style = ""
+	oath_rank = 0
 	party_roles.clear()
 	hero_current_hp.clear()
 	camp_stop.clear()
@@ -391,12 +397,20 @@ func reset_run() -> void:
 	_schedule_wizard_wagers()
 	_schedule_wizard_marks()
 
-func choose_protagonist(role: String) -> bool:
+func choose_protagonist(role: String, style: String = "", oath: int = 0) -> bool:
 	if not HERO_ROLES.has(role):
 		push_warning("Unknown protagonist role: %s" % role)
 		return false
+	if oath < 0 or not CHARTER.is_style_for_role(style, role):
+		return false
+	if not style.is_empty() and not ARCHIVE.instance().style_unlocked(role):
+		return false
+	if oath > 0 and oath > ARCHIVE.instance().highest_oath():
+		return false
 
 	protagonist_role = role
+	starting_style = style
+	oath_rank = oath
 	party_roles.clear()
 	party_roles.append(role)
 	hero_current_hp.clear()
@@ -629,26 +643,29 @@ func get_bone_tax_gold_price() -> int:
 
 
 func get_last_camp_healer_price() -> int:
-	return 30 if has_castle_fact(CASTLE_FACT_MARCH) else 35
+	return get_merchant_price(30 if has_castle_fact(CASTLE_FACT_MARCH) else 35)
 
 
 func get_gravedigger_shop_price() -> int:
 	match get_event_outcome("lost_purse"):
 		"untouched", "safe":
-			return 30
+			return get_merchant_price(30)
 		"greedy", "all_in":
-			return 45
+			return get_merchant_price(45)
 		_:
-			return 35
+			return get_merchant_price(35)
+
+func get_merchant_price(base_price: int) -> int:
+	return ceili(base_price * CHARTER.GREED_MULTIPLIER) if CHARTER.oath_applies(oath_rank, 1) else base_price
 
 func get_wizard_tithe_gold_price() -> int:
+	var base_price := 30
 	match get_event_outcome("debtor_bones"):
 		"safe":
-			return 25
+			base_price = 25
 		"gamble", "break":
-			return 40
-		_:
-			return 30
+			base_price = 40
+	return ceili(base_price * CHARTER.GREED_MULTIPLIER) if CHARTER.oath_applies(oath_rank, 4) else base_price
 
 func has_blood_ledger_knowledge() -> bool:
 	var outcome: String = get_event_outcome("blood_ledger")
@@ -932,6 +949,12 @@ func get_effective_hero_stats(role: String) -> Dictionary:
 	move_speed *= get_party_move_speed_multiplier()
 	if role == protagonist_role:
 		hp -= get_total_protagonist_hp_penalty()
+		match starting_style:
+			"blood_oath": move_speed *= 0.92
+			"shadow_hunter": attack_range -= 10.0
+			"ash_seer":
+				splash_radius += 18.0
+				damage *= 0.92
 	hp = maxf(20.0, hp)
 	damage = maxf(1.0, damage)
 
@@ -1775,7 +1798,10 @@ func get_last_deal_price_text() -> String:
 		if artifact != null:
 			return "ЦЕНА: %s\nВолшебник заберёт реликвию навсегда." % artifact.title
 		return "ЦЕНА: ОДНА РЕЛИКВИЯ"
-	return "ЦЕНА: КЛЕЙМО СДЕЛКИ\n-15 макс. HP протагониста до конца забега."
+	return "ЦЕНА: КЛЕЙМО СДЕЛКИ\n-%d макс. HP протагониста до конца забега." % int(get_last_deal_hp_cost())
+
+func get_last_deal_hp_cost() -> float:
+	return CHARTER.DEBT_HP_COST if CHARTER.oath_applies(oath_rank, 4) else 15.0
 
 func accept_last_deal() -> bool:
 	if not last_deal_pending or last_deal_used:
@@ -1790,8 +1816,9 @@ func accept_last_deal() -> bool:
 			return false
 		last_deal_payment_text = "Отдана реликвия: %s" % artifact_title
 	else:
-		last_deal_hp_penalty += 15.0
-		last_deal_payment_text = "Клеймо сделки: -15 макс. HP"
+		var payment := get_last_deal_hp_cost()
+		last_deal_hp_penalty += payment
+		last_deal_payment_text = "Клеймо сделки: -%d макс. HP" % int(payment)
 	
 	last_deal_used = true
 	last_deal_pending = false
@@ -1830,7 +1857,13 @@ func get_enemy_damage_multiplier() -> float:
 		danger_multiplier += 0.25
 	if wizard_mark_danger_active:
 		danger_multiplier += WIZARD_MARK_ENEMY_DAMAGE_BONUS
-	return get_enemy_base_damage_multiplier() * danger_multiplier
+	return get_enemy_base_damage_multiplier() * danger_multiplier * (1.0 + get_oath_enemy_bonus())
+
+func get_oath_enemy_bonus() -> float:
+	var encounter_id := selected_encounter_path.get_file().get_basename()
+	if CHARTER.oath_applies(oath_rank, 3) and encounter_id in CHARTER.BLACK_DECK:
+		return CHARTER.BLACK_DECK_BONUS
+	return 0.0
 
 func get_wizard_mark_gold_reward() -> int:
 	# Same explicit +15% enemy damage risk, with a better later-act payout.
@@ -1881,6 +1914,8 @@ func get_reward_multiplier() -> int:
 
 func get_run_condition_text() -> String:
 	var conditions: Array[String] = []
+	if oath_rank > 0:
+		conditions.append(CHARTER.OATHS[oath_rank][0])
 	if wizard_debt_active:
 		conditions.append("ДОЛГ ВОЛШЕБНИКУ")
 	if wizard_mark_danger_active:

@@ -1,6 +1,8 @@
 extends RefCounted
 const FIELDS := [
   "hero_current_hp",
+  "starting_style",
+  "oath_rank",
   "camp_stop",
   "pending_wager_artifact_id",
   "gold",

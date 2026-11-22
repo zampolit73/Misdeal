@@ -1,3 +1,7 @@
+## Gameplay 2.0 · Archive and Wizard oaths
+
+The archive uses an independent profile. Preserve it in either New Game mode and retain the stained-glass reset contract. Class-specific XIII victories open corresponding styles. Oaths unlock sequentially and remain fixed for an entire run. [Rules and migration](GAMEPLAY_2_0.md#package-c--wizard-archive-and-new-runs)
+
 ## Gameplay 2.0 · Relic builds
 
 Use the existing artifact IDs and resource catalog for acquisitions and saves. BattleUnits activate conditional effects from equipped relics, using real strikes, kills and wave events. Surface their rules in the squad dossier and measure stat changes against shared effective stats. [Catalog](GAMEPLAY_2_0.md#package-b--builds--rewards)

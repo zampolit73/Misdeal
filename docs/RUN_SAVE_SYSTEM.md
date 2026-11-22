@@ -1,4 +1,6 @@
-# Run save system — schema1
+# Run save system
+
+Gameplay 2.0 uses schema 3. The legacy schema 1 field audit below remains a migration reference. Schema 2 added hero HP, pending stops and paid Last Deal checkpoints. Schema 3 stores the starting style and oath. Both legacy versions are read and migrated before validation. The Wizard Archive has a separate profile and survives either New Game choice. [Gameplay 2.0 checkpoints and QA](GAMEPLAY_2_0.md)
 
 ## New Game means a clean collection — user correction
 

@@ -1,3 +1,7 @@
+## Gameplay 2.0 · Package C
+
+Add the Wizard Archive, persistent collections, run history and challenges. XIII victories unlock three alternative starting styles and five sequential Wizard oaths. Continue supports both previous save schemas. [Rules and QA](docs/GAMEPLAY_2_0.md#package-c--wizard-archive-and-new-runs)
+
 ## Gameplay 2.0 · Package B
 
 Add nine relics and tactical builds based on wounds, Defense, magical splash and Wizard objectives. Show live stat deltas after decisions, rewards and purchases, and expose wounds and equipped effects in the dossier. [Catalog and QA](docs/GAMEPLAY_2_0.md#package-b--builds--rewards)

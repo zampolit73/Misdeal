@@ -2,7 +2,8 @@
 
 - A · Wounds, rest stops and one reliable merchant checkpoint. [Rules and QA](GAMEPLAY_2_0.md)
 - B · 13 relics, build synergies and live stat changes in rewards, the merchant and events.
-- C · Separate Wizard Archive, alternate styles and difficulty oaths.
+- C · Wizard Archive, three unlockable starting styles and five difficulty oaths.
+- Next · Human campaign runs across party sizes and builds, with focused Last Bell and XIII comparisons.
 
 ## D420 V2
 

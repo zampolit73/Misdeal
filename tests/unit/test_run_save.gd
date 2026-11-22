@@ -110,6 +110,8 @@ func test_schema_one_initializes_health_without_revisiting_old_stops() -> void:
 	legacy.version = 1
 	legacy.state.erase("hero_current_hp")
 	legacy.state.erase("camp_stop")
+	legacy.state.erase("starting_style")
+	legacy.state.erase("oath_rank")
 	RunState.change_hero_hp("knight", -39.0)
 	assert_true(service.apply_slot(RunState, legacy))
 	assert_almost_eq(RunState.get_hero_current_hp("knight"), RunState.get_hero_max_hp("knight"), 0.01)

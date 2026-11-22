@@ -2,6 +2,7 @@ extends Control
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const ARCHIVE := preload("res://scripts/core/wizard_archive.gd")
 
 @onready var approved_splash: TextureRect = $ApprovedSplash
 @onready var status_label: Label = $Status
@@ -36,7 +37,7 @@ func _on_start_button_pressed() -> void:
 		var dialog := ConfirmationDialog.new()
 		dialog.title = "Новая игра"
 		dialog.cancel_button_text = "Отмена"
-		dialog.dialog_text = "Начать новую игру с нуля?\nПрохождение и Витраж Памяти начнутся с 0/24.\nПрежние данные сохранятся в резервной копии."
+		dialog.dialog_text = "Начать новую игру с нуля?\nПрохождение и Витраж Памяти начнутся с 0/24.\nАрхив Волшебника сохраняется при любом выборе.\nПрежнее прохождение и Витраж останутся в резервной копии."
 		add_child(dialog)
 		dialog.ok_button_text = "Начать с нуля"
 		dialog.add_button("Новый забег — сохранить витраж",true,"next_run")
@@ -64,8 +65,19 @@ func _setup_save_menu() -> void:
 	start_button.position=Vector2(460,500)
 	start_button.size=Vector2(360,48)
 	MISDEAL_UI_KIT.apply_action_button(start_button,MISDEAL_UI_KIT.BRONZE,true)
+	var archive := Button.new()
+	archive.name = "WizardArchiveButton"
+	archive.text = "АРХИВ ВОЛШЕБНИКА"
+	archive.position = Vector2(850, 554)
+	archive.size = Vector2(288, 48)
+	add_child(archive)
+	MISDEAL_UI_KIT.apply_action_button(archive, MISDEAL_UI_KIT.BRONZE, false)
+	archive.pressed.connect(func() -> void:
+		SCENE_ROUTER.change_to(self, "res://scenes/archive/wizard_archive.tscn"))
 	var service := preload("res://scripts/core/run_save_service.gd").instance()
 	var data: Dictionary=service.read_slot(RunState)
+	if not data.is_empty() and data.finished:
+		ARCHIVE.instance().observe_checkpoint(data.state, data.memory_run, data.saved_at)
 	var resume:=Button.new()
 	resume.name="ContinueButton"
 	resume.text="ПРОДОЛЖИТЬ"

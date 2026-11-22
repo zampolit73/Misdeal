@@ -152,6 +152,7 @@ var combat_started := false
 var alive := true
 var relic_effects: Dictionary = {}
 var can_receive_relic_cover := false
+var starting_style := ""
 var _relic_guard_used := false
 var _relic_spell_used := false
 var _relic_kill_used := false
@@ -1427,11 +1428,15 @@ func _get_relic_strike_damage(victim: BattleUnit) -> float:
 	if fletching != null and tactical_order == TACTICAL_ORDER_HUNT:
 		if victim.support_heal_interval > 0.0 or victim.visual_role in COMBAT_SOUND.RANGED_ROLES:
 			result *= fletching.effect_value
+	if starting_style == "shadow_hunter" and tactical_order == TACTICAL_ORDER_HUNT and victim.hp <= victim.max_hp * 0.50:
+		result *= 1.12
 	return result
 
 
 func _apply_relic_guard(amount: float) -> float:
 	var result := amount
+	if starting_style == "blood_oath" and tactical_order == TACTICAL_ORDER_FORMATION and hp <= max_hp * 0.50:
+		result *= 0.88
 	var knot := relic_effects.get("wounded_guard") as ArtifactData
 	if knot != null and not _relic_guard_used and hp <= max_hp * knot.effect_threshold:
 		result *= knot.effect_value

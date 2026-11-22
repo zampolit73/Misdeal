@@ -10,6 +10,7 @@ const SHOP_HEAL := 0.35
 const RELIC_PRICE := 50
 const UPGRADE_PRICE := 45
 const HEAL_PRICE := 25
+const CHARTER := preload("res://scripts/core/run_charter.gd")
 
 
 static func open(state: Node, slot: int) -> Dictionary:
@@ -74,13 +75,18 @@ static func is_valid(stop: Dictionary, values: Dictionary, state: Node) -> bool:
 
 
 static func price(state: Node, item: String) -> int:
+	var base_price := 0
 	match item.get_slice("/", 0):
 		"relic":
 			var artifact: ArtifactData = state.get_artifact(item.get_slice("/", 1))
-			return artifact.merchant_price if artifact != null and artifact.merchant_price > 0 else RELIC_PRICE
-		"upgrade": return UPGRADE_PRICE
-		"heal": return HEAL_PRICE
-	return 0
+			base_price = artifact.merchant_price if artifact != null and artifact.merchant_price > 0 else RELIC_PRICE
+		"upgrade": base_price = UPGRADE_PRICE
+		"heal": base_price = HEAL_PRICE
+	return state.get_merchant_price(base_price)
+
+
+static func rest_fraction(state: Node) -> float:
+	return CHARTER.SCARS_REST if CHARTER.oath_applies(state.oath_rank, 2) else REST_HEAL
 
 
 static func has_wounds(state: Node) -> bool:
@@ -126,7 +132,7 @@ static func apply(state: Node, action: String) -> bool:
 	var id := action.get_slice("/", 1)
 	match action.get_slice("/", 0):
 		"rest", "heal":
-			var fraction := SHOP_HEAL if is_shop else REST_HEAL
+			var fraction := SHOP_HEAL if is_shop else rest_fraction(state)
 			for role in state.party_roles:
 				state.change_hero_hp(role, state.get_hero_max_hp(role) * fraction)
 		"upgrade":
