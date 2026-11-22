@@ -151,6 +151,7 @@ var hp: float
 var combat_started := false
 var alive := true
 var relic_effects: Dictionary = {}
+var can_receive_relic_cover := false
 var _relic_guard_used := false
 var _relic_spell_used := false
 var _relic_kill_used := false
@@ -1435,7 +1436,7 @@ func _apply_relic_guard(amount: float) -> float:
 	if knot != null and not _relic_guard_used and hp <= max_hp * knot.effect_threshold:
 		result *= knot.effect_value
 		_relic_guard_used = true
-	if not RunState.has_artifact("shieldbond"):
+	if not can_receive_relic_cover:
 		return result
 	for node in get_tree().get_nodes_in_group("combat_units"):
 		var ally := node as BattleUnit

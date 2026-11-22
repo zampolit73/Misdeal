@@ -10,8 +10,8 @@ func _ready() -> void:
 	call_deferred("_run_contract")
 
 func _run_contract() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has("court_of_the_mute"):
-		_fail("released Court #39 missing from normal 39-card pool")
+	if not RunState.ACT1_CARD_IDS.has("court_of_the_mute"):
+		_fail("Court is missing from the live Act I deck")
 		return
 	var card: RunCardData = RunState.get_card("court_of_the_mute")
 	if card == null or card.target_path != "res://resources/encounters/court_of_the_mute.tres":

@@ -612,6 +612,7 @@ func _spawn_unit(
 		unit.splash_damage_multiplier = stats.splash_damage
 		unit.move_speed = stats.move_speed
 		unit.relic_effects = RunState.get_relic_effects(unit.visual_role)
+		unit.can_receive_relic_cover = RunState.has_artifact("shieldbond")
 	elif team == 1:
 		unit.max_hp *= RunState.get_enemy_hp_multiplier()
 		unit.damage *= RunState.get_enemy_damage_multiplier()

@@ -15,6 +15,7 @@ func _unit(role: String, team: int, point: Vector2) -> BattleUnit:
 	actor.configure(load("res://resources/units/%s.tres" % role), team, point)
 	if team == 0:
 		actor.relic_effects = RunState.get_relic_effects(role)
+		actor.can_receive_relic_cover = RunState.has_artifact("shieldbond")
 	add_child_autofree(actor)
 	actor.start_combat()
 	return actor
@@ -99,3 +100,16 @@ func test_scar_seal_offered_only_when_its_bonus_applies() -> void:
 	var after := BUILD.capture(RunState)
 	assert_almost_eq(after.knight.damage, before.knight.damage * 1.16, 0.01)
 	assert_string_contains(BUILD.changes(before, after), "урон")
+
+
+func test_ranger_fletching_only_amplifies_hunt_against_support_or_archers() -> void:
+	RunState.recruit_companion("ranger", "QA")
+	RunState.add_artifact("hollow_fletching")
+	var ranger := _unit("ranger", 0, Vector2(300, 325))
+	var healer := _unit("grave_bellkeeper", 1, Vector2(420, 325))
+	var guard := _unit("crypt_guard", 1, Vector2(450, 325))
+	ranger.set_tactical_order("hunt")
+	assert_almost_eq(ranger._get_relic_strike_damage(healer), ranger.damage * 1.17, 0.01)
+	assert_almost_eq(ranger._get_relic_strike_damage(guard), ranger.damage, 0.01)
+	ranger.set_tactical_order("assault")
+	assert_almost_eq(ranger._get_relic_strike_damage(healer), ranger.damage, 0.01)

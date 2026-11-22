@@ -46,6 +46,8 @@ func _verify() -> void:
 	var inspect := LORE_SCENE.instantiate() as Control
 	root.add_child(inspect)
 	inspect.call("present", "ЛУННАЯ ПЕЧАТЬ", "СОБЫТИЕ", lore, null, "")
+	# Verify the settled DS3 position after the production entrance tween.
+	await create_timer(0.30).timeout
 	var body := inspect.get_node_or_null("Frame/FullDescription") as RichTextLabel
 	valid = valid and body != null and body.text == lore
 	valid = valid and inspect.get_node_or_null("Frame/CloseButton") != null
