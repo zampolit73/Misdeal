@@ -1,3 +1,7 @@
+## Gameplay 2.0 Core — wounds and between-Fate stops (2026-11-22)
+
+Initial gameplay package: party members carry actual HP from victorious battles to subsequent battles; slain allies in a victorious fight return at 20% max HP. Tier IV and VIII feature camps with a heal-or-upgrade decision, and after VIII there is a limited merchant inventory (relic, one extra upgrade, 30% party heal; each item purchasable once). These stops do not consume Fate I–XII or XIII. Current HP, shop purchases and completed stops are stored in the run save; legacy 67-field schema-1 saves remain loadable. [Contract and QA notes](GAMEPLAY_20_CORE.md). This is new gameplay requiring unscripted F5 testing and balancing; old v25 party-size diagnostics are not a current win-rate claim.
+
 ## Combat Audio V2
 
 Act I battles use processed CC0 foley and quiet location beds from combat start through the result fade. The approved footsteps and the UI and Travel palette keep their original cues. [Sources](audio/THIRD_PARTY_AUDIO_LICENSES.md#combat-audio-v2)

@@ -1,3 +1,7 @@
+## Gameplay 2.0 Core — test next (2026-11-22)
+
+Start F5 via New Game, play 4 Fate resolutions: after IV, a camp overlay should offer Heal 40% or Training. After VIII, the second camp is followed by a merchant where a relic, upgrade and 30% group heal may be purchased separately with gold. Neither stop advances the Fate counter. Fight with wounded heroes; their HP should be carried to the next fight and appear in the stop readout. A downed hero in an otherwise victorious encounter should start next battle at 20% HP. Last Deal retries should not multiply or erase pre-battle wounds. Test save/Continue at a stop and after buying a shop item, especially using a previous 67-field schema-1 save. Run a realistic Knight, Ranger and Mage full F5 attempt and note boss access/economy/survivability. Native Godot output and exact SHA must be recorded before claiming QA PASS. [Core contract](GAMEPLAY_20_CORE.md).
+
 ## Combat Audio V2
 
 In QA Hub compare the open graveyard, a crypt and an enclosed arena. The Warden has separate cues for combat start, attacks, phase two and defeat. [Sources](audio/THIRD_PARTY_AUDIO_LICENSES.md#combat-audio-v2)

@@ -1,3 +1,7 @@
+## Gameplay 2.0 — experimental Core rules (2026-11-22)
+
+Player opted to start work on the agreed first package. Preserve the 12 Fate resolutions + XIII, 22 current encounters, three protagonists, approved Travel art, existing Compact Combat Planning V4 and the Wizard tabletop. Ordinary victory records per-hero current HP for next battle; defeated heroes during a victory recover at 20% of their *current* max HP; an overall defeat does not update persistent injuries so Last Deal retries use the pre-battle snapshot. Health changes from new max HP increase only by the added capacity, rather than filling to full. New heroes enter fully healthy. Camps after Fate IV/VIII are non-Fate choices (40% max-HP heal or one existing extra upgrade); after VIII a one-time shop offers at most one artifact, one existing extra upgrade and one 30% heal, paid in gold; players may buy multiple different items. Each purchase persists atomically at the Table save checkpoint. Legacy saves without the four new fields get default healthy HP and their future unopened milestones remain eligible. The balance and UX of the new rules are intentionally provisional until actual F5 playtests. [Implementation notes](GAMEPLAY_20_CORE.md).
+
 ## Combat Audio V2 — wind and stone
 
 Act I battles use a low bed for the duration of the fight, with quiet fades on entry and result. The same six-voice Combat pool handles the new material. Keep the approved footstep sample, gain, cooldown and pitch range. [Source register](audio/THIRD_PARTY_AUDIO_LICENSES.md#combat-audio-v2)

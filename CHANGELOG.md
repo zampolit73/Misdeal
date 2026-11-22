@@ -1,3 +1,7 @@
+## Gameplay 2.0 Core — carry-over wounds, camps and merchant
+
+Record each surviving hero's HP after victory; fallen heroes in a victorious party recover at 20% for the next fight. Add healing/training stops after Fate IV and VIII and a purchasable relic/extra upgrade/limited healing merchant after VIII. Non-Fate stops never replace deck cards, and all decisions use the existing run save with validated backward compatibility for old schema-1 saves. Preserve Combat Planning, Last Deal and approved event art. [Game rules and QA](docs/GAMEPLAY_20_CORE.md)
+
 ## Combat Audio hotfix — archery and skeletal run
 
 Alternate four stone steps by actual skeletal movement. Use two real longbow releases and a separate recorded arrow impact. [CC0 sources](docs/audio/THIRD_PARTY_AUDIO_LICENSES.md#archery-and-skeletal-run-hotfix)

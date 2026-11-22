@@ -1,4 +1,4 @@
-# Run save system — schema1
+# Run save system — schema1 (67 legacy fields, 71 current)
 
 ## New Game means a clean collection — user correction
 
@@ -11,11 +11,12 @@ Single automatic run slot: `user://current_run.json`, validated previous generat
 
 ## State audit
 
-All67 authored RunState variables are explicitly listed below; GUT compares the list to Godot script properties so a future field cannot silently be omitted.66 pre-existing fields plus `pending_wager_artifact_id`, replacing the formerly scene-local random relic reroll. No Node, Texture, Callable or Resource is serialized. Typed primitive Godot variants preserve Array[String]/Array[int], dictionaries and numeric types inside a versioned JSON envelope with SHA256. Decoder disallows objects; validation completes before any state mutation.
+All71 current authored RunState variables are explicitly listed below; GUT compares the list to Godot script properties so a future field cannot silently be omitted.66 pre-existing fields plus `pending_wager_artifact_id` (historical 67-field baseline), and four Gameplay 2.0 Core fields, replacing the formerly scene-local random relic reroll. No Node, Texture, Callable or Resource is serialized. Typed primitive Godot variants preserve Array[String]/Array[int], dictionaries and numeric types inside a versioned JSON envelope with SHA256. Decoder disallows objects; validation completes before any state mutation.
 
 extends RefCounted
 const FIELDS := [
   "pending_wager_artifact_id",
+  "hero_health_by_role", "camp_last_completed", "shop_last_completed", "shop_purchases",
   "gold",
   "deals_survived",
   "cards_resolved",

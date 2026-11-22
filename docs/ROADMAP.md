@@ -1,3 +1,10 @@
+## Gameplay 2.0 — implementation stages (2026-11-22)
+
+- [x] Begin Core implementation: persistent hero injuries, two non-Fate camps, one guaranteed merchant after VIII, save compatibility and focused regression coverage. [Contract](GAMEPLAY_20_CORE.md)
+- [ ] Verify Core in real F5 Knight/Ranger/Mage runs, solo/duo/trio and Last Deal; rebalance healing/stop prices only from observed evidence.
+- [ ] Expand relic pool from 4 to a small authored set of 12–16 meaningful synergies; display truthful result deltas and current/max HP in dossier.
+- [ ] Design separate meta-progression: relic discovery, bestiary/run history, optional post-victory starting styles and Wizard Oaths, without replacing the 24-fragment Memory Glass.
+
 ## D420 V2
 
 - [x] Rebase the enemy art candidate against the current battle runtime and deliver the 24-role comparison.
