@@ -629,6 +629,11 @@ func _spawn_unit(
 	if unit.is_boss:
 		unit.boss_enraged.connect(_on_boss_enraged)
 	units_layer.add_child(unit)
+	# BattleUnit._ready initializes full HP; then apply persistent wounds only
+	# to the actual party, never enemies or Ranger-bound Jack.
+	if team == 0 and unit.visual_role != "jack":
+		unit.hp = clampf(RunState.get_hero_current_hp(unit.visual_role), 1.0, unit.max_hp)
+		unit.health_bar.value = unit.hp
 	units.append(unit)
 
 	if combat_started and combat_live:
@@ -1633,6 +1638,13 @@ func _finish_battle(player_won: bool) -> void:
 	if target_preview != null:
 		target_preview.set_active(false)
 	RunState.last_battle_won = player_won
+	# Commit injuries on victory only. A defeated battle remains retryable via
+	# Last Deal with exactly the pre-battle HP, not a free heal or extra injury.
+	if player_won:
+		for unit in units:
+			if unit.team == 0 and unit.visual_role != "jack":
+				var remaining: float = unit.hp if unit.alive else unit.max_hp * 0.20
+				RunState.store_hero_current_hp(unit.visual_role, remaining, unit.max_hp)
 
 	for unit in units:
 		unit.combat_started = false

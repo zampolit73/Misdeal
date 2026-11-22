@@ -1,5 +1,6 @@
 extends RefCounted
 const FIELDS := preload("res://scripts/core/run_save_fields.gd").FIELDS
+const LEGACY_CORE_FIELDS := ["hero_health_by_role", "camp_last_completed", "shop_last_completed", "shop_purchases"]
 const MEMORY := preload("res://scripts/memory/memory_profile.gd")
 const TABLE := "res://scenes/table/table.tscn"
 const REWARD := "res://scenes/reward/reward.tscn"
@@ -31,14 +32,32 @@ func validate(data: Variant, state: Node) -> bool:
 	if not data.get("finished") is bool or not data.get("saved_at") is String or not data.get("memory_run") is String or data.get("phase") not in ["","major_upgrade","bonus_upgrade","normal_loot","death_wager","elite_artifact"]:
 		return false
 	var values: Dictionary = data.state
-	if values.size() != FIELDS.size():
+	# Existing schema-1 saves have exactly four fewer fields. Accept only that
+	# known historical shape; never loosen validation of unknown/corrupt state.
+	var legacy: bool = values.size() == FIELDS.size() - LEGACY_CORE_FIELDS.size()
+	if not legacy and values.size() != FIELDS.size():
 		return false
 	for key in FIELDS:
-		if not values.has(key) or typeof(values[key]) != typeof(state.get(key)) or not _plain(values[key]):
+		if not values.has(key):
+			if legacy and LEGACY_CORE_FIELDS.has(key): continue
+			return false
+		if typeof(values[key]) != typeof(state.get(key)) or not _plain(values[key]):
 			return false
 		if values[key] is Array:
 			if values[key].get_typed_builtin() != state.get(key).get_typed_builtin():
 				return false
+	if values.has("hero_health_by_role"):
+		for role in values.hero_health_by_role:
+			if role not in state.HERO_ROLES or not values.hero_health_by_role[role] is Dictionary: return false
+			var hp_entry: Dictionary = values.hero_health_by_role[role]
+			if hp_entry.size() != 2 or not hp_entry.has("current") or not hp_entry.has("max"): return false
+			if not hp_entry.current is float or not hp_entry.max is float: return false
+			if not is_finite(hp_entry.current) or not is_finite(hp_entry.max) or hp_entry.max <= 0.0 or hp_entry.current < 1.0 or hp_entry.current > hp_entry.max: return false
+	if values.has("camp_last_completed") and values.camp_last_completed not in [0, 4, 8]: return false
+	if values.has("shop_last_completed") and values.shop_last_completed not in [0, 8]: return false
+	if values.has("shop_purchases"):
+		for kind in values.shop_purchases:
+			if kind not in ["artifact", "upgrade", "heal"] or values.shop_purchases[kind] != true: return false
 	if values.protagonist_role not in state.HERO_ROLES or not values.party_roles.has(values.protagonist_role) or values.party_roles.size() > 3 or values.cards_resolved < 0 or values.cards_resolved > 12 or values.gold < 0:
 		return false
 	for key in ["party_roles","rescue_scar_roles"]:
@@ -138,6 +157,9 @@ func write_slot(state: Node, scene: String = TABLE, phase: String = "") -> bool:
 func apply_slot(state: Node, data: Dictionary) -> bool:
 	if not validate(data,state) or data.finished: return false
 	for key in FIELDS:
+		if not data.state.has(key):
+			state.set(key, {} if key in ["hero_health_by_role", "shop_purchases"] else 0)
+			continue
 		state.set(key,data.state[key].duplicate(true) if data.state[key] is Array or data.state[key] is Dictionary else data.state[key])
 	# Encounter-local tactic drafts must never leak from a previously open run.
 	# This metadata is intentionally excluded from the existing save schema.
