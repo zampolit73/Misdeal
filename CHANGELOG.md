@@ -1,3 +1,7 @@
+## Gameplay 2.0 · Package A
+
+Carry battle wounds between cards and show current/max HP in the squad dossier. Choose rest, training or a dark rite after IV and XII. Buy eligible supplies after VIII. Keep wounds and costs across Continue and the Last Deal. [Rules and QA](docs/GAMEPLAY_2_0.md)
+
 ## Combat Audio hotfix — archery and skeletal run
 
 Alternate four stone steps by actual skeletal movement. Use two real longbow releases and a separate recorded arrow impact. [CC0 sources](docs/audio/THIRD_PARTY_AUDIO_LICENSES.md#archery-and-skeletal-run-hotfix)

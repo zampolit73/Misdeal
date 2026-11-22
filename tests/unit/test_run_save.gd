@@ -103,6 +103,37 @@ func test_reward_checkpoint_and_failed_battle_return() -> void:
 	assert_eq(RunState.pending_wager_artifact_id,"dead_mans_shield")
 	assert_eq(service.resume_phase,"death_wager")
 
+func test_schema_one_initializes_health_without_revisiting_old_stops() -> void:
+	RunState.cards_resolved = 8
+	RunState.gold = 82
+	var legacy: Dictionary = service.snapshot(RunState)
+	legacy.version = 1
+	legacy.state.erase("hero_current_hp")
+	legacy.state.erase("camp_stop")
+	RunState.change_hero_hp("knight", -39.0)
+	assert_true(service.apply_slot(RunState, legacy))
+	assert_almost_eq(RunState.get_hero_current_hp("knight"), RunState.get_hero_max_hp("knight"), 0.01)
+	assert_eq(RunState.gold, 82)
+	assert_eq(RunState.cards_resolved, 8)
+	assert_true(RunState.camp_stop.is_empty())
+
+func test_last_deal_checkpoint_retains_entry_health_and_paid_cost() -> void:
+	service.path = "res://.tmp/run_save_deal.json"
+	RunState.change_hero_hp("knight", -42.0)
+	var entry := RunState.get_hero_current_hp("knight")
+	RunState.active_card_id = "bone_patrol"
+	RunState.select_encounter(RunState.get_card("bone_patrol").target_path)
+	assert_true(RunState.begin_last_deal())
+	assert_true(RunState.accept_last_deal())
+	var saved: Dictionary = service.read_slot(RunState)
+	assert_eq(saved.scene, SAVE.BATTLE)
+	RunState.reset_run()
+	assert_true(service.apply_slot(RunState, saved))
+	assert_true(RunState.last_deal_used)
+	assert_almost_eq(RunState.last_deal_hp_penalty, 15.0, 0.01)
+	assert_almost_eq(RunState.get_hero_current_hp("knight"), entry, 0.01)
+	assert_false(RunState.begin_last_deal())
+
 func test_cancel_new_game_confirmation_changes_nothing() -> void:
 	service.path="res://.tmp/run_save_cancel.json"
 	if FileAccess.file_exists(service.path): DirAccess.remove_absolute(service.path)

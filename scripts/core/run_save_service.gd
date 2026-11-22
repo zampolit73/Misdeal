@@ -1,8 +1,11 @@
 extends RefCounted
 const FIELDS := preload("res://scripts/core/run_save_fields.gd").FIELDS
 const MEMORY := preload("res://scripts/memory/memory_profile.gd")
+const CAMP_STOPS := preload("res://scripts/core/run_camp_stops.gd")
 const TABLE := "res://scenes/table/table.tscn"
 const REWARD := "res://scenes/reward/reward.tscn"
+const BATTLE := "res://scenes/battle/battle.tscn"
+const SCHEMA := 2
 static var shared: RefCounted
 var path := ""
 var error_message := ""
@@ -21,12 +24,24 @@ func snapshot(state: Node, scene: String = TABLE, phase: String = "") -> Diction
 	var values := {}
 	for key in FIELDS:
 		values[key] = state.get(key)
-	return {"version":1,"state":values.duplicate(true),"scene":scene,"phase":phase,
+	return {"version":SCHEMA,"state":values.duplicate(true),"scene":scene,"phase":phase,
 		"finished":state.is_run_complete(),"saved_at":Time.get_datetime_string_from_system(),
 		"memory_run":MEMORY.instance().run_uid}
 
+func _migrate(data: Variant) -> Variant:
+	if data is Dictionary and data.get("version") == 1 and data.get("state") is Dictionary:
+		if data.get("scene") not in [TABLE, REWARD] or data.state.has("hero_current_hp") or data.state.has("camp_stop"):
+			return null
+		data = data.duplicate(true)
+		data.version = SCHEMA
+		data.state.hero_current_hp = {}
+		data.state.camp_stop = {}
+	return data
+
+
 func validate(data: Variant, state: Node) -> bool:
-	if not data is Dictionary or data.get("version") != 1 or data.get("scene") not in [TABLE,REWARD] or not data.get("state") is Dictionary:
+	data = _migrate(data)
+	if not data is Dictionary or data.get("version") != SCHEMA or data.get("scene") not in [TABLE,REWARD,BATTLE] or not data.get("state") is Dictionary:
 		return false
 	if not data.get("finished") is bool or not data.get("saved_at") is String or not data.get("memory_run") is String or data.get("phase") not in ["","major_upgrade","bonus_upgrade","normal_loot","death_wager","elite_artifact"]:
 		return false
@@ -65,7 +80,15 @@ func validate(data: Variant, state: Node) -> bool:
 		if not state.CARD_PATHS.has(key) or not values.combat_formation_by_card[key] is int: return false
 	for key in values.hero_fates:
 		if key not in state.HERO_ROLES or values.hero_fates[key] not in [state.FATE_UNKNOWN,state.FATE_PROTAGONIST,state.FATE_JOINED,state.FATE_LOST]: return false
+	for role in values.hero_current_hp:
+		var hp: Variant = values.hero_current_hp[role]
+		if role not in values.party_roles or not hp is float or not is_finite(hp) or hp <= 0.0: return false
+	if not CAMP_STOPS.is_valid(values.camp_stop, values, state): return false
 	if data.scene == REWARD and (values.active_card_id.is_empty() or not values.last_battle_won): return false
+	if data.scene == BATTLE:
+		if values.active_card_id.is_empty() or values.last_battle_won or not (values.last_deal_pending or values.last_deal_used): return false
+		var card: RunCardData = state.get_card(values.active_card_id)
+		if card == null or card.resolution_type != "combat" or card.target_path != values.selected_encounter_path: return false
 	if data.finished != (values.boss_defeated or values.run_failed): return false
 	if data.scene == TABLE and not data.finished and not values.active_card_id.is_empty(): return false
 	return true
@@ -100,7 +123,7 @@ func read_slot(state: Node, filename: String = "") -> Dictionary:
 	if payload.sha256_text() != envelope.sha256:
 		error_message = "Контрольная сумма сохранения не совпадает."
 		return {}
-	var data: Variant = bytes_to_var(Marshalls.base64_to_raw(payload))
+	var data: Variant = _migrate(bytes_to_var(Marshalls.base64_to_raw(payload)))
 	if not validate(data,state):
 		error_message = "Сохранение несовместимо или содержит неверные данные."
 		return {}
@@ -137,8 +160,8 @@ func write_slot(state: Node, scene: String = TABLE, phase: String = "") -> bool:
 
 func apply_slot(state: Node, data: Dictionary) -> bool:
 	if not validate(data,state) or data.finished: return false
-	for key in FIELDS:
-		state.set(key,data.state[key].duplicate(true) if data.state[key] is Array or data.state[key] is Dictionary else data.state[key])
+	restore_values(state, _migrate(data).state)
+	state.clamp_party_health()
 	# Encounter-local tactic drafts must never leak from a previously open run.
 	# This metadata is intentionally excluded from the existing save schema.
 	state.set_meta("battle_plan_drafts", {})
@@ -146,6 +169,12 @@ func apply_slot(state: Node, data: Dictionary) -> bool:
 	resume_phase = data.phase
 	loading = true
 	return true
+
+
+func restore_values(state: Node, values: Dictionary) -> void:
+	for key in FIELDS:
+		var value: Variant = values[key]
+		state.set(key, value.duplicate(true) if value is Array or value is Dictionary else value)
 
 
 # Called only after the main-menu reset confirmation.

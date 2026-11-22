@@ -1,4 +1,6 @@
 extends Control
+
+const RUN_SAVE := preload("res://scripts/core/run_save_service.gd")
 signal combat_beginning
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
@@ -212,6 +214,8 @@ func _ready() -> void:
 		combat_plan_controller = CAMPAIGN_PLANNING.new()
 		add_child(combat_plan_controller)
 		combat_plan_controller.configure(self)
+	if RunState.last_deal_pending:
+		_finish_battle(false)
 
 func _setup_target_preview() -> void:
 	target_preview = TARGET_PREVIEW_SCRIPT.new() as BattleTargetPreview
@@ -598,19 +602,15 @@ func _spawn_unit(
 	unit.set_arena_presentation(encounter.arena_id)
 
 	if team == 0 and unit.visual_role != "jack":
-		unit.max_hp += RunState.party_hp_bonus
-		unit.damage += RunState.party_damage_bonus
-		unit.damage *= RunState.get_jack_damage_multiplier(unit.visual_role)
-		_apply_hero_upgrades_to_unit(unit)
-		_apply_artifacts_to_unit(unit)
-		unit.max_hp *= RunState.get_party_hp_multiplier()
-		unit.damage *= RunState.get_party_damage_multiplier()
-		unit.attack_interval = maxf(0.2, unit.attack_interval * RunState.get_party_attack_interval_multiplier())
-		unit.move_speed *= RunState.get_party_move_speed_multiplier()
-		if unit.visual_role == RunState.protagonist_role:
-			unit.max_hp -= RunState.get_total_protagonist_hp_penalty()
-		unit.max_hp = maxf(20.0, unit.max_hp)
-		unit.damage = maxf(1.0, unit.damage)
+		var stats := RunState.get_effective_hero_stats(unit.visual_role)
+		unit.max_hp = stats.hp
+		unit.damage = stats.damage
+		unit.attack_interval = stats.attack_interval
+		unit.attack_range = stats.attack_range
+		unit.minimum_range = stats.minimum_range
+		unit.splash_radius = stats.splash_radius
+		unit.splash_damage_multiplier = stats.splash_damage
+		unit.move_speed = stats.move_speed
 	elif team == 1:
 		unit.max_hp *= RunState.get_enemy_hp_multiplier()
 		unit.damage *= RunState.get_enemy_damage_multiplier()
@@ -630,6 +630,9 @@ func _spawn_unit(
 		unit.boss_enraged.connect(_on_boss_enraged)
 	units_layer.add_child(unit)
 	units.append(unit)
+	if team == 0 and unit.visual_role != "jack":
+		unit.hp = RunState.get_hero_current_hp(unit.visual_role)
+		unit.health_bar.value = unit.hp
 
 	if combat_started and combat_live:
 		unit.start_combat()
@@ -666,30 +669,6 @@ func _get_combat_bounds() -> Rect2:
 			"bone_crush", "bone_swarm":
 				return BONE_CRUSH_COMBAT_BOUNDS
 	return COMBAT_BOUNDS
-
-
-func _apply_hero_upgrades_to_unit(unit: BattleUnit) -> void:
-	for upgrade in RunState.get_hero_upgrades_for_role(unit.visual_role):
-		unit.max_hp += upgrade.hp_bonus
-		unit.damage *= upgrade.damage_multiplier
-		unit.attack_interval = maxf(0.2, unit.attack_interval * upgrade.attack_interval_multiplier)
-		unit.attack_range += upgrade.attack_range_bonus
-		unit.minimum_range += upgrade.minimum_range_bonus
-		unit.splash_radius += upgrade.splash_radius_bonus
-		unit.splash_damage_multiplier += upgrade.splash_damage_bonus
-		unit.move_speed *= upgrade.move_speed_multiplier
-
-func _apply_artifacts_to_unit(unit: BattleUnit) -> void:
-	for artifact in RunState.get_artifacts_for_role(unit.visual_role):
-		unit.max_hp += artifact.hp_bonus
-		unit.damage *= artifact.damage_multiplier
-		unit.attack_interval = maxf(0.2, unit.attack_interval * artifact.attack_interval_multiplier)
-		unit.attack_range += artifact.attack_range_bonus
-		unit.minimum_range += artifact.minimum_range_bonus
-		unit.splash_radius += artifact.splash_radius_bonus
-		unit.splash_damage_multiplier += artifact.splash_damage_bonus
-		unit.move_speed *= artifact.move_speed_multiplier
-
 
 
 func _configure_side_objective() -> void:
@@ -1595,6 +1574,7 @@ func _on_last_deal_accept_pressed() -> void:
 	if not RunState.accept_last_deal():
 		last_deal_accept_button.disabled = false
 		last_deal_refuse_button.disabled = false
+		status_label.text = RUN_SAVE.instance().error_message
 		return
 	SCENE_ROUTER.reload_current(self)
 
@@ -1610,6 +1590,8 @@ func _on_last_deal_refuse_pressed() -> void:
 
 
 func _finish_battle(player_won: bool) -> void:
+	if battle_finished:
+		return
 	SoundDirector.stop_arena_ambience(_arena_ambience)
 	_arena_ambience = null
 	if shepherd_whistle_controller != null:
@@ -1660,7 +1642,12 @@ func _finish_battle(player_won: bool) -> void:
 	last_deal_refuse_button.visible = false
 
 	if player_won:
+		for unit in units:
+			if unit.team == 0 and unit.visual_role != "jack":
+				RunState.record_battle_health(unit.visual_role, unit.hp if unit.alive else 0.0)
 		var side_objective_reward_text := _claim_side_objective_reward()
+		if RunState.has_active_card():
+			RUN_SAVE.instance().write_slot(RunState, RUN_SAVE.REWARD)
 		_play_battle_audio("victory")
 		result_label.text = "ПОБЕДА"
 		if _is_boss_encounter():
@@ -1688,11 +1675,16 @@ func _finish_battle(player_won: bool) -> void:
 		continue_button.visible = true
 		continue_button.disabled = false
 	else:
-		RunState.record_wizard_memory("battle_defeat", encounter.encounter_id)
-		_play_battle_audio("defeat")
-		if RunState.begin_last_deal():
+		if not RunState.last_deal_pending:
+			RunState.record_wizard_memory("battle_defeat", encounter.encounter_id)
+			_play_battle_audio("defeat")
+			if RunState.begin_last_deal() and RunState.has_active_card():
+				RUN_SAVE.instance().write_slot(RunState, RUN_SAVE.BATTLE)
+		if RunState.last_deal_pending:
 			_show_last_deal_offer()
 		else:
+			if RunState.has_active_card():
+				RunState.end_run_in_defeat("Вы проиграли бой «%s»." % encounter.title)
 			_show_final_defeat()
 
 	result_scrim.visible = true
