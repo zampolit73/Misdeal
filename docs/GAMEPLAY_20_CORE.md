@@ -36,3 +36,7 @@ Do not merge solely on static code inspection. CI Godot import and GUT are requi
 ## Player-facing health readout
 
 The Squad Dossier's HP row now displays actual current/effective maximum (for example 85/220) without losing the original/base HP comparison. The existing Table Squad button gives a hover tooltip for each active hero. Both read directly from RunState and never alter HP.
+
+## Release QA — standalone travel audio dependency
+
+A full release run exposed a pre-existing standalone SceneTree travel capture dependency: the travel animation script referenced the `SoundDirector` autoload as an identifier and failed to compile when the singleton is not registered by a standalone QA script. The Travel presentation now uses a guarded runtime lookup; normal F5 with SoundDirector retains all cues, and standalone QA without it skips only audio cues. No Travel art, timing or route changes.
