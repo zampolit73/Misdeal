@@ -17,6 +17,7 @@ func safe_scene() -> String:
 	if scene == null: return ""
 	var path := scene.scene_file_path
 	if path==SAVE.TABLE:
+		if not RunState.camp_stop.is_empty(): return path
 		if scene.get("selection_locked") or scene.get("deal_in_progress"): return ""
 		return path
 	if path==SAVE.REWARD:

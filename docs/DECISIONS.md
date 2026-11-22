@@ -1,3 +1,7 @@
+## Gameplay 2.0 · Health and respite
+
+Carry per-hero current HP between battles. Use the shared effective stats for maxima and grant 20% of the maximum to a hero downed in a victory. Resolve stops after IV, VIII and XII outside the Fate Spread. Persist stock, payments and stop selection through the existing run checkpoint. [Gameplay contract](GAMEPLAY_2_0.md)
+
 ## Combat Audio V2 — wind and stone
 
 Act I battles use a low bed for the duration of the fight, with quiet fades on entry and result. The same six-voice Combat pool handles the new material. Keep the approved footstep sample, gain, cooldown and pitch range. [Source register](audio/THIRD_PARTY_AUDIO_LICENSES.md#combat-audio-v2)

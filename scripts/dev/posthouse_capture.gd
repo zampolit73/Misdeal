@@ -1,14 +1,14 @@
 extends SceneTree
-const VIEW := preload("res://scenes/travel/travel_transition.tscn")
 const CATALOG := preload("res://scripts/travel/travel_catalog.gd")
 var dest: String
 var frame_count := 0
 func _initialize() -> void: call_deferred("run")
 func run() -> void:
+	var view_scene := load("res://scenes/travel/travel_transition.tscn") as PackedScene
 	dest = OS.get_cmdline_user_args()[0]
 	DirAccess.make_dir_recursive_absolute(dest)
 	for outcome in ["release","read","passed"]:
-		var view: CanvasLayer = VIEW.instantiate()
+		var view: CanvasLayer = view_scene.instantiate()
 		view.context = CATALOG.context_for("unsent_letters",outcome,["knight","ranger","mage"])
 		root.add_child(view)
 		assert(view.available)
@@ -44,7 +44,7 @@ func run() -> void:
 		await process_frame
 	for outcome in ["release","read","passed"]:
 		for roles in [["knight"],["ranger","mage"]]:
-			var view: CanvasLayer = VIEW.instantiate()
+			var view: CanvasLayer = view_scene.instantiate()
 			view.context=CATALOG.context_for("unsent_letters",outcome,roles)
 			root.add_child(view)
 			view.set_process(false)
@@ -57,7 +57,7 @@ func run() -> void:
 	var baseline := int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))
 	var orphans := int(Performance.get_monitor(Performance.OBJECT_ORPHAN_NODE_COUNT))
 	for i in range(20):
-		var view: CanvasLayer = VIEW.instantiate()
+		var view: CanvasLayer = view_scene.instantiate()
 		view.context=CATALOG.context_for("unsent_letters",["release","read","passed"][i%3],["knight","ranger","mage"])
 		root.add_child(view)
 		view.finish()

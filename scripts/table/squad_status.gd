@@ -215,7 +215,10 @@ func _refresh_hero() -> void:
 
 func _build_stats_text(stats: Dictionary, role: String) -> String:
 	var lines: Array[String] = []
-	lines.append(_stat_line("ЗДОРОВЬЕ", float(stats["hp"]), float(stats["base_hp"]), 0, true))
+	var health := RunState.get_hero_current_hp(role)
+	var maximum := float(stats["hp"])
+	var health_color := "#e27b72" if health < maximum else "#f1e7d5"
+	lines.append("[color=#d9c6aa]ЗДОРОВЬЕ           [/color] [color=%s]%d / %d[/color]" % [health_color, ceili(health), ceili(maximum)])
 	lines.append(_stat_line("УРОН", float(stats["damage"]), float(stats["base_damage"]), 1, true))
 	lines.append(_stat_line("АТАК / СЕК", float(stats["attack_rate"]), float(stats["base_attack_rate"]), 2, true))
 	lines.append(_stat_line("ДАЛЬНОСТЬ", float(stats["attack_range"]), float(stats["base_attack_range"]), 0, true))

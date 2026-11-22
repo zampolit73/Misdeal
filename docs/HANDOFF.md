@@ -1,3 +1,7 @@
+## Gameplay 2.0 · Package A
+
+RunState holds persistent HP and a single pending stop. `run_camp_stops.gd` owns healing, eligible offers and purchases. Battle and the dossier share effective hero stats. Continue restores the paid Last Deal or the victory reward when present. Use `scripts/dev/gameplay_core_smoke.gd` with Godot 4.7.2 to cover the native route. [Rules, save migration and remaining balance questions](GAMEPLAY_2_0.md)
+
 ## Combat Audio V2
 
 In QA Hub compare the open graveyard, a crypt and an enclosed arena. The Warden has separate cues for combat start, attacks, phase two and defeat. [Sources](audio/THIRD_PARTY_AUDIO_LICENSES.md#combat-audio-v2)

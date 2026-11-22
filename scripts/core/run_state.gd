@@ -3,6 +3,9 @@ extends Node
 const ACT_CARD_TARGET: int = 12
 const MAX_DEALS: int = ACT_CARD_TARGET
 const BOSS_CARD_ID := "bone_warden"
+const DOWNED_HP_FRACTION := 0.20
+const CAMP_STOPS := preload("res://scripts/core/run_camp_stops.gd")
+const RUN_SAVE := preload("res://scripts/core/run_save_service.gd")
 const DEFAULT_ENCOUNTER_PATH := "res://resources/encounters/graveyard_ambush.tres"
 const WIZARD_MEDDLING_PER_RUN := 2
 const WIZARD_WAGERS_PER_RUN := 2
@@ -236,6 +239,8 @@ var active_card_id: String = ""
 var artifact_ids: Array[String] = []
 var protagonist_role: String = ""
 var party_roles: Array[String] = []
+var hero_current_hp: Dictionary = {}
+var camp_stop: Dictionary = {}
 var hero_fates: Dictionary = {}
 var hero_fate_notes: Dictionary = {}
 var rescue_scar_roles: Array[String] = []
@@ -311,6 +316,8 @@ func reset_run() -> void:
 	artifact_ids.clear()
 	protagonist_role = ""
 	party_roles.clear()
+	hero_current_hp.clear()
+	camp_stop.clear()
 	hero_fates.clear()
 	hero_fate_notes.clear()
 	rescue_scar_roles.clear()
@@ -381,6 +388,8 @@ func choose_protagonist(role: String) -> bool:
 	protagonist_role = role
 	party_roles.clear()
 	party_roles.append(role)
+	hero_current_hp.clear()
+	clamp_party_health()
 
 	for hero_role in HERO_ROLES:
 		hero_fates[hero_role] = FATE_UNKNOWN
@@ -447,7 +456,7 @@ func get_companion_fate_note(role: String) -> String:
 	return String(hero_fate_notes.get(role, "Судьба ещё не разыграна."))
 
 func can_recruit_companion(role: String) -> bool:
-	if role == protagonist_role:
+	if role == protagonist_role or not HERO_ROLES.has(role):
 		return false
 	return not is_role_in_party(role) and get_companion_fate(role) == FATE_UNKNOWN
 
@@ -456,6 +465,8 @@ func recruit_companion(role: String, note: String) -> bool:
 		return false
 
 	party_roles.append(role)
+	hero_current_hp.erase(role)
+	clamp_party_health()
 	hero_fates[role] = FATE_JOINED
 	hero_fate_notes[role] = note
 	current_major_upgrade_offer_ids.clear()
@@ -728,6 +739,7 @@ func add_artifact(artifact_id: String) -> bool:
 		return false
 
 	artifact_ids.append(artifact_id)
+	clamp_party_health()
 	return true
 
 func remove_artifact(artifact_id: String) -> bool:
@@ -735,6 +747,7 @@ func remove_artifact(artifact_id: String) -> bool:
 	if index < 0:
 		return false
 	artifact_ids.remove_at(index)
+	clamp_party_health()
 	return true
 
 func get_available_artifact_ids() -> Array[String]:
@@ -807,6 +820,7 @@ func add_hero_upgrade(upgrade_id: String) -> bool:
 		return false
 
 	hero_upgrade_ids.append(upgrade_id)
+	clamp_party_health()
 	return true
 
 func get_hero_upgrades_for_role(role: String) -> Array[HeroUpgradeData]:
@@ -910,6 +924,34 @@ func get_effective_hero_stats(role: String) -> Dictionary:
 		"base_dps": base_damage / maxf(0.01, base_attack_interval),
 		"dps": damage / maxf(0.01, attack_interval)
 	}
+
+func get_hero_max_hp(role: String) -> float:
+	return float(get_effective_hero_stats(role).get("hp", 0.0))
+
+
+func get_hero_current_hp(role: String) -> float:
+	var maximum := get_hero_max_hp(role)
+	return minf(float(hero_current_hp.get(role, maximum)), maximum)
+
+
+func clamp_party_health() -> void:
+	for role in party_roles:
+		hero_current_hp[role] = get_hero_current_hp(role)
+
+
+func change_hero_hp(role: String, amount: float) -> float:
+	if not is_role_in_party(role):
+		return 0.0
+	var previous := get_hero_current_hp(role)
+	var current := clampf(previous + amount, minf(1.0, previous), get_hero_max_hp(role))
+	hero_current_hp[role] = current
+	return current - previous
+
+
+func record_battle_health(role: String, remaining_hp: float) -> void:
+	if is_role_in_party(role):
+		var maximum := get_hero_max_hp(role)
+		hero_current_hp[role] = minf(remaining_hp if remaining_hp > 0.0 else maximum * DOWNED_HP_FRACTION, maximum)
 
 func get_available_hero_upgrade_ids_for_role(role: String) -> Array[String]:
 	var available: Array[String] = []
@@ -1625,6 +1667,7 @@ func complete_active_card() -> void:
 		boss_defeated = true
 	else:
 		cards_resolved += 1
+		camp_stop = CAMP_STOPS.open(self, cards_resolved)
 		if cards_resolved >= 6 and get_wizard_memory_count("solo_endurance") == 0 and get_party_size() == 1 and not is_deliberate_loner() and wizard_memory_pending_event.is_empty():
 			record_wizard_memory("solo_endurance")
 
@@ -1637,6 +1680,7 @@ func complete_active_card() -> void:
 	active_rejected_card_id = ""
 	current_offer_ids.clear()
 	selected_encounter_path = DEFAULT_ENCOUNTER_PATH
+	clamp_party_health()
 
 func get_fate_choice_history_entry(index: int) -> Dictionary:
 	if index < 0:
@@ -1701,6 +1745,8 @@ func get_last_deal_price_text() -> String:
 func accept_last_deal() -> bool:
 	if not last_deal_pending or last_deal_used:
 		return false
+	var save := RUN_SAVE.instance()
+	var before: Dictionary = save.snapshot(self).state
 
 	if not last_deal_offer_artifact_id.is_empty():
 		var artifact: ArtifactData = get_artifact(last_deal_offer_artifact_id)
@@ -1715,10 +1761,16 @@ func accept_last_deal() -> bool:
 	last_deal_used = true
 	last_deal_pending = false
 	last_deal_offer_artifact_id = ""
+	clamp_party_health()
 	record_wizard_memory("last_deal_accept")
+	if has_active_card() and not save.write_slot(self, RUN_SAVE.BATTLE):
+		save.restore_values(self, before)
+		return false
 	return true
 
 func end_run_in_defeat(reason: String) -> void:
+	if run_failed:
+		return
 	last_deal_pending = false
 	last_deal_offer_artifact_id = ""
 	run_failed = true

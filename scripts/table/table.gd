@@ -94,8 +94,23 @@ func _ready() -> void:
 	wager_refuse_button.pressed.connect(_refuse_wizard_wager)
 
 	_configure_card_pivots()
-	_refresh_table()
 	add_child(preload("res://scripts/memory/memory_table.gd").new())
+	if not RunState.camp_stop.is_empty():
+		selection_locked = true
+		cards_root.hide()
+		fate_spread_button.hide()
+		var stop := preload("res://scripts/table/camp_stop_panel.gd").new()
+		stop.name = "CampStop"
+		add_child(stop)
+		stop.finished.connect(_resume_after_camp_stop)
+	else:
+		_refresh_table()
+
+func _resume_after_camp_stop(message: String) -> void:
+	cards_root.show()
+	fate_spread_button.show()
+	_refresh_table()
+	wizard_line.text = message
 
 func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_panel($HudPanel, MISDEAL_UI_KIT.BRONZE, false)
@@ -622,12 +637,20 @@ func _animate_deal_if_needed(offers: Array[RunCardData]) -> void:
 
 func _play_deal_sounds(card_count: int) -> void:
 	for index in range(card_count):
+		if not is_inside_tree():
+			return
 		if index > 0:
 			await get_tree().create_timer(0.13).timeout
+			if not is_inside_tree():
+				return
 		_play_table_audio("deal")
 
 func _finish_deal_animation(duration: float) -> void:
+	if not is_inside_tree():
+		return
 	await get_tree().create_timer(duration).timeout
+	if not is_inside_tree():
+		return
 	deal_in_progress = false
 	for button in offer_buttons:
 		if button.visible:

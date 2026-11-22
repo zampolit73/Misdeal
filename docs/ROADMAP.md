@@ -1,3 +1,9 @@
+## Gameplay 2.0
+
+- A · Wounds, rest stops and one reliable merchant checkpoint. [Rules and QA](GAMEPLAY_2_0.md)
+- B · Relic synergies and clearer stat changes after rewards and purchases.
+- C · Separate Wizard Archive, alternate styles and difficulty oaths.
+
 ## D420 V2
 
 - [x] Rebase the enemy art candidate against the current battle runtime and deliver the 24-role comparison.
