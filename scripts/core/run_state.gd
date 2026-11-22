@@ -876,6 +876,10 @@ func heal_party_fraction(fraction: float) -> void:
 func get_gameplay_stop_kind() -> String:
 	if is_run_complete() or not active_card_id.is_empty():
 		return ""
+	# Native QA/dev fixtures sometimes set the count without resolving cards.
+	# Never intercept an ordinary Table route merely from that synthetic count.
+	if resolved_card_ids.size() < cards_resolved:
+		return ""
 	if cards_resolved in [4, 8] and camp_last_completed < cards_resolved:
 		return "camp"
 	if cards_resolved == 8 and shop_last_completed < 8:

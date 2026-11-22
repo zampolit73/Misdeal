@@ -37,6 +37,7 @@ func test_camp_heals_once_and_does_not_advance_fate() -> void:
 	var mx: float = float(RunState.get_effective_hero_stats("knight").hp)
 	RunState.store_hero_current_hp("knight", mx * 0.2, mx)
 	RunState.cards_resolved = 4
+	for i in range(4): RunState.resolved_card_ids.append(RunState.ACT1_CARD_IDS[i])
 	assert_eq(RunState.get_gameplay_stop_kind(), "camp")
 	assert_true(RunState.resolve_camp("rest"))
 	assert_almost_eq(RunState.get_hero_current_hp("knight"), mx * 0.6, 0.01)
@@ -46,6 +47,7 @@ func test_camp_heals_once_and_does_not_advance_fate() -> void:
 
 func test_training_uses_existing_extra_upgrade_cap() -> void:
 	RunState.cards_resolved = 4
+	for i in range(4): RunState.resolved_card_ids.append(RunState.ACT1_CARD_IDS[i])
 	var upgrade_id: String = RunState.get_camp_upgrade_id()
 	assert_false(upgrade_id.is_empty())
 	assert_true(RunState.resolve_camp("train"))
@@ -55,6 +57,7 @@ func test_training_uses_existing_extra_upgrade_cap() -> void:
 
 func test_shop_multi_purchase_single_slots_and_no_extra_card() -> void:
 	RunState.cards_resolved = 8
+	for i in range(8): RunState.resolved_card_ids.append(RunState.ACT1_CARD_IDS[i])
 	RunState.camp_last_completed = 8
 	RunState.gold = 100
 	assert_eq(RunState.get_gameplay_stop_kind(), "shop")
@@ -96,6 +99,7 @@ func test_save_migrates_exact_legacy_shape_but_not_partial_damage() -> void:
 
 func test_resume_of_purchased_item_preserves_once_only_flag() -> void:
 	RunState.cards_resolved = 8
+	for i in range(8): RunState.resolved_card_ids.append(RunState.ACT1_CARD_IDS[i])
 	RunState.camp_last_completed = 8
 	RunState.gold = 100
 	assert_true(RunState.buy_shop_item("artifact"))
@@ -106,3 +110,9 @@ func test_resume_of_purchased_item_preserves_once_only_flag() -> void:
 	assert_false(RunState.buy_shop_item("artifact"))
 	assert_true(RunState.shop_purchases.has("artifact"))
 	assert_eq(RunState.get_gameplay_stop_kind(), "shop")
+
+func test_synthetic_tier_fixture_never_steals_the_table_route() -> void:
+	# D418 Jack route intentionally sets cards_resolved=4 without real history.
+	RunState.cards_resolved = 4
+	assert_eq(RunState.resolved_card_ids.size(), 0)
+	assert_eq(RunState.get_gameplay_stop_kind(), "")
