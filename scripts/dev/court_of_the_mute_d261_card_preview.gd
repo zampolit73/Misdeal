@@ -27,8 +27,8 @@ func _ready() -> void:
 	if CARD.target_path != "res://resources/encounters/court_of_the_mute.tres":
 		_fail("У выпущенной карты #39 неверный путь к бою.")
 		return
-	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
-		_fail("Карта #39 должна присутствовать в обычной колоде 39/45.")
+	if not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		_fail("Суд немых должен присутствовать в действующей колоде.")
 		return
 	if RunState.get_card(CARD_ID) == null:
 		_fail("Ресурс карты #39 отсутствует в QA-каталоге.")
@@ -53,12 +53,12 @@ func _ready() -> void:
 	var description := _label(CARD.card_text, Vector2(180, 506), Vector2(920, 68), 18)
 	description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var status := _label(
-		"УТВЕРЖДЁН ВАРИАНТ 2 · 448×274 · ТРИ ОРИГИНАЛЬНЫХ ТИПА ВРАГОВ · ВЫПУЩЕНО 39/45",
+		"УТВЕРЖДЁН ВАРИАНТ 2 · 448×274 · ТРИ ОРИГИНАЛЬНЫХ ТИПА ВРАГОВ · В ОБЫЧНОЙ КОЛОДЕ",
 		Vector2(135, 610), Vector2(1010, 65), 16
 	)
 	status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	status.add_theme_color_override("font_color", Color(0.68, 0.84, 0.71))
-	print("D261_SELECTED_ART_PASS: option 2 source-derived 448x274 WebP in CardArtCatalog; released card #39, LIVE 39/45")
+	print("D261_SELECTED_ART_PASS: option 2 source-derived 448x274 WebP in CardArtCatalog; Court in live deck")
 
 func _label(message: String, pos: Vector2, rect: Vector2, size: int) -> Label:
 	var label := Label.new()

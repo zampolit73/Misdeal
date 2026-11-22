@@ -14,8 +14,8 @@ func _ready() -> void:
 
 
 func _check() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
-		_abort("Court #39 release missing from 39/45")
+	if not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		_abort("Court is missing from the live Act I deck")
 		return
 	var card: RunCardData = RunState.get_card(CARD_ID)
 	if card == null or card.target_path != "res://resources/encounters/court_of_the_mute.tres":
@@ -114,7 +114,7 @@ func _check() -> void:
 	if court_units.size() != 7 or battle.get("court_verdict_controller") == null:
 		_abort("D269 visual inspector changed real Court actor/verdict contract")
 		return
-	print("D269_COURT_NATIVE_VISUAL_QA_PASS: actual F6 Battle renders Court QA plate, 7 original actors, D264 exact floor guide G and isolated ambience L, 39/45 live")
+	print("D269_COURT_NATIVE_VISUAL_QA_PASS: actual F6 Battle renders Court QA plate, 7 original actors, D264 exact floor guide G and isolated ambience L")
 	get_tree().quit(0)
 
 

@@ -23,7 +23,7 @@ var floor_overlay: ColorRect
 
 
 func _ready() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
+	if not RunState.ACT1_CARD_IDS.has(CARD_ID):
 		_fail("Court #39 should be in ordinary 39-card pool")
 		return
 	var card: RunCardData = RunState.get_card(CARD_ID)
@@ -90,7 +90,7 @@ func _ready() -> void:
 	floor_overlay.z_index = 1
 	_set_facing(true)
 	_play("walk")
-	print("D267_RICH_THREE_ROLE_F6_PASS: Godot decoded 3 original 25-pose alpha animation atlases; idle/walk/attack/hit/death; native x1 and zoom x2; card39 released 39/45")
+	print("D267_RICH_THREE_ROLE_F6_PASS: Godot decoded 3 original 25-pose alpha animation atlases; idle/walk/attack/hit/death; native x1 and zoom x2; Court in live deck")
 	print("D267_VISUAL_ART_STATUS: source design USER-APPROVED; extracted motion/feet/seams pending native review; 27 flagged source seam/row-edge cases")
 
 
@@ -158,7 +158,7 @@ func _play(state: String) -> void:
 			s.stop()
 			s.play(state)
 	if caption:
-		caption.text = "D267 QA / %s · %s · ВЫПУЩЕНО · 39/45" % [state.to_upper(),"←" if facing_left else "→"]
+		caption.text = "D267 QA / %s · %s · СУД НЕМЫХ" % [state.to_upper(),"←" if facing_left else "→"]
 
 
 func _unhandled_key_input(event: InputEvent) -> void:

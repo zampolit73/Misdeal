@@ -1,3 +1,7 @@
+## Gameplay 2.0 · Package B
+
+Add nine relics and tactical builds based on wounds, Defense, magical splash and Wizard objectives. Show live stat deltas after decisions, rewards and purchases, and expose wounds and equipped effects in the dossier. [Catalog and QA](docs/GAMEPLAY_2_0.md#package-b--builds--rewards)
+
 ## Gameplay 2.0 · Package A
 
 Carry battle wounds between cards and show current/max HP in the squad dossier. Choose rest, training or a dark rite after IV and XII. Buy eligible supplies after VIII. Keep wounds and costs across Continue and the Last Deal. [Rules and QA](docs/GAMEPLAY_2_0.md)

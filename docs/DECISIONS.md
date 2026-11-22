@@ -1,3 +1,7 @@
+## Gameplay 2.0 · Relic builds
+
+Use the existing artifact IDs and resource catalog for acquisitions and saves. BattleUnits activate conditional effects from equipped relics, using real strikes, kills and wave events. Surface their rules in the squad dossier and measure stat changes against shared effective stats. [Catalog](GAMEPLAY_2_0.md#package-b--builds--rewards)
+
 ## Gameplay 2.0 · Health and respite
 
 Carry per-hero current HP between battles. Use the shared effective stats for maxima and grant 20% of the maximum to a hero downed in a victory. Resolve stops after IV, VIII and XII outside the Fate Spread. Persist stock, payments and stop selection through the existing run checkpoint. [Gameplay contract](GAMEPLAY_2_0.md)

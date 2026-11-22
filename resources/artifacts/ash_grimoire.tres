@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ArtifactData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/artifact_data.gd" id="1_artifact"]
+
+[resource]
+script = ExtResource("1_artifact")
+artifact_id = "ash_grimoire"
+title = "ПЕПЕЛЬНЫЙ ГРИМУАР"
+description = "Первый удар мага в волне получает +32 к радиусу взрыва."
+target_role = "mage"
+effect = "first_cast_radius"
+effect_value = 32.0

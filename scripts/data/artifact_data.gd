@@ -14,3 +14,7 @@ extends Resource
 @export var splash_radius_bonus: float = 0.0
 @export var splash_damage_bonus: float = 0.0
 @export var move_speed_multiplier: float = 1.0
+@export var effect: String = ""
+@export var effect_value: float = 0.0
+@export var effect_threshold: float = 0.0
+@export var merchant_price: int = 0

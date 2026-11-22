@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ArtifactData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/artifact_data.gd" id="1_artifact"]
+
+[resource]
+script = ExtResource("1_artifact")
+artifact_id = "marked_coin"
+title = "МЕЧЕНАЯ МОНЕТА"
+description = "Один раз за бой: +12 золота за победу с Меткой или выполненным условием Волшебника."
+target_role = "*"
+effect = "wizard_purse"
+effect_value = 12.0

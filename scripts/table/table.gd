@@ -261,6 +261,11 @@ func _refresh_table(show_memory: bool = true) -> void:
 			default_wizard_line = context_line
 
 	wizard_line.text = default_wizard_line
+	wizard_line.tooltip_text = ""
+	if RunState.has_meta("build_feedback"):
+		wizard_line.text = String(RunState.get_meta("build_feedback"))
+		wizard_line.tooltip_text = wizard_line.text
+		RunState.remove_meta("build_feedback")
 
 	var offers := RunState.get_offer_cards()
 	for index in range(offer_buttons.size()):

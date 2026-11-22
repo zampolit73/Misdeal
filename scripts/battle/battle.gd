@@ -611,6 +611,8 @@ func _spawn_unit(
 		unit.splash_radius = stats.splash_radius
 		unit.splash_damage_multiplier = stats.splash_damage
 		unit.move_speed = stats.move_speed
+		unit.relic_effects = RunState.get_relic_effects(unit.visual_role)
+		unit.can_receive_relic_cover = RunState.has_artifact("shieldbond")
 	elif team == 1:
 		unit.max_hp *= RunState.get_enemy_hp_multiplier()
 		unit.damage *= RunState.get_enemy_damage_multiplier()
@@ -1468,6 +1470,9 @@ func _begin_wave_intermission() -> void:
 		unit.target = null
 		if unit.team == 0:
 			unit.enable_placement_regions(_get_placement_regions())
+			var bell := unit.relic_effects.get("wave_heal") as ArtifactData
+			if bell != null:
+				unit.heal(unit.max_hp * bell.effect_value)
 	_separate_wave_survivors()
 	_separate_jack_from_heroes()
 
@@ -1646,6 +1651,10 @@ func _finish_battle(player_won: bool) -> void:
 			if unit.team == 0 and unit.visual_role != "jack":
 				RunState.record_battle_health(unit.visual_role, unit.hp if unit.alive else 0.0)
 		var side_objective_reward_text := _claim_side_objective_reward()
+		var payout := RunState.get_relic_effects(RunState.protagonist_role).get("wizard_purse") as ArtifactData
+		if payout != null and (RunState.wizard_mark_danger_active or not side_objective_reward_text.is_empty()):
+			RunState.gold += int(payout.effect_value)
+			side_objective_reward_text += "\n%s · +%d золота" % [payout.title, int(payout.effect_value)]
 		if RunState.has_active_card():
 			RUN_SAVE.instance().write_slot(RunState, RUN_SAVE.REWARD)
 		_play_battle_audio("victory")

@@ -1,3 +1,7 @@
+## Gameplay 2.0 · Builds & Rewards
+
+Act I has 13 relics. Conditional combat effects and the existing upgrades support blood, defense, Mage splash and Wizard economy builds. Dossier, Reward, the merchant and event results expose live effects and stat changes. [Catalog and QA](GAMEPLAY_2_0.md#package-b--builds--rewards)
+
 ## Gameplay 2.0 · Core
 
 Heroes carry their wounds between fights. Rest stops after IV and XII and the merchant after VIII run outside the Fate Spread. The victory and paid Last Deal checkpoints retain health and handle old save slots. [Rules and QA](GAMEPLAY_2_0.md)

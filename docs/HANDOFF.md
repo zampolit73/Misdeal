@@ -1,3 +1,7 @@
+## Gameplay 2.0 · Package B
+
+Nine additional ArtifactData resources bring the catalog to 13. `BattleUnit` applies bounded combat reactions, and Battle handles intermission healing and Wizard payout. `run_build_feedback.gd` reads the same effective stats as Battle. `scripts/dev/gameplay_builds_capture.gd` exercises purchase feedback, the dossier and a marked victory. [Rules and captures](GAMEPLAY_2_0.md#package-b--builds--rewards)
+
 ## Gameplay 2.0 · Package A
 
 RunState holds persistent HP and a single pending stop. `run_camp_stops.gd` owns healing, eligible offers and purchases. Battle and the dossier share effective hero stats. Continue restores the paid Last Deal or the victory reward when present. Use `scripts/dev/gameplay_core_smoke.gd` with Godot 4.7.2 to cover the native route. [Rules, save migration and remaining balance questions](GAMEPLAY_2_0.md)

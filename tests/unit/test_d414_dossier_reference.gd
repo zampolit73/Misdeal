@@ -14,7 +14,7 @@ func test_real_relic_art_tracks_selected_role_without_stale_icons_or_inventory_c
 	var slot := scene.get_node("Frame/RelicSlot1") as Panel
 	var art := slot.get_node("D414ArtifactImage") as TextureRect
 	assert_true(art.visible)
-	assert_eq(scene.get_node("Frame/RelicCount").text, "1 / 3")
+	assert_eq(scene.get_node("Frame/RelicCount").text, "1")
 	assert_not_null(art.texture)
 	assert_false(slot.get_node("Symbol").visible)
 	assert_eq(slot.tooltip_text, "ЩИТ МЕРТВЕЦА\n" + RunState.get_artifact("dead_mans_shield").description)
@@ -31,3 +31,13 @@ func test_real_relic_art_tracks_selected_role_without_stale_icons_or_inventory_c
 	assert_true(art.visible)
 	assert_eq(RunState.artifact_ids, inventory)
 	assert_eq(RunState.get_effective_hero_stats("knight"), before)
+
+func test_dossier_counts_relics_beyond_the_three_featured_slots() -> void:
+	RunState.reset_run()
+	RunState.choose_protagonist("knight")
+	for item in ["dead_mans_shield", "harvest_ring", "marked_coin", "sanguine_whetstone"]:
+		RunState.add_artifact(item)
+	var scene := load("res://scenes/table/squad_status.tscn").instantiate() as Control
+	add_child_autofree(scene)
+	assert_eq(scene.get_node("Frame/RelicCount").text, "4")
+	assert_string_contains(scene.get_node("Frame/RelicsList").text, "КРОВАВЫЙ ОСЕЛОК")

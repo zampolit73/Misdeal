@@ -260,7 +260,11 @@ static func refresh_details(scene: Control, role: String, has_role: bool) -> voi
 	if has_role:
 		description.text = ROLE_NOTES[role]
 		description.add_theme_color_override("font_color", Color(0.70, 0.61, 0.55))
-		(scene.get_node("Frame/Stats") as RichTextLabel).text = _compact_stats(RunState.get_effective_hero_stats(role))
+		var panel := scene.get_node("Frame/Stats") as RichTextLabel
+		var stats := RunState.get_effective_hero_stats(role)
+		var current := RunState.get_hero_current_hp(role)
+		panel.text = _compact_stats(stats, current)
+		panel.tooltip_text = "Раны: −%d HP" % (ceili(float(stats.hp)) - ceili(current))
 	else:
 		description.text = RunState.get_companion_fate_note(role)
 		description.add_theme_color_override("font_color", FADED)
@@ -312,11 +316,10 @@ static func refresh_footer(scene: Control) -> void:
 		annotations.append("ДОЛГ ВОЛШЕБНИКУ")
 	(footer.get_node("Strength") as Label).text = " · ".join(annotations)
 
-static func _compact_stats(stats: Dictionary) -> String:
+static func _compact_stats(stats: Dictionary, health: float) -> String:
 	if stats.is_empty():
 		return ""
 	var specs := [
-		["ЗДОРОВЬЕ", "hp", "base_hp", 0],
 		["УРОН", "damage", "base_damage", 1],
 		["АТАК/СЕК", "attack_rate", "base_attack_rate", 2],
 		["ДАЛЬНОСТЬ", "attack_range", "base_attack_range", 0],
@@ -329,6 +332,9 @@ static func _compact_stats(stats: Dictionary) -> String:
 		specs.append(["РАДИУС", "splash_radius", "base_splash_radius", 0])
 		specs.append(["ПОБОЧН. %", "splash_damage", "base_splash_damage", 0])
 	var lines: Array[String] = ["[table=3]"]
+	var wound := ceili(float(stats.hp)) - ceili(health)
+	var health_color := "#ec897c" if wound > 0 else "#f0e2ce"
+	lines.append("[cell][color=#d0bfa4]ЗДОРОВЬЕ[/color][/cell][cell][color=%s]%d[/color][/cell][cell][color=#c6ac8d]/ %d[/color][/cell]" % [health_color, ceili(health), ceili(float(stats.hp))])
 	for spec in specs:
 		var value := float(stats.get(spec[1], 0.0))
 		var base := float(stats.get(spec[2], 0.0))

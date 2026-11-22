@@ -6,6 +6,7 @@ const STOPS := preload("res://scripts/core/run_camp_stops.gd")
 const SAVE := preload("res://scripts/core/run_save_service.gd")
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const ART := preload("res://scripts/ui/card_art_catalog.gd")
+const BUILD := preload("res://scripts/ui/run_build_feedback.gd")
 
 var _shop: bool
 var _stock_rows: VBoxContainer
@@ -51,6 +52,7 @@ func _ready() -> void:
 	_message = _label(plate, "", 15, UI.PARCHMENT_WARM)
 	_message.position = Vector2(29, 555)
 	_message.size.x = 670
+	_message.mouse_filter = Control.MOUSE_FILTER_PASS
 	_message.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	if _shop:
 		var leave := Button.new()
@@ -161,7 +163,7 @@ func _shop_row(item: String) -> void:
 		"heal":
 			name = "Лечебная повязка"
 			description = "Восстановить до %d%% макс. HP каждому герою." % roundi(STOPS.SHOP_HEAL * 100)
-	_add_row("%s  ·  %d золота" % [name, STOPS.price(item)], description, item)
+	_add_row("%s  ·  %d золота" % [name, STOPS.price(RunState, item)], description, item)
 
 
 func _add_row(title: String, description: String, action: String) -> Button:
@@ -189,15 +191,29 @@ func _add_row(title: String, description: String, action: String) -> Button:
 func _choose(action: String) -> void:
 	var save := SAVE.instance()
 	var previous: Dictionary = save.snapshot(RunState).state
+	var before := BUILD.capture(RunState)
+	var next_relic := ""
+	if action.begins_with("relic/"):
+		next_relic = action.get_slice("/", 1)
+	elif action == "rite" and not RunState.camp_stop.stock.is_empty():
+		next_relic = String(RunState.camp_stop.stock[0]).get_slice("/", 1)
 	if not STOPS.apply(RunState, action):
 		return
 	if not save.write_slot(RunState):
 		save.restore_values(RunState, previous)
 		_message.text = save.error_message
 		return
+	var after := BUILD.capture(RunState)
+	var delta := BUILD.changes(before, after, 1)
+	if not next_relic.is_empty():
+		var artifact := RunState.get_artifact(next_relic)
+		if delta.is_empty(): delta = artifact.title + " · " + artifact.description
 	if RunState.camp_stop.is_empty():
-		finished.emit("Привал закончился. Волшебник раздаёт карты." if not _shop else "Торговец закрыл свою лавку.")
+		var message := "Торговец закрыл свою лавку." if _shop else "Привал закончился. Волшебник раздаёт карты."
+		finished.emit(delta if not delta.is_empty() else message)
 		queue_free()
 	else:
-		_message.text = "Покупка принята. Осталось %d золота." % RunState.gold
+		_message.text = "Осталось %d золота." % RunState.gold
+		if not delta.is_empty(): _message.text += " " + delta
+		_message.tooltip_text = BUILD.changes(before, after)
 		_render_choices()

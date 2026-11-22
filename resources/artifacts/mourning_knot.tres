@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ArtifactData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/artifact_data.gd" id="1_artifact"]
+
+[resource]
+script = ExtResource("1_artifact")
+artifact_id = "mourning_knot"
+title = "УЗЕЛ ТРАУРА"
+description = "При 30% HP или ниже первый полученный удар в каждой волне наносит на 35% меньше урона."
+target_role = "*"
+effect = "wounded_guard"
+effect_value = 0.65
+effect_threshold = 0.3
