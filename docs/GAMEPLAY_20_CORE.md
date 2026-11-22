@@ -28,3 +28,7 @@ New variables: `hero_health_by_role: Dictionary`, `camp_last_completed: int`, `s
 3. F5 Knight/Ranger/Mage: injury across two battles, hero death during victory, camp IV, camp VIII, shop VIII, old Save Continue, Last Deal and XIII access.
 4. QA economy: no accidental gold refund or duplicate purchase after save reload; two different purchases allowed.
 5. Compare at least three real no-cheat attempts; distinguish actual run outcomes from fixed fixture/smoke results. The provisional 20%/30%/40% and prices need tuning after evidence; no claim of fixed difficulty or completed full run without F5.
+
+## Release gate
+
+Do not merge solely on static code inspection. CI Godot import and GUT are required for this gameplay change; keep the PR open on any failure or missing check.
