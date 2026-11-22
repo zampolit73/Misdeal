@@ -260,7 +260,7 @@ static func refresh_details(scene: Control, role: String, has_role: bool) -> voi
 	if has_role:
 		description.text = ROLE_NOTES[role]
 		description.add_theme_color_override("font_color", Color(0.70, 0.61, 0.55))
-		(scene.get_node("Frame/Stats") as RichTextLabel).text = _compact_stats(RunState.get_effective_hero_stats(role))
+		(scene.get_node("Frame/Stats") as RichTextLabel).text = _compact_stats(RunState.get_effective_hero_stats(role), role)
 	else:
 		description.text = RunState.get_companion_fate_note(role)
 		description.add_theme_color_override("font_color", FADED)
@@ -312,7 +312,7 @@ static func refresh_footer(scene: Control) -> void:
 		annotations.append("ДОЛГ ВОЛШЕБНИКУ")
 	(footer.get_node("Strength") as Label).text = " · ".join(annotations)
 
-static func _compact_stats(stats: Dictionary) -> String:
+static func _compact_stats(stats: Dictionary, role: String = "") -> String:
 	if stats.is_empty():
 		return ""
 	var specs := [
@@ -335,6 +335,9 @@ static func _compact_stats(stats: Dictionary) -> String:
 		var decimals := int(spec[3])
 		var modified := absf(value - base) > 0.01
 		var current := _number(value * 100.0 if spec[1] == "splash_damage" else value, decimals)
+		if spec[1] == "hp" and not role.is_empty():
+			# Wounds are an actual current value, independent of the effective max.
+			current = "%d/%d" % [roundi(RunState.get_hero_current_hp(role)), roundi(value)]
 		var original := _number(base * 100.0 if spec[1] == "splash_damage" else base, decimals)
 		var color := "#91d795" if value > base else "#ec897c"
 		var value_text := "[color=%s]%s%s[/color]" % [color, current, "▲" if value > base else "▼"] if modified else "[color=#f0e2ce]%s[/color]" % current

@@ -32,3 +32,7 @@ New variables: `hero_health_by_role: Dictionary`, `camp_last_completed: int`, `s
 ## Release gate
 
 Do not merge solely on static code inspection. CI Godot import and GUT are required for this gameplay change; keep the PR open on any failure or missing check.
+
+## Player-facing health readout
+
+The Squad Dossier's HP row now displays actual current/effective maximum (for example 85/220) without losing the original/base HP comparison. The existing Table Squad button gives a hover tooltip for each active hero. Both read directly from RunState and never alter HP.

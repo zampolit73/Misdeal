@@ -255,6 +255,14 @@ func _refresh_table(show_memory: bool = true) -> void:
 	]
 	if not condition_text.is_empty():
 		stats_label.text += "     %s" % condition_text
+	# Expose the injuries without squeezing another permanent HUD panel onto the
+	# player-approved tabletop. The full current/max readout lives in Dossier.
+	var health_lines: Array[String] = []
+	for role in RunState.party_roles:
+		var maximum: float = float(RunState.get_effective_hero_stats(role).get("hp", 0.0))
+		var current_hp: float = RunState.get_hero_current_hp(role)
+		health_lines.append("%s %d/%d" % [role.to_upper(), roundi(current_hp), roundi(maximum)])
+	squad_button.tooltip_text = "ЗДОРОВЬЕ ОТРЯДА\n" + "\n".join(health_lines)
 
 	if RunState.is_boss_due():
 		default_wizard_line = "Двенадцать карт позади. Осталась та, которую я берег."
