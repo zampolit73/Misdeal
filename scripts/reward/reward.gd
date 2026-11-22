@@ -1,5 +1,7 @@
 extends Control
 
+const BUILD_FEEDBACK := preload("res://scripts/ui/run_build_feedback.gd")
+
 const BACKDROP_READOUTS := preload("res://scripts/ui/table_backdrop_readouts.gd")
 const DETAIL_SCENE := preload("res://scenes/table/card_lore_inspect.tscn")
 var _details: Control
@@ -51,6 +53,8 @@ const UPGRADE_EFFECT_CARD_COPY := {
 var reward_buttons: Array[Button] = []
 var option_ids: Array[String] = ["", "", ""]
 var reward_mode := ""
+var _entry_build: Dictionary
+var _reward_effect := ""
 var upgrade_portraits: Array[TextureRect] = []
 var upgrade_role_labels: Array[Label] = []
 var upgrade_title_labels: Array[Label] = []
@@ -59,6 +63,7 @@ var upgrade_quick_labels: Array[Label] = []
 var upgrade_choose_bars: Array[Panel] = []
 
 func _ready() -> void:
+	_entry_build = BUILD_FEEDBACK.capture(RunState)
 	reward_buttons = [blood_coin_button, iron_ward_button, tempered_steel_button]
 	upgrade_portraits = [$Rewards/BloodCoin/Portrait, $Rewards/IronWard/Portrait, $Rewards/TemperedSteel/Portrait]
 	upgrade_role_labels = [$Rewards/BloodCoin/Role, $Rewards/IronWard/Role, $Rewards/TemperedSteel/Role]
@@ -507,6 +512,7 @@ func _on_reward_button_pressed(index: int) -> void:
 
 			SoundDirector.play_feedback("paper", 0.88)
 			var upgrade := RunState.get_hero_upgrade(option_id)
+			_reward_effect = upgrade.title + " · " + upgrade.description
 			summary_label.text = "Выбрано: %s." % upgrade.title
 			_refresh_run_stats()
 			await get_tree().create_timer(0.22).timeout
@@ -518,6 +524,7 @@ func _on_reward_button_pressed(index: int) -> void:
 				return
 
 			var upgrade := RunState.get_hero_upgrade(option_id)
+			_reward_effect = upgrade.title + " · " + upgrade.description
 			await _finish_reward("Ставка изменила героя: %s." % upgrade.title)
 
 		"normal_loot":
@@ -556,6 +563,7 @@ func _resolve_death_wager_option(option_id: String) -> void:
 				return
 
 			var artifact := RunState.get_artifact(artifact_id)
+			_reward_effect = artifact.title + " · " + artifact.description
 			await _finish_reward("Ставка оплачена реликвией: %s." % artifact.title, true)
 
 func _resolve_elite_option(option_id: String) -> void:
@@ -569,6 +577,7 @@ func _resolve_elite_option(option_id: String) -> void:
 		return
 
 	var artifact := RunState.get_artifact(option_id)
+	_reward_effect = artifact.title + " · " + artifact.description
 	await _finish_reward("Трофей ваш: %s." % artifact.title, true)
 
 func _set_progress_marks(tier_number: int) -> void:
@@ -613,6 +622,8 @@ func _set_reward_card(index: int, art_key: String, kicker: String, title: String
 	var texture := ARTIFACT_ART_CATALOG.get_texture(art_key)
 	if texture == null:
 		texture = CARD_ART_CATALOG.get_reward_texture(art_key)
+	if texture == null and RunState.ARTIFACT_PATHS.has(art_key):
+		texture = CARD_ART_CATALOG.get_reward_texture("elite_relic")
 	upgrade_portraits[index].texture = texture
 	upgrade_portraits[index].texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	# D332: live DS3's recessed painted scene must NEVER return to COVERED
@@ -823,6 +834,13 @@ func _finish_reward(message: String, relic: bool = false) -> void:
 	RunState.complete_active_card()
 	preload("res://scripts/core/run_save_service.gd").instance().write_slot(RunState)
 	summary_label.text = message
+	if not _reward_effect.is_empty():
+		var after := BUILD_FEEDBACK.capture(RunState)
+		var delta := BUILD_FEEDBACK.changes(_entry_build, after, 1)
+		var feedback := _reward_effect if delta.is_empty() else "%s · %s" % [_reward_effect.get_slice(" · ", 0), delta]
+		RunState.set_meta("build_feedback", feedback)
+		summary_label.tooltip_text = _reward_effect + "\n" + BUILD_FEEDBACK.changes(_entry_build, after)
+		summary_label.text = feedback
 	await get_tree().create_timer(0.22).timeout
 
 	if RunState.is_run_complete():

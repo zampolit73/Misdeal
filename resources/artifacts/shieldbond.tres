@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ArtifactData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/artifact_data.gd" id="1_artifact"]
+
+[resource]
+script = ExtResource("1_artifact")
+artifact_id = "shieldbond"
+title = "ЦЕПЬ ЩИТОНОСЦА"
+description = "Рыцарь в Обороне снижает на 12% урон по другим героям в радиусе 150."
+target_role = "knight"
+effect = "cover_allies"
+effect_value = 0.88
+effect_threshold = 150.0

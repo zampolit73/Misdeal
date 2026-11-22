@@ -1,5 +1,7 @@
 extends Control
 
+const BUILD_FEEDBACK := preload("res://scripts/ui/run_build_feedback.gd")
+
 const FINAL_FIVE := preload("res://scripts/event/final_five_events.gd")
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
@@ -60,6 +62,7 @@ var returning := false
 var _entry_gold := 0
 var _entry_hp := 0.0
 var _entry_relics := 0
+var _entry_build: Dictionary
 var choice_view: CHOICE_VIEW
 
 func _ready() -> void:
@@ -81,6 +84,7 @@ func _ready() -> void:
 	_entry_gold = RunState.gold
 	_entry_hp = RunState.party_hp_bonus - RunState.get_total_rescue_scar_hp_penalty()
 	_entry_relics = RunState.artifact_ids.size()
+	_entry_build = BUILD_FEEDBACK.capture(RunState)
 	_refresh_run_labels()
 	_configure_card()
 	_apply_castle_memory_hint()
@@ -1575,6 +1579,12 @@ func _finish(message: String, batch_03_action: String = "") -> void:
 	RunState.complete_active_card()
 	preload("res://scripts/core/run_save_service.gd").instance().write_slot(RunState)
 	result_label.text = message
+	var after := BUILD_FEEDBACK.capture(RunState)
+	var delta := BUILD_FEEDBACK.changes(_entry_build, after, 1)
+	if not delta.is_empty():
+		result_label.tooltip_text = message + "\n" + BUILD_FEEDBACK.changes(_entry_build, after)
+		result_label.mouse_filter = Control.MOUSE_FILTER_PASS
+		result_label.text += "\n" + delta
 	SoundDirector.play_event_result(_entry_gold, _entry_hp, _entry_relics)
 	_refresh_run_labels()
 	choice_view.show_result(continue_button)

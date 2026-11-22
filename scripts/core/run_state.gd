@@ -53,7 +53,16 @@ const ARTIFACT_PATHS := {
 	"dead_mans_shield": "res://resources/artifacts/dead_mans_shield.tres",
 	"blind_quiver": "res://resources/artifacts/blind_quiver.tres",
 	"cracked_focus": "res://resources/artifacts/cracked_focus.tres",
-	"broken_crown": "res://resources/artifacts/broken_crown.tres"
+	"broken_crown": "res://resources/artifacts/broken_crown.tres",
+	"sanguine_whetstone": "res://resources/artifacts/sanguine_whetstone.tres",
+	"mourning_knot": "res://resources/artifacts/mourning_knot.tres",
+	"harvest_ring": "res://resources/artifacts/harvest_ring.tres",
+	"shieldbond": "res://resources/artifacts/shieldbond.tres",
+	"ash_grimoire": "res://resources/artifacts/ash_grimoire.tres",
+	"hollow_fletching": "res://resources/artifacts/hollow_fletching.tres",
+	"watch_bell": "res://resources/artifacts/watch_bell.tres",
+	"marked_coin": "res://resources/artifacts/marked_coin.tres",
+	"scar_seal": "res://resources/artifacts/scar_seal.tres"
 }
 
 const HERO_ROLES: Array[String] = ["knight", "ranger", "mage"]
@@ -302,6 +311,8 @@ func reset_run() -> void:
 	combat_formation_by_card.clear()
 	# Metadata intentionally stays outside the complete persistent save field list.
 	set_meta("battle_plan_drafts", {})
+	if has_meta("build_feedback"):
+		remove_meta("build_feedback")
 	whispering_well_resolved = false
 	wizard_debt_active = false
 	boss_defeated = false
@@ -783,6 +794,28 @@ func get_artifacts_for_role(role: String) -> Array[ArtifactData]:
 			result.append(artifact)
 	return result
 
+
+func get_relic_effects(role: String) -> Dictionary:
+	var effects := {}
+	for artifact in get_artifacts_for_role(role):
+		if not artifact.effect.is_empty():
+			effects[artifact.effect] = artifact
+	return effects
+
+
+func get_artifact_synergies(role: String) -> PackedStringArray:
+	var effects := get_relic_effects(role)
+	var result := PackedStringArray()
+	if effects.has("wounded_damage") and (effects.has("wounded_guard") or effects.has("first_kill_heal")):
+		result.append("Кровавый билд · Сила при ранениях и шанс выжить.")
+	if effects.has("cover_allies") and has_artifact("dead_mans_shield"):
+		result.append("Щит отряда · укреплённый Рыцарь прикрывает союзников из Обороны.")
+	if effects.has("first_cast_radius") and has_artifact("cracked_focus"):
+		result.append("Пепельный взрыв · фокус и гримуар увеличивают радиус первого удара.")
+	if effects.has("wizard_purse"):
+		result.append("Ставка на золото · Метка и условия Волшебника помогают оплатить товары.")
+	return result
+
 func get_artifact_titles_text() -> String:
 	if artifact_ids.is_empty():
 		return "нет"
@@ -890,6 +923,8 @@ func get_effective_hero_stats(role: String) -> Dictionary:
 		splash_radius += artifact.splash_radius_bonus
 		splash_damage += artifact.splash_damage_bonus
 		move_speed *= artifact.move_speed_multiplier
+		if artifact.effect == "scar_strength" and role == protagonist_role:
+			damage *= 1.0 + artifact.effect_value * minf(rescue_scar_roles.size(), artifact.effect_threshold)
 
 	hp *= get_party_hp_multiplier()
 	damage *= get_party_damage_multiplier()

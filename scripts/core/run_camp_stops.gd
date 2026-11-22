@@ -17,13 +17,27 @@ static func open(state: Node, slot: int) -> Dictionary:
 		return {}
 	var relics: Array[String] = state.get_available_artifact_ids()
 	relics.sort()
+	var premium := ""
+	if slot == SHOP_SLOT:
+		for id in relics.duplicate():
+			var artifact: ArtifactData = state.get_artifact(id)
+			if artifact.effect == "scar_strength" and state.rescue_scar_roles.is_empty():
+				relics.erase(id)
+			elif artifact.effect == "wave_heal" and not state.remaining_card_ids.has("firing_square"):
+				relics.erase(id)
+			elif artifact.merchant_price > 0:
+				premium = id
+				relics.erase(id)
 	# The selection stays stable and does not consume combat or deck RNG.
 	var stock: Array[String] = []
 	if not relics.is_empty():
 		var offset: int = (slot + state.resolved_card_ids.size() + state.gold) % relics.size()
-		for index in range(mini(relics.size(), 3 if slot == SHOP_SLOT else 1)):
+		var capacity := 3 if premium.is_empty() else 2
+		for index in range(mini(relics.size(), capacity if slot == SHOP_SLOT else 1)):
 			stock.append("relic/" + relics[(offset + index) % relics.size()])
 	if slot == SHOP_SLOT:
+		if not premium.is_empty():
+			stock.append("relic/" + premium)
 		var trainee: String = state.get_least_developed_extra_role()
 		if not trainee.is_empty():
 			stock.append("upgrade/" + trainee)
@@ -59,9 +73,11 @@ static func is_valid(stop: Dictionary, values: Dictionary, state: Node) -> bool:
 	return true
 
 
-static func price(item: String) -> int:
+static func price(state: Node, item: String) -> int:
 	match item.get_slice("/", 0):
-		"relic": return RELIC_PRICE
+		"relic":
+			var artifact: ArtifactData = state.get_artifact(item.get_slice("/", 1))
+			return artifact.merchant_price if artifact != null and artifact.merchant_price > 0 else RELIC_PRICE
 		"upgrade": return UPGRADE_PRICE
 		"heal": return HEAL_PRICE
 	return 0
@@ -82,7 +98,7 @@ static func restriction(state: Node, action: String) -> String:
 	if stop.slot == SHOP_SLOT:
 		if action not in stop.stock: return "Нет в продаже"
 		if action in stop.sold: return "Куплено"
-		if state.gold < price(action): return "Не хватает золота"
+		if state.gold < price(state, action): return "Не хватает золота"
 		match action.get_slice("/", 0):
 			"relic": return "Уже есть" if state.has_artifact(id) else ""
 			"upgrade": return "Развитие исчерпано" if state.get_next_extra_hero_upgrade_id(id).is_empty() else ""
@@ -122,7 +138,7 @@ static func apply(state: Node, action: String) -> bool:
 		"relic":
 			if not state.add_artifact(id): return false
 	if is_shop and action != "leave":
-		state.gold -= price(action)
+		state.gold -= price(state, action)
 		state.camp_stop.sold.append(action)
 	else:
 		state.camp_stop.clear()

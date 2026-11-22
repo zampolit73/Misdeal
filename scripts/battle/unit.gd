@@ -150,6 +150,10 @@ var unit_data: UnitData
 var hp: float
 var combat_started := false
 var alive := true
+var relic_effects: Dictionary = {}
+var _relic_guard_used := false
+var _relic_spell_used := false
+var _relic_kill_used := false
 var target: BattleUnit
 # Null in every production battle; only the isolated planning fixture attaches it.
 var plan_executor: RefCounted
@@ -564,6 +568,9 @@ func disable_placement() -> void:
 func start_combat() -> void:
 	disable_placement()
 	combat_started = true
+	_relic_guard_used = false
+	_relic_spell_used = false
+	_relic_kill_used = false
 	if team != 0 and not is_boss and not show_enemy_name:
 		name_label.visible = false
 	attack_cooldown = randf_range(0.0, 0.25)
@@ -1207,6 +1214,12 @@ func _attack_target() -> void:
 
 	attack_cooldown = attack_interval
 	var primary_target := target
+	var strike_damage := _get_relic_strike_damage(primary_target)
+	var strike_radius := splash_radius
+	var grimoire := relic_effects.get("first_cast_radius") as ArtifactData
+	if grimoire != null and not _relic_spell_used:
+		strike_radius += grimoire.effect_value
+		_relic_spell_used = true
 	if diagnostic_attack.has_connections():
 		diagnostic_attack.emit(self, primary_target)
 	var impact_position := primary_target.global_position
@@ -1224,14 +1237,14 @@ func _attack_target() -> void:
 	_play_combat_audio(cue)
 	_apply_combat_hit_stop()
 	var before_damage: float = primary_target.hp
-	primary_target.take_damage(damage, visual_role, global_position)
+	primary_target.take_damage(strike_damage, visual_role, global_position, self)
 	if diagnostic_damage.has_connections():
 		diagnostic_damage.emit(self, primary_target, before_damage - primary_target.hp)
 
-	if splash_radius <= 0.0 or splash_damage_multiplier <= 0.0:
+	if strike_radius <= 0.0 or splash_damage_multiplier <= 0.0:
 		return
 
-	var splash_damage := damage * splash_damage_multiplier
+	var splash_damage := strike_damage * splash_damage_multiplier
 
 	for node in get_tree().get_nodes_in_group("combat_units"):
 		if not node is BattleUnit:
@@ -1241,9 +1254,9 @@ func _attack_target() -> void:
 		if unit == primary_target or not unit.alive or unit.team == team:
 			continue
 
-		if unit.global_position.distance_to(impact_position) <= splash_radius:
+		if unit.global_position.distance_to(impact_position) <= strike_radius:
 			var before_splash: float = unit.hp
-			unit.take_damage(splash_damage, visual_role, global_position)
+			unit.take_damage(splash_damage, visual_role, global_position, self)
 			if diagnostic_damage.has_connections():
 				diagnostic_damage.emit(self, unit, before_splash - unit.hp)
 
@@ -1363,12 +1376,14 @@ func take_attrition_damage(amount: float) -> void:
 		_die()
 
 
-func take_damage(amount: float, source_role: String = "", source_position: Vector2 = Vector2.ZERO) -> void:
+func take_damage(amount: float, source_role: String = "", source_position: Vector2 = Vector2.ZERO, attacker: BattleUnit = null) -> void:
 	if not alive:
 		return
 
 	var before_hp := hp
 	var applied_amount := maxf(0.0, amount * damage_taken_multiplier)
+	if team == 0 and combat_started and visual_role != "jack" and applied_amount > 0.0:
+		applied_amount = _apply_relic_guard(applied_amount)
 	var strong_hit := applied_amount >= maxf(18.0, max_hp * 0.18)
 	_show_damage_number(applied_amount, strong_hit)
 	_play_hit_feedback(source_position, source_role, strong_hit)
@@ -1397,7 +1412,46 @@ func take_damage(amount: float, source_role: String = "", source_position: Vecto
 	queue_redraw()
 
 	if hp <= 0.0:
+		if attacker != null and attacker.team != team:
+			attacker._claim_relic_kill()
 		_die()
+
+
+func _get_relic_strike_damage(victim: BattleUnit) -> float:
+	var result := damage
+	var whetstone := relic_effects.get("wounded_damage") as ArtifactData
+	if whetstone != null and hp <= max_hp * whetstone.effect_threshold:
+		result *= whetstone.effect_value
+	var fletching := relic_effects.get("hunt_targets") as ArtifactData
+	if fletching != null and tactical_order == TACTICAL_ORDER_HUNT:
+		if victim.support_heal_interval > 0.0 or victim.visual_role in COMBAT_SOUND.RANGED_ROLES:
+			result *= fletching.effect_value
+	return result
+
+
+func _apply_relic_guard(amount: float) -> float:
+	var result := amount
+	var knot := relic_effects.get("wounded_guard") as ArtifactData
+	if knot != null and not _relic_guard_used and hp <= max_hp * knot.effect_threshold:
+		result *= knot.effect_value
+		_relic_guard_used = true
+	if not RunState.has_artifact("shieldbond"):
+		return result
+	for node in get_tree().get_nodes_in_group("combat_units"):
+		var ally := node as BattleUnit
+		if ally == null or ally == self or ally.team != team or not ally.alive or not ally.combat_started or ally.tactical_order != TACTICAL_ORDER_FORMATION:
+			continue
+		var bond := ally.relic_effects.get("cover_allies") as ArtifactData
+		if bond != null and global_position.distance_squared_to(ally.global_position) <= bond.effect_threshold * bond.effect_threshold:
+			return result * bond.effect_value
+	return result
+
+
+func _claim_relic_kill() -> void:
+	var ring := relic_effects.get("first_kill_heal") as ArtifactData
+	if ring != null and not _relic_kill_used and alive and combat_started:
+		_relic_kill_used = true
+		heal(ring.effect_value)
 
 func _trigger_enrage() -> void:
 	enraged = true

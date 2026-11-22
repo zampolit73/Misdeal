@@ -6,7 +6,7 @@
 script = ExtResource("1_artifact")
 artifact_id = "dead_mans_shield"
 title = "ЩИТ МЕРТВЕЦА"
-description = "Рыцарь получает +40 здоровья, но двигается на 15% медленнее."
+description = "Рыцарь получает +40 к базовому макс. HP, но двигается на 15% медленнее."
 target_role = "knight"
 hp_bonus = 40.0
 move_speed_multiplier = 0.85

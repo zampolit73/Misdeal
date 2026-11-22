@@ -219,6 +219,8 @@ func _build_stats_text(stats: Dictionary, role: String) -> String:
 	var maximum := float(stats["hp"])
 	var health_color := "#e27b72" if health < maximum else "#f1e7d5"
 	lines.append("[color=#d9c6aa]ЗДОРОВЬЕ           [/color] [color=%s]%d / %d[/color]" % [health_color, ceili(health), ceili(maximum)])
+	if health < maximum:
+		lines.append("[color=#e27b72]Ранения · −%d HP[/color]" % (ceili(maximum) - ceili(health)))
 	lines.append(_stat_line("УРОН", float(stats["damage"]), float(stats["base_damage"]), 1, true))
 	lines.append(_stat_line("АТАК / СЕК", float(stats["attack_rate"]), float(stats["base_attack_rate"]), 2, true))
 	lines.append(_stat_line("ДАЛЬНОСТЬ", float(stats["attack_range"]), float(stats["base_attack_range"]), 0, true))
@@ -334,6 +336,8 @@ func _build_relics_text(role: String) -> String:
 		return "[color=#756b68]Нет реликвий, влияющих на героя.[/color]"
 
 	var chunks: Array[String] = []
+	for synergy in RunState.get_artifact_synergies(role):
+		chunks.append("[color=#9cbf97]%s[/color]" % synergy)
 	for artifact in artifacts:
 		var shared := "  [color=#9b8070]ОБЩАЯ[/color]" if artifact.target_role == "*" else ""
 		chunks.append("[color=#e2bd78][b]%s[/b][/color]%s\n[color=#bcae9e]%s[/color]" % [
@@ -341,7 +345,6 @@ func _build_relics_text(role: String) -> String:
 			shared,
 			artifact.description
 		])
-
 	return "\n\n".join(chunks)
 
 

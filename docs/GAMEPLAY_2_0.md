@@ -28,3 +28,25 @@ A production-route Windows Godot 4.7.2 automation from Class Select, seed 31031,
 - The equipped follow-up used seeds 31017 and 31031, three upgrades and one role relic. Solo Knight won XIII in both samples and fought the real second phase. Trio and Ranger-led duo won the Iron Wall second wave with this equipment, while fixed formations and single-order plans still struggled at Last Bell and XIII. At Last Bell the equipped solo Knight also won with Hunt on 31031, retaining 21 HP versus 137 HP on Assault. These were encounter fixtures.
 - The Package A Windows smoke uses real AI for Grave Bell and the Warden defeat and presses the production Reward, Table and Last Deal buttons. The VIII shop is an isolated fixture. Focused tests cover save migration, paid retry, recruitment, HP caps, training, the rite and repeat purchase protection. The [PR workflow](../.github/workflows/godot-pr-smoke.yml) runs the graphical route as part of RELEASE.
 - F5 → choose a hero → win a fight and inspect HP in the squad dossier. After IV, choose one rest action. At VIII, buy one item and use Continue to confirm the inventory and gold. After XII, take the last rest before opening XIII. Native Windows screenshots are available for the [first rest](qa/gameplay_2_core/first_rest.png) and the [merchant with a full party](qa/gameplay_2_core/gate_merchant.png).
+
+## Package B · Builds & Rewards
+
+Act I has 13 unique relics. Shield, Quiver, Focus and Broken Crown retain their previous effects. Nine additional `ArtifactData` resources use the same drop, trade and save systems.
+
+| Relic | Effect |
+| --- | --- |
+| Кровавый оселок | +16% strike damage at or below 45% HP. |
+| Узел траура | At or below 30% HP, the first incoming strike per wave is reduced by 35%. |
+| Перстень жатвы | The first personal kill per hero per wave restores up to 12 HP. |
+| Цепь щитоносца | Knight in Defense reduces incoming strike damage to nearby heroes by 12%, within 150. |
+| Пепельный гримуар | The Mage's first attack per wave adds 32 to its splash radius. |
+| Чёрное оперение | Ranger attacks healers and archers for +17% in Hunt. |
+| Колокол второй стражи | Living heroes heal up to 12% max HP at the wave intermission. |
+| Меченая монета | A win with a Wizard Mark or a fulfilled Wizard objective pays 12 gold once. |
+| Печать шрамов | The protagonist gets +8% damage per rescue scar, capped at +16%. The merchant offers it for 75 gold when the protagonist has a rescue scar. |
+
+The dossiers show four build paths. Wounded heroes can combine offensive timing with a first-hit safeguard or personal kill heal. Knight Defense and the Dead Man's Shield support allied cover. Grimoire and Focus extend splash reach at the cost already shown on Focus. The coin funds purchases through earned bonus objectives and Wizard Marks. Limited triggers reset at the next wave. A squad receives each relic once, and the next battle builds its effects from its owned relics.
+
+Reward, the gate merchant and both event choice scenes show changes from the shared effective stats. The dossier shows current/max HP, wounds, upgrades, conditional relic effects and synergies. Use the dossier scroll area to inspect owned relics beyond the three featured slots. At VIII, the merchant only offers the wave relic while Firing Square remains in the deck.
+
+Godot 4.7.2 checks cover relic loading and save round-trip, actual attack and personal kill handling, stacking two defensive effects, enlarged first-spell radius, the merchant's special price and Combat Planning. The native fixture buys healing and plays the real Grave Bell battle through a marked victory. See [dossier](qa/gameplay_2_builds/blood_build.png), [purchase](qa/gameplay_2_builds/merchant_change.png) and [battle payout](qa/gameplay_2_builds/marked_coin.png). Long-run win-rate effects still need player runs.
