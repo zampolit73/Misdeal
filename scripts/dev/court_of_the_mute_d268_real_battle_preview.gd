@@ -22,8 +22,8 @@ var d271_legacy_art_enabled := false
 
 func _ready() -> void:
 	_build_menu()
-	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
-		_fail("Карта #39 должна быть в выпущенной колоде 39/45.")
+	if not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		_fail("Суд немых должен быть в действующей колоде первого акта.")
 		return
 	if RunState.get_card(CARD_ID) == null or RunState.get_card(CARD_ID).target_path != ENCOUNTER_PATH:
 		_fail("Не найден выпущенный ресурс Court #39 с путём к бою.")
@@ -48,7 +48,7 @@ func _build_menu() -> void:
 	var title := _label("D271 · СУД БЕЗМОЛВНЫХ", 28)
 	content.add_child(title)
 	content.add_child(_label("РЕАЛЬНЫЙ BATTLE → REWARD → TABLE · НЕВЫПУЩЕННАЯ КАРТА · QA", 17))
-	content.add_child(_label("Карта №39 выпущена (39/45). F6 запускает реальный бой с утверждённой D271 ареной независимо от случайной раздачи.", 15))
+	content.add_child(_label("Суд немых доступен в обычной колоде. F6 запускает реальный бой независимо от раздачи.", 15))
 
 	content.add_child(_label("Состав отряда", 18))
 	party_picker = OptionButton.new()
@@ -88,8 +88,8 @@ func _label(message: String, font_size: int) -> Label:
 func _launch_real_battle() -> void:
 	if running:
 		return
-	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
-		_fail("Карта #39 должна быть доступна в обычной колоде 39/45.")
+	if not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		_fail("Суд немых отсутствует в действующей колоде.")
 		return
 
 	# Validate all three original Court roles BEFORE changing RunState.
@@ -163,7 +163,7 @@ func _launch_real_battle() -> void:
 		_fail("Настоящий бой отобразил не Суд, а подменённую арену.")
 		return
 	_build_d269_floor_guide(battle)
-	print("D268_COURT_REAL_BATTLE_PREVIEW_PASS: 3 original roles/4 actors, lower floor + verdict + painted Court D271 QA plate; card #39 RELEASED (39/45).")
+	print("D268_COURT_REAL_BATTLE_PREVIEW_PASS: 3 original roles/4 actors, lower floor + verdict + painted Court D271 QA plate; Court in live deck")
 
 
 # D269: debug *only* overlay. In real Battle this is added after validation

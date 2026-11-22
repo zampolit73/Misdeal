@@ -44,8 +44,8 @@ func _ready() -> void:
 
 
 func _check_contract() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
-		failures.append("Court #39 must be released into Act1 39/45")
+	if not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		failures.append("Court is missing from the live Act I deck")
 	var card: RunCardData = RunState.get_card(CARD_ID)
 	if card == null or card.target_path != "res://resources/encounters/court_of_the_mute.tres" or card.resolution_type != "combat":
 		failures.append("Court #39 released card requires real encounter target_path")

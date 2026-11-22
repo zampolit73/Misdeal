@@ -1,6 +1,12 @@
 name: D268 Court real Battle QA and 54-case matrix
 
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/d268-court-battle-qa.yml'
+      - 'scripts/dev/court_of_the_mute_*.gd'
+      - 'scripts/battle/battle.gd'
+      - 'scripts/core/run_state.gd'
   push:
     branches: [main]
     paths:

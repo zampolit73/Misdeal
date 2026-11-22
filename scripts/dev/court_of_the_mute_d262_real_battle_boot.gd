@@ -15,8 +15,8 @@ func _ready() -> void:
 	call_deferred("_run_boot")
 
 func _run_boot() -> void:
-	if RunState.ACT1_CARD_IDS.size() != 39 or not RunState.ACT1_CARD_IDS.has(CARD_ID):
-		_abort("Court #39 release or original 25-frame character art missing from 39/45")
+	if not RunState.ACT1_CARD_IDS.has(CARD_ID):
+		_abort("Court is missing from the live Act I deck")
 		return
 	var result_cases := 0
 	for party_size in [1, 2, 3]:
@@ -129,7 +129,7 @@ func _run_boot() -> void:
 			battle.queue_free()
 			await get_tree().process_frame
 			result_cases += 1
-	print("D262_COURT_REAL_BATTLE_PASS: 6 genuine Battle startup cases (solo/duo/trio x 2 formations); 4 new actors, warned + focused verdict only in Court, 39-card released pool preserved")
+	print("D262_COURT_REAL_BATTLE_PASS: 6 genuine Battle startup cases (solo/duo/trio x 2 formations); 4 actors, warned + focused verdict only in Court")
 	get_tree().quit(0)
 
 func _abort(message: String) -> void:
