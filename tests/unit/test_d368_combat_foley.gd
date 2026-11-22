@@ -1,6 +1,6 @@
 extends GutTest
 
-# The V2 palette keeps the existing player pool and the approved step cue.
+# The combat palette keeps the existing player pool.
 const COMBAT_SCRIPT := preload("res://scripts/battle/combat_audio.gd")
 
 
@@ -10,18 +10,24 @@ func _new_audio() -> Node:
 	return audio
 
 
-func test_v2_palette_has_real_recorded_cues_and_original_bone_steps() -> void:
+func test_combat_palette_has_recorded_cues_and_rotates_stone_steps_at_native_pitch() -> void:
 	var audio := _new_audio()
 	var bank: Dictionary = audio.get("_streams")
 	for family: String in COMBAT_SCRIPT.CUES:
+		if family == "enemy_step":
+			continue
 		var stream := bank.get(family) as AudioStream
 		assert_not_null(stream, "Missing live cue: " + family)
 		if stream != null:
 			assert_gt(stream.get_length(), 0.0)
-			if family != "enemy_step":
-				assert_eq(stream.resource_path, COMBAT_SCRIPT.PALETTE + String(COMBAT_SCRIPT.CUES[family][0]) + ".wav")
-	assert_same(bank.get("enemy_step"), load("res://assets/audio/act1/bones.ogg"))
-	assert_eq(COMBAT_SCRIPT.CUES["enemy_step"].slice(1), [740, 1, -21.0])
+	var last_played: Dictionary = audio.get("_last_played_ms")
+	for index in COMBAT_SCRIPT.STEP_VARIANTS.size() + 1:
+		last_played["enemy_step"] = -100000
+		audio.call("play_event", "enemy_step", "skeleton")
+		var voice := audio.get_child(index) as AudioStreamPlayer
+		var filename: String = COMBAT_SCRIPT.STEP_VARIANTS[index % COMBAT_SCRIPT.STEP_VARIANTS.size()]
+		assert_eq(voice.stream.resource_path, COMBAT_SCRIPT.HOTFIX_PALETTE + filename)
+		assert_eq(voice.pitch_scale, 1.0)
 
 
 func test_combat_pool_keeps_six_voices_on_the_existing_bus() -> void:
@@ -38,7 +44,7 @@ func test_four_fast_archers_are_throttled_but_bow_uses_two_variants() -> void:
 	var audio := _new_audio()
 	audio.call("play_event", "attack", "bone_archer")
 	var first_voice: AudioStreamPlayer = audio.get_child(0) as AudioStreamPlayer
-	assert_same(first_voice.stream, load(COMBAT_SCRIPT.PALETTE + "bow-a.wav"))
+	assert_same(first_voice.stream, load(COMBAT_SCRIPT.HOTFIX_PALETTE + "bow-release-a.wav"))
 	var next_index := int(audio.get("_voice_index"))
 	for _shot in range(3):
 		audio.call("play_event", "attack", "bone_archer")
@@ -49,7 +55,10 @@ func test_four_fast_archers_are_throttled_but_bow_uses_two_variants() -> void:
 	audio.call("play_event", "attack", "ranger")
 	assert_eq(int(audio.get("_ranged_accepted")), 2)
 	var second_voice: AudioStreamPlayer = audio.get_child(1) as AudioStreamPlayer
-	assert_same(second_voice.stream, load(COMBAT_SCRIPT.PALETTE + "bow-b.wav"))
+	assert_same(second_voice.stream, load(COMBAT_SCRIPT.HOTFIX_PALETTE + "bow-release-b.wav"))
+	audio.call("play_event", "hit_arrow", "skeleton")
+	var impact := audio.get_child(2) as AudioStreamPlayer
+	assert_same(impact.stream, load(COMBAT_SCRIPT.HOTFIX_PALETTE + "arrow-impact.wav"))
 
 
 func test_healing_and_boss_have_higher_priority_than_attack_spam() -> void:

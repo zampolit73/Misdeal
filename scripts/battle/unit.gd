@@ -3,6 +3,9 @@ extends Node2D
 
 const COMBAT_SOUND := preload("res://scripts/battle/combat_audio.gd")
 const CREATURE_AUDIO_ROLES := ["ossuary_lamb", "drowned_hand", "unstable_homunculus", "jack"]
+const SKELETAL_STEP_ROLES := ["skeleton", "crypt_guard", "grave_bellkeeper", "road_sentinel",
+	"lantern_bearer", "lantern_archer", "funeral_priest", "pallbearer", "mute_magistrate", "ash_scrivener"]
+const BONE_STRIDE_DISTANCE := 27.0
 
 const UNIT_TILE_SIZE: float = 96.0
 const TACTICAL_ORDER_ASSAULT := "assault"
@@ -696,10 +699,13 @@ func _process(delta: float) -> void:
 	_clamp_to_combat_bounds()
 	# Do not play walking frames while pinned against the arena boundary.
 	visual_moving = position.distance_squared_to(prior_position) > 0.20
-	if visual_moving and team == 1 and visual_role.begins_with("bone_") and not is_boss:
-		_bone_step_distance += position.distance_to(prior_position)
-		if _bone_step_distance >= 30.0:
-			_bone_step_distance = 0.0
+	if team == 1 and not is_boss and (visual_role.begins_with("bone_") or visual_role in SKELETAL_STEP_ROLES):
+		var ground_distance := position.distance_to(prior_position)
+		# Ignore tiny separation nudges. Measure travel independently of the walk animation.
+		if ground_distance >= delta * 18.0:
+			_bone_step_distance += ground_distance
+		if _bone_step_distance >= BONE_STRIDE_DISTANCE:
+			_bone_step_distance = fposmod(_bone_step_distance, BONE_STRIDE_DISTANCE)
 			_play_combat_audio("enemy_step")
 	z_index = int(position.y)
 	queue_redraw()

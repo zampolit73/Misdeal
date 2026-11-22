@@ -67,3 +67,17 @@ Rendered stereo PCM at 24 kHz with short stone-room reflections, soft tails and 
 [bong1.wav]: https://opengameart.org/sites/default/files/bong1.wav
 [break_stone.wav]: https://opengameart.org/sites/default/files/break_stone.wav
 [wind1.wav]: https://opengameart.org/sites/default/files/wind1.wav
+
+## Archery and skeletal run hotfix
+
+The Freesound takes were trimmed around the real transient, peak-matched and given short fades. The four concrete steps retain the original Kenney audio.
+
+| File in `assets/audio/combat/hotfix/` | Author and original source | Audio | License |
+|---|---|---|---|
+| `footstep_run_01.ogg` | Kenney · [Impact Sounds](https://kenney.nl/assets/impact-sounds) | [footstep_concrete_000.ogg](https://raw.githubusercontent.com/Mcamento8/open-game-sfx-index/34bbe8b525b5ceff3804915ea745532af11f6055/audio/impact-sounds/footstep_concrete_000.ogg) | CC0 1.0 |
+| `footstep_run_02.ogg` | Kenney · [Impact Sounds](https://kenney.nl/assets/impact-sounds) | [footstep_concrete_001.ogg](https://raw.githubusercontent.com/Mcamento8/open-game-sfx-index/34bbe8b525b5ceff3804915ea745532af11f6055/audio/impact-sounds/footstep_concrete_001.ogg) | CC0 1.0 |
+| `footstep_run_03.ogg` | Kenney · [Impact Sounds](https://kenney.nl/assets/impact-sounds) | [footstep_concrete_002.ogg](https://raw.githubusercontent.com/Mcamento8/open-game-sfx-index/34bbe8b525b5ceff3804915ea745532af11f6055/audio/impact-sounds/footstep_concrete_002.ogg) | CC0 1.0 |
+| `footstep_run_04.ogg` | Kenney · [Impact Sounds](https://kenney.nl/assets/impact-sounds) | [footstep_concrete_003.ogg](https://raw.githubusercontent.com/Mcamento8/open-game-sfx-index/34bbe8b525b5ceff3804915ea745532af11f6055/audio/impact-sounds/footstep_concrete_003.ogg) | CC0 1.0 |
+| `bow-release-a.wav` | [saturdaysoundguy / Freesound](https://freesound.org/people/saturdaysoundguy/sounds/394178/) | [Official HQ audio](https://cdn.freesound.org/previews/394/394178_7280678-hq.mp3) | CC0 1.0 |
+| `bow-release-b.wav` | [saturdaysoundguy / Freesound](https://freesound.org/people/saturdaysoundguy/sounds/394179/) | [Official HQ audio](https://cdn.freesound.org/previews/394/394179_7280678-hq.mp3) | CC0 1.0 |
+| `arrow-impact.wav` | [JoeDinesSound / Freesound](https://freesound.org/people/JoeDinesSound/sounds/534956/) | [Official HQ audio](https://cdn.freesound.org/previews/534/534956_579267-hq.mp3) | CC0 1.0 |

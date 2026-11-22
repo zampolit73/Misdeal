@@ -2,7 +2,13 @@ extends Node
 
 const VOICE_COUNT := 6
 const PALETTE := "res://assets/audio/combat/v2/"
-const STEP := preload("res://assets/audio/act1/bones.ogg")
+const HOTFIX_PALETTE := "res://assets/audio/combat/hotfix/"
+const STEP_VARIANTS := ["footstep_run_01.ogg", "footstep_run_02.ogg", "footstep_run_03.ogg", "footstep_run_04.ogg"]
+const ARCHERY_STREAMS := {
+	"attack_ranged": "bow-release-a.wav",
+	"bow_b": "bow-release-b.wav",
+	"hit_arrow": "arrow-impact.wav",
+}
 const RANGED_ROLES := ["ranger", "bone_archer", "lantern_archer"]
 const MAGIC_ROLES := ["mage", "grave_bellkeeper", "funeral_priest", "plague_alchemist",
 	"ash_scrivener", "threadbare_puppeteer", "mute_magistrate"]
@@ -10,17 +16,17 @@ const MAGIC_ROLES := ["mage", "grave_bellkeeper", "funeral_priest", "plague_alch
 # Filename, minimum interval in ms, priority, gain relative to the scene mix.
 const CUES := {
 	"attack_melee": ["blade", 105, 2, -7.0],
-	"attack_ranged": ["bow-a", 155, 2, -8.0],
+	"attack_ranged": ["", 155, 2, -8.0],
 	"attack_magic": ["spell", 145, 2, -8.0],
 	"strong_magic": ["spell-heavy", 250, 4, -5.0],
 	"enemy_attack": ["skeleton-swing", 155, 2, -12.0],
 	"creature_attack": ["spell-hit", 195, 2, -11.0],
-	"enemy_step": ["", 740, 1, -21.0],
+	"enemy_step": ["", 135, 1, -21.0],
 	"enemy_hit": ["bone-hit", 175, 3, -9.0],
 	"hit": ["body-hit", 175, 3, -10.0],
 	"hit_armor": ["armor-hit", 175, 3, -8.0],
 	"hit_cloth": ["body-hit", 175, 3, -10.0],
-	"hit_arrow": ["arrow-hit", 175, 3, -9.0],
+	"hit_arrow": ["", 175, 3, -11.0],
 	"hit_magic": ["spell-hit", 160, 3, -8.0],
 	"enemy_death": ["bone-break", 245, 4, -6.0],
 	"death": ["body-fall", 245, 4, -6.0],
@@ -47,6 +53,8 @@ var _voice_priorities: Array[int] = []
 var _voice_started_ms: Array[int] = []
 var _voice_index := 0
 var _ranged_accepted := 0
+var _step_variant := 0
+var _steps: Array[AudioStream] = []
 var _last_played_ms: Dictionary = {}
 var _pitch_rng := RandomNumberGenerator.new()
 
@@ -55,10 +63,13 @@ func _ready() -> void:
 	add_to_group("combat_audio")
 	_pitch_rng.seed = 0x5A17C0DE
 	for family: String in CUES:
-		if family != "enemy_step":
-			_streams[family] = load(PALETTE + String(CUES[family][0]) + ".wav") as AudioStream
-	_streams["enemy_step"] = STEP
-	_streams["bow_b"] = load(PALETTE + "bow-b.wav") as AudioStream
+		var filename := String(CUES[family][0])
+		if not filename.is_empty():
+			_streams[family] = load(PALETTE + filename + ".wav") as AudioStream
+	for key: String in ARCHERY_STREAMS:
+		_streams[key] = load(HOTFIX_PALETTE + String(ARCHERY_STREAMS[key])) as AudioStream
+	for filename: String in STEP_VARIANTS:
+		_steps.append(load(HOTFIX_PALETTE + filename) as AudioStream)
 	for index in range(VOICE_COUNT):
 		var voice := AudioStreamPlayer.new()
 		voice.bus = "Combat"
@@ -77,7 +88,7 @@ func play_event(event_name: String, role: String = "") -> void:
 	if now - int(_last_played_ms.get(family, -100000)) < int(settings[1]):
 		return
 	var key := "bow_b" if family == "attack_ranged" and _ranged_accepted % 2 == 1 else family
-	var stream := _streams.get(key) as AudioStream
+	var stream := _steps[_step_variant] if family == "enemy_step" else _streams.get(key) as AudioStream
 	if stream == null:
 		return
 	var priority := int(settings[2])
@@ -96,6 +107,8 @@ func play_event(event_name: String, role: String = "") -> void:
 	_last_played_ms[family] = now
 	if family == "attack_ranged":
 		_ranged_accepted += 1
+	elif family == "enemy_step":
+		_step_variant = (_step_variant + 1) % _steps.size()
 
 
 func _choose_voice(incoming_priority: int) -> int:
@@ -124,7 +137,7 @@ func _get_attack_stream_key(role: String) -> String:
 
 func _get_pitch_scale(family: String, role: String) -> float:
 	if family == "enemy_step":
-		return _pitch_rng.randf_range(1.12, 1.24)
+		return 1.0
 	if family in ["heal", "last_rite", "whistle", "boss_entrance", "boss", "boss_death"]:
 		return 1.0
 	var base := 1.0

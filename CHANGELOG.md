@@ -1,3 +1,7 @@
+## Combat Audio hotfix — archery and skeletal run
+
+Alternate four stone steps by actual skeletal movement. Use two real longbow releases and a separate recorded arrow impact. [CC0 sources](docs/audio/THIRD_PARTY_AUDIO_LICENSES.md#archery-and-skeletal-run-hotfix)
+
 ## Combat Audio V2
 
 Use layered weapon, bow, bone and stone recordings for Act I fights, with new casts, impacts, falls, special cues and Warden audio. Add quiet courtyard, crypt and hall beds on the existing Ambience bus. Footsteps retain their previous audio and timing. [CC0 sources](docs/audio/THIRD_PARTY_AUDIO_LICENSES.md#combat-audio-v2)
