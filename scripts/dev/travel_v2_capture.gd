@@ -1,16 +1,17 @@
 extends SceneTree
-const VIEW := preload("res://scenes/travel/travel_transition.tscn")
 const CATALOG := preload("res://scripts/travel/travel_catalog.gd")
 var destination: String
 func _initialize() -> void: call_deferred("run")
 func run() -> void:
+	# The standalone script is parsed before audio autoloads are registered.
+	var view_scene := load("res://scenes/travel/travel_transition.tscn") as PackedScene
 	destination = OS.get_cmdline_user_args()[0]
 	DirAccess.make_dir_recursive_absolute(destination)
 	var orphan_baseline := int(Performance.get_monitor(Performance.OBJECT_ORPHAN_NODE_COUNT))
 	var matrix := [["knight"],["ranger","mage"],["knight","ranger","mage"]]
 	var updates: Array[int] = []
 	for roles in matrix:
-		var view: CanvasLayer = VIEW.instantiate()
+		var view: CanvasLayer = view_scene.instantiate()
 		view.context = CATALOG.context_for("borrowed_boots","passed",roles)
 		view.data_path = CATALOG.DEFAULT_LOCATION
 		root.add_child(view)
@@ -40,7 +41,7 @@ func run() -> void:
 		view.queue_free()
 		await process_frame
 		await process_frame
-	var resize_view: CanvasLayer = VIEW.instantiate()
+	var resize_view: CanvasLayer = view_scene.instantiate()
 	resize_view.context = CATALOG.context_for("last_signal","passed",matrix[1])
 	resize_view.data_path = CATALOG.DEFAULT_LOCATION
 	root.add_child(resize_view)
@@ -60,7 +61,7 @@ func run() -> void:
 	# Repeated open/skip/free must not accumulate travel nodes or decode copies.
 	var nodes_before := int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))
 	for i in range(20):
-		var view: CanvasLayer = VIEW.instantiate()
+		var view: CanvasLayer = view_scene.instantiate()
 		view.context = CATALOG.context_for("last_signal","passed",matrix[i%3])
 		view.data_path = CATALOG.DEFAULT_LOCATION
 		root.add_child(view)
