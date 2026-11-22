@@ -11,6 +11,7 @@ const TABLE_DS3_PASS := preload("res://scripts/table/table_ds3_pass.gd")
 const TABLE_OFFER_SKIN := preload("res://scripts/table/table_offer_skin.gd")
 const CARD_DS3_SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
 const CARD_LORE_INSPECT_SCENE := preload("res://scenes/table/card_lore_inspect.tscn")
+const GAMEPLAY_STOP_SCRIPT := preload("res://scripts/table/gameplay_intermission.gd")
 
 const LEFT_CARD_POSITION := Vector2(349.0, 329.0)
 const RIGHT_CARD_POSITION := Vector2(659.0, 329.0)
@@ -94,8 +95,11 @@ func _ready() -> void:
 	wager_refuse_button.pressed.connect(_refuse_wizard_wager)
 
 	_configure_card_pivots()
-	_refresh_table()
 	add_child(preload("res://scripts/memory/memory_table.gd").new())
+	if RunState.get_gameplay_stop_kind().is_empty():
+		_refresh_table()
+	else:
+		_show_gameplay_stop()
 
 func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_panel($HudPanel, MISDEAL_UI_KIT.BRONZE, false)
@@ -126,6 +130,32 @@ func _apply_ui_kit() -> void:
 	TABLE_DS3_PASS.apply(self)
 	CARD_DS3_SKIN.apply_table_backs(self)
 
+
+# A camp or merchant is a real stop between Fate cards. No new Fate slot or
+# active card is created, and the next card deal begins only after closing.
+func _show_gameplay_stop() -> void:
+	var kind: String = RunState.get_gameplay_stop_kind()
+	if kind.is_empty():
+		cards_root.visible = true
+		_refresh_table()
+		return
+	selection_locked = true
+	cards_root.visible = false
+	hold_a_button.visible = false
+	hold_b_button.visible = false
+	var stop := GAMEPLAY_STOP_SCRIPT.new() as Control
+	stop.configure(kind)
+	stop.finished.connect(_on_gameplay_stop_finished)
+	stop.z_index = 3000
+	add_child(stop)
+
+func _on_gameplay_stop_finished() -> void:
+	if not RunState.get_gameplay_stop_kind().is_empty():
+		_show_gameplay_stop()
+		return
+	cards_root.visible = true
+	selection_locked = false
+	_refresh_table()
 
 func _input(event: InputEvent) -> void:
 	if selection_locked or is_instance_valid(card_lore_inspect):
@@ -225,6 +255,14 @@ func _refresh_table(show_memory: bool = true) -> void:
 	]
 	if not condition_text.is_empty():
 		stats_label.text += "     %s" % condition_text
+	# Expose the injuries without squeezing another permanent HUD panel onto the
+	# player-approved tabletop. The full current/max readout lives in Dossier.
+	var health_lines: Array[String] = []
+	for role in RunState.party_roles:
+		var maximum: float = float(RunState.get_effective_hero_stats(role).get("hp", 0.0))
+		var current_hp: float = RunState.get_hero_current_hp(role)
+		health_lines.append("%s %d/%d" % [role.to_upper(), roundi(current_hp), roundi(maximum)])
+	squad_button.tooltip_text = "ЗДОРОВЬЕ ОТРЯДА\n" + "\n".join(health_lines)
 
 	if RunState.is_boss_due():
 		default_wizard_line = "Двенадцать карт позади. Осталась та, которую я берег."

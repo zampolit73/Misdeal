@@ -183,13 +183,21 @@ func _play_travel_cues(previous: float) -> void:
 	var id := String(context.get("resolved_card_id", ""))
 	if elapsed >= _next_audible_step and elapsed < duration() - 0.65:
 		_next_audible_step = elapsed + 0.61
-		SoundDirector.play_scene_cue(self, "wood-step" if id == "rattling_bridge" else "stone-step",
+		_play_safe_scene_cue("wood-step" if id == "rattling_bridge" else "stone-step",
 			-26.0, 1.03 if int(elapsed * 2) % 2 == 0 else 0.94)
 	if previous < 0.92 and elapsed >= 0.92:
 		var cue := _outcome_cue(id, String(context.get("visual_action", context.get("outcome_id", ""))))
 		if not cue.is_empty():
-			SoundDirector.play_scene_cue(self, cue, -23.0, 0.92)
+			_play_safe_scene_cue(cue, -23.0, 0.92)
 
+
+# Standalone SceneTree QA captures can load Travel without the project auto-
+# load registry. Keep cinematic sound in ordinary F5, but never make the
+# presentation route fail to parse when the audio singleton is absent.
+func _play_safe_scene_cue(cue: String, gain_db: float, pitch: float) -> void:
+	var director: Node = get_tree().root.get_node_or_null("SoundDirector")
+	if director != null and director.has_method("play_scene_cue"):
+		director.call("play_scene_cue", self, cue, gain_db, pitch)
 
 func _outcome_cue(id: String, action: String) -> String:
 	if action in ["passed", "leave", "untouched", "abandon", "careful", "leave_lost"] or action.is_empty():

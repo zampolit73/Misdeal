@@ -205,6 +205,12 @@ var gold: int = 0
 var deals_survived: int = 0
 var cards_resolved: int = 0
 var party_hp_bonus: float = 0.0
+# Gameplay 2.0: per-role persistent injuries and one-shot non-Fate stops.
+# Each entry holds the actual HP and maximum at the moment of the last update.
+var hero_health_by_role: Dictionary = {}
+var camp_last_completed: int = 0
+var shop_last_completed: int = 0
+var shop_purchases: Dictionary = {}
 var party_damage_bonus: float = 0.0
 var last_battle_won := false
 var selected_encounter_path: String = DEFAULT_ENCOUNTER_PATH
@@ -291,6 +297,10 @@ func reset_run() -> void:
 	deals_survived = 0
 	cards_resolved = 0
 	party_hp_bonus = 0.0
+	hero_health_by_role.clear()
+	camp_last_completed = 0
+	shop_last_completed = 0
+	shop_purchases.clear()
 	party_damage_bonus = 0.0
 	last_battle_won = false
 	selected_encounter_path = DEFAULT_ENCOUNTER_PATH
@@ -829,6 +839,122 @@ func get_hero_unit_data(role: String) -> UnitData:
 
 	push_warning("Could not load hero UnitData: %s" % path)
 	return null
+
+# Current HP is not the same thing as the effective maximum. A first-time
+# hero starts healthy; a later max-HP increase heals only the gained capacity.
+# A max-HP reduction never creates extra health.
+func get_hero_current_hp(role: String) -> float:
+	if not is_role_in_party(role):
+		return 0.0
+	var maximum: float = float(get_effective_hero_stats(role).get("hp", 0.0))
+	if maximum <= 0.0:
+		return 0.0
+	var recorded: Variant = hero_health_by_role.get(role, {})
+	if not recorded is Dictionary or recorded.is_empty():
+		return maximum
+	var old_max: float = float(recorded.get("max", maximum))
+	var old_hp: float = float(recorded.get("current", maximum))
+	return clampf(old_hp + maxf(0.0, maximum - old_max), 1.0, maximum)
+
+func store_hero_current_hp(role: String, current: float, maximum: float) -> void:
+	if not is_role_in_party(role) or maximum <= 0.0:
+		return
+	hero_health_by_role[role] = {
+		"current": clampf(current, 1.0, maximum),
+		"max": maximum
+	}
+
+func heal_party_fraction(fraction: float) -> void:
+	for role in party_roles:
+		var maximum: float = float(get_effective_hero_stats(role).get("hp", 0.0))
+		if maximum <= 0.0:
+			continue
+		var healed: float = minf(maximum, get_hero_current_hp(role) + maximum * clampf(fraction, 0.0, 1.0))
+		store_hero_current_hp(role, healed, maximum)
+
+# Stops take place between Fate slots, never replacing I–XII or XIII.
+func get_gameplay_stop_kind() -> String:
+	if is_run_complete() or not active_card_id.is_empty():
+		return ""
+	# Native QA/dev fixtures sometimes set the count without resolving cards.
+	# Never intercept an ordinary Table route merely from that synthetic count.
+	if resolved_card_ids.size() < cards_resolved:
+		return ""
+	if cards_resolved in [4, 8] and camp_last_completed < cards_resolved:
+		return "camp"
+	if cards_resolved == 8 and shop_last_completed < 8:
+		return "shop"
+	return ""
+
+func get_camp_upgrade_id() -> String:
+	return get_next_extra_hero_upgrade_id(get_least_developed_extra_role())
+
+func resolve_camp(choice: String) -> bool:
+	if get_gameplay_stop_kind() != "camp":
+		return false
+	match choice:
+		"rest":
+			heal_party_fraction(0.40)
+		"train":
+			var role: String = get_least_developed_extra_role()
+			if role.is_empty() or add_next_extra_hero_upgrade(role).is_empty():
+				return false
+		_:
+			return false
+	camp_last_completed = cards_resolved
+	return true
+
+func get_shop_artifact_id() -> String:
+	var pool := get_available_artifact_ids()
+	pool.sort()
+	return pool[0] if not pool.is_empty() else ""
+
+func get_shop_upgrade_id() -> String:
+	return get_camp_upgrade_id()
+
+func get_shop_cost(kind: String) -> int:
+	match kind:
+		"artifact": return 40
+		"upgrade": return 35
+		"heal": return 20
+	return -1
+
+func can_buy_shop_item(kind: String) -> bool:
+	if get_gameplay_stop_kind() != "shop" or shop_purchases.get(kind, false):
+		return false
+	var cost: int = get_shop_cost(kind)
+	if cost < 0 or gold < cost:
+		return false
+	match kind:
+		"artifact": return not get_shop_artifact_id().is_empty()
+		"upgrade": return not get_shop_upgrade_id().is_empty()
+		"heal":
+			for role in party_roles:
+				var maximum: float = float(get_effective_hero_stats(role).get("hp", 0.0))
+				if get_hero_current_hp(role) < maximum - 0.1:
+					return true
+	return false
+
+func buy_shop_item(kind: String) -> bool:
+	if not can_buy_shop_item(kind):
+		return false
+	match kind:
+		"artifact":
+			if not add_artifact(get_shop_artifact_id()): return false
+		"upgrade":
+			if add_next_extra_hero_upgrade(get_least_developed_extra_role()).is_empty(): return false
+		"heal":
+			heal_party_fraction(0.30)
+		_:
+			return false
+	gold -= get_shop_cost(kind)
+	shop_purchases[kind] = true
+	return true
+
+func leave_shop() -> bool:
+	if get_gameplay_stop_kind() != "shop": return false
+	shop_last_completed = cards_resolved
+	return true
 
 func get_effective_hero_stats(role: String) -> Dictionary:
 	if not is_role_in_party(role):
