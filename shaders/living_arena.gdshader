@@ -168,11 +168,23 @@ void fragment() {
 		} else if (visible_motion >= 3) {
 			float locality = (1.0 - smoothstep(0.25, 1.1, length(q))) * floor_fade * mask.g;
 			if (visible_motion == 3) {
-				// Moving folds in the portal mist, with clear gaps between them.
-				float fold = sin(p.x * 0.027 + p.y * 0.063 - elapsed * 1.9 + sin(p.y * 0.026 + elapsed * 0.8));
-				float curl = 0.5 + 0.5 * sin(p.x * 0.021 - p.y * 0.035 - elapsed * 1.1);
-				color.rgb = mix(color.rgb, haze_style.rgb * 1.17,
-					smoothstep(0.12, 0.83, fold) * (0.3 + 0.7 * curl) * locality * (0.48 + 0.18 * reaction_strength));
+				// Ossuary: low, soft banks of drifting fog, not diagonal shafts of light.
+				// Keep the rear portal visible, leave the upper vault dark and the floor untouched.
+				float low_veil = smoothstep(132.0, 232.0, p.y)
+					* (1.0 - smoothstep(308.0, 344.0, p.y));
+				vec2 bank_a = (p - (visible_area.xy + vec2(
+					-54.0 + 38.0 * sin(elapsed * 0.32),
+					76.0 + 8.0 * sin(elapsed * 0.21)))) / vec2(174.0, 73.0);
+				vec2 bank_b = (p - (visible_area.xy + vec2(
+					68.0 + 37.0 * cos(elapsed * 0.27 + 1.0),
+					99.0 + 6.0 * cos(elapsed * 0.19)))) / vec2(190.0, 66.0);
+				float bank_density = 0.58 * exp(-dot(bank_a, bank_a) * 1.55)
+					+ 0.47 * exp(-dot(bank_b, bank_b) * 1.75);
+				float soft_variation = 0.9 + 0.1 * sin(
+					p.x * 0.015 + elapsed * 0.36 + 0.4 * sin(p.y * 0.017));
+				float fog_alpha = clamp(bank_density * soft_variation * low_veil
+					* mask.g * floor_fade * (0.46 + 0.12 * reaction_strength), 0.0, 0.45);
+				color.rgb = mix(color.rgb, haze_style.rgb, fog_alpha);
 			} else {
 				// Light travels down the existing stained glass mask.
 				float ribbon = smoothstep(0.1, 0.85, sin(p.y * 0.055 + p.x * 0.012 - elapsed * 1.45));
