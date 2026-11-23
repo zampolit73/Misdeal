@@ -8,7 +8,7 @@ Use the existing artifact IDs and resource catalog for acquisitions and saves. B
 
 ## Gameplay 2.0 · Health and respite
 
-Carry per-hero current HP between battles. Use the shared effective stats for maxima and grant 20% of the maximum to a hero downed in a victory. Resolve stops after IV, VIII and XII outside the Fate Spread. Persist stock, payments and stop selection through the existing run checkpoint. [Gameplay contract](GAMEPLAY_2_0.md)
+Carry per-hero current HP between battles. Use shared effective maxima. Return downed heroes at 20% HP, then heal each hero by up to 25% of their maximum once per victory. Resolve stops after IV, VIII and XII outside the Fate Spread. Persist stock, payments and stop selection through the existing run checkpoint. [Gameplay contract](GAMEPLAY_2_0.md)
 
 ## Combat Audio V2 — wind and stone
 

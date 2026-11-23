@@ -4,7 +4,7 @@
 
 ### Wounds and checkpoints
 
-- Every hero starts a run or joins the party at full effective HP. A survivor carries their exact remaining HP to the next fight. A hero downed during a victory returns at 20% of effective maximum HP. Jack retains his existing battle rules.
+- Every hero starts a run or joins the party at full effective HP. After a victory, each hero recovers 25% of their effective maximum HP, capped at full health. A downed hero first returns at 20%, reaching 45% after the shared recovery. The restored HP carries into the next fight. Jack uses his existing battle rules.
 - Battle and the squad dossier use the same effective stat calculation. Lowering maximum HP clamps current HP. Raising maximum HP grants capacity without healing. Blood payments that already modify maximum HP keep that effect. Wave intermissions keep the living units' current HP.
 - The victory checkpoint opens Reward and keeps the battle's wounds and Wizard objective payout. A mid-battle interruption keeps the previous safe checkpoint. A defeat with Last Deal available saves that offer. Accepting saves the paid retry before reloading the fight, with the same entry HP capped by the new maximum. Refusal or a second defeat ends the run.
 - Run save schema 2 adds per-hero HP and the pending stop's stock and purchase state. Schema 1 saves initialize heroes at their effective maximum and continue at the existing checkpoint. Older saves do not replay earlier stops. Stained glass remains in its existing profile.

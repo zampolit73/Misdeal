@@ -8,7 +8,7 @@ Act I has 13 relics. Conditional combat effects and the existing upgrades suppor
 
 ## Gameplay 2.0 · Core
 
-Heroes carry their wounds between fights. Rest stops after IV and XII and the merchant after VIII run outside the Fate Spread. The victory and paid Last Deal checkpoints retain health and handle old save slots. [Rules and QA](GAMEPLAY_2_0.md)
+Heroes carry their wounds between fights and recover 25% of maximum HP after each victory. Rest stops after IV and XII and the merchant after VIII run outside the Fate Spread. The victory and paid Last Deal checkpoints retain health and handle old save slots. [Rules and QA](GAMEPLAY_2_0.md)
 
 ## Combat Audio V2
 

@@ -1670,6 +1670,7 @@ func _finish_battle(player_won: bool) -> void:
 		for unit in units:
 			if unit.team == 0 and unit.visual_role != "jack":
 				RunState.record_battle_health(unit.visual_role, unit.hp if unit.alive else 0.0)
+		RunState.heal_party_after_victory()
 		var side_objective_reward_text := _claim_side_objective_reward()
 		var payout := RunState.get_relic_effects(RunState.protagonist_role).get("wizard_purse") as ArtifactData
 		if payout != null and (RunState.wizard_mark_danger_active or not side_objective_reward_text.is_empty()):

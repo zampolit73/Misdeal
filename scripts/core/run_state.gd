@@ -4,6 +4,7 @@ const ACT_CARD_TARGET: int = 12
 const MAX_DEALS: int = ACT_CARD_TARGET
 const BOSS_CARD_ID := "bone_warden"
 const DOWNED_HP_FRACTION := 0.20
+const VICTORY_HEAL_FRACTION := 0.25
 const CAMP_STOPS := preload("res://scripts/core/run_camp_stops.gd")
 const RUN_SAVE := preload("res://scripts/core/run_save_service.gd")
 const CHARTER := preload("res://scripts/core/run_charter.gd")
@@ -1010,6 +1011,10 @@ func record_battle_health(role: String, remaining_hp: float) -> void:
 	if is_role_in_party(role):
 		var maximum := get_hero_max_hp(role)
 		hero_current_hp[role] = minf(remaining_hp if remaining_hp > 0.0 else maximum * DOWNED_HP_FRACTION, maximum)
+
+func heal_party_after_victory() -> void:
+	for role in party_roles:
+		change_hero_hp(role, get_hero_max_hp(role) * VICTORY_HEAL_FRACTION)
 
 func get_available_hero_upgrade_ids_for_role(role: String) -> Array[String]:
 	var available: Array[String] = []

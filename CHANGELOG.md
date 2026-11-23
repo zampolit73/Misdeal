@@ -1,3 +1,7 @@
+## Gameplay 2.0 · Victory recovery
+
+After a victory, each hero recovers 25% of maximum HP, capped at full health. Recovery is included in the reward checkpoint.
+
 ## Gameplay 2.0 · Package C
 
 Add the Wizard Archive, persistent collections, run history and challenges. XIII victories unlock three alternative starting styles and five sequential Wizard oaths. Continue supports both previous save schemas. [Rules and QA](docs/GAMEPLAY_2_0.md#package-c--wizard-archive-and-new-runs)

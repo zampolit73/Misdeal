@@ -36,6 +36,21 @@ func test_downed_hero_recovers_one_fifth_and_max_hp_increase_cannot_heal() -> vo
 	assert_lte(RunState.get_hero_current_hp("knight"), RunState.get_hero_max_hp("knight"))
 
 
+func test_victory_heals_each_hero_by_one_quarter_of_max_hp() -> void:
+	RunState.recruit_companion("ranger", "Test")
+	RunState.recruit_companion("mage", "Test")
+	var knight_max := RunState.get_hero_max_hp("knight")
+	var ranger_max := RunState.get_hero_max_hp("ranger")
+	var mage_max := RunState.get_hero_max_hp("mage")
+	RunState.record_battle_health("knight", knight_max * 0.50)
+	RunState.record_battle_health("ranger", ranger_max * 0.90)
+	RunState.record_battle_health("mage", 0.0)
+	RunState.heal_party_after_victory()
+	assert_almost_eq(RunState.get_hero_current_hp("knight"), knight_max * 0.75, 0.01)
+	assert_almost_eq(RunState.get_hero_current_hp("ranger"), ranger_max, 0.01)
+	assert_almost_eq(RunState.get_hero_current_hp("mage"), mage_max * 0.45, 0.01)
+
+
 func test_rest_applies_once_and_does_not_resolve_a_fate_card() -> void:
 	RunState.record_battle_health("knight", 64.0)
 	_resolve_at(4)

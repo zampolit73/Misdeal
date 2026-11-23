@@ -20,6 +20,7 @@ func _run() -> void:
 	seed(31017)
 	state.reset_run()
 	state.choose_protagonist("knight")
+	state.change_hero_hp("knight", -35.0)
 	state.cards_resolved = 3
 	var battle := await _open_battle("grave_bell")
 	var hero: Node = battle.units[0]
@@ -28,7 +29,11 @@ func _run() -> void:
 	if not await _wait_for_result(battle): return
 	if not _check(state.last_battle_won and hero.hp < starting_hp and hero.hp > 0, "Grave Bell must be a wounded victory"): return
 	var won_hp: float = hero.hp
-	if not _check(is_equal_approx(state.get_hero_current_hp("knight"), won_hp), "Actual HP after victory"): return
+	var expected_hp := minf(hero.max_hp, won_hp + hero.max_hp * 0.25)
+	if not _check(expected_hp < hero.max_hp and is_equal_approx(state.get_hero_current_hp("knight"), expected_hp), "Victory heals one quarter of max HP"): return
+	if not output.is_empty():
+		var checkpoint: Dictionary = save.read_slot(state)
+		if not _check(is_equal_approx(checkpoint.state.hero_current_hp.knight, expected_hp), "Reward checkpoint includes victory healing once"): return
 	battle.continue_button.pressed.emit()
 	if not await _at_scene("/reward/reward.tscn"): return
 	var reward := current_scene
@@ -45,13 +50,14 @@ func _run() -> void:
 	if not _check(state.cards_resolved == 4 and state.camp_stop.slot == 4, "Reward leads to IV rest"): return
 	await _capture("first_rest.png")
 	var stop := current_scene.get_node("CampStop")
+	var before_rest: float = state.get_hero_current_hp("knight")
 	stop._action_buttons[0].pressed.emit()
-	if not _check(state.camp_stop.is_empty() and state.get_hero_current_hp("knight") > won_hp, "Rest heals once"): return
+	if not _check(state.camp_stop.is_empty() and state.get_hero_current_hp("knight") > before_rest, "Rest heals once"): return
 	var after_rest: float = state.get_hero_current_hp("knight")
 	if not output.is_empty():
 		var checkpoint: Dictionary = save.read_slot(state)
 		if not _check(save.apply_slot(state, checkpoint) and is_equal_approx(state.get_hero_current_hp("knight"), after_rest), "Continue after rest"): return
-	print("GAMEPLAY_CORE_VICTORY: battle_hp=%0.2f/%0.2f rest_hp=%0.2f gold=%d" % [won_hp, starting_hp, after_rest, state.gold])
+	print("GAMEPLAY_CORE_VICTORY: battle_hp=%0.2f after_victory=%0.2f rest_hp=%0.2f gold=%d" % [won_hp, expected_hp, after_rest, state.gold])
 
 	# The VIII fixture exercises the longest possible list of goods.
 	state.cards_resolved = 7
