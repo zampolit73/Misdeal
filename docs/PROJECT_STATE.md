@@ -1,3 +1,7 @@
+## Living Arenas V4 Lite
+
+Six arenas reuse the existing backdrop masks for local reactions to combat start, wave II or victory. [Coverage and native frames](LIVING_ARENAS_V4_LITE.md)
+
 ## Bone Warden XIII · throne intro
 
 XIII opens with a 1.95-second rise from the throne, then hands off to Combat Planning in front of the empty throne. Click, Enter, Space or Esc skips to preparation. The original combat Warden takes over from his normal deployment position. [Godot verification](WARDEN_INTRO.md)

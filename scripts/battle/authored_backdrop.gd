@@ -13,6 +13,9 @@ var _living_phase_target := 0.0
 var _living_reacts_to_phase := false
 var _living_reacts_to_wave := false
 var _living_wave_age := 3.0
+const REACTION_DURATION := 1.5
+var _reaction_age := REACTION_DURATION
+var _reaction_cue: StringName = &""
 
 const ARENA_CRYPT := "crypt"
 const ARENA_GRAVEYARD := "graveyard"
@@ -96,6 +99,8 @@ func reveal_empty_warden_throne() -> void:
 		living_material.set_shader_parameter("source_plate", texture)
 
 func _configure_living_arena() -> void:
+	_reaction_age = REACTION_DURATION
+	_reaction_cue = &""
 	living_elapsed = 0.0
 	living_finished = false
 	living_paused = false
@@ -109,9 +114,15 @@ func _configure_living_arena() -> void:
 		var profile: Dictionary = LIVING_PROFILE.PROFILES[living_profile_id]
 		living_material = ShaderMaterial.new()
 		living_material.shader = LIVING_SHADER
+		living_material.set_shader_parameter("reaction_strength", 0.0)
 		living_material.set_shader_parameter("source_plate", texture)
 		living_material.set_shader_parameter("region_mask", LIVING_PROFILE.mask_for(living_profile_id))
 		living_material.set_shader_parameter("arena_mode", profile.mode)
+		var reaction: Dictionary = LIVING_PROFILE.BATTLE_REACTIONS.get(living_profile_id, {})
+		if not reaction.is_empty():
+			_reaction_cue = reaction.cue
+			living_material.set_shader_parameter("reaction_area", reaction.area)
+			living_material.set_shader_parameter("reaction_gain", reaction.gain)
 		if profile.has("haze"):
 			living_material.set_shader_parameter("haze_style", profile.haze)
 			living_material.set_shader_parameter("mote_area", profile.motes)
@@ -141,7 +152,19 @@ func set_living_paused(paused: bool) -> void:
 	living_paused = paused
 	set_living_enabled(living_enabled)
 
-func finish_living_arena() -> void:
+func cue_living_reaction(cue: StringName) -> void:
+	if living_finished or living_material == null or cue != _reaction_cue:
+		return
+	_reaction_age = 0.0
+	# The result freezes immediately. Use an already-dimmed final frame.
+	living_material.set_shader_parameter("reaction_strength", 1.0 if cue == &"victory" else 0.0)
+
+
+func finish_living_arena(won: bool = false) -> void:
+	if won:
+		cue_living_reaction(&"victory")
+	if living_material != null and (not won or _reaction_cue != &"victory"):
+		living_material.set_shader_parameter("reaction_strength", 0.0)
 	living_finished = true
 	set_process(false)
 
@@ -150,6 +173,10 @@ func advance_living(delta: float) -> void:
 	if is_inside_tree() and get_tree().paused: return
 	living_elapsed += maxf(0.0, delta)
 	living_material.set_shader_parameter("elapsed", living_elapsed)
+	if _reaction_age < REACTION_DURATION:
+		_reaction_age = minf(_reaction_age + delta, REACTION_DURATION)
+		var envelope := smoothstep(0.0, 0.23, _reaction_age) * (1.0 - smoothstep(0.23, REACTION_DURATION, _reaction_age))
+		living_material.set_shader_parameter("reaction_strength", envelope)
 	if living_phase_mix != _living_phase_target:
 		living_phase_mix = move_toward(living_phase_mix, _living_phase_target, maxf(delta, 0.0) / 1.2)
 		living_material.set_shader_parameter("phase_strength", smoothstep(0.0, 1.0, living_phase_mix))

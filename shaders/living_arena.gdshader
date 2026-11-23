@@ -12,6 +12,9 @@ uniform float cycle_seconds = 24.0;
 // Profile: wind direction, turbulence, source-light strength, local sway (px).
 uniform vec4 local_motion = vec4(0.0);
 uniform float wave_strength = 0.0;
+uniform float reaction_strength = 0.0;
+uniform vec4 reaction_area = vec4(0.0, 0.0, 1.0, 1.0);
+uniform vec2 reaction_gain = vec2(0.0);
 const vec2 PLATE = vec2(1280.0, 720.0);
 
 // Bounded packets grow, crest and recede in place. No translating water sheet.
@@ -114,6 +117,14 @@ void fragment() {
 		}
 		float strength = arena_mode >= 4 ? mote_strength*(1.0 + phase_strength*0.45 + wave_strength*0.3) : 0.24;
 		color.rgb += vec3(0.22,0.20,0.15)*dust*mask.a*strength;
+	}
+	if (reaction_strength > 0.0 && p.y < 360.0) {
+		float locality = (1.0 - smoothstep(0.15, 1.0, length((p - reaction_area.xy) / reaction_area.zw)))
+			* (1.0 - smoothstep(348.0, 360.0, p.y)) * reaction_strength;
+		// The Court window and Ossuary veil use the atmospheric mask.
+		float light = reaction_gain.x < 0.0 ? mask.g : mask.b;
+		color.rgb *= 1.0 + reaction_gain.x * light * locality;
+		color.rgb = mix(color.rgb, haze_style.rgb, reaction_gain.y * mask.g * locality);
 	}
 	COLOR = vec4(color.rgb,original.a);
 }
