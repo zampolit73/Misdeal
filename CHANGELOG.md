@@ -1,3 +1,7 @@
+## Ossuary Gate V4.1 — fog appearance correction
+
+Replace the diagonal spotlight-like V4.1 portal bands with softly drifting, low cold-fog banks; reduce and lower the combat-start haze cue. All other approved arenas and gameplay are unchanged. Native visual acceptance remains pending. [Review route](docs/LIVING_ARENAS_V4_1.md)
+
 ## Living Arenas V4.1
 
 Add moving flame tips, sparse embers, rising smoke and drifting stained-glass light to the six V4 Lite arenas. [Native sequences](docs/LIVING_ARENAS_V4_1.md)
