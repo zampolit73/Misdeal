@@ -1,5 +1,12 @@
 # Living Arenas V4.1
 
+## Ossuary Gate correction — fog, not a spotlight
+
+The player accepted V4.1 except for Ossuary Gate, where the moving portal effect resembled a spotlight. The V4.1 portal branch now renders two softly overlapping, slow horizontal fog banks near the lower rear portal, replacing the high-contrast diagonal sine bands and brightened haze color. The combat-start haze is also confined lower in the portal and reduced. No other arena motion profile, approved painting, gameplay mechanic or protected floor region was changed.
+
+Review in Godot at 1280×720: F6 → **ЖИВЫЕ АРЕНЫ** → **Врата оссуария**. Watch the portal for 5–8 seconds in preparation, then begin combat. The desired result is diffuse drifting fog rather than a moving beam. This correction is code-reviewed, **not yet visually accepted in native Godot**.
+
+
 The F6 QA Hub route is **ЖИВЫЕ АРЕНЫ**. Watch the preparation field before starting combat. Iron Wall also reacts as wave II starts, and the Court keeps its dimmed victory frame.
 
 | Arena | Movement |
