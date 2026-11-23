@@ -1,3 +1,7 @@
+## Living Arenas V4.1
+
+Use **ЖИВЫЕ АРЕНЫ** in the F6 QA Hub and watch the preparation field for several seconds. Check the altar, furnace and rear portal first, then start a fight and watch Iron Wall wave II or the Court victory. [Native sequences](LIVING_ARENAS_V4_1.md)
+
 ## Living Arenas V4 Lite
 
 Open **ЖИВЫЕ АРЕНЫ** in the F6 QA Hub and start the listed battles. Watch Iron Wall when wave II starts and the Court when victory opens. [Reaction cues and native frames](LIVING_ARENAS_V4_LITE.md)

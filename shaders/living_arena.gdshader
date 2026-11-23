@@ -15,6 +15,8 @@ uniform float wave_strength = 0.0;
 uniform float reaction_strength = 0.0;
 uniform vec4 reaction_area = vec4(0.0, 0.0, 1.0, 1.0);
 uniform vec2 reaction_gain = vec2(0.0);
+uniform int visible_motion = 0;
+uniform vec4 visible_area = vec4(0.0, 0.0, 1.0, 1.0);
 const vec2 PLATE = vec2(1280.0, 720.0);
 
 // Bounded packets grow, crest and recede in place. No translating water sheet.
@@ -23,6 +25,11 @@ float packet(vec2 p, vec2 center, vec2 extent, float phase) {
 	float locality = exp(-dot(q,q)*2.0);
 	float cycle = 0.5-0.5*cos(elapsed*0.79+phase);
 	return locality*cycle*cycle*sin(p.x*0.027+p.y*0.19-elapsed*1.07+phase);
+}
+
+float hot_flame(vec3 pixel) {
+	return smoothstep(0.58, 0.88, pixel.r) * smoothstep(0.36, 0.68, pixel.g)
+		* smoothstep(0.16, 0.50, pixel.r - pixel.b);
 }
 void fragment() {
 	vec2 p = UV*PLATE;
@@ -125,6 +132,53 @@ void fragment() {
 		float light = reaction_gain.x < 0.0 ? mask.g : mask.b;
 		color.rgb *= 1.0 + reaction_gain.x * light * locality;
 		color.rgb = mix(color.rgb, haze_style.rgb, reaction_gain.y * mask.g * locality);
+	}
+	if (visible_motion != 0 && p.y < 360.0) {
+		vec2 q = (p - visible_area.xy) / visible_area.zw;
+		float floor_fade = 1.0 - smoothstep(345.0, 360.0, p.y);
+		if (visible_motion <= 2 && abs(q.x) < 1.2 && q.y > -2.2 && q.y < 0.0) {
+			// Anchor the bottom of the flame and bend only the warm painted tips.
+			float tip = smoothstep(0.0, 0.55, -q.y) * (1.0 - smoothstep(0.65, 1.0, length(q)));
+			float heat = hot_flame(original.rgb) * mask.b;
+			float sway = sin(elapsed * 5.6 + q.y * 4.0) + 0.38 * sin(elapsed * 9.4);
+			vec2 shift = vec2(sway * 15.0, (0.62 + 0.54 * sin(elapsed * 6.2 + q.x * 2.0)) * 17.0);
+			vec3 flame = texture(source_plate, UV + shift * tip * (1.0 + reaction_strength * 0.55) / PLATE).rgb;
+			float warm_tip = hot_flame(flame);
+			float flame_weight = max(heat, warm_tip * mask.b) * tip;
+			color.rgb = mix(color.rgb, flame, flame_weight * floor_fade);
+			// Sparse sparks follow fixed tracks in the shader above the source.
+			float sparks = 0.0;
+			for (int i = 0; i < 4; i++) {
+				float n = float(i);
+				float life = fract(elapsed * (0.58 + n * 0.07) + n * 0.37);
+				vec2 ember = visible_area.xy + vec2((n - 1.5) * 5.5 + sin(life * 3.0 + n) * 10.0,
+					-18.0 - life * (visible_motion == 2 ? 63.0 : 38.0));
+				vec2 gap = (p - ember) / vec2(1.35, 2.2);
+				float envelope = smoothstep(0.0, 0.18, life) * (1.0 - smoothstep(0.4, 0.86, life));
+				sparks += (1.0 - smoothstep(0.2, 1.0, length(gap))) * envelope;
+			}
+			color.rgb += vec3(0.48, 0.26, 0.10) * sparks * floor_fade * (0.62 + 0.36 * reaction_strength);
+			if (visible_motion == 2 && mask.g > 0.0) {
+				float lift = smoothstep(0.12, 0.85, sin(p.y * 0.095 + p.x * 0.047 + elapsed * 2.6));
+				float plume = (1.0 - smoothstep(0.25, 1.5, length(q + vec2(-0.35, 0.85))))
+					* smoothstep(0.15, 0.7, -q.y);
+				color.rgb = mix(color.rgb, haze_style.rgb, lift * plume * mask.g * floor_fade
+					* (0.18 + 0.29 * reaction_strength));
+			}
+		} else if (visible_motion >= 3) {
+			float locality = (1.0 - smoothstep(0.25, 1.1, length(q))) * floor_fade * mask.g;
+			if (visible_motion == 3) {
+				// Moving folds in the portal mist, with clear gaps between them.
+				float fold = sin(p.x * 0.027 + p.y * 0.063 - elapsed * 1.9 + sin(p.y * 0.026 + elapsed * 0.8));
+				float curl = 0.5 + 0.5 * sin(p.x * 0.021 - p.y * 0.035 - elapsed * 1.1);
+				color.rgb = mix(color.rgb, haze_style.rgb * 1.17,
+					smoothstep(0.12, 0.83, fold) * (0.3 + 0.7 * curl) * locality * (0.48 + 0.18 * reaction_strength));
+			} else {
+				// Light travels down the existing stained glass mask.
+				float ribbon = smoothstep(0.1, 0.85, sin(p.y * 0.055 + p.x * 0.012 - elapsed * 1.45));
+				color.rgb += vec3(0.085, 0.115, 0.16) * ribbon * locality * (1.0 - reaction_strength);
+			}
+		}
 	}
 	COLOR = vec4(color.rgb,original.a);
 }

@@ -1,3 +1,7 @@
+## Living Arenas V4.1
+
+Six arenas add readable flame, ember, smoke and stained-glass motion during preparation and combat through the existing shader. [Native sequences](LIVING_ARENAS_V4_1.md)
+
 ## Living Arenas V4 Lite
 
 Six arenas reuse the existing backdrop masks for local reactions to combat start, wave II or victory. [Coverage and native frames](LIVING_ARENAS_V4_LITE.md)

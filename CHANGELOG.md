@@ -1,3 +1,7 @@
+## Living Arenas V4.1
+
+Add moving flame tips, sparse embers, rising smoke and drifting stained-glass light to the six V4 Lite arenas. [Native sequences](docs/LIVING_ARENAS_V4_1.md)
+
 ## Living Arenas V4 Lite
 
 Add six local arena reactions to combat start, the Iron Wall second wave and the Court victory. [Coverage and native QA](docs/LIVING_ARENAS_V4_LITE.md)
