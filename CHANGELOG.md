@@ -1,3 +1,7 @@
+## Living Arenas V4 Lite
+
+Add six local arena reactions to combat start, the Iron Wall second wave and the Court victory. [Coverage and native QA](docs/LIVING_ARENAS_V4_LITE.md)
+
 ## Event Choice Visual V2
 
 All 24 Act I event screens use the approved bronze and burgundy decision frame with separate parchment title and effect panels. Long effects gain more reading space, and hover, focus and confirmation retain their existing controls. [Native gallery](docs/qa/event_choice_visual_v2/README.md)

@@ -2,6 +2,15 @@ extends RefCounted
 ## Coordinates traced from the immutable 1280x720 production paintings.
 ## R: local displacement; G: distant atmosphere; B: existing lights; A: dust.
 const PILOTS := ["firing_square", "black_crossing", "threadbare_theatre"]
+const BATTLE_REACTIONS := {
+	"graveyard": {"cue": &"start", "area": Vector4(53, 337, 60, 52), "gain": Vector2(0.25, 0.0)},
+	"iron_wall": {"cue": &"wave", "area": Vector4(178, 284, 120, 66), "gain": Vector2(0.27, 0.0)},
+	"bone_ritual": {"cue": &"start", "area": Vector4(958, 288, 110, 75), "gain": Vector2(0.25, 0.0)},
+	"court_of_the_mute": {"cue": &"victory", "area": Vector4(635, 100, 115, 130), "gain": Vector2(-0.23, 0.0)},
+	"ossuary_gate": {"cue": &"start", "area": Vector4(684, 151, 220, 160), "gain": Vector2(0.0, 0.12)},
+	"warden": {"cue": &"start", "area": Vector4(640, 213, 345, 145), "gain": Vector2(0.24, 0.0)},
+}
+
 const V2_ARENAS := ["last_bell", "ossuary_gate", "warden"]
 const V3_BATCHES := [
 	["crypt", "graveyard", "gallows", "ossuary"],

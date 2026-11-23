@@ -113,6 +113,31 @@ func test_delta_pause_finish_and_disable_are_safe() -> void:
 	node.set_living_enabled(true)
 	assert_false(node.is_processing(),"Finished battle cannot resume ambience")
 
+func test_local_battle_reaction_obeys_pause_finish_and_restart() -> void:
+	var node := BACKDROP.new()
+	add_child_autofree(node)
+	node.set_arena_id("iron_wall", "iron_wall")
+	node.cue_living_reaction(&"start")
+	node.advance_living(0.23)
+	assert_eq(node.living_material.get_shader_parameter("reaction_strength"), 0.0)
+	node.cue_living_reaction(&"wave")
+	node.advance_living(0.23)
+	assert_eq(node.living_material.get_shader_parameter("reaction_strength"), 1.0)
+	node.set_living_paused(true)
+	node.advance_living(2.0)
+	assert_eq(node.living_material.get_shader_parameter("reaction_strength"), 1.0)
+	node.set_living_paused(false)
+	node.advance_living(2.0)
+	assert_eq(node.living_material.get_shader_parameter("reaction_strength"), 0.0)
+	node.set_arena_id("court_of_the_mute", "court_of_the_mute")
+	node.finish_living_arena(true)
+	node.advance_living(2.0)
+	assert_eq(node.living_material.get_shader_parameter("reaction_strength"), 1.0)
+	node.set_arena_id("court_of_the_mute", "court_of_the_mute")
+	node.finish_living_arena(false)
+	assert_eq(node.living_material.get_shader_parameter("reaction_strength"), 0.0)
+
+
 func test_warden_phase_uses_the_local_clock_and_real_enrage_hook() -> void:
 	RunState.reset_run()
 	RunState.choose_protagonist("knight")

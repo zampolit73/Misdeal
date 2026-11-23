@@ -1201,6 +1201,7 @@ func _on_fight_pressed() -> void:
 		if unit.alive:
 			unit.start_combat()
 	combat_live = true
+	battle_backdrop.call("cue_living_reaction", &"start")
 	_archive_enemy_roster()
 	if shepherd_whistle_controller != null:
 		shepherd_whistle_controller.start_whistle()
@@ -1573,6 +1574,7 @@ func _start_second_wave() -> void:
 		if unit.alive:
 			unit.start_combat()
 	combat_live = true
+	battle_backdrop.call("cue_living_reaction", &"wave")
 	_archive_enemy_roster()
 	_show_wizard_line(encounter.wave_two_wizard_line, true)
 
@@ -1647,7 +1649,7 @@ func _finish_battle(player_won: bool) -> void:
 	if court_verdict_controller != null:
 		court_verdict_controller.stop_verdict()
 	battle_finished = true
-	battle_backdrop.call("finish_living_arena")
+	battle_backdrop.call("finish_living_arena", player_won)
 	combat_live = false
 	if target_preview != null:
 		target_preview.set_active(false)
