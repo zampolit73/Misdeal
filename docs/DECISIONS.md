@@ -1,3 +1,7 @@
+## Event Choice Visual V2 · approved decision frame
+
+Apply the approved «Кости должника» frame through the shared event presentation. Keep the illustration recess and the live text independent from the painted borders. For long effects and restrictions, redistribute the art and parchment height while preserving the card footprint. ActChoice and WhisperingWell own the existing decisions and results. [Approved reference and native evidence](qa/event_choice_visual_v2/README.md)
+
 ## XIII · throne rise before battle planning
 
 Use the seated throne painting for the opening and blend the restored throne into the existing backdrop as the figure rises. Gate preparation on the presentation's completion or skip. Keep the real BattleUnit in its original formation throughout and retain the same Living Arenas material and phase clock. A saved defeat opens the outstanding Last Deal immediately. [Runtime and QA](WARDEN_INTRO.md)

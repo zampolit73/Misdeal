@@ -3,12 +3,12 @@ extends Node
 
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MOTION := preload("res://scripts/ui/ui_motion.gd")
-const BRONZE := Color("a6794d")
+const SKIN := preload("res://scripts/ui/event_choice_skin.gd")
 const BONE := Color("f0dfc1")
-const PAPER := Color("dbc39e")
 const INK := Color("2a1b16")
 const MUTED := Color("c5b3a4")
 const ROMAN := ["I", "II", "III", "IV"]
+const ROW_BOUNDS := Rect2(96, 169, 1088, SKIN.HEIGHT)
 
 var _cards: Array[Button] = []
 var _actions: Array[Button] = []
@@ -30,28 +30,25 @@ func track(buttons: Array[Button]) -> void:
 func build(surface: Control, row: HBoxContainer, title: Label, quote: Label, description: Label,
 		result: Label, stats: Array[Label], cards: Array[Button]) -> void:
 	_result = result
-	var header := _panel(surface, "EventHeader", Rect2(96, 24, 1088, 148), Color("211918"))
-	var rule := ColorRect.new()
-	rule.color = BRONZE.darkened(0.38)
-	rule.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	header.add_child(rule)
-	_place(rule, Rect2(20, 31, 1048, 1))
+	_plate(surface, "EventStats", Rect2(96, 17, 1088, 33), true)
+	_plate(surface, "EventHeader", Rect2(96, 46, 1088, 119))
 	for index in stats.size():
-		var bounds := Rect2(118, 28, 1044, 23)
+		var bounds := Rect2(123, 21, 1034, 24)
 		if stats.size() == 2:
-			bounds = Rect2(118, 28, 150, 23) if index == 0 else Rect2(276, 28, 886, 23)
+			bounds = Rect2(123, 21, 150, 24) if index == 0 else Rect2(281, 21, 876, 24)
 		_style_label(stats[index], bounds, 13, UI.PARCHMENT_WARM, false)
 		stats[index].text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		stats[index].tooltip_text = stats[index].text
 		stats[index].mouse_filter = Control.MOUSE_FILTER_PASS
-	_style_label(title, Rect2(118, 60, 1044, 38), 30, BONE, false)
-	_style_label(quote, Rect2(118, 101, 1044, 23), 15, UI.PARCHMENT_WARM, false)
-	_style_label(description, Rect2(118, 123, 1044, 46), 15, BONE, true)
+	_style_label(title, Rect2(123, 54, 1034, 38), 30, BONE, false)
+	title.add_theme_font_override("font", SKIN.serif())
+	_style_label(quote, Rect2(123, 90, 1034, 23), 15, BONE, false)
+	_style_label(description, Rect2(123, 110, 1034, 45), 15, BONE, true)
 	quote.max_lines_visible = 1
 	quote.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	description.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	_reader_text = "%s\n\n%s" % [quote.text, description.text]
-	_reader_button = _small_button(surface, "Читать полностью", Rect2(1002, 130, 160, 29))
+	_reader_button = _small_button(surface, "Читать полностью", Rect2(997, 122, 160, 28))
 	_reader_button.pressed.connect(_open_reader.bind(title.text))
 	_reader_button.hide()
 	if description.get_line_count() > 2 or quote.get_theme_font("font").get_string_size(
@@ -63,17 +60,22 @@ func build(surface: Control, row: HBoxContainer, title: Label, quote: Label, des
 	for button in cards:
 		if button.visible:
 			_cards.append(button)
-	var width := 255 if _cards.size() == 4 else 331
+	var width := 260 if _cards.size() == 4 else 312
+	var needs_extra_copy := false
 	for index in _cards.size():
-		_build_card(_cards[index], index, width)
+		if _build_card(_cards[index], index, width):
+			needs_extra_copy = true
+	if needs_extra_copy:
+		for button in _cards:
+			_enlarge_copy(button, width)
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
-	row.add_theme_constant_override("separation", 16)
+	row.add_theme_constant_override("separation", 14)
 	row.z_index = 3
-	_place(row, Rect2(96, 190, 1088, 422))
+	_place(row, ROW_BOUNDS)
 
-	_footer = _panel(surface, "EventContext", Rect2(96, 630, 1088, 64), Color("211918"))
-	_hint = _label(_footer, "Hint", "", Rect2(21, 7, 1046, 50), 14, MUTED, true)
-	_style_label(result, Rect2(117, 637, 1046, 50), 15, BONE, true)
+	_footer = _plate(surface, "EventContext", Rect2(96, 641, 1088, 58), true)
+	_hint = _label(_footer, "Hint", "", Rect2(27, 6, 1034, 46), 14, BONE, true)
+	_style_label(result, Rect2(123, 647, 1034, 46), 15, BONE, true)
 	result.hide()
 	_update_hint()
 	_wire_focus()
@@ -87,20 +89,20 @@ func show_result(continue_button: Button = null) -> void:
 		button.position.y = 0.0
 		var restriction := button.get_node("Copy/Availability") as Label
 		restriction.text = "ВЫБРАНО" if button == _pending else ""
-		var copy := restriction.get_parent() as Panel
-		_place(restriction, Rect2(12, 4 - copy.position.y, copy.size.x - 24, 24))
-		restriction.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		_place(restriction, Rect2(31, 29, button.size.x - 62, 32))
+		restriction.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		restriction.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		restriction.add_theme_color_override("font_color", BONE)
-		var frame := _card_style(BRONZE.lightened(0.35) if button == _pending else BRONZE.darkened(0.45))
-		button.add_theme_stylebox_override("disabled", frame)
+		if button == _pending:
+			button.get_node("ActionType").hide()
+		SKIN.shade(button, 1.16 if button == _pending else 0.8)
 		button.focus_mode = Control.FOCUS_NONE
 	_result.show()
 	if continue_button != null:
 		continue_button.show()
 		UI.apply_action_button(continue_button, UI.GOLD, true)
 		continue_button.z_index = 3
-		_place(continue_button, Rect2(929, 641, 234, 42))
+		_place(continue_button, Rect2(923, 649, 234, 42))
 		_result.size.x = 789
 		continue_button.grab_focus()
 	_fit(_result, 13)
@@ -111,7 +113,7 @@ func _remember(button: Button) -> void:
 		_pending = button
 
 
-func _build_card(button: Button, index: int, width: int) -> void:
+func _build_card(button: Button, index: int, width: int) -> bool:
 	var raw := button.text
 	var parts := raw.split("\n\n", true, 1)
 	var action := String(button.get_meta("event_action", parts[0])).strip_edges()
@@ -129,60 +131,77 @@ func _build_card(button: Button, index: int, width: int) -> void:
 	if not restriction.is_empty():
 		button.tooltip_text += "\n" + restriction
 	button.text = ""
-	button.custom_minimum_size = Vector2(width, 422)
+	button.custom_minimum_size = Vector2(width, SKIN.HEIGHT)
 	button.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	button.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
-	for state: String in ["normal", "hover", "pressed", "disabled", "focus"]:
-		var color := BRONZE
-		if state in ["hover", "focus", "pressed"]:
-			color = BRONZE.lightened(0.38)
-		elif state == "disabled":
-			color = BRONZE.darkened(0.37)
-		var style := _card_style(color)
-		if state == "focus":
-			style.draw_center = false
-		if state == "pressed":
-			style.bg_color = Color("3a2121")
-		button.add_theme_stylebox_override(state, style)
 	for child in button.get_children():
 		if child is CanvasItem and child.name != "ChoiceArt":
 			child.hide()
 	var art := button.get_node("ChoiceArt") as TextureRect
-	var art_bottom := 183 if width == 255 else 215
 	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	if art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
 		art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	art.modulate = Color("d6cec8") if button.disabled else Color.WHITE
 	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_place(art, Rect2(2, 31, width - 4, art_bottom - 31))
-	_label(button, "ActionType", "%s  /  %s" % [ROMAN[index], kind], Rect2(13, 4, width - 26, 24), 13, accent, false)
-	var copy_height := 420 - art_bottom
-	var copy := _panel(button, "Copy", Rect2(2, art_bottom, width - 4, copy_height), PAPER, false, 0)
-	var title := _label(copy, "Action", action, Rect2(12, 10, width - 28, 52), 17, INK, true)
-	title.vertical_alignment = VERTICAL_ALIGNMENT_TOP
-	var cost_y := 10 + maxi(26, title.get_line_count() * title.get_line_height() + 4)
-	_label(copy, "Cost", cost, Rect2(12, cost_y, width - 28, 24), 15, Color("603427"), true)
-	var outcome_y := cost_y + 32
-	var status_height := 43 if not restriction.is_empty() else 0
-	var body := _label(copy, "Outcome", detail, Rect2(12, outcome_y, width - 28,
-		copy_height - outcome_y - status_height - 6), 15, INK, true)
+	_place(art, Rect2(width * 0.052, 63, width * 0.896, 153))
+	SKIN.mount(button, button.custom_minimum_size)
+	SKIN.shade(button, 0.81 if button.disabled else 1.0)
+	var category := _label(button, "ActionType", "%s  /  %s" % [ROMAN[index], kind],
+		Rect2(27, 29, width - 54, 31), 16, accent, false)
+	category.z_index = 2
+	category.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	category.add_theme_font_override("font", SKIN.serif())
+	var copy := Control.new()
+	copy.name = "Copy"
+	copy.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	copy.z_index = 2
+	button.add_child(copy)
+	_place(copy, Rect2(Vector2.ZERO, button.custom_minimum_size))
+	var title := _label(copy, "Action", action, Rect2(29, 220, width - 58, 36), 19, INK, true)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.add_theme_font_override("font", SKIN.serif(true))
+	_fit(title, 13)
+	var text_width := width - 56
+	var cost_label := _label(copy, "Cost", cost, Rect2(28, 273, text_width, 38), 15, Color("543023"), true)
+	cost_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	_fit(cost_label, 13)
+	var outcome_y := 273 + maxi(28, cost_label.get_line_count() * (cost_label.get_line_height() + 1) + 6)
+	var availability := _label(copy, "Availability", restriction, Rect2(28, 348, text_width, 36),
+		14, Color("702d27"), true)
+	availability.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+	_fit(availability, 12)
+	var body_bottom := 385
+	if not restriction.is_empty():
+		body_bottom -= availability.get_line_count() * (availability.get_line_height() + 1) + 4
+	var body := _label(copy, "Outcome", detail, Rect2(28, outcome_y, text_width, body_bottom - outcome_y),
+		14 if width == 260 else 15, INK, true)
 	body.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	_fit(body, 13)
-	var availability := _label(copy, "Availability", restriction, Rect2(12, copy_height - 42,
-		width - 28, 38), 14, Color("702d27"), true)
-	availability.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
-	_fit(availability, 13)
 	button.set_meta("event_action", action)
 	button.set_meta("event_restriction", restriction)
 	_bind(button)
+	return _text_height(body) > body.size.y
+
+
+func _enlarge_copy(button: Button, width: int) -> void:
+	SKIN.enlarge_copy(button)
+	var art := button.get_node("ChoiceArt") as TextureRect
+	art.size.y -= SKIN.COPY_EXPANSION
+	for field in ["Action", "Cost", "Outcome"]:
+		var label := button.get_node("Copy/" + field) as Label
+		label.position.y -= SKIN.COPY_EXPANSION
+	var body := button.get_node("Copy/Outcome") as Label
+	body.size.y += SKIN.COPY_EXPANSION
+	body.add_theme_font_size_override("font_size", 14 if width == 260 else 15)
+	_fit(body, 12)
 
 
 func _bind(button: Button) -> void:
 	_actions.append(button)
 	button.mouse_entered.connect(_enter.bind(button))
 	button.mouse_exited.connect(_exit.bind(button))
-	button.focus_entered.connect(_update_hint)
-	button.focus_exited.connect(_update_hint)
+	button.focus_entered.connect(_focus_changed.bind(button))
+	button.focus_exited.connect(_focus_changed.bind(button))
 	if button in _cards:
 		button.button_down.connect(_lift.bind(button, true))
 		button.button_up.connect(_lift.bind(button, false))
@@ -204,9 +223,22 @@ func _exit(button: Button) -> void:
 func _lift(button: Button, held: bool) -> void:
 	if _finished or button.disabled or button not in _cards:
 		return
+	_refresh_frame(button, held)
 	var height := -4.0 if _hovered == button and not held else 0.0
 	var tween := MOTION.replace_tween(button, &"event_lift")
 	tween.tween_property(button, "position:y", height, 0.12).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+
+
+func _focus_changed(button: Button) -> void:
+	_update_hint()
+	_refresh_frame(button)
+
+
+func _refresh_frame(button: Button, held: bool = false) -> void:
+	if _finished or button.disabled or button not in _cards:
+		return
+	var highlighted := _hovered == button or button.has_focus()
+	SKIN.shade(button, 0.94 if held else (1.13 if highlighted else 1.0))
 
 
 func _update_hint() -> void:
@@ -254,7 +286,7 @@ func _focus_first(button: Button) -> void:
 
 func _open_reader(title: String) -> void:
 	var popup := PopupPanel.new()
-	popup.add_theme_stylebox_override("panel", _card_style(BRONZE))
+	popup.add_theme_stylebox_override("panel", SKIN.plate_style())
 	var column := VBoxContainer.new()
 	popup.add_child(column)
 	column.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -287,26 +319,15 @@ func _open_reader(title: String) -> void:
 	close.grab_focus()
 
 
-static func _panel(parent: Control, node_name: String, bounds: Rect2, color: Color,
-		framed: bool = true, depth: int = 2) -> Panel:
+static func _plate(parent: Control, node_name: String, bounds: Rect2, compact: bool = false) -> Panel:
 	var panel := Panel.new()
 	panel.name = node_name
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	panel.z_index = depth
-	var style := _card_style(BRONZE.darkened(0.2)) if framed else StyleBoxFlat.new()
-	style.bg_color = color
-	panel.add_theme_stylebox_override("panel", style)
+	panel.z_index = 2
+	panel.add_theme_stylebox_override("panel", SKIN.plate_style(compact))
 	parent.add_child(panel)
 	_place(panel, bounds)
 	return panel
-
-
-static func _card_style(border: Color) -> StyleBoxFlat:
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color("231a1a")
-	style.border_color = border
-	style.set_border_width_all(2)
-	return style
 
 
 static func _label(parent: Control, node_name: String, value: String, bounds: Rect2,
@@ -338,9 +359,13 @@ static func _style_label(label: Label, bounds: Rect2, point: int, color: Color, 
 
 static func _fit(label: Label, minimum: int) -> void:
 	var point := label.get_theme_font_size("font_size")
-	while point > minimum and label.get_line_count() * (label.get_line_height() + 1) > label.size.y:
+	while point > minimum and _text_height(label) > label.size.y:
 		point -= 1
 		label.add_theme_font_size_override("font_size", point)
+
+
+static func _text_height(label: Label) -> int:
+	return label.get_line_count() * (label.get_line_height() + 1)
 
 
 static func _small_button(parent: Control, copy: String, bounds: Rect2) -> Button:

@@ -1,3 +1,7 @@
+## Event Choice Visual V2
+
+All 24 Act I event screens use the approved bronze and burgundy decision frame with separate parchment title and effect panels. Long effects gain more reading space, and hover, focus and confirmation retain their existing controls. [Native gallery](docs/qa/event_choice_visual_v2/README.md)
+
 ## XIII · Bone Warden throne intro
 
 Before combat planning opens, the Bone Warden rises from the throne in a 1.95-second cinematic. Click, Enter, Space or Esc skips to preparation. [Godot verification](docs/WARDEN_INTRO.md)
