@@ -120,6 +120,16 @@ func test_warden_phase_uses_the_local_clock_and_real_enrage_hook() -> void:
 	var battle := load("res://scenes/battle/battle.tscn").instantiate() as Control
 	add_child_autofree(battle)
 	var node: TextureRect = battle.battle_backdrop
+	var seated := node.texture.get_image()
+	var phase: ShaderMaterial = node.living_material
+	battle.warden_intro.skip()
+	var cleared := node.texture.get_image()
+	seated.convert(Image.FORMAT_RGBA8)
+	cleared.convert(Image.FORMAT_RGBA8)
+	var floor := Rect2i(0, 337, 1280, 383)
+	assert_true(seated.get_region(floor).get_data() == cleared.get_region(floor).get_data(),
+		"The throne edit preserves the authored floor pixels")
+	assert_eq(node.living_material, phase)
 	node.set_process(false)
 	var before: int = battle.units.size()
 	for unit: BattleUnit in battle.units.duplicate():
@@ -129,7 +139,6 @@ func test_warden_phase_uses_the_local_clock_and_real_enrage_hook() -> void:
 			break
 	assert_true(battle.boss_reinforcements_spawned)
 	assert_gt(battle.units.size(), before)
-	var phase: ShaderMaterial = node.living_material
 	node.advance_living(0.6)
 	assert_almost_eq(float(phase.get_shader_parameter("phase_strength")), 0.5, 0.001)
 	get_tree().paused = true
@@ -196,6 +205,8 @@ func _battle_result(encounter: EncounterData, profile_id: String, enabled: bool,
 	var battle := load("res://scenes/battle/battle.tscn").instantiate() as Control
 	battle.use_polished_enemy_art = polished
 	add_child(battle)
+	if battle.warden_intro != null:
+		battle.warden_intro.skip()
 	assert_eq(battle.battle_backdrop.living_profile_id, profile_id, encounter.encounter_id)
 	battle.process_mode = Node.PROCESS_MODE_DISABLED
 	battle.battle_backdrop.set_living_enabled(enabled)

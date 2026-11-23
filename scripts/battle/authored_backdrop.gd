@@ -33,6 +33,8 @@ const ARENA_COURT_OF_THE_MUTE := "court_of_the_mute"
 
 const COURT_QA_LEGACY_PATH := "res://assets/pixel/battle/arenas/court_of_the_mute_d265_rich_qa.webp.b64"
 const BACKDROP_SIZE := Vector2i(1280, 720)
+const WARDEN_THRONE_ORIGIN := Vector2i(487, 0)
+const WARDEN_EMPTY_THRONE_PATCH := preload("res://assets/pixel/battle/arenas/arena_redraw_v2/warden_empty_throne_patch.png")
 
 const ARENA_PATHS := {
 	ARENA_CRYPT: "res://assets/pixel/battle/arenas/arena_redraw_v2/crypt.webp",
@@ -77,6 +79,21 @@ func set_arena_id(value: String, encounter_id: String = "") -> void:
 	texture = _get_runtime_texture(arena_id)
 	living_profile_id = LIVING_PROFILE.for_encounter(arena_id, encounter_id)
 	_configure_living_arena()
+
+func reveal_empty_warden_throne() -> void:
+	if arena_id != ARENA_WARDEN:
+		return
+	const CACHE_KEY := "warden_empty_throne"
+	if not runtime_textures.has(CACHE_KEY):
+		var plate := _get_runtime_texture(ARENA_WARDEN).get_image()
+		plate.convert(Image.FORMAT_RGBA8)
+		var patch := WARDEN_EMPTY_THRONE_PATCH.get_image()
+		patch.convert(Image.FORMAT_RGBA8)
+		plate.blit_rect(patch, Rect2i(Vector2i.ZERO, patch.get_size()), WARDEN_THRONE_ORIGIN)
+		runtime_textures[CACHE_KEY] = ImageTexture.create_from_image(plate)
+	texture = runtime_textures[CACHE_KEY]
+	if living_material != null:
+		living_material.set_shader_parameter("source_plate", texture)
 
 func _configure_living_arena() -> void:
 	living_elapsed = 0.0

@@ -90,6 +90,10 @@ func _run() -> void:
 	if not output.is_empty():
 		var checkpoint: Dictionary = save.read_slot(state)
 		if not _check(save.apply_slot(state, checkpoint) and state.last_deal_pending, "Defeat checkpoint"): return
+		await _swap("res://scenes/battle/battle.tscn")
+		battle = current_scene
+		if not _check(battle.warden_intro == null and battle.last_deal_accept_button.visible,
+			"Restored defeat opens the existing Last Deal directly"): return
 	battle.last_deal_accept_button.pressed.emit()
 	for frame in range(900):
 		await process_frame
@@ -97,6 +101,8 @@ func _run() -> void:
 			break
 	if not _check(current_scene != battle and state.last_deal_used and not state.last_deal_pending, "Paid retry"): return
 	battle = current_scene
+	if not _check(battle.warden_intro != null, "Paid XIII retry opens with the boss intro"): return
+	battle.warden_intro.skip()
 	if not _check(battle.units[0].hp == 6.0, "Last Deal starts with entry wounds"): return
 	battle.combat_plan_controller.start_planned_battle()
 	if not await _wait_for_result(battle): return
@@ -119,6 +125,8 @@ func _open_battle(card_id: String) -> Control:
 	state.active_card_id = card_id
 	state.select_encounter(state.get_card(card_id).target_path)
 	await _swap("res://scenes/battle/battle.tscn")
+	if current_scene.warden_intro != null:
+		current_scene.warden_intro.skip()
 	return current_scene
 
 

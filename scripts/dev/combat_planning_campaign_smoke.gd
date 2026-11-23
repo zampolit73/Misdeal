@@ -49,6 +49,13 @@ func _run() -> void:
 	for encounter_id in ENCOUNTERS:
 		var battle := spawn_battle(encounter_id, ["knight"])
 		await process_frame
+		if not verify((battle.warden_intro != null) == (encounter_id == "bone_warden"), encounter_id + " intro scope mismatch"): return
+		if battle.warden_intro != null:
+			var skip := InputEventKey.new()
+			skip.keycode = KEY_ESCAPE
+			skip.pressed = true
+			root.push_input(skip)
+			if not verify(not battle.combat_started, "Skip must only open planning"): return
 		var driver: Node = battle.combat_plan_controller
 		if not verify(driver != null, encounter_id + " has no campaign planner"): return
 		if not verify(driver.ui != null, encounter_id + " planner UI missing"): return
