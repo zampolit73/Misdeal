@@ -1,3 +1,7 @@
+## Next visual check — Ossuary Gate fog correction
+
+The V4.1 Ossuary Gate spotlight-like bands were replaced by two overlapping, slowly drifting fog banks at the rear portal; its start cue was softened. Check **F6 → ЖИВЫЕ АРЕНЫ → Врата оссуария**, watch preparation for 5–8 seconds and begin combat. Ensure it reads as fog, not a searchlight, and that nothing crosses the combat floor. Other V4.1 arena animations are accepted and unchanged. This correction has not been visually verified in native Godot yet. [V4.1](LIVING_ARENAS_V4_1.md)
+
 ## Living Arenas V4.1
 
 Use **ЖИВЫЕ АРЕНЫ** in the F6 QA Hub and watch the preparation field for several seconds. Check the altar, furnace and rear portal first, then start a fight and watch Iron Wall wave II or the Court victory. [Native sequences](LIVING_ARENAS_V4_1.md)
