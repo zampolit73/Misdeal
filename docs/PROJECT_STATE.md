@@ -22,9 +22,9 @@ Act I battles use processed CC0 foley and quiet location beds from combat start 
 
 Live scenes use additional UI, Combat and Ambience cues. Arena openings use short faded excerpts by location family. The old D374 audition loops remain opt-in. [CC0 sources](audio/THIRD_PARTY_AUDIO_LICENSES.md)
 
-## Event Choice UI VNext
+## Event Choice Visual V2
 
-All 24 Act I events use a shared choice presentation in ActChoice and WhisperingWell. Live prices, explicit effects, restriction reasons and the actual result appear in the event. Keyboard and mouse use the same existing handlers. [Coverage, controls and QA](EVENT_CHOICE_UI_VNEXT.md)
+All 24 Act I events use the approved bronze and burgundy decision frame, with separate parchment for the action and its effects. ActChoice and WhisperingWell share the skin and allocate more parchment to long descriptions. Live prices, restrictions, outcomes and mouse/keyboard controls still come from the original events. [Coverage and native gallery](EVENT_CHOICE_UI_VNEXT.md)
 
 ## D420 V2 — released in campaign
 

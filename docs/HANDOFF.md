@@ -1,3 +1,7 @@
+## Event Choice Visual V2
+
+Run `scenes/dev/qa_hub.tscn` with F6. Under **СОБЫТИЯ**, open «Кости должника», then compare «Шепчущий колодец» with 24 and 25 gold. Check arrow-key focus, Enter, the choice result and the return through Travel. [Approved reference and native captures](qa/event_choice_visual_v2/README.md)
+
 ## Bone Warden XIII · throne intro
 
 Use F5 and open card XIII after resolving XII and the last preparation stop. For a quick repeat, run `scenes/dev/living_warden.tscn` with F6. The restored Last Deal goes directly to the defeat screen. Accepting the deal starts a fresh attempt and replays the intro. [Verification and assets](WARDEN_INTRO.md)

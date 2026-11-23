@@ -1,3 +1,7 @@
+## Event Choice Visual V2
+
+`assets/pixel/ui/event_choice_visual_v2/decision_frame.png` is a 520×908 painted bronze frame with burgundy inserts, two blank parchment surfaces and an open illustration recess. It was prepared with built-in ImageGen from the approved «Кости должника» reference (source PNG SHA-256 `929c4785abf47d628da19773c7c60ae48ae4c83bf88351db830bc0d4f998dc71`). The event skin reuses the D413 obsidian material for the UI plates. [Provenance, approved reference and native evidence](qa/event_choice_visual_v2/README.md)
+
 ## Broken Crown small props — approved replacement
 
 `assets/pixel/travel/batch_02/broken_crown/small_props/source/approved_master.png` is the user-approved smaller-prop scene. Runtime base and wear/break/melt alpha layers are under `small_props/layers`; leave uses the base. `provenance.json` records hashes and `source/prompts.json` records built-in imagegen edits. Original package remains untouched.

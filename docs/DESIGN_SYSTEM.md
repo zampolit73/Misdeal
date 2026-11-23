@@ -1,6 +1,8 @@
-## Event Choice UI VNext
+## Event Choice Visual V2
 
-At 1280×720, use a compact obsidian header and an illustrated row of two to four decision cards. Each card uses one bronze contour and a warm parchment reading area for the action, cost and outcome. Put restriction text inside the card and repeat it in the context strip on hover. Use a muted semantic accent in the type row. For available actions, animate a four-pixel lift and keep the art scale stable. Show the committed action and actual outcome while the existing scene handles continuation. The approved Fate Spread card faces remain independent. [Event contract and examples](EVENT_CHOICE_UI_VNEXT.md)
+Use the [approved «Кости должника» reference](qa/event_choice_visual_v2/approved_reference.webp) for the live decision cards. The silhouette pairs bevelled bronze corners and a burgundy Roman/category crest with a separately framed art window, two parchment cartouches and a lower quatrefoil. Draw the current illustration below the open window. Place every value and label above the texture. Keep all cards in a row aligned; expand the parchment and reduce the illustration height together when any option needs more copy space.
+
+At 1280×720, center the two-to-four-card row between the compact obsidian header and the result strip. Repeat the restriction in the strip on hover and keep it visible on the card. Available actions lift by four pixels on hover, and keyboard focus brightens the metal. On confirmation, show the chosen card and its real outcome. The physical Fate Spread card faces have their own DS3 skin. [Event contract and native gallery](EVENT_CHOICE_UI_VNEXT.md)
 
 ## Combat Planning Visual V4
 

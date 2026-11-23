@@ -26,7 +26,7 @@ func test_every_production_event_has_readable_cards_for_solo_and_trio() -> void:
 			var event := _open(WELL if definition.target_path == WELL.resource_path else ACT)
 			await get_tree().process_frame
 			var row := event.get_node("Choices" if definition.target_path == WELL.resource_path else "Panel/Choices") as HBoxContainer
-			assert_eq(row.get_global_rect(), Rect2(96, 190, 1088, 422), definition.card_id)
+			assert_eq(row.get_global_rect(), Rect2(96, 169, 1088, 454), definition.card_id)
 			var visible_cards := 0
 			for card: Button in row.get_children():
 				if not card.visible:
@@ -34,6 +34,12 @@ func test_every_production_event_has_readable_cards_for_solo_and_trio() -> void:
 				visible_cards += 1
 				var art := card.get_node("ChoiceArt") as TextureRect
 				assert_not_null(art.texture, definition.card_id)
+				var frame := card.get_node_or_null("DecisionFrame") as TextureRect
+				assert_not_null(frame, definition.card_id)
+				if frame != null:
+					assert_eq(frame.get_global_rect(), card.get_global_rect(), definition.card_id)
+					assert_eq(frame.mouse_filter, Control.MOUSE_FILTER_IGNORE)
+					assert_gt(frame.z_index, art.z_index)
 				assert_true(row.get_global_rect().encloses(card.get_global_rect()), definition.card_id)
 				for key in ["Action", "Cost", "Outcome", "Availability"]:
 					var label := card.get_node("Copy/" + key) as Label

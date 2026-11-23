@@ -1,5 +1,9 @@
 # Event Choice UI VNext
 
+## Visual V2
+
+The live ActChoice and WhisperingWell screens share the painted frame based on the approved «Кости должника» reference. The original illustration fills the recessed opening, while live labels supply the Roman number, category, action, cost, outcome and restriction. The carved bronze and parchment frame is isolated in `scripts/ui/event_choice_skin.gd`. The existing presentation gives all cards in a row more parchment when their text needs it. [Reference and native captures at both sizes](qa/event_choice_visual_v2/README.md)
+
 Two production screens share the same event header, illustrated choices and context strip. The header shows current gold, party, development and relics. If the scene text exceeds two lines, «Читать полностью» opens the full quote and description. The decision cards show the action, price, effects and any restriction. A disabled choice keeps its text and art. Mouse hover shows the reason in the context strip. Arrow keys and Tab move among enabled choices, and Enter activates the focused one.
 
 ## Coverage
