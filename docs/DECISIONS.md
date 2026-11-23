@@ -1,3 +1,7 @@
+## XIII · throne rise before battle planning
+
+Use the seated throne painting for the opening and blend the restored throne into the existing backdrop as the figure rises. Gate preparation on the presentation's completion or skip. Keep the real BattleUnit in its original formation throughout and retain the same Living Arenas material and phase clock. A saved defeat opens the outstanding Last Deal immediately. [Runtime and QA](WARDEN_INTRO.md)
+
 ## Gameplay 2.0 · Archive and Wizard oaths
 
 The archive uses an independent profile. Preserve it in either New Game mode and retain the stained-glass reset contract. Class-specific XIII victories open corresponding styles. Oaths unlock sequentially and remain fixed for an entire run. [Rules and migration](GAMEPLAY_2_0.md#package-c--wizard-archive-and-new-runs)

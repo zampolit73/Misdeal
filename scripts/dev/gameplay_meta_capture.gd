@@ -30,7 +30,7 @@ func _run() -> void:
 	state.add_artifact("dead_mans_shield")
 	state.add_artifact("harvest_ring")
 	state.change_hero_hp("knight", state.get_hero_max_hp("knight"))
-	if not await _fight_warden(): return
+	if not await _fight_warden(true): return
 	var battle := current_scene
 	if not _check(state.last_battle_won, "Qualified Knight fixture must win XIII"): return
 	var phase_two := false
@@ -96,12 +96,50 @@ func _run() -> void:
 	await create_timer(0.8).timeout
 	quit()
 
-func _fight_warden() -> bool:
+func _fight_warden(capture_intro: bool = false) -> bool:
 	state.cards_resolved = 12
 	state.get_offer_cards()
 	if not _check(state.choose_card("bone_warden"), "Production XIII offer must resolve to its battle"): return false
 	await _open("res://scenes/battle/battle.tscn")
 	var battle := current_scene
+	var intro: CanvasLayer = battle.warden_intro
+	if not _check(intro != null and battle.combat_plan_controller == null, "XIII intro precedes planning"): return false
+	var backdrop: TextureRect = battle.battle_backdrop
+	var seated: Texture2D = backdrop.texture
+	var warden: BattleUnit
+	for unit: BattleUnit in battle.units:
+		if unit.is_boss:
+			warden = unit
+			break
+	if not _check(warden != null, "XIII spawned the real boss before the presentation"): return false
+	var entry_position := warden.position
+	battle.fight_button.pressed.emit()
+	if not _check(not battle.combat_started, "Fight cannot start before planning"): return false
+	if capture_intro:
+		await _capture("warden_intro_seated.png")
+		var rise_captured := false
+		var throne_captured := false
+		for frame in range(240):
+			await process_frame
+			if battle.warden_intro == null: break
+			if not rise_captured and intro._elapsed >= 1.1:
+				rise_captured = true
+				await _capture("warden_intro_rise.png")
+			if not throne_captured and intro._elapsed >= 1.78:
+				throne_captured = true
+				await _capture("warden_intro_empty.png")
+		if not _check(rise_captured and throne_captured, "Captured the full throne sequence"): return false
+	else:
+		var skip := InputEventMouseButton.new()
+		skip.button_index = MOUSE_BUTTON_LEFT
+		skip.pressed = true
+		root.push_input(skip)
+	if not _check(battle.warden_intro == null and battle.combat_plan_controller.ui.overview.visible
+		and not battle.combat_started and warden.position == entry_position, "Intro ends at the original preparation"): return false
+	if not _check(backdrop.texture != seated and backdrop.living_material.get_shader_parameter("source_plate") == backdrop.texture,
+		"Visible backdrop and Living Arenas share the empty throne"): return false
+	if capture_intro:
+		await _capture("warden_intro_planning.png")
 	battle.combat_plan_controller.start_planned_battle()
 	for frame in range(5400):
 		await process_frame

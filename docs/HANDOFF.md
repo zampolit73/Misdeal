@@ -1,3 +1,7 @@
+## Bone Warden XIII · throne intro
+
+Use F5 and open card XIII after resolving XII and the last preparation stop. For a quick repeat, run `scenes/dev/living_warden.tscn` with F6. The restored Last Deal goes directly to the defeat screen. Accepting the deal starts a fresh attempt and replays the intro. [Verification and assets](WARDEN_INTRO.md)
+
 ## Gameplay 2.0 · Package C
 
 `wizard_archive.gd` stores collections and terminal results independently of the run slot and stained glass. `run_charter.gd` defines difficulty and style rules. `gameplay_meta_capture.gd` checks real Phase II, win and loss, profile restore and a new run with unlocked settings. Next balance work should compare human routes with different builds and party sizes, especially Last Bell and XIII. [Gameplay 2.0](GAMEPLAY_2_0.md)

@@ -41,8 +41,13 @@ func _run() -> void:
 		if reward.get("reward_mode") == "normal_loot":
 			reward.reward_buttons[0].pressed.emit()
 			break
-		for button in reward.reward_buttons:
-			if button.visible and not button.disabled:
+		for index in range(reward.reward_buttons.size()):
+			var button: Button = reward.reward_buttons[index]
+			if not button.visible or button.disabled:
+				continue
+			# An Executioner offer can cap the Knight's HP before the rest.
+			var upgrade: HeroUpgradeData = state.get_hero_upgrade(reward.option_ids[index])
+			if upgrade != null and upgrade.hp_bonus >= 0.0:
 				button.pressed.emit()
 				break
 		await create_timer(0.25).timeout
@@ -51,9 +56,12 @@ func _run() -> void:
 	await _capture("first_rest.png")
 	var stop := current_scene.get_node("CampStop")
 	var before_rest: float = state.get_hero_current_hp("knight")
+	var maximum: float = state.get_hero_max_hp("knight")
+	if not _check(before_rest < maximum, "The reward must leave wounds for the rest fixture"): return
 	stop._action_buttons[0].pressed.emit()
-	if not _check(state.camp_stop.is_empty() and state.get_hero_current_hp("knight") > before_rest, "Rest heals once"): return
 	var after_rest: float = state.get_hero_current_hp("knight")
+	if not _check(state.camp_stop.is_empty() and is_equal_approx(after_rest, minf(before_rest + maximum * 0.4, maximum)),
+		"Rest heals once by up to 40% of maximum HP"): return
 	if not output.is_empty():
 		var checkpoint: Dictionary = save.read_slot(state)
 		if not _check(save.apply_slot(state, checkpoint) and is_equal_approx(state.get_hero_current_hp("knight"), after_rest), "Continue after rest"): return
@@ -90,6 +98,10 @@ func _run() -> void:
 	if not output.is_empty():
 		var checkpoint: Dictionary = save.read_slot(state)
 		if not _check(save.apply_slot(state, checkpoint) and state.last_deal_pending, "Defeat checkpoint"): return
+		await _swap("res://scenes/battle/battle.tscn")
+		battle = current_scene
+		if not _check(battle.warden_intro == null and battle.last_deal_accept_button.visible,
+			"Restored defeat opens the existing Last Deal directly"): return
 	battle.last_deal_accept_button.pressed.emit()
 	for frame in range(900):
 		await process_frame
@@ -97,6 +109,8 @@ func _run() -> void:
 			break
 	if not _check(current_scene != battle and state.last_deal_used and not state.last_deal_pending, "Paid retry"): return
 	battle = current_scene
+	if not _check(battle.warden_intro != null, "Paid XIII retry opens with the boss intro"): return
+	battle.warden_intro.skip()
 	if not _check(battle.units[0].hp == 6.0, "Last Deal starts with entry wounds"): return
 	battle.combat_plan_controller.start_planned_battle()
 	if not await _wait_for_result(battle): return
@@ -119,6 +133,8 @@ func _open_battle(card_id: String) -> Control:
 	state.active_card_id = card_id
 	state.select_encounter(state.get_card(card_id).target_path)
 	await _swap("res://scenes/battle/battle.tscn")
+	if current_scene.warden_intro != null:
+		current_scene.warden_intro.skip()
 	return current_scene
 
 

@@ -1,3 +1,7 @@
+## XIII · Bone Warden throne intro
+
+Before combat planning opens, the Bone Warden rises from the throne in a 1.95-second cinematic. Click, Enter, Space or Esc skips to preparation. [Godot verification](docs/WARDEN_INTRO.md)
+
 ## Gameplay 2.0 · Victory recovery
 
 After a victory, each hero recovers 25% of maximum HP, capped at full health. Recovery is included in the reward checkpoint.

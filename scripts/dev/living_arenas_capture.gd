@@ -22,6 +22,8 @@ func fixture(id: String, party_size: int = 3, crowd: bool = false) -> Control:
 	seed(283)
 	var battle := load("res://scenes/battle/battle.tscn").instantiate() as Control
 	root.add_child(battle)
+	if battle.warden_intro != null:
+		battle.warden_intro.skip()
 	if crowd:
 		var data := load(battle.encounter.enemy_unit_paths[0]) as UnitData
 		for i in range(5): battle._spawn_unit(data,1,Vector2(760+i*55,300+(i%2)*40),"QA crowd")

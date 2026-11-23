@@ -9,6 +9,7 @@ const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 const UNIT_SCENE := preload("res://scenes/battle/unit.tscn")
 const DEFAULT_ENCOUNTER: EncounterData = preload("res://resources/encounters/graveyard_ambush.tres")
 const CAMPAIGN_PLANNING := preload("res://scripts/battle/planning/battle_plan_campaign.gd")
+const WARDEN_INTRO := preload("res://scripts/battle/warden_intro.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 const BATTLE_DS3_PASS := preload("res://scripts/battle/battle_ds3_pass.gd")
@@ -133,6 +134,7 @@ var target_preview: BattleTargetPreview
 var deployment_floor_markers: Node2D
 @export var combat_planning_disabled := false
 var combat_plan_controller: Node
+var warden_intro: WARDEN_INTRO
 
 func _ready() -> void:
 	if not RunState.has_chosen_protagonist():
@@ -209,6 +211,16 @@ func _ready() -> void:
 	intro_encounter.visible = false
 	_configure_side_objective()
 	_spawn_encounter()
+	if _is_boss_encounter():
+		if RunState.last_deal_pending:
+			# Continue directly to a saved defeat's choice.
+			battle_backdrop.reveal_empty_warden_throne()
+		else:
+			warden_intro = WARDEN_INTRO.new()
+			add_child(warden_intro)
+			warden_intro.play(battle_backdrop)
+			await warden_intro.finished
+			warden_intro = null
 	_setup_target_preview()
 	_begin_preparation_phase()
 	if not combat_planning_disabled:
@@ -1141,7 +1153,7 @@ func _on_fight_pressed() -> void:
 	if wave_intermission:
 		_start_second_wave()
 		return
-	if combat_started or battle_finished:
+	if warden_intro != null or combat_started or battle_finished:
 		return
 
 	combat_started = true
