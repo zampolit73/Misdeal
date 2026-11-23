@@ -118,6 +118,10 @@ func _configure_living_arena() -> void:
 		living_material.set_shader_parameter("source_plate", texture)
 		living_material.set_shader_parameter("region_mask", LIVING_PROFILE.mask_for(living_profile_id))
 		living_material.set_shader_parameter("arena_mode", profile.mode)
+		if LIVING_PROFILE.VISIBLE_MOTION.has(living_profile_id):
+			var motion: Array = LIVING_PROFILE.VISIBLE_MOTION[living_profile_id]
+			living_material.set_shader_parameter("visible_area", motion[0])
+			living_material.set_shader_parameter("visible_motion", motion[1])
 		var reaction: Dictionary = LIVING_PROFILE.BATTLE_REACTIONS.get(living_profile_id, {})
 		if not reaction.is_empty():
 			_reaction_cue = reaction.cue

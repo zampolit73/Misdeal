@@ -11,6 +11,17 @@ const BATTLE_REACTIONS := {
 	"warden": {"cue": &"start", "area": Vector4(640, 213, 345, 145), "gain": Vector2(0.24, 0.0)},
 }
 
+# Source center, horizontal/vertical reach and motion kind in authored pixels.
+# Fire anchors stay at the painted flame base. Air uses the existing fog mask.
+const VISIBLE_MOTION := {
+	"bone_ritual": [Vector4(962, 315, 45, 57), 1],
+	"iron_wall": [Vector4(126, 308, 40, 54), 2],
+	"ossuary_gate": [Vector4(685, 172, 215, 141), 3],
+	"graveyard": [Vector4(53, 347, 25, 38), 1],
+	"court_of_the_mute": [Vector4(635, 110, 110, 120), 4],
+	"warden": [Vector4(261, 289, 31, 43), 2],
+}
+
 const V2_ARENAS := ["last_bell", "ossuary_gate", "warden"]
 const V3_BATCHES := [
 	["crypt", "graveyard", "gallows", "ossuary"],
