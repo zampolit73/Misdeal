@@ -35,6 +35,7 @@ static func entries() -> Array[Dictionary]:
 		["БОЙ","Погребальная процессия — пускатель","scenes/dev/funeral_procession_playtest.tscn","Постановка и настоящее столкновение процессии.",""],
 		["АНИМАЦИИ","Герои D412 — действующие анимации","scenes/dev/d412_three_hero_animation_preview.tscn","Три принятых героя: позы и ходьба при масштабе 1×.",""],
 		["АНИМАЦИИ","Враги D420 V2 — было и стало","scenes/dev/enemy_visual_review.tscn","24 врага, пять анимаций, покадровый просмотр и настоящий бой с любым вариантом.",""],
+		["АНИМАЦИИ","Combat Impact V2 — Могильный звон","scenes/dev/combat_impact_preview.tscn","Classic и Impact V2 на одном бою рыцаря, следопыта и мага.",""],
 		["АНИМАЦИИ","Персонажи Суда — 25 кадров","scenes/dev/court_of_the_mute_d267_three_animation_preview.tscn","Idle, Walk, Attack, Hit и Death авторских персонажей.",""],
 		["АНИМАЦИИ","Pack 1 — анимации юнитов","scenes/dev/unit_animation_pack1_preview.tscn","Сравнение состояний первого набора.",""],
 		["АНИМАЦИИ","Pack 2 — анимации и кандидаты","scenes/dev/unit_animation_pack2_preview.tscn","Существующие игровые спрайты и отдельно обозначенные кандидаты.",""],

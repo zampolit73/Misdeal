@@ -120,6 +120,7 @@ signal diagnostic_heal(healer: BattleUnit, recipient: BattleUnit, amount: float)
 signal damage_received(victim: BattleUnit, amount: float)
 
 @export var team: int = 0
+var impact_v2_preview := false
 @export var display_name: String = "Unit"
 @export var visual_role: String = "unit"
 var use_polished_enemy_art := false
@@ -1247,6 +1248,7 @@ func _attack_target() -> void:
 		return
 
 	var splash_damage := strike_damage * splash_damage_multiplier
+	var pulse_played := false
 
 	for node in get_tree().get_nodes_in_group("combat_units"):
 		if not node is BattleUnit:
@@ -1259,6 +1261,9 @@ func _attack_target() -> void:
 		if unit.global_position.distance_to(impact_position) <= strike_radius:
 			var before_splash: float = unit.hp
 			unit.take_damage(splash_damage, visual_role, global_position, self)
+			if impact_v2_preview and team == 0 and visual_role == "mage" and before_splash > unit.hp and not pulse_played:
+				pulse_played = true
+				ATTACK_VISUALS.magic_contact(get_parent(), primary_target.position)
 			if diagnostic_damage.has_connections():
 				diagnostic_damage.emit(self, unit, before_splash - unit.hp)
 
@@ -1342,6 +1347,8 @@ func _get_attack_style() -> String:
 func _spawn_attack_trace(primary_target: BattleUnit, color: Color, width: float) -> void:
 	# Retained only for the existing magic attack. D365 disables long
 	# arrows from Rangers and Bone Archers at their original call site.
+	if impact_v2_preview and team == 0 and visual_role == "mage":
+		return
 	if get_parent() == null or not is_instance_valid(primary_target):
 		return
 
@@ -1389,7 +1396,8 @@ func take_damage(amount: float, source_role: String = "", source_position: Vecto
 	var strong_hit := applied_amount >= maxf(18.0, max_hp * 0.18)
 	_show_damage_number(applied_amount, strong_hit)
 	_play_hit_feedback(source_position, source_role, strong_hit)
-	_spawn_impact_sparks(source_role, source_position, strong_hit)
+	if not impact_v2_preview or applied_amount > 0.0:
+		_spawn_impact_sparks(source_role, source_position, strong_hit)
 	if applied_amount > 0.0:
 		var armor := visual_role in ["knight", "bone_warden", "crypt_guard", "road_sentinel", "bone_bailiff"]
 		var cue := "hit_armor" if armor else ("hit_cloth" if team == 0 or visual_role in CREATURE_AUDIO_ROLES else "enemy_hit")
@@ -1542,6 +1550,9 @@ func _spawn_impact_sparks(source_role: String, source_position: Vector2, strong_
 		direction = source_position.direction_to(global_position)
 	if direction.length_squared() < 0.01:
 		direction = Vector2.RIGHT
+	if impact_v2_preview and team == 1 and source_role in ["knight", "ranger", "mage"]:
+		ATTACK_VISUALS.hero_contact(get_parent(), impact_position, direction, source_role, strong_hit)
+		return
 
 	var spark_color := Color(1.0, 0.70, 0.34, 0.92)
 	if source_role == "mage" or source_role == "grave_bellkeeper":
@@ -1708,11 +1719,20 @@ func _spawn_death_fragments() -> void:
 		return
 
 	var fragment_count := 8 if is_boss else 5
+	var last_enemy := false
+	if impact_v2_preview:
+		last_enemy = not get_tree().get_nodes_in_group("combat_units").any(
+			func(unit: BattleUnit) -> bool: return unit.team == 1 and unit.alive)
+		fragment_count = 6 if last_enemy else 4
+	var duration := (0.19 if last_enemy else 0.15) if impact_v2_preview else 0.34
 	for index in range(fragment_count):
 		var fragment := Line2D.new()
 		fragment.width = 2.6 if is_boss else 2.0
 		fragment.default_color = Color(0.82, 0.72, 0.56, 0.90)
 		fragment.points = PackedVector2Array([Vector2(-4.0, 0.0), Vector2(4.0, 0.0)])
+		if impact_v2_preview:
+			fragment.points = PackedVector2Array([Vector2(-3, 1), Vector2.ZERO, Vector2(3, -2)])
+			fragment.add_to_group("combat_contact_fx")
 		fragment.position = position + Vector2(0.0, -10.0)
 		fragment.rotation = float(index) * 0.73
 		fragment.z_index = 2040
@@ -1720,11 +1740,13 @@ func _spawn_death_fragments() -> void:
 
 		var direction := Vector2.from_angle(-2.55 + float(index) * 0.72)
 		var distance := 24.0 + float(index % 3) * 8.0
+		if impact_v2_preview:
+			distance *= 0.8 if last_enemy else 0.52
 		var tween := fragment.create_tween()
 		tween.set_parallel(true)
-		tween.tween_property(fragment, "position", fragment.position + direction * distance + Vector2(0.0, 12.0), 0.34)
-		tween.tween_property(fragment, "rotation", fragment.rotation + 1.6, 0.34)
-		tween.tween_property(fragment, "modulate:a", 0.0, 0.34)
+		tween.tween_property(fragment, "position", fragment.position + direction * distance + Vector2(0.0, 12.0), duration)
+		tween.tween_property(fragment, "rotation", fragment.rotation + 1.6, duration)
+		tween.tween_property(fragment, "modulate:a", 0.0, duration)
 		tween.chain().tween_callback(fragment.queue_free)
 
 func _play_combat_audio(event_name: String) -> void:

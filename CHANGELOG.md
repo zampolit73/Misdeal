@@ -1,3 +1,7 @@
+## Combat Impact V2 · QA pilot
+
+Add a Classic and Impact V2 comparison on the real Grave Bell encounter with a fixed trio. [F6 route and native sequences](docs/COMBAT_IMPACT_V2_PILOT.md)
+
 ## Ossuary Gate V4.1 — fog appearance correction
 
 Replace the diagonal spotlight-like V4.1 portal bands with softly drifting, low cold-fog banks; reduce and lower the combat-start haze cue. All other approved arenas and gameplay are unchanged. Native visual acceptance remains pending. [Review route](docs/LIVING_ARENAS_V4_1.md)

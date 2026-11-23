@@ -2,6 +2,10 @@
 
 The player approved Living Arenas V4.1 except that the Ossuary Gate mist looked like a spotlight. The portal now uses two soft, slow, low drifting banks instead of bright diagonal bands, with a reduced lower combat-start haze cue. All other arenas remain as approved. Verify the result visually in F6 at 1280×720 before marking accepted. [V4.1 details](LIVING_ARENAS_V4_1.md)
 
+## Combat Impact V2 · QA pilot
+
+Compare Classic and Impact V2 on the real Grave Bell trio via F6 or QA Hub. Campaign uses Classic until visual approval. [Native comparison](COMBAT_IMPACT_V2_PILOT.md)
+
 ## Living Arenas V4.1
 
 Six arenas add readable flame, ember, smoke and stained-glass motion during preparation and combat through the existing shader. [Native sequences](LIVING_ARENAS_V4_1.md)

@@ -41,8 +41,39 @@ static func spawn(role: String, canvas: Node, target_position: Vector2) -> void:
 			pass
 
 
+static func hero_contact(parent: Node, origin: Vector2, direction: Vector2, role: String, strong: bool) -> void:
+	var count := 5 if strong else 4
+	var tint := Color("#f0ca92")
+	var reach := 29.0 if strong else 22.0
+	var spread := 0.44
+	var life := 0.16 if strong else 0.13
+	match role:
+		"ranger":
+			tint = Color("#eee0ba")
+			reach *= 0.72
+			spread = 0.28
+			life = 0.11
+		"mage":
+			tint = Color("#c2a0e5")
+			reach *= 0.85
+			spread = TAU / count
+	var contact := origin - direction * (5.0 if role == "knight" else 2.0)
+	for index in range(count):
+		var ray := direction.rotated((index - (count - 1) * 0.5) * spread)
+		var tip := contact + ray * reach * (0.82 + 0.09 * (index % 3))
+		var base := contact + ray * (2.0 if role == "knight" else reach * 0.55)
+		_stroke(parent, base, tip, tint, 3.0 if strong else 2.2, life, ray * (7.0 if strong else 5.0))
+	if role == "mage":
+		_ring(parent, contact, Color("#a582ccaf"), 14.0 if strong else 10.0, 0.14, 0.77)
+
+
+static func magic_contact(parent: Node, impact: Vector2) -> void:
+	_ring(parent, impact + Vector2(0, 30), Color("#b38ddb9c"), 30.0, 0.18, 0.36)
+
+
 static func _ring(parent: Node, origin: Vector2, color: Color, radius: float, lifetime: float, flatten: float) -> void:
 	var ring := Line2D.new()
+	ring.add_to_group("combat_contact_fx")
 	ring.width = 1.8
 	ring.default_color = color
 	ring.z_index = 1900
@@ -61,8 +92,10 @@ static func _ring(parent: Node, origin: Vector2, color: Color, radius: float, li
 	tween.chain().tween_callback(ring.queue_free)
 
 
-static func _stroke(parent: Node, start_point: Vector2, end_point: Vector2, color: Color, width: float, lifetime: float) -> void:
+static func _stroke(parent: Node, start_point: Vector2, end_point: Vector2, color: Color, width: float,
+		lifetime: float, drift: Vector2 = Vector2.ZERO) -> void:
 	var stroke := Line2D.new()
+	stroke.add_to_group("combat_contact_fx")
 	stroke.default_color = color
 	stroke.width = width
 	stroke.z_index = 1900
@@ -70,4 +103,6 @@ static func _stroke(parent: Node, start_point: Vector2, end_point: Vector2, colo
 	parent.add_child(stroke)
 	var tween := stroke.create_tween()
 	tween.tween_property(stroke, "modulate:a", 0.0, lifetime)
+	if drift != Vector2.ZERO:
+		tween.parallel().tween_property(stroke, "position", drift, lifetime).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_callback(stroke.queue_free)

@@ -1,3 +1,7 @@
+## Combat Impact V2 · QA pilot
+
+Use F6 on `scenes/dev/combat_impact_preview.tscn`. Each mode rebuilds Grave Bell with the same trio and seed. [Review notes and frames](COMBAT_IMPACT_V2_PILOT.md)
+
 ## Next visual check — Ossuary Gate fog correction
 
 The V4.1 Ossuary Gate spotlight-like bands were replaced by two overlapping, slowly drifting fog banks at the rear portal; its start cue was softened. Check **F6 → ЖИВЫЕ АРЕНЫ → Врата оссуария**, watch preparation for 5–8 seconds and begin combat. Ensure it reads as fog, not a searchlight, and that nothing crosses the combat floor. Other V4.1 arena animations are accepted and unchanged. This correction has not been visually verified in native Godot yet. [V4.1](LIVING_ARENAS_V4_1.md)

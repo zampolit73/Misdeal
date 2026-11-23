@@ -110,6 +110,7 @@ var battle_finished := false
 var battle_wave_index := 1
 ## QA can compare the original art with the same battle setup.
 var use_polished_enemy_art := true
+var impact_v2_preview := false
 var wave_intermission := false
 var wave_briefing_elapsed := 0.0
 var wave_preview_hover_order := ""
@@ -640,6 +641,7 @@ func _spawn_unit(
 		unit.set_tactical_order(tactical_order)
 
 	unit.set_combat_bounds(_get_combat_bounds())
+	unit.impact_v2_preview = impact_v2_preview and encounter.encounter_id == "grave_bell"
 	unit.died.connect(_on_unit_died)
 	unit.health_critical.connect(_on_unit_health_critical)
 	unit.placement_rejected.connect(_on_placement_rejected)
@@ -1731,6 +1733,10 @@ func _finish_battle(player_won: bool) -> void:
 				RunState.end_run_in_defeat("Вы проиграли бой «%s»." % encounter.title)
 			_show_final_defeat()
 
+	if player_won and impact_v2_preview and encounter.encounter_id == "grave_bell":
+		$ResultOverlay.hide()
+		await get_tree().create_timer(0.20, false).timeout
+		$ResultOverlay.show()
 	result_scrim.visible = true
 	result_backdrop.visible = true
 	result_label.visible = true
