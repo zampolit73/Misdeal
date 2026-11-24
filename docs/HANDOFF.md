@@ -1,6 +1,6 @@
-## Challenges Visual V2 · review route
+## Next focus — Run End Visual V2 (Wizard's Verdict)
 
-On `feature/challenges-visual-v2`, open F5 → **Архив Волшебника → Испытания**. Review the open and locked seals, the readable conditions and the independent victory achievement for oath V. The three approved tabs retain their existing plates. [Reference and native evidence](qa/challenges_visual_v2/README.md)
+The player tested and approved Challenges Visual V2 after PR #142 merged into main. All four Wizard Archive tabs are complete and approved. Preserve their artwork, navigation, profile and unlock rules. Next proposed investor visual milestone: prepare user-approved victory and defeat concepts for the live RunEnd scene, then supply clean artwork and a layout contract. Read `scripts/run_end/run_end.gd`, `scenes/run_end/run_end.tscn` and the existing RunState/save flow. Use only real run statistics, party fates, upgrades, relics and Last Deal information; do not change gameplay or save semantics. [Archive review evidence](qa/challenges_visual_v2/README.md)
 
 ## Next visual check — Ossuary Gate fog correction
 
