@@ -1,3 +1,7 @@
+## Wizard Archive Visual V2 · visual review
+
+The visual pilot displays 13 physical cabinet niches, four retained archive tabs and live relic details. Nine new objects and four cutouts of existing art cover the entire catalog. Collection storage and unlock rules are unchanged. Native 1280×720 evidence covers 0/13, 6/13 and 13/13. Review the composition against the approved PNG once it is available. [Godot captures and QA](qa/wizard_archive_visual_v2/README.md)
+
 ## Ossuary Gate — V4.1 fog correction (native review pending)
 
 The player approved Living Arenas V4.1 except that the Ossuary Gate mist looked like a spotlight. The portal now uses two soft, slow, low drifting banks instead of bright diagonal bands, with a reduced lower combat-start haze cue. All other arenas remain as approved. Verify the result visually in F6 at 1280×720 before marking accepted. [V4.1 details](LIVING_ARENAS_V4_1.md)

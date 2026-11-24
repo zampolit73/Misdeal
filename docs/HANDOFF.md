@@ -1,3 +1,7 @@
+## Wizard Archive Visual V2 · review route
+
+Open the pilot branch and use F5 → **Архив Волшебника** → **Реликварий**. From the tab, press Down to enter the cabinet, arrows to move focus, Enter to select and Esc to return to the menu. The archive uses the active profile's collected relics. [Isolated 0/13, 6/13 and 13/13 captures](qa/wizard_archive_visual_v2/README.md)
+
 ## Next visual check — Ossuary Gate fog correction
 
 The V4.1 Ossuary Gate spotlight-like bands were replaced by two overlapping, slowly drifting fog banks at the rear portal; its start cue was softened. Check **F6 → ЖИВЫЕ АРЕНЫ → Врата оссуария**, watch preparation for 5–8 seconds and begin combat. Ensure it reads as fog, not a searchlight, and that nothing crosses the combat floor. Other V4.1 arena animations are accepted and unchanged. This correction has not been visually verified in native Godot yet. [V4.1](LIVING_ARENAS_V4_1.md)

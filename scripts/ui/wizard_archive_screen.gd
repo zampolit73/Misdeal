@@ -4,8 +4,8 @@ const ARCHIVE := preload("res://scripts/core/wizard_archive.gd")
 const CHARTER := preload("res://scripts/core/run_charter.gd")
 const ROUTER := preload("res://scripts/core/scene_router.gd")
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
-const ART := preload("res://scripts/ui/runtime_webp_texture.gd")
 const CARD_SKIN := preload("res://scripts/class_select/class_select_card_skin.gd")
+const RELIQUARY := preload("res://scripts/ui/wizard_reliquary.gd")
 const TABS := ["Реликварий", "Бестиарий", "Летопись забегов", "Испытания"]
 const CARD_NUMBERS := ["—", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII"]
 
@@ -13,38 +13,51 @@ var _archive := ARCHIVE.instance()
 var _tabs: Array[Button] = []
 var _reader: RichTextLabel
 var _summary: Label
+var _reliquary: Control
 
 
 func _ready() -> void:
-	var backdrop := ART.new() as TextureRect
-	backdrop.set("webp_path", "res://assets/pixel/class_select/d281_clean_table_hd.webp")
-	backdrop.set("expected_size", Vector2i(1280,720))
+	var backdrop := TextureRect.new()
+	backdrop.texture = preload("res://assets/pixel/ui/wizard_archive/library.webp")
+	backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var candlelight := ShaderMaterial.new()
+	candlelight.shader = preload("res://shaders/wizard_archive_candlelight.gdshader")
+	backdrop.material = candlelight
 	backdrop.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	backdrop.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	add_child(backdrop)
 	backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var plate := Panel.new()
-	plate.position = Vector2(131, 42)
-	plate.size = Vector2(1018, 636)
+	var plate := Control.new()
+	plate.position = Vector2(112, 30)
+	plate.size = Vector2(1056, 660)
 	add_child(plate)
-	UI.apply_v2_material_plate(plate, true)
+	var frame := NinePatchRect.new()
+	frame.texture = preload("res://assets/pixel/ui/squad_dossier_d413/panel.webp")
+	frame.patch_margin_left = 64
+	frame.patch_margin_right = 64
+	frame.patch_margin_top = 64
+	frame.patch_margin_bottom = 64
+	frame.modulate.a = 0.89
+	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	plate.add_child(frame)
+	frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var title := Label.new()
 	title.text = "АРХИВ ВОЛШЕБНИКА"
-	title.position = Vector2(28, 22)
-	title.add_theme_font_size_override("font_size", 30)
+	title.position = Vector2(54, 20)
+	title.add_theme_font_size_override("font_size", 34)
 	plate.add_child(title)
 	UI.apply_screen_copy(title, UI.PARCHMENT_WARM, true)
 	title.add_theme_font_override("font", CARD_SKIN.heading_font())
 	var back := Button.new()
 	back.text = "В меню  [Esc]"
-	back.position = Vector2(807, 26)
+	back.position = Vector2(819, 23)
 	back.size = Vector2(182, 41)
 	plate.add_child(back)
 	UI.apply_action_button(back, UI.BRONZE)
 	back.pressed.connect(_close)
 	var row := HBoxContainer.new()
-	row.position = Vector2(29, 88)
-	row.size = Vector2(960, 46)
+	row.position = Vector2(28, 79)
+	row.size = Vector2(1000, 42)
 	row.add_theme_constant_override("separation", 10)
 	plate.add_child(row)
 	for index in TABS.size():
@@ -55,6 +68,11 @@ func _ready() -> void:
 		UI.apply_action_button(button, UI.BRONZE)
 		button.pressed.connect(_show_tab.bind(index))
 		_tabs.append(button)
+	_reliquary = RELIQUARY.new()
+	_reliquary.position = Vector2(28, 135)
+	plate.add_child(_reliquary)
+	_reliquary.set_collection(_archive.relics, _archive.error_message)
+	_tabs[0].focus_neighbor_bottom = _tabs[0].get_path_to(_reliquary.first_niche())
 	_summary = Label.new()
 	_summary.position = Vector2(30, 153)
 	_summary.add_theme_font_size_override("font_size", 16)
@@ -87,28 +105,18 @@ func _show_tab(index: int) -> void:
 	for slot in _tabs.size():
 		UI.apply_selected_button(_tabs[slot], slot == index)
 	_tabs[index].grab_focus()
+	_reliquary.visible = index == 0
+	_reader.visible = index != 0
+	_summary.visible = index != 0
+	if index == 0:
+		return
 	match index:
-		0: _show_relics()
 		1: _show_enemies()
 		2: _show_history()
 		3: _show_challenges()
 	if not _archive.error_message.is_empty():
 		_summary.text += "   ·   " + _archive.error_message
 	_reader.scroll_to_line(0)
-
-
-func _show_relics() -> void:
-	var found := 0
-	var rows := PackedStringArray()
-	for id in RunState.ARTIFACT_PATHS:
-		if _archive.relics.has(id):
-			var relic := RunState.get_artifact(id)
-			rows.append(_entry(relic.title, relic.description))
-			found += 1
-		else:
-			rows.append("[color=#9c8a7f]Неизвестная реликвия[/color]")
-	_summary.text = "Найдено %d / %d" % [found, RunState.ARTIFACT_PATHS.size()]
-	_reader.text = "\n\n".join(rows)
 
 
 func _show_enemies() -> void:
