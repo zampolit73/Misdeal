@@ -1,6 +1,8 @@
 # Challenges Visual V2
 
-On `feature/challenges-visual-v2`, open **F5 → Архив Волшебника → Испытания**. Click a seal or press Down to enter the cabinet, then use the arrow keys and Enter. Esc returns to the main menu.
+**Approved:** the player tested and accepted the production result on 2026-11-24. PR #142 is merged into `main`; all four Archive tabs are approved.
+
+On `main`, open **F5 → Архив Волшебника → Испытания**. Click a seal or press Down to enter the cabinet, then use the arrow keys and Enter. Esc returns to the main menu.
 
 | Native Godot 4.7.2 at 1280×720 | Capture |
 | --- | --- |
