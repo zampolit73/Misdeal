@@ -3,7 +3,7 @@
 - A · Wounds, rest stops and one reliable merchant checkpoint. [Rules and QA](GAMEPLAY_2_0.md)
 - B · 13 relics, build synergies and live stat changes in rewards, the merchant and events.
 - C · Wizard Archive, three unlockable starting styles and five difficulty oaths.
-- Table presentation · V5.1 polishes the status plates, Fate Spread and Hold around the interactive journal, window and grimoire. [Native evidence](qa/table_interface_v51/README.md)
+- Table presentation · V5/V5.1 approved in main (PRs #143–144). V5.1 polishes the status plates, Fate Spread and Hold around the interactive journal, window and grimoire. [Native evidence](qa/table_interface_v51/README.md)
 - Archive presentation · All four tabs (Reliquary V2.1, Bestiary V2, Chronicle V2 and Challenges V2) are approved and merged into main. [Godot evidence](qa/challenges_visual_v2/README.md)
 - Next investor visual milestone · Run End Visual V2 (victory and defeat presentation), subject to concept approval.
 - Gameplay audit (deferred) · Human campaign runs across party sizes and builds, with focused Last Bell and XIII comparisons.
