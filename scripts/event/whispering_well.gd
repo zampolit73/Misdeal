@@ -61,7 +61,7 @@ func _ready() -> void:
 	for button in [accept_button, pay_button, leave_button]:
 		CHOICE_COPY.prepare(button)
 	choice_view.build(self, choices, $Title, wizard_line, description_label, result_label,
-		[gold_label], [accept_button, pay_button, leave_button], "whispering_well")
+		[gold_label], [accept_button, pay_button, leave_button])
 
 
 func _refresh_gold() -> void:

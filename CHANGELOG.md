@@ -1,6 +1,6 @@
-## Event Choice Visual V3.1 · palette pilot
+## Event Choice Visual V3.2
 
-Apply muted bronze, deep burgundy and aged parchment to Borrowed Boots, Debtor Bones and Whispering Well. [Native before/after captures](docs/qa/event_choice_v31/README.md)
+Roll out the approved V3.1 finish to all 24 Act I events through the shared Event Choice skin. Layout, illustration, text, prices and effects retain their existing behavior.
 
 ## Table Interface V5.1
 
