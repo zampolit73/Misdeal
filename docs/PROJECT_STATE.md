@@ -1,6 +1,6 @@
-## Event Choice Visual V3.1 · palette pilot
+## Event Choice Visual V3.2
 
-Three events share the local V3.1 finish on the pilot branch: Borrowed Boots, Debtor Bones and Whispering Well. The finish pairs aged bronze and deep burgundy with toned parchment, ivory text and matte plates. [Native before/after captures](qa/event_choice_v31/README.md)
+The approved V3.1 palette is the default for all 24 Act I events in V3.2: 23 through ActChoice and one through WhisperingWell. Godot 4.7.2 booted all 24 production routes and verified that every visible decision used the shared finish. The 1280×720 visual review covered three and four decisions and locked choices.
 
 ## Table Interface V5.1 · approved in main
 

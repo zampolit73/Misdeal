@@ -1,6 +1,6 @@
-## Event Choice Visual V3.1 · pilot
+## Event Choice Visual V3.2
 
-Use muted bronze, deep burgundy, aged parchment and ivory type on event selection surfaces. Keep illustrations on their own layer. Render the finish through the shared event skin so the expanded text layout and focus states inherit the same palette. On locked choices, preserve contrast between the parchment and wine-colored restriction text. [Pilot screenshots](qa/event_choice_v31/README.md)
+ActChoice and WhisperingWell use the shared aged bronze, deep burgundy, parchment and ivory palette for all 24 events. Keep the finish on the frame layer, including expanded frames. Preserve contrast on locked choices and keep illustrations on their own layer.
 
 ## Table Interface V5.1
 

@@ -1,6 +1,6 @@
-## Event Choice Visual V3.1 · visual review
+## Event Choice Visual V3.2
 
-Review Borrowed Boots, Debtor Bones and Whispering Well in QA Hub or compare the [native Godot frames](qa/event_choice_v31/README.md). The three event IDs opt into the shared finish in `event_choice_presentation.gd`. Visual approval gates both the merge and any expansion to more events.
+Review in QA Hub under «События». «Знамя на бинты» has three choices, «Лавка могильщика» has four and shows locked offers at zero gold, and «Шепчущий колодец» verifies the dedicated scene. All use the approved V3.1 palette through the shared presentation.
 
 ## Table Interface V5.1 · complete
 

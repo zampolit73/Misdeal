@@ -23,7 +23,7 @@ static func serif(bold: bool = false) -> Font:
 	return _bold if bold else _serif
 
 
-static func mount(button: Button, extent: Vector2, muted_palette: bool = false) -> void:
+static func mount(button: Button, extent: Vector2) -> void:
 	var blank := StyleBoxEmpty.new()
 	for state in ["normal", "hover", "pressed", "hover_pressed", "disabled", "focus"]:
 		button.add_theme_stylebox_override(state, blank)
@@ -33,11 +33,10 @@ static func mount(button: Button, extent: Vector2, muted_palette: bool = false) 
 	frame.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	frame.texture = FRAME
-	if muted_palette:
-		if _bronze_material == null:
-			_bronze_material = ShaderMaterial.new()
-			_bronze_material.shader = BRONZE
-		frame.material = _bronze_material
+	if _bronze_material == null:
+		_bronze_material = ShaderMaterial.new()
+		_bronze_material.shader = BRONZE
+	frame.material = _bronze_material
 	frame.size = extent
 	frame.z_index = 1
 	button.add_child(frame)
@@ -67,7 +66,7 @@ static func enlarge_copy(button: Button) -> void:
 	frame.texture = _expanded_frame
 
 
-static func plate_style(compact: bool = false, muted_palette: bool = false) -> StyleBoxTexture:
+static func plate_style(compact: bool = false) -> StyleBoxTexture:
 	if _plate == null:
 		var image := PANEL.get_image()
 		image.resize(384, 256, Image.INTERPOLATE_LANCZOS)
@@ -79,5 +78,5 @@ static func plate_style(compact: bool = false, muted_palette: bool = false) -> S
 	box.texture_margin_top = 13 if compact else 23
 	box.texture_margin_bottom = box.texture_margin_top
 	box.set_content_margin_all(0)
-	box.modulate_color = Color("a79c94") if muted_palette else Color(1.18, 1.08, 1.0)
+	box.modulate_color = Color("a79c94")
 	return box
