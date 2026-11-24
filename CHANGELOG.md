@@ -1,3 +1,7 @@
+## Wizard Archive Visual V2 · visual pilot
+
+Add a 13-niche physical reliquary with real relic images and effects, keyboard selection and a parchment detail panel. [Native captures](docs/qa/wizard_archive_visual_v2/README.md)
+
 ## Ossuary Gate V4.1 — fog appearance correction
 
 Replace the diagonal spotlight-like V4.1 portal bands with softly drifting, low cold-fog banks; reduce and lower the combat-start haze cue. All other approved arenas and gameplay are unchanged. Native visual acceptance remains pending. [Review route](docs/LIVING_ARENAS_V4_1.md)

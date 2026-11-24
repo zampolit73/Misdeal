@@ -1,3 +1,7 @@
+## Wizard Archive Visual V2
+
+`assets/pixel/ui/wizard_archive/` holds the library, niche and parchment textures, a nine-item transparent atlas, four cutouts of existing relic art and a generic closed-niche shroud. ImageGen masters are archived under `assets/source_archive/wizard_archive_v2/`. The cabinet reuses the D413 bronze frame. [Asset map and native Godot frames](qa/wizard_archive_visual_v2/README.md)
+
 ## Event Choice Visual V2
 
 `assets/pixel/ui/event_choice_visual_v2/decision_frame.png` is a 520×908 painted bronze frame with burgundy inserts, two blank parchment surfaces and an open illustration recess. It was prepared with built-in ImageGen from the approved «Кости должника» reference (source PNG SHA-256 `929c4785abf47d628da19773c7c60ae48ae4c83bf88351db830bc0d4f998dc71`). The event skin reuses the D413 obsidian material for the UI plates. [Provenance, approved reference and native evidence](qa/event_choice_visual_v2/README.md)
