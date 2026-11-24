@@ -1,6 +1,6 @@
-## Table Interface V5 · review route
+## Table Interface V5.1 · verification route
 
-On `feature/table-interface-v5`, use F5 and enter the table. Check the journal (Tab), window (M) and grimoire (A) after the deal. Hold a card, open the Archive, then use Esc to verify the same deal and hold. [Native evidence and video](qa/table_interface_v5/README.md)
+Use F5 and enter the table. Inspect the restrained metalwork, the journal (Tab), window (M), grimoire (A) and Fate Spread (R). Hold a card, open the Archive, then use Esc to verify the same deal and hold. [Native evidence](qa/table_interface_v51/README.md)
 
 ## Next focus — Run End Visual V2 (Wizard's Verdict)
 

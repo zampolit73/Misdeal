@@ -1,3 +1,7 @@
+## Table Interface V5.1
+
+Unify the table plates and actions in aged bronze and matte wood, wrap long status and Wizard text, and soften the finish and contact edges of the books. [Native frames](docs/qa/table_interface_v51/README.md)
+
 ## Table Interface V5 · review candidate
 
 Add the interactive Squad journal, Memory window and Archive grimoire. Archive browsing returns to the same live table. [Native captures and recording](docs/qa/table_interface_v5/README.md)

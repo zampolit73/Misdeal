@@ -1,3 +1,7 @@
+## Table Interface V5.1
+
+Use matte dark wood, thin aged bronze and warm bone type for the live status, Wizard and short action plates. Keep the Hold footprint and let the two text plates grow for wrapping. Apply the book patina and contact shadows locally. [Approved reference and native frames](qa/table_interface_v51/README.md)
+
 ## Table Interface V5
 
 The supplied cutouts and 1280×720 placement are used over the approved table. The books and architectural window have real, transparent Button hit areas, live plaque typography and supplied contours for hover and focus. Keep their outlines clear of the deck and discard. The Archive uses the same four pages and closes back to its caller. [Reference and native frames](qa/table_interface_v5/README.md)

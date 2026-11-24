@@ -1,3 +1,7 @@
+## Table Interface V5.1
+
+The existing V5 book and glass textures remain the source art. `shaders/table_book_finish.gdshader` provides local contact shadows and patina for the books. [Approved reference and Godot frames](qa/table_interface_v51/README.md)
+
 ## Table Interface V5
 
 `assets/pixel/ui/table_navigation_v5/` contains the supplied 1280×720 layout and transparent journal, grimoire, stained glass, glow and focus layers. `assets/source_archive/table_navigation_v5/` preserves the source concept, annotated production frame, previews and verified manifest. [Native captures](qa/table_interface_v5/README.md)

@@ -1,6 +1,6 @@
-## Table Interface V5 · visual review
+## Table Interface V5.1 · approved polish
 
-The review branch adds the Squad journal, Memory window and Archive grimoire to the supplied tabletop positions. Table-origin Archive browsing keeps the scene and current run in place. [Native comparison and recording](qa/table_interface_v5/README.md)
+The live table styling pairs matte wood and muted bronze with the existing journal, Memory window and grimoire. Status and Wizard text wrap, and the compact Fate Spread and Hold controls share the palette. Archive browsing preserves the active deal. [Approved reference and native review](qa/table_interface_v51/README.md)
 
 ## Wizard Archive Visual V2 · fully approved in main
 
