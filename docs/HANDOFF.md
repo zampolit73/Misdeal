@@ -1,6 +1,6 @@
-## Run Chronicle Visual V2 · review route
+## Next focus — Challenges Visual V2
 
-On `feature/run-chronicle-visual-v2`, open F5 → **Архив Волшебника → Летопись забегов**. Verify five rows per page and the reached card, style, oath and deal on the parchment. The review captures use isolated profiles. Reliquary V2.1 and Bestiary V2 remain approved in main. [Reference and native evidence](qa/run_chronicle_visual_v2/README.md)
+Reliquary V2.1, Bestiary V2 and Run Chronicle Visual V2 (PR #141) are approved in main. Preserve the supplied archive artwork and existing profile data. Next: prepare a user-approved Challenges concept and clean artwork, then implement the last archive tab. The current challenge list is three hero styles, four achievement conditions and five sequential oaths. Read `_show_challenges()` in `wizard_archive_screen.gd`, `run_charter.gd` and `wizard_archive.gd`. Preserve unlock semantics, including available oath rank versus victory with that oath. [Chronicle evidence](qa/run_chronicle_visual_v2/README.md)
 
 ## Next visual check — Ossuary Gate fog correction
 
