@@ -1,6 +1,8 @@
 # Bestiary Visual V2
 
-On `feature/bestiary-visual-v2`, open **F5 → Архив Волшебника → Бестиарий**. Down moves from the tab to a niche. Use arrows and Enter, or click a portrait. Use the page chevrons or Page Up / Page Down to turn pages. Esc returns to the menu.
+**Approved:** player accepted the result on 2026-11-24; PR #140 is merged into `main`.
+
+On `main`, open **F5 → Архив Волшебника → Бестиарий**. Down moves from the tab to a niche. Use arrows and Enter, or click a portrait. Use the page chevrons or Page Up / Page Down to turn pages. Esc returns to the menu.
 
 | Godot 4.7.2, native 1280×720 | Capture |
 | --- | --- |
