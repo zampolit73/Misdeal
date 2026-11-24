@@ -1,3 +1,7 @@
+## Bestiary Visual V2
+
+The supplied `assets/pixel/ui/wizard_bestiary_v2/` package uses a 1280×720 plate, 12 arch states, four matching tab textures, a hidden silhouette and layout JSON. The reference, package notes and provenance live in `assets/source_archive/wizard_bestiary_v2/`. The archive loads real D420 idle frames through the existing animation library. [Native captures](qa/bestiary_visual_v2/README.md)
+
 ## Wizard Archive Visual V2.1
 
 The supplied `assets/pixel/ui/wizard_archive_v21/` package contains a clean 1280×720 plate, layout JSON, 13 arch states, four tab states and three generic silhouettes. Its approved concept and cabinet master are stored in `assets/source_archive/wizard_archive_v21/`. The relic art from V2 remains the live item catalog. [Provenance and native captures](qa/wizard_archive_visual_v21/README.md)

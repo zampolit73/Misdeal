@@ -1,0 +1,27 @@
+{
+  "method": "Recomposition of approved Reliquary V2.1 runtime art, same shared header and parchment; 4x3 arrangement from existing arches. Hidden silhouette cutout from approved Bestiary reference. No new enemy art.",
+  "source_files": {
+    "reliquary_plate.webp": "7e796888cfc43572e0cc1772379d3dd05ec734c9efd84728ce28e93f96b2472a",
+    "approved_reference.png": "4180cf3ab1d67f6308c939baf30d1078ee778866409366349586e6d0028e9a12"
+  },
+  "runtime_assets": {
+    "runtime/bestiary_plate.webp": "62bac2b8c424508994b09f22845e2202f20938d1b198f01ff4757faf1281c7ca",
+    "runtime/states/enemy_00_selected.png": "0214ab3010aa7b39925361331e4b170d004e8fc194b440521ca18a41b890e02b",
+    "runtime/states/enemy_01_selected.png": "5dc8a94609c907542e4980a74a596c465ac802abe610641751af9c7045523715",
+    "runtime/states/enemy_02_selected.png": "3b3fbfbe87f6d81c3c3de41ba9008c160b9b4673c51d48e84f3fc6bc0c49db9f",
+    "runtime/states/enemy_03_selected.png": "dc6ca7c1c751aef96d596f545e177e04b4fecb64e0cf9e40e9f21b1206f5945b",
+    "runtime/states/enemy_04_selected.png": "0214ab3010aa7b39925361331e4b170d004e8fc194b440521ca18a41b890e02b",
+    "runtime/states/enemy_05_selected.png": "5dc8a94609c907542e4980a74a596c465ac802abe610641751af9c7045523715",
+    "runtime/states/enemy_06_selected.png": "3b3fbfbe87f6d81c3c3de41ba9008c160b9b4673c51d48e84f3fc6bc0c49db9f",
+    "runtime/states/enemy_07_selected.png": "dc6ca7c1c751aef96d596f545e177e04b4fecb64e0cf9e40e9f21b1206f5945b",
+    "runtime/states/enemy_08_selected.png": "0214ab3010aa7b39925361331e4b170d004e8fc194b440521ca18a41b890e02b",
+    "runtime/states/enemy_09_selected.png": "5dc8a94609c907542e4980a74a596c465ac802abe610641751af9c7045523715",
+    "runtime/states/enemy_10_selected.png": "3b3fbfbe87f6d81c3c3de41ba9008c160b9b4673c51d48e84f3fc6bc0c49db9f",
+    "runtime/states/enemy_11_selected.png": "dc6ca7c1c751aef96d596f545e177e04b4fecb64e0cf9e40e9f21b1206f5945b",
+    "runtime/states/tab_0_active.webp": "918a0e23ee835d8fc504ec4a1da0e62d03adaf3164d597b04a36d1f4d3e728ec",
+    "runtime/states/tab_1_active.webp": "d371c109032d319f4ddb887da9b1eb695f0cb1b0abd8e2ac6d16a0a37b98e37e",
+    "runtime/states/tab_2_active.webp": "da526acf917be8618e71adf0b6ba0428e51274800c36a6ca9189c4ebba800e40",
+    "runtime/states/tab_3_active.webp": "52f759ed464deae689d98ba95d0dcc502ee8f1e72bacbfbe167330bfb5d50959",
+    "runtime/states/unknown_enemy.png": "f1bce306b8e427f622e0df74fa620077ddb651dc69b2e22aa4f78518d6fbcd0a"
+  }
+}

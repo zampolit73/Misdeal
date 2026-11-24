@@ -1,6 +1,6 @@
-## Wizard Archive Visual V2.1 · visual review
+## Bestiary Visual V2 · visual review
 
-The review branch uses the supplied clean cabinet, layout and state textures. All 13 existing artifact images and real effects are displayed from the catalog and profile. Native 1280×720 evidence covers 0/13, 6/13 and 13/13. The new plate awaits visual approval. [Reference, Godot captures and QA](qa/wizard_archive_visual_v21/README.md)
+The Bestiary PR uses the supplied 4×3 cabinet variant. It shows the 26 existing entries over three pages with live profiles, UnitData text and approved combat portraits. The Reliquary V2.1 art is approved in main. [Reference, Godot captures and QA](qa/bestiary_visual_v2/README.md)
 
 ## Ossuary Gate — V4.1 fog correction (native review pending)
 

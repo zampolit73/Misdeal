@@ -5,6 +5,7 @@ const CHARTER := preload("res://scripts/core/run_charter.gd")
 const ROUTER := preload("res://scripts/core/scene_router.gd")
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const RELIQUARY := preload("res://scripts/ui/wizard_reliquary.gd")
+const BESTIARY := preload("res://scripts/ui/wizard_bestiary.gd")
 const CARD_NUMBERS := ["—", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII"]
 
 var _archive := ARCHIVE.instance()
@@ -12,7 +13,10 @@ var _tabs: Array[Button] = []
 var _reader: RichTextLabel
 var _summary: Label
 var _reliquary: Control
+var _bestiary: Control
 var _plate_clip: Control
+var _plate: TextureRect
+var _reliquary_plate: Texture2D
 var _list_view: Control
 var _tab_states: Array[TextureRect] = []
 var _tab_captions: Array[Label] = []
@@ -28,7 +32,8 @@ func _ready() -> void:
 	_plate_clip.clip_contents = true
 	_plate_clip.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	RELIQUARY.put(self, _plate_clip, Rect2(Vector2.ZERO, canvas))
-	RELIQUARY.picture(_plate_clip, RELIQUARY.asset(design.plate), Rect2(Vector2.ZERO, canvas))
+	_reliquary_plate = RELIQUARY.asset(design.plate)
+	_plate = RELIQUARY.picture(_plate_clip, _reliquary_plate, Rect2(Vector2.ZERO, canvas))
 
 	var title: Dictionary = design.title
 	RELIQUARY.caption(self, RELIQUARY.rect(title.rect), "АРХИВ ВОЛШЕБНИКА", int(title.font_size), RELIQUARY.GOLD)
@@ -120,36 +125,26 @@ func _show_tab(index: int) -> void:
 		_update_tab(slot)
 	_tabs[index].grab_focus()
 	var is_reliquary := index == 0
+	var is_bestiary := index == 1
 	_reliquary.visible = is_reliquary
-	_list_view.visible = not is_reliquary
-	_plate_clip.size.y = float(RELIQUARY.LAYOUT.data.resolution[1]) if is_reliquary else 164.0
-	if is_reliquary:
+	_list_view.visible = not (is_reliquary or is_bestiary)
+	_plate.texture = BESTIARY.PLATE if is_bestiary else _reliquary_plate
+	_plate_clip.size.y = _plate.size.y if not _list_view.visible else 164.0
+	if is_bestiary and _bestiary == null:
+		_bestiary = BESTIARY.new()
+		add_child(_bestiary)
+		_bestiary.set_collection(_archive.enemies, _archive.error_message)
+		_tabs[1].focus_neighbor_bottom = _tabs[1].get_path_to(_bestiary.first_niche())
+	if _bestiary != null:
+		_bestiary.visible = is_bestiary
+	if not _list_view.visible:
 		return
 	match index:
-		1: _show_enemies()
 		2: _show_history()
 		3: _show_challenges()
 	if not _archive.error_message.is_empty():
 		_summary.text += "   ·   " + _archive.error_message
 	_reader.scroll_to_line(0)
-
-
-func _show_enemies() -> void:
-	var rows := PackedStringArray()
-	var found := 0
-	for id in ARCHIVE.ENEMY_IDS:
-		if not _archive.enemies.has(id):
-			rows.append("[color=#9c8a7f]Противник ещё не встречен[/color]")
-			continue
-		var data := load("res://resources/units/%s.tres" % id) as UnitData
-		var feature := "Атакует с расстояния." if data.attack_range >= 120.0 else "Вступает в ближний бой."
-		if data.support_heal_amount > 0.0: feature += " Лечит раненых союзников."
-		if data.splash_radius > 0.0: feature += " Способен задеть несколько целей."
-		if data.is_boss: feature = "Противник XIII. Тяжёлые удары поражают область вокруг цели."
-		rows.append(_entry(data.unit_name, feature))
-		found += 1
-	_summary.text = "Встречено %d / %d" % [found, ARCHIVE.ENEMY_IDS.size()]
-	_reader.text = "\n\n".join(rows)
 
 
 func _show_history() -> void:

@@ -1,3 +1,7 @@
+## Bestiary Visual V2 · review candidate
+
+Add a three-page bestiary cabinet with 26 live entries, D420 portraits and scrollable descriptions from UnitData. [Reference and native captures](docs/qa/bestiary_visual_v2/README.md)
+
 ## Wizard Archive Visual V2.1 · review candidate
 
 Mount the 13 live relics on the supplied arched cabinet with its matching tabs, selection overlays and parchment layout. [Reference and native captures](docs/qa/wizard_archive_visual_v21/README.md)
