@@ -1,6 +1,6 @@
-## Challenges Visual V2 · visual review
+## Wizard Archive Visual V2 · fully approved in main
 
-The review branch displays three hero styles, four achievements and five oaths on the supplied cabinet plate. Seals and counts use existing archive data. Available oaths and victories on those oaths are shown separately. [Reference and native screenshots](qa/challenges_visual_v2/README.md)
+The player tested and approved Challenges Visual V2 after PR #142 merged into main. All four archive tabs are now visually approved and released: Reliquary V2.1, Bestiary V2, Run Chronicle V2 and Challenges V2. Challenges displays three hero styles, four achievements and five oaths on the supplied cabinet plate. Seals and counts use existing archive data. Available oaths and victories on those oaths are shown separately. [Reference and native screenshots](qa/challenges_visual_v2/README.md)
 
 ## Run Chronicle Visual V2 · approved in main
 
