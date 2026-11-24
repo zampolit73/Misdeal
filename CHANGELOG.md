@@ -1,3 +1,7 @@
+## Challenges Visual V2 · review candidate
+
+Present the 12 existing archive unlocks as interactive seals with live conditions, gameplay effects and separate oath availability and victory states. [Native captures](docs/qa/challenges_visual_v2/README.md)
+
 ## Run Chronicle Visual V2 · review candidate
 
 Present archived runs on the supplied Chronicle plate, five per page, with the actual reached card, result, portraits, relics, style, oath and Last Deal. [Reference and native captures](docs/qa/run_chronicle_visual_v2/README.md)
