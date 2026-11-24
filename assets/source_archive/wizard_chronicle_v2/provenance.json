@@ -1,0 +1,20 @@
+{
+  "source": "ImageGen: approved concept and clean master, reused header and tab states from supplied Bestiary V2 art pack; row highlights traced from clean master; coordinate preview uses illustrative data, not Godot capture.",
+  "sha256": {
+    "README.md": "bab36d0a48b0228eeef38826e32131ebba37af488a57f67f5557bbf95afea630",
+    "layout_1280x720.json": "37fcc6aec2ab77dc8e5c791e9f3e13479c57df234d7a8d2a8c011b6cbef73e7d",
+    "layout_preview.webp": "c7b28a7473e87c812423efd56fc4bb280395c59c46eebce7662220d2b2b960cf",
+    "runtime/chronicle_plate.webp": "62dd20e7109d36e976a15e3e3b41ae843c02fbb4536bc8d5a7e4a45317598b48",
+    "runtime/states/row_00_selected.png": "d3fce089c1667c78e51ca17a732037ef6317815b98e834d58c831a7af4d362e3",
+    "runtime/states/row_01_selected.png": "d3fce089c1667c78e51ca17a732037ef6317815b98e834d58c831a7af4d362e3",
+    "runtime/states/row_02_selected.png": "d3fce089c1667c78e51ca17a732037ef6317815b98e834d58c831a7af4d362e3",
+    "runtime/states/row_03_selected.png": "d3fce089c1667c78e51ca17a732037ef6317815b98e834d58c831a7af4d362e3",
+    "runtime/states/row_04_selected.png": "d3fce089c1667c78e51ca17a732037ef6317815b98e834d58c831a7af4d362e3",
+    "runtime/states/tab_0_active.webp": "918a0e23ee835d8fc504ec4a1da0e62d03adaf3164d597b04a36d1f4d3e728ec",
+    "runtime/states/tab_1_active.webp": "d371c109032d319f4ddb887da9b1eb695f0cb1b0abd8e2ac6d16a0a37b98e37e",
+    "runtime/states/tab_2_active.webp": "da526acf917be8618e71adf0b6ba0428e51274800c36a6ca9189c4ebba800e40",
+    "runtime/states/tab_3_active.webp": "52f759ed464deae689d98ba95d0dcc502ee8f1e72bacbfbe167330bfb5d50959",
+    "source/approved_reference.png": "e5d08c9aa6bc6a122896280bdd7e33d4e900f018e1964681a802442b62b349e4",
+    "source/chronicle_master.png": "78658e643fcf39b22856203579b2d24272544bed00c5039171c633fffa297b86"
+  }
+}

@@ -1,3 +1,7 @@
+## Run Chronicle Visual V2 · visual review
+
+The Chronicle PR places five live run records per page on the supplied plate. Details show the reached card, party, owned relics, style, oath and Last Deal from the existing profile. Godot 1280×720 captures cover empty history, XIII victory, defeat and page two. [Art packet and native review](qa/run_chronicle_visual_v2/README.md)
+
 ## Bestiary Visual V2 · approved in main
 
 The player approved Bestiary Visual V2 on 2026-11-24 after PR #140 merged into main. The Bestiary uses the supplied 4×3 cabinet variant. It shows the 26 existing entries over three pages with live profiles, UnitData text and approved combat portraits. The Reliquary V2.1 art is approved in main. [Reference, Godot captures and QA](qa/bestiary_visual_v2/README.md)

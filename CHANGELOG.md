@@ -1,3 +1,7 @@
+## Run Chronicle Visual V2 · review candidate
+
+Present archived runs on the supplied Chronicle plate, five per page, with the actual reached card, result, portraits, relics, style, oath and Last Deal. [Reference and native captures](docs/qa/run_chronicle_visual_v2/README.md)
+
 ## Bestiary Visual V2 · review candidate
 
 Add a three-page bestiary cabinet with 26 live entries, D420 portraits and scrollable descriptions from UnitData. [Reference and native captures](docs/qa/bestiary_visual_v2/README.md)
