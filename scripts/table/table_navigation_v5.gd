@@ -3,7 +3,8 @@ extends RefCounted
 const LAYOUT := preload("res://assets/pixel/ui/table_navigation_v5/layout_1280x720.json")
 const ASSETS := "res://assets/pixel/ui/table_navigation_v5/"
 const SKIN := preload("res://scripts/class_select/class_select_card_skin.gd")
-const INK := Color("#f6d49e")
+const INK := Color("#dfc6a4")
+const BOOK_FINISH := preload("res://shaders/table_book_finish.gdshader")
 
 
 static func apply(button: Button, object: String) -> void:
@@ -18,11 +19,21 @@ static func apply(button: Button, object: String) -> void:
 	for state in ["normal", "hover", "pressed", "focus", "hover_pressed", "disabled"]:
 		button.add_theme_stylebox_override(state, StyleBoxEmpty.new())
 	var texture_rect := Rect2(Vector2.ZERO, bounds.size)
-	picture(button, spec.texture, texture_rect)
+	if object != "memory":
+		var shadow := picture(button, spec.texture, Rect2(Vector2(2, 4), bounds.size))
+		var shadow_material := ShaderMaterial.new()
+		shadow_material.shader = BOOK_FINISH
+		shadow_material.set_shader_parameter("contact_shadow", true)
+		shadow.material = shadow_material
+	var prop := picture(button, spec.texture, texture_rect)
 	if object == "memory":
 		picture(button, spec.light_texture, texture_rect).name = "GlassLight"
+	else:
+		var finish := ShaderMaterial.new()
+		finish.shader = BOOK_FINISH
+		prop.material = finish
 	var highlight := picture(button, spec.focus_texture, texture_rect)
-	highlight.modulate.a = 0.72
+	highlight.modulate = Color(0.81, 0.74, 0.65, 0.55)
 	highlight.hide()
 	var caption := Label.new()
 	caption.name = "Caption"
