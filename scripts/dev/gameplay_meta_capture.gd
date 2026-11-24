@@ -67,7 +67,9 @@ func _run() -> void:
 	if not await _at_scene("/archive/wizard_archive.tscn"): return
 	await _capture("reliquary.png")
 	current_scene._tabs[1].pressed.emit()
-	if not _check(current_scene._reader.text.contains("Костяной надзиратель"), "Bestiary reveals encountered XIII"): return
+	var warden_slot: int = current_scene.ARCHIVE.ENEMY_IDS.find("bone_warden")
+	current_scene._bestiary._slots[warden_slot].pressed.emit()
+	if not _check(current_scene._bestiary._title.text == "Костяной надзиратель", "Bestiary reveals encountered XIII"): return
 	await _capture("bestiary.png")
 	current_scene._tabs[2].pressed.emit()
 	await _capture("chronicle.png")

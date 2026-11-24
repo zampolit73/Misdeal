@@ -1,6 +1,6 @@
-## Wizard Archive Visual V2.1 · review route
+## Bestiary Visual V2 · review route
 
-On `fix/wizard-archive-exact-reference-v21`, use F5 → **Архив Волшебника** → **Реликварий**. From the tab, press Down to enter the cabinet, arrows to move focus, Enter to select and Esc to return to the menu. Review the supplied plate and native captures before merging. [Isolated 0/13, 6/13 and 13/13 captures](qa/wizard_archive_visual_v21/README.md)
+On `feature/bestiary-visual-v2`, use F5 → **Архив Волшебника** → **Бестиарий**. Review selection, page navigation and the ten empty niches on page three. Compare the native screenshots before approving the PR. [Review evidence](qa/bestiary_visual_v2/README.md)
 
 ## Next visual check — Ossuary Gate fog correction
 
