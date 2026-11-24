@@ -1,0 +1,5 @@
+{
+  "reference_sha256": "f89fe90f2151ba913061760a973aa5d1d3cf8a58830545ac419c2f4a1809e56b",
+  "cabinet_master_sha256": "ad97543a8f7b0bdb7b9867aaf9ee5f7af0d4b987d4c6f4c0571367f1adafd4c7",
+  "source": "Approved ImageGen V2.1 concept and separate ImageGen clean plate, followed by local deterministic crop/state extraction. Reference has illustrative data only. Runtime art is UI-free; tab/slot states are derived from the clean plate."
+}

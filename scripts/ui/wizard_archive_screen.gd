@@ -4,9 +4,7 @@ const ARCHIVE := preload("res://scripts/core/wizard_archive.gd")
 const CHARTER := preload("res://scripts/core/run_charter.gd")
 const ROUTER := preload("res://scripts/core/scene_router.gd")
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
-const CARD_SKIN := preload("res://scripts/class_select/class_select_card_skin.gd")
 const RELIQUARY := preload("res://scripts/ui/wizard_reliquary.gd")
-const TABS := ["Реликварий", "Бестиарий", "Летопись забегов", "Испытания"]
 const CARD_NUMBERS := ["—", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII"]
 
 var _archive := ARCHIVE.instance()
@@ -14,23 +12,67 @@ var _tabs: Array[Button] = []
 var _reader: RichTextLabel
 var _summary: Label
 var _reliquary: Control
+var _plate_clip: Control
+var _list_view: Control
+var _tab_states: Array[TextureRect] = []
+var _tab_captions: Array[Label] = []
+var _active_tab := 0
 
 
 func _ready() -> void:
-	var backdrop := TextureRect.new()
-	backdrop.texture = preload("res://assets/pixel/ui/wizard_archive/library.webp")
-	backdrop.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var design: Dictionary = RELIQUARY.LAYOUT.data
+	var canvas := Vector2(design.resolution[0], design.resolution[1])
+	_build_list_view(canvas)
+
+	_plate_clip = Control.new()
+	_plate_clip.clip_contents = true
+	_plate_clip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	RELIQUARY.put(self, _plate_clip, Rect2(Vector2.ZERO, canvas))
+	RELIQUARY.picture(_plate_clip, RELIQUARY.asset(design.plate), Rect2(Vector2.ZERO, canvas))
+
+	var title: Dictionary = design.title
+	RELIQUARY.caption(self, RELIQUARY.rect(title.rect), "АРХИВ ВОЛШЕБНИКА", int(title.font_size), RELIQUARY.GOLD)
+	var back_area := RELIQUARY.rect(design.back.rect)
+	var back := RELIQUARY.hotspot(self, back_area, "В меню [Esc]")
+	var back_text := RELIQUARY.caption(back, Rect2(Vector2.ZERO, back_area.size),
+		"В меню [Esc]", int(design.back.font_size), RELIQUARY.GOLD)
+	back.focus_entered.connect(func() -> void: back_text.modulate = Color(1.2, 1.2, 1.2))
+	back.focus_exited.connect(func() -> void: back_text.modulate = Color.WHITE)
+	back.pressed.connect(_close)
+
+	for tab: Dictionary in design.tabs:
+		var index := int(tab.index)
+		var area := RELIQUARY.rect(tab.rect)
+		var button := RELIQUARY.hotspot(self, area, tab.label)
+		var active := RELIQUARY.picture(button, RELIQUARY.asset(tab.active_texture), Rect2(Vector2.ZERO, area.size))
+		var text_area := RELIQUARY.rect(tab.text_rect)
+		text_area.position -= area.position
+		var caption := RELIQUARY.caption(button, text_area, tab.label, 22, RELIQUARY.GOLD)
+		_tabs.append(button)
+		_tab_states.append(active)
+		_tab_captions.append(caption)
+		button.pressed.connect(_show_tab.bind(index))
+		button.focus_entered.connect(_update_tab.bind(index))
+		button.focus_exited.connect(_update_tab.bind(index))
+		button.mouse_entered.connect(_update_tab.bind(index))
+		button.mouse_exited.connect(_update_tab.bind(index))
+
+	_reliquary = RELIQUARY.new()
+	add_child(_reliquary)
+	_reliquary.set_collection(_archive.relics, _archive.error_message)
+	_tabs[0].focus_neighbor_bottom = _tabs[0].get_path_to(_reliquary.first_niche())
+	_show_tab(0)
+
+
+func _build_list_view(canvas: Vector2) -> void:
+	_list_view = Control.new()
+	_list_view.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	RELIQUARY.put(self, _list_view, Rect2(Vector2.ZERO, canvas))
+	var backdrop := RELIQUARY.picture(_list_view, preload("res://assets/pixel/ui/wizard_archive/library.webp"),
+		Rect2(Vector2.ZERO, canvas))
 	var candlelight := ShaderMaterial.new()
 	candlelight.shader = preload("res://shaders/wizard_archive_candlelight.gdshader")
 	backdrop.material = candlelight
-	backdrop.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	backdrop.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	add_child(backdrop)
-	backdrop.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var plate := Control.new()
-	plate.position = Vector2(112, 30)
-	plate.size = Vector2(1056, 660)
-	add_child(plate)
 	var frame := NinePatchRect.new()
 	frame.texture = preload("res://assets/pixel/ui/squad_dossier_d413/panel.webp")
 	frame.patch_margin_left = 64
@@ -39,56 +81,27 @@ func _ready() -> void:
 	frame.patch_margin_bottom = 64
 	frame.modulate.a = 0.89
 	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	plate.add_child(frame)
-	frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var title := Label.new()
-	title.text = "АРХИВ ВОЛШЕБНИКА"
-	title.position = Vector2(54, 20)
-	title.add_theme_font_size_override("font_size", 34)
-	plate.add_child(title)
-	UI.apply_screen_copy(title, UI.PARCHMENT_WARM, true)
-	title.add_theme_font_override("font", CARD_SKIN.heading_font())
-	var back := Button.new()
-	back.text = "В меню  [Esc]"
-	back.position = Vector2(819, 23)
-	back.size = Vector2(182, 41)
-	plate.add_child(back)
-	UI.apply_action_button(back, UI.BRONZE)
-	back.pressed.connect(_close)
-	var row := HBoxContainer.new()
-	row.position = Vector2(28, 79)
-	row.size = Vector2(1000, 42)
-	row.add_theme_constant_override("separation", 10)
-	plate.add_child(row)
-	for index in TABS.size():
-		var button := Button.new()
-		button.text = TABS[index]
-		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		row.add_child(button)
-		UI.apply_action_button(button, UI.BRONZE)
-		button.pressed.connect(_show_tab.bind(index))
-		_tabs.append(button)
-	_reliquary = RELIQUARY.new()
-	_reliquary.position = Vector2(28, 135)
-	plate.add_child(_reliquary)
-	_reliquary.set_collection(_archive.relics, _archive.error_message)
-	_tabs[0].focus_neighbor_bottom = _tabs[0].get_path_to(_reliquary.first_niche())
+	RELIQUARY.put(_list_view, frame, Rect2(112, 163, 1056, 527))
 	_summary = Label.new()
-	_summary.position = Vector2(30, 153)
 	_summary.add_theme_font_size_override("font_size", 16)
-	plate.add_child(_summary)
 	UI.apply_screen_copy(_summary, UI.GOLD)
+	RELIQUARY.put(_list_view, _summary, Rect2(142, 183, 960, 24))
 	_reader = RichTextLabel.new()
 	_reader.bbcode_enabled = true
 	_reader.focus_mode = Control.FOCUS_ALL
-	_reader.position = Vector2(29, 190)
-	_reader.size = Vector2(960, 416)
 	_reader.add_theme_color_override("default_color", UI.TEXT)
 	_reader.add_theme_font_size_override("normal_font_size", 16)
 	_reader.add_theme_constant_override("line_separation", 5)
-	plate.add_child(_reader)
-	_show_tab(0)
-	_tabs[0].grab_focus()
+	RELIQUARY.put(_list_view, _reader, Rect2(141, 220, 960, 416))
+
+
+func _update_tab(index: int) -> void:
+	var button := _tabs[index]
+	var active := index == _active_tab
+	_tab_states[index].visible = active or button.has_focus() or button.is_hovered()
+	_tab_states[index].modulate.a = 1.0 if active else 0.48
+	_tab_captions[index].modulate = Color(1.18, 1.18, 1.18) if button.has_focus() else Color.WHITE
+
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -102,13 +115,15 @@ func _close() -> void:
 
 
 func _show_tab(index: int) -> void:
+	_active_tab = index
 	for slot in _tabs.size():
-		UI.apply_selected_button(_tabs[slot], slot == index)
+		_update_tab(slot)
 	_tabs[index].grab_focus()
-	_reliquary.visible = index == 0
-	_reader.visible = index != 0
-	_summary.visible = index != 0
-	if index == 0:
+	var is_reliquary := index == 0
+	_reliquary.visible = is_reliquary
+	_list_view.visible = not is_reliquary
+	_plate_clip.size.y = float(RELIQUARY.LAYOUT.data.resolution[1]) if is_reliquary else 164.0
+	if is_reliquary:
 		return
 	match index:
 		1: _show_enemies()

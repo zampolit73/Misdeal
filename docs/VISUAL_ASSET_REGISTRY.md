@@ -1,3 +1,7 @@
+## Wizard Archive Visual V2.1
+
+The supplied `assets/pixel/ui/wizard_archive_v21/` package contains a clean 1280×720 plate, layout JSON, 13 arch states, four tab states and three generic silhouettes. Its approved concept and cabinet master are stored in `assets/source_archive/wizard_archive_v21/`. The relic art from V2 remains the live item catalog. [Provenance and native captures](qa/wizard_archive_visual_v21/README.md)
+
 ## Wizard Archive Visual V2
 
 `assets/pixel/ui/wizard_archive/` holds the library, niche and parchment textures, a nine-item transparent atlas, four cutouts of existing relic art and a generic closed-niche shroud. ImageGen masters are archived under `assets/source_archive/wizard_archive_v2/`. The cabinet reuses the D413 bronze frame. [Asset map and native Godot frames](qa/wizard_archive_visual_v2/README.md)

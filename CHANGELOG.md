@@ -1,3 +1,7 @@
+## Wizard Archive Visual V2.1 · review candidate
+
+Mount the 13 live relics on the supplied arched cabinet with its matching tabs, selection overlays and parchment layout. [Reference and native captures](docs/qa/wizard_archive_visual_v21/README.md)
+
 ## Wizard Archive Visual V2 · visual pilot
 
 Add a 13-niche physical reliquary with real relic images and effects, keyboard selection and a parchment detail panel. [Native captures](docs/qa/wizard_archive_visual_v2/README.md)
