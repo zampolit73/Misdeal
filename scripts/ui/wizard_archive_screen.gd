@@ -6,7 +6,7 @@ const ROUTER := preload("res://scripts/core/scene_router.gd")
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const RELIQUARY := preload("res://scripts/ui/wizard_reliquary.gd")
 const BESTIARY := preload("res://scripts/ui/wizard_bestiary.gd")
-const CARD_NUMBERS := ["—", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII"]
+const CHRONICLE := preload("res://scripts/ui/wizard_chronicle.gd")
 
 var _archive := ARCHIVE.instance()
 var _tabs: Array[Button] = []
@@ -14,6 +14,7 @@ var _reader: RichTextLabel
 var _summary: Label
 var _reliquary: Control
 var _bestiary: Control
+var _chronicle: Control
 var _plate_clip: Control
 var _plate: TextureRect
 var _reliquary_plate: Texture2D
@@ -126,9 +127,13 @@ func _show_tab(index: int) -> void:
 	_tabs[index].grab_focus()
 	var is_reliquary := index == 0
 	var is_bestiary := index == 1
+	var is_chronicle := index == 2
 	_reliquary.visible = is_reliquary
-	_list_view.visible = not (is_reliquary or is_bestiary)
-	_plate.texture = BESTIARY.PLATE if is_bestiary else _reliquary_plate
+	_list_view.visible = index == 3
+	match index:
+		1: _plate.texture = BESTIARY.PLATE
+		2: _plate.texture = CHRONICLE.PLATE
+		_: _plate.texture = _reliquary_plate
 	_plate_clip.size.y = _plate.size.y if not _list_view.visible else 164.0
 	if is_bestiary and _bestiary == null:
 		_bestiary = BESTIARY.new()
@@ -137,36 +142,21 @@ func _show_tab(index: int) -> void:
 		_tabs[1].focus_neighbor_bottom = _tabs[1].get_path_to(_bestiary.first_niche())
 	if _bestiary != null:
 		_bestiary.visible = is_bestiary
+	if is_chronicle and _chronicle == null:
+		_chronicle = CHRONICLE.new()
+		add_child(_chronicle)
+		_chronicle.set_history(_archive.history, _archive.error_message)
+		var row: Button = _chronicle.first_record()
+		if row != null:
+			_tabs[2].focus_neighbor_bottom = _tabs[2].get_path_to(row)
+	if _chronicle != null:
+		_chronicle.visible = is_chronicle
 	if not _list_view.visible:
 		return
-	match index:
-		2: _show_history()
-		3: _show_challenges()
+	_show_challenges()
 	if not _archive.error_message.is_empty():
 		_summary.text += "   ·   " + _archive.error_message
 	_reader.scroll_to_line(0)
-
-
-func _show_history() -> void:
-	var rows := PackedStringArray()
-	var entries: Array = _archive.history.values()
-	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a.date > b.date)
-	var victories := 0
-	for record: Dictionary in entries:
-		if record.won: victories += 1
-		var team := PackedStringArray()
-		for role in record.party: team.append(RunState.get_hero_unit_data(role).unit_name)
-		var loot := PackedStringArray()
-		for id in record.relics:
-			if RunState.ARTIFACT_PATHS.has(id): loot.append(RunState.get_artifact(id).title)
-		var result := "Победа" if record.won else "Поражение"
-		var leader := RunState.get_hero_unit_data(record.role).unit_name
-		var style := "Классический стиль" if record.style.is_empty() else String(CHARTER.STYLES[record.role][1])
-		var title := "%s · %s · карта %s" % [result, leader, CARD_NUMBERS[int(record.card)]]
-		var detail := "%s · %s\nОтряд: %s\nРеликвии: %s" % [CHARTER.OATHS[int(record.oath)][0], style, ", ".join(team), ", ".join(loot) if not loot.is_empty() else "—"]
-		rows.append(_entry(title, detail))
-	_summary.text = "Побед %d   ·   Поражений %d" % [victories, entries.size() - victories]
-	_reader.text = "\n\n".join(rows) if not rows.is_empty() else "Здесь появятся завершённые забеги."
 
 
 func _show_challenges() -> void:

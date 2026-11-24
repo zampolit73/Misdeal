@@ -1,0 +1,547 @@
+{
+  "resolution": [
+    1280,
+    720
+  ],
+  "coordinate_system": "Screen-local 1280x720 design pixels; scale canvas uniformly. rect = x,y,w,h",
+  "title": {
+    "rect": [
+      357,
+      49,
+      448,
+      44
+    ],
+    "font_size": 29
+  },
+  "back": {
+    "rect": [
+      1005,
+      50,
+      160,
+      43
+    ],
+    "font_size": 16
+  },
+  "tabs": [
+    {
+      "index": 0,
+      "label": "Реликварий",
+      "rect": [
+        160,
+        110,
+        229,
+        54
+      ],
+      "text_rect": [
+        167,
+        119,
+        215,
+        35
+      ],
+      "active_texture": "states/tab_0_active.webp"
+    },
+    {
+      "index": 1,
+      "label": "Бестиарий",
+      "rect": [
+        396,
+        110,
+        209,
+        54
+      ],
+      "text_rect": [
+        403,
+        119,
+        195,
+        35
+      ],
+      "active_texture": "states/tab_1_active.webp"
+    },
+    {
+      "index": 2,
+      "label": "Летопись забегов",
+      "rect": [
+        612,
+        110,
+        221,
+        54
+      ],
+      "text_rect": [
+        619,
+        119,
+        207,
+        35
+      ],
+      "active_texture": "states/tab_2_active.webp"
+    },
+    {
+      "index": 3,
+      "label": "Испытания",
+      "rect": [
+        839,
+        110,
+        236,
+        54
+      ],
+      "text_rect": [
+        846,
+        119,
+        222,
+        35
+      ],
+      "active_texture": "states/tab_3_active.webp"
+    }
+  ],
+  "plate": "chronicle_plate.webp",
+  "page_size": 5,
+  "list_title": {
+    "rect": [
+      237,
+      187,
+      260,
+      29
+    ],
+    "font_size": 22
+  },
+  "rows": [
+    {
+      "index": 0,
+      "rect": [
+        173,
+        242,
+        382,
+        62
+      ],
+      "highlight": "states/row_00_selected.png",
+      "reached_rect": [
+        185,
+        250,
+        54,
+        45
+      ],
+      "outcome_rect": [
+        249,
+        248,
+        174,
+        25
+      ],
+      "date_rect": [
+        249,
+        274,
+        215,
+        20
+      ],
+      "portrait_rect": [
+        485,
+        247,
+        51,
+        51
+      ]
+    },
+    {
+      "index": 1,
+      "rect": [
+        173,
+        312,
+        382,
+        62
+      ],
+      "highlight": "states/row_01_selected.png",
+      "reached_rect": [
+        185,
+        320,
+        54,
+        45
+      ],
+      "outcome_rect": [
+        249,
+        318,
+        174,
+        25
+      ],
+      "date_rect": [
+        249,
+        344,
+        215,
+        20
+      ],
+      "portrait_rect": [
+        485,
+        317,
+        51,
+        51
+      ]
+    },
+    {
+      "index": 2,
+      "rect": [
+        173,
+        382,
+        382,
+        62
+      ],
+      "highlight": "states/row_02_selected.png",
+      "reached_rect": [
+        185,
+        390,
+        54,
+        45
+      ],
+      "outcome_rect": [
+        249,
+        388,
+        174,
+        25
+      ],
+      "date_rect": [
+        249,
+        414,
+        215,
+        20
+      ],
+      "portrait_rect": [
+        485,
+        387,
+        51,
+        51
+      ]
+    },
+    {
+      "index": 3,
+      "rect": [
+        173,
+        452,
+        382,
+        62
+      ],
+      "highlight": "states/row_03_selected.png",
+      "reached_rect": [
+        185,
+        460,
+        54,
+        45
+      ],
+      "outcome_rect": [
+        249,
+        458,
+        174,
+        25
+      ],
+      "date_rect": [
+        249,
+        484,
+        215,
+        20
+      ],
+      "portrait_rect": [
+        485,
+        457,
+        51,
+        51
+      ]
+    },
+    {
+      "index": 4,
+      "rect": [
+        173,
+        522,
+        382,
+        62
+      ],
+      "highlight": "states/row_04_selected.png",
+      "reached_rect": [
+        185,
+        530,
+        54,
+        45
+      ],
+      "outcome_rect": [
+        249,
+        528,
+        174,
+        25
+      ],
+      "date_rect": [
+        249,
+        554,
+        215,
+        20
+      ],
+      "portrait_rect": [
+        485,
+        527,
+        51,
+        51
+      ]
+    }
+  ],
+  "pagination": {
+    "previous": [
+      246,
+      610,
+      60,
+      42
+    ],
+    "text": [
+      306,
+      610,
+      128,
+      42
+    ],
+    "next": [
+      434,
+      610,
+      62,
+      42
+    ]
+  },
+  "detail": {
+    "outcome": [
+      649,
+      182,
+      408,
+      38
+    ],
+    "date": [
+      649,
+      222,
+      408,
+      20
+    ],
+    "decorative_landscape": [
+      651,
+      243,
+      421,
+      106
+    ],
+    "party_label": [
+      646,
+      354,
+      164,
+      22
+    ],
+    "party_slots": [
+      [
+        650,
+        381,
+        49,
+        59
+      ],
+      [
+        703,
+        381,
+        49,
+        59
+      ],
+      [
+        756,
+        381,
+        49,
+        59
+      ]
+    ],
+    "relic_label": [
+      830,
+      354,
+      313,
+      22
+    ],
+    "relic_slots": [
+      [
+        830,
+        380,
+        39,
+        39
+      ],
+      [
+        873,
+        380,
+        39,
+        39
+      ],
+      [
+        916,
+        380,
+        39,
+        39
+      ],
+      [
+        959,
+        380,
+        39,
+        39
+      ],
+      [
+        1002,
+        380,
+        39,
+        39
+      ],
+      [
+        1045,
+        380,
+        39,
+        39
+      ],
+      [
+        1088,
+        380,
+        39,
+        39
+      ],
+      [
+        830,
+        420,
+        39,
+        39
+      ],
+      [
+        873,
+        420,
+        39,
+        39
+      ],
+      [
+        916,
+        420,
+        39,
+        39
+      ],
+      [
+        959,
+        420,
+        39,
+        39
+      ],
+      [
+        1002,
+        420,
+        39,
+        39
+      ],
+      [
+        1045,
+        420,
+        39,
+        39
+      ]
+    ],
+    "progress_label": [
+      646,
+      466,
+      491,
+      22
+    ],
+    "progress_slots": [
+      [
+        646,
+        491,
+        34,
+        30
+      ],
+      [
+        683,
+        491,
+        34,
+        30
+      ],
+      [
+        720,
+        491,
+        34,
+        30
+      ],
+      [
+        757,
+        491,
+        34,
+        30
+      ],
+      [
+        794,
+        491,
+        34,
+        30
+      ],
+      [
+        831,
+        491,
+        34,
+        30
+      ],
+      [
+        868,
+        491,
+        34,
+        30
+      ],
+      [
+        905,
+        491,
+        34,
+        30
+      ],
+      [
+        942,
+        491,
+        34,
+        30
+      ],
+      [
+        979,
+        491,
+        34,
+        30
+      ],
+      [
+        1016,
+        491,
+        34,
+        30
+      ],
+      [
+        1053,
+        491,
+        34,
+        30
+      ],
+      [
+        1090,
+        491,
+        34,
+        30
+      ]
+    ],
+    "style": [
+      646,
+      532,
+      470,
+      28
+    ],
+    "oath": [
+      646,
+      564,
+      470,
+      28
+    ],
+    "last_deal": [
+      646,
+      596,
+      422,
+      28
+    ],
+    "summary": [
+      646,
+      633,
+      422,
+      22
+    ]
+  },
+  "empty_message": [
+    650,
+    361,
+    420,
+    128
+  ],
+  "note": "Decorative castle and seal are not run-specific. Live records only: won, role, party, card, relics, style, oath, last_deal, date. Card denotes reached card, not completed card count. No fabricated gold, duration, kills, or event route."
+}

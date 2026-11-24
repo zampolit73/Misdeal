@@ -1,6 +1,6 @@
-## Next focus — Run Chronicle Visual V2
+## Run Chronicle Visual V2 · review route
 
-Reliquary V2.1 and Bestiary V2 (PR #140) are approved in main. Preserve their supplied artwork, navigation and discovery rules. Next: prepare a visually approved Chronicle concept, then supply clean artwork and a layout contract for implementation. Read `wizard_archive.gd` and `wizard_archive_screen.gd`: history records currently contain won, role, party, card, relics, style, oath, last_deal and date. Do not invent historical gold, duration, kills or other unavailable metrics. Keep old profiles compatible. [Bestiary evidence](qa/bestiary_visual_v2/README.md)
+On `feature/run-chronicle-visual-v2`, open F5 → **Архив Волшебника → Летопись забегов**. Verify five rows per page and the reached card, style, oath and deal on the parchment. The review captures use isolated profiles. Reliquary V2.1 and Bestiary V2 remain approved in main. [Reference and native evidence](qa/run_chronicle_visual_v2/README.md)
 
 ## Next visual check — Ossuary Gate fog correction
 

@@ -1,3 +1,7 @@
+## Run Chronicle Visual V2
+
+The supplied `assets/pixel/ui/wizard_chronicle_v2/` package includes the clean plate, row states, matching archive tabs and 1280×720 layout. The reference, master and provenance are under `assets/source_archive/wizard_chronicle_v2/`. Live portraits reuse the D413 artwork and relics reuse the Reliquary catalog. [Native evidence](qa/run_chronicle_visual_v2/README.md)
+
 ## Bestiary Visual V2
 
 The supplied `assets/pixel/ui/wizard_bestiary_v2/` package uses a 1280×720 plate, 12 arch states, four matching tab textures, a hidden silhouette and layout JSON. The reference, package notes and provenance live in `assets/source_archive/wizard_bestiary_v2/`. The archive loads real D420 idle frames through the existing animation library. [Native captures](qa/bestiary_visual_v2/README.md)
