@@ -1,3 +1,7 @@
+## Table Interface V5
+
+The supplied cutouts and 1280×720 placement are used over the approved table. The books and architectural window have real, transparent Button hit areas, live plaque typography and supplied contours for hover and focus. Keep their outlines clear of the deck and discard. The Archive uses the same four pages and closes back to its caller. [Reference and native frames](qa/table_interface_v5/README.md)
+
 ## Event Choice Visual V2
 
 Use the [approved «Кости должника» reference](qa/event_choice_visual_v2/approved_reference.webp) for the live decision cards. The silhouette pairs bevelled bronze corners and a burgundy Roman/category crest with a separately framed art window, two parchment cartouches and a lower quatrefoil. Draw the current illustration below the open window. Place every value and label above the texture. Keep all cards in a row aligned; expand the parchment and reduce the illustration height together when any option needs more copy space.

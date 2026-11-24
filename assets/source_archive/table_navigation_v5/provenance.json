@@ -1,0 +1,20 @@
+{
+  "source": "User-approved Table Interface V5 concept, 2026-11-24",
+  "native_godot_verified": false,
+  "files": {
+    "README.md": "07c8855bb08f5e91ce79a4ea319ece888b33de9829bcbffea1990f93541df9f0",
+    "asset_preview.png": "6302878ceb52fca93736d0608e0628881d4a901fd8ea574c88326f40e774a1d0",
+    "overlay_preview.png": "256fd4944254c30ab683783b5a547f6c1786816d26eb2261db13b548bb7c426c",
+    "runtime/archive_grimoire.png": "bebf33709e1a70dc020882440970f192b54f48e2a7162fb6fbf124c6251520cd",
+    "runtime/archive_grimoire_focus.png": "1e00365bc472faf57dab0a3bba15a64dbae18e1d2aaafa9aa96b6b522f729626",
+    "runtime/layout_1280x720.json": "d92ab2c1543408f0275807ee72b3b2979be1611fd168e3263087b69b7cfd2946",
+    "runtime/memory_glass_light.png": "8b05e0211aee39bdfed308d0d1e1fe1cc346840fd41daa235ad31c79a74b945f",
+    "runtime/memory_window.png": "5a3021657338e2fd77b2be1181a1131e23e1270cfee37bef9b265c935711259e",
+    "runtime/memory_window_focus.png": "68e93b2a131914a78503202708e9534a021863eb8c46e9d118ffa991c6e24aba",
+    "runtime/memory_window_full.png": "8f5c1847683fb9cf228fa56e37d9f482731179cd8d2a6f3de9a816201ce8ec01",
+    "runtime/squad_journal.png": "a51c93343e142f22025ae1d481934b841b75a0067666dfababad97aed4579138",
+    "runtime/squad_journal_focus.png": "8a0765df8696b4360e7fbc230523993131ff7656aa33b73feecfbe9edfbca287",
+    "source/approved_reference.png": "7ed0b9d4df890a74a45299e8dd72433577b199f3afbcf243012180a8760fb1dd",
+    "source/production_screenshot_reference.png": "57a111094f01d020e91cac1453e38c095c08efb42386bf9a0316b8b967fa1229"
+  }
+}

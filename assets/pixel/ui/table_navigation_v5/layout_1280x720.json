@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "resolution": [
+    1280,
+    720
+  ],
+  "note": "Proposed placement over CURRENT production backdrop; do not replace backdrop. Rectangles are design-pixel coordinates; confirm native art edges and collision-free fit. Source concept has different card geometry.",
+  "objects": {
+    "squad": {
+      "texture": "squad_journal.png",
+      "focus_texture": "squad_journal_focus.png",
+      "rect": [
+        66,
+        235,
+        216,
+        132
+      ],
+      "label_rect_local": [
+        20.42,
+        73.72,
+        92.29,
+        21.23
+      ],
+      "font_size": 14,
+      "label": "Отряд [Tab]",
+      "key": "TAB"
+    },
+    "archive": {
+      "texture": "archive_grimoire.png",
+      "focus_texture": "archive_grimoire_focus.png",
+      "rect": [
+        986,
+        234,
+        257,
+        133
+      ],
+      "label_rect_local": [
+        156.01,
+        70.34,
+        81.4,
+        22.68
+      ],
+      "font_size": 14,
+      "label": "Архив [A]",
+      "key": "A"
+    },
+    "memory": {
+      "texture": "memory_window.png",
+      "focus_texture": "memory_window_focus.png",
+      "rect": [
+        1006,
+        0,
+        253,
+        192
+      ],
+      "label_rect_local": [
+        71.5,
+        147.69,
+        127.29,
+        19.57
+      ],
+      "font_size": 13,
+      "label": "Память [M] {found}/24",
+      "key": "M",
+      "light_texture": "memory_glass_light.png",
+      "light_alpha": "clamp(found / 24.0, 0.0, 1.0)",
+      "full_reference_texture": "memory_window_full.png"
+    }
+  },
+  "keepout": {
+    "central_card_band": [
+      349,
+      295,
+      582,
+      372
+    ],
+    "deck_and_discard_top_y": 374
+  },
+  "dynamic_labels": true
+}

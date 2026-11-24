@@ -7,6 +7,7 @@ const BESTIARY := preload("res://scripts/ui/wizard_bestiary.gd")
 const CHRONICLE := preload("res://scripts/ui/wizard_chronicle.gd")
 const CHALLENGES := preload("res://scripts/ui/wizard_challenges.gd")
 
+var opens_over_table := false
 var _archive := ARCHIVE.instance()
 var _tabs: Array[Button] = []
 var _reliquary: Control
@@ -29,12 +30,13 @@ func _ready() -> void:
 	var title: Dictionary = design.title
 	RELIQUARY.caption(self, RELIQUARY.rect(title.rect), "АРХИВ ВОЛШЕБНИКА", int(title.font_size), RELIQUARY.GOLD)
 	var back_area := RELIQUARY.rect(design.back.rect)
-	var back := RELIQUARY.hotspot(self, back_area, "В меню [Esc]")
+	var back_caption := "К столу [Esc]" if opens_over_table else "В меню [Esc]"
+	var back := RELIQUARY.hotspot(self, back_area, back_caption)
 	var back_text := RELIQUARY.caption(back, Rect2(Vector2.ZERO, back_area.size),
-		"В меню [Esc]", int(design.back.font_size), RELIQUARY.GOLD)
+		back_caption, int(design.back.font_size), RELIQUARY.GOLD)
 	back.focus_entered.connect(func() -> void: back_text.modulate = Color(1.2, 1.2, 1.2))
 	back.focus_exited.connect(func() -> void: back_text.modulate = Color.WHITE)
-	back.pressed.connect(_close)
+	back.pressed.connect(close)
 
 	for tab: Dictionary in design.tabs:
 		var index := int(tab.index)
@@ -72,11 +74,14 @@ func _update_tab(index: int) -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_ESCAPE:
 		get_viewport().set_input_as_handled()
-		_close()
+		close()
 
 
-func _close() -> void:
-	ROUTER.change_to(self, "res://scenes/main/main.tscn")
+func close() -> void:
+	if opens_over_table:
+		queue_free()
+	else:
+		ROUTER.change_to(self, "res://scenes/main/main.tscn")
 
 
 func _show_tab(index: int) -> void:

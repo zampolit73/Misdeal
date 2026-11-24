@@ -1,3 +1,7 @@
+## Table Interface V5 · review candidate
+
+Add the interactive Squad journal, Memory window and Archive grimoire. Archive browsing returns to the same live table. [Native captures and recording](docs/qa/table_interface_v5/README.md)
+
 ## Challenges Visual V2 · review candidate
 
 Present the 12 existing archive unlocks as interactive seals with live conditions, gameplay effects and separate oath availability and victory states. [Native captures](docs/qa/challenges_visual_v2/README.md)

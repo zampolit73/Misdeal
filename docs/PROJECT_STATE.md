@@ -1,3 +1,7 @@
+## Table Interface V5 · visual review
+
+The review branch adds the Squad journal, Memory window and Archive grimoire to the supplied tabletop positions. Table-origin Archive browsing keeps the scene and current run in place. [Native comparison and recording](qa/table_interface_v5/README.md)
+
 ## Wizard Archive Visual V2 · fully approved in main
 
 The player tested and approved Challenges Visual V2 after PR #142 merged into main. All four archive tabs are now visually approved and released: Reliquary V2.1, Bestiary V2, Run Chronicle V2 and Challenges V2. Challenges displays three hero styles, four achievements and five oaths on the supplied cabinet plate. Seals and counts use existing archive data. Available oaths and victories on those oaths are shown separately. [Reference and native screenshots](qa/challenges_visual_v2/README.md)

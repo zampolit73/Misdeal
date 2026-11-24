@@ -60,6 +60,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if scene==null or scene.scene_file_path.contains("/main/") or scene.scene_file_path.contains("/intro/") or scene.scene_file_path.contains("/archive/"): return
 	if is_instance_valid(menu):
 		close_menu()
+	elif scene.has_method("close_table_modal") and scene.close_table_modal():
+		get_viewport().set_input_as_handled()
+		return
 	else:
 		# Existing modal owners always close before the pause menu can open.
 		for key in ["card_lore_inspect","fate_spread_overlay","squad_status","_details"]:
@@ -73,6 +76,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 
 func open_menu() -> void:
+	var scene := get_tree().current_scene
+	if scene != null and scene.has_method("has_table_modal") and scene.has_table_modal():
+		return
 	previous_focus = get_viewport().gui_get_focus_owner()
 	menu=Control.new()
 	menu.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

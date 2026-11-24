@@ -11,6 +11,7 @@ const TABLE_DS3_PASS := preload("res://scripts/table/table_ds3_pass.gd")
 const TABLE_OFFER_SKIN := preload("res://scripts/table/table_offer_skin.gd")
 const CARD_DS3_SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
 const CARD_LORE_INSPECT_SCENE := preload("res://scenes/table/card_lore_inspect.tscn")
+const NAVIGATION := preload("res://scripts/table/table_navigation_v5.gd")
 
 const LEFT_CARD_POSITION := Vector2(349.0, 329.0)
 const RIGHT_CARD_POSITION := Vector2(659.0, 329.0)
@@ -59,6 +60,8 @@ var card_rest_rotations: Dictionary = {}
 var card_motion_tweens: Dictionary = {}
 var wizard_reaction_tween: Tween
 var card_lore_inspect: Control
+var archive_button: Button
+var _table_modal: Control
 
 func _ready() -> void:
 	if RunState.is_run_complete():
@@ -89,6 +92,12 @@ func _ready() -> void:
 	wager_risk_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	wager_reward_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	squad_button.pressed.connect(_toggle_squad_status)
+	NAVIGATION.apply(squad_button, "squad")
+	archive_button = Button.new()
+	archive_button.name = "ArchiveGrimoire"
+	add_child(archive_button)
+	NAVIGATION.apply(archive_button, "archive")
+	archive_button.pressed.connect(_open_archive)
 	fate_spread_button.pressed.connect(_toggle_fate_spread)
 	wager_accept_button.pressed.connect(_accept_wizard_wager)
 	wager_refuse_button.pressed.connect(_refuse_wizard_wager)
@@ -143,7 +152,7 @@ func _apply_ui_kit() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if selection_locked or is_instance_valid(card_lore_inspect):
+	if not can_open_table_modal():
 		return
 
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -153,6 +162,70 @@ func _input(event: InputEvent) -> void:
 		elif event.keycode == KEY_TAB:
 			get_viewport().set_input_as_handled()
 			_toggle_squad_status()
+		elif event.keycode == KEY_A:
+			get_viewport().set_input_as_handled()
+			_open_archive()
+
+
+func has_table_modal() -> bool:
+	return is_instance_valid(_table_modal)
+
+
+func can_open_table_modal() -> bool:
+	return not (has_table_modal() or selection_locked or deal_in_progress or wager_root.visible
+		or not RunState.camp_stop.is_empty() or get_tree().paused or SceneTransition._busy
+		or RunState.has_pending_wizard_wager() or RunState.has_pending_wizard_meddling())
+
+
+func mount_table_modal(modal: Control, focus_return: Control) -> void:
+	# The overlay opts in to input while all underlying controls retain their state.
+	_table_modal = modal
+	var previous_focus := get_viewport().gui_get_focus_owner()
+	if previous_focus == null:
+		previous_focus = focus_return
+	focus_behavior_recursive = FOCUS_BEHAVIOR_DISABLED
+	mouse_behavior_recursive = MOUSE_BEHAVIOR_DISABLED
+	modal.focus_behavior_recursive = FOCUS_BEHAVIOR_ENABLED
+	modal.mouse_behavior_recursive = MOUSE_BEHAVIOR_ENABLED
+	modal.tree_exited.connect(_on_table_modal_closed.bind(previous_focus))
+	add_child(modal)
+
+
+func close_table_modal() -> bool:
+	if not has_table_modal():
+		return false
+	if _table_modal.has_method("close"):
+		_table_modal.close()
+	elif _table_modal == squad_status:
+		_table_modal.call("_close")
+	else:
+		_table_modal.queue_free()
+	return true
+
+
+func _on_table_modal_closed(previous_focus: Control) -> void:
+	_table_modal = null
+	focus_behavior_recursive = FOCUS_BEHAVIOR_INHERITED
+	mouse_behavior_recursive = MOUSE_BEHAVIOR_INHERITED
+	_restore_after_modal.call_deferred(previous_focus)
+
+
+func _restore_after_modal(previous_focus: Control) -> void:
+	if not is_inside_tree() or has_table_modal():
+		return
+	if is_instance_valid(previous_focus) and previous_focus.is_visible_in_tree():
+		previous_focus.grab_focus()
+	_maybe_show_fate_milestone()
+
+
+func _open_archive() -> void:
+	if not can_open_table_modal():
+		return
+	var scene := load("res://scenes/archive/wizard_archive.tscn") as PackedScene
+	var archive := scene.instantiate() as Control
+	archive.opens_over_table = true
+	archive.z_index = 4095
+	mount_table_modal(archive, archive_button)
 
 func _toggle_fate_spread() -> void:
 	if is_instance_valid(fate_spread_overlay):
@@ -160,13 +233,8 @@ func _toggle_fate_spread() -> void:
 			fate_spread_overlay.call("close")
 		return
 
-	if selection_locked or deal_in_progress or wager_root.visible:
+	if not can_open_table_modal():
 		return
-
-	if is_instance_valid(squad_status):
-		squad_status.queue_free()
-		squad_status = null
-		cards_root.visible = true
 
 	fate_spread_overlay = FATE_SPREAD_SCENE.instantiate() as Control
 	if fate_spread_overlay == null:
@@ -180,7 +248,7 @@ func _toggle_fate_spread() -> void:
 
 	fate_spread_overlay.z_index = 4095
 	fate_spread_overlay.tree_exited.connect(_on_fate_spread_closed)
-	add_child(fate_spread_overlay)
+	mount_table_modal(fate_spread_overlay, fate_spread_button)
 
 	if pending_fate_milestone > 0 and fate_spread_overlay.has_method("play_milestone"):
 		var milestone := pending_fate_milestone
@@ -196,9 +264,7 @@ func _on_fate_spread_closed() -> void:
 
 
 func _maybe_show_fate_milestone() -> void:
-	if selection_locked or deal_in_progress or wager_root.visible:
-		return
-	if is_instance_valid(fate_spread_overlay) or is_instance_valid(squad_status):
+	if not can_open_table_modal():
 		return
 
 	var milestone: int = RunState.get_fate_milestone_due()
@@ -212,17 +278,17 @@ func _maybe_show_fate_milestone() -> void:
 
 
 func _toggle_squad_status() -> void:
-	if is_instance_valid(fate_spread_overlay):
-		return
 	if is_instance_valid(squad_status):
-		squad_status.queue_free()
+		squad_status.call("_close")
+		return
+	if not can_open_table_modal():
 		return
 
 	squad_status = SQUAD_STATUS_SCENE.instantiate() as Control
 	squad_status.z_index = 100
 	squad_status.tree_exited.connect(_on_squad_status_closed)
 	cards_root.visible = false
-	add_child(squad_status)
+	mount_table_modal(squad_status, squad_button)
 
 func _on_squad_status_closed() -> void:
 	cards_root.visible = true
@@ -393,7 +459,7 @@ func _refresh_hold_buttons(offers: Array[RunCardData]) -> void:
 				break
 
 func _on_hold_button_pressed(offer_index: int) -> void:
-	if selection_locked or deal_in_progress:
+	if not can_open_table_modal():
 		return
 
 	var offers := RunState.get_offer_cards()
@@ -470,6 +536,8 @@ func _get_button_card(button: Button) -> RunCardData:
 
 
 func _on_offer_button_pressed(button: Button) -> void:
+	if not can_open_table_modal():
+		return
 	var card := _get_button_card(button)
 	if card == null:
 		return
@@ -479,7 +547,7 @@ func _on_offer_button_pressed(button: Button) -> void:
 	_choose_card(card)
 
 func _on_offer_button_mouse_entered(button: Button) -> void:
-	if selection_locked or deal_in_progress:
+	if not can_open_table_modal():
 		return
 
 	var card := _get_button_card(button)
@@ -488,21 +556,18 @@ func _on_offer_button_mouse_entered(button: Button) -> void:
 		_preview_card(card)
 
 func _on_offer_button_mouse_exited(button: Button) -> void:
+	if has_table_modal():
+		return
 	if not selection_locked and not deal_in_progress:
 		_animate_card_hover(button, false)
 	_restore_wizard_line()
 
 func _on_offer_inspect_requested(button: Button) -> void:
-	if selection_locked or deal_in_progress or wager_root.visible:
-		return
-	if is_instance_valid(fate_spread_overlay) or is_instance_valid(squad_status):
+	if not can_open_table_modal():
 		return
 	var card := _get_button_card(button)
 	if card == null:
 		return
-	if is_instance_valid(card_lore_inspect):
-		card_lore_inspect.queue_free()
-		card_lore_inspect = null
 	var art: Texture2D = (button.get_node("Art") as TextureRect).texture
 	var annotation := ""
 	if RunState.is_wizard_marked_card(card.card_id):
@@ -510,7 +575,7 @@ func _on_offer_inspect_requested(button: Button) -> void:
 	if RunState.is_card_held(card.card_id):
 		annotation += "\nУДЕРЖАНО: карта вернётся через две раздачи."
 	card_lore_inspect = CARD_LORE_INSPECT_SCENE.instantiate() as Control
-	add_child(card_lore_inspect)
+	mount_table_modal(card_lore_inspect, button)
 	card_lore_inspect.call("present", card.title, _get_card_type_line(card), card.card_text, art, annotation)
 	card_lore_inspect.tree_exited.connect(_on_card_lore_closed)
 
@@ -965,7 +1030,7 @@ func _play_pending_wizard_meddling() -> void:
 
 
 func _choose_card(card: RunCardData) -> void:
-	if selection_locked or deal_in_progress:
+	if not can_open_table_modal():
 		return
 
 	preload("res://scripts/core/run_save_service.gd").instance().write_slot(RunState)

@@ -21,6 +21,7 @@ func run() -> void:
 		var offers: Array = state.current_offer_ids.duplicate()
 		await snap(out,"table_%d"%count)
 		var memory := table.get_node("MemoryTable")
+		var window_bounds := Rect2i(memory.button.get_global_rect())
 		await RenderingServer.frame_post_draw
 		var after := root.get_texture().get_image()
 		memory.hide()
@@ -30,7 +31,7 @@ func run() -> void:
 		var differences := 0
 		for y in range(720):
 			for x in range(1280):
-				if Rect2i(1090,70,190,55).has_point(Vector2i(x,y)) or Rect2i(310,140,14,105).has_point(Vector2i(x,y)) or Rect2i(950,140,14,105).has_point(Vector2i(x,y)):
+				if window_bounds.has_point(Vector2i(x,y)) or Rect2i(310,140,14,105).has_point(Vector2i(x,y)) or Rect2i(950,140,14,105).has_point(Vector2i(x,y)):
 					continue
 				if before.get_pixel(x,y) != after.get_pixel(x,y):
 					differences += 1

@@ -15,7 +15,7 @@ const PARCHMENT := Color("#dfb77e")
 const TEXT_WARM := Color(0.87, 0.78, 0.67, 1.0)
 
 static func apply(scene: Control) -> void:
-	for path in ["SquadButton", "FateSpreadButton", "Cards/HoldAButton", "Cards/HoldBButton", "WagerOverlay/Root/WagerPanel/AcceptButton", "WagerOverlay/Root/WagerPanel/RefuseButton"]:
+	for path in ["FateSpreadButton", "Cards/HoldAButton", "Cards/HoldBButton", "WagerOverlay/Root/WagerPanel/AcceptButton", "WagerOverlay/Root/WagerPanel/RefuseButton"]:
 		UI_MOTION.bind_button(scene.get_node(path) as Button)
 	# The DS2 system and scene nodes run first. This one screen opts in last.
 	# Existing authored geometry (including two 272x338 offer cards) remains.
@@ -38,9 +38,7 @@ static func apply(scene: Control) -> void:
 	var line := scene.get_node("WizardLine") as Label
 	line.add_theme_color_override("font_color", TEXT_WARM)
 
-	var party := scene.get_node("SquadButton") as Button
 	var spread := scene.get_node("FateSpreadButton") as Button
-	DS3.apply_action(party, false)
 	DS3.apply_action(spread, false)
 	# Highlight only the actual Fate Spread inspection action, not a third deal.
 	var spread_idle := DS3.make_plate(Color(0.070, 0.035, 0.034, 0.94), GILT_LOW, 1, 3)
