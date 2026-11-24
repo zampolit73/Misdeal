@@ -1,6 +1,6 @@
-## Wizard Archive Visual V2 · visual review
+## Wizard Archive Visual V2.1 · visual review
 
-The visual pilot displays 13 physical cabinet niches, four retained archive tabs and live relic details. Nine new objects and four cutouts of existing art cover the entire catalog. Collection storage and unlock rules are unchanged. Native 1280×720 evidence covers 0/13, 6/13 and 13/13. Review the composition against the approved PNG once it is available. [Godot captures and QA](qa/wizard_archive_visual_v2/README.md)
+The review branch uses the supplied clean cabinet, layout and state textures. All 13 existing artifact images and real effects are displayed from the catalog and profile. Native 1280×720 evidence covers 0/13, 6/13 and 13/13. The new plate awaits visual approval. [Reference, Godot captures and QA](qa/wizard_archive_visual_v21/README.md)
 
 ## Ossuary Gate — V4.1 fog correction (native review pending)
 
