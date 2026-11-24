@@ -1,6 +1,6 @@
-## Table Interface V5.1 · verification route
+## Table Interface V5.1 · complete
 
-Use F5 and enter the table. Inspect the restrained metalwork, the journal (Tab), window (M), grimoire (A) and Fate Spread (R). Hold a card, open the Archive, then use Esc to verify the same deal and hold. [Native evidence](qa/table_interface_v51/README.md)
+PR #144 is merged and the player accepted the production result. Preserve the approved table, restrained palette, navigation, and same-deal Archive return. [Native evidence](qa/table_interface_v51/README.md)
 
 ## Next focus — Run End Visual V2 (Wizard's Verdict)
 
