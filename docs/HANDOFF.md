@@ -1,3 +1,7 @@
+## Table Interface V5 · review route
+
+On `feature/table-interface-v5`, use F5 and enter the table. Check the journal (Tab), window (M) and grimoire (A) after the deal. Hold a card, open the Archive, then use Esc to verify the same deal and hold. [Native evidence and video](qa/table_interface_v5/README.md)
+
 ## Next focus — Run End Visual V2 (Wizard's Verdict)
 
 The player tested and approved Challenges Visual V2 after PR #142 merged into main. All four Wizard Archive tabs are complete and approved. Preserve their artwork, navigation, profile and unlock rules. Next proposed investor visual milestone: prepare user-approved victory and defeat concepts for the live RunEnd scene, then supply clean artwork and a layout contract. Read `scripts/run_end/run_end.gd`, `scenes/run_end/run_end.tscn` and the existing RunState/save flow. Use only real run statistics, party fates, upgrades, relics and Last Deal information; do not change gameplay or save semantics. [Archive review evidence](qa/challenges_visual_v2/README.md)

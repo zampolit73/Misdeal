@@ -112,6 +112,25 @@ func _verify() -> void:
 		_fail("Wager DS3 button state incomplete")
 		return
 
+	await create_timer(1.0).timeout
+	var save := preload("res://scripts/core/run_save_service.gd").instance()
+	var before: Dictionary = save.snapshot(state).state
+	table.archive_button.pressed.emit()
+	if not table.has_table_modal() or not table._table_modal.opens_over_table:
+		_fail("Archive must open over the live table")
+		return
+	table.get_node("MemoryTable").open_viewer()
+	fate_button.pressed.emit()
+	if is_instance_valid(table.get_node("MemoryTable").viewer) or is_instance_valid(table.fate_spread_overlay):
+		_fail("Archive must own all table navigation")
+		return
+	table.close_table_modal()
+	await process_frame
+	await process_frame
+	if table.has_table_modal() or save.snapshot(state).state != before:
+		_fail("Closing the Archive changed run state")
+		return
+
 	print("D289_DS3_TABLE_NATIVE_PASS: exactly two live painted offers, real counters/Wizard, Fate Spread, Hold, Squad, Wager actions and DS3 peripheral chrome")
 	table.queue_free()
 	await process_frame

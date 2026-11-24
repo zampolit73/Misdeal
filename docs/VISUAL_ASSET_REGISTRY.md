@@ -1,3 +1,7 @@
+## Table Interface V5
+
+`assets/pixel/ui/table_navigation_v5/` contains the supplied 1280×720 layout and transparent journal, grimoire, stained glass, glow and focus layers. `assets/source_archive/table_navigation_v5/` preserves the source concept, annotated production frame, previews and verified manifest. [Native captures](qa/table_interface_v5/README.md)
+
 ## Challenges Visual V2
 
 The supplied `assets/pixel/ui/wizard_challenges_v2/` package includes the clean plate, 12 open and locked seal pairs and corresponding detail art, selection halo and layout. The concept, master, supplied preview and manifest are under `assets/source_archive/wizard_challenges_v2/`. [Native evidence](qa/challenges_visual_v2/README.md)

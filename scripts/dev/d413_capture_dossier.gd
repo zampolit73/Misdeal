@@ -15,13 +15,16 @@ func _capture() -> void:
 	root.size = Vector2i(1280,720)
 	var fixture := load("res://scenes/dev/d413_squad_dossier_preview.tscn").instantiate() as Control
 	root.add_child(fixture)
-	await create_timer(0.3).timeout
 	var table := fixture.get_child(0)
+	var deadline := Time.get_ticks_msec() + 5000
+	while table.get("squad_status") == null and Time.get_ticks_msec() < deadline:
+		await process_frame
 	var dossier := table.get("squad_status") as Control
 	if dossier == null:
 		push_error("D413 Table did not open its real dossier")
 		quit(1)
 		return
+	await create_timer(0.3).timeout
 	for role in ["knight", "ranger", "mage"]:
 		dossier.call("_select_role", role, false)
 		await RenderingServer.frame_post_draw

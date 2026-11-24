@@ -62,6 +62,11 @@ func _run() -> void:
 	for frame in range(300):
 		if not current_scene.get("deal_in_progress"): break
 		await process_frame
+	await process_frame
+	var spread := current_scene.get("fate_spread_overlay") as Control
+	if is_instance_valid(spread):
+		spread.close()
+		await spread.tree_exited
 	await _capture("table_offer")
 	for button in current_scene.get("offer_buttons"):
 		if button.get_meta("card_id","") == "jack": button.pressed.emit()
