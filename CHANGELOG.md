@@ -1,3 +1,7 @@
+## Event Choice Visual V3.1 · palette pilot
+
+Apply muted bronze, deep burgundy and aged parchment to Borrowed Boots, Debtor Bones and Whispering Well. [Native before/after captures](docs/qa/event_choice_v31/README.md)
+
 ## Table Interface V5.1
 
 Unify the table plates and actions in aged bronze and matte wood, wrap long status and Wizard text, and soften the finish and contact edges of the books. [Native frames](docs/qa/table_interface_v51/README.md)

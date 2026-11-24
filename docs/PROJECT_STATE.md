@@ -1,3 +1,7 @@
+## Event Choice Visual V3.1 · palette pilot
+
+Three events share the local V3.1 finish on the pilot branch: Borrowed Boots, Debtor Bones and Whispering Well. The finish pairs aged bronze and deep burgundy with toned parchment, ivory text and matte plates. [Native before/after captures](qa/event_choice_v31/README.md)
+
 ## Table Interface V5.1 · approved in main
 
 The player accepted the production result after PR #144 merged into main. This closes the Table Interface V5/V5.1 visual milestone. The live table styling pairs matte wood and muted bronze with the existing journal, Memory window and grimoire. Status and Wizard text wrap, and the compact Fate Spread and Hold controls share the palette. Archive browsing preserves the active deal. [Approved reference and native review](qa/table_interface_v51/README.md)

@@ -127,7 +127,7 @@ func _build_choice_view() -> void:
 		if button.visible:
 			CHOICE_COPY.prepare(button)
 	choice_view.build(panel, row, title_label, wizard_line, description_label, result_label,
-		[gold_label, artifacts_label], cards)
+		[gold_label, artifacts_label], cards, active_card.card_id)
 
 
 func _apply_approved_choice_art() -> void:
