@@ -1,3 +1,7 @@
+## Challenges Visual V2
+
+The supplied `assets/pixel/ui/wizard_challenges_v2/` package includes the clean plate, 12 open and locked seal pairs and corresponding detail art, selection halo and layout. The concept, master, supplied preview and manifest are under `assets/source_archive/wizard_challenges_v2/`. [Native evidence](qa/challenges_visual_v2/README.md)
+
 ## Run Chronicle Visual V2
 
 The supplied `assets/pixel/ui/wizard_chronicle_v2/` package includes the clean plate, row states, matching archive tabs and 1280×720 layout. The reference, master and provenance are under `assets/source_archive/wizard_chronicle_v2/`. Live portraits reuse the D413 artwork and relics reuse the Reliquary catalog. [Native evidence](qa/run_chronicle_visual_v2/README.md)

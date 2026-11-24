@@ -1,0 +1,452 @@
+{
+  "resolution": [
+    1280,
+    720
+  ],
+  "coordinate_system": "Screen-local 1280x720 design pixels; scale canvas uniformly. rect = x,y,w,h",
+  "title": {
+    "rect": [
+      357,
+      49,
+      448,
+      44
+    ],
+    "font_size": 29
+  },
+  "back": {
+    "rect": [
+      1005,
+      50,
+      160,
+      43
+    ],
+    "font_size": 16
+  },
+  "tabs": [
+    {
+      "index": 0,
+      "label": "Реликварий",
+      "rect": [
+        160,
+        110,
+        229,
+        54
+      ],
+      "text_rect": [
+        167,
+        119,
+        215,
+        35
+      ],
+      "active_texture": "states/tab_0_active.webp"
+    },
+    {
+      "index": 1,
+      "label": "Бестиарий",
+      "rect": [
+        396,
+        110,
+        209,
+        54
+      ],
+      "text_rect": [
+        403,
+        119,
+        195,
+        35
+      ],
+      "active_texture": "states/tab_1_active.webp"
+    },
+    {
+      "index": 2,
+      "label": "Летопись забегов",
+      "rect": [
+        612,
+        110,
+        221,
+        54
+      ],
+      "text_rect": [
+        619,
+        119,
+        207,
+        35
+      ],
+      "active_texture": "states/tab_2_active.webp"
+    },
+    {
+      "index": 3,
+      "label": "Испытания",
+      "rect": [
+        839,
+        110,
+        236,
+        54
+      ],
+      "text_rect": [
+        846,
+        119,
+        222,
+        35
+      ],
+      "active_texture": "states/tab_3_active.webp"
+    }
+  ],
+  "plate": "challenges_plate.webp",
+  "groups": [
+    {
+      "label": "Стили героев",
+      "rect": [
+        301,
+        184,
+        194,
+        35
+      ],
+      "font_size": 19
+    },
+    {
+      "label": "Достижения",
+      "rect": [
+        301,
+        348,
+        194,
+        35
+      ],
+      "font_size": 19
+    },
+    {
+      "label": "Клятвы Волшебника",
+      "rect": [
+        288,
+        503,
+        220,
+        35
+      ],
+      "font_size": 17
+    }
+  ],
+  "entries": [
+    {
+      "index": 0,
+      "id": "blood_oath",
+      "kind": "style",
+      "rect": [
+        215,
+        228,
+        109,
+        109
+      ],
+      "art_rect": [
+        219,
+        232,
+        101,
+        101
+      ],
+      "selected_texture": "states/seal_selected.png",
+      "role": "knight",
+      "open_texture": "seals/blood_oath_open.png",
+      "open_detail_texture": "details/blood_oath_open.png",
+      "locked_texture": "seals/blood_oath_locked.png",
+      "locked_detail_texture": "details/blood_oath_locked.png"
+    },
+    {
+      "index": 1,
+      "id": "shadow_hunter",
+      "kind": "style",
+      "rect": [
+        343,
+        228,
+        109,
+        109
+      ],
+      "art_rect": [
+        347,
+        232,
+        101,
+        101
+      ],
+      "selected_texture": "states/seal_selected.png",
+      "role": "ranger",
+      "open_texture": "seals/shadow_hunter_open.png",
+      "open_detail_texture": "details/shadow_hunter_open.png",
+      "locked_texture": "seals/shadow_hunter_locked.png",
+      "locked_detail_texture": "details/shadow_hunter_locked.png"
+    },
+    {
+      "index": 2,
+      "id": "ash_seer",
+      "kind": "style",
+      "rect": [
+        471,
+        228,
+        109,
+        109
+      ],
+      "art_rect": [
+        475,
+        232,
+        101,
+        101
+      ],
+      "selected_texture": "states/seal_selected.png",
+      "role": "mage",
+      "open_texture": "seals/ash_seer_open.png",
+      "open_detail_texture": "details/ash_seer_open.png",
+      "locked_texture": "seals/ash_seer_locked.png",
+      "locked_detail_texture": "details/ash_seer_locked.png"
+    },
+    {
+      "index": 3,
+      "id": "solo_xiii",
+      "kind": "achievement",
+      "rect": [
+        190,
+        393,
+        94,
+        94
+      ],
+      "art_rect": [
+        194,
+        397,
+        86,
+        86
+      ],
+      "selected_texture": "states/seal_selected.png",
+      "open_texture": "seals/solo_xiii_open.png",
+      "open_detail_texture": "details/solo_xiii_open.png",
+      "locked_texture": "seals/solo_xiii_locked.png",
+      "locked_detail_texture": "details/solo_xiii_locked.png"
+    },
+    {
+      "index": 4,
+      "id": "trio_xiii",
+      "kind": "achievement",
+      "rect": [
+        296,
+        393,
+        94,
+        94
+      ],
+      "art_rect": [
+        300,
+        397,
+        86,
+        86
+      ],
+      "selected_texture": "states/seal_selected.png",
+      "open_texture": "seals/trio_xiii_open.png",
+      "open_detail_texture": "details/trio_xiii_open.png",
+      "locked_texture": "seals/trio_xiii_locked.png",
+      "locked_detail_texture": "details/trio_xiii_locked.png"
+    },
+    {
+      "index": 5,
+      "id": "no_last_deal",
+      "kind": "achievement",
+      "rect": [
+        403,
+        393,
+        94,
+        94
+      ],
+      "art_rect": [
+        407,
+        397,
+        86,
+        86
+      ],
+      "selected_texture": "states/seal_selected.png",
+      "open_texture": "seals/no_last_deal_open.png",
+      "open_detail_texture": "details/no_last_deal_open.png",
+      "locked_texture": "seals/no_last_deal_locked.png",
+      "locked_detail_texture": "details/no_last_deal_locked.png"
+    },
+    {
+      "index": 6,
+      "id": "oath_v_victory",
+      "kind": "achievement",
+      "rect": [
+        508,
+        393,
+        94,
+        94
+      ],
+      "art_rect": [
+        512,
+        397,
+        86,
+        86
+      ],
+      "selected_texture": "states/seal_selected.png",
+      "open_texture": "seals/oath_v_victory_open.png",
+      "open_detail_texture": "details/oath_v_victory_open.png",
+      "locked_texture": "seals/oath_v_victory_locked.png",
+      "locked_detail_texture": "details/oath_v_victory_locked.png"
+    },
+    {
+      "index": 7,
+      "id": "oath_1",
+      "kind": "oath",
+      "rect": [
+        185,
+        550,
+        78,
+        78
+      ],
+      "art_rect": [
+        189,
+        554,
+        70,
+        70
+      ],
+      "selected_texture": "states/seal_selected.png",
+      "rank": 1,
+      "open_texture": "seals/oath_1_open.png",
+      "open_detail_texture": "details/oath_1_open.png",
+      "locked_texture": "seals/oath_1_locked.png",
+      "locked_detail_texture": "details/oath_1_locked.png"
+    },
+    {
+      "index": 8,
+      "id": "oath_2",
+      "kind": "oath",
+      "rect": [
+        271,
+        550,
+        78,
+        78
+      ],
+      "art_rect": [
+        275,
+        554,
+        70,
+        70
+      ],
+      "selected_texture": "states/seal_selected.png",
+      "rank": 2,
+      "open_texture": "seals/oath_2_open.png",
+      "open_detail_texture": "details/oath_2_open.png",
+      "locked_texture": "seals/oath_2_locked.png",
+      "locked_detail_texture": "details/oath_2_locked.png"
+    },
+    {
+      "index": 9,
+      "id": "oath_3",
+      "kind": "oath",
+      "rect": [
+        358,
+        550,
+        78,
+        78
+      ],
+      "art_rect": [
+        362,
+        554,
+        70,
+        70
+      ],
+      "selected_texture": "states/seal_selected.png",
+      "rank": 3,
+      "open_texture": "seals/oath_3_open.png",
+      "open_detail_texture": "details/oath_3_open.png",
+      "locked_texture": "seals/oath_3_locked.png",
+      "locked_detail_texture": "details/oath_3_locked.png"
+    },
+    {
+      "index": 10,
+      "id": "oath_4",
+      "kind": "oath",
+      "rect": [
+        445,
+        550,
+        78,
+        78
+      ],
+      "art_rect": [
+        449,
+        554,
+        70,
+        70
+      ],
+      "selected_texture": "states/seal_selected.png",
+      "rank": 4,
+      "open_texture": "seals/oath_4_open.png",
+      "open_detail_texture": "details/oath_4_open.png",
+      "locked_texture": "seals/oath_4_locked.png",
+      "locked_detail_texture": "details/oath_4_locked.png"
+    },
+    {
+      "index": 11,
+      "id": "oath_5",
+      "kind": "oath",
+      "rect": [
+        531,
+        550,
+        78,
+        78
+      ],
+      "art_rect": [
+        535,
+        554,
+        70,
+        70
+      ],
+      "selected_texture": "states/seal_selected.png",
+      "rank": 5,
+      "open_texture": "seals/oath_5_open.png",
+      "open_detail_texture": "details/oath_5_open.png",
+      "locked_texture": "seals/oath_5_locked.png",
+      "locked_detail_texture": "details/oath_5_locked.png"
+    }
+  ],
+  "detail": {
+    "art_rect": [
+      853,
+      177,
+      148,
+      160
+    ],
+    "title_rect": [
+      698,
+      346,
+      456,
+      36
+    ],
+    "status_rect": [
+      849,
+      397,
+      156,
+      27
+    ],
+    "condition_heading_rect": [
+      700,
+      432,
+      452,
+      22
+    ],
+    "condition_rect": [
+      700,
+      455,
+      452,
+      45
+    ],
+    "effect_heading_rect": [
+      700,
+      502,
+      452,
+      22
+    ],
+    "effect_rect": [
+      697,
+      525,
+      457,
+      73
+    ],
+    "count_rect": [
+      785,
+      612,
+      287,
+      37
+    ]
+  }
+}

@@ -1,24 +1,20 @@
 extends Control
 
 const ARCHIVE := preload("res://scripts/core/wizard_archive.gd")
-const CHARTER := preload("res://scripts/core/run_charter.gd")
 const ROUTER := preload("res://scripts/core/scene_router.gd")
-const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const RELIQUARY := preload("res://scripts/ui/wizard_reliquary.gd")
 const BESTIARY := preload("res://scripts/ui/wizard_bestiary.gd")
 const CHRONICLE := preload("res://scripts/ui/wizard_chronicle.gd")
+const CHALLENGES := preload("res://scripts/ui/wizard_challenges.gd")
 
 var _archive := ARCHIVE.instance()
 var _tabs: Array[Button] = []
-var _reader: RichTextLabel
-var _summary: Label
 var _reliquary: Control
 var _bestiary: Control
 var _chronicle: Control
-var _plate_clip: Control
+var _challenges: Control
 var _plate: TextureRect
 var _reliquary_plate: Texture2D
-var _list_view: Control
 var _tab_states: Array[TextureRect] = []
 var _tab_captions: Array[Label] = []
 var _active_tab := 0
@@ -27,14 +23,8 @@ var _active_tab := 0
 func _ready() -> void:
 	var design: Dictionary = RELIQUARY.LAYOUT.data
 	var canvas := Vector2(design.resolution[0], design.resolution[1])
-	_build_list_view(canvas)
-
-	_plate_clip = Control.new()
-	_plate_clip.clip_contents = true
-	_plate_clip.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	RELIQUARY.put(self, _plate_clip, Rect2(Vector2.ZERO, canvas))
 	_reliquary_plate = RELIQUARY.asset(design.plate)
-	_plate = RELIQUARY.picture(_plate_clip, _reliquary_plate, Rect2(Vector2.ZERO, canvas))
+	_plate = RELIQUARY.picture(self, _reliquary_plate, Rect2(Vector2.ZERO, canvas))
 
 	var title: Dictionary = design.title
 	RELIQUARY.caption(self, RELIQUARY.rect(title.rect), "АРХИВ ВОЛШЕБНИКА", int(title.font_size), RELIQUARY.GOLD)
@@ -70,37 +60,6 @@ func _ready() -> void:
 	_show_tab(0)
 
 
-func _build_list_view(canvas: Vector2) -> void:
-	_list_view = Control.new()
-	_list_view.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	RELIQUARY.put(self, _list_view, Rect2(Vector2.ZERO, canvas))
-	var backdrop := RELIQUARY.picture(_list_view, preload("res://assets/pixel/ui/wizard_archive/library.webp"),
-		Rect2(Vector2.ZERO, canvas))
-	var candlelight := ShaderMaterial.new()
-	candlelight.shader = preload("res://shaders/wizard_archive_candlelight.gdshader")
-	backdrop.material = candlelight
-	var frame := NinePatchRect.new()
-	frame.texture = preload("res://assets/pixel/ui/squad_dossier_d413/panel.webp")
-	frame.patch_margin_left = 64
-	frame.patch_margin_right = 64
-	frame.patch_margin_top = 64
-	frame.patch_margin_bottom = 64
-	frame.modulate.a = 0.89
-	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	RELIQUARY.put(_list_view, frame, Rect2(112, 163, 1056, 527))
-	_summary = Label.new()
-	_summary.add_theme_font_size_override("font_size", 16)
-	UI.apply_screen_copy(_summary, UI.GOLD)
-	RELIQUARY.put(_list_view, _summary, Rect2(142, 183, 960, 24))
-	_reader = RichTextLabel.new()
-	_reader.bbcode_enabled = true
-	_reader.focus_mode = Control.FOCUS_ALL
-	_reader.add_theme_color_override("default_color", UI.TEXT)
-	_reader.add_theme_font_size_override("normal_font_size", 16)
-	_reader.add_theme_constant_override("line_separation", 5)
-	RELIQUARY.put(_list_view, _reader, Rect2(141, 220, 960, 416))
-
-
 func _update_tab(index: int) -> void:
 	var button := _tabs[index]
 	var active := index == _active_tab
@@ -128,13 +87,13 @@ func _show_tab(index: int) -> void:
 	var is_reliquary := index == 0
 	var is_bestiary := index == 1
 	var is_chronicle := index == 2
+	var is_challenges := index == 3
 	_reliquary.visible = is_reliquary
-	_list_view.visible = index == 3
 	match index:
 		1: _plate.texture = BESTIARY.PLATE
 		2: _plate.texture = CHRONICLE.PLATE
+		3: _plate.texture = CHALLENGES.PLATE
 		_: _plate.texture = _reliquary_plate
-	_plate_clip.size.y = _plate.size.y if not _list_view.visible else 164.0
 	if is_bestiary and _bestiary == null:
 		_bestiary = BESTIARY.new()
 		add_child(_bestiary)
@@ -151,42 +110,10 @@ func _show_tab(index: int) -> void:
 			_tabs[2].focus_neighbor_bottom = _tabs[2].get_path_to(row)
 	if _chronicle != null:
 		_chronicle.visible = is_chronicle
-	if not _list_view.visible:
-		return
-	_show_challenges()
-	if not _archive.error_message.is_empty():
-		_summary.text += "   ·   " + _archive.error_message
-	_reader.scroll_to_line(0)
-
-
-func _show_challenges() -> void:
-	var rows := PackedStringArray()
-	for role in ARCHIVE.ROLES:
-		var hero := RunState.get_hero_unit_data(role).unit_name
-		rows.append(_challenge(String(CHARTER.STYLES[role][1]), "%s должен победить XIII." % hero, _archive.style_unlocked(role)))
-	var solo := false
-	var trio := false
-	var no_deal := false
-	var final_oath := false
-	for entry in _archive.history.values():
-		if not entry.won: continue
-		solo = solo or entry.party.size() == 1
-		trio = trio or entry.party.size() == 3
-		no_deal = no_deal or not entry.last_deal
-		final_oath = final_oath or int(entry.oath) == CHARTER.OATHS.size() - 1
-	rows.append(_challenge("Один против XIII", "Победить с одним героем в отряде.", solo))
-	rows.append(_challenge("Три судьбы", "Победить полным отрядом.", trio))
-	rows.append(_challenge("Без второй попытки", "Победить без Последней сделки.", no_deal))
-	rows.append(_challenge("Вопреки последней ставке", "Победить с пятой клятвой.", final_oath))
-	for rank in range(1, CHARTER.OATHS.size()):
-		rows.append(_challenge(CHARTER.OATHS[rank][0], CHARTER.OATHS[rank][1], rank <= _archive.highest_oath()))
-	_summary.text = "После первой победы открывается клятва I. Победа с клятвой открывает следующую."
-	_reader.text = "\n\n".join(rows)
-
-
-func _entry(title: String, detail: String) -> String:
-	return "[color=#e4c693][b]%s[/b][/color]\n%s" % [title, detail]
-
-
-func _challenge(title: String, detail: String, unlocked: bool) -> String:
-	return _entry(title, "%s  ·  %s" % ["Открыто" if unlocked else "Закрыто", detail])
+	if is_challenges and _challenges == null:
+		_challenges = CHALLENGES.new()
+		add_child(_challenges)
+		_challenges.set_archive(_archive)
+		_tabs[3].focus_neighbor_bottom = _tabs[3].get_path_to(_challenges.first_seal())
+	if _challenges != null:
+		_challenges.visible = is_challenges

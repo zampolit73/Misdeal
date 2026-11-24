@@ -1,3 +1,7 @@
+## Challenges Visual V2 · visual review
+
+The review branch displays three hero styles, four achievements and five oaths on the supplied cabinet plate. Seals and counts use existing archive data. Available oaths and victories on those oaths are shown separately. [Reference and native screenshots](qa/challenges_visual_v2/README.md)
+
 ## Run Chronicle Visual V2 · approved in main
 
 The player approved Run Chronicle Visual V2 after PR #141 merged into main. The Chronicle places five live run records per page on the supplied plate. Details show the reached card, party, owned relics, style, oath and Last Deal from the existing profile. Godot 1280×720 captures cover empty history, XIII victory, defeat and page two. [Art packet and native review](qa/run_chronicle_visual_v2/README.md)
