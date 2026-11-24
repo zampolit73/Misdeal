@@ -7,6 +7,7 @@ const SKIN := preload("res://scripts/ui/event_choice_skin.gd")
 const BONE := Color("f0dfc1")
 const INK := Color("2a1b16")
 const MUTED := Color("c5b3a4")
+const PALETTE_PILOT := ["borrowed_boots", "debtor_bones", "whispering_well"]
 const ROMAN := ["I", "II", "III", "IV"]
 const ROW_BOUNDS := Rect2(96, 169, 1088, SKIN.HEIGHT)
 
@@ -20,6 +21,7 @@ var _reader_button: Button
 var _reader_text := ""
 var _finished := false
 var _hovered: Button
+var _muted_palette := false
 
 
 func track(buttons: Array[Button]) -> void:
@@ -28,22 +30,24 @@ func track(buttons: Array[Button]) -> void:
 
 
 func build(surface: Control, row: HBoxContainer, title: Label, quote: Label, description: Label,
-		result: Label, stats: Array[Label], cards: Array[Button]) -> void:
+		result: Label, stats: Array[Label], cards: Array[Button], event_id: String = "") -> void:
 	_result = result
+	_muted_palette = event_id in PALETTE_PILOT
+	var ivory := Color("e1d0b8") if _muted_palette else BONE
 	_plate(surface, "EventStats", Rect2(96, 17, 1088, 33), true)
 	_plate(surface, "EventHeader", Rect2(96, 46, 1088, 119))
 	for index in stats.size():
 		var bounds := Rect2(123, 21, 1034, 24)
 		if stats.size() == 2:
 			bounds = Rect2(123, 21, 150, 24) if index == 0 else Rect2(281, 21, 876, 24)
-		_style_label(stats[index], bounds, 13, UI.PARCHMENT_WARM, false)
+		_style_label(stats[index], bounds, 13, ivory if _muted_palette else UI.PARCHMENT_WARM, false)
 		stats[index].text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		stats[index].tooltip_text = stats[index].text
 		stats[index].mouse_filter = Control.MOUSE_FILTER_PASS
-	_style_label(title, Rect2(123, 54, 1034, 38), 30, BONE, false)
+	_style_label(title, Rect2(123, 54, 1034, 38), 30, ivory, false)
 	title.add_theme_font_override("font", SKIN.serif())
-	_style_label(quote, Rect2(123, 90, 1034, 23), 15, BONE, false)
-	_style_label(description, Rect2(123, 110, 1034, 45), 15, BONE, true)
+	_style_label(quote, Rect2(123, 90, 1034, 23), 15, ivory, false)
+	_style_label(description, Rect2(123, 110, 1034, 45), 15, ivory, true)
 	quote.max_lines_visible = 1
 	quote.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	description.vertical_alignment = VERTICAL_ALIGNMENT_TOP
@@ -74,8 +78,8 @@ func build(surface: Control, row: HBoxContainer, title: Label, quote: Label, des
 	_place(row, ROW_BOUNDS)
 
 	_footer = _plate(surface, "EventContext", Rect2(96, 641, 1088, 58), true)
-	_hint = _label(_footer, "Hint", "", Rect2(27, 6, 1034, 46), 14, BONE, true)
-	_style_label(result, Rect2(123, 647, 1034, 46), 15, BONE, true)
+	_hint = _label(_footer, "Hint", "", Rect2(27, 6, 1034, 46), 14, ivory, true)
+	_style_label(result, Rect2(123, 647, 1034, 46), 15, ivory, true)
 	result.hide()
 	_update_hint()
 	_wire_focus()
@@ -125,6 +129,8 @@ func _build_card(button: Button, index: int, width: int) -> bool:
 		"КРОВЬ": Color("e9a19a"), "МОНЕТА": Color("ebc187"), "РИТУАЛ": Color("c9add9"),
 		"ОТКАЗ": Color("b6c8d2"), "РИСК": Color("efb091"),
 	}.get(kind, Color("e4cbb0"))
+	if _muted_palette:
+		accent = accent.lerp(Color("ddcbb5"), 0.56)
 	if button.disabled:
 		accent = accent.lerp(MUTED, 0.65)
 	button.tooltip_text = "%s\n%s\n%s" % [action, cost, detail]
@@ -144,8 +150,9 @@ func _build_card(button: Button, index: int, width: int) -> bool:
 	art.modulate = Color("d6cec8") if button.disabled else Color.WHITE
 	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_place(art, Rect2(width * 0.052, 63, width * 0.896, 153))
-	SKIN.mount(button, button.custom_minimum_size)
-	SKIN.shade(button, 0.81 if button.disabled else 1.0)
+	SKIN.mount(button, button.custom_minimum_size, _muted_palette)
+	var disabled_brightness := 0.87 if _muted_palette else 0.81
+	SKIN.shade(button, disabled_brightness if button.disabled else 1.0)
 	var category := _label(button, "ActionType", "%s  /  %s" % [ROMAN[index], kind],
 		Rect2(27, 29, width - 54, 31), 16, accent, false)
 	category.z_index = 2
@@ -162,12 +169,13 @@ func _build_card(button: Button, index: int, width: int) -> bool:
 	title.add_theme_font_override("font", SKIN.serif(true))
 	_fit(title, 13)
 	var text_width := width - 56
-	var cost_label := _label(copy, "Cost", cost, Rect2(28, 273, text_width, 38), 15, Color("543023"), true)
+	var cost_ink := Color("492d22") if _muted_palette else Color("543023")
+	var cost_label := _label(copy, "Cost", cost, Rect2(28, 273, text_width, 38), 15, cost_ink, true)
 	cost_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	_fit(cost_label, 13)
 	var outcome_y := 273 + maxi(28, cost_label.get_line_count() * (cost_label.get_line_height() + 1) + 6)
 	var availability := _label(copy, "Availability", restriction, Rect2(28, 348, text_width, 36),
-		14, Color("702d27"), true)
+		14, Color("61232e") if _muted_palette else Color("702d27"), true)
 	availability.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
 	_fit(availability, 12)
 	var body_bottom := 385
@@ -286,7 +294,7 @@ func _focus_first(button: Button) -> void:
 
 func _open_reader(title: String) -> void:
 	var popup := PopupPanel.new()
-	popup.add_theme_stylebox_override("panel", SKIN.plate_style())
+	popup.add_theme_stylebox_override("panel", SKIN.plate_style(false, _muted_palette))
 	var column := VBoxContainer.new()
 	popup.add_child(column)
 	column.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -319,12 +327,12 @@ func _open_reader(title: String) -> void:
 	close.grab_focus()
 
 
-static func _plate(parent: Control, node_name: String, bounds: Rect2, compact: bool = false) -> Panel:
+func _plate(parent: Control, node_name: String, bounds: Rect2, compact: bool = false) -> Panel:
 	var panel := Panel.new()
 	panel.name = node_name
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	panel.z_index = 2
-	panel.add_theme_stylebox_override("panel", SKIN.plate_style(compact))
+	panel.add_theme_stylebox_override("panel", SKIN.plate_style(compact, _muted_palette))
 	parent.add_child(panel)
 	_place(panel, bounds)
 	return panel

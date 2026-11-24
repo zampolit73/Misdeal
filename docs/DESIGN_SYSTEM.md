@@ -1,3 +1,7 @@
+## Event Choice Visual V3.1 · pilot
+
+Use muted bronze, deep burgundy, aged parchment and ivory type on event selection surfaces. Keep illustrations on their own layer. Render the finish through the shared event skin so the expanded text layout and focus states inherit the same palette. On locked choices, preserve contrast between the parchment and wine-colored restriction text. [Pilot screenshots](qa/event_choice_v31/README.md)
+
 ## Table Interface V5.1
 
 Use matte dark wood, thin aged bronze and warm bone type for the live status, Wizard and short action plates. Keep the Hold footprint and let the two text plates grow for wrapping. Apply the book patina and contact shadows locally. [Approved reference and native frames](qa/table_interface_v51/README.md)

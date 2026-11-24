@@ -1,3 +1,7 @@
+## Event Choice Visual V3.1 · visual review
+
+Review Borrowed Boots, Debtor Bones and Whispering Well in QA Hub or compare the [native Godot frames](qa/event_choice_v31/README.md). The three event IDs opt into the shared finish in `event_choice_presentation.gd`. Visual approval gates both the merge and any expansion to more events.
+
 ## Table Interface V5.1 · complete
 
 PR #144 is merged and the player accepted the production result. Preserve the approved table, restrained palette, navigation, and same-deal Archive return. [Native evidence](qa/table_interface_v51/README.md)

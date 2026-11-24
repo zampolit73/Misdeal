@@ -1,3 +1,7 @@
+## Event Choice Visual V3.1 · pilot
+
+`shaders/event_choice_bronze.gdshader` grades the existing Event Choice Visual V2 frame locally. The shared skin applies a companion tint to the existing dossier plate. [Native before/after captures](qa/event_choice_v31/README.md)
+
 ## Table Interface V5.1
 
 The existing V5 book and glass textures remain the source art. `shaders/table_book_finish.gdshader` provides local contact shadows and patina for the books. [Approved reference and Godot frames](qa/table_interface_v51/README.md)
