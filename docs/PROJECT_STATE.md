@@ -1,3 +1,7 @@
+## Reward Cinematics 1.0 · Normal Loot
+
+Normal Loot uses the approved 1280×720 plate. The live gold amount follows the existing multiplier, and the wallet refreshes after a single claim. [Native QA](qa/reward_loot_v1/README.md)
+
 ## Run End Visual V2 · approved in main
 
 The player tested and accepted the production victory and defeat screens on 2026-11-25 after PR #147 merged into main. Victory and defeat now use the approved 1280×720 plates. The live screen displays the run results, companion fates, relics, upgrades and Last Deal. [Godot QA](qa/run_end_visual_v2/README.md)

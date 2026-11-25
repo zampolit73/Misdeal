@@ -1,0 +1,84 @@
+{
+  "resolution": [
+    1280,
+    720
+  ],
+  "mode": "normal_loot",
+  "plate": "runtime/loot_plate.webp",
+  "title": {
+    "rect": [
+      455,
+      34,
+      370,
+      52
+    ],
+    "font_size": 34
+  },
+  "summary": {
+    "rect": [
+      350,
+      108,
+      580,
+      32
+    ],
+    "font_size": 19
+  },
+  "hint": {
+    "rect": [
+      350,
+      140,
+      580,
+      25
+    ],
+    "font_size": 15
+  },
+  "stats": {
+    "rect": [
+      355,
+      188,
+      570,
+      29
+    ],
+    "font_size": 13
+  },
+  "amount": {
+    "rect": [
+      481,
+      457,
+      318,
+      57
+    ],
+    "font_size": 42
+  },
+  "effect": {
+    "rect": [
+      287,
+      528,
+      706,
+      37
+    ],
+    "font_size": 16
+  },
+  "claim": {
+    "rect": [
+      436,
+      600,
+      408,
+      74
+    ],
+    "text_rect": [
+      460,
+      609,
+      360,
+      55
+    ],
+    "font_size": 23,
+    "hover": "runtime/claim_hover.webp",
+    "pressed": "runtime/claim_pressed.webp",
+    "disabled": "runtime/claim_disabled.webp"
+  },
+  "focus": {
+    "type": "live subtle bronze outline"
+  },
+  "note": "Rect arrays are x,y,width,height. State textures are local opaque overlays matching the plate. All labels are dynamic. If long copy requires it, use smaller readable font or wrap within reserved bounds; do not crop."
+}

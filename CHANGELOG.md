@@ -1,3 +1,7 @@
+## Reward Cinematics 1.0 · Normal Loot
+
+Add the approved Normal Loot presentation with live reward totals, the repaid-debt state and the existing coin feedback and route.
+
 ## Run End Visual V2 · approved
 
 Production result accepted by the player on 2026-11-25 (PR #147). Release the approved victory and defeat layouts with live run data, hero portraits and up to 13 relics. Keep the existing archive, save and New Run flow.
