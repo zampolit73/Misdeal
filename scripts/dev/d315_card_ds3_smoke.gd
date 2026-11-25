@@ -429,7 +429,7 @@ func _verify() -> void:
     preview.queue_free()
     await process_frame
 
-    # Test Reward using the normal project autoload, but do not click rewards.
+    # Exercise the real major-upgrade cards, without claiming a reward.
     var state := root.get_node_or_null("RunState")
     if state == null:
         state = (load("res://scripts/core/run_state.gd") as Script).new() as Node
@@ -439,9 +439,13 @@ func _verify() -> void:
     if not state.call("choose_protagonist", "knight"):
         _fail("cannot initialize reward test")
         return
+    state.set("active_card_id", "bone_patrol")
     var reward_scene := (load(REWARD) as PackedScene).instantiate() as Control
     root.add_child(reward_scene)
     await process_frame
+    if reward_scene.get("reward_mode") != "major_upgrade":
+        _fail("expected the major-upgrade reward layout")
+        return
     for name in ["BloodCoin", "IronWard", "TemperedSteel"]:
         var card := reward_scene.get_node("Rewards/" + name) as Button
         if card == null or not card.has_node("DS3CardFrame"):
