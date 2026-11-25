@@ -17,6 +17,13 @@ const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const CARD_DS3_SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
 const ARTIFACT_ART_CATALOG := preload("res://scripts/ui/artifact_art_catalog.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const LOOT_UI := preload("res://scripts/ui/wizard_reliquary.gd")
+const LOOT_LAYOUT := preload("res://assets/pixel/ui/reward_loot_v1/layout_1280x720.json")
+const LOOT_PLATE := preload("res://assets/pixel/ui/reward_loot_v1/runtime/loot_plate.webp")
+const LOOT_HOVER := preload("res://assets/pixel/ui/reward_loot_v1/runtime/claim_hover.webp")
+const LOOT_PRESSED := preload("res://assets/pixel/ui/reward_loot_v1/runtime/claim_pressed.webp")
+const LOOT_DISABLED := preload("res://assets/pixel/ui/reward_loot_v1/runtime/claim_disabled.webp")
+const LOOT_BONE := Color("e5ccac")
 const ROLE_FALLBACK_ART := {
 	"knight": preload("res://assets/art/units/knight.webp"),
 	"ranger": preload("res://assets/art/units/ranger.webp"),
@@ -80,7 +87,8 @@ func _ready() -> void:
 
 	_refresh_run_stats()
 	_setup_initial_reward()
-	BACKDROP_READOUTS.apply(self,"НАГРАДА")
+	if reward_mode != "normal_loot":
+		BACKDROP_READOUTS.apply(self,"НАГРАДА")
 	call_deferred("_animate_reward_screen_in")
 
 func _apply_ui_kit() -> void:
@@ -408,6 +416,73 @@ func _setup_normal_loot() -> void:
 	)
 	iron_ward_button.visible = false
 	tempered_steel_button.visible = false
+	_present_normal_loot(amount)
+
+
+func _present_normal_loot(amount: int) -> void:
+	var layout: Dictionary = LOOT_LAYOUT.data
+	var plate := LOOT_UI.picture(self, LOOT_PLATE, Rect2(0, 0, 1280, 720))
+	plate.name = "LootPlate"
+	move_child(plate, run_stats_label.get_index())
+	for node_name in ["HeaderPanel", "DS2RewardFooter", "RewardActionBacking", "BackdropReadouts"]:
+		var legacy := get_node_or_null(node_name) as CanvasItem
+		if legacy != null:
+			legacy.hide()
+
+	hint_label.text = "Золото тратится на событиях и в лавках. · ПКМ / F — подробности"
+	for entry in [[title_label, layout.title], [summary_label, layout.summary], [hint_label, layout.hint], [run_stats_label, layout.stats]]:
+		var label: Label = entry[0]
+		var region: Dictionary = entry[1]
+		var bounds := LOOT_UI.rect(region.rect)
+		label.position = bounds.position
+		label.size = bounds.size
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.add_theme_color_override("font_color", LOOT_BONE)
+		label.add_theme_font_size_override("font_size", int(region.font_size))
+	_fit_loot_summary()
+	title_label.add_theme_font_override("font", LOOT_UI.CARD_SKIN.heading_font())
+
+	var loot_amount_label := LOOT_UI.caption(self, LOOT_UI.rect(layout.amount.rect), "+%d золота" % amount,
+		int(layout.amount.font_size), LOOT_BONE)
+	loot_amount_label.name = "LootAmount"
+	loot_amount_label.modulate.a = 0.0
+	create_tween().tween_property(loot_amount_label, "modulate:a", 1.0, 0.25)
+	LOOT_UI.caption(self, LOOT_UI.rect(layout.effect.rect), upgrade_description_labels[0].text,
+		int(layout.effect.font_size), LOOT_BONE)
+
+	var claim := LOOT_UI.rect(layout.claim.rect)
+	rewards_root.position = claim.position
+	for item in blood_coin_button.get_children():
+		if item is CanvasItem:
+			item.hide()
+	blood_coin_button.custom_minimum_size = claim.size
+	blood_coin_button.text = upgrade_title_labels[0].text
+	blood_coin_button.add_theme_font_size_override("font_size", int(layout.claim.font_size))
+	for color in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color", "font_disabled_color"]:
+		blood_coin_button.add_theme_color_override(color, LOOT_BONE)
+	blood_coin_button.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
+	var focus := StyleBoxFlat.new()
+	focus.draw_center = false
+	focus.border_color = Color("a9815999")
+	focus.set_border_width_all(1)
+	focus.set_expand_margin_all(-12)
+	blood_coin_button.add_theme_stylebox_override("focus", focus)
+	var states := {"hover": LOOT_HOVER, "pressed": LOOT_PRESSED, "hover_pressed": LOOT_PRESSED, "disabled": LOOT_DISABLED}
+	for state in states:
+		var style := StyleBoxTexture.new()
+		style.texture = states[state]
+		blood_coin_button.add_theme_stylebox_override(state, style)
+	rewards_root.set_deferred("size", claim.size)
+	blood_coin_button.grab_focus()
+
+
+func _fit_loot_summary() -> void:
+	var font := summary_label.get_theme_font("font")
+	var point := int(LOOT_LAYOUT.data.summary.font_size)
+	while point > 15 and font.get_string_size(summary_label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, point).x > summary_label.size.x:
+		point -= 1
+	summary_label.add_theme_font_size_override("font_size", point)
 
 func _setup_death_wager_reward() -> void:
 	reward_mode = "death_wager"
@@ -501,7 +576,8 @@ func _on_reward_button_pressed(index: int) -> void:
 
 	reward_input_locked = true
 	_disable_reward_buttons()
-	await _animate_reward_commit(index)
+	if reward_mode != "normal_loot":
+		await _animate_reward_commit(index)
 	var option_id := option_ids[index]
 
 	match reward_mode:
@@ -718,6 +794,8 @@ func _refresh_run_stats() -> void:
 	]
 
 func _animate_reward_screen_in() -> void:
+	if reward_mode == "normal_loot":
+		return
 	header_panel.pivot_offset = header_panel.size * 0.5
 	header_panel.scale = Vector2(0.985, 0.985)
 	header_panel.modulate.a = 0.0
@@ -784,7 +862,7 @@ func _animate_reward_commit(selected_index: int) -> void:
 
 
 func _on_reward_hover(button: Button, hovered: bool) -> void:
-	if button.disabled or not button.visible:
+	if reward_mode == "normal_loot" or button.disabled or not button.visible:
 		return
 
 	button.pivot_offset = button.size * 0.5
@@ -840,8 +918,11 @@ func _finish_reward(message: String, relic: bool = false) -> void:
 		var feedback := _reward_effect if delta.is_empty() else "%s · %s" % [_reward_effect.get_slice(" · ", 0), delta]
 		RunState.set_meta("build_feedback", feedback)
 		summary_label.tooltip_text = _reward_effect + "\n" + BUILD_FEEDBACK.changes(_entry_build, after)
-		summary_label.text = feedback
-	await get_tree().create_timer(0.22).timeout
+		if reward_mode != "normal_loot":
+			summary_label.text = feedback
+	if reward_mode == "normal_loot":
+		_fit_loot_summary()
+	await get_tree().create_timer(0.42 if reward_mode == "normal_loot" else 0.22).timeout
 
 	if RunState.is_run_complete():
 		SCENE_ROUTER.change_to(self, "res://scenes/run_end/run_end.tscn")

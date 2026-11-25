@@ -1,3 +1,7 @@
+## Reward Cinematics 1.0 · Normal Loot
+
+The clean plate, 1280×720 coordinates and claim states live in `assets/pixel/ui/reward_loot_v1/`. The approved reference and layout preview are in `assets/source_archive/reward_loot_v1/`.
+
 ## Run End Visual V2 · Wizard's Verdict
 
 Runtime plates, layout and action states live in `assets/pixel/run_end/visual_v2/`. The full verified package and approved references are kept in `assets/source_archive/run_end_v2/`. The scene uses the established dossier portraits and reliquary textures.
