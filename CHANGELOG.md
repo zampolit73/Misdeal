@@ -1,6 +1,6 @@
-## Reward Cinematics 1.0 · Normal Loot
+## Reward Cinematics 1.0 · Normal Loot approved
 
-Add the approved Normal Loot presentation with live reward totals, the repaid-debt state and the existing coin feedback and route.
+Production result accepted by the player (PR #148). Add the approved Normal Loot presentation with live reward totals, the repaid-debt state and the existing coin feedback and route.
 
 ## Run End Visual V2 · approved
 
