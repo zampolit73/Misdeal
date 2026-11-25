@@ -14,9 +14,13 @@ PR #147 is merged into main and the player approved the production result on 202
 
 PR #148 is merged into main and the player approved the production result. Preserve the supplied plate, live gold amount, debt state, single claim and existing route. For regression checks, open «Награда — настоящая обычная добыча» under «Интерфейс» in QA Hub. [Native evidence](qa/reward_loot_v1/README.md)
 
-## Reward Cinematics 1.0 · Elite Artifact
+## Reward Cinematics 1.0 · Elite Artifact complete
 
-Review the production Reward scene after a Crypt Guard victory, including any due major upgrade. Use the original option order and economics. [Native evidence](qa/reward_elite_v1/README.md)
+PR #149 is merged into main and the player approved the result. Preserve the supplied plate, actual relic art and confirm/claim behavior. For regression checks, review the production Reward scene after a Crypt Guard victory, including any due major upgrade. Use the original option order and economics. [Native evidence](qa/reward_elite_v1/README.md)
+
+## Next proposed visual milestone — Hero Development
+
+Prepare a user-approved concept for major_upgrade and bonus_upgrade using existing upgrade-specific art and real HeroUpgradeData effects (including trade-offs). Offer counts and roles vary with actual party and eligibility, including solo parties; do not assume one card per class. Preserve progression, offers, bonus fallback, original claim/save/transition behavior and approved loot/relic screens. Death Wager remains a separate visual step.
 
 ## Next visual check — Ossuary Gate fog correction
 
