@@ -1,6 +1,6 @@
-## Reward Cinematics 1.0 · Elite Artifact
+## Reward Cinematics 1.0 · Elite Artifact approved in main
 
-Crypt Guard rewards use the approved Guardian Trophy plate. The scene shows up to three actual eligible relics or the existing empty-cache payout. [Native QA](qa/reward_elite_v1/README.md)
+The player accepted the production Guardian Trophy screen after PR #149 merged into main. Crypt Guard rewards use the approved Guardian Trophy plate. The scene shows up to three actual eligible relics or the existing empty-cache payout. [Native QA](qa/reward_elite_v1/README.md)
 
 ## Reward Cinematics 1.0 · Normal Loot approved in main
 
