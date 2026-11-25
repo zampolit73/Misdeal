@@ -1,6 +1,6 @@
-## Reward Cinematics 1.0 · Normal Loot
+## Reward Cinematics 1.0 · Normal Loot approved in main
 
-Normal Loot uses the approved 1280×720 plate. The live gold amount follows the existing multiplier, and the wallet refreshes after a single claim. [Native QA](qa/reward_loot_v1/README.md)
+The player accepted the production Normal Loot screen after PR #148 merged into main. Normal Loot uses the approved 1280×720 plate. The live gold amount follows the existing multiplier, and the wallet refreshes after a single claim. [Native QA](qa/reward_loot_v1/README.md)
 
 ## Run End Visual V2 · approved in main
 
