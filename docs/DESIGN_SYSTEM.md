@@ -1,3 +1,7 @@
+## Run End Visual V2 · Wizard's Verdict
+
+Use the supplied result plate and layout, with separate live controls. Keep the painted frames exposed, use bone text on dark surfaces and ink on parchment, and let long result text scroll within its own area.
+
 ## Event Choice Visual V3.2
 
 ActChoice and WhisperingWell use the shared aged bronze, deep burgundy, parchment and ivory palette for all 24 events. Keep the finish on the frame layer, including expanded frames. Preserve contrast on locked choices and keep illustrations on their own layer.

@@ -127,13 +127,13 @@ func test_full_run_summary_scrolls_inside_its_panel_and_leaves_new_run_clear() -
 	var scroll := ending.get_node("SummaryScroll") as ScrollContainer
 	var label := scroll.get_node("Summary") as Label
 	assert_gt(label.size.y,scroll.size.y)
-	assert_true((ending.get_node("SummaryPanel") as Control).get_global_rect().encloses(scroll.get_global_rect()))
+	assert_true(Rect2(633, 509, 618, 50).encloses(scroll.get_global_rect()))
 	assert_false(scroll.get_global_rect().intersects((ending.get_node("NewRunButton") as Control).get_global_rect()))
 	for id in UPGRADES: assert_true(label.text.contains(RunState.get_hero_upgrade(id).title))
 	scroll.scroll_vertical = 100000
 	await get_tree().process_frame
 	assert_gt(scroll.scroll_vertical,0)
-	assert_true(label.text.contains("Последняя сделка"))
+	assert_true(ending.get_node("Details/LastDeal/Copy").text.contains("Последняя сделка"))
 	assert_eq(_snapshot(),before)
 
 func test_story_and_merchant_effect_paragraphs_keep_the_entire_real_modifier_visible() -> void:

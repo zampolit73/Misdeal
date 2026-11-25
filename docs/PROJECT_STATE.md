@@ -1,3 +1,7 @@
+## Run End Visual V2 · Wizard's Verdict
+
+Victory and defeat now use the approved 1280×720 plates. The live screen displays the run results, companion fates, relics, upgrades and Last Deal. [Godot QA](qa/run_end_visual_v2/README.md)
+
 ## Event Choice Visual V3.2 · approved in main
 
 The player accepted the production rollout on 2026-11-25 after PR #146 merged into main. All 24 Act I event choice screens are approved. The approved V3.1 palette is the default for all 24 Act I events in V3.2: 23 through ActChoice and one through WhisperingWell. Godot 4.7.2 booted all 24 production routes and verified that every visible decision used the shared finish. The 1280×720 visual review covered three and four decisions and locked choices.
