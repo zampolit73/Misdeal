@@ -6,9 +6,13 @@ PR #146 is merged into main and the player accepted the production rollout on 20
 
 PR #144 is merged and the player accepted the production result. Preserve the approved table, restrained palette, navigation, and same-deal Archive return. [Native evidence](qa/table_interface_v51/README.md)
 
-## Run End Visual V2 · Wizard's Verdict
+## Run End Visual V2 · complete
 
-In QA Hub, open «Интерфейс» and select «Конец забега — победа» or «Конец забега — поражение». Verify the actual scroll areas, relic tooltips and «Новый забег». [Native frames and QA](qa/run_end_visual_v2/README.md)
+PR #147 is merged into main and the player approved the production result on 2026-11-25. Preserve both result plates and existing run/save flow. For regression checks: In QA Hub, open «Интерфейс» and select «Конец забега — победа» or «Конец забега — поражение». Verify the actual scroll areas, relic tooltips and «Новый забег». [Native frames and QA](qa/run_end_visual_v2/README.md)
+
+## Next proposed investor visual milestone — Reward Cinematics 1.0
+
+Inspect the live reward scene, actual reward modes and artifact catalog before proposing artwork. Improve presentation of rewards and relic acquisition without changing choices, economy, effects, or save flow. Use the restrained Table V5.1 / Event V3.2 palette. Prepare a visual concept for user approval before implementation. Camp and merchant presentation and main menu polish remain subsequent candidates; gameplay audit is deferred.
 
 ## Next visual check — Ossuary Gate fog correction
 
