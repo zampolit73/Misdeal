@@ -6,7 +6,8 @@
 - Table presentation · V5/V5.1 approved in main (PRs #143–144). V5.1 polishes the status plates, Fate Spread and Hold around the interactive journal, window and grimoire. [Native evidence](qa/table_interface_v51/README.md)
 - Archive presentation · All four tabs (Reliquary V2.1, Bestiary V2, Chronicle V2 and Challenges V2) are approved and merged into main. [Godot evidence](qa/challenges_visual_v2/README.md)
 - Event presentation · Event Choice V3.2 approved in main (PR #146), covering all 24 Act I events.
-- Run End Visual V2: approved victory and defeat presentation. [Native QA](qa/run_end_visual_v2/README.md)
+- Run End Visual V2: production victory and defeat screens approved in main (PR #147). [Native QA](qa/run_end_visual_v2/README.md)
+- Next proposed investor visual milestone · Reward Cinematics 1.0 (reward and relic presentation), subject to concept approval.
 - Gameplay audit (deferred) · Human campaign runs across party sizes and builds, with focused Last Bell and XIII comparisons.
 
 ## D420 V2
