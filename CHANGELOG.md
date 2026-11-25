@@ -1,6 +1,6 @@
-## Reward Cinematics 1.0 · Hero Development
+## Reward Cinematics 1.0 · Hero Development approved
 
-Apply the approved Hero Development presentation to major and bonus rewards, with live offers, signed effects and the original direct claim.
+Production result accepted by the player (PR #150). Apply the approved Hero Development presentation to major and bonus rewards, with live offers, signed effects and the original direct claim.
 
 ## Reward Cinematics 1.0 · Elite Artifact approved
 
