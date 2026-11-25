@@ -1,6 +1,6 @@
-## Reward Cinematics 1.0 · Hero Development
+## Reward Cinematics 1.0 · Hero Development approved in main
 
-Major and bonus upgrades use the approved Hero Development plate, actual role art and data, and one to three selectable offers. The empty bonus still pays 60 gold. [Native QA](qa/reward_development_v1/README.md)
+The player accepted both development modes after PR #150 merged into main. Major and bonus upgrades use the approved Hero Development plate, actual role art and data, and one to three selectable offers. The empty bonus still pays 60 gold. [Native QA](qa/reward_development_v1/README.md)
 
 ## Reward Cinematics 1.0 · Elite Artifact approved in main
 
