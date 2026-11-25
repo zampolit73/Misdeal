@@ -7,7 +7,7 @@
 - Archive presentation · All four tabs (Reliquary V2.1, Bestiary V2, Chronicle V2 and Challenges V2) are approved and merged into main. [Godot evidence](qa/challenges_visual_v2/README.md)
 - Event presentation · Event Choice V3.2 approved in main (PR #146), covering all 24 Act I events.
 - Run End Visual V2: production victory and defeat screens approved in main (PR #147). [Native QA](qa/run_end_visual_v2/README.md)
-- Reward Cinematics 1.0: Normal Loot (PR #148) and Guardian Trophy (PR #149) are approved in main. Next: major/bonus hero development concept, then Death Wager. [Native QA](qa/reward_elite_v1/README.md)
+- Reward Cinematics 1.0: approved Normal Loot, Guardian Trophy and Hero Development. Death Wager remains the next presentation milestone. [Native QA](qa/reward_development_v1/README.md)
 - Gameplay audit (deferred) · Human campaign runs across party sizes and builds, with focused Last Bell and XIII comparisons.
 
 ## D420 V2

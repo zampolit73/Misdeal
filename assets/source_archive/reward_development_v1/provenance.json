@@ -1,0 +1,6 @@
+{
+  "reference": "approved user concept; image generation output",
+  "clean_master": "image generation adaptation of approved concept; no baked game data",
+  "runtime": "resized master and derived local UI state crops",
+  "preview": "illustration crops from concept for mockup only; production art must be from existing CardArtCatalog"
+}

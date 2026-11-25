@@ -1,3 +1,7 @@
+## Reward Cinematics 1.0 · Hero Development
+
+Apply the approved Hero Development presentation to major and bonus rewards, with live offers, signed effects and the original direct claim.
+
 ## Reward Cinematics 1.0 · Elite Artifact approved
 
 Production result accepted by the player (PR #149). Release the approved Guardian Trophy screen for Crypt Guard victories. Select and confirm an available relic or claim the existing 50 gold from an empty cache.

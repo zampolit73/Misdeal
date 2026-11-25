@@ -1,0 +1,276 @@
+{
+  "version": 1,
+  "screen_id": "reward_hero_development",
+  "resolution": [
+    1280,
+    720
+  ],
+  "coordinate_system": "absolute x,y,width,height; 1280x720 logical canvas",
+  "plate": "runtime/development_plate.webp",
+  "modes": [
+    "major_upgrade",
+    "bonus_upgrade"
+  ],
+  "title": {
+    "rect": [
+      484,
+      18,
+      590,
+      47
+    ],
+    "font_size": 32,
+    "min_font_size": 24
+  },
+  "stage": {
+    "rect": [
+      671,
+      82,
+      214,
+      30
+    ],
+    "font_size": 19,
+    "min_font_size": 14,
+    "note": "Center in the plaque, use mode-appropriate live caption; major stage 1–3, bonus additional progress or short label, no fake stage."
+  },
+  "wizard_line": {
+    "rect": [
+      485,
+      126,
+      592,
+      38
+    ],
+    "font_size": 18,
+    "min_font_size": 14,
+    "wrap": true
+  },
+  "slots": [
+    {
+      "index": 0,
+      "rect": [
+        350,
+        185,
+        297,
+        437
+      ],
+      "art_rect": [
+        372,
+        208,
+        253,
+        160
+      ],
+      "title_rect": [
+        369,
+        391,
+        259,
+        41
+      ],
+      "role_rect": [
+        374,
+        432,
+        249,
+        21
+      ],
+      "effect_rect": [
+        373,
+        457,
+        251,
+        76
+      ],
+      "button_rect": [
+        391,
+        541,
+        218,
+        56
+      ],
+      "button_label_rect": [
+        405,
+        549,
+        190,
+        40
+      ],
+      "title_font_size": 19,
+      "title_min_font_size": 16,
+      "role_font_size": 14,
+      "effect_font_size": 18,
+      "effect_min_font_size": 15,
+      "button_font_size": 20,
+      "hover_overlay": "runtime/states/slot_0_hover.png",
+      "focus_overlay": "runtime/states/slot_0_focus.png",
+      "inactive_texture": "runtime/states/slot_0_inactive.webp",
+      "button_states": {
+        "idle": "runtime/states/button_0_idle.webp",
+        "hover": "runtime/states/button_0_hover.webp",
+        "pressed": "runtime/states/button_0_pressed.webp",
+        "disabled": "runtime/states/button_0_disabled.webp"
+      }
+    },
+    {
+      "index": 1,
+      "rect": [
+        654,
+        185,
+        296,
+        437
+      ],
+      "art_rect": [
+        676,
+        208,
+        252,
+        160
+      ],
+      "title_rect": [
+        673,
+        391,
+        258,
+        41
+      ],
+      "role_rect": [
+        678,
+        432,
+        248,
+        21
+      ],
+      "effect_rect": [
+        677,
+        457,
+        250,
+        76
+      ],
+      "button_rect": [
+        695,
+        541,
+        218,
+        56
+      ],
+      "button_label_rect": [
+        709,
+        549,
+        190,
+        40
+      ],
+      "title_font_size": 19,
+      "title_min_font_size": 16,
+      "role_font_size": 14,
+      "effect_font_size": 18,
+      "effect_min_font_size": 15,
+      "button_font_size": 20,
+      "hover_overlay": "runtime/states/slot_1_hover.png",
+      "focus_overlay": "runtime/states/slot_1_focus.png",
+      "inactive_texture": "runtime/states/slot_1_inactive.webp",
+      "button_states": {
+        "idle": "runtime/states/button_1_idle.webp",
+        "hover": "runtime/states/button_1_hover.webp",
+        "pressed": "runtime/states/button_1_pressed.webp",
+        "disabled": "runtime/states/button_1_disabled.webp"
+      }
+    },
+    {
+      "index": 2,
+      "rect": [
+        958,
+        185,
+        303,
+        437
+      ],
+      "art_rect": [
+        980,
+        208,
+        259,
+        160
+      ],
+      "title_rect": [
+        977,
+        391,
+        265,
+        41
+      ],
+      "role_rect": [
+        982,
+        432,
+        255,
+        21
+      ],
+      "effect_rect": [
+        981,
+        457,
+        257,
+        76
+      ],
+      "button_rect": [
+        1002,
+        541,
+        218,
+        56
+      ],
+      "button_label_rect": [
+        1016,
+        549,
+        190,
+        40
+      ],
+      "title_font_size": 19,
+      "title_min_font_size": 16,
+      "role_font_size": 14,
+      "effect_font_size": 18,
+      "effect_min_font_size": 15,
+      "button_font_size": 20,
+      "hover_overlay": "runtime/states/slot_2_hover.png",
+      "focus_overlay": "runtime/states/slot_2_focus.png",
+      "inactive_texture": "runtime/states/slot_2_inactive.webp",
+      "button_states": {
+        "idle": "runtime/states/button_2_idle.webp",
+        "hover": "runtime/states/button_2_hover.webp",
+        "pressed": "runtime/states/button_2_pressed.webp",
+        "disabled": "runtime/states/button_2_disabled.webp"
+      }
+    }
+  ],
+  "layout_by_offer_count": {
+    "1": [
+      1
+    ],
+    "2": [
+      0,
+      2
+    ],
+    "3": [
+      0,
+      1,
+      2
+    ]
+  },
+  "footer": {
+    "rect": [
+      391,
+      647,
+      756,
+      26
+    ],
+    "font_size": 16,
+    "min_font_size": 14,
+    "wrap": true
+  },
+  "colors": {
+    "light_text": "#e0c6a3",
+    "parchment_text": "#2e211a",
+    "positive": "#344129",
+    "negative": "#732d31",
+    "muted": "#63503d"
+  },
+  "notes": [
+    "The complete card is a single input target (original immediate claim); the painted button is its CTA, not a separate confirmation step.",
+    "Art: preserve aspect and nearest filtering. The full original description and details remain available via existing right-click behavior.",
+    "Inactive slots have no focus, input, button or text."
+  ],
+  "run_stats": {
+    "rect": [
+      365,
+      620,
+      875,
+      24
+    ],
+    "font_size": 13,
+    "min_font_size": 12,
+    "wrap": true
+  }
+}

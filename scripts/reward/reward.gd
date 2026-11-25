@@ -25,7 +25,9 @@ const LOOT_PRESSED := preload("res://assets/pixel/ui/reward_loot_v1/runtime/clai
 const LOOT_DISABLED := preload("res://assets/pixel/ui/reward_loot_v1/runtime/claim_disabled.webp")
 const LOOT_BONE := Color("e5ccac")
 const ELITE_TROPHY := preload("res://scripts/reward/elite_trophy.gd")
+const HERO_DEVELOPMENT := preload("res://scripts/reward/hero_development.gd")
 var _elite_trophy: ELITE_TROPHY
+var _development: HERO_DEVELOPMENT
 const ROLE_FALLBACK_ART := {
 	"knight": preload("res://assets/art/units/knight.webp"),
 	"ranger": preload("res://assets/art/units/ranger.webp"),
@@ -358,6 +360,7 @@ func _setup_bonus_upgrade_reward() -> void:
 
 	var offers := RunState.get_bonus_upgrade_offer_ids()
 	if offers.is_empty():
+		_present_development()
 		RunState.gold += 60
 		await _finish_reward("Больше менять нечего. Волшебник бросает вам 60 золота.")
 		return
@@ -381,8 +384,49 @@ func _setup_upgrade_buttons(offers: Array[String]) -> void:
 		_set_upgrade_card(index, upgrade_id, upgrade)
 		button.add_theme_color_override("font_color", _get_role_color(upgrade.target_role))
 		button.add_theme_color_override("font_hover_color", _get_role_color(upgrade.target_role).lightened(0.16))
+	if reward_mode in ["major_upgrade", "bonus_upgrade"]:
+		_present_development()
+
+
+func _present_development() -> void:
+	_remove_development()
+	var offers: Array[Dictionary] = []
+	for index in option_ids.size():
+		var id := option_ids[index]
+		if id.is_empty():
+			continue
+		offers.append({
+			"index": index,
+			"title": upgrade_title_labels[index].text,
+			"role": upgrade_role_labels[index].text,
+			"art": upgrade_portraits[index].texture,
+			"effect": _get_upgrade_quick_effect(id),
+			"tooltip": reward_buttons[index].tooltip_text,
+		})
+	var stage := "ДОП.  " + RunState.get_extra_upgrade_progress_text()
+	if reward_mode == "major_upgrade":
+		var card := RunState.get_active_card()
+		var tier := card.tier if card != null else 0
+		stage = "ЭТАП %s / III" % ["I", "II", "III"][tier]
+	rewards_root.hide()
+	_development = HERO_DEVELOPMENT.new()
+	add_child(_development)
+	_development.chosen.connect(_on_reward_button_pressed)
+	_development.inspect_input.connect(_on_reward_detail_input)
+	var hint := hint_label.text.replace("\nПКМ / F — полное описание награды.", " · ПКМ / F — подробности")
+	_development.build(offers, title_label.text, stage, hint)
+	_development.update_text(summary_label.text, run_stats_label.text)
+
+
+func _remove_development() -> void:
+	if is_instance_valid(_development):
+		remove_child(_development)
+		_development.queue_free()
+		_development = null
+		rewards_root.show()
 
 func _setup_card_reward() -> void:
+	_remove_development()
 	progress_marks_label.visible = false
 	hover_summary_label.visible = false
 	var active_card := RunState.get_active_card()
@@ -599,6 +643,9 @@ func _on_reward_button_pressed(index: int) -> void:
 	if reward_mode == "elite_artifact":
 		_elite_trophy.set_locked(true)
 		await get_tree().create_timer(0.14).timeout
+	elif is_instance_valid(_development):
+		_development.set_locked(true, index)
+		await get_tree().create_timer(0.14).timeout
 	elif reward_mode != "normal_loot":
 		await _animate_reward_commit(index)
 	var option_id := option_ids[index]
@@ -614,6 +661,7 @@ func _on_reward_button_pressed(index: int) -> void:
 			_reward_effect = upgrade.title + " · " + upgrade.description
 			summary_label.text = "Выбрано: %s." % upgrade.title
 			_refresh_run_stats()
+			_development.update_text(summary_label.text, run_stats_label.text)
 			await get_tree().create_timer(0.22).timeout
 			_setup_card_reward()
 
@@ -817,7 +865,7 @@ func _refresh_run_stats() -> void:
 	]
 
 func _animate_reward_screen_in() -> void:
-	if reward_mode in ["normal_loot", "elite_artifact"]:
+	if reward_mode in ["normal_loot", "elite_artifact"] or is_instance_valid(_development):
 		return
 	header_panel.pivot_offset = header_panel.size * 0.5
 	header_panel.scale = Vector2(0.985, 0.985)
@@ -916,6 +964,8 @@ func _reset_buttons() -> void:
 
 func _enable_reward_buttons() -> void:
 	reward_input_locked = false
+	if is_instance_valid(_development):
+		_development.set_locked(false)
 	if is_instance_valid(_elite_trophy):
 		_elite_trophy.set_locked(false)
 	for button in reward_buttons:
@@ -949,6 +999,8 @@ func _finish_reward(message: String, relic: bool = false) -> void:
 		_fit_loot_summary()
 	elif reward_mode == "elite_artifact":
 		_elite_trophy.show_message(message)
+	elif is_instance_valid(_development):
+		_development.update_text(message, run_stats_label.text)
 	await get_tree().create_timer(0.42 if reward_mode == "normal_loot" else 0.22).timeout
 
 	if RunState.is_run_complete():
