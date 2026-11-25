@@ -1,3 +1,7 @@
+## Reward Cinematics 1.0 · Hero Development
+
+The Hero Development plate, layout and states live in `assets/pixel/ui/reward_development_v1/`. The approved reference, clean master and previews are in `assets/source_archive/reward_development_v1/`. Upgrade illustrations use the existing catalogs.
+
 ## Reward Cinematics 1.0 · Elite Artifact
 
 The Guardian Trophy plate, layout and selection states live in `assets/pixel/ui/reward_elite_v1/`. The approved reference and source art are kept in `assets/source_archive/reward_elite_v1/`.

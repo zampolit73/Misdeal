@@ -1,3 +1,7 @@
+## Reward Cinematics 1.0 · Hero Development
+
+Major and bonus upgrades use the approved Hero Development plate, actual role art and data, and one to three selectable offers. The empty bonus still pays 60 gold. [Native QA](qa/reward_development_v1/README.md)
+
 ## Reward Cinematics 1.0 · Elite Artifact approved in main
 
 The player accepted the production Guardian Trophy screen after PR #149 merged into main. Crypt Guard rewards use the approved Guardian Trophy plate. The scene shows up to three actual eligible relics or the existing empty-cache payout. [Native QA](qa/reward_elite_v1/README.md)

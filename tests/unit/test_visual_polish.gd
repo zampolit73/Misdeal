@@ -53,7 +53,7 @@ func test_reward_full_reader_preserves_state_owns_keyboard_focus_and_blocks_choi
 	RunState.active_card_id = "bone_patrol"
 	var reward := _open("res://scenes/reward/reward.tscn")
 	await get_tree().process_frame
-	var button := reward.get_node("Rewards/BloodCoin") as Button
+	var button := reward.get_node("HeroDevelopment/Option0") as Button
 	button.grab_focus()
 	var before := _snapshot()
 	var input := InputEventKey.new()
