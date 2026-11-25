@@ -1,6 +1,6 @@
-## Run End Visual V2 · Wizard's Verdict
+## Run End Visual V2 · approved
 
-Release the approved victory and defeat layouts with live run data, hero portraits and up to 13 relics. Keep the existing archive, save and New Run flow.
+Production result accepted by the player on 2026-11-25 (PR #147). Release the approved victory and defeat layouts with live run data, hero portraits and up to 13 relics. Keep the existing archive, save and New Run flow.
 
 ## Event Choice Visual V3.2 · approved
 
