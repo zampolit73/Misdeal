@@ -1,141 +1,181 @@
 extends Control
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
+const SAVE := preload("res://scripts/core/run_save_service.gd")
+const UI := preload("res://scripts/ui/wizard_reliquary.gd")
+const DOSSIER := preload("res://scripts/ui/squad_dossier_v3.gd")
+const LAYOUT := preload("res://assets/pixel/run_end/visual_v2/layout_1280x720.json")
+const VICTORY := preload("res://assets/pixel/run_end/visual_v2/runtime/victory_plate.webp")
+const DEFEAT := preload("res://assets/pixel/run_end/visual_v2/runtime/defeat_plate.webp")
+const HOVER := preload("res://assets/pixel/run_end/visual_v2/runtime/states/new_run_hover.png")
+const PRESSED := preload("res://assets/pixel/run_end/visual_v2/runtime/states/new_run_pressed.png")
+const BONE := Color("#e5ccac")
+const MUTED := Color("#baa68c")
+const INK := Color("#301f18")
+const DEFEAT_TEXT := Color("#e3a695")
 
-const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
-const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
+var _new_run: Button
 
-@onready var backdrop_art: TextureRect = $BackdropArt
-@onready var title_label: Label = $Title
-@onready var summary_panel: Panel = $SummaryPanel
-@onready var summary_label: Label = $Summary
-@onready var wizard_line: Label = $WizardLine
-@onready var new_run_button: Button = $NewRunButton
 
 func _ready() -> void:
-	preload("res://scripts/core/run_save_service.gd").instance().write_slot(RunState)
-	MISDEAL_UI_KIT.apply_panel($SummaryPanel, MISDEAL_UI_KIT.BRONZE, true)
-	MISDEAL_UI_KIT.apply_title(title_label, MISDEAL_UI_KIT.GOLD)
-	MISDEAL_UI_KIT.apply_subtitle(wizard_line, MISDEAL_UI_KIT.BRONZE)
-	MISDEAL_UI_KIT.apply_screen_copy(wizard_line, MISDEAL_UI_KIT.TEXT_SECONDARY)
-	MISDEAL_UI_KIT.apply_screen_copy(summary_label, MISDEAL_UI_KIT.TEXT_ON_DARK)
-	MISDEAL_UI_KIT.apply_action_button(new_run_button, MISDEAL_UI_KIT.GOLD, true)
-	MISDEAL_DS2_ROLLOUT.run_end(self)
-	new_run_button.pressed.connect(_on_new_run_pressed)
-	var fate_lines: Array[String] = []
-	for role in RunState.HERO_ROLES:
-		if role == RunState.protagonist_role:
-			continue
-		var label := "Рыцарь" if role == "knight" else ("Следопыт" if role == "ranger" else "Маг")
-		var fate := RunState.get_companion_fate(role)
-		var fate_text := "В ОТРЯДЕ" if fate == RunState.FATE_JOINED else ("ПОТЕРЯН" if fate == RunState.FATE_LOST else "НЕ ВСТРЕЧЕН")
-		fate_lines.append("%s: %s" % [label, fate_text])
+	SAVE.instance().write_slot(RunState)
+	var design: Dictionary = LAYOUT.data
+	var regions: Dictionary = design.regions
+	var failed := RunState.run_failed
+	var backdrop := UI.picture(self, DEFEAT if failed else VICTORY, Rect2(0, 0, 1280, 720))
+	backdrop.name = "BackdropArt"
+	_caption(self, regions.title, "ПРИГОВОР ВОЛШЕБНИКА", 29, BONE)
+	var title := _caption(self, regions.result, "ПОРАЖЕНИЕ" if failed else "ПОБЕДА", 39,
+		DEFEAT_TEXT if failed else BONE)
+	title.name = "Title"
+	var quote := "Двенадцать карт и мой надзиратель. Пожалуй, ты заслужил ещё одну партию."
+	if failed:
+		quote = RunState.run_end_reason if not RunState.run_end_reason.is_empty() else \
+			"Эта версия жизни закончилась раньше, чем ты рассчитывал."
+	var details := _layer("Details")
+	_scroll_copy(details, "WizardQuote", regions.quote, quote, 17, BONE)
+	_build_stats(details, design.stats_cells)
 
-	var last_deal_text := "не использована"
-	if RunState.last_deal_used:
-		last_deal_text = RunState.last_deal_payment_text if not RunState.last_deal_payment_text.is_empty() else "принята"
+	var collection := _layer("Collection")
+	_caption(collection, regions.party_heading, "ОТРЯД", 18, BONE)
+	_caption(collection, regions.relics_heading, "РЕЛИКВИИ", 18, BONE)
+	_build_party(collection, design.party_slots)
+	_build_relics(collection, design.relic_slots)
 
-	summary_label.text = "Пройдено карт: %d/%d\nПобед в боях: %d\nЗолото: %d\nОтряд: %s\n%s\nРазвитие героев: %s\nБонус здоровья от событий: %+d\nБонус урона от событий: %+d\nАртефакты: %s\nПоследняя сделка: %s" % [
-		RunState.cards_resolved,
-		RunState.ACT_CARD_TARGET,
-		RunState.deals_survived,
-		RunState.gold,
-		RunState.get_party_roles_text(),
-		"   |   ".join(fate_lines),
-		RunState.get_hero_upgrade_titles_text(),
-		int(RunState.party_hp_bonus),
-		int(RunState.party_damage_bonus),
-		RunState.get_artifact_titles_text(),
-		last_deal_text
-	]
-
+	_caption(details, regions.upgrade_heading, "РАЗВИТИЕ ГЕРОЕВ", 18, BONE)
+	_caption(details, regions.hp_bonus, "Бонус здоровья " + _signed_bonus(RunState.party_hp_bonus), 18, INK)
+	_caption(details, regions.damage_bonus, "Бонус урона " + _signed_bonus(RunState.party_damage_bonus), 18, INK)
+	var development := "Улучшения: " + RunState.get_hero_upgrade_titles_text()
 	if RunState.has_jack_companion():
-		summary_label.text += "\nСпутник следопыта: Джек"
+		development += "\nСпутник следопыта: Джек"
 	elif RunState.get_event_outcome("jack") == "token":
-		summary_label.text += "\nОхотничий жетон: урон следопыта +10%"
-	_bound_summary()
+		development += "\nОхотничий жетон: урон следопыта +10%"
+	_scroll_copy(self, "SummaryScroll", regions.upgrade_text, development, 16, BONE)
+	var payment := "не использована"
+	if RunState.last_deal_used:
+		payment = RunState.last_deal_payment_text if not RunState.last_deal_payment_text.is_empty() else "принята"
+	_scroll_copy(details, "LastDeal", regions.last_deal, "Последняя сделка: " + payment, 16, INK)
+	_build_action(regions.new_run)
 
-	if RunState.run_failed:
-		title_label.text = "ПАРТИЯ ПРОИГРАНА"
-		title_label.add_theme_color_override("font_color", Color(0.86, 0.34, 0.28, 1.0))
-		wizard_line.text = RunState.run_end_reason if not RunState.run_end_reason.is_empty() else "Эта версия жизни закончилась раньше, чем ты рассчитывал."
-	else:
-		title_label.text = "ЗАБЕГ ЗАВЕРШЁН"
-		wizard_line.text = "Двенадцать карт и мой надзиратель. Пожалуй, ты заслужил ещё одну партию."
+	_fade(backdrop, 0.0, 0.34)
+	_fade(title, 0.12, 0.25)
+	_fade(details, 0.26, 0.32)
+	_fade($SummaryScroll, 0.26, 0.32)
+	_fade(collection, 0.44, 0.30)
+	_new_run.disabled = true
+	var action_tween := _fade(_new_run, 0.62, 0.28)
+	action_tween.finished.connect(_enable_new_run)
 
-	call_deferred("_animate_run_end_in")
+
+func _build_stats(parent: Control, cells: Array) -> void:
+	var headings := ["Пройдено карт", "Побед в боях", "Золото"]
+	var values := ["%d/%d" % [RunState.cards_resolved, RunState.ACT_CARD_TARGET],
+		str(RunState.deals_survived), str(RunState.gold)]
+	for i in cells.size():
+		var area: Array = cells[i]
+		_caption(parent, [area[0], area[1] + 3, area[2], 20], headings[i], 17, INK)
+		_caption(parent, [area[0], area[1] + 22, area[2], 32], values[i], 26, INK)
 
 
-func _animate_run_end_in() -> void:
-	backdrop_art.modulate.a = 0.72
-	title_label.pivot_offset = title_label.size * 0.5
-	title_label.scale = Vector2(0.94, 0.94)
-	title_label.modulate.a = 0.0
-	wizard_line.modulate.a = 0.0
+func _build_party(parent: Control, slots: Array) -> void:
+	for i in slots.size():
+		var slot: Dictionary = slots[i]
+		var role: String = RunState.HERO_ROLES[i]
+		var fate := RunState.get_companion_fate(role)
+		var protagonist := role == RunState.protagonist_role
+		var joined := protagonist or fate == RunState.FATE_JOINED
+		var portrait_path := String(DOSSIER.PORTRAITS[role]).replace(".webp", "_thumb.webp")
+		var portrait := UI.picture(parent, load(portrait_path) as Texture2D, UI.rect(slot.portrait_rect))
+		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		if not joined:
+			portrait.modulate = Color("#786a63")
+		_caption(parent, slot.name_rect, RunState.get_hero_unit_data(role).unit_name, 14, INK)
+		var status := "Не встречен"
+		if protagonist:
+			status = "Главный герой"
+		elif joined:
+			status = "В отряде"
+		elif fate == RunState.FATE_LOST:
+			status = "Потерян"
+		_caption(parent, slot.fate_rect, status, 13, MUTED).name = "Fate_" + role
 
-	summary_panel.pivot_offset = summary_panel.size * 0.5
-	summary_panel.scale = Vector2(0.975, 0.975)
-	summary_panel.modulate.a = 0.0
-	summary_label.modulate.a = 0.0
 
-	new_run_button.pivot_offset = new_run_button.size * 0.5
-	new_run_button.scale = Vector2(0.97, 0.97)
-	new_run_button.modulate.a = 0.0
+func _build_relics(parent: Control, slots: Array) -> void:
+	if RunState.artifact_ids.is_empty():
+		_caption(parent, [927, 410, 324, 30], "Реликвии не получены", 15, MUTED)
+	for i in mini(slots.size(), RunState.artifact_ids.size()):
+		var id: String = RunState.artifact_ids[i]
+		var artifact := RunState.get_artifact(id)
+		var texture := ArtifactArtCatalog.get_reliquary_texture(id)
+		if artifact == null or texture == null:
+			continue
+		var pixels := texture.get_image()
+		var icon := ImageTexture.create_from_image(pixels.get_region(pixels.get_used_rect()))
+		var area := UI.rect(slots[i].rect).grow(-4)
+		var picture := UI.picture(parent, icon, area)
+		picture.name = "Relic_" + id
+		picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		picture.mouse_filter = Control.MOUSE_FILTER_PASS
+		picture.tooltip_text = "%s\n%s" % [artifact.title, artifact.description]
 
-	var backdrop_tween := backdrop_art.create_tween()
-	backdrop_tween.tween_property(backdrop_art, "modulate:a", 0.90, 0.32)
 
-	var title_tween := title_label.create_tween()
-	title_tween.set_parallel(true)
-	title_tween.tween_property(title_label, "modulate:a", 1.0, 0.17).set_delay(0.05)
-	title_tween.tween_property(title_label, "scale", Vector2.ONE, 0.22).set_delay(0.05).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+func _build_action(bounds: Array) -> void:
+	_new_run = UI.hotspot(self, UI.rect(bounds), "Новый забег")
+	_new_run.name = "NewRunButton"
+	_new_run.text = "НОВЫЙ ЗАБЕГ"
+	_new_run.add_theme_font_override("font", UI.CARD_SKIN.heading_font())
+	_new_run.add_theme_font_size_override("font_size", 27)
+	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color", "font_disabled_color"]:
+		_new_run.add_theme_color_override(state, BONE)
+	for state in ["hover", "focus", "pressed", "hover_pressed"]:
+		var style := StyleBoxTexture.new()
+		style.texture = PRESSED if state in ["pressed", "hover_pressed"] else HOVER
+		_new_run.add_theme_stylebox_override(state, style)
+	_new_run.pressed.connect(_on_new_run_pressed)
 
-	var line_tween := wizard_line.create_tween()
-	line_tween.tween_property(wizard_line, "modulate:a", 1.0, 0.18).set_delay(0.13)
 
-	var panel_tween := summary_panel.create_tween()
-	panel_tween.set_parallel(true)
-	panel_tween.tween_property(summary_panel, "modulate:a", 1.0, 0.18).set_delay(0.18)
-	panel_tween.tween_property(summary_panel, "scale", Vector2.ONE, 0.22).set_delay(0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+func _scroll_copy(parent: Control, node_name: String, bounds: Array, copy: String, font_size: int, color: Color) -> void:
+	var scroll := ScrollContainer.new()
+	scroll.name = node_name
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	UI.put(parent, scroll, UI.rect(bounds).grow_individual(-8, -3, -8, -3))
+	var label := _caption(scroll, [0, 0, 0, 0], copy, font_size, color)
+	label.name = "Summary" if node_name == "SummaryScroll" else "Copy"
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	label.custom_minimum_size.y = scroll.size.y
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	scroll.tooltip_text = copy
 
-	var summary_tween := summary_label.create_tween()
-	summary_tween.tween_property(summary_label, "modulate:a", 1.0, 0.20).set_delay(0.24)
 
-	var button_tween := new_run_button.create_tween()
-	button_tween.set_parallel(true)
-	button_tween.tween_property(new_run_button, "modulate:a", 1.0, 0.16).set_delay(0.34)
-	button_tween.tween_property(new_run_button, "scale", Vector2.ONE, 0.18).set_delay(0.34).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+func _caption(parent: Control, bounds: Array, copy: String, font_size: int, color: Color) -> Label:
+	return UI.caption(parent, UI.rect(bounds), copy, font_size, color)
+
+
+func _signed_bonus(value: float) -> String:
+	return ("+" if value >= 0.0 else "") + String.num(value, 2)
+
+
+func _layer(node_name: String) -> Control:
+	var layer := Control.new()
+	layer.name = node_name
+	layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(layer)
+	return layer
+
+
+func _fade(node: Control, delay: float, duration: float) -> Tween:
+	node.modulate.a = 0.0
+	var tween := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(node, "modulate:a", 1.0, duration).set_delay(delay)
+	return tween
+
+
+func _enable_new_run() -> void:
+	_new_run.disabled = false
+	_new_run.grab_focus()
 
 
 func _on_new_run_pressed() -> void:
-	new_run_button.disabled = true
-	await _animate_new_run_commit()
+	_new_run.disabled = true
 	RunState.reset_run()
 	SCENE_ROUTER.change_to(self, "res://scenes/class_select/class_select.tscn")
-
-
-func _animate_new_run_commit() -> void:
-	new_run_button.pivot_offset = new_run_button.size * 0.5
-	var tween := new_run_button.create_tween()
-	tween.tween_property(new_run_button, "scale", Vector2(0.96, 0.94), 0.055).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	tween.tween_property(new_run_button, "scale", Vector2(1.035, 1.035), 0.075).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(new_run_button, "scale", Vector2.ONE, 0.055)
-	await tween.finished
-
-# Preserve the full original summary, with native scrolling for long builds.
-func _bound_summary() -> void:
-	var scroll := ScrollContainer.new()
-	scroll.name = "SummaryScroll"
-	scroll.position = Vector2(350, 248)
-	scroll.size = Vector2(580, 236)
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
-	add_child(scroll)
-	summary_label.reparent(scroll)
-	summary_label.position = Vector2.ZERO
-	summary_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	summary_label.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
-	summary_label.custom_minimum_size = Vector2.ZERO
-	summary_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
-	summary_label.add_theme_font_size_override("font_size", 16)
-	summary_label.mouse_filter = Control.MOUSE_FILTER_PASS

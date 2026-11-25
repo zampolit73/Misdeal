@@ -1,3 +1,7 @@
+## Run End Visual V2 · Wizard's Verdict
+
+Runtime plates, layout and action states live in `assets/pixel/run_end/visual_v2/`. The full verified package and approved references are kept in `assets/source_archive/run_end_v2/`. The scene uses the established dossier portraits and reliquary textures.
+
 ## Event Choice Visual V3.1 · pilot
 
 `shaders/event_choice_bronze.gdshader` grades the existing Event Choice Visual V2 frame locally. The shared skin applies a companion tint to the existing dossier plate. [Native before/after captures](qa/event_choice_v31/README.md)

@@ -1,0 +1,309 @@
+{
+  "resolution": [
+    1280,
+    720
+  ],
+  "plates": {
+    "victory": "runtime/victory_plate.webp",
+    "defeat": "runtime/defeat_plate.webp"
+  },
+  "rect_format": "[x,y,width,height]",
+  "regions": {
+    "title": [
+      635,
+      20,
+      616,
+      49
+    ],
+    "result": [
+      743,
+      74,
+      400,
+      53
+    ],
+    "quote": [
+      633,
+      134,
+      618,
+      74
+    ],
+    "stats": [
+      633,
+      217,
+      618,
+      66
+    ],
+    "party_heading": [
+      633,
+      291,
+      282,
+      23
+    ],
+    "relics_heading": [
+      927,
+      291,
+      324,
+      23
+    ],
+    "upgrade_heading": [
+      633,
+      445,
+      618,
+      24
+    ],
+    "hp_bonus": [
+      633,
+      474,
+      304,
+      35
+    ],
+    "damage_bonus": [
+      947,
+      474,
+      304,
+      35
+    ],
+    "upgrade_text": [
+      638,
+      516,
+      609,
+      35
+    ],
+    "last_deal": [
+      633,
+      559,
+      618,
+      47
+    ],
+    "new_run": [
+      750,
+      620,
+      390,
+      62
+    ]
+  },
+  "stats_cells": [
+    [
+      637,
+      220,
+      199,
+      60
+    ],
+    [
+      842,
+      220,
+      199,
+      60
+    ],
+    [
+      1048,
+      220,
+      198,
+      60
+    ]
+  ],
+  "party_slots": [
+    {
+      "rect": [
+        637,
+        319,
+        88,
+        105
+      ],
+      "portrait_rect": [
+        642,
+        324,
+        78,
+        79
+      ],
+      "name_rect": [
+        637,
+        403,
+        88,
+        19
+      ],
+      "fate_rect": [
+        633,
+        423,
+        96,
+        20
+      ]
+    },
+    {
+      "rect": [
+        733,
+        319,
+        88,
+        105
+      ],
+      "portrait_rect": [
+        738,
+        324,
+        78,
+        79
+      ],
+      "name_rect": [
+        733,
+        403,
+        88,
+        19
+      ],
+      "fate_rect": [
+        729,
+        423,
+        96,
+        20
+      ]
+    },
+    {
+      "rect": [
+        829,
+        319,
+        88,
+        105
+      ],
+      "portrait_rect": [
+        834,
+        324,
+        78,
+        79
+      ],
+      "name_rect": [
+        829,
+        403,
+        88,
+        19
+      ],
+      "fate_rect": [
+        825,
+        423,
+        96,
+        20
+      ]
+    }
+  ],
+  "relic_slots": [
+    {
+      "rect": [
+        932,
+        320,
+        42,
+        42
+      ]
+    },
+    {
+      "rect": [
+        977,
+        320,
+        42,
+        42
+      ]
+    },
+    {
+      "rect": [
+        1022,
+        320,
+        42,
+        42
+      ]
+    },
+    {
+      "rect": [
+        1067,
+        320,
+        42,
+        42
+      ]
+    },
+    {
+      "rect": [
+        1112,
+        320,
+        42,
+        42
+      ]
+    },
+    {
+      "rect": [
+        1157,
+        320,
+        42,
+        42
+      ]
+    },
+    {
+      "rect": [
+        1202,
+        320,
+        42,
+        42
+      ]
+    },
+    {
+      "rect": [
+        932,
+        367,
+        42,
+        42
+      ]
+    },
+    {
+      "rect": [
+        977,
+        367,
+        42,
+        42
+      ]
+    },
+    {
+      "rect": [
+        1022,
+        367,
+        42,
+        42
+      ]
+    },
+    {
+      "rect": [
+        1067,
+        367,
+        42,
+        42
+      ]
+    },
+    {
+      "rect": [
+        1112,
+        367,
+        42,
+        42
+      ]
+    },
+    {
+      "rect": [
+        1157,
+        367,
+        42,
+        42
+      ]
+    }
+  ],
+  "button_states": {
+    "normal": "runtime/new_run_normal.png",
+    "hover": "runtime/states/new_run_hover.png",
+    "pressed": "runtime/states/new_run_pressed.png"
+  },
+  "palette": {
+    "bone": "#E5CCAC",
+    "muted": "#BAA68C",
+    "ink": "#301F18",
+    "defeat": "#C78C78",
+    "bronze": "#927054"
+  },
+  "notes": [
+    "All labels, icons, statuses, counts and portraits are live nodes; plates have no baked gameplay data.",
+    "Use approved production hero portraits, not concept portraits.",
+    "Relic slots are visual capacity, not collectible unlock state. Do not imply unowned slots are undiscovered.",
+    "If text exceeds rectangle, wrap/scroll; do not shrink below readable size."
+  ]
+}

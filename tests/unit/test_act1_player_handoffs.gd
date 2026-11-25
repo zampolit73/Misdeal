@@ -174,7 +174,7 @@ func test_boss_xiii_reward_reaches_real_run_end_screen() -> void:
 	assert_eq(RunState.cards_resolved, 12, "Boss is XIII, not a thirteenth pre-boss card")
 	var ending := _scene(RUN_END)
 	if ending != null:
-		assert_eq((ending.get_node("Title") as Label).text, "ЗАБЕГ ЗАВЕРШЁН")
+		assert_eq((ending.get_node("Title") as Label).text, "ПОБЕДА")
 
 
 func test_first_battle_defeat_offers_last_deal_then_refusal_ends_run() -> void:
@@ -193,8 +193,8 @@ func test_first_battle_defeat_offers_last_deal_then_refusal_ends_run() -> void:
 	assert_false(RunState.last_deal_pending)
 	var ending := _scene(RUN_END)
 	if ending != null:
-		assert_eq((ending.get_node("Title") as Label).text, "ПАРТИЯ ПРОИГРАНА")
-		assert_true((ending.get_node("WizardLine") as Label).text.contains("A1P3"))
+		assert_eq((ending.get_node("Title") as Label).text, "ПОРАЖЕНИЕ")
+		assert_true((ending.get_node("Details/WizardQuote/Copy") as Label).text.contains("A1P3"))
 
 
 func test_chained_prisoner_recruitment_resolves_into_party_and_scar() -> void:

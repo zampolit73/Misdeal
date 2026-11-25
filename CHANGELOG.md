@@ -1,3 +1,7 @@
+## Run End Visual V2 · Wizard's Verdict
+
+Release the approved victory and defeat layouts with live run data, hero portraits and up to 13 relics. Keep the existing archive, save and New Run flow.
+
 ## Event Choice Visual V3.2 · approved
 
 Production rollout accepted by the player on 2026-11-25 (PR #146). Roll out the approved V3.1 finish to all 24 Act I events through the shared Event Choice skin. Layout, illustration, text, prices and effects retain their existing behavior.
