@@ -1,6 +1,6 @@
-## Event Choice Visual V3.2
+## Event Choice Visual V3.2 · approved
 
-Roll out the approved V3.1 finish to all 24 Act I events through the shared Event Choice skin. Layout, illustration, text, prices and effects retain their existing behavior.
+Production rollout accepted by the player on 2026-11-25 (PR #146). Roll out the approved V3.1 finish to all 24 Act I events through the shared Event Choice skin. Layout, illustration, text, prices and effects retain their existing behavior.
 
 ## Table Interface V5.1
 
