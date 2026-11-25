@@ -10,9 +10,13 @@ PR #144 is merged and the player accepted the production result. Preserve the ap
 
 PR #147 is merged into main and the player approved the production result on 2026-11-25. Preserve both result plates and existing run/save flow. For regression checks: In QA Hub, open «Интерфейс» and select «Конец забега — победа» or «Конец забега — поражение». Verify the actual scroll areas, relic tooltips and «Новый забег». [Native frames and QA](qa/run_end_visual_v2/README.md)
 
-## Reward Cinematics 1.0 · Normal Loot
+## Reward Cinematics 1.0 · Normal Loot complete
 
-Check «Награда — настоящая обычная добыча» under «Интерфейс» in QA Hub. Keep the other reward modes on their current presentation. [Native evidence](qa/reward_loot_v1/README.md)
+PR #148 is merged into main and the player approved the production result. Preserve the supplied plate, live gold amount, debt state, single claim and existing route. For regression checks, open «Награда — настоящая обычная добыча» under «Интерфейс» in QA Hub. [Native evidence](qa/reward_loot_v1/README.md)
+
+## Next proposed visual milestone — Elite Relic Reward
+
+Prepare a user-approved concept for `elite_artifact` (crypt_guard, after any due major upgrade). Use actual ArtifactData and ArtifactArtCatalog artwork, one to three compatible available relic choices and the existing +50 gold fallback if none remain. Preserve reward selection, saving, economy and transitions. Match the muted Table V5.1 / Event V3.2 / Normal Loot palette. Major/bonus upgrades and Death Wager remain separate visual steps.
 
 ## Next visual check — Ossuary Gate fog correction
 
