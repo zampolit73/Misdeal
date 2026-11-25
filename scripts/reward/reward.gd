@@ -24,6 +24,8 @@ const LOOT_HOVER := preload("res://assets/pixel/ui/reward_loot_v1/runtime/claim_
 const LOOT_PRESSED := preload("res://assets/pixel/ui/reward_loot_v1/runtime/claim_pressed.webp")
 const LOOT_DISABLED := preload("res://assets/pixel/ui/reward_loot_v1/runtime/claim_disabled.webp")
 const LOOT_BONE := Color("e5ccac")
+const ELITE_TROPHY := preload("res://scripts/reward/elite_trophy.gd")
+var _elite_trophy: ELITE_TROPHY
 const ROLE_FALLBACK_ART := {
 	"knight": preload("res://assets/art/units/knight.webp"),
 	"ranger": preload("res://assets/art/units/ranger.webp"),
@@ -87,7 +89,7 @@ func _ready() -> void:
 
 	_refresh_run_stats()
 	_setup_initial_reward()
-	if reward_mode != "normal_loot":
+	if reward_mode not in ["normal_loot", "elite_artifact"]:
 		BACKDROP_READOUTS.apply(self,"НАГРАДА")
 	call_deferred("_animate_reward_screen_in")
 
@@ -548,6 +550,7 @@ func _setup_elite_reward() -> void:
 		_set_reward_card(0, "empty_cache", "ТРОФЕЙ СТРАЖА", "ОПУСТЕВШИЙ ТАЙНИК", "+50 золота\nВсе известные артефакты уже у вас.")
 		iron_ward_button.visible = false
 		tempered_steel_button.visible = false
+		_present_elite_trophy(upgrade_portraits[0].texture)
 		return
 
 	for index in range(reward_buttons.size()):
@@ -564,6 +567,23 @@ func _setup_elite_reward() -> void:
 
 		option_ids[index] = artifact_id
 		_set_reward_card(index, artifact_id, "ЭЛИТНАЯ РЕЛИКВИЯ", artifact.title, artifact.description)
+		upgrade_portraits[index].texture = ARTIFACT_ART_CATALOG.get_reliquary_texture(artifact_id)
+	_present_elite_trophy()
+
+
+func _present_elite_trophy(empty_cache_art: Texture2D = null) -> void:
+	var ids: Array[String] = []
+	for id in option_ids:
+		if not id.is_empty():
+			ids.append(id)
+	for child in get_children():
+		if child is CanvasItem and child != $Background:
+			child.hide()
+	_elite_trophy = ELITE_TROPHY.new()
+	add_child(_elite_trophy)
+	_elite_trophy.confirmed.connect(_on_reward_button_pressed)
+	_elite_trophy.inspect_input.connect(_on_reward_detail_input)
+	_elite_trophy.build(ids, title_label.text, summary_label.text, empty_cache_art)
 
 func _on_reward_button_pressed(index: int) -> void:
 	if reward_input_locked or reward_completed: return
@@ -576,7 +596,10 @@ func _on_reward_button_pressed(index: int) -> void:
 
 	reward_input_locked = true
 	_disable_reward_buttons()
-	if reward_mode != "normal_loot":
+	if reward_mode == "elite_artifact":
+		_elite_trophy.set_locked(true)
+		await get_tree().create_timer(0.14).timeout
+	elif reward_mode != "normal_loot":
 		await _animate_reward_commit(index)
 	var option_id := option_ids[index]
 
@@ -794,7 +817,7 @@ func _refresh_run_stats() -> void:
 	]
 
 func _animate_reward_screen_in() -> void:
-	if reward_mode == "normal_loot":
+	if reward_mode in ["normal_loot", "elite_artifact"]:
 		return
 	header_panel.pivot_offset = header_panel.size * 0.5
 	header_panel.scale = Vector2(0.985, 0.985)
@@ -893,6 +916,8 @@ func _reset_buttons() -> void:
 
 func _enable_reward_buttons() -> void:
 	reward_input_locked = false
+	if is_instance_valid(_elite_trophy):
+		_elite_trophy.set_locked(false)
 	for button in reward_buttons:
 		if button.visible:
 			button.disabled = false
@@ -922,6 +947,8 @@ func _finish_reward(message: String, relic: bool = false) -> void:
 			summary_label.text = feedback
 	if reward_mode == "normal_loot":
 		_fit_loot_summary()
+	elif reward_mode == "elite_artifact":
+		_elite_trophy.show_message(message)
 	await get_tree().create_timer(0.42 if reward_mode == "normal_loot" else 0.22).timeout
 
 	if RunState.is_run_complete():

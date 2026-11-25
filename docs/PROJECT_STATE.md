@@ -1,3 +1,7 @@
+## Reward Cinematics 1.0 · Elite Artifact
+
+Crypt Guard rewards use the approved Guardian Trophy plate. The scene shows up to three actual eligible relics or the existing empty-cache payout. [Native QA](qa/reward_elite_v1/README.md)
+
 ## Reward Cinematics 1.0 · Normal Loot approved in main
 
 The player accepted the production Normal Loot screen after PR #148 merged into main. Normal Loot uses the approved 1280×720 plate. The live gold amount follows the existing multiplier, and the wallet refreshes after a single claim. [Native QA](qa/reward_loot_v1/README.md)

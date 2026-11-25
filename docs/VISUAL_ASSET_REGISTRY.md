@@ -1,3 +1,7 @@
+## Reward Cinematics 1.0 · Elite Artifact
+
+The Guardian Trophy plate, layout and selection states live in `assets/pixel/ui/reward_elite_v1/`. The approved reference and source art are kept in `assets/source_archive/reward_elite_v1/`.
+
 ## Reward Cinematics 1.0 · Normal Loot
 
 The clean plate, 1280×720 coordinates and claim states live in `assets/pixel/ui/reward_loot_v1/`. The approved reference and layout preview are in `assets/source_archive/reward_loot_v1/`.
