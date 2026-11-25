@@ -1,0 +1,214 @@
+{
+  "version": 1,
+  "screen_id": "reward_elite_artifact",
+  "resolution": [
+    1280,
+    720
+  ],
+  "coordinate_system": "absolute x,y,width,height on 1280x720 logical canvas",
+  "plate": "runtime/artifact_reward_plate.webp",
+  "title": {
+    "rect": [
+      482,
+      23,
+      570,
+      50
+    ],
+    "font_size": 32
+  },
+  "wizard_line": {
+    "rect": [
+      506,
+      102,
+      522,
+      57
+    ],
+    "font_size": 19,
+    "min_font_size": 16,
+    "wrap": true
+  },
+  "slots": [
+    {
+      "index": 0,
+      "rect": [
+        374,
+        184,
+        281,
+        397
+      ],
+      "art_rect": [
+        399,
+        211,
+        231,
+        160
+      ],
+      "title_rect": [
+        393,
+        393,
+        243,
+        39
+      ],
+      "description_rect": [
+        396,
+        442,
+        237,
+        104
+      ],
+      "selected_marker_rect": [
+        406,
+        209,
+        217,
+        19
+      ],
+      "hover_overlay": "runtime/states/slot_0_hover.png",
+      "selected_overlay": "runtime/states/slot_0_selected.png",
+      "inactive_texture": "runtime/states/slot_0_inactive.webp",
+      "title_font_size": 18,
+      "title_min_font_size": 15,
+      "description_font_size": 17,
+      "description_min_font_size": 15
+    },
+    {
+      "index": 1,
+      "rect": [
+        670,
+        184,
+        279,
+        397
+      ],
+      "art_rect": [
+        695,
+        211,
+        229,
+        160
+      ],
+      "title_rect": [
+        689,
+        393,
+        241,
+        39
+      ],
+      "description_rect": [
+        692,
+        442,
+        235,
+        104
+      ],
+      "selected_marker_rect": [
+        702,
+        209,
+        215,
+        19
+      ],
+      "hover_overlay": "runtime/states/slot_1_hover.png",
+      "selected_overlay": "runtime/states/slot_1_selected.png",
+      "inactive_texture": "runtime/states/slot_1_inactive.webp",
+      "title_font_size": 18,
+      "title_min_font_size": 15,
+      "description_font_size": 17,
+      "description_min_font_size": 15
+    },
+    {
+      "index": 2,
+      "rect": [
+        965,
+        184,
+        284,
+        397
+      ],
+      "art_rect": [
+        990,
+        211,
+        234,
+        160
+      ],
+      "title_rect": [
+        984,
+        393,
+        246,
+        39
+      ],
+      "description_rect": [
+        987,
+        442,
+        240,
+        104
+      ],
+      "selected_marker_rect": [
+        997,
+        209,
+        220,
+        19
+      ],
+      "hover_overlay": "runtime/states/slot_2_hover.png",
+      "selected_overlay": "runtime/states/slot_2_selected.png",
+      "inactive_texture": "runtime/states/slot_2_inactive.webp",
+      "title_font_size": 18,
+      "title_min_font_size": 15,
+      "description_font_size": 17,
+      "description_min_font_size": 15
+    }
+  ],
+  "visible_slot_map": {
+    "0_fallback": [
+      1
+    ],
+    "1": [
+      1
+    ],
+    "2": [
+      0,
+      2
+    ],
+    "3": [
+      0,
+      1,
+      2
+    ]
+  },
+  "button": {
+    "rect": [
+      507,
+      604,
+      437,
+      77
+    ],
+    "text_rect": [
+      548,
+      622,
+      355,
+      38
+    ],
+    "font_size": 25,
+    "textures": {
+      "idle": "runtime/states/confirm_button_idle.webp",
+      "hover": "runtime/states/confirm_button_hover.webp",
+      "pressed": "runtime/states/confirm_button_pressed.webp",
+      "disabled": "runtime/states/confirm_button_disabled.webp"
+    }
+  },
+  "hint": {
+    "rect": [
+      460,
+      687,
+      500,
+      20
+    ],
+    "font_size": 12,
+    "optional": true
+  },
+  "colors": {
+    "bone": "#dcc4a0",
+    "ink": "#302219",
+    "muted_ink": "#584132",
+    "selected_marker": "#ead2ad"
+  },
+  "data_bindings": {
+    "artifact_texture": "ArtifactArtCatalog.get_reliquary_texture(artifact_id)",
+    "title": "ArtifactData.title",
+    "description": "ArtifactData.description",
+    "fallback_option_id": "elite_gold",
+    "fallback_gold": 50
+  },
+  "preview_note": "Text layout demonstration; no actual item images embedded. The engine supplies real item textures."
+}

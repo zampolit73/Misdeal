@@ -1,3 +1,7 @@
+## Reward Cinematics 1.0 · Elite Artifact
+
+Release the approved Guardian Trophy screen for Crypt Guard victories. Select and confirm an available relic or claim the existing 50 gold from an empty cache.
+
 ## Reward Cinematics 1.0 · Normal Loot approved
 
 Production result accepted by the player (PR #148). Add the approved Normal Loot presentation with live reward totals, the repaid-debt state and the existing coin feedback and route.

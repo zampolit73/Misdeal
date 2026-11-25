@@ -1,0 +1,7 @@
+{
+  "approved_reference": "approved concept, generated for Misdeal, dfda0d20-60c2-4da0-aa00-949e868eac3a",
+  "clean_master": "clean visual adaptation, generated for Misdeal, 7be25144-61be-4aa4-afa2-5c60f5c0f27b",
+  "runtime": "1280x720 resize and local derived state crops",
+  "artifact_images": "existing repository; not included",
+  "runtime_QA": "NOT_RUN"
+}
