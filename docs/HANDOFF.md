@@ -18,9 +18,13 @@ PR #148 is merged into main and the player approved the production result. Prese
 
 PR #149 is merged into main and the player approved the result. Preserve the supplied plate, actual relic art and confirm/claim behavior. For regression checks, review the production Reward scene after a Crypt Guard victory, including any due major upgrade. Use the original option order and economics. [Native evidence](qa/reward_elite_v1/README.md)
 
-## Reward Cinematics 1.0 · Hero Development
+## Reward Cinematics 1.0 · Hero Development complete
 
-Review the real development reward in QA Hub under «Интерфейс». Death Wager itself remains the next visual step. [Native evidence](qa/reward_development_v1/README.md)
+PR #150 is merged into main and the player approved the result. Preserve live offers, signed modifiers and direct claim. For regression checks, review the real development reward in QA Hub under «Интерфейс». Death Wager itself remains the next visual step. [Native evidence](qa/reward_development_v1/README.md)
+
+## Next proposed visual milestone — Death Wager Reward
+
+Prepare a user-approved concept for death_wager: 60 gold, the pending eligible relic (50 gold fallback), or bonus development (45 gold if capped). Preserve the pending relic, debt rules, direct claim and transition to bonus development. Match the approved muted reward palette and keep the other four modes unchanged.
 
 ## Next visual check — Ossuary Gate fog correction
 
