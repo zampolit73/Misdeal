@@ -1,6 +1,6 @@
-## Event Choice Visual V3.2
+## Event Choice Visual V3.2 · complete
 
-Review in QA Hub under «События». «Знамя на бинты» has three choices, «Лавка могильщика» has four and shows locked offers at zero gold, and «Шепчущий колодец» verifies the dedicated scene. All use the approved V3.1 palette through the shared presentation.
+PR #146 is merged into main and the player accepted the production rollout on 2026-11-25. Preserve the approved muted palette, layout, illustration and choice semantics across all 24 events. For future regression checks use QA Hub under «События». «Знамя на бинты» has three choices, «Лавка могильщика» has four and shows locked offers at zero gold, and «Шепчущий колодец» verifies the dedicated scene. All use the approved V3.1 palette through the shared presentation.
 
 ## Table Interface V5.1 · complete
 
