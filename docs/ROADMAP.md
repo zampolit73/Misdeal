@@ -1,3 +1,9 @@
+## Final Visual Audit 1.0
+
+- [x] Пакет реализации четырёх P1 + P2-06/07, решения по всем P2 и целевые headless проверки.
+- [ ] Нативная приёмка затронутых экранов, решение о необходимости дополнительного grade Last Camp (P2-05), контрольный непрерывный F5-забег первого акта. [План](FINAL_VISUAL_AUDIT_1_0_FIXES.md).
+- [ ] После визуальной приёмки — плейтест первого акта: темп, разнообразие боёв, ощущение прогресса.
+
 ## Gameplay 2.0
 
 - A · Wounds, rest stops and one reliable merchant checkpoint. [Rules and QA](GAMEPLAY_2_0.md)

@@ -122,6 +122,12 @@ static func get_black_altar_texture(index: int) -> Texture2D:
 
 static func get_action_texture(action: String) -> Texture2D:
 	match action:
+		"dice":
+			return preload("res://assets/pixel/ui/approved_event_choice_polish/final_audit_v1/dice.webp")
+		"wounded_knight":
+			return preload("res://assets/pixel/ui/approved_event_choice_polish/final_audit_v1/wounded_knight.webp")
+		"burning_card":
+			return preload("res://assets/pixel/ui/approved_event_choice_polish/final_audit_v1/burning_card.webp")
 		"rescue":
 			return get_rattling_bridge_texture(0)
 		"bag":

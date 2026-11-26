@@ -146,7 +146,7 @@ func _empty_offer(slot: Dictionary) -> void:
 	matte.color = Color("1c1514")
 	matte.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	UI.put(self, matte, area.grow(-5))
-	_copy(slot.name, "НЕТ В ПРОДАЖЕ", 15, MUTED)
+	_copy(slot.name, "НЕТ В ПРОДАЖЕ", 15, INK)
 
 
 func _hotspot(bounds: Array, title: String, action: String) -> Button:

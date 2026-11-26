@@ -1,3 +1,11 @@
+## Final Visual Audit 1.0 · пакет исправлений P1
+
+Четыре P1 реализованы одним локальным пакетом; P2-06/07 исправлены, P2-05 оставлен на нативную приёмку. 26/26 целевых и регрессионных тестов Godot 4.7.2. Сохраняются утверждённый арт, правила, цены, сохранения и текущий UI. Нативные кадры после правок, контрольный F5 и финальная оценка ещё не подтверждены. [Реализация, доказательства и остаток](FINAL_VISUAL_AUDIT_1_0_FIXES.md).
+
+## Final Visual Audit 1.0
+
+Визуальная оценка первого акта на `d4b94d2b` — 8,1/10. Готов к управляемой демонстрации. Зафиксированы 4 P1 и 3 P2, подтверждённых P0 в проверенных сценариях нет. В Godot сняты все 24 стартовых экрана событий и актуальные кадры Врат оссуария и XIII. [Результаты и план исправлений](FINAL_VISUAL_AUDIT_1_0_HANDOFF.md).
+
 ## Reward Cinematics 1.0 · Death Wager Visual V1.2
 
 The real Death Wager reward uses the approved V1.2 composition and the live relic catalog. It shows the active debt warning, the current extra-development progress and the existing gold alternatives when relics run out or development is capped. [Native QA](qa/reward_death_wager_v12/README.md)
@@ -58,9 +66,9 @@ The player approved Run Chronicle Visual V2 after PR #141 merged into main. The 
 
 The player approved Bestiary Visual V2 on 2026-11-24 after PR #140 merged into main. The Bestiary uses the supplied 4×3 cabinet variant. It shows the 26 existing entries over three pages with live profiles, UnitData text and approved combat portraits. The Reliquary V2.1 art is approved in main. [Reference, Godot captures and QA](qa/bestiary_visual_v2/README.md)
 
-## Ossuary Gate — V4.1 fog correction (native review pending)
+## Ossuary Gate · visual audit
 
-The player approved Living Arenas V4.1 except that the Ossuary Gate mist looked like a spotlight. The portal now uses two soft, slow, low drifting banks instead of bright diagonal bands, with a reduced lower combat-start haze cue. All other arenas remain as approved. Verify the result visually in F6 at 1280×720 before marking accepted. [V4.1 details](LIVING_ARENAS_V4_1.md)
+Current Godot 4.7.2 frames on `d4b94d2b` show low haze around the rear portal during preparation and at combat start. The start frame also records an overlapping bellkeeper label. [Audit evidence and follow-up](FINAL_VISUAL_AUDIT_1_0_HANDOFF.md).
 
 ## Living Arenas V4.1
 

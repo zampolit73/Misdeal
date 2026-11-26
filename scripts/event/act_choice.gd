@@ -248,7 +248,7 @@ func _apply_approved_choice_art() -> void:
 			buttons,
 			arts,
 			[
-				APPROVED_EVENT_CHOICE_ART.get_action_texture("chains"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("wounded_knight"),
 				APPROVED_EVENT_CHOICE_ART.get_action_texture("coins"),
 				APPROVED_EVENT_CHOICE_ART.get_action_texture("loot_body"),
 			]
@@ -272,7 +272,7 @@ func _apply_approved_choice_art() -> void:
 			buttons,
 			arts,
 			[
-				APPROVED_EVENT_CHOICE_ART.get_action_texture("occult_card"),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("dice"),
 				APPROVED_EVENT_CHOICE_ART.get_action_texture("coins"),
 				APPROVED_EVENT_CHOICE_ART.get_action_texture("blood"),
 			]
@@ -313,7 +313,7 @@ func _apply_approved_choice_art() -> void:
 			[
 				APPROVED_EVENT_CHOICE_ART.get_action_texture("occult_card"),
 				fate_art,
-				CARD_ART_CATALOG.get_run_card_texture(active_card.card_id),
+				APPROVED_EVENT_CHOICE_ART.get_action_texture("burning_card"),
 			]
 		)
 		return
