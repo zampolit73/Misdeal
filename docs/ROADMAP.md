@@ -1,7 +1,8 @@
 ## Wizard Wager Visual V1
 
 - [x] Implement approved isolated offer modal with existing mechanics.
-- [ ] Confirm native frame and both choices during the remaining Final Visual Audit 1.0 control run.
+- [x] Merge PR #158; player accepted the production presentation on 2026-11-26.
+- [ ] Include both wager outcomes in the remaining Act I gameplay/control-run coverage.
 
 ## Final Visual Audit 1.0
 

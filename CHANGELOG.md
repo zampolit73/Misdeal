@@ -1,6 +1,6 @@
 ## Wizard Wager Visual V1
 
-Replace the old optional wizard wager modal presentation with an isolated approved contract plate, live risk/reward/bonus copy and two accessible action buttons. Preserve real accept/refuse and the debt, normal-loot multiplier and sacrifice contract.
+Replace the old optional wizard wager modal presentation with an isolated approved contract plate, live risk/reward/bonus copy and two accessible action buttons. Preserve real accept/refuse and the debt, normal-loot multiplier and sacrifice contract. Merged PR #158, player-approved 2026-11-26. D315 smoke now verifies the exact approved D343 source and its intentional localized runtime grade without altering the art.
 
 ## Final Visual Audit 1.0 · P1 implementation candidate
 

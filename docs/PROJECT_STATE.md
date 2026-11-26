@@ -1,10 +1,10 @@
-## Wizard Wager Visual V1
+## Wizard Wager Visual V1 · approved in main
 
-The optional «Ставка Волшебника» offer now has its own approved isolated two-sided contract plate over the existing Table. Live text explains +25% enemy damage while debt is active, double normal loot and the «Жертва» order. Accept/refuse retain original RunState handlers; the modal owns keyboard focus. [Reference, layout and QA](../assets/source_archive/wizard_wager_v1/README.md). Native visual acceptance pending.
+The optional «Ставка Волшебника» offer now has its own approved isolated two-sided contract plate over the existing Table. Live text explains +25% enemy damage while debt is active, double normal loot and the «Жертва» order. Accept/refuse retain original RunState handlers; the modal owns keyboard focus. [Reference, layout and QA](../assets/source_archive/wizard_wager_v1/README.md). Merged [PR #158](https://github.com/zampolit73/Misdeal/pull/158) at `e9129d26`; player explicitly accepted the result on 2026-11-26. Preserve this presentation. The separate full Act I control run remains outstanding.
 
 ## Final Visual Audit 1.0 · пакет исправлений P1
 
-Четыре P1 реализованы одним локальным пакетом; P2-06/07 исправлены, P2-05 оставлен на нативную приёмку. 26/26 целевых и регрессионных тестов Godot 4.7.2. Сохраняются утверждённый арт, правила, цены, сохранения и текущий UI. Нативные кадры после правок, контрольный F5 и финальная оценка ещё не подтверждены. [Реализация, доказательства и остаток](FINAL_VISUAL_AUDIT_1_0_FIXES.md).
+Четыре P1 реализованы и слиты в main через PR #157; P2-06/07 исправлены, P2-05 оставлен на нативную приёмку. 26/26 целевых и регрессионных тестов Godot 4.7.2. Сохраняются утверждённый арт, правила, цены, сохранения и текущий UI. Нативные кадры после правок, контрольный F5 и финальная оценка ещё не подтверждены. [Реализация, доказательства и остаток](FINAL_VISUAL_AUDIT_1_0_FIXES.md).
 
 ## Final Visual Audit 1.0
 

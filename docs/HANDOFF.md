@@ -1,10 +1,10 @@
-## Wizard Wager Visual V1 · native acceptance
+## Wizard Wager Visual V1 · approved in main
 
-On the real Table, reach the optional wager after card II/III or VII when eligible. Check the isolated contract, mouse and keyboard accept/refuse, debt and sacrifice state, and return to the unchanged two-card Table. This is not the post-battle Death Wager reward. [Reference and validation](../assets/source_archive/wizard_wager_v1/README.md).
+PR #158 is merged, and the player confirmed acceptance on 2026-11-26. Preserve the approved optional contract and original mechanics; no further redesign is pending. In the full Act I control run, exercise the wager after II/III or VII when eligible. This is not the post-battle Death Wager reward. [Reference and validation](../assets/source_archive/wizard_wager_v1/README.md).
 
 ## Final Visual Audit 1.0 · следующий шаг
 
-Аудит завершён на `d4b94d2b`. Закрыть четыре P1 и провести один контрольный забег до XIII перед передачей издательской сборки. [Передача в новый чат и критерии приёмки](FINAL_VISUAL_AUDIT_1_0_HANDOFF.md).
+Аудит завершён на `d4b94d2b`; пакет четырёх P1 и P2-06/07 слит через PR #157. Следующий шаг: нативная приёмка остальных исправлений, решение по P2-05 (Last Camp) и непрерывный контрольный F5-забег до XIII перед передачей издательской сборки. [Передача в новый чат и критерии приёмки](FINAL_VISUAL_AUDIT_1_0_HANDOFF.md).
 
 ## Camp Rest Visual V2
 
