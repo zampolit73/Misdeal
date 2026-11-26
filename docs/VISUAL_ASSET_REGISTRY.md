@@ -1,3 +1,7 @@
+## Main Menu Visual V2
+
+The text-free background, original logo crop and button plates are in `assets/pixel/main/menu_v2/`. The approved reference and two retouched masters are in `assets/source_archive/main_menu_v2/`.
+
 ## Merchant Visual V2
 
 The clean plate and layout are in `assets/pixel/ui/merchant_v2/`. The approved reference and retouched master are in `assets/source_archive/merchant_v2/`. Relics use the existing reliquary catalog.
