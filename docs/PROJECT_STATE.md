@@ -66,6 +66,63 @@ The player approved Bestiary Visual V2 on 2026-11-24 after PR #140 merged into m
 
 Current Godot 4.7.2 frames on `d4b94d2b` show low haze around the rear portal during preparation and at combat start. The start frame also records an overlapping bellkeeper label. [Audit evidence and follow-up](FINAL_VISUAL_AUDIT_1_0_HANDOFF.md).
 
+## Living Arenas V4.1
+
+Six arenas add readable flame, ember, smoke and stained-glass motion during preparation and combat through the existing shader. [Native sequences](LIVING_ARENAS_V4_1.md)
+
+## Living Arenas V4 Lite
+
+Six arenas reuse the existing backdrop masks for local reactions to combat start, wave II or victory. [Coverage and native frames](LIVING_ARENAS_V4_LITE.md)
+
+## Bone Warden XIII · throne intro
+
+XIII opens with a 1.95-second rise from the throne, then hands off to Combat Planning in front of the empty throne. Click, Enter, Space or Esc skips to preparation. The original combat Warden takes over from his normal deployment position. [Godot verification](WARDEN_INTRO.md)
+
+## Gameplay 2.0 · Wizard Archive
+
+The main menu opens four archival sections. Each hero unlocks a distinct starting style by winning XIII, and five Wizard oaths form an opt-in difficulty ladder. Run save schema 3 keeps active settings and the independent archive retains long-term progress. [Rules, migration and native QA](GAMEPLAY_2_0.md#package-c--wizard-archive-and-new-runs)
+
+## Gameplay 2.0 · Builds & Rewards
+
+Act I has 13 relics. Conditional combat effects and the existing upgrades support blood, defense, Mage splash and Wizard economy builds. Dossier, Reward, the merchant and event results expose live effects and stat changes. [Catalog and QA](GAMEPLAY_2_0.md#package-b--builds--rewards)
+
+## Gameplay 2.0 · Core
+
+Heroes carry their wounds between fights and recover 25% of maximum HP after each victory. Rest stops after IV and XII and the merchant after VIII run outside the Fate Spread. The victory and paid Last Deal checkpoints retain health and handle old save slots. [Rules and QA](GAMEPLAY_2_0.md)
+
+## Combat Audio V2
+
+Act I battles use processed CC0 foley and quiet location beds from combat start through the result fade. The approved footsteps and the UI and Travel palette keep their original cues. [Sources](audio/THIRD_PARTY_AUDIO_LICENSES.md#combat-audio-v2)
+
+## Act I sound cues
+
+Live scenes use additional UI, Combat and Ambience cues. Arena openings use short faded excerpts by location family. The old D374 audition loops remain opt-in. [CC0 sources](audio/THIRD_PARTY_AUDIO_LICENSES.md)
+
+## Event Choice Visual V2
+
+All 24 Act I events use the approved bronze and burgundy decision frame, with separate parchment for the action and its effects. ActChoice and WhisperingWell share the skin and allocate more parchment to long descriptions. Live prices, restrictions, outcomes and mouse/keyboard controls still come from the original events. [Coverage and native gallery](EVENT_CHOICE_UI_VNEXT.md)
+
+## D420 V2 — released in campaign
+
+The player approved D420 V2, and PR #126 shipped in `d841d089`. All 24 new enemy animation packs are active by default in all 22 Act I encounters. The F6 gallery keeps both versions for comparison. [Review and native evidence](ENEMY_VISUAL_POLISH_V2_REVIEW.md) · [Production CI](https://github.com/zampolit73/Misdeal/actions/runs/44714818399)
+
+## Living Arenas V3 — Act I coverage
+
+The shared BattleBackdrop resolves all 22 encounters across 16 original paintings. The Ossuary and Death Wager atmospheres use distinct masks on a shared painting. QA Hub can compare, pause and replay all 17 profiles in the real Battle. [Implementation, coverage and checks](LIVING_ARENAS_V3.md)
+
+## Living Arenas V2 — campaign rollout
+
+PR #124 delivers local haze, dust and source lights for Last Bell, Ossuary Gate and Bone Warden XIII. The Warden's original phase transition ramps the backdrop effect. The shared Ossuary painting keeps its original presentation in Death Wager. QA Hub has a dedicated ЖИВЫЕ АРЕНЫ tab. [Implementation and native checks](LIVING_ARENAS_V2.md)
+
+## Act 1 gameplay audit — static risk review and F5 playtest plan (2026-11-19)
+
+Inspected live `main` at `28050652` and current encounter/progression/planning resources. A detailed [Act 1 gameplay audit and playtest plan](ACT1_GAMEPLAY_AUDIT_2026-11-19.md) now defines three real protagonist F5 runs, targeted F6 matched comparisons, event-choice/Travel pacing review, and Bone Warden XIII variants. Historic v25 Knight solo/duo/trio and Hunt imbalance are explicitly **unconfirmed on current Combat Planning main**. **No new human full run, balance measurement, gameplay change or art revision was performed.** Next step is evidence collection, not an automatic rebalance.
+
+## Cinematic Travel Act 1 — final player acceptance (2026-11-19)
+
+The player explicitly confirmed that all Travel scenes are satisfactory after the final 24-event coverage audit. **24/24 unique Act 1 event scenes are accepted and complete**: earlier seven + Batch 02 seven + Batch 03 ten (72 coded Batch 03 outcomes). Do not reopen their visual production unless a new concrete problem is reported. This is distinct from completion of a full human random campaign playtest. The already-released Combat Planning 1.0/Visual V4 across 22 combat encounters is also accepted. The next proposed focus is a full Act 1 gameplay playtest and balance/UX assessment; it is **not yet completed**. [New-chat context](NEXT_CHAT_HANDOFF_2026-11-19.md)
+
+
 ## Cinematic Travel Batch 03 — released (2026-11-19)
 
 The user approved production rollout. Ten Act 1 locations and 72 resolved event outcomes now use Travel V2 in `main`, with character, companion, NPC and prop scale calibrated against the environment. Open the QA Hub to preview the batch or follow the normal event route in the campaign. [Merged PR #119](https://github.com/zampolit73/Misdeal/pull/119) · [Runtime and QA contract](TRAVEL_BATCH03_REVIEW.md)
