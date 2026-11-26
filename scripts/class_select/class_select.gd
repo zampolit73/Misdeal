@@ -91,21 +91,23 @@ func _select_role(role: String) -> void:
 func _setup_charter() -> void:
 	var archive := ARCHIVE.instance()
 	var highest: int = archive.highest_oath()
-	if highest == 0:
-		return
 	_charter_description = Label.new()
-	_charter_description.position = Vector2(180, 184)
-	_charter_description.size = Vector2(920, 68)
+	_charter_description.name = "CharterDescription"
+	_charter_description.position = Vector2(164, 646)
+	_charter_description.size = Vector2(952, 40)
 	_charter_description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_charter_description.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_charter_description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_charter_description.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_charter_description.add_theme_font_size_override("font_size", 15)
 	$Frame.add_child(_charter_description)
 	UI.apply_screen_copy(_charter_description, UI.PARCHMENT_WARM)
-	_style_picker = _charter_picker("StartingStyle", Vector2(130, 636))
+	_charter_description.add_theme_font_override("font", CARD_SKIN.heading_font())
+	_style_picker = _charter_picker("StartingStyle", Vector2(180, 603))
 	_style_picker.item_selected.connect(func(index: int) -> void:
 		_style_picker.tooltip_text = _style_picker.get_popup().get_item_tooltip(index)
 		_refresh_charter_description())
-	_oath_picker = _charter_picker("WizardOath", Vector2(852, 636))
+	_oath_picker = _charter_picker("WizardOath", Vector2(849, 603))
 	for rank in CHARTER.OATHS.size():
 		_oath_picker.add_item(CHARTER.OATHS[rank][0], rank)
 		_oath_picker.get_popup().set_item_tooltip(rank, CHARTER.OATHS[rank][1])
@@ -121,9 +123,10 @@ func _charter_picker(picker_name: String, location: Vector2) -> OptionButton:
 	var picker := OptionButton.new()
 	picker.name = picker_name
 	picker.position = location
-	picker.size = Vector2(298, 43)
+	picker.size = Vector2(251, 36)
 	$Frame.add_child(picker)
 	UI.apply_action_button(picker, UI.BRONZE)
+	CARD_SKIN.prepare_action(picker, 18)
 	return picker
 
 
@@ -151,6 +154,7 @@ func _refresh_charter_description() -> void:
 	if _oath_picker.get_selected_id() > 0:
 		lines.append(String(CHARTER.OATHS[_oath_picker.get_selected_id()][1]))
 	_charter_description.text = "\n".join(lines)
+	$Frame/Rule.visible = lines.is_empty()
 
 
 func _on_card_hover(role: String, entered: bool) -> void:
@@ -171,17 +175,13 @@ func _refresh_cards() -> void:
 		var button: Button = card_buttons[role]
 		var active := role == selected_role
 		var preview := role == hovered_role
-		var other := not selected_role.is_empty() and not active and not preview
 		var stats := button.get_node("Stats") as Label
 		var desc := button.get_node("Description") as Label
-		var plate := button.get_node("StatsPlate") as ColorRect
 		var show_stats := active or preview
 		stats.visible = show_stats
-		plate.visible = show_stats
 		desc.visible = not show_stats
-		CARD_SKIN.set_state(button, active, preview, other)
+		CARD_SKIN.set_state(button, active, preview)
 		button.z_index = 15 if (preview or active) else 0
-	CARD_SKIN.update_confirm(confirm_button)
 
 
 func _animate_cards_in() -> void:
@@ -233,13 +233,12 @@ func _confirm_choice() -> void:
 	var chosen_button: Button = card_buttons[selected_role]
 	for role in HERO_ROLES:
 		var button: Button = card_buttons[role]
-		CARD_SKIN.UI_MOTION.stop(button, &"d417_card_hover")
 		var tween := create_tween()
 		if button == chosen_button:
 			button.z_index = 25
-			tween.tween_property(button, "scale", Vector2(1.065, 1.065), 0.15)
+			tween.tween_property(button, "modulate", Color(1.05, 1.03, 1.0), 0.15)
 		else:
-			tween.tween_property(button, "modulate", Color(0.47, 0.44, 0.43, 0.58), 0.15)
+			tween.tween_property(button, "modulate", Color(0.78, 0.75, 0.74), 0.15)
 	await get_tree().create_timer(0.28).timeout
 	SCENE_ROUTER.change_to(self, "res://scenes/table/table.tscn")
 

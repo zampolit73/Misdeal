@@ -1,3 +1,7 @@
+## Hero Selection Visual V2
+
+Hero selection uses the approved retouched plate and original D413 portraits. Focus and preselection stay separate from the existing protagonist confirmation. The charter uses the existing Archive unlocks. [Native QA](qa/hero_selection_v2/README.md)
+
 ## Main Menu Visual V2
 
 The main menu uses the approved retouched background, original logo and four native buttons. The same save, new-game and Archive handlers remain in use. [Native QA](qa/main_menu_v2/README.md)

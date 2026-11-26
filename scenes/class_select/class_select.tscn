@@ -1,31 +1,8 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/class_select/class_select.gd" id="1_class"]
 [ext_resource type="Script" path="res://scripts/ui/runtime_webp_texture.gd" id="2_runtime"]
-[ext_resource type="Texture2D" path="res://assets/pixel/table/misdeal_logo.png" id="3_logo"]
-[ext_resource type="Shader" path="res://shaders/class_select_logo_key.gdshader" id="5_logo_key"]
-
-[sub_resource type="StyleBoxFlat" id="TitleVeilStyle"]
-bg_color = Color(0.064, 0.033, 0.031, 0.29)
-border_width_top = 1
-border_width_bottom = 1
-border_color = Color(0.67, 0.43, 0.24, 0.73)
-shadow_color = Color(0, 0, 0, 0.26)
-shadow_size = 2
-
-[sub_resource type="StyleBoxFlat" id="WizardCaptionStyle"]
-bg_color = Color(0.038, 0.018, 0.018, 0.53)
-border_width_top = 1
-border_width_bottom = 1
-border_color = Color(0.51, 0.34, 0.22, 0.46)
-
-[sub_resource type="StyleBoxFlat" id="FooterHintStyle"]
-bg_color = Color(0.023, 0.011, 0.014, 0.61)
-border_width_top = 1
-border_color = Color(0.55, 0.36, 0.22, 0.45)
-
-[sub_resource type="ShaderMaterial" id="LogoKeyMat"]
-shader = ExtResource("5_logo_key")
+[ext_resource type="Texture2D" path="res://assets/pixel/class_select/visual_v2/plate.webp" id="3_plate"]
 
 [node name="ClassSelect" type="Control"]
 layout_mode = 3
@@ -48,47 +25,7 @@ mouse_filter = 2
 offset_right = 1280.0
 offset_bottom = 720.0
 expand_mode = 1
-stretch_mode = 6
-script = ExtResource("2_runtime")
-webp_path = "res://assets/pixel/class_select/d281_clean_table_hd.webp"
-expected_size = Vector2i(1280, 720)
-use_nearest_filter = false
-texture_filter = 1
-
-[node name="Logo" type="TextureRect" parent="."]
-mouse_filter = 2
-offset_left = 30.0
-offset_top = 24.0
-offset_right = 314.0
-offset_bottom = 140.0
-texture = ExtResource("3_logo")
-material = SubResource("LogoKeyMat")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="TitleVeil" type="Panel" parent="."]
-mouse_filter = 2
-offset_left = 335.0
-offset_top = 31.0
-offset_right = 945.0
-offset_bottom = 92.0
-theme_override_styles/panel = SubResource("TitleVeilStyle")
-
-[node name="WizardCaption" type="Panel" parent="."]
-mouse_filter = 2
-offset_left = 321.0
-offset_top = 98.0
-offset_right = 959.0
-offset_bottom = 136.0
-theme_override_styles/panel = SubResource("WizardCaptionStyle")
-
-[node name="FooterHintPlate" type="Panel" parent="."]
-mouse_filter = 2
-offset_left = 268.0
-offset_top = 684.0
-offset_right = 1012.0
-offset_bottom = 715.0
-theme_override_styles/panel = SubResource("FooterHintStyle")
+texture = ExtResource("3_plate")
 
 [node name="Frame" type="Control" parent="."]
 offset_right = 1280.0
@@ -130,7 +67,7 @@ offset_bottom = 630.0
 theme_override_constants/separation = 28
 
 [node name="Knight" type="Button" parent="Frame/Cards"]
-custom_minimum_size = Vector2(272, 338)
+custom_minimum_size = Vector2(282, 308)
 layout_mode = 2
 text = ""
 
@@ -199,7 +136,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Ranger" type="Button" parent="Frame/Cards"]
-custom_minimum_size = Vector2(272, 338)
+custom_minimum_size = Vector2(282, 308)
 layout_mode = 2
 text = ""
 
@@ -268,7 +205,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Mage" type="Button" parent="Frame/Cards"]
-custom_minimum_size = Vector2(272, 338)
+custom_minimum_size = Vector2(282, 308)
 layout_mode = 2
 text = ""
 

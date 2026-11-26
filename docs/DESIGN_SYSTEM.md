@@ -1,3 +1,7 @@
+## Hero Selection Visual V2
+
+The hero-selection cards stay aligned with the bronze frame on the approved plate. Use muted insets for hover and focus and the separate burgundy seal for selection.
+
 ## Merchant Visual V2
 
 Use the merchant plate at 1280×720 with live parchment, offer art, price tags and return controls. Put restrictions inside the affected price tag. The screen uses no separate party health panel.

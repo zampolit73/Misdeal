@@ -28,34 +28,17 @@ func _verify() -> void:
 	]
 	var confirm := selection.get_node("Frame/ConfirmButton") as Button
 	var valid := confirm.disabled and not bool(game_state.call("has_chosen_protagonist"))
-	# D280: actual clean original tabletop, no old baked HUD/offer overlays.
 	var backdrop := selection.get_node("WizardBackdrop") as TextureRect
 	valid = valid and backdrop.texture != null
 	if backdrop.texture != null:
-		valid = valid and backdrop.texture.get_size() == Vector2(1280.0, 720.0)
-	valid = valid and backdrop.get("webp_path") == "res://assets/pixel/class_select/d281_clean_table_hd.webp"
-	valid = valid and selection.get_node("Logo").material is ShaderMaterial
-	valid = valid and not selection.has_node("OldOfferObscurer")
-	valid = valid and not selection.has_node("FateSpreadCover")
-	valid = valid and not selection.has_node("TopHeaderPlate")
-	valid = valid and not selection.has_node("TopRightCover")
-	valid = valid and not selection.has_node("FateTitle")
-	valid = valid and selection.has_node("TitleVeil") and selection.has_node("Logo")
-	# D282 native chrome acceptance: restrained header/caption, readable footer
-	# and a real active gold rim above the dossier bronze card frame.
-	var title_veil := selection.get_node("TitleVeil") as Panel
-	var title_style := title_veil.get_theme_stylebox("panel") as StyleBoxFlat
-	valid = valid and title_style.bg_color.a < 0.40
-	valid = valid and title_style.border_width_top == 1
-	valid = valid and selection.has_node("WizardCaption") and selection.has_node("FooterHintPlate")
-	valid = valid and selection.get_node("Frame/WizardLine").position.y >= 100.0
-	valid = valid and selection.get_node("Frame/WizardLine").position.y < 145.0
-	valid = valid and selection.get_node("Frame/Title").position.y < 90.0
-	var hint := selection.get_node("Frame/Rule") as Label
-	valid = valid and hint.position.y >= 684.0 and hint.position.y + hint.size.y < 715.0
-	valid = valid and hint.get_theme_font_size("font_size") >= 13
-	valid = valid and confirm.has_node("GildedTopEdge") and confirm.has_node("PressedLowerEdge")
-	valid = valid and selection.get_node("Frame") is Control
+		valid = valid and backdrop.texture.get_size() == Vector2(1280, 720)
+		valid = valid and backdrop.texture.resource_path == "res://assets/pixel/class_select/visual_v2/plate.webp"
+	var title := selection.get_node("Frame/Title") as Label
+	var wizard := selection.get_node("Frame/WizardLine") as Label
+	var cards := selection.get_node("Frame/Cards") as Control
+	valid = valid and title.get_rect().end.y <= wizard.position.y
+	valid = valid and wizard.get_rect().end.y <= cards.position.y
+	valid = valid and cards.get_rect().end.y < confirm.position.y
 	for i in range(buttons.size()):
 		var b: Button = buttons[i]
 		var portrait := b.get_node("Portrait") as TextureRect
@@ -70,12 +53,9 @@ func _verify() -> void:
 		valid = valid and b.has_node("ChosenSeal") and not b.get_node("ChosenSeal").visible
 		var stats := b.get_node("Stats") as Label
 		var unit: Resource = load(["res://resources/units/knight.tres", "res://resources/units/ranger.tres", "res://resources/units/mage.tres"][i]) as Resource
-		valid = valid and b.size == Vector2(272.0, 338.0)
-		valid = valid and b.has_node("Parchment") and b.has_node("IllustratedFrame")
+		valid = valid and b.custom_minimum_size == Vector2(282, 308)
 		valid = valid and b.has_node("SelectionRim") and not (b.get_node("SelectionRim") as Panel).visible
-		var overlay := b.get_node("IllustratedFrame") as NinePatchRect
-		valid = valid and not overlay.draw_center
-		valid = valid and overlay.texture != null and overlay.mouse_filter == Control.MOUSE_FILTER_IGNORE
+		valid = valid and Rect2(Vector2.ZERO, b.custom_minimum_size).encloses(portrait.get_rect())
 		valid = valid and stats.text.contains(str(roundi(float(unit.get("max_hp")))))
 		valid = valid and stats.text.contains(str(roundi(float(unit.get("damage")))))
 		valid = valid and not stats.visible
@@ -125,6 +105,6 @@ func _verify() -> void:
 		selection.queue_free()
 		quit(1)
 		return
-	print("D282_CLASS_SELECT_PASS: native 1280x720 art, restrained title, lifted wizard caption, readable footer, brass CTA, gold selected rim and solo Mage")
+	print("D282_CLASS_SELECT_PASS: native V2 plate, original portraits, live stats, selected seal and solo Mage")
 	selection.queue_free()
 	quit(0)
