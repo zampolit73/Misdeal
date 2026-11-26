@@ -1,3 +1,7 @@
+## Interface Polish 2.0 · Pause Menu Visual V1
+
+Replace the legacy generic pause panel with the approved isolated charcoal/bronze contract plate, live buttons, status and keyboard focus. Preserve original save/load, safe checkpoint and main-menu confirmation behavior. Godot 4.7.2: 14/14 targeted and regression tests; native visual acceptance pending.
+
 ## Wizard Wager Visual V1
 
 Replace the old optional wizard wager modal presentation with an isolated approved contract plate, live risk/reward/bonus copy and two accessible action buttons. Preserve real accept/refuse and the debt, normal-loot multiplier and sacrifice contract. Merged PR #158, player-approved 2026-11-26. D315 smoke now verifies the exact approved D343 source and its intentional localized runtime grade without altering the art.

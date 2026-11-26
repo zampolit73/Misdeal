@@ -1,3 +1,7 @@
+## Pause Menu Visual V1 · Interface Polish 2.0
+
+The user approved the V1 concept and the production RunMenu now uses its isolated pause plate over the current scene. Five live actions, checkpoint restrictions, save/load behavior and confirmation remain intact. Godot 4.7.2: 14/14 targeted and save regression tests. [Reference and QA](qa/pause_menu_v1/README.md). Native player acceptance pending.
+
 ## Wizard Wager Visual V1 · approved in main
 
 The optional «Ставка Волшебника» offer now has its own approved isolated two-sided contract plate over the existing Table. Live text explains +25% enemy damage while debt is active, double normal loot and the «Жертва» order. Accept/refuse retain original RunState handlers; the modal owns keyboard focus. [Reference, layout and QA](../assets/source_archive/wizard_wager_v1/README.md). Merged [PR #158](https://github.com/zampolit73/Misdeal/pull/158) at `e9129d26`; player explicitly accepted the result on 2026-11-26. Preserve this presentation. The separate full Act I control run remains outstanding.

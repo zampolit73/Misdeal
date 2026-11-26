@@ -1,6 +1,6 @@
 extends CanvasLayer
 const SAVE := preload("res://scripts/core/run_save_service.gd")
-const KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const PAUSE_VISUAL := preload("res://scripts/ui/pause_menu_visual.gd")
 const ROUTER := preload("res://scripts/core/scene_router.gd")
 var menu: Control
 var timer := 0.0
@@ -76,46 +76,30 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 
 func open_menu() -> void:
+	if is_instance_valid(menu): return
 	var scene := get_tree().current_scene
 	if scene != null and scene.has_method("has_table_modal") and scene.has_table_modal():
 		return
 	previous_focus = get_viewport().gui_get_focus_owner()
 	menu=Control.new()
+	menu.name = "PauseMenuVisualV1"
 	menu.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(menu)
-	var shade:=ColorRect.new()
-	shade.color=Color(0,0,0,0.8)
-	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	menu.add_child(shade)
-	var panel:=Panel.new()
-	panel.position=Vector2(390,140)
-	panel.size=Vector2(500,440)
-	menu.add_child(panel)
-	KIT.apply_panel(panel,KIT.BRONZE,true)
-	var column:=VBoxContainer.new()
-	column.position=Vector2(420,165)
-	column.size=Vector2(440,390)
-	column.add_theme_constant_override("separation",12)
-	menu.add_child(column)
-	status=Label.new()
-	status.text="ПАУЗА\nВ бою загрузка вернёт к контрольной точке."
-	if not SAVE.instance().error_message.is_empty(): status.text=SAVE.instance().error_message
-	status.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	column.add_child(status)
-	for entry in [["Продолжить игру",close_menu],["Сохранить",save_now],["Загрузить игру",load_now],["Сохранить и выйти",save_exit],["В главное меню",main_menu]]:
-		var button:=Button.new()
-		button.text=entry[0]
-		button.custom_minimum_size.y=42
-		column.add_child(button)
-		KIT.apply_action_button(button,KIT.BRONZE,false)
-		button.pressed.connect(entry[1])
-		if entry[0] == "Продолжить игру": button.grab_focus()
-		if entry[0] in ["Сохранить","Сохранить и выйти"]: button.disabled=safe_scene().is_empty()
+	var can_save := not safe_scene().is_empty()
+	var message := "В бою загрузка вернёт\nк контрольной точке."
+	if not can_save:
+		message = "Сохранение недоступно сейчас.\nЗагрузка вернёт к контрольной точке."
+	if not SAVE.instance().error_message.is_empty():
+		message = SAVE.instance().error_message
+	var callbacks: Array[Callable] = [close_menu, save_now, load_now, save_exit, main_menu]
+	status = PAUSE_VISUAL.build(menu, callbacks, can_save, message)
 	get_tree().paused=true
 
 func close_menu() -> void:
 	get_tree().paused=false
-	if is_instance_valid(menu): menu.queue_free()
+	if is_instance_valid(menu):
+		menu.hide()
+		menu.queue_free()
 	menu=null
 	if is_instance_valid(previous_focus): previous_focus.grab_focus()
 	previous_focus=null

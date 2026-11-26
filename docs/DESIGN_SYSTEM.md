@@ -1,3 +1,7 @@
+## Pause Menu Visual V1
+
+Use the centered 370×568 antique charcoal/bronze pause plate over a 52% black scrim, with live ivory serif controls. Preserve the burgundy primary resume plate, smaller footer for status or failure messages, muted disabled states and clear keyboard focus. The background always remains the actual paused scene.
+
 ## Wizard Wager Visual V1
 
 Preserve Table V5.1 behind the isolated 744×475 contract at (268,232). Aged bronze, charcoal, deep burgundy and bone/ink serif copy; separate transparent Buttons overlay painted controls, with hover, focus and press states. Risk/reward at equal width; safe initial focus on refusal. No baked text and no extra reward choice.
