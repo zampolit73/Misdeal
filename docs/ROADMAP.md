@@ -1,6 +1,7 @@
 ## Gameplay 2.0
 
 - A · Wounds, rest stops and one reliable merchant checkpoint. [Rules and QA](GAMEPLAY_2_0.md)
+- Merchant Visual V2: approved presentation for the stop after VIII. [Native QA](qa/merchant_v2/README.md)
 - B · 13 relics, build synergies and live stat changes in rewards, the merchant and events.
 - C · Wizard Archive, three unlockable starting styles and five difficulty oaths.
 - Table presentation · V5/V5.1 approved in main (PRs #143–144). V5.1 polishes the status plates, Fate Spread and Hold around the interactive journal, window and grimoire. [Native evidence](qa/table_interface_v51/README.md)

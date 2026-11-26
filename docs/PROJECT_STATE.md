@@ -1,3 +1,7 @@
+## Merchant Visual V2
+
+The merchant after VIII uses the approved retouched scene. Its five offer positions are driven by the saved stock, with current prices and status. Card-event merchants and the rest stops retain their current presentation. [Native QA](qa/merchant_v2/README.md)
+
 ## Reward Cinematics 1.0 · Hero Development approved in main
 
 The player accepted both development modes after PR #150 merged into main. Major and bonus upgrades use the approved Hero Development plate, actual role art and data, and one to three selectable offers. The empty bonus still pays 60 gold. [Native QA](qa/reward_development_v1/README.md)
