@@ -1,3 +1,7 @@
+## Main Menu Visual V2
+
+Use the approved main menu composition with two cards, four live menu actions and restrained candle motion.
+
 ## Merchant Visual V2
 
 Apply the approved merchant art after card VIII with live stock, prices, purchase restrictions and a Return to Table action.

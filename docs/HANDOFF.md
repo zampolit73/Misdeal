@@ -1,3 +1,7 @@
+## Main Menu Visual V2
+
+Press F5 to inspect Main Menu Visual V2. Compare Continue with an empty and valid slot, and use the existing New Game dialog to verify reset choices. [Native QA](qa/main_menu_v2/README.md)
+
 ## Merchant Visual V2
 
 To review the merchant, reach the stop after VIII. Use Enter on a price tag, then use the return button to continue the deal. [Native QA and source art](qa/merchant_v2/README.md)

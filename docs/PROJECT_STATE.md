@@ -1,3 +1,7 @@
+## Main Menu Visual V2
+
+The main menu uses the approved retouched background, original logo and four native buttons. The same save, new-game and Archive handlers remain in use. [Native QA](qa/main_menu_v2/README.md)
+
 ## Merchant Visual V2
 
 The merchant after VIII uses the approved retouched scene. Its five offer positions are driven by the saved stock, with current prices and status. Card-event merchants and the rest stops retain their current presentation. [Native QA](qa/merchant_v2/README.md)
