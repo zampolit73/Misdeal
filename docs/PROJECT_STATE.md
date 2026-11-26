@@ -1,3 +1,7 @@
+## Intro Visual V2
+
+Intro V2 uses six untouched plates and live dialogue. The sixth frame moves the scene from the old hero’s home into the existing selection hall. [Native QA](qa/intro_v2/README.md)
+
 ## Hero Selection Visual V2
 
 Hero selection uses the approved retouched plate and original D413 portraits. Focus and preselection stay separate from the existing protagonist confirmation. The charter uses the existing Archive unlocks. [Native QA](qa/hero_selection_v2/README.md)

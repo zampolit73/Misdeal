@@ -1,3 +1,7 @@
+## Intro Visual V2
+
+Replace the production intro with the six approved plates, native dialogue and a visible Skip button. Frame 06 leads into the existing hero selection.
+
 ## Hero Selection Visual V2
 
 Use the approved hero selection composition with the original D413 portraits, live stats, a selected seal and visible style and oath effects.

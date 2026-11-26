@@ -124,7 +124,7 @@ func _fixture(kind: String) -> void:
 	current_scene = scene
 	await create_timer(0.8).timeout
 	if kind == "intro_end":
-		scene.call("_show_frame", 4)
+		scene.call("_show_frame", 5)
 	elif kind.begins_with("class_") and kind != "class_idle":
 		scene.call("_select_role", kind.trim_prefix("class_"))
 	elif kind.begins_with("dossier_"):

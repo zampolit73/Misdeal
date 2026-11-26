@@ -1,3 +1,7 @@
+## Intro Visual V2
+
+Six verified WebP plates and the dialogue JSON live in `assets/pixel/intro/visual_v2/`. The PNG masters and package manifest are in `assets/source_archive/intro_v2/`. Dialogue, hint and Skip are live controls. The previous art is retained for rollback.
+
 ## Hero Selection Visual V2
 
 The clean plate is in `assets/pixel/class_select/visual_v2/`, and the approved reference and retouched master are in `assets/source_archive/hero_selection_v2/`. D413 portraits are used directly.

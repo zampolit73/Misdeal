@@ -1,0 +1,139 @@
+{
+  "package": "Misdeal Intro V2",
+  "revision": "2026-11-26",
+  "approval": "User-approved visual sequence, six frames. Frame 06 new approved transition.",
+  "runtime_size": [
+    1280,
+    720
+  ],
+  "master_size": [
+    1672,
+    941
+  ],
+  "format": "WebP RGB, quality 91; PNG masters unchanged",
+  "frames": [
+    {
+      "id": "frame_01",
+      "title_ru": "Воспоминания героя",
+      "runtime": "runtime/frame_01.webp",
+      "runtime_sha256": "a44062cfebe2bc57a212eea1719ee92ee75579da3e9dccdc9a5c5edb47d564d8",
+      "runtime_bytes": 135592,
+      "master": "masters/frame_01.png",
+      "master_sha256": "9c9fde57cfedbdf890504acf6bc2f8b90a33a3c7d9b4e617be6631a3d9222ae9",
+      "master_bytes": 2172010,
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text_ru": "Ты прожил долгую жизнь."
+        },
+        {
+          "speaker": "narrator",
+          "text_ru": "Спасал людей. Терял людей. И слишком часто спрашивал себя: что было бы, поступи ты иначе?"
+        }
+      ]
+    },
+    {
+      "id": "frame_02",
+      "title_ru": "Возвращение волшебника",
+      "runtime": "runtime/frame_02.webp",
+      "runtime_sha256": "88160ae6e38e798fbcc3ace7d902c5832c304934996c3601b9fbdeef711719d2",
+      "runtime_bytes": 132698,
+      "master": "masters/frame_02.png",
+      "master_sha256": "5685cf71d11988a28a342219acc218472002745b60695c1dabf383187ed31cda",
+      "master_bytes": 2152379,
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text_ru": "В ночь, когда сердце стало тяжёлым, Волшебник вернулся."
+        },
+        {
+          "speaker": "narrator",
+          "text_ru": "Когда-то он подарил тебе годы. Теперь требует право на новую партию."
+        },
+        {
+          "speaker": "wizard",
+          "text_ru": "Я пришёл не за душой. Пока."
+        }
+      ]
+    },
+    {
+      "id": "frame_03",
+      "title_ru": "Предложение изменить прошлое",
+      "runtime": "runtime/frame_03.webp",
+      "runtime_sha256": "a78d3995a11a8e0cf1dc68f96c33755d851536f0e0d72e1a79edcdb64068299f",
+      "runtime_bytes": 136464,
+      "master": "masters/frame_03.png",
+      "master_sha256": "9aceee0555e682c730c78d885af26b6ed723b8bffbbd3011775e44ece5cffa7a",
+      "master_bytes": 2148254,
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text_ru": "Ты спас многих. И многих обрёк на судьбы, которых не хотел."
+        },
+        {
+          "speaker": "wizard",
+          "text_ru": "Прошлое можно исправить. Твоё — и прошлое всех, кого ты спасал."
+        }
+      ]
+    },
+    {
+      "id": "frame_04",
+      "title_ru": "Цена изменения судьбы",
+      "runtime": "runtime/frame_04.webp",
+      "runtime_sha256": "98cc4df01b43064c30a541c134cf917f017fbe236f167aea291138951b08fb9a",
+      "runtime_bytes": 204578,
+      "master": "masters/frame_04.png",
+      "master_sha256": "6fc178ae42a7576b706a49494ec56b7574d66dc13f0bb7a20fb54c91775d0452",
+      "master_bytes": 2496180,
+      "dialogue": [
+        {
+          "speaker": "narrator",
+          "text_ru": "Но каждая исправленная карта перепишет всё, что случилось после."
+        },
+        {
+          "speaker": "wizard",
+          "text_ru": "Спаси одного — сотрёшь другого. Решай осторожно."
+        }
+      ]
+    },
+    {
+      "id": "frame_05",
+      "title_ru": "Раздача начинается",
+      "runtime": "runtime/frame_05.webp",
+      "runtime_sha256": "81faa0e31742c27191b7f9e041a778960911e3f1d5da0d6411bb0562692d3cd9",
+      "runtime_bytes": 130968,
+      "master": "masters/frame_05.png",
+      "master_sha256": "d6a96d7df1d46e21b18e461c132951510f0e083af51de6523cae2c987e052883",
+      "master_bytes": 2083969,
+      "dialogue": [
+        {
+          "speaker": "wizard",
+          "text_ru": "Ты всю жизнь хотел знать, что было бы, поступи ты иначе. Какая удача. Я сохранил колоду."
+        },
+        {
+          "speaker": "narrator",
+          "text_ru": "Раздача начинается."
+        }
+      ]
+    },
+    {
+      "id": "frame_06",
+      "title_ru": "Сделка заключена",
+      "runtime": "runtime/frame_06.webp",
+      "runtime_sha256": "437c0c6aadc969079f51676a3f97c18aff72db6861b02f28f60a0aba0678e623",
+      "runtime_bytes": 136686,
+      "master": "masters/frame_06.png",
+      "master_sha256": "d628df8f24dda0d3ba093c3ed12c634f77d37d55fe7df4d52ea8c5309cd5c2c0",
+      "master_bytes": 2108165,
+      "dialogue": [
+        {
+          "speaker": "wizard",
+          "text_ru": "Что ж… Вернёмся туда, где всё началось."
+        }
+      ]
+    }
+  ],
+  "integration_status": "asset_pack_only_not_imported_or_tested_in_Godot",
+  "target_runtime_dir": "assets/pixel/intro/visual_v2",
+  "target_archive_dir": "assets/source_archive/intro_v2"
+}
