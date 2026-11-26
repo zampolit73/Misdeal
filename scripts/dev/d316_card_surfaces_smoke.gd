@@ -54,7 +54,7 @@ func _verify() -> void:
     if not (reader.get_node_or_null("Frame/DS3InspectStone") is ColorRect):
         _fail("inspector still double-stacks back border under front frame")
         return
-    if card_frame.size != Vector2(225, 306) or card_art == null or card_art.material == null:
+    if card_frame.size != Vector2(250, 340) or card_art == null or card_art.material == null:
         _fail("full-card inspector dimensions/DS3 grade are incorrect")
         return
     if physical_title == null or physical_title.text != "МОГИЛЬНЫЙ ЗВОН":

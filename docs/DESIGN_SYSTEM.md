@@ -2,6 +2,10 @@
 
 Preserve Table V5.1 behind the isolated 744×475 contract at (268,232). Aged bronze, charcoal, deep burgundy and bone/ink serif copy; separate transparent Buttons overlay painted controls, with hover, focus and press states. Risk/reward at equal width; safe initial focus on refusal. No baked text and no extra reward choice.
 
+## Card Inspection Visual V1
+
+Use the 900×452 antique leather and bronze reader with a left recessed original DS3 card (250×340) and a right blank vellum page. Render the title, complete type/role and full original copy on the page in dark ink; optional real mark/hold notes sit below the separator only when present. The close plate is a real Button. Keep the current scene visible behind the 60% scrim; no selection action. [Reference](qa/card_inspection_v1/README.md).
+
 ## Death Wager Visual V1.2
 
 Use the supplied panel and layout at 1280×720. Put bone text on dark surfaces and ink on parchment. Keep the full card interactive with muted bronze focus, hover and pressed states. Use the existing offer data and the Reliquary image for the offered relic. Wrap the debt explanation and retain it through confirmation.

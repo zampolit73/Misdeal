@@ -54,12 +54,12 @@ func _verify() -> void:
 	var modal_frame := inspect.get_node_or_null("Frame") as Panel
 	valid = valid and modal_frame != null
 	if modal_frame != null:
-		valid = valid and modal_frame.size == Vector2(720.0, 364.0)
-		valid = valid and modal_frame.position == Vector2(280.0, 178.0)
+		valid = valid and modal_frame.size == Vector2(900.0, 452.0)
+		valid = valid and modal_frame.position == Vector2(190.0, 134.0)
 		valid = valid and modal_frame.get_node_or_null("ArtHint") == null
-		valid = valid and modal_frame.get_node_or_null("ArtEmblem") != null
-		valid = valid and modal_frame.get_node_or_null("InnerBronzeFrame") != null
-		valid = valid and modal_frame.get_node_or_null("ChapterSeal") != null
+		valid = valid and modal_frame.get_node_or_null("DS3InspectCardHint") != null
+		valid = valid and modal_frame.get_node_or_null("ReaderPlate") != null
+		valid = valid and modal_frame.get_node_or_null("RuleSeal") != null
 	valid = valid and a.tooltip_text.is_empty() and b.tooltip_text.is_empty()
 	valid = valid and ha.z_index > 20 and hb.z_index > 20
 	inspect.queue_free()
