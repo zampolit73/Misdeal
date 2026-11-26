@@ -1,3 +1,7 @@
+## Death Wager V1.2 · Wizard and banner canon
+
+V1.2 is the approved Death Wager reward composition. Future artwork uses the main-menu Wizard likeness, the shared castle banner heraldry, aged muted bronze and deep burgundy fabrics. Preserve previously approved screens. [Art references](ART_DIRECTION.md#wizard-and-castle-heraldry)
+
 ## Event Choice Visual V2 · approved decision frame
 
 Apply the approved «Кости должника» frame through the shared event presentation. Keep the illustration recess and the live text independent from the painted borders. For long effects and restrictions, redistribute the art and parchment height while preserving the card footprint. ActChoice and WhisperingWell own the existing decisions and results. [Approved reference and native evidence](qa/event_choice_visual_v2/README.md)

@@ -14,6 +14,12 @@ Existing generated illustrations can remain useful composition references, but p
 - Nearest-neighbor presentation.
 - No detail added only to fill empty space.
 
+## Wizard and castle heraldry
+
+- Match the Wizard’s likeness and costume to the approved [Main Menu V2 backdrop](../assets/pixel/main/menu_v2/backdrop.webp).
+- Use the ringed cross with its elongated spiked shaft on castle banners and related heraldry. Match the [dressing station standard](../assets/pixel/travel/last_dressing_station/station_standard.png) and [Firing Square](../assets/pixel/battle/arenas/approved_d283/firing_square.webp).
+- Use muted aged bronze and deep burgundy fabrics, with highlights motivated by the scene’s light. Apply this canon when producing new artwork and retain earlier approved screens.
+
 ## Palette roles
 
 - Ink: near-black violet / brown-black.

@@ -1,3 +1,7 @@
+## Death Wager Visual V1.2
+
+Use the supplied panel and layout at 1280×720. Put bone text on dark surfaces and ink on parchment. Keep the full card interactive with muted bronze focus, hover and pressed states. Use the existing offer data and the Reliquary image for the offered relic. Wrap the debt explanation and retain it through confirmation.
+
 ## Camp Rest Visual V2
 
 Use the supplied 1280×720 plate, coordinate map and transparent per-card states. The parchment displays live effects and unavailable reasons. Keep labels and the training selector in their mapped areas and show full descriptions through card tooltips.

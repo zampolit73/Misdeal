@@ -25,9 +25,12 @@ const LOOT_PRESSED := preload("res://assets/pixel/ui/reward_loot_v1/runtime/clai
 const LOOT_DISABLED := preload("res://assets/pixel/ui/reward_loot_v1/runtime/claim_disabled.webp")
 const LOOT_BONE := Color("e5ccac")
 const ELITE_TROPHY := preload("res://scripts/reward/elite_trophy.gd")
+const DEATH_WAGER_VIEW := preload("res://scripts/reward/death_wager_view.gd")
 const HERO_DEVELOPMENT := preload("res://scripts/reward/hero_development.gd")
 var _elite_trophy: ELITE_TROPHY
 var _development: HERO_DEVELOPMENT
+var _death_wager: DEATH_WAGER_VIEW
+var _wager_hidden_layers: Array[CanvasItem] = []
 const ROLE_FALLBACK_ART := {
 	"knight": preload("res://assets/art/units/knight.webp"),
 	"ranger": preload("res://assets/art/units/ranger.webp"),
@@ -91,7 +94,7 @@ func _ready() -> void:
 
 	_refresh_run_stats()
 	_setup_initial_reward()
-	if reward_mode not in ["normal_loot", "elite_artifact"]:
+	if reward_mode not in ["normal_loot", "elite_artifact", "death_wager"]:
 		BACKDROP_READOUTS.apply(self,"НАГРАДА")
 	call_deferred("_animate_reward_screen_in")
 
@@ -351,6 +354,7 @@ func _setup_major_upgrade_reward() -> void:
 	_setup_upgrade_buttons(offers)
 
 func _setup_bonus_upgrade_reward() -> void:
+	_remove_death_wager()
 	reward_mode = "bonus_upgrade"
 	_reset_buttons()
 	progress_marks_label.visible = false
@@ -541,7 +545,10 @@ func _setup_death_wager_reward() -> void:
 		summary_label.text += " Долг остаётся до следующей обычной добычи."
 
 	option_ids[0] = "gold"
-	_set_reward_card(0, "gold_windfall", "ВЫИГРЫШ", "ЗОЛОТОЙ КУШ", "+60 золота\nСамый безопасный способ забрать выигрыш.")
+	var offers: Array[Dictionary] = [{
+		"kicker": "ВЫИГРЫШ", "title": "ЗОЛОТОЙ КУШ",
+		"description": "+60 золота\nСамый безопасный способ забрать выигрыш.",
+	}]
 
 	var artifacts := RunState.get_available_artifact_ids()
 	if RunState.pending_wager_artifact_id.is_empty():
@@ -552,31 +559,59 @@ func _setup_death_wager_reward() -> void:
 		artifacts.push_front(RunState.pending_wager_artifact_id)
 	if artifacts.is_empty():
 		option_ids[1] = "fallback_gold"
-		_set_reward_card(1, "empty_cache", "СТАВКА", "ПУСТОЙ ТАЙНИК", "+50 золота\nВсе известные реликвии уже у вас.")
+		offers.append({
+			"kicker": "СТАВКА", "title": "ПУСТОЙ ТАЙНИК",
+			"description": "+50 золота\nВсе известные реликвии уже у вас.",
+		})
 	else:
 		var artifact_id := artifacts[0]
 		var artifact := RunState.get_artifact(artifact_id)
 		option_ids[1] = "artifact:%s" % artifact_id
-		_set_reward_card(1, artifact_id, "РЕЛИКВИЯ СТАВКИ", artifact.title, artifact.description)
+		offers.append({"kicker": "РЕЛИКВИЯ СТАВКИ", "title": artifact.title, "description": artifact.description})
 
 	if RunState.can_claim_extra_hero_upgrade():
 		option_ids[2] = "bonus_upgrade"
-		_set_reward_card(
-			2,
-			"bonus_upgrade",
-			"СТАВКА",
-			"УДВОИТЬ СТАВКУ",
-			"Получить ещё один выбор развития героя.\nДоп. развитие: %s" % RunState.get_extra_upgrade_progress_text()
-		)
+		offers.append({
+			"kicker": "СТАВКА", "title": "УДВОИТЬ СТАВКУ",
+			"description": "Получить ещё один выбор развития героя.\nДоп. развитие: %s" % RunState.get_extra_upgrade_progress_text(),
+		})
 	else:
 		option_ids[2] = "extra_cap_gold"
-		_set_reward_card(
-			2,
-			"gold_windfall",
-			"ПРЕДЕЛ ДОСТИГНУТ",
-			"ЗАБРАТЬ ЗОЛОТО",
-			"Доп. развитие %s\n+45 золота вместо усиления" % RunState.get_extra_upgrade_progress_text()
-		)
+		offers.append({
+			"kicker": "ПРЕДЕЛ ДОСТИГНУТ", "title": "ЗАБРАТЬ ЗОЛОТО",
+			"description": "Доп. развитие %s\n+45 золота вместо усиления" % RunState.get_extra_upgrade_progress_text(),
+		})
+	_present_death_wager(offers)
+
+
+func _present_death_wager(offers: Array[Dictionary]) -> void:
+	for child in get_children():
+		if child is CanvasItem and child != $Background and child.visible:
+			_wager_hidden_layers.append(child)
+			child.hide()
+	_death_wager = DEATH_WAGER_VIEW.new()
+	add_child(_death_wager)
+	_death_wager.chosen.connect(_on_reward_button_pressed)
+	_death_wager.inspect_input.connect(_on_reward_detail_input)
+	var art := _death_wager.build(option_ids, offers, title_label.text, summary_label.text, hint_label.text)
+	for index in offers.size():
+		var offer := offers[index]
+		upgrade_title_labels[index].text = offer.title
+		upgrade_role_labels[index].text = offer.kicker
+		reward_buttons[index].tooltip_text = offer.description
+		upgrade_portraits[index].texture = art[index]
+
+
+func _remove_death_wager() -> void:
+	if not is_instance_valid(_death_wager):
+		return
+	remove_child(_death_wager)
+	_death_wager.queue_free()
+	_death_wager = null
+	for layer in _wager_hidden_layers:
+		layer.show()
+	_wager_hidden_layers.clear()
+
 
 func _setup_elite_reward() -> void:
 	reward_mode = "elite_artifact"
@@ -642,6 +677,9 @@ func _on_reward_button_pressed(index: int) -> void:
 	_disable_reward_buttons()
 	if reward_mode == "elite_artifact":
 		_elite_trophy.set_locked(true)
+		await get_tree().create_timer(0.14).timeout
+	elif is_instance_valid(_death_wager):
+		_death_wager.set_locked(true, index)
 		await get_tree().create_timer(0.14).timeout
 	elif is_instance_valid(_development):
 		_development.set_locked(true, index)
@@ -865,7 +903,7 @@ func _refresh_run_stats() -> void:
 	]
 
 func _animate_reward_screen_in() -> void:
-	if reward_mode in ["normal_loot", "elite_artifact"] or is_instance_valid(_development):
+	if reward_mode in ["normal_loot", "elite_artifact", "death_wager"] or is_instance_valid(_development):
 		return
 	header_panel.pivot_offset = header_panel.size * 0.5
 	header_panel.scale = Vector2(0.985, 0.985)
@@ -964,6 +1002,8 @@ func _reset_buttons() -> void:
 
 func _enable_reward_buttons() -> void:
 	reward_input_locked = false
+	if is_instance_valid(_death_wager):
+		_death_wager.set_locked(false)
 	if is_instance_valid(_development):
 		_development.set_locked(false)
 	if is_instance_valid(_elite_trophy):
@@ -999,6 +1039,8 @@ func _finish_reward(message: String, relic: bool = false) -> void:
 		_fit_loot_summary()
 	elif reward_mode == "elite_artifact":
 		_elite_trophy.show_message(message)
+	elif is_instance_valid(_death_wager):
+		_death_wager.show_message(message)
 	elif is_instance_valid(_development):
 		_development.update_text(message, run_stats_label.text)
 	await get_tree().create_timer(0.42 if reward_mode == "normal_loot" else 0.22).timeout
