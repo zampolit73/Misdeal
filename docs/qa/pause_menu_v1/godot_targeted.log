@@ -1,0 +1,46 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[INFO]:  using [/home/agent/.local/share/godot/app_userdata/Misdeal] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://tests/unit/test_pause_menu_visual_v1.gd
+* test_live_table_pause_save_resume_and_load
+* test_live_battle_pause_blocks_unsafe_saves_and_freezes_combat
+2/2 passed.
+
+
+res://tests/unit/test_run_save.gd
+* test_all_authored_fields_are_audited
+* test_roundtrip_all_roles_and_no_partial_corrupt_load
+* test_disk_backup_corruption_completion_and_memory_rewind
+* test_rich_state_and_new_run_preserve_collection
+* test_reward_checkpoint_and_failed_battle_return
+* test_schema_one_initializes_health_without_revisiting_old_stops
+* test_last_deal_checkpoint_retains_entry_health_and_paid_cost
+* test_cancel_new_game_confirmation_changes_nothing
+* test_pause_cannot_interrupt_scene_swap
+* test_explicit_new_game_clears_memory_and_archives_it
+* test_memory_only_new_game_still_asks_and_cancel_keeps_memory
+* test_next_run_keeps_collection_and_failed_reset_keeps_run
+12/12 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+Totals
+------
+Scripts               2
+Tests                14
+Passing Tests        14
+Asserts             273
+Time              3.689s
+
+
+---- All tests passed! ----

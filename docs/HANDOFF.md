@@ -1,3 +1,7 @@
+## Pause Menu Visual V1 · native acceptance
+
+Open F5, reach Table, press Escape; compare with the approved concept. Resume and focus restoration, save/load and unsafe save gates in live Battle are covered by targeted tests. Verify the native frame on Table and Battle. [Reference and QA](qa/pause_menu_v1/README.md). Next proposed Interface Polish 2.0 item after acceptance: detailed card inspection; no further art or gameplay changes authorized by this package.
+
 ## Wizard Wager Visual V1 · approved in main
 
 PR #158 is merged, and the player confirmed acceptance on 2026-11-26. Preserve the approved optional contract and original mechanics; no further redesign is pending. In the full Act I control run, exercise the wager after II/III or VII when eligible. This is not the post-battle Death Wager reward. [Reference and validation](../assets/source_archive/wizard_wager_v1/README.md).

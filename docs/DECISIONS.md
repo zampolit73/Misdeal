@@ -1,3 +1,7 @@
+## Pause Menu Visual V1 · isolated presentation
+
+Keep the existing five RunMenu handlers and safe_scene checkpoint contract. Use a fixed-size centered isolated plaque with live accessible buttons, focus order and messages over the existing scene; no new settings or save fields. The approved concept is archived; native player acceptance remains distinct from the headless route checks.
+
 ## Wizard Wager Visual V1 · optional offer
 
 The approved offer is distinct from Death Wager Reward V1.2. The player explicitly accepted the merged PR #158 on 2026-11-26; do not reopen the presentation without concrete feedback. Keep the original Table, debt rules, reward multiplier, sacrifice order, schedule, refusal and save behavior. The new contract is a local modal with live copy; keyboard focus initially selects refusal and returns to Table after either decision.

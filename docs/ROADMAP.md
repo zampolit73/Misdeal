@@ -1,3 +1,9 @@
+## Interface Polish 2.0
+
+- [x] Implement the approved Pause Menu Visual V1; retain saving/loading and safe-scene behavior.
+- [ ] Native visual acceptance for Pause Menu V1. [QA](qa/pause_menu_v1/README.md)
+- [ ] Evaluate the card inspection reader, live combat HUD, combat report, Fate Spread and small dialogs individually; preserve previously approved screens and mechanics.
+
 ## Wizard Wager Visual V1
 
 - [x] Implement approved isolated offer modal with existing mechanics.

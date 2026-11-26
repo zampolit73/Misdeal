@@ -1,3 +1,7 @@
+## Pause Menu Visual V1
+
+The isolated lossless 740×1136 alpha WebP is in `assets/pixel/ui/pause_menu_v1/`. The exact approved concept, text-free clean master, offline layout proof and provenance are in `assets/source_archive/pause_menu_v1/`. [Godot QA](qa/pause_menu_v1/README.md).
+
 ## Wizard Wager Visual V1
 
 `assets/pixel/ui/wizard_wager_v1/wager_plate.webp` is the isolated 744×475 RGBA contract plate. Approved concept, clean master and offline layout preview are archived in `assets/source_archive/wizard_wager_v1/`. Real labels and Buttons overlay the plate without replacing the Table.
