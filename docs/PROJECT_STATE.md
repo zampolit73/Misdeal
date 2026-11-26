@@ -1,3 +1,7 @@
+## Camp Rest Visual V2
+
+The stops after IV and XII use the approved camp plate and three live action cards. The view reads party HP, the oath-adjusted treatment, the chosen hero’s actual training offer and the stocked rite. [Native QA](qa/camp_rest_v2/README.md)
+
 ## Intro Visual V2
 
 Intro V2 uses six untouched plates and live dialogue. The sixth frame moves the scene from the old hero’s home into the existing selection hall. [Native QA](qa/intro_v2/README.md)
@@ -12,7 +16,7 @@ The main menu uses the approved retouched background, original logo and four nat
 
 ## Merchant Visual V2
 
-The merchant after VIII uses the approved retouched scene. Its five offer positions are driven by the saved stock, with current prices and status. Card-event merchants and the rest stops retain their current presentation. [Native QA](qa/merchant_v2/README.md)
+The merchant after VIII uses the approved retouched scene. Its five offer positions are driven by the saved stock, with current prices and status. Card-event merchants retain their current presentation. [Native QA](qa/merchant_v2/README.md)
 
 ## Reward Cinematics 1.0 · Hero Development approved in main
 

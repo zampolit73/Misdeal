@@ -1,3 +1,7 @@
+## Camp Rest Visual V2
+
+Apply the approved presentation to the IV and XII stops. The three actions show live party HP, healing, training, rite cost and restrictions, and retain the existing save and return-to-table flow.
+
 ## Intro Visual V2
 
 Replace the production intro with the six approved plates, native dialogue and a visible Skip button. Frame 06 leads into the existing hero selection.

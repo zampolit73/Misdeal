@@ -1,0 +1,159 @@
+{
+  "canvas": {
+    "width": 1280,
+    "height": 720
+  },
+  "coordinate_format": "[x,y,width,height] in 1280x720 reference pixels",
+  "plate": "runtime/rest_plate.webp",
+  "status": [
+    190,
+    12,
+    900,
+    23
+  ],
+  "heading": [
+    200,
+    59,
+    880,
+    39
+  ],
+  "intro": [
+    202,
+    98,
+    885,
+    23
+  ],
+  "party_health": [
+    202,
+    124,
+    885,
+    23
+  ],
+  "footer": [
+    190,
+    673,
+    900,
+    25
+  ],
+  "cards": [
+    {
+      "action": "rest",
+      "hit_area": [
+        221,
+        187,
+        275,
+        412
+      ],
+      "title": [
+        257,
+        207,
+        203,
+        34
+      ],
+      "description": [
+        240,
+        448,
+        237,
+        76
+      ],
+      "training_role_selector": null,
+      "status": [
+        240,
+        525,
+        237,
+        18
+      ],
+      "overlay_anchor": [
+        221,
+        187
+      ],
+      "overlay_files": {
+        "hover": "runtime/card_1_hover.png",
+        "focus": "runtime/card_1_focus.png",
+        "pressed": "runtime/card_1_pressed.png",
+        "disabled": "runtime/card_1_disabled.png"
+      }
+    },
+    {
+      "action": "upgrade/<selected_role>",
+      "hit_area": [
+        509,
+        187,
+        269,
+        412
+      ],
+      "title": [
+        545,
+        207,
+        197,
+        34
+      ],
+      "description": [
+        528,
+        448,
+        231,
+        57
+      ],
+      "training_role_selector": [
+        531,
+        511,
+        225,
+        28
+      ],
+      "status": [
+        528,
+        511,
+        231,
+        28
+      ],
+      "overlay_anchor": [
+        509,
+        187
+      ],
+      "overlay_files": {
+        "hover": "runtime/card_2_hover.png",
+        "focus": "runtime/card_2_focus.png",
+        "pressed": "runtime/card_2_pressed.png",
+        "disabled": "runtime/card_2_disabled.png"
+      }
+    },
+    {
+      "action": "rite",
+      "hit_area": [
+        790,
+        187,
+        275,
+        412
+      ],
+      "title": [
+        826,
+        207,
+        203,
+        34
+      ],
+      "description": [
+        809,
+        448,
+        237,
+        76
+      ],
+      "training_role_selector": null,
+      "status": [
+        809,
+        525,
+        237,
+        18
+      ],
+      "overlay_anchor": [
+        790,
+        187
+      ],
+      "overlay_files": {
+        "hover": "runtime/card_3_hover.png",
+        "focus": "runtime/card_3_focus.png",
+        "pressed": "runtime/card_3_pressed.png",
+        "disabled": "runtime/card_3_disabled.png"
+      }
+    }
+  ]
+}

@@ -1,3 +1,7 @@
+## Camp Rest Visual V2
+
+Resolve card IV or XII and return to Table. Tab and Enter navigate and choose, and the training selector changes only the hero and preview. Hover a choice for its full effect. The action still saves through CampStop before returning to the same Table. [Native captures and checks](qa/camp_rest_v2/README.md)
+
 ## Intro Visual V2
 
 Use F5 → «Новая игра» to watch the six frames. Click, Space and Enter advance. Skip or Esc opens the existing hero selection. [Native QA](qa/intro_v2/README.md)
