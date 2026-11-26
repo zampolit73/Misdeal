@@ -1,6 +1,6 @@
 ## System Dialog V1 · native acceptance
 
-User approved the Main Menu V2 visual family for system dialogs. Both production confirmations are implemented and tested (16/16, 321 assertions); native capture in existing release CI and player acceptance remain pending. F5 with an existing save or Memory Glass → New Game → cancel; in-run Esc → «В главное меню» → cancel/Esc → pause → Esc → gameplay. Check both distinct new-run choices using a disposable profile only. Do not change the Archive, backups or restart rules. [QA and reference](qa/system_dialog_v1/README.md). Continue the outstanding native acceptance gates below and the Act I control run; no need to redesign approved screens without feedback.
+User approved the Main Menu V2 visual family for system dialogs. Both production confirmations are implemented. Player screenshot exposed escaped text due to zero-width automatic wrapping; fixed and verified with deferred-layout checks (17/17, 349 assertions). Recheck the restored title, subtitles and backup note at native 1280x720; native CI/player acceptance remain pending. F5 with an existing save or Memory Glass → New Game → cancel; in-run Esc → «В главное меню» → cancel/Esc → pause → Esc → gameplay. Check both distinct new-run choices using a disposable profile only. Do not change the Archive, backups or restart rules. [QA and reference](qa/system_dialog_v1/README.md). Continue the outstanding native acceptance gates below and the Act I control run; no need to redesign approved screens without feedback.
 
 ## Camp Rest Black & Gold · native acceptance
 

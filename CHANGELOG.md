@@ -1,3 +1,8 @@
+## System Dialog V1 text layout fix - 26 Nov 2026
+
+- Repair zero-width automatic wrapping that pushed title, subtitles and warning/backup text outside the approved dialog. Preserve exact panel and button geometry, copy and save logic.
+- Reproduced with 14 failing layout assertions; both dialogs now pass after deferred layout, 17/17 targeted tests and 349 assertions. Native player recheck pending.
+
 ## System Dialog V1 - 26 Nov 2026
 
 - Replace both default Godot confirmation windows with shared native Main Menu V2 materials and live bone serif buttons.

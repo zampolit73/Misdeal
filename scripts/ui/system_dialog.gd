@@ -110,7 +110,10 @@ func _label(parent: Control, node_name: String, value: String, bounds: Rect2, po
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	# All copy here is authored with explicit line breaks. Wrapping a new
+	# zero-width Label inflates its minimum height before its rect is set;
+	# Godot then preserves that oversized rect after the width is assigned.
+	label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	label.add_theme_font_override("font", MENU_TYPE.heading_font())
 	label.add_theme_font_size_override("font_size", point)
 	label.add_theme_color_override("font_color", color)

@@ -54,3 +54,38 @@ func test_return_cancel_and_confirm_are_distinct() -> void:
 	dialog.present_return_to_menu(func(): choices.append(true))
 	dialog.get_node("Panel/ReturnButton").pressed.emit()
 	assert_eq(choices, [true])
+
+
+func test_all_dialog_copy_fits_after_deferred_layout() -> void:
+	var parent := Control.new()
+	add_child_autofree(parent)
+	parent.size = Vector2(1280, 720)
+	var dialog := DIALOG.new()
+	parent.add_child(dialog)
+	dialog.present_new_game(func(_reset: bool): pass)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	var panel: Panel = dialog.get_node("Panel")
+	_assert_label_bounds(panel, "Title", Rect2(24, 19, 572, 56), 1)
+	_assert_label_bounds(panel, "Message", Rect2(30, 76, 560, 32), 1)
+	_assert_label_bounds(panel.get_node("NextRunButton"), "Subtitle", Rect2(16, 43, 516, 28), 1)
+	_assert_label_bounds(panel.get_node("ResetButton"), "Subtitle", Rect2(16, 43, 516, 28), 1)
+	_assert_label_bounds(panel, "Note", Rect2(30, 308, 560, 60), 2)
+	dialog.cancel()
+	await get_tree().process_frame
+	dialog = DIALOG.new()
+	parent.add_child(dialog)
+	dialog.present_return_to_menu(func(): pass)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	panel = dialog.get_node("Panel")
+	_assert_label_bounds(panel, "Title", Rect2(24, 19, 572, 56), 1)
+	_assert_label_bounds(panel, "Message", Rect2(30, 80, 560, 64), 2)
+
+
+func _assert_label_bounds(parent: Control, path: String, bounds: Rect2, lines: int) -> void:
+	var label: Label = parent.get_node(path)
+	assert_eq(label.get_rect(), bounds, path + " exact authored text region after layout")
+	assert_true(parent.get_global_rect().encloses(label.get_global_rect()), path + " stays inside parent")
+	assert_eq(label.get_line_count(), lines, path + " line count")
+	assert_eq(label.get_visible_line_count(), lines, path + " all lines visible")
