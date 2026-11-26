@@ -1,3 +1,7 @@
+## Combat Report Visual V1 · accepted concept, read-only campaign
+
+The player approved the archived Combat Report V1 on 2026-11-26. Use the isolated antique journal frame, actual role badges and real wave/time/order, transition reasons, selected targets, kills and deaths. Finalize a current-wave executor once on actual battle completion, never append during review. Maintain all prior-wave histories, existing planned-mode availability and dismiss back to the same result. No QA-only replay/edit/compare/settings buttons, no invented stats, no mechanics or save-schema changes.
+
 ## Interface Polish 2.0 · production acceptance and next gate
 
 The player accepted Pause Menu V1 (#159), Card Inspection V1 (#160) and Combat HUD V1 (#161) in local Godot on 2026-11-26 after consolidation in main. Preserve these approved presentations. For the next concept, the campaign report remains a read-only representation of actual per-hero executor history, grouped by hero and chronological wave/time events, with existing dismissal and result flow. Do not import pilot-only replay/edit/compare/settings actions or invent combat statistics. Visual approval precedes implementation. [Handoff](HANDOFF.md).

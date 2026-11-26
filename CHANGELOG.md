@@ -1,3 +1,7 @@
+## Interface Polish 2.0 · Combat Report Visual V1
+
+Replace the generic production AcceptDialog with the approved leather/bronze journal, live per-hero headings, wave/time columns, localized transition reasons, scroll and close/focus return. Finalize executor history once at result, so reopening cannot mutate it. Existing victory, defeat, Last Deal and Classic routes remain intact. Godot 4.7.2: 19/19 targeted tests, 208 assertions; native production framebuffer capture added to the existing combat planning CI runner, pending verification.
+
 ## Interface Polish 2.0 · production acceptance (2026-11-26)
 
 The player confirmed Pause Menu V1, Card Inspection V1 and Combat HUD V1 were integrated and accepted in local Godot. Combined regression and release CI passed. Next gate: concept for the production read-only combat report; no runtime changes in this acceptance checkpoint.

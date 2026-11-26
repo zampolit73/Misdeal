@@ -1,3 +1,7 @@
+## Combat Report Visual V1
+
+Centered 1000×588 text-free parchment/leather/bronze plate above the actual battle result (CanvasLayer 60). Muted ink serif text, authentic existing V4 hero emblems and narrow nameplates, scrollable dynamically wrapped chronological event rows with separated wave/time and description. One live «ЗАКРЫТЬ [ESC]» control; keyboard scroll and focus return. Keep all text and UI state native.
+
 ## Pause Menu Visual V1
 
 Use the centered 370×568 antique charcoal/bronze pause plate over a 52% black scrim, with live ivory serif controls. Preserve the burgundy primary resume plate, smaller footer for status or failure messages, muted disabled states and clear keyboard focus. The background always remains the actual paused scene.

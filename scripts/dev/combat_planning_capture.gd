@@ -431,4 +431,45 @@ func run() -> void:
 	var session: Node=root.get_node_or_null("QAHubSession")
 	if session!=null: session.queue_free()
 	await process_frame
+	await capture_campaign_report()
 	quit()
+
+func capture_campaign_report() -> void:
+	# Real production campaign, not the independent pilot report.
+	RenderingServer.render_loop_enabled = true
+	root.size = Vector2i(1280, 720)
+	var state := root.get_node("RunState")
+	state.reset_run()
+	state.choose_protagonist("knight")
+	state.recruit_companion("ranger", "Combat Report QA")
+	state.recruit_companion("mage", "Combat Report QA")
+	state.select_encounter("res://resources/encounters/grave_bell.tres")
+	change_scene_to_file("res://scenes/battle/battle.tscn")
+	await frame()
+	await frame()
+	var battle: Control = current_scene
+	var driver: Node = battle.combat_plan_controller
+	PRESETS.apply(driver.plans, "staged")
+	driver.start_planned_battle()
+	var previous_scale := Engine.time_scale
+	Engine.time_scale = 4.0
+	var deadline := Time.get_ticks_msec() + 30000
+	while not battle.battle_finished and Time.get_ticks_msec() < deadline:
+		await process_frame
+	Engine.time_scale = previous_scale
+	assert(battle.battle_finished, "Campaign report must follow a natural result")
+	assert(driver.review_button.visible)
+	await click_control(driver.review_button)
+	assert(is_instance_valid(driver.review_dialog))
+	var report: CanvasLayer = driver.review_dialog
+	assert(report.journal.get_child_count() == 3)
+	await move_pointer(Vector2(30, 700))
+	await capture("campaign_combat_report_v1")
+	var captured := root.get_texture().get_image()
+	assert(captured.get_size() == Vector2i(1280, 720))
+	assert(FileAccess.file_exists(output + "/campaign_combat_report_v1.png"))
+	report.scroll.scroll_vertical = int(report.scroll.get_v_scroll_bar().max_value)
+	await capture("campaign_combat_report_v1_scrolled")
+	await click_control(report.close_button)
+	assert(not is_instance_valid(driver.review_dialog))
+	print("COMBAT_REPORT_NATIVE_PASS: production outcome, grouped executor history, scroll and close")

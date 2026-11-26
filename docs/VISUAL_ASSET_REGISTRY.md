@@ -1,3 +1,7 @@
+## Combat Report Visual V1
+
+Runtime `assets/pixel/ui/combat_report_v1/report_plate.webp` (1635×962 RGBA, WebP quality 94) is the clean text-free master prepared from the user-approved reference. The original approved concept and master are archived under `assets/source_archive/combat_report_v1/` with `.gdignore`; buttons, emblems and all report rows are live. [QA](qa/combat_report_v1/README.md).
+
 ## Pause Menu Visual V1
 
 The isolated lossless 740×1136 alpha WebP is in `assets/pixel/ui/pause_menu_v1/`. The exact approved concept, text-free clean master, offline layout proof and provenance are in `assets/source_archive/pause_menu_v1/`. [Godot QA](qa/pause_menu_v1/README.md).

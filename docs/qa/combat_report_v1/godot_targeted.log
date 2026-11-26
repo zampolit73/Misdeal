@@ -1,0 +1,56 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[INFO]:  using [/home/agent/.local/share/godot/app_userdata/Misdeal] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://tests/unit/test_combat_report_visual_v1.gd
+* test_real_campaign_report_is_read_only_and_modal
+* test_empty_solo_and_event_translation
+* test_classic_keeps_report_hidden
+* test_defeat_preserves_last_deal_controls
+4/4 passed.
+
+
+res://tests/unit/test_combat_planning.gd
+* test_data_contract_clamps_and_copies_without_special_orders
+* test_priority_absolute_hp_support_fallback_farthest_and_target_lock
+* test_explicit_target_death_fallback_and_freed_reference
+* test_independent_timers_last_order_and_no_preparation_or_pause_time
+* test_each_event_timeout_and_no_extra_stat_penalty
+* test_real_damage_taken_and_hp_entry
+* test_actual_damage_personal_kill_aoe_and_one_transition_per_event_frame
+* test_personal_kill_event_and_damage_from_before_stage_does_not_replay
+* test_defense_does_not_chase_far_assigned_enemy_and_anchor_never_teleports
+* test_hunt_and_assault_have_distinct_real_movement_without_stat_buffs
+* test_death_stops_plan_and_unplanned_units_keep_legacy_policy
+* test_hp_predicate_is_latched_at_entry_without_cascading_the_trigger_event
+12/12 passed.
+
+
+res://tests/unit/test_combat_hud_visual_v1.gd
+* test_hud_geometry_emblems_and_empty_rows
+* test_live_campaign_reads_executors_and_transition_notice
+* test_solo_and_classic_do_not_show_phantom_rows
+3/3 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+Totals
+------
+Scripts               3
+Tests                19
+Passing Tests        19
+Asserts             208
+Time              5.216s
+
+
+---- All tests passed! ----
+

@@ -1,3 +1,7 @@
+## Combat Report Visual V1 · production implementation
+
+The player approved the exact archived concept on 2026-11-26. The campaign «РАЗБОР ПРИКАЗОВ» now mounts a centered, text-free leather/bronze/vellum journal over the actual battle result, with live class emblems, encounter title and per-hero wave/time events. Mouse/keyboard scrolling, single dismissal and focus return retain existing victory/reward and defeat/Last Deal routes; Classic remains unchanged. Executor journals are finalized once at combat end rather than on inspection. Godot 4.7.2 targeted validation: 19/19 tests, 208 assertions; native render in CI/user acceptance remain to be verified. [QA](qa/combat_report_v1/README.md).
+
 ## Interface Polish 2.0 · accepted in main
 
 All three player-approved concepts (Pause Menu #159, Card Inspection #160 and Combat HUD #161) are merged into main. Combined Godot 4.7.2 tests: 32/32, 483 assertions; D274/D316 smoke PASS. The implementation-only integration follow-up also removes subpixel rounding fragility in the reader geometry test. No mechanics changed. CI #161 passed; on 2026-11-26 the player expressly accepted all three integrated interfaces in local Godot. [Regression route and next visual approval gate: Combat Report Visual V1](HANDOFF.md).

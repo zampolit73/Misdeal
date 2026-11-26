@@ -1,3 +1,7 @@
+## Combat Report Visual V1 · player visual acceptance pending
+
+Concept approved on 2026-11-26 and implemented in the production campaign. Godot 4.7.2 targeted tests 19/19 (208 assertions). Open F5 → planned battle → result → «РАЗБОР ПРИКАЗОВ»; inspect actual hero rows, scroll down for later events, close by button/Esc, return to the unchanged outcome. Test a victory and defeat if convenient; no need to repeat previously accepted UI. Native frame capture is integrated into the existing CI planning runner (`campaign_combat_report_v1.png` and `_scrolled.png`); local workspace could not establish an X11 display, so do not label visual rendering or human acceptance passed until verified. Next concept after acceptance: Fate Spread, then auxiliary dialogs. [Reference and QA](qa/combat_report_v1/README.md).
+
 ## Interface Polish 2.0 · three packages accepted in production
 
 Merged Pause Menu Visual V1 [#159](https://github.com/zampolit73/Misdeal/pull/159), Card Inspection Visual V1 [#160](https://github.com/zampolit73/Misdeal/pull/160) and Combat HUD Visual V1 [#161](https://github.com/zampolit73/Misdeal/pull/161) into main. Combined Godot 4.7.2 headless regression: 32/32 tests, 483 assertions, plus D274/D316 smoke. The reader layout test accepts insignificant subpixel anchor precision; runtime code unchanged by the integration follow-up.
@@ -7,7 +11,7 @@ On 2026-11-26 the player explicitly confirmed all three packages were integrated
 2. Right-click both Table card and development upgrade: full parchment copy, notes when real, scrolling, close/return focus. [QA](qa/card_inspection_v1/README.md).
 3. Start a planned fight, inspect the compact active-order HUD, countdown, stage transition and dead-row removal; verify wave break, Classic and result. [QA](qa/combat_hud_v1/README.md).
 
-Next visual approval gate: **Combat Report Visual V1**, the production campaign's read-only «РАЗБОР ПРИКАЗОВ» dialog (`battle_plan_campaign.gd`). Present actual per-hero wave/time/order and executor events. Keep a single dismiss action and the existing battle-result/reward/Last Deal routes. Do not import QA-only replay, plan editing, comparison or settings buttons into the campaign. [Concept candidate (awaiting player approval)](../assets/source_archive/combat_report_v1/concept_candidate.webp). No report implementation is approved yet. After the concept is approved and implemented, continue with Fate Spread and small dialogs.
+Combat Report Visual V1 concept was subsequently approved and implemented; see the current handoff above. Preserve all previously accepted art and mechanics.
 
 ## Wizard Wager Visual V1 · approved in main
 

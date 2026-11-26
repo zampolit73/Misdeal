@@ -4,6 +4,7 @@ extends Node
 const PLAN := preload("res://scripts/battle/planning/hero_battle_plan.gd")
 const EXECUTOR := preload("res://scripts/battle/planning/battle_plan_executor.gd")
 const VIEW := preload("res://scripts/battle/planning/battle_plan_ui.gd")
+const REPORT := preload("res://scripts/battle/planning/battle_report_visual.gd")
 const PRESETS := preload("res://scripts/battle/planning/battle_plan_presets.gd")
 const DS3_BATTLE := preload("res://scripts/battle/battle_ds3_pass.gd")
 
@@ -20,7 +21,7 @@ var planned := true
 var using_classic := false
 var return_button: Button
 var review_button: Button
-var review_dialog: AcceptDialog
+var review_dialog: CanvasLayer
 var completed := false
 
 func is_production_mode() -> bool:
@@ -47,10 +48,6 @@ func configure(owner_battle: Control) -> void:
 	return_button = ui.button(ui, "Боевой план", Vector2(990, 542), Vector2(260, 31), show_planning)
 	return_button.visible = false
 	return_button.tooltip_text = "Вернуться к индивидуальным приказам, не меняя расстановку."
-	review_dialog = AcceptDialog.new()
-	review_dialog.title = "Разбор боевого плана"
-	review_dialog.size = Vector2i(840, 540)
-	battle.add_child(review_dialog)
 	review_button = Button.new()
 	review_button.text = "РАЗБОР ПРИКАЗОВ"
 	review_button.position = Vector2(390, 634)
@@ -271,10 +268,13 @@ func on_wave_intermission() -> void:
 	else:
 		return_button.visible = true
 
-func on_battle_finished(_won: bool) -> void:
+func on_battle_finished(won: bool) -> void:
 	if completed:
 		return
 	completed = true
+	# Finalize each real journal once when combat ends, never on review.
+	for executor in executors.values():
+		executor.finish(won)
 	cancel_target()
 	ui.hide_preparation()
 	ui.hud.hide()
@@ -283,26 +283,24 @@ func on_battle_finished(_won: bool) -> void:
 		review_button.visible = true
 
 func _show_review() -> void:
-	var rows: Array[String] = []
+	if not completed or using_classic or is_instance_valid(review_dialog):
+		return
+	var logs: Dictionary = {}
 	for role in plans:
-		rows.append(role_name(role))
 		var log: Array = histories.get(role, []).duplicate(true)
 		if executors.has(role):
-			executors[role].finish(RunState.last_battle_won)
-			log.append_array(executors[role].journal)
-		for item in log:
-			var label := ""
-			match str(item.kind):
-				"start": label = "Начало: " + str(item.order)
-				"end": label = "Переход (%s), %.1f с" % ["лимит" if item.reason == "timeout" else str(item.reason), float(item.elapsed)]
-				"kill": label = "Личное убийство: " + str(item.target)
-				"death": label = "Герой погиб"
-				"target": label = "Выбрана цель: " + str(item.actual)
-			if not label.is_empty():
-				rows.append("  Волна %d · %.1f с · %s" % [int(item.wave), float(item.time), label])
-		rows.append("")
-	review_dialog.dialog_text = "\n".join(rows) if not rows.is_empty() else "Боевых событий нет."
-	review_dialog.popup_centered_ratio(0.78)
+			log.append_array(executors[role].journal.duplicate(true))
+		logs[role] = log
+	review_dialog = REPORT.new()
+	review_dialog.name = "CombatReportVisualV1"
+	review_dialog.closed.connect(_on_review_closed)
+	battle.add_child(review_dialog)
+	review_dialog.present(battle.encounter.title, logs)
+
+func _on_review_closed() -> void:
+	review_dialog = null
+	if is_instance_valid(review_button):
+		review_button.grab_focus()
 
 func _process(delta: float) -> void:
 	if completed or not is_instance_valid(battle):

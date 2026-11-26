@@ -5,7 +5,8 @@
 - [x] Combat HUD V1 — merged [#161](https://github.com/zampolit73/Misdeal/pull/161).
 - [x] Combined Godot 4.7.2 regression, 32/32 tests (483 assertions), D274/D316 smoke.
 - [x] Player native visual acceptance of all three on 2026-11-26; [regression route](HANDOFF.md).
-- [ ] Next: Combat Report Visual V1 — approve the read-only production «РАЗБОР ПРИКАЗОВ» concept, then implement and validate. Preserve actual journal data and result routes; no QA-only actions.
+- [x] Combat Report Visual V1 — player approved concept; production read-only report implemented; 19/19 targeted tests, 208 assertions.
+- [ ] Combat Report V1 native visual acceptance (existing CI native capture + player F5 checkpoint).
 - [ ] Fate Spread and auxiliary dialogs; individually approve new visuals and preserve mechanics.
 
 ## Wizard Wager Visual V1
