@@ -6,6 +6,10 @@ Keep the existing five RunMenu handlers and safe_scene checkpoint contract. Use 
 
 The approved offer is distinct from Death Wager Reward V1.2. The player explicitly accepted the merged PR #158 on 2026-11-26; do not reopen the presentation without concrete feedback. Keep the original Table, debt rules, reward multiplier, sacrifice order, schedule, refusal and save behavior. The new contract is a local modal with live copy; keyboard focus initially selects refusal and returns to Table after either decision.
 
+## Card Inspection Visual V1 · approved shared reader
+
+Read-only inspection uses a centered 900×452 isolated antique two-column plate over the current scene. Preserve the approved DS3 front/art and the existing real card title/type/description and optional mark/hold annotation, without revealing outcomes or creating a choice. Reward uses the same surface. Preserve scrolling, dismissal and focus return. The approved concept and clean master are archived separately from the live controls. [Reference and QA](qa/card_inspection_v1/README.md).
+
 ## Final Visual Audit 1.0 · selective corrections
 
 Preserve approved compositions and gameplay. Restrict heraldry edits to six portrait/merchant/reward plate regions; scope Lost Purse grading to distant red pixels and shared UV across layers; leave the approved source card intact. Derive the three choice previews from approved travel outcome art. Separate combat captions independently from gameplay geometry and keep overflow copy scrollable. Defer the optional Last Camp grade until native comparison. [Acceptance and provenance](FINAL_VISUAL_AUDIT_1_0_FIXES.md).

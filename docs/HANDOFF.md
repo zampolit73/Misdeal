@@ -6,6 +6,10 @@ Open F5, reach Table, press Escape; compare with the approved concept. Resume an
 
 PR #158 is merged, and the player confirmed acceptance on 2026-11-26. Preserve the approved optional contract and original mechanics; no further redesign is pending. In the full Act I control run, exercise the wager after II/III or VII when eligible. This is not the post-battle Death Wager reward. [Reference and validation](../assets/source_archive/wizard_wager_v1/README.md).
 
+## Card Inspection Visual V1 · player visual acceptance
+
+The approved reader is implemented in the shared CardLoreInspect scene. Reach Table and right-click a card; check physical card and readable parchment, notes if mark/hold, keyboard/wheel scrolling and Escape/close/outside focus return. At development reward, inspect without claiming. Godot 4.7.2 headless 3/3 targeted and D274/D316 pass; rendered native acceptance remains pending. [Reference and QA](qa/card_inspection_v1/README.md). Next Interface Polish 2.0 concept: live combat HUD, without changing combat mechanics.
+
 ## Final Visual Audit 1.0 · следующий шаг
 
 Аудит завершён на `d4b94d2b`; пакет четырёх P1 и P2-06/07 слит через PR #157. Следующий шаг: нативная приёмка остальных исправлений, решение по P2-05 (Last Camp) и непрерывный контрольный F5-забег до XIII перед передачей издательской сборки. [Передача в новый чат и критерии приёмки](FINAL_VISUAL_AUDIT_1_0_HANDOFF.md).

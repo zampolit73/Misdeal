@@ -6,6 +6,10 @@ The user approved the V1 concept and the production RunMenu now uses its isolate
 
 The optional «Ставка Волшебника» offer now has its own approved isolated two-sided contract plate over the existing Table. Live text explains +25% enemy damage while debt is active, double normal loot and the «Жертва» order. Accept/refuse retain original RunState handlers; the modal owns keyboard focus. [Reference, layout and QA](../assets/source_archive/wizard_wager_v1/README.md). Merged [PR #158](https://github.com/zampolit73/Misdeal/pull/158) at `e9129d26`; player explicitly accepted the result on 2026-11-26. Preserve this presentation. The separate full Act I control run remains outstanding.
 
+## Card Inspection Visual V1 · Interface Polish 2.0
+
+The player approved the two-column reader concept. The shared Table/Reward modal now uses the isolated leather/bronze and vellum plate, enlarged original DS3 front, live title/type/copy and optional scrollable notes. Escape, close, outside click, keyboard/mouse scroll and focus return remain intact; no changes to mechanics or hidden outcomes. Godot 4.7.2: 3/3 targeted tests (44 assertions), D274/D316 smoke pass. [Reference and native acceptance gate](qa/card_inspection_v1/README.md).
+
 ## Final Visual Audit 1.0 · пакет исправлений P1
 
 Четыре P1 реализованы и слиты в main через PR #157; P2-06/07 исправлены, P2-05 оставлен на нативную приёмку. 26/26 целевых и регрессионных тестов Godot 4.7.2. Сохраняются утверждённый арт, правила, цены, сохранения и текущий UI. Нативные кадры после правок, контрольный F5 и финальная оценка ещё не подтверждены. [Реализация, доказательства и остаток](FINAL_VISUAL_AUDIT_1_0_FIXES.md).

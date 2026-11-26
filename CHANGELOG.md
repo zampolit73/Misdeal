@@ -6,6 +6,10 @@ Replace the legacy generic pause panel with the approved isolated charcoal/bronz
 
 Replace the old optional wizard wager modal presentation with an isolated approved contract plate, live risk/reward/bonus copy and two accessible action buttons. Preserve real accept/refuse and the debt, normal-loot multiplier and sacrifice contract. Merged PR #158, player-approved 2026-11-26. D315 smoke now verifies the exact approved D343 source and its intentional localized runtime grade without altering the art.
 
+## Interface Polish 2.0 · Card Inspection Visual V1
+
+Implement the approved antique two-column card reader with the original DS3 physical card, readable parchment, real descriptions/annotations and unchanged Table and Reward routes. Keep live close/scroll/focus and all gameplay semantics. Godot 4.7.2: 3/3 targeted tests, 44 assertions; D274/D316 smoke passed. Native visual acceptance pending.
+
 ## Final Visual Audit 1.0 · P1 implementation candidate
 
 Unify six banner emblems, mute the Lost Purse sky and reflection in travel and card art, reuse approved travel crops for three decision illustrations, and separate overlapping combat names above actors. Improve disabled-choice and empty-merchant copy and clip the Run End summary to one full line with scrolling. 26/26 targeted and regression GUT tests; native visual acceptance and full Act I run pending. [Evidence and remaining checks](docs/FINAL_VISUAL_AUDIT_1_0_FIXES.md).

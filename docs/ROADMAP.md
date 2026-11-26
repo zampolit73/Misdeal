@@ -10,6 +10,12 @@
 - [x] Merge PR #158; player accepted the production presentation on 2026-11-26.
 - [ ] Include both wager outcomes in the remaining Act I gameplay/control-run coverage.
 
+## Interface Polish 2.0 · Card Inspection Visual V1
+
+- [x] Implement player-approved reader for real Table cards and development/reward details; preserve all choices and UI return.
+- [ ] Player native visual acceptance for the reader. [Review and checks](qa/card_inspection_v1/README.md)
+- [ ] Remaining individually proposed concepts: live combat HUD, combat report, Fate Spread and auxiliary dialogs.
+
 ## Final Visual Audit 1.0
 
 - [x] Пакет реализации четырёх P1 + P2-06/07, решения по всем P2 и целевые headless проверки.
