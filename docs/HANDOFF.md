@@ -1,13 +1,13 @@
-## Interface Polish 2.0 · three approved packages integrated
+## Interface Polish 2.0 · three packages accepted in production
 
 Merged Pause Menu Visual V1 [#159](https://github.com/zampolit73/Misdeal/pull/159), Card Inspection Visual V1 [#160](https://github.com/zampolit73/Misdeal/pull/160) and Combat HUD Visual V1 [#161](https://github.com/zampolit73/Misdeal/pull/161) into main. Combined Godot 4.7.2 headless regression: 32/32 tests, 483 assertions, plus D274/D316 smoke. The reader layout test accepts insignificant subpixel anchor precision; runtime code unchanged by the integration follow-up.
 
-Player native acceptance is still open. After pulling main:
+On 2026-11-26 the player explicitly confirmed all three packages were integrated and accepted in local Godot. Release CI for #161 completed successfully (run 45836358193). Preserve the approved surfaces. The regression route remains:
 1. F5 → Table → Escape: pause, resume, safe checkpoint save/load and disabled save in live combat. [QA](qa/pause_menu_v1/README.md).
 2. Right-click both Table card and development upgrade: full parchment copy, notes when real, scrolling, close/return focus. [QA](qa/card_inspection_v1/README.md).
 3. Start a planned fight, inspect the compact active-order HUD, countdown, stage transition and dead-row removal; verify wave break, Classic and result. [QA](qa/combat_hud_v1/README.md).
 
-Next concept after this brief checkpoint: **combat report** (read-only, actual campaign/pilot combat log). Then Fate Spread and small dialogs. Preserve all approved art and game mechanics.
+Next visual approval gate: **Combat Report Visual V1**, the production campaign's read-only «РАЗБОР ПРИКАЗОВ» dialog (`battle_plan_campaign.gd`). Present actual per-hero wave/time/order and executor events. Keep a single dismiss action and the existing battle-result/reward/Last Deal routes. Do not import QA-only replay, plan editing, comparison or settings buttons into the campaign. No report implementation is approved yet. After the concept is approved and implemented, continue with Fate Spread and small dialogs.
 
 ## Wizard Wager Visual V1 · approved in main
 

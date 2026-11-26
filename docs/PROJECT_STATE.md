@@ -1,10 +1,10 @@
-## Interface Polish 2.0 · integrated in main
+## Interface Polish 2.0 · accepted in main
 
-All three player-approved concepts (Pause Menu #159, Card Inspection #160 and Combat HUD #161) are merged into main. Combined Godot 4.7.2 tests: 32/32, 483 assertions; D274/D316 smoke PASS. The implementation-only integration follow-up also removes subpixel rounding fragility in the reader geometry test. No mechanics changed. Native visual acceptance remains distinct; [one checkpoint and next concept](HANDOFF.md).
+All three player-approved concepts (Pause Menu #159, Card Inspection #160 and Combat HUD #161) are merged into main. Combined Godot 4.7.2 tests: 32/32, 483 assertions; D274/D316 smoke PASS. The implementation-only integration follow-up also removes subpixel rounding fragility in the reader geometry test. No mechanics changed. CI #161 passed; on 2026-11-26 the player expressly accepted all three integrated interfaces in local Godot. [Regression route and next visual approval gate: Combat Report Visual V1](HANDOFF.md).
 
 ## Pause Menu Visual V1 · Interface Polish 2.0
 
-The user approved the V1 concept and the production RunMenu now uses its isolated pause plate over the current scene. Five live actions, checkpoint restrictions, save/load behavior and confirmation remain intact. Godot 4.7.2: 14/14 targeted and save regression tests. [Reference and QA](qa/pause_menu_v1/README.md). Native player acceptance pending.
+The user approved the V1 concept and the production RunMenu now uses its isolated pause plate over the current scene. Five live actions, checkpoint restrictions, save/load behavior and confirmation remain intact. Godot 4.7.2: 14/14 targeted and save regression tests. [Reference and QA](qa/pause_menu_v1/README.md). Player accepted the integrated result on 2026-11-26.
 
 ## Wizard Wager Visual V1 · approved in main
 
@@ -12,7 +12,7 @@ The optional «Ставка Волшебника» offer now has its own approve
 
 ## Card Inspection Visual V1 · Interface Polish 2.0
 
-The player approved the two-column reader concept. The shared Table/Reward modal now uses the isolated leather/bronze and vellum plate, enlarged original DS3 front, live title/type/copy and optional scrollable notes. Escape, close, outside click, keyboard/mouse scroll and focus return remain intact; no changes to mechanics or hidden outcomes. Godot 4.7.2: 3/3 targeted tests (44 assertions), D274/D316 smoke pass. [Reference and native acceptance gate](qa/card_inspection_v1/README.md).
+The player approved the two-column reader concept. The shared Table/Reward modal now uses the isolated leather/bronze and vellum plate, enlarged original DS3 front, live title/type/copy and optional scrollable notes. Escape, close, outside click, keyboard/mouse scroll and focus return remain intact; no changes to mechanics or hidden outcomes. Godot 4.7.2: 3/3 targeted tests (44 assertions), D274/D316 smoke pass. [Reference and QA](qa/card_inspection_v1/README.md). Player accepted the integrated result on 2026-11-26.
 
 ## Final Visual Audit 1.0 · пакет исправлений P1
 
@@ -20,7 +20,7 @@ The player approved the two-column reader concept. The shared Table/Reward modal
 
 ## Combat HUD Visual V1 · Interface Polish 2.0
 
-The player-approved live active-orders panel is implemented with the existing V4 role emblems and DS3 materials, compact living-hero rows, real stage/tactic/timer and a separate real transition strip. Preparation, arena, units, objectives, combat logic and Classic mode remain unchanged. Godot 4.7.2: 15/15 targeted and planning regression tests, 166 assertions. [Concept, QA and native gate](qa/combat_hud_v1/README.md).
+The player-approved live active-orders panel is implemented with the existing V4 role emblems and DS3 materials, compact living-hero rows, real stage/tactic/timer and a separate real transition strip. Preparation, arena, units, objectives, combat logic and Classic mode remain unchanged. Godot 4.7.2: 15/15 targeted and planning regression tests, 166 assertions. [Concept and QA](qa/combat_hud_v1/README.md). Player accepted the integrated result on 2026-11-26.
 
 ## Final Visual Audit 1.0
 

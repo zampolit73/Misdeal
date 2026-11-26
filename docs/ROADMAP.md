@@ -4,8 +4,9 @@
 - [x] Card Inspection V1 — merged [#160](https://github.com/zampolit73/Misdeal/pull/160).
 - [x] Combat HUD V1 — merged [#161](https://github.com/zampolit73/Misdeal/pull/161).
 - [x] Combined Godot 4.7.2 regression, 32/32 tests (483 assertions), D274/D316 smoke.
-- [ ] Player native visual acceptance of all three [via one F5 checkpoint](HANDOFF.md).
-- [ ] Next: combat report, then Fate Spread and auxiliary dialogs; individually approve new visuals and preserve mechanics.
+- [x] Player native visual acceptance of all three on 2026-11-26; [regression route](HANDOFF.md).
+- [ ] Next: Combat Report Visual V1 — approve the read-only production «РАЗБОР ПРИКАЗОВ» concept, then implement and validate. Preserve actual journal data and result routes; no QA-only actions.
+- [ ] Fate Spread and auxiliary dialogs; individually approve new visuals and preserve mechanics.
 
 ## Wizard Wager Visual V1
 

@@ -1,3 +1,7 @@
+## Interface Polish 2.0 · production acceptance and next gate
+
+The player accepted Pause Menu V1 (#159), Card Inspection V1 (#160) and Combat HUD V1 (#161) in local Godot on 2026-11-26 after consolidation in main. Preserve these approved presentations. For the next concept, the campaign report remains a read-only representation of actual per-hero executor history, grouped by hero and chronological wave/time events, with existing dismissal and result flow. Do not import pilot-only replay/edit/compare/settings actions or invent combat statistics. Visual approval precedes implementation. [Handoff](HANDOFF.md).
+
 ## Pause Menu Visual V1 · isolated presentation
 
 Keep the existing five RunMenu handlers and safe_scene checkpoint contract. Use a fixed-size centered isolated plaque with live accessible buttons, focus order and messages over the existing scene; no new settings or save fields. The approved concept is archived; native player acceptance remains distinct from the headless route checks.

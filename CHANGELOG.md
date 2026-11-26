@@ -1,3 +1,7 @@
+## Interface Polish 2.0 · production acceptance (2026-11-26)
+
+The player confirmed Pause Menu V1, Card Inspection V1 and Combat HUD V1 were integrated and accepted in local Godot. Combined regression and release CI passed. Next gate: concept for the production read-only combat report; no runtime changes in this acceptance checkpoint.
+
 ## Interface Polish 2.0 · integrated checkpoint
 
 Merge #159, #160 and #161. Combined Godot 4.7.2 regression 32/32 tests, 483 assertions and D274/D316 smoke PASS; reader width/height test compares rounded design pixels rather than float ULPs. Record the consolidated native acceptance path and next combat report concept. No runtime changes in the follow-up.
