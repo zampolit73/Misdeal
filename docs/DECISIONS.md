@@ -1,3 +1,7 @@
+## System Dialog V1 · Main Menu V2 is the systemic UI reference
+
+Player approved matching the main menu rather than inventing a separate visual style. Reuse actual Main Menu V2 dark stone/bronze and burgundy texture plates with live bone serif type for both confirmation windows. Preserve all existing save/reset/archive/checkpoint semantics, distinct actions and warnings. Safe Cancel initially owns keyboard focus; Esc dismisses the current confirmation only. Do not extend this material to physical Black & Gold cards or repaint approved cinematic plates.
+
 ## Camp Rest cards · extend Cursed Deck V3
 
 On 2026-11-26 the player requested unification of the remaining V2 rest cards after IV and XII. Preserve the camp environment, original illustrations, three choices and their exact rules. Use the shared Black & Gold front rather than the baked ornate frames; give the original three cards independent live title/body/CTA, visible unavailable reason, and an independently focusable hero selector. Full text remains available on hover only when it does not fit. Do not repaint the approved background or alter the merchant cabinet.

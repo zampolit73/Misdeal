@@ -1,3 +1,7 @@
+## System Dialog V1
+
+No new runtime textures. Reuses `assets/pixel/main/menu_v2/{primary,secondary}.webp` with nine-slice corners, native stone/bronze panel and live text. The [approved concept](../assets/source_archive/system_dialog_v1/approved_reference.webp) is archived with .gdignore and is not used as a baked UI. [QA](qa/system_dialog_v1/README.md).
+
 ## Cursed Deck V3 — Black & Gold
 
 Runtime `assets/pixel/ui/cursed_deck_v3/card_face.svg` (512×768 text-free SVG with native import metadata) is a clean independently drawn matte dark face and thin bronze lines based on the player-approved [concept WebP](../assets/source_archive/cursed_deck_v3/approved_reference.webp). Existing V2 card_back.webp and card_unknown.webp are reused unchanged; V2 front is retained for rollback. Shared native labels/actions are gold/ivory and actual art catalogs remain unchanged.

@@ -1,3 +1,7 @@
+## System Dialog V1 · native acceptance
+
+User approved the Main Menu V2 visual family for system dialogs. Both production confirmations are implemented and tested (16/16, 321 assertions); native capture in existing release CI and player acceptance remain pending. F5 with an existing save or Memory Glass → New Game → cancel; in-run Esc → «В главное меню» → cancel/Esc → pause → Esc → gameplay. Check both distinct new-run choices using a disposable profile only. Do not change the Archive, backups or restart rules. [QA and reference](qa/system_dialog_v1/README.md). Continue the outstanding native acceptance gates below and the Act I control run; no need to redesign approved screens without feedback.
+
 ## Camp Rest Black & Gold · native acceptance
 
 Both rest stops (IV and XII) now use Cursed Deck V3; the old environment and illustrations remain unchanged, training selector and restrictions remain live. Godot 4.7.2: 29/29 targeted tests (572 assertions), including real panel selection, checkpoint save and duplicate guard. Native capture of both stops is included in card CI. Player check: F5 resolve IV/XII, switch trainee, inspect unavailable rite, choose once and return to Table. The separate merchant cabinet is unchanged. [QA](qa/camp_rest_v2/README.md#black--gold-v3).

@@ -146,13 +146,14 @@ func test_cancel_new_game_confirmation_changes_nothing() -> void:
 	var screen := load("res://scenes/main/main.tscn").instantiate() as Control
 	add_child_autofree(screen)
 	screen.call("_on_start_button_pressed")
-	var found := false
-	for child in screen.get_children():
-		if child is ConfirmationDialog:
-			found=true
-			child.canceled.emit()
-			child.hide()
-	assert_true(found)
+	var dialog := screen.get_node_or_null("SystemDialog")
+	assert_not_null(dialog)
+	assert_eq(get_viewport().gui_get_focus_owner(), dialog.get_node("Panel/CancelButton"))
+	screen.call("_on_start_button_pressed")
+	assert_eq(screen.get_node("SystemDialog"), dialog, "Duplicate open is ignored")
+	dialog.get_node("Panel/CancelButton").pressed.emit()
+	assert_false(dialog.visible)
+	assert_eq(get_viewport().gui_get_focus_owner(), screen.get_node("StartButton"))
 	assert_eq(FileAccess.get_file_as_bytes(service.path),original)
 	assert_eq(RunState.gold,gold)
 
@@ -195,14 +196,15 @@ func test_memory_only_new_game_still_asks_and_cancel_keeps_memory() -> void:
 	var screen:=load("res://scenes/main/main.tscn").instantiate() as Control
 	add_child_autofree(screen)
 	screen.call("_on_start_button_pressed")
-	var found:=false
-	for child in screen.get_children():
-		if child is ConfirmationDialog:
-			found=true
-			assert_true(child.dialog_text.contains("0/24"))
-			child.canceled.emit()
-			child.hide()
-	assert_true(found)
+	var dialog := screen.get_node_or_null("SystemDialog")
+	assert_not_null(dialog)
+	assert_true(dialog.get_node("Panel/ResetButton/Subtitle").text.contains("0/24"))
+	var escape := InputEventKey.new()
+	escape.keycode = KEY_ESCAPE
+	escape.pressed = true
+	dialog._input(escape)
+	assert_false(dialog.visible)
+	assert_eq(get_viewport().gui_get_focus_owner(), screen.get_node("StartButton"))
 	assert_eq(MEMORY.instance().unlocked,["SG13"])
 
 func test_next_run_keeps_collection_and_failed_reset_keeps_run() -> void:

@@ -12,7 +12,8 @@
 - [x] V2 native readability feedback received; front superseded by player-approved Black & Gold.
 - [x] Cursed Deck V3 — shared production dark front and readable copy; 26/26 targeted tests, D315/D316/D274 smoke.
 - [ ] Cursed Deck V3 native framebuffer and integrated player visual acceptance. [QA](qa/cursed_deck_v3/README.md).
-- [ ] Auxiliary dialogs after the unified card rollout.
+- [x] System Dialog V1: approved Main Menu V2 confirmations, 16/16 targeted tests.
+- [ ] System Dialog V1 native/player visual acceptance. [QA](qa/system_dialog_v1/README.md).
 
 ## Wizard Wager Visual V1
 

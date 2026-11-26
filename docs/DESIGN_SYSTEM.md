@@ -1,3 +1,7 @@
+## System Dialog V1
+
+Use `scripts/ui/system_dialog.gd` for the two production confirmation dialogs: centered 620×454 New Game or 620×306 Return to Menu over a 58% scrim. Nine-slice Main Menu V2 secondary plate for the stone/bronze frame, secondary/primary plates for native neutral/burgundy buttons; live serif bone and ivory text. Cancel initially focused; cyclic navigation and single dismissal restore the opener. Black & Gold physical cards retain their separate material.
+
 ## Camp Rest · Black & Gold V3
 
 Both IV/XII cards use `unified_card_skin.gd`, the same dark face and native CTA as Table/events/rewards, with gold title/ivory effect and pale red restriction. The original camp plate remains the environment; original illustrations are AtlasTexture regions, old baked finials fully masked by card rects defined in the layout JSON. Keep three full-card Buttons, a separate hero selector above training CTA, and tooltip only on overflow. Non-card header/footer remain approved V2.

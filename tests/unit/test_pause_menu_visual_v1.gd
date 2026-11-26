@@ -71,12 +71,16 @@ func test_live_table_pause_save_resume_and_load() -> void:
 	assert_eq(service.read_slot(RunState).state.gold, 37)
 	assert_eq(RunState.current_offer_ids, ids)
 	# Existing main-menu confirmation retains cancellation.
+	panel.get_node("MainMenuButton").grab_focus()
 	panel.get_node("MainMenuButton").pressed.emit()
-	var dialogs: Array = run_menu.menu.get_children().filter(func(node): return node is ConfirmationDialog)
-	assert_eq(dialogs.size(), 1)
-	if dialogs.size() == 1:
-		dialogs[0].canceled.emit()
-		dialogs[0].hide()
+	var dialog: Control = run_menu.menu.get_node("SystemDialog")
+	assert_not_null(dialog)
+	assert_eq(get_viewport().gui_get_focus_owner(), dialog.get_node("Panel/CancelButton"))
+	assert_true(get_tree().paused)
+	_press_escape()
+	assert_true(get_tree().paused, "Escape cancels confirmation, not pause")
+	assert_false(dialog.visible)
+	assert_eq(get_viewport().gui_get_focus_owner(), panel.get_node("MainMenuButton"))
 	_press_escape()
 	await get_tree().process_frame
 	assert_false(get_tree().paused)

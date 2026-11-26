@@ -1,6 +1,7 @@
 extends CanvasLayer
 const SAVE := preload("res://scripts/core/run_save_service.gd")
 const PAUSE_VISUAL := preload("res://scripts/ui/pause_menu_visual.gd")
+const SYSTEM_DIALOG := preload("res://scripts/ui/system_dialog.gd")
 const ROUTER := preload("res://scripts/core/scene_router.gd")
 var menu: Control
 var timer := 0.0
@@ -59,7 +60,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	var scene:=get_tree().current_scene
 	if scene==null or scene.scene_file_path.contains("/main/") or scene.scene_file_path.contains("/intro/") or scene.scene_file_path.contains("/archive/"): return
 	if is_instance_valid(menu):
-		close_menu()
+		var dialog := menu.get_node_or_null("SystemDialog")
+		if is_instance_valid(dialog) and dialog.visible:
+			dialog.cancel()
+		else:
+			close_menu()
 	elif scene.has_method("close_table_modal") and scene.close_table_modal():
 		get_viewport().set_input_as_handled()
 		return
@@ -120,10 +125,11 @@ func load_now() -> void:
 	ROUTER.change_to(self,data.scene)
 
 func main_menu() -> void:
-	var confirm:=ConfirmationDialog.new()
-	confirm.dialog_text="Вернуться в меню? Изменения после последней контрольной точки будут потеряны."
+	if not is_instance_valid(menu) or menu.get_node_or_null("SystemDialog") != null:
+		return
+	var confirm := SYSTEM_DIALOG.new()
+	confirm.name = "SystemDialog"
 	menu.add_child(confirm)
-	confirm.confirmed.connect(func():
+	confirm.present_return_to_menu(func():
 		close_menu()
 		ROUTER.change_to(self,"res://scenes/main/main.tscn"))
-	confirm.popup_centered()

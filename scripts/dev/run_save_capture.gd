@@ -25,8 +25,7 @@ func run() -> void:
 		screen.call("_on_start_button_pressed")
 		await create_timer(0.4).timeout
 		await snap("new_game_confirmation")
-		for child in screen.get_children():
-			if child is ConfirmationDialog: child.confirmed.emit()
+		screen.get_node("SystemDialog/Panel/ResetButton").pressed.emit()
 		await create_timer(0.8).timeout
 		assert(current_scene.scene_file_path=="res://scenes/intro/intro.tscn")
 		assert(MEMORY.shared.unlocked.is_empty())
@@ -103,6 +102,10 @@ func run() -> void:
 	var menu:=root.get_node("RunMenu")
 	menu.open_menu()
 	await snap("pause")
+	menu.menu.get_node("PausePanel/MainMenuButton").grab_focus()
+	menu.main_menu()
+	await snap("return_to_menu_confirmation")
+	menu.menu.get_node("SystemDialog/Panel/CancelButton").pressed.emit()
 	menu.close_menu()
 	table.free()
 	main=load("res://scenes/main/main.tscn").instantiate()

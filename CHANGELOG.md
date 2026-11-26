@@ -1,3 +1,9 @@
+## System Dialog V1 - 26 Nov 2026
+
+- Replace both default Godot confirmation windows with shared native Main Menu V2 materials and live bone serif buttons.
+- Preserve both New Game modes, the Archive, backups and return-to-menu checkpoint warning; initial Cancel focus, Escape and focus return, guarded single dispatch.
+- Godot 4.7.2: 16/16 targeted tests, 321 assertions. Native release capture updated; player visual acceptance pending.
+
 ## Camp Rest Black & Gold - 26 Nov 2026
 
 - Migrate IV and XII rest choices to the unified V3 matte dark card with gold title/action, ivory copy and readable restrictions.

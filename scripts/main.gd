@@ -1,7 +1,7 @@
 extends Control
 
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
-const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const SYSTEM_DIALOG := preload("res://scripts/ui/system_dialog.gd")
 const ARCHIVE := preload("res://scripts/core/wizard_archive.gd")
 const MENU_TYPE := preload("res://scripts/class_select/class_select_card_skin.gd")
 const PRIMARY := preload("res://assets/pixel/main/menu_v2/primary.webp")
@@ -38,21 +38,12 @@ func _animate_main_in() -> void:
 func _on_start_button_pressed() -> void:
 	var service := preload("res://scripts/core/run_save_service.gd").instance()
 	if (not service.path.is_empty() and FileAccess.file_exists(service.path)) or not preload("res://scripts/memory/memory_profile.gd").instance().unlocked.is_empty():
-		var dialog := ConfirmationDialog.new()
-		dialog.title = "Новая игра"
-		dialog.cancel_button_text = "Отмена"
-		dialog.dialog_text = "Начать новую игру с нуля?\nПрохождение и Витраж Памяти начнутся с 0/24.\nАрхив Волшебника сохраняется при любом выборе.\nПрежнее прохождение и Витраж останутся в резервной копии."
+		if get_node_or_null("SystemDialog") != null:
+			return
+		var dialog := SYSTEM_DIALOG.new()
+		dialog.name = "SystemDialog"
 		add_child(dialog)
-		dialog.ok_button_text = "Начать с нуля"
-		dialog.add_button("Новый забег — сохранить витраж",true,"next_run")
-		dialog.custom_action.connect(func(action: String):
-			if action == "next_run":
-				dialog.hide()
-				_begin_new_run(false))
-		for button in [dialog.get_ok_button(),dialog.get_cancel_button()]:
-			MISDEAL_UI_KIT.apply_action_button(button,MISDEAL_UI_KIT.BRONZE,false)
-		dialog.confirmed.connect(_begin_new_run)
-		dialog.popup_centered()
+		dialog.present_new_game(_begin_new_run)
 	else:
 		_begin_new_run()
 
