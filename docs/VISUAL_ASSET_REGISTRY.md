@@ -1,3 +1,7 @@
+## Cursed Deck V2
+
+Runtime `assets/pixel/ui/cursed_deck_v2/{card_face,card_back,card_unknown}.webp` (512×768 RGBA each; trimmed isolated card bases, WebP quality 94), derived from the user-approved `assets/source_archive/cursed_deck_v2/approved_reference.webp` art direction. Front is continuous blank worn paper; back is dark charcoal with moon compass; unknown is blank dark charcoal. Original illustration catalogs remain untouched. Printed CTA state rules are drawn as native cached ImageTextures; no text in the art. Prior V1 assets stay available for rollback.
+
 ## Unified Card System V1
 
 Runtime `assets/pixel/ui/unified_card_system_v1/card_face.webp` (704×1008 RGBA, trimmed isolated clean generated face, quality 94), from player-approved `assets/source_archive/unified_card_system_v1/concept_candidate.webp` direction. The frame contains no card art or copy. Native resize handles art/copy split and compact unknown face; reuse the existing `reward_development_v1/runtime/states/button_0_*.webp` action states. All original approved illustration assets remain unchanged. See [QA](qa/unified_card_system_v1/README.md).

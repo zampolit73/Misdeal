@@ -13,7 +13,7 @@ const INK_TEXT := Color("#251610")
 const FACE_STONE := Color("#150d11")
 const BONE := Color("#eddbbd")
 const TABLE_SIZE := Vector2(272, 338)
-# Unified bronze face is symmetric; live title and body share the physical center.
+# Printed paper is symmetric; live title and body share the physical center.
 const TABLE_COPY_CENTER_X := 136.0
 const TABLE_TAB_CENTER_X := 136.0
 const REWARD_COPY_CENTER_X := 146.0
@@ -121,17 +121,17 @@ static func apply_table(button: Button) -> bool:
     UNIFIED.style_label(title, Rect2(13, 181, 246, 38), 17, UNIFIED.INK, true)
     title.max_lines_visible = 2
     var category := button.get_node("Type") as Label
-    UNIFIED.style_label(category, Rect2(67, 7, 138, 27), 13, UNIFIED.GOLD, true, false)
+    UNIFIED.style_label(category, Rect2(67, 7, 138, 27), 13, UNIFIED.INK, true, false)
     var body := button.get_node("Description") as Label
     UNIFIED.style_label(body, Rect2(17, 219, 238, 62), 13, UNIFIED.INK)
     body.max_lines_visible = 3
     var hint := button.get_node("Hint") as Label
     var action := UNIFIED.action(button, Rect2(27, 286, 218, 39), "", 15)
-    UNIFIED.style_label(hint, Rect2(29, 287, 214, 37), 15, UNIFIED.BONE, true, false)
+    UNIFIED.style_label(hint, Rect2(29, 287, 214, 37), 15, UNIFIED.INK, true, false)
     button.move_child(hint, -1)
     var mark := button.get_node("Mark") as Label
     UNIFIED.style_label(mark, Rect2(12, 37, 248, 23), 11, Color("#ffd0a1"), true)
-    var roman := UNIFIED.label(button, "DS3Roman", "", Rect2(25, 7, 40, 27), 12, UNIFIED.GOLD)
+    var roman := UNIFIED.label(button, "DS3Roman", "", Rect2(25, 7, 40, 27), 12, UNIFIED.INK)
     UNIFIED.bind_action(button, frame, action)
     return true
 
@@ -143,7 +143,7 @@ static func update_table_roman(button: Button, number: int) -> void:
     mark.text = ROMAN[clampi(number - 1, 0, 12)]
 
 static func apply_table_backs(scene: Control) -> void:
-    var back := _texture(BACK)
+    var back := UNIFIED.CARD_BACK
     if back == null:
         return
     # The sealed/dealt face stays hidden; only the original live Back textures
@@ -180,7 +180,7 @@ static func style_reward_copy(button: Button, role: Label, heading: Label,
         effect: Label, description: Label) -> void:
     if not button.has_node("DS3CardFrame"):
         return
-    UNIFIED.style_label(role, Rect2(20, 7, 252, 34), 14, UNIFIED.GOLD, true)
+    UNIFIED.style_label(role, Rect2(20, 7, 252, 34), 14, UNIFIED.INK, true)
     UNIFIED.style_label(heading, Rect2(16, 209, 260, 44), 19, UNIFIED.INK, true)
     UNIFIED.style_label(effect, Rect2(20, 254, 252, 58), 16, UNIFIED.INK)
     UNIFIED.style_label(description, Rect2(18, 314, 256, 83), 14, UNIFIED.INK)
@@ -196,17 +196,17 @@ static func apply_inspection(host: Control, illustration: TextureRect) -> bool:
     var stone := _new_face_stone(host, "DS3InspectStone", EXTENT)
     stone.position = AT
     host.move_child(stone, illustration.get_index())
-    var frame := UNIFIED.mount(host, Rect2(AT, EXTENT), 0.53, "DS3InspectFrame")
+    var frame := UNIFIED.mount(host, Rect2(AT, EXTENT), 0.64, "DS3InspectFrame")
     host.move_child(frame, illustration.get_index() - 1)
-    var window := UNIFIED.art_rect(EXTENT, 0.53)
+    var window := UNIFIED.art_rect(EXTENT, 0.64)
     window.position += AT
     var well := _new_art_well(host, "DS3InspectArtWell", window.position, window.size)
     host.move_child(well, illustration.get_index())
     UNIFIED.fit_art(illustration, window)
-    UNIFIED.label(host, "DS3InspectCardType", "", Rect2(AT + Vector2(15, 8), Vector2(220, 23)), 12, UNIFIED.GOLD, true)
-    var title := UNIFIED.label(host, "DS3InspectCardTitle", "", Rect2(AT + Vector2(14, 188), Vector2(222, 71)), 20, UNIFIED.INK, true)
+    UNIFIED.label(host, "DS3InspectCardType", "", Rect2(AT + Vector2(15, 8), Vector2(220, 23)), 12, UNIFIED.INK, true)
+    var title := UNIFIED.label(host, "DS3InspectCardTitle", "", Rect2(AT + Vector2(17, 221), Vector2(216, 62)), 20, UNIFIED.INK, true)
     title.max_lines_visible = 3
-    UNIFIED.label(host, "DS3InspectCardHint", "ИЗ КНИГИ СУДЬБЫ", Rect2(AT + Vector2(12, 278), Vector2(226, 39)), 14, UNIFIED.MUTED)
+    UNIFIED.label(host, "DS3InspectCardHint", "ИЗ КНИГИ СУДЬБЫ", Rect2(AT + Vector2(14, 290), Vector2(222, 30)), 14, UNIFIED.MUTED)
     return true
 
 static func apply_spread_slot(panel: Panel, art: TextureRect, title_plate: ColorRect,
@@ -237,10 +237,14 @@ static func _mini(host: Control, art: TextureRect, title_plate: ColorRect, title
     UNIFIED.fit_art(art, window)
     title_plate.modulate.a = 0.0
     UNIFIED.style_label(title, Rect2(at + Vector2(dimensions.x * 0.06, dimensions.y * 0.73),
-        Vector2(dimensions.x * 0.88, dimensions.y * 0.23)), 8 if dimensions.x < 110 else 11, UNIFIED.INK, true, dimensions.x >= 110)
+        Vector2(dimensions.x * 0.88, dimensions.y * 0.23)), 10 if dimensions.x < 110 else 12, UNIFIED.INK, true, true)
+    title.max_lines_visible = 2
     title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 
 static func set_mini_revealed(host: Control, revealed: bool, sidebar: bool = false) -> void:
     var frame := host.get_node_or_null("DS3SidebarFrame" if sidebar else "DS3CardFrame") as TextureRect
     if frame != null:
         frame.texture = UNIFIED.face(UNIFIED.MINI_SPLIT, not revealed)
+    var well := host.get_node_or_null("DS3SidebarArtWell" if sidebar else "DS3ArtWell") as Panel
+    if well != null:
+        well.visible = revealed

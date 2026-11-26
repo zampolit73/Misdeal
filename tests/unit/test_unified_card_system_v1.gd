@@ -70,6 +70,9 @@ func test_elite_selection_is_not_confirmation() -> void:
 	watch_signals(view)
 	view._cards[1].pressed.emit()
 	assert_eq(view._selected, 1)
+	assert_eq(view._cards[1].get_node("UnifiedAction/Caption").text, "ВЫБРАНО")
+	assert_eq(view._cards[0].get_node("UnifiedAction/Caption").text, "ВЫБРАТЬ")
+	assert_false(view._cards[1].has_node("SelectedAction"))
 	assert_signal_not_emitted(view, "confirmed")
 	view._confirm.pressed.emit()
 	assert_signal_emitted_with_parameters(view, "confirmed", [1])
@@ -84,14 +87,14 @@ func test_merchant_purchase_plate_displays_real_price_and_disabled_reason() -> v
 	view.build("ТОРГОВЕЦ", "")
 	await get_tree().process_frame
 	var offer: Dictionary = view._offers["relic/dead_mans_shield"]
-	assert_true(offer.plate.texture in [SKIN.button_texture("idle"), SKIN.button_texture("hover")])
+	assert_true(offer.plate.texture in [SKIN.button_texture("idle", false), SKIN.button_texture("hover", false)])
 	assert_true(offer.price.visible)
 	RunState.gold = 0
 	view.refresh()
 	assert_true(offer.button.disabled)
 	assert_true(offer.status.visible)
 	assert_false(offer.status.text.is_empty())
-	assert_eq(offer.plate.texture, SKIN.button_texture("disabled"))
+	assert_eq(offer.plate.texture, SKIN.button_texture("disabled", false))
 
 func test_future_and_empty_held_miniatures_do_not_reveal_art() -> void:
 	RunState.reset_run()
@@ -104,3 +107,29 @@ func test_future_and_empty_held_miniatures_do_not_reveal_art() -> void:
 		assert_eq(slot.get_node("DS3CardFrame").texture, SKIN.face(SKIN.MINI_SPLIT, true))
 	assert_eq(spread.get_node("Frame/HeldPanel/DS3SidebarFrame").texture, SKIN.face(SKIN.MINI_SPLIT, true))
 	assert_false(spread.boss_panel.visible)
+	assert_false(spread.get_node("Frame/HeldPanel/DS3SidebarArtWell").visible)
+	assert_eq(spread.get_node("Frame/DiscardPanel/CardLayer/DS3SidebarFrame").texture, SKIN.CARD_BACK)
+	assert_null(spread.get_node("Frame/DiscardPanel/CardLayer/Art").texture)
+	for slot in spread.slot_panels:
+		assert_false(slot.get_node("DS3ArtWell").visible)
+
+func test_v2_paper_assets_and_action_ink() -> void:
+	assert_eq(SKIN.FRAME.get_size(), Vector2(512, 768))
+	assert_eq(SKIN.CARD_BACK.get_size(), SKIN.FRAME.get_size())
+	assert_eq(SKIN.UNKNOWN.get_size(), SKIN.FRAME.get_size())
+	assert_ne(SKIN.FRAME, SKIN.UNKNOWN)
+	assert_ne(SKIN.CARD_BACK, SKIN.UNKNOWN)
+	var idle := SKIN.button_texture("idle").get_image()
+	assert_lt(idle.get_pixel(128, 24).a, 0.01, "Unadorned central printed action")
+	assert_gt(idle.get_pixel(128, 1).a, 0.3, "Thin printed rule is visible")
+	assert_ne(SKIN.button_texture("idle"), SKIN.button_texture("hover"))
+	assert_ne(SKIN.button_texture("pressed"), SKIN.button_texture("disabled"))
+	var button := Button.new()
+	add_child_autofree(button)
+	button.size = Vector2(272, 338)
+	var frame := SKIN.mount(button, Rect2(Vector2.ZERO, button.size))
+	var action := SKIN.action(button, Rect2(20, 286, 232, 39))
+	assert_eq(action.get_node("Caption").get_theme_color("font_color"), SKIN.INK)
+	SKIN.refresh(button, frame, action, true)
+	assert_true(frame.get_node("PaperFocus").visible)
+	assert_eq(action.texture, SKIN.button_texture("pressed"))

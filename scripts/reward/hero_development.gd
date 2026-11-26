@@ -57,7 +57,7 @@ func _build_card(slot: Dictionary, offer: Dictionary, colors: Dictionary) -> But
 	var frame := UNIFIED.mount(button, Rect2(Vector2.ZERO, extent), 0.45, "UnifiedCardFrame", true)
 	var art := UI.picture(button, offer.art, UNIFIED.art_rect(extent))
 	UNIFIED.fit_art(art, UNIFIED.art_rect(extent))
-	UNIFIED.label(button, "Role", offer.role, Rect2(15, 8, extent.x - 30, 34), 15, UNIFIED.GOLD, true)
+	UNIFIED.label(button, "Role", offer.role, Rect2(15, 8, extent.x - 30, 34), 15, UNIFIED.INK, true)
 	UNIFIED.label(button, "Title", offer.title, Rect2(16, extent.y * 0.46, extent.x - 32, 53), 21, UNIFIED.INK, true)
 	_build_effect(button, Rect2(16, extent.y * 0.46 + 55, extent.x - 32, extent.y * 0.54 - 115), offer.effect, slot, colors)
 	var cta := UNIFIED.action(button, Rect2(25, extent.y - 54, extent.x - 50, 42), "ВЫБРАТЬ", 19)

@@ -5,7 +5,6 @@ signal inspect_input(event: InputEvent, index: int)
 
 const UNIFIED := preload("res://scripts/ui/unified_card_skin.gd")
 const UI := preload("res://scripts/ui/wizard_reliquary.gd")
-const MOTION := preload("res://scripts/ui/ui_motion.gd")
 const ART := "res://assets/pixel/ui/reward_elite_v1/"
 const LAYOUT := preload("res://assets/pixel/ui/reward_elite_v1/layout_1280x720.json")
 const PLATE := preload("res://assets/pixel/ui/reward_elite_v1/runtime/artifact_reward_plate.webp")
@@ -13,7 +12,6 @@ const BONE := Color("dcc4a0")
 const INK := Color("302219")
 
 var _cards: Array[Button] = []
-var _highlights: Array[TextureRect] = []
 var _confirm: Button
 var _quote: Label
 var _selected := -1
@@ -85,16 +83,17 @@ func _build_slot(slot: Dictionary, index: int, id: String, empty_cache_art: Text
 	var window := UNIFIED.art_rect(extent)
 	var art := UI.picture(card, ArtifactArtCatalog.get_reliquary_texture(id) if item != null else empty_cache_art, window)
 	UNIFIED.fit_art(art, window, item == null)
-	UNIFIED.label(card, "Kind", "РЕЛИКВИЯ" if item != null else "НАГРАДА", Rect2(14, 8, extent.x - 28, 30), 15, UNIFIED.GOLD, true)
+	UNIFIED.label(card, "Kind", "РЕЛИКВИЯ" if item != null else "НАГРАДА", Rect2(14, 8, extent.x - 28, 30), 15, UNIFIED.INK, true)
 	UNIFIED.label(card, "Title", title, Rect2(14, extent.y * 0.46, extent.x - 28, 52), 20, UNIFIED.INK, true)
 	UNIFIED.label(card, "Description", description, Rect2(16, extent.y * 0.46 + 54, extent.x - 32, extent.y * 0.54 - 96), 16, UNIFIED.INK)
 	var status := UNIFIED.action(card, Rect2(25, extent.y - 45, extent.x - 50, 33), "ВЫБРАТЬ", 15)
-	var selected := UNIFIED.action(card, Rect2(25, extent.y - 45, extent.x - 50, 33), "ВЫБРАНО", 15)
-	selected.name = "SelectedAction"
-	selected.texture = UNIFIED.button_texture("pressed")
-	selected.modulate.a = 0.0
-	_highlights.append(selected)
-	UNIFIED.bind_action(card, frame, status)
+	var refresh := func() -> void:
+		UNIFIED.refresh(card, frame, status, _selected == index)
+		status.get_node("Caption").text = "ВЫБРАНО" if _selected == index else "ВЫБРАТЬ"
+	for signal_value: Signal in [card.mouse_entered, card.mouse_exited, card.focus_entered, card.focus_exited, card.button_down, card.button_up]:
+		signal_value.connect(refresh)
+	card.set_meta("refresh_style", refresh)
+	refresh.call()
 	card.focus_entered.connect(_select.bind(index, false))
 	card.pressed.connect(_select.bind(index, true))
 	card.gui_input.connect(func(event: InputEvent) -> void: inspect_input.emit(event, index))
@@ -112,11 +111,8 @@ func set_locked(locked: bool) -> void:
 	_confirm.disabled = locked
 	for card in _cards:
 		card.disabled = locked
-	if locked:
-		var highlight := _highlights[_selected]
-		var tween := MOTION.replace_tween(highlight, &"trophy_selection")
-		tween.tween_property(highlight, "modulate:a", 0.48, 0.13)
-	else:
+		card.get_meta("refresh_style").call()
+	if not locked:
 		_select(_selected, true)
 
 
@@ -124,10 +120,8 @@ func _select(index: int, focus_confirm: bool) -> void:
 	if _confirm.disabled:
 		return
 	_selected = index
-	for i in _highlights.size():
-		var highlight := _highlights[i]
-		MOTION.replace_tween(highlight, &"trophy_selection").tween_property(highlight, "modulate:a",
-			1.0 if i == index else 0.0, 0.14)
+	for card in _cards:
+		card.get_meta("refresh_style").call()
 	_confirm.focus_neighbor_top = _confirm.get_path_to(_cards[index])
 	if focus_confirm:
 		_confirm.grab_focus()

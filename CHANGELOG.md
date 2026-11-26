@@ -1,3 +1,9 @@
+## Cursed Deck V2 · 26 Nov 2026
+
+- Replace V1 bronze frames with user-approved matte worn gray-beige paper, ink borders, matching moon-seal back and charcoal unknown face across existing shared card surfaces.
+- Printed action text and hairline rules; subdued focus/selection outlines, readable two-line Fate miniature titles, neutral empty discard back, and hidden art-well fix. Preserve original content and all gameplay/input routes; intimate cabinet and wager keep their approved composition.
+- Godot 4.7.2: 25/25 targeted tests, 2061 assertions; D315/D316/D274 PASS headless. Native visual acceptance pending.
+
 ## Unified Card System V1 · 26 Nov 2026
 
 - Shared visual frame, art aperture, parchment typography and action states across live Table, inspection, Fate cards and 24 event definitions.

@@ -19,7 +19,7 @@ static func mount(button: Button, extent: Vector2) -> void:
 
 static func shade(button: Button, brightness: float) -> void:
 	var frame := button.get_node("DecisionFrame") as TextureRect
-	frame.modulate = Color(brightness, brightness, brightness)
+	UNIFIED.shade_frame(frame, brightness)
 
 
 static func enlarge_copy(button: Button) -> void:

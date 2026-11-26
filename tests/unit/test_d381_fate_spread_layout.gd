@@ -31,7 +31,7 @@ func test_all_twelve_cards_share_layout_with_reference_masks() -> void:
 			"Live panel %d must align with its approved painted slot" % (index + 1))
 
 
-func test_fifth_roman_clears_fourth_card_and_tiny_titles_do_not_wrap() -> void:
+func test_fifth_roman_clears_fourth_card_and_titles_fit_two_printed_lines() -> void:
 	var overlay := OVERLAY.instantiate() as Control
 	add_child_autofree(overlay)
 	await get_tree().process_frame
@@ -41,8 +41,9 @@ func test_fifth_roman_clears_fourth_card_and_tiny_titles_do_not_wrap() -> void:
 	assert_lte(marker.position.x + marker.size.x, 0.0,
 		"Roman V must stand LEFT of its card rather than on top of IV's title")
 	var title := fifth.get_node("CardTitle") as Label
-	assert_eq(title.autowrap_mode, TextServer.AUTOWRAP_OFF,
-		"Tiny Fate names must remain compact and never wrap")
+	assert_eq(title.autowrap_mode, TextServer.AUTOWRAP_WORD_SMART,
+		"Tiny Fate names may wrap within the printed title block")
+	assert_eq(title.max_lines_visible, 2)
 	assert_lt(title.position.y + title.size.y, GEOMETRY.SLOT_SIZE.y * 0.97,
 		"The text rectangle must fit the physical parchment band")
 	var boss := overlay.get("boss_panel") as Panel

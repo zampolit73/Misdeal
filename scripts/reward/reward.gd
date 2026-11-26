@@ -260,7 +260,7 @@ func _style_reward_choose_bar(index: int) -> void:
 	plate.texture = CARD_DS3_SKIN.UNIFIED.button_texture("idle")
 	choice.add_theme_stylebox_override("panel", plate)
 	var caption := choice.get_node("ChooseText") as Label
-	CARD_DS3_SKIN.UNIFIED.style_label(caption, Rect2(Vector2.ZERO, choice.size), 16, CARD_DS3_SKIN.UNIFIED.BONE, true)
+	CARD_DS3_SKIN.UNIFIED.style_label(caption, Rect2(Vector2.ZERO, choice.size), 16, CARD_DS3_SKIN.UNIFIED.INK, true)
 	choice.get_parent().move_child(choice, -1)
 
 

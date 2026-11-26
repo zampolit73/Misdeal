@@ -66,7 +66,7 @@ func refresh() -> Array[Button]:
 		button.disabled = not reason.is_empty()
 		var price := STOPS.price(RunState, item)
 		offer.price.text = "%d ЗОЛОТА" % price
-		offer.plate.texture = UNIFIED.button_texture("disabled" if button.disabled else "idle")
+		offer.plate.texture = UNIFIED.button_texture("disabled" if button.disabled else "idle", false)
 		offer.price.visible = not button.disabled
 		offer.status.visible = button.disabled
 		offer.status.text = "%d золота\n%s" % [price, reason]
@@ -125,11 +125,11 @@ func _mount(slot: Dictionary, item: String) -> void:
 	var button := _hotspot(slot.price, title, item)
 	button.tooltip_text = "%s\n%s" % [title, description]
 	_items.append(button)
-	var plate := UNIFIED.action(button, Rect2(Vector2.ZERO, button.size), "", 15)
+	var plate := UNIFIED.action(button, Rect2(Vector2.ZERO, button.size), "", 15, false)
 	var purchase := _copy(slot.price, "", 17, UNIFIED.BONE)
 	var status_label := _copy(slot.price, "", 13, UNIFIED.BONE)
 	var refresh_plate := func() -> void:
-		plate.texture = UNIFIED.button_texture("disabled" if button.disabled else ("pressed" if button.is_pressed() else ("hover" if button.has_focus() or button.is_hovered() else "idle")))
+		plate.texture = UNIFIED.button_texture("disabled" if button.disabled else ("pressed" if button.is_pressed() else ("hover" if button.has_focus() or button.is_hovered() else "idle")), false)
 	for signal_value: Signal in [button.focus_entered, button.focus_exited, button.mouse_entered, button.mouse_exited, button.button_down, button.button_up]:
 		signal_value.connect(refresh_plate)
 	_offers[item] = {"button": button, "art": art, "plate": plate, "price": purchase, "status": status_label}

@@ -65,7 +65,7 @@ func _ready() -> void:
 		discard_title_plate, discard_title, Vector2(44, 110), Vector2(161, 222))
 	var legacy_back := discard_card_layer.get_node_or_null("StackBack") as TextureRect
 	if legacy_back != null:
-		var card_back := load(CARD_DS3_SKIN.BACK) as Texture2D
+		var card_back := CARD_DS3_SKIN.UNIFIED.CARD_BACK
 		if card_back != null:
 			legacy_back.texture = card_back
 	refresh()
@@ -172,7 +172,7 @@ func _build_slots() -> void:
 		symbol.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		symbol.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		symbol.add_theme_font_size_override("font_size", 28)
-		symbol.add_theme_color_override("font_color", Color(0.46, 0.40, 0.42, 0.72))
+		symbol.add_theme_color_override("font_color", Color("b0a08bca"))
 		symbol.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		panel.add_child(symbol)
 
@@ -437,14 +437,14 @@ func _refresh_slots() -> void:
 
 
 func _fit_spread_title(title: Label) -> void:
-	# A single short ink line must remain inside the tiny physical parchment
-	# stripe. Avoid clipping a second black-ink line onto the black footer.
+	# The approved paper miniature has room for two readable printed lines.
 	var font := title.get_theme_font("font")
 	if font == null:
 		return
-	for font_size in [8, 7, 6]:
+	for font_size in [10, 9, 8]:
 		title.add_theme_font_size_override("font_size", font_size)
-		if font.get_string_size(title.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x <= title.size.x - 3.0:
+		var layout := font.get_multiline_string_size(title.text, HORIZONTAL_ALIGNMENT_CENTER, title.size.x - 2.0, font_size)
+		if layout.y <= minf(title.size.y, font.get_height(font_size) * 2.0 + 2.0):
 			break
 
 
@@ -500,8 +500,12 @@ func _refresh_held() -> void:
 func _refresh_discard() -> void:
 	var rejected_count: int = RunState.rejected_card_ids.size()
 	discard_status.text = "%d %s" % [rejected_count, _card_word(rejected_count)]
-	discard_card_layer.visible = rejected_count > 0
+	discard_card_layer.visible = true
+	CARD_DS3_SKIN.set_mini_revealed(discard_card_layer, rejected_count > 0, true)
 	if rejected_count <= 0:
+		var empty_card := discard_card_layer.get_node_or_null("DS3SidebarFrame") as TextureRect
+		if empty_card != null:
+			empty_card.texture = CARD_DS3_SKIN.UNIFIED.CARD_BACK
 		discard_art.texture = null
 		discard_art.visible = false
 		discard_title.text = ""

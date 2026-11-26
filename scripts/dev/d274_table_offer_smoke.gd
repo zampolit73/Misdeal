@@ -34,7 +34,7 @@ func _verify() -> void:
 		valid = valid and skin != null and skin.texture != null
 		if skin != null and skin.texture != null:
 			var pixels: Image = skin.texture.get_image()
-			valid = valid and pixels.get_size() == Vector2i(704, 1008)
+			valid = valid and pixels.get_size() == Vector2i(512, 768)
 			valid = valid and pixels.get_pixel(200, 200).a > 0.95
 			valid = valid and skin.mouse_filter == Control.MOUSE_FILTER_IGNORE
 		valid = valid and card.get_node_or_null("DS3Roman") != null

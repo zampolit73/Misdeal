@@ -7,6 +7,7 @@ on:
       - '.github/workflows/d315-card-ds3.yml'
       - 'assets/pixel/ui/card_ds3_locked/**'
       - 'assets/pixel/ui/unified_card_system_v1/**'
+      - 'assets/pixel/ui/cursed_deck_v2/**'
       - 'scripts/ui/unified_card_skin.gd'
       - 'scripts/ui/event_choice_*.gd'
       - 'scripts/reward/hero_development.gd'

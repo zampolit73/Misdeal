@@ -8,7 +8,8 @@
 - [x] Combat Report Visual V1 — player approved concept; production read-only report implemented; 19/19 targeted tests, 208 assertions.
 - [ ] Combat Report V1 native visual acceptance (existing CI native capture + player F5 checkpoint).
 - [x] Unified Card System V1 — concept approved; migrated runtime cards, 24/24 targeted tests and D315/D316/D274 headless smoke. [Implementation](UNIFIED_CARD_SYSTEM_V1.md).
-- [ ] Unified Card System V1 native framebuffer and integrated player visual acceptance, including four-choice events, Fate thumbnails and reward variants.
+- [x] Cursed Deck V2 — player approved new physical-paper direction to supersede V1 appearance; runtime migration and 25/25 targeted tests PASS.
+- [ ] Cursed Deck V2 native framebuffer and integrated player visual acceptance, including Fate thumbnails, choice cards and reward variants.
 - [ ] Auxiliary dialogs after the unified card rollout.
 
 ## Wizard Wager Visual V1

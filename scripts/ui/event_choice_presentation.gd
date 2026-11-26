@@ -126,12 +126,11 @@ func _build_card(button: Button, index: int, width: int) -> bool:
 	var restriction := String(button.get_meta("event_restriction", ""))
 	var kind := String(button.get_meta("event_kind", "ВЫБОР"))
 	var accent: Color = {
-		"КРОВЬ": Color("e9a19a"), "МОНЕТА": Color("ebc187"), "РИТУАЛ": Color("c9add9"),
-		"ОТКАЗ": Color("b6c8d2"), "РИСК": Color("efb091"),
-	}.get(kind, Color("e4cbb0"))
-	accent = accent.lerp(Color("ddcbb5"), 0.56)
+		"КРОВЬ": Color("642b27"), "МОНЕТА": Color("55402b"), "РИТУАЛ": Color("493744"),
+		"ОТКАЗ": Color("364343"), "РИСК": Color("613721"),
+	}.get(kind, UNIFIED.INK)
 	if button.disabled:
-		accent = accent.lerp(MUTED, 0.65)
+		accent = accent.lerp(UNIFIED.MUTED, 0.65)
 	button.tooltip_text = "%s\n%s\n%s" % [action, cost, detail]
 	if not restriction.is_empty():
 		button.tooltip_text += "\n" + restriction

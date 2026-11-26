@@ -1,6 +1,6 @@
 # Unified Card System V1 — approved and implemented (26 Nov 2026)
 
-**Status:** Player approved the [archived candidate board](../assets/source_archive/unified_card_system_v1/concept_candidate.webp) on 26 Nov. Runtime implemented. Headless regression PASS; actual visually rendered screen review and player acceptance still pending.
+**Status:** Historical reference. Shared native architecture was implemented, but the player found the gold-edged appearance mediocre and approved Cursed Deck V2 on 26 Nov 2026. The new materials are implemented; see [V2 QA](qa/cursed_deck_v2/README.md) and the [approved board](../assets/source_archive/cursed_deck_v2/approved_reference.webp). Native visual acceptance of V2 remains pending.
 
 ## Problem and actual sources
 

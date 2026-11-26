@@ -1,3 +1,7 @@
+## Cursed Deck V2 — current physical card style
+
+A single old-paper family: muted gray-beige matte substrate, thin dark printed border, worn rounded edges, original artwork and dark ink serif headings. The exact V2 board is archived. Use `unified_card_skin.gd` and the three separate native textures: face, moon-seal back, unmarked unknown. Text is live, not painted; action is a printed line on paper and keyboard/mouse focus/selection has a quiet outline. Two-line miniature titles may wrap within the paper block; unknown wells are hidden. Keep existing safe-area/hit-area geometry and cinematics. Cabinet and two-sided wizard contract are not physical cards. V2 supersedes V1's metal frame style. See [QA](qa/cursed_deck_v2/README.md).
+
 ## Unified Card System V1
 
 Shared bronze face, charcoal category band, landscape recess, warm parchment and existing burgundy CTA texture states. Use `unified_card_skin.gd` for every new full-choice or physical card; only content/layout variants may differ. Physical Table 272×338, reader card 250×340, full event 260/312×454, reward slots preserve authored dimensions. Live Fate miniatures use an explicit reveal state and no CTA; never show unknown/future art. Use centered art fit for relic cutouts, covered landscape for scene illustrations; never distort an illustration. Keep existing cinematic plates and layout for the wizard wager/cabinet. See [design contract](UNIFIED_CARD_SYSTEM_V1.md).
