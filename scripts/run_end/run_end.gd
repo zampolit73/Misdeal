@@ -137,6 +137,7 @@ func _build_action(bounds: Array) -> void:
 func _scroll_copy(parent: Control, node_name: String, bounds: Array, copy: String, font_size: int, color: Color) -> void:
 	var scroll := ScrollContainer.new()
 	scroll.name = node_name
+	scroll.clip_contents = true
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	UI.put(parent, scroll, UI.rect(bounds).grow_individual(-8, -3, -8, -3))
 	var label := _caption(scroll, [0, 0, 0, 0], copy, font_size, color)
@@ -144,6 +145,12 @@ func _scroll_copy(parent: Control, node_name: String, bounds: Array, copy: Strin
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	label.custom_minimum_size.y = scroll.size.y
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	if node_name == "SummaryScroll":
+		# The narrow summary band above Last Deal must show a whole first line,
+		# not the top edge of a second one. Overflow remains scrollable.
+		label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+		scroll.size.y = minf(scroll.size.y, label.get_line_height())
+		label.custom_minimum_size.y = scroll.size.y
 	scroll.tooltip_text = copy
 
 

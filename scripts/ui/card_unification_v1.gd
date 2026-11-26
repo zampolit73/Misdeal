@@ -348,9 +348,34 @@ static func _get_texture(paths: Dictionary, art_id: String, expected_size: Vecto
 		push_warning("Wave 1 card art invalid dimensions/decode, using previous texture: %s" % path)
 		return null
 
+	if art_id == "lost_purse" and paths == RUN_CARDS:
+		_grade_lost_purse_card(image)
 	var texture := ImageTexture.create_from_image(image)
 	_texture_cache[path] = texture
 	return texture
+
+# Final visual audit: grade only the far orange/red background in the live
+# texture. Keep D343's approved pixels, composition, foreground gold and hand.
+static func _grade_lost_purse_card(image: Image) -> void:
+	var width := image.get_width()
+	var height := image.get_height()
+	for y in range(height):
+		var v := float(y) / float(height - 1)
+		for x in range(width):
+			var u := float(x) / float(width - 1)
+			var sky := smoothstep(0.43, 0.67, u) * (1.0 - smoothstep(0.46, 0.74, v))
+			var reflection := smoothstep(0.65, 0.79, u) * smoothstep(0.59, 0.78, v)
+			var distant := maxf(sky, reflection)
+			if distant <= 0.0:
+				continue
+			var pixel := image.get_pixel(x, y)
+			var amount := distant * smoothstep(0.06, 0.30, pixel.r - pixel.g) * smoothstep(0.10, 0.50, pixel.r)
+			if amount <= 0.0:
+				continue
+			var lum := pixel.r * 0.299 + pixel.g * 0.587 + pixel.b * 0.114
+			var muted := Color(lum, lum, lum, pixel.a).lerp(pixel, 0.46) * Color(0.84, 0.92, 0.97, 1.0)
+			image.set_pixel(x, y, pixel.lerp(muted, amount))
+
 
 static func _path(paths: Dictionary, art_id: String) -> String:
 	if not paths.has(art_id):

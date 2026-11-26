@@ -1,0 +1,42 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[INFO]:  using [/home/agent/.local/share/godot/app_userdata/Misdeal] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://tests/unit/test_visual_polish.gd
+* test_approved_artwork_is_unchanged_including_all_three_live_hero_sources
+* test_all_nine_reward_effects_fit_both_lines_inside_actual_painted_strip
+* test_reward_full_reader_preserves_state_owns_keyboard_focus_and_blocks_choice_behind_it
+* test_shop_uses_real_offer_art_and_resolved_states_match_a_real_purchase
+* test_resolved_story_choices_do_not_advertise_available_actions
+* test_full_run_summary_scrolls_inside_its_panel_and_leaves_new_run_clear
+* test_story_and_merchant_effect_paragraphs_keep_the_entire_real_modifier_visible
+* test_victory_action_draws_in_front_of_its_result_scrim
+8/8 passed.
+
+
+res://tests/unit/test_travel_pilot_batch01.gd
+* test_all_eleven_actions_subsets_contacts_pause_and_no_state_writes
+* test_old_shop_context_and_invalid_role_never_invent_a_purchase
+2/2 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+Totals
+------
+Scripts               2
+Tests                10
+Passing Tests        10
+Asserts            1577
+Time              5.951s
+
+
+---- All tests passed! ----

@@ -1,3 +1,7 @@
+## Final Visual Audit 1.0 · следующий шаг
+
+Аудит завершён на `d4b94d2b`. Закрыть четыре P1 и провести один контрольный забег до XIII перед передачей издательской сборки. [Передача в новый чат и критерии приёмки](FINAL_VISUAL_AUDIT_1_0_HANDOFF.md).
+
 ## Camp Rest Visual V2
 
 Resolve card IV or XII and return to Table. Tab and Enter navigate and choose, and the training selector changes only the hero and preview. Hover a choice for its full effect. The action still saves through CampStop before returning to the same Table. [Native captures and checks](qa/camp_rest_v2/README.md)
@@ -46,9 +50,9 @@ PR #150 is merged into main and the player approved the result. Preserve live of
 
 Win the Death Wager encounter and continue to rewards. Check the pending relic, the 60 gold choice and the transition to bonus development. Use ← / → and Enter to choose, or F / right click for the full description. The active debt survives the choice. [Native QA](qa/reward_death_wager_v12/README.md)
 
-## Next visual check — Ossuary Gate fog correction
+## Ossuary Gate · visual audit
 
-The V4.1 Ossuary Gate spotlight-like bands were replaced by two overlapping, slowly drifting fog banks at the rear portal; its start cue was softened. Check **F6 → ЖИВЫЕ АРЕНЫ → Врата оссуария**, watch preparation for 5–8 seconds and begin combat. Ensure it reads as fog, not a searchlight, and that nothing crosses the combat floor. Other V4.1 arena animations are accepted and unchanged. This correction has not been visually verified in native Godot yet. [V4.1](LIVING_ARENAS_V4_1.md)
+Current Godot 4.7.2 frames on `d4b94d2b` show low haze around the rear portal during preparation and at combat start. The start frame also records an overlapping bellkeeper label. [Audit evidence and follow-up](FINAL_VISUAL_AUDIT_1_0_HANDOFF.md).
 
 ## Living Arenas V4.1
 

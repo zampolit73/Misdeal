@@ -147,7 +147,7 @@ func _build_card(button: Button, index: int, width: int) -> bool:
 	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_place(art, Rect2(width * 0.052, 63, width * 0.896, 153))
 	SKIN.mount(button, button.custom_minimum_size)
-	SKIN.shade(button, 0.87 if button.disabled else 1.0)
+	SKIN.shade(button, 0.95 if button.disabled else 1.0)
 	var category := _label(button, "ActionType", "%s  /  %s" % [ROMAN[index], kind],
 		Rect2(27, 29, width - 54, 31), 16, accent, false)
 	category.z_index = 2
@@ -170,7 +170,7 @@ func _build_card(button: Button, index: int, width: int) -> bool:
 	_fit(cost_label, 13)
 	var outcome_y := 273 + maxi(28, cost_label.get_line_count() * (cost_label.get_line_height() + 1) + 6)
 	var availability := _label(copy, "Availability", restriction, Rect2(28, 348, text_width, 36),
-		14, Color("61232e"), true)
+		14, Color("421921"), true)
 	availability.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
 	_fit(availability, 12)
 	var body_bottom := 385

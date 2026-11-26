@@ -1,3 +1,7 @@
+## Final Visual Audit 1.0 · localized corrections
+
+Three runtime plates receive six localized heraldry patches; sources/coordinates archived in `assets/source_archive/final_visual_audit_1_0/`. P1-03 adds three existing-approved-outcome-derived 384×160 WebPs in `assets/pixel/ui/approved_event_choice_polish/final_audit_v1/`. D343 original remains unchanged, localized color grade is runtime only. [Provenance and evidence](FINAL_VISUAL_AUDIT_1_0_FIXES.md).
+
 ## Death Wager Reward Visual V1.2
 
 The layout and three runtime WebPs are in `assets/pixel/ui/reward_death_wager_v12/`. The exact reference, clean master, provenance, manifest and layout preview are in `assets/source_archive/reward_death_wager_v12/`. The ten listed files were verified against the package manifest. The live relic uses the approved Reliquary atlas. [Wizard and banner references](ART_DIRECTION.md#wizard-and-castle-heraldry) · [Native QA](qa/reward_death_wager_v12/README.md)

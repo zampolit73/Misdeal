@@ -1337,7 +1337,51 @@ func _on_unit_health_critical(unit: BattleUnit) -> void:
 	_show_wizard_line("%s уже слышит, как стол считает последнюю карту." % unit.display_name, true)
 
 
+# Place visible captions before both preparation and live combat handling.
+# Unit positions, actor z sorting, health and target hit regions are untouched.
+func _layout_unit_captions() -> void:
+	var visible_units: Array[BattleUnit] = []
+	for unit in units:
+		if is_instance_valid(unit) and unit.alive and unit.name_label.is_visible_in_tree():
+			visible_units.append(unit)
+	visible_units.sort_custom(func(a: BattleUnit, b: BattleUnit) -> bool:
+		if not is_equal_approx(a.global_position.y, b.global_position.y):
+			return a.global_position.y < b.global_position.y
+		if not is_equal_approx(a.global_position.x, b.global_position.x):
+			return a.global_position.x < b.global_position.x
+		return a.get_instance_id() < b.get_instance_id())
+	var occupied: Array[Rect2] = []
+	for unit in visible_units:
+		var label := unit.name_label
+		var font: Font = label.get_theme_font("font")
+		var font_size: int = label.get_theme_font_size("font_size")
+		var extent := Vector2(ceilf(font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x) + 8.0,
+			maxf(22.0, ceilf(font.get_height(font_size)) + 4.0))
+		var anchor := unit.global_position + Vector2(-extent.x * 0.5, unit.name_label_anchor_y)
+		# Combat Planning takes over at y=560. Captions stay above that strip.
+		anchor.x = clampf(anchor.x, 8.0, 1272.0 - extent.x)
+		anchor.y = clampf(anchor.y, 145.0, 556.0 - extent.y)
+		var chosen := Rect2(anchor, extent)
+		for lane in range(12):
+			var y := anchor.y - float(lane) * (extent.y + 3.0)
+			if y < 145.0:
+				break
+			var candidate := Rect2(Vector2(anchor.x, y), extent)
+			var collision := false
+			for previous in occupied:
+				if candidate.grow(2.0).intersects(previous):
+					collision = true
+					break
+			if not collision:
+				chosen = candidate
+				break
+		label.size = extent
+		label.global_position = chosen.position
+		occupied.append(chosen)
+
+
 func _process(delta: float) -> void:
+	_layout_unit_captions()
 	if wave_intermission and not battle_finished:
 		wave_briefing_elapsed += delta
 		if wave_briefing_elapsed >= WAVE_BRIEFING_REFRESH_SECONDS:

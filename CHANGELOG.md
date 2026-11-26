@@ -1,3 +1,11 @@
+## Final Visual Audit 1.0 · P1 implementation candidate
+
+Unify six banner emblems, mute the Lost Purse sky and reflection in travel and card art, reuse approved travel crops for three decision illustrations, and separate overlapping combat names above actors. Improve disabled-choice and empty-merchant copy and clip the Run End summary to one full line with scrolling. 26/26 targeted and regression GUT tests; native visual acceptance and full Act I run pending. [Evidence and remaining checks](docs/FINAL_VISUAL_AUDIT_1_0_FIXES.md).
+
+## Final Visual Audit 1.0 · handoff
+
+Record the Act I audit baseline, evidence, prioritized visual fixes and the Godot acceptance route. Includes a native Ossuary Gate frame excerpt.
+
 ## Reward Cinematics 1.0 · Death Wager V1.2
 
 Apply the approved V1.2 art to Death Wager with live offers, relic artwork and debt copy. Preserve the existing fallback payouts, reward claim and transition to bonus development.

@@ -78,6 +78,7 @@ func _sprite(plane: String, mask: String = "") -> Sprite2D:
 	var mat := ShaderMaterial.new()
 	mat.shader=preload("res://shaders/pilot_batch_scene.gdshader")
 	mat.set_shader_parameter("motion_mask",texture_at(dir+"layers/motion_mask.png"))
+	mat.set_shader_parameter("mute_lost_purse_sunset",card_id=="lost_purse")
 	if not mask.is_empty():
 		mat.set_shader_parameter("use_alpha_mask",true)
 		mat.set_shader_parameter("alpha_mask",texture_at(mask))

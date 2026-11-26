@@ -209,6 +209,7 @@ var c3_walk_has_sample := false
 
 @onready var rim_sprite: Sprite2D = $RimSprite
 @onready var art_sprite: Sprite2D = $ArtSprite
+var name_label_anchor_y := 48.0
 @onready var name_label: Label = $NameLabel
 @onready var health_bar: ProgressBar = $HealthBar
 
@@ -325,6 +326,7 @@ func _ready() -> void:
 	_apply_arena_presentation()
 	_apply_health_bar_style()
 	_apply_boss_layout()
+	name_label_anchor_y = name_label.position.y
 	if uses_polished_enemy_art:
 		var idle_top := ANIMATION_LIBRARY.polished_enemy_idle_top(visual_role)
 		var painted_top := art_sprite.position.y + (idle_top - ANIM_CELL_HEIGHT*0.5)*base_sprite_scale.y
