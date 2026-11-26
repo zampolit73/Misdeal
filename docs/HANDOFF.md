@@ -7,7 +7,7 @@ On 2026-11-26 the player explicitly confirmed all three packages were integrated
 2. Right-click both Table card and development upgrade: full parchment copy, notes when real, scrolling, close/return focus. [QA](qa/card_inspection_v1/README.md).
 3. Start a planned fight, inspect the compact active-order HUD, countdown, stage transition and dead-row removal; verify wave break, Classic and result. [QA](qa/combat_hud_v1/README.md).
 
-Next visual approval gate: **Combat Report Visual V1**, the production campaign's read-only «РАЗБОР ПРИКАЗОВ» dialog (`battle_plan_campaign.gd`). Present actual per-hero wave/time/order and executor events. Keep a single dismiss action and the existing battle-result/reward/Last Deal routes. Do not import QA-only replay, plan editing, comparison or settings buttons into the campaign. No report implementation is approved yet. After the concept is approved and implemented, continue with Fate Spread and small dialogs.
+Next visual approval gate: **Combat Report Visual V1**, the production campaign's read-only «РАЗБОР ПРИКАЗОВ» dialog (`battle_plan_campaign.gd`). Present actual per-hero wave/time/order and executor events. Keep a single dismiss action and the existing battle-result/reward/Last Deal routes. Do not import QA-only replay, plan editing, comparison or settings buttons into the campaign. [Concept candidate (awaiting player approval)](../assets/source_archive/combat_report_v1/concept_candidate.webp). No report implementation is approved yet. After the concept is approved and implemented, continue with Fate Spread and small dialogs.
 
 ## Wizard Wager Visual V1 · approved in main
 
