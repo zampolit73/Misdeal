@@ -1,3 +1,7 @@
+## Wizard Wager Visual V1 · native acceptance
+
+On the real Table, reach the optional wager after card II/III or VII when eligible. Check the isolated contract, mouse and keyboard accept/refuse, debt and sacrifice state, and return to the unchanged two-card Table. This is not the post-battle Death Wager reward. [Reference and validation](../assets/source_archive/wizard_wager_v1/README.md).
+
 ## Final Visual Audit 1.0 · следующий шаг
 
 Аудит завершён на `d4b94d2b`. Закрыть четыре P1 и провести один контрольный забег до XIII перед передачей издательской сборки. [Передача в новый чат и критерии приёмки](FINAL_VISUAL_AUDIT_1_0_HANDOFF.md).

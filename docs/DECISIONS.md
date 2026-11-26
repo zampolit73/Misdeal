@@ -1,3 +1,7 @@
+## Wizard Wager Visual V1 · optional offer
+
+The approved offer is distinct from Death Wager Reward V1.2. Keep the original Table, debt rules, reward multiplier, sacrifice order, schedule, refusal and save behavior. The new contract is a local modal with live copy; keyboard focus initially selects refusal and returns to Table after either decision.
+
 ## Final Visual Audit 1.0 · selective corrections
 
 Preserve approved compositions and gameplay. Restrict heraldry edits to six portrait/merchant/reward plate regions; scope Lost Purse grading to distant red pixels and shared UV across layers; leave the approved source card intact. Derive the three choice previews from approved travel outcome art. Separate combat captions independently from gameplay geometry and keep overflow copy scrollable. Defer the optional Last Camp grade until native comparison. [Acceptance and provenance](FINAL_VISUAL_AUDIT_1_0_FIXES.md).

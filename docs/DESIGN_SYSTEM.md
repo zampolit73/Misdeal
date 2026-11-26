@@ -1,3 +1,7 @@
+## Wizard Wager Visual V1
+
+Preserve Table V5.1 behind the isolated 744×475 contract at (268,232). Aged bronze, charcoal, deep burgundy and bone/ink serif copy; separate transparent Buttons overlay painted controls, with hover, focus and press states. Risk/reward at equal width; safe initial focus on refusal. No baked text and no extra reward choice.
+
 ## Death Wager Visual V1.2
 
 Use the supplied panel and layout at 1280×720. Put bone text on dark surfaces and ink on parchment. Keep the full card interactive with muted bronze focus, hover and pressed states. Use the existing offer data and the Reliquary image for the offered relic. Wrap the debt explanation and retain it through confirmation.

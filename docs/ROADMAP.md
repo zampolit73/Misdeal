@@ -1,3 +1,8 @@
+## Wizard Wager Visual V1
+
+- [x] Implement approved isolated offer modal with existing mechanics.
+- [ ] Confirm native frame and both choices during the remaining Final Visual Audit 1.0 control run.
+
 ## Final Visual Audit 1.0
 
 - [x] Пакет реализации четырёх P1 + P2-06/07, решения по всем P2 и целевые headless проверки.

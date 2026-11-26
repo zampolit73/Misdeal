@@ -42,8 +42,6 @@ const RIGHT_CARD_ROTATION := 0.010
 @onready var wager_panel: Panel = $WagerOverlay/Root/WagerPanel
 @onready var wager_risk_panel: Panel = $WagerOverlay/Root/WagerPanel/RiskPanel
 @onready var wager_reward_panel: Panel = $WagerOverlay/Root/WagerPanel/RewardPanel
-@onready var wager_risk_art: TextureRect = $WagerOverlay/Root/WagerPanel/RiskPanel/RiskArt
-@onready var wager_reward_art: TextureRect = $WagerOverlay/Root/WagerPanel/RewardPanel/RewardArt
 @onready var wager_accept_button: Button = $WagerOverlay/Root/WagerPanel/AcceptButton
 @onready var wager_refuse_button: Button = $WagerOverlay/Root/WagerPanel/RefuseButton
 
@@ -85,12 +83,6 @@ func _ready() -> void:
 	hidden_card_b.visible = false
 	wager_root.visible = false
 	wizard_backdrop.material = null
-	wager_risk_art.material = null
-	wager_reward_art.material = null
-	wager_risk_art.texture = CARD_ART_CATALOG.get_run_card_texture("death_wager")
-	wager_reward_art.texture = CARD_ART_CATALOG.get_reward_texture("gold_windfall")
-	wager_risk_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	wager_reward_art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	squad_button.pressed.connect(_toggle_squad_status)
 	NAVIGATION.apply(squad_button, "squad")
 	archive_button = Button.new()
@@ -900,6 +892,11 @@ func _show_wizard_wager() -> void:
 		return
 
 	wager_root.visible = true
+	fate_spread_button.hide()
+	# The visible offer captures keyboard focus; no underlying card can be selected.
+	focus_behavior_recursive = FOCUS_BEHAVIOR_DISABLED
+	wager_root.focus_behavior_recursive = FOCUS_BEHAVIOR_ENABLED
+	wager_refuse_button.grab_focus()
 	_pulse_wizard_reaction("offer")
 	wager_panel.pivot_offset = wager_panel.size * 0.5
 	wager_panel.scale = Vector2(0.95, 0.95)
@@ -921,19 +918,25 @@ func _accept_wizard_wager() -> void:
 	if not RunState.accept_pending_wizard_wager():
 		return
 
-	wager_root.visible = false
-	selection_locked = false
+	_close_wizard_wager()
 	_refresh_table(false)
 	default_wizard_line = "Вот и договорились. Следующий бой станет больнее, добыча — вдвое слаще. И я дам тебе ещё один приказ: «ЖЕРТВА»."
 	wizard_line.text = default_wizard_line
 	_pulse_wizard_reaction("pleased")
 
+func _close_wizard_wager() -> void:
+	wager_root.visible = false
+	fate_spread_button.show()
+	wager_root.focus_behavior_recursive = FOCUS_BEHAVIOR_INHERITED
+	focus_behavior_recursive = FOCUS_BEHAVIOR_INHERITED
+	selection_locked = false
+
+
 func _refuse_wizard_wager() -> void:
 	if not RunState.decline_pending_wizard_wager():
 		return
 
-	wager_root.visible = false
-	selection_locked = false
+	_close_wizard_wager()
 	_refresh_table(false)
 	default_wizard_line = "Какая осторожность. Почти разочаровывает."
 	wizard_line.text = default_wizard_line
