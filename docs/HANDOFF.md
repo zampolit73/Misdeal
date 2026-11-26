@@ -1,3 +1,7 @@
+## Final Visual Audit 1.0 · следующий шаг
+
+Аудит завершён на `d4b94d2b`. Закрыть четыре P1 и провести один контрольный забег до XIII перед передачей издательской сборки. [Передача в новый чат и критерии приёмки](FINAL_VISUAL_AUDIT_1_0_HANDOFF.md).
+
 ## Camp Rest Visual V2
 
 Resolve card IV or XII and return to Table. Tab and Enter navigate and choose, and the training selector changes only the hero and preview. Hover a choice for its full effect. The action still saves through CampStop before returning to the same Table. [Native captures and checks](qa/camp_rest_v2/README.md)
