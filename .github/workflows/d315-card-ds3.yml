@@ -1,4 +1,4 @@
-name: D315 unified approved Card DS3 native regression
+name: Unified Card System native regression
 
 on:
   push:
@@ -6,6 +6,14 @@ on:
     paths:
       - '.github/workflows/d315-card-ds3.yml'
       - 'assets/pixel/ui/card_ds3_locked/**'
+      - 'assets/pixel/ui/unified_card_system_v1/**'
+      - 'scripts/ui/unified_card_skin.gd'
+      - 'scripts/ui/event_choice_*.gd'
+      - 'scripts/reward/hero_development.gd'
+      - 'scripts/reward/elite_trophy.gd'
+      - 'scripts/reward/death_wager_view.gd'
+      - 'scripts/table/merchant_view.gd'
+      - 'tests/unit/test_unified_card_system_v1.gd'
       - 'shaders/card_ds3_ink.gdshader'
       - 'scripts/ui/card_ds3_skin.gd'
       - 'scripts/ui/card_art_catalog.gd'
@@ -57,6 +65,29 @@ jobs:
           timeout 110s /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . --script res://scripts/dev/d316_card_surfaces_smoke.gd 2>&1 | tee /tmp/d316-native.log
           grep -q 'D316_CARD_SURFACES_NATIVE_PASS' /tmp/d316-native.log
           if grep -E 'SCRIPT ERROR|Parse Error|Parser Error|D316_CARD_SURFACES_FAIL' /tmp/d316-native.log; then exit 1; fi
+      - name: Unified card system targeted regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . -s res://addons/gut/gut_cmdln.gd -gconfig= -gtest=res://tests/unit/test_unified_card_system_v1.gd,res://tests/unit/test_event_choice_vnext.gd,res://tests/unit/test_card_inspection_visual_v1.gd,res://tests/unit/test_d381_fate_spread_layout.gd,res://tests/unit/test_visual_polish.gd -gexit 2>&1 | tee /tmp/d315-unified-gut.log
+          grep -Fq 'All tests passed!' /tmp/d315-unified-gut.log
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error' /tmp/d315-unified-gut.log
+      - name: Capture actual migrated screens at native size
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y xvfb xauth libgl1-mesa-dri
+          mkdir -p /tmp/d315-unified-native
+          timeout 180s xvfb-run -a -s '-screen 0 1400x820x24 +extension GLX +render -noreset' \
+            env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
+            --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility --audio-driver Dummy \
+            --script res://scripts/dev/visual_polish_matrix.gd -- /tmp/d315-unified-native "$GITHUB_SHA" \
+            table_two,table_held,fate_0,fate_4,fate_8,fate_final,reward_major_upgrade,reward_bonus_upgrade,reward_death_wager,reward_elite_artifact,reward_details,event_blood_ledger,event_chained_prisoner,well_poor,well_selected \
+            2>&1 | tee /tmp/d315-unified-render.log
+          grep -Fq 'VISUAL_MATRIX_PASS: 15 ' /tmp/d315-unified-render.log
+          ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error' /tmp/d315-unified-render.log
+          test -s /tmp/d315-unified-native/manifest.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -64,4 +95,5 @@ jobs:
           path: |
             /tmp/d315-*.log
             /tmp/d316-*.log
+            /tmp/d315-unified-native/
           retention-days: 14

@@ -7,7 +7,8 @@
 - [x] Player native visual acceptance of all three on 2026-11-26; [regression route](HANDOFF.md).
 - [x] Combat Report Visual V1 — player approved concept; production read-only report implemented; 19/19 targeted tests, 208 assertions.
 - [ ] Combat Report V1 native visual acceptance (existing CI native capture + player F5 checkpoint).
-- [ ] Unified Card System V1 — player requested unified card and choice presentation; [candidate and staged migration](UNIFIED_CARD_SYSTEM_V1.md). Include Table/inspection/Fate Spread, event choices, hero development and reward choices; preserve approved art and semantics.
+- [x] Unified Card System V1 — concept approved; migrated runtime cards, 24/24 targeted tests and D315/D316/D274 headless smoke. [Implementation](UNIFIED_CARD_SYSTEM_V1.md).
+- [ ] Unified Card System V1 native framebuffer and integrated player visual acceptance, including four-choice events, Fate thumbnails and reward variants.
 - [ ] Auxiliary dialogs after the unified card rollout.
 
 ## Wizard Wager Visual V1

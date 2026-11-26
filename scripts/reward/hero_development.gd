@@ -3,6 +3,7 @@ extends Control
 signal chosen(index: int)
 signal inspect_input(event: InputEvent, index: int)
 
+const UNIFIED := preload("res://scripts/ui/unified_card_skin.gd")
 const UI := preload("res://scripts/ui/wizard_reliquary.gd")
 const ART := "res://assets/pixel/ui/reward_development_v1/"
 const LAYOUT := preload("res://assets/pixel/ui/reward_development_v1/layout_1280x720.json")
@@ -52,30 +53,17 @@ func _build_card(slot: Dictionary, offer: Dictionary, colors: Dictionary) -> But
 	button.tooltip_text = offer.tooltip
 	_buttons.append(button)
 
-	var local_area := Rect2(Vector2.ZERO, area.size)
-	var hover := UI.picture(button, _texture(slot.hover_overlay), local_area)
-	var focus := UI.picture(button, _texture(slot.focus_overlay), local_area)
-	var art := UI.picture(button, offer.art, _local(slot.art_rect, area.position))
-	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	var title := UI.caption(button, _local(slot.title_rect, area.position), "", int(slot.title_font_size), Color(colors.parchment_text))
-	title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	title.text = offer.title
-	UI.caption(button, _local(slot.role_rect, area.position), offer.role, int(slot.role_font_size), Color(colors.muted))
-	_build_effect(button, _local(slot.effect_rect, area.position), offer.effect, slot, colors)
-
-	var textures := {}
-	for state in slot.button_states:
-		textures[state] = _texture(slot.button_states[state])
-	var cta := UI.picture(button, textures.idle, _local(slot.button_rect, area.position))
-	UI.caption(button, _local(slot.button_label_rect, area.position), "ВЫБРАТЬ", int(slot.button_font_size), Color(colors.light_text))
+	var extent := area.size
+	var frame := UNIFIED.mount(button, Rect2(Vector2.ZERO, extent), 0.45, "UnifiedCardFrame", true)
+	var art := UI.picture(button, offer.art, UNIFIED.art_rect(extent))
+	UNIFIED.fit_art(art, UNIFIED.art_rect(extent))
+	UNIFIED.label(button, "Role", offer.role, Rect2(15, 8, extent.x - 30, 34), 15, UNIFIED.GOLD, true)
+	UNIFIED.label(button, "Title", offer.title, Rect2(16, extent.y * 0.46, extent.x - 32, 53), 21, UNIFIED.INK, true)
+	_build_effect(button, Rect2(16, extent.y * 0.46 + 55, extent.x - 32, extent.y * 0.54 - 115), offer.effect, slot, colors)
+	var cta := UNIFIED.action(button, Rect2(25, extent.y - 54, extent.x - 50, 42), "ВЫБРАТЬ", 19)
 	var refresh := func() -> void:
-		focus.visible = (_locked and _picked == index) or button.has_focus()
-		hover.visible = not button.disabled and not focus.visible and button.is_hovered()
-		cta.texture = textures.pressed if _locked and _picked == index else (
-			textures.disabled if button.disabled else (
-			textures.pressed if button.is_pressed() else (
-			textures.hover if hover.visible or focus.visible else textures.idle)))
+		UNIFIED.refresh(button, frame, cta, _locked and _picked == index)
+		cta.get_node("Caption").text = "ВЫБРАНО" if _locked and _picked == index else "ВЫБРАТЬ"
 	button.mouse_entered.connect(refresh)
 	button.mouse_exited.connect(refresh)
 	button.focus_entered.connect(refresh)
@@ -92,15 +80,17 @@ func _build_card(slot: Dictionary, offer: Dictionary, colors: Dictionary) -> But
 func _build_effect(button: Button, area: Rect2, effect: String, slot: Dictionary, colors: Dictionary) -> void:
 	var lines := effect.split("  •  ", false)
 	var font_size := int(slot.effect_font_size)
-	var font := UI.CARD_SKIN.heading_font()
+	var font := UNIFIED.serif()
 	for line in lines:
 		while font_size > int(slot.effect_min_font_size) and font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x > area.size.x:
 			font_size -= 1
+	if lines.is_empty():
+		return
 	var row_height := area.size.y / lines.size()
 	for i in lines.size():
 		var line := lines[i]
 		var ink := Color(colors.negative if line.begins_with("−") else colors.positive)
-		var label := UI.caption(button, Rect2(area.position + Vector2(0, i * row_height), Vector2(area.size.x, row_height)), "", font_size, ink)
+		var label := UNIFIED.label(button, "Effect%d" % i, "", Rect2(area.position + Vector2(0, i * row_height), Vector2(area.size.x, row_height)), font_size, ink)
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		label.text = line
 

@@ -407,6 +407,8 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 	# Full lore is opened deliberately with RMB; no automatic popup may hide cards.
 	button.tooltip_text = ""
 	button.disabled = false
+	if button.has_meta("unified_refresh"):
+		button.get_meta("unified_refresh").call()
 	button.modulate = Color.WHITE
 
 	var marked: bool = RunState.is_wizard_marked_card(card.card_id)
@@ -1111,6 +1113,8 @@ func _animate_card_choice(chosen_card_id: String) -> void:
 func _disable_offer_buttons() -> void:
 	for button in offer_buttons:
 		button.disabled = true
+		if button.has_meta("unified_refresh"):
+			button.get_meta("unified_refresh").call()
 	hold_a_button.disabled = true
 	hold_b_button.disabled = true
 
@@ -1122,6 +1126,8 @@ func _enable_offer_buttons() -> void:
 	for button in offer_buttons:
 		if button.visible:
 			button.disabled = false
+			if button.has_meta("unified_refresh"):
+				button.get_meta("unified_refresh").call()
 
 	var offers := RunState.get_offer_cards()
 	_refresh_hold_buttons(offers)

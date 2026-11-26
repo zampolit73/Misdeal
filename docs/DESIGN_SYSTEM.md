@@ -1,3 +1,7 @@
+## Unified Card System V1
+
+Shared bronze face, charcoal category band, landscape recess, warm parchment and existing burgundy CTA texture states. Use `unified_card_skin.gd` for every new full-choice or physical card; only content/layout variants may differ. Physical Table 272×338, reader card 250×340, full event 260/312×454, reward slots preserve authored dimensions. Live Fate miniatures use an explicit reveal state and no CTA; never show unknown/future art. Use centered art fit for relic cutouts, covered landscape for scene illustrations; never distort an illustration. Keep existing cinematic plates and layout for the wizard wager/cabinet. See [design contract](UNIFIED_CARD_SYSTEM_V1.md).
+
 ## Combat Report Visual V1
 
 Centered 1000×588 text-free parchment/leather/bronze plate above the actual battle result (CanvasLayer 60). Muted ink serif text, authentic existing V4 hero emblems and narrow nameplates, scrollable dynamically wrapped chronological event rows with separated wave/time and description. One live «ЗАКРЫТЬ [ESC]» control; keyboard scroll and focus return. Keep all text and UI state native.

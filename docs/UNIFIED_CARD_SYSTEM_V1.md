@@ -1,6 +1,6 @@
-# Unified Card System V1 — design candidate (26 Nov 2026)
+# Unified Card System V1 — approved and implemented (26 Nov 2026)
 
-**Status:** Player requested a common visual language for choices/cards. The concept board is a proposal awaiting artistic approval; no runtime changes yet. It is not a new gameplay screen or a measured Godot capture. [Candidate board](../assets/source_archive/unified_card_system_v1/concept_candidate.webp).
+**Status:** Player approved the [archived candidate board](../assets/source_archive/unified_card_system_v1/concept_candidate.webp) on 26 Nov. Runtime implemented. Headless regression PASS; actual visually rendered screen review and player acceptance still pending.
 
 ## Problem and actual sources
 
@@ -13,7 +13,7 @@ Player screenshots show the Hero Development parchment cards, ornate Event Choic
 - States: idle, hover, keyboard focus, pressed, chosen, disabled with readable reason, and held/discarded/revealed/unknown/locked miniatures. No hidden outcomes exposed. Positive and penalty signs remain explicit; gold cost is neutral, not an inferred debuff. Keep actual existing full text (wrap or existing inspection/tooltip); board copy is illustrative, not a new content contract.
 - A common action treatment applies to ordinary choice/confirm/refuse controls. Preserve the approved two-sided Wizard Wager contract and other cinematic compositions; harmonize typography/palette/action chrome, not replace every non-card modal with a card grid. Keep old art assets for rollback. No gameplay, balancing, rewards, save, input route or outcome changes.
 
-## Implementation order after player approves
+## Implementation order (completed through step 3; step 4 pending native visual acceptance)
 
 1. Shared native Godot card skin, reusable text-free frame and state styles; production Table, read-only card inspection and Fate Spread thumbnails/held/discard, preserving their existing positions and boss back.
 2. Event choice shared presentation for 24 events including WhisperingWell, 2/3/4 options and disabled long restrictions. Reuse all existing choice art.
@@ -21,3 +21,7 @@ Player screenshots show the Hero Development parchment cards, ornate Event Choic
 4. Focused real Godot frames for each migrated surface, verify unavailable states, keyboard/mouse and existing gameplay routes. Then one integrated player acceptance.
 
 Do not treat the separate pending native visual acceptance of Combat Report V1 as confirmed by this request.
+
+## Implemented
+
+The player approved the archived concept board on 2026-11-26. Production cards now share `scripts/ui/unified_card_skin.gd`: one 704×1008 text-free bronze/leather/parchment face, cached layout variants, coherent serif headings and live burgundy action states. Migrated Table/reader/Fate known and unknown live faces, all 24 Event Choice routes, normal/bonus Hero Development, Elite Trophy and Death Wager; Merchant keeps its approved cabinet with common price/action treatment. Preserve the sealed XIII, printed reference backs and approved two-sided Wizard Wager. Existing art catalogs and gameplay/confirmation rules remain authoritative. Godot 4.7.2 headless: 24/24 targeted tests, 2030 assertions, D315/D316/D274 smoke PASS. Native framebuffer CI and local visual acceptance pending. [QA](qa/unified_card_system_v1/README.md). Combat Report V1 native acceptance remains separate.

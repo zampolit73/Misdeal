@@ -3,6 +3,7 @@ extends Control
 signal confirmed(index: int)
 signal inspect_input(event: InputEvent, index: int)
 
+const UNIFIED := preload("res://scripts/ui/unified_card_skin.gd")
 const UI := preload("res://scripts/ui/wizard_reliquary.gd")
 const MOTION := preload("res://scripts/ui/ui_motion.gd")
 const ART := "res://assets/pixel/ui/reward_elite_v1/"
@@ -79,30 +80,21 @@ func _build_slot(slot: Dictionary, index: int, id: String, empty_cache_art: Text
 	card.name = "Option%d" % index
 	card.tooltip_text = title + "\n" + description
 	_cards.append(card)
-	var hover := UI.picture(card, _texture(slot.hover_overlay), Rect2(Vector2.ZERO, area.size))
-	hover.hide()
-	card.mouse_entered.connect(func() -> void: hover.visible = not card.disabled)
-	card.mouse_exited.connect(hover.hide)
-	var selected := UI.picture(card, _texture(slot.selected_overlay), Rect2(Vector2.ZERO, area.size))
+	var extent := area.size
+	var frame := UNIFIED.mount(card, Rect2(Vector2.ZERO, extent), 0.45, "UnifiedCardFrame", true)
+	var window := UNIFIED.art_rect(extent)
+	var art := UI.picture(card, ArtifactArtCatalog.get_reliquary_texture(id) if item != null else empty_cache_art, window)
+	UNIFIED.fit_art(art, window, item == null)
+	UNIFIED.label(card, "Kind", "РЕЛИКВИЯ" if item != null else "НАГРАДА", Rect2(14, 8, extent.x - 28, 30), 15, UNIFIED.GOLD, true)
+	UNIFIED.label(card, "Title", title, Rect2(14, extent.y * 0.46, extent.x - 28, 52), 20, UNIFIED.INK, true)
+	UNIFIED.label(card, "Description", description, Rect2(16, extent.y * 0.46 + 54, extent.x - 32, extent.y * 0.54 - 96), 16, UNIFIED.INK)
+	var status := UNIFIED.action(card, Rect2(25, extent.y - 45, extent.x - 50, 33), "ВЫБРАТЬ", 15)
+	var selected := UNIFIED.action(card, Rect2(25, extent.y - 45, extent.x - 50, 33), "ВЫБРАНО", 15)
+	selected.name = "SelectedAction"
+	selected.texture = UNIFIED.button_texture("pressed")
 	selected.modulate.a = 0.0
 	_highlights.append(selected)
-	if item != null:
-		var marker := UI.caption(selected, _local(slot.selected_marker_rect, area.position), "ВЫБРАНО", 13, BONE)
-		marker.add_theme_color_override("font_shadow_color", Color.BLACK)
-	var art := UI.picture(card, ArtifactArtCatalog.get_reliquary_texture(id) if item != null else empty_cache_art,
-		_local(slot.art_rect, area.position))
-	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	art.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	var caption := UI.caption(card, _local(slot.title_rect, area.position), "", int(slot.title_font_size), INK)
-	caption.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	caption.add_theme_font_size_override("font_size", int(slot.title_min_font_size) if title.length() > 23 else int(slot.title_font_size))
-	caption.text = title
-	var copy_area := _local(slot.description_rect, area.position)
-	var copy := UI.caption(card, copy_area, "", int(slot.description_font_size), INK)
-	copy.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	# The authored descriptions fit the parchment. The reader remains available for full copy.
-	copy.clip_text = true
-	copy.text = description
+	UNIFIED.bind_action(card, frame, status)
 	card.focus_entered.connect(_select.bind(index, false))
 	card.pressed.connect(_select.bind(index, true))
 	card.gui_input.connect(func(event: InputEvent) -> void: inspect_input.emit(event, index))

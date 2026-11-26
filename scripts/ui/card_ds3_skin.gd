@@ -3,6 +3,7 @@ extends RefCounted
 # D315 — ONE visual card system, authored from the user-approved card sheet.
 # All source texts, card IDs, effects, rewards, click handlers and art catalogs
 # remain authoritative. Never paste composite card mockups over controls.
+const UNIFIED := preload("res://scripts/ui/unified_card_skin.gd")
 const FRONT := "res://assets/pixel/ui/card_ds3_locked/front_frame.webp"
 const BACK := "res://assets/pixel/ui/card_ds3_locked/card_back.webp"
 const INK := "res://assets/pixel/ui/card_ds3_locked/ink_substrate.webp"
@@ -12,12 +13,10 @@ const INK_TEXT := Color("#251610")
 const FACE_STONE := Color("#150d11")
 const BONE := Color("#eddbbd")
 const TABLE_SIZE := Vector2(272, 338)
-# D327: front_frame.webp has asymmetrical transparent gutters. The visible
-# parchment/title/footprint center is x=147, NOT the Button's x=136.
-# The separate top inscription tab is centered at x=150.
-const TABLE_COPY_CENTER_X := 147.0
-const TABLE_TAB_CENTER_X := 150.0
-const REWARD_COPY_CENTER_X := 158.0
+# Unified bronze face is symmetric; live title and body share the physical center.
+const TABLE_COPY_CENTER_X := 136.0
+const TABLE_TAB_CENTER_X := 136.0
+const REWARD_COPY_CENTER_X := 146.0
 
 static var _textures: Dictionary = {}
 
@@ -98,15 +97,10 @@ static func _at(control: Control, at: Vector2, dimensions: Vector2) -> void:
     control.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 static func grade(art: TextureRect) -> void:
-    var mat := ShaderMaterial.new()
-    mat.shader = CARD_SHADER
-    art.material = mat
+    art.material = null
     art.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 
 static func apply_table(button: Button) -> bool:
-    var frame := _texture(FRONT)
-    if frame == null:
-        return false
     if button.has_node("DS3CardFrame"):
         return true
     button.custom_minimum_size = TABLE_SIZE
@@ -115,78 +109,30 @@ static func apply_table(button: Button) -> bool:
     _empty_button(button)
     var substrate := _new_face_stone(button, "DS3CardStone", TABLE_SIZE)
     button.move_child(substrate, 0)
-    var art_well := _new_art_well(button, "DS3ArtWell",
-        Vector2(27, 33), Vector2(219, 196))
-    button.move_child(art_well, 1)
-    var painting := button.get_node("Art") as TextureRect
-    _fit_art_in_well(painting, Vector2(31, 37), Vector2(211, 188))
-    grade(painting)
-    button.move_child(painting, 2)
-    var overlay := _new_art(button, "DS3CardFrame", frame, TABLE_SIZE)
-    button.move_child(overlay, 3)
-
+    var window := UNIFIED.art_rect(TABLE_SIZE, 0.53)
+    var well := _new_art_well(button, "DS3ArtWell", window.position, window.size)
+    var frame := UNIFIED.mount(button, Rect2(Vector2.ZERO, TABLE_SIZE), 0.53, "DS3CardFrame")
+    button.move_child(substrate, 0)
+    button.move_child(well, 2)
+    var art := button.get_node("Art") as TextureRect
+    UNIFIED.fit_art(art, window)
+    button.move_child(art, 3)
     var title := button.get_node("Title") as Label
-    # D325: shared optical center x=136; do not offset title from prose.
-    _at(title, Vector2(TABLE_COPY_CENTER_X - 93.0, 232), Vector2(186, 28))
-    title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    title.add_theme_font_size_override("font_size", 14)
-    # The actual F6 card frame has a DARK title recess, not a light parchment.
-    # Black ink-on-black was invisible in the user screenshot.
-    title.add_theme_color_override("font_color", BONE)
-    title.add_theme_color_override("font_outline_color", Color("#130b0b"))
-    title.add_theme_constant_override("outline_size", 1)
-    title.clip_text = true
+    UNIFIED.style_label(title, Rect2(13, 181, 246, 38), 17, UNIFIED.INK, true)
     title.max_lines_visible = 2
-
     var category := button.get_node("Type") as Label
-    # D327: the painted black tab is central, not on the right.
-    # Keep category inside it (and the live Roman number just to its left).
-    _at(category, Vector2(TABLE_TAB_CENTER_X - 27.0, 16), Vector2(54, 20))
-    category.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    category.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    category.add_theme_font_size_override("font_size", 9)
-    category.add_theme_color_override("font_color", GOLD)
-    category.clip_text = true
-
+    UNIFIED.style_label(category, Rect2(67, 7, 138, 27), 13, UNIFIED.GOLD, true, false)
     var body := button.get_node("Description") as Label
-    # D326: keep the live two-offer description at the same physical center.
-    # It must not retain offsets/anchors from the old DS2 layout.
-    body.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
-    body.custom_minimum_size = Vector2.ZERO
-    _at(body, Vector2(TABLE_COPY_CENTER_X - 93.0, 263), Vector2(186, 39))
-    body.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    body.add_theme_font_size_override("font_size", 11)
-    body.add_theme_color_override("font_color", BONE)
-    body.clip_text = true
-    body.max_lines_visible = 2
-
+    UNIFIED.style_label(body, Rect2(17, 219, 238, 62), 13, UNIFIED.INK)
+    body.max_lines_visible = 3
     var hint := button.get_node("Hint") as Label
-    _at(hint, Vector2(TABLE_COPY_CENTER_X - 93.0, 305), Vector2(186, 21))
-    hint.add_theme_font_size_override("font_size", 11)
-    hint.add_theme_color_override("font_color", GOLD)
-    hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    hint.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    hint.clip_text = true
+    var action := UNIFIED.action(button, Rect2(27, 286, 218, 39), "", 15)
+    UNIFIED.style_label(hint, Rect2(29, 287, 214, 37), 15, UNIFIED.BONE, true, false)
+    button.move_child(hint, -1)
     var mark := button.get_node("Mark") as Label
-    _at(mark, Vector2(34, 45), Vector2(204, 23))
-    mark.add_theme_color_override("font_color", Color("#ffb37e"))
-    mark.add_theme_font_size_override("font_size", 11)
-
-    var roman := Label.new()
-    roman.name = "DS3Roman"
-    # Distinct from the category tab; keeps authentic Fate I-XIII legible.
-    roman.position = Vector2(88, 16)
-    roman.size = Vector2(34, 19)
-    roman.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    roman.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    roman.add_theme_color_override("font_color", GOLD)
-    roman.add_theme_font_size_override("font_size", 12)
-    roman.mouse_filter = Control.MOUSE_FILTER_IGNORE
-    button.add_child(roman)
+    UNIFIED.style_label(mark, Rect2(12, 37, 248, 23), 11, Color("#ffd0a1"), true)
+    var roman := UNIFIED.label(button, "DS3Roman", "", Rect2(25, 7, 40, 27), 12, UNIFIED.GOLD)
+    UNIFIED.bind_action(button, frame, action)
     return true
 
 static func update_table_roman(button: Button, number: int) -> void:
@@ -212,202 +158,89 @@ static func apply_table_backs(scene: Control) -> void:
 
 static func apply_reward(button: Button, portrait: TextureRect,
         role: Label, heading: Label, effect: Label, description: Label) -> bool:
-    var frame := _texture(FRONT)
-    if frame == null:
-        return false
     if button.has_node("DS3CardFrame"):
         return true
     _empty_button(button)
-    button.custom_minimum_size = Vector2(292, 456)
+    var extent := Vector2(292, 456)
+    button.custom_minimum_size = extent
     button.focus_mode = Control.FOCUS_ALL
     button.clip_contents = true
-    var bottom := _new_face_stone(button, "DS3CardStone", Vector2(292, 456))
+    var frame := UNIFIED.mount(button, Rect2(Vector2.ZERO, extent), 0.45, "DS3CardFrame")
+    var bottom := _new_face_stone(button, "DS3CardStone", extent)
     button.move_child(bottom, 0)
-    var art_well := _new_art_well(button, "DS3ArtWell",
-        Vector2(24, 38), Vector2(244, 240))
-    button.move_child(art_well, 1)
-    _fit_art_in_well(portrait, Vector2(28, 42), Vector2(236, 232))
-    grade(portrait)
-    button.move_child(portrait, 2)
-    var face := _new_art(button, "DS3CardFrame", frame, Vector2(292, 410))
-    button.move_child(face, 3)
-    _at(role, Vector2(REWARD_COPY_CENTER_X - 108.0, 8), Vector2(216, 23))
-    role.add_theme_color_override("font_color", GOLD)
-    role.add_theme_font_size_override("font_size", 12)
-    role.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    # D379: Reward-only layout. Preserve the original 292x410 ornate frame;
-    # its painted dark title recess requires pale ink, not black type.
-    # The parchment inset carries at most two lines of readable shorthand.
-    _at(heading, Vector2(REWARD_COPY_CENTER_X - 108.0, 230), Vector2(216, 34))
-    heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    heading.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    heading.add_theme_color_override("font_color", BONE)
-    heading.add_theme_color_override("font_outline_color", Color("#10090d"))
-    heading.add_theme_constant_override("outline_size", 1)
-    heading.add_theme_font_size_override("font_size", 15)
-    heading.clip_text = true
-    heading.max_lines_visible = 2
-    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 282), Vector2(220, 30))
-    effect.add_theme_color_override("font_color", INK_TEXT)
-    effect.add_theme_constant_override("line_spacing", 0)
-    effect.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    effect.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    effect.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    effect.clip_text = true
-    effect.max_lines_visible = 2
-    _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 320), Vector2(222, 60))
-    description.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    description.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    description.add_theme_color_override("font_color", BONE)
-    description.add_theme_font_size_override("font_size", 12)
-    description.clip_text = true
-    description.max_lines_visible = 4
+    var window := UNIFIED.art_rect(extent)
+    var well := _new_art_well(button, "DS3ArtWell", window.position, window.size)
+    button.move_child(well, 2)
+    UNIFIED.fit_art(portrait, window, false)
+    button.move_child(portrait, 3)
+    style_reward_copy(button, role, heading, effect, description)
     return true
-
 
 static func style_reward_copy(button: Button, role: Label, heading: Label,
         effect: Label, description: Label) -> void:
     if not button.has_node("DS3CardFrame"):
         return
-    role.add_theme_color_override("font_color", GOLD)
-    heading.add_theme_color_override("font_color", BONE)
-    effect.add_theme_color_override("font_color", INK_TEXT)
-    effect.add_theme_constant_override("line_spacing", 0)
-    description.add_theme_color_override("font_color", BONE)
-    # Live changes to reward modes must not reintroduce the old dark title
-    # or squash descriptions into the bottom 40 px of the frame.
-    for label in [role, heading, effect, description]:
-        label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-        label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    _at(heading, Vector2(REWARD_COPY_CENTER_X - 108.0, 230), Vector2(216, 34))
-    _at(effect, Vector2(REWARD_COPY_CENTER_X - 110.0, 282), Vector2(220, 30))
-    _at(description, Vector2(REWARD_COPY_CENTER_X - 111.0, 320), Vector2(222, 60))
+    UNIFIED.style_label(role, Rect2(20, 7, 252, 34), 14, UNIFIED.GOLD, true)
+    UNIFIED.style_label(heading, Rect2(16, 209, 260, 44), 19, UNIFIED.INK, true)
+    UNIFIED.style_label(effect, Rect2(20, 254, 252, 58), 16, UNIFIED.INK)
+    UNIFIED.style_label(description, Rect2(18, 314, 256, 83), 14, UNIFIED.INK)
+    heading.max_lines_visible = 2
+    effect.max_lines_visible = 2
+    description.max_lines_visible = 4
 
-
-# D316: physical DS3 card inside the already existing non-destructive
-# full-text inspection panel. This is a true card illustration, not a separate
-# menu control; detailed lore stays in its original scrollable right column.
-# Only the inspection surface is enlarged; Table/Reward/Spread faces are unchanged.
 static func apply_inspection(host: Control, illustration: TextureRect) -> bool:
-    var frame := _texture(FRONT)
-    if frame == null:
-        return false
     if host.has_node("DS3InspectFrame"):
         return true
-    const CARD_AT := Vector2(76, 45)
-    const CARD_EXTENT := Vector2(250, 340)
-    const FIT := CARD_EXTENT / Vector2(225, 306)
-    var stone := _new_face_stone(host, "DS3InspectStone", CARD_EXTENT)
-    stone.position = CARD_AT
-    # Draw behind the real original illustration, not over the black title well.
+    const AT := Vector2(76, 45)
+    const EXTENT := Vector2(250, 340)
+    var stone := _new_face_stone(host, "DS3InspectStone", EXTENT)
+    stone.position = AT
     host.move_child(stone, illustration.get_index())
-    var art_well := _new_art_well(host, "DS3InspectArtWell",
-        CARD_AT + Vector2(20, 28) * FIT, Vector2(185, 187) * FIT)
-    host.move_child(art_well, illustration.get_index())
-    _fit_art_in_well(illustration, CARD_AT + Vector2(24, 32) * FIT, Vector2(177, 179) * FIT)
-    grade(illustration)
-    var gilt := _new_art(host, "DS3InspectFrame", frame, CARD_EXTENT)
-    gilt.position = CARD_AT
-    host.move_child(gilt, illustration.get_index() + 1)
-    var category := Label.new()
-    category.name = "DS3InspectCardType"
-    category.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    category.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    category.add_theme_font_size_override("font_size", 10)
-    category.add_theme_color_override("font_color", GOLD)
-    category.clip_text = true
-    host.add_child(category)
-    _at(category, CARD_AT + Vector2(103, 12) * FIT, Vector2(47, 20) * FIT)
-    var plate_title := Label.new()
-    plate_title.name = "DS3InspectCardTitle"
-    plate_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    plate_title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    plate_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    plate_title.add_theme_font_size_override("font_size", 13)
-    plate_title.add_theme_color_override("font_color", INK_TEXT)
-    plate_title.clip_text = true
-    plate_title.max_lines_visible = 2
-    host.add_child(plate_title)
-    _at(plate_title, CARD_AT + Vector2(35, 208) * FIT, Vector2(174, 28) * FIT)
-    var reading_mark := Label.new()
-    reading_mark.name = "DS3InspectCardHint"
-    reading_mark.text = "ИЗ КНИГИ СУДЬБЫ"
-    reading_mark.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    reading_mark.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    reading_mark.add_theme_font_size_override("font_size", 13)
-    reading_mark.add_theme_color_override("font_color", GOLD)
-    host.add_child(reading_mark)
-    _at(reading_mark, CARD_AT + Vector2(29, 265) * FIT, Vector2(167, 19) * FIT)
+    var frame := UNIFIED.mount(host, Rect2(AT, EXTENT), 0.53, "DS3InspectFrame")
+    host.move_child(frame, illustration.get_index() - 1)
+    var window := UNIFIED.art_rect(EXTENT, 0.53)
+    window.position += AT
+    var well := _new_art_well(host, "DS3InspectArtWell", window.position, window.size)
+    host.move_child(well, illustration.get_index())
+    UNIFIED.fit_art(illustration, window)
+    UNIFIED.label(host, "DS3InspectCardType", "", Rect2(AT + Vector2(15, 8), Vector2(220, 23)), 12, UNIFIED.GOLD, true)
+    var title := UNIFIED.label(host, "DS3InspectCardTitle", "", Rect2(AT + Vector2(14, 188), Vector2(222, 71)), 20, UNIFIED.INK, true)
+    title.max_lines_visible = 3
+    UNIFIED.label(host, "DS3InspectCardHint", "ИЗ КНИГИ СУДЬБЫ", Rect2(AT + Vector2(12, 278), Vector2(226, 39)), 14, UNIFIED.MUTED)
     return true
-
 
 static func apply_spread_slot(panel: Panel, art: TextureRect, title_plate: ColorRect,
         title: Label, dimensions: Vector2) -> void:
-    var frame := _texture(FRONT)
-    if frame == null or panel.has_node("DS3CardFrame"):
+    if panel.has_node("DS3CardFrame"):
         return
-    var bg := _new_face_stone(panel, "DS3CardStone", dimensions)
-    panel.move_child(bg, 0)
-    var artwork_height := dimensions.y * 0.57
-    var art_pos := Vector2(dimensions.x * 0.13, dimensions.y * 0.10)
-    var art_size := Vector2(dimensions.x * 0.74, artwork_height)
-    var rim := maxf(1.0, dimensions.x * 0.013)
-    var art_well := _new_art_well(panel, "DS3ArtWell",
-        art_pos - Vector2.ONE * rim, art_size + Vector2.ONE * (rim * 2.0))
-    panel.move_child(art_well, 1)
-    _fit_art_in_well(art, art_pos, art_size)
-    grade(art)
-    panel.move_child(art, 2)
-    var face := _new_art(panel, "DS3CardFrame", frame, dimensions)
-    panel.move_child(face, 3)
-    title_plate.modulate.a = 0.0
-    if dimensions.x < 110:
-        # 100px physical fate cards have room for ONE line of ink on the
-        # parchment band (approximately y=0.68..0.78). The older two-line
-        # label at y=0.72 spilled into the nearly black ornamental footer.
-        # Full event names remain readable in the existing hover history.
-        _at(title, Vector2(dimensions.x * 0.14, dimensions.y * 0.68),
-            Vector2(dimensions.x * 0.80, dimensions.y * 0.10))
-        title.autowrap_mode = TextServer.AUTOWRAP_OFF
-        title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-        title.clip_text = true
-    else:
-        # XIII keeps its explicit two-line title and larger plaque.
-        _at(title, Vector2(dimensions.x * 0.14, dimensions.y * 0.72),
-            Vector2(dimensions.x * 0.80, dimensions.y * 0.14))
-    title.add_theme_color_override("font_color", INK_TEXT)
-    title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    title.add_theme_font_size_override("font_size", 8 if dimensions.x < 110 else 11)
-    # Fate Roman tabs deliberately protrude above the original slot bounds.
+    _mini(panel, art, title_plate, title, Vector2.ZERO, dimensions, "DS3Card")
     panel.clip_contents = false
 
 static func apply_sidebar_card(host: Control, art: TextureRect,
         title_plate: ColorRect, title: Label, at: Vector2, dimensions: Vector2) -> void:
-    var frame := _texture(FRONT)
-    if frame == null or host.has_node("DS3SidebarFrame"):
+    if host.has_node("DS3SidebarFrame"):
         return
-    var bg := _new_face_stone(host, "DS3SidebarStone", dimensions)
+    _mini(host, art, title_plate, title, at, dimensions, "DS3Sidebar")
+
+static func _mini(host: Control, art: TextureRect, title_plate: ColorRect, title: Label,
+        at: Vector2, dimensions: Vector2, prefix: String) -> void:
+    var bg := _new_face_stone(host, prefix + "Stone", dimensions)
     bg.position = at
     host.move_child(bg, art.get_index())
-    var art_pos := at + Vector2(dimensions.x * 0.11, dimensions.y * 0.12)
-    var art_size := Vector2(dimensions.x * 0.78, dimensions.y * 0.57)
-    var rim := maxf(1.0, dimensions.x * 0.013)
-    var art_well := _new_art_well(host, "DS3SidebarArtWell",
-        art_pos - Vector2.ONE * rim, art_size + Vector2.ONE * (rim * 2.0))
-    host.move_child(art_well, art.get_index())
-    _fit_art_in_well(art, art_pos, art_size)
-    grade(art)
-    var frame_node := _new_art(host, "DS3SidebarFrame", frame, dimensions)
-    frame_node.position = at
-    host.move_child(frame_node, art.get_index() + 1)
+    var frame := UNIFIED.mount(host, Rect2(at, dimensions), UNIFIED.MINI_SPLIT, prefix + "Frame")
+    host.move_child(frame, art.get_index() - 1)
+    var window := UNIFIED.art_rect(dimensions, UNIFIED.MINI_SPLIT, false)
+    window.position += at
+    var well_name := "DS3ArtWell" if prefix == "DS3Card" else "DS3SidebarArtWell"
+    var well := _new_art_well(host, well_name, window.position, window.size)
+    host.move_child(well, art.get_index())
+    UNIFIED.fit_art(art, window)
     title_plate.modulate.a = 0.0
-    _at(title, at + Vector2(dimensions.x * 0.13, dimensions.y * 0.72),
-        Vector2(dimensions.x * 0.82, dimensions.y * 0.13))
-    title.add_theme_color_override("font_color", INK_TEXT)
-    title.add_theme_font_size_override("font_size", 10)
-    title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    UNIFIED.style_label(title, Rect2(at + Vector2(dimensions.x * 0.06, dimensions.y * 0.73),
+        Vector2(dimensions.x * 0.88, dimensions.y * 0.23)), 8 if dimensions.x < 110 else 11, UNIFIED.INK, true, dimensions.x >= 110)
+    title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+
+static func set_mini_revealed(host: Control, revealed: bool, sidebar: bool = false) -> void:
+    var frame := host.get_node_or_null("DS3SidebarFrame" if sidebar else "DS3CardFrame") as TextureRect
+    if frame != null:
+        frame.texture = UNIFIED.face(UNIFIED.MINI_SPLIT, not revealed)

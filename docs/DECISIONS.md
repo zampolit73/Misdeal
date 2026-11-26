@@ -1,3 +1,9 @@
+## Unified Card System V1 · approved visual identity
+
+The player approved the archived concept board on 2026-11-26. Production cards now share `scripts/ui/unified_card_skin.gd`: one 704×1008 text-free bronze/leather/parchment face, cached layout variants, coherent serif headings and live burgundy action states. Migrated Table/reader/Fate known and unknown live faces, all 24 Event Choice routes, normal/bonus Hero Development, Elite Trophy and Death Wager; Merchant keeps its approved cabinet with common price/action treatment. Preserve the sealed XIII, printed reference backs and approved two-sided Wizard Wager. Existing art catalogs and gameplay/confirmation rules remain authoritative. Godot 4.7.2 headless: 24/24 targeted tests, 2030 assertions, D315/D316/D274 smoke PASS. Native framebuffer CI and local visual acceptance pending. [QA](qa/unified_card_system_v1/README.md). Combat Report V1 native acceptance remains separate.
+
+The native Button still owns input; skins never consume clicks. Large cards may distribute the face height between art and copy to fit real descriptions, while compact cards show only known art/state. Do not reintroduce independent ornate full-card frames or baked text on new choice screens. The former DS3 sources remain rollback assets.
+
 ## Combat Report Visual V1 · accepted concept, read-only campaign
 
 The player approved the archived Combat Report V1 on 2026-11-26. Use the isolated antique journal frame, actual role badges and real wave/time/order, transition reasons, selected targets, kills and deaths. Finalize a current-wave executor once on actual battle completion, never append during review. Maintain all prior-wave histories, existing planned-mode availability and dismiss back to the same result. No QA-only replay/edit/compare/settings buttons, no invented stats, no mechanics or save-schema changes.

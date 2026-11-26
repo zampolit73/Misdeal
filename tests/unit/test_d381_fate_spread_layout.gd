@@ -42,8 +42,8 @@ func test_fifth_roman_clears_fourth_card_and_tiny_titles_do_not_wrap() -> void:
 		"Roman V must stand LEFT of its card rather than on top of IV's title")
 	var title := fifth.get_node("CardTitle") as Label
 	assert_eq(title.autowrap_mode, TextServer.AUTOWRAP_OFF,
-		"Tiny Fate names must not spill onto the dark footer as two lines")
-	assert_lt(title.position.y + title.size.y, GEOMETRY.SLOT_SIZE.y * 0.80,
+		"Tiny Fate names must remain compact and never wrap")
+	assert_lt(title.position.y + title.size.y, GEOMETRY.SLOT_SIZE.y * 0.97,
 		"The text rectangle must fit the physical parchment band")
 	var boss := overlay.get("boss_panel") as Panel
 	assert_true(boss != null, "XIII boss card remains present")

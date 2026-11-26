@@ -253,19 +253,15 @@ func _style_reward_choose_bar(index: int) -> void:
 	# D379: the original ChooseBar was permanently hidden under DS3.
 	# Reuse the existing full-card Button and pressed signal.
 	var choice := upgrade_choose_bars[index]
-	choice.position = Vector2(41.0, 415.0)
-	choice.size = Vector2(234.0, 35.0)
+	choice.position = Vector2(28.0, 405.0)
+	choice.size = Vector2(236.0, 38.0)
 	choice.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var plate := StyleBoxFlat.new()
-	plate.bg_color = Color("#211318")
-	plate.border_color = Color("#986c43")
-	plate.set_border_width_all(1)
-	plate.set_corner_radius_all(2)
+	var plate := StyleBoxTexture.new()
+	plate.texture = CARD_DS3_SKIN.UNIFIED.button_texture("idle")
 	choice.add_theme_stylebox_override("panel", plate)
 	var caption := choice.get_node("ChooseText") as Label
-	caption.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	caption.add_theme_color_override("font_color", CARD_DS3_SKIN.GOLD)
-	caption.add_theme_font_size_override("font_size", 14)
+	CARD_DS3_SKIN.UNIFIED.style_label(caption, Rect2(Vector2.ZERO, choice.size), 16, CARD_DS3_SKIN.UNIFIED.BONE, true)
+	choice.get_parent().move_child(choice, -1)
 
 
 func _style_v2_reward_copy(index: int, effect_text: String = "", card_effect: String = "") -> void:

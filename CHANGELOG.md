@@ -1,3 +1,10 @@
+## Unified Card System V1 · 26 Nov 2026
+
+- Shared visual frame, art aperture, parchment typography and action states across live Table, inspection, Fate cards and 24 event definitions.
+- Normal/bonus development, elite trophies and death wagers now use the same native card skin. Merchant prices and state plates harmonized; cinematic wager and sealed boss back unchanged.
+- Existing illustrations and all gameplay/choice rules retained. Updated gallery and smoke geometry to verify the approved new layout instead of obsolete DS3 dimensions.
+- Headless Godot 4.7.2: 24/24 tests, 2030 assertions; D315/D316/D274 smoke PASS. CI native captures and player visual acceptance pending.
+
 ## Interface Polish 2.0 · Combat Report Visual V1
 
 Replace the generic production AcceptDialog with the approved leather/bronze journal, live per-hero headings, wave/time columns, localized transition reasons, scroll and close/focus return. Finalize executor history once at result, so reopening cannot mutate it. Existing victory, defeat, Last Deal and Classic routes remain intact. Godot 4.7.2: 19/19 targeted tests, 208 assertions; native production framebuffer capture added to the existing combat planning CI runner, pending verification.

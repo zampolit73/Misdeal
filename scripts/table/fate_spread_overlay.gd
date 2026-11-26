@@ -400,6 +400,7 @@ func _refresh_slots() -> void:
 			symbol.text = "◆" if state == "current" else _future_symbol(index)
 			title.text = "СЛЕДУЮЩАЯ" if state == "current" else "НЕИЗВЕСТНО"
 
+		CARD_DS3_SKIN.set_mini_revealed(panel, not card_id.is_empty())
 		var use_reference_future: bool = state == "future" and index >= 4 and index != 11
 		panel.visible = not use_reference_future
 		if use_reference_future:
@@ -432,7 +433,7 @@ func _refresh_slots() -> void:
 		if panel.has_node("DS3CardFrame") and state == "done":
 			title.add_theme_color_override("font_color", CARD_DS3_SKIN.INK_TEXT)
 		if panel.has_node("DS3CardFrame") and state == "current":
-			title.add_theme_color_override("font_color", CARD_DS3_SKIN.INK_TEXT)
+			title.add_theme_color_override("font_color", CARD_DS3_SKIN.INK_TEXT if not card_id.is_empty() else CARD_DS3_SKIN.BONE)
 
 
 func _fit_spread_title(title: Label) -> void:
@@ -473,6 +474,7 @@ func _refresh_boss() -> void:
 
 
 func _refresh_held() -> void:
+	CARD_DS3_SKIN.set_mini_revealed($Frame/HeldPanel, RunState.has_held_card(), true)
 	if RunState.has_held_card():
 		var card_id: String = RunState.held_card_id
 		var card := RunState.get_card(card_id)

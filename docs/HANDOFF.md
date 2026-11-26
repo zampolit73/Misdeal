@@ -1,6 +1,8 @@
-## Unified Card System V1 · next visual gate
+## Unified Card System V1 · implemented, visual acceptance pending
 
-The player requested one common treatment for choices and cards across Misdeal and supplied production examples (Hero Development, Event Choice, Wizard Wager, Table, Fate Spread). The [visual candidate and migration contract](UNIFIED_CARD_SYSTEM_V1.md) are ready for approval. Implement a shared skin only after artistic approval; preserve approved illustrations, mechanics, current outcome/confirmation routes, the 12+XIII layout and cinematic backgrounds. The standalone Fate Spread redesign is now part of this family-wide pass. Combat Report V1 native acceptance remains separate.
+The player approved the archived concept board on 2026-11-26. Production cards now share `scripts/ui/unified_card_skin.gd`: one 704×1008 text-free bronze/leather/parchment face, cached layout variants, coherent serif headings and live burgundy action states. Migrated Table/reader/Fate known and unknown live faces, all 24 Event Choice routes, normal/bonus Hero Development, Elite Trophy and Death Wager; Merchant keeps its approved cabinet with common price/action treatment. Preserve the sealed XIII, printed reference backs and approved two-sided Wizard Wager. Existing art catalogs and gameplay/confirmation rules remain authoritative. Godot 4.7.2 headless: 24/24 targeted tests, 2030 assertions, D315/D316/D274 smoke PASS. Native framebuffer CI and local visual acceptance pending. [QA](qa/unified_card_system_v1/README.md). Combat Report V1 native acceptance remains separate.
+
+Player gate: F5 → table offers/RMB/F/R → two-to-four option event (Candle Seller and unavailable state) → hero development; when available, elite/death wager and merchant. Check baked old corners/cropping and action focus. CI `d315-card-ds3-native` will contain 15 actual frames; no local renderer evidence yet.
 
 ## Combat Report Visual V1 · player visual acceptance pending
 

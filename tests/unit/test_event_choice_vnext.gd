@@ -39,7 +39,7 @@ func test_every_production_event_has_readable_cards_for_solo_and_trio() -> void:
 				if frame != null:
 					assert_eq(frame.get_global_rect(), card.get_global_rect(), definition.card_id)
 					assert_eq(frame.mouse_filter, Control.MOUSE_FILTER_IGNORE)
-					assert_gt(frame.z_index, art.z_index)
+					assert_lt(frame.z_index, art.z_index)
 				assert_true(row.get_global_rect().encloses(card.get_global_rect()), definition.card_id)
 				for key in ["Action", "Cost", "Outcome", "Availability"]:
 					var label := card.get_node("Copy/" + key) as Label

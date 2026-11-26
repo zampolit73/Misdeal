@@ -1,6 +1,6 @@
-## Unified Card System V1 · design candidate
+## Unified Card System V1 · implemented, visual acceptance pending
 
-The player requested common presentation of cards and choices after comparing actual production screens. Current separate skin paths are documented in [Unified Card System V1](UNIFIED_CARD_SYSTEM_V1.md); a new reference board is archived and awaits artistic approval. No runtime change; the next Fate Spread work is part of this shared skin rollout. Combat Report V1 native acceptance remains pending.
+The player approved the archived concept board on 2026-11-26. Production cards now share `scripts/ui/unified_card_skin.gd`: one 704×1008 text-free bronze/leather/parchment face, cached layout variants, coherent serif headings and live burgundy action states. Migrated Table/reader/Fate known and unknown live faces, all 24 Event Choice routes, normal/bonus Hero Development, Elite Trophy and Death Wager; Merchant keeps its approved cabinet with common price/action treatment. Preserve the sealed XIII, printed reference backs and approved two-sided Wizard Wager. Existing art catalogs and gameplay/confirmation rules remain authoritative. Godot 4.7.2 headless: 24/24 targeted tests, 2030 assertions, D315/D316/D274 smoke PASS. Native framebuffer CI and local visual acceptance pending. [QA](qa/unified_card_system_v1/README.md). Combat Report V1 native acceptance remains separate.
 
 ## Combat Report Visual V1 · production implementation
 

@@ -3,6 +3,7 @@ extends Control
 signal chosen(index: int)
 signal inspect_input(event: InputEvent, index: int)
 
+const UNIFIED := preload("res://scripts/ui/unified_card_skin.gd")
 const UI := preload("res://scripts/ui/wizard_reliquary.gd")
 const ASSETS := "res://assets/pixel/ui/reward_death_wager_v12/"
 const LAYOUT := preload(ASSETS + "layout_1280x720.json")
@@ -43,20 +44,18 @@ func _build_card(index: int, slot: Dictionary, offer: Dictionary, texture: Textu
 	button.name = "Option%d" % index
 	button.tooltip_text = "%s\n\n%s" % [offer.title, offer.description]
 	button.accessibility_description = offer.description
-	button.add_theme_stylebox_override("hover", _outline(Color("a37b5590")))
-	button.add_theme_stylebox_override("focus", _outline(Color("b38d6bbb")))
-	button.add_theme_stylebox_override("pressed", _outline(Color("c5a079d9")))
-	button.add_theme_stylebox_override("hover_pressed", button.get_theme_stylebox("pressed"))
+	UNIFIED.blank_button(button)
 	_buttons.append(button)
-
-	var window := _local(slot.art_rect, area.position)
-	if relic:
-		window = window.grow(-23)
+	var extent := area.size
+	var frame := UNIFIED.mount(button, Rect2(Vector2.ZERO, extent), 0.45, "UnifiedCardFrame", true)
+	var window := UNIFIED.art_rect(extent)
 	var art := UI.picture(button, texture, window)
-	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED if relic else TextureRect.STRETCH_SCALE
-	_caption(button, _local(slot.title_rect, area.position), String(offer.title).to_upper(), 23, INK)
-	_caption(button, _local(slot.description_rect, area.position), offer.description, 19, INK)
-	UI.caption(button, _local(slot.button_rect, area.position), "ВЫБРАТЬ", 24, BONE)
+	UNIFIED.fit_art(art, window, not relic)
+	UNIFIED.label(button, "Kind", "РЕЛИКВИЯ" if relic else "НАГРАДА", Rect2(14, 8, extent.x - 28, 34), 15, UNIFIED.GOLD, true)
+	UNIFIED.label(button, "Title", String(offer.title).to_upper(), Rect2(14, extent.y * 0.46, extent.x - 28, 52), 22, UNIFIED.INK, true)
+	UNIFIED.label(button, "Description", offer.description, Rect2(16, extent.y * 0.46 + 54, extent.x - 32, extent.y * 0.54 - 113), 17, UNIFIED.INK)
+	var cta := UNIFIED.action(button, Rect2(25, extent.y - 54, extent.x - 50, 42), "ВЫБРАТЬ", 19)
+	UNIFIED.bind_action(button, frame, cta)
 	button.pressed.connect(func() -> void: chosen.emit(index))
 	button.gui_input.connect(func(event: InputEvent) -> void: inspect_input.emit(event, index))
 
@@ -71,8 +70,9 @@ func set_locked(locked: bool, selected := -1) -> void:
 	for index in _buttons.size():
 		var button := _buttons[index]
 		button.disabled = locked
-		button.add_theme_stylebox_override("disabled", _outline(Color("b38d6bbb"))
-			if locked and index == selected else StyleBoxEmpty.new())
+		var cta := button.get_node("UnifiedAction") as TextureRect
+		UNIFIED.refresh(button, button.get_node("UnifiedCardFrame"), cta, locked and index == selected)
+		cta.get_node("Caption").text = "ВЫБРАНО" if locked and index == selected else "ВЫБРАТЬ"
 	if not locked:
 		_buttons[maxi(0, selected)].grab_focus()
 

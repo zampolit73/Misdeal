@@ -44,8 +44,8 @@ func _verify() -> void:
     if inspect_well == null or card_art == null or inspect_well.get_index() >= card_art.get_index():
         _fail("D322 full-card inspector has no recessed art well")
         return
-    if card_art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
-        _fail("D322 full-card inspector crops the source illustration")
+    if card_art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_COVERED:
+        _fail("D322 full-card inspector does not fill its landscape window")
         return
     var inspect_matte := inspect_well.get_theme_stylebox("panel") as StyleBoxFlat
     if inspect_matte == null or inspect_matte.border_width_left != 0 or inspect_matte.border_width_right != 0:
@@ -54,8 +54,8 @@ func _verify() -> void:
     if not (reader.get_node_or_null("Frame/DS3InspectStone") is ColorRect):
         _fail("inspector still double-stacks back border under front frame")
         return
-    if card_frame.size != Vector2(250, 340) or card_art == null or card_art.material == null:
-        _fail("full-card inspector dimensions/DS3 grade are incorrect")
+    if card_frame.size != Vector2(250, 340) or card_art == null or card_art.material != null:
+        _fail("full-card inspector dimensions or original art rendering are incorrect")
         return
     if physical_title == null or physical_title.text != "МОГИЛЬНЫЙ ЗВОН":
         _fail("inspector's real title is not printed inside the painted card")
@@ -82,8 +82,8 @@ func _verify() -> void:
         if art_well == null or art == null or art_well.get_index() >= art.get_index():
             _fail("D322 Fate slot %d lacks inset art well" % number)
             return
-        if art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
-            _fail("D322 Fate slot %d still crops the scene" % number)
+        if art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_COVERED:
+            _fail("D322 Fate slot %d does not fill its landscape window" % number)
             return
         var matte := art_well.get_theme_stylebox("panel") as StyleBoxFlat
         if matte == null or matte.border_width_left != 0 or matte.border_width_right != 0:

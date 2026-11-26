@@ -270,8 +270,8 @@ func _verify() -> void:
         if (card.get_node("Art") as TextureRect).texture == null:
             _fail("a gallery card has no own illustration: " + card.name)
             return
-        if (card.get_node("Art") as TextureRect).material == null:
-            _fail("D315 red/black tone-mapping missing: " + card.name)
+        if (card.get_node("Art") as TextureRect).material != null:
+            _fail("Original illustration unexpectedly tone-mapped: " + card.name)
             return
         # D320 single-frame contract: a front must have ONE framed overlay
         # and an unframed opaque stone surface, never the framed card-back art.
@@ -313,13 +313,13 @@ func _verify() -> void:
         if matte.bg_color != SKIN.FACE_STONE:
             _fail("D324 art well has a visible mismatched matte: " + card.name)
             return
-        if art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_CENTERED:
+        if art.stretch_mode != TextureRect.STRETCH_KEEP_ASPECT_COVERED:
             _fail("D322 gallery art still crops its scene: " + card.name)
             return
-        if art.position.x <= art_well.position.x or art.position.y <= art_well.position.y:
+        if art.position.x < art_well.position.x or art.position.y < art_well.position.y:
             _fail("D322 gallery art has no matte inset: " + card.name)
             return
-        if art.position.x + art.size.x >= art_well.position.x + art_well.size.x or art.position.y + art.size.y >= art_well.position.y + art_well.size.y:
+        if art.position.x + art.size.x > art_well.position.x + art_well.size.x or art.position.y + art.size.y > art_well.position.y + art_well.size.y:
             _fail("D322 gallery art escapes its mount: " + card.name)
             return
         if art_well.position.y + art_well.size.y >= (card.get_node("Title") as Label).position.y:
@@ -403,7 +403,7 @@ func _verify() -> void:
         if absf(category.position.x + category.size.x * 0.5 - SKIN.TABLE_TAB_CENTER_X) > 0.5:
             _fail("D327 category text is outside the black top inscription tab: " + card.name)
             return
-        if category.size.x > 56.0:
+        if category.size.x > 138.0:
             _fail("D327 category tab label is wider than approved ornate inset: " + card.name)
             return
         var roman_rect := card.get_node("DS3Roman") as Label
@@ -487,7 +487,7 @@ func _verify() -> void:
             _fail("D324 Reward contains a duplicate inset outline: " + name)
             return
         var physical_frame := card.get_node("DS3CardFrame") as TextureRect
-        if not physical_frame.size.is_equal_approx(Vector2(292, 410)):
+        if not physical_frame.size.is_equal_approx(Vector2(292, 456)):
             _fail("D323 Reward physical frame clipped to native texture dimensions: " + name)
             return
         if not (card.get_node_or_null("DS3CardStone") is ColorRect):
@@ -541,10 +541,10 @@ func _verify() -> void:
             if not card.visible or not choice.visible or caption.text != "ВЫБРАТЬ":
                 _fail("D380 reward has no visible action: " + name)
                 return
-            if choice.position.y < frame.size.y or choice.position.y + choice.size.y > card.size.y - 3.0:
+            if choice.position.y < body.position.y + body.size.y or choice.position.y + choice.size.y > card.size.y - 3.0:
                 _fail("D380 CTA is clipped or overlaps description: " + name)
                 return
-            if heading.get_theme_color("font_color").get_luminance() < 0.48:
+            if heading.get_theme_color("font_color").get_luminance() > 0.25:
                 _fail("D380 heading is dark on the dark painted title: " + name)
                 return
             if effect.text.is_empty() or effect.get_theme_color("font_color").get_luminance() > 0.25:
@@ -554,13 +554,13 @@ func _verify() -> void:
                 _fail("D380 modifier and body areas overlap: " + name)
                 return
             # Native VP audit: the actual pale strip begins at y282; retain strict containment.
-            if not Rect2(48, 282, 220, 32).encloses(effect.get_rect()):
+            if not Rect2(20, 254, 252, 58).encloses(effect.get_rect()):
                 _fail("D380 modifier box leaves the illustrated parchment: " + name)
                 return
             if effect.get_line_count() > 2 or not effect.clip_text or effect.max_lines_visible != 2:
                 _fail("D380 modifier wraps beyond two printed lines: " + case[index])
                 return
-            if body.position.y + body.size.y > 382.0 or body.get_line_count() > 4:
+            if body.position.y + body.size.y > 397.0 or body.get_line_count() > 4:
                 _fail("D380 description reaches bottom frame ornament: " + case[index])
                 return
     print("D380_REWARD_COPY_PASS: Knight/Ranger/Mage modifiers and descriptions fit")

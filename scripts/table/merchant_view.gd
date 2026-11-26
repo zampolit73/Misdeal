@@ -2,6 +2,7 @@ extends Control
 
 signal action_requested(action: String)
 
+const UNIFIED := preload("res://scripts/ui/unified_card_skin.gd")
 const UI := preload("res://scripts/ui/wizard_reliquary.gd")
 const STOPS := preload("res://scripts/core/run_camp_stops.gd")
 const DESIGN := preload("res://assets/pixel/ui/merchant_v2/layout_1280x720.json")
@@ -64,10 +65,17 @@ func refresh() -> Array[Button]:
 		var reason := STOPS.restriction(RunState, item)
 		button.disabled = not reason.is_empty()
 		var price := STOPS.price(RunState, item)
-		offer.price.text = str(price)
+		offer.price.text = "%d ЗОЛОТА" % price
+		offer.plate.texture = UNIFIED.button_texture("disabled" if button.disabled else "idle")
 		offer.price.visible = not button.disabled
 		offer.status.visible = button.disabled
 		offer.status.text = "%d золота\n%s" % [price, reason]
+		offer.status.tooltip_text = offer.status.text
+		if button.disabled:
+			for points in range(13, 9, -1):
+				offer.status.add_theme_font_size_override("font_size", points)
+				if offer.status.get_line_count() * offer.status.get_line_height() <= offer.status.size.y:
+					break
 		if offer.art != null:
 			offer.art.modulate = Color("a09390") if button.disabled else Color.WHITE
 	var focused := get_viewport().gui_get_focus_owner() as Button
@@ -117,17 +125,14 @@ func _mount(slot: Dictionary, item: String) -> void:
 	var button := _hotspot(slot.price, title, item)
 	button.tooltip_text = "%s\n%s" % [title, description]
 	_items.append(button)
-	var price: Array = slot.price.duplicate()
-	price[0] += price[2] * 0.52
-	price[2] *= 0.34
-	var purchase := _copy(price, "", 21, BONE)
-	var status_label := _copy(slot.price, "", 13, Color("d6bca8"))
-	var backing := StyleBoxFlat.new()
-	backing.bg_color = Color("24191b")
-	backing.set_corner_radius_all(5)
-	backing.set_expand_margin_all(-6)
-	status_label.add_theme_stylebox_override("normal", backing)
-	_offers[item] = {"button": button, "art": art, "price": purchase, "status": status_label}
+	var plate := UNIFIED.action(button, Rect2(Vector2.ZERO, button.size), "", 15)
+	var purchase := _copy(slot.price, "", 17, UNIFIED.BONE)
+	var status_label := _copy(slot.price, "", 13, UNIFIED.BONE)
+	var refresh_plate := func() -> void:
+		plate.texture = UNIFIED.button_texture("disabled" if button.disabled else ("pressed" if button.is_pressed() else ("hover" if button.has_focus() or button.is_hovered() else "idle")))
+	for signal_value: Signal in [button.focus_entered, button.focus_exited, button.mouse_entered, button.mouse_exited, button.button_down, button.button_up]:
+		signal_value.connect(refresh_plate)
+	_offers[item] = {"button": button, "art": art, "plate": plate, "price": purchase, "status": status_label}
 
 
 func _listed_upgrade(role: String, item: String) -> HeroUpgradeData:
@@ -168,6 +173,7 @@ func _hotspot(bounds: Array, title: String, action: String) -> Button:
 func _copy(bounds: Array, value: String, point: int, color: Color, min_point: int = 0) -> Label:
 	var area := UI.rect(bounds)
 	var label := UI.caption(self, area, "", point, color)
+	label.add_theme_font_override("font", UNIFIED.serif())
 	var font := label.get_theme_font("font")
 	while point > min_point and min_point > 0 and font.get_string_size(value, HORIZONTAL_ALIGNMENT_LEFT, -1, point).x > area.size.x:
 		point -= 1

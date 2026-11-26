@@ -3,6 +3,7 @@ extends Node
 
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MOTION := preload("res://scripts/ui/ui_motion.gd")
+const UNIFIED := preload("res://scripts/ui/unified_card_skin.gd")
 const SKIN := preload("res://scripts/ui/event_choice_skin.gd")
 const SELECTED_INK := Color("f0dfc1")
 const BONE := Color("e1d0b8")
@@ -90,12 +91,14 @@ func show_result(continue_button: Button = null) -> void:
 		button.position.y = 0.0
 		var restriction := button.get_node("Copy/Availability") as Label
 		restriction.text = "ВЫБРАНО" if button == _pending else ""
-		_place(restriction, Rect2(31, 29, button.size.x - 62, 32))
+		_place(restriction, Rect2(28, 370, button.size.x - 56, 30))
 		restriction.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		restriction.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		restriction.add_theme_color_override("font_color", SELECTED_INK)
-		if button == _pending:
-			button.get_node("ActionType").hide()
+		restriction.hide()
+		var action := button.get_node("Copy/UnifiedAction") as TextureRect
+		action.texture = UNIFIED.button_texture("pressed" if button == _pending else "disabled")
+		action.get_node("Caption").text = "ВЫБРАНО" if button == _pending else "ЗАВЕРШЕНО"
 		SKIN.shade(button, 1.16 if button == _pending else 0.8)
 		button.focus_mode = Control.FOCUS_NONE
 	_result.show()
@@ -145,11 +148,11 @@ func _build_card(button: Button, index: int, width: int) -> bool:
 		art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	art.modulate = Color("d6cec8") if button.disabled else Color.WHITE
 	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_place(art, Rect2(width * 0.052, 63, width * 0.896, 153))
+	_place(art, UNIFIED.art_rect(button.custom_minimum_size, SKIN.SPLIT))
 	SKIN.mount(button, button.custom_minimum_size)
 	SKIN.shade(button, 0.95 if button.disabled else 1.0)
 	var category := _label(button, "ActionType", "%s  /  %s" % [ROMAN[index], kind],
-		Rect2(27, 29, width - 54, 31), 16, accent, false)
+		Rect2(20, 8, width - 40, 34), 16, accent, false)
 	category.z_index = 2
 	category.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	category.add_theme_font_override("font", SKIN.serif())
@@ -159,27 +162,32 @@ func _build_card(button: Button, index: int, width: int) -> bool:
 	copy.z_index = 2
 	button.add_child(copy)
 	_place(copy, Rect2(Vector2.ZERO, button.custom_minimum_size))
-	var title := _label(copy, "Action", action, Rect2(29, 220, width - 58, 36), 19, INK, true)
+	var title := _label(copy, "Action", action, Rect2(16, 185, width - 32, 40), 19, INK, true)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_override("font", SKIN.serif(true))
 	_fit(title, 13)
-	var text_width := width - 56
+	var text_width := width - 36
 	var cost_ink := Color("492d22")
-	var cost_label := _label(copy, "Cost", cost, Rect2(28, 273, text_width, 38), 15, cost_ink, true)
+	var cost_label := _label(copy, "Cost", cost, Rect2(18, 228, text_width, 38), 15, cost_ink, true)
+	cost_label.add_theme_font_override("font", UNIFIED.serif())
 	cost_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	_fit(cost_label, 13)
-	var outcome_y := 273 + maxi(28, cost_label.get_line_count() * (cost_label.get_line_height() + 1) + 6)
-	var availability := _label(copy, "Availability", restriction, Rect2(28, 348, text_width, 36),
+	var outcome_y := 228 + maxi(28, cost_label.get_line_count() * (cost_label.get_line_height() + 1) + 6)
+	var availability := _label(copy, "Availability", restriction, Rect2(18, 365, text_width, 36),
 		14, Color("421921"), true)
+	availability.add_theme_font_override("font", UNIFIED.serif())
 	availability.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
 	_fit(availability, 12)
-	var body_bottom := 385
+	var body_bottom := 402
 	if not restriction.is_empty():
 		body_bottom -= availability.get_line_count() * (availability.get_line_height() + 1) + 4
-	var body := _label(copy, "Outcome", detail, Rect2(28, outcome_y, text_width, body_bottom - outcome_y),
+	var body := _label(copy, "Outcome", detail, Rect2(18, outcome_y, text_width, body_bottom - outcome_y),
 		14 if width == 260 else 15, INK, true)
+	body.add_theme_font_override("font", UNIFIED.serif())
 	body.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	_fit(body, 13)
+	var plate := UNIFIED.action(copy, Rect2(22, 407, width - 44, 36), "НЕДОСТУПНО" if button.disabled else "ВЫБРАТЬ", 15)
+	plate.texture = UNIFIED.button_texture("disabled" if button.disabled else "idle")
 	button.set_meta("event_action", action)
 	button.set_meta("event_restriction", restriction)
 	_bind(button)
@@ -242,6 +250,8 @@ func _refresh_frame(button: Button, held: bool = false) -> void:
 		return
 	var highlighted := _hovered == button or button.has_focus()
 	SKIN.shade(button, 0.94 if held else (1.13 if highlighted else 1.0))
+	var plate := button.get_node("Copy/UnifiedAction") as TextureRect
+	plate.texture = UNIFIED.button_texture("pressed" if held else ("hover" if highlighted else "idle"))
 
 
 func _update_hint() -> void:

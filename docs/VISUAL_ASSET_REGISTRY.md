@@ -1,3 +1,7 @@
+## Unified Card System V1
+
+Runtime `assets/pixel/ui/unified_card_system_v1/card_face.webp` (704×1008 RGBA, trimmed isolated clean generated face, quality 94), from player-approved `assets/source_archive/unified_card_system_v1/concept_candidate.webp` direction. The frame contains no card art or copy. Native resize handles art/copy split and compact unknown face; reuse the existing `reward_development_v1/runtime/states/button_0_*.webp` action states. All original approved illustration assets remain unchanged. See [QA](qa/unified_card_system_v1/README.md).
+
 ## Combat Report Visual V1
 
 Runtime `assets/pixel/ui/combat_report_v1/report_plate.webp` (1635×962 RGBA, WebP quality 94) is the clean text-free master prepared from the user-approved reference. The original approved concept and master are archived under `assets/source_archive/combat_report_v1/` with `.gdignore`; buttons, emblems and all report rows are live. [QA](qa/combat_report_v1/README.md).
