@@ -1,3 +1,7 @@
+## Death Wager Reward Visual V1.2
+
+The layout and three runtime WebPs are in `assets/pixel/ui/reward_death_wager_v12/`. The exact reference, clean master, provenance, manifest and layout preview are in `assets/source_archive/reward_death_wager_v12/`. The ten listed files were verified against the package manifest. The live relic uses the approved Reliquary atlas. [Wizard and banner references](ART_DIRECTION.md#wizard-and-castle-heraldry) · [Native QA](qa/reward_death_wager_v12/README.md)
+
 ## Camp Rest Visual V2
 
 The approved reference, layout preview and package README are archived in `assets/source_archive/camp_rest_v2/`. The exact plate, layout JSON and twelve interaction overlays ship in `assets/pixel/ui/camp_rest_v2/` for the IV and XII checkpoints. [Native captures](qa/camp_rest_v2/README.md)

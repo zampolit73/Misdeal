@@ -1,3 +1,7 @@
+## Reward Cinematics 1.0 · Death Wager V1.2
+
+Apply the approved V1.2 art to Death Wager with live offers, relic artwork and debt copy. Preserve the existing fallback payouts, reward claim and transition to bonus development.
+
 ## Camp Rest Visual V2
 
 Apply the approved presentation to the IV and XII stops. The three actions show live party HP, healing, training, rite cost and restrictions, and retain the existing save and return-to-table flow.

@@ -1,0 +1,84 @@
+{
+  "package": "Misdeal Reward Death Wager V1.2",
+  "stage": "art pack prepared; Godot integration not executed",
+  "supersedes": [
+    "V1",
+    "V1.1"
+  ],
+  "files": [
+    {
+      "path": "CODEX_PROMPT.md",
+      "sha256": "4069cbabb4071b0b2c5c573ddf7e0e97e6421ac9329022c9aa71340a629d7f4e",
+      "bytes": 2722
+    },
+    {
+      "path": "README.md",
+      "sha256": "0fc5b97d12fb81ca9c8c3ab5caf284fdebf4eadc228424b0d46de58792be474e",
+      "bytes": 7773
+    },
+    {
+      "path": "approved_reference.png",
+      "sha256": "a21d10536db654d06df0beba94b3a306302c5e1fa9632065456eb59fbb5b6961",
+      "bytes": 2313239,
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "clean_master.png",
+      "sha256": "7e9d6fb5bc96f5a69fbd32eab9804fc730560b4ac02b3181d445a8b34f136ef1",
+      "bytes": 2214483,
+      "size": [
+        1672,
+        941
+      ]
+    },
+    {
+      "path": "layout_1280x720.json",
+      "sha256": "2a4279a331261d3be4317f3be5722f502cade9a5a502000ab49e614f91a16331",
+      "bytes": 1910
+    },
+    {
+      "path": "layout_preview.webp",
+      "sha256": "0482a99af0e0b227b15470195f7b31d62f426d6c16f1881dfa6dfcbdfc481077",
+      "bytes": 283476,
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "path": "provenance.json",
+      "sha256": "a10a72be0d1b5c27f73de703ccd78932c8d6a1c3e52f49fff28f6ace828fff34",
+      "bytes": 1117
+    },
+    {
+      "path": "runtime/bonus_upgrade.webp",
+      "sha256": "6c59f76ddc747d5002ded040997f2948d9c72f2550fa1379442dbc9918c9ec61",
+      "bytes": 22600,
+      "size": [
+        355,
+        235
+      ]
+    },
+    {
+      "path": "runtime/gold_windfall.webp",
+      "sha256": "040ac7f241e3574ee5c319e388493dbe36be92df75f254c9ad88b9b5183411d2",
+      "bytes": 23944,
+      "size": [
+        336,
+        235
+      ]
+    },
+    {
+      "path": "runtime/wager_plate.webp",
+      "sha256": "059b061e1028af696a1137dd7dfdc8ec7ac7590df911dec31367eb34f2a44f98",
+      "bytes": 239126,
+      "size": [
+        1280,
+        720
+      ]
+    }
+  ]
+}

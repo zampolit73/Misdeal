@@ -1,0 +1,139 @@
+{
+  "resolution": [
+    1280,
+    720
+  ],
+  "coordinate_format": "[x,y,width,height] reference pixels",
+  "plate": "runtime/wager_plate.webp",
+  "title": {
+    "rect": [
+      532,
+      20,
+      489,
+      48
+    ],
+    "font_size": 36
+  },
+  "summary": {
+    "rect": [
+      480,
+      104,
+      600,
+      39
+    ],
+    "font_size": 17
+  },
+  "hint": {
+    "rect": [
+      488,
+      658,
+      508,
+      40
+    ],
+    "font_size": 17
+  },
+  "cards": [
+    {
+      "index": 0,
+      "hit_area": [
+        358,
+        186,
+        285,
+        427
+      ],
+      "art_rect": [
+        372,
+        202,
+        257,
+        180
+      ],
+      "title_rect": [
+        377,
+        389,
+        251,
+        35
+      ],
+      "description_rect": [
+        377,
+        435,
+        251,
+        100
+      ],
+      "button_rect": [
+        399,
+        544,
+        211,
+        42
+      ],
+      "gold_art": "runtime/gold_windfall.webp"
+    },
+    {
+      "index": 1,
+      "hit_area": [
+        658,
+        186,
+        289,
+        427
+      ],
+      "art_rect": [
+        672,
+        202,
+        260,
+        180
+      ],
+      "title_rect": [
+        677,
+        389,
+        251,
+        35
+      ],
+      "description_rect": [
+        677,
+        435,
+        251,
+        100
+      ],
+      "button_rect": [
+        697,
+        544,
+        216,
+        42
+      ]
+    },
+    {
+      "index": 2,
+      "hit_area": [
+        963,
+        186,
+        297,
+        427
+      ],
+      "art_rect": [
+        976,
+        202,
+        272,
+        180
+      ],
+      "title_rect": [
+        981,
+        389,
+        256,
+        35
+      ],
+      "description_rect": [
+        981,
+        435,
+        256,
+        100
+      ],
+      "button_rect": [
+        1004,
+        544,
+        218,
+        42
+      ],
+      "upgrade_art": "runtime/bonus_upgrade.webp"
+    }
+  ],
+  "revision": "V1.2"
+}

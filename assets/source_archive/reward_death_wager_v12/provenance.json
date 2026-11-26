@@ -1,0 +1,37 @@
+{
+  "revision": "V1.2",
+  "approved_reference": "approved_reference.png",
+  "clean_master": "clean_master.png",
+  "source_generation": "exec-7a80ee2a-6d54-420c-82c4-05ae2f539be3.png",
+  "clean_generation": "exec-a4e57d51-7027-4b11-95a5-fa6f03a903b0.png",
+  "repo_revision": "97cd6aa",
+  "canon_references": [
+    {
+      "path": "assets/pixel/main/menu_v2/backdrop.webp",
+      "sha256": "aa19b2d275b33904d4a634ae978d5520c240573995bb512eb49f4491d55e284a"
+    },
+    {
+      "path": "assets/pixel/travel/last_dressing_station/station_standard.png",
+      "sha256": "19643a320e9dbda5314ecc2be850a4bf0b50165f98ec1ab842c982cf08c9e4c3"
+    },
+    {
+      "path": "assets/pixel/battle/arenas/approved_d283/firing_square.webp",
+      "sha256": "ed06c800484f41b249559622a373c7b543573967fd630cd1af913661b7ddbccd"
+    }
+  ],
+  "preview_relic": "harvest_ring, col 2 row 0 of assets/pixel/ui/wizard_archive/relics.webp; illustrative only",
+  "runtime_crop_rects": {
+    "gold_windfall.webp": [
+      486,
+      264,
+      822,
+      499
+    ],
+    "bonus_upgrade.webp": [
+      1275,
+      264,
+      1630,
+      499
+    ]
+  }
+}

@@ -40,11 +40,11 @@ PR #149 is merged into main and the player approved the result. Preserve the sup
 
 ## Reward Cinematics 1.0 · Hero Development complete
 
-PR #150 is merged into main and the player approved the result. Preserve live offers, signed modifiers and direct claim. For regression checks, review the real development reward in QA Hub under «Интерфейс». Death Wager itself remains the next visual step. [Native evidence](qa/reward_development_v1/README.md)
+PR #150 is merged into main and the player approved the result. Preserve live offers, signed modifiers and direct claim. For regression checks, review the real development reward in QA Hub under «Интерфейс». [Native evidence](qa/reward_development_v1/README.md)
 
-## Next proposed visual milestone — Death Wager Reward
+## Reward Cinematics 1.0 · Death Wager V1.2
 
-Prepare a user-approved concept for death_wager: 60 gold, the pending eligible relic (50 gold fallback), or bonus development (45 gold if capped). Preserve the pending relic, debt rules, direct claim and transition to bonus development. Match the approved muted reward palette and keep the other four modes unchanged.
+Win the Death Wager encounter and continue to rewards. Check the pending relic, the 60 gold choice and the transition to bonus development. Use ← / → and Enter to choose, or F / right click for the full description. The active debt survives the choice. [Native QA](qa/reward_death_wager_v12/README.md)
 
 ## Next visual check — Ossuary Gate fog correction
 

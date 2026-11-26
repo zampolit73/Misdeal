@@ -1,3 +1,7 @@
+## Reward Cinematics 1.0 · Death Wager Visual V1.2
+
+The real Death Wager reward uses the approved V1.2 composition and the live relic catalog. It shows the active debt warning, the current extra-development progress and the existing gold alternatives when relics run out or development is capped. [Native QA](qa/reward_death_wager_v12/README.md)
+
 ## Camp Rest Visual V2
 
 The stops after IV and XII use the approved camp plate and three live action cards. The view reads party HP, the oath-adjusted treatment, the chosen hero’s actual training offer and the stocked rite. [Native QA](qa/camp_rest_v2/README.md)
