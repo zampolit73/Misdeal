@@ -1,3 +1,7 @@
+## Unified Card System V1 · next visual gate
+
+The player requested one common treatment for choices and cards across Misdeal and supplied production examples (Hero Development, Event Choice, Wizard Wager, Table, Fate Spread). The [visual candidate and migration contract](UNIFIED_CARD_SYSTEM_V1.md) are ready for approval. Implement a shared skin only after artistic approval; preserve approved illustrations, mechanics, current outcome/confirmation routes, the 12+XIII layout and cinematic backgrounds. The standalone Fate Spread redesign is now part of this family-wide pass. Combat Report V1 native acceptance remains separate.
+
 ## Combat Report Visual V1 · player visual acceptance pending
 
 Concept approved on 2026-11-26 and implemented in the production campaign. Godot 4.7.2 targeted tests 19/19 (208 assertions). Open F5 → planned battle → result → «РАЗБОР ПРИКАЗОВ»; inspect actual hero rows, scroll down for later events, close by button/Esc, return to the unchanged outcome. Test a victory and defeat if convenient; no need to repeat previously accepted UI. Native frame capture is integrated into the existing CI planning runner (`campaign_combat_report_v1.png` and `_scrolled.png`); local workspace could not establish an X11 display, so do not label visual rendering or human acceptance passed until verified. Next concept after acceptance: Fate Spread, then auxiliary dialogs. [Reference and QA](qa/combat_report_v1/README.md).
