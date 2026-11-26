@@ -3,6 +3,7 @@ extends CanvasLayer
 const DATA := preload("res://scripts/battle/planning/hero_battle_plan.gd")
 const DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
 const SKIN := preload("res://scripts/battle/planning/battle_plan_skin.gd")
+const LIVE_HUD := preload("res://scripts/battle/planning/battle_live_hud.gd")
 const STAGES := ["I", "II", "III"]
 const PRIORITIES := ["Ближайший", "Слабейший", "Самый дальний", "Поддержка"]
 const CONDITIONS := ["По времени", "После нанесения урона", "После получения урона", "После личного убийства", "При здоровье ≤ 50%"]
@@ -24,7 +25,7 @@ var header_engraving: Control
 var start_button: Button
 var back_button: Button
 var cancel_button: Button
-var hud: Panel
+var hud: LIVE_HUD
 var report_panel: Panel
 var tactic: OptionButton
 var priority: OptionButton
@@ -37,8 +38,7 @@ var explanation: Label
 var transition_label: Label
 var limit_label: Label
 var board_hint: Label
-var notice: Label
-var live_text: Label
+var notice_text := ""
 var hover_text: Label
 var hero_roles: Array[String] = []
 var slot := 0
@@ -194,13 +194,9 @@ func build(owner_pilot: Node) -> void:
 	_etched_label(field, "Расставьте героев, затем откройте боевой план.", Vector2(25, 6), Vector2(839, 30), 16)
 	open_plan_button = button(field, "Открыть боевой план", Vector2(958, 6), Vector2(237, 30), show_overview)
 	SKIN.action(open_plan_button, panel_font, true)
-	hud = panel(Vector2(838, 160), Vector2(414, 88))
-	DS3.apply_surface(hud, "battle")
-	hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	live_text = label(hud, "", Vector2(12, 9), Vector2(390, 68), 15)
-	notice = label(hud, "", Vector2(12, 89), Vector2(390, 50), 13)
-	notice.add_theme_constant_override("outline_size", 6)
-	notice.add_theme_color_override("font_outline_color", DS3.OBSIDIAN)
+	hud = LIVE_HUD.new()
+	add_child(hud)
+	hud.build()
 	_set_preparation_mode(PreparationMode.HIDDEN)
 	hud.hide()
 
@@ -284,6 +280,8 @@ func set_heroes(roles: Array[String]) -> void:
 	remove_buttons.clear()
 	hud_stages.clear()
 	notice_time = 0.0
+	notice_text = ""
+	hud.present_transition("", false)
 	for row in range(roles.size()):
 		var role := roles[row]
 		var y := 32 + row * 38
@@ -581,7 +579,7 @@ func update_live(delta: float) -> void:
 	hud.visible = pilot.battle.combat_live and not pilot.battle.battle_finished
 	if not hud.visible:
 		return
-	var rows: Array[String] = []
+	var rows: Array[Dictionary] = []
 	var changes: Array[String] = []
 	for role in hero_roles:
 		var executor: RefCounted = pilot.executors.get(role)
@@ -591,7 +589,8 @@ func update_live(delta: float) -> void:
 		var stage: String = STAGES[executor.index]
 		var active_tactic: String = DATA.TACTIC_NAMES[DATA.TACTICS.find(order.tactic)]
 		var remaining := "до конца" if executor.index == executor.orders.size() - 1 else "%.1f с" % maxf(0, float(order.limit) - executor.elapsed)
-		rows.append("%s  ·  %s  %s  ·  %s" % [pilot.role_name(role), stage, active_tactic, remaining])
+		rows.append({"role": role, "hero": pilot.role_name(role), "stage": stage,
+			"tactic": active_tactic, "remaining": remaining})
 		if hud_stages.has(role) and hud_stages[role] != executor.index:
 			var reason := ""
 			for entry in executor.journal.duplicate().slice(-8):
@@ -599,14 +598,12 @@ func update_live(delta: float) -> void:
 					reason = " · лимит истёк" if entry.reason == "timeout" else " · " + CONDITIONS[DATA.CONDITIONS.find(entry.reason)].to_lower()
 			changes.append("%s → %s %s%s" % [pilot.role_name(role), stage, active_tactic, reason])
 		hud_stages[role] = executor.index
-	live_text.text = "\n".join(rows)
-	hud.size.y = 20 + rows.size() * 22
-	notice.position.y = hud.size.y + 4
+	hud.present_rows(rows)
 	if not changes.is_empty():
-		notice.text = "\n".join(changes)
+		notice_text = "\n".join(changes)
 		notice_time = 2.7
 	notice_time = maxf(0, notice_time - delta)
-	notice.visible = notice_time > 0
+	hud.present_transition(notice_text, notice_time > 0)
 
 func show_report(heading: String, metadata: String, summary: String, chronology: String) -> void:
 	hide_preparation()

@@ -14,6 +14,10 @@ Implement the approved antique two-column card reader with the original DS3 phys
 
 Unify six banner emblems, mute the Lost Purse sky and reflection in travel and card art, reuse approved travel crops for three decision illustrations, and separate overlapping combat names above actors. Improve disabled-choice and empty-merchant copy and clip the Run End summary to one full line with scrolling. 26/26 targeted and regression GUT tests; native visual acceptance and full Act I run pending. [Evidence and remaining checks](docs/FINAL_VISUAL_AUDIT_1_0_FIXES.md).
 
+## Interface Polish 2.0 · Combat HUD Visual V1
+
+Replace the generic active-orders block in live planned combat with the approved compact material panel: live class emblems, stages, tactics, timers and transition notice, no empty/dead rows. Keep existing mechanics, combat art, preparation and Classic. Godot 4.7.2: 15/15 targeted and planning regression tests, 166 assertions. Native player visual acceptance pending.
+
 ## Final Visual Audit 1.0 · handoff
 
 Record the Act I audit baseline, evidence, prioritized visual fixes and the Godot acceptance route. Includes a native Ossuary Gate frame excerpt.
