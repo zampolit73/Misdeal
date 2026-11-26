@@ -1,8 +1,11 @@
 ## Interface Polish 2.0
 
-- [x] Implement the approved Pause Menu Visual V1; retain saving/loading and safe-scene behavior.
-- [ ] Native visual acceptance for Pause Menu V1. [QA](qa/pause_menu_v1/README.md)
-- [ ] Evaluate the card inspection reader, live combat HUD, combat report, Fate Spread and small dialogs individually; preserve previously approved screens and mechanics.
+- [x] Pause Menu V1 — merged [#159](https://github.com/zampolit73/Misdeal/pull/159).
+- [x] Card Inspection V1 — merged [#160](https://github.com/zampolit73/Misdeal/pull/160).
+- [x] Combat HUD V1 — merged [#161](https://github.com/zampolit73/Misdeal/pull/161).
+- [x] Combined Godot 4.7.2 regression, 32/32 tests (483 assertions), D274/D316 smoke.
+- [ ] Player native visual acceptance of all three [via one F5 checkpoint](HANDOFF.md).
+- [ ] Next: combat report, then Fate Spread and auxiliary dialogs; individually approve new visuals and preserve mechanics.
 
 ## Wizard Wager Visual V1
 
@@ -10,23 +13,11 @@
 - [x] Merge PR #158; player accepted the production presentation on 2026-11-26.
 - [ ] Include both wager outcomes in the remaining Act I gameplay/control-run coverage.
 
-## Interface Polish 2.0 · Card Inspection Visual V1
-
-- [x] Implement player-approved reader for real Table cards and development/reward details; preserve all choices and UI return.
-- [ ] Player native visual acceptance for the reader. [Review and checks](qa/card_inspection_v1/README.md)
-- [ ] Remaining individually proposed concepts: live combat HUD, combat report, Fate Spread and auxiliary dialogs.
-
 ## Final Visual Audit 1.0
 
 - [x] Пакет реализации четырёх P1 + P2-06/07, решения по всем P2 и целевые headless проверки.
 - [ ] Нативная приёмка затронутых экранов, решение о необходимости дополнительного grade Last Camp (P2-05), контрольный непрерывный F5-забег первого акта. [План](FINAL_VISUAL_AUDIT_1_0_FIXES.md).
 - [ ] После визуальной приёмки — плейтест первого акта: темп, разнообразие боёв, ощущение прогресса.
-
-## Interface Polish 2.0 · Combat HUD Visual V1
-
-- [x] Implement the approved active-orders readout for live planned combat (solo/duo/trio, real executor data) and separate transition notice.
-- [ ] Native player acceptance. [Checks](qa/combat_hud_v1/README.md)
-- [ ] Next proposed interfaces: combat report, Fate Spread and auxiliary dialogs.
 
 ## Gameplay 2.0
 

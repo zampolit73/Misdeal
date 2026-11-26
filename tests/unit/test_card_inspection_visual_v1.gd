@@ -18,7 +18,7 @@ func test_reader_real_plate_scroll_and_close() -> void:
 	await get_tree().create_timer(0.35).timeout
 	var frame: Panel = reader.frame
 	var plate: TextureRect = frame.get_node("ReaderPlate")
-	assert_eq(frame.size, Vector2(900, 452))
+	assert_eq(frame.size.round(), Vector2(900, 452)) # Subpixel anchors can differ by a float ULP.
 	assert_not_null(plate.texture)
 	assert_eq(plate.texture.get_size(), Vector2(1800, 904))
 	assert_eq(plate.mouse_filter, Control.MOUSE_FILTER_IGNORE)

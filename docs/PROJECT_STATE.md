@@ -1,3 +1,7 @@
+## Interface Polish 2.0 · integrated in main
+
+All three player-approved concepts (Pause Menu #159, Card Inspection #160 and Combat HUD #161) are merged into main. Combined Godot 4.7.2 tests: 32/32, 483 assertions; D274/D316 smoke PASS. The implementation-only integration follow-up also removes subpixel rounding fragility in the reader geometry test. No mechanics changed. Native visual acceptance remains distinct; [one checkpoint and next concept](HANDOFF.md).
+
 ## Pause Menu Visual V1 · Interface Polish 2.0
 
 The user approved the V1 concept and the production RunMenu now uses its isolated pause plate over the current scene. Five live actions, checkpoint restrictions, save/load behavior and confirmation remain intact. Godot 4.7.2: 14/14 targeted and save regression tests. [Reference and QA](qa/pause_menu_v1/README.md). Native player acceptance pending.

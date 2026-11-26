@@ -1,3 +1,7 @@
+## Interface Polish 2.0 · integrated checkpoint
+
+Merge #159, #160 and #161. Combined Godot 4.7.2 regression 32/32 tests, 483 assertions and D274/D316 smoke PASS; reader width/height test compares rounded design pixels rather than float ULPs. Record the consolidated native acceptance path and next combat report concept. No runtime changes in the follow-up.
+
 ## Interface Polish 2.0 · Pause Menu Visual V1
 
 Replace the legacy generic pause panel with the approved isolated charcoal/bronze contract plate, live buttons, status and keyboard focus. Preserve original save/load, safe checkpoint and main-menu confirmation behavior. Godot 4.7.2: 14/14 targeted and regression tests; native visual acceptance pending.

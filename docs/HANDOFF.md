@@ -1,22 +1,21 @@
-## Pause Menu Visual V1 · native acceptance
+## Interface Polish 2.0 · three approved packages integrated
 
-Open F5, reach Table, press Escape; compare with the approved concept. Resume and focus restoration, save/load and unsafe save gates in live Battle are covered by targeted tests. Verify the native frame on Table and Battle. [Reference and QA](qa/pause_menu_v1/README.md). Next proposed Interface Polish 2.0 item after acceptance: detailed card inspection; no further art or gameplay changes authorized by this package.
+Merged Pause Menu Visual V1 [#159](https://github.com/zampolit73/Misdeal/pull/159), Card Inspection Visual V1 [#160](https://github.com/zampolit73/Misdeal/pull/160) and Combat HUD Visual V1 [#161](https://github.com/zampolit73/Misdeal/pull/161) into main. Combined Godot 4.7.2 headless regression: 32/32 tests, 483 assertions, plus D274/D316 smoke. The reader layout test accepts insignificant subpixel anchor precision; runtime code unchanged by the integration follow-up.
+
+Player native acceptance is still open. After pulling main:
+1. F5 → Table → Escape: pause, resume, safe checkpoint save/load and disabled save in live combat. [QA](qa/pause_menu_v1/README.md).
+2. Right-click both Table card and development upgrade: full parchment copy, notes when real, scrolling, close/return focus. [QA](qa/card_inspection_v1/README.md).
+3. Start a planned fight, inspect the compact active-order HUD, countdown, stage transition and dead-row removal; verify wave break, Classic and result. [QA](qa/combat_hud_v1/README.md).
+
+Next concept after this brief checkpoint: **combat report** (read-only, actual campaign/pilot combat log). Then Fate Spread and small dialogs. Preserve all approved art and game mechanics.
 
 ## Wizard Wager Visual V1 · approved in main
 
 PR #158 is merged, and the player confirmed acceptance on 2026-11-26. Preserve the approved optional contract and original mechanics; no further redesign is pending. In the full Act I control run, exercise the wager after II/III or VII when eligible. This is not the post-battle Death Wager reward. [Reference and validation](../assets/source_archive/wizard_wager_v1/README.md).
 
-## Card Inspection Visual V1 · player visual acceptance
-
-The approved reader is implemented in the shared CardLoreInspect scene. Reach Table and right-click a card; check physical card and readable parchment, notes if mark/hold, keyboard/wheel scrolling and Escape/close/outside focus return. At development reward, inspect without claiming. Godot 4.7.2 headless 3/3 targeted and D274/D316 pass; rendered native acceptance remains pending. [Reference and QA](qa/card_inspection_v1/README.md). Next Interface Polish 2.0 concept: live combat HUD, without changing combat mechanics.
-
 ## Final Visual Audit 1.0 · следующий шаг
 
 Аудит завершён на `d4b94d2b`; пакет четырёх P1 и P2-06/07 слит через PR #157. Следующий шаг: нативная приёмка остальных исправлений, решение по P2-05 (Last Camp) и непрерывный контрольный F5-забег до XIII перед передачей издательской сборки. [Передача в новый чат и критерии приёмки](FINAL_VISUAL_AUDIT_1_0_HANDOFF.md).
-
-## Combat HUD Visual V1 · native player acceptance
-
-Live planned combat now presents compact active orders and real transition reasons in the approved material treatment. Check a multi-stage solo/trio fight, countdown, «до конца», dead-row removal, wave break, Classic and result. 15/15 focused and planning regression cases in Godot 4.7.2. Native visual acceptance is pending. [Reference and checks](qa/combat_hud_v1/README.md). Next proposed Interface Polish 2.0 concept: combat report, preserving the actual log.
 
 ## Camp Rest Visual V2
 
