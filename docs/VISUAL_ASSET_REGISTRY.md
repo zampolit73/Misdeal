@@ -6,6 +6,10 @@
 
 Three runtime plates receive six localized heraldry patches; sources/coordinates archived in `assets/source_archive/final_visual_audit_1_0/`. P1-03 adds three existing-approved-outcome-derived 384×160 WebPs in `assets/pixel/ui/approved_event_choice_polish/final_audit_v1/`. D343 original remains unchanged, localized color grade is runtime only. [Provenance and evidence](FINAL_VISUAL_AUDIT_1_0_FIXES.md).
 
+## Combat HUD Visual V1
+
+`assets/pixel/ui/combat_hud_v1/orders_frame.webp` is a text-free 377×249 lossless derivative of D413/V4 panel.webp for a variable-height nine-sliced live readout. Reuses D303 title material and V4 class emblems, with no new combat art. [Approved concept and provenance](../assets/source_archive/combat_hud_v1/README.md).
+
 ## Death Wager Reward Visual V1.2
 
 The layout and three runtime WebPs are in `assets/pixel/ui/reward_death_wager_v12/`. The exact reference, clean master, provenance, manifest and layout preview are in `assets/source_archive/reward_death_wager_v12/`. The ten listed files were verified against the package manifest. The live relic uses the approved Reliquary atlas. [Wizard and banner references](ART_DIRECTION.md#wizard-and-castle-heraldry) · [Native QA](qa/reward_death_wager_v12/README.md)

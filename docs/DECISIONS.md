@@ -6,6 +6,10 @@ The approved offer is distinct from Death Wager Reward V1.2. The player explicit
 
 Preserve approved compositions and gameplay. Restrict heraldry edits to six portrait/merchant/reward plate regions; scope Lost Purse grading to distant red pixels and shared UV across layers; leave the approved source card intact. Derive the three choice previews from approved travel outcome art. Separate combat captions independently from gameplay geometry and keep overflow copy scrollable. Defer the optional Last Camp grade until native comparison. [Acceptance and provenance](FINAL_VISUAL_AUDIT_1_0_FIXES.md).
 
+## Combat HUD Visual V1 · live planned combat only
+
+The player approved replacing the generic black active-order block with the compact bronze V4 readout. Derive the frame from accepted art, retain authentic class emblems, use current executor stages/tactics/time and unchanged 2.7-second transition notice. Hide absent/dead heroes and the readout outside live planned combat. The approved DS3 battle header/objective, V4 preparation, arenas and combat data remain locked. [Reference and QA](qa/combat_hud_v1/README.md).
+
 ## Death Wager V1.2 · Wizard and banner canon
 
 V1.2 is the approved Death Wager reward composition. Future artwork uses the main-menu Wizard likeness, the shared castle banner heraldry, aged muted bronze and deep burgundy fabrics. Preserve previously approved screens. [Art references](ART_DIRECTION.md#wizard-and-castle-heraldry)

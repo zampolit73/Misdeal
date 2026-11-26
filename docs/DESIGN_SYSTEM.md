@@ -6,6 +6,10 @@ Preserve Table V5.1 behind the isolated 744×475 contract at (268,232). Aged bro
 
 Use the supplied panel and layout at 1280×720. Put bone text on dark surfaces and ink on parchment. Keep the full card interactive with muted bronze focus, hover and pressed states. Use the existing offer data and the Reliquary image for the offered relic. Wrap the debt explanation and retain it through confirmation.
 
+## Combat HUD Visual V1
+
+A passive bronze and charcoal panel at (838,156), width 414, height 48/72/96 for actual living heroes. Reuse V4 role emblems, compact red title plaque and bone serif copy; Roman stage, tactic and right-aligned time remain separate real labels. The 2.7-second transition strip follows the last row. Keep the original arena and all other Battle DS3/V4 components intact. [Reference](qa/combat_hud_v1/README.md).
+
 ## Camp Rest Visual V2
 
 Use the supplied 1280×720 plate, coordinate map and transparent per-card states. The parchment displays live effects and unavailable reasons. Keep labels and the training selector in their mapped areas and show full descriptions through card tooltips.

@@ -10,6 +10,12 @@
 - [ ] Нативная приёмка затронутых экранов, решение о необходимости дополнительного grade Last Camp (P2-05), контрольный непрерывный F5-забег первого акта. [План](FINAL_VISUAL_AUDIT_1_0_FIXES.md).
 - [ ] После визуальной приёмки — плейтест первого акта: темп, разнообразие боёв, ощущение прогресса.
 
+## Interface Polish 2.0 · Combat HUD Visual V1
+
+- [x] Implement the approved active-orders readout for live planned combat (solo/duo/trio, real executor data) and separate transition notice.
+- [ ] Native player acceptance. [Checks](qa/combat_hud_v1/README.md)
+- [ ] Next proposed interfaces: combat report, Fate Spread and auxiliary dialogs.
+
 ## Gameplay 2.0
 
 - A · Wounds, rest stops and one reliable merchant checkpoint. [Rules and QA](GAMEPLAY_2_0.md)

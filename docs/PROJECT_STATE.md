@@ -6,6 +6,10 @@ The optional «Ставка Волшебника» offer now has its own approve
 
 Четыре P1 реализованы и слиты в main через PR #157; P2-06/07 исправлены, P2-05 оставлен на нативную приёмку. 26/26 целевых и регрессионных тестов Godot 4.7.2. Сохраняются утверждённый арт, правила, цены, сохранения и текущий UI. Нативные кадры после правок, контрольный F5 и финальная оценка ещё не подтверждены. [Реализация, доказательства и остаток](FINAL_VISUAL_AUDIT_1_0_FIXES.md).
 
+## Combat HUD Visual V1 · Interface Polish 2.0
+
+The player-approved live active-orders panel is implemented with the existing V4 role emblems and DS3 materials, compact living-hero rows, real stage/tactic/timer and a separate real transition strip. Preparation, arena, units, objectives, combat logic and Classic mode remain unchanged. Godot 4.7.2: 15/15 targeted and planning regression tests, 166 assertions. [Concept, QA and native gate](qa/combat_hud_v1/README.md).
+
 ## Final Visual Audit 1.0
 
 Визуальная оценка первого акта на `d4b94d2b` — 8,1/10. Готов к управляемой демонстрации. Зафиксированы 4 P1 и 3 P2, подтверждённых P0 в проверенных сценариях нет. В Godot сняты все 24 стартовых экрана событий и актуальные кадры Врат оссуария и XIII. [Результаты и план исправлений](FINAL_VISUAL_AUDIT_1_0_HANDOFF.md).
