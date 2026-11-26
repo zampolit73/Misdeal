@@ -1,3 +1,7 @@
+## Hero Selection Visual V2
+
+The clean plate is in `assets/pixel/class_select/visual_v2/`, and the approved reference and retouched master are in `assets/source_archive/hero_selection_v2/`. D413 portraits are used directly.
+
 ## Main Menu Visual V2
 
 The text-free background, original logo crop and button plates are in `assets/pixel/main/menu_v2/`. The approved reference and two retouched masters are in `assets/source_archive/main_menu_v2/`.

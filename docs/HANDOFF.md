@@ -1,3 +1,7 @@
+## Hero Selection Visual V2
+
+Start through F5 → New Game, or use QA Hub → «Игра» → «Выбор героя». Check a clean Archive and an unlocked profile with the combined style and oath copy. [Native QA](qa/hero_selection_v2/README.md)
+
 ## Main Menu Visual V2
 
 Press F5 to inspect Main Menu Visual V2. Compare Continue with an empty and valid slot, and use the existing New Game dialog to verify reset choices. [Native QA](qa/main_menu_v2/README.md)

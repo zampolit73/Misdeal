@@ -1,3 +1,7 @@
+## Hero Selection Visual V2
+
+Use the approved hero selection composition with the original D413 portraits, live stats, a selected seal and visible style and oath effects.
+
 ## Main Menu Visual V2
 
 Use the approved main menu composition with two cards, four live menu actions and restrained candle motion.

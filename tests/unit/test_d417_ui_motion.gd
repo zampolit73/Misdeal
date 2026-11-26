@@ -72,12 +72,13 @@ func test_rapid_card_hover_returns_to_rest_without_selecting_or_drifting() -> vo
 	assert_false(RunState.has_chosen_protagonist())
 	button.mouse_entered.emit()
 	await get_tree().create_timer(0.22).timeout
-	assert_almost_eq(button.position.y, home.y - 7.0, 0.01)
-	assert_gt(button.scale.x, 1.0)
+	assert_eq(button.position, home)
+	assert_true(button.get_node("SelectionRim").visible)
 	button.pressed.emit()
 	button.mouse_exited.emit()
 	await get_tree().create_timer(0.22).timeout
-	assert_almost_eq(button.position.y, home.y - 3.0, 0.01)
+	assert_eq(button.position, home)
+	assert_true(button.get_node("ChosenSeal").visible)
 	assert_false(RunState.has_chosen_protagonist())
 
 	RunState.choose_protagonist("knight")
