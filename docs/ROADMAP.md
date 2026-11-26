@@ -14,6 +14,7 @@
 - [ ] Cursed Deck V3 native framebuffer and integrated player visual acceptance. [QA](qa/cursed_deck_v3/README.md).
 - [x] System Dialog V1: approved Main Menu V2 confirmations and deferred-layout fix, 17/17 targeted tests.
 - [ ] System Dialog V1 native/player visual acceptance. [QA](qa/system_dialog_v1/README.md).
+- [ ] Battle Result Visual V2: review candidate for victory, Last Deal and final defeat; after approval migrate existing nodes and report action without changing mechanics. [Visual candidate](../assets/source_archive/battle_result_v2/README.md).
 
 ## Wizard Wager Visual V1
 

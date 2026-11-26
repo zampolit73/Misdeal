@@ -1,3 +1,7 @@
+## Battle Result Visual V2 · candidate only
+
+An offline three-state concept reuses System Dialog/Main Menu V2 materials for the legacy Battle result panel and places the existing planned-mode report action inside it. No game code, art, rules or live behavior changed. [Concept and contract](../assets/source_archive/battle_result_v2/README.md). Await visual approval; no native result render claimed.
+
 ## System Dialog V1 · approved Main Menu V2 family
 
 The player approved the main-menu-based confirmation concept on 2026-11-26. Both production confirmations (New Game and Return to Main Menu from pause) now use the same native dark stone and aged bronze menu plates, muted burgundy decisive action and live serif text. The two new-run options, backup, Archive, Memory Glass and checkpoint semantics are unchanged. Cancel is initially focused, Esc closes only the current modal, focus returns to the opener and duplicate actions are guarded. Godot 4.7.2: 16/16 targeted tests, 321 assertions. Native capture is wired into existing release run-save CI; visual acceptance pending. [QA](qa/system_dialog_v1/README.md).
