@@ -1,0 +1,6 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf
+
+Isolated component project: actual system_dialog.gd, class_select_card_skin.gd and both original menu_v2 WebP textures from main 52bc3c8 with the corner/focus patch. Headless. Not full-project GUT or native framebuffer.
+Checked: both real dialog layouts, four transparent corners per button, opaque center, matching native focus texture, cache reuse, source alpha unchanged, visible copy, correct cancel, single dispatch and focus restore.
+
+SYSTEM_DIALOG_MATTE_FOCUS_PASS: 49 checks, both production dialogs

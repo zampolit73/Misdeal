@@ -89,3 +89,27 @@ func _assert_label_bounds(parent: Control, path: String, bounds: Rect2, lines: i
 	assert_true(parent.get_global_rect().encloses(label.get_global_rect()), path + " stays inside parent")
 	assert_eq(label.get_line_count(), lines, path + " line count")
 	assert_eq(label.get_visible_line_count(), lines, path + " all lines visible")
+
+
+func test_dialog_plates_have_clean_alpha_and_native_focus_rim() -> void:
+	var parent := Control.new()
+	add_child_autofree(parent)
+	parent.size = Vector2(1280, 720)
+	var dialog := DIALOG.new()
+	parent.add_child(dialog)
+	dialog.present_new_game(func(_reset: bool): pass)
+	var panel: Panel = dialog.get_node("Panel")
+	for name in ["NextRunButton", "ResetButton", "CancelButton"]:
+		var button: Button = panel.get_node(name)
+		var normal: StyleBoxTexture = button.get_theme_stylebox("normal")
+		var focus: StyleBoxTexture = button.get_theme_stylebox("focus")
+		var pixels := normal.texture.get_image()
+		for point in [Vector2i.ZERO, Vector2i(0, pixels.get_height() - 1), Vector2i(pixels.get_width() - 1, 0), Vector2i(pixels.get_width() - 1, pixels.get_height() - 1)]:
+			assert_eq(pixels.get_pixelv(point).a, 0.0, name + " outer matte is transparent")
+		assert_eq(pixels.get_pixel(floori(pixels.get_width() * 0.5), floori(pixels.get_height() * 0.5)).a, 1.0, name + " stone material remains opaque")
+		assert_eq(focus.texture, normal.texture, name + " focus follows the native bevel")
+		assert_false(focus.draw_center, name + " focus does not paint over the copy")
+		assert_true(focus.modulate_color.r > normal.modulate_color.r, name + " focus remains visible")
+	assert_eq(DIALOG.PRIMARY.get_image().get_pixel(0, 0).a, 1.0, "original Main Menu plate is unchanged")
+	assert_eq(DIALOG.SECONDARY.get_image().get_pixel(0, 0).a, 1.0, "original Main Menu plate is unchanged")
+	dialog.cancel()

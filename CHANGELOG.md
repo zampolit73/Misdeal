@@ -1,3 +1,8 @@
+## System Dialog V1 corner and focus polish - 26 Nov 2026
+
+- Player's native screenshot confirms title, descriptions and warning fit after the layout fix. Derive transparent bevel contours from the original primary/secondary menu plates locally to SystemDialog; highlight the same bevel for keyboard focus instead of drawing an extra rectangular frame.
+- Preserve original Main Menu textures and all confirmation behavior. Isolated Godot 4.7.2 component check: 49 checks across both dialogs, PASS; integrated native visual recheck pending.
+
 ## System Dialog V1 text layout fix - 26 Nov 2026
 
 - Repair zero-width automatic wrapping that pushed title, subtitles and warning/backup text outside the approved dialog. Preserve exact panel and button geometry, copy and save logic.

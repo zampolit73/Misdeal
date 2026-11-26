@@ -6,6 +6,12 @@ const MENU_TYPE := preload("res://scripts/class_select/class_select_card_skin.gd
 const BONE := Color("ddc1a5")
 const COPY := Color("e5dbc4")
 
+# Authored corner contours of the existing 327px menu plates. Only dialog
+# derivatives get alpha; the original Main Menu resources remain untouched.
+const PRIMARY_CORNERS := [[14, 13, 14, 13, 12, 11, 11, 10, 9, 8, 6, 5, 1], [13, 13, 13, 13, 12, 11, 10, 9, 8, 7, 6, 4, 0], [0, 13, 13, 13, 13, 10, 9, 8, 7, 6, 5, 4, 5, 1], [0, 12, 13, 13, 13, 10, 9, 8, 7, 6, 5, 3, 1, 0]]
+const SECONDARY_CORNERS := [[0, 14, 14, 14, 13, 12, 12, 11, 10, 9, 7, 6, 3], [0, 14, 14, 14, 14, 13, 12, 12, 11, 10, 8, 6, 5, 3], [0, 0, 14, 14, 14, 14, 13, 13, 12, 11, 10, 9, 7, 3], [0, 0, 14, 15, 15, 13, 13, 12, 11, 10, 9, 10, 9, 7, 3]]
+static var _dialog_textures: Dictionary = {}
+
 var _previous_focus: Control
 var _finished := false
 
@@ -78,12 +84,11 @@ func _button(parent: Control, node_name: String, value: String, bounds: Rect2, t
 		elif state in ["pressed", "hover_pressed"]:
 			style.modulate_color = Color("d4bfb3")
 		button.add_theme_stylebox_override(state, style)
-	var focus := StyleBoxFlat.new()
+	var focus := _plate(texture)
+	# Highlight the actual bevel instead of drawing a second rectangular rim.
 	focus.draw_center = false
-	focus.border_color = Color("d0ad7e")
-	focus.set_border_width_all(2)
-	focus.set_corner_radius_all(5)
-	focus.set_expand_margin_all(-9)
+	focus.modulate_color = Color(1.45, 1.30, 1.12)
+	button.add_theme_color_override("font_focus_color", Color("f2d4a8"))
 	button.add_theme_stylebox_override("focus", focus)
 	parent.add_child(button)
 	button.position = bounds.position
@@ -97,10 +102,58 @@ func _button(parent: Control, node_name: String, value: String, bounds: Rect2, t
 
 func _plate(texture: Texture2D) -> StyleBoxTexture:
 	var style := StyleBoxTexture.new()
-	style.texture = texture
+	style.texture = _dialog_plate_texture(texture)
 	for side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]:
 		style.set_texture_margin(side, 18)
 	return style
+
+
+# Remove only the exterior matte of the original buttons. The 1px alpha
+# fringe preserves the softer outer bronze/shadow pixels on the new panel.
+static func _dialog_plate_texture(source: Texture2D) -> Texture2D:
+	if _dialog_textures.has(source):
+		return _dialog_textures[source] as Texture2D
+	var pixels := source.get_image()
+	if pixels == null or pixels.is_empty():
+		return source
+	# The dummy renderer can expose the source Image itself; always copy.
+	pixels = pixels.duplicate() as Image
+	if pixels.is_compressed() and pixels.decompress() != OK:
+		return source
+	pixels.convert(Image.FORMAT_RGBA8)
+	var primary := source == PRIMARY
+	var contours: Array = PRIMARY_CORNERS if primary else SECONDARY_CORNERS
+	var w := pixels.get_width()
+	var h := pixels.get_height()
+	for y in range(h):
+		var bottom := h - 1 - y
+		if bottom < (1 if primary else 2) or (not primary and y == 0):
+			pixels.fill_rect(Rect2i(0, y, w, 1), Color(0, 0, 0, 0))
+			continue
+		var left := 1 if primary else 3
+		var right := 0 if primary else 3
+		if y < contours[0].size():
+			left = contours[0][y]
+		elif bottom < contours[2].size():
+			left = contours[2][bottom]
+		if y < contours[1].size():
+			right = contours[1][y]
+		elif bottom < contours[3].size():
+			right = contours[3][bottom]
+		_trim_matte_row(pixels, y, left, false)
+		_trim_matte_row(pixels, y, right, true)
+	var isolated := ImageTexture.create_from_image(pixels)
+	_dialog_textures[source] = isolated
+	return isolated
+
+
+static func _trim_matte_row(pixels: Image, y: int, count: int, from_right: bool) -> void:
+	var w := pixels.get_width()
+	for offset in range(count):
+		var x := w - 1 - offset if from_right else offset
+		var pixel := pixels.get_pixel(x, y)
+		pixel.a *= 0.35 if offset == count - 1 else 0.0
+		pixels.set_pixel(x, y, pixel)
 
 
 func _label(parent: Control, node_name: String, value: String, bounds: Rect2, point: int, color: Color) -> Label:
