@@ -7,7 +7,7 @@ const UNIFIED := preload("res://scripts/ui/unified_card_skin.gd")
 const SKIN := preload("res://scripts/ui/event_choice_skin.gd")
 const SELECTED_INK := Color("f0dfc1")
 const BONE := Color("e1d0b8")
-const INK := Color("2a1b16")
+const INK := UNIFIED.GOLD
 const MUTED := Color("c5b3a4")
 const ROMAN := ["I", "II", "III", "IV"]
 const ROW_BOUNDS := Rect2(96, 169, 1088, SKIN.HEIGHT)
@@ -99,6 +99,7 @@ func show_result(continue_button: Button = null) -> void:
 		var action := button.get_node("Copy/UnifiedAction") as TextureRect
 		action.texture = UNIFIED.button_texture("pressed" if button == _pending else "disabled")
 		action.get_node("Caption").text = "ВЫБРАНО" if button == _pending else "ЗАВЕРШЕНО"
+		action.get_node("Caption").add_theme_color_override("font_color", UNIFIED.GOLD if button == _pending else UNIFIED.DISABLED)
 		SKIN.shade(button, 1.16 if button == _pending else 0.8)
 		button.focus_mode = Control.FOCUS_NONE
 	_result.show()
@@ -126,8 +127,8 @@ func _build_card(button: Button, index: int, width: int) -> bool:
 	var restriction := String(button.get_meta("event_restriction", ""))
 	var kind := String(button.get_meta("event_kind", "ВЫБОР"))
 	var accent: Color = {
-		"КРОВЬ": Color("642b27"), "МОНЕТА": Color("55402b"), "РИТУАЛ": Color("493744"),
-		"ОТКАЗ": Color("364343"), "РИСК": Color("613721"),
+		"КРОВЬ": Color("efa89d"), "МОНЕТА": UNIFIED.GOLD, "РИТУАЛ": Color("d8bedc"),
+		"ОТКАЗ": Color("c7cfc8"), "РИСК": Color("efbc89"),
 	}.get(kind, UNIFIED.INK)
 	if button.disabled:
 		accent = accent.lerp(UNIFIED.MUTED, 0.65)
@@ -166,14 +167,14 @@ func _build_card(button: Button, index: int, width: int) -> bool:
 	title.add_theme_font_override("font", SKIN.serif(true))
 	_fit(title, 13)
 	var text_width := width - 36
-	var cost_ink := Color("492d22")
+	var cost_ink := UNIFIED.GOLD
 	var cost_label := _label(copy, "Cost", cost, Rect2(18, 228, text_width, 38), 15, cost_ink, true)
 	cost_label.add_theme_font_override("font", UNIFIED.serif())
 	cost_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	_fit(cost_label, 13)
 	var outcome_y := 228 + maxi(28, cost_label.get_line_count() * (cost_label.get_line_height() + 1) + 6)
 	var availability := _label(copy, "Availability", restriction, Rect2(18, 365, text_width, 36),
-		14, Color("421921"), true)
+		14, UNIFIED.NEGATIVE, true)
 	availability.add_theme_font_override("font", UNIFIED.serif())
 	availability.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
 	_fit(availability, 12)
@@ -181,12 +182,14 @@ func _build_card(button: Button, index: int, width: int) -> bool:
 	if not restriction.is_empty():
 		body_bottom -= availability.get_line_count() * (availability.get_line_height() + 1) + 4
 	var body := _label(copy, "Outcome", detail, Rect2(18, outcome_y, text_width, body_bottom - outcome_y),
-		14 if width == 260 else 15, INK, true)
+		15 if width == 260 else 16, UNIFIED.COPY, true)
 	body.add_theme_font_override("font", UNIFIED.serif())
 	body.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	_fit(body, 13)
 	var plate := UNIFIED.action(copy, Rect2(22, 407, width - 44, 36), "НЕДОСТУПНО" if button.disabled else "ВЫБРАТЬ", 15)
 	plate.texture = UNIFIED.button_texture("disabled" if button.disabled else "idle")
+	if button.disabled:
+		plate.get_node("Caption").add_theme_color_override("font_color", UNIFIED.DISABLED)
 	button.set_meta("event_action", action)
 	button.set_meta("event_restriction", restriction)
 	_bind(button)
@@ -202,7 +205,7 @@ func _enlarge_copy(button: Button, width: int) -> void:
 		label.position.y -= SKIN.COPY_EXPANSION
 	var body := button.get_node("Copy/Outcome") as Label
 	body.size.y += SKIN.COPY_EXPANSION
-	body.add_theme_font_size_override("font_size", 14 if width == 260 else 15)
+	body.add_theme_font_size_override("font_size", 15 if width == 260 else 16)
 	_fit(body, 12)
 
 

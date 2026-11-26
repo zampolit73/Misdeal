@@ -2,6 +2,7 @@ extends GutTest
 
 const ACT := preload("res://scenes/event/act_choice.tscn")
 const WELL := preload("res://scenes/event/whispering_well.tscn")
+const SKIN := preload("res://scripts/ui/unified_card_skin.gd")
 
 
 func after_each() -> void:
@@ -44,6 +45,7 @@ func test_every_production_event_has_readable_cards_for_solo_and_trio() -> void:
 				for key in ["Action", "Cost", "Outcome", "Availability"]:
 					var label := card.get_node("Copy/" + key) as Label
 					if not label.text.is_empty():
+						assert_true(label.get_theme_color("font_color") in [SKIN.GOLD, SKIN.COPY, SKIN.NEGATIVE], "V3 event copy contrast: " + key)
 						assert_lte(float(label.get_line_count() * (label.get_line_height() + 1)), label.size.y,
 							"%s/%s/%s: %s" % [definition.card_id, card.name, key, label.text])
 				if card.disabled:

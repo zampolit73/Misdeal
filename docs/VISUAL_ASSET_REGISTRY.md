@@ -1,3 +1,7 @@
+## Cursed Deck V3 — Black & Gold
+
+Runtime `assets/pixel/ui/cursed_deck_v3/card_face.svg` (512×768 text-free SVG with native import metadata) is a clean independently drawn matte dark face and thin bronze lines based on the player-approved [concept WebP](../assets/source_archive/cursed_deck_v3/approved_reference.webp). Existing V2 card_back.webp and card_unknown.webp are reused unchanged; V2 front is retained for rollback. Shared native labels/actions are gold/ivory and actual art catalogs remain unchanged.
+
 ## Cursed Deck V2
 
 Runtime `assets/pixel/ui/cursed_deck_v2/{card_face,card_back,card_unknown}.webp` (512×768 RGBA each; trimmed isolated card bases, WebP quality 94), derived from the user-approved `assets/source_archive/cursed_deck_v2/approved_reference.webp` art direction. Front is continuous blank worn paper; back is dark charcoal with moon compass; unknown is blank dark charcoal. Original illustration catalogs remain untouched. Printed CTA state rules are drawn as native cached ImageTextures; no text in the art. Prior V1 assets stay available for rollback.

@@ -544,11 +544,11 @@ func _verify() -> void:
             if choice.position.y < body.position.y + body.size.y or choice.position.y + choice.size.y > card.size.y - 3.0:
                 _fail("D380 CTA is clipped or overlaps description: " + name)
                 return
-            if heading.get_theme_color("font_color").get_luminance() > 0.25:
-                _fail("D380 heading is dark on the dark painted title: " + name)
+            if heading.get_theme_color("font_color").get_luminance() < 0.55:
+                _fail("V3 heading lacks contrast against dark card: " + name)
                 return
-            if effect.text.is_empty() or effect.get_theme_color("font_color").get_luminance() > 0.25:
-                _fail("D380 modifier is empty or lacks parchment contrast: " + name)
+            if effect.text.is_empty() or effect.get_theme_color("font_color").get_luminance() < 0.55:
+                _fail("V3 modifier is empty or lacks dark-face contrast: " + name)
                 return
             if effect.position.y < heading.position.y + heading.size.y or body.position.y < effect.position.y + effect.size.y:
                 _fail("D380 modifier and body areas overlap: " + name)

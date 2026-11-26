@@ -1,8 +1,14 @@
-## Cursed Deck V2 · approved concept, implemented, native visual acceptance pending
+## Cursed Deck V3 · Black & Gold — current visual acceptance gate
+
+The player approved the dark-face colorway after reporting low contrast in V2 runtime. V3 is implemented in the unified card skin: dark matte face, pale gold titles/actions, ivory descriptions, brighter semantic colors, fitted Table text, revealed Fate titles. V2 backs/unknowns, actual art and all gameplay remain unchanged. Godot 4.7.2 headless: 26/26 tests (2605 assertions) and D315/D316/D274 smoke PASS; local native capture blocked by X11 socket permissions. [QA and concept](qa/cursed_deck_v3/README.md).
+
+Next: F5 Table, R spread (including revealed/held/discard), RMB/F inspection, one 2–4-option event with unavailable state, development and reward. Confirm legibility; then resume the outstanding Combat Report visual check and Act I control run. Do not reopen previously accepted artwork or cinematic surfaces without concrete feedback.
+
+## Cursed Deck V2 · historical baseline, front superseded by V3
 
 The player rejected the gold-edged V1 runtime appearance as visually mediocre and approved the replacement [Cursed Deck V2 board](../assets/source_archive/cursed_deck_v2/approved_reference.webp) on 2026-11-26. The shared native skin now renders weathered gray-beige physical paper with thin printed ink borders; original illustrations and localized live text remain separate. The matching dark moon-seal back and unmarked unknown texture replace the old live backs. Cards use quiet ink-action rules and subdued hover/keyboard-focus/selected outlines instead of heavy buttons. Table, inspection, known/unknown live Fate cards, 24 event routes, normal/bonus development, elite trophies and death wager use the same family. The original printed generic future slots and sealed XIII remain in the established Fate background; empty discard uses the neutral back to cover the painted example in the live layer, hidden art wells are no longer visible, and small titles can use two lines. Merchant cabinet and Wizard Wager retain approved non-card surfaces. Existing hit areas, artwork, data, gameplay and confirmation semantics are unchanged. Godot 4.7.2: 25/25 targeted tests, 2061 assertions; D315/D316/D274 headless PASS. Native framebuffer/player acceptance pending. [QA](qa/cursed_deck_v2/README.md). Combat Report V1 visual acceptance remains separate.
 
-F5 acceptance: compare dealt cards, R spread and RMB/F reader first, then a 2–4 option event and reward. Check current/unknown/revealed/future layouts, baked plate edges and art crops, selected/unavailable states. No local Xvfb/display; capture job remains enabled. Do not mark player approval of the rendered V2 until confirmed.
+V2 runtime readability was subsequently rejected by the player; the V3 acceptance gate above supersedes this historical gate.
 
 ## Combat Report Visual V1 · player visual acceptance pending
 

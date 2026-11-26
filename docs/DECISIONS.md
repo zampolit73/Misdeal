@@ -1,3 +1,7 @@
+## Cursed Deck V3 · Black & Gold
+
+The player rejected V2's low-contrast dark ink on mottled pale paper and approved the [dark-face concept](../assets/source_archive/cursed_deck_v3/approved_reference.webp). V3 supersedes V2 **front material and type palette only**; keep thin printed lines, matte surface, live text, actual artwork, hidden information, and existing choice semantics. Gold for headings/actions, ivory for body, light semantic colors for costs/restrictions/modifiers. V2 back and unknown remain separately identifiable. No new metallic frames or large gilded buttons. Keep approved separate cinematic surfaces unchanged; native player acceptance of V3 remains pending.
+
 ## Cursed Deck V2 · approved physical card material
 
 The player rejected the gold-edged V1 runtime appearance as visually mediocre and approved the replacement [Cursed Deck V2 board](../assets/source_archive/cursed_deck_v2/approved_reference.webp) on 2026-11-26. The shared native skin now renders weathered gray-beige physical paper with thin printed ink borders; original illustrations and localized live text remain separate. The matching dark moon-seal back and unmarked unknown texture replace the old live backs. Cards use quiet ink-action rules and subdued hover/keyboard-focus/selected outlines instead of heavy buttons. Table, inspection, known/unknown live Fate cards, 24 event routes, normal/bonus development, elite trophies and death wager use the same family. The original printed generic future slots and sealed XIII remain in the established Fate background; empty discard uses the neutral back to cover the painted example in the live layer, hidden art wells are no longer visible, and small titles can use two lines. Merchant cabinet and Wizard Wager retain approved non-card surfaces. Existing hit areas, artwork, data, gameplay and confirmation semantics are unchanged. Godot 4.7.2: 25/25 targeted tests, 2061 assertions; D315/D316/D274 headless PASS. Native framebuffer/player acceptance pending. [QA](qa/cursed_deck_v2/README.md). Combat Report V1 visual acceptance remains separate.
@@ -107,7 +111,7 @@ When V4 would cover the initial formation or nameplates, open preparation with a
 
 ## Combat Planning Visual V4 — approved reference
 
-Use the [approved command board](qa/combat-planning-visual-v4/approved_reference.png) in campaign and pilot. Preserve the V3.1 interaction and arena. Use live Godot text and controls over individual DS3 material surfaces and drawn symbols. See the [native reference comparison](qa/combat-planning-visual-v4/README.md).
+Use the [approved command board](qa/combat-planning-visual-v4/approved_reference.webp) in campaign and pilot. Preserve the V3.1 interaction and arena. Use live Godot text and controls over individual DS3 material surfaces and drawn symbols. See the [native reference comparison](qa/combat-planning-visual-v4/README.md).
 
 ## Combat Planning UX V3.1 — pilot polish
 
@@ -1112,7 +1116,7 @@ The five D199 roles retain their agreed silhouettes and weapons (**Road Sentinel
 
 ## D202 — Fixed disaster-recovery bookmark КАРАМБА73
 
-Date: 2026-10-16. The user explicitly requested a **full-project/context backup** and a recovery trigger **КАРАМБА73**. Capture the GitHub-tracked `main` snapshot after adding a short manifest at `docs/checkpoints/KARAMBA73_2026-10-16.md`; keep its backup branch `backups/KARAMBA73-2026-10-16` unchanged. A later user message containing the exact recovery key explicitly instructs the assistant to **restore the saved tree as the current game version**, while preserving newer history via a fresh `backups/pre-KARAMBA73-restore-...` branch and using a new non-force forward Git commit. Do not use `git reset --hard` or force-update `main`. Uncommitted local files and unselected D201 concept PNGs are outside the tracked-project snapshot. Card #38 remains QA-only, Act1 37/45. Full manifest controls the procedure.
+Date: 2026-10-16. The user explicitly requested a **full-project/context backup** and a recovery trigger **КАРАМБА73**. Capture the GitHub-tracked `main` snapshot after adding a short manifest at `docs/checkpoints/KARAMBA73_2026-10-16.md`; keep its backup branch `backups/KARAMBA73-2026-10-16` unchanged. A later user message containing the exact recovery key explicitly instructs the assistant to **restore the saved tree as the current game version**, while preserving newer history via a fresh `backups/pre-KARAMBA73-restore-...` branch and using a new non-force forward Git commit. Do not use `git reset --hard` or force-update `main`. Uncommitted local files and unselected D201 concept WebPs are outside the tracked-project snapshot. Card #38 remains QA-only, Act1 37/45. Full manifest controls the procedure.
 
 ## D201 — Native D200 card art approved; arena selection requires separate render
 

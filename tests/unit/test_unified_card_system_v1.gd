@@ -113,7 +113,7 @@ func test_future_and_empty_held_miniatures_do_not_reveal_art() -> void:
 	for slot in spread.slot_panels:
 		assert_false(slot.get_node("DS3ArtWell").visible)
 
-func test_v2_paper_assets_and_action_ink() -> void:
+func test_v3_dark_face_assets_and_gold_action() -> void:
 	assert_eq(SKIN.FRAME.get_size(), Vector2(512, 768))
 	assert_eq(SKIN.CARD_BACK.get_size(), SKIN.FRAME.get_size())
 	assert_eq(SKIN.UNKNOWN.get_size(), SKIN.FRAME.get_size())
@@ -129,7 +129,31 @@ func test_v2_paper_assets_and_action_ink() -> void:
 	button.size = Vector2(272, 338)
 	var frame := SKIN.mount(button, Rect2(Vector2.ZERO, button.size))
 	var action := SKIN.action(button, Rect2(20, 286, 232, 39))
-	assert_eq(action.get_node("Caption").get_theme_color("font_color"), SKIN.INK)
+	assert_eq(action.get_node("Caption").get_theme_color("font_color"), SKIN.GOLD)
 	SKIN.refresh(button, frame, action, true)
 	assert_true(frame.get_node("PaperFocus").visible)
 	assert_eq(action.texture, SKIN.button_texture("pressed"))
+
+
+func _contrast(foreground: Color, background: Color) -> float:
+	var light := foreground.srgb_to_linear().get_luminance()
+	var dark := background.srgb_to_linear().get_luminance()
+	return (maxf(light, dark) + 0.05) / (minf(light, dark) + 0.05)
+
+
+func test_v3_copy_contrast_and_semantic_colors_on_actual_face() -> void:
+	var image := SKIN.FRAME.get_image()
+	for point in [Vector2i(256, 48), Vector2i(256, 400), Vector2i(256, 540), Vector2i(256, 700)]:
+		var surface := image.get_pixelv(point)
+		assert_gt(surface.a, 0.99, "Copy backing must be opaque")
+		for pigment in [SKIN.GOLD, SKIN.COPY, SKIN.MUTED, SKIN.POSITIVE, SKIN.NEGATIVE, SKIN.DISABLED]:
+			assert_gt(_contrast(pigment, surface), 4.5, "Readable face at %s: %s" % [point, pigment])
+	var spread := FATE.instantiate()
+	RunState.choose_protagonist("knight")
+	RunState.resolved_card_ids.append("graveyard_ambush")
+	RunState.cards_resolved = 1
+	add_child_autofree(spread)
+	await get_tree().process_frame
+	var title := spread.slot_panels[0].get_node("CardTitle") as Label
+	assert_eq(title.get_theme_color("font_color"), SKIN.GOLD)
+	assert_eq(spread.slot_panels[0].get_node("DS3CardFrame").texture, SKIN.FRAME)

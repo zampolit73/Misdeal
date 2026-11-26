@@ -45,7 +45,7 @@ func build(offers: Array[Dictionary], title: String, stage: String, hint: String
 		_buttons[0].grab_focus()
 
 
-func _build_card(slot: Dictionary, offer: Dictionary, colors: Dictionary) -> Button:
+func _build_card(slot: Dictionary, offer: Dictionary, _colors: Dictionary) -> Button:
 	var area := UI.rect(slot.rect)
 	var index := int(offer.index)
 	var button := UI.hotspot(self, area, offer.title)
@@ -59,7 +59,7 @@ func _build_card(slot: Dictionary, offer: Dictionary, colors: Dictionary) -> But
 	UNIFIED.fit_art(art, UNIFIED.art_rect(extent))
 	UNIFIED.label(button, "Role", offer.role, Rect2(15, 8, extent.x - 30, 34), 15, UNIFIED.INK, true)
 	UNIFIED.label(button, "Title", offer.title, Rect2(16, extent.y * 0.46, extent.x - 32, 53), 21, UNIFIED.INK, true)
-	_build_effect(button, Rect2(16, extent.y * 0.46 + 55, extent.x - 32, extent.y * 0.54 - 115), offer.effect, slot, colors)
+	_build_effect(button, Rect2(16, extent.y * 0.46 + 55, extent.x - 32, extent.y * 0.54 - 115), offer.effect, slot)
 	var cta := UNIFIED.action(button, Rect2(25, extent.y - 54, extent.x - 50, 42), "ВЫБРАТЬ", 19)
 	var refresh := func() -> void:
 		UNIFIED.refresh(button, frame, cta, _locked and _picked == index)
@@ -77,7 +77,7 @@ func _build_card(slot: Dictionary, offer: Dictionary, colors: Dictionary) -> But
 	return button
 
 
-func _build_effect(button: Button, area: Rect2, effect: String, slot: Dictionary, colors: Dictionary) -> void:
+func _build_effect(button: Button, area: Rect2, effect: String, slot: Dictionary) -> void:
 	var lines := effect.split("  •  ", false)
 	var font_size := int(slot.effect_font_size)
 	var font := UNIFIED.serif()
@@ -89,7 +89,7 @@ func _build_effect(button: Button, area: Rect2, effect: String, slot: Dictionary
 	var row_height := area.size.y / lines.size()
 	for i in lines.size():
 		var line := lines[i]
-		var ink := Color(colors.negative if line.begins_with("−") else colors.positive)
+		var ink := UNIFIED.NEGATIVE if line.begins_with("−") else UNIFIED.POSITIVE
 		var label := UNIFIED.label(button, "Effect%d" % i, "", Rect2(area.position + Vector2(0, i * row_height), Vector2(area.size.x, row_height)), font_size, ink)
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		label.text = line

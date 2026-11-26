@@ -85,7 +85,7 @@ func _build_slot(slot: Dictionary, index: int, id: String, empty_cache_art: Text
 	UNIFIED.fit_art(art, window, item == null)
 	UNIFIED.label(card, "Kind", "РЕЛИКВИЯ" if item != null else "НАГРАДА", Rect2(14, 8, extent.x - 28, 30), 15, UNIFIED.INK, true)
 	UNIFIED.label(card, "Title", title, Rect2(14, extent.y * 0.46, extent.x - 28, 52), 20, UNIFIED.INK, true)
-	UNIFIED.label(card, "Description", description, Rect2(16, extent.y * 0.46 + 54, extent.x - 32, extent.y * 0.54 - 96), 16, UNIFIED.INK)
+	UNIFIED.label(card, "Description", description, Rect2(16, extent.y * 0.46 + 54, extent.x - 32, extent.y * 0.54 - 96), 16, UNIFIED.COPY)
 	var status := UNIFIED.action(card, Rect2(25, extent.y - 45, extent.x - 50, 33), "ВЫБРАТЬ", 15)
 	var refresh := func() -> void:
 		UNIFIED.refresh(card, frame, status, _selected == index)

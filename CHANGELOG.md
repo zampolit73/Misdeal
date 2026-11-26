@@ -1,3 +1,9 @@
+## Cursed Deck V3 - Black & Gold - 26 Nov 2026
+
+- Player-approved dark matte front, antique gold titles/actions, ivory copy and contrast-safe event/reward semantic colors.
+- Increase and fit Table preview type; keep revealed Fate miniatures gold, unknown cards private, V2 backs and original art unchanged.
+- Godot 4.7.2: 26/26 targeted tests, 2605 assertions; D315/D316/D274 headless PASS; native visual acceptance pending.
+
 ## Cursed Deck V2 · 26 Nov 2026
 
 - Replace V1 bronze frames with user-approved matte worn gray-beige paper, ink borders, matching moon-seal back and charcoal unknown face across existing shared card surfaces.

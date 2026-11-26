@@ -1,13 +1,17 @@
 extends RefCounted
-## Cursed Deck V2 — physical printed cards. Shared skin never owns game actions.
-const FRAME := preload("res://assets/pixel/ui/cursed_deck_v2/card_face.webp")
+## Cursed Deck V3 — Black & Gold physical printed cards. Shared skin never owns game actions.
+const FRAME := preload("res://assets/pixel/ui/cursed_deck_v3/card_face.svg")
 const CARD_BACK := preload("res://assets/pixel/ui/cursed_deck_v2/card_back.webp")
 const UNKNOWN := preload("res://assets/pixel/ui/cursed_deck_v2/card_unknown.webp")
 const BUTTON_ROOT := "res://assets/pixel/ui/reward_development_v1/runtime/states/button_0_"
-const INK := Color("#241e19")
+const GOLD := Color("#e8cb95")
+const COPY := Color("#e5dbc4")
+const POSITIVE := Color("#b8d49a")
+const NEGATIVE := Color("#f0a299")
+const DISABLED := Color("#b7aa95")
+const INK := GOLD # Legacy caller name; face text is now light.
 const BONE := Color("#f0d8b4")
-const GOLD := Color("#d7ac75")
-const MUTED := Color("#493a30")
+const MUTED := Color("#c7b69b")
 const STONE := Color("#161211")
 const SPLIT := 0.45
 const MINI_SPLIT := 0.72
@@ -16,7 +20,7 @@ static var _fonts: Dictionary = {}
 static var _buttons: Dictionary = {}
 
 static func face(_split: float = SPLIT, hidden: bool = false) -> Texture2D:
-	# The paper is continuous; art/copy proportions change without deforming the print.
+	# The matte face is continuous; art/copy proportions change without deforming the print.
 	return UNKNOWN if hidden else FRAME
 
 static func serif(bold: bool = false) -> Font:
@@ -49,7 +53,7 @@ static func mount(host: Control, area: Rect2, split: float = SPLIT, node_name :=
 	var edge := StyleBoxFlat.new()
 	edge.draw_center = false
 	edge.set_border_width_all(2)
-	edge.border_color = Color("e3d1aaad")
+	edge.border_color = Color("e8cb95ad")
 	edge.set_corner_radius_all(9)
 	highlight.add_theme_stylebox_override("panel", edge)
 	frame.add_child(highlight)
@@ -114,18 +118,17 @@ static func button_texture(state: String, on_paper: bool = true) -> Texture2D:
 		else:
 			var image := Image.create_empty(256, 48, false, Image.FORMAT_RGBA8)
 			image.fill(Color.TRANSPARENT)
-			var ink := Color("48392c99")
+			var ink := Color("c3a36faf")
 			match state:
 				"hover":
-					ink = Color("392b1dd9")
-					image.fill_rect(Rect2i(8, 4, 240, 40), Color("e8dab02a"))
+					ink = Color("e8cb95e0")
+					image.fill_rect(Rect2i(8, 4, 240, 40), Color("e8cb9516"))
 				"pressed":
-					ink = Color("6b2623dc")
-					image.fill_rect(Rect2i(8, 4, 240, 40), Color("74342b1e"))
+					ink = Color("e8b57cda")
+					image.fill_rect(Rect2i(8, 4, 240, 40), Color("843f3528"))
 				"disabled":
-					ink = Color("5c50485c")
+					ink = Color("b7aa9584")
 			image.fill_rect(Rect2i(10, 1, 236, 2), ink)
-			image.fill_rect(Rect2i(36, 45, 184, 1), ink)
 			_buttons[key] = ImageTexture.create_from_image(image)
 	return _buttons[key]
 
@@ -137,7 +140,7 @@ static func action(host: Control, area: Rect2, value: String = "ВЫБРАТЬ",
 	plate.texture = button_texture("idle", on_paper)
 	host.add_child(plate)
 	place(plate, area)
-	label(plate, "Caption", value, Rect2(Vector2.ZERO, area.size), point, INK if on_paper else BONE, true)
+	label(plate, "Caption", value, Rect2(Vector2.ZERO, area.size), point, GOLD if on_paper else BONE, true)
 	return plate
 
 static func shade_frame(frame: TextureRect, brightness: float) -> void:
@@ -151,6 +154,9 @@ static func refresh(button: Button, frame: TextureRect, plate: TextureRect, sele
 	var highlighted := button.has_focus() or button.is_hovered()
 	var state := "pressed" if selected else ("disabled" if button.disabled else ("pressed" if button.is_pressed() else ("hover" if highlighted else "idle")))
 	plate.texture = button_texture(state)
+	var caption := plate.get_node_or_null("Caption") as Label
+	if caption != null:
+		caption.add_theme_color_override("font_color", DISABLED if state == "disabled" else GOLD)
 	var brightness := 0.86 if button.disabled and not selected else (1.13 if highlighted or selected else 1.0)
 	shade_frame(frame, brightness)
 

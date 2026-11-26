@@ -53,7 +53,7 @@ func _build_card(index: int, slot: Dictionary, offer: Dictionary, texture: Textu
 	UNIFIED.fit_art(art, window, not relic)
 	UNIFIED.label(button, "Kind", "РЕЛИКВИЯ" if relic else "НАГРАДА", Rect2(14, 8, extent.x - 28, 34), 15, UNIFIED.INK, true)
 	UNIFIED.label(button, "Title", String(offer.title).to_upper(), Rect2(14, extent.y * 0.46, extent.x - 28, 52), 22, UNIFIED.INK, true)
-	UNIFIED.label(button, "Description", offer.description, Rect2(16, extent.y * 0.46 + 54, extent.x - 32, extent.y * 0.54 - 113), 17, UNIFIED.INK)
+	UNIFIED.label(button, "Description", offer.description, Rect2(16, extent.y * 0.46 + 54, extent.x - 32, extent.y * 0.54 - 113), 17, UNIFIED.COPY)
 	var cta := UNIFIED.action(button, Rect2(25, extent.y - 54, extent.x - 50, 42), "ВЫБРАТЬ", 19)
 	UNIFIED.bind_action(button, frame, cta)
 	button.pressed.connect(func() -> void: chosen.emit(index))

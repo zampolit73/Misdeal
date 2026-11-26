@@ -1,4 +1,8 @@
-## Cursed Deck V2 — current physical card style
+## Cursed Deck V3 — current Black & Gold front
+
+Use the common `unified_card_skin.gd` and text-free `cursed_deck_v3/card_face.svg`: #211C19 matte charcoal-brown, subtle #806749/C7A46E hairline borders; #E8CB95 headings/type/action, #E5DBC4 body, #B8D49A benefit, #F0A299 penalty/restriction, #B7AA95 disabled action. The native action is a label with a quiet top rule and distinct hover/focus/pressed state. Preserve geometry, fitted localized text, V2 moon-seal backs/charcoal unknowns, sealed XIII and all source illustration art. Separate non-card cinematic plates retain the approved materials. [QA](qa/cursed_deck_v3/README.md).
+
+## Cursed Deck V2 — historical front; retained backs/unknowns
 
 A single old-paper family: muted gray-beige matte substrate, thin dark printed border, worn rounded edges, original artwork and dark ink serif headings. The exact V2 board is archived. Use `unified_card_skin.gd` and the three separate native textures: face, moon-seal back, unmarked unknown. Text is live, not painted; action is a printed line on paper and keyboard/mouse focus/selection has a quiet outline. Two-line miniature titles may wrap within the paper block; unknown wells are hidden. Keep existing safe-area/hit-area geometry and cinematics. Cabinet and two-sided wizard contract are not physical cards. V2 supersedes V1's metal frame style. See [QA](qa/cursed_deck_v2/README.md).
 
@@ -66,7 +70,7 @@ At 1280×720, center the two-to-four-card row between the compact obsidian heade
 
 ## Combat Planning Visual V4
 
-The player-approved [command board reference](qa/combat-planning-visual-v4/approved_reference.png) governs the lower Combat Planning panel in the PR #117 pilot. Filled orders use blank parchment sampled from the DS3 card title material, dark serif text, a Roman numeral and an ink glyph. The empty add slot uses dark metal. The frame reuses D413 dossier bronze, D300 red banners and D303 metal and fight plates. Hero medallions and tactic glyphs are drawn by the Godot UI. Their geometry is separate from the original sprites.
+The player-approved [command board reference](qa/combat-planning-visual-v4/approved_reference.webp) governs the lower Combat Planning panel in the PR #117 pilot. Filled orders use blank parchment sampled from the DS3 card title material, dark serif text, a Roman numeral and an ink glyph. The empty add slot uses dark metal. The frame reuses D413 dossier bronze, D300 red banners and D303 metal and fight plates. Hero medallions and tactic glyphs are drawn by the Godot UI. Their geometry is separate from the original sprites.
 
 Overview and edit occupy the same bottom dock. The picker collapses the dock to one line. The lower controls retain real hover, press, focus, selection and disabled states. The reference is documentation only. [Native comparison and geometry notes](qa/combat-planning-visual-v4/README.md).
 

@@ -404,6 +404,9 @@ func _setup_offer_button(button: Button, card: RunCardData) -> void:
 		card.card_text, 56 if button.has_node("DS3CardFrame") else 100
 	)
 	hint_label.text = _get_hint_text(card)
+	if button.has_node("DS3CardFrame"):
+		CARD_DS3_SKIN.fit_table_copy(title_label, 18, 15, 2)
+		CARD_DS3_SKIN.fit_table_copy(description_label, 15, 13, 3)
 	# Full lore is opened deliberately with RMB; no automatic popup may hide cards.
 	button.tooltip_text = ""
 	button.disabled = false

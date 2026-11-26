@@ -127,6 +127,7 @@ func _card_widget(title: String, type_name: String, full_text: String,
     category.text = type_name
     var heading := button.get_node("Title") as Label
     heading.text = title
+    SKIN.fit_table_copy(heading, 18, 15, 2)
 
     # Label.clip_text clips horizontally but DOES NOT constrain multiline
     # vertical drawing. This explicit nested clipping well does both.
@@ -149,8 +150,8 @@ func _card_widget(title: String, type_name: String, full_text: String,
     body.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     body.clip_text = true
     body.max_lines_visible = 2
-    body.add_theme_font_size_override("font_size", 13)
     body.text = _short_copy(full_text)
+    SKIN.fit_table_copy(body, 15, 13, 2)
 
     var hint := button.get_node("Hint") as Label
     hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

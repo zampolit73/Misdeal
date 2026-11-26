@@ -9,8 +9,8 @@ const BACK := "res://assets/pixel/ui/card_ds3_locked/card_back.webp"
 const INK := "res://assets/pixel/ui/card_ds3_locked/ink_substrate.webp"
 const CARD_SHADER: Shader = preload("res://shaders/card_ds3_ink.gdshader")
 const GOLD := Color("#e4b46c")
-const INK_TEXT := Color("#251610")
-const FACE_STONE := Color("#150d11")
+const INK_TEXT := UNIFIED.GOLD # Revealed Fate miniatures use the same light title.
+const FACE_STONE := Color("#211c19")
 const BONE := Color("#eddbbd")
 const TABLE_SIZE := Vector2(272, 338)
 # Printed paper is symmetric; live title and body share the physical center.
@@ -118,22 +118,31 @@ static func apply_table(button: Button) -> bool:
     UNIFIED.fit_art(art, window)
     button.move_child(art, 3)
     var title := button.get_node("Title") as Label
-    UNIFIED.style_label(title, Rect2(13, 181, 246, 38), 17, UNIFIED.INK, true)
+    UNIFIED.style_label(title, Rect2(13, 181, 246, 38), 18, UNIFIED.GOLD, true)
     title.max_lines_visible = 2
     var category := button.get_node("Type") as Label
-    UNIFIED.style_label(category, Rect2(67, 7, 138, 27), 13, UNIFIED.INK, true, false)
+    UNIFIED.style_label(category, Rect2(67, 7, 138, 27), 14, UNIFIED.GOLD, true, false)
     var body := button.get_node("Description") as Label
-    UNIFIED.style_label(body, Rect2(17, 219, 238, 62), 13, UNIFIED.INK)
+    UNIFIED.style_label(body, Rect2(17, 219, 238, 62), 15, UNIFIED.COPY)
     body.max_lines_visible = 3
     var hint := button.get_node("Hint") as Label
     var action := UNIFIED.action(button, Rect2(27, 286, 218, 39), "", 15)
-    UNIFIED.style_label(hint, Rect2(29, 287, 214, 37), 15, UNIFIED.INK, true, false)
+    UNIFIED.style_label(hint, Rect2(29, 287, 214, 37), 17, UNIFIED.GOLD, true, false)
     button.move_child(hint, -1)
     var mark := button.get_node("Mark") as Label
     UNIFIED.style_label(mark, Rect2(12, 37, 248, 23), 11, Color("#ffd0a1"), true)
-    var roman := UNIFIED.label(button, "DS3Roman", "", Rect2(25, 7, 40, 27), 12, UNIFIED.INK)
+    var roman := UNIFIED.label(button, "DS3Roman", "", Rect2(25, 7, 40, 27), 13, UNIFIED.GOLD)
     UNIFIED.bind_action(button, frame, action)
     return true
+
+# Keep the larger V3 type when it fits; long localized titles still get two lines.
+static func fit_table_copy(label: Label, preferred: int, minimum: int, max_lines: int) -> void:
+    var font := label.get_theme_font("font")
+    for point in range(preferred, minimum - 1, -1):
+        label.add_theme_font_size_override("font_size", point)
+        var bounds := font.get_multiline_string_size(label.text, HORIZONTAL_ALIGNMENT_CENTER, label.size.x, point)
+        if bounds.y <= minf(label.size.y, font.get_height(point) * max_lines + 1.0):
+            break
 
 static func update_table_roman(button: Button, number: int) -> void:
     var mark := button.get_node_or_null("DS3Roman") as Label
@@ -182,8 +191,8 @@ static func style_reward_copy(button: Button, role: Label, heading: Label,
         return
     UNIFIED.style_label(role, Rect2(20, 7, 252, 34), 14, UNIFIED.INK, true)
     UNIFIED.style_label(heading, Rect2(16, 209, 260, 44), 19, UNIFIED.INK, true)
-    UNIFIED.style_label(effect, Rect2(20, 254, 252, 58), 16, UNIFIED.INK)
-    UNIFIED.style_label(description, Rect2(18, 314, 256, 83), 14, UNIFIED.INK)
+    UNIFIED.style_label(effect, Rect2(20, 254, 252, 58), 16, UNIFIED.COPY)
+    UNIFIED.style_label(description, Rect2(18, 314, 256, 83), 15, UNIFIED.COPY)
     heading.max_lines_visible = 2
     effect.max_lines_visible = 2
     description.max_lines_visible = 4
@@ -237,7 +246,7 @@ static func _mini(host: Control, art: TextureRect, title_plate: ColorRect, title
     UNIFIED.fit_art(art, window)
     title_plate.modulate.a = 0.0
     UNIFIED.style_label(title, Rect2(at + Vector2(dimensions.x * 0.06, dimensions.y * 0.73),
-        Vector2(dimensions.x * 0.88, dimensions.y * 0.23)), 10 if dimensions.x < 110 else 12, UNIFIED.INK, true, true)
+        Vector2(dimensions.x * 0.88, dimensions.y * 0.23)), 11 if dimensions.x < 110 else 13, UNIFIED.GOLD, true, true)
     title.max_lines_visible = 2
     title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 

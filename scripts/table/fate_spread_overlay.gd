@@ -441,7 +441,7 @@ func _fit_spread_title(title: Label) -> void:
 	var font := title.get_theme_font("font")
 	if font == null:
 		return
-	for font_size in [10, 9, 8]:
+	for font_size in [11, 10, 9, 8]:
 		title.add_theme_font_size_override("font_size", font_size)
 		var layout := font.get_multiline_string_size(title.text, HORIZONTAL_ALIGNMENT_CENTER, title.size.x - 2.0, font_size)
 		if layout.y <= minf(title.size.y, font.get_height(font_size) * 2.0 + 2.0):
