@@ -1,3 +1,7 @@
+## Wizard Wager Visual V1
+
+`assets/pixel/ui/wizard_wager_v1/wager_plate.webp` is the isolated 744×475 RGBA contract plate. Approved concept, clean master and offline layout preview are archived in `assets/source_archive/wizard_wager_v1/`. Real labels and Buttons overlay the plate without replacing the Table.
+
 ## Final Visual Audit 1.0 · localized corrections
 
 Three runtime plates receive six localized heraldry patches; sources/coordinates archived in `assets/source_archive/final_visual_audit_1_0/`. P1-03 adds three existing-approved-outcome-derived 384×160 WebPs in `assets/pixel/ui/approved_event_choice_polish/final_audit_v1/`. D343 original remains unchanged, localized color grade is runtime only. [Provenance and evidence](FINAL_VISUAL_AUDIT_1_0_FIXES.md).

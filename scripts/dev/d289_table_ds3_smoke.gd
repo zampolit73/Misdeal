@@ -102,8 +102,8 @@ func _verify() -> void:
 	var wager := table.get_node("WagerOverlay/Root/WagerPanel") as Panel
 	var accept := table.get_node("WagerOverlay/Root/WagerPanel/AcceptButton") as Button
 	var refuse := table.get_node("WagerOverlay/Root/WagerPanel/RefuseButton") as Button
-	if wager.get_node_or_null("WagerDS3EdgeTop") == null:
-		_fail("DS3 Wager ornament missing")
+	if not wager.get_node_or_null("WagerPlate") is TextureRect:
+		_fail("Wizard Wager V1 plate missing")
 		return
 	if accept.pressed.get_connections().is_empty() or refuse.pressed.get_connections().is_empty():
 		_fail("real Wager accept/refuse actions disconnected")

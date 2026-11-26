@@ -7,6 +7,7 @@ const UI_MOTION := preload("res://scripts/ui/ui_motion.gd")
 # offer state, saved run logic, battlefield controls, or user interactions.
 const DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
 const CARD_SKIN := preload("res://scripts/class_select/class_select_card_skin.gd")
+const WAGER_VISUAL := preload("res://scripts/table/wizard_wager_visual.gd")
 
 const GILT_LOW := Color(0.53, 0.34, 0.20, 0.53)
 const PARCHMENT := Color("#dfb77e")
@@ -76,18 +77,8 @@ static func apply(scene: Control) -> void:
 	var lore_hint := scene.get_node("CardInspectHint") as Label
 	lore_hint.add_theme_color_override("font_color", Color(0.82, 0.72, 0.61, 0.96))
 
-	# The Wager is a real optional existing mechanic. Only surface/CTA chrome:
-	# risk/reward contents and accept/refuse handlers remain exactly as authored.
-	var wager := scene.get_node("WagerOverlay/Root/WagerPanel") as Panel
-	var risk := scene.get_node("WagerOverlay/Root/WagerPanel/RiskPanel") as Panel
-	var reward := scene.get_node("WagerOverlay/Root/WagerPanel/RewardPanel") as Panel
-	DS3.apply_surface(wager, "dossier")
-	DS3.apply_surface(risk, "dossier")
-	DS3.apply_surface(reward, "dossier")
-	_engrave_plate(wager, "Wager", true)
-	DS3.apply_action(scene.get_node("WagerOverlay/Root/WagerPanel/AcceptButton") as Button, true)
-	DS3.apply_action(scene.get_node("WagerOverlay/Root/WagerPanel/RefuseButton") as Button, false)
-
+	# The approved V1 plate owns only the modal presentation.
+	WAGER_VISUAL.apply(scene)
 
 static func _engrave_plate(panel: Panel, prefix: String, center_mark: bool) -> void:
 	# A few purposeful bronze marks. No ornamental clutter over labels.
