@@ -1,3 +1,7 @@
+## Camp Rest Visual V2
+
+The approved reference, layout preview and package README are archived in `assets/source_archive/camp_rest_v2/`. The exact plate, layout JSON and twelve interaction overlays ship in `assets/pixel/ui/camp_rest_v2/` for the IV and XII checkpoints. [Native captures](qa/camp_rest_v2/README.md)
+
 ## Intro Visual V2
 
 Six verified WebP plates and the dialogue JSON live in `assets/pixel/intro/visual_v2/`. The PNG masters and package manifest are in `assets/source_archive/intro_v2/`. Dialogue, hint and Skip are live controls. The previous art is retained for rollback.

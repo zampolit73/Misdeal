@@ -1,3 +1,7 @@
+## Camp Rest Visual V2
+
+Use the supplied 1280×720 plate, coordinate map and transparent per-card states. The parchment displays live effects and unavailable reasons. Keep labels and the training selector in their mapped areas and show full descriptions through card tooltips.
+
 ## Hero Selection Visual V2
 
 The hero-selection cards stay aligned with the bronze frame on the approved plate. Use muted insets for hover and focus and the separate burgundy seal for selection.
