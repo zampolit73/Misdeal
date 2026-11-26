@@ -1,3 +1,9 @@
+## Camp Rest Black & Gold - 26 Nov 2026
+
+- Migrate IV and XII rest choices to the unified V3 matte dark card with gold title/action, ivory copy and readable restrictions.
+- Reuse original illustrations via atlas regions and preserve the approved camp surroundings, real training selector, and all gameplay/save rules. Only overflowing descriptions use a tooltip.
+- 29/29 targeted tests (572 assertions); add both stops to native card capture CI.
+
 ## Cursed Deck V3 - Black & Gold - 26 Nov 2026
 
 - Player-approved dark matte front, antique gold titles/actions, ivory copy and contrast-safe event/reward semantic colors.

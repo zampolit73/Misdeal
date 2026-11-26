@@ -1,3 +1,7 @@
+## Camp Rest cards · extend Cursed Deck V3
+
+On 2026-11-26 the player requested unification of the remaining V2 rest cards after IV and XII. Preserve the camp environment, original illustrations, three choices and their exact rules. Use the shared Black & Gold front rather than the baked ornate frames; give the original three cards independent live title/body/CTA, visible unavailable reason, and an independently focusable hero selector. Full text remains available on hover only when it does not fit. Do not repaint the approved background or alter the merchant cabinet.
+
 ## Cursed Deck V3 · Black & Gold
 
 The player rejected V2's low-contrast dark ink on mottled pale paper and approved the [dark-face concept](../assets/source_archive/cursed_deck_v3/approved_reference.webp). V3 supersedes V2 **front material and type palette only**; keep thin printed lines, matte surface, live text, actual artwork, hidden information, and existing choice semantics. Gold for headings/actions, ivory for body, light semantic colors for costs/restrictions/modifiers. V2 back and unknown remain separately identifiable. No new metallic frames or large gilded buttons. Keep approved separate cinematic surfaces unchanged; native player acceptance of V3 remains pending.

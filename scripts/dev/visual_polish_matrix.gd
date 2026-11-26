@@ -24,7 +24,7 @@ func _run() -> void:
 	root.size = viewport_size
 	state = root.get_node("RunState")
 	var planned := 0
-	for kind in ["main", "intro_open", "intro_end", "class_idle", "class_knight", "class_ranger", "class_mage", "table_two", "table_hover", "table_one", "table_held", "dossier_knight", "dossier_ranger", "dossier_mage", "dossier_lost", "fate_0", "fate_4", "fate_8", "fate_12", "fate_final", "reward_major_upgrade", "reward_bonus_upgrade", "reward_normal_loot", "reward_death_wager", "reward_elite_artifact", "reward_details", "upgrade_knight", "upgrade_ranger", "upgrade_mage", "event_moon_seal", "event_resolved", "event_blood_ledger", "event_chained_prisoner", "event_bone_tax", "event_unsent_letters", "event_last_signal", "event_banner_seamstress", "event_curse_forge", "shop_poor", "shop_rich", "shop_bought", "well_poor", "well_rich", "well_selected", "well_alternative", "end_victory", "end_defeat", "end_full", "battle_solo", "battle_duo", "battle_trio", "battle_orders4", "battle_orders5", "battle_wave"]:
+	for kind in ["main", "intro_open", "intro_end", "class_idle", "class_knight", "class_ranger", "class_mage", "table_two", "table_hover", "table_one", "table_held", "camp_rest_iv", "camp_rest_xii", "dossier_knight", "dossier_ranger", "dossier_mage", "dossier_lost", "fate_0", "fate_4", "fate_8", "fate_12", "fate_final", "reward_major_upgrade", "reward_bonus_upgrade", "reward_normal_loot", "reward_death_wager", "reward_elite_artifact", "reward_details", "upgrade_knight", "upgrade_ranger", "upgrade_mage", "event_moon_seal", "event_resolved", "event_blood_ledger", "event_chained_prisoner", "event_bone_tax", "event_unsent_letters", "event_last_signal", "event_banner_seamstress", "event_curse_forge", "shop_poor", "shop_rich", "shop_bought", "well_poor", "well_rich", "well_selected", "well_alternative", "end_victory", "end_defeat", "end_full", "battle_solo", "battle_duo", "battle_trio", "battle_orders4", "battle_orders5", "battle_wave"]:
 		if args.size() == 3 and kind not in args[2].split(","):
 			continue
 		planned += 1 + (4 if kind == "battle_trio" else (1 if kind == "end_full" else 0))
@@ -58,6 +58,17 @@ func _fixture(kind: String) -> void:
 		state.call("add_hero_upgrade", "knight_executioner")
 		state.call("add_artifact", "dead_mans_shield")
 		if kind == "dossier_lost": state.call("lose_companion", "mage", "native visual QA")
+	elif kind.begins_with("camp_rest_"):
+		var slot := 4 if kind == "camp_rest_iv" else 12
+		if slot == 12:
+			state.call("recruit_companion", "mage", "native visual QA")
+			state.call("change_hero_hp", "knight", -state.call("get_hero_current_hp", "knight") + 1.0)
+		else:
+			state.call("change_hero_hp", "knight", -70.0)
+		state.set("cards_resolved", slot)
+		state.set("resolved_card_ids", COMPLETED.slice(0, slot))
+		var stops := preload("res://scripts/core/run_camp_stops.gd")
+		state.set("camp_stop", stops.open(state, slot))
 	elif kind.begins_with("fate_"):
 		path = "table/fate_spread_overlay.tscn"
 		var count := 12 if kind == "fate_final" else int(kind.trim_prefix("fate_"))
@@ -147,6 +158,11 @@ func _fixture(kind: String) -> void:
 		_key(&"ui_accept")
 		_key(&"ui_accept")
 		assert(state.gold == 75 and state.is_role_in_party("mage"))
+	elif kind == "camp_rest_xii":
+		var selector: OptionButton = scene.get_node("CampStop/CampRest")._trainee
+		if selector != null and selector.item_count > 1:
+			selector.select(1)
+			selector.item_selected.emit(1)
 	elif kind == "reward_bonus_upgrade": scene.call("_setup_bonus_upgrade_reward")
 	elif kind.begins_with("upgrade_"):
 		var role := kind.trim_prefix("upgrade_")

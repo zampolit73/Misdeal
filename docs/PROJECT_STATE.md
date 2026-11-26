@@ -1,3 +1,7 @@
+## Cursed Deck V3 · Camp Rest cards
+
+Player requested the same Black & Gold appearance on «Первый привал» (IV) and «Последняя подготовка» (XII) after seeing the old ornate V2 cards. Both stops now use the shared native card front, title/copy/action colors, focus states and disabled restrictions. The three original illustrations are extracted at runtime with AtlasTexture from the unchanged V2 plate; an opaque mask covers the old baked frames. Training retains the live per-hero selector, and only overflow copy requires a tooltip. Existing rules, save and confirmation semantics remain unchanged. Godot 4.7.2: 29/29 targeted tests, 572 assertions (including real CampStop panel and disk save); native IV/XII capture added to CI, player acceptance pending. [QA](qa/camp_rest_v2/README.md#black--gold-v3).
+
 ## Cursed Deck V3 · Black & Gold — concept approved, implemented
 
 Player reported poor readability on actual V2 Table/Fate screenshots and approved Black & Gold on 2026-11-26. The shared front is now a dark matte #211C19 surface with thin bronze rules, #E8CB95 headings/actions and #E5DBC4 descriptions. Larger fitted Table copy, gold revealed Fate titles, light event costs/restrictions and reward modifiers share the palette. Keep the original illustrations, hit areas, V2 backs/unknowns and approved non-card cinematic plates. Godot 4.7.2: 26/26 targeted tests (2605 assertions), D315/D316/D274 smoke PASS. Native framebuffer blocked locally; player visual acceptance pending. [QA](qa/cursed_deck_v3/README.md).

@@ -1,3 +1,7 @@
+## Camp Rest · Black & Gold V3
+
+Both IV/XII cards use `unified_card_skin.gd`, the same dark face and native CTA as Table/events/rewards, with gold title/ivory effect and pale red restriction. The original camp plate remains the environment; original illustrations are AtlasTexture regions, old baked finials fully masked by card rects defined in the layout JSON. Keep three full-card Buttons, a separate hero selector above training CTA, and tooltip only on overflow. Non-card header/footer remain approved V2.
+
 ## Cursed Deck V3 — current Black & Gold front
 
 Use the common `unified_card_skin.gd` and text-free `cursed_deck_v3/card_face.svg`: #211C19 matte charcoal-brown, subtle #806749/C7A46E hairline borders; #E8CB95 headings/type/action, #E5DBC4 body, #B8D49A benefit, #F0A299 penalty/restriction, #B7AA95 disabled action. The native action is a label with a quiet top rule and distinct hover/focus/pressed state. Preserve geometry, fitted localized text, V2 moon-seal backs/charcoal unknowns, sealed XIII and all source illustration art. Separate non-card cinematic plates retain the approved materials. [QA](qa/cursed_deck_v3/README.md).

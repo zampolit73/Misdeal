@@ -1,3 +1,7 @@
+## Camp Rest Black & Gold · native acceptance
+
+Both rest stops (IV and XII) now use Cursed Deck V3; the old environment and illustrations remain unchanged, training selector and restrictions remain live. Godot 4.7.2: 29/29 targeted tests (572 assertions), including real panel selection, checkpoint save and duplicate guard. Native capture of both stops is included in card CI. Player check: F5 resolve IV/XII, switch trainee, inspect unavailable rite, choose once and return to Table. The separate merchant cabinet is unchanged. [QA](qa/camp_rest_v2/README.md#black--gold-v3).
+
 ## Cursed Deck V3 · Black & Gold — current visual acceptance gate
 
 The player approved the dark-face colorway after reporting low contrast in V2 runtime. V3 is implemented in the unified card skin: dark matte face, pale gold titles/actions, ivory descriptions, brighter semantic colors, fitted Table text, revealed Fate titles. V2 backs/unknowns, actual art and all gameplay remain unchanged. Godot 4.7.2 headless: 26/26 tests (2605 assertions) and D315/D316/D274 smoke PASS; local native capture blocked by X11 socket permissions. [QA and concept](qa/cursed_deck_v3/README.md).

@@ -5,12 +5,14 @@ signal action_requested(action: String)
 const STOPS := preload("res://scripts/core/run_camp_stops.gd")
 const UI := preload("res://scripts/ui/wizard_reliquary.gd")
 const KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
+const UNIFIED := preload("res://scripts/ui/unified_card_skin.gd")
 const ASSETS := "res://assets/pixel/ui/camp_rest_v2/"
 const DESIGN := preload(ASSETS + "layout_1280x720.json")
 const PLATE := preload(ASSETS + "runtime/rest_plate.webp")
 const BONE := Color("e6cbaa")
-const INK := Color("302019")
-const RESTRICTION := Color("652c28")
+const CARD_SPLIT := 0.43
+const COPY_TOP := 239.0
+const SELECTOR_Y := 351.0
 
 var message: Label
 var action_buttons: Array[Button] = []
@@ -34,31 +36,44 @@ func build(title: String, intro: String) -> void:
 		hp.append("%s %d / %d HP" % [RunState.get_hero_unit_data(role).unit_name,
 			ceili(RunState.get_hero_current_hp(role)), ceili(RunState.get_hero_max_hp(role))])
 	_copy(layout.party_health, "     ".join(hp), 15, BONE, HORIZONTAL_ALIGNMENT_LEFT)
-	message = _copy(layout.footer, "Enter — подтвердить  ·  Наведите на карту, чтобы прочитать полное описание", 15)
+	message = _copy(layout.footer, "Enter — подтвердить  ·  Tab / стрелки — выбор  ·  Наведение — если текст сокращён", 15)
 	message.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 
 	var rest: Dictionary = layout.cards[0]
 	var rest_button := _card(rest, "ПЕРЕДОХНУТЬ")
-	_set_description(rest_button, _description(rest), "Восстановить до %d%% макс. HP каждому герою." % [
+	_set_description(rest_button, _description(rest_button), "Восстановить до %d%% макс. HP каждому герою." % [
 		roundi(STOPS.rest_fraction(RunState) * 100)])
 	rest_button.pressed.connect(func() -> void: action_requested.emit("rest"))
 	_build_training(layout.cards[1])
 	_build_rite(layout.cards[2])
+	var enabled: Array[Button] = []
+	for button in action_buttons:
+		if button.disabled:
+			button.focus_mode = Control.FOCUS_NONE
+		else:
+			enabled.append(button)
+	for index in enabled.size():
+		var button := enabled[index]
+		button.focus_neighbor_left = button.get_path_to(enabled[posmod(index - 1, enabled.size())])
+		button.focus_neighbor_right = button.get_path_to(enabled[(index + 1) % enabled.size()])
 	rest_button.grab_focus()
 
 
 func _build_training(card: Dictionary) -> void:
 	var button := _card(card, "ТРЕНИРОВКА")
-	_training_description = _description(card)
+	_training_description = _description(button, true)
 	var default_role := RunState.get_least_developed_extra_role()
 	if default_role.is_empty():
-		_disable(card, button, STOPS.restriction(RunState, "upgrade/" + RunState.protagonist_role))
+		_disable(button, STOPS.restriction(RunState, "upgrade/" + RunState.protagonist_role))
 		return
 	_trainee = OptionButton.new()
 	_trainee.accessibility_name = "Герой для тренировки"
 	_trainee.alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_trainee.add_theme_font_size_override("font_size", 14)
+	_trainee.add_theme_font_override("font", UNIFIED.serif())
+	_trainee.add_theme_font_size_override("font_size", 15)
 	KIT.apply_action_button(_trainee, KIT.BRONZE)
+	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
+		_trainee.add_theme_color_override(state, UNIFIED.GOLD)
 	for role in RunState.party_roles:
 		var index := _trainee.item_count
 		_trainee.add_item(RunState.get_hero_unit_data(role).unit_name)
@@ -66,7 +81,7 @@ func _build_training(card: Dictionary) -> void:
 		_trainee.set_item_disabled(index, not STOPS.restriction(RunState, "upgrade/" + role).is_empty())
 		if role == default_role:
 			_trainee.select(index)
-	UI.put(self, _trainee, UI.rect(card.training_role_selector))
+	UI.put(button, _trainee, Rect2(22, SELECTOR_Y, button.size.x - 44, 30))
 	button.focus_neighbor_bottom = button.get_path_to(_trainee)
 	_trainee.focus_neighbor_top = _trainee.get_path_to(button)
 	_trainee.item_selected.connect(func(_index: int) -> void: _update_training(button))
@@ -82,69 +97,80 @@ func _update_training(button: Button) -> void:
 
 func _build_rite(card: Dictionary) -> void:
 	var button := _card(card, "ТЁМНЫЙ ОБРЯД")
+	var description := _description(button)
 	if not RunState.camp_stop.stock.is_empty():
 		var artifact := RunState.get_artifact(String(RunState.camp_stop.stock[0]).get_slice("/", 1))
-		_set_description(button, _description(card), "%s\n−%d текущего HP протагониста\n%s" % [
+		_set_description(button, description, "%s\n−%d текущего HP протагониста\n%s" % [
 			artifact.title, int(STOPS.rite_cost(RunState)), artifact.description])
-	_disable(card, button, STOPS.restriction(RunState, "rite"))
+	_disable(button, STOPS.restriction(RunState, "rite"))
 	button.pressed.connect(func() -> void: action_requested.emit("rite"))
 
 
 func _card(card: Dictionary, title: String) -> Button:
-	var button := UI.hotspot(self, UI.rect(card.hit_area), title)
-	for state: String in card.overlay_files:
-		var style := StyleBoxTexture.new()
-		style.texture = load(ASSETS + card.overlay_files[state]) as Texture2D
-		button.add_theme_stylebox_override(state, style)
-		if state == "pressed":
-			button.add_theme_stylebox_override("hover_pressed", style)
-	UI.caption(self, UI.rect(card.title), title, 20, BONE)
+	# The approved V2 plate contains the old frame and illustrations. Cover the
+	# ENTIRE old frame including its projecting finials; sample only its art.
+	var button := UI.hotspot(self, UI.rect(card.v3_card_rect), title)
+	var extent := button.size
+	var frame := UNIFIED.mount(button, Rect2(Vector2.ZERO, extent), CARD_SPLIT, "UnifiedCardFrame", true)
+	var atlas := AtlasTexture.new()
+	atlas.atlas = PLATE
+	atlas.region = UI.rect(card.v3_art_crop)
+	atlas.filter_clip = true
+	var art := UI.picture(button, atlas, UNIFIED.art_rect(extent, CARD_SPLIT))
+	art.name = "CardArt"
+	UNIFIED.fit_art(art, UNIFIED.art_rect(extent, CARD_SPLIT))
+	UNIFIED.label(button, "Kind", "ПРИВАЛ", Rect2(18, 9, extent.x - 36, 32), 15, UNIFIED.GOLD, true)
+	UNIFIED.label(button, "Title", title, Rect2(15, 194, extent.x - 30, 40), 20, UNIFIED.GOLD, true)
+	var action := UNIFIED.action(button, Rect2(25, extent.y - 50, extent.x - 50, 38), "ВЫБРАТЬ", 17)
+	UNIFIED.bind_action(button, frame, action)
 	action_buttons.append(button)
 	return button
 
 
-func _disable(card: Dictionary, button: Button, reason: String) -> void:
+func _disable(button: Button, reason: String) -> void:
 	if reason.is_empty():
 		return
 	button.disabled = true
-	_copy(card.status, reason, 14, RESTRICTION)
-	button.tooltip_text += ("\n" if not button.tooltip_text.is_empty() else "") + reason
-	button.accessibility_description = button.tooltip_text
+	var description := button.get_node_or_null("Description") as Label
+	if description != null:
+		description.size.y = SELECTOR_Y - COPY_TOP - 6
+		_fit_description(button, description)
+	UNIFIED.label(button, "Availability", reason, Rect2(17, SELECTOR_Y, button.size.x - 34, 30), 14, UNIFIED.NEGATIVE, true)
+	var action := button.get_node("UnifiedAction") as TextureRect
+	(action.get_node("Caption") as Label).text = "НЕДОСТУПНО"
+	button.get_meta("unified_refresh").call()
+	button.accessibility_description += ("\n" if not button.accessibility_description.is_empty() else "") + reason
+	if not button.tooltip_text.is_empty():
+		button.tooltip_text += "\n" + reason
 
 
-func _description(card: Dictionary) -> Label:
-	var area := UI.rect(card.description)
-	var box := Control.new()
-	box.clip_contents = true
-	box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	UI.put(self, box, area)
-	var label := Label.new()
-	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	label.add_theme_color_override("font_color", INK)
-	label.add_theme_constant_override("line_spacing", -4)
-	UI.put(box, label, Rect2(Vector2.ZERO, area.size))
-	return label
+func _description(button: Button, training: bool = false) -> Label:
+	var height := SELECTOR_Y - COPY_TOP - 6 if training else button.size.y - 55 - COPY_TOP
+	return UNIFIED.label(button, "Description", "", Rect2(18, COPY_TOP, button.size.x - 36, height), 16, UNIFIED.COPY)
 
 
 func _set_description(button: Button, label: Label, description: String) -> void:
-	button.tooltip_text = description
+	label.text = description
 	button.accessibility_description = description
+	_fit_description(button, label)
+
+
+func _fit_description(button: Button, label: Label) -> void:
+	# Prefer full text on the face. Native tooltip only when it really overflows,
+	# so hovering ordinary cards no longer obstructs all three illustrations.
 	label.max_lines_visible = -1
 	label.text_overrun_behavior = TextServer.OVERRUN_NO_TRIMMING
-	label.text = description
-	var bounds: Vector2 = label.get_parent().size
+	button.tooltip_text = ""
 	var font := label.get_theme_font("font")
-	var spacing := label.get_theme_constant("line_spacing")
-	for points in range(15, 11, -1):
+	for points in range(16, 12, -1):
 		label.add_theme_font_size_override("font_size", points)
-		var lines := font.get_multiline_string_size(description, HORIZONTAL_ALIGNMENT_CENTER, bounds.x, points)
+		var lines := font.get_multiline_string_size(label.text, HORIZONTAL_ALIGNMENT_CENTER, label.size.x, points)
 		var line_count := roundi(lines.y / font.get_height(points))
-		if lines.y + maxi(0, line_count - 1) * spacing <= bounds.y:
+		if lines.y + maxi(0, line_count - 1) * label.get_theme_constant("line_spacing") <= label.size.y:
 			return
-	label.max_lines_visible = floori((bounds.y + spacing) / (font.get_height(12) + spacing))
+	label.max_lines_visible = maxi(1, floori((label.size.y + label.get_theme_constant("line_spacing")) / (font.get_height(13) + label.get_theme_constant("line_spacing"))))
 	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	button.tooltip_text = label.text
 
 
 func _copy(area: Array, value: String, points: int, color: Color = BONE, alignment := HORIZONTAL_ALIGNMENT_CENTER) -> Label:

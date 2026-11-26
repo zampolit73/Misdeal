@@ -15,6 +15,10 @@ on:
       - 'scripts/reward/elite_trophy.gd'
       - 'scripts/reward/death_wager_view.gd'
       - 'scripts/table/merchant_view.gd'
+      - 'scripts/table/camp_rest_view.gd'
+      - 'assets/pixel/ui/camp_rest_v2/layout_1280x720.json'
+      - 'tests/unit/test_run_camp_stops.gd'
+      - 'scripts/dev/visual_polish_matrix.gd'
       - 'tests/unit/test_unified_card_system_v1.gd'
       - 'shaders/card_ds3_ink.gdshader'
       - 'scripts/ui/card_ds3_skin.gd'
@@ -71,7 +75,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . -s res://addons/gut/gut_cmdln.gd -gconfig= -gtest=res://tests/unit/test_unified_card_system_v1.gd,res://tests/unit/test_event_choice_vnext.gd,res://tests/unit/test_card_inspection_visual_v1.gd,res://tests/unit/test_d381_fate_spread_layout.gd,res://tests/unit/test_visual_polish.gd -gexit 2>&1 | tee /tmp/d315-unified-gut.log
+          /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 --headless --path . -s res://addons/gut/gut_cmdln.gd -gconfig= -gtest=res://tests/unit/test_unified_card_system_v1.gd,res://tests/unit/test_event_choice_vnext.gd,res://tests/unit/test_card_inspection_visual_v1.gd,res://tests/unit/test_d381_fate_spread_layout.gd,res://tests/unit/test_visual_polish.gd,res://tests/unit/test_run_camp_stops.gd -gexit 2>&1 | tee /tmp/d315-unified-gut.log
           grep -Fq 'All tests passed!' /tmp/d315-unified-gut.log
           ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error' /tmp/d315-unified-gut.log
       - name: Capture actual migrated screens at native size
@@ -85,9 +89,9 @@ jobs:
             env LIBGL_ALWAYS_SOFTWARE=1 /tmp/godot-bin/Godot_v4.7.2-stable_linux.x86_64 \
             --path . --windowed --resolution 1280x720 --rendering-method gl_compatibility --audio-driver Dummy \
             --script res://scripts/dev/visual_polish_matrix.gd -- /tmp/d315-unified-native "$GITHUB_SHA" \
-            table_two,table_held,fate_0,fate_4,fate_8,fate_final,reward_major_upgrade,reward_bonus_upgrade,reward_death_wager,reward_elite_artifact,reward_details,event_blood_ledger,event_chained_prisoner,well_poor,well_selected \
+            table_two,table_held,fate_0,fate_4,fate_8,fate_final,reward_major_upgrade,reward_bonus_upgrade,reward_death_wager,reward_elite_artifact,reward_details,event_blood_ledger,event_chained_prisoner,well_poor,well_selected,camp_rest_iv,camp_rest_xii \
             2>&1 | tee /tmp/d315-unified-render.log
-          grep -Fq 'VISUAL_MATRIX_PASS: 15 ' /tmp/d315-unified-render.log
+          grep -Fq 'VISUAL_MATRIX_PASS: 17 ' /tmp/d315-unified-render.log
           ! grep -Eq 'SCRIPT ERROR|Parse Error|Parser Error' /tmp/d315-unified-render.log
           test -s /tmp/d315-unified-native/manifest.json
       - uses: actions/upload-artifact@v4

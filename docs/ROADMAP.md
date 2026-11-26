@@ -29,7 +29,7 @@
 ## Gameplay 2.0
 
 - A · Wounds, rest stops and one reliable merchant checkpoint. [Rules and QA](GAMEPLAY_2_0.md)
-- Camp Rest Visual V2: approved presentation for the stops after IV and XII. [Native QA](qa/camp_rest_v2/README.md)
+- Camp Rest: IV/XII cards now use Cursed Deck V3; V2 environment/art preserved. 29/29 targeted tests; native acceptance pending. [QA](qa/camp_rest_v2/README.md#black--gold-v3)
 - Merchant Visual V2: approved presentation for the stop after VIII. [Native QA](qa/merchant_v2/README.md)
 - B · 13 relics, build synergies and live stat changes in rewards, the merchant and events.
 - C · Wizard Archive, three unlockable starting styles and five difficulty oaths.

@@ -72,7 +72,19 @@
         "focus": "runtime/card_1_focus.png",
         "pressed": "runtime/card_1_pressed.png",
         "disabled": "runtime/card_1_disabled.png"
-      }
+      },
+      "v3_card_rect": [
+        218,
+        167,
+        282,
+        446
+      ],
+      "v3_art_crop": [
+        249,
+        264,
+        219,
+        153
+      ]
     },
     {
       "action": "upgrade/<selected_role>",
@@ -115,7 +127,19 @@
         "focus": "runtime/card_2_focus.png",
         "pressed": "runtime/card_2_pressed.png",
         "disabled": "runtime/card_2_disabled.png"
-      }
+      },
+      "v3_card_rect": [
+        505,
+        167,
+        278,
+        446
+      ],
+      "v3_art_crop": [
+        537,
+        264,
+        214,
+        153
+      ]
     },
     {
       "action": "rite",
@@ -153,7 +177,19 @@
         "focus": "runtime/card_3_focus.png",
         "pressed": "runtime/card_3_pressed.png",
         "disabled": "runtime/card_3_disabled.png"
-      }
+      },
+      "v3_card_rect": [
+        788,
+        167,
+        282,
+        446
+      ],
+      "v3_art_crop": [
+        818,
+        264,
+        219,
+        153
+      ]
     }
   ]
 }
