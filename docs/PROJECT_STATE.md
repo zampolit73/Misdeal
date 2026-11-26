@@ -1,6 +1,6 @@
-## Battle Result Visual V2 · candidate only
+## Battle Result Visual V2 · approved concept, implemented
 
-An offline three-state concept reuses System Dialog/Main Menu V2 materials for the legacy Battle result panel and places the existing planned-mode report action inside it. No game code, art, rules or live behavior changed. [Concept and contract](../assets/source_archive/battle_result_v2/README.md). Await visual approval; no native result render claimed.
+Player approved all three states on 2026-11-27: victory, Last Deal offer and final defeat. The same native Main Menu V2 bronze/stone and burgundy plates now frame the live result, actual encounter, payout, exact price and existing actions. The planned-mode report is inside the result; Classic has no invented report. Existing rules, save/rollback, journal, reward routing and RunEnd remain unchanged. Godot 4.7.2: 25/25 targeted tests, 469 assertions. The headless gameplay-core attempt stopped at the existing renderer-dependent scene transition; native CI capture now includes three actual result states, not yet executed. Player F5 visual acceptance pending. [QA](qa/battle_result_v2/README.md) and [approved direction](../assets/source_archive/battle_result_v2/README.md).
 
 ## System Dialog V1 · approved Main Menu V2 family
 

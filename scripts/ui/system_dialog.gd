@@ -53,7 +53,7 @@ func _build_panel(title: String, dimensions: Vector2) -> void:
 	panel.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	# Nine-slice the actual secondary menu plate: preserve its aged bronze
 	# corners and bevel; tile the dark stone instead of stretching it vertically.
-	var frame := _plate(SECONDARY)
+	var frame := plate_style(SECONDARY)
 	frame.axis_stretch_horizontal = StyleBoxTexture.AXIS_STRETCH_MODE_TILE
 	frame.axis_stretch_vertical = StyleBoxTexture.AXIS_STRETCH_MODE_TILE
 	panel.add_theme_stylebox_override("panel", frame)
@@ -76,7 +76,7 @@ func _button(parent: Control, node_name: String, value: String, bounds: Rect2, t
 	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color"]:
 		button.add_theme_color_override(state, BONE)
 	for state in ["normal", "hover", "pressed", "hover_pressed"]:
-		var style := _plate(texture)
+		var style := plate_style(texture)
 		style.content_margin_top = 0
 		style.content_margin_bottom = 25 if not subtitle.is_empty() else 0
 		if state == "hover":
@@ -84,7 +84,7 @@ func _button(parent: Control, node_name: String, value: String, bounds: Rect2, t
 		elif state in ["pressed", "hover_pressed"]:
 			style.modulate_color = Color("d4bfb3")
 		button.add_theme_stylebox_override(state, style)
-	var focus := _plate(texture)
+	var focus := plate_style(texture)
 	# Highlight the actual bevel instead of drawing a second rectangular rim.
 	focus.draw_center = false
 	focus.modulate_color = Color(1.45, 1.30, 1.12)
@@ -100,7 +100,7 @@ func _button(parent: Control, node_name: String, value: String, bounds: Rect2, t
 	return button
 
 
-func _plate(texture: Texture2D) -> StyleBoxTexture:
+static func plate_style(texture: Texture2D) -> StyleBoxTexture:
 	var style := StyleBoxTexture.new()
 	style.texture = _dialog_plate_texture(texture)
 	for side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]:

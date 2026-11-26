@@ -1,8 +1,8 @@
-# Battle Result Visual V2 — design candidate, not production
+# Battle Result Visual V2 — approved design and production implementation
 
-2026-11-26. Baseline main `bc82b002`. Proposed continuation of Interface Polish 2.0. **Await player visual direction approval. No runtime/code or gameplay changes in the candidate commit.**
+2026-11-26 candidate baseline `bc82b002`; player approved all three frames on 2026-11-27. Production now uses the approved native presentation via `scripts/battle/battle_result_visual.gd`, without introducing runtime artwork or changing existing gameplay. The original Battle nodes own their signals, result rules and saves. The planned-mode report is moved inside the same panel; Classic keeps only its real actions. [Targeted QA and native acceptance](../../../docs/qa/battle_result_v2/README.md).
 
-The current production `Battle/ResultOverlay` is still the legacy result panel: `ResultBackdrop`, `Result`, `ResultSubtitle`, `LastDealPrice`, `LastDealAccept`, `LastDealRefuse`, `ContinueButton` in `scenes/battle/battle.tscn`. The planned-mode report Button is added separately by `scripts/battle/planning/battle_plan_campaign.gd` at (390,634). It is not the already approved final RunEnd screen.
+The design supersedes the legacy `Battle/ResultOverlay`, not the separately approved final RunEnd screen. Original candidate frames follow; they remain offline references rather than native screenshots.
 
 ## Candidate frames (1280×720, offline layout proof)
 

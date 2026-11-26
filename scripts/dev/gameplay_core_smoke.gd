@@ -34,6 +34,7 @@ func _run() -> void:
 	if not output.is_empty():
 		var checkpoint: Dictionary = save.read_slot(state)
 		if not _check(is_equal_approx(checkpoint.state.hero_current_hp.knight, expected_hp), "Reward checkpoint includes victory healing once"): return
+	await _capture("battle_result_v2_victory.png")
 	battle.continue_button.pressed.emit()
 	if not await _at_scene("/reward/reward.tscn"): return
 	var reward := current_scene
@@ -95,6 +96,7 @@ func _run() -> void:
 	battle.combat_plan_controller.start_planned_battle()
 	if not await _wait_for_result(battle): return
 	if not _check(not state.last_battle_won and state.last_deal_pending, "Real defeat offers Last Deal"): return
+	await _capture("battle_result_v2_last_deal.png")
 	if not output.is_empty():
 		var checkpoint: Dictionary = save.read_slot(state)
 		if not _check(save.apply_slot(state, checkpoint) and state.last_deal_pending, "Defeat checkpoint"): return
@@ -115,6 +117,7 @@ func _run() -> void:
 	battle.combat_plan_controller.start_planned_battle()
 	if not await _wait_for_result(battle): return
 	if not _check(state.run_failed and not battle.last_deal_accept_button.visible, "Second defeat ends the run"): return
+	await _capture("battle_result_v2_defeat.png")
 	battle.last_deal_refuse_button.pressed.emit()
 	if not await _at_scene("/run_end/run_end.tscn"): return
 	print("GAMEPLAY_CORE_NATIVE_PASS")

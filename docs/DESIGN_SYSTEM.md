@@ -1,3 +1,7 @@
+## Battle Result Visual V2
+
+Use `scripts/battle/battle_result_visual.gd` with shared `SystemDialog.plate_style` (original menu textures, transparent bevel and focus). At 1280×720: victory 640×360, Last Deal 744×466, final defeat 680×360; all centered over a 52% scrim, with live arena below. Gold/bone headings, muted encounter, ivory description and pale negative price detail. Burgundy marks the primary action, neutral plate the report/refusal; no duplicate chrome or new bespoke art. Retain the exact live costs/payout, fit explicit line breaks, report inside panel only in planned mode and safely focused.
+
 ## System Dialog V1
 
 Use `scripts/ui/system_dialog.gd` for the two production confirmation dialogs: centered 620×454 New Game or 620×306 Return to Menu over a 58% scrim. Nine-slice Main Menu V2 secondary plate for the stone/bronze frame, secondary/primary plates for native neutral/burgundy buttons; live serif bone and ivory text. Cancel initially focused; cyclic navigation and single dismissal restore the opener. Black & Gold physical cards retain their separate material.

@@ -1,6 +1,6 @@
-## Battle Result Visual V2 · next visual candidate
+## Battle Result Visual V2 · native acceptance
 
-Player asked to continue Interface Polish 2.0 after System Dialog V1. The next untouched legacy UI is the post-battle result (victory, Last Deal offer, final defeat), not the previously approved RunEnd summary. Three offline 1280×720 previews reuse exact original Main Menu V2 plates over existing Firing Square art. [Candidate frames and implementation contract](../assets/source_archive/battle_result_v2/README.md). Await player approval before actual migration; no production runtime changes. Preserve Last Deal, payment, saves, journal/report and Classic. The remaining native acceptance gates below are still open.
+All three approved result concepts are implemented. F5: win a planned battle, open/close «РАЗБОР ПРИКАЗОВ», claim the reward; on a disposable run lose, inspect the actual Last Deal price, accept or refuse; a second defeat must present the final result and route to the separately approved RunEnd. Classic must omit the report. Keep real encounter/payout/cost text and all original rules. Targeted Godot 4.7.2: 25/25 tests, 469 assertions. Native screenshots are now wired into the existing gameplay-core release CI, not yet captured locally (headless stalls on renderer-dependent scene swaps). [QA and reference](qa/battle_result_v2/README.md). Continue outstanding native acceptance gates below and the Act I control run.
 
 ## System Dialog V1 · native acceptance
 

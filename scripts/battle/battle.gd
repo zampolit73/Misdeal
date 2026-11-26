@@ -13,6 +13,7 @@ const WARDEN_INTRO := preload("res://scripts/battle/warden_intro.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 const BATTLE_DS3_PASS := preload("res://scripts/battle/battle_ds3_pass.gd")
+const RESULT_VISUAL := preload("res://scripts/battle/battle_result_visual.gd")
 const TARGET_PREVIEW_SCRIPT := preload("res://scripts/battle/target_preview.gd")
 const DEPLOYMENT_FLOOR_SCRIPT := preload("res://scripts/battle/deployment_floor_markers.gd")
 const SHEPHERD_WHISTLE_SCRIPT := preload("res://scripts/battle/bone_shepherd_whistle.gd")
@@ -1658,6 +1659,7 @@ func _on_last_deal_accept_pressed() -> void:
 		last_deal_accept_button.disabled = false
 		last_deal_refuse_button.disabled = false
 		status_label.text = RUN_SAVE.instance().error_message
+		RESULT_VISUAL.show_save_error($ResultOverlay, status_label.text)
 		return
 	SCENE_ROUTER.reload_current(self)
 
@@ -1781,8 +1783,11 @@ func _finish_battle(player_won: bool) -> void:
 	result_subtitle.visible = true
 	fight_button.visible = false
 	fight_button.text = "БОЙ ОКОНЧЕН"
+	var review: Button = null
 	if combat_plan_controller != null:
 		combat_plan_controller.on_battle_finished(player_won)
+		review = combat_plan_controller.review_button
+	RESULT_VISUAL.present($ResultOverlay, player_won, encounter.title, status_label.text, review)
 
 func _play_battle_audio(event_name: String) -> void:
 	if combat_audio != null and combat_audio.has_method("play_event"):

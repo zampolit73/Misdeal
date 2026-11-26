@@ -1,3 +1,7 @@
+## Battle Result Visual V2 · unified result family
+
+On 2026-11-27 the player approved the exact archived victory, Last Deal and final defeat visual direction. Reuse the actual System Dialog/Main Menu plate styles on existing Battle result controls; preserve encounter, real payout/price, acceptance/refusal, rollback, report, routing and the already approved RunEnd. The report is read-only and inside the result in planned mode, safely focused before a decisive Last Deal action. Classic must not invent a report. No new battle rules, art or reward amounts.
+
 ## System Dialog V1 · Main Menu V2 is the systemic UI reference
 
 Player approved matching the main menu rather than inventing a separate visual style. Reuse actual Main Menu V2 dark stone/bronze and burgundy texture plates with live bone serif type for both confirmation windows. Preserve all existing save/reset/archive/checkpoint semantics, distinct actions and warnings. Safe Cancel initially owns keyboard focus; Esc dismisses the current confirmation only. Do not extend this material to physical Black & Gold cards or repaint approved cinematic plates.

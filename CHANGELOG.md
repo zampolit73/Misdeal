@@ -1,3 +1,9 @@
+## Battle Result Visual V2 - 27 Nov 2026
+
+- Implement all three player-approved result states with native bronze/stone menu plates, actual encounter, payout/price and report action inside the result. Keep original actions, saves, gameplay and approved RunEnd unchanged.
+- Preserve explicit multiline copy, safe report focus and visible Last Deal save-error feedback. Classic retains only its original available actions.
+- Godot 4.7.2: 25/25 targeted tests, 469 assertions. Three native captures added to the existing gameplay-core runner; native visual acceptance pending.
+
 ## System Dialog V1 corner and focus polish - 26 Nov 2026
 
 - Player's native screenshot confirms title, descriptions and warning fit after the layout fix. Derive transparent bevel contours from the original primary/secondary menu plates locally to SystemDialog; highlight the same bevel for keyboard focus instead of drawing an extra rectangular frame.
