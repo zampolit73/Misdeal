@@ -1,3 +1,7 @@
+## Merchant Visual V2
+
+Use the merchant plate at 1280×720 with live parchment, offer art, price tags and return controls. Put restrictions inside the affected price tag. The screen uses no separate party health panel.
+
 ## Run End Visual V2 · Wizard's Verdict
 
 Use the supplied result plate and layout, with separate live controls. Keep the painted frames exposed, use bone text on dark surfaces and ink on parchment, and let long result text scroll within its own area.

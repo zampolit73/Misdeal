@@ -8,7 +8,10 @@ const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const ART := preload("res://scripts/ui/card_art_catalog.gd")
 const BUILD := preload("res://scripts/ui/run_build_feedback.gd")
 
+const MERCHANT_VIEW := preload("res://scripts/table/merchant_view.gd")
+
 var _shop: bool
+var _merchant: MERCHANT_VIEW
 var _stock_rows: VBoxContainer
 var _party: Label
 var _message: Label
@@ -20,6 +23,14 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	z_index = 100
 	_shop = RunState.camp_stop.slot == STOPS.SHOP_SLOT
+	if _shop:
+		_merchant = MERCHANT_VIEW.new()
+		add_child(_merchant)
+		_merchant.action_requested.connect(_choose)
+		_merchant.build(_title(), _intro())
+		_message = _merchant.message
+		_render_choices()
+		return
 	var shade := ColorRect.new()
 	shade.color = Color(0.03, 0.02, 0.02, 0.78)
 	add_child(shade)
@@ -36,7 +47,7 @@ func _ready() -> void:
 	var art := TextureRect.new()
 	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	art.texture = ART.get_run_card_texture("gravedigger_shop" if _shop else "ash_rest")
+	art.texture = ART.get_run_card_texture("ash_rest")
 	art.position = Vector2(28, 123)
 	art.size = Vector2(355, 225)
 	art.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -54,14 +65,6 @@ func _ready() -> void:
 	_message.size.x = 670
 	_message.mouse_filter = Control.MOUSE_FILTER_PASS
 	_message.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	if _shop:
-		var leave := Button.new()
-		leave.text = "Вернуться к столу"
-		leave.position = Vector2(778, 549)
-		leave.size = Vector2(232, 39)
-		plate.add_child(leave)
-		UI.apply_action_button(leave, UI.BRONZE)
-		leave.pressed.connect(_choose.bind("leave"))
 	_render_choices()
 
 
@@ -85,6 +88,9 @@ func _label(parent: Control, text: String, points: int, color: Color) -> Label:
 
 
 func _render_choices() -> void:
+	if _shop:
+		_action_buttons = _merchant.refresh()
+		return
 	var focus_index := _action_buttons.find(get_viewport().gui_get_focus_owner())
 	for child in _stock_rows.get_children():
 		_stock_rows.remove_child(child)
@@ -94,31 +100,27 @@ func _render_choices() -> void:
 	for role in RunState.party_roles:
 		lines.append("%s    %d / %d HP" % [_hero_name(role), ceili(RunState.get_hero_current_hp(role)), ceili(RunState.get_hero_max_hp(role))])
 	_party.text = "\n".join(lines)
-	if _shop:
-		for item: String in RunState.camp_stop.stock:
-			_shop_row(item)
-	else:
-		_add_row("Отдых", "Восстановить до %d%% макс. HP каждому герою." % roundi(STOPS.rest_fraction(RunState) * 100), "rest")
-		_trainee = OptionButton.new()
-		_trainee.custom_minimum_size.y = 34
-		for role in RunState.party_roles:
-			var index := _trainee.item_count
-			_trainee.add_item(_hero_name(role))
-			_trainee.set_item_metadata(index, role)
-			_trainee.set_item_disabled(index, RunState.get_next_extra_hero_upgrade_id(role).is_empty())
-			if role == RunState.get_least_developed_extra_role():
-				_trainee.select(index)
-		_stock_rows.add_child(_trainee)
-		UI.apply_action_button(_trainee, UI.BRONZE)
-		var training := _add_row("Тренировка", "", "")
-		_trainee.item_selected.connect(func(_index: int) -> void: _update_training(training))
-		training.pressed.connect(func() -> void: _choose(_training_action()))
-		_update_training(training)
-		var rite_text := "Нет подходящей реликвии."
-		if not RunState.camp_stop.stock.is_empty():
-			var artifact := RunState.get_artifact(String(RunState.camp_stop.stock[0]).get_slice("/", 1))
-			rite_text = "%s · −%d текущего HP протагониста.\n%s" % [artifact.title, int(STOPS.rite_cost(RunState)), artifact.description]
-		_add_row("Тёмный обряд", rite_text, "rite")
+	_add_row("Отдых", "Восстановить до %d%% макс. HP каждому герою." % roundi(STOPS.rest_fraction(RunState) * 100), "rest")
+	_trainee = OptionButton.new()
+	_trainee.custom_minimum_size.y = 34
+	for role in RunState.party_roles:
+		var index := _trainee.item_count
+		_trainee.add_item(_hero_name(role))
+		_trainee.set_item_metadata(index, role)
+		_trainee.set_item_disabled(index, RunState.get_next_extra_hero_upgrade_id(role).is_empty())
+		if role == RunState.get_least_developed_extra_role():
+			_trainee.select(index)
+	_stock_rows.add_child(_trainee)
+	UI.apply_action_button(_trainee, UI.BRONZE)
+	var training := _add_row("Тренировка", "", "")
+	_trainee.item_selected.connect(func(_index: int) -> void: _update_training(training))
+	training.pressed.connect(func() -> void: _choose(_training_action()))
+	_update_training(training)
+	var rite_text := "Нет подходящей реликвии."
+	if not RunState.camp_stop.stock.is_empty():
+		var artifact := RunState.get_artifact(String(RunState.camp_stop.stock[0]).get_slice("/", 1))
+		rite_text = "%s · −%d текущего HP протагониста.\n%s" % [artifact.title, int(STOPS.rite_cost(RunState)), artifact.description]
+	_add_row("Тёмный обряд", rite_text, "rite")
 	for shift in _action_buttons.size():
 		var index := (maxi(focus_index, 0) + shift) % _action_buttons.size()
 		if not _action_buttons[index].disabled:
@@ -144,28 +146,6 @@ func _update_training(button: Button) -> void:
 		button.text = "Тренировка · %s\n%s" % [upgrade.title, upgrade.description]
 
 
-func _shop_row(item: String) -> void:
-	var id := item.get_slice("/", 1)
-	var name: String
-	var description: String
-	match item.get_slice("/", 0):
-		"relic":
-			var artifact := RunState.get_artifact(id)
-			name = artifact.title
-			description = artifact.description
-		"upgrade":
-			var upgrade_id := RunState.get_next_extra_hero_upgrade_id(id)
-			name = "Развитие · %s" % _hero_name(id)
-			if not upgrade_id.is_empty():
-				var upgrade := RunState.get_hero_upgrade(upgrade_id)
-				name = "%s · %s" % [_hero_name(id), upgrade.title]
-				description = upgrade.description
-		"heal":
-			name = "Лечебная повязка"
-			description = "Восстановить до %d%% макс. HP каждому герою." % roundi(STOPS.SHOP_HEAL * 100)
-	_add_row("%s  ·  %d золота" % [name, STOPS.price(RunState, item)], description, item)
-
-
 func _add_row(title: String, description: String, action: String) -> Button:
 	var button := Button.new()
 	var reason := STOPS.restriction(RunState, action) if not action.is_empty() else ""
@@ -177,7 +157,7 @@ func _add_row(title: String, description: String, action: String) -> Button:
 		button.text += "\n" + description
 	button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	button.custom_minimum_size = Vector2(596, 78 if _shop else 92)
+	button.custom_minimum_size = Vector2(596, 92)
 	button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_stock_rows.add_child(button)
 	UI.apply_action_button(button, UI.BRONZE if action != "rite" else UI.EMBER, action == "rest")

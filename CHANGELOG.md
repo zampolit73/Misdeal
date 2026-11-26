@@ -1,3 +1,7 @@
+## Merchant Visual V2
+
+Apply the approved merchant art after card VIII with live stock, prices, purchase restrictions and a Return to Table action.
+
 ## Reward Cinematics 1.0 · Hero Development approved
 
 Production result accepted by the player (PR #150). Apply the approved Hero Development presentation to major and bonus rewards, with live offers, signed effects and the original direct claim.
