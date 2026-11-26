@@ -6,6 +6,7 @@ const GALLERY := "res://scenes/dev/d315_card_ds3_gallery.tscn"
 const REWARD := "res://scenes/reward/reward.tscn"
 const SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
 const CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
+const CARD_ART := preload("res://scripts/ui/card_unification_v1.gd")
 
 func _initialize() -> void:
     call_deferred("_verify")
@@ -197,8 +198,18 @@ func _verify() -> void:
         if selected == null or selected.get_size() != Vector2(448, 274):
             _fail("D333 selected asset did not override card catalog: " + str(approved["id"]))
             return
+        # Final Visual Audit P1-02 preserves the exact D343 source hash above,
+        # but the production catalog intentionally grades the distant sunset.
+        # Compare against the expected runtime image, not an ungraded fallback.
+        if String(approved["id"]) == "lost_purse":
+            var original := decoded.duplicate() as Image
+            CARD_ART._grade_lost_purse_card(decoded)
+            var foreground := Rect2i(0, 0, int(original.get_width() * 0.42), original.get_height())
+            if decoded.get_data() == original.get_data() or decoded.get_region(foreground).get_data() != original.get_region(foreground).get_data():
+                _fail("D343 Lost Purse grade must mute the distant background and preserve the foreground")
+                return
         if selected.get_image().get_data() != decoded.get_data():
-            _fail("D333 card still uses an older fallback illustration: " + str(approved["id"]))
+            _fail("D333 live card differs from the approved runtime illustration: " + str(approved["id"]))
             return
 
     # D350: the 19th user-approved scene is the exact chosen bone-hand dice painting.
