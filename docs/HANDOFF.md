@@ -1,3 +1,7 @@
+## Intro Visual V2
+
+Use F5 → «Новая игра» to watch the six frames. Click, Space and Enter advance. Skip or Esc opens the existing hero selection. [Native QA](qa/intro_v2/README.md)
+
 ## Hero Selection Visual V2
 
 Start through F5 → New Game, or use QA Hub → «Игра» → «Выбор героя». Check a clean Archive and an unlocked profile with the combined style and oath copy. [Native QA](qa/hero_selection_v2/README.md)
