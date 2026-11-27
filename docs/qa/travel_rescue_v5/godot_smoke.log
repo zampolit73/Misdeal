@@ -1,0 +1,12 @@
+Isolated Godot 4.7.2 fixture with actual project files and source sprites; unrelated RunState stub. Not a native framebuffer or full campaign test.
+
+=== Targeted smoke (exit 0) ===
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+TRAVEL_RESCUE_V5_SMOKE: 128 contexts · 15723 checks · 0 failures
+
+=== F6 launch ===
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

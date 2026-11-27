@@ -1,0 +1,88 @@
+extends SceneTree
+const RESCUE := preload("res://scripts/travel/cinematic_v5/rescue_v5.gd")
+const PARTIES := [["knight"],["ranger"],["mage"],["knight","ranger"],["knight","mage"],["ranger","mage"],["knight","ranger","mage"]]
+var cases := 0
+var checks := 0
+var errors := 0
+
+func _initialize() -> void:
+	_run.call_deferred()
+
+func _check(condition: bool, message: String) -> void:
+	checks += 1
+	if not condition:
+		errors += 1
+		push_error(message)
+
+func _run() -> void:
+	var stage := RESCUE.new()
+	root.add_child(stage)
+	for id in RESCUE.IDS:
+		for party in PARTIES:
+			for action in RESCUE.scene_actions(id,party):
+				for companion in ([false,true] if "ranger" in party and id!="jack" else [false]):
+					cases += 1
+					var name := "%s/%s/%s/%s" % [id,action,str(party),str(companion)]
+					_check(stage.configure_scene(id,party,action,companion),name+" config")
+					if not stage.available: continue
+					_check(stage.actors.size()==party.size() and stage.roles==party,name+" actual party")
+					_check(is_instance_valid(stage.jack)==(action=="recruited" if id=="jack" else companion),name+" authoritative Jack")
+					var initial := stage.party_feet.duplicate()
+					for t in [0.0,1.2,2.44,2.82,3.21,3.22,3.55,3.87,4.25,4.55,5.12,6.6]:
+						stage.seek(t)
+						var after: bool = t>=RESCUE.HANDOFF
+						var expected: int = party.size()-int(not stage.joining.is_empty() and not after)
+						_check(stage.visible_roles.size()==expected,name+" actual party at handoff")
+						if is_instance_valid(stage.waiting_layer):
+							_check(not stage.waiting_layer.visible if after else (stage.waiting_layer.visible or (is_instance_valid(stage.treatment_layer) and stage.treatment_layer.visible)),name+" waiting actor once")
+						if is_instance_valid(stage.state_layer):
+							_check(stage.state_layer.visible==after,name+" authored outcome only after handoff")
+						if id=="chained_prisoner" and action=="recruit" and after:
+							_check(stage.state_layer.modulate.a==1.0,name+" gate fully open before exit")
+						var tr: Transform2D = stage.world.transform
+						_check(tr.origin.x<=0.001 and tr.origin.y<=0.001 and tr.origin.x+1280*tr.x.length()>=1279.9 and tr.origin.y+720*tr.y.length()>=719.9,name+" camera coverage")
+						for role in party:
+							var unit: Sprite2D = stage.actors[role]
+							var foot: Vector2 = stage.party_feet[role]
+							var info: Dictionary = stage.current_frame[role]
+							var bounds := unit.texture.get_image().get_used_rect()
+							_check(foot.is_finite() and float(info.height)>0 and is_finite(info.height),name+" valid projection")
+							_check(unit.visible==(role in stage.visible_roles),name+" actual actors")
+							_check(absf(unit.position.y+(float(bounds.end.y)-48.0)*unit.scale.y-foot.y)<0.03,name+" authored sole")
+							if not stage.joining.is_empty() and role==stage.joining and after and t<RESCUE.RISE_END:
+								_check(info.clip=="death",name+" distinct authored recovery poses")
+						if is_instance_valid(stage.jack):
+							_check(stage.jack.visible==("ranger" in stage.visible_roles and (id!="jack" or after)),name+" one companion after rescue")
+							var b := stage.jack.texture.get_image().get_used_rect()
+							_check(absf(stage.jack.position.y+(float(b.end.y)-48.0)*stage.jack.scale.y-stage.dog_foot.y)<0.03,name+" real dog sole")
+							if id=="jack" and after and t<RESCUE.RISE_END:
+								_check(stage.dog_clip=="death",name+" dog rising poses")
+					stage.seek(6.6)
+					for role in party:
+						if id=="jack":
+							_check(stage.party_feet[role].x>initial[role].x,name+" forward progression")
+						else:
+							_check(stage.party_feet[role].x<float(stage.profile.wait[0][0]),name+" exits toward actual left passage")
+					stage.seek(0.0)
+					_check(stage.party_feet==initial and not stage.prop_changed,name+" deterministic replay")
+	_check(not stage.configure_scene("jack",["knight"],"recruited"),"Jack requires Ranger")
+	_check(not stage.configure_scene("black_altar",["knight"],"rescue_gold"),"actual Mage required")
+	_check(not stage.configure_scene("chained_prisoner",["mage"],"recruit"),"actual Knight required")
+	_check(not stage.configure_scene("black_altar",["mage","mage"],"leave"),"no duplicate heroes")
+	_check(stage.configure_scene("jack",["ranger"],"passed",true) and not is_instance_valid(stage.jack),"pass never grants companion")
+	_check(stage.configure_scene("jack",["ranger"],"recruited",false) and is_instance_valid(stage.jack),"recruit always grants companion")
+	var preview := (load("res://scenes/dev/travel_rescue_v5_preview.tscn") as PackedScene).instantiate()
+	root.add_child(preview)
+	preview.set_process(false)
+	_check(preview.stage.available and preview.scene_index==0,"actual F6 scene opens")
+	for key in [KEY_X,KEY_X,KEY_1,KEY_RIGHT,KEY_Q,KEY_P,KEY_R]:
+		var event := InputEventKey.new()
+		event.pressed = true
+		event.keycode = key
+		preview._unhandled_key_input(event)
+		_check(preview.stage.available,"F6 control keeps valid scene")
+	_check(preview.scene_index==2 and "ranger" in preview.stage.roles,"Jack preview only legal Ranger composition")
+	preview.free()
+	print("TRAVEL_RESCUE_V5_SMOKE: %d contexts · %d checks · %d failures" % [cases,checks,errors])
+	stage.free()
+	quit(0 if errors==0 else 1)

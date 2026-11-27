@@ -1,3 +1,9 @@
+## Cinematic Travel V5 — ritual/prisoner/companion review batch — 27 Nov 2026
+
+- Stage Black Altar, Chained Prisoner and Jack as three independent 6.6 s films for separate F6 playback. Preserve exact legacy paintings and committed outcome layers, D412/Jack art, local motion and actual party composition.
+- Authored ground-plane staging, ritual gesture, recovery poses, table descent, open gate before exit, Ranger-led treatment, one real dog, winding road and real left passages; no new media or state writes.
+- Godot 4.7.2 isolated: 128 contexts / 15,723 checks / zero failures; actual F6 control cycle and headless launch complete. Native player visual review pending. Production remains 7/24 V5. [QA](docs/qa/travel_rescue_v5/README.md).
+
 ## Cinematic Travel V5 — approved road and danger batch live — 27 Nov 2026
 
 - Player accepted Rattling Bridge, Whispering Well and Lost Purse. Activate their exact approved 6.6 s cinematics in normal Event→Travel→Table, bringing production V5 coverage to 7/24.
