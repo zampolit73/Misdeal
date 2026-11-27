@@ -29,6 +29,12 @@ func _run() -> void:
 				_check(is_instance_valid(stage.jack)==("ranger" in party),"real Jack only")
 				_check(stage.smith.texture_filter==CanvasItem.TEXTURE_FILTER_LINEAR,"painted texture linear")
 				_check(stage.smith_frames.size()==4,"four independent painted poses")
+				_check(stage.prop_contacts.size()==stage.props.size(),"one stable tabletop contact per prop")
+				_check(stage.candle_pools.size()==(3 if id=="candle_seller" else 0),"candle-local illumination only")
+				for i in stage.props.size():
+					_check(stage.prop_contacts[i].position.distance_to(stage.prop_anchors[i]-Vector2(0,3))<0.01,"contact follows registered prop base")
+					for tex in stage.prop_states[i]:
+						_check(tex.get_size()==stage.prop_states[i][0].get_size(),"fixed state canvas for every item")
 				for t in [0.0,0.5,1.0,1.75,2.55,2.8,3.21,3.23,3.95,4.3,5.2,6.6]:
 					stage.seek(t)
 					seen[stage.smith_pose]=true
@@ -40,6 +46,8 @@ func _run() -> void:
 							if id=="blood_ledger": expected=BATCH.LEDGER_ACTIONS.find(action)+1
 							elif i==stage.selected: expected=1
 						_check(stage.state_indices[i]==expected,"only authoritative chosen prop changes")
+						if id=="candle_seller":
+							_check(stage.candle_pools[i].visible==(expected==0),"consumed candle stops emitting light")
 					for role in party:
 						var foot: Vector2=stage.party_feet[role]
 						var unit: Sprite2D=stage.actors[role]

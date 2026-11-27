@@ -16,6 +16,8 @@ var lane := 600.0
 var prop_states: Array = []
 var state_indices: Array[int] = []
 var prop_anchors: Array[Vector2] = []
+var prop_contacts: Array[Sprite2D] = []
+var candle_pools: Array[Sprite2D] = []
 var glow: Sprite2D
 var fx_texture: Texture2D
 
@@ -59,6 +61,8 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 	props.clear()
 	prop_states.clear()
 	prop_anchors.clear()
+	prop_contacts.clear()
+	candle_pools.clear()
 	state_indices.clear()
 	party_feet.clear()
 	smith_frames.clear()
@@ -98,18 +102,21 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 	smith.position -= Vector2(0,(float(profile.npc_sole)-cell*0.5)*smith.scale.y)
 	var front: Array = profile.counter_at
 	_sprite(counter,world,3,Vector2(front[0],front[1]),false).texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	fx_texture = _soft_glow()
 	for i in profile.props.size():
 		var states: Array[Texture2D] = []
 		for j in int(profile.prop_variants[i]):
 			var tex := _load_texture(prefix+"prop_%d_%d.webp"%[i,j])
 			if tex == null: return false
+			# All variants share the exact registered canvas and contact pivot.
+			if not states.is_empty() and tex.get_size()!=states[0].get_size(): return false
 			states.append(tex)
 		prop_states.append(states)
 		state_indices.append(0)
 		var item: Array = profile.props[i]
 		var anchor := Vector2(item[0],item[1])
 		prop_anchors.append(anchor)
-		var prop := _sprite(states[0],world,4,anchor,false)
+		var prop := _sprite(states[0],world,5,anchor,false)
 		prop.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 		# Physical object height at counter depth; ledger is horizontal, so
 		# authoring height is its projected top-to-bottom silhouette.
@@ -118,8 +125,21 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 		prop.scale = Vector2.ONE*factor
 		prop.position -= Vector2(states[0].get_width()*factor*0.5,states[0].get_height()*factor)
 		props.append(prop)
-	fx_texture = _soft_glow()
-	glow = _sprite(fx_texture,world,5,Vector2.ZERO)
+		# The tray/book sits on the newly painted surface, not on a baked
+		# scrap of the old illustration. Anchor one small contact shadow.
+		var contact := _sprite(shadow_texture,world,4,anchor-Vector2(0,3.0))
+		contact.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+		contact.scale = Vector2(states[0].get_width()*factor*0.94/64.0,0.48)
+		contact.modulate.a = 0.74
+		prop_contacts.append(contact)
+		if scene_id=="candle_seller":
+			# Only a burning candle lights this exact part of the tabletop.
+			var pool := _sprite(fx_texture,world,4,anchor-Vector2(0,10.0))
+			pool.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+			pool.scale = Vector2(1.6,0.48)
+			pool.modulate.a = 0.36
+			candle_pools.append(pool)
+	glow = _sprite(fx_texture,world,6,Vector2.ZERO)
 	glow.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	glow.visible = false
 	for role in order:
@@ -212,6 +232,10 @@ func seek(time: float) -> void:
 			elif i==selected: next=1
 		state_indices[i]=next
 		props[i].texture=prop_states[i][next]
+		if scene_id=="candle_seller":
+			var pool := candle_pools[i]
+			pool.visible=next==0
+			pool.modulate.a=0.34+0.045*sin(elapsed*6.7+i*1.8)+0.025*sin(elapsed*15.1+i)
 	# A restrained warm pulse follows the transaction, not an unrelated
 	# spark shower. Leave never falsely indicates a purchase.
 	glow.visible=action!="leave" and absf(elapsed-HANDOFF)<0.42

@@ -1,6 +1,6 @@
-## Cinematic Travel V5 · merchant batch ready for F6 review
+## Cinematic Travel V5 · merchant batch prop polish ready for F6 review
 
-Three new review-only 6.6 s presentations: Candle Seller, Blood Ledger, Gravedigger Shop. Four distinct high-detail painted poses each, actual original prop/outcome states, accessible counter-edge blocking, shared Forge metre projection and D412 hero animations. Seven party combinations, real Jack flag. Godot 4.7.2 isolated headless 66 contexts / 10,544 checks / zero failures; offline composition reviewed. Native player acceptance pending. Approved live forge and all other live V4 scenes unchanged. [F6 review](qa/travel_merchant_v5/README.md).
+Player accepted proportions/routes in the three 6.6 s Candle Seller, Blood Ledger and Gravedigger Shop previews; flagged old hands on ledger and inconsistent candle styling. All 17 props now independently repainted in the current environment light, clean alpha and same registered aspect/scale; grounded tabletop contacts, restrained shadows and candle-local light. Existing actor poses, camera, routes, outcomes, hero/Jack and approved Forge V5 unchanged. Godot 4.7.2 isolated: 66 contexts / 11,870 checks / zero failures. Native player aesthetic recheck pending; live routing remains forge-only. [F6 and provenance](qa/travel_merchant_v5/README.md).
 
 ## License Compliance 1.0 · cross-cutting release gate
 

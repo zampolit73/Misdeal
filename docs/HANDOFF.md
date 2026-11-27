@@ -1,6 +1,6 @@
-## Next player check · three Merchant V5 scenes
+## Next player check · three Merchant V5 scenes, prop polish
 
-Pull main; open `scenes/dev/travel_merchant_v5_preview.tscn` and F6. Z/X switches Candle Seller, Blood Ledger, Gravedigger Shop; arrows choose outcome, 1/2/3 and Q/E choose actual party, R repeat, P pause, H hide controls, J companion. Check believable body/object scale, pose motion, floor contact, handoff and no unintended outcome changes. 66 contexts / 10,544 checks PASS in isolated Godot 4.7.2; native aesthetic acceptance pending. If approved, connect the three IDs through existing production routing with V4 fallback and real committed outcomes; no automatic activation here. [Review and provenance](qa/travel_merchant_v5/README.md).
+Player accepted proportions/routes, requested clean ledger and coherent candles/props. Pull main; F6 `scenes/dev/travel_merchant_v5_preview.tscn`. Z/X switches Candle Seller, Blood Ledger, Gravedigger Shop; arrows choose outcome, 1/2/3 and Q/E choose party, R repeat, P pause, H hide, J companion. Check new hand-free book in all five states; three lit/consumed candle variants with no old cloth, and clean wet-wood trays. Surfaces/actor geometry and timing preserved except corrected tabletop prop y contacts. 66 contexts / 11,870 checks PASS. If approved, connect the three IDs through production routing with V4 fallback; no automatic activation here. [QA and provenance](qa/travel_merchant_v5/README.md).
 
 ## Cross-cutting License Compliance 1.0
 

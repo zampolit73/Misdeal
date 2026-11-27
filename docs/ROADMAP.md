@@ -13,7 +13,8 @@
 - [x] Production router selects approved forge only; 19 contexts / 229 checks + 2 fallback checks PASS.
 - [ ] Verify integrated F5 Event→Travel→Table and skip in normal play.
 - [x] Stage Candle Seller, Blood Ledger and Gravedigger Shop in separate F6 review; 66 contexts PASS. [QA](qa/travel_merchant_v5/README.md).
-- [ ] Native player acceptance of the three merchant scenes; then wire actual resolved outcomes with V4 fallback.
+- [x] Player accepted proportions/routes; repaint all 17 props after visual feedback, no hands/old surface fragments; 66 contexts PASS.
+- [ ] Native player acceptance of polished props in the three merchant scenes; then wire actual resolved outcomes with V4 fallback.
 - [ ] Apply the approved scene-first V5 direction to remaining 23 scenes in coherent batches; preserve the original art identity, actual outcomes and V4 fallback. No automatic scene conversion.
 
 ## Travel Staging V4

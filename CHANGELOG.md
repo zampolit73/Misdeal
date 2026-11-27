@@ -1,3 +1,8 @@
+## Cinematic Travel V5 — merchant prop polish — 27 Nov 2026
+
+- Player accepted proportions/routes; replaced all 17 prop states from old cropped artwork with coherent clean-alpha candles, ledgers and shop trays. Removed residual hands/old fabric, aligned tabletop y contacts, added restrained contact shadows and candle-local light.
+- Existing actor scale/routes, camera, choice meaning, timing and live routing unchanged. Isolated Godot 4.7.2: 66 contexts / 11,870 checks / zero failures; native visual recheck pending.
+
 ## Cinematic Travel V5 — merchant batch candidate — 27 Nov 2026
 
 - Added F6-only Candle Seller, Blood Ledger and Gravedigger Shop: three new scene plates and 12 detailed painted NPC poses, ground-plane scale, counter-edge occlusion, existing exact prop states, real hero/Jack choreography. No live routing changes.

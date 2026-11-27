@@ -236,23 +236,23 @@
       }
     },
     {
-      "id": "travel-v5-blood_ledger-original",
+      "id": "travel-v5-blood_ledger-props-generated",
       "status": "verified",
-      "origin": "original",
-      "author": "Misdeal project / technical extraction of existing project art",
-      "revision": "merchant-batch-v5-review-01",
+      "origin": "generated",
+      "author": "Misdeal project / ChatGPT image generation and preparation",
+      "revision": "merchant-batch-v5-prop-polish-02",
       "obtained_on": "2026-11-27",
       "licenses": [
         "PROJECT-ORIGIN"
       ],
-      "rights_review": "Development origin reviewed: newly generated from project reference art or masked from original project assets at 5ed3a436; no external intake. Historical source-rights audit remains unresolved; not publication clearance.",
+      "rights_review": "Development origin reviewed: independent newly generated props from project-owned review plates and prior project props at 9cd15e47; no external intake. All old attached hands and tabletop scraps discarded. Historical source-rights audit remains open; not publication clearance.",
       "evidence": "docs/qa/travel_merchant_v5/README.md",
       "files": {
-        "assets/pixel/travel/cinematic_v5/merchant_batch/blood_ledger/prop_0_0.webp": "002f387df42f0625eb32baa98f638d0197c220871cceb7e29db6aea1b4672ca5",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/blood_ledger/prop_0_1.webp": "6f09334c49e3759d374a7eaadc0d24266d293839ec70b14d08a8b231cde35cf2",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/blood_ledger/prop_0_2.webp": "312b6fcf4cb42451d5825cc8315152944c5cb9123adfab5372e7f2297bc46cb5",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/blood_ledger/prop_0_3.webp": "549a542e5aa01c60f98ddbdda2f17bb1a1a69e6d0fba6f4d19a4801679b51c59",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/blood_ledger/prop_0_4.webp": "b750c83b030f67737a2513c284bf73f8df1cd971904e09ed08a2a626f4a0f41e"
+        "assets/pixel/travel/cinematic_v5/merchant_batch/blood_ledger/prop_0_0.webp": "64eb4e53ba238e0527332c3e3da113aba41d88de9d9ee556eaf1a2798b71b0a7",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/blood_ledger/prop_0_1.webp": "41c83289cf792017ab2f02b4471a4e286b70aa4cabcba51c222d476dd8862ee2",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/blood_ledger/prop_0_2.webp": "bdbed33b86e6f1f5792775528e5527e12660710d4ed2009cbc2accadb8c1bc96",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/blood_ledger/prop_0_3.webp": "0346964dd8969a66249f37ed0f976dc658d841b1f114d21a674d76cc344a04b5",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/blood_ledger/prop_0_4.webp": "8eae20007fde0e0f69185568e3fa81ddc319581865fc01b2fe0b282617c5a8f0"
       }
     },
     {
@@ -274,24 +274,24 @@
       }
     },
     {
-      "id": "travel-v5-candle_seller-original",
+      "id": "travel-v5-candle_seller-props-generated",
       "status": "verified",
-      "origin": "original",
-      "author": "Misdeal project / technical extraction of existing project art",
-      "revision": "merchant-batch-v5-review-01",
+      "origin": "generated",
+      "author": "Misdeal project / ChatGPT image generation and preparation",
+      "revision": "merchant-batch-v5-prop-polish-02",
       "obtained_on": "2026-11-27",
       "licenses": [
         "PROJECT-ORIGIN"
       ],
-      "rights_review": "Development origin reviewed: newly generated from project reference art or masked from original project assets at 5ed3a436; no external intake. Historical source-rights audit remains unresolved; not publication clearance.",
+      "rights_review": "Development origin reviewed: independent newly generated props from project-owned review plates and prior project props at 9cd15e47; no external intake. All old attached hands and tabletop scraps discarded. Historical source-rights audit remains open; not publication clearance.",
       "evidence": "docs/qa/travel_merchant_v5/README.md",
       "files": {
-        "assets/pixel/travel/cinematic_v5/merchant_batch/candle_seller/prop_0_0.webp": "1c483d0400fcda3192603bc321804c6d7cce2ba69d4bf2de22dd675fa12e4852",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/candle_seller/prop_0_1.webp": "c56901b9790438e0025ab72a66dec5b3f6e426acc3861af4aea998d5af4a308b",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/candle_seller/prop_1_0.webp": "cb464620a056844dd5a56df7d71f1050340f1626d3ab83bf85e41d229b83c752",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/candle_seller/prop_1_1.webp": "e270c8d1a9c21c9e344520bf55765933bfab376a041f3b61fdf32974fbd12446",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/candle_seller/prop_2_0.webp": "4163bc762afc73dd07d21ec7941511c4070b1a7ad15a578ed0f7c1fa6d3cdab2",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/candle_seller/prop_2_1.webp": "59e81bd2b9c403ffc0f7953862cca3fdbb139fac0a9fa138a46a2efd4885b1c3"
+        "assets/pixel/travel/cinematic_v5/merchant_batch/candle_seller/prop_0_0.webp": "9386f08fa9352d21ae7d9e66e2e16dd0da149ad02b927b0046d986a3fb66264c",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/candle_seller/prop_0_1.webp": "b81d325371815c4153a9417b24725b420959fc646b35fe6d96f5c4f57094e1c9",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/candle_seller/prop_1_0.webp": "9e51fab8ee4daa23b766011d827a0bfc208f20f9e219c0668f4009d671ab4b57",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/candle_seller/prop_1_1.webp": "8549f0cd8787861fcdc344e5563dcf0b4555a4684db5175728e9ac0b89412a6c",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/candle_seller/prop_2_0.webp": "76565818fd0fcff042099c86d7cde68608154800d84ca0cd1fa2d3c0ca60dc86",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/candle_seller/prop_2_1.webp": "692690876ac71eafa82db0df2245c95268a42a3793a987e0f656278c7880495d"
       }
     },
     {
@@ -313,24 +313,24 @@
       }
     },
     {
-      "id": "travel-v5-gravedigger_shop-original",
+      "id": "travel-v5-gravedigger_shop-props-generated",
       "status": "verified",
-      "origin": "original",
-      "author": "Misdeal project / technical extraction of existing project art",
-      "revision": "merchant-batch-v5-review-01",
+      "origin": "generated",
+      "author": "Misdeal project / ChatGPT image generation and preparation",
+      "revision": "merchant-batch-v5-prop-polish-02",
       "obtained_on": "2026-11-27",
       "licenses": [
         "PROJECT-ORIGIN"
       ],
-      "rights_review": "Development origin reviewed: newly generated from project reference art or masked from original project assets at 5ed3a436; no external intake. Historical source-rights audit remains unresolved; not publication clearance.",
+      "rights_review": "Development origin reviewed: independent newly generated props from project-owned review plates and prior project props at 9cd15e47; no external intake. All old attached hands and tabletop scraps discarded. Historical source-rights audit remains open; not publication clearance.",
       "evidence": "docs/qa/travel_merchant_v5/README.md",
       "files": {
-        "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_0_0.webp": "aeae8b8a1493bc796ac8b52c18ff7348f64e8d148a686389ac38482ac57c0281",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_0_1.webp": "95fbf482d6a8b4f7ea05155a3bcf7024450f6257bd0e05a652f3f3c69ad194e8",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_1_0.webp": "682e2ac15bfae193049c9ba0e854b2b395e5c555c087c993fae0efb97918cc1b",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_1_1.webp": "5d0c6028c5a1ee8d1de1d88cc5ff8a19fcef2bfd0f7362c3bcaffa24cb32e440",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_2_0.webp": "efbd734ddff83c4f36bdf25294fb8d01b2c4949e0724046be21a31d6c5c03951",
-        "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_2_1.webp": "9b18d6af65c23914a57f013149336a0880617c52e78d541f45fcb4514d7b4411"
+        "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_0_0.webp": "a2c02d717bcec33a8a2db09255af829f39fa9fd066e75c5853101446bf075710",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_0_1.webp": "e9b4dc9d6e62d540610c72e2eda645b999bba5f82df30e0e60091f3e7ccf02e7",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_1_0.webp": "9bccb687469ae0a060051a25e55f48794c252353e0a16b32662dab729a7597c5",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_1_1.webp": "2f3737e1591e0d2fd1eda894c824665ce8e74f0a042bf3b7bf4c274ca935ff62",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_2_0.webp": "40c3e2172c65648f3dd043a456f092c86903f80061994958dc5a2cc097692bf6",
+        "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_2_1.webp": "f40e09e66fd8dd07cdeb95dc52ece254d2e61d4bf5d6f2af87a0fa22227cac69"
       }
     }
   ],
