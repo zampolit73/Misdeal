@@ -1,3 +1,8 @@
+## Cinematic Travel V3
+
+- [x] Three-location pilot: Blood Ledger, Whispering Well and Rattling Bridge; 19 outcomes, motion and local effects. [Contract](CINEMATIC_TRAVEL_V3_PILOT.md).
+- [ ] Native motion and audio acceptance; scale selected improvements to the remaining 21 event Travel scenes only after review.
+
 ## Interface Polish 2.0
 
 - [x] Achievement System V2 - 24 permanent achievements, persisted unlocks, toast and RunEnd summary; targeted tests PASS. [QA](qa/achievement_system_v2/README.md).

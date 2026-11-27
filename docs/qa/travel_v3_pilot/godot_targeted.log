@@ -1,0 +1,55 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[INFO]:  using [/workspace/scratch/aa3ceb3a1780/Misdeal/../qa_profile/godot/app_userdata/Misdeal] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://tests/unit/test_travel_v3_pilot.gd
+* test_distance_clock_stops_on_stationary_section_and_is_seekable
+* test_all_19_outcomes_use_existing_art_and_move_grounded
+* test_rear_walk_solo_duo_trio_and_jack_continuity
+* test_rescue_handoff_and_companion_never_duplicate_waiting_actor
+* test_non_pilot_locations_keep_v2_and_cues_use_authored_beats
+* test_pilot_sound_cues_follow_gait_and_action_not_a_free_timer
+6/6 passed.
+
+
+res://tests/unit/test_travel_transition.gd
+* test_context_matches_all_catalog_outcomes_and_party
+* test_visual_preserves_state_and_skip_emits_once_even_when_paused
+* test_event_travel_route_applies_outcome_once_then_navigates_once
+* test_disabled_flag_uses_original_router_without_overlay
+* test_save_contains_no_travel_stage_or_context
+* test_all_skip_keys_and_natural_completion_emit_once
+6/6 passed.
+
+
+res://tests/unit/test_travel_batch02.gd
+* test_all_31_actions_actual_role_subsets_contact_pause_single_finish_and_no_state_writes
+* test_transient_mapping_requires_real_rng_purchase_and_recruit_context
+* test_v2_overrides_and_seven_old_locations_remain_explicit
+* test_invalid_batch_action_uses_existing_unavailable_fallback
+* test_small_crown_uses_approved_base_and_confines_changes_to_crown
+5/5 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+Totals
+------
+Scripts               3
+Tests                17
+Passing Tests        17
+Asserts            5478
+Time              17.823s
+
+
+---- All tests passed! ----
+
+GUT_EXIT=0

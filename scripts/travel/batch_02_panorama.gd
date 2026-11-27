@@ -3,6 +3,7 @@ extends Node2D
 const ROOT := "res://assets/pixel/travel/batch_02/"
 const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
 const REAR := preload("res://scripts/travel/campfire_walk.gd")
+const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 var available := false
 var planes: Dictionary = {}
 var speeds := {"Road":1.2}
@@ -21,6 +22,13 @@ var original: Dictionary = {}
 var npc: Sprite2D
 var npc_visible := false
 var actor_metrics: Array[Dictionary] = []
+var pilot_active := false
+var pilot_lead_phase := 0.0
+var pilot_tracks: Dictionary = {}
+var pilot_base: Sprite2D
+var pilot_jack: AnimatedSprite2D
+var pilot_jack_height := 1.0
+var pilot_jack_soles: Array[int] = []
 
 func image_at(path: String) -> Image:
 	if images.has(path): return images[path]
@@ -92,21 +100,41 @@ func configure(context: Dictionary) -> void:
 		return
 	scene=original.duplicate(true)
 	for field in state.get("actor_stage",{}): scene[field]=state.actor_stage[field]
+	pilot_active = V3.enabled(str(scene.id))
+	if pilot_active:
+		pilot_base = V3.base_sprite(self, tex("base_1280"), str(scene.id))
+		if bool(context.get("jack_companion", false)) and "ranger" in context.get("party_roles", []):
+			var dog_frames: SpriteFrames = ANIM.get_frames("jack")
+			if dog_frames != null and dog_frames.has_animation("walk"):
+				pilot_jack = AnimatedSprite2D.new()
+				pilot_jack.name = "TravelJack"
+				pilot_jack.sprite_frames = dog_frames
+				pilot_jack.animation = "walk"
+				pilot_jack.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+				for frame in range(dog_frames.get_frame_count("walk")):
+					var bounds := dog_frames.get_frame_texture("walk", frame).get_image().get_used_rect()
+					pilot_jack_height = maxf(pilot_jack_height, bounds.size.y)
+					pilot_jack_soles.append(bounds.end.y - 1)
+				get_parent().add_child(pilot_jack)
 	# Preload only this action's assets; per-instance caches free with the overlay.
 	for path in [scene.folder+"/layers/"+key+"_state.png",scene.folder+"/layers/haze_strip.png"]:
 		if FileAccess.file_exists(ROOT+path): texture_at(path)
 	update_time(0,4)
 
-func update_time(time: float, _duration: float) -> void:
+func update_time(time: float, duration: float) -> void:
 	if not available: return
 	t=time
-	world=Transform2D(0,Vector2.ONE*1.008,0.0,Vector2(-4.0-t*1.2,-3.0))
+	world=V3.camera(str(scene.id), time, duration) if pilot_active else Transform2D(0,Vector2.ONE*1.008,0.0,Vector2(-4.0-t*1.2,-3.0))
+	if pilot_active:
+		V3.update_base(pilot_base, world, time)
 	if npc!=null:
 		npc_visible=key in ["recruit","loot_recruitment","abandon"] and (key!="recruit" or time<0.90)
 		npc.visible=npc_visible
 		var size := npc.region_rect.size
 		var scale_factor := 122.0/size.y
-		npc.scale=Vector2.ONE*scale_factor*1.008
+		npc.scale=Vector2.ONE*scale_factor*world.x.length()
+		if pilot_active:
+			npc.modulate.a = 1.0 - smoothstep(0.70, 0.90, time) if key == "recruit" else 1.0
 		npc.position=world*(Vector2(1005,500)-Vector2(size.x*0.5,size.y)*scale_factor)
 	queue_redraw()
 
@@ -116,10 +144,37 @@ func route(u: float, path: PackedVector2Array = PackedVector2Array()) -> Vector2
 	var c:=path[2] if path.size()==3 else Vector2(scene.route[2][0],scene.route[2][1])
 	return (1-u)*(1-u)*a+2*(1-u)*u*b+u*u*c
 
-func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Array[Vector2], ground: Node2D, time: float, _duration: float, _layout: Resource) -> void:
+
+func _pilot_foot(time: float, duration: float, rank: int, count: int, joining: bool,
+		path: PackedVector2Array, lanes: Variant, near_y: float, perspective_lanes: bool) -> Vector2:
+	if joining:
+		# The seated actor gives way to the real ranger at the existing handoff.
+		# No looping walk after reaching a stationary endpoint.
+		return Vector2(1005,500).lerp(Vector2(1020,425), smoothstep(0.90, duration, time))
+	var start := 0.02 + maxf(count - 1, 0) * 0.20
+	var span := minf(float(scene.get("progress_span", 0.80)), 0.98 - start)
+	var u := start + clampf(time / duration, 0.0, 1.0) * span - rank * 0.20
+	var center := route(clampf(u, 0.0, 1.0), path)
+	var lane: float = float(lanes[rank]) if count > 1 else 0.0
+	if perspective_lanes:
+		lane *= clampf((center.y-float(scene.horizon))/(near_y-float(scene.horizon)),0.0,1.0)
+	return center + Vector2(lane, rank * 8)
+
+
+func _pilot_height(foot: Vector2, near_y: float, near_height: float) -> float:
+	return near_height * (foot.y - float(scene.horizon)) / (near_y - float(scene.horizon))
+
+
+func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Array[Vector2], ground: Node2D, time: float, duration: float, _layout: Resource) -> void:
 	actor_metrics.clear()
 	ground.contact_scales.resize(actors.size())
+	if pilot_active:
+		ground.gait_phases.resize(actors.size())
 	var rank := 0
+	var lead_found := false
+	var ranger_foot := Vector2.ZERO
+	var ranger_phase := 0.0
+	var ranger_visible := false
 	var path: PackedVector2Array=_layout.get_meta("party_route",PackedVector2Array())
 	var near_y := path[0].y if path.size()==3 else float(scene.route[0][1])
 	var near_height := float(_layout.get_meta("party_near_height",scene.near_height))
@@ -143,31 +198,72 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 		if bool(_layout.get_meta("party_perspective_lanes",false)):
 			lane*=clampf((center.y-float(scene.horizon))/(near_y-float(scene.horizon)),0.0,1.0)
 		var foot:=center+Vector2(lane,rank*8)
-		var phase:=float(rank)*1.1
-		if joining:
+		var phase:=time*6.5+float(rank)*1.1
+		if pilot_active:
+			var sample := _pilot_foot.bind(duration, rank, passage_count, joining, path, lanes, near_y,
+				bool(_layout.get_meta("party_perspective_lanes", false)))
+			foot = sample.call(time)
+			if not pilot_tracks.has(role):
+				pilot_tracks[role] = V3.gait(sample, _pilot_height.bind(near_y, near_height), duration, 0.90 if joining else 0.0)
+			phase = V3.phase(pilot_tracks[role], time, 0.0 if joining else float(rank) * 1.1)
+			ground.gait_phases[i] = phase
+			if not joining and actor.visible and not lead_found:
+				pilot_lead_phase = phase
+				lead_found = true
+		elif joining:
 			foot=Vector2(1005,500).lerp(Vector2(1020,425),smoothstep(0.90,2.90,time))
-			phase=1.1
-		else: rank+=1
+			phase=time*6.5+1.1
+		if not joining: rank+=1
 		var height:=near_height*(foot.y-float(scene.horizon))/(near_y-float(scene.horizon))
 		actor.sprite_frames=role_frames[role]
 		actor.animation="walk"
-		actor.frame=int(time*6.5+phase)%6
+		actor.frame=int(phase)%6
 		var scale_factor:=height/float(heights[role])
-		actor.scale=Vector2.ONE*scale_factor*1.008
+		actor.scale=Vector2.ONE*scale_factor*world.x.length()
 		actor.flip_h=false
 		actor.position=world*(foot-Vector2(0,(float(soles[role][actor.frame])-48)*scale_factor))
 		var haze:=clampf((near_y-foot.y)/(near_y-float(scene.horizon))*0.28,0,0.28)
 		actor.modulate=Color(0.88,0.88,0.91).lerp(Color(0.52,0.57,0.64),haze)
 		contacts[i]=world*foot
+		if pilot_active:
+			actor.set_meta("pilot_sole_y", contacts[i].y)
 		ground.contact_scales[i]=scale_factor*0.6 if actor.visible else 0.0
 		if actor.visible: actor_metrics.append({"role":role,"foot":contacts[i],"height":height})
-	var order: Array[int]=[]
-	var first:=actors[0].get_index()
-	for i in range(actors.size()):
-		order.append(i)
-		first=mini(first,actors[i].get_index())
-	order.sort_custom(func(a: int,b: int)->bool:return contacts[a].y<contacts[b].y)
-	for i in range(order.size()): actors[order[i]].get_parent().move_child(actors[order[i]],first+i)
+		if role == "ranger":
+			ranger_foot = foot
+			ranger_phase = phase
+			ranger_visible = actor.visible
+	if is_instance_valid(pilot_jack):
+		pilot_jack.visible = ranger_visible
+		if ranger_visible:
+			var depth := _pilot_height(ranger_foot, near_y, near_height) / near_height
+			var dog_foot := ranger_foot + Vector2(-66, 20) * depth
+			var dog_factor := near_height * depth * 0.34 / pilot_jack_height
+			pilot_jack.frame = int(ranger_phase * 1.30) % pilot_jack_soles.size()
+			pilot_jack.scale = Vector2.ONE * dog_factor * world.x.length()
+			pilot_jack.position = world * (dog_foot - Vector2(0, (pilot_jack_soles[pilot_jack.frame] - 48.0) * dog_factor))
+			pilot_jack.modulate = Color(0.84, 0.85, 0.89)
+			pilot_jack.set_meta("pilot_sole_y", (world * dog_foot).y)
+	if is_instance_valid(pilot_jack):
+		var parent := actors[0].get_parent()
+		if pilot_jack.get_index() < ground.get_index():
+			parent.move_child(pilot_jack, ground.get_index())
+		var nodes: Array[Node2D] = []
+		for hero in actors:
+			nodes.append(hero)
+		nodes.append(pilot_jack)
+		nodes.sort_custom(func(a: Node2D, b: Node2D) -> bool:
+			return float(a.get_meta("pilot_sole_y", -1.0)) < float(b.get_meta("pilot_sole_y", -1.0)))
+		for i in range(nodes.size()):
+			parent.move_child(nodes[i], ground.get_index() + 1 + i)
+	else:
+		var order: Array[int]=[]
+		var first:=actors[0].get_index()
+		for i in range(actors.size()):
+			order.append(i)
+			first=mini(first,actors[i].get_index())
+		order.sort_custom(func(a: int,b: int)->bool:return contacts[a].y<contacts[b].y)
+		for i in range(order.size()): actors[order[i]].get_parent().move_child(actors[order[i]],first+i)
 
 func tex(name: String) -> Texture2D:
 	return texture_at(str(scene.folder)+"/layers/"+name+".png")
@@ -197,9 +293,11 @@ func release_object(name: String,pivot: Vector2) -> void:
 	draw_set_transform_matrix(world)
 func _draw() -> void:
 	if not available or scene.is_empty():return
-	world=Transform2D(0,Vector2.ONE*1.008,0.0,Vector2(-4.0-t*1.2,-3.0))
+	if not pilot_active:
+		world=Transform2D(0,Vector2.ONE*1.008,0.0,Vector2(-4.0-t*1.2,-3.0))
 	draw_set_transform_matrix(world)
-	draw_layer("base_1280")
+	if not pilot_active:
+		draw_layer("base_1280")
 	var progress:=smoothstep(0.42,1.18,t)
 	match str(scene.id):
 		"candle_seller":
@@ -216,14 +314,13 @@ func _draw() -> void:
 					polygon(tex("base_1280"),poly)
 					draw_set_transform_matrix(world)
 		"blood_ledger":
+			# Local existing book patches, not a full-frame wipe.
 			if key=="leave":
-				if t>=0.42 and t<0.90: draw_layer("book_half_closed")
-				elif t>=0.90:state_layer()
-			elif key in ["blood","erase"]:
-				var width:=1280.0*progress
-				draw_texture_rect_region(tex(key+"_state"),Rect2(0,0,width,720),Rect2(0,0,width,720))
+				var finish_blend := smoothstep(0.86, 1.22, t)
+				draw_layer("book_half_closed", smoothstep(0.35, 0.73, t) * (1.0 - finish_blend))
+				state_layer(finish_blend)
 			else:
-				state_layer(smoothstep(0.65,0.80,t))
+				state_layer(smoothstep(0.43, 1.08, t))
 
 		"debtor_bones":
 			if key.begins_with("gamble") and t>=0.40 and t<1.18:
@@ -263,12 +360,11 @@ func _draw() -> void:
 				var pivots: Dictionary={"shield":Vector2(765,290),"quiver":Vector2(923,288),"focus":Vector2(1060,310)}
 				release_object(name,pivots[name])
 		"rattling_bridge":
-			if key in ["rush_success","scavenge"]:
-				state_layer(smoothstep(0.62,0.76,t))
-
-			elif key=="rush_failure":state_layer(smoothstep(0.62,0.78,t))
+			if key in ["rush_success","scavenge","rush_failure"]:
+				state_layer(smoothstep(0.52,1.04,t))
 			elif key in ["recruit","loot_recruitment"]:
-				state_layer(smoothstep(0.44,0.96,t))
+				state_layer(smoothstep(0.50,1.15,t))
+			V3.bridge_embers(self, t)
 
 	draw_haze()
 	draw_set_transform_matrix(Transform2D.IDENTITY)

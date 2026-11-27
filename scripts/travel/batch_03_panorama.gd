@@ -2,6 +2,7 @@ extends Node2D
 ## Batch 03 presentation. TravelTransition owns clock, input, and the route back.
 
 const CATALOG := preload("res://scripts/travel/batch_03_catalog.gd")
+const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 const REAR := preload("res://scripts/travel/campfire_walk.gd")
 const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
 const FOOTFALL := preload("res://assets/pixel/travel/batch_02/soles.json")
@@ -31,6 +32,10 @@ var _time := 0.0
 var _world := Transform2D.IDENTITY
 var _jack: AnimatedSprite2D
 var _occlusion: Sprite2D
+var pilot_active := false
+var pilot_lead_phase := 0.0
+var pilot_tracks: Dictionary = {}
+var pilot_base: Sprite2D
 
 func build(background: String, _foreground: String, _underpaint: String, _sky: String) -> void:
 	for id in CATALOG.DATA.data:
@@ -56,6 +61,9 @@ func configure(context: Dictionary) -> void:
 	available = not _state.is_empty() and _route.size() == 3
 	if not available:
 		return
+	pilot_active = str(context.get("resolved_card_id", "")) == "whispering_well"
+	if pilot_active:
+		pilot_base = V3.base_sprite(self, _texture(str(_scene.master)), "whispering_well")
 	var party: String = _state.party
 	_handoff = [] if _scene.handoff == null else _scene.handoff
 	if party.begins_with("+"):
@@ -121,9 +129,12 @@ func _texture(path: String) -> Texture2D:
 		_textures[path] = load(full) as Texture2D if ResourceLoader.exists(full, "Texture2D") else null
 	return _textures[path]
 
-func update_time(time: float, _duration: float) -> void:
+func update_time(time: float, duration: float) -> void:
 	_time = time
-	_world = Transform2D(0.0, Vector2.ONE * OVERSCAN, 0.0, Vector2(-3.4 - time * ROAD_PAN, -3.0))
+	_world = V3.camera("whispering_well", time, duration) if pilot_active else Transform2D(0.0, Vector2.ONE * OVERSCAN, 0.0, Vector2(-3.4 - time * ROAD_PAN, -3.0))
+	if pilot_active:
+		V3.update_base(pilot_base, _world, time)
+		npc_visible = (_joining == "mage" and time < _handoff_time) or (_action == "leave_lost" and time < 2.45)
 	planes.Foreground.transform = _world
 	if is_instance_valid(_occlusion):
 		_occlusion.transform = _world
@@ -133,6 +144,9 @@ func _draw() -> void:
 	if not available or _state.is_empty():
 		return
 	draw_set_transform_matrix(_world)
+	if pilot_active:
+		_draw_pilot_well()
+		return
 	_draw_plate(_scene.master)
 	npc_visible = false
 	var phases: Dictionary = _scene.phases
@@ -158,6 +172,26 @@ func _draw() -> void:
 		npc_visible = waiting and _joining.is_empty()
 		_draw_plate(_state.overlay)
 
+
+func _draw_pilot_well() -> void:
+	# The existing frozen outcome plates remain the authority. Add local
+	# ripples before NPC/outcome overlays, never a new reward or actor.
+	V3.well_ripples(self, _action, _time)
+	var phases: Dictionary = _scene.phases
+	if _action == "leave_lost":
+		var sink_blend := smoothstep(1.38, 1.68, _time)
+		_draw_plate(_state.overlay, 1.0 - sink_blend)
+		_draw_plate(phases.sink, sink_blend * (1.0 - smoothstep(1.72, 2.45, _time)))
+	elif _joining == "mage":
+		# The painted waiting actor must be gone before the live sprite appears.
+		if _time < _handoff_time:
+			_draw_plate(phases.entry, 1.0 - smoothstep(_handoff_time - 0.20, _handoff_time, _time))
+		else:
+			_draw_plate(_state.overlay, smoothstep(_handoff_time, _handoff_time + 0.30, _time))
+	else:
+		_draw_plate(_state.overlay, smoothstep(0.53, 1.03, _time))
+
+
 func _draw_plate(path: String, opacity := 1.0) -> void:
 	if not path.is_empty():
 		draw_texture(_texture(path), Vector2.ZERO, Color(1, 1, 1, opacity))
@@ -167,13 +201,30 @@ func _road(progress: float) -> Vector2:
 
 func _approach(time: float, duration: float, end: Vector2) -> Vector2:
 	var u := clampf((time - _handoff_time) / (duration - _handoff_time), 0.0, 1.0)
+	if pilot_active:
+		u = smoothstep(0.0, 1.0, u)
 	var a := _point(_handoff[3])
 	var b := _point(_handoff[4])
 	return a.lerp(b, u).lerp(b.lerp(end, u), u)
 
+
+func _pilot_route_foot(time: float, duration: float, rank: int, walking: int) -> Vector2:
+	var leading := 0.025 + maxf(walking - 1, 0) * SPACING
+	var progress := lerpf(leading, 0.97, clampf(time / duration, 0.0, 1.0))
+	return _road(clampf(progress - rank * SPACING, 0.0, 1.0)) + Vector2(0, rank * 6)
+
+
+func _pilot_height(foot: Vector2) -> float:
+	return float(_scene.height) * _perspective(foot.y)
+
+
 func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Array[Vector2], ground: Node2D, time: float, duration: float, _layout: Resource) -> void:
 	actor_metrics.clear()
 	ground.contact_scales.resize(actors.size())
+	if pilot_active:
+		ground.gait_phases.resize(actors.size())
+	var lead_found := false
+	var ranger_phase := 0.0
 	var walking := roles.size() - (1 if _joining in roles else 0)
 	var leading := 0.025 + maxf(walking - 1, 0) * SPACING
 	var progress := lerpf(leading, 0.97, time / duration)
@@ -198,14 +249,28 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 			var floor_y := float(_scene.get("handoff_ground_y", foot.y))
 			elevated = lerpf(maxf(floor_y - foot.y, 0.0), 0.0, smoothstep(_handoff_time, 2.45, time))
 			phase = maxf(0.0, time - _handoff_time) * WALK_FPS
+			if pilot_active:
+				if not pilot_tracks.has(role):
+					pilot_tracks[role] = V3.gait(_approach.bind(duration, destination), _pilot_height, duration, _handoff_time)
+				phase = V3.phase(pilot_tracks[role], time)
 			if is_instance_valid(_occlusion) and actor.visible and foot.x < 681.0 and foot.y < 518.0:
 				submerged = actor
 				_occlusion.visible = true
 		else:
 			foot = _road(clampf(progress - rank * SPACING, 0.0, 1.0)) + Vector2(0, rank * 6)
+			if pilot_active:
+				if not pilot_tracks.has(role):
+					pilot_tracks[role] = V3.gait(_pilot_route_foot.bind(duration, rank, walking), _pilot_height, duration)
+				phase = V3.phase(pilot_tracks[role], time, float(rank) * 1.1)
+				if not lead_found:
+					pilot_lead_phase = phase
+					lead_found = true
 			rank += 1
+		if pilot_active:
+			ground.gait_phases[i] = phase
 		if role == "ranger":
 			ranger_foot = foot
+			ranger_phase = phase
 		ground.contact_scales[i] = 0.0
 		if actor.visible:
 			var factor := _stage_actor(actor, role, foot, phase, elevated)
@@ -215,7 +280,7 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 		order.append(actor)
 	if is_instance_valid(_jack):
 		var trailing := ranger_foot + Vector2(-112, 12) * _perspective(ranger_foot.y)
-		var phase := time * WALK_FPS
+		var phase := ranger_phase * 1.30 if pilot_active else time * WALK_FPS
 		_jack.visible = _joining != "jack" or time >= _handoff_time
 		if _jack.visible:
 			if _joining == "jack":
@@ -252,7 +317,7 @@ func _stage_actor(actor: AnimatedSprite2D, role: String, foot: Vector2, phase: f
 	actor.animation = "walk"
 	actor.frame = frame
 	actor.position = _world * (foot - Vector2(0, (float(soles[role][frame]) - 48.0) * factor))
-	actor.scale = Vector2.ONE * factor * OVERSCAN
+	actor.scale = Vector2.ONE * factor * _world.x.length()
 	actor.modulate = Color(0.88, 0.88, 0.91).lerp(Color(0.56, 0.59, 0.64), clampf((1.0 - depth) * 0.42, 0.0, 0.35))
 	var contact := _world * foot
 	actor.set_meta("sole_y", contact.y)

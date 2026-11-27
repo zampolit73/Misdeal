@@ -4,6 +4,8 @@ var feet: Array[Vector2] = []
 var time := 0.0
 var stride_period := 6.0 / 6.5
 var contact_scales: Array[float] = []
+# Optional distance-driven gait clock for Travel V3 only.
+var gait_phases: Array[float] = []
 var dust_direction := Vector2(-1,0)
 
 func update_contacts(positions: Array[Vector2], local_time: float) -> void:
@@ -15,12 +17,16 @@ func _draw() -> void:
 	for i in range(feet.size()):
 		var sole := feet[i]
 		var perspective := contact_scales[i] if i<contact_scales.size() else 1.0
+		if perspective <= 0.0:
+			continue
 		draw_set_transform(sole + Vector2(-4,1)*perspective,0,Vector2(25,4.2)*perspective)
 		for ring in range(6):
 			draw_circle(Vector2.ZERO,1.0 - ring * 0.13,Color(0.018,0.022,0.03,0.035))
 		draw_set_transform(Vector2.ZERO)
 		# Two support contacts / stride. Four tiny motes/contact, pooled by math.
 		var phase := fposmod(time + i * 0.17, stride_period * 0.5)
+		if i < gait_phases.size():
+			phase = fposmod(gait_phases[i], 3.0) / 6.5
 		if phase > 0.25 or time < 0.18: continue
 		for mote in range(4):
 			var age := phase + mote * 0.023

@@ -55,7 +55,10 @@ static func context_for(id: String, outcome: String, roles: Array, wizard: Strin
 	if BATCH02.ACTIONS.has(id):
 		var visual := BATCH02.action_for(id,outcome,roles,presentation)
 		if visual.is_empty(): return {}
-		return {"resolved_card_id":id,"outcome_id":outcome,"visual_action":visual,"party_roles":roles.duplicate(),"narration_text":BATCH02.narration(id,visual),"wizard_line":wizard,"duration_sec":4.0}
+		var result := {"resolved_card_id":id,"outcome_id":outcome,"visual_action":visual,"party_roles":roles.duplicate(),"narration_text":BATCH02.narration(id,visual),"wizard_line":wizard,"duration_sec":4.0}
+		if id in ["blood_ledger","rattling_bridge"]:
+			result["jack_companion"] = "ranger" in roles and bool(presentation.get("jack_companion", false))
+		return result
 	var action := outcome
 	if id=="gravedigger_shop":
 		var role := str(presentation.get("choice_role",""))

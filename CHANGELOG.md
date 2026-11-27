@@ -1,3 +1,10 @@
+## Cinematic Travel V3 — three-location pilot - 27 Nov 2026
+
+- Pilot Blood Ledger, Whispering Well and Rattling Bridge; preserve 19 outcomes, their source art and 4-second Travel controller.
+- Correct clamped rear movement and recruit endpoint, use distance-aware six-frame gait, grounded soles, shared footfall/dust phase and short synchronized outcome cues.
+- Animate localized candle/lamp light, bridge cloth and embers, well ripple and existing handoff/patches; bounded coherent camera push. Jack follows Ranger in the pilot when already present.
+- Preserve remaining 21 event locations, all gameplay, saves, routing, skip and pause. Native visual/audio approval pending.
+
 ## Archive — Achievements UI V3 - 27 Nov 2026
 
 - Preserve the original Challenges overview and add a dedicated two-page 4×3 achievement collection reached by a live count button.

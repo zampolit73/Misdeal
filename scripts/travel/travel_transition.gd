@@ -4,6 +4,7 @@ const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const PANORAMA := preload("res://scripts/travel/travel_panorama.gd")
 const GROUND_FX := preload("res://scripts/travel/travel_ground_fx.gd")
+const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 const WALK_FPS := 6.5
 const BODY_SPEED := 20.0
 static var _soles: Dictionary = {}
@@ -28,6 +29,7 @@ var fog: ColorRect
 var exit_shade: ColorRect
 var skip_button: Button
 var _next_audible_step := 0.48
+var _pilot_last_support := 0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -181,12 +183,31 @@ func _process(delta: float) -> void:
 
 func _play_travel_cues(previous: float) -> void:
 	var id := String(context.get("resolved_card_id", ""))
+	if V3.enabled(id) and bool(panorama.get("pilot_active")):
+		_play_pilot_cues(previous, id)
+		return
 	if elapsed >= _next_audible_step and elapsed < duration() - 0.65:
 		_next_audible_step = elapsed + 0.61
 		SoundDirector.play_scene_cue(self, "wood-step" if id == "rattling_bridge" else "stone-step",
 			-26.0, 1.03 if int(elapsed * 2) % 2 == 0 else 0.94)
 	if previous < 0.92 and elapsed >= 0.92:
 		var cue := _outcome_cue(id, String(context.get("visual_action", context.get("outcome_id", ""))))
+		if not cue.is_empty():
+			SoundDirector.play_scene_cue(self, cue, -23.0, 0.92)
+
+
+func _play_pilot_cues(previous: float, id: String) -> void:
+	# Read the same lead gait clock used by the visible actor and contact FX.
+	# No accumulated timer drift, no queued steps after skip/pause.
+	var support := V3.support_index(float(panorama.pilot_lead_phase))
+	if support > _pilot_last_support and elapsed > 0.36 and elapsed < duration() - 0.20:
+		SoundDirector.play_scene_cue(self, "wood-step" if id == "rattling_bridge" else "stone-step",
+			-26.0, 1.03 if support % 2 == 0 else 0.94)
+	_pilot_last_support = support
+	var action := String(context.get("visual_action", context.get("outcome_id", "")))
+	var beat := V3.action_time(id, action)
+	if previous < beat and elapsed >= beat:
+		var cue := V3.action_cue(id, action)
 		if not cue.is_empty():
 			SoundDirector.play_scene_cue(self, cue, -23.0, 0.92)
 
