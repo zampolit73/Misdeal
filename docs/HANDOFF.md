@@ -1,3 +1,7 @@
+## Next player check · debtor alcove and smaller crown
+
+Pull main, F6 `scenes/dev/travel_relic_v5_preview.tscn`. Debtor Bones: now at right-hand wall with a free central passage, seated bone-hand gesture and all four dice actions registered to the new table. X twice to Broken Crown: 43px crown, check relative to helmet, all outcomes and pickup. Wizard Tithe unchanged. 132 contexts / 26,589 checks passed in isolated Godot 4.7.2; native visual/audio check pending. Still staged; do not activate any unaccepted IDs.
+
 ## Next player check · corrected relic movies, no inserts
 
 Player rejected the initial insert-style animation as an unfinished clip from another game. Pull main, F6 `scenes/dev/travel_relic_v5_preview.tscn` (same controls). All three scenes now retain one human-scale painting throughout 6.6s; check standing reach, actual prop reactions, NPC hands, matched tone/shadows/reflections, adult Jack, natural exit and scene-local sounds across 12 outcomes. 132 contexts / 26,215 targeted checks passed; offline sampled frames reviewed, native visual and audio review pending. Keep them staged (10/24 live, six staged, eight unstaged), do not activate until accepted. [Polish QA](qa/travel_relic_v5/polish.md).

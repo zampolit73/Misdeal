@@ -44,6 +44,14 @@ func _run() -> void:
 					if not stage.available: continue
 					_check(stage.actors.size()==party.size() and stage.roles==party,name+" actual party")
 					_check(is_instance_valid(stage.jack)==companion,name+" actual companion")
+					if id=="debtor_bones":
+						for slot in ["die0","die1","die2","dish","box"]:
+							var piece: Sprite2D = stage.transactions.pieces[slot]
+							_check(piece.position.x>=1040 and piece.position.x<=1180 and piece.position.y>=460 and piece.position.y<=490,name+" prop on wall-side table")
+						_check(stage.npc_patch.position.x>=1030,name+" gesture in wall alcove")
+					if id=="broken_crown":
+						var piece: Sprite2D = stage.transactions.pieces.crown
+						_check(is_equal_approx(piece.scale.x*piece.texture.get_width(),43.0),name+" human-sized crown")
 					var base: Sprite2D = stage.plate
 					var world: Node2D=stage.world
 					var initial := stage.party_feet.duplicate()

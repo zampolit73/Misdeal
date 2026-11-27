@@ -1,5 +1,11 @@
 ## Cinematic Travel V5 - continuous relic cinematic polish - 28 Nov 2026
 
+## Cinematic Travel V5 — wall-side debtor and smaller crown — 28 Nov 2026
+
+- Repaint the debtor table and seated figure directly against the right wall; register dice, dish, chest, gesture, candle and party approach/departure to the new location. Free central passage.
+- Reduce crown from 67 to 43px (36%) with matching broken/melted states, cloth trace and pickup reach. Wizard Tithe unchanged.
+- Isolated Godot 4.7.2: 132 contexts / 26,589 checks / zero failures. Native F6 acceptance pending; no campaign selection or rules changed.
+
 - Replaced rejected insert-based staging for Debtor Bones, Wizard Tithe and Broken Crown with unified human-scale art, standing hero gestures, local NPC/prop actions and coherent light, shadows, reflections and existing sound palette.
 - Actual 12 committed outcomes; no card art, rules, saves or production allowlist changes. Godot 4.7.2 isolated 132 contexts / 26,215 checks / zero failures. Native F6 acceptance pending.
 - [Polish QA](docs/qa/travel_relic_v5/polish.md).

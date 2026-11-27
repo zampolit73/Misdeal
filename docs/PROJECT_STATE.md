@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · relic wall-side staging correction
+
+Player requested the Debtor Bones worksite against a wall and a smaller Broken Crown. Repainted the integrated debtor plate with a right-wall alcove, re-registered the local hand gesture, tabletop props, lights and hero routes. Crown width 67→43 px (−36%), all derived states and cloth trace reduced. Wizard Tithe unchanged. Godot 4.7.2 isolated 132 contexts / 26,589 checks / zero failures. Native F6 acceptance pending; 10/24 live, six staged, eight unstaged. [Correction QA](qa/travel_relic_v5/alcove_revision.md).
+
 ## Cinematic Travel V5 · relic transactions continuous-scene polish
 
 After the player rejected insert-style animation, rebuilt all three staged candidates as a single cohesive human-scale scene: integrated scenery/NPCs, 20 local animated prop cels, 9 standing hero gestures, 2 registered NPC gestures, scene-matched contact shadows/reflections/lighting and continuous camera, distinct committed outcomes and synced existing sounds. F6 uses the same scene path. Godot 4.7.2 isolated 132 contexts / 26,215 checks / zero failures; sampled frames reviewed, native visual/audio acceptance pending. **10/24 live, six staged, eight unstaged**. No campaign selection, gameplay, saves or original card art changed. [Polish QA](qa/travel_relic_v5/polish.md).

@@ -1,3 +1,7 @@
+## Travel V5 · debtor alcove correction
+
+Updated `relic_polish/debtor_bones/plate.webp` and `npc_gesture.webp`: 1280×720 integrated right-wall nook and 144×120 local forearm/hand pose at (1040,349), generated from pinned prior Misdeal art. Same resource UIDs. Crown footprint shader reduced in line with prop profile. Previous revision retained in Git. [Provenance](qa/travel_relic_v5/alcove_revision.md).
+
 ## Travel V5 · continuous relic scene polish
 
 `assets/pixel/travel/cinematic_v5/relic_polish/`: three integrated 1280×720 plates, three transparent 192px-cell tabletop atlases (20 pieces), two registered transparent regional NPC cels, and 864×864 3×3 standing-gesture atlas (9 native 288px cels, 96px logical geometry). Runtime three local scene/reflection/liquid shaders, source hash receipt and exact file hashes. No reuse of old cinematic cutaway layer; the previous assets and V4 art are retained. [Review and provenance](qa/travel_relic_v5/polish.md).

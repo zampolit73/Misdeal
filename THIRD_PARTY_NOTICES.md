@@ -89,3 +89,5 @@ Add the registry ID, actual work title, author, original source, license,
 changes and relevant copyright/NOTICE text before distribution. Use the
 upstream license verbatim in the original license file rather than
 reconstructing it from this summary.
+
+Relic V5 debtor alcove and crown scale correction (2026-11-28): project-origin ImageGen edits of pinned Misdeal plate and hand crop; local authored shader and sampled frame proof. [Correction origin and rights review](docs/qa/travel_relic_v5/alcove_revision.md). No external new asset or dependency.

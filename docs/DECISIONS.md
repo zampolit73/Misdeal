@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · logical worksite placement and relic scale
+
+The player explicitly rejected the debtor sitting in the middle of the dungeon and a crown larger than the helmet. Put the entire debtor workstation in an architectural alcove, not just translate a detached sprite; keep the central passage free and re-register every local effect. Use 43px crown width and proportionally derived prop states, matching human-scale gear. No change to campaign or relic rules.
+
 ## Cinematic Travel V5 · relic polish supersedes inserts
 
 Player rejected the cut from human-scale wide scene to legacy artwork. Keep a single physically coherent environment and shared camera throughout; static NPC/table painted into the location, registered local gesture cels, independent physical props and outcome-specific motion, standing role gestures rather than unrelated kneeling. One actual party and adult Jack remain on-screen; subtly grade characters to local light, shadows and wet-ground reflection. Reuse project audio. Previous insert assets retained for rollback, no rule/save/live allowlist change. [Polish QA](qa/travel_relic_v5/polish.md).

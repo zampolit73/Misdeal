@@ -36,7 +36,7 @@ void fragment(){
 	vec4 ink=texture(TEXTURE,clamp(UV+offset/size,vec2(0.0),vec2(1.0)));
 	ink.rgb*=vec3(1.0+heat,1.0+heat*0.6,1.0+heat*0.25);
 	// Only the collected crown leaves the compressed, faded cloth footprint.
-	float footprint=mask(p,vec4(916.0,478.0,33.0,8.0));
+	float footprint=mask(p,vec4(916.0,478.0,21.0,6.0));
 	ink.rgb+=vec3(0.035,0.024,0.017)*footprint*trace;
 	COLOR=ink*tint;
 }
