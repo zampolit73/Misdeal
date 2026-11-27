@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · relic transactions staged
+
+Three Batch02 candidates: Debtor Bones, Wizard Tithe, Broken Crown. New human-scale wide compositions and exact original action inserts; shared HD heroes/Jack, scene-specific routes, local worksite motion, 12 distinct resolved outcomes. 132 isolated Godot 4.7.2 contexts / 26,531 checks / zero failures. F6 native acceptance pending. **10/24 live, six staged, eight unstaged**. No campaign routing, rules, saves or original art changed. [QA](qa/travel_relic_v5/README.md).
+
 ## Cinematic Travel V5 · Borrowed Boots approved and live
 
 Player approved the human-scale wide Borrowed Boots movie on 2026-11-28. Production explicitly adds only borrowed_boots to the Camp allowlist, yielding **10/24 V5 live**, three staged rescue previews, eleven unstaged. TravelCatalog passes the committed Final Five outcome (repair/hobnails/passed) unchanged, actual party and actual Ranger/Jack flag; exact F6 6.6s staging, action cues, caption, pause/skip and single Table navigation. Missing wide plate/profile returns to V4, direct legacy QA stays V4. Isolated Godot 4.7.2: 91 production contexts / 2,107 checks plus 9 missing-plate and 9 missing-profile checks, zero failures. Player accepted F6; integrated F5 visual playback pending. No rules, save or artwork changes. [QA](qa/travel_camp_v5/README.md).

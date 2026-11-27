@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · relic transaction camera inserts
+
+Keep the original approved artistic identities and all 12 committed Batch02 outcomes. Use new empty establishing plates and one human-scale original worksite per shot, with base and outcome replacements sharing source registration. A separate original-art insert handles dice, chalice and crown action without giant anatomy/props beside the party; preserve the sparse dice-break impact at handoff instead of inventing a pose. Pass remains continuous without transaction. F6-only pending player review; no automatic production opt-in. [QA](qa/travel_relic_v5/README.md).
+
 ## Cinematic Travel V5 · approved Borrowed Boots production opt-in
 
 On 2026-11-28 the player approved the wide human-scale animated Squire. Explicitly allowlist borrowed_boots, not the three still-unaccepted rescue IDs. Catalog uses committed Final Five outcome directly (no Batch03 override), accepted F6 repair/cloth and hobnails/metal cues, no transaction cue when passed. Shared 6.6s transition, actual party and Jack, captions, pause/skip and one-shot Table return. Failed configuration falls back to V4; direct V4 QA retained. No rules, costs, rewards, saves or art changes.

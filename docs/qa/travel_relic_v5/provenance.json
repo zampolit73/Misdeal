@@ -1,0 +1,17 @@
+{
+  "debtor_bones": {
+    "master_sha256": "ab96a52555a77260a48b478f4786fb52e6e29258d6b492d161d2e125117d978a",
+    "generated_source_sha256": "d015f8917ff65c8f415f8657cfd281bd9322f82d6146e09f7c6087c93ac84525",
+    "generated_source_file": "exec-45947f60-6a6c-4507-a8c8-22c2174e0746.png"
+  },
+  "wizard_tithe": {
+    "master_sha256": "f568ee9aef9509002ef6374a965e6326933a6d0b31e05dfcc02fd970e379e1d2",
+    "generated_source_sha256": "d4938ab44c8a83910509ed4e727fabb636aeab5ff03bd8dd3ede07723fe93e9e",
+    "generated_source_file": "exec-9ade9cf9-cd4f-4eeb-bc55-dfb0abfdb1a1.png"
+  },
+  "broken_crown": {
+    "master_sha256": "bf961a8a118f8036a3b9c7ada6208490a116a8ee819ed0d30162a317f9301672",
+    "generated_source_sha256": "2184702fb6665c4c6094fe78aa59fa90d9b33de8a35c20a1bfeef061aac7369f",
+    "generated_source_file": "exec-d7f57a11-d187-4646-91b6-336f678d1536.png"
+  }
+}

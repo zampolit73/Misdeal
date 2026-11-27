@@ -1,3 +1,9 @@
+## Cinematic Travel V5 - relic transaction candidate batch - 28 Nov 2026
+
+- Stage Debtor Bones, Wizard Tithe and Broken Crown: three wide human-scale environments, thirteen registered base/outcome worksites, 12 resolved outcomes and distinct original local-detail inserts.
+- Existing HD party/Jack and rules, cards, V4 renderer, production selection unchanged; 10/24 live, six staged and eight unstaged.
+- Isolated Godot 4.7.2: 132 contexts / 26,531 checks / zero failures. Offline sampled staging review; native F6 acceptance pending. [QA](docs/qa/travel_relic_v5/README.md).
+
 ## Cinematic Travel V5 — approved Borrowed Boots live — 28 Nov 2026
 
 - Player approved corrected wide animated cobbler. Production now selects the approved 6.6 s movie for repair, hobnails and passed, using committed outcome and actual party/Jack. Existing travel UI, local cues and V4 fallback retained.

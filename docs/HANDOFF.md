@@ -1,3 +1,7 @@
+## Next player check · three relic transactions
+
+Pull main and open `scenes/dev/travel_relic_v5_preview.tscn` with F6. Z/X: Debtor Bones, Wizard Tithe, Broken Crown; arrows outcomes; 1/2/3, Q/E, J, P/R/H/M. Check the same human-scale composition as approved Boots, actual HD party and adult dog, natural route to the relic, separate original full-detail transaction insert and matching small outcome, passage without interaction. 132 contexts / 26,531 checks PASS; offline visual sampled composites, native F6 review pending. 10/24 live, six staged (earlier rescue three still unaccepted), eight unstaged. Only explicitly approved V5 IDs may be added to the production allowlist. No save reset. [QA](qa/travel_relic_v5/README.md).
+
 ## Next player check · approved Borrowed Boots live
 
 Player approved the human-scale animated Squire on 2026-11-28. Pull main, F5 normally resolve Borrowed Boots (repair/hobnails/pass); the exact 6.6s approved cinematic now runs after the choice, including actual party/Jack, outcome and caption, skip and single return to Table. F6 `scenes/dev/travel_camp_v5_preview.tscn`, X twice remains the visual reference. Godot 4.7.2 isolated 91 live camp contexts / 2,107 checks, 9 missing-plate and 9 missing-profile checks, zero failures. Native integrated F5 visual check pending. 10/24 live, three rescue candidates still staged, eleven unstaged. Resume only remaining approved-direction independent candidates; do not silently activate unaccepted rescue. No save reset. [QA](qa/travel_camp_v5/README.md).

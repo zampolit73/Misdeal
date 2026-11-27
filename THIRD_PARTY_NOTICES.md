@@ -75,6 +75,10 @@ if distributed, these credits must accompany them.
 
 `travel-v5-boots-human-scale-wide-generated`: Misdeal project / ChatGPT image generation and deterministic source preparation, 2026-11-28. New empty wide environment and seven source-derived worksite/animation patches, project references only. [Provenance](docs/qa/travel_camp_v5/README.md); legacy reference and tool rights review pending.
 
+## Project-origin Relic transaction wide cinematics
+
+`travel-v5-relic-human-scale-wide-generated`: Misdeal project / ChatGPT image generation and deterministic source preparation, 2026-11-28. Three empty generated wide plates and thirteen original source-registered worksite cutouts. [Provenance](docs/qa/travel_relic_v5/README.md); legacy source and tool rights review pending.
+
 ## Future entries
 
 Add the registry ID, actual work title, author, original source, license,

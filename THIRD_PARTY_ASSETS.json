@@ -428,6 +428,38 @@
         "assets/pixel/travel/cinematic_v5/boots_wide/pull.webp": "3fd14048495aca69d471e04c9e4f1090b87f5aae28de12aaad903d31bcd6d8a4",
         "assets/pixel/travel/cinematic_v5/boots_wide/thread.webp": "4ef85eced1cf1491388b928fead485ad68146db9726357750995579db0a8ee94"
       }
+    },
+    {
+      "id": "travel-v5-relic-human-scale-wide-generated",
+      "status": "verified",
+      "origin": "generated",
+      "author": "Misdeal project / ChatGPT image generation and deterministic source preparation",
+      "revision": "relic-wide-v5-01 from a9d276cb768b8801f1af67f4c9230fd24b80a537",
+      "obtained_on": "2026-11-28",
+      "licenses": [
+        "PROJECT-ORIGIN"
+      ],
+      "rights_review": "Development-origin review: three generated empty wide plates based solely on the pinned Misdeal original masters. Thirteen original source-registered worksite state cutouts. One offline QA contact sheet derived exclusively from these and existing project textures. No outside images or dependencies. Historical source and tool rights remain subject to the release audit, not distribution clearance.",
+      "evidence": "docs/qa/travel_relic_v5/README.md",
+      "files": {
+        "assets/pixel/travel/cinematic_v5/relic_batch/broken_crown/plate.webp": "4e064731baaab98168bcbac0acf35e93b6281d1a361c6e0ffe57f7d1d77d4362",
+        "assets/pixel/travel/cinematic_v5/relic_batch/broken_crown/worksite_base.webp": "4865df49a96b6afe9495f4bb866419ae6c5dda8fce9a13b7f4586182d310b38d",
+        "assets/pixel/travel/cinematic_v5/relic_batch/broken_crown/worksite_break.webp": "7abfd76a8a15ad76192c152e045f25a3d021fd46c6d13b83108fcfed6c17c20b",
+        "assets/pixel/travel/cinematic_v5/relic_batch/broken_crown/worksite_melt.webp": "e1107c5c05e80f219601128d735e9c5775bc2ab0794638343de235b8cf2b1b59",
+        "assets/pixel/travel/cinematic_v5/relic_batch/broken_crown/worksite_wear.webp": "66bf253b4018a5a9fb35d9bfc19a53b930d0a5f4da240565f0fc099656fbb28c",
+        "assets/pixel/travel/cinematic_v5/relic_batch/debtor_bones/plate.webp": "32115622d369461c12b97562837e69f0374800cd49bafb8a57804535509e7e83",
+        "assets/pixel/travel/cinematic_v5/relic_batch/debtor_bones/worksite_base.webp": "091a040ebd17c19f8fbce1491d653b3dc680256074ffcc54a621813a2d8e1e5a",
+        "assets/pixel/travel/cinematic_v5/relic_batch/debtor_bones/worksite_break.webp": "aabe62beb951810ad51c212e07c1da4421cd386448341025d0619361fbf502ef",
+        "assets/pixel/travel/cinematic_v5/relic_batch/debtor_bones/worksite_gamble_failure.webp": "be4c1bdea51171cfadaa913675c923cddf0e2ad28381f9900eb91cba72c18fca",
+        "assets/pixel/travel/cinematic_v5/relic_batch/debtor_bones/worksite_gamble_success.webp": "d64924d0e013a08d5813507b584dcf09775b5addf9cc61456d2ceda8bf3dca1d",
+        "assets/pixel/travel/cinematic_v5/relic_batch/debtor_bones/worksite_safe.webp": "d1dcc94eef3a0c6344e4a793be9e6e9a5f6238f260f079c07ccc484af1b645d8",
+        "assets/pixel/travel/cinematic_v5/relic_batch/wizard_tithe/plate.webp": "baf200c17a51df83c7ef54a22b4ca4ff602549a0d7ecd7647823ede770177b48",
+        "assets/pixel/travel/cinematic_v5/relic_batch/wizard_tithe/worksite_base.webp": "6e3a1d8e8a34f9430a79ad580e6fc46a1bb2ded1c7403635d05312ff1a9bc2a5",
+        "assets/pixel/travel/cinematic_v5/relic_batch/wizard_tithe/worksite_blood.webp": "52fedaf9939abe9b6ed2ab694d2d7202844a3b2cda182965279068ca2c0beac0",
+        "assets/pixel/travel/cinematic_v5/relic_batch/wizard_tithe/worksite_gold.webp": "846ea9753fea6998b72b7485a06309d783303f48ea7e9d7d48b230fbdea85764",
+        "assets/pixel/travel/cinematic_v5/relic_batch/wizard_tithe/worksite_refuse.webp": "e7e1df7f4030e069fd31d27b1bebaa1b3c126841936252777d21ee7015501161",
+        "docs/qa/travel_relic_v5/samples.jpg": "c854d5d4e39d9bd952a71330edd13707fabadc119bc54eec3115bd40f0045a32"
+      }
     }
   ],
   "release": {

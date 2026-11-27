@@ -1,3 +1,7 @@
+## Travel V5 · relic transaction wide compositions
+
+`assets/pixel/travel/cinematic_v5/relic_batch/<id>/`: three independently generated empty 1280×720 wide plates and thirteen source-registered 640×360 alpha worksite state cutouts in WebP. Shared source projections 0.29/0.34/0.23; original full-frame masters and local action cels used exclusively in the separate transaction insert. No replacement of old artwork or card illustrations. Registered under `travel-v5-relic-human-scale-wide-generated`. [QA/provenance](qa/travel_relic_v5/README.md).
+
 ## Travel V5 · Borrowed Boots human-scale wide composition
 
 `assets/pixel/travel/cinematic_v5/boots_wide/`: 1280×720 generated empty wide plate, three 640×470 lossless worksite RGBA state cutouts and four 235×258 lossless registered pose patches from the original workshop and previous authored Squire cels. One 0.21 source-unit scale at (157,350); half-source cels render at 0.42 scale, original source rectangle retained. Same actor and equipment identity; replaces only previously staged close-up F6 composition. Old originals kept. [QA/provenance](qa/travel_camp_v5/README.md).
