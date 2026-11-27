@@ -59,6 +59,10 @@ if distributed, these credits must accompany them.
 
 `travel-v5-road-lost-purse-wide-generated`: Misdeal project / ChatGPT image generation, 2026-11-27. Only existing project reference art, no external ingredients. [Source and hashes](docs/qa/travel_road_v5/README.md); pending historical rights review is not commercial clearance.
 
+## Project-origin rescue cinematic pose atlas
+
+`travel-v5-rescue-living-poses-generated`: Misdeal project / ChatGPT image generation and sprite preparation, 2026-11-27. Four distinct poses per original character, generated from existing project-only references, packed to lossless WebP. [Provenance](docs/qa/travel_rescue_v5/README.md); historical source and tool rights review still pending for release.
+
 ## Future entries
 
 Add the registry ID, actual work title, author, original source, license,

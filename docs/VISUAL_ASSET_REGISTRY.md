@@ -1,3 +1,7 @@
+## Cinematic Travel V5 — rescue living-pose atlas
+
+`assets/pixel/travel/cinematic_v5/rescue_batch/living_poses.webp.b64`: four distinct cels per Knight/Ranger/Mage/Jack on existing character references, 96×96 cell, 4×4 atlas, project-origin generated and registered. Cinematic-only kneel/rise/rest; existing combat art and painted card outcomes remain untouched. Jack standing size calibrated to the painted shelter. F6 acceptance pending. [QA and provenance](qa/travel_rescue_v5/README.md).
+
 ## Wizard Archive Visual V3
 
 [Player-approved design reference](../assets/source_archive/wizard_archive_v3/approved_reference.webp) (ImageGen concept, archived WebP). Runtime reuses the four original V2/V2.1 plates and corresponding highlight textures with `wizard_archive_grade.gdshader`; menu primary/secondary plates and the original library stone supply the shared chrome. No replacement of live relic, enemy, portrait or seal images and no new baked copy. [QA](qa/wizard_archive_v3/README.md).

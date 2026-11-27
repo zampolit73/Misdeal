@@ -20,7 +20,8 @@
 - [x] Player accepted the Road and Danger batch on 2026-11-27; enabled the three IDs in production with V4 fallback; 112 contexts / 2,077 checks + 9 fallback checks PASS; previous Forge and Merchant regression PASS.
 - [ ] Native integrated F5 playback for Bridge, Well and Purse.
 - [x] Stage Black Altar, Chained Prisoner and Jack in isolated F6: 128 contexts / 15,723 checks PASS. [QA](qa/travel_rescue_v5/README.md).
-- [ ] Player visual acceptance of ritual/prisoner/companion preview; only then enable the three exact resolved IDs with V4 fallback.
+- [x] Replace rejected defeat-frame crouches/recovery with original living cels; correct Jack standing-scale projection. 128 contexts / 20,861 checks PASS.
+- [ ] Player visual acceptance of revised ritual/prisoner/companion preview; only then enable the three exact resolved IDs with V4 fallback.
 - [ ] Apply the approved scene-first V5 direction to remaining 14 scenes beyond this candidate in coherent batches; preserve the original art identity, actual outcomes and V4 fallback. No automatic scene conversion.
 
 ## Travel Staging V4

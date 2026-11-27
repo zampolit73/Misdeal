@@ -1,3 +1,9 @@
+## Cinematic Travel V5 — living poses and normal-size Jack — 27 Nov 2026
+
+- Repainted 16 dedicated living animation cels (4×4 atlas): natural Knight/Ranger kneels, supported Mage recovery, alert Jack rest/sit/rise. Removed combat death pose usage from three rescue preview movies; preserved the Mage staff-cast and existing battle atlas.
+- Jack now uses standing height at 0.95 m and the original 56 px reference, calibrated against painted shelter width; gait, rise and walk share the same physical scale. Kept paths and approved live scenes unchanged.
+- Godot 4.7.2 isolated: 128 contexts / 20,861 checks / zero failures; offline frame review and license inventory 28/28, zero errors. Player F6 visual acceptance pending; production remains 7/24 V5. [QA](docs/qa/travel_rescue_v5/README.md).
+
 ## Cinematic Travel V5 — ritual/prisoner/companion review batch — 27 Nov 2026
 
 - Stage Black Altar, Chained Prisoner and Jack as three independent 6.6 s films for separate F6 playback. Preserve exact legacy paintings and committed outcome layers, D412/Jack art, local motion and actual party composition.

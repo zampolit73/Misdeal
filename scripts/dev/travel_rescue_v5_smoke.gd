@@ -46,17 +46,29 @@ func _run() -> void:
 							var foot: Vector2 = stage.party_feet[role]
 							var info: Dictionary = stage.current_frame[role]
 							var bounds := unit.texture.get_image().get_used_rect()
+							_check(info.clip!="death",name+" no combat death poses")
+							if t == 2.82 and role == stage.action_role and action not in ["passed","leave","abandon"]:
+								_check(info.clip==("attack" if role=="mage" else "kneel"),name+" correct ritual gesture")
+							if info.clip in ["kneel","rise","step_down"]:
+								_check(unit.texture==stage.living_poses[role][info.frame],name+" dedicated living cel")
 							_check(foot.is_finite() and float(info.height)>0 and is_finite(info.height),name+" valid projection")
 							_check(unit.visible==(role in stage.visible_roles),name+" actual actors")
 							_check(absf(unit.position.y+(float(bounds.end.y)-48.0)*unit.scale.y-foot.y)<0.03,name+" authored sole")
 							if not stage.joining.is_empty() and role==stage.joining and after and t<RESCUE.RISE_END:
-								_check(info.clip=="death",name+" distinct authored recovery poses")
+								_check(info.clip=="rise",name+" distinct authored recovery poses")
 						if is_instance_valid(stage.jack):
 							_check(stage.jack.visible==("ranger" in stage.visible_roles and (id!="jack" or after)),name+" one companion after rescue")
 							var b := stage.jack.texture.get_image().get_used_rect()
+							_check(stage.dog_clip!="death",name+" no dog defeat pose")
+							if id=="jack" and t == 5.12:
+								_check(stage.dog_clip=="walk",name+" dog running after treatment")
+							_check(absf(stage.jack.scale.x*stage.jack_body_px-stage._ppm(stage.dog_foot.y)*RESCUE.JACK_STATURE_M)<0.02,name+" constant adult dog stature at each depth")
+							_check(stage.jack_body_px==56.0,name+" standing reference not airborne stride")
+							if id=="jack" and after and t<RESCUE.RISE_END:
+								_check(stage.jack.texture==stage.living_poses["jack"][stage.dog_pose_index],name+" dedicated alert dog cel")
 							_check(absf(stage.jack.position.y+(float(b.end.y)-48.0)*stage.jack.scale.y-stage.dog_foot.y)<0.03,name+" real dog sole")
 							if id=="jack" and after and t<RESCUE.RISE_END:
-								_check(stage.dog_clip=="death",name+" dog rising poses")
+								_check(stage.dog_clip=="rise",name+" dog rising poses")
 					stage.seek(6.6)
 					for role in party:
 						if id=="jack":
@@ -71,6 +83,16 @@ func _run() -> void:
 	_check(not stage.configure_scene("black_altar",["mage","mage"],"leave"),"no duplicate heroes")
 	_check(stage.configure_scene("jack",["ranger"],"passed",true) and not is_instance_valid(stage.jack),"pass never grants companion")
 	_check(stage.configure_scene("jack",["ranger"],"recruited",false) and is_instance_valid(stage.jack),"recruit always grants companion")
+	# At identical depth stationary and walking silhouettes share the same scale.
+	stage.seek(RESCUE.HANDOFF)
+	var standing: Rect2i = stage.jack_frames.get_frame_texture("idle",0).get_image().get_used_rect()
+	_check(absf(standing.size.x*stage.jack.scale.x-114.0)<4.0,"Jack shelter handoff matches the painted 114px dog")
+	for role in RESCUE.POSE_ROWS:
+		var hashes := {}
+		for pose in stage.living_poses[role]:
+			var img: Image = pose.get_image()
+			hashes[img.get_data().hex_encode().sha256_text()] = true
+		_check(hashes.size()==4,"four distinct living cels for "+role)
 	var preview := (load("res://scenes/dev/travel_rescue_v5_preview.tscn") as PackedScene).instantiate()
 	root.add_child(preview)
 	preview.set_process(false)

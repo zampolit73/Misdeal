@@ -348,6 +348,22 @@
       "files": {
         "assets/pixel/travel/cinematic_v5/road_batch/lost_purse/plate.webp": "c1e04007d546eff50297393d87fe9b7c41567be2be7d093183c17b818a7131ae"
       }
+    },
+    {
+      "id": "travel-v5-rescue-living-poses-generated",
+      "status": "verified",
+      "origin": "generated",
+      "author": "Misdeal project / ChatGPT image generation and preparation",
+      "revision": "rescue-batch-v5-living-poses-02",
+      "obtained_on": "2026-11-27",
+      "licenses": [
+        "PROJECT-ORIGIN"
+      ],
+      "rights_review": "Development origin reviewed: original project character identities from pinned existing Misdeal D412 and Jack atlas idle cels; generated expressly for this project with no external reference or dependency. Original source rights and tool terms remain part of pending release review; not commercial copyright clearance.",
+      "evidence": "docs/qa/travel_rescue_v5/README.md",
+      "files": {
+        "assets/pixel/travel/cinematic_v5/rescue_batch/living_poses.webp.b64": "63f1d397e39eb47172cedd9bf40bdea325d2538db981526c37f177562b4aba80"
+      }
     }
   ],
   "release": {

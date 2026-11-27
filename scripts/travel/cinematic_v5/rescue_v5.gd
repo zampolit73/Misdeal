@@ -10,6 +10,14 @@ const DEPARTURE := 4.02
 const RISE_END := 3.86
 const ALTAR_LAND := 4.55
 const DOG_JOIN := 5.10
+# Standing head-to-ground stature, not the tallest mid-stride bounding box.
+# At the shelter the original 69-pixel-wide idle silhouette projects to 115 px,
+# matching the existing painted animal (114 px). The same scale follows him.
+const JACK_STATURE_M := 0.95
+const JACK_ROUTE_SPACING_M := 0.67
+const POSE_ATLAS := "res://assets/pixel/travel/cinematic_v5/rescue_batch/living_poses.webp.b64"
+const POSE_ROWS := ["knight", "ranger", "mage", "jack"]
+const POSE_CELL := 96
 var scene_id := ""
 var profile: Dictionary
 var scene_data: Dictionary
@@ -20,7 +28,7 @@ var state_layer: Sprite2D
 var treatment_layer: Sprite2D
 var foreground: Sprite2D
 var side_frames: Dictionary = {}
-var original_frames: Dictionary = {}
+var living_poses: Dictionary = {}
 var rear_frames: Dictionary
 var walk_heights: Dictionary = {}
 var rear_heights: Dictionary = {}
@@ -31,6 +39,7 @@ var dog_foot := Vector2.ZERO
 var dog_height := 0.0
 var dog_clip := "idle"
 var dog_track: Dictionary = {}
+var dog_pose_index := 0
 
 static func scene_actions(id: String, party: Array) -> Array[String]:
 	var result: Array[String] = []
@@ -71,11 +80,28 @@ func _walk_height(set: SpriteFrames) -> float:
 		h = maxf(h, float(set.get_frame_texture("walk", i).get_image().get_used_rect().size.y))
 	return h
 
+func _load_living_poses() -> bool:
+	if living_poses.size() == POSE_ROWS.size(): return true
+	if not FileAccess.file_exists(POSE_ATLAS): return false
+	var image := Image.new()
+	if image.load_webp_from_buffer(Marshalls.base64_to_raw(FileAccess.get_file_as_string(POSE_ATLAS).strip_edges())) != OK: return false
+	if image.get_size() != Vector2i(4*POSE_CELL,4*POSE_CELL): return false
+	var decoded: Dictionary = {}
+	for y in POSE_ROWS.size():
+		var row: Array[Texture2D] = []
+		for x in 4:
+			var cel := image.get_region(Rect2i(x*POSE_CELL,y*POSE_CELL,POSE_CELL,POSE_CELL))
+			if cel.get_used_rect().size == Vector2i.ZERO: return false
+			row.append(ImageTexture.create_from_image(cel))
+		decoded[POSE_ROWS[y]] = row
+	living_poses = decoded
+	return true
+
 func configure_scene(id: String, party: Array, resolved_action: String, has_jack := false) -> bool:
 	available = false
 	var state := CATALOG.action_for(id, resolved_action, party)
 	if id not in IDS or state.is_empty() or resolved_action not in scene_actions(id,party): return false
-	if not FileAccess.file_exists(PROFILE): return false
+	if not FileAccess.file_exists(PROFILE) or not _load_living_poses(): return false
 	var json: Variant = JSON.parse_string(FileAccess.get_file_as_string(PROFILE))
 	if not json is Dictionary or not json.has(id): return false
 	profile = json[id]
@@ -105,7 +131,7 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 	treatment_layer = null
 	jack = null
 	jack_shadow = null
-	for dict in [actors, shadows, tracks, party_feet, current_frame, side_frames, original_frames, walk_heights, rear_heights, routes]:
+	for dict in [actors, shadows, tracks, party_feet, current_frame, side_frames, walk_heights, rear_heights, routes]:
 		dict.clear()
 	visible_roles.clear()
 	dog_track.clear()
@@ -133,8 +159,7 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 		rear_frames = REAR.frames
 	for role in order:
 		var source := ANIM.get_frames(role)
-		if source == null or source.get_frame_count("walk") != 6 or source.get_frame_count("death") != 6: return false
-		original_frames[role] = source
+		if source == null or source.get_frame_count("walk") != 6: return false
 		var side := _ranger_without_floor_marker(source) if role == "ranger" else source
 		side_frames[role] = side
 		walk_heights[role] = _walk_height(side)
@@ -147,8 +172,8 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 		tracks[role].pitch = maxf(0.068, float(tracks[role].total)/(DURATION*8.5))
 	if jack_present:
 		jack_frames = ANIM.get_frames("jack")
-		if jack_frames == null or jack_frames.get_frame_count("death") != 6: return false
-		jack_body_px = _walk_height(jack_frames)
+		if jack_frames == null or jack_frames.get_frame_count("walk") != 6: return false
+		jack_body_px = float(jack_frames.get_frame_texture("idle",0).get_image().get_used_rect().size.y)
 		jack = _sprite(jack_frames.get_frame_texture("idle",0), world, 30, Vector2.ZERO)
 		jack.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		jack_shadow = _shadow(shadow_texture, Vector2.ZERO, 60.0, 20)
@@ -213,23 +238,23 @@ func _hero_foot(time: float, role: String) -> Vector2:
 	return _path(route.out, smoothstep(DEPARTURE, DURATION, time))
 
 func _dog_height(foot: Vector2) -> float:
-	return _ppm(foot.y) * 0.67
+	return _ppm(foot.y) * JACK_STATURE_M
 
 func _dog_foot(time: float) -> Vector2:
 	var ranger_foot := _hero_foot(time, "ranger")
-	var h := _dog_height(ranger_foot)
+	var h := _ppm(ranger_foot.y) * JACK_ROUTE_SPACING_M
 	var follow := ranger_foot + Vector2(-h*0.56, h*0.90)
 	if scene_id == "black_altar": follow.y = maxf(follow.y, 565.0)
 	if scene_id == "jack":
 		var delayed := _hero_foot(maxf(0.0,time-0.24), "ranger")
-		var dh := _dog_height(delayed)
+		var dh := _ppm(delayed.y) * JACK_ROUTE_SPACING_M
 		follow = delayed + Vector2(-dh*0.18,dh*0.73)
 		var path := _points(profile.join)
 		if time <= RISE_END: return path[0]
 		if time < DOG_JOIN:
 			# Join the Ranger's actual route, not an invented hero-slot.
 			var target := _hero_foot(DOG_JOIN-0.24, "ranger")
-			var th := _dog_height(target)
+			var th := _ppm(target.y) * JACK_ROUTE_SPACING_M
 			target += Vector2(-th*0.18, th*0.73)
 			return _path([path[0],path[1],path[2],path[3],target], smoothstep(RISE_END,DOG_JOIN,time))
 	return follow
@@ -256,26 +281,32 @@ func _place_hero(role: String, t: float) -> void:
 	var set: SpriteFrames = rear_frames[role] if rear else side_frames[role]
 	var clip := "walk" if moving else "idle"
 	var frame := int(phase)%6 if moving else int(t*2.4)%4
-	# Authored poses, used only as cinematic gestures (no combat events).
+	# Dedicated living poses are independent of the combat animation library.
+	# A planted kneel and a supported rise retain the physical limb lengths.
+	var pose_index := -1
 	if role == joining and t >= HANDOFF and t < RISE_END:
-		set = original_frames[role]
-		clip = "death"
-		var first := 5 if scene_id == "black_altar" else 3
-		frame = clampi(first-int(smoothstep(HANDOFF,RISE_END,t)*(first+1)),0,first)
+		clip = "rise"
+		pose_index = 2 if t < HANDOFF+0.23 else (3 if t < RISE_END-0.15 else 0)
 	elif role == joining and scene_id == "black_altar" and t >= RISE_END and t < ALTAR_LAND:
-		set = original_frames[role]
-		clip = "walk" if t < 4.11 else "death"
-		frame = int(phase)%6 if clip == "walk" else 2
+		if t >= 4.11 and t < 4.43:
+			clip = "step_down"
+			pose_index = 1
 	elif role == action_role and t > ARRIVAL+0.11 and t < HANDOFF+0.45 and action not in ["passed","leave","abandon"]:
-		set = original_frames[role]
-		var u := sin(PI*smoothstep(ARRIVAL+0.11,HANDOFF+0.45,t))
-		# Mage's raised staff is an actual pose. Knight/Ranger kneel briefly;
-		# no attack or death signals run, no extra weapon/grip is invented.
-		clip = "attack" if role == "mage" else "death"
-		frame = mini(4,int(u*4.8)) if clip == "attack" else mini(2,int(u*3.0))
+		if role == "mage":
+			# Preserve the previously authored staff-cast, not a defeat pose.
+			clip = "attack"
+			var u := sin(PI*smoothstep(ARRIVAL+0.11,HANDOFF+0.45,t))
+			frame = mini(4,int(u*4.8))
+		else:
+			clip = "kneel"
+			pose_index = 1 if t < 2.82 else (2 if t < HANDOFF+0.12 else 3)
 	var height := _height(foot, role)
-	var factor := height / float(rear_heights[role] if rear else walk_heights[role])
-	actor.texture = set.get_frame_texture("walk", 0) if rear and clip == "idle" else set.get_frame_texture(clip, frame)
+	var factor := height / float(rear_heights[role] if rear and pose_index < 0 else walk_heights[role])
+	if pose_index >= 0:
+		frame = pose_index
+		actor.texture = living_poses[role][pose_index]
+	else:
+		actor.texture = set.get_frame_texture("walk", 0) if rear and clip == "idle" else set.get_frame_texture(clip, frame)
 	var bounds := actor.texture.get_image().get_used_rect()
 	actor.position = foot - Vector2(0,(float(bounds.end.y)-48.0)*factor)
 	actor.scale = Vector2.ONE*factor
@@ -297,10 +328,12 @@ func _place_dog(t: float) -> void:
 	var moving := velocity.length()>0.7
 	dog_clip = "walk" if moving else "idle"
 	var index := int(V3.phase(dog_track,t))%6 if moving else int(t*2.4)%4
+	dog_pose_index = -1
 	if scene_id == "jack" and t >= HANDOFF and t < RISE_END:
-		dog_clip = "death"
-		index = clampi(5-int(smoothstep(HANDOFF,RISE_END,t)*6),0,5)
-	jack.texture = jack_frames.get_frame_texture(dog_clip,index)
+		dog_clip = "rise"
+		var u := (t-HANDOFF)/(RISE_END-HANDOFF)
+		dog_pose_index = 1 if u < 0.25 else (2 if u < 0.55 else (3 if u < 0.80 else 0))
+	jack.texture = living_poses["jack"][dog_pose_index] if dog_pose_index >= 0 else jack_frames.get_frame_texture(dog_clip,index)
 	var factor := dog_height/jack_body_px
 	var bounds := jack.texture.get_image().get_used_rect()
 	jack.scale = Vector2.ONE*factor
