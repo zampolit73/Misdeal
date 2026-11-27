@@ -1,3 +1,7 @@
+## Achievement System V2 · next native acceptance
+
+Pull main, F5. Existing Archive profiles migrate by proven facts without old-achievement toasts; no reset needed. Open Archive → Challenges: 24 achievements in six pages, first four unchanged, styles/oaths remain in place; separate achievement and aggregate totals. New achievements from ordinary confirmed choices, collection or combat should show a short non-interactive bronze notice only once. At RunEnd inspect the top-left scrollable list of achievements first earned in that run (not earlier ones). Godot 4.7.2: 24/24 targeted tests, 518 assertions, including schema 1 migration, failed write/retry, all 24 predicates and pagination, RunEnd and old save contract. Native rendering/player acceptance not yet verified. [QA](qa/achievement_system_v2/README.md). Do not reset the player's profile just to test notices.
+
 ## Wizard Archive Visual V3 · next native acceptance
 
 All four archive tabs use the player-approved V3 presentation. Pull main, F5 and open «АРХИВ ВОЛШЕБНИКА»; switch through Relics, Bestiary, Chronicle and Challenges. Check the subdued cabinet, dark detail plaque, legible actual copy, focused/selected states and Esc; from Table, Archive must return to the same deal. No new run or reset needed. Godot 4.7.2 headless: 8/8 targeted tests, 153 assertions. Native framebuffer not captured locally; visual acceptance remains open. [Concept and QA](qa/wizard_archive_v3/README.md).

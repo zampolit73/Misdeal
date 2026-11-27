@@ -1,3 +1,10 @@
+## Achievement System V2 - 27 Nov 2026
+
+- Expand four permanent endgame achievements to 24; add milestones for normal play and collections without granting power or changing existing rules.
+- Archive schema 2 records first earned run/time, migrates proven schema 1 history silently, confirms awards only after a successful write, and prevents duplicate feedback.
+- Six achievement pages with live states, names and counts; queued non-interactive unlock notices and a current-run achievement list on RunEnd. Preserve existing three styles and five oaths.
+- Godot 4.7.2: 24/24 targeted tests, 518 assertions; native visual acceptance pending.
+
 ## Wizard Archive Visual V3 - 27 Nov 2026
 
 - Implement player-approved dark stone, muted aged bronze and wine velvet styling across Reliquary, Bestiary, Chronicle and Challenges. Shared native Menu V2 title, tab, navigation, detail plaque and count materials; live gold/ivory copy and subdued selection.

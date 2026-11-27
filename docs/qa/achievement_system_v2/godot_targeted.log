@@ -1,0 +1,64 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[INFO]:  using [[project]/../ach_test_profile3/godot/app_userdata/Misdeal] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://tests/unit/test_achievement_system_v2.gd
+* test_checkpoint_unlocks_once_persists_and_reports_current_run
+* test_all_24_predicates_and_page_navigation
+* test_v1_migration_preserves_proven_history_without_toast
+* test_failed_archive_write_never_announces_until_retry_succeeds
+4/4 passed.
+
+
+res://tests/unit/test_wizard_archive.gd
+* test_defeat_keeps_history_and_unlocks_nothing
+* test_victory_unlocks_only_played_style_and_advances_one_rank
+* test_archival_collections_and_backup_recovery_are_independent_of_run_slot
+* test_oaths_change_real_shop_rest_danger_and_debt_values
+* test_active_charter_persists_and_schema_two_has_classic_defaults
+* test_starting_styles_apply_the_authored_class_tradeoffs
+6/6 passed.
+
+
+res://tests/unit/test_wizard_archive_visual_v3.gd
+* test_partial_profile_real_artwork_and_four_native_pages
+* test_empty_profile_and_return_to_table
+2/2 passed.
+
+
+res://tests/unit/test_run_save.gd
+* test_all_authored_fields_are_audited
+* test_roundtrip_all_roles_and_no_partial_corrupt_load
+* test_disk_backup_corruption_completion_and_memory_rewind
+* test_rich_state_and_new_run_preserve_collection
+* test_reward_checkpoint_and_failed_battle_return
+* test_schema_one_initializes_health_without_revisiting_old_stops
+* test_last_deal_checkpoint_retains_entry_health_and_paid_cost
+* test_cancel_new_game_confirmation_changes_nothing
+* test_pause_cannot_interrupt_scene_swap
+* test_explicit_new_game_clears_memory_and_archives_it
+* test_memory_only_new_game_still_asks_and_cancel_keeps_memory
+* test_next_run_keeps_collection_and_failed_reset_keeps_run
+12/12 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+Totals
+------
+Scripts               4
+Tests                24
+Passing Tests        24
+Asserts             518
+Time              0.973s
+
+
+---- All tests passed! ----

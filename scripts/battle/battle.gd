@@ -662,7 +662,7 @@ func _spawn_unit(
 		unit.start_combat()
 		if team == 1 and RunState.has_active_card():
 			var arrival: Array[String] = [data.resource_path.get_file().get_basename()]
-			ARCHIVE.instance().record_enemies(arrival)
+			ARCHIVE.instance().record_enemies(arrival, preload("res://scripts/memory/memory_profile.gd").instance().run_uid)
 
 
 func _archive_enemy_roster() -> void:
@@ -672,7 +672,7 @@ func _archive_enemy_roster() -> void:
 	for unit in units:
 		if unit.team == 1 and unit.alive:
 			ids.append(unit.unit_data.resource_path.get_file().get_basename())
-	ARCHIVE.instance().record_enemies(ids)
+	ARCHIVE.instance().record_enemies(ids, preload("res://scripts/memory/memory_profile.gd").instance().run_uid)
 
 func _project_spawn_on_floor(source_position: Vector2) -> Vector2:
 	# Encounter Resources authored for the older high/back-wall planes keep

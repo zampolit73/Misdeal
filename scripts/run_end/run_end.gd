@@ -1,5 +1,8 @@
 extends Control
 
+const ARCHIVE := preload("res://scripts/core/wizard_archive.gd")
+const ACHIEVEMENTS := preload("res://scripts/core/achievement_catalog.gd")
+const MEMORY := preload("res://scripts/memory/memory_profile.gd")
 const SCENE_ROUTER := preload("res://scripts/core/scene_router.gd")
 const SAVE := preload("res://scripts/core/run_save_service.gd")
 const UI := preload("res://scripts/ui/wizard_reliquary.gd")
@@ -56,6 +59,7 @@ func _ready() -> void:
 		payment = RunState.last_deal_payment_text if not RunState.last_deal_payment_text.is_empty() else "принята"
 	_scroll_copy(details, "LastDeal", regions.last_deal, "Последняя сделка: " + payment, 16, INK)
 	_build_action(regions.new_run)
+	_build_achievement_summary(ARCHIVE.instance().achievements_for_run(MEMORY.instance().run_uid))
 
 	_fade(backdrop, 0.0, 0.34)
 	_fade(title, 0.12, 0.25)
@@ -65,6 +69,36 @@ func _ready() -> void:
 	_new_run.disabled = true
 	var action_tween := _fade(_new_run, 0.62, 0.28)
 	action_tween.finished.connect(_enable_new_run)
+
+
+func _build_achievement_summary(ids: Array[String]) -> void:
+	if ids.is_empty(): return
+	# Use the upper-left architectural area, not the existing result panel,
+	# defeated boss/hero foreground or the New Run action.
+	var panel := UI.VISUAL.plaque(self, Rect2(24, 25, 558, 116))
+	panel.name = "NewAchievements"
+	UI.caption(panel, Rect2(12, 6, 534, 28), "ДОСТИЖЕНИЯ ЭТОГО ЗАБЕГА · +%d" % ids.size(), 19, UI.GOLD)
+	var scroll := ScrollContainer.new()
+	scroll.name = "AchievementList"
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.focus_mode = Control.FOCUS_ALL
+	UI.put(panel, scroll, Rect2(19, 35, 520, 72))
+	var list := VBoxContainer.new()
+	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	list.add_theme_constant_override("separation", 0)
+	scroll.add_child(list)
+	var names: Array[String] = []
+	for id in ids:
+		var title := "✦ " + ACHIEVEMENTS.title(id)
+		names.append(title)
+		var label := Label.new()
+		label.text = title
+		label.add_theme_font_override("font", UI.CARD_SKIN.heading_font())
+		label.add_theme_font_size_override("font_size", 17)
+		label.add_theme_color_override("font_color", UI.COPY)
+		list.add_child(label)
+	scroll.tooltip_text = "\n".join(names)
+	_fade(panel, 0.44, 0.30)
 
 
 func _build_stats(parent: Control, cells: Array) -> void:

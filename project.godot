@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.7")
 RunState="*res://scripts/core/run_state.gd"
 SceneTransition="*res://scripts/core/scene_transition.gd"
 SoundDirector="*res://scripts/audio/sound_director.gd"
+AchievementNotice="*res://scripts/ui/achievement_notice.gd"
 
 [audio]
 

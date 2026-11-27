@@ -107,7 +107,7 @@ func test_empty_profile_and_return_to_table() -> void:
 	assert_true(screen._chronicle._empty.visible)
 	assert_false(screen._chronicle._details.visible)
 	screen._tabs[3].pressed.emit()
-	assert_eq(screen._challenges._count.text, "Открыто 0 / 12")
+	assert_eq(screen._challenges._count.text, "Открыто 0 / 32")
 	assert_eq(screen._challenges._status.text, "ЗАКРЫТО")
 	var event := InputEventKey.new()
 	event.keycode = KEY_ESCAPE

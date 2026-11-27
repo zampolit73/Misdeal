@@ -1,3 +1,7 @@
+## Achievement System V2
+
+Use Archive V3 materials and existing seal motifs. Challenges keeps 3 hero-style and 5 oath slots; the middle 4 achievement slots page through 24 live definitions. Prev/next native bevel buttons flank the group heading; x/24 and page x/6 are separate from total x/32, with real locked/complete text and live titles on subsequent pages. Toast: non-interactive 398×118 native plate at (22,142), shows up to three first-earned names, 3.4 seconds visible time, paused under scene transition; queued names do not alter focus or intercept gameplay. RunEnd: optional 558×116 top-left plaque at (24,25) shows only new ID names from the run, scrollable, existing cinematic foreground and right-side summary/action unaffected. Native visual review pending.
+
 ## Wizard Archive Visual V3
 
 Use `scripts/ui/wizard_archive_visual_v3.gd` with the local `wizard_archive_grade.gdshader` and the existing Menu V2 plate styles. At 1280×720, retain the existing four page layout JSONs, shared title/back/tab controls and 13/26 collection geometry. Darken wood, temper orange gilding and saturated red velvet; dark stone detail surfaces with #E8CB95 headings, #E5DBC4 copy, #B99B80 secondary labels and #E7A299 defeat. Primary burgundy denotes selected tab and live counter; native bevel focus, no extra rectangular outline. Native item artwork, data and hit areas are not filtered. [Approved concept](../assets/source_archive/wizard_archive_v3/approved_reference.webp).
