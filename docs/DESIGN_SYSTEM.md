@@ -1,3 +1,7 @@
+## HUD Visual V2
+
+Use `scripts/ui/hud_visual_v2.gd` and the shared alpha-contoured `SystemDialog.plate_style`. At 1280×720: Table statistics (312,13,656,54), expanding upward to (312,0,656,67) for conditions; Wizard (336,66,608,40). Five 13/24 pt label/value groups, gold/bone hierarchy, thin rules, 16 pt italic live dialogue with fit and overflow tooltip. Battle encounter/status (23,12,837,96), progress/modifiers (873,12,385,96); 26 pt encounter, 17 pt guidance, 23 pt progress, 14–15 pt modifier hierarchy. Keep actual banner, medallion, team labels and conditional data; extra conditions summarized only in visible space, always available in the full modifier tooltip. Keep existing card/arena/planner geometry and input behavior. [Approved references](../assets/source_archive/hud_visual_v2/README.md).
+
 ## Combat Intro Visual V1
 
 A short 520×130 title plate at (380,265) in the 1280×720 reference area, over the existing arena scrim. Reuse the same alpha-contoured Main Menu V2 secondary nine-slice as Battle Result V2. Warm gold serif caption, ivory actual encounter, one quiet bronze divider. `СХВАТКА` and `ВОЛНА II` share the plate. It is non-interactive, fades with the original 0.22 s entrance / 0.36 s hold / 0.20 s exit, and must be fully hidden before live combat. Keep boss throne intro, sound, combat timing, order execution and preparation UI unchanged.

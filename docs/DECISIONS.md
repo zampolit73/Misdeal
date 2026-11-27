@@ -1,3 +1,7 @@
+## HUD Visual V2 · same systemic family, localized header scope
+
+On 2026-11-27 the player approved both archived visual concepts. Use one shared native HUD presentation layer over the existing Table/Battle controls, shared SystemDialog/Menu V2 stone and bronze plates, and live localized game data. Cover the baked Table contours; reserve the approved Wizard/arena bounds, extend conditional Table stats upward and keep full text in tooltips when necessary. Battle retains the D300 banner/medallion, actual encounter, progress, status, run modifiers and their existing visibility. Strip only the duplicate exact encounter prefix in preparation guidance. Preserve physical cards, artwork, bottom V4 planner, battle mechanics, progression and saves. Do not treat an offline reference or headless pass as native visual acceptance.
+
 ## Combat Intro Visual V1 · same systemic material
 
 Extend the already player-approved Main Menu V2 / Battle Result V2 material to the existing non-interactive battle-start / second-wave caption only. Same actual encounter, existing delay, fade and combat signal; no new art or flow. Preserve approved Combat Planning, Warden throne intro and arena.

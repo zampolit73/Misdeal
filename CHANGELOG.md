@@ -1,3 +1,9 @@
+## HUD Visual V2 implementation - 27 Nov 2026
+
+- Implement both player-approved Table and Battle top HUDs with the existing Menu V2 bronze/stone family, separate live statistics, Wizard attribution/dialogue, encounter/guidance and progress/modifier hierarchy.
+- Cover baked legacy Table contours, retain full long-copy and conditional-modifier tooltips, preserve original artwork, cards, battle planner, mechanics and saves.
+- Godot 4.7.2: 13/13 targeted tests, 344 assertions; D289 and D291 headless smoke PASS. Native visual acceptance pending.
+
 ## HUD Visual V2 concept - 27 Nov 2026
 
 - Archive two actual-frame-based 1280×720 header concepts for the Table and Battle. Reuse approved menu/result materials; preserve existing backgrounds, card and combat-planning presentation. Candidate only, pending player approval; no runtime changes.

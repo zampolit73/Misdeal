@@ -33,17 +33,23 @@ func _verify() -> void:
 	var wizard := table.get_node("WizardLinePanel") as Panel
 	var status := table.get_node("Stats") as Label
 	var wizard_line := table.get_node("WizardLine") as Label
-	var hud_style := hud.get_theme_stylebox("panel") as StyleBoxFlat
-	if hud_style == null or hud_style.border_width_left != 1 or hud_style.bg_color.a < 0.90:
-		_fail("DS3 top bar not applied to real Table")
+	var menu := preload("res://scripts/ui/system_dialog.gd")
+	for panel in [hud, wizard]:
+		var style := panel.get_theme_stylebox("panel") as StyleBoxTexture
+		if style == null or style.texture != menu.plate_style(menu.SECONDARY).texture:
+			_fail("HUD V2 must reuse the real menu material")
+			return
+	if hud.position != Vector2(312, 13) or hud.size != Vector2(656, 54) or wizard.position != Vector2(336, 66) or wizard.size != Vector2(608, 40):
+		_fail("HUD V2 approved starting geometry changed")
 		return
-	var wizard_style := wizard.get_theme_stylebox("panel") as StyleBoxFlat
-	if wizard_style == null or wizard_style.border_width_left != 1:
-		_fail("DS3 Wizard commentary plate absent")
+	if hud.get_node_or_null("MetricValue4") == null or wizard.get_node_or_null("Speaker") == null or status.visible:
+		_fail("HUD V2 grouped metrics or speaker missing / duplicate source text")
 		return
-	if hud.get_node_or_null("StatusDS3EdgeTop") == null or wizard.get_node_or_null("WizardDS3Seal") == null:
-		_fail("restrained bronze edge details missing")
-		return
+	for index in range(5):
+		var value := hud.get_node("MetricValue%d" % index) as Label
+		if value.text.is_empty() or not hud.get_global_rect().encloses(value.get_global_rect()):
+			_fail("HUD V2 live metric missing or outside plate")
+			return
 	# D290 screenshot regression: avoid doubled DS2+DS3 brackets.
 	for panel in [hud, wizard]:
 		var old_chrome := panel.get_node_or_null("_MisdealChrome") as CanvasItem

@@ -8,6 +8,7 @@ const CARD_ART_CATALOG := preload("res://scripts/ui/card_art_catalog.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 const TABLE_DS3_PASS := preload("res://scripts/table/table_ds3_pass.gd")
+const HUD := preload("res://scripts/ui/hud_visual_v2.gd")
 const TABLE_OFFER_SKIN := preload("res://scripts/table/table_offer_skin.gd")
 const CARD_DS3_SKIN := preload("res://scripts/ui/card_ds3_skin.gd")
 const CARD_LORE_INSPECT_SCENE := preload("res://scenes/table/card_lore_inspect.tscn")
@@ -111,7 +112,7 @@ func _resume_after_camp_stop(message: String) -> void:
 	cards_root.show()
 	fate_spread_button.show()
 	_refresh_table()
-	wizard_line.text = message
+	_set_wizard_line(message)
 
 func _apply_ui_kit() -> void:
 	MISDEAL_UI_KIT.apply_panel($HudPanel, MISDEAL_UI_KIT.BRONZE, false)
@@ -288,16 +289,7 @@ func _on_squad_status_closed() -> void:
 
 func _refresh_table(show_memory: bool = true) -> void:
 	selection_locked = false
-	var condition_text := RunState.get_run_condition_text()
-	stats_label.text = "%s     ЗОЛОТО %d     ОТРЯД %d/3     РАЗВИТИЕ %d     РЕЛИКВИИ %d" % [
-		RunState.get_progress_text(),
-		RunState.gold,
-		RunState.get_party_size(),
-		RunState.hero_upgrade_ids.size(),
-		RunState.artifact_ids.size()
-	]
-	if not condition_text.is_empty():
-		stats_label.text += "     %s" % condition_text
+	HUD.refresh_table_stats(self)
 
 	if RunState.is_boss_due():
 		default_wizard_line = "Двенадцать карт позади. Осталась та, которую я берег."
@@ -318,10 +310,9 @@ func _refresh_table(show_memory: bool = true) -> void:
 		if not context_line.is_empty():
 			default_wizard_line = context_line
 
-	wizard_line.text = default_wizard_line
-	wizard_line.tooltip_text = ""
+	_set_wizard_line(default_wizard_line)
 	if RunState.has_meta("build_feedback"):
-		wizard_line.text = String(RunState.get_meta("build_feedback"))
+		_set_wizard_line(String(RunState.get_meta("build_feedback")))
 		wizard_line.tooltip_text = wizard_line.text
 		RunState.remove_meta("build_feedback")
 
@@ -343,19 +334,19 @@ func _refresh_table(show_memory: bool = true) -> void:
 	if RunState.has_pending_wizard_meddling():
 		selection_locked = true
 		_disable_offer_buttons()
-		wizard_line.text = "Подожди. Я ещё не закончил сдавать."
+		_set_wizard_line("Подожди. Я ещё не закончил сдавать.")
 		call_deferred("_play_pending_wizard_meddling")
 	elif RunState.has_pending_wizard_wager():
 		selection_locked = true
 		_disable_offer_buttons()
-		wizard_line.text = "Прежде чем выбирать... сыграем поинтереснее?"
+		_set_wizard_line("Прежде чем выбирать... сыграем поинтереснее?")
 		call_deferred("_show_wizard_wager")
 	elif show_memory and not RunState.is_boss_due():
 		var memory_event: String = RunState.wizard_memory_pending_event
 		var memory_line := RunState.consume_wizard_memory_line()
 		if not memory_line.is_empty():
 			default_wizard_line = memory_line
-			wizard_line.text = default_wizard_line
+			_set_wizard_line(default_wizard_line)
 			call_deferred("_play_wizard_memory_tell", memory_event)
 		elif not RunState.wizard_debt_active and not [3, 7, 11].has(RunState.cards_resolved):
 			# Castle evidence waits behind live Wizard interventions and the
@@ -363,7 +354,7 @@ func _refresh_table(show_memory: bool = true) -> void:
 			var castle_line: String = RunState.consume_castle_memory_line()
 			if not castle_line.is_empty():
 				default_wizard_line = castle_line
-				wizard_line.text = default_wizard_line
+				_set_wizard_line(default_wizard_line)
 
 func _play_wizard_memory_tell(event_id: String) -> void:
 	if event_id.is_empty() or not is_inside_tree():
@@ -480,7 +471,7 @@ func _on_hold_button_pressed(offer_index: int) -> void:
 		_refresh_hold_buttons(offers)
 		return
 
-	wizard_line.text = "«Хочешь оставить её на потом? Хорошо. Я верну её через две раздачи.»"
+	_set_wizard_line("«Хочешь оставить её на потом? Хорошо. Я верну её через две раздачи.»")
 	if table_spread_visual != null and table_spread_visual.has_method("pulse_ritual"):
 		table_spread_visual.call("pulse_ritual", "hold")
 	_setup_offer_button(card_button, card)
@@ -539,7 +530,7 @@ func _on_offer_button_pressed(button: Button) -> void:
 	if card == null:
 		return
 	if RunState.is_card_held(card.card_id):
-		wizard_line.text = "«Нет-нет. Эту карту ты попросил придержать. Выбирай другую.»"
+		_set_wizard_line("«Нет-нет. Эту карту ты попросил придержать. Выбирай другую.»")
 		return
 	_choose_card(card)
 
@@ -880,12 +871,17 @@ func _apply_card_style(button: Button, card: RunCardData) -> void:
 func _preview_card(card: RunCardData) -> void:
 	if selection_locked:
 		return
-	wizard_line.text = card.wizard_line
+	_set_wizard_line(card.wizard_line)
+
+func _set_wizard_line(message: String) -> void:
+	wizard_line.text = message
+	HUD.fit_wizard_line(wizard_line)
+
 
 func _restore_wizard_line() -> void:
 	if selection_locked:
 		return
-	wizard_line.text = default_wizard_line
+	_set_wizard_line(default_wizard_line)
 
 func _show_wizard_wager() -> void:
 	if deal_in_progress:
@@ -926,7 +922,7 @@ func _accept_wizard_wager() -> void:
 	_close_wizard_wager()
 	_refresh_table(false)
 	default_wizard_line = "Вот и договорились. Следующий бой станет больнее, добыча — вдвое слаще. И я дам тебе ещё один приказ: «ЖЕРТВА»."
-	wizard_line.text = default_wizard_line
+	_set_wizard_line(default_wizard_line)
 	_pulse_wizard_reaction("pleased")
 
 func _close_wizard_wager() -> void:
@@ -944,7 +940,7 @@ func _refuse_wizard_wager() -> void:
 	_close_wizard_wager()
 	_refresh_table(false)
 	default_wizard_line = "Какая осторожность. Почти разочаровывает."
-	wizard_line.text = default_wizard_line
+	_set_wizard_line(default_wizard_line)
 	_pulse_wizard_reaction("cold")
 
 
@@ -988,7 +984,7 @@ func _play_pending_wizard_meddling() -> void:
 	await settle_tween.finished
 	await get_tree().create_timer(0.08).timeout
 
-	wizard_line.text = "Нет. Эту карту я передумал отдавать."
+	_set_wizard_line("Нет. Эту карту я передумал отдавать.")
 	_pulse_wizard_reaction("meddle")
 	_play_table_audio("meddle")
 
@@ -1032,7 +1028,7 @@ func _play_pending_wizard_meddling() -> void:
 	hint_label.text = _get_hint_text(new_card)
 	var old_title := old_card.title if old_card != null else "та карта"
 	default_wizard_line = "«%s»? Нет. Сегодня ты получишь «%s». Так интереснее." % [old_title, new_card.title]
-	wizard_line.text = default_wizard_line
+	_set_wizard_line(default_wizard_line)
 	selection_locked = false
 	_enable_offer_buttons()
 
@@ -1051,10 +1047,10 @@ func _choose_card(card: RunCardData) -> void:
 	hold_a_button.visible = false
 	hold_b_button.visible = false
 	if was_marked:
-		wizard_line.text = "«Печать принята. +%d золота. А следующий бой получит свои +15%% боли.»" % RunState.get_wizard_mark_gold_reward()
+		_set_wizard_line("«Печать принята. +%d золота. А следующий бой получит свои +15%% боли.»" % RunState.get_wizard_mark_gold_reward())
 		_pulse_wizard_reaction("meddle")
 	else:
-		wizard_line.text = card.wizard_line
+		_set_wizard_line(card.wizard_line)
 	await _animate_card_choice(card.card_id)
 
 	match card.resolution_type:

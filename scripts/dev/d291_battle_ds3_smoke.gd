@@ -48,7 +48,13 @@ func _check() -> void:
 		# duplicate the approved painted frame. Verify the artwork nodes too.
 		var wizard_plaque := plate.get_node_or_null("D307WizardArt") as Control
 		var plate_style := plate.get_theme_stylebox("panel")
-		if wizard_plaque != null:
+		var header_panel: bool = path == "TopHudPanel" or path == "RunHudPanel"
+		if header_panel:
+			var menu := preload("res://scripts/ui/system_dialog.gd")
+			if not (plate_style is StyleBoxTexture) or plate_style.texture != menu.plate_style(menu.SECONDARY).texture:
+				_fail("HUD V2 header must use the approved menu material")
+				return
+		elif wizard_plaque != null:
 			if not (plate_style is StyleBoxEmpty):
 				_fail("D311 Wizard plaque must not have a second panel border")
 				return
@@ -73,7 +79,7 @@ func _check() -> void:
 		if relief == null or relief.get_script() == null or relief.mouse_filter != Control.MOUSE_FILTER_IGNORE:
 			_fail("D296 real engraved Control missing or intercepts input: " + path)
 			return
-		if relief.size != plate.size:
+		if relief.size != plate.size and not header_panel:
 			_fail("D296 relief is not aligned with the real battle panel: " + path)
 			return
 	if not (scene.get_node("Title") as Label).has_theme_font_override("font"):
@@ -91,7 +97,7 @@ func _check() -> void:
 			return
 	var painted := {
 		"TopHudPanel/DS3PaintedBanner": Vector2(96, 165),
-		"RunHudPanel/DS3PaintedMedallion": Vector2(74, 98),
+		"RunHudPanel/DS3PaintedMedallion": Vector2(62, 82),
 		"BottomHudPanel/DS3PaintedCandles": Vector2(51, 150),
 		"FightHudPanel/DS3PaintedWaxRibbon": Vector2(73, 157),
 		"BottomHudPanel/DS3CommandPlate": Vector2(691, 133),
@@ -160,7 +166,7 @@ func _check() -> void:
 				_fail("D304 duplicate old SVG/painted fragment overlaps approved module: " + art_path)
 				return
 	var header := scene.get_node("Title") as Label
-	if header.position.x < 100.0 or header.size.x < 800.0:
+	if header.position.x < 100.0 or header.size.x < 730.0:
 		_fail("D298 header title no longer clears physical red hanging banner")
 		return
 	var hint_label := scene.get_node("PlacementHint") as Label
@@ -169,13 +175,15 @@ func _check() -> void:
 		return
 	var run_plate := scene.get_node("RunHudPanel") as Panel
 	var run_modifiers := scene.get_node("RunConditionLabel") as Label
-	if run_plate.position != Vector2(959, 14) or run_plate.size != Vector2(299, 78):
+	if run_plate.position != Vector2(873, 12) or run_plate.size != Vector2(385, 96):
 		_fail("D297 right progress panel does not leave room for modifiers")
 		return
-	if run_modifiers.get_theme_font_size("font_size") < 12 or run_modifiers.get_line_count() != 2:
+	var first := run_modifiers.get_node("ModifierValue0") as Label
+	var second := run_modifiers.get_node("ModifierValue1") as Label
+	if first.get_theme_font_size("font_size") < 12 or not first.visible or not second.visible or first.get_line_count() != 1 or second.get_line_count() != 1:
 		_fail("D297 compact 2-row status is too small or wrapped")
 		return
-	if not run_modifiers.text.contains("СОЛО") or not run_modifiers.text.contains("АТК×1.25"):
+	if run_modifiers.get_node("ModifierName0").text != "СОЛО" or not first.text.contains("АТАКИ ×1.25"):
 		_fail("D297 visible solo modifiers are not the authentic RunState values")
 		return
 	if not run_modifiers.tooltip_text.contains("ДАВЛЕНИЕ ВРАГОВ") or not run_modifiers.tooltip_text.contains("АТАКИ ×1.25"):
@@ -189,7 +197,7 @@ func _check() -> void:
 	var fight_plate := scene.get_node("FightHudPanel") as Panel
 	var objective := scene.get_node("SideObjectivePanel") as Panel
 	var fight_action := scene.get_node("FightButton") as Button
-	if top.size.y != 72.0 or top.position.y != 14.0 or commands.position != Vector2(251, 575):
+	if top.size != Vector2(837, 96) or top.position != Vector2(23, 12) or commands.position != Vector2(251, 575):
 		_fail("D295 slim title / centered command geometry wrong")
 		return
 	if commands.size != Vector2(691, 133) or fight_plate.position != Vector2(949, 575) or fight_action.position != Vector2(964, 619):
@@ -239,8 +247,8 @@ func _check() -> void:
 			if not button.has_theme_stylebox_override(style_name):
 				_fail("DS3 tactical state missing: " + path + " " + style_name)
 				return
-	if scene.get_node_or_null("TopHudPanel/DS3EncounterTitleInset") == null or scene.get_node_or_null("RunHudPanel/DS3CardProgressPlaque") == null:
-		_fail("D293 top ledger title/stage physical inlays are missing")
+	if scene.get_node_or_null("TopHudPanel/EncounterKicker") == null or scene.get_node_or_null("RunHudPanel/ProgressRule") == null:
+		_fail("HUD V2 encounter/progress hierarchy missing")
 		return
 	var hint := scene.get_node("PlacementHint") as Label
 	if hint.modulate.a < 0.90:

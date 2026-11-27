@@ -1,6 +1,6 @@
-## HUD Visual V2 · next visual candidate
+## HUD Visual V2 · next native acceptance
 
-Await player approval of both localized header designs before implementing. [Candidate frames and implementation contract](../assets/source_archive/hud_visual_v2/README.md). Table: separate five live metrics, Wizard attribution and dialogue, cover baked legacy contours and preserve all real conditions. Battle: retain real encounter/guidance, progress/modifiers, D300 banner/medallion, conditional rules and lower V4 planning/HUD. No redesign of approved backgrounds/cards, no gameplay change. Combat Intro and remaining native acceptance below are still separate.
+Both localized header concepts were player-approved and are implemented. Pull main and F5: inspect Table's five live counters, Wizard dialogue and old baked contours; choose a fight and inspect encounter/guidance, progress, real modifier rows and their full hover tooltip. Check a conditional state or second wave if encountered naturally; no special run is required. The approved cards, artwork, D300 banner/medallion, arena and bottom V4 planner are unchanged. Godot 4.7.2: 13/13 targeted tests, 344 assertions; D289/D291 headless smoke PASS. Native framebuffer not captured locally; player acceptance remains open. [QA and references](qa/hud_visual_v2/README.md). Then continue any remaining concrete visual gates and Act I control run.
 
 ## Combat Intro Visual V1 · next native acceptance
 

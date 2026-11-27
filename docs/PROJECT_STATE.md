@@ -1,6 +1,6 @@
-## HUD Visual V2 · design candidate only
+## HUD Visual V2 · approved and implemented
 
-Player asked to unify the remaining Table status/Wizard panels and Battle encounter/run modifier headers with the Menu/Result family. Two offline 1280×720 concepts use the actual player frames and existing materials; lower cards/planner/arena and approved visual assets stay unchanged. [Candidate frames and implementation contract](../assets/source_archive/hud_visual_v2/README.md). Await visual approval; no production code changed.
+On 2026-11-27 the player approved both archived Table and Battle header concepts. The shared native Menu V2 stone/bronze material now presents five live Table counters, a dedicated Wizard plaque, actual encounter/guidance, battle progress and real run modifiers. Existing baked Table contours are covered; conditional Table statistics extend upward, not into the Wizard dialogue. Long copy fits within the approved bounds with full tooltips; extra battle conditions remain accessible and modifier visibility follows the existing fight lifecycle. Preserve the D300 banner/medallion, card artwork, arena, V4 planner, input, progression, saves and gameplay. Godot 4.7.2: 13/13 targeted tests, 344 assertions; D289 and D291 headless smoke PASS. Native player visual acceptance pending. [Approved references](../assets/source_archive/hud_visual_v2/README.md) · [QA](qa/hud_visual_v2/README.md).
 
 ## Combat Intro Visual V1 · implemented
 

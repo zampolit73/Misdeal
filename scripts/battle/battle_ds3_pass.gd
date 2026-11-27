@@ -7,6 +7,7 @@ extends RefCounted
 # stay in the production Battle. The ornate fragments are already approved
 # D287 dossier art, never a baked picture of fake buttons or stats.
 const DS3 := preload("res://scripts/ui/misdeal_ds3.gd")
+const HUD := preload("res://scripts/ui/hud_visual_v2.gd")
 const WEBP_TEXTURE := preload("res://scripts/ui/runtime_webp_texture.gd")
 const ENGRAVED_FRAME := preload("res://scripts/ui/battle_engraved_frame.gd")
 const PAINTED_ART := preload("res://scripts/ui/battle_reference_fragments.gd")
@@ -87,6 +88,7 @@ static func apply(scene: Control) -> void:
 	D303_APPROVED.apply(scene)
 	# D307: optional painted two-well objective module; original challenge text is source truth.
 	_install_wizard_plaque(scene)
+	HUD.apply_battle(scene)
 
 
 # Native 1280x720 D295 composition from approved concept 2. All positions
@@ -153,6 +155,7 @@ static func present_run_conditions(scene: Control) -> void:
 	condition.tooltip_text = full_text
 	(scene.get_node("RunHudPanel") as Control).tooltip_text = full_text
 	(scene.get_node("DealLabel") as Control).tooltip_text = full_text
+	HUD.present_modifiers(scene, full_text)
 
 
 static func compact_run_conditions(full_text: String) -> String:

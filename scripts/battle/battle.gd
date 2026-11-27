@@ -13,6 +13,7 @@ const WARDEN_INTRO := preload("res://scripts/battle/warden_intro.gd")
 const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 const BATTLE_DS3_PASS := preload("res://scripts/battle/battle_ds3_pass.gd")
+const HUD := preload("res://scripts/ui/hud_visual_v2.gd")
 const RESULT_VISUAL := preload("res://scripts/battle/battle_result_visual.gd")
 const INTRO_MENU := preload("res://scripts/ui/system_dialog.gd")
 const INTRO_TYPE := preload("res://scripts/class_select/class_select_card_skin.gd")
@@ -191,7 +192,8 @@ func _ready() -> void:
 		arena_visual.call("set_arena_id", encounter.arena_id, encounter.encounter_id)
 	if arena_visual.has_method("set_boss_mode"):
 		arena_visual.call("set_boss_mode", _is_boss_encounter())
-	title_label.text = "MISDEAL — %s" % encounter.title
+	title_label.text = encounter.title.to_upper()
+	HUD.fit_battle_title(title_label)
 	deal_label.text = RunState.get_progress_text()
 	if _is_boss_encounter():
 		enemy_label.text = "БОСС • ФАЗА I"
@@ -748,43 +750,49 @@ func _claim_side_objective_reward() -> String:
 	return "УСЛОВИЕ ВОЛШЕБНИКА выполнено: +%d золота." % SIDE_OBJECTIVE_GOLD
 
 
+func _set_status(message: String) -> void:
+	status_label.text = message
+	HUD.fit_battle_status(status_label)
+
+
 func _begin_preparation_phase() -> void:
 	if encounter.has_second_wave():
-		status_label.text = encounter.wave_one_status
+		_set_status(encounter.wave_one_status)
 	elif _is_boss_encounter():
-		status_label.text = "НАДЗИРАТЕЛЬ — удары по площади. На 50% HP: ярость и подкрепление."
+		_set_status("НАДЗИРАТЕЛЬ — удары по площади. На 50% HP: ярость и подкрепление.")
 		var verdict := RunState.get_act1_reckoning_label()
 		if not verdict.is_empty():
-			status_label.text += " ПРИГОВОР: %s." % verdict
+			_set_status(status_label.text + " ПРИГОВОР: %s." % verdict)
 	elif _is_death_wager_encounter():
-		status_label.text = "СТАВКА НА СМЕРТЬ — 5 врагов. Страж держит центр; лучники — главная угроза."
+		_set_status("СТАВКА НА СМЕРТЬ — 5 врагов. Страж держит центр; лучники — главная угроза.")
 	elif _is_elite_encounter():
-		status_label.text = "ЭЛИТА — страж бьёт по площади. Разведите героев и не стойте плотной группой."
+		_set_status("ЭЛИТА — страж бьёт по площади. Разведите героев и не стойте плотной группой.")
 	elif encounter.encounter_id == "grave_bell":
-		status_label.text = "МОГИЛЬНЫЙ ЗВОН — звонарь лечит нежить. «ОХОТА» помогает быстрее добраться до поддержки."
+		_set_status("МОГИЛЬНЫЙ ЗВОН — звонарь лечит нежить. «ОХОТА» помогает быстрее добраться до поддержки.")
 	elif encounter.encounter_id == "funeral_procession":
-		status_label.text = "ПОГРЕБАЛЬНАЯ ПРОЦЕССИЯ — жрец готовит «Последний обряд». Пока он жив, павший гробоносец может подняться ещё раз. Прервите ритуал!"
+		_set_status("ПОГРЕБАЛЬНАЯ ПРОЦЕССИЯ — жрец готовит «Последний обряд». Пока он жив, павший гробоносец может подняться ещё раз. Прервите ритуал!")
 	elif encounter.encounter_id == "bone_crush":
-		status_label.text = "КОСТЯНАЯ ДАВКА — РАЗДЕЛЁННАЯ РАССТАНОВКА. Две полосы, пять хрупких целей."
+		_set_status("КОСТЯНАЯ ДАВКА — РАЗДЕЛЁННАЯ РАССТАНОВКА. Две полосы, пять хрупких целей.")
 	elif encounter.encounter_id == "ossuary_gate":
-		status_label.text = "ВРАТА ОССУАРИЯ — ДВА КАРМАНА РАССТАНОВКИ. Страж впереди, звонарь лечит."
+		_set_status("ВРАТА ОССУАРИЯ — ДВА КАРМАНА РАССТАНОВКИ. Страж впереди, звонарь лечит.")
 	elif encounter.encounter_id == "gallows_volley":
-		status_label.text = "ЗАЛП С ВИСЕЛИЦЫ — ГЛУБОКАЯ ЛИНИЯ. Разведите героев по высоте против двух лучников."
+		_set_status("ЗАЛП С ВИСЕЛИЦЫ — ГЛУБОКАЯ ЛИНИЯ. Разведите героев по высоте против двух лучников.")
 	elif encounter.encounter_id == "bone_swarm":
-		status_label.text = "КОСТЯНОЙ РОЙ — быстрые налётчики сразу давят дистанцию. AOE особенно ценен."
+		_set_status("КОСТЯНОЙ РОЙ — быстрые налётчики сразу давят дистанцию. AOE особенно ценен.")
 	elif encounter.encounter_id == "grave_crossfire":
-		status_label.text = "МОГИЛЬНЫЙ ПЕРЕКРЁСТОК — два лучника держат разные углы. Не собирайте отряд в одну точку."
+		_set_status("МОГИЛЬНЫЙ ПЕРЕКРЁСТОК — два лучника держат разные углы. Не собирайте отряд в одну точку.")
 	elif encounter.encounter_id == "iron_wall":
-		status_label.text = "ЖЕЛЕЗНАЯ СТЕНА — часовые держат узкий проход. Приказ «ОХОТА» помогает добраться до стрелков."
+		_set_status("ЖЕЛЕЗНАЯ СТЕНА — часовые держат узкий проход. Приказ «ОХОТА» помогает добраться до стрелков.")
 	elif encounter.encounter_id == "last_bell":
-		status_label.text = "ПОСЛЕДНИЙ ЗВОН — два звонаря лечат друг друга. Затянутый бой работает против вас."
+		_set_status("ПОСЛЕДНИЙ ЗВОН — два звонаря лечат друг друга. Затянутый бой работает против вас.")
 	elif encounter.encounter_id == "firing_square":
-		status_label.text = "РАССТРЕЛЬНАЯ ПЛОЩАДЬ — часовой прикрывает дальних стрелков. Разведите героев по полу."
+		_set_status("РАССТРЕЛЬНАЯ ПЛОЩАДЬ — часовой прикрывает дальних стрелков. Разведите героев по полу.")
 	elif encounter.encounter_id == "bone_ritual":
-		status_label.text = "КОСТЯНОЙ РИТУАЛ — часовой, лечение и быстрый натиск одновременно. Выберите главную угрозу до старта."
+		_set_status("КОСТЯНОЙ РИТУАЛ — часовой, лечение и быстрый натиск одновременно. Выберите главную угрозу до старта.")
 	else:
-		status_label.text = "ПОДГОТОВКА — расставьте героев, выберите приказ и запускайте бой."
+		_set_status("ПОДГОТОВКА — расставьте героев, выберите приказ и запускайте бой.")
 
+	_set_status(HUD.strip_duplicate_prefix(status_label.text, encounter.title))
 	var placement_regions: Array[Rect2] = _get_placement_regions()
 	_configure_deployment_zones(placement_regions)
 	run_condition_label.text = _build_battle_condition_text()
@@ -1105,9 +1113,9 @@ func _on_boss_enraged(_unit: BattleUnit) -> void:
 	boss_reinforcements_spawned = true
 	enemy_label.text = "БОСС • ЯРОСТЬ"
 	var verdict := RunState.get_act1_reckoning_label()
-	status_label.text = "ФАЗА II — надзиратель зовёт подкрепление!"
+	_set_status("ФАЗА II — надзиратель зовёт подкрепление!")
 	if not verdict.is_empty():
-		status_label.text += " ПРИГОВОР: %s." % verdict
+		_set_status(status_label.text + " ПРИГОВОР: %s." % verdict)
 	_show_wizard_line(_get_boss_phase_two_wizard_line(), true)
 	if arena_visual.has_method("set_boss_phase_two"):
 		arena_visual.call("set_boss_phase_two", true)
@@ -1149,7 +1157,7 @@ func _show_boss_phase_flash() -> void:
 	tween.chain().tween_callback(phase_label.queue_free)
 
 func _on_placement_rejected(unit: BattleUnit) -> void:
-	status_label.text = "%s нельзя поставить поверх другого героя." % unit.display_name
+	_set_status("%s нельзя поставить поверх другого героя." % unit.display_name)
 
 
 
@@ -1190,13 +1198,13 @@ func _on_fight_pressed() -> void:
 		return
 
 	if tactical_order == TACTICAL_ORDER_SACRIFICE:
-		status_label.text = "ЖЕРТВА — сила растёт, жизнь уходит каждую секунду."
+		_set_status("ЖЕРТВА — сила растёт, жизнь уходит каждую секунду.")
 		_show_wizard_line("Вот так. Сгорите быстрее, чем они успеют вас убить.", true)
 	elif tactical_order == TACTICAL_ORDER_DEFIANCE:
-		status_label.text = "НЕПОВИНОВЕНИЕ — вы держите удар, но отвечаете слабее."
+		_set_status("НЕПОВИНОВЕНИЕ — вы держите удар, но отвечаете слабее.")
 		_show_wizard_line("Сопротивляйся. Мне даже любопытно, сколько это продлится.", true)
 	else:
-		status_label.text = "Ставка сделана. Назад пути нет."
+		_set_status("Ставка сделана. Назад пути нет.")
 		_show_wizard_line(_get_combat_start_wizard_line())
 	_arena_ambience = SoundDirector.start_arena_ambience(self, encounter.arena_id)
 	_play_battle_audio("boss_entrance" if _is_boss_encounter() else "start")
@@ -1584,7 +1592,7 @@ func _begin_wave_intermission() -> void:
 	_separate_jack_from_heroes()
 
 	enemy_label.text = "ВОЛНА I / II — ОТБИТА"
-	status_label.text = encounter.wave_intermission_status
+	_set_status(encounter.wave_intermission_status)
 	placement_hint.text = encounter.second_wave_hint
 	placement_hint.visible = true
 	side_objective_panel.visible = not side_objective_id.is_empty()
@@ -1639,7 +1647,7 @@ func _start_second_wave() -> void:
 		_spawn_unit(enemy_data, 1, encounter.second_wave_positions[index], enemy_name)
 
 	enemy_label.text = "ВОЛНА II / II"
-	status_label.text = encounter.wave_two_status
+	_set_status(encounter.wave_two_status)
 	battle_backdrop.call("start_living_wave_two")
 	await _play_combat_intro("ВОЛНА II")
 	if battle_finished:
@@ -1665,7 +1673,7 @@ func _show_last_deal_offer() -> void:
 	last_deal_refuse_button.disabled = false
 	restart_button.visible = false
 	continue_button.visible = false
-	status_label.text = "Один раз за забег Волшебник может продать тебе право повторить этот бой."
+	_set_status("Один раз за забег Волшебник может продать тебе право повторить этот бой.")
 
 func _show_final_defeat() -> void:
 	result_label.text = "ПОРАЖЕНИЕ"
@@ -1680,7 +1688,7 @@ func _show_final_defeat() -> void:
 	last_deal_refuse_button.disabled = false
 	restart_button.visible = false
 	continue_button.visible = false
-	status_label.text = "Эта версия партии закончилась."
+	_set_status("Эта версия партии закончилась.")
 
 func _on_last_deal_accept_pressed() -> void:
 	last_deal_accept_button.disabled = true
@@ -1688,7 +1696,7 @@ func _on_last_deal_accept_pressed() -> void:
 	if not RunState.accept_last_deal():
 		last_deal_accept_button.disabled = false
 		last_deal_refuse_button.disabled = false
-		status_label.text = RUN_SAVE.instance().error_message
+		_set_status(RUN_SAVE.instance().error_message)
 		RESULT_VISUAL.show_save_error($ResultOverlay, status_label.text)
 		return
 	SCENE_ROUTER.reload_current(self)
@@ -1790,7 +1798,7 @@ func _finish_battle(player_won: bool) -> void:
 			result_subtitle.text = "Волшебник выглядит слегка раздражённым."
 		if not side_objective_reward_text.is_empty():
 			result_subtitle.text += "\n%s" % side_objective_reward_text
-		status_label.text = "Карта пережита. Пока что."
+		_set_status("Карта пережита. Пока что.")
 		continue_button.text = "ЗАБРАТЬ НАГРАДУ"
 		continue_button.visible = true
 		continue_button.disabled = false
