@@ -20,6 +20,8 @@
 - [x] Combat Intro Visual V1 — extend approved menu/result material to the actual battle start and wave II caption; 9/9 targeted tests, 244 assertions.
 - [ ] Combat Intro V1 native visual acceptance. [QA](qa/combat_hud_v1/README.md#combat-intro-visual-v1).
 
+- [ ] HUD Visual V2 — Table stats/Wizard and Battle header/modifiers: review localized offline concepts before migration. [Candidate frames and implementation contract](../assets/source_archive/hud_visual_v2/README.md).
+
 ## Wizard Wager Visual V1
 
 - [x] Implement approved isolated offer modal with existing mechanics.

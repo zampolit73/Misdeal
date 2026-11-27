@@ -1,3 +1,7 @@
+## HUD Visual V2 · next visual candidate
+
+Await player approval of both localized header designs before implementing. [Candidate frames and implementation contract](../assets/source_archive/hud_visual_v2/README.md). Table: separate five live metrics, Wizard attribution and dialogue, cover baked legacy contours and preserve all real conditions. Battle: retain real encounter/guidance, progress/modifiers, D300 banner/medallion, conditional rules and lower V4 planning/HUD. No redesign of approved backgrounds/cards, no gameplay change. Combat Intro and remaining native acceptance below are still separate.
+
 ## Combat Intro Visual V1 · next native acceptance
 
 Battle Result V2 is player-accepted on 2026-11-27. The next local check is the newly restyled short «СХВАТКА» / «ВОЛНА II» banner: start a fight and, if available, a second wave. It should share the menu/result's bronze frame, show the actual encounter and disappear before live orders. The original delay, scrim, Warden intro and combat are unchanged. Godot 4.7.2: 9/9 targeted tests (244 assertions); native capture is wired into existing planning CI, not run locally. [QA](qa/combat_hud_v1/README.md#combat-intro-visual-v1). After visual acceptance, avoid repainting approved systems; move to remaining concrete visual gates and the continuous Act I control run.

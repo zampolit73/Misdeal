@@ -1,3 +1,7 @@
+## HUD Visual V2 · design candidate only
+
+Player asked to unify the remaining Table status/Wizard panels and Battle encounter/run modifier headers with the Menu/Result family. Two offline 1280×720 concepts use the actual player frames and existing materials; lower cards/planner/arena and approved visual assets stay unchanged. [Candidate frames and implementation contract](../assets/source_archive/hud_visual_v2/README.md). Await visual approval; no production code changed.
+
 ## Combat Intro Visual V1 · implemented
 
 The existing battle-start / second-wave caption now shares the Main Menu V2 bronze/stone material and warm serif type with Battle Result V2. A non-interactive 520×130 title plate, actual encounter and a quiet divider replace unframed text; original arena scrim, entrance/hold/exit timing, combat signals and the Bone Warden throne intro remain unchanged. Godot 4.7.2: 9/9 targeted HUD/result tests, 244 assertions (live first fight, second-wave caption lifecycle and no stale overlay). Existing native campaign capture now includes the intro; native visual acceptance pending. [QA](qa/combat_hud_v1/README.md#combat-intro-visual-v1).

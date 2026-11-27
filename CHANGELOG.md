@@ -1,3 +1,7 @@
+## HUD Visual V2 concept - 27 Nov 2026
+
+- Archive two actual-frame-based 1280×720 header concepts for the Table and Battle. Reuse approved menu/result materials; preserve existing backgrounds, card and combat-planning presentation. Candidate only, pending player approval; no runtime changes.
+
 ## Combat Intro Visual V1 - 27 Nov 2026
 
 - Battle Result V2 accepted in production by the player; record acceptance separately from automated native capture.
