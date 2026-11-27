@@ -12,6 +12,25 @@ func _check(condition: bool, message: String) -> void:
 	if not condition:
 		errors += 1
 		push_error(message)
+func _key(stage: Node2D, slot: String) -> String:
+	var prop: Sprite2D = stage.transactions.pieces.get(slot)
+	return str(prop.get_meta("prop_key")) if is_instance_valid(prop) and prop.visible else ""
+func _check_outcome(stage: Node2D, id: String, action: String, after: bool, name: String) -> void:
+	match id:
+		"debtor_bones":
+			_check((_key(stage,"cracked")=="dice_broken")== (after and action=="break"),name+" broken dice exact")
+			_check((_key(stage,"die0")!="")==not(after and action=="break"),name+" no duplicate whole dice")
+			_check(_key(stage,"dish")==("empty_dish" if after and action in ["safe","gamble_success"] else "stake"),name+" exact stake")
+			_check(_key(stage,"box")==("box_open" if after and action=="gamble_success" else "box_closed"),name+" exact payout box")
+		"wizard_tithe":
+			_check(_key(stage,"bowl")==({"gold":"chalice_gold","blood":"chalice_blood","refuse":"chalice_side"}[action] if after else "chalice_empty"),name+" exact chalice")
+			_check(_key(stage,"scroll")==("scroll_open" if after and action=="refuse" else "scroll"),name+" exact scroll")
+			_check((_key(stage,"blood_stain")!="")== (after and action=="blood" and stage.elapsed>RELIC.HANDOFF+0.04),name+" exact blood stain")
+		"broken_crown":
+			if after:
+				_check(_key(stage,"crown")=="" and (_key(stage,"fragments")=="fragments")== (action=="break") and (_key(stage,"residue")=="residue")== (action=="melt"),name+" exact crown disposition")
+			elif stage.elapsed<2.45 or action!="wear":
+				_check(_key(stage,"crown")=="crown",name+" intact relic")
 func _run() -> void:
 	var stage := RELIC.new()
 	root.add_child(stage)
@@ -25,45 +44,44 @@ func _run() -> void:
 					if not stage.available: continue
 					_check(stage.actors.size()==party.size() and stage.roles==party,name+" actual party")
 					_check(is_instance_valid(stage.jack)==companion,name+" actual companion")
-					_check(is_instance_valid(stage.detail)==(action!="leave"),name+" insert only on interaction")
+					var base: Sprite2D = stage.plate
+					var world: Node2D=stage.world
 					var initial := stage.party_feet.duplicate()
 					var poses: Dictionary = {}
-					for t in [0.0,1.2,2.44,2.45,2.65,2.82,3.04,3.21,3.22,3.65,4.02,5.12,6.6]:
+					for t in [0.0,1.2,2.46,2.8,3.21,3.22,3.55,3.95,4.2,5.2,6.6]:
 						stage.seek(t)
 						var after: bool = t>=RELIC.HANDOFF and action!="leave"
-						var insert: bool = action!="leave" and t>=RELIC.DETAIL_IN and t<RELIC.DETAIL_OUT
-						_check(stage.visible_roles.size()==party.size(),name+" actual members")
-						_check(stage.world.visible==not insert,name+" no giant and hero composited together")
-						_check(stage.prop_changed==after and stage.worksite.visible==not after,name+" exact worksite state")
-						if is_instance_valid(stage.state_layer):
-							_check(stage.state_layer.visible==after,name+" one changed worksite")
-							_check(stage.detail.visible==insert and stage.detail_state.visible==after,name+" separate insert and state")
-							var expected := -1
-							if insert and not after and stage.detail_animated:
-								var old_t := lerpf(0.48,1.46,clampf((t-RELIC.DETAIL_IN)/(RELIC.HANDOFF-RELIC.DETAIL_IN),0.0,1.0))
-								for i in stage.detail_cels.size():
-									if float(stage.detail_cels[i].time)<=old_t+0.00001: expected=i
-							_check(stage.detail_pose.visible==(expected>=0) and stage.pose_index==expected,name+" native action sequence")
-							if stage.detail_pose.visible: poses[stage.pose_index]=true
+						_check(stage.world==world and stage.world.visible and stage.plate==base and stage.plate.visible,name+" one continuous composition")
+						_check(stage.visible_roles.size()==party.size(),name+" no hidden party")
+						_check(stage.prop_changed==after and stage.transactions.state_key==(action if after else "base"),name+" committed outcome state")
+						_check_outcome(stage,id,action,after,name)
 						var tr: Transform2D = stage.world.transform
 						_check(tr.origin.x<=0.001 and tr.origin.y<=0.001 and tr.origin.x+1280*tr.x.length()>=1279.9 and tr.origin.y+720*tr.y.length()>=719.9,name+" camera coverage")
+						if id!="broken_crown":
+							_check(is_instance_valid(stage.npc_patch) and stage.npc_patch.visible==(action!="leave" and t>=2.8 and t<=3.55),name+" registered NPC gesture")
 						for role in party:
 							var unit: Sprite2D = stage.actors[role]
 							var foot: Vector2 = stage.party_feet[role]
 							var info: Dictionary = stage.current_frame[role]
 							var bounds := VIS.logical_image(unit.texture).get_used_rect()
-							_check(info.clip in ["idle","walk","kneel","attack"],name+" living pose")
+							_check(info.clip in ["idle","walk","gesture"],name+" upright living pose")
 							_check(unit.texture.get_image().get_width()==288,name+" HD actor")
-							_check(foot.is_finite() and float(info.height)>0 and float(info.height)*tr.x.length()<230,name+" projected actor")
+							_check(unit.visible and foot.is_finite() and float(info.height)>0 and float(info.height)*tr.x.length()<265,name+" grounded projection")
 							_check(absf(unit.position.y+(float(bounds.end.y)-48.0)*unit.scale.y-foot.y)<0.03,name+" sole anchor")
+							if info.clip=="gesture":
+								_check(role==stage.action_role and unit.texture==stage.gesture_frames[role][info.frame],name+" actual standing gesture")
+								poses[info.frame]=true
+							if stage.reflections.has(role):
+								var echo: Sprite2D=stage.reflections[role]
+								_check(echo.visible and echo.texture==unit.texture and echo.flip_v,name+" wet-floor reflection tracks actor")
 						if is_instance_valid(stage.jack):
 							var bounds := VIS.logical_image(stage.jack.texture).get_used_rect()
 							_check(stage.jack.visible and stage.jack.texture.get_image().get_width()==288,name+" HD adult Jack")
 							_check(absf(stage.jack.scale.x*56.0-stage._ppm(stage.dog_foot.y)*0.95)<0.02,name+" normal adult dog projection")
 							_check(absf(stage.jack.position.y+(float(bounds.end.y)-48.0)*stage.jack.scale.y-stage.dog_foot.y)<0.03,name+" dog sole")
-					if action!="leave": _check(poses.size()>=2 if stage.detail_animated else poses.is_empty(),name+" authored motion or single impact")
+					_check(poses.size()==(0 if action=="leave" else 3),name+" 3 genuine standing gesture phases or pass")
 					for role in party:
-						_check(stage.party_feet[role].distance_to(initial[role])>100,name+" onward route")
+						_check(stage.party_feet[role].distance_to(initial[role])>90,name+" onward route")
 					stage.seek(0)
 					_check(stage.party_feet==initial and not stage.prop_changed and stage.world.visible,name+" deterministic replay")
 	_check(not stage.configure_scene("debtor_bones",["knight","knight"],"safe"),"no duplicate party")
@@ -81,5 +99,5 @@ func _run() -> void:
 		_check(preview.stage.available,"F6 control valid")
 	preview.free()
 	stage.free()
-	print("TRAVEL_RELIC_V5_SMOKE: %d contexts · %d checks · %d failures" % [cases,checks,errors])
+	print("TRAVEL_RELIC_POLISH_SMOKE: %d contexts · %d checks · %d failures" % [cases,checks,errors])
 	quit(0 if errors==0 else 1)

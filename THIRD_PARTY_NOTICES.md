@@ -79,6 +79,10 @@ if distributed, these credits must accompany them.
 
 `travel-v5-relic-human-scale-wide-generated`: Misdeal project / ChatGPT image generation and deterministic source preparation, 2026-11-28. Three empty generated wide plates and thirteen original source-registered worksite cutouts. [Provenance](docs/qa/travel_relic_v5/README.md); legacy source and tool rights review pending.
 
+## Project-origin continuous relic cinematic polish
+
+`travel-v5-relic-polish-continuous`: Misdeal project / ChatGPT, 2026-11-28. Integrated generated environments, tabletop objects, gesture cels, native scene shaders and sampled evidence from the project's own references; no external assets. [Provenance](docs/qa/travel_relic_v5/polish.md). Historical source and tool rights review pending.
+
 ## Future entries
 
 Add the registry ID, actual work title, author, original source, license,

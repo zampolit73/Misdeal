@@ -24,6 +24,8 @@ var coins: AudioStreamPlayer
 var step: AudioStreamPlayer
 var cloth: AudioStreamPlayer
 var dice: AudioStreamPlayer
+var bones: AudioStreamPlayer
+var ambience: AudioStreamPlayer
 var last_step := -1
 var finished := false
 
@@ -60,6 +62,8 @@ func _ready() -> void:
 	step = _audio("stone-step.ogg",-19.0)
 	cloth = _audio("cloth-hit.ogg",-22.0)
 	dice = _audio("dice.ogg",-13.0)
+	bones = _audio("bones.ogg",-15.0)
+	ambience = _audio("dungeon.ogg",-26.0)
 	_replay()
 
 func _audio(file: String, volume: float) -> AudioStreamPlayer:
@@ -84,7 +88,7 @@ func _replay() -> void:
 	finished = false
 	clock = 0.0
 	last_step = -1
-	for p in [metal,coins,step,cloth,dice]:
+	for p in [metal,coins,step,cloth,dice,bones,ambience]:
 		p.stop()
 		p.stream_paused = false
 	if not stage.configure_scene(FORGE.RELIC_IDS[scene_index],PARTIES[party_index],action,companion):
@@ -92,8 +96,17 @@ func _replay() -> void:
 		finished = true
 		fade.color.a = 0.0
 		return
+	ambience.stream=AudioStreamOggVorbis.load_from_file("res://assets/audio/act1/"+("dungeon.ogg" if scene_index==0 else "wind.ogg"))
+	if ambience.stream!=null:
+		ambience.stream.loop=true
+		_start_ambience()
 	_sample(0.0)
 	_update_label()
+
+func _start_ambience() -> void:
+	# Headless preview controls are tested without starting decoder threads.
+	if DisplayServer.get_name()=="headless" or paused or muted or finished or ambience.stream==null or ambience.playing: return
+	ambience.play()
 
 func _update_label() -> void:
 	readout.text = "TRAVEL V5 · %s · %s · %s · %.1f/%.1f%s\nZ/X сцена  ·  ←/→ исход  ·  1/2/3 отряд  ·  Q/E состав  ·  P пауза  ·  R повтор  ·  J спутник  ·  H интерфейс  ·  M звук" % [SCENES[scene_index],TITLES[action]," / ".join(PARTIES[party_index]),clock,FORGE.DURATION," · ПАУЗА" if paused else ""]
@@ -111,8 +124,9 @@ func _process(delta: float) -> void:
 		if before<FORGE.DETAIL_IN and clock>=FORGE.DETAIL_IN and action.begins_with("gamble") and dice.stream!=null: dice.play()
 		if before<FORGE.HANDOFF and clock>=FORGE.HANDOFF:
 			if action in ["gold","safe","gamble_success"] and coins.stream!=null: coins.play()
-			elif action in ["break","melt","wear"] and metal.stream!=null: metal.play()
-			elif action in ["blood","refuse","gamble_failure"] and cloth.stream!=null: cloth.play()
+			elif action=="break" and scene_index==0 and bones.stream!=null: bones.play()
+			elif action in ["break","melt","wear","refuse"] and metal.stream!=null: metal.play()
+			elif action in ["blood","gamble_failure"] and cloth.stream!=null: cloth.play()
 		var lead: Dictionary = stage.current_frame[stage.order[0]]
 		var contact := int(float(lead.phase)/3.0)
 		if stage.world.visible and lead.clip=="walk" and contact!=last_step:
@@ -121,6 +135,7 @@ func _process(delta: float) -> void:
 	if clock >= FORGE.DURATION:
 		# Hold the final state for inspection instead of forcing a loop.
 		finished = true
+		ambience.stop()
 		fade.color.a = 0.0
 	_update_label()
 
@@ -159,7 +174,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		KEY_R: _replay()
 		KEY_P:
 			paused=not paused
-			for player in [metal,coins,step,cloth,dice]: player.stream_paused=paused
+			for player in [metal,coins,step,cloth,dice,bones,ambience]: player.stream_paused=paused
+			_start_ambience()
 			_update_label()
 		KEY_J:
 			companion=not companion; _replay()
@@ -167,14 +183,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		KEY_M:
 			muted=not muted
 			if muted:
-				for player in [metal,coins,step,cloth,dice]: player.stop()
+				for player in [metal,coins,step,cloth,dice,bones,ambience]: player.stop()
+			else: _start_ambience()
 		KEY_SPACE: _replay()
 
 func qa_toolbar_visible() -> bool:
 	return controls.visible
 
 func _exit_tree() -> void:
-	for player in [metal,coins,step,cloth,dice]:
+	for player in [metal,coins,step,cloth,dice,bones,ambience]:
 		if is_instance_valid(player):
 			player.stop()
 			player.stream = null

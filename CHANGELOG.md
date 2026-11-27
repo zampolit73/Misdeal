@@ -1,3 +1,9 @@
+## Cinematic Travel V5 - continuous relic cinematic polish - 28 Nov 2026
+
+- Replaced rejected insert-based staging for Debtor Bones, Wizard Tithe and Broken Crown with unified human-scale art, standing hero gestures, local NPC/prop actions and coherent light, shadows, reflections and existing sound palette.
+- Actual 12 committed outcomes; no card art, rules, saves or production allowlist changes. Godot 4.7.2 isolated 132 contexts / 26,215 checks / zero failures. Native F6 acceptance pending.
+- [Polish QA](docs/qa/travel_relic_v5/polish.md).
+
 ## Cinematic Travel V5 - relic transaction candidate batch - 28 Nov 2026
 
 - Stage Debtor Bones, Wizard Tithe and Broken Crown: three wide human-scale environments, thirteen registered base/outcome worksites, 12 resolved outcomes and distinct original local-detail inserts.

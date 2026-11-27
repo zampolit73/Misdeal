@@ -1,3 +1,5 @@
+> Superseded on 2026-11-28 after player feedback on the discontinuous insert. Use the [continuous relic polish review](polish.md) for current F6 and evidence; the older candidate below is historical.
+
 # Cinematic Travel V5 — Relic transactions (2026-11-28)
 
 Review-only candidate on the approved scene-first, human-scale direction.

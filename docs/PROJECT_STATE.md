@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · relic transactions continuous-scene polish
+
+After the player rejected insert-style animation, rebuilt all three staged candidates as a single cohesive human-scale scene: integrated scenery/NPCs, 20 local animated prop cels, 9 standing hero gestures, 2 registered NPC gestures, scene-matched contact shadows/reflections/lighting and continuous camera, distinct committed outcomes and synced existing sounds. F6 uses the same scene path. Godot 4.7.2 isolated 132 contexts / 26,215 checks / zero failures; sampled frames reviewed, native visual/audio acceptance pending. **10/24 live, six staged, eight unstaged**. No campaign selection, gameplay, saves or original card art changed. [Polish QA](qa/travel_relic_v5/polish.md).
+
 ## Cinematic Travel V5 · relic transactions staged
 
 Three Batch02 candidates: Debtor Bones, Wizard Tithe, Broken Crown. New human-scale wide compositions and exact original action inserts; shared HD heroes/Jack, scene-specific routes, local worksite motion, 12 distinct resolved outcomes. 132 isolated Godot 4.7.2 contexts / 26,531 checks / zero failures. F6 native acceptance pending. **10/24 live, six staged, eight unstaged**. No campaign routing, rules, saves or original art changed. [QA](qa/travel_relic_v5/README.md).

@@ -35,7 +35,8 @@
 - [x] Player approved human-scale animated Borrowed Boots on 2026-11-28; opted into production with committed outcome and V4 fallback. 91 contexts / 2,107 checks, 9 missing-plate and 9 missing-profile checks PASS.
 - [ ] Native integrated F5 playback review for Last Camp, Ash Rest and Borrowed Boots.
 - [x] Stage Debtor Bones, Wizard Tithe and Broken Crown (12 outcomes) with human-scale wide compositions and separate original-art transaction inserts; 132 contexts / 26,531 checks PASS. [QA](qa/travel_relic_v5/README.md).
-- [ ] Native F6 visual acceptance of relic transaction batch before opt-in.
+- [x] Supersede rejected relic inserts with integrated continuous compositions, standing hero/NPC gestures, independent animated local props, light and sound; 132 contexts / 26,215 checks PASS. [Polish QA](qa/travel_relic_v5/polish.md).
+- [ ] Native F6 visual/audio acceptance of corrected relic transaction batch before opt-in.
 - [ ] Apply the approved scene-first V5 direction to eight remaining unstaged scenes in coherent batches; preserve the original art identity, actual outcomes and V4 fallback. No automatic scene conversion.
 
 ## Travel Staging V4

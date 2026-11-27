@@ -1,3 +1,7 @@
+## Next player check · corrected relic movies, no inserts
+
+Player rejected the initial insert-style animation as an unfinished clip from another game. Pull main, F6 `scenes/dev/travel_relic_v5_preview.tscn` (same controls). All three scenes now retain one human-scale painting throughout 6.6s; check standing reach, actual prop reactions, NPC hands, matched tone/shadows/reflections, adult Jack, natural exit and scene-local sounds across 12 outcomes. 132 contexts / 26,215 targeted checks passed; offline sampled frames reviewed, native visual and audio review pending. Keep them staged (10/24 live, six staged, eight unstaged), do not activate until accepted. [Polish QA](qa/travel_relic_v5/polish.md).
+
 ## Next player check · three relic transactions
 
 Pull main and open `scenes/dev/travel_relic_v5_preview.tscn` with F6. Z/X: Debtor Bones, Wizard Tithe, Broken Crown; arrows outcomes; 1/2/3, Q/E, J, P/R/H/M. Check the same human-scale composition as approved Boots, actual HD party and adult dog, natural route to the relic, separate original full-detail transaction insert and matching small outcome, passage without interaction. 132 contexts / 26,531 checks PASS; offline visual sampled composites, native F6 review pending. 10/24 live, six staged (earlier rescue three still unaccepted), eight unstaged. Only explicitly approved V5 IDs may be added to the production allowlist. No save reset. [QA](qa/travel_relic_v5/README.md).

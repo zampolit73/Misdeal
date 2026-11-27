@@ -1,0 +1,43 @@
+{
+  "debtor_bones": {
+    "plate": "exec-f9c86475-a301-43df-a689-721e4cef459d.png",
+    "plate_sha256": "6f11783204714e8adcce70d5e15e6297d4fe6823d5816b3f7c148870f3c170bf",
+    "props": "exec-2f043bc5-9ab6-4614-b896-24807723556b.png",
+    "props_sha256": "294f22749ea6ce11f419a47e9e8c9a3348475c489ad1f1c53efbab292022a586",
+    "guide_sha256": "a7420d92f2f6d03e421a1c98f9c1173159c36b06c40b59be09205b26ccf9ef94",
+    "master_sha256": "ab96a52555a77260a48b478f4786fb52e6e29258d6b492d161d2e125117d978a",
+    "npc": "exec-7af5b4a7-d9da-4635-9494-899349f2ff11.png",
+    "npc_sha256": "c7a72d324fdf373c34ae74d273685f6d7aaa50a736a5b507defce7ba871986d7",
+    "source_crop_sha256": "cfa905f84a302ee970befd3c1f0900804bc4832b57c18251f38fa505b383a668"
+  },
+  "wizard_tithe": {
+    "plate": "exec-32502d5e-5f07-4aa6-9810-6e0b0d5d1771.png",
+    "plate_sha256": "adb56a7e2dee7d4ad89fe694682ff1d9d39cd514251ee5be3edcd2030f857108",
+    "props": "exec-9d2fd4dc-cf3a-4d02-9551-95f0d6632853.png",
+    "props_sha256": "caf91b2eb6fc8bbb2eec8731d687ce25f9e2946084f43248ca7a55cdba82d873",
+    "guide_sha256": "7bb7107b28310a4d23d0de0bf8e47fa2c28c6f33eba6443e8ff897d8306fc680",
+    "master_sha256": "f568ee9aef9509002ef6374a965e6326933a6d0b31e05dfcc02fd970e379e1d2",
+    "npc": "exec-5d036e63-06a7-410c-bc0d-ffbea8a00abc.png",
+    "npc_sha256": "b76243bd6325a57d56331434e0673cd63b0958eb34230e98d631bb20f5511f7a",
+    "source_crop_sha256": "dbaf806fdf52fbe0f6db4c45426f7c48d33f94896239b9ec41c363f0fe37811f"
+  },
+  "broken_crown": {
+    "plate": "exec-cf04ea5d-6eb5-4abb-b1f7-639ee92afe14.png",
+    "plate_sha256": "7aeee8c63eeb49e86b5e5a9f7326c5444b7390aeb5976aed8287abd20008efa6",
+    "props": "exec-c80e33af-5753-4e84-b6ce-b042f64e41e6.png",
+    "props_sha256": "630182b45483d3f4d176b2a68fd04ee67dabe478f370c3e8519f116d50ff5ad3",
+    "guide_sha256": "14d6b67b201ed5a696f965489ddd211a15717a03c8589b6467bbdc4eaa3cc894",
+    "master_sha256": "bf961a8a118f8036a3b9c7ada6208490a116a8ee819ed0d30162a317f9301672"
+  },
+  "gesture_heroes": {
+    "sheet": "exec-98eb2c4c-9841-480b-9ad9-c4673483afea.png",
+    "sheet_sha256": "33f3a6e59d2997b8aec9eb2170bb988123b500dfdb05ed2b676436606211730d",
+    "first_pass_sha256": "a5226dd6d800e0e65a49a532835520db7867b606b5e7b7300018e2326b05344a",
+    "reference_sha256": "9245f2a3b8e4f450fca53ef2d4bdeb5d8121cc75ce43c8aa6b1766c296d7dfce",
+    "reference_atlases": {
+      "knight": "92685137a4e3605acf843db41d2a4959901be310143978097c88f2c1fb60d489",
+      "ranger": "7d46bcd83eecccced0cc7822da259829277047e0269768fc2de3e2b9052663bb",
+      "mage": "ae8b38ac052b8a19e1a9c6be14a5efb824e66b6d61dad6dd763ba4575ddac1c8"
+    }
+  }
+}

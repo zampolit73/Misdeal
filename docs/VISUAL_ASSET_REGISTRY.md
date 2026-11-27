@@ -1,3 +1,7 @@
+## Travel V5 · continuous relic scene polish
+
+`assets/pixel/travel/cinematic_v5/relic_polish/`: three integrated 1280×720 plates, three transparent 192px-cell tabletop atlases (20 pieces), two registered transparent regional NPC cels, and 864×864 3×3 standing-gesture atlas (9 native 288px cels, 96px logical geometry). Runtime three local scene/reflection/liquid shaders, source hash receipt and exact file hashes. No reuse of old cinematic cutaway layer; the previous assets and V4 art are retained. [Review and provenance](qa/travel_relic_v5/polish.md).
+
 ## Travel V5 · relic transaction wide compositions
 
 `assets/pixel/travel/cinematic_v5/relic_batch/<id>/`: three independently generated empty 1280×720 wide plates and thirteen source-registered 640×360 alpha worksite state cutouts in WebP. Shared source projections 0.29/0.34/0.23; original full-frame masters and local action cels used exclusively in the separate transaction insert. No replacement of old artwork or card illustrations. Registered under `travel-v5-relic-human-scale-wide-generated`. [QA/provenance](qa/travel_relic_v5/README.md).

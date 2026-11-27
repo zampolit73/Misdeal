@@ -1,21 +1,22 @@
-extends "res://scripts/travel/cinematic_v5/camp_v5.gd"
-## Review-only relic movies: human-scale approach, separate source-registered
-## insert, then the exact committed painted result and onward road.
+extends "res://scripts/travel/cinematic_v5/rescue_v5.gd"
+## Relic polish: one integrated live painting, real tabletop props, standing
+## role-specific gestures and continuous approach/action/departure.
 const RELIC_IDS := ["debtor_bones","wizard_tithe","broken_crown"]
 const RELIC_PROFILE := "res://resources/travel/cinematic_v5/relic_batch.json"
 const B02 := preload("res://scripts/travel/batch_02_catalog.gd")
-const RELIC_ROOT := "res://assets/pixel/travel/cinematic_v5/relic_batch/"
-const DETAIL_IN := 2.45
-const DETAIL_OUT := 4.02
+const RELIC_ROOT := "res://assets/pixel/travel/cinematic_v5/relic_polish/"
+const PROP := preload("res://scripts/travel/cinematic_v5/relic_props_v5.gd")
+const LIVING := preload("res://shaders/travel_relic_living.gdshader")
+const REFLECT := preload("res://shaders/travel_relic_reflection.gdshader")
+const DETAIL_IN := 2.45 # action sound timestamp; no camera cut
+const RELIC_DEPART := 4.16
 static var _relic_textures: Dictionary = {}
-var worksite: Sprite2D
-var detail: Node2D
-var detail_base: Sprite2D
-var detail_state: Sprite2D
-var detail_pose: Sprite2D
-var detail_cels: Array[Dictionary] = []
-var pose_index := -1
-var detail_animated := false
+static var _gesture_atlas: Image
+static var _gesture_cache: Dictionary = {}
+var transactions: Node2D
+var gesture_frames: Dictionary = {}
+var reflections: Dictionary = {}
+var npc_patch: Sprite2D
 
 static func relic_actions(id: String, party: Array) -> Array[String]:
 	var result: Array[String] = []
@@ -34,107 +35,91 @@ func _cached(path: String, expected: Vector2) -> Texture2D:
 	_relic_textures[path]=tex
 	return tex
 
-func _worksite(key: String) -> Sprite2D:
-	var tex := _cached(RELIC_ROOT+scene_id+"/worksite_"+key+".webp",Vector2(640,360))
-	if tex==null: return null
-	var part := _sprite(tex,world,3,_p(profile.origin),false)
-	part.scale = Vector2.ONE*float(profile.projection)*2.0
-	part.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	var material := ShaderMaterial.new()
-	material.shader = V3.LIGHT
-	material.set_shader_parameter("scene_kind",-1)
-	var masks := PackedVector4Array()
-	for mask in V3.LIGHT_MASKS.get(scene_id,[]): masks.append(mask)
-	masks.resize(3)
-	material.set_shader_parameter("local_lights",masks)
-	part.material = material
-	return part
+func _mask(key: String) -> Vector4:
+	var v: Array = profile.get(key,[0,0,0,0])
+	return Vector4(v[0],v[1],v[2],v[3])
 
-func _build_detail() -> bool:
-	var legacy := B02.ROOT+scene_id+"/"
-	var original := _cached(legacy+"layers/base_1280.png",Vector2(1280,720))
-	var result := _cached(legacy+"layers/"+action+"_state.png",Vector2(1280,720))
-	if original==null or result==null: return false
-	detail = Node2D.new()
-	detail.name = "OriginalRelicInsert"
-	detail.z_index = 2000
-	add_child(detail)
-	detail_base = V3.base_sprite(detail,original,scene_id)
-	detail_base.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	detail_state = _sprite(result,detail,2,Vector2.ZERO,false)
-	detail_state.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	detail_pose = _sprite(null,detail,3,Vector2.ZERO,false)
-	detail_pose.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	var folder := legacy+"animation/"+action+"/"
-	var manifest: Variant = JSON.parse_string(FileAccess.get_file_as_string(folder+"poses.json"))
-	if not manifest is Dictionary or not manifest.get("poses",[]) is Array: return false
-	for cel in manifest.poses:
-		var rect: Array = cel.rect
-		var tex := _cached(folder+str(cel.path),Vector2(float(rect[2]),float(rect[3])))
-		if tex==null: return false
-		detail_cels.append({"texture":tex,"at":Vector2(float(rect[0]),float(rect[1])),"time":float(cel.time)})
-	detail_animated = false
-	for cel in detail_cels:
-		if cel.texture!=detail_cels[0].texture: detail_animated=true
-	return not detail_cels.is_empty()
+func _load_gestures() -> bool:
+	if not _gesture_cache.is_empty():
+		gesture_frames=_gesture_cache
+		return true
+	if not is_instance_valid(_gesture_atlas):
+		_gesture_atlas = Image.new()
+		if _gesture_atlas.load_webp_from_buffer(FileAccess.get_file_as_bytes(RELIC_ROOT+"gesture_heroes.webp"))!=OK: return false
+	if _gesture_atlas.get_size()!=Vector2i(864,864): return false
+	for y in ROLES.size():
+		var row: Array[Texture2D] = []
+		for x in 3:
+			var cel := _gesture_atlas.get_region(Rect2i(x*288,y*288,288,288))
+			if cel.get_used_rect().size==Vector2i.ZERO: return false
+			var logical := cel.duplicate() as Image
+			logical.resize(96,96,Image.INTERPOLATE_LANCZOS)
+			row.append(VIS._texture(cel,ImageTexture.create_from_image(logical)))
+		gesture_frames[ROLES[y]]=row
+	_gesture_cache=gesture_frames
+	return true
+
+func _make_reflection(key: String) -> void:
+	var node := _sprite(null,world,15,Vector2.ZERO)
+	node.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	var mat := ShaderMaterial.new()
+	mat.shader=REFLECT
+	mat.set_shader_parameter("alpha",float(profile.reflection))
+	node.material=mat
+	reflections[key]=node
 
 func configure_scene(id: String, party: Array, resolved_action: String, has_jack := false) -> bool:
 	available = false
 	if resolved_action not in relic_actions(id,party): return false
-	if not FileAccess.file_exists(RELIC_PROFILE) or not _load_living_poses(): return false
+	if not FileAccess.file_exists(RELIC_PROFILE) or not _load_gestures(): return false
 	var json: Variant = JSON.parse_string(FileAccess.get_file_as_string(RELIC_PROFILE))
 	if not json is Dictionary or not json.has(id): return false
 	profile = json[id]
 	scene_id = id
 	action = resolved_action
 	roles.assign(party)
-	order.assign(party)
+	order.assign(roles)
 	joining = ""
 	action_role = "" if action=="leave" else order[0]
-	profile["look"] = {action:profile.look_at}
 	jack_present = has_jack and "ranger" in roles
 	if is_instance_valid(world): world.free()
-	if is_instance_valid(detail): detail.free()
-	detail = null
-	detail_base = null
-	detail_state = null
-	detail_pose = null
-	detail_cels.clear()
-	detail_animated = false
 	world = Node2D.new()
-	world.name = "RelicWorld"
+	world.name = "ContinuousRelicWorld"
 	add_child(world)
 	waiting_layer = null
 	state_layer = null
 	treatment_layer = null
-	camp_layer = null
-	squire = null
-	boot_reactions = null
 	foreground = null
+	npc_patch = null
 	jack = null
 	jack_shadow = null
-	for dict in [actors,shadows,tracks,party_feet,current_frame,side_frames,walk_heights,rear_heights,routes]:
+	for dict in [actors,shadows,tracks,party_feet,current_frame,side_frames,walk_heights,rear_heights,routes,reflections]:
 		dict.clear()
 	visible_roles.clear()
 	dog_track.clear()
 	var texture := _cached(RELIC_ROOT+id+"/plate.webp",Vector2(1280,720))
 	if texture==null: return false
-	# Wide plate is independently authored. Never reuse old source light masks.
-	plate = V3.base_sprite(world,texture,"")
+	plate = _sprite(texture,world,0,Vector2.ZERO,false)
 	plate.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	var mat := ShaderMaterial.new()
+	mat.shader = LIVING
 	var lights := PackedVector4Array()
 	for mask in profile.lights: lights.append(Vector4(mask[0],mask[1],mask[2],mask[3]))
 	lights.resize(3)
-	(plate.material as ShaderMaterial).set_shader_parameter("local_lights",lights)
-	worksite = _worksite("base")
-	if worksite==null: return false
-	if action!="leave":
-		state_layer = _worksite(action)
-		if state_layer==null or not _build_detail(): return false
+	mat.set_shader_parameter("lights",lights)
+	for key in ["npc_hand","npc_hood","cloth"]: mat.set_shader_parameter(key,_mask(key))
+	plate.material = mat
+	if profile.has("npc_rect"):
+		var rect := _mask("npc_rect")
+		var patch := _cached(RELIC_ROOT+id+"/npc_gesture.webp",Vector2(rect.z,rect.w))
+		if patch==null: return false
+		npc_patch = _sprite(patch,world,1,Vector2(rect.x,rect.y),false)
+		npc_patch.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	shadow_texture = _make_shadow()
-	var contact := _p(profile.origin)+_p(profile.contact)*float(profile.projection)
-	var contact_shadow := _shadow(shadow_texture,contact,200.0,2)
-	contact_shadow.scale = Vector2(float(profile.projection)*9.5,0.95)
+	transactions = PROP.new()
+	transactions.name = "LocalTransactions"
+	world.add_child(transactions)
+	if not transactions.build(id,action,profile,shadow_texture): return false
 	var rear := REAR.new()
 	if not rear.build(): return false
 	rear_frames = REAR.frames
@@ -147,6 +132,7 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 		rear_heights[role] = _walk_height(rear_frames[role])
 		actors[role] = _sprite(side.get_frame_texture("idle",0),world,30,Vector2.ZERO)
 		shadows[role] = _shadow(shadow_texture,Vector2.ZERO,170.0,20)
+		if float(profile.reflection)>0.0: _make_reflection(role)
 		routes[role] = _route(role)
 		tracks[role] = V3.gait(_hero_foot.bind(role),_height.bind(role),DURATION)
 		tracks[role].pitch = maxf(0.068,float(tracks[role].total)/(DURATION*8.5))
@@ -156,6 +142,7 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 		jack_body_px = VIS.DOG_REFERENCE_PX
 		jack = _sprite(jack_frames.get_frame_texture("idle",0),world,30,Vector2.ZERO)
 		jack_shadow = _shadow(shadow_texture,Vector2.ZERO,60.0,20)
+		if float(profile.reflection)>0.0: _make_reflection("jack")
 		dog_track = V3.gait(_dog_foot,_dog_height,DURATION)
 		dog_track.pitch = maxf(0.06,float(dog_track.total)/(DURATION*9.0))
 	available = true
@@ -187,7 +174,7 @@ func _hero_foot(t: float, role: String) -> Vector2:
 		return _path(route.road,clampf(t/DURATION*(1.0-rank*0.16),0.0,1.0))
 	if t<ARRIVAL: return _path(route["in"],smoothstep(0.0,ARRIVAL,t))
 	var reversed := bool(profile.exit_reversed)
-	var depart := DETAIL_OUT + 0.12*(order.size()-1-rank if reversed else rank)
+	var depart := RELIC_DEPART + 0.12*(order.size()-1-rank if reversed else rank)
 	if t<depart: return route.wait
 	var fraction := 1.0-0.19*(order.size()-1-rank if reversed else rank)
 	return _path(route.out,smoothstep(depart,DURATION,t)*fraction)
@@ -196,42 +183,105 @@ func _dog_foot(t: float) -> Vector2:
 	var foot := _hero_foot(maxf(0.0,t-0.12),"ranger")
 	var gap := _ppm(foot.y)*JACK_ROUTE_SPACING_M
 	# Ground-side offset remains continuous through the cinematic cut.
-	return foot+Vector2(-gap*0.58,gap*0.69)
+	return foot+Vector2(-gap*0.70,gap*0.52)
 
 func _camera(t: float) -> Transform2D:
-	var e := smoothstep(0.6,ARRIVAL,t)*(1.0-smoothstep(DETAIL_OUT,6.3,t))
-	var zoom := 1.01+e*0.027
-	var focus := Vector2(640,360).lerp(_p(profile.focus),e*0.65)
+	# A modest continuous dolly: the whole scene, everyone and all objects share
+	# one transform. No second painting, change of perspective or fullscreen cut.
+	var e := smoothstep(0.50,ARRIVAL+0.25,t)*(1.0-smoothstep(RELIC_DEPART,6.35,t))
+	if action=="leave": e *= 0.24
+	var zoom := 1.014+e*0.145
+	var focus := Vector2(640,360).lerp(_p(profile.focus),e*0.78)
 	return Transform2D(0,Vector2.ONE*zoom,0,Vector2(clampf(640-focus.x*zoom,1280-1280*zoom,0),clampf(360-focus.y*zoom,720-720*zoom,0)))
+
+func _grade(foot: Vector2) -> Color:
+	var a: Array = profile.ambient
+	var b: Array = profile.warm
+	var cool := Color(a[0],a[1],a[2])
+	var warm := Color(b[0],b[1],b[2])
+	var e := 1.0-smoothstep(38.0,float(profile.light_radius),foot.distance_to(_p(profile.light_at)))
+	return cool.lerp(warm,e)
+
+func _reflect(key: String, actor: Sprite2D, foot: Vector2, t: float) -> void:
+	if not reflections.has(key): return
+	var echo: Sprite2D = reflections[key]
+	echo.texture=actor.texture
+	echo.flip_h=actor.flip_h
+	echo.flip_v=true
+	echo.scale=Vector2(actor.scale.x,actor.scale.y*0.31)
+	var bounds := VIS.logical_image(actor.texture).get_used_rect()
+	echo.position=foot+Vector2(0,(float(bounds.end.y)-48.0)*echo.scale.y+1.0)
+	echo.modulate=actor.modulate
+	echo.visible=actor.visible
+	(echo.material as ShaderMaterial).set_shader_parameter("elapsed",t)
+
+func _place_hero(role: String, t: float) -> void:
+	var actor: Sprite2D = actors[role]
+	var shade: Sprite2D = shadows[role]
+	var foot := _hero_foot(t,role)
+	var velocity := _hero_foot(minf(DURATION,t+0.055),role)-_hero_foot(maxf(0,t-0.055),role)
+	var moving := velocity.length()>0.65
+	var phase := V3.phase(tracks[role],t,float(order.find(role))*0.53)
+	var facing := velocity
+	if not moving:
+		if t<RELIC_DEPART and action!="leave": facing=_p(profile.look_at)-foot
+		else: facing=foot-_hero_foot(maxf(0.0,t-0.32),role)
+	var rear := moving and velocity.y < -absf(velocity.x)*0.54 and (t>=HANDOFF or action=="leave")
+	var set: SpriteFrames = rear_frames[role] if rear else side_frames[role]
+	var clip := "walk" if moving else "idle"
+	var frame := int(phase)%6 if moving else int(t*2.4)%4
+	if role==action_role and t>=ARRIVAL and t<RELIC_DEPART-0.20:
+		clip="gesture"
+		frame=0 if t<2.62 else (1 if t<3.38 else 2)
+		actor.texture=gesture_frames[role][frame]
+	else:
+		actor.texture=set.get_frame_texture(clip,frame)
+	var height := _height(foot,role)
+	var factor := height/float(rear_heights[role] if rear else walk_heights[role])
+	var bounds := VIS.logical_image(actor.texture).get_used_rect()
+	actor.texture_filter=VIS.filter_for(actor.texture)
+	actor.position=foot-Vector2(0,(float(bounds.end.y)-48.0)*factor)
+	actor.scale=Vector2.ONE*factor
+	actor.flip_h=facing.x<0
+	actor.visible=true
+	actor.z_index=30+int(foot.y)
+	actor.modulate=_grade(foot)
+	shade.position=foot+Vector2(-height*0.035,2)
+	shade.scale=Vector2(height*0.65/64.0,height*0.12/20.0)
+	shade.visible=true
+	party_feet[role]=foot
+	current_frame[role]={"clip":clip,"frame":frame,"phase":phase,"foot":foot,"height":height}
+	visible_roles.append(role)
+	_reflect(role,actor,foot,t)
 
 func seek(time: float) -> void:
 	if not available: return
-	super.seek(time)
-	var after := elapsed>=HANDOFF
-	worksite.visible = not prop_changed
-	(worksite.material as ShaderMaterial).set_shader_parameter("elapsed",elapsed)
-	if is_instance_valid(state_layer):
-		(state_layer.material as ShaderMaterial).set_shader_parameter("elapsed",elapsed)
-	var insert := action!="leave" and elapsed>=DETAIL_IN and elapsed<DETAIL_OUT
-	world.visible = not insert
-	pose_index = -1
-	if not is_instance_valid(detail): return
-	detail.visible = insert
-	detail_state.visible = after
-	detail_pose.visible = false
-	if not insert: return
-	(detail_base.material as ShaderMaterial).set_shader_parameter("elapsed",elapsed)
-	# Sparse old manifests with a single result pose keep the original
-	# painting until the actual impact. A small camera push supplies the beat.
-	var zoom := 1.0+0.028*smoothstep(DETAIL_IN,HANDOFF,elapsed)
-	detail.transform = Transform2D(0,Vector2.ONE*zoom,0,Vector2(-1250.0*(zoom-1.0),-440.0*(zoom-1.0)))
-	if after or not detail_animated: return
-	# Preserve the original local cel sequence and full-size source coordinates.
-	var source_t := lerpf(0.48,1.46,clampf((elapsed-DETAIL_IN)/(HANDOFF-DETAIL_IN),0.0,1.0))
-	for i in detail_cels.size():
-		if float(detail_cels[i].time)<=source_t+0.00001: pose_index=i
-	if pose_index>=0:
-		var cel: Dictionary = detail_cels[pose_index]
-		detail_pose.texture = cel.texture
-		detail_pose.position = cel.at
-		detail_pose.visible = true
+	elapsed=clampf(time,0.0,DURATION)
+	var t := elapsed
+	world.visible=true
+	world.transform=_camera(t)
+	var gesture := 0.0 if action=="leave" else smoothstep(2.47,2.79,t)*(1.0-smoothstep(3.35,3.88,t))
+	var mat := plate.material as ShaderMaterial
+	mat.set_shader_parameter("elapsed",t)
+	mat.set_shader_parameter("gesture",gesture*0.24)
+	if scene_id=="broken_crown":
+		mat.set_shader_parameter("trace",smoothstep(HANDOFF,HANDOFF+0.24,t) if action=="wear" else 0.0)
+	if is_instance_valid(npc_patch):
+		# Actual registered authored forearm/hand pose with localized feathered
+		# perimeter; one continuous painted location, never an inserted view.
+		npc_patch.modulate.a=gesture
+		npc_patch.visible=gesture>0.005
+	visible_roles.clear()
+	for role in order: _place_hero(role,t)
+	if is_instance_valid(jack):
+		_place_dog(t)
+		jack.modulate=_grade(dog_foot)
+		_reflect("jack",jack,dog_foot,t)
+	var hand := _p(profile.look_at)
+	if not action_role.is_empty():
+		var f: Vector2 = party_feet[action_role]
+		var h: float = current_frame[action_role].height
+		var dir := signf(hand.x-f.x)
+		hand=f+Vector2(dir*h*(0.36 if t>=3.38 else 0.56),-h*0.53)
+	transactions.seek(t,hand)
+	prop_changed=transactions.resolved

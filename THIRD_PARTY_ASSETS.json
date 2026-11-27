@@ -460,6 +460,34 @@
         "assets/pixel/travel/cinematic_v5/relic_batch/wizard_tithe/worksite_refuse.webp": "e7e1df7f4030e069fd31d27b1bebaa1b3c126841936252777d21ee7015501161",
         "docs/qa/travel_relic_v5/samples.jpg": "c854d5d4e39d9bd952a71330edd13707fabadc119bc54eec3115bd40f0045a32"
       }
+    },
+    {
+      "id": "travel-v5-relic-polish-continuous",
+      "status": "verified",
+      "origin": "generated",
+      "author": "Misdeal project / ChatGPT generated from project references, deterministic preparation and authored GDScript/shaders",
+      "revision": "relic-polish-v5 from bebc1389ed42555b8495ce0d914efdc6778e606b",
+      "obtained_on": "2026-11-28",
+      "licenses": [
+        "PROJECT-ORIGIN"
+      ],
+      "rights_review": "Development-origin review: original project-only composition/hero/prop references, three integrated generated environments, three local object atlas sets, two registered NPC patch cels, nine standing gesture cels, authored native shaders and sampled QA image. No new external inputs or dependencies. Historical project asset/tool rights audit remains open for public distribution; no clearance claimed.",
+      "evidence": "docs/qa/travel_relic_v5/polish.md",
+      "files": {
+        "assets/pixel/travel/cinematic_v5/relic_polish/broken_crown/plate.webp": "4f9eef255a7db6fb2370b9941c8f5ca35a1b7b90e665b38fb1a8c60d5f073656",
+        "assets/pixel/travel/cinematic_v5/relic_polish/broken_crown/props.webp": "6a6fe295ad540175f779fec262464ddf35761b5b1aed795772db6c30b2e39cca",
+        "assets/pixel/travel/cinematic_v5/relic_polish/debtor_bones/npc_gesture.webp": "6d2b951cc9ce9eed9a91753626630762669903e1ce3d4d646985b7adf5760d09",
+        "assets/pixel/travel/cinematic_v5/relic_polish/debtor_bones/plate.webp": "b76d12d20247fd60f1439997e4d17da7b5dcc06000447d4786c1097353e4dd84",
+        "assets/pixel/travel/cinematic_v5/relic_polish/debtor_bones/props.webp": "d87d93c03fc759a9933ef2dc5a44b26addc3d7de9234e0b8e1a2cc9d9dc1c093",
+        "assets/pixel/travel/cinematic_v5/relic_polish/gesture_heroes.webp": "d8eaa4bea6de1d24355e871045cf78d0f7e1ade622ce49a9a78954d6225d2132",
+        "assets/pixel/travel/cinematic_v5/relic_polish/wizard_tithe/npc_gesture.webp": "5600d4be0f7f4a475d3d27db6499ec64810e3420fc7a0668c0455797215db32c",
+        "assets/pixel/travel/cinematic_v5/relic_polish/wizard_tithe/plate.webp": "5e418ac56c29cb236e745b85c45ac60dbd544100bdaa2434e11c4c7c0bba8b5f",
+        "assets/pixel/travel/cinematic_v5/relic_polish/wizard_tithe/props.webp": "9b0513f43a69ba7da01831633e848e2138a55370aaf1cb2df76a6274c2546f62",
+        "shaders/travel_relic_liquid.gdshader": "bf4a1092177ee3909666591ad38ade8ce12e6f7248840e9b104a1edf37ab9527",
+        "shaders/travel_relic_living.gdshader": "24eeeedc6d3797fa885918f68e9bd41a78021a95f95a7ff224847907f2ae00b2",
+        "shaders/travel_relic_reflection.gdshader": "bdd80548e88ba90463a8c4cfd516a549dc9b2791bd3682b55d6c5c03cd26bde2",
+        "docs/qa/travel_relic_v5/polish_samples.jpg": "53ea2c5d6cc6bf10ebadcb3330ceaf67091c8dcfcb49ec1c9798dad3001273f4"
+      }
     }
   ],
   "release": {
