@@ -2,6 +2,7 @@ extends Node2D
 ## Batch 03 presentation. TravelTransition owns clock, input, and the route back.
 
 const CATALOG := preload("res://scripts/travel/batch_03_catalog.gd")
+const STAGING := preload("res://scripts/travel/travel_staging_v4.gd")
 const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 const REAR := preload("res://scripts/travel/campfire_walk.gd")
 const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
@@ -37,17 +38,26 @@ var pilot_lead_phase := 0.0
 var pilot_tracks: Dictionary = {}
 var pilot_base: Sprite2D
 var scene_id := ""
+var stage_profile: Dictionary = {}
 
 func build(background: String, _foreground: String, _underpaint: String, _sky: String) -> void:
 	for id in CATALOG.DATA.data:
 		var scene := CATALOG.scene_for(id)
 		if background == CATALOG.ROOT.path_join(scene.folder).path_join(scene.master):
-			_scene = scene
+			_scene = scene.duplicate(true)
+			stage_profile = STAGING.profile(str(id))
 			break
 	if _scene.is_empty():
 		return
-	for point in _scene.route:
-		_route.append(_point(point))
+	if not stage_profile.is_empty():
+		_scene.height = stage_profile.height
+		_scene.horizon = stage_profile.horizon
+		_route = STAGING.route(stage_profile)
+		if stage_profile.has("handoff_ground_y"):
+			_scene.handoff_ground_y = stage_profile.handoff_ground_y
+	else:
+		for point in _scene.route:
+			_route.append(_point(point))
 	for label in ["Midground", "Foreground"]:
 		var plane := Node2D.new()
 		plane.name = label
@@ -190,7 +200,8 @@ func _draw_v3_outcome() -> void:
 				path = phases.get("treatment", path)
 			_draw_plate(path, 1.0 - smoothstep(_handoff_time - 0.18, _handoff_time, _time))
 		else:
-			_draw_plate(_state.overlay, smoothstep(_handoff_time, _handoff_time + 0.28, _time))
+			# A released prisoner may not walk through a visibly closed gate.
+			_draw_plate(_state.overlay, 1.0 if scene_id == "chained_prisoner" else smoothstep(_handoff_time, _handoff_time + 0.28, _time))
 	elif waiting:
 		# Preserve abandoned actor continuously, with an immediate local patch swap.
 		_draw_plate(phases.get("entry", _state.overlay) if _time < 0.84 else _state.overlay)
@@ -233,7 +244,9 @@ func _approach(time: float, duration: float, end: Vector2) -> Vector2:
 	if pilot_active:
 		u = smoothstep(0.0, 1.0, u)
 	var a := _point(_handoff[3])
-	var b := _point(_handoff[4])
+	if stage_profile.has("handoff_route"):
+		return STAGING.waypoint_path(stage_profile.handoff_route, u)
+	var b := STAGING.point(stage_profile.handoff_control) if stage_profile.has("handoff_control") else _point(_handoff[4])
 	return a.lerp(b, u).lerp(b.lerp(end, u), u)
 
 
@@ -250,6 +263,10 @@ func _jack_join_foot(time: float, duration: float, ranger_rank: int, walking: in
 
 func _jack_height(foot: Vector2) -> float:
 	return _pilot_height(foot) * JACK_STATURE
+
+
+func _handoff_height(foot: Vector2) -> float:
+	return _pilot_height(Vector2(foot.x, maxf(foot.y, float(_scene.get("handoff_ground_y", foot.y)))))
 
 
 func _pilot_height(foot: Vector2) -> float:
@@ -287,11 +304,11 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 				destination = _point(_scene.handoff_exit)
 			foot = _approach(time, duration, destination)
 			var floor_y := float(_scene.get("handoff_ground_y", foot.y))
-			elevated = lerpf(maxf(floor_y - foot.y, 0.0), 0.0, smoothstep(_handoff_time, 2.45, time))
+			elevated = maxf(floor_y - foot.y, 0.0)
 			phase = maxf(0.0, time - _handoff_time) * WALK_FPS
 			if pilot_active:
 				if not pilot_tracks.has(role):
-					pilot_tracks[role] = V3.gait(_approach.bind(duration, destination), _pilot_height, duration, _handoff_time)
+					pilot_tracks[role] = V3.gait(_approach.bind(duration, destination), _handoff_height, duration, _handoff_time)
 				phase = V3.phase(pilot_tracks[role], time)
 			if is_instance_valid(_occlusion) and actor.visible and foot.x < 681.0 and foot.y < 518.0:
 				submerged = actor
@@ -317,7 +334,7 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 		ground.contact_scales[i] = 0.0
 		if actor.visible:
 			var factor := _stage_actor(actor, role, foot, phase, elevated)
-			if submerged != actor:
+			if submerged != actor and elevated < 2.0:
 				ground.contact_scales[i] = factor * 0.62
 		contacts[i] = _world * foot
 		order.append(actor)

@@ -4,6 +4,7 @@ const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const PANORAMA := preload("res://scripts/travel/travel_panorama.gd")
 const GROUND_FX := preload("res://scripts/travel/travel_ground_fx.gd")
+const STAGING := preload("res://scripts/travel/travel_staging_v4.gd")
 const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 const WALK_FPS := 6.5
 const BODY_SPEED := 20.0
@@ -266,6 +267,11 @@ func update_frame() -> void:
 	if panorama.has_method("stage_party"):
 		# Scene-local presentation, using the existing clock/actors/contact FX.
 		panorama.stage_party(actors,role_ids,contacts,ground_fx,time,duration(),data)
+	elif str(context.get("resolved_card_id", "")) == "unsent_letters":
+		var frames := {}
+		for role in role_ids:
+			frames[role] = ANIM.get_frames(role)
+		STAGING.stage_legacy("unsent_letters", actors, role_ids, contacts, ground_fx, time, duration(), panorama.planes.Road.position - Vector2(-32,-18), data, frames, _soles)
 	else:
 		var v3 := V3.enabled(str(context.get("resolved_card_id", "")))
 		if v3:

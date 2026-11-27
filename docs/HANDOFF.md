@@ -1,6 +1,10 @@
-## Cinematic Travel V3 · full rollout; next local check
+## Travel Staging V4 · next local check
 
-Player accepted the original three-location pilot in local Godot on 2026-11-27. Full rollout now covers the remaining 21 event locations; total 24/126. Pull main, F6 `scenes/dev/qa_hub.tscn`, TRAVEL, search e.g. `candle_seller`, `curse_forge`, `last_camp`, `chained_prisoner`, `jack`, `lost_purse`, `unsent_letters`, `false_weights`. Left/right changes actual outcome, 1/2/3 party, P pause, R replay; F11 hides toolbar. In F5, check a recruited hero and a later event with real Jack companion, then one normal Event→Travel→Table and skip. Native visual and audible quality for the new 21 locations remains to be confirmed; no need to retest approved pilot artwork. Do not reset profile. After acceptance, proceed to outstanding visual gates and Act I control run; no additional Travel redesign without concrete user feedback. [Rollout](CINEMATIC_TRAVEL_V3_PILOT.md).
+Player accepted the full V3 rollout and asked to improve unit routes and relative scale. V4 is implemented across all 24 event locations. Pull main, F6 `scenes/dev/qa_hub.tscn` → TRAVEL → `banner_seamstress`, `rattling_bridge`, `curse_forge`, `debtor_bones`, `black_altar`, `chained_prisoner`. Check party sizes 1/2/3, outcome arrows and R replay: feet inside the actual road, proportional near/far stature, clean rescue exit and no floating ground dust. Check real Ranger + Jack and normal Event→Travel→Table / skip in F5. No profile reset. Offline staging review and 39 targeted tests PASS; native shader/occlusion/stride feel still need player review. If necessary refine the affected scene's values in `resources/travel/staging_v4.json` or the two legacy curve resources. [QA and measured examples](qa/travel_staging_v4/README.md).
+
+## Cinematic Travel V3 (superseded by V4 staging)
+
+Player accepted the full 24-location rollout on 2026-11-27. See V4 above for current QA; V3 motion and effects remain the baseline. [Rollout](CINEMATIC_TRAVEL_V3_PILOT.md).
 
 ## Archive — Achievements UI V3 · next native acceptance
 

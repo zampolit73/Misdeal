@@ -3,6 +3,7 @@ extends Node2D
 const DIR := "res://assets/pixel/travel/last_dressing_station/"
 const PROJECTION := Vector2(1344.0/1672.0,757.0/941.0)
 const ORIGIN := Vector2(-32,-18)
+const STAGING := preload("res://scripts/travel/travel_staging_v4.gd")
 const REACTIONS := preload("res://scripts/travel/dressing_station_reactions.gd")
 static var _textures: Dictionary = {}
 var available := false
@@ -13,7 +14,7 @@ var materials: Array[ShaderMaterial] = []
 var station: Sprite2D
 var reactions: Node2D
 var outcome := "passed"
-var walk := preload("res://scripts/travel/dressing_station_walk.gd").new()
+var walk := preload("res://scripts/travel/campfire_walk.gd").new()
 
 static func texture_at(path: String) -> Texture2D:
 	if _textures.has(path): return _textures[path]
@@ -98,4 +99,4 @@ func update_time(time: float, duration: float) -> void:
 	if reactions!=null: reactions.update_time(time)
 
 func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Array[Vector2], ground: Node2D, time: float, duration: float, layout: Resource) -> void:
-	walk.stage(actors,roles,contacts,ground,time,duration,planes.Road.position-ORIGIN,layout)
+	STAGING.stage_legacy("banner_seamstress", actors, roles, contacts, ground, time, duration, planes.Road.position-ORIGIN, layout, walk.frames, walk.soles)

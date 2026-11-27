@@ -3,6 +3,8 @@ extends Node2D
 const ROOT := "res://assets/pixel/travel/batch_02/"
 const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
 const REAR := preload("res://scripts/travel/campfire_walk.gd")
+const STAGING := preload("res://scripts/travel/travel_staging_v4.gd")
+const NW := preload("res://scripts/travel/dressing_station_walk.gd")
 const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 var available := false
 var planes: Dictionary = {}
@@ -22,6 +24,7 @@ var original: Dictionary = {}
 var npc: Sprite2D
 var npc_visible := false
 var actor_metrics: Array[Dictionary] = []
+var stage_profile: Dictionary = {}
 var pilot_active := false
 var pilot_lead_phase := 0.0
 var pilot_tracks: Dictionary = {}
@@ -55,15 +58,19 @@ func build(background: String, _foreground: String, _underpaint: String, _sky: S
 	# Versioned presentations keep the original package intact for rollback.
 	original.folder=background.trim_prefix(ROOT).get_base_dir().get_base_dir()
 	scene=original.duplicate(true)
+	stage_profile = STAGING.profile(id)
 	if texture_at(str(original.folder)+"/layers/base_1280.png")==null: return
 	for entry in original.states:
 		if entry.key not in ["leave","careful","abandon"] and not FileAccess.file_exists(ROOT+str(original.folder)+"/layers/"+str(entry.key)+"_state.png"): return
+	var facing: String = stage_profile.get("facing", scene.facing)
 	var rear := REAR.new()
-	if scene.facing=="ne" and not rear.build(): return
+	var nw := NW.new()
+	if facing == "ne" and not rear.build(): return
+	if facing == "nw" and not nw.build(): return
 	var metadata: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(ROOT+"soles.json"))
-	soles=metadata[scene.facing]
+	soles = NW.soles if facing == "nw" else metadata[facing]
 	for role in ["knight","ranger","mage"]:
-		var frames: SpriteFrames=REAR.frames[role] if scene.facing=="ne" else ANIM.get_frames(role)
+		var frames: SpriteFrames = REAR.frames[role] if facing == "ne" else (NW.frames[role] if facing == "nw" else ANIM.get_frames(role))
 		if frames==null: return
 		role_frames[role]=frames
 		var height := 1
@@ -101,6 +108,8 @@ func configure(context: Dictionary) -> void:
 	scene=original.duplicate(true)
 	for field in state.get("actor_stage",{}): scene[field]=state.actor_stage[field]
 	pilot_active = V3.enabled(str(scene.id))
+	if not stage_profile.is_empty():
+		scene.horizon = stage_profile.horizon
 	if pilot_active:
 		pilot_base = V3.base_sprite(self, tex("base_1280"), str(scene.id))
 		if bool(context.get("jack_companion", false)) and "ranger" in context.get("party_roles", []):
@@ -150,7 +159,9 @@ func _pilot_foot(time: float, duration: float, rank: int, count: int, joining: b
 	if joining:
 		# The seated actor gives way to the real ranger at the existing handoff.
 		# No looping walk after reaching a stationary endpoint.
-		return Vector2(1005,500).lerp(Vector2(1020,425), smoothstep(0.90, duration, time))
+		return Vector2(1005,500).lerp(Vector2(980,448), smoothstep(0.90, duration, time))
+	if not stage_profile.is_empty():
+		return STAGING.foot_at(time, stage_profile, duration, rank, count)
 	var start := 0.02 + maxf(count - 1, 0) * 0.20
 	var span := minf(float(scene.get("progress_span", 0.80)), 0.98 - start)
 	var u := start + clampf(time / duration, 0.0, 1.0) * span - rank * 0.20
@@ -162,7 +173,7 @@ func _pilot_foot(time: float, duration: float, rank: int, count: int, joining: b
 
 
 func _pilot_height(foot: Vector2, near_y: float, near_height: float) -> float:
-	return near_height * (foot.y - float(scene.horizon)) / (near_y - float(scene.horizon))
+	return STAGING.height(stage_profile, foot) if not stage_profile.is_empty() else near_height * (foot.y - float(scene.horizon)) / (near_y - float(scene.horizon))
 
 
 func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Array[Vector2], ground: Node2D, time: float, duration: float, _layout: Resource) -> void:
@@ -178,6 +189,10 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 	var path: PackedVector2Array=_layout.get_meta("party_route",PackedVector2Array())
 	var near_y := path[0].y if path.size()==3 else float(scene.route[0][1])
 	var near_height := float(_layout.get_meta("party_near_height",scene.near_height))
+	if not stage_profile.is_empty():
+		path = STAGING.route(stage_profile)
+		near_y = path[0].y
+		near_height = float(stage_profile.height)
 	var lanes: Variant=_layout.get_meta("party_formation_lanes",scene.formation_lanes)
 	var passage_count := roles.size()-(1 if scene.id=="rattling_bridge" and key=="recruit" and roles.has("ranger") else 0)
 	var start_progress := 0.08
@@ -214,7 +229,7 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 			foot=Vector2(1005,500).lerp(Vector2(1020,425),smoothstep(0.90,2.90,time))
 			phase=time*6.5+1.1
 		if not joining: rank+=1
-		var height:=near_height*(foot.y-float(scene.horizon))/(near_y-float(scene.horizon))
+		var height := _pilot_height(foot, near_y, near_height) if pilot_active else near_height*(foot.y-float(scene.horizon))/(near_y-float(scene.horizon))
 		actor.sprite_frames=role_frames[role]
 		actor.animation="walk"
 		actor.frame=int(phase)%6
@@ -237,7 +252,9 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 		pilot_jack.visible = ranger_visible
 		if ranger_visible:
 			var depth := _pilot_height(ranger_foot, near_y, near_height) / near_height
-			var dog_foot := ranger_foot + Vector2(-66, 20) * depth
+			var trail := (path[0] - path[2]).normalized() if path.size() == 3 else Vector2(-1,0)
+			var dog_foot := ranger_foot + (trail * 66.0 + Vector2(0, 18)) * depth
+			pilot_jack.flip_h = trail.x > 0.0
 			var dog_factor := near_height * depth * 0.34 / pilot_jack_height
 			pilot_jack.frame = int(ranger_phase * 1.30) % pilot_jack_soles.size()
 			pilot_jack.scale = Vector2.ONE * dog_factor * world.x.length()

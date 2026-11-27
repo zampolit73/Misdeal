@@ -59,10 +59,10 @@ func test_party_soles_pause_and_skip_keep_existing_contract() -> void:
 		view.elapsed=3.1
 		view.update_frame()
 		for i in range(roles.size()):
-			assert_lt(view.contacts[i].x,before[i].x,"Walk must retreat left, not keep moving horizontally right")
+			assert_gt(view.contacts[i].x,before[i].x,"Walk follows the up-right painted road")
 			assert_lt(view.contacts[i].y,before[i].y,"Walk must enter the battlefield in depth")
 		assert_lt(view.actors[0].scale.x,old_scale)
-		assert_gt(view.ground_fx.dust_direction.x,0.0,"Dust trails toward the camera")
+		assert_lt(view.ground_fx.dust_direction.x,0.0,"Dust trails behind the up-right road")
 		get_tree().paused = true
 		await get_tree().create_timer(0.03,true).timeout
 		assert_eq(view.elapsed,3.1)

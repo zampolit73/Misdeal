@@ -1,9 +1,15 @@
+## Travel Staging V4 — scene-relative units - 27 Nov 2026
+
+- Calibrate travel route, projection and formation for all 24 locations; 22 ground-plane profiles plus two existing layered road curves. Size now depends on the local perspective, not the choice or reward.
+- Reuse directional walk frames and keep heroes on actual paths near scenery, with narrower lanes on the bridge and corridors. Correct the rescued actors' descent/exit and elevated stature/ground contact; preserve Jack continuity.
+- Keep approved source art, V3 motion/effects, 126 outcomes, four-second controller and save/gameplay contract. Godot 4.7.2 headless: 39/39 tests, 20,660 assertions; native visual review pending.
+
 ## Cinematic Travel V3 — Act I full rollout - 27 Nov 2026
 
 - Player approved the pilot; expanded the motion and cue system to the remaining 21 of 24 existing locations (126 total outcomes).
 - Apply distance-driven gait to all authored routes, preserving original facing, silhouettes, perspective, parallax and action-specific patches. Local masked light/cloth and coherent camera movement for flat plates; retain older authored moving layers, bird and props.
 - Preserve exact recruit and Jack handoffs, show real Jack with Ranger throughout the existing travel catalog, keep him out of the hero count. No new source art, gameplay, ambient loops, save schema, or change to the 4-second travel contract.
-- Godot 4.7.2 headless: 40/40 targeted tests, 15,603 assertions. Rollout native visual/audio acceptance pending.
+- Godot 4.7.2 headless: 40/40 targeted tests, 15,603 assertions. Player later accepted the full rollout and requested the V4 staging follow-up.
 
 ## Cinematic Travel V3 — three-location pilot - 27 Nov 2026
 

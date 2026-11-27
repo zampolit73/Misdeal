@@ -1,9 +1,16 @@
+## Travel Staging V4
+
+- [x] Player accepted full Travel V3 and requested unit route/scale polish.
+- [x] Review all 24 scenes, calibrate perspective per location, preserve actual walk packs, outcomes and recruitment.
+- [x] Godot 4.7.2 targeted regression 39/39; [staging audit](qa/travel_staging_v4/README.md).
+- [ ] Native player review of V4 in QA Hub (solo/duo/trio, routes, proportions, recruit handoffs). Then continue Act I control run.
+
 ## Cinematic Travel V3
 
 - [x] Three-location pilot: Blood Ledger, Whispering Well and Rattling Bridge; 19 outcomes, motion and local effects.
 - [x] Player confirmed pilot OK on 2026-11-27; authorized full rollout.
 - [x] Roll out distance-driven walking, action cues, existing companion continuity and location-specific presentation to remaining 21; 24 locations / 126 outcomes. [Contract](CINEMATIC_TRAVEL_V3_PILOT.md).
-- [ ] Native motion, visual and audio acceptance of full rollout. Then continue Act I control run.
+- [x] Player accepted full rollout on 2026-11-27. Follow-up unit staging requested (V4).
 
 ## Interface Polish 2.0
 

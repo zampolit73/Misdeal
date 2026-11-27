@@ -2,6 +2,8 @@ extends Node2D
 ## Batch01-only implementation of the existing V2 panorama contract.
 const ROOT := "res://assets/pixel/travel/pilot_01/"
 const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
+const STAGING := preload("res://scripts/travel/travel_staging_v4.gd")
+const REAR := preload("res://scripts/travel/campfire_walk.gd")
 const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 const NW := preload("res://scripts/travel/dressing_station_walk.gd")
 static var textures: Dictionary = {}
@@ -50,13 +52,17 @@ func build(background: String, foreground: String, _underpaint: String, _sky: St
 	dir=ROOT+card_id+"/"
 	var parsed: Variant=JSON.parse_string(FileAccess.get_file_as_string(ROOT+"staging.json"))
 	if not parsed is Dictionary or not parsed.scenes.has(card_id): return
-	config=parsed.scenes[card_id]
+	config=parsed.scenes[card_id].duplicate(true)
+	var p := STAGING.profile(card_id)
+	var facing: String = p.get("facing", config.facing)
 	heroes=parsed.hero_reference[config.facing]
 	if texture_at(background)==null or texture_at(foreground)==null or texture_at(dir+"layers/motion_mask.png")==null: return
-	if config.facing=="nw" and not nw.build(): return
+	if facing == "nw" and not nw.build(): return
+	var rear := REAR.new()
+	if facing == "ne" and not rear.build(): return
 	for role in ["knight","ranger","mage"]:
-		role_frames[role]=NW.frames[role] if config.facing=="nw" else ANIM.get_frames(role)
-		soles[role]=heroes[role].soles
+		role_frames[role] = NW.frames[role] if facing == "nw" else (REAR.frames[role] if facing == "ne" else ANIM.get_frames(role))
+		soles[role] = REAR.soles[role] if facing == "ne" else heroes[role].soles
 		heights[role]=float(heroes[role].max_visible_height)
 	for id in speeds:
 		var plane := Node2D.new()
@@ -157,50 +163,5 @@ func _prop(path: String, source_pos: Vector2, source_size: Vector2) -> void:
 	var projection := Vector2(1344.0/1672,757.0/941)
 	prop.position=source_pos*projection
 	prop.scale=source_size/prop.texture.get_size()*projection
-func _gait_point(time: float, duration: float, index: int, formation: Array) -> Vector2:
-	var route: Array = config.route
-	# Move every hero from the first frame while keeping the authored lanes.
-	var start := float(formation.size() - 1) * 0.04
-	var t := start + time / duration * (0.80 - start) - index * 0.04
-	var point := Vector2(route[0][0], route[0][1]).lerp(Vector2(route[1][0], route[1][1]), minf(t * 2, 1.0))
-	if t > 0.5:
-		point = Vector2(route[1][0], route[1][1]).lerp(Vector2(route[2][0], route[2][1]), t * 2 - 1)
-	var depth := maxf(0.60, (point.y - float(config.horizon)) / (float(route[0][1]) - float(config.horizon)))
-	return point + Vector2(formation[index][0], formation[index][1]) * depth
-
-
 func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Array[Vector2], ground: Node2D, time: float, duration: float, layout: Resource) -> void:
-	ground.contact_scales.resize(actors.size())
-	ground.gait_phases.resize(actors.size())
-	var route: Array=config.route
-	var count_key := "solo" if actors.size()==1 else ("duo" if actors.size()==2 else "trio")
-	var formation: Array=config.formation[count_key]
-	for i in range(actors.size()):
-		var start := float(actors.size() - 1) * 0.04
-		var t := start + time / duration * (0.80 - start) - i * 0.04
-		var segment := minf(t*2,1)
-		var point := Vector2(route[0][0],route[0][1]).lerp(Vector2(route[1][0],route[1][1]),segment)
-		if t>0.5: point=Vector2(route[1][0],route[1][1]).lerp(Vector2(route[2][0],route[2][1]),t*2-1)
-		var depth := maxf(0.60,(point.y-float(config.horizon))/(float(route[0][1])-float(config.horizon)))
-		var foot: Vector2 = point+Vector2(formation[i][0],formation[i][1])*depth+planes.Road.position-Vector2(-32,-18)
-		var actor := actors[i]
-		actor.sprite_frames=role_frames[roles[i]]
-		actor.animation="walk"
-		var path := _gait_point.bind(duration, i, formation)
-		var stature := func(p: Vector2) -> float:
-			return float(config.party_height) * maxf(0.60, (p.y - float(config.horizon)) / (float(route[0][1]) - float(config.horizon) + float(formation[i][1])))
-		actor.frame = int(V3.actor_phase(ground, i, time, duration, path, stature)) % 6
-		actor.scale=Vector2.ONE*float(config.party_height)*depth/heights[roles[i]]
-		actor.flip_h=false
-		actor.modulate=layout.party_tint.lerp(Color(0.56,0.57,0.59),clampf(1-depth,0,0.22))
-		actor.position=foot-Vector2(0,(float(soles[roles[i]][actor.frame])-48)*actor.scale.y)
-		contacts[i]=foot
-		ground.contact_scales[i]=actor.scale.x*0.50
-	ground.dust_direction=Vector2(1,0.35) if config.facing=="nw" else Vector2(-1,0)
-	var order: Array[int]=[]
-	var first := actors[0].get_index()
-	for i in range(actors.size()):
-		order.append(i)
-		first=mini(first,actors[i].get_index())
-	order.sort_custom(func(a: int,b: int) -> bool: return contacts[a].y<contacts[b].y)
-	for i in range(order.size()): actors[order[i]].get_parent().move_child(actors[order[i]],first+i)
+	STAGING.stage_legacy(card_id, actors, roles, contacts, ground, time, duration, planes.Road.position - Vector2(-32,-18), layout, role_frames, soles)
