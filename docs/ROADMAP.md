@@ -10,12 +10,13 @@
 - [x] Separate QA preview with six smith poses, actual hero atlases, shared projection, authored choreography and four outcomes; 19 contexts headless PASS.
 - [x] Restore painted source detail for the smith only, preserving original staging and the existing hero sprites; 19 contexts / 4,471 checks PASS.
 - [x] Player approved the HD forge pilot on 2026-11-27.
-- [x] Production router selects approved forge only; 19 contexts / 229 checks + 2 fallback checks PASS.
+- [x] Initial production router selected approved forge only; 19 contexts / 229 checks + 2 fallback checks PASS.
 - [ ] Verify integrated F5 Event→Travel→Table and skip in normal play.
 - [x] Stage Candle Seller, Blood Ledger and Gravedigger Shop in separate F6 review; 66 contexts PASS. [QA](qa/travel_merchant_v5/README.md).
 - [x] Player accepted proportions/routes; repaint all 17 props after visual feedback, no hands/old surface fragments; 66 contexts PASS.
-- [ ] Native player acceptance of polished props in the three merchant scenes; then wire actual resolved outcomes with V4 fallback.
-- [ ] Apply the approved scene-first V5 direction to remaining 23 scenes in coherent batches; preserve the original art identity, actual outcomes and V4 fallback. No automatic scene conversion.
+- [x] Player approved polished merchant props on 2026-11-27; production routing enabled for three resolved IDs, using committed outcomes, V4 fallback. 69 contexts / 1,596 checks + 9 fallback checks, Forge regression 19 / 229 + 2 fallback checks PASS.
+- [ ] Native integrated F5 playback review for the three merchant cards.
+- [ ] Apply the approved scene-first V5 direction to remaining 20 scenes in coherent batches; preserve the original art identity, actual outcomes and V4 fallback. No automatic scene conversion.
 
 ## Travel Staging V4
 

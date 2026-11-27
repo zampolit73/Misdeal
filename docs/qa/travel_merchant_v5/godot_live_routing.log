@@ -1,0 +1,21 @@
+Isolated Godot 4.7.2 production routing fixture; actual router, catalog, transition, renderer and SoundDirector. Navigation probe substitutes native Table render; RunState stub only for unrelated sound state. Missing files temporarily removed only in fixture and restored. All exits 0; existing Forge exit warnings retained.
+
+=== merchant_live_smoke ===
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+TRAVEL_MERCHANT_V5_LIVE_SMOKE: 69 V5 contexts · 1596 checks · 0 failures (fallback-only=false)
+
+=== forge_live_regression ===
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+TRAVEL_FORGE_V5_LIVE_SMOKE: 19 V5 contexts · 229 checks · 0 failures (fallback-only=false)
+
+=== merchant_live_fallback ===
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+TRAVEL_MERCHANT_V5_LIVE_SMOKE: 0 V5 contexts · 9 checks · 0 failures (fallback-only=true)
+
+=== forge_live_fallback ===
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+TRAVEL_FORGE_V5_LIVE_SMOKE: 0 V5 contexts · 2 checks · 0 failures (fallback-only=true)

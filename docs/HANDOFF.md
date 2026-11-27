@@ -1,6 +1,6 @@
-## Next player check · three Merchant V5 scenes, prop polish
+## Next player check · approved Merchant V5 scenes live
 
-Player accepted proportions/routes, requested clean ledger and coherent candles/props. Pull main; F6 `scenes/dev/travel_merchant_v5_preview.tscn`. Z/X switches Candle Seller, Blood Ledger, Gravedigger Shop; arrows choose outcome, 1/2/3 and Q/E choose party, R repeat, P pause, H hide, J companion. Check new hand-free book in all five states; three lit/consumed candle variants with no old cloth, and clean wet-wood trays. Surfaces/actor geometry and timing preserved except corrected tabletop prop y contacts. 66 contexts / 11,870 checks PASS. If approved, connect the three IDs through production routing with V4 fallback; no automatic activation here. [QA and provenance](qa/travel_merchant_v5/README.md).
+Player approved the polished Candle Seller, Blood Ledger and Gravedigger Shop on 2026-11-27. Pull main; F5 in normal play, resolve each corresponding card (purchase/payment/refusal) and check the approved 6.6 s scene, actual buyer/party/Jack, changed or untouched props, Esc/Space skip and one return to Table. No profile reset. F6 `scenes/dev/travel_merchant_v5_preview.tscn` remains the approved reference; Z/X location, arrows outcome, 1/2/3 and Q/E party, R repeat, P pause, J companion. Isolated production routing 69 / 1,596 and Forge regression 19 / 229, fallback 9 + 2 checks PASS; native F5 review pending. Next choose coherent batches among remaining 20 V4 scenes; approve before enabling. [QA](qa/travel_merchant_v5/README.md).
 
 ## Cross-cutting License Compliance 1.0
 
@@ -8,7 +8,7 @@ For all future Misdeal imports follow [License Policy](LICENSE_POLICY.md). Run `
 
 ## Cinematic Travel V5 · approved forge live, next batch
 
-Player approved the HD Curse Forge scene. Pull main, play F5 and resolve «Проклятая кузня»: purchase/refuse, existing narration, intact 6.6 s movie, skip Esc/Space, return to Table once. The dedicated F6 `scenes/dev/travel_forge_v5_preview.tscn` remains the accepted reference; the old Travel Batch02 QA entry still shows V4 rollback. Production routing tests PASS (19 valid contexts / 229 checks, missing-atlas fallback 2/2); native integrated F5 playback not captured here. Other 23 Travel scenes retain V4. Next step: choose coherent batches, stage logical routes and scale, use native painted NPC detail and existing hero identity, retain real outcomes and fallback. No save reset. [Contract/QA](qa/travel_forge_v5/README.md).
+Player approved the HD Curse Forge scene. Pull main, play F5 and resolve «Проклятая кузня»: purchase/refuse, existing narration, intact 6.6 s movie, skip Esc/Space, return to Table once. The dedicated F6 `scenes/dev/travel_forge_v5_preview.tscn` remains the accepted reference; the old Travel Batch02 QA entry still shows V4 rollback. Production routing tests PASS (19 valid contexts / 229 checks, missing-atlas fallback 2/2); native integrated F5 playback not captured here. At Forge activation other 23 retained V4; after the approved merchant batch, 20 retain V4. Next step: choose coherent batches, stage logical routes and scale, use native painted NPC detail and existing hero identity, retain real outcomes and fallback. No save reset. [Contract/QA](qa/travel_forge_v5/README.md).
 
 ## Travel Staging V4 · next local check
 

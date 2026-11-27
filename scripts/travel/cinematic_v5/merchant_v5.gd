@@ -1,5 +1,5 @@
 extends "res://scripts/travel/cinematic_v5/forge_v5.gd"
-## Review-only merchants; no live routing or gameplay mutation.
+## Approved merchant cinematics; presentation-only, no gameplay mutation.
 ## Reuse the approved forge's scale, gait, shared unit textures and anchors.
 
 const BATCH_ROOT := "res://assets/pixel/travel/cinematic_v5/merchant_batch/"

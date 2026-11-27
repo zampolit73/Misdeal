@@ -1,3 +1,9 @@
+## Cinematic Travel V5 — approved merchant batch live — 27 Nov 2026
+
+- Player approved final merchant prop polish. Activate Candle Seller, Blood Ledger and Gravedigger Shop in ordinary Event→Travel→Table, alongside the approved Curse Forge; remaining 20 locations retain V4.
+- Preserve the committed outcome, actual buyer/party/Jack, existing travel UI, audio cues, pause/skip, one-shot return, F6 preview and V4 fallback. No gameplay/save or art changes.
+- Isolated Godot 4.7.2 production routing: 69 merchant contexts / 1,596 checks, 19 Forge contexts / 229 checks, missing-resource fallback 9 + 2 checks: zero assertion failures. Native F5 playback review pending. [QA](docs/qa/travel_merchant_v5/README.md).
+
 ## Cinematic Travel V5 — merchant prop polish — 27 Nov 2026
 
 - Player accepted proportions/routes; replaced all 17 prop states from old cropped artwork with coherent clean-alpha candles, ledgers and shop trays. Removed residual hands/old fabric, aligned tabletop y contacts, added restrained contact shadows and candle-local light.

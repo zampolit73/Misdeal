@@ -82,9 +82,9 @@ func _run() -> void:
 		# Other event still opts into the exact legacy 4-second presentation.
 		var owner := Node.new()
 		root.add_child(owner)
-		router.after_resolution(owner,CATALOG.context_for("candle_seller","",["knight"],"",false,{"choice_role":"knight"}))
+		router.after_resolution(owner,CATALOG.context_for("debtor_bones","safe",["knight"],"",false,{"visual_action":"safe"}))
 		var old := root.get_node_or_null("TravelTransition")
-		_check(old != null and old.available and not is_instance_valid(old.forge_v5) and is_equal_approx(old.duration(),4.0),"other event remains V4")
+		_check(old != null and old.available and not is_instance_valid(old.forge_v5) and not is_instance_valid(old.merchant_v5) and is_equal_approx(old.duration(),4.0),"other event remains V4")
 		if old != null: old.finish()
 		await process_frame
 		owner.free()
@@ -94,7 +94,7 @@ func _run() -> void:
 		root.add_child(owner)
 		router.after_resolution(owner,_context(["knight"],"dead_mans_shield"))
 		var old := root.get_node_or_null("TravelTransition")
-		_check(old != null and old.available and not is_instance_valid(old.forge_v5) and is_equal_approx(old.duration(),4.0),"missing V5 asset falls back to V4")
+		_check(old != null and old.available and not is_instance_valid(old.forge_v5) and not is_instance_valid(old.merchant_v5) and is_equal_approx(old.duration(),4.0),"missing V5 asset falls back to V4")
 		if old != null: old.finish()
 		await process_frame
 		_check(probe.paths.size()==1,"fallback returns to table once")

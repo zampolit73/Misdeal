@@ -1,4 +1,12 @@
-# Cinematic Travel V5 · Merchant batch (native review candidate)
+# Cinematic Travel V5 · Merchant batch (approved and live)
+
+## Production activation · 2026-11-27
+
+Player approved the polished three scenes. Normal F5 event resolution now passes the actual card/outcome/action/party/Jack to the V5 renderer, which uses the existing travel UI, 6.6 s clock, pause/skip and audio mixer. Only the explicitly approved three merchant IDs plus Forge are live; remaining 20 locations remain V4. Failed configuration falls back to V4, never re-resolves the event or changes saves/gameplay. Standalone F6 preview and direct V4 QA remain available.
+
+Godot 4.7.2 isolated production routing: 69 contexts / 1,596 checks and 9 missing-prop fallback checks; Forge regression 19 / 229 and 2 missing-atlas checks, all zero assertion failures. Actual router, catalog, transition and SoundDirector tested against real resources with a navigation probe instead of native Table rendering and a RunState stub for unrelated audio state. Existing Forge smoke exit resource warnings persist. This is not a native visual/full-game or leak-free certification. Native F5 check: resolve each approved card, inspect correct props/party, skip with Esc/Space and verify one return to Table. [Log](godot_live_routing.log).
+
+## Historical F6 review scope
 
 2026-11-27, baseline production commit `5ed3a4362bc18c38ec96bca9c501469a77573e44`.
 F6-open `scenes/dev/travel_merchant_v5_preview.tscn`; Z/X selects location, Left/Right legal outcome, 1/2/3 size, Q/E exact composition, J toggles Jack (Ranger only), R/Space replay, P pause, H hide controls, M mute. All seven nonempty hero combinations.
@@ -15,7 +23,7 @@ Four distinct painted NPC cels per location, normalized to 540 px silhouette hei
 
 Player accepted the character/object proportions and routes, but reported remnants of the old bookkeeper's hands and inconsistent candle styling. Replaced all 17 prop state textures with new isolated painterly art in the lighting of their existing locations. No old hands, cloth patches or table fragments. Preserve the meaningful action states (ivory/red/blue candle consumed; neutral/gold/blood/erase/closed ledger; sheathed/exposed sword, quiver arrow rearrangement, rune-stone colour). Same logical canvas aspect, one common scale and bottom registration per item; dimensions 2x or 3x prior canvases. Corrected the tabletop y contacts by 9–25 px using the actual plate surfaces, without moving actors, changing stature, paths, timing, camera or world projection. Local soft contact shadows under each prop; small warm surface-light pools only beneath lit candles, extinguished for the selected candle after 3.22 s. Unchanged approved forge and all production routes.
 
-Current evidence: Godot 4.7.2 isolated targeted smoke PASS, 66 contexts / 11,870 checks / zero failures. Added exact state-canvas, contact-pivot and consumed-candle light checks. Offline alpha/scale checks PASS for all 17 files; data diff confirms only prop anchor y changes. Inspected native-size offline composites of the actual old and new plates/props before and after selected outcomes. Headless F6 launch completed; previously documented exit ObjectDB warning persists, not a native-render or leak-free certification. Native player visual review of the three scenes is still pending.
+Current evidence: Godot 4.7.2 isolated targeted smoke PASS, 66 contexts / 11,870 checks / zero failures. Added exact state-canvas, contact-pivot and consumed-candle light checks. Offline alpha/scale checks PASS for all 17 files; data diff confirms only prop anchor y changes. Inspected native-size offline composites of the actual old and new plates/props before and after selected outcomes. Headless F6 launch completed; previously documented exit ObjectDB warning persists, not a native-render or leak-free certification. The then-pending native review was approved by the player on 2026-11-27; see production activation above.
 
 ### Prop-polish provenance
 Source: ChatGPT image generation, 2026-11-27. Inputs exclusively the current project plates and previous prop files from commit `9cd15e47ae9a5a8d4d32cebcc4e9635c91591266`, in `assets/pixel/travel/cinematic_v5/merchant_batch/<id>/{plate,prop_*}.webp`. No downloaded material, fonts or dependencies.
