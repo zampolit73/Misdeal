@@ -11,6 +11,10 @@ const ROOT := "res://assets/pixel/travel/cinematic_v5/curse_forge/"
 const LEGACY := "res://assets/pixel/travel/batch_02/curse_forge/layers/"
 const DURATION := 6.6
 const HANDOFF := 3.22
+# Native painted cels retain source detail; only their logical scale is
+# converted to the common ground-plane projection (six times the old grid).
+const SMITH_CELL := 576
+const SMITH_SOLE := 534.0
 const SMITH_FOOT := Vector2(337, 535)
 const IMPACT := Vector2(449, 414)
 const HORIZON := 280.0
@@ -18,7 +22,7 @@ const PIXELS_PER_DEPTH_METER := 0.55
 const ROLES := ["knight", "ranger", "mage"]
 const ACTIONS := ["dead_mans_shield", "blind_quiver", "cracked_focus", "leave"]
 const BUYERS := {"dead_mans_shield":"knight", "blind_quiver":"ranger", "cracked_focus":"mage"}
-const BODY_PX := {"knight":72.0, "ranger":71.0, "mage":68.0, "smith":74.0}
+const BODY_PX := {"knight":72.0, "ranger":71.0, "mage":68.0, "smith":444.0}
 const STATURE_M := {"knight":1.83, "ranger":1.78, "mage":1.76, "smith":1.82}
 const RACK_Y := 463.0
 const RACK_TOP := 394.0
@@ -138,12 +142,12 @@ func configure(party: Array, resolved_action: String, has_jack := false) -> bool
 	world.name = "ForgeWorld"
 	add_child(world)
 	var background := _load_texture(ROOT + "forge_plate.webp")
-	var smith_image := _load_image(ROOT + "smith_atlas.png")
+	var smith_image := _load_image(ROOT + "smith_atlas_hd.webp")
 	var foreground := _load_texture(ROOT + "anvil_foreground.png")
 	var blade_image := _load_texture(ROOT + "heated_blade.png")
 	if background == null or smith_image == null or foreground == null or blade_image == null:
 		return false
-	if background.get_size() != Vector2(1280,720) or smith_image.get_size() != Vector2i(288,192):
+	if background.get_size() != Vector2(1280,720) or smith_image.get_size() != Vector2i(SMITH_CELL * 3, SMITH_CELL * 2):
 		return false
 	plate = _sprite(background, world, 0, Vector2.ZERO, false)
 	plate.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
@@ -162,11 +166,12 @@ func configure(party: Array, resolved_action: String, has_jack := false) -> bool
 	for i in 6:
 		var cel := AtlasTexture.new()
 		cel.atlas = smith_atlas
-		cel.region = Rect2((i % 3) * 96, floori(i / 3.0) * 96, 96,96)
+		cel.region = Rect2((i % 3) * SMITH_CELL, floori(i / 3.0) * SMITH_CELL, SMITH_CELL, SMITH_CELL)
+		cel.filter_clip = true
 		smith_frames.append(cel)
 	_shadow(shadow_texture, SMITH_FOOT, body_height("smith",SMITH_FOOT.y), 1)
 	smith = _sprite(smith_frames[0], world, 2, SMITH_FOOT)
-	smith.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	smith.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	_sprite(foreground, world, 3, Vector2(377,410), false)
 	blade = _sprite(blade_image,world,4,Vector2(452,410))
 	blade.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
@@ -319,7 +324,7 @@ func seek(time: float) -> void:
 	smith_pose = _smith_pose_at(elapsed)
 	smith.texture = smith_frames[smith_pose]
 	smith.scale = Vector2.ONE*body_height("smith",SMITH_FOOT.y)/float(BODY_PX.smith)
-	smith.position = SMITH_FOOT-Vector2(0,(89.0-48.0)*smith.scale.y)
+	smith.position = SMITH_FOOT-Vector2(0,(SMITH_SOLE-SMITH_CELL*0.5)*smith.scale.y)
 	for i in props.size():
 		var item := props[i]
 		var move := smoothstep(HANDOFF-0.26,HANDOFF,elapsed) if i == selected else 0.0

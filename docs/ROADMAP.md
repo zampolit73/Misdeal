@@ -2,7 +2,8 @@
 
 - [x] Player authorized Curse Forge pilot using coherent human-scale characters and scene props.
 - [x] Separate QA preview with six smith poses, actual hero atlases, shared projection, authored choreography and four outcomes; 19 contexts headless PASS.
-- [ ] Player review F6 native proportions, motion and cues; refine if necessary (custom hand grasp remains an optional next pass).
+- [x] Restore painted source detail for the smith only, preserving original staging and the existing hero sprites; 19 contexts / 4,471 checks PASS.
+- [ ] Player review F6 native proportions, HD smith, motion and cues; refine if necessary (custom hand grasp remains an optional next pass).
 - [ ] Only after explicit acceptance, propose production activation and scope remaining 23 scenes.
 
 ## Travel Staging V4

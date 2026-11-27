@@ -1,3 +1,8 @@
+## Cinematic Travel V5 — painted smith detail - 27 Nov 2026
+
+- Restore all six original detailed smith poses from archived source, packed losslessly at 576×576 per cel; local linear filtering replaces pixel enlargement. Preserve world stature, sole anchor, strike timing, anvil, camera, heroes and live V4.
+- Godot 4.7.2 isolated headless: 19 contexts, 4,471 checks, zero failures. [Before/after offline comparison](docs/qa/travel_forge_v5/smith_detail_comparison.jpg); F6 native review pending.
+
 ## Cinematic Travel V5 — Curse Forge QA candidate - 27 Nov 2026
 
 - Isolated 6.6-second forge mini-cinematic: new wide candidate plate, six distinct hammer poses, common metre-to-pixel projection for smith/heroes/anvil/rack/props, approved hero walk and idle, real buyer and Jack state.
