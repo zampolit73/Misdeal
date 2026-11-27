@@ -55,6 +55,7 @@ static func entries() -> Array[Dictionary]:
 		["TRAVEL","Костёр без хозяина","scenes/dev/campfire_playtest.tscn","repair / hobnails / passed и движение по дороге.",""],
 		["TRAVEL","Склад мёртвых пайков","scenes/dev/dead_rations_granary_playtest.tscn","fair / silence / passed; раскрытые запасы и откуп.",""],
 		["TRAVEL","Pilot Batch 01 — 11 исходов","scenes/dev/travel_pilot_batch01_playtest.tscn","Сигнал, могильщик и кошель. ←/→ — исход, 1/2/3 — состав.",""],
+		["TRAVEL","Cinematic Travel V5 — Проклятая кузня (пилот)","scenes/dev/travel_forge_v5_preview.tscn","Новый постановочный эпизод 6,6 с; действующие герои, кузнец и четыре исхода. Только QA: 1/2/3, ←/→, P/R, H.",""],
 		["TRAVEL","Batch 02 V2 — 31 исход","scenes/dev/travel_batch02_playtest.tscn","Все семь новых Travel-сцен. ←/→ — исход, 1/2/3 — состав, P/R — пауза/повтор.",""],
 		["TRAVEL","Batch 03 — 72 исхода","scenes/dev/travel_batch03_playtest.tscn","Десять локаций первого акта. ←/→ — исход, 1/2/3 — состав, P/R — пауза/повтор.",""]]
 	var used := {}

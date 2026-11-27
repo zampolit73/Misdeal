@@ -1,3 +1,9 @@
+## Cinematic Travel V5 — Curse Forge QA candidate - 27 Nov 2026
+
+- Isolated 6.6-second forge mini-cinematic: new wide candidate plate, six distinct hammer poses, common metre-to-pixel projection for smith/heroes/anvil/rack/props, approved hero walk and idle, real buyer and Jack state.
+- Stage party entry, acknowledgment, outcome and departure around the solid anvil; coherent camera, small synchronized cues and local sparks/rain. Four outcomes, all seven party combinations. No F5 or other Travel changes.
+- Godot 4.7.2 isolated headless: 19 contexts, 3,008 checks, zero failures. Native quality gate pending; see [pilot QA](docs/qa/travel_forge_v5/README.md).
+
 ## Travel Staging V4 — scene-relative units - 27 Nov 2026
 
 - Calibrate travel route, projection and formation for all 24 locations; 22 ground-plane profiles plus two existing layered road curves. Size now depends on the local perspective, not the choice or reward.

@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · Curse Forge QA pilot only
+
+On 2026-11-27 player authorized one mini-cinematic pilot with realistic scene-relative hero/NPC/object proportion. New pulled-back forge plate, six original smith hammer poses, real D412 heroes, centered ground-plane metre projection, bounded camera, anvil foreground/depth, distinct four outcomes (actual buyer only), local cues and no gameplay state access. 6.6 s isolated preview; all existing 24 live V4 Travel scenes and original card art remain untouched. Godot 4.7.2 isolated headless: 19 contexts / 3,008 checks / zero failures. Native visual/audio approval and custom grasp animation still pending; pilot not activated in F5. [QA and preview](qa/travel_forge_v5/README.md).
+
 ## Travel Staging V4 · calibrated routes and perspective
 
 On 2026-11-27 the player accepted V3 and requested believable routes and scene-relative unit scale. Audited all 24 locations using actual Godot actor poses/contacts and offline plate composites; added 22 location-owned ground-plane profiles and calibrated the other two existing curves. Coherent size across outcomes, narrower formations in constrained space, existing directional frames on appropriate routes, corrected altar/well elevated stature and prisoner exit. Preserve V3 effects, approved plates, companion state, 126 outcomes, four-second clock, gameplay and saves. Godot 4.7.2 headless: 39/39 targeted tests, 20,660 assertions. Native visual review of V4 pending. [Staging contract and QA](qa/travel_staging_v4/README.md).
