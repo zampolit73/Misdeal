@@ -177,7 +177,7 @@ func _check_frame(view: CanvasLayer, context: Dictionary, time: float) -> void:
 			if actor.role == "ranger":
 				ranger_height = height
 	if jack_height > 0.0:
-		assert(ranger_height > 0.0 and jack_height >= ranger_height * 0.20 and jack_height <= ranger_height * 0.42)
+		assert(ranger_height > 0.0 and jack_height >= ranger_height * 0.42 and jack_height <= ranger_height * 0.64)
 	for i in range(view.actors.size()):
 		var actor: AnimatedSprite2D = view.actors[i]
 		if actor.visible:

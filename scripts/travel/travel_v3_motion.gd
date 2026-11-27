@@ -1,4 +1,5 @@
 extends RefCounted
+const VIS := preload("res://scripts/travel/travel_actor_visuals.gd")
 ## Presentation-only Travel V3. Distance is normalized by projected character
 ## stature, so a small distant walker does not cycle like a close-up one.
 const PILOTS := ["blood_ledger", "whispering_well", "rattling_bridge"]
@@ -189,7 +190,7 @@ static func actor_phase(ground: Node2D, index: int, time: float, duration: float
 static func walk_height(frames: SpriteFrames) -> float:
 	var height := 1.0
 	for n in frames.get_frame_count("walk"):
-		height = maxf(height, frames.get_frame_texture("walk", n).get_image().get_used_rect().size.y)
+		height = maxf(height, VIS.logical_image(frames.get_frame_texture("walk", n)).get_used_rect().size.y)
 	return height
 
 

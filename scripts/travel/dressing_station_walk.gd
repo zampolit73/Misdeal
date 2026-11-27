@@ -3,6 +3,7 @@ extends RefCounted
 ## No RunState/save writes; the V2 owner still supplies clock, pause and finish.
 const DIR := "res://assets/pixel/travel/last_dressing_station/rear_walk/"
 const VANISHING := Vector2(850,360)
+const VIS := preload("res://scripts/travel/travel_actor_visuals.gd")
 const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 const HAZE := preload("res://shaders/dressing_station_walk.gdshader")
 static var frames: Dictionary = {}
@@ -29,7 +30,7 @@ func build() -> bool:
 			atlas.atlas = texture
 			atlas.region = Rect2(cell*96,0,96,96)
 			animation.add_frame("walk",atlas)
-		frames[role]=animation
+		frames[role]=VIS.rear_frames(role,"nw",animation)
 	soles=parsed
 	return true
 
@@ -50,6 +51,7 @@ func stage(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Arra
 		var role := roles[i]
 		if actor.sprite_frames!=frames[role]:
 			actor.sprite_frames=frames[role]
+			actor.texture_filter = VIS.frame_filter(actor.sprite_frames)
 			actor.animation="walk"
 			actor.modulate=Color.WHITE
 			var material := ShaderMaterial.new()

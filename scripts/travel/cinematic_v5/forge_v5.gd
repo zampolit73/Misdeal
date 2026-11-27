@@ -3,7 +3,7 @@ extends Node2D
 ## Every object projects through one ground-plane scale; position is a pure
 ## function of local movie time so pause, seek and replay stay deterministic.
 
-const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
+const VIS := preload("res://scripts/travel/travel_actor_visuals.gd")
 const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 const LIGHT := preload("res://shaders/travel_v3_local_motion.gdshader")
 const FX := preload("res://scripts/travel/cinematic_v5/forge_v5_fx.gd")
@@ -187,14 +187,14 @@ func configure(party: Array, resolved_action: String, has_jack := false) -> bool
 		prop.position -= Vector2(image.get_width()*f*0.5,image.get_height()*f)
 		props.append(prop)
 	for role in order:
-		var set := ANIM.get_frames(role)
+		var set := VIS.side_frames(role)
 		if set == null or set.get_frame_count("walk") != 6 or set.get_frame_count("idle") != 4:
 			return false
 		if role == "ranger":
 			set = _ranger_without_floor_marker(set)
 		frames[role] = set
 		actors[role] = _sprite(set.get_frame_texture("walk",0),world,8,Vector2.ZERO)
-		actors[role].texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		actors[role].texture_filter = VIS.filter_for(actors[role].texture)
 		shadows[role] = _shadow(shadow_texture, Vector2.ZERO, 200.0, 7)
 		var rank := order.find(role)
 		var track := V3.gait(_foot.bind(rank), _height_at.bind(role), DURATION)
@@ -203,13 +203,12 @@ func configure(party: Array, resolved_action: String, has_jack := false) -> bool
 		track.pitch = 0.085
 		tracks[role] = track
 	if jack_present:
-		jack_frames = ANIM.get_frames("jack")
+		jack_frames = VIS.side_frames("jack")
 		if jack_frames == null:
 			return false
-		for i in jack_frames.get_frame_count("walk"):
-			jack_body_px = maxf(jack_body_px,float(jack_frames.get_frame_texture("walk",i).get_image().get_used_rect().size.y))
+		jack_body_px = VIS.DOG_REFERENCE_PX
 		jack = _sprite(jack_frames.get_frame_texture("walk",0),world,8,Vector2.ZERO)
-		jack.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		jack.texture_filter = VIS.filter_for(jack.texture)
 		jack_shadow = _shadow(shadow_texture,Vector2.ZERO,100.0,7)
 	available = true
 	seek(0.0)
@@ -219,24 +218,7 @@ func configure(party: Array, resolved_action: String, has_jack := false) -> bool
 # at rows 88–89. Remove only those presentation markers in local copies;
 # never edit or replace the shared combat atlas.
 func _ranger_without_floor_marker(source: SpriteFrames) -> SpriteFrames:
-	var output := SpriteFrames.new()
-	output.remove_animation("default")
-	for clip in ["idle","walk"]:
-		output.add_animation(clip)
-		output.set_animation_loop(clip,true)
-		output.set_animation_speed(clip,source.get_animation_speed(clip))
-		for i in source.get_frame_count(clip):
-			var tex := source.get_frame_texture(clip,i)
-			if clip == "walk":
-				var image := tex.get_image()
-				for y in range(88,90):
-					for x in range(29,68):
-						var c := image.get_pixel(x,y)
-						if maxf(c.r,maxf(c.g,c.b))-minf(c.r,minf(c.g,c.b)) < 0.08 and maxf(c.r,maxf(c.g,c.b)) > 0.30:
-							image.set_pixel(x,y,Color.TRANSPARENT)
-				tex = ImageTexture.create_from_image(image)
-			output.add_frame(clip,tex)
-	return output
+	return VIS.without_ranger_floor_marker(source)
 
 func _height_at(foot: Vector2, role: String) -> float:
 	return body_height(role,foot.y)
@@ -303,6 +285,7 @@ func _stage_actor(role: String, index: int, time: float) -> void:
 	var sprite: Sprite2D = actors[role]
 	var f := body_height(role,foot.y) / float(BODY_PX[role])
 	sprite.texture = frame_set.get_frame_texture(label,frame)
+	sprite.texture_filter = VIS.filter_for(sprite.texture)
 	sprite.flip_h = true
 	sprite.scale = Vector2.ONE*f
 	sprite.position = foot - Vector2(0,(89.0-48.0)*f)
@@ -339,13 +322,15 @@ func seek(time: float) -> void:
 	if is_instance_valid(jack):
 		var ranger: Dictionary = current_frame.ranger
 		var foot: Vector2 = ranger.foot
-		var dog_height := pixels_per_meter(foot.y+11.0)*0.60
-		foot += Vector2(dog_height*1.75,11.0)
+		var spacing := pixels_per_meter(foot.y+11.0)*0.60
+		foot += Vector2(spacing*1.75,11.0)
+		var dog_height := pixels_per_meter(foot.y)*VIS.DOG_STATURE_M
 		var label: String = ranger.clip
 		var frame := int(ranger.phase*1.3)%jack_frames.get_frame_count("walk") if label=="walk" else 0
 		jack.texture = jack_frames.get_frame_texture(label,frame)
+		jack.texture_filter = VIS.filter_for(jack.texture)
 		jack.flip_h = true
-		var used := jack.texture.get_image().get_used_rect()
+		var used := VIS.logical_image(jack.texture).get_used_rect()
 		var factor := dog_height/jack_body_px
 		jack.scale = Vector2.ONE*factor
 		jack.position = foot-Vector2(0,(float(used.end.y)-48.0)*factor)

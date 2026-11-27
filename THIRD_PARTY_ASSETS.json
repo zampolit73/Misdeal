@@ -364,6 +364,28 @@
       "files": {
         "assets/pixel/travel/cinematic_v5/rescue_batch/living_poses.webp.b64": "63f1d397e39eb47172cedd9bf40bdea325d2538db981526c37f177562b4aba80"
       }
+    },
+    {
+      "id": "travel-actor-hd-source-repack",
+      "status": "verified",
+      "origin": "generated",
+      "author": "Misdeal project / ChatGPT image generation (existing source) and deterministic source preparation",
+      "revision": "travel-actor-hd-01 from 6e5205cfe171d9ff1cc9dad3006e3b60a63913d0",
+      "obtained_on": "2026-11-27",
+      "licenses": [
+        "PROJECT-ORIGIN"
+      ],
+      "rights_review": "Development-origin review: deterministic repack of six tracked existing project source PNGs and the previous project-only living pose generation receipt; no new external references or runtime dependency. Historical reference and tool rights review remains pending for public release; not commercial copyright clearance.",
+      "evidence": "docs/qa/travel_actor_hd/README.md",
+      "files": {
+        "assets/pixel/travel/actors_hd/living.webp.b64": "94e1a011629af24ccbd9976e3bcfe10a4978eda2c479f3e11c272aa68c0a2d0f",
+        "assets/pixel/travel/actors_hd/rear_ne.webp.b64": "02bf74bc410412f18aea1ad546d8002ec77146ba223317d943c72d8e558db7b6",
+        "assets/pixel/travel/actors_hd/rear_nw.webp.b64": "76f6c40fd8184cb6ecb6b3a4d518e737124f92d7ab2000bdc5b37ff5f32ac48e",
+        "assets/pixel/travel/actors_hd/side_jack.webp.b64": "b2ccb24a180d997111091397f483413031ea15d3a6c1053e6e70851299d47f83",
+        "assets/pixel/travel/actors_hd/side_knight.webp.b64": "92685137a4e3605acf843db41d2a4959901be310143978097c88f2c1fb60d489",
+        "assets/pixel/travel/actors_hd/side_mage.webp.b64": "ae8b38ac052b8a19e1a9c6be14a5efb824e66b6d61dad6dd763ba4575ddac1c8",
+        "assets/pixel/travel/actors_hd/side_ranger.webp.b64": "7d46bcd83eecccced0cc7822da259829277047e0269768fc2de3e2b9052663bb"
+      }
     }
   ],
   "release": {

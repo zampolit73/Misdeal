@@ -1,3 +1,7 @@
+## Travel actor visual language · retain source detail at cinematic scale
+
+At player request, main-unit Travel renderers use original painted source detail instead of nearest-filtered enlarged 96px combat sprites. Shared cinematic-only 288px source-detail textures have 96px logical size, exact low-resolution logical reference for grounding/height and preserved frame order/cadence. Both rear movement directions and custom living recovery poses included; combat resources remain byte-identical. Jack uses 0.95 m adult standing-size projection, fixed 56px reference and separate route spacing throughout Travel. Missing optional source-detail pack falls back to original sprites. No new V5 location activation or visual design change. [Asset evidence](qa/travel_actor_hd/README.md).
+
 ## Cinematic Travel V5 · living poses and adult Jack scale
 
 Player rejected eerie death-animation crouches and Jack shrinking in the rescue review. Use separate authored living kneel/rise cels (Knight/Ranger/Mage), and alert rest→sit→stand for Jack; never use combat defeat sprites for these cinematic gestures. Preserve existing Mage staff-cast and original combat atlas. Calibrate Jack to physical standing head-to-ground reference (0.95 m, 56 px source), not maximum airborne walk bounding height; same factor across poses with only scene-depth scale variation. Keep route spacing independent from body scaling. Staged rescue V5 only, no live opt-in yet. [QA/provenance](qa/travel_rescue_v5/README.md).

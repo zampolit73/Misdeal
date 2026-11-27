@@ -13,7 +13,7 @@ const DOG_JOIN := 5.10
 # Standing head-to-ground stature, not the tallest mid-stride bounding box.
 # At the shelter the original 69-pixel-wide idle silhouette projects to 115 px,
 # matching the existing painted animal (114 px). The same scale follows him.
-const JACK_STATURE_M := 0.95
+const JACK_STATURE_M := VIS.DOG_STATURE_M
 const JACK_ROUTE_SPACING_M := 0.67
 const POSE_ATLAS := "res://assets/pixel/travel/cinematic_v5/rescue_batch/living_poses.webp.b64"
 const POSE_ROWS := ["knight", "ranger", "mage", "jack"]
@@ -77,7 +77,7 @@ func _layer(path: String, z: int) -> Sprite2D:
 func _walk_height(set: SpriteFrames) -> float:
 	var h := 1.0
 	for i in set.get_frame_count("walk"):
-		h = maxf(h, float(set.get_frame_texture("walk", i).get_image().get_used_rect().size.y))
+		h = maxf(h, float(VIS.logical_image(set.get_frame_texture("walk", i)).get_used_rect().size.y))
 	return h
 
 func _load_living_poses() -> bool:
@@ -92,7 +92,7 @@ func _load_living_poses() -> bool:
 		for x in 4:
 			var cel := image.get_region(Rect2i(x*POSE_CELL,y*POSE_CELL,POSE_CELL,POSE_CELL))
 			if cel.get_used_rect().size == Vector2i.ZERO: return false
-			row.append(ImageTexture.create_from_image(cel))
+			row.append(VIS.living_texture(POSE_ROWS[y],x,ImageTexture.create_from_image(cel)))
 		decoded[POSE_ROWS[y]] = row
 	living_poses = decoded
 	return true
@@ -158,24 +158,24 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 		if not rear.build(): return false
 		rear_frames = REAR.frames
 	for role in order:
-		var source := ANIM.get_frames(role)
+		var source := VIS.side_frames(role)
 		if source == null or source.get_frame_count("walk") != 6: return false
 		var side := _ranger_without_floor_marker(source) if role == "ranger" else source
 		side_frames[role] = side
 		walk_heights[role] = _walk_height(side)
 		rear_heights[role] = _walk_height(rear_frames[role])
 		actors[role] = _sprite(side.get_frame_texture("idle", 0), world, 30, Vector2.ZERO)
-		actors[role].texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		actors[role].texture_filter = VIS.filter_for(actors[role].texture)
 		shadows[role] = _shadow(shadow_texture, Vector2.ZERO, 170.0, 20)
 		routes[role] = _route(role)
 		tracks[role] = V3.gait(_hero_foot.bind(role), _height.bind(role), DURATION)
 		tracks[role].pitch = maxf(0.068, float(tracks[role].total)/(DURATION*8.5))
 	if jack_present:
-		jack_frames = ANIM.get_frames("jack")
+		jack_frames = VIS.side_frames("jack")
 		if jack_frames == null or jack_frames.get_frame_count("walk") != 6: return false
-		jack_body_px = float(jack_frames.get_frame_texture("idle",0).get_image().get_used_rect().size.y)
+		jack_body_px = VIS.DOG_REFERENCE_PX
 		jack = _sprite(jack_frames.get_frame_texture("idle",0), world, 30, Vector2.ZERO)
-		jack.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		jack.texture_filter = VIS.filter_for(jack.texture)
 		jack_shadow = _shadow(shadow_texture, Vector2.ZERO, 60.0, 20)
 		dog_track = V3.gait(_dog_foot, _dog_height, DURATION)
 		dog_track.pitch = maxf(0.06, float(dog_track.total)/(DURATION*9.0))
@@ -305,9 +305,11 @@ func _place_hero(role: String, t: float) -> void:
 	if pose_index >= 0:
 		frame = pose_index
 		actor.texture = living_poses[role][pose_index]
+		actor.texture_filter = VIS.filter_for(actor.texture)
 	else:
 		actor.texture = set.get_frame_texture("walk", 0) if rear and clip == "idle" else set.get_frame_texture(clip, frame)
-	var bounds := actor.texture.get_image().get_used_rect()
+		actor.texture_filter = VIS.filter_for(actor.texture)
+	var bounds := VIS.logical_image(actor.texture).get_used_rect()
 	actor.position = foot - Vector2(0,(float(bounds.end.y)-48.0)*factor)
 	actor.scale = Vector2.ONE*factor
 	actor.flip_h = facing.x < -0.5
@@ -334,8 +336,9 @@ func _place_dog(t: float) -> void:
 		var u := (t-HANDOFF)/(RISE_END-HANDOFF)
 		dog_pose_index = 1 if u < 0.25 else (2 if u < 0.55 else (3 if u < 0.80 else 0))
 	jack.texture = living_poses["jack"][dog_pose_index] if dog_pose_index >= 0 else jack_frames.get_frame_texture(dog_clip,index)
+	jack.texture_filter = VIS.filter_for(jack.texture)
 	var factor := dog_height/jack_body_px
-	var bounds := jack.texture.get_image().get_used_rect()
+	var bounds := VIS.logical_image(jack.texture).get_used_rect()
 	jack.scale = Vector2.ONE*factor
 	jack.position = dog_foot-Vector2(0,(float(bounds.end.y)-48.0)*factor)
 	jack.z_index = 30+int(dog_foot.y)

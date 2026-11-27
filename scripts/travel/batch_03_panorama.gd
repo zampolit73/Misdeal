@@ -5,14 +5,14 @@ const CATALOG := preload("res://scripts/travel/batch_03_catalog.gd")
 const STAGING := preload("res://scripts/travel/travel_staging_v4.gd")
 const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 const REAR := preload("res://scripts/travel/campfire_walk.gd")
-const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
+const VIS := preload("res://scripts/travel/travel_actor_visuals.gd")
 const FOOTFALL := preload("res://assets/pixel/travel/batch_02/soles.json")
 const OVERSCAN := 1.009
 const ROAD_PAN := 1.2
 const SPACING := 0.15
 const WALK_FPS := 6.5
 # Jack's standing silhouette on the same ground plane as an adult hero.
-const JACK_STATURE := 0.34
+const JACK_STATURE := VIS.DOG_HUMAN_RATIO
 
 var available := false
 var planes: Dictionary = {}
@@ -92,17 +92,17 @@ func configure(context: Dictionary) -> void:
 		available = false
 		return
 	for role in context.party_roles:
-		var frames: SpriteFrames = REAR.frames[role] if facing == "ne" else ANIM.get_frames(role)
+		var frames: SpriteFrames = REAR.frames[role] if facing == "ne" else VIS.side_frames(role)
 		if not _prepare_walk(role, frames, FOOTFALL.data[facing][role]):
 			available = false
 			return
 	if bool(context.get("jack_companion", false)):
-		if not _prepare_walk("jack", ANIM.get_frames("jack"), []):
+		if not _prepare_walk("jack", VIS.side_frames("jack"), []):
 			available = false
 			return
 		_jack = AnimatedSprite2D.new()
 		_jack.name = "TravelJack"
-		_jack.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		_jack.texture_filter = VIS.frame_filter(_frames["jack"])
 		get_parent().add_child(_jack)
 	if _joining == "mage" and _scene.planes.has("handoff_occlusion"):
 		_occlusion = _plate(_scene.planes.handoff_occlusion, get_parent())
@@ -116,10 +116,10 @@ func _prepare_walk(role: String, frames: SpriteFrames, authored_soles: Array) ->
 	var feet: Array = []
 	var height := 1
 	for frame in range(frames.get_frame_count("walk")):
-		var bounds := frames.get_frame_texture("walk", frame).get_image().get_used_rect()
+		var bounds := VIS.logical_image(frames.get_frame_texture("walk", frame)).get_used_rect()
 		feet.append(bounds.end.y - 1)
 		height = maxi(height, bounds.size.y)
-	_heights[role] = height
+	_heights[role] = VIS.DOG_REFERENCE_PX if role == "jack" else height
 	soles[role] = feet if authored_soles.is_empty() else authored_soles
 	return true
 
@@ -380,6 +380,7 @@ func _stage_actor(actor: AnimatedSprite2D, role: String, foot: Vector2, phase: f
 	var height := float(_scene.height) * depth * (JACK_STATURE if role == "jack" else 1.0)
 	var factor := height / float(_heights[role])
 	actor.sprite_frames = frames
+	actor.texture_filter = VIS.frame_filter(actor.sprite_frames)
 	actor.animation = "walk"
 	actor.frame = frame
 	actor.position = _world * (foot - Vector2(0, (float(soles[role][frame]) - 48.0) * factor))

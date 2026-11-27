@@ -2,6 +2,7 @@ extends RefCounted
 ## Ground-plane calibration only. One route/stature per location, independent
 ## of reward choice. The source plates and outcome staging manifests stay intact.
 const DATA := preload("res://resources/travel/staging_v4.json")
+const VIS := preload("res://scripts/travel/travel_actor_visuals.gd")
 const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 const HAZE := preload("res://shaders/dressing_station_walk.gdshader")
 
@@ -63,6 +64,7 @@ static func stage_legacy(id: String, actors: Array[AnimatedSprite2D], roles: Arr
 		var actor := actors[i]
 		var role := roles[i]
 		actor.sprite_frames = frames[role]
+		actor.texture_filter = VIS.frame_filter(actor.sprite_frames)
 		actor.animation = "walk"
 		var path := foot_at.bind(p, duration, i, actors.size())
 		var stature := func(f: Vector2) -> float: return height(p, f)

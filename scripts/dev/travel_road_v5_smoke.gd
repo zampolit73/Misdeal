@@ -1,4 +1,5 @@
 extends SceneTree
+const VIS := preload("res://scripts/travel/travel_actor_visuals.gd")
 const ROAD := preload("res://scripts/travel/cinematic_v5/road_v5.gd")
 const PARTIES := [["knight"],["ranger"],["mage"],["knight","ranger"],["knight","mage"],["ranger","mage"],["knight","ranger","mage"]]
 var cases := 0
@@ -40,7 +41,7 @@ func _run() -> void:
 						var unit: Sprite2D = stage.actors[role]
 						var foot: Vector2 = stage.party_feet[role]
 						var height: float = stage.current_frame[role].height
-						var bounds := unit.texture.get_image().get_used_rect()
+						var bounds := VIS.logical_image(unit.texture).get_used_rect()
 						_check(absf(unit.position.y+(float(bounds.end.y)-48)*unit.scale.y-foot.y)<0.02,caption+" actual frame sole")
 						_check(height>0 and is_finite(height) and foot.is_finite(),caption+" finite ground projection")
 						_check(unit.visible==(role in stage.visible_roles),caption+" correct actor identity")

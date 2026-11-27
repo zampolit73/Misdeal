@@ -1,3 +1,7 @@
+## Shared Travel actor source detail
+
+`assets/pixel/travel/actors_hd/`: seven source-detail WebP atlas packages (288×288 cels, logical 96×96): side Knight/Ranger/Mage/Jack, rear NE/NW and living rescue actions. 98 actual source poses repacked from original project paintings, not procedurally generated or enlarged low-res sprites. Combat originals stay intact. Registered under `travel-actor-hd-source-repack`. [Full provenance, QA and rollback](qa/travel_actor_hd/README.md).
+
 ## Cinematic Travel V5 — rescue living-pose atlas
 
 `assets/pixel/travel/cinematic_v5/rescue_batch/living_poses.webp.b64`: four distinct cels per Knight/Ranger/Mage/Jack on existing character references, 96×96 cell, 4×4 atlas, project-origin generated and registered. Cinematic-only kneel/rise/rest; existing combat art and painted card outcomes remain untouched. Jack standing size calibrated to the painted shelter. F6 acceptance pending. [QA and provenance](qa/travel_rescue_v5/README.md).

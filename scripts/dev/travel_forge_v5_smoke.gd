@@ -1,4 +1,5 @@
 extends SceneTree
+const VIS := preload("res://scripts/travel/travel_actor_visuals.gd")
 const FORGE := preload("res://scripts/travel/cinematic_v5/forge_v5.gd")
 const PARTIES := [["knight"],["ranger"],["mage"],["knight","ranger"],["knight","mage"],["ranger","mage"],["knight","ranger","mage"]]
 var checks := 0
@@ -42,7 +43,7 @@ func _run() -> void:
 				for role in party:
 					var actor: Sprite2D = scene.actors[role]
 					var foot: Vector2 = scene.party_feet[role]
-					_check(actor.texture_filter==CanvasItem.TEXTURE_FILTER_NEAREST,"hero pixel filtering unchanged")
+					_check(VIS.is_hd(actor.texture) and actor.texture_filter==CanvasItem.TEXTURE_FILTER_LINEAR,"native-detail hero filtering")
 					_check(absf(actor.position.y+(89.0-48.0)*actor.scale.y-foot.y)<0.01,"grounded sole")
 					_check(is_equal_approx(actor.scale.y*float(FORGE.BODY_PX[role]),FORGE.body_height(role,foot.y)),"one physical stature projection")
 					_check(foot.y>=520.0 and foot.y<=605.0,"ground corridor")

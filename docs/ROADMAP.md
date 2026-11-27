@@ -4,6 +4,11 @@
 - [ ] Complete legacy assets/code/font/dependency/reference/AI rights audit; resolve or replace unresolved material only with review.
 - [ ] Review actual export file inventory, include required Godot/third-party license bundle, run strict preflight. This is a publication gate, not a blocker for F5/F6 development.
 
+## Travel actor source-detail rollout
+
+- [x] Shared HD detail for Knight/Ranger/Mage/Jack across 24 V4 renderers and all existing V5 movies; 98 cels, unchanged logical geometry and gameplay. All 24 locations and targeted cinematic QA PASS.
+- [ ] Native visual acceptance of actor detail and consistent Jack (all Travel, not Battle); rescue V5 still staged until accepted.
+
 ## Cinematic Travel V5 — approved forge, incremental rollout
 
 - [x] Player authorized Curse Forge pilot using coherent human-scale characters and scene props.

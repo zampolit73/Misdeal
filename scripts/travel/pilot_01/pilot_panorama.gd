@@ -1,7 +1,7 @@
 extends Node2D
 ## Batch01-only implementation of the existing V2 panorama contract.
 const ROOT := "res://assets/pixel/travel/pilot_01/"
-const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
+const VIS := preload("res://scripts/travel/travel_actor_visuals.gd")
 const STAGING := preload("res://scripts/travel/travel_staging_v4.gd")
 const REAR := preload("res://scripts/travel/campfire_walk.gd")
 const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
@@ -61,7 +61,7 @@ func build(background: String, foreground: String, _underpaint: String, _sky: St
 	var rear := REAR.new()
 	if facing == "ne" and not rear.build(): return
 	for role in ["knight","ranger","mage"]:
-		role_frames[role] = NW.frames[role] if facing == "nw" else (REAR.frames[role] if facing == "ne" else ANIM.get_frames(role))
+		role_frames[role] = NW.frames[role] if facing == "nw" else (REAR.frames[role] if facing == "ne" else VIS.side_frames(role))
 		soles[role] = REAR.soles[role] if facing == "ne" else heroes[role].soles
 		heights[role]=float(heroes[role].max_visible_height)
 	for id in speeds:

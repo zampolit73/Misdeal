@@ -143,23 +143,22 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 	glow.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	glow.visible = false
 	for role in order:
-		var set := ANIM.get_frames(role)
+		var set := VIS.side_frames(role)
 		if set==null or set.get_frame_count("walk")!=6 or set.get_frame_count("idle")!=4: return false
 		if role=="ranger": set = _ranger_without_floor_marker(set)
 		frames[role] = set
 		actors[role] = _sprite(set.get_frame_texture("walk",0),world,8,Vector2.ZERO)
-		actors[role].texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		actors[role].texture_filter = VIS.filter_for(actors[role].texture)
 		shadows[role] = _shadow(shadow_texture,Vector2.ZERO,200.0,7)
 		var track := V3.gait(_foot.bind(order.find(role)),_height_at.bind(role),DURATION)
 		track.pitch = 0.085
 		tracks[role] = track
 	if jack_present:
-		jack_frames = ANIM.get_frames("jack")
+		jack_frames = VIS.side_frames("jack")
 		if jack_frames==null: return false
-		for i in jack_frames.get_frame_count("walk"):
-			jack_body_px=maxf(jack_body_px,float(jack_frames.get_frame_texture("walk",i).get_image().get_used_rect().size.y))
+		jack_body_px = VIS.DOG_REFERENCE_PX
 		jack=_sprite(jack_frames.get_frame_texture("walk",0),world,8,Vector2.ZERO)
-		jack.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+		jack.texture_filter=VIS.filter_for(jack.texture)
 		jack_shadow=_shadow(shadow_texture,Vector2.ZERO,100.0,7)
 	available=true
 	seek(0.0)
@@ -247,13 +246,15 @@ func seek(time: float) -> void:
 	if is_instance_valid(jack):
 		var ranger: Dictionary=current_frame.ranger
 		var foot: Vector2=ranger.foot
-		var dog_height:=pixels_per_meter(foot.y+11.0)*0.60
-		foot+=Vector2(-direction*dog_height*1.23,11.0)
+		var spacing := pixels_per_meter(foot.y+11.0)*0.60
+		foot+=Vector2(-direction*spacing*1.23,11.0)
+		var dog_height := pixels_per_meter(foot.y)*VIS.DOG_STATURE_M
 		var label: String=ranger.clip
 		var frame:=int(ranger.phase*1.3)%jack_frames.get_frame_count("walk") if label=="walk" else 0
 		jack.texture=jack_frames.get_frame_texture(label,frame)
+		jack.texture_filter = VIS.filter_for(jack.texture)
 		jack.flip_h=direction<0
-		var used:=jack.texture.get_image().get_used_rect()
+		var used:=VIS.logical_image(jack.texture).get_used_rect()
 		var factor:=dog_height/jack_body_px
 		jack.scale=Vector2.ONE*factor
 		jack.position=foot-Vector2(0,(float(used.end.y)-48.0)*factor)

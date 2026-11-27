@@ -1,3 +1,9 @@
+## Travel actor source-detail rollout — 27 Nov 2026
+
+- Recovered real painted detail from the existing original hero, Jack, rear walk and living-pose sources. 98 high-detail cels at 288×288, rendered at the existing 96×96 logical geometry with linear filtering.
+- Applied the shared presentation library to all 24 Travel locations; both rear directions, current idle/walk/cast and dedicated rescue gestures. Uniform adult Jack scale and independent route spacing. Existing combat art/poses, route/scene outcomes and live V5 allowlist preserved, safe asset fallback.
+- Isolated Godot 4.7.2: 24 locations / 1,887 checks, missing-resource 17 checks, 322 candidate V5 contexts / 46,727 checks and 200 live V5 routing contexts / 3,902 checks, zero failures. Native visual acceptance pending. License preflight 35/35 registered, 0 errors. [QA](docs/qa/travel_actor_hd/README.md).
+
 ## Cinematic Travel V5 — living poses and normal-size Jack — 27 Nov 2026
 
 - Repainted 16 dedicated living animation cels (4×4 atlas): natural Knight/Ranger kneels, supported Mage recovery, alert Jack rest/sit/rise. Removed combat death pose usage from three rescue preview movies; preserved the Mage staff-cast and existing battle atlas.

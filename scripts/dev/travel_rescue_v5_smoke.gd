@@ -1,4 +1,5 @@
 extends SceneTree
+const VIS := preload("res://scripts/travel/travel_actor_visuals.gd")
 const RESCUE := preload("res://scripts/travel/cinematic_v5/rescue_v5.gd")
 const PARTIES := [["knight"],["ranger"],["mage"],["knight","ranger"],["knight","mage"],["ranger","mage"],["knight","ranger","mage"]]
 var cases := 0
@@ -45,7 +46,7 @@ func _run() -> void:
 							var unit: Sprite2D = stage.actors[role]
 							var foot: Vector2 = stage.party_feet[role]
 							var info: Dictionary = stage.current_frame[role]
-							var bounds := unit.texture.get_image().get_used_rect()
+							var bounds := VIS.logical_image(unit.texture).get_used_rect()
 							_check(info.clip!="death",name+" no combat death poses")
 							if t == 2.82 and role == stage.action_role and action not in ["passed","leave","abandon"]:
 								_check(info.clip==("attack" if role=="mage" else "kneel"),name+" correct ritual gesture")
@@ -58,7 +59,7 @@ func _run() -> void:
 								_check(info.clip=="rise",name+" distinct authored recovery poses")
 						if is_instance_valid(stage.jack):
 							_check(stage.jack.visible==("ranger" in stage.visible_roles and (id!="jack" or after)),name+" one companion after rescue")
-							var b := stage.jack.texture.get_image().get_used_rect()
+							var b := VIS.logical_image(stage.jack.texture).get_used_rect()
 							_check(stage.dog_clip!="death",name+" no dog defeat pose")
 							if id=="jack" and t == 5.12:
 								_check(stage.dog_clip=="walk",name+" dog running after treatment")
@@ -85,7 +86,7 @@ func _run() -> void:
 	_check(stage.configure_scene("jack",["ranger"],"recruited",false) and is_instance_valid(stage.jack),"recruit always grants companion")
 	# At identical depth stationary and walking silhouettes share the same scale.
 	stage.seek(RESCUE.HANDOFF)
-	var standing: Rect2i = stage.jack_frames.get_frame_texture("idle",0).get_image().get_used_rect()
+	var standing: Rect2i = VIS.logical_image(stage.jack_frames.get_frame_texture("idle",0)).get_used_rect()
 	_check(absf(standing.size.x*stage.jack.scale.x-114.0)<4.0,"Jack shelter handoff matches the painted 114px dog")
 	for role in RESCUE.POSE_ROWS:
 		var hashes := {}

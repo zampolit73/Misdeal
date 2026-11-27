@@ -120,7 +120,7 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 	if id!="lost_purse" and not rear.build(): return false
 	rear_frames = REAR.frames
 	for role in order:
-		var side := ANIM.get_frames(role)
+		var side := VIS.side_frames(role)
 		if side==null or side.get_frame_count("walk")!=6 or side.get_frame_count("idle")!=4: return false
 		if role=="ranger": side = _ranger_without_floor_marker(side)
 		side_frames[role] = side
@@ -128,17 +128,17 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 		var walk: SpriteFrames = side if id=="lost_purse" else rear_frames[role]
 		walk_heights[role] = _walk_height(walk)
 		actors[role] = _sprite(walk.get_frame_texture("walk",0),world,30,Vector2.ZERO)
-		actors[role].texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		actors[role].texture_filter = VIS.filter_for(actors[role].texture)
 		shadows[role] = _shadow(shadow_texture,Vector2.ZERO,170.0,20)
 		routes[role] = _role_route(role)
 		tracks[role] = V3.gait(_road_foot.bind(role),_road_height.bind(role),DURATION)
 		tracks[role].pitch = maxf(0.076,float(tracks[role].total)/(DURATION*8.5))
 	if jack_present:
-		jack_frames = ANIM.get_frames("jack")
+		jack_frames = VIS.side_frames("jack")
 		if jack_frames==null or not jack_frames.has_animation("walk"): return false
-		jack_body_px = _walk_height(jack_frames)
+		jack_body_px = VIS.DOG_REFERENCE_PX
 		jack = _sprite(jack_frames.get_frame_texture("walk",0),world,30,Vector2.ZERO)
-		jack.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		jack.texture_filter = VIS.filter_for(jack.texture)
 		jack_shadow = _shadow(shadow_texture,Vector2.ZERO,60.0,20)
 	available = true
 	seek(0.0)
@@ -147,7 +147,7 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 func _walk_height(set: SpriteFrames) -> float:
 	var h := 1.0
 	for i in set.get_frame_count("walk"):
-		h = maxf(h,float(set.get_frame_texture("walk",i).get_image().get_used_rect().size.y))
+		h = maxf(h,float(VIS.logical_image(set.get_frame_texture("walk",i)).get_used_rect().size.y))
 	return h
 
 func _layer(path: String, z: int) -> Sprite2D:
@@ -318,7 +318,8 @@ func _place_hero(role: String,t: float) -> void:
 	var label := "walk" if moving else "idle"
 	var frame := int(phase)%6 if label=="walk" else int(t*2.7)%4
 	actor.texture = set.get_frame_texture(label,frame)
-	var bounds := actor.texture.get_image().get_used_rect()
+	actor.texture_filter = VIS.filter_for(actor.texture)
+	var bounds := VIS.logical_image(actor.texture).get_used_rect()
 	var height := _road_height(foot,role)
 	var factor := height/float(walk_heights[role] if is_rear else side_heights[role])
 	actor.position = foot-Vector2(0,(float(bounds.end.y)-48)*factor)
@@ -367,14 +368,16 @@ func seek(time: float) -> void:
 	if is_instance_valid(jack):
 		var rf: Dictionary = current_frame.ranger
 		var foot: Vector2 = rf.foot
-		var h := _ppm(foot.y)*0.60
+		var spacing := _ppm(foot.y)*0.60
 		# Trail along the actual route, NOT to the outside of bridge rail.
-		foot += Vector2(-h*0.78,h*0.36)
+		foot += Vector2(-spacing*0.78,spacing*0.36)
+		var h := _ppm(foot.y)*VIS.DOG_STATURE_M
 		var clip: String = rf.clip
 		var frame := int(rf.phase*1.3)%jack_frames.get_frame_count("walk") if clip=="walk" else 0
 		jack.texture = jack_frames.get_frame_texture(clip,frame)
+		jack.texture_filter = VIS.filter_for(jack.texture)
 		var scale_factor := h/jack_body_px
-		var bounds := jack.texture.get_image().get_used_rect()
+		var bounds := VIS.logical_image(jack.texture).get_used_rect()
 		jack.scale = Vector2.ONE*scale_factor
 		jack.position = foot-Vector2(0,(float(bounds.end.y)-48)*scale_factor)
 		jack.z_index = 30+int(foot.y)

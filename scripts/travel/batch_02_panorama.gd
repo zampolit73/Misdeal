@@ -1,7 +1,7 @@
 extends Node2D
 ## Travel V3 batch-local presentation. Existing TravelTransition owns actors, clock and routing.
 const ROOT := "res://assets/pixel/travel/batch_02/"
-const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
+const VIS := preload("res://scripts/travel/travel_actor_visuals.gd")
 const REAR := preload("res://scripts/travel/campfire_walk.gd")
 const STAGING := preload("res://scripts/travel/travel_staging_v4.gd")
 const NW := preload("res://scripts/travel/dressing_station_walk.gd")
@@ -70,11 +70,11 @@ func build(background: String, _foreground: String, _underpaint: String, _sky: S
 	var metadata: Dictionary=JSON.parse_string(FileAccess.get_file_as_string(ROOT+"soles.json"))
 	soles = NW.soles if facing == "nw" else metadata[facing]
 	for role in ["knight","ranger","mage"]:
-		var frames: SpriteFrames = REAR.frames[role] if facing == "ne" else (NW.frames[role] if facing == "nw" else ANIM.get_frames(role))
+		var frames: SpriteFrames = REAR.frames[role] if facing == "ne" else (NW.frames[role] if facing == "nw" else VIS.side_frames(role))
 		if frames==null: return
 		role_frames[role]=frames
 		var height := 1
-		for frame in range(6): height=maxi(height,frames.get_frame_texture("walk",frame).get_image().get_used_rect().size.y)
+		for frame in range(6): height=maxi(height,VIS.logical_image(frames.get_frame_texture("walk",frame)).get_used_rect().size.y)
 		heights[role]=float(height)
 	# The painted architecture and props stay on one rigid plane. Foreground is
 	# reserved for the seated recruit, so it remains above passing party members.
@@ -113,16 +113,16 @@ func configure(context: Dictionary) -> void:
 	if pilot_active:
 		pilot_base = V3.base_sprite(self, tex("base_1280"), str(scene.id))
 		if bool(context.get("jack_companion", false)) and "ranger" in context.get("party_roles", []):
-			var dog_frames: SpriteFrames = ANIM.get_frames("jack")
+			var dog_frames: SpriteFrames = VIS.side_frames("jack")
 			if dog_frames != null and dog_frames.has_animation("walk"):
 				pilot_jack = AnimatedSprite2D.new()
 				pilot_jack.name = "TravelJack"
 				pilot_jack.sprite_frames = dog_frames
 				pilot_jack.animation = "walk"
-				pilot_jack.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+				pilot_jack.texture_filter = VIS.frame_filter(dog_frames)
 				for frame in range(dog_frames.get_frame_count("walk")):
-					var bounds := dog_frames.get_frame_texture("walk", frame).get_image().get_used_rect()
-					pilot_jack_height = maxf(pilot_jack_height, bounds.size.y)
+					var bounds := VIS.logical_image(dog_frames.get_frame_texture("walk", frame)).get_used_rect()
+					pilot_jack_height = VIS.DOG_REFERENCE_PX
 					pilot_jack_soles.append(bounds.end.y - 1)
 				get_parent().add_child(pilot_jack)
 	# Preload only this action's assets; per-instance caches free with the overlay.
@@ -231,6 +231,7 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 		if not joining: rank+=1
 		var height := _pilot_height(foot, near_y, near_height) if pilot_active else near_height*(foot.y-float(scene.horizon))/(near_y-float(scene.horizon))
 		actor.sprite_frames=role_frames[role]
+		actor.texture_filter = VIS.frame_filter(actor.sprite_frames)
 		actor.animation="walk"
 		actor.frame=int(phase)%6
 		var scale_factor:=height/float(heights[role])
@@ -255,7 +256,7 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 			var trail := (path[0] - path[2]).normalized() if path.size() == 3 else Vector2(-1,0)
 			var dog_foot := ranger_foot + (trail * 66.0 + Vector2(0, 18)) * depth
 			pilot_jack.flip_h = trail.x > 0.0
-			var dog_factor := near_height * depth * 0.34 / pilot_jack_height
+			var dog_factor := near_height * depth * VIS.DOG_HUMAN_RATIO / pilot_jack_height
 			pilot_jack.frame = int(ranger_phase * 1.30) % pilot_jack_soles.size()
 			pilot_jack.scale = Vector2.ONE * dog_factor * world.x.length()
 			pilot_jack.position = world * (dog_foot - Vector2(0, (pilot_jack_soles[pilot_jack.frame] - 48.0) * dog_factor))

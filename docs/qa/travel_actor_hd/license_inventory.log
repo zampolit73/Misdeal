@@ -1,0 +1,9 @@
+WARN: legacy-act1-audio: legacy documentation only; release review pending
+WARN: legacy-combat-audio-v2: legacy documentation only; release review pending
+WARN: legacy-combat-hotfix: legacy documentation only; release review pending
+WARN: legacy-d373-ambience: legacy documentation only; release review pending
+WARN: legacy-gut: legacy documentation only; release review pending
+WARN: legacy-gut-fonts: legacy documentation only; release review pending
+WARN: legacy-godot: legacy documentation only; release review pending
+WARN: Pre-baseline asset and dependency inventory has not been fully reviewed
+License preflight: DEV; 35 changed resource(s), 35 registered path(s), 8 warning(s), 0 error(s)

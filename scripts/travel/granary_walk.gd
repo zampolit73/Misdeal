@@ -32,6 +32,7 @@ func stage(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Arra
 		var role := roles[i]
 		if actor.sprite_frames!=frames[role]:
 			actor.sprite_frames=frames[role]
+			actor.texture_filter = VIS.frame_filter(actor.sprite_frames)
 			actor.animation="walk"
 			actor.modulate=Color.WHITE
 			var material := ShaderMaterial.new()

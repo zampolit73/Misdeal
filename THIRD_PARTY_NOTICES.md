@@ -63,6 +63,10 @@ if distributed, these credits must accompany them.
 
 `travel-v5-rescue-living-poses-generated`: Misdeal project / ChatGPT image generation and sprite preparation, 2026-11-27. Four distinct poses per original character, generated from existing project-only references, packed to lossless WebP. [Provenance](docs/qa/travel_rescue_v5/README.md); historical source and tool rights review still pending for release.
 
+## Project-origin Travel actor source-detail repack
+
+`travel-actor-hd-source-repack`: Misdeal project / existing generated source artwork, source-detail packing on 2026-11-27. Seven 3× native-detail atlases derived from approved project characters, rear walks and rescue poses; no new external ingredient. [Source hashes and QA](docs/qa/travel_actor_hd/README.md). Legacy reference and tool rights review remains open for commercial release.
+
 ## Future entries
 
 Add the registry ID, actual work title, author, original source, license,

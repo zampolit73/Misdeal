@@ -1,6 +1,6 @@
 extends CanvasLayer
 signal finished
-const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
+const VIS := preload("res://scripts/travel/travel_actor_visuals.gd")
 const UI := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const PANORAMA := preload("res://scripts/travel/travel_panorama.gd")
 const GROUND_FX := preload("res://scripts/travel/travel_ground_fx.gd")
@@ -96,12 +96,12 @@ func _ready() -> void:
 	composition.add_child(ground_fx)
 	for role in context.get("party_roles",[]):
 		if role not in ["knight","ranger","mage"]: continue
-		var frames: SpriteFrames = ANIM.get_frames(role)
+		var frames: SpriteFrames = VIS.side_frames(role)
 		if frames == null or not frames.has_animation("walk"): return
 		var sprite := AnimatedSprite2D.new()
 		sprite.sprite_frames = frames
 		sprite.animation = "walk"
-		sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		sprite.texture_filter = VIS.frame_filter(frames)
 		sprite.scale = Vector2.ONE * (1.80 if role == "knight" else 1.72) * float(data.party_scale)
 		sprite.modulate = data.party_tint
 		composition.add_child(sprite)
@@ -114,16 +114,16 @@ func _ready() -> void:
 	# Batch 02/03 have scene-owned companion choreography. The seven earlier
 	# panoramas use the shared follower, with the actual post-resolution flag.
 	if V3.enabled(scene_id) and panorama.get("pilot_active") != true and bool(context.get("jack_companion", false)) and "ranger" in role_ids:
-		var frames: SpriteFrames = ANIM.get_frames("jack")
+		var frames: SpriteFrames = VIS.side_frames("jack")
 		if frames != null and frames.has_animation("walk"):
 			_v3_jack = AnimatedSprite2D.new()
 			_v3_jack.name = "TravelJack"
 			_v3_jack.sprite_frames = frames
 			_v3_jack.animation = "walk"
-			_v3_jack.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-			_v3_jack_height = V3.walk_height(frames)
+			_v3_jack.texture_filter = VIS.frame_filter(frames)
+			_v3_jack_height = VIS.DOG_REFERENCE_PX
 			for n in frames.get_frame_count("walk"):
-				_v3_jack_soles.append(frames.get_frame_texture("walk", n).get_image().get_used_rect().end.y - 1)
+				_v3_jack_soles.append(VIS.logical_image(frames.get_frame_texture("walk", n)).get_used_rect().end.y - 1)
 			composition.add_child(_v3_jack)
 	var foreground: Node2D = panorama.planes.Foreground
 	foreground.reparent(composition,false)
@@ -245,7 +245,7 @@ static func _measure_soles(role: String, frames: SpriteFrames) -> void:
 	if _soles.has(role): return
 	var heights: Array[int] = []
 	for frame in range(frames.get_frame_count("walk")):
-		var image := frames.get_frame_texture("walk",frame).get_image()
+		var image := VIS.logical_image(frames.get_frame_texture("walk",frame))
 		var bottom := 80
 		for y in range(image.get_height()-1,55,-1):
 			var found := false
@@ -377,7 +377,7 @@ func update_frame() -> void:
 	elif str(context.get("resolved_card_id", "")) == "unsent_letters":
 		var frames := {}
 		for role in role_ids:
-			frames[role] = ANIM.get_frames(role)
+			frames[role] = VIS.side_frames(role)
 		STAGING.stage_legacy("unsent_letters", actors, role_ids, contacts, ground_fx, time, duration(), panorama.planes.Road.position - Vector2(-32,-18), data, frames, _soles)
 	else:
 		var v3 := V3.enabled(str(context.get("resolved_card_id", "")))
@@ -428,7 +428,7 @@ func _stage_legacy_companion() -> void:
 	var foot := contacts[i] + (direction * 0.29 + Vector2(0, 0.10)) * projected
 	var phase: float = ground_fx.gait_phases[i] * 1.30
 	_v3_jack.frame = int(phase) % _v3_jack_soles.size()
-	_v3_jack.scale = Vector2.ONE * projected * 0.34 / _v3_jack_height
+	_v3_jack.scale = Vector2.ONE * projected * VIS.DOG_HUMAN_RATIO / _v3_jack_height
 	_v3_jack.flip_h = direction.x > 0.0
 	_v3_jack.position = foot - Vector2(0, (_v3_jack_soles[_v3_jack.frame] - 48.0) * _v3_jack.scale.y)
 	_v3_jack.modulate = ranger.modulate
