@@ -1,6 +1,14 @@
-# Cinematic Travel V5 — road and danger batch (F6 review)
+# Cinematic Travel V5 — road and danger batch (approved and live)
 
-2026-11-27; source baseline `178f150143e7a2cc750f8f654b80ad80466b0819`. Three 6.6 s films for the actual existing Act I outcomes. F6 open `scenes/dev/travel_road_v5_preview.tscn`. Z/X location, Left/Right outcome, 1/2/3 party size, Q/E exact composition, J companion, R/Space replay, P pause, H controls, M sound. End frame holds. No Event→Travel→Table router change; four accepted V5 locations remain live and all 20 other locations remain V4 until approval.
+## Production activation · 2026-11-27
+
+Player accepted the three staged movies. Normal Event→Travel→Table opts in exactly these resolved IDs, in addition to the four prior approved scenes. The shared viewport/overlay, committed context, 6.6 s clock, original captions, F6 action/step cues, skip/pause and one-shot navigation remain. Missing V5 profile/configuration frees the partial viewport and falls back to V4. Direct V4 QA and F6 remain available. No gameplay/save/art changes.
+
+Isolated Godot 4.7.2: 112 road contexts / 2,077 checks and 9 missing-profile fallback checks, Forge 19 / 229 and Merchant 69 / 1,596, zero assertion failures. The fixture uses actual catalog, router, transition, assets and SoundDirector; unrelated RunState is stubbed and Table rendering replaced by a navigation probe. Existing Forge exit cleanup warnings remain. This is not a native visual or full-game test; F5 playback pending. [Live routing evidence](godot_live_routing.log).
+
+## Historical F6 review scope
+
+2026-11-27; source baseline `178f150143e7a2cc750f8f654b80ad80466b0819`. Three 6.6 s films for the actual existing Act I outcomes. F6 open `scenes/dev/travel_road_v5_preview.tscn`. Z/X location, Left/Right outcome, 1/2/3 party size, Q/E exact composition, J companion, R/Space replay, P pause, H controls, M sound. End frame holds. At F6 staging there was no production router change; activation is documented above.
 
 | Location | Cinematic blocking and outcome states |
 | --- | --- |
@@ -13,7 +21,7 @@ Each uses one authored projection per location and ground-contact sole registrat
 ## QA
 
 - Godot 4.7.2 isolated fixture with actual V5 scripts, assets, reused direction packs and D412/Jack frames, **109 valid context combinations, 9,525 checks, zero failures**. State selection, actual party only, recruitment timing, sole registration, actual Jack flag, camera coverage, no stale purse, authored grip visibility, continuous careful crossing, deterministic replay.
-- Imported and launched the actual F6 scene in the fixture; no parse/runtime errors. Existing ObjectDB warning on preview exit is recorded. No native desktop display available; offline frame composition using actual Godot sprite transforms and textures reviewed (bridge rush/recruit, well rescue, purse all-in). Not a native rendered movie or full-game certification. Native visual acceptance is the next gate.
+- Imported and launched the actual F6 scene in the fixture; no parse/runtime errors. Existing ObjectDB warning on preview exit is recorded. No native desktop display available; offline frame composition using actual Godot sprite transforms and textures reviewed (bridge rush/recruit, well rescue, purse all-in). Not a native rendered movie or full-game certification. Player subsequently accepted this batch; see production activation above.
 - Development license inventory: 27 changed resources / 27 registered paths, 0 errors; 8 historical audit warnings (unchanged). Not publication clearance.
 - [Headless evidence](godot_smoke.log).
 

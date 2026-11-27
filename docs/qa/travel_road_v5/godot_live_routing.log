@@ -1,0 +1,20 @@
+Isolated Godot 4.7.2 fixture with actual project scripts, assets and SoundDirector. Navigation probe substitutes native Table rendering; unrelated RunState stub. Actual road profile temporarily removed only in fixture for fallback and restored afterwards. Final targeted runs exited 0.
+
+=== road_live ===
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TRAVEL_ROAD_V5_LIVE_SMOKE: 112 contexts · 2077 checks · 0 failures (fallback-only=false)
+
+=== road_fallback ===
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TRAVEL_ROAD_V5_LIVE_SMOKE: 0 contexts · 9 checks · 0 failures (fallback-only=true)
+
+=== forge_regression ===
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TRAVEL_FORGE_V5_LIVE_SMOKE: 19 V5 contexts · 229 checks · 0 failures (fallback-only=false)
+WARNING: 10 ObjectDB instances were leaked at exit (run with --verbose for details).
+ERROR: 4 resources still in use at exit (run with --verbose for details).
+Existing Forge cleanup warnings; not a leak-free certification.
+
+=== merchant_regression ===
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TRAVEL_MERCHANT_V5_LIVE_SMOKE: 69 V5 contexts · 1596 checks · 0 failures (fallback-only=false)

@@ -17,8 +17,9 @@
 - [x] Player approved polished merchant props on 2026-11-27; production routing enabled for three resolved IDs, using committed outcomes, V4 fallback. 69 contexts / 1,596 checks + 9 fallback checks, Forge regression 19 / 229 + 2 fallback checks PASS.
 - [ ] Native integrated F5 playback review for the three merchant cards.
 - [x] Stage Bridge, Well, Purse in F6: route-relative scale, rescue and action insert, 109 contexts / 9,525 checks PASS. [QA](qa/travel_road_v5/README.md).
-- [ ] Native visual acceptance of the Road and Danger batch before three-ID production opt-in.
-- [ ] Apply the approved scene-first V5 direction to remaining 20 scenes in coherent batches; preserve the original art identity, actual outcomes and V4 fallback. No automatic scene conversion.
+- [x] Player accepted the Road and Danger batch on 2026-11-27; enabled the three IDs in production with V4 fallback; 112 contexts / 2,077 checks + 9 fallback checks PASS; previous Forge and Merchant regression PASS.
+- [ ] Native integrated F5 playback for Bridge, Well and Purse.
+- [ ] Apply the approved scene-first V5 direction to remaining 17 scenes in coherent batches; preserve the original art identity, actual outcomes and V4 fallback. No automatic scene conversion.
 
 ## Travel Staging V4
 

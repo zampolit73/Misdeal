@@ -1,3 +1,9 @@
+## Cinematic Travel V5 — approved road and danger batch live — 27 Nov 2026
+
+- Player accepted Rattling Bridge, Whispering Well and Lost Purse. Activate their exact approved 6.6 s cinematics in normal Event→Travel→Table, bringing production V5 coverage to 7/24.
+- Retain actual committed outcomes/party/Jack, captions, pause/skip, approved F6 cues and one-shot navigation. No footsteps during purse close-up; missing profile/configuration falls back to V4 without re-resolving the card. No gameplay/save or asset changes.
+- Isolated Godot 4.7.2: 112 road contexts / 2,077 checks and 9 missing-profile fallback checks, Forge 19 / 229 and Merchant 69 / 1,596, zero assertion failures. Native F5 review pending. [QA](docs/qa/travel_road_v5/README.md).
+
 ## Cinematic Travel V5 — road and danger review batch — 27 Nov 2026
 
 - Added separate F6 previews for Rattling Bridge, Whispering Well and Lost Purse. Scene-relative scale, grounded routes, distinct crossing/recruitment and sink states, actual Mage rim exit; new pulled-back purse plate plus original close-up grasp/aftermath and departure shot.

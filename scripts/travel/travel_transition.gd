@@ -8,8 +8,10 @@ const STAGING := preload("res://scripts/travel/travel_staging_v4.gd")
 const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 const FORGE_V5 := preload("res://scripts/travel/cinematic_v5/forge_v5.gd")
 const MERCHANT_V5 := preload("res://scripts/travel/cinematic_v5/merchant_v5.gd")
+const ROAD_V5 := preload("res://scripts/travel/cinematic_v5/road_v5.gd")
 # Explicit production allowlist; future F6 candidates are not auto-activated.
 const LIVE_MERCHANT_IDS := ["candle_seller", "blood_ledger", "gravedigger_shop"]
+const LIVE_ROAD_IDS := ["rattling_bridge", "whispering_well", "lost_purse"]
 const WALK_FPS := 6.5
 const BODY_SPEED := 20.0
 static var _soles: Dictionary = {}
@@ -19,6 +21,7 @@ var context: Dictionary = {}
 var use_cinematic_v5 := false
 var forge_v5: Node2D
 var merchant_v5: Node2D
+var road_v5: Node2D
 var _cinematic_step := -1
 var data_path := ""
 var data: Resource
@@ -132,7 +135,7 @@ func _ready() -> void:
 func _build_cinematic_v5() -> bool:
 	var id := str(context.get("resolved_card_id", ""))
 	# Only explicitly accepted scene IDs may replace their V4 presentation.
-	if id != "curse_forge" and id not in LIVE_MERCHANT_IDS: return false
+	if id != "curse_forge" and id not in LIVE_MERCHANT_IDS and id not in LIVE_ROAD_IDS: return false
 	# Render the authored z-order into one texture. The existing CanvasGroup
 	# can then cross-dissolve it once, keeping captions/skip above the movie.
 	var viewport := SubViewport.new()
@@ -141,7 +144,13 @@ func _build_cinematic_v5() -> bool:
 	viewport.disable_3d = true
 	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	stage.add_child(viewport)
-	var film: Node2D = FORGE_V5.new() if id == "curse_forge" else MERCHANT_V5.new()
+	var film: Node2D
+	if id == "curse_forge":
+		film = FORGE_V5.new()
+	elif id in LIVE_MERCHANT_IDS:
+		film = MERCHANT_V5.new()
+	else:
+		film = ROAD_V5.new()
 	viewport.add_child(film)
 	var roles: Array = context.get("party_roles", [])
 	var action := str(context.get("visual_action", ""))
@@ -157,10 +166,12 @@ func _build_cinematic_v5() -> bool:
 		return false
 	if id == "curse_forge":
 		forge_v5 = film
-	else:
+	elif id in LIVE_MERCHANT_IDS:
 		merchant_v5 = film
+	else:
+		road_v5 = film
 	var picture := TextureRect.new()
-	picture.name = "ForgeV5Picture" if id == "curse_forge" else "MerchantV5Picture"
+	picture.name = "ForgeV5Picture" if id == "curse_forge" else ("MerchantV5Picture" if id in LIVE_MERCHANT_IDS else "RoadV5Picture")
 	picture.texture = viewport.get_texture()
 	picture.size = stage.size
 	picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -268,6 +279,13 @@ func _play_travel_cues(previous: float) -> void:
 					SoundDirector.play_scene_cue(self, "metal", -10.0)
 			if forge_v5.action != "leave" and previous < FORGE_V5.HANDOFF and elapsed >= FORGE_V5.HANDOFF:
 				SoundDirector.play_scene_cue(self, "coins", -12.0)
+		elif film == road_v5:
+			# Match the accepted F6 road cues, including the silent detail shot.
+			if previous < ROAD_V5.HANDOFF and elapsed >= ROAD_V5.HANDOFF:
+				if road_v5.scene_id == "rattling_bridge" and road_v5.action in ["rush_failure", "recruit"]:
+					SoundDirector.play_scene_cue(self, "creak", -15.0)
+				elif road_v5.action in ["rush_success", "scavenge", "loot_recruitment", "rescue_gold", "pay_refund", "pay_upgrade", "pay_relic", "safe", "greedy", "all_in"]:
+					SoundDirector.play_scene_cue(self, "coins", -12.0)
 		elif previous < MERCHANT_V5.HANDOFF and elapsed >= MERCHANT_V5.HANDOFF:
 			# Exact approved F6 cues, now using the common in-game Ambient bus.
 			# Ledger refusal closes its book; other refusals have no purchase cue.
@@ -277,7 +295,7 @@ func _play_travel_cues(previous: float) -> void:
 				SoundDirector.play_scene_cue(self, "coins", -12.0)
 		var lead: Dictionary = film.current_frame[film.order[0]]
 		var contact := int(float(lead.phase) / 3.0)
-		if lead.clip == "walk" and contact != _cinematic_step:
+		if lead.clip == "walk" and contact != _cinematic_step and (film != road_v5 or road_v5.shot != "detail"):
 			_cinematic_step = contact
 			SoundDirector.play_scene_cue(self, "stone-step", -19.0)
 		return
@@ -332,7 +350,8 @@ func _outcome_cue(id: String, action: String) -> String:
 
 func _active_cinematic() -> Node2D:
 	if is_instance_valid(forge_v5): return forge_v5
-	return merchant_v5 if is_instance_valid(merchant_v5) else null
+	if is_instance_valid(merchant_v5): return merchant_v5
+	return road_v5 if is_instance_valid(road_v5) else null
 
 func duration() -> float:
 	if is_instance_valid(_active_cinematic()):

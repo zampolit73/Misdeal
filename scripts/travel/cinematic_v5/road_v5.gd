@@ -1,6 +1,6 @@
 extends "res://scripts/travel/cinematic_v5/forge_v5.gd"
-## Preview-only road films. Actual post-resolution parties and action keys.
-## No production router hooks, gameplay writes or new combat art.
+## Approved road films. Actual post-resolution parties and action keys.
+## Presentation only: no gameplay writes or new combat art.
 const REAR := preload("res://scripts/travel/campfire_walk.gd")
 const WELL_CATALOG := preload("res://scripts/travel/batch_03_catalog.gd")
 const ROAD_ROOT := "res://assets/pixel/travel/cinematic_v5/road_batch/"
@@ -66,6 +66,7 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 	for role in party:
 		if role not in ROLES or role in roles: return false
 		roles.append(role)
+	if not FileAccess.file_exists(PROFILE): return false
 	var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(PROFILE))
 	if not data is Dictionary or not data.has(id): return false
 	profile = data[id]
