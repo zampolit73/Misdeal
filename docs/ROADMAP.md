@@ -28,7 +28,9 @@
 - [x] Replace rejected defeat-frame crouches/recovery with original living cels; correct Jack standing-scale projection. 128 contexts / 20,861 checks PASS.
 - [ ] Player visual acceptance of revised ritual/prisoner/companion preview; only then enable the three exact resolved IDs with V4 fallback.
 - [x] Stage Last Camp, Ash Rest and Borrowed Boots in isolated F6: 122 contexts / 18,418 checks PASS. [QA](qa/travel_camp_v5/README.md).
-- [ ] Native camp/equipment preview acceptance before enabling any of the three IDs.
+- [x] Player accepted Last Camp and Ash Rest; production opt-in with V4 fallback, 58 contexts / 1,284 checks + six fallback checks PASS.
+- [x] Correct Borrowed Boots perspective and excessive magnification reported in native screenshot; 122 contexts / 19,138 checks PASS.
+- [ ] Recheck corrected Borrowed Boots in native F6; activate only after approval. Integrated F5 Last Camp/Ash Rest review pending.
 - [ ] Apply the approved scene-first V5 direction to eleven remaining unstaged scenes in coherent batches; preserve the original art identity, actual outcomes and V4 fallback. No automatic scene conversion.
 
 ## Travel Staging V4

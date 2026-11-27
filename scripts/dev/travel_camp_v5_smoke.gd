@@ -49,6 +49,10 @@ func _run() -> void:
 							var bounds := VIS.logical_image(unit.texture).get_used_rect()
 							_check(info.clip in ["idle","walk","rise","kneel","attack"],name+" living pose")
 							_check(unit.texture.get_image().get_width()==288,name+" HD actor")
+							if id=="borrowed_boots" and t>=2.44 and t<=3.87 and action!="passed":
+								_check(float(info.height)*tr.x.length()<=200.0,name+" roadside figure fits native HD detail")
+								_check(foot.y<=570.0,name+" actor on distant roadside plane")
+								_check(tr.x.length()<=1.05,name+" no excessive Boots close-up")
 							if info.clip in ["kneel","rise"]:
 								_check(unit.texture==stage.living_poses[role][info.frame],name+" dedicated living cel")
 							if t==2.82 and role==stage.action_role:

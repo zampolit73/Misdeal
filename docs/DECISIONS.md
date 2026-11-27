@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · Boots perspective correction and partial camp activation
+
+Player approved Last Camp and Ash Rest, but reported the Borrowed Boots F6 frame at 2.5 seconds. The original Squire and boot rack are intentionally foreground artwork; do not force heroes into that near plane or enlarge 288px cels beyond their useful detail. Move only Boots actors to the correct middle road depth, keep the equipment response and the real gate road, reduce local camera zoom and preserve coherent Jack projection. Explicitly allowlist only the two accepted camp IDs, using the accepted preview and actual committed context. Boots and the earlier rescue batch remain in V4 normal play pending acceptance. No new media, rewards, rules or saves.
+
 ## Cinematic Travel V5 · camp and equipment candidate scope
 
 Preserve approved Last Camp, Ash Rest and Borrowed Boots scenery, original exact catalog states, and shared native-detail living hero and Jack library. Use an accessible shelter/stone/table/bench interaction target; actual trainee when selected, single settled-to-rising recruit handoff, abandonment keeps original seated painting, passing does not stop for artificial action. Boot layers use their original registered projection, exactly one camp outcome and the authored local strap motion. No new media or bespoke grasp; no gameplay, save or live-router changes. Separate F6 review and player acceptance before production opt-in. [QA](qa/travel_camp_v5/README.md).

@@ -21,4 +21,13 @@ Shared native-detail 288px cels (96px logical geometry), actual role or original
 
 All existing art from `assets/pixel/travel/batch_03/scene_05_last_camp/`, `scene_06_ash_rest/`, `assets/pixel/travel/campfire_without_master/`; shared source-detail and living-pose atlases previously registered; original Act I audio cues from `assets/audio/act1/`. The new JSON scene profiles and scripts are original Misdeal presentation code and data. No media changes, no new external dependency.
 
-Preview only: before activating camp IDs in production, inspect F6 natively and receive player acceptance. Preserve the approved seven live films; six additional scenes are staged, eleven not yet staged.
+Original staging was preview only. See partial approval and correction below.
+
+## Player screenshot correction and partial approval
+
+Player accepted Last Camp and Ash Rest but reported the Boots repair frame at 2.5 s (Knight/Ranger/Mage). The previous Boot projection put party at 313–409px nominal projected body heights, magnifying the 288px cel art too far. Preserve the painted close foreground Squire and boot rack; project the walking heroes on the middle road plane behind that foreground, rather than at the viewer's feet. At the action beat the trio is now approximately 152/173/181px nominal height; no new art. Boot road/profile owns its approach/wait slots, all three outcomes use the revised path, same 0.95m dog stature, camera peak 1.047 versus 1.122; original repair strap/local lighting remain. Offline sampled Sprite2D compositing inspected at 2.5s and departure; no native framebuffer capture here. Boots still requires player recheck.
+
+Production allowlist activates **only Last Camp and Ash Rest**, using exact committed batch03 action and post-choice party/Jack, accepted audio cues, 6.6s clock, existing caption, pause/skip and one-shot Table return. Borrowed Boots and earlier rescue preview remain V4 in normal play. 9/24 V5 live, four staged, eleven unstaged.
+
+- Updated isolated Godot 4.7.2 fixture: 122 F6 contexts / 19,138 checks (including projected stature, middle-plane soles and camera bound); 58 production contexts / 1,284 checks, 6 fallback checks; previous live V5 regressions 200 contexts / 3,902 checks; zero failures. [Log](boots_fix_and_live.log).
+- F6 path unchanged. X twice, repair/hobnails/pass with trio, J companion, R repeat. Native visual approval of revised Boots and integrated F5 camp playback pending. No asset, rules or save changes.

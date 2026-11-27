@@ -1,3 +1,9 @@
+## Cinematic Travel V5 — camp partial approval and Boots perspective correction — 27 Nov 2026
+
+- Activate Last Camp and Ash Rest V5 in F5; retain exact committed action, party, companion, native travel caption/skip and one-shot return. V4 fallback on failure.
+- Borrowed Boots preview: correct oversized hero projection, midground waiting/approach/departure and weaker camera zoom; existing HD actors and adult Jack scale, no asset replacement. Native recheck pending, remains V4 in production.
+- Godot 4.7.2 isolated: 122 preview contexts / 19,138 checks, 58 live contexts / 1,284 checks and six fallback checks, earlier seven V5 regression 200 contexts / 3,902 checks, zero failures. 9/24 live; 4 staged. [QA](docs/qa/travel_camp_v5/README.md).
+
 ## Cinematic Travel V5 — camp and equipment review — 27 Nov 2026
 
 - Stage Last Camp, Ash Rest and Borrowed Boots as three 6.6 s F6 films. Existing HD living heroes/Jack, single real Warrior/Ranger recruitment, actual trainee gestures, original equipment and abandonment outcomes, scene-relative routes and scale.

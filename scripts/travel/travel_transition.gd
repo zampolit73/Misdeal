@@ -9,9 +9,11 @@ const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 const FORGE_V5 := preload("res://scripts/travel/cinematic_v5/forge_v5.gd")
 const MERCHANT_V5 := preload("res://scripts/travel/cinematic_v5/merchant_v5.gd")
 const ROAD_V5 := preload("res://scripts/travel/cinematic_v5/road_v5.gd")
+const CAMP_V5 := preload("res://scripts/travel/cinematic_v5/camp_v5.gd")
 # Explicit production allowlist; future F6 candidates are not auto-activated.
 const LIVE_MERCHANT_IDS := ["candle_seller", "blood_ledger", "gravedigger_shop"]
 const LIVE_ROAD_IDS := ["rattling_bridge", "whispering_well", "lost_purse"]
+const LIVE_CAMP_IDS := ["last_camp", "ash_rest"]
 const WALK_FPS := 6.5
 const BODY_SPEED := 20.0
 static var _soles: Dictionary = {}
@@ -22,6 +24,7 @@ var use_cinematic_v5 := false
 var forge_v5: Node2D
 var merchant_v5: Node2D
 var road_v5: Node2D
+var camp_v5: Node2D
 var _cinematic_step := -1
 var data_path := ""
 var data: Resource
@@ -135,7 +138,7 @@ func _ready() -> void:
 func _build_cinematic_v5() -> bool:
 	var id := str(context.get("resolved_card_id", ""))
 	# Only explicitly accepted scene IDs may replace their V4 presentation.
-	if id != "curse_forge" and id not in LIVE_MERCHANT_IDS and id not in LIVE_ROAD_IDS: return false
+	if id != "curse_forge" and id not in LIVE_MERCHANT_IDS and id not in LIVE_ROAD_IDS and id not in LIVE_CAMP_IDS: return false
 	# Render the authored z-order into one texture. The existing CanvasGroup
 	# can then cross-dissolve it once, keeping captions/skip above the movie.
 	var viewport := SubViewport.new()
@@ -149,8 +152,10 @@ func _build_cinematic_v5() -> bool:
 		film = FORGE_V5.new()
 	elif id in LIVE_MERCHANT_IDS:
 		film = MERCHANT_V5.new()
-	else:
+	elif id in LIVE_ROAD_IDS:
 		film = ROAD_V5.new()
+	else:
+		film = CAMP_V5.new()
 	viewport.add_child(film)
 	var roles: Array = context.get("party_roles", [])
 	var action := str(context.get("visual_action", ""))
@@ -168,10 +173,12 @@ func _build_cinematic_v5() -> bool:
 		forge_v5 = film
 	elif id in LIVE_MERCHANT_IDS:
 		merchant_v5 = film
-	else:
+	elif id in LIVE_ROAD_IDS:
 		road_v5 = film
+	else:
+		camp_v5 = film
 	var picture := TextureRect.new()
-	picture.name = "ForgeV5Picture" if id == "curse_forge" else ("MerchantV5Picture" if id in LIVE_MERCHANT_IDS else "RoadV5Picture")
+	picture.name = "ForgeV5Picture" if id == "curse_forge" else ("MerchantV5Picture" if id in LIVE_MERCHANT_IDS else ("RoadV5Picture" if id in LIVE_ROAD_IDS else "CampV5Picture"))
 	picture.texture = viewport.get_texture()
 	picture.size = stage.size
 	picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -286,6 +293,15 @@ func _play_travel_cues(previous: float) -> void:
 					SoundDirector.play_scene_cue(self, "creak", -15.0)
 				elif road_v5.action in ["rush_success", "scavenge", "loot_recruitment", "rescue_gold", "pay_refund", "pay_upgrade", "pay_relic", "safe", "greedy", "all_in"]:
 					SoundDirector.play_scene_cue(self, "coins", -12.0)
+		elif film == camp_v5:
+			# Exact cues from the accepted Camp F6, shared Ambient bus.
+			if previous < CAMP_V5.HANDOFF and elapsed >= CAMP_V5.HANDOFF:
+				if camp_v5.action == "rescue_gold":
+					SoundDirector.play_scene_cue(self, "coins", -12.0)
+				elif camp_v5.action in ["knight","loot","abandon_loot"]:
+					SoundDirector.play_scene_cue(self, "metal", -15.0)
+				elif camp_v5.action in ["ranger","rescue_blood","recruit"]:
+					SoundDirector.play_scene_cue(self, "cloth-hit", -22.0)
 		elif previous < MERCHANT_V5.HANDOFF and elapsed >= MERCHANT_V5.HANDOFF:
 			# Exact approved F6 cues, now using the common in-game Ambient bus.
 			# Ledger refusal closes its book; other refusals have no purchase cue.
@@ -351,7 +367,8 @@ func _outcome_cue(id: String, action: String) -> String:
 func _active_cinematic() -> Node2D:
 	if is_instance_valid(forge_v5): return forge_v5
 	if is_instance_valid(merchant_v5): return merchant_v5
-	return road_v5 if is_instance_valid(road_v5) else null
+	if is_instance_valid(road_v5): return road_v5
+	return camp_v5 if is_instance_valid(camp_v5) else null
 
 func duration() -> float:
 	if is_instance_valid(_active_cinematic()):

@@ -166,6 +166,10 @@ func _route(role: String) -> Dictionary:
 	var wait := target + Vector2(rank_sign*spacing*rank,0)
 	if rank>0:
 		wait.y = float(profile.lane_y)+rank*11.0
+		if boot:
+			# The Squire is a close painted foreground figure. The actual
+			# party waits on the smaller, more distant roadside plane.
+			wait = _p(profile.wait_slots[rank])
 	# Approach along the unobstructed foreground, then step to the actual prop.
 	var start := _p(profile.entry)+Vector2(rank_sign*rank*spacing,rank*15.0)
 	var approach: Array[Vector2] = [start]
@@ -174,12 +178,12 @@ func _route(role: String) -> Dictionary:
 	var exit: Array[Vector2] = [wait]
 	if boot:
 		if rank==0:
-			exit.append_array([Vector2(950,609),Vector2(1042,594)])
+			exit.append_array([Vector2(930,548),Vector2(1042,521)])
 		elif rank==1:
-			exit.append(Vector2(1042,574))
+			exit.append(Vector2(1042,521))
 		else:
-			exit.append_array([Vector2(1160,587),Vector2(1082,529)])
-		exit.append_array([Vector2(1008,506),Vector2(1070,426),Vector2(1118,350)])
+			exit.append(Vector2(1108,509))
+		exit.append_array([Vector2(1054,477),Vector2(1084,416),Vector2(1118,350)])
 	else:
 		exit.append(Vector2(wait.x+65,float(profile.lane_y)+rank*11.0))
 		if scene_id=="last_camp":
@@ -231,7 +235,7 @@ func _dog_foot(time: float) -> Vector2:
 func _camera(t: float) -> Transform2D:
 	var e := smoothstep(0.6,ARRIVAL,t)*(1.0-smoothstep(DEPARTURE,6.3,t))
 	if action in CAMP_PASS: e *= 0.25
-	var zoom := 1.012+e*0.11
+	var zoom := 1.012+e*(0.035 if scene_id=="borrowed_boots" else 0.11)
 	var focus := Vector2(640,360).lerp(_p(profile.focus),e*0.78)
 	return Transform2D(0,Vector2.ONE*zoom,0,Vector2(clampf(640-focus.x*zoom,1280-1280*zoom,0),clampf(360-focus.y*zoom,720-720*zoom,0)))
 
