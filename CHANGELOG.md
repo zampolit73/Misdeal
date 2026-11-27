@@ -1,3 +1,9 @@
+## Cinematic Travel V5 — living Borrowed Boots cobbler — 28 Nov 2026
+
+- Added four original high-detail work cels (pull, thread, glance, press) to the seated Squire, source-registered to his existing painting. Preserve original bone shaft, feet, bench, background and equipment states; no full-frame replacement or duplicate actor.
+- Deterministic 6.6 s repair/hobnails/pass choreography. Existing heroes, Jack, routes, audio and interaction timing unchanged. All-or-nothing missing-cel static fallback.
+- Godot 4.7.2 isolated: 122 preview contexts / 19,975 checks, 58 live / 1,284 and 12 missing-cel fallback checks, zero failures. Boots remains preview-only pending native acceptance; 9/24 V5 live. [QA](docs/qa/travel_camp_v5/README.md).
+
 ## Cinematic Travel V5 — camp partial approval and Boots perspective correction — 27 Nov 2026
 
 - Activate Last Camp and Ash Rest V5 in F5; retain exact committed action, party, companion, native travel caption/skip and one-shot return. V4 fallback on failure.

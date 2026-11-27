@@ -67,6 +67,10 @@ if distributed, these credits must accompany them.
 
 `travel-actor-hd-source-repack`: Misdeal project / existing generated source artwork, source-detail packing on 2026-11-27. Seven 3× native-detail atlases derived from approved project characters, rear walks and rescue poses; no new external ingredient. [Source hashes and QA](docs/qa/travel_actor_hd/README.md). Legacy reference and tool rights review remains open for commercial release.
 
+## Project-origin Borrowed Boots cobbler work cels
+
+`travel-v5-squire-work-cels-generated`: Misdeal project / ChatGPT image generation and deterministic source preparation, 2026-11-28. Four original source-registered local work frames using only existing Misdeal artwork. [Source and hashes](docs/qa/travel_camp_v5/README.md); legacy source and tool rights review remains open.
+
 ## Future entries
 
 Add the registry ID, actual work title, author, original source, license,

@@ -5,10 +5,12 @@ const CAMP_IDS := ["last_camp", "ash_rest", "borrowed_boots"]
 const CAMP_PROFILE := "res://resources/travel/cinematic_v5/camp_batch.json"
 const BOOTS := preload("res://scripts/travel/campfire_panorama.gd")
 const BOOTS_SHADER := preload("res://shaders/campfire_layer.gdshader")
+const SQUIRE := preload("res://scripts/travel/cinematic_v5/squire_v5.gd")
 const BOOTS_PROJECTION := Vector2(1280.0/1672.0,720.0/941.0)
 const BOOTS_ACTIONS := ["repair","hobnails","passed"]
 const CAMP_PASS := ["leave","passed"]
 var camp_layer: Sprite2D
+var squire: Node2D
 var boot_reactions: Node2D
 var boot_rects: Dictionary = {}
 var boots_materials: Array[ShaderMaterial] = []
@@ -61,6 +63,18 @@ func _build_boots() -> bool:
 		if state_layer==null: return false
 	foreground = _boot_piece("foreground",1500)
 	if foreground==null: return false
+	# Local animation patches cover the painted original at exactly the same
+	# source coordinates, above either equipment outcome, below foreground.
+	var artisan := SQUIRE.new()
+	artisan.name = "SquireV5"
+	artisan.scale = BOOTS_PROJECTION
+	artisan.z_index = 5
+	world.add_child(artisan)
+	if artisan.build():
+		squire = artisan
+	else:
+		# All-or-nothing optional animation; old approved painting is intact.
+		artisan.free()
 	if action=="repair":
 		var strap := BOOTS.texture_at(BOOTS.DIR+"strap.png")
 		if strap==null: return false
@@ -102,6 +116,7 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 	state_layer = null
 	treatment_layer = null
 	camp_layer = null
+	squire = null
 	boot_reactions = null
 	jack = null
 	jack_shadow = null
@@ -308,6 +323,7 @@ func seek(time: float) -> void:
 	if is_instance_valid(waiting_layer): waiting_layer.visible = not after
 	if is_instance_valid(camp_layer): camp_layer.visible = not prop_changed
 	for mat in boots_materials: mat.set_shader_parameter("elapsed",t)
+	if is_instance_valid(squire): squire.seek(t,action)
 	if is_instance_valid(boot_reactions):
 		boot_reactions.visible = prop_changed
 		boot_reactions.update_time(t)

@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · Boots source-registered artisan motion
+
+Player requested a smith-like animation for the seated cobbler. Use original source-space registered alpha work cels instead of an independently scaled sprite or whole-plate animation; no replacement of the environment, character identity, outfit, legs or outcome layer. Keep the original skeletal forearm visible and use original pose between work cycles, with a short glance at approaching travellers and action-specific timing. One visible cel at most; time-only seek, all-or-nothing optional resource pack, no game-state writes or sound changes. Retain existing F6 scale correction; no production activation until approval. [QA](qa/travel_camp_v5/README.md).
+
 ## Cinematic Travel V5 · Boots perspective correction and partial camp activation
 
 Player approved Last Camp and Ash Rest, but reported the Borrowed Boots F6 frame at 2.5 seconds. The original Squire and boot rack are intentionally foreground artwork; do not force heroes into that near plane or enlarge 288px cels beyond their useful detail. Move only Boots actors to the correct middle road depth, keep the equipment response and the real gate road, reduce local camera zoom and preserve coherent Jack projection. Explicitly allowlist only the two accepted camp IDs, using the accepted preview and actual committed context. Boots and the earlier rescue batch remain in V4 normal play pending acceptance. No new media, rewards, rules or saves.

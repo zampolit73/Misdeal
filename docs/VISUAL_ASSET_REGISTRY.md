@@ -1,3 +1,7 @@
+## Travel V5 · Borrowed Boots artisan work cels
+
+`assets/pixel/travel/cinematic_v5/squire/{pull,thread,glance,press}.webp`: four 470×515 lossless RGBA source-space animation patches on `campfire_without_master/approved_reference.png` (1672×941), rect (230,145,470,515); original pose comes from the base. Local alpha feathering, original bony forearm, no moving seat/ground or replacement card art. Runtime: `scripts/travel/cinematic_v5/squire_v5.gd`. Preview-only until player review. [Asset provenance](qa/travel_camp_v5/README.md).
+
 ## Shared Travel actor source detail
 
 `assets/pixel/travel/actors_hd/`: seven source-detail WebP atlas packages (288×288 cels, logical 96×96): side Knight/Ranger/Mage/Jack, rear NE/NW and living rescue actions. 98 actual source poses repacked from original project paintings, not procedurally generated or enlarged low-res sprites. Combat originals stay intact. Registered under `travel-actor-hd-source-repack`. [Full provenance, QA and rollback](qa/travel_actor_hd/README.md).

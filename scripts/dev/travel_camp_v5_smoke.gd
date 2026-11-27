@@ -1,5 +1,6 @@
 extends SceneTree
 const CAMP := preload("res://scripts/travel/cinematic_v5/camp_v5.gd")
+const SQUIRE := preload("res://scripts/travel/cinematic_v5/squire_v5.gd")
 const VIS := preload("res://scripts/travel/travel_actor_visuals.gd")
 const PARTIES := [["knight"],["ranger"],["mage"],["knight","ranger"],["knight","mage"],["ranger","mage"],["knight","ranger","mage"]]
 var cases := 0
@@ -25,6 +26,23 @@ func _run() -> void:
 					if not stage.available: continue
 					_check(stage.actors.size()==party.size() and stage.roles==party,name+" actual party")
 					_check(is_instance_valid(stage.jack)==companion,name+" actual companion")
+					_check(is_instance_valid(stage.squire)==(id=="borrowed_boots"),name+" Squire is Boots only")
+					if is_instance_valid(stage.squire):
+						var artisan: Node2D = stage.squire
+						var cel: Sprite2D = artisan.sprite
+						_check(artisan.scale==CAMP.BOOTS_PROJECTION and artisan.z_index==5 and cel.position==Vector2(SQUIRE.RECT.position),name+" source registered Squire")
+						var seen: Dictionary = {}
+						var hashes: Dictionary = {}
+						for sample in [0.0,0.4,0.8,1.05,2.6,3.0,3.4,3.8,4.15,6.6]:
+							stage.seek(sample)
+							_check(artisan.pose==SQUIRE.pose_for(sample,action) and cel.visible==(artisan.pose!=SQUIRE.ORIGINAL),name+" deterministic Squire phase")
+							seen[artisan.pose]=true
+							if cel.visible:
+								_check(cel.texture.get_size()==Vector2(SQUIRE.RECT.size),name+" native Squire detail")
+								hashes[artisan.pose]=hash(cel.texture.get_image().get_data())
+						_check(seen.size()==5 and hashes.size()==4,name+" four authored phases plus original")
+						_check(hashes.values().size()==4 and hashes[0]!=hashes[1] and hashes[0]!=hashes[2] and hashes[0]!=hashes[3] and hashes[1]!=hashes[2] and hashes[1]!=hashes[3] and hashes[2]!=hashes[3],name+" unique Squire cels")
+						stage.seek(0)
 					var initial := stage.party_feet.duplicate()
 					for t in [0.0,1.2,2.44,2.82,3.21,3.22,3.55,3.87,4.25,5.12,6.6]:
 						stage.seek(t)
@@ -70,7 +88,7 @@ func _run() -> void:
 					for role in party:
 						_check(stage.party_feet[role].distance_to(initial[role])>100,name+" onward road progression")
 					stage.seek(0)
-					_check(stage.party_feet==initial and not stage.prop_changed,name+" deterministic replay")
+					_check(stage.party_feet==initial and not stage.prop_changed and (not is_instance_valid(stage.squire) or stage.squire.pose==SQUIRE.ORIGINAL),name+" deterministic replay")
 	_check(not stage.configure_scene("last_camp",["ranger"],"rescue_blood"),"no invented Knight")
 	_check(not stage.configure_scene("ash_rest",["mage"],"recruit"),"no invented Ranger")
 	_check(not stage.configure_scene("borrowed_boots",["knight","knight"],"repair"),"no duplicate party")
