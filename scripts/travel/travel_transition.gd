@@ -6,10 +6,16 @@ const PANORAMA := preload("res://scripts/travel/travel_panorama.gd")
 const GROUND_FX := preload("res://scripts/travel/travel_ground_fx.gd")
 const STAGING := preload("res://scripts/travel/travel_staging_v4.gd")
 const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
+const FORGE_V5 := preload("res://scripts/travel/cinematic_v5/forge_v5.gd")
 const WALK_FPS := 6.5
 const BODY_SPEED := 20.0
 static var _soles: Dictionary = {}
 var context: Dictionary = {}
+# Only the production router opts the approved forge in. Existing V4 QA
+# drivers continue to inspect their original baseline, including rollback.
+var use_cinematic_v5 := false
+var forge_v5: Node2D
+var _forge_step := -1
 var data_path := ""
 var data: Resource
 var elapsed := 0.0
@@ -57,6 +63,12 @@ func _ready() -> void:
 	composition.fit_margin = 2.0
 	composition.clear_margin = 2.0
 	stage.add_child(composition)
+	if use_cinematic_v5 and str(context.get("resolved_card_id", "")) == "curse_forge":
+		if _build_forge_v5():
+			_build_exit_ui(str(data.title))
+			available = true
+			update_frame()
+			return
 	if data.panorama_script == null: return
 	panorama = data.panorama_script.new()
 	composition.add_child(panorama)
@@ -109,14 +121,43 @@ func _ready() -> void:
 	var foreground: Node2D = panorama.planes.Foreground
 	foreground.reparent(composition,false)
 	foreground.visible = true
+	_build_exit_ui(str(data.title))
+	available = true
+	update_frame()
+
+func _build_forge_v5() -> bool:
+	# Render the authored z-order into one texture. The existing CanvasGroup
+	# can then cross-dissolve it once, keeping captions/skip above the movie.
+	var viewport := SubViewport.new()
+	viewport.size = Vector2i(1280,720)
+	viewport.world_2d = World2D.new()
+	viewport.disable_3d = true
+	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	stage.add_child(viewport)
+	var film := FORGE_V5.new()
+	viewport.add_child(film)
+	var roles: Array = context.get("party_roles", [])
+	var action := str(context.get("visual_action", ""))
+	if not film.configure(roles, action, bool(context.get("jack_companion", false))):
+		viewport.free()
+		return false
+	forge_v5 = film
+	var picture := TextureRect.new()
+	picture.name = "ForgeV5Picture"
+	picture.texture = viewport.get_texture()
+	picture.size = stage.size
+	picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	picture.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	composition.add_child(picture)
+	return true
+
+func _build_exit_ui(scene_title: String) -> void:
 	exit_shade = ColorRect.new()
 	exit_shade.color = UI.VOID
 	exit_shade.size = stage.size
 	exit_shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	composition.add_child(exit_shade)
-	_build_ui(str(data.title))
-	available = true
-	update_frame()
+	_build_ui(scene_title)
 
 func _build_ui(scene_title: String) -> void:
 	var gradient := Gradient.new()
@@ -202,6 +243,18 @@ func _process(delta: float) -> void:
 
 
 func _play_travel_cues(previous: float) -> void:
+	if is_instance_valid(forge_v5):
+		for beat in forge_v5.strikes:
+			if previous < beat and elapsed >= beat:
+				SoundDirector.play_scene_cue(self, "metal", -10.0)
+		if forge_v5.action != "leave" and previous < FORGE_V5.HANDOFF and elapsed >= FORGE_V5.HANDOFF:
+			SoundDirector.play_scene_cue(self, "coins", -12.0)
+		var lead: Dictionary = forge_v5.current_frame[forge_v5.order[0]]
+		var contact := int(float(lead.phase) / 3.0)
+		if lead.clip == "walk" and contact != _forge_step:
+			_forge_step = contact
+			SoundDirector.play_scene_cue(self, "stone-step", -19.0)
+		return
 	var id := String(context.get("resolved_card_id", ""))
 	if V3.enabled(id):
 		_play_pilot_cues(previous, id)
@@ -252,6 +305,8 @@ func _outcome_cue(id: String, action: String) -> String:
 	return ""
 
 func duration() -> float:
+	if is_instance_valid(forge_v5):
+		return FORGE_V5.DURATION
 	return clampf(float(context.get("duration_sec",4.0)),3.0,5.0)
 
 func update_frame() -> void:
@@ -261,9 +316,11 @@ func update_frame() -> void:
 	stage.position = (viewport_size - Vector2(1280,720)*fit) * 0.5
 	matte.size = viewport_size
 	var time := minf(elapsed,duration())
+	if is_instance_valid(forge_v5):
+		forge_v5.seek(time)
+		_update_exit_ui(time)
+		return
 	panorama.update_time(time,duration())
-	composition.self_modulate.a = smoothstep(0.0,0.36,time)
-	matte.modulate.a = composition.self_modulate.a
 	if panorama.has_method("stage_party"):
 		# Scene-local presentation, using the existing clock/actors/contact FX.
 		panorama.stage_party(actors,role_ids,contacts,ground_fx,time,duration(),data)
@@ -298,6 +355,11 @@ func update_frame() -> void:
 		_stage_legacy_companion()
 	ground_fx.update_contacts(contacts,time)
 	(fog.material as ShaderMaterial).set_shader_parameter("elapsed",time)
+	_update_exit_ui(time)
+
+func _update_exit_ui(time: float) -> void:
+	composition.self_modulate.a = smoothstep(0.0,0.36,time)
+	matte.modulate.a = composition.self_modulate.a
 	var leave := smoothstep(duration()-0.60,duration()-0.15,time)
 	exit_shade.modulate.a = leave * 0.36
 	var text_alpha := smoothstep(0.52,0.92,time) * (1.0-smoothstep(duration()-0.65,duration()-0.18,time))

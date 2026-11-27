@@ -2,9 +2,9 @@
 
 For all future Misdeal imports follow [License Policy](LICENSE_POLICY.md). Run `python scripts/dev/check_licenses.py --inventory` after changed assets/addons/shaders/media and before committing. Registry is initialized from existing evidence; `--release` intentionally fails while the legacy rights audit and actual engine/export evidence are incomplete. Do not publish a player build until release preflight passes. No gameplay/visual changes; resume the previously active Travel V5 local review below.
 
-## Cinematic Travel V5 · next local review (Curse Forge)
+## Cinematic Travel V5 · approved forge live, next batch
 
-Pull main, F6 `scenes/dev/travel_forge_v5_preview.tscn` or QA Hub → TRAVEL → Cinematic Travel V5 — Проклятая кузня (пилот). Smith now uses native-resolution painted frames (not 96px pixel art); check restored detail and smith/hero stature at like depth, hammer on anvil and sparks, rack prop proportions, physical path around anvil, pause at stall, selected item absence after purchase. ←/→ actual allowed outcomes; 1/2/3 or Q/E party; R replay; P pause; H hides QA overlays; M mutes; J tests Ranger companion. F5 still uses V4; no profile reset. Offline staging and isolated headless checks PASS, cannot certify native playback. Await approval of V5 pilot before any live switch/other locations. [Contract/QA](qa/travel_forge_v5/README.md).
+Player approved the HD Curse Forge scene. Pull main, play F5 and resolve «Проклятая кузня»: purchase/refuse, existing narration, intact 6.6 s movie, skip Esc/Space, return to Table once. The dedicated F6 `scenes/dev/travel_forge_v5_preview.tscn` remains the accepted reference; the old Travel Batch02 QA entry still shows V4 rollback. Production routing tests PASS (19 valid contexts / 229 checks, missing-atlas fallback 2/2); native integrated F5 playback not captured here. Other 23 Travel scenes retain V4. Next step: choose coherent batches, stage logical routes and scale, use native painted NPC detail and existing hero identity, retain real outcomes and fallback. No save reset. [Contract/QA](qa/travel_forge_v5/README.md).
 
 ## Travel Staging V4 · next local check
 

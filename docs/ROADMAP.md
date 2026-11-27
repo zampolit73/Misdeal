@@ -4,13 +4,15 @@
 - [ ] Complete legacy assets/code/font/dependency/reference/AI rights audit; resolve or replace unresolved material only with review.
 - [ ] Review actual export file inventory, include required Godot/third-party license bundle, run strict preflight. This is a publication gate, not a blocker for F5/F6 development.
 
-## Cinematic Travel V5 — one-scene staging pilot
+## Cinematic Travel V5 — approved forge, incremental rollout
 
 - [x] Player authorized Curse Forge pilot using coherent human-scale characters and scene props.
 - [x] Separate QA preview with six smith poses, actual hero atlases, shared projection, authored choreography and four outcomes; 19 contexts headless PASS.
 - [x] Restore painted source detail for the smith only, preserving original staging and the existing hero sprites; 19 contexts / 4,471 checks PASS.
-- [ ] Player review F6 native proportions, HD smith, motion and cues; refine if necessary (custom hand grasp remains an optional next pass).
-- [ ] Only after explicit acceptance, propose production activation and scope remaining 23 scenes.
+- [x] Player approved the HD forge pilot on 2026-11-27.
+- [x] Production router selects approved forge only; 19 contexts / 229 checks + 2 fallback checks PASS.
+- [ ] Verify integrated F5 Event→Travel→Table and skip in normal play.
+- [ ] Apply the approved scene-first V5 direction to remaining 23 scenes in coherent batches; preserve the original art identity, actual outcomes and V4 fallback. No automatic scene conversion.
 
 ## Travel Staging V4
 

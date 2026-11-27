@@ -59,6 +59,8 @@ static func after_resolution(context: Node, travel_context: Dictionary) -> void:
 		return
 	var view := packed.instantiate()
 	view.context = travel_context.duplicate(true)
+	# Approved V5 is limited to this event; all other locations retain V4.
+	view.use_cinematic_v5 = str(travel_context.get("resolved_card_id", "")) == "curse_forge"
 	var transition := _get_transition(context)
 	if transition.has_method("present_overlay"):
 		await transition.call("present_overlay",view)

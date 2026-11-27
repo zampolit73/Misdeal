@@ -76,6 +76,7 @@ static func allowed_actions(party: Array) -> Array[String]:
 func _load_image(path: String) -> Image:
 	var image := Image.new()
 	var bytes := FileAccess.get_file_as_bytes(path)
+	if bytes.is_empty(): return null
 	var status := image.load_webp_from_buffer(bytes) if path.ends_with(".webp") else image.load_png_from_buffer(bytes)
 	return image if status == OK else null
 

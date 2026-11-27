@@ -3,6 +3,12 @@
 - Added mandatory commercial licensing policy, machine-readable registry, consolidated notices, local release preflight and isolated tests. Initialized 50 documented third-party audio paths and existing GUT/fonts/Godot records; legacy clearance remains open.
 - Seven isolated Python/Git fixture tests PASS. Strict release remains blocked by unresolved legacy audit and package/engine notice evidence. No runtime/visual/audio changes or Godot runs.
 
+## Cinematic Travel V5 — approved forge live - 27 Nov 2026
+
+- Player approved the detailed smith scene. Route only Curse Forge to the approved 6.6-second cinematic after the actual event resolution; preserve the existing travel UI, audio bus, skip, pause, one-shot navigation and V4 on failure.
+- Remaining 23 event locations keep V4; original F6 preview and V4 QA baseline remain available. No gameplay, reward, combat or save changes.
+- Isolated Godot 4.7.2: 19 production contexts, 229 checks plus 2 missing-atlas fallback checks, zero failures. Native integrated F5 playback pending.
+
 ## Cinematic Travel V5 — painted smith detail - 27 Nov 2026
 
 - Restore all six original detailed smith poses from archived source, packed losslessly at 576×576 per cel; local linear filtering replaces pixel enlargement. Preserve world stature, sole anchor, strike timing, anvil, camera, heroes and live V4.
