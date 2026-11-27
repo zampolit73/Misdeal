@@ -1,3 +1,9 @@
+## Combat Intro Visual V1 - 27 Nov 2026
+
+- Battle Result V2 accepted in production by the player; record acceptance separately from automated native capture.
+- Extend the existing bronze/stone menu material and serif hierarchy to the real battle-start and second-wave title, keeping the original 0.78 s sequence, live encounter, arena and combat behavior. No new art.
+- Godot 4.7.2: 9/9 targeted HUD/result tests, 244 assertions; capture added to existing planning CI. Native visual acceptance pending.
+
 ## Battle Result Visual V2 - 27 Nov 2026
 
 - Implement all three player-approved result states with native bronze/stone menu plates, actual encounter, payout/price and report action inside the result. Keep original actions, saves, gameplay and approved RunEnd unchanged.

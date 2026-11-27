@@ -1,3 +1,7 @@
+## Combat Intro Visual V1
+
+A short 520×130 title plate at (380,265) in the 1280×720 reference area, over the existing arena scrim. Reuse the same alpha-contoured Main Menu V2 secondary nine-slice as Battle Result V2. Warm gold serif caption, ivory actual encounter, one quiet bronze divider. `СХВАТКА` and `ВОЛНА II` share the plate. It is non-interactive, fades with the original 0.22 s entrance / 0.36 s hold / 0.20 s exit, and must be fully hidden before live combat. Keep boss throne intro, sound, combat timing, order execution and preparation UI unchanged.
+
 ## Battle Result Visual V2
 
 Use `scripts/battle/battle_result_visual.gd` with shared `SystemDialog.plate_style` (original menu textures, transparent bevel and focus). At 1280×720: victory 640×360, Last Deal 744×466, final defeat 680×360; all centered over a 52% scrim, with live arena below. Gold/bone headings, muted encounter, ivory description and pale negative price detail. Burgundy marks the primary action, neutral plate the report/refusal; no duplicate chrome or new bespoke art. Retain the exact live costs/payout, fit explicit line breaks, report inside panel only in planned mode and safely focused.

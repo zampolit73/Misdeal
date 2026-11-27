@@ -1,6 +1,10 @@
-## Battle Result Visual V2 · approved concept, implemented
+## Combat Intro Visual V1 · implemented
 
-Player approved all three states on 2026-11-27: victory, Last Deal offer and final defeat. The same native Main Menu V2 bronze/stone and burgundy plates now frame the live result, actual encounter, payout, exact price and existing actions. The planned-mode report is inside the result; Classic has no invented report. Existing rules, save/rollback, journal, reward routing and RunEnd remain unchanged. Godot 4.7.2: 25/25 targeted tests, 469 assertions. The headless gameplay-core attempt stopped at the existing renderer-dependent scene transition; native CI capture now includes three actual result states, not yet executed. Player F5 visual acceptance pending. [QA](qa/battle_result_v2/README.md) and [approved direction](../assets/source_archive/battle_result_v2/README.md).
+The existing battle-start / second-wave caption now shares the Main Menu V2 bronze/stone material and warm serif type with Battle Result V2. A non-interactive 520×130 title plate, actual encounter and a quiet divider replace unframed text; original arena scrim, entrance/hold/exit timing, combat signals and the Bone Warden throne intro remain unchanged. Godot 4.7.2: 9/9 targeted HUD/result tests, 244 assertions (live first fight, second-wave caption lifecycle and no stale overlay). Existing native campaign capture now includes the intro; native visual acceptance pending. [QA](qa/combat_hud_v1/README.md#combat-intro-visual-v1).
+
+## Battle Result Visual V2 · approved in production
+
+Player approved all three states on 2026-11-27: victory, Last Deal offer and final defeat. The same native Main Menu V2 bronze/stone and burgundy plates now frame the live result, actual encounter, payout, exact price and existing actions. The planned-mode report is inside the result; Classic has no invented report. Existing rules, save/rollback, journal, reward routing and RunEnd remain unchanged. Godot 4.7.2: 25/25 targeted tests, 469 assertions. The headless gameplay-core attempt stopped at the existing renderer-dependent scene transition; native CI capture now includes three actual result states, not yet executed. On 2026-11-27 the player confirmed the integrated production result is OK and implemented; the player acceptance gate is closed, without claiming a separate native CI result. [QA](qa/battle_result_v2/README.md) and [approved direction](../assets/source_archive/battle_result_v2/README.md).
 
 ## System Dialog V1 · approved Main Menu V2 family
 

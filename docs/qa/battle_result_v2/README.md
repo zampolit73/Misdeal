@@ -6,7 +6,7 @@
 - Suites: battle result V2, Combat Report V1, System Dialog, Run Save.
 - New checks: actual victory payout incl. relic and side objective, exact Last Deal cost, safe report focus, read-only report, failed save rollback/error inside the dialog, Classic final defeat without report, restored Last Deal offer.
 - The existing gameplay-core runner was attempted headless; it stopped after victory at the reward transition. The unchanged SceneTransition implementation awaits RenderingServer.frame_post_draw; no native framebuffer was available. No end-to-end pass is claimed.
-- Added native capture points to the existing release gameplay-core runner: `battle_result_v2_victory.png`, `battle_result_v2_last_deal.png`, `battle_result_v2_defeat.png`. No new CI job. Native execution and player screenshot acceptance still pending.
+- Added native capture points to the existing release gameplay-core runner: `battle_result_v2_victory.png`, `battle_result_v2_last_deal.png`, `battle_result_v2_defeat.png`. No new CI job. Native CI execution not verified here. The player confirmed the integrated production result is OK and implemented on 2026-11-27 (player acceptance closed).
 
 ## Player checks
 

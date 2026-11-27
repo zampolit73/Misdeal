@@ -14,6 +14,8 @@ const MISDEAL_UI_KIT := preload("res://scripts/ui/misdeal_ui_kit.gd")
 const MISDEAL_DS2_ROLLOUT := preload("res://scripts/ui/misdeal_ds2_rollout.gd")
 const BATTLE_DS3_PASS := preload("res://scripts/battle/battle_ds3_pass.gd")
 const RESULT_VISUAL := preload("res://scripts/battle/battle_result_visual.gd")
+const INTRO_MENU := preload("res://scripts/ui/system_dialog.gd")
+const INTRO_TYPE := preload("res://scripts/class_select/class_select_card_skin.gd")
 const TARGET_PREVIEW_SCRIPT := preload("res://scripts/battle/target_preview.gd")
 const DEPLOYMENT_FLOOR_SCRIPT := preload("res://scripts/battle/deployment_floor_markers.gd")
 const SHEPHERD_WHISTLE_SCRIPT := preload("res://scripts/battle/bone_shepherd_whistle.gd")
@@ -73,6 +75,7 @@ var _arena_ambience: AudioStreamPlayer
 @onready var wizard_commentary_panel: Panel = $WizardCommentaryPanel
 @onready var wizard_commentary_label: Label = $WizardCommentary
 @onready var intro_scrim: ColorRect = $BattleIntroOverlay/IntroScrim
+@onready var intro_plate: Panel = $BattleIntroOverlay/IntroPlate
 @onready var intro_title: Label = $BattleIntroOverlay/IntroTitle
 @onready var intro_encounter: Label = $BattleIntroOverlay/IntroEncounter
 @onready var units_layer: Node2D = $UnitsLayer
@@ -208,6 +211,7 @@ func _ready() -> void:
 	wizard_commentary_panel.visible = false
 	wizard_commentary_label.visible = false
 	intro_scrim.visible = false
+	intro_plate.visible = false
 	intro_title.visible = false
 	intro_encounter.visible = false
 	_configure_side_objective()
@@ -1239,13 +1243,36 @@ func _hide_preparation_hud() -> void:
 	fight_button.visible = false
 	restart_button.visible = false
 
+func _style_combat_intro() -> void:
+	# A short, non-interactive title plate from the approved result/menu family.
+	# The title timing and combat_start signal remain owned by Battle.
+	var plate := INTRO_MENU.plate_style(INTRO_MENU.SECONDARY)
+	plate.axis_stretch_horizontal = StyleBoxTexture.AXIS_STRETCH_MODE_TILE
+	plate.axis_stretch_vertical = StyleBoxTexture.AXIS_STRETCH_MODE_TILE
+	intro_plate.add_theme_stylebox_override("panel", plate)
+	var font := INTRO_TYPE.heading_font()
+	for label: Label in [intro_title, intro_encounter]:
+		var point := 36 if label == intro_title else 21
+		while point > 14 and font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, point).x > label.size.x - 12:
+			point -= 1
+		label.add_theme_font_override("font", font)
+		label.add_theme_font_size_override("font_size", point)
+		label.add_theme_color_override("font_color", Color("e8cb95") if label == intro_title else Color("e5dbc4"))
+		label.add_theme_color_override("font_shadow_color", Color("100c0b"))
+		label.add_theme_constant_override("shadow_offset_x", 0)
+		label.add_theme_constant_override("shadow_offset_y", 1)
+
+
 func _play_combat_intro(caption: String = "СХВАТКА") -> void:
 	intro_scrim.visible = true
+	intro_plate.visible = true
 	intro_title.visible = true
 	intro_encounter.visible = true
 	intro_title.text = caption
 	intro_encounter.text = encounter.title
+	_style_combat_intro()
 	intro_scrim.modulate.a = 0.0
+	intro_plate.modulate.a = 0.0
 	intro_title.modulate.a = 0.0
 	intro_encounter.modulate.a = 0.0
 	intro_title.scale = Vector2(0.92, 0.92)
@@ -1254,6 +1281,7 @@ func _play_combat_intro(caption: String = "СХВАТКА") -> void:
 	var appear := create_tween()
 	appear.set_parallel(true)
 	appear.tween_property(intro_scrim, "modulate:a", 1.0, 0.16)
+	appear.tween_property(intro_plate, "modulate:a", 1.0, 0.16)
 	appear.tween_property(intro_title, "modulate:a", 1.0, 0.16)
 	appear.tween_property(intro_encounter, "modulate:a", 1.0, 0.22)
 	appear.tween_property(intro_title, "scale", Vector2.ONE, 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
@@ -1264,11 +1292,13 @@ func _play_combat_intro(caption: String = "СХВАТКА") -> void:
 	var disappear := create_tween()
 	disappear.set_parallel(true)
 	disappear.tween_property(intro_scrim, "modulate:a", 0.0, 0.20)
+	disappear.tween_property(intro_plate, "modulate:a", 0.0, 0.20)
 	disappear.tween_property(intro_title, "modulate:a", 0.0, 0.20)
 	disappear.tween_property(intro_encounter, "modulate:a", 0.0, 0.18)
 	await disappear.finished
 
 	intro_scrim.visible = false
+	intro_plate.visible = false
 	intro_title.visible = false
 	intro_encounter.visible = false
 

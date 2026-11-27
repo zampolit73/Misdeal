@@ -15,7 +15,10 @@
 - [x] System Dialog V1: approved Main Menu V2 confirmations and deferred-layout fix, 17/17 targeted tests.
 - [ ] System Dialog V1 native/player visual acceptance. [QA](qa/system_dialog_v1/README.md).
 - [x] Battle Result Visual V2 — all three concepts approved by player; native result controls migrated, 25/25 targeted tests (469 assertions). [QA](qa/battle_result_v2/README.md).
-- [ ] Battle Result Visual V2 native visual acceptance (existing gameplay-core CI capture and player F5).
+- [x] Battle Result Visual V2 — player accepted the integrated production result on 2026-11-27. Native CI capture is separate from player acceptance.
+
+- [x] Combat Intro Visual V1 — extend approved menu/result material to the actual battle start and wave II caption; 9/9 targeted tests, 244 assertions.
+- [ ] Combat Intro V1 native visual acceptance. [QA](qa/combat_hud_v1/README.md#combat-intro-visual-v1).
 
 ## Wizard Wager Visual V1
 

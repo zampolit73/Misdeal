@@ -1,3 +1,7 @@
+## Combat Intro Visual V1 · same systemic material
+
+Extend the already player-approved Main Menu V2 / Battle Result V2 material to the existing non-interactive battle-start / second-wave caption only. Same actual encounter, existing delay, fade and combat signal; no new art or flow. Preserve approved Combat Planning, Warden throne intro and arena.
+
 ## Battle Result Visual V2 · unified result family
 
 On 2026-11-27 the player approved the exact archived victory, Last Deal and final defeat visual direction. Reuse the actual System Dialog/Main Menu plate styles on existing Battle result controls; preserve encounter, real payout/price, acceptance/refusal, rollback, report, routing and the already approved RunEnd. The report is read-only and inside the result in planned mode, safely focused before a decisive Last Deal action. Classic must not invent a report. No new battle rules, art or reward amounts.

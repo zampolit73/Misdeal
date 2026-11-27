@@ -451,6 +451,9 @@ func capture_campaign_report() -> void:
 	var driver: Node = battle.combat_plan_controller
 	PRESETS.apply(driver.plans, "staged")
 	driver.start_planned_battle()
+	await create_timer(0.30).timeout
+	assert(battle.intro_plate.visible and not battle.combat_live)
+	await capture("campaign_combat_intro_v1")
 	var previous_scale := Engine.time_scale
 	Engine.time_scale = 4.0
 	var deadline := Time.get_ticks_msec() + 30000

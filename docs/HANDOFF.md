@@ -1,6 +1,10 @@
-## Battle Result Visual V2 · native acceptance
+## Combat Intro Visual V1 · next native acceptance
 
-All three approved result concepts are implemented. F5: win a planned battle, open/close «РАЗБОР ПРИКАЗОВ», claim the reward; on a disposable run lose, inspect the actual Last Deal price, accept or refuse; a second defeat must present the final result and route to the separately approved RunEnd. Classic must omit the report. Keep real encounter/payout/cost text and all original rules. Targeted Godot 4.7.2: 25/25 tests, 469 assertions. Native screenshots are now wired into the existing gameplay-core release CI, not yet captured locally (headless stalls on renderer-dependent scene swaps). [QA and reference](qa/battle_result_v2/README.md). Continue outstanding native acceptance gates below and the Act I control run.
+Battle Result V2 is player-accepted on 2026-11-27. The next local check is the newly restyled short «СХВАТКА» / «ВОЛНА II» banner: start a fight and, if available, a second wave. It should share the menu/result's bronze frame, show the actual encounter and disappear before live orders. The original delay, scrim, Warden intro and combat are unchanged. Godot 4.7.2: 9/9 targeted tests (244 assertions); native capture is wired into existing planning CI, not run locally. [QA](qa/combat_hud_v1/README.md#combat-intro-visual-v1). After visual acceptance, avoid repainting approved systems; move to remaining concrete visual gates and the continuous Act I control run.
+
+## Battle Result Visual V2 · accepted in production
+
+The player confirmed the integrated result is OK and implemented on 2026-11-27. Preserve it. Optional regression route, not an outstanding acceptance task: F5: win a planned battle, open/close «РАЗБОР ПРИКАЗОВ», claim the reward; on a disposable run lose, inspect the actual Last Deal price, accept or refuse; a second defeat must present the final result and route to the separately approved RunEnd. Classic must omit the report. Keep real encounter/payout/cost text and all original rules. Targeted Godot 4.7.2: 25/25 tests, 469 assertions. Native screenshots are now wired into the existing gameplay-core release CI, not yet captured locally (headless stalls on renderer-dependent scene swaps). [QA and reference](qa/battle_result_v2/README.md). Continue outstanding native acceptance gates below and the Act I control run.
 
 ## System Dialog V1 · native acceptance
 

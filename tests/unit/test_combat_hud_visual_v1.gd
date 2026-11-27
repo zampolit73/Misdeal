@@ -2,6 +2,7 @@ extends GutTest
 
 const BATTLE := preload("res://scenes/battle/battle.tscn")
 const HUD := preload("res://scripts/battle/planning/battle_live_hud.gd")
+const INTRO_MENU := preload("res://scripts/ui/system_dialog.gd")
 
 func after_each() -> void:
 	RunState.reset_run()
@@ -61,8 +62,14 @@ func test_live_campaign_reads_executors_and_transition_notice() -> void:
 		controller.plans[role].orders.assign([_order("assault"), _order("defense")])
 	controller.start_planned_battle()
 	assert_false(hud.visible, "No HUD during the intro")
+	assert_false(battle.combat_live)
+	_assert_intro_plate(battle, "СХВАТКА")
 	await get_tree().create_timer(1.05).timeout
 	assert_true(battle.combat_live)
+	assert_false(battle.intro_plate.visible)
+	assert_false(battle.intro_title.visible)
+	assert_false(battle.intro_encounter.visible)
+	assert_false(battle.intro_scrim.visible)
 	assert_true(hud.visible)
 	assert_eq(controller.executors.size(), 3)
 	# Freeze unit movement only in this test after real combat startup.
@@ -127,6 +134,42 @@ func test_solo_and_classic_do_not_show_phantom_rows() -> void:
 	assert_eq(ui.hud.get_node("OrderRow1/Remaining").text, "до конца")
 	assert_false(ui.hud.get_node("OrderRow2").visible)
 	assert_false(ui.hud.get_node("OrderRow3").visible)
+
+func test_wave_two_reuses_noninteractive_intro_plate_and_dismisses_it() -> void:
+	var battle := _new_battle(false)
+	assert_false(battle.intro_plate.visible)
+	# Exercise the same authored second-wave presentation directly, not a
+	# fabricated combat result or a change to the encounter's wave rules.
+	battle._play_combat_intro("ВОЛНА II")
+	_assert_intro_plate(battle, "ВОЛНА II")
+	await get_tree().create_timer(0.30).timeout
+	assert_almost_eq(battle.intro_plate.modulate.a, 1.0, 0.01)
+	assert_true(battle.intro_title.visible)
+	assert_false(battle.combat_live)
+	await get_tree().create_timer(0.65).timeout
+	assert_false(battle.intro_plate.visible)
+	assert_false(battle.intro_title.visible)
+	assert_false(battle.intro_encounter.visible)
+	assert_false(battle.intro_scrim.visible)
+	assert_false(battle.combat_live)
+
+
+func _assert_intro_plate(battle: Control, caption: String) -> void:
+	var plate: Panel = battle.intro_plate
+	assert_true(plate.visible)
+	assert_eq(plate.size, Vector2(520, 130))
+	var style := plate.get_theme_stylebox("panel") as StyleBoxTexture
+	assert_not_null(style)
+	assert_eq(style.texture, INTRO_MENU.plate_style(INTRO_MENU.SECONDARY).texture)
+	assert_eq(plate.mouse_filter, Control.MOUSE_FILTER_IGNORE)
+	assert_eq(plate.get_node("Divider").mouse_filter, Control.MOUSE_FILTER_IGNORE)
+	assert_eq(battle.intro_title.text, caption)
+	assert_eq(battle.intro_encounter.text, battle.encounter.title)
+	for label: Label in [battle.intro_title, battle.intro_encounter]:
+		assert_eq(label.mouse_filter, Control.MOUSE_FILTER_IGNORE)
+		assert_true(plate.get_global_rect().encloses(label.get_global_rect()))
+		assert_lte(label.get_theme_font("font").get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, label.get_theme_font_size("font_size")).x, label.size.x)
+
 
 func _new_battle(trio: bool) -> Control:
 	RunState.reset_run()
