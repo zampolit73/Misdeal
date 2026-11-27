@@ -1,3 +1,8 @@
+## Cinematic Travel V5 — camp and equipment review — 27 Nov 2026
+
+- Stage Last Camp, Ash Rest and Borrowed Boots as three 6.6 s F6 films. Existing HD living heroes/Jack, single real Warrior/Ranger recruitment, actual trainee gestures, original equipment and abandonment outcomes, scene-relative routes and scale.
+- Godot 4.7.2 isolated: 122 contexts / 18,418 checks / zero failures; offline staging review, native visual acceptance pending. No asset, rule, save or live-router changes (7/24 live, six staged). [QA](docs/qa/travel_camp_v5/README.md).
+
 ## Travel actor source-detail rollout — 27 Nov 2026
 
 - Recovered real painted detail from the existing original hero, Jack, rear walk and living-pose sources. 98 high-detail cels at 288×288, rendered at the existing 96×96 logical geometry with linear filtering.

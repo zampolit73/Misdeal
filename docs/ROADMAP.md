@@ -27,7 +27,9 @@
 - [x] Stage Black Altar, Chained Prisoner and Jack in isolated F6: 128 contexts / 15,723 checks PASS. [QA](qa/travel_rescue_v5/README.md).
 - [x] Replace rejected defeat-frame crouches/recovery with original living cels; correct Jack standing-scale projection. 128 contexts / 20,861 checks PASS.
 - [ ] Player visual acceptance of revised ritual/prisoner/companion preview; only then enable the three exact resolved IDs with V4 fallback.
-- [ ] Apply the approved scene-first V5 direction to remaining 14 scenes beyond this candidate in coherent batches; preserve the original art identity, actual outcomes and V4 fallback. No automatic scene conversion.
+- [x] Stage Last Camp, Ash Rest and Borrowed Boots in isolated F6: 122 contexts / 18,418 checks PASS. [QA](qa/travel_camp_v5/README.md).
+- [ ] Native camp/equipment preview acceptance before enabling any of the three IDs.
+- [ ] Apply the approved scene-first V5 direction to eleven remaining unstaged scenes in coherent batches; preserve the original art identity, actual outcomes and V4 fallback. No automatic scene conversion.
 
 ## Travel Staging V4
 

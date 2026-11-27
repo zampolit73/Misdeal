@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · camp and equipment candidate scope
+
+Preserve approved Last Camp, Ash Rest and Borrowed Boots scenery, original exact catalog states, and shared native-detail living hero and Jack library. Use an accessible shelter/stone/table/bench interaction target; actual trainee when selected, single settled-to-rising recruit handoff, abandonment keeps original seated painting, passing does not stop for artificial action. Boot layers use their original registered projection, exactly one camp outcome and the authored local strap motion. No new media or bespoke grasp; no gameplay, save or live-router changes. Separate F6 review and player acceptance before production opt-in. [QA](qa/travel_camp_v5/README.md).
+
 ## Travel actor visual language · retain source detail at cinematic scale
 
 At player request, main-unit Travel renderers use original painted source detail instead of nearest-filtered enlarged 96px combat sprites. Shared cinematic-only 288px source-detail textures have 96px logical size, exact low-resolution logical reference for grounding/height and preserved frame order/cadence. Both rear movement directions and custom living recovery poses included; combat resources remain byte-identical. Jack uses 0.95 m adult standing-size projection, fixed 56px reference and separate route spacing throughout Travel. Missing optional source-detail pack falls back to original sprites. No new V5 location activation or visual design change. [Asset evidence](qa/travel_actor_hd/README.md).
