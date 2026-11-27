@@ -1,12 +1,14 @@
 extends Control
 ## Places the live collection over the supplied 1280×720 cabinet artwork.
 
+const VISUAL := preload("res://scripts/ui/wizard_archive_visual_v3.gd")
 const ART := preload("res://scripts/ui/artifact_art_catalog.gd")
 const CARD_SKIN := preload("res://scripts/class_select/class_select_card_skin.gd")
 const LAYOUT := preload("res://assets/pixel/ui/wizard_archive_v21/layout_1280x720.json")
 const ART_PATH := "res://assets/pixel/ui/wizard_archive_v21/"
-const GOLD := Color("#f6d69b")
-const INK := Color("#381c0f")
+const GOLD := VISUAL.GOLD
+const COPY := VISUAL.COPY
+const MUTED := VISUAL.MUTED
 
 var _buttons: Array[Button] = []
 var _ids: Array[String] = []
@@ -29,11 +31,11 @@ func _ready() -> void:
 	_build_niches()
 
 	var details: Dictionary = LAYOUT.data.details
-	_status = caption(self, rect(details.status), "", 17, INK)
+	_status = caption(self, rect(details.status), "", 17, MUTED)
 	_portrait_area = rect(details.image)
 	_portrait = picture(self, null, _portrait_area)
 	_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_title = caption(self, rect(details.title), "", 23, INK)
+	_title = caption(self, rect(details.title), "", 23, GOLD)
 	_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_title.clip_text = true
 	_description = RichTextLabel.new()
@@ -41,8 +43,9 @@ func _ready() -> void:
 	_description.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_description.add_theme_font_override("normal_font", CARD_SKIN.heading_font())
 	_description.add_theme_font_size_override("normal_font_size", 19)
-	_description.add_theme_color_override("default_color", INK)
+	_description.add_theme_color_override("default_color", COPY)
 	put(self, _description, rect(details.description))
+	VISUAL.plaque(self, Rect2(912, 615, 187, 44), true)
 	_count = caption(self, rect(details.count), "", 17, GOLD)
 	_notice = caption(self, Rect2(350, 685, 580, 28), "", 16, GOLD)
 	_notice.hide()
@@ -100,10 +103,11 @@ func _build_niches() -> void:
 		niche.button_group = group
 		var highlight := picture(niche, asset(slot.highlight), Rect2(Vector2.ZERO, area.size))
 		highlight.name = "Highlight"
+		VISUAL.mute_highlight(highlight)
 		highlight.hide()
 		var artwork := picture(niche, null, Rect2())
 		artwork.name = "Artwork"
-		var question := caption(niche, Rect2(), "?", 23, Color("#c2956c"))
+		var question := caption(niche, Rect2(), "?", 23, MUTED)
 		question.name = "UnknownMark"
 		niche.pressed.connect(_select.bind(index))
 		niche.focus_entered.connect(_update_highlight.bind(niche))

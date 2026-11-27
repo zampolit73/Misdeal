@@ -1,3 +1,7 @@
+## Wizard Archive Visual V3
+
+[Player-approved design reference](../assets/source_archive/wizard_archive_v3/approved_reference.webp) (ImageGen concept, archived WebP). Runtime reuses the four original V2/V2.1 plates and corresponding highlight textures with `wizard_archive_grade.gdshader`; menu primary/secondary plates and the original library stone supply the shared chrome. No replacement of live relic, enemy, portrait or seal images and no new baked copy. [QA](qa/wizard_archive_v3/README.md).
+
 ## System Dialog V1
 
 No new runtime textures. Reuses `assets/pixel/main/menu_v2/{primary,secondary}.webp` with nine-slice corners, native stone/bronze panel and live text. The [approved concept](../assets/source_archive/system_dialog_v1/approved_reference.webp) is archived with .gdignore and is not used as a baked UI. [QA](qa/system_dialog_v1/README.md).

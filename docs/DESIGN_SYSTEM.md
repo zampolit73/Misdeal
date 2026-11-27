@@ -1,3 +1,7 @@
+## Wizard Archive Visual V3
+
+Use `scripts/ui/wizard_archive_visual_v3.gd` with the local `wizard_archive_grade.gdshader` and the existing Menu V2 plate styles. At 1280×720, retain the existing four page layout JSONs, shared title/back/tab controls and 13/26 collection geometry. Darken wood, temper orange gilding and saturated red velvet; dark stone detail surfaces with #E8CB95 headings, #E5DBC4 copy, #B99B80 secondary labels and #E7A299 defeat. Primary burgundy denotes selected tab and live counter; native bevel focus, no extra rectangular outline. Native item artwork, data and hit areas are not filtered. [Approved concept](../assets/source_archive/wizard_archive_v3/approved_reference.webp).
+
 ## HUD Visual V2
 
 Use `scripts/ui/hud_visual_v2.gd` and the shared alpha-contoured `SystemDialog.plate_style`. At 1280×720: Table statistics (312,13,656,54), expanding upward to (312,0,656,67) for conditions; Wizard (336,66,608,40). Five 13/24 pt label/value groups, gold/bone hierarchy, thin rules, 16 pt italic live dialogue with fit and overflow tooltip. Battle encounter/status (23,12,837,96), progress/modifiers (873,12,385,96); 26 pt encounter, 17 pt guidance, 23 pt progress, 14–15 pt modifier hierarchy. Keep actual banner, medallion, team labels and conditional data; extra conditions summarized only in visible space, always available in the full modifier tooltip. Keep existing card/arena/planner geometry and input behavior. [Approved references](../assets/source_archive/hud_visual_v2/README.md).

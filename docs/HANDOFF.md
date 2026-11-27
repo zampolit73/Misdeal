@@ -1,3 +1,7 @@
+## Wizard Archive Visual V3 · next native acceptance
+
+All four archive tabs use the player-approved V3 presentation. Pull main, F5 and open «АРХИВ ВОЛШЕБНИКА»; switch through Relics, Bestiary, Chronicle and Challenges. Check the subdued cabinet, dark detail plaque, legible actual copy, focused/selected states and Esc; from Table, Archive must return to the same deal. No new run or reset needed. Godot 4.7.2 headless: 8/8 targeted tests, 153 assertions. Native framebuffer not captured locally; visual acceptance remains open. [Concept and QA](qa/wizard_archive_v3/README.md).
+
 ## HUD Visual V2 · next native acceptance
 
 Both localized header concepts were player-approved and are implemented. Pull main and F5: inspect Table's five live counters, Wizard dialogue and old baked contours; choose a fight and inspect encounter/guidance, progress, real modifier rows and their full hover tooltip. Check a conditional state or second wave if encountered naturally; no special run is required. The approved cards, artwork, D300 banner/medallion, arena and bottom V4 planner are unchanged. Godot 4.7.2: 13/13 targeted tests, 344 assertions; D289/D291 headless smoke PASS. Native framebuffer not captured locally; player acceptance remains open. [QA and references](qa/hud_visual_v2/README.md). Then continue any remaining concrete visual gates and Act I control run.

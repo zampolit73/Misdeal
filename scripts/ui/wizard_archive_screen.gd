@@ -1,5 +1,6 @@
 extends Control
 
+const VISUAL := preload("res://scripts/ui/wizard_archive_visual_v3.gd")
 const ARCHIVE := preload("res://scripts/core/wizard_archive.gd")
 const ROUTER := preload("res://scripts/core/scene_router.gd")
 const RELIQUARY := preload("res://scripts/ui/wizard_reliquary.gd")
@@ -16,7 +17,6 @@ var _chronicle: Control
 var _challenges: Control
 var _plate: TextureRect
 var _reliquary_plate: Texture2D
-var _tab_states: Array[TextureRect] = []
 var _tab_captions: Array[Label] = []
 var _active_tab := 0
 
@@ -28,10 +28,12 @@ func _ready() -> void:
 	_plate = RELIQUARY.picture(self, _reliquary_plate, Rect2(Vector2.ZERO, canvas))
 
 	var title: Dictionary = design.title
+	VISUAL.plaque(self, Rect2(326, 27, 511, 80), true).name = "ArchiveV3Title"
 	RELIQUARY.caption(self, RELIQUARY.rect(title.rect), "АРХИВ ВОЛШЕБНИКА", int(title.font_size), RELIQUARY.GOLD)
 	var back_area := RELIQUARY.rect(design.back.rect)
 	var back_caption := "К столу [Esc]" if opens_over_table else "В меню [Esc]"
 	var back := RELIQUARY.hotspot(self, back_area, back_caption)
+	VISUAL.style_button(back, true)
 	var back_text := RELIQUARY.caption(back, Rect2(Vector2.ZERO, back_area.size),
 		back_caption, int(design.back.font_size), RELIQUARY.GOLD)
 	back.focus_entered.connect(func() -> void: back_text.modulate = Color(1.2, 1.2, 1.2))
@@ -42,12 +44,10 @@ func _ready() -> void:
 		var index := int(tab.index)
 		var area := RELIQUARY.rect(tab.rect)
 		var button := RELIQUARY.hotspot(self, area, tab.label)
-		var active := RELIQUARY.picture(button, RELIQUARY.asset(tab.active_texture), Rect2(Vector2.ZERO, area.size))
 		var text_area := RELIQUARY.rect(tab.text_rect)
 		text_area.position -= area.position
 		var caption := RELIQUARY.caption(button, text_area, tab.label, 22, RELIQUARY.GOLD)
 		_tabs.append(button)
-		_tab_states.append(active)
 		_tab_captions.append(caption)
 		button.pressed.connect(_show_tab.bind(index))
 		button.focus_entered.connect(_update_tab.bind(index))
@@ -65,8 +65,7 @@ func _ready() -> void:
 func _update_tab(index: int) -> void:
 	var button := _tabs[index]
 	var active := index == _active_tab
-	_tab_states[index].visible = active or button.has_focus() or button.is_hovered()
-	_tab_states[index].modulate.a = 1.0 if active else 0.48
+	VISUAL.style_button(button, active)
 	_tab_captions[index].modulate = Color(1.18, 1.18, 1.18) if button.has_focus() else Color.WHITE
 
 
@@ -99,6 +98,7 @@ func _show_tab(index: int) -> void:
 		2: _plate.texture = CHRONICLE.PLATE
 		3: _plate.texture = CHALLENGES.PLATE
 		_: _plate.texture = _reliquary_plate
+	VISUAL.present_page(_plate, index)
 	if is_bestiary and _bestiary == null:
 		_bestiary = BESTIARY.new()
 		add_child(_bestiary)

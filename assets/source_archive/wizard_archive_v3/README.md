@@ -1,0 +1,3 @@
+# Wizard Archive Visual V3 · approved direction
+
+2026-11-27. [Approved concept](approved_reference.webp) archived from the generated visual review (original 1672×941, WebP copy). User approved the restrained menu-family bronze and dark detail surface on the Reliquary and its extension to all four archive tabs. This is not a native runtime capture. Preserve real V2/V2.1 cabinet geometry, original relic/enemy art, records and seals. Reuse the actual existing Menu V2 styles and grade the original background/ornaments only; live text and art remain native. [Implementation and QA](../../../docs/qa/wizard_archive_v3/README.md).

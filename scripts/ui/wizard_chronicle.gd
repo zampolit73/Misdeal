@@ -8,7 +8,7 @@ const LAYOUT := preload("res://assets/pixel/ui/wizard_chronicle_v2/layout_1280x7
 const PLATE := preload("res://assets/pixel/ui/wizard_chronicle_v2/chronicle_plate.webp")
 const ASSETS := "res://assets/pixel/ui/wizard_chronicle_v2/"
 const CARDS := ["—", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII"]
-const DEFEAT_INK := Color("#6b221a")
+const DEFEAT_INK := UI.VISUAL.DEFEAT
 
 var _records: Array[Dictionary] = []
 var _rows: Array[Button] = []
@@ -42,7 +42,7 @@ func _ready() -> void:
 	_page_label = UI.caption(self, UI.rect(pages.text), "", 20, UI.GOLD)
 	_next = _page_button(UI.rect(pages.next), "›", "Следующая страница", 1)
 	_build_details(design.detail)
-	_empty = UI.caption(self, UI.rect(design.empty_message), "Здесь появятся завершённые забеги.", 23, UI.INK)
+	_empty = UI.caption(self, UI.rect(design.empty_message), "Здесь появятся завершённые забеги.", 23, UI.COPY)
 	_empty.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 
 
@@ -67,7 +67,9 @@ func _build_rows(rows: Array) -> void:
 		button.toggle_mode = true
 		button.button_group = group
 		var highlight := load(ASSETS + String(row.highlight)) as Texture2D
-		UI.picture(button, highlight, Rect2(Vector2.ZERO, area.size)).name = "Highlight"
+		var glow := UI.picture(button, highlight, Rect2(Vector2.ZERO, area.size))
+		glow.name = "Highlight"
+		UI.VISUAL.mute_highlight(glow)
 		UI.caption(button, _local_rect(row.reached_rect, area.position), "", 23, UI.GOLD).name = "Card"
 		var result := UI.caption(button, _local_rect(row.outcome_rect, area.position), "", 21, UI.GOLD)
 		result.name = "Outcome"
@@ -91,11 +93,11 @@ func _build_details(design: Dictionary) -> void:
 	_details = Control.new()
 	_details.mouse_filter = MOUSE_FILTER_IGNORE
 	add_child(_details)
-	_outcome = UI.caption(_details, UI.rect(design.outcome), "", 32, UI.INK)
-	_date = UI.caption(_details, UI.rect(design.date), "", 17, UI.INK)
+	_outcome = UI.caption(_details, UI.rect(design.outcome), "", 32, UI.GOLD)
+	_date = UI.caption(_details, UI.rect(design.date), "", 17, UI.COPY)
 	_date.clip_text = true
-	UI.caption(_details, UI.rect(design.party_label), "Отряд", 20, UI.INK)
-	_loot_label = UI.caption(_details, UI.rect(design.relic_label), "", 20, UI.INK)
+	UI.caption(_details, UI.rect(design.party_label), "Отряд", 20, UI.COPY)
+	_loot_label = UI.caption(_details, UI.rect(design.relic_label), "", 20, UI.COPY)
 	for area: Array in design.party_slots:
 		var portrait := UI.picture(_details, null, UI.rect(area))
 		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
@@ -106,12 +108,12 @@ func _build_details(design: Dictionary) -> void:
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		icon.mouse_filter = MOUSE_FILTER_PASS
 		_relics.append(icon)
-	UI.caption(_details, UI.rect(design.progress_label), "Достигнутая карта", 19, UI.INK)
+	UI.caption(_details, UI.rect(design.progress_label), "Достигнутая карта", 19, UI.COPY)
 	for index in design.progress_slots.size():
-		_progress.append(UI.caption(_details, UI.rect(design.progress_slots[index]), CARDS[index + 1], 16, UI.INK))
-	_style = UI.caption(_details, UI.rect(design.style), "", 18, UI.INK)
-	_oath = UI.caption(_details, UI.rect(design.oath), "", 18, UI.INK)
-	_last_deal = UI.caption(_details, UI.rect(design.last_deal), "", 18, UI.INK)
+		_progress.append(UI.caption(_details, UI.rect(design.progress_slots[index]), CARDS[index + 1], 16, UI.COPY))
+	_style = UI.caption(_details, UI.rect(design.style), "", 18, UI.COPY)
+	_oath = UI.caption(_details, UI.rect(design.oath), "", 18, UI.COPY)
+	_last_deal = UI.caption(_details, UI.rect(design.last_deal), "", 18, UI.COPY)
 
 
 func _show_page(page: int) -> void:
@@ -153,7 +155,7 @@ func _select(index: int) -> void:
 	var record := _records[_page * _page_size + index]
 	var card := int(record.card)
 	_outcome.text = _result(record).to_upper()
-	_outcome.add_theme_color_override("font_color", UI.INK if record.won else DEFEAT_INK)
+	_outcome.add_theme_color_override("font_color", UI.GOLD if record.won else DEFEAT_INK)
 	_date.text = "Карта %s  ·  %s" % [CARDS[card], _display_date(record.date)]
 	_date.tooltip_text = _date.text
 	_date.mouse_filter = MOUSE_FILTER_PASS
@@ -178,10 +180,10 @@ func _select(index: int) -> void:
 			icon.tooltip_text = RunState.get_artifact(id).title
 	for slot in _progress.size():
 		var reached := slot + 1 == card
-		_progress[slot].add_theme_color_override("font_color", DEFEAT_INK if reached else UI.INK)
+		_progress[slot].add_theme_color_override("font_color", UI.GOLD if reached else UI.MUTED)
 		_progress[slot].add_theme_font_size_override("font_size", 22 if reached else 16)
 		_progress[slot].add_theme_constant_override("outline_size", 2 if reached else 0)
-		_progress[slot].add_theme_color_override("font_outline_color", Color("#f8d27d"))
+		_progress[slot].add_theme_color_override("font_outline_color", Color("#38271e"))
 	var style: String = "Классический стиль" if record.style.is_empty() else CHARTER.STYLES[record.role][1]
 	_style.text = "Стиль: %s" % style
 	_oath.text = "Клятва: %s" % CHARTER.OATHS[int(record.oath)][0]
@@ -234,6 +236,7 @@ func _update_highlight(button: Button) -> void:
 
 func _page_button(area: Rect2, glyph: String, title: String, direction: int) -> Button:
 	var button := UI.hotspot(self, area, title)
+	UI.VISUAL.style_button(button)
 	UI.caption(button, Rect2(Vector2.ZERO, area.size), glyph, 30, UI.GOLD).name = "Arrow"
 	button.pressed.connect(_step_page.bind(direction))
 	button.focus_entered.connect(_update_arrow.bind(button))

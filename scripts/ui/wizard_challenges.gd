@@ -34,12 +34,14 @@ func _ready() -> void:
 	var detail: Dictionary = design.detail
 	_seal = UI.picture(self, null, UI.rect(detail.art_rect))
 	_seal.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_title = UI.caption(self, UI.rect(detail.title_rect), "", 26, UI.INK)
+	_title = UI.caption(self, UI.rect(detail.title_rect), "", 26, UI.GOLD)
+	UI.VISUAL.plaque(self, Rect2(838, 390, 178, 41), true)
 	_status = UI.caption(self, UI.rect(detail.status_rect), "", 16, UI.GOLD)
-	UI.caption(self, UI.rect(detail.condition_heading_rect), "Условие", 19, UI.INK)
+	UI.caption(self, UI.rect(detail.condition_heading_rect), "Условие", 19, UI.COPY)
 	_condition = _body(UI.rect(detail.condition_rect))
-	_effect_heading = UI.caption(self, UI.rect(detail.effect_heading_rect), "Эффект", 19, UI.INK)
+	_effect_heading = UI.caption(self, UI.rect(detail.effect_heading_rect), "Эффект", 19, UI.COPY)
 	_effect = _body(UI.rect(detail.effect_rect))
+	UI.VISUAL.plaque(self, Rect2(775, 606, 307, 49), true)
 	_count = UI.caption(self, UI.rect(detail.count_rect), "", 21, UI.GOLD)
 
 
@@ -119,6 +121,7 @@ func _add_seal_button(layout: Dictionary, entry: Dictionary, group: ButtonGroup)
 	var glow := UI.picture(button, load(ASSETS + String(layout.selected_texture)) as Texture2D,
 		Rect2(Vector2.ZERO, area.size))
 	glow.name = "Highlight"
+	UI.VISUAL.mute_highlight(glow)
 	glow.hide()
 	button.pressed.connect(_select.bind(int(layout.index)))
 	button.focus_entered.connect(_update_highlight.bind(button))
@@ -157,6 +160,6 @@ func _body(area: Rect2) -> RichTextLabel:
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	label.add_theme_font_override("normal_font", CARD_SKIN.heading_font())
 	label.add_theme_font_size_override("normal_font_size", 18)
-	label.add_theme_color_override("default_color", UI.INK)
+	label.add_theme_color_override("default_color", UI.COPY)
 	UI.put(self, label, area)
 	return label

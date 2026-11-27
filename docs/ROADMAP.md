@@ -1,5 +1,7 @@
 ## Interface Polish 2.0
 
+- [x] Wizard Archive Visual V3 - player-approved visual family integrated across all four tabs; eight targeted tests passed. [QA](qa/wizard_archive_v3/README.md).
+- [ ] Wizard Archive Visual V3 - native player visual acceptance (four tabs).
 - [x] Pause Menu V1 — merged [#159](https://github.com/zampolit73/Misdeal/pull/159).
 - [x] Card Inspection V1 — merged [#160](https://github.com/zampolit73/Misdeal/pull/160).
 - [x] Combat HUD V1 — merged [#161](https://github.com/zampolit73/Misdeal/pull/161).

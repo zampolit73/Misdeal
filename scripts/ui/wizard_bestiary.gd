@@ -32,8 +32,6 @@ func _ready() -> void:
 	var design: Dictionary = LAYOUT.data
 	_unknown = load(ART_PATH + String(design.unknown_texture)) as Texture2D
 	var group := ButtonGroup.new()
-	var arch_glow := CanvasItemMaterial.new()
-	arch_glow.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 	for slot: Dictionary in design.slots:
 		var index := int(slot.index)
 		var area := UI.rect(slot.rect)
@@ -43,7 +41,7 @@ func _ready() -> void:
 		var highlight := load(ART_PATH + String(slot.highlight)) as Texture2D
 		var glow := UI.picture(button, highlight, Rect2(Vector2.ZERO, area.size))
 		glow.name = "Highlight"
-		glow.material = arch_glow
+		UI.VISUAL.mute_highlight(glow)
 		var art_area := UI.rect(slot.art_rect)
 		art_area.position -= area.position
 		var artwork := UI.picture(button, null, art_area)
@@ -65,11 +63,11 @@ func _ready() -> void:
 	_next = _page_button(UI.rect(pages.next), "›", "Следующая страница", 1)
 
 	var details: Dictionary = design.details
-	_status = UI.caption(self, UI.rect(details.status), "", 17, UI.INK)
+	_status = UI.caption(self, UI.rect(details.status), "", 17, UI.MUTED)
 	_portrait = UI.picture(self, null, UI.rect(details.image))
 	_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	_portrait.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	_title = UI.caption(self, UI.rect(details.title), "", 22, UI.INK)
+	_title = UI.caption(self, UI.rect(details.title), "", 22, UI.GOLD)
 	_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_title.clip_text = true
 	_description = RichTextLabel.new()
@@ -78,8 +76,9 @@ func _ready() -> void:
 	_description.focus_mode = Control.FOCUS_ALL
 	_description.add_theme_font_override("normal_font", CARD_SKIN.heading_font())
 	_description.add_theme_font_size_override("normal_font_size", 19)
-	_description.add_theme_color_override("default_color", UI.INK)
+	_description.add_theme_color_override("default_color", UI.COPY)
 	UI.put(self, _description, UI.rect(details.description))
+	UI.VISUAL.plaque(self, Rect2(912, 615, 187, 44), true)
 	_count = UI.caption(self, UI.rect(details.count), "", 17, UI.GOLD)
 
 
@@ -194,6 +193,7 @@ func _update_highlight(button: Button) -> void:
 
 func _page_button(area: Rect2, glyph: String, title: String, direction: int) -> Button:
 	var button := UI.hotspot(self, area, title)
+	UI.VISUAL.style_button(button)
 	UI.caption(button, Rect2(Vector2.ZERO, area.size), glyph, 30, UI.GOLD).name = "Arrow"
 	button.pressed.connect(_step_page.bind(direction))
 	button.focus_entered.connect(_update_page_caption.bind(button))

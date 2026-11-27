@@ -1,3 +1,8 @@
+## Wizard Archive Visual V3 - 27 Nov 2026
+
+- Implement player-approved dark stone, muted aged bronze and wine velvet styling across Reliquary, Bestiary, Chronicle and Challenges. Shared native Menu V2 title, tab, navigation, detail plaque and count materials; live gold/ivory copy and subdued selection.
+- Preserve earlier source art, live collection images, all four page geometries, discovery and profile behavior. Godot 4.7.2: 8/8 targeted tests, 153 assertions; native visual acceptance pending.
+
 ## HUD Visual V2 implementation - 27 Nov 2026
 
 - Implement both player-approved Table and Battle top HUDs with the existing Menu V2 bronze/stone family, separate live statistics, Wizard attribution/dialogue, encounter/guidance and progress/modifier hierarchy.
