@@ -1,3 +1,7 @@
+## Next player check · approved Borrowed Boots live
+
+Player approved the human-scale animated Squire on 2026-11-28. Pull main, F5 normally resolve Borrowed Boots (repair/hobnails/pass); the exact 6.6s approved cinematic now runs after the choice, including actual party/Jack, outcome and caption, skip and single return to Table. F6 `scenes/dev/travel_camp_v5_preview.tscn`, X twice remains the visual reference. Godot 4.7.2 isolated 91 live camp contexts / 2,107 checks, 9 missing-plate and 9 missing-profile checks, zero failures. Native integrated F5 visual check pending. 10/24 live, three rescue candidates still staged, eleven unstaged. Resume only remaining approved-direction independent candidates; do not silently activate unaccepted rescue. No save reset. [QA](qa/travel_camp_v5/README.md).
+
 ## Next player check · human-scale Borrowed Boots wide scene
 
 Player rejected the giant Squire. Pull main; F6 `scenes/dev/travel_camp_v5_preview.tscn`, X twice to Костёр без хозяина, R replay, arrows repair/hobnails/pass. New pulled-back castle courtyard and original seated cobbler/gear at the same local scale as the heroes: seated ~131px, standing customer ~150–155px; boots, bench and fire share the scale. All four work cels, glance and original outcome at 3.22 s retained. Verify proportions, pose registration, hero paths, Jack and gate exit at native F6. Isolated 122 / 20,151 checks, 58 live / 1,284, 12 missing-cel fallback; zero failures. Prior nine live V5 IDs unchanged; approve Boots before enabling. [QA](qa/travel_camp_v5/README.md).

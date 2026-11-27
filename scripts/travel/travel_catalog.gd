@@ -69,7 +69,7 @@ static func context_for(id: String, outcome: String, roles: Array, wizard: Strin
 	var result := {"resolved_card_id":id,"outcome_id":outcome,"party_roles":roles.duplicate(),"narration_text":narration,"wizard_line":wizard,"duration_sec":4.0}
 
 	result["jack_companion"] = "ranger" in roles and bool(presentation.get("jack_companion", false))
-	if id in ["last_signal","gravedigger_shop","lost_purse"]:
+	if id in ["last_signal","gravedigger_shop","lost_purse","borrowed_boots"]:
 		result["visual_action"]=action
 		if id=="gravedigger_shop" and action!="leave": result["choice_role"]=action
 	return result

@@ -22,7 +22,10 @@ func _check(ok: bool, message: String) -> void:
 		push_error(message)
 
 func _context(id: String, party: Array, action: String, jack: bool) -> Dictionary:
-	return CATALOG.context_for(id,action,party,"wizard test",false,{"jack_companion":jack,"batch_03_action":action})
+	# Boots uses the committed Final Five outcome directly, not Batch03 metadata.
+	var presentation := {"jack_companion":jack}
+	if id!="borrowed_boots": presentation["batch_03_action"] = action
+	return CATALOG.context_for(id,action,party,"wizard test",false,presentation)
 
 func _cue_count(view: Node, cue: String) -> int:
 	var sample: AudioStream = root.get_node("SoundDirector").act1_sample(cue)
@@ -53,6 +56,14 @@ func _route(router: Script, probe: Node, id: String, party: Array, action: Strin
 	_check(not is_instance_valid(view.forge_v5) and not is_instance_valid(view.merchant_v5) and not is_instance_valid(view.road_v5),"renderers mutually exclusive")
 	_check(view.context==ctx and film.roles==party and film.action==action and film.scene_id==id,"actual context unchanged")
 	_check(is_instance_valid(film.jack)==(jack and "ranger" in party),"actual companion only")
+	if id=="borrowed_boots":
+		_check(is_instance_valid(film.squire) and film.squire.position==CAMP.BOOTS_ORIGIN and film.squire.scale==CAMP.BOOTS_PROJECTION,"approved human-scale artisan")
+		_check(film.plate.texture.get_size()==Vector2(1280,720) and film.camp_layer.texture.get_size()==Vector2(640,470),"approved wide scene and registered worksite")
+		view.elapsed = 0.4
+		view.update_frame()
+		_check(film.squire.pose==0 and film.squire.sprite.visible,"actual animated artisan")
+		view.elapsed = 0.0
+		view.update_frame()
 	_check(is_equal_approx(view.duration(),CAMP.DURATION),"approved movie clock")
 	_check(view.composition.get_node_or_null("CampV5Picture")!=null and view.skip_button.get_parent()==view.composition,"movie below travel UI")
 	_check(view.caption.text==ctx.narration_text and view.wizard.text==ctx.wizard_line,"real narration retained")
@@ -68,8 +79,8 @@ func _route(router: Script, probe: Node, id: String, party: Array, action: Strin
 	paused = false
 	view._process(0.02)
 	_check(film.visible_roles.size()==party.size(),"actual post-handoff party")
-	_check(film.prop_changed==(action!="leave"),"actual outcome state")
-	var expected := "coins" if action=="rescue_gold" else ("metal" if action in ["knight","loot","abandon_loot"] else ("cloth-hit" if action in ["ranger","rescue_blood","recruit"] else ""))
+	_check(film.prop_changed==(action not in ["leave","passed"]),"actual outcome state")
+	var expected := "coins" if action=="rescue_gold" else ("metal" if action in ["hobnails","knight","loot","abandon_loot"] else ("cloth-hit" if action in ["repair","ranger","rescue_blood","recruit"] else ""))
 	for cue in cues:
 		_check(_cue_count(view,cue)==int(counts[cue])+int(cue==expected),"committed handoff cue")
 	view._process(0.02)
@@ -77,7 +88,7 @@ func _route(router: Script, probe: Node, id: String, party: Array, action: Strin
 		_check(_cue_count(view,cue)==int(counts[cue])+int(cue==expected),"cue once")
 	var calls := [0]
 	view.finished.connect(func(): calls[0]+=1)
-	if action=="leave":
+	if action in ["leave","passed"]:
 		view._process(CAMP.DURATION)
 	else:
 		var key := InputEventKey.new()
@@ -113,25 +124,36 @@ func _run() -> void:
 	probe.name="SceneTransition"
 	root.add_child(probe)
 	var fallback_only := "--fallback-only" in OS.get_cmdline_user_args()
+	var missing_boots := "--missing-boots-plate" in OS.get_cmdline_user_args()
 	if fallback_only:
 		# Remove camp_batch.json only in a disposable fixture.
 		await _fallback(router,probe,"last_camp","leave")
 		await _fallback(router,probe,"ash_rest","leave")
+		await _fallback(router,probe,"borrowed_boots","repair")
+	elif missing_boots:
+		# Remove the new wide plate in a disposable fixture.
+		for action in CAMP.BOOTS_ACTIONS:
+			await _fallback(router,probe,"borrowed_boots",action)
 	else:
-		for id in ["last_camp","ash_rest"]:
+		for id in CAMP.CAMP_IDS:
 			for party in PARTIES:
 				for action in CAMP.camp_actions(id,party):
 					await _route(router,probe,id,party,action,"ranger" in party)
-			await _route(router,probe,id,["ranger"],"leave",false)
+			if id=="borrowed_boots":
+				for party in PARTIES:
+					if "ranger" in party:
+						for action in CAMP.BOOTS_ACTIONS:
+							await _route(router,probe,id,party,action,false)
+			else:
+				await _route(router,probe,id,["ranger"],"leave",false)
 			var legacy := (load("res://scenes/travel/travel_transition.tscn") as PackedScene).instantiate()
-			legacy.context=_context(id,["knight"],"leave",false)
+			legacy.context=_context(id,["knight"],"passed" if id=="borrowed_boots" else "leave",false)
 			root.add_child(legacy)
 			_check(legacy.available and not is_instance_valid(legacy.camp_v5) and is_equal_approx(legacy.duration(),4.0),"direct F6 remains V4")
 			legacy.free()
-		# The user's reported Boots scene and unaccepted rescue preview stay V4.
-		await _fallback(router,probe,"borrowed_boots","repair")
+		# Unaccepted rescue preview stays V4.
 		await _fallback(router,probe,"black_altar","leave")
 	probe.free()
 	if original!=null: original.name="SceneTransition"
-	print("TRAVEL_CAMP_V5_LIVE_SMOKE: %d contexts · %d checks · %d failures (fallback-only=%s)"%[cases,checks,failures,fallback_only])
+	print("TRAVEL_CAMP_V5_LIVE_SMOKE: %d contexts · %d checks · %d failures (fallback-only=%s, missing-boots=%s)"%[cases,checks,failures,fallback_only,missing_boots])
 	quit(0 if failures==0 else 1)

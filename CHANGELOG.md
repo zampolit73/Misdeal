@@ -1,3 +1,8 @@
+## Cinematic Travel V5 — approved Borrowed Boots live — 28 Nov 2026
+
+- Player approved corrected wide animated cobbler. Production now selects the approved 6.6 s movie for repair, hobnails and passed, using committed outcome and actual party/Jack. Existing travel UI, local cues and V4 fallback retained.
+- Isolated Godot 4.7.2 production check: 91 contexts / 2,107 checks; 9 missing-plate and 9 missing-profile checks; zero failures. 10/24 V5 live, three staged, eleven unstaged. Native F5 integrated visual review pending. No gameplay/save/art changes. [QA](docs/qa/travel_camp_v5/README.md).
+
 ## Cinematic Travel V5 — human-scale Borrowed Boots establishing shot — 28 Nov 2026
 
 - New wide ruined-gate plate; extracted and registered the original animated cobbler, workbench, footwear, shield, helmet and fire together at 0.21 source scale. Seated cobbler ~131px versus standing customer ~150–155px, both same ground plane. Preserve four authored local work poses and prior three equipment states.

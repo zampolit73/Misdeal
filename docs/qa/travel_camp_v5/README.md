@@ -66,3 +66,11 @@ Player rejected the animated Squire as a giant relative to the midground heroes.
   - `assets/pixel/travel/cinematic_v5/boots_wide/thread.webp`: `4ef85eced1cf1491388b928fead485ad68146db9726357750995579db0a8ee94`.
 - Godot 4.7.2 isolated fixture: **122 contexts / 20,151 checks / 0 failures**, exact Squire projection and registered half-native cels, ratio to standing hero and foot-depth check; 58 existing live camp contexts / 1,284 checks, 12 missing optional pose checks, zero failures. [Log](boots_wide.log).
 - Seven sampled times per exact outcome reconstructed from runtime texture/transform data; reviewed full repair scene and all work pose/approach/exit frames offline. Native GPU shader/framebuffer playback not available, player F6 acceptance pending. Existing F6 path, X twice, repair/hobnails/pass, R replay. Production remains 9/24 live with four staged and eleven unstaged.
+
+
+## Player approval and production opt-in (28 Nov 2026)
+
+The player accepted the human-scale wide Squire movie. Activate only borrowed_boots via the explicit camp production allowlist. For the Final Five event the exact committed outcome_id (repair/hobnails/passed) becomes visual_action directly, rather than looking for a Batch03 key; actual post-choice party, Ranger/Jack state, caption and sound are preserved. Match F6 handoff cues (repair cloth, hobnails metal, no transaction on pass) and the shared 6.6 s clock, pause/skip and one-shot Table navigation. No changes to rules, gold/HP/movement effects, save/resource art, or direct V4 QA. Configuration returns to V4 if the mandatory wide plate or camp profile is unavailable; previous optional-cel static fallback remains.
+
+- Godot 4.7.2 isolated Catalog → Router → Transition (navigation probe replaces Table rendering): **91 contexts / 2,107 checks / 0 failures**. 33 new Boot contexts include every solo/duo/trio and both actual Jack flags where valid, three committed outcomes, human-scale animated Squire and plate, correct cue/state, pause, completion/skip, original narration and single navigation. 9 missing mandatory plate checks and 9 missing-profile checks PASS. [Log](boots_live.log).
+- Normal play now **10/24 V5 live**, three rescue candidates still staged and eleven unstaged. F6 player accepted; native integrated F5 playback remains pending.

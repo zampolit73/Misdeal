@@ -13,7 +13,7 @@ const CAMP_V5 := preload("res://scripts/travel/cinematic_v5/camp_v5.gd")
 # Explicit production allowlist; future F6 candidates are not auto-activated.
 const LIVE_MERCHANT_IDS := ["candle_seller", "blood_ledger", "gravedigger_shop"]
 const LIVE_ROAD_IDS := ["rattling_bridge", "whispering_well", "lost_purse"]
-const LIVE_CAMP_IDS := ["last_camp", "ash_rest"]
+const LIVE_CAMP_IDS := ["last_camp", "ash_rest", "borrowed_boots"]
 const WALK_FPS := 6.5
 const BODY_SPEED := 20.0
 static var _soles: Dictionary = {}
@@ -298,9 +298,9 @@ func _play_travel_cues(previous: float) -> void:
 			if previous < CAMP_V5.HANDOFF and elapsed >= CAMP_V5.HANDOFF:
 				if camp_v5.action == "rescue_gold":
 					SoundDirector.play_scene_cue(self, "coins", -12.0)
-				elif camp_v5.action in ["knight","loot","abandon_loot"]:
+				elif camp_v5.action in ["hobnails","knight","loot","abandon_loot"]:
 					SoundDirector.play_scene_cue(self, "metal", -15.0)
-				elif camp_v5.action in ["ranger","rescue_blood","recruit"]:
+				elif camp_v5.action in ["repair","ranger","rescue_blood","recruit"]:
 					SoundDirector.play_scene_cue(self, "cloth-hit", -22.0)
 		elif previous < MERCHANT_V5.HANDOFF and elapsed >= MERCHANT_V5.HANDOFF:
 			# Exact approved F6 cues, now using the common in-game Ambient bus.

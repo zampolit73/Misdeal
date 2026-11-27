@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · approved Borrowed Boots production opt-in
+
+On 2026-11-28 the player approved the wide human-scale animated Squire. Explicitly allowlist borrowed_boots, not the three still-unaccepted rescue IDs. Catalog uses committed Final Five outcome directly (no Batch03 override), accepted F6 repair/cloth and hobnails/metal cues, no transaction cue when passed. Shared 6.6s transition, actual party and Jack, captions, pause/skip and one-shot Table return. Failed configuration falls back to V4; direct V4 QA retained. No rules, costs, rewards, saves or art changes.
+
 ## Cinematic Travel V5 · Boots wide composition supersedes foreground close-up
 
 The player rejected the source foreground Squire as giant, even after the heroes were correctly scaled. For the cinematic only, move the camera composition back: a separate empty wide establishing plate and a single local workshop at the same apparent ground depth as the lead hero. Reuse the original three outcome paintings as masked source-registered worksite cels and the four existing animation patches, with one scale for person, bench, boots and other props. New road and gate routes are scene-owned; avoid enlarging heroes to match the original foreground. Keep card art, old V4 renderer, source archives, production allowlist and gameplay unchanged. Native F6 review before opt-in. [QA/provenance](qa/travel_camp_v5/README.md).
