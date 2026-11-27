@@ -332,6 +332,22 @@
         "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_2_0.webp": "40c3e2172c65648f3dd043a456f092c86903f80061994958dc5a2cc097692bf6",
         "assets/pixel/travel/cinematic_v5/merchant_batch/gravedigger_shop/prop_2_1.webp": "f40e09e66fd8dd07cdeb95dc52ece254d2e61d4bf5d6f2af87a0fa22227cac69"
       }
+    },
+    {
+      "id": "travel-v5-road-lost-purse-wide-generated",
+      "status": "verified",
+      "origin": "generated",
+      "author": "Misdeal project / ChatGPT image generation and preparation",
+      "revision": "road-batch-v5-review-01",
+      "obtained_on": "2026-11-27",
+      "licenses": [
+        "PROJECT-ORIGIN"
+      ],
+      "rights_review": "Development origin reviewed: generated new angle solely from existing project Lost Purse master at 178f1501, no external inputs. Historical source-rights and tool terms review remain open for release; not publication clearance.",
+      "evidence": "docs/qa/travel_road_v5/README.md",
+      "files": {
+        "assets/pixel/travel/cinematic_v5/road_batch/lost_purse/plate.webp": "c1e04007d546eff50297393d87fe9b7c41567be2be7d093183c17b818a7131ae"
+      }
     }
   ],
   "release": {

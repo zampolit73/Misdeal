@@ -1,0 +1,22 @@
+# Cinematic Travel V5 — road and danger batch (F6 review)
+
+2026-11-27; source baseline `178f150143e7a2cc750f8f654b80ad80466b0819`. Three 6.6 s films for the actual existing Act I outcomes. F6 open `scenes/dev/travel_road_v5_preview.tscn`. Z/X location, Left/Right outcome, 1/2/3 party size, Q/E exact composition, J companion, R/Space replay, P pause, H controls, M sound. End frame holds. No Event→Travel→Table router change; four accepted V5 locations remain live and all 20 other locations remain V4 until approval.
+
+| Location | Cinematic blocking and outcome states |
+| --- | --- |
+| Rattling Bridge | Preserve accepted bridge painting, heraldry, local flame/cloth movement and five original state layers. Ground-plane single-file trajectories (contracting distances and human stature), authored rear walk and side idle. Careful crosses continuously, rush has a faster approach and failure has a bounded slip on the intact deck. Coin pouch state follows the actual success/scavenge choice. Painted seated Ranger appears only in recruitment branches, becomes the single real Ranger at the handoff for rescue, remains outside party when left/looted. |
+| Whispering Well | Original forest, well and lantern. Party stops beside the accessible right side. Original detailed waiting/sinking Mage, old exact seven outcome overlays and V3 aperture ripples. Rescue rises from the aperture, onto the near rim, steps off to the walkway, then follows the party; old waiting layer is hidden at handoff. No Mage in the party for loss; existing state rules remain. |
+| Lost Purse | New wide shot shows full body on low slab at plausible human scale, approach on clear road, then intentional detail cut at 2.48 s. Original approved close-up states (safe, greedy, all-in, untouched), clean result behind the actual existing V2 hand-grip animation for safe/all-in. Return to separate right-framed road shot at 4.15 s (the old baked purse is outside camera, not reintroduced after pickup). Directional stride, actual party continued, no invented loot. |
+
+Each uses one authored projection per location and ground-contact sole registration, distance-aware gait, bounded common camera and deterministic local clock. States follow committed action keys; no RunState writes or save changes. Original shared D412 tactical hero sprites and rear walk cels retained. Mage climb is staged movement across the existing rim with walk cels, not a bespoke climbing/grasp sprite pack; the purse uses the already-authored glove cels. All-in preserves the existing non-gory aftermath; the historical all-in text/art discrepancy is not silently changed.
+
+## QA
+
+- Godot 4.7.2 isolated fixture with actual V5 scripts, assets, reused direction packs and D412/Jack frames, **109 valid context combinations, 9,525 checks, zero failures**. State selection, actual party only, recruitment timing, sole registration, actual Jack flag, camera coverage, no stale purse, authored grip visibility, continuous careful crossing, deterministic replay.
+- Imported and launched the actual F6 scene in the fixture; no parse/runtime errors. Existing ObjectDB warning on preview exit is recorded. No native desktop display available; offline frame composition using actual Godot sprite transforms and textures reviewed (bridge rush/recruit, well rescue, purse all-in). Not a native rendered movie or full-game certification. Native visual acceptance is the next gate.
+- Development license inventory: 27 changed resources / 27 registered paths, 0 errors; 8 historical audit warnings (unchanged). Not publication clearance.
+- [Headless evidence](godot_smoke.log).
+
+## New asset provenance
+
+`assets/pixel/travel/cinematic_v5/road_batch/lost_purse/plate.webp` (1280×720): ChatGPT image generation, 2026-11-27, original project reference only: `assets/pixel/travel/pilot_01/lost_purse/source/original_master.png` at baseline above. New wide establishing framing, flooded cemetery, left chapel/tree, red sunset and causeway; full dead traveler on low slab and small purse, accessible lower road, no living people or UI. Original generated output `exec-f34d37ea-b840-4cf2-be3d-8ec7ac8ea1c7.png`, SHA-256 `644bab33834fa8efa832d437e0b01b245dcc567f184ec9ab650e8104a6c5b19f`; resized to 1280×720, WebP quality 94, SHA-256 `c1e04007d546eff50297393d87fe9b7c41567be2be7d093183c17b818a7131ae`. All other artwork and audio reused without changing original file bytes; no third-party intake. Development provenance reviewed; historical source rights and release audit still open.

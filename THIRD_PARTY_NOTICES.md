@@ -55,6 +55,10 @@ See [D373 original source and output hashes](docs/D373_RECORDED_FOLEY_CREDITS.md
 D374 disabled default ambience playback, but the files are still tracked;
 if distributed, these credits must accompany them.
 
+## Project-origin road cinematic plate
+
+`travel-v5-road-lost-purse-wide-generated`: Misdeal project / ChatGPT image generation, 2026-11-27. Only existing project reference art, no external ingredients. [Source and hashes](docs/qa/travel_road_v5/README.md); pending historical rights review is not commercial clearance.
+
 ## Future entries
 
 Add the registry ID, actual work title, author, original source, license,

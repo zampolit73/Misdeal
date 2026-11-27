@@ -1,3 +1,7 @@
+## Next player check · Road and Danger V5 batch
+
+Pull main, F6 `scenes/dev/travel_road_v5_preview.tscn`. Z/X Bridge, Well, Purse; arrows outcome, 1/2/3 party size, Q/E exact composition, J Jack, P pause, R/Space repeat, H hide, M mute. Check bridge deck footing and spacing (rush/failure/careful/recruit), Mage rise/step off well rim and join/leave, purse wide→detail pickup→departure. Native visual approval pending: 109 contexts / 9,525 checks PASS in isolated Godot, offline sprite-frame review; no display here. Only after acceptance activate these three resolved IDs with the existing V5/V4 fallback and production navigation. Keep the four approved V5 scenes and art intact. [QA](qa/travel_road_v5/README.md).
+
 ## Next player check · approved Merchant V5 scenes live
 
 Player approved the polished Candle Seller, Blood Ledger and Gravedigger Shop on 2026-11-27. Pull main; F5 in normal play, resolve each corresponding card (purchase/payment/refusal) and check the approved 6.6 s scene, actual buyer/party/Jack, changed or untouched props, Esc/Space skip and one return to Table. No profile reset. F6 `scenes/dev/travel_merchant_v5_preview.tscn` remains the approved reference; Z/X location, arrows outcome, 1/2/3 and Q/E party, R repeat, P pause, J companion. Isolated production routing 69 / 1,596 and Forge regression 19 / 229, fallback 9 + 2 checks PASS; native F5 review pending. Next choose coherent batches among remaining 20 V4 scenes; approve before enabling. [QA](qa/travel_merchant_v5/README.md).

@@ -1,3 +1,8 @@
+## Cinematic Travel V5 — road and danger review batch — 27 Nov 2026
+
+- Added separate F6 previews for Rattling Bridge, Whispering Well and Lost Purse. Scene-relative scale, grounded routes, distinct crossing/recruitment and sink states, actual Mage rim exit; new pulled-back purse plate plus original close-up grasp/aftermath and departure shot.
+- Isolated Godot 4.7.2: 109 contexts / 9,525 checks / zero failures. Native visual approval pending; four live V5 scenes, other twenty V4, rules/saves untouched. [QA](docs/qa/travel_road_v5/README.md).
+
 ## Cinematic Travel V5 — approved merchant batch live — 27 Nov 2026
 
 - Player approved final merchant prop polish. Activate Candle Seller, Blood Ledger and Gravedigger Shop in ordinary Event→Travel→Table, alongside the approved Curse Forge; remaining 20 locations retain V4.
