@@ -1,7 +1,9 @@
 ## Interface Polish 2.0
 
 - [x] Achievement System V2 - 24 permanent achievements, persisted unlocks, toast and RunEnd summary; targeted tests PASS. [QA](qa/achievement_system_v2/README.md).
-- [ ] Achievement System V2 - native feedback and six-page Challenges acceptance.
+- [ ] Achievement System V2 - native toast and RunEnd feedback acceptance.
+- [x] Archive — Achievements UI V3 - two-mode overview and 12-seal collection, targeted tests PASS.
+- [ ] Archive — Achievements UI V3 - native player acceptance of both pages and Escape navigation.
 - [x] Wizard Archive Visual V3 - player-approved visual family integrated across all four tabs; eight targeted tests passed. [QA](qa/wizard_archive_v3/README.md).
 - [ ] Wizard Archive Visual V3 - native player visual acceptance (four tabs).
 - [x] Pause Menu V1 — merged [#159](https://github.com/zampolit73/Misdeal/pull/159).

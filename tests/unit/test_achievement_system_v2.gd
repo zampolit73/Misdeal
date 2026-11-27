@@ -112,26 +112,112 @@ func test_all_24_predicates_and_page_navigation() -> void:
 	add_child_autofree(screen)
 	screen._tabs[3].pressed.emit()
 	var page: Control = screen._challenges
-	assert_eq(page._achievement_page_count(), 6)
-	assert_eq(page._achievement_heading.text, "Достижения 24/24")
-	assert_eq(page._achievement_page_label.text, "1 / 6")
+	assert_eq(page._achievement_page_count(), 2)
+	assert_eq(page._achievement_heading.text, "Все достижения 24/24  ›")
+	assert_eq(page._buttons.size(), 12, "Original 3 + 4 + 5 overview")
+	assert_eq(page._count.text, "Открыто 30 / 32")
+	assert_eq(page._entries[11].status, "ПРОЙДЕНО")
+	for slot in range(3, 7):
+		assert_false(page._buttons[slot].has_node("AchievementNamePlate"))
+		assert_eq(page._entries[slot].id, CATALOG.ENTRIES[slot - 3][0])
+	var before: Dictionary = profile.achievements.duplicate(true)
+	var saved_before := FileAccess.get_file_as_string(_path)
+	page._open_collection.pressed.emit()
+	assert_true(page.is_collection_open())
+	assert_false(page._overview.visible)
+	assert_eq(screen._plate.texture, page.COLLECTION_PLATE)
+	assert_eq(screen._active_tab, 3)
+	assert_eq(screen._title_caption.text, "ДОСТИЖЕНИЯ · 24/24")
+	assert_eq(page._achievement_page_label.text, "1 / 2")
 	assert_true(page._achievement_previous.disabled)
+	assert_eq(page._count.text, "Получено 24 / 24")
 	var visible_ids: Array[String] = []
-	for number in range(6):
-		for slot in range(3, 7):
-			visible_ids.append(page._entries[slot].id)
-			page._buttons[slot].pressed.emit()
+	for number in range(2):
+		await get_tree().process_frame
+		for slot in range(12):
+			var button: Button = page._collection_buttons[slot]
+			visible_ids.append(page._collection_entries[slot].id)
+			button.pressed.emit()
+			await get_tree().process_frame
 			assert_eq(page._status.text, "ВЫПОЛНЕНО")
-			assert_eq(page._title.text, CATALOG.title(page._entries[slot].id).to_upper())
-		if number < 5:
+			assert_eq(page._title.text, CATALOG.title(page._collection_entries[slot].id).to_upper())
+			assert_eq(page._condition.text, CATALOG.condition(page._collection_entries[slot].id))
+			assert_eq(page._title.get_visible_line_count(), page._title.get_line_count(), page._title.text)
+			assert_true(page._condition.get_content_height() <= page._condition.size.y, page._condition.text)
+			var label := button.get_node("AchievementNamePlate/AchievementName") as Label
+			assert_eq(label.get_theme_font_size("font_size"), 16)
+			assert_eq(label.max_lines_visible, 2)
+			assert_false(label.text.is_empty())
+			assert_true(label.get_line_count() <= 2, label.text)
+			assert_eq(label.get_visible_line_count(), label.get_line_count(), label.text)
+			assert_true(button.tooltip_text.contains(CATALOG.title(page._collection_entries[slot].id)))
+		if number == 0:
 			page._achievement_next.pressed.emit()
 	assert_eq(visible_ids.size(), 24)
 	assert_eq(visible_ids, CATALOG.ENTRIES.map(func(entry: Array) -> String: return entry[0]))
 	assert_true(page._achievement_next.disabled)
-	assert_eq(page._achievement_page_label.text, "6 / 6")
-	assert_eq(page._buttons.size(), 12)
+	assert_eq(page._achievement_page_label.text, "2 / 2")
+	assert_eq(page._title.get_theme_font_size("font_size"), 24)
+	assert_eq(page._condition.get_theme_font_size("normal_font_size"), 19)
+	page._back_to_overview.pressed.emit()
+	assert_false(page.is_collection_open())
+	assert_true(page._overview.visible)
+	assert_eq(screen._plate.texture, page.PLATE)
+	assert_eq(screen._title_caption.text, "АРХИВ ВОЛШЕБНИКА")
 	assert_eq(page._count.text, "Открыто 30 / 32")
-	assert_eq(page._entries[11].status, "ПРОЙДЕНО")
+	assert_eq(profile.achievements, before, "Browsing only reads saved progress")
+	assert_eq(FileAccess.get_file_as_string(_path), saved_before, "Browsing does not write the profile")
+
+
+func test_collection_esc_page_keys_and_tab_switch_preserve_overview() -> void:
+	var state := _snapshot()
+	state.cards_resolved = 1
+	profile.observe_checkpoint(state, "partial", DATE)
+	var screen := SCREEN.instantiate() as Control
+	screen.opens_over_table = true
+	add_child_autofree(screen)
+	screen._tabs[3].pressed.emit()
+	var page: Control = screen._challenges
+	page._buttons[11].pressed.emit()
+	var previous_title: String = page._title.text
+	page._open_collection.pressed.emit()
+	assert_eq(page._achievement_heading.text, "Все достижения 1/24  ›")
+	assert_eq(page._collection_entries[4].id, "first_step")
+	page._collection_buttons[4].pressed.emit()
+	assert_eq(page._status.text, "ВЫПОЛНЕНО")
+	var unlocked_seal: Texture2D = page._collection_buttons[4].get_node("Seal").texture
+	assert_true(unlocked_seal.resource_path.ends_with("_open.png"))
+	page._collection_buttons[0].pressed.emit()
+	assert_eq(page._status.text, "ЗАКРЫТО")
+	var locked_seal: Texture2D = page._collection_buttons[0].get_node("Seal").texture
+	assert_true(locked_seal.resource_path.ends_with("_locked.png"))
+	var down := InputEventKey.new()
+	down.keycode = KEY_PAGEDOWN
+	down.pressed = true
+	page._unhandled_key_input(down)
+	assert_eq(page._achievement_page_label.text, "2 / 2")
+	var up := InputEventKey.new()
+	up.keycode = KEY_PAGEUP
+	up.pressed = true
+	page._unhandled_key_input(up)
+	assert_eq(page._achievement_page_label.text, "1 / 2")
+	var esc := InputEventKey.new()
+	esc.keycode = KEY_ESCAPE
+	esc.pressed = true
+	screen._unhandled_key_input(esc)
+	assert_false(page.is_collection_open())
+	assert_false(screen.is_queued_for_deletion())
+	assert_eq(page._title.text, previous_title)
+	assert_true(page._open_collection.has_focus())
+	page._open_collection.pressed.emit()
+	screen._tabs[1].pressed.emit()
+	assert_eq(screen._active_tab, 1)
+	assert_false(page.is_collection_open())
+	screen._tabs[3].pressed.emit()
+	assert_true(page._overview.visible)
+	assert_eq(page._title.text, previous_title)
+	screen._unhandled_key_input(esc)
+	assert_true(screen.is_queued_for_deletion())
 
 
 func test_v1_migration_preserves_proven_history_without_toast() -> void:

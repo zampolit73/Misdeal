@@ -1,3 +1,10 @@
+## Archive — Achievements UI V3 - 27 Nov 2026
+
+- Preserve the original Challenges overview and add a dedicated two-page 4×3 achievement collection reached by a live count button.
+- Reuse Bestiary cabinet geometry and Archive V3 materials; 16 px two-line labels, 24 px full titles and 19 px conditions, separate overview and achievement totals.
+- Page arrows, PageUp/PageDown, local Escape/back, focus return and tab transitions preserve archive and current run. No achievement logic, save schema, or art changes.
+- Godot 4.7.2: 13/13 targeted tests, 542 assertions; native visual acceptance pending.
+
 ## Achievement System V2 - 27 Nov 2026
 
 - Expand four permanent endgame achievements to 24; add milestones for normal play and collections without granting power or changing existing rules.

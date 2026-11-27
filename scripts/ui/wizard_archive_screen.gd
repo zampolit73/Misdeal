@@ -19,6 +19,9 @@ var _plate: TextureRect
 var _reliquary_plate: Texture2D
 var _tab_captions: Array[Label] = []
 var _active_tab := 0
+var _title_caption: Label
+var _back_caption: Label
+var _back_button: Button
 
 
 func _ready() -> void:
@@ -29,7 +32,7 @@ func _ready() -> void:
 
 	var title: Dictionary = design.title
 	VISUAL.plaque(self, Rect2(326, 27, 511, 80), true).name = "ArchiveV3Title"
-	RELIQUARY.caption(self, RELIQUARY.rect(title.rect), "АРХИВ ВОЛШЕБНИКА", int(title.font_size), RELIQUARY.GOLD)
+	_title_caption = RELIQUARY.caption(self, RELIQUARY.rect(title.rect), "АРХИВ ВОЛШЕБНИКА", int(title.font_size), RELIQUARY.GOLD)
 	var back_area := RELIQUARY.rect(design.back.rect)
 	var back_caption := "К столу [Esc]" if opens_over_table else "В меню [Esc]"
 	var back := RELIQUARY.hotspot(self, back_area, back_caption)
@@ -39,6 +42,8 @@ func _ready() -> void:
 	back.focus_entered.connect(func() -> void: back_text.modulate = Color(1.2, 1.2, 1.2))
 	back.focus_exited.connect(func() -> void: back_text.modulate = Color.WHITE)
 	back.pressed.connect(close)
+	_back_button = back
+	_back_caption = back_text
 
 	for tab: Dictionary in design.tabs:
 		var index := int(tab.index)
@@ -73,7 +78,10 @@ func _update_tab(index: int) -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_ESCAPE:
 		get_viewport().set_input_as_handled()
-		close()
+		if _active_tab == 3 and _challenges != null and _challenges.is_collection_open():
+			_challenges.close_collection()
+		else:
+			close()
 
 
 func close() -> void:
@@ -84,6 +92,8 @@ func close() -> void:
 
 
 func _show_tab(index: int) -> void:
+	if _challenges != null and _challenges.is_collection_open():
+		_challenges.close_collection(false)
 	_active_tab = index
 	for slot in _tabs.size():
 		_update_tab(slot)
@@ -119,6 +129,20 @@ func _show_tab(index: int) -> void:
 		_challenges = CHALLENGES.new()
 		add_child(_challenges)
 		_challenges.set_archive(_archive)
+		_challenges.collection_mode_changed.connect(_on_collection_mode_changed)
 		_tabs[3].focus_neighbor_bottom = _tabs[3].get_path_to(_challenges.first_seal())
 	if _challenges != null:
 		_challenges.visible = is_challenges
+
+func _on_collection_mode_changed(active: bool) -> void:
+	if _active_tab != 3:
+		return
+	# Keep Challenges selected; only the cabinet changes to the 12-niche layout.
+	_plate.texture = CHALLENGES.COLLECTION_PLATE if active else CHALLENGES.PLATE
+	VISUAL.present_page(_plate, 1 if active else 3)
+	_title_caption.text = _challenges.collection_title() if active else "АРХИВ ВОЛШЕБНИКА"
+	var destination := "К столу" if opens_over_table else "В меню"
+	# Escape is local to the collection; the global button still exits Archive.
+	_back_caption.text = destination if active else destination + " [Esc]"
+	_back_button.accessibility_name = _back_caption.text
+	_tabs[3].focus_neighbor_bottom = _tabs[3].get_path_to(_challenges.first_seal())

@@ -5,3 +5,13 @@
 Archive schema 2 first-earned IDs, date, run UID; legacy history/collection proofs silently backfilled (empty historical run UID). No replay popup or credit in unrelated RunEnd. Writes remain atomic with backups, transient failed awards do not display until the archive write succeeds. The existing run-save and Memory schema remain unchanged. No stats, economy or platform rewards. Challenges six pages, existing seal art reused, no re-layout of styles or oaths. New names on subsequent pages and counts from real achievement IDs. Toast cannot intercept input. RunEnd list counts only first-earned IDs attributed to that run.
 
 **Godot 4.7.2, 24/24 targeted tests, 518 assertions**: 4 new tests exercise real run-save checkpoint, first notification, duplicate checkpoint, reload, current-run RunEnd, all 24 predicates, all six page states, legacy schema 1 preservation and failed-write retry; 6 existing archive, 2 archive UI and 12 run-save tests. Initial run revealed JSON numeric version comparison; corrected and repeated. [Passing log](godot_targeted.log). Full campaign and native framebuffer not run; current Windows Godot visual check remains open. No new run/profile reset required to inspect the cabinet.
+
+## Achievements UI V3
+
+2026-11-27 — player approved the two-mode Challenges view after native feedback on V2 text clipping. The above six-page presentation is historical. Overview retains 3 style, 4 original preview and 5 oath seals. “Все достижения x/24” opens the existing Bestiary cabinet with 12 actionable achievements per page, 2 pages, catalog order, 16 px/2-line captions and full 24 px title and 19 px condition. Reuses V3 plate materials and the four existing motifs, no new art or persistence semantics.
+
+**Godot 4.7.2 headless: 13/13 targeted tests, 542 assertions** ([log](godot_ui_v3.log)). Real project at main `8f2d8a3432b42b881dbc16733c19c6dc5b112be9` plus this patch. Import PASS. GUT covers all 24 predicates and IDs, label height/visible-line equality after deferred layout, full title and condition fit, locked/open seal textures, both counts, PageUp/PageDown, Esc, focus return, overview selection, tab switching, saved profile byte-for-byte read-only, previous migration/retry and all four archive tabs. Initial layout check caught insufficient two-line label height; corrected by reserving 48 px under 68 px seals, then reran. Native framebuffer/player acceptance remains pending; do not reset the profile.
+
+```sh
+godot --headless --path . -s res://addons/gut/gut_cmdln.gd -gconfig= -gtest=res://tests/unit/test_achievement_system_v2.gd,res://tests/unit/test_wizard_archive_visual_v3.gd,res://tests/unit/test_wizard_archive.gd -gexit
+```
