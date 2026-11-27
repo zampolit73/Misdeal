@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · merchant batch ready for F6 review
+
+Three new review-only 6.6 s presentations: Candle Seller, Blood Ledger, Gravedigger Shop. Four distinct high-detail painted poses each, actual original prop/outcome states, accessible counter-edge blocking, shared Forge metre projection and D412 hero animations. Seven party combinations, real Jack flag. Godot 4.7.2 isolated headless 66 contexts / 10,544 checks / zero failures; offline composition reviewed. Native player acceptance pending. Approved live forge and all other live V4 scenes unchanged. [F6 review](qa/travel_merchant_v5/README.md).
+
 ## License Compliance 1.0 · cross-cutting release gate
 
 Repository policy, registry, notices and local preflight now exist. 50 existing recorded external audio outputs indexed; GUT/fonts/Godot documented separately. Seven isolated Git/Python fixture tests passed; strict publication gate intentionally fails until historical source rights, font/dependency and package/engine credits review is resolved. No changes to runtime, approved art or gameplay; the current Travel V5/V4 review stays the next development task. [Policy](LICENSE_POLICY.md).

@@ -1,0 +1,262 @@
+{
+  "candle_seller": {
+    "plate": "exec-7c823922-6c47-40ab-8326-7390c4534953.png",
+    "counter": [
+      [
+        772,
+        429
+      ],
+      [
+        789,
+        413
+      ],
+      [
+        844,
+        405
+      ],
+      [
+        1199,
+        409
+      ],
+      [
+        1236,
+        422
+      ],
+      [
+        1231,
+        582
+      ],
+      [
+        1184,
+        595
+      ],
+      [
+        785,
+        579
+      ]
+    ],
+    "foot": [
+      735,
+      590
+    ],
+    "stature": 1.78,
+    "lane": 629,
+    "dir": 1,
+    "props": [
+      [
+        865,
+        441,
+        0.54
+      ],
+      [
+        1007,
+        441,
+        0.54
+      ],
+      [
+        1147,
+        441,
+        0.54
+      ]
+    ],
+    "actions": [
+      "knight",
+      "ranger",
+      "mage",
+      "leave"
+    ],
+    "light": [
+      1007,
+      405,
+      170,
+      90
+    ],
+    "counter_at": [
+      770,
+      403
+    ],
+    "prop_variants": [
+      2,
+      2,
+      2
+    ],
+    "npc_source": "exec-8cd26489-072f-4bda-bb0d-aa3061c3bb2b.png",
+    "npc_cell": 640,
+    "npc_sole": 610,
+    "npc_height": 540,
+    "target": 540,
+    "counter_depth": 537
+  },
+  "blood_ledger": {
+    "plate": "exec-ac47fb78-d832-4c53-95c6-76f8bbd801ba.png",
+    "counter": [
+      [
+        118,
+        426
+      ],
+      [
+        143,
+        414
+      ],
+      [
+        239,
+        405
+      ],
+      [
+        600,
+        402
+      ],
+      [
+        671,
+        410
+      ],
+      [
+        679,
+        427
+      ],
+      [
+        676,
+        559
+      ],
+      [
+        620,
+        581
+      ],
+      [
+        461,
+        595
+      ],
+      [
+        218,
+        595
+      ],
+      [
+        120,
+        578
+      ]
+    ],
+    "foot": [
+      678,
+      585
+    ],
+    "stature": 1.78,
+    "lane": 631,
+    "dir": -1,
+    "props": [
+      [
+        419,
+        457,
+        0.29
+      ]
+    ],
+    "actions": [
+      "gold",
+      "blood",
+      "erase",
+      "leave"
+    ],
+    "light": [
+      393,
+      412,
+      210,
+      75
+    ],
+    "counter_at": [
+      116,
+      400
+    ],
+    "prop_variants": [
+      5
+    ],
+    "npc_source": "exec-1a0261fd-1d33-4717-8fa9-012ab1a3883f.png",
+    "npc_cell": 640,
+    "npc_sole": 610,
+    "npc_height": 540,
+    "target": 865,
+    "counter_depth": 537
+  },
+  "gravedigger_shop": {
+    "plate": "exec-c424c1be-46f7-4802-9ffa-d9079701fde4.png",
+    "counter": [
+      [
+        158,
+        391
+      ],
+      [
+        180,
+        377
+      ],
+      [
+        598,
+        374
+      ],
+      [
+        612,
+        383
+      ],
+      [
+        608,
+        400
+      ],
+      [
+        596,
+        495
+      ],
+      [
+        168,
+        508
+      ]
+    ],
+    "foot": [
+      635,
+      530
+    ],
+    "stature": 1.76,
+    "lane": 575,
+    "dir": -1,
+    "props": [
+      [
+        250,
+        401,
+        0.34
+      ],
+      [
+        389,
+        395,
+        0.42
+      ],
+      [
+        526,
+        393,
+        0.31
+      ]
+    ],
+    "actions": [
+      "knight",
+      "ranger",
+      "mage",
+      "leave"
+    ],
+    "light": [
+      570,
+      301,
+      65,
+      115
+    ],
+    "counter_at": [
+      156,
+      372
+    ],
+    "prop_variants": [
+      2,
+      2,
+      2
+    ],
+    "npc_source": "exec-238ecc88-5d92-41b2-9c5c-2678ea9b9954.png",
+    "npc_cell": 640,
+    "npc_sole": 610,
+    "npc_height": 540,
+    "target": 805,
+    "counter_depth": 483
+  }
+}

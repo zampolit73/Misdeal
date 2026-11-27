@@ -1,3 +1,7 @@
+## Next player check · three Merchant V5 scenes
+
+Pull main; open `scenes/dev/travel_merchant_v5_preview.tscn` and F6. Z/X switches Candle Seller, Blood Ledger, Gravedigger Shop; arrows choose outcome, 1/2/3 and Q/E choose actual party, R repeat, P pause, H hide controls, J companion. Check believable body/object scale, pose motion, floor contact, handoff and no unintended outcome changes. 66 contexts / 10,544 checks PASS in isolated Godot 4.7.2; native aesthetic acceptance pending. If approved, connect the three IDs through existing production routing with V4 fallback and real committed outcomes; no automatic activation here. [Review and provenance](qa/travel_merchant_v5/README.md).
+
 ## Cross-cutting License Compliance 1.0
 
 For all future Misdeal imports follow [License Policy](LICENSE_POLICY.md). Run `python scripts/dev/check_licenses.py --inventory` after changed assets/addons/shaders/media and before committing. Registry is initialized from existing evidence; `--release` intentionally fails while the legacy rights audit and actual engine/export evidence are incomplete. Do not publish a player build until release preflight passes. No gameplay/visual changes; resume the previously active Travel V5 local review below.

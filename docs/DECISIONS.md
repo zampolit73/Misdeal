@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · merchant batch review scope
+
+Use standalone F6 review for Candle Seller, Blood Ledger and Gravedigger Shop before any production opt-in. Native painted cels for NPCs, D412 tactical heroes retained, shared metre projection with merchant and counter depth separately calibrated. Put NPCs at accessible counter edges instead of hiding most of the body behind solid geometry; reuse exact existing prop state artwork. Four authored pose holds and a synchronized state transition, not bespoke grasp. Keep all 23 V4 live locations and approved Forge V5 intact until player approval. Register generated and source-derived art with exact hashes; historical rights audit remains open.
+
 ## License Compliance 1.0 · commercial distribution
 
 Player approved adopting license hygiene for Misdeal on 2026-11-27. All DARK FORGE roles follow `docs/LICENSE_POLICY.md`; new external dependencies/assets require original license evidence, immutable provenance, exact SHA-256 and necessary attribution. Keep closed-source-compatible defaults. Do not import candidate libraries or rewrite existing art as part of policy work. Legacy documents are evidence, not blanket clearance. Run local gate in development and strict `--release` before any public player distribution; nonzero blocks publication. Final package rights and notices still need review.

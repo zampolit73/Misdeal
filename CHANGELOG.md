@@ -1,3 +1,8 @@
+## Cinematic Travel V5 — merchant batch candidate — 27 Nov 2026
+
+- Added F6-only Candle Seller, Blood Ledger and Gravedigger Shop: three new scene plates and 12 detailed painted NPC poses, ground-plane scale, counter-edge occlusion, existing exact prop states, real hero/Jack choreography. No live routing changes.
+- Isolated Godot 4.7.2: 66 legal contexts / 10,544 checks / zero failures. Native acceptance pending; development asset provenance recorded. [Review instructions](docs/qa/travel_merchant_v5/README.md).
+
 ## License Compliance 1.0 — 27 Nov 2026
 
 - Added mandatory commercial licensing policy, machine-readable registry, consolidated notices, local release preflight and isolated tests. Initialized 50 documented third-party audio paths and existing GUT/fonts/Godot records; legacy clearance remains open.
