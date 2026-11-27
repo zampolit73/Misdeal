@@ -1,3 +1,7 @@
+## Commercial licensing
+
+[License policy and local preflight](LICENSE_POLICY.md) · [machine-readable third-party registry](../THIRD_PARTY_ASSETS.json) · [distribution notices](../THIRD_PARTY_NOTICES.md). Open legacy review; no clearance claim.
+
 **QA Hub:** [единый F6-каталог, карты, Travel и управление проверкой](QA_HUB.md).
 
 ## Cinematic Travel Batch 02 V2

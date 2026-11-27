@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "0e1dd62ac0c52cf02d7daa3e6a467cd9a6272c14",
+  "legacy_audit": {
+    "completed": false,
+    "report": null,
+    "notes": "Initial index derived from existing project evidence only; current file identities, original license grants, all embedded fonts and remaining art/source archives, code snippets, generated/reference assets, dependencies and actual export contents still require review. No claim of clearance."
+  },
+  "legacy_items": [
+    {
+      "id": "legacy-act1-audio",
+      "status": "documented",
+      "paths": [
+        "assets/audio/act1/armor-fall.ogg",
+        "assets/audio/act1/arrow-hit.ogg",
+        "assets/audio/act1/bones.ogg",
+        "assets/audio/act1/cloth-hit.ogg",
+        "assets/audio/act1/coins.ogg",
+        "assets/audio/act1/creak.ogg",
+        "assets/audio/act1/dice.ogg",
+        "assets/audio/act1/dungeon.ogg",
+        "assets/audio/act1/metal.ogg",
+        "assets/audio/act1/paper.ogg",
+        "assets/audio/act1/stone-door.ogg",
+        "assets/audio/act1/stone-step.ogg",
+        "assets/audio/act1/warden-bell.ogg",
+        "assets/audio/act1/wind.ogg",
+        "assets/audio/act1/wood-step.ogg"
+      ],
+      "licenses": [
+        "CC0-1.0"
+      ],
+      "authors": [
+        "Kenney",
+        "AntumDeluge",
+        "bonebrah",
+        "Department64 / AntumDeluge",
+        "JaggedStone / SketchMan3",
+        "JaggedStone"
+      ],
+      "sources": [
+        "https://kenney.nl/assets/casino-audio",
+        "https://kenney.nl/assets/impact-sounds",
+        "https://opengameart.org/content/bones-2",
+        "https://opengameart.org/content/stone-door",
+        "https://opengameart.org/content/tree-creaking",
+        "https://opengameart.org/content/wind-whoosh-loop",
+        "https://opengameart.org/content/loopable-dungeon-ambience"
+      ],
+      "evidence": "docs/audio/THIRD_PARTY_AUDIO_LICENSES.md",
+      "notes": "Per-file identities and original listings in evidence."
+    },
+    {
+      "id": "legacy-combat-audio-v2",
+      "status": "documented",
+      "paths": [
+        "assets/audio/combat/v2/arena-courtyard.wav",
+        "assets/audio/combat/v2/arena-hall.wav",
+        "assets/audio/combat/v2/armor-fall.wav",
+        "assets/audio/combat/v2/armor-hit.wav",
+        "assets/audio/combat/v2/arrow-hit.wav",
+        "assets/audio/combat/v2/blade.wav",
+        "assets/audio/combat/v2/body-fall.wav",
+        "assets/audio/combat/v2/body-hit.wav",
+        "assets/audio/combat/v2/bone-break.wav",
+        "assets/audio/combat/v2/bone-hit.wav",
+        "assets/audio/combat/v2/bow-a.wav",
+        "assets/audio/combat/v2/bow-b.wav",
+        "assets/audio/combat/v2/command.wav",
+        "assets/audio/combat/v2/defeat.wav",
+        "assets/audio/combat/v2/engage.wav",
+        "assets/audio/combat/v2/rite.wav",
+        "assets/audio/combat/v2/skeleton-swing.wav",
+        "assets/audio/combat/v2/spell-heavy.wav",
+        "assets/audio/combat/v2/spell-hit.wav",
+        "assets/audio/combat/v2/spell.wav",
+        "assets/audio/combat/v2/victory.wav",
+        "assets/audio/combat/v2/warden-entry.wav",
+        "assets/audio/combat/v2/warden-fall.wav",
+        "assets/audio/combat/v2/warden-phase.wav",
+        "assets/audio/combat/v2/warden-strike.wav",
+        "assets/audio/combat/v2/whistle.wav"
+      ],
+      "licenses": [
+        "CC0-1.0"
+      ],
+      "authors": [
+        "artisticdude (submitted by Ogrebane)",
+        "Zane Little Music",
+        "Brian MacIntosh (BMacZero)",
+        "Julie Damsgaard / Spring Spring",
+        "Luke.RUSTLTD"
+      ],
+      "sources": [
+        "https://opengameart.org/content/battle-sound-effects",
+        "https://opengameart.org/content/deep-bone-crackbreak-sfx",
+        "https://opengameart.org/content/metal-impact-sounds",
+        "https://opengameart.org/content/various-sound-effects-0",
+        "https://opengameart.org/content/wind1"
+      ],
+      "evidence": "docs/audio/THIRD_PARTY_AUDIO_LICENSES.md",
+      "notes": "Per-output constituent samples and edit details in evidence."
+    },
+    {
+      "id": "legacy-combat-hotfix",
+      "status": "documented",
+      "paths": [
+        "assets/audio/combat/hotfix/arrow-impact.wav",
+        "assets/audio/combat/hotfix/bow-release-a.wav",
+        "assets/audio/combat/hotfix/bow-release-b.wav",
+        "assets/audio/combat/hotfix/footstep_run_01.ogg",
+        "assets/audio/combat/hotfix/footstep_run_02.ogg",
+        "assets/audio/combat/hotfix/footstep_run_03.ogg",
+        "assets/audio/combat/hotfix/footstep_run_04.ogg"
+      ],
+      "licenses": [
+        "CC0-1.0"
+      ],
+      "authors": [
+        "Kenney",
+        "saturdaysoundguy",
+        "JoeDinesSound"
+      ],
+      "sources": [
+        "https://kenney.nl/assets/impact-sounds",
+        "https://freesound.org/people/saturdaysoundguy/sounds/394178/",
+        "https://freesound.org/people/saturdaysoundguy/sounds/394179/",
+        "https://freesound.org/people/JoeDinesSound/sounds/534956/"
+      ],
+      "evidence": "docs/audio/THIRD_PARTY_AUDIO_LICENSES.md",
+      "notes": "Per-file sources; Freesound takes edited."
+    },
+    {
+      "id": "legacy-d373-ambience",
+      "status": "documented",
+      "paths": [
+        "assets/audio/ambience/d369_castle_roomtone.wav",
+        "assets/audio/ambience/d369_ossuary_roomtone.wav"
+      ],
+      "licenses": [
+        "CC-BY-3.0",
+        "CC0-1.0"
+      ],
+      "authors": [
+        "fractilegames",
+        "AntumDeluge",
+        "Blender Foundation"
+      ],
+      "sources": [
+        "https://opengameart.org/content/creaky-light-wooden-door",
+        "https://opengameart.org/content/bones-2",
+        "https://opengameart.org/content/ambient-water-drips"
+      ],
+      "evidence": "docs/D373_RECORDED_FOLEY_CREDITS.md",
+      "notes": "D374 disabled default playback, but assets remain in repo; export exclusion must be proven or notices shipped. Source/output fingerprints in evidence."
+    },
+    {
+      "id": "legacy-gut",
+      "status": "documented",
+      "paths": [
+        "addons/gut"
+      ],
+      "licenses": [
+        "MIT"
+      ],
+      "authors": [
+        "Tom \"Butch\" Wesley"
+      ],
+      "sources": [
+        "https://github.com/bitwes/Gut/tree/aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605"
+      ],
+      "evidence": "docs/GUT_TESTING.md",
+      "license_files": [
+        "addons/gut/LICENSE.md"
+      ],
+      "notes": "Developer-only GUT 9.7.1; root license not blanket clearance for bundled fonts/images. Review subassets and exclude developer addon/test scenes from player export."
+    },
+    {
+      "id": "legacy-gut-fonts",
+      "status": "documented",
+      "paths": [
+        "addons/gut/fonts",
+        "addons/gut/source_code_pro.fnt"
+      ],
+      "licenses": [
+        "OFL-1.1"
+      ],
+      "authors": [
+        "Mark Simonson (Anonymous Pro)"
+      ],
+      "sources": [
+        "https://github.com/bitwes/Gut/tree/aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605/addons/gut"
+      ],
+      "evidence": "addons/gut/fonts/OFL.txt",
+      "license_files": [
+        "addons/gut/fonts/OFL.txt"
+      ],
+      "notes": "Existing OFL notice identifies Anonymous Pro only. Verify Courier Prime, Lobster Two, Source Code Pro and any image/icon notices individually; do not mark group verified yet."
+    },
+    {
+      "id": "legacy-godot",
+      "status": "documented",
+      "paths": [
+        "project.godot"
+      ],
+      "licenses": [
+        "MIT"
+      ],
+      "authors": [
+        "Godot Engine contributors"
+      ],
+      "sources": [
+        "https://docs.godotengine.org/en/stable/about/complying_with_licenses.html"
+      ],
+      "evidence": "docs/LICENSE_POLICY.md",
+      "notes": "Game engine distribution has multiple third-party notices. Obtain license and full copyright bundle from actual export engine version."
+    }
+  ],
+  "new_resources": [],
+  "release": {
+    "godot_license_bundle": null,
+    "package_review_report": null
+  }
+}

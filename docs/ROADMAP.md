@@ -1,3 +1,9 @@
+## Commercial distribution readiness · License Compliance 1.0
+
+- [x] Project-wide policy, historical evidence index, notice file, local preflight and seven isolated fixture tests.
+- [ ] Complete legacy assets/code/font/dependency/reference/AI rights audit; resolve or replace unresolved material only with review.
+- [ ] Review actual export file inventory, include required Godot/third-party license bundle, run strict preflight. This is a publication gate, not a blocker for F5/F6 development.
+
 ## Cinematic Travel V5 — one-scene staging pilot
 
 - [x] Player authorized Curse Forge pilot using coherent human-scale characters and scene props.

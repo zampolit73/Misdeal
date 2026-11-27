@@ -1,3 +1,8 @@
+## License Compliance 1.0 — 27 Nov 2026
+
+- Added mandatory commercial licensing policy, machine-readable registry, consolidated notices, local release preflight and isolated tests. Initialized 50 documented third-party audio paths and existing GUT/fonts/Godot records; legacy clearance remains open.
+- Seven isolated Python/Git fixture tests PASS. Strict release remains blocked by unresolved legacy audit and package/engine notice evidence. No runtime/visual/audio changes or Godot runs.
+
 ## Cinematic Travel V5 — painted smith detail - 27 Nov 2026
 
 - Restore all six original detailed smith poses from archived source, packed losslessly at 576×576 per cel; local linear filtering replaces pixel enlargement. Preserve world stature, sole anchor, strike timing, anvil, camera, heroes and live V4.

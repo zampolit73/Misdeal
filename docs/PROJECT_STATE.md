@@ -1,3 +1,7 @@
+## License Compliance 1.0 · cross-cutting release gate
+
+Repository policy, registry, notices and local preflight now exist. 50 existing recorded external audio outputs indexed; GUT/fonts/Godot documented separately. Seven isolated Git/Python fixture tests passed; strict publication gate intentionally fails until historical source rights, font/dependency and package/engine credits review is resolved. No changes to runtime, approved art or gameplay; the current Travel V5/V4 review stays the next development task. [Policy](LICENSE_POLICY.md).
+
 ## Cinematic Travel V5 · Curse Forge QA pilot only
 
 On 2026-11-27 player authorized one mini-cinematic pilot with realistic scene-relative hero/NPC/object proportion. New pulled-back forge plate, six original smith hammer poses, real D412 heroes, centered ground-plane metre projection, bounded camera, anvil foreground/depth, distinct four outcomes (actual buyer only), local cues and no gameplay state access. 6.6 s isolated preview; all existing 24 live V4 Travel scenes and original card art remain untouched. Godot 4.7.2 isolated headless: 19 contexts / 3,008 checks / zero failures. Player then requested the original non-pixelated smith: all six authored source poses now use lossless 576×576 cels, linear filtering and identical physical scale/sole anchors; heroes remain unchanged. Follow-up isolated Godot 4.7.2: 19 contexts / 4,471 checks / zero failures. Native visual/audio approval and custom grasp animation still pending; pilot not activated in F5. [QA and preview](qa/travel_forge_v5/README.md).

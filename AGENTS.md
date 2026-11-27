@@ -8,6 +8,13 @@ Read in order: `AGENTS.md`, `docs/CONCEPT.md`, `docs/PROJECT_STATE.md`, `docs/RO
 
 **Do not embed dated session history inside AGENTS.md.** Its historical pre-cleanup version is preserved at `docs/archive/2026-10-15-pre-cleanup/AGENTS.md`. The current project-specific status belongs in `docs/PROJECT_STATE.md`, not here.
 
+## License Compliance 1.0 — mandatory for all DARK FORGE roles
+
+- Read [docs/LICENSE_POLICY.md](docs/LICENSE_POLICY.md) before importing external code, art, fonts, shaders, audio, animations, tools or generated/reference assets. Public GitHub/free download is not a license. No unapproved new dependency or bulk import.
+- Verify the pinned original source and per-file/dependency license; preserve original texts and notices; record the author, source, date/revision, provenance and exact file SHA-256 in `THIRD_PARTY_ASSETS.json` and credits in `THIRD_PARTY_NOTICES.md`. Original/AI-generated files also need a recorded origin/rights review; visual approval is not legal clearance. No NC, ND, unresolved or copyleft player-runtime imports under the default policy.
+- Before committing affected assets/addons/shaders/media, run `python scripts/dev/check_licenses.py --inventory`. Register exact paths in the same change; do not reset the baseline or mark legacy items approved to evade failures.
+- Before any public demo/player export/commercial build, run `python scripts/dev/check_licenses.py --release`; nonzero exit blocks publication. Complete the legacy rights audit and actual export/engine notices first. Do not delete approved art merely because its rights are unresolved; report blockers and propose reviewed replacements. No change to normal F5/F6 development or QA.
+
 ## Local Godot import metadata and Git hygiene
 
 - **Do not blanket-ignore or delete `*.import`, `*.gd.uid` or `*.gdshader.uid`.** In Godot 4.7 they can hold persistent import settings and resource/script UIDs. Upstream Godot documentation recommends tracking them. The transient `.godot/` cache is already correctly ignored.
