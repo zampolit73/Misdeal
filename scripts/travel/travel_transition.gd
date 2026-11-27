@@ -30,6 +30,10 @@ var exit_shade: ColorRect
 var skip_button: Button
 var _next_audible_step := 0.48
 var _pilot_last_support := 0
+var _v3_jack: AnimatedSprite2D
+var _v3_jack_soles: Array[int] = []
+var _v3_jack_height := 1.0
+var _v3_hero_height := 1.0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -86,6 +90,21 @@ func _ready() -> void:
 		contacts.append(Vector2.ZERO)
 		_measure_soles(role,frames)
 	if actors.is_empty(): return
+	var scene_id := String(context.get("resolved_card_id", ""))
+	# Batch 02/03 have scene-owned companion choreography. The seven earlier
+	# panoramas use the shared follower, with the actual post-resolution flag.
+	if V3.enabled(scene_id) and panorama.get("pilot_active") != true and bool(context.get("jack_companion", false)) and "ranger" in role_ids:
+		var frames: SpriteFrames = ANIM.get_frames("jack")
+		if frames != null and frames.has_animation("walk"):
+			_v3_jack = AnimatedSprite2D.new()
+			_v3_jack.name = "TravelJack"
+			_v3_jack.sprite_frames = frames
+			_v3_jack.animation = "walk"
+			_v3_jack.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+			_v3_jack_height = V3.walk_height(frames)
+			for n in frames.get_frame_count("walk"):
+				_v3_jack_soles.append(frames.get_frame_texture("walk", n).get_image().get_used_rect().end.y - 1)
+			composition.add_child(_v3_jack)
 	var foreground: Node2D = panorama.planes.Foreground
 	foreground.reparent(composition,false)
 	foreground.visible = true
@@ -183,7 +202,7 @@ func _process(delta: float) -> void:
 
 func _play_travel_cues(previous: float) -> void:
 	var id := String(context.get("resolved_card_id", ""))
-	if V3.enabled(id) and bool(panorama.get("pilot_active")):
+	if V3.enabled(id):
 		_play_pilot_cues(previous, id)
 		return
 	if elapsed >= _next_audible_step and elapsed < duration() - 0.65:
@@ -199,7 +218,12 @@ func _play_travel_cues(previous: float) -> void:
 func _play_pilot_cues(previous: float, id: String) -> void:
 	# Read the same lead gait clock used by the visible actor and contact FX.
 	# No accumulated timer drift, no queued steps after skip/pause.
-	var support := V3.support_index(float(panorama.pilot_lead_phase))
+	var lead := 0.0
+	if panorama.get("pilot_active") == true:
+		lead = float(panorama.pilot_lead_phase)
+	elif not ground_fx.gait_phases.is_empty():
+		lead = float(ground_fx.gait_phases[0])
+	var support := V3.support_index(lead)
 	if support > _pilot_last_support and elapsed > 0.36 and elapsed < duration() - 0.20:
 		SoundDirector.play_scene_cue(self, "wood-step" if id == "rattling_bridge" else "stone-step",
 			-26.0, 1.03 if support % 2 == 0 else 0.94)
@@ -243,16 +267,29 @@ func update_frame() -> void:
 		# Scene-local presentation, using the existing clock/actors/contact FX.
 		panorama.stage_party(actors,role_ids,contacts,ground_fx,time,duration(),data)
 	else:
+		var v3 := V3.enabled(str(context.get("resolved_card_id", "")))
+		if v3:
+			ground_fx.gait_phases.resize(actors.size())
+			ground_fx.contact_scales.resize(actors.size())
 		for i in range(actors.size()):
 			var sprite := actors[i]
 			var phase := time * WALK_FPS + i * 1.1
+			if v3:
+				var height := V3.walk_height(sprite.sprite_frames) * sprite.scale.y if not ground_fx.gait_tracks.has(i) else 1.0
+				var road_speed: float = float(panorama.speeds.Road)
+				var path := func(t: float) -> Vector2: return Vector2(t * (BODY_SPEED + road_speed), 0)
+				var stature := func(_p: Vector2) -> float: return height
+				phase = V3.actor_phase(ground_fx, i, time, duration(), path, stature)
+				ground_fx.contact_scales[i] = sprite.scale.y * 0.62
 			sprite.frame = int(phase) % sprite.sprite_frames.get_frame_count("walk")
 			# Held support poses follow the road; advance on the next authored pose.
-			var plant := (BODY_SPEED + float(panorama.speeds.Road)) * fposmod(phase,1.0) / WALK_FPS
+			var plant := 0.0 if v3 else (BODY_SPEED + float(panorama.speeds.Road)) * fposmod(phase,1.0) / WALK_FPS
 			var foot := Vector2(data.party_origin.x + time * BODY_SPEED - i * data.party_spacing - plant,data.party_origin.y + i * data.party_depth_step)
 			if actors.size() == 1: foot.x += data.party_solo_offset
 			sprite.position = foot - Vector2(0,(_soles[role_ids[i]][sprite.frame]-48)*sprite.scale.y)
 			contacts[i] = foot
+	if is_instance_valid(_v3_jack):
+		_stage_legacy_companion()
 	ground_fx.update_contacts(contacts,time)
 	(fog.material as ShaderMaterial).set_shader_parameter("elapsed",time)
 	var leave := smoothstep(duration()-0.60,duration()-0.15,time)
@@ -261,6 +298,32 @@ func update_frame() -> void:
 	caption.modulate.a = text_alpha
 	wizard.modulate.a = text_alpha * 0.85
 	title.modulate.a = 1.0 - smoothstep(2.1,3.2,time) * 0.5
+
+func _stage_legacy_companion() -> void:
+	var i := role_ids.find("ranger")
+	var ranger := actors[i]
+	_v3_jack.visible = ranger.visible
+	if _v3_hero_height <= 1.0:
+		_v3_hero_height = V3.walk_height(ranger.sprite_frames)
+	var projected := _v3_hero_height * ranger.scale.y
+	var direction: Vector2 = ground_fx.dust_direction.normalized()
+	var foot := contacts[i] + (direction * 0.29 + Vector2(0, 0.10)) * projected
+	var phase: float = ground_fx.gait_phases[i] * 1.30
+	_v3_jack.frame = int(phase) % _v3_jack_soles.size()
+	_v3_jack.scale = Vector2.ONE * projected * 0.34 / _v3_jack_height
+	_v3_jack.flip_h = direction.x > 0.0
+	_v3_jack.position = foot - Vector2(0, (_v3_jack_soles[_v3_jack.frame] - 48.0) * _v3_jack.scale.y)
+	_v3_jack.modulate = ranger.modulate
+	_v3_jack.set_meta("sole_y", foot.y)
+	var order: Array[Node2D] = []
+	for j in actors.size():
+		actors[j].set_meta("sole_y", contacts[j].y)
+		order.append(actors[j])
+	order.append(_v3_jack)
+	order.sort_custom(func(a: Node2D, b: Node2D) -> bool: return float(a.get_meta("sole_y")) < float(b.get_meta("sole_y")))
+	for j in order.size():
+		composition.move_child(order[j], ground_fx.get_index() + 1 + j)
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_SPACE,KEY_ENTER,KEY_KP_ENTER,KEY_ESCAPE]:

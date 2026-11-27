@@ -1,3 +1,10 @@
+## Cinematic Travel V3 — Act I full rollout - 27 Nov 2026
+
+- Player approved the pilot; expanded the motion and cue system to the remaining 21 of 24 existing locations (126 total outcomes).
+- Apply distance-driven gait to all authored routes, preserving original facing, silhouettes, perspective, parallax and action-specific patches. Local masked light/cloth and coherent camera movement for flat plates; retain older authored moving layers, bird and props.
+- Preserve exact recruit and Jack handoffs, show real Jack with Ranger throughout the existing travel catalog, keep him out of the hero count. No new source art, gameplay, ambient loops, save schema, or change to the 4-second travel contract.
+- Godot 4.7.2 headless: 40/40 targeted tests, 15,603 assertions. Rollout native visual/audio acceptance pending.
+
 ## Cinematic Travel V3 — three-location pilot - 27 Nov 2026
 
 - Pilot Blood Ledger, Whispering Well and Rattling Bridge; preserve 19 outcomes, their source art and 4-second Travel controller.

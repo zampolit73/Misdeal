@@ -19,3 +19,18 @@ Open `scenes/dev/qa_hub.tscn`, F6, TRAVEL; search `blood_ledger`, `whispering_we
 ## Automated validation
 
 Godot 4.7.2 headless: 17/17 GUT tests, 5,478 assertions, exit 0, across `test_travel_v3_pilot.gd`, `test_travel_transition.gd` and `test_travel_batch02.gd`. Evidence: `docs/qa/travel_v3_pilot/godot_targeted.log`. Native graphical/audio review is pending (the local headless environment could not start an X display); shader appearance and perceived sound quality are not visually/audibly certified.
+
+## Full rollout — 2026-11-27
+
+The player confirmed the initial pilot was OK and authorized continuation. All 24 original event scenes now use V3 (126 outcomes: Batch 02 31, Batch 03 72, Pilot Batch01 11, four older scenes 12). The pilot record above remains historical.
+
+- Batch 02: candle workshop, dice debtor, tithe, crown and forge adopt the same route/footstep clock, while preserving exact existing V2 candle extinguishing, dice, refused bowl, crown and forge object reactions.
+- Batch 03: nine additional scenes receive coherent overscan and measured routes. Existing entry/recruit/lost overlays are preserved; waiting heroes/Jack fade into the existing live walkers at their authored handoff times, and normal local outcome patches blend. The new local shader uses bounded flame/cloth masks where supported by the existing painting (e.g. forge, altar, prisoner lantern, campfire, tax stall). Quiet plates retain their authored atmosphere without arbitrary flame effects.
+- Earlier seven: Last Signal, Gravedigger Shop, Lost Purse, Posthouse, Dressing Station, Campfire and Granary retain existing moving layers, scene props, bird and masks. The gait clock samples their existing routes; the short Batch01 route starts every party member moving without rear clamp. Short cues are timed to existing actions, not a single generic interval.
+- Actual Jack is represented in all 24 locations at projected 34% adult stature; scene-owned recruitment still controls first visibility. No new asset, ambient loop, reward, save, card or battle-road changes. Existing side-view Jack frames remain the source; no claim of newly authored rear-facing dog frames or full horizontal foot IK.
+
+F6 review as above; the new 21 locations still need native motion and audio acceptance. Test a real later event with Jack and a normal Event→Travel→Table route with skip. Do not redo the already accepted pilot art.
+
+### Rollout QA
+
+Godot 4.7.2 headless: 40/40 tests, 15,603 assertions, exit 0, across ten Travel-specific GUT suites; the new matrix covers 126 outcome contexts across 24 locations, visible sole contact and gait progress, deterministic seeking, the actual Jack flag, NPC handoffs and unchanged run state. The prior scene-specific tests additionally cover the existing solo/duo/trio shapes, props, exact source references, pause/skip and live route integration. [Evidence](qa/travel_v3_rollout/godot_targeted.log). No native framebuffer or audio listening was performed for the rollout; player review remains the visual gate.

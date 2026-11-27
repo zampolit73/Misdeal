@@ -1,10 +1,12 @@
 shader_type canvas_item;
 render_mode unshaded;
 
-// Only the three pilot plates opt in. The authored pixels are sampled
+// Original pilot masks plus location-specific rollout masks. The authored pixels are sampled
 // in-place; no TIME, no changes to heroes, terrain silhouettes or heraldry.
 uniform int scene_kind = 0;
 uniform float elapsed = 0.0;
+uniform vec4 local_lights[3];
+uniform vec4 local_cloth = vec4(0.0);
 varying vec4 canvas_tint;
 
 void vertex() {
@@ -41,7 +43,7 @@ void fragment() {
 		float water = oval(p,vec2(489.0,342.0),vec2(122.0,26.0));
 		shift.x += sin(p.y*0.33+elapsed*2.8)*0.9*water;
 		heat = oval(p,vec2(320.0,343.0),vec2(110.0,100.0))*pulse(elapsed,1.6)*0.07;
-	} else { // Bridge: pinned cloth interior and braziers, not the planks/poles.
+	} else if (scene_kind == 2) { // Bridge: pinned cloth interior and braziers, not the planks/poles.
 		float cloth = oval(p,vec2(234.0,205.0),vec2(58.0,138.0));
 		float hang = smoothstep(76.0,175.0,p.y);
 		shift.x += sin(p.y*0.035-elapsed*2.1)*4.2*cloth*hang;
@@ -51,6 +53,21 @@ void fragment() {
 		heat = oval(p,vec2(349.0,353.0),vec2(105.0,105.0))*pulse(elapsed,0.2)*0.095;
 		heat += oval(p,vec2(799.0,270.0),vec2(75.0,70.0))*pulse(elapsed,2.2)*0.075;
 		heat += oval(p,vec2(963.0,228.0),vec2(46.0,48.0))*pulse(elapsed,4.9)*0.065;
+	} else {
+		for (int i = 0; i < 3; i++) {
+			vec4 light = local_lights[i];
+			if (light.z > 0.0 && light.w > 0.0) {
+				float seed = float(i) * 2.7 + 0.6;
+				shift += flame(p, light.xy, light.zw, seed) * 0.65;
+				heat += oval(p, light.xy+vec2(0.0, 18.0), light.zw*vec2(4.2, 2.7))*pulse(elapsed,seed)*0.065;
+			}
+		}
+		if (local_cloth.z > 0.0 && local_cloth.w > 0.0) {
+			float mask = oval(p, local_cloth.xy, local_cloth.zw);
+			float hang = smoothstep(local_cloth.y-local_cloth.w, local_cloth.y, p.y);
+			shift.x += sin(p.y*0.040-elapsed*1.9)*1.8*mask*hang;
+			shift.y += cos(p.x*0.04-elapsed*1.9)*0.6*mask*hang;
+		}
 	}
 	vec4 ink = texture(TEXTURE, clamp(UV+shift/pixels,vec2(0.0),vec2(1.0)));
 	ink.rgb *= vec3(1.0+heat,1.0+heat*0.64,1.0+heat*0.30);

@@ -3,6 +3,7 @@ extends RefCounted
 ## No RunState/save writes; the V2 owner still supplies clock, pause and finish.
 const DIR := "res://assets/pixel/travel/last_dressing_station/rear_walk/"
 const VANISHING := Vector2(850,360)
+const V3 := preload("res://scripts/travel/travel_v3_motion.gd")
 const HAZE := preload("res://shaders/dressing_station_walk.gdshader")
 static var frames: Dictionary = {}
 static var soles: Dictionary = {}
@@ -32,8 +33,17 @@ func build() -> bool:
 	soles=parsed
 	return true
 
+func _gait_point(time: float, duration: float, index: int, count: int, origin: Vector2) -> Vector2:
+	var depth := 1.0 + time / duration * 1.12 + (count - 1 - index) * 0.32
+	if count == 1:
+		depth += 0.30
+	var lane := 0.0 if index == 0 else (14.0 if index % 2 == 1 else -14.0)
+	return VANISHING + (origin - VANISHING + Vector2(0.4, -0.9) * lane) / depth
+
+
 func stage(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Array[Vector2], ground: Node2D, time: float, duration: float, road_offset: Vector2, layout: Resource) -> void:
 	ground.contact_scales.resize(actors.size())
+	ground.gait_phases.resize(actors.size())
 	ground.dust_direction = Vector2(0.92,0.40)
 	for i in range(actors.size()):
 		var actor := actors[i]
@@ -52,7 +62,10 @@ func stage(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Arra
 		var factor := 1.0/depth
 		var lane := 0.0 if i==0 else (14.0 if i%2==1 else -14.0)
 		var foot: Vector2 = VANISHING+(layout.party_origin-VANISHING)*factor+Vector2(0.4,-0.9)*lane*factor+road_offset
-		var phase := time*6.5+i*1.1
+		var path := _gait_point.bind(duration, i, actors.size(), layout.party_origin)
+		var height := V3.walk_height(frames[role]) * float(layout.party_scale) if not ground.gait_tracks.has(i) else 1.0
+		var stature := func(p: Vector2) -> float: return height * (p.y - VANISHING.y) / (layout.party_origin.y - VANISHING.y - lane * 0.9)
+		var phase := V3.actor_phase(ground, i, time, duration, path, stature)
 		actor.frame=int(phase)%6
 		actor.scale=Vector2.ONE*float(layout.party_scale)*factor
 		actor.flip_h=false

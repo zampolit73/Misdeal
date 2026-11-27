@@ -1,5 +1,5 @@
 extends Node2D
-## V2 batch-local presentation. Existing TravelTransition owns actors, clock and routing.
+## Travel V3 batch-local presentation. Existing TravelTransition owns actors, clock and routing.
 const ROOT := "res://assets/pixel/travel/batch_02/"
 const ANIM := preload("res://scripts/battle/unit_animation_library.gd")
 const REAR := preload("res://scripts/travel/campfire_walk.gd")

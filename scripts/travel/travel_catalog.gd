@@ -56,8 +56,7 @@ static func context_for(id: String, outcome: String, roles: Array, wizard: Strin
 		var visual := BATCH02.action_for(id,outcome,roles,presentation)
 		if visual.is_empty(): return {}
 		var result := {"resolved_card_id":id,"outcome_id":outcome,"visual_action":visual,"party_roles":roles.duplicate(),"narration_text":BATCH02.narration(id,visual),"wizard_line":wizard,"duration_sec":4.0}
-		if id in ["blood_ledger","rattling_bridge"]:
-			result["jack_companion"] = "ranger" in roles and bool(presentation.get("jack_companion", false))
+		result["jack_companion"] = "ranger" in roles and bool(presentation.get("jack_companion", false))
 		return result
 	var action := outcome
 	if id=="gravedigger_shop":
@@ -69,6 +68,7 @@ static func context_for(id: String, outcome: String, roles: Array, wizard: Strin
 	if narration.is_empty(): return {}
 	var result := {"resolved_card_id":id,"outcome_id":outcome,"party_roles":roles.duplicate(),"narration_text":narration,"wizard_line":wizard,"duration_sec":4.0}
 
+	result["jack_companion"] = "ranger" in roles and bool(presentation.get("jack_companion", false))
 	if id in ["last_signal","gravedigger_shop","lost_purse"]:
 		result["visual_action"]=action
 		if id=="gravedigger_shop" and action!="leave": result["choice_role"]=action

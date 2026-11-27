@@ -6,6 +6,7 @@ var stride_period := 6.0 / 6.5
 var contact_scales: Array[float] = []
 # Optional distance-driven gait clock for Travel V3 only.
 var gait_phases: Array[float] = []
+var gait_tracks: Dictionary = {}
 var dust_direction := Vector2(-1,0)
 
 func update_contacts(positions: Array[Vector2], local_time: float) -> void:

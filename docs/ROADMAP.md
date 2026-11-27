@@ -1,7 +1,9 @@
 ## Cinematic Travel V3
 
-- [x] Three-location pilot: Blood Ledger, Whispering Well and Rattling Bridge; 19 outcomes, motion and local effects. [Contract](CINEMATIC_TRAVEL_V3_PILOT.md).
-- [ ] Native motion and audio acceptance; scale selected improvements to the remaining 21 event Travel scenes only after review.
+- [x] Three-location pilot: Blood Ledger, Whispering Well and Rattling Bridge; 19 outcomes, motion and local effects.
+- [x] Player confirmed pilot OK on 2026-11-27; authorized full rollout.
+- [x] Roll out distance-driven walking, action cues, existing companion continuity and location-specific presentation to remaining 21; 24 locations / 126 outcomes. [Contract](CINEMATIC_TRAVEL_V3_PILOT.md).
+- [ ] Native motion, visual and audio acceptance of full rollout. Then continue Act I control run.
 
 ## Interface Polish 2.0
 

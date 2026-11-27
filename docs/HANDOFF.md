@@ -1,6 +1,6 @@
-## Cinematic Travel V3 · pilot awaiting player motion review
+## Cinematic Travel V3 · full rollout; next local check
 
-Pull main; in Godot 4.7.2 open `scenes/dev/qa_hub.tscn` with F6. In TRAVEL search `blood_ledger`, `rattling_bridge`, `whispering_well`. Left/right cycles real outcomes; 1/2/3 selects party shape; P pauses, R replays; F11 hides hub toolbar. Compare the corrected trio departure, bridge fabric/brazier/wood cue, well paid/leave/rescue (no duplicate mage) and visible Jack with a real companion in F5. F5 normal Event→Travel→Table must preserve existing rewards and skip. All 19 pilot outcomes retained, no reauthored art or changes to remaining 21 scenes. Headless QA is technical only; native visual and sound review required before rollout. [Pilot scope](CINEMATIC_TRAVEL_V3_PILOT.md).
+Player accepted the original three-location pilot in local Godot on 2026-11-27. Full rollout now covers the remaining 21 event locations; total 24/126. Pull main, F6 `scenes/dev/qa_hub.tscn`, TRAVEL, search e.g. `candle_seller`, `curse_forge`, `last_camp`, `chained_prisoner`, `jack`, `lost_purse`, `unsent_letters`, `false_weights`. Left/right changes actual outcome, 1/2/3 party, P pause, R replay; F11 hides toolbar. In F5, check a recruited hero and a later event with real Jack companion, then one normal Event→Travel→Table and skip. Native visual and audible quality for the new 21 locations remains to be confirmed; no need to retest approved pilot artwork. Do not reset profile. After acceptance, proceed to outstanding visual gates and Act I control run; no additional Travel redesign without concrete user feedback. [Rollout](CINEMATIC_TRAVEL_V3_PILOT.md).
 
 ## Archive — Achievements UI V3 · next native acceptance
 

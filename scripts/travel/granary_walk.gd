@@ -10,9 +10,20 @@ func _prepare_road(origin: Vector2) -> void:
 	road.add_point(origin,Vector2.ZERO,Vector2(15,-75))
 	road.add_point(Vector2(1140,380),Vector2(-25,55),Vector2.ZERO)
 	road_length=road.get_baked_length()
+func _hall_gait_point(time: float, duration: float, index: int, count: int, depth_interval: float) -> Vector2:
+	var depth := 1.0 + time / duration * HALL_TRAVEL + (count - 1 - index) * depth_interval
+	if count == 1:
+		depth += depth_interval
+	var factor := 1.0 / depth
+	var distance := clampf((1.0 - factor) / HALL_TRAVEL, 0.0, 1.0) * road_length
+	var tangent := _road_tangent(distance)
+	var lane := 0.0 if count == 1 or index == count - 1 else (-130.0 if index % 2 == 0 else 90.0)
+	return _road_sample(distance) + Vector2(-tangent.y, tangent.x) * lane * factor
+
 func stage(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Array[Vector2], ground: Node2D, time: float, duration: float, road_offset: Vector2, layout: Resource) -> void:
 	_prepare_road(layout.party_origin)
 	ground.contact_scales.resize(actors.size())
+	ground.gait_phases.resize(actors.size())
 	# Near-road screen spacing is converted once to longitudinal depth spacing.
 	var depth_interval := float(layout.party_spacing)/road_length*0.65
 	var trail := Vector2.ZERO
@@ -37,7 +48,10 @@ func stage(actors: Array[AnimatedSprite2D], roles: Array[String], contacts: Arra
 		var normal := Vector2(-tangent.y,tangent.x)
 		var foot := _road_sample(distance)+normal*lane*factor+road_offset
 		trail-=tangent
-		var phase := time*6.5+i*1.1
+		var path := _hall_gait_point.bind(duration, i, actors.size(), depth_interval)
+		var height := V3.walk_height(frames[role]) * float(layout.party_scale) if not ground.gait_tracks.has(i) else 1.0
+		var stature := func(p: Vector2) -> float: return height * (p.y - HALL_HORIZON_Y) / (layout.party_origin.y - HALL_HORIZON_Y)
+		var phase := V3.actor_phase(ground, i, time, duration, path, stature)
 		actor.frame=int(phase)%6
 		# Ground-plane projection: equally tall people scale with sole height
 		# above the road horizon, rather than shrinking independently of position.

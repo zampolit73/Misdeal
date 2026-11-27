@@ -162,14 +162,14 @@ func test_rescue_handoff_and_companion_never_duplicate_waiting_actor() -> void:
 	bridge.free()
 
 
-func test_non_pilot_locations_keep_v2_and_cues_use_authored_beats() -> void:
+func test_rollout_locations_use_v3_and_pilot_cues_keep_authored_beats() -> void:
 	var candle := _view(B2.context_for_case(0, TRIO))
-	assert_false(candle.panorama.pilot_active)
-	assert_null(candle.panorama.pilot_base)
+	assert_true(candle.panorama.pilot_active)
+	assert_not_null(candle.panorama.pilot_base)
 	candle.free()
 	var bone_tax := _view(CATALOG.context_for("bone_tax", "", TRIO, "", false, {"batch_03_action": "gold"}))
-	assert_false(bone_tax.panorama.pilot_active)
-	assert_null(bone_tax.panorama.pilot_base)
+	assert_true(bone_tax.panorama.pilot_active)
+	assert_not_null(bone_tax.panorama.pilot_base)
 	bone_tax.free()
 	assert_eq(V3.action_time("whispering_well", "rescue_gold"), 1.12)
 	assert_eq(V3.action_cue("whispering_well", "rescue_gold"), "coins")

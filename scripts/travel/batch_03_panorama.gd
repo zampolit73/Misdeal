@@ -36,6 +36,7 @@ var pilot_active := false
 var pilot_lead_phase := 0.0
 var pilot_tracks: Dictionary = {}
 var pilot_base: Sprite2D
+var scene_id := ""
 
 func build(background: String, _foreground: String, _underpaint: String, _sky: String) -> void:
 	for id in CATALOG.DATA.data:
@@ -55,15 +56,16 @@ func build(background: String, _foreground: String, _underpaint: String, _sky: S
 	available = _texture(str(_scene.master)) != null
 
 func configure(context: Dictionary) -> void:
+	scene_id = str(context.get("resolved_card_id", ""))
 	_action = str(context.get("visual_action", ""))
 	_state = CATALOG.action_for(str(context.get("resolved_card_id", "")),
 		_action, context.get("party_roles", []))
 	available = not _state.is_empty() and _route.size() == 3
 	if not available:
 		return
-	pilot_active = str(context.get("resolved_card_id", "")) == "whispering_well"
+	pilot_active = V3.enabled(str(context.get("resolved_card_id", "")))
 	if pilot_active:
-		pilot_base = V3.base_sprite(self, _texture(str(_scene.master)), "whispering_well")
+		pilot_base = V3.base_sprite(self, _texture(str(_scene.master)), str(context.resolved_card_id))
 	var party: String = _state.party
 	_handoff = [] if _scene.handoff == null else _scene.handoff
 	if party.begins_with("+"):
@@ -131,10 +133,12 @@ func _texture(path: String) -> Texture2D:
 
 func update_time(time: float, duration: float) -> void:
 	_time = time
-	_world = V3.camera("whispering_well", time, duration) if pilot_active else Transform2D(0.0, Vector2.ONE * OVERSCAN, 0.0, Vector2(-3.4 - time * ROAD_PAN, -3.0))
+	_world = V3.camera(scene_id, time, duration) if pilot_active else Transform2D(0.0, Vector2.ONE * OVERSCAN, 0.0, Vector2(-3.4 - time * ROAD_PAN, -3.0))
 	if pilot_active:
 		V3.update_base(pilot_base, _world, time)
-		npc_visible = (_joining == "mage" and time < _handoff_time) or (_action == "leave_lost" and time < 2.45)
+		npc_visible = (_joining != "" and time < _handoff_time) or (
+			_state.party.ends_with(" lost") and (_action != "leave_lost" or time < 2.45)) or (
+			scene_id == "jack" and _joining.is_empty())
 	planes.Foreground.transform = _world
 	if is_instance_valid(_occlusion):
 		_occlusion.transform = _world
@@ -145,7 +149,10 @@ func _draw() -> void:
 		return
 	draw_set_transform_matrix(_world)
 	if pilot_active:
-		_draw_pilot_well()
+		if scene_id == "whispering_well":
+			_draw_pilot_well()
+		else:
+			_draw_v3_outcome()
 		return
 	_draw_plate(_scene.master)
 	npc_visible = false
@@ -171,6 +178,28 @@ func _draw() -> void:
 	else:
 		npc_visible = waiting and _joining.is_empty()
 		_draw_plate(_state.overlay)
+
+
+func _draw_v3_outcome() -> void:
+	var phases: Dictionary = _scene.phases
+	var waiting: bool = _state.party.ends_with(" lost") or (scene_id == "jack" and _joining.is_empty())
+	if _joining != "":
+		if _time < _handoff_time:
+			var path: String = phases.get("entry", "")
+			if _joining == "jack" and _time >= 0.63:
+				path = phases.get("treatment", path)
+			_draw_plate(path, 1.0 - smoothstep(_handoff_time - 0.18, _handoff_time, _time))
+		else:
+			_draw_plate(_state.overlay, smoothstep(_handoff_time, _handoff_time + 0.28, _time))
+	elif waiting:
+		# Preserve abandoned actor continuously, with an immediate local patch swap.
+		_draw_plate(phases.get("entry", _state.overlay) if _time < 0.84 else _state.overlay)
+	elif phases.has("entry") and _handoff.is_empty():
+		var blend := smoothstep(0.64, 1.04, _time)
+		_draw_plate(phases.entry, 1.0 - blend)
+		_draw_plate(_state.overlay, blend)
+	else:
+		_draw_plate(_state.overlay, smoothstep(0.54, 1.02, _time))
 
 
 func _draw_pilot_well() -> void:
@@ -214,6 +243,15 @@ func _pilot_route_foot(time: float, duration: float, rank: int, walking: int) ->
 	return _road(clampf(progress - rank * SPACING, 0.0, 1.0)) + Vector2(0, rank * 6)
 
 
+func _jack_join_foot(time: float, duration: float, ranger_rank: int, walking: int) -> Vector2:
+	var ranger := _pilot_route_foot(time, duration, ranger_rank, walking)
+	return _approach(time, duration, ranger + Vector2(-112, 12) * _perspective(ranger.y))
+
+
+func _jack_height(foot: Vector2) -> float:
+	return _pilot_height(foot) * JACK_STATURE
+
+
 func _pilot_height(foot: Vector2) -> float:
 	return float(_scene.height) * _perspective(foot.y)
 
@@ -225,6 +263,8 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 		ground.gait_phases.resize(actors.size())
 	var lead_found := false
 	var ranger_phase := 0.0
+	var ranger_rank := 0
+	var ranger_visible := false
 	var walking := roles.size() - (1 if _joining in roles else 0)
 	var leading := 0.025 + maxf(walking - 1, 0) * SPACING
 	var progress := lerpf(leading, 0.97, time / duration)
@@ -257,6 +297,8 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 				submerged = actor
 				_occlusion.visible = true
 		else:
+			if role == "ranger":
+				ranger_rank = rank
 			foot = _road(clampf(progress - rank * SPACING, 0.0, 1.0)) + Vector2(0, rank * 6)
 			if pilot_active:
 				if not pilot_tracks.has(role):
@@ -271,6 +313,7 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 		if role == "ranger":
 			ranger_foot = foot
 			ranger_phase = phase
+			ranger_visible = actor.visible
 		ground.contact_scales[i] = 0.0
 		if actor.visible:
 			var factor := _stage_actor(actor, role, foot, phase, elevated)
@@ -281,11 +324,17 @@ func stage_party(actors: Array[AnimatedSprite2D], roles: Array[String], contacts
 	if is_instance_valid(_jack):
 		var trailing := ranger_foot + Vector2(-112, 12) * _perspective(ranger_foot.y)
 		var phase := ranger_phase * 1.30 if pilot_active else time * WALK_FPS
-		_jack.visible = _joining != "jack" or time >= _handoff_time
+		_jack.visible = ranger_visible and (_joining != "jack" or time >= _handoff_time)
 		if _jack.visible:
 			if _joining == "jack":
 				trailing = _approach(time, duration, trailing)
 				phase = (time - _handoff_time) * WALK_FPS
+				if pilot_active:
+					var path := _jack_join_foot.bind(duration, ranger_rank, walking)
+					trailing = path.call(time)
+					if not pilot_tracks.has("jack"):
+						pilot_tracks["jack"] = V3.gait(path, _jack_height, duration, _handoff_time)
+					phase = V3.phase(pilot_tracks["jack"], time)
 			_stage_actor(_jack, "jack", trailing, phase)
 		order.append(_jack)
 	var parent := actors[0].get_parent()
