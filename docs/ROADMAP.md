@@ -31,7 +31,8 @@
 - [x] Player accepted Last Camp and Ash Rest; production opt-in with V4 fallback, 58 contexts / 1,284 checks + six fallback checks PASS.
 - [x] Correct Borrowed Boots perspective and excessive magnification reported in native screenshot; 122 contexts / 19,138 checks PASS.
 - [x] Add four source-registered, original-detail cobbler work cels and action-specific timeline; 122 contexts / 19,975 checks, 12 missing-cel fallback checks PASS.
-- [ ] Recheck animated Borrowed Boots in native F6; activate only after approval. Integrated F5 Last Camp/Ash Rest review pending.
+- [x] Replace rejected giant foreground composition with human-scale wide worksite, source-registered animation and calibrated gate/road paths; 122 contexts / 20,151 checks PASS.
+- [ ] Recheck human-scale animated Borrowed Boots in native F6; activate only after approval. Integrated F5 Last Camp/Ash Rest review pending.
 - [ ] Apply the approved scene-first V5 direction to eleven remaining unstaged scenes in coherent batches; preserve the original art identity, actual outcomes and V4 fallback. No automatic scene conversion.
 
 ## Travel Staging V4

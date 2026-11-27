@@ -1,3 +1,7 @@
+## Next player check · human-scale Borrowed Boots wide scene
+
+Player rejected the giant Squire. Pull main; F6 `scenes/dev/travel_camp_v5_preview.tscn`, X twice to Костёр без хозяина, R replay, arrows repair/hobnails/pass. New pulled-back castle courtyard and original seated cobbler/gear at the same local scale as the heroes: seated ~131px, standing customer ~150–155px; boots, bench and fire share the scale. All four work cels, glance and original outcome at 3.22 s retained. Verify proportions, pose registration, hero paths, Jack and gate exit at native F6. Isolated 122 / 20,151 checks, 58 live / 1,284, 12 missing-cel fallback; zero failures. Prior nine live V5 IDs unchanged; approve Boots before enabling. [QA](qa/travel_camp_v5/README.md).
+
 ## Next player check · animated cobbler in Borrowed Boots
 
 Pull main, F6 `scenes/dev/travel_camp_v5_preview.tscn`, X twice to Костёр без хозяина, R replay. Squire pulls the strap, threads the buckle, glances toward travellers and presses the leather; compare repair, hobnails and passed with arrows. Check original detailed anatomy, no edge/duplicate image, stable boot/seat/background, original equipment result, accepted midground hero proportions and Jack. Headless tests: 122 / 19,975, live camp 58 / 1,284, missing-cel fallback 12 checks, no failures. Approve Boots before separately opting it into production; do not assume rescue or Boots acceptance. 9/24 live, 4 staged, 11 unstaged. No profile reset. [QA/provenance](qa/travel_camp_v5/README.md).

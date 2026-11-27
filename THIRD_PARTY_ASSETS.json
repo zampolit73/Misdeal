@@ -405,6 +405,29 @@
         "assets/pixel/travel/cinematic_v5/squire/pull.webp": "c6465f525976504c46c3447dbcbeb0b888173e124a9e7746eff54a57a5ac4eaf",
         "assets/pixel/travel/cinematic_v5/squire/thread.webp": "5e930e39ec7259f9d0d92fc999e5b6ad195c7193245963947d6b3733501125f2"
       }
+    },
+    {
+      "id": "travel-v5-boots-human-scale-wide-generated",
+      "status": "verified",
+      "origin": "generated",
+      "author": "Misdeal project / ChatGPT image generation and deterministic source preparation",
+      "revision": "boots-wide-v5-01 from 8e80149c1bc34b44b5be992326e7ec232c30417a",
+      "obtained_on": "2026-11-28",
+      "licenses": [
+        "PROJECT-ORIGIN"
+      ],
+      "rights_review": "Development-origin review: generated empty wide plate using only pinned existing Misdeal original Borrowed Boots artwork. Source-cutout three worksite states and four already registered generated work poses, no outside input or dependency. Historical source and tool rights audit remains open for release; not commercial copyright clearance.",
+      "evidence": "docs/qa/travel_camp_v5/README.md",
+      "files": {
+        "assets/pixel/travel/cinematic_v5/boots_wide/camp_hobnails.webp": "a459aecbfcf551765b3b5309ff8af9d8adb2e974c828b1b46e7d7b1f619e9832",
+        "assets/pixel/travel/cinematic_v5/boots_wide/camp_passed.webp": "60887240881275aa4d3d075d1f20c04fa799e680212c8c0558a7060ce938f684",
+        "assets/pixel/travel/cinematic_v5/boots_wide/camp_repair.webp": "8631ed53a62bcc5ab56800f3cc40b095427bda285e0ad96e9d16356f49677969",
+        "assets/pixel/travel/cinematic_v5/boots_wide/glance.webp": "37de4748c84cddc0238ee33c290157ab52dee402fc98d254283eaea89ad73bd4",
+        "assets/pixel/travel/cinematic_v5/boots_wide/plate.webp": "00eca9aca6e66e87a43525806fba734d4330216c39371ba474f399bc417a9839",
+        "assets/pixel/travel/cinematic_v5/boots_wide/press.webp": "c6013d955b770b94791a3f209d5b4e42007c268757c9f2f2d6f07d134238cbe7",
+        "assets/pixel/travel/cinematic_v5/boots_wide/pull.webp": "3fd14048495aca69d471e04c9e4f1090b87f5aae28de12aaad903d31bcd6d8a4",
+        "assets/pixel/travel/cinematic_v5/boots_wide/thread.webp": "4ef85eced1cf1491388b928fead485ad68146db9726357750995579db0a8ee94"
+      }
     }
   ],
   "release": {

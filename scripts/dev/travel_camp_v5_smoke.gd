@@ -30,7 +30,7 @@ func _run() -> void:
 					if is_instance_valid(stage.squire):
 						var artisan: Node2D = stage.squire
 						var cel: Sprite2D = artisan.sprite
-						_check(artisan.scale==CAMP.BOOTS_PROJECTION and artisan.z_index==5 and cel.position==Vector2(SQUIRE.RECT.position),name+" source registered Squire")
+						_check(artisan.scale==CAMP.BOOTS_PROJECTION and artisan.position==CAMP.BOOTS_ORIGIN and artisan.z_index==5 and cel.position==Vector2(SQUIRE.RECT.position) and cel.scale*Vector2(SQUIRE.CEL_SIZE)==Vector2(SQUIRE.RECT.size),name+" source registered Squire")
 						var seen: Dictionary = {}
 						var hashes: Dictionary = {}
 						for sample in [0.0,0.4,0.8,1.05,2.6,3.0,3.4,3.8,4.15,6.6]:
@@ -38,7 +38,7 @@ func _run() -> void:
 							_check(artisan.pose==SQUIRE.pose_for(sample,action) and cel.visible==(artisan.pose!=SQUIRE.ORIGINAL),name+" deterministic Squire phase")
 							seen[artisan.pose]=true
 							if cel.visible:
-								_check(cel.texture.get_size()==Vector2(SQUIRE.RECT.size),name+" native Squire detail")
+								_check(cel.texture.get_size()==Vector2(SQUIRE.CEL_SIZE),name+" native Squire detail")
 								hashes[artisan.pose]=hash(cel.texture.get_image().get_data())
 						_check(seen.size()==5 and hashes.size()==4,name+" four authored phases plus original")
 						_check(hashes.values().size()==4 and hashes[0]!=hashes[1] and hashes[0]!=hashes[2] and hashes[0]!=hashes[3] and hashes[1]!=hashes[2] and hashes[1]!=hashes[3] and hashes[2]!=hashes[3],name+" unique Squire cels")
@@ -69,7 +69,12 @@ func _run() -> void:
 							_check(unit.texture.get_image().get_width()==288,name+" HD actor")
 							if id=="borrowed_boots" and t>=2.44 and t<=3.87 and action!="passed":
 								_check(float(info.height)*tr.x.length()<=200.0,name+" roadside figure fits native HD detail")
-								_check(foot.y<=570.0,name+" actor on distant roadside plane")
+								_check(foot.y<=570.0,name+" actor on shared worksite/road plane")
+								if role==stage.action_role and t>=2.45 and t<=3.55:
+									var squire_sole := CAMP.BOOTS_ORIGIN+CAMP.BOOTS_SOLE*CAMP.BOOTS_PROJECTION
+									var seated_height := CAMP.BOOTS_SEATED_SOURCE_H*CAMP.BOOTS_PROJECTION.y
+									_check(absf(foot.y-squire_sole.y)<=16.0,name+" cobbler and buyer on same ground depth")
+									_check(seated_height/float(info.height)>=0.65 and seated_height/float(info.height)<=0.95,name+" seated artisan human-sized against standing hero")
 								_check(tr.x.length()<=1.05,name+" no excessive Boots close-up")
 							if info.clip in ["kneel","rise"]:
 								_check(unit.texture==stage.living_poses[role][info.frame],name+" dedicated living cel")

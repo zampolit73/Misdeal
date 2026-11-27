@@ -71,6 +71,10 @@ if distributed, these credits must accompany them.
 
 `travel-v5-squire-work-cels-generated`: Misdeal project / ChatGPT image generation and deterministic source preparation, 2026-11-28. Four original source-registered local work frames using only existing Misdeal artwork. [Source and hashes](docs/qa/travel_camp_v5/README.md); legacy source and tool rights review remains open.
 
+## Project-origin Borrowed Boots wide cinematic
+
+`travel-v5-boots-human-scale-wide-generated`: Misdeal project / ChatGPT image generation and deterministic source preparation, 2026-11-28. New empty wide environment and seven source-derived worksite/animation patches, project references only. [Provenance](docs/qa/travel_camp_v5/README.md); legacy reference and tool rights review pending.
+
 ## Future entries
 
 Add the registry ID, actual work title, author, original source, license,

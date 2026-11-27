@@ -2,8 +2,9 @@ extends Node2D
 ## Source-space, foreground-local character animation. Each cel replaces only
 ## registered pixels of the original seated Squire; the original legs, seat,
 ## heraldry and every equipment/outcome layer stay in the shared camp painting.
-const DIR := "res://assets/pixel/travel/cinematic_v5/squire/"
+const DIR := "res://assets/pixel/travel/cinematic_v5/boots_wide/"
 const RECT := Rect2i(230,145,470,515)
+const CEL_SIZE := Vector2i(235,258)
 const POSES := ["pull","thread","glance","press"]
 const ORIGINAL := -1
 static var _textures: Array[Texture2D] = []
@@ -16,7 +17,7 @@ func build() -> bool:
 		for name in POSES:
 			var img := Image.new()
 			var bytes := FileAccess.get_file_as_bytes(DIR+name+".webp")
-			if bytes.is_empty() or img.load_webp_from_buffer(bytes)!=OK or img.get_size()!=RECT.size:
+			if bytes.is_empty() or img.load_webp_from_buffer(bytes)!=OK or img.get_size()!=CEL_SIZE:
 				return false
 			loaded.append(ImageTexture.create_from_image(img))
 		_textures.assign(loaded)
@@ -24,6 +25,7 @@ func build() -> bool:
 	sprite.name = "SquireWorkCel"
 	sprite.centered = false
 	sprite.position = Vector2(RECT.position)
+	sprite.scale = Vector2(RECT.size)/Vector2(CEL_SIZE)
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	add_child(sprite)
 	seek(0.0,"passed")

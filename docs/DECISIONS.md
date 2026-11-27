@@ -1,3 +1,7 @@
+## Cinematic Travel V5 · Boots wide composition supersedes foreground close-up
+
+The player rejected the source foreground Squire as giant, even after the heroes were correctly scaled. For the cinematic only, move the camera composition back: a separate empty wide establishing plate and a single local workshop at the same apparent ground depth as the lead hero. Reuse the original three outcome paintings as masked source-registered worksite cels and the four existing animation patches, with one scale for person, bench, boots and other props. New road and gate routes are scene-owned; avoid enlarging heroes to match the original foreground. Keep card art, old V4 renderer, source archives, production allowlist and gameplay unchanged. Native F6 review before opt-in. [QA/provenance](qa/travel_camp_v5/README.md).
+
 ## Cinematic Travel V5 · Boots source-registered artisan motion
 
 Player requested a smith-like animation for the seated cobbler. Use original source-space registered alpha work cels instead of an independently scaled sprite or whole-plate animation; no replacement of the environment, character identity, outfit, legs or outcome layer. Keep the original skeletal forearm visible and use original pose between work cycles, with a short glance at approaching travellers and action-specific timing. One visible cel at most; time-only seek, all-or-nothing optional resource pack, no game-state writes or sound changes. Retain existing F6 scale correction; no production activation until approval. [QA](qa/travel_camp_v5/README.md).

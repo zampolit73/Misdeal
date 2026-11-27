@@ -1,3 +1,9 @@
+## Cinematic Travel V5 — human-scale Borrowed Boots establishing shot — 28 Nov 2026
+
+- New wide ruined-gate plate; extracted and registered the original animated cobbler, workbench, footwear, shield, helmet and fire together at 0.21 source scale. Seated cobbler ~131px versus standing customer ~150–155px, both same ground plane. Preserve four authored local work poses and prior three equipment states.
+- Recalibrated approach, waiting and gate departure routes; relocated local lamp, cloth and ember effects. Existing character library, dog scale, action clock and sound unchanged.
+- Isolated Godot 4.7.2: 122 / 20,151 checks, 58 live / 1,284 and 12 missing-cel fallback checks, zero failures. Offline visual review; native F6 approval pending, still 9/24 V5 live. [QA](docs/qa/travel_camp_v5/README.md).
+
 ## Cinematic Travel V5 — living Borrowed Boots cobbler — 28 Nov 2026
 
 - Added four original high-detail work cels (pull, thread, glance, press) to the seated Squire, source-registered to his existing painting. Preserve original bone shaft, feet, bench, background and equipment states; no full-frame replacement or duplicate actor.

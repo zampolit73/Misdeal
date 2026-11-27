@@ -3,17 +3,21 @@ extends "res://scripts/travel/cinematic_v5/rescue_v5.gd"
 ## outcomes are presentation data, never re-resolved rewards or penalties.
 const CAMP_IDS := ["last_camp", "ash_rest", "borrowed_boots"]
 const CAMP_PROFILE := "res://resources/travel/cinematic_v5/camp_batch.json"
-const BOOTS := preload("res://scripts/travel/campfire_panorama.gd")
-const BOOTS_SHADER := preload("res://shaders/campfire_layer.gdshader")
 const SQUIRE := preload("res://scripts/travel/cinematic_v5/squire_v5.gd")
-const BOOTS_PROJECTION := Vector2(1280.0/1672.0,720.0/941.0)
+const BOOTS_WIDE := "res://assets/pixel/travel/cinematic_v5/boots_wide/"
+# Shared original source-space transform: the seated person, bench, shoes,
+# original animated work cels and residual strap all have one physical scale.
+const BOOTS_PROJECTION := Vector2(0.21,0.21)
+const BOOTS_ORIGIN := Vector2(157,350)
+const BOOTS_SOLE := Vector2(650,778)
+const BOOTS_SEATED_SOURCE_H := 623.0
+const BOOTS_SOURCE_CEL_SCALE := Vector2(2,2)
+static var _boots_textures: Dictionary = {}
 const BOOTS_ACTIONS := ["repair","hobnails","passed"]
 const CAMP_PASS := ["leave","passed"]
 var camp_layer: Sprite2D
 var squire: Node2D
 var boot_reactions: Node2D
-var boot_rects: Dictionary = {}
-var boots_materials: Array[ShaderMaterial] = []
 
 static func camp_actions(id: String, party: Array) -> Array[String]:
 	var result: Array[String] = []
@@ -29,56 +33,60 @@ static func camp_actions(id: String, party: Array) -> Array[String]:
 			if not CATALOG.action_for(id,str(key),party).is_empty(): result.append(str(key))
 	return result
 
-func _boot_piece(key: String, z: int, animated := false) -> Sprite2D:
-	var tex := BOOTS.texture_at(BOOTS.DIR+key+".png")
-	var r: Array = boot_rects.get(key,[])
-	if tex == null or r.size()!=4: return null
-	var piece := _sprite(tex,world,z,Vector2(r[0],r[1])*BOOTS_PROJECTION,false)
-	piece.scale = BOOTS_PROJECTION
+func _wide_texture(key: String, expected: Vector2) -> Texture2D:
+	if _boots_textures.has(key):
+		return _boots_textures[key]
+	var tex := _load_texture(BOOTS_WIDE+key+".webp")
+	if tex==null or tex.get_size()!=expected: return null
+	_boots_textures[key] = tex
+	return tex
+
+func _boot_piece(key: String, z: int) -> Sprite2D:
+	var tex := _wide_texture(key,Vector2(640,470))
+	if tex==null: return null
+	var piece := _sprite(tex,world,z,BOOTS_ORIGIN,false)
+	piece.scale = BOOTS_PROJECTION*BOOTS_SOURCE_CEL_SCALE
 	piece.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	if animated:
-		var mat := ShaderMaterial.new()
-		mat.shader = BOOTS_SHADER
-		mat.set_shader_parameter("source_rect",Vector4(r[0],r[1],r[2],r[3]))
-		mat.set_shader_parameter("kind",1)
-		mat.set_shader_parameter("passed",key=="camp_passed")
-		piece.material = mat
-		boots_materials.append(mat)
+	# Worksite-local ember mask in V3's normalized 1280x720 UV space.
+	var material := ShaderMaterial.new()
+	material.shader = V3.LIGHT
+	material.set_shader_parameter("scene_kind",-1)
+	material.set_shader_parameter("local_lights",PackedVector4Array([Vector4(863,638,68,22),Vector4.ZERO,Vector4.ZERO]))
+	piece.material = material
 	return piece
 
 func _build_boots() -> bool:
-	var json: Variant = JSON.parse_string(FileAccess.get_file_as_string(BOOTS.DIR+"layers.json"))
-	if not json is Dictionary: return false
-	boot_rects = json
-	var base := BOOTS.texture_at(BOOTS.DIR+"underpaint.png")
-	if base == null: return false
+	var base := _wide_texture("plate",Vector2(1280,720))
+	if base==null: return false
 	plate = V3.base_sprite(world,base,scene_id)
-	plate.scale = Vector2(1280,720)/base.get_size()
 	plate.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	if _boot_piece("gate",1)==null or _boot_piece("road",2)==null: return false
-	camp_layer = _boot_piece("camp_passed",3,true)
+	# Register subtle lamp and cloth animation to the NEW wide painting.
+	var ambience := plate.material as ShaderMaterial
+	ambience.set_shader_parameter("local_lights",PackedVector4Array([Vector4(232,315,14,22),Vector4.ZERO,Vector4.ZERO]))
+	ambience.set_shader_parameter("local_cloth",Vector4(473,360,62,49))
+	# The authored wide plate has no painted person. Only the source-registered
+	# human-scale worksite is visible; outcome textures replace one another.
+	camp_layer = _boot_piece("camp_passed",3)
 	if camp_layer==null: return false
 	if action!="passed":
-		state_layer = _boot_piece("camp_"+action,3,true)
+		state_layer = _boot_piece("camp_"+action,3)
 		if state_layer==null: return false
-	foreground = _boot_piece("foreground",1500)
-	if foreground==null: return false
-	# Local animation patches cover the painted original at exactly the same
-	# source coordinates, above either equipment outcome, below foreground.
 	var artisan := SQUIRE.new()
 	artisan.name = "SquireV5"
+	artisan.position = BOOTS_ORIGIN
 	artisan.scale = BOOTS_PROJECTION
 	artisan.z_index = 5
 	world.add_child(artisan)
 	if artisan.build():
 		squire = artisan
 	else:
-		# All-or-nothing optional animation; old approved painting is intact.
+		# Keep the single human-scale source figure if any optional cel is missing.
 		artisan.free()
 	if action=="repair":
-		var strap := BOOTS.texture_at(BOOTS.DIR+"strap.png")
+		var strap := _load_texture("res://assets/pixel/travel/campfire_without_master/strap.png")
 		if strap==null: return false
 		boot_reactions = preload("res://scripts/travel/campfire_reactions.gd").new()
+		boot_reactions.position = BOOTS_ORIGIN
 		boot_reactions.scale = BOOTS_PROJECTION
 		boot_reactions.z_index = 4
 		world.add_child(boot_reactions)
@@ -118,9 +126,9 @@ func configure_scene(id: String, party: Array, resolved_action: String, has_jack
 	camp_layer = null
 	squire = null
 	boot_reactions = null
+	foreground = null
 	jack = null
 	jack_shadow = null
-	boots_materials.clear()
 	for dict in [actors,shadows,tracks,party_feet,current_frame,side_frames,walk_heights,rear_heights,routes]:
 		dict.clear()
 	visible_roles.clear()
@@ -182,8 +190,8 @@ func _route(role: String) -> Dictionary:
 	if rank>0:
 		wait.y = float(profile.lane_y)+rank*11.0
 		if boot:
-			# The Squire is a close painted foreground figure. The actual
-			# party waits on the smaller, more distant roadside plane.
+			# The shared-depth worksite and open-road waiting slots are
+			# calibrated to the same human stature.
 			wait = _p(profile.wait_slots[rank])
 	# Approach along the unobstructed foreground, then step to the actual prop.
 	var start := _p(profile.entry)+Vector2(rank_sign*rank*spacing,rank*15.0)
@@ -192,13 +200,15 @@ func _route(role: String) -> Dictionary:
 	approach.append(wait)
 	var exit: Array[Vector2] = [wait]
 	if boot:
+		# Peel away on the open road to the right, then turn through the gate.
+		# Followers already nearer the gate depart first.
 		if rank==0:
-			exit.append_array([Vector2(930,548),Vector2(1042,521)])
+			exit.append_array(_points(profile.customer_exit))
 		elif rank==1:
-			exit.append(Vector2(1042,521))
+			exit.append_array(_points(profile.middle_exit))
 		else:
-			exit.append(Vector2(1108,509))
-		exit.append_array([Vector2(1054,477),Vector2(1084,416),Vector2(1118,350)])
+			exit.append_array(_points(profile.guard_exit))
+		exit.append_array(_points(profile.gate_exit))
 	else:
 		exit.append(Vector2(wait.x+65,float(profile.lane_y)+rank*11.0))
 		if scene_id=="last_camp":
@@ -321,8 +331,11 @@ func seek(time: float) -> void:
 		state_layer.visible = after
 		state_layer.modulate.a = 1.0
 	if is_instance_valid(waiting_layer): waiting_layer.visible = not after
-	if is_instance_valid(camp_layer): camp_layer.visible = not prop_changed
-	for mat in boots_materials: mat.set_shader_parameter("elapsed",t)
+	if is_instance_valid(camp_layer):
+		camp_layer.visible = not prop_changed
+		(camp_layer.material as ShaderMaterial).set_shader_parameter("elapsed",t)
+		if is_instance_valid(state_layer):
+			(state_layer.material as ShaderMaterial).set_shader_parameter("elapsed",t)
 	if is_instance_valid(squire): squire.seek(t,action)
 	if is_instance_valid(boot_reactions):
 		boot_reactions.visible = prop_changed
